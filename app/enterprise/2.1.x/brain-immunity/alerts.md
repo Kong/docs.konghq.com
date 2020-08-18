@@ -49,7 +49,7 @@ The ‘/alerts’ endpoint uses the following parameters, which you can mix and 
 * `system_restored`: A true/false value indicates you only want returned alerts where the system_restored value is matching the boolean value passed into this parameter.
 * `severity`: One of "low", "medium", "high" which will restricts returned alerts of severities matching the value provided with this parameter.
 
-#### Alerts Object
+#### Alert Objects
 Two types of data are returned by the ‘/alerts’ endpoint: a list of generated alerts and alerts metadata. 
 
 ##### List of Genrated Alerts
@@ -63,125 +63,8 @@ The first is a list of the alerts generated, which are structured like this:
 * `system_restored`: This parameter takes True or False as a value, and returns notifications where the anomalous event’s system_restored status matches the value passed in the parameter.
 * `severity`: The severity level of this alert, values of [low, medium, high].
 
-##### Alerts Metadata
+##### Alert Metadata
 The second type of data returned is alerts metadata which describes the overall count of alerts and breaks down counts by alert type, severity, system_restored, and filtered_total.
-
-
-### Immunity Model Training
-
-Immunity automatically starts training its models once it is up and running and receiving data. Immunity will create a unique model for every unique endpoint + method combination it sees in incoming traffic. For example, if you have an endpoint [www.test-website.com/buy](http://www.test-website.com/buy) and traffic comes in with both GET and POST requests for that endpoint, Immunity will create two models; one for the endpoint + GET traffic and one for the endpoint + POST traffic.
-
-
-Our first model version gets created after the first hour and will continuously retrain itself for the first week to provide the best model possible. After that, every week all models retrain with a week of data.
-
-
-We also provide clients an endpoint to retrigger training themselves. We recommend retraining when the context of your app is expected to change a lot. For example, maybe there is an upcoming app release that will change several endpoints. If this is the case, one can POST to `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/resettrainer` to start the training cycle all over again.
-
-
-Let’s say you’d like slightly more control over the data your model sees, for example perhaps you know that weekend data is not particularly useful for model building because weekends are normally outliers that your team is prepared for. You can trigger model training for all models with a specified time period of data. Simply POST to `http://<BRAIN_HOST>:<COLLECTOR_PORT>/trainer`, with the start and end time of data you’d like included in training like this:
-
-```
-curl -d '{"start":"2019-01-08 10:00:00", "end":"2019-01-09 23:30:00"}' \
- -H "Content-Type: application/json" \
- -X POST http://<BRAIN_HOST>:<COLLECTOR_PORT>/trainer
-```
-or, in the browser like this:
-
-```
-http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer?start=&end=
-```
-** datetime value format: YYYY-MM-DD HH:mm:ss
-
-
-Additionally, you can specify the Kong service_id or route_id of the URLs you would like trained using the kong_entity parameter. Immunity would then only train URLs associated with the ID provided, and with the data specified by the start and end dates.
-
-```
-curl -d '{"start":"2019-01-08 10:00:00", "end":"2019-01-09 23:30:00", "kong_entity":"2beff163-061d-43ad-8d87-8f40d10805ba"}' \
- -H "Content-Type: application/json" \
- -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer
-```
-
-### Checking Models Trained
-
-Only endpoints + method combinations that have a model trained can be monitored for alerts. If you want to check which endpoints have models, you can use `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/monitoredendpoints` which return a list of all models in the system. Each item in this list contains the following identifying information for the model:
-
-
-
-* `base_url`: The URL of the traffic used to train the model.
-* `method`: The method of the traffic used to train the model.
-* `route_id`: The Kong route_id that the traffic used to train the model is associated with. **service_id**: The Kong service_id that the traffic used to train the model is associated with. **model_version_id**: The model version number of the current, active model.
-* `active_models`: A json object containing information on the active status of each of the six (6) core alert types in Immunity (unknown_parameters, abnormal_value, latency, traffic, status codes, and value_type).
-
-
-
-In this object, the value is a specific alert type and the value is a boolean value where True indicates that the model is actively monitoring for that alert type.
-
-
-In general, if a endpoint + method combination model does not appear on the returned object from `/monitoredendpoints`, this is likely because not enough traffic has been seen by Immunity to build a reliable model.
-
-### Configure Auto-Training
-
-#### Restarting Training Schedules
-
-Immunity automatically sets up training jobs when it first starts up, and retrains all models on an optimized schedule based on time since data started flowing through Immunity. If you have experienced large changes in the type of data you expect to be coming through Immunity and do not feel comfortable choosing an "optimal" time period to use for retraining with the /trainer endpoint, you can re-trigger Immunity's auto-training by posting to the /trainer/reset endpoint. Immunity will then recreate its retraining schedule as if it was just being started and newly ingesting data.
-
-```
-curl -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer/reset
-```
-
-#### Configuring Auto-Training Rules
-
-For best use, Immunity retrains on a regular basis. If you do not feel like you need to retrain your models regularly and are happy with the current model you have now, you can stop auto retraining via post request to the /trainer/config endpoint. This endpoint takes these parameters:
-
-
-
-* `kong_entity`: The route_id or service_id that you would like to turn on or off auto-training.
-* `method`: One of values: GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE. Specifying a method will restrict the rule being made on auto-training to only traffic matching the method specified. When this value is null, all traffic from all methods will be included in the rule.
-* `enable`: True or False, where true means auto-training is on and false means auto-training is off for the `kong_entity` specified.
-
-
-
-You can turn off auto-training for a particular route or service via cURL request like this:
-
-```
-curl -d '{"kong_entity":"your-route-id", "enable":false}' \
- -H "Content-Type: application/json" \
- -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer/config
-```
-
-Similarly, if you turned off auto-training for a route and feel like turning it back on, you can post to /trainer/config with enable = true.
-
-
-These configurations will only apply to training started by Immunity's auto-training schedule. Other training requests made by /trainer won't be affected by this configuration.
-
-#### Viewing Configuration Rules
-
-To see all of your configured training rules, just create a get request to /trainer/config like this:
-
-```
-curl -X GET http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer/config
-```
-
-A list of all your rules will be returned, where `kong_entity` refers to the `service_id` or `route_id` the rule applies to, and enabled is a true or false value.
-
-#### Resetting or Deleting Configured Rules
-
-To delete a single auto-train rule that you created, you can send a delete request to /trainer/config with a `kong_entity` parameter and value of the `service_id` or `route_id` of the rule you would like to delete.
-
-```
-curl -d '{"kong_entity":"your-route-id"}' \
- -H "Content-Type: application/json" \
- -X DELETE http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer/config
-```
-
-Without a rule established, Immunity will default to auto-training. In other words, once you delete a configured rule, Immunity will continue or start auto-training on the route or service of the deleted rule.
-
-
-If you would like to delete all the configurations you create, you can do so by sending an empty DELETE request to /trainer/config like this:
-
-```
-curl -X http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer/config
-```
 
 ### Alert Severity Levels
 Alerts are classified with four severity levels:
@@ -191,25 +74,16 @@ Alerts are classified with four severity levels:
 * **Ignored**: Alerts that are designated as ignored are not surfaced in the Kong Manager, Slack alerts, or /alerts endpoint. 
 
 
-### Configure Alert Severity
-
-#### Severity-Levels
-
-Alerts can be classified on 4-severity levels:
-* `low`: The low severity classification denotes the least important alerts to the user. While the user ultimately decides what a low severity means to them, we recommend that low severity indicates an alert that you'd want to look at eventually, but not right away. It's an alert you wouldn't wake up at 2:00 am to fix but something you'll find useful down the road maybe with planning or minor bug fixing.
-* `medium`: A medium severity classification denotes a mid-level important alert to the user. We think of this level as not something you'd want to wake up at 2:00 am to fix, but not so unimportant that you would wait till sprint planning prep to address. This is a level where you'll likely address it within the sprint or couple of days following it coming up.
-* `high`: A high severity classification is the highest severity level of alert. These are the alerts that you want to be woken up for in the middle of the night, the alert who's ping means all hands on deck.
-* `ignored`: Alerts that are designated as ignored are not surfaced in the Kong Manager, slack alerts, nor /alerts endpoint. For the later, ignored relates will be returned when explicitly asked for via /alerts parameter "severity".
-
-#### Immunity Default Severities
+#### Default Alert Severity Levels
 
 Immunity provides default severity levels based on the alert type, and these defaults are:
-
 * `value_type`: low
 * `unknown_parameter`: low
 * `latency_ms`: high
 * `traffic`: medium
 * `statuscode`: high
+
+### Configure Alert Severity
 
 #### Creating or Updated New Rules
 
@@ -234,7 +108,7 @@ Some restrictions: If you want to set a severity configuration for a route, prov
 
 In the example above, to set the first alert type wide rule for all `unknown_parameter` alerts in your system, you would pass `unknown_parameter` to the `alert_name` parameter and null to the `kong_entity` parameter. Here's an example of what that cURL would look like:
 
-```
+```bash
 curl -d '{"alert_name":"unknown_parameter", "kong_entity":null, "severity": "high"}' \
  -H "Content-Type: application/json" \
  -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/alerts/config
@@ -242,7 +116,7 @@ curl -d '{"alert_name":"unknown_parameter", "kong_entity":null, "severity": "hig
 
 To add that second rule for `unknown_parameter` alerts only coming from a specific route, you'd make a request like this:
 
-```
+```bash
 curl -d '{"alert_name":"unknown_parameter", "kong_entity":"your-route-id", "severity": "medium"}' \
  -H "Content-Type: application/json" \
  -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/alerts/config
@@ -257,8 +131,6 @@ When determining which severity to assign, Immunity will look for your configura
 * `alert_name`
 * Immunity `alert_name` defaults
 
-
-
 When you hit the /alerts endpoint, for each alert, Immunity will first look for a rule specifying a severity for that route's kong `route_id` and `alert_name`. If it doesn't find a severity configuration, it moves down the list above until it returns the Immunity defaults for the alert's alert type.
 
 #### Removing Alert Severity Rule
@@ -267,7 +139,7 @@ You can remove alert-severity configuration rules by sending a delete request to
 * `kong_entity`: The kong_entity of the rule you want deleted, or null for alert type rules.
 * `alert_name`: The alert type of the rule you wanted deleted, or null for a `kong_entity` rule you want deleted.
 
-```
+```bash
 curl -d '{"alert_name":"unknown_parameter", "kong_entity":"your-route-id"}' \
  -H "Content-Type: application/json" \
  -X DELETE http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/alerts/config
@@ -275,21 +147,20 @@ curl -d '{"alert_name":"unknown_parameter", "kong_entity":"your-route-id"}' \
 
 If you want to delete all configuration rules, you can by passing null values for both `kong_entity` and `alert_name` in your request. If you pass null for both `kong_entity` and `alert_name` parameters, all configurations will be deleted, like this:
 
-```
+```bash
 curl -d '{"alert_name":null, "kong_entity":null}' \
  -H "Content-Type: application/json" \
  -X DELETE http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/alerts/config
 ```
 
-#### Seeing-Alert-Severity-Configuration
+#### Viewing Alert Severity Configuration
+To view the rules you already have configured, enter a get request to /alerts/config to view all the rules:
 
-To see what rules you already have made, make a get request to /alerts/config to see all the rules like this:
-
-```
+```bash
 curl -X GET http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/alerts/config
 ```
 
-In return you'll get back a json like this, where each row is a configuration rule:
+In return, you'll get back a json like this, where each row is a configuration rule:
 
 ```json
 [
@@ -315,162 +186,38 @@ A kong entity wide rule is the reverse with a json object that has a non-null `k
 ```
 
 #### Looking at Offending Hars
-
 For value_type, unknown_parameter, and abnormal_value alerts, you can retrieve the hars that created those alerts via the `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/hars` endpoint. This endpoint accepts `alert_id` and/or `har_id` as parameters and returns hars related to the parameters sent. You must specify one of these two parameters to receive hars on the `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/hars` endpoint.
 These are the parameters `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/hars` accepts:
 
-
 * `alert_id`: The id of the alert related to the hars you'd like to inspect. This parameter only accepts one alert_id at a time (no lists).
 * `har_ids`: A list of har_ids you want returned.
-
 
 The response will include these values:
 * `har_id`: The har id of the har returned
 * `alert_id`: The alert_id of the alert_returned.
 * `har`: The full har for the request that generated that har.
 
-
 Here's an example using cURL:
-
-```
+```bash
 curl -d '{"alert_id":1} \
  -H "Content-Type: application/json" \
  -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/hars
 ```
 
 Here's an example using the browser
-
-```
+```bash
 http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/hars?alert_id=1
-```
-
-### Alert Slack Integration
-
-If you choose, Immunity can send Slack notifications for unusual traffic. Immunity needs a Slack webhook to post messages to a Slack workspace. In order to obtain a webhook URL, do the following:
-
-#### Create a new Slack app
-
-First, [Create a new slack app](https://api.slack.com/apps?new_app=1) and save the webhook address.
-
-Then, enable incoming webhook in your app. After submitting the app creation form you are redirected to your newly created app’s page. In “Add features and functionality” click on “Incoming webhooks” to enable them.
-Change the OFF switch to ON. That will make visible a button “Add new webhook to workspace”, click on it.
-
-
-That will redirect you to a page where you can select the channel the webhook will post messages. Select the channel and click in authorize.
-
-
-#### Adding a Slack Configuration
-
-To add your first Slack configuration, copy the webhook URL that you just created with your app (when you finished the Slack app creation, you should have been directed to a page where you could copy the webhook URL). Then, simply create a POST request to /notifications/slack/config with an endpoint parameter equal to the webhook URL. Here's an example via cURL:
-
-```
-curl -d '{"endpoint":"www.your-slack-webhook.com"} \
- -H "Content-Type: application/json" \
- -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/notifications/slack/config
-```
-
-Now, you've successfully connected your Slack channel to Immunity and all alerts will notify you.
-
-#### Routing Different Alerts to Different Slack Channels
-
-Immunity will send alerts to all Slack channels you ask it too. You can even restrict the type of alerts that go to a channel with additional parameters in your POST request. To do so, the /notifications/slack/config endpoint takes these parameters on POST:
-
-
-* `endpoint`: The endpoint that you would like the current POST request rule you're setting to apply to.
-* `kong_entity`: Will restrict notifications set to the endpoint to only those arising from the service_id, route_id, or workspace name specified here.
-* `severity`: Will route only alerts with severity specified to the endpoint. Severity values can be one of "low", "medium", "high".
-* `alert_type`: Will route only alerts.
-* `enable`: When set to False, the rule in the POST request is disabled, meaning Immunity will ignore that configuration rule. When set to True, the rule in enabled and Immunity will route traffic according to the full request rule. This parameter is set to True by default in all POST requests.
-
-
-When you send a POST request with only the endpoint parameter specified (like the one we did above), Immunity will route all traffic to that endpoint. Once a more specific POST request is made with more parameters filled, for example:
-
-```
-curl -d '{"endpoint":"www.your-slack-webhook.com", "severity": "high"} \
- -H "Content-Type: application/json" \
- -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/notifications/slack/config
-```
-
-Immunity will no longer route all traffic to [www.your-slack-webhook.com](http://www.your-slack-webhook.com/), and only route alerts at high severity to [www.your-slack-webhook.com](http://www.your-slack-webhook.com/).
-
-
-You can set multiple rules of varying specificity for the same endpoint. For example, let's say you want [www.your-slack-webhook.com](http://www.your-slack-webhook.com/) to show notifications on all alerts from `service_id = "my-service-1-id"` and only high-severity alerts on `route_id = "my-route-1-id"`, you can do so with two post requests:
-
-```
-curl -d '{"endpoint":"www.your-slack-webhook.com", "kong_entity": "my-service-1-id"} \
- -H "Content-Type: application/json" \
- -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/notifications/slack/config
-
-
-curl -d '{"endpoint":"www.your-slack-webhook.com", "severity": "high", \
- "kong_entity": "my-route-1-id"} \
- -H "Content-Type: application/json" \
- -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/notifications/slack/config
-```
-
-Once one specific Slack configuration rule is created for a given Slack endpoint, Immunity considers all following configuration rules as "additive", meaning that each new rule will add more.
-
-#### Seeing your configured Rules
-
-Configured rules can get complicated. To see all the slack rules and slack you have configured, make a GET request to /notifications/slack/config like this:
-
-```
-curl -X GET http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/notifications/slack/config
-```
-
-Which will return a json object where each key is an endpoint configured its value are the rules configured in a tree like structure with a boolean at the leaf of the tree indicating whether that rule is enabled or not. For the multi-config example we made above for [www.your-slack-webhook.com](http://www.your-slack-webhook.com/), the returned GET object will look like:
-
-```json
-{
-  "www.your-slack-webhook.com": {
-    "kong_entities": {
-      "my-service-1-id": true,
-      "my-route-1-id": {
-        "severities": {
-          "high": true
-        }
-      }
-    }
-  }
-}
-```
-
-#### Disabling a Rule
-
-You might want to temporarily disable a rule you created. No problem, simply make the same POST request to /notifications/slack/config and add or change the enable parameter to false. Using the same example from above, let's set the configuration on [www.your-slack-webhook.com](http://www.your-slack-webhook.com/) on `my-service-1-id` to false.
-
-```
-curl -d '{"endpoint":"www.your-slack-webhook.com",
- "kong_entity": "my-service-1-id",
- "enable": false} \
- -H "Content-Type: application/json" \
- -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/notifications/slack/config
-```
-
-It's important when disabling a rule to use the exact same specification parameter values (kong_entity, severity, and alert_type) that were used to create the rule.
-
-### Deleting a Rule
-
-Sometimes you want to delete a rule. Functionally this is the same as disabling a rule in the sense that notifications will no longer be sent as the deleted or disabled rule specified. To delete a configuration rule, send a DELETE request to /notifications/slack/config, and just like with disabling rules, make sure you're passing the correct values to the configuration specifying parameters (kong_entity, severity, and alert_type). With the same example from above that disabled the config rule for `my-service-1-id`, a DELETE would look like:
-
-```
-curl -d '{"endpoint":"www.your-slack-webhook.com",
- "kong_entity": "my-service-1-id"} \
- -H "Content-Type: application/json" \
- -X DELETE http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/notifications/slack/config
 ```
 
 ### Clean Up the Data
 
 Collector will clean the amount of HARs stored daily up to the max number of hars specified in the environment variable `MAX_HARS_STORAGE` and tables with extracted information to a max of two weeks of data. This means that at any day, the max number of HARs stored is the `MAX_HARS_STORAGE` + days_incoming_number_of_hars. If no `MAX_HARS_STORAGE` is specified, collector defaults to keeping two million hars in the database.
 
-
 You can set your own value of `MAX_HARS_STORAGE` by setting the app environment variable through whatever means you've been deploying collector.
-
 
 Additionally, collector provides an endpoint to delete the HARs data at /clean-hars. This endpoint accepts get and post and takes one parameter `max_hars_storage` which will delete all hars until only the value passed with `max_hars_storage` remains and contains the most recent HARs added to the database. If no value is passed to `max_hars_storage`, it will clean the database to the default value set with the environment variable `MAX_HARS_STORAGE`. An example of using this endpoint with cURL looks like this:
 
-```
+```bash
 curl -d '{"max_hars_storage":10000} \
  -H "Content-Type: application/json" \
  -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/clean-hars
