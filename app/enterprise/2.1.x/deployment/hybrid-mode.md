@@ -75,7 +75,7 @@ Plane in Hybrid mode.
 ### Kubernetes support
 
 [Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes)
-supports Hybrid mode deployments. However, for the 2.1 release, the nodes
+supports Hybrid mode deployments. However, for the 2.1.x Beta release, the nodes
 will not appear in Kong Manager.
 
 Kong for Kubernetes Enterprise (K4K8s, or the Kong Ingress Controller with
