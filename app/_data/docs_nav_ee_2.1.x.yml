@@ -354,7 +354,7 @@
     - text: Enable the Dev Portal
       url: /developer-portal/enable-dev-portal
     - text: Migrating to Latest Release
-      url: /developer-portal/migrating-to-2.1
+      url: /developer-portal/latest-migrations
     - text: Migrating from Legacy
       url: /developer-portal/legacy-migration
     - text: Structure and File Types

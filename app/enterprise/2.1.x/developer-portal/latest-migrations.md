@@ -1,5 +1,5 @@
 ---
-title: Migrating the Developer Portal to the Latest Release
+title: Migrating the Developer Portal to the Latest Version
 ---
 
 ## Migrating the Developer Portal from 1.5 to 2.1
