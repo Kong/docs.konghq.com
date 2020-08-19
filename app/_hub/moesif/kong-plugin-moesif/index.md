@@ -11,11 +11,11 @@ type: plugin
 desc: User-centric API analytics and logging  
 
 description: |
-  Monitor API traffic and analyze customer usage in [Moesif's API Analytics](https://www.moesif.com/solutions/track-api-program?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong) platform, enabling:
+  Monitor API traffic and analyze customer usage in [Moesif's API Analytics](https://www.moesif.com/solutions/track-api-program?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong) platform, which enables you to:
 
   * [Understand customer API usage](https://www.moesif.com/features/api-analytics?utm_medium=docs&utm_campaign=partners&utm_source=kong) with user behavior analytics.
   * [Debug issues quickly](https://www.moesif.com/features/api-logs?utm_medium=docs&utm_campaign=partners&utm_source=kong) with high-cardinality API logs and metrics.
-  * [Get alerted](https://www.moesif.com/features/api-monitoring?utm_medium=docs&utm_campaign=partners&utm_source=kong) of problems impacting customers.
+  * [Get alerted](https://www.moesif.com/features/api-monitoring?utm_medium=docs&utm_campaign=partners&utm_source=kong) of problems that impact customers.
   * [Track API KPIs](https://www.moesif.com/features/api-dashboards?utm_medium=docs&utm_campaign=partners&utm_source=kong) with custom dashboards.
   * [Trigger behavioral emails](https://www.moesif.com/features/user-behavioral-emails?utm_medium=docs&utm_campaign=partners&utm_source=kong) that keep customers informed.
   * [Detect and Block API threats](https://www.moesif.com/solutions/api-security?utm_medium=docs&utm_campaign=partners&utm_source=kong) and abuse including OWASP Top 10 API threats.
@@ -52,9 +52,9 @@ kong_version_compatibility: # required
     #incompatible:
   enterprise_edition: # optional
     compatible:
-      - 2.1.x-x
-      - 1.5.x-x
-      - 1.3.x-x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
       - 0.36-x
       - 0.35-x
       - 0.34-x
@@ -144,9 +144,9 @@ params:
 
 ### How it works
 
-When enabled, this plugin will capture API traffic and log to
+When enabled, this plugin captures API traffic and logs it to
 [Moesif API Analytics](https://www.moesif.com/?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong). 
-This plugin adds zero latency and does not sit in line to API traffic.
+This plugin logs to Moesif with an [asynchronous design](https://www.moesif.com/enterprise/api-analytics-infrastructure?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong) and doesn't add any latency to your API calls.
 
 [Package on Luarocks](http://luarocks.org/modules/moesif/kong-plugin-moesif)
 
