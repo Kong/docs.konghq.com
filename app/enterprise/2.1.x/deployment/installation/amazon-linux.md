@@ -46,11 +46,11 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
     Kong Enterprise versions are listed in reverse chronological order.
 3. Select the latest Kong version from the list.
 4. From the Kong version detail page, select the **Files** tab and click the distribution folder.
-5. Save the RPM file available. For example, `kong-enterprise-edition-2.1.0.0-beta1.aws.rpm`.
+5. Save the RPM file available. For example, `kong-enterprise-edition-{{page.kong_latest.version}}.aws.rpm`.
 6. Copy the RPM file to your home directory on the Amazon Linux 1 system. You may use a command like:
 
   ```bash
-  $ scp kong-enterprise-edition-2.1.0.0-beta1.aws.rpm <amazon user>@<server>:~
+  $ scp kong-enterprise-edition-{{page.kong_latest.version}}.aws.rpm <amazon user>@<server>:~
   ```
 
 *Optional:* The following steps are for verifying the integrity of the package. They are not necessary to move on to [installation](#option-1-if-installing-using-a-downloaded-rpm-package).
@@ -60,13 +60,13 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
     ```bash
     $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
     $ sudo rpm --import kong.key
-    $ sudo rpm -K kong-enterprise-edition-2.1.0.0-beta1.aws.rpm
+    $ sudo rpm -K kong-enterprise-edition-{{page.kong_latest.version}}.aws.rpm
     ```
 
 2. Verify you get an OK check. You should have an output similar to this:
 
       ```
-      kong-enterprise-edition-2.1.0.0-beta1.el7.noarch.rpm: sha1 md5 OK
+      kong-enterprise-edition-{{page.kong_latest.version}}.el7.noarch.rpm: sha1 md5 OK
       ```
 {% endnavtab %}
 {% navtab Download Kong repo file and add to Yum repo %}
@@ -119,7 +119,7 @@ You should now have two files in your home directory on the target Amazon system
 Execute a command similar to the following, using the appropriate RPM file name you downloaded:
 
 ```bash
-$ sudo yum install kong-enterprise-edition-2.1.0.0-beta1.aws.rpm
+$ sudo yum install kong-enterprise-edition-{{page.kong_latest.version}}.aws.rpm
 ```
 {% endnavtab %}
 {% navtab Using Yum repo %}
