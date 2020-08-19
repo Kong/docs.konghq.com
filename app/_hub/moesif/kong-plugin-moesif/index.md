@@ -1,37 +1,49 @@
 ---
-name: Moesif API Insights
+name: Moesif API Analytics
 publisher: Moesif
 
-categories:
+categories: 
   - analytics-monitoring
+  - logging
 
 type: plugin
 
-desc: User-centric API analytics and monitoring  
+desc: User-centric API analytics and logging  
 
 description: |
-  Monitor API traffic and understand usage with [Moesif's](https://www.moesif.com/solutions/track-api-program?language=kong-api-gateway) user-centric 
-  API analytics, including:
+  Monitor API traffic and analyze customer usage in [Moesif's API Analytics](https://www.moesif.com/solutions/track-api-program?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong) platform, enabling:
 
-  * [Understand API adoption and usage](https://www.moesif.com/features/api-analytics) with user behavior analytics
-  * [Quickly debug](https://www.moesif.com/features/api-logs) functional and performance issues
-  * [Monitor for issues](https://www.moesif.com/features/api-monitoring) impacting customers
-  * [Create live dashboards](https://www.moesif.com/features/api-dashboards) and share with colleagues
-  * [Embed API logs](https://www.moesif.com/features/embedded-api-logs) in your app to improve developer experience
+  * [Understand customer API usage](https://www.moesif.com/features/api-analytics?utm_medium=docs&utm_campaign=partners&utm_source=kong) with user behavior analytics.
+  * [Debug issues quickly](https://www.moesif.com/features/api-logs?utm_medium=docs&utm_campaign=partners&utm_source=kong) with high-cardinality API logs and metrics.
+  * [Get alerted](https://www.moesif.com/features/api-monitoring?utm_medium=docs&utm_campaign=partners&utm_source=kong) of problems impacting customers.
+  * [Track API KPIs](https://www.moesif.com/features/api-dashboards?utm_medium=docs&utm_campaign=partners&utm_source=kong) with custom dashboards.
+  * [Trigger behavioral emails](https://www.moesif.com/features/user-behavioral-emails?utm_medium=docs&utm_campaign=partners&utm_source=kong) that keep customers informed.
+  * [Detect and Block API threats](https://www.moesif.com/solutions/api-security?utm_medium=docs&utm_campaign=partners&utm_source=kong) and abuse including OWASP Top 10 API threats.
 
-support_url: https://www.moesif.com/implementation/log-http-calls-from-kong-api-gateway
+  This plugin supports automatic analysis of REST, GraphQL, and other APIs with zero latency.
+
+support_url: https://www.moesif.com/implementation/log-http-calls-from-kong-api-gateway?utm_medium=docs&utm_campaign=partners&utm_source=kong
 
 source_url: https://github.com/Moesif/kong-plugin-moesif
 
 license_url: https://raw.githubusercontent.com/Moesif/kong-plugin-moesif/master/LICENSE
 
-privacy_policy_url: https://www.moesif.com/privacy
+privacy_policy_url: https://www.moesif.com/privacy?utm_medium=docs&utm_campaign=partners&utm_source=kong
 
-terms_of_service_url: https://www.moesif.com/terms
+terms_of_service_url: https://www.moesif.com/terms?utm_medium=docs&utm_campaign=partners&utm_source=kong
 
 kong_version_compatibility: # required
   community_edition: # optional
     compatible:
+      - 2.1.x
+      - 2.0.x
+      - 1.5.x
+      - 1.4.x
+      - 1.3.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
+      - 0.15.x
       - 0.14.x
       - 0.13.x
       - 0.12.x
@@ -40,6 +52,10 @@ kong_version_compatibility: # required
     #incompatible:
   enterprise_edition: # optional
     compatible:
+      - 2.1.x-x
+      - 1.5.x-x
+      - 1.3.x-x
+      - 0.36-x
       - 0.35-x
       - 0.34-x
       - 0.33-x
@@ -128,9 +144,9 @@ params:
 
 ### How it works
 
-When enabled, this plugin will monitor API traffic and log to
-[Moesif API Analytics](https://www.moesif.com/?language=kong-api-gateway). Use Moesif
-to understand API adoption and resolve issues quickly.
+When enabled, this plugin will capture API traffic and log to
+[Moesif API Analytics](https://www.moesif.com/?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong). 
+This plugin adds zero latency and does not sit in line to API traffic.
 
 [Package on Luarocks](http://luarocks.org/modules/moesif/kong-plugin-moesif)
 
