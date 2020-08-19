@@ -48,7 +48,7 @@ affect your current installation.
   of the plugin. The 2.1.x plugin requires authentication to be configured separately
   on the same Service. See
   [authorization provider strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/).
-* The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not 
+* The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not
   support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 * [Hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/). If you
   are planning on running {{site.ee_product_name}} in hybrid mode, generate
@@ -77,7 +77,7 @@ to as the
 [blue-green migration model](https://en.wikipedia.org/wiki/Blue-green_deployment).
 
 The migrations are designed so that there is no need to fully copy
-the data. The new version of {{site.ee_product_name}} is able to use the data as it 
+the data. The new version of {{site.ee_product_name}} is able to use the data as it
 is migrated, and the old
 Kong cluster keeps working until it is finally time to decommission it. For this
 reason, the full migration is split into two commands:
@@ -140,7 +140,7 @@ the upgrade process is simpler for patch releases.
 1. Run migrations to upgrade your database schema:
 
    ```shell
-   $ kong migrations up [-c configuration_file]
+   $ kong migrations up [-c config]
    ```
 
 2. If the command is successful, and no migration ran (no output),
@@ -148,7 +148,7 @@ the upgrade process is simpler for patch releases.
    [reload](https://docs.konghq.com/2.1.x/cli/#kong-reload) Kong:
 
    ```shell
-   $ kong reload [-c configuration_file]
+   $ kong reload [-c config]
    ```
 
 **Reminder:** The `kong reload` command leverages the Nginx `reload` signal that
