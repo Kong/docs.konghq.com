@@ -1,5 +1,5 @@
 ---
-title: Custom Entities and Plugins Breaking Changes
+title: Breaking Changes for Custom Entities and Plugins
 toc: true
 ---
 

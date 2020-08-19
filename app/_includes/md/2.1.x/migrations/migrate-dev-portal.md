@@ -16,16 +16,16 @@ properly. Create each file using the name, path, and contents linked below:
 
 - #### workspaces/default/themes/base/assets/js/app-0fcefa7.min.js
   - Templates Path: `/workspaces/default/themes/base/assets/js/app-0fcefa7.min.js`
-  - File Content GitHub: [/default/themes/base/assets/js/app-0fcefa7.min.js](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/themes/base/assets/js/app-0fcefa7.min.js)
+  - File Content on GitHub: [/default/themes/base/assets/js/app-0fcefa7.min.js](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/themes/base/assets/js/app-0fcefa7.min.js)
 - #### workspaces/default/themes/base/layouts/system/markdown.html
   - Templates Path: `/workspaces/default/themes/base/layouts/system/markdown.html`
-  - File Content GitHub: [/workspaces/default/themes/base/layouts/system/markdown.html](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/themes/base/layouts/system/markdown.html)
+  - File Content on GitHub: [/workspaces/default/themes/base/layouts/system/markdown.html](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/themes/base/layouts/system/markdown.html)
 - #### workspaces/default/themes/base/assets/styles/markdown-fixes.css
   - Templates Path: `/workspaces/default/themes/base/assets/styles/markdown-fixes.css`
-  - File Content GitHub: [/workspaces/default/themes/base/assets/styles/markdown-fixes.css](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/themes/base/assets/styles/markdown-fixes.css)
+  - File Content on GitHub: [/workspaces/default/themes/base/assets/styles/markdown-fixes.css](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/themes/base/assets/styles/markdown-fixes.css)
 - #### workspaces/default/themes/base/assets/styles/markdown.css
   - Templates Path: `/workspaces/default/themes/base/assets/styles/markdown.css`
-  - File Content GitHub: [/workspaces/default/themes/base/assets/styles/markdown.css](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/themes/base/assets/styles/markdown.css)
+  - File Content on GitHub: [/workspaces/default/themes/base/assets/styles/markdown.css](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/themes/base/assets/styles/markdown.css)
 
 ### Replace content in existing files
 
@@ -72,7 +72,7 @@ You can remove the following files from your Developer Portal.
 
 To make future migrations easier, an `app_version` declaration has been
 added in `portal.conf.yaml` as shown below.  Add the `app_version` to your
-current portal configuration Files. You can view the complete `portal.conf.yaml` file on
+current portal configuration files. You can view the complete `portal.conf.yaml` file on
 [GitHub](https://github.com/Kong/kong-portal-templates/tree/dev-master/workspaces/default/portal.conf.yaml).
 
 ```
