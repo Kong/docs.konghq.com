@@ -348,7 +348,7 @@ Parameter ¹                             | Description
 `audience_claim`                        | The Name of the claim (or a path) where the audience can be found.
 `domains`                               | The domains to be verified against the `hd` claim.
 `max_age`                               | The `max_age` (in seconds) for the previous authentication, specifically the `auth_time` claim.
-`display_errors`                        | Display additional debugging information to the user when there's an error. Not recommended to be enabled in a production environmment.
+`display_errors`                        | Display additional debugging information to the user when there's an error. Not recommended to be enabled in a production environment.
 `authenticated_groups_claim`            | The Name of the claim (or a path) where the authenticated groups can be found.
 `authorization_endpoint`                | The URL of the authorization endpoint that can be used to override the standard authorization endpoint announced in the discovery document.
 `authorization_query_args_names`        | Extra query argument names that you should include in the authorization endpoint query string.
