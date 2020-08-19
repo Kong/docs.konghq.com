@@ -3,8 +3,8 @@
 Developer Portal migrations are required to upgrade from
 **{{site.ee_product_name}} 1.5** to **{{site.ee_product_name}} 2.1**.
 You can make these changes with the Kong templates repository using either the
-Kong Portal CLI, or directly in the Kong Editor UI. Using the CLI to take
-advantage of source control is recommended.
+Kong Portal CLI, or directly in the Kong Developer Portal Editor UI. Using the
+CLI to take advantage of source control is recommended.
 
 ### Links to templates and CLI
 - [kong-portal-templates](https://github.com/Kong/kong-portal-templates)
