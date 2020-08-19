@@ -50,12 +50,8 @@ affect your current installation.
   [authorization provider strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/).
 * The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not
   support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
-* [Hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/). If you
-  are planning on running {{site.ee_product_name}} in hybrid mode, generate
-  certificates and update your configurations to include telemetry
-  settings for the Control Plane and Data Plane so that
-  [Vitals](/enterprise/{{page.kong_version}}/vitals/overview/)
-  can function properly. If you are currently running 1.5.x in classic (traditional)
+* [Hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/). If
+  you are currently running 1.5.x in classic (traditional)
   mode and want to run in hybrid mode instead, follow the hybrid mode
   [installation instructions](/enterprise/{{page.kong_version}}/deployment/hybrid-mode-setup/)
   after running the migration. Custom plugins
