@@ -19,7 +19,7 @@ disable_image_expand: true
     <div class="install-text">K4K8s Enterprise
     <br/>(Kong Ingress Controller)</div>
     <div class="install-description">(kubectl or OpenShift oc)
-    <br/><br/>Install the Kong Ingress Controller with the Kong Gateway (Enterprise), without any Enterprise plugins or add-ons</div>
+    <br/><br/>Install the Kong Ingress Controller with the Kong Gateway (Enterprise), without any Enterprise add-ons</div>
   </a>
 
   <a href="/enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes" class="docs-grid-install-block">
