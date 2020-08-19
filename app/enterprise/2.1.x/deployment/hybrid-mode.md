@@ -1,6 +1,5 @@
 ---
 title: Hybrid Mode Overview
-beta: true
 ---
 
 ## Introduction
@@ -8,7 +7,7 @@ Traditionally, Kong has always required a database, which could be either
 Postgres or Cassandra, to store configured entities such as Routes, Services,
 and Plugins.
 
-Starting with {{site.ee_product_name}} 2.1.x beta, Kong can be deployed in
+Starting with {{site.ee_product_name}} 2.1, Kong can be deployed in
 Hybrid mode, also known as Control Plane / Data Plane Separation (CP/DP).
 
 In this mode, Kong nodes in a cluster are split into two roles: Control Plane
@@ -76,7 +75,7 @@ Plane in Hybrid mode.
 ### Kubernetes support
 
 [Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes)
-supports Hybrid mode deployments. However, for the 2.1.x Beta release, the nodes
+supports Hybrid mode deployments. However, for the 2.1 release, the nodes
 will not appear in Kong Manager.
 
 Kong for Kubernetes Enterprise (K4K8s, or the Kong Ingress Controller with

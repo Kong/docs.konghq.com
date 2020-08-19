@@ -9,7 +9,7 @@ Registration plugin, the feature was tightly coupled with OAuth2. Kong was the
 only available system of record (SoR) for application credentials and the OAuth
 configuration was done directly within the Application Registration plugin.
 
-In the 2.1.x beta version, authentication has been decoupled from the
+In the {{site.ee_product_name}} 2.1.x version, authentication has been decoupled from the
 Application Registration plugin. Support has been added for third-party OAuth2
 providers. Developers have the flexibility to choose from either
 Kong or a third-party identity provider (IdP) as the system of record for
