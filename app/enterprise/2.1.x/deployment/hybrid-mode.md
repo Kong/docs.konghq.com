@@ -72,12 +72,12 @@ Plane in Hybrid mode.
 ### Kubernetes support
 
 [Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes)
-supports Hybrid mode deployments. However, for the 2.1.x Beta release, the nodes
-will not appear in Kong Manager.
+fully supports Hybrid mode deployments.
 
-Kong for Kubernetes Enterprise (K4K8s, or the Kong Ingress Controller with
-{{site.base_gateway}}) does not use a database and is therefore not supported in
-Hybrid mode.
+[Kong for Kubernetes Enterprise]((/enterprise/{{page.kong_version}}/kong-for-kubernetes/install) 
+(K4K8s, or the Kong Ingress Controller with {{site.base_gateway}}) supports Hybrid 
+mode with one limitation: Kong Manager displays configuration in read-only format 
+for DB-less mode.
 
 * For a comparison of these images, see [Kubernetes Deployment Options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options).
 * For the full Kubernetes Hybrid mode documentation, see [Hybrid mode](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
