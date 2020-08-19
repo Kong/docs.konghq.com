@@ -32,12 +32,12 @@ Custom entities and plugins have breaking changes for 2.1.x:
 
 
     A workspaceable entity in 2.1.x+ using Postgres has to:
-        - have a `ws_id` field of type UUID
-        - the `ws_id` field is a foreign key to `workspaces.id`
-        - unique fields don't have the `<workspace_name>:` prefix
+    - have a `ws_id` field of type UUID
+    - the `ws_id` field is a foreign key to `workspaces.id`
+    - unique fields don't have the `<workspace_name>:` prefix
           anymore so it should be removed.
 
     A workspaceable entity in 2.1.x+ using Cassandra has to:
-        - have a `ws_id` field of type UUID
-        - unique fields have the `<workspace_id>:` prefix
+    - have a `ws_id` field of type UUID
+    - unique fields have the `<workspace_id>:` prefix
         instead of `<workspace_name:>`.
