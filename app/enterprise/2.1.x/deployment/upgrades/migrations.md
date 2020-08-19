@@ -25,7 +25,7 @@ you are migrating.
 
 If you are not on {{site.ee_product_name}} 1.5.x, you must first incrementally
 upgrade to 1.5.x before upgrading to 2.1.x. Zero downtime is possible but _not_
-guaranteed if you are upgrading incrementally from versions 0.36.x to 1.3.x to 1.5.x.
+guaranteed if you are upgrading incrementally between versions, from 0.36.x to 1.3.x to 1.5.x.
 Plan accordingly.
 
 * If running a version of {{site.ee_product_name}} earlier than 1.3,
@@ -54,7 +54,7 @@ affect your current installation.
   are planning on running {{site.ee_product_name}} in hybrid mode, generate
   certificates and update your configurations to include telemetry
   settings for the Control Plane and Data Plane so that
-  [Vitals](/enterprise/{{page.kong_version}}//vitals/overview/)
+  [Vitals](/enterprise/{{page.kong_version}}/vitals/overview/)
   can function properly. If you are currently running 1.5.x in classic (traditional)
   mode and want to run in hybrid mode instead, follow the hybrid mode
   [installation instructions](/enterprise/{{page.kong_version}}/deployment/hybrid-mode-setup/)
@@ -70,15 +70,15 @@ affect your current installation.
 
 ### Migrating from 1.5.x to 2.1.x
 
-{{site.ee_product_name}} supports the no downtime migration model. This means
+{{site.ee_product_name}} supports the zero downtime migration model. This means
 that while the migration is in process, you have two Kong clusters with different
 versions running that are sharing the same database. This is sometimes referred
 to as the
 [blue-green migration model](https://en.wikipedia.org/wiki/Blue-green_deployment).
 
 The migrations are designed so that there is no need to fully copy
-the data. Kong migrations are designed such that the new version of {{site.ee_product_name}}
-is able to use the data as it is migrated, and to do so in a way so that the old
+the data. The new version of {{site.ee_product_name}} is able to use the data as it 
+is migrated, and the old
 Kong cluster keeps working until it is finally time to decommission it. For this
 reason, the full migration is split into two commands:
 
