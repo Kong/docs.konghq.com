@@ -83,7 +83,7 @@
           url: /kong-security-update-process
     - text: Upgrades and Migrations
       items:
-        - text: Migrating Kong Enterprise from 1.5.x to 2.1.x
+        - text: Migrating Kong Enterprise to Latest Version
           url: /deployment/upgrades/migrations
         - text: Custom Plugin Breaking Changes
           url: /deployment/upgrades/custom-changes
