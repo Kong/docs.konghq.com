@@ -41,6 +41,19 @@ won’t be able to affect other nodes in the Kong cluster.
 * **Ease of management:** Admins only need to interact with the CP nodes to
 control and monitor the status of the entire Kong cluster.
 
+## Platform compatibility
+
+You can run {{site.ee_product_name}} in Hybrid mode on any platform where
+{{site.ee_product_name}} is [supported](/enterprise/{{page.kong_version}}/deployment/installation/overview).
+
+### Kubernetes support and additional documentation
+[Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes)
+fully supports Hybrid mode deployments, with or without the Kong Ingress Controller.
+
+For the full Kubernetes Hybrid mode documentation, see
+[Hybrid mode](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
+in the `kong/charts` repository.
+
 ## Limitations
 
 ### Configuration inflexibility
@@ -68,17 +81,3 @@ separation.
 Custom plugins (either your own plugins or third-party plugins that are not
 shipped with Kong) need to be installed on both the Control Plane and the Data
 Plane in Hybrid mode.
-
-### Kubernetes support
-
-[Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes)
-fully supports Hybrid mode deployments.
-
-[Kong for Kubernetes Enterprise]((/enterprise/{{page.kong_version}}/kong-for-kubernetes/install) 
-(K4K8s, or the Kong Ingress Controller with {{site.base_gateway}}) supports Hybrid 
-mode with one limitation: Kong Manager displays configuration in read-only format 
-for DB-less mode.
-
-* For a comparison of these images, see [Kubernetes Deployment Options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options).
-* For the full Kubernetes Hybrid mode documentation, see [Hybrid mode](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
-in the `kong/charts` repository.
