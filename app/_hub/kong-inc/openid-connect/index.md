@@ -1263,7 +1263,8 @@ Default | Required
 
 #### config.display_errors
 
-By enabling this setting, consumers will be shown additional debugging information if they try and log on but run into an error. This setting should be treated with care and preferrably should not be enabled in Production environments.
+You can enable this setting to show consumers additional debugging information if they try to log on but run into an error. 
+> **Warning:** This setting should be treated with care. In most cases, it should not be enabled in Production environments.
 
 Default           | Required
 :----------------:|:-------:
