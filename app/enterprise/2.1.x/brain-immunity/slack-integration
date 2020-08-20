@@ -21,7 +21,7 @@ That will redirect you to a page where you can select the channel the webhook wi
 
 #### Adding a Slack Configuration
 
-To add your first Slack configuration, copy the webhook URL that you just created with your app (when you finished the Slack app creation, you should have been directed to a page where you could copy the webhook URL). Then, simply create a POST request to /notifications/slack/config with an endpoint parameter equal to the webhook URL. Here's an example via cURL:
+To add your first Slack configuration, copy the webhook URL that you just created with your app (when you finished the Slack app creation, you should have been directed to a page where you could copy the webhook URL). Then, simply create a POST request to `/notifications/slack/config` with an endpoint parameter equal to the webhook URL. Here's an example via cURL:
 
 ```
 curl -d '{"endpoint":"www.your-slack-webhook.com"} \
