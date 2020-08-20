@@ -7,7 +7,7 @@ title: Kong Brain & Kong Immunity Overview
 ![Kong Brain and Kong Immunity](/assets/images/docs/ee/brain_immunity_overview.png)
 
 ### About Kong Brain
-Kong Brain automates tasks, increases visibility and ensures consistency across complex architectures. Other features include:
+Kong Brain automates tasks, increases visibility, and ensures consistency across complex architectures. Other features include:
 
 #### Visually Map Services
 Get a high-level view of your architecture with a real-time visual service map. Analyze inter-service dependencies across teams and platforms to improve governance and minimize risk.
