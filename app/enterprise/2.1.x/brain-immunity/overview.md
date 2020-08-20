@@ -26,7 +26,7 @@ Kong Immunity autonomously identify service issues with machine learning-powered
 Traffic patterns provide a window into the behavior and performance of services under different conditions. To understand your existing traffic patterns, Kong Immunity ingests data flowing through the Kong data plane to create a baseline for healthy traffic. As anomalies are detected and addressed through changes to the Kong Enterprise configuration, Kong Immunity continuously adapts this baseline. 
 
 #### Autonomously Identify Anomalies
-To identify potential issues, inefficiencies or performance bottlenecks, Kong Immunity flags traffic that deviates from the expected or desired patterns without disrupting services. Depending on your needs and goals, you can adjust the settings of Kong Immunity to recognize individual traffic events, patterns and other types of anomalous activity.
+To identify potential issues, inefficiencies or performance bottlenecks, Kong Immunity flags traffic that deviates from the expected or desired patterns without disrupting services. Depending on your requirements, you can adjust the settings of Kong Immunity to recognize individual traffic events, patterns, and other types of anomalous activity.
 
 #### Automatically Alert
 How quickly you respond to an event can mean the difference between a simple fix and catastrophic outage. As Kong Immunity detects anomalies in real-time, it automatically sends a notification alerting you to the issue. Notifications are available via email, Slack and more. To avoid disruptions to your teams, you can designate specific users to receive alerts based on Roles Based Access Controls (RBAC) within Kong Manager. 
