@@ -112,7 +112,7 @@ curl -d '{"kong_entity":"your-route-id"}' \
 Without a rule established, Immunity will default to auto-training. In other words, once you delete a configured rule, Immunity will continue or start auto-training on the Route or Service of the deleted rule.
 
 
-If you would like to delete all the configurations you create, you can do so by sending an empty DELETE request to /trainer/config like this:
+If you want to delete all the configurations you created, send an empty DELETE request to `/trainer/config` like this:
 
 ```
 curl -X http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer/config
