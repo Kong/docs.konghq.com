@@ -38,7 +38,7 @@ curl -d '{"start":"2019-01-08 10:00:00", "end":"2019-01-09 23:30:00", "kong_enti
 
 ### Checking Models Trained
 
-Only endpoints + method combinations that have a model trained can be monitored for alerts. If you want to check which endpoints have models, you can use `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/monitoredendpoints` which return a list of all models in the system. Each item in this list contains the following identifying information for the model:
+Only endpoints + method combinations that have a model trained can be monitored for alerts. If you want to check which endpoints have models, you can use `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/monitoredendpoints`, which return a list of all models in the system. Each item in this list contains the following identifying information for the model:
 
 
 
