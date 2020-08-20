@@ -107,7 +107,7 @@ curl -d '{"endpoint":"www.your-slack-webhook.com",
  -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/notifications/slack/config
 ```
 
-It's important when disabling a rule to use the exact same specification parameter values (kong_entity, severity, and alert_type) that were used to create the rule.
+**Important:** When disabling a rule, use the exact same specification parameter values (`kong_entity`, `severity`, and `alert_type`) that were used to create the rule.
 
 ### Deleting a Rule
 
