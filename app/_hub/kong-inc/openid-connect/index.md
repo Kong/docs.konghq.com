@@ -348,6 +348,7 @@ Parameter ¹                             | Description
 `audience_claim`                        | The Name of the claim (or a path) where the audience can be found.
 `domains`                               | The domains to be verified against the `hd` claim.
 `max_age`                               | The `max_age` (in seconds) for the previous authentication, specifically the `auth_time` claim.
+`display_errors`                        | Display additional debugging information to the user when there's an error. Not recommended to be enabled in a production environment.
 `authenticated_groups_claim`            | The Name of the claim (or a path) where the authenticated groups can be found.
 `authorization_endpoint`                | The URL of the authorization endpoint that can be used to override the standard authorization endpoint announced in the discovery document.
 `authorization_query_args_names`        | Extra query argument names that you should include in the authorization endpoint query string.
@@ -533,6 +534,7 @@ Parameter ¹                             | Type      | Required | Default
 `audience_claim`                        | `array`   | `no`     | `"aud"`
 `domains`                               | `array`   | `no`     | `—`
 `max_age`                               | `number`  | `no`     | `—`
+`display_errors`                        | `boolean`   | `no`     | `false`
 `authenticated_groups_claim`            | `array`   | `no`     | `—`
 `authorization_endpoint`                | `url`     | `no`     | `—` (OpenID Connect Discovery)
 `authorization_query_args_names`        | `array`   | `no`     | `—`
@@ -1258,6 +1260,15 @@ Default | Required
 
 * `86400`
 * `1800`
+
+#### config.display_errors
+
+You can enable this setting to show consumers additional debugging information if they try to log on but run into an error. 
+> **Warning:** This setting should be treated with care. In most cases, it should not be enabled in Production environments.
+
+Default           | Required
+:----------------:|:-------:
+`false`           | `no`
 
 
 #### config.authenticated_groups_claim
