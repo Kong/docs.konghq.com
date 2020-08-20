@@ -43,7 +43,7 @@ Immunity will send alerts to all Slack channels you ask it too. You can even res
 * `enable`: When set to False, the rule in the POST request is disabled, meaning Immunity will ignore that configuration rule. When set to True, the rule in enabled and Immunity will route traffic according to the full request rule. This parameter is set to True by default in all POST requests.
 
 
-When you send a POST request with only the endpoint parameter specified (like the one we did above), Immunity will route all traffic to that endpoint. Once a more specific POST request is made with more parameters filled, for example:
+When you send a POST request with only the endpoint parameter specified (like the one above), Immunity will route all traffic to that endpoint. Once a more specific POST request is made with more parameters filled, for example:
 
 ```
 curl -d '{"endpoint":"www.your-slack-webhook.com", "severity": "high"} \
