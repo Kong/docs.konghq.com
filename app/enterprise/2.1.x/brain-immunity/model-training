@@ -52,7 +52,7 @@ Only endpoints + method combinations that have a model trained can be monitored 
 In this object, the value is a specific alert type and the value is a boolean value where True indicates that the model is actively monitoring for that alert type.
 
 
-In general, if a endpoint + method combination model does not appear on the returned object from `/monitoredendpoints`, this is likely because not enough traffic has been seen by Immunity to build a reliable model.
+In general, if an endpoint and method combination model does not appear on the returned object from `/monitoredendpoints`, this is likely because not enough traffic has been seen by Immunity to build a reliable model.
 
 ### Configure Auto-Training
 
