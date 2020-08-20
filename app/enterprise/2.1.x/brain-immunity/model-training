@@ -87,7 +87,7 @@ curl -d '{"kong_entity":"your-route-id", "enable":false}' \
 Similarly, if you turned off auto-training for a Route and want to turn it back on, you can post to `/trainer/config` with `"enable":true`.
 
 
-These configurations will only apply to training started by Immunity's auto-training schedule. Other training requests made by /trainer won't be affected by this configuration.
+These configurations will only apply to training started by Immunity's auto-training schedule. Other training requests made by `/trainer` won't be affected by this configuration.
 
 #### Viewing Configuration Rules
 
