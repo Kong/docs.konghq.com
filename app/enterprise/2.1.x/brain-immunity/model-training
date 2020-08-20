@@ -45,7 +45,7 @@ Only endpoints + method combinations that have a model trained can be monitored 
 * `base_url`: The URL of the traffic used to train the model.
 * `method`: The method of the traffic used to train the model.
 * `route_id`: The Kong `route_id` that the traffic used to train the model is associated with. **service_id**: The Kong `service_id` that the traffic used to train the model is associated with. **model_version_id**: The model version number of the current, active model.
-* `active_models`: A json object containing information on the active status of each of the six (6) core alert types in Immunity (unknown_parameters, abnormal_value, latency, traffic, status codes, and value_type).
+* `active_models`: A JSON object containing information on the active status of each of the six (6) core alert types in Immunity (unknown_parameters, abnormal_value, latency, traffic, status codes, and value_type).
 
 
 
