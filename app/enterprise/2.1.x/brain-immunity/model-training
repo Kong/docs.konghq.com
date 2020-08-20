@@ -13,7 +13,7 @@ Our first model version gets created after the first hour and will continuously 
 We also provide clients an endpoint to retrigger training themselves. We recommend retraining when the context of your app is expected to change a lot. For example, maybe there is an upcoming app release that will change several endpoints. If this is the case, you can POST to `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/resettrainer` to start the training cycle all over again.
 
 
-Let’s say you’d like slightly more control over the data your model sees, for example perhaps you know that weekend data is not particularly useful for model building because weekends are normally outliers that your team is prepared for. You can trigger model training for all models with a specified time period of data. Simply POST to `http://<BRAIN_HOST>:<COLLECTOR_PORT>/trainer`, with the start and end time of data you’d like included in training like this:
+Let’s say you’d like slightly more control over the data your model sees. For example, perhaps you know that weekend data is not particularly useful for model building because weekends are normally outliers that your team is prepared for. You can trigger model training for all models with a specified time period of data. Simply POST to `http://<BRAIN_HOST>:<COLLECTOR_PORT>/trainer`, with the start and end time of data you’d like included in training like this:
 
 ```
 curl -d '{"start":"2019-01-08 10:00:00", "end":"2019-01-09 23:30:00"}' \
