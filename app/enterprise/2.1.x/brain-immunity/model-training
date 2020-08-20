@@ -101,7 +101,7 @@ A list of all your rules will be returned, where `kong_entity` refers to the `se
 
 #### Resetting or Deleting Configured Rules
 
-To delete a single auto-train rule that you created, you can send a delete request to /trainer/config with a `kong_entity` parameter and value of the `service_id` or `route_id` of the rule you would like to delete.
+To delete a single auto-train rule that you created, you can send a delete request to `/trainer/config` with a `kong_entity` parameter and value of the `service_id` or `route_id` of the rule you want to delete.
 
 ```
 curl -d '{"kong_entity":"your-route-id"}' \
