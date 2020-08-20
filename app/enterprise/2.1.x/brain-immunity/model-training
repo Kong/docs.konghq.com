@@ -58,7 +58,7 @@ In general, if an endpoint and method combination model does not appear on the r
 
 #### Restarting Training Schedules
 
-Immunity automatically sets up training jobs when it first starts up, and retrains all models on an optimized schedule based on time since data started flowing through Immunity. If you have experienced large changes in the type of data you expect to be coming through Immunity and do not feel comfortable choosing an "optimal" time period to use for retraining with the /trainer endpoint, you can re-trigger Immunity's auto-training by posting to the /trainer/reset endpoint. Immunity will then recreate its retraining schedule as if it was just being started and newly ingesting data.
+Immunity automatically sets up training jobs when it first starts up, and retrains all models on an optimized schedule based on time since data started flowing through Immunity. If you have experienced large changes in the type of data you expect to be coming through Immunity and do not feel comfortable choosing an optimal time period to use for retraining with the `/trainer` endpoint, you can re-trigger Immunity's auto-training by posting to the `/trainer/reset` endpoint. Immunity will then recreate its retraining schedule as if it was just being started and newly ingesting data.
 
 ```
 curl -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer/reset
