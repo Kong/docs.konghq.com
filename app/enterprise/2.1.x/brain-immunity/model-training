@@ -91,7 +91,7 @@ These configurations will only apply to training started by Immunity's auto-trai
 
 #### Viewing Configuration Rules
 
-To see all of your configured training rules, just create a get request to /trainer/config like this:
+To see all of your configured training rules, just create a GET request to `/trainer/config` like this:
 
 ```
 curl -X GET http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer/config
