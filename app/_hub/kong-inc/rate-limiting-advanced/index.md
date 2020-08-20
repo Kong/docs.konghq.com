@@ -154,7 +154,7 @@ params:
     **Notes:**  
 
      * The plugin does not support the `cluster` strategy in
-       [hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/).
+       [hybrid mode](/enterprise/2.1.x/deployment/hybrid-mode/).
        The `redis` strategy must be used instead.
 
      * Redis configuration values are ignored if the `cluster` strategy is used.
