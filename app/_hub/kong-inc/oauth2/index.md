@@ -71,6 +71,8 @@ params:
   route_id: false
   consumer_id: false
   protocols: ["http", "https", "grpc", "grpcs"]
+  yaml_examples: false
+  k8s_examples: false
   dbless_compatible: no
   dbless_explanation: |
     For its regular work, the plugin needs to both generate and delete tokens, and commit those changes to the database, which is not compatible with DB-less.
@@ -166,7 +168,7 @@ params:
         all the clients. `lax` mode enforces PKCE for public clients, but it does
         not enforce it for confidential clients. `none` mode does not enforce PKCE
         on any client. In any case, if client asks for PKCE on authorization
-        endpoint, the PKCE is also enforced on token endpoint. 
+        endpoint, the PKCE is also enforced on token endpoint.
 
   extra: |
     <div class="alert alert-warning">

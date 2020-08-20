@@ -34,6 +34,7 @@ params:
     - name: account_email
       required: yes
       default:
+      value_in_examples: example@example.com
       description: |
         The account identifier, can be reused in different plugin instance.
     - name: api_uri
@@ -105,7 +106,7 @@ params:
           },
         }
     ```
-  
+
     To configure storage type other than `kong`, please refer to [lua-resty-acme](https://github.com/fffonion/lua-resty-acme#storage-adapters).
 
 ---

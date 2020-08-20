@@ -48,7 +48,7 @@ params:
     - name: percentage
       required:
       default:
-      value_in_examples:
+      value_in_examples: 50
       description: |
         Fixed % of traffic to be routed to new target, if given overrides `start` and `duration`
     - name: steps
@@ -60,7 +60,7 @@ params:
     - name: upstream_host
       required:
       default:
-      value_in_examples:
+      value_in_examples: example.com
       description: |
         The target hostname where traffic will be routed. (Required if `upstream_uri/port` is not set.)
     - name: upstream_fallback
@@ -72,7 +72,7 @@ params:
     - name: upstream_port
       required:
       default:
-      value_in_examples:
+      value_in_examples: 80
       description: |
         The target port where traffic will be routed. (Required if `upstream_uri/host` is not set.)
     - name: upstream_uri

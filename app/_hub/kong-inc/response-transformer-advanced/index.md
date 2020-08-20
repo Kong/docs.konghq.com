@@ -32,11 +32,11 @@ params:
   config:
     - name: remove.headers
       required: false
-      value_in_examples: "x-toremove, x-another-one:application/json, x-list-of-values:v1,v2,v3 Set-Cookie:/JSESSIONID=.*/, x-another-regex://status/$/, x-one-more-regex:/^/begin//"
+      value_in_examples: ["x-toremove", "x-another-one:application/json", "x-list-of-values:v1,v2,v3", "Set-Cookie:/JSESSIONID=.*/", "x-another-regex://status/$/", "x-one-more-regex:/^/begin//"]
       description: List of header_name[:header_value]. If only header_name is given, unset the header field with the given header_name. If header_name:header_value is given, remove a specific header_value. If header_value starts and ends with a '/' (slash character), then it is considered to be a regular expression. Note that as per https://httpwg.org/specs/rfc7230.html#field.order multiple header values with the same header name are allowed if the entire field value for that header field is defined as a comma-separated list or the header field is a Set-Cookie header field.
     - name: remove.json
       required: false
-      value_in_examples: "json-key-toremove, another-json-key"
+      value_in_examples: ["json-key-toremove", "another-json-key"]
       description: List of property names. Remove the property from the JSON body if it is present.
     - name: remove.if_status
       required: false
@@ -58,18 +58,18 @@ params:
       description: List of response status codes or status code ranges to which the transformation will apply. Empty means all response codes
     - name: add.headers
       required: false
-      value_in_examples: "x-new-header:value,x-another-header:something"
+      value_in_examples: ["x-new-header:value","x-another-header:something"]
       description: List of headername:value pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set.
     - name: add.json
       required: false
-      value_in_examples: "new-json-key:some_value, another-json-key:some_value"
+      value_in_examples: ["new-json-key:some_value", "another-json-key:some_value"]
       description: List of property:value pairs. If and only if the property is not present, add a new property with the given value to the JSON body. Ignored if the property is already present.
     - name: add.if_status
       required: false
       description: List of response status codes or status code ranges to which the transformation will apply. Empty means all response codes
     - name: append.headers
       required: false
-      value_in_examples: "x-existing-header:some_value, x-another-header:some_value"
+      value_in_examples: ["x-existing-header:some_value", "x-another-header:some_value"]
       description: List of headername:value pairs. If the header is not set, set it with the given value. If it is already set, a new header with the same name and the new value will be set.
     - name: append.json
       required: false
