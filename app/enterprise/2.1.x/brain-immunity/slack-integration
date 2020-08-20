@@ -68,7 +68,7 @@ curl -d '{"endpoint":"www.your-slack-webhook.com", "severity": "high", \
  -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/notifications/slack/config
 ```
 
-Once one specific Slack configuration rule is created for a given Slack endpoint, Immunity considers all following configuration rules as "additive", meaning that each new rule will add more.
+Once one specific Slack configuration rule is created for a given Slack endpoint, Immunity considers all following configuration rules as additive, meaning that each new rule will add more.
 
 #### Seeing your configured Rules
 
