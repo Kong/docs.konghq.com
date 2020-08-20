@@ -112,8 +112,8 @@ For installing on a fresh datastore, {{site.ee_product_name}} 2.1 has the
 prepare a new 2.1 cluster from a fresh datastore:
 
 ```bash
-$ kong migrations bootstrap [-c config]
-$ kong start [-c config]
+$ kong migrations bootstrap [-c configuration_file]
+$ kong start [-c configuration_file]
 ```
 
 ## Patch Releases {#patch}
@@ -136,7 +136,7 @@ the upgrade process is simpler for patch releases.
 1. Run migrations to upgrade your database schema:
 
    ```shell
-   $ kong migrations up [-c config]
+   $ kong migrations up [-c configuration_file]
    ```
 
 2. If the command is successful, and no migration ran (no output),
@@ -144,7 +144,7 @@ the upgrade process is simpler for patch releases.
    [reload](https://docs.konghq.com/2.1.x/cli/#kong-reload) Kong:
 
    ```shell
-   $ kong reload [-c config]
+   $ kong reload [-c configuration_file]
    ```
 
 **Reminder:** The `kong reload` command leverages the Nginx `reload` signal that
@@ -181,8 +181,8 @@ The following steps guide you through the migration process.
    command expects the datastore to be up-to-date on any pending migration:
 
    ```shell
-   $ kong migrations up [-c config]
-   $ kong migrations finish [-c config]
+   $ kong migrations up [-c configuration_file]
+   $ kong migrations finish [-c configuration_file]
    ```
 2. Confirm that all of the entities are now available on your
    {{site.ee_product_name}} node.
