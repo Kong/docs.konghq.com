@@ -33,7 +33,7 @@ Now, you've successfully connected your Slack channel to Immunity and all alerts
 
 #### Routing Different Alerts to Different Slack Channels
 
-Immunity will send alerts to all Slack channels you ask it too. You can even restrict the type of alerts that go to a channel with additional parameters in your POST request. To do so, the /notifications/slack/config endpoint takes these parameters on POST:
+Immunity will send alerts to all Slack channels you ask it too. You can even restrict the type of alerts that go to a channel with additional parameters in your POST request. To do so, the `/notifications/slack/config` endpoint takes these parameters on POST:
 
 
 * `endpoint`: The endpoint that you would like the current POST request rule you're setting to apply to.
