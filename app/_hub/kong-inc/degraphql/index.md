@@ -2,7 +2,7 @@
 
 name: DeGraphQL
 publisher: Kong Inc.
-version: 1.3.x
+version: 0.1.0
 
 desc: Transform a GraphQL upstream into a REST API
 description: |
@@ -16,7 +16,7 @@ categories:
 kong_version_compatibility:
     enterprise_edition:
       compatible:
-        - 1.3.x
+        - 1.3-x
 
 params:
   name: degraphql
