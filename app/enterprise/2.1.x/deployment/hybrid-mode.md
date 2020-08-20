@@ -57,14 +57,16 @@ Control Plane, all plugin configuration has to occur from the CP. Due to this
 setup, and the configuration sync format between the CP and the DP, some plugins
 have limitations in Hybrid mode:
 
-* **Key Auth Encrypted:** The time-to-live setting (`ttl`), which determines the
-length of time a credential remains valid, does not work in Hybrid mode.
-* **Rate Limiting Advanced:** * This plugin does not support the `cluster`
-strategy in Hybrid mode. The `redis` strategy must be used instead.
-* **OAuth 2.0 Authentication:** This plugin is not compatible with Hybrid mode.
-For its regular workflow, the plugin needs to both generate and delete tokens,
-and commit those changes to the database, which is not possible with CP/DP
-separation.
+* [**Key Auth Encrypted:**](/hub/kong-inc/key-auth-enc) The time-to-live setting
+(`ttl`), which determines the length of time a credential remains valid, does
+not work in Hybrid mode.
+* [**Rate Limiting Advanced:**](/hub/kong-inc/rate-limiting-advanced)
+This plugin does not support the `cluster` strategy in Hybrid mode. The `redis`
+strategy must be used instead.
+* [**OAuth 2.0 Authentication:**](/hub/kong-inc/oauth2) This plugin is not
+compatible with Hybrid mode. For its regular workflow, the plugin needs to both
+generate and delete tokens, and commit those changes to the database, which is
+not possible with CP/DP separation.
 
 ### Custom plugins
 Custom plugins (either your own plugins or third-party plugins that are not
