@@ -81,7 +81,7 @@ params:
       default: cluster
       value_in_examples:
       description: |
-        The sync strategy to use; `cluster` and `redis` are supported.
+        The sync strategy to use; `cluster` and `redis` are supported. Hybrid mode does not support the `cluster` strategy.
     - name: redis.host
       required: semi
       default:
@@ -152,7 +152,11 @@ params:
         This sets the time window to either `sliding` or `fixed`.
   extra: |
     **Notes:**  
-    
+
+     * The plugin does not support the `cluster` strategy in
+       [hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/).
+       The `redis` strategy must be used instead.
+
      * Redis configuration values are ignored if the `cluster` strategy is used.
 
      * PostgreSQL 9.5+ is required when using the `cluster` strategy with `postgres` as the backing Kong cluster data store. This requirement varies from the PostgreSQL 9.4+ requirement as described in the <a href="/install/source">Kong Community Edition documentation</a>.
