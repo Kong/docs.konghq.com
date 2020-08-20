@@ -108,12 +108,14 @@ reason, the full migration is split into two commands:
 ### Installing 2.1 on a fresh datastore
 
 For installing on a fresh datastore, {{site.ee_product_name}} 2.1 has the
-`kong migrations bootstrap` command. You can run the following commands to
-prepare a new 2.1 cluster from a fresh datastore:
+`kong migrations bootstrap` command. Run the following commands to
+prepare a new 2.1 cluster from a fresh datastore. By default, the `kong` CLI tool
+loads the configuration from `/etc/kong/kong.conf`, but you can optionally use
+the `-c` flag to indicate the path to your configuration file:
 
 ```bash
-$ kong migrations bootstrap [-c configuration_file]
-$ kong start [-c configuration_file]
+$ kong migrations bootstrap [-c /path/to/kong.conf]
+$ kong start [-c /path/to/kong.conf]
 ```
 
 ## Patch Releases {#patch}
