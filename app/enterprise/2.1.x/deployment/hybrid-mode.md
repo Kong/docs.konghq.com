@@ -59,6 +59,8 @@ have limitations in Hybrid mode:
 
 * **Key Auth Encrypted:** The time-to-live setting (`ttl`), which determines the
 length of time a credential remains valid, does not work in Hybrid mode.
+* **Rate Limiting Advanced:** * This plugin does not support the `cluster`
+strategy in Hybrid mode. The `redis` strategy must be used instead.
 * **OAuth 2.0 Authentication:** This plugin is not compatible with Hybrid mode.
 For its regular workflow, the plugin needs to both generate and delete tokens,
 and commit those changes to the database, which is not possible with CP/DP
