@@ -72,7 +72,7 @@ Once one specific Slack configuration rule is created for a given Slack endpoint
 
 #### Seeing your configured Rules
 
-Configured rules can get complicated. To see all the slack rules and slack you have configured, make a GET request to /notifications/slack/config like this:
+Configured rules can get complicated. To see all the Slack rules and slack you have configured, make a GET request to `/notifications/slack/config` like this:
 
 ```
 curl -X GET http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/notifications/slack/config
