@@ -29,7 +29,7 @@ Traffic patterns provide a window into the behavior and performance of services 
 To identify potential issues, inefficiencies or performance bottlenecks, Kong Immunity flags traffic that deviates from the expected or desired patterns without disrupting services. Depending on your requirements, you can adjust the settings of Kong Immunity to recognize individual traffic events, patterns, and other types of anomalous activity.
 
 #### Automatically Alert
-How quickly you respond to an event can mean the difference between a simple fix and catastrophic outage. As Kong Immunity detects anomalies in real-time, it automatically sends a notification alerting you to the issue. Notifications are available via email, Slack and more. To avoid disruptions to your teams, you can designate specific users to receive alerts based on Roles Based Access Controls (RBAC) within Kong Manager. 
+How quickly you respond to an event can mean the difference between a simple fix and a catastrophic outage. As Kong Immunity detects anomalies in real-time, it automatically sends a notification alerting you to the issue. Notifications are available via email, Slack, and more. To avoid disruptions to your teams, you can designate specific users to receive alerts based on Role-Based Access Controls (RBAC) within Kong Manager. 
 
 #### Analyze and Address Anomalies
 To help effectively remedy issues in your services, Kong Immunity allows you to review anomalies to understand the root cause and take action. In conjunction with Kong Vitals, you can fully understand a service's anomalous behavior and address the issue with just a few clicks. As the usage of Kong Immunity increases, it learns your baseline behavior and continuously refines its model to better detect or ignore anomalies.
