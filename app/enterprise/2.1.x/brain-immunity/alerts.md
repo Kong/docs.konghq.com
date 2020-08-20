@@ -4,7 +4,13 @@ title: Immunity Alerts
 
 ### Introduction
 
-Immunity monitors all traffic that comes through Kong Enterprise. When it sees an anomaly, Immunity sends an alert to Kong Manager. Alert can be found on the Kong Brain's Service Map and the Alerts page. Alerts are built to signal the health of your microservices system and help pinpoint which endpoints are struggling.
+Immunity monitors all traffic that flows through Kong Enterprise. When an anomaly is detected, Immunity sends an alert to Kong Manager and displays on the Alerts dashboard. Alerts are built to signal the health of your microservices system and help pinpoint which endpoints are struggling.  
+
+### Alerts Dashboard
+Use the Alerts Dashboard in Kong Manager to view and manage alerts. When an alert is generated, it is automatically added to the Alerts Dashboard. The dashboard gives a high-level overview of identified alerts, including severity level, event type, status, and details about the alert. Click an alert to drill down into more details to further investigate the issue.
+
+![Introduction to Kong Immunity Alerts](/assets/images/docs/ee/alerts_dashboard.png)
+
 
 ### Types of Alerts
 Immunity evaluates your traffic every minute and creates an alert when it detects an anomalous event on either of two entity types: endpoint traffic or consumer traffic.
@@ -21,9 +27,16 @@ Dependent on the entity type, being an endpoint or consumer, Immunity creates an
 * `latency_ms` alerts are triggered when incoming requests are significantly slower than historical records. Default severity level: High.
 * `statuscode` alerts are triggered when the proportion of 4XX or 5XX error codes is increasing, regardless of traffic volume. Default severity level: High.
 
+### Alert Severity Levels
+Alerts are classified with four severity levels:
+* **Low**: A low severity classification denotes the least important alerts. While you decide what a low severity means, we recommend that low severity indicates an alert that you want to review at a later time. 
+* **Medium**: A medium severity classification denotes a mid-level important alert. This level is an alert level you will likely address within the sprint. 
+* **High**: A high severity classification is the highest severity level alert. High alerts need to be addressed immediately and should be fixed as soon as possible.
+* **Ignored**: Alerts that are designated as ignored are not surfaced in the Kong Manager, Slack alerts, or /alerts endpoint. 
+
 
 ### Retrieving Generated Alerts
-Monitor generated alerts by running the following commands:
+Monitor generated alerts using the following commands:
 
 ```bash
 curl -d '{"start":"2020-01-08 10:00:00", "end":"2020-01-09 23:30:00"}' \
@@ -31,7 +44,7 @@ curl -d '{"start":"2020-01-08 10:00:00", "end":"2020-01-09 23:30:00"}' \
  -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/alerts
 ```
 
-Or, you can access the alerts using a browser, passing in the ‘start and end’ values as parameters like this:
+Or, access the alerts using a browser, using the ‘start and end’ values as parameters:
 
 ```bash
 http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/alerts?start=2020-01-01 00:00:00&end=2020-01-02 00:00:00
@@ -52,7 +65,7 @@ The ‘/alerts’ endpoint uses the following parameters, which you can mix and 
 #### Alert Objects
 Two types of data are returned by the ‘/alerts’ endpoint: a list of generated alerts and alerts metadata. 
 
-##### List of Genrated Alerts
+##### List of Generated Alerts
 The first is a list of the alerts generated, which are structured like this:
 * `id`: The alert_id of the alert.
 * `detected_at`: The time when the generated alert was detected. This time also correlates with the last time point in the data time series that generated this alert. For example, if the alert was generated on data from 1:00 pm to 1:01 pm, then the detected_at time corresponds with the most recent time point of 1:01 pm in the data used to make the alert.
@@ -66,31 +79,14 @@ The first is a list of the alerts generated, which are structured like this:
 ##### Alert Metadata
 The second type of data returned is alerts metadata which describes the overall count of alerts and breaks down counts by alert type, severity, system_restored, and filtered_total.
 
-### Alert Severity Levels
-Alerts are classified with four severity levels:
-* **Low**: A low severity classification denotes the least important alerts. While you decide what a low severity means, we recommend that low severity indicates an alert that you want to review at a later time. 
-* **Medium**: A medium severity classification denotes a mid-level important alert. This level is an alert level you will likely address within the sprint. 
-* **High**: A high severity classification is the highest severity level alert. High alerts need to be addressed immediately and should be fixed as soon as possible.
-* **Ignored**: Alerts that are designated as ignored are not surfaced in the Kong Manager, Slack alerts, or /alerts endpoint. 
-
-
-#### Default Alert Severity Levels
-
-Immunity provides default severity levels based on the alert type, and these defaults are:
-* `value_type`: low
-* `unknown_parameter`: low
-* `latency_ms`: high
-* `traffic`: medium
-* `statuscode`: high
 
 ### Configure Alert Severity
 
-#### Creating or Updated New Rules
+#### Creating or Updating Alert Severity Rules
 
-Of course, we think you know your system best and you can adjust the severities of your alerts to varying degrees of specificity. Users of Immunity will be able to configure alert severity on alert type, kong `route_id` or `service_id`, or any combination of the two.
+Of course, we think you know your system best and you can adjust the severities of your alerts to varying degrees of specificity. You can configure alert severity on alert type, kong `route_id` or `service_id`, or any combination of the two.
 
 For example, if you decide that for your system, `unknown_parameter` alerts are always system-breaking you can set the severity configuration for `unknown_parameter` alerts to high. Let's say after doing so, you find that while usually an unknown_parameter alert is what you consider high-severity, there's one route where it's actually more of a medium. You can then specify a medium severity for `unknown_parameter` alerts generated only on that route and preserve the high-severity setting for the rest of `unknown_parameters` for the rest of your system.
-
 
 To set a severity configuration on alerts, Immunity provides a /alerts/config endpoint. Posting to /alerts/config will create a new configuration, and requires these parameters:
 
@@ -160,7 +156,7 @@ To view the rules you already have configured, enter a get request to /alerts/co
 curl -X GET http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/alerts/config
 ```
 
-In return, you'll get back a json like this, where each row is a configuration rule:
+In return, you'll get back a JSON like this, where each row is a configuration rule:
 
 ```json
 [
@@ -209,13 +205,13 @@ Here's an example using the browser
 http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/hars?alert_id=1
 ```
 
-### Clean Up the Data
+### Cleaning Up HARS Data
 
-Collector will clean the amount of HARs stored daily up to the max number of hars specified in the environment variable `MAX_HARS_STORAGE` and tables with extracted information to a max of two weeks of data. This means that at any day, the max number of HARs stored is the `MAX_HARS_STORAGE` + days_incoming_number_of_hars. If no `MAX_HARS_STORAGE` is specified, collector defaults to keeping two million hars in the database.
+Collector will clean the amount of HARS stored daily up to the max number of HARs specified in the environment variable `MAX_HARS_STORAGE` and tables with extracted information to a max of two weeks of data. This means that at any day, the max number of HARs stored is the `MAX_HARS_STORAGE` + days_incoming_number_of_hars. If no `MAX_HARS_STORAGE` is specified, collector defaults to keeping two million HARS in the database.
 
 You can set your own value of `MAX_HARS_STORAGE` by setting the app environment variable through whatever means you've been deploying collector.
 
-Additionally, collector provides an endpoint to delete the HARs data at /clean-hars. This endpoint accepts get and post and takes one parameter `max_hars_storage` which will delete all hars until only the value passed with `max_hars_storage` remains and contains the most recent HARs added to the database. If no value is passed to `max_hars_storage`, it will clean the database to the default value set with the environment variable `MAX_HARS_STORAGE`. An example of using this endpoint with cURL looks like this:
+Additionally, collector provides an endpoint to delete the HARs data at /clean-hars. This endpoint accepts get and post and takes one parameter `max_hars_storage` which will delete all HARS until only the value passed with `max_hars_storage` remains and contains the most recent HARs added to the database. If no value is passed to `max_hars_storage`, it will clean the database to the default value set with the environment variable `MAX_HARS_STORAGE`. An example of using this endpoint with cURL looks like this:
 
 ```bash
 curl -d '{"max_hars_storage":10000} \
