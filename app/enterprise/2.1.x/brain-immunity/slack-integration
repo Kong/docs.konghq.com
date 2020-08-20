@@ -13,7 +13,7 @@ If you choose, Immunity can send Slack notifications for unusual traffic. Immuni
 First, [Create a new slack app](https://api.slack.com/apps?new_app=1) and save the webhook address.
 
 Then, enable incoming webhook in your app. After submitting the app creation form, you are redirected to your newly created app’s page. In **Add features and functionality**, click on **Incoming webhooks** to enable them.
-Change the OFF switch to ON. That will make visible a button “Add new webhook to workspace”, click on it.
+Change the OFF switch to ON. Click **Add new webhook to workspace**.
 
 
 That will redirect you to a page where you can select the channel the webhook will post messages. Select the channel and click in authorize.
