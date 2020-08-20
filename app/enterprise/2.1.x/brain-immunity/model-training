@@ -28,7 +28,7 @@ http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer?start=&end=
 ** datetime value format: YYYY-MM-DD HH:mm:ss
 
 
-Additionally, you can specify the Kong service_id or route_id of the URLs you would like trained using the kong_entity parameter. Immunity would then only train URLs associated with the ID provided, and with the data specified by the start and end dates.
+Additionally, you can specify the Kong `service_id` or `route_id` of the URLs you would like trained using the `kong_entity` parameter. Immunity would then only train URLs associated with the ID provided, and with the data specified by the start and end dates.
 
 ```
 curl -d '{"start":"2019-01-08 10:00:00", "end":"2019-01-09 23:30:00", "kong_entity":"2beff163-061d-43ad-8d87-8f40d10805ba"}' \
