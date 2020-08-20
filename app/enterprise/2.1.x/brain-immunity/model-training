@@ -70,7 +70,7 @@ For best use, Immunity retrains on a regular basis. If you do not feel like you 
 
 
 
-* `kong_entity`: The route_id or service_id that you would like to turn on or off auto-training.
+* `kong_entity`: The `route_id` or `service_id` for which to turn on or off auto-training.
 * `method`: One of values: GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE. Specifying a method will restrict the rule being made on auto-training to only traffic matching the method specified. When this value is null, all traffic from all methods will be included in the rule.
 * `enable`: True or False, where true means auto-training is on and false means auto-training is off for the `kong_entity` specified.
 
