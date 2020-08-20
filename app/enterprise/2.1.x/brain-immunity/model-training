@@ -10,7 +10,7 @@ Immunity automatically starts training its models once it is up and running and 
 Our first model version gets created after the first hour and will continuously retrain itself for the first week to provide the best model possible. After that, every week all models retrain with a week of data.
 
 
-We also provide clients an endpoint to retrigger training themselves. We recommend retraining when the context of your app is expected to change a lot. For example, maybe there is an upcoming app release that will change several endpoints. If this is the case, one can POST to `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/resettrainer` to start the training cycle all over again.
+We also provide clients an endpoint to retrigger training themselves. We recommend retraining when the context of your app is expected to change a lot. For example, maybe there is an upcoming app release that will change several endpoints. If this is the case, you can POST to `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/resettrainer` to start the training cycle all over again.
 
 
 Let’s say you’d like slightly more control over the data your model sees, for example perhaps you know that weekend data is not particularly useful for model building because weekends are normally outliers that your team is prepared for. You can trigger model training for all models with a specified time period of data. Simply POST to `http://<BRAIN_HOST>:<COLLECTOR_PORT>/trainer`, with the start and end time of data you’d like included in training like this:
