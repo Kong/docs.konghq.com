@@ -54,7 +54,7 @@ curl -d '{"endpoint":"www.your-slack-webhook.com", "severity": "high"} \
 Immunity will no longer route all traffic to [www.your-slack-webhook.com](http://www.your-slack-webhook.com/), and only route alerts at high severity to [www.your-slack-webhook.com](http://www.your-slack-webhook.com/).
 
 
-You can set multiple rules of varying specificity for the same endpoint. For example, let's say you want [www.your-slack-webhook.com](http://www.your-slack-webhook.com/) to show notifications on all alerts from `service_id = "my-service-1-id"` and only high-severity alerts on `route_id = "my-route-1-id"`, you can do so with two post requests:
+You can set multiple rules of varying specificity for the same endpoint. For example, let's say you want [www.your-slack-webhook.com](http://www.your-slack-webhook.com/) to show notifications on all alerts from `service_id = "my-service-1-id"` and only high-severity alerts on `route_id = "my-route-1-id"`, you can do so with two POST requests:
 
 ```
 curl -d '{"endpoint":"www.your-slack-webhook.com", "kong_entity": "my-service-1-id"} \
