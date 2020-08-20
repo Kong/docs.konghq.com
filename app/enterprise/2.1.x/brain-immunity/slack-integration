@@ -37,7 +37,7 @@ Immunity will send alerts to all Slack channels you ask it too. You can even res
 
 
 * `endpoint`: The endpoint that you would like the current POST request rule you're setting to apply to.
-* `kong_entity`: Will restrict notifications set to the endpoint to only those arising from the service_id, route_id, or workspace name specified here.
+* `kong_entity`: Restricts notifications set to the endpoint to only those arising from the `service_id`, `route_id`, or workspace name specified here.
 * `severity`: Will route only alerts with severity specified to the endpoint. Severity values can be one of "low", "medium", "high".
 * `alert_type`: Will route only alerts.
 * `enable`: When set to False, the rule in the POST request is disabled, meaning Immunity will ignore that configuration rule. When set to True, the rule in enabled and Immunity will route traffic according to the full request rule. This parameter is set to True by default in all POST requests.
