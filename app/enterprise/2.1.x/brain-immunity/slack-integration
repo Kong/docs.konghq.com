@@ -78,7 +78,7 @@ Configured rules can get complicated. To see all the Slack rules and slack you h
 curl -X GET http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/notifications/slack/config
 ```
 
-Which will return a json object where each key is an endpoint configured its value are the rules configured in a tree like structure with a boolean at the leaf of the tree indicating whether that rule is enabled or not. For the multi-config example we made above for [www.your-slack-webhook.com](http://www.your-slack-webhook.com/), the returned GET object will look like:
+This request returns a JSON object where each key is an endpoint configured. Its value are the rules configured in a tree-like structure with a boolean at the leaf of the tree indicating whether that rule is enabled or not. For the multi-config example we made above for [www.your-slack-webhook.com](http://www.your-slack-webhook.com/), the returned GET object will look like:
 
 ```json
 {
