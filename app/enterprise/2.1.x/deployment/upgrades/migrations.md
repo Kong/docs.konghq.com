@@ -85,7 +85,7 @@ reason, the full migration is split into two commands:
   mode is not supported in {{site.ee_product_name}})
 
 1. Download 2.1.x, and configure it to point to the same datastore as your old
-   1.5.x cluster.
+   1.5.x (or 2.1.x-beta) cluster.
 2. Run `kong migrations up`.
 3. After that finishes running, both the old (1.5) and new (2.1) clusters can
    now run simultaneously on the same datastore. Start provisioning 2.1 nodes,
@@ -100,12 +100,12 @@ reason, the full migration is split into two commands:
    your 2.1 cluster. Monitor your traffic to make sure everything
    is going smoothly.
 5. When your traffic is fully migrated to the 2.1 cluster, decommission your
-   old 1.5 nodes.
+   old 1.5 (or 2.1.x-beta) nodes.
 6. From your 2.1 cluster, run `kong migrations finish`. From this point onward,
-   it is no longer possible to start nodes in the old 1.5 cluster that still points
-   to the same datastore. Run this command _only_ when you are confident that
-   your migration was successful. From now on, you can safely make Admin API
-   requests to your 2.1 nodes.
+   it is no longer possible to start nodes in the old 1.5 (or 2.1.x-beta) cluster
+   that still points to the same datastore. Run this command _only_ when you are
+   confident that your migration was successful. From now on, you can safely make
+   Admin API requests to your 2.1 nodes.
 
 ### Installing 2.1 on a fresh datastore
 
