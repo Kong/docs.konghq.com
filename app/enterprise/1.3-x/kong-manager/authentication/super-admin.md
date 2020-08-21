@@ -27,6 +27,9 @@ click the email address of the user in order to view them.
 
 6. Copy the link for later use after completing the account setup.
 
+⚠️**Important:**
+Kong Manager does not support entity-level RBAC. Run Kong Manager on a node
+where `enforce_rbac` is set to `on` or `off`, but not `entity` or `both`.
 
 ## How to Create Your First Super Admin Account Post Installation
 

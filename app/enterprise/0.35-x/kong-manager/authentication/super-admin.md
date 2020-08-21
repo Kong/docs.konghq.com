@@ -32,6 +32,10 @@ click the email address of the user in order to view them.
   Your browser does not support the video tag.
 </video>
 
+⚠️**Important:**
+Kong Manager does not support entity-level RBAC. Run Kong Manager on a node
+where `enforce_rbac` is set to `on` or `off`, but not `entity` or `both`.
+
 ## How to Create Your First Super Admin Account Post Installation
 
 In the event that the default `kong_admin`, **Super Admin**, was not seeded 
