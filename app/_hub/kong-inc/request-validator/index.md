@@ -486,7 +486,6 @@ For more information, see the Kong plugin docs on [storing custom entities][sche
 
 [schema-docs]: /1.0.x/plugin-development/custom-entities/#defining-a-schema
 [lua-patterns]: https://www.lua.org/pil/20.2.html
-[`lua-resty-ljsonschema`]: https://luarocks.org/modules/tieske/lua-resty-ljsonschema
 [RFC 3339]: https://tools.ietf.org/html/rfc3339
 [5.6]: https://tools.ietf.org/html/rfc3339#section-5.6
 [5.7]: https://tools.ietf.org/html/rfc3339#section-5.7
