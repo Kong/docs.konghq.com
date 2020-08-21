@@ -225,14 +225,13 @@ validations:
 
 **Note**: To learn more, see [Lua patterns][lua-patterns].
 
-#### Semantic validation for "format" attribute
+#### Semantic validation for `format` attribute
 
 Structural validation alone may be insufficient to validate that an instance
 meets all the requirements of an application. The `format` keyword is defined
-to allow interoperable semantic validation for a fixed subset of values which
+to allow interoperable semantic validation for a fixed subset of values that
 are accurately described by authoritative resources, be they RFCs or other
-external specifications. The following attributes are available from the
-underlying [`lua-resty-ljsonschema`] dependency:
+external specifications. The following attributes are available:
 
 | Attribute | Description |
 | --- | --- |

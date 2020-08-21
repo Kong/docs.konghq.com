@@ -168,7 +168,7 @@ params:
 
 ## Headers sent to the client
 
-When this plugin is enabled, Kong will send some additional headers back to the client telling what are the limits allowed, how many requests are available and how long it will take until the quota will be restored, for example:
+When this plugin is enabled, Kong will send some additional headers back to the client indicating the allowed limits, how many requests are available, and how long it will take until the quota will be restored. For example:
 
 ```
 RateLimit-Limit: 6
@@ -176,14 +176,14 @@ RateLimit-Remaining: 4
 RateLimit-Reset: 47
 ```
 
-The plugin will also send headers telling the limits in the time frame and the number of requests remaining:
+The plugin also sends headers indicating the limits in the time frame and the number of remaining requests:
 
 ```
 X-RateLimit-Limit-Minute: 10
 X-RateLimit-Remaining-Minute: 9
 ```
 
-or it will return a combination of more time limits, if more than one is being set:
+Or, it will return a combination of more time limits, if more than one is being set:
 
 ```
 X-RateLimit-Limit-Second: 5
@@ -192,18 +192,18 @@ X-RateLimit-Limit-Minute: 10
 X-RateLimit-Remaining-Minute: 9
 ```
 
-If any of the limits configured is being reached, the plugin will return a `HTTP/1.1 429` status code to the client with the following JSON body:
+If any of the limits configured has been reached, the plugin returns an `HTTP/1.1 429` status code to the client with the following JSON body:
 
 ```json
 { "message": "API rate limit exceeded" }
 ```
 
-The [`Retry-After`] header will be present on `429` errors to indicate how long the service is expected to be unavailable to the client. When using `window_type=sliding`, `RateLimit-Reset` and `Retry-After` may increase due to the rate calculation for the sliding window.
+The [`Retry-After`] header will be present on `429` errors to indicate how long the service is expected to be unavailable to the client. When using `window_type=sliding`, `RateLimit-Reset`, and `Retry-After` may increase due to the rate calculation for the sliding window.
 
 **NOTE**:
 
 <div class="alert alert-warning">
-The headers `RateLimit-Limit`, `RateLimit-Remaining` and `RateLimit-Reset` are based on the Internet-Draft <a href="https://tools.ietf.org/html/draft-polli-ratelimit-headers-02">RateLimit Header Fields for HTTP</a> and may change in the future, respecting updates to the specification.
+The headers `RateLimit-Limit`, `RateLimit-Remaining`, and `RateLimit-Reset` are based on the Internet-Draft <a href="https://tools.ietf.org/html/draft-polli-ratelimit-headers-02">RateLimit Header Fields for HTTP</a> and may change in the future to respect specification updates.
 </div>
 
 ### Notes
