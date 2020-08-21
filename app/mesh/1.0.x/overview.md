@@ -3,7 +3,7 @@ title: Kong Mesh Overview
 no_search: true
 ---
 
-# Introduction
+## Introduction
 
 <div class="alert alert-ee blue">
    <b>Demo</b>: To see {{site.mesh_product_name}} in action you can <a href="/request-demo-kong-mesh/">request a demo</a> and we will get in touch with you.
@@ -65,3 +65,5 @@ Thanks to the underlying Kuma runtime, with {{site.mesh_product_name}} we can ea
   <br>
   <i>{{site.mesh_product_name}} can support multiple zones (like a Kubernetes cluster, VPC, data-center, etc) together in the same distributed deployment. Then we can create multiple isolated virtual meshes with the same control plane in order to support every team and application in the organization.</i>
 </center>
+
+[Learn more](https://kuma.io/docs/latest/documentation/deployments/) about the standalone and multi-zone deployment modes.

@@ -3,7 +3,7 @@ title: Getting Started With Kong Mesh
 no_search: true
 ---
 
-# Getting Started
+## Getting Started
 
 {{site.mesh_product_name}} - built on top of Kuma and Envoy - tries to be as close as possible to the usage of Kuma itself, while providing drop-in binary replacements for both the control plane and data plane executables.
 
