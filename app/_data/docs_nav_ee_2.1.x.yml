@@ -20,16 +20,7 @@
 - title: Deployment
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
   items:
-    - text: Deployment Options
-      url: /deployment/deployment-options
-      items:
-    - text: Hybrid Mode
-      items:
-        - text: Overview
-          url: /deployment/hybrid-mode
-        - text: Deploying in Hybrid Mode
-          url: /deployment/hybrid-mode-setup
-    - text: Installation
+      - text: Installation
       url: /deployment/installation/overview
       items:
         - text: Containerized
@@ -56,13 +47,26 @@
               url: /deployment/installation/amazon-linux-2
             - text: Red Hat Enterprise Linux
               url: /deployment/installation/rhel
-
-    - text: Default Ports
-      url: /deployment/default-ports
-    - text: DNS Considerations
-      url: /deployment/dns-considerations
-    - text: Resource Sizing Guidelines
-      url: /sizing-guidelines
+    - text: Deployment Options
+      url: /deployment/deployment-options
+      items:
+    - text: Hybrid Mode
+      items:
+        - text: Overview
+          url: /deployment/hybrid-mode
+        - text: Deploying in Hybrid Mode
+          url: /deployment/hybrid-mode-setup
+    - text: Deployment Guidelines
+      url: /deployment/deployment-guidelines
+      items:
+        - text: Resource Sizing Guidelines
+          url: /sizing-guidelines
+        - text: Default Ports
+          url: /deployment/default-ports
+        - text: DNS Considerations
+          url: /deployment/dns-considerations
+        - text: Network &amp; Firewall
+          url: /network
     - text: Licensing
       items:
         - text: Overview
@@ -129,8 +133,6 @@
       url: /clustering
     - text: Logging Reference
       url: /logging
-    - text: Network &amp; Firewall
-      url: /network
     - text: Plugin Development Guide
       items:
         - text: Introduction
