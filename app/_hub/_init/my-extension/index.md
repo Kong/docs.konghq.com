@@ -148,7 +148,7 @@ params: # Metadata about your plugin
         # If the field is to appear in examples, this is the value to use.
         # A required field with no value_in_examples entry will resort to
         # the one in default.
-        # If providing an array, use the following format: [ "value1", "value2" ]
+        # If providing an array, use the following format: [ "value1", "value2" ].
       description:
         # Explain what this setting does.
         # Use YAML's pipe (|) notation for longer entries.
