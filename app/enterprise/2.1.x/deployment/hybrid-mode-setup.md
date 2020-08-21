@@ -185,6 +185,7 @@ and follow the instructions in Steps 1 and 2 **only** to download
     role = data_plane
     database = off
     cluster_control_plane = control-plane.<admin-hostname>.com:8005
+    cluster_telemetry_endpoint = control-plane.<admin-hostname>.com:8006
     cluster_cert = /<path-to-file>/cluster.crt
     cluster_cert_key = /<path-to-file>/cluster.key
     lua_ssl_trusted_certificate = /<path-to-file>/cluster.crt
