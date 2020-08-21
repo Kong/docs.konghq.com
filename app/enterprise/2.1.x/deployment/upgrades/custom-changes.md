@@ -9,9 +9,9 @@ Custom entities and plugins have breaking changes for 2.1.x:
 
   - `select_all` has been removed. The recommended fix path is to
     iterate all entities using `:each` and filter entities in
-    lua. This works well for low cardinality (less than 5k
+    Lua. This works well for low cardinality (less than 5k
     entities). For higher cardinality entities, the recommendation is
-    to write the queries in custom dao code. Also, your use cases
+    to write the queries in custom DAO code. Also, your use cases
     might be a good fit for `select_for` or `each_for`, that will work
     using database indices. Those methods are able to filter by a
     foreign key relation.
