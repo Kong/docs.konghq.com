@@ -64,7 +64,9 @@ affect your current installation.
   are currently using the Developer Portal, it will no longer work without
   [manually migrating files](#migrate-dev-portal).
 
-### Migrating from 1.5.x to 2.1.x
+### Migrating from 1.5.x (or 2.1.x-beta) to 2.1.x
+
+**Note:** There is not an upgrade migration path from 1.5.x to 2.1.x-beta.
 
 {{site.ee_product_name}} supports the zero downtime migration model. This means
 that while the migration is in process, you have two Kong clusters with different
