@@ -113,7 +113,7 @@ curl -d '{"endpoint":"www.your-slack-webhook.com",
 
 Sometimes you may want to delete a rule. Functionally, this is the same as disabling a rule in the sense that notifications will no longer be sent as the deleted or disabled rule specified. To delete a configuration rule, send a DELETE request to `/notifications/slack/config`, and just like with disabling rules, make sure you're passing the correct values to the configuration specifying parameters (`kong_entity`, `severity`, and `alert_type`). With the same example from above that disabled the config rule for `my-service-1-id`, a DELETE would look like:
 
-```
+```bash
 curl -d '{"endpoint":"www.your-slack-webhook.com",
  "kong_entity": "my-service-1-id"} \
  -H "Content-Type: application/json" \
