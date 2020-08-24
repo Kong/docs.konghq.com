@@ -23,11 +23,11 @@ Custom entities and plugins have breaking changes for 2.1.x:
     will be printed.
 
     Kong 2.1.x provides a migration helper command `kong migrations
-    upgrad-workspace-table [table-name]` that will print a temptative
+    upgrade-workspace-table [table-name]` that will print a temptative
     migration file for that entity. This feature is best effort, so it
     should be tested in non-production environments with backup data.
 
-    The migration snipped should be added as a new migration for the
+    The migration contents should be added as a new migration for the
     entity like any other migration.
 
 
