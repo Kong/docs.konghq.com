@@ -8,31 +8,23 @@ skip_read_time: true
 ## 2.1.3.0
 **Release Date** 2020/08/25
 
+**Note: 2.1.3.0 release includes [2.1.0.0-beta[(/enterprise/changelog/#2100-beta) release features, fixes, known issues and workarounds.** 
+
 ### Features
 
 #### Kong Gateway
-* 
-*
-* 
-
-#### Plugins
-* 
-* 
-* 
+* * Inherited changes from OSS Kong in releases 2.1.1, 2.1.2, and 2.1.3.
 
 ### Fixes
 
 #### Plugins
 * gRPC Plugin documentation is improved. See [gRPC-gateway](/hub/kong-inc/grpc-gateway/)
-* 
-* 
 
 ### Known Issues and Workarounds
 
 * The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
 * When performing upgrade and migration to 2.1.x, custom entities and plugins have breaking changes. See [Custom_Changes](/enterprise/2.1.x/deployment/upgrades/custom-changes/)
-
 
 
 ## 2.1.0.0 (beta)
