@@ -250,6 +250,12 @@ keys.
     Control Plane will need to be accessible by all Data Planes it controls through
     any firewalls you may have in place.
 
+    For PKI mode, `KONG_CLUSTER_CA_CERT` specifies the root CA certificate for
+    `KONG_CLUSTER_CERT` and `KONG_CLUSTER_CERT_KEY`. This certificate must be
+    the root CA certificate and not any of an intermediate CA. Kong allows a
+    maximum of three levels of intermediate CAs to be used between the root CA
+    and the cluster certificate.
+
     If you need to change the ports that the Control Plane listens on, set:
     ```bash
     KONG_CLUSTER_LISTEN=0.0.0.0:<port>
@@ -388,6 +394,9 @@ follow the instructions to:
     adding the content of `cluster.crt` into that file will achieve the same result.
     * `<path-to-file>` and `target=<path-to-keys-and-certs>` are the same path
     pointing to the location of the `cluster.key` and `cluster.crt` files.
+    * `KONG_CLUSTER_SERVER_NAME` specifies the SNI (Server Name Indication
+    extension) to use for Data Plane connections to the Control Plane through
+    TLS. When not set, Data Plane will use `kong_clustering` as the SNI.
 
 3. If needed, bring up any subsequent Data Planes using the same settings.
 
@@ -441,8 +450,9 @@ and follow the instructions in Steps 1 and 2 **only** to download
     If you have already specified a different `lua_ssl_trusted_certificate`, then
     adding the content of `cluster.crt` into that file will achieve the same result.
     * `<path-to-file>` is the location of the `cluster.key` and `cluster.crt` files.
-    * `cluster_server_name` specifies the SNI (Server Name Indication extension) to use for Data Plane
-    connections to the Control Plane through TLS. When not set, Data Plane will use `kong_clustering` as the SNI.
+    * `cluster_server_name` specifies the SNI (Server Name Indication extension)
+    to use for Data Plane connections to the Control Plane through TLS. When
+    not set, Data Plane will use `kong_clustering` as the SNI.
 
 3. Restart Kong for the settings to take effect:
     ```bash
