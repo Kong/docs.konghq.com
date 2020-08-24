@@ -2,7 +2,7 @@
 title: Kong Enterprise 2.1.3.0 Release Notes
 ---
 
-These release notes apply to Kong Enterprise Release 2.1.3.0, and include 2.1.0.0-beta, and provide a high-level overview of new features and updates. For more detailed information about this release and the 2.1.0.0-beta release, including features, fixes, and known issues, see the [Changelog](https://docs.konghq.com/enterprise/changelog/).
+These release notes apply to Kong Enterprise release version 2.1.3.0, and includes version 2.1.0.0-beta features, fixes, known issues and workarounds. These release notes and provide a high-level overview of new features and updates. For more detailed information about this release and the 2.1.0.0-beta release, including features, fixes, and known issues, see the [Changelog](https://docs.konghq.com/enterprise/changelog/).
 
 ## New Features
 
@@ -54,6 +54,8 @@ For more information, see the [Vitals Overview](/enterprise/{{page.kong_version}
 For the {{site.ee_product_name}} 2.1.x beta, Kong for Kubernetes Enterprise (K4K8s) now uses the `kong-enterprise-edition` image, which works as a drop-in replacement for the `kong-enterprise-k8s` image used in earlier versions.
 
 For more information, including instructions for switching images, see [Kong for Kubernetes Deployment Options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options/).
+
+### Plugin Improvements
 
 ## What's New in the Docs
 
