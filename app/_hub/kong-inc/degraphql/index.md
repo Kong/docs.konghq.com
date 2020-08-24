@@ -60,7 +60,7 @@ if no DeGraphQL routes have been configured.
 ### 3. Configure DeGraphQL Routes on the Service
 
 Once the Plugin is activated on a Service, we can add our own routes to build
-our service, by defining uris and associating them to GraphQL queries.
+our service, by defining URIs and associating them to GraphQL queries.
 
   ```bash
   $ curl -X POST http://localhost:8001/services/github/degraphql/routes \
@@ -78,7 +78,7 @@ our service, by defining uris and associating them to GraphQL queries.
   }
   ```
 
-GraphQL Query Variables can be defined on uris
+GraphQL Query Variables can be defined on URIs:
 
   ```bash
   $ curl -X POST http://localhost:8001/services/github/degraphql/routes \
@@ -104,7 +104,7 @@ GraphQL Query Variables can be defined on uris
   }
   ```
 
-The same Variables can also be provided as GET arguments
+The same Variables can also be provided as GET arguments:
 
   ```bash
   $ curl -X POST http://localhost:8001/services/github/degraphql/routes \
