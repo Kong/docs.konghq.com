@@ -8,14 +8,49 @@ skip_read_time: true
 ## 2.1.3.0
 **Release Date** 2020/08/25
 
-**Note: 2.1.3.0 release includes [2.1.0.0-beta[(/enterprise/changelog/#2100-beta) release features, fixes, known issues and workarounds.** 
+**Note: 2.1.3.0 release includes [2.1.0.0 (beta)](/enterprise/changelog/#2100-beta/) release features, fixes, known issues and workarounds.**
 
 ### Features
 
 #### Kong Gateway
-* Inherited changes from OSS Kong in releases 2.1.1, 2.1.2, and 2.1.3.
+* Inherited changes from OSS Kong in releases 2.0.x, 2.1.0., 2.1.1, 2.1.2, and 2.1.3.
+* Workspaces code has been refactored for performance. The feature should work the same for most users.
+* TLS version may be specified when using tls to connect to a Postgres db.
+
+#### Kong Manager
+* Open ID Connect (`openid-connect`) can now be used with [Mapping Service Directory Groups to Kong Roles](/enterprise/latest/kong-manager/service-directory-mapping/) using `config.authenticated_groups_claim`.
+* Can now see the `created_at` timestamp for consumer credentials.
+* Provide a warning when a user's session is about to expire.
+* Generate an RBAC token for an administrator rather than letting them set one.
+* Plugin forms now have docs links to the Plugins Hub.
+
+#### Kong Developer Portal
+* Application Registration can now be configured to use a third-party OAuth provider.
+
+#### Plugins
+
+* Open ID Connect (`openid-connect`)
+  * Added `X-Authenticated-Groups` request header when doing authenticated groups.
+  * Added `config.groups_required` and `config.groups_claim`.
+  * Added `config.roles_required` and `config.roles_claim`.
+  * Added `DELETE :8001/openid-connect/issuers` endpoint (for cache clearing).
+  * Added `DELETE :8001/openid-connect/jwks` endpoint (for rotating the jwks).
+  * Added Admin API for DBless (it is a single node only).
+  * Added support for `x5t` key lookups.
+  * Added support for same `x5t` but different `alg` lookups.
+  * Changed that `config.authenticated_groups_claim` is considered even on successful consumer mapping so that it enables dynamic groups, while using consumer mapping. This feature is used with [Mapping Service Directory Groups to Kong Roles](/enterprise/latest/kong-manager/service-directory-mapping/).
+  * Changed code to be more resilient on rediscovery errors.
+  * Changed `config.rediscovery_lifetime` to default to 30 seconds instead of 300 seconds (5 minutes).
+  * Changed plugin to do rediscovery on configuration changes (while still respecting `config.rediscovery_lifetime`).
+
+* Response Transformer Advanced (`response-transformer-advanced`)
+  * Added support to specify JSON types for configuration values. For example, by doing `config.add.json.json_types`: ["number"], the plugin will convert "-1" added JSON values into -1.
+  * Improved performance by not inheriting from the BasePlugin class.
+  * The plugin is now defensive against possible errors and nil header values.
 
 ### Fixes
+
+**Note: For 2.1.3.0 fixes, also see the [2.1.0.0 (beta)](/enterprise/changelog/#2100-beta/) fixes as they are included in this release.**
 
 #### Plugins
 * gRPC Plugin documentation is improved. See [gRPC-gateway](/hub/kong-inc/grpc-gateway/).
