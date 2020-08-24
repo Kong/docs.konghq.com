@@ -8,12 +8,12 @@ skip_read_time: true
 ## 2.1.3.0
 **Release Date** 2020/08/25
 
-**Note: 2.1.3.0 release includes [2.1.0.0 (beta)](/enterprise/changelog/#2100-beta/) release features, fixes, known issues and workarounds.**
+**Note: 2.1.3.0 version includes [2.1.0.0 (beta)](/enterprise/changelog/#2100-beta/) version features, fixes, known issues and workarounds.**
 
 ### Features
 
 #### Kong Gateway
-* Inherited changes from OSS Kong in releases 2.0.x, 2.1.0., 2.1.1, 2.1.2, and 2.1.3.
+* Inherited changes from OSS Kong in releases 2.0.x, 2.1.0, 2.1.1, 2.1.2, and 2.1.3.
 * Workspaces code has been refactored for performance. The feature should work the same for most users.
 * TLS version may be specified when using tls to connect to a Postgres db.
 
@@ -50,12 +50,14 @@ skip_read_time: true
 
 ### Fixes
 
-**Note: For 2.1.3.0 fixes, also see the [2.1.0.0 (beta)](/enterprise/changelog/#2100-beta/) fixes as they are included in this release.**
+**Note: For 2.1.3.0, also see the [2.1.0.0 (beta)](/enterprise/changelog/#fixes) fixes as they are included in this version.**
 
 #### Plugins
 * gRPC Plugin documentation is improved. See [gRPC-gateway](/hub/kong-inc/grpc-gateway/).
 
 ### Known Issues and Workarounds
+
+**Note: For 2.1.3.0, also see the [2.1.0.0 (beta)](/enterprise/changelog/#known-issues-and-workarounds) known issues and workarounds as they are included in this version.**
 
 * The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
