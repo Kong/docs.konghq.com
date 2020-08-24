@@ -6,7 +6,7 @@ version: 0.1.0
 
 desc: Transform a GraphQL upstream into a REST API
 description: |
-  This plugin transforms a GraphQL upstream into a traditional endpoint by mapping uris into GraphQL queries.
+  This plugin transforms a GraphQL upstream into a traditional endpoint by mapping URIs into GraphQL queries.
 
 type: plugin
 enterprise: true
