@@ -78,9 +78,7 @@ In addition to the features listed above, updates to Kong's user documentation a
 
 * The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
-* The Key Authentication - Encrypted (`key-auth-enc`) plugin does not support `ttl` (time-to-live) in Hybrid mode deployments.
-
-* Setting your Kong password (`Kong_Password`) using a value containing four ticks (for example,  `KONG_PASSWORD="a''a'a'a'a"`) causes a Postgres syntax error on bootstrap. To work around this issue, do not use special characters in your password.
+* Setting your Kong password (`Kong_Password`) using a value containing four ticks (for example, `KONG_PASSWORD="a''a'a'a'a"`) causes a Postgres syntax error on bootstrap. To work around this issue, do not use special characters in your password.
 
 
 ### Breaking changes
