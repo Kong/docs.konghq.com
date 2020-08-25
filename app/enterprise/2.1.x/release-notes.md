@@ -2,8 +2,8 @@
 title: Kong Enterprise 2.1.3.0 Release Notes
 ---
 
-These release notes provide a high-level overview of Kong Enterprise release version 2.1.3.0, which includes version 2.1.0.0-beta
-features, fixes, known issues, and workarounds. For detailed information about this release and the 2.1.0.0-beta release, see the [Changelog](https://docs.konghq.com/enterprise/changelog/).
+These release notes provide a high-level overview of Kong Enterprise release version 2.1.3.0, which includes version 2.1.0.0 (beta)
+features, fixes, known issues, and workarounds. For detailed information about this release and the 2.1.0.0 (beta) release, see the [Changelog](https://docs.konghq.com/enterprise/changelog/).
 
 ## New Features
 
@@ -31,7 +31,6 @@ For more information, see:
 * [Application Registration](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/)
 * [Application Registration Plugin](/hub/kong-inc/application-registration/)
 
-
 ### Developer Portal Markdown Support
 
 The Developer Portal now supports GitHub Markdown as an alternative to Developer Portal templates. To use the feature, create a markdown file and call the new markdown layout module. You can use the default CSS or customize it for more control over the Dev Portal skin.
@@ -55,8 +54,6 @@ For more information, see the [Vitals Overview](/enterprise/{{page.kong_version}
 For the {{site.ee_product_name}}, Kong for Kubernetes Enterprise (K4K8s) now uses the `kong-enterprise-edition` image, which works as a drop-in replacement for the `kong-enterprise-k8s` image used in earlier versions.
 
 For more information, including instructions for switching images, see [Kong for Kubernetes Deployment Options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options/).
-
-### Plugin Improvements
 
 ## What's New in the Docs
 
@@ -90,6 +87,5 @@ In addition to the features listed above, updates to Kong's user documentation a
 
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
 
-
 ## Changelog
-For a complete list of features, fixes, and changes, see the Kong Enterprise [Changelog](/enterprise/changelog/) for versions 2.1.3.0 and 2.1.0.0-beta.
+For a complete list of features, fixes, and changes, see the Kong Enterprise [Changelog](/enterprise/changelog/) for versions 2.1.3.0 and 2.1.0.0 (beta).
