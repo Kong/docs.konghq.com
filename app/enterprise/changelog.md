@@ -8,7 +8,7 @@ skip_read_time: true
 ## 2.1.3.0
 **Release Date** 2020/08/25
 
-**Note: The 2.1.3.0 version includes [2.1.0.0 (beta)](/enterprise/changelog/#2100-beta/) features, fixes, known issues and workarounds. See the [2.1.0.0 (beta)](/enterprise/changelog/#2100-beta/) for more details.**
+**Note: This 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known issues, and workarounds. See the [2.1.0.0 (beta)](/enterprise/changelog/#2100-beta/) for more details.**
 
 ### Features
 
@@ -50,14 +50,14 @@ skip_read_time: true
 
 ### Fixes
 
-**Note: For 2.1.3.0, also see the [2.1.0.0 (beta)](/enterprise/changelog/#fixes) fixes as they are included in this version.**
+**Note: This 2.1.3.0 version includes the [2.1.0.0 (beta)](/enterprise/changelog/#fixes) fixes.**
 
 #### Plugins
 * gRPC Plugin documentation is improved. See [gRPC-gateway](/hub/kong-inc/grpc-gateway/).
 
 ### Known Issues and Workarounds
 
-**Note: For 2.1.3.0, also see the [2.1.0.0 (beta)](/enterprise/changelog/#known-issues-and-workarounds) known issues and workarounds as they are included in this version.**
+**Note: This 2.1.3.0 version includes the [2.1.0.0 (beta)](/enterprise/changelog/#known-issues-and-workarounds) known issues and workarounds.**
 
 * The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
