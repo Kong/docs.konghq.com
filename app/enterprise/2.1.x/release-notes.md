@@ -74,18 +74,24 @@ In addition to the features listed above, updates to Kong's user documentation a
 * New [Version Support](/enterprise/{{page.kong_version}}/support-policy/) information and matrix.
 * New Doc site improvements, including: table of contents rework; collapsible sub-sections; mobile layout fixes; images expand on click; ability to copy code snippets; ability to stay on same topic when navigating between versions; right-hand navigation "On this page" redesign with collapse and reopen feature; scroll to the top button; and resizable table columns.
 
-## Known Issues
+## Known Issues and Workarounds
+
+* The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
 * The Key Authentication - Encrypted (`key-auth-enc`) plugin does not support `ttl` (time-to-live) in Hybrid mode deployments.
 
 * Setting your Kong password (`Kong_Password`) using a value containing four ticks (for example,  `KONG_PASSWORD="a''a'a'a'a"`) causes a Postgres syntax error on bootstrap. To work around this issue, do not use special characters in your password.
 
-* Breaking changes
-  * `run_on` is removed from plugins, as it has not been used for a long time but compatibility was kept in 1.x. Any plugin with `run_on` will now break because the schema no longer contains that entry. If testing custom plugins, update the plugin's schema.lua file and remove the `run_on` field.
-
   * The Correlation ID (`correlation-id`) plugin has a higher priority than in CE. This is an incompatible change with CE in case `correlation-id` is configured against a Consumer.
 
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
+
+### Breaking changes
+
+* When performing upgrade and migration to 2.1.x, custom entities and plugins have breaking changes. See [Custom Changes](/enterprise/2.1.x/deployment/upgrades/custom-changes/).
+
+  * `run_on` is removed from plugins, as it has not been used for a long time but compatibility was kept in 1.x. Any plugin with `run_on` will now break because the schema no longer contains that entry. If testing custom plugins, update the plugin's schema.lua file and remove the `run_on` field.
+
 
 ## Changelog
 For a complete list of features, fixes, and changes, see the Kong Enterprise [Changelog](/enterprise/changelog/) for versions 2.1.3.0 and 2.1.0.0 (beta).
