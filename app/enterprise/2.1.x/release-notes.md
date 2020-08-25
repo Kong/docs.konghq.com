@@ -60,9 +60,11 @@ For more information, including instructions for switching images, see [Kong for
 In addition to the features listed above, updates to Kong's user documentation and Docs site include:
 * [decK documentation](https://docs.konghq.com/deck/) has moved to docs.konghq.com.
 * Improved [Vitals section](/enterprise/{{page.kong_version}}/vitals/overview/), including new [Overview](/enterprise/{{page.kong_version}}/vitals/overview/), [Reports](/enterprise/{{page.kong_version}}/vitals/vitals-reports/), and [Metrics](/enterprise/{{page.kong_version}}/vitals/vitals-metrics/) topics.
-* New Plugin topics:
+* New and Updated Plugins topics:
+  * Declarative configuration (YAML) information added to Plugins examples. 
   * [Plugin Overview](/hub/plugins/overview/) introduces the most basic things you need to know to get started with plugins: what they are, why you might use them, terminology, and information on creating your own plugins and plugin documentation.
   * [Plugin Compatibility Matrix](/hub/plugins/compatibility/) compares the various Kong Gateway deployment modes.
+  * [gRPC Gateway](/hub/kong-inc/grpc-gateway/) Plugin documentation is improved. 
 * New Deployment topics:
   * [Kong Deployment Options](/enterprise/{{page.kong_version}}/deployment/deployment-options/)
   * [DNS Considerations](/enterprise/{{page.kong_version}}/deployment/dns-considerations/)
