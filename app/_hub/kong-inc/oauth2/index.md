@@ -56,6 +56,7 @@ kong_version_compatibility:
         - 0.4.x
     enterprise_edition:
       compatible:
+        - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
@@ -166,7 +167,7 @@ params:
         all the clients. `lax` mode enforces PKCE for public clients, but it does
         not enforce it for confidential clients. `none` mode does not enforce PKCE
         on any client. In any case, if client asks for PKCE on authorization
-        endpoint, the PKCE is also enforced on token endpoint. 
+        endpoint, the PKCE is also enforced on token endpoint.
 
   extra: |
     <div class="alert alert-warning">
