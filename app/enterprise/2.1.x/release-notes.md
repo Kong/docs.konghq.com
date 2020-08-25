@@ -2,7 +2,8 @@
 title: Kong Enterprise 2.1.3.0 Release Notes
 ---
 
-These release notes provide a high-level overview of Kong Enterprise release version 2.1.3.0, which includes version 2.1.0.0-beta features, fixes, known issues and workarounds. For detailed information about this release and the 2.1.0.0-beta release, see the [Changelog](https://docs.konghq.com/enterprise/changelog/).
+These release notes provide a high-level overview of Kong Enterprise release version 2.1.3.0, which includes version 2.1.0.0-beta
+features, fixes, known issues, and workarounds. For detailed information about this release and the 2.1.0.0-beta release, see the [Changelog](https://docs.konghq.com/enterprise/changelog/).
 
 ## New Features
 
@@ -51,7 +52,7 @@ For more information, see the [Vitals Overview](/enterprise/{{page.kong_version}
 
 ### Kong for Kubernetes Enterprise (K4K8s) Image Changes
 
-For the {{site.ee_product_name}} 2.1.x beta, Kong for Kubernetes Enterprise (K4K8s) now uses the `kong-enterprise-edition` image, which works as a drop-in replacement for the `kong-enterprise-k8s` image used in earlier versions.
+For the {{site.ee_product_name}}, Kong for Kubernetes Enterprise (K4K8s) now uses the `kong-enterprise-edition` image, which works as a drop-in replacement for the `kong-enterprise-k8s` image used in earlier versions.
 
 For more information, including instructions for switching images, see [Kong for Kubernetes Deployment Options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options/).
 
@@ -78,14 +79,12 @@ In addition to the features listed above, updates to Kong's user documentation a
 
 ## Known Issues
 
-* This beta release is intended for testing purposes only. No upgrades from the previous versions are supported. See the [Beta](/enterprise/{{page.kong_version}}/introduction/key-concepts/#beta) definition for more information.
-
 * The Key Authentication - Encrypted (`key-auth-enc`) plugin does not support `ttl` (time-to-live) in Hybrid mode deployments.
 
 * Setting your Kong password (`Kong_Password`) using a value containing four ticks (for example,  `KONG_PASSWORD="a''a'a'a'a"`) causes a Postgres syntax error on bootstrap. To work around this issue, do not use special characters in your password.
 
 * Breaking changes
-  * `run_on` is removed from plugins, as it has not been used for a long time but compatibility was kept in 1.x. Any plugin with `run_on` will now break because the schema no longer contains that entry. If testing custom plugins against this beta release, update the plugin's schema.lua file and remove the `run_on` field.
+  * `run_on` is removed from plugins, as it has not been used for a long time but compatibility was kept in 1.x. Any plugin with `run_on` will now break because the schema no longer contains that entry. If testing custom plugins, update the plugin's schema.lua file and remove the `run_on` field.
 
   * The Correlation ID (`correlation-id`) plugin has a higher priority than in CE. This is an incompatible change with CE in case `correlation-id` is configured against a Consumer.
 
@@ -93,4 +92,4 @@ In addition to the features listed above, updates to Kong's user documentation a
 
 
 ## Changelog
-For a complete list of features, fixes, and changes, see the Kong Enterprise 2.1.0(beta) [Changelog](/enterprise/changelog/).
+For a complete list of features, fixes, and changes, see the Kong Enterprise [Changelog](/enterprise/changelog/) for versions 2.1.3.0 and 2.1.0.0-beta.
