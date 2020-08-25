@@ -1,6 +1,5 @@
 ---
 title: Deploying Kong Enterprise in Hybrid Mode
-beta: true
 ---
 
 ## Prerequisites

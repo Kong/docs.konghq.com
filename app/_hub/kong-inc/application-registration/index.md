@@ -2,7 +2,6 @@
 name: Portal Application Registration
 publisher: Kong Inc.
 version: 2.0.x
-beta: true
 
 desc: Allow portal developers to register applications against Services
 description: |

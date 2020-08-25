@@ -2,11 +2,11 @@
 
 name: DeGraphQL
 publisher: Kong Inc.
-version: 1.3.x
+version: 0.1.0
 
 desc: Transform a GraphQL upstream into a REST API
 description: |
-  This plugin transforms a GraphQL upstream into a traditional endpoint by mapping uris into GraphQL queries.
+  This plugin transforms a GraphQL upstream into a traditional endpoint by mapping URIs into GraphQL queries.
 
 type: plugin
 enterprise: true
@@ -16,7 +16,9 @@ categories:
 kong_version_compatibility:
     enterprise_edition:
       compatible:
-        - 1.3.x
+        - 2.1.x
+        - 1.5.x
+        - 1.3-x
 
 params:
   name: degraphql
@@ -58,7 +60,7 @@ if no DeGraphQL routes have been configured.
 ### 3. Configure DeGraphQL Routes on the Service
 
 Once the Plugin is activated on a Service, we can add our own routes to build
-our service, by defining uris and associating them to GraphQL queries.
+our service, by defining URIs and associating them to GraphQL queries.
 
   ```bash
   $ curl -X POST http://localhost:8001/services/github/degraphql/routes \
@@ -76,7 +78,7 @@ our service, by defining uris and associating them to GraphQL queries.
   }
   ```
 
-GraphQL Query Variables can be defined on uris
+GraphQL Query Variables can be defined on URIs:
 
   ```bash
   $ curl -X POST http://localhost:8001/services/github/degraphql/routes \
@@ -102,7 +104,7 @@ GraphQL Query Variables can be defined on uris
   }
   ```
 
-The same Variables can also be provided as GET arguments
+The same Variables can also be provided as GET arguments:
 
   ```bash
   $ curl -X POST http://localhost:8001/services/github/degraphql/routes \

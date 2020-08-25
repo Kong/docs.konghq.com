@@ -81,8 +81,12 @@
           url: /start-kong-securely
         - text: Kong Security Update Process
           url: /kong-security-update-process
-    - text: Upgrade and Migration
-      url: /deployment/migrations
+    - text: Upgrades and Migrations
+      items:
+        - text: Migrating Kong Enterprise to Latest Version
+          url: /deployment/upgrades/migrations
+        - text: Custom Plugin Breaking Changes
+          url: /deployment/upgrades/custom-changes
     - text: Kong Cloud
       url: /kong-cloud
 
@@ -350,7 +354,7 @@
     - text: Enable the Dev Portal
       url: /developer-portal/enable-dev-portal
     - text: Migrating to Latest Release
-      url: /deployment/migrations/
+      url: /developer-portal/latest-migrations
     - text: Migrating from Legacy
       url: /developer-portal/legacy-migration
     - text: Structure and File Types

@@ -18,6 +18,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
@@ -163,7 +164,7 @@ Note: The plugin creates a non-mutable table of request headers, querystrings, a
 
 ### Advanced templates
 
-The content of the placeholder `$(...)` is evaluated as a Lua expression, so 
+The content of the placeholder `$(...)` is evaluated as a Lua expression, so
 logical operators may be used. For example:
 
     Header-Name:$(uri_captures["user-id"] or query_params["user"] or "unknown")
@@ -172,7 +173,7 @@ This will first look for the path parameter (`uri_captures`); if not found, it w
 return the query parameter; or if that also doesn't exist, it returns the default
 value '"unknown"'.
 
-Constant parts can be specified as part of the template outside the dynamic 
+Constant parts can be specified as part of the template outside the dynamic
 placeholders. For example, creating a basic-auth header from a query parameter
 called `auth` that only contains the base64-encoded part:
 

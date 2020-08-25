@@ -292,7 +292,7 @@ Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the **Workspace** to delete
 
-**Note:** All entities within a **Workspace** must be deleted before the 
+**Note:** All entities within a **Workspace** must be deleted before the
 **Workspace** itself can be.
 
 **Response**
@@ -357,7 +357,7 @@ HTTP 200 OK
 
 ### Add entities to a Workspace
 
-**Important**: As of Kong Enterprise 2.1.x beta, entities may only exist in a single Workspace. You can create duplicate entities in each Workspace, but they cannot be shared across Workspaces. 
+**Important**: As of Kong Enterprise 2.1.x, entities may only exist in a single Workspace. You can create duplicate entities in each Workspace, but they cannot be shared across Workspaces. 
 
 Workspaces are groups of entities. This endpoint allows one to add an entity,
 identified by its unique identifier, to a **Workspace**.
@@ -433,7 +433,7 @@ HTTP 200 OK
 }
 ```
 
-In this case, the **Workspace** references two Services. 
+In this case, the **Workspace** references two Services.
 
 ### Delete entities from a Workspace
 
