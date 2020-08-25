@@ -126,7 +126,8 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 * Breaking changes
 
-  * When performing upgrade and migration to 2.1.x, custom entities and plugins have breaking changes. See [Custom Changes](/enterprise/latest/deployment/upgrades/custom-changes/).
+  * When performing upgrade and migration to 2.1.x, custom entities and plugins have breaking changes. 
+See [Custom Changes](/enterprise/latest/deployment/upgrades/custom-changes/).
 
   * `run_on` is removed from plugins, as it has not been used for a long time but compatibility was kept in 1.x. Any plugin with `run_on` will now break because the schema no longer contains that entry. If testing custom plugins against this beta release, update the plugin's schema.lua file and remove the `run_on` field.
   
