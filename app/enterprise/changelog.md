@@ -52,8 +52,61 @@ skip_read_time: true
 
 **Note: This 2.1.3.0 version includes the [2.1.0.0 (beta)](/enterprise/changelog/#fixes) fixes.**
 
+#### Kong Manager
+* Auto-generated role `workspace-portal-admin` does not display link to Dev Portal Editor.
+* Routes form did not expose `path_handling` attribute for adding/editing.
+* When Kong Manager is secured with OIDC, new workspaces do not include the auto-generated roles.
+* Able to enumerate usernames via the /admins endpoint.
+* Unable to install Kong Manager outside the root directory.
+
+#### Kong Developer Portal
+* The `/developers/:developer/applications` endpoint allowed applications to be created for a developer other than the one in the path.
+* The change password endpoint for developers did not require the original password.
+* User was not redirected to Login after a session timeout.
+* Unable to configure `Accept Http If Already Terminated` for Application Registration plugin. Instead, add both Application Registration and OAuth 2.0 Authentication, and set the config on the Oauth2 Authentication plugin.
+
 #### Plugins
-* gRPC Plugin documentation is improved. See [gRPC-gateway](/hub/kong-inc/grpc-gateway/).
+
+* gRPC Gateway documentation is improved. See [gRPC-gateway](/hub/kong-inc/grpc-gateway/).
+
+* Response Transformer Advanced (`response-transformer-advanced`)
+  * Improved performance by not inheriting from the `BasePlugin` class.
+  * Empty arrays are correctly preserved.
+  * Prevent the plugin from throwing an error when its access handler did not get a chance to run (e.g., on short-circuited, unauthorized requests).
+  * Standardized on `allow` instead of `whitelist` to specify the parameter names that should be allowed in response JSON body.
+  * The plugin is now defensive against possible errors and nil header values.
+  * Fixed an issue where the plugin was validating the value in `config.replace.body` against the content type as defined in the Content-Type response header.
+
+* Request Transformer Advanced (`request-transformer-advanced`)
+  * Template errors are properly thrown.
+
+* Open ID Connect (`openid-connect`)
+  * Fixed DB-less to reload private key JWTS on each request.
+
+* Rate Limiting Advanced (`rate-limiting-advanced`)
+  * Fixed per service rate limiting.
+
+* LDAP Authentication Advanced (`ldap-auth-advanced`)
+  * Return a 500 when there's an error.
+  * Respond with a 401 instead of 403.
+  * Case-sensitive groups.
+
+* Collector (`collector`, for Brain and Immunity)
+  * Fixed a bug that would make the plugin try to parse request/response body regardless of the content-type.
+
+* GraphQL Rate Limiting Advanced (`gql-rate-limiting-advanced`)
+  * Fixed configuration using transformation that breaks in hybrid mode.
+
+* Updated for 2.1.0.0 compatibility
+  * Proxy Cache Advanced (`proxy-cache-advanced`)
+  * Canary (`canary`)
+  * Rate Limiting Advanced (`rate-limiting-advanced`)
+  * Collector (`collector`)
+  * Vault Authentication (`vault-auth`)
+  * Mutual TLS Authentication (`mtls-auth`)
+  * Route Transformer Advanced(`route-transformer-advanced`)
+  * GraphQL Proxy Caching Advanced (`gql-proxy-cache-advanced`)
+  * GraphQL Rate Limiting Advanced (`gql-rate-limiting-advanced`)
 
 ### Known Issues and Workarounds
 
@@ -61,7 +114,17 @@ skip_read_time: true
 
 * The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
+* Key Authentication (`key-auth-enc`) does not function in hybrid deployment mode.
+
+* Breaking changes
+
 * When performing upgrade and migration to 2.1.x, custom entities and plugins have breaking changes. See [Custom Changes](/enterprise/2.1.x/deployment/upgrades/custom-changes/).
+
+  * `run_on` is removed from plugins, as it has not been used for a long time but compatibility was kept in 1.x. Any plugin with `run_on` will now break because the schema no longer contains that entry. If testing custom plugins against this beta release, update the plugin's schema.lua file and remove the `run_on` field.
+  
+  * The Correlation ID (`correlation-id`) plugin has a higher priority than in CE. This is an incompatible change with CE in case `correlation-id` is configured against a Consumer.
+  
+  * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
 
 
 ## 2.1.0.0 (beta)
