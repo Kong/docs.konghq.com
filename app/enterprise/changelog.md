@@ -67,7 +67,7 @@ skip_read_time: true
 
 #### Plugins
 
-* gRPC Gateway documentation is improved. See [gRPC-gateway](/hub/kong-inc/grpc-gateway/).
+* [gRPC Gateway](/hub/kong-inc/grpc-gateway/)documentation is improved.
 
 * Response Transformer Advanced (`response-transformer-advanced`)
   * Improved performance by not inheriting from the `BasePlugin` class.
@@ -90,6 +90,7 @@ skip_read_time: true
   * Return a 500 when there's an error.
   * Respond with a 401 instead of 403.
   * Case-sensitive groups.
+  * Accept AD group names containing spaces.
 
 * Collector (`collector`, for Brain and Immunity)
   * Fixed a bug that would make the plugin try to parse request/response body regardless of the content-type.
@@ -97,16 +98,7 @@ skip_read_time: true
 * GraphQL Rate Limiting Advanced (`gql-rate-limiting-advanced`)
   * Fixed configuration using transformation that breaks in hybrid mode.
 
-* Updated for 2.1.0.0 compatibility
-  * Proxy Cache Advanced (`proxy-cache-advanced`)
-  * Canary (`canary`)
-  * Rate Limiting Advanced (`rate-limiting-advanced`)
-  * Collector (`collector`)
-  * Vault Authentication (`vault-auth`)
-  * Mutual TLS Authentication (`mtls-auth`)
-  * Route Transformer Advanced(`route-transformer-advanced`)
-  * GraphQL Proxy Caching Advanced (`gql-proxy-cache-advanced`)
-  * GraphQL Rate Limiting Advanced (`gql-rate-limiting-advanced`)
+* Updated plugins bundled with Kong Enterprise for 2.1.x compatibility
 
 ### Known Issues and Workarounds
 
@@ -114,7 +106,9 @@ skip_read_time: true
 
 * The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
-* Key Authentication (`key-auth-enc`) does not function in hybrid deployment mode.
+* The [Key Authentication Encryptions](hub/kong-inc/key-auth-enc/) (`key-auth-enc`) plugin does not function in hybrid deployment mode.
+
+* For the [Request Transformer Advanced](hub/kong-inc/request-transformer-advanced/) plugin, standardize on `allow` instead of `whitelist` to specify the parameter names that should be allowed in request JSON body. Previous `whitelist` nomenclature is deprecated and support will be removed in Kong 3.0.
 
 * Breaking changes
 
@@ -122,7 +116,7 @@ skip_read_time: true
 
   * `run_on` is removed from plugins, as it has not been used for a long time but compatibility was kept in 1.x. Any plugin with `run_on` will now break because the schema no longer contains that entry. If testing custom plugins against this beta release, update the plugin's schema.lua file and remove the `run_on` field.
   
-  * The Correlation ID (`correlation-id`) plugin has a higher priority than in CE. This is an incompatible change with CE in case `correlation-id` is configured against a Consumer.
+  * The [Correlation ID](/hub/kong-inc/correlation-id/) (`correlation-id`) plugin has a higher priority than in CE. This is an incompatible change with CE in case `correlation-id` is configured against a Consumer.
   
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
 
