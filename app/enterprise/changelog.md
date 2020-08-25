@@ -12,7 +12,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 ### Features
 
-**Note: This 2.1.3.0 version includes the [2.1.0.0 (beta)](/enterprise/changelog/#fixes) features.**
+**Note: Feature updates for Kong Enterprise 2.1.3.0 version includes [2.1.0.0 (beta)](/enterprise/changelog/#fixes) features.**
 
 #### Kong Gateway
 * Inherited changes from OSS Kong in releases 2.0.x, 2.1.0, 2.1.1, 2.1.2, and 2.1.3.
@@ -55,7 +55,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 ### Fixes
 
-**Note: This 2.1.3.0 version includes the [2.1.0.0 (beta)](/enterprise/changelog/#fixes) fixes.**
+**Note: Fixes for Kong Enterprise 2.1.3.0 version includes the [2.1.0.0 (beta)](/enterprise/changelog/#fixes) fixes.**
 
 #### Kong Manager
 * Auto-generated role `workspace-portal-admin` does not display link to Dev Portal Editor.
@@ -107,7 +107,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 ### Known Issues and Workarounds
 
-**Note: This 2.1.3.0 version includes the [2.1.0.0 (beta)](/enterprise/changelog/#known-issues-and-workarounds) known issues and workarounds.**
+**Note: Known issues and workarounds for Kong Enterprise includes [2.1.0.0 (beta)](/enterprise/changelog/#known-issues-and-workarounds) known issues and workarounds.**
 
 * The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
