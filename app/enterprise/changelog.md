@@ -8,9 +8,11 @@ skip_read_time: true
 ## 2.1.3.0
 **Release Date** 2020/08/25
 
-**Note: This 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known issues, and workarounds. See the [2.1.0.0 (beta)](/enterprise/changelog/#2100-beta/) changelog for more details.**
+Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known issues, and workarounds. See the [2.1.0.0 (beta)](/enterprise/changelog/#2100-beta/) changelog for more details.
 
 ### Features
+
+**Note: This 2.1.3.0 version includes the [2.1.0.0 (beta)](/enterprise/changelog/#fixes) features.**
 
 #### Kong Gateway
 * Inherited changes from OSS Kong in releases 2.0.x, 2.1.0, 2.1.1, 2.1.2, and 2.1.3.
@@ -47,6 +49,10 @@ skip_read_time: true
   * Added support to specify JSON types for configuration values. For example, by doing `config.add.json.json_types`: ["number"], the plugin will convert "-1" added JSON values into -1.
   * Improved performance by not inheriting from the BasePlugin class.
   * The plugin is now defensive against possible errors and nil header values.
+  
+#### Documentation Updates
+  * Plugin examples now include declarative configuration (YAML) information. 
+  * Upgrade and Migration instructions are updated for migrating from Kong Enterprise 1.5.x to 2.1.x, Kong Community Gateway 1.5 to Kong Enterprise 1.5, and Developer Portal templates. 
 
 ### Fixes
 
