@@ -1,6 +1,5 @@
 ---
 title: Set up Okta and Kong for use with external OAuth
-beta: true
 ---
 
 ## Overview

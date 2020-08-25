@@ -2,9 +2,9 @@
 name: Kafka Upstream
 publisher: Kong Inc.
 
-desc: Transform requests into Kafka messages in a topic.
+desc: Transform requests into Kafka messages in a Kafka topic
 description: |
-   This plugin transforms requests into [Kafka](https://kafka.apache.org/) messages in a topic.
+   This plugin transforms requests into [Kafka](https://kafka.apache.org/) messages in a Kafka topic.
 
 type: plugin
 enterprise: true
@@ -16,6 +16,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.1.x
         - 1.5.x
         - 1.3-x
 
@@ -36,7 +37,7 @@ params:
       urlencode_in_examples: true
       default:
       description: |
-         The Kafka topic to publish to
+         The Kafka topic to publish to.
     - name: timeout
       required: false
       default: "`10000`"
@@ -63,18 +64,18 @@ params:
       required: false
       default: "`false`"
       description: |
-         Include the request headers in the message
+         Include the request headers in the message.
     - name: forward_body
       required: false
       default: "`true`"
       description: |
-         Include the request headers in the message
+         Include the request headers in the message.
     - name: producer_request_acks
       required: false
       default: "`1`"
       value_in_examples: -1
       description: |
-         The number of acknowledgments the producer requires the leader to have received before considering a request complete. Allowed values are 0 for no acknowledgments, 1 for only the leader, and -1 for the full ISR
+         The number of acknowledgments the producer requires the leader to have received before considering a request complete. Allowed values are 0 for no acknowledgments, 1 for only the leader, and -1 for the full ISR.
     - name: producer_request_timeout
       required: false
       default: "`2000`"
@@ -86,19 +87,19 @@ params:
       default: "`200`"
       value_in_examples: 200
       description: |
-         Maximum number of messages to include into a single Produce request
+         Maximum number of messages to include into a single Produce request.
     - name: producer_request_limits_bytes_per_request
       required: false
       default: "`1048576`"
       value_in_examples: 1048576
       description: |
-         Maximum size of a Produce request in bytes
+         Maximum size of a Produce request in bytes.
     - name: producer_request_retries_max_attempts
       required: false
       default: "`10`"
       value_in_examples: 10
       description: |
-         Maximum number of retry attempts per single Produce request
+         Maximum number of retry attempts per single Produce request.
     - name: producer_request_retries_backoff_timeout
       required: false
       default: "`100`"

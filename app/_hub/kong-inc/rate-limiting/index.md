@@ -46,6 +46,7 @@ kong_version_compatibility:
       - 0.2.x
   enterprise_edition:
     compatible:
+      - 2.1.x
       - 1.5.x
       - 1.3-x
       - 0.36-x
@@ -101,7 +102,19 @@ params:
       value_in_examples: "local"
       default: '`cluster`'
       description: |
-        The rate-limiting policies to use for retrieving and incrementing the limits. Available values are `local` (counters will be stored locally in-memory on the node), `cluster` (counters are stored in the datastore and shared across the nodes), and `redis` (counters are stored on a Redis server and will be shared across the nodes). In the case of DB-less mode, at least one of `local` or `redis` must be specified. Please refer <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting/#implementation-considerations">Implementation Considerations</a> for details on which policy should be used.
+        The rate-limiting policies to use for retrieving and incrementing the
+        limits. Available values are:
+        - `local`: Counters are stored locally in-memory on the node.
+        - `cluster`: Counters are stored in the datastore and shared across the
+        nodes.
+        - `redis`: Counters are stored on a Redis server and shared
+        across the nodes.
+
+        In the case of DB-less mode, at least one of `local` or `redis` must be
+        specified. For hybrid mode, only `redis` is supported.
+        Please refer to the
+        <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting/#implementation-considerations">Implementation Considerations</a>
+        for details on which policy should be used.
     - name: fault_tolerant
       required: false
       default: '`true`'

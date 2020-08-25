@@ -18,6 +18,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
@@ -36,19 +37,19 @@ params:
       default: 200, 301, 404
       value_in_examples:
       description: |
-        Upstream response status code considered cacheable
+        Upstream response status code considered cacheable.
     - name: request_method
       required:
       default: '`["GET","HEAD"]`'
       value_in_examples:
       description: |
-        Downstream request methods considered cacheable
+        Downstream request methods considered cacheable.
     - name: content_type
       required:
       default: text/plain, application/json
       value_in_examples:
       description: |
-        Upstream response content types considered cacheable. The plugin performs an exact match against each specified value; for example, if the upstream is expected to respond with a `application/json; charset=utf-8` content-type, the plugin configuration must contain said value or a `Bypass` cache status will be returned
+        Upstream response content types considered cacheable. The plugin performs an exact match against each specified value; for example, if the upstream is expected to respond with a `application/json; charset=utf-8` content-type, the plugin configuration must contain said value or a `Bypass` cache status will be returned.
     - name: vary_headers
       required: false
       default:
@@ -66,13 +67,13 @@ params:
       default: 300
       value_in_examples:
       description: |
-        TTL, in seconds, of cache entities
+        TTL, in seconds, of cache entities.
     - name: cache_control
       required:
       default: false
       value_in_examples:
       description: |
-        When enabled, respect the Cache-Control behaviors defined in [RFC7234](https://tools.ietf.org/html/rfc7234#section-5.2)
+        When enabled, respect the Cache-Control behaviors defined in [RFC7234](https://tools.ietf.org/html/rfc7234#section-5.2).
     - name: storage_ttl
       required: false
       default:
@@ -84,7 +85,7 @@ params:
       default:
       value_in_examples: memory
       description: |
-        The backing data store in which to hold cache entities. Accepted values are; `memory`, and `redis`.
+        The backing data store in which to hold cache entities. Accepted values are: `memory`, and `redis`.
     - name: memory.dictionary_name
       required:
       default: kong_cache
@@ -96,19 +97,19 @@ params:
       default:
       value_in_examples:
       description: |
-        Host to use for Redis connection when the redis strategy is defined
+        Host to use for Redis connection when the redis strategy is defined.
     - name: redis.port
       required: semi
       default:
       value_in_examples:
       description: |
-        Port to use for Redis connection when the redis strategy is defined
+        Port to use for Redis connection when the redis strategy is defined.
     - name: redis.timeout
       required: semi
       default: 2000
       value_in_examples:
       description: |
-        Connection timeout to use for Redis connection when the redis strategy is defined
+        Connection timeout to use for Redis connection when the redis strategy is defined.
     - name: redis.password
       required: semi
       default:
@@ -120,7 +121,7 @@ params:
       default: 0
       value_in_examples:
       description: |
-        Database to use for Redis connection when the redis strategy is defined
+        Database to use for Redis connection when the redis strategy is defined.
     - name: redis.sentinel_master
       required: semi
       default:
@@ -258,13 +259,13 @@ Two separate endpoints are available: one to look up a known plugin instance, an
 
 **Response**
 
-If the cache entity exists
+If the cache entity exists:
 
 ```
 HTTP 204 No Content
 ```
 
-If the entity with the given key does not exist
+If the entity with the given key does not exist:
 
 ```
 HTTP 400 Not Found
