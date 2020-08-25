@@ -82,15 +82,16 @@ In addition to the features listed above, updates to Kong's user documentation a
 
 * Setting your Kong password (`Kong_Password`) using a value containing four ticks (for example,  `KONG_PASSWORD="a''a'a'a'a"`) causes a Postgres syntax error on bootstrap. To work around this issue, do not use special characters in your password.
 
-  * The Correlation ID (`correlation-id`) plugin has a higher priority than in CE. This is an incompatible change with CE in case `correlation-id` is configured against a Consumer.
-
-  * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
 
 ### Breaking changes
 
 * When performing upgrade and migration to 2.1.x, custom entities and plugins have breaking changes. See [Custom Changes](/enterprise/2.1.x/deployment/upgrades/custom-changes/).
 
-  * `run_on` is removed from plugins, as it has not been used for a long time but compatibility was kept in 1.x. Any plugin with `run_on` will now break because the schema no longer contains that entry. If testing custom plugins, update the plugin's schema.lua file and remove the `run_on` field.
+  * `run_on` is removed from plugins, as it has not been used for a long time but compatibility was kept in 1.x. Any plugin with `run_on` will now break because the schema no longer contains that entry. If testing custom plugins against this beta release, update the plugin's schema.lua file and remove the `run_on` field.
+  
+  * The Correlation ID (`correlation-id`) plugin has a higher priority than in CE. This is an incompatible change with CE in case `correlation-id` is configured against a Consumer.
+  
+  * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
 
 
 ## Changelog
