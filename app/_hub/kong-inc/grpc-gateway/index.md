@@ -1,7 +1,6 @@
 ---
 name: gRPC-gateway
 publisher: Kong Inc.
-beta: true
 
 categories:
   - transformations

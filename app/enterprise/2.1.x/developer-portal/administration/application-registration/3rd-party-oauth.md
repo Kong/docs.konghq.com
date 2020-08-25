@@ -1,6 +1,5 @@
 ---
 title: Third-party OAuth2 Support for Application Registration
-beta: true
 ---
 
 ## Introduction
@@ -28,7 +27,7 @@ permissions to access the Route.
 ## Supported identity providers {#idps}
 
 The Kong OIDC plugin supports many identity providers out of the box. The
-following providers have been tested for the current beta version of the Kong
+following providers have been tested for the current version of the Kong
 Portal Application Registration plugin used in tandem with the Kong OIDC plugin:
 
 * [Okta](https://developer.okta.com/)

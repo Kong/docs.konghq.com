@@ -66,13 +66,6 @@ If {{site.ee_product_name}} was installed correctly, it automatically logs you i
 
 ## (Optional) Verify Control Plane and Data Plane connection
 
-<div class="alert alert-ee red condensed margin-bigger">
-  <div class="alert-body">
-    <div class="tag red">BETA</div>
-    <p>Warning: In {{site.ee_product_name}}, this feature is released as <a href="/enterprise/latest/introduction/key-concepts/#beta">BETA</a> and should not be deployed in a production environment.</p>
-  </div>
-</div>
-
 If you're running Kong in Hybrid mode, you will need to perform all tasks in this
 guide from the Control Plane. However, you can check that all of your
 configurations are being pushed from the Control Plane to your Data Planes using

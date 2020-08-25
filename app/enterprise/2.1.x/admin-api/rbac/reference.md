@@ -601,7 +601,8 @@ HTTP 204 No Content
 | Attribute             | Description                                                                                                                     |
 | ---------             | -----------                                                                                                                     |
 | `negative`            | If true, explicitly disallow the actions associated with the permissions tied to this resource. By default this value is false. |
-| `entity_id`           | id of the entity associated with this permission.                                                                               |
+| `entity_id`           | id of the entity associated with this permission.  
+| `entity_type`         | Type of the entity of a given `entity_id`.                                                                                      |
 | `actions`             | One or more actions associated with this permission.                                                                            |
 | `comment`<br>optional | A string describing the RBAC permission object                                                                                  |
 

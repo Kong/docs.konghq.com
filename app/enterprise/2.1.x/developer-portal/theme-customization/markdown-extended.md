@@ -1,6 +1,5 @@
 ---
 title: Markdown Rendering Module
-beta: true
 ---
 
 ## Introduction

@@ -39,6 +39,7 @@ kong_version_compatibility:
         - 0.8.x
     enterprise_edition:
       compatible:
+        - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
@@ -79,7 +80,7 @@ params:
     - name: ldaps
       required: true
       default: "`false`"
-      description: | 
+      description: |
         Set it to `true` to connect using the LDAPS protocol (LDAP over TLS)
     - name: base_dn
       required: true
