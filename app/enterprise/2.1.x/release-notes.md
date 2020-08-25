@@ -2,7 +2,7 @@
 title: Kong Enterprise 2.1.3.0 Release Notes
 ---
 
-These release notes apply to Kong Enterprise release version 2.1.3.0, and includes version 2.1.0.0-beta features, fixes, known issues and workarounds. These release notes and provide a high-level overview of new features and updates. For more detailed information about this release and the 2.1.0.0-beta release, including features, fixes, and known issues, see the [Changelog](https://docs.konghq.com/enterprise/changelog/).
+These release notes provide a high-level overview of Kong Enterprise release version 2.1.3.0, which includes version 2.1.0.0-beta features, fixes, known issues and workarounds. For more detailed information about this release and the 2.1.0.0-beta release, see the [Changelog](https://docs.konghq.com/enterprise/changelog/).
 
 ## New Features
 
