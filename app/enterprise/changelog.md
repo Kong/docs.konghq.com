@@ -8,7 +8,7 @@ skip_read_time: true
 ## 2.1.3.0
 **Release Date** 2020/08/25
 
-**Note: The 2.1.3.0 version includes [2.1.0.0 (beta)](/enterprise/changelog/#2100-beta/) version features, fixes, known issues and workarounds. See the [2.1.0.0 (beta)](/enterprise/changelog/#2100-beta/) for more details.**
+**Note: The 2.1.3.0 version includes [2.1.0.0 (beta)](/enterprise/changelog/#2100-beta/) features, fixes, known issues and workarounds. See the [2.1.0.0 (beta)](/enterprise/changelog/#2100-beta/) for more details.**
 
 ### Features
 
