@@ -17,14 +17,14 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 #### Kong Gateway
 * Inherited changes from OSS Kong in releases 2.0.x, 2.1.0, 2.1.1, 2.1.2, and 2.1.3.
 * Workspaces code has been refactored for performance. The feature should work the same for most users.
-* TLS version may be specified when using tls to connect to a Postgres db.
+* TLS version may be specified when using TLS to connect to a Postgres database.
 
 #### Kong Manager
 * Open ID Connect (`openid-connect`) can now be used with [Mapping Service Directory Groups to Kong Roles](/enterprise/latest/kong-manager/service-directory-mapping/) using `config.authenticated_groups_claim`.
 * Can now see the `created_at` timestamp for consumer credentials.
 * Provide a warning when a user's session is about to expire.
 * Generate an RBAC token for an administrator rather than letting them set one.
-* Plugin forms now have docs links to the Plugins Hub.
+* Plugin forms now have docs links to the [Plugins Hub](/hub/).
 
 #### Kong Developer Portal
 * Application Registration can now be configured to use a third-party OAuth provider.
@@ -61,7 +61,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 * Auto-generated role `workspace-portal-admin` does not display link to Dev Portal Editor.
 * Routes form did not expose `path_handling` attribute for adding/editing.
 * When Kong Manager is secured with OIDC, new workspaces do not include the auto-generated roles.
-* Able to enumerate usernames via the /admins endpoint.
+* Able to enumerate usernames via the `/admins` endpoint.
 * Unable to install Kong Manager outside the root directory.
 
 #### Kong Developer Portal
@@ -72,7 +72,36 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 #### Plugins
 
-* [gRPC Gateway](/hub/kong-inc/grpc-gateway/)documentation is improved.
+* Collector (`collector`, for Brain and Immunity)
+  * Fixed a bug that would make the plugin try to parse request/response body regardless of the content-type.
+  
+* [GraphQL Rate Limiting Advance](/hub/kong-inc/graphql-rate-limiting-advanced/)d (`gql-rate-limiting-advanced`)
+  * Fixed configuration using transformation that breaks in hybrid mode.
+  
+* [gRPC Gateway](/hub/kong-inc/grpc-gateway/) documentation is improved.
+
+* [Kong JWT Signer](/hub/kong-inc/jwt-signer/)
+  * Changed Postgres column type for keys in `jwt_signer_jwks` table from JSONB to JSONB[] for a better hybrid compatibility.
+  * Changed Postgres column type for previous in `jwt_signer_jwks` table from JSONB to JSONB[] for a better hybrid compatibility.
+  * Changed JWKS URIs to return application/jwk-set+json instead of application/json.
+  * Remove `run_on` field for 2.1.0.0 compatability.
+
+* [LDAP Authentication Advanced](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
+  * Return a 500 when there's an error.
+  * Respond with a 401 instead of 403.
+  * Case-sensitive groups.
+  * Accept AD group names containing spaces.
+
+* [Open ID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * Fixed DB-less to reload private key JWTS on each request.
+  * Fixed runtime error on two log statements when validating required claims.
+  * Changed arguments parser to use Kong PDK for building dynamic redirect URI. Works with Kong `port_maps` configuration.
+  * OpenID Connect Library
+    * Fixed a small typo in error message.
+    * Removed azp claims verification on other tokens than the ID token.
+  
+* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed per service rate limiting.
 
 * [Response Transformer Advanced](/hub/kong-inc/response-transformer-advanced/) (`response-transformer-advanced`)
   * Improved performance by not inheriting from the `BasePlugin` class.
@@ -85,24 +114,6 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 * [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) (`request-transformer-advanced`)
   * Template errors are properly thrown.
 
-* [Open ID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
-  * Fixed DB-less to reload private key JWTS on each request.
-
-* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
-  * Fixed per service rate limiting.
-
-* [LDAP Authentication Advanced](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
-  * Return a 500 when there's an error.
-  * Respond with a 401 instead of 403.
-  * Case-sensitive groups.
-  * Accept AD group names containing spaces.
-
-* Collector (`collector`, for Brain and Immunity)
-  * Fixed a bug that would make the plugin try to parse request/response body regardless of the content-type.
-
-* [GraphQL Rate Limiting Advance](/hub/kong-inc/graphql-rate-limiting-advanced/)d (`gql-rate-limiting-advanced`)
-  * Fixed configuration using transformation that breaks in hybrid mode.
-
 * Updated version compatibility for plugins bundled with Kong Enterprise to 2.1.x.
 
 ### Known Issues and Workarounds
@@ -110,8 +121,6 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 **Note: Known issues and workarounds for Kong Enterprise includes [2.1.0.0 (beta)](/enterprise/changelog/#known-issues-and-workarounds) known issues and workarounds.**
 
 * The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
-
-* The [Key Authentication Encryptions](hub/kong-inc/key-auth-enc/) (`key-auth-enc`) plugin does not function in hybrid deployment mode.
 
 * For the [Request Transformer Advanced](hub/kong-inc/request-transformer-advanced/) plugin, standardize on `allow` instead of `whitelist` to specify the parameter names that should be allowed in request JSON body. Previous `whitelist` nomenclature is deprecated and support will be removed in Kong 3.0.
 
@@ -134,14 +143,14 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 #### Kong Gateway
 * Inherited changes from OSS Kong in releases 2.0.x and 2.1.0.
 * Workspaces code has been refactored for performance. The feature should work the same for most users.
-* TLS version may be specified when using tls to connect to a Postgres db.
+* TLS version may be specified when using TLS to connect to a Postgres database.
 
 #### Kong Manager
 * Open ID Connect (`openid-connect`) can now be used with [Mapping Service Directory Groups to Kong Roles](/enterprise/latest/kong-manager/service-directory-mapping/) using `config.authenticated_groups_claim`.
 * Can now see the `created_at` timestamp for consumer credentials.
 * Provide a warning when a user's session is about to expire.
 * Generate an RBAC token for an administrator rather than letting them set one.
-* Plugin forms now have docs links to the Plugins Hub.
+* Plugin forms now have docs links to the [Plugins Hub](/hub/).
 
 #### Kong Developer Portal
 * Application Registration can now be configured to use a third-party OAuth provider.
@@ -173,7 +182,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 * Auto-generated role `workspace-portal-admin` does not display link to Dev Portal Editor.
 * Routes form did not expose `path_handling` attribute for adding/editing.
 * When Kong Manager is secured with OIDC, new workspaces do not include the auto-generated roles.
-* Able to enumerate usernames via the /admins endpoint.
+* Able to enumerate usernames via the `/admins` endpoint.
 * Unable to install Kong Manager outside the root directory.
 
 #### Kong Developer Portal
