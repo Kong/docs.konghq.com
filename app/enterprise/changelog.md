@@ -30,8 +30,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 * Application Registration can now be configured to use a third-party OAuth provider.
 
 #### Plugins
-
-* Open ID Connect (`openid-connect`)
+* [Open ID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
   * Added `X-Authenticated-Groups` request header when doing authenticated groups.
   * Added `config.groups_required` and `config.groups_claim`.
   * Added `config.roles_required` and `config.roles_claim`.
@@ -45,7 +44,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
   * Changed `config.rediscovery_lifetime` to default to 30 seconds instead of 300 seconds (5 minutes).
   * Changed plugin to do rediscovery on configuration changes (while still respecting `config.rediscovery_lifetime`).
 
-* Response Transformer Advanced (`response-transformer-advanced`)
+* [Response Transformer Advanced](/hub/kong-inc/response-transformer-advanced/) (`response-transformer-advanced`)
   * Added support to specify JSON types for configuration values. For example, by doing `config.add.json.json_types`: ["number"], the plugin will convert "-1" added JSON values into -1.
   * Improved performance by not inheriting from the BasePlugin class.
   * The plugin is now defensive against possible errors and nil header values.
@@ -75,7 +74,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 * [gRPC Gateway](/hub/kong-inc/grpc-gateway/)documentation is improved.
 
-* Response Transformer Advanced (`response-transformer-advanced`)
+* [Response Transformer Advanced](/hub/kong-inc/response-transformer-advanced/) (`response-transformer-advanced`)
   * Improved performance by not inheriting from the `BasePlugin` class.
   * Empty arrays are correctly preserved.
   * Prevent the plugin from throwing an error when its access handler did not get a chance to run (e.g., on short-circuited, unauthorized requests).
@@ -83,16 +82,16 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
   * The plugin is now defensive against possible errors and nil header values.
   * Fixed an issue where the plugin was validating the value in `config.replace.body` against the content type as defined in the Content-Type response header.
 
-* Request Transformer Advanced (`request-transformer-advanced`)
+* [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) (`request-transformer-advanced`)
   * Template errors are properly thrown.
 
-* Open ID Connect (`openid-connect`)
+* [Open ID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
   * Fixed DB-less to reload private key JWTS on each request.
 
-* Rate Limiting Advanced (`rate-limiting-advanced`)
+* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
   * Fixed per service rate limiting.
 
-* LDAP Authentication Advanced (`ldap-auth-advanced`)
+* [LDAP Authentication Advanced](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
   * Return a 500 when there's an error.
   * Respond with a 401 instead of 403.
   * Case-sensitive groups.
@@ -101,10 +100,10 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 * Collector (`collector`, for Brain and Immunity)
   * Fixed a bug that would make the plugin try to parse request/response body regardless of the content-type.
 
-* GraphQL Rate Limiting Advanced (`gql-rate-limiting-advanced`)
+* [GraphQL Rate Limiting Advance](/hub/kong-inc/graphql-rate-limiting-advanced/)d (`gql-rate-limiting-advanced`)
   * Fixed configuration using transformation that breaks in hybrid mode.
 
-* Updated plugins bundled with Kong Enterprise for 2.1.x compatibility
+* Updated version compatibility for plugins bundled with Kong Enterprise to 2.1.x.
 
 ### Known Issues and Workarounds
 
