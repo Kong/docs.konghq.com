@@ -1629,7 +1629,7 @@ portal_cors_origins = http://localhost:8003, https://localhost:8004
 In most cases, the Developer Portal is able to derive
 valid CORS origins by using `portal_gui_protocol`, `portal_gui_host`,
 and if applicable, portal_gui_use_subdomains. In these cases,
-portal_cors_origins is not needed and can remain unset.
+`portal_cors_origins` is not needed and can remain unset.
 
 ### portal_gui_use_subdomains
 
