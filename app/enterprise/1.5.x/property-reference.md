@@ -1538,7 +1538,7 @@ When enabled, Kong will expose the Dev Portal interface and
 read-only APIs on the `portal_gui_listen` address,
 and endpoints on the Admin API to manage assets.
 
-When enabled along with `portal_auth`:
+When enabled along with `portal_auth`,
 Kong will expose management endpoints for developer
 accounts on the Admin API and the Dev Portal API.
 
