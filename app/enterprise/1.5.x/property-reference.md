@@ -104,7 +104,7 @@ Loading a plugin does not enable it by default, but only instructs Kong to load
 its source code, and allows to configure the plugin via the various related
 Admin API endpoints.
 
-The specified name(s) will be substituted as such in the Lua namespace:
+The specified names will be substituted as such in the Lua namespace:
 `kong.plugins.{name}.*`.
 
 When the `off` keyword is specified as the only value, no plugins will be
