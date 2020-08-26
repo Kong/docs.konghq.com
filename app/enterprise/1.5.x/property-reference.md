@@ -295,7 +295,7 @@ Some suffixes can be specified for each pair:
 - `bind` instructs to make a separate bind() call
    for a given address:port pair.
 - `reuseport` instructs to create an individual
-   listening socket for each worker process
+   listening socket for each worker process,
    allowing a kernel to distribute incoming
    connections between worker processes
 
