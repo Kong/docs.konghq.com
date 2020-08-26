@@ -97,7 +97,7 @@ adjusted by the `log_level` property.
 
 **Description:**
 
-Comma-separated list of plugins on a node should load. By default, only plugins
+Comma-separated list of plugins on a node that should load. By default, only plugins
 bundled in official distributions are loaded via the `bundled` keyword.
 
 Loading a plugin does not enable it by default, but only instructs Kong to load
