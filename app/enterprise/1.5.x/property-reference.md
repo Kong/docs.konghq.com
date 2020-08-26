@@ -296,7 +296,7 @@ Some suffixes can be specified for each pair:
    for a given address:port pair.
 - `reuseport` instructs to create an individual
    listening socket for each worker process,
-   allowing a kernel to distribute incoming
+   which allows a kernel to distribute incoming
    connections between worker processes
 
 This value can be set to `off`, thus disabling
