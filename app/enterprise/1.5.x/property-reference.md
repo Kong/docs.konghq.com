@@ -291,7 +291,7 @@ Some suffixes can be specified for each pair:
    respond from, any and all IP addresses and ports
    you configure in iptables.
 - `deferred` instructs to use a deferred accept on
-   Linux (the TCP_DEFER_ACCEPT socket option).
+   Linux (the `TCP_DEFER_ACCEPT` socket option).
 - `bind` instructs to make a separate bind() call
    for a given address:port pair.
 - `reuseport` instructs to create an individual
