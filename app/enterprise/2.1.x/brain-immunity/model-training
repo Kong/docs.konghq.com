@@ -60,7 +60,7 @@ curl -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer/reset
 
 For best results, Immunity retrains on a regular basis. If you do not need to retrain your models regularly and are happy with your current model, you can stop auto retraining via a POST request to the `/trainer/config` endpoint. This endpoint takes these parameters:
 
-* `kong_entity`: The `route_id` or `service_id` for which to turn on or off auto-training.
+* `workspace_name`: The workspace name of the workspace that the configuration will be applied to.
 * `method`: One of values: GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE. Specifying a method will restrict the rule being made on auto-training to only traffic matching the method specified. When this value is null, all traffic from all methods are included in the rule.
 * `enable`: `True` or `False`, where `True` means auto-training is on and `False` means auto-training is off for the `kong_entity` specified.
 
