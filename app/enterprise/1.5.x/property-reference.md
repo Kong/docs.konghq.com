@@ -124,7 +124,7 @@ have rows in the database) and are not specified in this list. Before disabling
 a plugin, ensure all instances of it are removed before restarting Kong.
 
 **Note:** Limiting the amount of available plugins can improve P99 latency when
-experiencing LRU churning in the database cache (i.e. when the configured
+experiencing LRU churning in the database cache (i.e., when the configured
 `mem_cache_size`) is full.
 
 
