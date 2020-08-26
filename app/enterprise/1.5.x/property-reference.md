@@ -119,7 +119,7 @@ suggest:
   `custom-log` plugins.
 - `plugins = off` will not include any plugins
 
-**Note:** Kong will not start if some plugins were previously configured (i.e.
+**Note:** Kong will not start if some plugins were previously configured (i.e.,
 have rows in the database) and are not specified in this list. Before disabling
 a plugin, ensure all instances of it are removed before restarting Kong.
 
