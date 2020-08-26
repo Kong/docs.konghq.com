@@ -414,14 +414,24 @@
   icon: /assets/images/icons/documentation/icn-brain-color.svg
   url: /brain-immunity/install-configure
   items:
+    - text: Overview
+      url: /brain-immunity/overview
     - text: Installation and Configuration
       url: /brain-immunity/install-configure
-    - text: Alerts
-      url: /brain-immunity/alerts
-    - text: Auto-Generated API Documentation
-      url: /brain-immunity/auto-generated-specs
-    - text: Service Map
-      url: /brain-immunity/service-map
+    - text: Kong Brain
+      items:
+        - text: Service Map
+          url: /brain-immunity/service-map
+        - text: Auto-Generated API Documentation
+          url: /brain-immunity/auto-generated-specs
+    - text: Kong Immunity
+      items:
+        - text: Alerts
+          url: /brain-immunity/alerts
+        - text: Model Training
+          url: /brain-immunity/model-training
+        - text: Slack Integration
+          url: /brain-immunity/slack-integration
     - text: Troubleshooting
       url: /brain-immunity/troubleshooting
     - text: Changelog
