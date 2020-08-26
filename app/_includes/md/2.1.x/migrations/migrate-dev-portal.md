@@ -35,7 +35,7 @@ linked below.
 
 - #### workspaces/default/content/applications/view.txt
     - Templates Path: `/workspaces/default/content/applications/view.txt`
-    - File Content GitHub: [/workspaces/default/content/applications/view.txt](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/workspaces/default/content/applications/view.txt)
+    - File Content GitHub: [/workspaces/default/content/applications/view.txt](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/content/applications/view.txt)
 
 - #### workspaces/default/themes/base/layouts/_app.html
     - Templates Path: `/workspaces/default/themes/base/layouts/_app.html`
