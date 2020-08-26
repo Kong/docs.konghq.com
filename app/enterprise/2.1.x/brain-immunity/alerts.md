@@ -56,7 +56,7 @@ The ‘/alerts’ endpoint uses the following parameters, which you can mix and 
 * `alert_type`: Returns only alerts of the alert_type specified in the alert_type parameter. This parameter does not accept lists of alert types. The value passed must be one of [‘query_params’, ‘statuscode’, ‘latency_ms’, ‘traffic’]
 * `url`: Returns only the alerts associated with the endpoint specified with URL parameter.
 * `method`: Returns only alerts with the method specified. Must be one of these values: GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, or TRACE. Full capitalization is necessary.
-* `workspace_name`: The name of the Kong Workspace for the alerts you want returned.
+* `workspace_id`: The ID of the Kong Workspace for the alerts you want returned.
 * `route_id`: The Kong Route ID for the alerts you want returned.
 * `service_id`: The Kong Service ID for the alerts you want returned.
 * `system_restored`: A true/false value indicates you only want returned alerts where the system_restored value is matching the boolean value passed into this parameter.
