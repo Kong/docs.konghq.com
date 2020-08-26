@@ -1375,7 +1375,7 @@ Session Plugin Config (JSON)
 Here you may specify the configuration for the Session plugin as used by
 Kong Manager.
 
-For more information, see the Kong Session Plugin documentation.
+For more information, see the Kong [Session Plugin](/hub/kong-inc/sessions/) documentation.
 
 **Example:**
 
