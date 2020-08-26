@@ -14,6 +14,8 @@
     - text: Changelog
       url: /enterprise/changelog
       absolute_url: true
+    - text: New in the Docs
+      url: /doc-updates
     - text: Version Support
       url: /support-policy
 
@@ -50,6 +52,8 @@
     - text: Deployment Options
       url: /deployment/deployment-options
       items:
+        - text: Classic Deployment
+          url: /deployment/classic-deployment
         - text: Hybrid Mode
           url: /deployment/hybrid-mode
           items:
