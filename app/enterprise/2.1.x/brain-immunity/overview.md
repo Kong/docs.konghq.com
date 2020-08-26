@@ -23,7 +23,7 @@ Contextualize issues and take immediate action by surfacing Kong Immunity anomal
 Kong Immunity autonomously identifies service issues with machine learning-powered anomaly detection. Other features include:
 
 #### Create a Baseline for Healthy Traffic
-Traffic patterns provide a window into the behavior and performance of services under different conditions. To understand your existing traffic patterns, Kong Immunity ingests data flowing through the Kong data plane to create a baseline for healthy traffic. As anomalies are detected and addressed through changes to the Kong Enterprise configuration, Kong Immunity continuously adapts this baseline. Kong Immunity uses the Median Average Deviation (MAD) of traffic to detect anomalies. The dataset used to calculate the expected MAD continuously updates based on the last week of data available.
+Traffic patterns provide a window into the behavior and performance of services under different conditions. To understand your existing traffic patterns, Kong Immunity ingests data flowing through the Kong data plane to create a baseline for healthy traffic. As anomalies are detected and addressed through changes to the Kong Enterprise configuration, Kong Immunity continuously adapts this baseline.
 
 #### Autonomously Identify Anomalies
 To identify potential issues, inefficiencies or performance bottlenecks, Kong Immunity flags traffic that deviates from the expected or desired patterns without disrupting services. Depending on your needs and goals, you can adjust the settings of Kong Immunity to recognize individual traffic events, patterns and other types of anomalous activity. See the [Alert Events](enterprise/latest/brain-immunity/alerts/#alert-events) for more information.
