@@ -287,7 +287,7 @@ Some suffixes can be specified for each pair:
    connections to Kong's proxy server.
 - `proxy_protocol` will enable usage of the
    PROXY protocol for a given address/port.
-- `transparent` will cause kong to listen to, and
+- `transparent` will cause Kong to listen to, and
    respond from, any and all IP addresses and ports
    you configure in iptables.
 - `deferred` instructs to use a deferred accept on
