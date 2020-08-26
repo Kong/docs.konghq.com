@@ -1,5 +1,5 @@
 ---
-title: Classic Deployments
+title: Classic Deployment
 ---
 {{site.ee_product_name}} can be deployed in the following classic deployment modes:
 * [**Embedded:**](#embedded) classic deployment with all services on one node.
