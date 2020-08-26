@@ -56,6 +56,9 @@ Immunity automatically sets up training jobs when it first starts up, and retrai
 curl -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer/reset
 ```
 
+Or, you can also accomplish this by posting to `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/resettrainer`.
+
+
 #### Configuring Auto-Training Rules
 
 For best results, Immunity retrains on a regular basis. If you do not need to retrain your models regularly and are happy with your current model, you can stop auto retraining via a POST request to the `/trainer/config` endpoint. This endpoint takes these parameters:
