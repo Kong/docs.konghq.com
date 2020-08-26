@@ -77,7 +77,7 @@ logs is adjusted by the `log_level` directive.
 **Default:** `off`
 
 Path for Status API request access logs. The default value of `off` implies
-that loggin for this API is disabled by default.
+that login for this API is disabled by default.
 
 If this value is a relative path, it will be placed under the `prefix`
 location.
