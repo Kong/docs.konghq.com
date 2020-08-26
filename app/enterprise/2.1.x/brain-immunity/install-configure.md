@@ -31,7 +31,8 @@ To complete this installation you will need:
 
 ### Step 1. Add the Kong Docker Repository and Pull the Kong Brain and Kong Immunity Docker Image
 
-1. In a terminal window, add the Kong Docker Repository:
+1. In a terminal window, add the Kong Docker Repository.
+Note: Be sure to use replace the variables with your bintray username and bintray apikey. 
 ```bash
 $ docker login -u <your_username_from_bintray> -p <your_apikey_from_bintray> kong-docker-kong-brain-immunity-base.bintray.io
 ```
@@ -45,9 +46,9 @@ You should now have your Kong Brain and Kong Immunity image locally.
 ```bash
 $ docker images
 ```
-4. Tag the image ID as `kong-ee` for easier use. Replace `<IMAGE_ID>` with the image ID matching your repository.
+4. Tag the image ID as `kong-bi` for easier use. Replace `<IMAGE_ID>` with the image ID matching your repository.
 ```bash
-$ docker tag <IMAGE_ID> kong-ee
+$ docker tag <IMAGE_ID> kong-bi
 ```
 
 ### Step 2. Confirm the Kong EE Docker Network is available
@@ -58,7 +59,7 @@ Confirm the Kong Enterprise network is available, which is the network you set u
 $ docker network ls
 ```
 
-2. If the results do not show `kong-ee-net`, create the network:
+Note: If the results do not show `kong-ee-net`, create the network:
 ```bash
 $ docker network create kong-ee-net
 ```
@@ -69,9 +70,9 @@ Start a PostgreSQL database:
 $ docker run -d --name collector-database \
   --hostname collector-database \
   --network=kong-ee-net \
-  -e "POSTGRES_USER=kong" \
-  -e "POSTGRES_DB=kong" \
-  -e "POSTGRES_PASSWORD=kong" \
+  -e "POSTGRES_USER=collector" \
+  -e "POSTGRES_DB=collector" \
+  -e "POSTGRES_PASSWORD=collector" \
   postgres:12
 ```
 
@@ -90,13 +91,13 @@ Prepare the Collector database:
 ```bash
 docker run --rm --network=kong-ee-net \
   -e "SQLALCHEMY_DATABASE_URI=postgres://collector:collector@collector-database:5432/collector" \
-  kong-docker-kong-brain-immunity-base.bintray.io/kong-brain-immunity:latest \
+  kong-bi \
   flask db upgrade
 ```
 
 ### Step 6. Start Kong Collector App
 Start Kong Collector. 
-Note: For `KONG_HOST` replace `<DNSorIP>` with the DNS name or IP of the Docker host, for example `localhost`. The DNS or IP address for `KONG_HOST` should not be preceded with a protocol, for example `http://`.
+
 ```bash
 $ docker run -d --name collector \
   --hostname collector \
@@ -104,21 +105,20 @@ $ docker run -d --name collector \
   -p 5000:5000 \
   -e "CELERY_BROKER_URL=redis://redis:6379/0" \
   -e "SQLALCHEMY_DATABASE_URI=postgres://collector:collector@collector-database:5432/collector" \
-  -e "KONG_HOST=<DNSorIP>" \
+  -e "KONG_HOST=kong-ee" \
   -e "KONG_PORT=8001" \
-  kong-docker-kong-brain-immunity-base.bintray.io/kong-brain-immunity:latest
+  kong-bi
 ```
   
 ### Step 7. Start the Scheduler and Worker
 Start the scheduler and worker. 
-Note: For `KONG_HOST` replace `<DNSorIP>` with the DNS name or IP of the Docker host, for example `localhost`. The DNS or IP address for `KONG_HOST` should not be preceded with a protocol, for example `http://`.
 
 1. Start celery-beat
 ```bash
 $ docker run -d --name celery-beat \
   --network=kong-ee-net \
   -e "CELERY_BROKER_URL=redis://redis:6379/0" \
-  kong-docker-kong-brain-immunity-base.bintray.io/kong-brain-immunity:3.0.0 \
+  kong-bi \
   celery beat -l info -A collector.scheduler.celery
 ```
 
@@ -128,42 +128,44 @@ $ docker run -d --name celery-worker \
   --network=kong-ee-net \
   -e "CELERY_BROKER_URL=redis://redis:6379/0" \
   -e "SQLALCHEMY_DATABASE_URI=postgres://collector:collector@collector-database:5432/collector" \
-  -e "KONG_HOST=<DNSorIP>" \
+  -e "KONG_HOST=kong-ee" \
   -e "KONG_PORT=8001" \
-  kong-docker-kong-brain-immunity-base.bintray.io/kong-brain-immunity:3.0.0 \
+  kong-bi \
   celery worker -l info -A collector.scheduler.celery --concurrency=1
 ```
 
 ### Step 8. Validate the Collector App Installation
 To complete the Collector App installation, validate the Collector App is working:
 ```bash
-$ curl -i -X GET --url http://localhost:5000/status
+$ curl -X POST localhost:8001/default/plugins \
+    -d name=collector \
+    -d config.http_endpoint=http://collector:5000
+    
+$ curl localhost:8001/default/collector/status
 ```
 You should receive an HTTP/1.1 200 OK message.
 
 
 ### Step 9. Enable and Configure the Collector Plugin using Kong Manager
 Enable the Collector Plugin using Kong Manager. To enable the plugin:
-1. Navigate to the **Workspace** page.
-2. Click **Plugins** in the left navigation bar.
-3. On the Plugins page, click **Add Plugin** which opens a page of plugin options.
-4. Scroll down to the Analytics and Monitoring section, and click the **Collector** tile.
-5. The **Update collector plugin** dialog displays. This dialog contains the variables to configure the Collector Plugin. To **minimally** configure the Collector Plugin:
+1. Navigate to the **Workspaces** page.
+2. Click the Workspace you want to use. For example, **default**. 
+3. Click **Plugins** in the API Gateway section of the left navigation bar.
+4. Click **New Plugin** which opens a page of plugin options.
+5. Scroll to the Analytics and Monitoring section, and click **Enable** on the **Collector** tile.
+6. The **Create new collector plugin** dialog displays. To **minimally** configure the Collector Plugin:
 ** In the **Config.Http Endpoint** field, enter the Collector App endpoint that Kong Enterprise can communicate with. For example, http://collector:5000.
-** Select the default values that populate the remaining fields in the dialob. 
-** Click **Create**. The Collector Plugin is configured.
+** The default values populating the remaining fields are valid for a minimal configuration. 
+7. Click **Create**. The Collector Plugin is configured.
 
 
 ### Step 10. Confirm the Collector Plugin is Enabled and Configured 
-The port and host must match the Collector App. To confirm this step, hit one of the URLs mapped through the Collector App. For example:
+1. Click **Alerts** in the left navigation pane, and the Alerts page should say **Collector is connected**.
+2. Click **Service Map** in the left navigation pane, and the Service Map should display with the **Add Service** button. 
+
+You can also hit one of the URLs mapped through the Collector App to confirm the Collector Plugin in enabled and configured. The port and host must match the Collector App. For example:
 ```bash
 /<workspace name>/collector/alerts
-```
-
-### Step 11. Confirm the Collector App is Working
-Requests to the status endpoint confirm the Collector App is up and running, in addition to providing Brain and Immunity status and version number.
-```bash
-curl http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/status
 ```
 
 ## Summary
