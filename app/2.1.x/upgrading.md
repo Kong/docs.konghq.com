@@ -46,7 +46,7 @@ configuration, without dropping existing in-flight connections.
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
 distinction between "major", "minor", and "patch" versions. The upgrade path
-will be different on which previous version from which you are migrating.
+will be different depending on which previous version from which you are migrating.
 
 If you are migrating from 2.0.0, upgrading into 2.1.x is a minor upgrade,
 but read below for important instructions on database migration, especially
