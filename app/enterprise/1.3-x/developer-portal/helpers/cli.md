@@ -33,29 +33,42 @@ The easiest way to start is by cloning the [portal-templates repo][templates] ma
 
 Then edit `workspaces/default/cli.conf.yaml` to set `kong_admin_uri` and `kong_admin_token` to match your setup.
 
-Make sure Kong is running and portal is on:
+Make sure Kong is running and portal is on.
 
-Now from root folder of the templates repo you can run:
+Now, from the root folder of the templates repo, you can run:
 
-```portal <command> <workspace>```
+```portal [-h,--help] [--config PATH] [-v,--verbose] <command> <workspace>```
 
 Where `<command>` is one of:
- - `config`    Output or change configuration of the portal on the given workspace.
- - `deploy`    Deploy changes made locally under the given workspace upstream.
- - `disable`   Disable the portal on the given workspace.
- - `enable`    Enable the portal on the given workspace.
- - `fetch`     Fetches content and themes from the given workspace.
- - `serve`     Run the portal of a given workspace locally.
- - `wipe`      Deletes all content and themes from upstream workspace.
 
- Where `<workspace>` indicates the directory/workspace pairing you would like to operate on.
+* `config`   Output or change configuration of the portal on the given
+`workspace`, locally.
+* `deploy`   Deploy changes made locally under the given workspace upstream.
+* `disable`  Enable the portal on the given workspace.
+* `enable`   Enable the portal on the given workspace.
+* `fetch`    Fetches content and themes from the given workspace.
+* `wipe`     Deletes all content and themes from upstream workspace
 
-### For `deploy`
+Where <workspace> indicates the directory/workspace pairing you would like to operate on.
+
+#### For `deploy`
 - Add `-W` or `--watch` to make changes reactive.
 - Add `-P` or `--preserve` to avoid deleting files upstream that you do not have locally.
+- Add `-D` or `--disable-ssl-verification` to disable SSL verification and use self-signed certs.
+- Add `-I` or `--ignore-specs` to ignore the `/specs` directory.
 
-### For `fetch`
-- Add `-K` or `--keep-encode` to keep binary assets as base64 encoded strings locally.
+#### For `fetch`
+- Add `-K` or `--keep-encode` to keep binary assets as base64-encoded strings locally.
+- Add `-D` or `--disable-ssl-verification` to disable SSL verification and use self-signed certs.
+- Add `-I` or `--ignore-specs` to ignore the `/specs` directory.
+
+#### For `wipe`
+- Add `-D` or `--disable-ssl-verification` to disable SSL verification and use self-signed certs.
+- Add `-I` or `--ignore-specs` to ignore the `/specs` directory.
+
+#### For `enable` and `disable`
+- Add `-D` or `--disable-ssl-verification` to disable SSL verification and use self-signed certs.
+
 
 ### Using Environment Variables
 You can override config values set in `cli.conf.yaml` via environment variables.  If you wanted to override the kong admin url for example, you can run:
@@ -73,7 +86,7 @@ Available environment variables include:
 [clipanion]: https://github.com/arcanis/clipanion
 [sync-script]: https://github.com/Kong/kong-portal-templates/blob/81382f2c7887cf57bb040a6af5ca716b83cc74f3/bin/sync.js
 [cli-support]: https://github.com/Kong/kong-portal-cli/issues/new
-[cli-license]: https://github.com/Kong/kong-portal-cli/blob/master/LICENSE	
+[cli-license]: https://github.com/Kong/kong-portal-cli/blob/master/LICENSE
 [cli-contributors]: (https://github.com/Kong/kong-portal-cli/contributors)
-[kong-support]: https://support.konghq.com/support/s/	
+[kong-support]: https://support.konghq.com/support/s/
 [templates]: https://github.com/Kong/kong-portal-templates

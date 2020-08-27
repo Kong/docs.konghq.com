@@ -164,7 +164,6 @@ Under Dev Portal settings, select “Open ID Connect” as the authentication pl
 Copy and paste the following Auth Config JSON object:
 
 ```
-“
 {
     "leeway": 100,
     "consumer_by": [

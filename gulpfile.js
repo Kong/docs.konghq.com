@@ -163,6 +163,206 @@ function html() {
     .pipe($.size())
 }
 
+
+// Lua Tasks
+function pdk_docs(cb) {
+  var KONG_PATH, KONG_VERSION,
+    navFilepath, doc, pdkRegex, newNav, newDoc,
+    cmd, obj, errLog,
+    refDir, modules,
+    gitSha1, confFilepath
+
+  // 0 Obtain "env-var params"
+  KONG_PATH = process.env.KONG_PATH
+  if (KONG_PATH === undefined) {
+    return cb('No KONG_PATH environment variable set')
+  }
+
+  KONG_VERSION = process.env.KONG_VERSION
+  if (KONG_VERSION === undefined) {
+    return cb('No KONG_VERSION environment variable set. Example: 0.14.x')
+  }
+
+  // 1. Update nav file
+  // 1.1 Check that nav file exists
+  navFilepath = './app/_data/docs_nav_' + KONG_VERSION + '.yml'
+  try {
+    doc = fs.readFileSync(navFilepath, 'utf8')
+  } catch (err) {
+    return cb('Could not find the file ' + navFilepath + '. Err: ' + err)
+  }
+
+  // 1.2 Check that nav file has the correct yaml entry
+  pdkRegex = /[ ]+- text: Plugin Development Kit[\s\S]+\n-/gm
+  if (!doc.match(pdkRegex)) {
+    return cb('Could not find the appropriate section in ' + navFilepath)
+  }
+
+  // 1.3 Generate new yaml using ldoc
+  cmd = 'LUA_PATH="$LUA_PATH;./?.lua" ' +
+        'ldoc -q -i --filter ldoc/filters.nav ' +
+        KONG_PATH + '/kong/pdk'
+  obj = childProcess.spawnSync(cmd, { shell: true })
+  // ignore "unkwnown tag" errors
+  errLog = obj.stderr.toString().replace(/.*unknown tag.*\n/g, '')
+  if (errLog.length > 0) {
+    return cb(errLog)
+  }
+
+  // 1.4 Replace existing yaml with generated one
+  newNav = obj.stdout.toString()
+  newDoc = doc.replace(pdkRegex, newNav + '\n-')
+  fs.writeFileSync(navFilepath, newDoc)
+  log('Updated contents of ' + navFilepath + ' with new navigation items')
+
+  // 2. Generate markdown docs using custom ldoc templates
+  // 2.1 Prepare ref folder
+  refDir = 'app/' + KONG_VERSION + '/pdk'
+  cmd = 'rm -rf ' + refDir + ' && mkdir ' + refDir
+  obj = childProcess.spawnSync(cmd, { shell: true })
+  errLog = obj.stderr.toString()
+  if (errLog.length > 0) {
+    return cb(errLog)
+  }
+
+  // 2.2 Obtain the list of modules in json form & parse it
+  cmd = 'LUA_PATH="$LUA_PATH;./?.lua" ' +
+        'ldoc -q -i --filter ldoc/filters.json ' +
+        KONG_PATH + '/kong/pdk'
+  obj = childProcess.spawnSync(cmd, { shell: true })
+  // ignore "unkwnown tag" errors
+  errLog = obj.stderr.toString().replace(/.*unknown tag.*\n/g, '')
+  if (errLog.length > 0) {
+    return cb(errLog)
+  }
+  modules = JSON.parse(obj.stdout.toString())
+
+  // 2.3 For each module, generate its docs in markdown
+  for (let module of modules) {
+    cmd = 'LUA_PATH="$LUA_PATH;./?.lua" ' +
+          'ldoc -q -c ldoc/config.ld ' +
+          module.file + ' && ' +
+          'mv ./' + module.generated_name + '.md ' + refDir + '/' +
+          module.name + '.md'
+    obj = childProcess.spawnSync(cmd, { shell: true })
+    errLog = obj.stderr.toString()
+    if (errLog.length > 0) {
+      return cb(errLog)
+    }
+  }
+  log('Re-generated PDK docs in ' + refDir)
+
+  // 3 Write pdk_info yaml file
+  // 3.1 Obtain git sha-1 hash of the current git log
+  cmd = 'pushd ' + KONG_PATH + ' > /dev/null; git rev-parse HEAD; popd > /dev/null'
+  obj = childProcess.spawnSync(cmd, { shell: true })
+  errLog = obj.stderr.toString()
+  if (errLog.length > 0) {
+    return cb(errLog)
+  }
+  gitSha1 = obj.stdout.toString().trim()
+
+  // 3.2 Write it into file
+  confFilepath = 'app/_data/pdk_info.yml'
+  fs.writeFileSync(confFilepath, 'sha1: ' + gitSha1 + '\n')
+  log('git SHA-1 (' + gitSha1 + ') written to ' + confFilepath)
+}
+
+function admin_api_docs(cb) {
+  var KONG_PATH, KONG_VERSION, cmd, obj, errLog
+
+  // 0 Obtain "env-var params"
+  KONG_PATH = process.env.KONG_PATH
+  if (KONG_PATH === undefined) {
+    return cb('No KONG_PATH environment variable set')
+  }
+
+  KONG_VERSION = process.env.KONG_VERSION
+  if (KONG_VERSION === undefined) {
+    return cb('No KONG_VERSION environment variable set. Example: 0.14.x')
+  }
+
+  // 1 Generate admin-api.md
+  cmd = 'resty autodoc-admin-api/run.lua'
+  obj = childProcess.spawnSync(cmd, { shell: true })
+  errLog = obj.stderr.toString()
+  if (errLog.length > 0) {
+    return cb(errLog)
+  }
+
+  log('Re-generated Admin API docs for ' + KONG_VERSION)
+}
+
+function cli_docs(cb) {
+  var KONG_PATH, KONG_VERSION, cmd, obj, errLog
+
+  // 0 Obtain "env-var params"
+  KONG_PATH = process.env.KONG_PATH
+  if (KONG_PATH === undefined) {
+    return cb('No KONG_PATH environment variable set')
+  }
+
+  KONG_VERSION = process.env.KONG_VERSION
+  if (KONG_VERSION === undefined) {
+    return cb('No KONG_VERSION environment variable set. Example: 1.0.x')
+  }
+
+  // 1 Generate cli.md
+  cmd = 'luajit autodoc-cli/run.lua'
+  obj = childProcess.spawnSync(cmd, { shell: true })
+  errLog = obj.stderr.toString()
+  if (errLog.length > 0) {
+    return cb(errLog)
+  }
+
+  log('Re-generated CLI docs for ' + KONG_VERSION)
+}
+
+function conf_docs(cb) {
+  var KONG_PATH, KONG_VERSION, cmd, obj, errLog
+
+  // 0 Obtain "env-var params"
+  KONG_PATH = process.env.KONG_PATH
+  if (KONG_PATH === undefined) {
+    return cb('No KONG_PATH environment variable set')
+  }
+
+  KONG_VERSION = process.env.KONG_VERSION
+  if (KONG_VERSION === undefined) {
+    return cb('No KONG_VERSION environment variable set. Example: 1.0.x')
+  }
+
+  // Generate configuration.md
+  cmd = 'luajit autodoc-conf/run.lua'
+  obj = childProcess.spawnSync(cmd, { shell: true })
+  errLog = obj.stderr.toString()
+  if (errLog.length > 0) {
+    return cb(errLog)
+  }
+
+  log('Re-generated Conf docs for ' + KONG_VERSION)
+}
+
+function nav_docs(cb) {
+  var KONG_VERSION, cmd, obj, errLog
+
+  // 0 Obtain "env-var params"
+  KONG_VERSION = process.env.KONG_VERSION
+  if (KONG_VERSION === undefined) {
+    return cb('No KONG_VERSION environment variable set. Example: 1.0.x')
+  }
+
+  // 1 Generate docs_nav_X.Y.x.yml
+  cmd = 'luajit autodoc-nav/run.lua'
+  obj = childProcess.spawnSync(cmd, { shell: true })
+  errLog = obj.stderr.toString()
+  if (errLog.length > 0) {
+    return cb(errLog)
+  }
+
+  log('Re-generated navigation file for ' + KONG_VERSION)
+}
+
 // Custom Tasks
 function browser_sync(done) {
   browserSync.init({
@@ -236,6 +436,13 @@ gulp.task("fonts", fonts)
 gulp.task("jekyll", jekyll)
 gulp.task("jekyll_dev", jekyll_dev)
 gulp.task("html", html)
+
+// Lua Tasks
+gulp.task("pdk_docs", pdk_docs)
+gulp.task("admin_api_docs", admin_api_docs)
+gulp.task("cli_docs", cli_docs)
+gulp.task("conf_docs", conf_docs)
+gulp.task("nav_docs", nav_docs)
 
 // Custom Tasks
 gulp.task("browser_sync", browser_sync)

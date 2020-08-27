@@ -17,6 +17,7 @@ categories:
 kong_version_compatibility:
     enterprise_edition:
       compatible:
+        - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
@@ -30,7 +31,7 @@ params:
   config:
     - name: body_schema
       required: true
-      value_in_examples: '[{\"name\":{\"type\": \"string\", \"required\": true}}]'
+      value_in_examples: '''[{"name":{"type": "string", "required": true}}]'''
       description: Array of schema fields.
 
     - name: allowed_content_types
@@ -54,7 +55,7 @@ params:
       value_in_examples:
       description: Array of parameter validator specifications.
        For details and examples, see [Parameter Schema Definition](#parameter-schema-definition).
-        
+
 
     - name: verbose_response
       required: false
@@ -192,6 +193,7 @@ Example record schema:
 }
 ```
 
+
 The `type` field assumes one the following values:
 
 - `string`
@@ -223,6 +225,31 @@ validations:
 
 **Note**: To learn more, see [Lua patterns][lua-patterns].
 
+#### Semantic validation for `format` attribute
+
+Structural validation alone may be insufficient to validate that an instance
+meets all the requirements of an application. The `format` keyword is defined
+to allow interoperable semantic validation for a fixed subset of values that
+are accurately described by authoritative resources, be they RFCs or other
+external specifications. The following attributes are available:
+
+| Attribute | Description |
+| --- | --- |
+| `date` | defined by [RFC 3339], sections [5.6] and further validated by [5.7] |
+| `date-time` | defined by [RFC 3339], sections [5.6] |
+| `time` | defined by [RFC 3339], sections [5.6] and further validated by [5.7] |
+
+**Note**: The value of the `format` attribute must be a string.
+
+Example `date` schema:
+
+```
+{
+  "type": "string",
+  "format": "date"
+}
+```
+
 ### Kong Schema Example
 
 ```
@@ -235,9 +262,9 @@ validations:
   },
   {
     "age": {
-        "type": "integer",
-        "required": true
-      }
+      "type": "integer",
+      "required": true
+    }
   },
   {
     "address": {
@@ -258,6 +285,13 @@ validations:
         }
       ]
     }
+  },
+  {
+    "born": {
+      "type": "string",
+      "format": "date-time",
+      "required": true
+    }
   }
 ]
 ```
@@ -271,7 +305,8 @@ Such a schema would validate the following request body:
   "address": {
     "street": "251 Post St.",
     "zipcode": "94108"
-  }
+  },
+  "born": "2009-07-20T08:30:37.012Z"
 }
 
 ```
@@ -451,3 +486,6 @@ For more information, see the Kong plugin docs on [storing custom entities][sche
 
 [schema-docs]: /1.0.x/plugin-development/custom-entities/#defining-a-schema
 [lua-patterns]: https://www.lua.org/pil/20.2.html
+[RFC 3339]: https://tools.ietf.org/html/rfc3339
+[5.6]: https://tools.ietf.org/html/rfc3339#section-5.6
+[5.7]: https://tools.ietf.org/html/rfc3339#section-5.7

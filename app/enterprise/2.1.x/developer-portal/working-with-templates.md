@@ -509,7 +509,7 @@ string
 
 {% raw %}
 ```lua
-<pre>{* markdown(page.description) *)</pre>
+<pre>{* markdown(page.description) *}</pre>
 ```
 {% endraw %}
 

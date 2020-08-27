@@ -18,6 +18,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
@@ -32,9 +33,9 @@ params:
   consumer_id: false
   config:
     - name: ldap_host
-      required:
+      required: true
       default:
-      value_in_examples:
+      value_in_examples: ldap.example.com
       description: |
         Host on which the LDAP server is running
     - name: ldap_port
@@ -63,9 +64,9 @@ params:
         Set it to `true` to use `ldaps`, a secure protocol (that can be configured
         to TLS) to connect to the LDAP server.
     - name: base_dn
-      required:
+      required: true
       default:
-      value_in_examples:
+      value_in_examples: dc=example,dc=com
       description: |
         Base DN as the starting point for the search; e.g., "dc=example,dc=com"
     - name: verify_ldap_host
@@ -75,9 +76,9 @@ params:
       description: |
         Set it to `true` to authenticate LDAP server. The server certificate will be verified according to the CA certificates specified by the `lua_ssl_trusted_certificate` directive.
     - name: attribute
-      required:
+      required: true
       default:
-      value_in_examples:
+      value_in_examples: cn
       description: |
         Attribute to be used to search the user; e.g., "cn"
     - name: cache_ttl

@@ -1,6 +1,5 @@
 ---
 title: Enable Application Registration
-beta: true
 ---
 
 ## Introduction
@@ -14,8 +13,10 @@ admins can selectively admit access to Services using Kong Manager.
 * Developer Portal is enabled on the same Workspace as the Service.
 * The Service is created and enabled with HTTPS.
 * Authentication is enabled on the Developer Portal.
-* Logged in as an admin with read and write roles on applications, services, and developers.
-* The `portal_app_auth` configuration option is configured for your OAuth provider and strategy (`kong-oauth2` or `external-oauth2`). See
+* Logged in as an admin with read and write roles on applications, services, and
+  developers.
+* The `portal_app_auth` configuration option is configured for your OAuth provider
+  and strategy (`kong-oauth2` or `external-oauth2`). See
 [Configure the Authorization Provider Strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/#portal-app-auth) for the Portal Application Registration plugin.
 * Authorization provider configured if using a supported third-party
 identity provider with the OIDC plugin. For example instructions using Okta
@@ -23,43 +24,63 @@ as an identity provider, refer to the [Okta example](/enterprise/{{page.kong_ver
 
 ## Enable Application Registration on a Service using Kong Manager {#enable-app-reg-plugin}
 
-To use Application Registration on a Service, the Portal Application Registration Plugin must be enabled on a Service.
+To use Application Registration on a Service, the Portal Application Registration
+Plugin must be enabled on a Service.
 
 In Kong Manager, access the Service for which you want to enable Application Registration:
 
 1. From your Workspace, in the left navigation pane, go to **API Gateway > Services**.
 2. On the Services page, select the Service and click **View**.
-3. In the Plugins pane in the Services page, click **Add Plugin**.
-4. On the Add New Plugin page in the Authentication section, find the **Portal Application Registration** Plugin and click **Enable**.
-5. Enter the configuration settings. Use the parameters in the next section, [Application Registration Configuration Parameters](#application-registration-configuration-parameters), to complete the fields.
+3. In the Plugins pane in the Services page, click **Add a Plugin**.
+4. On the Add New Plugin page in the Authentication section, find the
+   **Portal Application Registration** Plugin and click **Enable**.
+
+   ![Portal Application Registration](/assets/images/docs/dev-portal/app-reg-plugin-panel.png)
+
+5. Enter the configuration settings. Use the parameters in the next section,
+   [Application Registration Configuration Parameters](#application-registration-configuration-parameters),
+   to complete the fields.
+
+   ![Create application-registration plugin](/assets/images/docs/dev-portal/create-app-reg-plugin-form.png)
+
 6. Click **Create**.
 
 ### Application Registration Configuration Parameters
+
+#### Service
+
+**Required**
+
+Select the Service that this plugin configuration will target.
+
+#### Tags
+
+An optional set of strings for grouping and filtering, separated by commas.
 
 #### Auto Approve {#aa}
 
 Default: `false`
 
-Description: If enabled, all new Service contract requests are automatically
+If enabled, all new Service contract requests are automatically
 approved. Otherwise, Dev Portal admins must manually approve requests.
 
 #### Description
 
 Default: none
 
-Description: Unique description displayed in the information about a Service in the Developer Portal.
+Unique description displayed in the information about a Service in the Developer Portal.
 
 #### Display Name
 
 **Required**
 
-Description: Unique display name used for a Service in the Developer Portal.
+Unique display name used for a Service in the Developer Portal.
 
 #### Show issuer {#show-url-issuer}
 
 Default: `false`
 
-Description: Displays the Issuer URL in the Service Details. **Note:** Exposing
+Displays the Issuer URL in the Service Details. **Note:** Exposing
 the Issuer URL is essential for the
 [Authorization Code Flow](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth/#ac-flow) workflow configured for third-party identity providers.
 

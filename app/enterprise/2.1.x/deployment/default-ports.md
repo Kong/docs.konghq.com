@@ -18,3 +18,4 @@ By default, Kong Enterprise Gateway listens on the following ports:
 | [`:8004`](/enterprise/{{page.kong_version}}/property-reference/#portal_api_listen) | HTTP     | Dev Portal `/files` traffic over HTTP, assuming the Dev Portal is **enabled**. |
 | [`:8447`](/enterprise/{{page.kong_version}}/property-reference/#portal_api_listen) | HTTPS    | Dev Portal `/files` traffic over HTTPS, assuming the Dev Portal is **enabled**. |
 | [`:8005`](/enterprise/{{page.kong_version}}/deployment/hybrid-mode-setup/)         | HTTP     | Hybrid mode only. Control Plane listens for traffic from Data Planes. |
+| [`:8006`](/enterprise/{{page.kong_version}}/deployment/hybrid-mode-setup/)         | HTTP     | Hybrid mode only. Control Plane listens for Vitals telemetry data from Data Planes. |

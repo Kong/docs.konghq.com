@@ -16,6 +16,7 @@ categories:
 kong_version_compatibility:
     enterprise_edition:
       compatible:
+        - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
@@ -32,9 +33,10 @@ params:
       default: "`access_token`"
       description: |
         Describes an array of comma separated parameter names where the plugin will look for an access token. The client must send the access token in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name.<br>*note*: the key names may only contain [a-z], [A-Z], [0-9], [_] and [-].
-    - name: vault
+    - name: vault.id
       required: true
       default:
+      value_in_examples: "<UUID>"
       description: |
         A reference to an existing `vault` object within the database. `vault` entities define the connection and authentication parameters used to connect to a Vault HTTP(S) API.
     - name: secret_token_name

@@ -34,6 +34,7 @@ In this configuration, we use User Pools.
     <img src="https://doc-assets.konghq.com/oidc/cognito/cognito6.png">
     
 1. Click **Next step**.
+1. Accept the defaults for **Password settings**, then click **Next step**.
 1. Accept the defaults for **MFA and verifications**, then click **Next step**.
 1. Accept the defaults for **Message customizations**, click **Next step**.
 1. On the next screen, we are not going to create any tags. Click **Next step**.
@@ -116,11 +117,12 @@ Now that you have created an Amazon Cognito User Pool and Application Definition
 Amazon’s OIDC discovery endpoint is available from `https://cognito-idp.<REGION>.amazonaws.com/<USER-POOL-ID>`. For example, in this demo, the OIDC discovery endpoint is: `https://cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_ie577myCv/.well-known/openid-configuration`
 
 The OAuth + OIDC debugger is a handy utility that you may use to test the authorization flow before configurations in Kong.
-OIDC Plugin Configuration
+
+## OIDC Plugin Configuration
 
 Identify the Route or Service to be secured. In our example, we created a new route called /cognito to which we added the OpenID Connect plug-in.  
 The number of options in the plug-in can seem overwhelming but the configuration is rather simple. All you need to do is configure:
-* Issuer: we can use the OIDC discovery endpoint here, e.g.
+* `issuer` - You can use the OIDC discovery endpoint here, e.g.
 https://cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_ie577myCv/.well-known/openid-configuration 
 * `config.client_id` - This is the client ID noted when the application was created
 * `config.client_secret` - This is the client secret noted when the application was created. In this demo we are leaving this blank as we didn’t create a client secret.
@@ -137,7 +139,6 @@ You can verify the confirmed user from the Cognito page under “General setting
 Since AWS Cognito only supports the HTTPS protocol, when you start Kong Enterprise, ensure that HTTPS protocol for Dev Portal is enabled. For example:
 
 ```
-“
 docker run -d --name kong-ee --link kong-ee-database:kong-ee-database \
   -e "KONG_DATABASE=postgres" \
   -e "KONG_PG_HOST=kong-ee-database" \
@@ -164,7 +165,6 @@ Under Dev Portal settings, select “Open ID Connect” as the authentication pl
 Copy and paste the following Auth Config JSON object:
 
 ```
-“
 {
     "leeway": 100,
     "consumer_by": [
@@ -200,7 +200,10 @@ Copy and paste the following Auth Config JSON object:
     "consumer_claim": [
         "email"
     ],
-    "login_redirect_mode": "query"
+    "login_redirect_mode": "query",
+    "redirect_uri": [
+        "https://kong-ee:8447/default/auth"
+    ]
 }
 ```
 

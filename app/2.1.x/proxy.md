@@ -908,12 +908,12 @@ to forward the request to your upstream service. This is done via Nginx's
 timeouts for the connection between Kong and a given upstream, via the following
 properties of a Service:
 
-- `upstream_connect_timeout`: defines in milliseconds the timeout for
+- `connect_timeout`: defines in milliseconds the timeout for
   establishing a connection to your upstream service. Defaults to `60000`.
-- `upstream_send_timeout`: defines in milliseconds a timeout between two
+- `write_timeout`: defines in milliseconds a timeout between two
   successive write operations for transmitting a request to your upstream
   service.  Defaults to `60000`.
-- `upstream_read_timeout`: defines in milliseconds a timeout between two
+- `read_timeout`: defines in milliseconds a timeout between two
   successive read operations for receiving a request from your upstream
   service.  Defaults to `60000`.
 

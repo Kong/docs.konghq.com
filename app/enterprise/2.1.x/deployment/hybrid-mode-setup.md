@@ -1,6 +1,5 @@
 ---
 title: Deploying Kong Enterprise in Hybrid Mode
-beta: true
 ---
 
 ## Prerequisites
@@ -143,6 +142,7 @@ follow the instructions to:
     -e "KONG_DATABASE=off" \
     -e "KONG_PROXY_LISTEN=0.0.0.0:8000" \
     -e "KONG_CLUSTER_CONTROL_PLANE=control-plane.<admin-hostname>.com:8005" \
+    -e "KONG_CLUSTER_TELEMETRY_ENDPOINT=control-plane.<admin-hostname>.com:8006" \
     -e "KONG_CLUSTER_CERT=/<path-to-file>/cluster.crt" \
     -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/cluster.key" \
     -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=/<path-to-file>/cluster.crt" \
@@ -184,6 +184,7 @@ and follow the instructions in Steps 1 and 2 **only** to download
     role = data_plane
     database = off
     cluster_control_plane = control-plane.<admin-hostname>.com:8005
+    cluster_telemetry_endpoint = control-plane.<admin-hostname>.com:8006
     cluster_cert = /<path-to-file>/cluster.crt
     cluster_cert_key = /<path-to-file>/cluster.key
     lua_ssl_trusted_certificate = /<path-to-file>/cluster.crt

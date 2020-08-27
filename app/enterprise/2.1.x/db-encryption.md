@@ -310,3 +310,7 @@ In order to communicate with Vault, Kong must be provided a Vault token for acce
 ### Syncing the Keyring
 
 Kong reads the keyring material from Vault when the Kong process starts. Any changes to the Vault KV store are not reflected on the Kong node until Kong syncs with Vault via the `/keyring/vault/sync` Admin API endpoint. This allows Kong to receive a Vault token with a low TTL, as the list and read operation only occur once.
+
+### Keyring on hybrid mode
+
+Because Keyring encrypts the data in the database, it means it doesn't encrypt data on Kong data plane nodes that run without a database and get data from the control plane.

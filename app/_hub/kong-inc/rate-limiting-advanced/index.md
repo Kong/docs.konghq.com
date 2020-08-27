@@ -20,6 +20,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
@@ -34,15 +35,15 @@ params:
   consumer_id: true
   config:
     - name: limit
-      required:
+      required: true
       default:
-      value_in_examples:
+      value_in_examples: [ "5" ]
       description: |
         One or more requests-per-window limits to apply.
     - name: window_size
-      required:
+      required: true
       default:
-      value_in_examples:
+      value_in_examples: [ "30" ]
       description: |
         One or more window sizes to apply a limit to (defined in seconds).
     - name: identifier
@@ -62,9 +63,9 @@ params:
       description: |
         The shared dictionary where counters will be stored until the next sync cycle.
     - name: sync_rate
-      required:
+      required: true
       default:
-      value_in_examples:
+      value_in_examples: -1
       description: |
         How often to sync counter data to the central data store. A value of 0
          results in synchronous behavior; a value of -1 ignores sync behavior
@@ -81,7 +82,7 @@ params:
       default: cluster
       value_in_examples:
       description: |
-        The sync strategy to use; `cluster` and `redis` are supported.
+        The sync strategy to use; `cluster` and `redis` are supported. Hybrid mode does not support the `cluster` strategy.
     - name: redis.host
       required: semi
       default:
@@ -151,8 +152,12 @@ params:
       description: |
         This sets the time window to either `sliding` or `fixed`.
   extra: |
-    **Notes:**  
-    
+    **Notes:**
+
+     * The plugin does not support the `cluster` strategy in
+       [hybrid mode](/enterprise/latest/deployment/hybrid-mode/).
+       The `redis` strategy must be used instead.
+
      * Redis configuration values are ignored if the `cluster` strategy is used.
 
      * PostgreSQL 9.5+ is required when using the `cluster` strategy with `postgres` as the backing Kong cluster data store. This requirement varies from the PostgreSQL 9.4+ requirement as described in the <a href="/install/source">Kong Community Edition documentation</a>.
@@ -160,6 +165,46 @@ params:
      * The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors.
 
 ---
+
+## Headers sent to the client
+
+When this plugin is enabled, Kong will send some additional headers back to the client indicating the allowed limits, how many requests are available, and how long it will take until the quota will be restored. For example:
+
+```
+RateLimit-Limit: 6
+RateLimit-Remaining: 4
+RateLimit-Reset: 47
+```
+
+The plugin also sends headers indicating the limits in the time frame and the number of remaining requests:
+
+```
+X-RateLimit-Limit-Minute: 10
+X-RateLimit-Remaining-Minute: 9
+```
+
+Or, it will return a combination of more time limits, if more than one is being set:
+
+```
+X-RateLimit-Limit-Second: 5
+X-RateLimit-Remaining-Second: 4
+X-RateLimit-Limit-Minute: 10
+X-RateLimit-Remaining-Minute: 9
+```
+
+If any of the limits configured has been reached, the plugin returns an `HTTP/1.1 429` status code to the client with the following JSON body:
+
+```json
+{ "message": "API rate limit exceeded" }
+```
+
+The [`Retry-After`] header will be present on `429` errors to indicate how long the service is expected to be unavailable to the client. When using `window_type=sliding`, `RateLimit-Reset`, and `Retry-After` may increase due to the rate calculation for the sliding window.
+
+**NOTE**:
+
+<div class="alert alert-warning">
+The headers `RateLimit-Limit`, `RateLimit-Remaining`, and `RateLimit-Reset` are based on the Internet-Draft <a href="https://tools.ietf.org/html/draft-polli-ratelimit-headers-02">RateLimit Header Fields for HTTP</a> and may change in the future to respect specification updates.
+</div>
 
 ### Notes
 
@@ -176,3 +221,5 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
 ```
 
 This will apply rate limiting policies, one of which will trip when 10 hits have been counted in 60 seconds, or when 100 hits have been counted in 3600 seconds. For more information, please see [Enterprise Rate Limiting Library](https://docs.konghq.com/enterprise/references/rate-limiting/).
+
+[`Retry-After`]: https://tools.ietf.org/html/rfc7231#section-7.1.3

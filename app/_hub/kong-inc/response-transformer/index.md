@@ -38,6 +38,7 @@ kong_version_compatibility:
         - 0.5.x
     enterprise_edition:
       compatible:
+        - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
@@ -57,11 +58,11 @@ params:
   config:
     - name: remove.headers
       required: false
-      value_in_examples: "x-toremove, x-another-one"
+      value_in_examples: ["x-toremove", "x-another-one"]
       description: List of header names. Unset the header(s) with the given name.
     - name: remove.json
       required: false
-      value_in_examples: "json-key-toremove, another-json-key"
+      value_in_examples: ["json-key-toremove", "another-json-key"]
       description: List of property names. Remove the property from the JSON body if it is present.
     - name: rename.headers
       required: false
@@ -74,15 +75,15 @@ params:
       description: List of property:value pairs. If and only if the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
     - name: add.headers
       required: false
-      value_in_examples: "x-new-header:value,x-another-header:something"
+      value_in_examples: ["x-new-header:value","x-another-header:something"]
       description: List of headername:value pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set.
     - name: add.json
       required: false
-      value_in_examples: "new-json-key:some_value, another-json-key:some_value"
+      value_in_examples: ["new-json-key:some_value", "another-json-key:some_value"]
       description: List of property:value pairs. If and only if the property is not present, add a new property with the given value to the JSON body. Ignored if the property is already present.
     - name: append.headers
       required: false
-      value_in_examples: "x-existing-header:some_value, x-another-header:some_value"
+      value_in_examples: ["x-existing-header:some_value", "x-another-header:some_value"]
       description: List of headername:value pairs. If the header is not set, set it with the given value. If it is already set, a new header with the same name and the new value will be set.
     - name: append.json
       required: false

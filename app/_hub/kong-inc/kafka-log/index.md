@@ -2,7 +2,7 @@
 name: Kafka Log
 publisher: Kong Inc.
 
-desc: Publish logs to a Kafka topic.
+desc: Publish logs to a Kafka topic
 description: |
    Publish request and response logs to a [Kafka](https://kafka.apache.org/) topic.
 
@@ -16,6 +16,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.1.x
         - 1.5.x
         - 1.3-x
 
@@ -35,7 +36,7 @@ params:
       value_in_examples: TOPIC
       urlencode_in_examples: true
       default:
-      description: The Kafka topic to publish to
+      description: The Kafka topic to publish to.
     - name: timeout
       required: false
       default: "`10000`"
@@ -51,37 +52,37 @@ params:
       default: "`1`"
       value_in_examples: PRODUCER_REQUEST_ACKS
       description: |
-        The number of acknowledgments the producer requires the leader to have received before considering a request complete. Allowed values: 0 for no acknowledgments, 1 for only the leader, and -1 for the full ISR
+        The number of acknowledgments the producer requires the leader to have received before considering a request complete. Allowed values: 0 for no acknowledgments, 1 for only the leader, and -1 for the full ISR.
     - name: producer_request_timeout
       required: false
       default: "`2000`"
       value_in_examples: PRODUCER_REQUEST_TIMEOUT
       description: |
-        Time to wait for a Produce response in milliseconds
+        Time to wait for a Produce response in milliseconds.
     - name: producer_request_limits_messages_per_request
       required: false
       default: "`200`"
       value_in_examples: PRODUCER_REQUEST_LIMITS_MESSAGES_PER_REQUEST
-      description: Maximum number of messages to include into a single Produce request
+      description: Maximum number of messages to include in a single Produce request.
     - name: producer_request_limits_bytes_per_request
       required: false
       default: "`1048576`"
       value_in_examples: PRODUCER_REQUEST_LIMITS_BYTES_PER_REQUEST
-      description: Maximum size of a Produce request in bytes
+      description: Maximum size of a Produce request in bytes.
     - name: producer_request_retries_max_attempts
       required: false
       default: "`10`"
       value_in_examples: PRODUCER_REQUEST_RETRIES_MAX_ATTEMPTS
-      description: Maximum number of retry attempts per single Produce request
+      description: Maximum number of retry attempts per single Produce request.
     - name: producer_request_retries_backoff_timeout
       required: false
       default: "`100`"
-      description: Backoff interval between retry attempts in milliseconds.
+      description: Backoff interval between Produce retry attempts in milliseconds.
     - name: producer_async
       required: false
       default: "`true`"
       description: |
-        Flag to enable asynchronous mode
+        Flag to enable asynchronous mode.
     - name: producer_async_flush_timeout
       required: false
       default: "`1000`"

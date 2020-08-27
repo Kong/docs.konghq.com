@@ -28,4 +28,8 @@ as well as the upgrade notes for a list of new features in the
 
 Kong Manager is configurable through the `kong.conf` file. For specific configuration options, refer to the properties described in the [Kong Enterprise configuration reference](/enterprise/{{page.kong_version}}/property-reference).
 
+⚠️**Important:**
+Kong Manager does not support entity-level RBAC. Run Kong Manager on a node
+where `enforce_rbac` is set to `on` or `off`, but not `entity` or `both`.
+
 Next: [Authentication &rsaquo;]({{page.book.next}})

@@ -47,11 +47,11 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 2. Select the latest Kong version from the list.
 3. From the Kong version detail page, select the **Files** tab.
 4. Select the CentOS version appropriate for your environment. e.g. `centos` -> `7`.
-5. Save the RPM file available: e.g. `kong-enterprise-edition-2.1.0.0-beta1.el7.noarch.rpm`
+5. Save the RPM file available: e.g. `kong-enterprise-edition-{{page.kong_latest.version}}.el7.noarch.rpm`
 6. Copy the RPM file to your home directory on the CentOS system. You may use a command like:
 
     ```bash
-    $ scp kong-enterprise-edition-2.1.0.0-beta1.el7.noarch.rpm <centos user>@<server>:~
+    $ scp kong-enterprise-edition-{{page.kong_latest.version}}.el7.noarch.rpm <centos user>@<server>:~
     ```
 
 *Optional:* The following steps are for verifying the integrity of the package. They are not necessary to move on to [installation](#option-1-if-installing-using-a-downloaded-rpm-package).
@@ -73,7 +73,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 3. Verify you get an OK check. You should have an output similar to this:
 
   ```
-  kong-enterprise-edition-2.1.0.0-beta1.el7.noarch.rpm: rsa sha1 (md5) pgp md5 OK
+  kong-enterprise-edition-{{page.kong_latest.version}}.el7.noarch.rpm: rsa sha1 (md5) pgp md5 OK
   ```  
 {% endnavtab %}
 {% navtab Download Kong repo file and add to Yum repo %}

@@ -132,6 +132,10 @@ admin's RBAC token.
 <a name="fourth"></a>
 **Fourth, update the config to enable RBAC and the Admin GUI auth method:**
 
+⚠️**Important:**
+Kong Manager does not support entity-level RBAC. Run Kong Manager on a node
+where `enforce_rbac` is set to `on` or `off`, but not `entity` or `both`.
+
 Using the kong.conf file:
 
 ```bash

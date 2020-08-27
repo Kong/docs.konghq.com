@@ -22,6 +22,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
@@ -65,7 +66,7 @@ params:
     - name: allow_status_codes
       required:
       default: "All responses are passed to log metrics"
-      value_in_examples: 200-205,400-499
+      value_in_examples: ["200-205","400-499"]
       description: List of status code ranges which are allowed to be logged in metrics  
   extra: |
     By default the Plugin sends a packet for each metric it observes. `udp_packet_size` configures the greatest datagram size the Plugin can combine. It should be less than 65507 according to UDP protocol. Please consider the MTU of the network when setting this parameter.

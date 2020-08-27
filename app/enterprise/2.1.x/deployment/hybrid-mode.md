@@ -1,6 +1,5 @@
 ---
 title: Hybrid Mode Overview
-beta: true
 ---
 
 ## Introduction
@@ -8,7 +7,7 @@ Traditionally, Kong has always required a database, which could be either
 Postgres or Cassandra, to store configured entities such as Routes, Services,
 and Plugins.
 
-Starting with {{site.ee_product_name}} 2.1.x beta, Kong can be deployed in
+Starting with {{site.ee_product_name}} 2.1, Kong can be deployed in
 Hybrid mode, also known as Control Plane / Data Plane Separation (CP/DP).
 
 In this mode, Kong nodes in a cluster are split into two roles: Control Plane
@@ -41,6 +40,19 @@ won’t be able to affect other nodes in the Kong cluster.
 * **Ease of management:** Admins only need to interact with the CP nodes to
 control and monitor the status of the entire Kong cluster.
 
+## Platform compatibility
+
+You can run {{site.ee_product_name}} in Hybrid mode on any platform where
+{{site.ee_product_name}} is [supported](/enterprise/{{page.kong_version}}/deployment/installation/overview).
+
+### Kubernetes support and additional documentation
+[Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes)
+fully supports Hybrid mode deployments, with or without the Kong Ingress Controller.
+
+For the full Kubernetes Hybrid mode documentation, see
+[Hybrid mode](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
+in the `kong/charts` repository.
+
 ## Limitations
 
 ### Configuration inflexibility
@@ -57,28 +69,18 @@ Control Plane, all plugin configuration has to occur from the CP. Due to this
 setup, and the configuration sync format between the CP and the DP, some plugins
 have limitations in Hybrid mode:
 
-* **Key Auth Encrypted:** The time-to-live setting (`ttl`), which determines the
-length of time a credential remains valid, does not work in Hybrid mode.
-* **OAuth 2.0 Authentication:** This plugin is not compatible with Hybrid mode.
-For its regular workflow, the plugin needs to both generate and delete tokens,
-and commit those changes to the database, which is not possible with CP/DP
-separation.
+* [**Key Auth Encrypted:**](/hub/kong-inc/key-auth-enc) The time-to-live setting
+(`ttl`), which determines the length of time a credential remains valid, does
+not work in Hybrid mode.
+* [**Rate Limiting Advanced:**](/hub/kong-inc/rate-limiting-advanced)
+This plugin does not support the `cluster` strategy in Hybrid mode. The `redis`
+strategy must be used instead.
+* [**OAuth 2.0 Authentication:**](/hub/kong-inc/oauth2) This plugin is not
+compatible with Hybrid mode. For its regular workflow, the plugin needs to both
+generate and delete tokens, and commit those changes to the database, which is
+not possible with CP/DP separation.
 
 ### Custom plugins
 Custom plugins (either your own plugins or third-party plugins that are not
 shipped with Kong) need to be installed on both the Control Plane and the Data
 Plane in Hybrid mode.
-
-### Kubernetes support
-
-[Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes)
-supports Hybrid mode deployments. However, for the 2.1.x Beta release, the nodes
-will not appear in Kong Manager.
-
-Kong for Kubernetes Enterprise (K4K8s, or the Kong Ingress Controller with
-{{site.base_gateway}}) does not use a database and is therefore not supported in
-Hybrid mode.
-
-* For a comparison of these images, see [Kubernetes Deployment Options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options).
-* For the full Kubernetes Hybrid mode documentation, see [Hybrid mode](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
-in the `kong/charts` repository.

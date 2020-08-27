@@ -39,6 +39,7 @@ kong_version_compatibility:
         - 0.10.x
     enterprise_edition:
       compatible:
+        - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
@@ -82,7 +83,7 @@ params:
     - name: host
       required: semi
       default:
-      value_in_examples: AWS_HOST
+      value_in_examples:
       description: |
         The host where the Lambda function is located. This value can point to a
         local Lambda server, allowing for easier debugging. Either `host` or

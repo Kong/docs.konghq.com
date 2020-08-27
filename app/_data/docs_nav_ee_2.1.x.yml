@@ -20,15 +20,6 @@
 - title: Deployment
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
   items:
-    - text: Deployment Options
-      url: /deployment/deployment-options
-      items:
-    - text: Hybrid Mode
-      items:
-        - text: Overview
-          url: /deployment/hybrid-mode
-        - text: Deploying in Hybrid Mode
-          url: /deployment/hybrid-mode-setup
     - text: Installation
       url: /deployment/installation/overview
       items:
@@ -73,13 +64,24 @@
             - text: RedHat
               url: https://marketplace.redhat.com/en-us/products/kong-enterprise-rhm
               absolute_url: true
-
-    - text: Default Ports
-      url: /deployment/default-ports
-    - text: DNS Considerations
-      url: /deployment/dns-considerations
-    - text: Resource Sizing Guidelines
-      url: /sizing-guidelines
+    - text: Deployment Options
+      url: /deployment/deployment-options
+      items:
+        - text: Hybrid Mode
+          url: /deployment/hybrid-mode
+          items:
+            - text: Deploying in Hybrid Mode
+              url: /deployment/hybrid-mode-setup
+    - text: Deployment Guidelines
+      items:
+        - text: Resource Sizing Guidelines
+          url: /sizing-guidelines
+        - text: Default Ports
+          url: /deployment/default-ports
+        - text: DNS Considerations
+          url: /deployment/dns-considerations
+        - text: Network &amp; Firewall
+          url: /network
     - text: Licensing
       items:
         - text: Overview
@@ -98,8 +100,12 @@
           url: /start-kong-securely
         - text: Kong Security Update Process
           url: /kong-security-update-process
-    - text: Upgrade and Migration
-      url: /deployment/migrations
+    - text: Upgrades and Migrations
+      items:
+        - text: Migrating Kong Enterprise to Latest Version
+          url: /deployment/upgrades/migrations
+        - text: Custom Plugin Breaking Changes
+          url: /deployment/upgrades/custom-changes
     - text: Kong Cloud
       url: /kong-cloud
 
@@ -146,8 +152,6 @@
       url: /clustering
     - text: Logging Reference
       url: /logging
-    - text: Network &amp; Firewall
-      url: /network
     - text: Plugin Development Guide
       items:
         - text: Introduction
@@ -367,7 +371,7 @@
     - text: Enable the Dev Portal
       url: /developer-portal/enable-dev-portal
     - text: Migrating to Latest Release
-      url: /deployment/migrations/
+      url: /developer-portal/latest-migrations
     - text: Migrating from Legacy
       url: /developer-portal/legacy-migration
     - text: Structure and File Types
@@ -480,18 +484,24 @@
 - title: Kong Brain & Kong Immunity
   icon: /assets/images/icons/documentation/icn-brain-color.svg
   items:
+    - text: Overview
+      url: /brain-immunity/overview
     - text: Installation and Configuration
       url: /brain-immunity/install-configure
     - text: Kong Brain
       items:
         - text: Service Map
           url: /brain-immunity/service-map
+        - text: Auto-Generated API Documentation
+          url: /brain-immunity/auto-generated-specs
     - text: Kong Immunity
       items:
         - text: Alerts
           url: /brain-immunity/alerts
-    - text: Auto-Generated API Documentation
-      url: /brain-immunity/auto-generated-specs
+        - text: Model Training
+          url: /brain-immunity/model-training
+        - text: Slack Integration
+          url: /brain-immunity/slack-integration
     - text: Troubleshooting
       url: /brain-immunity/troubleshooting
     - text: Changelog
@@ -536,6 +546,15 @@
           url: /plugins/kafka-log
         - text: Kafka Upstream Plugin
           url: /plugins/kafka-upstream
+    - text: gRPC
+      url: /plugins/grpc
+      items:
+        - text: gRPC-Gateway Plugin
+          url: /hub/kong-inc/grpc-gateway
+          absolute_url: true
+        - text: gRPC-Web Plugin
+          url: /hub/kong-inc/grpc-web
+          absolute_url: true
     - text: Proxy Cache Advanced Plugin
       url: /plugins/proxy-cache-advanced
     - text: Canary Release Plugin
