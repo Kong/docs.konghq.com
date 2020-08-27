@@ -78,12 +78,12 @@ params:
     - name: append.if_status
       required: false
       description: List of response status codes or status code ranges to which the transformation will apply. Empty means all response codes
-    - name: whitelist.json
+    - name: allow.json
       required: false
       default:
       value_in_examples:
       description: |
-        Set of parameter names. Only allows whitelisted parameters in the JSON response body.
+        Set of parameter names. Only allows allowed parameters in the JSON response body.
     - name: transform.functions
       required: false
       description: Set of Lua functions to perform arbitrary transforms in a response JSON body.
