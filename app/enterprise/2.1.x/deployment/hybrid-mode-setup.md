@@ -386,15 +386,25 @@ follow the instructions to:
     ```
 
     Where:
-    * `KONG_CLUSTER_CONTROL_PLANE` is the address and port of the Control Plane
-    (port `8005` by defaut).
-    * `KONG_DATABASE` specifies whether this node connects directly to a database.
-    * `KONG_LUA_SSL_TRUSTED_CERTIFICATE` lists the file as trusted by OpenResty.
-    If you have already specified a different `lua_ssl_trusted_certificate`, then
-    adding the content of `cluster.crt` into that file will achieve the same result.
-    * `<path-to-file>` and `target=<path-to-keys-and-certs>` are the same path
-    pointing to the location of the `cluster.key` and `cluster.crt` files.
-    * `KONG_CLUSTER_SERVER_NAME` specifies the SNI (Server Name Indication
+
+    `KONG_CLUSTER_CONTROL_PLANE`
+    : Sets the address and port of the Control Plane (port `8005` by defaut).
+
+    `KONG_DATABASE`
+    : Specifies whether this node connects directly to a database.
+
+    `KONG_LUA_SSL_TRUSTED_CERTIFICATE`
+    : Lists the file as trusted by OpenResty.
+    If you have already specified a different `lua_ssl_trusted_certificate`,
+    then adding the content of `cluster.crt` into that file will achieve the
+    same result.
+
+    `<path-to-file>` and `target=<path-to-keys-and-certs>`
+    : Are the same path, pointing to the location of the `cluster.key` and
+    `cluster.crt` files.
+
+    `KONG_CLUSTER_SERVER_NAME`
+    : Specifies the SNI (Server Name Indication
     extension) to use for Data Plane connections to the Control Plane through
     TLS. When not set, Data Plane will use `kong_clustering` as the SNI.
       > **Note:** You can also optionally use `KONG_CLUSTER_TELEMETRY_SERVER_NAME`
@@ -446,18 +456,28 @@ and follow the instructions in Steps 1 and 2 **only** to download
     ```
 
     Where:
-    * `cluster_control_plane` is the address and port of the Control Plane
-    (port `8005` by defaut).
-    * `database` specifies whether this node connects directly to a database.
-    * `lua_ssl_trusted_certificate` lists the file as trusted by OpenResty.
-    If you have already specified a different `lua_ssl_trusted_certificate`, then
-    adding the content of `cluster.crt` into that file will achieve the same result.
-    * `<path-to-file>` is the location of the `cluster.key` and `cluster.crt` files.
-    * `cluster_server_name` specifies the SNI (Server Name Indication extension)
+
+    `cluster_control_plane`
+    : Sets the address and port of the Control Plane (port `8005` by defaut).
+
+    `database`
+    : Specifies whether this node connects directly to a database.
+
+    `lua_ssl_trusted_certificate`
+    : Lists the file as trusted by OpenResty.
+    If you have already specified a different `lua_ssl_trusted_certificate`,
+    then adding the content of `cluster.crt` into that file will achieve the
+    same result.
+
+    `<path-to-file>`
+    : Specifies the location of the `cluster.key` and `cluster.crt` files.
+
+    `cluster_server_name`
+    : Specifies the SNI (Server Name Indication extension)
     to use for Data Plane connections to the Control Plane through TLS. When
     not set, Data Plane will use `kong_clustering` as the SNI.
-      > **Note:** You can also optionally use `cluster_telemetry_server_name` to set
-      a custom SNI for Vitals telemetry data. If not set, it defaults to
+      > **Note:** You can also optionally use `cluster_telemetry_server_name`
+      to set a custom SNI for Vitals telemetry data. If not set, it defaults to
       `cluster_server_name`.
 
 3. Restart Kong for the settings to take effect:
