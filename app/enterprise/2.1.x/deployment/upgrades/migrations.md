@@ -155,7 +155,3 @@ the upgrade process is simpler for patch releases.
 seamlessly starts new workers, which then take over from old workers before they
 are terminated. Kong serves new requests using the new
 configuration without dropping existing in-flight connections.
-
-## Migrate the Dev Portal templates {#migrate-dev-portal}
-
-{% include /md/{{page.kong_version}}/migrations/migrate-dev-portal.md %}
