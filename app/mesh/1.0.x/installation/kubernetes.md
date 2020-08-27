@@ -11,7 +11,7 @@ To install and run {{site.mesh_product_name}} on Kubernetes execute the followin
 * [2. Follow Kuma instructions](#_2-follow-kuma-instructions)
 
 <div class="alert alert-ee blue">
-{{site.mesh_product_name}} also provides [Helm charts](/mesh/{{page.kong_version}}/installation/helm) that we can use instead of this distribution.
+{{site.mesh_product_name}} also provides <a href="/mesh/{{page.kong_version}}/installation/helm">Helm charts</a> that we can use instead of this distribution.
 </div>
 
 ### 1. Download {{site.mesh_product_name}}

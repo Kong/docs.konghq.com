@@ -6,7 +6,7 @@ no_search: true
 ## Amazon Linux
 
 <div class="alert alert-ee blue">
-If you wish to use Kuma on Amazon EKS please follow the [Kubernetes instructions](/mesh/{{page.kong_version}}/installation/kubernetes) instead.
+If you wish to use Kuma on Amazon EKS please follow the <a href="/mesh/{{page.kong_version}}/installation/kubernetes">Kubernetes instructions</a> instead.
 </div>
 
 To install and run {{site.mesh_product_name}} on Amazon Linux (**x86_64**) execute the following steps:

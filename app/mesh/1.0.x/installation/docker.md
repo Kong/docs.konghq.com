@@ -11,7 +11,7 @@ To install and run {{site.mesh_product_name}} on Docker execute the following st
 * [2. Follow Kuma instructions](#_2-follow-kuma-instructions)
 
 <div class="alert alert-ee blue">
-The official Docker images are used by default in the [Kubernetes](/mesh/{{page.kong_version}}/installation/kubernetes) and [OpenShift](/mesh/{{page.kong_version}}/installation/openshift) distributions.  
+The official Docker images are used by default in the <a href="/mesh/{{page.kong_version}}/installation/kubernetes">Kubernetes</a> distributions.  
 </div>
 
 ### 1. Download {{site.mesh_product_name}}
