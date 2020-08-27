@@ -34,4 +34,4 @@ following the [embedded installation instructions](/enterprise/{{page.kong_versi
 for your platform, then bring up subsequent instances for the Data Planes without
 enabling any add-ons (e.g., Kong Manager, Developer Portal).
 
-For further distributed setup help, contact Kong Support.
+For further distributed setup help, contact [Kong Support](https://support.konghq.com/support/s/).
