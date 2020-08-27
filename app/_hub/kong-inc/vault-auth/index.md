@@ -96,8 +96,8 @@ parameter                      | default | description
 
 A [Consumer][consumer-object] can have many credentials.
 
-If you are also using the [ACL](/plugins/acl/) plugin and whitelists with this
-service, you must add the new consumer to a whitelisted group. See
+If you are also using the [ACL](/plugins/acl/) plugin and allowed lists with this
+service, you must add the new consumer to an allowed group. See
 [ACL: Associating Consumers][acl-associating] for details.
 
 ### Create a Vault
