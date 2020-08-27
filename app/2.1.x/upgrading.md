@@ -1,5 +1,6 @@
 ---
 title: Upgrade guide
+skip_read_time: true
 ---
 
 This document guides you through the process of upgrading Kong. First, check if
