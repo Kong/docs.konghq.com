@@ -2,7 +2,7 @@
 title: Vitals Reports
 ---
 
-## Using Vitals reports
+## Using Vitals Reports
 
 Browse, filter, and view your data in a Vitals time-series report, and export the data into a comma-separated values (CSV) file. 
 
@@ -20,7 +20,7 @@ When generating a Vitals report, you can:
 **Important**: The Vitals Reports feature is not compatible with a Postgres or Cassandra database. If using one of these databases, the Reports button will not display on the Vitals view. 
 
 
-## Generate a Vitals report
+## Generate a Vitals Report
 
 To create a time-series report containing Vitals data, complete the steps in this section. 
 
