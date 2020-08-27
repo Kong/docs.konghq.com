@@ -2,7 +2,7 @@
 title: Immunity Model Training
 ---
 
-### Introduction
+## Introduction
 
 Immunity automatically starts training its models once it is up and running and receiving data. Immunity creates a model for every unique endpoint + method combination it sees in incoming traffic. For example, if you have an endpoint [www.test-website.com/buy](http://www.test-website.com/buy) and traffic comes in with both GET and POST requests for that endpoint, Immunity will create two models: one for the endpoint + GET traffic and one for the endpoint + POST traffic.
 
@@ -33,7 +33,7 @@ curl -d '{"start":"2019-01-08 10:00:00", "end":"2019-01-09 23:30:00", "kong_enti
  -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer
 ```
 
-### Checking Models Trained
+## Checking Trained Models 
 
 Only endpoints + method combinations that have a model trained can be monitored for alerts. If you want to check which endpoints have models, you can use `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/monitoredendpoints`, which return a list of all models in the system. Each item in this list contains the following identifying information for the model:
 
@@ -46,9 +46,9 @@ In this object, the value is a specific alert type and the value is a boolean va
 
 In general, if an endpoint and method combination model does not appear on the returned object from `/monitoredendpoints`, this is likely because not enough traffic has been seen by Immunity to build a reliable model.
 
-### Configure Auto-Training
+## Configure Auto-Training
 
-#### Restarting Training Schedules
+### Restarting Training Schedules
 
 Immunity automatically sets up training jobs when it first starts up, and retrains all models on an optimized schedule based on the time when data started flowing through Immunity. If you have experienced large changes in the type of data you expect to flow through Immunity and do not feel comfortable choosing an optimal time period to use for retraining with the `/trainer` endpoint, you can re-trigger Immunity's auto-training by posting to the `/trainer/reset` endpoint. Immunity will then recreate its retraining schedule as if it was just being started and newly ingesting data.
 
@@ -59,7 +59,7 @@ curl -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer/reset
 Or, you can also accomplish this by posting to `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/resettrainer`.
 
 
-#### Configuring Auto-Training Rules
+### Configuring Auto-Training Rules
 
 For best results, Immunity retrains on a regular basis. If you do not need to retrain your models regularly and are happy with your current model, you can stop auto retraining via a POST request to the `/trainer/config` endpoint. This endpoint takes these parameters:
 
@@ -79,7 +79,7 @@ Similarly, if you turned off auto-training for a Route and want to turn it back 
 
 These configurations will only apply to training started by Immunity's auto-training schedule. Other training requests made by `/trainer` will not be affected by this configuration.
 
-#### Viewing Configuration Rules
+### Viewing Configuration Rules
 
 To view all of your configured training rules, create a GET request to `/trainer/config`:
 
@@ -89,7 +89,7 @@ curl -X GET http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer/config
 
 A list of all rules is returned, where `kong_entity` refers to the `service_id` or `route_id` the rule applies to, and enabled is a true or false value.
 
-#### Resetting or Deleting Configured Rules
+### Resetting or Deleting Configured Rules
 
 To delete a single auto-train rule that you created, you can send a delete request to `/trainer/config` with a `kong_entity` parameter and value of the `service_id` or `route_id` of the rule you want to delete.
 
