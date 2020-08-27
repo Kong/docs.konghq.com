@@ -2,38 +2,49 @@
 title: What's New in the Docs
 ---
 
-This topic gives an overview of recent updates to the Kong Enterprise user documentation, including new features, updates, and fixes. 
+What's New in the Docs is an overview of recent updates to the Kong Enterprise user documentation, including new features, updates, and fixes. 
 
-## What's New and Updated in the Kong Enterprise 2.1.x Docs
-
-## Installation
-  * [Installing Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes/) walks you through installation of the `kong-enterprise-edition` image on Kubernetes with all Enterprise plugins and add-ons.
-* [Installation topics](/enterprise/{{page.kong_version}}/deployment/installation/overview/) reorganized.
+## New or Updated in Kong Enterprise 2.1.x Docs
 
 ## Release Notes
-* New [Version Support](/enterprise/{{page.kong_version}}/support-policy/) information and matrix.
+* New [Version Support](/enterprise/2.1.x/support-policy/) information and matrix.
+
+## Installation
+* Updated [Installing Kong Enterprise on Kubernetes](/enterprise/2.1.x/kong-for-kubernetes/install-on-kubernetes/) walks you through installation of the `kong-enterprise-edition` image on Kubernetes with all Enterprise plugins and add-ons.
+* [Installation topics](/enterprise/2.1.x/deployment/installation/overview/) reorganized.
 
 ## Deployment 
-  * [Kong Deployment Options](/enterprise/{{page.kong_version}}/deployment/deployment-options/)
-  * [DNS Considerations](/enterprise/{{page.kong_version}}/deployment/dns-considerations/)
-  * [Kong Security Update Process](/enterprise/{{page.kong_version}}/kong-security-update-process/)
-* Improved Kubernetes topics:
-  * [Kubernetes Deployment Options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options/) breaks down the differences between the two available Kong Enterprise images and helps you choose a deployment.
+* New [Deployment Options](/enterprise/2.1.x/deployment/deployment-options/) section
+* New [Classic Deployment](/enterprise/2.1.x/deployment/classic-deployment/) includes embedded and distributed information.
+* New [Hybrid Mode](/enterprise/2.1.x/deployment/hybrid-mode/) includes hyrbid mode information and new topic [Deploying Hybrid Mode](/enterprise/2.1.x/deployment/hybrid-mode-setup/)
+* New Deployment Guidelines section, with new [DNS Considerations](/enterprise/2.1.x/deployment/dns-considerations/) topic.
+* New [Kong Security Update Process](/enterprise/2.1.x/kong-security-update-process/) topic. 
 
-##Deck
+## decK
 * [decK documentation](https://docs.konghq.com/deck/) has moved to docs.konghq.com.
 
-## Vitals
-* Improved [Vitals section](/enterprise/{{page.kong_version}}/vitals/overview/), including new [Overview](/enterprise/{{page.kong_version}}/vitals/overview/), [Reports](/enterprise/{{page.kong_version}}/vitals/vitals-reports/), and [Metrics](/enterprise/{{page.kong_version}}/vitals/vitals-metrics/) topics.
+## Kong for Kubernetes
+* Improved [Kubernetes Deployment Options](/enterprise/2.1.x/kong-for-kubernetes/deployment-options/) breaks down the differences between the two available Kong Enterprise images and helps you choose a deployment.
 
-## Brain and Immunity
-* 
+## Kong Vitals
+* New [Vitals Overview](/enterprise/2.1.x/vitals/overview/) topic.
+* New [Vitals Reports](/enterprise/2.1.x/vitals/vitals-reports/) topic.
+* New [Vitals Metrics](/enterprise/2.1.x/vitals/vitals-metrics/) topic.
+* Improved section in navigation menu.
+
+## Kong Brain and Kong Immunity
+* New [Kong Brain and Kong Immunity Overview](/enterprise/2.1.x/brain-immunity/overview/) topic. 
+* Updated [Kong Brain and Kong Immunity Installation and Configuration](/enterprise/2.1.x/brain-immunity/install-configure/) instructions, simplifying the installation process for Brain and Immunity 
+* Updated [Immunity Alert](/enterprise/2.1.x/brain-immunity/alerts/) topic.
+* Updated [Immunity Model Training](/enterprise/2.1.x/brain-immunity/model-training/) topic.
+* Updated [Alert Slack Integration](/enterprise/2.1.x/brain-immunity/slack-integration/) topic.
+* Improved section in navigation menu, with new topics and dropdown menus. 
 
 ## Plugins
-  * Declarative configuration (YAML) information added to Plugins examples. 
-  * [Plugin Overview](/hub/plugins/overview/) introduces the most basic things you need to know to get started with plugins: what they are, why you might use them, terminology, and information on creating your own plugins and plugin documentation.
-  * [Plugin Compatibility Matrix](/hub/plugins/compatibility/) compares the various Kong Gateway deployment modes.
-  * [gRPC Gateway](/hub/kong-inc/grpc-gateway/) Plugin documentation is improved. 
+* New declarative configuration (YAML) examples added to Plugins. 
+* New [Plugin Overview](/hub/plugins/overview/) introduces the most basic things you need to know to get started with plugins: what they are, why you might use them, terminology, and information on creating your own plugins and plugin documentation.
+* New [Plugin Compatibility Matrix](/hub/plugins/compatibility/) compares the various Kong Gateway deployment modes.
+* Updated [gRPC Gateway](/hub/kong-inc/grpc-gateway/) Plugin documentation. 
 
 ## Doc Site Improvements
-* New Doc site improvements, including: table of contents rework; collapsible sub-sections; mobile layout fixes; images expand on click; ability to copy code snippets; ability to stay on same topic when navigating between versions; right-hand navigation "On this page" redesign with collapse and reopen feature; scroll to the top button; and resizable table columns.
+* New Doc site improvements include table of contents rework; collapsible sub-sections; mobile layout fixes; images expand on click; ability to copy code snippets; ability to stay on same topic when navigating between versions; right-hand navigation "On this page" redesign with collapse and reopen feature; scroll to the top button; and resizable table columns.
