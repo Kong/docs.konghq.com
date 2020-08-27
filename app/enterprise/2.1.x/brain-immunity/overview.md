@@ -2,6 +2,8 @@
 title: Kong Brain and Kong Immunity Overview
 ---
 
+### Introduction
+
 **Kong Brain** (Brain) and **Kong Immunity** (Immunity) help automate the entire API and service development life cycle. By automating processes for configuration, traffic analysis and the creation of documentation, Brain and Immunity help organizations improve efficiency, governance, reliability and security.  Brain automates API and service documentation and Immunity uses advanced machine learning to analyze traffic patterns to diagnose and improve security.
 
 ![Kong Brain and Kong Immunity](/assets/images/docs/ee/brain_immunity_overview.png)
