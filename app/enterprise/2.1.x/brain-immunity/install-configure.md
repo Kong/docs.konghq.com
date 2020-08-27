@@ -137,19 +137,16 @@ $ docker run -d --name celery-worker \
 ### Step 8. Validate the Collector App Installation
 To complete the Collector App installation, validate the Collector App is working:
 ```bash
-$ curl -X POST localhost:8001/default/plugins \
-    -d name=collector \
-    -d config.http_endpoint=http://collector:5000
-    
-$ curl localhost:8001/default/collector/status
+curl -i -X GET --url http://localhost:5000/status
 ```
 You should receive an HTTP/1.1 200 OK message.
 
 
 ### Step 9. Enable and Configure the Collector Plugin using Kong Manager
-Enable the Collector Plugin using Kong Manager. To enable the plugin:
+
+Using Kong Manager, enable the Collector Plugin. To enable the plugin:
 1. Navigate to the **Workspaces** page.
-2. Click the Workspace you want to use. For example, **default**. 
+2. Click the workspace you want to use. For example, the **default** workspace. 
 3. Click **Plugins** in the API Gateway section of the left navigation bar.
 4. Click **New Plugin** which opens a page of plugin options.
 5. Scroll to the Analytics and Monitoring section, and click **Enable** on the **Collector** tile.
@@ -158,14 +155,20 @@ Enable the Collector Plugin using Kong Manager. To enable the plugin:
 ** The default values populating the remaining fields are valid for a minimal configuration. 
 7. Click **Create**. The Collector Plugin is configured.
 
+Using a cURL command enter:
+```bash
+$ curl -X POST localhost:8001/default/plugins \
+    -d name=collector \
+    -d config.http_endpoint=http://collector:5000
+```    
 
 ### Step 10. Confirm the Collector Plugin is Enabled and Configured 
 1. Click **Alerts** in the left navigation pane, and the Alerts page should say **Collector is connected**.
 2. Click **Service Map** in the left navigation pane, and the Service Map should display with the **Add Service** button. 
 
-You can also hit one of the URLs mapped through the Collector App to confirm the Collector Plugin in enabled and configured. The port and host must match the Collector App. For example:
+Using a cURL command, enter:
 ```bash
-/<workspace name>/collector/alerts
+$ curl localhost:8001/default/collector/status
 ```
 
 ## Summary
