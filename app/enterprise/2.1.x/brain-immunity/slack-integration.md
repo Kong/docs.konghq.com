@@ -36,8 +36,7 @@ curl -d '{"endpoint":"www.your-slack-webhook.com"} \
  -H "Content-Type: application/json" \
  -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/notifications/slack/config
 ```
-
-3. You have now successfully connected your Slack channel to Immunity and all alerts will notify you.
+You have now successfully connected your Slack channel to Immunity and all alerts will notify you.
 
 ## Routing Different Alerts to Different Slack Channels
 
