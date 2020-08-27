@@ -378,8 +378,8 @@ follow the instructions to:
     -e "KONG_CLUSTER_TELEMETRY_ENDPOINT=control-plane.<admin-hostname>.com:8006" \
     -e "KONG_CLUSTER_MTLS=pki" \
     -e "KONG_CLUSTER_SERVER_NAME=control-plane.kong.yourcorp.tld" \
-    -e "KONG_CLUSTER_CERT"=data-plane.crt" \
-    -e "KONG_CLUSTER_CERT_KEY"=data-plane.crt"
+    -e "KONG_CLUSTER_CERT=data-plane.crt" \
+    -e "KONG_CLUSTER_CERT_KEY=data-plane.crt"
     --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
     -p 8000:8000 \
     kong-ee-dp1
@@ -397,6 +397,9 @@ follow the instructions to:
     * `KONG_CLUSTER_SERVER_NAME` specifies the SNI (Server Name Indication
     extension) to use for Data Plane connections to the Control Plane through
     TLS. When not set, Data Plane will use `kong_clustering` as the SNI.
+      > **Note:** You can also optionally use `KONG_CLUSTER_TELEMETRY_SERVER_NAME`
+      to set a custom SNI for Vitals telemetry data. If not set, it defaults to
+      `KONG_CLUSTER_SERVER_NAME`.
 
 3. If needed, bring up any subsequent Data Planes using the same settings.
 
@@ -453,6 +456,9 @@ and follow the instructions in Steps 1 and 2 **only** to download
     * `cluster_server_name` specifies the SNI (Server Name Indication extension)
     to use for Data Plane connections to the Control Plane through TLS. When
     not set, Data Plane will use `kong_clustering` as the SNI.
+      > **Note:** You can also optionally use `cluster_telemetry_server_name` to set
+      a custom SNI for Vitals telemetry data. If not set, it defaults to
+      `cluster_server_name`.
 
 3. Restart Kong for the settings to take effect:
     ```bash
@@ -522,7 +528,8 @@ Parameter | Description | Shared Mode {:width=12%:} | PKI Mode {:width=30%:}
 --- | --- | --- | ---
 `cluster_cert` and `cluster_cert_key` <br>*Required* | Certificate/key pair used for mTLS between CP/DP nodes. | Same between CP/DP nodes. | Unique certificate for each node, generated from the CA specified by `cluster_ca_cert`.
 `cluster_ca_cert` <br>*Required in PKI mode* | The trusted CA certificate file in PEM format used to verify the `cluster_cert`. | *Ignored* | CA certificate used to verify `cluster_cert`, same between CP/DP nodes. *Required*
-`cluster_server_name` <br>*Required in PKI mode* | The SNI Server Name presented by the DP node mTLS handshake. | *Ignored* | In PKI mode the DP nodes will also verify that the Common Name (CN) or Subject Alternative Name (SAN) inside certificate presented by CP matches the `cluster_server_name` value.
+`cluster_server_name` <br>*Required in PKI mode* | The SNI presented by the DP node mTLS handshake. | *Ignored* | In PKI mode, the DP nodes will also verify that the Common Name (CN) or Subject Alternative Name (SAN) inside the certificate presented by CP matches the `cluster_server_name` value.
+`cluster_telemetry_server_name` |  The Vitals telemetry SNI presented by the DP node mTLS handshake. If not specified, falls back on SNI set in `cluster_server_name`. | *Ignored* | In PKI mode, the DP nodes will also verify that the Common Name (CN) or Subject Alternative Name (SAN) inside the certificate presented by CP matches the `cluster_telemetry_server_name` value.
 
 ## Next steps
 

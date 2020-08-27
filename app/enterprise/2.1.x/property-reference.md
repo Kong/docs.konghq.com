@@ -2524,15 +2524,16 @@ Required if `cluster_mtls` is set to `pki`, ignored otherwise.
 
 **Default:** none
 
-The server name used in the SNI of the TLS connection from a DP node to a CP
-node.
+The server name used in the SNI of the TLS connection from from a Data Plane
+node to a Control Plane node.
 
 Must match the Common Name (CN) or Subject Alternative Name (SAN) found in the
 CP certificate.
 
-If `cluster_mtls` is set to `shared`, this setting is ignored and
-`kong_clustering` is used.
+Only used if `cluster_mtls` is set to `pki.` If `cluster_mtls` is set to
+`shared`, this setting is ignored and `kong_clustering` is used.
 
+This setting has no effect if `role` is not set to `control_plane`.
 
 #### cluster_control_plane
 
@@ -2578,3 +2579,16 @@ The cluster communication port of the control plane must be accessible by the
 Control Plane. This port is always protected with Mutual TLS (mTLS) encryption.
 
 This setting has no effect if `role` is not set to `data_plane`.
+
+### cluster_telemetry_server_name
+
+**Default:** none
+
+The Vitals telemetry server name used in the SNI of the TLS connection from a 
+Data Plane node to a Control Plane node.
+
+Must match the Common Name (CN) or Subject Alternative Name (SAN) found in the
+CP certificate.
+
+Only used if `cluster_mtls` is set to `pki.` If not set, `cluster_server_name`
+is used.
