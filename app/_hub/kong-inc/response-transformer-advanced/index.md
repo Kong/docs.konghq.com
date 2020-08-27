@@ -83,7 +83,7 @@ params:
       default:
       value_in_examples:
       description: |
-        Set of parameter names. Only allows allowed parameters in the JSON response body.
+        Set of parameter names. Only allowed parameters are present in the JSON response body.
     - name: transform.functions
       required: false
       description: Set of Lua functions to perform arbitrary transforms in a response JSON body.
