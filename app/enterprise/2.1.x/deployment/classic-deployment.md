@@ -2,12 +2,12 @@
 title: Classic Deployment
 ---
 {{site.ee_product_name}} can be deployed in the following classic deployment modes:
-* [**Embedded:**](#embedded) classic deployment with all services on one node.
-* [**Distributed:**](#distributed) classic deployment with distributed services.
+* [**Embedded:**](#embedded) deployment with all services on one node.
+* [**Distributed:**](#distributed) deployment with distributed services. Unlike 
+in Hybrid mode, every node must connect to a database.
 
-## Classic deployment
 
-### Embedded
+## Embedded
 
 In this deployment mode, you install one instance of Kong, and all of its add-ons
 reside on the same node. This option is normally used for testing and development.
@@ -21,7 +21,7 @@ reside on the same node. This option is normally used for testing and developmen
 
 To learn more, see the [installation documentation](/enterprise/{{page.kong_version}}/deployment/installation).
 
-### Distributed
+## Distributed
 
 In a production environment, we recommend that you install multiple instances of
 Kong on separate nodes. Each of these nodes must connect to the Kong database,
