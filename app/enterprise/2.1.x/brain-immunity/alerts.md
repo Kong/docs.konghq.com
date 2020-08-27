@@ -15,7 +15,7 @@ Use the Alerts Dashboard in Kong Manager to view and manage alerts. When an aler
 ### Types of Alerts
 Immunity evaluates your traffic every minute and creates an alert when it detects an anomalous event on either of two entity types: endpoint traffic or consumer traffic.
 
-* `Endpoint alerts` are generated from traffic belonging to one specific endpoint, for example, GET www.testendpoint/start.
+* `Endpoint alerts` are generated from traffic belonging to one specific endpoint, for example, `GET www.testendpoint/start`.
 * `Consumer alerts` are generated from any traffic in a Workspace belonging to a registered Kong consumer. This traffic is identified by the consumer ID.
 
 #### Alert Events
