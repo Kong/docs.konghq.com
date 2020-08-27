@@ -9,9 +9,6 @@ Immunity monitors all traffic that flows through Kong Enterprise. When an anomal
 ### Alerts Dashboard
 Use the Alerts Dashboard in Kong Manager to view and manage alerts. When an alert is generated, it is automatically added to the Alerts Dashboard. The dashboard gives a high-level overview of identified alerts, including severity level, event type, status, and details about the alert. Click an alert to drill down into more details to further investigate the issue.
 
-![Introduction to Kong Immunity Alerts](/assets/images/docs/ee/alerts_dashboard.png)
-
-
 ### Types of Alerts
 Immunity evaluates your traffic every minute and creates an alert when it detects an anomalous event on either of two entity types: endpoint traffic or consumer traffic.
 
