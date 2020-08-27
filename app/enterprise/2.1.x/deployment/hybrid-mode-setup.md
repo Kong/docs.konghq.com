@@ -27,7 +27,7 @@ pair, then distribute copies across nodes. The certificate/key pair is shared
 by both CP and DP nodes.
 * **PKI mode:** Provide certificates signed by a central certificate authority
 (CA). Kong validates both sides by checking if they are from the same CA. This
-eliminates the risks associated with transporting private keys around.
+eliminates the risks associated with transporting private keys.
 
 For a breakdown of the properties used by these modes, see the
 [configuration reference table](#configuration-reference).
