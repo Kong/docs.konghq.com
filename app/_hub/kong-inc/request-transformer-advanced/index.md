@@ -134,12 +134,12 @@ params:
       value_in_examples:
       description: |
         List of paramname:value pairs. If the content-type is one the following [`application/json`, `application/x-www-form-urlencoded`], add a new parameter with the given value if the parameter is not present, otherwise if it is already present, the two values (old and new) will be aggregated in an array.
-    - name: whitelist.body
+    - name: allow.body
       required: false
       default:
       value_in_examples:
       description: |
-        Set of parameter name. If and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`], allow only whitelisted parameters in the body.
+        Set of parameter name. If and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`], allow only allowed parameters in the body.
   extra: |
     **Notes:**
     * If the value contains a `,` then the comma separated format cannot be used. The array notation must be used instead.
