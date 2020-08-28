@@ -90,10 +90,10 @@
           items:
             - text: Custom Plugin Breaking Changes
               url: /deployment/upgrades/custom-changes
-            - text: Migrating the Dev Portal to the Latest Release
-              url: /developer-portal/latest-migrations
-            - text: Migrating from Kong Community to Kong Enterprise
-              url: /deployment/upgrades/migrate-ce-to-ke
+        - text: Migrating the Dev Portal to the Latest Version
+          url: /developer-portal/latest-migrations
+        - text: Migrating from Kong Community to Kong Enterprise
+          url: /deployment/upgrades/migrate-ce-to-ke
     - text: Kong Cloud
       url: /kong-cloud
 
@@ -358,7 +358,7 @@
       url: /developer-portal/
     - text: Enable the Dev Portal
       url: /developer-portal/enable-dev-portal
-    - text: Migrating to Latest Release
+    - text: Migrating to Latest Version
       url: /developer-portal/latest-migrations
     - text: Migrating from Legacy
       url: /developer-portal/legacy-migration
