@@ -58,7 +58,8 @@ Available options:
             # Developer Portal application registration
             # auth provider and strategy. Must be set to configure the
             # application_registration plugin.
-            # Currently accepts kong-oauth2 (default) or external-oauth2.
+            # Currently accepts kong-oauth2 (default, cannot be used with hybrid
+            #  mode) or external-oauth2 (must be used with hybrid mode).
    ```
 
 2. [Restart](https://docs.konghq.com/2.1.x/cli/#kong-restart) your Kong Enterprise
