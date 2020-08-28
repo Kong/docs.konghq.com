@@ -62,7 +62,7 @@ affect your current installation.
   extra steps you need to take when migrating to 2.1.x.
 * The Kong Developer Portal has undergone a number of breaking changes. If you
   are currently using the Developer Portal, it will no longer work without
-  [manually migrating files](#migrate-dev-portal).
+  [manually migrating files](/enterprise/{{page.kong_version}}/developer-portal/latest-migrations).
 
 ### Migrating from 1.5.x (or 2.1.x-beta) to 2.1.x
 
