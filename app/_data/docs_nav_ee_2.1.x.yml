@@ -91,8 +91,13 @@
       items:
         - text: Migrating Kong Enterprise to Latest Version
           url: /deployment/upgrades/migrations
-        - text: Custom Plugin Breaking Changes
-          url: /deployment/upgrades/custom-changes
+          items:
+            - text: Custom Plugin Breaking Changes
+              url: /deployment/upgrades/custom-changes
+        - text: Migrating the Dev Portal to the Latest Version
+          url: /developer-portal/latest-migrations
+        - text: Migrating from Kong Community to Kong Enterprise
+          url: /deployment/upgrades/migrate-ce-to-ke
     - text: Kong Cloud
       url: /kong-cloud
 
@@ -357,7 +362,7 @@
       url: /developer-portal/
     - text: Enable the Dev Portal
       url: /developer-portal/enable-dev-portal
-    - text: Migrating to Latest Release
+    - text: Migrating to Latest Version
       url: /developer-portal/latest-migrations
     - text: Migrating from Legacy
       url: /developer-portal/legacy-migration
@@ -412,7 +417,7 @@
           url: /developer-portal/theme-customization/markdown-extended
         - text: Customizing Portal Emails
           url: /developer-portal/theme-customization/emails
-        - text: Adding and Using Javascript Assets
+        - text: Adding and Using JavaScript Assets
           url: /developer-portal/theme-customization/adding-javascript-assets
         - text: Single Page App in Dev Portal
           url: /developer-portal/theme-customization/single-page-app
