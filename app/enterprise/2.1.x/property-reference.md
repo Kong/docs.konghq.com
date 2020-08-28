@@ -2451,3 +2451,144 @@ Example:
 For Pattern `/$(workspace)/v%d/.*` valid path are:
 1. `/group1/v1/` if route belongs to workspace 'group1'.
 2. `/group2/v1/some_path` if route belongs to workspace 'group2'.
+
+## Hybrid mode
+
+### role
+
+**Default:** `traditional`
+
+Use this setting to enable Hybrid Mode. This allows running some Kong nodes in
+a control plane role with a database and have them deliver configuration updates
+to other nodes running to DB-less running in a Data Plane role.
+
+Valid values to this setting are:
+
+- `traditional`: do not use Hybrid Mode.
+- `control_plane`: this node runs in a control plane role. It can use a
+  database and will deliver configuration updates to data plane nodes.
+- `data_plane`: this is a data plane node. It runs DB-less and receives
+  configuration updates from a control plane node.
+
+### cluster_mtls
+
+**Default:** `shared`
+
+Sets the verification between nodes of the cluster.
+
+Valid values to this setting are:
+
+- `shared`: use a shared certificate/key pair specified with the `cluster_cert`
+  and `cluster_cert_key` settings. Note that CP and DP nodes have to present the
+  same certificate to establish mTLS connections.
+- `pki`: use `cluster_ca_cert`, `cluster_server_name` and `cluster_cert` for
+  verification. These are different certificates for each DP node, but issued by
+  a cluster-wide common CA certificate: `cluster_ca_cert`.
+
+### cluster_cert
+
+**Default:** none
+
+Filename of the cluster certificate to use when establishing secure
+communication between control and data plane nodes.
+
+You can use the `kong hybrid` command to generate the certificate/key pair.
+
+Under `shared` mode, it must be the same for all nodes. Under `pki` mode it
+should be a different certificate for each DP node.
+
+### cluster_cert_key
+
+**Default:** none
+
+Filename of the cluster certificate key to use when establishing secure
+communication between control and data plane nodes.
+
+You can use the `kong hybrid` command to generate the certificate/key pair.
+
+Under `shared` mode, it must be the same for all nodes. Under `pki` mode it
+should be a different certificate for each DP node.
+
+
+### cluster_ca_cert
+
+**Default:** none
+
+The trusted CA certificate file in PEM format used to verify the
+`cluster_cert`.
+
+Required if `cluster_mtls` is set to `pki`, ignored otherwise.
+
+
+### cluster_server_name
+
+**Default:** none
+
+The server name used in the SNI of the TLS connection from from a Data Plane
+node to a Control Plane node.
+
+Must match the Common Name (CN) or Subject Alternative Name (SAN) found in the
+CP certificate.
+
+Only used if `cluster_mtls` is set to `pki.` If `cluster_mtls` is set to
+`shared`, this setting is ignored and `kong_clustering` is used.
+
+This setting has no effect if `role` is not set to `control_plane`.
+
+#### cluster_control_plane
+
+**Default:** none
+
+To be used by data plane nodes only: address of the control plane node from
+which configuration updates will be fetched, in `host:port` format.
+
+#### cluster_listen
+
+**Default:** `0.0.0.0:8005`
+
+Comma-separated list of addresses and ports on which the cluster control plane
+server should listen for data plane connections.
+
+The cluster communication port of the control plane must be accessible by all
+the data planes within the same cluster. This port is mTLS protected to ensure
+end-to-end security and integrity.
+
+This setting has no effect if `role` is not set to `control_plane`.
+
+### cluster_telemetry_listen
+
+**Default:** `0.0.0.0:8006`
+
+Comma-separated list of addresses and ports on which the Control Plane will
+listen for Data Plane Vitals telemetry data.
+
+The cluster communication port of the control plane must be accessible by all
+the data planes within the same cluster. This port is always
+protected with Mutual TLS (mTLS) encryption.
+
+This setting has no effect if `role` is not set to `control_plane`.
+
+### cluster_telemetry_endpoint
+
+**Default:** none
+
+Comma-separated list of addresses and ports on that the Data Plane uses to send
+Vitals telemetry data to the Control Plane.
+
+The cluster communication port of the control plane must be accessible by the
+Control Plane. This port is always protected with Mutual TLS (mTLS) encryption.
+
+This setting has no effect if `role` is not set to `data_plane`.
+
+### cluster_telemetry_server_name
+
+**Default:** none
+
+The Vitals telemetry server name used in the SNI of the TLS connection from a 
+Data Plane node to a Control Plane node.
+
+Must match the Common Name (CN) or Subject Alternative Name (SAN) found in the
+CP certificate.
+
+Only used if `cluster_mtls` is set to `pki.` If not set, `cluster_server_name`
+is used.
