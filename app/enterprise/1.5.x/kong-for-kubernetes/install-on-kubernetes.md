@@ -168,6 +168,7 @@ In the following steps, replace `<your-password>` with a secure password.
     |`image.repository` | The Docker repository. In this case, `kong-docker-kong-enterprise-edition-docker.bintray.io/ kong-enterprise-edition`. |
     |`image.tag` | The Docker image tag you want to pull down, e.g. `"1.5.0.2-alpine"`. |
     |`ingressController.enabled` | Set to `true` if you want to use the Kong Ingress Controller, or `false` if you don't want to install it. |
+    |`admin.enabled` | Set to `true` in order to enable the Admin API, which is required for the Kong Manager. |
 
 3. In the `Kong Enterprise` section, enable Kong Manager (`manager`) and Kong Dev Portal (`portal`).
 
@@ -207,6 +208,9 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     $ helm install  my-kong kong/kong --namespace kong --values ~/values.yaml
     ```
     This may take some time.
+
+⚠️**Important:** If you are running postgres as a sub-chart and you are getting some issues connecting to the database, please make sure that you delete Postgres' persistent volumes in your kubernetes cluster before retrying the helm install. 
+
 
 2. Check pod status:
     ```
