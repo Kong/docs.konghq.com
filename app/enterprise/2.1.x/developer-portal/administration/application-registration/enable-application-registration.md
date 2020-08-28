@@ -92,8 +92,10 @@ the Issuer URL is essential for the
 ## Next steps
 
 * If using the Kong-managed authorization strategy
-(`kong-oauth2`), configure the OAuth2 plugin. You can use the Kong Manager GUI
-or cURL commands as documented on the [Plugin Hub](/hub/kong-inc/oauth2).
+(`kong-oauth2`, configure the OAuth2 plugin.
+ You can use the Kong Manager GUI or cURL commands as documented on the
+ [Plugin Hub](/hub/kong-inc/oauth2). This plugin cannot be used in hybrid mode.
 * if using the third-party authorization strategy
 (`external-oauth2`), configure the OIDC plugin. You can use the GUI or cURL
-commands as documented on the plugin hub.
+commands as documented on the [Plugin Hub](/hub/kong-inc/openid-connect). This
+plugin must be used in hybrid mode.
