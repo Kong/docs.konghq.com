@@ -27,14 +27,14 @@ Call the Admin API on port `8001` and configure plugins to enable in-memory cach
 ```
 $ curl -i -X POST http://<admin-hostname>:8001/plugins \
 --data name=proxy-cache \
---data config.content_type="application/json" \
+--data config.content_type="application/json; charset=utf-8" \
 --data config.cache_ttl=30 \
 --data config.strategy=memory
 ```
 
 *Or using HTTPie*:
 ```
-$ http -f :8001/plugins name=proxy-cache config.strategy=memory config.content_type="application/json"
+$ http -f :8001/plugins name=proxy-cache config.strategy=memory config.content_type="application/json; charset=utf-8"
 ```
 
 {% endnavtab %}
@@ -54,7 +54,7 @@ $ http -f :8001/plugins name=proxy-cache config.strategy=memory config.content_t
 
 7. Scroll down and complete only the following fields with the parameters listed.
     1. config.cache_ttl: `30`
-    2. config.content_type: `application/json`
+    2. config.content_type: `application/json; charset=utf-8`
     3. config.strategy: `memory`
 
     Besides the above fields, there may be others populated with default values. For this example, leave the rest of the fields as they are.
