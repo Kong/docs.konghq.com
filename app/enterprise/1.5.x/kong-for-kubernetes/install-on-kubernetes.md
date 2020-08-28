@@ -241,6 +241,9 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     $ kubectl get svc -n kong my-kong-kong-admin --output=jsonpath='{.status.loadBalancer.ingress[0].ip}'
     ```
 
+⚠️**Important:** The command above requires the enabling of the Admin API. If you have not set the value `admin.enabled` to true in your `values.yaml`, then the command above will not work. 
+
+
 2. Copy the IP address from the output, then edit the `values.yaml` file to add the following line under `env` section:
 
     > **Note:** Do not use IPs with RBAC. If you want to use RBAC, you need to set
