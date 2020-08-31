@@ -209,7 +209,13 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     ```
     This may take some time.
 
-⚠️**Important:** If you are running postgres as a sub-chart and you are getting some issues connecting to the database, please make sure that you delete Postgres' persistent volumes in your kubernetes cluster before retrying the helm install. 
+    <div class="alert alert-warning">
+    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i> 
+    <strong>Important:</strong> 
+    If you are running Postgres as a sub-chart and having problems with connecting to 
+    the database, delete Postgres' persistent volumes in your Kubernetes cluster, then 
+    retry the Helm install. 
+    </div>
 
 
 2. Check pod status:
