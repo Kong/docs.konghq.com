@@ -174,6 +174,7 @@ In the following steps, replace `<your-password>` with a secure password.
     |`image.repository` | The Docker repository. In this case, `kong-docker-kong-enterprise-edition-docker.bintray.io/ kong-enterprise-edition`. |
     |`image.tag` | The Docker image tag you want to pull down, e.g. `"1.5.0.2-alpine"`. |
     |`ingressController.enabled` | Set to `true` if you want to use the Kong Ingress Controller, or `false` if you don't want to install it. |
+    |`admin.enabled` | Set to `true` to enable the Admin API, which is required for the Kong Manager. |
 
 3. In the `Kong Enterprise` section, enable Kong Manager (`manager`) and Kong Dev Portal (`portal`).
 
@@ -214,6 +215,14 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     ```
     This may take some time.
 
+    <div class="alert alert-warning">
+    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i> 
+    <strong>Important:</strong> 
+    If you are running Postgres as a sub-chart and having problems with connecting to 
+    the database, delete Postgres' persistent volumes in your Kubernetes cluster, then 
+    retry the Helm install. 
+    </div>
+
 2. Check pod status:
     ```
     $ kubectl get pods -n kong
@@ -242,7 +251,13 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     ```
     $ kubectl get svc -n kong my-kong-kong-admin --output=jsonpath='{.status.loadBalancer.ingress[0].ip}'
     ```
-
+    <div class="alert alert-warning">
+    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i> 
+    <strong>Important:</strong> The command above requires the Kong Admin API. If you 
+    have not set <code>admin.enabled</code> to <code>true</code> in your 
+    <code>values.yaml</code>, then this command will not work. 
+    </div>
+    
 2. Copy the IP address from the output, then edit the `values.yaml` file to add the following line under `env` section:
 
     > **Note:** Do not use IPs with RBAC. If you want to use RBAC, you need to set
