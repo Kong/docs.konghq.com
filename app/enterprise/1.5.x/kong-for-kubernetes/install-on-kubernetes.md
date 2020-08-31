@@ -216,6 +216,12 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     the database, delete Postgres' persistent volumes in your Kubernetes cluster, then 
     retry the Helm install. 
     </div>
+    
+    <div class="alert alert-warning">
+    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i> 
+    <strong>Important:</strong> 
+    If you have already installed the CRDs, run the command above with the following flag: `--set ingressController.installCRDs=false`. 
+    </div>
 
 
 2. Check pod status:
