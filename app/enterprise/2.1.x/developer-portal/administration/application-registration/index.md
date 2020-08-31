@@ -23,7 +23,7 @@ OAuth2 plugins for use with the Application Registration plugin:
 - When Kong is the system of record, the Application Registration plugin works
   in conjunction with the Kong OAuth2 plugin.
 
-  **Note:** The Kong OAuth2 plugin does not support
+  **Important:** The Kong OAuth2 plugin does not support
   [hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/).
   If your organization uses hybrid mode, you must use an external identity
   provider and configure the Kong OIDC plugin.
