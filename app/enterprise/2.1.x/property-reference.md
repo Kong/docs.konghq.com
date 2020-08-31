@@ -1803,6 +1803,26 @@ portals to render using the legacy rendering system by default.
 Setting this value to `off` causes all new
 portals to render using the current rendering system.
 
+## Dev Portal Application Registration Authentication Strategy
+
+### portal_app_auth
+
+**Default:** `kong-oauth2`.
+
+**Description:**
+Developer Portal application registration auth provider and strategy.
+Must be set to configure authentication in conjunction with the
+`application_registration` plugin. Currently accepts `kong-oauth2` (default) or
+`external-oauth2`.
+
+  **Important:** The Kong OAuth2 plugin does not support
+  [hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/).
+  If your organization uses hybrid mode, you must use an external identity
+  provider and configure the Kong [OIDC](/hub/kong-inc/openid-connect/) plugin.
+  Refer to the
+  [recommended workflows](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth#supported-oauth-flows).
+  See the
+  [Okta example](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config).
 
 ## Default Dev Portal Authentication
 
