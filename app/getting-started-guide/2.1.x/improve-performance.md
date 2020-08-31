@@ -61,6 +61,28 @@ $ http -f :8001/plugins name=proxy-cache config.strategy=memory config.content_t
 
 8. Click **Create**.
 {% endnavtab %}
+{% navtab Using decK %}
+
+1. In the `plugins` section of your `kong.yaml` file, add the `proxy-cache`
+plugin with a timeout of 30 seconds for Content-Type
+`application/json; charset=utf-8`.
+
+    ``` yaml
+    - name: proxy-cache
+    config:
+      content_type:
+      - "application/json; charset=utf-8"
+      cache_ttl: 30
+      strategy: memory
+    ```
+
+2. Sync the configuration:
+
+    ```bash
+    $ deck sync
+    ```
+
+{% endnavtab %}
 {% endnavtabs %}
 
 

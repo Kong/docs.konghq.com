@@ -19,6 +19,9 @@ Many organizations have strict security requirements. For example, organizations
 
 In this example, you’ll start by creating a simple workspace called `SecureWorkspace`. Then, you’ll create an administrator for that workspace, with rights to administer only the objects in the SecureWorkspace and nothing else.
 
+>**Note:** The steps in this topic cannot be performed using declarative
+configuration.
+
 ## Securing your Kong Enterprise Installation
 
 At a high level, securing {{site.ee_product_name}} administration is a two-step process:
@@ -321,6 +324,38 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 {% endnavtabs %}
 
 That's it! You are now controlling access to {{site.ee_product_name}} administration with RBAC.
+
+## Reference: Using decK with RBAC and Workspaces
+
+### RBAC
+
+Once RBAC is enabled, you will have to pass the `kong-admin-token` in a header
+any time you use decK:
+
+``` bash
+$ deck sync --headers "kong-admin-token:mytoken"   
+```
+> **Note:** You should not use an RBAC token with Super Admin
+privileges for decK. Always scope down to the exact permissions you need to
+give decK.
+
+### Workspaces
+
+When you have multiple workspaces, decK creates a file for each one. Export
+them as follows:
+
+``` bash
+$ deck dump --all-workspaces
+```
+
+Or, to export the configuration for only one workspace:
+
+``` bash
+$ deck dump --workspace SecureWorkspace
+```
+
+You can use these flags with any decK commands to update and export your
+configuration.
 
 ## Summary and next steps
 

@@ -92,6 +92,41 @@ Now, if you try to access the route without providing an API key, the request wi
 
 Before Kong proxies requests for this route, it needs an API key. For this example, since you installed the Key Authentication plugin, you need to create a consumer with an associated key first.
 {% endnavtab %}
+{% navtab Using decK %}
+1. Under the `mocking` route in the `routes` section of the `kong.yaml` file,
+add a plugin section and enable the `key-auth` plugin:
+
+    ``` yaml
+    plugins:
+    - name: key-auth
+    ```
+
+    The `routes` section should now look something like this:
+    ``` yaml
+    routes:
+    - name: mocking
+      paths:
+      - /mock
+      strip_path: true
+      plugins:
+      - name: key-auth
+    ```
+
+2. Sync the configuration:
+
+    ``` bash
+    $ deck sync
+    ```
+
+Now, if you try to access the route at `http://<admin-hostname>:8000/mock`
+without providing an API key, the request will fail, and you’ll see the message
+`"No API key found in request".`
+
+Before Kong proxies requests for this route, it needs an API key. For this
+example, since you installed the Key Authentication plugin, you need to create
+a consumer with an associated key first.
+
+{% endnavtab %}
 {% endnavtabs %}
 
 
@@ -153,6 +188,26 @@ Before Kong proxies requests for this route, it needs an API key. For this examp
 
   The new Key Authentication ID displays on the **Consumers** page under the **Credentials** tab.
 {% endnavtab %}
+{% navtab Using decK %}
+1. Add a `consumers` section to your `kong.yaml` file and create a new consumer:
+
+    ``` yaml
+    consumers:
+    - custom_id: consumer
+      username: consumer
+      keyauth_credentials:
+      - key: apikey
+    ```
+
+2. Sync the configuration:
+
+    ``` bash
+    $ deck sync
+    ```
+
+You now have a consumer with an API key provisioned to access the route.
+
+{% endnavtab %}
 {% endnavtabs %}
 
 
@@ -176,7 +231,7 @@ $ http :8000/mock/request apikey:apikey
 You should get an `HTTP/1.1 200 OK` message in response.
 
 {% endnavtab %}
-{% navtab Using Kong Manager %}
+{% navtab Using a Web Browser %}
 
 To validate the Key Authentication plugin, access your route through your browser by appending `?apikey=apikey` to the url:
 ```
@@ -224,6 +279,23 @@ If you are following this getting started guide topic by topic, you will need to
 {% navtab Using Kong Manager %}
 1. Go to the Plugins page and click on **View** for the key-auth row.
 2. Use the toggle at the top of the page to switch the plugin from **Enabled** to **Disabled**.
+{% endnavtab %}
+{% navtab Using decK %}
+
+1. Disable the `key-auth` plugin in the `kong.yaml` file:
+
+    ``` yaml
+    plugins:
+    - name: key-auth
+      enabled: false
+    ```
+
+2. Sync the configuration:
+
+    ``` bash
+    $ deck sync
+    ```
+
 {% endnavtab %}
 {% endnavtabs %}
 

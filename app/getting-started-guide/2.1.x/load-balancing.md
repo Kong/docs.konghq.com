@@ -83,6 +83,38 @@ In this section, you will create an Upstream named `upstream` and add two target
 11. Find your `example_service` and click **Edit**.
 12. Change the **Host** field to `upstream`, then click **Update**.
 {% endnavtab %}
+
+{% navtab Using decK %}
+1. In your `kong.yaml` file, create an Upstream with two targets, each with port
+80: `mockbin.org:80` and `httpbin.org:80`.
+
+    ``` yaml
+    upstreams:
+    - name: upstream
+      targets:
+        - target: httpbin.org:80
+          weight: 100
+        - target: mockbin.org:80
+          weight: 100
+    ```
+
+2. Update the service you created previously, pointing the `host` to this
+Upstream:
+
+    ``` yaml
+    services:
+      host: upstream
+      name: example_service
+      port: 80
+      protocol: http
+    ```
+
+3. Sync the configuration:
+
+    ``` bash
+    $ deck sync
+    ```
+{% endnavtab %}
 {% endnavtabs %}
 
 You now have an Upstream with two targets, `httpbin.org` and `mockbin.org`, and a service pointing to that Upstream.
