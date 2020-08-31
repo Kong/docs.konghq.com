@@ -2,41 +2,31 @@
 title: Kong for Kubernetes deployment options
 skip_read_time: true
 ---
-<div class="alert alert-ee blue">
-For the {{site.ee_product_name}} 2.1.x beta, Kong for Kubernetes Enterprise
-(K4K8s) uses the <code>kong-enterprise-edition</code> image, which works as a
-drop-in replacement for the <code>kong-enterprise-k8s</code> image used in
-earlier versions.
-</div>
 
 ## Deployment options
 
 Kong for Kubernetes consists of a controller, which translates Kubernetes
 resources into Kong configuration, and a proxy, which uses that configuration
-to route and control traffic. There are two options for the proxy image:
+to route and control traffic.
 
-* [Kong for Kubernetes Enterprise][k4k8s-enterprise-install]
-  (the [kong-enterprise-k8s][k8s-bintray] image)
-* [Kong for Kubernetes with Kong Enterprise][k4k8s-with-enterprise-install]
-  (the [kong-enterprise-edition][enterprise-bintray] image)
+As of 2.1.x, [Kong for Kubernetes with Kong Enterprise][k4k8s-with-enterprise-install]
+(the [kong-enterprise-edition][enterprise-bintray] proxy image) supports DB-less
+operation and is recommended for all deployments.
 
 _These repositories require a login. If you see a 404, log in through the [Kong
 repository home page](https://bintray.com/kong) first._
 
-As of 2.1.x, the `kong-enterprise-edition` image supports DB-less operation and
-is recommended for all deployments. Existing users of the `kong-enterprise-k8s`
-image wishing to try the 2.1.x beta should switch to the
-`kong-enterprise-edition` image.
+### Migrating to 2.1.x
+
+Existing users of the `kong-enterprise-k8s` image wishing to use 2.1.x should
+switch to the `kong-enterprise-edition` image.
 
 Switching images requires the following configuration changes:
 * Changing the image to `kong-enterprise-edition`.
-* Creating a registry secret for `kong-enterprise-edition`, if you have not created one already.
-If you encounter issues after switching images, please 
+* Creating a registry secret for `kong-enterprise-edition`, if you have not
+created one already.
+If you encounter issues after switching images, please
 [contact Kong Enterprise Support][support].
-
-The `kong-enterprise-k8s` image provides most Kong Enterprise plugins and runs
-without a database, but does not provide other Kong Enterprise features (Kong
-Manager, Dev Portal, Vitals, etc.). It is not available for the 2.1.x beta.
 
 ## DB-less versus database-backed deployments
 
@@ -64,18 +54,16 @@ the database via the Admin API.
 
 In general, DB-less deployments are simpler to maintain and require less
 resources to run, and as such are the preferred option for Kong for Kubernetes.
-These deployments use the `kong-enterprise-k8s` image and must set
-`KONG_DATABASE=off` in their environment variables.
+These deployments must set `KONG_DATABASE=off` in their environment variables.
 
-Database-backed deployments offer a wider range of features using the
-`kong-enterprise-edition` image. Review the sections below to determine if your
-use case requires a feature that is not available in DB-less deployments.
+Database-backed deployments offer a wider range of features. Review the
+sections below to determine if your use case requires a feature that is not
+available in DB-less deployments.
 
 ### Feature availability
 
 Some Kong Enterprise features are not available in DB-less deployments.
-Use the `kong-enterprise-edition` image and a database-backed deployment
-if you want to use:
+Use a database-backed deployment if you want to use:
 
 * Dev Portal
 * Brain
@@ -83,7 +71,7 @@ if you want to use:
 * Teams (RBAC)
 * Workspaces
 
-In the 2.1.x beta, the following features have support in DB-less mode, but
+In 2.1.x, the following features have support in DB-less mode, but
 work differently than in DB-backed modes:
 
 * Kong Manager (read-only)
@@ -116,11 +104,9 @@ functionality in these features is different from traditional deployments:
 
 ### Plugin compatibility
 
-Not all plugins are compatible with DB-less operation, therefore not all
-plugins are available in the `kong-enterprise-k8s` image or when using the
-`kong-enterprise-edition` image in DB-less mode. Review the [list of supported
-plugins][supported-plugins] to see if you require a plugin that needs a
-database.
+Not all plugins are compatible with DB-less operation. Review the
+[list of supported plugins][supported-plugins] to see if you require a plugin
+that needs a database.
 
 Third-party plugins are generally compatible with DB-less as long as they do
 not create custom entities (i.e. they do not add new entities that users can
