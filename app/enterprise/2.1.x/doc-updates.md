@@ -2,23 +2,28 @@
 title: What's New in the Docs
 ---
 
-What's New in the Docs is an overview of recent updates to the Kong Enterprise user documentation, including new features, updates, and fixes. 
+What's New in the Docs is an overview of updates to the Kong Enterprise user documentation, including new features, updates, and fixes for a specific release. 
 
-## New or Updated in Kong Enterprise 2.1.x Docs
+## Kong Enterprise 2.1.3.0 and 2.1.x (beta) Docs
 
 ### Release Notes
+* Updated [Release Notes](/enterprise/2.1.x/release-notes/) topic. 
+* Updated [Changelog](/enterprise/changelog/) topic.
+* New [What's New in the Docs](/enterprise/2.1.x/doc-updates/) topic. 
 * New [Version Support](/enterprise/2.1.x/support-policy/) information and matrix.
+
 
 ### Installation
 * Updated [Installing Kong Enterprise on Kubernetes](/enterprise/2.1.x/kong-for-kubernetes/install-on-kubernetes/) walks you through installation of the `kong-enterprise-edition` image on Kubernetes with all Enterprise plugins and add-ons.
 * [Installation topics](/enterprise/2.1.x/deployment/installation/overview/) reorganized.
 
 ### Deployment 
-* New [Deployment Options](/enterprise/2.1.x/deployment/deployment-options/) section.
+* New [Deployment Options](/enterprise/2.1.x/deployment/deployment-options/) section, which includes Classic Deployment and Hybrid Mode topic links. 
 * New [Classic Deployment](/enterprise/2.1.x/deployment/classic-deployment/) includes embedded and distributed information.
 * New [Hybrid Mode](/enterprise/2.1.x/deployment/hybrid-mode/) includes hybrid mode information and new topic for [Deploying in Hybrid Mode](/enterprise/2.1.x/deployment/hybrid-mode-setup/).
 * New Deployment Guidelines section, with new [DNS Considerations](/enterprise/2.1.x/deployment/dns-considerations/) topic.
 * New [Kong Security Update Process](/enterprise/2.1.x/kong-security-update-process/) topic. 
+* New and updated Upgrades and Migrations topics, including [Migrating Kong Enterprise from 1.5.x to 2.1.x](/enterprise/2.1.x/deployment/upgrades/migrations/), [Migrating the Developer Portal to the Latest Version](/enterprise/2.1.x/developer-portal/latest-migrations/), and [Migrating from Kong Community Gateway to Kong Enterprise](/enterprise/2.1.x/deployment/upgrades/migrate-ce-to-ke/).
 
 ### decK
 * [decK documentation](https://docs.konghq.com/deck/) has moved to docs.konghq.com.
@@ -30,7 +35,7 @@ What's New in the Docs is an overview of recent updates to the Kong Enterprise u
 * New [Vitals Overview](/enterprise/2.1.x/vitals/overview/) topic.
 * New [Vitals Reports](/enterprise/2.1.x/vitals/vitals-reports/) topic.
 * New [Vitals Metrics](/enterprise/2.1.x/vitals/vitals-metrics/) topic.
-* Improved section in navigation menu.
+* Improved navigation menu.
 
 ### Kong Brain and Kong Immunity
 * New [Kong Brain and Kong Immunity Overview](/enterprise/2.1.x/brain-immunity/overview/) topic. 
@@ -38,10 +43,10 @@ What's New in the Docs is an overview of recent updates to the Kong Enterprise u
 * Updated [Immunity Alert](/enterprise/2.1.x/brain-immunity/alerts/) topic.
 * Updated [Immunity Model Training](/enterprise/2.1.x/brain-immunity/model-training/) topic.
 * Updated [Alert Slack Integration](/enterprise/2.1.x/brain-immunity/slack-integration/) topic.
-* Improved section in navigation menu, with new topics and dropdown menus. 
+* Improved navigation menu, with new topics and dropdown menus. 
 
 ### Plugins
-* New declarative configuration (YAML) examples added to Plugins. 
+* New declarative configuration (YAML) examples added to Plugins. For example, see the [Key Authentication Encrypted - Enabling the plugin on a Service](/hub/kong-inc/key-auth-enc/#enabling-the-plugin-on-a-service) section and click the **Declarative (YAML)** tab. 
 * New [Plugin Overview](/hub/plugins/overview/) introduces the most basic things you need to know to get started with plugins: what they are, why you might use them, terminology, and information on creating your own plugins and plugin documentation.
 * New [Plugin Compatibility Matrix](/hub/plugins/compatibility/) compares the various Kong Gateway deployment modes.
 * Updated [gRPC Gateway](/hub/kong-inc/grpc-gateway/) Plugin documentation. 
