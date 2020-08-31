@@ -4,7 +4,7 @@ title: Expose your Services with Kong Gateway
 
 In this topic, you’ll learn how to expose your Services using Routes.
 
-If you are following the Getting Started workflow, make sure you have completed [Prepare to Administer Kong Gateway](/getting-started-guide/{{page.kong_version}}/prepare/#verify-the-kong-gateway-configuration) before moving on.
+If you are following the Getting Started workflow, make sure you have completed [Prepare to Administer Kong Gateway](/getting-started-guide/{{page.kong_version}}/prepare) before moving on.
 
 If you are not following the Getting Started workflow, make sure you have Kong Gateway installed and started.
 
@@ -74,7 +74,7 @@ The service is created, and the page automatically redirects back to the `exampl
 {% navtab Using decK %}
 
 1. Paste the following into the `kong.yaml` file you exported in
-[Prepare to Administer Kong Gateway](/getting-started-guide/{{page.kong_version}}/prepare):
+[Prepare to Administer Kong Gateway](/getting-started-guide/{{page.kong_version}}/prepare/#verify-the-kong-gateway-configuration):
 
     ``` yaml
     services:
