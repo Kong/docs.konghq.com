@@ -37,6 +37,7 @@
       "Gemfile.lock",
       "autodoc-admin-api/*.lua",
       "autodoc-conf/*.lua",
+      "autodoc-conf-ee/*.lua",
       "vendor/**",
       "node_modules/**",
       "Docker"
