@@ -220,7 +220,7 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     <div class="alert alert-warning">
     <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i> 
     <strong>Important:</strong> 
-    If you have already installed the CRDs, run the command above with the following flag: `--set ingressController.installCRDs=false`. 
+    If you have already installed the CRDs, run the command above with the following flag: <code>--set ingressController.installCRDs=false</code>. 
     </div>
 
 
