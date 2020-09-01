@@ -90,6 +90,7 @@ plugin with a timeout of 30 seconds for Content-Type
       - name: mocking
         paths:
         - /mock
+        strip_path: true
     plugins:
     - name: rate-limiting
       config:

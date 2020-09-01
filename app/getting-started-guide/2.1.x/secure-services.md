@@ -114,6 +114,7 @@ add a plugin section and enable the `key-auth` plugin:
       - name: mocking
         paths:
         - /mock
+        strip_path: true
         plugins:
         - name: key-auth
     plugins:
@@ -229,6 +230,7 @@ a consumer with an associated key first.
       - name: mocking
         paths:
         - /mock
+        strip_path: true
         plugins:
         - name: key-auth
     consumers:

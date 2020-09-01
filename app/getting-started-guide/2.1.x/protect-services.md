@@ -97,6 +97,7 @@ and in-memory, on the node:
       - name: mocking
         paths:
         - /mock
+        strip_path: true
     plugins:
     - name: rate-limiting
       config:

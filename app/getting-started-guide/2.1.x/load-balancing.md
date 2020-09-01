@@ -122,6 +122,7 @@ Upstream:
       - name: mocking
         paths:
         - /mock
+        strip_path: true
         plugins:
         - name: key-auth
           enabled: false

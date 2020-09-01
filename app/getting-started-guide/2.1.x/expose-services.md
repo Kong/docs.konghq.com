@@ -155,6 +155,7 @@ The route is created and you are automatically redirected back to the `example_s
     - name: mocking
       paths:
       - /mock
+      strip_path: true
     ```
 
     Your file should now look like this:
@@ -170,6 +171,7 @@ The route is created and you are automatically redirected back to the `example_s
       - name: mocking
         paths:
         - /mock
+        strip_path: true
     ```
 
 2. Sync the configuration:
@@ -218,7 +220,7 @@ is now using:
         - http
         - https
         regex_priority: 0
-        strip_path: false
+        strip_path: true
         https_redirect_status_code: 426
     ```
 
@@ -227,7 +229,7 @@ is now using:
 
     The rest of this guide continues using the simplified version of the
     configuration file without performing a `deck dump` for every step, to keep
-    it easy to follow. 
+    it easy to follow.
 
 {% endnavtab %}
 {% endnavtabs %}
