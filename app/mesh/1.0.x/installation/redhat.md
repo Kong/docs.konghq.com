@@ -15,7 +15,7 @@ To install and run {{site.mesh_product_name}} on RedHat (**x86_64**) execute the
 Run the following script to automatically detect the operating system and download {{site.mesh_product_name}}:
 
 ```sh
-$ curl -L https://konghq.com/assets/mesh/installer.sh | sh -
+$ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
 ```
 
 or you can [download](https://kong.bintray.com/kong-mesh/kong-mesh-{{page.kong_latest.version}}-rhel-amd64.tar.gz) the distribution manually.

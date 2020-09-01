@@ -24,7 +24,7 @@ To run {{site.mesh_product_name}} on Kubernetes, you need to download a compatib
 You can run the following script to automatically detect the operating system and download {{site.mesh_product_name}}:
 
 ```sh
-$ curl -L https://konghq.com/assets/mesh/installer.sh | sh -
+$ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
 ```
 
 {% endnavtab %}
@@ -36,7 +36,7 @@ You can also download the distribution manually. Download a distribution for the
 * [RedHat](https://kong.bintray.com/kong-mesh/kong-mesh-{{page.kong_latest.version}}-rhel-amd64.tar.gz)
 * [Debian](https://kong.bintray.com/kong-mesh/kong-mesh-{{page.kong_latest.version}}-debian-amd64.tar.gz)
 * [Ubuntu](https://kong.bintray.com/kong-mesh/kong-mesh-{{page.kong_latest.version}}-ubuntu-amd64.tar.gz)
-* [macOS](https://kong.bintray.com/kong-mesh/kong-mesh-{{page.kong_latest.version}}-darwin-amd64.tar.gz) or run `brew install kumactl`
+* [macOS](https://kong.bintray.com/kong-mesh/kong-mesh-{{page.kong_latest.version}}-darwin-amd64.tar.gz)
 
 and extract the archive with:
 

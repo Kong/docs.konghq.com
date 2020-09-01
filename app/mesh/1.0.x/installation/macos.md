@@ -20,7 +20,7 @@ To run {{site.mesh_product_name}} on macOS you can choose among different instal
 Run the following script to automatically detect the operating system and download {{site.mesh_product_name}}:
 
 ```sh
-$ curl -L https://konghq.com/assets/mesh/installer.sh | sh -
+$ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
 ```
 
 {% endnavtab %}
@@ -39,11 +39,7 @@ $ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 {% endnavtab %}
 {% navtab Homebrew (kumactl only) %}
 
-If you only need the {{site.mesh_product_name}} CLI `kumactl`, then you can also execute:
-
-```sh
-$ brew install kumactl
-```
+Homebrew is currently not support with Kong Mesh.
 
 {% endnavtab %}
 {% endnavtabs %}

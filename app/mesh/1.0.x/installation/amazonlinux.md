@@ -20,7 +20,7 @@ Run the following script to automatically detect the operating system and downlo
 
 ```sh
 $ yum install -y tar gzip
-$ curl -L https://konghq.com/assets/mesh/installer.sh | sh -
+$ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
 ```
 
 or you can [download](https://kong.bintray.com/kong-mesh/kong-mesh-{{page.kong_latest.version}}-centos-amd64.tar.gz) the distribution manually.
