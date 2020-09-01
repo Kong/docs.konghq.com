@@ -18,7 +18,7 @@ repository home page](https://bintray.com/kong) first._
 
 ### Migrating to 2.1.x
 
-Existing users of the `kong-enterprise-k8s` image wishing to use 2.1.x should
+Existing users of the `kong-enterprise-k8s` image who want to use 2.1.x should
 switch to the `kong-enterprise-edition` image.
 
 Switching images requires the following configuration changes:
