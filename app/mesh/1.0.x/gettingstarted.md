@@ -5,7 +5,7 @@ no_search: true
 
 ## Getting Started
 
-{{site.mesh_product_name}} - built on top of Kuma and Envoy - tries to be as close as possible to the usage of Kuma itself, while providing drop-in binary replacements for both the control plane and data plane executables.
+{{site.mesh_product_name}} - built on top of CNCF's Kuma and Envoy - tries to be as close as possible to the usage of Kuma itself, while providing drop-in binary replacements for both the control plane and data plane executables.
 
 As such - while the {{site.mesh_product_name}} binaries can be downloaded from the [official installation page](/mesh/{{page.kong_version}}/install) - we can follow [Kuma's official documentation](https://kuma.io/docs) after downloading {{site.mesh_product_name}} to start using the product.
 

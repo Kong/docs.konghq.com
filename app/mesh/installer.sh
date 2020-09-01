@@ -14,8 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# You can customize the version of Kuma (or Kuma-based products) to 
-# download by setting the VERSION environment variable, and you can change 
+# You can customize the version of Kuma (or Kuma-based products) to
+# download by setting the VERSION environment variable, and you can change
 # the default 64bit architecture by setting the ARCH variable.
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"

@@ -11,7 +11,7 @@ no_search: true
 
 Welcome to the official documentation for {{site.mesh_product_name}}!
 
-{{site.mesh_product_name}} is an enterprise-grade service mesh that runs on both Kubernetes and VMs on any cloud. Built on top of [Kuma](https://kuma.io) and Envoy and focused on simplicity, it enables the microservices transformation with out of the box service connectivity and discovery, zero-trust security, traffic reliability and global observability across all traffic including cross-cluster deployments among other features.
+{{site.mesh_product_name}} is an enterprise-grade service mesh that runs on both Kubernetes and VMs on any cloud. Built on top of CNCF's [Kuma](https://kuma.io) and Envoy and focused on simplicity, it enables the microservices transformation with out of the box service connectivity and discovery, zero-trust security, traffic reliability and global observability across all traffic including cross-cluster deployments among other features.
 
 {{site.mesh_product_name}} extends Kuma and Envoy with enterprise features and support, while providing a native integration with [Kong Enterprise](/products/kong-enterprise) to provide a full-stack connectivity platform for all of your services and APIs, across every cloud or environment.
 
