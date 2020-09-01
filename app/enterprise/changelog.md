@@ -5,6 +5,20 @@ no_version: true
 skip_read_time: true
 ---
 
+## 2.1.3.1 
+**Release Date** 2020/08/31
+
+### Fixes
+
+#### Kong Gateway
+
+* Fixed issues to properly migrate workspaces associated with ACL groups. 
+* Improved the amount of logging in the migrations framework. 
+
+#### Kong Manager
+
+* Fixed docs link and messaging on the Dev Portals page.
+
 ## 2.1.3.0
 **Release Date** 2020/08/25
 
