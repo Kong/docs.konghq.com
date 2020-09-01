@@ -67,7 +67,8 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
 
    ```
 
-8. Configure a Portal Application Registration plugin on the Service as well. See [Application Registration](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration#config-app-reg-plugin).
+8. Configure a Portal Application Registration plugin on the Service as well. See
+[Application Registration](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration#config-app-reg-plugin).
 
 ## Register an application in Okta
 
