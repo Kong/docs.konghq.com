@@ -332,6 +332,18 @@ function conf_docs(cb) {
     return cb('No KONG_VERSION environment variable set. Example: 1.0.x')
   }
 
+
+  // Generate configuration.md
+  cmd = 'luajit autodoc-conf-ee/run.lua'
+  obj = childProcess.spawnSync(cmd, { shell: true })
+  errLog = obj.stderr.toString()
+  if (errLog.length > 0) {
+    return cb(errLog)
+  }
+
+  log('Re-generated Conf docs for Enterprise ' + KONG_VERSION)
+}
+
   // Generate configuration.md
   cmd = 'luajit autodoc-conf/run.lua'
   obj = childProcess.spawnSync(cmd, { shell: true })
