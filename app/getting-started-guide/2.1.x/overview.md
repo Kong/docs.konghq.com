@@ -81,7 +81,7 @@ different ways. Choose your preferred method, if options are available —
 you don’t have to walk through all of them:
   * Programmatically manage Kong using its REST-based Admin API
   * Use the Kong Manager GUI *(Enterprise or Free Trial users only)*
-  * Use decK for declarative configuration
+  * Use decK for declarative configuration (YAML)
 * If you're running Kong in Hybrid mode, all tasks contained in this guide take
 place on the Control Plane.
 * This guide provides Kong Admin API examples in both HTTPie and cURL. If you

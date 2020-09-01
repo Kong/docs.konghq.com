@@ -84,6 +84,26 @@ and in-memory, on the node:
         policy: local
     ```
 
+    Your file should now look like this:
+
+    ``` yaml
+    _format_version: "1.1"
+    services:
+    - host: mockbin.org
+      name: example_service
+      port: 80
+      protocol: http
+      routes:
+      - name: mocking
+        paths:
+        - /mock
+    plugins:
+    - name: rate-limiting
+      config:
+        minute: 5
+        policy: local
+    ```
+
     This plugin will be applied globally, which means the rate limiting
     applies to all requests, including every Service and Route in the Workspace.
 

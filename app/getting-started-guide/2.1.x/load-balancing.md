@@ -109,6 +109,47 @@ Upstream:
       protocol: http
     ```
 
+    After these updates, your file should now look like this:
+
+    ``` yaml
+    _format_version: "1.1"
+    services:
+    - host: upstream
+      name: example_service
+      port: 80
+      protocol: http
+      routes:
+      - name: mocking
+        paths:
+        - /mock
+        plugins:
+        - name: key-auth
+          enabled: false
+    consumers:
+    - custom_id: consumer
+      username: consumer
+      keyauth_credentials:
+      - key: apikey
+    upstreams:
+    - name: upstream
+      targets:
+        - target: httpbin.org:80
+          weight: 100
+        - target: mockbin.org:80
+          weight: 100
+    plugins:
+    - name: rate-limiting
+      config:
+        minute: 5
+        policy: local
+    - name: proxy-cache
+      config:
+        content_type:
+        - "application/json; charset=utf-8"
+        cache_ttl: 30
+        strategy: memory
+    ```
+
 3. Sync the configuration:
 
     ``` bash

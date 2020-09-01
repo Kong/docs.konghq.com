@@ -101,15 +101,32 @@ add a plugin section and enable the `key-auth` plugin:
     - name: key-auth
     ```
 
-    The `routes` section should now look something like this:
+    Your file should now look like this:
+
     ``` yaml
-    routes:
-    - name: mocking
-      paths:
-      - /mock
-      strip_path: true
-      plugins:
-      - name: key-auth
+    _format_version: "1.1"
+    services:
+    - host: mockbin.org
+      name: example_service
+      port: 80
+      protocol: http
+      routes:
+      - name: mocking
+        paths:
+        - /mock
+        plugins:
+        - name: key-auth
+    plugins:
+    - name: rate-limiting
+      config:
+        minute: 5
+        policy: local
+    - name: proxy-cache
+      config:
+        content_type:
+        - "application/json; charset=utf-8"
+        cache_ttl: 30
+        strategy: memory
     ```
 
 2. Sync the configuration:
@@ -199,6 +216,39 @@ a consumer with an associated key first.
       - key: apikey
     ```
 
+    Your file should now look like this:
+
+    ``` yaml
+    _format_version: "1.1"
+    services:
+    - host: mockbin.org
+      name: example_service
+      port: 80
+      protocol: http
+      routes:
+      - name: mocking
+        paths:
+        - /mock
+        plugins:
+        - name: key-auth
+    consumers:
+    - custom_id: consumer
+      username: consumer
+      keyauth_credentials:
+      - key: apikey
+    plugins:
+    - name: rate-limiting
+      config:
+        minute: 5
+        policy: local
+    - name: proxy-cache
+      config:
+        content_type:
+        - "application/json; charset=utf-8"
+        cache_ttl: 30
+        strategy: memory
+    ```
+
 2. Sync the configuration:
 
     ``` bash
@@ -282,7 +332,8 @@ If you are following this getting started guide topic by topic, you will need to
 {% endnavtab %}
 {% navtab Using decK %}
 
-1. Disable the `key-auth` plugin in the `kong.yaml` file:
+1. Disable the key-auth plugin in the `kong.yaml` file by setting
+`enabled` to `false`:
 
     ``` yaml
     plugins:

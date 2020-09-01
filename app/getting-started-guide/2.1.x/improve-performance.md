@@ -68,12 +68,39 @@ plugin with a timeout of 30 seconds for Content-Type
 `application/json; charset=utf-8`.
 
     ``` yaml
+    plugins:
     - name: proxy-cache
-    config:
-      content_type:
-      - "application/json; charset=utf-8"
-      cache_ttl: 30
-      strategy: memory
+      config:
+        content_type:
+        - "application/json; charset=utf-8"
+        cache_ttl: 30
+        strategy: memory
+    ```
+
+    Your file should now look like this:
+
+    ``` yaml
+    _format_version: "1.1"
+    services:
+    - host: mockbin.org
+      name: example_service
+      port: 80
+      protocol: http
+      routes:
+      - name: mocking
+        paths:
+        - /mock
+    plugins:
+    - name: rate-limiting
+      config:
+        minute: 5
+        policy: local
+    - name: proxy-cache
+      config:
+        content_type:
+        - "application/json; charset=utf-8"
+        cache_ttl: 30
+        strategy: memory
     ```
 
 2. Sync the configuration:
