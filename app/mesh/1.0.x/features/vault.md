@@ -1,6 +1,7 @@
 ---
 title: Kong Mesh - Vault Policy
 no_search: true
+redirect_from: "/mesh/1.0.x/features/"
 ---
 
 ## Vault CA Backend
@@ -20,7 +21,7 @@ Unlike the `builtin` and `provided` backends, by using the `vault` mTLS mode {{s
 
 The `vault` mTLS backend expects a `kuma-pki-${MESH_NAME}` PKI already configured in Vault. For example the PKI path for the `default` mesh would be `kuma-pki-default`.
 
-In order to use this feature, we also need to instruct {{site.mesh_product_name}} to point to the Vault server and provided the appropriate credentials to autenticate the control plane in order to generate the data plane certificates. 
+In order to use this feature, we also need to instruct {{site.mesh_product_name}} to point to the Vault server and provide the appropriate credentials to authenticate the control plane in order to generate the data plane certificates.
 
 Once running, this backend is responsible for communicating to Vault and utilize Vault's PKI to automatically issue and rotate data plane certificates for each proxy.
 
@@ -110,6 +111,6 @@ In order to connect to Vault we must authenticate `kuma-cp` via:
 
 * A `clientKey`.
 * A `clientCert`.
-* A `secret` token. 
+* A `secret` token.
 
 These values can be inline (for testing purposes only), a path to a file on the same host as `kuma-cp`, or they can be a  `secret`. You can read the official Kuma documentation to learn more about [Kuma Secrets](https://kuma.io/docs/latest/documentation/secrets/) and how to create one.

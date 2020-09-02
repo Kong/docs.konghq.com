@@ -13,7 +13,7 @@ Welcome to the official documentation for {{site.mesh_product_name}}!
 
 {{site.mesh_product_name}} is an enterprise-grade service mesh that runs on both Kubernetes and VMs on any cloud. Built on top of CNCF's [Kuma](https://kuma.io) and Envoy and focused on simplicity, it enables the microservices transformation with out of the box service connectivity and discovery, zero-trust security, traffic reliability and global observability across all traffic including cross-cluster deployments among other features.
 
-{{site.mesh_product_name}} extends Kuma and Envoy with enterprise features and support, while providing a native integration with [Kong Enterprise](/products/kong-enterprise) to provide a full-stack connectivity platform for all of your services and APIs, across every cloud or environment.
+{{site.mesh_product_name}} extends Kuma and Envoy with enterprise features and support, while providing a native integration with [Kong Enterprise](https://konghq.com/products/kong-enterprise) to provide a full-stack connectivity platform for all of your services and APIs, across every cloud or environment.
 
 <div class="alert alert-ee blue">
    Kuma itself was originally created by Kong and donated to CNCF in order to provide the first neutral Envoy-based service mesh to the industry. Kong still maintains and develops Kuma, which is the foundation for {{site.mesh_product_name}}.
@@ -44,9 +44,9 @@ When used in combination with Kong Enterprise, {{site.mesh_product_name}} provid
 
 ## Why {{site.mesh_product_name}}?
 
-Organizations are transitioning to distributed software architectures to support and accelerate innovation, gain digital revenues and reduce costs. A successful transition to microservices requires that services are connected reliably with minimal latency, that they are protected with end-to-end security, that they are discoverable and fully observable. However, this presents challenges due to the need to write custom code for security and identity, a lack of granular telemetry, and insufficient traffic management capabilities, especially as the number of services grow. 
+Organizations are transitioning to distributed software architectures to support and accelerate innovation, gain digital revenues and reduce costs. A successful transition to microservices requires that services are connected reliably with minimal latency, that they are protected with end-to-end security, that they are discoverable and fully observable. However, this presents challenges due to the need to write custom code for security and identity, a lack of granular telemetry, and insufficient traffic management capabilities, especially as the number of services grow.
 
-Leading organizations are looking to service meshes to address these challenges in a scalable and standardized way to 
+Leading organizations are looking to service meshes to address these challenges in a scalable and standardized way to
 
 * **Ensure service connectivity, discovery and traffic reliability**: Apply out-of-box traffic management to intelligently route traffic across any platform and any cloud to meet expectations and SLAs.
 * **Achieve Zero-Trust Security**: Restrict access by default, encrypt all traffic, and only complete transactions when identify is verified.
