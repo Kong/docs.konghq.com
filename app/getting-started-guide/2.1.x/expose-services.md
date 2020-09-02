@@ -71,6 +71,38 @@ Kong Gateway exposes the RESTful Admin API on port `:8001`. The gateway’s conf
 
 The service is created, and the page automatically redirects back to the `example_service` overview page.
 {% endnavtab %}
+{% navtab Using decK %}
+
+1. In the `kong.yaml` file you exported in
+[Prepare to Administer Kong Gateway](/getting-started-guide/{{page.kong_version}}/prepare/#verify-the-kong-gateway-configuration),
+define a Service with the name `example_service` and the URL
+`http://mockbin.org`:
+
+    ``` yaml
+    _format_version: "1.1"
+    services:
+    - host: mockbin.org
+      name: example_service
+      port: 80
+      protocol: http
+    ```
+2. Save the file. From your terminal, sync the configuration to update Kong:
+
+    ``` bash
+    $ deck sync
+    ```
+
+    The message should show that you’re creating a service:
+
+    ```
+    creating service example_service
+    Summary:
+    Created: 1
+    Updated: 0
+    Deleted: 0
+    ```
+
+{% endnavtab %}
 {% endnavtabs %}
 
 ## Add a Route
@@ -113,6 +145,93 @@ A 201 message indicates the route was created successfully.
 The route is created and you are automatically redirected back to the `example_service` overview page. The new Route appears under the Routes section.
 
 {% endnavtab %}
+{% navtab Using decK %}
+
+1. Paste the following into the `kong.yaml` file, under the entry for
+`example_service`:
+
+    ``` yaml
+    routes:
+    - name: mocking
+      paths:
+      - /mock
+      strip_path: true
+    ```
+
+    Your file should now look like this:
+
+    ``` yaml
+    _format_version: "1.1"
+    services:
+    - host: mockbin.org
+      name: example_service
+      port: 80
+      protocol: http
+      routes:
+      - name: mocking
+        paths:
+        - /mock
+        strip_path: true
+    ```
+
+2. Sync the configuration:
+
+    ``` bash
+    $ deck sync
+    ```
+
+3. (Optional) You can update your local file with the configuration that Kong
+is now using:
+
+    <div class="alert alert-warning">
+    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+    <strong>Be careful!</strong> Any subsequent <code>deck dump</code> will
+    overwrite the existing <code>kong.yaml</code> file. Create backups as needed.
+    </div>
+
+    ``` bash
+    $ deck dump
+    ```
+
+    Alternatively, you will also see this configuration in the diff that decK
+    shows when you're syncing a change to the configuration.
+
+    You'll notice that both the Service and Route now have parameters that you
+    did not explicitly set. These are default parameters that every Service and
+    Route are created with:
+
+    ``` yaml
+    services:
+    - connect_timeout: 60000
+      host: mockbin.org
+      name: example_service
+      port: 80
+      protocol: http
+      read_timeout: 60000
+      retries: 5
+      write_timeout: 60000
+      routes:
+      - name: mocking
+        paths:
+        - /mock
+        path_handling: v0
+        preserve_host: false
+        protocols:
+        - http
+        - https
+        regex_priority: 0
+        strip_path: true
+        https_redirect_status_code: 426
+    ```
+
+    You can do this after any `deck sync` to see {{site.base_gateway}}'s most
+    recent configuration.
+
+    The rest of this guide continues using the simplified version of the
+    configuration file without performing a `deck dump` for every step, to keep
+    it easy to follow.
+
+{% endnavtab %}
 {% endnavtabs %}
 
 ## Verify the Route is forwarding requests to the Service
@@ -133,7 +252,7 @@ $ http :8000/mock/request
 ```
 
 {% endnavtab %}
-{% navtab Using Kong Manager %}
+{% navtab Using a Web Browser %}
 
 By default, Kong handles proxy requests on port `:8000`.
 

@@ -9,6 +9,7 @@ Before getting started with using {{site.base_gateway}}, verify that it was inst
 Before you start this section, make sure that:
 * {{site.base_gateway}} is installed and running.
 * Kong Manager (if applicable) and Kong Admin API ports are listening on the appropriate port/IP/DNS settings.
+* If using declarative configuration to configure Kong, [decK](/deck/installation) is installed.
 
 In this guide, an instance of {{site.base_gateway}} is referenced via `<admin-hostname>`. Make sure to replace `<admin-hostname>` with the hostname of your control plane instance.
 
@@ -44,12 +45,12 @@ Ensure that you can send requests to the Kong Admin API using either cURL or HTT
 View the current configuration by issuing the following command in a terminal window:
 
 *Using cURL:*
-```
+```bash
 $ curl -i -X GET http://<admin-hostname>:8001
 ```
 
 *or using HTTPie:*
-```
+```bash
 $ http <admin-hostname>:8001
 ```
 The current configuration returns.
@@ -61,6 +62,51 @@ As a {{site.ee_product_name}} user, you can use Kong Manager for environment adm
 Open a web browser and navigate to `http://<admin-hostname>:8002`.
 
 If {{site.ee_product_name}} was installed correctly, it automatically logs you in and presents the Kong Manager Overview page.
+{% endnavtab %}
+
+{% navtab Using decK %}
+
+1. Check that decK is connected to Kong:
+
+    ``` bash
+    $ deck ping
+    ```
+
+    You should see a success message with the version of Kong that you're
+    connected to:
+    ```
+    Successfully connected to Kong!
+    Kong version:  2.1.0
+    ```
+
+2. Ensure that you can pull configuration from Kong by issuing the following
+command in a terminal window:
+
+    ``` bash
+    $ deck dump
+    ```
+
+    This command creates a `kong.yaml` file with Kong's entire current
+    configuration, in the directory where decK is installed.
+
+    You can also use this command at any time (for example, after a `deck sync`)
+    to see the {{site.base_gateway}}'s most recent configuration.
+
+    <div class="alert alert-warning">
+    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+    <strong>Be careful!</strong> Any subsequent <code>deck dump</code> will
+    overwrite the existing <code>kong.yaml</code> file. Create backups as needed.
+    </div>
+
+3. Open the file in your preferred code editor. Since you haven't configured
+anything yet, the file should only contain the decK version:
+
+    ``` yaml
+    _format_version: "1.1"
+    ```
+
+    You will use this file to configure Kong.
+
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -105,4 +151,4 @@ The output shows all of the connected Data Plane instances:
 
 ## Summary and next steps
 
-In this section, you learned about the two methods of administering {{site.base_gateway}} and how to access its configuration. Next, go on to learn about [exposing your services with {{site.base_gateway}}](/getting-started-guide/{{page.kong_version}}/expose-services).
+In this section, you learned about the methods of administering {{site.base_gateway}} and how to access its configuration. Next, go on to learn about [exposing your services with {{site.base_gateway}}](/getting-started-guide/{{page.kong_version}}/expose-services).
