@@ -6,14 +6,15 @@ Kong Brain (Brain) and Kong Immunity (Immunity) are installed on Kong Enterprise
 
 ## Version Compatibility
 Kong Brain and Kong Immunity follow a different versioning scheme from Kong Enterprise. See the following table for version compatibility. Note the following:
-* The Brain and Immunity version reflects the `kong-brain-immunity-base` available in Bintray.
-* For Kong Enterprise 2.1.x and 1.5.x, use Brain and Immunity `kong-brain-immunity-base` 3.0.0 version. Do not use Brain and Immunity `kong-brain-immunity-base` 2.x.x version as it is end-of-life. 
+* The Brain and Immunity version reflects the `kong-brain-immunity-base` package available in Bintray.
+* For Kong Enterprise 2.1.x and 1.5.x, use Brain and Immunity `kong-brain-immunity-base` 3.0.0 package version. 
+* Do not use Brain and Immunity `kong-brain-immunity-base` 2.x.x package version, as it is end-of-life. 
 
-| Brain and Immunity Version     | Kong Enterprise Version |
-|:-------------------------------|:------------------------|
-| 3.0.0                          | 2.1.x, 1.5.x            |
-| 2.x.x is EOL. Use 3.0.0 instead| 1.5.x                   |
-| 1.x.x                          | 1.3.x                   |
+| Brain and Immunity Version      | Kong Enterprise Version |
+|:--------------------------------|:------------------------|
+| 3.0.0                           | 2.1.x, 1.5.x            |
+| 2.x.x is EOL. Use 3.0.0 instead | 1.5.x                   |
+| 1.x.x                           | 1.3.x                   |
 
 ## Install Brain and Immunity on Kubernetes
 Set up the Collector App via Helm. Use the public helm chart for setting up the Collector App and all its dependencies on Kubernetes. Instructions for setup can be found on the public repo at: [https://github.com/Kong/kong-collector-helm/blob/master/README.md](https://github.com/Kong/kong-collector-helm/blob/master/README.md).
