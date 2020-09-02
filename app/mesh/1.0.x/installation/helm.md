@@ -5,4 +5,4 @@ no_search: true
 
 ## Helm
 
-Helm charts are not currently available for Kong Mesh.
+Helm charts are not currently available for {{site.mesh_product_name}}.
