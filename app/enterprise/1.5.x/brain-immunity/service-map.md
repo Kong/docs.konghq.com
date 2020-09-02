@@ -8,8 +8,6 @@ Get a high-level view of your architecture with Kong Enterprise’s real-time vi
 
 The Service Map gives a visual response of mapping the traffic flowing through your services. To view the Service Map, you must install and configure the Kong Collector plugin and enable Kong Brain. If you have Kong Immunity, you can automatically view Immunity alerts.
 
-
-
 ### Prerequisites
 
 * Kong Enterprise installed and configured
@@ -42,10 +40,8 @@ Kong’s Service Map provides a graphical representation of requests that flow t
 
 The Kong Service Map uses **Kong Brain** and the **Kong Collector Plugin**. To populate the Service Map, configure the Kong Collector Plugin and enable Kong Brain. Once traffic starts flowing, the Service Map begins to populate with a visual representation of requests flowing through Kong, and traffic is updated in minute intervals.
 
-
 If you have **Kong Immunity**, and the Kong Collector Plugin is configured, Kong Immunity is automatically enabled and Immunity alerts populate and display in the Service Map as they occur.
 
   ![Kong Service Map Set Up](https://doc-assets.konghq.com/1.3/service-map/kong_service_map_setup.png)
-
 
 For more information, see the [Kong Brain and Kong Immunity Installation and Configuration Guide](/enterprise/{{page.kong_version}}/brain-immunity/install-configure).
