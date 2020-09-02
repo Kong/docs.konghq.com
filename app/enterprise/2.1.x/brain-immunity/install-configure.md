@@ -1,7 +1,7 @@
 ---
 title: Kong Brain and Kong Immunity Installation and Configuration
 ---
-
+## Introduction
 Kong Brain (Brain) and Kong Immunity (Immunity) are installed on Kong Enterprise, either on Kubernetes or Docker, as defined below. The Collector App and Collector Plugin enable Brain and Immunity to communicate with Kong Enterprise. 
 
 ## Version Compatibility
