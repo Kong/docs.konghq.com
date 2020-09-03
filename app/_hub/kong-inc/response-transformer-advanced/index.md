@@ -344,11 +344,12 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
 
 
-- Explicitly specify the types of added JSON values if the response code is 500
+- Explicitly set the type of the added JSON value `-1` to be a `number` (instead of the implicitly inferred type `string`) if the response code is 500:
 
 ```
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+$ curl -X POST http://localhost:8001/plugins \
   --data "name=response-transformer-advanced" \
+  --data "config.add.json=p1:-1" \
   --data "config.add.json_types=number" \
   --data "config.replace.if_status=500"
 ```
