@@ -1,5 +1,5 @@
 ---
-title: Kong Mesh With Kubernetes
+title: Kong Mesh with Kubernetes
 no_search: true
 ---
 

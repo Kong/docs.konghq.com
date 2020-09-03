@@ -1,5 +1,5 @@
 ---
-title: Kong Mesh With macOS
+title: Kong Mesh with macOS
 no_search: true
 ---
 
@@ -41,7 +41,7 @@ $ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 {% endnavtab %}
 {% endnavtabs %}
 
-### 2. Follow Kuma instructions
+### 2. Follow Kuma Instructions
 
 After downloading the {{site.mesh_product_name}} binaries, the remaining
 installation instructions for Kuma are fully compatible with

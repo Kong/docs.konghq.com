@@ -1,5 +1,5 @@
 ---
-title: Kong Mesh With Helm
+title: Kong Mesh with Helm
 no_search: true
 ---
 

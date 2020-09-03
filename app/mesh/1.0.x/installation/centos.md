@@ -1,5 +1,5 @@
 ---
-title: Kong Mesh With CentOS
+title: Kong Mesh with CentOS
 no_search: true
 ---
 

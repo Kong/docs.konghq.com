@@ -1,5 +1,5 @@
 ---
-title: Kong Mesh With Docker
+title: Kong Mesh with Docker
 no_search: true
 ---
 
@@ -33,7 +33,7 @@ executables:
 $ docker pull kong-docker-kong-mesh-docker.bintray.io/kuma-cp:{{page.kong_latest.version}}
 ```
 
-### 2. Follow Kuma instructions
+### 2. Follow Kuma Instructions
 
 After pulling the {{site.mesh_product_name}} images, the remaining installation
 instructions for Kuma are fully compatible with {{site.mesh_product_name}},

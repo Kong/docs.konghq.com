@@ -9,7 +9,7 @@ no_search: true
 seamless experience, {{site.mesh_product_name}} follows the same installation
 and configuration procedures as Kuma, but uses its own binaries.
 
-On this page you will find access to the official {{site.mesh_product_name}}
+On this page, you will find access to the official {{site.mesh_product_name}}
 distributions that provide a drop-in replacement to Kuma's native binaries.
 
 <b>The latest {{site.mesh_product_name}} is {{page.kong_latest.version}}:</b>
@@ -25,7 +25,7 @@ distributions that provide a drop-in replacement to Kuma's native binaries.
 * [Ubuntu](/mesh/{{page.kong_version}}/installation/ubuntu)
 * [macOS](/mesh/{{page.kong_version}}/installation/macos)
 
-## Verify installation
+## Verify Installation
 
 To confirm that you have installed the right version of
 {{site.mesh_product_name}}, you can always run the following commands and

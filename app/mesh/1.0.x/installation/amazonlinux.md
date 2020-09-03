@@ -1,5 +1,5 @@
 ---
-title: Kong Mesh With Amazon Linux
+title: Kong Mesh with Amazon Linux
 no_search: true
 ---
 

@@ -1,11 +1,12 @@
 ---
-title: Kong Mesh With Ubuntu
+title: Kong Mesh with Ubuntu
 no_search: true
 ---
 
 ## Ubuntu
 
-To install and run {{site.mesh_product_name}} on Ubuntu (**amd64**) execute the following steps:
+To install and run {{site.mesh_product_name}} on Ubuntu (**amd64**), execute
+the following steps:
 
 * [1. Download {{site.mesh_product_name}}](#_1-download-kong-mesh)
 * [2. Follow Kuma instructions](#_2-follow-kuma-instructions)
@@ -15,7 +16,8 @@ To install and run {{site.mesh_product_name}} on Ubuntu (**amd64**) execute the 
 {% navtabs %}
 {% navtab Script %}
 
-Run the following script to automatically detect the operating system and download {{site.mesh_product_name}}:
+Run the following script to automatically detect the operating system and
+download {{site.mesh_product_name}}:
 
 ```sh
 $ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
@@ -34,7 +36,7 @@ $ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 {% endnavtab %}
 {% endnavtabs %}
 
-### 2. Follow Kuma instructions
+### 2. Follow Kuma Instructions
 
 After downloading the {{site.mesh_product_name}} binaries, the remaining
 installation instructions for Kuma are fully compatible with

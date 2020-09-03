@@ -1,5 +1,5 @@
 ---
-title: Kong Mesh With Debian
+title: Kong Mesh with Debian
 no_search: true
 ---
 

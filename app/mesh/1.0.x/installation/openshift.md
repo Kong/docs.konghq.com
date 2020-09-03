@@ -1,11 +1,12 @@
 ---
-title: Kong Mesh With OpenShift
+title: Kong Mesh with OpenShift
 no_search: true
 ---
 
 ## OpenShift
 
-To install and run {{site.mesh_product_name}} on OpenShift execute the following steps:
+To install and run {{site.mesh_product_name}} on OpenShift, execute the
+following steps:
 
 * [1. Download {{site.mesh_product_name}}](#_1-download-kong-mesh)
 * [2. Follow Kuma instructions](#_2-follow-kuma-instructions)
@@ -48,7 +49,7 @@ $ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 {% endnavtab %}
 {% endnavtabs %}
 
-### 2. Follow Kuma instructions
+### 2. Follow Kuma Instructions
 
 After downloading the {{site.mesh_product_name}} binaries, the remaining
 installation instructions for Kuma are fully compatible with
