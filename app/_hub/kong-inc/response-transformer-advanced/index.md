@@ -107,13 +107,13 @@ Note: if the value contains a `,` then the comma separated format for lists cann
 
 ## Order of execution
 
-Plugin performs the response transformation in following order
+The plugin performs the response transformation in following order:
 
 remove --> replace --> add --> append
 
 ## Examples
 
-In these examples we have the plugin enabled on a Route. This would work
+In these examples, we have the plugin enabled on a Route. This would work
 similar for Services.
 
 - Add multiple headers by passing each header:value pair separately:
