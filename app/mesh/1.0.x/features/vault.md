@@ -6,26 +6,54 @@ redirect_from: "/mesh/1.0.x/features/"
 
 ## Vault CA Backend
 
-The default [mTLS policy](https://kuma.io/docs/latest/policies/mutual-tls/) supports three backends:
+The default [mTLS policy in Kuma](https://kuma.io/docs/latest/policies/mutual-tls/)
+supports the following backends:
 
-* `builtin`: {{site.mesh_product_name}} automatically generates a CA root certificate and key that will be used to generate the data plane certificates.
+* `builtin`: {{site.mesh_product_name}} automatically generates the Certificate
+Authority (CA) root certificate and key that will be used to generate the data
+plane certificates.
 * `provided`: the CA root certificate and key can be provided by the user.
 
 This feature adds one more mTLS backend mode:
 
-* `vault`: {{site.mesh_product_name}} will generate data plane certificates using a CA root certificate and key stored in a third-party HashiCorp Vault server.
+* `vault`: {{site.mesh_product_name}} will generate data plane certificates
+using a CA root certificate and key stored in a third-party HashiCorp Vault
+server.
 
-## Usage
+## Using Vault Mode
 
-Unlike the `builtin` and `provided` backends, by using the `vault` mTLS mode {{site.mesh_product_name}} will communicate to a third-party HashiCorp Vault PKI in order to generate the data plane proxy certificates automatically.
+Unlike the `builtin` and `provided` backends, when using the `vault` mTLS mode,
+{{site.mesh_product_name}} communicates with a third-party HashiCorp Vault PKI,
+which generates the data plane proxy certificates automatically.
 
-The `vault` mTLS backend expects a `kuma-pki-${MESH_NAME}` PKI already configured in Vault. For example the PKI path for the `default` mesh would be `kuma-pki-default`.
+The `vault` mTLS backend expects a `kuma-pki-${MESH_NAME}` PKI already
+configured in Vault. For example, the PKI path for a mesh named `default` would
+be `kuma-pki-default`.
 
-In order to use this feature, we also need to instruct {{site.mesh_product_name}} to point to the Vault server and provide the appropriate credentials to authenticate the control plane in order to generate the data plane certificates.
+To use this feature, you also need to point {{site.mesh_product_name}} to the
+Vault server and provide the appropriate credentials. {{site.mesh_product_name}}
+will use these parameters to authenticate the control plane and generate the
+data plane certificates.
 
-Once running, this backend is responsible for communicating to Vault and utilize Vault's PKI to automatically issue and rotate data plane certificates for each proxy.
+Once running, this backend is responsible for communicating with Vault and for
+using Vault's PKI to automatically issue and rotate data plane certificates for
+each proxy.
 
-The communication to Vault happens directly from `kuma-cp`. Below an example to start using a `vault` backed CA:
+## Enabling Vault Authentication
+
+The communication to Vault happens directly from `kuma-cp`. To connect to
+Vault, you must provide the following values in the configuration for `kuma-cp`:
+
+* A `clientKey`.
+* A `clientCert`.
+* A `secret` token.
+
+These values can be inline (for testing purposes only), a path to a file on the
+same host as `kuma-cp`, or contained in a `secret`. See the official Kuma
+documentation to learn more about [Kuma Secrets](https://kuma.io/docs/latest/documentation/secrets/)
+and how to create one.
+
+Here's an example of a configuration using a `vault`-backed CA:
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -64,7 +92,7 @@ spec:
                   file: /tmp/cert.pem # can be file, secret or inline
 ```
 
-We will apply the configuration with `kubectl apply -f [..]`.
+Apply the configuration with `kubectl apply -f [..]`.
 
 {% endnavtab %}
 {% navtab Universal %}
@@ -100,17 +128,7 @@ mtls:
               file: /tmp/cert.pem # can be file, secret or inline
 ```
 
-We will apply the configuration with `kumactl apply -f [..]` or via the [HTTP API](https://kuma.io/docs/latest/documentation/http-api).
+Apply the configuration with `kumactl apply -f [..]`, or using the [HTTP API](https://kuma.io/docs/latest/documentation/http-api).
 
 {% endnavtab %}
 {% endnavtabs %}
-
-## Vault Authentication
-
-In order to connect to Vault we must authenticate `kuma-cp` via:
-
-* A `clientKey`.
-* A `clientCert`.
-* A `secret` token.
-
-These values can be inline (for testing purposes only), a path to a file on the same host as `kuma-cp`, or they can be a  `secret`. You can read the official Kuma documentation to learn more about [Kuma Secrets](https://kuma.io/docs/latest/documentation/secrets/) and how to create one.
