@@ -63,7 +63,7 @@ params:
     - name: add.headers
       required: false
       value_in_examples: ["x-new-header:value","x-another-header:something"]
-      description: List of headername:value pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set.
+      description: List of headernvame:value pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set.
     - name: add.json
       required: false
       value_in_examples: ["new-json-key:some_value", "another-json-key:some_value"]
@@ -347,7 +347,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Explicitly set the type of the added JSON value `-1` to be a `number` (instead of the implicitly inferred type `string`) if the response code is 500:
 
 ```
-$ curl -X POST http://localhost:8001/plugins \
+$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.add.json=p1:-1" \
   --data "config.add.json_types=number" \
