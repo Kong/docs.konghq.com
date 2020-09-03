@@ -351,5 +351,5 @@ $ curl -X POST http://localhost:8001/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.add.json=p1:-1" \
   --data "config.add.json_types=number" \
-  --data "config.replace.if_status=500"
+  --data "config.add.if_status=500"
 ```
