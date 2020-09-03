@@ -7,12 +7,12 @@ Kong Brain (Brain) and Kong Immunity (Immunity) are installed on Kong Enterprise
 ## Version Compatibility
 Kong Brain and Kong Immunity follow a different versioning scheme from Kong Enterprise. See the following table for version compatibility. Note the following:
 * The Brain and Immunity version reflects the `kong-brain-immunity-base` package available in Bintray.
-* For Kong Enterprise 2.1.x and 1.5.x, use Brain and Immunity `kong-brain-immunity-base` 3.0.0 package version. 
-* Do not use Brain and Immunity `kong-brain-immunity-base` 2.x.x package version, as it is end-of-life. 
+* For Kong Enterprise 1.5.x and 2.1.x, use Brain and Immunity 3.0.0 package version (`kong-brain-immunity-base`). 
+* Do not use Brain and Immunity 2.x.x package version (`kong-brain-immunity-base`), as it is end-of-life. 
 
 | Brain and Immunity Version      | Kong Enterprise Version |
 |:--------------------------------|:------------------------|
-| 3.0.0                           | 2.1.x, 1.5.x            |
+| 3.0.0                           | 1.5.x, 2.1.x            |
 | 2.x.x is EOL. Use 3.0.0 instead | 1.5.x                   |
 | 1.x.x                           | 1.3.x                   |
 
@@ -35,7 +35,7 @@ To complete this installation you will need:
   
 * A Docker-enabled system with proper Docker access.
 
-* Kong Enterprise 2.1.x or later is installed on Docker.
+* Kong Enterprise 1.5.x or later is installed on Docker.
 
 * A valid Kong Enterprise License JSON file, including a license for Kong Brain and Kong Immunity.
 **Note**: You should receive your Bintray credentials with your purchase of Kong Enterprise. If you need Bintray credentials, contact from Kong Support.
