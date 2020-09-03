@@ -120,7 +120,7 @@ $ curl -X POST http://<admin-hostname>:8001/services/<service>/plugins \
 {% unless page.params.k8s_compatible == false %}
 {% navtab Kubernetes %}
 
-First, create a [KongPlugin](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/guides/using-kongplugin-resource.md)
+First, create a [KongPlugin](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/references/custom-resources.md#kongplugin)
 resource:
 
 ```yaml
@@ -226,7 +226,7 @@ $ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
 {% unless page.params.k8s_compatible == false %}
 {% navtab Kubernetes %}
 
-First, create a [KongPlugin](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/guides/using-kongplugin-resource.md)
+First, create a [KongPlugin](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/references/custom-resources.md#kongplugin)
 resource:
 
 ```yaml
@@ -332,7 +332,7 @@ $ curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
 {% unless page.params.k8s_compatible == false %}
 {% navtab Kubernetes %}
 
-First, create a [KongPlugin](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/guides/using-kongplugin-resource.md)
+First, create a [KongPlugin](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/references/custom-resources.md#kongplugin)
 resource:
 
 ```yaml
@@ -424,12 +424,12 @@ sections for more information.
 {% unless page.params.k8s_compatible == false %}
 {% navtab Kubernetes %}
 
-Create a [KongPlugin](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/guides/using-kongplugin-resource.md)
+Create a [KongClusterPlugin](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/references/custom-resources.md#kongclusterplugin)
 resource and label it as global:
 
 ```yaml
 apiVersion: configuration.konghq.com/v1
-kind: KongPlugin
+kind: KongClusterPlugin
 metadata:
   name: <global-{{page.params.name}}>
   labels:
@@ -438,12 +438,6 @@ metadata:
   <optional_parameter>: <value>{% else %}{{ config_required_fields_k8s }}{% endif %}
 plugin: {{page.params.name}}
 ```
-
-<div class="alert alert-ee blue">
-  <strong>Note:</strong> If you want the plugin to be available cluster-wide,
-  create the resource as a <code>KongClusterPlugin</code> instead of
-  <code>KongPlugin</code>.
-</div>
 
 {% endnavtab %}
 {% endunless %}
