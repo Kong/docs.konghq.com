@@ -13,7 +13,7 @@ As of 2.1.x, [Kong for Kubernetes with Kong Enterprise][k4k8s-with-enterprise-in
 (the [kong-enterprise-edition][enterprise-bintray] proxy image) supports DB-less
 operation and is recommended for all deployments.
 
-_These repositories require a login. If you see a 404, log in through the [Kong
+_This repository requires a login. If you see a 404, log in through the [Kong
 repository home page](https://bintray.com/kong) first._
 
 ### Migrating to 2.1.x
