@@ -333,15 +333,6 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "config.remove.headers=h1:/JSESSIONID=.*/, h2://status/$/" \
 ```
 
-- Explicitly specify the types of added JSON values if the response code is 500
-
-```
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
-  --data "name=response-transformer-advanced" \
-  --data "config.add.json_types=number" \
-  --data "config.replace.if_status=500"
-```
-
 |upstream response headers | proxied response headers |
 |---           | --- |
 |h1:JSESSIONID=1876832,path=/   | h1:path=/ |
@@ -351,3 +342,13 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 [consumer-object]: /latest/admin-api/#consumer-object
 [configuration]: /latest/configuration
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
+
+
+- Explicitly specify the types of added JSON values if the response code is 500
+
+```
+$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  --data "name=response-transformer-advanced" \
+  --data "config.add.json_types=number" \
+  --data "config.replace.if_status=500"
+```
