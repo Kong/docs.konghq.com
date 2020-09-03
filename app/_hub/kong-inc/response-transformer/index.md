@@ -73,6 +73,9 @@ params:
     - name: replace.json
       required: false
       description: List of property:value pairs. If and only if the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
+    - name: replace.json_types
+      required: false
+      description: List of JSON type names. Specify the types of the JSON values returned when replacing JSON properties.
     - name: add.headers
       required: false
       value_in_examples: ["x-new-header:value","x-another-header:something"]
@@ -81,6 +84,10 @@ params:
       required: false
       value_in_examples: ["new-json-key:some_value", "another-json-key:some_value"]
       description: List of property:value pairs. If and only if the property is not present, add a new property with the given value to the JSON body. Ignored if the property is already present.
+    - name: add.json_types
+      required: false
+      value_in_examples: ["new-json-key:string", "another-json-key:number"]
+      description: List of JSON type names. Specify the types of the JSON values returned when adding a new JSON property.
     - name: append.headers
       required: false
       value_in_examples: ["x-existing-header:some_value", "x-another-header:some_value"]
@@ -88,6 +95,9 @@ params:
     - name: append.json
       required: false
       description: List of property:value pairs. If the property is not present in the JSON body, add it with the given value. If it is already present, the two values (old and new) will be aggregated in an array.
+    - name: append.json_types
+      required: false
+      description: List of JSON type names. Specify the types of the JSON values returned when appending JSON properties.
 
 ---
 
@@ -106,15 +116,18 @@ similar for Services.
 
 - Add multiple headers by passing each header:value pair separately:
 
-{% tabs %}
-{% tab With a database %}
+{% navtabs %}
+{% navtab With a database %}
+
 ```bash
 $ curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
   --data "config.add.headers[1]=h1:v1" \
   --data "config.add.headers[2]=h2:v1"
 ```
-{% tab Without a database %}
+{% endnavtab %}
+{% navtab Without a database %}
+
 ```yaml
 plugins:
 - name: response-transformer
@@ -123,7 +136,9 @@ plugins:
     add:
       headers: ["h1:v1", "h2:v2"]
 ```
-{% endtabs %}
+
+{% endnavtab %}
+{% endnavtabs %}
 
 <table>
   <tr>
@@ -185,15 +200,18 @@ $ curl -X POST http://localhost:8001/routes/{route}/plugins \
 
 - Add a body property and a header:
 
-{% tabs %}
-{% tab With a database %}
+{% navtabs %}
+{% navtab With a database %}
+
 ```bash
 $ curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
   --data "config.add.json=p1:v1,p2=v2" \
   --data "config.add.headers=h1:v1"
 ```
-{% tab Without a database %}
+{% endnavtab %}
+{% navtab Without a database %}
+
 ```yaml
 plugins:
 - name: response-transformer
@@ -203,7 +221,8 @@ plugins:
       json: ["p1:v1", "p2=v2"]
       headers: ["h1:v1"]
 ```
-{% endtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
 <table>
   <tr>
@@ -231,14 +250,18 @@ plugins:
 
 - Append multiple headers and remove a body property:
 
-{% tabs %}
-{% tab With a database %}
+{% navtabs %}
+{% navtab With a database %}
+
 ```bash
 $ curl -X POST http://localhost:8001/routes/{route}/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "response-transformer", "config": {"append": {"headers": ["h1:v2", "h2:v1"]}, "remove": {"json": ["p1"]}}}'
 ```
-{% tab Without a database %}
+
+{% endnavtab %}
+{% navtab Without a database %}
+
 ```yaml
 plugins:
 - name: response-transformer
@@ -249,7 +272,8 @@ plugins:
     remove:
       json: ["p1"]
 ```
-{% endtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
 <table>
   <tr>
@@ -268,6 +292,16 @@ plugins:
 | ---           | --- |
 | {"p2": "v2"}   | {"p2": "v2"} |
 | {"p1" : "v1", "p2" : "v1"}  | {"p2": "v2"} |
+
+
+- Explicitly set the type of the added JSON value `-1` to be a `number` (instead of the implicitly inferred type `string`) if the response code is 500:
+
+```
+$ curl -X POST http://localhost:8001/routes/{route}/plugins \
+  --data "name=response-transformer" \
+  --data "config.add.json=p1:-1" \
+  --data "config.add.json_types=number"
+```
 
 [api-object]: /latest/admin-api/#api-object
 [consumer-object]: /latest/admin-api/#consumer-object
