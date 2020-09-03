@@ -2,7 +2,7 @@
 
 name: Vault Authentication
 publisher: Kong Inc.
-version: 1.3-x
+version: 2.1.x
 
 desc: Add Vault authentication to your Services
 description: |

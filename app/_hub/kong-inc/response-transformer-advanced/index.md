@@ -1,7 +1,7 @@
 ---
 name: Response Transformer Advanced
 publisher: Kong Inc.
-version: 1.3-x
+version: 2.1.x
 
 desc: Modify the upstream response before returning it to the client
 description: |
