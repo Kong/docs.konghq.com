@@ -5,16 +5,16 @@ title: Kong Brain and Kong Immunity Installation and Configuration
 Kong Brain (Brain) and Kong Immunity (Immunity) are installed on Kong Enterprise, either on Kubernetes or Docker, as defined below. The Collector App and Collector Plugin enable Brain and Immunity to communicate with Kong Enterprise. 
 
 ## Version Compatibility
-Kong Brain and Kong Immunity follow a different versioning scheme from Kong Enterprise. See the following table for version compatibility. Note the following:
+Kong Brain and Kong Immunity follow a different versioning scheme from Kong Enterprise. See the table for version compatibility. Note the following:
 * The Brain and Immunity version reflects the `kong-brain-immunity-base` package available in Bintray.
-* For Kong Enterprise 1.5.x and 2.1.x, use Brain and Immunity 3.0.0 package version (`kong-brain-immunity-base`). 
-* Do not use Brain and Immunity 2.x.x package version (`kong-brain-immunity-base`), as it is end-of-life. 
+* For Kong Enterprise 1.5.x and 2.1.x, use Brain and Immunity 3.0.0. 
+* Do not use Brain and Immunity 2.x.x, as it is end-of-life (EOL). 
 
-| Brain and Immunity Version      | Kong Enterprise Version |
-|:--------------------------------|:------------------------|
-| 3.0.0                           | 1.5.x, 2.1.x            |
-| 2.x.x is EOL. Use 3.0.0 instead | 1.5.x                   |
-| 1.x.x                           | 1.3.x                   |
+| Brain and Immunity Version       | Kong Enterprise Version |
+|:---------------------------------|:------------------------|
+| 3.0.0                            | 1.5.x, 2.1.x            |
+| 2.x.x is EOL. Use 3.0.0 instead. | 1.5.x                   |
+| 1.x.x                            | 1.3.x                   |
 
 ## Install Brain and Immunity on Kubernetes
 Set up the Collector App via Helm. Use the public helm chart for setting up the Collector App and all its dependencies on Kubernetes. Instructions for setup can be found on the public repo at: [https://github.com/Kong/kong-collector-helm/blob/master/README.md](https://github.com/Kong/kong-collector-helm/blob/master/README.md).
