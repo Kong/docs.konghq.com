@@ -25,7 +25,7 @@ no_search: true
 
   <div class="docs-grid-block">
     <h3><a href="/mesh/{{page.kong_version}}/features">Enterprise Features</a></h3>
-    <p>Explore the enterprise features available in {{site.mesh_product_name}}, on top of CNCF's Kuma & Envoy.</p>
+    <p>Explore the enterprise features available in {{site.mesh_product_name}}, on top of CNCF's Kuma and Envoy.</p>
     <a href="/mesh/{{page.kong_version}}/features">Explore enterprise features &rarr;</a>
   </div>
 

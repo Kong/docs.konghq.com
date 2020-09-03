@@ -6,7 +6,7 @@ no_search: true
 ## Introduction
 
 <div class="alert alert-ee blue">
-   <b>Demo</b>: To see {{site.mesh_product_name}} in action you can
+   <b>Demo</b>: To see {{site.mesh_product_name}} in action, you can
    <a href="https://konghq.com/request-demo-kong-mesh/">request a demo</a> and
    we will get in touch with you.
 </div>
@@ -70,7 +70,7 @@ for both edge and internal API traffic.
   <img src="/assets/images/docs/mesh/gw_mesh.png" width="600px"/>
   <br>
   <i>Two different applications - "Banking" and "Trading" - run in their
-  own meshes "A" and "B" across different data-centers. In this example,
+  own meshes "A" and "B" across different datacenters. In this example,
   Kong Gateway is being used both for edge communication, and for internal
   communication between meshes.</i>
 </center>
@@ -119,7 +119,7 @@ Kong’s service mesh is unique in that it allows you to:
   * Expose mesh services for internal or external consumption and manage the
   full lifecycle of APIs.
 
-Thanks to the underlying Kuma runtime, with {{site.mesh_product_name}} you
+Thanks to the underlying Kuma runtime, with {{site.mesh_product_name}}, you
 can easily support multiple clusters, clouds, and architectures using the
 multi-zone capability that ships out of the box. This &mdash; combined with
 multi-mesh support &mdash; lets you create a service mesh powered by an Envoy proxy
@@ -131,7 +131,7 @@ hybrid Kubernetes/VMs:
   <img src="/assets/images/docs/mesh/multi-zone.jpg" width="600px"/>
   <br>
   <i>{{site.mesh_product_name}} can support multiple zones (like a Kubernetes
-    cluster, VPC, data-center, etc) together in the same distributed deployment.
+    cluster, VPC, datacenter, etc.) together in the same distributed deployment.
      Then, you can create multiple isolated virtual meshes with the same
      control plane in order to support every team and application in the
      organization.</i>
