@@ -63,7 +63,7 @@ params:
     - name: add.headers
       required: false
       value_in_examples: ["x-new-header:value","x-another-header:something"]
-      description: List of headernvame:value pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set.
+      description: List of headername:value pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set.
     - name: add.json
       required: false
       value_in_examples: ["new-json-key:some_value", "another-json-key:some_value"]
