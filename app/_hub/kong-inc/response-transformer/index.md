@@ -116,15 +116,18 @@ similar for Services.
 
 - Add multiple headers by passing each header:value pair separately:
 
-{% tabs %}
-{% tab With a database %}
+{% navtabs %}
+{% navtab With a database %}
+
 ```bash
 $ curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
   --data "config.add.headers[1]=h1:v1" \
   --data "config.add.headers[2]=h2:v1"
 ```
-{% tab Without a database %}
+{% endnavtab %}
+{% navtab Without a database %}
+
 ```yaml
 plugins:
 - name: response-transformer
@@ -133,7 +136,9 @@ plugins:
     add:
       headers: ["h1:v1", "h2:v2"]
 ```
-{% endtabs %}
+
+{% endnavtab %}
+{% endnavtabs %}
 
 <table>
   <tr>
@@ -195,15 +200,18 @@ $ curl -X POST http://localhost:8001/routes/{route}/plugins \
 
 - Add a body property and a header:
 
-{% tabs %}
-{% tab With a database %}
+{% navtabs %}
+{% navtab With a database %}
+
 ```bash
 $ curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
   --data "config.add.json=p1:v1,p2=v2" \
   --data "config.add.headers=h1:v1"
 ```
-{% tab Without a database %}
+{% endnavtab %}
+{% navtab Without a database %}
+
 ```yaml
 plugins:
 - name: response-transformer
@@ -213,7 +221,8 @@ plugins:
       json: ["p1:v1", "p2=v2"]
       headers: ["h1:v1"]
 ```
-{% endtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
 <table>
   <tr>
@@ -241,14 +250,18 @@ plugins:
 
 - Append multiple headers and remove a body property:
 
-{% tabs %}
-{% tab With a database %}
+{% navtabs %}
+{% navtab With a database %}
+
 ```bash
 $ curl -X POST http://localhost:8001/routes/{route}/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "response-transformer", "config": {"append": {"headers": ["h1:v2", "h2:v1"]}, "remove": {"json": ["p1"]}}}'
 ```
-{% tab Without a database %}
+
+{% endnavtab %}
+{% navtab Without a database %}
+
 ```yaml
 plugins:
 - name: response-transformer
@@ -259,7 +272,8 @@ plugins:
     remove:
       json: ["p1"]
 ```
-{% endtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
 <table>
   <tr>
