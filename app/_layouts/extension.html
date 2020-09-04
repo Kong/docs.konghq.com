@@ -9,6 +9,7 @@ breadcrumbs:
 {% unless page.type == "concept" %}
 {% if page.type == "plugin" %}
 
+<!-- Generate cURL examples -->
 {% capture config_required_fields %}{%
   for field in page.params.config %}{%
   if field.value_in_examples != nil %}{%
@@ -24,6 +25,7 @@ breadcrumbs:
   endif %}{% endfor
 %}{% endcapture %}
 
+<!-- Generate declarative yaml examples -->
 {% capture config_required_fields_yaml
   %}config: {%
   for field in page.params.config %}{%
@@ -52,6 +54,37 @@ breadcrumbs:
   elsif field.required == true %}
     {{ field.name }}: {{ field.default | markdownify | strip_html | strip }}{%
   endif %}{% endfor
+%}{% endcapture %}
+
+<!-- Generate kubernetes examples (different indentation from declarative) -->
+{% capture config_required_fields_k8s
+%}config: {%
+for field in page.params.config %}{%
+if field.value_in_examples != nil %}{%
+  if field.value_in_examples.first %}{%
+      if field.name contains "." %}{%
+        assign names = field.name | split: "." %}
+  {{ names[0] }}:{%
+    for name in names offset:1 %}
+    {{ name }}:{% endfor %}{%
+    for value in field.value_in_examples %}
+    - {{ value }}{%
+    endfor %}{% else %}
+  {{ field.name }}:{%
+  for value in field.value_in_examples %}
+  - {{ value }}{%
+  endfor %}{% endif %}{%
+  elsif field.name contains "." %}{%
+        assign names = field.name | split: "." %}
+  {{ names[0] }}:{%
+    for name in names offset:1 %}
+    {{ name }}:{% endfor %} {{ field.value_in_examples }}{%
+  else %}
+  {{ field.name }}: {{ field.value_in_examples }}{%
+  endif %}{%
+elsif field.required == true %}
+  {{ field.name }}: {{ field.default | markdownify | strip_html | strip }}{%
+endif %}{% endfor
 %}{% endcapture %}
 
 <!-- Service config example -->
@@ -84,6 +117,54 @@ $ curl -X POST http://<admin-hostname>:8001/services/<service>/plugins \
 {{ plugin_config_for_service_admin_api }}
 
 {% endnavtab %}
+{% unless page.params.k8s_compatible == false %}
+{% navtab Kubernetes %}
+
+First, create a [KongPlugin](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/references/custom-resources.md#kongplugin)
+resource:
+
+```yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: <{{page.params.name}}-example>
+{% if config_required_fields_k8s == 'config: ' %}config:
+  <optional_parameter>: <value>{% else %}{{ config_required_fields_k8s }}{% endif %}
+plugin: {{page.params.name}}
+```
+
+Next, apply the KongPlugin resource to a
+[Service](/latest/admin-api/#service-object) by annotating the Service as
+follows:
+
+```yaml
+apiVersion: configuration.konghq.com/v1
+kind: Service
+metadata:
+  name: <service>
+  labels:
+    app: <service>
+  annotations:
+    plugins.konghq.com: <{{page.params.name}}-example>
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: <service>
+  selector:
+    app: <service>
+  ```
+
+<div class="alert alert-ee blue">
+  <strong>Note:</strong> The KongPlugin resource only needs to be defined once
+  and can be applied to any Service, Consumer, or Route in the namespace. If you
+  want the plugin to be available cluster-wide, create the resource as a
+  <code>KongClusterPlugin</code> instead of <code>KongPlugin</code>.
+</div>
+
+{% endnavtab %}
+{% endunless %}
 {% unless page.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
@@ -142,6 +223,52 @@ $ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
 {{ plugin_config_for_route_admin_api }}
 
 {% endnavtab %}
+{% unless page.params.k8s_compatible == false %}
+{% navtab Kubernetes %}
+
+First, create a [KongPlugin](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/references/custom-resources.md#kongplugin)
+resource:
+
+```yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: <{{page.params.name}}-example>
+{% if config_required_fields_k8s == 'config: ' %}config:
+  <optional_parameter>: <value>{% else %}{{ config_required_fields_k8s }}{% endif %}
+plugin: {{page.params.name}}
+```
+
+Then, apply it to an ingress ([Route or Routes](/latest/admin-api/#route-object))
+by annotating the ingress as follows:
+
+``` yaml
+apiVersion: configuration.konghq.com/v1
+kind: Ingress
+metadata:
+  name: <route>
+  annotations:
+    plugins.konghq.com: <{{page.params.name}}-example>
+spec:
+  rules:
+  - host: examplehostname.com
+    http:
+      paths:
+      - path: /bar
+        backend:
+          serviceName: echo
+          servicePort: 80
+  ```
+
+<div class="alert alert-ee blue">
+  <strong>Note:</strong> The KongPlugin resource only needs to be defined once
+  and can be applied to any Service, Consumer, or Route in the namespace. If you
+  want the plugin to be available cluster-wide, create the resource as a
+  <code>KongClusterPlugin</code> instead of <code>KongPlugin</code>.
+</div>
+
+{% endnavtab %}
+{% endunless %}
 {% unless page.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
@@ -179,6 +306,12 @@ $ curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
     --data "name={{page.params.name}}" {{ config_required_fields }}
 ```
 
+{% if page.params.service_id and page.params.route_id %}
+  You can combine `consumer.id`, `service.id`, or `route.id`
+{% elsif page.params.service_id %} and `service.id`
+{% elsif page.params.route_id %} and `route.id`{%
+  endif %} in the same request, to further narrow the scope of the plugin.
+
 {% endcapture %}
 
 {% capture plugin_config_for_consumer %}
@@ -196,6 +329,43 @@ $ curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
 {{ plugin_config_for_consumer_admin_api }}
 
 {% endnavtab %}
+{% unless page.params.k8s_compatible == false %}
+{% navtab Kubernetes %}
+
+First, create a [KongPlugin](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/references/custom-resources.md#kongplugin)
+resource:
+
+```yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: <{{page.params.name}}-example>
+{% if config_required_fields_k8s == 'config: ' %}config:
+  <optional_parameter>: <value>{% else %}{{ config_required_fields_k8s }}{% endif %}
+plugin: {{page.params.name}}
+```
+
+Then, apply it to a [Consumer](/latest/admin-api/#consumer-object) by
+annotating the KongConsumer resource as follows:
+
+``` yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongConsumer
+metadata:
+  name: <consumer>
+  annotations:
+    plugins.konghq.com: <{{page.params.name}}-example>
+  ```
+
+<div class="alert alert-ee blue">
+  <strong>Note:</strong> The KongPlugin resource only needs to be defined once
+  and can be applied to any Service, Consumer, or Route in the namespace. If you
+  want the plugin to be available cluster-wide, create the resource as a
+  <code>KongClusterPlugin</code> instead of <code>KongPlugin</code>.
+</div>
+
+{% endnavtab %}
+{% endunless %}
 {% unless page.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
@@ -216,12 +386,6 @@ plugins:
 
 `<consumer>` is the `id` or `username` of the Consumer that this plugin
   configuration will target.
-
-{% if page.params.service_id and page.params.route_id %}
-  You can combine `consumer.id`, `service.id`, or `route.id`
-{% elsif page.params.service_id %} and `service.id`
-{% elsif page.params.route_id %} and `route.id`{%
-  endif %} in the same request, to further narrow the scope of the plugin.
 
 {% endcapture %}
 {% endif %}
@@ -257,6 +421,26 @@ sections for more information.
 {{ plugin_global_config_admin_api }}
 
 {% endnavtab %}
+{% unless page.params.k8s_compatible == false %}
+{% navtab Kubernetes %}
+
+Create a [KongClusterPlugin](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/references/custom-resources.md#kongclusterplugin)
+resource and label it as global:
+
+```yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongClusterPlugin
+metadata:
+  name: <global-{{page.params.name}}>
+  labels:
+    global: \"true\"
+{% if config_required_fields_k8s == 'config: ' %}config:
+  <optional_parameter>: <value>{% else %}{{ config_required_fields_k8s }}{% endif %}
+plugin: {{page.params.name}}
+```
+
+{% endnavtab %}
+{% endunless %}
 {% unless page.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 For example, configure this plugin using the <code>plugins:</code> entry in the declarative
