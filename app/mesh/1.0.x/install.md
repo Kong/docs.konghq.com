@@ -5,9 +5,12 @@ no_search: true
 
 ## Install {{site.mesh_product_name}}
 
-{{site.mesh_product_name}} is built on top of Kuma and Envoy and in order to create a seamless experience it follows the same exact installation and configuration procedures as Kuma, but with its own binaries instead.
+{{site.mesh_product_name}} is built on top of Kuma and Envoy. To create a
+seamless experience, {{site.mesh_product_name}} follows the same installation
+and configuration procedures as Kuma, but uses its own binaries.
 
-On this page you will find access to the official {{site.mesh_product_name}} distributions that provide a drop-in replacemement to Kuma's native binaries.
+On this page, you will find access to the official {{site.mesh_product_name}}
+distributions that provide a drop-in replacement to Kuma's native binaries.
 
 <b>The latest {{site.mesh_product_name}} is {{page.kong_latest.version}}:</b>
 
@@ -22,9 +25,12 @@ On this page you will find access to the official {{site.mesh_product_name}} dis
 * [Ubuntu](/mesh/{{page.kong_version}}/installation/ubuntu)
 * [macOS](/mesh/{{page.kong_version}}/installation/macos)
 
-## Verify installation
+## Verify Installation
 
-To make sure that we have installed the right version of {{site.mesh_product_name}}, you can always run the following commands and make sure that the version output is being prefixed with `{{site.mesh_product_name}}`:
+To confirm that you have installed the right version of
+{{site.mesh_product_name}}, you can always run the following commands and
+make sure that the version output starts with the `{{site.mesh_product_name}}`
+prefix:
 
 ```sh
 $ kumactl version
