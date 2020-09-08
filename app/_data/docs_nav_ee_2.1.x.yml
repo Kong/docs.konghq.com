@@ -424,6 +424,8 @@
               url: /developer-portal/administration/application-registration/enable-application-registration
             - text: Set up Okta and Kong for external OAuth
               url: /developer-portal/administration/application-registration/okta-config
+            - text: Set up Azure AD and Kong for external
+              url: /developer-portal/administration/application-registration/azure-oidc-config            
             - text: Manage Applications
               url: /developer-portal/administration/application-registration/managing-applications
     - text: Customization
