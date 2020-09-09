@@ -333,8 +333,8 @@ is disabled.
 <div class="alert alert-warning">
 <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
 <b>Important:</b> Data Plane nodes receive updates from the Control Plane via a format
-similar to declarative config, therefore `database` has to be set to `off`
-for Kong to start up properly.
+similar to declarative config, therefore <code>database</code> has to be set to
+<code>off</code> for Kong to start up properly.
 </div>
 
 {% navtabs %}
