@@ -15,6 +15,9 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 
 ## Create an Application in Azure
 
+1. Within Azure, go to the **App Registrations** service and register a new application.
+
+   ![Azure App Registrations](/assets/images/docs/dev-portal/ms-azure-pp-reg.png)
 
 1. In **Certificates & secrets**, create a Client secret and save it in a
    secure location. You can only view the secret once.
@@ -72,8 +75,8 @@ The plugins must be applied to a Service to work properly.
 
 1. Paste the access token obtained from the previous step into
    [JWT](https://jwt.io), and copy the value for the
-   [aud (audience)](https://tools.ietf.org/html/rfc7519#section-4.1.3) claim to your clipboard.
-   You will use the `aud` value as your **Reference ID** for the next step.
+   [aud (audience)](https://tools.ietf.org/html/rfc7519#section-4.1.3) claim to
+   your clipboard. You will use the `aud` value as your **Reference ID** for the next step.
 
 ## Create an Application in Kong
 
