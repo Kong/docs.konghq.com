@@ -29,14 +29,14 @@ Rate limiting protects the APIs from accidental or malicious overuse. Without ra
 Call the Admin API on port `8001` and configure plugins to enable a limit of five (5) requests per minute, stored locally and in-memory, on the node.
 
 *Using cURL*:
-```bash
+```sh
 $ curl -i -X POST http://<admin-hostname>:8001/plugins \
 --data name=rate-limiting \
 --data config.minute=5 \
 --data config.policy=local
 ```
 *Or using HTTPie*:
-```bash
+```sh
 $ http -f post :8001/plugins name=rate-limiting config.minute=5 config.policy=local
 ```
 {% endnavtab %}
@@ -133,11 +133,11 @@ and in-memory, on the node:
 To validate rate limiting, access the API six (6) times from the CLI to confirm the requests are rate limited.
 
 *Using cURL*:
-```bash
+```sh
 $ curl -i -X GET http://<admin-hostname>:8000/mock/request
 ```
 *Or using HTTPie*:
-```bash
+```sh
 $ http :8000/mock/request
 ```
 
