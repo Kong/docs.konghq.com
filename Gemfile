@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 gem 'jekyll', '3.9.0'
+gem 'kramdown-parser-gfm'
 gem 'jekyll-redirect-from'
 gem 'redcarpet', '3.5.0'
 gem 'rouge', '3.22.0'
