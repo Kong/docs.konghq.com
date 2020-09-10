@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gem 'jekyll', '3.8.6'
+gem 'jekyll', '3.9.0'
 gem 'jekyll-redirect-from'
 gem 'redcarpet', '3.5.0'
 gem 'rouge', '3.22.0'
