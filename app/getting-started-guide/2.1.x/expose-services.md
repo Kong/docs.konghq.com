@@ -34,13 +34,13 @@ Kong Gateway exposes the RESTful Admin API on port `:8001`. The gateway’s conf
 1. Define a Service with the name `example_service` and the URL `http://mockbin.org`.
 
     *Using cURL*:
-    ```
+    ```sh
     $ curl -i -X POST http://<admin-hostname>:8001/services \
     --data name=example_service \
     --data url='http://mockbin.org'
     ```
     *Or using HTTPie*:
-    ```
+    ```sh
     $ http POST :8001/services name=example_service url='http://mockbin.org'
     ```
     If the service is created successfully, you'll get a 201 success message.
@@ -48,11 +48,11 @@ Kong Gateway exposes the RESTful Admin API on port `:8001`. The gateway’s conf
 2. Verify the service’s endpoint.
 
     *Using cURL*:
-    ```
+    ```sh
     $ curl -i http://<admin-hostname>:8001/services/example_service
     ```
     *Or using HTTPie*:
-    ```
+    ```sh
     $ http :8001/services/example_service
     ```
 
@@ -71,7 +71,7 @@ Kong Gateway exposes the RESTful Admin API on port `:8001`. The gateway’s conf
 
 The service is created, and the page automatically redirects back to the `example_service` overview page.
 {% endnavtab %}
-{% navtab Using decK %}
+{% navtab Using decK (YAML) %}
 
 1. In the `kong.yaml` file you exported in
 [Prepare to Administer Kong Gateway](/getting-started-guide/{{page.kong_version}}/prepare/#verify-the-kong-gateway-configuration),
@@ -115,14 +115,14 @@ For the Service to be accessible through the Kong Gateway, you need to add a Rou
 Define a Route (`/mock`) for the Service (`example_service`) with a specific path that clients need to request. Note at least one of the hosts, paths, or methods must be set for the route to be matched to the service.
 
 *Using cURL*:
-  ```
+  ```sh
   $ curl -i -X POST http://<admin-hostname>:8001/services/example_service/routes \
   --data 'paths[]=/mock' \
-  --data 'name=mocking'
+  --data name=mocking
   ```
 
 *Or using HTTPie*:
-  ```
+  ```sh
   $ http :8001/services/example_service/routes paths:='["/mock"]' name=mocking
   ```
 
@@ -145,7 +145,7 @@ A 201 message indicates the route was created successfully.
 The route is created and you are automatically redirected back to the `example_service` overview page. The new Route appears under the Routes section.
 
 {% endnavtab %}
-{% navtab Using decK %}
+{% navtab Using decK (YAML) %}
 
 1. Paste the following into the `kong.yaml` file, under the entry for
 `example_service`:
@@ -242,12 +242,12 @@ is now using:
 Using the Admin API, issue the following:
 
 *Using cURL*:
-```
+```sh
 $ curl -i -X GET http://<admin-hostname>:8000/mock/request
 ```
 
 *Or using HTTPie*:
-```
+```sh
 $ http :8000/mock/request
 ```
 

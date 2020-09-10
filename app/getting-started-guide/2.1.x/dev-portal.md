@@ -17,12 +17,12 @@ Make sure the Dev Portal is on. You should have enabled it for Kong Gateway duri
 {% navtab Using the Admin API %}
 
 *Using cURL:*
-```
+```sh
 $ curl -X PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace \
---data "config.portal=true"
+--data config.portal=true
 ```
 *Or using HTTPie:*
-```
+```sh
 $ http PATCH :8001/workspaces/SecureWorkspace config.portal=true
 ```
 

@@ -29,14 +29,14 @@ Rate limiting protects the APIs from accidental or malicious overuse. Without ra
 Call the Admin API on port `8001` and configure plugins to enable a limit of five (5) requests per minute, stored locally and in-memory, on the node.
 
 *Using cURL*:
-```
+```bash
 $ curl -i -X POST http://<admin-hostname>:8001/plugins \
---data "name=rate-limiting" \
---data "config.minute=5" \
---data "config.policy=local"
+--data name=rate-limiting \
+--data config.minute=5 \
+--data config.policy=local
 ```
 *Or using HTTPie*:
-```
+```bash
 $ http -f post :8001/plugins name=rate-limiting config.minute=5 config.policy=local
 ```
 {% endnavtab %}
@@ -66,7 +66,7 @@ $ http -f post :8001/plugins name=rate-limiting config.minute=5 config.policy=lo
 
 7. Click **Create**.
 {% endnavtab %}
-{% navtab Using decK %}
+{% navtab Using decK (YAML) %}
 
 <div class="alert alert-ee">
 <img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /><strong>Note:</strong> This section sets up the basic Rate Limiting plugin. If you have Kong Enterprise or free trial access, see instructions for <strong>Using Kong Manager</strong> to set up Rate Limiting Advanced instead.
@@ -133,11 +133,11 @@ and in-memory, on the node:
 To validate rate limiting, access the API six (6) times from the CLI to confirm the requests are rate limited.
 
 *Using cURL*:
-```
+```bash
 $ curl -i -X GET http://<admin-hostname>:8000/mock/request
 ```
 *Or using HTTPie*:
-```
+```bash
 $ http :8000/mock/request
 ```
 

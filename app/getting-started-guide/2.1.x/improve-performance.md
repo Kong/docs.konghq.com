@@ -24,7 +24,7 @@ Use proxy caching so that Upstream services are not bogged down with repeated re
 Call the Admin API on port `8001` and configure plugins to enable in-memory caching globally, with a timeout of 30 seconds for Content-Type `application/json`.
 
 *Using cURL*:
-```
+```sh
 $ curl -i -X POST http://<admin-hostname>:8001/plugins \
 --data name=proxy-cache \
 --data config.content_type="application/json; charset=utf-8" \
@@ -33,7 +33,7 @@ $ curl -i -X POST http://<admin-hostname>:8001/plugins \
 ```
 
 *Or using HTTPie*:
-```
+```sh
 $ http -f :8001/plugins name=proxy-cache config.strategy=memory config.content_type="application/json; charset=utf-8"
 ```
 
@@ -61,7 +61,7 @@ $ http -f :8001/plugins name=proxy-cache config.strategy=memory config.content_t
 
 8. Click **Create**.
 {% endnavtab %}
-{% navtab Using decK %}
+{% navtab Using decK (YAML) %}
 
 1. In the `plugins` section of your `kong.yaml` file, add the `proxy-cache`
 plugin with a timeout of 30 seconds for Content-Type
@@ -121,12 +121,12 @@ Let’s check that proxy caching works.
 1. Access the */mock* route using the Admin API and note the response headers.
 
     *Using cURL*:
-    ```
+    ```sh
     $ curl -i -X GET http://<admin-hostname>:8000/mock/request
     ```
 
     *Or using HTTPie*:
-    ```
+    ```sh
     $ http :8000/mock/request
     ```
 
@@ -162,11 +162,11 @@ Let’s check that proxy caching works.
 3. To test more rapidly, the cache can be deleted by calling the Admin API:
 
     *Using cURL*:
-    ```
+    ```sh
     $ curl -i -X DELETE http://<admin-hostname>:8001/proxy-cache
     ```
     *Or using HTTPie*:
-    ```
+    ```sh
     $ http delete :8001/proxy-cache
     ```
 
