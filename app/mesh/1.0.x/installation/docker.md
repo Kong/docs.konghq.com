@@ -8,8 +8,9 @@ no_search: true
 To install and run {{site.mesh_product_name}} on Docker, execute the following
 steps:
 
-* [1. Download {{site.mesh_product_name}}](#_1-download-kong-mesh)
-* [2. Follow Kuma instructions](#_2-follow-kuma-instructions)
+* [1. Download {{site.mesh_product_name}}](#1-download-kong-mesh)
+* [2. Configure the license](#2-configure-the-license)
+* [3. Follow Kuma instructions](#3-follow-kuma-instructions)
 
 <div class="alert alert-ee blue">
 The official Docker images are used by default in the
@@ -33,7 +34,23 @@ executables:
 $ docker pull kong-docker-kong-mesh-docker.bintray.io/kuma-cp:{{page.kong_latest.version}}
 ```
 
-### 2. Follow Kuma Instructions
+### 2. Configure The License
+
+Before running the {{site.mesh_product_name}} control plane process - which is served by the `kuma-cp` container - we need to make sure that we have a valid {{site.mesh_product_name}} license in place.
+
+This can be done by running the control plane with:
+
+```sh
+$ docker run \
+    -p 5681:5681 \
+    -v /path/to/license.json:/license.json \
+    -e "KUMA_LICENSE_PATH=/license.json" \
+    kong-docker-kuma-docker.bintray.io/kuma-cp:0.7.1 run
+```
+
+Where `/path/to/license.json` is the path to a valid {{site.mesh_product_name}} license file on the host that will be mounted as `/license.json` into the container.
+
+### 3. Follow Kuma Instructions
 
 After pulling the {{site.mesh_product_name}} images, the remaining installation
 instructions for Kuma are fully compatible with {{site.mesh_product_name}},
