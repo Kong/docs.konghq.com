@@ -13,7 +13,7 @@ We will bring up any subsequent Data Plane (DP) instances in this topic.
 > Note: For a Hybrid mode deployment on Kubernetes, see [Hybrid mode](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
 in the `kong/charts` repository.
 
-## Step 1: Generate a certificate/key pair
+## Step 1: Generate a Certificate/Key Pair
 In Hybrid mode, a mutual TLS handshake (mTLS) is used for authentication so the
 actual private key is never transferred on the network, and communication
 between CP and DP nodes is secure.
@@ -218,7 +218,7 @@ Kong doesn't validate the CommonName (CN) in the DP certificate; it can take an 
 {% endnavtab %}
 {% endnavtabs %}
 
-## Step 2: Set up the Control Plane
+## Step 2: Set Up the Control Plane
 Next, give the Control Plane node the `control_plane` role, and set
 certificate/key parameters to point at the location of your certificates and
 keys.
@@ -321,7 +321,7 @@ backend database.
 
 >**Note:** Control Plane nodes cannot be used for proxying.
 
-## Step 3: Install and start Data Planes
+## Step 3: Install and Start Data Planes
 Now that the Control Plane is running, you can attach Data Plane nodes to it to
 start serving traffic.
 
@@ -333,8 +333,8 @@ is disabled.
 <div class="alert alert-warning">
 <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
 <b>Important:</b> Data Plane nodes receive updates from the Control Plane via a format
-similar to declarative config, therefore the storage property has to be
-set to <code>memory</code> for Kong to start up properly.
+similar to declarative config, therefore <code>database</code> has to be set to
+<code>off</code> for Kong to start up properly.
 </div>
 
 {% navtabs %}
@@ -486,7 +486,7 @@ and follow the instructions in Steps 1 and 2 **only** to download
 {% endnavtab %}
 {% endnavtabs %}
 
-## Step 4: Verify that nodes are connected
+## Step 4: Verify that Nodes are Connected
 
 Use the Control Plane’s Cluster Status API to monitor your Data Planes. It provides:
 * The name of the node
@@ -526,7 +526,7 @@ The output shows all of the connected Data Plane instances:
 }
 ```
 
-## Configuration reference
+## Configuration Reference
 
 Use the following configuration properties to configure {{site.ee_product_name}}
 in Hybrid mode.
@@ -550,7 +550,7 @@ Parameter | Description | Shared Mode {:width=12%:} | PKI Mode {:width=30%:}
 `cluster_server_name` <br>*Required in PKI mode* | The SNI presented by the DP node mTLS handshake. | *Ignored* | In PKI mode, the DP nodes will also verify that the Common Name (CN) or Subject Alternative Name (SAN) inside the certificate presented by CP matches the `cluster_server_name` value.
 `cluster_telemetry_server_name` |  The Vitals telemetry SNI presented by the DP node mTLS handshake. If not specified, falls back on SNI set in `cluster_server_name`. | *Ignored* | In PKI mode, the DP nodes will also verify that the Common Name (CN) or Subject Alternative Name (SAN) inside the certificate presented by CP matches the `cluster_telemetry_server_name` value.
 
-## Next steps
+## Next Steps
 
 Now, you can start managing the cluster using the Control Plane. Once
 all instances are set up, use the Admin API on the Control Plane as usual, and
