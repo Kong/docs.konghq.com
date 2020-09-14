@@ -2,7 +2,7 @@
 title: Customizing Portal Emails
 ---
 
-<div class="version-callout"><b>This feature is introduced in 1.3.0.1</b></div>
+<div class="version-callout"><b>This feature was introduced in 1.3.0.1</b></div>
 
 ## Introduction
 
