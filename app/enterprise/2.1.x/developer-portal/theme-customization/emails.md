@@ -209,8 +209,13 @@ Find out more about customizing the email layout in the section below.
 
 ### Load Email Templates via the Portal CLI Tool
 
-1. Clone [https://github.com/Kong/kong-portal-templates] master branch and navigate into the folder you cloned.
+1. Clone the [portal templates master branch](https://github.com/Kong/kong-portal-templates) and
+   navigate into the folder you cloned.
 2. If you have any customizations or permissions changes that you want to keep:
-   -  Run `portal fetch <workspacename>`. This pulls in your modifications locally.
-   -  Merge in master branch of [https://github.com/Kong/kong-portal-templates] to apply changes for 1.3.0.1 including emails.
-3.  Run `portal deploy <workspacename>`. This deploys all files.
+
+     1. Run `portal fetch <workspacename>`. This pulls in your modifications locally.
+
+     2. Merge in the portal templates master branch
+        to apply changes for 1.3.0.1, including emails.
+
+3. Run `portal deploy <workspacename>`. This deploys all files.
