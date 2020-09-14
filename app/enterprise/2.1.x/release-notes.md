@@ -57,7 +57,7 @@ For more information, including instructions for switching images, see [Kong for
 
 ## Known Issues and Workarounds
 
-* Using Service Directory Mapping on the CLI workaround. See {% include /md/{{page.kong_version}}/ldap/ldap_service_directory_mapping.md %}
+* [Using Service Directory Mapping on the CLI](enterprise/2.1.x/kong-manager/authentication/ldap/#using-service-directory-mapping-on-the-cli-1) workaround.
 
 * The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
