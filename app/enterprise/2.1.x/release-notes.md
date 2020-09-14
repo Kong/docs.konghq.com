@@ -57,7 +57,7 @@ For more information, including instructions for switching images, see [Kong for
 
 ## Known Issues and Workarounds
 
-* [Using Service Directory Mapping on the CLI](enterprise/2.1.x/kong-manager/authentication/ldap/#using-service-directory-mapping-on-the-cli-1) workaround.
+* [Using Service Directory Mapping on the CLI](enterprise/2.1.x/kong-manager/authentication/ldap/#using-service-directory-mapping-on-the-cli-1) workaround. When using only RBAC Token authorization, Service Directory Mapping to Kong Roles does not take effect. If you need to use CLI access with your Service Directory mapping, use the same authentication mechanism that Kong Manager uses to secure browser sessions as defined in this workaround.
 
 * The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
