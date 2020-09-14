@@ -64,7 +64,7 @@ Open a web browser and navigate to `http://<admin-hostname>:8002`.
 If {{site.ee_product_name}} was installed correctly, it automatically logs you in and presents the Kong Manager Overview page.
 {% endnavtab %}
 
-{% navtab Using decK %}
+{% navtab Using decK (YAML) %}
 
 1. Check that decK is connected to Kong:
 
@@ -120,7 +120,7 @@ the Cluster Status CLI.
 Run the following on a Control Plane:
 {% navtabs %}
 {% navtab Using cURL %}
-```
+```sh
 $ curl -i -X GET http://<admin-hostname>:8001/clustering/status
 ```
 {% endnavtab %}
@@ -132,7 +132,7 @@ $ http :8001/clustering/status
 {% endnavtabs %}
 The output shows all of the connected Data Plane instances:
 
-```bash
+```sh
 {
     "a08f5bf2-43b8-4f1c-bdf5-0a0ffb421c21": {
         "config_hash": "64d661f505f7e1de5b4c5e5faa1797dd",
