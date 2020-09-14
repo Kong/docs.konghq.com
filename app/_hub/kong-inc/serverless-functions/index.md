@@ -13,7 +13,7 @@ description: |
     <strong>Warning: </strong>The pre-function and post-function serverless plugin
     allows anyone who can enable the plugin to execute arbitrary code.
     If your organization has security concerns about this, disable the plugin  
-    in `kong.conf`.
+    in your kong.conf file.
   </div>
 
 type: plugin
