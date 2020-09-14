@@ -14,26 +14,22 @@
     - text: Changelog
       url: /enterprise/changelog
       absolute_url: true
+    - text: What's New in the Docs
+      url: /doc-updates
     - text: Version Support
       url: /support-policy
 
 - title: Deployment
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
   items:
-    - text: Deployment Options
-      url: /deployment/deployment-options
-      items:
-    - text: Hybrid Mode
-      items:
-        - text: Overview
-          url: /deployment/hybrid-mode
-        - text: Deploying in Hybrid Mode
-          url: /deployment/hybrid-mode-setup
     - text: Installation
       url: /deployment/installation/overview
       items:
         - text: Containerized
           items:
+            - text: AWS (EKS)
+              url: https://aws.amazon.com/marketplace/pp/B086MZ3TV3?qid=1586561274348&sr=0-4&ref_=srh_res_product_title
+              absolute_url: true
             - text: Docker
               url: /deployment/installation/docker
             - text: Kong for Kubernetes Enterprise
@@ -56,13 +52,40 @@
               url: /deployment/installation/amazon-linux-2
             - text: Red Hat Enterprise Linux
               url: /deployment/installation/rhel
-
-    - text: Default Ports
-      url: /deployment/default-ports
-    - text: DNS Considerations
-      url: /deployment/dns-considerations
-    - text: Resource Sizing Guidelines
-      url: /sizing-guidelines
+        - text: Marketplaces
+          items:
+            - text: AWS (AMI)
+              url: https://aws.amazon.com/marketplace/pp/B084L6PQPY?ref_=srh_res_product_title
+              absolute_url: true
+            - text: AWS (EKS)
+              url: https://aws.amazon.com/marketplace/pp/B086MZ3TV3?qid=1586561274348&sr=0-4&ref_=srh_res_product_title
+              absolute_url: true
+            - text: Azure
+              url: https://azuremarketplace.microsoft.com/en-us/marketplace/apps/konginc1581527938760.kongee2020ubuntuxenial?tab=Overview
+              absolute_url: true
+            - text: RedHat
+              url: https://marketplace.redhat.com/en-us/products/kong-enterprise-rhm
+              absolute_url: true
+    - text: Deployment Options
+      url: /deployment/deployment-options
+      items:
+        - text: Classic Deployment
+          url: /deployment/classic-deployment
+        - text: Hybrid Mode
+          url: /deployment/hybrid-mode
+          items:
+            - text: Deploying in Hybrid Mode
+              url: /deployment/hybrid-mode-setup
+    - text: Deployment Guidelines
+      items:
+        - text: Resource Sizing Guidelines
+          url: /sizing-guidelines
+        - text: Default Ports
+          url: /deployment/default-ports
+        - text: DNS Considerations
+          url: /deployment/dns-considerations
+        - text: Network &amp; Firewall
+          url: /network
     - text: Licensing
       items:
         - text: Overview
@@ -85,8 +108,13 @@
       items:
         - text: Migrating Kong Enterprise to Latest Version
           url: /deployment/upgrades/migrations
-        - text: Custom Plugin Breaking Changes
-          url: /deployment/upgrades/custom-changes
+          items:
+            - text: Custom Plugin Breaking Changes
+              url: /deployment/upgrades/custom-changes
+        - text: Migrating the Dev Portal to the Latest Version
+          url: /developer-portal/latest-migrations
+        - text: Migrating from Kong Community to Kong Enterprise
+          url: /deployment/upgrades/migrate-ce-to-ke
     - text: Kong Cloud
       url: /kong-cloud
 
@@ -133,8 +161,6 @@
       url: /clustering
     - text: Logging Reference
       url: /logging
-    - text: Network &amp; Firewall
-      url: /network
     - text: Plugin Development Guide
       items:
         - text: Introduction
@@ -353,7 +379,7 @@
       url: /developer-portal/
     - text: Enable the Dev Portal
       url: /developer-portal/enable-dev-portal
-    - text: Migrating to Latest Release
+    - text: Migrating to Latest Version
       url: /developer-portal/latest-migrations
     - text: Migrating from Legacy
       url: /developer-portal/legacy-migration
@@ -408,7 +434,7 @@
           url: /developer-portal/theme-customization/markdown-extended
         - text: Customizing Portal Emails
           url: /developer-portal/theme-customization/emails
-        - text: Adding and Using Javascript Assets
+        - text: Adding and Using JavaScript Assets
           url: /developer-portal/theme-customization/adding-javascript-assets
         - text: Single Page App in Dev Portal
           url: /developer-portal/theme-customization/single-page-app
@@ -467,18 +493,24 @@
 - title: Kong Brain & Kong Immunity
   icon: /assets/images/icons/documentation/icn-brain-color.svg
   items:
+    - text: Overview
+      url: /brain-immunity/overview
     - text: Installation and Configuration
       url: /brain-immunity/install-configure
     - text: Kong Brain
       items:
         - text: Service Map
           url: /brain-immunity/service-map
+        - text: Auto-Generated API Documentation
+          url: /brain-immunity/auto-generated-specs
     - text: Kong Immunity
       items:
         - text: Alerts
           url: /brain-immunity/alerts
-    - text: Auto-Generated API Documentation
-      url: /brain-immunity/auto-generated-specs
+        - text: Model Training
+          url: /brain-immunity/model-training
+        - text: Slack Integration
+          url: /brain-immunity/slack-integration
     - text: Troubleshooting
       url: /brain-immunity/troubleshooting
     - text: Changelog

@@ -33,6 +33,6 @@ In the specification, the fields `title`, `version`, and `description` are fille
 
 Use the parameter `openapi_version` to specify which version of the OpenAPI specification to use - possible values are `2` (default) and `3`.
 
-```
+```bash
 http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/swagger?openapi_version=<2|3>&host=<request_host>&route_id=<route_id>&service_id=<service_id>&workspace_name=<workspace_name>&title=<title>&version=<version>&description=<description>
 ```

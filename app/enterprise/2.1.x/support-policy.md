@@ -16,11 +16,12 @@ Full support includes:
 
 * Development of workarounds or patches for customers upon request, and where technically possible, for the following: Urgent issues; Critical and High Security Vulnerabilities; High priority issues where the product in a non-production environment is nearing a critical milestone, is unusable, and no workaround is available.
 
-Bug fixes and patches will be issued against the latest version of Kong Enterprise. For example, if a customer experiences a high priority bug on 0.36 and the latest shipped product is version 1.3.0.2, then the fix for that bug will normally be provided on 1.3.0.3. For customers with platinum or higher support, we will issue fixes to earlier versions upon request, if there are compelling business reasons for remaining on an older release.
+Bug fixes and patches will be issued against the latest version of Kong Enterprise. For example, if a customer experiences a high priority bug on 1.5.0.5 and the latest shipped product is version 2.1.3.0, then the fix for that bug will normally be provided on 2.1.3.1. For customers with platinum or higher support, we will issue fixes to earlier versions upon request, if there are compelling business reasons for remaining on an older release.
 
 
 | Version  | Released Date | End of Support |
 |:---------|:-------------:|---------------:|
+|  2.1.3.x |  2020-08-25   |   2021-08-24   |
 |  1.5.0.x |  2020-04-10   |   2021-04-09   |    
 |  1.3.0.x |  2019-11-05   |   2020-11-04   |
 |   0.36   |  2019-08-05   |   2020-08-04   |

@@ -111,7 +111,7 @@ and redundancy as long as they points to the same backend database.
 Starting in Kong 2.1, the Hybrid cluster can use certificates signed by a central certificate authority (CA).
 This mode can be activated by setting `cluster_mtls` to `"pki"` in `kong.conf`. The default value is `"shared"`.
 
-In PKI mode, the Control Plane and Data Plane don't need to use the same `cluster_key` and `cluster_cert_key`.
+In PKI mode, the Control Plane and Data Plane don't need to use the same `cluster_cert` and `cluster_cert_key`.
 Instead, Kong validates both sides by checking if they are from the same CA. This eliminates the risk of
 transporting private keys around.
 
@@ -306,8 +306,8 @@ have already specified a different `lua_ssl_trusted_certificate`, then adding th
 of `cluster.crt` into that file will achieve the same result.
 
 **Note:** In this release of the Hybrid Mode, the Data Plane receives updates from the Control
-Plane via a format that is similar to the Declarative Config, therefore the `storage`
-property has to be set to `memory` for Kong to start up properly.
+Plane via a format that is similar to the Declarative Config, therefore the `database`
+property has to be set to `off` for Kong to start up properly.
 
 ```
 KONG_ROLE=data_plane KONG_CLUSTER_CONTROL_PLANE=control-plane.example.com:8005 KONG_CLUSTER_CERT=cluster.crt KONG_CLUSTER_CERT_KEY=cluster.key KONG_LUA_SSL_TRUSTED_CERTIFICATE=cluster.crt KONG_DATABASE=off kong start

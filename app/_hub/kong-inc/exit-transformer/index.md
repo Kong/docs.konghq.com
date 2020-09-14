@@ -26,11 +26,13 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
+  yaml_examples: false
+  k8s_examples: false
   protocols: ["http", "https"]
   config:
     - name: functions
       required: true
-      value_in_examples: "[]"
+      value_in_examples: [ "@example/my_function.lua" ]
       description: Array of functions used to transform any Kong proxy exit response.
     - name: handle_unknown
       default: "`false`"

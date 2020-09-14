@@ -30,39 +30,39 @@ In this section, you will create an Upstream named `upstream` and add two target
 1. Call the Admin API on port `8001` and create an Upstream named `upstream`.
 
     *Using cURL*:
-    ```
+    ```sh
     $ curl -X POST http://<admin-hostname>:8001/upstreams \
     --data name=upstream
     ```
     *Or using HTTPie*:
-    ```
+    ```sh
     $ http POST :8001/upstreams name=upstream
     ```
 
 2. Update the service you created previously to point to this upstream.
 
     *Using cURL*:
-    ```
+    ```sh
     $ curl -X PATCH http://<admin-hostname>:8001/services/example_service \
     --data host='upstream'
     ```
     *Or using HTTPie*:
-    ```
+    ```sh
     $ http PATCH :8001/services/example_service host='upstream'
     ```
 
 3. Add two targets to the upstream, each with port 80: `mockbin.org:80` and `httpbin.org:80`.
 
     *Using cURL*:
-    ```
+    ```sh
     $ curl -X POST http://<admin-hostname>:8001/upstreams/upstream/targets \
-    --data target=’mockbin.org:80’
+    --data target='mockbin.org:80'
 
     $ curl -X POST http://<admin-hostname>:8001/upstreams/upstream/targets \
-    --data target=’httpbin.org:80’
+    --data target='httpbin.org:80'
     ```
     *Or using HTTPie*:
-    ```
+    ```sh
     $ http POST :8001/upstreams/upstream/targets target=mockbin.org:80
     $ http POST :8001/upstreams/upstream/targets target=httpbin.org:80
     ```
@@ -83,13 +83,87 @@ In this section, you will create an Upstream named `upstream` and add two target
 11. Find your `example_service` and click **Edit**.
 12. Change the **Host** field to `upstream`, then click **Update**.
 {% endnavtab %}
+
+{% navtab Using decK (YAML) %}
+1. In your `kong.yaml` file, create an Upstream with two targets, each with port
+80: `mockbin.org:80` and `httpbin.org:80`.
+
+    ``` yaml
+    upstreams:
+    - name: upstream
+      targets:
+        - target: httpbin.org:80
+          weight: 100
+        - target: mockbin.org:80
+          weight: 100
+    ```
+
+2. Update the service you created previously, pointing the `host` to this
+Upstream:
+
+    ``` yaml
+    services:
+      host: upstream
+      name: example_service
+      port: 80
+      protocol: http
+    ```
+
+    After these updates, your file should now look like this:
+
+    ``` yaml
+    _format_version: "1.1"
+    services:
+    - host: upstream
+      name: example_service
+      port: 80
+      protocol: http
+      routes:
+      - name: mocking
+        paths:
+        - /mock
+        strip_path: true
+        plugins:
+        - name: key-auth
+          enabled: false
+    consumers:
+    - custom_id: consumer
+      username: consumer
+      keyauth_credentials:
+      - key: apikey
+    upstreams:
+    - name: upstream
+      targets:
+        - target: httpbin.org:80
+          weight: 100
+        - target: mockbin.org:80
+          weight: 100
+    plugins:
+    - name: rate-limiting
+      config:
+        minute: 5
+        policy: local
+    - name: proxy-cache
+      config:
+        content_type:
+        - "application/json; charset=utf-8"
+        cache_ttl: 30
+        strategy: memory
+    ```
+
+3. Sync the configuration:
+
+    ``` bash
+    $ deck sync
+    ```
+{% endnavtab %}
 {% endnavtabs %}
 
 You now have an Upstream with two targets, `httpbin.org` and `mockbin.org`, and a service pointing to that Upstream.
 
 ## Validate the Upstream Services
 
-1. With the upstream configured, validate that it’s working by visiting the route `http://<admin-hostname>:8000/mock` using a web browser or CLI.
+1. With the Upstream configured, validate that it’s working by visiting the route `http://<admin-hostname>:8000/mock` using a web browser or CLI.
 2. Continue hitting the endpoint and the site should change from `httpbin` to `mockbin`.
 
 ## Summary and next steps

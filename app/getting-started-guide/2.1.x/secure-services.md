@@ -38,30 +38,30 @@ For more information, see [What is API Gateway Authentication?](https://konghq.c
 
     *Using cURL*:
 
-    ```
+    ```sh
     $ curl -X POST http://<admin-hostname>:8001/routes/mocking/plugins \
     --data name=key-auth
     ```
     *Or using HTTPie*:
 
-    ```
+    ```sh
     $ http :8001/routes/mocking/plugins name=key-auth
     ```
 
 2. Try to access the service again:
 
     *Using cURL*:
-    ```
+    ```sh
     $ curl -i http://<admin-hostname>:8000/mock
     ```
     *Or using HTTPie*:
-    ```
+    ```sh
     $ http :8000/mock
     ```
 
     Since you added key authentication, you should be unable to access it:
 
-    ```
+    ```sh
     HTTP/1.1 401 Unauthorized
     ...
     {
@@ -92,6 +92,59 @@ Now, if you try to access the route without providing an API key, the request wi
 
 Before Kong proxies requests for this route, it needs an API key. For this example, since you installed the Key Authentication plugin, you need to create a consumer with an associated key first.
 {% endnavtab %}
+{% navtab Using decK (YAML) %}
+1. Under the `mocking` route in the `routes` section of the `kong.yaml` file,
+add a plugin section and enable the `key-auth` plugin:
+
+    ``` yaml
+    plugins:
+    - name: key-auth
+    ```
+
+    Your file should now look like this:
+
+    ``` yaml
+    _format_version: "1.1"
+    services:
+    - host: mockbin.org
+      name: example_service
+      port: 80
+      protocol: http
+      routes:
+      - name: mocking
+        paths:
+        - /mock
+        strip_path: true
+        plugins:
+        - name: key-auth
+    plugins:
+    - name: rate-limiting
+      config:
+        minute: 5
+        policy: local
+    - name: proxy-cache
+      config:
+        content_type:
+        - "application/json; charset=utf-8"
+        cache_ttl: 30
+        strategy: memory
+    ```
+
+2. Sync the configuration:
+
+    ``` bash
+    $ deck sync
+    ```
+
+Now, if you try to access the route at `http://<admin-hostname>:8000/mock`
+without providing an API key, the request will fail, and you’ll see the message
+`"No API key found in request".`
+
+Before Kong proxies requests for this route, it needs an API key. For this
+example, since you installed the Key Authentication plugin, you need to create
+a consumer with an associated key first.
+
+{% endnavtab %}
 {% endnavtabs %}
 
 
@@ -102,29 +155,32 @@ Before Kong proxies requests for this route, it needs an API key. For this examp
 1. To create a consumer, call the Admin API and the consumer’s endpoint. The following creates a new consumer called **consumer**.
 
     *Using cURL*:
-    ```
-    $ curl -i -X POST -d "username=consumer&custom_id=consumer" http://<admin-hostname>:8001/consumers/
+    ```sh
+    $ curl -i -X POST http://<admin-hostname>:8001/consumers/ \
+     --data username=consumer \
+     --data custom_id=consumer
     ```
 
     *Or using HTTPie*:
-    ```
+    ```sh
     $ http :8001/consumers username=consumer custom_id=consumer
     ```
 
 2. Once provisioned, call the Admin API to provision a key for the consumer created above. For this example, set the key to `apikey`. If no key is entered, Kong automatically generates the key.
 
     *Using cURL*:
-    ```
-    $ curl -i -X POST http://<admin-hostname>:8001/consumers/consumer/key-auth -d 'key=apikey'
+    ```sh
+    $ curl -i -X POST http://<admin-hostname>:8001/consumers/consumer/key-auth \
+    --data key=apikey
     ```
     *Or using HTTPie*:
-    ```
+    ```sh
     $ http :8001/consumers/consumer/key-auth key=apikey
     ```
 
     Result:
 
-    ```
+    ```sh
     HTTP/1.1 201 Created
     ...
     {
@@ -153,6 +209,60 @@ Before Kong proxies requests for this route, it needs an API key. For this examp
 
   The new Key Authentication ID displays on the **Consumers** page under the **Credentials** tab.
 {% endnavtab %}
+{% navtab Using decK (YAML) %}
+1. Add a `consumers` section to your `kong.yaml` file and create a new consumer:
+
+    ``` yaml
+    consumers:
+    - custom_id: consumer
+      username: consumer
+      keyauth_credentials:
+      - key: apikey
+    ```
+
+    Your file should now look like this:
+
+    ``` yaml
+    _format_version: "1.1"
+    services:
+    - host: mockbin.org
+      name: example_service
+      port: 80
+      protocol: http
+      routes:
+      - name: mocking
+        paths:
+        - /mock
+        strip_path: true
+        plugins:
+        - name: key-auth
+    consumers:
+    - custom_id: consumer
+      username: consumer
+      keyauth_credentials:
+      - key: apikey
+    plugins:
+    - name: rate-limiting
+      config:
+        minute: 5
+        policy: local
+    - name: proxy-cache
+      config:
+        content_type:
+        - "application/json; charset=utf-8"
+        cache_ttl: 30
+        strategy: memory
+    ```
+
+2. Sync the configuration:
+
+    ``` bash
+    $ deck sync
+    ```
+
+You now have a consumer with an API key provisioned to access the route.
+
+{% endnavtab %}
 {% endnavtabs %}
 
 
@@ -163,20 +273,20 @@ Before Kong proxies requests for this route, it needs an API key. For this examp
 To validate the Key Authentication plugin, access the *mocking* route again, using the header `apikey` with a key value of `apikey`.
 
 *Using cURL*:
-```
+```sh
 $ curl -i http://<admin-hostname>:8000/mock/request -H 'apikey:apikey'
 ```
 
 *Or using HTTPie*:
 
-```
+```sh
 $ http :8000/mock/request apikey:apikey
 ```
 
 You should get an `HTTP/1.1 200 OK` message in response.
 
 {% endnavtab %}
-{% navtab Using Kong Manager %}
+{% navtab Using a Web Browser %}
 
 To validate the Key Authentication plugin, access your route through your browser by appending `?apikey=apikey` to the url:
 ```
@@ -195,28 +305,28 @@ If you are following this getting started guide topic by topic, you will need to
 1. Find the plugin ID and copy it.
 
     *Using cURL*:
-    ```
+    ```sh
     $ curl -X GET http://<admin-hostname>:8001/routes/mocking/plugins/
     ```
     *Or using HTTPie*:
-    ```
+    ```sh
     $ http :8001/routes/mocking/plugins
     ```
 
     Output:
-     ```
+     ```sh
      "id": "2512e48d9-7by0-674c-84b7-00606792f96b"
      ```
 
 2. Disable the plugin.
 
     *Using cURL*:
-    ```
+    ```sh
     $ curl -X PATCH http://<admin-hostname>:8001/routes/mocking/plugins/{<plugin-id>} \
-    --data "enabled=false"
+    --data enabled=false
     ```
     *Or using HTTPie*:
-    ```
+    ```sh
     $ http :8001/routes/mocking/plugins/{<plugin-id>} enabled=false
     ```
 {% endnavtab %}
@@ -224,6 +334,24 @@ If you are following this getting started guide topic by topic, you will need to
 {% navtab Using Kong Manager %}
 1. Go to the Plugins page and click on **View** for the key-auth row.
 2. Use the toggle at the top of the page to switch the plugin from **Enabled** to **Disabled**.
+{% endnavtab %}
+{% navtab Using decK (YAML) %}
+
+1. Disable the key-auth plugin in the `kong.yaml` file by setting
+`enabled` to `false`:
+
+    ``` yaml
+    plugins:
+    - name: key-auth
+      enabled: false
+    ```
+
+2. Sync the configuration:
+
+    ``` bash
+    $ deck sync
+    ```
+
 {% endnavtab %}
 {% endnavtabs %}
 

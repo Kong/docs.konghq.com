@@ -76,36 +76,32 @@ the `admin_listen` address as the Service's `url`. For example:
 # reach the Admin API via the url `/admin-api`
 
 $ curl -X POST http://localhost:8001/services \
-  --data name=admin-api \
-  --data host=localhost \
-  --data port=8001
-
-$ curl -X POST http://localhost:8001/services/admin-api/routes \
-  --data paths[]=/admin-api
+  --data name=my-service \
+  --data url=http://example.com/some_api
 
 # we can now transparently reach the Admin API through the proxy server
-$ curl localhost:8000/admin-api/apis
+$ curl localhost:8000/admin-api/services
 {
-   "data":[
-      {
-         "uris":[
-            "\/admin-api"
-         ],
-         "id":"653b21bd-4d81-4573-ba00-177cc0108dec",
-         "upstream_read_timeout":60000,
-         "preserve_host":false,
-         "created_at":1496351805000,
-         "upstream_connect_timeout":60000,
-         "upstream_url":"http:\/\/localhost:8001",
-         "strip_uri":true,
-         "https_only":false,
-         "name":"admin-api",
-         "http_if_terminated":true,
-         "upstream_send_timeout":60000,
-         "retries":5
-      }
-   ],
-   "total":1
+    "data": [{
+        "id": "a5fb8d9b-a99d-40e9-9d35-72d42a62d83a",
+        "created_at": 1422386534,
+        "updated_at": 1422386534,
+        "name": "my-service",
+        "retries": 5,
+        "protocol": "http",
+        "host": "example.com",
+        "port": 80,
+        "path": "/some_api",
+        "connect_timeout": 60000,
+        "write_timeout": 60000,
+        "read_timeout": 60000,
+        "tags": ["user-level", "low-priority"],
+        "client_certificate": {"id":"51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515"},
+        "tls_verify": true,
+        "tls_verify_depth": null,
+        "ca_certificates": ["4e3ad2e4-0bc4-4638-8e34-c84a417ba39b", "51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515"]
+    }],
+    "next": "http://localhost:8001/services?offset=6378122c-a0a1-438d-a5c6-efabae9fb969"
 }
 ```
 

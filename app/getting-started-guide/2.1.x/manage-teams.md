@@ -19,6 +19,9 @@ Many organizations have strict security requirements. For example, organizations
 
 In this example, you’ll start by creating a simple workspace called `SecureWorkspace`. Then, you’ll create an administrator for that workspace, with rights to administer only the objects in the SecureWorkspace and nothing else.
 
+>**Note:** The steps in this topic cannot be performed using declarative
+configuration.
+
 ## Securing your Kong Enterprise Installation
 
 At a high level, securing {{site.ee_product_name}} administration is a two-step process:
@@ -37,18 +40,18 @@ To enable RBAC, you will need the initial KONG_PASSWORD that was used when you f
 {% navtabs %}
 {% navtab UNIX-based system or Windows %}
 1. Modify configuration settings below in your `kong.conf` file. Navigate to the file at `/etc/kong/kong.conf`:
-    ```
+    ```sh
     $ cd /etc/kong/
     ```
 2. Copy the `kong.conf.default` file so you know you have a working copy to fall back to.
 
-    ```
+    ```sh
     $ cp kong.conf.default kong.conf
     ```
 
 3. Now, edit the following settings in `kong.conf`:
 
-    ```
+    ```sh
     $ echo >> “enforce_rbac = on” >> /etc/kong/kong.conf
     $ echo >> “admin_gui_auth = basic-auth” >> /etc/kong.conf
     $ echo >> “admin_gui_session_conf = {"secret":"secret","storage":"kong","cookie_secure":false}”
@@ -60,7 +63,7 @@ To enable RBAC, you will need the initial KONG_PASSWORD that was used when you f
 
 4. Restart {{site.ee_product_name}} and point to the new config file:
 
-    ```
+    ```sh
     $ kong restart -c /etc/kong/kong.conf
     ```
 {% endnavtab %}
@@ -70,7 +73,7 @@ If you have a Docker installation, run the following command to set the needed e
 
 **Note:** make sure to replace `<kong-container-id>` with the ID of your container.
 
-```
+```sh
 $ echo "KONG_ENFORCE_RBAC=on KONG_ADMIN_GUI_AUTH=basic-auth KONG_ADMIN_GUI_SESSION_CONF='{\"secret\":\"secret\",\"storage\":\"kong\",\"cookie_secure\":false}' kong reload exit" | docker exec -i <kong-container-id>
 ```
 
@@ -137,12 +140,12 @@ Outside of this guide, you will likely want to modify these settings differently
 Create a new Workspace called SecureWorkspace, substituting the `kong_admin` account’s password in place of `<super-user-token>`.
 
 *Using cURL:*
-```
+```sh
 $ curl -H Kong-Admin-Token:<super-user-token> -X POST http://<admin-hostname>:8001/workspaces \
 --data 'name=SecureWorkspace'
 ```
 *Or using HTTPie:*
-```
+```sh
 $ http :8001/workspaces name=SecureWorkspace Kong-Admin-Token:<super-user-token>
 ```
 
@@ -221,51 +224,51 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 1. Create a new user named `secureworkspaceadmin` with the RBAC token `secureadmintoken`.
 
     *Using cURL:*
-    ```
+    ```sh
     $ curl -H Kong-Admin-Token:<super-user-token> -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/users \
     --data 'name=secureworkspaceadmin' \
     --data 'user_token=secureadmintoken'
     ```
     *Or using HTTPie:*
-    ```
+    ```sh
     $ http :8001/SecureWorkspace/rbac/users name=secureworkspaceadmin user_token=secureadmintoken Kong-Admin-Token:<super-user-token>
     ```
 
 2. Create a blank role in the workspace and name it `admin`.
 
     *Using cURL:*
-    ```
+    ```sh
     $ curl -H Kong-Admin-Token:<super-user-token> -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/roles \
     --data 'name=admin' \
     ```
     *Or using HTTPie:*
-    ```
+    ```sh
     http :8001/SecureWorkspace/rbac/roles/ name=admin Kong-Admin-Token:<super-user-token>
     ```
 
 3. Give the `admin` role permissions to do everything on all endpoints in the workspace.
 
     *Using cURL:*
-    ```
+    ```sh
     $ curl -H Kong-Admin-Token:<super-user-token> -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/roles/admin/endpoints/ \
     --data 'endpoint=*'
     --data 'workspace=SecureWorkspace' \
     --data 'actions=*'
     ```
     *Or using HTTPie:*
-    ```
+    ```sh
     http :8001/secureworkspace/rbac/roles/admin/endpoints/ endpoint='*' workspace=SecureWorkspace actions='*' Kong-Admin-Token:<super-user-token>
     ```
 
 4. Grant the `admin` role to `secureworkspaceadmin`.
 
     *Using cURL:*
-    ```
+    ```sh
     $ curl -H Kong-Admin-Token:<super-user-token> -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
     --data 'role=admin'
     ```
     *Or using HTTPie:*
-    ```
+    ```sh
     http :8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ roles=admin Kong-Admin-Token:<super-user-token>
     ```
 
@@ -289,12 +292,12 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 1. Try to access the `default` workspace using `secureworkspaceadmin`'s user token.
 
     *Using cURL:*
-    ```
+    ```sh
     $ curl -H Kong-Admin-Token:secureadmintoken -X GET http://<admin-hostname>:8001/default/rbac/users
     ```
     *Or using HTTPie:*
 
-    ```
+    ```sh
     http :8001/default/rbac/users Kong-Admin-Token:secureadmintoken
     ```
 
@@ -307,12 +310,12 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 2. Then, try to access the same endpoint, but this time in the `SecureWorkspace`.
 
     *Using cURL:*
-    ```
+    ```sh
     $ curl -H Kong-Admin-Token:secureadmintoken -X GET http://<admin-hostname>:8001/SecureWorkspace/rbac/users
     ```
     *Or using HTTPie:*
 
-    ```
+    ```sh
     http :8001/default/rbac/users Kong-Admin-Token:secureadmintoken
     ```
     This time, you should get a `200 OK` success message and a list of users.
@@ -321,6 +324,38 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 {% endnavtabs %}
 
 That's it! You are now controlling access to {{site.ee_product_name}} administration with RBAC.
+
+## Reference: Using decK with RBAC and Workspaces
+
+### RBAC
+
+Once RBAC is enabled, you will have to pass the `kong-admin-token` in a header
+any time you use decK:
+
+``` bash
+$ deck sync --headers "kong-admin-token:mytoken"   
+```
+> **Note:** You should not use an RBAC token with Super Admin
+privileges for decK. Always scope down to the exact permissions you need to
+give decK.
+
+### Workspaces
+
+When you have multiple workspaces, decK creates a file for each one. Export
+them as follows:
+
+``` bash
+$ deck dump --all-workspaces
+```
+
+Or, to export the configuration for only one workspace:
+
+``` bash
+$ deck dump --workspace SecureWorkspace
+```
+
+You can use these flags with any decK commands to update and export your
+configuration.
 
 ## Summary and next steps
 

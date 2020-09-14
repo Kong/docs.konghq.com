@@ -43,15 +43,15 @@ params:
   consumer_id: true
   config:
     - name: introspection_url
-      required:
+      required: true
       default:
-      value_in_examples:
+      value_in_examples: https://example-url.com
       description: |
         The full URL to the third-party introspection endpoint
     - name: authorization_value
-      required:
+      required: true
       default:
-      value_in_examples:
+      value_in_examples: Basic MG9hNWlpbjpPcGVuU2VzYW1l
       description: |
         The value to set as the `Authorization` header when querying the introspection endpoint. This depends on the OAuth 2.0 server, but usually is the `client_id` and `client_secret` as a Base64-encoded Basic Auth string (`Basic MG9hNWl...`).
     - name: token_type_hint

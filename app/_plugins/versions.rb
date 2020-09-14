@@ -25,11 +25,16 @@ module Jekyll
         elem["edition"] && elem["edition"] == 'deck'
       end
 
+      meshVersions = site.data["kong_versions"].select do |elem|
+        elem["edition"] && elem["edition"] == 'mesh'
+      end
+
       site.data["kong_versions"] = ceVersions
       site.data["kong_versions_ee"] = eeVersions
       site.data["kong_versions_studio"] = studioVersions
       site.data["kong_versions_gsg"] = gsgVersions
       site.data["kong_versions_deck"] = deckVersions
+      site.data["kong_versions_mesh"] = meshVersions
 
 
       # Retrieve the latest version and put it in `site.data.kong_latest.version`
@@ -38,6 +43,7 @@ module Jekyll
       latestVersionStudio = studioVersions.last
       latestVersionGSG = gsgVersions.last
       latestVersionDeck = deckVersions.last
+      latestVersionMesh = meshVersions.last
 
       site.data["kong_latest"] = latestVersion
 
@@ -47,7 +53,7 @@ module Jekyll
         parts = Pathname(page.path).each_filename.to_a
         page.data["has_version"] = true
         # Only apply those rules to documentation pages
-        if (parts[0] == "enterprise" || parts[0].match(/[0-3]\.[0-9]{1,2}(\..*)?$/) || parts[0] == 'studio' || parts[0] == 'getting-started-guide' || parts[0] == 'deck' || parts[0] == 'community')
+        if (parts[0] == "enterprise" || parts[0].match(/[0-3]\.[0-9]{1,2}(\..*)?$/) || parts[0] == 'studio' || parts[0] == 'getting-started-guide' || parts[0] == 'mesh' || parts[0] == 'deck' || parts[0] == 'community')
           if(parts[0] == 'enterprise')
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]
@@ -69,6 +75,13 @@ module Jekyll
             page.data["kong_latest"] = latestVersionGSG
             page.data["nav_items"] = site.data['docs_nav_gsg_' + parts[1].gsub(/\./, '')]
             createAliases(page, '/getting-started-guide', 1, parts, latestVersionGSG["release"])
+          elsif(parts[0] == 'mesh')
+            page.data["edition"] = parts[0]
+            page.data["kong_version"] = parts[1]
+            page.data["kong_versions"] = meshVersions
+            page.data["kong_latest"] = latestVersionMesh
+            page.data["nav_items"] = site.data['docs_nav_mesh_' + parts[1].gsub(/\./, '')]
+            createAliases(page, '/mesh', 1, parts, latestVersionMesh["release"])
           elsif(parts[0] == 'deck')
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]

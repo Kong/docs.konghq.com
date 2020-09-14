@@ -52,6 +52,13 @@ params:
   route_id: true
 
   config:
+    - name: splunk_endpoint
+      required: true
+      value_in_examples: https://hec-splunk.company.com/services/collector
+      urlencode_in_examples: false
+      default:
+      description: |
+        Splunk HTTP Event Collector(HEC) Endpoint
     - name: splunk_access_token
       required: true
       value_in_examples: aaaaaaaa-bbbb-cccc-dddd-ffffffffffff

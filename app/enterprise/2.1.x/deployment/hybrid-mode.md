@@ -19,6 +19,13 @@ and receive the latest configuration.
 
 ![Hybrid mode topology](/assets/images/docs/ee/deployment/deployment-hybrid-2.png)
 
+When you create a new Data Plane node, it establishes a connection to the
+Control Plane. The Control Plane listens on port 8005 for connections and
+tracks any incoming data from its Data Planes.
+
+Once connected, every Admin API or Kong Manager action on the Control Plane
+triggers an update to the Data Planes in the cluster.
+
 ## Benefits
 
 Hybrid mode deployments have the following benefits:
@@ -40,16 +47,29 @@ won’t be able to affect other nodes in the Kong cluster.
 * **Ease of management:** Admins only need to interact with the CP nodes to
 control and monitor the status of the entire Kong cluster.
 
+## Platform Compatibility
+
+You can run {{site.ee_product_name}} in Hybrid mode on any platform where
+{{site.ee_product_name}} is [supported](/enterprise/{{page.kong_version}}/deployment/installation/overview).
+
+### Kubernetes Support and Additional Documentation
+[Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes)
+fully supports Hybrid mode deployments, with or without the Kong Ingress Controller.
+
+For the full Kubernetes Hybrid mode documentation, see
+[Hybrid mode](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
+in the `kong/charts` repository.
+
 ## Limitations
 
-### Configuration inflexibility
+### Configuration Inflexibility
 When a configuration change is made at the Control Plane level via the Admin
-API, it triggers a cluster-wide update of all Data Plane configurations. This
-means that the same configuration is synced from the CP to all DPs. For
-different DPs to have different configurations, they will need their own CP
-instances.
+API, it immediately triggers a cluster-wide update of all Data Plane
+configurations. This means that the same configuration is synced from the CP to
+all DPs, and the update cannot be scheduled or batched. For different DPs to
+have different configurations, they will need their own CP instances.
 
-### Plugin incompatibility
+### Plugin Incompatibility
 When plugins are running on a Data Plane in hybrid mode, there is no Admin API
 exposed directly from that DP. Since the Admin API is only exposed from the
 Control Plane, all plugin configuration has to occur from the CP. Due to this
@@ -67,21 +87,12 @@ compatible with Hybrid mode. For its regular workflow, the plugin needs to both
 generate and delete tokens, and commit those changes to the database, which is
 not possible with CP/DP separation.
 
-### Custom plugins
+### Custom Plugins
 Custom plugins (either your own plugins or third-party plugins that are not
 shipped with Kong) need to be installed on both the Control Plane and the Data
 Plane in Hybrid mode.
 
-### Kubernetes support
-
-[Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes)
-supports Hybrid mode deployments. However, for the 2.1.x Beta release, the nodes
-will not appear in Kong Manager.
-
-Kong for Kubernetes Enterprise (K4K8s, or the Kong Ingress Controller with
-{{site.base_gateway}}) does not use a database and is therefore not supported in
-Hybrid mode.
-
-* For a comparison of these images, see [Kubernetes Deployment Options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options).
-* For the full Kubernetes Hybrid mode documentation, see [Hybrid mode](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
-in the `kong/charts` repository.
+### Load Balancing
+Currently, there is no automated load balancing for connections between the
+Control Plane and the Data Plane. You can load balance manually by using
+multiple Control Planes and redirecting the traffic using a TCP proxy.

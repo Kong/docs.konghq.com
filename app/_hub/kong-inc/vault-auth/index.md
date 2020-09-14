@@ -2,7 +2,7 @@
 
 name: Vault Authentication
 publisher: Kong Inc.
-version: 1.3-x
+version: 2.1.x
 
 desc: Add Vault authentication to your Services
 description: |
@@ -32,17 +32,18 @@ params:
       required: true
       default: "`access_token`"
       description: |
-        Describes an array of comma separated parameter names where the plugin will look for an access token. The client must send the access token in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name.<br>*note*: the key names may only contain [a-z], [A-Z], [0-9], [_] and [-].
-    - name: vault
+        Describes an array of comma-separated parameter names where the plugin will look for an access token. The client must send the access token in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name.<br>*note*: the key names may only contain [a-z], [A-Z], [0-9], [_] and [-].
+    - name: vault.id
       required: true
       default:
+      value_in_examples: "<UUID>"
       description: |
         A reference to an existing `vault` object within the database. `vault` entities define the connection and authentication parameters used to connect to a Vault HTTP(S) API.
     - name: secret_token_name
       required: true
       default: "`secret_token`"
       description: |
-        Describes an array of comma separated parameter names where the plugin will look for a secret token. The client must send the secret in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name.<br>*note*: the key names may only contain [a-z], [A-Z], [0-9], [_] and [-].
+        Describes an array of comma-separated parameter names where the plugin will look for a secret token. The client must send the secret in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name.<br>*note*: the key names may only contain [a-z], [A-Z], [0-9], [_] and [-].
     - name: key_in_body
       required: false
       default: "`false`"
@@ -95,8 +96,8 @@ parameter                      | default | description
 
 A [Consumer][consumer-object] can have many credentials.
 
-If you are also using the [ACL](/plugins/acl/) plugin and whitelists with this
-service, you must add the new consumer to a whitelisted group. See
+If you are also using the [ACL](/plugins/acl/) plugin and allowed lists with this
+service, you must add the new consumer to an allowed group. See
 [ACL: Associating Consumers][acl-associating] for details.
 
 ### Create a Vault

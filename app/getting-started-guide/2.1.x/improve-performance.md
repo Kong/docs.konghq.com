@@ -24,17 +24,17 @@ Use proxy caching so that Upstream services are not bogged down with repeated re
 Call the Admin API on port `8001` and configure plugins to enable in-memory caching globally, with a timeout of 30 seconds for Content-Type `application/json`.
 
 *Using cURL*:
-```
+```sh
 $ curl -i -X POST http://<admin-hostname>:8001/plugins \
 --data name=proxy-cache \
---data config.content_type="application/json" \
+--data config.content_type="application/json; charset=utf-8" \
 --data config.cache_ttl=30 \
 --data config.strategy=memory
 ```
 
 *Or using HTTPie*:
-```
-$ http -f :8001/plugins name=proxy-cache config.strategy=memory config.content_type="application/json"
+```sh
+$ http -f :8001/plugins name=proxy-cache config.strategy=memory config.content_type="application/json; charset=utf-8"
 ```
 
 {% endnavtab %}
@@ -54,12 +54,62 @@ $ http -f :8001/plugins name=proxy-cache config.strategy=memory config.content_t
 
 7. Scroll down and complete only the following fields with the parameters listed.
     1. config.cache_ttl: `30`
-    2. config.content_type: `application/json`
+    2. config.content_type: `application/json; charset=utf-8`
     3. config.strategy: `memory`
 
     Besides the above fields, there may be others populated with default values. For this example, leave the rest of the fields as they are.
 
 8. Click **Create**.
+{% endnavtab %}
+{% navtab Using decK (YAML) %}
+
+1. In the `plugins` section of your `kong.yaml` file, add the `proxy-cache`
+plugin with a timeout of 30 seconds for Content-Type
+`application/json; charset=utf-8`.
+
+    ``` yaml
+    plugins:
+    - name: proxy-cache
+      config:
+        content_type:
+        - "application/json; charset=utf-8"
+        cache_ttl: 30
+        strategy: memory
+    ```
+
+    Your file should now look like this:
+
+    ``` yaml
+    _format_version: "1.1"
+    services:
+    - host: mockbin.org
+      name: example_service
+      port: 80
+      protocol: http
+      routes:
+      - name: mocking
+        paths:
+        - /mock
+        strip_path: true
+    plugins:
+    - name: rate-limiting
+      config:
+        minute: 5
+        policy: local
+    - name: proxy-cache
+      config:
+        content_type:
+        - "application/json; charset=utf-8"
+        cache_ttl: 30
+        strategy: memory
+    ```
+
+2. Sync the configuration:
+
+    ```bash
+    $ deck sync
+    ```
+
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -71,12 +121,12 @@ Let’s check that proxy caching works.
 1. Access the */mock* route using the Admin API and note the response headers.
 
     *Using cURL*:
-    ```
+    ```sh
     $ curl -i -X GET http://<admin-hostname>:8000/mock/request
     ```
 
     *Or using HTTPie*:
-    ```
+    ```sh
     $ http :8000/mock/request
     ```
 
@@ -112,11 +162,11 @@ Let’s check that proxy caching works.
 3. To test more rapidly, the cache can be deleted by calling the Admin API:
 
     *Using cURL*:
-    ```
+    ```sh
     $ curl -i -X DELETE http://<admin-hostname>:8001/proxy-cache
     ```
     *Or using HTTPie*:
-    ```
+    ```sh
     $ http delete :8001/proxy-cache
     ```
 

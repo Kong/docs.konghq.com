@@ -39,7 +39,7 @@ params:
         Whether to match the subject name of the client-supplied certificate against consumer's `username` and/or `custom_id` attribute. If set to `[]` (the empty array) then auto-matching is disabled.
     - name: ca_certificates
       required: true
-      value_in_examples: fdac360e-7b19-4ade-a553-6dd22937c82f
+      value_in_examples: [ "fdac360e-7b19-4ade-a553-6dd22937c82f" ]
       description: |
         List of CA Certificates strings to use as Certificate Authorities (CA) when validating a client certificate. At least one is required but you can specify as many as needed. The value of this array is comprised of primary keys (`id`).
     - name: skip_consumer_lookup

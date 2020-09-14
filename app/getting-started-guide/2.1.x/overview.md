@@ -76,10 +76,18 @@ Note the following before you start using this guide:
     * To find the URL, check the `admin_listen` property in the `/etc/kong/kong.conf` file.
 
 ### Using this guide
-* As a {{site.ee_product_name}} or Free Trial user, functionalities can be managed programmatically using a REST-based Admin API, or using the Kong Manager GUI. As a {{site.base_gateway}} user, you need to follow the Admin API steps since Manager is an Enterprise feature. In this guide, you can choose your preferred method, if options are available — you don’t have to follow both.
-* If you're running Kong in Hybrid mode, all tasks contained in this guide take place on the Control Plane.
-* This guide provides Kong Admin API examples in both HTTPie and cURL. If you want to use HTTPie, install it from [here](https://httpie.org/).
-* Any references to “{{site.base_gateway}}” refer to features or concepts common to both {{site.ce_product_name}} and {{site.ee_gateway_name}}.
+* Throughout this guide, you will have the option to configure Kong in a few
+different ways. Choose your preferred method, if options are available —
+you don’t have to walk through all of them:
+  * Programmatically manage Kong using its REST-based Admin API
+  * Use the Kong Manager GUI *(Enterprise or Free Trial users only)*
+  * Use decK for declarative configuration (YAML)
+* If you're running Kong in Hybrid mode, all tasks contained in this guide take
+place on the Control Plane.
+* This guide provides Kong Admin API examples in both HTTPie and cURL. If you
+want to use HTTPie, install it from [here](https://httpie.org/).
+* Any references to “{{site.base_gateway}}” refer to features or concepts
+common to both {{site.ce_product_name}} and {{site.ee_gateway_name}}.
 
 ### Next Steps
 

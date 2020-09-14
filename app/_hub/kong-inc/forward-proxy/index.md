@@ -37,15 +37,15 @@ params:
   consumer_id: true
   config:
     - name: proxy_host
-      required:
+      required: true
       default:
-      value_in_examples:
+      value_in_examples: example.com
       description: |
         The hostname or IP address of the forward proxy to which to connect
     - name: proxy_port
-      required:
+      required: true
       default:
-      value_in_examples:
+      value_in_examples: 80
       description: |
         The TCP port of the forward proxy to which to connect
     - name: proxy_scheme

@@ -83,7 +83,7 @@ params:
     - name: host
       required: semi
       default:
-      value_in_examples: AWS_HOST
+      value_in_examples:
       description: |
         The host where the Lambda function is located. This value can point to a
         local Lambda server, allowing for easier debugging. Either `host` or

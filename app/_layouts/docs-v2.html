@@ -11,12 +11,13 @@ id: documentation
       <nav class="docs-navigation v2">
         <a href="/" {% if page.edition =='community' %} class="active" {% endif %}>{{site.ce_product_name}}</a>
         <a href="/enterprise" {% if page.edition =='enterprise' %} class="active" {% endif %}>{{site.ee_product_name}}</a>
+        <a href="/mesh" {% if page.edition =='mesh' %} class="active" {% endif %}>{{site.mesh_product_name}}</a>
         <a href="/getting-started-guide/latest/overview" {% if page.edition =='getting-started-guide' %} class="active" {% endif %}>Getting Started</a>
 
         <div class="header-actions">
           <div class="search-version-row">
             {% unless page.no_version == true %}
-            <div class="versions-dropdown dropdown no-right-border">
+            <div class="versions-dropdown dropdown {% unless page.no_search == true %}no-right-border{% endunless %}">
               <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Version {{page.kong_version}}
                 {% if page.kong_version == page.kong_latest.release %} <em>(latest)</em>{% endif %}
@@ -129,15 +130,15 @@ id: documentation
             <div class="knowledge-base-links">
               <a class="knowledge-base-link" href="https://support.konghq.com/" target="_blank">
                 <div class="knowledge-base-link-title">Support</div>
-                <img src="/assets/images/icons/documentation/icn-support.svg" />
+                <img class="no-image-expand" src="/assets/images/icons/documentation/icn-support.svg" />
               </a>
               <a class="knowledge-base-link" href="https://discuss.konghq.com/" target="_blank">
                 <div class="knowledge-base-link-title">Community</div>
-                <img src="/assets/images/icons/documentation/icn-kongnation-md.svg" />
+                <img class="no-image-expand" src="/assets/images/icons/documentation/icn-kongnation-md.svg" />
               </a>
               <a class="knowledge-base-link" href="https://learn.konghq.com/account/login/" target="_blank">
                 <div class="knowledge-base-link-title">Kong University</div>
-                <img src="/assets/images/icons/documentation/icn-learning.svg" />
+                <img class="no-image-expand" src="/assets/images/icons/documentation/icn-learning.svg" />
               </a>
             </div>
           </div>

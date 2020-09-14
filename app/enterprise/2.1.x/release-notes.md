@@ -1,8 +1,9 @@
 ---
-title: Kong Enterprise 2.1.x (beta) Release Notes
+title: Kong Enterprise 2.1.x Release Notes
 ---
 
-These release notes apply to Kong Enterprise Release 2.1.x (beta) and provide a high-level overview of new features and updates. For more detailed information about this release, including features, fixes, and known issues, see the [Changelog](https://docs.konghq.com/enterprise/changelog/).
+These release notes provide a high-level overview of Kong Enterprise release version 2.1.3.0, which includes version 2.1.0.0 (beta)
+features, fixes, known issues, and workarounds. For detailed information about this release and the 2.1.0.0 (beta) release, see the [Changelog](https://docs.konghq.com/enterprise/changelog/).
 
 ## New Features
 
@@ -30,7 +31,6 @@ For more information, see:
 * [Application Registration](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/)
 * [Application Registration Plugin](/hub/kong-inc/application-registration/)
 
-
 ### Developer Portal Markdown Support
 
 The Developer Portal now supports GitHub Markdown as an alternative to Developer Portal templates. To use the feature, create a markdown file and call the new markdown layout module. You can use the default CSS or customize it for more control over the Dev Portal skin.
@@ -51,44 +51,27 @@ For more information, see the [Vitals Overview](/enterprise/{{page.kong_version}
 
 ### Kong for Kubernetes Enterprise (K4K8s) Image Changes
 
-For the {{site.ee_product_name}} 2.1.x beta, Kong for Kubernetes Enterprise (K4K8s) now uses the `kong-enterprise-edition` image, which works as a drop-in replacement for the `kong-enterprise-k8s` image used in earlier versions.
+For the {{site.ee_product_name}}, Kong for Kubernetes Enterprise (K4K8s) now uses the `kong-enterprise-edition` image, which works as a drop-in replacement for the `kong-enterprise-k8s` image used in earlier versions.
 
 For more information, including instructions for switching images, see [Kong for Kubernetes Deployment Options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options/).
 
-## What's New in the Docs
+## Known Issues and Workarounds
 
-In addition to the features listed above, updates to Kong's user documentation and Docs site include:
-* [decK documentation](https://docs.konghq.com/deck/) has moved to docs.konghq.com.
-* Improved [Vitals section](/enterprise/{{page.kong_version}}/vitals/overview/), including new [Overview](/enterprise/{{page.kong_version}}/vitals/overview/), [Reports](/enterprise/{{page.kong_version}}/vitals/vitals-reports/), and [Metrics](/enterprise/{{page.kong_version}}/vitals/vitals-metrics/) topics.
-* New Plugin topics:
-  * [Plugin Overview](/hub/plugins/overview/) introduces the most basic things you need to know to get started with plugins: what they are, why you might use them, terminology, and information on creating your own plugins and plugin documentation.
-  * [Plugin Compatibility Matrix](/hub/plugins/compatibility/) compares the various Kong Gateway deployment modes.
-* New Deployment topics:
-  * [Kong Deployment Options](/enterprise/{{page.kong_version}}/deployment/deployment-options/)
-  * [DNS Considerations](/enterprise/{{page.kong_version}}/deployment/dns-considerations/)
-  * [Kong Security Update Process](/enterprise/{{page.kong_version}}/kong-security-update-process/)
-* Improved Kubernetes topics:
-  * [Kubernetes Deployment Options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options/) breaks down the differences between the two available Kong Enterprise images and helps you choose a deployment.
-  * [Installing Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes/) walks you through installation of the `kong-enterprise-edition` image on Kubernetes with all Enterprise plugins and add-ons.
-* [Installation topics](/enterprise/{{page.kong_version}}/deployment/installation/overview/) reorganized.
-* New [Version Support](/enterprise/{{page.kong_version}}/support-policy/) information and matrix.
-* New Doc site improvements, including: table of contents rework; collapsible sub-sections; mobile layout fixes; images expand on click; ability to copy code snippets; ability to stay on same topic when navigating between versions; right-hand navigation "On this page" redesign with collapse and reopen feature; scroll to the top button; and resizable table columns.
+* The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
-## Known Issues
+* Setting your Kong password (`Kong_Password`) using a value containing four ticks (for example, `KONG_PASSWORD="a''a'a'a'a"`) causes a Postgres syntax error on bootstrap. To work around this issue, do not use special characters in your password.
 
-* This beta release is intended for testing purposes only. No upgrades from the previous versions are supported. See the [Beta](/enterprise/{{page.kong_version}}/introduction/key-concepts/#beta) definition for more information.
 
-* The Key Authentication - Encrypted (`key-auth-enc`) plugin does not support `ttl` (time-to-live) in Hybrid mode deployments.
+### Breaking changes
 
-* Setting your Kong password (`Kong_Password`) using a value containing four ticks (for example,  `KONG_PASSWORD="a''a'a'a'a"`) causes a Postgres syntax error on bootstrap. To work around this issue, do not use special characters in your password.
+  * When performing upgrade and migration to 2.1.x, custom entities and plugins have breaking changes. See [https://docs.konghq.com/enterprise/2.1.x/deployment/upgrades/custom-changes/](https://docs.konghq.com/enterprise/2.1.x/deployment/upgrades/custom-changes/). 
 
-* Breaking changes
   * `run_on` is removed from plugins, as it has not been used for a long time but compatibility was kept in 1.x. Any plugin with `run_on` will now break because the schema no longer contains that entry. If testing custom plugins against this beta release, update the plugin's schema.lua file and remove the `run_on` field.
-
+  
   * The Correlation ID (`correlation-id`) plugin has a higher priority than in CE. This is an incompatible change with CE in case `correlation-id` is configured against a Consumer.
-
+  
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
 
 
 ## Changelog
-For a complete list of features, fixes, and changes, see the Kong Enterprise 2.1.0(beta) [Changelog](/enterprise/changelog/).
+For a complete list of features, fixes, and changes, see the Kong Enterprise [Changelog](/enterprise/changelog/) for versions 2.1.3.0 and 2.1.0.0 (beta).

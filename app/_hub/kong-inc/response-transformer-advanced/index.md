@@ -1,7 +1,7 @@
 ---
 name: Response Transformer Advanced
 publisher: Kong Inc.
-version: 1.3-x
+version: 2.1.x
 
 desc: Modify the upstream response before returning it to the client
 description: |
@@ -33,11 +33,11 @@ params:
   config:
     - name: remove.headers
       required: false
-      value_in_examples: "x-toremove, x-another-one:application/json, x-list-of-values:v1,v2,v3 Set-Cookie:/JSESSIONID=.*/, x-another-regex://status/$/, x-one-more-regex:/^/begin//"
+      value_in_examples: ["x-toremove", "x-another-one:application/json", "x-list-of-values:v1,v2,v3", "Set-Cookie:/JSESSIONID=.*/", "x-another-regex://status/$/", "x-one-more-regex:/^/begin//"]
       description: List of header_name[:header_value]. If only header_name is given, unset the header field with the given header_name. If header_name:header_value is given, remove a specific header_value. If header_value starts and ends with a '/' (slash character), then it is considered to be a regular expression. Note that as per https://httpwg.org/specs/rfc7230.html#field.order multiple header values with the same header name are allowed if the entire field value for that header field is defined as a comma-separated list or the header field is a Set-Cookie header field.
     - name: remove.json
       required: false
-      value_in_examples: "json-key-toremove, another-json-key"
+      value_in_examples: ["json-key-toremove", "another-json-key"]
       description: List of property names. Remove the property from the JSON body if it is present.
     - name: remove.if_status
       required: false
@@ -51,6 +51,9 @@ params:
     - name: replace.json
       required: false
       description: List of property:value pairs. If and only if the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
+    - name: replace.json_types
+      required: false
+      description: List of JSON type names. Specify the types of the JSON values returned when replacing JSON properties.
     - name: replace.body
       required: false
       description: String with which to replace the entire response body
@@ -59,31 +62,38 @@ params:
       description: List of response status codes or status code ranges to which the transformation will apply. Empty means all response codes
     - name: add.headers
       required: false
-      value_in_examples: "x-new-header:value,x-another-header:something"
+      value_in_examples: ["x-new-header:value","x-another-header:something"]
       description: List of headername:value pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set.
     - name: add.json
       required: false
-      value_in_examples: "new-json-key:some_value, another-json-key:some_value"
+      value_in_examples: ["new-json-key:some_value", "another-json-key:some_value"]
       description: List of property:value pairs. If and only if the property is not present, add a new property with the given value to the JSON body. Ignored if the property is already present.
+    - name: add.json_types
+      required: false
+      value_in_examples: ["new-json-key:string", "another-json-key:boolean"]
+      description: List of JSON type names. Specify the types of the JSON values returned when adding a new JSON property.
     - name: add.if_status
       required: false
       description: List of response status codes or status code ranges to which the transformation will apply. Empty means all response codes
     - name: append.headers
       required: false
-      value_in_examples: "x-existing-header:some_value, x-another-header:some_value"
+      value_in_examples: ["x-existing-header:some_value", "x-another-header:some_value"]
       description: List of headername:value pairs. If the header is not set, set it with the given value. If it is already set, a new header with the same name and the new value will be set.
     - name: append.json
       required: false
       description: List of property:value pairs. If the property is not present in the JSON body, add it with the given value. If it is already present, the two values (old and new) will be aggregated in an array.
+    - name: append.json_types
+      required: false
+      description: List of JSON type names. Specify the types of the JSON values returned when appending JSON properties.
     - name: append.if_status
       required: false
       description: List of response status codes or status code ranges to which the transformation will apply. Empty means all response codes
-    - name: whitelist.json
+    - name: allow.json
       required: false
       default:
       value_in_examples:
       description: |
-        Set of parameter names. Only allows whitelisted parameters in the JSON response body.
+        Set of parameter names. Only allowed parameters are present in the JSON response body.
     - name: transform.functions
       required: false
       description: Set of Lua functions to perform arbitrary transforms in a response JSON body.
@@ -97,13 +107,13 @@ Note: if the value contains a `,` then the comma separated format for lists cann
 
 ## Order of execution
 
-Plugin performs the response transformation in following order
+The plugin performs the response transformation in following order:
 
 remove --> replace --> add --> append
 
 ## Examples
 
-In these examples we have the plugin enabled on a Route. This would work
+In these examples, we have the plugin enabled on a Route. This would work
 similar for Services.
 
 - Add multiple headers by passing each header:value pair separately:
@@ -332,3 +342,14 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 [consumer-object]: /latest/admin-api/#consumer-object
 [configuration]: /latest/configuration
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
+
+
+- Explicitly set the type of the added JSON value `-1` to be a `number` (instead of the implicitly inferred type `string`) if the response code is 500:
+
+```
+$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  --data "name=response-transformer-advanced" \
+  --data "config.add.json=p1:-1" \
+  --data "config.add.json_types=number" \
+  --data "config.add.if_status=500"
+```
