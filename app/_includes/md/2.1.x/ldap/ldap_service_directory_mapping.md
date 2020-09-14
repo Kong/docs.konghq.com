@@ -6,12 +6,14 @@ When using only RBAC Token authorization, Service Directory Mapping to Kong Role
 
 ## Authenticate User Session
 
-Retrieve a secure cookie session with the authorized LDAP user credentials:
+Retrieve a secure cookie session with the authorized LDAP user credentials. 
 
-```consolecurl -c /tmp/cookie http://localhost:8001/auth -H 'Kong-Admin-User: <LDAP_USERNAME>' --user <LDAP_USERNAME>:<LDAP_PASSWORD>```
+*Using cURL*:
+
+```$ curl -c /tmp/cookie http://localhost:8001/auth -H 'Kong-Admin-User: <LDAP_USERNAME>' --user <LDAP_USERNAME>:<LDAP_PASSWORD>```
 
 Now the cookie is stored at `/tmp/cookie` and can be read for future requests:
 
-```consolecurl -c /tmp/cookie -b /tmp/cookie http://localhost:8001/consumers -H 'Kong-Admin-User: <LDAP_USERNAME>'```
+```$ curl -c /tmp/cookie -b /tmp/cookie http://localhost:8001/consumers -H 'Kong-Admin-User: <LDAP_USERNAME>'```
 
-Because Kong Manager is a browser application, if any HTTP responses see the `Set-Cookie` header, then it will automatically attach it to future requests. This is why it is helpful to utilize [curl's cookie engine](https://ec.haxx.se/http/http-cookies) or [HTTPie sessions](https://httpie.org/docs/0.9.7#sessions). If storing the session is not desired, then the Set-Cookie header value can be copied directly from the `/auth` response and used with subsequent requests.
+Because Kong Manager is a browser application, if any HTTP responses see the `Set-Cookie` header, then it will automatically attach it to future requests. This is why it is helpful to utilize [curl's cookie engine](https://ec.haxx.se/http/http-cookies) or [HTTPie sessions](https://httpie.org/docs/0.9.7#sessions). If storing the session is not desired, then the `Set-Cookie` header value can be copied directly from the `/auth` response and used with subsequent requests.
