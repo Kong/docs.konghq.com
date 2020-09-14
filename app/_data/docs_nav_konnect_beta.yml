@@ -1,0 +1,31 @@
+- title: Introduction
+  icon: /assets/images/icons/documentation/icn-flag.svg
+  items:
+    - text: Overview
+      url: /overview
+
+- title: Getting Started
+  icon: /assets/images/icons/documentation/icn-quickstart-color.svg
+  items:
+    - text: Creating a Kong Konnect Beta Account
+      url: /getting-started/access-beta
+    - text: Configuring a Service
+      url: /getting-started/configure-service
+    - text: Configuring a Plugin
+      items:
+        - text: Enabling Plugin on a Service
+          url: /getting-started/enable-service-plugin
+        - text: Enabling Plugin on a Route
+          url: /getting-started/enable-route-plugin
+    - text: Monitoring Health with Vitals
+      url: /getting-started/vitals
+    - text: Using the Developer Portal
+      url: /getting-started/dev-portal
+
+- title: Reference
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  items:
+    - text: Proxy Traffic
+      url: /reference/proxy-traffic
+    - text: Organization Management
+      url: /reference/org-management
