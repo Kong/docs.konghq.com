@@ -39,7 +39,6 @@
           }
 
           .search-version-row {
-
             #version-dropdown {
               width: auto;
               padding: 0 16px;
@@ -158,7 +157,11 @@
 
     &:not(.homepage) {
       .page-header {
-        background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #effeff);
+        background-image: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0),
+          #effeff
+        );
         padding-bottom: 12px;
 
         .container {
@@ -295,7 +298,9 @@
     padding: 25px 0;
   }
 
-  h1, p, .page-header-section-title {
+  h1,
+  p,
+  .page-header-section-title {
     margin: 0;
   }
 
@@ -409,10 +414,15 @@
     bottom: 0;
     min-width: 1500px;
     background-size: cover;
-    background-image: linear-gradient(to bottom, #ffffff, 40%, transparent), url("/assets/images/docs/banner-bkg.png");
-    background-image: -moz-linear-gradient(bottom, rgba(255,255,255,0) 40%, #ffffff), url("/assets/images/docs/banner-bkg.png");
+    background-image: linear-gradient(to bottom, #ffffff, 40%, transparent),
+      url("/assets/images/docs/banner-bkg.png");
+    background-image: -moz-linear-gradient(
+        bottom,
+        rgba(255, 255, 255, 0) 40%,
+        #ffffff
+      ),
+      url("/assets/images/docs/banner-bkg.png");
     transform: translateX(-50%);
-
   }
 }
 
@@ -443,7 +453,7 @@
 
     &:before,
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       height: 4px;
       width: 100%;
@@ -469,7 +479,7 @@
     right: 0;
     padding: 25px;
     height: ~"calc(100% - 80px)";
-    box-shadow: 0px 12px 15px rgba(0, 0, 0, .15);
+    box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.15);
     border: 0 none;
     background: #fff;
     overflow: scroll;
@@ -488,7 +498,8 @@
     }
 
     nav {
-      h5, a {
+      h5,
+      a {
         font-size: 15px;
       }
     }
@@ -625,17 +636,27 @@
     }
   }
 
-  p, h1, h2, h3, h4, h5, h6 {
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     .font-source-sans();
     color: #505659;
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     margin-bottom: 1em;
     font-weight: 600;
   }
 
-  h2, h3 {
+  h2,
+  h3 {
     font-weight: 600;
     color: #262e33;
   }
@@ -644,7 +665,7 @@
     font-size: 34px;
     color: #262e33;
     margin-top: 2em;
-    margin-bottom: .9em;
+    margin-bottom: 0.9em;
   }
 
   .alert + h1 {
@@ -654,22 +675,22 @@
   h2 {
     font-size: 30px;
     margin-top: 2em;
-    margin-bottom: .8em;
+    margin-bottom: 0.8em;
   }
 
   h3 {
     margin-top: 1.5em;
-    margin-bottom: .7em;
+    margin-bottom: 0.7em;
   }
 
   h4 {
     margin-top: 1.3em;
-    margin-bottom: .7em;
+    margin-bottom: 0.7em;
   }
 
   h5 {
     margin-top: 1.2em;
-    margin-bottom: .8em;
+    margin-bottom: 0.8em;
   }
 
   > h1:first-child,
@@ -701,7 +722,8 @@
     }
   }
 
-  p, figure {
+  p,
+  figure {
     margin-bottom: 1em;
   }
 
@@ -792,13 +814,19 @@ Generic Styling for Desktop
     font-weight: bold;
   }
 
-  td, th {
+  td,
+  th {
     padding: 6px;
     border: 1px solid #ccc;
   }
 
   @media only screen and (max-width: 1099px) {
-    table, thead, tbody, th, td, tr {
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
       display: block;
       text-align: left;
     }
@@ -827,7 +855,6 @@ Generic Styling for Desktop
 
         content: attr(data-label);
         font-size: 14px;
-
       }
     }
   }
@@ -939,16 +966,16 @@ Generic Styling for Desktop
       .install-text {
         font-size: 14px;
         line-height: 20px;
-        color: rgba(0, 0, 0, .85);
+        color: rgba(0, 0, 0, 0.85);
         font-weight: 900;
-        transition: .2s ease-in-out;
+        transition: 0.2s ease-in-out;
         display: block;
       }
 
       .install-description {
         font-size: 12px;
-        color: rgba(0, 0, 0, .85);
-        transition: .2s ease-in-out;
+        color: rgba(0, 0, 0, 0.85);
+        transition: 0.2s ease-in-out;
         margin-top: 10px;
       }
 
@@ -968,7 +995,7 @@ Generic Styling for Desktop
     }
 
     @media (max-width: 1200px) {
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     }
   }
 
@@ -1119,15 +1146,15 @@ Generic Styling for Desktop
   background-color: #f9f9f9;
 
   &.blue {
-    color: #004A80;
+    color: #004a80;
     border: none;
-    background-color: #EDF7FF;
+    background-color: #edf7ff;
   }
 }
 
 .alert-success {
   color: #3dcc3d;
-  border-color: #c0eac0;;
+  border-color: #c0eac0;
   background-color: #f4fff4;
 }
 
@@ -1179,7 +1206,8 @@ Generic Styling for Desktop
     padding: 2px 8px;
     margin-right: 12px;
     border-radius: 11px;
-    font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont,
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 10px;
     font-weight: bold;
     background: @blue;
@@ -1202,8 +1230,8 @@ Generic Styling for Desktop
   }
 
   code {
-      font-size: 13px;
-    }
+    font-size: 13px;
+  }
 
   p {
     padding: 0 25px 0 75px;
@@ -1247,7 +1275,7 @@ Generic Styling for Desktop
     margin: 0;
 
     &:after {
-      content: ' \203a';
+      content: " \203a";
     }
   }
 
@@ -1302,7 +1330,7 @@ Generic Styling for Desktop
     color: #fff;
     float: left;
     margin-right: 10px !important;
-    background: rgba(255, 255, 255, .2);
+    background: rgba(255, 255, 255, 0.2);
     justify-content: center;
     display: flex;
   }
@@ -1368,7 +1396,7 @@ Generic Styling for Desktop
 
   input[type="text"] {
     border-radius: 3px;
-    border: 2px solid rgba(0, 0, 0, .1);
+    border: 2px solid rgba(0, 0, 0, 0.1);
     width: 100%;
     height: 40px;
     padding-left: 12px;
@@ -1393,7 +1421,8 @@ Generic Styling for Desktop
     color: @white-90;
     letter-spacing: 1px;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background-color: @green;
       color: @white-90;
     }
@@ -1405,7 +1434,8 @@ Generic Styling for Desktop
       margin-bottom: 15px;
     }
 
-    .newsletter-icon, .hidden-sm-down {
+    .newsletter-icon,
+    .hidden-sm-down {
       display: none;
     }
   }
@@ -1432,11 +1462,10 @@ Generic Styling for Desktop
   border: 1px solid @navy-dark;
   border-radius: 50%;
 
-  transform: translateX(0vw) translateZ(0) scale(1.0, 1.0);
+  transform: translateX(0vw) translateZ(0) scale(1, 1);
   transition: background-size 0.3s,
-  transform 0.3s cubic-bezier(.16, .22, .22, 1.7),
-  opacity 0.3s,
-  box-shadow 0.3s;
+    transform 0.3s cubic-bezier(0.16, 0.22, 0.22, 1.7), opacity 0.3s,
+    box-shadow 0.3s;
 
   &:hover {
     box-shadow: 0px 6px 13px 3px rgba(0, 0, 0, 0.5);
@@ -1461,7 +1490,7 @@ Generic Styling for Desktop
   }
 
   &::before {
-    content: 'Chat with Kong Developers';
+    content: "Chat with Kong Developers";
     display: block;
     position: relative;
     width: 200px;
@@ -1486,14 +1515,14 @@ Generic Styling for Desktop
   }
 
   &::after {
-    content: '\f00d';
+    content: "\f00d";
     display: block;
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
-    font-family: 'FontAwesome';
+    font-family: "FontAwesome";
     font-size: 0;
     text-align: center;
     line-height: 46px;
@@ -1527,7 +1556,7 @@ Generic Styling for Desktop
 #scroll-to-top-button {
   position: fixed;
   bottom: 12px;
-  right: 24%;
+  right: 16px;
   z-index: 10;
   cursor: pointer;
   background: #e3e3e3;
