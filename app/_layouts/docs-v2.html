@@ -12,6 +12,7 @@ id: documentation
         <a href="/" {% if page.edition =='community' %} class="active" {% endif %}>{{site.ce_product_name}}</a>
         <a href="/enterprise" {% if page.edition =='enterprise' %} class="active" {% endif %}>{{site.ee_product_name}}</a>
         <a href="/mesh" {% if page.edition =='mesh' %} class="active" {% endif %}>{{site.mesh_product_name}}</a>
+        <a href="/konnect" {% if page.edition =='konnect' %} class="active" {% endif %}>{{site.konnect_product_name}}</a>
         <a href="/getting-started-guide/latest/overview" {% if page.edition =='getting-started-guide' %} class="active" {% endif %}>Getting Started</a>
 
         <div class="header-actions">
@@ -103,9 +104,9 @@ id: documentation
             to browse the documentation for the latest version.
           </div>
           {% elsif page.is_homepage != true and page.beta == true %}
-          <div class="alert alert-ee red condensed margin-bigger">
+          <div class="alert alert-ee condensed margin-bigger">
             <div class="alert-body">
-              <div class="tag red">BETA</div>
+              <div class="tag">BETA</div>
               <p>Warning: This feature is released as <a href="/enterprise/{{page.kong_version}}/introduction/key-concepts/#beta">BETA</a> and should not be deployed in a production environment.
             </div>
           </div>
