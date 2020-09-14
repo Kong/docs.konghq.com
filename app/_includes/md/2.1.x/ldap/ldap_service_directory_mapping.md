@@ -1,10 +1,8 @@
 <!---shared with ldap-auth-adv, ldap-auth, kong manager ldap, changelog and release notes sections --->
 
-# Using Service Directory Mapping on the CLI
-
 When using only RBAC Token authorization, Service Directory Mapping to Kong Roles does not take effect. If you need to use CLI access with your Service Directory mapping, you can use the same authentication mechanism that Kong Manager uses to secure browser sessions.
 
-## Authenticate User Session
+### Authenticate User Session
 
 Retrieve a secure cookie session with the authorized LDAP user credentials. 
 
