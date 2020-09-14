@@ -57,6 +57,8 @@ For more information, including instructions for switching images, see [Kong for
 
 ## Known Issues and Workarounds
 
+* Using Service Directory Mapping on the CLI workaround. See {% include /md/{{page.kong_version}}/ldap/ldap_service_directory_mapping.md %}
+
 * The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
 * Setting your Kong password (`Kong_Password`) using a value containing four ticks (for example, `KONG_PASSWORD="a''a'a'a'a"`) causes a Postgres syntax error on bootstrap. To work around this issue, do not use special characters in your password.
