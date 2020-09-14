@@ -3,7 +3,7 @@ title: Enable LDAP for Kong Manager
 book: admin_gui
 ---
 
-### Enable LDAP
+## Enable LDAP
 
 Kong Enterprise offers the ability to bind authentication for Kong Manager
 *Admins* to a company's Active Directory using the
@@ -62,7 +62,7 @@ After starting Kong with the desired configuration, you can create new *Admins*
 whose usernames match those in the AD. Those users will then be able to accept
 invitations to join Kong Manager and log in with their LDAP credentials.
 
-### Using Service Directory Mapping on the CLI
+## Using Service Directory Mapping on the CLI
 
 {% include /md/{{page.kong_version}}/ldap/ldap_service_directory_mapping.md %}
 
