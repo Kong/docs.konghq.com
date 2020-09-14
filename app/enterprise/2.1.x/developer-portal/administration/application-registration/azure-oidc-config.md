@@ -17,7 +17,7 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 
 1. Within Azure, go to the **App Registrations** service and register a new application.
 
-   ![Azure App Registrations](/assets/images/docs/dev-portal/ms-azure-pp-reg.png)
+   ![Azure App Registrations](/assets/images/docs/dev-portal/ms-azure-app-reg.png)
 
 1. In **Certificates & secrets**, create a Client secret and save it in a
    secure location. You can only view the secret once.
