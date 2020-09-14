@@ -158,7 +158,7 @@ params:
 
 ---
 
-### Usage
+## Usage
 
 In order to authenticate the user, client must set credentials in
 `Proxy-Authorization` or `Authorization` header in following format:
@@ -169,7 +169,7 @@ The plugin will validate the user against the LDAP server and cache the
 credential for future requests for the duration specified in
 `config.cache_ttl`.
 
-#### Upstream Headers
+### Upstream Headers
 
 When a client has been authenticated, the plugin will append some headers to the
  request before proxying it to the upstream service, so that you can identify
@@ -187,7 +187,7 @@ authentication failed and 'anonymous' was set)
 authentication failed and 'anonymous' was set)
 
 
-#### LDAP Search and config.bind_dn
+### LDAP Search and config.bind_dn
 
 LDAP directory searching is performed during the request/plugin lifecycle. It is
 used to retrieve the fully qualified DN of the user so a bind
@@ -208,6 +208,6 @@ $ ldapsearch -x -h "<config.ldap_host>" -D "<config.bind_dn>" -b
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
 
 
-#### Using Service Directory Mapping on the CLI
+### Using Service Directory Mapping on the CLI
 
 {% include /md/{{page.kong_version}}/ldap/ldap_service_directory_mapping.md %}
