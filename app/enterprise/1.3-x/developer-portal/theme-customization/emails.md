@@ -2,7 +2,7 @@
 title: Customizing Portal Emails
 ---
 
-<div class="version-callout"><b>This feature is introduced in 1.3.0.1</b></div>
+<div class="version-callout"><b>This feature is introduced in 1.3.0.1.</b></div>
 
 ## Introduction
 
@@ -94,7 +94,7 @@ The body of the email is HTML content. You can reference the tokens allowed for 
 
 ## Editing Email Templates
 
-The default email templates will be automatically loaded into the Kong Developer Portal's file system when the Dev Portal is activated. These templates can now be edited in Kong Manager via the **Portal Editor** or via the **Portal CLI** tool. 
+The default email templates will be automatically loaded into the Kong Developer Portal's file system when the Dev Portal is activated. These templates can now be edited in Kong Manager via the **Portal Editor** or via the **Portal CLI** tool.
 **Note:** If you are using a Dev Portal initiated in a Kong Enterprise version prior to 1.3.0.1, you will need to manually load the email templates into the file system. Follow the steps in [Loading Email Templates on Existing Dev Portals](#loading-email-templates-on-existing-dev-portals).
 
 ### Editing via the Portal Editor
@@ -210,9 +210,13 @@ Find out more about customizing the email layout in the section below
 
 ### Load Email Templates via the Portal CLI Tool
 
-1. Clone [https://github.com/Kong/kong-portal-templates] master branch and navigate into the folder you cloned
-2. If you have any customizations or permissions changes that you wish to keep:
-    -  Run `portal fetch <workspacename>` This will pull in your modifications locally.
-    -  Merge in master branch of [https://github.com/Kong/kong-portal-templates] to apply changes for 1.3.0.1 including emails.
+1. Clone the [portal templates master branch](https://github.com/Kong/kong-portal-templates) and
+   navigate into the folder you cloned.
+2. If you have any customizations or permissions changes that you want to keep:
 
-3.  Run `portal deploy <workspacename>` This will deploy all files.
+     1. Run `portal fetch <workspacename>`. This pulls in your modifications locally.
+
+     2. Merge in the portal templates master branch
+        to apply changes for 1.3.0.1, including emails.
+
+3. Run `portal deploy <workspacename>`. This deploys all files.
