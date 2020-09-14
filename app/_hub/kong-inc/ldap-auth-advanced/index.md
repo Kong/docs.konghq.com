@@ -208,6 +208,6 @@ $ ldapsearch -x -h "<config.ldap_host>" -D "<config.bind_dn>" -b
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
 
 
-### Using Service Directory Mapping on the CLI
+#### Using Service Directory Mapping on the CLI
 
 {% include /md/{{page.kong_version}}/ldap/ldap_service_directory_mapping.md %}
