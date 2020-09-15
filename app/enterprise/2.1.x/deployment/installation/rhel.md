@@ -73,7 +73,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 
     ```
     kong-enterprise-edition-{{page.kong_latest.version}}.rhel8.noarch.rpm: digests signatures OK
-    ```  
+    ```
 
 {% endnavtab %}
 {% navtab Download Kong repo file and add to Yum repo %}
@@ -145,7 +145,7 @@ You should now have two files in your home directory on the target RHEL system:
     ```bash
     $ sudo yum update -y
     $ sudo yum install kong-enterprise-edition -y
-    ```    
+    ```
 {% endnavtab %}
 {% endnavtabs %}
 
