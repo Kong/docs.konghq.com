@@ -46,7 +46,7 @@ baseurl=https://kong.bintray.com/kong-rpm/rhel/7
     If you are downloading the [package](#packages), execute:
 
     ```bash
-    $ sudo yum install kong-{{site.data.kong_latest.version}}.*.noarch.rpm --nogpgcheck
+    $ sudo yum install kong-{{site.data.kong_latest.version}}.*.rpm --nogpgcheck
     ```
 
     If you are using the repository, execute:
