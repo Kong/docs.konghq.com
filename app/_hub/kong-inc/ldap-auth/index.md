@@ -156,4 +156,4 @@ When a client has been authenticated, the plugin will append some headers to the
 
 ### Using Service Directory Mapping on the CLI
 
-{% include /md/{{page.kong_version}}/ldap/ldap-service-directory-mapping.md %}
+{% include /md/2.1.x/ldap/ldap-service-directory-mapping.md %}

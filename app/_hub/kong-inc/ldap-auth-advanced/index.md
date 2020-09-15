@@ -210,4 +210,4 @@ $ ldapsearch -x -h "<config.ldap_host>" -D "<config.bind_dn>" -b
 
 ### Using Service Directory Mapping on the CLI
 
-{% include /md/{{page.kong_version}}/ldap/ldap-service-directory-mapping.md %}
+{% include /md/2.1.x/ldap/ldap-service-directory-mapping.md %}
