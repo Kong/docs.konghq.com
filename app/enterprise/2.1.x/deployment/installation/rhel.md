@@ -125,14 +125,7 @@ You should now have two files in your home directory on the target RHEL system:
 {% navtabs %}
 {% navtab Using downloaded RPM package %}
 
-1. Install EPEL (Extra Packages for Enterprise Linux), if not already installed:
-
-    ```bash
-    $ sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y
-    $ sudo yum install epel-release -y
-    ```
-
-2. Execute a command similar to the following, using the appropriate RPM file name you downloaded:
+1. Execute a command similar to the following, using the appropriate RPM file name you downloaded:
 
     ```bash
     $ sudo yum install kong-enterprise-edition-{{page.kong_latest.version}}.rhel8.noarch.rpm -y
@@ -141,13 +134,13 @@ You should now have two files in your home directory on the target RHEL system:
 {% endnavtab %}
 {% navtab Using Yum repo %}
 
-1. Move the repo file in your home directory to the /etc/yum.repos.d/ directory:
+2. Move the repo file in your home directory to the /etc/yum.repos.d/ directory:
 
     ```bash
     $ sudo mv bintray--kong-kong-enterprise-edition-rpm.repo /etc/yum.repos.d/
     ```
 
-2. Begin the installation using the Yum repository:
+3. Begin the installation using the Yum repository:
 
     ```bash
     $ sudo yum update -y

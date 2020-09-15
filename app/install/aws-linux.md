@@ -39,7 +39,6 @@ baseurl=https://kong.bintray.com/kong-rpm/amazonlinux/amazonlinux
     If you are downloading the [package](#packages), execute:
 
     ```bash
-    $ sudo yum install epel-release
     $ sudo yum install kong-{{site.data.kong_latest.version}}.aws.rpm --nogpgcheck
     ```
 

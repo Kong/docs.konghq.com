@@ -74,7 +74,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 
   ```
   kong-enterprise-edition-{{page.kong_latest.version}}.el7.noarch.rpm: rsa sha1 (md5) pgp md5 OK
-  ```  
+  ```
 {% endnavtab %}
 {% navtab Download Kong repo file and add to Yum repo %}
 
@@ -124,13 +124,7 @@ You should now have two files in your home directory on the target CentOS system
 {% navtabs %}
 {% navtab Using a downloaded RPM package %}
 
-1. Install EPEL (Extra Packages for Enterprise Linux), if not already installed:
-
-    ```bash
-    $ sudo yum install epel-release
-    ```
-
-2. Execute a command similar to the following, using the appropriate RPM file name you downloaded:
+1. Execute a command similar to the following, using the appropriate RPM file name you downloaded:
 
     ```bash
     $ sudo yum install kong-enterprise-edition-1.3.el7.noarch.rpm
@@ -138,18 +132,18 @@ You should now have two files in your home directory on the target CentOS system
 {% endnavtab %}
 {% navtab Using Yum repo %}
 
-1. Move the repo file in your home directory to the /etc/yum.repos.d/ directory:
+2. Move the repo file in your home directory to the /etc/yum.repos.d/ directory:
 
     ```bash
     $ sudo mv bintray--kong-kong-enterprise-edition-rpm.repo /etc/yum.repos.d/
     ```
 
-2. Begin the installation using the Yum repository:
+3. Begin the installation using the Yum repository:
 
     ```bash
     $ sudo yum update -y
-    $ sudo yum install kong-enterprise-edition
-    ```    
+    $ sudo yum install kong-enterprise-edition -y
+    ```
 
 {% endnavtab %}
 {% endnavtabs %}
