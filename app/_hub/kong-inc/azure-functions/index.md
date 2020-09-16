@@ -68,12 +68,12 @@ params:
       required: false
       default:
       value_in_examples: AZURE_APIKEY
-      description: The apikey to access the Azure resources. If provided it will be injected as the `x-functions-key` header.
+      description: The apikey to access the Azure resources. If provided, it will be injected as the `x-functions-key` header.
     - name: clientid
       required: false
       default:
       value_in_examples:
-      description: The clientid to access the Azure resources. If provided it will be injected as the `x-functions-clientid` header.
+      description: The clientid to access the Azure resources. If provided, it will be injected as the `x-functions-clientid` header.
     - name: https_verify
       required: false
       default: false
@@ -96,7 +96,7 @@ params:
       description: Time in milliseconds for which an idle connection to the Azure Functions server will live before being closed.
 
   extra: |
-    Note: If `config.https_verify` is set as `true` then the server certificate
+    Note: If `config.https_verify` is set as `true`, then the server certificate
     will be verified according to the CA certificates specified by the
     `lua_ssl_trusted_certificate` directive in your Kong configuration.
 
@@ -170,7 +170,7 @@ To demonstrate the plugin, set up the [Azure Functions "hello world" function](h
     "Hello Kong!"
     ```
 
-In this example we're only passing a query parameter `name` to the Azure
+In this example, we're only passing a query parameter `name` to the Azure
 Function. Besides query parameters, also the HTTP method, path parameters,
 headers, and body will be passed to the Azure Function if provided.
 
