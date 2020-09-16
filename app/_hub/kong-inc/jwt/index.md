@@ -447,7 +447,7 @@ private key is written in `private.pem`.
 [Auth0](https://auth0.com/) is a popular solution for Authorization, and relies
 heavily on JWTs. Auth0 relies on RS256, does not base64 encode, and publicly
 hosts the public key certificate used to sign tokens. Account name is referred
-to as "COMPANYNAME" for the sake of the guide.
+to as `COMPANYNAME` for the sake of the examples.
 
 To get started, create a Service and a Route that uses that Service.
 _Note: Auth0 does not use base64-encoded secrets._
@@ -524,13 +524,15 @@ When a JWT is valid and a Consumer has been authenticated, the plugin appends
 some headers to the request before proxying it to the Upstream service
 so that you can identify the Consumer in your code:
 
-* `X-Consumer-ID`, the ID of the Consumer on Kong
-* `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)
-* `X-Consumer-Username`, the `username` of the Consumer (if set)
-* `X-Credential-Identifier`, the identifier of the credential (if set)
-* `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
+* `X-Consumer-ID`, the ID of the Consumer on Kong.
+* `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set).
+* `X-Consumer-Username`, the `username` of the Consumer (if set).
+* `X-Credential-Identifier`, the identifier of the credential (if set).
+* `X-Anonymous-Consumer`, set to `true` when authentication failed, and
+   the `anonymous` consumer was set instead.
 
-You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
+You can use this information on your side to implement additional logic. You can
+use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
 
 ### Paginate through the JWTs
 
