@@ -8,11 +8,15 @@ breadcrumbs:
 
 ---
 
+## Introduction
+
+This guide walks through downloading, installing, and starting **Kong Gateway** on **Amazon Linux 2**.
+
 ## Packages
 
 Start by downloading the following package specifically built for the Amazon Linux AMI:
 
-- [Download]({{ site.links.download }}/kong-rpm/download_file?file_path=amazonlinux/amazonlinux/kong-{{site.data.kong_latest.version}}.aws.amd64.rpm)
+- [Download]({{ site.links.download }}/kong-rpm/download_file?file_path=amazonlinux/amazonlinux2/kong-{{site.data.kong_latest.version}}.aws.amd64.rpm)
 
 **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
 
@@ -46,10 +50,9 @@ baseurl=https://kong.bintray.com/kong-rpm/amazonlinux/amazonlinux
     ```bash
     $ sudo yum update -y
     $ sudo yum install -y wget
-    $ sudo amazon-linux-extras install -y epel
     $ wget https://bintray.com/kong/kong-rpm/rpm -O bintray-kong-kong-rpm.repo
     $ sed -i -e 's/baseurl.*/&\/amazonlinux\/amazonlinux'/ bintray-kong-kong-rpm.repo
-    $ mv bintray-kong-kong-rpm.repo /etc/yum.repos.d/
+    $ sudo mv bintray-kong-kong-rpm.repo /etc/yum.repos.d/
     $ sudo yum update -y
     $ sudo yum install -y kong
     ```
