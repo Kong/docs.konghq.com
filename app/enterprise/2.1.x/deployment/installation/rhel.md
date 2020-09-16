@@ -128,7 +128,7 @@ You should now have two files in your home directory on the target RHEL system:
 1. Execute a command similar to the following, using the appropriate RPM file name you downloaded:
 
     ```bash
-    $ sudo yum install kong-enterprise-edition-{{page.kong_latest.version}}.rhel8.noarch.rpm -y
+    $ sudo yum install kong-enterprise-edition-{{page.kong_latest.version}}.*.rpm
     ```
 
 {% endnavtab %}
