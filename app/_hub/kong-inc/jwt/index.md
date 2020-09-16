@@ -417,7 +417,7 @@ in that order.
 ```
 
 Then create the signature using your private keys. Using the JWT debugger at
-https://jwt.io, set the right header (RS256), the claims (iss, etc.), and the
+[https://jwt.io](https://jwt.io), set the right header (RS256), the claims (iss, etc.), and the
 associated public key. Then append the resulting value in the `Authorization` header, for example:
 
 ```bash
@@ -439,7 +439,7 @@ This private key must be kept secret. To generate a public key corresponding to 
 $ openssl rsa -in private.pem -outform PEM -pubout -out public.pem
 ```
 
-If you run the commands above, the public key is written in `public.pem`, while the
+If you run the commands above, the public key is written in `public.pem`, whereas the
 private key is written in `private.pem`.
 
 ### Using the JWT plugin with Auth0
@@ -447,9 +447,10 @@ private key is written in `private.pem`.
 [Auth0](https://auth0.com/) is a popular solution for Authorization, and relies
 heavily on JWTs. Auth0 relies on RS256, does not base64 encode, and publicly
 hosts the public key certificate used to sign tokens. Account name is referred
-to as `COMPANYNAME` for the sake of the examples.
+to as `{COMPANYNAME}` for the sake of the following examples.
 
 To get started, create a Service and a Route that uses that Service.
+
 _Note: Auth0 does not use base64-encoded secrets._
 
 Create a Service:
@@ -468,7 +469,7 @@ $ curl -i -f -X POST http://localhost:8001/routes \
     --data "paths[]=/example_path"
 ```
 
-Add the JWT Plugin:
+#### Add the JWT Plugin
 
 Add the plugin to your Route:
 
@@ -513,7 +514,7 @@ Send requests through. Only tokens signed by Auth0 will work:
 ```bash
 $ curl -i http://localhost:8000 \
     -H "Host:example.com" \
-    -H "Authorization:Bearer {{TOKEN}}"
+    -H "Authorization:Bearer <TOKEN>"
 ```
 
 Success!
@@ -598,7 +599,7 @@ $ curl -X GET http://kong:8001/consumers/{username or id}/jwt
 }
 ```
 
-`username or id`: The username or id of the Consumer whose jwts need to be listed
+`username or id`: The username or id of the Consumer whose JWTs need to be listed.
 
 
 ### Retrieve the Consumer associated with a JWT
