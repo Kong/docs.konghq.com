@@ -141,7 +141,7 @@ $ sudo yum install kong-enterprise-edition-{{page.kong_latest.version}}.*.rpm
     ```bash
     $ sudo yum update -y
     $ sudo yum install kong-enterprise-edition -y
-    ```    
+    ```
 {% endnavtab %}
 {% endnavtabs %}
 
