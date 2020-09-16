@@ -57,6 +57,8 @@ For more information, including instructions for switching images, see [Kong for
 
 ## Known Issues and Workarounds
 
+* LDAP Authentication and LDAP Authentication Advanced plugins: When using only RBAC Token authorization, Service Directory Mapping to Kong Roles does not take effect. If you need to use CLI access with your Service Directory mapping, use the same authentication mechanism that Kong Manager uses to secure browser sessions, as defined in this workaround: [Using Service Directory Mapping on the CLI](/enterprise/2.1.x/kong-manager/authentication/ldap/#using-service-directory-mapping-on-the-cli).
+
 * The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
 * Setting your Kong password (`Kong_Password`) using a value containing four ticks (for example, `KONG_PASSWORD="a''a'a'a'a"`) causes a Postgres syntax error on bootstrap. To work around this issue, do not use special characters in your password.
@@ -64,12 +66,12 @@ For more information, including instructions for switching images, see [Kong for
 
 ### Breaking changes
 
-  * When performing upgrade and migration to 2.1.x, custom entities and plugins have breaking changes. See [https://docs.konghq.com/enterprise/2.1.x/deployment/upgrades/custom-changes/](https://docs.konghq.com/enterprise/2.1.x/deployment/upgrades/custom-changes/). 
+  * When performing upgrade and migration to 2.1.x, custom entities and plugins have breaking changes. See [https://docs.konghq.com/enterprise/2.1.x/deployment/upgrades/custom-changes/](https://docs.konghq.com/enterprise/2.1.x/deployment/upgrades/custom-changes/).
 
   * `run_on` is removed from plugins, as it has not been used for a long time but compatibility was kept in 1.x. Any plugin with `run_on` will now break because the schema no longer contains that entry. If testing custom plugins against this beta release, update the plugin's schema.lua file and remove the `run_on` field.
-  
+
   * The Correlation ID (`correlation-id`) plugin has a higher priority than in CE. This is an incompatible change with CE in case `correlation-id` is configured against a Consumer.
-  
+
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
 
 

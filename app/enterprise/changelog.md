@@ -5,15 +5,15 @@ no_version: true
 skip_read_time: true
 ---
 
-## 2.1.3.1 
+## 2.1.3.1
 **Release Date** 2020/08/31
 
 ### Fixes
 
 #### Kong Gateway
 
-* Fixed issues to properly migrate workspaces associated with ACL groups. 
-* Improved the amount of logging in the migrations framework. 
+* Fixed issues to properly migrate workspaces associated with ACL groups.
+* Improved the amount of logging in the migrations framework.
 
 #### Kong Manager
 
@@ -62,13 +62,13 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
   * Added support to specify JSON types for configuration values. For example, by doing `config.add.json.json_types`: ["number"], the plugin will convert "-1" added JSON values into -1.
   * Improved performance by not inheriting from the BasePlugin class.
   * The plugin is now defensive against possible errors and nil header values.
-  
+
 * [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) (`request-transformer-advanced`)
   * Standardize on `allow` instead of `whitelist` to specify the parameter names that should be allowed in request JSON body. Previous `whitelist` nomenclature is deprecated and support will be removed in Kong 3.0.
-  
+
 #### Documentation Updates
-  * Plugin examples now include declarative configuration (YAML) information. 
-  * Upgrade and Migration instructions are updated for migrating from Kong Enterprise 1.5.x to 2.1.x, Kong Community Gateway 1.5 to Kong Enterprise 1.5, and Developer Portal templates. 
+  * Plugin examples now include declarative configuration (YAML) information.
+  * Upgrade and Migration instructions are updated for migrating from Kong Enterprise 1.5.x to 2.1.x, Kong Community Gateway 1.5 to Kong Enterprise 1.5, and Developer Portal templates.
 
 ### Fixes
 
@@ -91,10 +91,10 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 * Collector (`collector`, for Brain and Immunity)
   * Fixed a bug that would make the plugin try to parse request/response body regardless of the content-type.
-  
+
 * [GraphQL Rate Limiting Advance](/hub/kong-inc/graphql-rate-limiting-advanced/)d (`gql-rate-limiting-advanced`)
   * Fixed configuration using transformation that breaks in hybrid mode.
-  
+
 * [gRPC Gateway](/hub/kong-inc/grpc-gateway/) documentation is improved.
 
 * [Kong JWT Signer](/hub/kong-inc/jwt-signer/)
@@ -116,7 +116,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
   * OpenID Connect Library
     * Fixed a small typo in error message.
     * Removed azp claims verification on other tokens than the ID token.
-  
+
 * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
   * Fixed per service rate limiting.
 
@@ -137,18 +137,20 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 **Note: Known issues and workarounds for Kong Enterprise includes [2.1.0.0 (beta)](/enterprise/changelog/#known-issues-and-workarounds) known issues and workarounds.**
 
-* The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
+* The LDAP Authentication and LDAP Authentication Advanced plugins require a workaround to support CLI access with RBAC tokens: [Using Service Directory Mapping on the CLI](/enterprise/2.1.x/kong-manager/authentication/ldap/#using-service-directory-mapping-on-the-cli).
 
-* For the [Request Transformer Advanced](hub/kong-inc/request-transformer-advanced/) plugin, standardize on `allow` instead of `whitelist` to specify the parameter names that should be allowed in request JSON body. Previous `whitelist` nomenclature is deprecated and support will be removed in Kong 3.0.
+* The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) plugin does not support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
+
+* For the [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) plugin, standardize on `allow` instead of `whitelist` to specify the parameter names that should be allowed in request JSON body. Previous `whitelist` nomenclature is deprecated and support will be removed in Kong 3.0.
 
 * Breaking changes
 
   * When performing upgrade and migration to 2.1.x, custom entities and plugins have breaking changes. See [https://docs.konghq.com/enterprise/2.1.x/deployment/upgrades/custom-changes/](https://docs.konghq.com/enterprise/2.1.x/deployment/upgrades/custom-changes/).
 
   * `run_on` is removed from plugins, as it has not been used for a long time but compatibility was kept in 1.x. Any plugin with `run_on` will now break because the schema no longer contains that entry. If testing custom plugins against this beta release, update the plugin's schema.lua file and remove the `run_on` field.
-  
+
   * The [Correlation ID](/hub/kong-inc/correlation-id/) (`correlation-id`) plugin has a higher priority than in CE. This is an incompatible change with CE in case `correlation-id` is configured against a Consumer.
-  
+
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
 
 
@@ -256,20 +258,20 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 * Breaking changes
   * `run_on` is removed from plugins, as it has not been used for a long time but compatibility was kept in 1.x. Any plugin with `run_on` will now break because the schema no longer contains that entry. If testing custom plugins against this beta release, update the plugin's schema.lua file and remove the `run_on` field.
-  
+
   * The Correlation ID (`correlation-id`) plugin has a higher priority than in CE. This is an incompatible change with CE in case `correlation-id` is configured against a Consumer.
-  
+
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
-  
+
 
 ## 1.5.0.5
 **Release Date** 2020/08/13
 
 ### Fixes
 
-#### Kong Gateway 
+#### Kong Gateway
 * Optimized Admin API requests when a large number of entities are in the system and RBAC is enabled.
-* Improved Kong handling of the encoding of sparce arrays 
+* Improved Kong handling of the encoding of sparce arrays
 
 #### Kong Manager
 * Fixed the creation of default roles and permissions when a new Workspace is created.
@@ -289,9 +291,9 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 ### Fixes
 
-#### Kong Gateway 
+#### Kong Gateway
 * Upgraded Postgres driver to support selecting the TLS version when connecting to Postgres.
-* Fixed issue causing incorrect `service_count` for license report endpoint. 
+* Fixed issue causing incorrect `service_count` for license report endpoint.
 
 #### Kong Manager
 * Exposed Routes `path_handling` attribute from the Admin API in Kong Manager.
@@ -300,7 +302,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 * OpenID Connect
   * Fixed Consumers to call the correct function when setting an anonymous Consumer (introduced with 1.5.0).
   * Fixed unauthorized responses giving 403 instead of 401 as a status code (introduced with 1.5.0).
-  
+
 * Collector
   * Fixed issue that occurred when Kong returned a 404 and caused logs to fill with messages.
 
@@ -310,7 +312,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 ### Fixes
 
-#### Kong Gateway 
+#### Kong Gateway
 * Fixed window counters issue caused when multiple sets of Redis cluster addresses are configured across multiple rate-limiting-advanced plugins
 * Fixed an issue where authentication plugins could not load legacy and empty `config.anonymous` strings from the database
 * Reduced the log level of one line in the Balancer code from `ERROR` to `WARN`
