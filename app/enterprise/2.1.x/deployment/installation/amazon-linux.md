@@ -119,7 +119,7 @@ You should now have two files in your home directory on the target Amazon system
 Execute a command similar to the following, using the appropriate RPM file name you downloaded:
 
 ```bash
-$ sudo yum install kong-enterprise-edition-{{page.kong_latest.version}}.aws.rpm
+$ sudo yum install kong-enterprise-edition-{{page.kong_latest.version}}.*.rpm
 ```
 {% endnavtab %}
 {% navtab Using Yum repo %}

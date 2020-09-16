@@ -127,7 +127,7 @@ You should now have two files in your home directory on the target CentOS system
 1. Execute a command similar to the following, using the appropriate RPM file name you downloaded:
 
     ```bash
-    $ sudo yum install kong-enterprise-edition-{{page.kong_latest.version}}.el7.noarch.rpm
+    $ sudo yum install kong-enterprise-edition-{{page.kong_latest.version}}.*.rpm
     ```
 {% endnavtab %}
 {% navtab Using Yum repo %}
