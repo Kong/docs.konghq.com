@@ -73,7 +73,7 @@ configurations of all the workspaces at the same time.
 
 ### Reset
 
-Same as the `dump` command, you can use `-workspace` to reset configuration of a
+Same as the `dump` command, you can use `--workspace` to reset configuration of a
 specific workspace, or use `--all-workspaces` to reset configuration of all
 workspaces in Kong.
 Please note that decK doesn't delete the workspace itself but deletes the
