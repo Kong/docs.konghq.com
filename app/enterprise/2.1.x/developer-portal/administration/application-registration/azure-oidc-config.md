@@ -81,10 +81,10 @@ The plugins must be applied to a Service to work properly.
 ## Create an Application in Kong
 
 1. Log in to your Developer Portal and create a new application:
-   - Select the **My Apps** menu -> **New Application**.
-   - Enter the **Name** of your Azure application.
-   - Paste the `aud` value generated in JWT in the **Reference ID** field.
-   - (Optional) Enter a **Description**.
+   1. Select the **My Apps** menu -> **New Application**.
+   2. Enter the **Name** of your Azure application.
+   3. Paste the `aud` value generated in JWT in the **Reference ID** field.
+   4. (Optional) Enter a **Description**.
 
    The Create Application form should look similar to this example:
 
