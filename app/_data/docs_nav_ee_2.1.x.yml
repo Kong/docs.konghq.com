@@ -474,7 +474,8 @@
     - text: Deployment Options
       url: /kong-for-kubernetes/deployment-options
     - text: Changelog
-      url: /kong-for-kubernetes/changelog
+      url: https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
+      absolute_url: true
 
 - title: Kong Vitals
   icon: /assets/images/icons/documentation/icn-vitals.svg
