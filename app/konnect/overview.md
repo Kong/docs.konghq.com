@@ -1,6 +1,7 @@
 ---
 title: Kong Konnect Overview
 no_search: true
+no_version: true
 ---
 ## Introduction
 {{site.konnect_product_name}} lets you manage multiple data planes (DPs) from a

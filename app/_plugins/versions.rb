@@ -93,7 +93,7 @@ module Jekyll
             page.data["kong_version"] = parts[1]
             page.data["kong_versions"] = konnectVersions
             page.data["kong_latest"] = latestVersionKonnect
-            page.data["nav_items"] = site.data['docs_nav_konnect_' + parts[1].gsub(/\./, '')]
+            page.data["nav_items"] = site.data['docs_nav_konnect']
             createAliases(page, '/konnect', 1, parts, latestVersionKonnect["release"])
           elsif(parts[0] == 'deck')
             page.data["edition"] = parts[0]
