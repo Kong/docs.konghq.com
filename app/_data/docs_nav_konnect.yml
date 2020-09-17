@@ -13,9 +13,9 @@
       url: /getting-started/configure-service
     - text: Configuring a Plugin
       items:
-        - text: Enabling Plugin on a Service
+        - text: Enabling a Plugin on a Service
           url: /getting-started/enable-service-plugin
-        - text: Enabling Plugin on a Route
+        - text: Enabling a Plugin on a Route
           url: /getting-started/enable-route-plugin
     - text: Monitoring Health with Vitals
       url: /getting-started/vitals
