@@ -6,7 +6,7 @@ beta: true
 ---
 
 ## Overview
-Using the Dev Portal in Kong Konnect contains a collection of Service Version specs and documentation objects. The purpose of a portal is to allow registration and consumption of services running through Kong to other teams, developers, partners, and so on.
+Using the Dev Portal in Kong Konnect (Konnect) contains a collection of Service Version specs and documentation objects. The purpose of a portal is to allow registration and consumption of services running through Kong to other teams, developers, partners, and so on.
 
 ### Add a Markdown File for a Service
 Upload a Service Document to document your Service with markdown.
