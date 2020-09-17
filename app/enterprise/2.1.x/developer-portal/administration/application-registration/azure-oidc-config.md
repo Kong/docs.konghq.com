@@ -76,6 +76,14 @@ The plugins must be applied to a Service to work properly.
 
 1. Configure the OIDC plugin for the Service:
 
+
+{% navtabs %}
+{% navtab Using cURL %}
+
+
+{% endnavtab %}
+{% navtab Using HTTPie %}
+
    ```bash
   $ http -f :8001/services/httpbin-service-azure/plugins \
      name=openid-connect \
@@ -87,8 +95,27 @@ The plugins must be applied to a Service to work properly.
      config.scopes=openid \
      config.scopes=<your_client_id>/.default
    ```
+{% endnavtab %}
+{% endnavtabs %}
+
 
 1. Configure the Application Registration plugin for the Service:
+
+{% navtabs %}
+{% navtab Using cURL %}
+
+```bash
+curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugins \
+    --data "name=application-registration"  \
+    --data "config.auto_approve=true" \
+    --data "config.description=Uses consumer claim with various values (sub, aud, etc.) as registration id to support different flows and use cases." \
+    --data "config.display_name=For Azure" \
+    --data "config.show_issuer=true"
+
+```
+
+{% endnavtab %}
+{% navtab Using HTTPie %}
 
    ```bash
    $ http -f :8001/services/httpbin-service-azure/plugins \
@@ -98,6 +125,9 @@ The plugins must be applied to a Service to work properly.
       config.description="Uses consumer claim with various values (sub, aud, etc.) as registration id to support different flows and use cases." \
       config.show_issuer=true
    ```
+{% endnavtab %}
+{% endnavtabs %}
+
 
 1. Get an access token using the Client Credential workflow and convert the token
    into a JSON Web Token (JWT). You can get the token from Azure or Kong. Replace
