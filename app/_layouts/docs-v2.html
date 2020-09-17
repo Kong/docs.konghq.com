@@ -103,7 +103,7 @@ id: documentation
                   href="{% if page.edition == 'enterprise' %}/enterprise{% endif %}/latest">here</a>
             to browse the documentation for the latest version.
           </div>
-          {% elsif page.is_homepage != true and page.beta == true %}
+          {% elsif page.beta == true %}
           <div class="alert alert-ee condensed margin-bigger">
             <div class="alert-body">
               <div class="tag">BETA</div>

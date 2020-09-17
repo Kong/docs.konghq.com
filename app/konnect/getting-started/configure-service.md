@@ -2,6 +2,7 @@
 title: Configuring a Service
 no_search: true
 no_version: true
+beta: true
 ---
 
 ## What are Services, Sevice Versions, and Implementations?

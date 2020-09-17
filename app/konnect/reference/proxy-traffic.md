@@ -2,6 +2,7 @@
 title: Proxy Traffic
 no_search: true
 no_version: true
+beta: true
 ---
 
 ## Proxy Traffic for your Kong Proxy Nodes

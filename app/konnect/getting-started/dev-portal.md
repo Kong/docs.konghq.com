@@ -2,6 +2,7 @@
 title: Using the Developer Portal
 no_search: true
 no_version: true
+beta: true
 ---
 
 ## Overview
