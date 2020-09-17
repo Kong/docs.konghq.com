@@ -6,7 +6,6 @@ beta: true
 ---
 
 ## What are Services, Service Versions, and Implementations?
-
 In Kong Gateway, Service and Route objects let you expose your Services to clients. Kong Konnect (Konnect) does the same, but at a more granular level, letting you expand that same Service into a versioned entity, then implement the Versions and Routes as needed.
 
 In Konnect, a Service breaks down into multiple components:
