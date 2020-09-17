@@ -74,9 +74,10 @@ The plugins must be applied to a Service to work properly.
 
 1. Get an access token using the Client Credential workflow and convert the token
    into a JSON Web Token (JWT). You can get the token from Azure or Kong. Replace
-   the placeholder values for `<your_tenant_id>`, `<your_client_id>`, and `<your_client_secret>`.
+   the placeholder values with your values for `<your_tenant_id>`, `<your_client_id>`,
+   `<your_client_secret>`, and `<admin-hostname>`.`
 
-   - Get a token from Azure:
+   Get an access token from Azure:
 
      ```bash
      $ https -f POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token" \
@@ -85,10 +86,13 @@ The plugins must be applied to a Service to work properly.
         -a <your_client_id>:<your_client_secret>
      ```   
 
-   - Get a token from Kong:
+   Get an access token from Kong:
 
      ```bash
-     https -f POST "https://localhost:8443/httpbin-azure/oauth2/v2.0/token" grant_type=client_credentials -a <your_client_id>:<your_client_secret> --verify NO
+     $ https -f POST "https://<admin-hostname>:8443/httpbin-azure/oauth2/v2.0/token" \
+     grant_type=client_credentials \
+     -a <your_client_id>:<your_client_secret> \
+     --verify NO
      ```
 
 1. Paste the access token obtained from the previous step into
@@ -133,7 +137,7 @@ flows with your Azure AD implementation.
 1. Get a token:
 
    ```bash
-   $ https -f POST "https://localhost:8443/httpbin-azure/oauth2/v2.0/token" \
+   $ https -f POST "https://<admin-hostname>:8443/httpbin-azure/oauth2/v2.0/token" \
       grant_type=client_credentials \
       -a <your_client_id>:<your_client_secret> \
       --verify NO
@@ -149,8 +153,7 @@ flows with your Azure AD implementation.
 
 ### Test Authorization Code Flow
 
-In your browser, go to `http://localhost:8000/httpbin-azure`. Replace `localhost`
-with your host information.
+In your browser, go to `http://<admin-hostname>:8000/httpbin-azure`.
 
 You should be guided through a log in process within Azure and then the results
 delivered in your browser.
