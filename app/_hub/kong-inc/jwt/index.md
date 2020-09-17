@@ -12,7 +12,7 @@ description: |
 
   - a query string parameter
   - a cookie
-  - or HTTP request headers
+  - HTTP request headers
 
   Kong will either proxy the request to your Upstream services if the token's
   signature is verified, or discard the request if not. Kong can also perform
@@ -74,7 +74,7 @@ params:
   dbless_explanation: |
     Consumers and JWT secrets can be created with declarative configuration.
 
-    Admin API endpoints that do POST, PUT, PATCH or DELETE on secrets are not available on DB-less mode.
+    Admin API endpoints that do POST, PUT, PATCH, or DELETE on secrets are not available on DB-less mode.
   config:
     - name: uri_param_names
       required: false
@@ -121,7 +121,7 @@ params:
 
   extra: |
     <div class="alert alert-warning">
-        <center>The option `config.run_on_preflight` is only available from version `0.11.1` and later.</center>
+        <center>The option <code>config.run_on_preflight</code> is only available from version <code>0.11.1</code> and later.</center>
     </div>
 
 ---
@@ -138,14 +138,14 @@ You need to associate a credential to an existing [Consumer][consumer-object] ob
 A Consumer can have many credentials.
 
 {% navtabs %}
-{% navtab With a Database %}
+{% navtab Kong Admin API %}
 To create a Consumer, you can execute the following request:
 
 ```bash
 curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
 ```
 {% endnavtab %}
-{% navtab Without a Database %}
+{% navtab Declarative (YAML) %}
 Your declarative configuration file will need to have one or more Consumers. You can create them
 on the `consumers:` yaml section:
 
@@ -168,7 +168,7 @@ parameter                       | description
 ### Create a JWT credential
 
 {% navtabs %}
-{% navtab With a database %}
+{% navtab Kong Admin API %}
 You can provision a new HS256 JWT credential by issuing the following HTTP request:
 
 ```bash
@@ -184,7 +184,7 @@ HTTP/1.1 201 Created
 }
 ```
 {% endnavtab %}
-{% navtab Without a database %}
+{% navtab Declarative (YAML) %}
 You can add JWT credentials on your declarative config file on the `jwt_secrets:` yaml entry:
 
 ``` yaml
@@ -416,9 +416,9 @@ in that order.
 }
 ```
 
-Then create the signature using your private keys. Using the JWT debugger at
+Then, create the signature using your private keys. Using the JWT debugger at
 [https://jwt.io](https://jwt.io), set the right header (RS256), the claims (iss, etc.), and the
-associated public key. Then append the resulting value in the `Authorization` header, for example:
+associated public key. Then, append the resulting value in the `Authorization` header, for example:
 
 ```bash
 $ curl http://kong:8000/{route path} \
@@ -439,8 +439,8 @@ This private key must be kept secret. To generate a public key corresponding to 
 $ openssl rsa -in private.pem -outform PEM -pubout -out public.pem
 ```
 
-If you run the commands above, the public key is written in `public.pem`, whereas the
-private key is written in `private.pem`.
+If you run the commands above, the public key is written to `public.pem`, whereas the
+private key is written to `private.pem`.
 
 ### Using the JWT plugin with Auth0
 
