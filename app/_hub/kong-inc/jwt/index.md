@@ -500,7 +500,7 @@ $ curl -i -X POST http://kong:8001/consumers \
 $ curl -i -X POST http://localhost:8001/consumers/{consumer}/jwt \
     -F "algorithm=RS256" \
     -F "rsa_public_key=@./pubkey.pem" \
-    -F "key=https://{COMPAYNAME}.auth0.com/" # the `iss` field
+    -F "key=https://{COMPANYNAME}.auth0.com/" # the `iss` field
 ```
 
 The JWT plugin by default validates the `key_claim_name` against the `iss`
