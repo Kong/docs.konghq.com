@@ -31,16 +31,43 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 
 1. Create a Service. For example:
 
+{% navtabs %}
+{% navtab Using cURL %}
+
+```bash
+curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure \
+   --data 'url=https://httpbin.org/'
+```
+
+{% endnavtab %}
+{% navtab Using HTTPie %}
+
    ```bash
    $ http PUT :8001/services/httpbin-service-azure \
       url=https://httpbin.org/anything
    ```
+{% endnavtab %}
+{% endnavtabs %}
+
 1. Create a Route. For example:
 
-   ```bash
-   $ http -f PUT :8001/services/httpbin-service-azure/routes/httpbin-route-azure \
-      paths=/httpbin-azure
+{% navtabs %}
+{% navtab Using cURL %}
+
+```bash
+curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure/routes/httpbin-route-azure \
+   --data 'paths=/httpbin-azure'
+```
+{% endnavtab %}
+{% navtab Using HTTPie %}
+
+```bash
+$ http -f PUT :8001/services/httpbin-service-azure/routes/httpbin-route-azure \
+paths=/httpbin-azure
    ```
+
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Map the OIDC and Application Registration Plugins to the Service
 
