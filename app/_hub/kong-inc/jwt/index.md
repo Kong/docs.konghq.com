@@ -517,8 +517,6 @@ $ curl -i http://localhost:8000 \
     -H "Authorization:Bearer <TOKEN>"
 ```
 
-Success!
-
 ### Upstream Headers
 
 When a JWT is valid and a Consumer has been authenticated, the plugin appends
