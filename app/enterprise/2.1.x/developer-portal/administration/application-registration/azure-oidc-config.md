@@ -1,5 +1,5 @@
 ---
-title: Set up External Portal Application Authentication with Azure AD and OIDC
+title: Set Up External Portal Application Authentication with Azure AD and OIDC
 ---
 
 ## Overview
@@ -15,7 +15,7 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 
 ## Create an Application in Azure
 
-1. Within Azure, go to the **App Registrations** service and register a new application.
+1. Within Azure, go to the **App registrations** service and register a new application.
 
    ![Azure App Registrations](/assets/images/docs/dev-portal/ms-azure-app-reg.png)
 
@@ -25,19 +25,21 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 1. Under **Manifest**, update `accessTokenAcceptedVersion=2` (default is null).
    The JSON for your application should look similar to this example:
 
-  ![Azure Manifest](/assets/images/docs/dev-portal/azure-manifest.png)
+   ![Azure Manifest](/assets/images/docs/dev-portal/azure-manifest.png)
 
 ## Create a Service and a Route in Kong
 
-1. Create a Service example:
+1. Create a Service. For example:
 
    ```bash
-   http put :8001/services/httpbin-service-azure url=https://httpbin.org/anything
+   $ http PUT :8001/services/httpbin-service-azure \
+      url=https://httpbin.org/anything
    ```
-1. Create a Route example:
+1. Create a Route. For example:
 
    ```bash
-   http -f put :8001/services/httpbin-service-azure/routes/httpbin-route-azure paths=/httpbin-azure
+   $ http -f PUT :8001/services/httpbin-service-azure/routes/httpbin-route-azure \
+      paths=/httpbin-azure
    ```
 
 ## Map the OIDC and Application Registration Plugins to the Service
@@ -48,13 +50,26 @@ The plugins must be applied to a Service to work properly.
 1. Configure the OIDC plugin for the Service:
 
    ```bash
-   http -f :8001/services/httpbin-service-azure/plugins name=openid-connect config.issuer=https://login.microsoftonline.com/<your_tenant_id>/v2.0 config.display_errors=true config.client_id=<your_client_id> config.client_secret="<your_client_secret>" config.consumer_claim=aud config.scopes=openid config.scopes=<your_client_id>/.default
+  $ http -f :8001/services/httpbin-service-azure/plugins \
+     name=openid-connect \
+     config.issuer=https://login.microsoftonline.com/<your_tenant_id>/v2.0 \
+     config.display_errors=true \
+     config.client_id=<your_client_id> \
+     config.client_secret="<your_client_secret>" \
+     config.consumer_claim=aud \
+     config.scopes=openid \
+     config.scopes=<your_client_id>/.default
    ```
 
 1. Configure the Application Registration plugin for the Service:
 
    ```bash
-   http -f :8001/services/httpbin-service-azure/plugins name=application-registration config.auto_approve=true config.display_name="For Azure" config.description="Uses consumer claim with various values (sub, aud, etc.) as registration id to support different flows and use cases." config.show_issuer=true
+   $ http -f :8001/services/httpbin-service-azure/plugins \
+      name=application-registration \
+      config.auto_approve=true \
+      config.display_name="For Azure" \
+      config.description="Uses consumer claim with various values (sub, aud, etc.) as registration id to support different flows and use cases." \
+      config.show_issuer=true
    ```
 
 1. Get an access token using the Client Credential workflow and convert the token
@@ -64,7 +79,10 @@ The plugins must be applied to a Service to work properly.
    - Get a token from Azure:
 
      ```bash
-     https -f POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token" scope=<your_client_id>/.default grant_type=client_credentials -a <your_client_id>:<your_client_secret>
+     $ https -f POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token" \
+        scope=<your_client_id>/.default \
+        grant_type=client_credentials \
+        -a <your_client_id>:<your_client_secret>
      ```   
 
    - Get a token from Kong:
@@ -115,13 +133,16 @@ flows with your Azure AD implementation.
 1. Get a token:
 
    ```bash
-   https -f POST "https://localhost:8443/httpbin-azure/oauth2/v2.0/token" grant_type=client_credentials -a <your_client_id>:<your_client_secret> --verify NO
+   $ https -f POST "https://localhost:8443/httpbin-azure/oauth2/v2.0/token" \
+      grant_type=client_credentials \
+      -a <your_client_id>:<your_client_secret> \
+      --verify NO
    ```
 
 2. Use the token in an authorization header to retrieve the data:
 
    ```bash
-   http :8000/httpbin-azure Authorization:'bearer <token_from_above>'
+   $ http :8000/httpbin-azure Authorization:'bearer <token_from_above>'
    ```
 
    Replace `<token_from_above>` with the bearer token you generated in the previous step.
