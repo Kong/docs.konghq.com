@@ -78,6 +78,19 @@ The plugins must be applied to a Service to work properly.
 {% navtabs %}
 {% navtab Using cURL %}
 
+ ```bash
+$ curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugins \
+  --data name=openid-connect \
+  --data config.issuer="https://login.microsoftonline.com/<your_tenant_id>/v2.0" \
+  --data config.display_errors="true" \
+  --data config.client_id="<your_client_id>" \
+  --data config.client_secret="<your_client_secret>" \
+  --data config.redirect_uri="https://example.com/api" \
+  --data config.consumer_claim=aud \
+  --data config.scopes="openid" \
+  --data config.scopes="YOUR_CLIENT_ID/.default" \
+  --data config.verify_parameters="false"
+  ```
 
 {% endnavtab %}
 {% navtab Using HTTPie %}
@@ -89,9 +102,11 @@ The plugins must be applied to a Service to work properly.
      config.display_errors=true \
      config.client_id=<your_client_id> \
      config.client_secret="<your_client_secret>" \
+     config.redirect_uri="https://example.com/api" \
      config.consumer_claim=aud \
      config.scopes=openid \
-     config.scopes=<your_client_id>/.default
+     config.scopes=<your_client_id>/.default \
+     config.verify_parameters=false
    ```
 {% endnavtab %}
 {% endnavtabs %}
