@@ -118,4 +118,4 @@ In this topic, you:
 route with authentication.
 * Disabled the plugin.
 
-Next, [monitor the health of your Services and Routes with Vitals](/konnect/getting-started/enable-route-plugin).
+Next, [monitor the health of your Services and Routes with Vitals](/konnect/getting-started/vitals).
