@@ -31,23 +31,23 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 
 1. Create a Service. For example:
 
-{% navtabs %}
-{% navtab Using cURL %}
+   {% navtabs %}
+   {% navtab Using cURL %}
 
 ```bash
 $ curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure \
    --data 'url=https://httpbin.org/anything'
 ```
 
-{% endnavtab %}
-{% navtab Using HTTPie %}
+   {% endnavtab %}
+   {% navtab Using HTTPie %}
 
    ```bash
    $ http PUT :8001/services/httpbin-service-azure \
       url=https://httpbin.org/anything
    ```
-{% endnavtab %}
-{% endnavtabs %}
+   {% endnavtab %}
+   {% endnavtabs %}
 
 1. Create a Route. For example:
 
@@ -135,14 +135,28 @@ $ curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugi
 
    Get an access token from Azure:
 
+   {% navtabs %}
+   {% navtab Using cURL %}
+
+   {% endnavtab %}
+   {% navtab Using HTTPie %}
+
      ```bash
      $ https -f POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token" \
         scope=<your_client_id>/.default \
         grant_type=client_credentials \
         -a <your_client_id>:<your_client_secret>
      ```   
+     {% endnavtab %}
+     {% endnavtabs %}
 
-   Get an access token from Kong:
+     {% navtabs %}
+     {% navtab Using cURL %}
+
+     {% endnavtab %}
+     {% navtab Using HTTPie %}
+
+    Get an access token from Kong:
 
      ```bash
      $ https -f POST "https://<admin-hostname>:8443/httpbin-azure/oauth2/v2.0/token" \
@@ -150,8 +164,10 @@ $ curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugi
      -a <your_client_id>:<your_client_secret> \
      --verify NO
      ```
+     {% endnavtab %}
+     {% endnavtabs %}
 
-1. Paste the access token obtained from the previous step into
+2. Paste the access token obtained from the previous step into
    [JWT](https://jwt.io), and copy the value for the
    [aud (audience)](https://tools.ietf.org/html/rfc7519#section-4.1.3) claim to
    your clipboard. You will use the `aud` value as your **Reference ID** for the next step.
@@ -190,7 +206,7 @@ flows with your Azure AD implementation.
 
 ### Test Client Credentials Flow
 
-1. Get a token:
+#### Step 1: Get a token
 
 {% navtabs %}
 {% navtab Using cURL %}
@@ -198,16 +214,16 @@ flows with your Azure AD implementation.
 {% endnavtab %}
 {% navtab Using HTTPie %}
 
-   ```bash
-   $ https -f POST "https://<admin-hostname>:8443/httpbin-azure/oauth2/v2.0/token" \
-      grant_type=client_credentials \
-      -a <your_client_id>:<your_client_secret> \
-      --verify NO
+```bash
+$ https -f POST "https://<admin-hostname>:8443/httpbin-azure/oauth2/v2.0/token" \
+grant_type=client_credentials \
+-a <your_client_id>:<your_client_secret> \
+--verify NO
    ```
-   {% endnavtab %}
-   {% endnavtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
-2. Use the token in an authorization header to retrieve the data:
+#### Step 2: Use the token in an authorization header to retrieve the data
 
 {% navtabs %}
 {% navtab Using cURL %}
@@ -219,11 +235,11 @@ $ curl --header 'Authorization: bearer <token_from_above>' '<admin-hostname>:800
 {% endnavtab %}
 {% navtab Using HTTPie %}
 
-   ```bash
-   $ http :8000/httpbin-azure Authorization:'bearer <token_from_above>'
-   ```
-   {% endnavtab %}
-   {% endnavtabs %}
+```bash
+$ http :8000/httpbin-azure Authorization:'bearer <token_from_above>'
+```
+{% endnavtab %}
+{% endnavtabs %}
 
    Replace `<token_from_above>` with the bearer token you generated in the previous step.
 
