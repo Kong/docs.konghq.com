@@ -35,8 +35,8 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 {% navtab Using cURL %}
 
 ```bash
-curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure \
-   --data 'url=https://httpbin.org/'
+$ curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure \
+   --data 'url=https://httpbin.org/anything'
 ```
 
 {% endnavtab %}
@@ -55,7 +55,7 @@ curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure \
 {% navtab Using cURL %}
 
 ```bash
-curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure/routes/httpbin-route-azure \
+$ curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure/routes/httpbin-route-azure \
    --data 'paths=/httpbin-azure'
 ```
 {% endnavtab %}
@@ -105,13 +105,12 @@ The plugins must be applied to a Service to work properly.
 {% navtab Using cURL %}
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugins \
+$ curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugins \
     --data "name=application-registration"  \
     --data "config.auto_approve=true" \
     --data "config.description=Uses consumer claim with various values (sub, aud, etc.) as registration id to support different flows and use cases." \
     --data "config.display_name=For Azure" \
     --data "config.show_issuer=true"
-
 ```
 
 {% endnavtab %}
@@ -193,18 +192,38 @@ flows with your Azure AD implementation.
 
 1. Get a token:
 
+{% navtabs %}
+{% navtab Using cURL %}
+
+{% endnavtab %}
+{% navtab Using HTTPie %}
+
    ```bash
    $ https -f POST "https://<admin-hostname>:8443/httpbin-azure/oauth2/v2.0/token" \
       grant_type=client_credentials \
       -a <your_client_id>:<your_client_secret> \
       --verify NO
    ```
+   {% endnavtab %}
+   {% endnavtabs %}
 
 2. Use the token in an authorization header to retrieve the data:
+
+{% navtabs %}
+{% navtab Using cURL %}
+
+```bash
+$ curl --header 'Authorization: bearer <token_from_above>' '<admin-hostname>:8000/httpbin-azure'
+```
+
+{% endnavtab %}
+{% navtab Using HTTPie %}
 
    ```bash
    $ http :8000/httpbin-azure Authorization:'bearer <token_from_above>'
    ```
+   {% endnavtab %}
+   {% endnavtabs %}
 
    Replace `<token_from_above>` with the bearer token you generated in the previous step.
 
