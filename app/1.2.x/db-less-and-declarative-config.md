@@ -33,7 +33,7 @@ may skip this section.</i>
 The key idea in declarative configuration is, as its name shows, the notion
 that it is _declarative_, as opposed to an _imperative_ style of
 configuration. "Imperative" means that a configuration is given as a series of
-orders: "do this, then to that". "Declative" means that the configuration is
+orders: "do this, then to that". "Declarative" means that the configuration is
 given all at once: "I declare this to be the state of the world".
 
 The Kong Admin API is an example of an imperative configuration tool: the
