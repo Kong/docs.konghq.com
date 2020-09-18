@@ -17,11 +17,12 @@ specific Service Version.
 The purpose of the Portal is to allow registration and consumption of services
 running through Kong to other teams, developers, partners, and so on.
 
-<div class="alert alert-ee red">
-<strong>Note:</strong> The Developer Portal is not available for the Konnect
-beta. You can upload documentation and specs, but you will not be able to view
-them in the Portal.
-</div>
+You can access the Developer Portal for any published Service through the URL
+found on the **Dev Portal** page. The format looks something like this:
+
+```
+<org-name>.portal.prod.khcp.kongcloud.io
+```
 
 ## Add a Markdown File for a Service
 
@@ -71,7 +72,10 @@ page.
 
     This publishes all of the Service's Version specs to the Developer Portal.
 
-3. Access your published documentation at [URL coming soon].
+3. In Konnect's left menu navigation, go to **Dev Portal**.
+
+4. Click the **Portal URL** to access your Portal, or click the gear icon for
+any published Service and select **View in portal**.
 
 ## Summary
 
