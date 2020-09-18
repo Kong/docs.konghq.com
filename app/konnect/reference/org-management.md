@@ -9,7 +9,7 @@ beta: true
 Managing your organization includes inviting users and assigning roles.
 **Note**: Teams and Identity Management are not available in the Beta version.
 
-### Inviting a New User
+### Invite a New User
 1. Go to the **Organizations > Users** page.
 2. Click **Invite New User**.
 3. Enter the user’s information, including name and email address, to send an email invitation. Click **Next**.
@@ -18,12 +18,12 @@ Managing your organization includes inviting users and assigning roles.
    * For role descriptions, click on the information (i) icon next to the role.
 5. Click **Invite User**. An email invitation is sent.
 
-### Manage Users
+### View and Manage Users
 1. Go to the **Organizations > Users** page.
    * For active users, view the user's name, email address, and assigned roles. 
    * To edit assigned roles, click the user's name to drill down to their roles and descriptions. Click Actions to edit or assign new roles. 
 
-### Viewing and Managing Roles
+### View and Manage Roles
 1. Go to **Ogranization > Roles** 
 2. From the Roles page, actions you can perform include:
    * View Role titles and a description of each Role.
