@@ -27,9 +27,7 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 
    ![Azure Manifest](/assets/images/docs/dev-portal/azure-manifest.png)
 
-## Create a Service and a Route in Kong
-
-1. Create a Service. For example:
+## Create a Service in Kong
 
    {% navtabs %}
    {% navtab Using cURL %}
@@ -49,7 +47,7 @@ $ curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure \
    {% endnavtab %}
    {% endnavtabs %}
 
-1. Create a Route. For example:
+## Create a Route in Kong
 
 {% navtabs %}
 {% navtab Using cURL %}
