@@ -5,7 +5,7 @@ skip_read_time: true
 ---
 
 <div class="alert alert-ee">
-<strong>Note:</strong> Kong Enterprise k8s is deprecated as of <strong>2020/08/19</strong>.
+<strong>Note:</strong> Kong Enterprise k8s is deprecated as of <strong>2020/08/25</strong>.
 Existing users of this image who want to use {{site.ee_product_name}} 2.1.x or
 later should switch to the <a href="/enterprise/latest/kong-for-kubernetes/deployment-options"><code>kong-enterprise-edition</code></a> image.
 <br>
