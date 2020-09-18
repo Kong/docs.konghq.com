@@ -111,6 +111,8 @@ $ curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugi
 {% endnavtab %}
 {% endnavtabs %}
 
+For more information, see [OIDC plugin](/hub/kong-inc/openid-connect/).
+
 
 ### Step 2: Configure the Application Registration plugin for the Service
 
@@ -276,4 +278,4 @@ delivered in your browser.
 
 If you encounter any issues, review your data plane logs. Because you
 enabled `display_errors=true` on the OpenID Connect Plugin, you will receive
-more verbose error messages that can help pinpoint the issue.
+more verbose error messages that can help pinpoint any issues.
