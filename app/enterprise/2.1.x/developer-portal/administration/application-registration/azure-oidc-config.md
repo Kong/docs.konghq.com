@@ -74,7 +74,7 @@ paths=/httpbin-azure
 Map the OpenID Connect and Application Registration plugins to the **Service**.
 The plugins must be applied to a Service to work properly.
 
-1. Configure the OIDC plugin for the Service:
+### Step 1: Configure the OIDC plugin for the Service
 
 
 {% navtabs %}
@@ -99,7 +99,7 @@ The plugins must be applied to a Service to work properly.
 {% endnavtabs %}
 
 
-1. Configure the Application Registration plugin for the Service:
+### Step 2: Configure the Application Registration plugin for the Service
 
 {% navtabs %}
 {% navtab Using cURL %}
@@ -128,49 +128,58 @@ $ curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugi
 {% endnavtabs %}
 
 
-1. Get an access token using the Client Credential workflow and convert the token
-   into a JSON Web Token (JWT). You can get the token from Azure or Kong. Replace
-   the placeholder values with your values for `<your_tenant_id>`, `<your_client_id>`,
-   `<your_client_secret>`, and `<admin-hostname>`.`
+### Step 3: Get an access token from Azure or Kong
 
-   Get an access token from Azure:
+Get an access token using the Client Credential workflow and convert the token
+into a JSON Web Token (JWT). You can get the token from Azure or Kong. Replace
+the placeholder values with your values for `<your_tenant_id>`, `<your_client_id>`,
+`<your_client_secret>`, and `<admin-hostname>`.`
 
-   {% navtabs %}
-   {% navtab Using cURL %}
+- Get an access token from Azure:
 
-   {% endnavtab %}
-   {% navtab Using HTTPie %}
+{% navtabs %}
+{% navtab Using cURL %}
 
-     ```bash
-     $ https -f POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token" \
-        scope=<your_client_id>/.default \
-        grant_type=client_credentials \
-        -a <your_client_id>:<your_client_secret>
-     ```   
-     {% endnavtab %}
-     {% endnavtabs %}
+{% endnavtab %}
+{% navtab Using HTTPie %}
 
-     {% navtabs %}
-     {% navtab Using cURL %}
+```bash
+$ https -f POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token" \
+scope=<your_client_id>/.default \
+grant_type=client_credentials \
+-a <your_client_id>:<your_client_secret>
+```   
+{% endnavtab %}
+{% endnavtabs %}
 
-     {% endnavtab %}
-     {% navtab Using HTTPie %}
+- Get an access token from Kong:
 
-    Get an access token from Kong:
+{% navtabs %}
+{% navtab Using cURL %}
 
-     ```bash
-     $ https -f POST "https://<admin-hostname>:8443/httpbin-azure/oauth2/v2.0/token" \
-     grant_type=client_credentials \
-     -a <your_client_id>:<your_client_secret> \
-     --verify NO
-     ```
-     {% endnavtab %}
-     {% endnavtabs %}
+{% endnavtab %}
+{% navtab Using HTTPie %}
 
-2. Paste the access token obtained from the previous step into
-   [JWT](https://jwt.io), and copy the value for the
-   [aud (audience)](https://tools.ietf.org/html/rfc7519#section-4.1.3) claim to
-   your clipboard. You will use the `aud` value as your **Reference ID** for the next step.
+```bash
+$ https -f POST "https://<admin-hostname>:8443/httpbin-azure/oauth2/v2.0/token" \
+grant_type=client_credentials \
+-a <your_client_id>:<your_client_secret> \
+--verify NO
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+### Step 4: Convert an access token into a JWT token
+
+1. Paste the access token obtained from the previous step into
+[JWT](https://jwt.io).
+
+   ![JWT token converter](/assets/images/docs/dev-portal/jwt-converter.png)
+
+2. Click **Share JWT** to copy the value for the
+[aud (audience)](https://tools.ietf.org/html/rfc7519#section-4.1.3) claim to
+your clipboard. You will use the `aud` value as your **Reference ID** in the
+next procedure.
 
 ## Create an Application in Kong
 
