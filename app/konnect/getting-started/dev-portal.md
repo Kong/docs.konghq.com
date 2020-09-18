@@ -62,6 +62,21 @@ page.
     >**Note**: Konnect accepts specs in YAML or JSON format. It is recommended to
     link documentation (OAS/Swagger spec) to your Service.
 
-## Access the Developer Portal
 
-Coming soon!
+## Publish a Service to the Portal
+
+1. Open the Services page and select a Service.
+
+2. Click on the **Actions** dropdown and select **Publish to Portal**.
+
+    This publishes all of the Service's Version specs to the Developer Portal.
+
+3. Access your published documentation at [URL coming soon].
+
+## Summary
+
+In this topic, you:
+
+* Uploaded Markdown documentation for a Service.
+* Uploaded a YAML spec for a Service Version.
+* Published the Service with both documents to the Developer Portal.
