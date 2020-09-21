@@ -156,12 +156,11 @@ the placeholder values with your values for `<your_tenant_id>`, `<your_client_id
 {% navtab Using cURL %}
 
 ```bash
-curl -i -X POST https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token \
+curl -X POST https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token \
 --data config.scope="<your_client_id>/.default" \
 --data config.grant_type="client_credentials" \
 --data config.client_id="<your_client_id>" \
 --data config.client_secret="<your_client_secret>" \
---data config.verify_parameters="false"
 ```
 
 {% endnavtab %}
