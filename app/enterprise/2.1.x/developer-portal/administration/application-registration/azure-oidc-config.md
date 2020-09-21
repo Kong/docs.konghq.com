@@ -40,10 +40,10 @@ $ curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure \
    {% endnavtab %}
    {% navtab Using HTTPie %}
 
-   ```bash
-   $ http PUT :8001/services/httpbin-service-azure \
-      url=https://httpbin.org/anything
-   ```
+```bash
+$ http PUT :8001/services/httpbin-service-azure \
+  url=https://httpbin.org/anything
+```
    {% endnavtab %}
    {% endnavtabs %}
 
@@ -95,8 +95,8 @@ $ curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugi
 {% endnavtab %}
 {% navtab Using HTTPie %}
 
-   ```bash
-  $ http -f :8001/services/httpbin-service-azure/plugins \
+```bash
+$ http -f :8001/services/httpbin-service-azure/plugins \
      name=openid-connect \
      config.issuer=https://login.microsoftonline.com/<your_tenant_id>/v2.0 \
      config.display_errors=true \
@@ -107,7 +107,7 @@ $ curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugi
      config.scopes=openid \
      config.scopes=<your_client_id>/.default \
      config.verify_parameters=false
-   ```
+```
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -131,14 +131,14 @@ $ curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugi
 {% endnavtab %}
 {% navtab Using HTTPie %}
 
-   ```bash
-   $ http -f :8001/services/httpbin-service-azure/plugins \
-      name=application-registration \
+```bash
+$ http -f :8001/services/httpbin-service-azure/plugins \
+  name=application-registration \
       config.auto_approve=true \
       config.display_name="For Azure" \
       config.description="Uses consumer claim with various values (sub, aud, etc.) as registration id to support different flows and use cases." \
       config.show_issuer=true
-   ```
+```
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -154,6 +154,15 @@ the placeholder values with your values for `<your_tenant_id>`, `<your_client_id
 
 {% navtabs %}
 {% navtab Using cURL %}
+
+```bash
+curl -i -X POST https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token \
+--data config.scope="<your_client_id>/.default" \
+--data config.grant_type="client_credentials" \
+--data config.client_id="<your_client_id>" \
+--data config.client_secret="<your_client_secret>" \
+--data config.verify_parameters="false"
+```
 
 {% endnavtab %}
 {% navtab Using HTTPie %}
@@ -172,11 +181,21 @@ grant_type=client_credentials \
 {% navtabs %}
 {% navtab Using cURL %}
 
+```bash
+curl -i -X POST https://<admin-hostname>:8443/httpbin-azure/oauth2/v2.0/token \
+--data config.scope="<your_client_id>/.default" \
+--data config.grant_type="client_credentials" \
+--data config.client_id="<your_client_id>" \
+--data config.client_secret="<your_client_secret>" \
+--data config.verify_parameters="false"
+```
+
 {% endnavtab %}
 {% navtab Using HTTPie %}
 
 ```bash
 $ https -f POST "https://<admin-hostname>:8443/httpbin-azure/oauth2/v2.0/token" \
+scope=<your_client_id>/.default \
 grant_type=client_credentials \
 -a <your_client_id>:<your_client_secret> \
 --verify NO
@@ -235,11 +254,21 @@ flows with your Azure AD implementation.
 {% navtabs %}
 {% navtab Using cURL %}
 
+```bash
+curl -i -X POST https://<admin-hostname>:8443/httpbin-azure/oauth2/v2.0/token \
+--data config.scope="<your_client_id>/.default" \
+--data config.grant_type="client_credentials" \
+--data config.client_id="<your_client_id>" \
+--data config.client_secret="<your_client_secret>" \
+--data config.verify_parameters="false"
+```
+
 {% endnavtab %}
 {% navtab Using HTTPie %}
 
 ```bash
 $ https -f POST "https://<admin-hostname>:8443/httpbin-azure/oauth2/v2.0/token" \
+scope=<your_client_id>/.default \
 grant_type=client_credentials \
 -a <your_client_id>:<your_client_secret> \
 --verify NO
