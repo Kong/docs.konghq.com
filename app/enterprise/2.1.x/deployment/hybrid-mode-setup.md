@@ -378,7 +378,7 @@ follow the instructions to:
     -e "KONG_CLUSTER_MTLS=pki" \
     -e "KONG_CLUSTER_SERVER_NAME=control-plane.kong.yourcorp.tld" \
     -e "KONG_CLUSTER_CERT=data-plane.crt" \
-    -e "KONG_CLUSTER_CERT_KEY=data-plane.crt" \
+    -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/data-plane.crt" \
     -e "KONG_CLUSTER_CA_CERT=ca-cert.pem" \
     -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=ca-cert.pem" \
     --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
