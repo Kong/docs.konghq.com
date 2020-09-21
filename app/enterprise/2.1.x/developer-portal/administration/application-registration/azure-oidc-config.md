@@ -157,10 +157,10 @@ into a JSON Web Token (JWT). Replace the placeholder values with your values for
 
 ```bash
 curl -X POST https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token \
---data config.scope="<your_client_id>/.default" \
---data config.grant_type="client_credentials" \
---data config.client_id="<your_client_id>" \
---data config.client_secret="<your_client_secret>" \
+--data scope="<your_client_id>/.default" \
+--data grant_type="client_credentials" \
+--data client_id="<your_client_id>" \
+--data client_secret="<your_client_secret>" \
 ```
 
 {% endnavtab %}
