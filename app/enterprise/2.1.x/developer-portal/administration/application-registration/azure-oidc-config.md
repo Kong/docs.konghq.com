@@ -227,12 +227,10 @@ flows with your Azure AD implementation.
 {% navtab Using cURL %}
 
 ```bash
-curl -i -X POST https://<admin-hostname>:8443/httpbin-azure/oauth2/v2.0/token \
---data config.scope="<your_client_id>/.default" \
---data config.grant_type="client_credentials" \
---data config.client_id="<your_client_id>" \
---data config.client_secret="<your_client_secret>" \
---data config.verify_parameters="false"
+curl -i -X POST https://<proxy-hostname>:8443/httpbin-azure/oauth2/v2.0/token \
+--data grant_type="client_credentials" \
+--data client_id=<your_client_id> \
+--data client_secret=<your_client_secret>
 ```
 
 {% endnavtab %}
