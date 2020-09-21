@@ -1,5 +1,5 @@
 ---
-title: Set up Okta and Kong for use with external OAuth
+title: Set Up External Portal Application Authentication with Okta and OIDC
 ---
 
 ## Overview
