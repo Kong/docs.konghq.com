@@ -51,8 +51,8 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
    2. In the `Config.Consumer Claim` field, enter `<application_id>`.
 
    **Tip:** Because Okta's discovery document does not include all supported
-   auth types by default, it is recommended to disable the
-   `config.verify_parameters` option.
+   auth types by default, ensure the
+   `config.verify_parameters` option is disabled.
 
    ![Clear Config Verify Parameters for OIDC with Okta](/assets/images/docs/dev-portal/oidc-clear-verify-params-app-reg.png)
 
