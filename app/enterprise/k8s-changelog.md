@@ -10,7 +10,7 @@ Existing users of this image who want to use {{site.ee_product_name}} 2.1.x or
 later should switch to the <a href="/enterprise/latest/kong-for-kubernetes/deployment-options"><code>kong-enterprise-edition</code></a> image.
 <br>
 <br>
-See the <a href="">Kong Ingress Controller changelog</a> for all of the most
+See the <a href="https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md">Kong Ingress Controller changelog</a> for all of the most
 up-to-date information.
 </div>
 
