@@ -23,10 +23,11 @@ OAuth2 plugins for use with the Application Registration plugin:
 - When Kong is the system of record, the Application Registration plugin works
   in conjunction with the Kong OAuth2 plugin.
 
-  **Important:** The Kong OAuth2 plugin does not support
-  [hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/).
-  If your organization uses hybrid mode, you must use an external identity
-  provider and configure the Kong OIDC plugin.
+  <div class="alert alert-warning">
+    <strong>Important:</strong> The Kong OAuth2 plugin does not support
+    hybrid mode. If your organization uses hybrid mode, you must use an external identity
+    provider and configure the Kong OIDC plugin.
+  </div>
 
 - When an external OAuth2 is the system of record, the Application Registration
   plugin works in conjunction with the Kong OIDC plugin.
@@ -47,7 +48,8 @@ Available options:
   option cannot be used with hybrid mode deployments.
 * `external-oauth2`: An external IdP is the system of record. The Developer
   Portal Application Registration plugin is used in conjunction with the Kong
-  OIDC plugin. This option must be used with hybrid mode deployments.
+  OIDC plugin. This option must be used with
+  [hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/) deployments.
 
 1. Open `kong.conf.default` and set the `portal_app_auth` option to your chosen
    strategy. The example configuration below switches from the default
