@@ -143,11 +143,11 @@ $ http -f :8001/services/httpbin-service-azure/plugins \
 {% endnavtabs %}
 
 
-### Step 3: Get an access token from Azure or Kong
+### Step 3: Get an access token from Azure
 
 Get an access token using the Client Credential workflow and convert the token
-into a JSON Web Token (JWT). You can get the token from Azure or Kong. Replace
-the placeholder values with your values for `<your_tenant_id>`, `<your_client_id>`,
+into a JSON Web Token (JWT). Replace the placeholder values with your values for
+`<your_tenant_id>`, `<your_client_id>`,
 `<your_client_secret>`, and `<admin-hostname>`.`
 
 - Get an access token from Azure:
@@ -172,33 +172,6 @@ scope=<your_client_id>/.default \
 grant_type=client_credentials \
 -a <your_client_id>:<your_client_secret>
 ```   
-{% endnavtab %}
-{% endnavtabs %}
-
-- Get an access token from Kong:
-
-{% navtabs %}
-{% navtab Using cURL %}
-
-```bash
-curl -i -X POST https://<admin-hostname>:8443/httpbin-azure/oauth2/v2.0/token \
---data config.scope="<your_client_id>/.default" \
---data config.grant_type="client_credentials" \
---data config.client_id="<your_client_id>" \
---data config.client_secret="<your_client_secret>" \
---data config.verify_parameters="false"
-```
-
-{% endnavtab %}
-{% navtab Using HTTPie %}
-
-```bash
-$ https -f POST "https://<admin-hostname>:8443/httpbin-azure/oauth2/v2.0/token" \
-scope=<your_client_id>/.default \
-grant_type=client_credentials \
--a <your_client_id>:<your_client_secret> \
---verify NO
-```
 {% endnavtab %}
 {% endnavtabs %}
 
