@@ -39,7 +39,8 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
 
    ![Okta Claim](/assets/images/docs/dev-portal/okta-add-claim.png)
 
-    Now that you have created a custom claim, you can associate the `client_id` with a Service via the Application Registration plugin. Start by creating a Service in Kong Manager.
+    Now that you have created a custom claim, you can associate the `client_id`
+    with a Service via the Application Registration plugin. Start by creating a Service in Kong Manager.
 
 7. Create a Service and a Route and instantiate an OIDC plugin on that Service.
    You can allow most options to use their defaults.
@@ -48,7 +49,7 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
 
       ![OIDC with Okta Issuer URL](/assets/images/docs/dev-portal/oidc-issuer-url.png)
 
-   2. In the `Config.Consumer Claim` field, enter `<application_id>`.
+   2. In the `Config.Consumer Claim` field, enter your `<application_id>`.
 
    **Tip:** Because Okta's discovery document does not include all supported
    auth types by default, ensure the
@@ -99,6 +100,13 @@ your Okta application will vary:
 
 Now that the application has been configured in Okta, you need to associate the
 Okta application with the corresponding application in Kong's Developer Portal.
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> Each developer should have their own application in both Okta and Kong.  
+  Each Okta application has its own `client_id` that maps to its respective developer in Kong.
+  Essentially, this maps identity provider applications to portal applications.
+</div>
+
 This example assumes Client Credentials is the chosen OAuth flow.
 
 1. In the Kong Dev Portal, create an account if you haven't already.
