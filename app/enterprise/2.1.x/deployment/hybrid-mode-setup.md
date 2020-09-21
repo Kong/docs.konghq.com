@@ -380,7 +380,7 @@ follow the instructions to:
     -e "KONG_CLUSTER_CERT=data-plane.crt" \
     -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/data-plane.crt" \
     -e "KONG_CLUSTER_CA_CERT=/<path-to-file>/ca-cert.pem" \
-    -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=ca-cert.pem" \
+    -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=/<path-to-file>/ca-cert.pem" \
     --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
     -p 8000:8000 \
     kong-ee-dp1
