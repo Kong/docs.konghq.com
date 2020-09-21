@@ -48,8 +48,10 @@ Available options:
   option cannot be used with hybrid mode deployments.
 * `external-oauth2`: An external IdP is the system of record. The Developer
   Portal Application Registration plugin is used in conjunction with the Kong
-  OIDC plugin. This option must be used with
-  [hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/) deployments.
+  OIDC plugin. The `external-oauth2` option must be used with
+  [hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/)
+  deployments instead of `kong-oauth2`. The `external-oauth2` option can also be used
+  with classic (traditional) deployments.
 
 1. Open `kong.conf.default` and set the `portal_app_auth` option to your chosen
    strategy. The example configuration below switches from the default
