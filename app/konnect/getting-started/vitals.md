@@ -6,10 +6,10 @@ beta: true
 ---
 
 ## Overview
-Use Kong Vitals (Vitals) to monitor the health and performance of
-{{site.konnect_product_name}} (Konnect). Vitals uses visual API analytics to
-see exactly how your APIs and Gateway are performing. Quickly access key
-statistics, monitor vital signs, and pinpoint anomalies in real time.
+Use Kong Vitals (Vitals) to monitor the health and performance of a Service
+managed by {{site.konnect_product_name}} (Konnect). Vitals uses visual API
+analytics to see exactly how your APIs and Gateway are performing. Quickly
+access key statistics, monitor vital signs, and pinpoint anomalies in real time.
 
 There are a few ways you can view Vitals:
 * Services view
