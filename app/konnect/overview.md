@@ -28,8 +28,8 @@ the pieces fit together:
 
 | Concept/Feature {:width=20%:}| Description |
 |------------------------------|-------------|
-| Service                      | (Also referred to as a *Service Package*) Service entities are abstractions of each of your own upstream services, e.g., a data transformation microservice, a billing API, etc. In Konnect, the Service entity is the wrapper for its Versions and Implementations. |
-| Service Version              | One instance a Service with a unique configuration. Each version can have different configurations, set up for a RESTful API, gPRC endpoint, GraphQL endpoint, etc. A version can be a numerical identifier, such as `1.0.0`, or an identifier using text such as `version_1`. |
+| Service                      | Service entities are abstractions of each of your own upstream services, e.g., a data transformation microservice, a billing API, etc.  In Konnect, a Service is implemented through one or more Versions. |
+| Service Version              | One instance of a Service with a unique configuration. Each version can have different configurations, set up for a RESTful API, gPRC endpoint, GraphQL endpoint, etc. A version can be a numerical identifier, such as `1.0.0`, or an identifier using text such as `version_1`. |
 | Service Implementation       | The concrete, runnable incarnation of a Service Version. It defines the configuration for the Version, including the upstream URL and routes. Each Service Version can have one Implementation. |
 | Route                        | Routes specify how (and if) requests are sent to their Service Versions after they reach the API gateway. A single Service Version can have many Routes. |
 | Data Plane (DP)              | A node that serves traffic for the proxy. Data plane nodes are not directly connected to a database. |
@@ -38,14 +38,14 @@ the pieces fit together:
 | Proxy URL                    | URL for requests to the proxy. |
 | Developer Portal             | (Also referred to as *Portal*) A collection of Service Version specs and documentation objects. The Developer Portal provides a single source of truth for all developers and teams to locate, access, and consume services. |
 | Spec                         | Documentation for a Service Version in the form of an OpenAPI spec. A spec can be either in YAML or JSON format. |
-| API Catalog                  | Developer Portal catalog of all API specs for your Service. |
+| API Catalog                  | The API Catalog is one component of the Developer Portal containing the documentation for Services. |
 
 ## Understanding Traffic Flow in Kong Konnect
-In {{site.konnect_product_name}} instances are divided into
-two roles: Control Plane (CP) and Data Plane (DP). The control plane is connected
-to a database, and it propagates Kong configuration to data plane nodes,
-which use in-memory storage. The data plane nodes can be installed anywhere,
-on-premise or in the cloud.
+
+The Konnect platform provides a cloud control plane (CP), which manages all
+Service configurations. It propagates those configurations to all data plane
+(DP) nodes, which use in-memory storage. The data plane nodes can be installed
+anywhere, on-premise or in the cloud.
 
 The control plane listens for connections from data planes on port 8005.
 
@@ -65,7 +65,8 @@ handling authentication.
 processing invalid requests.
 * All requests are logged for central visibility of traffic.
 
-For the Konnect beta, Kong provisions a data plane for you.
+For the Konnect beta, Kong will provision a single hosted data plane for you.
+Later, you will also be able to configure additional self-managed data planes.
 
 ## Before you Begin
 Note the following before you start using this guide:

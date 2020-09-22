@@ -18,7 +18,7 @@ There are a few ways you can view Vitals:
 
 ## View Vitals for a Service
 
-To view Status Codes for all of your Services:
+To view traffic volume across all of a Service's versions:
 
 1. On the Services page, select a **Service** to view the Service Overview.
 
@@ -38,7 +38,7 @@ including version information and time of the event.
 
 ## View Vitals for a Version
 
-To view Status Codes for a Service Version:
+To view traffic volume for a Service Version:
 
 1. On the Services page, select a **Service** to view the Service Overview.
 
@@ -68,7 +68,7 @@ list view or graph view.
 
 ## View Vitals for a Route
 
-To view Status Codes for a Route:
+To view traffic volume for a Route:
 
 1. On the Services page, select a **Service** to view the Service overview.
 

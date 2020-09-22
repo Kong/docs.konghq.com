@@ -33,9 +33,12 @@ addresses.
 3. Find and select the **IP Restriction** plugin.
 
 4. On the **Create new ip-restriction plugin** page, enter an IP address into
-the deny field.
+the allow field.
 
-    For the purpose of this example, enter your client's IP.
+    Entering any value into this field implicitly sets a deny rule for any
+    IP not appearing in the allow list.
+
+    For the purpose of this example, enter the localhost IP (`127.0.0.1`).
 
 5. Click **Create** to save.
 
@@ -46,8 +49,8 @@ the deny field.
     ```
     <proxy-url>/mock
     ```
-    If the plugin was successfully enabled and your IP address was restricted,
-    you should see:
+    If the plugin was successfully enabled and the only the localhost IP address
+    is allowed, you should see:
     ```
     Kong Error
     Your IP address is not allowed.

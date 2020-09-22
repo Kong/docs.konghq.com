@@ -13,12 +13,10 @@ you will need to sign up for a beta account.
 
 ## Sign Up for the Konnect Beta
 
-1. Access {{site.konnect_product_name}} at [https://khcp.prod.khcp.kongcloud.io/](https://khcp.prod.khcp.kongcloud.io/).
+1. Access {{site.konnect_product_name}} at [https://khcp.konghq.com/](https://khcp.konghq.com/).
 
-2. On the registration screen, the email, name, and organization fields should
-already be filled in for you.
-
-    For the remaining fields:
+2. On the registration screen, fill in your email address, first and last name,
+and organization name. For the final two fields:
 
     1. Create a password.
 
