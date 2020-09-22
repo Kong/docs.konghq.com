@@ -29,23 +29,23 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 
 ## Create a Service in Kong
 
-   {% navtabs %}
-   {% navtab Using cURL %}
+{% navtabs %}
+{% navtab Using cURL %}
 
 ```bash
 $ curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure \
-   --data 'url=https://httpbin.org/anything'
+  --data 'url=https://httpbin.org/anything'
 ```
 
-   {% endnavtab %}
-   {% navtab Using HTTPie %}
+{% endnavtab %}
+{% navtab Using HTTPie %}
 
 ```bash
 $ http PUT :8001/services/httpbin-service-azure \
   url=https://httpbin.org/anything
 ```
-   {% endnavtab %}
-   {% endnavtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Create a Route in Kong
 
@@ -54,15 +54,15 @@ $ http PUT :8001/services/httpbin-service-azure \
 
 ```bash
 $ curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure/routes/httpbin-route-azure \
-   --data 'paths=/httpbin-azure'
+  --data 'paths=/httpbin-azure'
 ```
 {% endnavtab %}
 {% navtab Using HTTPie %}
 
 ```bash
 $ http -f PUT :8001/services/httpbin-service-azure/routes/httpbin-route-azure \
-paths=/httpbin-azure
-   ```
+  paths=/httpbin-azure
+```
 
 {% endnavtab %}
 {% endnavtabs %}
@@ -90,23 +90,23 @@ $ curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugi
   --data config.scopes="openid" \
   --data config.scopes="YOUR_CLIENT_ID/.default" \
   --data config.verify_parameters="false"
-  ```
+```
 
 {% endnavtab %}
 {% navtab Using HTTPie %}
 
 ```bash
 $ http -f :8001/services/httpbin-service-azure/plugins \
-     name=openid-connect \
-     config.issuer=https://login.microsoftonline.com/<your_tenant_id>/v2.0 \
-     config.display_errors=true \
-     config.client_id=<your_client_id> \
-     config.client_secret="<your_client_secret>" \
-     config.redirect_uri="https://example.com/api" \
-     config.consumer_claim=aud \
-     config.scopes=openid \
-     config.scopes=<your_client_id>/.default \
-     config.verify_parameters=false
+  name=openid-connect \
+  config.issuer=https://login.microsoftonline.com/<your_tenant_id>/v2.0 \
+  config.display_errors=true \
+  config.client_id=<your_client_id> \
+  config.client_secret="<your_client_secret>" \
+  config.redirect_uri="https://example.com/api" \
+  config.consumer_claim=aud \
+  config.scopes=openid \
+  config.scopes=<your_client_id>/.default \
+  config.verify_parameters=false
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -121,11 +121,11 @@ For more information, see [OIDC plugin](/hub/kong-inc/openid-connect/).
 
 ```bash
 $ curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugins \
-    --data "name=application-registration"  \
-    --data "config.auto_approve=true" \
-    --data "config.description=Uses consumer claim with various values (sub, aud, etc.) as registration id to support different flows and use cases." \
-    --data "config.display_name=For Azure" \
-    --data "config.show_issuer=true"
+  --data "name=application-registration"  \
+  --data "config.auto_approve=true" \
+  --data "config.description=Uses consumer claim with various values (sub, aud, etc.) as registration id to support different flows and use cases." \
+  --data "config.display_name=For Azure" \
+  --data "config.show_issuer=true"
 ```
 
 {% endnavtab %}
@@ -134,10 +134,10 @@ $ curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugi
 ```bash
 $ http -f :8001/services/httpbin-service-azure/plugins \
   name=application-registration \
-      config.auto_approve=true \
-      config.display_name="For Azure" \
-      config.description="Uses consumer claim with various values (sub, aud, etc.) as registration id to support different flows and use cases." \
-      config.show_issuer=true
+  config.auto_approve=true \
+  config.display_name="For Azure" \
+  config.description="Uses consumer claim with various values (sub, aud, etc.) as registration id to support different flows and use cases." \
+  config.show_issuer=true
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -147,20 +147,20 @@ $ http -f :8001/services/httpbin-service-azure/plugins \
 
 Get an access token using the Client Credential workflow and convert the token
 into a JSON Web Token (JWT). Replace the placeholder values with your values for
-`<your_tenant_id>`, `<your_client_id>`,
-`<your_client_secret>`, and `<admin-hostname>`.`
+`<your_tenant_id>`, `<your_client_id>`,`<your_client_secret>`, and
+`<admin-hostname>`.
 
-- Get an access token from Azure:
+Get an access token from Azure:
 
 {% navtabs %}
 {% navtab Using cURL %}
 
 ```bash
-curl -X POST https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token \
---data scope="<your_client_id>/.default" \
---data grant_type="client_credentials" \
---data client_id="<your_client_id>" \
---data client_secret="<your_client_secret>" \
+$ curl -X POST https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token \
+  --data scope="<your_client_id>/.default" \
+  --data grant_type="client_credentials" \
+  --data client_id="<your_client_id>" \
+  --data client_secret="<your_client_secret>" \
 ```
 
 {% endnavtab %}
@@ -168,9 +168,9 @@ curl -X POST https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/toke
 
 ```bash
 $ https -f POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token" \
-scope=<your_client_id>/.default \
-grant_type=client_credentials \
--a <your_client_id>:<your_client_secret>
+  scope=<your_client_id>/.default \
+  grant_type=client_credentials \
+  -a <your_client_id>:<your_client_secret>
 ```   
 {% endnavtab %}
 {% endnavtabs %}
@@ -227,10 +227,10 @@ flows with your Azure AD implementation.
 {% navtab Using cURL %}
 
 ```bash
-curl -i -X POST https://<proxy-hostname>:8443/httpbin-azure/oauth2/v2.0/token \
---data grant_type="client_credentials" \
---data client_id=<your_client_id> \
---data client_secret=<your_client_secret>
+$ curl -i -X POST https://<proxy-hostname>:8443/httpbin-azure/oauth2/v2.0/token \
+  --data grant_type="client_credentials" \
+  --data client_id=<your_client_id> \
+  --data client_secret=<your_client_secret>
 ```
 
 {% endnavtab %}
@@ -238,11 +238,11 @@ curl -i -X POST https://<proxy-hostname>:8443/httpbin-azure/oauth2/v2.0/token \
 
 ```bash
 $ https -f POST "https://<admin-hostname>:8443/httpbin-azure/oauth2/v2.0/token" \
-scope=<your_client_id>/.default \
-grant_type=client_credentials \
--a <your_client_id>:<your_client_secret> \
---verify NO
-   ```
+  scope=<your_client_id>/.default \
+  grant_type=client_credentials \
+  -a <your_client_id>:<your_client_secret> \
+  --verify NO
+```
 {% endnavtab %}
 {% endnavtabs %}
 
