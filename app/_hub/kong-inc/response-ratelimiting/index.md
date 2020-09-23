@@ -78,8 +78,8 @@ params:
   config:
     - name: limits.{limit_name}
       required: true
-      description: This is a list of custom objects that you can set, with arbitrary
-      names set in the `{limit_name`} placeholder, like `config.limits.sms.minute=20` if your object is called "SMS".
+      value_in_examples: <SMS>
+      description: This is a list of custom objects that you can set, with arbitrary names set in the `{limit_name`} placeholder, like `config.limits.sms.minute=20` if your object is called "SMS".
     - name: limits.{limit_name}.second
       required: semi
       description: The amount of HTTP requests the developer can make per second. At least one limit must exist.
