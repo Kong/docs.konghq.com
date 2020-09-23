@@ -348,7 +348,7 @@
         - text: Add a Workspace
           url: /kong-manager/administration/workspaces/add-workspace
         - text: RBAC
-        - items:
+          items:
           - text: RBAC in Kong Manager
             url: /kong-manager/administration/rbac
           - text: Create a New Role
@@ -358,7 +358,7 @@
           - text: Add a Role and Permissions
             url: /kong-manager/administration/rbac/add-role
         - text: Admins
-        - items:
+          items:
           - text: Invite an Admin
             url: /kong-manager/administration/admins/invite
           - text: Add an Admin
