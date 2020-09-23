@@ -74,12 +74,9 @@ Available options:
 1. If you plan to use external OAuth2, review the
 [recommended workflows](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth#supported-oauth-flows).
 Configure the identity provider for your application, configure your
-<<<<<<< HEAD
-application in Kong, and associate them with each other. See the [Okta](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config), or the [Azure](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/azure-oidc-config) setup examples.
-=======
 application in Kong, and associate them with each other. See the
-[Okta example](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config).
->>>>>>> cf9bcc93f6... hybrid mode limitations; links; edits; char wrap
+[Okta](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config),
+or the [Azure](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/azure-oidc-config) setup examples.
 2. Enable the [Application Registration plugin](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration) on a Service.
 3. Depending on your configured authentication strategy, configure the Kong
 [OAuth2](/hub/kong-inc/oauth2) or
