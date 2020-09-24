@@ -85,7 +85,7 @@ Kong -> f(status, body, headers) -> ... -> exit(status, body, headers)
   instantiate them if they do not exist.
 </div>
 
-If you maniupulate body and headers, see the
+If you manipulate body and headers, see the
 [Modify the body and headers regardless if provided](#mod-body-head) example below.
 
 ### Example Functions
@@ -177,7 +177,7 @@ end
    ```
 
    {% endnavtab %}
-   {% navtab Using httpie %}
+   {% navtab Using HTTPie %}
 
    ```bash
    $ http :8001/services name=example.com host=mockbin.org
@@ -198,7 +198,7 @@ curl -i -X POST http://<admin-hostname>:8001/services/example.com/routes \
 ```
 
    {% endnavtab %}
-   {% navtab Using httpie %}
+   {% navtab Using HTTPie %}
 
 ```bash
 $ http -f :8001/services/example.com/routes hosts=example.com
@@ -244,7 +244,7 @@ Configure the `exit-transformer` plugin with `transform.lua`.
     --data "config.functions=@transform.lua"
    ```
    {% endnavtab %}
-   {% navtab Using httpie %}
+   {% navtab Using HTTPie %}
 
    ```bash
    $ http -f :8001/services/example.com/plugins \
@@ -269,7 +269,7 @@ response in [step 6](#testy-exit):
    ```
 
    {% endnavtab %}
-   {% navtab Using httpie %}
+   {% navtab Using HTTPie %}
 
    ```bash
    $ http :8001/services/example.com/plugins name=key-auth
@@ -292,7 +292,7 @@ $ curl --header 'Host: example.com' 'localhost:8000'
 ```
 
 {% endnavtab %}
-{% navtab Using httpie %}
+{% navtab Using HTTPie %}
 
 ```bash
 $ http :8000 Host:example.com
