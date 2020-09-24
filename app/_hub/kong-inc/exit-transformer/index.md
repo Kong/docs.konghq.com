@@ -6,8 +6,8 @@ version: 1.5.x
 desc: Customize Kong exit responses sent downstream
 description: |
   Transform and customize Kong response exit messages using Lua functions.
-  The capabilities range from changing messages, status codes, and headers, to completely transforming
-  the structure of Kong responses.
+  The capabilities range from changing messages, status codes, and headers
+  to completely transforming the structure of Kong responses.
 
 type: plugin
 enterprise: true
@@ -52,22 +52,22 @@ params:
 ## Transforming 404 and 400 responses
 
 By default, the exit transformer is only applied to requests that match its
-criteria (its route, service, or consumer matching configuration) or
-globally within a workspace. However, requests that result in 400 or 404
+criteria (its Route, Service, or Consumer matching configuration) or
+globally within a Workspace. However, requests that result in 400 or 404
 responses neither match any criteria nor fall within any specific workspace,
 and standard plugin criteria will never match them. Users can designate exit
 transformer configurations that _do_ handle these responses by enabling the
 `handle_unknown` (404) and `handle_unexpected` (400) settings. These should
 only be enabled on a single plugin configuration.
 
-`handle_admin` allows the exit transformer to apply to Admin API responses.
-Users should only modify headers only applying functions to Admin API
+The `handle_admin` parameter allows the exit transformer to apply to Admin API responses.
+Users should only modify headers that only apply functions to Admin API
 responses, as modifying the body or status will interfere with Kong Manager's
 ability to communicate with the Admin API.
 
 ## Function syntax
 
-The exit transformer expects a configuration function to be Lua code that returns
+The Exit Transformer plugin expects a configuration function to be Lua code that returns
 a function accepting three arguments: status, body, and headers.
 
 Any Kong exit call exposed on the proxy side gets reduced through these
@@ -81,15 +81,16 @@ Kong -> f(status, body, headers) -> ... -> exit(status, body, headers)
   <strong>Warning</strong>
   <code>kong.response.exit()</code> requires a <code>status</code> argument only.
   <code>body</code> and <code>headers</code> may be <code>nil</code>.
-  If you manipulate them, first check that they exist and instantiate them
-  if they do not. The "Modify the body and headers, even if none were provided"
-  example below shows how to do this.
+  If you manipulate the body and headers, first check that they exist and
+  instantiate them if they do not exist.
 </div>
 
+If you maniupulate body and headers, see the
+[Modify the body and headers regardless if provided](#mod-body-head) example below.
 
-### Examples
+### Example Functions
 
-* Identity function: does not transform the exit responses
+#### Identity function that does not transform the exit responses
 
 ```lua
 return function(status, body, headers)
@@ -97,7 +98,7 @@ return function(status, body, headers)
 end
 ```
 
-* Always return a 200 status code, bundling the status within the message
+#### Function that always returns a 200 status code with status bundled within the message
 
 ```lua
 return function(status, body, headers)
@@ -112,7 +113,7 @@ return function(status, body, headers)
 end
 ```
 
-* Customize particular Kong messages
+#### Customize particular Kong messages
 
 ```lua
 local responses = {
@@ -142,7 +143,7 @@ return function(status, body, headers)
 end
 ```
 
-* Modify the body and headers, even if none were provided
+#### Modify the body and headers regardless if provided {#mod-body-head}
 
 ```lua
 return function(status, body, headers)
@@ -164,18 +165,55 @@ end
 
 ## Demonstration
 
-1. Create a Service and a Route in Kong:
+### Step 1: Create a Service in Kong
 
-    ```bash
-    $ http :8001/services name=example.com host=mockbin.org
-    $ http -f :8001/services/example.com/routes hosts=example.com
-    ```
+   {% navtabs %}
+   {% navtab Using cURL %}
 
-2. Create a file named `transform.lua` with the transformation code. The
-   following example adds a header, appends "arr!" to any message, and adds
-   an `error` and `status` field on the response.
+   ```bash
+   curl -i -X POST http://<admin-hostname>:8001/services \
+    --data name=example.com \
+    --data url='http://mockbin.org'
+   ```
 
-    ```lua
+   {% endnavtab %}
+   {% navtab Using httpie %}
+
+   ```bash
+   $ http :8001/services name=example.com host=mockbin.org
+   ```
+
+   {% endnavtab %}
+   {% endnavtabs %}
+
+### Step 2: Create a Route in Kong
+
+   {% navtabs %}
+   {% navtab Using cURL %}
+
+```bash
+curl -i -X POST http://<admin-hostname>:8001/services/example.com/routes \
+  --data 'paths[]=/mock' reviewers need conversion help here \
+  --data name=mocking
+```
+
+   {% endnavtab %}
+   {% navtab Using httpie %}
+
+```bash
+$ http -f :8001/services/example.com/routes hosts=example.com
+```
+
+   {% endnavtab %}
+   {% endnavtabs %}
+
+### Step 3: Create a Transform
+
+Create a file named `transform.lua` with the transformation code. The
+following example adds a header, appends "arr!" to any message, and adds
+`error` and `status` fields on the response body.
+
+```lua
     -- transform.lua
     return function(status, body, headers)
       if not body or not body.message then
@@ -191,26 +229,81 @@ end
 
       return status, body, headers
     end
-    ```
+```
 
-3. Configure the `exit-transformer` plugin with `transform.lua`
+### Step 4: Configure Plugin with its Transform
 
-    ```bash
-    $ http -f :8001/services/example.com/plugins \
-        name=exit-transformer \
-        config.functions=@transform.lua
-    ```
+Configure the `exit-transformer` plugin with `transform.lua`.
 
-4. (example) Add key-auth plugin to force generation of an exit response
+   {% navtabs %}
+   {% navtab Using cURL %}
 
-    ```bash
-    $ http :8001/services/example.com/plugins name=key-auth
-    ```
+   ```bash
+   $ curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
+    --data "name=exit-transformer"  \
+    --data "config.functions=@transform.lua"
+   ```
+   {% endnavtab %}
+   {% navtab Using httpie %}
 
-5. Attempt a request to the Service to get the custom error
+   ```bash
+   $ http -f :8001/services/example.com/plugins \
+   name=exit-transformer \
+   config.functions=@transform.lua
+   ```
 
-    ```bash
-    $ http :8000 Host:example.com
+   {% endnavtab %}
+   {% endnavtabs %}
+
+### Step 5: Configure the Key-Auth Plugin to Test the Exit Transform
+
+Add the `key-auth` plugin to test a forced generation of an exit transform
+response in [step 6](#testy-exit):
+
+   {% navtabs %}
+   {% navtab Using cURL %}
+
+   ```bash
+   $ curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
+    --data "name=key-auth"
+   ```
+
+   {% endnavtab %}
+   {% navtab Using httpie %}
+
+   ```bash
+   $ http :8001/services/example.com/plugins name=key-auth
+   ```
+
+   {% endnavtab %}
+   {% endnavtabs %}
+
+### Step 6: Test a Forced Generation of an Exit Response {#testy-exit}
+
+Attempt a request to the Service to get the custom error. Because the
+request did not provide credentials (API key), a 401 response is returned
+in the message body.
+
+{% navtabs %}
+{% navtab Using cURL %}
+
+```bash
+$ curl --header 'Host: example.com' 'localhost:8000'
+```
+
+{% endnavtab %}
+{% navtab Using httpie %}
+
+```bash
+$ http :8000 Host:example.com
+```
+
+{% endnavtab %}
+{% endnavtabs %}
+
+Response:
+
+```bash
     HTTP/1.1 200 OK
     ...
     X-Some-Header: some value
@@ -220,11 +313,11 @@ end
         "status": 401,
         "kong_message": "No API key found in request, arr!"
     }
-    ```
+```
 
-6. Note the plugin can also be applied globally
+Note the plugin can also be applied globally:
 
-   ```bash
+  ```bash
     $ http :8001/plugins \
         name=exit-transformer \
         config.handle_unknown=true \
@@ -238,6 +331,6 @@ end
     {
         "error": true,
         "status": 404,
-        "kong_message": "no Route matched with those values, arr!"
+        "kong_message": "No Route matched with those values, arr!"
     }
-    ```
+  ```
