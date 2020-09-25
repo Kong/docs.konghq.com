@@ -231,7 +231,7 @@ following example adds a header, appends "arr!" to any message, and adds
     end
 ```
 
-### Step 4: Configure Plugin with its Transform
+### Step 4: Configure the Plugin with its Transform
 
 Configure the `exit-transformer` plugin with `transform.lua`.
 
