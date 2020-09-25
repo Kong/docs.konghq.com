@@ -42,10 +42,6 @@ params:
       default: "`false`"
       required: false
       description: Allow transform to apply to unexpected request (400) responses. Should not be enabled on more than one plugin configuration.
-    - name: handle_admin
-      default: "`false`"
-      required: false
-      description: Allow transform to apply to Admin API responses. Should not be enabled on more than one plugin configuration.
 
 ---
 
@@ -59,11 +55,6 @@ and standard plugin criteria will never match them. Users can designate exit
 transformer configurations that _do_ handle these responses by enabling the
 `handle_unknown` (404) and `handle_unexpected` (400) settings. These should
 only be enabled on a single plugin configuration.
-
-The `handle_admin` parameter allows the exit transformer to apply to Admin API responses.
-Users should only modify headers that only apply functions to Admin API
-responses, as modifying the body or status will interfere with Kong Manager's
-ability to communicate with the Admin API.
 
 ## Function syntax
 
