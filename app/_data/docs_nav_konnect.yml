@@ -27,5 +27,5 @@
   items:
     - text: Proxy Traffic
       url: /reference/proxy-traffic
-    - text: Organization Management
+    - text: Managing Users and Roles
       url: /reference/org-management
