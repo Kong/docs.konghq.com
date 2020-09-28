@@ -37,11 +37,12 @@ params:
     - name: handle_unknown
       default: "`false`"
       required: false
-      description: Allow transform to apply to unmatched route (404) responses. Should not be enabled on more than one plugin configuration.
+      description: Allow transform to apply to unmatched route (404) responses.
+      Should not be enabled on more than one plugin configuration.
     - name: handle_unexpected
       default: "`false`"
       required: false
-      description: Allow transform to apply to unexpected request (400) responses. 
+      description: Allow transform to apply to unexpected request (400) responses.
 
 ---
 
@@ -53,8 +54,7 @@ globally within a Workspace. However, requests that result in 400 or 404
 responses neither match any criteria nor fall within any specific workspace,
 and standard plugin criteria will never match them. Users can designate exit
 transformer configurations that _do_ handle these responses by enabling the
-`handle_unknown` (404) and `handle_unexpected` (400) settings. These should
-only be enabled on a single plugin configuration.
+`handle_unknown` (404) and `handle_unexpected` (400) settings.
 
 ## Function syntax
 
