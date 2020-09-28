@@ -41,7 +41,7 @@ params:
     - name: handle_unexpected
       default: "`false`"
       required: false
-      description: Allow transform to apply to unexpected request (400) responses. Should not be enabled on more than one plugin configuration.
+      description: Allow transform to apply to unexpected request (400) responses. 
 
 ---
 
