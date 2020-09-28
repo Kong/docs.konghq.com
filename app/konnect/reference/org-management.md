@@ -39,22 +39,14 @@ Managing your organization includes inviting users and assigning roles. Use the 
 ## Role Definitions
 When assigning a role or roles to a user, the following default roles are available. Default roles are included in every organization, and users can have more than one role.  
 
-| Role | Permission | Entities |
-|-------------|-------------|-------------|
-| Organization Admin | Full CRUD (create, read, update, and delete) on all objects within an organization including users and organization configuration. | Users, Roles, Service Packages, Service Versions, Implementations, Portal and Service Detail pages, and Runtime Config. | 
-| Service Admin | Full CRUD on Service Packages, and publish/unpublish Services to the Portal. | Service Packages, Service Versions, Service Detail pages, Implementations, and Portal documents (Service Docs and Version Specs). | 
-| Service Developer | CRUD on Service Versions. | Service Versions, Implementations, and Service Detail pages. | 
-| Portal Admin | Read and update on the Portal landing page, as well as Service Detail pages. | All Portal documents, and Publish Services to the Portal. | 
-| Service Page Editor | Read and update individual Service pages, and create/register Applications. | Service Detail pages and Applications. | 
+| Role | Permission |
+|-------------|-------------|
+| Organization Admin | Full CRUD (create, read, update, and delete) on all objects within an organization including users and organization configuration. |
+| Service Admin | Full CRUD on Service Packages, and publish/unpublish Services to the Portal.|  
+| Service Developer | CRUD on Service Versions. |
+| Portal Admin | Read and update on the Portal landing page, as well as Service Detail pages.|
+| Service Page Editor | Read and update individual Service pages, and create/register Applications.|
 
-## Role Permissions
-Individual permissions can be granted for custom roles, as defined in the table.
-
-| Permission name | Description | Entities |
-|-------------|-------------|-------------|
-| Service Editor | Permissions to fully manage a specific Services, including Versions, Implementations, Routes, and Portal docs, and can also delete the Service. | Specific Service Package, Service Versions within the Service, Implementations within the Service, Portal and Service docs for the Service. | 
-| Service Viewer | Read permissions on a specific Service including Versions, Implementations, Routes, and Portal docs. | Specific Service Package, Service Versions within the Service, Implementations within the Service, Portal and Service docs for the Service. | 
-| Version Editor | Permissions to fully manage all Versions for a specific Service, including creating and updating Implementations and Specs, and can also create or delete Versions. | Service Versions of a Service, Version Specs, and Implementations for a given Service. | 
-| Portal Editor | Includes permissions to fully manage all Portal content for a specific Service and its Versions. | Portal documents for a Service. | 
+ 
 
 
