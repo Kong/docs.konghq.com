@@ -90,12 +90,20 @@
   .content {
     ol {
       padding-left: 2rem;
+      counter-reset: base;
+    }
+
+    ol > li::before {
+      counter-increment: base;
+      content: counter(base);
+      font-size: 13px;
     }
 
     ul {
       // avoid nested lists and lists elements to have smaller and smaller
       // font sizes
       font-size: inherit;
+      margin-left: 0.5rem;
 
       li {
         // avoid ridiculously big spaces between lists elements

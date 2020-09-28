@@ -621,7 +621,7 @@
 .content {
   padding: 50px 0;
   .font-source-sans();
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.5;
 
   .big {
@@ -713,7 +713,6 @@
 
       &:before {
         color: @font-color;
-        font-size: 13px;
         width: 36px;
         height: 36px;
         line-height: 36px;
@@ -1085,7 +1084,6 @@ Generic Styling for Desktop
 .instructions-steps {
   list-style: none;
   padding-left: 26px;
-  counter-reset: step;
 
   .instructions-step-item {
     position: relative;
@@ -1099,8 +1097,6 @@ Generic Styling for Desktop
     }
 
     &:before {
-      counter-increment: step;
-      content: counter(step);
       box-sizing: border-box;
       width: 36px;
       height: 36px;
