@@ -481,7 +481,7 @@ $ curl -X POST http://localhost:8001/route/{route id}/plugins \
 Download your Auth0 account's X509 Certificate:
 
 ```bash
-$ curl -o {COMPANYNAME}.pem https://{COMPANYNAME}.auth0.com/pem
+$ curl -o {COMPANYNAME}.pem https://{COMPANYNAME}.{REGION-ID}.auth0.com/pem
 ```
 
 Extract the public key from the X509 Certificate:
