@@ -508,6 +508,10 @@
 
   li {
     line-height: 26px;
+
+    a {
+      color: #85898c;
+    }
   }
 
   li ul {
@@ -519,15 +523,28 @@
   }
 
   li a.active {
-    color: @blue;
+    color: @gray-darker;
+    font-weight: 600;
+    opacity: 1;
   }
 
   a {
     font-size: 14px;
+    color: @blue;
+
+    &:hover {
+      opacity: 0.5;
+    }
   }
 
   .fa {
     color: #acb7bf;
+  }
+
+  table {
+    a {
+      color: @blue;
+    }
   }
 }
 
@@ -706,9 +723,11 @@
 
   a {
     text-decoration: none;
+    color: @blue;
 
     &:hover {
       text-decoration: underline;
+      opacity: 0.7;
     }
   }
 
