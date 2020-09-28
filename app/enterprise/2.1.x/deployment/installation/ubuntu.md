@@ -77,7 +77,7 @@ You should now have two files in your home directory on the target system:
 2. Install Kong Enterprise
 
     ```bash
-    $ sudo apt-get install $(realpath kong-enterprise-edition-{{page.kong_latest.version}}.*.deb)
+    $ sudo apt-get install /absolute/path/to/kong-enterprise-edition-{{page.kong_latest.version}}.*.deb
     ```
 
     > Note: Your version may be different based on when you obtained the package

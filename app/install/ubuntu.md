@@ -35,7 +35,7 @@ section on the page below, setting  *distribution* to the appropriate value ( ls
 
     ```bash
     $ sudo apt-get update
-    $ sudo apt-get install $(realpath kong-{{site.data.kong_latest.version}}.*.deb)
+    $ sudo apt-get install /absolute/path/to/kong-{{site.data.kong_latest.version}}.*.deb
     ```
 
     If you are using the apt repository execute:
