@@ -48,7 +48,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
-  protocols: ["http", "https", "grpc", "grpcs"]
+  protocols: ["http", "https", "grpc", "grpcs", "tcp", "tls", "udp"]
   dbless_compatible: yes
   config:
     - name: host
