@@ -9,6 +9,11 @@ chapter: 8
   knowledge of <a href="http://leafo.net/lapis/">Lapis</a>.
 </div>
 
+<div class="alert alert-warning">
+  <strong>Note:</strong> The Admin API extensions are available only
+  for HTTP plugins, not Stream plugins. 
+</div>
+
 ## Introduction
 
 Kong can be configured using a REST interface referred to as the [Admin API].

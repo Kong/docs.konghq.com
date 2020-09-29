@@ -49,7 +49,7 @@ If a module implements the `:response()` method, Kong will automatically activat
 
 To reduce unexpected behaviour changes, Kong will abort startup if a plugin implements both `:response()` and either `:header_filter()` or `:body_filter()`.
 
-- **[Stream Module]** *is used for plugins written for TCP stream connections*
+- **[Stream Module]** *is used for plugins written for TCP and UDP stream connections*
 
 | Function name      | Phase                                                                        | Description
 |--------------------|------------------------------------------------------------------------------|------------
@@ -62,6 +62,11 @@ by Kong upon its invocation: the configuration of your plugin. This parameter
 is a Lua table, and contains values defined by your users, according to your
 plugin's schema (described in the `schema.lua` module). More on plugins schemas
 in the [next chapter]({{page.book.next}}).
+
+Note that UDP streams don't have real "connections".  Kong will consider all
+packets with the same origin and destination host and port as a single
+"connection".  After a configurable time without any packet, the connection is
+considered "closed" and the `:log()` function is executed. 
 
 [HTTP Module]: https://github.com/openresty/lua-nginx-module
 [Stream Module]: https://github.com/openresty/stream-lua-nginx-module
