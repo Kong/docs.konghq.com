@@ -23,7 +23,7 @@ The proxy ports is where Kong receives its incoming traffic. There are two ports
 See [proxy_listen] for more details on HTTP/HTTPS proxy listen options. For production environment it is common
 to change HTTP and HTTPS listen ports to `80` and `443`.
 
-Kong can also proxy TCP/TLS streams. The stream proxying is disabled by default. See [stream_listen] for
+Kong can also proxy TCP/TLS and UDP streams. The stream proxying is disabled by default. See [stream_listen] for
 additional details on stream proxy listen options, and how to enable it (if you plan to proxy anything other than
 HTTP/HTTPS traffic).
 
