@@ -37,8 +37,8 @@ params:
     - name: handle_unknown
       default: "`false`"
       required: false
-      description: Allow transform to apply to unmatched route (404) responses.
-      Should not be enabled on more than one plugin configuration.
+      description: Allow transform to apply to unmatched Service, Route, or Workspace
+      (404) responses. This flag only applies to one configuration entry.
     - name: handle_unexpected
       default: "`false`"
       required: false
@@ -46,15 +46,67 @@ params:
 
 ---
 
-## Transforming 404 and 400 responses
+## Transforming 4xx and 5xx Responses
 
-By default, the exit transformer is only applied to requests that match its
-criteria (its Route, Service, or Consumer matching configuration) or
-globally within a Workspace. However, requests that result in 400 or 404
-responses neither match any criteria nor fall within any specific workspace,
-and standard plugin criteria will never match them. Users can designate exit
-transformer configurations that _do_ handle these responses by enabling the
-`handle_unknown` (404) and `handle_unexpected` (400) settings.
+By default, the Exit Transformer is only applied to requests that match its
+criteria (its Route or Service matching configuration) or globally within a Workspace.
+
+### Handling Unmatched 400 and 404 Responses
+
+Requests that result in 400 or 404 responses neither match any criteria nor fall
+within any specific Workspace, and standard plugin criteria will never match those
+responses. You can designate Exit Transformer configurations that _do_ handle these
+responses by enabling the `handle_unexpected` (400) and `handle_unknown` (404) settings.
+The `handle_unknown` parameter should only be enabled on a single plugin configuration.
+
+#### HTTP Response Status Codes
+
+**4xx** codes are client error responses:
+
+- [400 Bad request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400)
+- [401 Unauthorized](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401)
+- [402 Payment required](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402)
+- [403 Forbidden](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403)
+- [404 Not found](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404)
+- [405 Method not allowed](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405)
+- [406 Not acceptable](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/406)
+- [407 Proxy authentication required](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/407)
+- [408 Request timeout](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408)
+- [409 Conflict](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409)
+- [410 Gone](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/410)
+- [411 Length required](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/411)
+- [412 Precondition failed](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/412)
+- [413 Payload too large](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/413)
+- [414 URI too long](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/414)
+- [415 Unsupported media type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/415)
+- [416 Range not satisfiable](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/416)
+- [417 Expectation failed](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/417)
+- [418 I'm a teapot](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/418)
+- [421 Misdirected request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/421)
+- [422 Unprocessable entity](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
+- [423 Locked](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/423)
+- [424 Failed dependency](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/424)
+- [425 Too early](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/425)
+- [426 Upgrade required](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/426)
+- [428 Precondition required](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/428)
+- [429 Too many requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429)
+- [431 Request header fields too large](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/431)
+- [451 Unavailable for legal reasons](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/451)
+- [494 Request header or cookie too large](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/494)
+
+**5xx** codes are server error responses:
+
+- [500 An unexpected error occurred](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500)
+- [501 Not implemented](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/501)
+- [502 An invalid response was received from the upstream server](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502)
+- [503 The upstream server is currently unavailable](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503)
+- [504 The upstream server is timing out](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504)
+- [505 HTTP version not supported](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/505)
+- [506 Variant also negotiates](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/506)
+- [507 Insufficient storage](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/507)
+- [508 Loop detected](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/508)
+- [510 Not extended](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/510)
+- [511 Network authentication required](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/511)
 
 ## Function syntax
 
