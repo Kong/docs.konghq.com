@@ -3,7 +3,7 @@ title: Using the Konnect API
 no_search: true
 no_version: true
 ---
-## Introduction
+## Overview
 
 {{site.konnect_product_name}} provides a RESTful admin API for administration.
 
