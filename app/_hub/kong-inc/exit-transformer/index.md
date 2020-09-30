@@ -57,6 +57,11 @@ within any specific Workspace, and standard plugin criteria will never match tho
 responses. You can designate Exit Transformer configurations that _do_ handle these
 responses by enabling the `handle_unexpected` (400) and `handle_unknown` (404) settings.
 The `handle_unknown` parameter should only be enabled on a single plugin configuration.
+The `handle_unexpected` parameter can be enabled on as many plugin configurations
+as you want. It's not a prerequisite for `handle_unexpected` to also have `handle_unknown` set,
+if an unexpected error happened within some known Service or Route context. If a
+configuration has both `handle_unknown` and `handle_unexpected` enabled, then an
+unexpected error on an _unknown_ Service or Route will pass through the Exit Transformer plugin.
 
 ### HTTP Response Status Codes
 
@@ -404,7 +409,7 @@ Response:
     }
   ```
 
-### Custom Errors by Mimetype
+### Custom Errors by MIME Type
 
 This example shows a use case where you want custom JSON and HTML responses
 based on an [Accept header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept).
