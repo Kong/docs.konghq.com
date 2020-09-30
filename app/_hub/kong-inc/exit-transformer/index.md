@@ -357,6 +357,8 @@ Response:
     }
 ```
 
+## More Examples
+
 ### Apply the Plugin Globally to Handle Unknown Responses
 
 Note the plugin can also be applied globally:
@@ -376,14 +378,15 @@ curl --header 'Host: non-existent.com' 'localhost:8000'
 {% endnavtab %}
 {% navtab Using HTTPie %}
 
-  ```bash
-    $ http :8001/plugins \
-        name=exit-transformer \
-        config.handle_unknown=true \
-        config.functions=@transform.lua
+```bash
+$ http :8001/plugins \
+    name=exit-transformer \
+    config.handle_unknown=true \
+    config.functions=@transform.lua
 
     $ http :8000 Host:non-existent.com
 ```
+
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -400,3 +403,32 @@ Response:
         "kong_message": "No Route matched with those values, arr!"
     }
   ```
+
+### Custom Errors by Mimetype
+
+This example shows a use case where you want custom JSON and HTML responses
+based on an [Accept header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept).
+
+{% navtabs %}
+{% navtab Using cURL %}
+
+```bash
+$ curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
+ --data "name=exit-transformer"  \
+ --data "config.handle_unknown=true" \
+ --data "config.handle_unexpected=true" \
+ --data "config.functions=@examples/custom-errors-by-mimetype.lua"
+```
+
+{% endnavtab %}
+{% navtab Using HTTPie %}
+
+```bash
+$ http -f :8001/plugins name=exit-transformer \
+  config.handle_unknown=true \
+  config.handle_unexpected=true \
+  config.functions=@examples/custom-errors-by-mimetype.lua
+```
+
+{% endnavtab %}
+{% endnavtabs %}
