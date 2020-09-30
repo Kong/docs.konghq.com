@@ -44,15 +44,16 @@ authorization strategy.
 Available options:
 
 * `kong-oauth2`: Default. Kong is the system of record. The Application
-  Registration plugin is used in conjunction with the Kong OAuth2 plugin. This
-  option cannot be used with hybrid mode deployments. The `kong-oauth2` option
-  can be used with classic (traditional) deployments.
-* `external-oauth2`: An external IdP is the system of record. The 
+  Registration plugin is used in conjunction with the Kong OAuth2 plugin.
+  The `kong-oauth2` option can only be used with classic (traditional) deployments.
+  Because the OAuth2 plugin requires a database for every Kong instance, the
+  `kong-oauth2` option cannot be used with hybrid mode deployments.
+* `external-oauth2`: An external IdP is the system of record. The
   Portal Application Registration plugin is used in conjunction with the Kong
-  OIDC plugin. The `external-oauth2` option must be used with
+  OIDC plugin. The `external-oauth2` option can be used with any deployment type.
+  The `external-oauth2` option must be used with
   [hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/)
-  deployments instead of `kong-oauth2`. The `external-oauth2` option can also be used
-  with classic (traditional) deployments.
+  deployments because hybrid mode does not support `kong-oauth2`.
 
 1. Open `kong.conf.default` and set the `portal_app_auth` option to your chosen
    strategy. The example configuration below switches from the default
