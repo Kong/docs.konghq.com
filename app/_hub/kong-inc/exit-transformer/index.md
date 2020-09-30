@@ -107,7 +107,7 @@ The `handle_unknown` parameter should only be enabled on a single plugin configu
 - [510 Not extended](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/510)
 - [511 Network authentication required](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/511)
 
-## Function syntax
+## Function Syntax
 
 The Exit Transformer plugin expects a configuration function to be Lua code that returns
 a function accepting three arguments: status, body, and headers.
@@ -130,7 +130,7 @@ Kong -> f(status, body, headers) -> ... -> exit(status, body, headers)
 If you manipulate body and headers, see the
 [Modify the body and headers regardless if provided](#mod-body-head) example below.
 
-### Example Functions
+### Example Lua Functions
 
 #### Identity function that does not transform the exit responses
 
