@@ -23,7 +23,7 @@ $ curl -X PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace \
 ```
 *Or using HTTPie:*
 ```sh
-$ http PATCH :8001/workspaces/SecureWorkspace config.portal=true
+$ http -f PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace config.portal=true
 ```
 
 {% endnavtab %}
