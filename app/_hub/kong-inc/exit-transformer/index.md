@@ -37,8 +37,7 @@ params:
     - name: handle_unknown
       default: "`false`"
       required: false
-      description: Allow transform to apply to unmatched Service, Route, or Workspace
-      (404) responses. This flag only applies to one configuration entry.
+      description: Allow transform to apply to unmatched Service, Route, or Workspace (404) responses.
     - name: handle_unexpected
       default: "`false`"
       required: false
@@ -358,7 +357,24 @@ Response:
     }
 ```
 
+### Apply the Plugin Globally to Handle Unknown Responses
+
 Note the plugin can also be applied globally:
+
+{% navtabs %}
+{% navtab Using cURL %}
+
+```bash
+curl -X POST http://<admin-hostname>:8001/plugins/ \
+    --data "name=exit-transformer"  \
+    --data "config.handle_unknown=true" \
+    --data "config.functions=@transform.lua"
+...
+curl --header 'Host: non-existent.com' 'localhost:8000'
+```
+
+{% endnavtab %}
+{% navtab Using HTTPie %}
 
   ```bash
     $ http :8001/plugins \
@@ -367,6 +383,13 @@ Note the plugin can also be applied globally:
         config.functions=@transform.lua
 
     $ http :8000 Host:non-existent.com
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+Response:
+
+```bash  
     HTTP/1.1 200 OK
     ...
     X-Some-Header: some value
