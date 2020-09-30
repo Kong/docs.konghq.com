@@ -127,7 +127,7 @@ You should now have two files in your home directory on the target CentOS system
 1. Execute a command similar to the following, using the appropriate RPM file name you downloaded:
 
     ```bash
-    $ sudo yum install /path/to/package.rpm
+    $ sudo yum install /path/to/package.rpm --nogpgcheck
     ```
 {% endnavtab %}
 {% navtab Using Yum repo %}
