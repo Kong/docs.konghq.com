@@ -95,7 +95,6 @@ no Consumer was created for them: any user with a valid account in the directory
 will have access to the Route. The OIDC plugin allows this as the simplest authentication option,
 but you may wish to restrict access further. There are several options for this:
 
-- Domain Restrictions
 - Consumer Mapping
 - Pseudo-Consumer Mapping
 
