@@ -58,7 +58,7 @@ responses. You can designate Exit Transformer configurations that _do_ handle th
 responses by enabling the `handle_unexpected` (400) and `handle_unknown` (404) settings.
 The `handle_unknown` parameter should only be enabled on a single plugin configuration.
 
-#### HTTP Response Status Codes
+### HTTP Response Status Codes
 
 **4xx** codes are client error responses:
 
