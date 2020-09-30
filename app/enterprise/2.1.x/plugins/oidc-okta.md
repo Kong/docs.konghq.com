@@ -82,7 +82,7 @@ with the client ID and secret shown in your Okta application's **General** page.
 Visiting a URL matched by that route in a browser will now redirect to Okta's authentication
 site and return you to the redirect URI after authenticating.
 
-Additional plugin parameters to consider:
+Additional plugin parameter to consider:
 
 * The `auth_methods` parameter defines a lists of all the authentication methods
 that you want the plugin to accept. By default, its value is a list of all the supported methods.
