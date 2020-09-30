@@ -47,7 +47,7 @@ Available options:
   Registration plugin is used in conjunction with the Kong OAuth2 plugin. This
   option cannot be used with hybrid mode deployments. The `kong-oauth2` option
   can be used with classic (traditional) deployments.
-* `external-oauth2`: An external IdP is the system of record. The Developer
+* `external-oauth2`: An external IdP is the system of record. The 
   Portal Application Registration plugin is used in conjunction with the Kong
   OIDC plugin. The `external-oauth2` option must be used with
   [hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/)
