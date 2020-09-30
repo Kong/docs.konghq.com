@@ -43,7 +43,7 @@ baseurl=https://kong.bintray.com/kong-rpm/amazonlinux/amazonlinux
     If you are downloading the [package](#packages), execute:
 
     ```bash
-    $ sudo yum install kong-{{site.data.kong_latest.version}}.*.rpm --nogpgcheck
+    $ sudo yum install /path/to/package.rpm --nogpgcheck
     ```
 
     If you are using the repository, execute:
