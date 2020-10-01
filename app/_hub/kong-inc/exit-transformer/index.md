@@ -287,8 +287,8 @@ Configure the `exit-transformer` plugin with `transform.lua`.
 
    ```bash
    $ curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
-    --data "name=exit-transformer"  \
-    --data "config.functions=@transform.lua"
+    -F "name=exit-transformer"  \
+    -F "config.functions=@transform.lua"
    ```
    {% endnavtab %}
    {% navtab Using HTTPie %}
@@ -373,9 +373,9 @@ Note the plugin can also be applied globally:
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/plugins/ \
-    --data "name=exit-transformer"  \
-    --data "config.handle_unknown=true" \
-    --data "config.functions=@transform.lua"
+    -F "name=exit-transformer"  \
+    -F "config.handle_unknown=true" \
+    -F "config.functions=@transform.lua"
 ...
 curl --header 'Host: non-existent.com' 'localhost:8000'
 ```
@@ -419,10 +419,10 @@ based on an [Accept header](https://developer.mozilla.org/en-US/docs/Web/HTTP/He
 
 ```bash
 $ curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
- --data "name=exit-transformer"  \
- --data "config.handle_unknown=true" \
- --data "config.handle_unexpected=true" \
- --data "config.functions=@examples/custom-errors-by-mimetype.lua"
+ -F "name=exit-transformer"  \
+ -F "config.handle_unknown=true" \
+ -F "config.handle_unexpected=true" \
+ -F "config.functions=@examples/custom-errors-by-mimetype.lua"
 ```
 
 {% endnavtab %}
