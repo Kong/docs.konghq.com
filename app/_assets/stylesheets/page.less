@@ -784,16 +784,32 @@
     line-height: 24px;
     margin: 1.3em 0;
     padding: 12px 17px;
-    border-radius: 4px;
+    border-radius: 3px;
+    max-height: 400px;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(0,0,0,0.25);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: @gray;
+      outline: 1px solid @gray;
+    }
+
+    &::-webkit-scrollbar-corner {
+      visibility: none;
+    }
 
     code {
       padding: 0;
       color: #000;
       background: transparent;
-    }
-
-    &:hover {
-      overflow: auto;
     }
   }
 
