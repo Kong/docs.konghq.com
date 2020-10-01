@@ -63,7 +63,7 @@ if an unexpected error happened within some known Service or Route context. If a
 configuration has both `handle_unknown` and `handle_unexpected` enabled, then an
 unexpected error on an _unknown_ Service or Route will pass through the Exit Transformer plugin.
 
-### HTTP Response Status Codes
+### HTTP Response Status Codes {#http-msgs}
 
 **4xx** codes are client error responses:
 
@@ -413,6 +413,77 @@ Response:
 
 This example shows a use case where you want custom JSON and HTML responses
 based on an [Accept header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept).
+
+Create a file named `custom-errors-by-mimetype.lua` file with the transformation
+code shown below. See the full list of HTTP response codes [above](#http-msgs).
+Include the status codes you want to customize. Any status code not listed in the
+`custom-errors-by-mimetype.lua` file will use the default
+response `The upstream server responded with <status code>`.
+
+```lua
+local template = require "resty.template"
+local split = require "kong.tools.utils".split
+
+local HTTP_MESSAGES = {
+    s400 = "Bad request",
+    s401 = "Unauthorized",
+    -- ...
+    -- See HTTP Response Status Codes section above for the full list
+    s511 = "Network authentication required",
+    default = "The upstream server responded with %d"
+}
+
+local function get_message(status)
+  return HTTP_MESSAGES["s" .. status] or HTTP_MESSAGES.default.format(status)
+end
+
+local html = template.compile([[
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Some Title</title>
+  </head>
+  <body>
+    <h1>HTTP {{ status }}</h1>
+    <p>{{ error }}</p>
+    <img src="https://thumbs.gfycat.com/RegularJointEwe-size_restricted.gif"/>
+  </body>
+</html>
+]])
+
+-- Customize responses based on content type
+local formats = {
+  ["application/json"] = function(status, message, headers)
+    return status, { status = status, error = message }, headers
+  end,
+  ["text/html"] = function(status, message, headers)
+    return status, html { status = status, error = message }, headers
+  end,
+}
+
+return function(status, body, headers)
+  if status < 400 then
+    return status, body, headers
+  end
+
+  local accept = kong.request.get_header("accept")
+  -- Gets just first accept value. Can be improved to be compliant quality
+  -- etc parser. Look into kong.pdk.response get_response_type
+  if type(accept) == "table" then
+    accept = accept[1]
+  end
+  accept = split(accept, ",")[1]
+
+  if not formats[accept] then
+    return status, body, headers
+  end
+
+  return formats[accept](status, get_message(status), headers)
+end
+```
+
+Configure the `exit-transformer` plugin with `custom-errors-by-mimetype.lua`.
 
 {% navtabs %}
 {% navtab Using cURL %}
