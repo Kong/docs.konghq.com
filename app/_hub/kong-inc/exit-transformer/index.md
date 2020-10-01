@@ -274,7 +274,7 @@ following example adds a header, appends "arr!" to any message, and adds
         message = body.message .. ", arr!",
       }
 
-      return status, body, headers
+      return status, new_body, headers
     end
 ```
 
