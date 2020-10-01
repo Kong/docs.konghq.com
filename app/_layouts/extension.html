@@ -248,6 +248,7 @@ kind: Ingress
 metadata:
   name: <route>
   annotations:
+    kubernetes.io/ingress.class: kong
     plugins.konghq.com: <{{page.params.name}}-example>
 spec:
   rules:
@@ -355,6 +356,7 @@ metadata:
   name: <consumer>
   annotations:
     plugins.konghq.com: <{{page.params.name}}-example>
+    kubernetes.io/ingress.class: kong
   ```
 
 <div class="alert alert-ee blue">
@@ -432,6 +434,8 @@ apiVersion: configuration.konghq.com/v1
 kind: KongClusterPlugin
 metadata:
   name: <global-{{page.params.name}}>
+  annotations:
+    kubernetes.io/ingress.class: kong
   labels:
     global: \"true\"
 {% if config_required_fields_k8s == 'config: ' %}config:
