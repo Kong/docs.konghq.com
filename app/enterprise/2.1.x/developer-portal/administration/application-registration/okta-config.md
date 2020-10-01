@@ -103,7 +103,7 @@ Okta application with the corresponding application in Kong's Developer Portal.
 
 <div class="alert alert-warning">
   <strong>Note:</strong> Each developer should have their own application in both Okta and Kong.  
-  Each Okta application has its own `client_id` that maps to its respective developer in Kong.
+  Each Okta application has its own `client_id` that maps to its respective application in Kong.
   Essentially, this maps identity provider applications to portal applications.
 </div>
 
