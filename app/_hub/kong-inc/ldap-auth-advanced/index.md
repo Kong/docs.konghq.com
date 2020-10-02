@@ -4,7 +4,7 @@ name: LDAP Authentication Advanced
 publisher: Kong Inc.
 version: 1.3-x
 
-desc: Secure Kong clusters, routes and services with username and password protection
+desc: Secure Kong clusters, routes, and services with username and password protection
 description: |
   Add LDAP Bind Authentication with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
 
@@ -37,25 +37,25 @@ params:
       default:
       value_in_examples: ldap.example.com
       description: |
-        Host on which the LDAP server is running
+        Host on which the LDAP server is running.
     - name: ldap_port
       required:
       default:
       value_in_examples:
       description: |
-        TCP port where the LDAP server is listening
+        TCP port where the LDAP server is listening.
     - name: ldap_password
       required:
       default:
       value_in_examples:
       description: |
-        The password to the LDAP server
+        The password to the LDAP server.
     - name: start_tls
       required:
       default: "`false`"
       value_in_examples:
       description: |
-        Set it to `true` to issue StartTLS (Transport Layer Security) extended operation over `ldap` connection
+        Set it to `true` to issue StartTLS (Transport Layer Security) extended operation over `ldap` connection.
     - name: ldaps
       required:
       default: "`false`"
@@ -68,7 +68,7 @@ params:
       default:
       value_in_examples: dc=example,dc=com
       description: |
-        Base DN as the starting point for the search; e.g., "dc=example,dc=com"
+        Base DN as the starting point for the search; e.g., "dc=example,dc=com".
     - name: verify_ldap_host
       required:
       default: "`false`"
@@ -80,25 +80,25 @@ params:
       default:
       value_in_examples: cn
       description: |
-        Attribute to be used to search the user; e.g., "cn"
+        Attribute to be used to search the user; e.g., "cn".
     - name: cache_ttl
       required:
       default: "`60`"
       value_in_examples:
       description: |
-        Cache expiry time in seconds
+        Cache expiry time in seconds.
     - name: timeout
       required: false
       default: "`10000`"
       value_in_examples:
       description: |
-        An optional timeout in milliseconds when waiting for connection with LDAP server
+        An optional timeout in milliseconds when waiting for connection with LDAP server.
     - name: keepalive
       required: false
       default: "`10000`"
       value_in_examples:
       description: |
-        An optional value in milliseconds that defines for how long an idle connection to LDAP server will live before being closed
+        An optional value in milliseconds that defines for how long an idle connection to LDAP server will live before being closed.
     - name: anonymous
       required: false
       default:
@@ -122,7 +122,7 @@ params:
       default: '`[ "username", "custom_id" ]`'
       value_in_examples:
       description: |
-        Whether to authenticate consumer based on `username` and/or `custom_id`
+        Whether to authenticate consumer based on `username` and/or `custom_id`.
     - name: hide_credentials
       required: false
       default: "`false`"
@@ -134,14 +134,14 @@ params:
       default:
       value_in_examples:
       description: |
-        The DN to bind to. Used to perform LDAP search of user. This bind_dn
+        The DN to bind to. Used to perform LDAP search of user. This `bind_dn`
         should have permissions to search for the user being authenticated.
     - name: group_base_dn
       required:
       default: "matches `conf.base_dn`"
       value_in_examples:
       description: |
-        Sets a distinguished name for the entry where LDAP searches for groups begin.
+        Sets a distinguished name (dn) for the entry where LDAP searches for groups begin.
     - name: group_name_attribute
       required:
       default: "matches `conf.attribute`"
@@ -160,20 +160,20 @@ params:
 
 ## Usage
 
-In order to authenticate the user, client must set credentials in
-`Proxy-Authorization` or `Authorization` header in following format:
+To authenticate a user, the client must set credentials in either the
+`Proxy-Authorization` or `Authorization` header in the following format:
 
     credentials := [ldap | LDAP] base64(username:password)
 
-The plugin will validate the user against the LDAP server and cache the
-credential for future requests for the duration specified in
+The plugin validates the user against the LDAP server and caches the
+credentials for future requests for the duration specified in
 `config.cache_ttl`.
 
 ### Upstream Headers
 
-When a client has been authenticated, the plugin will append some headers to the
- request before proxying it to the upstream service, so that you can identify
- the consumer in your code:
+When a client has been authenticated, the plugin appends some headers to the
+request before proxying it to the upstream service so that you can identify
+the consumer in your code:
 
 * `X-Credential-Username`, the `username` of the Credential (only if the
 consumer is not the 'anonymous' consumer)
@@ -187,11 +187,11 @@ authentication failed and 'anonymous' was set)
 authentication failed and 'anonymous' was set)
 
 
-### LDAP Search and config.bind_dn
+### LDAP Search and `config.bind_dn`
 
 LDAP directory searching is performed during the request/plugin lifecycle. It is
 used to retrieve the fully qualified DN of the user so a bind
-request can be performed with the user's given LDAP username and password. The
+request can be performed with a user's given LDAP username and password. The
 search for the user being authenticated uses the `config.bind_dn` property. The
 search uses `scope="sub"`, `filter="<config.attribute>=<username>"`, and
 `base_dn=<config.base_dn>`. Here is an example of how it performs the search
