@@ -1,3 +1,3 @@
 ---
-redirect_to: enterprise/1.5.x/kong-manager/administration/rbac
+redirect_to: enterprise/2.1.x/kong-manager/administration/rbac/
 ---
