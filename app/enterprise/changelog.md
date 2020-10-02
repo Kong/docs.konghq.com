@@ -12,7 +12,7 @@ skip_read_time: true
 
 #### Kong Manager
 
-* Add path to service in display page.
+* Added path to service on display page.
 
 ### Fixes
 
@@ -23,10 +23,10 @@ skip_read_time: true
 
 #### Developer Portal
 
-* Fixed app `Save` button to display as `Save` instead of `Edit`.
+* Fixed app ``Save`` button to display as ``Save`` instead of ``Edit``.
 * Added `plugin.service` check in `app_reg` helper.
 * Fixed application registration issue rendered unusable with certain plugin configurations.
-* Fixed sidebar links with ".".
+* Fixed sidebar links with "."
 
 ## 2.1.3.1
 **Release Date** 2020/08/31
@@ -298,7 +298,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 #### Kong Manager
 
-* Add path to service in display page.
+* Added path to service on display page.
 
 #### Plugins
 
