@@ -55,10 +55,13 @@ criteria (its Route or Service matching configuration) or globally within a Work
 Requests that result in 400 or 404 responses neither match any criteria nor fall
 within any specific Workspace, and standard plugin criteria will never match those
 responses. You can designate Exit Transformer configurations that _do_ handle these
-responses by enabling the `handle_unexpected` (400) and `handle_unknown` (404) settings.
-The `handle_unknown` parameter should only be enabled on a single plugin configuration.
-The `handle_unexpected` parameter can be enabled on as many plugin configurations
-as you want. It's not a prerequisite for `handle_unexpected` to also have `handle_unknown` set,
+responses by enabling the `handle_unexpected` (400) and `handle_unknown` (404) settings:
+
+- The `handle_unknown` parameter should only be enabled on a single plugin configuration.
+- The `handle_unexpected` parameter can be enabled on as many plugin configurations
+as you want.
+
+It's not a prerequisite for `handle_unexpected` to also have `handle_unknown` set,
 if an unexpected error happened within some known Service or Route context. If a
 configuration has both `handle_unknown` and `handle_unexpected` enabled, then an
 unexpected error on an _unknown_ Service or Route will pass through the Exit Transformer plugin.
