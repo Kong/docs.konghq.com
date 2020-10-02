@@ -315,7 +315,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 * Collector (`collector`, for Brain and Immunity) 
   * Fixed bug caused when trying to call `select_all`.
-  * Fixed bug caused when trying to read a request body when unknowned how to parse.
+  * Fixed bug caused when trying to read a request body when parsing was unknown.
   * Fixed bug caused when using the `basic_serializer` in the access stage.
 
 * Request Validator (`request-validator`)
