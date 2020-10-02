@@ -240,7 +240,7 @@ end
 
 ```bash
 curl -i -X POST http://<admin-hostname>:8001/services/example.com/routes \
-  --data 'paths[]=/mock' reviewers need conversion help here \
+  --data 'paths[]=/mock' \
   --data name=mocking
 ```
 
