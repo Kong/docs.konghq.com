@@ -6,7 +6,7 @@ version: 1.5.x
 desc: Customize Kong exit responses sent downstream
 description: |
   Transform and customize Kong response exit messages using Lua functions.
-  The capabilities range from changing messages, status codes, and headers
+  The capabilities range from changing messages, status codes, and headers,
   to completely transforming the structure of Kong responses.
 
 type: plugin
@@ -366,18 +366,18 @@ Response:
 
 ### Apply the Plugin Globally to Handle Unknown Responses
 
-Note the plugin can also be applied globally:
+The plugin can also be applied globally:
 
 {% navtabs %}
 {% navtab Using cURL %}
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/plugins/ \
+$ curl -X POST http://<admin-hostname>:8001/plugins/ \
     -F "name=exit-transformer"  \
     -F "config.handle_unknown=true" \
     -F "config.functions=@transform.lua"
 ...
-curl --header 'Host: non-existent.com' 'localhost:8000'
+$ curl --header 'Host: non-existent.com' 'localhost:8000'
 ```
 
 {% endnavtab %}
@@ -389,7 +389,7 @@ $ http :8001/plugins \
     config.handle_unknown=true \
     config.functions=@transform.lua
 
-    $ http :8000 Host:non-existent.com
+$ http :8000 Host:non-existent.com
 ```
 
 {% endnavtab %}
@@ -414,7 +414,7 @@ Response:
 This example shows a use case where you want custom JSON and HTML responses
 based on an [Accept header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept).
 
-Create a file named `custom-errors-by-mimetype.lua` file with the transformation
+Create a file named `custom-errors-by-mimetype.lua` with the transformation
 code shown below. See the full list of HTTP response codes [above](#http-msgs).
 Include the status codes you want to customize. Any status code not listed in the
 `custom-errors-by-mimetype.lua` file will use the default
