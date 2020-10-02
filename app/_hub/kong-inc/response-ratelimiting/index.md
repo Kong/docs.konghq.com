@@ -6,7 +6,7 @@ version: 1.0.0
 desc: Rate-limiting based on a custom response header value
 description: |
   This plugin allows you to limit the number of requests a developer can make
-  based on a custom response header returned by the Upstream service. You can
+  based on a custom response header returned by the upstream service. You can
   arbitrarily set as many rate-limiting objects (or quotas) as you want and
   instruct Kong to increase or decrease them by any number of units. Each custom
   rate-limiting object can limit the inbound requests per seconds, minutes, hours,
@@ -193,9 +193,9 @@ returns an `HTTP/1.1 429` (Too Many Requests) status code and an empty response 
 ### Upstream Headers
 
 The plugin appends the usage headers for each limit before proxying it to the
-Upstream service, so that you can properly refuse to process the request if there
+upstream service, so that you can properly refuse to process the request if there
 are no more limits remaining. The headers are in the form of
-`X-RateLimit-Remaining-{limit_name}`, like:
+`X-RateLimit-Remaining-{limit_name}`, for example:
 
 ```
 X-RateLimit-Remaining-Videos: 3
