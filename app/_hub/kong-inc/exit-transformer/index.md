@@ -418,8 +418,8 @@ This example shows a use case where you want custom JSON and HTML responses
 based on an [Accept header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept).
 
 Create a file named `custom-errors-by-mimetype.lua` with the transformation
-code shown below. See the full list of HTTP response codes [above](#http-msgs).
-Include the status codes you want to customize. Any status code not listed in the
+code shown below. Include the status codes you want to customize. See the full list
+of HTTP response codes [above](#http-msgs). Any status code not listed in the
 `custom-errors-by-mimetype.lua` file will use the default
 response `The upstream server responded with <status code>`.
 
