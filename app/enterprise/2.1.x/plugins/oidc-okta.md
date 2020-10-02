@@ -5,15 +5,26 @@ title: OpenID Connect with Okta
 
 This guide covers an example OpenID Connect plugin configuration to authenticate browser clients using an Okta identity provider.
 
+For information about configuring OIDC using Okta as an Identity provider
+in conjunction with the Application Registration plugin, see
+[Set Up External Portal Application Authentication with Okta and OIDC](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config).
+
 ## Prerequisites
 
-Because OpenID Connect deals with user credentials, all transactions should take place over HTTPS. Although user passwords for third party identity providers are only submitted to those providers and not Kong, authentication tokens grant access to a subset of user account data and protected APIs, and should be secured. As such, you should make Kong's proxy available via a fully-qualified domain name and [add a certificate][add-certificate] for it.
+Because OpenID Connect deals with user credentials, all transactions should take place over HTTPS.
+Although user passwords for third party identity providers are only submitted to
+those providers and not Kong, authentication tokens grant access to a subset of
+user account data and protected APIs, and should be secured. As such, you should
+make Kong's proxy available via a fully-qualified domain name and [add a certificate][add-certificate] for it.
 
 ## Kong Configuration
 
-If you have not yet [added a **Route** and a **Service**][add-service], go ahead and do so. Again, note that you should be able to secure this route with HTTPS, so use a hostname you have a certificate for. Add a location handled by your route as an authorized redirect URI in Okta (under the **Authentication** section of your app registration).
+If you have not yet [added a **Route** and a **Service**][add-service], go ahead
+and do so. Again, note that you should be able to secure this route with HTTPS,
+so use a hostname you have a certificate for. Add a location handled by your route
+as an authorized redirect URI in Okta (under the **Authentication** section of your app registration).
 
-## Okta IDP Configuration
+## Okta IdP Configuration
 
 ### Sample Okta Configuration Steps
 
@@ -25,7 +36,7 @@ If you have not yet [added a **Route** and a **Service**][add-service], go ahead
 
     <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/02-web-app.png">
 
-3. Fill out the Application's Settings
+3. Fill out the Application's Settings.
 
     **Login re-direct URIs** is a URI that corresponds to a Route you have configured in Kong that will use Okta to authenticate. **Group Assignment** defines who is allowed to use this application. **Grant Type Allowed** indicates the Grant types to allow for your application.
 
@@ -47,7 +58,7 @@ If you have not yet [added a **Route** and a **Service**][add-service], go ahead
 
 ## Plugin Configuration
 
-Add a plugin with the configuration below to your route using an HTTP client or [Kong Manager][enable-plugin].
+Add a plugin with the configuration below to your Route using an HTTP client or [Kong Manager][enable-plugin].
 
 ```bash
 $ curl -i -X POST https://admin.kong.example/routes/ROUTE_ID/plugins --data name="openid-connect" \
@@ -60,25 +71,39 @@ $ curl -i -X POST https://admin.kong.example/routes/ROUTE_ID/plugins --data name
   --data config.scopes="profile"
 ```
 
-Several pieces of configuration above must use values specific to your environment:
+Some of the configurations above must use values specific to your environment:
 
 * The `issuer` URL can be found from your Authorization Server settings.
-* `redirect_uri` should be the URI you specified earlier when configuring your app. You can view and edit this from the **General** page for your application.
-* For `client_id` and `client_secret` replace `YOUR_CLIENT_ID` and `YOUR_CLIENT_SECRET` with the client ID and secret shown in your Okta application's **General** page.
+* The `redirect_uri` should be the URI you specified earlier when configuring your app.
+You can view and edit this from the **General** page for your application.
+* For `client_id` and `client_secret`, replace `YOUR_CLIENT_ID` and `YOUR_CLIENT_SECRET`
+with the client ID and secret shown in your Okta application's **General** page.
 
-Visiting a URL matched by that route in a browser will now redirect to Okta's authentication site and return you to the redirect URI after authenticating.
+Visiting a URL matched by that route in a browser will now redirect to Okta's authentication
+site and return you to the redirect URI after authenticating.
 
 Additional plugin parameter to consider:
 
-* The `auth_methods` parameter defines a lists of all the authentication methods that you want the plugin to accept. By default value is a list of all the supported methods. It is advisable to define this parameter with only the methods you wish to allow.
+* The `auth_methods` parameter defines a lists of all the authentication methods
+that you want the plugin to accept. By default, its value is a list of all the supported methods.
+It is advisable to define this parameter with only the methods you want to allow.
 
 ### Access Restrictions
 
-The configuration above allows users to authenticate and access the Route even though no consumer was created for them: any user with a valid account in the directory will have access to the Route. The OIDC plugin allows this as the simplest authentication option, but you may wish to restrict access further. There are several options for this:
+The configuration above allows users to authenticate and access the Route even though
+no Consumer was created for them: any user with a valid account in the directory
+will have access to the Route. The OIDC plugin allows this as the simplest authentication option,
+but you may wish to restrict access further. There are several options for this:
+
+- Consumer Mapping
+- Pseudo-Consumer Mapping
 
 #### Consumer Mapping
 
-If you need to interact with other Kong plugins using consumer information, you can add configuration that maps account data received from the identity provider to a Kong consumer. For this example, the user's Okta's AD account GUID is mapped to a consumer by setting it as the `custom_id` on their consumer, e.g.
+If you need to interact with other Kong plugins using consumer information, you
+can add configuration that maps account data received from the identity provider to a Kong consumer.
+For this example, the user's Okta's AD account GUID is mapped to a Consumer by setting it
+as the `custom_id` on their consumer:
 
 ```bash
 $ curl -i -X POST http://admin.kong.example/consumers/ \
@@ -90,13 +115,19 @@ $ curl -i -X PATCH http://admin.kong.example/plugins/OIDC_PLUGIN_ID \
   --data config.consumer_claim="sub"
 ```
 
-Now, if a user logs into an Okta account with the GUID `e5634b31-d67f-4661-a6fb-b6cb77849bcf`, Kong will apply configuration associated with the consumer `Yoda` to their requests.
+Now, if a user logs into an Okta account with the GUID `e5634b31-d67f-4661-a6fb-b6cb77849bcf`, Kong will apply configuration associated with the Consumer `Yoda` to their requests.
 
-This also requires that clients login using an account mapped to some consumer, which may not be desirable (e.g. you apply OpenID Connect to a service, but only use plugins requiring a consumer on some routes). To deal with this, you can set the `anonymous` parameter in your OIDC plugin configuration to the ID of a generic consumer, which will then be used for all authenticated users that cannot be mapped to some other consumer. You can alternately set `consumer_optional` to `true` to allow similar logins without mapping an anonymous consumer.
+This also requires that clients login using an account mapped to some Consumer, which might
+not be desirable (e.g., you apply OpenID Connect to a service, but only use plugins
+requiring a Consumer on some Routes). To deal with this, you can set the `anonymous` parameter
+in your OIDC plugin configuration to the ID of a generic Consumer, which will
+then be used for all authenticated users that cannot be mapped to some other Consumer.
+You can alternately set `consumer_optional` to `true` to allow similar logins
+without mapping an anonymous Consumer.
 
 #### Pseudo-consumers
 
-For plugins that typically require consumers, the OIDC plugin can provide a consumer ID based on the value of a claim without mapping to an actual consumer. Setting `credential_claim` to a claim [in your plugin configuration][credential-claim] will extract the value of that claim and use it where Kong would normally use a consumer ID. Note that this may not work with all consumer-related functionality.
+For plugins that typically require consumers, the OIDC plugin can provide a consumer ID based on the value of a claim without mapping to an actual Consumer. Setting `credential_claim` to a claim [in your plugin configuration][credential-claim] will extract the value of that claim and use it where Kong would normally use a consumer ID. Note that this may not work with all consumer-related functionality.
 
 Similarly, setting `authenticated_groups_claim` will extract that claim's value and use it as a group for the ACL plugin.
 
