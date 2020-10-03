@@ -5,6 +5,29 @@ no_version: true
 skip_read_time: true
 ---
 
+## 2.1.4.0
+**Release Date** 2020/10/01
+
+### Fixes
+
+#### Kong Manager
+
+* Added path to service on display page.
+
+### Fixes
+
+#### Kong Gateway
+
+* Fixed upsert for RBAC users using Admin API.
+* Allow PostgreSQL keepalive time to be configurable.
+
+#### Developer Portal
+
+* Fixed app ``Save`` button to display as ``Save`` instead of ``Edit``.
+* Added `plugin.service` check in `app_reg` helper.
+* Fixed application registration issue rendered unusable with certain plugin configurations.
+* Fixed sidebar links with "."
+
 ## 2.1.3.1
 **Release Date** 2020/08/31
 
@@ -263,6 +286,40 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
 
+
+## 1.5.0.6
+**Release Date** 2020/10/01
+
+### Features
+
+#### Kong Gateway
+
+* Allow PostgreSQL keepalive time to be configurable.
+
+#### Kong Manager
+
+* Added path to service on display page.
+
+#### Plugins
+
+* Rate Limiting Advanced (`rate-limiting-advanced`)
+  * Added RateLimit headers for draft Request for Comments (RFC).
+
+### Fixes
+
+#### Kong Gateway
+
+* Fixed propagation of posted health check across Nginx workers.
+
+#### Plugins
+
+* Collector (`collector`, for Brain and Immunity) 
+  * Fixed bug caused when trying to call `select_all`.
+  * Fixed bug caused when trying to read a request body when parsing was unknown.
+  * Fixed bug caused when using the `basic_serializer` in the access stage.
+
+* Request Validator (`request-validator`)
+  * Upgraded `lua-resty-ljsonschema` library to v1.1.0.
 
 ## 1.5.0.5
 **Release Date** 2020/08/13
