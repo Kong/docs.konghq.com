@@ -133,11 +133,16 @@ The available commands are:
 
   reset                             Reset the database.
 
-  migrate-apis                      Migrates API entities to Routes and
-                                    Services.
+  migrate-community-to-enterprise   Migrates Kong Community entities to Kong
+                                    Enterprise in the default workspace.
 
-  migrate-community-to-enterprise   Migrates Kong Community entities to Kong Enterprise in the default
-                                    workspace
+
+  upgrade-workspace-table           Outputs a script to be run on the db to
+                                    upgrade the entity for 2.x workspaces
+                                    implementation.
+
+  reinitialize-workspace-entity-counters  Resets the entity counters from the
+                                          database entities.
 
 Options:
  -y,--yes                           Assume "yes" to prompts and run
@@ -147,6 +152,9 @@ Options:
 
  -f,--force                         Run migrations even if database reports
                                     as already executed.
+
+                                    With 'migrate-community-to-enterprise', it
+                                    disables the workspace entities check.
 
  --db-timeout     (default 60)      Timeout, in seconds, for all database
                                     operations (including schema consensus for
@@ -276,7 +284,7 @@ Usage: kong runner [file] [args]
 
 Execute a lua file in a kong node. the `kong` variable is available to
 reach the DAO, PDK, etc. The variable `args` can be used to access all
-arguments (args[1] being the lua filename bein run).
+arguments (args[1] being the lua filename being run).
 
 Example usage:
   kong runner file.lua arg1 arg2
