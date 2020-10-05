@@ -78,6 +78,23 @@ This makes Kong clusters **eventually consistent**.
 
 [Back to top](#introduction)
 
+### Use read-only replicas when deploying Kong clusters with Postgres
+
+When using Postgres as the backend storage, you can optionally enable
+Kong to serve read queries from a separate database instance.
+
+One of the common use case of this feature is to deploy Kong with the
+Amazon Aurora service as backend storage. As Aurora natively supports
+read only instances, enable the read-only connection support in Kong
+greatly reduces the load on the main database instance as read-only
+queries are no longer sent to it.
+
+To learn more about how to configure this feature, refer to the
+<a href="/{{page.kong_version}}/configuration/#datastore-section">Datastore section</a>
+of the Configuration reference.
+
+[Back to top](#introduction)
+
 ## What is being cached?
 
 All of the core entities such as Services, Routes, Plugins, Consumers, Credentials are
