@@ -221,7 +221,7 @@ end
    {% navtab Using cURL %}
 
    ```bash
-   curl -i -X POST http://<admin-hostname>:8001/services \
+   $ curl -i -X POST http://<admin-hostname>:8001/services \
     --data name=example.com \
     --data url='http://mockbin.org'
    ```
@@ -242,7 +242,7 @@ end
    {% navtab Using cURL %}
 
 ```bash
-curl -i -X POST http://<admin-hostname>:8001/services/example.com/routes \
+$ curl -i -X POST http://<admin-hostname>:8001/services/example.com/routes \
   --data 'hosts[]=example.com'
 ```
 
