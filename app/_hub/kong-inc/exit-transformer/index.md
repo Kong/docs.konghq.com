@@ -243,8 +243,7 @@ end
 
 ```bash
 curl -i -X POST http://<admin-hostname>:8001/services/example.com/routes \
-  --data 'paths[]=/mock' \
-  --data name=mocking
+  --data 'hosts[]=example.com'
 ```
 
    {% endnavtab %}
