@@ -281,6 +281,7 @@ The keyring module encrypts the following fields at rest:
 * `password` fields of `basic-auth` plugin credential objects (note that passwords are also hashed by a one-way hashing function)
 * `key` fields of `key-auth-enc` plugin credential objects
 * `client_id` and `client_secret` fields of the `openid-connect` plugin
+* `aws_key` and `aws_secret` fields of the `aws-lambda` plugin
 
 ## Vault Integration
 
