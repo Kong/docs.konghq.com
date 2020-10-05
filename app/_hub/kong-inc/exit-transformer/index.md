@@ -222,8 +222,8 @@ end
 
    ```bash
    $ curl -i -X POST http://<admin-hostname>:8001/services \
-    --data name=example.com \
-    --data url='http://mockbin.org'
+     --data name=example.com \
+     --data url='http://mockbin.org'
    ```
 
    {% endnavtab %}
@@ -289,16 +289,16 @@ Configure the `exit-transformer` plugin with `transform.lua`.
 
    ```bash
    $ curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
-    -F "name=exit-transformer"  \
-    -F "config.functions=@transform.lua"
+     -F "name=exit-transformer"  \
+     -F "config.functions=@transform.lua"
    ```
    {% endnavtab %}
    {% navtab Using HTTPie %}
 
    ```bash
    $ http -f :8001/services/example.com/plugins \
-   name=exit-transformer \
-   config.functions=@transform.lua
+     name=exit-transformer \
+     config.functions=@transform.lua
    ```
 
    {% endnavtab %}
@@ -314,7 +314,7 @@ response in [step 6](#testy-exit):
 
    ```bash
    $ curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
-    --data "name=key-auth"
+     --data "name=key-auth"
    ```
 
    {% endnavtab %}
@@ -375,9 +375,9 @@ The plugin can also be applied globally:
 
 ```bash
 $ curl -X POST http://<admin-hostname>:8001/plugins/ \
-    -F "name=exit-transformer"  \
-    -F "config.handle_unknown=true" \
-    -F "config.functions=@transform.lua"
+  -F "name=exit-transformer"  \
+  -F "config.handle_unknown=true" \
+  -F "config.functions=@transform.lua"
 ...
 $ curl --header 'Host: non-existent.com' 'localhost:8000'
 ```
@@ -387,9 +387,9 @@ $ curl --header 'Host: non-existent.com' 'localhost:8000'
 
 ```bash
 $ http :8001/plugins \
-    name=exit-transformer \
-    config.handle_unknown=true \
-    config.functions=@transform.lua
+  name=exit-transformer \
+  config.handle_unknown=true \
+  config.functions=@transform.lua
 
 $ http :8000 Host:non-existent.com
 ```
@@ -492,10 +492,10 @@ Configure the `exit-transformer` plugin with `custom-errors-by-mimetype.lua`.
 
 ```bash
 $ curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
- -F "name=exit-transformer"  \
- -F "config.handle_unknown=true" \
- -F "config.handle_unexpected=true" \
- -F "config.functions=@examples/custom-errors-by-mimetype.lua"
+  -F "name=exit-transformer"  \
+  -F "config.handle_unknown=true" \
+  -F "config.handle_unexpected=true" \
+  -F "config.functions=@examples/custom-errors-by-mimetype.lua"
 ```
 
 {% endnavtab %}
