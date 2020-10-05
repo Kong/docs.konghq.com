@@ -121,42 +121,52 @@ Usage: kong migrations COMMAND [OPTIONS]
 Manage database schema migrations.
 
 The available commands are:
-  bootstrap                         Bootstrap the database and run all
-                                    migrations.
+  bootstrap                             Bootstrap the database and run all
+                                        migrations.
 
-  up                                Run any new migrations.
+  up                                    Run any new migrations.
 
-  finish                            Finish running any pending migrations after
-                                    'up'.
+  finish                                Finish running any pending migrations
+                                        after 'up'.
 
-  list                              List executed migrations.
+  list                                  List executed migrations.
 
-  reset                             Reset the database.
+  reset                                 Reset the database.
 
-  migrate-apis                      Migrates API entities to Routes and
-                                    Services.
+  migrate-community-to-enterprise       Migrates Kong Community entities to
+                                        Kong Enterprise in the default
+                                        workspace.
 
-  migrate-community-to-enterprise   Migrates Kong Community entities to Kong Enterprise in the default
-                                    workspace
+
+upgrade-workspace-table                 Outputs a script to be run on the db to
+                                        upgrade the entity for 2.x workspaces
+                                        implementation.
+
+reinitialize-workspace-entity-counters  Resets the entity counters from the
+                                        database entities.
 
 Options:
- -y,--yes                           Assume "yes" to prompts and run
-                                    non-interactively.
+ -y,--yes                               Assume "yes" to prompts and run
+                                        non-interactively.
 
- -q,--quiet                         Suppress all output.
+ -q,--quiet                             Suppress all output.
 
- -f,--force                         Run migrations even if database reports
-                                    as already executed.
+ -f,--force                             Run migrations even if database
+                                        reports as already executed.
 
- --db-timeout     (default 60)      Timeout, in seconds, for all database
-                                    operations (including schema consensus for
-                                    Cassandra).
+                                        With 'migrate-community-to-enterprise',
+                                        it disables the workspace entities
+                                        check.
 
- --lock-timeout   (default 60)      Timeout, in seconds, for nodes waiting on
-                                    the leader node to finish running
-                                    migrations.
+ --db-timeout     (default 60)          Timeout, in seconds, for all database
+                                        operations (including schema consensus
+                                        for Cassandra).
 
- -c,--conf        (optional string) Configuration file.
+ --lock-timeout   (default 60)          Timeout, in seconds, for nodes waiting
+                                        on the leader node to finish running
+                                        migrations.
+
+ -c,--conf        (optional string)     Configuration file.
 
 
 ```
@@ -276,7 +286,7 @@ Usage: kong runner [file] [args]
 
 Execute a lua file in a kong node. the `kong` variable is available to
 reach the DAO, PDK, etc. The variable `args` can be used to access all
-arguments (args[1] being the lua filename bein run).
+arguments (args[1] being the lua filename being run).
 
 Example usage:
   kong runner file.lua arg1 arg2
