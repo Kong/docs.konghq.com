@@ -2,7 +2,7 @@
 title: Kong Enterprise 2.1.x Release Notes
 ---
 
-These release notes provide a high-level overview of Kong Enterprise 2.1.x release, which includes 2.1.0.0 (beta) release. For detailed information about the 2.1.x, 2.1.0.0 (beta), and any subsequent 2.1.x patch releases, see the [Changelog](https://docs.konghq.com/enterprise/changelog/).
+These release notes provide a high-level overview of Kong Enterprise 2.1.x, which includes the 2.1.0.0 (beta) release. For detailed information about 2.1.x, 2.1.0.0 (beta), and any subsequent 2.1.x patch releases, see the [Changelog](https://docs.konghq.com/enterprise/changelog/).
 
 ## New Features
 
