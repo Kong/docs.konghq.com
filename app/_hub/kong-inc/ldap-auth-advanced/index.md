@@ -41,9 +41,9 @@ params:
       description: |
         Host on which the LDAP server is running.
     - name: ldap_port
-      required:
-      default:
-      value_in_examples:
+      required: true
+      default: 389
+      value_in_examples: 389
       description: |
         TCP port where the LDAP server is listening.
     - name: ldap_password
@@ -84,9 +84,9 @@ params:
       description: |
         Attribute to be used to search the user; e.g., "cn".
     - name: cache_ttl
-      required:
+      required: true
       default: "`60`"
-      value_in_examples:
+      value_in_examples: 60
       description: |
         Cache expiry time in seconds.
     - name: timeout
@@ -100,13 +100,13 @@ params:
       default: "`10000`"
       value_in_examples:
       description: |
-        An optional value in milliseconds that defines for how long an idle connection to LDAP server will live before being closed.
+        An optional value in milliseconds that defines how long an idle connection to LDAP server will live before being closed.
     - name: anonymous
       required: false
       default:
       value_in_examples:
       description: |
-        An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
+        An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute that is internal to Kong, and **not** its `custom_id`.
     - name: header_type
       required: false
       default: "`ldap`"
