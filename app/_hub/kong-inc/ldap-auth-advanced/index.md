@@ -72,11 +72,11 @@ params:
       description: |
         Base DN as the starting point for the search; e.g., "dc=example,dc=com".
     - name: verify_ldap_host
-      required:
+      required: true
       default: "`false`"
-      value_in_examples:
+      value_in_examples: false
       description: |
-        Set it to `true` to authenticate LDAP server. The server certificate will be verified according to the CA certificates specified by the `lua_ssl_trusted_certificate` directive.
+        Set to `true` to authenticate LDAP server. The server certificate will be verified according to the CA certificates specified by the `lua_ssl_trusted_certificate` directive.
     - name: attribute
       required: true
       default:
@@ -170,6 +170,8 @@ To authenticate a user, the client must set credentials in either the
 The plugin validates the user against the LDAP server and caches the
 credentials for future requests for the duration specified in
 `config.cache_ttl`.
+
+
 
 
 
