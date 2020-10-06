@@ -4,9 +4,11 @@ name: LDAP Authentication Advanced
 publisher: Kong Inc.
 version: 1.3-x
 
-desc: Secure Kong clusters, routes, and services with username and password protection
+desc: Secure Kong clusters, Routes, and Services with username and password protection
 description: |
-  Add LDAP Bind Authentication with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
+  Add LDAP Bind Authentication with username and password protection. The plugin
+  checks for valid credentials in the `Proxy-Authorization` and `Authorization` header
+  (in that order).
 
 enterprise: true
 type: plugin
@@ -168,6 +170,8 @@ To authenticate a user, the client must set credentials in either the
 The plugin validates the user against the LDAP server and caches the
 credentials for future requests for the duration specified in
 `config.cache_ttl`.
+
+
 
 ### Upstream Headers
 
