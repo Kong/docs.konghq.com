@@ -166,13 +166,10 @@ upstreams is available in the `upstream` section of the
 
 ### Target
 
-Because the `upstream` maintains a history of changes, targets can only be
-added, not modified nor deleted. To change a target, just add a new entry for
-the target, and change the `weight` value. The last entry is the one that will
-be used. As such setting `weight=0` will disable a target, effectively
-deleting it from the balancer. Detailed information on adding and manipulating
-targets is available in the `target` section of the
-[Admin API reference][target-object-reference].
+A target is an ip address/hostname with a port that identifies an instance of
+a backend service. Each upstream can have many targets.
+Detailed information on adding and manipulating targets is available in the
+`target` section of the [Admin API reference][target-object-reference].
 
 The targets will be automatically cleaned when there are 10x more inactive
 entries than active ones. Cleaning will involve rebuilding the balancer, and
