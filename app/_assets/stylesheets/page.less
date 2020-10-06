@@ -16,7 +16,6 @@
       margin-top: 55px;
       padding-top: 40px;
       padding-bottom: 32px;
-      overflow: hidden;
 
       nav.docs-navigation {
         padding-left: 8px;
@@ -413,7 +412,7 @@
     left: 50%;
     top: 0;
     bottom: 0;
-    min-width: 1500px;
+    max-width: 100%;
     background-size: cover;
     background-image: linear-gradient(to bottom, #ffffff, 40%, transparent),
       url("/assets/images/docs/banner-bkg.png");
@@ -520,10 +519,6 @@
 
   li {
     line-height: 26px;
-
-    a {
-      color: #85898c;
-    }
   }
 
   li ul {
@@ -535,28 +530,15 @@
   }
 
   li a.active {
-    color: @gray-darker;
-    font-weight: 600;
-    opacity: 1;
+    color: @blue;
   }
 
   a {
     font-size: 14px;
-    color: @blue;
-
-    &:hover {
-      opacity: 0.5;
-    }
   }
 
   .fa {
     color: #acb7bf;
-  }
-
-  table {
-    a {
-      color: @blue;
-    }
   }
 }
 
@@ -639,7 +621,7 @@
 .content {
   padding: 50px 0;
   .font-source-sans();
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.5;
 
   .big {
@@ -731,6 +713,7 @@
 
       &:before {
         color: @font-color;
+        font-size: 13px;
         width: 36px;
         height: 36px;
         line-height: 36px;
@@ -746,11 +729,9 @@
 
   a {
     text-decoration: none;
-    color: @blue;
 
     &:hover {
       text-decoration: underline;
-      opacity: 0.7;
     }
   }
 
@@ -1104,6 +1085,7 @@ Generic Styling for Desktop
 .instructions-steps {
   list-style: none;
   padding-left: 26px;
+  counter-reset: step;
 
   .instructions-step-item {
     position: relative;
@@ -1117,6 +1099,8 @@ Generic Styling for Desktop
     }
 
     &:before {
+      counter-increment: step;
+      content: counter(step);
       box-sizing: border-box;
       width: 36px;
       height: 36px;
