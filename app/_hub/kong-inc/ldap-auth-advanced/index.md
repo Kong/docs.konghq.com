@@ -110,7 +110,7 @@ params:
     - name: header_type
       required: false
       default: "`ldap`"
-      value_in_examples:
+      value_in_examples: ldap
       description: |
         An optional string to use as part of the Authorization header. By default, a valid Authorization header looks like this: `Authorization: ldap base64(username:password)`. If `header_type` is set to "basic" then the Authorization header would be `Authorization: basic base64(username:password)`. Note that `header_type` can take any string, not just `"ldap"` and `"basic"`.
     - name: consumer_optional
@@ -167,11 +167,16 @@ To authenticate a user, the client must set credentials in either the
 
     credentials := [ldap | LDAP] base64(username:password)
 
+The Authorization header would look something like:
+
+    Authorization:  ldap dGxibGVzc2luZzpLMG5nU3RyMG5n
+
 The plugin validates the user against the LDAP server and caches the
 credentials for future requests for the duration specified in
 `config.cache_ttl`.
 
-
+You can set the header type `ldap` to any string (such as `basic`) using
+`config.header_type`.
 
 
 
