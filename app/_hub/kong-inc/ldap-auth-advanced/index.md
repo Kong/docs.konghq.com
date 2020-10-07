@@ -57,7 +57,7 @@ params:
     - name: start_tls
       required: true
       default: "`false`"
-      value_in_examples:
+      value_in_examples: true
       description: |
         Set it to `true` to issue StartTLS (Transport Layer Security) extended operation
         over `ldap` connection. If the `start_tls` setting is enabled, ensure the `ldaps`
