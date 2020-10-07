@@ -45,7 +45,9 @@ params:
       default: 389
       value_in_examples: 389
       description: |
-        TCP port where the LDAP server is listening.
+        TCP port where the LDAP server is listening. 389 is the default
+        port for non-SSL LDAP and AD; 686 is the default port for SSL LDAP and AD. If `ldaps` is
+        configured, you must use port 686.
     - name: ldap_password
       required:
       default:
@@ -53,18 +55,22 @@ params:
       description: |
         The password to the LDAP server.
     - name: start_tls
-      required:
+      required: true
       default: "`false`"
       value_in_examples:
       description: |
-        Set it to `true` to issue StartTLS (Transport Layer Security) extended operation over `ldap` connection.
+        Set it to `true` to issue StartTLS (Transport Layer Security) extended operation
+        over `ldap` connection. If the `start_tls` setting is enabled, ensure the `ldaps`
+        setting is disabled.
     - name: ldaps
       required:
       default: "`false`"
-      value_in_examples:
+      value_in_examples: false
       description: |
         Set it to `true` to use `ldaps`, a secure protocol (that can be configured
-        to TLS) to connect to the LDAP server.
+        to TLS) to connect to the LDAP server. When `ldaps` is
+        configured, you must use port 686. If the `ldap` setting is enabled, ensure the
+        `start_tls` setting is disabled.
     - name: base_dn
       required: true
       default:
