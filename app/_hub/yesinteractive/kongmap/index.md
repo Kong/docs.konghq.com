@@ -1,6 +1,6 @@
 ---
-name: Kong on AWS with Terraform
-publisher: Kong Inc.
+name: KongMap
+publisher: Yes Interactive
 
 categories:
   - deployment
