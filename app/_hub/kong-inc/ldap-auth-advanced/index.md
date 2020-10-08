@@ -34,6 +34,7 @@ params:
   route_id: true
   consumer_id: false
   protocols: ["http", "https", "gprc", "grpcs"]
+  dbless_compatible: yes
   config:
     - name: ldap_host
       required: true
