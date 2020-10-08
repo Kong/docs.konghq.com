@@ -65,7 +65,7 @@ all entities can be viewed directly via a link to Kong Manager.
 
 
 #### Declarative Configuration Viewer/Editor
-KongMap is deployed with a browser based version of Kong's CLI tool, decK. Here you can view, edit, and export Kong declarative configurations for your open source 
+KongMap is deployed with a browser-based version of Kong's CLI tool, decK. Here you can view, edit, and export Kong declarative configurations for your open source 
 and Enterprise clusters via YAML. Declarative
 configuration editing can be disabled by KongMap configuration, or managed via RBAC permissions if using Kong Enterprise. 
 
