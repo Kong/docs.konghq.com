@@ -131,7 +131,7 @@ $ docker run -d \
 #### 3. Authentication ####
 
 If you want to enable authentication to KongMap's UI, it is recommended to run Kongmap behind your Kong Gateway and implement any authentication
-policies you feel is appropriate (OIDC, OAUTH2, Basic Auth, etc.) at the gateway.
+policies you feel are appropriate (OIDC, OAUTH2, Basic Auth, etc.) at the gateway.
 
 ## Feedback and Issues
 
