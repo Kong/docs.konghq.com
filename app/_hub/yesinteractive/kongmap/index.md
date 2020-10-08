@@ -83,7 +83,7 @@ Docker image is Alpine 3.11 based running PHP 7.3 on Apache. The container expos
 
 #### 1. Export Cluster Configurations to Variable ####
 
-The connections to your Kong clusters are defined via JSON. The below example illustrates adding two Kong clusters to KongMap:
+The connections to your Kong clusters are defined using JSON. The below example illustrates adding two Kong clusters to KongMap:
 
 ```json
 {
