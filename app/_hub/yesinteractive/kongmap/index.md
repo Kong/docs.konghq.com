@@ -117,16 +117,16 @@ Export the config to a variable:
 
 #### 2. Start Container ####
 
-Run the container with the following command. Notice the `KONGMAP_URL` variable. Set this optional variable if you have a need to set all KongMap URL's to a specific domain or URL.
+Run the container with the following command. Set the ports to your preferred exposed ports. The example below exposes KongMap on ports 8100 and 8143. Notice the `KONGMAP_URL` variable. Set this optional variable if you have a need to set all KongMap URL's to a specific domain or URL.
 
 ```
-$ docker run \
+$ docker run -d \
   -e "KONGMAP_CLUSTER_JSON=$KONG_CLUSTERS" \
   -e "KONGMAP_URL=http://url_to_kongmap" \
+  -p 8100:80 \
+  -p 8143:443 \
   yesinteractive/kongmap
 ```
-
-
 
 #### 3. Authentication ####
 
