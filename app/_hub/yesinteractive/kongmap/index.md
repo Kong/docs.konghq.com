@@ -57,7 +57,7 @@ details of the entity and related links. Plugins can be toggled from view.
 ![alt text](https://github.com/yesinteractive/kong-map/blob/main/screenshots/kongmap-home.png?raw=true "kongmap")
 
 #### Endpoint Analyzer
-View details of an API Endpoint (Route). The analyzer shows the Service attached to the endpoint/route as well as provides
+View details of an API Endpoint (Route). The analyzer shows the Service attached to the endpoint/route as well as 
 a breakdown of all plugins/policies in order of execution attached to the route/endpoint. For Kong Enterprise users,
 all entities can be viewed directly via a link to Kong Manager.
 
