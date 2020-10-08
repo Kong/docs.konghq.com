@@ -79,7 +79,7 @@ KongMap supports both Kong Open Source and Kong Enterprise Clusters greater than
 
 ## Docker Installation ##
 
-Docker image is Alpine 3.11 based running PHP 7.3 on Apache. The container exposes both ports 80 an 443 with a self signed certificated. 
+Docker image is Alpine 3.11 based running PHP 7.3 on Apache. The container exposes both ports 80 an 443 with a self-signed certificated. 
 
 #### 1. Export Cluster Configurations to Variable ####
 
