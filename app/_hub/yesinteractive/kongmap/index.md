@@ -72,7 +72,7 @@ configuration editing can be disabled by KongMap configuration, or managed with 
 ![alt text](https://github.com/yesinteractive/kong-map/blob/main/screenshots/kongmap-deck.png?raw=true "kongmap")
 
 
-Full documentation available online here: [https://github.com/yesinteractive/kong-map/](https://github.com/yesinteractive/kong-map/)
+Full documentation is available here: [https://github.com/yesinteractive/kong-map/](https://github.com/yesinteractive/kong-map/)
 
 ## Compatibility ## 
 KongMap supports both Kong Open Source and Kong Enterprise Clusters greater than version 1.5.
