@@ -33,6 +33,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
+  protocols: ["http", "https", "gprc", "grpcs"]
   config:
     - name: ldap_host
       required: true
@@ -65,7 +66,7 @@ params:
     - name: ldaps
       required: true
       default: "`false`"
-      value_in_examples: 
+      value_in_examples:
       description: |
         Set it to `true` to use `ldaps`, a secure protocol (that can be configured
         to TLS) to connect to the LDAP server. When `ldaps` is
