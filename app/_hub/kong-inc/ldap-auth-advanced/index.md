@@ -46,7 +46,7 @@ params:
       value_in_examples: 389
       description: |
         TCP port where the LDAP server is listening. 389 is the default
-        port for non-SSL LDAP and AD; 686 is the default port for SSL LDAP and AD. If `ldaps` is
+        port for non-SSL LDAP and AD. 686 is the port required for SSL LDAP and AD. If `ldaps` is
         configured, you must use port 686.
     - name: ldap_password
       required:
@@ -63,9 +63,9 @@ params:
         over `ldap` connection. If the `start_tls` setting is enabled, ensure the `ldaps`
         setting is disabled.
     - name: ldaps
-      required:
+      required: true
       default: "`false`"
-      value_in_examples: false
+      value_in_examples: 
       description: |
         Set it to `true` to use `ldaps`, a secure protocol (that can be configured
         to TLS) to connect to the LDAP server. When `ldaps` is
@@ -112,7 +112,7 @@ params:
       default:
       value_in_examples:
       description: |
-        An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute that is internal to Kong, and **not** its `custom_id`.
+        An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. The value must refer to the Consumer `id` attribute that is internal to Kong; **not** its `custom_id`.
     - name: header_type
       required: false
       default: "`ldap`"
