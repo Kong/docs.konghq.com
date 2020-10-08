@@ -82,4 +82,3 @@ policies you feel is appropriate (OIDC, OAUTH2, Basic Auth, etc.) at the gateway
 ## Feedback and Issues
 
 If you have questions, feedback or want to submit issues, please do so here: [https://github.com/yesinteractive/kong-map/issues](https://github.com/yesinteractive/kong-map/issues).
-
