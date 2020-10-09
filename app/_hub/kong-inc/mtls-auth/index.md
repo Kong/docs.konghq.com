@@ -154,7 +154,7 @@ To create a subject name mapping using declarative configuration, you will need
 to generate a UUID for each `mtls_auth_credentials` mapping. You can use any
 UUID generator to do this. Here are some common ones, depending on your OS:
 * [Linux](https://man7.org/linux/man-pages/man1/uuidgen.1.html)
-* [MacOS](https://brunty.me/post/uuidgen-on-macos/)
+* [MacOS](https://www.unix.com/man-page/mojave/1/uuidgen/)
 * [Windows](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/new-guid?view=powershell-7)
 
 After you have generated a UUID, add the following to your declarative
