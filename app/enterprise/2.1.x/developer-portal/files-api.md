@@ -23,27 +23,64 @@ Parameter                       | Type   | Description                | Required
 
 See the [Content File Docs](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#content-files).
 
+{% navtabs %}
+{% navtab Using cURL %}
+
+```bash
+$ curl
+```
+
+{% endnavtab %}
+{% navtab Using HTTPie %}
+
 ```bash
 http post :8001/default/files  \
   path=content/homepage.html   \
   contents=@<file-location>.html \
-
 ```
+
+{% endnavtab %}
+{% endnavtabs %}
+
+
 
 ## Post a spec file
 
 See the [Spec File Docs](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#spec-files).
 
+{% navtabs %}
+{% navtab Using cURL %}
+
+```bash
+$ curl
+```
+
+{% endnavtab %}
+{% navtab Using HTTPie %}
+
 ```bash
 http post :8001/default/files  \
   path=specs/homepage.json   \
   contents=@<spec-location>.json \
-
 ```
+
+{% endnavtab %}
+{% endnavtabs %}
+
 
 ## Post a theme file
 
 See the [Theme File Docs](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#theme-files).
+
+{% navtabs %}
+{% navtab Using cURL %}
+
+```bash
+$ curl
+```
+
+{% endnavtab %}
+{% navtab Using HTTPie %}
 
 ```bash
 http post :8001/default/files  \
@@ -52,21 +89,62 @@ http post :8001/default/files  \
 
 ```
 
+{% endnavtab %}
+{% endnavtabs %}
+
 ## Get a file
+
+{% navtabs %}
+{% navtab Using cURL %}
+
+```bash
+$ curl
+```
+
+{% endnavtab %}
+{% navtab Using HTTPie %}
 
 ```bash
 http :8001/default/files/content/index.txt
 ```
 
+{% endnavtab %}
+{% endnavtabs %}
+
 ## Patch a file
+
+{% navtabs %}
+{% navtab Using cURL %}
+
+```bash
+$ curl
+```
+
+{% endnavtab %}
+{% navtab Using HTTPie %}
 
 ```bash
 http patch :8001/default/files/content/index.txt
   contents=@<updated-content-file-location>.html \
 ```
 
+{% endnavtab %}
+{% endnavtabs %}
+
 ## Delete a file
+
+{% navtabs %}
+{% navtab Using cURL %}
+
+```bash
+$ curl
+```
+
+{% endnavtab %}
+{% navtab Using HTTPie %}
 
 ```bash
 http delete :8001/default/files/content/index.txt
 ```
+{% endnavtab %}
+{% endnavtabs %}
