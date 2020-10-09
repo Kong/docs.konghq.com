@@ -781,7 +781,7 @@ allows routing via SNIs:
 
 Incoming requests with a matching hostname set in the TLS connection's SNI
 extension would be routed to this Route. As mentioned, SNI routing applies not
-only to TLS, but also to other protocols carried over TLS - such as HTTPS and
+only to TLS, but also to other protocols carried over TLS (for example, HTTPS), and
 if multiple SNIs are specified in the Route, any of them can match with the
 incoming request's SNI (it's an OR relationship between the names).
 
