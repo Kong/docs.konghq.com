@@ -788,9 +788,6 @@ incoming request's SNI (it's an OR relationship between the names).
 The SNI is indicated at TLS handshake time and cannot be modified after the TLS connection has
 been established. This means, for example, that multiple requests reusing the same keepalive connection
 will have the same SNI hostname while performing router match, regardless of the `Host` header.
-has been established. This means keepalive connections that send multiple requests
-will have the same SNI hostnames while performing router match
-(regardless of the `Host` header).
 
 Please note that creating a route with mismatched SNI and `Host` header matcher
 is possible, but generally discouraged.
