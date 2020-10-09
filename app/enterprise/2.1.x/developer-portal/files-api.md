@@ -21,7 +21,7 @@ Parameter                       | Type   | Description                | Required
 
 ## Post a content file
 
-[Content File Docs](/enterprise/2.1-x/developer-portal/structure-and-file-types#content-files)
+See the [Content File Docs](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#content-files).
 
 ```bash
 http post :8001/default/files  \
@@ -32,7 +32,7 @@ http post :8001/default/files  \
 
 ## Post a spec file
 
-[Spec File Docs](/enterprise/2.1-x/developer-portal/structure-and-file-types#spec-files)
+See the [Spec File Docs](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#spec-files).
 
 ```bash
 http post :8001/default/files  \
@@ -43,7 +43,7 @@ http post :8001/default/files  \
 
 ## Post a theme file
 
-[Theme File Docs](/enterprise/2.1-x/developer-portal/structure-and-file-types#theme-files)
+See the [Theme File Docs](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#theme-files).
 
 ```bash
 http post :8001/default/files  \
