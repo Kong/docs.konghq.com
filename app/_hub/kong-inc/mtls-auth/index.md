@@ -113,7 +113,7 @@ The `id` value returned can now be used for mTLS plugin configurations or consum
 
 ### Create manual mappings between certificate and Consumer object
 
-Sometimes, you may not want to use automatic Consumer lookup, or you may have certificates
+Sometimes, you might not want to use automatic Consumer lookup, or you have certificates
 that contain a field value not directly associated with **Consumer** objects. In those
 situations, you may manually assign one or more subject names to the **Consumer** object for
 identifying the correct Consumer.
@@ -157,8 +157,8 @@ UUID generator to do this. Here are some common ones, depending on your OS:
 * [MacOS](https://brunty.me/post/uuidgen-on-macos/)
 * [Windows](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/new-guid?view=powershell-7)
 
-Once you have a UUID, add the following to your declarative configuration
-file:
+After you have generated a UUID, add the following to your declarative
+configuration file:
 
 ```yaml
 consumers:
@@ -178,18 +178,18 @@ Form Parameter                            | Default | Description
 ---                                       | ---     | ---
 `id`<br>*required for declarative config* |  none   | UUID of the Consumer-mapping. Required if adding mapping using declarative configuration, otherwise generated automatically by Kong's Admin API.
 `subject_name`<br>*required*              |  none   | The Subject Alternative Name (SAN) or Common Name (CN) that should be mapped to `consumer` (in order of lookup).
-`ca_certificate`<br>*optional*            |  none   | **If using the Kong Admin API:** UUID of the Certificate Authority (CA). <br><br> **If using declarative configuration:** Full PEM-encoded CA certificate. <br><br>The provided CA UUID or full certificate has to be verifiable by the issuing certificate authority for the mapping to succeed. This is to help distinguish multiple certificates with the same subject name but are issued under different CAs. <br><br>If empty, the subject name will match certificates issued by any CA under the corresponding `config.ca_certificates`.
+`ca_certificate`<br>*optional*            |  none   | **If using the Kong Admin API:** UUID of the Certificate Authority (CA). <br><br> **If using declarative configuration:** Full PEM-encoded CA certificate. <br><br>The provided CA UUID or full certificate has to be verifiable by the issuing certificate authority for the mapping to succeed. This is to help distinguish multiple certificates with the same subject name that are issued under different CAs. <br><br>If empty, the subject name will match certificates issued by any CA under the corresponding `config.ca_certificates`.
 
 ### Matching behaviors
 
-Once a client certificate has been verified as valid, the **Consumer** object will be determined in the following order, unless `skip_consumer_lookup` is set to `true`:
+After a client certificate has been verified as valid, the **Consumer** object is determined in the following order, unless `skip_consumer_lookup` is set to `true`:
 
 1. Manual mappings with `subject_name` matching the certificate's SAN or CN (in that order) and `ca_certificate = <issuing authority of the client certificate>`
 2. Manual mappings with `subject_name` matching the certificate's SAN or CN (in that order) and `ca_certificate = NULL`
 3. If `config.consumer_by` is not null, Consumer with `username` and/or `id` matching the certificate's SAN or CN (in that order)
 4. The `config.anonymous` consumer (if set)
 
-> **Note**: Matching will stop as soon as the first successful match is found.
+> **Note**: Matching stops as soon as the first successful match is found.
 
 When a client has been authenticated, the plugin will append headers to the request before proxying it to the upstream service so that you can identify the **Consumer** in your code:
 
@@ -210,7 +210,7 @@ certificate property being set in `authenticated_group_by`.
 
 ### Troubleshooting
 
-When authentication fails, the client does not have access to any details explaining the
+When authentication fails, the client does not have access to any details that explain the
 failure. The security reason for this omission is to prevent malicious reconnaissance.
 Instead, the details are recorded inside Kong's error logs under the `[mtls-auth]`
 filter.
