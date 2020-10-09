@@ -7,7 +7,7 @@ version: 1.3-x
 desc: Secure Kong clusters, Routes, and Services with username and password protection
 description: |
   Add LDAP Bind Authentication with username and password protection. The plugin
-  checks for valid credentials in the `Proxy-Authorization` and `Authorization` header
+  checks for valid credentials in the `Proxy-Authorization` and `Authorization` headers
   (in that order).
 
 enterprise: true
