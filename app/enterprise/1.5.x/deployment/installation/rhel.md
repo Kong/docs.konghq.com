@@ -67,7 +67,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 
     ```
     kong-enterprise-edition-1.5.0.1.rhel8.noarch.rpm: digests signatures OK
-    ```  
+    ```
 
 {% endnavtab %}
 {% navtab Download Kong repo file and add to Yum repo %}
@@ -119,17 +119,10 @@ You should now have two files in your home directory on the target RHEL system:
 {% navtabs %}
 {% navtab Using downloaded RPM package %}
 
-1. Install EPEL (Extra Packages for Enterprise Linux), if not already installed:
+1. Execute a command similar to the following, using the appropriate RPM file name you downloaded:
 
     ```bash
-    $ sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y
-    $ sudo yum install epel-release -y
-    ```
-    
-2. Execute a command similar to the following, using the appropriate RPM file name you downloaded:
-
-    ```bash
-    $ sudo yum install kong-enterprise-edition-1.5.0.1.rhel8.noarch.rpm -y
+    $ sudo yum install /path/to/package.rpm --nogpgcheck
     ```
 *Note: If you're using RHEL 7.0, change the version of the RPM file above from 8 to 7.*
 
@@ -147,7 +140,7 @@ You should now have two files in your home directory on the target RHEL system:
     ```bash
     $ sudo yum update -y
     $ sudo yum install kong-enterprise-edition -y
-    ```    
+    ```
 {% endnavtab %}
 {% endnavtabs %}
 
