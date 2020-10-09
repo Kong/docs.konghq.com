@@ -98,7 +98,7 @@ http post :8001/default/files  \
 {% navtab Using cURL %}
 
 ```bash
-$ curl
+$ curl 'localhost:8001/default/files/content/index.txt'
 ```
 
 {% endnavtab %}
@@ -137,7 +137,7 @@ http patch :8001/default/files/content/index.txt
 {% navtab Using cURL %}
 
 ```bash
-$ curl
+$ curl --request 'DELETE' 'localhost:8001/default/files/content/index.txt'
 ```
 
 {% endnavtab %}
