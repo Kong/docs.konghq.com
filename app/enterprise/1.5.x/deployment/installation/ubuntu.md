@@ -62,17 +62,16 @@ You should now have two files in your home directory on the target system:
 
 ## Step 2. Install Kong Enterprise
 
-1. Update APT and install dependencies
+1. Update APT
 
     ```bash
     $ sudo apt-get update
-    $ sudo apt-get install openssl libpcre3 procps perl
     ```
 
 2. Install Kong Enterprise
 
     ```bash
-    $ sudo dpkg -i kong-enterprise-edition-<VERSION_NUMBER>.deb
+    $ sudo apt-get install /absolute/path/to/package.deb
     ```
   
     > Note: Your version may be different based on when you obtained the package
