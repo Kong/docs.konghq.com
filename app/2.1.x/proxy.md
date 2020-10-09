@@ -782,8 +782,8 @@ allows routing via SNIs:
 Incoming requests with a matching hostname set in the TLS connection's SNI
 extension would be routed to this Route. As mentioned, SNI routing applies not
 only to TLS, but also to other protocols carried over TLS - such as HTTPS and
-If multiple SNIs are specified in the Route, any of them can match with the incoming request's SNI.
-with the incoming request (OR relationship between the names).
+if multiple SNIs are specified in the Route, any of them can match with the
+incoming request's SNI (it's an OR relationship between the names).
 
 The SNI is indicated at TLS handshake time and cannot be modified after the TLS connection has
 been established. This means, for example, that multiple requests reusing the same keepalive connection
