@@ -30,7 +30,7 @@ the Github [release page](https://github.com/kong/deck/releases)
 or install by downloading a compressed archive, which contains the binary:
 
 ```shell
-$ curl -sL https://github.com/kong/deck/releases/download/v1.2.0/deck_1.2.0_linux_amd64.tar.gz -o deck.tar.gz
+$ curl -sL https://github.com/kong/deck/releases/download/v{{page.kong_versions[0].version}}/deck_{{page.kong_versions[0].version}}_linux_amd64.tar.gz -o deck.tar.gz
 $ tar -xf deck.tar.gz -C /tmp
 $ sudo cp /tmp/deck /usr/local/bin/
 ```
