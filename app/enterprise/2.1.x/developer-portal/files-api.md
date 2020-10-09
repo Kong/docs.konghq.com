@@ -2,7 +2,7 @@
 title: Using the Portal Files API
 ---
 
-# Portal Files API Overview
+## Portal Files API Overview
 
 The Portal Files API can be used as an alternative to the Portal CLI to manage
 dev portal content. Portal content must maintain a specific structure to render
@@ -19,7 +19,7 @@ Parameter                       | Type   | Description                | Required
 `path`                          | `string` | The path of the file.      | `yes`    | `content/example.txt`, `specs/petstore.json`, `themes/base/layouts/index.html`
 `contents`                      | `string` | The contents of the file.  | `yes`    |
 
-## Post a content file
+### Post a content file
 
 See the [Content File Docs](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#content-files).
 
@@ -44,7 +44,7 @@ http post :8001/default/files  \
 
 
 
-## Post a spec file
+### Post a spec file
 
 See the [Spec File Docs](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#spec-files).
 
@@ -68,7 +68,7 @@ http post :8001/default/files  \
 {% endnavtabs %}
 
 
-## Post a theme file
+### Post a theme file
 
 See the [Theme File Docs](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#theme-files).
 
@@ -92,7 +92,7 @@ http post :8001/default/files  \
 {% endnavtab %}
 {% endnavtabs %}
 
-## Get a file
+### Get a file
 
 {% navtabs %}
 {% navtab Using cURL %}
@@ -111,7 +111,7 @@ http :8001/default/files/content/index.txt
 {% endnavtab %}
 {% endnavtabs %}
 
-## Patch a file
+### Patch a file
 
 {% navtabs %}
 {% navtab Using cURL %}
@@ -131,7 +131,7 @@ http patch :8001/default/files/content/index.txt
 {% endnavtab %}
 {% endnavtabs %}
 
-## Delete a file
+### Delete a file
 
 {% navtabs %}
 {% navtab Using cURL %}
