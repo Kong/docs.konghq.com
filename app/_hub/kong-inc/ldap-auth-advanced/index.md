@@ -114,7 +114,7 @@ params:
       default:
       value_in_examples:
       description: |
-        An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. The value must refer to the Consumer `id` attribute that is internal to Kong; **not** its `custom_id`.
+        An optional string (consumer UUID) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. The value must refer to the Consumer `id` attribute that is internal to Kong, **not** its `custom_id`.
     - name: header_type
       required: false
       default: "`ldap`"
@@ -132,7 +132,7 @@ params:
       default: '`[ "username", "custom_id" ]`'
       value_in_examples:
       description: |
-        Whether to authenticate consumer based on `username` and/or `custom_id`.
+        Whether to authenticate Consumers based on `username` and/or `custom_id`.
     - name: hide_credentials
       required: false
       default: "`false`"
@@ -151,7 +151,7 @@ params:
       default: "matches `conf.base_dn`"
       value_in_examples:
       description: |
-        Sets a distinguished name (dn) for the entry where LDAP searches for groups begin.
+        Sets a distinguished name (DN) for the entry where LDAP searches for groups begin.
     - name: group_name_attribute
       required:
       default: "matches `conf.attribute`"
