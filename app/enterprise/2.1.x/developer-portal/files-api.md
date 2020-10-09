@@ -1,6 +1,5 @@
 ---
 title: Using the Portal Files API
-toc: false
 ---
 
 # Portal Files API Overview
