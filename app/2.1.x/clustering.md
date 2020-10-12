@@ -90,7 +90,7 @@ greatly reduces the load on the main database instance since read-only
 queries are no longer sent to it.
 
 To learn more about how to configure this feature, refer to the
-<a href="/{{page.kong_version}}/configuration/#datastore-section">Datastore section</a>
+[Datastore section](/{{page.kong_version}}/property-reference/#datastore-section)
 of the Configuration reference.
 
 [Back to top](#introduction)
