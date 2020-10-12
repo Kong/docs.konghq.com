@@ -846,35 +846,3 @@ $(function () {
     editionSwitch.addClass(edition);
   }
 });
-
-jQuery(document).ready(function () {
-  var closed = localStorage.getItem("closebanner-summit2020");
-  console.log(closed);
-  if (closed === "closeme") {
-    $("header.navbar").addClass("closed");
-  } else {
-    $("header.navbar").removeClass("closed");
-    $("body").addClass("banner");
-  }
-});
-
-var scrolling = false;
-$(document).scroll(function () {
-  scrolling = true;
-});
-
-setInterval(function () {
-  if (scrolling) {
-    scrolling = false;
-    if ($(document).scrollTop() < 85) {
-      $("header").removeClass("compress");
-    } else {
-      $("header").addClass("compress");
-    }
-  }
-}, 10);
-
-$(".closebanner").click(function () {
-  $("header.navbar").addClass("closed");
-  localStorage.setItem("closebanner-summit2020", "closeme");
-});
