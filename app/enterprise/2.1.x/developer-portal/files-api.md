@@ -21,7 +21,8 @@ Parameter                       | Type   | Description                | Required
 
 ### Post a content file
 
-See the [Content File Docs](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#content-files).
+For more details about content files, see the
+[Content File Docs](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#content-files).
 
 {% navtabs %}
 {% navtab Using cURL %}
@@ -46,7 +47,8 @@ http post :8001/default/files  \
 
 ### Post a spec file
 
-See the [Spec File Docs](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#spec-files).
+For more details about specification files, see the
+[Spec File Docs](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#spec-files).
 
 {% navtabs %}
 {% navtab Using cURL %}
@@ -70,7 +72,8 @@ http post :8001/default/files  \
 
 ### Post a theme file
 
-See the [Theme File Docs](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#theme-files).
+For more details about theme files, see the
+[Theme File Docs](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#theme-files).
 
 {% navtabs %}
 {% navtab Using cURL %}
