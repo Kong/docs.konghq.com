@@ -83,7 +83,7 @@ This makes Kong clusters **eventually consistent**.
 When using Postgres as the backend storage, you can optionally enable
 Kong to serve read queries from a separate database instance.
 
-One of the common use case of this feature is to deploy Kong with the
+One of the common use cases of this feature is to deploy Kong with the
 Amazon Aurora service as backend storage. As Aurora natively supports
 read only instances, enable the read-only connection support in Kong
 greatly reduces the load on the main database instance as read-only
