@@ -86,7 +86,7 @@ Kong to serve read queries from a separate database instance.
 One of the common use cases of this feature is to deploy Kong with the
 Amazon Aurora service as backend storage. Because Aurora natively supports
 read-only instances, enabling the read-only connection support in Kong
-greatly reduces the load on the main database instance as read-only
+greatly reduces the load on the main database instance since read-only
 queries are no longer sent to it.
 
 To learn more about how to configure this feature, refer to the
