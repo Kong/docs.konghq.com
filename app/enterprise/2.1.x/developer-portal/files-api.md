@@ -8,16 +8,18 @@ The Portal Files API can be used as an alternative to the Portal CLI to manage
 dev portal content. Portal content must maintain a specific structure to render
 correctly, so it is generally recommended to use the
 [CLI](/enterprise/2.1.x/developer-portal/helpers/cli/)
-because it enforces that structure. For this reason, using the Portal Files
-API can be useful in particular for smaller tasks,
-such as managing specification files outside the context of
+because it enforces that structure. The Portal Files API is useful for smaller
+tasks such as managing specification, content, or theme files outside the context of
 [kong-portal-templates](https://github.com/kong/kong-portal-templates).
 
 
-Parameter                       | Type   | Description                | Required | Example
+Parameter                       | Type   | Description                | Required | Examples
 -------------------------------:|:------:|:--------------------------:|:--------:|---------------
 `path`                          | `string` | The path of the file.      | `yes`    | `content/example.txt`, `specs/petstore.json`, `themes/base/layouts/index.html`
-`contents`                      | `string` | The contents of the file.  | `yes`    |
+`contents`                      | `string` | The contents of the file.  | `yes`    | `contents=@<file-location>.html`, `contents=@<spec-location>.json`, `contents=@<partial-location>.html`
+
+**Note:** The `@` symbol in a command automatically reads the file on disk and places
+its contents into the contents argument.
 
 ### Post a content file
 
