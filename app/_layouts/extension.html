@@ -145,7 +145,7 @@ metadata:
   labels:
     app: <service>
   annotations:
-    plugins.konghq.com: <{{page.params.name}}-example>
+    konghq.com/plugins: <{{page.params.name}}-example>
 spec:
   ports:
   - port: 80
@@ -249,7 +249,7 @@ metadata:
   name: <route>
   annotations:
     kubernetes.io/ingress.class: kong
-    plugins.konghq.com: <{{page.params.name}}-example>
+    konghq.com/plugins: <{{page.params.name}}-example>
 spec:
   rules:
   - host: examplehostname.com
@@ -355,7 +355,7 @@ kind: KongConsumer
 metadata:
   name: <consumer>
   annotations:
-    plugins.konghq.com: <{{page.params.name}}-example>
+    konghq.com/plugins: <{{page.params.name}}-example>
     kubernetes.io/ingress.class: kong
   ```
 
