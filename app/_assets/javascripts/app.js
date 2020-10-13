@@ -850,11 +850,20 @@ $(function () {
 jQuery(document).ready(function () {
   var closed = localStorage.getItem("closebanner-summit2020");
   console.log(closed);
-  if (closed === "closeme") {
-    $("header.navbar").addClass("closed");
-  } else {
+  var getUrl = window.location;
+  var baseUrl =
+    getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split("/")[0];
+  if (
+    closed !== "closeme" &&
+    window.location.href.indexOf("getting-started") === -1 &&
+    window.location.href.indexOf("2.1.x") > -1 &&
+    getUrl !== baseUrl
+  ) {
     $("header.navbar").removeClass("closed");
     $("body").addClass("banner");
+  } else {
+    $("header.navbar").addClass("closed");
+    $("body").removeClass("banner");
   }
 });
 
