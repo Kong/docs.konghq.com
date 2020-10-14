@@ -128,7 +128,7 @@ http :8001/default/files/content/index.txt
 
 ```bash
 $ curl -X PATCH http://<admin-hostname>:8001/default/files/content/index.txt \
-  -F "contents=@updated-content-file-location>.txt"
+  -F "contents=@<updated-content-file-location>.txt"
 ```
 
 {% endnavtab %}
