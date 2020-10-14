@@ -95,7 +95,7 @@ $ curl -X POST http://<admin-hostname>:8001/default/files \
 ```bash
 http post :8001/default/files  \
   path=themes/base/partials/header.html \
-  contents=@<partial-location>.html 
+  contents=@<partial-location>.html
 
 ```
 
@@ -127,8 +127,8 @@ http :8001/default/files/content/index.txt
 {% navtab Using cURL %}
 
 ```bash
-$ curl -X PATCH http://<admin-hostname>:8001/default/files \
-  -F "contents=@updated-content-file-location>.html"
+$ curl -X PATCH http://<admin-hostname>:8001/default/files/content/index.txt \
+  -F "contents=@updated-content-file-location>.txt"
 ```
 
 {% endnavtab %}
@@ -136,7 +136,7 @@ $ curl -X PATCH http://<admin-hostname>:8001/default/files \
 
 ```bash
 http patch :8001/default/files/content/index.txt \
-  contents=@<updated-content-file-location>.html
+  contents=@<updated-content-file-location>.txt
 ```
 
 {% endnavtab %}
