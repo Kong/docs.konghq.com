@@ -882,7 +882,6 @@ setInterval(function () {
     }
   }
 }, 10);
-
 $(".closebanner").click(function () {
   $("header.navbar").addClass("closed");
   localStorage.setItem("closebanner-summit2020", "closeme");
