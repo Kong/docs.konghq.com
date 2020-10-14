@@ -41,7 +41,7 @@ $ curl -X POST http://<admin-hostname>:8001/default/files \
 ```bash
 http post :8001/default/files  \
   path=content/homepage.html   \
-  contents=@<file-location>.html \
+  contents=@<file-location>.html
 ```
 
 {% endnavtab %}
@@ -135,8 +135,8 @@ $ curl -X PATCH http://<admin-hostname>:8001/default/files \
 {% navtab Using HTTPie %}
 
 ```bash
-http patch :8001/default/files/content/index.txt
-  contents=@<updated-content-file-location>.html \
+http patch :8001/default/files/content/index.txt \
+  contents=@<updated-content-file-location>.html 
 ```
 
 {% endnavtab %}
