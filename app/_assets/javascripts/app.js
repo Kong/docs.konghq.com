@@ -848,7 +848,7 @@ $(function () {
 });
 
 jQuery(document).ready(function () {
-  var closed = localStorage.getItem("closebanner-summit2020");
+  var closed = localStorage.getItem("closebanner-survey");
   console.log(closed);
   var getUrl = window.location;
   var baseUrl =
@@ -885,5 +885,5 @@ setInterval(function () {
 
 $(".closebanner").click(function () {
   $("header.navbar").addClass("closed");
-  localStorage.setItem("closebanner-summit2020", "closeme");
+  localStorage.setItem("closebanner-survey", "closeme");
 });
