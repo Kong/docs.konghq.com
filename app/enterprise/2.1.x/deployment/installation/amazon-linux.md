@@ -40,15 +40,15 @@ for information on how to get access.
     Kong Enterprise versions are listed in reverse chronological order.
 
 3. Select the latest Kong version from the list.
-4. From the Kong version detail page, select the **Files** tab and click the distribution folder.
-5. Save the RPM file available. For example, `kong-enterprise-edition-{{page.kong_latest.version}}.aws.rpm`.
+4. From the Kong version detail page, click the **Files** tab, then click the distribution folder.
+5. Save the available RPM file. For example, `kong-enterprise-edition-{{page.kong_latest.version}}.aws.rpm`.
 6. Copy the RPM file to your home directory on the Amazon Linux 1 system. You may use a command like:
 
     ```bash
     $ scp kong-enterprise-edition-{{page.kong_latest.version}}.aws.rpm <amazon user>@<server>:~
     ```
 
-### (Optional) Verify the Integrity of the Package
+### (Optional) Verify the Package Integrity
 
 1. Download Kong's official public key to ensure the integrity of the RPM package:
 
@@ -58,7 +58,7 @@ for information on how to get access.
     $ sudo rpm -K kong-enterprise-edition-{{page.kong_latest.version}}.aws.rpm
     ```
 
-2. Verify you get an OK check. You should have an output similar to this:
+2. Verify you get an OK check. Output should be similar to this:
 
       ```
       kong-enterprise-edition-{{page.kong_latest.version}}.el7.noarch.rpm: sha1 md5 OK
@@ -73,7 +73,7 @@ for information on how to get access.
 
     [https://bintray.com/kong/kong-enterprise-edition-aws/rpm](https://bintray.com/kong/kong-enterprise-edition-aws/rpm).
 
-3. Edit the repo file using your preferred editor and alter the baseurl line as follows:
+3. Edit the repo file using your preferred editor and alter the `baseurl` line with your information as follows:
 
       ```
       baseurl=https://USERNAME:API_KEY@kong.bintray.com/kong-enterprise-edition-aws
@@ -88,7 +88,8 @@ for information on how to get access.
       baseurl=https://john-company:12234e314356291a2b11058591bba195830@kong.bintray.com/kong-enterprise-edition-aws
       ```
 
-4. Securely copy the changed repo file to your home directory on the Amazon Linux 1 system. You may use a command like:
+4. Securely copy the changed repo file to your home directory on the Amazon
+Linux 1 system. For example:
 
     ```bash
     $ scp bintray--kong-kong-enterprise-edition-aws.repo <amazon user>@<server>:~
@@ -100,7 +101,8 @@ for information on how to get access.
 
 1. Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 
-2. Securely copy the license file to your home directory on the Amazon Linux system. You may use a command like:
+2. Securely copy the license file to your home directory on the Amazon Linux
+system. For example:
 
     ```bash
     $ scp license.json <amazon username>@<server>:~

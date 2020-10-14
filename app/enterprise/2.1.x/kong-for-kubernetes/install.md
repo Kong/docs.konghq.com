@@ -142,7 +142,7 @@ kong-proxy   LoadBalancer   10.63.254.78   35.233.198.16   80:32697/TCP,443:3236
 
 <div class="alert alert-ee blue">
 <strong>Note:</strong> Depending on the Kubernetes distribution you are using,
-you may or may not see an external IP address assigned to the service. See your
+you might see an external IP address assigned to the service. Refer to your
 provider's guide on obtaining an IP address for a Kubernetes Service of type
 LoadBalancer.
 </div>

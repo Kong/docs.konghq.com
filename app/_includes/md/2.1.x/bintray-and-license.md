@@ -9,4 +9,4 @@ when you begin a **paid Kong Enterprise subscription**.
   * To find the API Key, go to [https://bintray.com/profile/edit](https://bintray.com/profile/edit) and select **API Key**.
   * To find the Kong Enterprise license JSON file, log into your Bintray
   account and go to `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`.
- For more detail, see [Accessing Your License](/enterprise/latest/deployment/access-license).
+ For more details, see [Accessing Your License](/enterprise/latest/deployment/access-license).

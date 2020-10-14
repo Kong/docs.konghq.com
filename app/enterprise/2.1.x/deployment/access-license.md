@@ -26,7 +26,7 @@ contact your sales representative.
 If you are unaware of your login credentials, reach out to your CSE and they'll
 be able to assist you.
 
-2. You will notice that along with Kong Enterprise, there is a new
+2. Notice that along with Kong Enterprise, there is a new
 repository that has the same name as your company. Click on that repo.
 
 3. In the repo, click on the file called **license**.
@@ -37,13 +37,13 @@ repository that has the same name as your company. Click on that repo.
 
     ![bintray-license-files](/assets/images/docs/ee/access-bintray-license-files.png)
 
-5. Click any file you would like to download.
+5. Click any file you want to download.
 
 ## Programmatically accessing your license file
 
 For programmatic access you'll need 3 pieces of information:
 
- - Username (was provided by email by your CSE)
+ - Username (provided through email by your CSE)
  - Repository name (the Bintray repository, visible in the GUI, usually named after your company name)
  - The Bintray API key for the account (see below)
 

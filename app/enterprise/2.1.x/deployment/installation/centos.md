@@ -39,15 +39,15 @@ for information on how to get access.
 2. Go to: [https://bintray.com/kong/kong-enterprise-edition-rpm/centos](https://bintray.com/kong/kong-enterprise-edition-rpm/centos).
 3. Select the latest Kong version from the list.
 4. From the Kong version detail page, select the **Files** tab.
-5. Select the CentOS version appropriate for your environment. e.g. `centos` -> `7`.
-6. Save the RPM file available: e.g. `kong-enterprise-edition-{{page.kong_latest.version}}.el7.noarch.rpm`
-7. Copy the RPM file to your home directory on the CentOS system. You may use a command like:
+5. Select the CentOS version appropriate for your environment, such as `centos` -> `7`.
+6. Save the available RPM file: e.g. `kong-enterprise-edition-{{page.kong_latest.version}}.el7.noarch.rpm`
+7. Copy the RPM file to your home directory on the CentOS system. For example:
 
     ```bash
     $ scp kong-enterprise-edition-{{page.kong_latest.version}}.el7.noarch.rpm <centos user>@<server>:~
     ```
 
-### (Optional) Verify the Integrity of the Package
+### (Optional) Verify the Package Integrity
 
 1. Kong's official Key ID is `2cac36c51d5f3726`. Verify it by querying the RPM package and comparing it to the Key ID:
 
@@ -63,7 +63,7 @@ for information on how to get access.
     $ rpm -K kong-enterprise-edition-1.3.el7.noarch.rpm
     ```
 
-3. Verify you get an OK check. You should have an output similar to this:
+3. Verify you get an OK check. Output should be similar to this:
 
     ```
     kong-enterprise-edition-{{page.kong_latest.version}}.el7.noarch.rpm: rsa sha1 (md5) pgp md5 OK
@@ -78,7 +78,7 @@ for information on how to get access.
 
     [https://bintray.com/kong/kong-enterprise-edition-rpm/rpm](https://bintray.com/kong/kong-enterprise-edition-rpm/rpm)
 
-3. Edit the repo file using your preferred editor and alter the baseurl line as follows:
+3. Edit the repo file using your preferred editor and alter the `baseurl` line with your information as follows:
 
     ```
     baseurl=https://USERNAME:API_KEY@kong.bintray.com/kong-enterprise-edition-rpm/centos/RELEASEVER
