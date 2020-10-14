@@ -56,7 +56,7 @@ For more details about specification files, see the
 {% navtab Using cURL %}
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/default/files \
+$ curl -X POST http://<admin-hostname>:8001/default/files \
     -F "path=specs/homepage.json" \
     -F "contents=@<spec-location>.json"
 ```
@@ -83,7 +83,9 @@ For more details about theme files, see the
 {% navtab Using cURL %}
 
 ```bash
-$ curl
+$ curl -X POST http://<admin-hostname>:8001/default/files \
+    -F "path=themes/base/partials/header.html" \
+    -F "contents=@<partial-location>.html"
 ```
 
 {% endnavtab %}
