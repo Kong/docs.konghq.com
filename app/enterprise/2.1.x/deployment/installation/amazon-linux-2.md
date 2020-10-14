@@ -41,7 +41,7 @@ for information on how to get access.
 3. Select the `aws` folder. Kong Enterprise versions are listed in reverse chronological order.
 4. Select the latest Kong version from the list.
 5. From the Kong version detail page, click the **Files** tab, then click the distribution folder.
-6. Save the available RPM file. For example, `kong-enterprise-edition-{{page.kong_latest.version}}.aws.rpm`.
+6. Save the available RPM file. For example: `kong-enterprise-edition-{{page.kong_latest.version}}.aws.rpm`.
 7. Copy the RPM file to your home directory on the Amazon Linux 2 system. You can use a command like:
 
     ```bash

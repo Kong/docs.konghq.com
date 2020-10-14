@@ -38,8 +38,8 @@ for information on how to get access.
 2. Go to: [https://bintray.com/kong/kong-enterprise-edition-rpm/rhel](https://bintray.com/kong/kong-enterprise-edition-rpm/rhel).
 3. Select the latest Kong version from the list.
 4. From the Kong version detail page, select the **Files** tab.
-5. Select the RHEL version appropriate for your environment. e.g. `RHEL` -> `8`.
-6. Save the available RPM file: e.g. `kong-enterprise-edition-{{page.kong_latest.version}}.rhel8.noarch.rpm`
+5. Select the RHEL version appropriate for your environment, such as `RHEL` -> `8`.
+6. Save the available RPM file. For example: `kong-enterprise-edition-{{page.kong_latest.version}}.rhel8.noarch.rpm`
 7. Copy the RPM file to your home directory on the RHEL system. For example:
 
     ```bash
