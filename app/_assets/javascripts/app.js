@@ -846,3 +846,44 @@ $(function () {
     editionSwitch.addClass(edition);
   }
 });
+
+jQuery(document).ready(function () {
+  var closed = localStorage.getItem("closebanner-survey");
+  console.log(closed);
+  var getUrl = window.location;
+  var baseUrl =
+    getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split("/")[0];
+  if (
+    closed !== "closeme" &&
+    window.location.href.indexOf("getting-started") === -1 &&
+    window.location.href.indexOf("2.1.x") > -1 &&
+    getUrl !== baseUrl
+  ) {
+    $("header.navbar").removeClass("closed");
+    $("body").addClass("banner");
+  } else {
+    $("header.navbar").addClass("closed");
+    $("body").removeClass("banner");
+  }
+});
+
+var scrolling = false;
+$(document).scroll(function () {
+  scrolling = true;
+});
+
+setInterval(function () {
+  if (scrolling) {
+    scrolling = false;
+    if ($(document).scrollTop() < 85) {
+      $("header").removeClass("compress");
+    } else {
+      $("header").addClass("compress");
+    }
+  }
+}, 10);
+
+$(".closebanner").click(function () {
+  $("header.navbar").addClass("closed");
+  localStorage.setItem("closebanner-survey", "closeme");
+});
