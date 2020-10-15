@@ -170,7 +170,7 @@ The information located under headmatter represents the content body. Body conte
 #### Description
 Specs are similar to `content` files in that they provide the dynamic data needed to render a page, as well as any metadata a user wants to provide as `headmatter`.  The format in which these are provided to the Portal differs from `content` files, which can be seen in the example below.
 
->It is recommended to keep spec folder structure flat.  Spec files must be valid OAS or Swagger `.yaml`/`.yml` or `.json` files.
+>It is recommended to keep spec folder structure flat. Spec files must be valid OAS or Swagger `.yaml`/`.yml` or `.json` files.
 
 #### Contents
 
@@ -189,7 +189,11 @@ x-headmatter
 ...
 ```
 
-Spec file contents themselves should be valid OAS or Swagger specifications.  If you would like to inject headmatter into the specification, you can do so by including an `x-headmatter` key to the root of the spec object. This may be useful if you wanted to for example provide your own renderer template via `x-headmatter.layout` or override the specs default route via `x-headmatter.route`.
+Spec file contents themselves should be valid OAS or Swagger specifications. If you want
+to inject headmatter into the specification, you can do so by including an `x-headmatter`
+key to the root of the spec object. This may be useful if you wanted to, for example,
+provide your own renderer template via `x-headmatter.layout` or override the spec's default
+route via `x-headmatter.route`.
 
 Example:
 ```
@@ -207,7 +211,17 @@ x-headmatter:
 ...
 ```
 
-Specs are a collection meaning their `layout` and `route` are determined by the portal configuration and not the file itself. Specs are rendered by default by the `system/spec-renderer.html` layout, under the route pattern `/documentation/:name` where name is the name of the particular spec file. So a spec with a path of `specs/myfirstspec.json` renders in the portal as `/documentation/myfirstspec`.  If you want to overwrite the hardcoded spec collection config, you can do so by including your own in `portal.conf.yaml`. Check out the Collections section of our `Working with Templates` guide to learn more.
+Specs are a collection, meaning their `layout` and `route` are determined by the
+portal configuration and not the file itself. Specs are rendered by default with
+the `system/spec-renderer.html` layout, under the route pattern `/documentation/:name`,
+where `:name` is the name of the particular spec file. So a spec with a path of
+`specs/myfirstspec.json` renders in the portal as `/documentation/myfirstspec`.  
+If you want to overwrite the hardcoded spec collection config, you can do so by
+including your own in `portal.conf.yaml`. Check out the Collections section of
+our `Working with Templates` guide to learn more.
+
+You can also use the [Portal Files API](/enterprise/{{page.kong_version}}/developer-portal/files-api)
+to `POST`, `GET`, `PATCH`, and `DELETE` content, spec, and theme files.
 
 ## Theme Files
 #### Themes Directory Structure
