@@ -75,7 +75,7 @@ Set up Docker credentials to allow Kubernetes nodes to pull down the Kong Enterp
 {% navtabs %}
 {% navtab kubectl %}
 ```
-$ kubectl create secret -n kong docker-registry kong-enterprise-edition-docker \
+$ kubectl create secret -n kong docker-registry kong-enterprise-k8s-docker \
     --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \
     --docker-username=<your-bintray-username> \
     --docker-password=<your-bintray-api-key>
@@ -83,7 +83,7 @@ $ kubectl create secret -n kong docker-registry kong-enterprise-edition-docker \
 {% endnavtab %}
 {% navtab OpenShift oc %}
 ```
-$ oc create secret -n kong docker-registry kong-enterprise-edition-docker \
+$ oc create secret -n kong docker-registry kong-enterprise-k8s-docker \
     --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \
     --docker-username=<your-bintray-username> \
     --docker-password=<your-bintray-api-key>
