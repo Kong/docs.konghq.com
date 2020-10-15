@@ -30,8 +30,6 @@ To complete this installation you will need:
 
 There are two options to install Kong Enterprise on Amazon Linux 2. Both require a login to Bintray.
 
-Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will assign credentials to you.
-
 {% navtabs %}
 {% navtab Download RPM File %}
 
