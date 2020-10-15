@@ -17,12 +17,8 @@ Before starting installation, be sure you have the following:
 
 - **Kubernetes cluster with load balancer**: Kong is compatible with all distributions of Kubernetes. You can use a [Minikube](https://kubernetes.io/docs/setup/minikube/), [GKE](https://cloud.google.com/kubernetes-engine/), or [OpenShift](https://www.openshift.com/products/container-platform) cluster.
 - **kubectl or oc access**: You should have `kubectl` or `oc` (if working with OpenShift) installed and configured to communicate to your Kubernetes cluster.
-- A valid Kong Enterprise License:
-  * If you have a license, continue to [Set Up Kong Enterprise License](#step-2-set-up-kong-enterprise-license) below. If you need your license file information, contact Kong Support.
-  * If you need a license, request a trial license through our [Request Demo](https://konghq.com/request-demo/) page.
-  * Or, try out Kong for Kubernetes Enterprise using a live tutorial at [https://kubecon.konglabs.io/](https://kubecon.konglabs.io/)
-- Kong Enterprise Docker registry access on Bintray.
 - Helm installed.
+{% include /md/{{page.kong_version}}/bintray-and-license.md %}
 
 ## Step 1. Provision a namespace
 
@@ -210,17 +206,17 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     This may take some time.
 
     <div class="alert alert-warning">
-    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i> 
-    <strong>Important:</strong> 
-    If you are running Postgres as a sub-chart and having problems with connecting to 
-    the database, delete Postgres' persistent volumes in your Kubernetes cluster, then 
-    retry the Helm install. 
+    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+    <strong>Important:</strong>
+    If you are running Postgres as a sub-chart and having problems with connecting to
+    the database, delete Postgres' persistent volumes in your Kubernetes cluster, then
+    retry the Helm install.
     </div>
-    
+
     <div class="alert alert-warning">
-    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i> 
-    <strong>Important:</strong> 
-    If you have already installed the CRDs, run the command above with the following flag: <code>--set ingressController.installCRDs=false</code>. 
+    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+    <strong>Important:</strong>
+    If you have already installed the CRDs, run the command above with the following flag: <code>--set ingressController.installCRDs=false</code>.
     </div>
 
 
@@ -254,10 +250,10 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     ```
 
     <div class="alert alert-warning">
-    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i> 
-    <strong>Important:</strong> The command above requires the Kong Admin API. If you 
-    have not set <code>admin.enabled</code> to <code>true</code> in your 
-    <code>values.yaml</code>, then this command will not work. 
+    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+    <strong>Important:</strong> The command above requires the Kong Admin API. If you
+    have not set <code>admin.enabled</code> to <code>true</code> in your
+    <code>values.yaml</code>, then this command will not work.
     </div>
 
 
