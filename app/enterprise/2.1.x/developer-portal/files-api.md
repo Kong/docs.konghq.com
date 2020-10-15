@@ -7,7 +7,7 @@ title: Using the Portal Files API
 The Portal Files API can be used as an alternative to the Portal CLI to manage
 dev portal content. Portal content must maintain a specific structure to render
 correctly, so it is generally recommended to use the
-[CLI](/enterprise/2.1.x/developer-portal/helpers/cli/)
+[CLI](/enterprise/{{page.kong_version}}/developer-portal/helpers/cli/)
 because it enforces that structure. The Portal Files API is useful for smaller
 tasks such as managing specification, content, or theme files outside the context of
 [kong-portal-templates](https://github.com/kong/kong-portal-templates).
@@ -21,10 +21,10 @@ Parameter                       | Type   | Description                | Required
 **Note:** The `@` symbol in a command automatically reads the file on disk and places
 its contents into the contents argument.
 
-### Post a content file
+### POST a Content File
 
 For more details about content files, see the
-[Content File Docs](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#content-files).
+[Content File documentation](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#content-files).
 
 {% navtabs %}
 {% navtab Using cURL %}
@@ -39,7 +39,7 @@ $ curl -X POST http://<admin-hostname>:8001/default/files \
 {% navtab Using HTTPie %}
 
 ```bash
-http post :8001/default/files  \
+$ http post :8001/default/files  \
   path=content/homepage.html   \
   contents=@<file-location>.html
 ```
@@ -48,10 +48,10 @@ http post :8001/default/files  \
 {% endnavtabs %}
 
 
-### Post a spec file
+### POST a Spec File
 
 For more details about specification files, see the
-[Spec File Docs](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#spec-files).
+[Spec File documentation](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#spec-files).
 
 {% navtabs %}
 {% navtab Using cURL %}
@@ -66,7 +66,7 @@ $ curl -X POST http://<admin-hostname>:8001/default/files \
 {% navtab Using HTTPie %}
 
 ```bash
-http post :8001/default/files  \
+$ http post :8001/default/files  \
   path=specs/homepage.json   \
   contents=@<spec-location>.json
 ```
@@ -75,10 +75,10 @@ http post :8001/default/files  \
 {% endnavtabs %}
 
 
-### Post a theme file
+### POST a Theme File
 
 For more details about theme files, see the
-[Theme File Docs](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#theme-files).
+[Theme File documentation](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#theme-files).
 
 {% navtabs %}
 {% navtab Using cURL %}
@@ -93,16 +93,15 @@ $ curl -X POST http://<admin-hostname>:8001/default/files \
 {% navtab Using HTTPie %}
 
 ```bash
-http post :8001/default/files  \
+$ http post :8001/default/files  \
   path=themes/base/partials/header.html \
   contents=@<partial-location>.html
-
 ```
 
 {% endnavtab %}
 {% endnavtabs %}
 
-### Get a file
+### GET a File
 
 {% navtabs %}
 {% navtab Using cURL %}
@@ -115,13 +114,13 @@ $ curl -X GET http://<admin-hostname>:8001/default/files/content/index.txt
 {% navtab Using HTTPie %}
 
 ```bash
-http :8001/default/files/content/index.txt
+$ http :8001/default/files/content/index.txt
 ```
 
 {% endnavtab %}
 {% endnavtabs %}
 
-### Patch a file
+### PATCH a File
 
 {% navtabs %}
 {% navtab Using cURL %}
@@ -135,14 +134,14 @@ $ curl -X PATCH http://<admin-hostname>:8001/default/files/content/index.txt \
 {% navtab Using HTTPie %}
 
 ```bash
-http patch :8001/default/files/content/index.txt \
+$ http patch :8001/default/files/content/index.txt \
   contents=@<updated-content-file-location>.txt
 ```
 
 {% endnavtab %}
 {% endnavtabs %}
 
-### Delete a file
+### DELETE a File
 
 {% navtabs %}
 {% navtab Using cURL %}
@@ -155,7 +154,7 @@ $ curl -X DELETE http://<admin-hostname>:8001/default/files/content/index.txt
 {% navtab Using HTTPie %}
 
 ```bash
-http delete :8001/default/files/content/index.txt
+$ http delete :8001/default/files/content/index.txt
 ```
 {% endnavtab %}
 {% endnavtabs %}

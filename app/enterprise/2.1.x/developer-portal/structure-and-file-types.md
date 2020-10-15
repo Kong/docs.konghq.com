@@ -192,7 +192,7 @@ x-headmatter
 Spec file contents themselves should be valid OAS or Swagger specifications. If you want
 to inject headmatter into the specification, you can do so by including an `x-headmatter`
 key to the root of the spec object. This may be useful if you wanted to, for example,
-provide your own renderer template via `x-headmatter.layout` or override the specs default
+provide your own renderer template via `x-headmatter.layout` or override the spec's default
 route via `x-headmatter.route`.
 
 Example:
@@ -211,7 +211,7 @@ x-headmatter:
 ...
 ```
 
-Specs are a collection meaning their `layout` and `route` are determined by the
+Specs are a collection, meaning their `layout` and `route` are determined by the
 portal configuration and not the file itself. Specs are rendered by default with
 the `system/spec-renderer.html` layout, under the route pattern `/documentation/:name`,
 where `:name` is the name of the particular spec file. So a spec with a path of
@@ -221,7 +221,7 @@ including your own in `portal.conf.yaml`. Check out the Collections section of
 our `Working with Templates` guide to learn more.
 
 You can also use the [Portal Files API](/enterprise/{{page.kong_version}}/developer-portal/files-api)
-to post content, spec, and theme files; as well as get, patch, and delete files.
+to `POST`, `GET`, `PATCH`, and `DELETE` content, spec, and theme files.
 
 ## Theme Files
 #### Themes Directory Structure
