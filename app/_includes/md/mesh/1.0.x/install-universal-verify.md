@@ -2,7 +2,7 @@
 ## 3. Verify the Installation
 
 Now that {{site.mesh_product_name}} has been installed, you can access the
-control plane via either the GUI, the HTTP API, or the CLI:
+control plane using either the GUI, the HTTP API, or the CLI:
 
 {% navtabs %}
 {% navtab GUI (Read-Only) %}
