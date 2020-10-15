@@ -39,13 +39,9 @@ $ oc new-project kong
 {% endnavtabs %}
 
 ## Step 2. Set Up Kong Enterprise license
-Running Kong Enterprise on Kubernetes requires a valid license.
+Running Kong Enterprise on Kubernetes requires a valid license. See [prerequisites](#prerequisites) for more information.
 
-As part of the sign-up process for Kong Enterprise, you should have received a license file. If you do not have one, contact your Kong sales representative. Save the license file temporarily to disk with filename `license` (no file extension) and execute the following:
-
-> Note:
-* There is no `.json` extension in the `--from-file` parameter.
-* `-n kong` specifies the namespace in which you are deploying Kong for Kubernetes Enterprise. If you are deploying in a different namespace, change this value.
+Save the license file temporarily to disk with filename `license` (no file extension) and execute the following:
 
 {% navtabs %}
 {% navtab kubectl %}
@@ -59,6 +55,12 @@ $ oc create secret generic kong-enterprise-license --from-file=./license -n kong
 ```
 {% endnavtab %}
 {% endnavtabs %}
+
+<div class="alert alert-ee blue">
+<strong>Note:</strong><br>
+<ul>
+  <li>There is no <code>.json</code> extension in the <code>--from-file</code> parameter.</li>
+  <li><code>-n kong</code> specifies the namespace in which you are deploying Kong for Kubernetes Enterprise. If you are deploying in a different namespace, change this value.</li></ul></div>
 
 ## Step 3. Set up Helm
 
