@@ -15,7 +15,7 @@ tasks such as managing specification, content, or theme files outside the contex
 
 Parameter                       | Type   | Description                | Required | Examples
 -------------------------------:|:------:|:--------------------------:|:--------:|---------------
-`path`                          | `string` | The path of the file.      | `yes`    | `content/example.txt`, `specs/petstore.json`, `themes/base/layouts/index.html`
+`path`                          | `string` | The path to the file.      | `yes`    | `content/example.txt`, `specs/petstore.json`, `themes/base/layouts/index.html`
 `contents`                      | `string` | The contents of the file.  | `yes`    | `contents=@<file-location>.html`, `contents=@<spec-location>.json`, `contents=@<partial-location>.html`
 
 **Note:** The `@` symbol in a command automatically reads the file on disk and places
