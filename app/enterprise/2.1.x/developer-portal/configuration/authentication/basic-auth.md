@@ -29,13 +29,13 @@ For more information, see
 In the Kong configuration file, set the `portal_session_conf` property:
 
 ```
-portal_session_conf={ "cookie_name": "portal_session", "secret": "CHANGE_THIS", "storage": "kong", "cookie_domain": ".your_subdomain.com" }
+portal_session_conf={ "cookie_name": "portal_session", "secret": "CHANGE_THIS", "storage": "kong", "cookie_domain": ".your_subdomain.com", "cookie_samesite":"off" }
 ```
 
 If using HTTP while testing, include `"cookie_secure": false` in the config:
 
 ```
-portal_session_conf={ "cookie_name": "portal_session", "secret": "CHANGE_THIS", "storage": "kong", "cookie_secure": false, "cookie_domain": ".your_subdomain.com"  }
+portal_session_conf={ "cookie_name": "portal_session", "secret": "CHANGE_THIS", "storage": "kong", "cookie_secure": false, "cookie_domain": ".your_subdomain.com", "cookie_samesite":"off"  }
 ```
 
 #### See Also
@@ -52,6 +52,8 @@ portal_session_conf={ "cookie_name": "portal_session", "secret": "CHANGE_THIS", 
 2. Find **Authentication plugin** under the **Authentication** tab.
 3. Select **Basic Authentication**.
 4. Click **Save Changes**.
+
+![Authentication plugin](/assets/images/docs/dev-portal/portal-settings-auth-plugin.png)
 
 ### Enable Basic Auth Using the Command Line
 
