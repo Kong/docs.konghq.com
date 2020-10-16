@@ -5,8 +5,8 @@ version: 2.2.0
 
 desc: Integrate Kong with an LDAP server
 description: |
-  Add LDAP Bind Authentication to a Route with username and password protection.
-  The plugin checks for valid credentials in the `Proxy-Authorization` and `Authorization` header
+  Add LDAP Bind Authentication to a Route with username and password protection. The plugin
+  checks for valid credentials in the `Proxy-Authorization` and `Authorization` header
   (in that order).
 
   <div class="alert alert-warning">
@@ -63,8 +63,7 @@ params:
       required: false
       default: "`false`"
       value_in_examples: true
-      description: An optional boolean value telling the plugin to hide the credential
-      to the upstream server. It will be removed by Kong before proxying the request.
+      description: An optional boolean value telling the plugin to hide the credential to the upstream server. It will be removed by Kong before proxying the request.
     - name: ldap_host
       required: true
       default:
