@@ -6,9 +6,9 @@ title: Sessions in the Dev Portal
 
 ## How does the Sessions Plugin work in the Dev Portal?
 
-When a user logs in to the Dev Portal with their credentials, the Sessions Plugin will create a session cookie. The cookie is used for all subsequent requests and is valid to authenticate the user. The session has a limited duration and renews at a configurable interval, which helps prevent an attacker from obtaining and using a stale cookie after the session has ended.
+When a user logs in to the Dev Portal with their credentials, the Sessions Plugin creates a session cookie. The cookie is used for all subsequent requests and is valid to authenticate the user. The session has a limited duration and renews at a configurable interval, which helps prevent an attacker from obtaining and using a stale cookie after a session has ended.
 
-The Session configuration is secure by default, which may [require alteration](#session-security) if using HTTP or different domains for [portal_api_url](/enterprise/{{page.kong_version}}/developer-portal/networking/#portal_api_url) and [portal_gui_host](/enterprise/{{page.kong_version}}/developer-portal/networking/#portal_gui_host). Even if an attacker were to obtain a stale cookie, it would not benefit them since the cookie is encrypted. The encrypted session data may be stored either in Kong or the cookie itself.
+The Session configuration is secure by default, which might [require alteration](#session-security) if using HTTP or different domains for [portal_api_url](/enterprise/{{page.kong_version}}/developer-portal/networking/#portal_api_url) and [portal_gui_host](/enterprise/{{page.kong_version}}/developer-portal/networking/#portal_gui_host). Even if an attacker were to obtain a stale cookie, it would not benefit them because the cookie is encrypted. The encrypted session data can be stored either in Kong or the cookie itself.
 
 ## Configuration to Use the Sessions Plugin with the Dev Portal {#portal-session-conf}
 
@@ -28,21 +28,20 @@ portal_session_conf = {
 }
 ```
 
-* `"cookie_name":"<SET_COOKIE_NAME>"`: The name of the cookie
-  * For example, `"cookie_name":"portal_cookie"`
+* `"cookie_name":"<SET_COOKIE_NAME>"`: The name of the cookie. For example, `"cookie_name":"portal_cookie"`.
 * `"secret":"<SET_SECRET>"`: The secret used in keyed HMAC generation. Although
   the **Session Plugin's** default is a random string, the `secret` _must_ be
   manually set for use with the Dev Portal since it must be the same across all
   Kong workers/nodes.
 * `"storage":"kong"`: Where session data is stored. This value _must_ be set to `kong` for use with the Dev Portal.
-* `"cookie_lifetime":<NUMBER_OF_SECONDS_TO_LIVE>`: The duration (in seconds) that the session will remain open; 3600 by    default.
-* `"cookie_renew":<NUMBER_OF_SECONDS_LEFT_TO_RENEW>`: The duration (in seconds) of a session remaining at which point
-   the Plugin renews the session; 600 by default.
+* `"cookie_lifetime":<NUMBER_OF_SECONDS_TO_LIVE>`: The duration (in seconds) that the session will remain open; 3600 by default.
+* `"cookie_renew":<NUMBER_OF_SECONDS_LEFT_TO_RENEW>`: The duration (in seconds) of a session remaining at
+which point the Plugin renews the session; 600 by default.
 * `"cookie_secure":<SET_DEPENDING_ON_PROTOCOL>`: `true` by default. See [Session Security](#session-security) for
     exceptions.
 * `"cookie_domain":<SET_DEPENDING_ON_DOMAIN>:` Optional. See [Session Security](#session-security) for exceptions.
-* `"cookie_samesite":"<SET_DEPENDING_ON_DOMAIN>"`: `"Strict"` by default. See [Session Security](#session-security) for
-    exceptions.
+* `"cookie_samesite":"<SET_DEPENDING_ON_DOMAIN>"`: `"Strict"` by default. See
+[Session Security](#session-security) for exceptions.
 
 ⚠️**Important:**
 *The following properties must not be altered from default for use with the Dev Portal:*
