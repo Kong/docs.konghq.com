@@ -29,14 +29,22 @@ For more information, see
 In the Kong configuration file, set the `portal_session_conf` property:
 
 ```
-portal_session_conf={ "cookie_name": "portal_session", "secret": "CHANGE_THIS", "storage": "kong" }
+portal_session_conf={ "cookie_name": "portal_session", "secret": "CHANGE_THIS", "storage": "kong", "cookie_domain": ".your_subdomain.com" }
 ```
 
 If using HTTP while testing, include `"cookie_secure": false` in the config:
 
 ```
-portal_session_conf={ "cookie_name": "portal_session", "secret": "CHANGE_THIS", "storage": "kong", "cookie_secure": false }
+portal_session_conf={ "cookie_name": "portal_session", "secret": "CHANGE_THIS", "storage": "kong", "cookie_secure": false, "cookie_domain": ".your_subdomain.com"  }
 ```
+
+#### See Also
+
+- For more information about portal session configuration, see
+[Sessions](/enterprise/{{page.kong_version}}/developer-portal/configuration/authentication/sessions#portal-session-conf).
+
+- For more information about domains and cookies in Dev Portal sessions, see
+[Domains](/enterprise/{{page.kong_version}}/developer-portal/configuration/authentication/sessions#domains).
 
 ### Enable Basic Auth Using Kong Manager
 

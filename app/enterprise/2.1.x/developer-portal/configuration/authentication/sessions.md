@@ -10,7 +10,7 @@ When a user logs in to the Dev Portal with their credentials, the Sessions Plugi
 
 The Session configuration is secure by default, which may [require alteration](#session-security) if using HTTP or different domains for [portal_api_url](/enterprise/{{page.kong_version}}/developer-portal/networking/#portal_api_url) and [portal_gui_host](/enterprise/{{page.kong_version}}/developer-portal/networking/#portal_gui_host). Even if an attacker were to obtain a stale cookie, it would not benefit them since the cookie is encrypted. The encrypted session data may be stored either in Kong or the cookie itself.
 
-## Configuration to Use the Sessions Plugin with the Dev Portal
+## Configuration to Use the Sessions Plugin with the Dev Portal {#portal-session-conf}
 
 To enable sessions authentication, configure the following:
 
@@ -59,6 +59,7 @@ The Session configuration is secure by default, so the cookie uses the [Secure, 
 ⚠️**Important:** The following properties must be altered depending on the protocol and domains in use:
 * If using HTTP instead of HTTPS: `"cookie_secure": false`
 * If using different subdomains for the [portal_api_url](/enterprise/{{page.kong_version}}/developer-portal/networking/#portal_api_url) and [portal_gui_host](/enterprise/{{page.kong_version}}/developer-portal/networking/#portal_gui_host), see the example below for [Domains](https://docs.konghq.com/enterprise/2.1.x/developer-portal/configuration/authentication/sessions/#domains).
+<<<<<<< HEAD
 
 <div class="alert alert-warning">
    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
@@ -66,6 +67,8 @@ The Session configuration is secure by default, so the cookie uses the [Secure, 
    (the default) is used. In that case, the cookie is deleted client-side. Only when session data is
    stored server-side with <code>"storage": "kong"</code> set is the session actively invalidated.
 </div>
+=======
+>>>>>>> e0c6fe1084... add coookie_domain to examples, xrefs
 
 ## Example Configurations
 
