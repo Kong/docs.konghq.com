@@ -4,32 +4,48 @@ title: Access Your Kong Enterprise License
 
 Kong Enterprise requires a license file. This guide walks you through how to access your license file.
 
-**Note:** The following guide only pertains to paid versions of Kong Enterprise. For free trial information, check the email received after signing up.
+<div class="alert alert-ee blue">
+<strong>Note:</strong> The following guide only pertains to paid versions of
+Kong Enterprise. For free trial information, see our list of ways to
+<a href="/enterprise/{{page.kong_version}}/introduction/#try-kong-enterprise">
+try Kong Enterprise</a>, or see your free trial sign-up email.
+</div>
 
-Log into [https://bintray.com/login?forwardedFrom=%2Fkong%2F](https://bintray.com/login?forwardedFrom=%2Fkong%2F)
+## Prerequisites
+
+Before you can access your license, you need to sign up for a Kong Enterprise
+subscription. With this subscription, you will receive access to the Kong
+Bintray repository, which contains the necessary license files.
+
+If you have purchased a subscription but haven't received a license file,
+contact your sales representative.
+
+## Accessing your license file through a browser
+
+1. Log into [https://bintray.com/](https://bintray.com/login?forwardedFrom=%2Fkong%2F).
 If you are unaware of your login credentials, reach out to your CSE and they'll
 be able to assist you.
 
-You will notice that along with Kong Enterprise, there is a new
+2. Notice that along with Kong Enterprise, there is a new
 repository that has the same name as your company. Click on that repo.
 
-In the repo, click on the file called **license**.
+3. In the repo, click on the file called **license**.
 
-![bintray-license](/assets/images/docs/ee/access-bintray-license.png)
+    ![bintray-license](/assets/images/docs/ee/access-bintray-license.png)
 
-Click into the **Files** section
+4. Click into the **Files** section
 
-![bintray-license-files](/assets/images/docs/ee/access-bintray-license-files.png)
+    ![bintray-license-files](/assets/images/docs/ee/access-bintray-license-files.png)
 
-Click any file you would like to download.
+5. Click any file you want to download.
 
 ## Programmatically accessing your license file
 
 For programmatic access you'll need 3 pieces of information:
 
- - username (was provided by email by your CSE)
- - repository name (the Bintray repository, visible in the GUI, usually named after your company name)
- - the Bintray API key for the account (see below)
+ - Username (provided through email by your CSE)
+ - Repository name (the Bintray repository, visible in the GUI, usually named after your company name)
+ - The Bintray API key for the account (see below)
 
 To get the API key follow these steps:
 

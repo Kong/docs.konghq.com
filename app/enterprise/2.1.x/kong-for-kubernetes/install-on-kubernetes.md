@@ -6,7 +6,11 @@ title: Installing Kong Enterprise on Kubernetes
 
 Kong Enterprise on Kubernetes is recommended for deployments that require features not supported by Kong for Kubernetes Enterprise. It supports all Kong Enterprise plugins and features, but can't run in DB-less mode.
 
-> Note: See [Kong for Kubernetes deployment options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options) for a feature breakdown and image comparison.
+<div class="alert alert-ee blue">
+<strong>Note:</strong>
+See <a href="/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options">Kong for Kubernetes deployment options</a>
+for a feature breakdown and image comparison.
+</div>
 
 You can use kubectl or OpenShift oc to configure Kong Enterprise on Kubernetes, then deploy it using Helm.
 
@@ -23,12 +27,8 @@ Before starting installation, be sure you have the following:
 
 - **Kubernetes cluster with load balancer**: Kong is compatible with all distributions of Kubernetes. You can use a [Minikube](https://kubernetes.io/docs/setup/minikube/), [GKE](https://cloud.google.com/kubernetes-engine/), or [OpenShift](https://www.openshift.com/products/container-platform) cluster.
 - **kubectl or oc access**: You should have `kubectl` or `oc` (if working with OpenShift) installed and configured to communicate to your Kubernetes cluster.
-- A valid Kong Enterprise License:
-  * If you have a license, continue to [Set Up Kong Enterprise License](#step-2-set-up-kong-enterprise-license) below. If you need your license file information, contact Kong Support.
-  * If you need a license, request a trial license through our [Request Demo](https://konghq.com/request-demo/) page.
-  * Or, try out Kong for Kubernetes Enterprise using a live tutorial at [https://kubecon.konglabs.io/](https://kubecon.konglabs.io/)
-- Kong Enterprise Docker registry access on Bintray.
 - Helm installed.
+{% include /md/{{page.kong_version}}/bintray-and-license.md %}
 
 ## Step 1. Provision a namespace
 
@@ -49,13 +49,9 @@ $ oc new-project kong
 {% endnavtabs %}
 
 ## Step 2. Set Up Kong Enterprise license
-Running Kong Enterprise on Kubernetes requires a valid license.
+Running Kong Enterprise on Kubernetes requires a valid license. See [prerequisites](#prerequisites) for more information.
 
-As part of the sign-up process for Kong Enterprise, you should have received a license file. If you do not have one, contact your Kong sales representative. Save the license file temporarily to disk with filename `license` (no file extension) and execute the following:
-
-> Note:
-* There is no `.json` extension in the `--from-file` parameter.
-* `-n kong` specifies the namespace in which you are deploying Kong for Kubernetes Enterprise. If you are deploying in a different namespace, change this value.
+Save the license file temporarily to disk with filename `license` (no file extension) and execute the following:
 
 {% navtabs %}
 {% navtab kubectl %}
@@ -69,6 +65,12 @@ $ oc create secret generic kong-enterprise-license --from-file=./license -n kong
 ```
 {% endnavtab %}
 {% endnavtabs %}
+
+<div class="alert alert-ee blue">
+<strong>Note:</strong><br>
+<ul>
+  <li>There is no <code>.json</code> extension in the <code>--from-file</code> parameter.</li>
+  <li><code>-n kong</code> specifies the namespace in which you are deploying Kong for Kubernetes Enterprise. If you are deploying in a different namespace, change this value.</li></ul></div>
 
 ## Step 3. Set up Helm
 
@@ -112,16 +114,17 @@ $ oc create secret -n kong docker-registry kong-enterprise-edition-docker \
 ```
 kubectl create secret generic kong-enterprise-superuser-password  -n kong --from-literal=password=<your-password>
 ```
-⚠️**Important:** Though not required, this is recommended if you want to use RBAC, as it cannot be done after initial setup.
 {% endnavtab %}
 {% navtab OpenShift oc %}
 (Optional) Create a password for the super admin:
 ```
 oc create secret generic kong-enterprise-superuser-password -n kong --from-literal=password=<your-password>
 ```
-⚠️**Important:** Though not required, this is recommended if you want to use RBAC, as it cannot be done after initial setup.
 {% endnavtab %}
 {% endnavtabs %}
+<div class="alert alert-warning">
+<i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+<strong>Important:</strong>Though not required, this is recommended if you want to use RBAC, as it cannot be done after initial setup.</div>
 
 ## Step 6. Prepare the sessions plugin for Kong Manager and Dev Portal
 In the following steps, replace `<your-password>` with a secure password.
@@ -205,7 +208,9 @@ In the following steps, replace `<your-password>` with a secure password.
 
 ## Step 8. Deploy Kong Enterprise on Kubernetes
 The steps in this section show you how to install Kong Enterprise on Kubernetes using Helm.
->Note: the following instructions assume that you're running Helm 3.
+<div class="alert alert-ee blue">
+<strong>Note:</strong> The following instructions assume that you're running Helm 3.
+</div>
 
 {% navtabs %}
 {% navtab kubectl %}
@@ -216,17 +221,17 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     This may take some time.
 
     <div class="alert alert-warning">
-    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i> 
-    <strong>Important:</strong> 
-    If you are running Postgres as a sub-chart and having problems with connecting to 
-    the database, delete Postgres' persistent volumes in your Kubernetes cluster, then 
-    retry the Helm install. 
+    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+    <strong>Important:</strong>
+    If you are running Postgres as a sub-chart and having problems with connecting to
+    the database, delete Postgres' persistent volumes in your Kubernetes cluster, then
+    retry the Helm install.
     </div>
 
     <div class="alert alert-warning">
-    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i> 
-    <strong>Important:</strong> 
-    If you have already installed the CRDs, run the command above with the following flag: <code>--set ingressController.installCRDs=false</code>. 
+    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+    <strong>Important:</strong>
+    If you have already installed the CRDs, run the command above with the following flag: <code>--set ingressController.installCRDs=false</code>.
     </div>
 
 2. Check pod status:
@@ -258,16 +263,17 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     $ kubectl get svc -n kong my-kong-kong-admin --output=jsonpath='{.status.loadBalancer.ingress[0].ip}'
     ```
     <div class="alert alert-warning">
-    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i> 
-    <strong>Important:</strong> The command above requires the Kong Admin API. If you 
-    have not set <code>admin.enabled</code> to <code>true</code> in your 
-    <code>values.yaml</code>, then this command will not work. 
+    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+    <strong>Important:</strong> The command above requires the Kong Admin API. If you
+    have not set <code>admin.enabled</code> to <code>true</code> in your
+    <code>values.yaml</code>, then this command will not work.
     </div>
-    
+
 2. Copy the IP address from the output, then edit the `values.yaml` file to add the following line under `env` section:
 
-    > **Note:** Do not use IPs with RBAC. If you want to use RBAC, you need to set
-    up a DNS hostname first, instead of directly specifying an IP.
+    <div class="alert alert-ee blue">
+    <strong>Note:</strong> Do not use IPs with RBAC. If you want to use RBAC, you need to set
+    up a DNS hostname first, instead of directly specifying an IP.</div>
 
     ```
     admin_api_uri: <your-DNSorIP>
@@ -304,8 +310,10 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
 
 2. Copy the IP address from the output, then edit the `values.yaml` file to add the following line under `env` section:
 
-    > **Note:** Do not use IPs with RBAC. If you want to use RBAC, you need to set
+    <div class="alert alert-ee blue">
+    <strong>Note:</strong> Do not use IPs with RBAC. If you want to use RBAC, you need to set
     up a DNS hostname first, instead of directly specifying an IP.
+    </div>
 
     ```
     admin_api_uri: <your-DNSorIP>
