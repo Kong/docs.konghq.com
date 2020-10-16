@@ -4,7 +4,7 @@ title: Enable Basic Auth in the Dev Portal
 
 ## Introduction
 
-The Kong Developer Portal can be fully or partially authenticated using HTTP protocol's Basic Authentication scheme. Requests will be sent with the Authorization header that
+The Kong Developer Portal can be fully or partially authenticated using HTTP protocol's Basic Authentication scheme. Requests are sent with an Authorization header that
 contains the word `Basic` followed by the base64-encoded `username:password` string.
 
 Basic Authentication for the Dev Portal can be enabled using any of the following ways:
