@@ -73,17 +73,23 @@ params:
       required: true
       default: 389
       value_in_examples: 389
-      description: TCP port where the LDAP server is listening.
+      description: TCP port where the LDAP server is listening.  389 is the default
+        port for non-SSL LDAP and AD. 686 is the port required for SSL LDAP and AD. If `ldaps` is
+        configured, you must use port 686.
     - name: start_tls
       required: true
       default: "`false`"
       description: |
-        Set it to `true` to issue StartTLS (Transport Layer Security) extended operation over `ldap` connection.
+        Set it to `true` to issue StartTLS (Transport Layer Security) extended operation over `ldap`
+        connection. If the `start_tls` setting is enabled, ensure the `ldaps`
+        setting is disabled.
     - name: ldaps
       required: true
       default: "`false`"
       description: |
-        Set it to `true` to connect using the LDAPS protocol (LDAP over TLS).
+        Set to `true` to connect using the LDAPS protocol (LDAP over TLS).  When `ldaps` is
+        configured, you must use port 686. If the `ldap` setting is enabled, ensure the
+        `start_tls` setting is disabled.
     - name: base_dn
       required: true
       default:
@@ -93,7 +99,7 @@ params:
       required: true
       default: "`false`"
       description: |
-        Set it to `true` to authenticate LDAP server. The server certificate will be verified according to the CA certificates specified by the `lua_ssl_trusted_certificate` directive.
+        Set to `true` to authenticate LDAP server. The server certificate will be verified according to the CA certificates specified by the `lua_ssl_trusted_certificate` directive.
     - name: attribute
       required: true
       default:
@@ -115,7 +121,7 @@ params:
       required: false
       default:
       description: |
-        An optional string (consumer UUID) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. The value must refer to the Consumer `id` attribute that is internal to Kong, and **not** its `custom_id`.
+        An optional string (consumer UUID) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. The value must refer to the Consumer `id` attribute that is internal to Kong, **not** its `custom_id`.
     - name: header_type
       required: false
       default: "`ldap`"
