@@ -66,25 +66,25 @@ params:
       required: true
       default:
       value_in_examples: http://mockbin.org/bin/:id
-      description: The HTTP endpoint (including the protocol to use) to which the data will be sent.
+      description: The HTTP endpoint (including the protocol to use) to which the data is sent.
     - name: method
       required: false
       default: "`POST`"
       value_in_examples: POST
       description: |
-        An optional method used to send data to the http server, other supported values are `PUT`, `PATCH`
+        An optional method used to send data to the HTTP server. Other supported values are `PUT`, `PATCH`.
     - name: timeout
       required: false
       default: "`10000`"
       value_in_examples: 1000
-      description: An optional timeout in milliseconds when sending data to the upstream server
+      description: An optional timeout in milliseconds when sending data to the upstream server.
     - name: keepalive
       required: false
       default: "`60000`"
       value_in_examples: 1000
-      description: An optional value in milliseconds that defines for how long an idle connection will live before being closed
+      description: An optional value in milliseconds that defines how long an idle connection will live before being closed.
   extra: |
-    **NOTE:** If the `config.http_endpoint` contains a username and password (ex.
+    **NOTE:** If the `config.http_endpoint` contains a username and password (for example,
     `http://bob:password@example.com/logs`), then Kong automatically includes
     a basic-auth `Authorization` header in the log requests.
 
@@ -92,7 +92,7 @@ params:
 
 ## Log Format
 
-Every request is logged separately in a JSON object, in the following format:
+Every request is logged separately in a JSON object in the following format:
 
 ```json
 {
