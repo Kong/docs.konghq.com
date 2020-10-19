@@ -72,7 +72,7 @@ params:
       default: "`POST`"
       value_in_examples: POST
       description: |
-        An optional method used to send data to the HTTP server. Other supported values are `PUT`, `PATCH`.
+        An optional method used to send data to the HTTP server. Supported values are `POST` (default), `PUT`, and `PATCH`.
     - name: timeout
       required: false
       default: "`10000`"
