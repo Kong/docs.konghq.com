@@ -5,12 +5,12 @@ version: 1.0.0
 
 desc: Append request and response data to a log file
 description: |
-  Append request and response data to a log file (as JSON). You can also specify
-  streams, e.g. `/dev/stdout` and `/dev/stderr` - this is especially useful
+  Append request and response data in JSON format to a log file. You can also specify
+streams (for example, `/dev/stdout` and `/dev/stderr`), which is especially useful
   when running Kong in Kubernetes.
 
-  This plugin uses blocking I/O - this could affect performance when writing
-  to physical files on slow - e.g. spinning - disks.
+  This plugin uses blocking I/O, which could affect performance when writing
+  to physical files on slow (spinning) disks.
 
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
