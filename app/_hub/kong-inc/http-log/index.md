@@ -85,14 +85,14 @@ params:
       description: An optional value in milliseconds that defines for how long an idle connection will live before being closed
   extra: |
     **NOTE:** If the `config.http_endpoint` contains a username and password (ex.
-    `http://bob:password@example.com/logs`), then Kong will automatically include
+    `http://bob:password@example.com/logs`), then Kong automatically includes
     a basic-auth `Authorization` header in the log requests.
 
 ---
 
 ## Log Format
 
-Every request will be logged separately in a JSON object, with the following format:
+Every request is logged separately in a JSON object, in the following format:
 
 ```json
 {
@@ -201,28 +201,30 @@ Every request will be logged separately in a JSON object, with the following for
 
 A few considerations on the above JSON object:
 
-* `request` contains properties about the request sent by the client
-* `response` contains properties about the response sent to the client
-* `tries` contains the list of (re)tries (successes and failures) made by the load balancer for this request
-* `route` contains Kong properties about the specific Route requested
-* `service` contains Kong properties about the Service associated with the requested Route
-* `authenticated_entity` contains Kong properties about the authenticated credential (if an authentication plugin has been enabled)
+* `request` contains properties about the request sent by the client.
+* `response` contains properties about the response sent to the client.
+* `tries` contains the list of (re)tries (successes and failures) made by the load balancer for this request.
+* `route` contains Kong properties about the specific Route requested.
+* `service` contains Kong properties about the Service associated with the requested Route.
+* `authenticated_entity` contains Kong properties about the authenticated credential (if an authentication plugin has been enabled).
 * `workspaces` contains Kong properties of the Workspaces associated with the requested Route. **Only in Kong Enterprise version >= 0.34**.
-* `consumer` contains the authenticated Consumer (if an authentication plugin has been enabled)
+* `consumer` contains the authenticated Consumer (if an authentication plugin has been enabled).
 * `latencies` contains some data about the latencies involved:
-  * `proxy` is the time it took for the final service to process the request
-  * `kong` is the internal Kong latency that it took to run all the plugins
+  * `proxy` is the time it took for the final service to process the request.
+  * `kong` is the internal Kong latency that it took to run all the plugins.
   * `request` is the time elapsed between the first bytes were read from the client and after the last bytes were sent to the client. Useful for detecting slow clients.
-* `client_ip` contains the original client IP address
+* `client_ip` contains the original client IP address.
 * `started_at` contains the UTC timestamp of when the request has started to be processed.
 
 ----
 
 ## Kong Process Errors
 
-This logging plugin will only log HTTP request and response data. If you are
+This logging plugin only logs HTTP request and response data. If you are
 looking for the Kong process error file (which is the nginx error file), then
 you can find it at the following path:
-`$KONG_PREFIX/logs/error.log`,
+
+`$KONG_PREFIX/logs/error.log`
+
 where `$KONG_PREFIX` means
 [prefix in the configuration](/{{site.data.kong_latest.release}}/configuration/#prefix).
