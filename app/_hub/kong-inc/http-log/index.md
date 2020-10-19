@@ -203,7 +203,7 @@ A few considerations on the above JSON object:
 
 * `request` contains properties about the request sent by the client.
 * `response` contains properties about the response sent to the client.
-* `tries` contains the list of (re)tries (successes and failures) made by the load balancer for this request.
+* `tries` contains the list of tries and retries (successes and failures) made by the load balancer for this request.
 * `route` contains Kong properties about the specific Route requested.
 * `service` contains Kong properties about the Service associated with the requested Route.
 * `authenticated_entity` contains Kong properties about the authenticated credential (if an authentication plugin has been enabled).
@@ -214,7 +214,7 @@ A few considerations on the above JSON object:
   * `kong` is the internal Kong latency that it took to run all the plugins.
   * `request` is the time elapsed between the first bytes were read from the client and after the last bytes were sent to the client. Useful for detecting slow clients.
 * `client_ip` contains the original client IP address.
-* `started_at` contains the UTC timestamp of when the request has started to be processed.
+* `started_at` contains the UTC timestamp of when the request started to be processed.
 
 ----
 
