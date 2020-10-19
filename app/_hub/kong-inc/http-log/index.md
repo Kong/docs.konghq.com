@@ -1,7 +1,7 @@
 ---
 name: HTTP Log
 publisher: Kong Inc.
-version: 1.0.0
+version: 1.0.x
 
 desc: Send request and response logs to an HTTP server
 description: |
@@ -203,12 +203,12 @@ A few considerations on the above JSON object:
 
 * `request` contains properties about the request sent by the client.
 * `response` contains properties about the response sent to the client.
-* `tries` contains the list of tries and retries (successes and failures) made by the load balancer for this request.
+* `tries` contains the list of tries and retries (successes and failures) made by the load balancer for the request.
 * `route` contains Kong properties about the specific Route requested.
 * `service` contains Kong properties about the Service associated with the requested Route.
-* `authenticated_entity` contains Kong properties about the authenticated credential (if an authentication plugin has been enabled).
+* `authenticated_entity` contains Kong properties about the authenticated credential if an authentication plugin has been enabled.
 * `workspaces` contains Kong properties of the Workspaces associated with the requested Route. **Only in Kong Enterprise version >= 0.34**.
-* `consumer` contains the authenticated Consumer (if an authentication plugin has been enabled).
+* `consumer` contains the authenticated Consumer if an authentication plugin has been enabled.
 * `latencies` contains some data about the latencies involved:
   * `proxy` is the time it took for the final service to process the request.
   * `kong` is the internal Kong latency that it took to run all the plugins.
