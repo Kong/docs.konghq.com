@@ -91,6 +91,12 @@
     ol {
       padding-left: 2rem;
       counter-reset: base;
+
+      li {
+        p {
+          font-size: inherit;
+        }
+      }
     }
 
     ol > li::before {
@@ -104,10 +110,16 @@
       // font sizes
       font-size: inherit;
       margin-left: 0.5rem;
+      list-style: none;
 
       li {
         // avoid ridiculously big spaces between lists elements
         margin-bottom: 0.2rem;
+        list-style-type: disc;
+
+        p {
+          font-size: inherit;
+        }
       }
 
       ul {
