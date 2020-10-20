@@ -71,9 +71,8 @@ For more information, including instructions for switching images, see [Kong for
   * The Correlation ID (`correlation-id`) plugin has a higher priority than in CE. This is an incompatible change with CE in case `correlation-id` is configured against a Consumer.
 
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
-
-## Deprecated
-Kong Brain is deprecated and not available in Kong Enterprise version 2.1.4.0 and later.
+  
+  * Kong Brain is deprecated and not available in Kong Enterprise version 2.1.4.0 and later.
 
 ## Changelog
 For a complete list of features, fixes, and changes, see the Kong Enterprise [Changelog](/enterprise/changelog/) for versions 2.1.x and 2.1.0.0 (beta).
