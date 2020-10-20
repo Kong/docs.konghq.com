@@ -158,7 +158,7 @@ In the following steps, replace `<your-password>` with a secure password.
     ```
 3. Create secret:
     ```
-    $ oc create secret generic kong-session-config -n kong --from-file=admin_gui_session_conf=<manager-config-filename> --from-file=portal_session_conf=<portal-config-filename>
+    $ oc create secret generic kong-session-config -n kong --from-file=admin_gui_session_conf --from-file=portal_session_conf
     ```
 {% endnavtab %}
 {% endnavtabs %}
