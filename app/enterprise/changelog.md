@@ -10,23 +10,25 @@ skip_read_time: true
 
 ### Fixes
 
-#### Kong Manager
-
-* Added path to service on display page.
-
-### Fixes
-
 #### Kong Gateway
 
 * Fixed upsert for RBAC users using Admin API.
 * Allow PostgreSQL keepalive time to be configurable.
 
-#### Developer Portal
+#### Kong Manager
+
+* Added path to service on display page.
+
+#### Kong Developer Portal
 
 * Fixed app ``Save`` button to display as ``Save`` instead of ``Edit``.
 * Added `plugin.service` check in `app_reg` helper.
 * Fixed application registration issue rendered unusable with certain plugin configurations.
 * Fixed sidebar links with "."
+
+### Deprecated
+
+* Kong Brain is deprecated and not available in Kong Enterprise version 2.1.4.0 and later.
 
 ## 2.1.3.1
 **Release Date** 2020/08/31
