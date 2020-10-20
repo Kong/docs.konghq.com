@@ -46,12 +46,12 @@ Save the license file temporarily to disk with filename `license` (no file exten
 {% navtabs %}
 {% navtab kubectl %}
 ```
-$ kubectl create secret generic kong-enterprise-license --from-file=./license -n kong
+$ kubectl create secret generic kong-enterprise-license -n kong --from-file=./license
 ```
 {% endnavtab %}
 {% navtab OpenShift oc %}
 ```
-$ oc create secret generic kong-enterprise-license --from-file=./license -n kong
+$ oc create secret generic kong-enterprise-license -n kong --from-file=./license
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -80,7 +80,7 @@ Set up Docker credentials to allow Kubernetes nodes to pull down the Kong Enterp
 {% navtab kubectl %}
 Set up the credentials:
 ```
-$ kubectl create secret -n kong docker-registry kong-enterprise-edition-docker \
+$ kubectl create secret docker-registry kong-enterprise-edition-docker -n kong \
     --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \
     --docker-username=<your-bintray-username> \
     --docker-password=<your-bintray-api-key>
@@ -89,7 +89,7 @@ $ kubectl create secret -n kong docker-registry kong-enterprise-edition-docker \
 {% navtab OpenShift oc %}
 Set up the credentials:
 ```
-$ oc create secret -n kong docker-registry kong-enterprise-edition-docker \
+$ oc create secret docker-registry kong-enterprise-edition-docker -n kong \
     --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \      
     --docker-username=<your-bintray-username> \
     --docker-password=<your-bintray-api-key>
@@ -102,7 +102,7 @@ $ oc create secret -n kong docker-registry kong-enterprise-edition-docker \
 {% navtab kubectl %}
 (Optional) Create a password for the super admin:
 ```
-kubectl create secret generic kong-enterprise-superuser-password  -n kong --from-literal=password=<your-password>
+kubectl create secret generic kong-enterprise-superuser-password -n kong --from-literal=password=<your-password>
 ```
 ⚠️**Important:** Though not required, this is recommended if you want to use RBAC, as it cannot be done after initial setup.
 {% endnavtab %}
@@ -160,13 +160,24 @@ In the following steps, replace `<your-password>` with a secure password.
     |Parameter      | Value                         |
     |---------------|-------------------------------|
     |`enterprise.enabled` | `true` |
+    |`enterprise.rbac.enabled` | (Optional) Set to `true` to enable RBAC. Requires seeding the super admin password, see above. |
     |`env.database` | `"postgres"` or `"cassandra"` |
+    |`env.pg_host` | (If using Postgres) Set to host of the Postgres server (only if `postgresql.enabled` is `false`). |
+    |`env.pg_port` | (If using Postgres) Set to port of the Postgres server (only if `postgresql.enabled` is `false`). |
+    |`env.pg_user` | (If using Postgres) Set to Postgres user (default `kong`). When `postgresql.enabled` is `true` this has to match `postgresql.postgresqlUsername`. |
+    |`env.pg_password` | (If using Postgres) Set to Postgres user's password. When `postgresql.enabled` is `true` this has to match `postgresql.postgresqlPassword`. |
+    |`env.pg_database` | (If using Postgres) Set to Postgres database name (default `kong`). When `postgresql.enabled` is `true` this has to match `postgresql.postgresqlDatabase`. |
     |`env.password.valueFrom.secretKeyRef.name` | Name of secret that holds the super admin password. In the example above, this is set to `kong-enterprise-superuser-password`. |
     |`env.password.valueFrom.secretKeyRef.key` | The type of secret key used for authentication. If you followed the default settings in the example above, this is `password`. |
     |`image.repository` | The Docker repository. In this case, `kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition`. |
-    |`image.tag` | The Docker image tag you want to pull down, e.g. `"1.5.0.2-alpine"`. |
+    |`image.tag` | The Docker image tag you want to pull down, e.g. `"1.5.0.6-alpine"`. |
+    |`image.pullSecrets` | Name of secret that holds the Docker repository credentials. In the example above, this is `kong-enterprise-edition-docker`. |
     |`ingressController.enabled` | Set to `true` if you want to use the Kong Ingress Controller, or `false` if you don't want to install it. |
     |`admin.enabled` | Set to `true` to enable the Admin API, which is required for the Kong Manager. |
+    |`postgresql.enabled` | Set to `true` to deploy a Postgres database along with Kong. |
+    |`postgresql.postgresqlUsername` | Set Postgres user (e.g. `kong`). |
+    |`postgresql.postgresqlPassword` | Set Postgres user's password. |
+    |`postgresql.postgresqlDatabase` | Set Postgres database name (e.g. `kong`). |
 
 3. In the `Kong Enterprise` section, enable Kong Manager (`manager`) and Kong Dev Portal (`portal`).
 
@@ -203,7 +214,7 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
 {% navtab kubectl %}
 1. Run:
     ```
-    $ helm install  my-kong kong/kong --namespace kong --values ~/values.yaml
+    $ helm install my-kong kong/kong -n kong --values ./values.yaml
     ```
     This may take some time.
 
@@ -231,7 +242,7 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
 {% navtab OpenShift oc %}
 1. Run:
     ```
-    $ helm install  my-kong kong/kong --namespace kong --values ~/values.yaml
+    $ helm install my-kong kong/kong -n kong --values ./values.yaml
     ```
     This may take some time.
 
@@ -248,7 +259,7 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
 {% navtab kubectl %}
 1. Run:
     ```
-    $ kubectl get svc -n kong my-kong-kong-admin --output=jsonpath='{.status.loadBalancer.ingress[0].ip}'
+    $ kubectl get svc my-kong-kong-admin -n kong --output=jsonpath='{.status.loadBalancer.ingress[0].ip}'
     ```
 
     <div class="alert alert-warning">
@@ -275,7 +286,7 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
 
 4. Update Kong to use the changed `values.yaml`:
     ```
-    $ helm upgrade my-kong kong/kong --namespace kong --values ~/values.yaml
+    $ helm upgrade my-kong kong/kong -n kong --values ./values.yaml
     ```
 
 6. After the upgrade is complete, run:
@@ -294,7 +305,7 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
 {% navtab OpenShift oc %}
 1. Run:
     ```
-    $ oc get svc -n kong my-kong-kong-admin --output=jsonpath='{.status.loadBalancer.ingress[0].ip}'
+    $ oc get svc my-kong-kong-admin -n kong --output=jsonpath='{.status.loadBalancer.ingress[0].ip}'
     ```
 
 2. Copy the IP address from the output, then edit the `values.yaml` file to add the following line under `env` section:
@@ -313,7 +324,7 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
 
 4. Update Kong to use the changed `values.yaml`:
     ```
-    $ helm upgrade  my-kong kong/kong --namespace kong --values ~/values.yaml
+    $ helm upgrade my-kong kong/kong -n kong --values ./values.yaml
     ```
 
 6. After the upgrade is complete, run:
