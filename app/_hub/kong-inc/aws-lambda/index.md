@@ -55,7 +55,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
-  protocols: ["http", "https", "grpc", "grpcs"]
+  protocols: ["http", "https"]
   dbless_compatible: yes
   config:
     - name: aws_key
