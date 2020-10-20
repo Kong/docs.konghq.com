@@ -63,10 +63,10 @@ is a Lua table, and contains values defined by your users, according to your
 plugin's schema (described in the `schema.lua` module). More on plugins schemas
 in the [next chapter]({{page.book.next}}).
 
-Note that UDP streams don't have real "connections".  Kong will consider all
+Note that UDP streams don't have real connections.  Kong will consider all
 packets with the same origin and destination host and port as a single
-"connection".  After a configurable time without any packet, the connection is
-considered "closed" and the `:log()` function is executed. 
+connection.  After a configurable time without any packet, the connection is
+considered closed and the `:log()` function is executed. 
 
 [HTTP Module]: https://github.com/openresty/lua-nginx-module
 [Stream Module]: https://github.com/openresty/stream-lua-nginx-module
