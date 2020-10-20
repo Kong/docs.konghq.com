@@ -7,8 +7,8 @@ To install and run {{site.mesh_product_name}} on RedHat (**x86_64**), execute
 the following steps:
 
 * [1. Download {{site.mesh_product_name}}](#1-download-kong-mesh)
-* [2. Configure the license](#2-configure-the-license)
-* [3. Follow Kuma instructions](#3-follow-kuma-instructions)
+* [2. Run {{site.mesh_product_name}}](#2-run-kong-mesh)
+* [3. Verify the Installation](#3-verify-the-installation)
 
 Finally, you can follow the [Quickstart](#4-quickstart) to take it from here and continue your {{site.mesh_product_name}} journey.
 

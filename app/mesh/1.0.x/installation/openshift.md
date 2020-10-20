@@ -3,14 +3,12 @@ title: Kong Mesh with OpenShift
 no_search: true
 ---
 
-## OpenShift
-
 To install and run {{site.mesh_product_name}} on OpenShift, execute the
 following steps:
 
 * [1. Download {{site.mesh_product_name}}](#1-download-kong-mesh)
-* [2. Configure the license](#2-configure-the-license)
-* [3. Follow Kuma instructions](#3-follow-kuma-instructions)
+* [2. Run {{site.mesh_product_name}}](#2-run-kong-mesh)
+* [3. Verify the Installation](#3-verify-the-installation)
 
 Finally, you can follow the [Quickstart](#4-quickstart) to take it from here
 and continue your {{site.mesh_product_name}} journey.
@@ -18,7 +16,7 @@ and continue your {{site.mesh_product_name}} journey.
 ## Prerequisites
 You have a license for {{site.mesh_product_name}}.
 
-### 1. Download {{site.mesh_product_name}}
+## 1. Download {{site.mesh_product_name}}
 
 To run {{site.mesh_product_name}} on OpenShift, you need to download a
 compatible version of {{site.mesh_product_name}} for the machine from which
