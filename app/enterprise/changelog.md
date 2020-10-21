@@ -26,9 +26,9 @@ skip_read_time: true
 * Fixed application registration issue rendered unusable with certain plugin configurations.
 * Fixed sidebar links with "."
 
-### Deprecated
+### Deprecated Features
 
-* Kong Brain is deprecated and not available in Kong Enterprise version 2.1.4.0 and later.
+* Kong Brain is deprecated and not available for use in Kong Enterprise.
 
 ## 2.1.3.1
 **Release Date** 2020/08/31
