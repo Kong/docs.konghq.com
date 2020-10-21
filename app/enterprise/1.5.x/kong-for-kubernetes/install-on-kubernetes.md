@@ -160,17 +160,17 @@ In the following steps, replace `<your-password>` with a secure password.
     |Parameter      | Value                         |
     |---------------|-------------------------------|
     |`enterprise.enabled` | `true` |
-    |`enterprise.rbac.enabled` | (Optional) Set to `true` to enable RBAC. Requires seeding the super admin password, see above. |
+    |`enterprise.rbac.enabled` | (Optional) Set to `true` to enable RBAC. Requires seeding the super admin password; see [above](#step-5-seed-the-super-admin-password). |
     |`env.database` | `"postgres"` or `"cassandra"` |
     |`env.pg_host` | (If using Postgres) Set to host of the Postgres server (only if `postgresql.enabled` is `false`). |
     |`env.pg_port` | (If using Postgres) Set to port of the Postgres server (only if `postgresql.enabled` is `false`). |
-    |`env.pg_user` | (If using Postgres) Set to Postgres user (default `kong`). When `postgresql.enabled` is `true` this has to match `postgresql.postgresqlUsername`. |
-    |`env.pg_password` | (If using Postgres) Set to Postgres user's password. When `postgresql.enabled` is `true` this has to match `postgresql.postgresqlPassword`. |
-    |`env.pg_database` | (If using Postgres) Set to Postgres database name (default `kong`). When `postgresql.enabled` is `true` this has to match `postgresql.postgresqlDatabase`. |
+    |`env.pg_user` | (If using Postgres) Set to the Postgres user (default `kong`). When `postgresql.enabled` is `true`, this has to match `postgresql.postgresqlUsername`. |
+    |`env.pg_password` | (If using Postgres) Set to the Postgres user's password. When `postgresql.enabled` is `true`, this has to match `postgresql.postgresqlPassword`. |
+    |`env.pg_database` | (If using Postgres) Set to the Postgres database name (default `kong`). When `postgresql.enabled` is `true`, this has to match `postgresql.postgresqlDatabase`. |
     |`env.password.valueFrom.secretKeyRef.name` | Name of secret that holds the super admin password. In the example above, this is set to `kong-enterprise-superuser-password`. |
     |`env.password.valueFrom.secretKeyRef.key` | The type of secret key used for authentication. If you followed the default settings in the example above, this is `password`. |
     |`image.repository` | The Docker repository. In this case, `kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition`. |
-    |`image.tag` | The Docker image tag you want to pull down, e.g. `"1.5.0.6-alpine"`. |
+    |`image.tag` | The Docker image tag you want to pull down, e.g. `"{{page.kong_latest.version}}-alpine"`. |
     |`image.pullSecrets` | Name of secret that holds the Docker repository credentials. In the example above, this is `kong-enterprise-edition-docker`. |
     |`ingressController.enabled` | Set to `true` if you want to use the Kong Ingress Controller, or `false` if you don't want to install it. |
     |`admin.enabled` | Set to `true` to enable the Admin API, which is required for the Kong Manager. |
