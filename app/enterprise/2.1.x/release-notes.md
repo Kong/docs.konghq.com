@@ -74,7 +74,7 @@ For more information, including instructions for switching images, see [Kong for
   
 ## Deprecated Features
 
-Kong Brain is deprecated and not available in Kong Enterprise version 2.1.4.0 and later.
+Kong Brain is deprecated and not available for use in Kong Enterprise version 2.1.4.0 and later.
 
 ## Changelog
 
