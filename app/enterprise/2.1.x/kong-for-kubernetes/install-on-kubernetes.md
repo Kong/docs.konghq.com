@@ -164,13 +164,14 @@ In the following steps, replace `<your-password>` with a secure password.
 {% endnavtabs %}
 ## Step 7. Prepare Kong's configuration file
 
-1. Create a `values.yaml` file based on the sample in the [Kong charts repository](https://github.com/Kong/charts/blob/main/charts/kong/values.yaml). This file sets all the necessary parameters for your Kong environment.
+1. Create a `values.yaml` file for Helm based on the template in the [Kong charts repository](https://github.com/Kong/charts/blob/main/charts/kong/values.yaml). This file contains all the necessary parameters for your Kong deployment. As an example, [this values file](https://github.com/Kong/charts/blob/main/charts/kong/example-values/full-k4k8s-with-kong-enterprise.yaml) enables most Kong Enterprise features.
 
 2. Minimally, for setting up Kong Enterprise on Kubernetes, you will need to set the following parameters:
 
     |Parameter      | Value                         |
     |---------------|-------------------------------|
     |`enterprise.enabled` | `true` |
+    |`enterprise.portal.enabled` | (Optional) Set to `true` to enable the Kong Developer Portal. Find out more about it [here](https://docs.konghq.com/enterprise/latest/developer-portal/). |
     |`enterprise.rbac.enabled` | (Optional) Set to `true` to enable RBAC. Requires seeding the super admin password; see [above](#step-5-seed-the-super-admin-password). |
     |`env.database` | `"postgres"` or `"cassandra"` |
     |`env.pg_host` | (If using Postgres) Set to host of the Postgres server (only if `postgresql.enabled` is `false`). |
@@ -183,8 +184,8 @@ In the following steps, replace `<your-password>` with a secure password.
     |`image.repository` | The Docker repository. In this case, `kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition`. |
     |`image.tag` | The Docker image tag you want to pull down, e.g. `"{{page.kong_latest.version}}-alpine"`. |
     |`image.pullSecrets` | Name of secret that holds the Docker repository credentials. In the example above, this is `kong-enterprise-edition-docker`. |
-    |`ingressController.enabled` | Set to `true` if you want to use the Kong Ingress Controller, or `false` if you don't want to install it. |
     |`admin.enabled` | Set to `true` to enable the Admin API, which is required for the Kong Manager. |
+    |`ingressController.enabled` | Set to `true` if you want to use the Kong Ingress Controller, or `false` if you don't want to install it. |
     |`postgresql.enabled` | Set to `true` to deploy a Postgres database along with Kong. |
     |`postgresql.postgresqlUsername` | Set Postgres user (e.g. `kong`). |
     |`postgresql.postgresqlPassword` | Set Postgres user's password. |
