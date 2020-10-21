@@ -21,7 +21,7 @@ Bug fixes and patches will be issued against the latest version of Kong Enterpri
 
 | Version  | Released Date | End of Support |
 |:---------|:-------------:|---------------:|
-|  2.1.3.x |  2020-08-25   |   2021-08-24   |
+|  2.1.x   |  2020-08-25   |   2021-08-24   |
 |  1.5.0.x |  2020-04-10   |   2021-04-09   |    
 |  1.3.0.x |  2019-11-05   |   2020-11-04   |
 |   0.36   |  2019-08-05   |   2020-08-04   |
