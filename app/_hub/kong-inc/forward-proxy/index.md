@@ -54,7 +54,7 @@ params:
       value_in_examples: http
       description: |
         The proxy scheme to use when connecting. Currently only `http` is supported.
-    - name: proxy_scheme
+    - name: https_verify
       required: true
       default: false
       value_in_examples: false
