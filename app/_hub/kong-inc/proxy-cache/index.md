@@ -54,7 +54,7 @@ params:
       default: '`["text/plain", "application/json"]`'
       value_in_examples:
       description: |
-        Upstream response content types considered cacheable. The plugin performs an exact match against each specified value; for example, if the upstream is expected to respond with a `application/json; charset=utf-8` content-type, the plugin configuration must contain said value or a `Bypass` cache status will be returned.
+        Upstream response content types considered cacheable. The plugin performs an **exact match** against each specified value; for example, if the upstream is expected to respond with a `application/json; charset=utf-8` content-type, the plugin configuration must contain said value or a `Bypass` cache status is returned.
     - name: vary_headers
       required: false
       default:
@@ -97,6 +97,11 @@ params:
       value_in_examples:
       description: |
         The name of the shared dictionary in which to hold cache entities when the memory strategy is selected. Note that this dictionary currently must be defined manually in the Kong Nginx template.
+  extra: |
+
+    **Warning:** The `content_type` requires an exact match. For example, if your Upstream expects
+    `application/json; charset=utf-8` and the `config.content_type` value is only `application/json`
+    (a partial match), then the proxy cache is bypassed.
 
 ---
 ### Strategies
