@@ -95,6 +95,24 @@ params:
       value_in_examples:
       description: |
         Port to use for Redis connection when the `redis` strategy is defined.
+    - name: redis.ssl
+      required: false
+      default: false
+      value_in_examples:
+      description: |
+        If set to true, then uses SSL to connect to redis.
+    - name: redis.ssl_verify
+      required: false
+      default: false
+      value_in_examples:
+      description: |
+        If set to true, then verifies the validity of the server SSL certificate. Note that you need to configure the [lua_ssl_trusted_certificate](https://docs.konghq.com/enterprise/latest/property-reference/#lua_ssl_trusted_certificate) to specify the CA (or server) certificate used by your redis server. You may also need to configure [lua_ssl_verify_depth accordingly](https://docs.konghq.com/enterprise/latest/property-reference/#lua_ssl_verify_depth).
+    - name: redis.server_name
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        Specifies the server name for the new TLS extension Server Name Indication (SNI) when connecting over SSL.
     - name: redis.timeout
       required: semi
       default: 2000
