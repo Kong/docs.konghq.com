@@ -235,22 +235,43 @@ $ kumactl config control-planes add --name=XYZ --address=http://{address-to-kong
 You will notice that {{site.mesh_product_name}} automatically creates a `Mesh`
 entity with the name `default`.
 
-<div class="alert alert-warning">
-<i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
-Kuma explicitly specifies a UID for <code>kuma-dp</code> to avoid capturing
-traffic from <code>kuma-dp</code> itself. For that reason, special privilege has
-to be granted to the application namespace:
-<pre class=highlight>
-<code>$ oc adm policy add-scc-to-user anyuid -z APPLICATION_SERVICE_ACCOUNT -n APPLICATION_NAMESPACE</code></pre>
+<div class="alert alert-ee blue">
+<strong>Note:</strong> {{site.mesh_product_name}} explicitly specifies a UID
+for <code>kuma-dp</code> sidecar to avoid capturing traffic from
+<code>kuma-dp</code> itself. For that reason, a <code>nonroot</code>
+<a href="https://docs.openshift.com/container-platform/latest/authentication/managing-security-context-constraints.html">Security Context Constraint</a>
+has to be granted to the application namespace:
+
+<pre>
+<code>$ oc adm policy add-scc-to-group nonroot system:serviceaccounts:&lt;app-namespace&gt;</code></pre>
+
+If the namespace is not configured properly, you will see the following error
+on the <code>Deployment</code> or <code>DeploymentConfig</code>:
+
+<pre>
+<code>'pods "kuma-demo-backend-v0-cd6b68b54-" is forbidden: unable to validate against any security context constraint:
+[spec.containers[1].securityContext.securityContext.runAsUser: Invalid value: 5678: must be in the ranges: [1000540000, 1000549999]]'</code></pre>
+
 </div>
 
 ## 4. Quickstart
 
 Congratulations! You have successfully installed {{site.mesh_product_name}}.
 
-After installation, the Kuma quickstart documentation is fully compatible with
-{{site.mesh_product_name}}, except that you are running {{site.mesh_product_name}}
-binaries instead of the vanilla Kuma ones.
+<div class="alert alert-ee blue">
+<strong>Note:</strong> Before running the Kuma Demo in the Quickstart guide,
+run the following command:
+
+<pre>
+<code>$ oc adm policy add-scc-to-group anyuid system:serviceaccounts:kuma-demo</code></pre>
+
+One of the components in the demo requires root access, therefore it uses the
+<code>anyuid</code> instead of the <code>nonroot</code> permission.
+</div>
+
+After installation and the above command, the Kuma quickstart documentation
+is fully compatible with {{site.mesh_product_name}}, except that you are
+running {{site.mesh_product_name}} containers instead of the vanilla Kuma ones.
 
 To start using {{site.mesh_product_name}}, see the
 [quickstart guide for Kubernetes deployments](https://kuma.io/docs/latest/quickstart/kubernetes/).
