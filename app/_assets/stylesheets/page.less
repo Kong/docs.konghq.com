@@ -828,12 +828,15 @@ Generic Styling for Desktop
   table {
     display: block;
     max-width: 100%;
-    border-collapse: collapse;
     font-size: 14px;
     overflow-x: auto;
+    border: none;
+    border-collapse: collapse;
+    margin-top: 1.5em;
 
     code {
       white-space: normal;
+      font-size: 13px;
     }
   }
 
@@ -841,20 +844,21 @@ Generic Styling for Desktop
     font-size: 14px;
   }
 
-  /* Zebra striping */
-
-  tr:nth-of-type(odd) {
-    background: @gray-light;
+  tr, th, td {
+    border: none;
   }
 
   th {
-    font-weight: bold;
+    font-weight: 600;
+    color: @black-80;
+    background-color: @grey-100;
   }
 
   td,
   th {
-    padding: 6px;
-    border: 1px solid #ccc;
+    padding: 8px 16px 8px;
+    border-bottom: 1px solid @grey-300;
+    border-top: 1px solid @grey-300;
   }
 
   @media only screen and (max-width: 1099px) {
@@ -876,13 +880,14 @@ Generic Styling for Desktop
       }
 
       tr {
-        border: 1px solid #ccc;
+        border-top: 1px solid @grey-300;
+        border-bottom: 1px solid @grey-300;
       }
 
       td {
         /* Behave  like a "row" */
         border: none;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid @grey-300;
         position: relative;
       }
 
@@ -892,6 +897,7 @@ Generic Styling for Desktop
 
         content: attr(data-label);
         font-size: 14px;
+        font-weight: 600;
       }
     }
   }
