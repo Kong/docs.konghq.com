@@ -75,7 +75,7 @@ configuration editing can be disabled by KongMap configuration, or managed with 
 Full documentation is available here: [https://github.com/yesinteractive/kong-map/](https://github.com/yesinteractive/kong-map/)
 
 ## Compatibility ## 
-KongMap supports both Kong Open Source and Kong Enterprise Clusters greater than version 1.5.
+KongMap supports both Kong Open Source and Kong Enterprise Clusters greater than version 1.3 and supports both DB and Non-DB (dbless) Kong configurations. KongMap also supports Kong for Kubernetes Ingress Controller versions greater than 0.5 (In Kong for Kubernetes, the Ingress Controller's proxy container must have its Admin API exposed in some fashion.)
 
 ## Docker Installation ##
 
@@ -93,7 +93,7 @@ The connections to your Kong clusters are defined using JSON. The below example 
     "kong_ent": "true",
     "kong_ent_token": "admin",
     "kong_ent_token_name": "kong-admin-token",
-    "kong_ent_manager_url": "http://<kongmanager_url:8002>"
+    "kong_ent_manager_url": "http://kongmanager_url:8002"
   },
   "my kong open source cluster": {
     "kong_admin_api_url": "http://kongapi_url:8001",
@@ -121,8 +121,8 @@ Run the container with the following command. Set the ports to your preferred ex
 
 ```
 $ docker run -d \
-  -e "KONGMAP_CLUSTER_JSON=$KONG_CLUSTERS" \
-  -e "KONGMAP_URL=http://url_to_kongmap" \
+  -e "KONGMAP_CLUSTERS_JSON=$KONG_CLUSTERS" \
+  -e "KONGMAP_URL=http://url_to_kongmap:8100" \
   -p 8100:80 \
   -p 8143:443 \
   yesinteractive/kongmap
