@@ -164,14 +164,18 @@ In the following steps, replace `<your-password>` with a secure password.
 {% endnavtabs %}
 ## Step 7. Prepare Kong's configuration file
 
-1. Create a `values.yaml` file for Helm based on the template in the [Kong charts repository](https://github.com/Kong/charts/blob/main/charts/kong/values.yaml). This file contains all the necessary parameters for your Kong deployment. As an example, [this values file](https://github.com/Kong/charts/blob/main/charts/kong/example-values/full-k4k8s-with-kong-enterprise.yaml) enables most Kong Enterprise features.
+1. Create a `values.yaml` file for Helm based on the template in the [Kong charts repository](https://github.com/Kong/charts/blob/main/charts/kong/values.yaml). This file contains all the possible parameters for your Kong deployment. 
+
+    You can also base your configuration on a sample Kong Enterprise `values.yaml` 
+    file. For example, [this values file](https://github.com/Kong/charts/blob/main/charts/kong/example-values/full-k4k8s-with-kong-enterprise.yaml) 
+    enables most Kong Enterprise features.
 
 2. Minimally, for setting up Kong Enterprise on Kubernetes, you will need to set the following parameters:
 
     |Parameter      | Value                         |
     |---------------|-------------------------------|
     |`enterprise.enabled` | `true` |
-    |`enterprise.portal.enabled` | (Optional) Set to `true` to enable the Kong Developer Portal. Find out more about it [here](https://docs.konghq.com/enterprise/latest/developer-portal/). |
+    |`enterprise.portal.enabled` | (Optional) Set to `true` to enable the [Kong Developer Portal](/enterprise/{{page.kong_version}}/developer-portal/). |
     |`enterprise.rbac.enabled` | (Optional) Set to `true` to enable RBAC. Requires seeding the super admin password; see [above](#step-5-seed-the-super-admin-password). |
     |`env.database` | `"postgres"` or `"cassandra"` |
     |`env.pg_host` | (If using Postgres) Set to host of the Postgres server (only if `postgresql.enabled` is `false`). |
