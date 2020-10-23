@@ -52,7 +52,7 @@ For more information, see the [Vitals Overview](/enterprise/{{page.kong_version}
 
 For the {{site.ee_product_name}}, Kong for Kubernetes Enterprise (K4K8s) now uses the `kong-enterprise-edition` image, which works as a drop-in replacement for the `kong-enterprise-k8s` image used in earlier versions.
 
-For more information, including instructions for switching images, see [Kong for Kubernetes Deployment Options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options/).
+For more information, including instructions for switching images, see [Kong for Kubernetes Deployment Options](/enterprise/{{page.kong_version}}/deployment/kubernetes-deployment-options).
 
 ## Known Issues and Workarounds
 
@@ -71,7 +71,7 @@ For more information, including instructions for switching images, see [Kong for
   * The Correlation ID (`correlation-id`) plugin has a higher priority than in CE. This is an incompatible change with CE in case `correlation-id` is configured against a Consumer.
 
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
-  
+
 ## Deprecated Features
 
 Kong Brain is deprecated and not available for use in Kong Enterprise version 2.1.4.0 and later.

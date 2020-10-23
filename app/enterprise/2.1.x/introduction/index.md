@@ -43,7 +43,7 @@ Kong Immunity is an add-on that uses machine learning to autonomously identify s
 
 ### Kong for Kubernetes
 
-Kong for Kubernetes Enterprise (K4K8S) is a Kubernetes Ingress Controller. A Kubernetes Ingress Controller is a proxy that exposes Kubernetes services from applications (for example, Deployments, RepliaSets) running on a Kubernetes cluster to client applications running outside of the cluster. The intent of an Ingress Controller is to provide a single point of control for all incoming traffic into the Kubernetes cluster. For more information, see [_Kong for Kubernetes_](https://docs.konghq.com/enterprise/{{page.kong_version}}/kong-for-kubernetes/).
+Kong for Kubernetes Enterprise (K4K8S) is a Kubernetes Ingress Controller. A Kubernetes Ingress Controller is a proxy that exposes Kubernetes services from applications (for example, Deployments, RepliaSets) running on a Kubernetes cluster to client applications running outside of the cluster. The intent of an Ingress Controller is to provide a single point of control for all incoming traffic into the Kubernetes cluster. For more information, see [_Kong for Kubernetes_](/enterprise/{{page.kong_version}}/deployment/kong-for-kubernetes-enterprise).
 
 ### Kong Manager
 
