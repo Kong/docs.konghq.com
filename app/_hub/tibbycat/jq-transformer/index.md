@@ -47,13 +47,13 @@ kong_version_compatibility:
   community_edition:
     compatible:
       - 0.12.x
-	  - 0.14.x
+      - 0.14.x
 #    incompatible:
   enterprise_edition:
     compatible:
       - 1.3.x
-	  - 1.5.x
-	  - 2.1.x
+      - 1.5.x
+      - 2.1.x
 #    incompatible:
 
 
