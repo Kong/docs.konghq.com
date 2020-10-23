@@ -15,7 +15,7 @@ When generating a Vitals report, you can:
 
 
 ## Prerequisites
-   * InfluxDB database
+   * InfluxDB database. See the [Vitals with InfluxDB](https://docs.konghq.com/enterprise/{{page.kong_version}}/vitals/vitals-influx-strategy/) topic for more information.  
 
 **Important**: The Vitals Reports feature is not compatible with a Postgres or Cassandra database. If using one of these databases, the Reports button will not display on the Vitals view. 
 
