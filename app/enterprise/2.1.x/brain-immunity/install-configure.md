@@ -1,6 +1,12 @@
 ---
 title: Kong Brain and Kong Immunity Installation and Configuration
 ---
+
+<div class="alert alert-warning">
+<i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+<strong>Important:</strong> Kong Brain is deprecated and not available for use in Kong Enterprise version 2.1.4.0 and later.
+</div>
+
 ## Introduction
 Kong Brain (Brain) and Kong Immunity (Immunity) are installed on Kong Enterprise, either on Kubernetes or Docker, as defined below. The Collector App and Collector Plugin enable Brain and Immunity to communicate with Kong Enterprise. 
 
