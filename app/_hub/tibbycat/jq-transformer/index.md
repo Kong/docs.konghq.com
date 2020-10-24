@@ -148,8 +148,7 @@ params: # Metadata about your plugin
 ###############################################################################
 # BEGIN MARKDOWN CONTENT
 ---
-
-<h2>Quick install</h2>
-<pre>$ sudo luarocks install kong-plugin-jq-transformer</pre>
+##Quick install
+$ sudo luarocks install kong-plugin-jq-transformer
 
 More information is available on [GitHub](https://github.com/tibbycat/kong-jq-transformer).
