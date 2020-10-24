@@ -10,7 +10,10 @@ description: |
   * Transform the request or response to simplify the interface to your end service (for example, Confluent's Kafka REST proxy)
   * Remove sensitive, private information from your response payload.
   * Reduce your response payload size.
-  NB: Content-Type header will probably affect your results. (application/.*json is probably the safest)
+
+  <div class="alert alert-warning">
+    <strong>Note: </strong> The Content-Type header will probably affect your results (`application/.*json` is probably the safest).
+  </div>
 
 #support_url:
   # (Optional) A specific URL of your own for this extension.
