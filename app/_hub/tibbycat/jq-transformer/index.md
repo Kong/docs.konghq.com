@@ -154,4 +154,4 @@ params: # Metadata about your plugin
 # BEGIN MARKDOWN CONTENT
 ---
 
-More information & installation instructions on https://github.com/tibbycat/kong-jq-transformer
+More information and installation instructions are available on [GitHub](https://github.com/tibbycat/kong-jq-transformer).
