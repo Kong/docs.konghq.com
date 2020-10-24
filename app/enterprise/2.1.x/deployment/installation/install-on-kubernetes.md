@@ -1,6 +1,6 @@
 ---
 title: Installing Kong Enterprise on Kubernetes
-redirect_from: /enteprise/2.1.x/kong-for-kubernetes/install-on-kubernetes
+redirect_from: "/enteprise/2.1.x/kong-for-kubernetes/install-on-kubernetes"
 ---
 
 ## Introduction
