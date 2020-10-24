@@ -4,7 +4,7 @@ publisher: tibbycat
 categories:
   - transformations
 type: plugin
-desc: Extends kong with a wrapper for the amazing ./jq JSON processor
+desc: Extends Kong with a wrapper for the amazing ./jq JSON processor
 description: |
   Trivially transforms your request or response body with the https://stedolan.github.io/jq/ processor if the JSON payloads are slightly mis-aligned, without modifying code in your end service.
   * Transform the request & response to simplify the interface to your end service (eg Confluent's kafka REST proxy)
@@ -152,4 +152,3 @@ params: # Metadata about your plugin
 ---
 
 More information & installation instructions on https://github.com/tibbycat/kong-jq-transformer
-
