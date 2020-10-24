@@ -149,4 +149,7 @@ params: # Metadata about your plugin
 # BEGIN MARKDOWN CONTENT
 ---
 
-More information and installation instructions are available on [GitHub](https://github.com/tibbycat/kong-jq-transformer).
+Quick install
+$ sudo luarocks install kong-plugin-jq-transformer
+
+More information is available on [GitHub](https://github.com/tibbycat/kong-jq-transformer).
