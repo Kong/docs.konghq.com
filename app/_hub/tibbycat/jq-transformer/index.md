@@ -89,7 +89,7 @@ params: # Metadata about your plugin
   consumer_id: false
     # Boolean - whether this plugin can be applied to a Consumer.
     # Affects generation of examples and config table.
-  route_id:
+  route_id: true
     # whether this plugin can be applied to a Route.
     # Affects generation of examples and config table.
   protocols:
