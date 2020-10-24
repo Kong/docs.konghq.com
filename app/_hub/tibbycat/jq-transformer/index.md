@@ -83,7 +83,7 @@ kong_version_compatibility:
 
 params: # Metadata about your plugin
   name: jq-transformer
-  service_id:
+  service_id: true 
     # Boolean - whether this plugin can be applied to a Service.
     # Affects generation of examples and config table.
   consumer_id:
