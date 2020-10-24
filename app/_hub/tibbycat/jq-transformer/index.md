@@ -86,7 +86,7 @@ params: # Metadata about your plugin
   service_id: true 
     # Boolean - whether this plugin can be applied to a Service.
     # Affects generation of examples and config table.
-  consumer_id:
+  consumer_id: false
     # Boolean - whether this plugin can be applied to a Consumer.
     # Affects generation of examples and config table.
   route_id:
