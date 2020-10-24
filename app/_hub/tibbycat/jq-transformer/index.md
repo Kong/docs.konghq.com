@@ -8,7 +8,7 @@ desc: Extends Kong with a wrapper for the amazing ./jq JSON processor
 description: |
   Trivially transforms your request or response body with the [jq processor](https://stedolan.github.io/jq/) if the JSON payloads are slightly misaligned, without modifying code in your end service:
   * Transform the request or response to simplify the interface to your end service (for example, Confluent's Kafka REST proxy)
-  * Remove sensitive(/private) information from your response payload.
+  * Remove sensitive, private information from your response payload.
   * Reduce your response payload size.
   NB: Content-Type header will probably affect your results. (application/.*json is probably the safest)
 
