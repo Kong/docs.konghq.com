@@ -83,7 +83,7 @@
               url: /deployment/kubernetes-deployment-options
             - text: Using Kong for Kubernetes
               url: /deployment/using-kong-for-kubernetes
-            - text: Changelog
+            - text: KIC Changelog
               url: https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
               absolute_url: true
 
