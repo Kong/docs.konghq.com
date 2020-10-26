@@ -86,7 +86,7 @@ a `go-pluginserver` executable being placed in the current directory:
 ```
 $ go build github.com/Kong/go-pluginserver
 ```
-**Note**: the following step builds a Go plugin. For the purpose of this tutorial,
+**Note**: The following step builds a Go plugin. For the purpose of this tutorial,
 we will assume its name is `go-hello`. You can find example Go plugins [here][go-plugins].
 
 4. Build your Go plugin with the following command, which will result in a

@@ -17,7 +17,7 @@ principles of Kong is its extensibility through [plugins][plugins]. Plugins
 allow you to easily add new features to your Service or make it easier to
 manage.
 
-In the steps below you will configure the [key-auth][key-auth] plugin to add
+In the steps below, you will configure the [key-auth][key-auth] plugin to add
 authentication to your Service. Prior to the addition of this plugin, **all**
 requests to your Service would be proxied upstream. Once you add and configure this
 plugin, **only** requests with the correct key(s) will be proxied - all

@@ -33,7 +33,7 @@ Now let's [start][CLI] Kong:
 $ kong start [-c /path/to/kong.conf]
 ```
 
-**Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
+**Note:** The CLI accepts a configuration option (`-c /path/to/kong.conf`)
 allowing you to point to [your own configuration][configuration-loading].
 
 ## 2. Verify that Kong has started successfully
@@ -41,7 +41,7 @@ allowing you to point to [your own configuration][configuration-loading].
 If everything went well, you should see a message (`Kong started`)
 informing you that Kong is running.
 
-By default Kong listens on the following ports:
+By default, Kong listens on the following ports:
 
 - `:8000` on which Kong listens for incoming HTTP traffic from your
   clients, and forwards it to your upstream services.

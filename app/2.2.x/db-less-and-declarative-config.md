@@ -28,17 +28,17 @@ of benefits:
 
 ## What Is Declarative Configuration
 
-<i>If you are already familiar with the concept of declarative configuration you
-may skip this section.</i>
+<i>If you are already familiar with the concept of declarative configuration, you
+can skip this section.</i>
 
 The key idea in declarative configuration is, as its name shows, the notion
 that it is *declarative*, as opposed to an *imperative* style of
 configuration. "Imperative" means that a configuration is given as a series of
-orders: "do this, then to that". "Declarative" means that the configuration is
+orders: "do this, then do that". "Declarative" means that the configuration is
 given all at once: "I declare this to be the state of the world".
 
-The Kong Admin API is an example of an imperative configuration tool: the
-final state of the configuration is obtain through a sequence of API calls:
+The Kong Admin API is an example of an imperative configuration tool. The
+final state of the configuration is attained through a sequence of API calls:
 one call to create a Service, another call to create a Route, another call to
 add a Plugin, and so on.
 
@@ -131,8 +131,8 @@ by default. You can experiment by uncommenting the examples
 ## The Declarative Configuration Format
 
 The Kong declarative configuration format consists of lists of
-entities and their attributes. This is a small, yet, complete
-example, which illustrates a number of features:
+entities and their attributes. This is a small yet complete
+example that illustrates a number of features:
 
 ```yaml
 _format_version: "2.1"
@@ -158,7 +158,7 @@ The only mandatory piece of metadata is `_format_version: "2.1"`, which
 specifies the version number of the declarative configuration syntax format.
 This also matches the minimum version of Kong required to parse the file.
 
-The `_transform` metadata is an optional boolean (defaults to `true`) which
+The `_transform` metadata is an optional boolean (defaults to `true`), which
 controls whether schema transformations will occur while importing. The rule
 of thumb for using this field is: if you are importing plain-text credentials
 (i.e. passwords), you likely want to set it to `true`, so that Kong will
@@ -168,12 +168,12 @@ the encryption does not happen twice.
 
 At the top level, you can specify any Kong entity, be it a core entity such as
 `services` and `consumers` as in the above example, or custom entities created
-by Plugins, such as `keyauth_credentials`. (This makes the declarative
+by Plugins, such as `keyauth_credentials`. This makes the declarative
 configuration format inherently extensible, and it is the reason why `kong
 config` commands that process declarative configuration require `kong.conf` to
-be available, so that the `plugins` directive is taken into account.)
+be available, so that the `plugins` directive is taken into account.
 
-When entities have a relationship, such as a Route which points to a Service,
+When entities have a relationship, such as a Route that points to a Service,
 this relationship can be specified via nesting.
 
 Only one-to-one relationships can be specified by nesting: a Plugin that is
@@ -312,7 +312,7 @@ storing and coordinating counters: a `local` policy which stores counters
 the Nodes's memory, applying limits in a per-node fashion; a `redis`
 policy which uses Redis as an external key-value store for coordinating
 counters across nodes; and a `cluster` policy which uses the Kong database
-as a central coordination point for cluster-wide limits. In DB-less mode
+as a central coordination point for cluster-wide limits. In DB-less mode,
 the `local` and `redis` policies are available, and `cluster` cannot be
 used. Plugins that fall into this category are:
 
