@@ -29,19 +29,20 @@ For more information, see
 In the Kong configuration file, set the `portal_session_conf` property:
 
 ```bash
-portal_session_conf={ "cookie_name":"portal_session","secret":"CHANGE_THIS","storage":"kong"}
+portal_session_conf={ "cookie_name":"portal_session","secret":"<CHANGE_THIS>","storage":"kong"}
 ```
 
 If using HTTP while testing, include `"cookie_secure": false` in the config:
 
 ```bash
-portal_session_conf={ "cookie_name":"portal_session","secret":"CHANGE_THIS","storage":"kong","cookie_secure":"false"}
+portal_session_conf={ "cookie_name":"portal_session","secret":"<CHANGE_THIS>","storage":"kong","cookie_secure":"false"}
 ```
 
-If you have different subdomains for the `portal_api_url` and `portal_gui_host`, set the `cookie_domain` and `cookie_samesite` properties:
+If you have different subdomains for the `portal_api_url` and `portal_gui_host`, set the `cookie_domain`
+and `cookie_samesite` properties as follows:
 
 ```bash
-portal_session_conf={ "cookie_name":"portal_session","secret":"CHANGE_THIS","storage":"kong","cookie_secure":"false", "cookie_domain":".your_subdomain.com","cookie_samesite":"off"  }
+portal_session_conf={ "cookie_name":"portal_session","secret":"<CHANGE_THIS>","storage":"kong","cookie_secure":"false", "cookie_domain":"<.your_subdomain.com>","cookie_samesite":"off"  }
 ```
 
 #### See Also
