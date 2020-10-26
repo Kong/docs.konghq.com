@@ -49,7 +49,7 @@ params:
       default: text/plain, application/json
       value_in_examples:
       description: |
-        Upstream response content types considered cacheable. The plugin performs an exact match against each specified value; for example, if the upstream is expected to respond with a `application/json; charset=utf-8` content-type, the plugin configuration must contain said value or a `Bypass` cache status will be returned.
+        Upstream response content types considered cacheable. The plugin performs an **exact match** against each specified value; for example, if the upstream is expected to respond with a `application/json; charset=utf-8` content-type, the plugin configuration must contain said value or a `Bypass` cache status is returned.
     - name: vary_headers
       required: false
       default:
@@ -152,6 +152,16 @@ params:
       value_in_examples:
       description: |
         Unhandled errors while trying to retrieve a cache entry (such as redis down) are resolved with `Bypass`, with the request going upstream.
+  extra: |
+
+    <div class="alert alert-ee red">
+    <strong>Warning:</strong> The <code>content_type</code> parameter requires
+    an exact match. For example, if your Upstream expects
+    <code>application/json; charset=utf-8</code> and the
+    <code>config.content_type</code> value is only <code>application/json</code>
+    (a partial match), then the proxy cache is bypassed.
+    </div>
+
 
 ---
 ### Strategies
