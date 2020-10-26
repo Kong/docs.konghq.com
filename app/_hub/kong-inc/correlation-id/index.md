@@ -1,7 +1,7 @@
 ---
 name: Correlation ID
 publisher: Kong Inc.
-version: 2.0.2
+version: 2.0.x
 
 desc: Correlate requests and responses using a unique ID
 description: |
