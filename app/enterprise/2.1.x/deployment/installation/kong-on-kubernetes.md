@@ -145,6 +145,14 @@ In the following steps, replace `<your-password>` with a secure password.
     ```
     $ echo '{"cookie_name":"portal_session","cookie_samesite":"off","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
     ```
+
+    If you have different subdomains for the `portal_api_url` and `portal_gui_host`, set the `cookie_domain`
+    and `cookie_samesite` properties as follows:
+
+    ```
+    $ echo '{"cookie_name":"portal_session","cookie_samesite":"off", "cookie_domain":"<.your_subdomain.com">,"secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
+    ```
+
 3. Create secret:
     ```
     kubectl create secret generic kong-session-config -n kong --from-file=admin_gui_session_conf --from-file=portal_session_conf
@@ -161,6 +169,14 @@ In the following steps, replace `<your-password>` with a secure password.
     ```
     $ echo '{"cookie_name":"portal_session","cookie_samesite":"off","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
     ```
+
+    If you have different subdomains for the `portal_api_url` and `portal_gui_host`, set the `cookie_domain`
+    and `cookie_samesite` properties as follows:
+
+    ```
+    $ echo '{"cookie_name":"portal_session","cookie_samesite":"off", "cookie_domain":"<.your_subdomain.com">,"secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
+    ```
+
 3. Create secret:
     ```
     $ oc create secret generic kong-session-config -n kong --from-file=admin_gui_session_conf --from-file=portal_session_conf
