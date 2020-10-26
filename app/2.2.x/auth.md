@@ -5,23 +5,23 @@ skip_read_time: true
 
 ## Introduction
 
-Traffic to your upstream services (APIs or microservices) is typically controlled by the application and
-configuration of various Kong [authentication plugins][plugins]. Since Kong's Service entity represents
+Traffic to your Upstream services (APIs or microservices) is typically controlled by the application and
+configuration of various Kong [authentication plugins][plugins]. Because Kong's Service entity represents
 a 1-to-1 mapping of your own upstream services, the simplest scenario is to configure authentication
 plugins on the Services of your choosing.
 
 ## Generic authentication
 
 The most common scenario is to require authentication and to not allow access for any unauthenticated request.
-To achieve this any of the authentication plugins can be used. The generic scheme/flow of those plugins
+To achieve this, any of the authentication plugins can be used. The generic scheme/flow of those plugins
 works as follows:
 
 1. Apply an auth plugin to a Service, or globally (you cannot apply one on consumers)
 2. Create a `consumer` entity
 3. Provide the consumer with authentication credentials for the specific authentication method
-4. Now whenever a request comes in Kong will check the provided credentials (depends on the auth type) and
+4. Now whenever a request comes in, Kong will check the provided credentials (depends on the auth type) and
 it will either block the request if it cannot validate, or add consumer and credential details
-in the headers and forward the request
+in the headers and forward the request.
 
 The generic flow above does not always apply, for example when using external authentication like LDAP,
 then there is no consumer to be identified, and only the credentials will be added in the forwarded headers.
@@ -40,17 +40,17 @@ It is an opaque concept to Kong and hence they are called "consumers" and not "u
 ## Anonymous Access
 
 Kong has the ability to configure a given Service to allow **both** authenticated **and** anonymous access.
-You might use this configuration to grant access to anonymous users with a low rate-limit, and grant access
+You might use this configuration to grant access to anonymous users with a low rate limit, and grant access
 to authenticated users with a higher rate limit.
 
 To configure a Service like this, you first apply your selected authentication plugin, then create a new
 consumer to represent anonymous users, then configure your authentication plugin to allow anonymous
 access. Here is an example, which assumes you have already configured a Service named `example-service` and
-the corresponding route:
+the corresponding Route:
 
 1. ### Create an example Service and a Route
 
-    Issue the following cURL request to create `example-service` pointing to mockbin.org, which will echo
+    Issue the following cURL request to create `example-service` pointing to `mockbin.org`, which will echo
     the request:
 
     ```bash
@@ -60,7 +60,7 @@ the corresponding route:
       --data 'url=http://mockbin.org/request'
     ```
 
-    Add a route to the Service:
+    Add a Route to the Service:
 
     ```bash
     $ curl -i -X POST \
@@ -158,7 +158,7 @@ the corresponding route:
       --url http://localhost:8000/auth-sample
     ```
 
-    This is the same request you made in step #3, however this time the request should succeed, because you
+    This is the same request you made in step #3; however, this time the request should succeed because you
     enabled anonymous access in step #5.
 
     The response (which is the request as Mockbin received it) should have these elements:
@@ -188,11 +188,11 @@ The behaviour of the auth plugins can be set to do either a logical `AND`, or a 
 multiple authentication credentials. The key to the behaviour is the `config.anonymous` property.
 
 - `config.anonymous` not set <br/>
-  If this property is not set (empty) then the auth plugins will always perform authentication and return
+  If this property is not set (empty), then the auth plugins will always perform authentication and return
   a `40x` response if not validated. This results in a logical `AND` when multiple auth plugins are being
   invoked.
 - `config.anonymous` set to a valid consumer id <br/>
-  In this case the auth plugin will only perform authentication if it was not already authenticated. When
+  In this case, the auth plugin will only perform authentication if it was not already authenticated. When
   authentication fails, it will not return a `40x` response, but set the anonymous consumer as the consumer. This
   results in a logical `OR` + 'anonymous access' when multiple auth plugins are being invoked.
 
@@ -204,7 +204,7 @@ passed to the upstream service. With the `OR` method, it will be the first plugi
 the consumer, or the last plugin that will set its configured anonymous consumer.
 
 **NOTE 3**: When using the OAuth2 plugin in an `AND` fashion, then also the OAuth2 endpoints for requesting
-tokens etc. will require authentication by the other configured auth plugins.
+tokens and so forth will require authentication by the other configured auth plugins.
 
 <div class="alert alert-warning">
   When multiple authentication plugins are enabled in an <tt>OR</tt> fashion on a given Service, and it is desired that

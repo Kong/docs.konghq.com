@@ -22,7 +22,7 @@ a Kong cluster means that those nodes will share the same configuration.
 
 For performance reasons, Kong avoids database connections when proxying
 requests, and caches the contents of your database in memory. The cached
-entities include Services, Routes, Consumers, Plugins, Credentials, etc... Since those
+entities include Services, Routes, Consumers, Plugins, Credentials, and so forth. Since those
 values are in memory, any change made via the Admin API of one of the nodes
 needs to be propagated to the other nodes.
 
@@ -136,7 +136,7 @@ However, node `B` hasn't run a database poll yet, and still caches that this
 API has no plugin to run. It will be so until node `B` runs its database
 polling job.
 
-**Conclusion**: all CRUD operations trigger cache invalidations. Creation
+**Conclusion**: All CRUD operations trigger cache invalidations. Creation
 (`POST`, `PUT`) will invalidate cached database misses, and update/deletion
 (`PATCH`, `DELETE`) will invalidate cached database hits.
 
@@ -144,45 +144,45 @@ polling job.
 
 ## How to configure database caching?
 
-You can configure 3 properties in the Kong configuration file, the most
+You can configure three properties in the Kong configuration file, the most
 important one being `db_update_frequency`, which determine where your Kong
-nodes stand on the performance vs consistency trade off.
+nodes stand on the performance versus consistency trade-off.
 
-Kong comes with default values tuned for consistency, in order to let you
-experiment with its clustering capabilities while avoiding "surprises". As you
+Kong comes with default values tuned for consistency so that you can
+experiment with its clustering capabilities while avoiding surprises. As you
 prepare a production setup, you should consider tuning those values to ensure
 that your performance constraints are respected.
 
 ### 1. [db_update_frequency][db_update_frequency] (default: 5s)
 
 This value determines the frequency at which your Kong nodes will be polling
-the database for invalidation events. A lower value will mean that the polling
-job will be executed more frequently, but that your Kong nodes will keep up
-with changes you apply. A higher value will mean that your Kong nodes will
+the database for invalidation events. A lower value means that the polling
+job will execute more frequently, but that your Kong nodes will keep up
+with changes you apply. A higher value means that your Kong nodes will
 spend less time running the polling jobs, and will focus on proxying your
 traffic.
 
-**Note**: changes propagate through the cluster in up to `db_update_frequency`
+**Note**: Changes propagate through the cluster in up to `db_update_frequency`
 seconds.
 
 [Back to top](#introduction)
 
 ### 2. [db_update_propagation][db_update_propagation] (default: 0s)
 
-If your database itself is eventually consistent (ie: Cassandra), you **must**
+If your database itself is eventually consistent (that is, Cassandra), you **must**
 configure this value. It is to ensure that the change has time to propagate
 across your database nodes. When set, Kong nodes receiving invalidation events
 from their polling jobs will delay the purging of their cache for
 `db_update_propagation` seconds.
 
-If a Kong node connected to an eventual consistent database was not delaying
+If a Kong node connected to an eventually consistent database was not delaying
 the event handling, it could purge its cache, only to cache the non-updated
 value again (because the change hasn't propagated through the database yet)!
 
 You should set this value to an estimate of the amount of time your database
 cluster takes to propagate changes.
 
-**Note**: when this value is set, changes propagate through the cluster in
+**Note**: When this value is set, changes propagate through the cluster in
 up to `db_update_frequency + db_update_propagation` seconds.
 
 [Back to top](#introduction)
@@ -195,11 +195,11 @@ misses an invalidation event, to avoid it from running on stale data for too
 long. When the TTL is reached, the value will be purged from its cache, and the
 next database result will be cached again.
 
-By default no data is invalidated based on this TTL (the default value is `0`).
+By default, no data is invalidated based on this TTL (the default value is `0`).
 This is usually fine: Kong nodes rely on invalidation events, which are handled
 at the db store level (Cassandra/PosgreSQL). If you are concerned that a Kong
 node might miss invalidation event for any reason, you should set a TTL. Otherwise
-the node might run with a stale value in its cache for an undefined amount of time,
+the node might run with a stale value in its cache for an undefined amount of time
 until the cache is manually purged, or the node is restarted.
 
 [Back to top](#introduction)
@@ -210,7 +210,7 @@ If you use Cassandra as your Kong database, you **must** set
 [db_update_propagation][db_update_propagation] to a non-zero value. Since
 Cassandra is eventually consistent by nature, this will ensure that Kong nodes
 do not prematurely invalidate their cache, only to fetch and catch a
-not up-to-date entity again. Kong will present you a warning logs if you did
+not up-to-date entity again. Kong will present you a warning in logs if you did
 not configure this value when using Cassandra.
 
 Additionally, you might want to configure `cassandra_consistency` to a value
@@ -224,7 +224,7 @@ restart will be required to discover any changes to the Cassandra cluster topolo
 
 ## Interacting with the cache via the Admin API
 
-If for some reason, you wish to investigate the cached values, or manually
+If for some reason, you want to investigate the cached values, or manually
 invalidate a value cached by Kong (a cached hit or miss), you can do so via the
 Admin API `/cache` endpoint.
 
@@ -252,7 +252,7 @@ Else:
 HTTP 404 Not Found
 ```
 
-**Note**: retrieving the `cache_key` for each entity being cached by Kong is
+**Note**: Retrieving the `cache_key` for each entity being cached by Kong is
 currently an undocumented process. Future versions of the Admin API will make
 this process easier.
 
@@ -271,7 +271,7 @@ HTTP 204 No Content
 ...
 ```
 
-**Note**: retrieving the `cache_key` for each entity being cached by Kong is
+**Note**: Retrieving the `cache_key` for each entity being cached by Kong is
 currently an undocumented process. Future versions of the Admin API will make
 this process easier.
 
@@ -289,7 +289,7 @@ this process easier.
 HTTP 204 No Content
 ```
 
-**Note**: be wary of using this endpoint on a warm, production running node.
+**Note**: Be wary of using this endpoint on a node running in production with a warmed cache.
 If the node is receiving a lot of traffic, purging its cache at the same time
 will trigger many requests to your database, and could cause a
 [dog-pile effect](https://en.wikipedia.org/wiki/Cache_stampede).
