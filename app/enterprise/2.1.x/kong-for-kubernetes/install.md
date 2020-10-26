@@ -100,7 +100,7 @@ The steps in this section show you how to install Kong for Kubernetes Enterprise
 {% navtabs %}
 {% navtab kubectl %}
 ```
-$ kubectl apply -f https://bit.ly/k4k8s-enterprise
+$ kubectl apply -f http://bit.ly/k4k8s-enterprise-install
 ```
 The initial setup might take a few minutes.
 
@@ -120,7 +120,7 @@ kong-proxy   LoadBalancer   10.63.254.78   35.233.198.16   80:32697/TCP,443:3236
 {% endnavtab %}
 {% navtab OpenShift oc %}
 ```
-$ oc create -f https://bit.ly/k4k8s-enterprise
+$ oc create -f http://bit.ly/k4k8s-enterprise-install
 ```
 The initial setup might take a few minutes.
 
