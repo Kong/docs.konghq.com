@@ -93,10 +93,13 @@ params:
       required: false
       default: '`consumer`'
       description: |
-        The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`, `service`, `header`. If the `consumer`, the `credential`, or the `service` cannot be determined, the system will always fallback to `ip`. If value `header` is chosen, the `header_name` configuration has to be provided.
+        The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`, `service`, `header`, `path`. If the `consumer`, the `credential`, or the `service` cannot be determined, the system will always fallback to `ip`. If value `header` is chosen, the `header_name` configuration has to be provided. If value `path` is choses, the `path` configuration has to be provided.
     - name: header_name
       required: semi
       description: Header name to be used if `limit_by` is set to `header`.
+    - name: path
+      required: semi
+      description: Path to be used if `limit_by` is set to `path`.
     - name: policy
       required: false
       value_in_examples: "local"

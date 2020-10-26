@@ -38,13 +38,13 @@ Parameter | Description
 `cluster_mtls` *Optional* | One of `"shared"` or `"pki"`. Indicates whether Hybrid Mode will use a shared certificate/key pair for CP/DP mTLS or if PKI mode will be used. Defaults to `"shared"`. See below sections for differences in mTLS modes.
 
 The following properties are used differently between "shared" and "PKI" modes:
- 
+
 Parameter | Description | Shared Mode | PKI Mode
 --- | --- | --- | ---
 `cluster_cert` and `cluster_cert_key` *Required* | Certificate/key pair used for mTLS between CP/DP nodes. | Same between CP/DP nodes. | Unique certificate for each node, generated from the CA specified by `cluster_ca_cert`.
 `cluster_ca_cert` *Required in PKI mode* | The trusted CA certificate file in PEM format used to verify the `cluster_cert`. | *Ignored* | CA certificate used to verify `cluster_cert`, same between CP/DP nodes. *Required*
 `cluster_server_name` *Required in PKI mode* | The SNI Server Name presented by the DP node mTLS handshake. | *Ignored* | In PKI mode the DP nodes will also verify that the Common Name (CN) or Subject Alternative Name (SAN) inside certificate presented by CP matches the `cluster_server_name` value.
- 
+
 ## Topology
 
 ![Example Hybrid Mode Topology](/assets/images/docs/hybrid-mode.png "Example Hybrid Mode Topology")
@@ -333,21 +333,29 @@ Control Plane's new Cluster Status API:
 
 ```
 # on Control Plane node
-http :8001/clustering/status
+http :8001/clustering/data_planes
+
 
 {
-    "a08f5bf2-43b8-4f1c-bdf5-0a0ffb421c21": {
-        "config_hash": "64d661f505f7e1de5b4c5e5faa1797dd",
-        "hostname": "data-plane-2",
-        "ip": "192.168.10.3",
-        "last_seen": 1571197860
-    },
-    "e1fd4970-6d24-4dfb-b2a7-5a832a5de6e1": {
-        "config_hash": "64d661f505f7e1de5b4c5e5faa1797dd",
-        "hostname": "data-plane-1",
-        "ip": "192.168.10.4",
-        "last_seen": 1571197866
-    }
+    "data": [
+        {
+            "config_hash": "a9a166c59873245db8f1a747ba9a80a7",
+            "hostname": "data-plane-2",
+            "id": "ed58ac85-dba6-4946-999d-e8b5071607d4",
+            "ip": "192.168.10.3",
+            "last_seen": 1580623199,
+            "status": "connected"
+        },
+        {
+            "config_hash": "a9a166c59873245db8f1a747ba9a80a7",
+            "hostname": "data-plane-1",
+            "id": "ed58ac85-dba6-4946-999d-e8b5071607d4",
+            "ip": "192.168.10.4",
+            "last_seen": 1580623200,
+            "status": "connected"
+        }
+    ],
+    "next": null
 }
 ```
 
