@@ -154,9 +154,13 @@ params:
         Unhandled errors while trying to retrieve a cache entry (such as redis down) are resolved with `Bypass`, with the request going upstream.
   extra: |
 
-    **Warning:** The `content_type` requires an exact match. For example, if your Upstream expects
-    `application/json; charset=utf-8` and the `config.content_type` value is only `application/json`
+    <div class="alert alert-ee red">
+    <strong>Warning:</strong> The <code>content_type</code> parameter requires
+    an exact match. For example, if your Upstream expects
+    <code>application/json; charset=utf-8</code> and the
+    <code>config.content_type</code> value is only <code>application/json</code>
     (a partial match), then the proxy cache is bypassed.
+    </div>
 
 
 ---
