@@ -73,18 +73,21 @@ systems.
   ignored.
   - Fixed redirects to use `kong.response.exit`, which implements the proper
   short-circuiting semantics in Kong.
-- [OAuth Introspection](/hub/kong-inc/oauth2-introspection/) (`oauth2-introspection`)
-  - Fixed an issue an issue where the cache would not be properly invalidated when
-   a Consumer username was updated.
-- [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/) (`proxy-cache-advanced`)
-  - Fixed a 500 error that would appear when the URL contained empty query string parameters.
+- [OAuth Introspection](/hub/kong-inc/oauth2-introspection/)
+(`oauth2-introspection`)
+  - Fixed an issue an issue where the cache would not be properly invalidated
+  when a Consumer username was updated.
+- [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/)
+(`proxy-cache-advanced`)
+  - Fixed a 500 error that would appear when the URL contained empty query
+  string parameters.
 - [Exit Transformer](/hub/kong-inc/exit-transformer/) (`exit-transformer`)
   - Fixed some cases where an `unknown` exit would not be handled.
 - [AWS Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`)
-  - Respect `skip_large_bodies` config setting even when not using AWS API
-    Gateway compatibility
+  - Respect the `skip_large_bodies` config setting even when not using AWS API
+    Gateway compatibility.
 - [ACME](/hub/kong-inc/acme)
-  - Fixed cache to use non-nil TTL in hybrid mode. This fixes a bug for
+  - Changed the cache to use non-nil TTL in Hybrid mode. This fixes a bug for
     renewals not updating the certificate after Kong Gateway 2.0.5.
   - Fixed a bug in database mode where the renewal configuration was not
     properly stored.
@@ -172,7 +175,7 @@ open-source **Kong Gateway 2.2.0.0**:
     nodes during bulk updates.
     [#6293](https://github.com/Kong/kong/pull/6293)
 - **The `Upstream.client_certificate` attribute** can now be used for proxying.
-  This allows `client_certificate` setting used for mTLS handshaking with
+  This allows the `client_certificate` setting used for mTLS handshaking with
   the `Upstream` server to be shared easily among different Services.
   However, `Service.client_certificate` will take precedence over
   `Upstream.client_certificate` if both are set simultaneously.
@@ -197,14 +200,15 @@ open-source **Kong Gateway 2.2.0.0**:
 
 #### PDK
 
-- New function `kong.request.get_forwarded_prefix`: returns the prefix path
+- New function `kong.request.get_forwarded_prefix`: Returns the prefix path
   component of the request's URL that Kong stripped before proxying to upstream,
-  respecting the value of `X-Forwarded-Prefix` when it comes from a trusted source.
+  respecting the value of `X-Forwarded-Prefix` when it comes from a trusted
+  source.
   [#6251](https://github.com/Kong/kong/pull/6251)
-- `kong.response.exit` now honors the `headers` configuration setting for
+- The `kong.response.exit` now honors the `headers` configuration setting for
   including or removing the `Server` header.
   [#6371](https://github.com/Kong/kong/pull/6371)
-- `kong.log.serialize` function now can be called using the stream subsystem,
+- The `kong.log.serialize` function now can be called using the stream subsystem,
   allowing various logging plugins to work under TCP and TLS proxy modes.
   [#6036](https://github.com/Kong/kong/pull/6036)
 - Requests with `multipart/form-data` MIME type now can use the same part name
@@ -222,7 +226,7 @@ open-source **Kong Gateway 2.2.0.0**:
   feature for handling buffered responses from Lua plugins as well.
   [#5991](https://github.com/Kong/kong/pull/5991)
 - [AWS Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`)
-  - Bumped to version 3.5.0:
+  - Bumped to version 3.5.0.
   [#6379](https://github.com/Kong/kong/pull/6379)
   - Added support for the `isBase64Encoded` flag in Lambda function responses.
 - [gRPC Web](/hub/kong-inc/grpc-web) (`grpc-web`)
