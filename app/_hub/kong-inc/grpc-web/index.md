@@ -1,7 +1,7 @@
 ---
 name: gRPC-Web
 publisher: Kong Inc.
-version: 2.2.x
+version: 0.2.x
 
 categories:
   - transformations
