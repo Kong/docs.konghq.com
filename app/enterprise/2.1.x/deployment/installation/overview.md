@@ -28,7 +28,7 @@ disable_image_expand: true
     <br/><br/>Install the Kong Ingress Controller with the Kong Gateway (Enterprise), without any Enterprise add-ons</div>
   </a>
 
-  <a href="/enterprise/{{page.kong_version}}/deployment/installation/install-on-kubernetes" class="docs-grid-install-block">
+  <a href="/enterprise/{{page.kong_version}}/deployment/installation/kong-on-kubernetes" class="docs-grid-install-block">
     <img class="install-icon" src="/assets/images/icons/documentation/k8s-and-openshift.png" alt="kubernetes" />
     <div class="install-text">Full Kong Enterprise on Kubernetes</div>
     <div class="install-description">(kubectl or OpenShift oc)

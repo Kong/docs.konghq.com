@@ -15,7 +15,7 @@ Kong Enterprise 2.1.x docs includes any changes made for the 2.1.0.0 beta docs.
 
 
 ### Installation
-* Updated [Installing Kong Enterprise on Kubernetes](/enterprise/2.1.x/deployment/installation/install-on-kubernetes/) walks you through installation of the `kong-enterprise-edition` image on Kubernetes with all Enterprise plugins and add-ons.
+* Updated [Installing Kong Enterprise on Kubernetes](/enterprise/2.1.x/deployment/installation/kong-on-kubernetes/) walks you through installation of the `kong-enterprise-edition` image on Kubernetes with all Enterprise plugins and add-ons.
 * [Installation topics](/enterprise/2.1.x/deployment/installation/overview/) reorganized.
 
 ### Deployment
