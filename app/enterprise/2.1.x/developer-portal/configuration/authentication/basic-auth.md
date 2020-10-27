@@ -9,9 +9,9 @@ contains the word `Basic` followed by the base64-encoded `username:password` str
 
 Basic Authentication for the Dev Portal can be enabled using any of the following ways:
 
-- [Kong Manager](#enable-basic-auth-via-kong-manager)
-- [Command line](#enable-basic-auth-via-the-command-line)
-- [Kong configuration file](#enable-basic-auth-via-the-kong-conf)
+- [Kong Manager](#enable-basic-auth-using-kong-manager)
+- [Command line](#enable-basic-auth-using-the-command-line)
+- [Kong configuration file](#enable-basic-auth-using-kongconf)
 
 **Warnings:**
 
@@ -66,14 +66,14 @@ portal_session_conf={ "cookie_name":"portal_session","secret":"<CHANGE_THIS>","s
 
 To patch a Dev Portal's authentication property directly, run:
 
-```
+```bash
 $ curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE_NAME> \
   --data "config.portal_auth=basic-auth"
 ```
 
 ### Enable Basic Auth Using `kong.conf`
 
-Kong allows for a `default authentication plugin` to be set in the Kong
+Kong allows for a default authentication plugin to be set in the Kong
 configuration file with the `portal_auth` property.
 
 In your `kong.conf` file, set the property as follows:
