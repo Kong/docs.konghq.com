@@ -131,7 +131,7 @@ params: # Metadata about your plugin
         ./jq expression to transform response body by
   #  - name: # add additional setting blocks as needed, each demarcated by -
   extra:
-    If you wish to remove sensitive data. For example {"name":"tibbycat","sex":"male"}, you could transform this by the expression {"name":.name}
+    If you want to remove sensitive data such as {"name":"tibbycat","sex":"male"}, you could transform this using the expression {"name":.name}
     
 ###############################################################################
 # END YAML DATA
