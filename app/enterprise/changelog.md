@@ -94,7 +94,7 @@ systems.
 - [Prometheus](/hub/kong-inc/prometheus) (`prometheus`)
   - Switched to using the `Kong.pdk.serializer` instead of the deprecated basic
     serializer.
-- [Collector](/enterprise/{{kong.page_version}}/brain-immunity/install-configure/)
+- [Collector](/enterprise/2.1.x/brain-immunity/install-configure/)
   (`collector`, used for Immunity)
   - Removed the `/service_maps` passthrough.
 
