@@ -163,7 +163,7 @@ migrating in the opposite direction.
 [route-validation]: /enterprise/{{page.kong_version}}/property-reference/#route_validation_strategy
 [supported-plugins]: https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/references/plugin-compatibility.md
 [k4k8s-enterprise-install]: /enterprise/{{page.kong_version}}/deployment/installation/kong-for-kubernetes
-[k4k8s-with-enterprise-install]: /enterprise/{{page.kong_version}}/deployment/installation/install-on-kubernetes
+[k4k8s-with-enterprise-install]: /enterprise/{{page.kong_version}}/deployment/installation/kong-on-kubernetes
 [vitals-prometheus]: /enterprise/{{page.kong_version}}/vitals/vitals-prometheus-strategy/
 [vitals-influxdb]: /enterprise/{{page.kong_version}}/vitals/vitals-influx-strategy/
 [support]: https://support.konghq.com/
