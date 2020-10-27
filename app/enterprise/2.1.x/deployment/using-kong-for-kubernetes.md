@@ -18,7 +18,7 @@ See the [custom resources](https://github.com/Kong/kubernetes-ingress-controller
 
 ### Deployment options
 Kong Ingress Controller can be deployed in a variety of deployment patterns.
-- See the [deployment](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options) documentation, which compares the main deployment options for {{site.ee_product_name}}.
+- See the [deployment](/enterprise/{{page.kong_version}}/deployment/kubernetes-deployment-options) documentation, which compares the main deployment options for {{site.ee_product_name}}.
 - Or, for information on all of the components involved and different ways of deploying them based on the use case, see the [deployment documentation](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/concepts/deployment.md) in the Kong Ingress Controller repository.
 
 ### Compatibility

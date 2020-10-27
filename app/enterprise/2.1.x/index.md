@@ -47,9 +47,9 @@ is_homepage: true
   </div>
 
   <div class="docs-grid-block">
-    <h3><a href="/enterprise/{{page.kong_version}}/kong-for-kubernetes/">Kong for Kubernetes Enterprise</a></h3>
+    <h3><a href="/enterprise/{{page.kong_version}}/deployment/kong-for-kubernetes-enterprise">Kong for Kubernetes Enterprise</a></h3>
     <p>Get started with Kong for Kubernetes Enterprise.</p>
-    <a href="/enterprise/{{page.kong_version}}/kong-for-kubernetes/">Learn more &rarr;</a>
+    <a href="/enterprise/{{page.kong_version}}/deployment/kong-for-kubernetes-enterprise">Learn more &rarr;</a>
   </div>
 
   <div class="docs-grid-block">

@@ -1,20 +1,25 @@
 ---
 title: Installing Kong Enterprise on Kubernetes
+redirect_from: "/enteprise/2.1.x/kong-for-kubernetes/install-on-kubernetes"
 ---
 
 ## Introduction
 
-Kong Enterprise on Kubernetes is recommended for deployments that require features not supported by Kong for Kubernetes Enterprise. It supports all Kong Enterprise plugins and features, but can't run in DB-less mode.
+Kong Enterprise on Kubernetes supports all Kong Enterprise plugins and features.
+
+This installation topic walks you through a database-backed deployment on
+Kubernetes. For a basic DB-less deployment with the Kong Ingress Controller, see
+[Installing Kong for Kubernetes Enterprise](/enterprise/{{page.kong_version}}/deployment/installation/kong-for-kubernetes).
 
 <div class="alert alert-ee blue">
 <strong>Note:</strong>
-See <a href="/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options">Kong for Kubernetes deployment options</a>
-for a feature breakdown and image comparison.
+See <a href="/enterprise/{{page.kong_version}}/deployment/kubernetes-deployment-options">Kong for Kubernetes deployment options</a>
+for a feature breakdown and comparison between DB-less and database-backed deployments.
 </div>
 
-You can use kubectl or OpenShift oc to configure Kong Enterprise on Kubernetes, then deploy it using Helm.
+![Kong Enterprise on Kubernetes](/assets/images/docs/ee/kubernetes/kong-enterprise-on-kubernetes.png)
 
-<img src="https://doc-assets.konghq.com/kubernetes/Kong-Enterprise-on-Kubernetes.png">
+You can use `kubectl` or OpenShift `oc` to configure Kong Enterprise on Kubernetes, then deploy it using Helm.
 
 ### Deployment Options
 
@@ -164,10 +169,10 @@ In the following steps, replace `<your-password>` with a secure password.
 {% endnavtabs %}
 ## Step 7. Prepare Kong's configuration file
 
-1. Create a `values.yaml` file for Helm based on the template in the [Kong charts repository](https://github.com/Kong/charts/blob/main/charts/kong/values.yaml). This file contains all the possible parameters for your Kong deployment. 
+1. Create a `values.yaml` file for Helm based on the template in the [Kong charts repository](https://github.com/Kong/charts/blob/main/charts/kong/values.yaml). This file contains all the possible parameters for your Kong deployment.
 
-    You can also base your configuration on a sample Kong Enterprise `values.yaml` 
-    file. For example, [this values file](https://github.com/Kong/charts/blob/main/charts/kong/example-values/full-k4k8s-with-kong-enterprise.yaml) 
+    You can also base your configuration on a sample Kong Enterprise `values.yaml`
+    file. For example, [this values file](https://github.com/Kong/charts/blob/main/charts/kong/example-values/full-k4k8s-with-kong-enterprise.yaml)
     enables most Kong Enterprise features.
 
 2. Minimally, for setting up Kong Enterprise on Kubernetes, you will need to set the following parameters:
@@ -362,4 +367,4 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
 
 
 ## Next steps...
-See [Using Kong for Kubernetes Enterprise](/enterprise/{{page.kong_version}}/kong-for-kubernetes/using-kong-for-kubernetes) for information about concepts, how-to guides, reference guides, and using plugins.
+See [Using Kong for Kubernetes Enterprise](/enterprise/{{page.kong_version}}/deployment/using-kong-for-kubernetes) for information about concepts, how-to guides, reference guides, and using plugins.

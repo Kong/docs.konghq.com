@@ -35,11 +35,11 @@
             - text: Kong for Kubernetes Enterprise
               url: /deployment/installation/kong-for-kubernetes
             - text: Kong Enterprise on Kubernetes
-              url: /deployment/installation/install-on-kubernetes
+              url: /deployment/installation/kong-on-kubernetes
             - text: OpenShift with Kong for Kubernetes Enterprise
               url: /deployment/installation/kong-for-kubernetes
             - text: OpenShift with Kong Enterprise on Kubernetes
-              url: /deployment/installation/install-on-kubernetes
+              url: /deployment/installation/kong-on-kubernetes
         - text: Operating Systems
           items:
             - text: Ubuntu
@@ -83,7 +83,7 @@
               url: /deployment/kubernetes-deployment-options
             - text: Using Kong for Kubernetes
               url: /deployment/using-kong-for-kubernetes
-            - text: Changelog
+            - text: KIC Changelog
               url: https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
               absolute_url: true
 
