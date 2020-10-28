@@ -77,61 +77,9 @@ Full documentation is available here: [https://github.com/yesinteractive/kong-ma
 ## Compatibility ## 
 KongMap supports both Kong Open Source and Kong Enterprise Clusters greater than version 1.3 and supports both DB and Non-DB (dbless) Kong configurations. KongMap also supports Kong for Kubernetes Ingress Controller versions greater than 0.5 (In Kong for Kubernetes, the Ingress Controller's proxy container must have its Admin API exposed in some fashion.)
 
-## Docker Installation ##
+## Installation Instructions ##
 
-Docker image is Alpine 3.11 based running PHP 7.3 on Apache. The container exposes both ports 80 an 443 with a self-signed certificated. 
-
-#### 1. Export Cluster Configurations to Variable ####
-
-The connections to your Kong clusters are defined using JSON. The below example illustrates adding two Kong clusters to KongMap:
-
-```json
-{
-  "my enterprise cluster": {
-    "kong_admin_api_url": "http://kongapi_url:8001",
-    "kong_edit_config": "true",
-    "kong_ent": "true",
-    "kong_ent_token": "admin",
-    "kong_ent_token_name": "kong-admin-token",
-    "kong_ent_manager_url": "http://kongmanager_url:8002"
-  },
-  "my kong open source cluster": {
-    "kong_admin_api_url": "http://kongapi_url:8001",
-    "kong_edit_config": "true",
-    "kong_ent": "false",
-    "kong_ent_token": "null",
-    "kong_ent_token_name": "null",
-    "kong_ent_manager_url": "null"
-  }
-}
-  ```
-
-Notice the `kong_ent` configurations. Enable and configure this if the cluster you are configuring is Kong Cluster. If you do not, only the Default workspace
-will be visible in your Kong Enterprise Cluster.
-
-Export the config to a variable:
-
-```shell
- export KONG_CLUSTERS='{  "my enterprise cluster": {    "kong_admin_api_url": "http://kongapi_url:8001",    "kong_edit_config": "true",   "kong_ent": "true",    "kong_ent_token": "admin",    "kong_ent_token_name": "kong-admin-token",    "kong_ent_manager_url": "http://kongmanager_url:8002"  }}'
-  ```
-
-#### 2. Start Container ####
-
-Run the container with the following command. Set the ports to your preferred exposed ports. The example below exposes KongMap on ports 8100 and 8143. Notice the `KONGMAP_URL` variable. Set this optional variable if you have a need to set all KongMap URL's to a specific domain or URL.
-
-```
-$ docker run -d \
-  -e "KONGMAP_CLUSTERS_JSON=$KONG_CLUSTERS" \
-  -e "KONGMAP_URL=http://url_to_kongmap:8100" \
-  -p 8100:80 \
-  -p 8143:443 \
-  yesinteractive/kongmap
-```
-
-#### 3. Authentication ####
-
-If you want to enable authentication to KongMap's UI, it is recommended to run Kongmap behind your Kong Gateway and implement any authentication
-policies you feel are appropriate (OIDC, OAUTH2, Basic Auth, etc.) at the gateway.
+Installation instructions are available here: [https://github.com/yesinteractive/kong-map/](https://github.com/yesinteractive/kong-map/)
 
 ## Feedback and Issues
 
