@@ -12,7 +12,7 @@ Manager, Dev Portal, Vitals, etc).
 This installation topic walks you through a DB-less deployment on
 Kubernetes. For the full range of Enterprise features, see the database-backed
 instructions for
-[Installing Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/deployment/installation/kong-for-kubernetes).
+[Installing Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/deployment/installation/kong-on-kubernetes).
 
 <div class="alert alert-ee blue">
 <strong>Note:</strong>
@@ -110,7 +110,7 @@ The steps in this section show you how to install Kong for Kubernetes Enterprise
 {% navtabs %}
 {% navtab kubectl %}
 ```
-$ kubectl apply -f http://bit.ly/k4k8s-enterprise-install
+$ kubectl apply -f https://bit.ly/k4k8s-enterprise-install
 ```
 The initial setup might take a few minutes.
 
@@ -130,7 +130,7 @@ kong-proxy   LoadBalancer   10.63.254.78   35.233.198.16   80:32697/TCP,443:3236
 {% endnavtab %}
 {% navtab OpenShift oc %}
 ```
-$ oc create -f http://bit.ly/k4k8s-enterprise-install
+$ oc create -f https://bit.ly/k4k8s-enterprise-install
 ```
 The initial setup might take a few minutes.
 

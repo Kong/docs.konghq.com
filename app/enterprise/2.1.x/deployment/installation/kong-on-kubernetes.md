@@ -19,7 +19,7 @@ for a feature breakdown and comparison between DB-less and database-backed deplo
 
 ![Kong Enterprise on Kubernetes](/assets/images/docs/ee/kubernetes/kong-enterprise-on-kubernetes.png)
 
-You can use `kubectl` or OpenShift `oc` to configure Kong Enterprise on Kubernetes, then deploy it using Helm.
+You can use `kubectl` or OpenShift `oc` to configure Kong Enterprise on Kubernetes, then deploy it [using Helm](https://github.com/Kong/charts/tree/main/charts/kong).
 
 ### Deployment Options
 

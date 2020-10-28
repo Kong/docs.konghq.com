@@ -50,8 +50,10 @@ ecosystem to provide out of the box monitoring, logging, certificate management,
 
 ## Kong Enterprise on Kubernetes
 
-Alternatively, you can also deploy Kong for Kubernetes Enterprise with a
-database to fully utilize the whole Kong Enterprise platform, including:
+This option lets you deploy the full Kong for Kubernetes Enterprise
+platform. As there are functionalities in the platform that require a stateful
+environment, a database is required to run this package, which includes the 
+following:
 
 * Kong Manager
 * Kong Vitals
@@ -60,9 +62,6 @@ database to fully utilize the whole Kong Enterprise platform, including:
 * Workspaces
 * All open-source and Enterprise plugins
 * and more
-
-As there are functionalities in this platform that require a stateful
-environment, a database is required to run this package.
 
 Kong Enterprise on Kubernetes is the ideal install for organizations
 looking to leverage Kong's complete platform. Unless your organization doesn't
