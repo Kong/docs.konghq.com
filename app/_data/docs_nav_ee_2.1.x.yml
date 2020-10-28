@@ -63,6 +63,9 @@
             - text: Azure
               url: https://azuremarketplace.microsoft.com/en-us/marketplace/apps/konginc1581527938760.kongee2020ubuntuxenial?tab=Overview
               absolute_url: true
+            - text: Google Cloud
+              url: https://console.cloud.google.com/marketplace/details/konghq-public/kongenterprise21
+              absolute_url: true
             - text: RedHat
               url: https://marketplace.redhat.com/en-us/products/kong-enterprise-rhm
               absolute_url: true
