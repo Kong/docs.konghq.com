@@ -145,7 +145,7 @@ metadata:
   labels:
     app: <service>
   annotations:
-    plugins.konghq.com: <{{page.params.name}}-example>
+    konghq.com/plugins: <{{page.params.name}}-example>
 spec:
   ports:
   - port: 80
@@ -201,7 +201,7 @@ plugins:
 {% if page.params.route_id %}
 
 {% capture plugin_config_for_route_admin_api %}
-For example, configure this plugin on a [Route](/latest/admin-api/#Route-object) with:
+For example, configure this plugin on a [Route](/latest/admin-api/#route-object) with:
 
 ```bash
 $ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
@@ -248,7 +248,8 @@ kind: Ingress
 metadata:
   name: <route>
   annotations:
-    plugins.konghq.com: <{{page.params.name}}-example>
+    kubernetes.io/ingress.class: kong
+    konghq.com/plugins: <{{page.params.name}}-example>
 spec:
   rules:
   - host: examplehostname.com
@@ -299,7 +300,7 @@ plugins:
 
 {% capture plugin_config_for_consumer_admin_api %}
 
-For example, configure this plugin on a [Consumer](/latest/admin-api/#Consumer-object) with:
+For example, configure this plugin on a [Consumer](/latest/admin-api/#consumer-object) with:
 
 ```bash
 $ curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
@@ -354,7 +355,8 @@ kind: KongConsumer
 metadata:
   name: <consumer>
   annotations:
-    plugins.konghq.com: <{{page.params.name}}-example>
+    konghq.com/plugins: <{{page.params.name}}-example>
+    kubernetes.io/ingress.class: kong
   ```
 
 <div class="alert alert-ee blue">
@@ -432,6 +434,8 @@ apiVersion: configuration.konghq.com/v1
 kind: KongClusterPlugin
 metadata:
   name: <global-{{page.params.name}}>
+  annotations:
+    kubernetes.io/ingress.class: kong
   labels:
     global: \"true\"
 {% if config_required_fields_k8s == 'config: ' %}config:
@@ -464,7 +468,7 @@ plugins:
     <tr><th>Form Parameter</th><th>Description</th></tr>
   </thead>
   <tbody>
-    <tr><td><code>name</code></td><td>The name of the plugin to use, in this case <code>{{ page.params.name }}</code></td></tr>
+    <tr><td><code>name</code></td><td>The name of the plugin to use, in this case <code>{{ page.params.name }}</code>.</td></tr>
 
     {% if page.params.service_id %}
       <tr><td><code>service.id</code></td><td>The ID of the Service the plugin targets.</td></tr>

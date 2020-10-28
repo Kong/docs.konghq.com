@@ -3,15 +3,19 @@ title: Kong Mesh with Ubuntu
 no_search: true
 ---
 
-## Ubuntu
-
 To install and run {{site.mesh_product_name}} on Ubuntu (**amd64**), execute
 the following steps:
 
-* [1. Download {{site.mesh_product_name}}](#_1-download-kong-mesh)
-* [2. Follow Kuma instructions](#_2-follow-kuma-instructions)
+* [1. Download {{site.mesh_product_name}}](#1-download-kong-mesh)
+* [2. Run {{site.mesh_product_name}}](#2-run-kong-mesh)
+* [3. Verify the Installation](#3-verify-the-installation)
 
-### 1. Download {{site.mesh_product_name}}
+Finally, you can follow the [Quickstart](#4-quickstart) to take it from here and continue your {{site.mesh_product_name}} journey.
+
+## Prerequisites
+You have a license for {{site.mesh_product_name}}.
+
+## 1. Download {{site.mesh_product_name}}
 
 {% navtabs %}
 {% navtab Script %}
@@ -36,12 +40,8 @@ $ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 {% endnavtab %}
 {% endnavtabs %}
 
-### 2. Follow Kuma Instructions
+{% include /md/mesh/1.0.x/install-universal-run.md %}
 
-After downloading the {{site.mesh_product_name}} binaries, the remaining
-installation instructions for Kuma are fully compatible with
-{{site.mesh_product_name}}, except you will be running the
-{{site.mesh_product_name}} binaries instead of the vanilla Kuma ones.
+{% include /md/mesh/1.0.x/install-universal-verify.md %}
 
-To continue the installation, start from the second installation step in
-[the official Kuma installation guide](https://kuma.io/docs/0.7.1/installation/ubuntu/#_2-run-kuma).
+{% include /md/mesh/1.0.x/install-universal-quickstart.md %}

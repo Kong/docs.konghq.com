@@ -19,6 +19,129 @@ body {
     max-width: 100%;
   }
 
+  #promo-banner {
+    display: none;
+  }
+
+  @media (min-width: 1080px) {
+    body.banner {
+      #promo-banner {
+        position: fixed;
+        display: block;
+        top: 0;
+        width: 100vw;
+        height: 37.5px;
+        max-height: 37.5px;
+        left: 0;
+        z-index: 9;
+        padding-top: 1.5px;
+        top: 0px;
+        overflow: hidden;
+        background: #efefef;
+        box-shadow: inset 0 -10px 40px -20px rgba(0, 0, 0, 0.25);
+        h4.countdown {
+          display: inline-block;
+        }
+        h4.flip {
+          display: none;
+        }
+        &.flip {
+          h4.countdown {
+            display: none;
+          }
+          h4.flip {
+            display: inline-block;
+          }
+        }
+        .closebanner {
+          position: absolute;
+          height: 14px;
+          width: 14px;
+          z-index: 11;
+          left: 0;
+          top: 10px;
+          opacity: 1;
+          cursor: pointer;
+          transition: 0.2s ease-in-out;
+          &:hover {
+            box-shadow: 0 0 0 2px #0037ff;
+            opacity: 1;
+          }
+          &:before {
+            content: "";
+            background: linear-gradient(
+                45deg,
+                transparent calc(50% - 1px),
+                #0037ff calc(50% - 1px),
+                #0037ff calc(50% + 1px),
+                transparent calc(50% + 1px)
+              ),
+              linear-gradient(
+                -45deg,
+                transparent calc(50% - 1px),
+                #0037ff calc(50% - 1px),
+                #0037ff calc(50% + 1px),
+                transparent calc(50% + 1px)
+              );
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            border-radius: 100%;
+            cursor: pointer;
+          }
+        }
+        .container {
+          text-align: center;
+          h4 {
+            span {
+              font-size: 14px;
+              color: #222;
+              display: inline-block;
+              font-weight: 400;
+              a {
+                color: #0037ff;
+                font-weight: 900;
+                display: inline-block;
+                margin-left: 10px;
+                &:hover {
+                  color: #004b80;
+                  &:after {
+                    transform: translateX(2.5px);
+                  }
+                }
+                &:after {
+                  content: "\f0da";
+                  font-family: FontAwesome, "FontAwesome", "Font Awesome";
+                  display: inline-block;
+                  margin-left: 5px;
+                  transition: 0.2s ease-in-out;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      header:not(.closed) #promo-banner ~ .container {
+        margin-top: 5px;
+        text-align: center;
+      }
+
+      header:not(.closed) ~ div.page,
+      header.navbar {
+        padding-top: 40px;
+        transition: transform 0.3s ease-in-out;
+        &.closed,
+        &.compress {
+          transform: translateY(-40px) !important;
+        }
+      }
+    }
+  }
+
   .nav-link:focus,
   .nav-link:hover,
   .navbar-brand:focus,
@@ -256,7 +379,7 @@ body {
     -webkit-outline: none;
     outline: 0;
     margin-top: 0;
-    top: calc(50% - 13px);
+    top: calc(50% - 16px);
   }
   .kong-navbar .navbar-toggler div {
     position: absolute;
@@ -383,6 +506,14 @@ body {
       border-top: none;
       padding-bottom: 2rem;
     }
+    nav.navbar.full-width
+      .kong-navbar_nav
+      #menu-primary-nav
+      .multicol
+      > ul.sub-menu
+      > li:first-of-type {
+      background: #fff;
+    }
     .navbar.full-width .menu li.multicol.wide.toplabel > ul.sub-menu {
       min-width: 840px;
       padding-top: 1.5rem;
@@ -429,23 +560,18 @@ body {
     }
   }
   body header.navbar {
-    padding-top: 35px;
-    -webkit-transform: translateY(-22.5px) !important;
-    transform: translateY(-22.5px) !important;
-    transition: 0.2s ease-in-out;
+    padding-top: 0px;
   }
   @media (max-width: 768px) {
     .kong-navbar .navbar-toggler {
       right: 10px;
     }
   }
-  body header.navbar.expand {
+  body header.navbar.expand:not(.closed) {
     -webkit-transform: translateY(0) !important;
     transform: translateY(0) !important;
   }
   body header.navbar.lower_nav {
-    -webkit-transform: translateY(-37.5px) !important;
-    transform: translateY(-37.5px) !important;
     box-shadow: 0 10px 20px -12.5px rgba(0, 0, 0, 0.15);
     background: #fff !important;
     max-height: 92px !important;
@@ -508,6 +634,7 @@ body {
     .navbar.full-width .kong-navbar_nav #menu-primary-nav > li > a {
       padding-left: 0;
       padding-right: 0;
+      padding-bottom: 14px;
     }
     .navbar.full-width .kong-navbar_nav #menu-primary-nav > li.demo-btn {
       color: #17a956;
@@ -557,10 +684,12 @@ body {
           }
           > li.demo-btn {
             a {
-              color: #17a956;
-              padding: 2.5px 8px;
-              border: 1px solid;
+              color: #1155cb;
+              padding: 8px 23px;
+              border: 1px solid #a6c6ff;
+              border-radius: 5px;
               transition: 0.2s ease-in-out;
+              transform: translateY(-5px);
               &:hover {
                 color: #fff;
                 background: #17a956;
@@ -753,6 +882,9 @@ body {
                 }
                 &:last-of-type {
                   background: #f4f9ff;
+                }
+                &:first-of-type {
+                  background: #fff;
                 }
                 padding-bottom: 12px;
                 > a {
@@ -1296,11 +1428,11 @@ body {
   }
   .navbar.full-width.mobile-triggers {
     width: 100vw;
-    height: calc(200vh - 92px);
+    height: calc(200vh - 58px);
     position: fixed;
     background: transparent;
     left: 0;
-    top: 92px;
+    top: 58px;
     padding: 0;
     visibility: hidden;
     overflow: hidden;

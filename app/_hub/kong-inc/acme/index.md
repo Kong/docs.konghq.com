@@ -1,7 +1,7 @@
 ---
 name: ACME
 publisher: Kong Inc.
-version: 0.2.7
+version: 0.2.11
 
 source_url: https://github.com/Kong/kong-plugin-acme
 
@@ -16,6 +16,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 2.0.x
     enterprise_edition:
@@ -52,6 +53,11 @@ params:
       default: "`[]`"
       description: |
         The list of domains to create certificate for. To match subdomains under `example.com`, use `*.example.com`. Regex pattern is not supported. Note this config is only used to match domains, not to specify the Common Name or Subject Alternative Name to create certifcates; each domain will have its own certificate.
+    - name: fail_backoff_minutes
+      required: false
+      default: 5
+      description: |
+        Minutes to wait for each domain that fails to create a certificate. This applies to both new certificate and renewal.
     - name: renew_threshold_days
       required: false
       default: "`14`"
@@ -161,7 +167,7 @@ You can also [use the Admin API](#create-certificates) to verify the setup.
 If not, add a Route and a dummy Service to catch this route.
 ```bash
 # add a dummy service if needed
-$ curl http://localhost:8001/service \
+$ curl http://localhost:8001/services \
         -d name=acme-dummy \
         -d url=http://127.0.0.1:65535
 

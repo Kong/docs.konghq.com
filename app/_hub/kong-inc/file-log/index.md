@@ -3,14 +3,14 @@ name: File Log
 publisher: Kong Inc.
 version: 1.0.0
 
-desc: Append request and response data to a log file on disk
+desc: Append request and response data to a log file
 description: |
-  Append request and response data to a log file on disk.
+  Append request and response data in JSON format to a log file. You can also specify
+  streams (for example, `/dev/stdout` and `/dev/stderr`), which is especially useful
+  when running Kong in Kubernetes.
 
-  It is not recommended to use this plugin in production, it would be better to
-  use another logging plugin, for example `syslog`, in those cases. Due to system
-  limitations this plugin uses blocking file i/o, which will hurt performance,
-  and hence is an anti-pattern for Kong installations.
+  This plugin uses blocking I/O, which could affect performance when writing
+  to physical files on slow (spinning) disks.
 
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
@@ -65,7 +65,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
-  protocols: ["http", "https", "grpc", "grpcs"]
+  protocols: ["http", "https", "grpc", "grpcs", "tcp", "tls", "udp"]
   dbless_compatible: yes
   config:
     - name: path
