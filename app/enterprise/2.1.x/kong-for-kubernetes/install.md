@@ -6,7 +6,11 @@ skip_read_time: true
 ## Introduction
 Kong for Kubernetes Enterprise provides most Kong Enterprise plugins and runs without a database, but does not include other Kong Enterprise features (Kong Manager, Dev Portal, Vitals, etc).
 
->Note: See [Kong for Kubernetes deployment options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options) for a feature breakdown and image comparison.
+<div class="alert alert-ee blue">
+<strong>Note:</strong>
+See <a href="/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options">Kong for Kubernetes deployment options</a>
+for a feature breakdown and image comparison.
+</div>
 
 You can install Kong for Kubernetes Enterprise using YAML with kubectl, with OpenShift oc, or [with Helm](https://github.com/Kong/charts/tree/main/charts/kong).
 
@@ -23,11 +27,7 @@ Before starting installation, be sure you have the following:
 
 - **Kubernetes cluster**: Kong is compatible with all distributions of Kubernetes. You can use a [Minikube](https://kubernetes.io/docs/setup/minikube/), [GKE](https://cloud.google.com/kubernetes-engine/), or [OpenShift](https://www.openshift.com/products/container-platform) cluster.
 - **kubectl or oc access**: You should have `kubectl` or `oc` (if working with OpenShift) installed and configured to communicate to your Kubernetes cluster.
-- A valid Kong Enterprise License
-  * If you have a license, continue to [Set Up Kong Enterprise License](#step-2-set-up-kong-enterprise-license) below. If you need your license file information, contact Kong Support.
-  * If you need a license, request a trial license through our [Request Demo](https://konghq.com/request-demo/) page.
-  * Or, try out Kong for Kubernetes Enterprise using a live tutorial at [https://kubecon.konglabs.io/](https://kubecon.konglabs.io/)
-- Kong Enterprise Docker registry access on Bintray.
+{% include /md/{{page.kong_version}}/bintray-and-license.md %}
 
 ## Step 1. Provision a Namespace
 
@@ -48,12 +48,9 @@ $ oc new-project kong
 {% endnavtabs %}
 
 ## Step 2. Set Up Kong Enterprise License
-Running Kong for Kubernetes Enterprise requires a valid license.
+Running Kong for Kubernetes Enterprise requires a valid license. See [prerequisites](#prerequisites) for more information.
 
-As part of the sign-up process for Kong Enterprise, you should have received a license file. If you do not have one, contact your Kong sales representative. Save the license file temporarily to disk with filename `license` (no file extension) and execute the following:
-
-> Note: There is no `.json` extension in the `--from-file` parameter.
-> `-n kong` specifies the namespace in which you are deploying Kong for Kubernetes Enterprise. If you are deploying in a different namespace, change this value.
+Save the license file temporarily to disk with filename `license` (no file extension) and execute the following:
 
 {% navtabs %}
 {% navtab kubectl %}
@@ -67,6 +64,12 @@ $ oc create secret generic kong-enterprise-license --from-file=./license -n kong
 ```
 {% endnavtab %}
 {% endnavtabs %}
+
+<div class="alert alert-ee blue">
+<strong>Note:</strong><br>
+<ul>
+  <li>There is no <code>.json</code> extension in the <code>--from-file</code> parameter.</li>
+  <li><code>-n kong</code> specifies the namespace in which you are deploying Kong for Kubernetes Enterprise. If you are deploying in a different namespace, change this value.</li></ul></div>
 
 ## Step 3. Configure Kong Enterprise Docker registry access
 
@@ -97,7 +100,7 @@ The steps in this section show you how to install Kong for Kubernetes Enterprise
 {% navtabs %}
 {% navtab kubectl %}
 ```
-$ kubectl apply -f https://bit.ly/k4k8s-enterprise
+$ kubectl apply -f http://bit.ly/k4k8s-enterprise-install
 ```
 The initial setup might take a few minutes.
 
@@ -117,7 +120,7 @@ kong-proxy   LoadBalancer   10.63.254.78   35.233.198.16   80:32697/TCP,443:3236
 {% endnavtab %}
 {% navtab OpenShift oc %}
 ```
-$ oc create -f https://bit.ly/k4k8s-enterprise
+$ oc create -f http://bit.ly/k4k8s-enterprise-install
 ```
 The initial setup might take a few minutes.
 
@@ -137,8 +140,12 @@ kong-proxy   LoadBalancer   10.63.254.78   35.233.198.16   80:32697/TCP,443:3236
 {% endnavtab %}
 {% endnavtabs %}
 
-> Note: Depending on the Kubernetes distribution you are using, you may or may not see an external IP address assigned to the service. See your provider's guide on obtaining an IP address for a Kubernetes Service of type LoadBalancer.
-
+<div class="alert alert-ee blue">
+<strong>Note:</strong> Depending on the Kubernetes distribution you are using,
+you might see an external IP address assigned to the service. Refer to your
+provider's guide on obtaining an IP address for a Kubernetes Service of type
+LoadBalancer.
+</div>
 
 Set up an environment variable to hold the IP address:
 

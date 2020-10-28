@@ -239,9 +239,9 @@ keys.
     ```bash
     KONG_ROLE=control_plane
     KONG_CLUSTER_MTLS=pki
-    KONG_CLUSTER_CA_CERT=/<path-to-file>/ca-cert.crt
-    KONG_CLUSTER_CERT= control-plane.crt
-    KONG_CLUSTER_CERT_KEY=control-plane.key
+    KONG_CLUSTER_CA_CERT=/<path-to-file>/ca-cert.pem
+    KONG_CLUSTER_CERT=/<path-to-file>/control-plane.crt
+    KONG_CLUSTER_CERT_KEY=/<path-to-file>/control-plane.key
     ```
     By setting the role of the node to `control_plane`, this node will listen on
     port `0.0.0.0:8005` by default for Data Plane connections, and on port
@@ -284,9 +284,9 @@ keys.
     ```bash
     role = control_plane
     cluster_mtls = pki
-    cluster_ca_cert = /<path-to-file>/ca-cert.crt
-    cluster_cert = control-plane.crt
-    cluster_cert_key = control-plane.key
+    cluster_ca_cert = /<path-to-file>/ca-cert.pem
+    cluster_cert = /<path-to-file>/control-plane.crt
+    cluster_cert_key = /<path-to-file>/control-plane.key
     ```
 
     By setting the role of the node to `control_plane`, this node will listen on
@@ -378,7 +378,9 @@ follow the instructions to:
     -e "KONG_CLUSTER_MTLS=pki" \
     -e "KONG_CLUSTER_SERVER_NAME=control-plane.kong.yourcorp.tld" \
     -e "KONG_CLUSTER_CERT=data-plane.crt" \
-    -e "KONG_CLUSTER_CERT_KEY=data-plane.crt"
+    -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/data-plane.crt" \
+    -e "KONG_CLUSTER_CA_CERT=/<path-to-file>/ca-cert.pem" \
+    -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=/<path-to-file>/ca-cert.pem" \
     --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
     -p 8000:8000 \
     kong-ee-dp1
@@ -450,8 +452,10 @@ and follow the instructions in Steps 1 and 2 **only** to download
     cluster_telemetry_endpoint = control-plane.<admin-hostname>.com:8006
     cluster_mtls = pki
     cluster_server_name = control-plane.kong.yourcorp.tld
-    cluster_cert = data-plane.crt
-    cluster_cert_key = data-plane.crt
+    cluster_cert = /<path-to-file>/data-plane.crt
+    cluster_cert_key = /<path-to-file>/data-plane.crt
+    cluster_ca_cert = /<path-to-file>/ca-cert.pem
+    lua_ssl_trusted_certificate = /<path-to-file>/ca-cert.pem
     ```
 
     Where:

@@ -90,16 +90,36 @@
   .content {
     ol {
       padding-left: 2rem;
+      counter-reset: base;
+
+      li {
+        p {
+          font-size: inherit;
+        }
+      }
+    }
+
+    ol > li::before {
+      counter-increment: base;
+      content: counter(base);
+      font-size: 13px;
     }
 
     ul {
       // avoid nested lists and lists elements to have smaller and smaller
       // font sizes
       font-size: inherit;
+      margin-left: 0.5rem;
+      list-style: none;
 
       li {
         // avoid ridiculously big spaces between lists elements
         margin-bottom: 0.2rem;
+        list-style-type: disc;
+
+        p {
+          font-size: inherit;
+        }
       }
 
       ul {
@@ -123,19 +143,19 @@
     // titles proportions overridden from base.less
 
     h2 {
-      margin-top: 3rem;
+      margin-top: 3.2rem;
       margin-bottom: 1rem;
-      font-size: 3.5rem;
-      font-weight: 400;
+      font-size: 3.2rem;
+      font-weight: 500;
     }
 
     h3 {
-      font-size: 2.5rem;
-      font-weight: 300;
+      font-size: 2.4rem;
+      font-weight: 400;
     }
 
     h4 {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 300;
     }
 

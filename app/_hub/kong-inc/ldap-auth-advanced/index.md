@@ -4,9 +4,11 @@ name: LDAP Authentication Advanced
 publisher: Kong Inc.
 version: 1.3-x
 
-desc: Secure Kong clusters, routes and services with username and password protection
+desc: Secure Kong clusters, Routes, and Services with username and password protection
 description: |
-  Add LDAP Bind Authentication with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
+  Add LDAP Bind Authentication with username and password protection. The plugin
+  checks for valid credentials in the `Proxy-Authorization` and `Authorization` headers
+  (in that order).
 
 enterprise: true
 type: plugin
@@ -31,86 +33,94 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
+  protocols: ["http", "https", "gprc", "grpcs"]
+  dbless_compatible: yes
   config:
     - name: ldap_host
       required: true
       default:
       value_in_examples: ldap.example.com
       description: |
-        Host on which the LDAP server is running
+        Host on which the LDAP server is running.
     - name: ldap_port
-      required:
-      default:
-      value_in_examples:
+      required: true
+      default: 389
+      value_in_examples: 389
       description: |
-        TCP port where the LDAP server is listening
+        TCP port where the LDAP server is listening. 389 is the default
+        port for non-SSL LDAP and AD. 686 is the port required for SSL LDAP and AD. If `ldaps` is
+        configured, you must use port 686.
     - name: ldap_password
       required:
       default:
       value_in_examples:
       description: |
-        The password to the LDAP server
+        The password to the LDAP server.
     - name: start_tls
-      required:
+      required: true
       default: "`false`"
-      value_in_examples:
+      value_in_examples: true
       description: |
-        Set it to `true` to issue StartTLS (Transport Layer Security) extended operation over `ldap` connection
+        Set it to `true` to issue StartTLS (Transport Layer Security) extended operation
+        over `ldap` connection. If the `start_tls` setting is enabled, ensure the `ldaps`
+        setting is disabled.
     - name: ldaps
-      required:
+      required: true
       default: "`false`"
       value_in_examples:
       description: |
         Set it to `true` to use `ldaps`, a secure protocol (that can be configured
-        to TLS) to connect to the LDAP server.
+        to TLS) to connect to the LDAP server. When `ldaps` is
+        configured, you must use port 686. If the `ldap` setting is enabled, ensure the
+        `start_tls` setting is disabled.
     - name: base_dn
       required: true
       default:
       value_in_examples: dc=example,dc=com
       description: |
-        Base DN as the starting point for the search; e.g., "dc=example,dc=com"
+        Base DN as the starting point for the search; e.g., "dc=example,dc=com".
     - name: verify_ldap_host
-      required:
+      required: true
       default: "`false`"
-      value_in_examples:
+      value_in_examples: false
       description: |
-        Set it to `true` to authenticate LDAP server. The server certificate will be verified according to the CA certificates specified by the `lua_ssl_trusted_certificate` directive.
+        Set to `true` to authenticate LDAP server. The server certificate will be verified according to the CA certificates specified by the `lua_ssl_trusted_certificate` directive.
     - name: attribute
       required: true
       default:
       value_in_examples: cn
       description: |
-        Attribute to be used to search the user; e.g., "cn"
+        Attribute to be used to search the user; e.g., "cn".
     - name: cache_ttl
-      required:
+      required: true
       default: "`60`"
-      value_in_examples:
+      value_in_examples: 60
       description: |
-        Cache expiry time in seconds
+        Cache expiry time in seconds.
     - name: timeout
       required: false
       default: "`10000`"
       value_in_examples:
       description: |
-        An optional timeout in milliseconds when waiting for connection with LDAP server
+        An optional timeout in milliseconds when waiting for connection with LDAP server.
     - name: keepalive
       required: false
       default: "`10000`"
       value_in_examples:
       description: |
-        An optional value in milliseconds that defines for how long an idle connection to LDAP server will live before being closed
+        An optional value in milliseconds that defines how long an idle connection to LDAP server will live before being closed.
     - name: anonymous
       required: false
       default:
       value_in_examples:
       description: |
-        An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
+        An optional string (consumer UUID) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. The value must refer to the Consumer `id` attribute that is internal to Kong, **not** its `custom_id`.
     - name: header_type
       required: false
       default: "`ldap`"
-      value_in_examples:
+      value_in_examples: ldap
       description: |
-        An optional string to use as part of the Authorization header. By default, a valid Authorization header looks like this: `Authorization: ldap base64(username:password)`. If `header_type` is set to "basic" then the Authorization header would be `Authorization: basic base64(username:password)`. Note that `header_type` can take any string, not just `"ldap"` and `"basic"`.
+        An optional string to use as part of the Authorization header. By default, a valid Authorization header looks like this: `Authorization: ldap base64(username:password)`. If `header_type` is set to "basic", then the Authorization header would be `Authorization: basic base64(username:password)`. Note that `header_type` can take any string, not just `"ldap"` and `"basic"`.
     - name: consumer_optional
       required: false
       default: "`false`"
@@ -122,7 +132,7 @@ params:
       default: '`[ "username", "custom_id" ]`'
       value_in_examples:
       description: |
-        Whether to authenticate consumer based on `username` and/or `custom_id`
+        Whether to authenticate Consumers based on `username` and/or `custom_id`.
     - name: hide_credentials
       required: false
       default: "`false`"
@@ -134,14 +144,14 @@ params:
       default:
       value_in_examples:
       description: |
-        The DN to bind to. Used to perform LDAP search of user. This bind_dn
+        The DN to bind to. Used to perform LDAP search of user. This `bind_dn`
         should have permissions to search for the user being authenticated.
     - name: group_base_dn
       required:
       default: "matches `conf.base_dn`"
       value_in_examples:
       description: |
-        Sets a distinguished name for the entry where LDAP searches for groups begin.
+        Sets a distinguished name (DN) for the entry where LDAP searches for groups begin.
     - name: group_name_attribute
       required:
       default: "matches `conf.attribute`"
@@ -158,22 +168,31 @@ params:
 
 ---
 
-### Usage
+## Usage
 
-In order to authenticate the user, client must set credentials in
-`Proxy-Authorization` or `Authorization` header in following format:
+To authenticate a user, the client must set credentials in either the
+`Proxy-Authorization` or `Authorization` header in the following format:
 
     credentials := [ldap | LDAP] base64(username:password)
 
-The plugin will validate the user against the LDAP server and cache the
-credential for future requests for the duration specified in
+The Authorization header would look something like:
+
+    Authorization:  ldap dGxibGVzc2luZzpLMG5nU3RyMG5n
+
+The plugin validates the user against the LDAP server and caches the
+credentials for future requests for the duration specified in
 `config.cache_ttl`.
 
-#### Upstream Headers
+You can set the header type `ldap` to any string (such as `basic`) using
+`config.header_type`.
 
-When a client has been authenticated, the plugin will append some headers to the
- request before proxying it to the upstream service, so that you can identify
- the consumer in your code:
+
+
+### Upstream Headers
+
+When a client has been authenticated, the plugin appends some headers to the
+request before proxying it to the upstream service so that you can identify
+the consumer in your code:
 
 * `X-Credential-Username`, the `username` of the Credential (only if the
 consumer is not the 'anonymous' consumer)
@@ -187,11 +206,11 @@ authentication failed and 'anonymous' was set)
 authentication failed and 'anonymous' was set)
 
 
-#### LDAP Search and config.bind_dn
+### LDAP Search and `config.bind_dn`
 
 LDAP directory searching is performed during the request/plugin lifecycle. It is
 used to retrieve the fully qualified DN of the user so a bind
-request can be performed with the user's given LDAP username and password. The
+request can be performed with a user's given LDAP username and password. The
 search for the user being authenticated uses the `config.bind_dn` property. The
 search uses `scope="sub"`, `filter="<config.attribute>=<username>"`, and
 `base_dn=<config.base_dn>`. Here is an example of how it performs the search
@@ -206,3 +225,8 @@ $ ldapsearch -x -h "<config.ldap_host>" -D "<config.bind_dn>" -b
 [configuration]: /latest/configuration
 [consumer-object]: /latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
+
+
+### Using Service Directory Mapping on the CLI
+
+{% include /md/2.1.x/ldap/ldap-service-directory-mapping.md %}

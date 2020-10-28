@@ -1,5 +1,5 @@
 ---
-title: Set up Okta and Kong for use with external OAuth
+title: Set Up External Portal Application Authentication with Okta and OIDC
 ---
 
 ## Overview
@@ -39,7 +39,8 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
 
    ![Okta Claim](/assets/images/docs/dev-portal/okta-add-claim.png)
 
-    Now that you have created a custom claim, you can associate the `client_id` with a Service via the Application Registration plugin. Start by creating a Service in Kong Manager.
+    Now that you have created a custom claim, you can associate the `client_id`
+    with a Service via the Application Registration plugin. Start by creating a Service in Kong Manager.
 
 7. Create a Service and a Route and instantiate an OIDC plugin on that Service.
    You can allow most options to use their defaults.
@@ -48,11 +49,11 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
 
       ![OIDC with Okta Issuer URL](/assets/images/docs/dev-portal/oidc-issuer-url.png)
 
-   2. In the `Config.Consumer Claim` field, enter `<application_id>`.
+   2. In the `Config.Consumer Claim` field, enter your `<application_id>`.
 
    **Tip:** Because Okta's discovery document does not include all supported
-   auth types by default, it is recommended to disable the
-   `config.verify_parameters` option.
+   auth types by default, ensure the
+   `config.verify_parameters` option is disabled.
 
    ![Clear Config Verify Parameters for OIDC with Okta](/assets/images/docs/dev-portal/oidc-clear-verify-params-app-reg.png)
 
@@ -67,7 +68,8 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
 
    ```
 
-8. Configure a Portal Application Registration plugin on the Service as well. See [Application Registration](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration#config-app-reg-plugin).
+8. Configure a Portal Application Registration plugin on the Service as well. See
+[Application Registration](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration#config-app-reg-plugin).
 
 ## Register an application in Okta
 
@@ -98,6 +100,13 @@ your Okta application will vary:
 
 Now that the application has been configured in Okta, you need to associate the
 Okta application with the corresponding application in Kong's Developer Portal.
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> Each developer should have their own application in both Okta and Kong.  
+  Each Okta application has its own `client_id` that maps to its respective application in Kong.
+  Essentially, this maps identity provider applications to portal applications.
+</div>
+
 This example assumes Client Credentials is the chosen OAuth flow.
 
 1. In the Kong Dev Portal, create an account if you haven't already.

@@ -19,8 +19,11 @@ admins can selectively admit access to Services using Kong Manager.
   and strategy (`kong-oauth2` or `external-oauth2`). See
 [Configure the Authorization Provider Strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/#portal-app-auth) for the Portal Application Registration plugin.
 * Authorization provider configured if using a supported third-party
-identity provider with the OIDC plugin. For example instructions using Okta
-as an identity provider, refer to the [Okta example](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config).
+  identity provider with the OIDC plugin:
+  * For example instructions using Okta as an identity provider, refer to the
+    [Okta example](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config).
+  * For example instructions using Azure AD as an identity provider, refer to the
+    [Azure example](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/azure-oidc-config).
 
 ## Enable Application Registration on a Service using Kong Manager {#enable-app-reg-plugin}
 
@@ -82,15 +85,19 @@ Default: `false`
 
 Displays the Issuer URL in the Service Details. **Note:** Exposing
 the Issuer URL is essential for the
-[Authorization Code Flow](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth/#ac-flow) workflow configured for third-party identity providers.
+[Authorization Code Flow](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth/#ac-flow)
+workflow configured for third-party identity providers.
 
 ![Issuer URL](/assets/images/docs/dev-portal/dev-portal-issuer-url.png)
 
 ## Next steps
 
 * If using the Kong-managed authorization strategy
-(`kong-oauth2`), configure the OAuth2 plugin. You can use the Kong Manager GUI
-or cURL commands as documented on the [Plugin Hub](/hub/kong-inc/oauth2).
-* if using the third-party authorization strategy
-(`external-oauth2`), configure the OIDC plugin. You can use the GUI or cURL
-commands as documented on the plugin hub.
+(`kong-oauth2`), configure the OAuth2 plugin.
+ You can use the Kong Manager GUI or cURL commands as documented on the
+ [Plugin Hub](/hub/kong-inc/oauth2). The OAuth2 plugin cannot be used in hybrid mode.
+* If using the third-party authorization strategy
+(`external-oauth2`), configure the OIDC plugin. You can use the Kong Manager GUI
+or cURL commands as documented on the [Plugin Hub](/hub/kong-inc/openid-connect).
+When your deployment is hybrid mode, the OIDC plugin must be configured to handle
+authentication for the Portal Application Registration plugin.

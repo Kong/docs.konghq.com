@@ -18,7 +18,7 @@ plugins are used in conjunction with each other on a Service:
 * The OIDC plugin handles all aspects of the OAuth2 handshake, including
 looking up the Consumer via
 [custom claim](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config#auth-server-cclaim)
-(the `custom_id` matches the Okta `client_id` claim).
+(the `custom_id` matches the identity provider `client_id` claim).
 
 * The Application Registration plugin is responsible for checking the mapped
 Consumer and ensuring the Consumer has the correct ACL (Access Control List)
@@ -30,9 +30,11 @@ The Kong OIDC plugin supports many identity providers out of the box. The
 following providers have been tested for the current version of the Kong
 Portal Application Registration plugin used in tandem with the Kong OIDC plugin:
 
-* [Okta](https://developer.okta.com/)
-* [Ping Identity](https://www.pingidentity.com/)
-* [Azure](https://azure.microsoft.com/)
+* [Okta](https://developer.okta.com/). See the
+  [Okta setup example]((/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config).
+* [Azure](https://azure.microsoft.com/). See the
+  [Azure setup example](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/azure-oidc-config).
+* [Ping Identity](https://www.pingidentity.com/).
 
 ### Resources
 
@@ -46,13 +48,13 @@ your implemented identity provider and OAuth flow.
   - [Client Credentials Flow](https://developer.okta.com/docs/guides/implement-client-creds/overview/)
   - [Implicit Grant Flow](https://developer.okta.com/docs/guides/implement-implicit/overview/)
 
-- Ping Identity
-  - [Oauth2 Developers Guide](https://www.pingidentity.com/developer/en/resources/oauth-2-0-developers-guide.html)
-
 - Azure
   - [Authorization Code Flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
   - [Client Credentials Flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow)
   - [Implicit Grant Flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-implicit-grant-flow)
+
+- Ping Identity
+  - [Oauth2 Developers Guide](https://www.pingidentity.com/developer/en/resources/oauth-2-0-developers-guide.html)
 
 ## Supported OAuth flows
 

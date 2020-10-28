@@ -68,7 +68,7 @@ params:
 
 ---
 
-### Usage
+## Usage
 
 In order to authenticate the **Consumer**, it must provide a valid certificate and
 complete mutual TLS handshake with Kong.
@@ -113,17 +113,31 @@ The `id` value returned can now be used for mTLS plugin configurations or consum
 
 ### Create manual mappings between certificate and Consumer object
 
-Sometimes you may not wish to use automatic Consumer lookup or you have certificates
-that contain a field value not associated with **Consumer** objects directly. In those
+Sometimes, you might not want to use automatic Consumer lookup, or you have certificates
+that contain a field value not directly associated with **Consumer** objects. In those
 situations, you may manually assign one or more subject names to the **Consumer** object for
 identifying the correct Consumer.
 
-**Note:** "Subject names" refers to the certificate's Subject Alternative Names (SAN) or
+> **Note:** "Subject names" refers to the certificate's Subject Alternative Names (SAN) or
 "Common Name" (CN). CN will only be used if the SAN extension does not exist.
+
+{% navtabs %}
+{% navtab Kong Admin API %}
+
+Create a mapping:
 
 ```bash
 $ curl -X POST http://kong:8001/consumers/{consumer}/mtls-auth \
     -d 'subject_name=test@example.com'
+```
+
+Where `{consumer}` is the `id` or `username` property of the
+[Consumer](/enterprise/latest/admin-api/#consumer-object) entity to associate the
+credentials to.
+
+Once created, you'll see a `201` success message:
+
+```bash
 HTTP/1.1 201 Created
 
 {
@@ -133,23 +147,49 @@ HTTP/1.1 201 Created
 }
 ```
 
-* `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+{% endnavtab %}
+{% navtab Declarative (YAML) %}
 
-form parameter                          | default | description
----                                     | ---     | ---
-`subject_name`<br>*required*            |         | The Subject Alternative Name (SAN) or Common Name (CN) that should be mapped to `consumer` (in that order of lookup).
-`ca_certificate`<br>*optional*          |         | UUID of the Certificate Authority (CA) that the certificate has to be verifiable by for the mapping to success. This is to help distinguish multiple certificates with the same subject name but are issued under different CAs. If empty, the subject name will match certificates issued by any CA under the corresponding `config.ca_certificates`.
+To create a subject name mapping using declarative configuration, you will need
+to generate a UUID for each `mtls_auth_credentials` mapping. You can use any
+UUID generator to do this. Here are some common ones, depending on your OS:
+* [Linux](https://man7.org/linux/man-pages/man1/uuidgen.1.html)
+* [MacOS](https://www.unix.com/man-page/mojave/1/uuidgen/)
+* [Windows](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/new-guid?view=powershell-7)
+
+After you have generated a UUID, add the following to your declarative
+configuration file:
+
+```yaml
+consumers:
+- custom_id: my-consumer
+  username: {consumer}
+  mtls_auth_credentials:
+  - id: bda09448-3b10-4da7-a83b-2a8ba6021f0c
+    subject_name: test@example.com
+```
+
+{% endnavtab %}
+{% endnavtabs %}
+
+#### Parameters for manual mapping
+
+Form Parameter                            | Default | Description
+---                                       | ---     | ---
+`id`<br>*required for declarative config* |  none   | UUID of the Consumer-mapping. Required if adding mapping using declarative configuration, otherwise generated automatically by Kong's Admin API.
+`subject_name`<br>*required*              |  none   | The Subject Alternative Name (SAN) or Common Name (CN) that should be mapped to `consumer` (in order of lookup).
+`ca_certificate`<br>*optional*            |  none   | **If using the Kong Admin API:** UUID of the Certificate Authority (CA). <br><br> **If using declarative configuration:** Full PEM-encoded CA certificate. <br><br>The provided CA UUID or full certificate has to be verifiable by the issuing certificate authority for the mapping to succeed. This is to help distinguish multiple certificates with the same subject name that are issued under different CAs. <br><br>If empty, the subject name will match certificates issued by any CA under the corresponding `config.ca_certificates`.
 
 ### Matching behaviors
 
-Once a client certificate has been verified as valid, the **Consumer** object will be determined in the following order unless `skip_consumer_lookup` is set to `true`:
+After a client certificate has been verified as valid, the **Consumer** object is determined in the following order, unless `skip_consumer_lookup` is set to `true`:
 
 1. Manual mappings with `subject_name` matching the certificate's SAN or CN (in that order) and `ca_certificate = <issuing authority of the client certificate>`
 2. Manual mappings with `subject_name` matching the certificate's SAN or CN (in that order) and `ca_certificate = NULL`
 3. If `config.consumer_by` is not null, Consumer with `username` and/or `id` matching the certificate's SAN or CN (in that order)
 4. The `config.anonymous` consumer (if set)
 
-**Note**: matching will stop as soon as the first successful match is found.
+> **Note**: Matching stops as soon as the first successful match is found.
 
 When a client has been authenticated, the plugin will append headers to the request before proxying it to the upstream service so that you can identify the **Consumer** in your code:
 
@@ -170,13 +210,7 @@ certificate property being set in `authenticated_group_by`.
 
 ### Troubleshooting
 
-When authentication fails, the client does not have access to any details explaining the
+When authentication fails, the client does not have access to any details that explain the
 failure. The security reason for this omission is to prevent malicious reconnaissance.
 Instead, the details are recorded inside Kong's error logs under the `[mtls-auth]`
 filter.
-
-
-[configuration]: /latest/configuration
-[consumer-object]: /latest/admin-api/#consumer-object
-[acl-associating]: /plugins/acl/#associating-consumers
-[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

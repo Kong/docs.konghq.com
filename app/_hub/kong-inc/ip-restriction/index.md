@@ -1,7 +1,7 @@
 ---
 name: IP Restriction
 publisher: Kong Inc.
-version: 1.0.0
+version: 2.0.x
 
 desc: Allow or deny IPs that can make requests to your Services
 description: |

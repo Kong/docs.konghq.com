@@ -1,6 +1,7 @@
 ---
 name: gRPC-Web
 publisher: Kong Inc.
+version: 0.2.x
 
 categories:
   - transformations
@@ -19,15 +20,13 @@ license_type: MIT
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.2.x
       - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
+
   enterprise_edition:
     compatible:
       - 2.1.x
-      - 1.5.x
-      - 1.3.x
+
 
 params:
   name: grpc-web
@@ -42,8 +41,15 @@ params:
       value_in_examples: path/to/hello.proto
       description: |
         If present, describes the gRPC types and methods.
-        Required to support payload transcoding.  When absent, the
+        Required to support payload transcoding. When absent, the
         web client must use application/grpw-web+proto content.
+    - name: pass_stripped_path
+      required: false
+      default:
+      value_in_examples:
+      description:
+        If set to `true` causes the plugin to pass the stripped request path to
+        the upstream gRPC service (see the `strip_path` Route attribute).
 
 ---
 

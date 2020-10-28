@@ -348,7 +348,7 @@
         - text: Add a Workspace
           url: /kong-manager/administration/workspaces/add-workspace
         - text: RBAC
-        - items:
+          items:
           - text: RBAC in Kong Manager
             url: /kong-manager/administration/rbac
           - text: Create a New Role
@@ -358,7 +358,7 @@
           - text: Add a Role and Permissions
             url: /kong-manager/administration/rbac/add-role
         - text: Admins
-        - items:
+          items:
           - text: Invite an Admin
             url: /kong-manager/administration/admins/invite
           - text: Add an Admin
@@ -385,6 +385,8 @@
       url: /developer-portal/legacy-migration
     - text: Structure and File Types
       url: /developer-portal/structure-and-file-types
+    - text: Using the Portal Files API
+      url: /developer-portal/files-api
     - text: Working with Templates
       url: /developer-portal/working-with-templates
     - text: Using the Editor
@@ -424,6 +426,8 @@
               url: /developer-portal/administration/application-registration/enable-application-registration
             - text: Set up Okta and Kong for external OAuth
               url: /developer-portal/administration/application-registration/okta-config
+            - text: Set Up Azure AD and Kong for External Authentication
+              url: /developer-portal/administration/application-registration/azure-oidc-config
             - text: Manage Applications
               url: /developer-portal/administration/application-registration/managing-applications
     - text: Customization
@@ -474,7 +478,8 @@
     - text: Deployment Options
       url: /kong-for-kubernetes/deployment-options
     - text: Changelog
-      url: /kong-for-kubernetes/changelog
+      url: https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
+      absolute_url: true
 
 - title: Kong Vitals
   icon: /assets/images/icons/documentation/icn-vitals.svg
