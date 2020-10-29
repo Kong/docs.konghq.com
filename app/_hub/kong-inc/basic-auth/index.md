@@ -70,6 +70,7 @@ params:
     - name: hide_credentials
       required: false
       value_in_examples: true
+      datatype: boolean
       default: "`false`"
       description: |
         An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`, the plugin will strip the credential from the request (i.e. the `Authorization` header) before proxying it.
@@ -77,6 +78,7 @@ params:
     - name: anonymous
       required: false
       default:
+      datatype: string
       description: |
         An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
   extra: |
