@@ -74,6 +74,9 @@ Note the following before you start using this guide:
 * You can use this guide to get started in production environments, but this guide does not provide all of the necessary configurations and security settings that you would need for a production environment.
 * The examples in this guide all use `<admin-hostname>` to refer to a {{site.base_gateway}} instance's Admin API URL. Make sure to replace the variable with the actual URL of your {{site.base_gateway}} installation.
     * To find the URL, check the `admin_listen` property in the `/etc/kong/kong.conf` file.
+    * {{site.ee_product_name}} free trials: Check your welcome email for the
+    proxy and administration endpoints, which replace `<admin-hostname>:8000` and
+    `<admin-hostname>:8001` respectively.
 
 ### Using this guide
 * Throughout this guide, you will have the option to configure Kong in a few
@@ -88,6 +91,13 @@ place on the Control Plane.
 want to use HTTPie, install it from [here](https://httpie.org/).
 * Any references to “{{site.base_gateway}}” refer to features or concepts
 common to both {{site.ce_product_name}} and {{site.ee_gateway_name}}.
+* **Cloud-based Enterprise free trial users**: Since the {{site.ee_product_name}}
+ free trial is a Kong-hosted cloud trial, you'll need to refer to the generated
+ admin and proxy endpoints instead of defining your own, and you don't need to
+ use the port number in the URL. See
+ [Prepare to Administer {{site.base_gateway}}](/getting-started-guide/{{page.kong_version}}/prepare)
+ to learn more about the endpoints and to set up an RBAC token for Admin API
+ access.  
 
 ### Next Steps
 
