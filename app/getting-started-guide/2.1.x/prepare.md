@@ -25,6 +25,7 @@ In this guide, an instance of {{site.base_gateway}} is referenced via `<admin-ho
 
 If you are trying out {{site.ee_product_name}} using a hosted free trial, you
 can go through this guide to experience some of this enhanced functionality.
+We recommend that you get started using the Kong Manager user interface.
 However, if you want to test out configuring {{site.ee_product_name}}
 programmatically, you need to enable access to the Admin API first.
 
