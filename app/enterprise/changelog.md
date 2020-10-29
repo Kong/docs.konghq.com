@@ -7,6 +7,12 @@ skip_read_time: true
 ## 2.2.0.0 (beta)
 **Release Date** 2020/10/27
 
+<div class="alert alert-warning">
+<i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+<b>Important:</b> There is no <b>beta</b> documentation for {{site.ee_product_name}}
+2.2.0.0. Documentation will be added for the GA release.
+</div>
+
 ### **Kong Enterprise**
 The following sections list {{site.ee_product_name}}-exclusive updates,
 features, and fixes for the **2.2.0.0 beta** version.
