@@ -7,6 +7,12 @@ skip_read_time: true
 ## 2.2.0.0 (beta)
 **Release Date** 2020/10/27
 
+<div class="alert alert-warning">
+<i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+<b>Important:</b> There is no <b>beta</b> documentation for {{site.ee_product_name}}
+2.2.0.0. Documentation will be added for the GA release.
+</div>
+
 ### **Kong Enterprise**
 The following sections list {{site.ee_product_name}}-exclusive updates,
 features, and fixes for the **2.2.0.0 beta** version.
@@ -24,7 +30,7 @@ systems.
 
 
 #### Plugins
-- [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
+- OpenID Connect (`openid-connect`)
   - Added the `issuers_allowed` configuration parameter, which introduces the
   ability to specify valid issuers for access token ISS claim.
   - Added the ability to pass `urn:ietf:params:oauth:grant-type:jwt-bearer`
@@ -37,10 +43,8 @@ systems.
 - **Encryption support:** The Redis strategy now supports TLS connections.
   Introduced the `redis.ssl`, `redis.ssl_verify`, and `redis.server_name`
   parameters for confguring TLS connections. Applies to the following plugins:
-  - [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/)
-(`rate-limiting-advanced`)
-  - [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/)
-(`proxy-cache-advanced`)
+  - Rate Limiting Advanced (`rate-limiting-advanced`)
+  - Proxy Caching Advanced (`proxy-cache-advanced`)
 
 ### Fixes
 
@@ -54,7 +58,7 @@ systems.
   correct SNI was sent.
 
 #### Plugins
-- [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
+- OpenID Connect (`openid-connect`)
   - Fixed a bug in issuer normalization.
   - Improved discovery and rediscovery to be more resilient.
   - When refreshing tokens, the old `id_token` is now preserved if a new one is
@@ -70,29 +74,26 @@ systems.
   ignored.
   - Fixed redirects to use `kong.response.exit`, which implements the proper
   short-circuiting semantics in Kong.
-- [OAuth Introspection](/hub/kong-inc/oauth2-introspection/)
-(`oauth2-introspection`)
+- OAuth Introspection (`oauth2-introspection`)
   - Fixed an issue where the cache would not be properly invalidated
   when a Consumer username was updated.
-- [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/)
-(`proxy-cache-advanced`)
+- Proxy Caching Advanced (`proxy-cache-advanced`)
   - Fixed a 500 error that would appear when the URL contained empty query
   string parameters.
-- [Exit Transformer](/hub/kong-inc/exit-transformer/) (`exit-transformer`)
+- Exit Transformer (`exit-transformer`)
   - Fixed some cases where an `unknown` exit would not be handled.
-- [AWS Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`)
+- AWS Lambda (`aws-lambda`)
   - Respect the `skip_large_bodies` config setting even when not using AWS API
     Gateway compatibility.
-- [ACME](/hub/kong-inc/acme)
+- ACME (`acme`)
   - Changed the cache to use non-nil TTL in Hybrid mode. This fixes a bug for
     renewals not updating the certificate after Kong Gateway 2.0.5.
   - Fixed a bug in database mode where the renewal configuration was not
     properly stored.
-- [Prometheus](/hub/kong-inc/prometheus) (`prometheus`)
+- Prometheus (`prometheus`)
   - Switched to using the `Kong.pdk.serializer` instead of the deprecated basic
     serializer.
-- [Collector](/enterprise/2.1.x/brain-immunity/install-configure/)
-  (`collector`, used for Immunity)
+- Collector (`collector`, used for Immunity)
   - Removed the `/service_maps` passthrough.
 
 
