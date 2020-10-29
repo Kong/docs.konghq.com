@@ -94,7 +94,7 @@ common to both {{site.ce_product_name}} and {{site.ee_gateway_name}}.
 * **Cloud-based Enterprise free trial users**: Since the {{site.ee_product_name}}
  free trial is a Kong-hosted cloud trial, you'll need to refer to the generated
  admin and proxy endpoints instead of defining your own, and you don't need to
- use the port number in the URL. Head to
+ use the port number in the URL. See
  [Prepare to Administer {{site.base_gateway}}](/getting-started-guide/{{page.kong_version}}/prepare)
  to learn more about the endpoints and to set up an RBAC token for Admin API
  access.  
