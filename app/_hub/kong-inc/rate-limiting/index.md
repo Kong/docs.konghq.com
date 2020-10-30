@@ -94,7 +94,10 @@ params:
       required: false
       default: '`consumer`'
       description: |
-        The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`, `service`, `header`, `path`. If the `consumer`, the `credential`, or the `service` cannot be determined, the system will always fallback to `ip`. If value `header` is chosen, the `header_name` configuration must be provided. If value `path` is choses, the `path` configuration must be provided.
+        The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`, `service`, `header`, `path`. If the value for the entity chosen to aggregate the limit cannot be determined, the system will always fallback to `ip`. If value `service` is chosen, the `service_id` configuration must be provided. If value `header` is chosen, the `header_name` configuration must be provided. If value `path` is chosen, the `path` configuration must be provided.
+    - name: service_id
+      required: semi
+      description: The service id to be used if `limit_by` is set to `service`.
     - name: header_name
       required: semi
       description: Header name to be used if `limit_by` is set to `header`.
@@ -252,6 +255,12 @@ inaccuracy and prevent the scaling issues.
 
 Most likely the user will be granted more than was agreed when using the `local` policy, but it will
 effectively block any attacks while maintaining the best performance.
+
+### Fallback to IP
+
+When the selected policy cannot be retrieved, the rate-limiting plugin will fallback
+to limit using IP as the identifier. This can happen for several reasons, e.g. the
+selected header was not sent by the client or the configured service is not found.
 
 [api-object]: /latest/admin-api/#api-object
 [configuration]: /latest/configuration
