@@ -278,7 +278,7 @@ open-source **Kong Gateway 2.2.0.0**:
 * [Mutual TLS Authentication](/hub/kong-inc/mtls-auth) (`mtls-auth`)
   * Ensure that the basic serializer generates the `request.tls.client_verify`
   field based on this module's validation result.
-* [Request Validator](/request-validator) (`request-validator`)
+* [Request Validator](/hub/kong-inc/request-validator) (`request-validator`)
   - Update the `lua-resty-ljsonschema` library dependency.
   See library [changelog](https://github.com/Tieske/lua-resty-ljsonschema#111-28-oct-2020).
 
