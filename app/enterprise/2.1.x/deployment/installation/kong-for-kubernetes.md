@@ -7,12 +7,13 @@ redirect_from: "/enteprise/2.1.x/kong-for-kubernetes/install"
 ## Introduction
 Kong for Kubernetes Enterprise provides most Kong Enterprise plugins and runs
 without a database, but does not include other Kong Enterprise features (Kong
-Manager, Dev Portal, Vitals, etc).
+Manager, Dev Portal, Vitals, and so on).
 
 This installation topic walks you through a DB-less deployment on
-Kubernetes. For the full range of Enterprise features, see the database-backed
-instructions for
-[Installing Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/deployment/installation/kong-on-kubernetes).
+Kubernetes. For the full range of Enterprise features, you need a
+database-backed or a hybrid deployment. See the instructions for
+[Installing Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/deployment/installation/kong-on-kubernetes),
+which walk you through a deployment with a database.
 
 <div class="alert alert-ee blue">
 <strong>Note:</strong>

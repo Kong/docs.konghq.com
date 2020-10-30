@@ -15,7 +15,7 @@ deployed on Kubernetes, optionally with the Kong Ingress Controller.
 
 Kong for Kubernetes Enterprise is a lightweight deployment of Kong Gateway as
 a Kubernetes ingress controller. A Kubernetes ingress controller is a proxy
-that exposes Kubernetes services from applications (e.g., Deployments,
+that exposes Kubernetes services from applications (for example, Deployments,
 StatefulSets) running on a Kubernetes cluster to client applications running
 outside of the cluster. The intent of an ingress controller is to provide a
 single point of control for all incoming traffic into the Kubernetes cluster.
@@ -26,7 +26,7 @@ the vast majority of Kong's plugins, including the Enterprise plugins.
 <div class="alert alert-ee warning">
 <strong>Important:</strong> Enterprise features such as Kong Manager, Kong
 Vitals (analytics), Kong Developer Portal, RBAC, Immunity, Workspaces and many
-others, can't run in this deployment, as they require a database.
+others can't run in this deployment because they require a database.
 </div>
 
 ![Kong for Kubernetes Enterprise](/assets/images/docs/ee/kubernetes/k4k8s-enterprise.png)
@@ -38,21 +38,22 @@ secure and manage traffic according to various policies that can be changed on
 the fly based on the use case and application.
 
 Here are some benefits of using Kong for Kubernetes Enterprise:
-* It stores all of the configuration in the Kubernetes datastore (etcd) using
-Custom Resource Definitions (CRDs), meaning you can use Kubernetes' native tools
- to manage Kong and benefit from Kubernetes' declarative configuration, RBAC,
- namespacing, and scalability.
+* It stores all of the configuration in the Kubernetes datastore
+([etcd](https://etcd.io/docs/latest/)) using Custom Resource Definitions (CRDs),
+meaning you can use Kubernetes' native tools to manage Kong and benefit from
+Kubernetes' declarative configuration, RBAC, namespacing, and scalability.
 * Because the configuration is stored in Kubernetes, no database needs to be
 deployed for Kong. Kong runs in DB-less mode, making it operationally easy to
 run, upgrade, and back up.
 * It natively integrates with the Cloud Native Computing Foundation (CNCF)
-ecosystem to provide out of the box monitoring, logging, certificate management, tracing, and scaling.
+ecosystem to provide out of the box monitoring, logging, certificate management,
+tracing, and scaling.
 
 ## Kong Enterprise on Kubernetes
 
 This option lets you deploy the full Kong for Kubernetes Enterprise
 platform. As there are functionalities in the platform that require a stateful
-environment, a database is required to run this package, which includes the 
+environment, a database is required to run this package, which includes the
 following:
 
 * Kong Manager
@@ -64,9 +65,9 @@ following:
 * and more
 
 Kong Enterprise on Kubernetes is the ideal install for organizations
-looking to leverage Kong's complete platform. Unless your organization doesn't
-require the functionalities highlighted above, it is recommended to use this
-deployment option.
+looking to leverage Kong's complete platform. If your organization requires the
+functionalities mentioned above, it is recommended to use this deployment
+option.
 
 ![Kong Enterprise on Kubernetes](/assets/images/docs/ee/kubernetes/kong-enterprise-on-kubernetes.png)
 
