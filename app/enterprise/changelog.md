@@ -251,6 +251,37 @@ open-source **Kong Gateway 2.2.0.0**:
 - The `shorthands` attribute in schema definitions is deprecated in favor of
   the new `shorthand_fields` top-level attribute.
 
+## 2.1.4.1
+**Release Date** 2020/10/30
+
+### Fixes
+
+#### Core
+
+* Fix unique violation error for workspaces when using PUT.
+* Fix cluster telemetry server name default.
+* Allow certificates to be applied from workspaces.
+* Fix time waiting calculation for 499 errors.
+* Migration optimizations and fixes:
+  * Remove extra connections in PostgreSQL.
+  * Ensure that multiple workspaces are not created for Cassandra.
+* Database optimizations and fixes:
+  * Correct wait for schema agreement timeout with Cassandra.
+  * Remove rate limiting metrics on database export.
+* Fix cluster level invalidation for hybrid control plane nodes.
+* Optimize workspace ID retrieval.
+
+#### Plugins
+
+* [Exit Transfomer](/hub/kong-inc/exit-transformer/) (`exit-transformer`)
+  * Fix error getting route.
+* [Mutual TLS Authentication](/hub/kong-inc/mtls-auth) (`mtls-auth`)
+  * Ensure that the basic serializer generates the `request.tls.client_verify`
+  field based on this module's validation result.
+* [Request Validator](/hub/kong-inc/request-validator) (`request-validator`)
+  - Update the `lua-resty-ljsonschema` library dependency.
+  See library [changelog](https://github.com/Tieske/lua-resty-ljsonschema#111-28-oct-2020).
+
 
 ## 2.1.4.0
 **Release Date** 2020/10/01
