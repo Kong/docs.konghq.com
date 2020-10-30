@@ -70,6 +70,11 @@ directives.
 * If using HTTP instead of HTTPS: `"cookie_secure": false`
 * If using different domains for the Admin API and Kong Manager: `"cookie_samesite": "off"`
 
+⚠️**Important:** Sessions are not invalidated when a user logs out if `"storage": "cookie"`
+(the default) is used. In that case the cookie is deleted client-side. Only when session data is
+stored server-side with `"storage": "kong"` set, the session is actively invalidated.
+
+
 ## Example Configurations
 
 If using HTTPS and hosting Kong Manager and the Admin API from the same domain, 
