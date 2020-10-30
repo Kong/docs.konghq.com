@@ -259,7 +259,7 @@ effectively block any attacks while maintaining the best performance.
 ### Fallback to IP
 
 When the selected policy cannot be retrieved, the rate-limiting plugin will fallback
-to limit using IP as the identifier. This can happen for several reasons, e.g. the
+to limit using IP as the identifier. This can happen for several reasons, such as the
 selected header was not sent by the client or the configured service is not found.
 
 [api-object]: /latest/admin-api/#api-object
