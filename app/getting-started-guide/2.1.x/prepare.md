@@ -53,7 +53,7 @@ $ curl -i -X GET http://<admin-hostname>:8001/services/
 Replace `http://<admin-hostname>:8001` with your administration endpoint:
 
 ```sh
-$ curl -i -X GET https://admin-kong1a2b3c.kong-cloud.com/mock/request
+$ curl -i -X GET https://admin-kong1a2b3c.kong-cloud.com/services/
 ```
 {% endnavtab %}
 {% navtab Kong Proxy endpoint %}
