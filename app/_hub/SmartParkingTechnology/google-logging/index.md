@@ -43,7 +43,7 @@ params:
       required: false
       default:
       value_in_examples:
-      description: The key parameters of the private service account. Either `google_key` or `google_key_file` must be specified.
+      description: The private key parameters of the Google service account. Either `google_key` or `google_key_file` must be specified.
     - name: google_key_file
       required: false
       default:
