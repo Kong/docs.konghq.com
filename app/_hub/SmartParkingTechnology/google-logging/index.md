@@ -7,10 +7,10 @@ categories:
 
 type: plugin
 
-desc: Logs Kong requests with Google Cloud Logging.
+desc: Logs Kong requests with Google Cloud Logging
 
 description: |
-  Plugin for exporting Kong request data such as service name, route name, consumer name or request latency to Google Cloud Logging.
+  Plugin for exporting Kong request data such as Service name, Route name, Consumer name or request latency to Google Cloud Logging.
 
 support_url: https://github.com/SmartParkingTechnology/kong-google-logging-plugin/issues
 
@@ -38,43 +38,43 @@ params:
       default: "cloudresourcemanager.googleapis.com%2Factivity"
       value_in_examples:
       description: |
-        The log id in: `projects/[PROJECT_ID]/logs/[LOG_ID]`. (also see [LogEntry](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry))
+        The log id in: `projects/[PROJECT_ID]/logs/[LOG_ID]`. Also see [LogEntry](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry).
     - name: google_key
       required: false
       default:
       value_in_examples:
-      description: The key parameters of the private service account. (Either `google_key` or `google_key_file` must be specified)
+      description: The key parameters of the private service account. Either `google_key` or `google_key_file` must be specified.
     - name: google_key_file
       required: false
       default:
       value_in_examples:
       description: |
-        Path to the service account json file. The associated service account need the scope: `https://www.googleapis.com/auth/logging.write` (Either `google_key` or `google_key_file` must be specified)
+        Path to the service account json file. The associated service account needs the scope: `https://www.googleapis.com/auth/logging.write`. Either `google_key` or `google_key_file` must be specified.
     - name: resource
       required: false
       default:
       value_in_examples:
-      description: The Google monitor resource (also see [MonitoredResource](https://cloud.google.com/logging/docs/reference/v2/rest/v2/MonitoredResource]))
+      description: The Google monitor resource. Also see [MonitoredResource](https://cloud.google.com/logging/docs/reference/v2/rest/v2/MonitoredResource]).
     - name: retry_count
       required: false
       default: 0
       value_in_examples:
-      description: Kong batch queue retry_count
+      description: Kong batch queue `retry_count`.
     - name: flush_timeout
       required: false
       default: 2
       value_in_examples:
-      description: Kong batch queue flush_timeout [s]
+      description: Kong batch queue `flush_timeout` in seconds.
     - name: batch_max_size
       required: false
       default: 200
       value_in_examples:
-      description: Kong batch queue batch_max_size
+      description: Kong batch queue `batch_max_size`.
 ---
 
 ## Exported Data
 
-For every request the following data is exported:
+For every request, the following data is exported:
 
 - service name (if known)
 - route name (if known)
@@ -86,7 +86,7 @@ For every request the following data is exported:
 - latency_proxy
 - [httpRequest](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry#HttpRequest)
 
-The logs are labeled with: `"source": "kong-google-logging"`
+The logs are labeled with: `"source": "kong-google-logging"`.
 
 ## Usage
 
@@ -95,7 +95,7 @@ The service account requires the scope as described in the [API docs](https://cl
 The credential details can be configured using the `google_key` parameter OR by providing a path to the key file using the `google_key_file` parameter.
 
 The plugin uses Kong's batch queue to send out log entries to Google in batches.
-For more information about the batch queue parameters see: [batch_queue.lua](https://github.com/Kong/kong/blob/master/kong/tools/batch_queue.lua)
+For more information about the batch queue parameters, see [batch_queue.lua](https://github.com/Kong/kong/blob/master/kong/tools/batch_queue.lua)
 
 Sample configuration via declarative (YAML):
 
