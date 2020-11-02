@@ -119,3 +119,16 @@ plugins:
       flush_timeout: 2
       batch_max_size: 200
 ```
+
+## Install
+### Luarocks
+```
+luarocks install kong-plugin-google-logging
+```
+
+### Source Code
+```
+> git clone https://github.com/SmartParkingTechnology/kong-google-logging-plugin.git
+> cd /path/to/kong/plugins/kong-google-logging-plugin
+> luarocks make *.rockspec
+```
