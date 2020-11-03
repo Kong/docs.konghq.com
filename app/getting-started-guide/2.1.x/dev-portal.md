@@ -16,6 +16,13 @@ Make sure the Dev Portal is on. You should have enabled it for Kong Gateway duri
 {% navtabs %}
 {% navtab Using the Admin API %}
 
+<div class="alert alert-ee">
+<strong><img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" />Note for {{site.ee_product_name}} free trial users:</strong>
+<br/>
+If you are trying out {{site.ee_product_name}} using a hosted (cloud) free trial, make sure you have set up an RBAC user for the Admin API:
+<a href="/getting-started-guide/{{page.kong_version}}/prepare/#free-trials-setup">Prepare to Administer {{site.base_gateway}}</a>.
+</div>
+
 *Using cURL:*
 ```sh
 $ curl -X PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace \

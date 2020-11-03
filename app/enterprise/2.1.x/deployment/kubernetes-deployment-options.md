@@ -1,20 +1,20 @@
 ---
-title: Kong for Kubernetes deployment options
-skip_read_time: true
+title: Kong for Kubernetes Deployment Options
+redirect_from: "/enterprise/2.1.x/kong-for-kubernetes/deployment-options"
 ---
-
-## Deployment options
 
 Kong for Kubernetes consists of a controller, which translates Kubernetes
 resources into Kong configuration, and a proxy, which uses that configuration
 to route and control traffic.
 
-As of 2.1.x, [Kong for Kubernetes with Kong Enterprise][k4k8s-with-enterprise-install]
+As of 2.1.x, Kong for Kubernetes with Kong Enterprise
 (the [kong-enterprise-edition][enterprise-bintray] proxy image) supports DB-less
 operation and is recommended for all deployments.
+* [DB-less installation with the Kong Ingress Controller][k4k8s-enterprise-install]
+* [Database-backed installation with or without the Kong Ingress Controller][k4k8s-with-enterprise-install]
 
-_This repository requires a login. If you see a 404, log in through the [Kong
-repository home page](https://bintray.com/kong) first._
+> The Bintray repository requires a login. If you see a 404, log in through the
+[Kong repository home page](https://bintray.com/kong) first.
 
 ### Migrating to 2.1.x
 
@@ -162,8 +162,8 @@ migrating in the opposite direction.
 [admission-webhook]: https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/deployment/admission-webhook.md
 [route-validation]: /enterprise/{{page.kong_version}}/property-reference/#route_validation_strategy
 [supported-plugins]: https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/references/plugin-compatibility.md
-[k4k8s-enterprise-install]: /enterprise/{{page.kong_version}}/kong-for-kubernetes/install
-[k4k8s-with-enterprise-install]: /enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes
+[k4k8s-enterprise-install]: /enterprise/{{page.kong_version}}/deployment/installation/kong-for-kubernetes
+[k4k8s-with-enterprise-install]: /enterprise/{{page.kong_version}}/deployment/installation/kong-on-kubernetes
 [vitals-prometheus]: /enterprise/{{page.kong_version}}/vitals/vitals-prometheus-strategy/
 [vitals-influxdb]: /enterprise/{{page.kong_version}}/vitals/vitals-influx-strategy/
 [support]: https://support.konghq.com/
