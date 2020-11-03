@@ -299,7 +299,7 @@
   lua_doc: true
 -
   release: "2.1.x"
-  version: "2.1.4.0"
+  version: "2.1.4.1"
   edition: "enterprise"
   luarocks_version: "0.34.x"
   dependencies:

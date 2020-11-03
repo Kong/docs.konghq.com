@@ -620,6 +620,9 @@ Default: none
 
 ---
 
+
+### Hybrid Mode Data Plane section
+
 #### cluster_server_name
 
 The server name used in the SNI of the TLS connection from a DP node to a CP
@@ -644,6 +647,9 @@ Default: none
 
 ---
 
+
+### Hybrid Mode Control Plane section
+
 #### cluster_listen
 
 Comma-separated list of addresses and ports on which the cluster control plane
@@ -663,7 +669,7 @@ Default: `0.0.0.0:8005`
 
 How many seconds must pass from the time a DP node becomes offline to the time
 its entry gets removed from the database, as returned by the
-/clustering/data_planes Admin API endpoint.
+/clustering/data-planes Admin API endpoint.
 
 This is to prevent the cluster data plane table from growing indefinitely. The
 default is set to 14 days. That is, if CP haven't heard from a DP for 14 days,
@@ -742,7 +748,6 @@ Some suffixes can be specified for each pair:
 
 - `ssl` will require that all connections made through a particular
   address/port be made with TLS enabled.
-- `udp` defines the port as UDP instead of the default TCP.
 - `proxy_protocol` will enable usage of the PROXY protocol for a given
   address/port.
 - `bind` instructs to make a separate bind() call for a given address:port
@@ -1393,7 +1398,7 @@ name   | description  | default
 **pg_password** | Postgres user's password. | none
 **pg_database** | The database name to connect to. | `kong`
 **pg_schema** | The database schema to use. If unspecified, Kong will respect the `search_path` value of your PostgreSQL instance. | none
-**pg_ssl** | Toggles client-server TLS connections between Kong and PostgreSQL. | `off`
+**pg_ssl** | Toggles client-server TLS connections between Kong and PostgreSQL. Because PostgreSQL uses the same port for TLS and non-TLS, this is only a hint. If the server does not support TLS, the established connection will be a plain one. | `off`
 **pg_ssl_verify** | Toggles server certificate verification if `pg_ssl` is enabled. See the `lua_ssl_trusted_certificate` setting to specify a certificate authority. | `off`
 **pg_max_concurrent_queries** | Sets the maximum number of concurrent queries that can be executing at any given time. This limit is enforced per worker process; the total number of concurrent queries for this node will be will be: `pg_max_concurrent_queries * nginx_worker_processes`. The default value of 0 removes this concurrency limitation. | `0`
 **pg_semaphore_timeout** | Defines the timeout (in ms) after which PostgreSQL query semaphore resource acquisition attempts will fail. Such failures will generally result in the associated proxy or Admin API request failing with an HTTP 500 status code. Detailed discussion of this behavior is available in the online documentation. | `60000`
@@ -1697,7 +1702,7 @@ Default: `5`
 ---
 
 
-### Development & Miscellaneous section
+### Miscellaneous section
 
 Additional settings inherited from lua-nginx-module allowing for more
 flexibility and advanced usage.
@@ -1717,11 +1722,12 @@ by each distro, according to an arbitrary heuristic. In the current
 implementation, The following pathnames will be tested in order, and the first
 one found will be used:
 
-* /etc/ssl/certs/ca-certificates.crt (Debian/Ubuntu/Gentoo) *
-/etc/pki/tls/certs/ca-bundle.crt (Fedora/RHEL 6) * /etc/ssl/ca-bundle.pem
-(OpenSUSE) * /etc/pki/tls/cacert.pem (OpenELEC) *
-/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem (CentOS/RHEL 7) *
-/etc/ssl/cert.pem (OpenBSD, Alpine)
+- /etc/ssl/certs/ca-certificates.crt (Debian/Ubuntu/Gentoo)
+- /etc/pki/tls/certs/ca-bundle.crt (Fedora/RHEL 6)
+- /etc/ssl/ca-bundle.pem (OpenSUSE)
+- /etc/pki/tls/cacert.pem (OpenELEC)
+- /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem (CentOS/RHEL 7)
+- /etc/ssl/cert.pem (OpenBSD, Alpine)
 
 If no file is found on any of these paths, an error will be raised.
 

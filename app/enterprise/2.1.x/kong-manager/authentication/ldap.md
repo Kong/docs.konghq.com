@@ -20,7 +20,7 @@ configuration file or using environment variables:
 admin_gui_auth = ldap-auth-advanced
 enforce_rbac = on
 admin_gui_session_conf = { "secret":"set-your-string-here" }
-admin_gui_auth_conf = {                                   
+admin_gui_auth_conf = {                                       \
     "anonymous":"",                                           \
     "attribute":"<ENTER_YOUR_ATTRIBUTE_HERE>",                \
     "bind_dn":"<ENTER_YOUR_BIND_DN_HERE>",                    \

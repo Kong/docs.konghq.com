@@ -1,20 +1,31 @@
 ---
 title: Installing Kong for Kubernetes Enterprise
 skip_read_time: true
+redirect_from: "/enteprise/2.1.x/kong-for-kubernetes/install"
 ---
 
 ## Introduction
-Kong for Kubernetes Enterprise provides most Kong Enterprise plugins and runs without a database, but does not include other Kong Enterprise features (Kong Manager, Dev Portal, Vitals, etc).
+Kong for Kubernetes Enterprise provides most Kong Enterprise plugins and runs
+without a database, but does not include other Kong Enterprise features (Kong
+Manager, Dev Portal, Vitals, and so on).
+
+This installation topic walks you through a DB-less deployment on
+Kubernetes. For the full range of Enterprise features, you need a
+database-backed or a hybrid deployment. See the instructions for
+[Installing Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/deployment/installation/kong-on-kubernetes),
+which walk you through a deployment with a database.
 
 <div class="alert alert-ee blue">
 <strong>Note:</strong>
-See <a href="/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options">Kong for Kubernetes deployment options</a>
-for a feature breakdown and image comparison.
+See <a href="/enterprise/{{page.kong_version}}/deployment/kubernetes-deployment-options">Kong for Kubernetes deployment options</a>
+for a feature breakdown and comparison between DB-less and database-backed
+deployments.
 </div>
 
-You can install Kong for Kubernetes Enterprise using YAML with kubectl, with OpenShift oc, or [with Helm](https://github.com/Kong/charts/tree/main/charts/kong).
+![Kong for Kubernetes Enterprise](/assets/images/docs/ee/kubernetes/k4k8s-enterprise.png)
 
-<img src="https://doc-assets.konghq.com/kubernetes/K4K8S-Enterprise-Diagram.png" alt="Kong for Kubernetes Enterprise control diagram">
+You can install Kong for Kubernetes Enterprise using YAML with `kubectl`, with
+OpenShift `oc`, or [with Helm](https://github.com/Kong/charts/tree/main/charts/kong).
 
 ### Deployment Options
 
@@ -100,7 +111,7 @@ The steps in this section show you how to install Kong for Kubernetes Enterprise
 {% navtabs %}
 {% navtab kubectl %}
 ```
-$ kubectl apply -f http://bit.ly/k4k8s-enterprise-install
+$ kubectl apply -f https://bit.ly/k4k8s-enterprise-install
 ```
 The initial setup might take a few minutes.
 
@@ -120,7 +131,7 @@ kong-proxy   LoadBalancer   10.63.254.78   35.233.198.16   80:32697/TCP,443:3236
 {% endnavtab %}
 {% navtab OpenShift oc %}
 ```
-$ oc create -f http://bit.ly/k4k8s-enterprise-install
+$ oc create -f https://bit.ly/k4k8s-enterprise-install
 ```
 The initial setup might take a few minutes.
 
@@ -157,4 +168,4 @@ It might take a while for your cloud provider to associate the IP address to the
 After you have installed Kong, see the [getting started tutorial](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/guides/getting-started.md).
 
 ## Next steps...
-See [Using Kong for Kubernetes Enterprise](/enterprise/{{page.kong_version}}/kong-for-kubernetes/using-kong-for-kubernetes) for information about concepts, how-to guides, reference guides, and using plugins.
+See [Using Kong for Kubernetes Enterprise](/enterprise/{{page.kong_version}}/deployment/using-kong-for-kubernetes) for information about concepts, how-to guides, reference guides, and using plugins.
