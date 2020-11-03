@@ -79,7 +79,7 @@ KongMap supports Kong Gateway (OSS) and Kong Enterprise clusters version 1.5 and
 
 ## Installation Instructions ##
 
-Installation instructions are available here: [https://github.com/yesinteractive/kong-map/](https://github.com/yesinteractive/kong-map/)
+Installation instructions are available here: [https://github.com/yesinteractive/kong-map/](https://github.com/yesinteractive/kong-map/).
 
 ## Feedback and Issues
 
