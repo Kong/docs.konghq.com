@@ -53,7 +53,7 @@ You can run {{site.ee_product_name}} in Hybrid mode on any platform where
 {{site.ee_product_name}} is [supported](/enterprise/{{page.kong_version}}/deployment/installation/overview).
 
 ### Kubernetes Support and Additional Documentation
-[Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes)
+[Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/deployment/installation/kong-on-kubernetes)
 fully supports Hybrid mode deployments, with or without the Kong Ingress Controller.
 
 For the full Kubernetes Hybrid mode documentation, see

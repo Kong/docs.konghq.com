@@ -144,6 +144,7 @@ params: # Metadata about your plugin
         # options are 'yes', 'no', or 'semi'
         # 'semi' means dependent on other settings
       default: # any type - the default value (non-required settings only)
+      datatype: # specify the type of the value: e.g., string, array, boolean, etc.
       value_in_examples:
         # If the field is to appear in examples, this is the value to use.
         # A required field with no value_in_examples entry will resort to
