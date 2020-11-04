@@ -384,6 +384,10 @@
   version: "2.1"
   edition: "getting-started-guide"
 -
+  release: "2.2.x"
+  version: "2.2"
+  edition: "getting-started-guide"
+-
   version: "1.2.1"
   edition: "deck"
 -
