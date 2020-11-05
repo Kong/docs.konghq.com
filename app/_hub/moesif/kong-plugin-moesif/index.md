@@ -8,19 +8,18 @@ categories:
 
 type: plugin
 
-desc: User-centric API analytics and logging  
+desc: User Behavior API analytics and observability  
 
 description: |
-  Monitor API traffic and analyze customer usage in [Moesif's API Analytics](https://www.moesif.com/solutions/track-api-program?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong) platform, which enables you to:
+  Monitor API logs and usage metrics in [Moesif](https://www.moesif.com/solutions/track-api-program?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong), which enables you to:
 
-  * [Understand customer API usage](https://www.moesif.com/features/api-analytics?utm_medium=docs&utm_campaign=partners&utm_source=kong) with user behavior analytics.
+  * [Understand customer API usage](https://www.moesif.com/features/api-analytics?utm_medium=docs&utm_campaign=partners&utm_source=kong) and the value they bring.
   * [Debug issues quickly](https://www.moesif.com/features/api-logs?utm_medium=docs&utm_campaign=partners&utm_source=kong) with high-cardinality API logs and metrics.
-  * [Get alerted](https://www.moesif.com/features/api-monitoring?utm_medium=docs&utm_campaign=partners&utm_source=kong) of problems that impact customers.
-  * [Track API KPIs](https://www.moesif.com/features/api-dashboards?utm_medium=docs&utm_campaign=partners&utm_source=kong) with custom dashboards.
-  * [Trigger behavioral emails](https://www.moesif.com/features/user-behavioral-emails?utm_medium=docs&utm_campaign=partners&utm_source=kong) that keep customers informed.
+  * [Get alerted](https://www.moesif.com/features/api-monitoring?utm_medium=docs&utm_campaign=partners&utm_source=kong) of problems and anomalous behavior.
+  * [Trigger behavioral emails](https://www.moesif.com/features/user-behavioral-emails?utm_medium=docs&utm_campaign=partners&utm_source=kong) warning customers of issues.
   * [Detect and Block API threats](https://www.moesif.com/solutions/api-security?utm_medium=docs&utm_campaign=partners&utm_source=kong) and abuse including OWASP Top 10 API threats.
 
-  This plugin supports automatic analysis of REST, GraphQL, and other APIs with zero latency.
+  This plugin supports automatic analysis of high-volume REST, GraphQL, and other APIs without adding latency.
 
 support_url: https://www.moesif.com/implementation/log-http-calls-from-kong-api-gateway?utm_medium=docs&utm_campaign=partners&utm_source=kong
 
@@ -35,6 +34,7 @@ terms_of_service_url: https://www.moesif.com/terms?utm_medium=docs&utm_campaign=
 kong_version_compatibility: # required
   community_edition: # optional
     compatible:
+      - 2.2.x
       - 2.1.x
       - 2.0.x
       - 1.5.x
@@ -65,7 +65,7 @@ kong_version_compatibility: # required
     #incompatible:
 
 params:
-  name: kong-plugin-moesif
+  name: moesif
   api_id: true
   service_id: true
   consumer_id: true
@@ -80,31 +80,47 @@ params:
       required: false
       default: "`https://api.moesif.net`"
       description: URL for the Moesif Collection API (Only modify if secure proxy is used).
-    - name: timeout
+    - name: connect_timeout
       required: false
-      default: "`10000`"
-      description: An optional timeout in milliseconds when sending data to Moesif.
+      default: "`1000`"
+      description: Timeout in milliseconds when connecting to Moesif.
+    - name: send_timeout
+      required: false
+      default: "`2000`"
+      description: Timeout in milliseconds when sending data to Moesif.
     - name: keepalive
       required: false
-      default: "`10000`"
-      description: An optional value in milliseconds that defines for how long an idle connection will live before being closed.
+      default: "`5000`"
+      description: Value in milliseconds that defines for how long an idle connection will live before being closed.
     - name: api_version
       required: false
       default: "`1.0`"
-      description: An optional API Version you want to tag this request with
+      description: API Version you want to tag this request with in Moesif.
+    - name: user_id_header
+      required: false
+      default: "X-Consumer-Custom-Id"
+      description: Request or response header to use to identify the User in Moesif.
+    - name: company_id_header
+      required: false
+      default: ""
+      description: Request or response header to use to identify the Company (Account) in Moesif.
     - name: disable_capture_request_body
       required: false
       default: "`false`"
-      description: Set to true to disable logging of request body.
+      description: Disable logging of request body.
     - name: disable_capture_response_body
       required: false
       default: "`false`"
-      description: Set to true to disable logging of response body.
+      description: Disable logging of response body.
     - name: request_header_masks
       required: false
       default: "`{}`"
       description: An array of request header fields to mask.
-    - name: request_header_masks
+    - name: request_query_masks
+      required: false
+      default: "`{}`"
+      description: An array of query string params fields to mask.
+    - name: request_body_masks
       required: false
       default: "`{}`"
       description: An array of request body fields to mask.
@@ -116,18 +132,34 @@ params:
       required: false
       default: "`{}`"
       description: An array of response body fields to mask.
+    - name: batch_size
+      required: false
+      default: "`200`"
+      description: Maximum batch size when sending to Moesif.
+    - name: event_queue_size
+      required: false
+      default: "`5000`"
+      description: Maximum number of events to hold in queue before sending to Moesif. In case of network issues when not able to connect/send event to Moesif, skips adding new to event to queue to prevent memory overflow.
+    - name: disable_gzip_payload_decompression
+      required: false
+      default: "`false`"
+      description: If set to true, will disable decompressing body in Kong.
+    - name: max_callback_time_spent
+      required: false
+      default: "`2000`"
+      description: Limiter on how much time to send events to Moesif per worker cycle.
+    - name: request_max_body_size_limit
+      required: false
+      default: "`100000`"
+      description: Maximum request body size in bytes to log in Moesif.
+    - name: response_max_body_size_limit
+      required: false
+      default: "`100000`"
+      description: Maximum response body size in bytes to log in Moesif.
     - name: debug
       required: false
       default: false
       description: An option if set to true, prints internal log messages for debugging integration issues.
-    - name: user_id_header
-      required: false
-      default: ""
-      description: An optional field name to identify a User from a request or response header.
-    - name: company_id_header
-      required: false
-      default: ""
-      description: An optional field name to identify a Company (Account) from a request or response header.
   extra:
     # This is for additional remarks about your configuration.
 ###############################################################################
