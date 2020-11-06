@@ -79,7 +79,7 @@ params:
     - name: api_endpoint
       required: false
       default: "`https://api.moesif.net`"
-      description: URL for the Moesif Collection API (Only modify if secure proxy is used).
+      description: URL for the Moesif Collection API (Change to your secure proxy hostname if client-side encryption is used).
     - name: connect_timeout
       required: false
       default: "`1000`"
@@ -88,6 +88,10 @@ params:
       required: false
       default: "`2000`"
       description: Timeout in milliseconds when sending data to Moesif.
+    - name: timeout
+      required: false
+      default: "`1000`"
+      description: (Deprecated) timeout in milliseconds when connecting/sending to Moesif.
     - name: keepalive
       required: false
       default: "`5000`"
@@ -119,7 +123,7 @@ params:
     - name: request_query_masks
       required: false
       default: "`{}`"
-      description: An array of query string params fields to mask.
+      description: An array of query string parameter fields to mask.
     - name: request_body_masks
       required: false
       default: "`{}`"
@@ -139,15 +143,15 @@ params:
     - name: event_queue_size
       required: false
       default: "`5000`"
-      description: Maximum number of events to hold in queue before sending to Moesif. In case of network issues when not able to connect/send event to Moesif, skips adding new to event to queue to prevent memory overflow.
+      description: Maximum number of events to hold in the queue before sending to Moesif. In case of network issues where the plugin is unable to connect or send an event to Moesif, skips adding new events to the queue to prevent memory overflow.
     - name: disable_gzip_payload_decompression
       required: false
       default: "`false`"
-      description: If set to true, will disable decompressing body in Kong.
+      description: If set to `true`, disables decompressing body in Kong.
     - name: max_callback_time_spent
       required: false
       default: "`2000`"
-      description: Limiter on how much time to send events to Moesif per worker cycle.
+      description: Limits the amount of time in milliseconds to send events to Moesif per worker cycle.
     - name: request_max_body_size_limit
       required: false
       default: "`100000`"
