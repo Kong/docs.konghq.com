@@ -22,7 +22,6 @@ kong_version_compatibility:
   community_edition:
     compatible:
       - 2.2.x
-      - 2.2.x
       - 2.1.x
 
 params:
