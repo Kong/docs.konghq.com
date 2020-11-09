@@ -33,13 +33,13 @@
             - text: Docker
               url: /deployment/installation/docker
             - text: Kong for Kubernetes Enterprise
-              url: /kong-for-kubernetes/install
+              url: /deployment/installation/kong-for-kubernetes
             - text: Kong Enterprise on Kubernetes
-              url: /kong-for-kubernetes/install-on-kubernetes
+              url: /deployment/installation/kong-on-kubernetes
             - text: OpenShift with Kong for Kubernetes Enterprise
-              url: /kong-for-kubernetes/install
+              url: /deployment/installation/kong-for-kubernetes
             - text: OpenShift with Kong Enterprise on Kubernetes
-              url: /kong-for-kubernetes/install-on-kubernetes
+              url: /deployment/installation/kong-on-kubernetes
         - text: Operating Systems
           items:
             - text: Ubuntu
@@ -63,6 +63,9 @@
             - text: Azure
               url: https://azuremarketplace.microsoft.com/en-us/marketplace/apps/konginc1581527938760.kongee2020ubuntuxenial?tab=Overview
               absolute_url: true
+            - text: Google Cloud
+              url: https://console.cloud.google.com/marketplace/details/konghq-public/kongenterprise21
+              absolute_url: true
             - text: RedHat
               url: https://marketplace.redhat.com/en-us/products/kong-enterprise-rhm
               absolute_url: true
@@ -76,6 +79,17 @@
           items:
             - text: Deploying in Hybrid Mode
               url: /deployment/hybrid-mode-setup
+        - text: Kong for Kubernetes Enterprise
+          url: /deployment/kong-for-kubernetes-enterprise
+          items:
+            - text: Kubernetes Deployment Options
+              url: /deployment/kubernetes-deployment-options
+            - text: Using Kong for Kubernetes
+              url: /deployment/using-kong-for-kubernetes
+            - text: KIC Changelog
+              url: https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
+              absolute_url: true
+
     - text: Deployment Guidelines
       items:
         - text: Resource Sizing Guidelines
@@ -463,23 +477,6 @@
           url: /studio/deploy-to-dev-portal
         - text: Generate Configuration
           url: /studio/dec-conf-studio
-
-- title: Kong for Kubernetes Enterprise
-  icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
-  items:
-    - text: Overview
-      url:  /kong-for-kubernetes
-    - text: Install Kong for Kubernetes Enterprise
-      url: /kong-for-kubernetes/install
-    - text: Install Kong Enterprise on Kubernetes
-      url: /kong-for-kubernetes/install-on-kubernetes
-    - text: Using Kong for Kubernetes
-      url: /kong-for-kubernetes/using-kong-for-kubernetes
-    - text: Deployment Options
-      url: /kong-for-kubernetes/deployment-options
-    - text: Changelog
-      url: https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
-      absolute_url: true
 
 - title: Kong Vitals
   icon: /assets/images/icons/documentation/icn-vitals.svg

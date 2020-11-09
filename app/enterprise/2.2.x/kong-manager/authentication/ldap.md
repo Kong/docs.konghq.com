@@ -20,7 +20,7 @@ configuration file or using environment variables:
 admin_gui_auth = ldap-auth-advanced
 enforce_rbac = on
 admin_gui_session_conf = { "secret":"set-your-string-here" }
-admin_gui_auth_conf = {                                   
+admin_gui_auth_conf = {                                       \
     "anonymous":"",                                           \
     "attribute":"<ENTER_YOUR_ATTRIBUTE_HERE>",                \
     "bind_dn":"<ENTER_YOUR_BIND_DN_HERE>",                    \
@@ -65,5 +65,3 @@ invitations to join Kong Manager and log in with their LDAP credentials.
 ### Using Service Directory Mapping on the CLI
 
 {% include /md/{{page.kong_version}}/ldap/ldap-service-directory-mapping.md %}
-
-
