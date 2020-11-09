@@ -191,32 +191,39 @@ the Cluster Status CLI.
 Run the following on a Control Plane:
 {% navtabs %}
 {% navtab Using cURL %}
-```sh
-$ curl -i -X GET http://<admin-hostname>:8001/clustering/status
+```bash
+$ curl -i -X GET http://<admin-hostname>:8001/clustering/data_planes
 ```
 {% endnavtab %}
 {% navtab Using HTTPie %}
 ```bash
-$ http :8001/clustering/status
+$ http :8001/clustering/data_planes
 ```
 {% endnavtab %}
 {% endnavtabs %}
-The output shows all of the connected Data Plane instances:
+The output shows all of the connected Data Plane instances in the cluster:
 
-```sh
+```json
 {
-    "a08f5bf2-43b8-4f1c-bdf5-0a0ffb421c21": {
-        "config_hash": "64d661f505f7e1de5b4c5e5faa1797dd",
-        "hostname": "data-plane-2",
-        "ip": "192.168.10.3",
-        "last_seen": 1571197860
-    },
-    "e1fd4970-6d24-4dfb-b2a7-5a832a5de6e1": {
-        "config_hash": "64d661f505f7e1de5b4c5e5faa1797dd",
-        "hostname": "data-plane-1",
-        "ip": "192.168.10.4",
-        "last_seen": 1571197866
-    }
+    "data": [
+        {
+            "config_hash": "a9a166c59873245db8f1a747ba9a80a7",
+            "hostname": "data-plane-2",
+            "id": "ed58ac85-dba6-4946-999d-e8b5071607d4",
+            "ip": "192.168.10.3",
+            "last_seen": 1580623199,
+            "status": "connected"
+        },
+        {
+            "config_hash": "a9a166c59873245db8f1a747ba9a80a7",
+            "hostname": "data-plane-1",
+            "id": "ed58ac85-dba6-4946-999d-e8b5071607d4",
+            "ip": "192.168.10.4",
+            "last_seen": 1580623200,
+            "status": "connected"
+        }
+    ],
+    "next": null
 }
 ```
 
