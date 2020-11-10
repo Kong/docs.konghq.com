@@ -96,7 +96,7 @@ The service account requires the scope as described in the [API docs](https://cl
 The credential details can be configured using the `google_key` parameter OR by providing a path to the key file using the `google_key_file` parameter.
 
 The plugin uses Kong's batch queue to send out log entries to Google in batches.
-For more information about the batch queue parameters, see [batch_queue.lua](https://github.com/Kong/kong/blob/master/kong/tools/batch_queue.lua)
+For more information about the batch queue parameters, see [batch_queue.lua](https://github.com/Kong/kong/blob/master/kong/tools/batch_queue.lua).
 
 Sample configuration via declarative (YAML):
 
