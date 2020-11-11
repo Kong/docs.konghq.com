@@ -26,7 +26,7 @@ kong_version_compatibility:
 
 params:
   name: google-logging
-  api_id: true
+  api_id: false
   service_id: false
   consumer_id: false
   route_id: false
