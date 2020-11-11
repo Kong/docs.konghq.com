@@ -1,4 +1,6 @@
-# Integrate Kong Ingress Controller with Prometheus/Grafana
+---
+title: Integrate Kong Ingress Controller with Prometheus/Grafana
+---
 
 Kong Ingress Controller can give you visibility not only into how Kong is
 performing but also gives visibilty into

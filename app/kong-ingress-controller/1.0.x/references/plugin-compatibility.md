@@ -1,4 +1,6 @@
-# Plugin Compatibility
+---
+title: Plugin Compatibility
+---
 
 DB-less mode is the preferred choice for controller-managed Kong and Kong
 Enterprise clusters. However, not all plugins are available in DB-less mode.

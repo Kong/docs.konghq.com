@@ -1,4 +1,6 @@
-# Rewriting hosts and paths
+---
+title: Rewriting hosts and paths
+---
 This guide demonstrates host and path rewrites using Ingress and Service configuration.
 
 ## Installation

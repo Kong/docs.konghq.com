@@ -1,3 +1,7 @@
+---
+title: Using Ingress with gRPC
+---
+
 ## Installation
 
 Please follow the [deployment](../deployment) documentation to install

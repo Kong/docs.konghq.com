@@ -1,4 +1,6 @@
-# Kong Ingress Controller Documentation
+---
+title: Kong Ingress Controller Documentation
+---
 
 ## Table of contents
 

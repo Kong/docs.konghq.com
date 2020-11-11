@@ -1,4 +1,6 @@
-# Using Kong with Knative
+---
+title: Using Kong with Knative
+---
 
 Kong Ingress Controller supports managing ingress traffic for
 serverless workloads managed via Knative.
@@ -233,4 +235,3 @@ As we can see, the response has the `demo` header injected.
 This guide demonstrates the power of using Kong and Knative together.
 Checkout other plugins and try them out with multiple Knative services.
 The possibilities are endless!
-

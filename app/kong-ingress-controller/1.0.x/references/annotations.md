@@ -1,4 +1,6 @@
-# Kong Ingress Controller annotations
+---
+title: Kong Ingress Controller annotations
+---
 
 Kong Ingress Controller supports the following annotations on various resources:
 
@@ -108,7 +110,7 @@ The following resources _require_ this annotation by default:
 - KongConsumer
 - TCPIngress
 - KongClusterPlugin
-- Secret resources with the `ca-cert` label 
+- Secret resources with the `ca-cert` label
 
 You can optionally allow Ingress or KongConsumer resources with no class
 annotation (by setting the `--process-classless-ingress-v1beta1` or
@@ -331,7 +333,7 @@ guide for details on how to use this annotation.
 This annotation can be set on a Kubernetes Service resource and indicates
 the protocol that should be used by Kong to communicate with the service.
 In other words, the protocol is used for communication between a
-[Kong Service](https://docs.konghq.com/latest/admin-api/#service-object) and 
+[Kong Service](https://docs.konghq.com/latest/admin-api/#service-object) and
 a Kubernetes Service, internally in the Kubernetes cluster.
 
 Accepted values are:

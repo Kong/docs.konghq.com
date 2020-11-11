@@ -1,4 +1,6 @@
-# Kong for Kubernetes Enterprise
+---
+title: Kong for Kubernetes Enterprise
+---
 
 Kong for Kubernetes Enterprise is an enhanced version of
 the Open-Source Ingress Controller. It includes all

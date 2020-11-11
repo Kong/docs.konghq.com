@@ -1,5 +1,6 @@
-# Kong Ingress Controller and ingress class
-
+---
+title: Kong Ingress Controller and ingress class
+---
 
 ## Table of Contents
 

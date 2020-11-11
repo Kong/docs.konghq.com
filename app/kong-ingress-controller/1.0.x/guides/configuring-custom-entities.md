@@ -1,4 +1,6 @@
-# Configuring Custom Entities
+---
+title: Configuring Custom Entities
+---
 
 This is an **advanced-level** guide for users using custom entities in Kong.
 Most users do not need to use this feature.
@@ -38,7 +40,7 @@ a custom entity.
 
 Suppose you have a custom entity with the following schema in your plugin source:
 
-```lua 
+```lua
 {
   name                = "xkcds",
   primary_key         = { "id" },
@@ -120,7 +122,7 @@ Some things to note:
 - The secret must be accessible by the Ingress Controller. The recommended
   practice here is to install the secret in the same namespace in which Kong
   is running.
- 
+
 ## Configure the Ingress Controller
 
 Once you have the secret containing the custom entities configured,

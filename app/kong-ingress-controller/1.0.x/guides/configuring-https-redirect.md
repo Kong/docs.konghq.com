@@ -1,4 +1,6 @@
-# Configuring https redirect
+---
+title: Configuring https redirect
+---
 
 This guide walks through how to configure Kong Ingress Controller to
 redirect HTTP request to HTTPS so that all communication

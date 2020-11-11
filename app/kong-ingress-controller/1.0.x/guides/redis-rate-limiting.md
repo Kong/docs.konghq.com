@@ -1,4 +1,6 @@
-# Using Redis for rate-limiting
+---
+title: Using Redis for rate-limiting
+---
 
 Kong can rate-limit your traffic without any external dependency.
 In such a case, Kong stores the request counters in-memory
@@ -143,7 +145,7 @@ deployment.extensions/ingress-kong scaled
 ```
 
 It will take a couple minutes for the new pods to start up.
-Once the new pods are up and running, test the rate-limiting policy by 
+Once the new pods are up and running, test the rate-limiting policy by
 executing the following command and observing the rate-limit headers:
 
 ```bash

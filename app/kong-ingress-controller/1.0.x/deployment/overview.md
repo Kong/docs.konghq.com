@@ -1,4 +1,6 @@
-# Installing and Configuring
+---
+title: Installing and Configuring
+---
 
 ## Table of Content
 

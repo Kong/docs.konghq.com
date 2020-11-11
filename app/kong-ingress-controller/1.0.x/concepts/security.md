@@ -1,4 +1,6 @@
-# Security
+---
+title: Security
+---
 
 This document explains the security aspects of Kong Ingress Controller.
 

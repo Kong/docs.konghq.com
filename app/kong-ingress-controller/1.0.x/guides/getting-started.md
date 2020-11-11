@@ -1,4 +1,6 @@
-# Getting started with Kong Ingress Controller
+---
+title: Getting started with Kong Ingress Controller
+---
 
 ## Installation
 

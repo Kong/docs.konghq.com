@@ -1,4 +1,6 @@
-# FAQs
+---
+title: FAQs
+---
 
 ### Why endpoints and not services?
 

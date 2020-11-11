@@ -1,4 +1,6 @@
-# CLI Arguments
+---
+title: CLI Arguments
+---
 
 Various settings and configurations of the controller can be tweaked
 using CLI flags.
@@ -66,4 +68,3 @@ Following table describes all the flags that are available:
 | --version                            |`boolean`  | `false`                         | Shows release information about the Kong Ingress controller.|
 | --watch-namespace                    |`string`   | none                            | Namespace to watch for Ingress and custom resources. The default value of an empty string results in the controller watching for resources in all namespaces and configuring Kong accordingly.|
 | --help                               |`boolean`  | `false`                         | Shows this documentation on the CLI and exit.|
-

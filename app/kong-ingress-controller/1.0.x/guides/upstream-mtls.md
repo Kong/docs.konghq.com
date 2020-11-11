@@ -1,4 +1,6 @@
-# Using mTLS with Kong
+---
+title: Using mTLS with Kong
+---
 
 This guide walks through on how to setup Kong to perform mutual-TLS
 authentication with an upstream service.
@@ -88,7 +90,7 @@ subset of services, you can do so using the
 [`konghq.com/client-cert`](../references/annotations.md#konghqcom/client-cert)
 annotation.
 
-To use the annotation, you first need to create a TLS secret with the 
+To use the annotation, you first need to create a TLS secret with the
 client certificate and key in Kubernetes.
 The secret should be created in the same namespace as your Kubernetes
 Service to which Kong should authenticate itself.

@@ -1,4 +1,6 @@
-# Custom Resource Definitions
+---
+title: Custom Resource Definitions
+---
 
 The Ingress Controller can configure Kong specific features
 using several [Custom Resource Definitions(CRDs)][k8s-crd].

@@ -1,4 +1,6 @@
-# Kong for Kubernetes with Kong Enterprise
+---
+title: Kong for Kubernetes with Kong Enterprise
+---
 
 This guide walks through setting up Kong Ingress Controller using Kong
 Enterprise. This architecture is described in detail in [this doc](../concepts/k4k8s-with-kong-enterprise.md).

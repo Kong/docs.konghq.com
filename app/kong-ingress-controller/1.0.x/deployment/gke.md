@@ -1,4 +1,6 @@
-# Kong Ingress on Google Kubernetes Engine (GKE)
+---
+title: Kong Ingress on Google Kubernetes Engine (GKE)
+---
 
 ## Requirements
 

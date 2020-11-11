@@ -1,4 +1,6 @@
-# Setting up Active and Passive health checks
+---
+title: Setting up Active and Passive health checks
+---
 
 In this guide, we will go through steps necessary to setup active and passive
 health checking using Kong Ingress Controller. This configuration allows
@@ -345,7 +347,7 @@ when passive health-checks marked it unhealthy.
 ## Bonus
 
 Scale the `httpbin` and `ingress-kong` deployments and observe how
-multiple pods change the outcome of the above demo. 
+multiple pods change the outcome of the above demo.
 
 Read more about health-checks and ciruit breaker in Kong's
 [documentation](https://docs.konghq.com/latest/health-checks-circuit-breakers).

@@ -1,4 +1,6 @@
-# Configuring ACL Plugin
+---
+title: Configuring ACL Plugin
+---
 
 This guide walks through configuring the Kong ACL Plugin. The ACL Plugin
 requires the use of at least one Authentication plugin. This example will use

@@ -1,4 +1,6 @@
-# Using KongPlugin resource
+---
+title: Using KongPlugin resource
+---
 
 In this guide, we will learn how to use KongPlugin resource to configure
 plugins in Kong to modify requests for a specific request path.

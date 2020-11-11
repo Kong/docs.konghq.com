@@ -1,4 +1,6 @@
-# Using KongClusterPlugin resource
+---
+title: Using KongClusterPlugin resource
+---
 
 In this guide, we will learn how to use KongClusterPlugin resource to configure
 plugins in Kong.
@@ -251,4 +253,3 @@ services running in different namespaces.
 This can prove to be useful if the persona controlling the plugin
 configuration is different from service owners that are responsible for the
 Service and Ingress resources in Kubernetes.
-

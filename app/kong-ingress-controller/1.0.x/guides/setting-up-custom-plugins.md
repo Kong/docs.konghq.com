@@ -1,4 +1,6 @@
-# Setting up custom plugin in Kubernetes environment
+---
+title: Setting up custom plugin in Kubernetes environment
+---
 
 This guide goes through steps on installing a custom plugin
 in Kong without using a Docker build.
@@ -46,7 +48,7 @@ Once we have our plugin code available in a directory,
 the directory should look something like this:
 
 ```shell
-$ tree myheader 
+$ tree myheader
 myheader
 ├── handler.lua
 └── schema.lua
@@ -95,7 +97,7 @@ Notable changes:
 If you have multiple plugins, simply mount multiple
 ConfigMaps and include the plugin name in the `KONG_PLUGINS`
 environment variable.
-  
+
 > Please note that if your plugin code involves database
   migration then you need to include the below patch to pod definition of your
   migration Job as well.

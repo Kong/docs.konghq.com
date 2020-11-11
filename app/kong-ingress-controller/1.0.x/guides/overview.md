@@ -1,4 +1,6 @@
-# Guides
+---
+title: Guides
+---
 
 Follow one of the guides to learn more about how to use
 Kong Ingress controller:
@@ -73,4 +75,3 @@ Kong Ingress controller:
   deployments of Kong Ingress Controller running without a database.
 - [Using OpenID-connect plugin](using-oidc-plugin.md)
   This guide walks through steps necessary to set up OIDC authentication.
-

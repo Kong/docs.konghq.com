@@ -1,4 +1,6 @@
-# High-availability and Scaling
+---
+title: High-availability and Scaling
+---
 
 ## High availability
 

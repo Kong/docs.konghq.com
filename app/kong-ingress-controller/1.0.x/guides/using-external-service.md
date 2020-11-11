@@ -1,4 +1,7 @@
-# Expose an external application
+---
+title: Expose an external application
+---
+
 This example shows how we can expose a service located outside the Kubernetes cluster using an Ingress.
 
 ## Installation

@@ -1,4 +1,6 @@
-# Using cert-manager for automated TLS certificate
+---
+title: Using cert-manager for automated TLS certificate
+---
 
 This guide will walk through steps to setup Kong Ingress Controller with
 cert-manager to automate certificate management using Let's Encrypt.

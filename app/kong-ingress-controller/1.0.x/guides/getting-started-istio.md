@@ -1,4 +1,6 @@
-## Running Kong Ingress Controller with Istio
+---
+title: Running Kong Ingress Controller with Istio
+---
 
 In this guide, you will:
 * Install Istio v1.6.7 and Kong in your cluster.
@@ -25,7 +27,7 @@ $ curl -L https://istio.io/downloadIstio | env ISTIO_VERSION=1.6.7 sh -
 ...
 ...
 Istio 1.6.7 Download Complete!                                                                                                 
-                                                               
+
 Istio has been successfully downloaded into the istio-1.6.7 folder on your system.                                                                                                                                                                            
 ...
 ...

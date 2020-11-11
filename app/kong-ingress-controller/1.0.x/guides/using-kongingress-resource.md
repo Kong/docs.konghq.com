@@ -1,4 +1,6 @@
-# Using KongIngress resource
+---
+title: Using KongIngress resource
+---
 
 In this guide, we will learn how to use KongIngress resource to control
 proxy behavior.

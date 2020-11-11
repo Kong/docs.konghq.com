@@ -1,4 +1,6 @@
-# Kong Ingress Controller Deployment
+---
+title: Kong Ingress Controller Deployment
+---
 
 Kong Ingress Controller is designed to be deployed in a variety of ways
 based on uses-cases. This document explains various components involved

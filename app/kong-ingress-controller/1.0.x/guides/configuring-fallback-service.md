@@ -1,4 +1,6 @@
-# Configuring a fallback service
+---
+title: Configuring a fallback service
+---
 
 This guide walks through how to setup a fallback service using Ingress
 resource. The fallback service will receive all requests that don't

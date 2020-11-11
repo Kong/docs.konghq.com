@@ -1,4 +1,6 @@
-# Kong Ingress on Azure Kubernetes Service (AKS)
+---
+title: Kong Ingress on Azure Kubernetes Service (AKS)
+---
 
 ## Requirements
 

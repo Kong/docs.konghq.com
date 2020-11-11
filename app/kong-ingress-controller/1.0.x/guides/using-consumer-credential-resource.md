@@ -1,4 +1,6 @@
-# Provisioning Consumers and Credentials
+---
+title: Provisioning Consumers and Credentials
+---
 
 This guide walks through how to use the KongConsumer custom
 resource and use Secret resources to associate credentials with those

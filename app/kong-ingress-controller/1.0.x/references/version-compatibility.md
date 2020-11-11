@@ -1,4 +1,6 @@
-# Version Compatibility
+---
+title: Version Compatibility
+---
 
 Kong's Ingress Controller is compatible with different flavors of Kong.
 The following sections detail on compatibility between versions.

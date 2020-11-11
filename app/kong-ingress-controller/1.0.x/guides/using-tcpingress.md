@@ -1,4 +1,6 @@
-# TCPIngress with Kong
+---
+title: TCPIngress with Kong
+---
 
 This guide walks through using TCPIngress Custom Resource
 resource to expose TCP-based services running in Kubernetes to the out

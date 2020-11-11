@@ -1,4 +1,6 @@
-# Validating Admission Controller
+---
+title: Validating Admission Controller
+---
 
 Kong Ingress Controller ships with an Admission Controller for KongPlugin
 and KongConsumer resources in the `configuration.konghq.com` API group.

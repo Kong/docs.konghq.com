@@ -1,4 +1,6 @@
-# Custom Resources
+---
+title: Custom Resources
+---
 
 [Custom Resources][k8s-crd] in Kubernetes allow controllers
 to extend Kubernetes-style

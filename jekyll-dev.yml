@@ -113,6 +113,11 @@ defaults:
       layout: 'docs-v2'
 
   - scope:
+      path: 'kong-ingress-controller'
+    values:
+      layout: 'docs-v2'
+
+  - scope:
       path: 'about'
     values:
       layout: 'about'
@@ -131,3 +136,4 @@ ee_product_name: Kong Enterprise
 ce_product_name: Kong Gateway
 base_gateway: Kong Gateway
 mesh_product_name: Kong Mesh
+kic_product_name: Kong Ingress Controller

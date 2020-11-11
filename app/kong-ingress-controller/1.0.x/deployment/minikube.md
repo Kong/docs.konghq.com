@@ -1,4 +1,6 @@
-# Kong Ingress on Minikube
+---
+title: Kong Ingress on Minikube
+---
 
 ## Setup Minikube
 

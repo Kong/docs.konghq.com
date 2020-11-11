@@ -1,4 +1,6 @@
-# Debug & Troubleshooting
+---
+title: Debug & Troubleshooting
+---
 
 ## Debug
 

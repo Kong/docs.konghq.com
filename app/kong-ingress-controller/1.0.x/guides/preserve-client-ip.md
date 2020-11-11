@@ -1,4 +1,6 @@
-# Preserving Client IP Address
+---
+title: Preserving Client IP Address
+---
 
 Kong is usually deployed behind a Load Balancer (using a
 Kubernetes Service of type `LoadBalancer`). This can result

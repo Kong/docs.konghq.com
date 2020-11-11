@@ -1,4 +1,6 @@
-# Kong Ingress on Elastic Kubernetes Service (EKS)
+---
+title: Kong Ingress on Elastic Kubernetes Service (EKS)
+---
 
 ## Requirements
 

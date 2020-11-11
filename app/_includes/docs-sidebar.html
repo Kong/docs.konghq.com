@@ -8,6 +8,8 @@
   {% assign docs_url = '/getting-started-guide/' | append: page.kong_version %}
   {% elsif page.edition == 'mesh' %}
   {% assign docs_url = '/mesh/' | append: page.kong_version %}
+  {% elsif page.edition == 'kong-ingress-controller' %}
+  {% assign docs_url = '/kong-ingress-controller/' | append: page.kong_version %}
   {% elsif page.edition == 'deck' %}
   {% assign docs_url = '/deck' %}
   {% else %}
