@@ -144,6 +144,8 @@ information about PostgreSQL on Ubuntu, see [https://www.postgresql.org/download
 
 ## Step 5. Seed the Super Admin's Password and bootstrap Kong
 
+{% include /md/{{page.kong_version}}/ee-kong-user.md %}
+
 Setting a password for the **Super Admin** before initial start-up is strongly recommended. This will permit the use of RBAC (Role Based Access Control) at a later time, if needed.
 
 1. Create an environment variable with the desired **Super Admin** password and store the password in a safe place. Run migrations to prepare the Kong database:
@@ -166,7 +168,7 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 4. You should receive a `HTTP/1.1 200 OK` message.
 
-## Step 6. Finalize your Configuration and Verify Kong was Successfully installed:
+## Step 6. Finalize your Configuration and Verify Kong was Successfully Installed
 
 ### Enable and Configure Kong Manager
 

@@ -100,6 +100,8 @@
           url: /deployment/dns-considerations
         - text: Network &amp; Firewall
           url: /network
+        - text: Running Kong as a Non-Root User
+          url: /deployment/kong-user
     - text: Licensing
       items:
         - text: Overview

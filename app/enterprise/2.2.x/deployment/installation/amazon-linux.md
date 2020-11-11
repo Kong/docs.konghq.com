@@ -227,6 +227,8 @@ $ sudo cp license.json /etc/kong/license.json
 
 ## Step 5. Seed the Super Admin password and bootstrap Kong
 
+{% include /md/{{page.kong_version}}/ee-kong-user.md %}
+
 Setting a password for the **Super Admin** before initial start-up is strongly recommended. This will permit the use of RBAC (Role Based Access Control) at a later time, if needed.
 
 

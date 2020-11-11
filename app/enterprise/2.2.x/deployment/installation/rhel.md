@@ -233,6 +233,8 @@ $ sudo cp license.json /etc/kong/license.json
 
 ## Step 5. Seed the Super Admin password and bootstrap Kong
 
+{% include /md/{{page.kong_version}}/ee-kong-user.md %}
+
 Setting a password for the **Super Admin** before initial start-up is strongly recommended. This will permit the use of RBAC (Role Based Access Control) at a later time, if needed.
 
 1. Create an environment variable with the desired **Super Admin** password and store the password in a safe place. Run migrations to prepare the Kong database:
