@@ -13,17 +13,25 @@
       pre {
         border: none;
         margin-bottom: 0;
+
+        code {
+          padding: 0;
+        }
       }
 
       .navtab-titles {
         background-color: @grey-200;
-        color: rgba(black, 0.9);
+        color: rgba(black, 0.6);
         opacity: 1;
 
         .navtab-title {
           font-size: 14px;
           z-index: 10;
           padding: 6px 16px;
+
+          &:not(.active):hover {
+            color: rgba(black, 1);
+          }
         }
       }
 
