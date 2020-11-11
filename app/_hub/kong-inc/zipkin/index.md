@@ -62,7 +62,7 @@ params:
       value_in_examples: http://your.zipkin.collector:9411/api/v2/spans
       description: |
         The full HTTP(S) endpoint to which Zipkin spans should be sent by Kong.
-        If not specified, the zipkin plugin will only act as a tracing header
+        If not specified, the Zipkin plugin will only act as a tracing header
         generator/transmitter.
     - name: sample_ratio
       required: false
