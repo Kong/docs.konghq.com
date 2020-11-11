@@ -3,18 +3,12 @@ title: Kong for Kubernetes with Kong Enterprise
 ---
 
 This guide walks through setting up Kong Ingress Controller using Kong
-Enterprise. This architecture is described in detail in [this doc](../concepts/k4k8s-with-kong-enterprise.md).
+Enterprise. This architecture is described in detail in [this doc](/kong-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise).
 
 We assume that we start from scratch and you don't have Kong Enterprise
 deployed. For the sake of simplicity, we will deploy Kong Enterprise and
 its database in Kubernetes itself. You can safely run them outside
 Kubernetes as well.
-
-## Table of content
-
-- [Prerequisites](#prerequisites)
-- [Install](#install)
-- [Using Kong for Kubernetes](#using-kong-for-kubernetes-with-kong-enterprise)
 
 ## Prerequisites
 
@@ -149,7 +143,7 @@ $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip
 ```
 
 Once you've installed Kong for Kubernetes Enterprise, please follow our
-[getting started](../guides/getting-started.md) tutorial to learn more.
+[getting started](/kong-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn more.
 
 ## Customizing by use-case
 

@@ -4,7 +4,7 @@ title: Getting started with Kong Ingress Controller
 
 ## Installation
 
-Please follow the [deployment](../deployment) documentation to install
+Please follow the [deployment](/kong-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
 Kong Ingress Controller onto your Kubernetes cluster.
 
 ## Testing connectivity to Kong
@@ -12,7 +12,7 @@ Kong Ingress Controller onto your Kubernetes cluster.
 This guide assumes that `PROXY_IP` environment variable is
 set to contain the IP address or URL pointing to Kong.
 If you've not done so, please follow one of the
-[deployment guides](../deployment) to configure this environment variable.
+[deployment guides](/kong-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
 
 If everything is setup correctly, making a request to Kong should return back
 a HTTP 404 Not Found.

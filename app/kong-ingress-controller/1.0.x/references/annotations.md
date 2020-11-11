@@ -198,7 +198,7 @@ following resources:
   the same annotation to both of the resources.
 
 Please follow the
-[Using the KongPlugin resource](../guides/using-kongplugin-resource.md)
+[Using the KongPlugin resource](/kong-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource)
 guide for details on how this annotation can be used.
 
 
@@ -285,7 +285,7 @@ Please note the quotes (`"`) around the integer value.
 
 Sets the `regex_priority` setting to this value on the Kong route associated
 with the Ingress resource. This controls the [matching evaluation
-order](https://docs.konghq.com/latest/proxy/#evaluation-order) for regex-based
+order](/../../latest/proxy/#evaluation-order) for regex-based
 routes. It accepts any integer value. Routes are evaluated in order of highest
 priority to lowest.
 
@@ -323,7 +323,7 @@ with fine-grained controlled using the properties of Service, Route
 and Upstream entities in Kong.
 
 Please follow the
-[Using the KongIngress resource](../guides/using-kongingress-resource.md)
+[Using the KongIngress resource](/kong-ingress-controller/{{page.kong_version}}/guides/using-kongingress-resource)
 guide for details on how to use this annotation.
 
 ### `konghq.com/protocol`
@@ -333,7 +333,7 @@ guide for details on how to use this annotation.
 This annotation can be set on a Kubernetes Service resource and indicates
 the protocol that should be used by Kong to communicate with the service.
 In other words, the protocol is used for communication between a
-[Kong Service](https://docs.konghq.com/latest/admin-api/#service-object) and
+[Kong Service](/../../latest/admin-api/#service-object) and
 a Kubernetes Service, internally in the Kubernetes cluster.
 
 Accepted values are:
@@ -372,7 +372,7 @@ resource which contains the TLS cert and key pair.
 
 Under the hood, the controller creates a Certificate in Kong and then
 sets the
-[`service.client_certificate`](https://docs.konghq.com/latest/admin-api/#service-object)
+[`service.client_certificate`](/../../latest/admin-api/#service-object)
 for the service.
 
 ### `konghq.com/host-header`

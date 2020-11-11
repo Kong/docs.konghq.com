@@ -19,7 +19,7 @@ plugin. To check if your plugin contains a custom entity, the source code
 will usually contain a `daos.lua` file.
 Custom plugins have first-class support in Kong Ingress Controller
 via the `KongPlugin` CRD.
-Please read [the custom plugin guide](../setting-up-custom-plugins.md) instead
+Please read [the custom plugin guide](/kong-ingress-controller/{{page.kong_version}}/guides/setting-up-custom-plugins) instead
 if you are only using Custom plugins.
 
 ## Caveats

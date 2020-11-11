@@ -13,7 +13,7 @@ of a Service that's running inside Kubernetes. Kong will not perform any
 sort of transformations.
 
 There are two modes avaialble:
-- ***Port based routing**: In this mode, Kong simply proxies all traffic it
+- **Port based routing**: In this mode, Kong simply proxies all traffic it
   receives on a specific port to the Kubernetes Service. TCP connections are
   load balanced across all the available pods of the Service.
 - **SNI based routing**: In this mode, Kong accepts a TLS-encrypted stream
@@ -23,7 +23,7 @@ There are two modes avaialble:
 
 ## Installation
 
-Please follow the [deployment](../deployment) documentation to install
+Please follow the [deployment](/kong-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
 Kong Ingress Controller on your Kubernetes cluster.
 
 > **Note**: This feature works with Kong versions 2.0.4 and above.
@@ -35,7 +35,7 @@ Kong Ingress Controller on your Kubernetes cluster.
 This guide assumes that the `PROXY_IP` environment variable is
 set to contain the IP address or URL pointing to Kong.
 Please follow one of the
-[deployment guides](../deployment) to configure this environment variable.
+[deployment guides](/kong-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
 
 If everything is setup correctly, making a request to Kong should return
 HTTP 404 Not Found.

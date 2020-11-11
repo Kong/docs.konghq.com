@@ -2,20 +2,6 @@
 title: Kong Ingress Controller Documentation
 ---
 
-## Table of contents
-
-- [Concepts](#concepts)
-  - [Architecture](#architecture)
-  - [Custom Resources](#custom-resources)
-  - [Deployment methods](#deployment-methods)
-  - [High-availability and scaling](#high-availability-and-scaling)
-  - [Resource classes](#resource-classes)
-  - [Security](#security)
-- [Guides and Tutorials](#guides-and-tutorials)
-- [Configuration reference](#configuration-reference)
-- [FAQs](#faqs)
-- [Troubleshooting](#troubleshooting)
-
 ## Concepts
 
 ### Architecture
@@ -40,7 +26,7 @@ Please refer to [custom resources][crd] concept document for more details.
 ### Deployment Methods
 
 Kong Ingress Controller can be deployed in a variety of deployment patterns.
-Please refer to the [deployment](concepts/deployment.md) documentation,
+Please refer to the [deployment](/kong-ingress-controller/{{page.kong_version}}/concepts/deployment) documentation,
 which explains all the components
 involved and different ways of deploying them based on the use-case.
 
@@ -48,18 +34,18 @@ involved and different ways of deploying them based on the use-case.
 
 The Kong Ingress Controller is designed to scale with your traffic
 and infrastructure.
-Please refer to [this document](concepts/ha-and-scaling.md) to understand
+Please refer to [this document](/kong-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling) to understand
 failures scenarios, recovery methods, as well as scaling considerations.
 
 ### Ingress classes
 
-[Ingress classes](concepts/ingress-classes.md) filter which resources the
+[Ingress classes](/kong-ingress-controller/{{page.kong_version}}/concepts/ingress-classes) filter which resources the
 controller loads. They ensure that Kong Ingress Controller instances do not
 load configuration intended for other instances or other ingress controllers.
 
 ### Security
 
-Please refer to [this document](concepts/security.md) to understand the
+Please refer to [this document](/kong-ingress-controller/{{page.kong_version}}/concepts/security) to understand the
 default security settings and how to further secure the Ingress Controller.
 
 ## Guides and Tutorials
@@ -73,11 +59,11 @@ The configurations in the Kong Ingress Controller can be tweaked using
 Custom Resources and annotations.
 Please refer to the following documents detailing this process:
 
-- [Custom Resource Definitions](references/custom-resources.md)
-- [Annotations](references/annotations.md)
-- [CLI arguments](references/cli-arguments.md)
-- [Version compatibility matrix](references/version-compatibility.md)
-- [Plugin compatibility matrix](references/plugin-compatibility.md)
+- [Custom Resource Definitions](/kong-ingress-controller/{{page.kong_version}}/references/custom-resources)
+- [Annotations](/kong-ingress-controller/{{page.kong_version}}/references/annotations)
+- [CLI arguments](/kong-ingress-controller/{{page.kong_version}}/references/cli-arguments)
+- [Version compatibility matrix](/kong-ingress-controller/{{page.kong_version}}/references/version-compatibility)
+- [Plugin compatibility matrix](/kong-ingress-controller/{{page.kong_version}}/references/plugin-compatibility)
 
 ## FAQs
 
@@ -96,12 +82,10 @@ along alongside Kong.
   Please contribute back if you feel your experience can help
   the larger community.
 
-[annotations]: annotations.md
-[crd]: concepts/custom-resources.md
-[deployment]: deployment/
-[design]: concepts/design.md
-[faqs]: faq.md
-[troubleshooting]: troubleshooting.md
-[guides]: guides/
-
-[Back to top](#kong-ingress-controller-documentation)
+[annotations]: /kong-ingress-controller/{{page.kong_version}}/references/annotations
+[crd]: /kong-ingress-controller/{{page.kong_version}}/concepts/custom-resources
+[deployment]: /kong-ingress-controller/{{page.kong_version}}/deployment/overview
+[design]: /kong-ingress-controller/{{page.kong_version}}/concepts/design
+[faqs]: /kong-ingress-controller/{{page.kong_version}}/faq
+[troubleshooting]: /kong-ingress-controller/{{page.kong_version}}/troubleshooting
+[guides]: /kong-ingress-controller/{{page.kong_version}}/guides/overview

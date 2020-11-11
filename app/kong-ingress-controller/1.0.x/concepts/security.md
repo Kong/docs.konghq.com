@@ -11,7 +11,7 @@ and the controller integrates with them gracefully.
 ## Kubernetes RBAC
 
 Kong Ingress Controller is deployed with RBAC permissions as explained in
-[deployment](deployment.md) document.
+[deployment](/kong-ingress-controller/{{page.kong_version}}/concepts/deployment) document.
 It has read and list permissions on most resources but requires update
 and create permission for a few resources to provide seamless integration.
 The permissions can be locked down further if needed depending on the specific

@@ -19,7 +19,7 @@ standalone installation.
 
 The following figure shows how it works:
 
-![high-level-design](../images/high-level-design.png "High Level Design")
+![high-level-design](/assets/images/docs/kong-ingress-controller/high-level-design.png "High Level Design")
 
 The Controller listens for changes happening inside the Kubernetes
 cluster and updates Kong in response to those changes to correctly
@@ -37,7 +37,7 @@ proxy all the traffic.
 The following figure describes the mapping between Kubernetes concepts
 to Kong's configuration:
 
-![translating k8s to kong](../images/k8s-to-kong.png "Translating k8s resources to Kong")
+![translating k8s to kong](/assets/images/docs/kong-ingress-controller/k8s-to-kong.png "Translating k8s resources to Kong")
 
 Let's go through how Kubernetes resources are being mapped to Kong's
 configuration:
@@ -60,5 +60,5 @@ configuration:
   kube-proxy but directly to the pod.
 
 For more information on how Kong works with Routes, Services, and Upstreams,
-please see the [Proxy](https://docs.konghq.com/latest/proxy/)
-and [Load balancing](https://docs.konghq.com/latest/loadbalancing/) references.
+please see the [Proxy](/../../latest/proxy/)
+and [Load balancing](/../../latest/loadbalancing/) references.

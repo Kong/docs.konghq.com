@@ -6,8 +6,6 @@ Kong Ingress Controller is designed to be deployed in a variety of ways
 based on uses-cases. This document explains various components involved
 and choices one can make as per the specific use-case.
 
-## Table of Contents
-
 - [**Kubernetes Resources**](#kubernetes-resources):
   Various Kubernetes resouces required to run Kong Ingress Controller.
 - [**Deployment options**](#deployment-options):
@@ -56,7 +54,7 @@ A few custom resources are bundled with Kong Ingress Controller to configure
 settings that are specific to Kong and provide fine-grained control over
 the proxying behavior.
 
-Please refer to [custom resources](custom-resources.md)
+Please refer to the [custom resources](/kong-ingress-controller/{{page.kong_version}}/concepts/custom-resources)
 concept document for details.
 
 ### RBAC permissions
@@ -90,7 +88,7 @@ all namespaces and will need access to these resources at the cluster level
 In addition to these, it needs:
 
 - Create a ConfigMap and read and update ConfigMap for to facilitate
-  leader-election. Please read this [document](ha-and-scaling.md)
+  leader-election. Please read this [document](/kong-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling)
   for more details.
 - Update permission on the Ingress resource to update the status of
   the Ingress resource.
@@ -105,7 +103,7 @@ has the above permissions. The Ingress Controller Pod then has this
 necessary authentication and authorization tokens to communicate with the
 Kubernetes API-server.
 
-[rbac.yaml](../../deploy/manifests/base/rbac.yaml) contains the permissions
+[rbac.yaml](https://github.com/Kong/kubernetes-ingress-controller/blob/main/deploy/manifests/base/rbac.yaml) contains the permissions
 needed for the Ingress Controller to operate correctly.
 
 ### Ingress Controller deployment
@@ -201,7 +199,7 @@ Kong as per the changes it receives from the Kubernetes API server.
 
 Following figure shows how this deployment looks like:
 
-![Kong DB-less](../images/dbless-deployment.png "Kong DB-less architecture")
+![Kong DB-less](/assets/images/docs/kong-ingress-controller/dbless-deployment.png "Kong DB-less architecture")
 
 In this deployment, only one Deployment is required, which is comprised of
 a Pod with two containers, a Kong container which proxies the requests
@@ -221,7 +219,7 @@ is a little different.
 
 Please refer to the below figure:
 
-![Kong with a databse](../images/db-deployment.png "Kong with database")
+![Kong with a databse](/assets/images/docs/kong-ingress-controller/db-deployment.png "Kong with database")
 
 In this type of deployment, there are two types of deployments created,
 separating the control and data flow:
@@ -301,7 +299,7 @@ Gateway in-order to take full-advantage of enterprise plugins.
 Kong Ingress Controller is also compatible with the full-blown version of
 Kong Enterprise. This runtime ships with Kong Manager, Kong Portal, and a
 number of other enterprise-only features.
-[This doc](k4k8s-with-kong-enterprise.md) provides a high-level
+[This doc](/kong-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise) provides a high-level
 overivew of the architecture.
 
 [k8s-namespace]: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/

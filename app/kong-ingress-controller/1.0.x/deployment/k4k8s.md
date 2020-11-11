@@ -9,14 +9,6 @@ Open-Source Kong Gateway. It consists of two components:
 - **Controller**: a daemon process that integrates with the
   Kubernetes platform and configures Kong.
 
-## Table of content
-
-- [Installers](#installers)
-    - [YAML manifests](#yaml-manifests)
-    - [Kustomize](#kustomize)
-    - [Helm](#helm)
-- [Using Kong for Kubernetes](#using-kong-for-kubernetes)
-
 ## Installers
 
 Kong for Kubernetes can be installed using an installer of
@@ -30,10 +22,10 @@ on using it.
 
 Please pick one of the following guides depending on your platform:
 
-- [Minikube](minikube.md)
-- [Google Kubernetes Engine(GKE) by Google](gke.md)
-- [Elastic Kubernetes Service(EKS) by Amazon](eks.md)
-- [Azure Kubernetes Service(AKS) by Microsoft](aks.md)
+- [Minikube](/kong-ingress-controller/{{page.kong_version}}/deployment/minikube)
+- [Google Kubernetes Engine(GKE) by Google](/kong-ingress-controller/{{page.kong_version}}/deployment/gke)
+- [Elastic Kubernetes Service(EKS) by Amazon](/kong-ingress-controller/{{page.kong_version}}/deployment/eks)
+- [Azure Kubernetes Service(AKS) by Microsoft](/kong-ingress-controller/{{page.kong_version}}/deployment/aks)
 
 ### Kustomize
 
@@ -78,4 +70,4 @@ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}"
 ## Using Kong for Kubernetes
 
 Once you've installed Kong for Kubernetes, please follow our
-[getting started](../guides/getting-started.md) tutorial to learn more.
+[getting started](/kong-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn more.

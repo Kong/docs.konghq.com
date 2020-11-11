@@ -201,4 +201,4 @@ konghq.com/plugins: my-custom-plugin
 ```
 
 Once you have got Kong up and running, configure your
-custom plugin via [KongPlugin resource](using-kongplugin-resource.md).
+custom plugin via [KongPlugin resource](/kong-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource).

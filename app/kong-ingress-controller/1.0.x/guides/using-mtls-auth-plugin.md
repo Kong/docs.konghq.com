@@ -11,7 +11,7 @@ for HTTPS requests.
 
 ## Installation
 
-Please follow the [deployment](../deployment) documentation to install
+Please follow the [deployment](/kong-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
 Kong for Kubernetes Enterprise on your Kubernetes cluster.
 
 ## Testing Connectivity to Kong
@@ -19,7 +19,7 @@ Kong for Kubernetes Enterprise on your Kubernetes cluster.
 This guide assumes that the `PROXY_IP` environment variable is
 set to contain the IP address or URL pointing to Kong.
 Please follow one of the
-[deployment guides](../deployment/k4k8s-enterprise.md) to configure
+[deployment guides](/kong-ingress-controller/{{page.kong_version}}/deployment/k4k8s-enterprise) to configure
 this environment variable.
 
 If everything is set up correctly, making a request to Kong should return

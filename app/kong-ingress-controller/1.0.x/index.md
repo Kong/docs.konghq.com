@@ -1,5 +1,5 @@
 ---
-title: Kong Ingress Controller Documentation
+title: Documentation for Kong Ingress Controller
 is_homepage: true
 skip_read_time: true
 ---
@@ -21,7 +21,7 @@ skip_read_time: true
 
   <div class="docs-grid-block">
     <h3><a href="/kong-ingress-controller/{{page.kong_version}}/guides/getting-started">Getting Started</a></h3>
-    <p>Use this guide to familiarize yourself with Kong concepts and learn how to use important features and capabilities.</p>
+    <p>Use this guide to get started with basic capabilities and features of the Kong Ingress Controller.</p>
     <a href="/kong-ingress-controller/{{page.kong_version}}/guides/getting-started">Get Started &rarr;</a>
   </div>
 

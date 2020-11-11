@@ -2,15 +2,6 @@
 title: Kong Ingress Controller and ingress class
 ---
 
-## Table of Contents
-
-- [**Introduction**](#introduction)
-- [**Configuring the controller class**](#configuring-the-controller-ingress-class)
-- [**Loading resources by class**](#loading-resouces-by-class)
-- [**When to use a custom class**](#when-to-use-a-custom-class)
-- [**Legacy behavior**](#legacy-behavior)
-- [**Examples**](#examples)
-
 ## Introduction
 
 The Kong Ingress Controller uses ingress classes to filter Kubernetes Ingress
@@ -36,7 +27,7 @@ categories:
   directly translated into Kong configuration.
 
 For example, an Ingress is translated directly into a Kong route, and a
-KongConsumer is translated directly into a [Kong consumer](https://docs.konghq.com/latest/admin-api/#consumer-object). A Secret containing
+KongConsumer is translated directly into a [Kong consumer](/../../latest/admin-api/#consumer-object). A Secret containing
 an authentication plugin credential is _not_ translated directly: it is only
 translated into Kong configuration if a KongConsumer resource references it.
 
@@ -179,6 +170,6 @@ resources that the controller uses as a basis for building Kong configuration.
 The Secret and KongPlugin _do not_ have class annotations, as they are
 referenced by other resources that do.
 
-[class-annotation]: ../references/annotations.md#kubernetesioingressclass
-[knative-class]: ../guides/using-kong-with-knative.md#ingress-class
+[class-annotation]: /kong-ingress-controller/{{page.kong_version}}/references/annotations/#kubernetesioingressclass
+[knative-class]: /kong-ingress-controller/{{page.kong_version}}/guides/using-kong-with-knative/#ingress-class
 [knative-override]: https://knative.tips/networking/ingress-override/

@@ -10,7 +10,7 @@ the Ingress Controller.
 
 ## Installation
 
-Please follow the [deployment](../deployment/k4k8s-enterprise.md) documentation
+Please follow the [deployment](/kong-ingress-controller/{{page.kong_version}}/deployment/k4k8s-enterprise) documentation
 to install enterprise version of Kong Ingress Controller.
 
 ## Testing Connectivity to Kong
@@ -18,7 +18,7 @@ to install enterprise version of Kong Ingress Controller.
 This guide assumes that the `PROXY_IP` environment variable is
 set to contain the IP address or URL pointing to Kong.
 Please follow one of the
-[deployment guides](../deployment) to configure this environment variable.
+[deployment guides](/kong-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
 
 If everything is setup correctly, making a request to Kong should return
 HTTP 404 Not Found.
@@ -148,4 +148,4 @@ This basic configuration permits any user with a valid Google account to access
 the dummy service.
 For setting up more complicated authentication and authorization flows,
 please read
-[plugin docs](https://docs.konghq.com/enterprise/1.5.x/plugins/oidc-google/).
+[plugin docs](/enterprise/latest/plugins/oidc-google/).

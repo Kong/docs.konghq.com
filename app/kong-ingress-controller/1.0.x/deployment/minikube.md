@@ -73,5 +73,5 @@ http://192.168.99.100:32728
 ```
 
 Once you've installed Kong Ingress Controller, please follow our
-[getting started](../guides/getting-started.md) tutorial to learn
+[getting started](/kong-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn
 about how to use the Ingress Controller.

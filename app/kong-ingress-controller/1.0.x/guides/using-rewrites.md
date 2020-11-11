@@ -5,7 +5,7 @@ This guide demonstrates host and path rewrites using Ingress and Service configu
 
 ## Installation
 
-Please follow the [deployment](../deployment) documentation to install
+Please follow the [deployment](/kong-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
 Kong Ingress Controller on your Kubernetes cluster.
 
 ## Testing Connectivity to Kong
@@ -13,7 +13,7 @@ Kong Ingress Controller on your Kubernetes cluster.
 This guide assumes that the `PROXY_IP` environment variable is
 set to contain the IP address or URL pointing to Kong.
 Please follow one of the
-[deployment guides](../deployment) to configure this environment variable.
+[deployment guides](/kong-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
 
 If everything is setup correctly, making a request to Kong should return
 HTTP 404 Not Found.
@@ -193,7 +193,7 @@ There are two options to rewrite the default path handling behavior:
 `strip-path` and `path` can be combined together, with the `path` component
 coming first. Adding both annotations above will send requests for `/api/foo`.
 
-[0]: https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/references/annotations.md#konghqcompreserve-host
-[1]: https://github.com/Kong/kubernetes-ingress-controller/blob/next/docs/references/annotations.md#konghqcomhost-header
-[2]: https://github.com/Kong/kubernetes-ingress-controller/blob/next/docs/references/annotations.md#konghqcomstrip-path
-[3]: https://github.com/Kong/kubernetes-ingress-controller/blob/next/docs/references/annotations.md#konghqcompath
+[0]: /kong-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcompreserve-host
+[1]: /kong-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcomhost-header
+[2]: /kong-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcomstrip-path
+[3]: /kong-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcompath

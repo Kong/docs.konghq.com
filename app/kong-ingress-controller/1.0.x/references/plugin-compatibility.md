@@ -9,7 +9,7 @@ database.
 
 Note that some DB-less compatible plugins [have some limitations or require
 non-default configuration for
-compatibility](https://docs.konghq.com/latest/db-less-and-declarative-config/#plugin-compatibility).
+[compatibility](/../../latest/db-less-and-declarative-config/#plugin-compatibility).
 
 ## Kong
 
