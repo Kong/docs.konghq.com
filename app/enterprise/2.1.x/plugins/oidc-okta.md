@@ -60,7 +60,7 @@ as an authorized redirect URI in Okta (under the **Authentication** section of y
 
     <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/not-yet-exists.png">
 
-8. If you wish to control access based on groups, create a new Claim in the Authorization server.
+8. If you want to control access based on groups, create a new Claim in the Authorization server.
 
     <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/not-yet-exists.png">
 
@@ -139,8 +139,8 @@ For plugins that typically require consumers, the OIDC plugin can provide a cons
 
 Similarly, setting `authenticated_groups_claim` will extract that claim's value and use it as a group for the ACL plugin.
 
-By default Okta doesn't return groups in user info. To let this plugin retrieve groups info, make sure a proper
-Claim value is set in Authorization server. And its name matches the value of `authenticated_groups_claim`.
+By default, Okta doesn't return groups in user information. To let this plugin retrieve groups information, make sure a proper
+Claim value is set in the Authorization server and its name matches the value of `authenticated_groups_claim`.
 
 [okta-authorization-server]: https://developer.okta.com/docs/guides/customize-authz-server/create-authz-server/
 [okta-register-app]: https://developer.okta.com/docs/guides/add-an-external-idp/openidconnect/register-app-in-okta/
