@@ -22,20 +22,20 @@
     - text: Quickstart Guide
       url: /getting-started/introduction
       items:
-    - text: Five-minute quickstart
-      url: /getting-started/quickstart
+        - text: Five-minute quickstart
+          url: /getting-started/quickstart
 
-    - text: Configuring a Service
-      url: /getting-started/configuring-a-service
+        - text: Configuring a Service
+          url: /getting-started/configuring-a-service
 
-    - text: Configuring a gRPC Service
-      url: /getting-started/configuring-a-grpc-service
+        - text: Configuring a gRPC Service
+          url: /getting-started/configuring-a-grpc-service
 
-    - text: Enabling Plugins
-      url: /getting-started/enabling-plugins
+        - text: Enabling Plugins
+          url: /getting-started/enabling-plugins
 
-    - text: Adding Consumers
-      url: /getting-started/adding-consumers
+        - text: Adding Consumers
+          url: /getting-started/adding-consumers
 
     - text: Configuration reference
       url: /configuration
