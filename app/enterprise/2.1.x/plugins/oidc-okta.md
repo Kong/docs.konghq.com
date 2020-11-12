@@ -56,6 +56,14 @@ as an authorized redirect URI in Okta (under the **Authentication** section of y
 
     <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/07-auth-server-settings.png">
 
+7. If you created a new Authorization server in step 5, also create a default Access Policy.
+
+    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/not-yet-exists.png">
+
+8. If you wish to control access based on groups, create a new Claim in the Authorization server.
+
+    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/not-yet-exists.png">
+
 ## Plugin Configuration
 
 Add a plugin with the configuration below to your Route using an HTTP client or [Kong Manager][enable-plugin].
@@ -130,6 +138,9 @@ without mapping an anonymous Consumer.
 For plugins that typically require consumers, the OIDC plugin can provide a consumer ID based on the value of a claim without mapping to an actual Consumer. Setting `credential_claim` to a claim [in your plugin configuration][credential-claim] will extract the value of that claim and use it where Kong would normally use a consumer ID. Note that this may not work with all consumer-related functionality.
 
 Similarly, setting `authenticated_groups_claim` will extract that claim's value and use it as a group for the ACL plugin.
+
+By default Okta doesn't return groups in user info. To let this plugin retrieve groups info, make sure a proper
+Claim value is set in Authorization server. And its name matches the value of `authenticated_groups_claim`.
 
 [okta-authorization-server]: https://developer.okta.com/docs/guides/customize-authz-server/create-authz-server/
 [okta-register-app]: https://developer.okta.com/docs/guides/add-an-external-idp/openidconnect/register-app-in-okta/
