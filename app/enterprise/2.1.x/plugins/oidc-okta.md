@@ -56,13 +56,15 @@ as an authorized redirect URI in Okta (under the **Authentication** section of y
 
     <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/07-auth-server-settings.png">
 
-7. If you created a new Authorization server in step 5, also create a default Access Policy.
+7. If you created a new Authorization server in step 5, also create a default policy under **Access Policies**.
 
-    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/not-yet-exists.png">
+    ![Access Policy](/assets/images/docs/ee/plugins/oidc-use-case/okta8.png)
 
-8. If you want to control access based on groups, create a new Claim in the Authorization server.
+    ![default Policy](/assets/images/docs/ee/plugins/oidc-use-case/okta9.png)
 
-    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/not-yet-exists.png">
+8. If you want to control access based on groups, create a new **Claim** in the Authorization server.
+
+    ![groups claim](/assets/images/docs/ee/plugins/oidc-use-case/okta10.png)
 
 ## Plugin Configuration
 
