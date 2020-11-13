@@ -65,7 +65,7 @@ KongConsumer resources by default.
 
 ## Annotations
 
-### `kubernetes.io/ingress.class`
+### kubernetes.io/ingress.class
 
 If you have multiple Ingress controllers in a single cluster,
 you can pick one by specifying the `ingress.class` annotation.
@@ -154,7 +154,7 @@ following custom resources as well:
 - KongConsumer: To create different consumers in different Kong clusters.
 - KongCredential: To create associated credentials for consumers.
 
-### `konghq.com/plugins`
+### konghq.com/plugins
 
 > Available since controller 0.8
 
@@ -202,7 +202,7 @@ Please follow the
 guide for details on how this annotation can be used.
 
 
-### `konghq.com/path`
+### konghq.com/path
 
 > Available since controller 0.8
 
@@ -216,7 +216,7 @@ Kubernetes Service `billings`, then any request that is routed to the
 request contains `/foo/something` as the path, then the service will
 receive an HTTP request with path set as `/baz/foo/something`.
 
-### `konghq.com/strip-path`
+### konghq.com/strip-path
 
 > Available since controller 0.8
 
@@ -238,7 +238,7 @@ Sample usage:
 konghq.com/strip-path: "true"
 ```
 
-### `konghq.com/preserve-host`
+### konghq.com/preserve-host
 
 > Available since controller 0.8
 
@@ -255,7 +255,7 @@ Sample usage:
 konghq.com/preserve-host: "true"
 ```
 
-### `konghq.com/https-redirect-status-code`
+### konghq.com/https-redirect-status-code
 
 > Available since controller 0.8
 
@@ -279,7 +279,7 @@ konghq.com/https-redirect-status-code: "301"
 
 Please note the quotes (`"`) around the integer value.
 
-### `konghq.com/regex-priority`
+### konghq.com/regex-priority
 
 > Available since controller 0.9
 
@@ -297,7 +297,7 @@ konghq.com/regex-priority: "10"
 
 Please note the quotes (`"`) around the integer value.
 
-### `konghq.com/methods`
+### konghq.com/methods
 
 > Available since controller 0.9
 
@@ -312,7 +312,7 @@ Sample usage:
 konghq.com/methods: "GET,POST"
 ```
 
-### `konghq.com/override`
+### konghq.com/override
 
 > Available since controller 0.8
 
@@ -326,7 +326,7 @@ Please follow the
 [Using the KongIngress resource](/kong-ingress-controller/{{page.kong_version}}/guides/using-kongingress-resource)
 guide for details on how to use this annotation.
 
-### `konghq.com/protocol`
+### konghq.com/protocol
 
 > Available since controller 0.8
 
@@ -344,7 +344,7 @@ Accepted values are:
 - `tcp`
 - `tls`
 
-### `konghq.com/protocols`
+### konghq.com/protocols
 
 > Available since controller 0.8
 
@@ -359,7 +359,7 @@ You usually want to set this annotation for the following two use-cases:
 - You want to define gRPC routing, in which case you should use
   `konghq.com/protocols: "grpc,grpcs"`
 
-### `konghq.com/client-cert`
+### konghq.com/client-cert
 
 > Available since controller 0.8
 
@@ -375,7 +375,7 @@ sets the
 [`service.client_certificate`](/../../latest/admin-api/#service-object)
 for the service.
 
-### `konghq.com/host-header`
+### konghq.com/host-header
 
 > Available since controller 0.9
 
@@ -396,7 +396,7 @@ Sample usage:
 konghq.com/host-header: "test.example.com"
 ```
 
-### `ingress.kubernetes.io/service-upstream`
+### ingress.kubernetes.io/service-upstream
 
 By default, Kong Ingress Controller distributes traffic amongst all the Pods
 of a Kubernetes `Service` by forwarding the requests directly to
