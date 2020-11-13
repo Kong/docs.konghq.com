@@ -30,7 +30,7 @@ module Jekyll
       end
 
       kicVersions = site.data["kong_versions"].select do |elem|
-        elem["edition"] && elem["edition"] == 'kong-ingress-controller'
+        elem["edition"] && elem["edition"] == 'kubernetes-ingress-controller'
       end
 
       site.data["kong_versions"] = ceVersions
@@ -59,7 +59,7 @@ module Jekyll
         parts = Pathname(page.path).each_filename.to_a
         page.data["has_version"] = true
         # Only apply those rules to documentation pages
-        if (parts[0] == "enterprise" || parts[0].match(/[0-3]\.[0-9]{1,2}(\..*)?$/) || parts[0] == 'studio' || parts[0] == 'getting-started-guide' || parts[0] == 'mesh' || parts[0] == 'deck' || parts[0] == 'kong-ingress-controller' || parts[0] == 'community')
+        if (parts[0] == "enterprise" || parts[0].match(/[0-3]\.[0-9]{1,2}(\..*)?$/) || parts[0] == 'studio' || parts[0] == 'getting-started-guide' || parts[0] == 'mesh' || parts[0] == 'deck' || parts[0] == 'kubernetes-ingress-controller' || parts[0] == 'community')
           if(parts[0] == 'enterprise')
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]
@@ -88,13 +88,13 @@ module Jekyll
             page.data["kong_latest"] = latestVersionMesh
             page.data["nav_items"] = site.data['docs_nav_mesh_' + parts[1].gsub(/\./, '')]
             createAliases(page, '/mesh', 1, parts, latestVersionMesh["release"])
-          elsif(parts[0] == 'kong-ingress-controller')
+          elsif(parts[0] == 'kubernetes-ingress-controller')
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]
             page.data["kong_versions"] = kicVersions
             page.data["kong_latest"] = latestVersionKIC
             page.data["nav_items"] = site.data['docs_nav_kic_' + parts[1].gsub(/\./, '')]
-            createAliases(page, '/kong-ingress-controller', 1, parts, latestVersionKIC["release"])
+            createAliases(page, '/kubernetes-ingress-controller', 1, parts, latestVersionKIC["release"])
           elsif(parts[0] == 'deck')
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]

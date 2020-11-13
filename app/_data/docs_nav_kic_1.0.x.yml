@@ -285,7 +285,7 @@
   - text: Keyring and Data Encryption
     url: /../../enterprise/latest/admin-api/db-encryption
 
-- title: Kong Ingress Controller
+- title: Kubernetes Ingress Controller
   icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
   items:
     - text: Introduction

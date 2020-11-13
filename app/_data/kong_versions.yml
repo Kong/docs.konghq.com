@@ -381,4 +381,4 @@
 -
   release: "1.0.x"
   version: "1.0.0"
-  edition: "kong-ingress-controller"
+  edition: "kubernetes-ingress-controller"
