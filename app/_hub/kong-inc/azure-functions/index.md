@@ -125,45 +125,56 @@ To demonstrate the plugin, set up the [Azure Functions "hello world" function](h
     "Hello Kong!"
     ```
 
-3. Create a Service on Kong
+3. Set up a Route in Kong and link it to the Azure function you just created.
+
+    {% navtabs %}
+    {% navtab With a database %}
+
+    Create the Route:
 
     ```bash
-    $ curl -i -X  POST http://localhost:8001/services/ \
-      --data "name=plugin-testing" \
-      --data "url=http://dead.end.com"
 
-    HTTP/1.1 201 Created
-    ...
+    curl -i -X POST http://{kong_hostname}:8001/routes \
+    --data 'name=azure1' \
+    --data 'paths[1]=/azure1'
     ```
 
-4. Add a Route to the Service on Kong
+    Add the plugin:
 
     ```bash
-    $ curl -i -X  POST http://localhost:8001/services/plugin-testing/routes \
-      --data "paths[]=/mytest"
-
-    HTTP/1.1 201 Created
-    ...
-    ```
-
-5. Apply the Azure-functions plugin
-
-    ```bash
-    $ curl -i -X POST http://localhost:8001/services/plugin-testing/plugins \
-        --data "name=azure-functions" \
-        --data "config.appname=<appname>" \
-        --data "config.functionname=<functionname>" \
-        --data "config.apikey=<apikey>"
-
-    HTTP/1.1 201 Created
-    ...
+    curl -i -X POST http://localhost:8001/routes/azure1/plugins \
+    --data "name=azure-functions" \
+    --data "config.appname=<appname>" \
+    --data "config.functionname=<functionname>" \
+    --data "config.apikey=<apikey>"
 
     ```
+    {% endnavtab %}
+    {% navtab Without a database %}
 
-6. Test the Azure Function through Kong (same result as step 2)
+    Add a Route and Plugin to the declarative config file:
+
+    ``` yaml
+    routes:
+    - name: azure1
+      paths: [ "/azure1" ]
+
+    plugins:
+    - route: azure1
+      name: azure-functions
+      config:
+        appname: <appname>
+        functionname: <functionname>
+        apikey: <apikey>
+    ```
+    {% endnavtab %}
+    {% endnavtabs %}
+
+
+4. Test the Azure Function through Kong (same result as step 2)
 
     ```bash
-    curl -i -X GET http://localhost:8000/mytest?name=Kong
+    curl -i -X GET http://localhost:8000/azure1?name=Kong
 
     HTTP/1.1 200 OK
     ...
@@ -173,22 +184,3 @@ To demonstrate the plugin, set up the [Azure Functions "hello world" function](h
 In this example, we're only passing a query parameter `name` to the Azure
 Function. Besides query parameters, also the HTTP method, path parameters,
 headers, and body will be passed to the Azure Function if provided.
-
-----
-
-### Limitations
-
-#### Use a fake upstream_url
-
-When using the this plugin, the response will be returned by the plugin itself
-without proxying the request to any upstream service. This means that whatever
-`url` has been set on the [Service](https://docs.konghq.com/latest/admin-api/#service-object)
-it will never be used. Although `url` will never be used, it's
-currently a mandatory field in Kong's data model, so feel free to set a fake
-value (ie, `http://dead.end.com` as per the example above) if you are planning to use this plugin.
-In the future, we will provide a more intuitive way to deal with similar use cases.
-
-#### Response plugins
-
-There is a known limitation in the system that prevents some response plugins
-from being executed. We are planning to remove this limitation in the future.
