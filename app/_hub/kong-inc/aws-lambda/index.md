@@ -239,68 +239,70 @@ to invoke the function.
 
 4. Set up a Route in Kong and link it to the `MyLambda` function you just created.
 
-    {% navtabs %}
-    {% navtab With a database %}
+{% navtabs %}
+{% navtab With a database %}
 
-    Create the Route:
+Create the Route:
 
-    ```bash
-    curl -i -X POST http://{kong_hostname}:8001/routes \
-    --data 'name=lambda1' \
-    --data 'paths[1]=/lambda1'
-    ```
+```bash
+curl -i -X POST http://{kong_hostname}:8001/routes \
+--data 'name=lambda1' \
+--data 'paths[1]=/lambda1'
+```
 
-    Add the plugin:
+Add the plugin:
 
-    ```bash
-    curl -i -X POST http://{kong_hostname}:8001/routes/lambda1/plugins \
-    --data 'name=aws-lambda' \
-    --data-urlencode 'config.aws_key={KongInvoker user key}' \
-    --data-urlencode 'config.aws_secret={KongInvoker user secret}' \
-    --data 'config.aws_region=us-east-1' \
-    --data 'config.function_name=MyLambda'
-    ```
-    {% endnavtab %}
-    {% navtab Without a database %}
+```bash
+curl -i -X POST http://{kong_hostname}:8001/routes/lambda1/plugins \
+--data 'name=aws-lambda' \
+--data-urlencode 'config.aws_key={KongInvoker user key}' \
+--data-urlencode 'config.aws_secret={KongInvoker user secret}' \
+--data 'config.aws_region=us-east-1' \
+--data 'config.function_name=MyLambda'
+```
 
-    Add a Route and Plugin to the declarative config file:
+{% endnavtab %}
+{% navtab Without a database %}
 
-    ``` yaml
-    routes:
-    - name: lambda1
-      paths: [ "/lambda1" ]
+Add a Route and Plugin to the declarative config file:
 
-    plugins:
-    - route: lambda1
-      name: aws-lambda
-      config:
-        aws_key: {KongInvoker user key}
-        aws_secret: {KongInvoker user secret}
-        aws_region: us-east-1
-        function_name: MyLambda
-    ```
-    {% endnavtab %}
-    {% endnavtabs %}
+``` yaml
+routes:
+- name: lambda1
+  paths: [ "/lambda1" ]
 
-5. Test your Lambda with Kong
+plugins:
+- route: lambda1
+  name: aws-lambda
+  config:
+    aws_key: {KongInvoker user key}
+    aws_secret: {KongInvoker user secret}
+    aws_region: us-east-1
+    function_name: MyLambda
+```
 
-    After everything is created, make the http request and verify the correct
-    invocation, execution, and response:
+{% endnavtab %}
+{% endnavtabs %}
 
-    ```bash
-    curl http://{kong_hostname}:8000/lambda1
-    ```
+#### Test your Lambda with Kong
 
-    Additional headers:
+After everything is created, make the http request and verify the correct
+invocation, execution, and response:
 
-    ```
-    x-amzn-Remapped-Content-Length, X-Amzn-Trace-Id, x-amzn-RequestId
-    ```
+```bash
+curl http://{kong_hostname}:8000/lambda1
+```
 
-    JSON response:
+Additional headers:
 
-    ```json
-    {"response": "yes"}
-    ```
+```
+x-amzn-Remapped-Content-Length, X-Amzn-Trace-Id, x-amzn-RequestId
+```
+
+JSON response:
+
+```json
+{"response": "yes"}
+```
 
 Have fun leveraging the power of AWS Lambda in Kong!
