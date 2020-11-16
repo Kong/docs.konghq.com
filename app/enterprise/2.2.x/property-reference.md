@@ -620,6 +620,9 @@ Required if `cluster_mtls` is set to `pki`, ignored otherwise.
 
 ---
 
+
+### Hybrid Mode Data Plane section
+
 #### cluster_server_name
 
 The server name used in the SNI of the TLS connection from a DP node to a CP
@@ -647,11 +650,14 @@ which configuration updates will be fetched, in `host:port` format.
 #### cluster_telemetry_endpoint
 
 To be used by data plane nodes only: telemetry address of the control plane
-node from which telemetry updates will be posted in `host:port` format.
+node to which telemetry updates will be posted in `host:port` format.
 
 **Default:** none
 
 ---
+
+
+### Hybrid Mode Control Plane section
 
 #### cluster_listen
 
@@ -679,6 +685,20 @@ the data planes within the same cluster.
 This setting has no effect if `role` is not set to `control_plane`.
 
 **Default:** `0.0.0.0:8006`
+
+---
+
+#### cluster_data_plane_purge_delay
+
+How many seconds must pass from the time a DP node becomes offline to the time
+its entry gets removed from the database, as returned by the
+/clustering/data-planes Admin API endpoint.
+
+This is to prevent the cluster data plane table from growing indefinitely. The
+default is set to 14 days. That is, if CP haven't heard from a DP for 14 days,
+its entry will be removed.
+
+**Default:** `1209600`
 
 ---
 
@@ -744,8 +764,7 @@ documentation.
 
 Kong Proxy URL
 
-Here you may provide the lookup, or balancer, address for your Kong Proxy
-nodes.
+The lookup, or balancer, address for your Kong Proxy nodes.
 
 This value is commonly used in a microservices or service-mesh oriented
 architecture.
@@ -1439,12 +1458,13 @@ name   | description  | default
 **pg_password** | Postgres user's password. | none
 **pg_database** | The database name to connect to. | `kong`
 **pg_schema** | The database schema to use. If unspecified, Kong will respect the `search_path` value of your PostgreSQL instance. | none
-**pg_ssl** | Toggles client-server TLS connections between Kong and PostgreSQL. | `off`
+**pg_ssl** | Toggles client-server TLS connections between Kong and PostgreSQL. Because PostgreSQL uses the same port for TLS and non-TLS, this is only a hint. If the server does not support TLS, the established connection will be a plain one. | `off`
 **pg_ssl_version** | When using ssl between Kong and PostgreSQL, the version of tls to use. Accepted values are `tlsv1` or `tlsv1_2` | `tlsv1`
-**pg_ssl_required** | When `pg_ssl` is on this determines if TLS must be used between Kong and PostgreSQL. | `off`
+**pg_ssl_required** | When `pg_ssl` is on this determines if TLS must be used between Kong and PostgreSQL. It aborts the connection if the server does not support SSL connections. | `off`
 **pg_ssl_verify** | Toggles server certificate verification if `pg_ssl` is enabled. See the `lua_ssl_trusted_certificate` setting to specify a certificate authority. | `off`
 **pg_max_concurrent_queries** | Sets the maximum number of concurrent queries that can be executing at any given time. This limit is enforced per worker process; the total number of concurrent queries for this node will be will be: `pg_max_concurrent_queries * nginx_worker_processes`. The default value of 0 removes this concurrency limitation. | `0`
 **pg_semaphore_timeout** | Defines the timeout (in ms) after which PostgreSQL query semaphore resource acquisition attempts will fail. Such failures will generally result in the associated proxy or Admin API request failing with an HTTP 500 status code. Detailed discussion of this behavior is available in the online documentation. | `60000`
+**pg_keepalive_timeout** | Defines the time in milliseconds that an idle connection to PostreSQL server will be kept alive. | `60000`
 **pg_ro_host** | Same as `pg_host`, but for the read-only connection. **Note:** Refer to the documentation section above for detailed usage. | none
 **pg_ro_port** | Same as `pg_port`, but for the read-only connection. | `<pg_port>`
 **pg_ro_timeout** | Same as `pg_timeout`, but for the read-only connection. | `<pg_timeout>`
@@ -1458,6 +1478,7 @@ name   | description  | default
 **pg_ro_ssl_version** | Same as `pg_ssl_version`, but for the read-only connection. | `<pg_ssl_version>`
 **pg_ro_max_concurrent_queries** | Same as `pg_max_concurrent_queries`, but for the read-only connection. Note: read-only concurrency is not shared with the main (read-write) connection. | `<pg_max_concurrent_queries>`
 **pg_ro_semaphore_timeout** | Same as `pg_semaphore_timeout`, but for the read-only connection. | `<pg_semaphore_timeout>`
+**pg_ro_keepalive_timeout** | Same as `pg_keepalive_timeout`, but for the read-only connection. | `<pg_keepalive_timeout>`
 
 #### Cassandra settings
 
@@ -1747,7 +1768,7 @@ each individual worker.
 ---
 
 
-### Development & Miscellaneous section
+### Miscellaneous section
 
 Additional settings inherited from lua-nginx-module allowing for more
 flexibility and advanced usage.
@@ -1759,9 +1780,27 @@ https://github.com/openresty/lua-nginx-module
 
 #### lua_ssl_trusted_certificate
 
-Absolute path to the certificate authority file for Lua cosockets in PEM
-format. This certificate will be the one used for verifying Kong's database
-connections, when `pg_ssl_verify` or `cassandra_ssl_verify` are enabled.
+Comma-separated list of paths to certificate authority files for Lua cosockets
+in PEM format.
+
+The special value `system` attempts to search for the "usual default" provided
+by each distro, according to an arbitrary heuristic. In the current
+implementation, The following pathnames will be tested in order, and the first
+one found will be used:
+
+- /etc/ssl/certs/ca-certificates.crt (Debian/Ubuntu/Gentoo)
+- /etc/pki/tls/certs/ca-bundle.crt (Fedora/RHEL 6)
+- /etc/ssl/ca-bundle.pem (OpenSUSE)
+- /etc/pki/tls/cacert.pem (OpenELEC)
+- /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem (CentOS/RHEL 7)
+- /etc/ssl/cert.pem (OpenBSD, Alpine)
+
+If no file is found on any of these paths, an error will be raised.
+
+`system` can be used by itself or in conjunction with other CA filepaths.
+
+When `pg_ssl_verify` or `cassandra_ssl_verify` are enabled, these certificate
+authority files will be used for verifying Kong's database connections.
 
 See https://github.com/openresty/lua-nginx-module#lua_ssl_trusted_certificate
 
@@ -1869,7 +1908,7 @@ directive.
 
 Kong Manager URL
 
-Here you may provide the lookup, or balancer, address for Kong Manager.
+The lookup, or balancer, address for Kong Manager.
 
 Accepted format (items in parentheses are optional):
 
@@ -1946,8 +1985,7 @@ Granularity can be adjusted through the `log_level` directive.
 
 Kong Manager Authentication Plugin Name
 
-Here you may secure access to Kong Manager by specifying an authentication
-plugin to use.
+Secures access to Kong Manager by specifying an authentication plugin to use.
 
 Supported Plugins:
 
@@ -1963,8 +2001,8 @@ Supported Plugins:
 
 Kong Manager Authentication Plugin Config (JSON)
 
-Here you may specify the configuration for the authentication plugin you have
-chosen.
+Specifies the configuration for the authentication plugin specified in
+`admin_gui_auth`.
 
 For information about Plugin Configuration consult the associated plugin
 documentation.
@@ -2022,10 +2060,9 @@ Example:
 
 Kong Manager Session Config (JSON)
 
-Here you may specify the configuration for the Session plugin as used by Kong
-Manager.
+Specifies the configuration for the Session plugin as used by Kong Manager.
 
-For information about Plugin Configuration consult the Kong Session Plugin
+For information about plugin configuration, consult the Kong Session plugin
 documentation.
 
 Example:
@@ -2202,8 +2239,8 @@ Portal GUI. Suffixes can be specified for each pair, similarly to the
 
 Developer Portal GUI protocol
 
-Here you may provide the protocol used in conjunction with portal_gui_host to
-construct the lookup, or balancer address for your Kong Proxy nodes.
+The protocol used in conjunction with `portal_gui_host` to construct the
+lookup, or balancer address for your Kong Proxy nodes.
 
 Examples: `http`,`https`
 
@@ -2215,8 +2252,8 @@ Examples: `http`,`https`
 
 Developer Portal GUI host
 
-Here you may provide the host used in conjunction with portal_gui_protocol to
-construct the lookup, or balancer address for your Kong Proxy nodes.
+The host used in conjunction with `portal_gui_protocol` to construct the
+lookup, or balancer address for your Kong Proxy nodes.
 
 Examples:
 
@@ -2338,13 +2375,12 @@ Portal API. Suffixes can be specified for each pair, similarly to the
 
 Developer Portal API URL
 
-Here you may provide the lookup, or balancer, address for your Developer Portal
-nodes.
+The lookup, or balancer, address for your Developer Portal nodes.
 
 This value is commonly used in a microservices or service-mesh oriented
 architecture.
 
-portal_api_url is the address on which your Kong Dev Portal API is accessible
+`portal_api_url` is the address on which your Kong Dev Portal API is accessible
 by Kong. You should only set this value if your Kong Dev Portal API lives on a
 different node than your Kong Proxy.
 
@@ -2456,9 +2492,9 @@ the database for that particular workspace.
 
 Developer Portal Authentication Plugin Name
 
-Here you may specify the authentication plugin to apply to your Developer
-Portal. Developers will use the specified form of authentication to request
-access, register, and login to your Developer Portal.
+Specifies the authentication plugin to apply to your Developer Portal.
+Developers will use the specified form of authentication to request access,
+register, and login to your Developer Portal.
 
 Supported Plugins:
 
@@ -2514,8 +2550,8 @@ Example:
 
 Developer Portal Authentication Plugin Config (JSON)
 
-Here you may specify the plugin configuration object in JSON format to be
-applied to your Developer Portal authentication.
+Specifies the plugin configuration object in JSON format to be applied to your
+Developer Portal authentication.
 
 For information about Plugin Configuration consult the associated plugin
 documentation.
@@ -2546,8 +2582,7 @@ basic-auth.
 
 Portal Session Config (JSON)
 
-Here you may specify the configuration for the Session plugin as used by Kong
-Portal.
+Specifies the configuration for the Session plugin as used by Kong Portal.
 
 For information about Plugin Configuration consult the Kong Session Plugin
 documentation.
@@ -2694,14 +2729,10 @@ Email address for the `Reply-To` header for admin emails.
 
 #### admin_invitation_expiry
 
-Seconds before admin invitation link expires. 0 means no expiration.
+Expiration time for the admin invitation link (in seconds). 0 means no
+expiration.
 
-Examples:
-
-```
-259200 = 1 * 60 * 60 * 72
-                        ^ number of hours
-```
+Example, 72 hours: `72 * 60 * 60 = 259200`
 
 **Default:** `259200`
 
@@ -2715,18 +2746,13 @@ Examples:
 This flag will mock the sending of emails. This can be used for testing before
 the SMTP client is fully configured.
 
-Example:
-
-- `smtp_mock = on` - Emails will NOT attempt send.
-- `smtp_mock = off` - Emails will attempt send.
-
 **Default:** `on`
 
 ---
 
 #### smtp_host
 
-The host of the SMTP server to connect to.
+The hostname of the SMTP server to connect to.
 
 **Default:** `localhost`
 
@@ -2887,6 +2913,8 @@ that were filtered will be recorded in the audit log.
 Length, in seconds, of the TTL for audit log records. Records in the database
 older than their TTL are automatically purged.
 
+Example, 30 days: `30 * 24 * 60 * 60 = 2592000`
+
 **Default:** `2592000`
 
 ---
@@ -3015,7 +3043,7 @@ Different strategies are available to tune how to enforce splitting traffic of
 workspaces.
 
 - `smart` is the default option and uses the algorithm described in
-  https://docs.konghq.com/enterprise/0.33-x/workspaces/examples/#important-note-conflicting-apis-or-routes-in-workspaces
+  https://docs.konghq.com/enterprise/latest/admin-api/workspaces/examples/#important-note-conflicting-services-or-routes-in-workspaces
 - `off` disables any check
 - `path` enforces routes to comply with the pattern described in config
   enforce_route_path_pattern
@@ -3026,10 +3054,12 @@ workspaces.
 
 #### enforce_route_path_pattern
 
-Here you can specify Lua pattern which will be enforced on a `path` attributes
-of a route object. You can also add a placeholder for workspace in pattern,
-which will be rendered during runtime based on workspace to which `route`
-belongs to. It a field if `route_validation_strategy` is set to `path`.
+Specifies the Lua pattern which will be enforced on the `paths` attribute of a
+Route object. You can also add a placeholder for the workspace in the pattern,
+which will be rendered during runtime based on the workspace to which the
+`route` belongs.
+
+This setting is only relevant if `route_validation_strategy` is set to `path`.
 
 Example For Pattern `/$(workspace)/v%d/.*` valid paths are:
 
