@@ -4,7 +4,7 @@ title: Troubleshooting Common Issues
 
 <div class="alert alert-warning">
 <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
-<strong>Important:</strong> Kong Brain is deprecated and not available for use in Kong Enterprise version 2.1.4.0 and later.
+<strong>Important:</strong> Kong Brain is deprecated and not available for use in Kong Enterprise version 2.1.5.0 and later.
 </div>
 
 This troubleshooting topic contains common issues you might experience when using Kong Brain and Kong Immunity, and troubleshooting tips for how to resolve these issues. Information is also provided about how to contact Kong to report an issue, and how to submit suggestions to help improve functionality. 
