@@ -124,11 +124,6 @@
       items:
         - text: Migrating Kong Enterprise to Latest Version
           url: /deployment/upgrades/migrations
-          items:
-            - text: Custom Plugin Breaking Changes
-              url: /deployment/upgrades/custom-changes
-        - text: Migrating the Dev Portal to the Latest Version
-          url: /developer-portal/latest-migrations
         - text: Migrating from Kong Community to Kong Enterprise
           url: /deployment/upgrades/migrate-ce-to-ke
     - text: Kong Cloud

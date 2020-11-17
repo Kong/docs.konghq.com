@@ -9,7 +9,8 @@ Upgrade to major, minor, and patch {{site.ee_product_name}} releases using the
 `kong migrations` commands.
 
 You can also use the commands to migrate all {{site.ce_product_name}} entities
-to {{site.ee_product_name}}. See [Migrating from Kong Gateway to Kong Enterprise](#migrate-ce-ee).
+to {{site.ee_product_name}}. See
+[Migrating from Kong Gateway to Kong Enterprise](/enterprise/2.1.x/deployment/upgrades/migrate-ce-to-ke/).
 
 If you experience any issues when running migrations, contact
 [Kong Support](https://support.konghq.com/support/s/) for assistance.
@@ -48,7 +49,7 @@ affect your current installation.
   of the plugin. The 2.1.x plugin requires authentication to be configured separately
   on the same Service. See
   [authorization provider strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/).
-* The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not
+* The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced)rate-limiting-advanced) plugin does not
   support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 * [Hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/). If
   you are currently running 1.5.x in classic (traditional)
