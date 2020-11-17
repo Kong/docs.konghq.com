@@ -14,8 +14,6 @@
     - text: Changelog
       url: /enterprise/changelog
       absolute_url: true
-    - text: What's New in the Docs
-      url: /doc-updates
     - text: Version Support
       url: /support-policy
 
