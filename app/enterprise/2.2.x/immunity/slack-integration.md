@@ -1,24 +1,27 @@
 ---
 title: Alert Slack Integration
+toc: true
+redirect_from:
+  - /enterprise/2.2.x/brain-immunity/slack-integration
 ---
 
 
 ## Introduction
 
-If you choose, Immunity can send Slack notifications for unusual traffic. Immunity needs a Slack webhook to post messages to a Slack workspace. To obtain a webhook URL, use the steps in this topic:
+Immunity can send Slack notifications for unusual traffic, using a Slack webhook to post messages to a Slack workspace. To obtain a webhook URL, use the steps in this topic.
 
 
 ## Create a New Slack App
 
 1. [Create a new slack app](https://api.slack.com/apps?new_app=1) and save the webhook address.
 
-2. Enable the incoming webhook in your app. 
+2. Enable the incoming webhook in your app.
 
 3. After submitting the app creation form, you are redirected to your newly created app’s page. In **Add features and functionality**, click on **Incoming webhooks** to enable them.
 
-4. Change the OFF switch to ON. 
+4. Change the OFF switch to **ON**.
 
-5. Click **Add new webhook to workspace**. You are redirected to a page where you can select the channel where the webhook will post messages. 
+5. Click **Add new webhook to workspace**. You are redirected to a page where you can select the channel where the webhook will post messages.
 
 6. Select the channel and click **authorize**.
 
@@ -27,7 +30,7 @@ If you choose, Immunity can send Slack notifications for unusual traffic. Immuni
 
 To add your first Slack configuration:
 
-1. Copy the webhook URL that you just created with your app (when you finished the Slack app creation, you should have been directed to a page where you could copy the webhook URL). 
+1. Copy the webhook URL that you just created with your app (when you finished the Slack app creation, you should have been directed to a page where you could copy the webhook URL).
 
 2. Create a POST request to `/notifications/slack/config` with an endpoint parameter equal to the webhook URL. For example, using cURL:
 
@@ -40,7 +43,7 @@ You have now successfully connected your Slack channel to Immunity and all alert
 
 ## Routing Different Alerts to Different Slack Channels
 
-Immunity will send alerts to all Slack channels you ask it too. You can even restrict the type of alerts that go to a channel with additional parameters in your POST request. 
+Immunity will send alerts to all Slack channels you ask it too. You can even restrict the type of alerts that go to a channel with additional parameters in your POST request.
 
 To do so, the `/notifications/slack/config` endpoint takes these parameters on POST:
 
@@ -48,9 +51,9 @@ To do so, the `/notifications/slack/config` endpoint takes these parameters on P
 * `kong_entity`: Restricts notifications set to the endpoint to only those arising from the `service_id`, `route_id`, or workspace name specified here.
 * `severity`: Will route only alerts with severity specified to the endpoint. Severity values can be one of "low", "medium", "high".
 * `alert_type`: Will route only alerts.
-* `enable`: When set to False, the rule in the POST request is disabled, meaning Immunity will ignore that configuration rule. When set to True, the rule in enabled and Immunity will route traffic according to the full request rule. This parameter is set to True by default in all POST requests.
+* `enable`: When set to False, the rule in the POST request is disabled, meaning Immunity ignores that configuration rule. When set to True, the rule in enabled and Immunity routes traffic according to the full request rule. This parameter is set to True by default in all POST requests.
 
-When you send a POST request with only the endpoint parameter specified (like the one above), Immunity will route all traffic to that endpoint. Once a more specific POST request is made with more parameters filled, for example:
+When you send a POST request with only the endpoint parameter specified (like the one above), Immunity routes all traffic to that endpoint. Once a more specific POST request is made with more parameters filled, for example:
 
 ```bash
 curl -d '{"endpoint":"www.your-slack-webhook.com", "severity": "high"} \
@@ -79,7 +82,7 @@ Once one specific Slack configuration rule is created for a given Slack endpoint
 
 ## Viewing Configured Rules
 
-Configured rules can get complicated. To see all the Slack rules and slack you have configured, make a GET request to `/notifications/slack/config` like this:
+To view all the Slack rules and Slack you have configured, make a GET request to `/notifications/slack/config` like this:
 
 ```bash
 curl -X GET http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/notifications/slack/config

@@ -65,12 +65,11 @@ Some Kong Enterprise features are not available in DB-less deployments.
 Use a database-backed deployment if you want to use:
 
 * Dev Portal
-* Brain
 * Immunity
 * Teams (RBAC)
 * Workspaces
 
-In 2.1.x, the following features have support in DB-less mode, but
+In 2.1.x and later, the following features have support in DB-less mode, but
 work differently than in DB-backed modes:
 
 * Kong Manager (read-only)

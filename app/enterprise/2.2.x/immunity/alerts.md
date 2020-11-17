@@ -1,5 +1,8 @@
 ---
 title: Immunity Alerts
+toc: true
+redirect_from:
+  - /enterprise/2.2.x/brain-immunity/alerts
 ---
 
 ### Introduction
@@ -16,7 +19,7 @@ Immunity evaluates your traffic every minute and creates an alert when it detect
 * `Consumer alerts` are generated from any traffic in a Workspace belonging to a registered Kong consumer. This traffic is identified by the consumer ID.
 
 #### Alert Events
-Dependent on the entity type, being an endpoint or consumer, Immunity creates an alert and identifies them as one of the following event types: 
+Dependent on the entity type, being an endpoint or consumer, Immunity creates an alert and identifies them as one of the following event types:
 * `value_type` alerts are triggered when incoming requests have a parameter value of a different type than is historically seen (such as Int instead of Str). Default severity level: Low.
 * `unknown_parameter` alerts are triggered when requests include parameters not seen before. Default severity level: Low.
 * `abnormal_value` alerts are triggered when requests contain values different from historical values seen paired with its parameter. Default severity level: Medium.
@@ -26,10 +29,10 @@ Dependent on the entity type, being an endpoint or consumer, Immunity creates an
 
 ### Alert Severity Levels
 Alerts are classified with four severity levels:
-* **Low**: A low severity classification denotes the least important alerts. While you decide what a low severity means, we recommend that low severity indicates an alert that you want to review at a later time. 
-* **Medium**: A medium severity classification denotes a mid-level important alert. This level is an alert level you will likely address within the sprint. 
+* **Low**: A low severity classification denotes the least important alerts. While you decide what a low severity means, we recommend that low severity indicates an alert that you want to review at a later time.
+* **Medium**: A medium severity classification denotes a mid-level important alert. This level is an alert level you will likely address within the sprint.
 * **High**: A high severity classification is the highest severity level alert. High alerts need to be addressed immediately and should be fixed as soon as possible.
-* **Ignored**: Alerts that are designated as ignored are not surfaced in the Kong Manager, Slack alerts, or /alerts endpoint. 
+* **Ignored**: Alerts that are designated as ignored are not surfaced in the Kong Manager, Slack alerts, or /alerts endpoint.
 
 
 ### Retrieving Generated Alerts
@@ -60,7 +63,7 @@ The ‘/alerts’ endpoint uses the following parameters, which you can mix and 
 * `severity`: One of "low", "medium", "high" which will restricts returned alerts of severities matching the value provided with this parameter.
 
 #### Alert Objects
-Two types of data are returned by the ‘/alerts’ endpoint: a list of generated alerts and alerts metadata. 
+Two types of data are returned by the ‘/alerts’ endpoint: a list of generated alerts and alerts metadata.
 
 ##### List of Generated Alerts
 The first is a list of the alerts generated, which are structured like this:
@@ -81,7 +84,7 @@ The second type of data returned is alerts metadata which describes the overall 
 
 #### Creating or Updating Alert Severity Rules
 
-Of course, we think you know your system best and you can adjust the severities of your alerts to varying degrees of specificity. You can configure alert severity on alert type, kong `route_id` or `service_id`, or any combination of the two.
+Depending on your system needs, you can adjust the severities of your alerts to varying degrees of specificity. You can configure alert severity on alert type, kong `route_id` or `service_id`, or any combination of the two.
 
 For example, if you decide that for your system, `unknown_parameter` alerts are always system-breaking you can set the severity configuration for `unknown_parameter` alerts to high. Let's say after doing so, you find that while usually an unknown_parameter alert is what you consider high-severity, there's one route where it's actually more of a medium. You can then specify a medium severity for `unknown_parameter` alerts generated only on that route and preserve the high-severity setting for the rest of `unknown_parameters` for the rest of your system.
 
@@ -202,13 +205,12 @@ Here's an example using the browser
 http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/hars?alert_id=1
 ```
 
-### Cleaning Up HARS Data
+### Cleaning HARS Database
+Collector cleans the amount of HARS stored daily up to the max number of HARs specified in the environment variable `MAX_HARS_STORAGE` and tables with extracted information to a max of two weeks of data. This means that at any day, the max number of HARs stored is the `MAX_HARS_STORAGE` + days_incoming_number_of_hars. If no `MAX_HARS_STORAGE` is specified, Collector defaults to keeping two million HARS in the database.
 
-Collector will clean the amount of HARS stored daily up to the max number of HARs specified in the environment variable `MAX_HARS_STORAGE` and tables with extracted information to a max of two weeks of data. This means that at any day, the max number of HARs stored is the `MAX_HARS_STORAGE` + days_incoming_number_of_hars. If no `MAX_HARS_STORAGE` is specified, collector defaults to keeping two million HARS in the database.
+You can set your own value of `MAX_HARS_STORAGE` by setting the app environment variable through whatever means you have been deploying Collector.
 
-You can set your own value of `MAX_HARS_STORAGE` by setting the app environment variable through whatever means you've been deploying collector.
-
-Additionally, collector provides an endpoint to delete the HARs data at /clean-hars. This endpoint accepts get and post and takes one parameter `max_hars_storage` which will delete all HARS until only the value passed with `max_hars_storage` remains and contains the most recent HARs added to the database. If no value is passed to `max_hars_storage`, it will clean the database to the default value set with the environment variable `MAX_HARS_STORAGE`. An example of using this endpoint with cURL looks like this:
+Additionally, Collector provides an endpoint to delete the HARs data at /clean-hars. This endpoint accepts GET and POST and takes one parameter `max_hars_storage` which will delete all HARS until only the value passed with `max_hars_storage` remains and contains the most recent HARs added to the database. If no value is passed to `max_hars_storage`, it will clean the database to the default value set with the environment variable `MAX_HARS_STORAGE`. An example of using this endpoint with cURL looks like this:
 
 ```bash
 curl -d '{"max_hars_storage":10000} \

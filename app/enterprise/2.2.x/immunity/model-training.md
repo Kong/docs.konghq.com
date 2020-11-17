@@ -1,5 +1,8 @@
 ---
 title: Immunity Model Training
+toc: true
+redirect_from:
+  - /enterprise/2.2.x/brain-immunity/model-training
 ---
 
 ## Introduction
@@ -33,7 +36,7 @@ curl -d '{"start":"2019-01-08 10:00:00", "end":"2019-01-09 23:30:00", "kong_enti
  -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer
 ```
 
-## Checking Trained Models 
+## Checking Trained Models
 
 Only endpoints + method combinations that have a model trained can be monitored for alerts. If you want to check which endpoints have models, you can use `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/monitoredendpoints`, which return a list of all models in the system. Each item in this list contains the following identifying information for the model:
 
