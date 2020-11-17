@@ -2,7 +2,7 @@
 
 name: StatsD Advanced
 publisher: Kong Inc.
-version: 1.3-x
+version: 2.2.x
 
 desc: Send metrics to StatsD with more flexible options
 description: |
@@ -22,6 +22,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -35,6 +36,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
+  protocols: ["http", "https", "grpc", "grpcs", "tcp", "tls", "udp"]
   config:
     - name: host
       required:
@@ -128,7 +130,4 @@ Field         | description                                             | allowe
 
 ## Kong Process Errors
 
-This logging Plugin will only log HTTP request and response data. If you are
-looking for the Kong process error file (which is the nginx error file), then
-you can find it at the following path:
-{[prefix](/{{site.data.kong_latest.release}}/configuration/#prefix)}/logs/error.log
+{% include /md/plugins-hub/kong-process-errors.md %}

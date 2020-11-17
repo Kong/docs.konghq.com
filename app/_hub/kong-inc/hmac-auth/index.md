@@ -28,6 +28,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x
@@ -48,6 +49,7 @@ kong_version_compatibility:
         - 0.5.x
     enterprise_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -68,7 +70,7 @@ params:
   dbless_explanation: |
     Consumers and Credentials can be created with declarative configuration.
 
-    Admin API endpoints which do POST, PUT, PATCH or DELETE on Credentials will not work on DB-less mode.
+    Admin API endpoints that do POST, PUT, PATCH or DELETE on Credentials will not work on DB-less mode.
   config:
     - name: hide_credentials
       required: false
