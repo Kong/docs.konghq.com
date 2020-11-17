@@ -4,14 +4,54 @@ no_search: true
 no_version: true
 skip_read_time: true
 ---
-## 2.2.0.0 (beta)
-**Release Date** 2020/10/27
+## 2.2.0.0
+**Release Date** 2020/11/17
 
 <div class="alert alert-warning">
 <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
-<b>Important:</b> There is no <b>beta</b> documentation for {{site.ee_product_name}}
-2.2.0.0. Documentation will be added for the GA release.
+<b>Important:</b> Kong Enterprise 2.2.0.0 includes 2.2.0.0 (beta)
+features, fixes, known issues, and workarounds. This changelog for the 2.2.0.0 version only includes the diff between 2.2.0.0 and 2.2.0.0 (beta). See the <a href="#2200-beta">2.2.0.0 (beta)</a> for more information about everything that is included in the 2.2.0.0 release.
 </div>
+
+### Features
+**Note: Feature updates for Kong Enterprise 2.2.0.0 version include [2.2.0.0 (beta)](/enterprise/changelog/#beta-features-2200) features.**
+
+#### **Kong Manager**
+- No new features.
+- Kong Brain and Service Map are removed.
+
+#### **Plugins**
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  - Added `config.enable_hs_signatures` (`false` is the default).
+  - Added `config.session_compressor`.
+- [JWT Signer](/hub/kong-inc/jwt-signer) (`jwt-signer`)
+  - Added `config.enable_hs_signatures` (`false` is the default).
+- [AWS Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`)
+  - Added support for `isBase64Encoded` flag in Lambda function responses.
+- [gRPC-Web](/hub/kong-inc/grpc-web) (`grpc-web`)
+  - New configuration `pass_stripped_path`, which, if set to true, causes the
+  plugin to pass the stripped request path (see the
+  [`strip_path`](/enterprise/latest/admin-api/#route-object) Route attribute)
+  to the upstream gRPC service.
+
+### Fixes
+**Note: Fixes for Kong Enterprise 2.2.0.0 version include [2.2.0.0 (beta)](/enterprise/changelog/#beta-fixes-2200) fixes.**
+
+#### **OpenID Connect Library**
+  - Changed to disable HS-signature verification by default.
+  - Changed to use `client_secret` as a fallback secret for HS-signature verification only when it is a string and has more than one character in it.
+
+#### **Plugins**
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  - HS-signature verification is now disabled by default.
+  - Changed to use `client_secret` as a fallback secret for HS-signature verification only when it is a string and has more than one character in it.
+  - Updated `lua-resty-session` dependency to 3.7.
+- [JWT Signer](/hub/kong-inc/jwt-signer) (`jwt-signer`)
+  - HS-signature verification is now disabled by default.
+
+
+## 2.2.0.0 (beta)
+**Release Date** 2020/10/27
 
 ### **Kong Enterprise**
 The following sections list {{site.ee_product_name}}-exclusive updates,
@@ -21,13 +61,12 @@ features, and fixes for the **2.2.0.0 beta** version.
 - Bumped the required lua-resty-openssl version to
 [0.6.8](https://github.com/fffonion/lua-resty-openssl/blob/master/CHANGELOG.md#068---2020-10-15).
 
-### Features
+### Features {#beta-features-2200}
 
 #### Core
 - Added support for TLS Redis connections when using the Kong Redis library.
 - Added support for running Kong as the non-root user `kong` on distributed
 systems.
-
 
 #### Plugins
 - OpenID Connect (`openid-connect`)
@@ -46,7 +85,7 @@ systems.
   - Rate Limiting Advanced (`rate-limiting-advanced`)
   - Proxy Caching Advanced (`proxy-cache-advanced`)
 
-### Fixes
+### Fixes {#beta-fixes-2200}
 
 #### Core
 - **Hybrid mode**:
@@ -250,6 +289,27 @@ open-source **Kong Gateway 2.2.0.0**:
   superseded by the new `/clustering/data-planes` endpoint.
 - The `shorthands` attribute in schema definitions is deprecated in favor of
   the new `shorthand_fields` top-level attribute.
+
+## 2.1.4.2
+**Release Date** 2020/11/17
+
+### Fixes
+
+#### Core
+- Fixed an issue causing workspace entity count meta information to get out of sync when deleting entities by name.
+
+#### Kong Manager
+- Added Service path to information at the top of Service specific page.
+
+#### Kong Developer Portal
+- Fixed Application Save button label, changing from Edit to Save.
+
+#### Plugins
+- Mutual TLS Authentication (`mtls-auth`)
+  - Fixed an issue when client certificate is not requested for plugins applied in non-default workspace.
+- Proxy Cache Advanced (`proxy-cache-advanced`)
+  - Fixed cache usage when URL includes empty query string param.
+
 
 ## 2.1.4.1
 **Release Date** 2020/10/30
