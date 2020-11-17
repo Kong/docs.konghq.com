@@ -1,81 +1,127 @@
 ---
-title: Kong Enterprise 2.1.x Release Notes
+title: Kong Enterprise 2.2.x Release Notes
 ---
 
-These release notes provide a high-level overview of Kong Enterprise 2.1.x, which includes the 2.1.0.0 (beta) release. For detailed information about 2.1.x, 2.1.0.0 (beta), and any subsequent 2.1.x patch releases, see the [Changelog](https://docs.konghq.com/enterprise/changelog/).
+These release notes provide a high-level overview of Kong Enterprise 2.2.x,
+which includes the 2.2.0.0 (beta) release. For detailed information about 2.2.x,
+2.2.0.0 (beta), and any subsequent 2.2.x patch releases, see the
+[Changelog](https://docs.konghq.com/enterprise/changelog/).
 
 ## New Features
 
-### Hybrid Mode
+### UDP Support
 
-Kong Enterprise now supports a new deployment method called Hybrid mode, also known as Control Plane / Data Plane Separation (CP/DP).
+Kong Enterprise now supports UDP-based protocols. UDP is used in a wide range
+of applications, ranging from audio/video streaming to gaming servers to
+financial services and much more, giving Kong Enterprise 2.2.x a wider range
+of supported APIs.
 
-In this mode, Kong nodes in a cluster are split into two roles: Control Plane (CP), which centrally manages Kong Enterprise cluster configuration, and Data Plane (DP), which serves traffic for the proxy. Each DP node is connected to one of the CP nodes. Instead of accessing the database contents directly as in the traditional deployment method, the DP nodes maintain connection with CP nodes, and receive the latest configuration. All nodes in a cluster are configured with generated certificates, ensuring each Data Plane node is calling back to securely pair with the Control Plane.
+Kong Enterprise 2.2.x adds support for proxying, load balancing, and running
+plugins on UDP data, giving users similar functionality for UDP to what was
+already available for TCP. When using Kong for load balancing, there is no
+inherent sense of a stateful connection in UDP. Kong ensures
+that incoming packets are balanced consistently across upstream services,
+providing optimal cache use in those services.
 
-You can manage Kong Enterprise add-ons including Kong Manager, Developer Portal, Vitals, Immunity, and Brain from a single Control Plane that spans multiple clusters across different data centers and platforms. This means that you can distribute Kong Enterprise instances in Data Plane mode over any of Kong’s supported environments, while still connecting back to the Control Plane.
+The following plugins support UDP-based protocols:
+* [Datadog](/hub/kong-inc/datadog)
+* [File Log](/hub/kong-inc/file-log)
+* [HTTP Log](/hub/kong-inc/http-log)
+* [Loggly](/hub/kong-inc/loggly)
+* [Kafka Log](/hub/kong-inc/kafka-log)
+* [StatsD](/hub/kong-inc/statsd)
+* [StatsD Advanced](/hub/kong-inc/statsd-advanced)
+* [Syslog](/hub/kong-inc/syslog)
+* [TCP Log](/hub/kong-inc/tcp-log)
+* [UDP Log](/hub/kong-inc/udp-log)
+* [Zipkin](/hub/kong-inc/zipkin)
 
-Here’s a sample configuration with one central Control Plane and three Data Plane nodes, as well as Kong Manager and Developer Portal enabled on the Control Plane:
+### Security Improvements
 
-![Hybrid mode](/assets/images/docs/ee/deployment/deployment-hybrid-2.png)
+Kong Enterprise 2.2.x has new features that help make security simpler and
+more robust.
 
-For more information, check out the following links:
-* [Hybrid Mode Overview](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/)
-* [Deploying Kong Enterprise in Hybrid Mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode-setup)
+#### Automatically Trust OS Certificates
 
-### Developer Portal Application Registration with External IDP Support
+Kong Enterprise 2.2.x introduces the ability to automatically load certificates
+that are pre-installed with the operating system (OS) using the
+`lua_ssl_trusted_certificate` configuration option. This configuration also allows
+multiple entries alongside the certificate file bundled with the OS. This
+makes it easier operationally to support HTTPS services in the open internet
+while also enabling custom certificates for internal services.
 
-Authentication is decoupled from the Application Registration plugin, and support is added for third-party OAuth providers. Developers now have the flexibility to choose from either Kong or a third-party identity provider (IdP) as the system of record for application credentials. With third-party OAuth support, developers can centralize application credential management with the supported IdP of their choice.
+For more information, see the
+[Configuration Property Reference](/enterprise/{{page.kong_version}}/property-reference/#lua_ssl_trusted_certificate).
 
-For more information, see:
-* [Application Registration](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/)
-* [Application Registration Plugin](/hub/kong-inc/application-registration/)
+#### Running Kong as a Non-Root User
 
-### Developer Portal Markdown Support
+Kong 2.2.x allows you to reduce risk level and help meet compliance needs by
+allowing Kong to run as a non-root user. This is generally a best practice for
+the principle of least privilege.
 
-The Developer Portal now supports GitHub Markdown as an alternative to Developer Portal templates. To use the feature, create a markdown file and call the new markdown layout module. You can use the default CSS or customize it for more control over the Dev Portal skin.
+If you have been using our Docker images, we had already taken steps
+before 2.2.x to build those images in a way adds a “kong” user and
+grants that user access to the necessary files/directories. This new change
+helps cover the remaining use cases for non-Dockerized installations.
 
-For more information, see the [Developer Portal Markdown](/enterprise/{{page.kong_version}}/developer-portal/theme-customization/markdown-extended/) topic.
+For more information, see [Running Kong as a Non-Root User](/enterprise/{{page.kong_version}}/deployment/kong-user).
 
-### Go Language Support for Custom Plugins
+#### TLS Connections with Redis
 
-The Go Plugin Development Kit for Kong Enterprise allows users to tap into the Go ecosystem with custom plugins. The Kong Go PDK directly parallels the existing Kong PDK for Lua plugins.
+Kong Enterprise 2.2.x can now establish TLS connections to the Redis
+database. This feature is useful in, for example, the [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced)
+and [Proxy Caching Advanced](/hub/kong-inc/proxy-cache-advanced) plugins.
 
-For more information, see the [Go PDK](/enterprise/{{page.kong_version}}/go/) topic.
+#### OpenID Connect
 
-### Kong Vitals Reports
+Kong Enterprise 2.2.x introduces new features in the OpenID Connect plugin:
+* Improved resilience to discovery (and rediscovery).
+* Can now pass `urn:ietf:params:oauth:grant-type:jwt-bearer` assertions with the
+`client_credentials` authentication method.
+* New parameters:
+  * Adds the ability to specify a salt for a cache key using `cache_tokens_salt`,
+  so that if you have two instances of the OIDC plugin, you can avoid cache collisions.
+  * Allows you to set valid issuers using `issuers_allowed`.
+  * Allows you to manually define the user info endpoint using the new
+  `userinfo_endpoint` setting.
+  * Adds the ability to enable or disable the verification of tokens signed with
+  HMAC (HS256, HS384, or HS512) algorithms using the new `enable_hs_signatures`
+  parameter.
+  * Adds the option to compress session data using
+  the `session_compressor` parameter.
 
-A new interface in Kong Manager lets you view usage dashboards and generate reports, with easier access to all metrics collected by Kong Vitals over a greater period of time. Use the reports feature to browse, filter, and view your metrics in a time-series generated report, and export the report as a comma-separated values (CSV) file.
+For more information, see the [Open ID Connect plugin](/hub/kong-inc/openid-connect).
 
-For more information, see the [Vitals Overview](/enterprise/{{page.kong_version}}/vitals/overview/) and [Vitals Reports](/enterprise/{{page.kong_version}}/vitals/vitals-reports/) topics.
+### Performance Improvements
 
-### Kong for Kubernetes Enterprise (K4K8s) Image Changes
+#### Hybrid Mode
 
-For the {{site.ee_product_name}}, Kong for Kubernetes Enterprise (K4K8s) now uses the `kong-enterprise-edition` image, which works as a drop-in replacement for the `kong-enterprise-k8s` image used in earlier versions.
+Several improvements have been made to Hybrid Mode in Kong 2.2.x, most of which
+are transparent for the user but result in an overall smoother scenario. One
+notable improvement is a more efficient mechanism for communication between
+Control Plane and Data Plane nodes, especially when the Data Planes are
+receiving large and frequent updates.
 
-For more information, including instructions for switching images, see [Kong for Kubernetes Deployment Options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options/).
+Along with this improvement comes an upgrade to the Control Plane Cluster API,
+which replaces the `/clustering/status` endpoint with the
+`/clustering/data_planes` endpoint. This new endpoint provides information about
+all Data Planes in the cluster, regardless of the Control Plane node to which
+they are connected.
 
-## Known Issues and Workarounds
+For more information, see [Hybrid Mode Setup](/enterprise/{{page.kong_version}}/deployment/hybrid-mode-setup/#step-4-verify-that-nodes-are-connected).
 
-* LDAP Authentication and LDAP Authentication Advanced plugins: When using only RBAC Token authorization, Service Directory Mapping to Kong Roles does not take effect. If you need to use CLI access with your Service Directory mapping, use the same authentication mechanism that Kong Manager uses to secure browser sessions, as defined in this workaround: [Using Service Directory Mapping on the CLI](/enterprise/2.1.x/kong-manager/authentication/ldap/#using-service-directory-mapping-on-the-cli).
+#### Request and Response Buffering
 
-* The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
+Another improvement for users who route large amounts of data through Kong is
+that we’ve added the ability to disable buffering of requests and responses on
+a per-Route basis, creating potential to greatly reduce latency.
 
-* Setting your Kong password (`Kong_Password`) using a value containing four ticks (for example, `KONG_PASSWORD="a''a'a'a'a"`) causes a Postgres syntax error on bootstrap. To work around this issue, do not use special characters in your password.
-
-### Breaking Changes
-
-* When performing upgrade and migration to 2.1.x, custom entities and plugins have breaking changes. See [https://docs.konghq.com/enterprise/2.1.x/deployment/upgrades/custom-changes/](https://docs.konghq.com/enterprise/2.1.x/deployment/upgrades/custom-changes/).
-
-  * `run_on` is removed from plugins, as it has not been used for a long time but compatibility was kept in 1.x. Any plugin with `run_on` will now break because the schema no longer contains that entry. If testing custom plugins against this beta release, update the plugin's schema.lua file and remove the `run_on` field.
-
-  * The Correlation ID (`correlation-id`) plugin has a higher priority than in CE. This is an incompatible change with CE in case `correlation-id` is configured against a Consumer.
-
-  * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
-  
 ## Deprecated Features
 
-Kong Brain is deprecated and not available for use in Kong Enterprise version 2.1.4.0 and later.
+Kong Brain is no longer available for use in Kong Enterprise version 2.1.4.2
+and later.
 
 ## Changelog
 
-For a complete list of features, fixes, and changes, see the Kong Enterprise [Changelog](/enterprise/changelog/) for versions 2.1.x and 2.1.0.0 (beta).
+For a complete list of features, fixes, known issues and workarounds, and other
+changes, see the Kong Enterprise [Changelog](/enterprise/changelog/).
