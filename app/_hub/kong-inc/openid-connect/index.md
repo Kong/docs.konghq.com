@@ -73,7 +73,7 @@ description: |
   want your provider to be tested and added to the list.
 
   [connect]: http://openid.net/specs/openid-connect-core-1_0.html
-  [oauth2plugin]: /plugins/oauth2-authentication/
+  [oauth2plugin]: /hub/kong-inc/oauth2/
   [oauth2]: https://tools.ietf.org/html/rfc6749
   [jwt]: https://tools.ietf.org/html/rfc7519
   [jws]: https://tools.ietf.org/html/rfc7515
@@ -398,6 +398,7 @@ Parameter ¹                             | Description
 `session_cookie_secure`                 | The `Secure` flag of the session cookie.
 `session_cookie_maxsize`                | The maximum size of a single cookie (not including cookie name and `=` sign) in case it needs to split to several cookies.
 `session_strategy`                      | The session strategy to use, either `default` or `regenerate`, where regenerate generates a new session id on each save.
+`session_compressor`                    | The compressor to use for compressing the session data. Supports `zlib` or `none`.
 `session_storage`                       | The storage that is used to store the data part of the session cookie.
 `session_memcache_prefix`               | Memcache session key prefix (all session keys will use this prefix).
 `session_memcache_socket`               | Memcache `unix` socket path.
@@ -471,6 +472,7 @@ Parameter ¹                             | Description
 `verify_claims`                         | Enables or disables verification of the standard claims (for debugging).
 `verify_signature`                      | Enables or disables verification of the signature (for debugging).
 `ignore_signature`                      | Disables signature verification of access token on specified flows.
+`enable_hs_signatures`                  | Enables or disables verification of tokens signed with HMAC (HS256, HS384, or HS512) algorithms.
 `cache_ttl`                             | Default cache expiry time in seconds when one is not specified in a token.
 `cache_ttl_max`                         | Maximum cache expiry time in seconds (overrides the one specified in a token).
 `cache_ttl_min`                         | Minimum cache expiry time in seconds (overrides the one specified in a token).
@@ -587,6 +589,7 @@ Parameter ¹                             | Type      | Required | Default
 `session_cookie_secure`                 | `boolean` | `no`     | (From Original Request)
 `session_cookie_maxsize`                | `integer` | `no`     | 4000
 `session_strategy`                      | `string`  | `no`     | `"default"`
+`session_compressor`                    | `string`  | `no`     | `"none"`
 `session_storage`                       | `string`  | `no`     | `"cookie"`
 `session_memcache_prefix`               | `string`  | `no`     | `"sessions"`
 `session_memcache_socket`               | `string`  | `no`     | `—`
@@ -653,6 +656,7 @@ Parameter ¹                             | Type      | Required | Default
 `verify_claims`                         | `boolean` | `no`     | `true`
 `verify_signature`                      | `boolean` | `no`     | `true`
 `ignore_signature`                      | `array`   | `no`     | `—`
+`enable_hs_signatures`                  | `boolean` | `no`     | `false`
 `cache_ttl`                             | `number`  | `no`     | `3600`
 `cache_ttl_max`                         | `number`  | `no`     | `—`
 `cache_ttl_min`                         | `number`  | `no`     | `—`
@@ -1760,6 +1764,18 @@ Default           | Required
 :----------------:|:-------:
 4000              | `no`
 
+#### config.session_compressor
+
+Use this parameter to enable or disable session compression. Compression is
+useful when using the `"cookie"` setting as `session_storage`, as the cookie
+can grow too large, causing issues such as as `too big headers` in other
+proxies. Compression is also useful for storing session data on the server.
+
+Set this value to `"zlib"` to enable compression.
+
+Default           | Required
+:----------------:|:-------:
+`"none"`          | `no`
 
 #### config.session_strategy
 
@@ -2596,6 +2612,15 @@ The `bearer` is not an option for security purposes. If you really want to
 skip bearer signature verification, then turn `config.verify_signature` off,
 but that practically means that any token can be sent.
 
+#### config.enable_hs_signatures
+Tokens signed with HMAC algorithms such as HS256, HS384, or HS512 are not
+accepted by default. Enable this setting to accept HMAC tokens for verification.
+This option uses `config.client_secret` for verification, as described in the
+OpenID Connect standard.
+
+Default | Required
+:------:|:-------:
+`false`  | `no`
 
 #### config.cache_ttl
 
