@@ -22,6 +22,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x
@@ -45,6 +46,7 @@ kong_version_compatibility:
         - 0.2.x
     enterprise_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -70,15 +72,15 @@ params:
     - name: port
       required: true
       value_in_examples: 9999
-      description: The port to send data to on the upstream server
+      description: The port to send data to on the upstream server.
     - name: timeout
       required: false
       default: "`10000`"
-      description: An optional timeout in milliseconds when sending data to the upstream server
+      description: An optional timeout in milliseconds when sending data to the upstream server.
     - name: keepalive
       required: false
       default: "`60000`"
-      description: An optional value in milliseconds that defines for how long an idle connection will live before being closed
+      description: An optional value in milliseconds that defines for how long an idle connection will live before being closed.
 
 ---
 
