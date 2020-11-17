@@ -24,6 +24,7 @@ kong_version_compatibility:
 params:
 
   name: kafka-log
+  protocols: ["http", "https", "grpc", "grpcs", "tcp", "tls", "udp"]
   config:
     - name: bootstrap_servers
       required: true
