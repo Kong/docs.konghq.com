@@ -4,7 +4,7 @@ title: Kong Brain and Kong Immunity Overview
 
 <div class="alert alert-warning">
 <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
-<strong>Important:</strong> Kong Brain is deprecated and not available for use in Kong Enterprise version 2.1.5.0 and later.
+<strong>Important:</strong> Kong Brain is deprecated and not available for use in Kong Enterprise version 2.1.4.2 and later.
 </div>
 
 ## Overview
