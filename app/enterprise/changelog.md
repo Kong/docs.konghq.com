@@ -565,6 +565,34 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
   * The Correlation ID (`correlation-id`) plugin has a higher priority than in CE. This is an incompatible change with CE in case `correlation-id` is configured against a Consumer.
 
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
+  
+  
+## 1.5.0.7
+**Release Date** 2020/11/11
+ 
+### Fixes
+
+#### Kong Gateway
+
+* Fixed PUT request issue causing unique violation error for workspaces.
+* Improved cache warmup performance for reduced database calls.
+* Added migration to create TTL indices.
+
+#### Kong Manager
+
+* Fixed broken link to docs and updated text on Dev Portals page.
+
+#### Developer Portal
+
+* Fixed issue to allow users to delete developers.
+
+#### Dependencies
+
+* Updated lua-resty-openssl version to 0.6.8.
+
+#### Plugins
+
+* Added ability to preserve empty arrays correctly.
 
 
 ## 1.5.0.6

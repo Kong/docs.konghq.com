@@ -778,8 +778,8 @@
   }
 
   pre {
-    background-color: @gray-light;
-    border: 1px solid @gray;
+    background-color: @grey-100;
+    border: 1px solid @grey-200;
     color: #000;
     line-height: 24px;
     margin: 1.3em 0;
@@ -809,7 +809,7 @@
     }
 
     code {
-      padding: 0;
+      padding: 8px 0;
       color: #000;
       background: transparent;
     }
@@ -904,7 +904,7 @@ Generic Styling for Desktop
 
   .alert {
     margin-bottom: 1.3em;
-    font-size: 14px;
+    font-size: 16px;
 
     &.alert-warning {
       color: hsl(45, 2%, 36%);
@@ -1179,14 +1179,16 @@ Generic Styling for Desktop
 .alert {
   border: none;
   border-left: 3px solid @gray;
+  color: #757575;
+  background-color: #f9f9f9;
   border-radius: 0;
-  font-size: 18px;
+  font-size: 16px;
   padding: 8px 13px;
 
   pre, code {
     background-color: #fff;
     border: none;
-}
+  }
 
 }
 
@@ -1225,7 +1227,7 @@ Generic Styling for Desktop
   border: none;
   border-left: solid 3px #b3dfff;
   border-radius: 0;
-  font-size: 14px;
+  font-size: 16px;
 
   &.red {
     background-color: #fdf3f2;
@@ -1238,7 +1240,8 @@ Generic Styling for Desktop
   }
 
   &.info {
-    border-left: solid 3px #e0e0e0;
+    border-left: 3px solid @gray;
+    color: #757575;
     background-color: #f9f9f9;
   }
 
@@ -1285,7 +1288,7 @@ Generic Styling for Desktop
 
   p {
     padding: 0 25px 0 75px;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   a {

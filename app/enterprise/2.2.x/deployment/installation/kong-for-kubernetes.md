@@ -1,5 +1,6 @@
 ---
 title: Installing Kong for Kubernetes Enterprise
+skip_read_time: true
 ---
 
 ## Introduction
@@ -43,7 +44,7 @@ Before starting installation, be sure you have the following:
 To create the secrets for license and Docker registry access,
 first provision the `kong` namespace:
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab kubectl %}
 ```bash
 $ kubectl create namespace kong
@@ -61,14 +62,14 @@ Running Kong for Kubernetes Enterprise requires a valid license. See [prerequisi
 
 Save the license file temporarily to disk with filename `license` (no file extension) and execute the following:
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab kubectl %}
-```
+```sh
 $ kubectl create secret generic kong-enterprise-license --from-file=./license -n kong
 ```
 {% endnavtab %}
 {% navtab OpenShift oc %}
-```
+```sh
 $ oc create secret generic kong-enterprise-license --from-file=./license -n kong
 ```
 {% endnavtab %}
@@ -84,9 +85,9 @@ $ oc create secret generic kong-enterprise-license --from-file=./license -n kong
 
 Set up Docker credentials to allow Kubernetes nodes to pull down the Kong Enterprise Docker image, which is hosted in a private repository. You receive credentials for the Kong Enterprise Docker image when you sign up for Kong Enterprise.
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab kubectl %}
-```
+```sh
 $ kubectl create secret -n kong docker-registry kong-enterprise-edition-docker \
     --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \
     --docker-username=<your-bintray-username> \
@@ -94,7 +95,7 @@ $ kubectl create secret -n kong docker-registry kong-enterprise-edition-docker \
 ```
 {% endnavtab %}
 {% navtab OpenShift oc %}
-```
+```sh
 $ oc create secret -n kong docker-registry kong-enterprise-edition-docker \
     --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \
     --docker-username=<your-bintray-username> \
@@ -106,48 +107,61 @@ $ oc create secret -n kong docker-registry kong-enterprise-edition-docker \
 ## Step 4. Deploy Kong for Kubernetes Enterprise
 The steps in this section show you how to install Kong for Kubernetes Enterprise using YAML.
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab kubectl %}
-```
+```sh
 $ kubectl apply -f https://bit.ly/k4k8s-enterprise-install
 ```
+{% endnavtab %}
+{% navtab OpenShift oc %}
+```sh
+$ oc create -f https://bit.ly/k4k8s-enterprise-install
+```
+{% endnavtab %}
+{% endnavtabs %}
+
 The initial setup might take a few minutes.
 
-```
+{% navtabs codeblock %}
+{% navtab kubectl %}
+```sh
 $ kubectl get pods -n kong
+
 NAME                            READY   STATUS    RESTARTS   AGE
 ingress-kong-6ffcf8c447-5qv6z   2/2     Running   1          44m
 ```
+{% endnavtab %}
+{% navtab OpenShift oc %}
+```sh
+$ oc get pods -n kong
+
+NAME                            READY   STATUS    RESTARTS   AGE
+ingress-kong-6ffcf8c447-5qv6z   2/2     Running   1          44m
+```
+{% endnavtab %}
+{% endnavtabs %}
 
 You can also see the **kong-proxy service**:
 
-```
+{% navtabs codeblock %}
+{% navtab kubectl %}
+```sh
 $ kubectl get service kong-proxy -n kong
+
 NAME         TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)                      AGE
 kong-proxy   LoadBalancer   10.63.254.78   35.233.198.16   80:32697/TCP,443:32365/TCP   22h
 ```
 {% endnavtab %}
 {% navtab OpenShift oc %}
-```
-$ oc create -f https://bit.ly/k4k8s-enterprise-install
-```
-The initial setup might take a few minutes.
-
-```
-$ oc get pods -n kong
-NAME                            READY   STATUS    RESTARTS   AGE
-ingress-kong-6ffcf8c447-5qv6z   2/2     Running   1          44m
-```
-
-You can also see the **kong-proxy service**:
-
-```
+```sh
 $ oc get service kong-proxy -n kong
+
 NAME         TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)                      AGE
 kong-proxy   LoadBalancer   10.63.254.78   35.233.198.16   80:32697/TCP,443:32365/TCP   22h
 ```
 {% endnavtab %}
 {% endnavtabs %}
+
 
 <div class="alert alert-ee blue">
 <strong>Note:</strong> Depending on the Kubernetes distribution you are using,
@@ -158,7 +172,7 @@ LoadBalancer.
 
 Set up an environment variable to hold the IP address:
 
-```
+```sh
 $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong kong-proxy)
 ```
 
