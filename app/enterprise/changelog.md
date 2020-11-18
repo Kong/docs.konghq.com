@@ -10,7 +10,7 @@ skip_read_time: true
 <div class="alert alert-warning">
 <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
 <b>Important:</b> Kong Enterprise 2.2.0.0 includes 2.2.0.0 (beta)
-features, fixes, known issues, and workarounds. This changelog for the 2.2.0.0 version only includes the diff between 2.2.0.0 and 2.2.0.0 (beta). See the <a href="#2200-beta">2.2.0.0 (beta)</a> for more information about everything that is included in the 2.2.0.0 release.
+features, fixes, known issues, and workarounds. The changelog for 2.2.0.0 version includes only the diff between 2.2.0.0 and 2.2.0.0 (beta). See the <a href="#2200-beta">2.2.0.0 (beta) changelog</a> for more information.
 </div>
 
 ### Features
