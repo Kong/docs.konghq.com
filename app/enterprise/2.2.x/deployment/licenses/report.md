@@ -47,6 +47,7 @@ To generate a license report, from an HTTP client:
        "kong_version":"1.3-enterprise-edition",
        "license_key":"ASDASDASDASDASDASDASDASDASD_a1VASASD",
        "rbac_users":0,
+       "services_count": 27,
        "system_info":{
           "cores":6,
           "hostname":"264da9b95dfa",
@@ -118,6 +119,12 @@ To generate a license report, from an HTTP client:
    <td>rbac_users
    </td>
    <td>Number of RBAC users
+   </td>
+  </tr>
+  <tr>
+   <td>services_count
+   </td>
+   <td>Number of Kong Services
    </td>
   </tr>
   <tr>
