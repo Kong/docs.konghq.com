@@ -80,8 +80,11 @@
     - text: Securing the Admin API
       url: /secure-admin-api
 
-    - text : Control Kong Community Gateway through systemd
+    - text: Control Kong Community Gateway through systemd
       url: /systemd
+
+    - text: Running Kong as a Non-Root User
+      url: /kong-user
 
     - text: Upgrade Guide
       url: /upgrading
