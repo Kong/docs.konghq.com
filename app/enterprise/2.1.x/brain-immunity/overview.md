@@ -20,10 +20,10 @@ Brain and Immunity are installed on Kong Enterprise, either on Kubernetes or Doc
 Brain automates tasks, increases visibility, and ensures consistency across complex architectures. Other features include:
 
 ### Visually Map Services
-Get a high-level view of your architecture with a real-time visual service map. Analyze inter-service dependencies across teams and platforms to improve governance and minimize risk. See [Using the Service Map](/enterprise/latest/brain-immunity/service-map/).
+Get a high-level view of your architecture with a real-time visual service map. Analyze inter-service dependencies across teams and platforms to improve governance and minimize risk. See [Using the Service Map](/enterprise/{{page.kong_version}}/brain-immunity/service-map/).
 
 ### Auto-generate Documentation
-Standardize docs with hands-free creation of OpenAPI spec files for all your services. Transition seamlessly to spec-first development to increase collaboration and developer efficiency. See [Auto-Generated Specs](/enterprise/latest/brain-immunity/auto-generated-specs/).
+Standardize docs with hands-free creation of OpenAPI spec files for all your services. Transition seamlessly to spec-first development to increase collaboration and developer efficiency. See [Auto-Generated Specs](/enterprise/{{page.kong_version}}/brain-immunity/auto-generated-specs/).
 
 ### Streamline Issue Resolution
 Contextualize issues and take immediate action by surfacing Immunity anomaly alerts in the service map. Rapidly identify issues impacting services to reduce risk and minimize downtime.
@@ -38,7 +38,7 @@ Traffic patterns provide a window into the behavior and performance of services 
 To identify potential issues, inefficiencies or performance bottlenecks, Immunity flags traffic that deviates from the expected or desired patterns without disrupting services. Depending on your needs and goals, you can adjust the settings of Immunity to recognize individual traffic events, patterns and other types of anomalous activity.
 
 ### Automatically Alert
-How quickly you respond to an event can mean the difference between a simple fix and a catastrophic outage. As Immunity detects anomalies in real-time, it automatically sends a notification alerting you to the issue. Notifications are available via Slack and more. To avoid disruptions to your teams, you can designate specific users to receive alerts based on Role-Based Access Controls (RBAC) within [Kong Manager](/enterprise/latest/kong-manager/overview/). 
+How quickly you respond to an event can mean the difference between a simple fix and a catastrophic outage. As Immunity detects anomalies in real-time, it automatically sends a notification alerting you to the issue. Notifications are available via Slack and more. To avoid disruptions to your teams, you can designate specific users to receive alerts based on Role-Based Access Controls (RBAC) within [Kong Manager](/enterprise/latest/kong-manager/overview/).
 
 ### Analyze and Address Anomalies
 To help effectively remedy issues in your services, Immunity allows you to review anomalies to understand the root cause and take action. In conjunction with [Kong Vitals](/enterprise/latest/vitals/overview/), you can fully understand a service's anomalous behavior and address the issue with just a few clicks. As the usage of Immunity increases, it learns your baseline behavior and continuously refines its model to better detect or ignore anomalies.

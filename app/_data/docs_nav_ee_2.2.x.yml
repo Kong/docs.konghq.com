@@ -388,10 +388,6 @@
       url: /developer-portal/
     - text: Enable the Dev Portal
       url: /developer-portal/enable-dev-portal
-    - text: Migrating to Latest Version
-      url: /developer-portal/latest-migrations
-    - text: Migrating from Legacy
-      url: /developer-portal/legacy-migration
     - text: Structure and File Types
       url: /developer-portal/structure-and-file-types
     - text: Using the Portal Files API
