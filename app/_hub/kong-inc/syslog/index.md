@@ -14,6 +14,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x
@@ -33,6 +34,7 @@ kong_version_compatibility:
         - 0.6.x
     enterprise_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -54,15 +56,15 @@ params:
     - name: successful_severity
       required: false
       default: "`info`"
-      description: An optional logging severity assigned to the all successful requests with response status code less then 400 .
+      description: An optional logging severity assigned to all the successful requests with response status code less then 400.
     - name: client_errors_severity
       required: false
       default: "`info`"
-      description: An optional logging severity assigned to the all failed requests with response status code 400 or higher but less than 500.
+      description: An optional logging severity assigned to all the failed requests with response status code 400 or higher but less than 500.
     - name: server_errors_severity
       required: false
       default: "`info`"
-      description: An optional logging severity assigned to the all failed requests with response status code 500 or higher.
+      description: An optional logging severity assigned to all the failed requests with response status code 500 or higher.
     - name: log_level
       required: false
       default: "`info`"
@@ -204,4 +206,4 @@ A few considerations on the above JSON object:
 
 ## Kong Process Errors
 
-This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path: {[prefix](/{{site.data.kong_latest.release}}/configuration/#prefix)}/logs/error.log
+{% include /md/plugins-hub/kong-process-errors.md %}
