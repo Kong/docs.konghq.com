@@ -24,7 +24,7 @@ configuration of your Kong instance or cluster.
 
     Issue the following cURL request to add your first API ([Mockbin][mockbin])
     to Kong:
-    When matching a request against an api's hosts field, the match is case sensitive
+    When matching a request against an api's hosts field, the match is case-sensitive.
     
     ```bash
     $ curl -i -X POST \
