@@ -7,7 +7,7 @@ service_body: |
     ---:| ---
     `name`<br>*optional* | The Service name.
     `retries`<br>*optional* | The number of retries to execute upon failure to proxy. Defaults to `5`.
-    `protocol` |  The protocol used to communicate with the upstream. It can be one of `http` or `https`.  Defaults to `"http"`.
+    `protocol` |  The protocol used to communicate with the upstream. Accepted values are: `"grpc"`, `"grpcs"`, `"http"`, `"https"`, `"tcp"`, `"tls"`, `"udp"`. Default: `"http"`.
     `host` | The host of the upstream server.
     `port` | The upstream server port. Defaults to `80`.
     `path`<br>*optional* | The path to be used in requests to the upstream server.
