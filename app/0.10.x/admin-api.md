@@ -322,7 +322,7 @@ HTTP 201 Created
 ```
  
 ```json
-When matching a request against an api's hosts field, the match is case sensitive
+When matching a request against an api's hosts field, the match is cases-ensitive
 {
     "created_at": 1488830759000,
     "hosts": [
