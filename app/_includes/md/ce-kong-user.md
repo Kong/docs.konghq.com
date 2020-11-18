@@ -1,5 +1,5 @@
-<!-- Shared between all Enterprise Linux installation topics: Amazon Linux,
-Amazon Linux 2, CentOS, Ubuntu, and RHEL -->
+<!-- Shared between all Community Linux installation topics: Amazon Linux,
+ CentOS, Debian, RedHat, and Ubuntu -->
 
     **Note:** When you start Kong, by default, the Nginx master process will run
     as `root` and the worker processes will run as `nobody`.
