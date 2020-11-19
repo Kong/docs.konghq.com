@@ -108,25 +108,27 @@ A Vault object represents the connection between Kong and a Vault server. It def
 Vault objects can be created via the following HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/vaults \
-  --data name=kong-auth \
-  --data mount=kong-auth \
-  --data protocol=http \
-  --data host=127.0.0.1 \
-  --data port=8200
-  --data token=s.m3w9gdV0uMDYFpMgEWSB2mtM
+$ curl --request POST \
+  --url http://localhost:8001/vaults \
+  --header 'Content-Type: multipart/form-data' \
+  --form name=kong-auth \
+  --form mount=kong-auth \
+  --form protocol=http \
+  --form host=127.0.0.1 \
+  --form port=8200 \
+  --form vault_token=<token>
 HTTP/1.1 201 Created
 
 {
-    "created_at": 1550538643,
-    "host": "127.0.0.1",
-    "id": "d3da058d-0acb-49c2-b7fe-72b3e9fd4b0a",
-    "mount": "kong-auth",
-    "name": "kong-auth",
-    "port": 8200,
-    "protocol": "http",
-    "token": "s.m3w9gdV0uMDYFpMgEWSB2mtM",
-    "updated_at": 1550538643
+  "host": "127.0.0.1",
+  "created_at": 1605288799,
+  "vault_token": "<token>",
+  "mount": "kong-auth",
+  "protocol": "http",
+  "name": "kong-auth",
+  "port": 8200,
+  "updated_at": 1605288799,
+  "id": "c22198a3-cf54-428b-bed2-59c1f3760823"
 }
 ```
 
