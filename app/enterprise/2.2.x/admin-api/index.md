@@ -82,6 +82,8 @@ route_body: |
     `regex_priority`<br>*optional* |  A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same `regex_priority`, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).  Defaults to `0`.
     `strip_path`<br>*optional* |  When matching a Route via one of the `paths`, strip the matching prefix from the upstream request URL.  Defaults to `true`.
     `preserve_host`<br>*optional* |  When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service's `host`.
+    `request_buffering` |  Whether to enable request body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that receive data with chunked transfer encoding.  Default: `true`.
+    `response_buffering` |  Whether to enable response body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that send data with chunked transfer encoding.  Default: `true`.
     `snis`<br>*semi-optional* |  A list of SNIs that match this Route when using stream routing.
     `sources`<br>*semi-optional* |  A list of IP sources of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port".
     `destinations`<br>*semi-optional* |  A list of IP destinations of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port".
@@ -103,6 +105,8 @@ route_json: |
         "regex_priority": 0,
         "strip_path": true,
         "preserve_host": false,
+        "request_buffering": true,
+        "response_buffering": true,
         "tags": ["user-level", "low-priority"],
         "service": {"id":"af8330d3-dbdc-48bd-b1be-55b98608834b"}
     }
@@ -122,6 +126,8 @@ route_data: |
         "regex_priority": 0,
         "strip_path": true,
         "preserve_host": false,
+        "request_buffering": true,
+        "response_buffering": true,      
         "tags": ["user-level", "low-priority"],
         "service": {"id":"127dfc88-ed57-45bf-b77a-a9d3a152ad31"}
     }, {
@@ -134,6 +140,8 @@ route_data: |
         "regex_priority": 0,
         "strip_path": true,
         "preserve_host": false,
+        "request_buffering": true,
+        "response_buffering": true,
         "snis": ["foo.test", "example.com"],
         "sources": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
         "destinations": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
