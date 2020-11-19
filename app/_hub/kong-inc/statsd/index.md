@@ -26,6 +26,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x
@@ -43,6 +44,7 @@ kong_version_compatibility:
         - 0.8.x
     enterprise_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -58,7 +60,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
-  protocols: ["http", "https", "grpc", "grpcs"]
+  protocols: ["http", "https", "grpc", "grpcs", "tcp", "tls", "udp"]
   dbless_compatible: yes
   config:
     - name: host
@@ -121,7 +123,4 @@ Field         | description                                             | allowe
 
 ## Kong Process Errors
 
-This logging plugin will only log HTTP request and response data. If you are
-looking for the Kong process error file (which is the nginx error file), then
-you can find it at the following path:
-{[prefix](/{{site.data.kong_latest.release}}/configuration/#prefix)}/logs/error.log
+{% include /md/plugins-hub/kong-process-errors.md %}

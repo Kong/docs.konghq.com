@@ -3,6 +3,8 @@ title: Enable LDAP for Kong Manager
 book: admin_gui
 ---
 
+## Enable LDAP
+
 Kong Enterprise offers the ability to bind authentication for Kong Manager
 *Admins* to a company's Active Directory using the
 [LDAP Authentication Advanced plugin](/enterprise/{{page.kong_version}}/plugins/ldap-authentication-advanced).
@@ -18,7 +20,7 @@ configuration file or using environment variables:
 admin_gui_auth = ldap-auth-advanced
 enforce_rbac = on
 admin_gui_session_conf = { "secret":"set-your-string-here" }
-admin_gui_auth_conf = {                                   
+admin_gui_auth_conf = {                                       \
     "anonymous":"",                                           \
     "attribute":"<ENTER_YOUR_ATTRIBUTE_HERE>",                \
     "bind_dn":"<ENTER_YOUR_BIND_DN_HERE>",                    \
@@ -59,3 +61,9 @@ Learn more about these properties in [Session Security in Kong Manager](/enterpr
 After starting Kong with the desired configuration, you can create new *Admins*
 whose usernames match those in the AD. Those users will then be able to accept
 invitations to join Kong Manager and log in with their LDAP credentials.
+
+### Using Service Directory Mapping on the CLI
+
+{% include /md/{{page.kong_version}}/ldap/ldap-service-directory-mapping.md %}
+
+

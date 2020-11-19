@@ -26,6 +26,7 @@ source_url: https://github.com/Kong/kong-plugin-session
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.2.x     
       - 2.1.x
       - 2.0.x
       - 1.5.x
@@ -34,6 +35,7 @@ kong_version_compatibility:
       - 1.2.x
   enterprise_edition:
     compatible:
+      - 2.2.x 
       - 2.1.x
       - 1.5.x
       - 1.3-x
@@ -80,15 +82,15 @@ params:
     - name: cookie_samesite
       required: false
       default: 'Strict'
-      description: 'Determines whether and how a cookie may be sent with cross-site requests. `Strict`: the browser will send cookies only if the request originated from the website that set the cookie. `Lax`: same-site cookies are withheld on cross-domain subrequests, but will be sent when a user navigates to the URL from an external site, for example, by following a link. `None` or `off`: disables the same-site attribute so that a cookie may be sent with cross-site requests. For more info, see the [SameSite cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite).'
+      description: 'Determines whether and how a cookie may be sent with cross-site requests. `Strict`: The browser will send cookies only if the request originated from the website that set the cookie. `Lax`: Same-site cookies are withheld on cross-domain subrequests, but will be sent when a user navigates to the URL from an external site, for example, by following a link. `None` or `off`: Disables the same-site attribute so that a cookie may be sent with cross-site requests. `None` requires the Secure attribute (`cookie_secure`) in latest browser versions. For more info, see the [SameSite cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite).'
     - name: cookie_httponly
       required: false
       default: true
-      description: Applies the `HttpOnly` tag so that the cookie is sent only to a server https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Restrict_access_to_cookies
+      description: Applies the `HttpOnly` tag so that the cookie is sent only to a server. See the [Restrict access to cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Restrict_access_to_cookies).
     - name: cookie_secure
       required: false
       default: true
-      description: Applies the Secure directive so that the cookie may be sent to the server only with an encrypted request over the HTTPS protocol https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Restrict_access_to_cookies
+      description: Applies the Secure directive so that the cookie may be sent to the server only with an encrypted request over the HTTPS protocol. See the [Restrict access to cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Restrict_access_to_cookies).
     - name: cookie_discard
       required: false
       default: 10

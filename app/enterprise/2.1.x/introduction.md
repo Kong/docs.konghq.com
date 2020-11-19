@@ -60,7 +60,14 @@ Kong Studio enables spec-first development for all REST and GraphQL services. Wi
 
 ## Try Kong Enterprise
 
-Here are a couple of ways to try Kong Enterprise:
+Here are a few ways to try Kong Enterprise:
 
-* Get a demonstration at [_Request Demo_](https://konghq.com/request-demo/?itm_source=website&itm_medium=nav/)
-* Get a free trial at [_Kong Free Trial_](https://konghq.com/products/kong-enterprise/free-trial?itm_source=website&itm_medium=nav)
+* Sign up for the Kong Enterprise self-serve, cloud-based, 15 day
+[free trial](https://konghq.com/get-started/#free-trial/).
+* Try out Kong for Kubernetes Enterprise using a live tutorial at
+[https://kubecon.konglabs.io/](https://kubecon.konglabs.io/)
+* If you are interested in evaluating Kong Enterprise locally, the Kong sales
+team manages evaluation licenses as part of a formal sales process. The best
+way to get started with the sales process is to
+[request a demo](https://konghq.com/get-started/#request-demo) and indicate
+your interest.

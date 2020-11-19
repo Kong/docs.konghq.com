@@ -3,11 +3,18 @@ name: Rate Limiting
 publisher: Kong Inc.
 redirect_from:
   - /enterprise/0.35-x/rate-limiting/
-version: 2.2.0
+version: 2.2.x
 
 desc: Rate-limit how many HTTP requests can be made in a period of time
 description: |
-  Rate limit how many HTTP requests can be made in a given period of seconds, minutes, hours, days, months, or years. If the underlying Service/Route (or deprecated API entity) has no authentication layer, the **Client IP** address will be used, otherwise the Consumer will be used if an authentication plugin has been configured.
+  Rate limit how many HTTP requests can be made in a given period of seconds, minutes, hours, days, months, or years.
+  If the underlying Service/Route (or deprecated API entity) has no authentication layer,
+  the **Client IP** address will be used; otherwise, the Consumer will be used if an
+  authentication plugin has been configured.
+
+  **Tip:** The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/)
+    plugin provides the ability to apply
+    [multiple limits in sliding or fixed windows](/hub/kong-inc/rate-limiting-advanced/#multi-limits-windows).
 
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
@@ -24,6 +31,7 @@ categories:
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.2.x
       - 2.1.x
       - 2.0.x
       - 1.4.x
@@ -46,6 +54,7 @@ kong_version_compatibility:
       - 0.2.x
   enterprise_edition:
     compatible:
+      - 2.2.x
       - 2.1.x
       - 1.5.x
       - 1.3-x
@@ -93,10 +102,16 @@ params:
       required: false
       default: '`consumer`'
       description: |
-        The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`, `service`, `header`. If the `consumer`, the `credential`, or the `service` cannot be determined, the system will always fallback to `ip`. If value `header` is chosen, the `header_name` configuration has to be provided.
+        The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`, `service`, `header`, `path`. If the value for the entity chosen to aggregate the limit cannot be determined, the system will always fallback to `ip`. If value `service` is chosen, the `service_id` configuration must be provided. If value `header` is chosen, the `header_name` configuration must be provided. If value `path` is chosen, the `path` configuration must be provided.
+    - name: service_id
+      required: semi
+      description: The service id to be used if `limit_by` is set to `service`.
     - name: header_name
       required: semi
       description: Header name to be used if `limit_by` is set to `header`.
+    - name: path
+      required: semi
+      description: Path to be used if `limit_by` is set to `path`.
     - name: policy
       required: false
       value_in_examples: "local"
@@ -248,6 +263,12 @@ inaccuracy and prevent the scaling issues.
 
 Most likely the user will be granted more than was agreed when using the `local` policy, but it will
 effectively block any attacks while maintaining the best performance.
+
+### Fallback to IP
+
+When the selected policy cannot be retrieved, the rate-limiting plugin will fallback
+to limit using IP as the identifier. This can happen for several reasons, such as the
+selected header was not sent by the client or the configured service was not found.
 
 [api-object]: /latest/admin-api/#api-object
 [configuration]: /latest/configuration

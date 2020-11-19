@@ -122,7 +122,7 @@ is mapped to a Route in Kong. You can check this by sending
 If not, add a Route and a dummy Service to catch this route.
 ```bash
 # add a dummy service if needed
-$ curl http://localhost:8001/service \
+$ curl http://localhost:8001/services \
         -d name=acme-dummy \
         -d url=http://127.0.0.1:65535
 

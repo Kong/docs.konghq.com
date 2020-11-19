@@ -28,6 +28,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -40,7 +41,6 @@ params:
   api_id: true
   service_id: true
   route_id: true
-  consumer_id: true
   config:
     - name: introspection_url
       required: true

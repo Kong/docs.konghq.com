@@ -1,4 +1,54 @@
 .navtabs {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+
+    &.codeblock {
+      background-color: @grey-100;
+      border-bottom: 1px solid @grey-200;
+      border-left: 1px solid @grey-200;
+      border-right: 1px solid @grey-200;
+      border-radius: 3px;
+      line-height: 24px;
+
+      pre {
+        border: none;
+        margin-bottom: 0;
+
+        code {
+          padding: 0;
+        }
+      }
+
+      .navtab-titles {
+        background-color: @grey-200;
+        color: rgba(black, 0.6);
+        opacity: 1;
+
+        .navtab-title {
+          font-size: 14px;
+          z-index: 10;
+          padding: 6px 16px;
+
+          &:not(.active):hover {
+            color: rgba(black, 1);
+          }
+        }
+      }
+
+      .navtab-contents {
+        padding: 0;
+        margin-top: -20px;
+        margin-bottom: 0;
+        border: none;
+
+        .copy-code-snippet {
+          .copy-action {
+            margin-top: -35px;
+          }
+        }
+      }
+    }
+
   .navtab-titles {
     display: flex;
     align-items: center;
@@ -11,6 +61,11 @@
       font-size: 16px;
       font-weight: 600;
       opacity: 0.7;
+
+      &:hover {
+        color: rgba(black, 0.4);
+        transition: color 0.2s;
+      }
 
       &::after {
         position: absolute;
@@ -27,6 +82,7 @@
       &.active {
         opacity: 1;
         color: @blue;
+        cursor: text;
 
         &::after {
           opacity: 1;
@@ -36,6 +92,6 @@
   }
 
   .navtab-contents {
-    padding: 24px 0;
+    padding: 1.5rem 0 0 0;
   }
 }

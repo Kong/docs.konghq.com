@@ -14,13 +14,12 @@ You can install Kong for Kubernetes Enterprise using YAML with kubectl, or with 
 ## Prerequisites
 Before starting installation, be sure you have the following:
 
+## Prerequisites
+Before starting installation, be sure you have the following:
+
 - **Kubernetes cluster**: Kong is compatible with all distributions of Kubernetes. You can use a [Minikube](https://kubernetes.io/docs/setup/minikube/), [GKE](https://cloud.google.com/kubernetes-engine/), or [OpenShift](https://www.openshift.com/products/container-platform) cluster.
 - **kubectl or oc access**: You should have `kubectl` or `oc` (if working with OpenShift) installed and configured to communicate to your Kubernetes cluster.
-- A valid Kong Enterprise License
-  * If you have a license, continue to [Set Up Kong Enterprise License](#step-2-set-up-kong-enterprise-license) below. If you need your license file information, contact Kong Support.
-  * If you need a license, request a trial license through our [Request Demo](https://konghq.com/request-demo/) page.
-  * Or, try out Kong for Kubernetes Enterprise using a live tutorial at [https://kubecon.konglabs.io/](https://kubecon.konglabs.io/)
-- Kong Enterprise Docker registry access on Bintray.
+{% include /md/{{page.kong_version}}/bintray-and-license.md %}
 
 ## Step 1. Provision a Namespace
 
@@ -41,12 +40,9 @@ $ oc new-project kong
 {% endnavtabs %}
 
 ## Step 2. Set Up Kong Enterprise License
-Running Kong for Kubernetes Enterprise requires a valid license.
+Running Kong for Kubernetes Enterprise requires a valid license. See [prerequisites](#prerequisites) for more information.
 
-As part of the sign-up process for Kong Enterprise, you should have received a license file. If you do not have one, contact your Kong sales representative. Save the license file temporarily to disk with filename `license` (no file extension) and execute the following:
-
-> Note: There is no `.json` extension in the `--from-file` parameter.
-> `-n kong` specifies the namespace in which you are deploying Kong for Kubernetes Enterprise. If you are deploying in a different namespace, change this value.
+Save the license file temporarily to disk with filename `license` (no file extension) and execute the following:
 
 {% navtabs %}
 {% navtab kubectl %}
@@ -60,6 +56,12 @@ $ oc create secret generic kong-enterprise-license --from-file=./license -n kong
 ```
 {% endnavtab %}
 {% endnavtabs %}
+
+<div class="alert alert-ee blue">
+<strong>Note:</strong><br>
+<ul>
+  <li>There is no <code>.json</code> extension in the <code>--from-file</code> parameter.</li>
+  <li><code>-n kong</code> specifies the namespace in which you are deploying Kong for Kubernetes Enterprise. If you are deploying in a different namespace, change this value.</li></ul></div>
 
 ## Step 3. Configure Kong Enterprise Docker registry access
 

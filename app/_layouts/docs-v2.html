@@ -148,11 +148,13 @@ id: documentation
       </div>
     </div>
   </div>
+  {% if page.is_homepage != true %}
   <div id="scroll-to-top-button">
     <i class="fas fa-chevron-up"></i>
   </div>
-  {% if page.is_homepage != true and page.feedback != false %}
-  {% include feedback-widget.html %}
+    {% if page.feedback != false %}
+    {% include feedback-widget.html %}
+    {% endif %}
   {% endif %}
 </div>
 <style>
