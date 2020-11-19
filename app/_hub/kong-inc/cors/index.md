@@ -5,7 +5,8 @@ version: 1.0.0
 
 desc: Allow developers to make requests from the browser
 description: |
-  Easily add __Cross-origin resource sharing *(CORS)*__ to a Service, a Route by enabling this plugin.
+  Easily add __Cross-origin resource sharing *(CORS)*__ to a Service and a Route
+  by enabling this plugin.
 
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
@@ -22,6 +23,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x      
@@ -45,6 +47,7 @@ kong_version_compatibility:
         - 0.2.x
     enterprise_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -68,19 +71,19 @@ params:
       default:
       value_in_examples: ["http://mockbin.com"]
       description: |
-        List of allowed domains for the `Access-Control-Allow-Origin` header. If you wish to allow all origins, add `*` as a single value to this configuration field. The accepted values can either be flat strings or PCRE regexes. **NOTE**: Prior to Kong 0.10.x, this parameter was `config.origin` (note the change in trailing `s`), and only accepted a single value, or the `*` special value.
+        List of allowed domains for the `Access-Control-Allow-Origin` header. If you want to allow all origins, add `*` as a single value to this configuration field. The accepted values can either be flat strings or PCRE regexes. **NOTE**: Prior to Kong 0.10.x, this parameter was `config.origin` (note the change in trailing `s`), and only accepted a single value, or the `*` special value.
     - name: methods
       required: false
       default: "`GET, HEAD, PUT, PATCH, POST, DELETE, OPTIONS, TRACE, CONNECT`"
       value_in_examples: [ "GET", "POST" ]
       description:
-        Value for the `Access-Control-Allow-Methods` header
+        Value for the `Access-Control-Allow-Methods` header.
     - name: headers
       required: false
       default: "Value of the `Access-Control-Request-Headers` request header"
       value_in_examples: [ "Accept", "Accept-Version", "Content-Length", "Content-MD5", "Content-Type", "Date", "X-Auth-Token" ]
       description: |
-        Value for the `Access-Control-Allow-Headers` header
+        Value for the `Access-Control-Allow-Headers` header.
     - name: exposed_headers
       required: false
       default:
@@ -98,11 +101,11 @@ params:
       default:
       value_in_examples: 3600
       description: |
-        Indicated how long the results of the preflight request can be cached, in `seconds`.
+        Indicates how long the results of the preflight request can be cached, in `seconds`.
     - name: preflight_continue
       required: false
       default: "`false`"
-      description: A boolean value that instructs the plugin to proxy the `OPTIONS` preflight request to the upstream service.
+      description: A boolean value that instructs the plugin to proxy the `OPTIONS` preflight request to the Upstream service.
 
 ---
 
@@ -116,12 +119,9 @@ If the client is a browser, there is a known issue with this plugin caused by a
 limitation of the CORS specification that doesn't allow to specify a custom
 `Host` header in a preflight `OPTIONS` request.
 
-Because of this limitation, this plugin will only work for Routes that have been
-configured with a `paths` setting, and it will not work for Routes that
+Because of this limitation, this plugin only works for Routes that have been
+configured with a `paths` setting. The CORS plugin does not work for Routes that
 are being resolved using a custom DNS (the `hosts` property).
 
-To learn how to configure `paths` for a Route, please read the [Proxy
-Reference][proxy-reference].
-
-[configuration]: /latest/configuration
-[proxy-reference]: /0.12.x/proxy#request-uri
+To learn how to configure `paths` for a Route, read the [Proxy
+Reference](/latest/proxy).

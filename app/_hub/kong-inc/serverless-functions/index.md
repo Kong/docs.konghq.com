@@ -9,6 +9,13 @@ desc: Dynamically run Lua code from Kong
 description: |
   Dynamically run Lua code from Kong.
 
+  <div class="alert alert-ee red">
+    <strong>Warning: </strong>The pre-function and post-function serverless plugin
+    allows anyone who can enable the plugin to execute arbitrary code.
+    If your organization has security concerns about this, disable the plugin  
+    in your <code>kong.conf</code> file.
+  </div>
+
 type: plugin
 categories:
   - serverless
@@ -16,9 +23,11 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.2.x    
         - 2.1.x
     enterprise_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 1.5.x
 

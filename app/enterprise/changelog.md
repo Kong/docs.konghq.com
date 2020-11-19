@@ -4,16 +4,379 @@ no_search: true
 no_version: true
 skip_read_time: true
 ---
+## 2.2.0.0
+**Release Date** 2020/11/17
 
-## 2.1.3.1 
+<div class="alert alert-warning">
+<i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+<b>Important:</b> Kong Enterprise 2.2.0.0 includes 2.2.0.0 (beta)
+features, fixes, known issues, and workarounds. This changelog for the 2.2.0.0 version only includes the diff between 2.2.0.0 and 2.2.0.0 (beta). See the <a href="#2200-beta">2.2.0.0 (beta)</a> for more information about everything that is included in the 2.2.0.0 release.
+</div>
+
+### Features
+**Note: Feature updates for Kong Enterprise 2.2.0.0 version include [2.2.0.0 (beta)](/enterprise/changelog/#beta-features-2200) features.**
+
+#### **Kong Manager**
+- No new features.
+- Kong Brain and Service Map are removed.
+
+#### **Plugins**
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  - Added `config.enable_hs_signatures` (`false` is the default).
+  - Added `config.session_compressor`.
+- [JWT Signer](/hub/kong-inc/jwt-signer) (`jwt-signer`)
+  - Added `config.enable_hs_signatures` (`false` is the default).
+- [AWS Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`)
+  - Added support for `isBase64Encoded` flag in Lambda function responses.
+- [gRPC-Web](/hub/kong-inc/grpc-web) (`grpc-web`)
+  - New configuration `pass_stripped_path`, which, if set to true, causes the
+  plugin to pass the stripped request path (see the
+  [`strip_path`](/enterprise/latest/admin-api/#route-object) Route attribute)
+  to the upstream gRPC service.
+
+### Fixes
+**Note: Fixes for Kong Enterprise 2.2.0.0 version include [2.2.0.0 (beta)](/enterprise/changelog/#beta-fixes-2200) fixes.**
+
+#### **OpenID Connect Library**
+  - Changed to disable HS-signature verification by default.
+  - Changed to use `client_secret` as a fallback secret for HS-signature verification only when it is a string and has more than one character in it.
+
+#### **Plugins**
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  - HS-signature verification is now disabled by default.
+  - Changed to use `client_secret` as a fallback secret for HS-signature verification only when it is a string and has more than one character in it.
+  - Updated `lua-resty-session` dependency to 3.7.
+- [JWT Signer](/hub/kong-inc/jwt-signer) (`jwt-signer`)
+  - HS-signature verification is now disabled by default.
+
+
+## 2.2.0.0 (beta)
+**Release Date** 2020/10/27
+
+### **Kong Enterprise**
+The following sections list {{site.ee_product_name}}-exclusive updates,
+features, and fixes for the **2.2.0.0 beta** version.
+
+### Dependencies
+- Bumped the required lua-resty-openssl version to
+[0.6.8](https://github.com/fffonion/lua-resty-openssl/blob/master/CHANGELOG.md#068---2020-10-15).
+
+### Features {#beta-features-2200}
+
+#### Core
+- Added support for TLS Redis connections when using the Kong Redis library.
+- Added support for running Kong as the non-root user `kong` on distributed
+systems.
+
+#### Plugins
+- OpenID Connect (`openid-connect`)
+  - Added the `issuers_allowed` configuration parameter, which introduces the
+  ability to specify valid issuers for access token ISS claim.
+  - Added the ability to pass `urn:ietf:params:oauth:grant-type:jwt-bearer`
+  assertions with the `client_credentials` authentication method.
+  - Added the `userinfo_endpoint` configuration parameter, which allows
+  manual definition of a user info endpoint.
+  - Added the ability to find nested claims using array indices. Array indices
+  start at 1, same as in Lua.
+  - Added issuer cache warmup on node start.
+- **Encryption support:** The Redis strategy now supports TLS connections.
+  Introduced the `redis.ssl`, `redis.ssl_verify`, and `redis.server_name`
+  parameters for confguring TLS connections. Applies to the following plugins:
+  - Rate Limiting Advanced (`rate-limiting-advanced`)
+  - Proxy Caching Advanced (`proxy-cache-advanced`)
+
+### Fixes {#beta-fixes-2200}
+
+#### Core
+- **Hybrid mode**:
+  - Fixed an issue where, in a cluster with multiple Control
+  Planes, configuration changes made by one Control Plane would not be picked up
+  by other Control Planes, and therefore would not be pushed to all Data Planes.
+  - Fixed an issue with custom certificates. When using a workspace other than
+  `default`, Kong Gateway did not present the configured certificate when the
+  correct SNI was sent.
+
+#### Plugins
+- OpenID Connect (`openid-connect`)
+  - Fixed a bug in issuer normalization.
+  - Improved discovery and rediscovery to be more resilient.
+  - When refreshing tokens, the old `id_token` is now preserved if a new one is
+  not given.
+  - Fixed an issue where token decoding also re-verified claims. Changed it
+  to skip claim verification when decoding tokens.
+  - Fixed issue of sharing the cache key using the same credentials but with
+    different endpoint arguments. Added a new parameter: `cache_tokens_salt`.
+    The value for this parameter is auto-generated by default, which means that
+    the token endpoint cache is not automatically shared between different
+    plugin instances.
+  - Fixed issue that caused the `unexpected_redirect_uri` setting to be
+  ignored.
+  - Fixed redirects to use `kong.response.exit`, which implements the proper
+  short-circuiting semantics in Kong.
+- OAuth Introspection (`oauth2-introspection`)
+  - Fixed an issue where the cache would not be properly invalidated
+  when a Consumer username was updated.
+- Proxy Caching Advanced (`proxy-cache-advanced`)
+  - Fixed a 500 error that would appear when the URL contained empty query
+  string parameters.
+- Exit Transformer (`exit-transformer`)
+  - Fixed some cases where an `unknown` exit would not be handled.
+- AWS Lambda (`aws-lambda`)
+  - Respect the `skip_large_bodies` config setting even when not using AWS API
+    Gateway compatibility.
+- ACME (`acme`)
+  - Changed the cache to use non-nil TTL in Hybrid mode. This fixes a bug for
+    renewals not updating the certificate after Kong Gateway 2.0.5.
+  - Fixed a bug in database mode where the renewal configuration was not
+    properly stored.
+- Prometheus (`prometheus`)
+  - Switched to using the `Kong.pdk.serializer` instead of the deprecated basic
+    serializer.
+- Collector (`collector`, used for Immunity)
+  - Removed the `/service_maps` passthrough.
+
+
+### **Kong Gateway (OSS)**
+
+**Kong Enterprise 2.2.0.0 beta** inherits the following changes from the
+open-source **Kong Gateway 2.2.0.0**:
+
+### Dependencies
+
+- For Kong Gateway 2.2, the required OpenResty version has been bumped to
+  [1.17.8.2](http://openresty.org/en/changelog-1017008.html), and the
+  the set of patches included has changed, including the latest release of
+  [lua-kong-nginx-module](https://github.com/Kong/lua-kong-nginx-module).
+  If you are installing Kong from one of our distribution
+  packages, you are not affected by this change.
+- Bumped OpenSSL version from `1.1.1g` to `1.1.1h`.
+  [#6382](https://github.com/Kong/kong/pull/6382)
+
+    <div class="alert alert-ee blue">
+    <strong>Note:</strong> If you are not using one of our distribution packages and compiling
+    OpenResty from source, you must still apply Kong's <a href="https://github.com/Kong/kong-build-tools/tree/master/openresty-build-tools/openresty-patches">
+    OpenResty patches</a>
+    (and, as highlighted above, compile OpenResty with the new
+    <code>lua-kong-nginx-module</code>). Our <a href="https://github.com/Kong/kong-build-tools">kong-build-tools</a>
+    repository allows you to do both easily.
+    </div>
+
+- Cassandra 2.x support is now deprecated. If you are still
+  using Cassandra 2.x with Kong, we recommend you to upgrade, since this
+  series of Cassandra is about to be EOL with the upcoming release of
+  Cassandra 4.0.
+
+### Additions
+
+#### Core
+
+-  **UDP support**: Kong now features support for UDP proxying
+  in its stream subsystem. The `"udp"` protocol is now accepted in the `protocols`
+  attribute of Routes and the `protocol` attribute of Services.
+  Load balancing and logging plugins support UDP as well.
+  [#6215](https://github.com/Kong/kong/pull/6215)
+- **Configurable Request and Response Buffering**: The buffering of requests
+  or responses can now be enabled or disabled on a per-route basis, through
+  setting attributes `Route.request_buffering` or `Route.response_buffering`
+  to `true` or `false`. The default behavior remains the same: buffering is
+  enabled by default for requests and responses.
+  [#6057](https://github.com/Kong/kong/pull/6057)
+- **Option to Automatically Load OS Certificates**: The configuration
+  attribute `lua_ssl_trusted_certificate` was extended to accept a
+  comma-separated list of certificate paths, as well as a special `system`
+  value, which expands to the system default certificates file installed
+  by the operating system. This follows a very simple heuristic to try to
+  use the most common certificate file in the most popular distros.
+  [#6342](https://github.com/Kong/kong/pull/6342)
+- **The consistent-hashing load balancing algorithm** does not need to use the
+  entire target history to build the same proxying destinations table on all
+  Kong nodes anymore. Now, deleted targets are removed from the database and the
+  target entities can be manipulated by the Admin API the same way as any other
+  entity.
+  [#6336](https://github.com/Kong/kong/pull/6336)
+- **Added `X-Forwarded-Path` header:** If a trusted source provides an
+  `X-Forwarded-Path` header, it is proxied as is. Otherwise, Kong sets
+  the content of said header to the request's path.
+  [#6251](https://github.com/Kong/kong/pull/6251)
+- **Hybrid Mode:**
+  - The table of Data Plane nodes at the Control Plane is now
+    cleaned up automatically, according to a delay value configurable using
+    the `cluster_data_plane_purge_delay` attribute, set to 14 days by default.
+    [#6376](https://github.com/Kong/kong/pull/6376)
+  - Data Plane nodes now apply only the last config when receiving
+    several updates in sequence, improving the performance when large configs
+    are in use. [#6299](https://github.com/Kong/kong/pull/6299)
+  - Synchronization performance improvements: Kong now uses a
+    new internal synchronization method to push changes from the Control Plane
+    to the Data Plane, drastically reducing the amount of communication between
+    nodes during bulk updates.
+    [#6293](https://github.com/Kong/kong/pull/6293)
+- **The `Upstream.client_certificate` attribute** can now be used for proxying.
+  This allows the `client_certificate` setting used for mTLS handshaking with
+  the `Upstream` server to be shared easily among different Services.
+  However, `Service.client_certificate` will take precedence over
+  `Upstream.client_certificate` if both are set simultaneously.
+  In previous releases, `Upstream.client_certificate` was only used for
+  mTLS in active health checks.
+  [#6348](https://github.com/Kong/kong/pull/6348)
+- **New `shorthand_fields` top-level attribute** in schema definitions, which
+  deprecates `shorthands` and includes type definitions in addition to the
+  shorthand callback.
+  [#6364](https://github.com/Kong/kong/pull/6364)
+
+#### Admin API
+
+- **Hybrid Mode:** Introduced the new endpoint `/clustering/data-planes`, which
+  returns complete information about all Data Plane nodes that are connected to
+  the Control Plane cluster, regardless of the Control Plane node to which they
+  are connected.
+  [#6308](https://github.com/Kong/kong/pull/6308)
+- Admin API responses now honor the `headers` configuration setting for
+  including or removing the `Server` header.
+  [#6371](https://github.com/Kong/kong/pull/6371)
+
+#### PDK
+
+- New function `kong.request.get_forwarded_prefix`: Returns the prefix path
+  component of the request's URL that Kong stripped before proxying to upstream,
+  respecting the value of `X-Forwarded-Prefix` when it comes from a trusted
+  source.
+  [#6251](https://github.com/Kong/kong/pull/6251)
+- The `kong.response.exit` now honors the `headers` configuration setting for
+  including or removing the `Server` header.
+  [#6371](https://github.com/Kong/kong/pull/6371)
+- The `kong.log.serialize` function now can be called using the stream subsystem,
+  allowing various logging plugins to work under TCP and TLS proxy modes.
+  [#6036](https://github.com/Kong/kong/pull/6036)
+- Requests with `multipart/form-data` MIME type now can use the same part name
+  multiple times. [#6054](https://github.com/Kong/kong/pull/6054)
+
+#### Plugins
+
+- **New Response Phase for custom plugins**: Both Go and Lua custom plugins now
+  support a new plugin phase called `response` in Lua plugins and `Response` in
+  Go. Using it automatically enables response buffering, which allows you to
+  manipulate both the response headers and the response body in the same phase.
+  This enables support for response handling in Go, where header and body
+  filter phases are not available, allowing you to use PDK functions such
+  as `kong.Response.GetBody()`, and provides an equivalent simplified
+  feature for handling buffered responses from Lua plugins as well.
+  [#5991](https://github.com/Kong/kong/pull/5991)
+- [AWS Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`)
+  - Bumped to version 3.5.0.
+  [#6379](https://github.com/Kong/kong/pull/6379)
+  - Added support for the `isBase64Encoded` flag in Lambda function responses.
+- [gRPC Web](/hub/kong-inc/grpc-web) (`grpc-web`)
+  - Introduced the configuration parameter `pass_stripped_path`, which, if set
+  to true, causes the plugin to pass the stripped request path (see the
+  [`strip_path`](/enterprise/latest/admin-api/#route-object) Route attribute)
+  to the upstream gRPC service.
+- [Rate Limiting](/hub/kong-inc/rate-limiting) (`rate-limiting`)
+  - Added support for rate limiting by path using the `limit_by = "path"`
+  configuration attribute. Thanks [KongGuide](https://github.com/KongGuide) for
+  the patch!
+  [#6286](https://github.com/Kong/kong/pull/6286)
+- [Correlation ID](/hub/kong-inc/correlation-id) (`correlation-id`)
+  - The plugin now generates a `correlation-id` value by default
+  if the correlation ID header arrives but is empty.
+  [#6358](https://github.com/Kong/kong/pull/6358)
+
+### Deprecated Features
+
+- **Hybrid mode:**  The `/clustering/status` endpoint is now deprecated, since it
+  returned only information about Data Plane nodes directly connected to the
+  Control Plane node to which the Admin API request was made. It is
+  superseded by the new `/clustering/data-planes` endpoint.
+- The `shorthands` attribute in schema definitions is deprecated in favor of
+  the new `shorthand_fields` top-level attribute.
+
+## 2.1.4.2
+**Release Date** 2020/11/17
+
+### Fixes
+
+#### Core
+- Fixed an issue causing workspace entity count meta information to get out of sync when deleting entities by name.
+
+#### Kong Manager
+- Added Service path to information at the top of Service specific page.
+
+#### Kong Developer Portal
+- Fixed Application Save button label, changing from Edit to Save.
+
+#### Plugins
+- Mutual TLS Authentication (`mtls-auth`)
+  - Fixed an issue when client certificate is not requested for plugins applied in non-default workspace.
+- Proxy Cache Advanced (`proxy-cache-advanced`)
+  - Fixed cache usage when URL includes empty query string param.
+
+
+## 2.1.4.1
+**Release Date** 2020/10/30
+
+### Fixes
+
+#### Core
+
+* Fix unique violation error for workspaces when using PUT.
+* Fix cluster telemetry server name default.
+* Allow certificates to be applied from workspaces.
+* Fix time waiting calculation for 499 errors.
+* Migration optimizations and fixes:
+  * Remove extra connections in PostgreSQL.
+  * Ensure that multiple workspaces are not created for Cassandra.
+* Database optimizations and fixes:
+  * Correct wait for schema agreement timeout with Cassandra.
+  * Remove rate limiting metrics on database export.
+* Fix cluster level invalidation for hybrid control plane nodes.
+* Optimize workspace ID retrieval.
+
+#### Plugins
+
+* [Exit Transfomer](/hub/kong-inc/exit-transformer/) (`exit-transformer`)
+  * Fix error getting route.
+* [Mutual TLS Authentication](/hub/kong-inc/mtls-auth) (`mtls-auth`)
+  * Ensure that the basic serializer generates the `request.tls.client_verify`
+  field based on this module's validation result.
+* [Request Validator](/hub/kong-inc/request-validator) (`request-validator`)
+  - Update the `lua-resty-ljsonschema` library dependency.
+  See library [changelog](https://github.com/Tieske/lua-resty-ljsonschema#111-28-oct-2020).
+
+
+## 2.1.4.0
+**Release Date** 2020/10/01
+
+### Fixes
+
+#### Kong Gateway
+
+* Fixed upsert for RBAC users using Admin API.
+* Allow PostgreSQL keepalive time to be configurable.
+
+#### Kong Manager
+
+* Added path to service on display page.
+
+#### Kong Developer Portal
+
+* Fixed app ``Save`` button to display as ``Save`` instead of ``Edit``.
+* Added `plugin.service` check in `app_reg` helper.
+* Fixed application registration issue rendered unusable with certain plugin configurations.
+* Fixed sidebar links with "."
+
+### Deprecated Features
+
+* Kong Brain is deprecated and not available for use in Kong Enterprise.
+
+## 2.1.3.1
 **Release Date** 2020/08/31
 
 ### Fixes
 
 #### Kong Gateway
 
-* Fixed issues to properly migrate workspaces associated with ACL groups. 
-* Improved the amount of logging in the migrations framework. 
+* Fixed issues to properly migrate workspaces associated with ACL groups.
+* Improved the amount of logging in the migrations framework.
 
 #### Kong Manager
 
@@ -62,13 +425,13 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
   * Added support to specify JSON types for configuration values. For example, by doing `config.add.json.json_types`: ["number"], the plugin will convert "-1" added JSON values into -1.
   * Improved performance by not inheriting from the BasePlugin class.
   * The plugin is now defensive against possible errors and nil header values.
-  
+
 * [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) (`request-transformer-advanced`)
   * Standardize on `allow` instead of `whitelist` to specify the parameter names that should be allowed in request JSON body. Previous `whitelist` nomenclature is deprecated and support will be removed in Kong 3.0.
-  
+
 #### Documentation Updates
-  * Plugin examples now include declarative configuration (YAML) information. 
-  * Upgrade and Migration instructions are updated for migrating from Kong Enterprise 1.5.x to 2.1.x, Kong Community Gateway 1.5 to Kong Enterprise 1.5, and Developer Portal templates. 
+  * Plugin examples now include declarative configuration (YAML) information.
+  * Upgrade and Migration instructions are updated for migrating from Kong Enterprise 1.5.x to 2.1.x, Kong Community Gateway 1.5 to Kong Enterprise 1.5, and Developer Portal templates.
 
 ### Fixes
 
@@ -91,10 +454,10 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 * Collector (`collector`, for Brain and Immunity)
   * Fixed a bug that would make the plugin try to parse request/response body regardless of the content-type.
-  
+
 * [GraphQL Rate Limiting Advance](/hub/kong-inc/graphql-rate-limiting-advanced/)d (`gql-rate-limiting-advanced`)
   * Fixed configuration using transformation that breaks in hybrid mode.
-  
+
 * [gRPC Gateway](/hub/kong-inc/grpc-gateway/) documentation is improved.
 
 * [Kong JWT Signer](/hub/kong-inc/jwt-signer/)
@@ -116,7 +479,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
   * OpenID Connect Library
     * Fixed a small typo in error message.
     * Removed azp claims verification on other tokens than the ID token.
-  
+
 * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
   * Fixed per service rate limiting.
 
@@ -137,18 +500,20 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 **Note: Known issues and workarounds for Kong Enterprise includes [2.1.0.0 (beta)](/enterprise/changelog/#known-issues-and-workarounds) known issues and workarounds.**
 
-* The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
+* The LDAP Authentication and LDAP Authentication Advanced plugins require a workaround to support CLI access with RBAC tokens: [Using Service Directory Mapping on the CLI](/enterprise/2.1.x/kong-manager/authentication/ldap/#using-service-directory-mapping-on-the-cli).
 
-* For the [Request Transformer Advanced](hub/kong-inc/request-transformer-advanced/) plugin, standardize on `allow` instead of `whitelist` to specify the parameter names that should be allowed in request JSON body. Previous `whitelist` nomenclature is deprecated and support will be removed in Kong 3.0.
+* The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) plugin does not support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
+
+* For the [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) plugin, standardize on `allow` instead of `whitelist` to specify the parameter names that should be allowed in request JSON body. Previous `whitelist` nomenclature is deprecated and support will be removed in Kong 3.0.
 
 * Breaking changes
 
   * When performing upgrade and migration to 2.1.x, custom entities and plugins have breaking changes. See [https://docs.konghq.com/enterprise/2.1.x/deployment/upgrades/custom-changes/](https://docs.konghq.com/enterprise/2.1.x/deployment/upgrades/custom-changes/).
 
   * `run_on` is removed from plugins, as it has not been used for a long time but compatibility was kept in 1.x. Any plugin with `run_on` will now break because the schema no longer contains that entry. If testing custom plugins against this beta release, update the plugin's schema.lua file and remove the `run_on` field.
-  
+
   * The [Correlation ID](/hub/kong-inc/correlation-id/) (`correlation-id`) plugin has a higher priority than in CE. This is an incompatible change with CE in case `correlation-id` is configured against a Consumer.
-  
+
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
 
 
@@ -256,20 +621,82 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 * Breaking changes
   * `run_on` is removed from plugins, as it has not been used for a long time but compatibility was kept in 1.x. Any plugin with `run_on` will now break because the schema no longer contains that entry. If testing custom plugins against this beta release, update the plugin's schema.lua file and remove the `run_on` field.
-  
+
   * The Correlation ID (`correlation-id`) plugin has a higher priority than in CE. This is an incompatible change with CE in case `correlation-id` is configured against a Consumer.
-  
+
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
   
+  
+## 1.5.0.7
+**Release Date** 2020/11/11
+ 
+### Fixes
+
+#### Kong Gateway
+
+* Fixed PUT request issue causing unique violation error for workspaces.
+* Improved cache warmup performance for reduced database calls.
+* Added migration to create TTL indices.
+
+#### Kong Manager
+
+* Fixed broken link to docs and updated text on Dev Portals page.
+
+#### Developer Portal
+
+* Fixed issue to allow users to delete developers.
+
+#### Dependencies
+
+* Updated lua-resty-openssl version to 0.6.8.
+
+#### Plugins
+
+* Added ability to preserve empty arrays correctly.
+
+
+## 1.5.0.6
+**Release Date** 2020/10/01
+
+### Features
+
+#### Kong Gateway
+
+* Allow PostgreSQL keepalive time to be configurable.
+
+#### Kong Manager
+
+* Added path to service on display page.
+
+#### Plugins
+
+* Rate Limiting Advanced (`rate-limiting-advanced`)
+  * Added RateLimit headers for draft Request for Comments (RFC).
+
+### Fixes
+
+#### Kong Gateway
+
+* Fixed propagation of posted health check across Nginx workers.
+
+#### Plugins
+
+* Collector (`collector`, for Brain and Immunity)
+  * Fixed bug caused when trying to call `select_all`.
+  * Fixed bug caused when trying to read a request body when parsing was unknown.
+  * Fixed bug caused when using the `basic_serializer` in the access stage.
+
+* Request Validator (`request-validator`)
+  * Upgraded `lua-resty-ljsonschema` library to v1.1.0.
 
 ## 1.5.0.5
 **Release Date** 2020/08/13
 
 ### Fixes
 
-#### Kong Gateway 
+#### Kong Gateway
 * Optimized Admin API requests when a large number of entities are in the system and RBAC is enabled.
-* Improved Kong handling of the encoding of sparce arrays 
+* Improved Kong handling of the encoding of sparce arrays
 
 #### Kong Manager
 * Fixed the creation of default roles and permissions when a new Workspace is created.
@@ -289,9 +716,9 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 ### Fixes
 
-#### Kong Gateway 
+#### Kong Gateway
 * Upgraded Postgres driver to support selecting the TLS version when connecting to Postgres.
-* Fixed issue causing incorrect `service_count` for license report endpoint. 
+* Fixed issue causing incorrect `service_count` for license report endpoint.
 
 #### Kong Manager
 * Exposed Routes `path_handling` attribute from the Admin API in Kong Manager.
@@ -300,7 +727,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 * OpenID Connect
   * Fixed Consumers to call the correct function when setting an anonymous Consumer (introduced with 1.5.0).
   * Fixed unauthorized responses giving 403 instead of 401 as a status code (introduced with 1.5.0).
-  
+
 * Collector
   * Fixed issue that occurred when Kong returned a 404 and caused logs to fill with messages.
 
@@ -310,7 +737,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 ### Fixes
 
-#### Kong Gateway 
+#### Kong Gateway
 * Fixed window counters issue caused when multiple sets of Redis cluster addresses are configured across multiple rate-limiting-advanced plugins
 * Fixed an issue where authentication plugins could not load legacy and empty `config.anonymous` strings from the database
 * Reduced the log level of one line in the Balancer code from `ERROR` to `WARN`

@@ -16,6 +16,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -23,6 +24,7 @@ kong_version_compatibility:
 params:
 
   name: kafka-log
+  protocols: ["http", "https", "grpc", "grpcs", "tcp", "tls", "udp"]
   config:
     - name: bootstrap_servers
       required: true

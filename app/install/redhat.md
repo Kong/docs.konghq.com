@@ -41,21 +41,12 @@ baseurl=https://kong.bintray.com/kong-rpm/rhel/7
 
 ## Installation
 
-1. **Enable the EPEL repository**
-
-    Before installing Kong, you need to install the `epel-release` package for right version of your operating system, so that Kong can fetch all the required dependencies:
-
-    ```bash
-    $ EL_VERSION=`cat /etc/redhat-release | grep -oE '[0-9]+\.[0-9]+'` && \
-      sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-${EL_VERSION%.*}.noarch.rpm
-    ```
-
-2. **Install Kong**
+1. **Install Kong**
 
     If you are downloading the [package](#packages), execute:
 
     ```bash
-    $ sudo yum install kong-{{site.data.kong_latest.version}}.*.noarch.rpm --nogpgcheck
+    $ sudo yum install /path/to/package.rpm --nogpgcheck
     ```
 
     If you are using the repository, execute:
@@ -69,7 +60,7 @@ baseurl=https://kong.bintray.com/kong-rpm/rhel/7
     $ sudo yum install -y kong
     ```
 
-3. **Prepare your database or declarative configuration file**
+2. **Prepare your database or declarative configuration file**
 
     Kong can run either with or without a database.
 
@@ -120,13 +111,13 @@ baseurl=https://kong.bintray.com/kong-rpm/rhel/7
     declarative_config = /path/to/kong.yml
     ```
 
-4. **Start Kong**
+3. **Start Kong**
 
     ```bash
     $ kong start [-c /path/to/kong.conf]
     ```
 
-5. **Use Kong**
+4. **Use Kong**
 
     Kong is running:
 

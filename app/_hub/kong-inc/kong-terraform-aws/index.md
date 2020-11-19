@@ -21,6 +21,10 @@ license_type: Apache-2.0
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.2.x
+        - 2.1.x
+        - 2.0.x
+        - 1.5.x
         - 1.4.x
         - 1.3.x
         - 1.2.x
@@ -28,21 +32,10 @@ kong_version_compatibility:
         - 1.0.x
         - 0.14.x
         - 0.13.x
-#      incompatible:
-#        - 0.13.x
-#        - 0.12.x
-#        - 0.11.x
-#        - 0.10.x
-#        - 0.9.x
-#        - 0.8.x
-#        - 0.7.x
-#        - 0.6.x
-#        - 0.5.x
-#        - 0.4.x
-#        - 0.3.x
-#        - 0.2.x
+
     enterprise_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -51,11 +44,7 @@ kong_version_compatibility:
         - 0.34-x
         - 0.33-x
         - 0.32-x
-#      incompatible:
-#        - 0.32-x
-#        - 0.31-x
-#        - 0.30-x
-#        - 0.29-x
+
 
 ###############################################################################
 # END YAML DATA
@@ -71,4 +60,5 @@ kong_version_compatibility:
 
 ### Documentation
 
-Details, prerequisites, and usage examples are provided at https://github.com/kong/kong-terraform-aws
+Details, prerequisites, and usage examples are provided on GitHub at
+[https://github.com/kong/kong-terraform-aws](https://github.com/kong/kong-terraform-aws).

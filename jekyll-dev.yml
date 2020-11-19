@@ -6,10 +6,6 @@ timezone: America/San_Francisco
 markdown: kramdown
 incremental: true
 
-kramdown:
-  syntax_highlighter_opts:
-    disable : true
-
 keep_files:
   - assets
 

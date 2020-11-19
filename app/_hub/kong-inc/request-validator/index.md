@@ -17,6 +17,7 @@ categories:
 kong_version_compatibility:
     enterprise_edition:
       compatible:
+        - 2.2.x 
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -204,7 +205,7 @@ The `type` field assumes one the following values:
 - `array`
 - `record`
 
-Each field specification may also contain "validators", which perform specific
+Each field specification may also contain validators, which perform specific
 validations:
 
 | Validator | Applies to | Description |
@@ -221,7 +222,7 @@ validations:
 | `starts_with` | Strings | True if the string value starts with the specified substring |
 | `one_of` | Strings, Numbers, Integers | True if the string field value matches one of the specified values |
 | `timestamp` | Integers | True if the field value is a valid timestamp |
-| `uuid`| Strings | True if the string is a valud UUID |
+| `uuid`| Strings | True if the string is a valid UUID |
 
 **Note**: To learn more, see [Lua patterns][lua-patterns].
 
@@ -315,7 +316,8 @@ Such a schema would validate the following request body:
 
 You can setup definitions for each parameter based on the OpenAPI Specification and
 the plugin will validate each parameter against it. For more information see the
-[OpenAPI specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#parameter-object) or the [OpenAPI examples](https://swagger.io/docs/specification/serialization/).
+[OpenAPI specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#parameter-object)
+or the [OpenAPI examples](https://swagger.io/docs/specification/serialization/).
 
 #### Fixed Fields
 
@@ -330,9 +332,9 @@ the plugin will validate each parameter against it. For more information see the
 
 #### Examples
 
-In this example we will use the plugin to validate a request's path parameter.
+In this example, use the plugin to validate a request's path parameter.
 
-1.  Add a service to Kong
+1.  Add a Service to Kong:
 
     ```
     curl -i -X POST http://kong:8001/services \
@@ -358,7 +360,7 @@ In this example we will use the plugin to validate a request's path parameter.
     }
     ```
 
-2.  Add a route with [named capture group](https://docs.konghq.com/latest/proxy/#capturing-groups)
+2.  Add a Route with [named capture group](https://docs.konghq.com/latest/proxy/#capturing-groups):
 
     ```
     curl -i -X POST http://kong:8001/services/httpbin/routes \
@@ -394,7 +396,7 @@ In this example we will use the plugin to validate a request's path parameter.
     }
     ```
 
-3. Enable request-validator plugin to validate body and parameter
+3. Enable request-validator plugin to validate body and parameter:
 
     ```
     curl -i -X POST http://kong:8001/services/httpbin/plugins \
@@ -454,33 +456,34 @@ In this example we will use the plugin to validate a request's path parameter.
     }
     ```
 
-    Here validation will make sure `status_code` is a number.
+4. In these step examples, validation makes sure that `status_code` is a number.
 
-4. A proxy request with a non-numerical status code will be blocked
+   A proxy request with a non-numerical status code is blocked:
 
     ```
     curl -i -X GET http://kong:8000/status/abc
     HTTP/1.1 400 Bad Request
-    ..
+    ...
 
     {"message":"request param doesn't conform to schema"}
     ```
 
-    but it will be allowed with a numeric status code
+    A proxy request with a numeric status code is allowed:
 
     ```
     curl -i -X GET http://kong:8000/status/200
     HTTP/1.1 200 OK
     X-Kong-Upstream-Latency: 163
     X-Kong-Proxy-Latency: 37
-    ..
+    ...
 
     ```
 
 ### Further References
 
 The Kong schema validation format is based on the plugin schemas.
-For more information, see the Kong plugin docs on [storing custom entities][schema-docs].
+For more information, see the Kong plugin docs on
+[storing custom entities](/latest/plugin-development/custom-entities/#defining-a-schema).
 
 ---
 
