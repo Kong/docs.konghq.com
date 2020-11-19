@@ -14,8 +14,6 @@
     - text: Changelog
       url: /enterprise/changelog
       absolute_url: true
-    - text: What's New in the Docs
-      url: /../../enterprise/latest/doc-updates
     - text: Version Support
       url: /../../enterprise/latest/support-policy
 
@@ -100,6 +98,8 @@
           url: /../../enterprise/latest/deployment/dns-considerations
         - text: Network &amp; Firewall
           url: /../../enterprise/latest/network
+        - text: Running Kong as a Non-Root User
+          url: /../../enterprise/latest/deployment/kong-user
     - text: Licensing
       items:
         - text: Overview
@@ -122,11 +122,6 @@
       items:
         - text: Migrating Kong Enterprise to Latest Version
           url: /../../enterprise/latest/deployment/upgrades/migrations
-          items:
-            - text: Custom Plugin Breaking Changes
-              url: /../../enterprise/latest/deployment/upgrades/custom-changes
-        - text: Migrating the Dev Portal to the Latest Version
-          url: /../../enterprise/latest/developer-portal/latest-migrations
         - text: Migrating from Kong Community to Kong Enterprise
           url: /../../enterprise/latest/deployment/upgrades/migrate-ce-to-ke
     - text: Kong Cloud
@@ -506,10 +501,6 @@
       url: /../../enterprise/latest/developer-portal/
     - text: Enable the Dev Portal
       url: /../../enterprise/latest/developer-portal/enable-dev-portal
-    - text: Migrating to Latest Version
-      url: /../../enterprise/latest/developer-portal/latest-migrations
-    - text: Migrating from Legacy
-      url: /../../enterprise/latest/developer-portal/legacy-migration
     - text: Structure and File Types
       url: /../../enterprise/latest/developer-portal/structure-and-file-types
     - text: Using the Portal Files API
@@ -605,31 +596,23 @@
     - text: Vitals with Prometheus
       url: /../../enterprise/latest/vitals/vitals-prometheus-strategy
 
-- title: Kong Brain & Kong Immunity
+- title: Kong Immunity
   icon: /assets/images/icons/documentation/icn-brain-color.svg
   items:
     - text: Overview
-      url: /../../enterprise/latest/brain-immunity/overview
+      url: /../../enterprise/latest/immunity/overview
     - text: Installation and Configuration
-      url: /../../enterprise/latest/brain-immunity/install-configure
-    - text: Kong Brain
-      items:
-        - text: Service Map
-          url: /../../enterprise/latest/brain-immunity/service-map
-        - text: Auto-Generated API Documentation
-          url: /../../enterprise/latest/brain-immunity/auto-generated-specs
-    - text: Kong Immunity
-      items:
-        - text: Alerts
-          url: /../../enterprise/latest/brain-immunity/alerts
-        - text: Model Training
-          url: /../../enterprise/latest/brain-immunity/model-training
-        - text: Slack Integration
-          url: /../../enterprise/latest/brain-immunity/slack-integration
+      url: /../../enterprise/latest/immunity/install-configure
+    - text: Alerts
+      url: /../../enterprise/latest/immunity/alerts
+    - text: Model Training
+      url: /../../enterprise/latest/immunity/model-training
+    - text: Slack Integration
+      url: /../../enterprise/latest/immunity/slack-integration
     - text: Troubleshooting
-      url: /../../enterprise/latest/brain-immunity/troubleshooting
+      url: /../../enterprise/latest/immunity/troubleshooting
     - text: Changelog
-      url: /../../enterprise/latest/brain-immunity/changelog
+      url: /../../enterprise/latest/immunity/changelog
 
 - title: Plugins
   icon: /assets/images/icons/documentation/icn-api-plugins-color.svg
