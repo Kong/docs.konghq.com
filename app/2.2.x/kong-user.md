@@ -25,7 +25,7 @@ configuration property.
 
 ## Prerequisites
 
-{{site.ee_product_name}} is installed on one of the following Linux distributions:
+{{site.ce_product_name}} is installed on one of the following Linux distributions:
 * [Amazon Linux](/install/aws-linux)
 * [CentOS](/install/centos)
 * [Debian](/install/debian)
