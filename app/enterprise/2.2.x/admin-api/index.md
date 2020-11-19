@@ -1047,9 +1047,9 @@ HTTP 200 OK
 
 ---
 
-### Update Or Create Service
+### Update or Create Service
 
-##### Create Or Update Service
+##### Create or Update Service
 
 <div class="endpoint put">/services/{name or id}</div>
 
@@ -1058,7 +1058,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the Service to create or update.
 
 
-##### Create Or Update Service Associated to a Specific Route
+##### Create or Update Service Associated to a Specific Route
 
 <div class="endpoint put">/routes/{route name or id}/service</div>
 
@@ -1067,7 +1067,7 @@ Attributes | Description
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route associated to the Service to be created or updated.
 
 
-##### Create Or Update Service Associated to a Specific Plugin
+##### Create or Update Service Associated to a Specific Plugin
 
 <div class="endpoint put">/plugins/{plugin id}/service</div>
 
@@ -1304,9 +1304,9 @@ HTTP 200 OK
 
 ---
 
-### Update Or Create Route
+### Update or Create Route
 
-##### Create Or Update Route
+##### Create or Update Route
 
 <div class="endpoint put">/routes/{name or id}</div>
 
@@ -1315,7 +1315,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the Route to create or update.
 
 
-##### Create Or Update Route Associated to a Specific Plugin
+##### Create or Update Route Associated to a Specific Plugin
 
 <div class="endpoint put">/plugins/{plugin id}/route</div>
 
@@ -1798,9 +1798,9 @@ HTTP 200 OK
 
 ---
 
-### Update Or Create Plugin
+### Update or Create Plugin
 
-##### Create Or Update Plugin
+##### Create or Update Plugin
 
 <div class="endpoint put">/plugins/{plugin id}</div>
 
@@ -2062,9 +2062,9 @@ HTTP 200 OK
 
 ---
 
-### Update Or Create Certificate
+### Update or Create Certificate
 
-##### Create Or Update Certificate
+##### Create or Update Certificate
 
 <div class="endpoint put">/certificates/{certificate id}</div>
 
@@ -2237,9 +2237,9 @@ HTTP 200 OK
 
 ---
 
-### Update Or Create CA Certificate
+### Update or Create CA Certificate
 
-##### Create Or Update CA Certificate
+##### Create or Update CA Certificate
 
 <div class="endpoint put">/ca_certificates/{ca_certificate id}</div>
 
@@ -2432,9 +2432,9 @@ HTTP 200 OK
 
 ---
 
-### Update Or Create SNI
+### Update or Create SNI
 
-##### Create Or Update SNI
+##### Create or Update SNI
 
 <div class="endpoint put">/snis/{name or id}</div>
 
@@ -2632,9 +2632,9 @@ HTTP 200 OK
 
 ---
 
-### Update Or Create Upstream
+### Update or Create Upstream
 
-##### Create Or Update Upstream
+##### Create or Update Upstream
 
 <div class="endpoint put">/upstreams/{name or id}</div>
 
@@ -2643,7 +2643,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the Upstream to create or update.
 
 
-##### Create Or Update Upstream Associated to a Specific Target
+##### Create or Update Upstream Associated to a Specific Target
 
 <div class="endpoint put">/targets/{target host:port or id}/upstream</div>
 
@@ -2914,7 +2914,7 @@ HTTP 204 No Content
 
 ---
 
-### Set Target Address As Unhealthy
+### Set Target Address as Unhealthy
 
 Set the current health status of an individual address resolved by a target
 in the load balancer to "unhealthy" in the entire Kong cluster.
@@ -2951,7 +2951,7 @@ HTTP 204 No Content
 
 ---
 
-### Set Target As Healthy
+### Set Target as Healthy
 
 Set the current health status of a target in the load balancer to "healthy"
 in the entire Kong cluster. This sets the "healthy" status to all addresses
@@ -2984,7 +2984,7 @@ HTTP 204 No Content
 
 ---
 
-### Set Target As Unhealthy
+### Set Target as Unhealthy
 
 Set the current health status of a target in the load balancer to "unhealthy"
 in the entire Kong cluster. This sets the "unhealthy" status to all addresses
