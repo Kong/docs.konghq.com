@@ -1,6 +1,5 @@
 ---
 title: Kong Mesh with RedHat
-no_search: true
 ---
 
 To install and run {{site.mesh_product_name}} on RedHat (**x86_64**), execute

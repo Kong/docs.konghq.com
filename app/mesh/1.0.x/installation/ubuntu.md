@@ -1,6 +1,5 @@
 ---
 title: Kong Mesh with Ubuntu
-no_search: true
 ---
 
 To install and run {{site.mesh_product_name}} on Ubuntu (**amd64**), execute

@@ -1,7 +1,6 @@
 ---
 title: Documentation for Kong Mesh
 is_homepage: true
-no_search: true
 ---
 <div class="docs-grid">
 
