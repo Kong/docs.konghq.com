@@ -1,6 +1,8 @@
 ---
 title: Vitals with InfluxDB
-redirect_from: "/enterprise/2.2.x/admin-api/vitals/vitals-influx-strategy"
+redirect_from: 
+- /enterprise/2.2.x/admin-api/vitals/vitals-influx-strategy
+- /enterprise/latest/admin-api/vitals/vitals-influx-strategy
 ---
 
 ## Overview
