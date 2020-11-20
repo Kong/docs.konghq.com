@@ -219,8 +219,7 @@ id: documentation
     indexName: 'prod_KIC',
     inputSelector: '#getkong-algolia-search-input',
     algoliaOptions: {
-      hitsPerPage: 5,
-      'facetFilters': ["version: {{page.kong_version}}"]
+      hitsPerPage: 5
     },
     // Override selected event to allow for local environment navigation
     handleSelected: function (input, event, suggestion) {

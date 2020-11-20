@@ -2,13 +2,7 @@
   "index_name": "prod_KIC",
   "start_urls": [
     {
-      "url": "https://docs.konghq.com/kubernetes-ingress-controller/(?P<version>.*?)/",
-      "variables": {
-        "version": {
-          "url": "https://docs.konghq.com/kubernetes-ingress-controller/",
-          "js": "var versions = $('ul[aria-labelledby=version-dropdown] a, button#version-dropdown').map(function(i, e) { return $(e).data().versionId }).toArray(); return JSON.stringify(versions);"
-        }
-      }
+      "url": "https://docs.konghq.com/kubernetes-ingress-controller/"
     }
   ],
   "sitemap_urls": [
