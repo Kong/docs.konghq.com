@@ -48,7 +48,7 @@ features, fixes, known issues, and workarounds. The changelog for 2.2.0.0 versio
   - Updated `lua-resty-session` dependency to 3.7.
 - [JWT Signer](/hub/kong-inc/jwt-signer) (`jwt-signer`)
   - HS-signature verification is now disabled by default.
-
+  
 
 ## 2.2.0.0 (beta)
 **Release Date** 2020/10/27
@@ -289,6 +289,7 @@ open-source **Kong Gateway 2.2.0.0**:
   superseded by the new `/clustering/data-planes` endpoint.
 - The `shorthands` attribute in schema definitions is deprecated in favor of
   the new `shorthand_fields` top-level attribute.
+  
 
 ## 2.1.4.2
 **Release Date** 2020/11/17
@@ -309,6 +310,12 @@ open-source **Kong Gateway 2.2.0.0**:
   - Fixed an issue when client certificate is not requested for plugins applied in non-default workspace.
 - Proxy Cache Advanced (`proxy-cache-advanced`)
   - Fixed cache usage when URL includes empty query string param.
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  - HS-signature verification is now disabled by default.
+  - Changed to use `client_secret` as a fallback secret for HS-signature verification only when it is a string and has more than one character in it.
+  - Updated `lua-resty-session` dependency to 3.7.
+- [JWT Signer](/hub/kong-inc/jwt-signer) (`jwt-signer`)
+  - HS-signature verification is now disabled by default.
 
 
 ## 2.1.4.1
@@ -626,7 +633,21 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
   
-  
+
+## 1.5.0.8
+**Release Date** 2020/11/17
+ 
+### Fixes
+
+#### **Plugins**
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  - HS-signature verification is now disabled by default.
+  - Changed to use `client_secret` as a fallback secret for HS-signature verification only when it is a string and has more than one character in it.
+  - Updated `lua-resty-session` dependency to 3.7. 
+- [JWT Signer](/hub/kong-inc/jwt-signer) (`jwt-signer`)
+  - HS-signature verification is now disabled by default.
+
+
 ## 1.5.0.7
 **Release Date** 2020/11/11
  
@@ -918,6 +939,21 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 ### Known Issue and Workaround
 * Mutual TLS Authentication Plugin
   * For the parameter `config.revocation_check_mode`, the default value `IGNORE_CA_ERROR` has a known issue in version 1.5.0.0 and later. As a workaround, manually set the value to `SKIP`
+  
+
+## 1.3.0.3
+**Release Date:** 2020/04/15
+
+### Fixes
+
+#### **Plugins**
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  - HS-signature verification is now disabled by default.
+  - Changed to use `client_secret` as a fallback secret for HS-signature verification only when it is a string and has more than one character in it.
+  - Updated `lua-resty-session` dependency to 3.7. 
+- [JWT Signer](/hub/kong-inc/jwt-signer) (`jwt-signer`)
+  - HS-signature verification is now disabled by default.
+
 
 ## 1.3.0.2
 **Release Date:** 2020/02/20
