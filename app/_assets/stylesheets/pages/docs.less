@@ -13,11 +13,15 @@
       color: @blue;
       border-bottom: 2px solid @blue;
       margin-bottom: -2px;
+      cursor: text;
     }
 
-    &:hover {
-      border-bottom: 2px solid @black-40;
-      margin-bottom: -2px;
+    &:not(.active) {
+      &:hover {
+        border-bottom: 2px solid @black-40;
+        margin-bottom: -2px;
+        transition: border 0.3s;
+      }
     }
 
     &:first-child {
