@@ -113,6 +113,8 @@ baseurl=https://kong.bintray.com/kong-rpm/centos/7
 
 3. **Start Kong**
 
+    {% include /md/ce-kong-user.md %}
+
     ```bash
     $ kong start [-c /path/to/kong.conf]
     ```
