@@ -108,8 +108,7 @@ A Vault object represents the connection between Kong and a Vault server. It def
 Vault objects can be created via the following HTTP request:
 
 ```bash
-$ curl --request POST \
-  --url http://localhost:8001/vaults \
+$ curl -X POST http://localhost:8001/vaults \
   --header 'Content-Type: multipart/form-data' \
   --form name=kong-auth \
   --form mount=kong-auth \
