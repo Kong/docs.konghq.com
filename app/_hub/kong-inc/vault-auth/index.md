@@ -116,6 +116,9 @@ $ curl -X POST http://localhost:8001/vaults \
   --form host=127.0.0.1 \
   --form port=8200 \
   --form vault_token=<token>
+```
+
+```bash
 HTTP/1.1 201 Created
 
 {
