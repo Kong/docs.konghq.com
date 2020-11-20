@@ -1,6 +1,5 @@
 ---
 title: Kong Mesh with Helm
-no_search: true
 ---
 
 To install and run {{site.mesh_product_name}} on Kubernetes using Helm, execute

@@ -1,6 +1,5 @@
 ---
 title: Getting Started with Kong Mesh
-no_search: true
 ---
 
 ## Getting Started

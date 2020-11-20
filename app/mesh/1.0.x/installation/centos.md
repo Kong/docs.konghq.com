@@ -1,6 +1,5 @@
 ---
 title: Kong Mesh with CentOS
-no_search: true
 ---
 
 To install and run {{site.mesh_product_name}} on CentOS (**x86_64**), execute

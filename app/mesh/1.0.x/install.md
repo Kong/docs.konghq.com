@@ -1,6 +1,5 @@
 ---
 title: Install Kong Mesh
-no_search: true
 ---
 
 ## Install {{site.mesh_product_name}}

@@ -1,6 +1,5 @@
 ---
 title: Kong Mesh with Docker
-no_search: true
 ---
 
 To install and run {{site.mesh_product_name}} on Docker, execute the following

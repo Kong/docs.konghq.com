@@ -1,6 +1,5 @@
 ---
 title: Kong Mesh with macOS
-no_search: true
 ---
 
 To install and run {{site.mesh_product_name}} on macOS, execute the following
