@@ -40,7 +40,7 @@ features, fixes, known issues, and workarounds. The changelog for 2.2.0.0 versio
 #### **OpenID Connect Library**
   - Changed to disable HS-signature verification by default.
   - Changed to use `client_secret` as a fallback secret for HS-signature verification only when it is a string and has more than one character in it.
-  - Fixes vulnerability in the OpenID Connect and JWT Signer Plugins. See [Kong Enterprise Support Portal](https://support.konghq.com/support/s/) for [OIDC advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-OIDC-Plugin) and [JWT advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-JWT-Signer-Plugin).
+  - Fixes vulnerability in the OpenID Connect and JWT Signer Plugins. Login to the [Kong Enterprise Support Portal](https://support.konghq.com/support/s/) for [OIDC advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-OIDC-Plugin) and [JWT advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-JWT-Signer-Plugin) details.
 
 #### **Plugins**
 - [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
@@ -309,7 +309,7 @@ open-source **Kong Gateway 2.2.0.0**:
 #### **OpenID Connect Library**
   - Changed to disable HS-signature verification by default.
   - Changed to use `client_secret` as a fallback secret for HS-signature verification only when it is a string and has more than one character in it.
-  - Fixes vulnerability in the OpenID Connect and JWT Signer Plugins. See [Kong Enterprise Support Portal](https://support.konghq.com/support/s/) for [OIDC advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-OIDC-Plugin) and [JWT advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-JWT-Signer-Plugin).
+  - Fixes vulnerability in the OpenID Connect and JWT Signer Plugins. Login to the [Kong Enterprise Support Portal](https://support.konghq.com/support/s/) for [OIDC advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-OIDC-Plugin) and [JWT advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-JWT-Signer-Plugin) details.
 
 #### Plugins
 - Mutual TLS Authentication (`mtls-auth`)
@@ -648,7 +648,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 #### **OpenID Connect Library**
   - Changed to disable HS-signature verification by default.
   - Changed to use `client_secret` as a fallback secret for HS-signature verification only when it is a string and has more than one character in it.
-  - Fixes vulnerability in the OpenID Connect and JWT Signer Plugins. See [Kong Enterprise Support Portal](https://support.konghq.com/support/s/) for [OIDC advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-OIDC-Plugin) and [JWT advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-JWT-Signer-Plugin).
+  - Fixes vulnerability in the OpenID Connect and JWT Signer Plugins. Login to the [Kong Enterprise Support Portal](https://support.konghq.com/support/s/) for [OIDC advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-OIDC-Plugin) and [JWT advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-JWT-Signer-Plugin) details.
 
 
 ## 1.5.0.7
@@ -952,7 +952,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 #### **OpenID Connect Library**
   - Changed to disable HS-signature verification by default.
   - Changed to use `client_secret` as a fallback secret for HS-signature verification only when it is a string and has more than one character in it.
-  - Fixes vulnerability in the OpenID Connect and JWT Signer Plugins. See [Kong Enterprise Support Portal](https://support.konghq.com/support/s/) for [OIDC advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-OIDC-Plugin) and [JWT advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-JWT-Signer-Plugin).
+  - Fixes vulnerability in the OpenID Connect and JWT Signer Plugins. Login to the [Kong Enterprise Support Portal](https://support.konghq.com/support/s/) for [OIDC advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-OIDC-Plugin) and [JWT advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-JWT-Signer-Plugin) details.
 
 ## 1.3.0.2
 **Release Date:** 2020/02/20
@@ -1497,7 +1497,7 @@ repository will allow you to do both easily.
 #### **OpenID Connect Library**
   - Changed to disable HS-signature verification by default.
   - Changed to use `client_secret` as a fallback secret for HS-signature verification only when it is a string and has more than one character in it.
-  - Fixes vulnerability in the OpenID Connect and JWT Signer Plugins. See [Kong Enterprise Support Portal](https://support.konghq.com/support/s/) for [OIDC advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-OIDC-Plugin) and [JWT advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-JWT-Signer-Plugin).
+  - Fixes vulnerability in the OpenID Connect and JWT Signer Plugins. Login to the [Kong Enterprise Support Portal](https://support.konghq.com/support/s/) for [OIDC advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-OIDC-Plugin) and [JWT advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-JWT-Signer-Plugin) details.
 
 ## 0.36-6
 
