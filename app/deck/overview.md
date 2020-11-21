@@ -1,7 +1,6 @@
 ---
 title: Overview
 no_version: true
-no_search: true
 ---
 
 ## Introduction

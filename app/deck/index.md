@@ -2,7 +2,6 @@
 title: Documentation for decK
 is_homepage: true
 no_version: true
-no_search: true
 redirect_from:
   - /hub/kong-inc/deck
   - /hub/hbagdi/deck

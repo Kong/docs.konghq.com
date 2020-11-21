@@ -2,7 +2,6 @@
 title: Getting Started with decK
 toc: false
 no_version: true
-no_search: true
 ---
 
 Once you've [installed](/deck/installation) decK, let's get started with it.
