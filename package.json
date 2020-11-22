@@ -69,7 +69,7 @@
     "gulp-resource-hints": "0.2.1",
     "gulp-size": "3.0.0",
     "gulp-sourcemaps": "3.0.0",
-    "jpegtran": "1.1.0",
+    "jpegtran": "2.0.0",
     "list-assets": "0.0.2",
     "lodash": "4.17.20",
     "run-sequence": "2.2.1",
