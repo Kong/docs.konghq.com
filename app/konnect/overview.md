@@ -19,6 +19,7 @@ In this guide, you will:
 * Configure a Service and Service Version, then implement the Version
 * Secure a Service Version through IP restriction
 * Set up key authentication on a Route
+* Configure a self-hosted runtime (data plane)
 * Enable the Developer Portal to publish API documentation for your service
 * Monitor the health of the Service and its constituents with Vitals
 
@@ -32,7 +33,7 @@ the pieces fit together:
 | Service Version              | One instance of a Service with a unique configuration. Each version can have different configurations, set up for a RESTful API, gPRC endpoint, GraphQL endpoint, etc. A version can be a numerical identifier, such as `1.0.0`, or an identifier using text such as `version_1`. |
 | Service Implementation       | The concrete, runnable incarnation of a Service Version. It defines the configuration for the Version, including the upstream URL and routes. Each Service Version can have one Implementation. |
 | Route                        | Routes specify how (and if) requests are sent to their Service Versions after they reach the API gateway. A single Service Version can have many Routes. |
-| Data Plane (DP)              | A node that serves traffic for the proxy. Data plane nodes are not directly connected to a database. |
+| Data Plane (DP)              | (Also referred to as a *runtime*) A node that serves traffic for the proxy. Data plane nodes are not directly connected to a database. |
 | Control Plane (CP)           | The central node which manages configuration for all data plane nodes. |
 | Proxy                        | An implementation of a service version in the form of a Kong Gateway proxy. |
 | Proxy URL                    | URL for requests to the proxy. |

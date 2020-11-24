@@ -17,6 +17,8 @@
           url: /getting-started/enable-service-plugin
         - text: Enabling a Plugin on a Route
           url: /getting-started/enable-route-plugin
+    - text: Configuring a Runtime
+      url: /getting-started/configure-runtime
     - text: Monitoring Health with Vitals
       url: /getting-started/vitals
     - text: Using the Developer Portal

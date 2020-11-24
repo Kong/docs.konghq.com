@@ -133,3 +133,4 @@ ce_product_name: Kong Gateway
 base_gateway: Kong Gateway
 mesh_product_name: Kong Mesh
 konnect_product_name: Kong Konnect
+konnect_short_name: Konnect
