@@ -8,15 +8,15 @@ The support for Kong Enterprise software versions is explained in this topic.
 ## Types of Releases
 Kong primarily follows [semantic versioning](https://semver.org/) (SemVer) with its products. That is, products typically follow a pattern of `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>`. Kong Enterprise additionally has one more decimal point on the right which identifies a sub-patch based on the Kong Community Gateway. For the purposes of this support document:
 
-* "Major Version" refers to a version of Kong Enterprise identified by the number to the left of the leftmost decimal point. For example, 2.1.3.0 has Major Version 2 and 1.3.0.0 has Major Version 1.
+* **Major Version** refers to a version of Kong Enterprise identified by the number to the left of the leftmost decimal point. For example, 2.1.3.0 has Major Version 2 and 1.3.0.0 has Major Version 1.
 
-* "Minor Version" means a version of the Software identified by a change in the number in between the two leftmost decimal points (x.X.x). For example, 2.1.3.0 has Minor Version 1 and 1.3.0.0 has Minor Version 3.
+* **Minor Version** means a version of the Software identified by a change in the number in between the two leftmost decimal points (x.X.x). For example, 2.1.3.0 has Minor Version 1 and 1.3.0.0 has Minor Version 3.
 
-* The “First Major Version Release” is the first chronologically generally available release of a given Major Version. The First Major Version Release of Major Version 2 of Kong Enterprise was 2.1.3.0 and the First Major Version Release of Major Version 1 was 1.3.0.0.
+* The **First Major Version Release** is the first chronologically generally available release of a given Major Version. The First Major Version Release of Major Version 2 of Kong Enterprise was 2.1.3.0 and the First Major Version Release of Major Version 1 was 1.3.0.0.
 
-* The “Latest Major/Minor Version Release” is the most recent chronologically generally available Minor Version release of a given Major Version.
+* The **Latest Major/Minor Version Release** is the most recent chronologically generally available Minor Version release of a given Major Version.
 
-For customers with an active enterprise support agreement, beginning with Kong Enterprise release version 2.1.3.x**<sup>*</sup>**. Kong provides support for each Major Version release of Kong Enterprise for 24 months from the date of the First Major Version Release.
+For customers with an active enterprise support agreement, beginning with Kong Enterprise release version 2.1.3.x<sup>*</sup>. Kong provides support for each Major Version release of Kong Enterprise for 24 months from the date of the First Major Version Release.
 
 Support includes:
 * Technical support on the use of the software as documented including: 
