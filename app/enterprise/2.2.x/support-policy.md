@@ -6,7 +6,7 @@ toc: false
 The support for Kong Enterprise software versions is explained in this topic.
 
 ## Types of Releases
-Kong primarily follows [semantic versioning](https://semver.org/) (SemVer) with its products. That is, products typically follow a pattern of <MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>. Kong Enterprise additionally has one more decimal point on the right which identifies a sub-patch based on the Kong Community Gateway. For the purposes of this support document:
+Kong primarily follows [semantic versioning](https://semver.org/) (SemVer) with its products. That is, products typically follow a pattern of `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>`. Kong Enterprise additionally has one more decimal point on the right which identifies a sub-patch based on the Kong Community Gateway. For the purposes of this support document:
 
 * "Major Version" refers to a version of Kong Enterprise identified by the number to the left of the leftmost decimal point. For example, 2.1.3.0 has Major Version 2 and 1.3.0.0 has Major Version 1.
 
