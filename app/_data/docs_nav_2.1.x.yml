@@ -452,6 +452,8 @@
           url: /../../kubernetes-ingress-controller/latest/concepts/ingress-classes
         - text: Security
           url: /../../kubernetes-ingress-controller/latest/concepts/security
+        - text: Ingress Versions
+          url: /../../kubernetes-ingress-controller/latest/concepts/ingress-versions
     - text: Deployment
       items:
         - text: Overview
