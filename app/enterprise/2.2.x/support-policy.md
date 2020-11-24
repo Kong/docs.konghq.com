@@ -16,16 +16,16 @@ Kong primarily follows [semantic versioning](https://semver.org/) (SemVer) with 
 
 * The “Latest Major/Minor Version Release” is the most recent chronologically generally available Minor Version release of a given Major Version.
 
-For customers with an active enterprise support agreement, beginning with Kong Enterprise release version 2.1.3.x<sup>*</sup>. Kong provides support for each Major Version release of Kong Enterprise for 24 months from the date of the First Major Version Release.
+For customers with an active enterprise support agreement, beginning with Kong Enterprise release version 2.1.3.x**<sup>*</sup>**. Kong provides support for each Major Version release of Kong Enterprise for 24 months from the date of the First Major Version Release.
 
 Support includes:
 * Technical support on the use of the software as documented including: 
-** Assistance with configuration of the software
-** Guidelines on performance tuning
+  * Assistance with configuration of the software
+  * Guidelines on performance tuning
 * Assistance with upgrades to later versions of the Kong software
 * Access to bug-fix releases and/or workarounds based on the below Bug Fix Guidelines
 
-<sup>*</sup> 24 month support applies beginning with Kong Enterprise release 2.1.3.x. For releases prior to that release, support remains at 12 months from the First Major Version Release. Support for Kong Mesh remains at 12 months. The 24 month support applies to Kong Enterprise standard releases.
+**<sup>*</sup>** 24 month support applies beginning with Kong Enterprise release 2.1.3.x. For releases prior to that release, support remains at 12 months from the First Major Version Release. Support for Kong Mesh remains at 12 months. The 24 month support applies to Kong Enterprise standard releases.
 
 ## Sunset Support
 After the product hits the end of the support period, Kong will provide limited support to help the customer upgrade to a fully supported version of Kong Enterprise for up to an additional 12 month sunset period. Kong will not provide patches for software covered by this sunset period. If there is an issue that requires a patch during this period, the customer will need to upgrade to a newer Kong Enterprise version covered by 24 month active support.
