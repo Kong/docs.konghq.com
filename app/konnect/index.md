@@ -14,9 +14,9 @@ beta: true
   </div>
 
   <div class="docs-grid-block">
-    <h3><a href="/konnect/getting-started">Getting Started</a></h3>
+    <h3><a href="/konnect/getting-started/access-beta">Getting Started</a></h3>
     <p>Get started with {{site.konnect_product_name}}.</p>
-    <a href="/konnect/getting-started">Get Started with {{site.konnect_product_name}} &rarr;</a>
+    <a href="/konnect/getting-started/access-beta">Get Started with {{site.konnect_product_name}} &rarr;</a>
   </div>
 
 </div>
