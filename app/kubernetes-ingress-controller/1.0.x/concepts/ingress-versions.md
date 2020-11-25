@@ -4,11 +4,11 @@ title: Ingress v1 and v1beta1 differences
 
 ## Introduction
 
-Kubernetes 1.18 introduced a new v1 API for the [Ingress resource][kubernetes-ingress-doc].
+Kubernetes 1.18 introduced a new `networking.k8s.io/v1` API for the [Ingress resource][kubernetes-ingress-doc].
 It standardizes common practices and clarifies implementation requirements that
 were previously up to individual controller vendors. This document covers those
 changes as they relate to Kong Ingress Controller and provides example
-equivalent v1beta1 and v1 resources for comparison.
+equivalent `networking.k8s.io/v1beta1` and `networking.k8s.io/v1` resources for comparison.
 
 ## Paths
 
@@ -20,7 +20,7 @@ specification. v1 seeks to reduce confusion by introducing several i[path
 types][path-types] and lifting restrictions on regular expression grammars used
 by controllers.
 
-### v1beta1
+### `networking.k8s.io/v1beta1`
 
 The controller passes paths directly to Kong and relies on its [path handling
 logic][kong-path]. The Kong proxy treats paths as a prefix unless they include
@@ -36,7 +36,7 @@ following:
 /foo/bar
 ```
 
-### v1
+### `networking.k8s.io/v1`
 
 Although v1 Ingresses provide path types with more clearly-defined logic, the
 controller must still create Kong routes and work within the Kong proxy's
@@ -45,13 +45,13 @@ Kong routes that match the specification:
 
 #### Exact
 
-To handle exact matches, the controller creates a Kong route with a regular
+If `pathType` is `Exact`, the controller creates a Kong route with a regular
 expression that matches the rule path only, e.g. an exact rule for `/foo` in an
 Ingress translates to a Kong route with a `/foo$` regular expression path.
 
 #### Prefix
 
-To handle prefix matches, the controller creates a Kong route with two path
+If `pathType` is `Prefix`, the controller creates a Kong route with two path
 criteria, e.g. `/foo` will create a route with a `/foo$` regular expression and
 `/foo/` plain path.
 
@@ -75,7 +75,7 @@ their `ingressClassName` field.
 For example, consider this v1beta1 Ingress:
 
 ```
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: example-ingress
@@ -106,7 +106,6 @@ kind: IngressClass
 metadata:
   name: kong
 spec:
-  controller: konghq.com/kong
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
