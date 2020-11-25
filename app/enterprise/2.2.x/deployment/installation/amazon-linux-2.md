@@ -171,9 +171,8 @@ $ sudo cp license.json /etc/kong/license.json
     $ sudo /usr/bin/postgresql-setup --initdb
     $ sudo systemctl enable postgresql.service
     $ sudo systemctl start postgresql
-    ```
-    
-> Note: If you're using Postgresql 10+, please make sure that you go to your `postgresql.conf` file and change the `password_encryption` parameter from `scram-sha-256` to `md5` before proceeding. The file `postgresql.conf` is commonly found in this location: `/var/lib/pgsql/<version>/data/postgresql.conf`
+    ```  
+> ⚠️**Note**: If you're using Postgresql 10+, please make sure that you go to your `postgresql.conf` file and change the `password_encryption` parameter from `scram-sha-256` to `md5` before proceeding. The file `postgresql.conf` is commonly found in this location: `/var/lib/pgsql/<version>/data/postgresql.conf`
 
 3. Switch to PostgreSQL user and launch PostgreSQL:
 
