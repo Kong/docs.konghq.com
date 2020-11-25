@@ -306,7 +306,7 @@
           url: /concepts/ingress-classes
         - text: Security
           url: /concepts/security
-        - text: Ingress Versions
+        - text: Ingress Resource API Versions
           url: /concepts/ingress-versions
     - text: Deployment
       items:
