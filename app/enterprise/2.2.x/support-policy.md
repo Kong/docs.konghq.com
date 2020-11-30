@@ -16,7 +16,7 @@ Kong primarily follows [semantic versioning](https://semver.org/) (SemVer) with 
 
 * The **Latest Major/Minor Version Release** is the most recent chronologically generally available Minor Version release of a given Major Version.
 
-For customers with an active enterprise support agreement, beginning with Kong Enterprise release version 2.1.3.x<sup>*</sup>. Kong provides support for each Major Version release of Kong Enterprise for 24 months from the date of the First Major Version Release.
+For customers with an active enterprise support agreement, beginning with Kong Enterprise release version 2.1.3.x<sup>*</sup>. Kong provides support for each Major Version release of Kong Enterprise for 24 months from the release date of the Minor Version.
 
 Support includes:
 * Technical support on the use of the software as documented including: 
@@ -33,7 +33,7 @@ After the product hits the end of the support period, Kong will provide limited 
 ## Bug Fix Guidelines
 Unfortunately, all software is susceptible to bugs. Kong seeks to remedy bugs through a structured protocol as follows:
 
-* Serious security vulnerabilities are treated with the utmost priority. See here for our security vulnerability reporting and remedy process, including how to report a vulnerability.
+* Serious security vulnerabilities are treated with the utmost priority. See [here](/enterprise/{{page.kong_version}}/kong-security-update-process/) for our security vulnerability reporting and remedy process, including how to report a vulnerability.
 
 * Bugs which result in production outages of Kong Enterprise or effective non-operation (such as catastrophic performance degradation) will be remedied through high priority bug fixes and provided in patch releases to the Latest Major/Minor Version Release of all currently supported Major Versions of the software and optionally ported to other versions at Kong’s discretion based on the severity and impact of the bug.
 
