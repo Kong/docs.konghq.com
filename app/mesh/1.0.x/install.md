@@ -11,7 +11,8 @@ and configuration procedures as Kuma, but uses its own binaries.
 On this page, you will find access to the official {{site.mesh_product_name}}
 distributions that provide a drop-in replacement to Kuma's native binaries.
 
-<b>The latest {{site.mesh_product_name}} is {{page.kong_latest.version}}:</b>
+**The latest {{page.kong_version}} version of {{site.mesh_product_name}} is
+{{page.kong_versions[0].version}}:**
 
 * [Kubernetes](/mesh/{{page.kong_version}}/installation/kubernetes)
 * [Helm](/mesh/{{page.kong_version}}/installation/helm)
