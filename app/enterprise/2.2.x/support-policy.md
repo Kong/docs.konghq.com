@@ -1,6 +1,5 @@
 ---
 title: Kong Enterprise Version Support
-toc: false
 ---
 
 The support for Kong Enterprise software versions is explained in this topic.
@@ -72,4 +71,3 @@ Customers with platinum or higher subscriptions may request fixes outside of the
 ## Additional Terms
 1. The above is a summary only and is qualified by Kong’s [Support and Maintenance Policy](https://konghq.com/supportandmaintenancepolicy/).
 2. The above applies to Kong standard software builds only. 
-
