@@ -52,7 +52,7 @@ Run the control plane with:
 $ docker run \
   -p 5681:5681 \
   -v /path/to/license.json:/license.json \
-  -e "KUMA_LICENSE_PATH=/license.json" \
+  -e "KMESH_LICENSE_PATH=/license.json" \
   kong-docker-kong-mesh-docker.bintray.io/kuma-cp:{{page.kong_latest.version}} run
 ```
 
