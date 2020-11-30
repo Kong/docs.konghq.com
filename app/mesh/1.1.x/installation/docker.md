@@ -26,15 +26,15 @@ You have a license for {{site.mesh_product_name}}.
 {{site.mesh_product_name}} provides the following Docker images for all of its
 executables:
 
-* **kuma-cp**: at `kong-docker-kong-mesh-docker.bintray.io/kuma-cp:{{page.kong_versions[0].version}}`
-* **kuma-dp**: at `kong-docker-kong-mesh-docker.bintray.io/kuma-dp:{{page.kong_versions[0].version}}`
-* **kumactl**: at `kong-docker-kong-mesh-docker.bintray.io/kumactl:{{page.kong_versions[0].version}}`
-* **kuma-prometheus-sd**: at `kong-docker-kong-mesh-docker.bintray.io/kuma-prometheus-sd:{{page.kong_versions[0].version}}`
+* **kuma-cp**: at `kong-docker-kong-mesh-docker.bintray.io/kuma-cp:{{page.kong_latest.version}}`
+* **kuma-dp**: at `kong-docker-kong-mesh-docker.bintray.io/kuma-dp:{{page.kong_latest.version}}`
+* **kumactl**: at `kong-docker-kong-mesh-docker.bintray.io/kumactl:{{page.kong_latest.version}}`
+* **kuma-prometheus-sd**: at `kong-docker-kong-mesh-docker.bintray.io/kuma-prometheus-sd:{{page.kong_latest.version}}`
 
 `docker pull` each image that you need. For example:
 
 ```sh
-$ docker pull kong-docker-kong-mesh-docker.bintray.io/kuma-cp:{{page.kong_versions[0].version}}
+$ docker pull kong-docker-kong-mesh-docker.bintray.io/kuma-cp:{{page.kong_latest.version}}
 ```
 
 ## 2. Run {{site.mesh_product_name}}
@@ -52,8 +52,8 @@ Run the control plane with:
 $ docker run \
   -p 5681:5681 \
   -v /path/to/license.json:/license.json \
-  -e "KUMA_LICENSE_PATH=/license.json" \
-  kong-docker-kong-mesh-docker.bintray.io/kuma-cp:{{page.kong_versions[0].version}} run
+  -e "KMESH_LICENSE_PATH=/license.json" \
+  kong-docker-kong-mesh-docker.bintray.io/kuma-cp:{{page.kong_latest.version}} run
 ```
 
 Where `/path/to/license.json` is the path to a valid {{site.mesh_product_name}}
@@ -105,7 +105,7 @@ the {{site.mesh_product_name}} HTTP API. For example:
 ```sh
 $ docker run \
   --net="host" \
-  kong-docker-kong-mesh-docker.bintray.io/kumactl:{{page.kong_versions[0].version}} kumactl get meshes
+  kong-docker-kong-mesh-docker.bintray.io/kumactl:{{page.kong_latest.version}} kumactl get meshes
 
 NAME          mTLS      METRICS      LOGGING   TRACING
 default       off       off          off       off
@@ -120,7 +120,7 @@ $ echo "type: Mesh
     backends:
     - name: ca-1
       type: builtin" | docker run -i --net="host" \
-    kong-docker-kong-mesh-docker.bintray.io/kumactl:{{page.kong_versions[0].version}} kumactl apply -f -
+    kong-docker-kong-mesh-docker.bintray.io/kumactl:{{page.kong_latest.version}} kumactl apply -f -
 ```
 
 <div class="alert alert-ee blue">

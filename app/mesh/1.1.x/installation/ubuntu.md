@@ -28,19 +28,19 @@ $ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
 {% endnavtab %}
 {% navtab Manually %}
 
-You can also [download](https://kong.bintray.com/kong-mesh/kong-mesh-{{page.kong_versions[0].version}}-ubuntu-amd64.tar.gz)
+You can also [download](https://kong.bintray.com/kong-mesh/kong-mesh-{{page.kong_latest.version}}-ubuntu-amd64.tar.gz)
  the distribution manually.
 
 Then, extract the archive with:
 
 ```sh
-$ tar xvzf kong-mesh-{{page.kong_versions[0].version}}*.tar.gz
+$ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 ```
 {% endnavtab %}
 {% endnavtabs %}
 
-{% include /md/mesh/1.0.x/install-universal-run.md %}
+{% include /md/mesh/1.1.x/install-universal-run.md %}
 
-{% include /md/mesh/1.0.x/install-universal-verify.md %}
+{% include /md/mesh/1.1.x/install-universal-verify.md %}
 
-{% include /md/mesh/1.0.x/install-universal-quickstart.md %}
+{% include /md/mesh/1.1.x/install-universal-quickstart.md %}
