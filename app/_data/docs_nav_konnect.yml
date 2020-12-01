@@ -24,6 +24,18 @@
     - text: Using the Developer Portal
       url: /getting-started/dev-portal
 
+- title: Konnect Dev Portal
+  icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
+  items:
+    - text: Developers
+      items:
+        - text: Developer Registration
+          url: /dev-portal/developers/dev-reg
+    - text: Administrators
+      items:
+        - text: Managing Developer Access
+          url: /dev-portal/administrators/manage-devs
+
 - title: Reference
   icon: /assets/images/icons/documentation/icn-references-color.svg
   items:
