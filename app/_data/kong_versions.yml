@@ -363,9 +363,9 @@
     pcre: "8.44"
 -
   release: "2.2.x"
-  version: "2.2.0"
+  version: "2.2.1"
   edition: "community"
-  luarocks_version: "2.2.0-0"
+  luarocks_version: "2.2.1-0"
   dependencies:
     luajit: "2.1.0-beta3"
     luarocks: "3.3.1"
