@@ -10,7 +10,8 @@ As of 2.1.x, Kong for Kubernetes with Kong Enterprise
 (the [kong-enterprise-edition][enterprise-bintray] proxy image) supports DB-less
 operation and is recommended for all deployments.
 * [DB-less installation with the Kong Ingress Controller][k4k8s-enterprise-install]
-* [Database-backed installation with or without the Kong Ingress Controller][k4k8s-with-enterprise-install]
+* [Database-backed installation with the Kong Ingress Controller][k4k8s-with-enterprise-with-kic-install]
+* [Database-backed installation without the Kong Ingress Controller][k4k8s-with-enterprise-without-kic-install]
 
 > The Bintray repository requires a login. If you see a 404, log in through the
 [Kong repository home page](https://bintray.com/kong) first.
@@ -161,7 +162,8 @@ migrating in the opposite direction.
 [route-validation]: /enterprise/{{page.kong_version}}/property-reference/#route_validation_strategy
 [supported-plugins]: https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/references/plugin-compatibility.md
 [k4k8s-enterprise-install]: /enterprise/{{page.kong_version}}/deployment/installation/kong-for-kubernetes
-[k4k8s-with-enterprise-install]: /enterprise/{{page.kong_version}}/deployment/installation/kong-on-kubernetes
+[k4k8s-with-enterprise-with-kic-install]: /enterprise/{{page.kong_version}}/deployment/installation/kong-on-kubernetes
+[k4k8s-with-enterprise-without-kic-install]: /enterprise/{{page.kong_version}}/deployment/installation/kong-on-kubernetes-without-kic/
 [vitals-prometheus]: /enterprise/{{page.kong_version}}/vitals/vitals-prometheus-strategy/
 [vitals-influxdb]: /enterprise/{{page.kong_version}}/vitals/vitals-influx-strategy/
 [support]: https://support.konghq.com/

@@ -1,5 +1,5 @@
 ---
-title: Installing Kong Enterprise on Kubernetes (w/KIC)
+title: Installing Kong Enterprise on Kubernetes (without KIC)
 ---
 
 ## Introduction
@@ -193,7 +193,7 @@ In the following steps, replace `<your-password>` with a secure password.
     |`image.tag` | The Docker image tag you want to pull down, e.g. `"{{page.kong_latest.version}}-alpine"`. |
     |`image.pullSecrets` | Name of secret that holds the Docker repository credentials. In the example above, this is `kong-enterprise-edition-docker`. |
     |`admin.enabled` | Set to `true` to enable the Admin API, which is required for the Kong Manager. |
-    |`ingressController.enabled` | Set to `true` as we want to use the Kong Ingress Controller. |
+    |`ingressController.enabled` | Set to `false` as we do not want to use the Kong Ingress Controller. |
     |`postgresql.enabled` | Set to `true` to deploy a Postgres database along with Kong. |
     |`postgresql.postgresqlUsername` | Set Postgres user (e.g. `kong`). |
     |`postgresql.postgresqlPassword` | Set Postgres user's password. |
