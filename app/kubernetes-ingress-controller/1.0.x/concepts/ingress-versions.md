@@ -1,5 +1,5 @@
 ---
-title: Ingress v1 and v1beta1 differences
+title: Ingress v1 and v1beta1 Differences
 ---
 
 ## Introduction
@@ -7,23 +7,23 @@ title: Ingress v1 and v1beta1 differences
 Kubernetes 1.18 introduced a new `networking.k8s.io/v1` API for the [Ingress resource][kubernetes-ingress-doc].
 It standardizes common practices and clarifies implementation requirements that
 were previously up to individual controller vendors. This document covers those
-changes as they relate to Kong Ingress Controller and provides example
+changes as they relate to {{site.kic_product_name}} and provides sample
 equivalent `networking.k8s.io/v1beta1` and `networking.k8s.io/v1` resources for comparison.
 
 ## Paths
 
 Both Ingress v1beta1 and v1 HTTP rules require a path, which represents a [URI
 path][uri-rfc-paths]. Although v1beta1 had specified that paths were [POSIX
-regular expressions][posix-regex] and enforced this, but in practice most
+regular expressions][posix-regex] and enforced this, in practice most
 controllers used other other implementations that did not match the
-specification. v1 seeks to reduce confusion by introducing several i[path
+specification. v1 seeks to reduce confusion by introducing several [path
 types][path-types] and lifting restrictions on regular expression grammars used
 by controllers.
 
-### `networking.k8s.io/v1beta1`
+### networking.k8s.io/v1beta1
 
 The controller passes paths directly to Kong and relies on its [path handling
-logic][kong-path]. The Kong proxy treats paths as a prefix unless they include
+logic][kong-paths]. The Kong proxy treats paths as a prefix unless they include
 characters [not allowed in RFC 3986 paths][uri-rfc-paths], in which case the
 proxy assumes they are a regular expression, and does not treat slashes as
 special characters. For example, the prefix `/foo` can match any of the
@@ -36,35 +36,35 @@ following:
 /foo/bar
 ```
 
-### `networking.k8s.io/v1`
+### networking.k8s.io/v1
 
 Although v1 Ingresses provide path types with more clearly-defined logic, the
 controller must still create Kong routes and work within the Kong proxy's
 routing logic. As such, the controller translates Ingress rule paths to create
-Kong routes that match the specification:
+Kong routes that match one of the following specifications: `Exact`, `Prefix`, or `ImplementationSpecific`.
 
 #### Exact
 
 If `pathType` is `Exact`, the controller creates a Kong route with a regular
-expression that matches the rule path only, e.g. an exact rule for `/foo` in an
+expression that matches the rule path only. For example, an exact rule for `/foo` in an
 Ingress translates to a Kong route with a `/foo$` regular expression path.
 
 #### Prefix
 
 If `pathType` is `Prefix`, the controller creates a Kong route with two path
-criteria, e.g. `/foo` will create a route with a `/foo$` regular expression and
+criteria. For example, `/foo` will create a route with a `/foo$` regular expression and
 `/foo/` plain path.
 
 #### ImplementationSpecific
 
-The controller leaves ImplementationSpecific path rules entirely up to the Kong
+The controller leaves `ImplementationSpecific` path rules entirely up to the Kong
 router. It creates a route with the exact same path string as the Ingress rule.
 
 ## Ingress class
 
 [Ingress class][ingress-class] indicates which resources an ingress controller
 should process. It provides a means to separate out configuration intended for
-other controllers or other instances of the Kong Ingress Controller.
+other controllers or other instances of the {{site.kic_product_name}}.
 
 In v1beta1, ingress class was handled informally using
 `kubernetes.io/ingress.class` [annotations][deprecated-annotation]. v1
@@ -74,7 +74,7 @@ their `ingressClassName` field.
 
 For example, consider this v1beta1 Ingress:
 
-```
+```yaml
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
@@ -100,7 +100,7 @@ whose `metadata.name` field indicates the class name. The `ingressClassName`
 value of the Ingress object must match the value of the `name` field in the
 IngressClass metadata:
 
-```
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: IngressClass
 metadata:
@@ -138,18 +138,18 @@ and `bar.example.com` with either v1 or v1beta1 Ingresses.
 
 ## Backend types
 
-Ingress v1 introduces support for backends other than Kubernetes Services, via
+Ingress v1 introduces support for backends other than Kubernetes Services through
 [resource backends][resource-backends].
 
-Kong has support for routes without a service in some cases, such as routes
+Kong has support for Routes without a Service in some cases, such as Routes
 that use the [AWS Lambda plugin][lambda-plugin]. However, it does not yet offer
 Kubernetes resources for them. As such, you should instead create a placeholder
 Kubernetes Service for them, using an [ExternalName Service][external-name]
-with an RFC 2606 invalid hostname, e.g. `kong.invalid`. You can use these
+with an RFC 2606 invalid hostname (for example,`kong.invalid`). You can use these
 placeholder services with either v1 or v1beta1 Ingresses.
 
 [kubernetes-ingress-doc]: https://kubernetes.io/docs/concepts/services-networking/ingress/
-[ingress-class]: ./ingress-classes.md
+[ingress-class]: /kubernertes-ingress-controller/{{page.kong_version}}/concepts/ingress-classes
 [uri-rfc-paths]: https://tools.ietf.org/html/rfc3986#section-3.3
 [posix-regex]: https://www.boost.org/doc/libs/1_38_0/libs/regex/doc/html/boost_regex/syntax/basic_extended.html
 [path-types]: https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types
