@@ -4,7 +4,7 @@ title: Ingress v1 and v1beta1 Differences
 
 ## Introduction
 
-Kubernetes 1.18 introduced a new `networking.k8s.io/v1` API for the [Ingress resource][kubernetes-ingress-doc].
+Kubernetes 1.19 introduced a new `networking.k8s.io/v1` API for the [Ingress resource][kubernetes-ingress-doc].
 It standardizes common practices and clarifies implementation requirements that
 were previously up to individual controller vendors. This document covers those
 changes as they relate to {{site.kic_product_name}} and provides sample
@@ -141,12 +141,13 @@ and `bar.example.com` with either v1 or v1beta1 Ingresses.
 Ingress v1 introduces support for backends other than Kubernetes Services through
 [resource backends][resource-backends].
 
-Kong has support for Routes without a Service in some cases, such as Routes
-that use the [AWS Lambda plugin][lambda-plugin]. However, it does not yet offer
-Kubernetes resources for them. As such, you should instead create a placeholder
-Kubernetes Service for them, using an [ExternalName Service][external-name]
-with an RFC 2606 invalid hostname (for example,`kong.invalid`). You can use these
-placeholder services with either v1 or v1beta1 Ingresses.
+Kong does not support any dedicated resource backend configurations, though it
+does have support for Routes without Services in some cases (for example, when
+using the [AWS Lambda plugin][lambda-plugin]). For these routes, you should
+create a placeholder Kubernetes Service for them, using an [ExternalName
+Service][external-name] with an RFC 2606 invalid hostname, e.g.
+`kong.invalid`. You can use these placeholder services with either v1 or
+v1beta1 Ingresses.
 
 [kubernetes-ingress-doc]: https://kubernetes.io/docs/concepts/services-networking/ingress/
 [ingress-class]: /kubernertes-ingress-controller/{{page.kong_version}}/concepts/ingress-classes
