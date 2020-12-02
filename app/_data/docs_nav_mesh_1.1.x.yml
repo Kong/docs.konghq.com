@@ -35,6 +35,12 @@
       url: /installation/ubuntu
     - text: macOS
       url: /installation/macos
+    - text: Marketplaces
+      items:
+        - text: Azure
+          url: /
+        - text: AWS EKS
+          url: /
 
 - title: Enterprise Features
   icon: /assets/images/icons/documentation/icn-brain-color.svg
