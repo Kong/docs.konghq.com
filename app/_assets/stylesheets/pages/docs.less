@@ -8,7 +8,6 @@
     padding: 0 10px 16px;
     font-size: 16px;
     color: @black-70;
-    margin-bottom: 2px;
 
     &.active {
       color: @blue;
@@ -18,10 +17,12 @@
     }
 
     &:not(.active) {
-      &:hover {
+      &:hover, &:focus {
         border-bottom: 2px solid @black-40;
         margin-bottom: -2px;
-        transition: border 0.3s;
+        transition: all 0.1s;
+        -moz-transition: all 0.1s;
+        -webkit-transition: all 0.1s; 
       }
     }
 
