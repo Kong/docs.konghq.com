@@ -67,7 +67,7 @@ The contents of this archive should be close to the following:
 
 For a Kong node to be able to use the custom plugin, the custom plugin's Lua
 sources must be installed on your host's file system. There are multiple ways
-of doing so: via LuaRocks from the created `rock`, via LuaRocks from source, or manually. Choose one, then jump to the next section to configure loading the plugin.
+of doing so: using LuaRocks from the created `rock`, using LuaRocks from source, or manually. Choose one, then jump to the next section to configure loading the plugin.
 
 1. Via LuaRocks from the created 'rock'
 
