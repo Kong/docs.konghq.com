@@ -414,12 +414,23 @@
     bottom: 0;
     max-width: 100%;
     background-size: cover;
-    background-image: linear-gradient(to bottom, #ffffff, 40%, transparent),
+    background-image: linear-gradient(
+        to bottom,
+        #ffffff,
+        40%,
+        transparent
+      ),
       url("/assets/images/docs/banner-bkg.png");
     background-image: -moz-linear-gradient(
         bottom,
         rgba(255, 255, 255, 0) 40%,
         #ffffff
+      ),
+      url("/assets/images/docs/banner-bkg.png");
+    background-image: -webkit-linear-gradient(
+        top,
+        rgba(255,255,255,1) 0%,
+        rgba(255,255,255,0) 100%
       ),
       url("/assets/images/docs/banner-bkg.png");
     transform: translateX(-50%);
