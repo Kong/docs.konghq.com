@@ -172,6 +172,8 @@ $ sudo cp license.json /etc/kong/license.json
     $ sudo systemctl enable postgresql.service
     $ sudo systemctl start postgresql
     ```
+    > ⚠️**Note**: If you're using Postgresql 10+, make sure you change the `password_encryption` parameter from `scram-sha-256` to `md5` in your  `postgresql.conf` file before proceeding. The file `postgresql.conf` is commonly found in this location: `/var/lib/pgsql/<version>/data/postgresql.conf`.
+
 
 3. Switch to PostgreSQL user and launch PostgreSQL:
 
@@ -204,7 +206,7 @@ $ sudo cp license.json /etc/kong/license.json
     | IPv4 local 	| host 	| all      	| all  	| 127.0.0.1/32 	| md5    	|
     | IPv6 local 	| host 	| all      	| all  	| 1/128        	| ident  	|
 
-    PostgreSQL uses `ident` authentication by default. To allow the `kong` user to communicate with the database locally, change the authentication method to `md5` by modifying the PostgreSQL configuration file.
+    Older versions of PostgreSQL use `ident` authentication by default, newer versions (PSQL 10+) use `scram-sha-256`. To allow the `kong` user to communicate with the database locally, change the authentication method to `md5` by modifying the PostgreSQL configuration file.
 
 7. Restart PostgreSQL.
 
