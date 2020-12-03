@@ -206,7 +206,7 @@ $ sudo cp license.json /etc/kong/license.json
     | IPv4 local 	| host 	| all      	| all  	| 127.0.0.1/32 	| md5    	|
     | IPv6 local 	| host 	| all      	| all  	| 1/128        	| ident  	|
 
-    Older versions of PostgreSQL uses `ident` authentication by default, newer versions (PSQL 10+) use `scram-sha-256`. To allow the `kong` user to communicate with the database locally, change the authentication method to `md5` by modifying the PostgreSQL configuration file.
+    Older versions of PostgreSQL use `ident` authentication by default, newer versions (PSQL 10+) use `scram-sha-256`. To allow the `kong` user to communicate with the database locally, change the authentication method to `md5` by modifying the PostgreSQL configuration file.
 
 7. Restart PostgreSQL.
 
