@@ -82,11 +82,11 @@ params:
     - name: eab_kid
       required: false
       description: |
-        External account binding (EAB) key id. User usually doesn't need to set this unless explictly required by CA.
+        External account binding (EAB) key id. You usually don't need to set this unless it is explicitly required by the CA.
     - name: eab_hmac_key
       required: false
       description: |
-        External account binding (EAB) base64 encoded URL string of the HMAC key. User usually doesn't need to set this unless explictly required by CA.
+        External account binding (EAB) base64-encoded URL string of the HMAC key. You usually don't need to set this unless it is explicitly required by the CA.
   extra: |
     `config.storage_config` is a table for all posisble storage types, by default it is:
     ```json
@@ -125,10 +125,10 @@ params:
     To configure storage type other than `kong`, please refer to [lua-resty-acme](https://github.com/fffonion/lua-resty-acme#storage-adapters).
 
 
-Externel account binding (EAB) is supported as long as `eab_kid` and `eab_hmac_key` is provided.
+Externel account binding (EAB) is supported as long as `eab_kid` and `eab_hmac_key` are provided.
 
-The following CA provider's external account can be registered automatically and user doesn't need
-to specify `eab_kid` or `eab_hmac_key`:
+The following CA provider's external account can be registered automatically, without specifying
+the `eab_kid` or `eab_hmac_key`:
 
 - [ZeroSSL](https://zerossl.com/)
 
