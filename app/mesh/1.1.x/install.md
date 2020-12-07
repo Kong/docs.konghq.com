@@ -85,15 +85,11 @@ links to cloud marketplace integrations.
 
 <div class="docs-grid-install">
 
-  <a href="/" class="docs-grid-install-block no-description">
+  <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/konginc1581527938760.kongmesh" class="docs-grid-install-block no-description">
     <img class="install-icon" src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/uploads/2020/05/Azure_.png" alt="Azure" />
     <div class="install-text">Azure</div>
   </a>
 
-  <a href="/" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/uploads/2020/06/11-aws_logo_smile_1200x630-1.png" alt="AWS (EKS)" />
-    <div class="install-text">AWS (EKS)</div>
-  </a>
 </div>
 
 {% endnavtab %}
