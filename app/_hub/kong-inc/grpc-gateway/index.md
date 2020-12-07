@@ -50,7 +50,7 @@ params:
 
 This plugin translates requests and responses between gRPC and HTTP REST.
 
-![grpc-gateway](https://docs.google.com/drawings/d/12hp4CPqrNPFhattL_cIoJptFvlAqm5wLQ0ggqI5mkCg/pub?w=749&h=370)
+![grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/assets/images/architecture_introduction_diagram.svg)
 
 Image credit: [grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/)
 
