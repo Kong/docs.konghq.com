@@ -88,7 +88,7 @@ params:
       description: |
         External account binding (EAB) base64-encoded URL string of the HMAC key. You usually don't need to set this unless it is explicitly required by the CA.
   extra: |
-    `config.storage_config` is a table for all posisble storage types, by default it is:
+    `config.storage_config` is a table for all possible storage types. By default, it is:
     ```json
         "storage_config": {
           "kong": {},
@@ -125,7 +125,7 @@ params:
     To configure storage type other than `kong`, please refer to [lua-resty-acme](https://github.com/fffonion/lua-resty-acme#storage-adapters).
 
 
-Externel account binding (EAB) is supported as long as `eab_kid` and `eab_hmac_key` are provided.
+External account binding (EAB) is supported as long as `eab_kid` and `eab_hmac_key` are provided.
 
 The following CA provider's external account can be registered automatically, without specifying
 the `eab_kid` or `eab_hmac_key`:
@@ -289,10 +289,10 @@ $ echo q |openssl s_client -connect localhost -port 8443 -servername $NGROK_HOST
 - In database mode, the plugin creates SNI and Certificate entity in Kong to
 serve certificate. If SNI or Certificate for current request is already set
 in database, they will be overwritten.
-- In DB-less mode, the plugin takes over certificate handling, if the SNI or
-Certificate entity is already defined in Kong, they will be overrided from
+- In DB-less mode, the plugin takes over certificate handling. If the SNI or
+Certificate entity is already defined in Kong, they will be overridden from
 response.
-- The plugin only supports http-01 challenge, meaning user will need a public
+- The plugin only supports http-01 challenge, meaning a user will need a public
 IP and setup resolvable DNS. Kong also needs to accept proxy traffic from port `80`.
-Also, note that wildcard or star certificate is not supported, each domain will have its
+Also, note that wildcard or star (*) certificate is not supported, each domain will have its
 own certificate.
