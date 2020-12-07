@@ -73,7 +73,7 @@ links to cloud marketplace integrations.
     <div class="install-text">Ubuntu</div>
   </a>
 
-  <a href="/mesh/{{page.kong_version}}/installation/MacOS" class="docs-grid-install-block no-description">
+  <a href="/mesh/{{page.kong_version}}/installation/macos" class="docs-grid-install-block no-description">
     <img class="install-icon" src="/assets/images/icons/documentation/macos-logo.png" alt="MacOS" />
     <div class="install-text">MacOS</div>
   </a>
