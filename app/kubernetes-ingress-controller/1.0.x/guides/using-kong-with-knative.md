@@ -2,7 +2,7 @@
 title: Using Kong with Knative
 ---
 
-Kong Ingress Controller supports managing ingress traffic for
+The {{site.kic_product_name}} supports managing ingress traffic for
 serverless workloads managed via Knative.
 
 In this guide, we will learn how to use Kong with Knative services and
@@ -29,7 +29,7 @@ This will install the resources that are required to run Knative.
 
 ## Install Kong
 
-Next, we will install Kong Ingress Controller:
+Next, install the {{site.kic_product_name}}:
 
 ```
 kubectl apply -f https://bit.ly/k4k8s

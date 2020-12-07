@@ -1,11 +1,11 @@
 ---
-title: Getting started with Kong Ingress Controller
+title: Getting started with the Kubernetes Ingress Controller
 ---
 
 ## Installation
 
 Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
-Kong Ingress Controller onto your Kubernetes cluster.
+the {{site.kic_product_name}} onto your Kubernetes cluster.
 
 ## Testing connectivity to Kong
 
@@ -31,10 +31,10 @@ Server: kong/1.1.2
 
 This is expected since Kong doesn't know how to proxy the request yet.
 
-## Setup an echo-server
+## Set up an echo-server
 
 Setup an echo-server application to demonstrate how
-to use Kong Ingress Controller:
+to use the {{site.kic_product_name}}:
 
 ```bash
 $ kubectl apply -f https://bit.ly/echo-service

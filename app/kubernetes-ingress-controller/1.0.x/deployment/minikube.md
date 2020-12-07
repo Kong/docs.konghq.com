@@ -22,9 +22,9 @@ title: Kong Ingress on Minikube
    kubectl get nodes
    ```
 
-## Deploy Kong Ingress Controller
+## Deploy the {{site.kic_product_name}} {#deploy-kic}
 
-Deploy Kong Ingress Controller using `kubectl`:
+Deploy the {{site.kic_product_name}} using `kubectl`:
 
 ```bash
 $ kubectl create -f https://bit.ly/k4k8s
@@ -72,6 +72,6 @@ $ echo $PROXY_IP
 http://192.168.99.100:32728
 ```
 
-Once you've installed Kong Ingress Controller, please follow our
+Once you've installed teh {{site.kic_product_name}}, please follow our
 [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn
 about how to use the Ingress Controller.

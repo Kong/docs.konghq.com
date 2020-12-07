@@ -10,7 +10,7 @@ and for a specific user of the API.
 ## Installation
 
 Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
-Kong Ingress Controller onto your Kubernetes cluster.
+the {{site.kic_product_name}} onto your Kubernetes cluster.
 
 ## Testing connectivity to Kong
 
@@ -176,7 +176,7 @@ $ kubectl patch ingress demo -p '{"metadata":{"annotations":{"konghq.com/plugins
 ingress.extensions/demo patched
 ```
 
-Here, we are asking Kong Ingress Controller to execute the response-transformer
+Here, we are asking the {{site.kic_product_name}} to execute the response-transformer
 plugin whenever a request matching the Ingress rule is processed.
 
 Let's test it out:
@@ -354,7 +354,7 @@ kongclusterplugin.configuration.konghq.com/global-rate-limit created
 ```
 
 With this plugin (please note the `global` label), every request through
-Kong Ingress Controller will be rate-limited:
+the {{site.kic_product_name}} will be rate-limited:
 
 ```bash
 $ curl -I $PROXY_IP/foo -H 'apikey: my-sooper-secret-key'
@@ -464,6 +464,6 @@ X-Kong-Proxy-Latency: 1
 Via: kong/1.2.1
 ```
 
-This guide demonstrates how you can use Kong Ingress Controller to
+This guide demonstrates how you can use the {{site.kic_product_name}} to
 impose restrictions and transformations
 on various levels using Kubernetes style APIs.

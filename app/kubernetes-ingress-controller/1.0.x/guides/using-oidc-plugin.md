@@ -11,7 +11,7 @@ the Ingress Controller.
 ## Installation
 
 Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/k4k8s-enterprise) documentation
-to install enterprise version of Kong Ingress Controller.
+to install enterprise version of the {{site.kic_product_name}}.
 
 ## Testing Connectivity to Kong
 

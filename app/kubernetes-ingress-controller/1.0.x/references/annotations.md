@@ -1,8 +1,9 @@
 ---
-title: Kong Ingress Controller annotations
+title: Kubernetes Ingress Controller annotations
 ---
 
-Kong Ingress Controller supports the following annotations on various resources:
+The {{site.kic_product_name}} supports the following annotations on various
+resources:
 
 ## Ingress resource
 
@@ -90,7 +91,8 @@ spec:
           servicePort: 80
 ```
 
-This will target the GCE controller, forcing Kong Ingress Controller to ignore it.
+This will target the GCE controller, forcing the {{site.kic_product_name}} to
+ignore it.
 
 On the other hand, an annotation such as
 
@@ -101,7 +103,7 @@ metadata:
     kubernetes.io/ingress.class: "kong"
 ```
 
-will target Kong Ingress controller, forcing the GCE controller
+will target the {{site.kic_product_name}}, forcing the GCE controller
 to ignore it.
 
 The following resources _require_ this annotation by default:
@@ -124,7 +126,7 @@ controller instances in a single cluster: only one controller instance should
 enable these flags to avoid different controller instances fighting over
 classless resources, which will result in unexpected and unknown behavior.
 
-The ingress class used by Kong Ingress Controller to filter Ingress
+The ingress class used by the {{site.kic_product_name}} to filter Ingress
 resources can be changed using the `CONTROLLER_INGRESS_CLASS`
 environment variable.
 
@@ -139,9 +141,9 @@ spec:
              value: kong-internal
 ```
 
-#### Multiple unrelated Kong Ingress Controllers
+#### Multiple unrelated {{site.kic_product_name}}s {#multiple-unrelated-controllers}
 
-In some deployments, one might use multiple Kong Ingress Controller
+In some deployments, one might use multiple {{site.kic_product_name}}s
 in the same Kubernetes cluster
 (e.g. one which serves public traffic, one which serves "internal" traffic).
 For such deployments, please ensure that in addition to different
@@ -162,8 +164,8 @@ Kong's power comes from its plugin architecture, where plugins can modify
 the request and response or impose certain policies on the requests as they
 are proxied to your service.
 
-With Kong Ingress Controller, plugins can be configured by creating `KongPlugin`
-Custom Resources and then associating them with an Ingress, Service,
+With the {{site.kic_product_name}}, plugins can be configured by creating
+`KongPlugin` Custom Resources and then associating them with an Ingress, Service,
 KongConsumer or a combination of those.
 
 Following is an example of how to use the annotation:
@@ -398,8 +400,8 @@ konghq.com/host-header: "test.example.com"
 
 ### ingress.kubernetes.io/service-upstream
 
-By default, Kong Ingress Controller distributes traffic amongst all the Pods
-of a Kubernetes `Service` by forwarding the requests directly to
+By default, the {{site.kic_product_name}} distributes traffic amongst all the
+Pods of a Kubernetes `Service` by forwarding the requests directly to
 Pod IP addresses. One can choose the load-balancing strategy to use
 by specifying a KongIngress resource.
 
@@ -407,7 +409,7 @@ However, in some use-cases, the load-balancing should be left up
 to `kube-proxy`, or a sidecar component in the case of Service Mesh deployments.
 
 Setting this annotation to a Service resource in Kubernetes will configure
-Kong Ingress Controller to directly forward
+the {{site.kic_product_name}} to directly forward
 the traffic outbound for this Service
 to the IP address of the service (usually the ClusterIP).
 
@@ -423,4 +425,4 @@ annotations:
   ingress.kubernetes.io/service-upstream: "true"
 ```
 
-You need Kong Ingress Controller >= 0.6 for this annotation.
+You need {{site.kic_product_name}} >= 0.6 for this annotation.

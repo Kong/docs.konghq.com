@@ -1,20 +1,20 @@
 ---
-title: Kong Ingress Controller Deployment
+title: Kubernetes Ingress Controller Deployment
 ---
 
-Kong Ingress Controller is designed to be deployed in a variety of ways
+The {{site.kic_product_name}} is designed to be deployed in a variety of ways
 based on uses-cases. This document explains various components involved
 and choices one can make as per the specific use-case.
 
 - [**Kubernetes Resources**](#kubernetes-resources):
-  Various Kubernetes resouces required to run Kong Ingress Controller.
+  Various Kubernetes resouces required to run the {{site.kic_product_name}}.
 - [**Deployment options**](#deployment-options):
   A high-level explanantion of choices that one should consider and customize
   the deployment to best serve a specific use case.
 
 ## Kubernetes Resources
 
-The following resources are used to run Kong Ingress Controller:
+The following resources are used to run the {{site.kic_product_name}}:
 
 - [Namespace](#namespace)
 - [Custom resources](#custom-resources)
@@ -24,7 +24,7 @@ The following resources are used to run Kong Ingress Controller:
 - [Database deployment and migrations](#database-deployment-and-migration)
 
 These resources are created if the reference deployment manifests are used
-to deploy Kong Ingress Controller.
+to deploy the {{site.kic_product_name}}.
 The resources are explained below for users to gain an understanding of how
 they are used, so that they can be tweaked as necessary for a specific use-case.
 
@@ -32,8 +32,8 @@ they are used, so that they can be tweaked as necessary for a specific use-case.
 
 > optional
 
-Kong Ingress Controller can be deployed in any [namespace][k8s-namespace].  
-If Kong Ingress Controller is being used to proxy traffic for all namespaces
+The {{site.kic_product_name}} can be deployed in any [namespace][k8s-namespace].  
+If {{site.kic_product_name}} is being used to proxy traffic for all namespaces
 in a Kubernetes cluster, which is generally the case,
 it is recommended that it is installed in a dedicated
 `kong` namespace but it is not required to do so.
@@ -50,9 +50,9 @@ doesn't offer resources to describe the specifics of proxying.
 To overcome this limitation, custom resources are used as an
 "extension" to the existing Ingress API.
 
-A few custom resources are bundled with Kong Ingress Controller to configure
-settings that are specific to Kong and provide fine-grained control over
-the proxying behavior.
+A few custom resources are bundled with the {{site.kic_product_name}} to
+configure settings that are specific to Kong and provide fine-grained control
+over the proxying behavior.
 
 Please refer to the [custom resources](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources)
 concept document for details.
@@ -61,7 +61,7 @@ concept document for details.
 
 > required
 
-Kong Ingress Controller communciates with the Kubernetes API-server and
+The {{site.kic_product_name}} communciates with the Kubernetes API-server and
 dynamically configures Kong to automatically load balance across pods
 of a service as any service is scaled in our out.
 
@@ -114,7 +114,7 @@ Kong Ingress deployment consists of the Ingress Controller deployed alongside
 Kong. The deployment will be different depending on if a database is being
 used or not.
 
-The deployment(s) is the core which actually runs the Kong Ingress Controller.
+The deployment(s) is the core which actually runs the {{site.kic_product_name}}.
 
 See the [database](#database) section below for details.
 
@@ -122,7 +122,7 @@ See the [database](#database) section below for details.
 
 > required
 
-Once Kong Ingress Controller is deployed, one service is needed to
+Once the {{site.kic_product_name}} is deployed, one service is needed to
 expose Kong outside the Kubernetes cluster so that it can receive all traffic
 that is destined for the cluster and route it appropriately.
 `kong-proxy` is a Kubernetes service which points to the Kong pods which are
@@ -135,7 +135,7 @@ of all the domains that Kong should be proxying, to route the traffic to Kong.
 
 > optional
 
-Kong Ingress Controller can run with or without a database.
+The {{site.kic_product_name}} can run with or without a database.
 If a database is being deployed, then following resources are required:
 
 - A `StatefulSet` which runs a Postgresql pod backed with a `PersistenceVolume`
@@ -153,15 +153,15 @@ To figure out if you should be using a database or not, please refer to the
 
 ## Deployment options
 
-Following are the difference options to consider while deploying
-Kong Ingress controller for your specific use-case:
+Following are the difference options to consider while deploying the
+{{site.kic_product_name}} for your specific use case:
 
 - [**Kubernetes Service Type**](#kubernetes-service-types):
   Chose between Load Balancer vs Node-Port
 - [**Database**](#database):
   Backing Kong with a Databse or running without a database
 - [**Multiple Ingress Controllers**](#multiple-ingress-controllers):
-  Running multiple Kong Ingress Controllers inside the same Kubernetes cluster
+  Running multiple {{site.kic_product_name}}s inside the same Kubernetes cluster
 - [**Runtime**](#runtime):
   Using Kong or Kong Enterprise (for Kong Enterprise customers)
 
@@ -187,7 +187,7 @@ Until Kong 1.0, a database was required to run Kong.
 Kong 1.1 introduced a new mode, DB-less, in which Kong can be configured
 using a config file, and removes the need to use a database.
 
-It is possible to deploy and run Kong Ingress Controller with or without a
+It is possible to deploy and run the {{site.kic_product_name}} with or without a
 database. The choice depends on the specific use-case and results in no
 loss of functionality.
 
@@ -245,8 +245,8 @@ enough that the consumers will not fit entirely in memory.
 
 ## Multiple Ingress Controllers
 
-It is possible to run multiple instances of Kong Ingress Controllers or
-run Kong Ingress Controller alongside other Ingress Controllers inside
+It is possible to run multiple instances of the {{site.kic_product_name}} or
+run a Kong {{site.kic_product_name}} alongside other Ingress Controllers inside
 the same Kubernetes cluster.
 
 There are a few different ways of accomplishing this:
@@ -265,7 +265,7 @@ There are a few different ways of accomplishing this:
   Therefore with different ingress class then `kong`, you have to use that
   ingress class with every Kong CRD object (plugin, consumer) which you use.
 - Namespace based isolation:  
-  Kong Ingress Controller supports a deployment option where it will satisfy
+  {{site.kic_product_name}} supports a deployment option where it will satisfy
   Ingress resources in a specific namespace. With this model, one can deploy
   a controller in multiple namespaces and they will run in an isolated manner.
 - If you are using Kong Enterprise, you can run multiple Ingress Controllers
@@ -276,7 +276,7 @@ There are a few different ways of accomplishing this:
 
 ## Runtime
 
-Kong Ingress Controller is compatible a variety of runtimes:
+The {{site.kic_product_name}} is compatible a variety of runtimes:
 
 ### Kong Gateway (OSS)
 
@@ -296,7 +296,7 @@ Gateway in-order to take full-advantage of enterprise plugins.
 
 ### Kong Enterprise
 
-Kong Ingress Controller is also compatible with the full-blown version of
+The {{site.kic_product_name}} is also compatible with the full-blown version of
 Kong Enterprise. This runtime ships with Kong Manager, Kong Portal, and a
 number of other enterprise-only features.
 [This doc](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise) provides a high-level

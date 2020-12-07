@@ -6,7 +6,7 @@ title: Kubernetes Ingress Controller
 
 ### Architecture
 
-The [design][design] document explains how Kong Ingress Controller works
+The [design][design] document explains how the {{site.kic_product_name}} works
 inside a Kubernetes cluster and configures Kong to proxy traffic as per
 rules defined in the Ingress resources.
 
@@ -17,22 +17,22 @@ doesn't offer resources to describe the specifics of proxying.
 To overcome this limitation, the `KongIngress` Custom resource is used as an
 "extension" to the existing Ingress API.
 
-A few custom resources are bundled with Kong Ingress Controller to configure
-settings that are specific to Kong and provide fine-grained control over
-the proxying behavior.
+A few custom resources are bundled with the {{site.kic_product_name}} to
+configure settings that are specific to Kong and provide fine-grained control
+over the proxying behavior.
 
 Please refer to [custom resources][crd] concept document for more details.
 
 ### Deployment Methods
 
-Kong Ingress Controller can be deployed in a variety of deployment patterns.
+The {{site.kic_product_name}} can be deployed in a variety of deployment patterns.
 Please refer to the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/deployment) documentation,
 which explains all the components
 involved and different ways of deploying them based on the use-case.
 
 ### High-availability and Scaling
 
-The Kong Ingress Controller is designed to scale with your traffic
+The {{site.kic_product_name}} is designed to scale with your traffic
 and infrastructure.
 Please refer to [this document](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling) to understand
 failures scenarios, recovery methods, as well as scaling considerations.
@@ -40,7 +40,7 @@ failures scenarios, recovery methods, as well as scaling considerations.
 ### Ingress classes
 
 [Ingress classes](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ingress-classes) filter which resources the
-controller loads. They ensure that Kong Ingress Controller instances do not
+controller loads. They ensure that {{site.kic_product_name}} instances do not
 load configuration intended for other instances or other ingress controllers.
 
 ### Security
@@ -51,11 +51,11 @@ default security settings and how to further secure the Ingress Controller.
 ## Guides and Tutorials
 
 Please browse through [guides][guides] to get started or understand how to configure
-a specific setting with Kong Ingress Controller.
+a specific setting with the {{site.kic_product_name}}.
 
 ## Configuration Reference
 
-The configurations in the Kong Ingress Controller can be tweaked using
+The configurations in the {{site.kic_product_name}} can be tweaked using
 Custom Resources and annotations.
 Please refer to the following documents detailing this process:
 

@@ -2,22 +2,22 @@
 title: Security
 ---
 
-This document explains the security aspects of Kong Ingress Controller.
+This document explains the security aspects of the {{site.kic_product_name}}.
 
-Kong Ingress Controller communicates with Kubernetes API-server and Kong's
+The {{site.kic_product_name}} communicates with Kubernetes API-server and Kong's
 Admin API. APIs on both sides offer authentication/authorization features
 and the controller integrates with them gracefully.
 
 ## Kubernetes RBAC
 
-Kong Ingress Controller is deployed with RBAC permissions as explained in
+The {{site.kic_product_name}} is deployed with RBAC permissions as explained in the
 [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/deployment) document.
 It has read and list permissions on most resources but requires update
 and create permission for a few resources to provide seamless integration.
 The permissions can be locked down further if needed depending on the specific
 use-case.
 This RBAC policy is associated with a ServiceAccount and the ServiceAccount
-is associated with Kong Ingress Controller.
+is associated with the {{site.kic_product_name}}.
 The Controller uses the ServiceAccount credential to authenticate and
 authorize itself against the Kubernetes API-server.
 
@@ -62,6 +62,6 @@ API in future.
 Kong Enterprise comes with support for authentication and authorization on
 Kong's Admin API.
 
-Once an RBAC token is provisioned, Kong Ingress Controller can use the RBAC
+Once an RBAC token is provisioned, the {{site.kic_product_name}} can use the RBAC
 token to authenticate against Kong Enterprise. Use the `--kong-admin-header` CLI
 flag to pass the RBAC token the Ingress Controller.

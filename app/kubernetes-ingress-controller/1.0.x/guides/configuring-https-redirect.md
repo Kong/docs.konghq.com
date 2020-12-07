@@ -2,14 +2,14 @@
 title: Configuring https redirect
 ---
 
-This guide walks through how to configure Kong Ingress Controller to
+This guide walks through how to configure the {{site.kic_product_name}} to
 redirect HTTP request to HTTPS so that all communication
 from the external world to your APIs and microservices is encrypted.
 
 ## Installation
 
 Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
-Kong Ingress Controller on your Kubernetes cluster.
+the {{site.kic_product_name}} on your Kubernetes cluster.
 
 ## Testing Connectivity to Kong
 

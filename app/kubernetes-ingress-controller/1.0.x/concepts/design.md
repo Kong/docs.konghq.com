@@ -1,18 +1,18 @@
 ---
-title: Kong Ingress Controller Design
+title: Kubernetes Ingress Controller Design
 ---
 
 ## Overview
 
-Kong Ingress Controller configures Kong
+The {{site.kic_product_name}} configures Kong
 using Ingress resources created inside a Kubernetes cluster.
 
-Kong Ingress Controller is made up of two components:
+The {{site.kic_product_name}} is made up of two components:
 
 - Kong, the core proxy that handles all the traffic
 - Controller, a process that syncs the configuration from Kubernetes to Kong
 
-Kong Ingress Controller performs more than just proxying the traffic coming
+The {{site.kic_product_name}} performs more than just proxying the traffic coming
 into a Kubernetes cluster. It is possible to configure plugins,
 load balancing, health checking and leverage all that Kong offers in a
 standalone installation.

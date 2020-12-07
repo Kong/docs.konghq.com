@@ -6,11 +6,11 @@ title: Custom Resources
 to extend Kubernetes-style
 declarative APIs that are specific to certain applications.
 
-A few custom resources are bundled with Kong Ingress Controller to configure
-settings that are specific to Kong and provide fine-grained control over
-the proxying behavior.
+A few custom resources are bundled with the {{site.kic_product_name}} to
+configure settings that are specific to Kong and provide fine-grained control
+over the proxying behavior.
 
-Kong Ingress Controller uses the `configuration.konghq.com` API group
+The {{site.kic_product_name}} uses the `configuration.konghq.com` API group
 for storing configuration specific to Kong.
 
 The following CRDs allow users to declaratively configure all aspects of Kong:

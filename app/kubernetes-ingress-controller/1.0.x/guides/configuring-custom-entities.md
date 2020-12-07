@@ -13,11 +13,11 @@ configuration outside the plugin instance itself.
 This guide elaborates on how such custom entities can be used with the Kong
 Ingress Controller.
 
-> Note: All entities shipped with Kong are supported by Kong Ingress Controller
-out of the box. This guide applies only if you have a custom entity in your
-plugin. To check if your plugin contains a custom entity, the source code
-will usually contain a `daos.lua` file.
-Custom plugins have first-class support in Kong Ingress Controller
+> Note: All entities shipped with Kong are supported by the 
+{{site.kic_product_name}}out of the box. This guide applies only if you have a
+custom entity in your plugin. To check if your plugin contains a custom entity,
+the source code will usually contain a `daos.lua` file.
+Custom plugins have first-class support in the {{site.kic_product_name}}
 via the `KongPlugin` CRD.
 Please read [the custom plugin guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/setting-up-custom-plugins) instead
 if you are only using Custom plugins.

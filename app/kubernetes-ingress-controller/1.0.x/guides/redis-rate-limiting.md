@@ -17,7 +17,7 @@ a multi-node Kong deployment.
 ## Installation
 
 Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
-Kong Ingress Controller on your Kubernetes cluster.
+the {{site.kic_product_name}} on your Kubernetes cluster.
 
 ## Testing Connectivity to Kong
 
@@ -94,7 +94,7 @@ X-Kong-Proxy-Latency: 1
 Via: kong/1.2.1
 ```
 
-## Setup rate-limiting
+## Set up rate-limiting
 
 We will start by creating a global rate-limiting policy:
 
@@ -116,7 +116,7 @@ plugin: rate-limiting
 kongclusterplugin.configuration.konghq.com/global-rate-limit created
 ```
 
-Here we are configuring Kong Ingress Controller to rate-limit traffic from
+Here we are configuring the {{site.kic_product_name}} to rate-limit traffic from
 any client to 5 requests per minute, and we are applying this policy in a
 global sense, meaning the rate-limit will apply across all services.
 
@@ -134,9 +134,9 @@ $ curl -I $PROXY_IP/foo/headers
 As there is a single Kong instance running, Kong correctly imposes
 the rate-limit and you can make only 5 requests in a minute.
 
-## Scale Kong Ingress Controller to multiple pods
+## Scale the controller to multiple pods
 
-Now, let's scale up the Kong Ingress controller deployment to 3 pods, for
+Now, let's scale up the {{site.kic_product_name}} deployment to 3 pods, for
 scalability and redundancy:
 
 ```bash

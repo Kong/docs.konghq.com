@@ -3,17 +3,17 @@ title: Setting up Active and Passive health checks
 ---
 
 In this guide, we will go through steps necessary to setup active and passive
-health checking using Kong Ingress Controller. This configuration allows
+health checking using the {{site.kic_product_name}}. This configuration allows
 Kong to automatically short-circuit requests to specific Pods that are
 mis-behaving in your Kubernetes Cluster.
 
-> Please make sure to use Kong Ingress Controller >= 0.6 as the previous
+> Please make sure to use {{site.kic_product_name}} >= 0.6 as the previous
 versions contain a [bug](https://github.com/hbagdi/go-kong/issues/6).
 
 ## Installation
 
 Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
-Kong Ingress Controller onto your Kubernetes cluster.
+the {{site.kic_product_name}} onto your Kubernetes cluster.
 
 ## Testing connectivity to Kong
 

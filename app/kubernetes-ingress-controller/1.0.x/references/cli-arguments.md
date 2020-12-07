@@ -55,7 +55,7 @@ Following table describes all the flags that are available:
 | --enable-reverse-sync                |`bool`     | `false`                         | Enable reverse checks from Kong to Kubernetes. Use this option only if a human has edit access to Kong's Admin API. |
 | --kubeconfig                         |`string`   | none                            | Path to kubeconfig file with authorization and master location information.|
 | --profiling                          |`boolean`  | `true`                          | Enable profiling via web interface `host:port/debug/pprof/`. |
-| --publish-service                    |`string`   | none                            | The namespaces and name of the Kubernetes Service fronting Kong Ingress Controller in the form of namespace/name. The controller will set the status of the Ingress resouces to match the endpoints of this service. In reference deployments, this is kong/kong-proxy.|
+| --publish-service                    |`string`   | none                            | The namespaces and name of the Kubernetes Service fronting the {{site.kic_product_name}} in the form of namespace/name. The controller will set the status of the Ingress resouces to match the endpoints of this service. In reference deployments, this is kong/kong-proxy.|
 | --publish-status-address             |`string`   | none                            | User customized address to be set in the status of ingress resources. The controller will set the endpoint records on the ingress using this address.|
 | --process-classless-ingress-v1beta1  |`boolean`  | `false`                         | Toggles whether the controller processes `extensions/v1beta1` and `networking/v1beta1` Ingress resources that have no `kubernetes.io/ingress.class` annotation.|
 | --process-classless-ingress-v1       |`boolean`  | `false`                         | Toggles whether the controller processes  `networking/v1` Ingress resources that have no `kubernetes.io/ingress.class` annotation or class field.|
@@ -65,6 +65,6 @@ Following table describes all the flags that are available:
 | --sync-rate-limit                    |`float32`  | `0.3`                           | Define the sync frequency upper limit. |
 | --update-status                      |`boolean`  | `true`                          | Indicates if the ingress controller should update the Ingress status IP/hostname.|
 | --update-status-on-shutdown          |`boolean`  | `true`                          | Indicates if the ingress controller should update the Ingress status IP/hostname when the controller is being stopped.|
-| --version                            |`boolean`  | `false`                         | Shows release information about the Kong Ingress controller.|
+| --version                            |`boolean`  | `false`                         | Shows release information about the {{site.kic_product_name}}.|
 | --watch-namespace                    |`string`   | none                            | Namespace to watch for Ingress and custom resources. The default value of an empty string results in the controller watching for resources in all namespaces and configuring Kong accordingly.|
 | --help                               |`boolean`  | `false`                         | Shows this documentation on the CLI and exit.|

@@ -10,7 +10,7 @@ namespaces.
 ## Installation
 
 Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
-Kong Ingress Controller onto your Kubernetes cluster.
+the {{site.kic_product_name}} onto your Kubernetes cluster.
 
 ## Testing connectivity to Kong
 
@@ -187,7 +187,7 @@ $ kubectl patch ingress -n echo echo-app -p '{"metadata":{"annotations":{"konghq
 ingress.extensions/echo-app patched
 ```
 
-Here, we are asking Kong Ingress Controller to execute the response-transformer
+Here, we are asking the {{site.kic_product_name}} to execute the response-transformer
 plugin whenever a request matching any of the above two Ingress rules is
 processed.
 
