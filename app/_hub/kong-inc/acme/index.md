@@ -122,15 +122,14 @@ params:
         }
     ```
 
-    To configure storage type other than `kong`, please refer to [lua-resty-acme](https://github.com/fffonion/lua-resty-acme#storage-adapters).
+    To configure a storage type other than `kong`, refer to [lua-resty-acme](https://github.com/fffonion/lua-resty-acme#storage-adapters).
 
+    External account binding (EAB) is supported as long as `eab_kid` and `eab_hmac_key` are provided.
 
-External account binding (EAB) is supported as long as `eab_kid` and `eab_hmac_key` are provided.
+    The following CA provider's external account can be registered automatically, without specifying
+    the `eab_kid` or `eab_hmac_key`:
 
-The following CA provider's external account can be registered automatically, without specifying
-the `eab_kid` or `eab_hmac_key`:
-
-- [ZeroSSL](https://zerossl.com/)
+    - [ZeroSSL](https://zerossl.com/)
 
 ---
 
