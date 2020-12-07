@@ -181,6 +181,7 @@ is mapped to a Route in Kong. You can check this by sending
 `curl KONG_IP/.well-known/acme-challenge/x -H "host:DOMAIN"` and getting the response `Not found`.
 You can also [use the Admin API](#create-certificates) to verify the setup.
 If not, add a Route and a dummy Service to catch this route.
+
 ```bash
 # add a dummy service if needed
 $ curl http://localhost:8001/services \
@@ -206,7 +207,7 @@ Note by setting `tos_accepted` to *true* implies that you have read and accepted
 
 **This plugin can only be configured as a global plugin.** The plugin terminates
 `/.well-known/acme-challenge/` path for matching domains. To create certificates
-and terminate challenges only for certain domains, please refer to the
+and terminate challenges only for certain domains, refer to the
 [Parameters](#parameters) section.
 
 #### Trigger creation of certificate
@@ -285,13 +286,13 @@ $ echo q |openssl s_client -connect localhost -port 8443 -servername $NGROK_HOST
 
 ### Notes
 
-- In database mode, the plugin creates SNI and Certificate entity in Kong to
-serve certificate. If SNI or Certificate for current request is already set
-in database, they will be overwritten.
+- In database mode, the plugin creates an SNI and Certificate entity in Kong to
+serve the certificate. If SNI or Certificate for the current request is already set
+in the database, they will be overwritten.
 - In DB-less mode, the plugin takes over certificate handling. If the SNI or
-Certificate entity is already defined in Kong, they will be overridden from
+Certificate entity is already defined in Kong, they will be overridden by the
 response.
 - The plugin only supports http-01 challenge, meaning a user will need a public
-IP and setup resolvable DNS. Kong also needs to accept proxy traffic from port `80`.
-Also, note that wildcard or star (*) certificate is not supported, each domain will have its
+IP and set up a resolvable DNS. Kong also needs to accept proxy traffic from port `80`.
+Also, note that a wildcard or star (*) certificate is not supported. Each domain will have its
 own certificate.
