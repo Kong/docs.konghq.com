@@ -73,11 +73,21 @@ $ docker run -d --name kong-ee-database \
 
 ## Step 4. Export the License Key to a Variable {#license-key}
 
+Run the following command, substituting your own license key (see
+[Prerequisites](#prerequisites)).
+
+The license data must contain straight quotes to be considered valid JSON
+(`'` and `"`, not `’` or `“`).
+
+<div class="alert alert-ee blue">
+<b>Note:</b>
+The following license is only an example. You must use the following format,
+but provide your own content.
+</div>
+
 ```bash
 $ export KONG_LICENSE_DATA='{"license":{"signature":"LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tClZlcnNpb246IEdudVBHIHYyCgpvd0did012TXdDSFdzMTVuUWw3dHhLK01wOTJTR0tLWVc3UU16WTBTVTVNc2toSVREWk1OTFEzVExJek1MY3dTCjA0ek1UVk1OREEwc2pRM04wOHpNalZKVHpOTE1EWk9TVTFLTXpRMVRVNHpTRXMzTjA0d056VXdUTytKWUdNUTQKR05oWW1VQ21NWEJ4Q3NDc3lMQmorTVBmOFhyWmZkNkNqVnJidmkyLzZ6THhzcitBclZtcFZWdnN1K1NiKzFhbgozcjNCeUxCZzdZOVdFL2FYQXJ0NG5lcmVpa2tZS1ozMlNlbGQvMm5iYkRzcmdlWFQzek1BQUE9PQo9b1VnSgotLS0tLUVORCBQR1AgTUVTU0FHRS0tLS0tCg=","payload":{"customer":"Test Company Inc","license_creation_date":"2017-11-08","product_subscription":"Kong Enterprise","admin_seats":"5","support_plan":"None","license_expiration_date":"2017-11-10","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU"},"version":1}}'
 ```
-
-**Note:** the license data must contain only straight quotes to be considered valid JSON. (`'` and `"`, not `’` or `“`)
 
 ## Step 5. Prepare the Kong Database
 
