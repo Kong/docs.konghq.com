@@ -207,7 +207,7 @@ return function(status, body, headers)
   if not headers then
     headers = { ["X-Message"] = "This adds X-Message to an empty set of headers" }
   else
-    headers = { ["X-Message"] = "This adds X-Message to an existing set of headers" }
+    headers["X-Message"] = "This adds X-Message to an existing set of headers"
   end
 
   return status, body, headers
