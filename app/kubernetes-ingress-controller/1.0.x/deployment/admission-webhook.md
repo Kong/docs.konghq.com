@@ -2,7 +2,7 @@
 title: Validating Admission Controller
 ---
 
-Kong Ingress Controller ships with an Admission Controller for KongPlugin
+The {{site.kic_product_name}} ships with an Admission Controller for KongPlugin
 and KongConsumer resources in the `configuration.konghq.com` API group.
 
 The Admission Controller needs a TLS certificate and key pair which
@@ -11,7 +11,7 @@ you need to generate as part of the deployment.
 Following guide walks through a setup of how to create the required key-pair
 and enable the admission controller.
 
-Please note that this requires Kong Ingress Controller >= 0.6 to be
+Please note that this requires {{site.kic_product_name}} >= 0.6 to be
 already installed in the cluster.
 
 ## tldr;
@@ -80,7 +80,7 @@ secret/kong-validation-webhook created
 
 Once the secret is created, update the Ingress Controller deployment:
 
-Execute the following command to patch the Kong Ingress Controller deployment
+Execute the following command to patch the {{site.kic_product_name}} deployment
 to mount the certificate and key pair and also enable the admission controller:
 
 ```bash

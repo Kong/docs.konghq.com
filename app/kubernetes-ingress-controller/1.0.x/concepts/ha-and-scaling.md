@@ -4,12 +4,12 @@ title: High-availability and Scaling
 
 ## High availability
 
-Kong Ingress Controller is designed to be reasonably easy to operate and
+The {{site.kic_product_name}} is designed to be reasonably easy to operate and
 be highly available, meaning, when some expected failures do occur, the
 Controller should be able to continue to function with minimum possible
 service disruption.
 
-Kong Ingress Controller is composed of two parts: 1. Kong, which handles
+The {{site.kic_product_name}} is composed of two parts: 1. Kong, which handles
 the requests, 2. Controller, which configures Kong dynamically.
 
 Kong itself can be deployed in a Highly available manner by deploying
@@ -30,7 +30,7 @@ configuration.
 
 ### Leader election
 
-Kong Ingress Controller, performs a leader-election when multiple
+The {{site.kic_product_name}} performs a leader-election when multiple
 instances of the controller are running to ensure that only a single Controller
 is actively pushing changes to Kong's database (when running in DB-mode).
 If multiple controllers are making changes to the database, it is possible that
@@ -66,4 +66,4 @@ cached heavily in-memory) or loaded in-memory directly via a config file.
 
 One can use a `HorizontalPodAutoscaler` (HPA) based on metrics
 like CPU utilization, bandwidth being used, total request count per second
-to dynamically scale Kong Ingress Controller as the traffic profile changes.
+to dynamically scale {{site.kic_product_name}} as the traffic profile changes.

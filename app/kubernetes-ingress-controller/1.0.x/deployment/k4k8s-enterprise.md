@@ -38,7 +38,7 @@ secret/kong-enterprise-license created
 ```
 
 Please note that `-n kong` specifies the namespace in which you are deploying
-  Kong Ingress Controller. If you are deploying in a different namespace,
+  the {{site.kic_product_name}}. If you are deploying in a different namespace,
   please change this value.
 
 ### Kong Enterprise Docker registry access

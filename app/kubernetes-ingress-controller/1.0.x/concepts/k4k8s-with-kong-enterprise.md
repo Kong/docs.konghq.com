@@ -2,7 +2,7 @@
 title: Kong for Kubernetes with Kong Enterprise
 ---
 
-Kong for Kubernetes is a Kubernetes Ingress Controller built on top
+Kong for Kubernetes is a {{site.kic_product_name}} built on top
 of Open-Source Kong Gateway.
 
 If you are an Enterprise customer, you have an option of running the

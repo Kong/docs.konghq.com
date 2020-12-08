@@ -2,7 +2,7 @@
 title: Kong for Kubernetes with Kong Enterprise
 ---
 
-This guide walks through setting up Kong Ingress Controller using Kong
+This guide walks through setting up the {{site.kic_product_name}} using Kong
 Enterprise. This architecture is described in detail in [this doc](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise).
 
 We assume that we start from scratch and you don't have Kong Enterprise
@@ -12,7 +12,7 @@ Kubernetes as well.
 
 ## Prerequisites
 
-Before we can deploy Kong Ingress Controller with Kong Enterprise,
+Before we can deploy the {{site.kic_product_name}} with Kong Enterprise,
 we need to satisfy the following prerequisites:
 - [Kong Enterprise License secret](#kong-enterprise-license-secret)
 - [Kong Enterprise Docker registry access](#kong-enterprise-docker-registry-access)
@@ -38,7 +38,7 @@ secret/kong-enterprise-license created
 ```
 
 Please note that `-n kong` specifies the namespace in which you are deploying
-  Kong Ingress Controller. If you are deploying in a different namespace,
+  the {{site.kic_product_name}}. If you are deploying in a different namespace,
   please change this value.
 
 ### Kong Enterprise Docker registry access
@@ -80,7 +80,7 @@ $ kubectl apply -f https://bit.ly/kong-ingress-enterprise
 ```
 
 It takes a little while to bootstrap the database.
-Once bootstrapped, you should see Kong Ingress Controller running with
+Once bootstrapped, you should see the {{site.kic_product_name}} running with
 Kong Enterprise as its core:
 
 ```bash
@@ -130,7 +130,7 @@ kubectl patch deployment -n kong ingress-kong -p "{\"spec\": { \"template\" : { 
 It will take a few minutes to roll out the updated deployment and once the new
 `ingress-kong` pod is up and running, you should be able to log into the Kong Manager UI.
 
-As you follow along with other guides on how to use your newly deployed Kong Ingress Controller,
+As you follow along with other guides on how to use your newly deployed the {{site.kic_product_name}},
 you will be able to browse Kong Manager and see changes reflectded in the UI as Kong's
 configuration changes.
 

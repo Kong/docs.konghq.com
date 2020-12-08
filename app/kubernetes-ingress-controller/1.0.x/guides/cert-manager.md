@@ -2,7 +2,7 @@
 title: Using cert-manager for automated TLS certificate
 ---
 
-This guide will walk through steps to setup Kong Ingress Controller with
+This guide will walk through steps to set up the {{site.kic_product_name}} with
 cert-manager to automate certificate management using Let's Encrypt.
 Any ACME-based CA can be used in-place of Let's Encrypt as well.
 
@@ -21,7 +21,7 @@ You will need the following:
 
 This tutorial was written using Google Kubernetes Engine.
 
-## Setup Kong Ingress Controller
+## Set up the {{site.kic_product_name}} {#set-up-kic}
 
 Execute the following to install the Ingress Controller:
 
@@ -41,7 +41,7 @@ service/kong-validation-webhook created
 deployment.extensions/kong created
 ```
 
-## Setup cert-manager
+## Set up cert-manager
 
 Please follow cert-manager's [documentation](https://docs.cert-manager.io/en/latest/getting-started/install/kubernetes.html)
 on how to install cert-manager onto your cluster.
@@ -69,7 +69,7 @@ replicaset.apps/cert-manager-cainjector-65dbccb8b6   1         1         1      
 replicaset.apps/cert-manager-webhook-78f9d55fdf      1         1         1       23m
 ```
 
-## Setup your application
+## Set up your application
 
 Any HTTP-based application can be used, for the purpose of the demo, install
 the following echo server:
@@ -80,7 +80,7 @@ service/echo created
 deployment.apps/echo created
 ```
 
-## Setup DNS
+## Set up DNS
 
 Get the IP address of the load balancer for Kong:
 
@@ -220,7 +220,7 @@ Things to note here:
 - `certmanager.k8s.io/cluster-issuer` is set to `letsencrypt-prod`, directing
   cert-manager to use Let's Encrypt's production server to provision a TLS
   certificate.
-- `tls` section of the Ingress directs Kong Ingress Controller to use the
+- `tls` section of the Ingress directs the {{site.kic_product_name}} to use the
   secret `demo-yolo42-com` to encrypt the traffic for `demo.yolo42.com`.
   This secret will be created by cert-manager.
 
@@ -368,4 +368,4 @@ Request Body:
 ```
 
 Et voilà ! You've secured your API with HTTPS
-with Kong Ingress Controller and cert-manager.
+with the {{site.kic_product_name}} and cert-manager.

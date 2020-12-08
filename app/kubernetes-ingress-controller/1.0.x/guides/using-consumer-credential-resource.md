@@ -9,7 +9,7 @@ consumers.
 ## Installation
 
 Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
-Kong Ingress Controller on your Kubernetes cluster.
+the {{site.kic_product_name}} on your Kubernetes cluster.
 
 ## Testing Connectivity to Kong
 

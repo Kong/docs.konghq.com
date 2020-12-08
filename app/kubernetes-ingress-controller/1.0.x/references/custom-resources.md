@@ -63,7 +63,7 @@ plugin: <name-of-plugin> # like key-auth, rate-limiting etc
   Lambda plugin or the client secret in the OIDC plugin. Only one of `config`
   or `configFrom` may be used in a KongPlugin, not both at once.
 - `plugin` field determines the name of the plugin in Kong.
-  This field was introduced in Kong Ingress Controller 0.2.0.
+  This field was introduced in {{site.kic_product_name}} 0.2.0.
 
 **Please note:** validation of the configuration fields is left to the user
 by default. It is advised to setup and use the admission validating controller

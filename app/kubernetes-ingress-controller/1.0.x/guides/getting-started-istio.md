@@ -1,5 +1,5 @@
 ---
-title: Running Kong Ingress Controller with Istio
+title: Running the Kubernetes Ingress Controller with Istio
 ---
 
 In this guide, you will:
@@ -76,7 +76,7 @@ Status:
 
 Wait until the `kubectl describe istiooperator` command returns `Status: HEALTHY`.
 
-### Deploy Kong Ingress Controller in an Istio-enabled namespace
+### Deploy the {{site.kic_product_name}} in an Istio-enabled namespace {#deploy-kic-istio-namespace}
 
 ```console
 $ kubectl create namespace kong-istio
@@ -96,7 +96,7 @@ STATUS: deployed
 ...
 ```
 
-_Optional:_ Run `kubectl describe pod -n kong-istio -l app.kubernetes.io/instance=example-kong` to see that the Istio sidecar (`istio-proxy`) is running alongside Kong Ingress Controller.
+_Optional:_ Run `kubectl describe pod -n kong-istio -l app.kubernetes.io/instance=example-kong` to see that the Istio sidecar (`istio-proxy`) is running alongside the {{site.kic_product_name}}.
 
 ### Deploy bookinfo in an Istio-enabled namespace
 

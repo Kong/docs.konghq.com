@@ -3,10 +3,10 @@ title: Guides
 ---
 
 Follow one of the guides to learn more about how to use
-Kong Ingress controller:
+the {{site.kic_product_name}}:
 
-- [Getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) with Kong Ingress Controller
-- [Getting started using Istio](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started-istio) with Kong Ingress Controller and Istio
+- [Getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) with the {{site.kic_product_name}}
+- [Getting started using Istio](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started-istio) with the {{site.kic_product_name}} and Istio
 - [Using KongPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource)
   This guide walks through setting up plugins in Kong using a declarative
   approach.
@@ -33,25 +33,25 @@ Kong Ingress controller:
   using [External Name](https://kubernetes.io/docs/concepts/services-networking/service/#externalname)
   Services in Kubernetes.
 - [Configuring HTTPS redirects for your services](/kubernetes-ingress-controller/{{page.kong_version}}/guides/configuring-https-redirect)
-  This guide walks through how to configure Kong Ingress Controller to
+  This guide walks through how to configure the {{site.kic_product_name}} to
   redirect HTTP request to HTTPS so that all communication
   from the external world to your APIs and microservices is encrypted.
 - [Using Redis for rate-limiting](/kubernetes-ingress-controller/{{page.kong_version}}/guides/redis-rate-limiting)
   This guide walks through how to use Redis for storing rate-limit information
   in a multi-node Kong deployment.
-- [Integrate Kong Ingress Controller with Prometheus/Grafana](/kubernetes-ingress-controller/{{page.kong_version}}/guides/prometheus-grafana)
-  This guide walks through the steps of how to deploy Kong Ingress Controller
+- [Integrate the {{site.kic_product_name}} with Prometheus/Grafana](/kubernetes-ingress-controller/{{page.kong_version}}/guides/prometheus-grafana)
+  This guide walks through the steps of how to deploy the {{site.kic_product_name}}
   and Prometheus to obtain metrics for the traffic flowing into your
   Kubernetes cluster.
 - [Configuring circuit-breaker and health-checking](/kubernetes-ingress-controller/{{page.kong_version}}/guides/configuring-health-checks)
   This guide walks through the usage of Circuit-breaking and health-checking
-  features of Kong Ingress Controller.
+  features of the {{site.kic_product_name}}.
 - [Setting up custom plugin](/kubernetes-ingress-controller/{{page.kong_version}}/guides/setting-up-custom-plugins)
   This guide walks through
   installation of a custom plugin into Kong using
   ConfigMaps and Volumes.
 - [Using ingress with gRPC](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-ingress-with-grpc)
-  This guide walks through how to use Kong Ingress Controller with gRPC.
+  This guide walks through how to use the {{site.kic_product_name}} with gRPC.
 - [Setting up upstream mTLS](/kubernetes-ingress-controller/{{page.kong_version}}/guides/upstream-mtls)
   This guide gives an overview of how to setup mutual TLS authentication
   between Kong and your upstream server.
@@ -72,6 +72,6 @@ Kong Ingress controller:
   certificates to authenticate requests using client certificates.
 - [Configuring custom entities in Kong](/kubernetes-ingress-controller/{{page.kong_version}}/guides/configuring-custom-entities)
   This guide gives an overview of how to configure custom entities for
-  deployments of Kong Ingress Controller running without a database.
+  deployments of the {{site.kic_product_name}} running without a database.
 - [Using OpenID-connect plugin](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-oidc-plugin)
   This guide walks through steps necessary to set up OIDC authentication.

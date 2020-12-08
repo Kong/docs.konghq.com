@@ -67,9 +67,9 @@ subjects:
 
 ```
 
-## Deploy Kong Ingress Controller
+## Deploy the {{site.kic_product_name}} {#deploy-kic}
 
-Deploy Kong Ingress Controller using `kubectl`:
+Deploy the {{site.kic_product_name}} using `kubectl`:
 
 ```bash
 $ kubectl create -f https://bit.ly/k4k8s
@@ -126,6 +126,6 @@ $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip
 > Note: It may take a while for Google to actually associate the
 IP address to the `kong-proxy` Service.
 
-Once you've installed Kong Ingress Controller, please follow our
+Once you've installed the {{site.kic_product_name}}, please follow our
 [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn
 about how to use the Ingress Controller.

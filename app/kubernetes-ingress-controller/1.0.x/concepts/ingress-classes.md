@@ -1,24 +1,24 @@
 ---
-title: Kong Ingress Controller and ingress class
+title: Kubernetes Ingress Controller and Ingress Class
 ---
 
 ## Introduction
 
-The Kong Ingress Controller uses ingress classes to filter Kubernetes Ingress
+The {{site.kic_product_name}} uses ingress classes to filter Kubernetes Ingress
 objects and other resources before converting them into Kong configuration.
 This allows it to coexist with other ingress controllers and/or other
-deployments of the Kong Ingress Controller in the same cluster: a Kong Ingress
-Controller will only process configuration marked for its use.
+deployments of the {{site.kic_product_name}} in the same cluster: a
+{{site.kic_product_name}} will only process configuration marked for its use.
 
 ## Configuring the controller ingress class
 
 The `--ingress-class` flag (or `CONTROLLER_INGRESS_CLASS` environment variable)
-specify the ingress class expected by the Kong Ingress Controller. By default,
+specify the ingress class expected by the {{site.kic_product_name}}. By default,
 it expects the `kong` class.
 
 ## Loading resources by class
 
-The Kong Ingress Controller translates a variety of Kubernetes resources into
+The {{site.kic_product_name}} translates a variety of Kubernetes resources into
 Kong configuration. Broadly speaking, we can separate these resources into two
 categories:
 
@@ -27,7 +27,8 @@ categories:
   directly translated into Kong configuration.
 
 For example, an Ingress is translated directly into a Kong route, and a
-KongConsumer is translated directly into a [Kong consumer](/../../latest/admin-api/#consumer-object). A Secret containing
+KongConsumer is translated directly into a
+[Kong consumer](/../../latest/admin-api/#consumer-object). A Secret containing
 an authentication plugin credential is _not_ translated directly: it is only
 translated into Kong configuration if a KongConsumer resource references it.
 
@@ -60,7 +61,7 @@ class annotation using flags:
   KongConsumer resources with no class annotation.
 
 These flags are primarily intended for compatibility with older configuration
-(Kong Ingress Controller before 0.10 had less strict class
+({{site.kic_product_name}} before 0.10 had less strict class
 requirements, and it was common to omit class annotations). If you are creating
 new configuration and do not have older configuration without class
 annotations, recommended best practice is to add class information to Ingress
@@ -75,7 +76,7 @@ with no such annotation, but will not allow resource that have a non-matching
 ## When to use a custom class
 
 Using the default `kong` class is fine for simpler deployments, where only one
-Kong Ingress Controller instance is running in a cluster. Changing the class is
+{{site.kic_product_name}} instance is running in a cluster. Changing the class is
 typical when:
 
 - You install multiple Kong environments in one Kubernetes cluster to handle
@@ -89,7 +90,7 @@ typical when:
 
 ## Legacy behavior
 
-This overview covers behavior in Kong Ingress Controller version 0.10.0 onward.
+This overview covers behavior in {{site.kic_product_name}} version 0.10.0 onward.
 Earlier versions had a special case for the default class and a bug affecting
 custom classes:
 

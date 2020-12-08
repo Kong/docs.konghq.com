@@ -2,7 +2,7 @@
 title: Using mtls-auth plugin
 ---
 
-This guide walks through how to configure Kong Ingress Controller to
+This guide walks through how to configure the {{site.kic_product_name}} to
 verify client certificates using CA certificates and
 [mtls-auth](https://docs.konghq.com/hub/kong-inc/mtls-auth/) plugin
 for HTTPS requests.

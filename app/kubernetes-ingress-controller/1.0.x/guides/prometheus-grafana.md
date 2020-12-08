@@ -1,14 +1,14 @@
 ---
-title: Integrate Kong Ingress Controller with Prometheus/Grafana
+title: Integrate the Kubernetes Ingress Controller with Prometheus/Grafana
 ---
 
-Kong Ingress Controller can give you visibility not only into how Kong is
+The {{site.kic_product_name}} can give you visibility not only into how Kong is
 performing but also gives visibilty into
 how the services in your Kubernetes cluster are responding to the
 inbound traffic.
 
 This how-to guide walks through the steps of how to configure Kong and
-Prometheus to collect metrics from Kong Ingress Controller.
+Prometheus to collect metrics from the {{site.kic_product_name}}.
 
 > Note: This guide was originally posted on Kong Inc's blog:
 [https://konghq.com/blog/observability-kubernetes-kong/](https://konghq.com/blog/observability-kubernetes-kong/)

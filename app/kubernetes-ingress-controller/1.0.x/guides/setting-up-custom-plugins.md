@@ -159,7 +159,7 @@ you might need for your installation to work.
 ### Deploy
 
 Once, you have all the pieces in place, you are ready
-to deploy Kong Ingress Controller:
+to deploy the {{site.kic_product_name}}:
 
 ```shell
 # using YAML or kustomize

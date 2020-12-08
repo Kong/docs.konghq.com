@@ -7,17 +7,17 @@ title: Installing and Configuring
 If you are getting started with Kong for Kubernetes,
 install it on Minikube using our Minikube [setup guide](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/minikube).
 
-Once you've installed Kong Ingress Controller, please follow our
+Once you've installed the {{site.kic_product_name}}, please follow our
 [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn
 about how to use the Ingress Controller.
 
 ## Overview
 
-Kong ingress controller can be installed on a local, managed
+The {{site.kic_product_name}} can be installed on a local, managed
 or any Kubernetes cluster which supports a service of type `LoadBalancer`.
 
 As explained in the [deployment document](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/deployment), there
-are a vareity of configurations and runtimes for Kong Ingress Controller.
+are a vareity of configurations and runtimes for the {{site.kic_product_name}}.
 
 The following sections detail on deployment steps for all the different
 runtimes:
@@ -57,7 +57,7 @@ the architecture and how one can set that up.
 
 ## Admission Controller
 
-Kong Ingress Controller also ships with a Validating
+The {{site.kic_product_name}} also ships with a Validating
 Admission Controller that
 can be enabled to verify KongConsumer, KongPlugin and Secret
 resources as they are created.
