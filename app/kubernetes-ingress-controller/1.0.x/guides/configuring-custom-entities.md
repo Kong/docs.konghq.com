@@ -154,7 +154,7 @@ on Kong's Admin API.
 You can forward traffic from your local machine to the Kong Pod to access it:
 
 ```bash
-$ kubectl port-forward kong/kong-pod-name 8444:8444
+$ kubectl port-forward -n kong KONG-POD-NAME 8444:8444
 ```
 
 and in a separate terminal:
