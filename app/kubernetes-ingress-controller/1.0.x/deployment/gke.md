@@ -62,7 +62,7 @@ roleRef:
 subjects:
 - kind: User
   name: <the current user using kubectl> # usually the Google account
-                                         # eg: harry@konghq.com
+                                         # e.g.: example@testorg.com
   namespace: kube-system" | kubectl apply -f -
 
 ```

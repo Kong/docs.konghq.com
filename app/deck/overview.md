@@ -97,11 +97,9 @@ decK's state file can contain sensitive data such as private keys of
 certificates, credentials, etc. It is left up to the user to manage
 and store the state file in a secure fashion.
 
-If you believe that you have found a security vulnerability in decK, please
+If you believe that you have found a security vulnerability in decK,
 submit a detailed report, along with reproducible steps
-to Harry Bagdi (email address is first name last name At gmail Dot com).
-I will try to respond in a timely manner and will really appreciate it you
-report the issue privately first.
+to [security@konghq.com](mailto:security@konghq.com).
 
 ## Getting help
 
