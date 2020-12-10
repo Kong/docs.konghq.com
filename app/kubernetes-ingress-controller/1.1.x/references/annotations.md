@@ -19,6 +19,7 @@ Following annotations are supported on Ingress resources:
 | [`konghq.com/https-redirect-status-code`](#konghqcomhttps-redirect-status-code) | Set the HTTPS redirect status code to use when an HTTP request is recieved. |
 | [`konghq.com/regex-priority`](#konghqcomregex-priority) | Set the route's regex priority. |
 | [`konghq.com/methods`](#konghqcommethods) | Set methods matched by this Ingress. |
+| [`konghq.com/snis`](#konghqcomsnis) | Set SNI criteria for routes created from this Ingress. |
 | [`konghq.com/override`](#konghqcomoverride) | Control other routing attributes via `KongIngress` resource. |
 
 `kubernetes.io/ingress.class` is normally required, and its value should match
@@ -312,6 +313,22 @@ Sample usage:
 
 ```yaml
 konghq.com/methods: "GET,POST"
+```
+
+### konghq.com/snis
+
+> Available since controller 1.1
+
+Sets the `snis` match criteria on the Kong route associated with this Ingress.
+These allow route matching based on the server name indication information sent
+in a client's TLS handshake, for route-attached plugins that execute during the
+certificate phase (for example, [Mutual TLS
+Authentication](https://docs.konghq.com/hub/kong-inc/mtls-auth/)).
+
+Sample usage:
+
+```yaml
+konghq.com/snis: "foo.example.com, bar.example.com"
 ```
 
 ### konghq.com/override
