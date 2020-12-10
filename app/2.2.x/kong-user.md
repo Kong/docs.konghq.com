@@ -34,7 +34,7 @@ configuration property.
 
 ## Run Kong Gateway as a non-root user
 
-1. Switch to the `kong` user and group:
+1. Switch to the `kong` user:
     ```sh
     $ su kong
     ```
@@ -42,4 +42,10 @@ configuration property.
 
     ```sh
     kong start
+    ```
+
+If running Kong as a non-root user other than the built-in `kong` user and group is desired, consider adding the user to the “kong” group with something like:
+
+    ```sh
+    sudo usermod -aG kong your-user
     ```
