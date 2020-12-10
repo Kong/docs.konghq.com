@@ -320,10 +320,10 @@ konghq.com/methods: "GET,POST"
 > Available since controller 1.1
 
 Sets the `snis` match criteria on the Kong route associated with this Ingress.
-These allow route matching based on the server name indication information sent
-in a client's TLS handshake, for route-attached plugins that execute during the
-certificate phase (for example, [Mutual TLS
-Authentication](https://docs.konghq.com/hub/kong-inc/mtls-auth/)).
+When using route-attached plugins that execute during the certificate 
+phase (for example, [Mutual TLS Authentication](/hub/kong-inc/mtls-auth/)), 
+the `snis` annotation allows route matching based on the server name 
+indication information sent in a client's TLS handshake.
 
 Sample usage:
 
