@@ -47,11 +47,11 @@ description: |
   #   industry. Lorem Ipsum has been the industry's standard dummy text ever
   #   since the 1500s.
 
-support_url: https://github.com/kakascx/apig-response-transform/issues
+support_url: https://github.com/kakascx/apig-monitoring/issues
   # (Optional) A specific URL of your own for this extension.
   # Defaults to the url setting in your publisher profile.
 
-source_url: https://github.com/kakascx/apig-response-transform
+source_url: https://github.com/kakascx/apig-monitoring
   # (Optional) If your extension is open source, provide a link to your code.
 
 license_type: Apache-2.0
