@@ -34,7 +34,7 @@ configuration property.
 
 ## Run Kong Gateway as the built-in kong user
 
-When {{site.ce_product_name}} is installed with a package management system such as `APT` and `YUM`, a default `kong` user and a default `kong` group are created. All the files installed by the package are owned by the `kong` user and group.
+When {{site.ce_product_name}} is installed with a package management system such as `APT` or `YUM`, a default `kong` user and a default `kong` group are created. All the files installed by the package are owned by the `kong` user and group.
 
 1. Switch to the built-in `kong` user:
 
