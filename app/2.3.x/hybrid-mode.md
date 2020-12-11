@@ -326,6 +326,15 @@ lua_ssl_trusted_certificate = cluster.crt
 
 ## Checking the status of the cluster
 
+<div class="alert alert-warning">
+  <strong>If you used Hybrid mode before Kong 2.2:</strong>
+  The original `/clustering/status` endpoint has been deprecated and will
+  not contain all values as returned by the new Admin API endpoint below. Eventually,
+  the `/clustering/status` endpoint will be removed and it is strongly
+  recommended to now use the `/clustering/data-planes` endpoint
+  instead.
+</div>
+
 You may want to check the status of the Kong cluster from time to time, such as
 checking to see the which nodes are actively receiving config updates from
 Control Plane, or when was it last updated. This can be achieved by using the
@@ -333,7 +342,7 @@ Control Plane's new Cluster Status API:
 
 ```
 # on Control Plane node
-http :8001/clustering/data_planes
+http :8001/clustering/data-planes
 
 
 {
@@ -344,7 +353,8 @@ http :8001/clustering/data_planes
             "id": "ed58ac85-dba6-4946-999d-e8b5071607d4",
             "ip": "192.168.10.3",
             "last_seen": 1580623199,
-            "status": "connected"
+            "ttl": 1139376,
+            "version": "2.2.1",
         },
         {
             "config_hash": "a9a166c59873245db8f1a747ba9a80a7",
@@ -352,7 +362,8 @@ http :8001/clustering/data_planes
             "id": "ed58ac85-dba6-4946-999d-e8b5071607d4",
             "ip": "192.168.10.4",
             "last_seen": 1580623200,
-            "status": "connected"
+            "ttl": 1139377,
+            "version": "2.3.0",
         }
     ],
     "next": null
@@ -368,6 +379,40 @@ well as config version currently running on them.
 Once the nodes are setup, use the Admin API on the Control Plane as usual,
 those changes will be synced and updated on the Data Plane nodes
 automatically within seconds.
+
+## Version and compatibility checks
+
+Starting with Kong Gateway 2.3.0, Control Plane nodes can perform version 
+compatibility checks to determine if connected Data Planes can be
+synced safely. If the compatibility checks fail, the Control Plane stops
+pushing out new config to the incompatible Data Planes to avoid breaking them.
+
+The following conditions must be met for new configs being pushed to the Data
+Plane:
+1. The Kong Gateway version must be on the same major and minor release for both 
+Control Plane and Data Planes, and only the patch version can vary.
+For example, sync between Kong 2.2.0 and Kong 2.3.0 will fail, but sync between Kong 
+2.3.0 and Kong 2.3.2 should succeed. 
+2. The set of plugins enabled on the Control Plane and Data Plane must be
+the same.
+3. For enabled plugins, the plugin version number must be the same on both the 
+Control Plane and Data Planes. This check is more strict than the Kong Gateway 
+version check, as the plugin versions must match exactly, down to the patch level.  
+For example, if `foo-plugin` has version 0.1.2 on the Control Plane and 0.1.1 on a 
+Data Plane, sync will not happen.
+
+If a config can not be pushed to a Data Plane due to failure of the
+compatibility checks, the Control Plane will contain `warn` level lines in the
+`error.log` similar to the following:
+```
+unable to send updated configuration to DP node with hostname: localhost.localdomain ip: 127.0.0.1 reason: version mismatches, CP version: 2.2 DP version: 2.1
+unable to send updated configuration to DP node with hostname: localhost.localdomain ip: 127.0.0.1 reason: CP and DP does not have same set of plugins installed or their versions might differ
+```
+
+In addition, the `/clustering/data-planes` Admin API endpoint will return
+the version of the Data Plane node and the latest config hash the node is
+using. These will help detect version incompatibilities from the
+Control Plane side.
 
 ## Fault tolerance
 
