@@ -76,8 +76,8 @@ params:
       default: 389
       value_in_examples: 389
       description: TCP port where the LDAP server is listening.  389 is the default
-        port for non-SSL LDAP and AD. 686 is the port required for SSL LDAP and AD. If `ldaps` is
-        configured, you must use port 686.
+        port for non-SSL LDAP and AD. 636 is the port required for SSL LDAP and AD. If `ldaps` is
+        configured, you must use port 636.
     - name: start_tls
       required: true
       default: "`false`"
@@ -90,7 +90,7 @@ params:
       default: "`false`"
       description: |
         Set to `true` to connect using the LDAPS protocol (LDAP over TLS).  When `ldaps` is
-        configured, you must use port 686. If the `ldap` setting is enabled, ensure the
+        configured, you must use port 636. If the `ldap` setting is enabled, ensure the
         `start_tls` setting is disabled.
     - name: base_dn
       required: true
