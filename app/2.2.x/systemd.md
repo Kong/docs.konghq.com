@@ -108,7 +108,7 @@ To view the journald logs:
 To view the syslog logs:
    `tail -F /var/log/syslog`
 
-### Customize Kong's Nginx instance [using the Nginx directive injection system
+### Customize Kong's Nginx instance using the Nginx directive injection system
 
 To use the [Nginx directive injection system](/{{page.kong_version}}/configuration/#injecting-individual-nginx-directives),
 add the below `Environment` systemd directive to your custom service at
