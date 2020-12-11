@@ -49,7 +49,7 @@ When {{site.ce_product_name}} is installed with a package management system such
 
 ## Run Kong Gateway as a custom non-root user
 
-It is also possible running Kong as a custom non-root user. Since all the files installed by the {{site.ce_product_name}} package are owned by the `kong` group, a user that belongs to that group should be permitted to perform the same operations as the `kong` user.
+It is also possible to run Kong as a custom non-root user. Since all the files installed by the {{site.ce_product_name}} package are owned by the `kong` group, a user that belongs to that group should be permitted to perform the same operations as the `kong` user.
 
 1. Add the user to the `kong` group
 
