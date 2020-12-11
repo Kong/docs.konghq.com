@@ -32,12 +32,31 @@ configuration property.
 * [RHEL](/enterprise/{{page.kong_version}}/deployment/installation/rhel)
 * [Ubuntu](/enterprise/{{page.kong_version}}/deployment/installation/ubuntu)
 
-## Run Kong Enterprise as a non-root user
+## Run {{site.ee_product_name}} as the built-in kong user
 
-1. Switch to the `kong` user and group:
+When {{site.ee_product_name}} is installed with a package management system such as `APT` or `YUM`, a default `kong` user and a default `kong` group are created. All the files installed by the package are owned by the `kong` user and group.
+
+1. Switch to the built-in `kong` user:
+
     ```sh
     $ su kong
     ```
+2. Start Kong:
+
+    ```sh
+    kong start
+    ```
+
+## Run {{site.ee_product_name}} as a custom non-root user
+
+It is also possible to run Kong as a custom non-root user. Since all the files installed by the {{site.ee_product_name}} package are owned by the `kong` group, a user that belongs to that group should be permitted to perform the same operations as the `kong` user.
+
+1. Add the user to the `kong` group
+
+    ```sh
+    sudo usermod -aG kong your-user
+    ```
+
 2. Start Kong:
 
     ```sh
