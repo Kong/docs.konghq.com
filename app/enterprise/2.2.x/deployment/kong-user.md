@@ -3,11 +3,10 @@ title: Running Kong as a Non-Root User
 ---
 
 After installing {{site.ee_product_name}} on a GNU/Linux system, you can
-configure Kong to run as the built-in `kong` user and group instead of `root`.
-This makes the Nginx master and worker processes run as the `kong` user and
-group, overriding any settings in the
+configure Kong to run as the built-in `kong` user instead of the `root` user.
+This makes the Nginx master and worker processes use the built-in `kong` user and group credentials, overriding any settings in the
 [`nginx_user`](/enterprise/{{page.kong_version}}/property-reference/#nginx_user)
-configuration property.
+configuration property. It is also possible to run Kong as a custom non-root user.
 
 <div class="alert alert-warning">
 <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
@@ -17,7 +16,7 @@ configuration property.
   port 80).
   <br>
   <br>Although running Kong as the <code>kong</code> user
-  and group does provide more security, we advise that a system and network
+  does provide more security, we advise that a system and network
   administration evaluation be performed before making this decision. Otherwise,
   Kong nodes might become unavailable due to insufficient permissions to execute
   privileged system calls in the operating system.
