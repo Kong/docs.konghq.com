@@ -163,7 +163,7 @@ A 201 message indicates the route was created successfully.
 {% endnavtab %}
 {% navtab Using Kong Manager %}
 1. From the `example_service` overview page, scroll down to the Routes section
-and click **New Route**.  
+and click **Add Route**.  
 
     The Create Route dialog displays with the Service field auto-populated with
     the Service name and ID number. This field is required.
