@@ -600,7 +600,7 @@
       url: /vitals/vitals-prometheus-strategy
 
 - title: Kong Immunity
-  icon: /assets/images/icons/documentation/icn-brain-color.svg
+  icon: /assets/images/icons/documentation/icn-immunity-color.svg
   items:
     - text: Overview
       url: /immunity/overview
