@@ -333,7 +333,7 @@ Control Plane's new Cluster Status API:
 
 ```
 # on Control Plane node
-http :8001/clustering/data_planes
+http :8001/clustering/data-planes
 
 
 {

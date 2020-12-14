@@ -192,12 +192,12 @@ Run the following on a Control Plane:
 {% navtabs %}
 {% navtab Using cURL %}
 ```bash
-$ curl -i -X GET http://<admin-hostname>:8001/clustering/data_planes
+$ curl -i -X GET http://<admin-hostname>:8001/clustering/data-planes
 ```
 {% endnavtab %}
 {% navtab Using HTTPie %}
 ```bash
-$ http :8001/clustering/data_planes
+$ http :8001/clustering/data-planes
 ```
 {% endnavtab %}
 {% endnavtabs %}
