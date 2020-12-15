@@ -222,7 +222,7 @@ If you are following this getting started guide topic by topic, you will need to
 {% endnavtab %}
 
 {% navtab Using Kong Manager %}
-1. Go to the Plugins page and click on **Edit** for the key-auth row.
+1. Go to the Plugins page and click on **View** for the key-auth row.
 2. Use the toggle at the top of the page to switch the plugin from **Enabled** to **Disabled**.
 {% endnavtab %}
 {% endnavtabs %}
