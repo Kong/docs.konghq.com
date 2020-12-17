@@ -23,15 +23,22 @@ If you are trying out {{site.ee_product_name}} using a hosted (cloud) free trial
 <a href="/getting-started-guide/{{page.kong_version}}/prepare/#free-trials-setup">Prepare to Administer {{site.base_gateway}}</a>.
 </div>
 
-*Using cURL:*
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
 ```sh
 $ curl -X PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace \
---data config.portal=true
+  --data config.portal=true
 ```
-*Or using HTTPie:*
+{% endnavtab %}
+{% navtab HTTPie %}
 ```sh
-$ http -f PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace config.portal=true
+$ http -f PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace \
+  config.portal=true
 ```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
 {% endnavtab %}
 {% navtab Using Kong Manager %}
