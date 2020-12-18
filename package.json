@@ -21,7 +21,8 @@
       "node_modules/**",
       "Dockerfile",
       "gulpfile.js",
-      "app/_assets/javascripts/app.js"
+      "app/_assets/javascripts/app.js",
+      "app/_redirects"
     ]
   },
   "echint": {
@@ -40,7 +41,8 @@
       "autodoc-conf-ee/*.lua",
       "vendor/**",
       "node_modules/**",
-      "Docker"
+      "Docker",
+      "app/_redirects"
     ]
   },
   "devDependencies": {

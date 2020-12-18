@@ -2,9 +2,6 @@
 title: Documentation for decK
 is_homepage: true
 no_version: true
-redirect_from:
-  - /hub/kong-inc/deck
-  - /hub/hbagdi/deck
 ---
 <div class="docs-grid">
 
