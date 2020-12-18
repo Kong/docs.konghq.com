@@ -31,11 +31,30 @@
       items:
         - text: Developer Registration
           url: /dev-portal/developers/dev-reg
+        - text: Applications
+          items:
+            - text: Create, Edit, and Delete an Application
+              url: /dev-portal/developers/dev-apps
+            - text: Register an Application with a Service
+              url: /dev-portal/developers/dev-reg-app-service
+            - text: Generate Credentials for an Application
+              url: /dev-portal/developers/dev-gen-creds
     - text: Administrators
       items:
-        - text: Managing Developer Access
+        - text: Application Registration
+          items:
+#            - text: Application Registration Overview
+#              url: /dev-portal/administrators/app-registration/app-reg-overview
+            - text: Enable App Registration
+              url: /dev-portal/administrators/app-registration/enable-app-reg
+            - text: Disable App Registration
+              url: /dev-portal/administrators/app-registration/disable-app-reg
+            - text: Manage Application Registration Requests
+              url: /dev-portal/administrators/app-registration/manage-app-reg-requests
+            - text: Manage Application Connections
+              url: /dev-portal/administrators/app-registration/manage-app-connections
+        - text: Manage Developer Access
           url: /dev-portal/administrators/manage-devs
-
 - title: Reference
   icon: /assets/images/icons/documentation/icn-references-color.svg
   items:

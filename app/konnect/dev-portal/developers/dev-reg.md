@@ -6,7 +6,7 @@ beta: true
 toc: false
 ---
 
-If you are a developer, you can request access access to a Service on the
+If you are a developer, you can request access to a Service on the
 Konnect Dev Portal. Access the Dev Portal for any published Service through the URL
 displayed on the **Dev Portal** page. The format looks something like this:
 
@@ -21,11 +21,11 @@ displayed on the **Dev Portal** page. The format looks something like this:
 
    ![Konnect Portal URL](/assets/images/docs/konnect/konnect-pub-services-portal-url.png)
 
-2. Click **Sign up**. The Konnect Developer form appears.
+2. Click **Sign up**. The Konnect Developer dialog appears.
 
    ![Konnect Developer Registration](/assets/images/docs/konnect/konnect-dev-sign-up.png)
 
-3. Complete the Konnect Developer form:
+3. Complete the Konnect Developer dialog:
 
    1. Enter your **First Name** and **Last Name**.
 
@@ -44,6 +44,6 @@ displayed on the **Dev Portal** page. The format looks something like this:
    6. A message indicates your email has been confirmed, and your account is awaiting approval. Click **Okay**.
 
 6. After your request has been [approved by an admin](/konnect/dev-portal/administrators/manage-devs),
-   click **Login**. The Login form appears.
+   click **Login**. The Login dialog is displayed.
 
 7. Enter your credentials and log in. If you experience any access issues, contact your Konnect admin.

@@ -5,7 +5,8 @@ no_version: true
 beta: true
 ---
 
-Manage developers and developer requests to access services.
+Manage developers and [developer registration](/konnect/dev-portal/developers/dev-reg) requests to
+access the Konnect Dev Portal. 
 
 ## Prerequisite
 
@@ -19,8 +20,8 @@ manage developers:
 
 ## Developer Status
 
-A status represents the state of developers and the access they have to the Konnect Dev
-Portal, applications, and APIs:
+A status represents the state of developers and their access to the Konnect Dev
+Portal:
 
 **Approved**
 : A developer has been approved to access the Konnect Dev Portal. Approved developers
@@ -36,7 +37,7 @@ Portal, applications, and APIs:
 : A developer who had prior access to the Konnect Dev Portal but has since had
   their access revoked.
 
-## Requests Page
+## Requests Page Developers Tab
 
 To access the Requests page Developers tab, from the Konnect navigation menu, click
 **Connections** > **Requests** > **Developers** tab.
@@ -50,7 +51,7 @@ In the Requests page Developers tab, you can:
 - [Reject a developer request](#reject-dev-reg) for access.
 - [Delete a developer request](#delete-dev-reg) for access.
 
-If there are no pending requests, the No Developers Requests message is displayed.
+If there are no pending requests, the `No Developer Requests` message is displayed.
 
 ### Approve a developer's access request {#approve-dev-reg}
 
@@ -160,7 +161,7 @@ Deleting a developer deletes everything owned by that developer, such as applica
 
 1. Click **Connections > Requests > Developers** tab.
 
-2. In the row for developer you want to delete, click the icon and choose **Delete** from the
+2. In the row for the developer you want to delete, click the icon and choose **Delete** from the
    context menu.
 
    The developer and everything owned by that developer in the portal is deleted.
