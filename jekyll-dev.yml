@@ -66,6 +66,9 @@ extensions:
     # - name: dev portal extension
     #   slug: dev-mod
 
+include:
+  - _redirects
+
 exclude:
   - node_modules
   - jekyll-cache

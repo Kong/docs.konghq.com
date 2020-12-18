@@ -66,6 +66,9 @@ extensions:
     # - name: dev portal extension
     #   slug: dev-mod
 
+include:
+  - _redirects
+
 # location vars
 icons_dir: assets/images/icons
 
