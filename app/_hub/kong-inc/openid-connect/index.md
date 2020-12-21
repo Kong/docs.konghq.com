@@ -309,6 +309,258 @@ In summary, start with the following parameters:
 4. `config.audience_required` (if using public IdP)
 5. `config.session_secret` (if using Kong in DB-less mode)
 
+#### Configuration Parameter Descriptions
+
+##### General
+
+Parameter ¹                             | Description
+---------------------------------------:|------------
+`issuer`                                | The issuer `url` from which OpenID Connect configuration can be discovered.
+`introspection_endpoint`                | The URL of introspection endpoint that can be used if the OP doesn't announce a non-standard introspection endpoint in discovery document.
+`auth_methods`                          | The supported authentication methods you should enable.
+`hide_credentials`                      | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request.
+`keepalive`                             | Whether or not should Kong keepalive connections with IdP.
+`timeout`                               | The timeout value (in seconds) that is used for the Network IO.
+`run_on_preflight`                      | A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` pre-flight requests, if set to false then `OPTIONS` requests will always be allowed.
+`leeway`                                | The leeway (in seconds) that is used to adjust the possible clock skew between the OP and Kong (used in all time related verifications).
+`revocation_endpoint`                   | If `revocation_endpoint` is not specified in discovery (as it is not standardized by OpenID Connect), you can specify it manually.
+`revocation_endpoint_auth_method`       | Used to override any defaults specified for the client.
+`end_session_endpoint`                  | If `end_session_endpoint` is not specified in discovery, you can specify it manually (e.g., you can use your own non-OpenID Connect logout endpoint).
+`token_exchange_endpoint`               | The token exchange endpoint, if you want to exchange the access token to a new one before proxying to upstream service.
+`ssl_verify`                            | Whether or not should Kong verify SSL Certificates when communicating to OP.
+`refresh_tokens`                        | Enable or disable automatic expiring access token refreshing if the plugin has access to the refresh token.
+
+##### Discovery
+
+Parameter ¹                             | Description
+---------------------------------------:|------------
+`discovery_headers_names`               | Extra header names that you should include in discovery requests (such as `Authorization`).
+`discovery_headers_values`              | Values for the extra headers that you should include in discovery requests.
+`extra_jwks_uris`                       | If your IdP uses other JWKS to sign, e.g., access tokens that are not found with OpenID Connect discovery, you can define additional URIs with this property.
+`rediscovery_lifetime`                  | After JWKS rotate, the plugin tries to automatically fetch new ones when needed. With this parameter, you can limit the plugin to only do re-discovery every _n_ seconds.
+
+##### Parameter Types
+
+Parameter ¹                             | Description
+---------------------------------------:|------------
+`bearer_token_param_type`               | The types of delivery mechanisms for the bearer token parameter.
+`bearer_token_cookie_name`              | The name of the cookie in which the bearer token is passed for the plugin.
+`client_credentials_param_type`         | The types of delivery mechanisms for the client credentials.
+`password_param_type`                   | The types of delivery mechanisms for the username and password.
+`id_token_param_type`                   | The types of delivery mechanisms for the ID token parameter.
+`id_token_param_name`                   | The name of the payload parameter where the ID token is delivered for verification.
+`refresh_token_param_type`              | The types of delivery mechanisms for the refresh token parameter.
+`refresh_token_param_name`              | The name of the payload parameter where the refresh or offline token is delivered.
+
+##### Client
+
+Parameter ¹                             | Description
+---------------------------------------:|------------
+`client_id`                             | The `client_id` of the OpenID Connect client registered in OpenID Connect Provider.
+`client_secret`                         | The `client_secret` of the OpenID Connect client registered in OpenID Connect Provider.
+`client_auth`                           | The authentication method for the client.
+`client_jwk`                            | JWK used for `client_secret_jwt` or `private_key_jwt` authentication.
+`client_alg`                            | The algorithm to use for `client_secret_jwt` or `private_key_jwt` for the client.
+`client_arg`                            | Allows you to define the client argument name used to pick up the right client configuration.
+`redirect_uri`                          | The `redirect_uri` of the client defined with `client_id` (also used as a redirection uri on authorization code flow).
+
+##### Consumer
+
+Parameter ¹                             | Description
+---------------------------------------:|------------
+`consumer_claim`                        | Name of the claim that is used to find a consumer.
+`consumer_by`                           | Search consumer by this (or these) fields.
+`consumer_optional`                     | When you enable consumer mapping with `consumer_claim`, `consumer_optional` can be used to make that mapping optional.
+`anonymous`                             | If `consumer_claim` is specified, but consumer is not found, allow fallback to a consumer defined by this property.
+
+##### Authorization
+
+Parameter ¹                             | Description
+---------------------------------------:|------------
+`authenticated_groups_claim`            | The Name of the claim (or a path) where the authenticated groups can be found.
+`authorization_endpoint`                | The URL of the authorization endpoint that can be used to override the standard authorization endpoint announced in the discovery document.
+`authorization_query_args_names`        | Extra query argument names that you should include in the authorization endpoint query string.
+`authorization_query_args_values`       | Values for the extra query arguments that you should include in the authorization endpoint query string.
+`authorization_query_args_client`       | These parameters are passed from client request to the authorization endpoint; use this value for parameters such as `login_hint`.
+`authorization_cookie_name`             | The name of authorization code flow cookie that is used for verifying the responses from OpenID Connect provider.
+`authorization_cookie_lifetime`         | Authorization cookie lifetime in seconds.
+`authorization_cookie_path`             | The `Path` parameter of the authorization cookie.
+`authorization_cookie_domain`           | The `Domain` parameter of the authorization cookie.
+`authorization_cookie_samesite`         | The `Same-Site` parameter of the authorization cookie.
+`authorization_cookie_httponly`         | The `HTTP Only` flag of the authorization cookie.
+`authorization_cookie_secure`           | The `Secure` flag of the authorization cookie.
+`response_mode`                         | The response mode used with the authorization endpoint (e.g., authorization code flow).
+`response_type`                         | The response type used with the authorization endpoint (e.g., authorization code flow).
+`scopes`                                | The scopes to be requested from OP.
+`audience`                              | The audience passed to the authorization endpoint, also used for verification of `aud` claim.
+`scopes_required`                       | The scopes required to be present in access token (or introspection results) for successful authorization.
+`scopes_claim`                          | The Name of the claim (or a path) where the scopes can be found.
+`audience_required`                     | The audience required to be present in access token (or introspection results) for successful authorization.
+`audience_claim`                        | The Name of the claim (or a path) where the audience can be found.
+`domains`                               | The domains to be verified against the `hd` claim.
+`max_age`                               | The `max_age` (in seconds) for the previous authentication, specifically the `auth_time` claim.
+`preserve_query_args`                   | Whether or not to preserve query args even when doing client redirections with authorization code flow.
+
+##### Token
+
+Parameter ¹                             | Description
+---------------------------------------:|------------
+`token_endpoint`                        | The URL of the token endpoint that can be used to override the standard token endpoint announced in the discovery document.
+`token_endpoint_auth_method`            | Used to override any defaults or `token_endpoint_auth_methods_supported` from discovery when authenticating on the token endpoint.
+`token_headers_names`                   | Extra argument names that you should include in token endpoint requests.
+`token_headers_values`                  | Values for the extra arguments that you should include in token endpoint requests.
+`token_headers_client`                  | When Kong calls a token endpoint, you can specify the headers that Kong will pass to the token endpoint from client request headers.
+`token_headers_replay`                  | When Kong calls the token endpoint, you can specify the headers that you want Kong to send back to the client.
+`token_headers_prefix`                  | If you want, you can prefix the token endpoint headers with a string to differentiate them from other headers.
+`token_headers_grants`                  | You can limit the grants for which the token headers are replayed.
+`token_post_args_names`                 | Extra argument names that you want to include in token endpoint post arguments.
+`token_post_args_values`                | Values for the extra arguments that you want to include in token endpoint post arguments.
+`token_post_args_client`                | These parameters are passed from the client request to the token endpoint.
+`ignore_signature`                      | Disables signature verification of access token on specified flows.
+
+##### Introspection
+
+Parameter ¹                             | Description
+---------------------------------------:|------------
+`introspection_endpoint_auth_method`    | Used to override any defaults specified for the client.
+`introspection_hint`                    | Use this parameter if you want to change the introspection request `token_type_hint` argument to something other than the default `access_token`.
+`introspection_headers_names`           | Extra argument names that you want to include in introspection requests.
+`introspection_headers_values`          | Values for the extra arguments that you want to include in introspection requests.
+`introspection_headers_client`          | When Kong calls introspection endpoint, you can specify the headers that Kong will pass to token endpoint from client request headers.
+`introspection_post_args_names`         | Extra argument names that you want to include in introspection endpoint post arguments.
+`introspection_post_args_values`        | Values for the extra arguments that you want to include in introspection endpoint post arguments.
+`introspection_post_args_client`        | These parameters are passed from the client request to the introspection endpoint.
+`introspect_jwt_tokens`                 | Enable this option to also introspect JWT tokens (and not only those opaque ones). It can be used to check the revocation of JWT tokens.
+
+##### Session
+
+Parameter ¹                             | Description
+---------------------------------------:|------------
+`session_secret`                        | The secret that is used to encrypt session data. The plugin auto-generates it by default, and stores it elsewhere.
+`session_cookie_name`                   | The name of session cookie when session authentication is enabled.
+`session_cookie_lifetime`               | Session cookie lifetime in seconds.
+`session_cookie_idletime`               | Session cookie idle in seconds.
+`session_cookie_renew`                  | Seconds left in the session cookie lifetime that triggers a new session cookie to be sent to the client.
+`session_cookie_path`                   | The `Path` parameter of the session cookie.
+`session_cookie_domain`                 | The `Domain` parameter of the session cookie.
+`session_cookie_samesite`               | The `Same-Site` parameter of the session cookie.
+`session_cookie_httponly`               | The `HTTP Only` flag of the session cookie.
+`session_cookie_secure`                 | The `Secure` flag of the session cookie.
+`session_cookie_maxsize`                | The maximum size of a single cookie (not including cookie name and `=` sign) in case it needs to split to several cookies.
+`session_strategy`                      | The session strategy to use, either `default` or `regenerate`, where regenerate generates a new session id on each save.
+`session_storage`                       | The storage that is used to store the data part of the session cookie.
+`session_memcache_prefix`               | Memcache session key prefix (all session keys will use this prefix).
+`session_memcache_socket`               | Memcache `unix` socket path.
+`session_memcache_host`                 | Memcache `host`.
+`session_memcache_port`                 | Memcache `port`.
+`session_redis_prefix`                  | Redis session key prefix (all session keys will use this prefix).
+`session_redis_socket`                  | Redis `unix` socket path.
+`session_redis_host`                    | Redis `host`.
+`session_redis_port`                    | Redis `port`.
+`session_redis_auth`                    | Redis authentication password.
+`session_redis_connect_timeout`         | Connection timeout for Redis client.
+`session_redis_read_timeout`            | Read timeout for Redis client.
+`session_redis_send_timeout`            | Send timeout for Redis client.
+`session_redis_ssl`                     | Use SSL/TLS for Redis connection.
+`session_redis_ssl_verify`              | Verify Redis server certificate.
+`session_redis_server_name`             | Specifies the server name for the new TLS extension Server Name Indication (SNI) when connecting Redis over SSL.
+`session_redis_cluster_nodes`           | Specify Redis cluster nodes (by specifying them, the cluster-mode will get used).
+`session_redis_cluster_maxredirections` | Maximum retry attempts for redirection on Redis cluster.
+`reverify`                              | When `session` authentication method is used, you can enable re-verification of signatures and claims of the tokens using this parameter.
+`jwt_session_claim`                     | Name of the claim that is checked against the `jwt_session_cookie` (used only for additional JWT verification).
+`jwt_session_cookie`                    | Name of the cookie that contains a value for a claim defined with `jwt_session_claim` (used only for additional JWT verification).
+
+##### Upstream
+
+Parameter ¹                             | Description
+---------------------------------------:|------------
+`upstream_headers_claims`               | Claims to look from which to create upstream headers.
+`upstream_headers_names`                | Upstream headers to create for the matching claims.
+`upstream_access_token_header`          | The name of the upstream header where the access token is injected.
+`upstream_access_token_jwk_header`      | The name of the upstream header where the JWK used for Access token verification is injected (if any).
+`upstream_id_token_header`              | The name of the upstream header where the ID token is injected (if any).
+`upstream_id_token_jwk_header`          | The name of the upstream header where the JWK used for ID token verification is injected (if any).
+`upstream_refresh_token_header`         | The name of the upstream header where the refresh token is injected (if any).
+`upstream_user_info_header`             | The name of the upstream header where the User Info is injected (if any).
+`upstream_introspection_header`         | The name of the upstream header where the introspection results are injected (if any).
+`upstream_session_id_header`            | The name of the upstream header where the session id is injected (if any).
+
+##### Downstream
+
+Parameter ¹                             | Description
+---------------------------------------:|------------
+`downstream_headers_claims`             | Claims to look from which to create downstream headers.
+`downstream_headers_names`              | Downstream headers to create for the matching claims.
+`downstream_access_token_header`        | The name of downstream header where the access token is injected.
+`downstream_access_token_jwk_header`    | The name of downstream header where the JWK used for Access token verification is injected (if any).
+`downstream_id_token_header`            | The name of downstream header where the ID token is injected (if any).
+`downstream_id_token_jwk_header`        | The name of downstream header where the JWK used for ID token verification is injected (if any).
+`downstream_refresh_token_header`       | The name of downstream header where the Refresh token is injected (if any).
+`downstream_user_info_header`           | The name of downstream header where the User Info is injected (if any).
+`downstream_introspection_header`       | The name of downstream header where the introspection results are injected (if any).
+`downstream_session_id_header`          | The name of the downstream header where the session ID is injected (if any).
+
+##### Login/Logout
+
+Parameter ¹                             | Description
+---------------------------------------:|------------
+`login_methods`                         | Other `login_*` parameters depend on this, and they are only used if matching authentication method is used.
+`login_action`                          | Controls what to do after successful authentication when using a matching login method defined with `login_methods`.
+`login_tokens`                          | If you set `login_action` to `redirect` or `response`, this parameter configures what tokens are returned in url hash (`redirect`) or response body (`response`).
+`login_redirect_mode`                   | Defines how you want to pass `login_tokens` in case of `login_action` of `redirect`.
+`logout_query_arg`                      | A query argument found in request that means that we should do a logout.
+`logout_post_arg`                       | A post argument found in request that means that we should do a logout.
+`logout_uri_suffix`                     | If request uri ends with specific string, that means that we should do a logout.
+`logout_methods`                        | List of HTTP methods that can be used for logout.
+`logout_revoke`                         | Revoke tokens from IdP on logout by calling `revocation_endpoint`.
+`logout_revoke_access_token`            | If `logout_revoke` is turned on, this controls whether or not `access_token` is revoked on logout.
+`logout_revoke_refresh_token`           | If `logout_revoke` is turned on, this controls whether or not `refresh_token` is revoked on logout.
+`logout_redirect_uri`                   | On logout this is the url where the client is redirected after logout is done (used also for `post_logout_redirect_uri`).
+
+##### Response
+
+Parameter ¹                             | Description
+---------------------------------------:|------------
+`forbidden_redirect_uri`                | Instead of responding with HTTP status code 403, send a 302 redirect with the defined uri.
+`forbidden_error_message`               | Error message to return with forbidden response.
+`forbidden_destroy_session`             | Whether or not the session is also destroyed upon a forbidden response.
+`unauthorized_redirect_uri`             | Instead of responding with HTTP status code 401, send a 302 redirect with the defined uri.
+`unauthorized_error_message`            | Error message to return with unauthorized response.
+`unexpected_redirect_uri`               | Instead of responding with HTTP status code 500, send a 302 redirect with the defined uri.
+
+##### Cache
+
+Parameter ¹                             | Description
+---------------------------------------:|------------
+`cache_ttl`                             | Default cache expiry time in seconds when one is not specified in a token.
+`cache_ttl_max`                         | Maximum cache expiry time in seconds (overrides the one specified in a token).
+`cache_ttl_min`                         | Minimum cache expiry time in seconds (overrides the one specified in a token).
+`cache_ttl_neg`                         | Time in seconds until cache misses expire (overrides the one specified in a token).
+`cache_ttl_resurrect`                   | When specified, the cache instance will attempt to resurrect stale values when the L3 callback returns nil, err (soft errors).
+`cache_tokens`                          | Enables of disables caching of token endpoint request results.
+`cache_introspection`                   | Enables of disables caching of introspection request results.
+`cache_token_exchange`                  | Enables of disables caching of token exchange results.
+`cache_user_info`                       | Enables of disables caching of user info request results.
+
+##### HTTP Proxy
+
+Parameter ¹                             | Description
+---------------------------------------:|------------
+`http_version`                          | The HTTP version to use between Kong and OP.
+`http_proxy`                            | The proxy URL for HTTP communications.
+`http_proxy_authorization`              | A value for Proxy-Authorization header to be used with http_proxy.
+`https_proxy`                           | The proxy URL for HTTPS communications.
+`https_proxy_authorization`             | A value for Proxy-Authorization header to be used with https_proxy.
+`no_proxy`                              | A comma separated list of hosts that should not be proxied with `http_proxy` or `https_proxy`.
+
+##### Debugging
+
+Parameter ¹                             | Description
+---------------------------------------:|------------
+`verify_parameters`                     | Enables or disables verification of the plugin parameters against the discovery documentation rules (for debugging).
+`verify_nonce`                          | Enables or disables verification of the nonce used in authorization code flow (for debugging).
+`verify_claims`                         | Enables or disables verification of the standard claims (for debugging).
+`verify_signature`                      | Enables or disables verification of the signature (for debugging).
 
 ### Parameter Descriptions
 
