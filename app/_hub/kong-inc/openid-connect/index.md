@@ -3181,7 +3181,7 @@ To create a Service, issue the following command:
 
 ```bash
 $ http post :8001/services                      \
-    name=openid-connect-demo                    \
+    name=httpbin                    \
     url=http://httpbin.org/anything
 ```
 
@@ -3314,7 +3314,7 @@ http post :8001/services/httpbin/plugins \
   config.client_id=<CLIENT_ID>                    \
   config.client_secret=<CLIENT_SECRET>            \
   config.redirect_uri=<REDIRECT_URI>              \
-  config.ssl_verify=false -v
+  config.ssl_verify=false -v -f
 ```
 
 On successful `HTTP 200 OK`, the response will be similar to:
@@ -3390,7 +3390,7 @@ $ http patch :8001/plugins/<PLUGIN_ID>
     config.downstream_id_token_jwk_header=x_id_token_jwk
     config.downstream_refresh_token_header=x_refresh_token
     config.downstream_user_info_header=x_user_info
-    config.downstream_introspection_header=x_introspection -v
+    config.downstream_introspection_header=x_introspection -v -f
 ```
 
 And make an authenticated request again to see how this affects
