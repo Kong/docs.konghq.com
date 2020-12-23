@@ -17,17 +17,17 @@ description: |
   upstream server, or before sending the downstream response back to the client.
   The plugin can apply both upstream and downstream transformations in the same flow.
 
-support_url: https://github.com/reedelk/kong-plugin-reedelk-transformer/issues
+support_url: https://github.com/codecentric/kong-plugin-reedelk-transformer/issues
   # (Optional) A specific URL of your own for this extension.
   # Defaults to the url setting in your publisher profile.
 
-source_url: https://github.com/reedelk/kong-plugin-reedelk-transformer
+source_url: https://github.com/codecentric/kong-plugin-reedelk-transformer
 
 license_type: Apache-2.0
   # (Optional) For open source, use the abbreviations in parentheses at:
   # https://opensource.org/licenses/alphabetical
 
-license_url: https://github.com/reedelk/kong-plugin-reedelk-transformer/blob/master/LICENSE.txt
+license_url: https://github.com/codecentric/kong-plugin-reedelk-transformer/blob/master/LICENSE.txt
 
 kong_version_compatibility:
   community_edition:
