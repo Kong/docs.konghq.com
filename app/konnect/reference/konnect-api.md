@@ -20,36 +20,88 @@ list of all endpoints.
 Requests to the Konnect API must be authenticated. A request without
 authentication will fail.
 
-1. Try to access `/api/control_planes` without any authentication, where [`<proxy-url>`](/konnect/reference/proxy-traffic) is in the format
-    `https://myorg.khcp.konghq.com`:
+Try to access `/api/control_planes` without any authentication:
 
-    ```sh
-    $ curl -i -X GET --url <proxyurl>/api/control_planes
-    ```
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -i -X GET https://konnect.konghq.com/api/control_planes
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http GET https://konnect.konghq.com/api/control_planes
+```
+{% endnavtab %}
+{% endnavtabs %}
 
-    Since you didn't specify any authentication, the request should fail with a
-    `401 Unauthorized` error.
+Since you didn't specify any authentication, the request should fail with a
+`401 Unauthorized` error.
 
-2. Fetch the authentication token to be used in future requests using an
-authorized Konnect user's email and password:
+### Log into the Konnect API
 
-    ```sh
-    $ curl -i -X POST --url <proxyurl>/api/auth \  
-      --data 'username=example@email.com' \   
-      --data 'password=somepwd'
-    ```
+Fetch a session cookie. Log in to Konnect using an authorized Konnect user's
+email and password:
 
-    This request prints an access token to the console:
-    ```sh
-    {"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGVtYWlsLmNvbSIsInN1YiI6ImZhNGVkOGFmLWE0NjEtNDdjNS05ODYwLTQyNTJkNTg5ZGQ5ZiIsIm9yZyI6eyJpZCI6ImMzMDBmMWIzLTEyYzQtNDI1ZS1iNzczLTYzZmY5NWM0ZGMwMSJ9LCJpYXQiOjE2MDEwNDIxNjQsImV4cCI6MTYwMTA0NTc2NH0.dC7g82ebZQFIA97hXtC1HnnOF-f0R76aO954FZrgB_0"}
-    ```
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -i -X POST https://konnect.konghq.com/api/auth \
+  -H "Content-Type: application/json" \
+  -d '{"username":"example@email.com","password":"somepwd"}'
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http https://konnect.konghq.com/api/auth \
+  username=example@email.com \
+  password=somepwd \
+  --session=konnect
+```
+{% endnavtab %}
+{% endnavtabs %}
 
-3. Copy the access token and use it to fetch `/api/control_planes` again:
+The response includes a session cookie. Copy the `<cookie-value>` portion of
+the `set-cookie` header:
 
-    ```sh
-    $ curl -i -X GET --url <proxy-url>/api/control_planes \
-      -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGVtYWlsLmNvbSIsInN1YiI6ImZhNGVkOGFmLWE0NjEtNDdjNS05ODYwLTQyNTJkNTg5ZGQ5ZiIsIm9yZyI6eyJpZCI6ImMzMDBmMWIzLTEyYzQtNDI1ZS1iNzczLTYzZmY5NWM0ZGMwMSJ9LCJpYXQiOjE2MDEwNDIxNjQsImV4cCI6MTYwMTA0NTc2NH0.dC7g82ebZQFIA97hXtC1HnnOF-f0R76aO954FZrgB_0'{"data":[{"id": "221f2635-d7f8-467f-b487-a16bc319bbe2", "name":"khcp-kong-service" ...}]}
-    ```
-    > **Note:** The `access_token` is valid for 24 hours. It does not currently
-    refresh with active usage, so a new token will need to be regenerated after it
-    expires.
+```sh
+HTTP/2 200
+content-type: application/json; charset=utf-8
+content-length: 225
+x-dns-prefetch-control: off
+x-frame-options: SAMEORIGIN
+strict-transport-security: max-age=15552000; includeSubDomains
+x-download-options: noopen
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+etag: W/"e1-O0G7dvUQMOZe5ESlbWvxkYqeBGT"
+set-cookie: <cookie-value>; Path=/; Expires=Wed, 23 Dec 2020 18:49:4GMT; HttpOnly; SameSite=Strict
+date: Wed, 23 Dec 2020 17:49:48 GMT
+x-kong-upstream-latency: 159
+x-kong-proxy-latency: 6
+via: kong/2.2.1
+
+{"id":"31cd0c73-g8s8-5jk7-b39b-6013salh875dd","email":"example@email.com","org_id":"fsf9agf-076b-3597-8e2d3e36ah9sfvsb","org_name":"MyOrg","first_name":"First","last_name":"Last","expiration_date":"2020-12-23T18:49:48.823Z"}%      
+```
+
+### Make a request with the session cookie
+
+Copy the session cookie and use it to fetch `/api/control_planes` again:
+
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -i -X GET https://konnect.konghq.com/api/control_planes \
+  --cookie '<cookie-value>'
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http GET https://konnect.konghq.com/api/control_planes \
+  Cookie:'<cookie-value>'
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+This time, you get get an `HTTP 200` response code and the control plane
+information.
