@@ -113,7 +113,7 @@ params:
       default:
       datatype: string
       description: |
-        An optional string (consumer UUID) value to use as an anonymous Consumer if authentication fails.
+        An optional string (Consumer UUID) value to use as an anonymous Consumer if authentication fails.
         If empty (default), the request will fail with an authentication failure `4xx`. Note that this value
         must refer to the Consumer `id` attribute that is internal to Kong, and **not** its `custom_id`.
     - name: run_on_preflight
