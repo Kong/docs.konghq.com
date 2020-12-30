@@ -95,7 +95,7 @@ params:
       datatype: boolean
       description: |
         If enabled (default), the plugin reads the request header and tries to find the key in it.
-    - name: key_in_header
+    - name: key_in_query
       required: false
       default: "`true`"
       datatype: boolean
