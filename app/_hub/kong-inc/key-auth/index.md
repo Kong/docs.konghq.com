@@ -248,6 +248,8 @@ $ curl http://kong:8000/{proxy path} \
     --data 'apikey: <some_key>'
 ```
 
+**Note:** The `key_in_body` parameter must be set to `true`.
+
 Make a request with the key in a header:
 
 ```bash
