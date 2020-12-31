@@ -188,7 +188,8 @@ service, you must add the new consumer to the allowed group. See
 
 <div class="alert alert-warning">
   <strong>Note:</strong> It is recommended to let Kong auto-generate the key. Only specify it yourself if
-  you are migrating an existing system to Kong. You must re-use your keys to make the migration to Kong transparent to your Consumers.
+  you are migrating an existing system to Kong. You must re-use your keys to make the
+  migration to Kong transparent to your Consumers.
 </div>
 
 {% navtabs %}
@@ -232,7 +233,7 @@ field/parameter     | description
 `{consumer}`        | The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
 `key`<br>*optional* | You can optionally set your own unique `key` to authenticate the client. If missing, the plugin will generate one.
 
-### Using the Key
+### Make a Request with the Key
 
 Make a request with the key as a query string parameter:
 
@@ -240,7 +241,14 @@ Make a request with the key as a query string parameter:
 $ curl http://kong:8000/{proxy path}?apikey=<some_key>
 ```
 
-Or in a header:
+Make a request with the key in the body:
+
+```bash
+$ curl http://kong:8000/{proxy path} \
+    --data 'apikey: <some_key>'
+```
+
+Make a request with the key in a header:
 
 ```bash
 $ curl http://kong:8000/{proxy path} \
