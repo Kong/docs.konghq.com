@@ -78,7 +78,7 @@ params:
     Admin API endpoints that do POST, PUT, PATCH, or DELETE on Credentials are not available on DB-less mode.
   config:
     - name: key_names
-      required: false
+      required: true
       default: "`apikey`"
       datatype: array of strings
       description: |
