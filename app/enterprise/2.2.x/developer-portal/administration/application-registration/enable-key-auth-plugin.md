@@ -52,34 +52,53 @@ In Kong Manager, access the Service for which you want to enable key authenticat
 
 ## Make Requests with an API Key
 
-Tip: You can also access instructions directly within the user interface on making requests with your API key from the information icon in the Services details area.
+The Client ID of your credentials can be used as an API key to make authenticated requests to a Service.
+
+**Tip:** You can also access key request instructions directly within the user interface from the
+information icon in the Services details area.
 
 ### Make a request with the key as a query string parameter
 
 {% navtabs %}
 {% navtab Using cURL %}
 
+```bash
+$ curl -X POST {proxy}/{route}?apikey={CLIENT_ID}
+```
+
 {% endnavtab %}
-
-
-
 {% navtab Using HTTPie %}
 
+```bash
+$ http :8000/{proxy}/{route}?apikey={CLIENT_ID}
+```
 
 {% endnavtab %}
 {% endnavtabs %}
+
+Response (will be the same for all valid requests regardless of key location):
+
+```bash
+HTTP/1.1 200 OK
+...
+```
 
 ### Make a request with the key in a header
 
 {% navtabs %}
 {% navtab Using cURL %}
 
+```bash
+$ curl -X POST {proxy}/{route} \
+--header "apikey: {CLIENT_ID}"
+```
+
 {% endnavtab %}
-
-
-
 {% navtab Using HTTPie %}
 
+```bash
+$ http :8000/{proxy}/{route} apikey:{CLIENT_ID}
+```
 
 {% endnavtab %}
 {% endnavtabs %}
@@ -90,18 +109,18 @@ Tip: You can also access instructions directly within the user interface on maki
 {% navtab Using cURL %}
 
 ```bash
-$ curl http://kong:8000/{proxy path} \
-    --data 'apikey: <some_key>'
+$ curl -X POST {proxy}/{route} \
+--data "apikey:={CLIENT_ID}"
 ```
 
 **Note:** The `key_in_body` parameter must be set to `true`.
 
 {% endnavtab %}
-
-
-
 {% navtab Using HTTPie %}
 
+```bash
+$ http :8000/{proxy}/{route} apikey={CLIENT_ID}
+```
 
 {% endnavtab %}
 {% endnavtabs %}
