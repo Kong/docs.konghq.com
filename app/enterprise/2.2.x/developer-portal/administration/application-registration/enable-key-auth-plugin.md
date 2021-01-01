@@ -1,0 +1,107 @@
+---
+title: Enable Key Authentication for Application Registration
+---
+
+## Overview
+
+You can use the Key Authentication plugin for authentication in conjunction with
+the Application Registration plugin.
+
+The key auth plugin uses the same Client ID as generated for the Kong OAuth2 plugin.
+You can use the same Client ID credential for a Service that has the OAuth2 plugin enabled.
+
+## Prerequisites
+
+* Create a Service.
+* Enable the [Application Registration plugin](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration) on a Service.
+* Generate a credential if you don't want to use the default credential initially created for you.
+* Activate the app for a Service if you have not already done so.
+
+
+## Enable Key Authentication in Kong Manager
+
+In Kong Manager, access the Service for which you want to enable key authentication for application registration:
+
+1. From your Workspace, in the left navigation pane, go to **API Gateway > Services**.
+2. On the Services page, select the Service and click **View**.
+3. In the Plugins pane in the Services page, click **Add a Plugin**.
+4. On the Add New Plugin page in the Authentication section, find the
+   **Key Authentication** Plugin and click **Enable**.
+
+   ![Key Authentication plugin panel](/assets/images/docs/dev-portal/key-auth-plugin-panel.png)
+
+5. Complete the fields as appropriate for your application. In this example, the Service is already
+   prepopulated. Refer to the parameters described in the next section,
+   [Key Authentication Configuration Parameters](#key-auth-params),
+   to complete the fields.
+
+6. Click **Create**.
+
+### Key Authentication Configuration Parameters {#key-auth-params}
+
+| Form Parameter | Description                                                                       |
+|:---------------|:----------------------------------------------------------------------------------|
+| `Service` | The Service that this plugin configuration will target. Required. |
+| `Anonymous` | An optional string (Consumer UUID) value to use as an anonymous Consumer if authentication fails. If empty (default), the request fails with an `4xx`. Note that this value must refer to the Consumer `id` attribute that is internal to Kong, and **not** its `custom_id`. |
+| `Hide Credentials` | Whether to show or hide the credential from the Upstream service. If `true`, the plugin strips the credential from the request (i.e., the header, query string, or request body containing the key) before proxying it. Default: `false`. |
+| `Key in Body` | Default: `false`. |
+| `Key in Header` | Default: `true`. |
+| `Key in Query` | Default: `true`. |
+| `Key Names` | Describes an array of parameter names where the plugin will look for a key. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header, request body, or query string parameter with the same name. The key names may only contain [a-z], [A-Z], [0-9], [_] underscore, and [-] hyphen. Required. Default: `apikey`. |
+| `Run on Preflight` | Indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests. Default: `true`. |
+
+## Make Requests with an API Key
+
+Tip: You can also access instructions directly within the user interface on making requests with your API key from the information icon in the Services details area.
+
+### Make a request with the key as a query string parameter
+
+{% navtabs %}
+{% navtab Using cURL %}
+
+{% endnavtab %}
+
+
+
+{% navtab Using HTTPie %}
+
+
+{% endnavtab %}
+{% endnavtabs %}
+
+### Make a request with the key in a header
+
+{% navtabs %}
+{% navtab Using cURL %}
+
+{% endnavtab %}
+
+
+
+{% navtab Using HTTPie %}
+
+
+{% endnavtab %}
+{% endnavtabs %}
+
+### Make a request with the key in the body
+
+{% navtabs %}
+{% navtab Using cURL %}
+
+```bash
+$ curl http://kong:8000/{proxy path} \
+    --data 'apikey: <some_key>'
+```
+
+**Note:** The `key_in_body` parameter must be set to `true`.
+
+{% endnavtab %}
+
+
+
+{% navtab Using HTTPie %}
+
+
+{% endnavtab %}
+{% endnavtabs %}
