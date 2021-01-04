@@ -3,20 +3,20 @@ title: Enable Application Registration
 ---
 
 ## Introduction
-Applications allow registered developers on Kong Developer Portal to
+Application Registration allows registered developers on the Kong Developer Portal to
 authenticate with OAuth2 against a Service on Kong. Either Kong or an
-external identity provider
-admins can selectively admit access to Services using Kong Manager.
+external identity provider admins can selectively admit access to Services using Kong Manager.
 
 ## Prerequisites
-* {{site.ee_product_name}} is installed, version 2.1.0.0 or newer.
+* {{site.ee_product_name}} is installed, version 2.1.0.0 or later. If you plan to use
+key authentication, version 2.2.1.0 or later.
 * Developer Portal is enabled on the same Workspace as the Service.
 * The Service is created and enabled with HTTPS.
 * Authentication is enabled on the Developer Portal.
 * Logged in as an admin with read and write roles on applications, services, and
   developers.
 * The `portal_app_auth` configuration option is configured for your OAuth provider
-  and strategy (`kong-oauth2` or `external-oauth2`). See
+  and strategy (`kong-oauth2` default or `external-oauth2`). See
 [Configure the Authorization Provider Strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/#portal-app-auth) for the Portal Application Registration plugin.
 * Authorization provider configured if using a supported third-party
   identity provider with the OIDC plugin:
@@ -83,7 +83,7 @@ Unique display name used for a Service in the Developer Portal.
 
 Default: `false`
 
-Displays the Issuer URL in the Service Details. **Note:** Exposing
+Displays the Issuer URL in the Service Details. **Important:** Exposing
 the Issuer URL is essential for the
 [Authorization Code Flow](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth/#ac-flow)
 workflow configured for third-party identity providers.
@@ -92,10 +92,23 @@ workflow configured for third-party identity providers.
 
 ## Next steps
 
+Kong OAuth2 strategy:
+
 * If using the Kong-managed authorization strategy
-(`kong-oauth2`), configure the OAuth2 plugin.
- You can use the Kong Manager GUI or cURL commands as documented on the
- [Plugin Hub](/hub/kong-inc/oauth2). The OAuth2 plugin cannot be used in hybrid mode.
+(`kong-oauth2`) with the OAuth2 plugin, configure the Kong [OAuth2](/kong-inc/oauth2/)
+plugin as appropriate for your authorization requirements. You can use either the
+Kong Manager GUI or cURL commands as documented on the [Plugin Hub](/hub/).
+The OAuth2 plugin cannot be used in hybrid mode.
+* If using the Kong-managed authorization strategy
+(`kong-oauth2`) with key authentication, configure the Kong
+[Key Auth](/hub/kong-inc/key-auth/) plugin as appropriate for your authorization
+requirements. You can use either the
+[Kong Manager GUI](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/enable-key-auth-plugin)
+or cURL commands as documented on the Plugin Hub. The Key Auth plugin
+cannot be used in hybrid mode.
+
+External OAuth2 strategy:
+
 * If using the third-party authorization strategy
 (`external-oauth2`), configure the OIDC plugin. You can use the Kong Manager GUI
 or cURL commands as documented on the [Plugin Hub](/hub/kong-inc/openid-connect).
