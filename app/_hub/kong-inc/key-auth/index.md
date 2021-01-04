@@ -1,7 +1,7 @@
 ---
 name: Key Authentication
 publisher: Kong Inc.
-version: 2.4.0
+version: 2.2.0
 
 desc: Add key authentication to your Services
 description: |
@@ -92,18 +92,6 @@ params:
       datatype: boolean
       description: |
         If enabled, the plugin reads the request body (if said request has one and its MIME type is supported) and tries to find the key in it. Supported MIME types: `application/www-form-urlencoded`, `application/json`, and `multipart/form-data`.
-    - name: key_in_header
-      required: false
-      default: "`true`"
-      datatype: boolean
-      description: |
-        If enabled (default), the plugin reads the request header and tries to find the key in it.
-    - name: key_in_query
-      required: false
-      default: "`true`"
-      datatype: boolean
-      description: |
-        If enabled (default), the plugin reads the query parameter in the request and tries to find the key in it.
     - name: hide_credentials
       required: false
       default: "`false`"

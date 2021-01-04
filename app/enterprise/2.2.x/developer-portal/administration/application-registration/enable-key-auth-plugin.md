@@ -12,6 +12,7 @@ You can use the same Client ID credential for a Service that has the OAuth2 plug
 
 ## Prerequisites
 
+* {{site.ee_product_name}} is installed, version 2.2.1.0 or later.
 * Create a Service.
 * Enable the [Application Registration plugin](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration) on a Service.
 * Generate a credential if you don't want to use the default credential initially created for you.
@@ -20,7 +21,8 @@ You can use the same Client ID credential for a Service that has the OAuth2 plug
 
 ## Enable Key Authentication in Kong Manager
 
-In Kong Manager, access the Service for which you want to enable key authentication for application registration:
+In Kong Manager, access the Service for which you want to enable key authentication for
+use with application registration:
 
 1. From your Workspace, in the left navigation pane, go to **API Gateway > Services**.
 2. On the Services page, select the Service and click **View**.
@@ -45,8 +47,6 @@ In Kong Manager, access the Service for which you want to enable key authenticat
 | `Anonymous` | An optional string (Consumer UUID) value to use as an anonymous Consumer if authentication fails. If empty (default), the request fails with an `4xx`. Note that this value must refer to the Consumer `id` attribute that is internal to Kong, and **not** its `custom_id`. |
 | `Hide Credentials` | Whether to show or hide the credential from the Upstream service. If `true`, the plugin strips the credential from the request (i.e., the header, query string, or request body containing the key) before proxying it. Default: `false`. |
 | `Key in Body` | If enabled, the plugin reads the request body (if said request has one and its MIME type is supported) and tries to find the key in it. Supported MIME types: `application/www-form-urlencoded`, `application/json`, and `multipart/form-data`. Default: `false`. |
-| `Key in Header` | If enabled (default), the plugin reads the request header and tries to find the key in it. Default: `true`. |
-| `Key in Query` | If enabled (default), the plugin reads the query parameter in the request and tries to find the key in it. Default: `true`. |
 | `Key Names` | Describes an array of parameter names where the plugin will look for a key. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header, request body, or query string parameter with the same name. The key names may only contain [a-z], [A-Z], [0-9], [_] underscore, and [-] hyphen. Required. Default: `apikey`. |
 | `Run on Preflight` | Indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests. Default: `true`. |
 
