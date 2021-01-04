@@ -46,49 +46,25 @@ In Kong Manager, access the Service for which you want to enable Application Reg
 
    ![Create application-registration plugin](/assets/images/docs/dev-portal/create-app-reg-plugin-form.png)
 
+   **Important:** Exposing
+   the Issuer URL is essential for the
+   [Authorization Code Flow](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth/#ac-flow)
+   workflow configured for third-party identity providers.
+
+   ![Issuer URL](/assets/images/docs/dev-portal/dev-portal-issuer-url.png)
+
 6. Click **Create**.
 
 ### Application Registration Configuration Parameters
 
-#### Service
-
-**Required**
-
-Select the Service that this plugin configuration will target.
-
-#### Tags
-
-An optional set of strings for grouping and filtering, separated by commas.
-
-#### Auto Approve {#aa}
-
-Default: `false`
-
-If enabled, all new Service contract requests are automatically
-approved. Otherwise, Dev Portal admins must manually approve requests.
-
-#### Description
-
-Default: none
-
-Unique description displayed in the information about a Service in the Developer Portal.
-
-#### Display Name
-
-**Required**
-
-Unique display name used for a Service in the Developer Portal.
-
-#### Show issuer {#show-url-issuer}
-
-Default: `false`
-
-Displays the Issuer URL in the Service Details. **Important:** Exposing
-the Issuer URL is essential for the
-[Authorization Code Flow](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth/#ac-flow)
-workflow configured for third-party identity providers.
-
-![Issuer URL](/assets/images/docs/dev-portal/dev-portal-issuer-url.png)
+| Form Parameter | Description                                                                       |
+|:---------------|:----------------------------------------------------------------------------------|
+| `Service` | The Service that this plugin configuration will target. Required. |
+| `Tags` | A set of strings for grouping and filtering, separated by commas. Optional. |
+| `Auto Approve` | If enabled, all new Service contract requests are automatically approved. Otherwise, Dev Portal admins must manually approve requests. Default: `false`. |
+| `Description` | Description displayed in the information about a Service in the Developer Portal. Optional. |
+| `Display Name` | Unique name displayed in the information about a Service in the Developer Portal. Required. |
+| `Show Issuer` | Displays the Issuer URL in the Service Details page. Default: `false`. **Important:** Exposing the **Issuer URL** is essential for the [Authorization Code Flow](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth/#ac-flow) workflow configured for third-party identity providers. |
 
 ## Next steps
 
