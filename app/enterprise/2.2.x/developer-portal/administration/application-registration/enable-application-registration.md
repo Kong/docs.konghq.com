@@ -71,7 +71,7 @@ In Kong Manager, access the Service for which you want to enable Application Reg
 Kong OAuth2 strategy:
 
 * If using the Kong-managed authorization strategy
-(`kong-oauth2`) with the OAuth2 plugin, configure the Kong [OAuth2](/kong-inc/oauth2/)
+(`kong-oauth2`) with the OAuth2 plugin, configure the Kong [OAuth2](/hub/kong-inc/oauth2/)
 plugin as appropriate for your authorization requirements. You can use either the
 Kong Manager GUI or cURL commands as documented on the [Plugin Hub](/hub/).
 The OAuth2 plugin cannot be used in hybrid mode.
