@@ -55,7 +55,7 @@ In Kong Manager, access the Service for which you want to enable Application Reg
 
 6. Click **Create**.
 
-### Application Registration Configuration Parameters
+### Application Registration Configuration Parameters {#app-reg-params}
 
 | Form Parameter | Description                                                                       |
 |:---------------|:----------------------------------------------------------------------------------|
