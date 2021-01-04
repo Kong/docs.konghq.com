@@ -84,8 +84,8 @@ params:
       description: |
         Describes an array of parameter names where the plugin will look for a key. The client must send the
         authentication key in one of those key names, and the plugin will try to read the credential from a
-        header, request body, or query string parameter with the same name.<br><br>**Note**: The key names may only contain
-        [a-z], [A-Z], [0-9], [_] underscore, and [-] hyphen.
+        header, request body, or query string parameter with the same name.
+        <br>**Note**: The key names may only contain [a-z], [A-Z], [0-9], [_] underscore, and [-] hyphen.
     - name: key_in_body
       required: false
       default: "`false`"
