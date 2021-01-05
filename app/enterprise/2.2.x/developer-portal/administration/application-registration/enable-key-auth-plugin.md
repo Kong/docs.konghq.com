@@ -132,8 +132,6 @@ $ curl -X POST {proxy}/{route} \
 --data "apikey:={CLIENT_ID}"
 ```
 
-**Note:** The `key_in_body` parameter must be set to `true`.
-
 {% endnavtab %}
 {% navtab HTTPie %}
 
@@ -143,3 +141,5 @@ $ http {proxy}/{route} apikey={CLIENT_ID}
 
 {% endnavtab %}
 {% endnavtabs %}
+
+**Note:** The `key_in_body` parameter must be set to `true`.
