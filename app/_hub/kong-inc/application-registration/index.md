@@ -15,7 +15,7 @@ description: |
   Portal authorization provider. Either Kong (`kong-oauth2`) or a third-party OAuth provider
   (`external-oauth2`) can be the system of record (SoR) for application credentials. For more
   information, see
-  [Configure an Authorization Provider Strategy](/enterprise/latest/developer-portal/administration/application-registration/index#portal-app-auth).
+  [Configure an Authorization Provider Strategy](/enterprise/latest/developer-portal/administration/application-registration/auth-provider-strategy).
 
   Supported Kong authorization plugins for use with application registration:
 
