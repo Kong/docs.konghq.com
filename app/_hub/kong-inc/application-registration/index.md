@@ -19,7 +19,7 @@ description: |
 
   Supported Kong authorization plugins for use with application registration:
 
-  | Kong Plugin | Portal authorization strategy                                                          |
+  | Kong Plugin | Portal authorization strategy                                 |
   |:------|:--------------------------------------------------------------------|
   | [OAuth2](/hub/kong-inc/oauth2) | `kong-oauth2` |
   | [Key Auth](/hub/kong-inc/key-auth/)| `kong-oauth2` |
