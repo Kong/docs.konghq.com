@@ -17,7 +17,7 @@ key authentication, version 2.2.1.0 or later.
   developers.
 * The `portal_app_auth` configuration option is configured for your OAuth provider
   and strategy (`kong-oauth2` default or `external-oauth2`). See
-[Configure the Authorization Provider Strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/#portal-app-auth) for the Portal Application Registration plugin.
+[Configure the Authorization Provider Strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/auth-provider-strategy) for the Portal Application Registration plugin.
 * Authorization provider configured if using a supported third-party
   identity provider with the OIDC plugin:
   * For example instructions using Okta as an identity provider, refer to the
