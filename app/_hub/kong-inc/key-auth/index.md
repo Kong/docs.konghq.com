@@ -13,7 +13,7 @@ description: |
   [Application Registration](/hub/kong-inc/application-registration) plugin.
 
   **Tip:** The Kong Enterprise [Key Authentication Encrypted](/hub/kong-inc/key-auth-enc/)
-    plugin provides the ability to encrypt keys. Keys are encrypted at rest in the Kong data store.
+    plugin provides the ability to encrypt keys. Keys are encrypted at rest in the API gateway datastore.
 
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
@@ -97,7 +97,7 @@ params:
       default: "`false`"
       datatype: boolean
       description: |
-        An optional boolean value telling the plugin to show or hide the credential from the Upstream service. If `true`,
+        An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`,
         the plugin strips the credential from the request (i.e., the header, query string, or request body containing the key) before proxying it.
     - name: anonymous
       required: false
@@ -118,7 +118,7 @@ params:
 
    ## Case sensitivity
 
-    Note that, according to their respective specifications, HTTP header names are treated as case _insensitive_, while HTTP query string parameter names are treated as case _sensitive_. Kong follows these specifications as designed, meaning that the `key_names` configuration values
+    Note that, according to their respective specifications, HTTP header names are treated as case _insensitive_, while HTTP query string parameter names are treated as case _sensitive_. {{site.base_gateway}} follows these specifications as designed, meaning that the `key_names` configuration values
     are treated differently when searching the request header fields versus searching the query string. As a best practice, administrators
     are advised against defining case-sensitive `key_names` values when expecting the authorization keys to be sent in the request headers.
 
@@ -141,7 +141,7 @@ You need to associate a credential to an existing [Consumer][consumer-object] ob
 A Consumer can have many credentials.
 
 {% navtabs %}
-{% navtab With a Database %}
+{% navtab With a database %}
 
 To create a Consumer, make the following request:
 
@@ -150,7 +150,7 @@ curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
 ```
 {% endnavtab %}
 
-{% navtab Without a Database %}
+{% navtab Without a database %}
 
 Your declarative configuration file will need to have one or more Consumers. You can create them
 on the `consumers:` yaml section:
@@ -178,9 +178,9 @@ service, you must add the new consumer to the allowed group. See
 ### Create a Key
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> It is recommended to let Kong auto-generate the key. Only specify it yourself if
-  you are migrating an existing system to Kong. You must re-use your keys to make the
-  migration to Kong transparent to your Consumers.
+  <strong>Note:</strong> It is recommended to let the API gateway autogenerate the key. Only specify it yourself if
+  you are migrating an existing system to {{site.base_gateway}}. You must reuse your keys to make the
+  migration to {{site.base_gateway}} transparent to your Consumers.
 </div>
 
 {% navtabs %}
@@ -207,7 +207,7 @@ HTTP/1.1 201 Created
 {% endnavtab %}
 {% navtab Without a database %}
 
-Add credentials on your declarative config file on the `keyauth_credentials` yaml
+Add credentials to your declarative config file in the `keyauth_credentials` YAML
 entry:
 
 ```yaml
@@ -269,7 +269,7 @@ HTTP/1.1 204 No Content
 ### Upstream Headers
 
 When a client has been authenticated, the plugin appends some headers to the request before
-proxying it to the Upstream service so that you can identify the Consumer in your code:
+proxying it to the upstream service so that you can identify the Consumer in your code:
 
 * `X-Consumer-ID`, the ID of the Consumer on Kong
 * `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)
@@ -316,7 +316,7 @@ $ curl -X GET http://kong:8001/key-auths
 }
 ```
 
-Filter the list by Consumer by using this other path:
+Filter the list by Consumer by using a different endpoint:
 
 ```bash
 $ curl -X GET http://kong:8001/consumers/{username or id}/key-auth
@@ -343,7 +343,7 @@ $ curl -X GET http://kong:8001/consumers/{username or id}/key-auth
 </div>
 
 Retrieve a [Consumer][consumer-object] associated with an API
-key making the following request:
+key by making the following request:
 
 ```bash
 curl -X GET http://kong:8001/key-auths/{key or id}/consumer

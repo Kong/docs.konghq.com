@@ -4,7 +4,7 @@ title: Enable Application Registration
 
 ## Introduction
 Application Registration allows registered developers on the Kong Developer Portal to
-authenticate with supported Authentication plugins against a Service on Kong. Either Kong or an
+authenticate with supported Authentication plugins against a Service on Kong. Either {{site.base_gateway}} or
 external identity provider admins can selectively admit access to Services using Kong Manager.
 
 ## Prerequisites
