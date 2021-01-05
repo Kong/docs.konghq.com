@@ -14,10 +14,10 @@ You can use the same Client ID credential for a Service that has the OAuth2 plug
 
 * {{site.ee_product_name}} is installed, version 2.2.1.0 or later.
 * Create a Service.
+* Activate your application for a Service if you have not already done so. The
+Service Contract must be approved by an Admin if auto approve is not enabled.
 * Enable the [Application Registration plugin](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration) on a Service.
-* Generate a credential if you don't want to use the default credential initially created for you.
-* Activate the app for a Service if you have not already done so.
-
+* [Generate a credential](#gen-client-id-cred) if you don't want to use the default credential initially created for you.
 
 ## Enable Key Authentication in Kong Manager
 
@@ -50,12 +50,31 @@ use with application registration:
 | `Key Names` | Describes an array of parameter names where the plugin will look for a key. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header, request body, or query string parameter with the same name. The key names may only contain [a-z], [A-Z], [0-9], [_] underscore, and [-] hyphen. Required. Default: `apikey`. |
 | `Run on Preflight` | Indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests. Default: `true`. |
 
-## Make Requests with an API Key
+## Generate a Credential {#gen-client-id-cred}
+
+Generate a Client ID credential to use as an API key. You can generate multiple
+credentials.
+
+1. In the **Dev Portal > My Apps** page, click **View** for an application.
+
+2. In the **Authentication** pane, click **Generate Credential**.
+
+   ![Application Authentication Pane](/assets/images/docs/dev-portal/gen-client-id-secret.png)
+
+   Now you can make requests using the Client ID as an API Key.
+
+## Make Requests with an API Key (Client Identifier)
 
 The Client ID of your credentials can be used as an API key to make authenticated requests to a Service.
 
 **Tip:** You can also access key request instructions directly within the user interface from the
-information icon in the Services details area.
+information icon in the Services details area of your application. Click the **i** icon to open the Service Details page.
+
+![Services Pane](/assets/images/docs/dev-portal/portal-info-modal-key-auth.png)
+
+Scroll to view all of the available examples.
+
+![Service Details Page Embedded Key Usage Instructions](/assets/images/docs/dev-portal/service-details-key-auth-usage.png)
 
 ### Make a request with the key as a query string parameter
 
