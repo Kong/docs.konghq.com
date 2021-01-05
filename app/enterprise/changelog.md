@@ -4,6 +4,45 @@ no_search: true
 no_version: true
 skip_read_time: true
 ---
+## 2.2.1.0
+**Release Date** 2020/12/31
+ 
+### Features
+
+#### Developer Portal
+- Added `key-auth` support to Developer Portal Applications
+
+### Fixes
+
+#### Core
+- OpenSSL version bump to 1.1.1i
+
+#### Enterprise
+- Fixed a problem where `/tmp` directories will not be deleted when running Kong or Kong CLI.
+- Added a Kong feature to enable and configure the sandboxing user provided Lua code in Kong plugins:
+  - pre-function
+  - post-function
+  - exit-transformer
+- Fixed an issue that prevented the use of keyring encryption of Kong database fields.
+
+#### Developer Portal
+- Application **Edit** button label changed to **Save**.
+
+#### Plugins
+- Collector (`collector`, used for Immunity)
+  - Use `kong.request.get_body()`
+- [Mutual TLS Authentication](/hub/kong-inc/mtls-auth) (`mtls-auth`)
+  - Fixed (log) updating auth errors to handle fallthrough scenarios.
+  - Fixed (route, ws) ensuring workspace options are used for cache lookups.
+- [Forward Proxy Advanced](/hub/kong-inc/forward-proxy)(`forward-proxy`)
+  - Fixed an issue where PDK logging phase check causes an error.
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  - Bumped `lua-resty-session` dependency to 3.8 to allow passing connection options to redis cluster client.
+- [Session](/hub/kong-inc/session) (`session`)
+  - Added endpoint key to Admin API.
+  - Bumped `lua-resty-session` dependency to 3.8.
+
+
 ## 2.2.0.0
 **Release Date** 2020/11/17
 
@@ -291,6 +330,27 @@ open-source **Kong Gateway 2.2.0.0**:
 - The `shorthands` attribute in schema definitions is deprecated in favor of
   the new `shorthand_fields` top-level attribute.
   
+
+## 2.1.4.3
+**Release Date** 2020/12/31
+ 
+### Fixes
+
+#### Kong Enterprise
+- Added a Kong feature to enable and configure the sandboxing of user provided Lua code in Kong plugins:
+  - pre-function
+  - post-function
+  - exit-transformer
+- Backport Admins migration fix resolved in 2.2.0.0.
+
+#### Kong Manager
+- Fixed an issue causing the Developer registration link to not work.
+
+#### Plugins
+- Mutual TLS Authentication (`mtls-auth`)
+  - Fixed (log) updating auth errors to handle fallthrough scenarios.
+  - Fixed (route, ws) ensuring workspace options are used for cache lookups.
+
 
 ## 2.1.4.2
 **Release Date** 2020/11/17
