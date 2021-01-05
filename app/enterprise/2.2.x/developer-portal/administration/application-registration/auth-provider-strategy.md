@@ -47,7 +47,7 @@ applications across all Workspaces (Dev Portals) in a Kong cluster.
 The `portal_app_auth` configuration option must be set in `kong.conf` to enable
 the Developer Portal Application Registration plugin with your chosen
 authorization strategy. The default setting (`kong-oauth2`) accommodates the Kong
-OAuth2 or Kong Key Authorization plugins.
+OAuth2 or Kong Key Authentication plugins.
 
 Available options:
 
