@@ -385,7 +385,7 @@ automatically within seconds.
 Starting with Kong Gateway 2.3.0, Control Plane nodes can perform version 
 compatibility checks to determine if connected Data Planes can be
 synced safely. If the compatibility checks fail, the Control Plane stops
-pushing out new config to the incompatible Data Plane to avoid breaking them.
+pushing out new config to the incompatible Data Planes to avoid breaking them.
 
 The following conditions must be met for new configs being pushed to the Data
 Plane:
