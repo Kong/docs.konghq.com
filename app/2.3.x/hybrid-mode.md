@@ -329,7 +329,7 @@ lua_ssl_trusted_certificate = cluster.crt
 <div class="alert alert-warning">
   <strong>If you used Hybrid mode before Kong 2.2:</strong>
   The original `/clustering/status` endpoint has been deprecated and will
-  not contain all values as returned by the new Admin API below. Eventually
+  not contain all values as returned by the new Admin API endpoint below. Eventually,
   the `/clustering/status` endpoint will be removed and it is strongly
   recommended to now use the `/clustering/data_planes` endpoint
   instead.
