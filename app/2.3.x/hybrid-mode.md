@@ -402,7 +402,7 @@ For example, if `foo-plugin` has version 0.1.2 on the Control Plane and 0.1.1 on
 Data Plane, sync will not happen.
 
 If a config can not be pushed to a Data Plane due to failure of the
-compatibility checks, Control Plane will contain `warn` level lines in the
+compatibility checks, the Control Plane will contain `warn` level lines in the
 `error.log` similar to the following:
 ```
 unable to send updated configuration to DP node with hostname: localhost.localdomain ip: 127.0.0.1 reason: version mismatches, CP version: 2.2 DP version: 2.1
