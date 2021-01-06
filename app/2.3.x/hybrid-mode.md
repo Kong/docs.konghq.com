@@ -331,7 +331,7 @@ lua_ssl_trusted_certificate = cluster.crt
   The original `/clustering/status` endpoint has been deprecated and will
   not contain all values as returned by the new Admin API endpoint below. Eventually,
   the `/clustering/status` endpoint will be removed and it is strongly
-  recommended to now use the `/clustering/data_planes` endpoint
+  recommended to now use the `/clustering/data-planes` endpoint
   instead.
 </div>
 
