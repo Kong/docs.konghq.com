@@ -80,18 +80,14 @@ Scroll to view all of the available examples.
 
 {% navtabs codeblock %}
 {% navtab cURL %}
-
 ```bash
 $ curl -X POST {proxy}/{route}?apikey={CLIENT_ID}
 ```
-
 {% endnavtab %}
 {% navtab HTTPie %}
-
 ```bash
 $ http {proxy}/{route}?apikey={CLIENT_ID}
 ```
-
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -106,19 +102,15 @@ HTTP/1.1 200 OK
 
 {% navtabs codeblock %}
 {% navtab cURL %}
-
 ```bash
 $ curl -X POST {proxy}/{route} \
 --header "apikey: {CLIENT_ID}"
 ```
-
 {% endnavtab %}
 {% navtab HTTPie %}
-
 ```bash
 $ http {proxy}/{route} apikey:{CLIENT_ID}
 ```
-
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -126,19 +118,15 @@ $ http {proxy}/{route} apikey:{CLIENT_ID}
 
 {% navtabs codeblock %}
 {% navtab cURL %}
-
 ```bash
 $ curl -X POST {proxy}/{route} \
 --data "apikey:={CLIENT_ID}"
 ```
-
 {% endnavtab %}
 {% navtab HTTPie %}
-
 ```bash
 $ http {proxy}/{route} apikey={CLIENT_ID}
 ```
-
 {% endnavtab %}
 {% endnavtabs %}
 
