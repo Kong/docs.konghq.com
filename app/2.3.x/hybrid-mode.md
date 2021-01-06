@@ -395,10 +395,11 @@ For example, sync between Kong 2.2.0 and Kong 2.3.0 will fail, but sync between 
 2.3.0 and Kong 2.3.2 should succeed. 
 2. The set of plugins enabled on the Control Plane and Data Plane must be
 the same.
-3. Among plugins enabled, their version number between Control Plane and
-Data Plane must be the same. Note this check is more strict because bugfix
-version is also checked. That means, for example, if `foo-plugin` has version
-0.1.2 on Control Plane and 0.1.1 on Data Plane, sync will not happen.
+3. For enabled plugins, the plugin version number must be the same on both the 
+Control Plane and Data Planes. This check is more strict than the Kong Gateway 
+version check, as the plugin versions must match exactly, down to the patch level.  
+For example, if `foo-plugin` has version 0.1.2 on the Control Plane and 0.1.1 on a 
+Data Plane, sync will not happen.
 
 If a config can not be pushed to a Data Plane due to failure of the
 compatibility checks, Control Plane will contain `warn` level lines in the
