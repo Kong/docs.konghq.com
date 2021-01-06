@@ -342,7 +342,7 @@ Control Plane's new Cluster Status API:
 
 ```
 # on Control Plane node
-http :8001/clustering/data_planes
+http :8001/clustering/data-planes
 
 
 {
@@ -409,7 +409,7 @@ unable to send updated configuration to DP node with hostname: localhost.localdo
 unable to send updated configuration to DP node with hostname: localhost.localdomain ip: 127.0.0.1 reason: CP and DP does not have same set of plugins installed or their versions might differ
 ```
 
-In addition, the `/clustering/data_planes` Admin API endpoint will return
+In addition, the `/clustering/data-planes` Admin API endpoint will return
 the version of the Data Plane node and the latest config hash the node is
 using. These will help detect version incompatibilities from the
 Control Plane side.
