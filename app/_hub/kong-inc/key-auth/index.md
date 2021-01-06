@@ -15,14 +15,6 @@ description: |
   **Tip:** The Kong Enterprise [Key Authentication Encrypted](/hub/kong-inc/key-auth-enc/)
     plugin provides the ability to encrypt keys. Keys are encrypted at rest in the API gateway datastore.
 
-  <div class="alert alert-warning">
-    <strong>Note:</strong> The functionality of this plugin as bundled
-    with versions of Kong prior to 0.11.2
-    differs from what is documented herein. Refer to the
-    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
-    for details.
-  </div>
-
 type: plugin
 categories:
   - authentication
@@ -121,10 +113,6 @@ params:
     Note that, according to their respective specifications, HTTP header names are treated as case _insensitive_, while HTTP query string parameter names are treated as case _sensitive_. {{site.base_gateway}} follows these specifications as designed, meaning that the `key_names` configuration values
     are treated differently when searching the request header fields versus searching the query string. As a best practice, administrators
     are advised against defining case-sensitive `key_names` values when expecting the authorization keys to be sent in the request headers.
-
-    <div class="alert alert-warning">
-        <center>The option `config.run_on_preflight` is only available from versions `0.11.1` and later.</center>
-    </div>
 
     Once applied, any user with a valid credential can access the Service.
     To restrict usage to certain authenticated users, also add the
