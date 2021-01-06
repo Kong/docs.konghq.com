@@ -134,11 +134,6 @@ You can use Helm to install Kong via the official Helm chart:
 $ helm repo add kong https://charts.konghq.com
 $ helm repo update
 
-# Helm 2
-$ helm install kong/kong \
-    --name demo --namespace kong \
-    --values https://l.yolo42.com/k4k8s-enterprise-helm-values
-
 # Helm 3
 $ helm install kong/kong --generate-name
     --namespace kong \
