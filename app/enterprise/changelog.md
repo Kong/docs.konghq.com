@@ -25,7 +25,7 @@ skip_read_time: true
 - Fixed a problem where `/tmp` directories will not be deleted when running Kong or Kong CLI.
 - Fixed an issue that prevented the use of keyring encryption of Kong database fields.
 - RCE (Remote Code Execution) Plugin Mitigations: 
-  - Several Kong plugins allow arbitrary code execution by design, including the `serverless` plugin (also known as `pre-function` and `post-function` capabilities) and the `exit-transformer` plugin (for example, allows an administrator to configure a Lua-based response transformation). 
+  Several Kong plugins allow arbitrary code execution by design, including the `serverless` plugin (also known as `pre-function` and `post-function` capabilities) and the `exit-transformer` plugin (for example, allows an administrator to configure a Lua-based response transformation). 
   - A new change in this release locks down these plugins so that they have limited functions available in a sandbox, providing significant additional security for a user with an exposed admin port.
   - Functions such as "require" are no longer available to scripts that run in these plugins for security purposes, because allowing "require" allows embedded additional arbitrary code execution. 
   - **Important**: This change causes a **breaking change** in this patch release and it cannot be avoided. Our recommendation is that users lock down their admin ports to avoid attackers trying to exploit any API gateway, like Kong, to gain access to internal networks. If you need the previous release behavior, including the ability to arbitrarily "require" libraries or if you want to lock things down further, we have introduced four new settings you can use:
@@ -51,7 +51,7 @@ skip_read_time: true
   - Added endpoint key to Admin API.
   - Bumped `lua-resty-session` dependency to 3.8.
   
-  #### Breaking Changes
+#### Breaking Changes
 - See *RCE (Remote Code Execution) Plugin Mitigations* in the Kong Enterprise section above. 
 
 
@@ -357,7 +357,7 @@ open-source **Kong Gateway 2.2.0.0**:
 
 #### Kong Enterprise
 - RCE (Remote Code Execution) Plugin Mitigations: 
-  - Several Kong plugins allow arbitrary code execution by design, including the `serverless` plugin (also known as `pre-function` and `post-function` capabilities) and the `exit-transformer` plugin (for example, allows an administrator to configure a Lua-based response transformation). 
+  Several Kong plugins allow arbitrary code execution by design, including the `serverless` plugin (also known as `pre-function` and `post-function` capabilities) and the `exit-transformer` plugin (for example, allows an administrator to configure a Lua-based response transformation). 
   - A new change in this release locks down these plugins so that they have limited functions available in a sandbox, providing significant additional security for a user with an exposed admin port.
   - Functions such as "require" are no longer available to scripts that run in these plugins for security purposes, because allowing "require" allows embedded additional arbitrary code execution. 
   - **Important**: This change causes a **breaking change** in this patch release and it cannot be avoided. Our recommendation is that users lock down their admin ports to avoid attackers trying to exploit any API gateway, like Kong, to gain access to internal networks. If you need the previous release behavior, including the ability to arbitrarily "require" libraries or if you want to lock things down further, we have introduced four new settings you can use:
@@ -742,7 +742,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
   
 #### Kong Enterprise
 - RCE (Remote Code Execution) Plugin Mitigations: 
-  - Several Kong plugins allow arbitrary code execution by design, including the `serverless` plugin (also known as `pre-function` and `post-function` capabilities) and the `exit-transformer` plugin (for example, allows an administrator to configure a Lua-based response transformation). 
+  Several Kong plugins allow arbitrary code execution by design, including the `serverless` plugin (also known as `pre-function` and `post-function` capabilities) and the `exit-transformer` plugin (for example, allows an administrator to configure a Lua-based response transformation). 
   - A new change in this release locks down these plugins so that they have limited functions available in a sandbox, providing significant additional security for a user with an exposed admin port.
   - Functions such as "require" are no longer available to scripts that run in these plugins for security purposes, because allowing "require" allows embedded additional arbitrary code execution. 
   - **Important**: This change causes a **breaking change** in this patch release and it cannot be avoided. Our recommendation is that users lock down their admin ports to avoid attackers trying to exploit any API gateway, like Kong, to gain access to internal networks. If you need the previous release behavior, including the ability to arbitrarily "require" libraries or if you want to lock things down further, we have introduced four new settings you can use:
