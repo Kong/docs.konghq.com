@@ -389,8 +389,8 @@ pushing out new config to the incompatible Data Planes to avoid breaking them.
 
 The following conditions must be met for new configs being pushed to the Data
 Plane:
-1. The Kong core version between Control Plane and Data Plane must be on the
-same major and minor release (note bugfix version can be different).
+1. The Kong Gateway version must be on the same major and minor release for both 
+Control Plane and Data Planes, and only the patch version can vary.
 That means, for example, between Kong 2.2.0 and Kong 2.3.0 sync will not happen.
 But are allowed between Kong 2.3.0 and Kong 2.3.2.
 2. The set of plugins enabled on the Control Plane and Data Plane must be
