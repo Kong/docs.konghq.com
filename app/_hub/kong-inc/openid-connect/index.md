@@ -109,6 +109,8 @@ description: |
   [ACL](/plugins/acl/) plugin (not covered here) and create allowed or denied
   groups of users.
 
+  This plugin can be used for authentication in conjunction with the
+  [Application Registration](/hub/kong-inc/application-registration) plugin.
 
 enterprise: true
 type: plugin
