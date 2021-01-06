@@ -403,7 +403,7 @@ Data Plane, sync will not happen.
 
 If a config can not be pushed to a Data Plane due to failure of the
 compatibility checks, Control Plane will contain `warn` level lines in the
-`error.log` similar to these:
+`error.log` similar to the following:
 ```
 unable to send updated configuration to DP node with hostname: localhost.localdomain ip: 127.0.0.1 reason: version mismatches, CP version: 2.2 DP version: 2.1
 unable to send updated configuration to DP node with hostname: localhost.localdomain ip: 127.0.0.1 reason: CP and DP does not have same set of plugins installed or their versions might differ
