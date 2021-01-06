@@ -382,8 +382,8 @@ automatically within seconds.
 
 ## Version and compatibility checks
 
-Since Kong release 2.3.0, a new feature has been added which allows
-Control Plane nodes to determine if the Data Plane connected can be
+Starting with Kong Gateway 2.3.0, Control Plane nodes can perform version 
+compatibility checks to determine if connected Data Planes can be
 synced safely. If the compatibility checks failed, Control Plane will stop
 pushing out new config to the incompatible Data Plane to avoid breaking them.
 
