@@ -18,7 +18,7 @@ skip_read_time: true
 - OpenSSL version bumped to 1.1.1i.
   The OpenSSL version bump is related to CVE-2020-1971. We have performed an extensive review of OpenSSL usage in Kong and have found the following:
   - The core product is not vulnerable to the high severity CVE-2020-1971. 
-  - The `mtls-auth` plugin has a potential exploit associated with CVE-2020-1971. This would require an attacker to have control of a trusted CA or admin port access, which [we recommend you block from attackers](https://docs.konghq.com/latest/secure-admin-api/) for numerous reasons. 
+  - The `mtls-auth` plugin had a potential exploit associated with with CVE-2020-1971, but it would require an attacker to control a trusted CA or have admin port access, which [we recommend you block from attackers](https://docs.konghq.com/latest/secure-admin-api/) for numerous reasons. The updated OpenSSL version in this release additionally protects the `mtls-auth` plugin.
   - As a precautionary measure, we have bumped the OpenSSL dependency version to OpenSSL 1.1.1i.
 
 #### Enterprise
@@ -352,7 +352,7 @@ open-source **Kong Gateway 2.2.0.0**:
 - OpenSSL version bumped to 1.1.1i.
   The OpenSSL version bump is related to CVE-2020-1971. We have performed an extensive review of OpenSSL usage in Kong and have found the following:
   - The core product is not vulnerable to the high severity CVE-2020-1971. 
-  - The `mtls-auth` plugin has a potential exploit associated with CVE-2020-1971. This would require an attacker to have control of a trusted CA or admin port access, which [we recommend you block from attackers](https://docs.konghq.com/latest/secure-admin-api/) for numerous reasons.
+  - The `mtls-auth` plugin had a potential exploit associated with with CVE-2020-1971, but it would require an attacker to control a trusted CA or have admin port access, which [we recommend you block from attackers](https://docs.konghq.com/latest/secure-admin-api/) for numerous reasons. The updated OpenSSL version in this release additionally protects the `mtls-auth` plugin.
   - As a precautionary measure, we have bumped the OpenSSL dependency version to OpenSSL 1.1.1i.
 
 #### Kong Enterprise
@@ -734,11 +734,11 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 ### Fixes
 
 #### Core
-* OpenSSL version bumped to 1.1.1i.
+-  OpenSSL version bumped to 1.1.1i.
   The OpenSSL version bump is related to CVE-2020-1971. We have performed an extensive review of OpenSSL usage in Kong and have found the following:
-  * The core product is not vulnerable to the high severity CVE-2020-1971. 
-  * The `mtls-auth` plugin has a potential exploit associated with CVE-2020-1971. This would require an attacker to have control of a trusted CA or admin port access, which [we recommend you block from attackers](https://docs.konghq.com/latest/secure-admin-api/) for numerous reasons.
-  * As a precautionary measure, we have bumped the OpenSSL dependency version to OpenSSL 1.1.1i.
+  - The core product is not vulnerable to the high severity CVE-2020-1971. 
+  - The `mtls-auth` plugin had a potential exploit associated with with CVE-2020-1971, but it would require an attacker to control a trusted CA or have admin port access, which [we recommend you block from attackers](https://docs.konghq.com/latest/secure-admin-api/) for numerous reasons. The updated OpenSSL version in this release additionally protects the `mtls-auth` plugin.
+  - As a precautionary measure, we have bumped the OpenSSL dependency version to OpenSSL 1.1.1i.
   
 #### Kong Enterprise
 - RCE (Remote Code Execution) Plugin Mitigations: 
