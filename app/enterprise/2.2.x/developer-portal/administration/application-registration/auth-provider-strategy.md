@@ -46,7 +46,7 @@ applications across all Workspaces (Dev Portals) in a {{site.base_gateway}} clus
 
 The `portal_app_auth` configuration option must be set in `kong.conf` to enable
 the Developer Portal Application Registration plugin with your chosen
-authorization strategy. The default setting (`kong-oauth2`) accommodates the 
+authorization strategy. The default setting (`kong-oauth2`) accommodates the
 OAuth2 or Key Authentication plugins.
 
 Available options:
@@ -58,7 +58,7 @@ Available options:
   for every gateway instance, the `kong-oauth2` option cannot be used with hybrid mode
   deployments.
 * `external-oauth2`: An external IdP is the system of record. The
-  Portal Application Registration plugin is used in conjunction with the 
+  Portal Application Registration plugin is used in conjunction with the
   OIDC plugin. The `external-oauth2` option can be used with any deployment type.
   The `external-oauth2` option must be used with
   [hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/)
@@ -90,22 +90,20 @@ If you are using an external IdP, follow these steps.
 2. Enable a supported authentication plugin on the same Service as the Application Registration plugin,
    as appropriate for your authorization strategy.
 
-    {{site.base_gateway}} OAuth2 strategy:
+    Strategy `kong-oauth2`:
 
-    * If using the Kong-managed authorization strategy
-    (`kong-oauth2`) with the OAuth2 plugin, configure the [OAuth2](/hub/kong-inc/oauth2/)
-    plugin on the same Service as the Application Registration plugin. You can use either the
-    Kong Manager GUI or cURL commands as documented on the [Plugin Hub](/hub/).
+    * If using the `kong-oauth2` authorization strategy with the OAuth2 plugin, configure the
+    [OAuth2](/hub/kong-inc/oauth2/) plugin on the same Service as the Application Registration plugin.
+    You can use either the Kong Manager GUI or cURL commands as documented on the [Plugin Hub](/hub/).
     The OAuth2 plugin cannot be used in hybrid mode.
-    * If using the Kong-managed authorization strategy
-    (`kong-oauth2`) with key authentication, configure the
+    * If using the `kong-oauth2` authorization strategy with key authentication, configure the
     [Key Auth](/hub/kong-inc/key-auth/) plugin on the same Service as the Application
     Registration plugin. You can use either the
     [Kong Manager GUI](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/enable-key-auth-plugin)
     or cURL commands as documented on the Plugin Hub. The Key Auth plugin
     cannot be used in hybrid mode.
 
-    External OAuth2 strategy:
+    Strategy `external-oauth2`:
 
     1. If you plan to use external OAuth2, review the
     [recommended workflows](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth#supported-oauth-flows).
