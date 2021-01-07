@@ -47,6 +47,8 @@ use with application registration:
 | `Anonymous` | An optional string (Consumer UUID) value to use as an anonymous Consumer if authentication fails. If empty (default), the request fails with an `4xx`. Note that this value must refer to the Consumer `id` attribute that is internal to Kong, and **not** its `custom_id`. |
 | `Hide Credentials` | Whether to show or hide the credential from the Upstream service. If `true`, the plugin strips the credential from the request (i.e., the header, query string, or request body containing the key) before proxying it. Default: `false`. |
 | `Key in Body` | If enabled, the plugin reads the request body (if said request has one and its MIME type is supported) and tries to find the key in it. Supported MIME types: `application/www-form-urlencoded`, `application/json`, and `multipart/form-data`. Default: `false`. |
+| Key in Header | If enabled (default), the plugin reads the request header and tries to find the key in it. Default: true. |
+| Key in Query | If enabled (default), the plugin reads the query parameter in the request and tries to find the key in it. Default: true.
 | `Key Names` | Describes an array of parameter names where the plugin will look for a key. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header, request body, or query string parameter with the same name. The key names may only contain [a-z], [A-Z], [0-9], [_] underscore, and [-] hyphen. Required. Default: `apikey`. |
 | `Run on Preflight` | Indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests. Default: `true`. |
 
@@ -75,6 +77,10 @@ information icon in the Services details area of your application. Click the **i
 Scroll to view all of the available examples.
 
 ![Service Details Page Embedded Key Usage Instructions](/assets/images/docs/dev-portal/service-details-key-auth-usage.png)
+
+### About API Key Locations in a Request
+
+{% include /md/plugins-hub/api-key-locations.md %}
 
 ### Make a request with the key as a query string parameter
 
