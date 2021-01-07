@@ -265,6 +265,17 @@ $ grpcurl -H 'apikey: <some_key>' ...
 
 {% include /md/plugins-hub/api-key-locations.md %}
 
+### Disable a Key Location {#disable-key-location}
+
+This example disables using a key in a query parameter:
+
+```bash
+curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
+    --data "name=key-auth"  \
+    --data "config.key_names=apikey"
+    --data "config.key_in_query=false"
+```
+
 ### Delete a Key
 
 Delete an API Key by making the following request:
