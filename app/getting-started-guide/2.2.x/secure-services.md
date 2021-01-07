@@ -41,42 +41,57 @@ If you are trying out {{site.ee_product_name}} using a hosted (cloud) free trial
 <a href="/getting-started-guide/{{page.kong_version}}/prepare/#free-trials-setup">Prepare to Administer {{site.base_gateway}}</a>.
 </div>
 
-1. Call the Admin API on port `8001` and configure plugins to enable key authentication. For this example, apply the plugin to the */mock* route you created.
+Call the Admin API on port `8001` and configure plugins to enable key
+authentication. For this example, apply the plugin to the */mock* route you
+created:
 
-    *Using cURL*:
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -X POST http://<admin-hostname>:8001/routes/mocking/plugins \
+  --data name=key-auth
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8001/routes/mocking/plugins \
+  name=key-auth
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
-    ```sh
-    $ curl -X POST http://<admin-hostname>:8001/routes/mocking/plugins \
-    --data name=key-auth
-    ```
-    *Or using HTTPie*:
+Try to access the service again:
 
-    ```sh
-    $ http :8001/routes/mocking/plugins name=key-auth
-    ```
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -i http://<admin-hostname>:8000/mock
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8000/mock
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
-2. Try to access the service again:
+Since you added key authentication, you should be unable to access it:
 
-    *Using cURL*:
-    ```sh
-    $ curl -i http://<admin-hostname>:8000/mock
-    ```
-    *Or using HTTPie*:
-    ```sh
-    $ http :8000/mock
-    ```
+```sh
+HTTP/1.1 401 Unauthorized
+...
+{
+    "message": "No API key found in request"
+}
+```
 
-    Since you added key authentication, you should be unable to access it:
-
-    ```sh
-    HTTP/1.1 401 Unauthorized
-    ...
-    {
-        "message": "No API key found in request"
-    }
-    ```
-
-Before Kong proxies requests for this route, it needs an API key. For this example, since you installed the Key Authentication plugin, you need to create a consumer with an associated key first.
+Before Kong proxies requests for this route, it needs an API key. For this
+example, since you installed the Key Authentication plugin, you need to create
+a consumer with an associated key first.
 
 {% endnavtab %}
 
@@ -159,48 +174,66 @@ a consumer with an associated key first.
 {% navtabs %}
 {% navtab Using the Admin API %}
 
-1. To create a consumer, call the Admin API and the consumer’s endpoint. The following creates a new consumer called **consumer**.
+To create a consumer, call the Admin API and the consumer’s endpoint.
+The following creates a new consumer called **consumer**:
 
-    *Using cURL*:
-    ```sh
-    $ curl -i -X POST http://<admin-hostname>:8001/consumers/ \
-     --data username=consumer \
-     --data custom_id=consumer
-    ```
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -i -X POST http://<admin-hostname>:8001/consumers/ \
+  --data username=consumer \
+  --data custom_id=consumer
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8001/consumers \
+  username=consumer \
+  custom_id=consumer
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
-    *Or using HTTPie*:
-    ```sh
-    $ http :8001/consumers username=consumer custom_id=consumer
-    ```
+Once provisioned, call the Admin API to provision a key for the consumer
+created above. For this example, set the key to `apikey`.
 
-2. Once provisioned, call the Admin API to provision a key for the consumer created above. For this example, set the key to `apikey`. If no key is entered, Kong automatically generates the key.
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -i -X POST http://<admin-hostname>:8001/consumers/consumer/key-auth \
+  --data key=apikey
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8001/consumers/consumer/key-auth \
+  key=apikey
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
-    *Using cURL*:
-    ```sh
-    $ curl -i -X POST http://<admin-hostname>:8001/consumers/consumer/key-auth \
-    --data key=apikey
-    ```
-    *Or using HTTPie*:
-    ```sh
-    $ http :8001/consumers/consumer/key-auth key=apikey
-    ```
+If no key is entered, Kong automatically generates the key.
 
-    Result:
+Result:
 
-    ```sh
-    HTTP/1.1 201 Created
-    ...
-    {
-        "consumer": {
-            "id": "2c43c08b-ba6d-444a-8687-3394bb215350"
-        },
-        "created_at": 1568255693,
-        "id": "86d283dd-27ee-473c-9a1d-a567c6a76d8e",
-        "key": "apikey"
-    }
-    ```
+```sh
+HTTP/1.1 201 Created
+...
+{
+    "consumer": {
+        "id": "2c43c08b-ba6d-444a-8687-3394bb215350"
+    },
+    "created_at": 1568255693,
+    "id": "86d283dd-27ee-473c-9a1d-a567c6a76d8e",
+    "key": "apikey"
+}
+```
 
-    You now have a consumer with an API key provisioned to access the route.
+You now have a consumer with an API key provisioned to access the route.
 
 {% endnavtab %}
 {% navtab Using Kong Manager %}
@@ -277,18 +310,24 @@ You now have a consumer with an API key provisioned to access the route.
 
 {% navtabs %}
 {% navtab Using the Admin API %}
-To validate the Key Authentication plugin, access the *mocking* route again, using the header `apikey` with a key value of `apikey`.
+To validate the Key Authentication plugin, access the *mocking* route again,
+using the header `apikey` with a key value of `apikey`:
 
-*Using cURL*:
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
 ```sh
-$ curl -i http://<admin-hostname>:8000/mock/request -H 'apikey:apikey'
+$ curl -i http://<admin-hostname>:8000/mock/request \
+  -H 'apikey:apikey'
 ```
-
-*Or using HTTPie*:
-
+{% endnavtab %}
+{% navtab HTTPie %}
 ```sh
 $ http :8000/mock/request apikey:apikey
 ```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
 You should get an `HTTP/1.1 200 OK` message in response.
 
@@ -309,33 +348,47 @@ If you are following this getting started guide topic by topic, you will need to
 {% navtabs %}
 {% navtab Using the Admin API %}
 
-1. Find the plugin ID and copy it.
+Find the plugin ID and copy it:
 
-    *Using cURL*:
-    ```sh
-    $ curl -X GET http://<admin-hostname>:8001/routes/mocking/plugins/
-    ```
-    *Or using HTTPie*:
-    ```sh
-    $ http :8001/routes/mocking/plugins
-    ```
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -X GET http://<admin-hostname>:8001/routes/mocking/plugins/
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8001/routes/mocking/plugins
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
-    Output:
-     ```sh
-     "id": "2512e48d9-7by0-674c-84b7-00606792f96b"
-     ```
+Output:
+```sh
+"id": "2512e48d9-7by0-674c-84b7-00606792f96b"
+```
 
-2. Disable the plugin.
+Disable the plugin:
 
-    *Using cURL*:
-    ```sh
-    $ curl -X PATCH http://<admin-hostname>:8001/routes/mocking/plugins/{<plugin-id>} \
-    --data enabled=false
-    ```
-    *Or using HTTPie*:
-    ```sh
-    $ http :8001/routes/mocking/plugins/{<plugin-id>} enabled=false
-    ```
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -X PATCH http://<admin-hostname>:8001/routes/mocking/plugins/{<plugin-id>} \
+  --data enabled=false
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http -f patch :8001/routes/mocking/plugins/{<plugin-id>} \
+  enabled=false
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
+
 {% endnavtab %}
 
 {% navtab Using Kong Manager %}
