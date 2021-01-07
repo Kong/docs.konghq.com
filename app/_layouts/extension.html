@@ -9,6 +9,22 @@ breadcrumbs:
 {% unless page.type == "concept" %}
 {% if page.type == "plugin" %}
 
+<!-- Generate Kong Manager examples -->
+{% capture config_required_fields_manager %}
+    {% for field in page.params.config %}{%
+    if field.value_in_examples != nil %}{%
+    if field.value_in_examples.first %}For example:{%
+    for value in field.value_in_examples %}
+        {% if field.value_in_examples contains "'" %}* Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ value | replace: "'", "" | markdownify | strip_html | strip }}`{% else %}* Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ value | markdownify | strip_html | strip }}`{% endif %}{%
+      endfor %}{%
+      else %}
+      {% if field.value_in_examples contains "'" %}* Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ field.value_in_examples | replace: "'", "" | markdownify | strip_html | strip }}`{% else %}* Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ field.value_in_examples | markdownify | strip_html | strip }}`{% endif %}{%
+      endif %}{%
+      elsif field.required == true %}
+        * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ field.default | markdownify | strip_html | strip }}`{%
+      endif %}{% endfor
+%}{% endcapture %}
+
 <!-- Generate cURL examples -->
 {% capture config_required_fields %}{%
   for field in page.params.config %}{%
@@ -117,6 +133,30 @@ $ curl -X POST http://<admin-hostname>:8001/services/<service>/plugins \
 {{ plugin_config_for_service_admin_api }}
 
 {% endnavtab %}
+{% unless page.params.manager_examples == false %}
+{% navtab Kong Manager %}
+Configure this plugin on a Service:
+
+1. In Kong Manager, open the Services page.
+2. Click on **View** for the Service row.
+3. Scroll down to plugins and click **Add Plugin**.
+4. Find and select the **{{ page.name }}** plugin.
+
+    <div class="alert alert-ee blue">
+    <strong>Note:</strong> If the plugin is greyed out, then it is not available
+    for your product tier. See <a href="">Kong Gateway tiers</a>.
+    </div>
+
+5. Ensure the plugin scope is set to **Scoped** and the Service field is
+pre-filled with the Service name and ID. Then, fill in the required
+[parameters](#parameters).
+
+    {{ config_required_fields_manager }}
+
+6. Click **Create** to save.
+
+{% endnavtab %}
+{% endunless %}
 {% unless page.params.k8s_compatible == false %}
 {% navtab Kubernetes %}
 
