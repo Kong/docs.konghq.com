@@ -261,7 +261,7 @@ gRPC clients are supported too:
 ```bash
 $ grpcurl -H 'apikey: <some_key>' ...
 ```
-## About API Key Locations in a Request
+### About API Key Locations in a Request
 
 {% include /md/plugins-hub/api-key-locations.md %}
 
