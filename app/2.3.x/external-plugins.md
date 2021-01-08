@@ -211,8 +211,9 @@ When run without arguments, it will create a socket file with the
 if the executable is `my-plugin`, it would be
 `/usr/local/kong/my-plugin.socket` by default.
 
-Example configuration: two standalone plugins, called `my-plugin`
-and `other-one`:
+#### Example configuration
+
+Two standalone plugins, called `my-plugin` and `other-one`:
 
 ```
 pluginserver_names = my-plugin,other-one
