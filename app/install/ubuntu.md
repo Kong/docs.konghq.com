@@ -102,6 +102,8 @@ section on the page below, setting  *distribution* to the appropriate value ( ls
 
 3. **Start Kong**
 
+    {% include /md/ce-kong-user.md %}
+
     ```bash
     $ kong start [-c /path/to/kong.conf]
     ```

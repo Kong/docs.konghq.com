@@ -105,7 +105,7 @@ Field           | description                                           | allowe
 `name`          | Datadog metric's name                                 | [Metrics](#metrics)
 `stat_type`     | determines what sort of event the metric represents   | `gauge`, `timer`, `counter`, `histogram`, `meter` and `set`
 `sample_rate`<br>*conditional*   | sampling rate                        | `number`
-`customer_identifier`<br>*conditional*| authenticated user detail       | `consumer_id`, `custom_id`, `username`
+`consumer_identifier`<br>*conditional*| authenticated user detail       | `consumer_id`, `custom_id`, `username`
 `tags`<br>*optional*| List of tags                                      | `key[:value]`
 
 ### Metric requirements

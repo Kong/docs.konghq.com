@@ -13,7 +13,7 @@ title: Introduction to Kong Enterprise
 * Proactively identify API-related anomalies and threats
 * Secure and govern APIs/services, and improve API visibility across the entire organization
 
-{{site.ee_product_name}} is a combination of several features and modules on top of the open-sourced Kong Gateway, as shown in the diagram and described in the next section, [_Kong Enterprise Features_](/enterprise/{{page.kong_version}}/key-concepts).
+{{site.ee_product_name}} is a combination of several features and modules on top of the open-sourced Kong Gateway, as shown in the diagram and described in the next section, [_Kong Enterprise Features_](/enterprise/{{page.kong_version}}/introduction/key-concepts).
 
 ![Introduction to Kong Enterprise](/assets/images/docs/ee/introduction.png)
 

@@ -140,17 +140,27 @@ Outside of this guide, you will likely want to modify these settings differently
 {% endnavtab %}
 {% navtab Using the Admin API %}
 
-Create a new Workspace called SecureWorkspace, substituting the `kong_admin` account’s password in place of `<super-user-token>`.
+Create a new Workspace called SecureWorkspace, substituting the `kong_admin`
+account’s password in place of `<super-user-token>`:
 
-*Using cURL:*
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
 ```sh
-$ curl -H Kong-Admin-Token:<super-user-token> -X POST http://<admin-hostname>:8001/workspaces \
---data 'name=SecureWorkspace'
+$ curl -X POST http://<admin-hostname>:8001/workspaces \
+  -H Kong-Admin-Token:<super-user-token> \
+  --data 'name=SecureWorkspace'
 ```
-*Or using HTTPie:*
+{% endnavtab %}
+{% navtab HTTPie %}
 ```sh
-$ http :8001/workspaces name=SecureWorkspace Kong-Admin-Token:<super-user-token>
+$ http :8001/workspaces \
+  name=SecureWorkspace \
+  Kong-Admin-Token:<super-user-token>
 ```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
 **Note:** Each Workspace name should be unique, regardless of letter case. For example, naming one Workspace “Payments” and another one “payments” will create two different workspaces that appear identical.
 
@@ -224,56 +234,97 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 <strong>Note:</strong> The following method refers to the <em>/users</em> endpoint and creates an Admin API user that won't be visible (or manageable) through Kong Manager. If you want to later administer the admin through Kong Manager, create it under the <a href="/enterprise/latest/admin-api/admins/reference/"><em>/admins</em> endpoint</a> instead.
 </div>
 
-1. Create a new user named `secureworkspaceadmin` with the RBAC token `secureadmintoken`.
+Create a new user named `secureworkspaceadmin` with the RBAC token
+`secureadmintoken`:
 
-    *Using cURL:*
-    ```sh
-    $ curl -H Kong-Admin-Token:<super-user-token> -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/users \
-    --data 'name=secureworkspaceadmin' \
-    --data 'user_token=secureadmintoken'
-    ```
-    *Or using HTTPie:*
-    ```sh
-    $ http :8001/SecureWorkspace/rbac/users name=secureworkspaceadmin user_token=secureadmintoken Kong-Admin-Token:<super-user-token>
-    ```
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/users \
+  -H Kong-Admin-Token:<super-user-token> \
+  --data 'name=secureworkspaceadmin' \
+  --data 'user_token=secureadmintoken'
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8001/SecureWorkspace/rbac/users \
+  name=secureworkspaceadmin \
+  user_token=secureadmintoken \
+  Kong-Admin-Token:<super-user-token>
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
-2. Create a blank role in the workspace and name it `admin`.
+Create a blank role in the workspace and name it `admin`:
 
-    *Using cURL:*
-    ```sh
-    $ curl -H Kong-Admin-Token:<super-user-token> -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/roles \
-    --data 'name=admin' \
-    ```
-    *Or using HTTPie:*
-    ```sh
-    http :8001/SecureWorkspace/rbac/roles/ name=admin Kong-Admin-Token:<super-user-token>
-    ```
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/roles \
+  -H Kong-Admin-Token:<super-user-token> \
+  --data 'name=admin' \
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8001/SecureWorkspace/rbac/roles/ \
+  name=admin \
+  Kong-Admin-Token:<super-user-token>
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
-3. Give the `admin` role permissions to do everything on all endpoints in the workspace.
+Give the `admin` role permissions to do everything on all endpoints in the
+workspace:
 
-    *Using cURL:*
-    ```sh
-    $ curl -H Kong-Admin-Token:<super-user-token> -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/roles/admin/endpoints/ \
-    --data 'endpoint=*'
-    --data 'workspace=SecureWorkspace' \
-    --data 'actions=*'
-    ```
-    *Or using HTTPie:*
-    ```sh
-    http :8001/secureworkspace/rbac/roles/admin/endpoints/ endpoint='*' workspace=SecureWorkspace actions='*' Kong-Admin-Token:<super-user-token>
-    ```
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/roles/admin/endpoints/ \
+  -H Kong-Admin-Token:<super-user-token> \
+  --data 'endpoint=*'
+  --data 'workspace=SecureWorkspace' \
+  --data 'actions=*'
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8001/secureworkspace/rbac/roles/admin/endpoints/ \
+  endpoint='*' \
+  workspace=SecureWorkspace \
+  actions='*' \
+  Kong-Admin-Token:<super-user-token>
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
-4. Grant the `admin` role to `secureworkspaceadmin`.
+Grant the `admin` role to `secureworkspaceadmin`:
 
-    *Using cURL:*
-    ```sh
-    $ curl -H Kong-Admin-Token:<super-user-token> -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
-    --data 'role=admin'
-    ```
-    *Or using HTTPie:*
-    ```sh
-    http :8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ roles=admin Kong-Admin-Token:<super-user-token>
-    ```
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
+  -H Kong-Admin-Token:<super-user-token> \
+  --data 'role=admin'
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
+  roles=admin \
+  Kong-Admin-Token:<super-user-token>
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
 {% endnavtab %}
 {% endnavtabs %}
@@ -292,36 +343,53 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 
 {% endnavtab %}
 {% navtab Using the Admin API %}
-1. Try to access the `default` workspace using `secureworkspaceadmin`'s user token.
 
-    *Using cURL:*
-    ```sh
-    $ curl -H Kong-Admin-Token:secureadmintoken -X GET http://<admin-hostname>:8001/default/rbac/users
-    ```
-    *Or using HTTPie:*
+Try to access the `default` workspace using `secureworkspaceadmin`'s user token:
 
-    ```sh
-    http :8001/default/rbac/users Kong-Admin-Token:secureadmintoken
-    ```
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -X GET http://<admin-hostname>:8001/default/rbac/users \
+  -H Kong-Admin-Token:secureadmintoken
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8001/default/rbac/users \
+  Kong-Admin-Token:secureadmintoken
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
-    You should get a `403 Forbidden` error message:
-    ```
-    {
-        “message”: “secureworkspaceadmin, you do not have permissions to read this resource”
-    }
-    ```
-2. Then, try to access the same endpoint, but this time in the `SecureWorkspace`.
+You should get a `403 Forbidden` error message:
+```
+{
+    “message”: “secureworkspaceadmin, you do not have permissions to read this resource”
+}
+```
 
-    *Using cURL:*
-    ```sh
-    $ curl -H Kong-Admin-Token:secureadmintoken -X GET http://<admin-hostname>:8001/SecureWorkspace/rbac/users
-    ```
-    *Or using HTTPie:*
+Then, try to access the same endpoint, but this time in the `SecureWorkspace`:
 
-    ```sh
-    http :8001/default/rbac/users Kong-Admin-Token:secureadmintoken
-    ```
-    This time, you should get a `200 OK` success message and a list of users.
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -X GET http://<admin-hostname>:8001/SecureWorkspace/rbac/users \
+  -H Kong-Admin-Token:secureadmintoken
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8001/default/rbac/users \
+  Kong-Admin-Token:secureadmintoken
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
+
+This time, you should get a `200 OK` success message and a list of users.
 
 {% endnavtab %}
 {% endnavtabs %}

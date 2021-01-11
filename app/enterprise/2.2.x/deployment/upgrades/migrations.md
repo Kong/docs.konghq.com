@@ -166,7 +166,7 @@ process is typically simpler for both minor and patch releases.
 
 - Assuming that {{site.ee_product_name}} is already running on your system,
   acquire the latest version from any of the available
-  [installation methods](https://docs.konghq.com/enterprise/{{page.kong_version}}/deployment/installation/overview/)
+  [installation methods](/enterprise/{{page.kong_version}}/deployment/installation/overview/)
   and install it, overriding your previous installation.
 
 - If you are planning to make modifications to your configuration, this is an

@@ -104,7 +104,7 @@ receiving large and frequent updates.
 
 Along with this improvement comes an upgrade to the Control Plane Cluster API,
 which replaces the `/clustering/status` endpoint with the
-`/clustering/data_planes` endpoint. This new endpoint provides information about
+`/clustering/data-planes` endpoint. This new endpoint provides information about
 all Data Planes in the cluster, regardless of the Control Plane node to which
 they are connected.
 

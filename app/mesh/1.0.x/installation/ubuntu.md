@@ -1,6 +1,5 @@
 ---
 title: Kong Mesh with Ubuntu
-no_search: true
 ---
 
 To install and run {{site.mesh_product_name}} on Ubuntu (**amd64**), execute
@@ -29,13 +28,13 @@ $ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
 {% endnavtab %}
 {% navtab Manually %}
 
-You can also [download](https://kong.bintray.com/kong-mesh/kong-mesh-{{page.kong_latest.version}}-ubuntu-amd64.tar.gz)
+You can also [download](https://kong.bintray.com/kong-mesh/kong-mesh-{{page.kong_versions[0].version}}-ubuntu-amd64.tar.gz)
  the distribution manually.
 
 Then, extract the archive with:
 
 ```sh
-$ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
+$ tar xvzf kong-mesh-{{page.kong_versions[0].version}}*.tar.gz
 ```
 {% endnavtab %}
 {% endnavtabs %}
