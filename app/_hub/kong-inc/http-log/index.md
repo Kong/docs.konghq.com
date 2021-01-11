@@ -225,7 +225,7 @@ A few considerations on the above JSON object:
 * `route` contains {{site.base_gateway}} properties about the specific Route requested.
 * `service` contains {{site.base_gateway}} properties about the Service associated with the requested Route.
 * `authenticated_entity` contains {{site.base_gateway}} properties about the authenticated credential if an authentication plugin has been enabled.
-* `workspaces` contains {{site.base_gateway}} properties of the Workspaces associated with the requested Route. **Only in Kong Enterprise version >= 0.34**.
+* `workspaces` contains {{site.ee_gateway_name}} properties of the Workspaces associated with the requested Route. **Only in {{site.ee_gateway_name}} version >= 0.34**.
 * `consumer` contains the authenticated Consumer if an authentication plugin has been enabled.
 * `latencies` contains some data about the latencies involved:
   * `proxy` is the time it took for the final service to process the request.
