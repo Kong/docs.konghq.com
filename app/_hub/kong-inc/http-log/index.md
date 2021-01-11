@@ -85,6 +85,19 @@ params:
       default: "`60000`"
       value_in_examples: 1000
       description: An optional value in milliseconds that defines for how long an idle connection will live before being closed
+    - name: retry_count
+      required: false
+      default: 10
+      value_in_examples: 15
+      description: Number of times to retry when sending data to the upstream server
+    - name: queue_size
+      required: false
+      default: 1
+      description: Max number of log entries to be sent on each message to the upstream sever
+    - name: headers
+      required: false
+      default: empty table
+      description: An optional table of headers added to the HTTP message to the upstream server
   extra: |
     **NOTE:** If the `config.http_endpoint` contains a username and password (ex.
     `http://bob:password@example.com/logs`), then Kong will automatically include
