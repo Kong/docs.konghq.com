@@ -715,10 +715,24 @@ plugins:
     {% endcapture %}
 
     <aside class="page-navigation">
-      <span><a href="/hub">< Back to Kong Plugin Hub</a></span>
+      <div class="github-links">
+        <ul>
+          <li>
+            <a href="/hub">
+            <i class="fa fa-chevron-left"></i>Back to Kong Plugin Hub</a>
+          </li>
+          <li>
+            <a href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}">
+            <img src="/assets/images/logos/logo-github.svg" alt="github"/>Edit this page</a>
+          </li>
+          <li>
+            <a href="https://github.com/Kong/docs.konghq.com/issues">
+            <img src="/assets/images/icons/documentation/icn-monitoring-black.svg" alt="report-issue"/>Report an issue</a>
+          </li>
+        </ul>
+      </div>
       {% unless page.toc == false %}
         <nav>
-          <br/>
           {% include toc.html html=full_content h_min=2 h_max=3 sanitize=true %}
         </nav>
       {% endunless %}

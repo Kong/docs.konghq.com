@@ -11,18 +11,18 @@ system of each of your Kong nodes. This guide will provide you with
 step-by-step instructions that will make a Kong node aware of your custom
 plugin(s).
 
-These steps should be applied to each node in your Kong cluster, to ensure the
+These steps should be applied to each node in your Kong cluster to ensure the
 custom plugin(s) are available on each one of them.
 
 ## Packaging sources
 
-You can either use a regular packing strategy (e.g. `tar`), or use the LuaRocks
+You can either use a regular packing strategy (e.g. `tar`) or use the LuaRocks
 package manager to do it for you. We recommend LuaRocks as it is installed
 along with Kong when using one of the official distribution packages.
 
 When using LuaRocks, you must create a `rockspec` file, which specifies the
-package contents. For an example see the [Kong plugin
-template][plugin-template], for more info about the format see the LuaRocks
+package contents. For an example, see the [Kong plugin
+template][plugin-template]; for more info about the format, see the LuaRocks
 [documentation on rockspecs][rockspec].
 
 Pack your rock using the following command (from the plugin repo):
@@ -67,7 +67,7 @@ The contents of this archive should be close to the following:
 
 For a Kong node to be able to use the custom plugin, the custom plugin's Lua
 sources must be installed on your host's file system. There are multiple ways
-of doing so: via LuaRocks, or manually. Choose one, and jump to section 3.
+of doing so: using LuaRocks from the created `rock`, using LuaRocks from source, or manually. Choose one, then jump to the next section to configure loading the plugin.
 
 1. Via LuaRocks from the created 'rock'
 
@@ -83,7 +83,7 @@ of doing so: via LuaRocks, or manually. Choose one, and jump to section 3.
 
         $ luarocks install <rock-filename>
 
-    The filename can be a local name, or any of the supported methods, eg.
+    The filename can be a local name or any of the supported methods, e.g.
     `http://myrepository.lan/rocks/my-plugin-0.1.0-1.all.rock`
 
 2. Via LuaRocks from the source archive
@@ -113,7 +113,7 @@ of doing so: via LuaRocks, or manually. Choose one, and jump to section 3.
 
     This is done by tweaking the `lua_package_path` property of your Kong
     configuration. Under the hood, this property is an alias to the `LUA_PATH`
-    variable of the Lua VM, if you are familiar with it.
+    variable of the Lua VM if you are familiar with it.
 
     Those properties contain a semicolon-separated list of directories in
     which to search for Lua sources. It should be set like so in your Kong
@@ -166,7 +166,7 @@ sources, you must still do so for each node in your Kong cluster.
 ## Load the plugin
 
 You must now add the custom plugin's name to the `plugins` list in your
-Kong configuration (on each Kong node):
+Kong configuration on each Kong node:
 
     plugins = bundled,<plugin-name>
 
@@ -189,11 +189,11 @@ Note: you can also set this property via its environment variable equivalent:
 Reminder: don't forget to update the `plugins` directive for each node
 in your Kong cluster.
 
-Reminder: the plugin will take effect after restart kong:
+The plugin will take effect after restarting Kong:
     
     kong restart
 
-But, if you want to apply plugin while kong never stop, you can use this:
+If you want to apply the plugin without restarting Kong, you can use this:
 
     kong prepare
     kong reload
@@ -233,16 +233,15 @@ There are three steps to completely remove a plugin.
 
 1. Remove the plugin from your Kong Service or Route configuration. Make sure
    that it is no longer applied globally nor for any Service, Route, or
-   consumer. This has to be done only once for the entire Kong cluster, no
-   restart/reload required.  This step in itself will make that the plugin is
-   no longer in use. But it remains available and it is still possible to
+   consumer. This has to be done only once for the entire Kong cluster--no
+   restart/reload required. This step in itself will make that the plugin is
+   no longer in use, but it remains available and it is still possible to
    re-apply the plugin.
 
-2. Remove the plugin from the `plugins` directive (on each Kong node).
-   Make sure to have completed step 1 before doing so. After this step
+2. Remove the plugin from the `plugins` directive on each Kong node.
+   Make sure to have completed step 1 before doing so. After this step,
    it will be impossible for anyone to re-apply the plugin to any Kong
-   Service, Route, Consumer, or even globally. This step requires to
-   restart/reload the Kong node to take effect.
+   Service, Route, Consumer, or even globally. This step requires a restart/reload of the Kong node to take effect.
 
 3. To remove the plugin thoroughly, delete the plugin-related files from
    each of the Kong nodes. Make sure to have completed step 2, including
@@ -282,13 +281,13 @@ Kong can fail to start because of a misconfigured custom plugin for several
 reasons:
 
 * "plugin is in use but not enabled" -> You configured a custom plugin from
-  another node, and that the plugin configuration is in the database, but the
+  another node and the plugin configuration is in the database, but the
   current node you are trying to start does not have it in its `plugins`
   directive. To resolve, add the plugin's name to the node's `plugins`
   directive.
 
 * "plugin is enabled but not installed" -> The plugin's name is present in the
-  `plugins` directive, but that Kong is unable to load the `handler.lua`
+  `plugins` directive, but Kong is unable to load the `handler.lua`
   source file from the file system. To resolve, make sure that the
   [lua_package_path](/enterprise/{{page.kong_version}}/property-reference/#development-miscellaneous-section)
   directive is properly set to load this plugin's Lua sources.

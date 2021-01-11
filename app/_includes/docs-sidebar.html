@@ -10,6 +10,8 @@
   {% assign docs_url = '/mesh/' | append: page.kong_version %}
   {% elsif page.edition == 'konnect' %}
   {% assign docs_url = '/konnect' %}
+  {% elsif page.edition == 'kubernetes-ingress-controller' %}
+  {% assign docs_url = '/kubernetes-ingress-controller/' | append: page.kong_version %}
   {% elsif page.edition == 'deck' %}
   {% assign docs_url = '/deck' %}
   {% else %}

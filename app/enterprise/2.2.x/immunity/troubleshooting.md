@@ -65,7 +65,7 @@ If you cannot make successful requests to Kong Admin with `{KONG_PROTOCOL}://{KO
 
 ### I'm not seeing any alerts, even though the Collector App is connected to Kong and is receiving traffic
 
-Immunity waits at least an hour before it makes its first models. If the Collector App has not been up for very long, then the anomaly detection models used to generate alerts have not been created. These models are created using cURL. See [Immunity Model Training](/enterprise/{{page.kong_version}}/brain-immunity/alerts/#immunity-model-training) for more information.
+Immunity waits at least an hour before it makes its first models. If the Collector App has not been up for very long, then the anomaly detection models used to generate alerts have not been created. These models are created using cURL. See [Immunity Model Training](/enterprise/{{page.kong_version}}/immunity/model-training) for more information.
 
 
 ### I triggered model training and I'm still not seeing alerts

@@ -34,45 +34,69 @@ If you are trying out {{site.ee_product_name}} using a hosted (cloud) free trial
 <a href="/getting-started-guide/{{page.kong_version}}/prepare/#free-trials-setup">Prepare to Administer {{site.base_gateway}}</a>.
 </div>
 
-1. Call the Admin API on port `8001` and create an Upstream named `upstream`.
+Call the Admin API on port `8001` and create an Upstream named `upstream`:
 
-    *Using cURL*:
-    ```sh
-    $ curl -X POST http://<admin-hostname>:8001/upstreams \
-    --data name=upstream
-    ```
-    *Or using HTTPie*:
-    ```sh
-    $ http POST :8001/upstreams name=upstream
-    ```
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -X POST http://<admin-hostname>:8001/upstreams \
+  --data name=upstream
+```
+{% endnavtab %}
+{% navtab HTTPie %}    
+```sh
+$ http POST :8001/upstreams \
+  name=upstream
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
-2. Update the service you created previously to point to this upstream.
+Update the service you created previously to point to this upstream:
 
-    *Using cURL*:
-    ```sh
-    $ curl -X PATCH http://<admin-hostname>:8001/services/example_service \
-    --data host='upstream'
-    ```
-    *Or using HTTPie*:
-    ```sh
-    $ http PATCH :8001/services/example_service host='upstream'
-    ```
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -X PATCH http://<admin-hostname>:8001/services/example_service \
+  --data host='upstream'
+```
+{% endnavtab %}
+{% navtab HTTPie %}    
+```sh
+$ http PATCH :8001/services/example_service \
+  host='upstream'
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
-3. Add two targets to the upstream, each with port 80: `mockbin.org:80` and `httpbin.org:80`.
+Add two targets to the upstream, each with port 80: `mockbin.org:80` and
+`httpbin.org:80`:
 
-    *Using cURL*:
-    ```sh
-    $ curl -X POST http://<admin-hostname>:8001/upstreams/upstream/targets \
-    --data target='mockbin.org:80'
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -X POST http://<admin-hostname>:8001/upstreams/upstream/targets \
+  --data target='mockbin.org:80'
 
-    $ curl -X POST http://<admin-hostname>:8001/upstreams/upstream/targets \
-    --data target='httpbin.org:80'
-    ```
-    *Or using HTTPie*:
-    ```sh
-    $ http POST :8001/upstreams/upstream/targets target=mockbin.org:80
-    $ http POST :8001/upstreams/upstream/targets target=httpbin.org:80
-    ```
+$ curl -X POST http://<admin-hostname>:8001/upstreams/upstream/targets \
+  --data target='httpbin.org:80'
+```
+{% endnavtab %}
+{% navtab HTTPie %}    
+```sh
+$ http POST :8001/upstreams/upstream/targets \
+  target=mockbin.org:80
+$ http POST :8001/upstreams/upstream/targets \
+  target=httpbin.org:80
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
+
 {% endnavtab %}
 
 {% navtab Using Kong Manager %}

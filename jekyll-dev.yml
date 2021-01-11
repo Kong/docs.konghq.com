@@ -66,6 +66,9 @@ extensions:
     # - name: dev portal extension
     #   slug: dev-mod
 
+include:
+  - _redirects
+
 exclude:
   - node_modules
   - jekyll-cache
@@ -113,6 +116,11 @@ defaults:
       layout: 'docs-v2'
 
   - scope:
+      path: 'kubernetes-ingress-controller'
+    values:
+      layout: 'docs-v2'
+
+  - scope:
       path: 'about'
     values:
       layout: 'about'
@@ -133,3 +141,4 @@ base_gateway: Kong Gateway
 mesh_product_name: Kong Mesh
 konnect_product_name: Kong Konnect
 konnect_short_name: Konnect
+kic_product_name: Kubernetes Ingress Controller
