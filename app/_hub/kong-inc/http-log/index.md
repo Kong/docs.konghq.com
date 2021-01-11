@@ -78,11 +78,11 @@ params:
       value_in_examples: 1000
       description: An optional value in milliseconds that defines how long an idle connection will live before being closed.
     - name: flush_timeout
-      required:
+      required: false
       default: "`2`"
       value_in_examples: 2
       description: |  
-        REVIEWERS: need a description.      
+        Optional time in seconds. If `queue_size` > 1, this is the max idle time before sending a log with less than `queue_size` records.    
     - name: retry_count
       required: false
       default: 10
