@@ -67,12 +67,6 @@ params:
       value_in_examples: POST
       description: |
         An optional method used to send data to the HTTP server. Supported values are `POST` (default), `PUT`, and `PATCH`.
-    - name: content_type
-      required: true
-      default: "application/json"
-      value_in_examples: application/json
-      description: |
-        REVIEWERS: need a description.          
     - name: timeout
       required: false
       default: "`10000`"
