@@ -105,7 +105,8 @@ params:
 
 ## Log Format
 
-Every request is logged separately in a JSON object in the following format:
+Every request is logged separately in a JSON object (or array of JSON objects if
+`queue_size` argument > 1) in the following format:
 
 ```json
 {
