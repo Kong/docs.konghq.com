@@ -1,12 +1,12 @@
 ---
-title: External Plugins Support
+title: Plugins In Other Languages
 ---
 
 ## Introduction
 
-External plugins are those that run on a process separate from {{site.base_gateway}} itself,
-enabling the use of any programming language for which an appropriate
-plugin server is available.
+{{site.base_gateway}} supports plugins written in the Lua programming
+language.  Plugins written in other languages need to be served by a
+separate process, that we call _plugin server_.
 
 Each plugin server hosts one or more plugins and communicates with the
 main {{site.base_gateway}} process through Unix sockets.  If so configured, {{site.base_gateway}} can manage
@@ -31,7 +31,8 @@ Property | Description | Default
 `pluginserver_<NAME>_query_cmd` | Command to dump available plugins' info | `/usr/local/bin/query_<NAME>`
 
 
-For example, you could set Go and Python plugins like this:
+For example, you could set Go and Python plugins like this (assuming
+an hypothetical Python plugin server called `pypluginserver.py`):
 
 ```
 pluginserver_names = go,python
