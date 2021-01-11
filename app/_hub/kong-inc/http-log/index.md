@@ -14,6 +14,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x
@@ -36,6 +37,7 @@ kong_version_compatibility:
         - 0.3.x
     enterprise_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -101,7 +103,7 @@ params:
         REVIEWERS: need a description.
   extra: |
     **NOTE:** If the `config.http_endpoint` contains a username and password (for example,
-    `http://bob:password@example.com/logs`), then Kong automatically includes
+    `http://bob:password@example.com/logs`), then Kong Gateway automatically includes
     a basic-auth `Authorization` header in the log requests.
 
 ---
@@ -237,7 +239,7 @@ A few considerations on the above JSON object:
 ## Kong Process Errors
 
 This logging plugin only logs HTTP request and response data. If you are
-looking for the Kong process error file (which is the nginx error file), then
+looking for the Kong Gateway process error file (which is the nginx error file), then
 you can find it at the following path:
 
 `$KONG_PREFIX/logs/error.log`
