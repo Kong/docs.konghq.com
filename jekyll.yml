@@ -66,6 +66,9 @@ extensions:
     # - name: dev portal extension
     #   slug: dev-mod
 
+include:
+  - _redirects
+
 # location vars
 icons_dir: assets/images/icons
 
@@ -109,6 +112,11 @@ defaults:
       layout: 'docs-v2'
 
   - scope:
+      path: 'kubernetes-ingress-controller'
+    values:
+      layout: 'docs-v2'
+
+  - scope:
       path: 'about'
     values:
       layout: 'about'
@@ -127,3 +135,4 @@ ee_product_name: Kong Enterprise
 ce_product_name: Kong Gateway
 base_gateway: Kong Gateway
 mesh_product_name: Kong Mesh
+kic_product_name: Kubernetes Ingress Controller

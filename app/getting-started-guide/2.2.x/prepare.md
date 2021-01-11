@@ -79,29 +79,36 @@ $ curl -i -X GET http://kong1a2b3c.kong-cloud.com/mock/request
 {% endnavtab %}
 {% endnavtabs %}
 
-### Create a User with an RBAC Token
+### Create a user with an RBAC token
 
 1. Open the Kong Manager using the link provided in your free trial welcome
 email.
 2. Open **Teams** > **RBAC Users**, then click **Add New User**.
 3. Set up an RBAC user with an appropriate role (e.g. admin) and an RBAC token.
 Make sure to leave the **Enabled** box checked.
-4. Test by building a request to the Admin API:
 
-    *Using cURL:*
-    ```sh
-    $ curl <admin-endpoint-from-email>/services \
-      -H “Kong-Admin-Token:<your-RBAC-token>”
-    ```
+### Verify the RBAC user
 
-    *Or using HTTPie:*
-    ```sh
-    $ http <admin-endpoint-from-email>/services \
-      Kong-Admin-Token:<your-RBAC-token>
-    ```
+Test by building a request to the Admin API:
 
-    You should get a `200` response code and your list of services will be empty.
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl <admin-endpoint-from-email>/services \
+  -H “Kong-Admin-Token:<your-RBAC-token>”
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http <admin-endpoint-from-email>/services \
+  Kong-Admin-Token:<your-RBAC-token>
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- codeblock tabs -->
 
+You should get a `200` response code and your list of services will be empty.
 You can now use the Admin API instructions in this guide.
 
 Remember to switch any mentions of `http://<admin-hostname>:8001` or
@@ -115,15 +122,21 @@ Ensure that you can send requests to the Kong Admin API using either cURL or HTT
 
 View the current configuration by issuing the following command in a terminal window:
 
-*Using cURL:*
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
 ```bash
 $ curl -i -X GET http://<admin-hostname>:8001
 ```
-
-*or using HTTPie:*
+{% endnavtab %}
+{% navtab HTTPie %}
 ```bash
 $ http <admin-hostname>:8001
 ```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
+
 The current configuration returns.
 {% endnavtab %}
 
@@ -189,18 +202,22 @@ configurations are being pushed from the Control Plane to your Data Planes using
 the Cluster Status CLI.
 
 Run the following on a Control Plane:
-{% navtabs %}
-{% navtab Using cURL %}
+
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
 ```bash
-$ curl -i -X GET http://<admin-hostname>:8001/clustering/data_planes
+$ curl -i -X GET http://<admin-hostname>:8001/clustering/data-planes
 ```
 {% endnavtab %}
-{% navtab Using HTTPie %}
+{% navtab HTTPie %}
 ```bash
-$ http :8001/clustering/data_planes
+$ http :8001/clustering/data-planes
 ```
 {% endnavtab %}
 {% endnavtabs %}
+<!-- end codeblock tabs -->
+
 The output shows all of the connected Data Plane instances in the cluster:
 
 ```json

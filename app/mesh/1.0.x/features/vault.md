@@ -1,6 +1,5 @@
 ---
 title: Kong Mesh - Vault Policy
-no_search: true
 redirect_from: "/mesh/1.0.x/features/"
 ---
 

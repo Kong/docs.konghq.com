@@ -6,19 +6,26 @@ version: 2.0.x
 desc: Allow portal developers to register applications against Services
 description: |
   Applications allow registered developers on Kong Developer Portal to
-  authenticate with OAuth against a Service on Kong. Dev Portal admins can
+  authenticate against a gateway Service. Dev Portal admins can
   selectively admit access to Services using the
   [Application Registration](/enterprise/latest/developer-portal/administration/application-registration/enable-application-registration) plugin.
 
-  The Application Registration plugin is used in tandem with either the
-  Kong [OIDC](/hub/kong-inc/openid-connect/) or Kong
-  [OAuth2](/hub/kong-inc/oauth2) plugin, depending on your configured Dev
-  Portal authorization provider. Either Kong or a third-party OAuth provider
-  can be the system of record (SoR) for application credentials. For more
+  The Application Registration plugin is used in tandem with supported Kong Gateway authorization
+  plugins, depending on your configured Dev
+  Portal authorization provider. Either Kong Gateway (`kong-oauth2`) or a third-party OAuth provider
+  (`external-oauth2`) can be the system of record (SoR) for application credentials. For more
   information, see
-  [Configure an Authorization Provider Strategy](/enterprise/latest/developer-portal/administration/application-registration/index#portal-app-auth).
+  [Configure an Authorization Provider Strategy](/enterprise/latest/developer-portal/administration/application-registration/auth-provider-strategy).
 
-  If you plan to use the external OAuth option, review the
+  Supported authorization plugins for use with application registration:
+
+  | Kong Gateway Plugin | Portal authorization strategy                                 |
+  |:------|:--------------------------------------------------------------------|
+  | [OAuth2](/hub/kong-inc/oauth2) | `kong-oauth2` |
+  | [Key Auth](/hub/kong-inc/key-auth/)| `kong-oauth2` |
+  | [OIDC](/hub/kong-inc/openid-connect)| `external-oauth2` |
+
+  If you plan to use the external OAuth option with OIDC, review the
   [supported OAuth workflows](/enterprise/latest/developer-portal/administration/application-registration/3rd-party-oauth).
 
 enterprise: true

@@ -56,30 +56,46 @@ If you are trying out {{site.ee_product_name}} using a hosted (cloud) free trial
 <a href="/getting-started-guide/{{page.kong_version}}/prepare/#free-trials-setup">Prepare to Administer {{site.base_gateway}}</a>.
 </div>
 
-1. Define a Service with the name `example_service` and the URL `http://mockbin.org`.
+Define a Service with the name `example_service` and the URL `http://mockbin.org`:
 
-    *Using cURL*:
-    ```sh
-    $ curl -i -X POST http://<admin-hostname>:8001/services \
-    --data name=example_service \
-    --data url='http://mockbin.org'
-    ```
-    *Or using HTTPie*:
-    ```sh
-    $ http POST :8001/services name=example_service url='http://mockbin.org'
-    ```
-    If the service is created successfully, you'll get a 201 success message.
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -i -X POST http://<admin-hostname>:8001/services \
+  --data name=example_service \
+  --data url='http://mockbin.org'
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http POST :8001/services \
+  name=example_service \
+  url='http://mockbin.org'
+```
+<!-- end codeblock tabs -->
 
-2. Verify the service’s endpoint.
+{% endnavtab %}
+{% endnavtabs %}
 
-    *Using cURL*:
-    ```sh
-    $ curl -i http://<admin-hostname>:8001/services/example_service
-    ```
-    *Or using HTTPie*:
-    ```sh
-    $ http :8001/services/example_service
-    ```
+If the service is created successfully, you'll get a 201 success message.
+
+Verify the service’s endpoint:
+
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -i http://<admin-hostname>:8001/services/example_service
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8001/services/example_service
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
 {% endnavtab %}
 {% navtab Using Kong Manager %}
@@ -146,24 +162,31 @@ Define a Route (`/mock`) for the Service (`example_service`) with a specific
 path that clients need to request. Note at least one of the hosts, paths, or
 methods must be set for the route to be matched to the service.
 
-*Using cURL*:
-  ```sh
-  $ curl -i -X POST http://<admin-hostname>:8001/services/example_service/routes \
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -i -X POST http://<admin-hostname>:8001/services/example_service/routes \
   --data 'paths[]=/mock' \
   --data name=mocking
-  ```
-
-*Or using HTTPie*:
-  ```sh
-  $ http :8001/services/example_service/routes paths:='["/mock"]' name=mocking
-  ```
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8001/services/example_service/routes \
+  paths:='["/mock"]' \
+  name=mocking
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
 A 201 message indicates the route was created successfully.
 
 {% endnavtab %}
 {% navtab Using Kong Manager %}
 1. From the `example_service` overview page, scroll down to the Routes section
-and click **New Route**.  
+and click **Add Route**.  
 
     The Create Route dialog displays with the Service field auto-populated with
     the Service name and ID number. This field is required.
@@ -280,15 +303,20 @@ is now using:
 
 Using the Admin API, issue the following:
 
-*Using cURL*:
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
 ```sh
 $ curl -i -X GET http://<admin-hostname>:8000/mock/request
 ```
-
-*Or using HTTPie*:
+{% endnavtab %}
+{% navtab HTTPie %}
 ```sh
 $ http :8000/mock/request
 ```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
 {% endnavtab %}
 {% navtab Using a Web Browser %}

@@ -7,7 +7,7 @@ service_body: |
     ---:| ---
     `name`<br>*optional* | The Service name.
     `retries`<br>*optional* | The number of retries to execute upon failure to proxy. Defaults to `5`.
-    `protocol` |  The protocol used to communicate with the upstream. It can be one of `http` or `https`.  Defaults to `"http"`.
+    `protocol` |  The protocol used to communicate with the upstream. Accepted values are: `"grpc"`, `"grpcs"`, `"http"`, `"https"`, `"tcp"`, `"tls"`, `"udp"`. Default: `"http"`.
     `host` | The host of the upstream server.
     `port` | The upstream server port. Defaults to `80`.
     `path`<br>*optional* | The path to be used in requests to the upstream server.
@@ -82,6 +82,8 @@ route_body: |
     `regex_priority`<br>*optional* |  A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same `regex_priority`, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).  Defaults to `0`.
     `strip_path`<br>*optional* |  When matching a Route via one of the `paths`, strip the matching prefix from the upstream request URL.  Defaults to `true`.
     `preserve_host`<br>*optional* |  When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service's `host`.
+    `request_buffering` |  Whether to enable request body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that receive data with chunked transfer encoding.  Default: `true`.
+    `response_buffering` |  Whether to enable response body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that send data with chunked transfer encoding.  Default: `true`.
     `snis`<br>*semi-optional* |  A list of SNIs that match this Route when using stream routing.
     `sources`<br>*semi-optional* |  A list of IP sources of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port".
     `destinations`<br>*semi-optional* |  A list of IP destinations of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port".
@@ -103,6 +105,8 @@ route_json: |
         "regex_priority": 0,
         "strip_path": true,
         "preserve_host": false,
+        "request_buffering": true,
+        "response_buffering": true,
         "tags": ["user-level", "low-priority"],
         "service": {"id":"af8330d3-dbdc-48bd-b1be-55b98608834b"}
     }
@@ -122,6 +126,8 @@ route_data: |
         "regex_priority": 0,
         "strip_path": true,
         "preserve_host": false,
+        "request_buffering": true,
+        "response_buffering": true,      
         "tags": ["user-level", "low-priority"],
         "service": {"id":"127dfc88-ed57-45bf-b77a-a9d3a152ad31"}
     }, {
@@ -134,6 +140,8 @@ route_data: |
         "regex_priority": 0,
         "strip_path": true,
         "preserve_host": false,
+        "request_buffering": true,
+        "response_buffering": true,
         "snis": ["foo.test", "example.com"],
         "sources": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
         "destinations": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
@@ -1039,9 +1047,9 @@ HTTP 200 OK
 
 ---
 
-### Update Or Create Service
+### Update or Create Service
 
-##### Create Or Update Service
+##### Create or Update Service
 
 <div class="endpoint put">/services/{name or id}</div>
 
@@ -1050,7 +1058,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the Service to create or update.
 
 
-##### Create Or Update Service Associated to a Specific Route
+##### Create or Update Service Associated to a Specific Route
 
 <div class="endpoint put">/routes/{route name or id}/service</div>
 
@@ -1059,7 +1067,7 @@ Attributes | Description
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route associated to the Service to be created or updated.
 
 
-##### Create Or Update Service Associated to a Specific Plugin
+##### Create or Update Service Associated to a Specific Plugin
 
 <div class="endpoint put">/plugins/{plugin id}/service</div>
 
@@ -1296,9 +1304,9 @@ HTTP 200 OK
 
 ---
 
-### Update Or Create Route
+### Update or Create Route
 
-##### Create Or Update Route
+##### Create or Update Route
 
 <div class="endpoint put">/routes/{name or id}</div>
 
@@ -1307,7 +1315,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the Route to create or update.
 
 
-##### Create Or Update Route Associated to a Specific Plugin
+##### Create or Update Route Associated to a Specific Plugin
 
 <div class="endpoint put">/plugins/{plugin id}/route</div>
 
@@ -1790,9 +1798,9 @@ HTTP 200 OK
 
 ---
 
-### Update Or Create Plugin
+### Update or Create Plugin
 
-##### Create Or Update Plugin
+##### Create or Update Plugin
 
 <div class="endpoint put">/plugins/{plugin id}</div>
 
@@ -2054,9 +2062,9 @@ HTTP 200 OK
 
 ---
 
-### Update Or Create Certificate
+### Update or Create Certificate
 
-##### Create Or Update Certificate
+##### Create or Update Certificate
 
 <div class="endpoint put">/certificates/{certificate id}</div>
 
@@ -2229,9 +2237,9 @@ HTTP 200 OK
 
 ---
 
-### Update Or Create CA Certificate
+### Update or Create CA Certificate
 
-##### Create Or Update CA Certificate
+##### Create or Update CA Certificate
 
 <div class="endpoint put">/ca_certificates/{ca_certificate id}</div>
 
@@ -2424,9 +2432,9 @@ HTTP 200 OK
 
 ---
 
-### Update Or Create SNI
+### Update or Create SNI
 
-##### Create Or Update SNI
+##### Create or Update SNI
 
 <div class="endpoint put">/snis/{name or id}</div>
 
@@ -2624,9 +2632,9 @@ HTTP 200 OK
 
 ---
 
-### Update Or Create Upstream
+### Update or Create Upstream
 
-##### Create Or Update Upstream
+##### Create or Update Upstream
 
 <div class="endpoint put">/upstreams/{name or id}</div>
 
@@ -2635,7 +2643,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the Upstream to create or update.
 
 
-##### Create Or Update Upstream Associated to a Specific Target
+##### Create or Update Upstream Associated to a Specific Target
 
 <div class="endpoint put">/targets/{target host:port or id}/upstream</div>
 
@@ -2906,7 +2914,7 @@ HTTP 204 No Content
 
 ---
 
-### Set Target Address As Unhealthy
+### Set Target Address as Unhealthy
 
 Set the current health status of an individual address resolved by a target
 in the load balancer to "unhealthy" in the entire Kong cluster.
@@ -2943,7 +2951,7 @@ HTTP 204 No Content
 
 ---
 
-### Set Target As Healthy
+### Set Target as Healthy
 
 Set the current health status of a target in the load balancer to "healthy"
 in the entire Kong cluster. This sets the "healthy" status to all addresses
@@ -2976,7 +2984,7 @@ HTTP 204 No Content
 
 ---
 
-### Set Target As Unhealthy
+### Set Target as Unhealthy
 
 Set the current health status of a target in the load balancer to "unhealthy"
 in the entire Kong cluster. This sets the "unhealthy" status to all addresses

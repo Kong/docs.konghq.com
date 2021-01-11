@@ -9,7 +9,7 @@ credentials management with the [supported Identity Provider](#idps) of their
 choice. To use the external IdP feature, set the `portal_app_auth`
 configuration option to `external-oauth2` in the
 `kong.conf.default` configuration file. For more information, see setting the
-[Authorization Provider Strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/#portal-app-auth).
+[Authorization Provider Strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/auth-provider-strategy).
 
 The Kong [OIDC](/hub/kong-inc/openid-connect/) and
 [Portal Application Registration](/hub/kong-inc/application-registration/)
@@ -102,7 +102,7 @@ Due to limitations of the OIDC plugin, a single plugin instance cannot handle
 dynamic `client_id's` provisioned from multiple sources (applications).
 To circumvent this issue, the IdP Issuer URL is exposed to developers on the
 Dev Portal application show page when
-[`show_issuer`](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration#show-url-issuer) is enabled in the
+[`show_issuer`](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration#app-reg-params) is enabled in the
 Application Registration plugin. Developers can hit the Issuer URL directly to
 provision an access token. After getting the access token, requests can be made
 against the proxy.

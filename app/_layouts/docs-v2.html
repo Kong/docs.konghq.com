@@ -28,7 +28,7 @@ id: documentation
                 {% assign version_page_url = page.url | replace: page.kong_version, ver.release %}
                 {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}<li {% if page.kong_version==ver.release %} class="active" {% endif %}>
                 <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
-                  <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}{% endif %}"
+                  <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if page.edition == 'enterprise' %}enterprise/{% endif %}{% if page.edition == 'mesh' %}mesh/{% endif %}{{ver.release}}{% endif %}"
                     {% if ver.release==page.kong_version %} class="active" {% endif %}
                     data-version-id="{{ver.release}}"
                   >
@@ -98,9 +98,9 @@ id: documentation
           {% endif %}
           {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
           <div class="alert alert-warning">
-            <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong {% if page.edition == 'community' %}{{site.ce_product_name}}{% endif %}{% if page.edition == 'enterprise' %}Enterprise{% endif %}. Go <a
-                  href="{% if page.edition == 'enterprise' %}/enterprise{% endif %}/latest">here</a>
-            to browse the documentation for the latest version.
+            <strong>Careful!</strong> You are browsing documentation for an outdated version{% if page.edition == 'community' %} of {{site.ce_product_name}}{% endif %}{% if page.edition == 'enterprise' %} of {{site.ee_product_name}}{% endif %}{% if page.edition == 'mesh' %} of {{site.mesh_product_name}}{% endif %}. Go <a
+                  href="{% if page.edition == 'enterprise' %}/enterprise{% endif %}{% if page.edition == 'mesh' %}/mesh{% endif %}/latest">here</a>
+            to see the documentation for the latest version.
           </div>
           {% elsif page.is_homepage != true and page.beta == true %}
           <div class="alert alert-ee red condensed margin-bigger">
@@ -197,6 +197,74 @@ id: documentation
     algoliaOptions: {
       hitsPerPage: 5,
       'facetFilters': ["version: {{page.kong_version}}"]
+    },
+    // Override selected event to allow for local environment navigation
+    handleSelected: function (input, event, suggestion) {
+      input.setVal('');
+      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split(
+        "docs.konghq.com")[1]
+    }
+    // ,debug: true // Set debug to true if you want to inspect the dropdown
+  });
+
+</script>
+{% endif %}
+
+
+{% if page.edition == 'kubernetes-ingress-controller' %}
+<script type="text/javascript">
+  docsearch({
+    appId: 'T5JKD83LWT',
+    apiKey: '1390283021f26e36117242934deb8d9d',
+    indexName: 'prod_KIC',
+    inputSelector: '#getkong-algolia-search-input',
+    algoliaOptions: {
+      hitsPerPage: 5
+    },
+    // Override selected event to allow for local environment navigation
+    handleSelected: function (input, event, suggestion) {
+      input.setVal('');
+      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split(
+        "docs.konghq.com")[1]
+    }
+    // ,debug: true // Set debug to true if you want to inspect the dropdown
+  });
+
+</script>
+{% endif %}
+
+{% if page.edition == 'mesh' %}
+<script type="text/javascript">
+  docsearch({
+    appId: 'T5JKD83LWT',
+    apiKey: '1390283021f26e36117242934deb8d9d',
+    indexName: 'prod_Mesh',
+    inputSelector: '#getkong-algolia-search-input',
+    algoliaOptions: {
+      hitsPerPage: 5,
+      'facetFilters': ["version: {{page.kong_version}}"]
+    },
+    // Override selected event to allow for local environment navigation
+    handleSelected: function (input, event, suggestion) {
+      input.setVal('');
+      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split(
+        "docs.konghq.com")[1]
+    }
+    // ,debug: true // Set debug to true if you want to inspect the dropdown
+  });
+
+</script>
+{% endif %}
+
+{% if page.edition == 'deck' %}
+<script type="text/javascript">
+  docsearch({
+    appId: 'T5JKD83LWT',
+    apiKey: '1390283021f26e36117242934deb8d9d',
+    indexName: 'prod_decK',
+    inputSelector: '#getkong-algolia-search-input',
+    algoliaOptions: {
+      hitsPerPage: 5
     },
     // Override selected event to allow for local environment navigation
     handleSelected: function (input, event, suggestion) {

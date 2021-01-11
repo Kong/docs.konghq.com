@@ -1,39 +1,73 @@
 ---
 title: Kong Enterprise Version Support
-toc: false
 ---
 
+The support for Kong Enterprise software versions is explained in this topic.
 
-The support for Kong Enterprise software versions is explained in this topic. 
+## Types of Releases
+Kong primarily follows [semantic versioning](https://semver.org/) (SemVer) with its products. That is, products typically follow a pattern of `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>`. Kong Enterprise additionally has one more decimal point on the right which identifies a sub-patch based on the Kong Community Gateway. For the purposes of this support document:
 
-For customers with an active enterprise support agreement, Kong provides full support for each release for 12 months from the released date. 
+* **Major Version** refers to a version of Kong Enterprise identified by the number to the left of the leftmost decimal point. For example, 2.1.3.0 has Major Version 2 and 1.3.0.0 has Major Version 1.
 
-Full support includes:
+* **Minor Version** means a version of the Software identified by a change in the number in between the two leftmost decimal points (x.X.x). For example, 2.1.3.0 has Minor Version 1 and 1.3.0.0 has Minor Version 3.
 
-* Technical support on the use of the software as documented, assistance with application configuration, and guidelines on performance tuning. 
+* The **First Major Version Release** is the first chronologically generally available release of a given Major Version. The First Major Version Release of Major Version 2 of Kong Enterprise was 2.1.3.0 and the First Major Version Release of Major Version 1 was 1.3.0.0.
 
-* Access to all error corrections, bug fixes, software updates, and software upgrades to the Software that Kong makes generally available to other Kong enterprise customers who have purchased a license to the same Software purchased by Customer. 
+* The **Latest Major/Minor Version Release** is the most recent chronologically generally available Minor Version Release of a given Major Version.
 
-* Development of workarounds or patches for customers upon request, and where technically possible, for the following: Urgent issues; Critical and High Security Vulnerabilities; High priority issues where the product in a non-production environment is nearing a critical milestone, is unusable, and no workaround is available.
+For customers with an active enterprise support agreement, beginning with Kong Enterprise release version 2.1.3.x<sup>*</sup>. Kong provides support for each Major Version Release of Kong Enterprise for 24 months from the release date of the First Major Version Release.
 
-Bug fixes and patches will be issued against the latest version of Kong Enterprise. For example, if a customer experiences a high priority bug on 1.5.0.5 and the latest shipped product is version 2.1.3.0, then the fix for that bug will normally be provided on 2.1.3.1. For customers with platinum or higher support, we will issue fixes to earlier versions upon request, if there are compelling business reasons for remaining on an older release.
+Support includes:
+* Technical support on the use of the software as documented including: 
+  * Assistance with configuration of the software
+  * Guidelines on performance tuning
+* Assistance with upgrades to later versions of the Kong software
+* Access to bug-fix releases and/or workarounds based on the below Bug Fix Guidelines
 
+**<sup>*</sup>** 24 month support applies beginning with Kong Enterprise release 2.1.3.x. For releases prior to that release, support remains at 12 months from the First Minor Version Release. Support for Kong Mesh remains at 12 months. The 24 month support applies to Kong Enterprise standard releases.
 
-| Version  | Released Date | End of Support |
-|:---------|:-------------:|---------------:|
-|  2.1.x   |  2020-08-25   |   2021-08-24   |
-|  1.5.0.x |  2020-04-10   |   2021-04-09   |    
-|  1.3.0.x |  2019-11-05   |   2020-11-04   |
-|   0.36   |  2019-08-05   |   2020-08-04   |
-|   0.35   |  2019-05-16   |   2020-05-15   |
-|   0.34   |  2018-11-19   |   2019-11-18   |
-|   0.33   |  2018-07-11   |   2019-06-10   |
-|   0.32   |  2018-05-22   |   2019-05-21   |
-|   0.31   |  2018-03-13   |   2019-03-12   |
-|   0.30   |  2018-01-22   |   2019-01-21   |
+## Sunset Support
+After the product hits the end of the support period, Kong will provide limited support to help the customer upgrade to a fully supported version of Kong Enterprise for up to an additional 12 month sunset period. Kong will not provide patches for software covered by this sunset period. If there is an issue that requires a patch during this period, the customer will need to upgrade to a newer Kong Enterprise version covered by 24 month active support.
 
-> Table 1: End of Support Date
+## Bug Fix Guidelines
+Unfortunately, all software is susceptible to bugs. Kong seeks to remedy bugs through a structured protocol as follows:
 
-End of life support will be limited to technical assistance only, with no source code patches or new patch level releases. Kong's support team may provide recommendations to the customer, but no software patches will be provided. If there is an issue that requires a patch, customers will need to upgrade to a newer version covered by the full Support Policy.
+* Serious security vulnerabilities are treated with the utmost priority. See [here](/enterprise/{{page.kong_version}}/kong-security-update-process/) for our security vulnerability reporting and remedy process, including how to report a vulnerability.
 
-The above is a summary only and is qualified by Kong's Support and Maintenance Policy. 
+* Bugs which result in production outages of Kong Enterprise or effective non-operation (such as catastrophic performance degradation) will be remedied through high priority bug fixes and provided in patch releases to the Latest Major/Minor Version Release of all currently supported Major Versions of the software and optionally ported to other versions at Kong’s discretion based on the severity and impact of the bug.
+
+* Bugs which prevent the upgrade of a supported version of Kong Enterprise to a more recent supported version will be remedied through high priority bug fixes and provided in the Latest Major/Minor Version Release of all currently supported Major Versions of the software and optionally ported to other versions at Kong’s discretion based on the severity and impact of the bug.
+
+* Other bugs as well as feature requests will be assessed for severity and fixes or enhancements applied to versions of Kong Enterprise at Kong’s discretion depending on the impact of the bug. Typically, these types of fixes and enhancements will only be applied to the most recent Minor Version in the most recent Major Version.
+
+Customers with platinum or higher subscriptions may request fixes outside of the above and Kong will assess them at its sole discretion.
+
+## Version Support for Kong Enterprise
+
+| Version  | Released Date | End of Full Support | End of Sunset Support |
+|:--------:|:-------------:|:-------------------:|:---------------------:|
+|  2.2.x.x |  2020-11-17   |     2022-08-24      |      2023-08-24       |
+|  2.1.x.x |  2020-08-25   |     2022-08-24      |      2023-08-24       |
+|  1.5.x.x |  2020-04-10   |     2021-04-09      |      2022-04-09       |
+|  1.3.x.x |  2019-11-05   |     2020-11-04      |      2021-11-04       |
+|   0.36   |  2019-08-05   |     2020-08-04      |      2021-08-04       |
+|   0.35   |  2019-05-16   |     2020-05-15      |      2020-11-15       |
+|   0.34   |  2018-11-19   |     2019-11-18      |      2020-11-18       |
+|   0.33   |  2018-07-11   |     2019-06-10      |      2020-06-10       |
+|   0.32   |  2018-05-22   |     2019-05-21      |      2020-05-21       |
+|   0.31   |  2018-03-13   |     2019-03-12      |      2020-03-12       |
+|   0.30   |  2018-01-22   |     2019-01-21      |      2020-01-21       |
+
+> *Table 1: Version Support for Kong Enterprise*
+
+## Version Support for Kong Mesh
+
+| Version  | Released Date | End of Full Support | End of Sunset Support |
+|:--------:|:-------------:|:-------------------:|:---------------------:|
+|  1.0.x   |  2020-08-04   |     2021-08-04      |      2022-08-04       |
+
+> *Table 2: Version Support for Kong Mesh*
+
+## Additional Terms
+1. The above is a summary only and is qualified by Kong’s [Support and Maintenance Policy](https://konghq.com/supportandmaintenancepolicy/).
+2. The above applies to Kong standard software builds only. 
