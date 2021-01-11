@@ -31,6 +31,7 @@ module Jekyll
 
       konnectVersions = site.data["kong_versions"].select do |elem|
         elem["edition"] && elem["edition"] == 'konnect'
+      end
 
       kicVersions = site.data["kong_versions"].select do |elem|
         elem["edition"] && elem["edition"] == 'kubernetes-ingress-controller'
