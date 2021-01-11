@@ -287,7 +287,7 @@
   lua_doc: true
 -
   release: "1.5.x"
-  version: "1.5.0.6"
+  version: "1.5.0.9"
   edition: "enterprise"
   luarocks_version: "0.34.x"
   dependencies:
@@ -299,7 +299,7 @@
   lua_doc: true
 -
   release: "2.1.x"
-  version: "2.1.4.0"
+  version: "2.1.4.3"
   edition: "enterprise"
   luarocks_version: "0.34.x"
   dependencies:
@@ -308,6 +308,18 @@
     cassandra: "3.x.x"
     postgres: "9.5+"
     openresty: "1.13.6.2"
+  lua_doc: true
+-
+  release: "2.2.x"
+  version: "2.2.1.0"
+  edition: "enterprise"
+  luarocks_version: "2.2.0.0"
+  dependencies:
+    luajit: "2.1.0-beta3"
+    luarocks: "3.3.1"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.15.8.3"
   lua_doc: true
 -
   release: "1.0.x"
@@ -350,6 +362,20 @@
     libyaml: "0.2.5"
     pcre: "8.44"
 -
+  release: "2.2.x"
+  version: "2.2.1"
+  edition: "community"
+  luarocks_version: "2.2.1-0"
+  dependencies:
+    luajit: "2.1.0-beta3"
+    luarocks: "3.3.1"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.17.8.2"
+    openssl: "1.1.1h"
+    libyaml: "0.2.5"
+    pcre: "8.44"
+-
   release: "CE-2.0.x_KE-1.5.x"
   version: "CE-2.0.x/KE-1.5.x"
   edition: "getting-started-guide"
@@ -358,9 +384,25 @@
   version: "2.1"
   edition: "getting-started-guide"
 -
+  release: "2.2.x"
+  version: "2.2"
+  edition: "getting-started-guide"
+-
   version: "1.2.1"
   edition: "deck"
 -
   release: "1.0.x"
-  version: "1.0.3"
+  version: "1.0.4"
   edition: "mesh"
+-
+  release: "1.1.x"
+  version: "1.1.2"
+  edition: "mesh"
+-
+  release: "1.0.x"
+  version: "1.0.0"
+  edition: "kubernetes-ingress-controller"
+-
+  release: "1.1.x"
+  version: "1.1.0"
+  edition: "kubernetes-ingress-controller"

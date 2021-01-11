@@ -15,6 +15,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x      
@@ -23,6 +24,7 @@ kong_version_compatibility:
         - 1.2.x
     enterprise_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -54,7 +56,7 @@ params:
       default: '`["text/plain", "application/json"]`'
       value_in_examples:
       description: |
-        Upstream response content types considered cacheable. The plugin performs an exact match against each specified value; for example, if the upstream is expected to respond with a `application/json; charset=utf-8` content-type, the plugin configuration must contain said value or a `Bypass` cache status will be returned.
+        Upstream response content types considered cacheable. The plugin performs an **exact match** against each specified value; for example, if the upstream is expected to respond with a `application/json; charset=utf-8` content-type, the plugin configuration must contain said value or a `Bypass` cache status is returned.
     - name: vary_headers
       required: false
       default:
@@ -97,6 +99,15 @@ params:
       value_in_examples:
       description: |
         The name of the shared dictionary in which to hold cache entities when the memory strategy is selected. Note that this dictionary currently must be defined manually in the Kong Nginx template.
+  extra: |
+
+    <div class="alert alert-ee red">
+    <strong>Warning:</strong> The <code>content_type</code> parameter requires
+    an exact match. For example, if your Upstream expects
+    <code>application/json; charset=utf-8</code> and the
+    <code>config.content_type</code> value is only <code>application/json</code>
+    (a partial match), then the proxy cache is bypassed.
+    </div>
 
 ---
 ### Strategies

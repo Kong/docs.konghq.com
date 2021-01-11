@@ -1,6 +1,7 @@
 ---
 name: gRPC-gateway
 publisher: Kong Inc.
+version: 0.1.x
 
 categories:
   - transformations
@@ -19,9 +20,11 @@ license_type: MIT
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.2.x
       - 2.1.x
   enterprise_edition:
     compatible:
+      - 2.2.x
       - 2.1.x
 
 
@@ -47,7 +50,7 @@ params:
 
 This plugin translates requests and responses between gRPC and HTTP REST.
 
-![grpc-gateway](https://docs.google.com/drawings/d/12hp4CPqrNPFhattL_cIoJptFvlAqm5wLQ0ggqI5mkCg/pub?w=749&h=370)
+![grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/assets/images/architecture_introduction_diagram.svg)
 
 Image credit: [grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/)
 

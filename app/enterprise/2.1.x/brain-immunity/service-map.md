@@ -2,6 +2,11 @@
 title: Using Kong's Service Map
 ---
 
+<div class="alert alert-warning">
+<i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+<strong>Important:</strong> Kong Brain is deprecated and not available for use in Kong Enterprise version 2.1.4.2 and later.
+</div>
+
 ### Introduction
 
 Get a high-level view of your architecture with Kong Enterprise’s real-time visual Service Map. Analyze inter-service dependencies across teams and platforms to improve governance and minimize risk.

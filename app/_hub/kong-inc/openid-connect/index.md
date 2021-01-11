@@ -2,7 +2,7 @@
 
 name: OpenID Connect
 publisher: Kong Inc.
-version: 1.5-x
+version: 2.2.x
 
 desc: Integrate Kong with a third-party OpenID Connect 1.0 provider
 description: |
@@ -73,7 +73,7 @@ description: |
   want your provider to be tested and added to the list.
 
   [connect]: http://openid.net/specs/openid-connect-core-1_0.html
-  [oauth2plugin]: /plugins/oauth2-authentication/
+  [oauth2plugin]: /hub/kong-inc/oauth2/
   [oauth2]: https://tools.ietf.org/html/rfc6749
   [jwt]: https://tools.ietf.org/html/rfc7519
   [jws]: https://tools.ietf.org/html/rfc7515
@@ -109,6 +109,8 @@ description: |
   [ACL](/plugins/acl/) plugin (not covered here) and create allowed or denied
   groups of users.
 
+  This plugin can be used for authentication in conjunction with the
+  [Application Registration](/hub/kong-inc/application-registration) plugin.
 
 enterprise: true
 type: plugin
@@ -120,12 +122,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-        - 0.35-x
-        - 0.34-x
+        - 2.2.x
 
 ---
 
@@ -200,7 +197,7 @@ headers.
 
 ### OpenID Connect Discovery
 
-The plugin does support OpenID Connect Discovery as defined in
+The plugin supports OpenID Connect Discovery as defined in
 [the specification](http://openid.net/specs/openid-connect-discovery-1_0.html).
 
 ![OpenID Connect Discovery Sequence Diagram](/assets/images/docs/ee/plugins/openid-connect-discovery.png "OpenID Connect Discovery Sequence Diagram")
@@ -214,7 +211,7 @@ Algorithm | Signing | Verification
 `HS384`   | `yes`   | `yes`
 `HS512`   | `yes`   | `yes`
 `RS256`   | `yes`   | `yes`
-`RS384`   | `no` ¹  | `no` ¹
+`RS384` ¹ | `no`    | `no`
 `RS512`   | `yes`   | `yes`
 `ES256`   | `yes`   | `yes`
 `ES384`   | `yes`   | `yes`
@@ -235,7 +232,7 @@ Algorithm | Signing | Verification
 
 ### JWT Serialization Formats
 
-This is what the plugins currently support for `JWT` serializations.
+This is what the plugin currently supports for `JWT` serializations.
 The table may change in the future as further features get implemented.
 
 Type    | Compact Serialization | JSON Serialization
@@ -243,9 +240,10 @@ Type    | Compact Serialization | JSON Serialization
 `JWS`   | `yes`                 | `no`
 `JWE`   | `no`                  | `no`
 
-## OpenID Connect Plugin
+### Authentication and Authorization Methods
 
-The OpenID Connect plugin supports a variety of authentication and authorization methods:
+The OpenID Connect plugin supports a variety of authentication and authorization
+methods:
 
 * OAuth 2.0 Password Grant
 * OAuth 2.0 Client Credentials Grant
@@ -260,7 +258,7 @@ This plugin **exchanges** credentials and injects an **access token** as a
 **bearer** token into an `Authorization` HTTP header.
 
 
-### Configuration Parameters
+## Configuration Parameters
 
 As OpenID Connect can be used in many ways, the plugin has many parameters.
 Some of the settings are used only in some flows, and others are used more
@@ -268,35 +266,35 @@ broadly. Generally speaking, while parameters are optional,
 requirements will vary depending on your use case and identity provider.
 
 
-#### Important Configuration Parameters
+### Important Configuration Parameters
 
-This plugin contains many configuration parameters that might seem overhwelming
+This plugin contains many configuration parameters that might seem overwhelming
 at the start. The reason for this number of attributes is that this plugin is
 for multi-authentication and supports JWT, OAuth 2.0, and OpenID Connect
 authentication.
 
-The first parameter you should configure is:
+1. The first parameter you should configure is:
 `config.issuer`.
 
-This parameter tells the plugin where to find discovery information, and it is
-the only required parameter. You should specify the `realm` or `iss` for this
-parameter if you don't have a discovery endpoint.
+    This parameter tells the plugin where to find discovery information, and it is
+    the only required parameter. You should specify the `realm` or `iss` for this
+    parameter if you don't have a discovery endpoint.
 
-Next, you should decide what authentication methods you want to use with this
+2. Next, you should decide what authentication methods you want to use with this
 plugin, so configure: `config.auth_methods`.
 
-That parameter should contain only the authentication methods that you want to
-use; otherwise, you unnecessarily widen the attack surface.
+    That parameter should contain only the authentication methods that you want to
+    use; otherwise, you unnecessarily widen the attack surface.
 
-In many cases, you also need to specify `config.client_id`, and if your IdP/OP
+3. In many cases, you also need to specify `config.client_id`, and if your IdP/OP
 requires authentication, such as on a token endpoint, you will need to specify `config.client_secret` too.
 
-If you are using a public IdP, such as Google, you should limit the audience
+4. If you are using a public IdP, such as Google, you should limit the audience
 with `config.audience_required` to contain only your `config.client_id`. You
 may also need to adjust `config.audience_claim` in case your IdP doesn't follow
 OpenID Connect standards.
 
-Also if you are using Kong in DB-less mode with declarative configuration, you
+5. If you are using Kong in DB-less mode with declarative configuration, you
 should set up `config.session_secret` if you are using the session
 authentication method. Otherwise, each of your Nginx workers across all your
 nodes would encrypt and sign the cookies with their own secrets.
@@ -306,7 +304,7 @@ authentication methods work before diving in to
 other configuration settings. All of the configuration options are described
 below.
 
-Please configure:
+In summary, start with the following parameters:
 1. `config.issuer`
 2. `config.auth_methods`
 3. `config.client_id` (and in many cases `config.client_secret`)
@@ -314,10 +312,10 @@ Please configure:
 5. `config.session_secret` (if using Kong in DB-less mode)
 
 
-#### Descriptions
+### Parameter Descriptions
 
 Parameter ¹                             | Description
----------------------------------------:|------------
+----------------------------------------|------------
 `issuer`                                | The issuer `url` from which OpenID Connect configuration can be discovered.
 `discovery_headers_names`               | Extra header names that you should include in discovery requests (such as `Authorization`).
 `discovery_headers_values`              | Values for the extra headers that you should include in discovery requests.
@@ -343,7 +341,8 @@ Parameter ¹                             | Description
 `response_type`                         | The response type used with the authorization endpoint (e.g., authorization code flow).
 `scopes`                                | The scopes to be requested from OP.
 `audience`                              | The audience passed to the authorization endpoint, also used for verification of `aud` claim.
-`scopes_required`                       | The scopes required to be present in access token (or introspection results) for successful authorization.
+`issuers_allowed`                       | The issuers allowed to be present in the access token's `iss` claim (or introspection results) for successful authorization.
+`scopes_required`                       | The scopes required to be present in the access token (or introspection results) for successful authorization.
 `scopes_claim`                          | The Name of the claim (or a path) where the scopes can be found.
 `audience_required`                     | The audience required to be present in access token (or introspection results) for successful authorization.
 `audience_claim`                        | The Name of the claim (or a path) where the audience can be found.
@@ -387,6 +386,7 @@ Parameter ¹                             | Description
 `revocation_endpoint`                   | If `revocation_endpoint` is not specified in discovery (as it is not standardized by OpenID Connect), you can specify it manually.
 `revocation_endpoint_auth_method`       | Used to override any defaults specified for the client.
 `end_session_endpoint`                  | If `end_session_endpoint` is not specified in discovery, you can specify it manually (e.g., you can use your own non-OpenID Connect logout endpoint).
+`userinfo_endpoint`                     | If a `userinfo_endpoint` is not specified in discovery, use this parameter to set it manually.
 `token_exchange_endpoint`               | The token exchange endpoint, if you want to exchange the access token to a new one before proxying to upstream service.
 `session_secret`                        | The secret that is used to encrypt session data. The plugin auto-generates it by default, and stores it elsewhere.
 `session_cookie_name`                   | The name of session cookie when session authentication is enabled.
@@ -400,6 +400,7 @@ Parameter ¹                             | Description
 `session_cookie_secure`                 | The `Secure` flag of the session cookie.
 `session_cookie_maxsize`                | The maximum size of a single cookie (not including cookie name and `=` sign) in case it needs to split to several cookies.
 `session_strategy`                      | The session strategy to use, either `default` or `regenerate`, where regenerate generates a new session id on each save.
+`session_compressor`                    | The compressor to use for compressing the session data. Supports `zlib` or `none`.
 `session_storage`                       | The storage that is used to store the data part of the session cookie.
 `session_memcache_prefix`               | Memcache session key prefix (all session keys will use this prefix).
 `session_memcache_socket`               | Memcache `unix` socket path.
@@ -473,12 +474,14 @@ Parameter ¹                             | Description
 `verify_claims`                         | Enables or disables verification of the standard claims (for debugging).
 `verify_signature`                      | Enables or disables verification of the signature (for debugging).
 `ignore_signature`                      | Disables signature verification of access token on specified flows.
+`enable_hs_signatures`                  | Enables or disables verification of tokens signed with HMAC (HS256, HS384, or HS512) algorithms.
 `cache_ttl`                             | Default cache expiry time in seconds when one is not specified in a token.
 `cache_ttl_max`                         | Maximum cache expiry time in seconds (overrides the one specified in a token).
 `cache_ttl_min`                         | Minimum cache expiry time in seconds (overrides the one specified in a token).
 `cache_ttl_neg`                         | Time in seconds until cache misses expire (overrides the one specified in a token).
 `cache_ttl_resurrect`                   | When specified, the cache instance will attempt to resurrect stale values when the L3 callback returns nil, err (soft errors).
 `cache_tokens`                          | Enables of disables caching of token endpoint request results.
+`cache_tokens_salt`                     | Salt used for generating the cache key hash necessary for caching the token endpoint requests.
 `cache_introspection`                   | Enables of disables caching of introspection request results.
 `cache_token_exchange`                  | Enables of disables caching of token exchange results.
 `cache_user_info`                       | Enables of disables caching of user info request results.
@@ -495,7 +498,7 @@ Parameter ¹                             | Description
 `timeout`                               | The timeout value (in seconds) that is used for the Network IO.
 
 
-#### Types, Optionality and Defaults
+### Types, Optionality and Defaults
 
 While there are a lot of parameters, most of them are optional
 as you can see below.
@@ -529,13 +532,14 @@ Parameter ¹                             | Type      | Required | Default
 `response_type`                         | `array`   | `no`     | `"code"`
 `scopes`                                | `array`   | `no`     | `"open_id"`
 `audience`                              | `array`   | `no`     | `—`
+`issuers_allowed`                       | `array`   | `no`     | `—`
 `scopes_required`                       | `array`   | `no`     | `—`
 `scopes_claim`                          | `array`   | `no`     | `"scope"`
 `audience_required`                     | `array`   | `no`     | `—`
 `audience_claim`                        | `array`   | `no`     | `"aud"`
 `domains`                               | `array`   | `no`     | `—`
 `max_age`                               | `number`  | `no`     | `—`
-`display_errors`                        | `boolean`   | `no`     | `false`
+`display_errors`                        | `boolean` | `no`     | `false`
 `authenticated_groups_claim`            | `array`   | `no`     | `—`
 `authorization_endpoint`                | `url`     | `no`     | `—` (OpenID Connect Discovery)
 `authorization_query_args_names`        | `array`   | `no`     | `—`
@@ -573,6 +577,7 @@ Parameter ¹                             | Type      | Required | Default
 `revocation_endpoint`                   | `url`     | `no`     | `—` (OpenID Connect Discovery)
 `revocation_endpoint_auth_method`       | `string`  | `no`     | `—`
 `end_session_endpoint`                  | `url`     | `no`     | `—` (OpenID Connect Discovery)
+`userinfo_endpoint`                     | `url`     | `no`     | `—` (OpenID Connect Discovery)
 `token_exchange_endpoint`               | `url`     | `no`     | `—`
 `session_secret`                        | `string`  | `no`     | `—`
 `session_cookie_name`                   | `string`  | `no`     | `"session"`
@@ -586,6 +591,7 @@ Parameter ¹                             | Type      | Required | Default
 `session_cookie_secure`                 | `boolean` | `no`     | (From Original Request)
 `session_cookie_maxsize`                | `integer` | `no`     | 4000
 `session_strategy`                      | `string`  | `no`     | `"default"`
+`session_compressor`                    | `string`  | `no`     | `"none"`
 `session_storage`                       | `string`  | `no`     | `"cookie"`
 `session_memcache_prefix`               | `string`  | `no`     | `"sessions"`
 `session_memcache_socket`               | `string`  | `no`     | `—`
@@ -652,12 +658,14 @@ Parameter ¹                             | Type      | Required | Default
 `verify_claims`                         | `boolean` | `no`     | `true`
 `verify_signature`                      | `boolean` | `no`     | `true`
 `ignore_signature`                      | `array`   | `no`     | `—`
+`enable_hs_signatures`                  | `boolean` | `no`     | `false`
 `cache_ttl`                             | `number`  | `no`     | `3600`
 `cache_ttl_max`                         | `number`  | `no`     | `—`
 `cache_ttl_min`                         | `number`  | `no`     | `—`
 `cache_ttl_neg`                         | `number`  | `no`     | `—`
 `cache_ttl_resurrect`                   | `number`  | `no`     | `—`
 `cache_tokens`                          | `boolean` | `no`     | `true`
+`cache_tokens_salt`                     | `string`  | `no`     | (autogenerated)
 `cache_introspection`                   | `boolean` | `no`     | `true`
 `cache_token_exchange`                  | `boolean` | `no`     | `true`
 `cache_user_info`                       | `boolean` | `no`     | `true`
@@ -675,6 +683,7 @@ Parameter ¹                             | Type      | Required | Default
 
 ¹⁾ All of the config parameters should be prefixed with `config.`.
 
+### Extended Descriptions
 
 #### config.issuer
 
@@ -769,10 +778,13 @@ and `password` fields with those names to Kong as a payload.
 
 *client_credentials*
 
-Similar to `password` grant, but this time you have to send `client_id`
-and `client_secret` as `Authorization: Basic client_id:client_secret`
-header. You can also send `client_id` and `client_secret` as a payload
-to Kong (with those names).
+Similar to the `password` grant, but instead of a username and password,
+you have to send `client_id` and `client_secret` as an
+`Authorization: Basic client_id:client_secret` header. You can also
+send `client_id` and `client_secret` as a payload to Kong (with those names).
+
+This authentication method also supports sending
+`urn:ietf:params:oauth:grant-type:jwt-bearer` assertions.
 
 *authorization_code*
 
@@ -1163,6 +1175,21 @@ Default | Required
 
 See `config.audience_required` for a more flexible option to be used for strictly `aud` claim verification.
 
+#### config.issuers_allowed
+Issuers allowed to be present in the access token `iss` claim or the
+introspection results `iss` claim for authorization.
+
+Default | Required
+:------:|:-------:
+`none`  | `no`
+
+**Example:**
+
+* `"https://accounts.google.com,https://demo.auth0.com/"`
+
+    Either `https://accounts.google.com` OR `https://demo.auth0.com/` need to
+    be present in the access token or introspection results.
+
 
 #### config.scopes_required
 
@@ -1264,7 +1291,7 @@ Default | Required
 
 #### config.display_errors
 
-You can enable this setting to show consumers additional debugging information if they try to log on but run into an error. 
+You can enable this setting to show consumers additional debugging information if they try to log on but run into an error.
 > **Warning:** This setting should be treated with care. In most cases, it should not be enabled in Production environments.
 
 Default           | Required
@@ -1599,6 +1626,14 @@ use this parameter to define one manually. If either this parameter is specified
 or an end session endpoint is found in the discovery document, this plugin will,
 on logout, redirect client to here.
 
+#### config.userinfo_endpoint
+
+If the user info endpoint is not defined in the OpenID Connect discovery
+document, use this parameter to define one manually.
+
+Default                        | Required
+:-----------------------------:|:-------:
+`—` (OpenID Connect Discovery) | `no`
 
 #### config.token_exchange_endpoint
 
@@ -1731,6 +1766,18 @@ Default           | Required
 :----------------:|:-------:
 4000              | `no`
 
+#### config.session_compressor
+
+Use this parameter to enable or disable session compression. Compression is
+useful when using the `"cookie"` setting as `session_storage`, as the cookie
+can grow too large, causing issues such as as `too big headers` in other
+proxies. Compression is also useful for storing session data on the server.
+
+Set this value to `"zlib"` to enable compression.
+
+Default           | Required
+:----------------:|:-------:
+`"none"`          | `no`
 
 #### config.session_strategy
 
@@ -2567,6 +2614,15 @@ The `bearer` is not an option for security purposes. If you really want to
 skip bearer signature verification, then turn `config.verify_signature` off,
 but that practically means that any token can be sent.
 
+#### config.enable_hs_signatures
+Tokens signed with HMAC algorithms such as HS256, HS384, or HS512 are not
+accepted by default. Enable this setting to accept HMAC tokens for verification.
+This option uses `config.client_secret` for verification, as described in the
+OpenID Connect standard.
+
+Default | Required
+:------:|:-------:
+`false`  | `no`
 
 #### config.cache_ttl
 
@@ -2600,6 +2656,16 @@ When specified, the cache instance will attempt to resurrect stale values when t
 
 You can turn off caching of token endpoint requests with this parameter.
 
+#### config.cache_tokens_salt
+
+Salt used for generating the cache key hash used for caching the token
+endpoint requests. If you use multiple plugin instances of the OpenID Connect
+plugin and want to share token endpoint caches between the plugin
+instances, set the salt to the same value on each plugin.
+
+Default           | Required
+:----------------:|:-------:
+(autogenerated)   | `no`
 
 #### config.cache_introspection
 
@@ -2747,7 +2813,7 @@ Default | Required
  * `5000`
 
 
-### Authorization
+## Authorization
 
 `openid-connect` plugin supports different authentication/authorization
 methods in one plugin. The plugin figures out the method used for
@@ -2755,7 +2821,7 @@ authentication by looking at the request headers or parameters (and also
 plugin configuration parameter `config.auth_methods`).
 
 
-#### Authorization Code Grant
+### Authorization Code Grant
 
 Authorization Code grant (if enabled) is the default grant type that Kong tries when there are
 no other credentials supplied. With authorization code flow, Kong sends a
@@ -2766,7 +2832,7 @@ exchanging the authorization code with the tokens by calling the token endpoint
 of the identity provider.
 
 
-#### Resource Owner Password Credentials Grant
+### Resource Owner Password Credentials Grant
 
 The plugin looks for `Authorization: Basic <username>:<password>` header to
 determine the username and password. `<username>:<password>` pair can (and should)
@@ -2775,7 +2841,7 @@ be base64-encoded (HTTP Basic Authentication). Alternatively, you can send
 `username` and `password` fields.
 
 
-#### Client Credentials Grant
+### Client Credentials Grant
 
 The plugin looks for `Authorization: Basic <client_id>:<client_secret>` header to
 determine the username and password. `<client_id>:<client_secret>` pair can (and should)
@@ -2794,14 +2860,14 @@ header (`Authorization: Bearer <token>`).  The JWT token (or JWS in this case)
 will be verified for signature and standard claims before it gets accepted.
 
 
-#### Opaque Bearer Token
+### Opaque Bearer Token
 
 Similar to JWT bearer tokens, but this time Kong will figure out through introspection
 whether or not to trust this token. Also the opaque access tokens are presented in an
 authorization header (`Authorization: Bearer <token>`).
 
 
-#### Kong OAuth 2.0 Authentication Plugin issued Opaque Access Tokens
+### Kong OAuth 2.0 Authentication Plugin issued Opaque Access Tokens
 
 The plugin will also accept tokens that are issued by Kong OAuth 2.0 Authentication Plugin,
 and it can be used to verify them. It duplicates some verification code from Kong OAuth 2.0
@@ -2810,7 +2876,7 @@ plugin, but this plugin does not provide any identity provider functionality as 
 tokens are presented in an authorization header (`Authorization: Bearer <token>`).
 
 
-#### Session Cookie
+### Session Cookie
 
 When the client has authenticated with one of the supported authentication methods mentioned
 above, this plugin can also (optionally) send an HTTP Only session cookie to the client. This
@@ -2819,7 +2885,7 @@ Authorization Code Grant that is usually used with interactive browser sessions.
 is presented to this plugin by setting the cookie header (e.g., `Cookie: session=…`).
 
 
-#### Refresh Token (or Offline Token)
+### Refresh Token (or Offline Token)
 
 If the client provides a refresh token or offline token to this plugin, the plugin can
 attempt to fetch tokens from the token endpoint using `refresh_token` grant. It is necessary
@@ -2827,9 +2893,9 @@ to configure the parameter name where the refresh token is supplied with
 `config.refresh_token_param_name` and `config.refresh_token_param_type` configuration parameters.
 
 
-### Admin API
+## Admin API
 
-#### OpenID Connect Issuer Cache
+### OpenID Connect Issuer Cache
 
 The plugin caches issuers at endpoint:
 ```
@@ -2843,14 +2909,14 @@ delete the auto-generated session secret if you have not specified one with
 http DELETE http://[kong-admin]/openid-connect/issuers/<issuer-id>
 ```
 
-#### OpenID Private Key JWT Authentication Public Keys
+### OpenID Private Key JWT Authentication Public Keys
 
 Public keys can be located at:
 ```
 http://[kong-admin]/openid-connect/jwks
 ```
 
-### Usage
+## Usage
 
 Here are the step by step usage instructions. The examples are executed
 using [HTTPie](https://httpie.org/). Before proceeding, please **NOTE**
@@ -2859,7 +2925,7 @@ not send confidential information to `httpbin.org` that is used here
 for demonstration purposes.
 
 
-#### 1. Create a Service and Route
+### 1. Create a Service and Route
 
 To create a Service, issue the following command:
 
@@ -2925,7 +2991,7 @@ $ export ROUTE_ID=<the id from the response above>
 $ echo $ROUTE_ID
 ```
 
-#### 2. Verify Response with and without Kong
+### 2. Verify Response with and without Kong
 
 Verify that you can make a direct call to `http://httpbin.org/anything` _without_ proxying through Kong by issuing the following command:
 
@@ -2985,7 +3051,7 @@ The response should be `HTTP 200 OK` and appear like so:
 }
 ```
 
-#### 3. Secure the Service with OIDC
+### 3. Secure the Service with OIDC
 
 To enable the OIDC Plugin for the Service, execute the following
 command, but note that SSL verification is disabled here for
@@ -3031,7 +3097,7 @@ On successful `HTTP 200 OK`, the response will be similar to:
 }
 ```
 
-#### 4. Verify that Authorization is now required
+### 4. Verify that Authorization is now required
 
 Attempt the following command without authorization:
 

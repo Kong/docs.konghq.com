@@ -4,15 +4,448 @@ no_search: true
 no_version: true
 skip_read_time: true
 ---
+## 2.2.1.0
+**Release Date** 2020/12/31
+ 
+### Features
 
-## 2.1.4.0
-**Release Date** 2020/10/01
+#### Developer Portal
+- Added `key-auth` support to Portal Application Registration.
 
 ### Fixes
 
-#### Kong Manager
+#### Core
+- OpenSSL version bumped to 1.1.1i.
+  The OpenSSL version bump is related to CVE-2020-1971. We have performed an extensive review of OpenSSL usage in Kong and have found the following:
+  - The core product is not vulnerable to the high severity CVE-2020-1971. 
+  - The `mtls-auth` plugin had a potential exploit associated with with CVE-2020-1971, but it would require an attacker to control a trusted CA or have admin port access, which [we recommend you block from attackers](https://docs.konghq.com/latest/secure-admin-api/) for numerous reasons. The updated OpenSSL version in this release additionally protects the `mtls-auth` plugin.
+  - As a precautionary measure, we have bumped the OpenSSL dependency version to OpenSSL 1.1.1i.
 
-* Added path to service on display page.
+#### Enterprise
+- Fixed an issue where `/tmp` directories will not be deleted when running Kong or Kong CLI.
+- Fixed an issue that prevented the use of keyring encryption of Kong database fields.
+- RCE (Remote Code Execution) Plugin Mitigations: 
+  Several Kong plugins allow arbitrary code execution by design, including the `serverless` plugin (also known as `pre-function` and `post-function` capabilities) and the `exit-transformer` plugin (for example, allows an administrator to configure a Lua-based response transformation). Changes include:
+  - A new change locks down these plugins so that they have limited functions available in a sandbox, providing significant additional security for a user with an exposed admin port.
+  - Functions such as "require" are no longer available to scripts that run in these plugins for security purposes, because allowing "require" allows embedded additional arbitrary code execution. 
+  - **Important**: This change causes a **breaking change** in this patch release and it cannot be avoided. Our recommendation is that [users lock down their admin ports](https://docs.konghq.com/latest/secure-admin-api/) to avoid attackers trying to exploit any API gateway, like Kong, to gain access to internal networks. If you need the previous release behavior, including the ability to arbitrarily "require" libraries or if you want to lock things down further, we have introduced four new settings you can use:
+    - `KONG_UNTRUSTED_LUA = on|off` Sets whether any custom Lua code can be used outside of Kong's distributed code. Defaults to "on".
+    - `KONG_UNTRUSTED_LUA_SANDBOX = on|off` Turns on or off the sandbox. Defaults to "on".
+    - `KONG_UNTRUSTED_LUA_SANDBOX_REQUIRES = foo,bar` Which libraries, if any, you want to require in the sandbox. Defaults to an empty list.
+    - `KONG_UNTRUSTED_LUA_SANDBOX_ENVIRONMENT = kong.request` Any additional objects you want to pass through to the sandbox environments.  Defaults to an empty list.
+
+#### Developer Portal
+- In the Developer Portal Edit Application dialog, the Edit button is renamed to Save.
+
+#### Plugins
+- Collector (`collector`, used for Immunity)
+  - Use `kong.request.get_body()`
+- [Mutual TLS Authentication](/hub/kong-inc/mtls-auth) (`mtls-auth`)
+  - Fixed (log) updating auth errors to handle fallthrough scenarios.
+  - Fixed (route, ws) ensuring workspace options are used for cache lookups.
+- [Forward Proxy Advanced](/hub/kong-inc/forward-proxy)(`forward-proxy`)
+  - Fixed an issue where PDK logging phase check causes an error.
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  - Bumped `lua-resty-session` dependency to 3.8 to allow passing connection options to redis cluster client.
+- [Session](/hub/kong-inc/session) (`session`)
+  - Added endpoint key to Admin API.
+  - Bumped `lua-resty-session` dependency to 3.8.
+  
+#### Breaking Changes
+- See *RCE (Remote Code Execution) Plugin Mitigations* in the Kong Enterprise section. 
+
+
+## 2.2.0.0
+**Release Date** 2020/11/17
+
+<div class="alert alert-warning">
+<i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+<b>Important:</b> Kong Enterprise 2.2.0.0 includes 2.2.0.0 (beta)
+features, fixes, known issues, and workarounds. The changelog for 2.2.0.0 version includes only the diff between 2.2.0.0 and 2.2.0.0 (beta). See the <a href="#2200-beta">2.2.0.0 (beta) changelog</a> for more information.
+</div>
+
+### Features
+**Note: Feature updates for Kong Enterprise 2.2.0.0 version include [2.2.0.0 (beta)](/enterprise/changelog/#beta-features-2200) features.**
+
+#### **Kong Manager**
+- No new features.
+- Kong Brain and Service Map are removed.
+
+#### **Plugins**
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  - Added `config.enable_hs_signatures` (`false` is the default).
+  - Added `config.session_compressor`.
+- [JWT Signer](/hub/kong-inc/jwt-signer) (`jwt-signer`)
+  - Added `config.enable_hs_signatures` (`false` is the default).
+- [AWS Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`)
+  - Added support for `isBase64Encoded` flag in Lambda function responses.
+- [gRPC-Web](/hub/kong-inc/grpc-web) (`grpc-web`)
+  - New configuration `pass_stripped_path`, which, if set to true, causes the
+  plugin to pass the stripped request path (see the
+  [`strip_path`](/enterprise/latest/admin-api/#route-object) Route attribute)
+  to the upstream gRPC service.
+
+### Fixes
+**Note: Fixes for Kong Enterprise 2.2.0.0 version include [2.2.0.0 (beta)](/enterprise/changelog/#beta-fixes-2200) fixes.**
+
+#### **OpenID Connect Library**
+  - Changed to disable HS-signature verification by default.
+  - Changed to use `client_secret` as a fallback secret for HS-signature verification only when it is a string and has more than one character in it.
+  - Fixes vulnerability in the OpenID Connect and JWT Signer Plugins. Login to the [Kong Enterprise Support Portal](https://support.konghq.com/support/s/) for [OIDC advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-OIDC-Plugin) and [JWT advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-JWT-Signer-Plugin) details.
+
+#### **Plugins**
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  - HS-signature verification is now disabled by default.
+  - Changed to use `client_secret` as a fallback secret for HS-signature verification only when it is a string and has more than one character in it.
+  - Updated `lua-resty-session` dependency to 3.7.
+- [JWT Signer](/hub/kong-inc/jwt-signer) (`jwt-signer`)
+  - HS-signature verification is now disabled by default.
+  
+
+## 2.2.0.0 (beta)
+**Release Date** 2020/10/27
+
+### **Kong Enterprise**
+The following sections list {{site.ee_product_name}}-exclusive updates,
+features, and fixes for the **2.2.0.0 beta** version.
+
+### Dependencies
+- Bumped the required lua-resty-openssl version to
+[0.6.8](https://github.com/fffonion/lua-resty-openssl/blob/master/CHANGELOG.md#068---2020-10-15).
+
+### Features {#beta-features-2200}
+
+#### Core
+- Added support for TLS Redis connections when using the Kong Redis library.
+- Added support for running Kong as the non-root user `kong` on distributed
+systems.
+
+#### Plugins
+- OpenID Connect (`openid-connect`)
+  - Added the `issuers_allowed` configuration parameter, which introduces the
+  ability to specify valid issuers for access token ISS claim.
+  - Added the ability to pass `urn:ietf:params:oauth:grant-type:jwt-bearer`
+  assertions with the `client_credentials` authentication method.
+  - Added the `userinfo_endpoint` configuration parameter, which allows
+  manual definition of a user info endpoint.
+  - Added the ability to find nested claims using array indices. Array indices
+  start at 1, same as in Lua.
+  - Added issuer cache warmup on node start.
+- **Encryption support:** The Redis strategy now supports TLS connections.
+  Introduced the `redis.ssl`, `redis.ssl_verify`, and `redis.server_name`
+  parameters for confguring TLS connections. Applies to the following plugins:
+  - Rate Limiting Advanced (`rate-limiting-advanced`)
+  - Proxy Caching Advanced (`proxy-cache-advanced`)
+
+### Fixes {#beta-fixes-2200}
+
+#### Core
+- **Hybrid mode**:
+  - Fixed an issue where, in a cluster with multiple Control
+  Planes, configuration changes made by one Control Plane would not be picked up
+  by other Control Planes, and therefore would not be pushed to all Data Planes.
+  - Fixed an issue with custom certificates. When using a workspace other than
+  `default`, Kong Gateway did not present the configured certificate when the
+  correct SNI was sent.
+
+#### Plugins
+- OpenID Connect (`openid-connect`)
+  - Fixed a bug in issuer normalization.
+  - Improved discovery and rediscovery to be more resilient.
+  - When refreshing tokens, the old `id_token` is now preserved if a new one is
+  not given.
+  - Fixed an issue where token decoding also re-verified claims. Changed it
+  to skip claim verification when decoding tokens.
+  - Fixed issue of sharing the cache key using the same credentials but with
+    different endpoint arguments. Added a new parameter: `cache_tokens_salt`.
+    The value for this parameter is auto-generated by default, which means that
+    the token endpoint cache is not automatically shared between different
+    plugin instances.
+  - Fixed issue that caused the `unexpected_redirect_uri` setting to be
+  ignored.
+  - Fixed redirects to use `kong.response.exit`, which implements the proper
+  short-circuiting semantics in Kong.
+- OAuth Introspection (`oauth2-introspection`)
+  - Fixed an issue where the cache would not be properly invalidated
+  when a Consumer username was updated.
+- Proxy Caching Advanced (`proxy-cache-advanced`)
+  - Fixed a 500 error that would appear when the URL contained empty query
+  string parameters.
+- Exit Transformer (`exit-transformer`)
+  - Fixed some cases where an `unknown` exit would not be handled.
+- AWS Lambda (`aws-lambda`)
+  - Respect the `skip_large_bodies` config setting even when not using AWS API
+    Gateway compatibility.
+- ACME (`acme`)
+  - Changed the cache to use non-nil TTL in Hybrid mode. This fixes a bug for
+    renewals not updating the certificate after Kong Gateway 2.0.5.
+  - Fixed a bug in database mode where the renewal configuration was not
+    properly stored.
+- Prometheus (`prometheus`)
+  - Switched to using the `Kong.pdk.serializer` instead of the deprecated basic
+    serializer.
+- Collector (`collector`, used for Immunity)
+  - Removed the `/service_maps` passthrough.
+
+
+### **Kong Gateway (OSS)**
+
+**Kong Enterprise 2.2.0.0 beta** inherits the following changes from the
+open-source **Kong Gateway 2.2.0.0**:
+
+### Dependencies
+
+- For Kong Gateway 2.2, the required OpenResty version has been bumped to
+  [1.17.8.2](http://openresty.org/en/changelog-1017008.html), and the
+  the set of patches included has changed, including the latest release of
+  [lua-kong-nginx-module](https://github.com/Kong/lua-kong-nginx-module).
+  If you are installing Kong from one of our distribution
+  packages, you are not affected by this change.
+- Bumped OpenSSL version from `1.1.1g` to `1.1.1h`.
+  [#6382](https://github.com/Kong/kong/pull/6382)
+
+    <div class="alert alert-ee blue">
+    <strong>Note:</strong> If you are not using one of our distribution packages and compiling
+    OpenResty from source, you must still apply Kong's <a href="https://github.com/Kong/kong-build-tools/tree/master/openresty-build-tools/openresty-patches">
+    OpenResty patches</a>
+    (and, as highlighted above, compile OpenResty with the new
+    <code>lua-kong-nginx-module</code>). Our <a href="https://github.com/Kong/kong-build-tools">kong-build-tools</a>
+    repository allows you to do both easily.
+    </div>
+
+- Cassandra 2.x support is now deprecated. If you are still
+  using Cassandra 2.x with Kong, we recommend you to upgrade, since this
+  series of Cassandra is about to be EOL with the upcoming release of
+  Cassandra 4.0.
+
+### Additions
+
+#### Core
+
+-  **UDP support**: Kong now features support for UDP proxying
+  in its stream subsystem. The `"udp"` protocol is now accepted in the `protocols`
+  attribute of Routes and the `protocol` attribute of Services.
+  Load balancing and logging plugins support UDP as well.
+  [#6215](https://github.com/Kong/kong/pull/6215)
+- **Configurable Request and Response Buffering**: The buffering of requests
+  or responses can now be enabled or disabled on a per-route basis, through
+  setting attributes `Route.request_buffering` or `Route.response_buffering`
+  to `true` or `false`. The default behavior remains the same: buffering is
+  enabled by default for requests and responses.
+  [#6057](https://github.com/Kong/kong/pull/6057)
+- **Option to Automatically Load OS Certificates**: The configuration
+  attribute `lua_ssl_trusted_certificate` was extended to accept a
+  comma-separated list of certificate paths, as well as a special `system`
+  value, which expands to the system default certificates file installed
+  by the operating system. This follows a very simple heuristic to try to
+  use the most common certificate file in the most popular distros.
+  [#6342](https://github.com/Kong/kong/pull/6342)
+- **The consistent-hashing load balancing algorithm** does not need to use the
+  entire target history to build the same proxying destinations table on all
+  Kong nodes anymore. Now, deleted targets are removed from the database and the
+  target entities can be manipulated by the Admin API the same way as any other
+  entity.
+  [#6336](https://github.com/Kong/kong/pull/6336)
+- **Added `X-Forwarded-Path` header:** If a trusted source provides an
+  `X-Forwarded-Path` header, it is proxied as is. Otherwise, Kong sets
+  the content of said header to the request's path.
+  [#6251](https://github.com/Kong/kong/pull/6251)
+- **Hybrid Mode:**
+  - The table of Data Plane nodes at the Control Plane is now
+    cleaned up automatically, according to a delay value configurable using
+    the `cluster_data_plane_purge_delay` attribute, set to 14 days by default.
+    [#6376](https://github.com/Kong/kong/pull/6376)
+  - Data Plane nodes now apply only the last config when receiving
+    several updates in sequence, improving the performance when large configs
+    are in use. [#6299](https://github.com/Kong/kong/pull/6299)
+  - Synchronization performance improvements: Kong now uses a
+    new internal synchronization method to push changes from the Control Plane
+    to the Data Plane, drastically reducing the amount of communication between
+    nodes during bulk updates.
+    [#6293](https://github.com/Kong/kong/pull/6293)
+- **The `Upstream.client_certificate` attribute** can now be used for proxying.
+  This allows the `client_certificate` setting used for mTLS handshaking with
+  the `Upstream` server to be shared easily among different Services.
+  However, `Service.client_certificate` will take precedence over
+  `Upstream.client_certificate` if both are set simultaneously.
+  In previous releases, `Upstream.client_certificate` was only used for
+  mTLS in active health checks.
+  [#6348](https://github.com/Kong/kong/pull/6348)
+- **New `shorthand_fields` top-level attribute** in schema definitions, which
+  deprecates `shorthands` and includes type definitions in addition to the
+  shorthand callback.
+  [#6364](https://github.com/Kong/kong/pull/6364)
+
+#### Admin API
+
+- **Hybrid Mode:** Introduced the new endpoint `/clustering/data-planes`, which
+  returns complete information about all Data Plane nodes that are connected to
+  the Control Plane cluster, regardless of the Control Plane node to which they
+  are connected.
+  [#6308](https://github.com/Kong/kong/pull/6308)
+- Admin API responses now honor the `headers` configuration setting for
+  including or removing the `Server` header.
+  [#6371](https://github.com/Kong/kong/pull/6371)
+
+#### PDK
+
+- New function `kong.request.get_forwarded_prefix`: Returns the prefix path
+  component of the request's URL that Kong stripped before proxying to upstream,
+  respecting the value of `X-Forwarded-Prefix` when it comes from a trusted
+  source.
+  [#6251](https://github.com/Kong/kong/pull/6251)
+- The `kong.response.exit` now honors the `headers` configuration setting for
+  including or removing the `Server` header.
+  [#6371](https://github.com/Kong/kong/pull/6371)
+- The `kong.log.serialize` function now can be called using the stream subsystem,
+  allowing various logging plugins to work under TCP and TLS proxy modes.
+  [#6036](https://github.com/Kong/kong/pull/6036)
+- Requests with `multipart/form-data` MIME type now can use the same part name
+  multiple times. [#6054](https://github.com/Kong/kong/pull/6054)
+
+#### Plugins
+
+- **New Response Phase for custom plugins**: Both Go and Lua custom plugins now
+  support a new plugin phase called `response` in Lua plugins and `Response` in
+  Go. Using it automatically enables response buffering, which allows you to
+  manipulate both the response headers and the response body in the same phase.
+  This enables support for response handling in Go, where header and body
+  filter phases are not available, allowing you to use PDK functions such
+  as `kong.Response.GetBody()`, and provides an equivalent simplified
+  feature for handling buffered responses from Lua plugins as well.
+  [#5991](https://github.com/Kong/kong/pull/5991)
+- [AWS Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`)
+  - Bumped to version 3.5.0.
+  [#6379](https://github.com/Kong/kong/pull/6379)
+  - Added support for the `isBase64Encoded` flag in Lambda function responses.
+- [gRPC Web](/hub/kong-inc/grpc-web) (`grpc-web`)
+  - Introduced the configuration parameter `pass_stripped_path`, which, if set
+  to true, causes the plugin to pass the stripped request path (see the
+  [`strip_path`](/enterprise/latest/admin-api/#route-object) Route attribute)
+  to the upstream gRPC service.
+- [Rate Limiting](/hub/kong-inc/rate-limiting) (`rate-limiting`)
+  - Added support for rate limiting by path using the `limit_by = "path"`
+  configuration attribute. Thanks [KongGuide](https://github.com/KongGuide) for
+  the patch!
+  [#6286](https://github.com/Kong/kong/pull/6286)
+- [Correlation ID](/hub/kong-inc/correlation-id) (`correlation-id`)
+  - The plugin now generates a `correlation-id` value by default
+  if the correlation ID header arrives but is empty.
+  [#6358](https://github.com/Kong/kong/pull/6358)
+
+### Deprecated Features
+
+- **Hybrid mode:**  The `/clustering/status` endpoint is now deprecated, since it
+  returned only information about Data Plane nodes directly connected to the
+  Control Plane node to which the Admin API request was made. It is
+  superseded by the new `/clustering/data-planes` endpoint.
+- The `shorthands` attribute in schema definitions is deprecated in favor of
+  the new `shorthand_fields` top-level attribute.
+  
+
+## 2.1.4.3
+**Release Date** 2020/12/31
+ 
+### Fixes
+
+#### Core
+- OpenSSL version bumped to 1.1.1i.
+  The OpenSSL version bump is related to CVE-2020-1971. We have performed an extensive review of OpenSSL usage in Kong and have found the following:
+  - The core product is not vulnerable to the high severity CVE-2020-1971. 
+  - The `mtls-auth` plugin had a potential exploit associated with with CVE-2020-1971, but it would require an attacker to control a trusted CA or have admin port access, which [we recommend you block from attackers](https://docs.konghq.com/latest/secure-admin-api/) for numerous reasons. The updated OpenSSL version in this release additionally protects the `mtls-auth` plugin.
+  - As a precautionary measure, we have bumped the OpenSSL dependency version to OpenSSL 1.1.1i.
+
+#### Kong Enterprise
+- RCE (Remote Code Execution) Plugin Mitigations: 
+  Several Kong plugins allow arbitrary code execution by design, including the `serverless` plugin (also known as `pre-function` and `post-function` capabilities) and the `exit-transformer` plugin (for example, allows an administrator to configure a Lua-based response transformation). Changes include:
+  - A new change in this release locks down these plugins so that they have limited functions available in a sandbox, providing significant additional security for a user with an exposed admin port.
+  - Functions such as "require" are no longer available to scripts that run in these plugins for security purposes, because allowing "require" allows embedded additional arbitrary code execution. 
+  - **Important**: This change causes a **breaking change** in this patch release and it cannot be avoided. Our recommendation is that [users lock down their admin ports](https://docs.konghq.com/latest/secure-admin-api/) to avoid attackers trying to exploit any API gateway, like Kong, to gain access to internal networks. If you need the previous release behavior, including the ability to arbitrarily "require" libraries or if you want to lock things down further, we have introduced four new settings you can use:
+    - `KONG_UNTRUSTED_LUA = on|off` Sets whether any custom Lua code can be used outside of Kong's distributed code. Defaults to "on".
+    - `KONG_UNTRUSTED_LUA_SANDBOX = on|off` Turns on or off the sandbox. Defaults to "on".
+    - `KONG_UNTRUSTED_LUA_SANDBOX_REQUIRES = foo,bar` Which libraries, if any, you want to require in the sandbox. Defaults to an empty list.
+    - `KONG_UNTRUSTED_LUA_SANDBOX_ENVIRONMENT = kong.request` Any additional objects you want to pass through to the sandbox environments.  Defaults to an empty list.
+
+- Backport Admins Migration Fix: When upgrading from 1.5.x.y to versions prior to 2.2.0.0, there was a known migration issue that prevented the upgrade from continuing and also generated log errors. This issue was caused by a bug in the handling of which workspaces consumers were assigned to. Release 2.1.4.3 resolves this issue the same way it does for 2.2.0.0. It is recommended that if you are upgrading to 2.1.x.y, that you use 2.1.4.3 to avoid migration errors.
+
+#### Kong Manager
+- Fixed an issue causing the Developer registration link to not work.
+
+#### Plugins
+- Mutual TLS Authentication (`mtls-auth`)
+  - Fixed (log) updating auth errors to handle fallthrough scenarios.
+  - Fixed (route, ws) ensuring workspace options are used for cache lookups.
+  
+#### Breaking Changes
+- See *RCE (Remote Code Execution) Plugin Mitigations* in the Kong Enterprise section.
+
+
+## 2.1.4.2
+**Release Date** 2020/11/17
+
+### Fixes
+
+#### Core
+- Fixed an issue causing workspace entity count meta information to get out of sync when deleting entities by name.
+
+#### Kong Manager
+- Added Service path to information at the top of Service specific page.
+
+#### Kong Developer Portal
+- Fixed Application Save button label, changing from Edit to Save.
+
+#### **OpenID Connect Library**
+  - Changed to disable HS-signature verification by default.
+  - Changed to use `client_secret` as a fallback secret for HS-signature verification only when it is a string and has more than one character in it.
+  - Fixes vulnerability in the OpenID Connect and JWT Signer Plugins. Login to the [Kong Enterprise Support Portal](https://support.konghq.com/support/s/) for [OIDC advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-OIDC-Plugin) and [JWT advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-JWT-Signer-Plugin) details.
+
+#### Plugins
+- Mutual TLS Authentication (`mtls-auth`)
+  - Fixed an issue when client certificate is not requested for plugins applied in non-default workspace.
+- Proxy Cache Advanced (`proxy-cache-advanced`)
+  - Fixed cache usage when URL includes empty query string param.
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  - HS-signature verification is now disabled by default.
+  - Changed to use `client_secret` as a fallback secret for HS-signature verification only when it is a string and has more than one character in it.
+  - Updated `lua-resty-session` dependency to 3.7.
+- [JWT Signer](/hub/kong-inc/jwt-signer) (`jwt-signer`)
+  - HS-signature verification is now disabled by default.
+
+
+## 2.1.4.1
+**Release Date** 2020/10/30
+
+### Fixes
+
+#### Core
+
+* Fix unique violation error for workspaces when using PUT.
+* Fix cluster telemetry server name default.
+* Allow certificates to be applied from workspaces.
+* Fix time waiting calculation for 499 errors.
+* Migration optimizations and fixes:
+  * Remove extra connections in PostgreSQL.
+  * Ensure that multiple workspaces are not created for Cassandra.
+* Database optimizations and fixes:
+  * Correct wait for schema agreement timeout with Cassandra.
+  * Remove rate limiting metrics on database export.
+* Fix cluster level invalidation for hybrid control plane nodes.
+* Optimize workspace ID retrieval.
+
+#### Plugins
+
+* [Exit Transfomer](/hub/kong-inc/exit-transformer/) (`exit-transformer`)
+  * Fix error getting route.
+* [Mutual TLS Authentication](/hub/kong-inc/mtls-auth) (`mtls-auth`)
+  * Ensure that the basic serializer generates the `request.tls.client_verify`
+  field based on this module's validation result.
+* [Request Validator](/hub/kong-inc/request-validator) (`request-validator`)
+  - Update the `lua-resty-ljsonschema` library dependency.
+  See library [changelog](https://github.com/Tieske/lua-resty-ljsonschema#111-28-oct-2020).
+
+
+## 2.1.4.0
+**Release Date** 2020/10/01
 
 ### Fixes
 
@@ -21,12 +454,20 @@ skip_read_time: true
 * Fixed upsert for RBAC users using Admin API.
 * Allow PostgreSQL keepalive time to be configurable.
 
-#### Developer Portal
+#### Kong Manager
+
+* Added path to service on display page.
+
+#### Kong Developer Portal
 
 * Fixed app ``Save`` button to display as ``Save`` instead of ``Edit``.
 * Added `plugin.service` check in `app_reg` helper.
 * Fixed application registration issue rendered unusable with certain plugin configurations.
 * Fixed sidebar links with "."
+
+### Deprecated Features
+
+* Kong Brain is deprecated and not available for use in Kong Enterprise.
 
 ## 2.1.3.1
 **Release Date** 2020/08/31
@@ -287,6 +728,72 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
 
 
+## 1.5.0.9
+**Release Date** 2020/12/31
+
+### Fixes
+
+#### Core
+-  OpenSSL version bumped to 1.1.1i.
+  The OpenSSL version bump is related to CVE-2020-1971. We have performed an extensive review of OpenSSL usage in Kong and have found the following:
+  - The core product is not vulnerable to the high severity CVE-2020-1971. 
+  - The `mtls-auth` plugin had a potential exploit associated with with CVE-2020-1971, but it would require an attacker to control a trusted CA or have admin port access, which [we recommend you block from attackers](https://docs.konghq.com/latest/secure-admin-api/) for numerous reasons. The updated OpenSSL version in this release additionally protects the `mtls-auth` plugin.
+  - As a precautionary measure, we have bumped the OpenSSL dependency version to OpenSSL 1.1.1i.
+  
+#### Kong Enterprise
+- RCE (Remote Code Execution) Plugin Mitigations: 
+  Several Kong plugins allow arbitrary code execution by design, including the `serverless` plugin (also known as `pre-function` and `post-function` capabilities) and the `exit-transformer` plugin (for example, allows an administrator to configure a Lua-based response transformation). Changes include:
+  - A new change in this release locks down these plugins so that they have limited functions available in a sandbox, providing significant additional security for a user with an exposed admin port.
+  - Functions such as "require" are no longer available to scripts that run in these plugins for security purposes, because allowing "require" allows embedded additional arbitrary code execution. 
+  - **Important**: This change causes a **breaking change** in this patch release and it cannot be avoided. Our recommendation is that [users lock down their admin ports](https://docs.konghq.com/latest/secure-admin-api/) to avoid attackers trying to exploit any API gateway, like Kong, to gain access to internal networks. If you need the previous release behavior, including the ability to arbitrarily "require" libraries or if you want to lock things down further, we have introduced four new settings you can use:
+    - `KONG_UNTRUSTED_LUA = on|off` Sets whether any custom Lua code can be used outside of Kong's distributed code. Defaults to "on".
+    - `KONG_UNTRUSTED_LUA_SANDBOX = on|off` Turns on or off the sandbox. Defaults to "on".
+    - `KONG_UNTRUSTED_LUA_SANDBOX_REQUIRES = foo,bar` Which libraries, if any, you want to require in the sandbox. Defaults to an empty list.
+    - `KONG_UNTRUSTED_LUA_SANDBOX_ENVIRONMENT = kong.request` Any additional objects you want to pass through to the sandbox environments.  Defaults to an empty list.
+  
+#### Breaking Changes
+- See *RCE (Remote Code Execution) Plugin Mitigations* in the Kong Enterprise section. 
+  
+
+## 1.5.0.8
+**Release Date** 2020/11/17
+ 
+### Fixes
+
+#### **OpenID Connect Library**
+  - Changed to disable HS-signature verification by default.
+  - Changed to use `client_secret` as a fallback secret for HS-signature verification only when it is a string and has more than one character in it.
+  - Fixes vulnerability in the OpenID Connect and JWT Signer Plugins. Login to the [Kong Enterprise Support Portal](https://support.konghq.com/support/s/) for [OIDC advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-OIDC-Plugin) and [JWT advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-JWT-Signer-Plugin) details.
+
+
+## 1.5.0.7
+**Release Date** 2020/11/11
+ 
+### Fixes
+
+#### Kong Gateway
+
+* Fixed PUT request issue causing unique violation error for workspaces.
+* Improved cache warmup performance for reduced database calls.
+* Added migration to create TTL indices.
+
+#### Kong Manager
+
+* Fixed broken link to docs and updated text on Dev Portals page.
+
+#### Developer Portal
+
+* Fixed issue to allow users to delete developers.
+
+#### Dependencies
+
+* Updated lua-resty-openssl version to 0.6.8.
+
+#### Plugins
+
+* Added ability to preserve empty arrays correctly.
+
+
 ## 1.5.0.6
 **Release Date** 2020/10/01
 
@@ -313,7 +820,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 #### Plugins
 
-* Collector (`collector`, for Brain and Immunity) 
+* Collector (`collector`, for Brain and Immunity)
   * Fixed bug caused when trying to call `select_all`.
   * Fixed bug caused when trying to read a request body when parsing was unknown.
   * Fixed bug caused when using the `basic_serializer` in the access stage.
@@ -550,6 +1057,17 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 ### Known Issue and Workaround
 * Mutual TLS Authentication Plugin
   * For the parameter `config.revocation_check_mode`, the default value `IGNORE_CA_ERROR` has a known issue in version 1.5.0.0 and later. As a workaround, manually set the value to `SKIP`
+  
+
+## 1.3.0.3
+**Release Date:** 2020/11/19
+
+### Fixes
+
+#### **OpenID Connect Library**
+  - Changed to disable HS-signature verification by default.
+  - Changed to use `client_secret` as a fallback secret for HS-signature verification only when it is a string and has more than one character in it.
+  - Fixes vulnerability in the OpenID Connect and JWT Signer Plugins. Login to the [Kong Enterprise Support Portal](https://support.konghq.com/support/s/) for [OIDC advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-OIDC-Plugin) and [JWT advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-JWT-Signer-Plugin) details.
 
 ## 1.3.0.2
 **Release Date:** 2020/02/20
@@ -1085,6 +1603,16 @@ repository will allow you to do both easily.
 
 - Fixes: centos and alpine images did not work on some OpenShift setups with relaxed anyuid SCC settings.
 
+
+## 0.36-7
+**Release Date** 2020/11/20
+ 
+### Fixes
+
+#### **OpenID Connect Library**
+  - Changed to disable HS-signature verification by default.
+  - Changed to use `client_secret` as a fallback secret for HS-signature verification only when it is a string and has more than one character in it.
+  - Fixes vulnerability in the OpenID Connect and JWT Signer Plugins. Login to the [Kong Enterprise Support Portal](https://support.konghq.com/support/s/) for [OIDC advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-OIDC-Plugin) and [JWT advisory](https://support.konghq.com/support/s/article/Kong-Security-Advisory-JWT-Signer-Plugin) details.
 
 ## 0.36-6
 

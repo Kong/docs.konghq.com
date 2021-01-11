@@ -23,20 +23,20 @@
     - text: Quickstart Guide
       url: /getting-started/introduction
       items:
-    - text: Five-minute quickstart
-      url: /getting-started/quickstart
+        - text: Five-minute quickstart
+          url: /getting-started/quickstart
 
-    - text: Configuring a Service
-      url: /getting-started/configuring-a-service
+        - text: Configuring a Service
+          url: /getting-started/configuring-a-service
 
-    - text: Configuring a gRPC Service
-      url: /getting-started/configuring-a-grpc-service
+        - text: Configuring a gRPC Service
+          url: /getting-started/configuring-a-grpc-service
 
-    - text: Enabling Plugins
-      url: /getting-started/enabling-plugins
+        - text: Enabling Plugins
+          url: /getting-started/enabling-plugins
 
-    - text: Adding Consumers
-      url: /getting-started/adding-consumers
+        - text: Adding Consumers
+          url: /getting-started/adding-consumers
 
     - text: Configuration reference
       url: /configuration
@@ -425,6 +425,121 @@
 
     - text: Changelog
       url: /kong-for-kubernetes/changelog
+
+- title: Kubernetes Ingress Controller
+  icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
+  items:
+    - text: Introduction
+      url: /../../kubernetes-ingress-controller/latest/introduction
+    - text: FAQ
+      url: /../../kubernetes-ingress-controller/latest/faq
+    - text: Changelog
+      url: https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
+      absolute_url: true
+    - text: Concepts
+      items:
+        - text: Architecture
+          url: /../../kubernetes-ingress-controller/latest/concepts/design
+        - text: Custom Resources
+          url: /../../kubernetes-ingress-controller/latest/concepts/custom-resources
+        - text: Deployment Methods
+          url: /../../kubernetes-ingress-controller/latest/concepts/deployment
+        - text: Kong for Kubernetes with Kong Enterprise
+          url: /../../kubernetes-ingress-controller/latest/concepts/k4k8s-with-kong-enterprise
+        - text: High-Availability and Scaling
+          url: /../../kubernetes-ingress-controller/latest/concepts/ha-and-scaling
+        - text: Resource Classes
+          url: /../../kubernetes-ingress-controller/latest/concepts/ingress-classes
+        - text: Security
+          url: /../../kubernetes-ingress-controller/latest/concepts/security
+        - text: Ingress Resource API Versions
+          url: /../../kubernetes-ingress-controller/latest/concepts/ingress-versions
+    - text: Deployment
+      items:
+        - text: Overview
+          url: /../../kubernetes-ingress-controller/latest/deployment/overview
+        - text: Kong Ingress on Minikube
+          url: /../../kubernetes-ingress-controller/latest/deployment/minikube
+        - text: Kong for Kubernetes
+          url: /../../kubernetes-ingress-controller/latest/deployment/k4k8s
+        - text: Kong for Kubernetes Enterprise
+          url: /../../kubernetes-ingress-controller/latest/deployment/k4k8s-enterprise
+        - text: Kong for Kubernetes with Kong Enterprise
+          url: /../../kubernetes-ingress-controller/latest/deployment/kong-enterprise
+        - text: Kong Ingress on AKS
+          url: /../../kubernetes-ingress-controller/latest/deployment/aks
+        - text: Kong Ingress on EKS
+          url: /../../kubernetes-ingress-controller/latest/deployment/eks
+        - text: Kong Ingress on GKE
+          url: /../../kubernetes-ingress-controller/latest/deployment/gke
+        - text: Admission Controller
+          url: /../../kubernetes-ingress-controller/latest/deployment/admission-webhook
+    - text: Guides
+      items:
+        - text: Overview
+          url: /../../kubernetes-ingress-controller/latest/guides/overview
+        - text: Getting Started with KIC
+          url: /../../kubernetes-ingress-controller/latest/guides/getting-started
+        - text: Getting Started using Istio
+          url: /../../kubernetes-ingress-controller/latest/guides/getting-started-istio
+        - text: Using Custom Resources
+          items:
+            - text: Using the KongPlugin Resource
+              url: /../../kubernetes-ingress-controller/latest/guides/using-kongplugin-resource
+            - text: Using the KongIngress Resource
+              url: /../../kubernetes-ingress-controller/latest/guides/using-kongingress-resource
+            - text: Using KongConsumer and KongCredential Resources
+              url: /../../kubernetes-ingress-controller/latest/guides/using-consumer-credential-resource
+            - text: Using the KongClusterPlugin Resource
+              url: /../../kubernetes-ingress-controller/latest/guides/using-kongclusterplugin-resource
+        - text: Using the ACL and JWT Plugins
+          url: /../../kubernetes-ingress-controller/latest/guides/configure-acl-plugin
+        - text: Using cert-manager with Kong
+          url: /../../kubernetes-ingress-controller/latest/guides/cert-manager
+        - text: Configuring a Fallback Service
+          url: /../../kubernetes-ingress-controller/latest/guides/configuring-fallback-service
+        - text: Using an External Service
+          url: /../../kubernetes-ingress-controller/latest/guides/using-external-service
+        - text: Configuring HTTPS Redirects for Services
+          url: /../../kubernetes-ingress-controller/latest/guides/configuring-https-redirect
+        - text: Using Redis for Rate Limiting
+          url: /../../kubernetes-ingress-controller/latest/guides/redis-rate-limiting
+        - text: Integrate KIC with Prometheus/Grafana
+          url: /../../kubernetes-ingress-controller/latest/guides/prometheus-grafana
+        - text: Configuring Circuit-Breaker and Health-Checking
+          url: /../../kubernetes-ingress-controller/latest/guides/configuring-health-checks
+        - text: Setting up a Custom Plugin
+          url: /../../kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins
+        - text: Using Ingress with gRPC
+          url: /../../kubernetes-ingress-controller/latest/guides/using-ingress-with-grpc
+        - text: Setting up Upstream mTLS
+          url: /../../kubernetes-ingress-controller/latest/guides/upstream-mtls
+        - text: Exposing a TCP-based Service
+          url: /../../kubernetes-ingress-controller/latest/guides/using-tcpingress
+        - text: Using the mTLS Auth Plugin
+          url: /../../kubernetes-ingress-controller/latest/guides/using-mtls-auth-plugin
+        - text: Configuring Custom Entities
+          url: /../../kubernetes-ingress-controller/latest/guides/configuring-custom-entities
+        - text: Using the OpenID Connect Plugin
+          url: /../../kubernetes-ingress-controller/latest/guides/using-oidc-plugin
+        - text: Rewriting Hosts and Paths
+          url: /../../kubernetes-ingress-controller/latest/guides/using-rewrites
+        - text: Preserving Client IP Address
+          url: /../../kubernetes-ingress-controller/latest/guides/preserve-client-ip
+    - text: References
+      items:
+        - text: KIC Annotations
+          url: /../../kubernetes-ingress-controller/latest/references/annotations
+        - text: CLI Arguments
+          url: /../../kubernetes-ingress-controller/latest/references/cli-arguments
+        - text: Custom Resource Definitions
+          url: /../../kubernetes-ingress-controller/latest/references/custom-resources
+        - text: Plugin Compatibility
+          url: /../../kubernetes-ingress-controller/latest/references/plugin-compatibility
+        - text: Version Compatibility
+          url: /../../kubernetes-ingress-controller/latest/references/version-compatibility
+        - text: Troubleshooting
+          url: /../../kubernetes-ingress-controller/latest/troubleshooting
 
 - title: decK
   icon: /assets/images/icons/documentation/icn-dev-portal-color.svg

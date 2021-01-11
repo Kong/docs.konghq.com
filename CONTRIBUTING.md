@@ -522,6 +522,30 @@ will be the one displayed.
 
 > **Note:** You can’t nest navtabs within navtabs.
 
+##### Navtabs for codeblocks
+
+A specialized use of navtabs is the `codeblock` style. This will create copyable 
+tabbed codeblocks for easy code comparison and better use of space. See 
+[here](https://docs.konghq.com/enterprise/2.1.x/deployment/installation/kong-for-kubernetes/) 
+for an example of this style in use.
+
+> **Important!** Codeblock navtabs must contain codeblocks and **nothing else**.
+
+To create a tabbed codeblock, specify the `codeblock` class in the first element 
+when creating a `navtabs` group:
+
+    {% navtabs codeblock %}
+    {% navtab cURL %}
+     ```sh
+     $ curl some request
+     ```
+    {% endnavtab %}
+    {% navtab HTTPie %}
+     ```sh
+     $ httpie some request
+     ```
+    {% endnavtab %}
+    {% endnavtabs %}
 
 [Back to TOC](#table-of-contents)
 

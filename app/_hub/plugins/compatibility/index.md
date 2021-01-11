@@ -30,12 +30,11 @@ nodes, so only control plane nodes require a database
 <br/><i class="fa fa-times" style="opacity:50%;color:red"></i> Not supported
 </div>
 
-| Plugin  | Kong or Third-Party |  Classic  |  DB-less |  Hybrid mode | Notes {:width=40%:} |
-|:--------|:--------------------|:---------:|:--------:|:------------:|:--------------------|
+| Plugin  | Owner |  Classic  |  DB-less |  Hybrid mode | Notes {:width=40%:} |
+|:--------|:------|:---------:|:--------:|:------------:|:--------------------|
 | [ACL](/hub/kong-inc/acl/)                                                          | Kong                | <i class="fa fa-check"></i> |            <i class="fa fa-minus-square"></i>             |                <i class="fa fa-check"></i>                | Authentication plugins can only be used if the set of credentials is static and specified as part of the declarative configuration. Admin API endpoints to dynamically create, update, or delete credentials are not available in DB-less mode. |
 | [ACME (Let's Encrypt)](/hub/kong-inc/acme/)                                        | Kong                | <i class="fa fa-check"></i> |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
 | [Apache OpenWhisk](/hub/kong-inc/openwhisk/)                                       | Kong                | <i class="fa fa-check"></i> |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
-| [API Fortress HTTP Log](/hub/api-fortress/api-fortress-http-log)                   | Third-party         | <i class="fa fa-check"></i> |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
 | [API Transformer](/hub/qnap/api-transformer/)                                      | Third-party         | <i class="fa fa-check"></i> |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
 | [Approov API Threat Protection](/hub/critical-blue/approov/)                       | Third-party         | <i class="fa fa-check"></i> |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
 | [ArecaBay MicroSensor](/hub/arecabay/ab-microsensor/)                              | Third-party         | <i class="fa fa-check"></i> |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
@@ -118,8 +117,8 @@ and [{{site.ee_product_name}} for Kubernetes Deployment Options](/enterprise/lat
 <br/> <i class="fa fa-times" style="opacity:50%;color:red"></i> Not supported
 </div>
 
-| Plugin  | Kong or Third-Party | Classic  | DB-less Kong Enterprise on Kubernetes |   Hybrid Mode   | Notes {:width=30%:} |
-|:--------|:--------------------|:--------------------------------------:|:-----------:|:--------------:|:--------------------|
+| Plugin  | Owner | Classic  | DB-less Kong Enterprise on K8S |   Hybrid Mode   | Notes {:width=30%:} |
+|:--------|:------|:--------:|:-------------------------------------:|:---------------:|:--------------------|
 | [ACL](/hub/kong-inc/acl/)                                                          | Kong                |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
 | [Apache OpenWhisk](/hub/kong-inc/openwhisk/)                                       | Kong                |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
 | [Approov API Threat Protection](/hub/critical-blue/approov/)                       | Third-party         |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |

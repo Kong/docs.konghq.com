@@ -1,6 +1,12 @@
 ---
 title: Kong Brain and Kong Immunity Installation and Configuration
 ---
+
+<div class="alert alert-warning">
+<i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+<strong>Important:</strong> Kong Brain is deprecated and not available for use in Kong Enterprise version 2.1.4.2 and later.
+</div>
+
 ## Introduction
 Kong Brain (Brain) and Kong Immunity (Immunity) are installed on Kong Enterprise, either on Kubernetes or Docker, as defined below. The Collector App and Collector Plugin enable Brain and Immunity to communicate with Kong Enterprise. 
 
@@ -17,7 +23,7 @@ Kong Brain and Kong Immunity follow a different versioning scheme from Kong Ente
 | 1.x.x                            | 1.3.x                   |
 
 ## Install Brain and Immunity on Kubernetes
-Set up the Collector App via Helm. Use the public helm chart for setting up the Collector App and all its dependencies on Kubernetes. Instructions for setup can be found on the public repo at: [https://github.com/Kong/kong-collector-helm/blob/master/README.md](https://github.com/Kong/kong-collector-helm/blob/master/README.md).
+Set up the Collector App via Helm. Use the public helm chart for setting up the Collector App and all its dependencies on Kubernetes. Setup instructions can be found on the public repo at: [https://github.com/Kong/kong-collector-helm/blob/master/README.md](https://github.com/Kong/kong-collector-helm/blob/master/README.md).
 
 ## Install Brain and Immunity on Docker
 Install Brain and Immunity by downloading, installing and starting the Collector App on Docker, as defined in this section. After installing the Collector App, you will enable the Collector Plugin to access Brain and Immunity on Kong Enterprise. 
@@ -38,13 +44,13 @@ To complete this installation you will need:
 * Kong Enterprise 2.1.x or later is installed on Docker.
 
 * A valid Kong Enterprise License JSON file, including a license for Kong Brain and Kong Immunity.
-**Note**: You should receive your Bintray credentials with your purchase of Kong Enterprise. If you need Bintray credentials, contact from Kong Support.
+**Note**: You should receive your Bintray credentials with your purchase of Kong Enterprise. If you need Bintray credentials, contact Kong Support.
 
 
 ### Step 1. Add the Kong Docker Repository and Pull the Kong Brain and Kong Immunity Docker Image
 
 1. In a terminal window, add the Kong Docker Repository.
-Note: Be sure to use replace the variables with your bintray username and bintray apikey. 
+Note: Be sure to replace the variables with your bintray username and bintray apikey. 
 ```bash
 $ docker login -u <your_username_from_bintray> -p <your_apikey_from_bintray> kong-docker-kong-brain-immunity-base.bintray.io
 ```
@@ -186,4 +192,4 @@ $ curl localhost:8001/default/collector/status
 ## Summary
 The Collector App is installed and the Collector Plugin is enabled on Kong Enterprise. You are now ready to analyze incoming traffic for [alerts](/enterprise/{{page.kong_version}}/brain-immunity/alerts), [auto-generate specs](/enterprise/{{page.kong_version}}/brain-immunity/auto-generated-specs), and display your traffic visually in a [Service Map](/enterprise/{{page.kong_version}}/brain-immunity/service-map).
 
-For any issues encountered while setting up Collector App, Collector Plugin, or configuring other aspects of Brain and Immunity, see [troubleshooting](/enterprise/{{page.kong_version}}/brain-immunity/troubleshooting) for help debugging common problems.
+For any issues encountered when setting up Collector App, Collector Plugin, or configuring other aspects of Brain and Immunity, see [troubleshooting](/enterprise/{{page.kong_version}}/brain-immunity/troubleshooting) for help debugging common problems.

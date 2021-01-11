@@ -12,10 +12,18 @@
     &.active {
       color: @blue;
       border-bottom: 2px solid @blue;
+      margin-bottom: -2px;
+      cursor: text;
     }
 
-    &:hover {
-      border-bottom: 2px solid @black-40;
+    &:not(.active) {
+      &:hover, &:focus {
+        border-bottom: 2px solid @black-40;
+        margin-bottom: -2px;
+        transition: all 0.1s;
+        -moz-transition: all 0.1s;
+        -webkit-transition: all 0.1s;
+      }
     }
 
     &:first-child {
@@ -91,6 +99,12 @@
     ol {
       padding-left: 2rem;
       counter-reset: base;
+
+      li {
+        p {
+          font-size: inherit;
+        }
+      }
     }
 
     ol > li::before {
@@ -104,10 +118,16 @@
       // font sizes
       font-size: inherit;
       margin-left: 0.5rem;
+      list-style: none;
 
       li {
         // avoid ridiculously big spaces between lists elements
         margin-bottom: 0.2rem;
+        list-style-type: disc;
+
+        p {
+          font-size: inherit;
+        }
       }
 
       ul {

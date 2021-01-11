@@ -1,7 +1,7 @@
 ---
 name: ACME
 publisher: Kong Inc.
-version: 0.2.11
+version: 0.2.13
 
 source_url: https://github.com/Kong/kong-plugin-acme
 
@@ -21,6 +21,7 @@ kong_version_compatibility:
         - 2.0.x
     enterprise_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
 
 params:
@@ -78,8 +79,16 @@ params:
       default: "`false`"
       description: |
         If you are using Let's Encrypt, you must set this to true to agree the [Terms of Service](https://letsencrypt.org/repository/).
+    - name: eab_kid
+      required: false
+      description: |
+        External account binding (EAB) key id. You usually don't need to set this unless it is explicitly required by the CA.
+    - name: eab_hmac_key
+      required: false
+      description: |
+        External account binding (EAB) base64-encoded URL string of the HMAC key. You usually don't need to set this unless it is explicitly required by the CA.
   extra: |
-    `config.storage_config` is a table for all posisble storage types, by default it is:
+    `config.storage_config` is a table for all possible storage types. By default, it is:
     ```json
         "storage_config": {
           "kong": {},
@@ -113,7 +122,14 @@ params:
         }
     ```
 
-    To configure storage type other than `kong`, please refer to [lua-resty-acme](https://github.com/fffonion/lua-resty-acme#storage-adapters).
+    To configure a storage type other than `kong`, refer to [lua-resty-acme](https://github.com/fffonion/lua-resty-acme#storage-adapters).
+
+    External account binding (EAB) is supported as long as `eab_kid` and `eab_hmac_key` are provided.
+
+    The following CA provider's external account can be registered automatically, without specifying
+    the `eab_kid` or `eab_hmac_key`:
+
+    - [ZeroSSL](https://zerossl.com/)
 
 ---
 
@@ -165,6 +181,7 @@ is mapped to a Route in Kong. You can check this by sending
 `curl KONG_IP/.well-known/acme-challenge/x -H "host:DOMAIN"` and getting the response `Not found`.
 You can also [use the Admin API](#create-certificates) to verify the setup.
 If not, add a Route and a dummy Service to catch this route.
+
 ```bash
 # add a dummy service if needed
 $ curl http://localhost:8001/services \
@@ -190,7 +207,7 @@ Note by setting `tos_accepted` to *true* implies that you have read and accepted
 
 **This plugin can only be configured as a global plugin.** The plugin terminates
 `/.well-known/acme-challenge/` path for matching domains. To create certificates
-and terminate challenges only for certain domains, please refer to the
+and terminate challenges only for certain domains, refer to the
 [Parameters](#parameters) section.
 
 #### Trigger creation of certificate
@@ -269,13 +286,13 @@ $ echo q |openssl s_client -connect localhost -port 8443 -servername $NGROK_HOST
 
 ### Notes
 
-- In database mode, the plugin creates SNI and Certificate entity in Kong to
-serve certificate. If SNI or Certificate for current request is already set
-in database, they will be overwritten.
-- In DB-less mode, the plugin takes over certificate handling, if the SNI or
-Certificate entity is already defined in Kong, they will be overrided from
+- In database mode, the plugin creates an SNI and Certificate entity in Kong to
+serve the certificate. If SNI or Certificate for the current request is already set
+in the database, they will be overwritten.
+- In DB-less mode, the plugin takes over certificate handling. If the SNI or
+Certificate entity is already defined in Kong, they will be overridden by the
 response.
-- The plugin only supports http-01 challenge, meaning user will need a public
-IP and setup resolvable DNS. Kong also needs to accept proxy traffic from port `80`.
-Also, note that wildcard or star certificate is not supported, each domain will have its
+- The plugin only supports http-01 challenge, meaning a user will need a public
+IP and set up a resolvable DNS. Kong also needs to accept proxy traffic from port `80`.
+Also, note that a wildcard or star (*) certificate is not supported. Each domain will have its
 own certificate.

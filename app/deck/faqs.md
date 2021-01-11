@@ -1,7 +1,6 @@
 ---
 title: Frequently Asked Questions (FAQs)
 no_version: true
-no_search: true
 ---
 
 ### I use Terraform to configure Kong, why should I care about decK?

@@ -1,18 +1,21 @@
 ---
 title: Kong Mesh with CentOS
-no_search: true
 ---
-
-## CentOS
 
 To install and run {{site.mesh_product_name}} on CentOS (**x86_64**), execute
 the following steps:
 
 * [1. Download {{site.mesh_product_name}}](#1-download-kong-mesh)
-* [2. Configure the license](#2-configure-the-license)
-* [3. Follow Kuma instructions](#3-follow-kuma-instructions)
+* [2. Run {{site.mesh_product_name}}](#2-run-kong-mesh)
+* [3. Verify the Installation](#3-verify-the-installation)
 
-### 1. Download {{site.mesh_product_name}}
+Finally, you can follow the [Quickstart](#4-quickstart) to take it from here
+and continue your {{site.mesh_product_name}} journey.
+
+## Prerequisites
+You have a license for {{site.mesh_product_name}}.
+
+## 1. Download {{site.mesh_product_name}}
 
 {% navtabs %}
 {% navtab Script %}
@@ -26,35 +29,19 @@ $ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
 
 {% endnavtab %}
 {% navtab Manually %}
-You can also [download](https://kong.bintray.com/kong-mesh/kong-mesh-{{page.kong_latest.version}}-centos-amd64.tar.gz)
+You can also [download](https://kong.bintray.com/kong-mesh/kong-mesh-{{page.kong_versions[0].version}}-centos-amd64.tar.gz)
 the distribution manually.
 
 Then, extract the archive with:
 
 ```sh
-$ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
+$ tar xvzf kong-mesh-{{page.kong_versions[0].version}}*.tar.gz
 ```
 {% endnavtab %}
 {% endnavtabs %}
 
-### 2. Configure The License
+{% include /md/mesh/1.0.x/install-universal-run.md %}
 
-Before running the {{site.mesh_product_name}} control plane process - which is served by the `kuma-cp` executable - we need to make sure that we have a valid {{site.mesh_product_name}} license in place.
+{% include /md/mesh/1.0.x/install-universal-verify.md %}
 
-This can be done by running the control plane with:
-
-```sh
-$ KUMA_LICENSE_PATH=license.json kuma-cp run
-```
-
-Where `license.json` is the path to a valid {{site.mesh_product_name}} license file on the file system.
-
-### 3. Follow Kuma Instructions
-
-After downloading the {{site.mesh_product_name}} binaries, the remaining
-installation instructions for Kuma are fully compatible with
-{{site.mesh_product_name}}, except you will be running the
-{{site.mesh_product_name}} binaries instead of the vanilla Kuma ones.
-
-To continue the installation, start from the second installation step in
-[the official Kuma installation guide](https://kuma.io/docs/0.7.1/installation/centos/#_2-run-kuma) keeping in mind that we need to run the control plane with the appropriate license file as described on this page.
+{% include /md/mesh/1.0.x/install-universal-quickstart.md %}

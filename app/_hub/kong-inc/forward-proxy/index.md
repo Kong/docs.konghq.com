@@ -22,6 +22,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -41,20 +42,27 @@ params:
       default:
       value_in_examples: example.com
       description: |
-        The hostname or IP address of the forward proxy to which to connect
+        The hostname or IP address of the forward proxy to which to connect.
     - name: proxy_port
       required: true
       default:
       value_in_examples: 80
       description: |
-        The TCP port of the forward proxy to which to connect
+        The TCP port of the forward proxy to which to connect.
     - name: proxy_scheme
-      required:
+      required: true
       default: http
-      value_in_examples:
+      value_in_examples: http
       description: |
-        The proxy scheme to use when connecting. Currently only `http` is supported
-
+        The proxy scheme to use when connecting. Currently only `http` is supported.
+    - name: https_verify
+      required: true
+      default: false
+      value_in_examples: false
+      description: |
+        Whether the server certificate will be verified according to the CA certificates
+        specified in
+        [lua_ssl_trusted_certificate](https://www.nginx.com/resources/wiki/modules/lua/#lua-ssl-trusted-certificate).
 ---
 
 ### Notes

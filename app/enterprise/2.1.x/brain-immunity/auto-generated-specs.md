@@ -2,6 +2,11 @@
 title: Auto-Generated Specs
 ---
 
+<div class="alert alert-warning">
+<i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+<strong>Important:</strong> Kong Brain is deprecated and not available for use in Kong Enterprise version 2.1.4.2 and later.
+</div>
+
 ## Introduction
 Writing API documentation and keeping them up to date is often the easiest, most important task that either doesn't happen or doesn't happen enough. Having great API specifications is especially difficult for organizations with legacy APIs that were never documented to begin with.
 

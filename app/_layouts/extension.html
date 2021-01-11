@@ -468,20 +468,46 @@ plugins:
     <tr><th>Form Parameter</th><th>Description</th></tr>
   </thead>
   <tbody>
-    <tr><td><code>name</code></td><td>The name of the plugin to use, in this case <code>{{ page.params.name }}</code>.</td></tr>
+    <tr>
+      <td><code>name</code>
+        <br><br><strong>Type: </strong>string</td>
+      <td>The name of the plugin to use, in this case <code>{{ page.params.name }}</code>.</td>
+    </tr>
 
     {% if page.params.service_id %}
-      <tr><td><code>service.id</code></td><td>The ID of the Service the plugin targets.</td></tr>
+      <tr>
+        <td><code>service.id</code>
+          <br><br><strong>Type: </strong>string</td>
+        <td>The ID of the Service the plugin targets.</td>
+      </tr>
     {% endif %}
     {% if page.params.route_id %}
-      <tr><td><code>route.id</code></td><td>The ID of the Route the plugin targets.</td></tr>
+      <tr>
+        <td><code>route.id</code>
+          <br><br><strong>Type: </strong>string</td>
+        <td>The ID of the Route the plugin targets.</td>
+      </tr>
     {% endif %}
     {% if page.params.consumer_id %}
-      <tr><td><code>consumer.id</code></td><td>The ID of the Consumer the plugin targets.</td></tr>
+      <tr>
+        <td><code>consumer.id</code>
+          <br><br><strong>Type: </strong>string</td>
+        <td>The ID of the Consumer the plugin targets.</td>
+      </tr>
     {% endif %}
-      <tr><td><code>enabled</code><br><br><strong>default value: </strong><code>true</code></td><td>Whether this plugin will be applied.</td></tr>
+      <tr>
+        <td><code>enabled</code>
+          <br><br><strong>Type: </strong>boolean
+          <br><br><strong>Default value: </strong><code>true</code></td>
+        <td>Whether this plugin will be applied.</td>
+      </tr>
     {% if page.params.api_id %}
-    <tr><td><code>api_id</code></td><td>The ID of the API the plugin targets. <br><br><strong>Note:</strong> The <a href="/0.13.x/admin-api/#api-object">API Entity</a> is deprecated in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a> and <a href="https://docs.konghq.com/enterprise/changelog/#0-32">EE 0.32</a>.</td></tr>
+    <tr>
+      <td><code>api_id</code>
+        <br><br><strong>Type: </strong>string</td>
+      <td>The ID of the API the plugin targets.
+        <br><br><strong>Note:</strong> The <a href="/0.13.x/admin-api/#api-object">API Entity</a> is deprecated in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a> and <a href="https://docs.konghq.com/enterprise/changelog/#0-32">EE 0.32</a>.</td>
+      </tr>
     {% endif %}
     {% for field in page.params.config %}
       <tr>
@@ -489,9 +515,11 @@ plugins:
           {% if field.required == true %}<br><em>required</em>{% endif %}
           {% if field.required == false %}<br><em>optional</em>{% endif %}
           {% if field.required == "semi" %}<br><em>semi-optional</em>{% endif %}
-          {% if field.default != nil %}<br><br><strong>default value: </strong>{{ field.default | markdownify }}{% endif %}
+          {% if field.datatype != nil %}<br><br><strong>Type: </strong>{{ field.datatype | markdownify | strip_html }}{% endif %}
+          {% if field.default != nil %}<br><br><strong>Default value: </strong>{{ field.default | markdownify | strip_html }}{% endif %}
         </td>
-        <td>{{ field.description | markdownify }}</td>
+        <td>
+          <br>{{ field.description | markdownify }}</td>
       </tr>
     {% endfor %}
   </tbody>
@@ -687,10 +715,24 @@ plugins:
     {% endcapture %}
 
     <aside class="page-navigation">
-      <span><a href="/hub">< Back to Kong Plugin Hub</a></span>
+      <div class="github-links">
+        <ul>
+          <li>
+            <a href="/hub">
+            <i class="fa fa-chevron-left"></i>Back to Kong Plugin Hub</a>
+          </li>
+          <li>
+            <a href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}">
+            <img src="/assets/images/logos/logo-github.svg" alt="github"/>Edit this page</a>
+          </li>
+          <li>
+            <a href="https://github.com/Kong/docs.konghq.com/issues">
+            <img src="/assets/images/icons/documentation/icn-monitoring-black.svg" alt="report-issue"/>Report an issue</a>
+          </li>
+        </ul>
+      </div>
       {% unless page.toc == false %}
         <nav>
-          <br/>
           {% include toc.html html=full_content h_min=2 h_max=3 sanitize=true %}
         </nav>
       {% endunless %}

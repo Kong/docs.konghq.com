@@ -48,9 +48,9 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    redcarpet (3.5.0)
+    redcarpet (3.5.1)
     rexml (3.2.4)
-    rouge (3.23.0)
+    rouge (3.26.0)
     safe_yaml (1.0.5)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
@@ -65,8 +65,8 @@ DEPENDENCIES
   jekyll (= 3.9.0)
   jekyll-redirect-from
   kramdown-parser-gfm
-  redcarpet (= 3.5.0)
-  rouge (= 3.23.0)
+  redcarpet (= 3.5.1)
+  rouge (= 3.26.0)
 
 BUNDLED WITH
    1.17.3

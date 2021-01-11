@@ -2,7 +2,6 @@
 title: Best Practices when using decK
 toc: false
 no_version: true
-no_search: true
 ---
 
 - Always ensure that you have one decK process running at any time. Multiple

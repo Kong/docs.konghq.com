@@ -1,7 +1,7 @@
 ---
 name: IP Restriction
 publisher: Kong Inc.
-version: 1.0.0
+version: 2.0.x
 
 desc: Allow or deny IPs that can make requests to your Services
 description: |
@@ -14,6 +14,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x
@@ -35,6 +36,7 @@ kong_version_compatibility:
         - 0.4.x
     enterprise_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x

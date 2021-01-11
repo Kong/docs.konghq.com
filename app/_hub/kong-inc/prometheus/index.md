@@ -14,6 +14,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x
@@ -25,6 +26,7 @@ kong_version_compatibility:
         - 0.14.x
     enterprise_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -41,17 +43,14 @@ params:
 
 ---
 
-Metrics are available on the Admin API at the `http://localhost:8001/metrics`
-endpoint. Note that the URL to the Admin API will be specific to your
+Metrics are available on both the Admin API and Status API at the
+`http://localhost:<port>/metrics`
+endpoint. Note that the URL to those APIs will be specific to your
 installation; see [Accessing the metrics](#accessing-the-metrics) below.
 
 This plugin records and exposes metrics at the node level. Your Prometheus
 server will need to discover all Kong nodes via a service discovery mechanism,
-and consume data from each node's configured `/metric` endpoint. Kong nodes
-that are set to proxy only (that is, their Admin API has been disabled by
-specifying `admin_listen = off`) will need to use a [custom Nginx
-configuration template](/latest/configuration/#custom-nginx-configuration)
-to expose the metrics data.
+and consume data from each node's configured `/metrics` endpoint.
 
 ### Grafana dashboard
 
@@ -180,42 +179,11 @@ need to be set up to require authentication. Here are a couple of options to
 allow access to the `/metrics` endpoint to Prometheus:
 
 
-1. Kong Enterprise users can protect the admin `/metrics` endpoint with an
-   [RBAC user](/enterprise/latest/setting-up-admin-api-rbac) that the
-   Prometheus servers use to access the metric data. Access through any
-   firewalls would also need to be configured.
+1. If the [Status API](https://docs.konghq.com/latest/configuration/#status_listen)
+   is enabled, then its `/metrics` endpoint can be used.
+   This is the preferred method.
 
-2. You can proxy the Admin API through Kong itself then use plugins to limit
-   access. For example, you can create a route `/metrics` endpoint and have
-   Prometheus access this endpoint to slurp in the metrics while preventing
-   others from accessing it. The specifics of how this is configured will depend
-   on your specific setup. For details, see [Securing the Admin
-   API](https://docs.konghq.com/latest/secure-admin-api/#kong-api-loopback).
-
-3. Finally, you could serve the content on a different port with a custom server
-   block using a [custom Nginx
-   template](/latest/configuration/#custom-nginx-configuration) with Kong.
-
-    The following block is an example custom nginx template that can be used
-    by Kong:
-
-    ```
-    server {
-        server_name kong_prometheus_exporter;
-        listen 0.0.0.0:9542; # can be any other port as well
-
-        location / {
-            default_type text/plain;
-            content_by_lua_block {
-                local prometheus = require "kong.plugins.prometheus.exporter"
-                prometheus:collect()
-            }
-        }
-
-        location /nginx_status {
-            internal;
-            access_log off;
-            stub_status;
-        }
-    }
-    ```
+1. The `/metrics` endpoint is also available on the Admin API, which can be used
+   if the Status API is not enabled. Note that this endpoint is unavailable
+   when [RBAC](/enterprise/latest/setting-up-admin-api-rbac) is enabled on the
+   Admin API (Prometheus does not support Key-Auth to pass the token).

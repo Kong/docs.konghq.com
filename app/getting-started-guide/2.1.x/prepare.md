@@ -13,29 +13,100 @@ Before you start this section, make sure that:
 
 In this guide, an instance of {{site.base_gateway}} is referenced via `<admin-hostname>`. Make sure to replace `<admin-hostname>` with the hostname of your control plane instance.
 
+## (Free Trials Only) Expose the Admin API {#free-trials-setup}
+
 <div class="alert alert-ee">
-<h5><img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" />Note for {{site.ee_product_name}} free trial users</h5>
-If you are trying out {{site.ee_product_name}} using a hosted free trial, you can go through this guide to experience some of this enhanced functionality. However, you need to enable access to the Admin API first.
-  <ol>
-    <li>Open the Kong Manager using the link provided in your free trial welcome email.</li>
-    <li>Open <strong>Teams</strong> > <strong>RBAC Users</strong>, then click <strong>Add New User</strong>.</li>
-    <li>Set up an RBAC user with an appropriate role (e.g. admin) and an RBAC token. Make sure to leave the <strong>Enabled</strong> box checked.</li>
-    <li>Test by building a request to the Admin API.
-<p></p>
-<span style="font-size:14px"><em>Using cURL:</em></span>
-<pre class="highlight">
-<code>$ curl -H “Kong-Admin-Token:&lt;your-RBAC-token&gt;” \
-&lt;admin-endpoint-from-email&gt;/services</code></pre>
-<span style="font-size:14px"><em>Or using HTTPie:</em></span>
-<pre class="highlight">
-<code>$ http &lt;admin-endpoint-from-email&gt;/services \
-Kong-Admin-Token:&lt;your-RBAC-token&gt; </code></pre>
-You should get a 200 response code and your list of services will be empty.
-<br/>
-<br/>You can now use the Admin API instructions in this guide. Remember to switch any mentions of <code>http://&lt;admin-hostname&gt;:8001</code> or <code>&lt;admin-hostname&gt;:8001</code> with your Admin API endpoint (no port number required).
-</li>
-</ol>
+  <img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg"
+  alt="Enterprise" />
+  This section is only applicable to {{site.ee_product_name}} hosted free trials.
+  Skip to <a href="#verify-the-kong-gateway-configuration">Verify the Kong Gateway Configuration</a>
+  if you aren't a free trial user.
 </div>
+
+If you are trying out {{site.ee_product_name}} using a hosted free trial, you
+can go through this guide to experience some of this enhanced functionality.
+We recommend that you get started using the Kong Manager user interface.
+However, if you want to test out configuring {{site.ee_product_name}}
+programmatically, you need to enable access to the Admin API first.
+
+### Hosted Free Trial Endpoints
+
+In the Free Trials welcome email, you should have received a list of endpoints.
+You will need to reference the following endpoints and substitute them in
+instructions throughout this guide.
+
+{% navtabs %}
+{% navtab Kong Administration endpoint %}
+Use this endpoint for configuring Kong Gateway using the Kong Admin API. The
+endpoint looks something like this:
+
+`https://admin-kong1a2b3c.kong-cloud.com`
+
+In this guide, substitute this endpoint any time you're asked to access the
+admin host with **port 8001**. For example, given the following request
+and placeholders:
+
+```sh
+$ curl -i -X GET http://<admin-hostname>:8001/services/
+```
+
+Replace `http://<admin-hostname>:8001` with your administration endpoint:
+
+```sh
+$ curl -i -X GET https://admin-kong1a2b3c.kong-cloud.com/services/
+```
+{% endnavtab %}
+{% navtab Kong Proxy endpoint %}
+
+Use this URL to access your Services. The URL looks something like this:
+
+`http://kong1a2b3c.kong-cloud.com`
+
+In this guide, substitute this URL any time you're asked to access the admin
+host with **port 8000**. For example, given the following request and
+placeholders:
+
+```sh
+$ curl -i -X GET http://<admin-hostname>:8000/mock/request
+```
+
+Replace `http://<admin-hostname>:8000` with your proxy URL:
+
+```sh
+$ curl -i -X GET http://kong1a2b3c.kong-cloud.com/mock/request
+```
+
+{% endnavtab %}
+{% endnavtabs %}
+
+### Create a User with an RBAC Token
+
+1. Open the Kong Manager using the link provided in your free trial welcome
+email.
+2. Open **Teams** > **RBAC Users**, then click **Add New User**.
+3. Set up an RBAC user with an appropriate role (e.g. admin) and an RBAC token.
+Make sure to leave the **Enabled** box checked.
+4. Test by building a request to the Admin API:
+
+    *Using cURL:*
+    ```sh
+    $ curl <admin-endpoint-from-email>/services \
+      -H “Kong-Admin-Token:<your-RBAC-token>”
+    ```
+
+    *Or using HTTPie:*
+    ```sh
+    $ http <admin-endpoint-from-email>/services \
+      Kong-Admin-Token:<your-RBAC-token>
+    ```
+
+    You should get a `200` response code and your list of services will be empty.
+
+You can now use the Admin API instructions in this guide.
+
+Remember to switch any mentions of `http://<admin-hostname>:8001` or
+`<admin-hostname>:8001` with your Admin API endpoint (no port number required).
+
 
 ## Verify the Kong Gateway configuration
 {% navtabs %}

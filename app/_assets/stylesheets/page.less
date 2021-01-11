@@ -414,12 +414,23 @@
     bottom: 0;
     max-width: 100%;
     background-size: cover;
-    background-image: linear-gradient(to bottom, #ffffff, 40%, transparent),
+    background-image: linear-gradient(
+        to bottom,
+        #ffffff,
+        40%,
+        transparent
+      ),
       url("/assets/images/docs/banner-bkg.png");
     background-image: -moz-linear-gradient(
         bottom,
         rgba(255, 255, 255, 0) 40%,
         #ffffff
+      ),
+      url("/assets/images/docs/banner-bkg.png");
+    background-image: -webkit-linear-gradient(
+        top,
+        rgba(255,255,255,1) 0%,
+        rgba(255,255,255,0) 100%
       ),
       url("/assets/images/docs/banner-bkg.png");
     transform: translateX(-50%);
@@ -440,7 +451,7 @@
 .page-navigation {
   float: right;
   width: 215px;
-  padding: 50px 0 0 20px;
+  padding: 25px 0 0 20px;
 
   .close-sidebar {
     display: none;
@@ -472,6 +483,45 @@
       transform: rotate(-45deg);
     }
   }
+
+  .github-links {
+    margin-bottom: 0;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+
+      li {
+        position: relative;
+        margin: 0;
+        border: none;
+        padding-bottom: 3px;
+        vertical-align: text-top;
+
+        a {
+          font-size: 14px;
+          color: @blue;
+
+            img, i {
+              float: left;
+              padding-right: 12px;
+              display: inline-block;
+              width: 16px;
+              opacity: 0.4;
+              position: relative;
+              top: 6px;
+              }
+
+            i {
+              opacity: 1;
+              font-size: 14px;
+              left: 1.5px;
+            }
+          }
+        }
+      }
+    }
 
   @media (max-width: 800px) {
     position: fixed;
@@ -778,8 +828,8 @@
   }
 
   pre {
-    background-color: @gray-light;
-    border: 1px solid @gray;
+    background-color: @grey-100;
+    border: 1px solid @grey-200;
     color: #000;
     line-height: 24px;
     margin: 1.3em 0;
@@ -809,7 +859,7 @@
     }
 
     code {
-      padding: 0;
+      padding: 8px 0;
       color: #000;
       background: transparent;
     }
@@ -828,12 +878,24 @@ Generic Styling for Desktop
   table {
     display: block;
     max-width: 100%;
-    border-collapse: collapse;
     font-size: 14px;
     overflow-x: auto;
+    border: none;
+    border-collapse: collapse;
+    margin-top: 1.5em;
+
+    i.fa-times {
+      color: @red-500;
+      opacity: 50%;
+    }
+
+    i.fa-check {
+      color: @green-400;
+    }
 
     code {
       white-space: normal;
+      font-size: 13px;
     }
   }
 
@@ -841,20 +903,21 @@ Generic Styling for Desktop
     font-size: 14px;
   }
 
-  /* Zebra striping */
-
-  tr:nth-of-type(odd) {
-    background: @gray-light;
+  tr, th, td {
+    border: none;
   }
 
   th {
-    font-weight: bold;
+    font-weight: 600;
+    color: @black-80;
+    background-color: @grey-100;
   }
 
   td,
   th {
-    padding: 6px;
-    border: 1px solid #ccc;
+    padding: 8px 16px 8px;
+    border-bottom: 1px solid @grey-300;
+    border-top: 1px solid @grey-300;
   }
 
   @media only screen and (max-width: 1099px) {
@@ -876,13 +939,14 @@ Generic Styling for Desktop
       }
 
       tr {
-        border: 1px solid #ccc;
+        border-top: 1px solid @grey-300;
+        border-bottom: 1px solid @grey-300;
       }
 
       td {
         /* Behave  like a "row" */
         border: none;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid @grey-300;
         position: relative;
       }
 
@@ -892,13 +956,14 @@ Generic Styling for Desktop
 
         content: attr(data-label);
         font-size: 14px;
+        font-weight: 600;
       }
     }
   }
 
   .alert {
     margin-bottom: 1.3em;
-    font-size: 14px;
+    font-size: 16px;
 
     &.alert-warning {
       color: hsl(45, 2%, 36%);
@@ -1173,14 +1238,16 @@ Generic Styling for Desktop
 .alert {
   border: none;
   border-left: 3px solid @gray;
+  color: #757575;
+  background-color: #f9f9f9;
   border-radius: 0;
-  font-size: 18px;
+  font-size: 16px;
   padding: 8px 13px;
 
   pre, code {
     background-color: #fff;
     border: none;
-}
+  }
 
 }
 
@@ -1219,7 +1286,7 @@ Generic Styling for Desktop
   border: none;
   border-left: solid 3px #b3dfff;
   border-radius: 0;
-  font-size: 14px;
+  font-size: 16px;
 
   &.red {
     background-color: #fdf3f2;
@@ -1232,7 +1299,8 @@ Generic Styling for Desktop
   }
 
   &.info {
-    border-left: solid 3px #e0e0e0;
+    border-left: 3px solid @gray;
+    color: #757575;
     background-color: #f9f9f9;
   }
 
@@ -1279,7 +1347,7 @@ Generic Styling for Desktop
 
   p {
     padding: 0 25px 0 75px;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   a {
@@ -1599,8 +1667,8 @@ Generic Styling for Desktop
 
 #scroll-to-top-button {
   position: fixed;
-  bottom: 12px;
-  right: 16px;
+  bottom: 45px;
+  right: 100px;
   z-index: 10;
   cursor: pointer;
   background: #e3e3e3;
@@ -1624,7 +1692,7 @@ Generic Styling for Desktop
     transform: translateY(0);
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     right: 50%;
   }
 }

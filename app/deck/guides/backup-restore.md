@@ -2,7 +2,6 @@
 title: Backup and Restore of Kong's Configuration
 toc: false
 no_version: true
-no_search: true
 ---
 
 You can use decK to back up and restore a subset or the entirety of

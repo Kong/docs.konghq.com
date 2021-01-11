@@ -20,6 +20,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -48,8 +49,8 @@ params:
       value_in_examples: 389
       description: |
         TCP port where the LDAP server is listening. 389 is the default
-        port for non-SSL LDAP and AD. 686 is the port required for SSL LDAP and AD. If `ldaps` is
-        configured, you must use port 686.
+        port for non-SSL LDAP and AD. 636 is the port required for SSL LDAP and AD. If `ldaps` is
+        configured, you must use port 636.
     - name: ldap_password
       required:
       default:
@@ -71,7 +72,7 @@ params:
       description: |
         Set it to `true` to use `ldaps`, a secure protocol (that can be configured
         to TLS) to connect to the LDAP server. When `ldaps` is
-        configured, you must use port 686. If the `ldap` setting is enabled, ensure the
+        configured, you must use port 636. If the `ldap` setting is enabled, ensure the
         `start_tls` setting is disabled.
     - name: base_dn
       required: true

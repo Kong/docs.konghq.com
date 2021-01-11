@@ -21,7 +21,8 @@
       "node_modules/**",
       "Dockerfile",
       "gulpfile.js",
-      "app/_assets/javascripts/app.js"
+      "app/_assets/javascripts/app.js",
+      "app/_redirects"
     ]
   },
   "echint": {
@@ -40,13 +41,14 @@
       "autodoc-conf-ee/*.lua",
       "vendor/**",
       "node_modules/**",
-      "Docker"
+      "Docker",
+      "app/_redirects"
     ]
   },
   "devDependencies": {
     "bootstrap": "3.4.1",
     "broken-link-checker": "0.7.8",
-    "browser-sync": "2.26.12",
+    "browser-sync": "2.26.13",
     "cloudflare": "2.7.0",
     "del": "6.0.0",
     "echint": "4.0.2",
@@ -62,18 +64,18 @@
     "gulp-if": "3.0.0",
     "gulp-imagemin": "7.1.0",
     "gulp-less": "4.0.1",
-    "gulp-load-plugins": "2.0.5",
+    "gulp-load-plugins": "2.0.6",
     "gulp-minify": "3.1.0",
     "gulp-plumber": "1.2.1",
     "gulp-rename": "2.0.0",
     "gulp-resource-hints": "0.2.1",
     "gulp-size": "3.0.0",
-    "gulp-sourcemaps": "2.6.5",
-    "jpegtran": "1.1.0",
+    "gulp-sourcemaps": "3.0.0",
+    "jpegtran": "2.0.0",
     "list-assets": "0.0.2",
     "lodash": "4.17.20",
     "run-sequence": "2.2.1",
     "skeleton-css": "2.0.4",
-    "standard": "14.3.4"
+    "standard": "15.0.1"
   }
 }

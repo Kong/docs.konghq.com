@@ -52,7 +52,7 @@ For more information, see the [Vitals Overview](/enterprise/{{page.kong_version}
 
 For the {{site.ee_product_name}}, Kong for Kubernetes Enterprise (K4K8s) now uses the `kong-enterprise-edition` image, which works as a drop-in replacement for the `kong-enterprise-k8s` image used in earlier versions.
 
-For more information, including instructions for switching images, see [Kong for Kubernetes Deployment Options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options/).
+For more information, including instructions for switching images, see [Kong for Kubernetes Deployment Options](/enterprise/{{page.kong_version}}/deployment/kubernetes-deployment-options).
 
 ## Known Issues and Workarounds
 
@@ -62,10 +62,9 @@ For more information, including instructions for switching images, see [Kong for
 
 * Setting your Kong password (`Kong_Password`) using a value containing four ticks (for example, `KONG_PASSWORD="a''a'a'a'a"`) causes a Postgres syntax error on bootstrap. To work around this issue, do not use special characters in your password.
 
+### Breaking Changes
 
-### Breaking changes
-
-  * When performing upgrade and migration to 2.1.x, custom entities and plugins have breaking changes. See [https://docs.konghq.com/enterprise/2.1.x/deployment/upgrades/custom-changes/](https://docs.konghq.com/enterprise/2.1.x/deployment/upgrades/custom-changes/).
+* When performing upgrade and migration to 2.1.x, custom entities and plugins have breaking changes. See [https://docs.konghq.com/enterprise/2.1.x/deployment/upgrades/custom-changes/](https://docs.konghq.com/enterprise/2.1.x/deployment/upgrades/custom-changes/).
 
   * `run_on` is removed from plugins, as it has not been used for a long time but compatibility was kept in 1.x. Any plugin with `run_on` will now break because the schema no longer contains that entry. If testing custom plugins against this beta release, update the plugin's schema.lua file and remove the `run_on` field.
 
@@ -73,6 +72,10 @@ For more information, including instructions for switching images, see [Kong for
 
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
 
+## Deprecated Features
+
+Kong Brain is deprecated and not available for use in Kong Enterprise version 2.1.4.0 and later.
 
 ## Changelog
-For a complete list of features, fixes, and changes, see the Kong Enterprise [Changelog](/enterprise/changelog/) for versions 2.1.3.0 and 2.1.0.0 (beta).
+
+For a complete list of features, fixes, and changes, see the Kong Enterprise [Changelog](/enterprise/changelog/) for versions 2.1.x and 2.1.0.0 (beta).
