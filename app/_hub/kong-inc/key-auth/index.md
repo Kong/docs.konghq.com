@@ -110,7 +110,7 @@ params:
 
    ## Case sensitivity
 
-    Note that, according to their respective specifications, HTTP header names are treated as case _insensitive_, while HTTP query string parameter names are treated as case _sensitive_. {{site.base_gateway}} follows these specifications as designed, meaning that the `key_names` configuration values
+    Note that, according to their respective specifications, HTTP header names are treated as case _insensitive_, while HTTP query string parameter names are treated as case _sensitive_. Kong Gateway follows these specifications as designed, meaning that the `key_names` configuration values
     are treated differently when searching the request header fields versus searching the query string. As a best practice, administrators
     are advised against defining case-sensitive `key_names` values when expecting the authorization keys to be sent in the request headers.
 
