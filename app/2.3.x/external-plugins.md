@@ -4,19 +4,19 @@ title: External Plugins Support
 
 ## Introduction
 
-External plugins are those that run on a process separate from Kong itself,
+External plugins are those that run on a process separate from {{site.base_gateway}} itself,
 enabling the use of any programming language for which an appropriate
 plugin server is available.
 
 Each plugin server hosts one or more plugins and communicates with the
-main Kong process through Unix sockets.  If so configured, Kong can manage
+main {{site.base_gateway}} process through Unix sockets.  If so configured, {{site.base_gateway}} can manage
 those processes, starting, restarting and stopping as necessary.
 
-Kong currently maintains a Go language plugin server,
+{{site.base_gateway}} currently maintains a Go language plugin server,
 [go-pluginserver] and the corresponding PDK library
 package, [go-pdk].
 
-## Kong configuration
+## Kong Gateway plugin server configuration
 
 The `pluginserver_names` property is a comma-separated list of names, one
 for each plugin server process.  These names are used to group each process'
@@ -47,8 +47,8 @@ pluginserver_python_query_cmd = pypluginserver.py -dump
 
 ### Legacy configuration
 
-Kong versions 2.0.x to 2.2.x  supported only Go external plugins and a single
-plugin server using a different configuration style.  Starting with Kong 2.3,
+{{site.base_gateway}} versions 2.0.x to 2.2.x  supported only Go external plugins and a single
+plugin server using a different configuration style.  Starting with {{site.base_gateway}} version 2.3,
 the old style is recognized and internally transformed to the new style.
 
 If property `pluginserver_names` isn't defined, the legacy properties
@@ -67,40 +67,40 @@ Notes:
 
 ## Developing Go plugins
 
-Kong support for the Go language consist of two parts:
+{{site.base_gateway}} support for the Go language consist of two parts:
 
-- [go-pdk] as a library, provides Go functions to access Kong features of the [PDK][kong-pdk].
+- [go-pdk] as a library, provides Go functions to access {{site.base_gateway}} features of the [PDK][kong-pdk].
 - [go-pluginserver] an executable to dynamically load plugins written in Go.
 
 
 Notes:
 
-The Kong version 2.3 allows multiple plugin servers; in particular
+The {{site.base_gateway}} version 2.3 allows multiple plugin servers; in particular
 it's now possible to write single-plugin servers, in effect plugins as
-microservices.  To help with this, version v0.6.0 of the [go-pdk] package
+microservices. To help with this, version v0.6.0 of the [go-pdk] package
 includes an optional plugin server. See [Embedded Server](#embedded-server)
 for more information.
 
 The [go-pluginserver] process is still supported. Its main advantage is
 that it's a single process for any number of plugins, but the dynamic
-loading of plugins has proven challenging under the Go language; unlike
+loading of plugins has proven challenging under the Go language (unlike
 the microservice architecture, which is well supported by the language
-and tools.
+and tools).
 
 ### Development
 
-To write a Kong plugin in Go, you need to:
+To write a {{site.base_gateway}} plugin in Go, you need to:
 
 1. Define a structure type to hold configuration.
 2. Write a `New()` function to create instances of your structure.
 3. Add methods on that structure to handle phases.
-   
-If you want a dynamically-loaded plugin to be used with [go-pluginserver]:
+
+   If you want a dynamically-loaded plugin to be used with [go-pluginserver]:
 
 4. Compile your Go plugin with `go build -buildmode plugin`.
 5. Put the resulting library (the `.so` file) into the `go_plugins_dir` directory.
-   
-If you want a standalone plugin microservice:
+
+   If you want a standalone plugin microservice:
 
 4. Include the `go-pdk/server` sub-library.
 5. Add a `main()` function that calls `server.StartServer(New, Version, Priority)`.
@@ -151,7 +151,7 @@ instances.
 
 #### 3. Phase Handlers
 
-Similarly to Kong Lua plugins, you can implement custom logic to be executed at
+Similarly to {{site.base_gateway}} Lua plugins, you can implement custom logic to be executed at
 various points of the request processing lifecycle. For example, to execute
 custom Go code in the access phase, define a function named `Access`:
 ```
@@ -188,7 +188,7 @@ func main () {
 Note that the `main()` function must have a `package main` line at the
 top of the file.
 
-Then, a standard Go build creates an executable. There  are no extra "go-pluginserver",
+Then, a standard Go build creates an executable. There are no extra go-pluginserver,
 no plugin loading, and no compiler/library/environment compatibility issues.
 
 The resulting executable can be placed somewhere in your path (for example,
@@ -203,7 +203,7 @@ Usage of my-plugin:
   -help
         Show usage info
   -kong-prefix string
-        Kong prefix path (specified by the -p argument commonly used in the kong cli) (default "/usr/local/kong")
+        Kong prefix path (specified by the -p argument commonly used in the Kong CLI) (default "/usr/local/kong")
 ```
 
 When run without arguments, it will create a socket file with the
