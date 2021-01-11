@@ -83,24 +83,25 @@ params:
       default: "`60000`"
       value_in_examples: 1000
       description: An optional value in milliseconds that defines how long an idle connection will live before being closed.
-    - name: retry_count
-      required: false
-      default: "`10`"
-      value_in_examples: 10
-      description: |    
-        REVIEWERS: need a description.
-    - name: batch_max_size
-      required: true
-      default: "`1`"
-      value_in_examples: 1
-      description: |  
-        REVIEWERS: need a description. Formerly named `queue_size` in versions prior to 2.x.
     - name: flush_timeout
       required:
       default: "`2`"
       value_in_examples: 2
       description: |  
-        REVIEWERS: need a description.
+        REVIEWERS: need a description.      
+    - name: retry_count
+      required: false
+      default: 10
+      value_in_examples: 15
+      description: Number of times to retry when sending data to the upstream server.
+    - name: queue_size
+      required: false
+      default: 1
+      description: Max number of log entries to be sent on each message to the upstream sever.
+    - name: headers
+      required: false
+      default: empty table
+      description: An optional table of headers added to the HTTP message to the upstream server.
   extra: |
     **NOTE:** If the `config.http_endpoint` contains a username and password (for example,
     `http://bob:password@example.com/logs`), then Kong Gateway automatically includes
