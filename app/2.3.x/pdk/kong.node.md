@@ -109,3 +109,21 @@ local res = kong.node.get_memory_stats("k", 1)
 
 [Back to top](#kongnode)
 
+
+### kong.node.get_hostname()
+
+Returns the name used by the local machine
+
+**Returns**
+
+* `string` The local machine hostname
+
+
+**Usage**
+
+``` lua
+local hostname = kong.node.get_hostname()
+```
+
+[Back to top](#kongnode)
+

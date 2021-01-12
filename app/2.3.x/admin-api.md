@@ -259,6 +259,8 @@ certificate_body: |
     ---:| ---
     `cert` | PEM-encoded public certificate chain of the SSL key pair.
     `key` | PEM-encoded private key of the SSL key pair.
+    `cert_alt`<br>*optional* |  PEM-encoded public certificate chain of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. 
+    `key_alt`<br>*optional* | PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. 
     `tags`<br>*optional* |  An optional set of strings associated with the Certificate for grouping and filtering. 
     `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. To set this attribute this certificate must have a valid private key associated with it. 
 
@@ -268,6 +270,8 @@ certificate_json: |
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "key": "-----BEGIN RSA PRIVATE KEY-----...",
+        "cert_alt": "-----BEGIN CERTIFICATE-----...",
+        "key_alt": "-----BEGIN EC PRIVATE KEY-----...",
         "tags": ["user-level", "low-priority"]
     }
 
@@ -277,12 +281,16 @@ certificate_data: |
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "key": "-----BEGIN RSA PRIVATE KEY-----...",
+        "cert_alt": "-----BEGIN CERTIFICATE-----...",
+        "key_alt": "-----BEGIN EC PRIVATE KEY-----...",
         "tags": ["user-level", "low-priority"]
     }, {
         "id": "a9b2107f-a214-47b3-add4-46b942187924",
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "key": "-----BEGIN RSA PRIVATE KEY-----...",
+        "cert_alt": "-----BEGIN CERTIFICATE-----...",
+        "key_alt": "-----BEGIN EC PRIVATE KEY-----...",
         "tags": ["admin", "high-priority", "critical"]
     }],
 
@@ -3475,7 +3483,7 @@ HTTP 200 OK
 
 A target is an ip address/hostname with a port that identifies an instance of a backend
 service. Every upstream can have many targets, and the targets can be
-dynamically added. Changes are effectuated on the fly.
+dynamically added, modified, or deleted. Changes take effect on the fly.
 
 Because the upstream maintains a history of target changes, the targets cannot
 be deleted or modified. To disable a target, post a new one with `weight=0`;
@@ -3548,10 +3556,32 @@ HTTP 200 OK
 
 ---
 
+### Update Target
+
+Update a target.
+
+
+<div class="endpoint patch indent">/upstreams/{upstream name or id}/targets/{host:port or id}</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`upstream name or id`<br>**required** | The unique identifier **or** the name of the upstream for which to update the target.
+`host:port or id`<br>**required** | The host:port combination element of the target to update, or the `id` of an existing target entry.
+
+
+#### Response
+
+```
+HTTP 201 Created
+```
+
+
+---
+
 ### Delete Target
 
-Disable a target in the load balancer. Under the hood, this method creates
-a new entry for the given target definition with a `weight` of 0.
+Remove a target from the load balancer.
 
 
 <div class="endpoint delete indent">/upstreams/{upstream name or id}/targets/{host:port or id}</div>
