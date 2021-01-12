@@ -92,7 +92,7 @@ params:
     - name: queue_size
       required: false
       default: 1
-      description: Max number of log entries to be sent on each message to the upstream sever.
+      description: Max number of log entries to be sent on each message to the upstream server.
     - name: headers
       required: false
       default: empty table
