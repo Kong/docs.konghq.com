@@ -266,6 +266,64 @@ kong.log.inspect.off()
 [Back to top](#konglog)
 
 
+### kong.log.set_serialize_value(key, value, options)
+
+Sets a value to be used on the `serialize` custom table
+
+ Logging plugins use the output of `kong.log.serialize()` as a base for their logs.
+
+ This function allows customizing such output.
+
+ It can be used to replace existing values on the output.
+ It can be used to delete existing values by passing `nil`.
+
+ Note: the type checking of the `value` parameter can take some time so
+ it is deferred to the `serialize()` call, which happens in the log
+ phase in most real-usage cases.
+
+
+**Phases**
+
+* certificate, rewrite, access, header_filter, body_filter, log
+
+**Parameters**
+
+* **key** (string):  the name of the field.
+* **value** (number|string|boolean|table):  value to be set. When a table is used, its keys must be numbers, strings, booleans, and its values can be numbers, strings or other tables like itself, recursively.
+* **options** (table):  can contain two entries: options.mode can be `set` (the default, always sets), `add` (only add if entry does not already exist) and `replace` (only change value if it already exists).
+
+**Returns**
+
+* `table` the request information table
+
+
+**Usage**
+
+``` lua
+-- Adds a new value to the serialized table
+kong.log.set_serialize_value("my_new_value", 1)
+assert(kong.log.serialize().my_new_value == 1)
+
+-- Value can be a table
+kong.log.set_serialize_value("my", { new = { value = 2 } })
+assert(kong.log.serialize().my.new.value == 2)
+
+-- It is possible to change an existing serialized value
+kong.log.set_serialize_value("my_new_value", 3)
+assert(kong.log.serialize().my_new_value == 3)
+
+-- Unset an existing value by setting it to nil
+kong.log.set_serialize_value("my_new_value", nil)
+assert(kong.log.serialize().my_new_value == nil)
+
+-- Dots in the key are interpreted as table accesses
+kong.log.set_serialize_value("my.new.value", 4)
+assert(kong.log.serialize().my.new_value == 4)
+```
+
+[Back to top](#konglog)
+
+
 ### kong.log.serialize()
 
 Generates a table that contains information that are helpful for logging.
@@ -301,6 +359,12 @@ Generates a table that contains information that are helpful for logging.
 
  **Warning:** This function may return sensitive data (e.g., API keys).
  Consider filtering before writing it to unsecured locations.
+
+ All fields in the returned table may be altered via kong.log.set_serialize_value
+
+ The following http authentication headers are redacted by default, if they appear in the request:
+ * `request.headers.authorization`
+ * `request.headers.proxy-authorization`
 
  To see what content is present in your setup, enable any of the logging
  plugins (e.g., `file-log`) and the output written to the log file is the table
