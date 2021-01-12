@@ -856,7 +856,7 @@ omitted, a group whose name equals that of user is used.
 
 Example: `nginx_user = nginx www`
 
-Default: `nobody nobody`
+Default: `kong kong`
 
 ---
 
