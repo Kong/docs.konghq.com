@@ -1,7 +1,7 @@
 ---
 name: Session
 publisher: Kong Inc.
-version: 2.4.4-x
+version: 2.4
 redirect_from:
   - /hub/kong-in/sessions
   - /hub/kong-inc/sessions
@@ -24,14 +24,15 @@ categories:
 source_url: https://github.com/Kong/kong-plugin-session
 
 kong_version_compatibility:
-  community_edition:
-    compatible:
-      - 2.2.x     
-      - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
+    community_edition:
+      compatible:
+        - 2.3.x
+        - 2.2.x
+        - 2.1.x
+        - 2.0.x
+        - 1.5.x
+        - 1.4.x
+        - 1.3.x
       - 1.2.x
   enterprise_edition:
     compatible:

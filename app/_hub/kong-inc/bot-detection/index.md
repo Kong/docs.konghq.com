@@ -1,7 +1,7 @@
 ---
 name: Bot Detection
 publisher: Kong Inc.
-version: 1.0.0
+version: 2.0.0
 
 desc: Detect and block bots or custom clients
 description: |
@@ -14,6 +14,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
         - 2.2.x
         - 2.1.x
         - 2.0.x
@@ -23,11 +24,13 @@ kong_version_compatibility:
         - 1.2.x
         - 1.1.x
         - 1.0.x
+        - 0.15.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
         - 0.11.x
         - 0.10.x
+        - 0.9.x
         - 0.9.x
     enterprise_edition:
       compatible:

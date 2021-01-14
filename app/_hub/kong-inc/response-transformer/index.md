@@ -1,7 +1,7 @@
 ---
 name: Response Transformer
 publisher: Kong Inc.
-version: 1.0.0
+version: 2.0.0
 
 desc: Modify the upstream response before returning it to the client
 description: |
@@ -18,6 +18,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
         - 2.2.x
         - 2.1.x
         - 2.0.x
@@ -27,6 +28,7 @@ kong_version_compatibility:
         - 1.2.x
         - 1.1.x
         - 1.0.x
+        - 0.15.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
@@ -36,6 +38,9 @@ kong_version_compatibility:
         - 0.8.x
         - 0.7.x
         - 0.6.x
+        - 0.5.x
+        - 0.4.x
+        - 0.3.x
         - 0.5.x
     enterprise_edition:
       compatible:

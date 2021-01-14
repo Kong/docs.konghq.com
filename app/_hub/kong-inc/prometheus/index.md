@@ -1,7 +1,7 @@
 ---
 name: Prometheus
 publisher: Kong Inc.
-version: 0.9.0
+version: 1.0
 
 desc: Expose metrics related to Kong and proxied Upstream services in Prometheus exposition format
 description: |
@@ -14,6 +14,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
         - 2.2.x
         - 2.1.x
         - 2.0.x
@@ -23,6 +24,8 @@ kong_version_compatibility:
         - 1.2.x
         - 1.1.x
         - 1.0.x
+        - 0.15.x
+        - 0.14.x
         - 0.14.x
     enterprise_edition:
       compatible:

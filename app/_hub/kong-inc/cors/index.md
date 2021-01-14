@@ -1,7 +1,7 @@
 ---
 name: CORS
 publisher: Kong Inc.
-version: 1.0.0
+version: 2.0.0
 
 desc: Allow developers to make requests from the browser
 description: |
@@ -23,15 +23,17 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
         - 2.2.x
         - 2.1.x
         - 2.0.x
-        - 1.5.x      
+        - 1.5.x
         - 1.4.x
         - 1.3.x
         - 1.2.x
         - 1.1.x
         - 1.0.x
+        - 0.15.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
@@ -44,6 +46,7 @@ kong_version_compatibility:
         - 0.5.x
         - 0.4.x
         - 0.3.x
+        - 0.2.x
         - 0.2.x
     enterprise_edition:
       compatible:

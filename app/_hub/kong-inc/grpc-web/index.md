@@ -1,7 +1,7 @@
 ---
 name: gRPC-Web
 publisher: Kong Inc.
-version: 0.2.x
+version: 0.2
 
 categories:
   - transformations
@@ -18,10 +18,11 @@ source_url: https://github.com/Kong/kong-plugin-grpc-web
 license_type: MIT
 
 kong_version_compatibility:
-  community_edition:
-    compatible:
-      - 2.2.x
-      - 2.1.x
+    community_edition:
+      compatible:
+        - 2.3.x
+        - 2.2.x
+        - 2.1.x
 
   enterprise_edition:
     compatible:

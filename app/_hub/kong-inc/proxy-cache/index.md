@@ -2,7 +2,7 @@
 
 name: Proxy Cache
 publisher: Kong Inc.
-version: 1.3-x
+version: 1.3
 
 desc: Cache and serve commonly requested responses in Kong
 description: |
@@ -15,12 +15,14 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
         - 2.2.x
         - 2.1.x
         - 2.0.x
-        - 1.5.x      
+        - 1.5.x
         - 1.4.x
         - 1.3.x
+        - 1.2.x
         - 1.2.x
     enterprise_edition:
       compatible:

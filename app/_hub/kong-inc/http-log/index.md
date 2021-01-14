@@ -1,7 +1,7 @@
 ---
 name: HTTP Log
 publisher: Kong Inc.
-version: 1.0.0
+version: 2.0.1
 
 desc: Send request and response logs to an HTTP server
 description: |
@@ -22,7 +22,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
-       - 2.2.x
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x
@@ -31,6 +32,7 @@ kong_version_compatibility:
         - 1.2.x
         - 1.1.x
         - 1.0.x
+        - 0.15.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
@@ -42,6 +44,7 @@ kong_version_compatibility:
         - 0.6.x
         - 0.5.x
         - 0.4.x
+        - 0.3.x
         - 0.3.x
     enterprise_edition:
       compatible:

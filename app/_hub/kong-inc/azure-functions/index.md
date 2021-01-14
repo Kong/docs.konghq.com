@@ -1,7 +1,7 @@
 ---
 name: Azure Functions
 publisher: Kong Inc.
-version: 1.0.0
+version: 1.0
 
 source_url: https://github.com/Kong/kong-plugin-azure-functions
 
@@ -19,6 +19,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
         - 2.2.x
         - 2.1.x
         - 2.0.x
@@ -28,6 +29,8 @@ kong_version_compatibility:
         - 1.2.x
         - 1.1.x
         - 1.0.x
+        - 0.15.x
+        - 0.14.x
         - 0.14.x
     enterprise_edition:
       compatible:
