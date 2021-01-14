@@ -93,7 +93,7 @@ id: documentation
         <div class="content show-anchor-links">
           {% if page.edition == 'community' %}
           <div class="alert alert-ee">
-            Maybe you were looking for the <a href="/enterprise"><strong>Enterprise Documentation</strong></a>
+            Maybe you were looking for the <a href="/gateway"><strong>{{site.ee_gateway_name}} ({{site.konnect_short_name}}) documentation</strong></a>
             instead?
           </div>
           {% endif %}
@@ -114,7 +114,7 @@ id: documentation
           <div class="alert alert-ee condensed margin-bigger">
             <div class="alert-body">
               <div class="tag green">NEW</div>
-              <p>{{site.ee_product_name}} {{page.kong_version}} released! We added <a href="/enterprise/changelog">new features</a> and updated docs!
+              <p>{{site.ee_gateway_name}} {{page.kong_version}} released! We added <a href="/enterprise/changelog">new features</a> and updated docs!
             </div>
           </div>
         {% endif %}

@@ -1,5 +1,5 @@
 ---
-title: Documentation for Kong Enterprise
+title: Documentation for Kong Gateway
 skip_read_time: true
 is_homepage: true
 ---
@@ -9,14 +9,14 @@ is_homepage: true
   <h2 class="docs-grid-section-title">Foundations</h2>
 
   <div class="docs-grid-block">
-    <h3><a href="/enterprise/{{page.kong_version}}/introduction">Introduction to Kong Enterprise</a></h3>
-    <p>Learn about the pieces that make up Kong Enterprise and get familiar with some key concepts.</p>
-    <a href="/enterprise/{{page.kong_version}}/introduction">Learn about Kong Enterprise &rarr;</a>
+    <h3><a href="/enterprise/{{page.kong_version}}/introduction">Introduction to {{site.ee_gateway_name}}</a></h3>
+    <p>Learn about the pieces that make up {{site.ee_gateway_name}} and get familiar with some key concepts.</p>
+    <a href="/enterprise/{{page.kong_version}}/introduction">Learn about {{site.ee_gateway_name}} &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
     <h3><a href="/enterprise/{{page.kong_version}}/deployment/installation/overview">Installation</a></h3>
-    <p>Learn how to install Kong Enterprise with your chosen deployment method.</p>
+    <p>Learn how to install {{site.ee_gateway_name}} with your chosen deployment method.</p>
     <a href="/enterprise/{{page.kong_version}}/deployment/installation/overview">Choose Deployment Method &rarr;</a>
   </div>
 
@@ -28,7 +28,7 @@ is_homepage: true
 
   <div class="docs-grid-block">
     <h3><a href="/enterprise/changelog">Changelog</a></h3>
-    <p>Review the details of the changes made to each version of Kong Enterprise.</p>
+    <p>Review the details of the changes made to each version of {{site.ee_gateway_name}}.</p>
     <a href="/enterprise/changelog/">See changelog &rarr;</a>
   </div>
 
@@ -36,7 +36,7 @@ is_homepage: true
 
   <div class="docs-grid-block">
     <h3><a href="/enterprise/{{page.kong_version}}/admin-api">Admin API</a></h3>
-    <p>Harness Kong Enterprise's features with the Admin API.</p>
+    <p>Harness {{site.ee_gateway_name}}'s features with the Admin API.</p>
     <a href="/enterprise/{{page.kong_version}}/admin-api">Learn more &rarr;</a>
   </div>
 

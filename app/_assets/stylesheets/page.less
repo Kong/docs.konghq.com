@@ -988,6 +988,14 @@ Generic Styling for Desktop
   }
 
   .docs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 16px;
+    grid-row-gap: 16px;
+    margin: 0;
+    justify-content: start;
+    align-content: start;
+
     &:after {
       content: " ";
       display: block;
@@ -995,20 +1003,32 @@ Generic Styling for Desktop
     }
 
     .docs-grid-block {
-      float: left;
-      height: 250px;
-      width: 50%;
-      border-bottom: 1px solid #eee;
+      border: 1px solid #eee;
       box-sizing: border-box;
-      padding-top: 40px;
+      border-radius: 4px;
+      text-align: left;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: start;
+      padding: 16px;
+      text-decoration: none;
+      margin-top: 0;
 
       h3 {
         margin-top: 0;
+        text-align: left;
 
         img {
           float: left;
           margin-right: 15px;
         }
+      }
+
+      p, a {
+        padding-left: 15px;
       }
 
       &:nth-child(odd) {
