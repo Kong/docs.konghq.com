@@ -1,4 +1,4 @@
-<!---will be shared in future with key-auth-enc plugin, also shared with on-prem app reg key-auth --->
+<!---used in key-auth and key-auth-enc plugins, also shared with non-hub docs on-prem app reg key-auth --->
 
 Use cases for key locations:
 
