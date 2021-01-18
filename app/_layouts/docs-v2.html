@@ -91,6 +91,9 @@ id: documentation
 
       <div class="page-content">
         <div class="content show-anchor-links">
+          {% unless page.no_breadcrumbs %}
+          {% include breadcrumbs.html %}
+          {% endunless %}
           {% if page.edition == 'community' %}
           <div class="alert alert-ee">
             Maybe you were looking for the <a href="/gateway"><strong>{{site.ee_gateway_name}} ({{site.konnect_short_name}}) documentation</strong></a>

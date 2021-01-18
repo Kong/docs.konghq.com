@@ -655,10 +655,11 @@
 .page-content-container {
   .page-content {
     .reading-time {
-      font-style: italic;
+      font-size: 15px;
       display: block;
-      color: rgb(133, 137, 140);
+      color: #b9b9b9;
       margin-bottom: 14px;
+      padding-bottom: 1rem;
     }
 
     @media (max-width: 800px) {
@@ -729,10 +730,11 @@
   }
 
   h1 {
-    font-size: 34px;
+    font-size: 36px;
     color: #262e33;
-    margin-top: 2em;
-    margin-bottom: 0.9em;
+    margin-top: 1em;
+    margin-bottom: 0.8em;
+    font-weight: 100;
   }
 
   .alert + h1 {
@@ -746,8 +748,9 @@
   }
 
   h3 {
-    margin-top: 1.5em;
-    margin-bottom: 0.7em;
+    font-size: 30px;
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
   }
 
   h4 {
@@ -1394,16 +1397,36 @@ Generic Styling for Desktop
 }
 
 .breadcrumbs {
-  margin: 0;
+  margin-bottom: 1rem;
+  margin-top: -2rem;
+  margin-left: 0;
   padding: 0;
-  list-style: none;
 
   .breadcrumb-item {
     display: inline-block;
-    margin: 0;
+    font-weight: 100;
+    font-size: 15px;
+    margin-left: 0;
 
     &:after {
       content: " \203a";
+      font-size: 18px;
+      padding: 3px;
+    }
+
+    &:first-of-type {
+      &:before {
+        content: "»";
+        font-size: 18px;
+        margin-left: -0.5rem;
+        padding-right: 3px;
+      }
+    }
+
+    &:last-of-type {
+      &:after {
+        content: " ";
+      }
     }
   }
 

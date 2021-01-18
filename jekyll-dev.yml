@@ -135,7 +135,7 @@ defaults:
 
 # product name vars
 ee_gateway_name: Kong Gateway
-ee_product_name: Kong Konnect
+ee_product_name: Kong Gateway (Enterprise)
 ce_product_name: Kong Gateway (OSS)
 base_gateway: Kong Gateway
 mesh_product_name: Kong Mesh
