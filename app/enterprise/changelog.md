@@ -4,7 +4,7 @@ no_search: true
 no_version: true
 skip_read_time: true
 ---
-## 2.3.0.0(beta)
+## 2.3.0.0 (beta)
 **Release Date** 2020/01/20
 
 ### **Kong Enterprise**
@@ -32,7 +32,7 @@ features, and fixes for the **2.3.0.0 beta** version.
 
 ### Features
 
-##### Kong Gateway (OSS)
+#### Kong Gateway (OSS)
 - Introduced version checks between Control Plane and Data Plane nodes
   in Hybrid Mode. Sync will be stopped if the major/minor version differ
   or if installed plugin versions differ between Control Plane and Data
@@ -50,7 +50,7 @@ features, and fixes for the **2.3.0.0 beta** version.
   backwards-compatible with the existing single Go pluginserver.
   [#6600](https://github.com/Kong/kong/pull/6600)
 
-##### PDK (Plugin Development Kit)
+#### Plugin Development Kit (PDK)
 - Introduced a `kong.node.get_hostname` method that returns current node's host name.
   [#6613](https://github.com/Kong/kong/pull/6613)
 - Introduced a `kong.cluster.get_id` method that returns a unique ID
@@ -65,7 +65,7 @@ features, and fixes for the **2.3.0.0 beta** version.
   the output of `kong.log.serialize`.
   [#6646](https://github.com/Kong/kong/pull/6646)
 
-##### Plugins
+#### Plugins
 - `http-log` plugin now has a `headers` configuration, so that
   custom headers can be specified for the log request.
   [#6449](https://github.com/Kong/kong/pull/6449)
@@ -84,7 +84,7 @@ features, and fixes for the **2.3.0.0 beta** version.
   *enabled* by default, where only Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are allowed.
   [#32](https://github.com/Kong/kong-plugin-serverless-functions/pull/32/)
 
-##### Configuration
+#### Configuration
 - `client_max_body_size` and `client_body_buffer_size`, that previously
   hardcoded to 10m, are now configurable through `nginx_admin_client_max_body_size` and `nginx_admin_client_body_buffer_size`.
   [#6597](https://github.com/Kong/kong/pull/6597)
@@ -105,7 +105,7 @@ features, and fixes for the **2.3.0.0 beta** version.
 
 ### Fixes
 
-##### Kong Gateway (OSS)
+#### Kong Gateway (OSS)
 - Fixed issue where a Go plugin would fail to read kong.ctx.shared values set by LUA plugins.
   [#6490](https://github.com/Kong/kong/pull/6490)
 - Properly trigger `dao:delete_by:post` hook.
@@ -123,18 +123,18 @@ features, and fixes for the **2.3.0.0 beta** version.
   avoiding failures to connect to Postgres databases.
   [#6650](https://github.com/Kong/kong/pull/6650)
 
-##### CLI
+#### CLI
 - Fixed issue where `kong reload -c <config>` would fail.
   [#6664](https://github.com/Kong/kong/pull/6664)
 - Fixed issue where the Kong configuration cache would get corrupted.
   [#6664](https://github.com/Kong/kong/pull/6664)
 
-##### PDK (Plugin Development Kit)
+#### Plugin Development Kit (PDK)
 - Ensure the log serializer encodes the `tries` field as an array when
   empty, rather than an object.
   [#6632](https://github.com/Kong/kong/pull/6632)
 
-##### Plugins
+#### Plugins
 - request-transformer plugin does not allow `null` in config anymore as they can
   lead to runtime errors. [#6710](https://github.com/Kong/kong/pull/6710)
 
