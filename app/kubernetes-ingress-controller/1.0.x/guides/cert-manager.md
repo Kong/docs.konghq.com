@@ -173,7 +173,8 @@ spec:
     server: https://acme-v02.api.letsencrypt.org/directory
     solvers:
     - http01:
-        ingress: {}" | kubectl apply -f -
+        ingress:
+          class: kong" | kubectl apply -f -
 clusterissuer.cert-manager.io/letsencrypt-prod configured
 ```
 

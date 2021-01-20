@@ -10,16 +10,16 @@ description: |
   selectively admit access to Services using the
   [Application Registration](/enterprise/latest/developer-portal/administration/application-registration/enable-application-registration) plugin.
 
-  The Application Registration plugin is used in tandem with supported {{site.base_gateway}} authorization
+  The Application Registration plugin is used in tandem with supported Kong Gateway authorization
   plugins, depending on your configured Dev
-  Portal authorization provider. Either {{site.base_gateway}} (`kong-oauth2`) or a third-party OAuth provider
+  Portal authorization provider. Either Kong Gateway (`kong-oauth2`) or a third-party OAuth provider
   (`external-oauth2`) can be the system of record (SoR) for application credentials. For more
   information, see
   [Configure an Authorization Provider Strategy](/enterprise/latest/developer-portal/administration/application-registration/auth-provider-strategy).
 
   Supported authorization plugins for use with application registration:
 
-  | {{site.base_gateway}} Plugin | Portal authorization strategy                                 |
+  | Kong Gateway Plugin | Portal authorization strategy                                 |
   |:------|:--------------------------------------------------------------------|
   | [OAuth2](/hub/kong-inc/oauth2) | `kong-oauth2` |
   | [Key Auth](/hub/kong-inc/key-auth/)| `kong-oauth2` |
