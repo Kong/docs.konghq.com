@@ -1,5 +1,5 @@
 ---
-title: Plugins In Other Languages
+title: Plugins in Other Languages
 ---
 
 ## Introduction
