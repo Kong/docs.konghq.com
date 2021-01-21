@@ -81,58 +81,39 @@ The Enterprise documentation uses paid algolia indices, which auto-update every
 
 ## Generating the PDK, Admin API, CLI and Configuration Documentation
 
-The automated docs currently require using both the kong/kong repo and this repo (kong/docs.konghq.com, kong/docs for short) in combination.
+The PDK docs, Admin API docs, `cli.md` and `configuration.md` on each release are generated from the Kong source code.
 
-The usual release process is taken care of by the Kong Gateway team. They have a set of scripts ([example](https://github.com/Kong/kong/blob/more-scripts/scripts/make-rc1-release#L471-L589))
-which run the following steps as part of the release process.
+In order to generate them, please switch into the `Kong/kong` repo and run:
 
-The following instructions replicate what that script does, in a more manual way.
+```
+scripts/autodoc <docs-folder> <kong-version>
+```
 
-You will need to know the **release** you are trying to generate docs for. The release looks
-like `0.14.x` in kong/docs, and like `0.14.1` or `0.14.2` in kong/kong.
+For example:
 
-Prerequisites:
-- Make sure that the `resty` and `luajit` executables are in your `$PATH` (installing kong should install them).
-- Install Luarocks (comes with Kong).
-- Several Lua rocks are needed. The easiest way to get them all is to execute `make dev` in the Kong folder
-- Install `ldoc` using Luarocks: `luarocks install ldoc 1.4.6`
-- Have a local clone of Kong.
-- In the kong/kong repository, check out the desired branch/tag/release.
+```
+cd /path/to/kong
+scripts/autodoc ../docs.konghq.com 2.3.x
+```
 
-To generate the PDK docs:
-- On the kong/doc repo, `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp pdk-docs`
-- This command will attempt to:
-  * Obtain an updated list of modules from your local PDK and put it inside
-    your nav file.
-  * Generate documentation for all the modules in your PDK (where possible) and
-    put in a folder inside your version docs.
-  * Note: the command used by the Kong Gateway team is different than this one (it does not use the `gulp` abstraction). But they are functionally equivalent.
+Assumes that the `Kong/docs.konghq.com` repo is cloned next to the `Kong/kong` repo, and that you want to
+generate the docs for Kong version `2.3.x`.
 
-To generate the Admin API docs:
-- On the kong/kong repo, run `./scripts/autodoc-admin-api`
-- Copy `kong/kong/autodoc/output/admin-api/admin-api.md` into `kong/docs/app/0.14.x/admin-api.md` (replace `0.14.x` with current release)
-- Copy `kong/kong/autodoc/output/admin-api/db-less-admin-api.md` into `kong/docs/app/0.14.x/db-less-admin-api.md` (replace `0.14.x` with current release)
-- Copy `kong/kong/autodoc/output/nav/docs_nav.yml.admin-api.in` into `kong/docs/autodoc-nav/docs_nav_0.14.x.yml.head.in`. Replace `0.14.x` with release.
-- On the kong/docs repo, run `KONG_VERSION=0.14.x luajit ./autodoc-nav/run.lua` (replace `0.14.x` with current release). This will merge the navigation
-  info in the right place.
-- These commands generate a two big files for the admin API and a smaller file for the navigation, which needs to be inserted in a
-  specific place in the navigation yaml file.
+Once everything is generated, review, open a branch with the changes, send a pull request, and review the changes.
 
-To generate the CLI docs:
-- In kong/docs `KONG_PATH=path/to/your/kong/repo KONG_VERSION=0.14.x luajit autodoc-cli/run.lua` (replace `0.14.x` with current release)
-- This command will:
-  * Extract the output of the `--help` for every `kong` CLI subcommand
-  * Generate a new `cli.md` in the path corresponding to the provided KONG_VERSION.
+You usually want to open a pr against a `release/*` branch. For example on the case above the branch was `release/2.3`.
 
-To generate the Configuration docs:
-- In kong/docs: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x luajit autodoc-conf/run.lua` (replace `0.14.x` with current release)
-- This command will:
-  * Parse Kong's `kong.conf.default` file and extract sections, variable names, descriptions, and default values
-  * Write those down inside a `configuration.md` file in the path matching KONG_VERSION.
-  * The command will completely overwrite the file, including text before and after the list of vars.
-  * The data used for the before/after parts can be found in `autodoc-conf/data.lua`
+```
+cd docs.konghq.com
+git fetch --all
+git checkout release/2.3
+git checkout -b release/2.3-autodocos
+git add -A .
+git commit -m "docs(2.3.x) add autodocs"
+git push
+```
 
-Once everything is generated, open a branch with the changes, send a pull request, and review the changes.
+Then open a pull request against `release/2.3`.
 
 ## Listing Your Extension in the Kong Hub
 
