@@ -1,0 +1,588 @@
+# Generated via autodoc-nav
+- title: Getting Started
+  icon: /assets/images/icons/documentation/icn-quickstart-color.svg
+  items:
+    - text: Overview
+      url: /../../getting-started-guide/latest/overview
+    - text: Prepare to Administer
+      url: /../../getting-started-guide/latest/prepare
+    - text: Expose your Services
+      url: /../../getting-started-guide/latest/expose-services
+    - text: Protect your Services
+      url: /../../getting-started-guide/latest/protect-services
+    - text: Improve Performance
+      url: /../../getting-started-guide/latest/improve-performance
+    - text: Secure Services
+      url: /../../getting-started-guide/latest/secure-services
+    - text: Set Up Intelligent Load Balancing
+      url: /../../getting-started-guide/latest/load-balancing
+
+- title: Guides &amp; References
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  items:
+    - text: Quickstart Guide
+      url: /getting-started/introduction
+      items:
+        - text: Five-minute quickstart
+          url: /getting-started/quickstart
+
+        - text: Configuring a Service
+          url: /getting-started/configuring-a-service
+
+        - text: Configuring a gRPC Service
+          url: /getting-started/configuring-a-grpc-service
+
+        - text: Enabling Plugins
+          url: /getting-started/enabling-plugins
+
+        - text: Adding Consumers
+          url: /getting-started/adding-consumers
+
+    - text: Configuration reference
+      url: /configuration
+
+    - text: CLI reference
+      url: /cli
+
+    - text: Proxy reference
+      url: /proxy
+
+    - text: Authentication reference
+      url: /auth
+
+    - text: Load balancing reference
+      url: /loadbalancing
+
+    - text: Health checks and circuit breakers reference
+      url: /health-checks-circuit-breakers
+
+    - text: Hybrid Mode
+      url: /hybrid-mode
+
+    - text: Go Plugins
+      url: /go
+
+    - text: Clustering reference
+      url: /clustering
+
+    - text: DB-less &amp; Declarative Configuration Format
+      url: /db-less-and-declarative-config
+
+    - text: Resource Sizing Guidelines
+      url: /sizing-guidelines
+
+    - text: Logging reference
+      url: /logging
+
+    - text: Network &amp; Firewall
+      url: /network
+
+    - text: Securing the Admin API
+      url: /secure-admin-api
+
+    - text: Control Kong Community Gateway through systemd
+      url: /systemd
+
+    - text: Running Kong as a Non-Root User
+      url: /kong-user
+
+    - text: Upgrade Guide
+      url: /upgrading
+
+    - text: Plugin Development Guide
+      url: /plugin-development
+      items:
+        - text: Introduction
+          url: /plugin-development
+
+        - text: File structure
+          url: /plugin-development/file-structure
+
+        - text: Implementing custom logic
+          url: /plugin-development/custom-logic
+
+        - text: Plugin configuration
+          url: /plugin-development/plugin-configuration
+
+        - text: Accessing the datastore
+          url: /plugin-development/access-the-datastore
+
+        - text: Storing custom entities
+          url: /plugin-development/custom-entities
+
+        - text: Caching custom entities
+          url: /plugin-development/entities-cache
+
+        - text: Extending the Admin API
+          url: /plugin-development/admin-api
+
+        - text: Writing tests
+          url: /plugin-development/tests
+
+        - text: (un)Installing your plugin
+          url: /plugin-development/distribution
+
+    - text: Plugin Development Kit
+      url: /pdk
+      items:
+
+      - text: kong.client
+        url: /pdk/kong.client
+
+      - text: kong.client.tls
+        url: /pdk/kong.client.tls
+
+      - text: kong.node
+        url: /pdk/kong.node
+
+      - text: kong.ctx
+        url: /pdk/kong.ctx
+
+      - text: kong.ip
+        url: /pdk/kong.ip
+
+      - text: kong.log
+        url: /pdk/kong.log
+
+      - text: kong.nginx
+        url: /pdk/kong.nginx
+
+      - text: kong.node
+        url: /pdk/kong.node
+
+      - text: kong.request
+        url: /pdk/kong.request
+
+      - text: kong.response
+        url: /pdk/kong.response
+
+      - text: kong.router
+        url: /pdk/kong.router
+
+      - text: kong.service
+        url: /pdk/kong.service
+
+      - text: kong.service.request
+        url: /pdk/kong.service.request
+
+      - text: kong.service.response
+        url: /pdk/kong.service.response
+
+      - text: kong.table
+        url: /pdk/kong.table
+# Generated via autodoc-admin-api
+- title: Admin API
+  url: /admin-api/
+  icon: /assets/images/icons/documentation/icn-admin-api-color.svg
+  items:
+    - text: DB-less
+      url: /db-less-admin-api
+
+    - text: Declarative Configuration
+      url: /db-less-admin-api/#declarative-configuration
+
+    - text: Supported Content Types
+      url: /admin-api/#supported-content-types
+
+    - text: Information Routes
+      url: /admin-api/#information-routes
+      items:
+        - text: Retrieve Node Information
+          url: /admin-api/#retrieve-node-information
+
+        - text: List Available Endpoints
+          url: /admin-api/#list-available-endpoints
+
+        - text: Validate A Configuration against A Schema
+          url: /admin-api/#validate-a-configuration-against-a-schema
+
+        - text: Retrieve Entity Schema
+          url: /admin-api/#retrieve-entity-schema
+
+        - text: Retrieve Plugin Schema
+          url: /admin-api/#retrieve-plugin-schema
+
+    - text: Health Routes
+      url: /admin-api/#health-routes
+      items:
+        - text: Retrieve Node Status
+          url: /admin-api/#retrieve-node-status
+
+    - text: Tags
+      url: /admin-api/#tags
+      items:
+        - text: List All Tags
+          url: /admin-api/#list-all-tags
+
+        - text: List Entity Ids by Tag
+          url: /admin-api/#list-entity-ids-by-tag
+
+    - text: Service Object
+      url: /admin-api/#service-object
+      items:
+        - text: Add Service
+          url: /admin-api/#add-service
+
+        - text: List Services
+          url: /admin-api/#list-services
+
+        - text: Retrieve Service
+          url: /admin-api/#retrieve-service
+
+        - text: Update Service
+          url: /admin-api/#update-service
+
+        - text: Update Or Create Service
+          url: /admin-api/#update-or-create-service
+
+        - text: Delete Service
+          url: /admin-api/#delete-service
+
+    - text: Route Object
+      url: /admin-api/#route-object
+      items:
+        - text: Add Route
+          url: /admin-api/#add-route
+
+        - text: List Routes
+          url: /admin-api/#list-routes
+
+        - text: Retrieve Route
+          url: /admin-api/#retrieve-route
+
+        - text: Update Route
+          url: /admin-api/#update-route
+
+        - text: Update Or Create Route
+          url: /admin-api/#update-or-create-route
+
+        - text: Delete Route
+          url: /admin-api/#delete-route
+
+    - text: Consumer Object
+      url: /admin-api/#consumer-object
+      items:
+        - text: Add Consumer
+          url: /admin-api/#add-consumer
+
+        - text: List Consumers
+          url: /admin-api/#list-consumers
+
+        - text: Retrieve Consumer
+          url: /admin-api/#retrieve-consumer
+
+        - text: Update Consumer
+          url: /admin-api/#update-consumer
+
+        - text: Update Or Create Consumer
+          url: /admin-api/#update-or-create-consumer
+
+        - text: Delete Consumer
+          url: /admin-api/#delete-consumer
+
+    - text: Plugin Object
+      url: /admin-api/#plugin-object
+      items:
+        - text: Add Plugin
+          url: /admin-api/#add-plugin
+
+        - text: List Plugins
+          url: /admin-api/#list-plugins
+
+        - text: Retrieve Plugin
+          url: /admin-api/#retrieve-plugin
+
+        - text: Update Plugin
+          url: /admin-api/#update-plugin
+
+        - text: Update Or Create Plugin
+          url: /admin-api/#update-or-create-plugin
+
+        - text: Delete Plugin
+          url: /admin-api/#delete-plugin
+
+        - text: Retrieve Enabled Plugins
+          url: /admin-api/#retrieve-enabled-plugins
+
+    - text: Certificate Object
+      url: /admin-api/#certificate-object
+      items:
+        - text: Add Certificate
+          url: /admin-api/#add-certificate
+
+        - text: List Certificates
+          url: /admin-api/#list-certificates
+
+        - text: Retrieve Certificate
+          url: /admin-api/#retrieve-certificate
+
+        - text: Update Certificate
+          url: /admin-api/#update-certificate
+
+        - text: Update Or Create Certificate
+          url: /admin-api/#update-or-create-certificate
+
+        - text: Delete Certificate
+          url: /admin-api/#delete-certificate
+
+    - text: CA Certificate Object
+      url: /admin-api/#ca-certificate-object
+      items:
+        - text: Add CA Certificate
+          url: /admin-api/#add-ca-certificate
+
+        - text: List CA Certificates
+          url: /admin-api/#list-ca-certificates
+
+        - text: Retrieve CA Certificate
+          url: /admin-api/#retrieve-ca-certificate
+
+        - text: Update CA Certificate
+          url: /admin-api/#update-ca-certificate
+
+        - text: Update Or Create CA Certificate
+          url: /admin-api/#update-or-create-ca-certificate
+
+        - text: Delete CA Certificate
+          url: /admin-api/#delete-ca-certificate
+
+    - text: SNI Object
+      url: /admin-api/#sni-object
+      items:
+        - text: Add SNI
+          url: /admin-api/#add-sni
+
+        - text: List SNIs
+          url: /admin-api/#list-snis
+
+        - text: Retrieve SNI
+          url: /admin-api/#retrieve-sni
+
+        - text: Update SNI
+          url: /admin-api/#update-sni
+
+        - text: Update Or Create SNI
+          url: /admin-api/#update-or-create-sni
+
+        - text: Delete SNI
+          url: /admin-api/#delete-sni
+
+    - text: Upstream Object
+      url: /admin-api/#upstream-object
+      items:
+        - text: Add Upstream
+          url: /admin-api/#add-upstream
+
+        - text: List Upstreams
+          url: /admin-api/#list-upstreams
+
+        - text: Retrieve Upstream
+          url: /admin-api/#retrieve-upstream
+
+        - text: Update Upstream
+          url: /admin-api/#update-upstream
+
+        - text: Update Or Create Upstream
+          url: /admin-api/#update-or-create-upstream
+
+        - text: Delete Upstream
+          url: /admin-api/#delete-upstream
+
+        - text: Show Upstream Health for Node
+          url: /admin-api/#show-upstream-health-for-node
+
+    - text: Target Object
+      url: /admin-api/#target-object
+      items:
+        - text: Add Target
+          url: /admin-api/#add-target
+
+        - text: List Targets
+          url: /admin-api/#list-targets
+
+        - text: Delete Target
+          url: /admin-api/#delete-target
+
+        - text: Set Target Address As Healthy
+          url: /admin-api/#set-target-address-as-healthy
+
+        - text: Set Target Address As Unhealthy
+          url: /admin-api/#set-target-address-as-unhealthy
+
+        - text: Set Target As Healthy
+          url: /admin-api/#set-target-as-healthy
+
+        - text: Set Target As Unhealthy
+          url: /admin-api/#set-target-as-unhealthy
+
+        - text: List All Targets
+          url: /admin-api/#list-all-targets
+
+- title: Kong for Kubernetes
+  icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
+  url: /kong-for-kubernetes/
+  items:
+    - text: Install Kong for Kubernetes
+      url: /kong-for-kubernetes/install
+
+    - text: Using Kong for Kubernetes
+      url: /kong-for-kubernetes/using-kong-for-kubernetes
+
+    - text: Changelog
+      url: /kong-for-kubernetes/changelog
+
+- title: Kubernetes Ingress Controller
+  icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
+  items:
+    - text: Introduction
+      url: /../../kubernetes-ingress-controller/latest/introduction
+    - text: FAQ
+      url: /../../kubernetes-ingress-controller/latest/faq
+    - text: Changelog
+      url: https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
+      absolute_url: true
+    - text: Concepts
+      items:
+        - text: Architecture
+          url: /../../kubernetes-ingress-controller/latest/concepts/design
+        - text: Custom Resources
+          url: /../../kubernetes-ingress-controller/latest/concepts/custom-resources
+        - text: Deployment Methods
+          url: /../../kubernetes-ingress-controller/latest/concepts/deployment
+        - text: Kong for Kubernetes with Kong Enterprise
+          url: /../../kubernetes-ingress-controller/latest/concepts/k4k8s-with-kong-enterprise
+        - text: High-Availability and Scaling
+          url: /../../kubernetes-ingress-controller/latest/concepts/ha-and-scaling
+        - text: Resource Classes
+          url: /../../kubernetes-ingress-controller/latest/concepts/ingress-classes
+        - text: Security
+          url: /../../kubernetes-ingress-controller/latest/concepts/security
+        - text: Ingress Resource API Versions
+          url: /../../kubernetes-ingress-controller/latest/concepts/ingress-versions
+    - text: Deployment
+      items:
+        - text: Overview
+          url: /../../kubernetes-ingress-controller/latest/deployment/overview
+        - text: Kong Ingress on Minikube
+          url: /../../kubernetes-ingress-controller/latest/deployment/minikube
+        - text: Kong for Kubernetes
+          url: /../../kubernetes-ingress-controller/latest/deployment/k4k8s
+        - text: Kong for Kubernetes Enterprise
+          url: /../../kubernetes-ingress-controller/latest/deployment/k4k8s-enterprise
+        - text: Kong for Kubernetes with Kong Enterprise
+          url: /../../kubernetes-ingress-controller/latest/deployment/kong-enterprise
+        - text: Kong Ingress on AKS
+          url: /../../kubernetes-ingress-controller/latest/deployment/aks
+        - text: Kong Ingress on EKS
+          url: /../../kubernetes-ingress-controller/latest/deployment/eks
+        - text: Kong Ingress on GKE
+          url: /../../kubernetes-ingress-controller/latest/deployment/gke
+        - text: Admission Controller
+          url: /../../kubernetes-ingress-controller/latest/deployment/admission-webhook
+    - text: Guides
+      items:
+        - text: Overview
+          url: /../../kubernetes-ingress-controller/latest/guides/overview
+        - text: Getting Started with KIC
+          url: /../../kubernetes-ingress-controller/latest/guides/getting-started
+        - text: Getting Started using Istio
+          url: /../../kubernetes-ingress-controller/latest/guides/getting-started-istio
+        - text: Using Custom Resources
+          items:
+            - text: Using the KongPlugin Resource
+              url: /../../kubernetes-ingress-controller/latest/guides/using-kongplugin-resource
+            - text: Using the KongIngress Resource
+              url: /../../kubernetes-ingress-controller/latest/guides/using-kongingress-resource
+            - text: Using KongConsumer and KongCredential Resources
+              url: /../../kubernetes-ingress-controller/latest/guides/using-consumer-credential-resource
+            - text: Using the KongClusterPlugin Resource
+              url: /../../kubernetes-ingress-controller/latest/guides/using-kongclusterplugin-resource
+        - text: Using the ACL and JWT Plugins
+          url: /../../kubernetes-ingress-controller/latest/guides/configure-acl-plugin
+        - text: Using cert-manager with Kong
+          url: /../../kubernetes-ingress-controller/latest/guides/cert-manager
+        - text: Configuring a Fallback Service
+          url: /../../kubernetes-ingress-controller/latest/guides/configuring-fallback-service
+        - text: Using an External Service
+          url: /../../kubernetes-ingress-controller/latest/guides/using-external-service
+        - text: Configuring HTTPS Redirects for Services
+          url: /../../kubernetes-ingress-controller/latest/guides/configuring-https-redirect
+        - text: Using Redis for Rate Limiting
+          url: /../../kubernetes-ingress-controller/latest/guides/redis-rate-limiting
+        - text: Integrate KIC with Prometheus/Grafana
+          url: /../../kubernetes-ingress-controller/latest/guides/prometheus-grafana
+        - text: Configuring Circuit-Breaker and Health-Checking
+          url: /../../kubernetes-ingress-controller/latest/guides/configuring-health-checks
+        - text: Setting up a Custom Plugin
+          url: /../../kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins
+        - text: Using Ingress with gRPC
+          url: /../../kubernetes-ingress-controller/latest/guides/using-ingress-with-grpc
+        - text: Setting up Upstream mTLS
+          url: /../../kubernetes-ingress-controller/latest/guides/upstream-mtls
+        - text: Exposing a TCP-based Service
+          url: /../../kubernetes-ingress-controller/latest/guides/using-tcpingress
+        - text: Using the mTLS Auth Plugin
+          url: /../../kubernetes-ingress-controller/latest/guides/using-mtls-auth-plugin
+        - text: Configuring Custom Entities
+          url: /../../kubernetes-ingress-controller/latest/guides/configuring-custom-entities
+        - text: Using the OpenID Connect Plugin
+          url: /../../kubernetes-ingress-controller/latest/guides/using-oidc-plugin
+        - text: Rewriting Hosts and Paths
+          url: /../../kubernetes-ingress-controller/latest/guides/using-rewrites
+        - text: Preserving Client IP Address
+          url: /../../kubernetes-ingress-controller/latest/guides/preserve-client-ip
+    - text: References
+      items:
+        - text: KIC Annotations
+          url: /../../kubernetes-ingress-controller/latest/references/annotations
+        - text: CLI Arguments
+          url: /../../kubernetes-ingress-controller/latest/references/cli-arguments
+        - text: Custom Resource Definitions
+          url: /../../kubernetes-ingress-controller/latest/references/custom-resources
+        - text: Plugin Compatibility
+          url: /../../kubernetes-ingress-controller/latest/references/plugin-compatibility
+        - text: Version Compatibility
+          url: /../../kubernetes-ingress-controller/latest/references/version-compatibility
+        - text: Troubleshooting
+          url: /../../kubernetes-ingress-controller/latest/troubleshooting
+
+- title: decK
+  icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
+  items:
+    - text: Introduction
+      items:
+        - text: Overview
+          url: /../../deck/overview
+        - text: Terminology
+          url: /../../deck/terminology
+        - text: Architecture
+          url: /../../deck/design-architecture
+        - text: Compatibility Promise
+          url: /../../deck/compatibility-promise
+    - text: Installation
+      url: /../../deck/installation
+    - text: Guides
+      items:
+        - text: Getting Started with decK
+          url: /../../deck/guides/getting-started
+        - text: Backup and Restore
+          url: /../../deck/guides/backup-restore
+        - text: Configuration as Code and GitOps
+          url: /../../deck/guides/ci-driven-configuration
+        - text: Distributed Configuration
+          url: /../../deck/guides/distributed-configuration
+        - text: Best Practices
+          url: /../../deck/guides/best-practices
+        - text: Using decK with Kong Enterprise
+          url: /../../deck/guides/kong-enterprise
+        - text: Using Multiple Files to Store Configuration
+          url: /../../deck/guides/multi-file-state
+        - text: De-duplicate Plugin Configuration
+          url: /../../deck/guides/deduplicate-plugin-configuration
+    - text: decK CLI Reference
+      url: /../../deck/commands
+    - text: FAQ
+      url: /../../deck/faqs
+    - text: Changelog
+      url: https://github.com/kong/deck/blob/main/CHANGELOG.md
+      absolute_url: true
