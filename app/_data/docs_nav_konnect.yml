@@ -57,14 +57,20 @@
   items:
     - text: Overview
       url: /service-hub
-    - text: Managing Services
+    - text: Manage Services
       url: /service-hub/manage-services
-    - text: Configuring a Plugin
+    - text: Manage Plugins
       items:
-        - text: Enabling a Plugin on a Service
-          url: /service-hub/enable-service-plugin
-        - text: Enabling a Plugin on a Route
-          url: /service-hub/enable-route-plugin
+        - text: Configure a Plugin on a Service
+          url: /service-hub/plugins/enable-service-plugin
+        - text: Configure a Plugin on a Route
+          url: /service-hub/plugins/enable-route-plugin
+    - text: Developer Portal
+      items:
+        - text: Manage Service Documentation
+          url: /service-hub/dev-portal/service-documentation
+        - text: Publish a Service to Dev Portal
+          url: /service-hub/dev-portal/publish
 
 - title: Runtime Manager
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
@@ -79,8 +85,6 @@
   items:
     - text: Overview
       url: /dev-portal
-    - text: Publishing to the Dev Portal
-      url: /dev-portal/publish
     - text: Developers
       items:
         - text: Developer Registration
