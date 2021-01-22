@@ -68,19 +68,17 @@ params:
       default: "`128`"
       datatype: integer
       value_in_examples: 128
-      description: Allowed request payload size in megabytes. Default: `128` (128000000 Bytes).
+      description: Allowed request payload size in megabytes. Default is `128` megabytes (128000000 bytes).
     - name: size_unit
       required: true
       default: "`megabytes`"
       datatype: string
-      description: Size unit can be set either in `bytes`, `kilobytes`, or `megabytes` (default). **Note:** This configuration is only
-      supported in Kong Enterprise 1.3 and above, and may eventually extend to Kong Gateway (OSS).
+      description: Size unit can be set either in `bytes`, `kilobytes`, or `megabytes` (default). This configuration is only supported in Kong Enterprise 1.3 and above, and may eventually extend to Kong Gateway (OSS).
     - name: require_content_length
       required: false
       default: false
       datatype: boolean
       value_in_examples: false
-      description: Set to `true` to ensure a valid `Content-Length` header exists before reading the request body. Default: `false`.
-
+      description: Set to `true` to ensure a valid `Content-Length` header exists before reading the request body.
 
 ---
