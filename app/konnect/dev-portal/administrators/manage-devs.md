@@ -6,7 +6,8 @@ beta: true
 ---
 
 Manage developers and [developer registration](/konnect/dev-portal/developers/dev-reg) requests to
-access the Konnect Dev Portal. 
+access the Konnect Dev Portal. To allow automatic approval of developer registration requests,
+enable [auto approve](/konnect/dev-portal/administrators/auto-approve-devs-apps).
 
 ## Prerequisite
 

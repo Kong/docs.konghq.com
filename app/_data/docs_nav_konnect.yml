@@ -113,6 +113,8 @@
               url: /dev-portal/administrators/app-registration/manage-app-connections
         - text: Manage Developer Access
           url: /dev-portal/administrators/manage-devs
+        - text: Auto Approve Dev and App Registrations
+          url: /dev-portal/administrators/auto-approve-devs-apps
         - text: Customization
           items:
           - text: Customizing the Dev Portal Appearance

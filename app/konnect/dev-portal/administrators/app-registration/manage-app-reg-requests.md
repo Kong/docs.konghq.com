@@ -7,12 +7,10 @@ beta: true
 
 Manage requests from developers to register applications for a Service. When a
 developer [registers an application with a Service](/konnect/dev-portal/developers/dev-reg-app-service),
-the requests must be approved by an admin if auto approve is not enabled. When
+the requests must be approved by an admin if
+[auto approve](/konnect/dev-portal/administrators/auto-approve-devs-apps) is not enabled. When
 [application registration is enabled](/konnect/dev-portal/administrators/app-registration/enable-app-reg),
 developers must register their applications with a Service.
-
-<div class="alert alert-ee red"> Auto approve is not available for the {{site.konnect_product_name}} beta.
- </div>
 
 ## Prerequisite
 
