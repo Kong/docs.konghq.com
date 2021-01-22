@@ -4,94 +4,186 @@ no_search: true
 no_version: true
 beta: true
 ---
-## Introduction
-{{site.konnect_product_name}} lets you manage multiple data planes (DPs) from a
-single, cloud-based control plane (CP), giving you an overview of all deployed
-services. You can deploy the data planes in different environments, data
-centers, geographies, or zones without needing a local clustered database for
-each data plane group.
 
-This Getting Started Guide for {{site.konnect_product_name}} walks you through
-Konnect concepts and foundational API gateway features and capabilities.
+{{site.konnect_product_name}} ({{site.konnect_short_name}}) is a full-stack
+connectivity platform for cloud-native applications.
 
-In this guide, you will:
-* Create a Konnect account
-* Configure a Service and Service Version, then implement the Version
-* Secure a Service Version through IP restriction
-* Set up key authentication on a Route
-* Configure a self-hosted runtime (data plane)
-* Enable the Developer Portal to publish API documentation for your service
-* Monitor the health of the Service and its constituents with Vitals
+## End-to-end Service Connectivity Platform  
+We live in a connected world. Every application we use, whether within or outside
+of work, is built on top of dozens, sometimes hundreds of **services** that
+enable our digital, connected experiences. For example, think of an application
+that allows you to control your garden sprinklers. While it may seem
+simple on the surface, underlying that application are likely a dozen or so
+services as illustrated below.
 
-## Concepts and Features in this Guide
-Here’s the content covered in this guide, with an overview of entities and how
-the pieces fit together:
+![{{site.konnect_product_name}} Overview](/assets/images/docs/konnect/konnect-overview.png)
 
-| Concept/Feature {:width=20%:}| Description |
+In the diagram above, each of the red circles represents a
+**connectivity end-point**. At each of these points, **connectivity logic** is
+required. Connectivity logic addresses concerns such as ensuring that incoming
+requests are authenticated, authorized, rate-limited, and logged, or that, as
+a new version of a service is introduced, requests from incompatible older
+versions of the service’s consumers are routed to the older version.
+
+Most organizations build and manage their connectivity logic from scratch many
+times over across each team, application, and service. This Do-It-Yourself
+approach is unfortunately not only inefficient, but it also leads to
+significantly lowered reliability, speed, and insight across the connected
+experiences that form the touchpoints (web apps, mobile apps, APIs) of the
+modern organization’s interactions with its customers, partners, and employees.
+
+As a Service Connectivity Platform (SCP), {{site.konnect_short_name}} enables
+*reliability*, *speed*, and *insight* by providing common, out-of-the-box
+connectivity logic, executed through **connectivity runtimes** and managed
+through **functionality modules** across points of connectivity within your
+applications.
+
+### Reliability
+If connectivity logic fails &mdash; for example, a piece of logic that
+authenticates incoming requests &mdash; there could be serious security and
+availability consequences. {{site.konnect_short_name}} provides rock-solid,
+pre-validated, and tested connectivity logic that can be applied to connectivity
+endpoints and executed through highly reliable connectivity runtimes,
+minimizing the risks of service failures and security vulnerabilities.
+
+The components of {{site.konnect_short_name}} that enable this reliability
+are defined in the following table:
+
+| {{site.konnect_short_name}} Component {:width=20%:} | Description |
+|---------------------------------------|-------------|
+| {{site.base_gateway}}                 | High-performance connectivity runtime for executing edge connectivity logic. |
+| Kong Ingress Controller               | High-performance connectivity runtime for executing inter-app connectivity logic within a Kubernetes environment. |
+| {{site.mesh_product_name}} | High-performance connectivity runtime for executing in-app connectivity logic. {{site.mesh_product_name}} is built on the Kuma service mesh open-source project. |
+| Kong Plugins                          | Secure, tested, and reliable connectivity logic for all connectivity needs applied through the {{site.ee_gateway_name}} and Kong Ingress Controller runtimes. Many plugins are built and supported by {{site.company_name}}, and a wide array of plugins are also built and maintained by the Kong community. |
+| Immunity                              | Functionality module that uses machine learning to analyze traffic patterns in real time to improve security, mitigate breaches, and isolate issues. |
+| Runtime Manager (SaaS only)           | Functionality module that enables provisioning instances of {{site.konnect_short_name}}’s supported runtimes. Runtime Manager provides a unified view of all of these runtimes and their current status. <br><br>**Note:** Currently, the only supported runtime type in the Runtime Manager is a {{site.ee_gateway_name}} data plane. |
+
+### Speed
+{{site.konnect_short_name}} provides increased velocity of service development
+and faster connectivity runtime performance.
+
+#### Service Development Velocity
+The connectivity logic that comes out of the box with
+{{site.konnect_short_name}} allows developers to focus on business logic and
+not need to rewrite a piece of connectivity logic every time. In turn, this
+leads to faster development. {{site.konnect_short_name}} enables developers to
+rapidly search for and discover existing services, which they can reuse to
+accelerate the development of their applications.
+
+The components of {{site.konnect_short_name}} that enable service development
+velocity are defined in the following table:
+
+| {{site.konnect_short_name}} Component {:width=20%:} | Description |
 |------------------------------|-------------|
-| Service                      | Service entities are abstractions of each of your own upstream services, e.g., a data transformation microservice, a billing API, etc.  In Konnect, a Service is implemented through one or more Versions. |
-| Service Version              | One instance of a Service with a unique configuration. Each version can have different configurations, set up for a RESTful API, gPRC endpoint, GraphQL endpoint, etc. A version can be a numerical identifier, such as `1.0.0`, or an identifier using text such as `version_1`. |
-| Service Implementation       | The concrete, runnable incarnation of a Service Version. It defines the configuration for the Version, including the upstream URL and routes. Each Service Version can have one Implementation. |
-| Route                        | Routes specify how (and if) requests are sent to their Service Versions after they reach the API gateway. A single Service Version can have many Routes. |
-| Data Plane (DP)              | (Also referred to as a *runtime*) A node that serves traffic for the proxy. Data plane nodes are not directly connected to a database. |
-| Control Plane (CP)           | The central node which manages configuration for all data plane nodes. |
-| Proxy                        | An implementation of a service version in the form of a Kong Gateway proxy. |
-| Proxy URL                    | URL for requests to the proxy. |
-| Developer Portal             | (Also referred to as *Portal*) A collection of Service Version specs and documentation objects. The Developer Portal provides a single source of truth for all developers and teams to locate, access, and consume services. |
-| Spec                         | Documentation for a Service Version in the form of an OpenAPI spec. A spec can be either in YAML or JSON format. |
-| API Catalog                  | The API Catalog is one component of the Developer Portal containing the documentation for Services. |
+| Insomnia                     | API debugging, design, and testing tool for developers. Allows developers to rapidly explore and consume existing services of different protocols (spawning REST, GraphQL, and gRPC), design services using a spec-based approach, and write and build a suite of tests while collaborating with other developers. |
+| Insomnia Kong Studio Plugins | Insomnia's functionality can be extended through its plugin capabilities. A set of these plugins enables developers to generate {{site.ee_gateway_name}} and Kong Ingress Controller runtime configurations directly from their API spec. Developers can rapidly map their API designs to connectivity logic that exposes those designs within a connectivity runtime.  |
+| Dev Portal                   | Functionality module that enables the formal publishing of API docs to an API catalogue through which developers (typically external to an application team) can discover and formally register to use the API. |
+| ServiceHub (SaaS only)       | Functionality module that enables the cataloging of all services into a single system of record. This catalog represents the single source of truth for your organization’s service inventory and their dependencies. By leveraging ServiceHub, application developers can search, discover, and consume existing services to accelerate their time-to-market, while enabling a more consistent end-user experience across the organization’s applications. |
 
-## Understanding Traffic Flow in Kong Konnect
+#### Connectivity Runtime Performance
+Any unnecessary latency incurred in the execution of connectivity logic is
+compounded across each of the dozens to hundreds of connectivity endpoints
+underlying modern applications. All of {{site.konnect_short_name}}’s
+out-of-the-box high performance connectivity logic and connectivity runtimes are
+optimized to minimize this latency.
 
-The Konnect platform provides a cloud control plane (CP), which manages all
-Service configurations. It propagates those configurations to all data plane
-(DP) nodes, which use in-memory storage. The data plane nodes can be installed
-anywhere, on-premise or in the cloud.
+### Insight
+Connectivity endpoints provide sources of insight across three different dimensions:
 
-The control plane listens for connections from data planes on port 8005.
+* At the service level: for example, how many versions of Service A are there
+and what does each version's interface look like?
+* At the application level: for example, what is the overall uptime of the
+Device App?
+* At the business level: for example, which device types use our applications
+the most?
 
-The data plane listens for traffic on its configured proxy port(s) 8000 and
-8443, by default. It evaluates incoming client API requests and routes them to
-the appropriate backend APIs. While routing requests and providing responses,
-policies can be applied via plugins as necessary.
+{{site.konnect_short_name}} captures this insight and provides tools that make
+it easily accessible to any stakeholders. The components of
+{{site.konnect_short_name}} that enable service development velocity are
+defined in the following table:
 
-![Traffic flow in Kong Konnect](/assets/images/docs/konnect/Konnect-architecture-wide.png)
+| {{site.konnect_short_name}} Component {:width=20%:} | Description |
+|---------------------------------------|-------------|
+| Vitals                       | Functionality module that enables the capture and generation of service usage and health monitoring data. This module's capabilities can be enhanced with {{site.konnect_short_name}} plugins that enable monitoring metrics to be streamed to third-party analytics providers such as Datadog and Prometheus. |
+| ServiceHub (SaaS only)       | Functionality module that enables the cataloging all of all services into a single system of record that represents the single source of truth of your organization’s service inventory and their dependencies. By leveraging ServiceHub, enterprise architects can attain a better understanding of the organization’s inventory of services, in terms of the level of reuse, usage, and operational health of services across different teams and environments. |
 
-For example, before routing a request, the client might be required to
-authenticate. This delivers several benefits, including:
+#### Cloud-native Service Lifecycle
+As the number of connectivity endpoints and runtimes increases, the automation
+of their lifecycles becomes more critical, as automation allows for a high
+velocity of change in a reliable manner. {{site.konnect_short_name}} is designed
+from the ground up to enable this level of automation across both legacy
+environments and more modern, containerized infrastructure. It provides all
+capabilities through CLIs, declarative configuration interfaces, and
+well-defined APIs.
 
-* The service doesn’t need its own authentication logic since the data plane is
-handling authentication.
-* The service only receives valid requests and therefore cycles are not wasted
-processing invalid requests.
-* All requests are logged for central visibility of traffic.
+The components of {{site.konnect_short_name}} that enable this cloud-native
+lifecycle are as follows:
 
-For the Konnect beta, Kong will provision a single hosted data plane for you.
-Later, you will also be able to configure additional self-managed data planes.
+| {{site.konnect_short_name}} Component {:width=20%:}| Description |
+|------------------------------|-------------|
+| decK                         | decK is a tool that allows for the management of {{site.ee_gateway_name}}’s configuration in a declarative fashion. It can sync configuration to a running cluster, diff configuration to detect any drift or manual changes, and back up {{site.ee_gateway_name}}'s configuration. It also can manage the configuration in a distributed way using tags, helping you split configuration across various teams. |
+| Kong Ingress Controller CRDs | The Kong Ingress Controller runtime’s lifecycle can be managed entirely through Kubernetes CRD manifests, which can be applied through the Kubernetes `kubectl` command line. |
+| {{site.ee_gateway_name}}’s Admin API     | The {{site.ee_gateway_name}} runtime provides an internal REST-based Admin API. Requests to the Admin API can be sent from any node in the cluster, and {{site.konnect_short_name}} will keep the configuration consistent across all nodes. |
+| Inso command line            | Inso is a CLI for Insomnia that exposes Insomnia’s application functionality to be invoked via a terminal or within a CI/CD pipeline for automation of API debugging, testing, and configuration generation. |
+| {{site.konnect_short_name}} SaaS Admin API       | {{site.konnect_short_name}} provides a REST-based SaaS API that exposes all of the functionality of its SaaS web interfaces. |
+| `konnectl` (coming soon)     | `konnectl` is a CLI that exposes {{site.konnect_short_name}}’s functionality through Kubernetes-style declarative configuration manifests, facilitating the automation of the lifecycles of services managed through {{site.konnect_short_name}} functionality modules and runtimes. |
 
-## Before you Begin
-Note the following before you start using this guide:
+## Konnect Key Concepts and Terminology
 
-### Installation and Deployment
-<div class="alert alert-ee red">
-<strong>Warning:</strong> Do not use {{site.konnect_product_name}} beta in a
-production environment.
-<br> <br>You can use this guide to get started in a test environment, but this
-guide does not provide all of the necessary configurations and security settings
-that you would need for a production environment.
-</div>
+**Service**
 
-For the {{site.konnect_product_name}} beta, there is nothing to manually
-install or deploy. When you create a Konnect beta account, Kong provisions a
-data plane for you and automatically connects it to your account.
+: A Service is an API that can be defined as a *discrete* unit of functionality
+and that can be accessed *remotely* by its consumers. Within
+{{site.konnect_short_name}}, a single Service maps to a single Service package
+within the {{site.konnect_short_name}} SaaS Service page.
+: *Discrete* means the Service represents an independent piece of functionality
+that is useful on its own in satisfying a specific purpose for its consumers.
+*Remotely* means that the Service is not invoked locally (within the process
+space) and requires a network call to be invoked.  
 
-### Using this Guide
+**Service Version**
+: Different instances of the same Service representing different versions (for
+example, `1.1`, `1.2`, if the version string is represented through a
+semantic versioning model).
 
-This Getting Started Guide is meant to be followed topic by topic, each task
-building on the previous one: creating a Service Version, then implementing that
-Version with a Route, then enabling plugins on the Route and Service Version,
-and so on. However, each topic can also stand alone as a reference if needed.
+**Service Implementation**
+: The connectivity logic associated with a Service version. Currently, the only
+supported implementation type is a {{site.ee_gateway_name}} proxy, which
+consists of proxy configuration objects such as a Service object and Route
+object.  
 
-## Next Steps
+**Service Connectivity Platform**
+: A platform that enables reliability, speed, and insight by providing common,
+out-of-the-box connectivity logic, executed through connectivity runtimes and
+managed through functionality modules across points of connectivity.
 
-Next, start by [creating a Kong Konnect account](/konnect/getting-started/access-beta).
+**Edge Connectivity**
+: Connectivity management between organizational boundaries.
+
+**Inter-app Connectivity**
+: Connectivity management between application boundaries.
+
+**In-app Connectivity**
+: Connectivity management within the services that constitute a single
+application.
+
+**Connectivity Endpoint**
+: The remote access endpoint (often involving a port/IP address) through which
+a Service’s connection is exposed for consumption. When a Service’s connectivity
+endpoint is exposed through a connectivity runtime, then the runtime can apply
+connectivity logic to manage the endpoint’s traffic.
+
+**Connectivity Runtime**
+: A process that enables the execution of connectivity logic on connectivity
+endpoints.
+
+**Connectivity Logic**
+: Logic that addresses concerns such as ensuring that incoming requests are
+authenticated, authorized, rate-limited, and logged, or that, as a new version
+of a service is introduced, requests from incompatible older versions of the
+service’s consumers are routed to the older version.
+
+**Functionality Module**
+: Functionality, delivered as a service or in a self-hosted manner, that
+leverages connectivity runtimes to provide a connectivity management capability
+(for example, Dev Portal).
