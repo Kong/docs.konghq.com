@@ -3,6 +3,8 @@
   items:
     - text: Overview
       url: /overview
+    - text: Using the Konnect Docs
+      url: /using-konnect-docs
     - text: Release Notes
       url: /release-notes
     - text: Changelog

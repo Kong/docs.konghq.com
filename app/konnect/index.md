@@ -11,34 +11,36 @@ beta: true
 
   <div class="docs-grid-block">
     <h3><a href="/konnect/overview">Introduction to {{site.konnect_product_name}}</a></h3>
-    <p>Learn about {{site.konnect_product_name}} and its functionality modules,
-    and get familiar with some key concepts.</p>
+    <p>Learn about {{site.konnect_product_name}}, the full-stack connectivity
+    platform for cloud-native applications.</p>
     <a href="/konnect/overview">Learn about {{site.konnect_product_name}} &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
-    <h3><a href="/konnect/getting-started/access-beta">Getting Started</a></h3>
-    <p>Use this guide to quickly get started with {{site.konnect_product_name}}:
-    connect to a data plane, spin up a Service Package and Version, and
-    implement the Service Version with a Route. </p>
-    <a href="/konnect/getting-started/access-beta">Get Started with
-    {{site.konnect_product_name}} &rarr;</a>
+    <h3><a href="/konnect/using-konnect-docs">Getting Started</a></h3>
+    <p>Find your way around the {{site.konnect_product_name}} docs, then check
+    out the Quickstart guide: connect to a data plane, spin up a Service
+    package and version, and implement the Service version with a Route. </p>
+    <a href="/konnect/using-konnect-docs">Learn about the
+    {{site.konnect_product_name}} docs &rarr;</a>
+    <a href="/konnect/getting-started/configure-runtime">{{site.konnect_short_name}}
+    SaaS Quickstart Guide &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
-    <h3><a href="/konnect/getting-started/configure-service">Service Hub</a></h3>
-    <p>Manage your Service Packages through {{site.konnect_short_name}}'s
-    Service Hub, including plugin configuration, routing and implementing,
+    <h3><a href="/konnect/service-hub">ServiceHub</a></h3>
+    <p>Manage your Services through {{site.konnect_short_name}}'s
+    ServiceHub, including plugin configuration, routing and implementing,
     managing each Service's Dev Portal documentation, and more. </p>
-    <a href="/konnect/getting-started/configure-service">Get Started with
-    Service Hub &rarr;</a>
+    <a href="/konnect/service-hub">Get Started with
+    ServiceHub &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
-    <h3><a href="/konnect/getting-started/configure-runtime">Runtime Manager</a></h3>
-    <p>Add, delete, and configure your runtime connections through the Runtime
+    <h3><a href="/konnect/runtime-manager">Runtime Manager</a></h3>
+    <p>Provision and monitor your runtime connections through the Runtime
     Manager.</p>
-    <a href="/konnect/getting-started/configure-runtime">Manage Runtimes &rarr;</a>
+    <a href="/konnect/runtime-manager">Manage Runtimes &rarr;</a>
   </div>
 
 <h2 class="docs-grid-section-title">Runtimes</h2>
@@ -65,8 +67,8 @@ beta: true
 <h2 class="docs-grid-section-title">Functionality Modules</h2>
 
   <div class="docs-grid-block">
-    <h3><a href="/konnect/getting-started/dev-portal">Developer Portal</a></h3>
-    <p>Set up the Developer Portal to register developers and their applications.
+    <h3><a href="/konnect/dev-portal">Dev Portal</a></h3>
+    <p>Set up the Dev Portal to register developers and their applications.
     Customize the portal to reflect your own branding. If you're
     an admin, manage access and permissions for developers. </p>
     <a href="/konnect/dev-portal/administrators/app-registration/manage-app-connections/">Dev Portal for Admins &rarr;</a>
@@ -74,10 +76,10 @@ beta: true
   </div>
 
   <div class="docs-grid-block">
-    <h3><a href="/konnect/getting-started/vitals">Vitals</a></h3>
+    <h3><a href="/konnect/vitals">Vitals</a></h3>
     <p>Learn about using Vitals in {{site.konnect_product_name}}, including
     metrics and generating reports. </p>
-    <a href="/konnect/getting-started/vitals">Learn about Vitals &rarr;</a>
+    <a href="/konnect/vitals">Learn about Vitals &rarr;</a>
   </div>
 
 </div>
