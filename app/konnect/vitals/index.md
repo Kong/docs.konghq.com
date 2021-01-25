@@ -2,7 +2,6 @@
 title: Monitoring Health with Vitals
 no_search: true
 no_version: true
-beta: true
 ---
 
 ## Overview
@@ -26,10 +25,10 @@ To view traffic volume across all of a Service's versions:
 versions of your Service. Hover over an area of of the graph to view details,
 including version information and time of the event.
 
-    By default, the graphs display data for the past 30 minutes. For the
-    Konnect beta, you can't change this setting. To see data for a longer or
-    shorter period of time, see the [Version overview](#view-vitals-for-a-version)
-    or the [Route Overview](#view-vitals-for-a-route).
+    By default, the graphs display data for the past 30 minutes. To see data
+    for a longer or shorter period of time, see the
+    [Version overview](#view-vitals-for-a-version) or the
+    [Route Overview](#view-vitals-for-a-route).
 
     For more information about Vitals, see [Vitals](/enterprise/2.1.x/vitals/).
 

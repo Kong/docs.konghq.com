@@ -2,7 +2,6 @@
 title: Using the Konnect API
 no_search: true
 no_version: true
-beta: true
 ---
 ## Overview
 

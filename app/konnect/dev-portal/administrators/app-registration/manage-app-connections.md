@@ -2,7 +2,6 @@
 title: Manage Application Service Connections
 no_search: true
 no_version: true
-beta: true
 ---
 
 Revoke, reinstate, or delete an application's connection to a Service. When a developer
@@ -12,8 +11,6 @@ application, and the request is approved, it creates an application connection.
 When the state of the application changes, an email is sent to the developer to notify
 them about the change in status.
 
-<div class="alert alert-ee red"> Application status change email is not available for the {{site.konnect_product_name}} beta.
- </div>
 
 ## Prerequisite
 

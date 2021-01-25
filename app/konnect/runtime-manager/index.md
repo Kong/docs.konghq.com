@@ -2,7 +2,6 @@
 title: Runtime Manager Overview
 no_search: true
 no_version: true
-beta: true
 ---
 
 The Runtime Manager is a {{site.konnect_short_name}} SaaS functionality module

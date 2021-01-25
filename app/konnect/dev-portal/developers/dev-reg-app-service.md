@@ -2,7 +2,6 @@
 title: Register or Unregister an Application for a Service on the Konnect Dev Portal
 no_search: true
 no_version: true
-beta: true
 toc: true
 ---
 
@@ -43,10 +42,6 @@ applicable Services.
 
    A dialog message indicates your registration is under review and you will be notified
    by email upon approval. Click **Close**.
-
-   <div class="alert alert-ee red"> Email notification for a status other than
-   approved is not available for the {{site.konnect_product_name}} beta.
-   </div>
 
    You can check the status of your request in the
    [application details](/konnect/dev-portal/developers/dev-apps/#app-details-page) page.

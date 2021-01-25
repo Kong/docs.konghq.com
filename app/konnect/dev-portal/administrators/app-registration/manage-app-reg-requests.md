@@ -2,7 +2,6 @@
 title: Manage Application Registration Requests
 no_search: true
 no_version: true
-beta: true
 ---
 
 Manage requests from developers to register applications for a Service. When a
@@ -95,9 +94,6 @@ unregistering their application from a Service.
    An email is sent to the developer to let them know their application registration
    for Service access was rejected.
 
-   <div class="alert alert-ee red"> Rejected app registration email is not available for the {{site.konnect_product_name}} beta.
-    </div>
-
    The status displays in the Services pane in the
    application details page available from the developer My Apps dashboard in the dev portal.
    The application will not appear in the Select Application list in the Register service dialog
@@ -126,6 +122,3 @@ appears in the Select Application list in the Register for Service dialog for th
 
    An email is sent to the developer to let them know their application registration
    for Service access was deleted.
-
-   <div class="alert alert-ee red"> Deleted app registration email is not available for the {{site.konnect_product_name}} beta.
-    </div>

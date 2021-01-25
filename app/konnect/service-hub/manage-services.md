@@ -2,7 +2,6 @@
 title: Manage Services through the ServiceHub
 no_search: true
 no_version: true
-beta: true
 ---
 
 ## Service Packages

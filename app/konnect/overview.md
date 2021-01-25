@@ -2,7 +2,6 @@
 title: Kong Konnect Overview
 no_search: true
 no_version: true
-beta: true
 ---
 
 {{site.konnect_product_name}} ({{site.konnect_short_name}}) is a full-stack

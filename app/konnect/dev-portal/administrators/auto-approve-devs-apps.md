@@ -2,7 +2,6 @@
 title: Auto Approve Developer and Application Registrations
 no_search: true
 no_version: true
-beta: true
 ---
 
 Enable automatically approving requests for developer and application registration.

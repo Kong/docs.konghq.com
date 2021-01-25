@@ -2,7 +2,6 @@
 title: Implement and Test a Service
 no_search: true
 no_version: true
-beta: true
 ---
 
 Create a Service implementation to expose your Service to clients.

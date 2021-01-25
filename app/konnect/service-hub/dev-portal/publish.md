@@ -2,7 +2,6 @@
 title: Publish a Service to the Dev Portal
 no_search: true
 no_version: true
-beta: true
 ---
 
 Publish Services to the Dev Portal to expose them to your application

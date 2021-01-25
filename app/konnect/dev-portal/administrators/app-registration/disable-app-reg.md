@@ -2,7 +2,6 @@
 title: Disable App Registration for a Service
 no_search: true
 no_version: true
-beta: true
 ---
 
 Disable application registration for a Service. Disabling application registration

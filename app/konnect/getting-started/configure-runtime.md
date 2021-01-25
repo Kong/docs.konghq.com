@@ -2,7 +2,6 @@
 title: Configure a Runtime
 no_search: true
 no_version: true
-beta: true
 ---
 
 Set up your first runtime through the
@@ -24,8 +23,8 @@ instances.
 
 ## Prerequisites
 
-* You have a {{site.konnect_product_name}} license.
-* You have [set up a {{site.konnect_product_name}} account](/konnect/access-account).
+You have a {{site.konnect_product_name}} account. Contact your sales
+representative for access.
 
 ## Set up a New Runtime Instance
 

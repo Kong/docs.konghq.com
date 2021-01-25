@@ -2,7 +2,6 @@
 title: Configuring a Service
 no_search: true
 no_version: true
-beta: true
 ---
 
 Using the [ServiceHub](/konnect/service-hub), you can create, manage, and

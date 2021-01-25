@@ -2,7 +2,6 @@
 title: Manage Developer Access to Konnect
 no_search: true
 no_version: true
-beta: true
 ---
 
 Manage developers and [developer registration](/konnect/dev-portal/developers/dev-reg) requests to

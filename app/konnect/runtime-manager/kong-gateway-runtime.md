@@ -2,9 +2,8 @@
 title: Setting up a Kong Gateway Runtime
 no_search: true
 no_version: true
-beta: true
 ---
-Set up a [runtime](/konnect/overview/#konnect-key-concepts-and-terminology) 
+Set up a [runtime](/konnect/overview/#konnect-key-concepts-and-terminology)
 through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
 configure your {{site.ee_gateway_name}} instance to accept configuration from
@@ -21,8 +20,8 @@ instances.
 
 ## Prerequisites
 
-* You have a {{site.konnect_product_name}} license.
-* You have [set up a {{site.konnect_product_name}} account](/konnect/access-account).
+You have a {{site.konnect_product_name}} account. Contact your sales
+representative for access.
 
 ## Set up a New Runtime Instance
 

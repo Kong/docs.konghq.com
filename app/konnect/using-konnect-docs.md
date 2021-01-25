@@ -2,7 +2,6 @@
 title: Using the Konnect Docs
 no_search: true
 no_version: true
-beta: true
 ---
 
 The {{site.konnect_product_name}} ({{site.konnect_short_name}}) docs provide
@@ -22,8 +21,7 @@ If using the SaaS-hosted control plane to manage your
 following topics to get started and for information about using
 {{site.konnect_short_name}}.
 
-* Make sure you have a [valid license](/konnect/deployment/license-management)
-and [set up an account](/konnect/access-account)
+* Set up a [{{site.konnect_short_name}} SaaS account](/konnect/access-account)
 * Using the Quickstart Guide:
   * [Set up a runtime](/konnect/getting-started/configure-runtime)
   * [Configure a Service and its first version](/konnect/getting-started/configure-service)

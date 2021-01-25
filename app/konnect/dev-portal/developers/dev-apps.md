@@ -2,7 +2,6 @@
 title: Working with Applications
 no_search: true
 no_version: true
-beta: true
 toc: true
 ---
 

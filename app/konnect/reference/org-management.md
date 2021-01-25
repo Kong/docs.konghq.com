@@ -2,7 +2,6 @@
 title: Managing Users and Roles
 no_search: true
 no_version: true
-beta: true
 ---
 
 ## Overview
@@ -13,11 +12,6 @@ mistake or malicious act by one administrator doesn’t cause an outage.
 {{site.konnect_product_name}} provides the ability to manage authorization
 through inviting users and granting them defined or custom roles, helping you
 secure your administration environment.
-
-<div class="alert alert-ee red">
-<strong>Note:</strong> Teams and Identity Management, as well as the creation
-of custom roles, are not available in the Konnect Beta.
-</div>
 
 ## Creating a New User
 

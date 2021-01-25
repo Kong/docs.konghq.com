@@ -2,7 +2,6 @@
 title: Enable Application Registration for a Service
 no_search: true
 no_version: true
-beta: true
 toc: true
 ---
 

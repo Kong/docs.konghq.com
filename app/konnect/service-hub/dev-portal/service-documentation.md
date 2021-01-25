@@ -2,7 +2,6 @@
 title: Dev Portal Service Documentation
 no_search: true
 no_version: true
-beta: true
 ---
 
 Upload documentation for your Services through the ServiceHub to display it

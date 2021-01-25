@@ -2,16 +2,7 @@
 title: Accessing a Kong Konnect SaaS Account
 no_search: true
 no_version: true
-beta: true
 ---
-
-## Prerequisites
-
-* **Beta users:** you have received an email with an invitation to join the
-{{site.konnect_product_name}} beta. This email contains an access code, which
-you will need to sign up for a beta account.
-
-* You have a license for {{site.konnect_product_name}}.
 
 ## Sign Up for a Konnect SaaS Account
 

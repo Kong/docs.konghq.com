@@ -2,7 +2,6 @@
 title: ServiceHub Overview
 no_search: true
 no_version: true
-beta: true
 ---
 
 The ServiceHub is a {{site.konnect_short_name}} SaaS functionality module that

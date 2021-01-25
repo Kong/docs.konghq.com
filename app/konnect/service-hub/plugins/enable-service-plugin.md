@@ -2,7 +2,6 @@
 title: Configure a Plugin on a Service
 no_search: true
 no_version: true
-beta: true
 ---
 Enable, update, disable, or delete a plugin for a Service version.
 
