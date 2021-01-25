@@ -1,12 +1,16 @@
 ---
 title: Plugins in Other Languages
+redirect_from:
+    /latest/go
+    /2.3.x/go
+
 ---
 
 ## Introduction
 
-{{site.base_gateway}} supports plugins written in the Lua programming
-language.  Plugins written in other languages need to be served by a
-separate process, that we call _plugin server_.
+External plugins are those that run on a process separate from {{site.base_gateway}} itself,
+enabling the use of any programming language for which an appropriate
+plugin server is available.
 
 Each plugin server hosts one or more plugins and communicates with the
 main {{site.base_gateway}} process through Unix sockets.  If so configured, {{site.base_gateway}} can manage
