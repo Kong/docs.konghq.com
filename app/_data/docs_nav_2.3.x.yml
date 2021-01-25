@@ -59,8 +59,8 @@
     - text: Hybrid Mode
       url: /hybrid-mode
 
-    - text: Go Plugins
-      url: /go
+    - text: Plugins in Other Languages
+      url: /external-plugins
 
     - text: Clustering reference
       url: /clustering
