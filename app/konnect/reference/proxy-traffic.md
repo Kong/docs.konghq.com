@@ -2,20 +2,32 @@
 title: Proxy Traffic
 no_search: true
 no_version: true
-toc: false
 ---
 
-## Proxy Traffic for your Kong Proxy Nodes
+Use the proxy URL to access a Service. By default, the URL takes the
+format `http://<DNSorIP>:8000`.
 
-The Proxy URL is used to access a Service.
+## Kong Gateway runtimes
 
-1. Copy the Proxy URL. You can find the Proxy URL at the top of any Service
-Version overview page.
+If you configure a {{site.ee_gateway_name}} runtime using the
+[Docker quick setup](/konnect/getting-started/configure-runtime) option,
+the default proxy URL is `http://localhost:8000`.
 
-    ![Konnect Proxy URL](/assets/images/docs/konnect/konnect-proxy-url.png)
+<!-- To change the default URL, see [link TBA].-->
 
-2. Paste the URL into a browser and append with the Route path.
+## Using the proxy URL
 
-    For example, in this guide we use **http://mockbin.org** to create a
-    Service with a path **/mock**. When you put the URL into a browser, add
-    **/mock** at the end of the Proxy URL. The upstream service, is mockbin.
+Paste the URL into a browser and append it with a Route path.
+
+For example, if you have:
+* A runtime running on `localhost`
+* A Service that accesses `http://mockbin.org` using the path `/mock`
+
+Add `/mock` to the end of the proxy URL:
+
+```
+http://localhost:8000/mock
+```
+
+The URL opens the page associated with the Service, in this case,
+`http://mockbin.org`.

@@ -58,7 +58,7 @@ implementation to associate with your Service version.
 just set. For example:
 
     ```
-    http://konginc123456789.konnect.konghq.com/mock
+    http://localhost:8000/mock
     ```
 
     If successful, you should see the homepage for `mockbin.org`. On your Service
