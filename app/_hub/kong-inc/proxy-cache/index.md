@@ -210,7 +210,7 @@ Two separate endpoints are available: one to look up a known plugin instance, an
 
 | Attributes | Description
 | -------------- | -------
-|`cache_id` | he cache entity key as reported by the `X-Cache-Key` response header
+|`cache_id` | The cache entity key as reported by the `X-Cache-Key` response header
 
 **Response**
 
