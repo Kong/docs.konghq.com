@@ -4,6 +4,9 @@ sitemap: true
 id: documentation
 ---
 
+{% assign latest_page_url = page.url | replace: page.kong_version, page.kong_latest.release %}
+{% capture latest_page_exists %}{% page_exists {{latest_page_url}} %}{% endcapture %}
+
 <div class="page v2 {{ page.class }}">
   <header class="page-header">
     <div class="page-header-bg"></div>
@@ -98,22 +101,22 @@ id: documentation
           {% endif %}
           {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
           <div class="alert alert-warning">
-            <strong>Careful!</strong> You are browsing documentation for an outdated version{% if page.edition == 'community' %} of {{site.ce_product_name}}{% endif %}{% if page.edition == 'enterprise' %} of {{site.ee_product_name}}{% endif %}{% if page.edition == 'mesh' %} of {{site.mesh_product_name}}{% endif %}. Go <a
-                  href="{% if page.edition == 'enterprise' %}/enterprise{% endif %}{% if page.edition == 'mesh' %}/mesh{% endif %}/latest">here</a>
-            to see the documentation for the latest version.
+            You are browsing documentation for an outdated version. See the
+            <a href="{% if latest_page_exists == 'true' %}{{latest_page_url}}{% elsif page.edition == 'enterprise'%}/enterprise/{% elsif page.edition == 'mesh'%}/mesh/{% elsif page.edition == 'kubernetes-ingress-controller/'%}/kubernetes-ingress-controller/{% else %}/{% endif %}">
+              latest documentation here</a>.
           </div>
           {% elsif page.is_homepage != true and page.beta == true %}
           <div class="alert alert-ee red condensed margin-bigger">
             <div class="alert-body">
               <div class="tag red">BETA</div>
-              <p>Warning: This feature is released as <a href="/enterprise/{{page.kong_version}}/introduction/key-concepts/#beta">BETA</a> and should not be deployed in a production environment.
+              Warning: This feature is released as <a href="/enterprise/{{page.kong_version}}/introduction/key-concepts/#beta">BETA</a> and should not be deployed in a production environment.
             </div>
           </div>
           {% elsif page.is_homepage == true and page.edition == 'enterprise' %}
           <div class="alert alert-ee condensed margin-bigger">
             <div class="alert-body">
               <div class="tag green">NEW</div>
-              <p>{{site.ee_product_name}} {{page.kong_version}} released! We added <a href="/enterprise/changelog">new features</a> and updated docs!
+              <p>{{site.ee_product_name}} {{page.kong_version}} released! We added <a href="/enterprise/changelog">new features</a> and updated docs!</p>
             </div>
           </div>
         {% endif %}

@@ -1,0 +1,249 @@
+# Generated via autodoc/admin-api/generate.lua
+- title: Admin API
+  url: /admin-api/
+  items:
+    - text: DB-less
+      url: /db-less-admin-api
+
+    - text: Declarative Configuration
+      url: /db-less-admin-api/#declarative-configuration
+
+    - text: Supported Content Types
+      url: /admin-api/#supported-content-types
+
+    - text: Information Routes
+      url: /admin-api/#information-routes
+      items:
+        - text: Retrieve Node Information
+          url: /admin-api/#retrieve-node-information
+
+        - text: List Available Endpoints
+          url: /admin-api/#list-available-endpoints
+
+        - text: Validate A Configuration against A Schema
+          url: /admin-api/#validate-a-configuration-against-a-schema
+
+        - text: Retrieve Entity Schema
+          url: /admin-api/#retrieve-entity-schema
+
+        - text: Retrieve Plugin Schema
+          url: /admin-api/#retrieve-plugin-schema
+
+    - text: Health Routes
+      url: /admin-api/#health-routes
+      items:
+        - text: Retrieve Node Status
+          url: /admin-api/#retrieve-node-status
+
+    - text: Tags
+      url: /admin-api/#tags
+      items:
+        - text: List All Tags
+          url: /admin-api/#list-all-tags
+
+        - text: List Entity Ids by Tag
+          url: /admin-api/#list-entity-ids-by-tag
+
+    - text: Service Object
+      url: /admin-api/#service-object
+      items:
+        - text: Add Service
+          url: /admin-api/#add-service
+
+        - text: List Services
+          url: /admin-api/#list-services
+
+        - text: Retrieve Service
+          url: /admin-api/#retrieve-service
+
+        - text: Update Service
+          url: /admin-api/#update-service
+
+        - text: Update Or Create Service
+          url: /admin-api/#update-or-create-service
+
+        - text: Delete Service
+          url: /admin-api/#delete-service
+
+    - text: Route Object
+      url: /admin-api/#route-object
+      items:
+        - text: Add Route
+          url: /admin-api/#add-route
+
+        - text: List Routes
+          url: /admin-api/#list-routes
+
+        - text: Retrieve Route
+          url: /admin-api/#retrieve-route
+
+        - text: Update Route
+          url: /admin-api/#update-route
+
+        - text: Update Or Create Route
+          url: /admin-api/#update-or-create-route
+
+        - text: Delete Route
+          url: /admin-api/#delete-route
+
+    - text: Consumer Object
+      url: /admin-api/#consumer-object
+      items:
+        - text: Add Consumer
+          url: /admin-api/#add-consumer
+
+        - text: List Consumers
+          url: /admin-api/#list-consumers
+
+        - text: Retrieve Consumer
+          url: /admin-api/#retrieve-consumer
+
+        - text: Update Consumer
+          url: /admin-api/#update-consumer
+
+        - text: Update Or Create Consumer
+          url: /admin-api/#update-or-create-consumer
+
+        - text: Delete Consumer
+          url: /admin-api/#delete-consumer
+
+    - text: Plugin Object
+      url: /admin-api/#plugin-object
+      items:
+        - text: Add Plugin
+          url: /admin-api/#add-plugin
+
+        - text: List Plugins
+          url: /admin-api/#list-plugins
+
+        - text: Retrieve Plugin
+          url: /admin-api/#retrieve-plugin
+
+        - text: Update Plugin
+          url: /admin-api/#update-plugin
+
+        - text: Update Or Create Plugin
+          url: /admin-api/#update-or-create-plugin
+
+        - text: Delete Plugin
+          url: /admin-api/#delete-plugin
+
+        - text: Retrieve Enabled Plugins
+          url: /admin-api/#retrieve-enabled-plugins
+
+    - text: Certificate Object
+      url: /admin-api/#certificate-object
+      items:
+        - text: Add Certificate
+          url: /admin-api/#add-certificate
+
+        - text: List Certificates
+          url: /admin-api/#list-certificates
+
+        - text: Retrieve Certificate
+          url: /admin-api/#retrieve-certificate
+
+        - text: Update Certificate
+          url: /admin-api/#update-certificate
+
+        - text: Update Or Create Certificate
+          url: /admin-api/#update-or-create-certificate
+
+        - text: Delete Certificate
+          url: /admin-api/#delete-certificate
+
+    - text: CA Certificate Object
+      url: /admin-api/#ca-certificate-object
+      items:
+        - text: Add CA Certificate
+          url: /admin-api/#add-ca-certificate
+
+        - text: List CA Certificates
+          url: /admin-api/#list-ca-certificates
+
+        - text: Retrieve CA Certificate
+          url: /admin-api/#retrieve-ca-certificate
+
+        - text: Update CA Certificate
+          url: /admin-api/#update-ca-certificate
+
+        - text: Update Or Create CA Certificate
+          url: /admin-api/#update-or-create-ca-certificate
+
+        - text: Delete CA Certificate
+          url: /admin-api/#delete-ca-certificate
+
+    - text: SNI Object
+      url: /admin-api/#sni-object
+      items:
+        - text: Add SNI
+          url: /admin-api/#add-sni
+
+        - text: List SNIs
+          url: /admin-api/#list-snis
+
+        - text: Retrieve SNI
+          url: /admin-api/#retrieve-sni
+
+        - text: Update SNI
+          url: /admin-api/#update-sni
+
+        - text: Update Or Create SNI
+          url: /admin-api/#update-or-create-sni
+
+        - text: Delete SNI
+          url: /admin-api/#delete-sni
+
+    - text: Upstream Object
+      url: /admin-api/#upstream-object
+      items:
+        - text: Add Upstream
+          url: /admin-api/#add-upstream
+
+        - text: List Upstreams
+          url: /admin-api/#list-upstreams
+
+        - text: Retrieve Upstream
+          url: /admin-api/#retrieve-upstream
+
+        - text: Update Upstream
+          url: /admin-api/#update-upstream
+
+        - text: Update Or Create Upstream
+          url: /admin-api/#update-or-create-upstream
+
+        - text: Delete Upstream
+          url: /admin-api/#delete-upstream
+
+        - text: Show Upstream Health for Node
+          url: /admin-api/#show-upstream-health-for-node
+
+    - text: Target Object
+      url: /admin-api/#target-object
+      items:
+        - text: Add Target
+          url: /admin-api/#add-target
+
+        - text: List Targets
+          url: /admin-api/#list-targets
+
+        - text: Update Target
+          url: /admin-api/#update-target
+
+        - text: Delete Target
+          url: /admin-api/#delete-target
+
+        - text: Set Target Address As Healthy
+          url: /admin-api/#set-target-address-as-healthy
+
+        - text: Set Target Address As Unhealthy
+          url: /admin-api/#set-target-address-as-unhealthy
+
+        - text: Set Target As Healthy
+          url: /admin-api/#set-target-as-healthy
+
+        - text: Set Target As Unhealthy
+          url: /admin-api/#set-target-as-unhealthy
+
+        - text: List All Targets
+          url: /admin-api/#list-all-targets
