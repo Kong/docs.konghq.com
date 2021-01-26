@@ -5,10 +5,10 @@ no_version: true
 ---
 
 Using the [ServiceHub](/konnect/service-hub), you can create, manage, and
-implement Service packages. Each service package consists of at least one
+implement Services. Each Service consists of at least one
 Service version, and each Service version can have one implementation.
 
-![{{site.konnect_short_name}} Service Package diagram](/assets/images/docs/konnect/konnect-services-diagram.png)
+![{{site.konnect_short_name}} Service diagram](/assets/images/docs/konnect/konnect-services-diagram.png)
 
 For the purpose of this guide, you’ll create a Service, version it, and
 expose the version by creating an implementation pointing to the Mockbin API.
@@ -22,7 +22,7 @@ make sure you have [configured a runtime](/konnect/getting-started/configure-run
 
 ## Add a Service and Version
 
-1. From the left navigation menu, click **Services** to open the ServiceHub.
+1. From the left navigation menu, click **Services** to open ServiceHub.
 
 2. Click **Add New Service**.
 

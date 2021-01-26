@@ -1,13 +1,13 @@
 ---
-title: Manage Services through the ServiceHub
+title: Manage Services through ServiceHub
 no_search: true
 no_version: true
 ---
 
-## Service Packages
+## Services
 ### Add a Service to the Catalog
 
-1. From the left navigation menu, click **Services** to open the ServiceHub.
+1. From the left navigation menu, click **Services** to open ServiceHub.
 
 2. Click **Add New Service**.
 

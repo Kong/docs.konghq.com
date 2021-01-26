@@ -68,4 +68,4 @@ In this step, you ran a script which set up a Docker container with a
 {{site.ee_gateway_name}} instance, adding your first runtime to the Runtime
 Manager.
 
-Next, [set up a your first service package through {{site.konnect_short_name}} SaaS](/konnect/getting-started/configure-service).
+Next, [set up a your first Service through {{site.konnect_short_name}} SaaS](/konnect/getting-started/configure-service).

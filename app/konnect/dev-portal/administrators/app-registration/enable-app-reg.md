@@ -5,7 +5,7 @@ no_version: true
 toc: true
 ---
 
-Enable application registration on a Service package in {{site.konnect_short_name}}.
+Enable application registration on a Service in {{site.konnect_short_name}}.
 When application registration is enabled, developers must
 [register an application](/konnect/dev-portal/developers/dev-reg-app-service)
 to a Service.
@@ -42,7 +42,7 @@ again any time at your discretion.
   - Organization Admin
   - Service Admin
 
-- The Service packages have been created, versioned, and published to the
+- The Services have been created, versioned, and published to the
   {{site.konnect_short_name}} Dev Portal so that they appear in the Catalog.
 
 - If you are using [OpenID Connect](#oidc-flow) for your authorization, set up your

@@ -5,6 +5,8 @@
       url: /overview
     - text: Using the Konnect Docs
       url: /using-konnect-docs
+    - text: Key Concepts and Terms
+      url: /key-concepts-and-terms
     - text: Release Notes
       url: /release-notes
     - text: Changelog

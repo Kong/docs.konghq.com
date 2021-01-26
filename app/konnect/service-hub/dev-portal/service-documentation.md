@@ -4,11 +4,11 @@ no_search: true
 no_version: true
 ---
 
-Upload documentation for your Services through the ServiceHub to display it
+Upload documentation for your Services through ServiceHub to display it
 on the Dev Portal.
 
 You can upload Service descriptions and version specs. At a minimum, we
-recommend uploading an API spec for your Service.
+recommend uploading an API spec for each Service version.
 
 After adding documentation for your Services,
 [publish](/konnect/service-hub/dev-portal/publish) them to the Dev Portal.

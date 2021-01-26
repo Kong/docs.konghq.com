@@ -7,12 +7,8 @@ no_version: true
 Publish Services to the Dev Portal to expose them to your application
 developers.
 
-Through the ServiceHub, you can publish any Service in your catalog to the Dev
-Portal using its default URL, which looks something like this:
-
-```
- https://<org-name>.portal.konnect.konghq.com/
- ```
+Through ServiceHub, you can publish any Service in your catalog and its
+documentation to the Dev Portal using the default URL.
 
 Setting up custom Dev Portal URLs is not currently supported through
 {{site.konnect_short_name}} SaaS. If needed,
@@ -28,10 +24,15 @@ Service.
 
     This publishes all of the Service's version specs to the Dev Portal.
 
-3. From the left navigation menu again, go to **Dev Portal**.
+3. Access the Dev Portal in any of the following ways:
+    * Click the gear icon for any published Service and select **View in portal**.
+    * From the left navigation menu again, go to **Dev Portal**.
+    From there, click the **Portal URL**.
+    * Directly visit the default Dev Portal URL:
 
-4. Click the **Portal URL** to access your Dev Portal, or click the gear icon for
-any published Service and select **View in portal**.
+    ```
+    https://<org-name>.portal.konnect.konghq.com/
+    ```
 
 ## Unpublish a Service
 

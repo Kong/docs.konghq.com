@@ -78,7 +78,7 @@ more than one role.
 | Role                | Permission  |
 |---------------------|-------------|
 | Organization Admin  | Full CRUD (create, read, update, and delete) on all objects within an organization, including user and organization configuration. |
-| Service Admin       | Full CRUD on Service Packages, and the ability to publish and unpublish Services to the Portal.|  
+| Service Admin       | Full CRUD on Services, and the ability to publish and unpublish Services to the Portal.|  
 | Service Developer   | Full CRUD on Service Versions. |
 | Portal Admin        | Read and update permissions on the Portal landing page and the Service Detail pages.|
 | Service Page Editor | Read and update permissions for individual Service pages, and for creating and registering Applications.|
