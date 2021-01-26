@@ -1,19 +1,11 @@
 ---
 name: HTTP Log
 publisher: Kong Inc.
-version: 1.0.0
+version: 2.0.x
 
 desc: Send request and response logs to an HTTP server
 description: |
   Send request and response logs to an HTTP server.
-
-  <div class="alert alert-warning">
-    <strong>Note:</strong> The functionality of this plugin as bundled
-    with versions of Kong prior to 0.10.2 differs from
-    what is documented herein. Refer to the
-    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
-    for details.
-  </div>
 
 type: plugin
 categories:
@@ -22,7 +14,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
-       - 2.2.x
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x
@@ -68,33 +61,53 @@ params:
       required: true
       default:
       value_in_examples: http://mockbin.org/bin/:id
-      description: The HTTP endpoint (including the protocol to use) to which the data will be sent.
+      description: The HTTP endpoint (including the protocol to use) to which the data is sent.
     - name: method
       required: false
       default: "`POST`"
       value_in_examples: POST
       description: |
-        An optional method used to send data to the http server, other supported values are `PUT`, `PATCH`
+        An optional method used to send data to the HTTP server. Supported values are `POST` (default), `PUT`, and `PATCH`.
     - name: timeout
       required: false
       default: "`10000`"
       value_in_examples: 1000
-      description: An optional timeout in milliseconds when sending data to the upstream server
+      description: An optional timeout in milliseconds when sending data to the upstream server.
     - name: keepalive
       required: false
       default: "`60000`"
       value_in_examples: 1000
-      description: An optional value in milliseconds that defines for how long an idle connection will live before being closed
+      description: An optional value in milliseconds that defines how long an idle connection will live before being closed.
+    - name: flush_timeout
+      required: false
+      default: "`2`"
+      value_in_examples: 2
+      description: |  
+        Optional time in seconds. If `queue_size` > 1, this is the max idle time before sending a log with less than `queue_size` records.    
+    - name: retry_count
+      required: false
+      default: 10
+      value_in_examples: 15
+      description: Number of times to retry when sending data to the upstream server.
+    - name: queue_size
+      required: false
+      default: 1
+      description: Max number of log entries to be sent on each message to the upstream server.
+    - name: headers
+      required: false
+      default: empty table
+      description: An optional table of headers added to the HTTP message to the upstream server.
   extra: |
-    **NOTE:** If the `config.http_endpoint` contains a username and password (ex.
-    `http://bob:password@example.com/logs`), then Kong will automatically include
+    **NOTE:** If the `config.http_endpoint` contains a username and password (for example,
+    `http://bob:password@example.com/logs`), then Kong Gateway automatically includes
     a basic-auth `Authorization` header in the log requests.
 
 ---
 
 ## Log Format
 
-Every request will be logged separately in a JSON object, with the following format:
+Every request is logged separately in a JSON object (or array of JSON objects if
+`queue_size` argument > 1) in the following format:
 
 ```json
 {
@@ -203,23 +216,23 @@ Every request will be logged separately in a JSON object, with the following for
 
 A few considerations on the above JSON object:
 
-* `request` contains properties about the request sent by the client
-* `response` contains properties about the response sent to the client
-* `tries` contains the list of (re)tries (successes and failures) made by the load balancer for this request
-* `route` contains Kong properties about the specific Route requested
-* `service` contains Kong properties about the Service associated with the requested Route
-* `authenticated_entity` contains Kong properties about the authenticated credential (if an authentication plugin has been enabled)
-* `workspaces` contains Kong properties of the Workspaces associated with the requested Route. **Only in Kong Enterprise version >= 0.34**.
-* `consumer` contains the authenticated Consumer (if an authentication plugin has been enabled)
+* `request` contains properties about the request sent by the client.
+* `response` contains properties about the response sent to the client.
+* `tries` contains the list of tries and retries (successes and failures) made by the load balancer for the request.
+* `route` contains {{site.base_gateway}} properties about the specific Route requested.
+* `service` contains {{site.base_gateway}} properties about the Service associated with the requested Route.
+* `authenticated_entity` contains {{site.base_gateway}} properties about the authenticated credential if an authentication plugin has been enabled.
+* `workspaces` contains {{site.ee_gateway_name}} properties of the Workspaces associated with the requested Route. **Only in {{site.ee_gateway_name}} version >= 0.34**.
+* `consumer` contains the authenticated Consumer if an authentication plugin has been enabled.
 * `latencies` contains some data about the latencies involved:
-  * `proxy` is the time it took for the final service to process the request
-  * `kong` is the internal Kong latency that it took to run all the plugins
+  * `proxy` is the time it took for the final service to process the request.
+  * `kong` is the internal {{site.base_gateway}} latency that it took to run all the plugins.
   * `request` is the time elapsed between the first bytes were read from the client and after the last bytes were sent to the client. Useful for detecting slow clients.
-* `client_ip` contains the original client IP address
-* `started_at` contains the UTC timestamp of when the request has started to be processed.
+* `client_ip` contains the original client IP address.
+* `started_at` contains the UTC timestamp of when the request started to be processed.
 
 ----
 
-## Kong Process Errors
+## Kong Gateway Process Errors
 
 {% include /md/plugins-hub/kong-process-errors.md %}
