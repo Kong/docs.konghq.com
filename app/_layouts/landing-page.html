@@ -1,0 +1,353 @@
+---
+layout: default
+sitemap: true
+id: landing-page
+---
+
+<div class="landing-page">
+  <h1>Welcome to Kong Docs</h1>
+  <h4>Find all the information you need to use the {{site.konnect_product_name}} platform and Kong’s projects</h4>
+
+  <section class="search">
+    <div class="search-input-wrapper">
+      <img src="/assets/images/landing-page/search.svg" alt="search">
+      <input id="getkong-algolia-search-input" type="text" placeholder="Search for guides, concepts, API documentation, and more...">
+    </div>
+  </section>
+
+  <section class="other-docs">
+    <img src="/assets/images/icons/icn-hint.svg" alt="hint">
+    Looking for&nbsp;<a href="/enterprise/">{{site.ee_product_name}}</a>&nbsp;or&nbsp;<a href="/gateway-oss/">{{site.ce_product_name}}</a>&nbsp;docs?
+  </section>
+
+  <section class="cloud-platform">
+    <h2>Get started with {{site.konnect_short_name}} SaaS platform</h2>
+    <div class="cards-container">
+      <div class="card">
+        <img class="icon" src="/assets/images/landing-page/connection.svg" alt="connection"/>
+        <div class="title">1. Runtime connection</div>
+        <div class="description">Set up your first runtime connection</div>
+        <a href="/konnect/getting-started/configure-service/" class="link-text">
+          Set up
+          <img src="/assets/images/icons/icn-arrow-right.svg" alt="right">
+        </a>
+      </div>
+      <div class="arrow-card">
+        <div class="arrow">
+          <img src="/assets/images/landing-page/arrow-right.svg" alt="arrow">
+        </div>
+        <div class="card">
+          <img class="icon" src="/assets/images/landing-page/catalogue.svg" alt="connection"/>
+          <div class="title">2. Catalog services</div>
+          <div class="description">Catalog your services using the {{site.konnect_short_name}} Service Hub</div>
+          <a href="/konnect/getting-started/configure-service" class="link-text">
+            Catalogue
+            <img src="/assets/images/icons/icn-arrow-right.svg" alt="right">
+          </a>
+        </div>
+      </div>
+      <div class="arrow-card">
+        <div class="arrow">
+          <img src="/assets/images/landing-page/arrow-right.svg" alt="arrow">
+        </div>
+        <div class="card">
+          <img class="icon" src="/assets/images/landing-page/services.svg" alt="connection"/>
+          <div class="title">3. Manage services</div>
+          <div class="description">Manage your services using the {{site.konnect_short_name}} Service Hub</div>
+          <a href="/konnect/getting-started/implement-service/" class="link-text">
+            Manage
+            <img src="/assets/images/icons/icn-arrow-right.svg" alt="right">
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="docs">
+    <section class="title-cards">
+      <h3>{{site.konnect_short_name}} documentation</h3>
+      <div class="cards-container">
+        <div class="card">
+          <img class="banner-image" src="/assets/images/landing-page/konnect.png" alt="konnect">
+          <div class="title">{{site.konnect_short_name}}</div>
+          <div class="description">
+            Full stack connectivity platform that is designed from the ground up for cloud native architectures, delivered as a service.
+          </div>
+          <hr>
+          <a href="/konnect/" class="name-link">
+            <div class="name-label">
+              <div class="link-text">
+                {{site.konnect_short_name}} Documentation
+              </div>
+              <div class="icon-label">
+                <img src="/assets/images/icons/icn-cloud.svg" alt="cloud">
+                SaaS version
+              </div>
+            </div>
+            <img src="/assets/images/icons/icn-doc.svg" alt="doc">
+          </a>
+        </div>
+      </div>
+    </section>
+    <section class="title-cards">
+      <h3>Connectivity runtimes</h3>
+      <div class="cards-container">
+        <div class="card">
+          <img class="banner-image" src="/assets/images/landing-page/mesh.png" alt="mesh">
+          <div class="title">{{site.mesh_product_name}}</div>
+          <div class="description">
+            Universal service mesh for enterprise organizations focused on simplicity, security, and scalability with Kuma and Envoy.
+          </div>
+          <hr>
+          <a href="/mesh/" class="name-link">
+            <div class="name-label">
+              <div class="link-text">
+                {{site.mesh_product_name}} Documentation
+              </div>
+              <div class="icon-label">
+                <img src="/assets/images/icons/icn-server.svg" alt="server">
+                Self-hosted version
+              </div>
+            </div>
+            <img src="/assets/images/icons/icn-doc.svg" alt="doc">
+          </a>
+        </div>
+        <div class="card">
+          <img class="banner-image" src="/assets/images/landing-page/gateway.png" alt="mesh">
+          <div class="title">{{site.ee_gateway_name}}</div>
+          <div class="description">A lightweight API Gateway that lets you secure, manage, and extend APIs and microservices.</div>
+          <hr>
+          <a href="/enterprise/" class="name-link">
+            <div class="name-label">
+              <div class="link-text">
+                Enterprise Documentation
+              </div>
+              <div class="icon-label">
+                <img src="/assets/images/icons/icn-server.svg" alt="server">
+                Self-hosted version
+              </div>
+            </div>
+            <img src="/assets/images/icons/icn-doc.svg" alt="doc">
+          </a>
+          <a href="/gateway-oss/" class="name-link">
+            <div class="name-label">
+              <div class="link-text">
+                Open source Documentation
+              </div>
+              <div class="icon-label">
+                <img src="/assets/images/icons/icn-server.svg" alt="server">
+                Self-hosted version
+              </div>
+            </div>
+            <img src="/assets/images/icons/icn-doc.svg" alt="doc">
+          </a>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section class="features">
+    <h3>Key features</h3>
+    <div class="cards-container">
+      <div class="card default">
+        <img src="/assets/images/landing-page/service-hub.svg" alt="service" class="icon">
+        <div class="title">Service Hub</div>
+        <div class="description">
+          Build a comprehensive catalog of services to enable discovery, consumption, and management of every service across your entire architecture.
+        </div>
+        <hr>
+        <div class="links-container">
+          <a href="/konnect/service-hub" class="link-text">
+            <img class="icon" src="/assets/images/icons/icn-cloud-blue.svg" alt="cloud">
+            SaaS version docs
+          </a>
+        </div>
+      </div>
+      <div class="card default">
+        <img src="/assets/images/landing-page/dev-portal.svg" alt="dev portal" class="icon">
+        <div class="title">Developer Portal</div>
+        <div class="description">
+          Publish services to individual Developer Portals to provide a bespoke experience to developers within and outside your organization.
+        </div>
+        <hr>
+        <div class="links-container">
+          <a href="/konnect/dev-portal" class="link-text">
+            <img class="icon" src="/assets/images/icons/icn-cloud-blue.svg" alt="cloud">
+            SaaS version docs
+          </a>
+          <a href="/enterprise/latest/developer-portal/overview" class="link-text">
+            <img class="icon" src="/assets/images/icons/icn-server-blue.svg" alt="server">
+            Self-hosted version docs
+          </a>
+        </div>
+      </div>
+      <div class="card default">
+        <img src="/assets/images/landing-page/analytics.svg" alt="analytics" class="icon">
+        <div class="title">Reporting & Analytics</div>
+        <div class="description">
+          View granular analytics with Vitals to monitor the health of environments, clusters, and individual services through the Runtime Manager interface.
+        </div>
+        <hr>
+        <div class="links-container">
+          <a href="/konnect/vitals" class="link-text">
+            <img class="icon" src="/assets/images/icons/icn-cloud-blue.svg" alt="cloud">
+            SaaS version docs
+          </a>
+          <a href="/enterprise/latest/vitals/overview" class="link-text">
+            <img class="icon" src="/assets/images/icons/icn-server-blue.svg" alt="server">
+            Self-hosted version docs
+          </a>
+        </div>
+      </div>
+      <div class="card default">
+        <img src="/assets/images/landing-page/runtime.svg" alt="runtime" class="icon">
+        <div class="title">Runtime Manager</div>
+        <div class="description">Provision and manage Kong Gateway runtimes in your environment and platform of choice.</div>
+        <hr>
+        <div class="links-container">
+          <a href="/konnect/runtime-manager" class="link-text">
+            <img class="icon" src="/assets/images/icons/icn-cloud-blue.svg" alt="cloud">
+            SaaS version docs
+          </a>
+        </div>
+      </div>
+      <div class="card default">
+        <img src="/assets/images/landing-page/insomnia.svg" alt="insomnia" class="icon">
+        <div class="title">Insomnia</div>
+        <div class="description">
+          Publish services to individual Developer Portals to provide a bespoke experience to developers within and outside your organization.
+        </div>
+        <hr>
+        <div class="links-container">
+          <a href="https://support.insomnia.rest/" class="link-text">
+            <img class="icon" src="/assets/images/icons/icn-cloud-blue.svg" alt="cloud">
+            Insomnia docs
+          </a>
+        </div>
+      </div>
+      <div class="card default">
+        <img src="/assets/images/landing-page/alerting.svg" alt="alerting" class="icon">
+        <div class="title">Alerting</div>
+        <div class="description">
+          Use Kong Immunity autonomously identify service behavior anomalies in real time to improve security, mitigate breaches, and isolate issues.
+        </div>
+        <hr>
+        <div class="links-container">
+          <a href="/enterprise/latest/immunity/overview" class="link-text">
+            <img class="icon" src="/assets/images/icons/icn-cloud-blue.svg" alt="cloud">
+            Alerting docs
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="integrations">
+    <h3>Ecosystem integrations</h3>
+    <div class="cards-container">
+      <div class="card default">
+        <img src="/assets/images/landing-page/plugin.svg" alt="plugin hub" class="icon">
+        <div class="title">Plugin Hub</div>
+        <div class="description">Use plugins to provide advanced functionality and extend the use of the Kong Gateway.</div>
+        <hr>
+        <div class="links-container">
+          <a href="/hub/" class="link-text">
+            <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="doc">
+            Learn more
+          </a>
+        </div>
+      </div>
+      <div class="card default">
+        <img src="/assets/images/landing-page/kubernetes.svg" alt="kubernetes" class="icon">
+        <div class="title">{{site.kic_product_name}}</div>
+        <div class="description">Implement authentication, transformations, and other functionalities across Kubernetes clusters with zero downtime.</div>
+        <hr>
+        <div class="links-container">
+          <a href="/kubernetes-ingress-controller/latest/introduction" class="link-text">
+            <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="doc">
+            Learn more
+          </a>
+        </div>
+      </div>
+      <div class="card default">
+        <img src="/assets/images/landing-page/configuration.svg" alt="configuration" class="icon">
+        <div class="title">Declarative Configuration</div>
+        <div class="description">
+          Manage Kong Gateway declaratively using decK. Sync YAML or JSON configuration across Kong Gateway clusters, push configuration to a running cluster,
+          detect drift, and create backups.
+        </div>
+        <hr>
+        <div class="links-container">
+          <a href="/deck/" class="link-text">
+            <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="doc">
+            Learn more
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="additional-info">
+    <div class="info-container">
+      <h2>Contribute to the docs</h2>
+      <div class="subtitle">Want to help out, or found an issue in the docs and want to let us know?</div>
+      <div class="links-container">
+        <a href="https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md" class="link-text">
+          <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="doc">
+          Contribution guidelines
+        </a>
+        <a href="https://github.com/Kong/docs.konghq.com" class="link-text">
+          <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="doc">
+          GitHub Source code
+        </a>
+        <a href="https://github.com/Kong/docs.konghq.com/issues" class="link-text">
+          <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="doc">
+          GitHub Issues
+        </a>
+      </div>
+    </div>
+    <div class="info-container">
+      <h2>Popular Topics</h2>
+      <div class="subtitle">Don’t know where to start? Check out the most visited topics and guides</div>
+      <div class="links-container">
+        <a href="/enterprise/latest/deployment/installation/overview" class="link-text">
+          <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="doc">
+          Install {{site.ee_gateway_name}}
+        </a>
+        <a href="/gateway-oss/latest/pdk" class="link-text">
+          <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="doc">
+          Plugin development guide
+        </a>
+        <a href="/hub/kong-inc/openid-connect/" class="link-text">
+          <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="doc">
+          OpenID Connect
+        </a>
+        <a href="/latest/admin-api" class="link-text">
+          <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="doc">
+          {{site.ee_gateway_name}} API documentation
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <img src="/assets/images/landing-page/kong.svg" alt="kong">
+</div>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+
+<script type="text/javascript">
+  docsearch({
+    apiKey: '691286ef280379144076a4f8df47a1d1',
+    indexName: 'getkong',
+    inputSelector: '#getkong-algolia-search-input',
+    algoliaOptions: {
+      hitsPerPage: 5
+    },
+    // Override selected event to allow for local environment navigation
+    handleSelected: function (input, event, suggestion) {
+      input.setVal('')
+      window.location.href = window.location.protocol + '//' + window.location.host + '/gateway-oss' + suggestion.url.split('docs.konghq.com')[1]
+    }
+    // ,debug: true // Set debug to true if you want to inspect the dropdown
+  })
+</script>
