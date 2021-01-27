@@ -134,7 +134,7 @@ configuration](https://developers.google.com/identity/protocols/oauth2/openid-co
 Next, enable the plugin on our Ingress:
 
 ```bash
-$ kubectl patch ing demo -p '{"metadata":{"annotations":{"konghq.com/plugin":"oidc-auth"}}}'
+$ kubectl patch ing demo -p '{"metadata":{"annotations":{"konghq.com/plugins":"oidc-auth"}}}'
 ingress.extensions/demo patched
 ```
 ## Test
