@@ -13,7 +13,7 @@ id: documentation
     <div class="container">
       <nav class="docs-navigation v2">
         <a href="/konnect" {% if page.edition =='konnect' or page.edition == 'enterprise' %} class="active" {% endif %}>{{site.konnect_product_name}}</a>
-        <a href="/" {% if page.edition =='community' %} class="active" {% endif %}>{{site.ce_product_name}}</a>
+        <a href="/gateway-oss" {% if page.edition =='gateway-oss' %} class="active" {% endif %}>{{site.ce_product_name}}</a>
         <a href="/mesh" {% if page.edition =='mesh' %} class="active" {% endif %}>{{site.mesh_product_name}}</a>
 
         <div class="header-actions">
@@ -30,7 +30,7 @@ id: documentation
                 {% assign version_page_url = page.url | replace: page.kong_version, ver.release %}
                 {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}<li {% if page.kong_version==ver.release %} class="active" {% endif %}>
                 <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
-                  <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if page.edition == 'enterprise' %}enterprise/{% endif %}{% if page.edition == 'mesh' %}mesh/{% endif %}{{ver.release}}{% endif %}"
+                  <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if page.edition == 'gateway-oss' %}gateway-oss/{% endif %}{% if page.edition == 'enterprise' %}enterprise/{% endif %}{% if page.edition == 'mesh' %}mesh/{% endif %}{{ver.release}}{% endif %}"
                     {% if ver.release==page.kong_version %} class="active" {% endif %}
                     data-version-id="{{ver.release}}"
                   >
@@ -95,16 +95,16 @@ id: documentation
           {% unless page.no_breadcrumbs %}
           {% include breadcrumbs.html %}
           {% endunless %}
-          {% if page.edition == 'community' %}
+          {% if page.edition == 'gateway-oss' %}
           <div class="alert alert-ee">
-            Maybe you were looking for the <a href="/gateway"><strong>{{site.ee_gateway_name}} ({{site.konnect_short_name}}) documentation</strong></a>
+            Maybe you were looking for the <a href="/enterprise"><strong>{{site.ee_product_name}} documentation</strong></a>
             instead?
           </div>
           {% endif %}
           {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
           <div class="alert alert-warning">
             You are browsing documentation for an outdated version. See the
-            <a href="{% if latest_page_exists == 'true' %}{{latest_page_url}}{% elsif page.edition == 'enterprise'%}/enterprise/{% elsif page.edition == 'mesh'%}/mesh/{% elsif page.edition == 'kubernetes-ingress-controller/'%}/kubernetes-ingress-controller/{% else %}/{% endif %}">
+            <a href="{% if latest_page_exists == 'true' %}{{latest_page_url}}{% elsif page.edition == 'gateway-oss'%}/gateway-oss/{% elsif page.edition == 'enterprise'%}/enterprise/{% elsif page.edition == 'mesh'%}/mesh/{% elsif page.edition == 'kubernetes-ingress-controller/'%}/kubernetes-ingress-controller/{% else %}/{% endif %}">
               latest documentation here</a>.
           </div>
           {% elsif page.beta == true %}
@@ -164,7 +164,7 @@ id: documentation
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
 
-{% if page.edition == 'community' %}
+{% if page.edition == 'gateway-oss' %}
 <script type="text/javascript">
   docsearch({
     apiKey: '691286ef280379144076a4f8df47a1d1',
