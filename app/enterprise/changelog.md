@@ -11,17 +11,9 @@ skip_read_time: true
 The following sections list {{site.ee_product_name}}-exclusive updates,
 features, and fixes for the **2.3.0.0 beta** version.
 
-### Dependencies
-- Bumped `kong-plugin-serverless-functions` from 1.0 to 2.1.
-- Bumped `lua-resty-dns-client` from 5.1.0 to 5.2.0.
-- Bumped `lua-resty-healthcheck` from 1.3.0 to 1.4.0.
-- Bumped `OpenSSL` from 1.1.1h to 1.1.1i.
-- Bumped `kong-plugin-zipkin` from 1.1 to 1.2.
-- Bumped `kong-plugin-request-transformer` from 1.2 to 1.3.
-
 ### Features
 
-#### **Kong Enterprise**
+#### Enterprise
 - Kong Enterprise can now run without a license in **Free Mode**. 
   - In Free Mode, functionality includes **Kong Gateway (OSS)** and **Kong Manager**. 
   - To enhance your Free Mode instance, you can add Enterprise functionality modules 
@@ -84,6 +76,14 @@ and where only Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are al
   certificate specified in the array is used.
 - Kong now runs as a `kong` user if it exists; if user does not exist
   in the system, the `nobody` user is used, as before.
+  
+### Dependencies
+- Bumped `kong-plugin-serverless-functions` from 1.0 to 2.1.
+- Bumped `lua-resty-dns-client` from 5.1.0 to 5.2.0.
+- Bumped `lua-resty-healthcheck` from 1.3.0 to 1.4.0.
+- Bumped `OpenSSL` from 1.1.1h to 1.1.1i.
+- Bumped `kong-plugin-zipkin` from 1.1 to 1.2.
+- Bumped `kong-plugin-request-transformer` from 1.2 to 1.3.
 
 ### Fixes
 
