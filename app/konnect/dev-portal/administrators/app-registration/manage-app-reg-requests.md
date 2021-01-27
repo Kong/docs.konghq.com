@@ -1,6 +1,5 @@
 ---
 title: Manage Application Registration Requests
-no_search: true
 no_version: true
 ---
 

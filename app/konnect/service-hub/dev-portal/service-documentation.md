@@ -1,6 +1,5 @@
 ---
 title: Dev Portal Service Documentation
-no_search: true
 no_version: true
 ---
 

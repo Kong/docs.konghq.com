@@ -1,6 +1,5 @@
 ---
 title: Using the Konnect Docs
-no_search: true
 no_version: true
 ---
 

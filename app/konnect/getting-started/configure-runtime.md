@@ -1,6 +1,5 @@
 ---
 title: Configure a Runtime
-no_search: true
 no_version: true
 ---
 

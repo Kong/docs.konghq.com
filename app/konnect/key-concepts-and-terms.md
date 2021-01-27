@@ -1,6 +1,5 @@
 ---
 title: Key Concepts and Terminology
-no_search: true
 no_version: true
 ---
 

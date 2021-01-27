@@ -1,7 +1,6 @@
 ---
 title: Documentation for Kong Konnect
 is_homepage: true
-no_search: true
 no_version: true
 ---
 <div class="docs-grid">

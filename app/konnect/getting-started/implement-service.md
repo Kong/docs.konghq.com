@@ -1,6 +1,5 @@
 ---
 title: Implement and Test a Service
-no_search: true
 no_version: true
 ---
 

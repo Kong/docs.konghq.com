@@ -1,6 +1,5 @@
 ---
 title: Developer Registration for a Service on the Konnect Dev Portal
-no_search: true
 no_version: true
 toc: false
 ---

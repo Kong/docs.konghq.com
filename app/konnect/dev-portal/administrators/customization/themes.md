@@ -1,6 +1,5 @@
 ---
 title: Customizing the Dev Portal Appearance
-no_search: true
 no_version: true
 ---
 

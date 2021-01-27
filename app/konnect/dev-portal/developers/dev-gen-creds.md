@@ -1,6 +1,5 @@
 ---
 title: Generate Credentials for an Application
-no_search: true
 no_version: true
 toc: true
 ---

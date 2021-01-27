@@ -1,6 +1,5 @@
 ---
 title: Disable App Registration for a Service
-no_search: true
 no_version: true
 ---
 

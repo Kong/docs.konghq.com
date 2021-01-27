@@ -1,6 +1,5 @@
 ---
 title: Configuring a Service
-no_search: true
 no_version: true
 ---
 

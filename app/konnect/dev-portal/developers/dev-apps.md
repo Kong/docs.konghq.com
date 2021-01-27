@@ -1,6 +1,5 @@
 ---
 title: Working with Applications
-no_search: true
 no_version: true
 toc: true
 ---

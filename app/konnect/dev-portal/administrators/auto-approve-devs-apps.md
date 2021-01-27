@@ -1,6 +1,5 @@
 ---
 title: Auto Approve Developer and Application Registrations
-no_search: true
 no_version: true
 ---
 

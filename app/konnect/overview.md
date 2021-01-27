@@ -1,6 +1,5 @@
 ---
 title: Kong Konnect Overview
-no_search: true
 no_version: true
 ---
 

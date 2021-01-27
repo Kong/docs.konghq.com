@@ -1,6 +1,5 @@
 ---
 title: Manage Application Service Connections
-no_search: true
 no_version: true
 ---
 

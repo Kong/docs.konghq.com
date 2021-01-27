@@ -1,6 +1,5 @@
 ---
 title: Manage Services through ServiceHub
-no_search: true
 no_version: true
 ---
 

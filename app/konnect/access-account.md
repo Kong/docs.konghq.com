@@ -1,6 +1,5 @@
 ---
 title: Accessing a Kong Konnect SaaS Account
-no_search: true
 no_version: true
 ---
 

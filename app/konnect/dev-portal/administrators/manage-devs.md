@@ -1,6 +1,5 @@
 ---
 title: Manage Developer Access to Konnect
-no_search: true
 no_version: true
 ---
 

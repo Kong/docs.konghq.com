@@ -1,6 +1,5 @@
 ---
 title: Using the Dev Portal
-no_search: true
 no_version: true
 ---
 
