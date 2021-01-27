@@ -11,48 +11,39 @@ skip_read_time: true
 The following sections list {{site.ee_product_name}}-exclusive updates,
 features, and fixes for the **2.3.0.0 beta** version.
 
-**Note**: This beta release of Kong has no breaking changes for the 2.x series, with **Control Plane/Data Plane version checks, UTF-8 names for Routes and Services, and a Plugin Servers.**
-
-### Distributions
-- Support for CentOS-6 is removed and entered end-of-life on Nov 30, 2020.
-
 ### Dependencies
-- Bumped kong-plugin-serverless-functions from 1.0 to 2.1.
-  [#6715](https://github.com/Kong/kong/pull/6715)
-- Bumped lua-resty-dns-client from 5.1.0 to 5.2.0.
-  [#6711](https://github.com/Kong/kong/pull/6711)
-- Bumped lua-resty-healthcheck from 1.3.0 to 1.4.0.
-  [#6711](https://github.com/Kong/kong/pull/6711)
-- Bumped OpenSSL from 1.1.1h to 1.1.1i.
-  [#6639](https://github.com/Kong/kong/pull/6639)
+- Bumped `kong-plugin-serverless-functions` from 1.0 to 2.1.
+- Bumped `lua-resty-dns-client` from 5.1.0 to 5.2.0.
+- Bumped `lua-resty-healthcheck` from 1.3.0 to 1.4.0.
+- Bumped `OpenSSL` from 1.1.1h to 1.1.1i.
 - Bumped `kong-plugin-zipkin` from 1.1 to 1.2.
-  [#6576](https://github.com/Kong/kong/pull/6576)
 - Bumped `kong-plugin-request-transformer` from 1.2 to 1.3.
-  [#6542](https://github.com/Kong/kong/pull/6542)
 
 ### Features
 
-#### Kong Gateway (OSS)
-- Introduced version checks between Control Plane and Data Plane nodes
-  in Hybrid Mode. Sync will be stopped if the major/minor version differ
-  or if installed plugin versions differ between Control Plane and Data
-  Plane nodes.
-  [#6612](https://github.com/Kong/kong/pull/6612)
-- Kong entities with a `name` field now support utf-8 characters.
-  [#6557](https://github.com/Kong/kong/pull/6557)
-- The certificates entity now has `cert_alt` and `key_alt` fields, used
-  to specify an alternative certificate and key pair.
-  [#6536](https://github.com/Kong/kong/pull/6536)
-- The go-pluginserver `stderr` and `stdout` are now written into Kong's
-  logs.
-  [#6503](https://github.com/Kong/kong/pull/6503)
-- Introduced support for multiple pluginservers. This feature is
-  backwards-compatible with the existing single Go pluginserver.
-  [#6600](https://github.com/Kong/kong/pull/6600)
+#### **Kong Enterprise**
+- Kong Enterprise can now run without a license in **Free Mode**. 
+  - In Free Mode, functionality includes **Kong Gateway (OSS)** and **Kong Manager**. 
+  - To enhance your Free Mode instance, you can add Enterprise functionality modules 
+  and features including **Kong Vitals**, **RBAC**, **Workspaces**, and **Kong Enterprise Plugins**. 
+  Contact your Kong sales representative for more information. 
+
+#### Core
+- Kong checks version compatibility between the control plane and any data planes to ensure 
+the data planes and any plugins have compatibility with the control plane in hybrid mode. 
+The sync is stopped if the major/minor version differ or if the installed plugin versions 
+differ between control plane and data plane nodes.
+- Kong now accepts UTF-8 characters in route and service names. Entities with a `name` field 
+now support UTF-8 characters.
+- Certificates now have `cert_alt` and `key_alt` fields to specify an alternative certificate 
+and key pair.
+- The Go pluginserver `stderr` and `stdout` are now written into Kong’s logs, allowing Golang’s 
+native `log.Printf()`. 
+  - Introduced support for multiple pluginservers. This feature is backwards-compatible with 
+  the existing single Go pluginserver.
 
 #### Plugin Development Kit (PDK)
 - Introduced a `kong.node.get_hostname` method that returns current node's host name.
-  [#6613](https://github.com/Kong/kong/pull/6613)
 - Introduced a `kong.cluster.get_id` method that returns a unique ID
   for the current Kong cluster. If Kong is running in DB-less mode
   without a cluster ID explicitly defined, this method returns nil.
@@ -60,36 +51,29 @@ features, and fixes for the **2.3.0.0 beta** version.
   same cluster returns the same cluster ID. For traditional database
   type deployments, all Kong nodes pointing to the same database will
   also return the same cluster ID.
-  [#6576](https://github.com/Kong/kong/pull/6576)
 - Introduced a `kong.log.set_serialize_value`, which allows customizing
   the output of `kong.log.serialize`.
-  [#6646](https://github.com/Kong/kong/pull/6646)
 
 #### Plugins
-- `http-log` plugin now has a `headers` configuration, so that
-  custom headers can be specified for the log request.
-  [#6449](https://github.com/Kong/kong/pull/6449)
-- `key-auth` plugin now has two additional boolean configurations:
-  * `key_in_header`: if `false`, the plugin ignores keys passed as
-    headers.
-  * `key_in_query`: if `false`, the plugin ignores keys passed as
-    query arguments.
-  Both default to `true`.
-  [#6590](https://github.com/Kong/kong/pull/6590)
-- `request-size-limiting` adds new configuration `require_content_length`,
-  which causes the plugin to ensure a valid `Content-Length` header exists
-  before reading the request body.
-  [#6660](https://github.com/Kong/kong/pull/6660)
-- `serverless-functions` introduce a sandboxing capability, and it has been
-  *enabled* by default, where only Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are allowed.
-  [#32](https://github.com/Kong/kong-plugin-serverless-functions/pull/32/)
+- The [HTTP Log](https://docs.konghq.com/hub/kong-inc/http-log/) (`http-log`) plugin 
+has been improved to allow you to add headers to the HTTP request, which will help you integrate 
+with many observability systems.
+- The [Key Authentication](https://docs.konghq.com/hub/kong-inc/key-auth/) (`key-auth`)
+plugin has two new configuration parameters: `key_in_header` and `key_in_query`. Both 
+are booleans and tell Kong whether to accept (true) or reject (false) passed in either 
+the header or the query string. Both default to “true.”
+- The [Request Size Limiting](https://docs.konghq.com/hub/kong-inc/request-size-limiting/) 
+(`request-size-limiting`) plugin has a new configuration `require_content_length` that 
+causes the plugin to ensure a valid Content-Length header exists before reading the request body.
+- The [Serverless Functions](https://docs.konghq.com/hub/kong-inc/serverless-functions/) 
+(`serverless-functions`) plugin introduces a sandboxing capability, is *enabled* by default, 
+and where only Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are allowed.
 
 #### Configuration
 - `client_max_body_size` and `client_body_buffer_size`, that previously
-  hardcoded to 10m, are now configurable through `nginx_admin_client_max_body_size` and `nginx_admin_client_body_buffer_size`.
-  [#6597](https://github.com/Kong/kong/pull/6597)
+  hardcoded to 10m, are now configurable through `nginx_admin_client_max_body_size` 
+  and `nginx_admin_client_body_buffer_size`.
 - Kong-generated SSL private keys now have `600` file system permission.
-  [#6509](https://github.com/Kong/kong/pull/6509)
 - Properties `ssl_cert`, `ssl_cert_key`, `admin_ssl_cert`,
   `admin_ssl_cert_key`, `status_ssl_cert`, and `status_ssl_cert_key`
   is now an array: previously, only an RSA certificate was generated
@@ -98,45 +82,47 @@ features, and fixes for the **2.3.0.0 beta** version.
   as the default fallback certificate; on old cipher suite, the RSA
   certificate remains as the default. On custom certificates, the first
   certificate specified in the array is used.
-  [#6509](https://github.com/Kong/kong/pull/6509)
-- Kong now runs as a `kong` user if it exists; if said user does not exist
+- Kong now runs as a `kong` user if it exists; if user does not exist
   in the system, the `nobody` user is used, as before.
-  [#6421](https://github.com/Kong/kong/pull/6421)
 
 ### Fixes
 
-#### Kong Gateway (OSS)
-- Fixed issue where a Go plugin would fail to read kong.ctx.shared values set by LUA plugins.
-  [#6490](https://github.com/Kong/kong/pull/6490)
+#### Core
+- Fixed issue where a Go plugin would fail to read `kong.ctx.shared` values set by LUA plugins.
 - Properly trigger `dao:delete_by:post` hook.
-  [#6567](https://github.com/Kong/kong/pull/6567)
-- Fixed issue where a route that supports both http and https (and has a hosts and snis match criteria) would fail to proxy http requests, as it does not contain an SNI.
-  [#6517](https://github.com/Kong/kong/pull/6517)
-- Fix issue where a `nil` request context would lead to errors `attempt to index local 'ctx'` being shown in the logs
+- Fixed issue where a route that supports both http and https (and has a hosts and snis 
+match criteria) would fail to proxy http requests, as it does not contain an SNI.
+- Fixed issue where a `nil` request context would lead to errors `attempt to index local 'ctx'`
+being shown in the logs.
 - Reduced the number of needed timers to active health check upstreams and to resolve hosts.
 - Schemas for full-schema validations are correctly cached now, avoiding memory
-  leaks when reloading declarative configurations. [#6713](https://github.com/Kong/kong/pull/6713)
+  leaks when reloading declarative configurations. 
 - The schema for the upstream entities now limits the highest configurable
   number of successes and failures to 255, respecting the limits imposed by
-  lua-resty-healthcheck. [#6705](https://github.com/Kong/kong/pull/6705)
+  `lua-resty-healthcheck`. 
 - Certificates for database connections now are loaded in the right order
   avoiding failures to connect to Postgres databases.
-  [#6650](https://github.com/Kong/kong/pull/6650)
 
 #### CLI
 - Fixed issue where `kong reload -c <config>` would fail.
-  [#6664](https://github.com/Kong/kong/pull/6664)
 - Fixed issue where the Kong configuration cache would get corrupted.
-  [#6664](https://github.com/Kong/kong/pull/6664)
+
+#### Developer Portal
+- Fixed issue when applying permissions to developers using the Application Registration feature.
 
 #### Plugin Development Kit (PDK)
 - Ensure the log serializer encodes the `tries` field as an array when
   empty, rather than an object.
-  [#6632](https://github.com/Kong/kong/pull/6632)
 
 #### Plugins
-- request-transformer plugin does not allow `null` in config anymore as they can
-  lead to runtime errors. [#6710](https://github.com/Kong/kong/pull/6710)
+- The [Request Transformer](https://docs.konghq.com/hub/kong-inc/request-transformer/) (`request-transformer`) 
+plugin does not allow `null` in config anymore as they can lead to runtime errors.
+- [OpenID Connect](https://docs.konghq.com/hub/kong-inc/openid-connect/) (`openid-connect`) issue 
+fixed causing a 500 auth error when falling back to an anonymous user.  
+
+### Deprecated 
+#### Distributions
+- Support for CentOS-6 is removed and entered end-of-life on Nov 30, 2020.
 
 
 ## 2.2.1.0
