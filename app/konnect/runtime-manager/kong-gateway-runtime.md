@@ -22,10 +22,10 @@ runtime instances.
 
 * You have a {{site.konnect_product_name}} account. Contact your sales
 representative for access.
-* Install the following tools:
-  * [Docker](https://docs.docker.com/get-docker/)
-  * [HTTPie](https://httpie.io/)
-  * [jq](https://stedolan.github.io/jq/)
+* Tools and permissions:
+  * **All platforms:** [Docker](https://docs.docker.com/get-docker/), [HTTPie](https://httpie.io/), and [jq](https://stedolan.github.io/jq/) installed
+  * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
+  * **Windows:** Docker Desktop [installed](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [integrated with a WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/)
 
 ## Set up a New Runtime Instance
 
@@ -43,8 +43,8 @@ representative for access.
 
     You can expand the codeblock by clicking **Show** to see the entire script.
 
-4. Replace the placeholder `<your-username>` and `<your-password>` entries with
-your {{site.konnect_short_name}} SaaS login credentials.
+4. Replace the placeholder for `<your-password>` with your own
+{{site.konnect_short_name}} SaaS password.
 
 5. Run the script on any host you choose.
 
@@ -52,9 +52,12 @@ your {{site.konnect_short_name}} SaaS login credentials.
     {{site.ee_gateway_name}} instance and connects it to your
     {{site.konnect_short_name}} SaaS account.
 
-    Once the script is done running, the Runtime Manager overview will include
-    a new entry, and the tag in the **Node Status** column should say
-    **Connected**.
+6. Click **Done** to go to the Runtimes page.
+
+    Once the script has finished running, the Runtimes page will
+    include a new entry for your instance.
+    <!-- and the tag in the **Node Status** column should say
+    **Connected**.-->
 
 ## Access Services using the Proxy URL
 

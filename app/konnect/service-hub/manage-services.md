@@ -126,17 +126,17 @@ then click **Create**.
 
 ### Verify an Implementation
 
-1. Open a Service version overview page.
+For any runtime instance created with the provided Docker script (see
+[Setting up a Kong Gateway Runtime](/konnect/runtime-manager/)),
+the default proxy URL is `localhost:8000`.
 
-2. From the top of the page, copy the **Proxy URL**.
+Enter the proxy URL into your browser’s address bar and append any route path. 
+The final URL should look something like this:
 
-3. Paste the URL into your browser’s address bar and append the route path you
-just set. For example:
+```
+http://localhost:8000/foo
+```
 
-    ```
-    http://konginc123456789.konnect.konghq.com/<route-path>
-    ```
-
-    If successful, you’ll be able to access your upstream service. The Service
-    version's overview page will also update with a new record for status
-    code `200`. This might take a few moments.
+If successful, you’ll be able to access your upstream service. The Service
+version's overview page will also update with a new record for status
+code `200`. This might take a few moments.
