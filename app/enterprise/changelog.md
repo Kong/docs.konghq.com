@@ -23,7 +23,8 @@ Contact your Kong sales representative for more information.
 - Kong checks version compatibility between the control plane and any data planes to ensure
 the data planes and any plugins have compatibility with the control plane in hybrid mode.
 The sync is stopped if the major/minor version differ or if the installed plugin versions
-differ between control plane and data plane nodes.
+differ between control plane and data plane nodes. For more information, see
+[Version and Compatibility Checks](/2.3.x/hybrid-mode/#version-and-compatibility-checks).
 - Kong now accepts UTF-8 characters in route and service names. Entities with a `name` field
 now support UTF-8 characters.
 - Certificates now have `cert_alt` and `key_alt` fields to specify an alternative certificate
