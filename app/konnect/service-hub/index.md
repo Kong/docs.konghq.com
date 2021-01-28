@@ -93,8 +93,22 @@ enable it directly.
 ### Custom Plugins
 
 Currently, there is no way to add a custom plugin directly through the
-{{site.konnect_short_name}} SaaS application. If you want to use custom plugin
-in {{site.konnect_short_name}} SaaS, contact [Kong Support](https://support.konghq.com/).
+{{site.konnect_short_name}} SaaS application.
+
+Custom plugins can be added manually to your organization by Kong Support, but
+your plugins must not have the following:
+
+* Admin API extensions: No `api.lua` file
+* Custom plugin database tables: No `dao.lua` file
+* Custom function validations: No function definitions in `schema.lua`
+* Code that runs on the control plane in the plugin handler:
+  * No `init_worker` callback
+  * No Lua code outside of the top-level functions
+* Third-party library dependencies: No `require()` calls to modules that are
+not bundled by default with {{site.konnect_products_name}}
+
+If your plugin meets these requirements and you want to use it in
+{{site.konnect_short_name}} SaaS, contact [Kong Support](https://support.konghq.com/).
 
 **See more:**
 * [Plugin compatibility](/hub/plugins/compatibility/)
