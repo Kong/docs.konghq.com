@@ -87,7 +87,7 @@ and where only Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are al
 ### Fixes
 
 #### Core
-- Fixed issue where a Go plugin would fail to read `kong.ctx.shared` values set by LUA plugins.
+- Fixed issue where a Go plugin would fail to read `kong.ctx.shared` values set by Lua plugins.
 - Properly trigger `dao:delete_by:post` hook.
 - Fixed issue where a route that supports both http and https (and has a hosts and snis
 match criteria) would fail to proxy http requests, as it does not contain an SNI.
