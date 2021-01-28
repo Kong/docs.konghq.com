@@ -14,24 +14,23 @@ features, and fixes for the **2.3.0.0 beta** version.
 ### Features
 
 #### Enterprise
-- Kong Enterprise can now run without a license in **Free Mode**. 
-  - In Free Mode, functionality includes **Kong Gateway (OSS)** and **Kong Manager**. 
-  - To enhance your Free Mode instance, you can add Enterprise functionality modules 
-  and features including **Kong Vitals**, **RBAC**, **Workspaces**, and **Kong Enterprise Plugins**. 
-  Contact your Kong sales representative for more information. 
+A (non-OSS) Kong Gateway running in its default Free Mode can be upgraded to add
+Enterprise functionality modules and features including **Kong Vitals**, **RBAC**,
+**Workspaces**, and **Kong Enterprise Plugins** simply by applying a new Kong license.
+Contact your Kong sales representative for more information.
 
 #### Core
-- Kong checks version compatibility between the control plane and any data planes to ensure 
-the data planes and any plugins have compatibility with the control plane in hybrid mode. 
-The sync is stopped if the major/minor version differ or if the installed plugin versions 
+- Kong checks version compatibility between the control plane and any data planes to ensure
+the data planes and any plugins have compatibility with the control plane in hybrid mode.
+The sync is stopped if the major/minor version differ or if the installed plugin versions
 differ between control plane and data plane nodes.
-- Kong now accepts UTF-8 characters in route and service names. Entities with a `name` field 
+- Kong now accepts UTF-8 characters in route and service names. Entities with a `name` field
 now support UTF-8 characters.
-- Certificates now have `cert_alt` and `key_alt` fields to specify an alternative certificate 
+- Certificates now have `cert_alt` and `key_alt` fields to specify an alternative certificate
 and key pair.
-- The Go pluginserver `stderr` and `stdout` are now written into Kong’s logs, allowing Golang’s 
-native `log.Printf()`. 
-  - Introduced support for multiple pluginservers. This feature is backwards-compatible with 
+- The Go pluginserver `stderr` and `stdout` are now written into Kong’s logs, allowing Golang’s
+native `log.Printf()`.
+  - Introduced support for multiple pluginservers. This feature is backwards-compatible with
   the existing single Go pluginserver.
 
 #### Plugin Development Kit (PDK)
@@ -47,23 +46,23 @@ native `log.Printf()`.
   the output of `kong.log.serialize`.
 
 #### Plugins
-- The [HTTP Log](https://docs.konghq.com/hub/kong-inc/http-log/) (`http-log`) plugin 
-has been improved to allow you to add headers to the HTTP request, which will help you integrate 
+- The [HTTP Log](https://docs.konghq.com/hub/kong-inc/http-log/) (`http-log`) plugin
+has been improved to allow you to add headers to the HTTP request, which will help you integrate
 with many observability systems.
 - The [Key Authentication](https://docs.konghq.com/hub/kong-inc/key-auth/) (`key-auth`)
-plugin has two new configuration parameters: `key_in_header` and `key_in_query`. Both 
-are booleans and tell Kong whether to accept (true) or reject (false) passed in either 
+plugin has two new configuration parameters: `key_in_header` and `key_in_query`. Both
+are booleans and tell Kong whether to accept (true) or reject (false) passed in either
 the header or the query string. Both default to “true.”
-- The [Request Size Limiting](https://docs.konghq.com/hub/kong-inc/request-size-limiting/) 
-(`request-size-limiting`) plugin has a new configuration `require_content_length` that 
+- The [Request Size Limiting](https://docs.konghq.com/hub/kong-inc/request-size-limiting/)
+(`request-size-limiting`) plugin has a new configuration `require_content_length` that
 causes the plugin to ensure a valid Content-Length header exists before reading the request body.
-- The [Serverless Functions](https://docs.konghq.com/hub/kong-inc/serverless-functions/) 
-(`serverless-functions`) plugin introduces a sandboxing capability, is *enabled* by default, 
+- The [Serverless Functions](https://docs.konghq.com/hub/kong-inc/serverless-functions/)
+(`serverless-functions`) plugin introduces a sandboxing capability, is *enabled* by default,
 and where only Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are allowed.
 
 #### Configuration
 - `client_max_body_size` and `client_body_buffer_size`, that previously
-  hardcoded to 10m, are now configurable through `nginx_admin_client_max_body_size` 
+  hardcoded to 10m, are now configurable through `nginx_admin_client_max_body_size`
   and `nginx_admin_client_body_buffer_size`.
 - Kong-generated SSL private keys now have `600` file system permission.
 - Properties `ssl_cert`, `ssl_cert_key`, `admin_ssl_cert`,
@@ -76,7 +75,7 @@ and where only Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are al
   certificate specified in the array is used.
 - Kong now runs as a `kong` user if it exists; if user does not exist
   in the system, the `nobody` user is used, as before.
-  
+
 ### Dependencies
 - Bumped `kong-plugin-serverless-functions` from 1.0 to 2.1.
 - Bumped `lua-resty-dns-client` from 5.1.0 to 5.2.0.
@@ -90,16 +89,16 @@ and where only Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are al
 #### Core
 - Fixed issue where a Go plugin would fail to read `kong.ctx.shared` values set by LUA plugins.
 - Properly trigger `dao:delete_by:post` hook.
-- Fixed issue where a route that supports both http and https (and has a hosts and snis 
+- Fixed issue where a route that supports both http and https (and has a hosts and snis
 match criteria) would fail to proxy http requests, as it does not contain an SNI.
 - Fixed issue where a `nil` request context would lead to errors `attempt to index local 'ctx'`
 being shown in the logs.
 - Reduced the number of needed timers to active health check upstreams and to resolve hosts.
 - Schemas for full-schema validations are correctly cached now, avoiding memory
-  leaks when reloading declarative configurations. 
+  leaks when reloading declarative configurations.
 - The schema for the upstream entities now limits the highest configurable
   number of successes and failures to 255, respecting the limits imposed by
-  `lua-resty-healthcheck`. 
+  `lua-resty-healthcheck`.
 - Certificates for database connections now are loaded in the right order
   avoiding failures to connect to Postgres databases.
 
@@ -115,19 +114,19 @@ being shown in the logs.
   empty, rather than an object.
 
 #### Plugins
-- The [Request Transformer](https://docs.konghq.com/hub/kong-inc/request-transformer/) (`request-transformer`) 
+- The [Request Transformer](https://docs.konghq.com/hub/kong-inc/request-transformer/) (`request-transformer`)
 plugin does not allow `null` in config anymore as they can lead to runtime errors.
-- [OpenID Connect](https://docs.konghq.com/hub/kong-inc/openid-connect/) (`openid-connect`) issue 
+- [OpenID Connect](https://docs.konghq.com/hub/kong-inc/openid-connect/) (`openid-connect`) issue
 fixed causing a 500 auth error when falling back to an anonymous user.  
 
-### Deprecated 
+### Deprecated
 #### Distributions
 - Support for CentOS-6 is removed and entered end-of-life on Nov 30, 2020.
 
 
 ## 2.2.1.0
 **Release Date** 2020/12/31
- 
+
 ### Features
 
 #### Developer Portal
@@ -138,17 +137,17 @@ fixed causing a 500 auth error when falling back to an anonymous user.
 #### Core
 - OpenSSL version bumped to 1.1.1i.
   The OpenSSL version bump is related to CVE-2020-1971. We have performed an extensive review of OpenSSL usage in Kong and have found the following:
-  - The core product is not vulnerable to the high severity CVE-2020-1971. 
+  - The core product is not vulnerable to the high severity CVE-2020-1971.
   - The `mtls-auth` plugin had a potential exploit associated with with CVE-2020-1971, but it would require an attacker to control a trusted CA or have admin port access, which [we recommend you block from attackers](https://docs.konghq.com/latest/secure-admin-api/) for numerous reasons. The updated OpenSSL version in this release additionally protects the `mtls-auth` plugin.
   - As a precautionary measure, we have bumped the OpenSSL dependency version to OpenSSL 1.1.1i.
 
 #### Enterprise
 - Fixed an issue where `/tmp` directories will not be deleted when running Kong or Kong CLI.
 - Fixed an issue that prevented the use of keyring encryption of Kong database fields.
-- RCE (Remote Code Execution) Plugin Mitigations: 
+- RCE (Remote Code Execution) Plugin Mitigations:
   Several Kong plugins allow arbitrary code execution by design, including the `serverless` plugin (also known as `pre-function` and `post-function` capabilities) and the `exit-transformer` plugin (for example, allows an administrator to configure a Lua-based response transformation). Changes include:
   - A new change locks down these plugins so that they have limited functions available in a sandbox, providing significant additional security for a user with an exposed admin port.
-  - Functions such as "require" are no longer available to scripts that run in these plugins for security purposes, because allowing "require" allows embedded additional arbitrary code execution. 
+  - Functions such as "require" are no longer available to scripts that run in these plugins for security purposes, because allowing "require" allows embedded additional arbitrary code execution.
   - **Important**: This change causes a **breaking change** in this patch release and it cannot be avoided. Our recommendation is that [users lock down their admin ports](https://docs.konghq.com/latest/secure-admin-api/) to avoid attackers trying to exploit any API gateway, like Kong, to gain access to internal networks. If you need the previous release behavior, including the ability to arbitrarily "require" libraries or if you want to lock things down further, we have introduced four new settings you can use:
     - `KONG_UNTRUSTED_LUA = on|off` Sets whether any custom Lua code can be used outside of Kong's distributed code. Defaults to "on".
     - `KONG_UNTRUSTED_LUA_SANDBOX = on|off` Turns on or off the sandbox. Defaults to "on".
@@ -171,9 +170,9 @@ fixed causing a 500 auth error when falling back to an anonymous user.
 - [Session](/hub/kong-inc/session) (`session`)
   - Added endpoint key to Admin API.
   - Bumped `lua-resty-session` dependency to 3.8.
-  
+
 #### Breaking Changes
-- See *RCE (Remote Code Execution) Plugin Mitigations* in the Kong Enterprise section. 
+- See *RCE (Remote Code Execution) Plugin Mitigations* in the Kong Enterprise section.
 
 
 ## 2.2.0.0
@@ -221,7 +220,7 @@ features, fixes, known issues, and workarounds. The changelog for 2.2.0.0 versio
   - Updated `lua-resty-session` dependency to 3.7.
 - [JWT Signer](/hub/kong-inc/jwt-signer) (`jwt-signer`)
   - HS-signature verification is now disabled by default.
-  
+
 
 ## 2.2.0.0 (beta)
 **Release Date** 2020/10/27
@@ -462,25 +461,25 @@ open-source **Kong Gateway 2.2.0.0**:
   superseded by the new `/clustering/data-planes` endpoint.
 - The `shorthands` attribute in schema definitions is deprecated in favor of
   the new `shorthand_fields` top-level attribute.
-  
+
 
 ## 2.1.4.3
 **Release Date** 2020/12/31
- 
+
 ### Fixes
 
 #### Core
 - OpenSSL version bumped to 1.1.1i.
   The OpenSSL version bump is related to CVE-2020-1971. We have performed an extensive review of OpenSSL usage in Kong and have found the following:
-  - The core product is not vulnerable to the high severity CVE-2020-1971. 
+  - The core product is not vulnerable to the high severity CVE-2020-1971.
   - The `mtls-auth` plugin had a potential exploit associated with with CVE-2020-1971, but it would require an attacker to control a trusted CA or have admin port access, which [we recommend you block from attackers](https://docs.konghq.com/latest/secure-admin-api/) for numerous reasons. The updated OpenSSL version in this release additionally protects the `mtls-auth` plugin.
   - As a precautionary measure, we have bumped the OpenSSL dependency version to OpenSSL 1.1.1i.
 
 #### Kong Enterprise
-- RCE (Remote Code Execution) Plugin Mitigations: 
+- RCE (Remote Code Execution) Plugin Mitigations:
   Several Kong plugins allow arbitrary code execution by design, including the `serverless` plugin (also known as `pre-function` and `post-function` capabilities) and the `exit-transformer` plugin (for example, allows an administrator to configure a Lua-based response transformation). Changes include:
   - A new change in this release locks down these plugins so that they have limited functions available in a sandbox, providing significant additional security for a user with an exposed admin port.
-  - Functions such as "require" are no longer available to scripts that run in these plugins for security purposes, because allowing "require" allows embedded additional arbitrary code execution. 
+  - Functions such as "require" are no longer available to scripts that run in these plugins for security purposes, because allowing "require" allows embedded additional arbitrary code execution.
   - **Important**: This change causes a **breaking change** in this patch release and it cannot be avoided. Our recommendation is that [users lock down their admin ports](https://docs.konghq.com/latest/secure-admin-api/) to avoid attackers trying to exploit any API gateway, like Kong, to gain access to internal networks. If you need the previous release behavior, including the ability to arbitrarily "require" libraries or if you want to lock things down further, we have introduced four new settings you can use:
     - `KONG_UNTRUSTED_LUA = on|off` Sets whether any custom Lua code can be used outside of Kong's distributed code. Defaults to "on".
     - `KONG_UNTRUSTED_LUA_SANDBOX = on|off` Turns on or off the sandbox. Defaults to "on".
@@ -496,7 +495,7 @@ open-source **Kong Gateway 2.2.0.0**:
 - Mutual TLS Authentication (`mtls-auth`)
   - Fixed (log) updating auth errors to handle fallthrough scenarios.
   - Fixed (route, ws) ensuring workspace options are used for cache lookups.
-  
+
 #### Breaking Changes
 - See *RCE (Remote Code Execution) Plugin Mitigations* in the Kong Enterprise section.
 
@@ -857,28 +856,28 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 #### Core
 -  OpenSSL version bumped to 1.1.1i.
   The OpenSSL version bump is related to CVE-2020-1971. We have performed an extensive review of OpenSSL usage in Kong and have found the following:
-  - The core product is not vulnerable to the high severity CVE-2020-1971. 
+  - The core product is not vulnerable to the high severity CVE-2020-1971.
   - The `mtls-auth` plugin had a potential exploit associated with with CVE-2020-1971, but it would require an attacker to control a trusted CA or have admin port access, which [we recommend you block from attackers](https://docs.konghq.com/latest/secure-admin-api/) for numerous reasons. The updated OpenSSL version in this release additionally protects the `mtls-auth` plugin.
   - As a precautionary measure, we have bumped the OpenSSL dependency version to OpenSSL 1.1.1i.
-  
+
 #### Kong Enterprise
-- RCE (Remote Code Execution) Plugin Mitigations: 
+- RCE (Remote Code Execution) Plugin Mitigations:
   Several Kong plugins allow arbitrary code execution by design, including the `serverless` plugin (also known as `pre-function` and `post-function` capabilities) and the `exit-transformer` plugin (for example, allows an administrator to configure a Lua-based response transformation). Changes include:
   - A new change in this release locks down these plugins so that they have limited functions available in a sandbox, providing significant additional security for a user with an exposed admin port.
-  - Functions such as "require" are no longer available to scripts that run in these plugins for security purposes, because allowing "require" allows embedded additional arbitrary code execution. 
+  - Functions such as "require" are no longer available to scripts that run in these plugins for security purposes, because allowing "require" allows embedded additional arbitrary code execution.
   - **Important**: This change causes a **breaking change** in this patch release and it cannot be avoided. Our recommendation is that [users lock down their admin ports](https://docs.konghq.com/latest/secure-admin-api/) to avoid attackers trying to exploit any API gateway, like Kong, to gain access to internal networks. If you need the previous release behavior, including the ability to arbitrarily "require" libraries or if you want to lock things down further, we have introduced four new settings you can use:
     - `KONG_UNTRUSTED_LUA = on|off` Sets whether any custom Lua code can be used outside of Kong's distributed code. Defaults to "on".
     - `KONG_UNTRUSTED_LUA_SANDBOX = on|off` Turns on or off the sandbox. Defaults to "on".
     - `KONG_UNTRUSTED_LUA_SANDBOX_REQUIRES = foo,bar` Which libraries, if any, you want to require in the sandbox. Defaults to an empty list.
     - `KONG_UNTRUSTED_LUA_SANDBOX_ENVIRONMENT = kong.request` Any additional objects you want to pass through to the sandbox environments.  Defaults to an empty list.
-  
+
 #### Breaking Changes
-- See *RCE (Remote Code Execution) Plugin Mitigations* in the Kong Enterprise section. 
-  
+- See *RCE (Remote Code Execution) Plugin Mitigations* in the Kong Enterprise section.
+
 
 ## 1.5.0.8
 **Release Date** 2020/11/17
- 
+
 ### Fixes
 
 #### **OpenID Connect Library**
@@ -889,7 +888,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 ## 1.5.0.7
 **Release Date** 2020/11/11
- 
+
 ### Fixes
 
 #### Kong Gateway
@@ -1178,7 +1177,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 ### Known Issue and Workaround
 * Mutual TLS Authentication Plugin
   * For the parameter `config.revocation_check_mode`, the default value `IGNORE_CA_ERROR` has a known issue in version 1.5.0.0 and later. As a workaround, manually set the value to `SKIP`
-  
+
 
 ## 1.3.0.3
 **Release Date:** 2020/11/19
@@ -1727,7 +1726,7 @@ repository will allow you to do both easily.
 
 ## 0.36-7
 **Release Date** 2020/11/20
- 
+
 ### Fixes
 
 #### **OpenID Connect Library**
