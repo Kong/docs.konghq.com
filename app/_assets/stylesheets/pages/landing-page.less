@@ -9,6 +9,10 @@
   border-radius: 8px;
 }
 
+header.navbar {
+  transition: background 0.5s, box-shadow 0.5s;
+}
+
 .landing-page {
   max-width: 1280px;
   margin: 0 auto;
@@ -140,6 +144,38 @@
     }
   }
 
+  .textures {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+
+    .top-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      mix-blend-mode: multiply;
+    }
+
+    .top-right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      mix-blend-mode: multiply;
+      opacity: 0.8;
+    }
+
+    .top-gradient {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.99) 42.92%, rgba(255, 255, 255, 0.6) 70.57%, rgba(255, 255, 255, 0) 100%);
+    }
+  }
+
   section.search {
     margin-top: 40px;
     display: flex;
@@ -200,19 +236,20 @@
   }
 
   section.cloud-platform {
-    margin-top: 170px;
+    margin-top: 96px;
 
     .cards-container {
       .shadowed-card;
 
+      align-items: stretch;
       justify-content: center;
-      flex-wrap: wrap;
       padding-right: 24px;
       padding-left: 24px;
 
       .arrow-card {
         display: flex;
         align-items: center;
+        justify-content: center;
         flex-grow: 1;
         max-width: 600px;
 
@@ -222,7 +259,7 @@
           justify-content: center;
 
           img {
-            width: 48px;
+            min-width: 48px;
           }
         }
 
@@ -279,82 +316,104 @@
   section.docs {
     display: flex;
     margin-top: 40px;
-    flex-wrap: wrap;
 
     section.title-cards {
-      flex: 1 0;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
       margin-top: 32px;
       margin-right: 24px;
 
-      .card {
-        width: 350px;
-        height: 196px;
-        padding-top: 114px;
-        margin-right: 24px;
+      .cards-container {
+        align-items: stretch;
+        flex-grow: 1;
 
-        .banner-image {
-          position: absolute;
-          left: 0;
-          top: 0;
-          height: 96px;
-          width: 100%;
-          border-top-right-radius: 8px;
-          border-top-left-radius: 8px;
-        }
+        .card {
+          padding-top: 114px;
+          margin-right: 24px;
 
-        .title {
-          position: absolute;
-          top: 32px;
-          left: 24px;
-          font-size: 28px;
-          font-weight: bold;
-          line-height: 39px;
-          color: @color-text;
-        }
+          .banner-image {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 96px;
+            width: 100%;
+            border-top-right-radius: 8px;
+            border-top-left-radius: 8px;
+          }
 
-        .description {
-          min-height: 66px;
-        }
+          .title {
+            position: absolute;
+            top: 32px;
+            left: 24px;
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 39px;
+            color: @color-text;
+          }
 
-        hr {
-          margin: 14px 0;
-          width: 100%;
-        }
+          .description {
+            flex-grow: 1;
+          }
 
-        .name-link {
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          transition: background-color @hover-transition-time;
-          cursor: pointer;
-          border-radius: 8px;
-          padding: 4px 8px;
+          hr {
+            margin: 14px 0;
+            width: 100%;
+          }
 
-          .name-label {
-            .icon-label {
-              margin-top: 4px;
-              display: flex;
-              align-items: center;
-              text-transform: uppercase;
-              font-weight: normal;
-              font-size: 11px;
-              line-height: 15px;
-              color: @color-text-light;
+          .links-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            min-height: 108px;
+          }
 
-              img {
-                margin-right: 4px;
+          .name-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background-color @hover-transition-time;
+            cursor: pointer;
+            border-radius: 8px;
+            padding: 4px 8px;
+
+            .name-label {
+              .icon-label {
+                margin-top: 4px;
+                display: flex;
+                align-items: center;
+                text-transform: uppercase;
+                font-weight: normal;
+                font-size: 11px;
+                line-height: 15px;
+                color: @color-text-light;
+
+                img {
+                  margin-right: 4px;
+                }
               }
+            }
+
+            &:hover {
+              background-color: #F8F9FC;
             }
           }
 
-          &:hover {
-            background-color: #F8F9FC;
+          &:last-of-type {
+            margin-right: 0;
           }
         }
+      }
 
-        &:last-of-type {
-          margin-right: 0;
+      &:nth-of-type(1) {
+        flex-basis: 33%;
+      }
+
+      &:nth-of-type(2) {
+        flex-basis: 67%;
+
+        .card {
+          flex-basis: 50%;
         }
       }
 
@@ -405,6 +464,46 @@
           &:hover {
             text-decoration: underline;
           }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1023px) {
+    section.docs {
+      section.title-cards {
+        margin-right: 24px;
+
+        .card {
+          margin-right: 16px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1249px) {
+    section.cloud-platform {
+      .cards-container {
+        .arrow-card {
+          .arrow {
+            flex-grow: 0;
+          }
+        }
+
+        .card {
+          margin: 0;
+          flex-shrink: 1;
+          min-width: 25%;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 919px) {
+    section.cloud-platform {
+      .cards-container {
+        .card {
+          padding: 24px 16px;
         }
       }
     }

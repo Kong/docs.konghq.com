@@ -5,6 +5,12 @@ id: landing-page
 ---
 
 <div class="landing-page">
+  <div class="textures">
+    <img class="top-left" src="/assets/images/landing-page/texture-left.png" alt="texture">
+    <img class="top-right" src="/assets/images/landing-page/texture-right.png" alt="texture">
+    <div class="top-gradient"></div>
+  </div>
+
   <h1>Welcome to Kong Docs</h1>
   <h4>Find all the information you need to use the {{site.konnect_product_name}} platform and Kong’s projects</h4>
 
@@ -21,7 +27,6 @@ id: landing-page
   </section>
 
   <section class="cloud-platform">
-    <h2>Get started with {{site.konnect_short_name}} SaaS platform</h2>
     <div class="cards-container">
       <div class="card">
         <img class="icon" src="/assets/images/landing-page/connection.svg" alt="connection"/>
@@ -74,18 +79,20 @@ id: landing-page
             Full stack connectivity platform that is designed from the ground up for cloud native architectures, delivered as a service.
           </div>
           <hr>
-          <a href="/konnect/" class="name-link">
-            <div class="name-label">
-              <div class="link-text">
-                {{site.konnect_short_name}} Documentation
+          <div class="links-container">
+            <a href="/konnect/" class="name-link">
+              <div class="name-label">
+                <div class="link-text">
+                  {{site.konnect_short_name}} Documentation
+                </div>
+                <div class="icon-label">
+                  <img src="/assets/images/icons/icn-cloud.svg" alt="cloud">
+                  SaaS version
+                </div>
               </div>
-              <div class="icon-label">
-                <img src="/assets/images/icons/icn-cloud.svg" alt="cloud">
-                SaaS version
-              </div>
-            </div>
-            <img src="/assets/images/icons/icn-doc.svg" alt="doc">
-          </a>
+              <img src="/assets/images/icons/icn-doc.svg" alt="doc">
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -99,48 +106,52 @@ id: landing-page
             Universal service mesh for enterprise organizations focused on simplicity, security, and scalability with Kuma and Envoy.
           </div>
           <hr>
-          <a href="/mesh/" class="name-link">
-            <div class="name-label">
-              <div class="link-text">
-                {{site.mesh_product_name}} Documentation
+          <div class="links-container">
+            <a href="/mesh/" class="name-link">
+              <div class="name-label">
+                <div class="link-text">
+                  {{site.mesh_product_name}} Documentation
+                </div>
+                <div class="icon-label">
+                  <img src="/assets/images/icons/icn-server.svg" alt="server">
+                  Self-hosted version
+                </div>
               </div>
-              <div class="icon-label">
-                <img src="/assets/images/icons/icn-server.svg" alt="server">
-                Self-hosted version
-              </div>
-            </div>
-            <img src="/assets/images/icons/icn-doc.svg" alt="doc">
-          </a>
+              <img src="/assets/images/icons/icn-doc.svg" alt="doc">
+            </a>
+          </div>
         </div>
         <div class="card">
           <img class="banner-image" src="/assets/images/landing-page/gateway.png" alt="mesh">
           <div class="title">{{site.ee_gateway_name}}</div>
           <div class="description">A lightweight API Gateway that lets you secure, manage, and extend APIs and microservices.</div>
           <hr>
-          <a href="/enterprise/" class="name-link">
-            <div class="name-label">
-              <div class="link-text">
-                Enterprise Documentation
+          <div class="links-container">
+            <a href="/enterprise/" class="name-link">
+              <div class="name-label">
+                <div class="link-text">
+                  Enterprise Documentation
+                </div>
+                <div class="icon-label">
+                  <img src="/assets/images/icons/icn-server.svg" alt="server">
+                  Self-hosted version
+                </div>
               </div>
-              <div class="icon-label">
-                <img src="/assets/images/icons/icn-server.svg" alt="server">
-                Self-hosted version
+              <img src="/assets/images/icons/icn-doc.svg" alt="doc">
+            </a>
+            <a href="/gateway-oss/" class="name-link">
+              <div class="name-label">
+                <div class="link-text">
+                  Open source Documentation
+                </div>
+                <div class="icon-label">
+                  <img src="/assets/images/icons/icn-server.svg" alt="server">
+                  Self-hosted version
+                </div>
               </div>
-            </div>
-            <img src="/assets/images/icons/icn-doc.svg" alt="doc">
-          </a>
-          <a href="/gateway-oss/" class="name-link">
-            <div class="name-label">
-              <div class="link-text">
-                Open source Documentation
-              </div>
-              <div class="icon-label">
-                <img src="/assets/images/icons/icn-server.svg" alt="server">
-                Self-hosted version
-              </div>
-            </div>
-            <img src="/assets/images/icons/icn-doc.svg" alt="doc">
-          </a>
+              <img src="/assets/images/icons/icn-doc.svg" alt="doc">
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -333,20 +344,31 @@ id: landing-page
   <img src="/assets/images/landing-page/kong.svg" alt="kong">
 </div>
 
+<script type="text/javascript">
+  const updateHeader = () => {
+    const opacityMultiplier = Math.min(document.documentElement.scrollTop, 100) / 100
+    document.getElementsByClassName('navbar-v2')[0].style.boxShadow = `0px 8px 24px rgba(4, 53, 88, ${opacityMultiplier * 0.1})`
+  }
+
+  window.onscroll = () => updateHeader()
+  updateHeader()
+</script>
+
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
 
 <script type="text/javascript">
   docsearch({
-    apiKey: '691286ef280379144076a4f8df47a1d1',
-    indexName: 'getkong',
+    appId: 'T5JKD83LWT',
+    apiKey: '1390283021f26e36117242934deb8d9d',
+    indexName: 'prod_Full_Docs',
     inputSelector: '#getkong-algolia-search-input',
     algoliaOptions: {
-      hitsPerPage: 5
+      hitsPerPage: 8
     },
     // Override selected event to allow for local environment navigation
     handleSelected: function (input, event, suggestion) {
       input.setVal('')
-      window.location.href = window.location.protocol + '//' + window.location.host + '/gateway-oss' + suggestion.url.split('docs.konghq.com')[1]
+      window.location.href = window.location.protocol + '//' + window.location.host + suggestion.url.split('docs.konghq.com')[1]
     }
     // ,debug: true // Set debug to true if you want to inspect the dropdown
   })
