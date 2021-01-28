@@ -34,13 +34,6 @@ For more information, see [What is API Gateway Authentication?](https://konghq.c
 {% navtabs %}
 {% navtab Using the Admin API %}
 
-<div class="alert alert-ee">
-<strong><img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" />Note for {{site.ee_product_name}} free trial users:</strong>
-<br/>
-If you are trying out {{site.ee_product_name}} using a hosted (cloud) free trial, make sure you have set up an RBAC user for the Admin API:
-<a href="/getting-started-guide/{{page.kong_version}}/prepare/#free-trials-setup">Prepare to Administer {{site.base_gateway}}</a>.
-</div>
-
 1. Call the Admin API on port `8001` and configure plugins to enable key authentication. For this example, apply the plugin to the */mock* route you created.
 
     *Using cURL*:

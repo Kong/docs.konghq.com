@@ -49,13 +49,6 @@ the Admin API.
 {% navtabs %}
 {% navtab Using the Admin API %}
 
-<div class="alert alert-ee">
-<strong><img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" />Note for {{site.ee_product_name}} free trial users:</strong>
-<br/>
-If you are trying out {{site.ee_product_name}} using a hosted (cloud) free trial, make sure you have set up an RBAC user for the Admin API:
-<a href="/getting-started-guide/{{page.kong_version}}/prepare/#free-trials-setup">Prepare to Administer {{site.base_gateway}}</a>.
-</div>
-
 Define a Service with the name `example_service` and the URL `http://mockbin.org`:
 
 <!-- codeblock tabs -->

@@ -16,7 +16,7 @@
       {% elsif page.edition == 'deck' %}<a href="/deck/">decK</a>
       {% elsif page.edition == 'kubernetes-ingress-controller' %}<a href="/kubernetes-ingress-controller/{{page.kong_version}}/">{{site.kic_product_name}}</a>
       {% elsif page.edition == 'community' %}<a href="/{{page.kong_version}}/">{{site.ce_product_name}}</a>
-      {% else %}<a href="/">Home</a>
+      {% elsif page.edition == 'getting-started-guide' %}<a href="/getting-started-guide/{{page.kong_version}}/overview">Getting Started with Kong Gateway</a>
       {% endif %}
     </li>
     {% if page.no_version == true %}

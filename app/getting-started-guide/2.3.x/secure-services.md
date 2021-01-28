@@ -9,7 +9,7 @@ If you are following the getting started workflow, make sure you have completed 
 
 API gateway authentication is an important way to control the data that is allowed to be transmitted using your APIs. Basically, it checks that a particular consumer has permission to access the API, using a predefined set of credentials.
 
-Kong Gateway has a library of plugins that provide simple ways to implement the best known and most widely used [methods of API gateway authentication](/hub/#authentication). Here are some of the commonly used ones:
+{{site.base_gateway}} has a library of plugins that provide simple ways to implement the best known and most widely used [methods of API gateway authentication](/hub/#authentication). Here are some of the commonly used ones:
 
 * Basic Authentication
 * Key Authentication
@@ -17,13 +17,13 @@ Kong Gateway has a library of plugins that provide simple ways to implement the 
 * LDAP Authentication Advanced
 * OpenID Connect
 
-Authentication plugins can be configured to apply to service entities within the Kong Gateway. In turn, service entities are mapped one-to-one with the upstream services they represent, essentially meaning that the authentication plugins apply directly to those upstream services.
+Authentication plugins can be configured to apply to service entities within the {{site.base_gateway}}. In turn, service entities are mapped one-to-one with the upstream services they represent, essentially meaning that the authentication plugins apply directly to those upstream services.
 
 ## Why use API Gateway Authentication?
 
-With authentication turned on, Kong Gateway won’t proxy requests unless the client successfully authenticates first. This means that the upstream (API) doesn’t need to authenticate client requests, and it doesn’t waste critical resources validating credentials.
+With authentication turned on, {{site.base_gateway}} won’t proxy requests unless the client successfully authenticates first. This means that the upstream (API) doesn’t need to authenticate client requests, and it doesn’t waste critical resources validating credentials.
 
-Kong Gateway has visibility into all authentication attempts, successful, failed, and so on, which provides the ability to catalog and dashboard those events to prove the right controls are in place, and to achieve compliance. Authentication also gives you an opportunity to determine how a failed request is handled. This might mean simply blocking the request and returning an error code, or in some circumstances, you might still want to provide limited access.
+{{site.base_gateway}} has visibility into all authentication attempts, successful, failed, and so on, which provides the ability to catalog and dashboard those events to prove the right controls are in place, and to achieve compliance. Authentication also gives you an opportunity to determine how a failed request is handled. This might mean simply blocking the request and returning an error code, or in some circumstances, you might still want to provide limited access.
 
 In this example, you’re going to enable the **Key Authentication plugin**. API key authentication is one of the most popular ways to conduct API authentication and can be implemented to create and delete access keys as required.
 
@@ -34,49 +34,57 @@ For more information, see [What is API Gateway Authentication?](https://konghq.c
 {% navtabs %}
 {% navtab Using the Admin API %}
 
-<div class="alert alert-ee">
-<strong><img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" />Note for {{site.ee_product_name}} free trial users:</strong>
-<br/>
-If you are trying out {{site.ee_product_name}} using a hosted (cloud) free trial, make sure you have set up an RBAC user for the Admin API:
-<a href="/getting-started-guide/{{page.kong_version}}/prepare/#free-trials-setup">Prepare to Administer {{site.base_gateway}}</a>.
-</div>
+Call the Admin API on port `8001` and configure plugins to enable key
+authentication. For this example, apply the plugin to the */mock* route you
+created:
 
-1. Call the Admin API on port `8001` and configure plugins to enable key authentication. For this example, apply the plugin to the */mock* route you created.
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -X POST http://<admin-hostname>:8001/routes/mocking/plugins \
+  --data name=key-auth
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8001/routes/mocking/plugins \
+  name=key-auth
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
-    *Using cURL*:
+Try to access the service again:
 
-    ```sh
-    $ curl -X POST http://<admin-hostname>:8001/routes/mocking/plugins \
-    --data name=key-auth
-    ```
-    *Or using HTTPie*:
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -i http://<admin-hostname>:8000/mock
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8000/mock
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
-    ```sh
-    $ http :8001/routes/mocking/plugins name=key-auth
-    ```
+Since you added key authentication, you should be unable to access it:
 
-2. Try to access the service again:
+```sh
+HTTP/1.1 401 Unauthorized
+...
+{
+    "message": "No API key found in request"
+}
+```
 
-    *Using cURL*:
-    ```sh
-    $ curl -i http://<admin-hostname>:8000/mock
-    ```
-    *Or using HTTPie*:
-    ```sh
-    $ http :8000/mock
-    ```
-
-    Since you added key authentication, you should be unable to access it:
-
-    ```sh
-    HTTP/1.1 401 Unauthorized
-    ...
-    {
-        "message": "No API key found in request"
-    }
-    ```
-
-Before Kong proxies requests for this route, it needs an API key. For this example, since you installed the Key Authentication plugin, you need to create a consumer with an associated key first.
+Before Kong proxies requests for this route, it needs an API key. For this
+example, since you installed the Key Authentication plugin, you need to create
+a consumer with an associated key first.
 
 {% endnavtab %}
 
@@ -156,51 +164,70 @@ a consumer with an associated key first.
 
 
 ## Set up Consumers and Credentials
+
 {% navtabs %}
 {% navtab Using the Admin API %}
 
-1. To create a consumer, call the Admin API and the consumer’s endpoint. The following creates a new consumer called **consumer**.
+To create a consumer, call the Admin API and the consumer’s endpoint.
+The following creates a new consumer called **consumer**:
 
-    *Using cURL*:
-    ```sh
-    $ curl -i -X POST http://<admin-hostname>:8001/consumers/ \
-     --data username=consumer \
-     --data custom_id=consumer
-    ```
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -i -X POST http://<admin-hostname>:8001/consumers/ \
+  --data username=consumer \
+  --data custom_id=consumer
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8001/consumers \
+  username=consumer \
+  custom_id=consumer
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
-    *Or using HTTPie*:
-    ```sh
-    $ http :8001/consumers username=consumer custom_id=consumer
-    ```
+Once provisioned, call the Admin API to provision a key for the consumer
+created above. For this example, set the key to `apikey`.
 
-2. Once provisioned, call the Admin API to provision a key for the consumer created above. For this example, set the key to `apikey`. If no key is entered, Kong automatically generates the key.
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -i -X POST http://<admin-hostname>:8001/consumers/consumer/key-auth \
+  --data key=apikey
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8001/consumers/consumer/key-auth \
+  key=apikey
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
-    *Using cURL*:
-    ```sh
-    $ curl -i -X POST http://<admin-hostname>:8001/consumers/consumer/key-auth \
-    --data key=apikey
-    ```
-    *Or using HTTPie*:
-    ```sh
-    $ http :8001/consumers/consumer/key-auth key=apikey
-    ```
+If no key is entered, Kong automatically generates the key.
 
-    Result:
+Result:
 
-    ```sh
-    HTTP/1.1 201 Created
-    ...
-    {
-        "consumer": {
-            "id": "2c43c08b-ba6d-444a-8687-3394bb215350"
-        },
-        "created_at": 1568255693,
-        "id": "86d283dd-27ee-473c-9a1d-a567c6a76d8e",
-        "key": "apikey"
-    }
-    ```
+```sh
+HTTP/1.1 201 Created
+...
+{
+    "consumer": {
+        "id": "2c43c08b-ba6d-444a-8687-3394bb215350"
+    },
+    "created_at": 1568255693,
+    "id": "86d283dd-27ee-473c-9a1d-a567c6a76d8e",
+    "key": "apikey"
+}
+```
 
-    You now have a consumer with an API key provisioned to access the route.
+You now have a consumer with an API key provisioned to access the route.
 
 {% endnavtab %}
 {% navtab Using Kong Manager %}
@@ -279,16 +306,21 @@ You now have a consumer with an API key provisioned to access the route.
 {% navtab Using the Admin API %}
 To validate the Key Authentication plugin, access the *mocking* route again, using the header `apikey` with a key value of `apikey`.
 
-*Using cURL*:
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
 ```sh
-$ curl -i http://<admin-hostname>:8000/mock/request -H 'apikey:apikey'
+$ curl -i http://<admin-hostname>:8000/mock/request \
+  -H 'apikey:apikey'
 ```
-
-*Or using HTTPie*:
-
+{% endnavtab %}
+{% navtab HTTPie %}
 ```sh
 $ http :8000/mock/request apikey:apikey
 ```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
 You should get an `HTTP/1.1 200 OK` message in response.
 
@@ -309,33 +341,47 @@ If you are following this getting started guide topic by topic, you will need to
 {% navtabs %}
 {% navtab Using the Admin API %}
 
-1. Find the plugin ID and copy it.
+Find the plugin ID and copy it:
 
-    *Using cURL*:
-    ```sh
-    $ curl -X GET http://<admin-hostname>:8001/routes/mocking/plugins/
-    ```
-    *Or using HTTPie*:
-    ```sh
-    $ http :8001/routes/mocking/plugins
-    ```
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -X GET http://<admin-hostname>:8001/routes/mocking/plugins/
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8001/routes/mocking/plugins
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
-    Output:
-     ```sh
-     "id": "2512e48d9-7by0-674c-84b7-00606792f96b"
-     ```
+Output:
+```sh
+"id": "2512e48d9-7by0-674c-84b7-00606792f96b"
+```
 
-2. Disable the plugin.
+Disable the plugin:
 
-    *Using cURL*:
-    ```sh
-    $ curl -X PATCH http://<admin-hostname>:8001/routes/mocking/plugins/{<plugin-id>} \
-    --data enabled=false
-    ```
-    *Or using HTTPie*:
-    ```sh
-    $ http :8001/routes/mocking/plugins/{<plugin-id>} enabled=false
-    ```
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -X PATCH http://<admin-hostname>:8001/routes/mocking/plugins/{<plugin-id>} \
+  --data enabled=false
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http -f patch :8001/routes/mocking/plugins/{<plugin-id>} \
+  enabled=false
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
+
 {% endnavtab %}
 
 {% navtab Using Kong Manager %}
