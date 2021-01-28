@@ -30,7 +30,7 @@ now support UTF-8 characters.
 and key pair.
 - The Go pluginserver `stderr` and `stdout` are now written into Kong’s logs, allowing Golang’s
 native `log.Printf()`.
-  - Introduced support for multiple pluginservers. This feature is backwards-compatible with
+  - Introduced support for multiple pluginservers. This feature is backward-compatible with
   the existing single Go pluginserver.
 
 #### Plugin Development Kit (PDK)
