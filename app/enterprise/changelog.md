@@ -63,8 +63,9 @@ and where only Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are al
 
 #### Configuration
 - `client_max_body_size` and `client_body_buffer_size`, that previously
-  hardcoded to 10m, are now configurable through `nginx_admin_client_max_body_size`
-  and `nginx_admin_client_body_buffer_size`.
+  hardcoded to 10m, are now configurable through
+  [nginx_admin_client_max_body_size](/2.3.x/configuration/#nginx_http_client_max_body_size)
+  and [nginx_admin_client_body_buffer_size](/2.3.x/configuration/#nginx_admin_client_body_buffer_size).
 - Kong-generated SSL private keys now have `600` file system permission.
 - Properties `ssl_cert`, `ssl_cert_key`, `admin_ssl_cert`,
   `admin_ssl_cert_key`, `status_ssl_cert`, and `status_ssl_cert_key`
