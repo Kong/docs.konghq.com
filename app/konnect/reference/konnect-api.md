@@ -2,7 +2,6 @@
 title: Using the Konnect API
 no_version: true
 ---
-## Overview
 
 {{site.konnect_product_name}} provides a RESTful admin API for administration.
 
@@ -10,8 +9,9 @@ This API is designed for internal use and provides full control over a Konnect
 organization and its entities, so care should be taken when setting up
 [user permissions](/konnect/reference/org-management/#role-definitions).
 
-See the [Konnect API Swagger](https://khcp.konghq.com/docs) documentation for a
-list of all endpoints.
+For a list of all endpoints, see:
+* [Konnect API Swagger documentation](https://khcp.konghq.com/docs)
+* [Raw Swagger JSON](https://khcp.konghq.com/docs-json)
 
 ## Making a Request to the Konnect API
 
