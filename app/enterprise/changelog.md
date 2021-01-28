@@ -47,8 +47,8 @@ native `log.Printf()`.
 
 #### Plugins
 - The [HTTP Log](https://docs.konghq.com/hub/kong-inc/http-log/) (`http-log`) plugin
-has been improved to allow you to add headers to the HTTP request, which will help you integrate
-with many observability systems.
+has been improved to allow you to add a table of headers to the HTTP request using the
+`headers` configuration parameter, which will help you integrate with many observability systems.
 - The [Key Authentication](https://docs.konghq.com/hub/kong-inc/key-auth/) (`key-auth`)
 plugin has two new configuration parameters: `key_in_header` and `key_in_query`. Both
 are booleans and tell Kong whether to accept (true) or reject (false) passed in either
