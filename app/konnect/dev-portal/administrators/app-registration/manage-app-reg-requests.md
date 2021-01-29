@@ -12,7 +12,7 @@ developers must register their applications with a Service.
 
 ## Prerequisite
 
-You must be a Konnect admin with the
+You must be a {{site.konnect_short_name}} admin with the
 [correct roles and permissions](/konnect/reference/org-management/#role-definitions)
 to manage application registration requests for a Service.
 
@@ -27,18 +27,18 @@ manage application registration requests:
 The following status conditions reflect the current state of a registration request:
 
 **Approved**
-: An application created by a developer has been approved to access a Service in the Konnect Dev Portal.
+: An application created by a developer has been approved to access a Service in the {{site.konnect_short_name}} Dev Portal.
 
 **Pending**
 : A developer who has requested access to a Service for an application but has not
-yet had their request reviewed by a Konnect admin, if auto approve is not enabled.
+yet had their request reviewed by a {{site.konnect_short_name}} admin, if auto approve is not enabled.
 
 **Rejected**
-: An application registration request for Service access was rejected by a Konnect admin.
+: An application registration request for Service access was rejected by a {{site.konnect_short_name}} admin.
 
 ## Requests Page Applications Tab
 
-To access the Requests page Applications tab, from the Konnect navigation menu, click
+To access the Requests page Applications tab, from the {{site.konnect_short_name}} navigation menu, click
 **Connections** > **Requests** > **Applications** tab.
 
 ![Konnect Application Registration Requests](/assets/images/docs/konnect/konnect-requests-app-reg.png)
@@ -50,7 +50,8 @@ In the Requests page Applications tab, you can:
 - [Reject a request](#reject-app-reg) for app registration with a Service.
 - [Delete a request](#delete-app-reg) for app registration with a Service.
 
-If there are no pending requests, the No Application Requests message is displayed.
+If there are no pending requests, the No Application Requests message is displayed. The number of
+pending requests is displayed in the Requests menu and the Applications tab.
 
 ### Approve an app registration request {#approve-app-reg}
 
@@ -90,8 +91,8 @@ unregistering their application from a Service.
    let the rejected request remain on the Requests page Applications tab or outright
    [delete](#delete-app-reg) it.
 
-   An email is sent to the developer to let them know their application registration
-   for Service access was rejected.
+   <!---An email is sent to the developer to let them know their application registration
+   for Service access was rejected.--->
 
    The status displays in the Services pane in the
    application details page available from the developer My Apps dashboard in the dev portal.
@@ -117,7 +118,7 @@ appears in the Select Application list in the Register for Service dialog for th
    **Delete** from the context menu.
 
    The request is deleted from the Request page Applications tab. The pending request is also
-   deleted from the Services pane of an application in the Konnect Dev Portal.
+   deleted from the Services pane of an application in the {{site.konnect_short_name}} Dev Portal.
 
-   An email is sent to the developer to let them know their application registration
-   for Service access was deleted.
+   <!---An email is sent to the developer to let them know their application registration
+   for Service access was deleted.--->

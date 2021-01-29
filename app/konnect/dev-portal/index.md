@@ -1,22 +1,25 @@
 ---
-title: Using the Dev Portal
+title: Developer Portal Overview
 no_version: true
+toc: false
 ---
 
-The Dev Portal in {{site.konnect_product_name}} contains an API Catalog,
-which allows you to document all of your Services and Versions.
+The Dev Portal in {{site.konnect_product_name}} provides an API Catalog, which allows you to
+document and manage application registration for all of your Services and their versions.
 
-* Markdown documentation: a description of your Service. Applies to every
-Service version.
-* Version spec: An OAS/Swagger document in YAML or JSON format. Applies to a
-specific Service Version.
+You can access the Dev Portal for any published Service through the URL
+found on the **Dev Portal** page. From the {{site.konnect_short_name}} menu,
+click **Dev Portal**. The **Published Services** page displays the **Portal URL**.
 
-The purpose of the Portal is to allow registration and consumption of services
-running through Kong to other teams, developers, partners, and so on.
+![Konnect Portal URL](/assets/images/docs/konnect/konnect-portal-url.png)
 
-You can access the Developer Portal for any published Service through the URL
-found on the **Dev Portal** page. The format looks something like this:
+The format looks something like this:
 
 ```
 <org-name>.portal.khcp.konghq.com
 ```
+
+Setting up custom Dev Portal URLs is not currently supported through
+{{site.konnect_short_name}} SaaS. If needed,
+contact [Kong Support](https://support.konghq.com/), and we will manually set up
+a custom Dev Portal URL for your {{site.konnect_short_name}} SaaS account.

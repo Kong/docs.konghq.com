@@ -89,18 +89,7 @@
   items:
     - text: Overview
       url: /dev-portal
-    - text: Developers
-      items:
-        - text: Developer Registration
-          url: /dev-portal/developers/dev-reg
-        - text: Applications
-          items:
-            - text: Create, Edit, and Delete an Application
-              url: /dev-portal/developers/dev-apps
-            - text: Register an Application with a Service
-              url: /dev-portal/developers/dev-reg-app-service
-            - text: Generate Credentials for an Application
-              url: /dev-portal/developers/dev-gen-creds
+
     - text: Administrators
       items:
         - text: Application Registration
@@ -123,6 +112,20 @@
           items:
           - text: Customizing the Dev Portal Appearance
             url: /dev-portal/administrators/customization/themes
+
+    - text: Developers
+      items:
+        - text: Developer Registration
+          url: /dev-portal/developers/dev-reg
+        - text: Applications
+          items:
+            - text: Create, Edit, and Delete an Application
+              url: /dev-portal/developers/dev-apps
+            - text: Register an Application with a Service
+              url: /dev-portal/developers/dev-reg-app-service
+            - text: Generate Credentials for an Application
+              url: /dev-portal/developers/dev-gen-creds
+
 
 - title: Konnect Vitals
   icon: /assets/images/icons/documentation/icn-vitals.svg

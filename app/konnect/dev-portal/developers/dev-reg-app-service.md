@@ -7,11 +7,11 @@ toc: true
 When [application registration is enabled](/konnect/dev-portal/administrators/app-registration/enable-app-reg/),
 developers must register their applications with a Service. Requests for access must be
 [approved by a Konnect admin](/konnect/dev-portal/administrators/app-registration/manage-app-reg-requests) if
-auto approve is not enabled.
+[auto approve](/konnect/dev-portal/administrators/auto-approve-devs-apps) is not enabled.
 
 ## Prerequisites
 
-- Application registration must be enabled for the Service by a Konnect admin.
+- Application registration must be enabled for the Service by a {{site.konnect_short_name}} admin.
 - [Create an Application](/konnect/dev-portal/developers/dev-apps#create-app-portal).
 
 ## Register an Application with a Service from the Dev Portal
@@ -20,13 +20,13 @@ This procedure assumes that there are no
 existing Services configured for an application yet. You can register an application with multiple
 applicable Services.
 
-1. Log in to the Konnect Dev Portal.
+1. Log in to the {{site.konnect_short_name}} Dev Portal.
 
    The Service Catalog is displayed.
 
 2. Click on a Service tile.
 
-   **Note:** Not all Services might have app registration enabled. Contact your Konnect admin
+   **Note:** Not all Services might have app registration enabled. Contact your {{site.konnect_short_name}} admin
    if you need it enabled on a Service.
 
 3. Click **Register**.
@@ -39,8 +39,8 @@ applicable Services.
 
 5. Click **Request Access**.
 
-   A dialog message indicates your registration is under review and you will be notified
-   by email upon approval. Click **Close**.
+   A dialog message indicates your registration is under review if Auto Approve is not enabled,
+   and you will be notified by email upon approval. Click **Close**.
 
    You can check the status of your request in the
    [application details](/konnect/dev-portal/developers/dev-apps/#app-details-page) page.
@@ -52,9 +52,10 @@ registration for the incorrect Service, an application is being decommissioned,
 or the application registration has been rejected.
 
 You can unregister an application with a pending, approved, or rejected registration status.
-Unregistering a pending request removes the request from the Konnect admin's approval queue.
+Unregistering a pending request removes the request from the {{site.konnect_short_name}} admin's
+approval queue.
 
-If a Konnect admin deletes the pending request, the pending request is removed from
+If a {{site.konnect_short_name}} admin deletes the pending request, the pending request is removed from
 the **Services** pane.
 
 1. Click **Dashboard**.
@@ -77,5 +78,4 @@ If you encounter any of the errors below that appear in the Register dialog, fol
 
 | Error Message | Solution |
 |------------------------------|---------------------------------------------------------------------------------|
-| Application registration is not enabled for this Service. | [Enable application registration for the Service](/konnect/dev-portal/administrators/app-registration/enable-app-reg/). Contact your Konnect admin if you do not have the role permissions to do so.  |
-| Key (application_id, service_packge_id ...) already exists. | The application you selected is already registered with the Service. Select another application that is not registered yet, or select another Service to register the application with. |
+| Application registration is not enabled for this Service. | [Enable application registration for the Service](/konnect/dev-portal/administrators/app-registration/enable-app-reg/). Contact your {{site.konnect_short_name}} admin if you do not have the role permissions to do so.  |
