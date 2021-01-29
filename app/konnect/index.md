@@ -26,10 +26,10 @@ no_version: true
   </div>
 
   <div class="docs-grid-block">
-    <h3><a href="/konnect/service-hub">ServiceHub</a></h3>
+    <h3><a href="/konnect/servicehub">ServiceHub</a></h3>
     <p>Catalog, manage, track, and easily discover every service across your
     organization through ServiceHub. </p>
-    <a href="/konnect/service-hub">Get Started with
+    <a href="/konnect/servicehub">Get Started with
     ServiceHub &rarr;</a>
   </div>
 

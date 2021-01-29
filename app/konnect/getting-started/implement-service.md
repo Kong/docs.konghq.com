@@ -81,7 +81,7 @@ front end, which you can now give to clients to make requests.
 
 For next steps, check out some of the other things you can do in
 {{site.konnect_short_name}} SaaS:
-* Enable plugins on a [Service](/konnect/service-hub/plugins/enable-service-plugin) or a
-[Route](/konnect/service-hub/plugins/enable-route-plugin)
-* [Set up the Dev Portal](/konnect/service-hub/dev-portal/service-documentation)
+* Enable plugins on a [Service](/konnect/servicehub/plugins/enable-service-plugin) or a
+[Route](/konnect/servicehub/plugins/enable-route-plugin)
+* [Set up the Dev Portal](/konnect/servicehub/dev-portal/service-documentation)
 * [Manage your teams and users with RBAC](/konnect/reference/org-management)

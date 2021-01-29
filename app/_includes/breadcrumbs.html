@@ -20,13 +20,24 @@
       {% endif %}
     </li>
     {% if page.no_version == true %}
-      {% for crumb in crumbs offset: 2 %}
-        {% unless forloop.last %}
-          <li class="breadcrumb-item">
-            {% assign crumb_limit = forloop.index | plus: 2 %}{{ crumb | replace:'-',' ' | remove:'.md' | capitalize }}
-          </li>
-        {% endunless %}
-      {% endfor %}
+      {% if page.url contains '/konnect/servicehub' %}
+      <li class="breadcrumb-item">ServiceHub</li>
+        {% for crumb in crumbs offset: 3 %}
+          {% unless forloop.last %}
+            <li class="breadcrumb-item">
+              {% assign crumb_limit = forloop.index | plus: 3 %}{{ crumb | replace:'-',' ' | remove:'.md' | capitalize }}
+            </li>
+          {% endunless %}
+        {% endfor %}
+      {% else %}
+        {% for crumb in crumbs offset: 2 %}
+          {% unless forloop.last %}
+            <li class="breadcrumb-item">
+              {% assign crumb_limit = forloop.index | plus: 2 %}{{ crumb | replace:'-',' ' | remove:'.md' | capitalize }}
+            </li>
+          {% endunless %}
+        {% endfor %}
+      {% endif %}
     {% else %}
       {% for crumb in crumbs offset: 3 %}
         {% unless forloop.last %}

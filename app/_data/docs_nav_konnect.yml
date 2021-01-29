@@ -56,25 +56,25 @@
     - text: Implement and Test the Service
       url: /getting-started/implement-service
 
-- title: Service Hub
+- title: ServiceHub
   icon: /assets/images/icons/documentation/icn-service-hub-color.svg
   items:
     - text: Overview
-      url: /service-hub
+      url: /servicehub
     - text: Manage Services
-      url: /service-hub/manage-services
+      url: /servicehub/manage-services
     - text: Manage Plugins
       items:
         - text: Configure a Plugin on a Service
-          url: /service-hub/plugins/enable-service-plugin
+          url: /servicehub/plugins/enable-service-plugin
         - text: Configure a Plugin on a Route
-          url: /service-hub/plugins/enable-route-plugin
+          url: /servicehub/plugins/enable-route-plugin
     - text: Developer Portal
       items:
         - text: Manage Service Documentation
-          url: /service-hub/dev-portal/service-documentation
+          url: /servicehub/dev-portal/service-documentation
         - text: Publish a Service to Dev Portal
-          url: /service-hub/dev-portal/publish
+          url: /servicehub/dev-portal/publish
 
 - title: Runtime Manager
   icon: /assets/images/icons/documentation/icn-runtime-manager-color.svg

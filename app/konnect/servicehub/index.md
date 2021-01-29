@@ -42,7 +42,7 @@ listens for requests. You can specify the URL with a single string, or by
 specifying its protocol, host, port, and path individually.
 
 **See more:**
-* [Get started with Service management](/konnect/service-hub/manage-services)
+* [Get started with Service management](/konnect/servicehub/manage-services)
 
 ### Kong Gateway Implementations
 
@@ -71,8 +71,8 @@ Service version.
 Applies to a specific Service version.
 
 **See more:**
-* [Upload Service Documentation to the Dev Portal](/konnect/service-hub/dev-portal/service-documentation)
-* [Publish a Service to the Dev Portal](/konnect/service-hub/dev-portal/publish)
+* [Upload Service Documentation to the Dev Portal](/konnect/servicehub/dev-portal/service-documentation)
+* [Publish a Service to the Dev Portal](/konnect/servicehub/dev-portal/publish)
 
 ## Kong Gateway Plugins
 
@@ -112,5 +112,5 @@ If your plugin meets these requirements and you want to use it in
 
 **See more:**
 * [Plugin compatibility](/hub/plugins/compatibility/)
-* [Configure a plugin on a Service](/konnect/service-hub/plugins/enable-service-plugin)
-* [Configure a plugin on a Route](/konnect/service-hub/plugins/enable-route-plugin)
+* [Configure a plugin on a Service](/konnect/servicehub/plugins/enable-service-plugin)
+* [Configure a plugin on a Route](/konnect/servicehub/plugins/enable-route-plugin)

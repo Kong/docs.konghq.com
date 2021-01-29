@@ -52,9 +52,9 @@ representative for access.
     {{site.ee_gateway_name}} instance and connects it to your
     {{site.konnect_short_name}} SaaS account.
 
-6. Click **Done** to go to the Runtimes page.
+6. Click **Done** to go to the Runtime Manager overview.
 
-    Once the script has finished running, the Runtimes page will
+    Once the script has finished running, the Runtimes Manager will
     include a new entry for your instance.
     <!-- and the tag in the **Node Status** column should say
     **Connected**.-->

@@ -10,3 +10,5 @@
 
 # Konnect
 /konnect/access-beta                        /konnect/access-account
+/konnect/service-hub                        /konnect/servicehub
+/konnect/service-hub/*                      /konnect/servicehub/:splat

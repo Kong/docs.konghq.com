@@ -10,7 +10,7 @@ You can upload Service descriptions and version specs. At a minimum, we
 recommend uploading an API spec for each Service version.
 
 After adding documentation for your Services,
-[publish](/konnect/service-hub/dev-portal/publish) them to the Dev Portal.
+[publish](/konnect/servicehub/dev-portal/publish) them to the Dev Portal.
 
 ## Service Descriptions
 
@@ -60,7 +60,7 @@ format.
 
     If the Service was previously published to the Dev Portal, the documentation
     for the Service gets automatically updated with your changes. If not,
-    [publish](/konnect/service-hub/dev-portal/publish) the Service.
+    [publish](/konnect/servicehub/dev-portal/publish) the Service.
 
 ### Update or Delete a Version Spec
 
