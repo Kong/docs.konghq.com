@@ -10,7 +10,7 @@
     </li>
     {% endif %}
     <li class="breadcrumb-item">
-      {% if page.edition == 'enterprise' %}<a href="/enterprise/{{page.kong_version}}/">{{site.ee_product_name}}</a>
+      {% if page.edition == 'enterprise' %}<a href="/enterprise/{% unless page.no_version == true %}{{page.kong_version}}/{% endunless %}">{{site.ee_product_name}}</a>
       {% elsif page.edition == 'konnect' %}<a href="/konnect/">{{site.konnect_product_name}}</a>
       {% elsif page.edition == 'mesh' %}<a href="/mesh/{{page.kong_version}}/">{{site.mesh_product_name}}</a>
       {% elsif page.edition == 'deck' %}<a href="/deck/">decK</a>
