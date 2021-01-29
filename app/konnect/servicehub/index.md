@@ -90,6 +90,15 @@ The Portal Application Registration plugin is enabled automatically when you
 enable application registration for the Dev Portal. You don't need to
 enable it directly.
 
+### Plugin Limitations
+
+* [Key Auth Encrypted:](/hub/kong-inc/key-auth-enc) This plugin is not
+available in {{site.konnect_short_name}} SaaS.
+* [Rate Limiting](/hub/kong-inc/rate-limiting) and
+[Rate Limiting Advanced:](/hub/kong-inc/rate-limiting-advanced) These
+plugins only support the `redis` strategy, for which you must provide your own
+Redis cluster.
+
 ### Custom Plugins
 
 Currently, there is no way to add a custom plugin directly through the
@@ -105,7 +114,7 @@ your plugins must not have the following:
   * No `init_worker` callback
   * No Lua code outside of the top-level functions
 * Third-party library dependencies: No `require()` calls to modules that are
-not bundled by default with {{site.konnect_products_name}}
+not bundled by default with {{site.konnect_product_name}}
 
 If your plugin meets these requirements and you want to use it in
 {{site.konnect_short_name}} SaaS, contact [Kong Support](https://support.konghq.com/).
