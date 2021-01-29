@@ -57,7 +57,7 @@
       url: /getting-started/implement-service
 
 - title: Service Hub
-  icon: /assets/images/icons/documentation/icn-quickstart-color.svg
+  icon: /assets/images/icons/documentation/icn-service-hub-color.svg
   items:
     - text: Overview
       url: /service-hub
@@ -77,7 +77,7 @@
           url: /service-hub/dev-portal/publish
 
 - title: Runtime Manager
-  icon: /assets/images/icons/documentation/icn-quickstart-color.svg
+  icon: /assets/images/icons/documentation/icn-runtime-manager-color.svg
   items:
     - text: Overview
       url: /runtime-manager
