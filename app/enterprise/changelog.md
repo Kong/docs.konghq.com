@@ -1,5 +1,5 @@
 ---
-title: Kong Enterprise Changelog
+title: Kong Gateway (Enterprise) Changelog
 no_search: true
 no_version: true
 skip_read_time: true

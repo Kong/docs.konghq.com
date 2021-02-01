@@ -1,8 +1,8 @@
 ---
-title: Kong Enterprise 2.2.x Release Notes
+title: Kong Gateway (Enterprise) 2.2.x Release Notes
 ---
 
-These release notes provide a high-level overview of Kong Enterprise 2.2.x,
+These release notes provide a high-level overview of {{site.ee_product_name}} 2.2.x,
 which includes the 2.2.0.0 (beta) release. For detailed information about 2.2.x,
 2.2.0.0 (beta), and any subsequent 2.2.x patch releases, see the
 [Changelog](https://docs.konghq.com/enterprise/changelog/).
@@ -11,12 +11,12 @@ which includes the 2.2.0.0 (beta) release. For detailed information about 2.2.x,
 
 ### UDP Support
 
-Kong Enterprise now supports UDP-based protocols. UDP is used in a wide range
+{{site.ee_product_name}} now supports UDP-based protocols. UDP is used in a wide range
 of applications, ranging from audio/video streaming to gaming servers to
-financial services and much more, giving Kong Enterprise 2.2.x a wider range
+financial services and much more, giving {{site.ee_product_name}} 2.2.x a wider range
 of supported APIs.
 
-Kong Enterprise 2.2.x adds support for proxying, load balancing, and running
+{{site.ee_product_name}} 2.2.x adds support for proxying, load balancing, and running
 plugins on UDP data, giving users similar functionality for UDP to what was
 already available for TCP. When using Kong for load balancing, there is no
 inherent sense of a stateful connection in UDP. Kong ensures
@@ -38,12 +38,12 @@ The following plugins support UDP-based protocols:
 
 ### Security Improvements
 
-Kong Enterprise 2.2.x has new features that help make security simpler and
+{{site.ee_product_name}} 2.2.x has new features that help make security simpler and
 more robust.
 
 #### Automatically Trust OS Certificates
 
-Kong Enterprise 2.2.x introduces the ability to automatically load certificates
+{{site.ee_product_name}} 2.2.x introduces the ability to automatically load certificates
 that are pre-installed with the operating system (OS) using the
 `lua_ssl_trusted_certificate` configuration option. This configuration also allows
 multiple entries alongside the certificate file bundled with the OS. This
@@ -68,13 +68,13 @@ For more information, see [Running Kong as a Non-Root User](/enterprise/{{page.k
 
 #### TLS Connections with Redis
 
-Kong Enterprise 2.2.x can now establish TLS connections to the Redis
+{{site.ee_product_name}} 2.2.x can now establish TLS connections to the Redis
 database. This feature is useful in, for example, the [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced)
 and [Proxy Caching Advanced](/hub/kong-inc/proxy-cache-advanced) plugins.
 
 #### OpenID Connect
 
-Kong Enterprise 2.2.x introduces new features in the OpenID Connect plugin:
+{{site.ee_product_name}} 2.2.x introduces new features in the OpenID Connect plugin:
 * Improved resilience to discovery (and rediscovery).
 * Can now pass `urn:ietf:params:oauth:grant-type:jwt-bearer` assertions with the
 `client_credentials` authentication method.
@@ -118,10 +118,10 @@ a per-Route basis, creating potential to greatly reduce latency.
 
 ## Deprecated Features
 
-Kong Brain is no longer available for use in Kong Enterprise version 2.1.4.2
+Kong Brain is no longer available for use in {{site.ee_product_name}} version 2.1.4.2
 and later.
 
 ## Changelog
 
 For a complete list of features, fixes, known issues and workarounds, and other
-changes, see the Kong Enterprise [Changelog](/enterprise/changelog/).
+changes, see the {{site.ee_product_name}} [Changelog](/enterprise/changelog/).

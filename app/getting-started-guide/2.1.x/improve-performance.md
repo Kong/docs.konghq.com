@@ -21,13 +21,6 @@ Use proxy caching so that Upstream services are not bogged down with repeated re
 {% navtabs %}
 {% navtab Using the Admin API %}
 
-<div class="alert alert-ee">
-<strong><img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" />Note for {{site.ee_product_name}} free trial users:</strong>
-<br/>
-If you are trying out {{site.ee_product_name}} using a hosted (cloud) free trial, make sure you have set up an RBAC user for the Admin API:
-<a href="/getting-started-guide/{{page.kong_version}}/prepare/#free-trials-setup">Prepare to Administer {{site.base_gateway}}</a>.
-</div>
-
 Call the Admin API on port `8001` and configure plugins to enable in-memory caching globally, with a timeout of 30 seconds for Content-Type `application/json`.
 
 *Using cURL*:

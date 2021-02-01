@@ -4,14 +4,14 @@ skip_read_time: true
 ---
 
 ## Introduction
-Kong for Kubernetes Enterprise provides most Kong Enterprise plugins and runs
-without a database, but does not include other Kong Enterprise features (Kong
+Kong for Kubernetes Enterprise provides most {{site.ee_product_name}} plugins and runs
+without a database, but does not include other enterprise features (Kong
 Manager, Dev Portal, Vitals, and so on).
 
 This installation topic walks you through a DB-less deployment on
-Kubernetes. For the full range of Enterprise features, you need a
+Kubernetes. For the full range of enterprise features, you need a
 database-backed or a hybrid deployment. See the instructions for
-[Installing Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/deployment/installation/kong-on-kubernetes),
+[Installing {{site.ee_product_name}} on Kubernetes](/enterprise/{{page.kong_version}}/deployment/installation/kong-on-kubernetes),
 which walk you through a deployment with a database.
 
 <div class="alert alert-ee blue">
@@ -26,7 +26,7 @@ deployments.
 You can install Kong for Kubernetes Enterprise using YAML with `kubectl`, with
 OpenShift `oc`, or [with Helm](https://github.com/Kong/charts/tree/main/charts/kong).
 
-### Deployment Options
+### Deployment options
 
 The following instructions assume that you are deploying {{site.ee_product_name}} in [classic embedded mode](/enterprise/{{page.kong_version}}/deployment/deployment-options).
 
@@ -39,7 +39,7 @@ Before starting installation, be sure you have the following:
 - **kubectl or oc access**: You should have `kubectl` or `oc` (if working with OpenShift) installed and configured to communicate to your Kubernetes cluster.
 {% include /md/{{page.kong_version}}/bintray-and-license.md %}
 
-## Step 1. Provision a Namespace
+## Step 1. Provision a namespace
 
 To create the secrets for license and Docker registry access,
 first provision the `kong` namespace:
@@ -57,7 +57,7 @@ $ oc new-project kong
 {% endnavtab %}
 {% endnavtabs %}
 
-## Step 2. Set Up Kong Enterprise License
+## Step 2. Set up license
 Running Kong for Kubernetes Enterprise requires a valid license. See [prerequisites](#prerequisites) for more information.
 
 Save the license file temporarily to disk with filename `license` (no file extension) and execute the following:
@@ -81,9 +81,9 @@ $ oc create secret generic kong-enterprise-license --from-file=./license -n kong
   <li>There is no <code>.json</code> extension in the <code>--from-file</code> parameter.</li>
   <li><code>-n kong</code> specifies the namespace in which you are deploying Kong for Kubernetes Enterprise. If you are deploying in a different namespace, change this value.</li></ul></div>
 
-## Step 3. Configure Kong Enterprise Docker registry access
+## Step 3. Configure Docker registry access
 
-Set up Docker credentials to allow Kubernetes nodes to pull down the Kong Enterprise Docker image, which is hosted in a private repository. You receive credentials for the Kong Enterprise Docker image when you sign up for Kong Enterprise.
+Set up Docker credentials to allow Kubernetes nodes to pull down the {{site.ee_product_name}} Docker image, which is hosted in a private repository. You receive credentials for the Docker image when you sign up for {{site.konnect_product_name}}.
 
 {% navtabs codeblock %}
 {% navtab kubectl %}
@@ -177,7 +177,7 @@ $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip
 ```
 
 It might take a while for your cloud provider to associate the IP address to the `kong-proxy` service.
-After you have installed Kong, see the [getting started tutorial](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/guides/getting-started.md).
+After you have installed {{site.base_gateway}}, see the [getting started tutorial](/kubernetes-ingress-controller/guides/getting-started).
 
-## Next steps...
+## Next steps
 See [Using Kong for Kubernetes Enterprise](/enterprise/{{page.kong_version}}/deployment/using-kong-for-kubernetes) for information about concepts, how-to guides, reference guides, and using plugins.
