@@ -101,5 +101,5 @@ $ http GET https://konnect.konghq.com/api/control_planes \
 {% endnavtab %}
 {% endnavtabs %}
 
-This time, you get get an `HTTP 200` response code and the control plane
+This time, you should get an `HTTP 200` response code and the control plane
 information.

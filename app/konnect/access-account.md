@@ -3,7 +3,27 @@ title: Accessing a Kong Konnect SaaS Account
 no_version: true
 ---
 
-## Sign Up for a Konnect SaaS Account
+Currently, there is no self-serve account sign up for {{site.konnect_short_name}}.
+Contact your Kong sales representative to set up a {{site.konnect_short_name}}
+SaaS account. 
+
+## Set up a Konnect SaaS account
+
+1. Follow the link from your {{site.konnect_short_name}} welcome email to
+verify your account and reset the default password.
+
+2. Create a new password.
+
+    The new password must be 8 characters long and contain at least two of the
+    following: a lowercase letter, an uppercase letter, or a special
+    character.
+
+3. Save, then sign in to {{site.konnect_short_name}} using your email and the
+new password.
+
+
+<!-- Not yet available
+## Sign Up for a Konnect SaaS Account (self-serve)
 
 1. Access {{site.konnect_product_name}} at
 [https://konnect.konghq.com/](https://konnect.konghq.com/).
@@ -20,7 +40,9 @@ and organization name.
 4. In the **Access Code** field, enter the code provided in your invitation
     email.
 
-## Reset Password
+-->
+
+## Reset password
 
 You can recover a forgotten password from the {{site.konnect_short_name}}
 landing page.
@@ -38,7 +60,8 @@ landing page.
     following: a lowercase letter, an uppercase letter, or a special
     character.
 
-## Summary and Next Steps
+
+## Summary and next steps
 
 In this topic, you created a {{site.konnect_short_name}} SaaS account, or
 reset a password if you forgot it.

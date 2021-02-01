@@ -34,9 +34,11 @@ Upload a new document to replace an existing Service document.
 
 1. From the Services page, select a Service to open its overview.
 
-2. In the **Service Document** section, click the **gear icon > Upload New**.
-
-3. Click **Replace** to upload a replacement version of the file.
+2. In the **Service Document** section:
+    * To upload a new file, click the **file icon**, then
+    **Replace**. Select a new `.md` file to upload.
+    * To delete the file, click the **gear icon**, then **Delete**.
+    Click **Delete** again to confirm.
 
 ## Version Specs
 

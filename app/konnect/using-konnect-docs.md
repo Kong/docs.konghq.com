@@ -37,5 +37,6 @@ following topics to get started and for information about using
 
 ## Konnect self-hosted version
 If deploying {{site.konnect_short_name}} in a self-hosted environment, go to
-the **{{site.ee_product_name}}** > **2.3.x** section in the left navigation
-menu. From here, you can install and configure your deployment.
+the **{{site.ee_product_name}}** > **{{site.data.kong_versions_ee.last.release}}**
+section in the left navigation menu. From here, you can install and configure
+your deployment.
