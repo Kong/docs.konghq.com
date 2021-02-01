@@ -1,5 +1,5 @@
 ---
-title: Install Kong Enterprise
+title: Install Kong Gateway (Enterprise)
 toc: false
 skip_read_time: true
 disable_image_expand: true
@@ -11,13 +11,13 @@ disable_image_expand: true
   <a href="https://aws.amazon.com/marketplace/pp/B086MZ3TV3?qid=1586561274348&sr=0-4&ref_=srh_res_product_title" class="docs-grid-install-block">
     <img class="install-icon" src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/uploads/2020/06/11-aws_logo_smile_1200x630-1.png" alt="AWS EKS" />
     <div class="install-text">AWS (EKS)</div>
-    <div class="install-description">Install the Kong Ingress Controller with the Kong Gateway (Enterprise) on AWS</div>
+    <div class="install-description">Install the Kong Ingress Controller with the {{site.ee_product_name}} on AWS</div>
   </a>
 
   <a href="/enterprise/{{page.kong_version}}/deployment/installation/docker" class="docs-grid-install-block">
     <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/docker.png" alt="docker" />
     <div class="install-text">Docker</div>
-    <div class="install-description">Install Kong Enterprise on Docker</div>
+    <div class="install-description">Install {{site.ee_product_name}} on Docker</div>
   </a>
 
   <a href="/enterprise/{{page.kong_version}}/deployment/installation/kong-for-kubernetes" class="docs-grid-install-block">
@@ -25,14 +25,14 @@ disable_image_expand: true
     <div class="install-text">K4K8s Enterprise
     <br/>(Kong Ingress Controller)</div>
     <div class="install-description">(kubectl or OpenShift oc)
-    <br/><br/>Install the Kong Ingress Controller with the Kong Gateway (Enterprise), without any Enterprise add-ons</div>
+    <br/><br/>Install the Kong Ingress Controller with the {{site.ee_product_name}}, without any Enterprise add-ons</div>
   </a>
 
   <a href="/enterprise/{{page.kong_version}}/deployment/installation/kong-on-kubernetes" class="docs-grid-install-block">
     <img class="install-icon" src="/assets/images/icons/documentation/k8s-and-openshift.png" alt="kubernetes" />
     <div class="install-text">Full Kong Enterprise on Kubernetes</div>
     <div class="install-description">(kubectl or OpenShift oc)
-    <br/><br/>Install Kong Enterprise on Kubernetes with Enterprise plugins and add-ons, optionally with the Kong Ingress Controller</div>
+    <br/><br/>Install {{site.ee_product_name}} on Kubernetes with Enterprise plugins and add-ons, optionally with the Kong Ingress Controller</div>
   </a>
 
 </div>

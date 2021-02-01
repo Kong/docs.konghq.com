@@ -1,20 +1,20 @@
 ---
-title: Install Kong Enterprise on CentOS
+title: Install Kong Gateway (Enterprise) on CentOS
 ---
 
 ## Introduction
 
 
-This guide walks through downloading, installing, and starting **Kong Enterprise** on **CentOS**.
+This guide walks through downloading, installing, and starting **{{site.ee_product_name}}** on **CentOS**.
 
 The configuration shown in this guide is intended as an example. Depending on your
 environment, you may need to make modifications and take measures to properly conclude
 the installation and configuration.
 
-Kong supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore. This guide provides
+{{site.base_gateway}} supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore. This guide provides
 steps to configure PostgreSQL. For assistance in setting up Cassandra, please contact your Sales or Support representative.
 
-### Deployment Options
+### Deployment options
 
 The following instructions assume that you are deploying {{site.ee_product_name}} in [classic embedded mode](/enterprise/{{page.kong_version}}/deployment/deployment-options).
 
@@ -27,9 +27,9 @@ To complete this installation you will need:
 {% include /md/{{page.kong_version}}/bintray-and-license.md %}
 * A supported CentOS system with root-equivalent access.
 
-## Step 1. Prepare to Install Kong Enterprise and Download the License File
+## Step 1. Prepare to install Kong Gateway and download license file
 
-There are two options to install Kong Enterprise on CentOS. Both require a login to Bintray.
+There are two options to install {{site.ee_product_name}} on CentOS. Both require a login to Bintray.
 
 {% navtabs %}
 {% navtab Download RPM file %}
@@ -47,7 +47,7 @@ for information on how to get access.
     $ scp kong-enterprise-edition-{{page.kong_versions[9].version}}.el7.noarch.rpm <centos user>@<server>:~
     ```
 
-### (Optional) Verify the Package Integrity
+### (Optional) Verify the package integrity
 
 1. Kong's official Key ID is `2cac36c51d5f3726`. Verify it by querying the RPM package and comparing it to the Key ID:
 
@@ -74,7 +74,7 @@ for information on how to get access.
 1. Log in to [Bintray](http://bintray.com) using your Kong credentials. See [prerequisites](#prerequisites)
 for information on how to get access.
 
-2. Download the Kong Enterprise RPM repo file from:
+2. Download the {{site.ee_product_name}} RPM repo file from:
 
     [https://bintray.com/kong/kong-enterprise-edition-rpm/rpm](https://bintray.com/kong/kong-enterprise-edition-rpm/rpm)
 
@@ -102,7 +102,7 @@ for information on how to get access.
 {% endnavtab %}
 {% endnavtabs %}
 
-### Download your Kong Enterprise License
+### Download your license
 
 1. Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 
@@ -118,7 +118,7 @@ You should now have two files in your home directory on the target CentOS system
 - Either the Kong RPM or Kong Yum repo file.
 - The license file `license.json`
 
-## Step 2. Install Kong Enterprise
+## Step 2. Install Kong Gateway
 
 {% navtabs %}
 {% navtab Using a downloaded RPM package %}
@@ -147,7 +147,7 @@ You should now have two files in your home directory on the target CentOS system
 {% endnavtab %}
 {% endnavtabs %}
 
-### Copy the License File
+### Copy the license file
 
 Copy the license file from your home directory to the `/etc/kong` directory:
 
@@ -155,7 +155,7 @@ Copy the license file from your home directory to the `/etc/kong` directory:
 $ sudo cp license.json /etc/kong/license.json
 ```
 
-## Step 3. Setup PostgreSQL
+## Step 3. Set up PostgreSQL
 
 1. Install PostgreSQL.
 
@@ -215,9 +215,9 @@ $ sudo cp license.json /etc/kong/license.json
     $ sudo systemctl restart postgresql-9.6
     ```
 
-## Step 4. Modify Kong's configuration file to work with PostgreSQL
+## Step 4. Modify Kong Gateway's configuration file to work with PostgreSQL
 
-1. Make a copy of Kong's default configuration file.
+1. Make a copy of {{site.base_gateway}}'s default configuration file.
 
     ```bash
     $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
@@ -231,7 +231,7 @@ $ sudo cp license.json /etc/kong/license.json
     pg_database = kong
     ```
 
-## Step 5. Seed the Super Admin password and bootstrap Kong
+## Step 5. Seed the Super Admin password and bootstrap Kong Gateway
 
 {% include /md/{{page.kong_version}}/ee-kong-user.md %}
 
@@ -243,13 +243,13 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
     $ sudo KONG_PASSWORD=<password-only-you-know> /usr/local/bin/kong migrations bootstrap -c /etc/kong/kong.conf
     ```
 
-3. Start Kong Enterprise:
+3. Start {{site.base_gateway}}:
 
     ```bash
     $ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf
     ```
 
-4. Verify Kong Enterprise is working:
+4. Verify {{site.base_gateway}} is working:
 
     ```bash
     $ curl -i -X GET --url http://localhost:8001/services
@@ -257,11 +257,11 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 5. You should receive a `HTTP/1.1 200 OK` message.
 
-## Step 6. Finalize your Configuration and Verify Kong was Successfully Installed
+## Step 6. Finalize your configuration and verify installation
 
-### Enable and Configure Kong Manager
+### Enable and configure Kong Manager
 
-1. To access Kong Enterprise's Graphical User Interface, Kong Manager, update the `admin_gui_url` property in `/etc/kong/kong.conf` file to the DNS, or IP address, of the CentOS system. For example:
+1. To access the gateway's Graphical User Interface, Kong Manager, update the `admin_gui_url` property in `/etc/kong/kong.conf` file to the DNS, or IP address, of the CentOS system. For example:
 
     ```
     admin_gui_url = http://<DNSorIP>:8002
@@ -289,9 +289,9 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 5. You may now access Kong Manager on port `8002`.
 
-### Enable the Developer Portal
+### Enable the Dev Portal
 
-1. Kong Enterprise's Developer Portal can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the DNS, or IP address, of the CentOS system. For example:
+1. The Dev Portal can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the DNS, or IP address, of the CentOS system. For example:
 
     ```
     portal = on
@@ -325,6 +325,6 @@ your setup, reach out to your Kong Support contact or go to the
 
 ## Next Steps
 
-Check out Kong Enterprise's series of
-[Getting Started](/enterprise/latest/getting-started) guides to get the most
-out of Kong Enterprise.
+Check out {{site.base_gateway}}'s series of
+[Getting Started](/getting-started-guide/overview) guides to get the most
+out of {{site.base_gateway}}.

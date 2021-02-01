@@ -1,10 +1,10 @@
 ---
-title: Installing Kong Enterprise on Kubernetes
+title: Installing Kong Gateway (Enterprise) on Kubernetes
 ---
 
 ## Introduction
 
-Kong Enterprise on Kubernetes supports all Kong Enterprise plugins and features.
+{{site.ee_product_name}} on Kubernetes supports all enterprise plugins and features.
 
 This installation topic walks you through a database-backed deployment on
 Kubernetes. For a basic DB-less deployment with the Kong Ingress Controller, see
@@ -16,11 +16,11 @@ See <a href="/enterprise/{{page.kong_version}}/deployment/kubernetes-deployment-
 for a feature breakdown and comparison between DB-less and database-backed deployments.
 </div>
 
-![Kong Enterprise on Kubernetes](/assets/images/docs/ee/kubernetes/kong-enterprise-on-kubernetes.png)
+![{{site.ee_product_name}} on Kubernetes](/assets/images/docs/ee/kubernetes/kong-enterprise-on-kubernetes.png)
 
-You can use `kubectl` or OpenShift `oc` to configure Kong Enterprise on Kubernetes, then deploy it [using Helm](https://github.com/Kong/charts/tree/main/charts/kong).
+You can use `kubectl` or OpenShift `oc` to configure {{site.ee_product_name}} on Kubernetes, then deploy it [using Helm](https://github.com/Kong/charts/tree/main/charts/kong).
 
-### Deployment Options
+### Deployment options
 
 The following instructions assume that you are deploying {{site.ee_product_name}} in [classic embedded mode](/enterprise/{{page.kong_version}}/deployment/deployment-options).
 
@@ -52,8 +52,8 @@ $ oc new-project kong
 {% endnavtab %}
 {% endnavtabs %}
 
-## Step 2. Set Up Kong Enterprise license
-Running Kong Enterprise on Kubernetes requires a valid license. See [prerequisites](#prerequisites) for more information.
+## Step 2. Set up license
+Running {{site.ee_product_name}} on Kubernetes requires a valid license. See [prerequisites](#prerequisites) for more information.
 
 Save the license file temporarily to disk with filename `license` (no file extension) and execute the following:
 
@@ -87,8 +87,8 @@ $ oc create secret generic kong-enterprise-license -n kong --from-file=./license
     $ helm repo update
     ```
 
-## Step 4. Configure Kong Enterprise Docker registry access
-Set up Docker credentials to allow Kubernetes nodes to pull down the Kong Enterprise Docker image, which is hosted in a private repository. You receive credentials for the Kong Enterprise Docker image when you sign up for Kong Enterprise.
+## Step 4. Configure Docker registry access
+Set up Docker credentials to allow Kubernetes nodes to pull down the {{site.ee_product_name}} Docker image, which is hosted in a private repository. You receive credentials for the Docker image when you sign up for {{site.konnect_product_name}}.
 
 {% navtabs %}
 {% navtab kubectl %}
@@ -170,11 +170,11 @@ In the following steps, replace `<your-password>` with a secure password.
 
 1. Create a `values.yaml` file for Helm based on the template in the [Kong charts repository](https://github.com/Kong/charts/blob/main/charts/kong/values.yaml). This file contains all the possible parameters for your Kong deployment.
 
-    You can also base your configuration on a sample Kong Enterprise `values.yaml`
+    You can also base your configuration on a sample {{site.ee_product_name}} `values.yaml`
     file. For example, [this values file](https://github.com/Kong/charts/blob/main/charts/kong/example-values/full-k4k8s-with-kong-enterprise.yaml)
-    enables most Kong Enterprise features.
+    enables most enterprise features.
 
-2. Minimally, for setting up Kong Enterprise on Kubernetes, you will need to set the following parameters:
+2. Minimally, for setting up {{site.ee_product_name}} on Kubernetes, you will need to set the following parameters:
 
     |Parameter      | Value                         |
     |---------------|-------------------------------|
@@ -224,10 +224,10 @@ In the following steps, replace `<your-password>` with a secure password.
         servicePort: 8446
     ```
 
-4. Fill in the rest of the parameters as appropriate for your implementation. Use the comments in the sample file to guide you, and see the documentation on [Kong Enterprise parameters](https://github.com/Kong/charts/blob/main/charts/kong/README.md#kong-enterprise-parameters) for more details.
+4. Fill in the rest of the parameters as appropriate for your implementation. Use the comments in the sample file to guide you, and see the documentation on [{{site.ee_product_name}} parameters](https://github.com/Kong/charts/blob/main/charts/kong/README.md#kong-enterprise-parameters) for more details.
 
-## Step 8. Deploy Kong Enterprise on Kubernetes
-The steps in this section show you how to install Kong Enterprise on Kubernetes using Helm.
+## Step 8. Deploy Kong Gateway on Kubernetes
+The steps in this section show you how to install {{site.ee_product_name}} on Kubernetes using Helm.
 <div class="alert alert-ee blue">
 <strong>Note:</strong> The following instructions assume that you're running Helm 3.
 </div>
@@ -275,7 +275,7 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
 {% endnavtab %}
 {% endnavtabs %}
 
-## Step 9. Finalize Configuration and Verify Installation
+## Step 9. Finalize configuration and verify installation
 {% navtabs %}
 {% navtab kubectl %}
 1. Run:
@@ -365,5 +365,5 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
 {% endnavtabs %}
 
 
-## Next steps...
+## Next steps
 See [Using Kong for Kubernetes Enterprise](/enterprise/{{page.kong_version}}/deployment/using-kong-for-kubernetes) for information about concepts, how-to guides, reference guides, and using plugins.

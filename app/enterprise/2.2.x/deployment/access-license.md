@@ -1,19 +1,12 @@
 ---
-title: Access Your Kong Enterprise License
+title: Access Your Kong Gateway (Enterprise) License
 ---
 
-Kong Enterprise requires a license file. This guide walks you through how to access your license file.
-
-<div class="alert alert-ee blue">
-<strong>Note:</strong> The following guide only pertains to paid versions of
-Kong Enterprise. For free trial information, see our list of ways to
-<a href="/enterprise/{{page.kong_version}}/introduction/#try-kong-enterprise">
-try Kong Enterprise</a>, or see your free trial sign-up email.
-</div>
+{{site.ee_product_name}} requires a license file. This guide walks you through how to access your license file.
 
 ## Prerequisites
 
-Before you can access your license, you need to sign up for a Kong Enterprise
+Before you can access your license, you need to sign up for a {{site.konnect_product_name}}
 subscription. With this subscription, you will receive access to the Kong
 Bintray repository, which contains the necessary license files.
 
@@ -26,7 +19,7 @@ contact your sales representative.
 If you are unaware of your login credentials, reach out to your CSE and they'll
 be able to assist you.
 
-2. Notice that along with Kong Enterprise, there is a new
+2. Notice that along with {{site.ee_product_name}}, there is a new
 repository that has the same name as your company. Click on that repo.
 
 3. In the repo, click on the file called **license**.
