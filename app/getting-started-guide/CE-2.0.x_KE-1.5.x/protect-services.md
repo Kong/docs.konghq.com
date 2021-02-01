@@ -23,7 +23,7 @@ Rate limiting protects the APIs from accidental or malicious overuse. Without ra
 {% navtab Using the Admin API %}
 
 <div class="alert alert-ee">
-<img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /><strong>Note:</strong> This section sets up the basic Rate Limiting plugin. If you have Kong Enterprise or free trial access, see instructions for <strong>Using Kong Manager</strong> to set up Rate Limiting Advanced instead.
+<img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /><strong>Note:</strong> This section sets up the basic Rate Limiting plugin. If you have Kong Enterprise access, see instructions for <strong>Using Kong Manager</strong> to set up Rate Limiting Advanced instead.
 </div>
 
 Call the Admin API on port `8001` and configure plugins to enable a limit of five (5) requests per minute, stored locally and in-memory, on the node.

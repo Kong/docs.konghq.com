@@ -4,15 +4,17 @@ sitemap: true
 id: getting-started-guide
 ---
 
+{% assign latest_page_url = page.url | replace: page.kong_version, page.kong_latest.release %}
+{% capture latest_page_exists %}{% page_exists {{latest_page_url}} %}{% endcapture %}
+
 <div class="page v2 {{ page.class }}">
   <header class="page-header">
     <div class="page-header-bg"></div>
     <div class="container">
       <nav class="docs-navigation v2">
-        <a href="/">{{site.ce_product_name}}</a>
-        <a href="/enterprise">{{site.ee_product_name}}</a>
+        <a href="/konnect">{{site.konnect_product_name}}</a>
+        <a href="/gateway-oss">{{site.ce_product_name}}</a>
         <a href="/mesh">{{site.mesh_product_name}}</a>
-        <a href="/getting-started-guide/latest/overview" class="active">Getting Started</a>
 
         <div class="header-actions">
           <div class="search-version-row">
@@ -26,7 +28,7 @@ id: getting-started-guide
                 {% for ver in page.kong_versions reversed %}
                 {% assign version_page_url = page.url | replace: page.kong_version, ver.release %}
                 {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}<li {% if page.kong_version==ver.release %} class="active" {% endif %}>
-                  <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}{% endif %}"
+                  <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}{{ver.release}}{% endif %}"
                     {% if ver.release==page.kong_version %} class="active" {% endif %}
                   >
                     {{ver.release}}
@@ -77,8 +79,17 @@ id: getting-started-guide
 
       <div class="page-content">
         <div class="content show-anchor-links">
+          {% unless page.no_breadcrumbs %}
+          {% include breadcrumbs.html %}
+          {% endunless %}
+          {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
+          <div class="alert alert-warning">
+            You are browsing documentation for an outdated version. See the
+            <a href="{% if latest_page_exists == 'true' %}{{latest_page_url}}{% else %}/{% endif %}">
+              latest documentation here</a>.
+          </div>
+          {% endif %}
           {% unless page.skip_read_time == true %}{% include read_time.html %}{% endunless %}
-
           {{ content }}
 
         </div>

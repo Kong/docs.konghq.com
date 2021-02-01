@@ -539,7 +539,7 @@ target_data: |
 
 ---
 <div class="alert alert-ee">
-The following documentation refers to Kong Enterprise specific Admin API functionality. For a complete reference, check out the <a href="/latest/admin-api">Kong Admin API Reference</a>.
+The following documentation refers to {{site.ee_product_name}}-specific Admin API functionality. For a complete reference, check out the <a href="/latest/admin-api">Kong Admin API Reference</a>.
 </div>
 
 Kong comes with an **internal** RESTful Admin API for administration purposes.

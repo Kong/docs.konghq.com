@@ -1,19 +1,19 @@
 ---
-title: Install Kong Enterprise on Docker
+title: Install Kong Gateway (Enterprise) on Docker
 ---
 
 ## Introduction
 
-This guide walks through downloading, installing, and starting **Kong Enterprise** on **Docker**.
+This guide walks through downloading, installing, and starting **{{site.ee_product_name}}** on **Docker**.
 
 The configuration shown in this guide is intended as an example. Depending on your
 environment, you may need to make modifications and take measures to properly conclude
 the installation and configuration.
 
-Kong supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore. This guide provides
+{{site.base_gateway}} supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore. This guide provides
 steps to configure PostgreSQL.
 
-### Deployment Options
+### Deployment options
 
 The following instructions assume that you are deploying {{site.ee_product_name}} in [classic embedded mode](/enterprise/{{page.kong_version}}/deployment/deployment-options).
 
@@ -26,14 +26,16 @@ To complete this installation you will need:
 {% include /md/{{page.kong_version}}/bintray-and-license.md %}
 * A Docker-enabled system with proper Docker access.
 
-## Step 1. Add the Kong Docker Repository and Pull the Kong Enterprise Docker Image {#pull-image}
+## Step 1. Pull the Kong Gateway Docker image {#pull-image}
+
+Using Docker, log in to Bintray and pull the following Docker image:
 
 ```bash
 $ docker login -u <your_username_from_bintray> -p <your_apikey_from_bintray> kong-docker-kong-enterprise-edition-docker.bintray.io
-$ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition:{{page.kong_latest.version}}-alpine
+$ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition:{{page.kong_versions[9].version}}-alpine
 ```
 
-You should now have your Kong Enterprise image locally.
+You should now have your {{site.ee_product_name}} image locally.
 
 Verify that it worked, and find the image ID matching your repository:
 
@@ -49,7 +51,7 @@ $ docker tag <IMAGE_ID> kong-ee
 
 **Note:** Replace `<IMAGE_ID>` with the one matching your repository.
 
-## Step 2. Create a Docker Network {#create-network}
+## Step 2. Create a Docker network {#create-network}
 
 Create a custom network to allow the containers to discover and communicate with each other.
 
@@ -57,7 +59,7 @@ Create a custom network to allow the containers to discover and communicate with
 $ docker network create kong-ee-net
 ```
 
-## Step 3. Start a Database
+## Step 3. Start a database
 
 Start a PostgreSQL container:
 
@@ -71,7 +73,7 @@ $ docker run -d --name kong-ee-database \
   postgres:9.6
 ```
 
-## Step 4. Export the License Key to a Variable {#license-key}
+## Step 4. Export the license key to a variable {#license-key}
 
 Run the following command, substituting your own license key (see
 [Prerequisites](#prerequisites)).
@@ -89,7 +91,7 @@ but provide your own content.
 $ export KONG_LICENSE_DATA='{"license":{"signature":"LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tClZlcnNpb246IEdudVBHIHYyCgpvd0did012TXdDSFdzMTVuUWw3dHhLK01wOTJTR0tLWVc3UU16WTBTVTVNc2toSVREWk1OTFEzVExJek1MY3dTCjA0ek1UVk1OREEwc2pRM04wOHpNalZKVHpOTE1EWk9TVTFLTXpRMVRVNHpTRXMzTjA0d056VXdUTytKWUdNUTQKR05oWW1VQ21NWEJ4Q3NDc3lMQmorTVBmOFhyWmZkNkNqVnJidmkyLzZ6THhzcitBclZtcFZWdnN1K1NiKzFhbgozcjNCeUxCZzdZOVdFL2FYQXJ0NG5lcmVpa2tZS1ozMlNlbGQvMm5iYkRzcmdlWFQzek1BQUE9PQo9b1VnSgotLS0tLUVORCBQR1AgTUVTU0FHRS0tLS0tCg=","payload":{"customer":"Test Company Inc","license_creation_date":"2017-11-08","product_subscription":"Kong Enterprise","admin_seats":"5","support_plan":"None","license_expiration_date":"2017-11-10","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU"},"version":1}}'
 ```
 
-## Step 5. Prepare the Kong Database
+## Step 5. Prepare the Kong database
 
 ```bash
 $ docker run --rm --network=kong-ee-net \
@@ -102,7 +104,7 @@ $ docker run --rm --network=kong-ee-net \
 ```
 **Note**: For `KONG_PASSWORD`, replace `<SOMETHING-YOU-KNOW>` with a valid password that only you know.
 
-## Step 6. Start Kong Enterprise with Kong Manager and Kong Developer Portal Enabled
+## Step 6. Start the gateway with Kong Manager and Kong Dev Portal
 
 ```bash
 $ docker run -d --name kong-ee --network=kong-ee-net \
@@ -137,7 +139,7 @@ $ docker run -d --name kong-ee --network=kong-ee-net \
 
 **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. For example, assuming you've saved your `license.json` file into `C:\temp`, use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the license file.
 
-## Step 7. Finalize Configuration and Verify Success of Kong Installation
+## Step 7. Verify your installation
 
 ```bash
 $ curl -i -X GET --url http://<DNSorIP>:8001/services
@@ -147,7 +149,7 @@ You should receive an `HTTP/1.1 200 OK` message.
 
 Verify that Kong Manager is running by accessing it using the URL specified in `KONG_ADMIN_GUI_URL` in [Step 6](#step-6-start-kong-enterprise-with-kong-manager-and-kong-developer-portal-enabled).
 
-## Step 8. Enable the Developer Portal
+## Step 8. Enable the Dev Portal
 
 Execute the following command. Change `<DNSorIP>` to the IP or valid DNS of your Docker host:
 
@@ -166,6 +168,6 @@ setup, reach out to your **Support contact** or head over to the
 
 ## Next Steps
 
-Work through Kong Enterprise's series of
-[Getting Started](/enterprise/latest/getting-started) guides to get the most
-out of Kong Enterprise.
+Check out {{site.base_gateway}}'s series of
+[Getting Started](/getting-started-guide/overview) guides to get the most
+out of {{site.base_gateway}}.

@@ -64,7 +64,7 @@ The Status Codes view displays visualizations of cluster-wide status code classe
 >**Note**: The Status Codes view does not include non-standard code classes (6xx, 7xx, etc.). Individual status code data can be viewed in the Consumer, Route, and Service details pages under the Activity tab. Both standard and non-standard status codes are visible in these views.
 
 ## Enable or disable Vitals
-Kong Enterprise ships with Vitals enabled by default. To enable or disable Vitals, edit the configuration file or environment variables.
+{{site.ee_product_name}} ships with Vitals enabled by default. To enable or disable Vitals, edit the configuration file or environment variables.
 
 {% navtabs %}
 {% navtab Using kong.conf %}

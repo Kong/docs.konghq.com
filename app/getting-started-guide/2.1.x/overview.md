@@ -22,13 +22,12 @@ If you have a {{site.ee_product_name}} subscription, you can also follow this gu
 ### {{site.ce_product_name}}
 {{site.ce_product_name}} is an open-source, lightweight API gateway optimized for microservices, delivering unparalleled latency, performance, and scalability. If you just want the basics, this option will work for you.
 
-### {{site.ee_product_name}} and free trials
+### {{site.ee_product_name}}
 <div class="alert alert-ee">
 <img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /> This guide also includes some features specific to {{site.ee_product_name}} and the {{site.ee_gateway_name}}. They'll be called out in blue blocks like this, or in their own Kong Manager tabs.
 <br/><br/>
 {{site.ee_product_name}} extends the {{site.ce_product_name}} with enterprise features and support. It provides advanced functionality using plugins for security, collaboration, performance at scale, and use of advanced protocols.
-<br/><br/>
-If you don’t currently have {{site.ee_product_name}} but want to experience it, check out our <a href="https://konghq.com/products/kong-enterprise/free-trial?itm_source=website&itm_medium=nav">Free Trial</a>.</div>
+</div>
 
 
 ## Concepts and Features in this guide
@@ -67,23 +66,20 @@ For example, before routing a request, the client might be required to authentic
 Note the following before you start using this guide:
 
 ### Installation
-* This guide assumes that you have [{{site.ce_product_name}}](https://konghq.com/install/) or [{{site.ee_gateway_name}}](/enterprise/latest/deployment/installation/overview/) installed and running on the platform of your choice, or that you have signed up for an Enterprise free trial.
+* This guide assumes that you have [{{site.ce_product_name}}](https://konghq.com/install/) or [{{site.ee_gateway_name}}](/enterprise/latest/deployment/installation/overview/) installed and running on the platform of your choice.
 * During your installation, take note of the KONG_PASSWORD; you’ll need it later on in this guide for setting up user authorization.
 
 ### Deployment guidelines
 * You can use this guide to get started in production environments, but this guide does not provide all of the necessary configurations and security settings that you would need for a production environment.
 * The examples in this guide all use `<admin-hostname>` to refer to a {{site.base_gateway}} instance's Admin API URL. Make sure to replace the variable with the actual URL of your {{site.base_gateway}} installation.
     * To find the URL, check the `admin_listen` property in the `/etc/kong/kong.conf` file.
-    * {{site.ee_product_name}} free trials: Check your welcome email for the
-    proxy and administration endpoints, which replace `<admin-hostname>:8000` and
-    `<admin-hostname>:8001` respectively.
 
 ### Using this guide
 * Throughout this guide, you will have the option to configure Kong in a few
 different ways. Choose your preferred method, if options are available —
 you don’t have to walk through all of them:
   * Programmatically manage Kong using its REST-based Admin API
-  * Use the Kong Manager GUI *(Enterprise or Free Trial users only)*
+  * Use the Kong Manager GUI *(Enterprise users only)*
   * Use decK for declarative configuration (YAML)
 * If you're running Kong in Hybrid mode, all tasks contained in this guide take
 place on the Control Plane.
@@ -91,13 +87,6 @@ place on the Control Plane.
 want to use HTTPie, install it from [here](https://httpie.org/).
 * Any references to “{{site.base_gateway}}” refer to features or concepts
 common to both {{site.ce_product_name}} and {{site.ee_gateway_name}}.
-* **Cloud-based Enterprise free trial users**: Since the {{site.ee_product_name}}
- free trial is a Kong-hosted cloud trial, you'll need to refer to the generated
- admin and proxy endpoints instead of defining your own, and you don't need to
- use the port number in the URL. See
- [Prepare to Administer {{site.base_gateway}}](/getting-started-guide/{{page.kong_version}}/prepare)
- to learn more about the endpoints and to set up an RBAC token for Admin API
- access.  
 
 ### Next Steps
 
