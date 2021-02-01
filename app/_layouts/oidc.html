@@ -12,9 +12,9 @@ id: documentation
           Edit this Page</a>
       </div>
       <nav class="docs-navigation">
-        <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>Kong</a>
-        <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>Kong Enterprise</a>
-        <span class="sidebar-toggle">Open Sidebar</span>
+        <a href="/konnect" {% if page.edition =='konnect' or page.edition == 'enterprise' %} class="active" {% endif %}>{{site.konnect_product_name}}</a>
+        <a href="/" {% if page.edition =='community' %} class="active" {% endif %}>{{site.ce_product_name}}</a>
+        <a href="/mesh" {% if page.edition =='mesh' %} class="active" {% endif %}>{{site.mesh_product_name}}</a>
       </nav>
       <div class="page-header-icon">
         <img src="/assets/images/icons/icn-documentation{% if page.edition == 'enterprise' %}-ee{%else%}-ce{% endif %}.svg"

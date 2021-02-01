@@ -655,10 +655,11 @@
 .page-content-container {
   .page-content {
     .reading-time {
-      font-style: italic;
+      font-size: 15px;
       display: block;
-      color: rgb(133, 137, 140);
+      color: #b9b9b9;
       margin-bottom: 14px;
+      padding-bottom: 1rem;
     }
 
     @media (max-width: 800px) {
@@ -688,7 +689,7 @@
 .content {
   padding: 50px 0;
   .font-source-sans();
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.5;
 
   .big {
@@ -729,10 +730,11 @@
   }
 
   h1 {
-    font-size: 34px;
+    font-size: 36px;
     color: #262e33;
-    margin-top: 2em;
-    margin-bottom: 0.9em;
+    margin-top: 1em;
+    margin-bottom: 0.8em;
+    font-weight: 100;
   }
 
   .alert + h1 {
@@ -746,8 +748,9 @@
   }
 
   h3 {
-    margin-top: 1.5em;
-    margin-bottom: 0.7em;
+    font-size: 30px;
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
   }
 
   h4 {
@@ -780,7 +783,6 @@
 
       &:before {
         color: @font-color;
-        font-size: 13px;
         width: 36px;
         height: 36px;
         line-height: 36px;
@@ -989,6 +991,14 @@ Generic Styling for Desktop
   }
 
   .docs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 16px;
+    grid-row-gap: 16px;
+    margin: 0;
+    justify-content: start;
+    align-content: start;
+
     &:after {
       content: " ";
       display: block;
@@ -996,20 +1006,33 @@ Generic Styling for Desktop
     }
 
     .docs-grid-block {
-      float: left;
-      height: 250px;
-      width: 50%;
-      border-bottom: 1px solid #eee;
+      border: 1px solid #eee;
       box-sizing: border-box;
-      padding-top: 40px;
+      border-radius: 4px;
+      text-align: left;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: start;
+      padding: 16px;
+      text-decoration: none;
+      margin-top: 0;
 
       h3 {
         margin-top: 0;
+        text-align: left;
 
         img {
           float: left;
           margin-right: 15px;
         }
+      }
+
+      p, a {
+        display: block;
+        padding-left: 15px;
       }
 
       &:nth-child(odd) {
@@ -1187,7 +1210,6 @@ Generic Styling for Desktop
 .instructions-steps {
   list-style: none;
   padding-left: 26px;
-  counter-reset: step;
 
   .instructions-step-item {
     position: relative;
@@ -1201,8 +1223,6 @@ Generic Styling for Desktop
     }
 
     &:before {
-      counter-increment: step;
-      content: counter(step);
       box-sizing: border-box;
       width: 36px;
       height: 36px;
@@ -1378,16 +1398,47 @@ Generic Styling for Desktop
 }
 
 .breadcrumbs {
-  margin: 0;
+  margin-bottom: 1rem;
+  margin-top: -2rem;
+  margin-left: 0;
   padding: 0;
-  list-style: none;
+
+  &.install {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    .breadcrumb-item {
+      display: inline-block;
+      margin: 0;
+      }
+    }
 
   .breadcrumb-item {
     display: inline-block;
-    margin: 0;
+    font-weight: 100;
+    font-size: 15px;
+    margin-left: 0;
 
     &:after {
       content: " \203a";
+      font-size: 18px;
+      padding: 3px;
+    }
+
+    &:first-of-type {
+      &:before {
+        content: "»";
+        font-size: 18px;
+        margin-left: -0.5rem;
+        padding-right: 3px;
+      }
+    }
+
+    &:last-of-type {
+      &:after {
+        content: " ";
+      }
     }
   }
 

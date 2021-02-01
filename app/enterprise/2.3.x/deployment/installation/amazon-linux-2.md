@@ -1,16 +1,16 @@
 ---
-title: Install Kong Enterprise on Amazon Linux 2
+title: Install Kong Gateway (Enterprise) on Amazon Linux 2
 ---
 
 ## Introduction
 
-This guide walks through downloading, installing, and starting **Kong Enterprise** on **Amazon Linux 2**.
+This guide walks through downloading, installing, and starting **{{site.ee_product_name}}** on **Amazon Linux 2**.
 
 The configuration shown in this guide is intended as an example. Depending on your
 environment, you may need to make modifications and take measures to properly conclude
 the installation and configuration.
 
-Kong supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore. This guide provides
+{{site.base_gateway}} supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore. This guide provides
 steps to configure PostgreSQL. For assistance in setting up Cassandra, please contact your Sales or Support representative.
 
 ### Deployment Options
@@ -26,9 +26,9 @@ To complete this installation you will need:
 {% include /md/{{page.kong_version}}/bintray-and-license.md %}
 * A supported Amazon Linux 2 system with root-equivalent access.
 
-## Step 1. Prepare to Install Kong Enterprise and Download the License File
+## Step 1. Prepare to install Kong Gateway and download license file
 
-There are two options to install Kong Enterprise on Amazon Linux 2. Both require a login to Bintray.
+There are two options to install {{site.ee_product_name}} on Amazon Linux 2. Both require a login to Bintray.
 
 {% navtabs %}
 {% navtab Download RPM File %}
@@ -36,14 +36,14 @@ There are two options to install Kong Enterprise on Amazon Linux 2. Both require
 1. Log in to [Bintray](http://bintray.com) using your Kong credentials. See [prerequisites](#prerequisites)
 for information on how to get access.
 2. Go to: [https://bintray.com/kong/kong-enterprise-edition-aws](https://bintray.com/kong/kong-enterprise-edition-aws).
-3. Select the `aws` folder. Kong Enterprise versions are listed in reverse chronological order.
+3. Select the `aws` folder. {{site.ee_product_name}} versions are listed in reverse chronological order.
 4. Select the latest Kong version from the list.
 5. From the Kong version detail page, click the **Files** tab, then click the distribution folder.
-6. Save the available RPM file. For example: `kong-enterprise-edition-{{page.kong_latest.version}}.aws.rpm`.
+6. Save the available RPM file. For example: `kong-enterprise-edition-{{page.kong_versions[9].version}}.aws.rpm`.
 7. Copy the RPM file to your home directory on the Amazon Linux 2 system. You can use a command like:
 
     ```bash
-    $ scp kong-enterprise-edition-{{page.kong_latest.version}}.aws.rpm <amazon user>@<server>:~
+    $ scp kong-enterprise-edition-{{page.kong_versions[9].version}}.aws.rpm <amazon user>@<server>:~
     ```
 
 ### (Optional) Verify the Package Integrity
@@ -53,13 +53,13 @@ for information on how to get access.
     ```bash
     $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
     $ sudo rpm --import kong.key
-    $ sudo rpm -K kong-enterprise-edition-{{page.kong_latest.version}}.aws.rpm
+    $ sudo rpm -K kong-enterprise-edition-{{page.kong_versions[9].version}}.aws.rpm
     ```
 
 2. Verify you get an OK check. Output should be similar to this:
 
     ```
-    kong-enterprise-edition-{{page.kong_latest.version}}.el7.noarch.rpm: sha1 md5 OK
+    kong-enterprise-edition-{{page.kong_versions[9].version}}.el7.noarch.rpm: sha1 md5 OK
     ```
 {% endnavtab %}
 {% navtab Download Kong repo file and add to Yum repo %}
@@ -67,7 +67,7 @@ for information on how to get access.
 1. Log in to [Bintray](http://bintray.com) using your Kong credentials. See [prerequisites](#prerequisites)
 for information on how to get access.
 
-2. Download the Kong Enterprise RPM repo file from:
+2. Download the {{site.ee_product_name}} RPM repo file from:
 
     [https://bintray.com/kong/kong-enterprise-edition-aws/rpm](https://bintray.com/kong/kong-enterprise-edition-aws/rpm).
 
@@ -96,7 +96,7 @@ Linux 2 system. For example:
 {% endnavtab %}
 {% endnavtabs %}
 
-### Download your Kong Enterprise License
+### Download your license
 
 1. Download your license file from your account files in Bintray:
 
@@ -118,7 +118,7 @@ You should now have two files in your home directory on the target Amazon system
 - Either the Kong RPM or Kong Yum repo file.
 - The license file `license.json`
 
-## Step 2. Install Kong Enterprise
+## Step 2. Install Kong Gateway
 
 {% navtabs %}
 {% navtab Using a downloaded RPM package %}
@@ -146,7 +146,7 @@ $ sudo yum install /path/to/package.rpm --nogpgcheck
 {% endnavtab %}
 {% endnavtabs %}
 
-### Copy the License File
+### Copy the license file
 
 Copy the license file from your home directory to the `/etc/kong` directory:
 
@@ -213,9 +213,9 @@ $ sudo cp license.json /etc/kong/license.json
     $ sudo systemctl restart postgresql
     ```
 
-## Step 4. Modify Kong's configuration file to work with PostgreSQL
+## Step 4. Modify Kong Gateway's configuration file to work with PostgreSQL
 
-1. Make a copy of Kong's default configuration file.
+1. Make a copy of {{site.base_gateway}}'s default configuration file.
 
     ```bash
     $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
@@ -230,7 +230,7 @@ $ sudo cp license.json /etc/kong/license.json
     ```
   > Note: If you used different values for the user and database name, use those values for the user and database name.
 
-## Step 5. Seed the Super Admin password and bootstrap Kong
+## Step 5. Seed the Super Admin password and bootstrap Kong Gateway
 
 {% include /md/{{page.kong_version}}/ee-kong-user.md %}
 
@@ -242,23 +242,23 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
     $ sudo KONG_PASSWORD=<password-only-you-know> /usr/local/bin/kong migrations bootstrap -c /etc/kong/kong.conf
     ```
 
-3. Start Kong Enterprise:
+3. Start {{site.base_gateway}}:
 
     ```bash
     $ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf
     ```
 
-4. Verify Kong Enterprise is working:
+4. Verify {{site.base_gateway}} is working:
   ```bash
   $ curl -i -X GET --url http://localhost:8001/services
   ```
 5. You should receive a `HTTP/1.1 200 OK` message.
 
-## Step 6. Finalize Configuration and Verify Installation
+## Step 6. Finalize configuration and verify installation
 
-### Enable and Configure Kong Manager
+### Enable and configure Kong Manager
 
-1. To access Kong Enterprise's Graphical User Interface, Kong Manager, update the `admin_gui_url` property in `/etc/kong/kong.conf` file to the DNS, or IP address, of the Amazon Linux system. For example:
+1. To access the gateway's Graphical User Interface, Kong Manager, update the `admin_gui_url` property in `/etc/kong/kong.conf` file to the DNS, or IP address, of the Amazon Linux system. For example:
 
     ```
     admin_gui_url = http://<DNSorIP>:8002
@@ -286,9 +286,9 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 5. You may now access Kong Manager on port `8002`.
 
-### Enable the Kong Developer Portal
+### Enable the Dev Portal
 
-1. Kong Enterprise's Developer Portal can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the DNS, or IP address, of the Amazon Linux system. For example:
+1. The Dev Portal can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the DNS, or IP address, of the Amazon Linux system. For example:
 
     ```
     portal = on
@@ -321,6 +321,6 @@ your setup, reach out to your Kong Support contact or go to the
 
 ## Next Steps
 
-Check out Kong Enterprise's series of
-[Getting Started](/enterprise/latest/getting-started) guides to get the most
-out of Kong Enterprise.
+Check out {{site.base_gateway}}'s series of
+[Getting Started](/getting-started-guide/latest/overview) guides to get the most
+out of {{site.base_gateway}}.

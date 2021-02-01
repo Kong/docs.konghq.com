@@ -5,17 +5,17 @@ title: Expose your Services with Kong Gateway
 In this topic, you’ll learn how to expose your Services using Routes.
 
 If you are following the Getting Started workflow, make sure you have completed
-[Prepare to Administer Kong Gateway](/getting-started-guide/{{page.kong_version}}/prepare)
+[Prepare to Administer {{site.base_gateway}}](/getting-started-guide/{{page.kong_version}}/prepare)
 before moving on.
 
-If you are not following the Getting Started workflow, make sure you have Kong
-Gateway installed and started.
+If you are not following the Getting Started workflow, make sure you have
+{{site.base_gateway}} installed and started.
 
 ## What are Services and Routes?
 
 **Service** and **Route** objects let you expose your services to clients with
 Kong Gateway. When configuring access to your API, you’ll start by specifying a
-Service. In Kong Gateway, a Service is an entity representing an external
+Service. In {{site.base_gateway}}, a Service is an entity representing an external
 upstream API or microservice &mdash; for example, a data transformation
 microservice, a billing API, and so on.
 
@@ -28,7 +28,7 @@ a Route to it. Routes determine how (and if) requests are sent to their Services
 after they reach Kong Gateway. A single Service can have many Routes.
 
 After configuring the Service and the Route, you’ll be able to start making
-requests through Kong Gateway.
+requests through {{site.base_gateway}}.
 
 This diagram illustrates the flow of requests and responses being routed through
 the Service to the backend API.
@@ -42,44 +42,50 @@ API. Mockbin is an “echo” type public website that returns requests back to 
 requester as responses. This visualization will be helpful for learning how Kong
 Gateway proxies API requests.
 
-Kong Gateway exposes the RESTful Admin API on port `:8001`. The gateway’s
+{{site.base_gateway}} exposes the RESTful Admin API on port `:8001`. The gateway’s
 configuration, including adding Services and Routes, is done through requests to
 the Admin API.
 
 {% navtabs %}
 {% navtab Using the Admin API %}
 
-<div class="alert alert-ee">
-<strong><img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" />Note for {{site.ee_product_name}} free trial users:</strong>
-<br/>
-If you are trying out {{site.ee_product_name}} using a hosted (cloud) free trial, make sure you have set up an RBAC user for the Admin API:
-<a href="/getting-started-guide/{{page.kong_version}}/prepare/#free-trials-setup">Prepare to Administer {{site.base_gateway}}</a>.
-</div>
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -i -X POST http://<admin-hostname>:8001/services \
+  --data name=example_service \
+  --data url='http://mockbin.org'
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http POST :8001/services \
+  name=example_service \
+  url='http://mockbin.org'
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
-1. Define a Service with the name `example_service` and the URL `http://mockbin.org`.
+If the service is created successfully, you'll get a 201 success message.
 
-    *Using cURL*:
-    ```sh
-    $ curl -i -X POST http://<admin-hostname>:8001/services \
-    --data name=example_service \
-    --data url='http://mockbin.org'
-    ```
-    *Or using HTTPie*:
-    ```sh
-    $ http POST :8001/services name=example_service url='http://mockbin.org'
-    ```
-    If the service is created successfully, you'll get a 201 success message.
+Verify the service’s endpoint:
 
-2. Verify the service’s endpoint.
-
-    *Using cURL*:
-    ```sh
-    $ curl -i http://<admin-hostname>:8001/services/example_service
-    ```
-    *Or using HTTPie*:
-    ```sh
-    $ http :8001/services/example_service
-    ```
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -i http://<admin-hostname>:8001/services/example_service
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8001/services/example_service
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
 {% endnavtab %}
 {% navtab Using Kong Manager %}
@@ -103,7 +109,7 @@ The service is created, and the page automatically redirects back to the
 {% navtab Using decK (YAML) %}
 
 1. In the `kong.yaml` file you exported in
-[Prepare to Administer Kong Gateway](/getting-started-guide/{{page.kong_version}}/prepare/#verify-the-kong-gateway-configuration),
+[Prepare to Administer {{site.base_gateway}}](/getting-started-guide/{{page.kong_version}}/prepare/#verify-the-kong-gateway-configuration),
 define a Service with the name `example_service` and the URL
 `http://mockbin.org`:
 
@@ -115,7 +121,8 @@ define a Service with the name `example_service` and the URL
       port: 80
       protocol: http
     ```
-2. Save the file. From your terminal, sync the configuration to update Kong:
+2. Save the file. From your terminal, sync the configuration to update your
+gateway instance:
 
     ``` bash
     $ deck sync
@@ -136,7 +143,7 @@ define a Service with the name `example_service` and the URL
 
 ## Add a Route
 
-For the Service to be accessible through the Kong Gateway, you need to add a
+For the Service to be accessible through the API gateway, you need to add a
 Route to it.
 
 {% navtabs %}
@@ -144,21 +151,28 @@ Route to it.
 
 Define a Route (`/mock`) for the Service (`example_service`) with a specific
 path that clients need to request. Note at least one of the hosts, paths, or
-methods must be set for the route to be matched to the service.
+methods must be set for the Route to be matched to the service.
 
-*Using cURL*:
-  ```sh
-  $ curl -i -X POST http://<admin-hostname>:8001/services/example_service/routes \
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -i -X POST http://<admin-hostname>:8001/services/example_service/routes \
   --data 'paths[]=/mock' \
   --data name=mocking
-  ```
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8001/services/example_service/routes \
+  paths:='["/mock"]' \
+  name=mocking
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
-*Or using HTTPie*:
-  ```sh
-  $ http :8001/services/example_service/routes paths:='["/mock"]' name=mocking
-  ```
-
-A 201 message indicates the route was created successfully.
+A 201 message indicates the Route was created successfully.
 
 {% endnavtab %}
 {% navtab Using Kong Manager %}
@@ -180,7 +194,7 @@ Methods, or Paths. For this example, use the following:
 
 3. Click **Create**.
 
-The route is created and you are automatically redirected back to the
+The Route is created and you are automatically redirected back to the
 `example_service` overview page. The new Route appears under the Routes section.
 
 {% endnavtab %}
@@ -219,8 +233,7 @@ The route is created and you are automatically redirected back to the
     $ deck sync
     ```
 
-3. (Optional) You can update your local file with the configuration that Kong
-is now using:
+3. (Optional) You can update your local file with the new configuration:
 
     <div class="alert alert-warning">
     <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
@@ -280,20 +293,25 @@ is now using:
 
 Using the Admin API, issue the following:
 
-*Using cURL*:
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
 ```sh
 $ curl -i -X GET http://<admin-hostname>:8000/mock/request
 ```
-
-*Or using HTTPie*:
+{% endnavtab %}
+{% navtab HTTPie %}
 ```sh
 $ http :8000/mock/request
 ```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
 {% endnavtab %}
 {% navtab Using a Web Browser %}
 
-By default, Kong handles proxy requests on port `:8000`.
+By default, {{site.base_gateway}} handles proxy requests on port `:8000`.
 
 From a web browser, enter `http://<admin-hostname>:8000/mock`.
 
@@ -305,9 +323,9 @@ From a web browser, enter `http://<admin-hostname>:8000/mock`.
 In this section, you:
 * Added a Service named `example_service` with a URL of `http://mockbin.org`.
 * Added a Route named `/mock`.
-* This means if an HTTP request is sent to the Kong Gateway node on port `8000`
-(the proxy port) and it matches route `/mock`, then that request is sent to
-`http://mockbin.org`.
+* This means if an HTTP request is sent to the {{site.base_gateway}} node on
+port `8000`(the proxy port) and it matches route `/mock`, then that request is
+sent to `http://mockbin.org`.
 * Abstracted a backend/upstream service and put a route of your choice on the
 front end, which you can now give to clients to make requests.
 

@@ -1,19 +1,19 @@
 ---
-title: Install Kong Enterprise on RHEL
+title: Install Kong Gateway (Enterprise) on RHEL
 ---
 
 ## Introduction
 
-This guide walks through downloading, installing, and starting **Kong Enterprise** on **RHEL**.
+This guide walks through downloading, installing, and starting **{{site.ee_product_name}}** on **RHEL**.
 
 The configuration shown in this guide is intended as an example. Depending on your
 environment, you may need to make modifications and take measures to properly conclude
 the installation and configuration.
 
-Kong supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore. This guide provides
+{{site.base_gateway}} supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore. This guide provides
 steps to configure PostgreSQL. For assistance in setting up Cassandra, please contact your Sales or Support representative.
 
-### Deployment Options
+### Deployment options
 
 The following instructions assume that you are deploying {{site.ee_product_name}} in [classic embedded mode](/enterprise/{{page.kong_version}}/deployment/deployment-options).
 
@@ -26,9 +26,9 @@ To complete this installation you will need:
 {% include /md/{{page.kong_version}}/bintray-and-license.md %}
 * A supported RHEL system with root-equivalent access.
 
-## Step 1. Prepare to Install Kong Enterprise and Download the License File
+## Step 1. Prepare to install Kong Gateway and download license file
 
-There are two options to install Kong Enterprise on RHEL. Both require a login to Bintray.
+There are two options to install {{site.ee_product_name}} on RHEL. Both require a login to Bintray.
 
 {% navtabs %}
 {% navtab Download RPM file %}
@@ -39,19 +39,19 @@ for information on how to get access.
 3. Select the latest Kong version from the list.
 4. From the Kong version detail page, select the **Files** tab.
 5. Select the RHEL version appropriate for your environment, such as `RHEL` -> `8`.
-6. Save the available RPM file. For example: `kong-enterprise-edition-{{page.kong_latest.version}}.rhel8.noarch.rpm`
+6. Save the available RPM file. For example: `kong-enterprise-edition-{{page.kong_versions[9].version}}.rhel8.noarch.rpm`
 7. Copy the RPM file to your home directory on the RHEL system. For example:
 
     ```bash
-    $ scp kong-enterprise-edition-{{page.kong_latest.version}}.rhel8.noarch.rpm <rhel user>@<server>:~
+    $ scp kong-enterprise-edition-{{page.kong_versions[9].version}}.rhel8.noarch.rpm <rhel user>@<server>:~
     ```
 
-### (Optional) Verify the Package Integrity
+### (Optional) Verify the package integrity
 
 1. Kong's official Key ID is `2cac36c51d5f3726`. Verify it by querying the RPM package and comparing it to the Key ID:
 
     ```bash
-    $ rpm -qpi kong-enterprise-edition-{{page.kong_latest.version}}.rhel8.noarch.rpm | grep Signature
+    $ rpm -qpi kong-enterprise-edition-{{page.kong_versions[9].version}}.rhel8.noarch.rpm | grep Signature
     ```
 
 2. Download Kong's official public key to ensure the integrity of the RPM package:
@@ -59,13 +59,13 @@ for information on how to get access.
     ```bash
     $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
     $ rpm --import kong.key
-    $ rpm -K kong-enterprise-edition-{{page.kong_latest.version}}.rhel8.noarch.rpm
+    $ rpm -K kong-enterprise-edition-{{page.kong_versions[9].version}}.rhel8.noarch.rpm
     ```
 
 3. Verify you get an OK check. Output should be similar to this:
 
     ```
-    kong-enterprise-edition-{{page.kong_latest.version}}.rhel8.noarch.rpm: digests signatures OK
+    kong-enterprise-edition-{{page.kong_versions[9].version}}.rhel8.noarch.rpm: digests signatures OK
     ```
 
 {% endnavtab %}
@@ -74,7 +74,7 @@ for information on how to get access.
 1. Log in to [Bintray](http://bintray.com) using your Kong credentials. See [prerequisites](#prerequisites)
 for information on how to get access.
 
-2. Download the Kong Enterprise RPM repo file from:
+2. Download the {{site.ee_product_name}} RPM repo file from:
 
     [https://bintray.com/kong/kong-enterprise-edition-rpm/rpm](https://bintray.com/kong/kong-enterprise-edition-rpm/rpm).
 
@@ -102,7 +102,7 @@ for information on how to get access.
 {% endnavtab %}
 {% endnavtabs %}
 
-### Download your Kong Enterprise License
+### Download your enterprise license
 
 1. Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 
@@ -118,7 +118,7 @@ You should now have two files in your home directory on the target RHEL system:
 - Either the Kong RPM or Kong Yum repo file.
 - The license file `license.json`
 
-## Step 2. Install Kong Enterprise
+## Step 2. Install Kong Gateway
 
 {% navtabs %}
 {% navtab Using downloaded RPM package %}
@@ -148,7 +148,7 @@ You should now have two files in your home directory on the target RHEL system:
 {% endnavtabs %}
 
 
-### Copy the License File
+### Copy the license file
 
 Copy the license file from your home directory to the `/etc/kong` directory:
 
@@ -156,7 +156,7 @@ Copy the license file from your home directory to the `/etc/kong` directory:
 $ sudo cp license.json /etc/kong/license.json
 ```
 
-## Step 3. Setup PostgreSQL
+## Step 3. Set up PostgreSQL
 
 1. Install PostgreSQL.
 
@@ -214,9 +214,9 @@ $ sudo cp license.json /etc/kong/license.json
     $ sudo systemctl restart postgresql
     ```
 
-## Step 4. Modify Kong's configuration file to work with PostgreSQL
+## Step 4. Modify Kong Gateway's configuration file to work with PostgreSQL
 
-1. Make a copy of Kong's default configuration file.
+1. Make a copy of {{site.base_gateway}}'s default configuration file.
 
     ```bash
     $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
@@ -231,7 +231,7 @@ $ sudo cp license.json /etc/kong/license.json
     ```
 
 
-## Step 5. Seed the Super Admin password and bootstrap Kong
+## Step 5. Seed the Super Admin password and bootstrap Kong Gateway
 
 {% include /md/{{page.kong_version}}/ee-kong-user.md %}
 
@@ -243,13 +243,13 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
     $ sudo KONG_PASSWORD=<password-only-you-know> /usr/local/bin/kong migrations bootstrap -c /etc/kong/kong.conf
     ```
 
-3. Start Kong Enterprise:
+3. Start {{site.base_gateway}}:
 
     ```bash
     $ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf
     ```
 
-4. Verify Kong Enterprise is working:
+4. Verify {{site.base_gateway}} is working:
 
     ```bash
     $ curl -i -X GET --url http://localhost:8001/services
@@ -257,11 +257,11 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 5. You should receive a `HTTP/1.1 200 OK` message.
 
-## Step 6. Finalize Configuration and Verify Installation
+## Step 6. Finalize configuration and verify installation
 
-### Enable and Configure Kong Manager
+### Enable and configure Kong Manager
 
-To access Kong Enterprise's Graphical User Interface, Kong Manager, update the `admin_gui_url` property in `/etc/kong/kong.conf` file the to the DNS, or IP address, of the RHEL system. For example:
+To access the gateway's Graphical User Interface, Kong Manager, update the `admin_gui_url` property in `/etc/kong/kong.conf` file the to the DNS, or IP address, of the RHEL system. For example:
 
     ```
     admin_gui_url = http://<DNSorIP>:8002
@@ -289,16 +289,16 @@ This setting needs to resolve to a network path that will reach the RHEL host.
 
 4. You may now access Kong Manager on port `8002`.
 
-### Enable the Developer Portal
+### Enable the Dev Portal
 
-Kong Enterprise's Developer Portal can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the DNS, or IP address, of the RHEL system. For example:
+The Dev Portal can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the DNS, or IP address, of the RHEL system. For example:
 
 ```
 portal = on
 portal_gui_host = <DNSorIP>:8003
 ```
 
-1. Restart Kong for the setting to take effect:
+1. Restart {{site.base_gateway}} for the setting to take effect:
 
     ```bash
     $ sudo /usr/local/bin/kong restart
@@ -322,8 +322,8 @@ If you did not receive an `HTTP/1.1 200 OK` message, or need assistance completi
 your setup, reach out to your Kong Support contact or go to the
 [Support Portal](https://support.konghq.com/support/s/).
 
-## Next Steps
+## Next steps
 
-Check out Kong Enterprise's series of
-[Getting Started](/enterprise/latest/getting-started) guides to get the most
-out of Kong Enterprise.
+Check out {{site.base_gateway}}'s series of
+[Getting Started](/getting-started-guide/latest/overview) guides to get the most
+out of {{site.base_gateway}}.

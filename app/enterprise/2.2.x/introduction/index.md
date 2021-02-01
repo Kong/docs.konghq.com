@@ -1,29 +1,29 @@
 ---
-title: Introduction to Kong Enterprise
+title: Introduction to Kong Gateway (Enterprise)
 ---
 
 ## Introduction
 
-{{site.ee_product_name}} is a Service Control Platform that brokers an organization’s information across all services by allowing customers to manage the full lifecycle of services and APIs. Built on top of {{site.ce_product_name}}, {{site.ee_product_name}} enables users to simplify the management of APIs and microservices across hybrid-cloud and multi-cloud deployments.
+{{site.ee_product_name}} is Kong's API gateway with enterprise functionality. As part of [{{site.konnect_product_name}}](/konnect/overview), the gateway brokers an organization’s information across all services by allowing customers to manage the full lifecycle of services and APIs. On top of that, it enables users to simplify the management of APIs and microservices across hybrid-cloud and multi-cloud deployments.
 
-{{site.ee_product_name}} is designed to run on decentralized architectures, leveraging workflow automation and modern GitOps practices. With {{site.ee_product_name}}, users can:
+{{site.base_gateway}} is designed to run on decentralized architectures, leveraging workflow automation and modern GitOps practices. With {{site.base_gateway}}, users can:
 
 * Decentralize applications/services and transition to microservices
 * Create a thriving API developer ecosystem
 * Proactively identify API-related anomalies and threats
 * Secure and govern APIs/services, and improve API visibility across the entire organization
 
-{{site.ee_product_name}} is a combination of several features and modules on top of the open-sourced Kong Gateway, as shown in the diagram and described in the next section, [_Kong Enterprise Features_](/enterprise/{{page.kong_version}}/introduction/key-concepts).
+{{site.base_gateway}} is a combination of several features and modules built on top of the open-sourced {{site.base_gateway}}, as shown in the diagram and described in the next section, [_{{site.ee_product_name}} Features_](#kong-gateway-enterprise-features).
 
-![Introduction to Kong Enterprise](/assets/images/docs/ee/introduction.png)
+![Introduction to {{site.ee_product_name}}](/assets/images/docs/ee/introduction.png)
 
-## Kong Enterprise Features
+## Kong Gateway Enterprise Features
 
-{{site.ee_product_name}} features are described in this section, including modules and plugins that extend and enhance the functionality of the {{site.ee_product_name}} platform.
+{{site.ee_product_name}} features are described in this section, including modules and plugins that extend and enhance the functionality of the {{site.konnect_product_name}} platform.
 
-### Kong Gateway
+### Kong Gateway (OSS)
 
-{{site.ce_product_name}} is a lightweight, fast, and flexible cloud-native API gateway. It’s easy to download, install, and configure to get up and running once you know the basics. Kong runs in front of any RESTful API and is extended through modules and plugins which provide extra functionality beyond the core platform.
+{{site.ce_product_name}} is a lightweight, fast, and flexible cloud-native API gateway. It’s easy to download, install, and configure to get up and running once you know the basics. The gateway runs in front of any RESTful API and is extended through modules and plugins which provide extra functionality beyond the core platform.
 
 ### Kong Admin API
 
@@ -47,27 +47,26 @@ Kong Manager is the Graphical User Interface (GUI) for {{site.ee_product_name}}.
 
 ### Kong Plugins
 
-{{site.ee_product_name}} plugins provide advanced functionality to better manage your API and microservices. With turnkey capabilities to meet the most challenging use cases, {{site.ee_product_name}} plugins ensure maximum control and minimizes unnecessary overhead. Enable features like authentication, rate-limiting, and transformations by enabling {{site.ee_product_name}} plugins through Kong Manager or the Admin API. For more information on which plugins are Enterprise-only, see the [_Kong Hub_](/hub/).
+{{site.base_gateway}} plugins provide advanced functionality to better manage your API and microservices. With turnkey capabilities to meet the most challenging use cases, {{site.ee_product_name}} plugins ensure maximum control and minimizes unnecessary overhead. Enable features like authentication, rate-limiting, and transformations by enabling {{site.ee_product_name}} plugins through Kong Manager or the Admin API. For more information on which plugins are Enterprise-only, see the [_Kong Hub_](/hub/).
 
 ### Kong Vitals
 
-Kong Vitals provides useful metrics about the health and performance of your {{site.ee_product_name}} nodes, as well as metrics about the usage of your Kong-proxied APIs. You can visually monitor vital signs and pinpoint anomalies in real-time, and use visual API analytics to see exactly how your APIs and Gateway are performing and access key statistics. Kong Vitals is part of the Kong Manager UI. For more information, see [_Kong Vitals_](/enterprise/{{page.kong_version}}/admin-api/vitals/).
+Kong Vitals provides useful metrics about the health and performance of your {{site.ee_product_name}} nodes, as well as metrics about the usage of your gateway-proxied APIs. You can visually monitor vital signs and pinpoint anomalies in real-time, and use visual API analytics to see exactly how your APIs and Gateway are performing and access key statistics. Kong Vitals is part of the Kong Manager UI. For more information, see [_Kong Vitals_](/enterprise/{{page.kong_version}}/admin-api/vitals/).
 
 ### Kong Studio
 
 Kong Studio enables spec-first development for all REST and GraphQL services. With Kong Studio, organizations can accelerate design and test workflows using automated testing, direct Git sync, and inspection of all response types. Teams of all sizes can use Kong Studio to increase development velocity, reduce deployment risk, and increase collaboration. For more information, see [_Kong Studio_](/enterprise/{{page.kong_version}}/studio/).
 
 
-## Try Kong Enterprise
+## Try Kong Gateway (Enterprise)
 
-Here are a few ways to try Kong Enterprise:
+{{site.ee_product_name}} is bundled with {{site.konnect_short_name}}. Here are
+a couple of ways to try {{site.konnect_short_name}}, or just the gateway alone:
 
-* Sign up for the Kong Enterprise self-serve, cloud-based, 15 day
-[free trial](https://konghq.com/get-started/#free-trial/).
 * Try out Kong for Kubernetes Enterprise using a live tutorial at
 [https://kubecon.konglabs.io/](https://kubecon.konglabs.io/)
-* If you are interested in evaluating Kong Enterprise locally, the Kong sales
-team manages evaluation licenses as part of a formal sales process. The best
-way to get started with the sales process is to
+* If you are interested in evaluating {{site.konnect_short_name}} locally, the
+Kong sales team manages evaluation licenses as part of a formal sales process.
+The best way to get started with the sales process is to
 [request a demo](https://konghq.com/get-started/#request-demo) and indicate
 your interest.

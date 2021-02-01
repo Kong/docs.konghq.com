@@ -13,7 +13,7 @@ creation of entities.
 
 ## Compatibility
 {% navtabs %}
-{% navtab Kong Gateway OSS %}
+{% navtab Kong Gateway (OSS) %}
 {{site.ce_product_name}} can be deployed in the following ways:
 * **Classic:** Every node is connected to a database. Refers to a classic deployment on any platform, including Kubernetes.
 * **DB-less:** Deployed without a database (available in {{site.ce_product_name}} 1.1 onward).
@@ -95,11 +95,11 @@ nodes, so only control plane nodes require a database
 
 
 {% endnavtab %}
-{% navtab Kong Enterprise %}
+{% navtab Kong Gateway (Enterprise) %}
 {{site.ee_product_name}} can be deployed in the following ways:
 * **Classic:** Every node is connected to a database. Refers to a classic
 deployment on any platform, including Kubernetes.
-* **DB-less Kong Enterprise on Kubernetes:** Deployed with the Kong Ingress
+* **DB-less {{site.ee_product_name}} on Kubernetes:** Deployed with the Kong Ingress
 Controller and no database.
 * **Hybrid mode:** Nodes are split into control plane and data plane roles.
 The control plane coordinates configuration and propagates it to data plane
@@ -117,7 +117,7 @@ and [{{site.ee_product_name}} for Kubernetes Deployment Options](/enterprise/lat
 <br/> <i class="fa fa-times" style="opacity:50%;color:red"></i> Not supported
 </div>
 
-| Plugin  | Owner | Classic  | DB-less Kong Enterprise on K8S |   Hybrid Mode   | Notes {:width=30%:} |
+| Plugin  | Owner | Classic  | DB-less Kong Gateway on K8S |   Hybrid Mode   | Notes {:width=30%:} |
 |:--------|:------|:--------:|:-------------------------------------:|:---------------:|:--------------------|
 | [ACL](/hub/kong-inc/acl/)                                                          | Kong                |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
 | [Apache OpenWhisk](/hub/kong-inc/openwhisk/)                                       | Kong                |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
@@ -164,11 +164,11 @@ and [{{site.ee_product_name}} for Kubernetes Deployment Options](/enterprise/lat
 | [Okta](/hub/okta/okta/)                                                            | Third-party         |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
 | [OpenID Connect](/hub/kong-inc/openid-connect/)                                    | Kong                |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
 | [PASETO](/hub/peter-evans/paseto/)                                                 | Third-party         |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
-| [Portal Application Registration](/hub/kong-inc/application-registration)          | Kong                |      <i class="fa fa-check"></i>       | <i class="fa fa-times" style="opacity:50%;color:red"></i> |                <i class="fa fa-check"></i>                | This plugin is only used with the Developer Portal, which is not available with Kong Enterprise on Kubernetes in DB-less mode. |
+| [Portal Application Registration](/hub/kong-inc/application-registration)          | Kong                |      <i class="fa fa-check"></i>       | <i class="fa fa-times" style="opacity:50%;color:red"></i> |                <i class="fa fa-check"></i>                | This plugin is only used with the Developer Portal, which is not available with {{site.base_gateway}} on Kubernetes in DB-less mode. |
 | [Prometheus](/hub/kong-inc/prometheus/)                                            | Kong                |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
 | [Proxy Cache](/hub/kong-inc/proxy-cache/)                                          | Kong                |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
 | [Proxy Caching Advanced](/hub/kong-inc/proxy-cache-advanced/)                      | Kong                |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
-| [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced)                     | Kong                |      <i class="fa fa-check"></i>       |                <i class="fa fa-minus-square"></i>                 |                <i class="fa fa-minus-square"></i>         | The `cluster` policy is not supported in DB-less and hybrid modes. For Kong Enterprise on Kubernetes in DB-less mode, use one of `redis` or `local`; for hybrid mode, use `redis`. |
+| [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced)                     | Kong                |      <i class="fa fa-check"></i>       |                <i class="fa fa-minus-square"></i>                 |                <i class="fa fa-minus-square"></i>         | The `cluster` policy is not supported in DB-less and hybrid modes. For {{site.base_gateway}} on Kubernetes in DB-less mode, use one of `redis` or `local`; for hybrid mode, use `redis`. |
 | [Reedelk Transformer](/hub/reedelk/reedelk-transformer)                            | Third-party         |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
 | [Request Size Limiting](/hub/kong-inc/request-size-limiting)                       | Kong                |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
 | [Request Termination](/hub/kong-inc/request-termination)                           | Kong                |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |

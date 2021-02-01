@@ -8,9 +8,8 @@ type: concept
 Kong is a Lua application designed to load and execute Lua or Go modules, which
 we commonly refer to as _plugins_. Kong provides a set of standard Lua
 plugins that get bundled with {{site.base_gateway}}. The set of plugins you
-have access to depends on your installation: open-source
-{{site.ce_product_name}}, {{site.ee_product_name}}, or either of these versions
-running on Kubernetes.
+have access to depends on your installation: open-source, enterprise, or either
+of these {{site.base_gateway}} options running on Kubernetes.
 
 Custom plugins can also be developed by the Kong Community, and are supported
 and maintained by the plugin creators. If they are published on the Kong Plugin
@@ -99,7 +98,7 @@ of functions that a plugin can use to facilitate interactions between plugins
 and the core (or other components) of Kong.
 
 To start creating your own plugins, check out the PDK documentation:
-* {{site.ce_product_name}} (open-source)
+* {{site.ce_product_name}}
     * [Lua Plugin Development Guide](/latest/plugin-development) and the
     [Lua Plugin Development Kit reference](/latest/pdk)
     * [Go Language Support](/latest/go)

@@ -1,10 +1,10 @@
 ---
-title: Install Kong Enterprise on Ubuntu
+title: Install Kong Gateway (Enterprise) on Ubuntu
 ---
 
 ## Introduction
 
-This guide walks through downloading, installing, and starting **Kong Enterprise** on **Ubuntu**.
+This guide walks through downloading, installing, and starting **{{site.ee_product_name}}** on **Ubuntu**.
 
 The configuration shown in this guide is intended as an example. Depending on your
 environment, you may need to make modifications and take measures to properly conclude
@@ -13,7 +13,7 @@ the installation and configuration.
 Kong supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore. This guide provides
 steps to configure PostgreSQL. For assistance in setting up Cassandra, please contact your Kong Sales or Support representative.
 
-### Deployment Options
+### Deployment options
 
 The following instructions assume that you are deploying {{site.ee_product_name}} in [classic embedded mode](/enterprise/{{page.kong_version}}/deployment/deployment-options).
 
@@ -26,14 +26,14 @@ To complete this installation you will need:
 {% include /md/{{page.kong_version}}/bintray-and-license.md %}
 * A supported Ubuntu system with root-equivalent access.
 
-## Step 1. Prepare to Install Kong Enterprise and Download the License File
+## Step 1. Prepare to install Kong Gateway and download license file
 
 ### Download the Debian package
 
 1. Log in to [Bintray](http://bintray.com) using your Kong credentials. See [prerequisites](#prerequisites)
 for information on how to get access.
 2. Go to: [https://bintray.com/kong/kong-enterprise-edition-deb/ubuntu](https://bintray.com/kong/kong-enterprise-edition-deb/ubuntu).
-3. Select the latest Kong version from the list. Kong Enterprise versions are listed in reverse chronological order.
+3. Select the latest Kong version from the list. {{site.ee_product_name}} versions are listed in reverse chronological order.
 4. From the Kong version detail page, select the **Files** tab.
 5. Click the `.deb` file matching your target Ubuntu OS version. For example, select `kong-enterprise-edition-{{page.kong_versions[9].version}}.bionic.all.deb` for the Ubuntu Bionic Beaver release.
 6. Copy the `.deb` file to your home directory on the Ubuntu system. For example:
@@ -42,7 +42,7 @@ for information on how to get access.
     $ scp kong-enterprise-edition-{{page.kong_versions[9].version}}.bionic.all.deb <ubuntu_user>@<server>:~
     ```
 
-### Download your Kong Enterprise License
+### Download your enterprise license
 
 1. Download your license file from your [account files in Bintray](#prerequisites):
 
@@ -62,15 +62,15 @@ You should now have two files in your home directory on the target system:
 - The Kong `.deb` package file
 - The license file `license.json`
 
-## Step 2. Install Kong Enterprise
+## Step 2. Install Kong Gateway
 
-1. Update APT
+1. Update APT:
 
     ```bash
     $ sudo apt-get update
     ```
 
-2. Install Kong Enterprise
+2. Install Kong Gateway:
 
     ```bash
     $ sudo apt-get install /absolute/path/to/package.deb
@@ -126,9 +126,9 @@ information about PostgreSQL on Ubuntu, see [https://www.postgresql.org/download
     $ exit
     ```
 
-## Step 4. Modify Kong's Configuration File
+## Step 4. Modify Kong Gateway's configuration file
 
-1. Make a copy of Kong's default configuration file.
+1. Make a copy of {{site.base_gateway}}'s default configuration file.
 
     ```bash
     $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
@@ -142,7 +142,7 @@ information about PostgreSQL on Ubuntu, see [https://www.postgresql.org/download
     pg_database = kong
     ```
 
-## Step 5. Seed the Super Admin's Password and bootstrap Kong
+## Step 5. Seed the Super Admin's password and bootstrap Kong Gateway
 
 {% include /md/{{page.kong_version}}/ee-kong-user.md %}
 
@@ -154,13 +154,13 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
     $ sudo KONG_PASSWORD=<password-only-you-know> /usr/local/bin/kong migrations bootstrap -c /etc/kong/kong.conf
     ```
 
-2. Start Kong Enterprise:
+2. Start {{site.base_gateway}}:
 
     ```bash
     $ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf
     ```
 
-3. Verify Kong Enterprise is working:
+3. Verify {{site.base_gateway}} is working:
 
     ```bash
     $ curl -i -X GET --url http://localhost:8001/services
@@ -168,11 +168,11 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 4. You should receive a `HTTP/1.1 200 OK` message.
 
-## Step 6. Finalize your Configuration and Verify Kong was Successfully Installed
+## Step 6. Finalize your configuration and verify installation
 
-### Enable and Configure Kong Manager
+### Enable and configure Kong Manager
 
-1. To access Kong Enterprise's Graphical User Interface, Kong Manager, update the `admin_gui_url` property in `/etc/kong/kong.conf` file the to the DNS or IP address of the system. For example:
+1. To access the gateway's Graphical User Interface, Kong Manager, update the `admin_gui_url` property in `/etc/kong/kong.conf` file the to the DNS or IP address of the system. For example:
 
     ```
     admin_gui_url = http://<DNSorIP>:8002
@@ -200,16 +200,16 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 5. You may now access Kong Manager on port `8002`.
 
-### Enable the Developer Portal
+### Enable the Dev Portal
 
-1. Enable Kong Enterprise's Developer Portal by updating `/etc/kong/kong.conf` to set the `portal` property to `on` and the `portal_gui_host` property to the DNS or IP address of the system. For example:
+1. Enable the Dev Portal by updating `/etc/kong/kong.conf` to set the `portal` property to `on` and the `portal_gui_host` property to the DNS or IP address of the system. For example:
 
     ```
     portal = on
     portal_gui_host = <DNSorIP>:8003
     ```
 
-2. Restart Kong for the setting to take effect:
+2. Restart {{site.base_gateway}} for the setting to take effect:
 
     ```bash
     $ sudo /usr/local/bin/kong restart
@@ -234,8 +234,8 @@ your setup, reach out to your Kong Support contact or go to the
 [Support Portal](https://support.konghq.com/support/s/).
 
 
-## Next Steps
+## Next steps
 
-Check out Kong Enterprise's series of
-[Getting Started](/enterprise/latest/getting-started) guides to get the most
-out of Kong Enterprise.
+Check out {{site.base_gateway}}'s series of
+[Getting Started](/getting-started-guide/latest/overview) guides to get the most
+out of {{site.base_gateway}}.

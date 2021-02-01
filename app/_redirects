@@ -5,5 +5,10 @@
 # plugins
 /hub/kong-inc/deck/                         /deck/
 /hub/hbagdi/deck/                           /deck/
-/hub/api-fortress/api-fortress-http-log/    /hub/ 
+/hub/api-fortress/api-fortress-http-log/    /hub/
 /hub/api-fortress/api-fortress-http-log/*   /hub/
+
+# Konnect
+/konnect/access-beta                        /konnect/access-account
+/konnect/service-hub                        /konnect/servicehub
+/konnect/service-hub/*                      /konnect/servicehub/:splat
