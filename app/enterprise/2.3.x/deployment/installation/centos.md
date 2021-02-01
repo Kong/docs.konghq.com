@@ -40,11 +40,11 @@ for information on how to get access.
 3. Select the latest Kong version from the list.
 4. From the Kong version detail page, select the **Files** tab.
 5. Select the CentOS version appropriate for your environment, such as `centos` -> `7`.
-6. Save the available RPM file. For example: `kong-enterprise-edition-{{page.kong_versions[9].version}}.el7.noarch.rpm`
+6. Save the available RPM file. For example: `kong-enterprise-edition-{{page.kong_versions[10].version}}.el7.noarch.rpm`
 7. Copy the RPM file to your home directory on the CentOS system. For example:
 
     ```bash
-    $ scp kong-enterprise-edition-{{page.kong_versions[9].version}}.el7.noarch.rpm <centos user>@<server>:~
+    $ scp kong-enterprise-edition-{{page.kong_versions[10].version}}.el7.noarch.rpm <centos user>@<server>:~
     ```
 
 ### (Optional) Verify the package integrity
@@ -66,7 +66,7 @@ for information on how to get access.
 3. Verify you get an OK check. Output should be similar to this:
 
     ```
-    kong-enterprise-edition-{{page.kong_versions[9].version}}.el7.noarch.rpm: rsa sha1 (md5) pgp md5 OK
+    kong-enterprise-edition-{{page.kong_versions[10].version}}.el7.noarch.rpm: rsa sha1 (md5) pgp md5 OK
     ```
 {% endnavtab %}
 {% navtab Download Kong repo file and add to Yum repo %}

@@ -39,11 +39,11 @@ for information on how to get access.
 3. Select the `aws` folder. {{site.ee_product_name}} versions are listed in reverse chronological order.
 4. Select the latest Kong version from the list.
 5. From the Kong version detail page, click the **Files** tab, then click the distribution folder.
-6. Save the available RPM file. For example: `kong-enterprise-edition-{{page.kong_versions[9].version}}.aws.rpm`.
+6. Save the available RPM file. For example: `kong-enterprise-edition-{{page.kong_versions[10].version}}.aws.rpm`.
 7. Copy the RPM file to your home directory on the Amazon Linux 2 system. You can use a command like:
 
     ```bash
-    $ scp kong-enterprise-edition-{{page.kong_versions[9].version}}.aws.rpm <amazon user>@<server>:~
+    $ scp kong-enterprise-edition-{{page.kong_versions[10].version}}.aws.rpm <amazon user>@<server>:~
     ```
 
 ### (Optional) Verify the Package Integrity
@@ -53,13 +53,13 @@ for information on how to get access.
     ```bash
     $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
     $ sudo rpm --import kong.key
-    $ sudo rpm -K kong-enterprise-edition-{{page.kong_versions[9].version}}.aws.rpm
+    $ sudo rpm -K kong-enterprise-edition-{{page.kong_versions[10].version}}.aws.rpm
     ```
 
 2. Verify you get an OK check. Output should be similar to this:
 
     ```
-    kong-enterprise-edition-{{page.kong_versions[9].version}}.el7.noarch.rpm: sha1 md5 OK
+    kong-enterprise-edition-{{page.kong_versions[10].version}}.el7.noarch.rpm: sha1 md5 OK
     ```
 {% endnavtab %}
 {% navtab Download Kong repo file and add to Yum repo %}
