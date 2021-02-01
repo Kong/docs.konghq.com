@@ -19,9 +19,9 @@
   ],
   "selectors": {
     "lvl0": {
-      "selector": ".docs-navigation > a.active",
+      "selector": ".search-selector",
       "global": true,
-      "default_value": "Kong"
+      "default_value": "Kong Gateway (Enterprise)"
     },
     "lvl1": "h1",
     "lvl2": ".content h2",
