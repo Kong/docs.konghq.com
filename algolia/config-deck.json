@@ -9,22 +9,18 @@
     "https://docs.konghq.com/sitemap.xml"
   ],
   "stop_urls": [
-      "https://docs.konghq.com/enterprise/",
-      "https://docs.konghq.com/studio/",
-      "https://docs.konghq.com/kubernetes-ingress-controller/",
-      "https://docs.konghq.com/install/",
-      "https://docs.konghq.com/mesh/",
-      "https://docs.konghq.com/konnect/",
-      "https://docs.konghq.com/free-trial/",
-      "https://docs.konghq.com/getting-started-guide/",
-      "https://docs.konghq.com/plugins/",
-      "https://docs.konghq.com/[0-9]"
+
   ],
   "selectors": {
-    "lvl0": "h1",
-    "lvl1": ".content h2",
-    "lvl2": ".content h3",
-    "lvl3": ".content h4",
+    "lvl0": {
+      "selector": ".search-selector",
+      "global": true,
+      "default_value": "decK"
+    },
+    "lvl1": "h1",
+    "lvl2": ".content h2",
+    "lvl3": ".content h3",
+    "lvl4": ".content h4",
     "text": ".content p, .content li"
   },
   "selectors_exclude": [
