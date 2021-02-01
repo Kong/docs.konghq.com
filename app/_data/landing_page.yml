@@ -1,7 +1,7 @@
 features:
   - title: Key features
     items:
-      - name: Service Hub
+      - name: ServiceHub
         description: Build a comprehensive catalog of services to enable discovery, consumption, and management of every service across your entire architecture.
         icon: /assets/images/landing-page/service-hub.svg
         links:
@@ -20,8 +20,8 @@ features:
             icon: /assets/images/icons/icn-server-blue.svg
             url: /enterprise/latest/developer-portal/overview
 
-      - name: Reporting & Analytics
-        description: View granular analytics with Vitals to monitor the health of environments, clusters, and individual services through the Runtime Manager interface.
+      - name: Vitals
+        description: View granular analytics with Vitals to monitor the health of environments, clusters, and individual services through the ServiceHub interface.
         icon: /assets/images/landing-page/analytics.svg
         links:
           - text: SaaS version docs
@@ -47,11 +47,11 @@ features:
             icon: /assets/images/icons/icn-doc.svg
             url: https://support.insomnia.rest/
 
-      - name: Alerting
-        description: Use Kong Immunity autonomously identify service behavior anomalies in real time to improve security, mitigate breaches, and isolate issues.
+      - name: Immunity
+        description: Use Kong Immunity to autonomously identify service behavior anomalies in real time to improve security, mitigate breaches, and isolate issues.
         icon: /assets/images/landing-page/alerting.svg
         links:
-          - text: Alerting docs
+          - text: Immunity docs
             icon: /assets/images/icons/icn-doc.svg
             url: /enterprise/latest/immunity/overview
 
