@@ -1,0 +1,41 @@
+<header class="navbar-v2">
+  <div class="navbar-content">
+    <a href="https://konghq.com/" class="navbar-brand col col-xl-auto">
+      <img
+        src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/themes/konghq/assets/img/gradient-logo.svg"
+        alt="Kong Logo"
+      />
+    </a>
+    <div class="separator"></div>
+    <div class="navbar-items">
+      <a href="https://docs.konghq.com/" class="navbar-item">Docs</a>
+      <a href="https://docs.konghq.com/hub" class="navbar-item">Plugin Hub</a>
+      <a href="https://support.konghq.com/" class="navbar-item">Support</a>
+      <a href="https://discuss.konghq.com/" class="navbar-item">Community</a>
+      <a href="https://learn.konghq.com/account/login/" class="navbar-item">Kong U</a>
+      <a href="https://portal.konglabs.io/workshops" class="navbar-item">Demos & Labs</a>
+      <a
+        href="https://konghq.com/get-started/?itm_source=website&amp;itm_medium=nav"
+        class="navbar-button"
+      >
+        Get Started
+      </a>
+    </div>
+    <div
+      id="navbar-menu-toggle-button"
+      class="small-screen-button"
+      aria-label="Toggle navigation"
+      onclick="toggleButtonClicked()"
+    >
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</header>
+
+<script>
+  function toggleButtonClicked() {
+    $('.navbar-v2').toggleClass('menu-opened')
+  }
+</script>
