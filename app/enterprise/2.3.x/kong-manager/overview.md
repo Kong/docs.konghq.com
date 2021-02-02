@@ -3,7 +3,7 @@ title: Kong Manager
 toc: false
 ---
 
-Kong Manager is the visual, browser-based tool for monitoring and managing Kong Enterprise.
+Kong Manager is the visual, browser-based tool for monitoring and managing {{site.ee_product_name}}.
 
 Here are some of the things you can do with Kong Manager:
 

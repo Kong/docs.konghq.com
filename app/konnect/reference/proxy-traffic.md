@@ -1,6 +1,5 @@
 ---
 title: Proxy Traffic
-no_search: true
 no_version: true
 ---
 

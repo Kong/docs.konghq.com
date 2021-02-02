@@ -2,36 +2,36 @@
 title: Publish, Locate, and Consume Services
 ---
 <div class="alert alert-ee">
-<img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /> This feature is only available with a Kong Enterprise subscription.
+<img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /> This feature is only available with a {{site.konnect_product_name}} subscription.
 </div>
 
-The Kong Developer Portal (Dev Portal) provides a single source of truth for all developers to locate, access, and consume services. With intuitive content management for documentation, streamlined developer onboarding, and role-based access control (RBAC), Kong’s Developer Portal provides a comprehensive solution for creating and customizing a unified developer experience.
+The Kong Developer Portal (Dev Portal) provides a single source of truth for all developers to locate, access, and consume services. With intuitive content management for documentation, streamlined developer onboarding, and role-based access control (RBAC), the Dev Portal provides a comprehensive solution for creating and customizing a unified developer experience.
 
 ## Before you begin
 
-Make sure the Dev Portal is on. You should have enabled it for Kong Gateway during [installation](/enterprise/latest/deployment/installation/overview/).
+Make sure the Dev Portal is on. You should have enabled it during [installation](/enterprise/latest/deployment/installation/overview/).
 
 ## Enable the Dev Portal for a Workspace
 
 {% navtabs %}
 {% navtab Using the Admin API %}
 
-<div class="alert alert-ee">
-<strong><img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" />Note for {{site.ee_product_name}} free trial users:</strong>
-<br/>
-If you are trying out {{site.ee_product_name}} using a hosted (cloud) free trial, make sure you have set up an RBAC user for the Admin API:
-<a href="/getting-started-guide/{{page.kong_version}}/prepare/#free-trials-setup">Prepare to Administer {{site.base_gateway}}</a>.
-</div>
-
-*Using cURL:*
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
 ```sh
 $ curl -X PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace \
---data config.portal=true
+  --data config.portal=true
 ```
-*Or using HTTPie:*
+{% endnavtab %}
+{% navtab HTTPie %}
 ```sh
-$ http -f PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace config.portal=true
+$ http -f PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace \
+  config.portal=true
 ```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
 {% endnavtab %}
 {% navtab Using Kong Manager %}
@@ -58,7 +58,7 @@ You can learn more about personalization in the [the Dev Portal documentation](/
 
 1. Go back to **Dev Portal** > **Overview** and open the link in a new tab, or open the Dev Portal directly using this URL: `http://<admin-hostname>:8003/SecureWorkspace`.
 
-    You’ll see a list of available API catalogs. By default, Kong Enterprise provides *httpbin.org* and *Swagger Petstore* as examples.
+    You’ll see a list of available API catalogs. By default, *httpbin.org* and *Swagger Petstore* appear as examples.
 
 2. Click on the **httpbin.org** entry to explore the API.
 
@@ -73,7 +73,7 @@ You can learn more about personalization in the [the Dev Portal documentation](/
 
 ## Publish a Spec to Developer Portal
 
-In this section, you’re going to add a new spec, the *Kong Vitals API*, to the Dev Portal catalog. The Kong Vitals API shows how Kong Gateway and connected APIs are performing.
+In this section, you’re going to add a new spec, the *Kong Vitals API*, to the Dev Portal catalog. The Kong Vitals API shows how {{site.base_gateway}} and connected APIs are performing.
 
 1. In Kong Manager, navigate to **Dev Portal** > **Editor** and open the link in a new tab. The editor lets you customize the Dev Portal.
 
@@ -96,6 +96,6 @@ In this section, you’re going to add a new spec, the *Kong Vitals API*, to the
 ## Summary
 
 In this topic, you:
-* Enabled the Kong Dev Portal on the Workspace `SecureWorkspace`.
+* Enabled the Dev Portal on the Workspace `SecureWorkspace`.
 * Tested the httpbin `GET` method.
 * Added a new spec for the Kong Vitals API to the Dev Portal catalog.

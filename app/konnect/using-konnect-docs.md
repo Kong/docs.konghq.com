@@ -1,6 +1,5 @@
 ---
 title: Using the Konnect Docs
-no_search: true
 no_version: true
 ---
 
@@ -26,10 +25,10 @@ following topics to get started and for information about using
   * [Set up a runtime](/konnect/getting-started/configure-runtime)
   * [Configure a Service and its first version](/konnect/getting-started/configure-service)
   * [Implement the Service version](/konnect/getting-started/implement-service)
-* Learn about [ServiceHub](/konnect/service-hub) and [Runtime Manager](/konnect/runtime-manager)
+* Learn about [ServiceHub](/konnect/servicehub) and [Runtime Manager](/konnect/runtime-manager)
 * Use the Dev Portal:
-  * [Set up the Dev Portal for a Service](/konnect/service-hub/dev-portal/service-documentation)
-  * [Publish a Service version to the Dev Portal](/konnect/service-hub/dev-portal/publish)
+  * [Set up the Dev Portal for a Service](/konnect/servicehub/dev-portal/service-documentation)
+  * [Publish a Service version to the Dev Portal](/konnect/servicehub/dev-portal/publish)
   * Enable [application registration](/konnect/dev-portal/administrators/app-registration/enable-app-reg)
   * Manage [developer registration](/konnect/dev-portal/administrators/manage-devs)
 * Use Vitals to [monitor the status of your Services](/konnect/vitals)
@@ -38,5 +37,6 @@ following topics to get started and for information about using
 
 ## Konnect self-hosted version
 If deploying {{site.konnect_short_name}} in a self-hosted environment, go to
-the **{{site.ee_product_name}}** > **2.3.x** section in the left navigation
-menu. From here, you can install and configure your deployment.
+the **{{site.ee_product_name}}** > **{{site.data.kong_versions_ee.last.release}}**
+section in the left navigation menu. From here, you can install and configure
+your deployment.

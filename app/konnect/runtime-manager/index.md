@@ -1,6 +1,5 @@
 ---
 title: Runtime Manager Overview
-no_search: true
 no_version: true
 ---
 

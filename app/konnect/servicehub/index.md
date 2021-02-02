@@ -1,6 +1,5 @@
 ---
 title: ServiceHub Overview
-no_search: true
 no_version: true
 ---
 
@@ -43,7 +42,7 @@ listens for requests. You can specify the URL with a single string, or by
 specifying its protocol, host, port, and path individually.
 
 **See more:**
-* [Get started with Service management](/konnect/service-hub/manage-services)
+* [Get started with Service management](/konnect/servicehub/manage-services)
 
 ### Kong Gateway Implementations
 
@@ -72,8 +71,8 @@ Service version.
 Applies to a specific Service version.
 
 **See more:**
-* [Upload Service Documentation to the Dev Portal](/konnect/service-hub/dev-portal/service-documentation)
-* [Publish a Service to the Dev Portal](/konnect/service-hub/dev-portal/publish)
+* [Upload Service Documentation to the Dev Portal](/konnect/servicehub/dev-portal/service-documentation)
+* [Publish a Service to the Dev Portal](/konnect/servicehub/dev-portal/publish)
 
 ## Kong Gateway Plugins
 
@@ -91,13 +90,36 @@ The Portal Application Registration plugin is enabled automatically when you
 enable application registration for the Dev Portal. You don't need to
 enable it directly.
 
+### Plugin Limitations
+
+* [Key Auth Encrypted:](/hub/kong-inc/key-auth-enc) This plugin is not
+available in {{site.konnect_short_name}} SaaS.
+* [Rate Limiting](/hub/kong-inc/rate-limiting) and
+[Rate Limiting Advanced:](/hub/kong-inc/rate-limiting-advanced) These
+plugins only support the `redis` strategy, for which you must provide your own
+Redis cluster.
+
 ### Custom Plugins
 
 Currently, there is no way to add a custom plugin directly through the
-{{site.konnect_short_name}} SaaS application. If you want to use custom plugin
-in {{site.konnect_short_name}} SaaS, contact [Kong Support](https://support.konghq.com/).
+{{site.konnect_short_name}} SaaS application.
+
+Custom plugins can be added manually to your organization by Kong Support, but
+your plugins must not have the following:
+
+* Admin API extensions: No `api.lua` file
+* Custom plugin database tables: No `dao.lua` file
+* Custom function validations: No function definitions in `schema.lua`
+* Code that runs on the control plane in the plugin handler:
+  * No `init_worker` callback
+  * No Lua code outside of the top-level functions
+* Third-party library dependencies: No `require()` calls to modules that are
+not bundled by default with {{site.konnect_product_name}}
+
+If your plugin meets these requirements and you want to use it in
+{{site.konnect_short_name}} SaaS, contact [Kong Support](https://support.konghq.com/).
 
 **See more:**
 * [Plugin compatibility](/hub/plugins/compatibility/)
-* [Configure a plugin on a Service](/konnect/service-hub/plugins/enable-service-plugin)
-* [Configure a plugin on a Route](/konnect/service-hub/plugins/enable-route-plugin)
+* [Configure a plugin on a Service](/konnect/servicehub/plugins/enable-service-plugin)
+* [Configure a plugin on a Route](/konnect/servicehub/plugins/enable-route-plugin)

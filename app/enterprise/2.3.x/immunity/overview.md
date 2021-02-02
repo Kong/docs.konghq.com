@@ -20,7 +20,7 @@ Immunity helps organizations improve efficiency, governance, reliability, and se
 
 ![Kong Immunity architecture](/assets/images/docs/ee/brain-immunity/immunity-overview.png)
 
-Immunity is installed on Kong Enterprise, using Kubernetes or Docker. The Collector App and Collector Plugin enable Immunity to communicate with Kong Enterprise. The diagram above illustrate how the components work together.
+Immunity is installed on {{site.ee_product_name}}, using Kubernetes or Docker. The Collector App and Collector Plugin enable Immunity to communicate with {{site.base_gateway}}. The diagram above illustrate how the components work together.
 
 
 ## About Kong Immunity

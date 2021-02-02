@@ -1,6 +1,5 @@
 ---
 title: Implement and Test a Service
-no_search: true
 no_version: true
 ---
 
@@ -14,11 +13,11 @@ specified in the Service implementation.
 
 If you're following the {{site.konnect_short_name}} quickstart guide,
 make sure you have
-[configured a Service and Service version](/konnect/getting-started/configure-service).
+[configured a Service](/konnect/getting-started/configure-service).
 
 ## Implement a Service Version
 
-1. On the **example_service** overview, in the Version section, click **v.1**.
+1. On the **example_service** overview, in the Versions section, click **v.1**.
 
 2. Click **New Implementation**.
 
@@ -52,18 +51,20 @@ implementation to associate with your Service version.
 
 ## Verify the Implementation
 
-1. From the top of the Service Version overview page, copy the **Proxy URL**.
+If you used the Docker script to create a container
+earlier in [Configure a Runtime](/konnect/getting-started/configure-runtime),
+your runtime's default proxy URL is `localhost:8000`.
 
-2. Paste the URL into your browser’s address bar and append the route path you
-just set. For example:
+Enter the proxy URL into your browser’s address bar and append the route path 
+you just set. The final URL should look something like this:
 
-    ```
-    http://localhost:8000/mock
-    ```
+```
+http://localhost:8000/mock
+```
 
-    If successful, you should see the homepage for `mockbin.org`. On your Service
-    Version overview page, you’ll see a record for status code 200. This might
-    take a few moments.
+If successful, you should see the homepage for `mockbin.org`. On your Service
+Version overview page, you’ll see a record for status code 200. This might
+take a few moments.
 
 And that's it! You have your first service set up, running, and routing
 traffic proxied through a {{site.base_gateway}} runtime.
@@ -80,7 +81,7 @@ front end, which you can now give to clients to make requests.
 
 For next steps, check out some of the other things you can do in
 {{site.konnect_short_name}} SaaS:
-* Enable plugins on a [Service](/konnect/service-hub/plugins/enable-service-plugin) or a
-[Route](/konnect/service-hub/plugins/enable-route-plugin)
-* [Set up the Dev Portal](/konnect/dev-portal/service-documentation)
+* Enable plugins on a [Service](/konnect/servicehub/plugins/enable-service-plugin) or a
+[Route](/konnect/servicehub/plugins/enable-route-plugin)
+* [Set up the Dev Portal](/konnect/servicehub/dev-portal/service-documentation)
 * [Manage your teams and users with RBAC](/konnect/reference/org-management)

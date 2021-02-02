@@ -1,6 +1,5 @@
 ---
 title: Dev Portal Service Documentation
-no_search: true
 no_version: true
 ---
 
@@ -11,7 +10,7 @@ You can upload Service descriptions and version specs. At a minimum, we
 recommend uploading an API spec for each Service version.
 
 After adding documentation for your Services,
-[publish](/konnect/service-hub/dev-portal/publish) them to the Dev Portal.
+[publish](/konnect/servicehub/dev-portal/publish) them to the Dev Portal.
 
 ## Service Descriptions
 
@@ -35,9 +34,11 @@ Upload a new document to replace an existing Service document.
 
 1. From the Services page, select a Service to open its overview.
 
-2. In the **Service Document** section, click the **gear icon > Upload New**.
-
-3. Click **Replace** to upload a replacement version of the file.
+2. In the **Service Document** section:
+    * To upload a new file, click the **file icon**, then
+    **Replace**. Select a new `.md` file to upload.
+    * To delete the file, click the **gear icon**, then **Delete**.
+    Click **Delete** again to confirm.
 
 ## Version Specs
 
@@ -61,7 +62,7 @@ format.
 
     If the Service was previously published to the Dev Portal, the documentation
     for the Service gets automatically updated with your changes. If not,
-    [publish](/konnect/service-hub/dev-portal/publish) the Service.
+    [publish](/konnect/servicehub/dev-portal/publish) the Service.
 
 ### Update or Delete a Version Spec
 

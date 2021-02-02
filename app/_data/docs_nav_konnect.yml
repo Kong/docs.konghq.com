@@ -7,10 +7,8 @@
       url: /using-konnect-docs
     - text: Key Concepts and Terms
       url: /key-concepts-and-terms
-    - text: Release Notes
-      url: /release-notes
-    - text: Changelog
-      url: /changelog
+    - text: Konnect SaaS Updates
+      url: /updates
     - text: Access a Kong Konnect Account
       url: /access-account
 
@@ -57,27 +55,27 @@
       url: /getting-started/implement-service
 
 - title: ServiceHub
-  icon: /assets/images/icons/documentation/icn-quickstart-color.svg
+  icon: /assets/images/icons/documentation/icn-service-hub-color.svg
   items:
     - text: Overview
-      url: /service-hub
+      url: /servicehub
     - text: Manage Services
-      url: /service-hub/manage-services
+      url: /servicehub/manage-services
     - text: Manage Plugins
       items:
         - text: Configure a Plugin on a Service
-          url: /service-hub/plugins/enable-service-plugin
+          url: /servicehub/plugins/enable-service-plugin
         - text: Configure a Plugin on a Route
-          url: /service-hub/plugins/enable-route-plugin
+          url: /servicehub/plugins/enable-route-plugin
     - text: Developer Portal
       items:
         - text: Manage Service Documentation
-          url: /service-hub/dev-portal/service-documentation
+          url: /servicehub/dev-portal/service-documentation
         - text: Publish a Service to Dev Portal
-          url: /service-hub/dev-portal/publish
+          url: /servicehub/dev-portal/publish
 
 - title: Runtime Manager
-  icon: /assets/images/icons/documentation/icn-quickstart-color.svg
+  icon: /assets/images/icons/documentation/icn-runtime-manager-color.svg
   items:
     - text: Overview
       url: /runtime-manager
@@ -89,18 +87,7 @@
   items:
     - text: Overview
       url: /dev-portal
-    - text: Developers
-      items:
-        - text: Developer Registration
-          url: /dev-portal/developers/dev-reg
-        - text: Applications
-          items:
-            - text: Create, Edit, and Delete an Application
-              url: /dev-portal/developers/dev-apps
-            - text: Register an Application with a Service
-              url: /dev-portal/developers/dev-reg-app-service
-            - text: Generate Credentials for an Application
-              url: /dev-portal/developers/dev-gen-creds
+
     - text: Administrators
       items:
         - text: Application Registration
@@ -123,6 +110,20 @@
           items:
           - text: Customizing the Dev Portal Appearance
             url: /dev-portal/administrators/customization/themes
+
+    - text: Developers
+      items:
+        - text: Developer Registration
+          url: /dev-portal/developers/dev-reg
+        - text: Applications
+          items:
+            - text: Create, Edit, and Delete an Application
+              url: /dev-portal/developers/dev-apps
+            - text: Register an Application with a Service
+              url: /dev-portal/developers/dev-reg-app-service
+            - text: Generate Credentials for an Application
+              url: /dev-portal/developers/dev-gen-creds
+
 
 - title: Konnect Vitals
   icon: /assets/images/icons/documentation/icn-vitals.svg

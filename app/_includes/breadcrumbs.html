@@ -10,23 +10,34 @@
     </li>
     {% endif %}
     <li class="breadcrumb-item">
-      {% if page.edition == 'enterprise' %}<a href="/enterprise/{{page.kong_version}}/">{{site.ee_product_name}}</a>
+      {% if page.edition == 'enterprise' %}<a href="/enterprise/{% unless page.no_version == true %}{{page.kong_version}}/{% endunless %}">{{site.ee_product_name}}</a>
       {% elsif page.edition == 'konnect' %}<a href="/konnect/">{{site.konnect_product_name}}</a>
       {% elsif page.edition == 'mesh' %}<a href="/mesh/{{page.kong_version}}/">{{site.mesh_product_name}}</a>
       {% elsif page.edition == 'deck' %}<a href="/deck/">decK</a>
       {% elsif page.edition == 'kubernetes-ingress-controller' %}<a href="/kubernetes-ingress-controller/{{page.kong_version}}/">{{site.kic_product_name}}</a>
       {% elsif page.edition == 'gateway-oss' %}<a href="/gateway-oss/{{page.kong_version}}/">{{site.ce_product_name}}</a>
-      {% else %}<a href="/">Home</a>
+      {% elsif page.edition == 'getting-started-guide' %}<a href="/getting-started-guide/{{page.kong_version}}/overview">Getting Started with Kong Gateway</a>
       {% endif %}
     </li>
     {% if page.no_version == true %}
-      {% for crumb in crumbs offset: 2 %}
-        {% unless forloop.last %}
-          <li class="breadcrumb-item">
-            {% assign crumb_limit = forloop.index | plus: 2 %}{{ crumb | replace:'-',' ' | remove:'.md' | capitalize }}
-          </li>
-        {% endunless %}
-      {% endfor %}
+      {% if page.url contains '/konnect/servicehub' %}
+      <li class="breadcrumb-item">ServiceHub</li>
+        {% for crumb in crumbs offset: 3 %}
+          {% unless forloop.last %}
+            <li class="breadcrumb-item">
+              {% assign crumb_limit = forloop.index | plus: 3 %}{{ crumb | replace:'-',' ' | remove:'.md' | capitalize }}
+            </li>
+          {% endunless %}
+        {% endfor %}
+      {% else %}
+        {% for crumb in crumbs offset: 2 %}
+          {% unless forloop.last %}
+            <li class="breadcrumb-item">
+              {% assign crumb_limit = forloop.index | plus: 2 %}{{ crumb | replace:'-',' ' | remove:'.md' | capitalize }}
+            </li>
+          {% endunless %}
+        {% endfor %}
+      {% endif %}
     {% else %}
       {% for crumb in crumbs offset: 3 %}
         {% unless forloop.last %}

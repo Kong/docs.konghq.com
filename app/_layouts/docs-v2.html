@@ -171,7 +171,7 @@ id: documentation
     indexName: 'getkong',
     inputSelector: '#getkong-algolia-search-input',
     algoliaOptions: {
-      hitsPerPage: 5,
+      hitsPerPage: 8,
       'facetFilters': ["version: {{page.kong_version}}"]
     },
     // Override selected event to allow for local environment navigation
@@ -193,7 +193,7 @@ id: documentation
     indexName: 'prod_EE',
     inputSelector: '#getkong-algolia-search-input',
     algoliaOptions: {
-      hitsPerPage: 5,
+      hitsPerPage: 8,
       'facetFilters': ["version: {{page.kong_version}}"]
     },
     // Override selected event to allow for local environment navigation
@@ -217,7 +217,7 @@ id: documentation
     indexName: 'prod_KIC',
     inputSelector: '#getkong-algolia-search-input',
     algoliaOptions: {
-      hitsPerPage: 5
+      hitsPerPage: 8
     },
     // Override selected event to allow for local environment navigation
     handleSelected: function (input, event, suggestion) {
@@ -239,7 +239,7 @@ id: documentation
     indexName: 'prod_Mesh',
     inputSelector: '#getkong-algolia-search-input',
     algoliaOptions: {
-      hitsPerPage: 5,
+      hitsPerPage: 8,
       'facetFilters': ["version: {{page.kong_version}}"]
     },
     // Override selected event to allow for local environment navigation
@@ -262,7 +262,7 @@ id: documentation
     indexName: 'prod_decK',
     inputSelector: '#getkong-algolia-search-input',
     algoliaOptions: {
-      hitsPerPage: 5
+      hitsPerPage: 8
     },
     // Override selected event to allow for local environment navigation
     handleSelected: function (input, event, suggestion) {
@@ -275,5 +275,28 @@ id: documentation
 
 </script>
 {% endif %}
+
+{% if page.edition == 'konnect' %}
+<script type="text/javascript">
+  docsearch({
+    appId: 'T5JKD83LWT',
+    apiKey: '1390283021f26e36117242934deb8d9d',
+    indexName: 'prod_Konnect',
+    inputSelector: '#getkong-algolia-search-input',
+    algoliaOptions: {
+      hitsPerPage: 8
+    },
+    // Override selected event to allow for local environment navigation
+    handleSelected: function (input, event, suggestion) {
+      input.setVal('');
+      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split(
+        "docs.konghq.com")[1]
+    }
+    // ,debug: true // Set debug to true if you want to inspect the dropdown
+  });
+
+</script>
+{% endif %}
+
 
 {% include image-modal.html %}

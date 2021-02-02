@@ -1,30 +1,32 @@
 ---
-title: Developer Registration for a Service on the Konnect Dev Portal
-no_search: true
+title: Developer Registration for the Konnect Dev Portal
 no_version: true
 toc: false
 ---
 
-If you are a developer, you can request access to a Service on the
-Konnect Dev Portal. Access the Dev Portal for any published Service through the URL
+Developers can view documentation for and request access to a Service on the
+{{site.konnect_short_name}} Dev Portal. Developers can access and register for the
+portal using the default portal URL displayed in {{site.konnect_short_name}}.
+
+Access the Dev Portal for any published Service through the URL
 displayed on the **Dev Portal** page. The format looks something like this:
 
 ```
 <org-name>.portal.khcp.konghq.com/portal/published-services
 ```
 
-1. Navigate to the Konnect Developer page.
+1. Navigate to the {{site.konnect_short_name}} Dev Portal page.
 
    1. From the **Services** page, click the **Dev Portal** menu.
    2. In **Published Services**, click the **Portal URL** link.
 
    ![Konnect Portal URL](/assets/images/docs/konnect/konnect-pub-services-portal-url.png)
 
-2. Click **Sign up**. The Konnect Developer dialog appears.
+2. In the Dev Portal, click **Sign up**. The {{site.konnect_short_name}} Developer dialog appears.
 
    ![Konnect Developer Registration](/assets/images/docs/konnect/konnect-dev-sign-up.png)
 
-3. Complete the Konnect Developer dialog:
+3. Complete the {{site.konnect_short_name}} Developer dialog:
 
    1. Enter your **First Name** and **Last Name**.
 
@@ -40,9 +42,10 @@ displayed on the **Dev Portal** page. The format looks something like this:
 
    5. Check your email for registration confirmation. In the confirm your address email, click the confirmation link.
 
-   6. A message indicates your email has been confirmed, and your account is awaiting approval. Click **Okay**.
+   6. A message indicates your email has been confirmed, and your account is awaiting approval
+      if [auto approve](/konnect/dev-portal/administrators/auto-approve-devs-apps) is not enabled.
 
-6. After your request has been [approved by an admin](/konnect/dev-portal/administrators/manage-devs),
+6. After your request has been [approved by an admin](/konnect/dev-portal/administrators/manage-devs) or automatically approved,
    click **Login**. The Login dialog is displayed.
 
-7. Enter your credentials and log in. If you experience any access issues, contact your Konnect admin.
+7. Enter your credentials and log in. If you experience any access issues, contact your {{site.konnect_short_name}} admin.

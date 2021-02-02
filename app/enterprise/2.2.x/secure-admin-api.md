@@ -135,8 +135,8 @@ For more information on integrating Kong into custom Nginx configurations, see
 ## Role Based Access Control ##
 
 <div class="alert alert-warning">
-  <strong>Enterprise-Only</strong> This feature is only available with an
-  Enterprise Subscription.
+  <strong>{{site.konnect_short_name}}-Only</strong> This feature is only available with an
+  {{site.konnect_product_name}} subscription.
 </div>
 
 Enterprise users can configure role-based access control to secure access to the

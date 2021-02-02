@@ -1,45 +1,44 @@
 ---
-title: Manage Developer Access to Konnect
-no_search: true
+title: Manage Developer Access to Konnect Dev Portal
 no_version: true
 ---
 
 Manage developers and [developer registration](/konnect/dev-portal/developers/dev-reg) requests to
-access the Konnect Dev Portal. To allow automatic approval of developer registration requests,
+access the {{site.konnect_short_name}} Dev Portal. To allow automatic approval of developer registration requests,
 enable [auto approve](/konnect/dev-portal/administrators/auto-approve-devs-apps).
 
 ## Prerequisite
 
-You must be a Konnect admin with the
+You must be a {{site.konnect_short_name}} admin with the
 [correct roles and permissions](/konnect/reference/org-management/#role-definitions)
-to manage developers and their access to your Konnect Dev Portal. The following roles allow you to
-manage developers:
+to manage developers and their access to your {{site.konnect_short_name}} Dev Portal.
+The following roles allow you to manage developers:
 
 - Organization Admin
 - Portal Admin
 
 ## Developer Status
 
-A status represents the state of developers and their access to the Konnect Dev
+A status represents the state of developers and their access to the {{site.konnect_short_name}} Dev
 Portal:
 
 **Approved**
-: A developer has been approved to access the Konnect Dev Portal. Approved developers
+: A developer has been approved to access the {{site.konnect_short_name}} Dev Portal. Approved developers
    can generate credentials and access all APIs that allow those credentials.
 
 **Pending**
-: A developer who has requested access but has not yet had their request reviewed by a Konnect admin.
+: A developer who has requested access but has not yet had their request reviewed by a {{site.konnect_short_name}} admin.
 
 **Rejected**
-: A developer who has had their developer access request rejected by a Konnect admin.
+: A developer who has had their developer access request rejected by a {{site.konnect_short_name}} admin.
 
 **Revoked**
-: A developer who had prior access to the Konnect Dev Portal but has since had
+: A developer who had prior access to the {{site.konnect_short_name}} Dev Portal but has since had
   their access revoked.
 
 ## Requests Page Developers Tab
 
-To access the Requests page Developers tab, from the Konnect navigation menu, click
+To access the Requests page Developers tab, from the {{site.konnect_short_name}} navigation menu, click
 **Connections** > **Requests** > **Developers** tab.
 
 ![Konnect Developer Access Requests](/assets/images/docs/konnect/konnect-requests-dev-reg.png)
@@ -51,7 +50,8 @@ In the Requests page Developers tab, you can:
 - [Reject a developer request](#reject-dev-reg) for access.
 - [Delete a developer request](#delete-dev-reg) for access.
 
-If there are no pending requests, the `No Developer Requests` message is displayed.
+If there are no pending requests, the `No Developer Requests` message is displayed. The number of
+pending requests is displayed in the Requests menu and the Developers tab.
 
 ### Approve a developer's access request {#approve-dev-reg}
 
@@ -109,7 +109,7 @@ The Developers page shows all existing developers who have approved (or revoked)
 Dev Portal Service. The list of developers to manage populates as more developers
 request access and are approved.
 
-To access the Developers page, from the Konnect navigation menu, click **Connections** > **Developers**.
+To access the Developers page, from the {{site.konnect_short_name}} navigation menu, click **Connections** > **Developers**.
 
 ![Konnect Developers](/assets/images/docs/konnect/konnect-devs-page.png)
 
@@ -131,7 +131,7 @@ email address, unless the revoked request is deleted.
 
 A developer who has been revoked can be
 [approved again](#approve-revoked-dev-access) at any time. You can also
-[delete a developer](#delete-dev) entirely from the Konnect portal.
+[delete a developer](#delete-dev) entirely from the {{site.konnect_short_name}} portal.
 
 1. Click **Connections > Requests > Developers** tab.
 
@@ -154,7 +154,7 @@ any time at your discretion.
 
 ### Delete a developer {#delete-dev}
 
-Delete a developer entirely from the Konnect portal. Reasons for deleting a developer
+Delete a developer entirely from the {{site.konnect_short_name}} portal. Reasons for deleting a developer
 can include the developer is no longer working for your organization or contributing to your project.
 A deleted developer would have to sign up again to request access and approval.
 Deleting a developer deletes everything owned by that developer, such as applications.

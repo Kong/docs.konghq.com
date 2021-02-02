@@ -1,7 +1,7 @@
 - title: Introduction
   icon: /assets/images/icons/documentation/icn-flag.svg
   items:
-    - text: Introduction to Kong Enterprise
+    - text: Introduction to Kong Gateway (Enterprise)
       url: /introduction
     - text: Key Concepts and Terminology
       url: /introduction/key-concepts
@@ -32,11 +32,11 @@
               url: /deployment/installation/docker
             - text: Kong for Kubernetes Enterprise
               url: /deployment/installation/kong-for-kubernetes
-            - text: Kong Enterprise on Kubernetes
+            - text: Kong Gateway (Enterprise) on Kubernetes
               url: /deployment/installation/kong-on-kubernetes
             - text: OpenShift with Kong for Kubernetes Enterprise
               url: /deployment/installation/kong-for-kubernetes
-            - text: OpenShift with Kong Enterprise on Kubernetes
+            - text: OpenShift with Kong Gateway (Enterprise) on Kubernetes
               url: /deployment/installation/kong-on-kubernetes
         - text: Operating Systems
           items:
@@ -114,15 +114,15 @@
           url: /secure-admin-api
         - text : Keyring and Data Encryption
           url: /db-encryption
-        - text: Start Kong Enterprise Securely
+        - text: Start Kong Gateway Securely
           url: /start-kong-securely
         - text: Kong Security Update Process
           url: /kong-security-update-process
     - text: Upgrades and Migrations
       items:
-        - text: Migrating Kong Enterprise to Latest Version
+        - text: Migrating Kong Gateway to Latest Version
           url: /deployment/upgrades/migrations
-        - text: Migrating from Kong Community to Kong Enterprise
+        - text: Migrating from OSS to Enterprise
           url: /deployment/upgrades/migrate-ce-to-ke
     - text: Kong Cloud
       url: /kong-cloud
@@ -221,7 +221,7 @@
           url: /pdk/kong.table
     - text: Go Plugin Development Kit
       url: /go
-    - text : Control Kong Enterprise through systemd
+    - text : Control Kong Gateway through systemd
       url: /systemd
 
 - title: Admin API
@@ -423,7 +423,7 @@
           url: /../../deck/guides/distributed-configuration
         - text: Best Practices
           url: /../../deck/guides/best-practices
-        - text: Using decK with Kong Enterprise
+        - text: Using decK with Kong Gateway (Enterprise)
           url: /../../deck/guides/kong-enterprise
         - text: Using Multiple Files to Store Configuration
           url: /../../deck/guides/multi-file-state

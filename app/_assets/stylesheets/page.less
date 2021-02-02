@@ -1031,6 +1031,7 @@ Generic Styling for Desktop
       }
 
       p, a {
+        display: block;
         padding-left: 15px;
       }
 
@@ -1401,6 +1402,17 @@ Generic Styling for Desktop
   margin-top: -2rem;
   margin-left: 0;
   padding: 0;
+
+  &.install {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    .breadcrumb-item {
+      display: inline-block;
+      margin: 0;
+      }
+    }
 
   .breadcrumb-item {
     display: inline-block;

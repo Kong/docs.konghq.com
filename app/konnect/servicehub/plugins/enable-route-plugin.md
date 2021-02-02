@@ -1,6 +1,5 @@
 ---
 title: Configure a Plugin on a Route
-no_search: true
 no_version: true
 ---
 Enable, update, disable, or delete a plugin for a Route.

@@ -8,9 +8,9 @@ sitemap: true
     <div class="page-header-bg"></div>
     <div class="container">
       <nav class="docs-navigation v2">
-        <a href="/gateway-oss" {% if page.edition == 'gateway-oss' %} class="active" {% endif %}>Kong Gateway</a>
-        <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>Kong Enterprise</a>
-        <a href="/getting-started-guide/latest/overview" {% if page.edition=='getting-started-guide' %} class="active" {% endif %}>Getting Started</a>
+        <a href="/konnect" {% if page.edition =='konnect' or page.edition == 'enterprise' %} class="active" {% endif %}>{{site.konnect_product_name}}</a>
+        <a href="/gateway-oss" {% if page.edition =='gateway-oss' %} class="active" {% endif %}>{{site.ce_product_name}}</a>
+        <a href="/mesh" {% if page.edition =='mesh' %} class="active" {% endif %}>{{site.mesh_product_name}}</a>
 
         <div class="header-actions">
           <div class="edit-this-page v2">

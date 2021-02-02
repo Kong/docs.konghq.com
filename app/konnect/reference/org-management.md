@@ -1,6 +1,5 @@
 ---
 title: Managing Users and Roles
-no_search: true
 no_version: true
 ---
 

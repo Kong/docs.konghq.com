@@ -1,20 +1,20 @@
 ---
 title: Manage Application Service Connections
-no_search: true
 no_version: true
 ---
 
 Revoke, reinstate, or delete an application's connection to a Service. When a developer
 [registers a request](/konnect/dev-portal/developers/dev-reg-app-service) to access a Service for an
-application, and the request is approved, it creates an application connection.
+application, and the request is approved either [automatically](/konnect/dev-portal/administrators/auto-approve-devs-apps)
+or by a {{site.konnect_short_name}} admin, it creates an application connection between the
+developer, their applications, and the associated Service Versions.
 
-When the state of the application changes, an email is sent to the developer to notify
-them about the change in status.
-
+<!---When the state of the application changes, an email is sent to the developer to notify
+them about the change in status.--->
 
 ## Prerequisite
 
-You must be a Konnect admin with the
+You must be a {{site.konnect_short_name}} admin with the
 [correct roles and permissions](/konnect/reference/org-management/#role-definitions)
 to manage application connections to a Service.
 
@@ -29,11 +29,11 @@ manage application connections to a Service:
 The following status conditions reflect the current state of an application's connection to a Service:
 
 **Approved**
-: An application connection to a Service was approved by a Konnect admin.
+: An application connection to a Service was approved by a {{site.konnect_short_name}} admin.
 
 **Revoked**
 : An application connection to a Service that was formerly approved has been revoked by a
-Konnect admin.
+{{site.konnect_short_name}} admin.
 
 ## Applications Page
 
@@ -56,8 +56,8 @@ Use the Applications page to:
 
 The application details page shows all of its connections to a Service.
 
-To access the Applications page, from the Konnect navigation menu, click **Connections** > **Applications**
-and click on an application row.
+To access the Applications page, from the {{site.konnect_short_name}} navigation menu,
+click **Connections** > **Applications** and click on an application row.
 
 ![Konnect Revoke or Delete an Application Connection](/assets/images/docs/konnect/konnect-revoke-delete-app-connection.png)
 

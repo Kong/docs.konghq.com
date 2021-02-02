@@ -1,14 +1,13 @@
 ---
 title: Enable Application Registration for a Service
-no_search: true
 no_version: true
 toc: true
 ---
 
 Enable application registration on a Service in {{site.konnect_short_name}}.
-When application registration is enabled, developers must
+When application registration is enabled for a Service, developers must
 [register an application](/konnect/dev-portal/developers/dev-reg-app-service)
-to a Service.
+in order to access a Service.
 
 All versions of a Service
 share the same authentication strategy. When you add another version to a Service,
@@ -18,15 +17,25 @@ Supported authentication flows are based on the following plugins:
 - [Key Authentication](#konnect-key-auth-flow)
 - [OpenID Connect](#oidc-flow)
 
-The [ACL](/hub/kong-inc/acl) plugin is also automatically enabled enabled in
+The [ACL](/hub/kong-inc/acl) plugin is also automatically enabled in
 conjunction with the `key-auth` or `OIDC` plugins. After app registration is enabled for a Service,
 the `key-auth` or `OIDC` and `ACL` plugins are no longer available on the Plugins page because
-they have already been enabled. The [Application Registration](/hub/kong-inc/application-registration)
-plugin is not available on the {{site.konnect_short_name}} plugins page because it is an implicit implementation
-for {{site.konnect_short_name}}, and is only applicable to {{site.ee_product_name}} as an explicit implementation.
+they have already been enabled.
+
+<div class="alert alert-ee warning"><strong>WARNING:</strong>
+It is possible to view the Consumers in the Shared Config. Do not delete the ACLs associated
+with a Consumer managed by application registration.
+</div>
+
+Plugins enabled by app registration cannot be disabled using the toggle in the **Plugins** pane
+on the Services Version page. The only way to disable or delete them is to disable app registration,
+which deletes all plugins that were initially enabled with application registration for a Service.
+Any other plugins that were enabled manually, such as `rate-limiting`, remain enabled.
+
+![Konnect Enable App Registration with OIDC](/assets/images/docs/konnect/konnect-enable-app-reg-oidc-toggle.png)
 
 You can [disable application registration](/konnect/dev-portal/administrators/app-registration/disable-app-reg/)
-again any time at your discretion.
+any time at your discretion.
 
 ## Prerequisites
 
@@ -45,9 +54,14 @@ again any time at your discretion.
 - The Services have been created, versioned, and published to the
   {{site.konnect_short_name}} Dev Portal so that they appear in the Catalog.
 
-- If you are using [OpenID Connect](#oidc-flow) for your authorization, set up your
-  application, claims, and scopes in your OpenID identity provider as appropriate for your requirements.
-  Refer to your IdP/OP documentation for instructions.
+- If you are using [OpenID Connect](#oidc-flow) for your authorization:
+
+  - Set up your application, claims, and scopes in your OpenID identity provider as
+    appropriate for your requirements. Refer to your IdP/OP documentation for instructions.
+
+  - Be sure to edit the **Reference ID** field in the Dev Portal
+    [Update Application](/konnect/dev-portal/developers/dev-apps#edit-my-app)
+    dialog to match to your third-party OAuth2 claim.
 
 ## Enable App Registration for the Key Authentication Flow {#konnect-key-auth-flow}
 
@@ -72,11 +86,16 @@ again any time at your discretion.
 
 4. Select `key-auth` from the **Auth Type** list.
 
-5. (Optional) Click to enable **Auto Approve**. Any developer registration
-   requests for an application are automatically approved. A {{site.konnect_short_name}}
-   cloud admin does not need to
+5. (Optional) Click to enable **Auto Approve** for application registrations for the selected Service.
+
+   Any developer registration requests for an application are automatically approved. A {{site.konnect_short_name}}
+   SaaS admin does not need to
    [manually approve](/konnect/dev-portal/administrators/app-registration/manage-app-reg-requests/) application
    registration requests for developers.
+
+   You can also [enable Auto Approve portal-wide](/konnect/dev-portal/administrators/auto-approve-devs-apps)
+   using the Settings page for the Dev Portal. If Auto Approve is
+   enabled portal-wide, it overrides the per-Service Auto Approve setting.
 
 6. Click **Enable**.
 
@@ -112,11 +131,17 @@ again any time at your discretion.
 
    5. (Optional) Click to enable **Hide Credentials** from the upstream service.
 
-   6. (Optional) Click to enable **Auto Approve**. Any developer registration
+   6. (Optional) Click to enable **Auto Approve**.
+
+      Any developer registration
       requests for an application are automatically approved. A {{site.konnect_short_name}}
       cloud admin does not need to
       [manually approve](/konnect/dev-portal/administrators/app-registration/manage-app-reg-requests/) application
       registration requests for developers.
+
+      You can also [enable Auto Approve portal-wide](/konnect/dev-portal/administrators/auto-approve-devs-apps)
+      using the Portal Settings. If Auto Approve is
+      enabled or disabled portal-wide, it overrides the per Service Auto Approve setting.
 
 6. Click **Enable**.
 
@@ -145,5 +170,5 @@ follow the recommended solution.
 
 | Error Message | Solution |
 |------------------------------|---------------------------------------------------------------------------------|
-| No Service implementation in the Service package. | Create a Service implementation. See the [example](/konnect/getting-started/configure-service/#implement-a-service-version) in the getting started guide. |
+| No Service implementation in the Service package. | Create a Service implementation. See the [example](/konnect/servicehub/manage-services/#implement-service-version) in the Quickstart Guide, and the [ServiceHub](/konnect/servicehub/manage-services/#implement-service-version) documentation. |
 | Schema violation, config.issuer: missing host in url (openid-connect)| Be sure to include the host in the Issuer URL of your identity provider. For example: `https://dev-1234567.okta.com/oauth2/default`. |

@@ -1,6 +1,5 @@
 ---
 title: Publish a Service to the Dev Portal
-no_search: true
 no_version: true
 ---
 

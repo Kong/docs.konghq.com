@@ -1,6 +1,5 @@
 ---
 title: License Management in Konnect SaaS
-no_search: true
 no_version: true
 toc: false
 ---

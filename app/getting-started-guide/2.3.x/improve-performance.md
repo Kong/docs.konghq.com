@@ -2,47 +2,49 @@
 title: Improve Performance with Proxy Caching
 ---
 
-In this topic, you’ll learn how to use proxy caching to improve response efficiency using Kong Gateway’s Proxy Caching plugin.
+In this topic, you’ll learn how to use proxy caching to improve response efficiency using the Proxy Caching plugin.
 
 If you are following the getting started workflow, make sure you have completed [Protect your Services](/getting-started-guide/{{page.kong_version}}/protect-services) before continuing.
 
 ## What is Proxy Caching?
 
-Kong Gateway delivers fast performance through caching. The Proxy Caching plugin provides this fast performance using a reverse proxy cache implementation. It caches response entities based on the request method, configurable response code, content type, and can cache per Consumer or per API.
+{{site.base_gateway}} delivers fast performance through caching. The Proxy Caching plugin provides this fast performance using a reverse proxy cache implementation. It caches response entities based on the request method, configurable response code, content type, and can cache per Consumer or per API.
 
-Cache entities are stored for a configurable period of time. When the timeout is reached, Kong Gateway forwards the request to the Upstream, caches the result and responds from cache until the timeout. The plugin can store cached data in memory, or for improved performance, in Redis.
+Cache entities are stored for a configurable period of time. When the timeout is reached, the gateway forwards the request to the Upstream, caches the result and responds from cache until the timeout. The plugin can store cached data in memory, or for improved performance, in Redis.
 
 ## Why use Proxy Caching?
 
-Use proxy caching so that Upstream services are not bogged down with repeated requests. With proxy caching, Kong Gateway can respond with cached results for better performance.
+Use proxy caching so that Upstream services are not bogged down with repeated requests. With proxy caching, {{site.base_gateway}} can respond with cached results for better performance.
 
 ## Set up the Proxy Caching plugin
 
 {% navtabs %}
 {% navtab Using the Admin API %}
 
-<div class="alert alert-ee">
-<strong><img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" />Note for {{site.ee_product_name}} free trial users:</strong>
-<br/>
-If you are trying out {{site.ee_product_name}} using a hosted (cloud) free trial, make sure you have set up an RBAC user for the Admin API:
-<a href="/getting-started-guide/{{page.kong_version}}/prepare/#free-trials-setup">Prepare to Administer {{site.base_gateway}}</a>.
-</div>
-
 Call the Admin API on port `8001` and configure plugins to enable in-memory caching globally, with a timeout of 30 seconds for Content-Type `application/json`.
 
-*Using cURL*:
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
 ```sh
 $ curl -i -X POST http://<admin-hostname>:8001/plugins \
---data name=proxy-cache \
---data config.content_type="application/json; charset=utf-8" \
---data config.cache_ttl=30 \
---data config.strategy=memory
+  --data name=proxy-cache \
+  --data config.content_type="application/json; charset=utf-8" \
+  --data config.cache_ttl=30 \
+  --data config.strategy=memory
 ```
-
-*Or using HTTPie*:
+{% endnavtab %}
+{% navtab HTTPie %}
 ```sh
-$ http -f :8001/plugins name=proxy-cache config.strategy=memory config.content_type="application/json; charset=utf-8"
+$ http -f :8001/plugins \
+  name=proxy-cache \
+  config.strategy=memory \
+  config.cache_ttl=30 \
+  config.content_type="application/json; charset=utf-8"
 ```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
 {% endnavtab %}
 {% navtab Using Kong Manager %}
@@ -125,57 +127,67 @@ plugin with a timeout of 30 seconds for Content-Type
 
 Let’s check that proxy caching works.
 
-1. Access the */mock* route using the Admin API and note the response headers.
+Access the */mock* route using the Admin API and note the response headers:
 
-    *Using cURL*:
-    ```sh
-    $ curl -i -X GET http://<admin-hostname>:8000/mock/request
-    ```
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -i -X GET http://<admin-hostname>:8000/mock/request
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8000/mock/request
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
-    *Or using HTTPie*:
-    ```sh
-    $ http :8000/mock/request
-    ```
+In particular, pay close attention to the values of `X-Cache-Status`, `X-Kong-Proxy-Latency`, and `X-Kong-Upstream-Latency`:
+```
+HTTP/1.1 200 OK
+...
+X-Cache-Key: d2ca5751210dbb6fefda397ac6d103b1
+X-Cache-Status: Miss
+X-Content-Type-Options: nosniff
+...
+X-Kong-Proxy-Latency: 25
+X-Kong-Upstream-Latency: 37
+```
 
-    In particular, pay close attention to the values of `X-Cache-Status`, `X-Kong-Proxy-Latency`, and `X-Kong-Upstream-Latency`:
-    ```
-    HTTP/1.1 200 OK
-    ...
-    X-Cache-Key: d2ca5751210dbb6fefda397ac6d103b1
-    X-Cache-Status: Miss
-    X-Content-Type-Options: nosniff
-    ...
-    X-Kong-Proxy-Latency: 25
-    X-Kong-Upstream-Latency: 37
+Next, access the */mock* route one more time.
 
-    ```
+This time, notice the differences in the values of `X-Cache-Status`, `X-Kong-Proxy-Latency`, and `X-Kong-Upstream-Latency`. Cache status is a `hit`, which means Kong Gateway is responding to the request directly from cache instead of proxying the request to the Upstream service.
 
-2. Access the */mock* route one more time.
+Further, notice the minimal latency in the response, which allows Kong Gateway to deliver the best performance:
 
-    This time, notice the differences in the values of `X-Cache-Status`, `X-Kong-Proxy-Latency`, and `X-Kong-Upstream-Latency`. Cache status is a `hit`, which means Kong Gateway is responding to the request directly from cache instead of proxying the request to the Upstream service.
+```
+HTTP/1.1 200 OK
+...
+X-Cache-Key: d2ca5751210dbb6fefda397ac6d103b1
+X-Cache-Status: Hit
+...
+X-Kong-Proxy-Latency: 0
+X-Kong-Upstream-Latency: 1
+```
 
-    Further, notice the minimal latency in the response, which allows Kong Gateway to deliver the best performance:
+To test more rapidly, the cache can be deleted by calling the Admin API:
 
-    ```
-    HTTP/1.1 200 OK
-    ...
-    X-Cache-Key: d2ca5751210dbb6fefda397ac6d103b1
-    X-Cache-Status: Hit
-    ...
-    X-Kong-Proxy-Latency: 0
-    X-Kong-Upstream-Latency: 1
-    ```
-
-3. To test more rapidly, the cache can be deleted by calling the Admin API:
-
-    *Using cURL*:
-    ```sh
-    $ curl -i -X DELETE http://<admin-hostname>:8001/proxy-cache
-    ```
-    *Or using HTTPie*:
-    ```sh
-    $ http delete :8001/proxy-cache
-    ```
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -i -X DELETE http://<admin-hostname>:8001/proxy-cache
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http delete :8001/proxy-cache
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
 
 ## Summary and Next Steps
 

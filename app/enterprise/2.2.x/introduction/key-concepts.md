@@ -5,11 +5,11 @@ redirect_from:
   - /enterprise/getting-started/{{page.kong_version}}/key-concepts
 ---
 
-Kong Enterprise uses common terms for entities and processes that have a specific meaning in context. This topic provides a conceptual overview of terms, and how they apply to Kong’s use cases.
+{{site.ee_product_name}} uses common terms for entities and processes that have a specific meaning in context. This topic provides a conceptual overview of terms, and how they apply to Kong’s use cases.
 
 ## Admin
 
-An Admin is a Kong Enterprise user account capable of accessing the Admin API or Kong Manager. With RBAC and Workspaces, access can be modified and limited to specific entities.
+An Admin is a {{site.base_gateway}} user account capable of accessing the Admin API or Kong Manager. With RBAC and Workspaces, access can be modified and limited to specific entities.
 
 ## Authentication
 Authentication is the process by which a system validates the identity of a user account. It is a separate concept from authorization.
@@ -17,7 +17,7 @@ Authentication is the process by which a system validates the identity of a user
 API gateway authentication is an important way to control the data that is allowed to be transmitted to and from your APIs. An API may have a restricted list of identities that are authorized to access it. Authentication is the process of proving an identity.
 
 ## Authorization
-Authorization is the system of defining access to certain resources. In Kong Enterprise, Role-Based Access Control (RBAC) is the main authorization mode. To define authorization to an API, it is possible to use the ACL Plugin in conjunction with an authentication plugin.
+Authorization is the system of defining access to certain resources. In {{site.base_gateway}}, Role-Based Access Control (RBAC) is the main authorization mode. To define authorization to an API, it is possible to use the ACL Plugin in conjunction with an authentication plugin.
 
 ## Beta
 A Beta designation in Kong software means the functionality of a feature or release version is of high quality and can be deployed in a non-production environment. Note the following when using a Beta feature or version:
@@ -49,7 +49,7 @@ Methods represent the HTTP methods available for requests. It accepts multiple v
 A Permission is a policy representing the ability to create, read, update, or destroy an Admin API entity defined by endpoints.
 
 ## Plugin
-Plugins provide advanced functionality and extend the use of Kong Enterprise, allowing you to add new features to your gateway. Plugins can be configured to run in a variety of contexts, ranging from a specific route to all upstreams. Plugins can perform operations in your environment, such as authentication, rate-limiting, or transformations on a proxied request.
+Plugins provide advanced functionality and extend the use of {{site.base_gateway}}, allowing you to add new features to your gateway. Plugins can be configured to run in a variety of contexts, ranging from a specific route to all upstreams. Plugins can perform operations in your environment, such as authentication, rate-limiting, or transformations on a proxied request.
 
 ## Proxy
 Kong is a reverse proxy that manages traffic between clients and hosts. As a gateway, Kong’s proxy functionality evaluates any incoming HTTP request against the Routes you have configured to find a matching one. If a given request matches the rules of a specific Route, Kong processes proxying the request. Because each Route is linked to a Service, Kong runs the plugins you have configured on your Route and its associated Service and then proxies the request upstream.
