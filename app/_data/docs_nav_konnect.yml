@@ -56,7 +56,7 @@
     - text: Implement and Test the Service
       url: /getting-started/implement-service
 
-- title: Service Hub
+- title: ServiceHub
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   items:
     - text: Overview
