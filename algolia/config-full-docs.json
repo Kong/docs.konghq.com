@@ -30,7 +30,7 @@
     "https://docs.konghq.com/sitemap.xml"
   ],
   "stop_urls": [
-
+    "https://docs.konghq.com/hub/.*?/.*?/.*?html"
   ],
 
   "selectors": {
