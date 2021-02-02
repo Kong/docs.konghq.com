@@ -33,15 +33,52 @@ header.navbar-v2 {
       transition: transform 0.5s;
 
       .navbar-item {
+        position: relative;
         font-family: Roboto;
         font-size: 16px;
         line-height: 22px;
         color: #043558;
         transition: color .25s;
         margin-right: 40px;
+        padding: 18px 0;
+        white-space: nowrap;
+        cursor: pointer;
 
-        &:hover {
+        > a {
+          color: #043558;
+        }
+
+        .navbar-item-submenu {
+          position: absolute;
+          left: -16px;
+          top: 100%;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          max-height: 0;
+          background: white;
+          padding: 0 8px;
+          box-shadow: 0 8px 24px rgba(4, 53, 88, 0.1);
+          transition: max-height .25s, padding-top .25s, padding-bottom .25s;
+
+          .navbar-item {
+            margin: 0;
+            padding: 12px;
+          }
+        }
+
+        &:hover,
+        &.submenu-opened {
           color: #1155CB;
+
+          > a {
+            color: #1155CB;
+          }
+
+          .navbar-item-submenu {
+            max-height: 800px;
+            padding: 4px 8px;
+          }
         }
       }
 
@@ -139,7 +176,7 @@ header.navbar-v2 {
 
   @media (max-width: 767px) {
     .navbar-content {
-      .navbar-items {
+      > .navbar-items {
         position: absolute;
         top: 60px;
         left: 0;
@@ -148,16 +185,72 @@ header.navbar-v2 {
         flex-direction: column;
         align-items: flex-start;
         background: white;
-        padding: 24px;
+        padding: 24px 0;
         z-index: -100;
 
+        .navbar-items {
+          align-self: stretch;
+          align-items: stretch;
+          flex-direction: column;
+          transform: translateX(0);
+          transition: transform .25s;
+
+          &:not(.submenu-opened) {
+            .navbar-item-submenu {
+              max-height: 0;
+              padding: 0;
+              box-shadow: none;
+            }
+          }
+
+          &.submenu-opened {
+            transform: translateX(-100%);
+
+            .navbar-item.submenu-title {
+              transform: translate(calc(100% + 8px), 0);
+              font-weight: 500;
+
+              > a {
+                color: #043558;
+              }
+
+              &:after {
+                content: "\f054";
+                font-family: FontAwesome,"Font Awesome",FontAwesome;
+                font-size: 11px;
+                color: #043558;
+                position: absolute;
+                left: 6px;
+                top: 6px;
+                transform: scale(-1);
+              }
+            }
+
+            .navbar-item-submenu {
+              padding: 0 24px 24px;
+              top: 100%;
+              left: 0;
+              box-shadow: none;
+              overflow: visible;
+              font-weight: normal;
+              background: none;
+            }
+          }
+        }
+
         .navbar-item {
-          padding: 8px;
+          padding: 8px 24px;
           margin-top: 12px;
+          margin-right: 0;
+          transition: transform .25s;
+
+          > a {
+            pointer-events: none;
+          }
         }
 
         .navbar-button {
-          margin: 24px 0 0;
+          margin: 24px 24px 0;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -172,7 +265,7 @@ header.navbar-v2 {
 
     &.menu-opened {
       .navbar-content {
-        .navbar-items {
+        > .navbar-items {
           transform: translateY(0);
         }
       }
