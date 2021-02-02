@@ -799,7 +799,7 @@ $(function () {
    * only when edition=[edition] query parameter is specified.
    *
    * Example:
-   * {% edition community %}
+   * {% edition gateway-oss %}
    * ### {{site.ce_product_name}}
    * {{site.ce_product_name}} is an open-source, lightweight API gateway optimized for microservices, delivering unparalleled...
    * {% endedition %}
@@ -819,7 +819,7 @@ $(function () {
    *       edition: enterprise
    *     - text: Expose your Services
    *       url: /expose-services
-   *       edition: community
+   *       edition: gateway-oss
    */
   const edition = decodeURIComponent(window.location.search)
     .substring(1)
@@ -830,10 +830,10 @@ $(function () {
 
   const editionSwitch = $(".edition-switch");
   editionSwitch.click(function () {
-    if (edition === "community") {
+    if (edition === "gateway-oss") {
       window.location.search = "?edition=enterprise";
     } else {
-      window.location.search = "?edition=community";
+      window.location.search = "?edition=gateway-oss";
     }
   });
 

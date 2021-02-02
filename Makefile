@@ -37,4 +37,4 @@ docker-test: background-docker-up
 	docker-compose exec -T jekyll npm test
 
 check-links: background-docker-up
-	docker-compose exec -T jekyll yarn blc http://localhost:3000 -efr --exclude careers --exclude hub --exclude request-demo --exclude kong-cloud
+	docker-compose exec -T jekyll yarn blc http://localhost:3000 -efr --exclude careers --exclude hub --exclude kong-cloud --exclude community --exclude 2.3.x --exclude 2.2.x --exclude 2.1.x --exclude 2.0.x --exclude 1.5.x --exclude 1.4.x --exclude 1.3.x --exclude 1.2.x --exclude 1.1.x --exclude 1.0.x --exclude 0.14.x --exclude 0.13.x --exclude 0.12.x --exclude 0.11.x --exclude 0.10.x --exclude 0.9.x --exclude0.8.x --exclude0.7.x --exclude 0.6.x --exclude 0.5.x --exclude 0.4.x --exclude 0.3.x --exclude 0.2.x
