@@ -2,36 +2,28 @@
   "index_name": "prod_Full_Docs",
   "start_urls": [
     {
-      "url": "https://docs.konghq.com/konnect/",
-      "selectors_key": "konnect"
+      "url": "https://docs.konghq.com/konnect/"
     },
     {
-      "url": "https://docs.konghq.com/deck/",
-      "selectors_key": "deck"
+      "url": "https://docs.konghq.com/deck/"
     },
     {
-      "url": "https://docs.konghq.com/kubernetes-ingress-controller/1.1.x/",
-      "selectors_key": "kic"
+      "url": "https://docs.konghq.com/kubernetes-ingress-controller/1.1.x/"
     },
     {
-      "url": "https://docs.konghq.com/enterprise/2.2.x/",
-      "selectors_key": "enterprise"
+      "url": "https://docs.konghq.com/enterprise/2.2.x/"
     },
     {
-      "url": "https://docs.konghq.com/2.3.x/",
-      "selectors_key": "community"
+      "url": "https://docs.konghq.com/2.3.x/"
     },
     {
-      "url": "https://docs.konghq.com/getting-started-guide/2.3.x/",
-      "selectors_key": "gsg"
+      "url": "https://docs.konghq.com/getting-started-guide/2.3.x/"
     },
     {
-      "url": "https://docs.konghq.com/mesh/1.1.x/",
-      "selectors_key": "mesh"
+      "url": "https://docs.konghq.com/mesh/1.1.x/"
     },
     {
-      "url": "https://docs.konghq.com/hub/",
-      "selectors_key": "hub"
+      "url": "https://docs.konghq.com/hub/"
     }
   ],
   "sitemap_urls": [
@@ -40,115 +32,18 @@
   "stop_urls": [
 
   ],
+
   "selectors": {
-    "konnect": {
-      "lvl0": {
-        "selector": ".search-selector",
-        "global": true,
-        "default_value": "Kong Konnect"
-        },
-      "lvl1": "h1",
-      "lvl2": ".content h2",
-      "lvl3": ".content h3",
-      "lvl4": ".content h4",
-      "text": ".content p, .content li"
+    "lvl0": {
+      "selector": ".search-selector",
+      "global": true,
+      "default_value": "Kong"
     },
-    "deck": {
-      "lvl0": {
-        "selector": ".search-selector",
-        "global": true,
-        "default_value": "decK"
-        },
-      "lvl1": "h1",
-      "lvl2": ".content h2",
-      "lvl3": ".content h3",
-      "lvl4": ".content h4",
-      "text": ".content p, .content li"
-    },
-    "kic": {
-      "lvl0": {
-        "selector": ".search-selector",
-        "global": true,
-        "default_value": "Kubernetes Ingress Controller"
-        },
-      "lvl1": "h1",
-      "lvl2": ".content h2",
-      "lvl3": ".content h3",
-      "lvl4": ".content h4",
-      "text": ".content p, .content li"
-    },
-    "community": {
-      "lvl0": {
-        "selector": ".search-selector",
-        "global": true,
-        "default_value": "Kong Gateway (OSS)"
-        },
-      "lvl1": "h1",
-      "lvl2": ".content h2",
-      "lvl3": ".content h3",
-      "lvl4": ".content h4",
-      "text": ".content p, .content li"
-    },
-    "enterprise": {
-      "lvl0": {
-        "selector": ".search-selector",
-        "global": true,
-        "default_value": "Kong Gateway (Enterprise)"
-        },
-      "lvl1": "h1",
-      "lvl2": ".content h2",
-      "lvl3": ".content h3",
-      "lvl4": ".content h4",
-      "text": ".content p, .content li"
-    },
-    "gsg": {
-      "lvl0": {
-        "selector": ".search-selector",
-        "global": true,
-        "default_value": "Kong Gateway: Getting Started Guide"
-        },
-      "lvl1": "h1",
-      "lvl2": ".content h2",
-      "lvl3": ".content h3",
-      "lvl4": ".content h4",
-      "text": ".content p, .content li"
-    },
-    "mesh": {
-      "lvl0": {
-        "selector": ".search-selector",
-        "global": true,
-        "default_value": "Kong Mesh"
-        },
-      "lvl1": "h1",
-      "lvl2": ".content h2",
-      "lvl3": ".content h3",
-      "lvl4": ".content h4",
-      "text": ".content p, .content li"
-    },
-    "hub": {
-      "lvl0": {
-        "selector": ".search-selector",
-        "global": true,
-        "default_value": "Kong Plugin Hub"
-        },
-      "lvl1": "h1",
-      "lvl2": ".content h2",
-      "lvl3": ".content h3",
-      "lvl4": ".content h4",
-      "text": ".content p, .content li"
-    },
-    "default": {
-      "lvl0": {
-        "selector": ".search-selector",
-        "global": true,
-        "default_value": "Kong"
-        },
-      "lvl1": "h1",
-      "lvl2": ".content h2",
-      "lvl3": ".content h3",
-      "lvl4": ".content h4",
-      "text": ".content p, .content li"
-    }
+    "lvl1": "h1",
+    "lvl2": ".content h2",
+    "lvl3": ".content h3",
+    "lvl4": ".content h4",
+    "text": ".content p, .content li"
   },
 
   "selectors_exclude": [
