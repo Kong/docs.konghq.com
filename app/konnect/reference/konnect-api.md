@@ -10,8 +10,8 @@ organization and its entities, so care should be taken when setting up
 [user permissions](/konnect/reference/org-management/#role-definitions).
 
 For a list of all endpoints, see:
-* [Konnect API Swagger documentation](https://khcp.konghq.com/docs)
-* [Raw Swagger JSON](https://khcp.konghq.com/docs-json)
+* [Konnect API Swagger documentation](https://konnect.konghq.com/docs)
+* [Raw Swagger JSON](https://konnect.konghq.com/docs-json)
 
 ## Making a Request to the Konnect API
 
