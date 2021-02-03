@@ -114,8 +114,7 @@ kind: KongPlugin
 metadata:
   name: oidc-auth
 config:
-  issuer:
-  - https://accounts.google.com/.well-known/openid-configuration
+  issuer: https://accounts.google.com/.well-known/openid-configuration
   client_id:
   - <client-id>
   client_secret:
