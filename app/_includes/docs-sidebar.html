@@ -14,8 +14,8 @@
   {% assign docs_url = '/kubernetes-ingress-controller/' | append: page.kong_version %}
   {% elsif page.edition == 'deck' %}
   {% assign docs_url = '/deck' %}
-  {% else %}
-  {% assign docs_url = '/' | append: page.kong_version %}
+  {% elsif page.edition == 'gateway-oss' %}
+  {% assign docs_url = '/gateway-oss/' | append: page.kong_version %}
   {% endif %}
 
   <ul class="accordion-container">

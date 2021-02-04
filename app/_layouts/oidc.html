@@ -13,7 +13,7 @@ id: documentation
       </div>
       <nav class="docs-navigation">
         <a href="/konnect" {% if page.edition =='konnect' or page.edition == 'enterprise' %} class="active" {% endif %}>{{site.konnect_product_name}}</a>
-        <a href="/" {% if page.edition =='community' %} class="active" {% endif %}>{{site.ce_product_name}}</a>
+        <a href="/gateway-oss" {% if page.edition =='gateway-oss' %} class="active" {% endif %}>{{site.ce_product_name}}</a>
         <a href="/mesh" {% if page.edition =='mesh' %} class="active" {% endif %}>{{site.mesh_product_name}}</a>
       </nav>
       <div class="page-header-icon">
@@ -54,8 +54,8 @@ id: documentation
   <div class="container">
     <aside class="page-navigation">
       <span class="close-sidebar"></span>
-      {% if page.edition == 'community' %}
-      {% assign docs_url = '/' | append: page.kong_version %}
+      {% if page.edition == 'gateway-oss' %}
+      {% assign docs_url = '/' | append: 'gateway-oss/' | append: page.kong_version %}
       {% else %}
       {% assign docs_url = '/' | append: 'enterprise/' | append: page.kong_version %}
       {% endif %}
@@ -107,7 +107,7 @@ id: documentation
     <div class="page-content-container" id="documentation">
       <div class="page-content">
         <div class="content show-anchor-links">
-          {% if page.edition == 'community' %}
+          {% if page.edition == 'gateway-oss' %}
           <div class="alert alert-ee">
             Maybe you were looking for the <a href="/enterprise"><strong>Enterprise Documentation</strong></a>
             instead?
@@ -166,7 +166,7 @@ id: documentation
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
 
-{% if page.edition == 'community' %}
+{% if page.edition == 'gateway-oss' %}
 <script type="text/javascript">
   docsearch({
     apiKey: '691286ef280379144076a4f8df47a1d1',
