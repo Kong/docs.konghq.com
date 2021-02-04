@@ -10,10 +10,11 @@
 
 # Konnect
 /konnect/access-beta                        /konnect/access-account
-/konnect/servicehub                         /konnect/servicehub/
+/konnect/service-hub                        /konnect/servicehub/
 /konnect/service-hub/*                      /konnect/servicehub/:splat
 
 # Community doc rebranding
+/latest                                     /
 /community                                  /https://konghq.com/community-resources/
 /2.3.x/*                                    /gateway-oss/2.3.x/:splat
 /2.2.x/*                                    /gateway-oss/2.2.x/:splat
