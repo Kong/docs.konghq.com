@@ -23,7 +23,8 @@
       "url": "https://docs.konghq.com/mesh/1.1.x/"
     },
     {
-      "url": "https://docs.konghq.com/hub/"
+      "url": "https://docs.konghq.com/hub/",
+      "selectors_key": "hub"
     }
   ],
   "sitemap_urls": [
@@ -34,16 +35,30 @@
   ],
 
   "selectors": {
-    "lvl0": {
-      "selector": ".search-selector",
-      "global": true,
-      "default_value": "Kong"
+    "default": {
+      "lvl0": {
+        "selector": ".search-selector",
+        "global": true,
+        "default_value": "Kong"
+      },
+      "lvl1": "h1",
+      "lvl2": ".content h2",
+      "lvl3": ".content h3",
+      "lvl4": ".content h4",
+      "text": ".content p, .content li"
     },
-    "lvl1": "h1",
-    "lvl2": ".content h2",
-    "lvl3": ".content h3",
-    "lvl4": ".content h4",
-    "text": ".content p, .content li"
+    "hub": {
+      "lvl0": {
+        "selector": ".search-selector",
+        "global": true,
+        "default_value": "Plugin Hub"
+      },
+      "lvl1": "h1",
+      "lvl2": ".content h2",
+      "lvl3": ".content h3",
+      "lvl4": ".content h4",
+      "text": ".content p, .content li"
+    }
   },
 
   "selectors_exclude": [
