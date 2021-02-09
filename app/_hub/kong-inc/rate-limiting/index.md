@@ -16,14 +16,6 @@ description: |
     plugin provides the ability to apply
     [multiple limits in sliding or fixed windows](/hub/kong-inc/rate-limiting-advanced/#multi-limits-windows).
 
-  <div class="alert alert-warning">
-    <strong>Note:</strong> The functionality of this plugin as bundled
-    with versions of Kong prior to 0.13.1 and Kong Enterprise prior to 0.32
-    differs from what is documented herein. Refer to the
-    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
-    for details.
-  </div>
-
 type: plugin
 categories:
   - traffic-control
@@ -31,6 +23,7 @@ categories:
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.3.x
       - 2.2.x
       - 2.1.x
       - 2.0.x
@@ -54,15 +47,12 @@ kong_version_compatibility:
       - 0.2.x
   enterprise_edition:
     compatible:
+      - 2.3.x
       - 2.2.x
       - 2.1.x
       - 1.5.x
       - 1.3-x
       - 0.36-x
-      - 0.35-x
-      - 0.34-x
-      - 0.33-x
-      - 0.32-x
 
 params:
   name: rate-limiting
