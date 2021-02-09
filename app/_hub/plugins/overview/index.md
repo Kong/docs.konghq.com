@@ -99,9 +99,9 @@ and the core (or other components) of Kong.
 
 To start creating your own plugins, check out the PDK documentation:
 * {{site.ce_product_name}}
-    * [Lua Plugin Development Guide](/latest/plugin-development) and the
-    [Lua Plugin Development Kit reference](/latest/pdk)
-    * [Go Language Support](/latest/go)
+    * [Lua Plugin Development Guide](/gateway-oss/latest/plugin-development) and the
+    [Lua Plugin Development Kit reference](/gateway-oss/latest/pdk)
+    * [Go Language Support](/gateway-oss/latest/external-plugins)
 * {{site.ee_product_name}}
     * [Lua Plugin Development Guide](/enterprise/latest/plugin-development) and
     the [Lua Plugin Development Kit reference](/enterprise/latest/pdk)
