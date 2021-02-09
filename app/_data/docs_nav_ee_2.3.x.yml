@@ -219,8 +219,8 @@
           url: /pdk/kong.service.response
         - text: kong.table
           url: /pdk/kong.table
-    - text: Go Plugin Development Kit
-      url: /go
+    - text: Plugins in Go and Other Languages
+      url: /external-plugins
     - text : Control Kong Gateway through systemd
       url: /systemd
 
