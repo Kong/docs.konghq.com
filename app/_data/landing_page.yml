@@ -7,7 +7,7 @@ features:
         links:
           - text: SaaS version docs
             icon: /assets/images/icons/icn-cloud-blue.svg
-            url: /konnect/service-hub
+            url: /konnect/servicehub
 
       - name: Developer Portal
         description: Publish services to individual Developer Portals to provide a bespoke experience to developers within and outside your organization.

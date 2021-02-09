@@ -15,7 +15,7 @@ layout: default
       <h1>Public Lua API Reference</h1>
       <p>For plugins developers and core contributors</p>
     </div>
-    {% if site.data.kong_versions.size > 1 %} {% include
+    {% if site.data.kong_versions_ce.size > 1 %} {% include
     lua-reference-dropdown.html page=page site=site %} {% endif %}
   </div>
 </header>
@@ -33,37 +33,37 @@ layout: default
         <li>
           <h5>Modules</h5>
           <ul>
-            <li><a href="../../modules/kong.dao">kong.dao</a></li>
+            <li><a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.dao">kong.dao</a></li>
             <li>
-              <a href="../../modules/kong.plugins.basic-auth.crypto"
+              <a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.plugins.basic-auth.crypto"
                 >kong.plugins.basic-auth.crypto</a
               >
             </li>
             <li>
-              <a href="../../modules/kong.plugins.galileo.alf"
+              <a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.plugins.galileo.alf"
                 >kong.plugins.galileo.alf</a
               >
             </li>
             <li>
-              <a href="../../modules/kong.plugins.galileo.buffer"
+              <a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.plugins.galileo.buffer"
                 >kong.plugins.galileo.buffer</a
               >
             </li>
             <li>
-              <a href="../../modules/kong.plugins.jwt.jwt_parser"
+              <a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.plugins.jwt.jwt_parser"
                 >kong.plugins.jwt.jwt_parser</a
               >
             </li>
             <li>kong.tools.responses</li>
             <li>
-              <a href="../../modules/kong.tools.timestamp"
+              <a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.tools.timestamp"
                 >kong.tools.timestamp</a
               >
             </li>
             <li>
-              <a href="../../modules/kong.tools.utils">kong.tools.utils</a>
+              <a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.tools.utils">kong.tools.utils</a>
             </li>
-            <li><a href="../../modules/spec.helpers">spec.helpers</a></li>
+            <li><a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/spec.helpers">spec.helpers</a></li>
           </ul>
         </li>
       </ul>
