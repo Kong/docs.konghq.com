@@ -89,6 +89,9 @@ and where only Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are al
 ### Fixes
 
 #### Core
+- Fixed an issue where certain incoming URI may make it possible to bypass security rules applied
+on Route objects. This fix make such attacks more difficult by always normalizing the incoming
+request's URI before matching against the Router.
 - Fixed issue where a Go plugin would fail to read `kong.ctx.shared` values set by Lua plugins.
 - Properly trigger `dao:delete_by:post` hook.
 - Fixed issue where a route that supports both http and https (and has a hosts and SNIs
@@ -103,10 +106,13 @@ being shown in the logs.
   `lua-resty-healthcheck`.
 - Certificates for database connections now are loaded in the right order
   avoiding failures to connect to Postgres databases.
+- Fixed Lua validate_function in sandbox module.
+- Mark boolean fields with default values as required.
 
 #### CLI
 - Fixed issue where `kong reload -c <config>` would fail.
 - Fixed issue where the Kong configuration cache would get corrupted.
+- Kong migrations now accepts a `-p/--prefix` flag.
 
 #### Developer Portal
 - Fixed issue when applying permissions to developers using the Application Registration feature.
@@ -116,10 +122,12 @@ being shown in the logs.
   empty, rather than an object.
 
 #### Plugins
+- JWT disallow plugin on consumers. 
 - The [Request Transformer](https://docs.konghq.com/hub/kong-inc/request-transformer/) (`request-transformer`)
 plugin does not allow `null` in config anymore as they can lead to runtime errors.
 - [OpenID Connect](https://docs.konghq.com/hub/kong-inc/openid-connect/) (`openid-connect`) issue
 fixed causing a 500 auth error when falling back to an anonymous user.  
+- rate-limiting improved counter accuracy. 
 
 ### Deprecated
 #### Distributions
