@@ -14,10 +14,14 @@ features, and fixes for the **2.3.0.0** version.
 ### Features
 
 #### Enterprise
-A (non-OSS) Kong Gateway running in its default Free Mode can be upgraded to add
+- A (non-OSS) Kong Gateway running in its default Free Mode can be upgraded to add
 Enterprise functionality modules and features including **Kong Vitals**, **RBAC**,
 **Workspaces**, and **Kong Enterprise Plugins** simply by applying a new Kong license.
 Contact your Kong sales representative for more information.
+- A new Admin API endpoint allows application of a license to Kong Gateway. 
+- Added details to the error message of the entity type and number of entities that are preventing a Workspace from being deleted if the Workspace is not empty.
+- mTLS connections to Postres are now supported.
+- Postgres connection using scram-sha256 authentication are now supported.
 
 #### Core
 - Kong checks version compatibility between the control plane and any data planes to ensure
@@ -60,6 +64,24 @@ causes the plugin to ensure a valid Content-Length header exists before reading 
 - The [Serverless Functions](https://docs.konghq.com/hub/kong-inc/serverless-functions/)
 (`serverless-functions`) plugin introduces a sandboxing capability, is *enabled* by default,
 and where only Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are allowed.
+- The [LDAP Authentication Advanced](https://docs.konghq.com/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`) plugin has two new features:
+  - added config `log_search_results` that allows displaying all of the LDAP search results received from the LDAP server.
+  - additional debug log statements added for authenticated groups.
+- jq plugin
+- Rate Limiting Advanced:
+  - add a jitter (random delay) for the Retry-After header
+- mtls-auth
+  - add support for tags in the DAO
+  - plugin ensures the existence of any provided CAs when creating the plugin entry
+- Response transformer advanced:
+  - json paths for nested elements and arrays:
+  - transform gzipped content:
+- Collector
+  - Support for hybrid mode
+  - remove log_bodies configuration option
+- OpenID Connect Library
+  - Token introspection now checks the status code properly
+  - More consistent response body checks on HTTP requests  
 
 #### Configuration
 - `client_max_body_size` and `client_body_buffer_size`, that previously
@@ -122,12 +144,15 @@ being shown in the logs.
   empty, rather than an object.
 
 #### Plugins
-- JWT disallow plugin on consumers. 
+- The [JWT](https://docs.konghq.com/hub/kong-inc/jwt/) (`jwt`) plugin disallows on consumers. 
 - The [Request Transformer](https://docs.konghq.com/hub/kong-inc/request-transformer/) (`request-transformer`)
 plugin does not allow `null` in config anymore as they can lead to runtime errors.
-- [OpenID Connect](https://docs.konghq.com/hub/kong-inc/openid-connect/) (`openid-connect`) issue
-fixed causing a 500 auth error when falling back to an anonymous user.  
-- rate-limiting improved counter accuracy. 
+- [OpenID Connect](https://docs.konghq.com/hub/kong-inc/openid-connect/) (`openid-connect`)
+ - Fixed issue causing a 500 auth error when falling back to an anonymous user.  
+ - Fixed consumer and discovery invalidation events that were returning when the operation was create. This could leave some cache entries in cache that need to be invalidated.
+ - Fixed a circular dependency issue with redirect function
+ - Fixed init worker on clients could take a long time
+- The [Rate Limiting](https://docs.konghq.com/hub/kong-inc/rate-limiting/) (`rate-limiting`) has improved counter accuracy.
 
 ### Deprecated
 #### Distributions
