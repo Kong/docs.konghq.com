@@ -9,10 +9,6 @@ configure your {{site.base_gateway}} instance to accept configuration from
 {{site.konnect_short_name}}. The Runtime Manager keeps track of all runtimes
 associated with the {{site.konnect_short_name}} SaaS account.
 
-As a quick setup option, run a script to provision a {{site.base_gateway}}
-instance in a Docker container, with all connection details configured and
-certificates automatically applied.
-
 <div class="alert alert-ee blue">
 <b>Note:</b> Kong does not host runtimes. You must install and host your own
 runtime instances.
@@ -22,7 +18,7 @@ runtime instances.
 
 * You have a {{site.konnect_product_name}} account. Contact your sales
 representative for access.
-* Tools and permissions:
+* (Quick Setup only) Tools and permissions:
   * **All platforms:** [Docker](https://docs.docker.com/get-docker/), [HTTPie](https://httpie.io/), and [jq](https://stedolan.github.io/jq/) installed
   * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
   * **Windows:** Docker Desktop [installed](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [integrated with a WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/)
@@ -157,6 +153,11 @@ reload {{site.base_gateway}}.
       kong-gateway-dp1
     ```
 
+5. On the **Configure New Runtime** page, click **Done** to go to the Runtime
+Manager overview.
+
+    The Runtime Manager will include a new entry for your instance.
+
 {% endnavtab %}
 {% navtab Using kong.conf %}
 
@@ -199,6 +200,11 @@ parameters in the sample codeblock and add the parameters to the file:
     ```sh
     $ kong restart
     ```
+
+6. On the **Configure New Runtime** page, click **Done** to go to the Runtime
+Manager overview.
+
+    The Runtime Manager will include a new entry for your instance.
 
 {% endnavtab %}
 {% endnavtabs %}
