@@ -61,7 +61,7 @@ representative for access.
 {% endnavtab %}
 {% navtab Advanced %}
 
-1. From the left navigation menu, open **Runtimes**.
+1. From the left navigation menu, select **Runtimes**.
 
     For the first runtime, the page opens to a **Configure New Runtime** form.
 
