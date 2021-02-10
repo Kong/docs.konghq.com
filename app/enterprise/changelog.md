@@ -7,18 +7,23 @@ skip_read_time: true
 ## 2.3.0.0
 **Release Date** 2020/02/10
 
-### **Kong Enterprise**
+### **Kong Gateway (Enterprise)**
 The following sections list {{site.ee_product_name}}-exclusive updates,
 features, and fixes for the **2.3.0.0** version.
+
+Kong Enterprise is renamed to Kong Gateway, or Kong Gateway (Enterprise) going forward.
 
 ### Features
 
 #### Enterprise
+- Kong Gateway can now run in free mode, without a license, which gives users access to Kong Manager and an easy upgrade path to Enterprise.
 - A (non-OSS) Kong Gateway running in its default Free Mode can be upgraded to add
 Enterprise functionality modules and features including **Kong Vitals**, **RBAC**,
 **Workspaces**, and **Kong Enterprise Plugins** simply by applying a new Kong license.
 Contact your Kong sales representative for more information.
-- A new Admin API endpoint allows application of a license to Kong Gateway. 
+- A new Admin API endpoint allows application of a license to Kong Gateway.
+- In hybrid mode, the control plane now propagates its license to the connected data planes in the cluster. Data planes do not require individual licenses.
+- The Kong Gateway installation packages now reside under https://bintray.com/kong/ and do not require a login. Search for “gateway” to list all available packages.
 - Added details to the error message of the entity type and number of entities that are preventing a Workspace from being deleted if the Workspace is not empty.
 - mTLS connections to Postres are now supported.
 - Postgres connection using scram-sha256 authentication are now supported.
