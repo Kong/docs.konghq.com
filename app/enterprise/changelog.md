@@ -19,7 +19,7 @@ Kong Enterprise is renamed to Kong Gateway, or Kong Gateway (Enterprise) going f
 - Kong Gateway can now run in free mode, without a license, which gives users access to Kong Manager and an easy upgrade path to Enterprise.
 - A (non-OSS) Kong Gateway running in its default Free Mode can be upgraded to add
 Enterprise functionality modules and features including **Kong Vitals**, **RBAC**,
-**Workspaces**, and **Kong Enterprise Plugins** simply by applying a new Kong license.
+**Workspaces**, and **Enterprise Plugins** simply by applying a new Kong license.
 Contact your Kong sales representative for more information.
 - A new Admin API endpoint allows application of a license to Kong Gateway.
 - In hybrid mode, the control plane now propagates its license to the connected data planes in the cluster. Data planes do not require individual licenses.
@@ -34,11 +34,11 @@ the data planes and any plugins have compatibility with the control plane in hyb
 The sync is stopped if the major/minor version differ or if the installed plugin versions
 differ between control plane and data plane nodes. For more information, see
 [Version and Compatibility Checks](/2.3.x/hybrid-mode/#version-and-compatibility-checks).
-- Kong now accepts UTF-8 characters in route and service names. Entities with a `name` field
+- {{site.base_gateway}} now accepts UTF-8 characters in route and service names. Entities with a `name` field
 now support UTF-8 characters.
 - Certificates now have `cert_alt` and `key_alt` fields to specify an alternative certificate
 and key pair.
-- The Go pluginserver `stderr` and `stdout` are now written into Kong’s logs, allowing Golang’s
+- The Go pluginserver `stderr` and `stdout` are now written into {{site.base_gateway}}’s logs, allowing Golang’s
 native `log.Printf()`.
   - Introduced support for multiple pluginservers. This feature is backward-compatible with
   the existing single Go pluginserver.
@@ -46,22 +46,22 @@ native `log.Printf()`.
 #### Plugin Development Kit (PDK)
 - Introduced a `kong.node.get_hostname` method that returns current node's host name.
 - Introduced a `kong.cluster.get_id` method that returns a unique ID
-  for the current Kong cluster. If Kong is running in DB-less mode
+  for the current {{site.base_gateway}} cluster. If the gateway is running in DB-less mode
   without a cluster ID explicitly defined, this method returns nil.
   For Hybrid mode, all Control Planes and Data Planes belonging to the
   same cluster returns the same cluster ID. For traditional database
-  type deployments, all Kong nodes pointing to the same database will
+  type deployments, all {{site.base_gateway}} nodes pointing to the same database will
   also return the same cluster ID.
 - Introduced a `kong.log.set_serialize_value`, which allows customizing
   the output of `kong.log.serialize`.
 
 #### Plugins
 - The [HTTP Log](https://docs.konghq.com/hub/kong-inc/http-log/) (`http-log`) plugin
-has been improved to allow you to add a table of headers to the HTTP request using the
+now lets you add a table of headers to the HTTP request using the
 `headers` configuration parameter, which will help you integrate with many observability systems.
 - The [Key Authentication](https://docs.konghq.com/hub/kong-inc/key-auth/) (`key-auth`)
 plugin has two new configuration parameters: `key_in_header` and `key_in_query`. Both
-are booleans and tell Kong whether to accept (true) or reject (false) passed in either
+are booleans and tell {{site.base_gateway}} whether to accept (true) or reject (false) passed in either
 the header or the query string. Both default to “true.”
 - The [Request Size Limiting](https://docs.konghq.com/hub/kong-inc/request-size-limiting/)
 (`request-size-limiting`) plugin has a new configuration `require_content_length` that
@@ -91,8 +91,8 @@ and where only Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are al
 #### Configuration
 - `client_max_body_size` and `client_body_buffer_size`, that previously
   hardcoded to 10m, are now configurable through
-  [nginx_admin_client_max_body_size](/2.3.x/configuration/#nginx_http_client_max_body_size)
-  and [nginx_admin_client_body_buffer_size](/2.3.x/configuration/#nginx_admin_client_body_buffer_size).
+  [nginx_admin_client_max_body_size](/gateway-oss/2.3.x/configuration/#nginx_http_client_max_body_size)
+  and [nginx_admin_client_body_buffer_size](/gateway-oss/2.3.x/configuration/#nginx_admin_client_body_buffer_size).
 - Kong-generated SSL private keys now have `600` file system permission.
 - Properties `ssl_cert`, `ssl_cert_key`, `admin_ssl_cert`,
   `admin_ssl_cert_key`, `status_ssl_cert`, and `status_ssl_cert_key`
@@ -102,7 +102,7 @@ and where only Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are al
   as the default fallback certificate; on old cipher suite, the RSA
   certificate remains as the default. On custom certificates, the first
   certificate specified in the array is used.
-- Kong now runs as a `kong` user if it exists; if user does not exist
+- {{site.base_gateway}} now runs as a `kong` user if it exists; if user does not exist
   in the system, the `nobody` user is used, as before.
 
 ### Dependencies
@@ -133,12 +133,12 @@ being shown in the logs.
   `lua-resty-healthcheck`.
 - Certificates for database connections now are loaded in the right order
   avoiding failures to connect to Postgres databases.
-- Fixed Lua validate_function in sandbox module.
+- Fixed Lua `validate_function` in sandbox module.
 - Mark boolean fields with default values as required.
 
 #### CLI
 - Fixed issue where `kong reload -c <config>` would fail.
-- Fixed issue where the Kong configuration cache would get corrupted.
+- Fixed issue where the {{site.base_gateway}} configuration cache would get corrupted.
 - Kong migrations now accepts a `-p/--prefix` flag.
 
 #### Developer Portal
