@@ -28,13 +28,12 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.3.x
         - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
-        - 0.34-x
 
 params:
   name: oauth2-introspection

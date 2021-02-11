@@ -28,6 +28,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
         - 2.2.x
         - 2.1.x
         - 2.0.x
@@ -51,16 +52,13 @@ kong_version_compatibility:
         - 0.3.x
     enterprise_edition:
       compatible:
+        - 2.3.x
         - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
-        - 0.34-x
-        - 0.33-x
-        - 0.32-x
-        - 0.31-x
+
 
 params:
   name: file-log
