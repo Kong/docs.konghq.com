@@ -1,127 +1,102 @@
 ---
-title: Kong Enterprise 2.2.x Release Notes
+title: Kong Gateway (Enterprise) 2.3.x Release Notes
 ---
-
-These release notes provide a high-level overview of Kong Enterprise 2.2.x,
-which includes the 2.2.0.0 (beta) release. For detailed information about 2.2.x,
-2.2.0.0 (beta), and any subsequent 2.2.x patch releases, see the
+These release notes provide a high-level overview of Kong Gateway (Enterprise) 2.3.x,
+which includes the 2.3.2.0 release. For detailed information about 2.3.x, 
+and any subsequent 2.3.x patch releases, see the
 [Changelog](https://docs.konghq.com/enterprise/changelog/).
+
+## Overview
+Kong Gateway (Enterprise) version 2.3.x now has a “free” operating mode. This free mode
+allows anyone to use the Enterprise gateway product, which was previously reserved for 
+paying customers. With or without a paid Kong subscription, you can now download the 
+Enterprise version of Kong Gateway for free. Go to [Install Kong](https://konghq.com/install/). 
 
 ## New Features
 
-### UDP Support
+### Kong Gateway (Enterprise) is available in free mode
+The biggest change for Kong's 2.3 gateway is that anyone can now download 
+**Kong Gateway (Enterprise)**, formerly known as **Kong Enterprise**, for free
+and without any paywall or forms to fill out. 
 
-Kong Enterprise now supports UDP-based protocols. UDP is used in a wide range
-of applications, ranging from audio/video streaming to gaming servers to
-financial services and much more, giving Kong Enterprise 2.2.x a wider range
-of supported APIs.
+This Enterprise edition of our gateway is built on our open source gateway, and notably
+includes the Kong Manager user interface which you can use to configure routes, services,
+plugins and consumers. If you are new to Kong, we think this is the easiest, fastest and
+best way for you to get started.
 
-Kong Enterprise 2.2.x adds support for proxying, load balancing, and running
-plugins on UDP data, giving users similar functionality for UDP to what was
-already available for TCP. When using Kong for load balancing, there is no
-inherent sense of a stateful connection in UDP. Kong ensures
-that incoming packets are balanced consistently across upstream services,
-providing optimal cache use in those services.
+For existing Kong customers, or if you are considering becoming one, note that the
+Enterprise gateway continues to have differentiated features for those with paid licenses. 
+In order to use our [OIDC plugin](https://docs.konghq.com/hub/kong-inc/openid-connect/), [Vitals](https://docs.konghq.com/enterprise/2.2.x/vitals/overview/) and other paid Enterprise
+features, you’ll need a paid [Kong Konnect license](https://konghq.com/kong-konnect).
+You’ll have the option of either running the control plane for your paid license on our
+SaaS-hosted service and bringing your own dataplane, or managing it yourself using our 
+self-hosted version. For more information about what you get with a subscription, 
+see [Kong subscriptions](https://konghq.com/subscriptions/).
 
-The following plugins support UDP-based protocols:
-* [Datadog](/hub/kong-inc/datadog)
-* [File Log](/hub/kong-inc/file-log)
-* [HTTP Log](/hub/kong-inc/http-log)
-* [Loggly](/hub/kong-inc/loggly)
-* [Kafka Log](/hub/kong-inc/kafka-log)
-* [StatsD](/hub/kong-inc/statsd)
-* [StatsD Advanced](/hub/kong-inc/statsd-advanced)
-* [Syslog](/hub/kong-inc/syslog)
-* [TCP Log](/hub/kong-inc/tcp-log)
-* [UDP Log](/hub/kong-inc/udp-log)
-* [Zipkin](/hub/kong-inc/zipkin)
+Because the Enterprise version of the gateway is no longer *only* applicable to our
+“Enterprise” subscription package and can also be run in a free mode, we will be removing
+the “Enterprise” terminology in future releases and referring instead to this package as
+the “Kong Gateway.” In order to avoid any confusion/conflation with the Apache 2.0 licensed
+builds, we will specifically call out “OSS” as in “Kong Gateway (OSS)” when referring to
+that build.
 
-### Security Improvements
+### Simplified License Management
+The Kong Gateway 2.3 brings simplified license management that makes license management
+easier than before for multiple data planes. If you are a customer bringing your own
+license, you only need to apply licenses to the Control Plane (CP) to have the licenses
+distributed down to any of the connected Data Planes (DPs) within the cluster. This should
+help avoid complex updating and restarting of data planes.
 
-Kong Enterprise 2.2.x has new features that help make security simpler and
-more robust.
+#### Kong ❤️ UTF-8
+Kong Gateway 2.3 now accepts UTF-8 characters in route and service names. Being able to have
+the gateway support your native character set is important, so now if you want to give a route
+a name using character sets for Russian, Japanese, Chinese or any number of other languages,
+you can do so with Kong Gateway 2.3 (and yes, emojis are now valid for use in route and
+service names as well 😊).
 
-#### Automatically Trust OS Certificates
+#### New Plugin capabilities
+The [Enterprise Rate Limiting Advanced plugin](https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/)
+has a new configuration parameter (`retry_after_jitter_max`) to allow for an additional randomized delay,
+or jitter, to the “Retry-After” header.
 
-Kong Enterprise 2.2.x introduces the ability to automatically load certificates
-that are pre-installed with the operating system (OS) using the
-`lua_ssl_trusted_certificate` configuration option. This configuration also allows
-multiple entries alongside the certificate file bundled with the OS. This
-makes it easier operationally to support HTTPS services in the open internet
-while also enabling custom certificates for internal services.
+The [HTTP Log plugin](https://docs.konghq.com/hub/kong-inc/http-log/) is improved to allow you
+to add headers to the HTTP request. This will help you integrate with many observability systems,
+including Splunk, the Elastic Stack (“ELK”) and others.
 
-For more information, see the
-[Configuration Property Reference](/enterprise/{{page.kong_version}}/property-reference/#lua_ssl_trusted_certificate).
+Both the [Key Authentication plugin](https://docs.konghq.com/hub/kong-inc/key-auth/) and the
+Enterprise [Key Authentication - Encrypted plugin](https://docs.konghq.com/hub/kong-inc/key-auth-enc/)
+have two new configuration parameters: `key_in_header` and `key_in_query`. Both are booleans and
+tell Kong whether to accept (true) or reject (false) passed in either the header or the query string.
+Both default to true.
 
-#### Running Kong as a Non-Root User
+The [Request Size Limiting plugin](https://docs.konghq.com/hub/kong-inc/request-size-limiting/)
+has a new configuration `require_content_length` that causes the plugin to ensure a valid
+`Content-Length` header exists before reading the request body.
 
-Kong 2.2.x allows you to reduce risk level and help meet compliance needs by
-allowing Kong to run as a non-root user. This is generally a best practice for
-the principle of least privilege.
+### More features and fixes
+Kong Gateway 2.3 introduces some additional new features and fixes, including:
+- **Postgres connections** can now be made using mTLS and SCRAM-SHA-256/SCRAM-SHA-256-PLUS
+authentication.
+- **Kong Gateway 2.3 now checks for version compatibility** between the control plane and
+any data planes to ensure the data planes and any plugins have compatibility with the
+control plane in hybrid mode.
+- **Certificates now have `cert_alt` and `key_alt` fields** to specify an alternative
+certificate and key pair.
+- **The go-pluginserver stderr and stdout** are now written into Kong's logs, allowing
+Golang’s native `log.Printf()`.
+- **`client_max_body_size` and `client_body_buffer_size` are now configurable**. These
+two parameters used to be hardcoded and set to 10m.
+- **Custom plugins can now make use of new functionality**: 
+  - `kong.node.get_hostname` unsurprisingly returns the hostname of the Kong node.
+  - `kong.cluster.get_id` returns a unique global cluster ID (or `nil` if running in a
+  declarative configuration).
+  - `kong.log.set_serialize_value()` can now be used to set the format of log serialization
+  in a custom plugin.
 
-If you have been using our Docker images, we had already taken steps
-before 2.2.x to build those images in a way adds a “kong” user and
-grants that user access to the necessary files/directories. This new change
-helps cover the remaining use cases for non-Dockerized installations.
-
-For more information, see [Running Kong as a Non-Root User](/enterprise/{{page.kong_version}}/deployment/kong-user).
-
-#### TLS Connections with Redis
-
-Kong Enterprise 2.2.x can now establish TLS connections to the Redis
-database. This feature is useful in, for example, the [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced)
-and [Proxy Caching Advanced](/hub/kong-inc/proxy-cache-advanced) plugins.
-
-#### OpenID Connect
-
-Kong Enterprise 2.2.x introduces new features in the OpenID Connect plugin:
-* Improved resilience to discovery (and rediscovery).
-* Can now pass `urn:ietf:params:oauth:grant-type:jwt-bearer` assertions with the
-`client_credentials` authentication method.
-* New parameters:
-  * Adds the ability to specify a salt for a cache key using `cache_tokens_salt`,
-  so that if you have two instances of the OIDC plugin, you can avoid cache collisions.
-  * Allows you to set valid issuers using `issuers_allowed`.
-  * Allows you to manually define the user info endpoint using the new
-  `userinfo_endpoint` setting.
-  * Adds the ability to enable or disable the verification of tokens signed with
-  HMAC (HS256, HS384, or HS512) algorithms using the new `enable_hs_signatures`
-  parameter.
-  * Adds the option to compress session data using
-  the `session_compressor` parameter.
-
-For more information, see the [Open ID Connect plugin](/hub/kong-inc/openid-connect).
-
-### Performance Improvements
-
-#### Hybrid Mode
-
-Several improvements have been made to Hybrid Mode in Kong 2.2.x, most of which
-are transparent for the user but result in an overall smoother scenario. One
-notable improvement is a more efficient mechanism for communication between
-Control Plane and Data Plane nodes, especially when the Data Planes are
-receiving large and frequent updates.
-
-Along with this improvement comes an upgrade to the Control Plane Cluster API,
-which replaces the `/clustering/status` endpoint with the
-`/clustering/data_planes` endpoint. This new endpoint provides information about
-all Data Planes in the cluster, regardless of the Control Plane node to which
-they are connected.
-
-For more information, see [Hybrid Mode Setup](/enterprise/{{page.kong_version}}/deployment/hybrid-mode-setup/#step-4-verify-that-nodes-are-connected).
-
-#### Request and Response Buffering
-
-Another improvement for users who route large amounts of data through Kong is
-that we’ve added the ability to disable buffering of requests and responses on
-a per-Route basis, creating potential to greatly reduce latency.
-
-## Deprecated Features
-
-Kong Brain is no longer available for use in Kong Enterprise version 2.1.4.2
-and later.
+## Deprecated features
+Kong Studio and Insomnia Designer are deprecated in Kong Gateway (Enterprise) 2.3. 
+A redirect to [Insomnia](https://insomnia.rest/) will be added soon.
 
 ## Changelog
-
 For a complete list of features, fixes, known issues and workarounds, and other
-changes, see the Kong Enterprise [Changelog](/enterprise/changelog/).
+changes, see the Kong Gateway (Enterprise) [Changelog](/enterprise/changelog/).
