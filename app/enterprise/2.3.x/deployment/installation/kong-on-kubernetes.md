@@ -2,9 +2,14 @@
 title: Installing Kong Gateway (Enterprise) on Kubernetes
 ---
 
+<div class="alert alert-ee warning">
+<strong>Note:</strong>
+This deployment option is not supported in free mode.
+</div>
+
 ## Introduction
 
-{{site.ee_product_name}} on Kubernetes supports all enterprise plugins and features.
+{{site.ee_product_name}} on Kubernetes supports all Enterprise plugins and features.
 
 This installation topic walks you through a database-backed deployment on
 Kubernetes. For a basic DB-less deployment with the Kong Ingress Controller, see
@@ -20,11 +25,12 @@ for a feature breakdown and comparison between DB-less and database-backed deplo
 
 You can use `kubectl` or OpenShift `oc` to configure {{site.ee_product_name}} on Kubernetes, then deploy it [using Helm](https://github.com/Kong/charts/tree/main/charts/kong).
 
+This software is governed by the
+[Kong Software License Agreement](https://konghq.com/enterprisesoftwarelicense/).
+
 ### Deployment options
 
-The following instructions assume that you are deploying {{site.ee_product_name}} in [classic embedded mode](/enterprise/{{page.kong_version}}/deployment/deployment-options).
-
-If you would like to run {{site.ee_product_name}} in Hybrid mode, the instructions in this topic will walk you though setting up a Control Plane instance. Afterward, you will need to bring up additional Kong instances for the Data Planes, and perform further configuration steps. See [Hybrid Mode setup documentation](https://github.com/Kong/charts/blob/main/charts/kong#hybrid-mode) for details.
+{% include /md/{{page.kong_version}}/deployment-options-k8s.md %}
 
 ## Prerequisites
 Before starting installation, be sure you have the following:
@@ -52,8 +58,9 @@ $ oc new-project kong
 {% endnavtab %}
 {% endnavtabs %}
 
-## Step 2. Set up license
-Running {{site.ee_product_name}} on Kubernetes requires a valid license. See [prerequisites](#prerequisites) for more information.
+## Step 2. (Optional) Set up license
+
+If you plan on using a license to unlock Enterprise features, see [prerequisites](#prerequisites) for more information.
 
 Save the license file temporarily to disk with filename `license` (no file extension) and execute the following:
 
@@ -172,7 +179,7 @@ In the following steps, replace `<your-password>` with a secure password.
 
     You can also base your configuration on a sample {{site.ee_product_name}} `values.yaml`
     file. For example, [this values file](https://github.com/Kong/charts/blob/main/charts/kong/example-values/full-k4k8s-with-kong-enterprise.yaml)
-    enables most enterprise features.
+    enables most Enterprise features.
 
 2. Minimally, for setting up {{site.ee_product_name}} on Kubernetes, you will need to set the following parameters:
 

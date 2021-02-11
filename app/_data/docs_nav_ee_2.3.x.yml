@@ -106,6 +106,8 @@
           url: /deployment/licensing
         - text: Access Your License
           url: /deployment/access-license
+        - text: Deploy Your License
+          url: /deployment/licenses/deploy-license
         - text: Monitor License Usage
           url: /deployment/licenses/report
     - text: Security
