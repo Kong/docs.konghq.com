@@ -4,20 +4,21 @@ no_search: true
 no_version: true
 skip_read_time: true
 ---
-## 2.3.0.0
-**Release Date** 2020/02/10
+## 2.3.2.0
+**Release Date** 2020/02/11
 
 ### **Kong Gateway (Enterprise)**
 The following sections list {{site.ee_product_name}}-exclusive updates,
-features, and fixes for the **2.3.0.0** version.
+features, and fixes for the **2.3.2.0** version.
 
-Kong Enterprise is renamed to Kong Gateway, or Kong Gateway (Enterprise) going forward.
+Kong Enterprise is renamed to Kong Gateway or Kong Gateway (Enterprise) going forward. For a more detailed explanation, including information about Kong Gateway (OSS), see [Kong Gateway (Enterprise) 2.3.x Release Notes](https://docs.konghq.com/enterprise/2.3.x/release-notes/). 
 
 ### Features
 
 #### Enterprise
-- Kong Gateway can now run in free mode, without a license, which gives users access to Kong Manager and an easy upgrade path to Enterprise.
-- A (non-OSS) Kong Gateway running in its default Free Mode can be upgraded to add
+- Kong Gateway can now run in free mode, without a license, which gives users access to
+Kong Manager and an easy upgrade path to Enterprise.
+- A (non-OSS) Kong Gateway running in its default free Mode can be upgraded to add
 Enterprise functionality modules and features including **Kong Vitals**, **RBAC**,
 **Workspaces**, and **Enterprise Plugins** simply by applying a new Kong license.
 Contact your Kong sales representative for more information.
@@ -72,21 +73,13 @@ and where only Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are al
 - The [LDAP Authentication Advanced](https://docs.konghq.com/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`) plugin has two new features:
   - added config `log_search_results` that allows displaying all of the LDAP search results received from the LDAP server.
   - additional debug log statements added for authenticated groups.
-- jq plugin
-- Rate Limiting Advanced:
-  - add a jitter (random delay) for the Retry-After header
-- mtls-auth
-  - add support for tags in the DAO
-  - plugin ensures the existence of any provided CAs when creating the plugin entry
-- Response transformer advanced:
-  - json paths for nested elements and arrays:
-  - transform gzipped content:
-- Collector
-  - Support for hybrid mode
-  - remove log_bodies configuration option
+- [Rate Limiting Advanced](https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`) plusing has added a jitter (random delay) for the Retry-After header.
+- [Mutual TLS Authentication](https://docs.konghq.com/hub/kong-inc/mtls-auth/)(`mtls-auth`) plugin has added support for tags in the DAO and now ensures the existence of any provided CAs when creating the plugin entry.
+- [Response Transformer Advanced](https://docs.konghq.com/hub/kong-inc/response-transformer-advanced/) (`response-transformer-advanced`) has json paths for nested elements and arrays and transform gzipped content.
+- Collector (`collector`, used for Immunity) plugin supports hybrid mode and has removed the `log_bodies` configuration option.
 - OpenID Connect Library
-  - Token introspection now checks the status code properly
-  - More consistent response body checks on HTTP requests  
+  - Token introspection now checks the status code properly.
+  - More consistent response body checks on HTTP requests.  
 
 #### Configuration
 - `client_max_body_size` and `client_body_buffer_size`, that previously
@@ -160,9 +153,12 @@ plugin does not allow `null` in config anymore as they can lead to runtime error
 - The [Rate Limiting](https://docs.konghq.com/hub/kong-inc/rate-limiting/) (`rate-limiting`) has improved counter accuracy.
 
 ### Deprecated
+
+#### Kong Studio
+- Kong Studio is deprecated.
+
 #### Distributions
 - Support for CentOS-6 is removed and entered end-of-life on Nov 30, 2020.
-
 
 
 ## 2.3.0.0 (beta)
