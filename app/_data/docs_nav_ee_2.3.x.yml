@@ -254,6 +254,13 @@
     url: /admin-api/#upstream-object
   - text: Target Object
     url: /admin-api/#target-object
+  - text: Licenses
+    url: /admin-api/licenses/reference
+    items:
+      - text: Licenses Reference
+        url: /admin-api/licenses/reference
+      - text: Licenses Examples
+        url: /admin-api/licenses/examples
   - text: Workspaces
     url: /admin-api/workspaces/reference
     items:
