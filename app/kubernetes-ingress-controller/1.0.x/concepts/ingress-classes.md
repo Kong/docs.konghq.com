@@ -120,6 +120,7 @@ credential Secret, Ingress, and KongPlugin (a Service is implied, but not
 shown):
 
 ```yaml
+apiVersion: configuration.konghq.com/v1
 kind: KongConsumer
 metadata:
   name: dyadya-styopa

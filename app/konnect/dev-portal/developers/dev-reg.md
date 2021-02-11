@@ -12,7 +12,7 @@ Access the Dev Portal for any published Service through the URL
 displayed on the **Dev Portal** page. The format looks something like this:
 
 ```
-<org-name>.portal.khcp.konghq.com/portal/published-services
+<org-name>.portal.konnect.konghq.com/portal/published-services
 ```
 
 1. Navigate to the {{site.konnect_short_name}} Dev Portal page.
