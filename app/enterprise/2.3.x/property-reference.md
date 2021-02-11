@@ -417,8 +417,12 @@ adjusted by the `log_level` property.
 
 #### admin_access_log
 
-Path for Admin API request access logs. Set this value to `off` to disable
-logging Admin API requests.
+Path for Admin API request access logs. If Hybrid Mode is enabled and the
+current node is set to be the Control Plane, then the connection requests from
+Data Planes are also written to this file with server name
+"kong_cluster_listener".
+
+Set this value to `off` to disable logging Admin API requests.
 
 If this value is a relative path, it will be placed under the `prefix`
 location.
@@ -494,23 +498,37 @@ experiencing LRU churning in the database cache (i.e. when the configured
 
 ---
 
-#### go_pluginserver_exe
+#### pluginserver_names
 
-Path for the go-pluginserver executable, used for running Kong plugins written
-in Go.
+Comma-separated list of names for pluginserver processes. The actual names are
+used for log messages and to relate the actual settings.
 
-**Default:** `/usr/local/bin/go-pluginserver`
+**Default:** none
 
 ---
 
-#### go_plugins_dir
+#### pluginserver_XXX_socket
 
-Directory for installing Kong plugins written in Go.
+Path to the unix socket used by the <XXX> pluginserver.
 
-This value can be set to `off`, thus disabling the plugin server and Go plugin
-loading.
+**Default:** `<prefix>/<XXX>.socket`
 
-**Default:** `off`
+---
+
+#### pluginserver_XXX_start_cmd
+
+Full command (including any needed arguments) to start the <XXX> pluginserver
+
+**Default:** `/usr/local/bin/<XXX>`
+
+---
+
+#### pluginserver_XXX_query_cmd
+
+Full command to "query" the <XXX> pluginserver. Should produce a JSON with the
+dump info of all plugins it manages
+
+**Default:** `/usr/local/bin/query_<XXX>`
 
 ---
 
@@ -669,6 +687,11 @@ the data planes within the same cluster. This port is mTLS protected to ensure
 end-to-end security and integrity.
 
 This setting has no effect if `role` is not set to `control_plane`.
+
+Connection made to this endpoint are logged to the same location as Admin API
+access logs.
+
+See `admin_access_log` config description for more information.
 
 **Default:** `0.0.0.0:8005`
 
@@ -916,7 +939,10 @@ omitted, a group whose name equals that of user is used.
 
 Example: `nginx_user = nginx www`
 
-**Default:** `nobody nobody`
+**Note**: If the `kong` user and the `kong` group are not available, the
+default user and group credentials will be `nobody nobody`.
+
+**Default:** `kong kong`
 
 ---
 
@@ -1000,6 +1026,22 @@ See
 http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers
 
 **Default:** `on`
+
+---
+
+#### ssl_dhparam
+
+Defines DH parameters for DHE ciphers from the predefined groups: `ffdhe2048`,
+`ffdhe3072`, `ffdhe4096`, `ffdhe6144`, `ffdhe8192`, or from the absolute path to
+a parameters file.
+
+This value is ignored if `ssl_cipher_suite` is `modern` or `intermediate`. The
+reason is that `modern` has no ciphers that needs this, and `intermediate` uses
+`ffdhe2048`.
+
+See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_dhparam
+
+**Default:** none
 
 ---
 
@@ -1375,6 +1417,14 @@ http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size
 
 ---
 
+#### nginx_admin_client_max_body_size
+
+Defines the maximum request body size for Admin API.
+
+**Default:** `10m`
+
+---
+
 #### nginx_http_client_body_buffer_size
 
 Defines the buffer size for reading the request body. If the client request
@@ -1389,6 +1439,14 @@ See
 http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size
 
 **Default:** `8k`
+
+---
+
+#### nginx_admin_client_body_buffer_size
+
+Defines the buffer size for reading the request body on Admin API.
+
+**Default:** `10m`
 
 ---
 
@@ -1462,6 +1520,8 @@ name   | description  | default
 **pg_ssl_version** | When using ssl between Kong and PostgreSQL, the version of tls to use. Accepted values are `tlsv1` or `tlsv1_2` | `tlsv1`
 **pg_ssl_required** | When `pg_ssl` is on this determines if TLS must be used between Kong and PostgreSQL. It aborts the connection if the server does not support SSL connections. | `off`
 **pg_ssl_verify** | Toggles server certificate verification if `pg_ssl` is enabled. See the `lua_ssl_trusted_certificate` setting to specify a certificate authority. | `off`
+**pg_ssl_cert** | The absolute path to the PEM encoded client TLS certificate for the PostgreSQL connection. Mutual TLS authentication against PostgreSQL is only enabled if this value is set. | none
+**pg_ssl_cert_key** | If `pg_ssl_cert` is set, the absolute path to the PEM encoded client TLS private key for the PostgreSQL connection. | none
 **pg_max_concurrent_queries** | Sets the maximum number of concurrent queries that can be executing at any given time. This limit is enforced per worker process; the total number of concurrent queries for this node will be will be: `pg_max_concurrent_queries * nginx_worker_processes`. The default value of 0 removes this concurrency limitation. | `0`
 **pg_semaphore_timeout** | Defines the timeout (in ms) after which PostgreSQL query semaphore resource acquisition attempts will fail. Such failures will generally result in the associated proxy or Admin API request failing with an HTTP 500 status code. Detailed discussion of this behavior is available in the online documentation. | `60000`
 **pg_keepalive_timeout** | Defines the time in milliseconds that an idle connection to PostreSQL server will be kept alive. | `60000`
@@ -1613,7 +1673,7 @@ hold all instances of the specified entities.
 
 If the size is insufficient, Kong will log a warning.
 
-**Default:** `services, plugins`
+**Default:** `services`
 
 ---
 
@@ -1815,6 +1875,9 @@ cosockets, set by `lua_ssl_trusted_certificate`.
 
 This includes the certificates configured for Kong's database connections.
 
+If the maximum depth is reached before reaching the end of the chain,
+verification will fail. This helps mitigate certificate based DoS attacks.
+
 See https://github.com/openresty/lua-nginx-module#lua_ssl_verify_depth
 
 **Default:** `1`
@@ -1947,7 +2010,8 @@ enabled.
 
 #### admin_gui_flags
 
-Alters the layout Admin GUI (JSON)
+Alters the layout Admin GUI (JSON) The only supported value is `{
+"IMMUNITY_ENABLED": true }` to enable Kong Immunity in the Admin GUI.
 
 **Default:** `{}`
 
@@ -3175,6 +3239,56 @@ Defines the names of the Vault v2 KV path at which symmetric keys are found.
 Defines the token value used to communicate with the v2 KV Vault HTTP(S) API.
 
 **Default:** none
+
+---
+
+#### untrusted_lua
+
+Accepted values are:
+
+- `off`: disallow any loading of Lua functions from admin supplied sources
+  (such as via the Admin API).
+
+Note using the `off` option will render plugins such as Serverless Functions
+unusable.
+
+- `sandbox`: allow loading of Lua functions from admin supplied sources, but
+  use a sandbox when executing them. The sandboxed function will have restricted
+  access to the global environment and only have access to standard Lua
+  functions that will generally not cause harm to the Kong node.
+
+In this mode, the `require` function inside the sandbox only allows loading
+external Lua modules that are explicitly listed in
+`untrusted_lua_sandbox_requires` below.
+
+LuaJIT bytecode loading is disabled.
+
+Warning: LuaJIT is not designed as a secure runtime for running malicious code,
+therefore, you should properly protect your Admin API endpoint even with
+sandboxing enabled. The sandbox only provides protection against trivial
+attackers or unintentional modification of the Kong global environment.
+
+- `on`: allow loading of Lua functions from admin supplied sources and do not
+  use a sandbox when executing them. Functions will have unrestricted access to
+  global environment and able to load any Lua modules. This is similar to the
+  behavior in Kong prior to 2.3.0.
+
+LuaJIT bytecode loading is disabled.
+
+untrusted_lua_sandbox_requires = Comma-separated list of modules allowed to be
+loaded with `require` inside the sandboxed environment. Ignored if
+`untrusted_lua` is not `sandbox`.
+
+Note: certain modules, when allowed, may cause sandbox escaping trivial.
+
+untrusted_lua_sandbox_environment = Comma-separated list of global Lua
+variables that should be made available inside the sandboxed environment.
+Ignored if `untrusted_lua` is not `sandbox`.
+
+Note: certain variables, when made available, may cause sandbox escaping
+trivial.
+
+**Default:** `sandbox`
 
 ---
 

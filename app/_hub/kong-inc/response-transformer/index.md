@@ -1,15 +1,21 @@
 ---
 name: Response Transformer
 publisher: Kong Inc.
-version: 1.0.0
+version: 1.0.x
 
 desc: Modify the upstream response before returning it to the client
 description: |
-  Transform the response sent by the upstream server on the fly on Kong, before returning the response to the client.
+  Transform the response sent by the upstream server on the fly before returning the response to the client.
 
   <div class="alert alert-warning">
-    <strong>Note on transforming bodies:</strong> Be aware of the performance of transformations on the response body. In order to parse and modify a JSON body, the plugin needs to retain it in memory, which might cause pressure on the worker's Lua VM when dealing with large bodies (several MBs). Because of Nginx's internals, the `Content-Length` header will not be set when transforming a response body.
+    <strong>Note on transforming bodies:</strong> Be aware of the performance of transformations
+    on the response body. In order to parse and modify a JSON body, the plugin needs to retain it in memory,
+    which might cause pressure on the worker's Lua VM when dealing with large bodies (several MBs).
+    Because of Nginx's internals, the `Content-Length` header will not be set when transforming a response body.
   </div>
+
+  For additional response transformation features, check out the
+  [Response Transformer Advanced plugin](/hub/kong-inc/response-transformer-advanced/).
 
 type: plugin
 categories:
@@ -18,6 +24,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
         - 2.2.x
         - 2.1.x
         - 2.0.x
@@ -39,6 +46,7 @@ kong_version_compatibility:
         - 0.5.x
     enterprise_edition:
       compatible:
+        - 2.3.x
         - 2.2.x
         - 2.1.x
         - 1.5.x
