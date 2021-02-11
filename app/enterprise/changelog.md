@@ -4,6 +4,163 @@ no_search: true
 no_version: true
 skip_read_time: true
 ---
+## 2.3.2.0
+**Release Date** 2020/02/11
+
+### **Kong Gateway (Enterprise)**
+The following sections list {{site.ee_product_name}}-exclusive updates,
+features, and fixes for the **2.3.2.0** version.
+
+Kong Enterprise is renamed to Kong Gateway or Kong Gateway (Enterprise) going forward. For a more detailed explanation, including information about Kong Gateway (OSS), see [Kong Gateway (Enterprise) 2.3.x Release Notes](https://docs.konghq.com/enterprise/2.3.x/release-notes/). 
+
+### Features
+
+#### Enterprise
+- Kong Gateway can now run in free mode, without a license, which gives users access to
+Kong Manager and an easy upgrade path to Enterprise.
+- A (non-OSS) Kong Gateway running in its default free Mode can be upgraded to add
+Enterprise functionality modules and features including **Kong Vitals**, **RBAC**,
+**Workspaces**, and **Enterprise Plugins** simply by applying a new Kong license.
+Contact your Kong sales representative for more information.
+- A new Admin API endpoint allows application of a license to Kong Gateway.
+- In hybrid mode, the control plane now propagates its license to the connected data planes in the cluster. Data planes do not require individual licenses.
+- The Kong Gateway installation packages now reside under https://bintray.com/kong/ and do not require a login. Search for “gateway” to list all available packages.
+- Added details to the error message of the entity type and number of entities that are preventing a Workspace from being deleted if the Workspace is not empty.
+- mTLS connections to Postres are now supported.
+- Postgres connection using scram-sha256 authentication are now supported.
+
+#### Core
+- Kong checks version compatibility between the control plane and any data planes to ensure
+the data planes and any plugins have compatibility with the control plane in hybrid mode.
+The sync is stopped if the major/minor version differ or if the installed plugin versions
+differ between control plane and data plane nodes. For more information, see
+[Version and Compatibility Checks](/2.3.x/hybrid-mode/#version-and-compatibility-checks).
+- {{site.base_gateway}} now accepts UTF-8 characters in route and service names. Entities with a `name` field
+now support UTF-8 characters.
+- Certificates now have `cert_alt` and `key_alt` fields to specify an alternative certificate
+and key pair.
+- The Go pluginserver `stderr` and `stdout` are now written into {{site.base_gateway}}’s logs, allowing Golang’s
+native `log.Printf()`.
+  - Introduced support for multiple pluginservers. This feature is backward-compatible with
+  the existing single Go pluginserver.
+
+#### Plugin Development Kit (PDK)
+- Introduced a `kong.node.get_hostname` method that returns current node's host name.
+- Introduced a `kong.cluster.get_id` method that returns a unique ID
+  for the current {{site.base_gateway}} cluster. If the gateway is running in DB-less mode
+  without a cluster ID explicitly defined, this method returns nil.
+  For Hybrid mode, all Control Planes and Data Planes belonging to the
+  same cluster returns the same cluster ID. For traditional database
+  type deployments, all {{site.base_gateway}} nodes pointing to the same database will
+  also return the same cluster ID.
+- Introduced a `kong.log.set_serialize_value`, which allows customizing
+  the output of `kong.log.serialize`.
+
+#### Plugins
+- The [HTTP Log](https://docs.konghq.com/hub/kong-inc/http-log/) (`http-log`) plugin
+now lets you add a table of headers to the HTTP request using the
+`headers` configuration parameter, which will help you integrate with many observability systems.
+- The [Key Authentication](https://docs.konghq.com/hub/kong-inc/key-auth/) (`key-auth`)
+plugin has two new configuration parameters: `key_in_header` and `key_in_query`. Both
+are booleans and tell {{site.base_gateway}} whether to accept (true) or reject (false) passed in either
+the header or the query string. Both default to “true.”
+- The [Request Size Limiting](https://docs.konghq.com/hub/kong-inc/request-size-limiting/)
+(`request-size-limiting`) plugin has a new configuration `require_content_length` that
+causes the plugin to ensure a valid Content-Length header exists before reading the request body.
+- The [Serverless Functions](https://docs.konghq.com/hub/kong-inc/serverless-functions/)
+(`serverless-functions`) plugin introduces a sandboxing capability, is *enabled* by default,
+and where only Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are allowed.
+- The [LDAP Authentication Advanced](https://docs.konghq.com/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`) plugin has two new features:
+  - added config `log_search_results` that allows displaying all of the LDAP search results received from the LDAP server.
+  - additional debug log statements added for authenticated groups.
+- [Rate Limiting Advanced](https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`) plusing has added a jitter (random delay) for the Retry-After header.
+- [Mutual TLS Authentication](https://docs.konghq.com/hub/kong-inc/mtls-auth/)(`mtls-auth`) plugin has added support for tags in the DAO and now ensures the existence of any provided CAs when creating the plugin entry.
+- [Response Transformer Advanced](https://docs.konghq.com/hub/kong-inc/response-transformer-advanced/) (`response-transformer-advanced`) has json paths for nested elements and arrays and transform gzipped content.
+- Collector (`collector`, used for Immunity) plugin supports hybrid mode and has removed the `log_bodies` configuration option.
+- OpenID Connect Library
+  - Token introspection now checks the status code properly.
+  - More consistent response body checks on HTTP requests.  
+
+#### Configuration
+- `client_max_body_size` and `client_body_buffer_size`, that previously
+  hardcoded to 10m, are now configurable through
+  [nginx_admin_client_max_body_size](/gateway-oss/2.3.x/configuration/#nginx_http_client_max_body_size)
+  and [nginx_admin_client_body_buffer_size](/gateway-oss/2.3.x/configuration/#nginx_admin_client_body_buffer_size).
+- Kong-generated SSL private keys now have `600` file system permission.
+- Properties `ssl_cert`, `ssl_cert_key`, `admin_ssl_cert`,
+  `admin_ssl_cert_key`, `status_ssl_cert`, and `status_ssl_cert_key`
+  is now an array: previously, only an RSA certificate was generated
+  by default; with this change, an ECDSA is also generated. On
+  intermediate and modern cipher suites, the ECDSA certificate is set
+  as the default fallback certificate; on old cipher suite, the RSA
+  certificate remains as the default. On custom certificates, the first
+  certificate specified in the array is used.
+- {{site.base_gateway}} now runs as a `kong` user if it exists; if user does not exist
+  in the system, the `nobody` user is used, as before.
+
+### Dependencies
+- Bumped `kong-plugin-serverless-functions` from 1.0 to 2.1.
+- Bumped `lua-resty-dns-client` from 5.1.0 to 5.2.0.
+- Bumped `lua-resty-healthcheck` from 1.3.0 to 1.4.0.
+- Bumped `OpenSSL` from 1.1.1h to 1.1.1i.
+- Bumped `kong-plugin-zipkin` from 1.1 to 1.2.
+- Bumped `kong-plugin-request-transformer` from 1.2 to 1.3.
+
+### Fixes
+
+#### Core
+- Fixed an issue where certain incoming URI may make it possible to bypass security rules applied
+on Route objects. This fix make such attacks more difficult by always normalizing the incoming
+request's URI before matching against the Router.
+- Fixed issue where a Go plugin would fail to read `kong.ctx.shared` values set by Lua plugins.
+- Properly trigger `dao:delete_by:post` hook.
+- Fixed issue where a route that supports both http and https (and has a hosts and SNIs
+match criteria) would fail to proxy http requests, as it does not contain an SNI.
+- Fixed issue where a `nil` request context would lead to errors `attempt to index local 'ctx'`
+being shown in the logs.
+- Reduced the number of needed timers to active health check upstreams and to resolve hosts.
+- Schemas for full-schema validations are correctly cached now, avoiding memory
+  leaks when reloading declarative configurations.
+- The schema for the upstream entities now limits the highest configurable
+  number of successes and failures to 255, respecting the limits imposed by
+  `lua-resty-healthcheck`.
+- Certificates for database connections now are loaded in the right order
+  avoiding failures to connect to Postgres databases.
+- Fixed Lua `validate_function` in sandbox module.
+- Mark boolean fields with default values as required.
+
+#### CLI
+- Fixed issue where `kong reload -c <config>` would fail.
+- Fixed issue where the {{site.base_gateway}} configuration cache would get corrupted.
+- Kong migrations now accepts a `-p/--prefix` flag.
+
+#### Developer Portal
+- Fixed issue when applying permissions to developers using the Application Registration feature.
+
+#### Plugin Development Kit (PDK)
+- Ensure the log serializer encodes the `tries` field as an array when
+  empty, rather than an object.
+
+#### Plugins
+- The [JWT](https://docs.konghq.com/hub/kong-inc/jwt/) (`jwt`) plugin disallows on consumers. 
+- The [Request Transformer](https://docs.konghq.com/hub/kong-inc/request-transformer/) (`request-transformer`)
+plugin does not allow `null` in config anymore as they can lead to runtime errors.
+- [OpenID Connect](https://docs.konghq.com/hub/kong-inc/openid-connect/) (`openid-connect`)
+ - Fixed issue causing a 500 auth error when falling back to an anonymous user.  
+ - Fixed consumer and discovery invalidation events that were returning when the operation was create. This could leave some cache entries in cache that need to be invalidated.
+ - Fixed a circular dependency issue with redirect function
+ - Fixed init worker on clients could take a long time
+- The [Rate Limiting](https://docs.konghq.com/hub/kong-inc/rate-limiting/) (`rate-limiting`) has improved counter accuracy.
+
+### Deprecated
+
+#### Kong Studio
+- Kong Studio is deprecated.
+
+#### Distributions
+- Support for CentOS-6 is removed and entered end-of-life on Nov 30, 2020.
+
+
 ## 2.3.0.0 (beta)
 **Release Date** 2020/01/20
 
