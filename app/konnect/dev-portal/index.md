@@ -16,7 +16,7 @@ click **Dev Portal**. The **Published Services** page displays the **Portal URL*
 The format looks something like this:
 
 ```
-<org-name>.portal.khcp.konghq.com
+<org-name>.portal.konnect.konghq.com
 ```
 
 Setting up custom Dev Portal URLs is not currently supported through

@@ -1,0 +1,73 @@
+{
+  "index_name": "prod_Full_Docs",
+  "start_urls": [
+    {
+      "url": "https://docs.konghq.com/konnect/"
+    },
+    {
+      "url": "https://docs.konghq.com/deck/"
+    },
+    {
+      "url": "https://docs.konghq.com/kubernetes-ingress-controller/1.1.x/"
+    },
+    {
+      "url": "https://docs.konghq.com/enterprise/2.2.x/"
+    },
+    {
+      "url": "https://docs.konghq.com/gateway-oss/2.3.x/"
+    },
+    {
+      "url": "https://docs.konghq.com/getting-started-guide/2.3.x/"
+    },
+    {
+      "url": "https://docs.konghq.com/mesh/1.1.x/"
+    },
+    {
+      "url": "https://docs.konghq.com/hub/",
+      "selectors_key": "hub"
+    }
+  ],
+  "sitemap_urls": [
+    "https://docs.konghq.com/sitemap.xml"
+  ],
+  "stop_urls": [
+    "https://docs.konghq.com/hub/.*?/.*?/.*?html"
+  ],
+
+  "selectors": {
+    "default": {
+      "lvl0": {
+        "selector": ".search-selector",
+        "global": true,
+        "default_value": "Kong"
+      },
+      "lvl1": "h1",
+      "lvl2": ".content h2",
+      "lvl3": ".content h3",
+      "lvl4": ".content h4",
+      "text": ".content p, .content li"
+    },
+    "hub": {
+      "lvl0": {
+        "selector": ".search-selector",
+        "global": true,
+        "default_value": "Plugin Hub"
+      },
+      "lvl1": "h1",
+      "lvl2": ".content h2",
+      "lvl3": ".content h3",
+      "lvl4": ".content h4",
+      "text": ".content p, .content li"
+    }
+  },
+
+  "selectors_exclude": [
+    "#next-steps",
+    "#next-steps ~ p"
+  ],
+  "only_content_level": true,
+  "conversation_id": [
+    "534091583"
+  ],
+  "nb_hits": 18645
+}

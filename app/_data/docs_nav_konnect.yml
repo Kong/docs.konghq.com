@@ -144,5 +144,5 @@
       url: /reference/konnect-api
       items:
         - text: Konnect API Reference
-          url: https://khcp.konghq.com/docs
+          url: https://konnect.konghq.com/docs
           absolute_url: true

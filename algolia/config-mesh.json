@@ -19,7 +19,7 @@
   ],
   "selectors": {
     "lvl0": {
-      "selector": ".docs-navigation > a.active",
+      "selector": ".search-selector",
       "global": true,
       "default_value": "Kong Mesh"
     },

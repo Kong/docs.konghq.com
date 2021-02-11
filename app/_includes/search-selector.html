@@ -1,0 +1,8 @@
+<div class="search-selector">{% if page.edition == 'enterprise' %}{{site.ee_product_name}}{% elsif
+    page.edition == 'gateway-oss' %}{{site.ce_product_name}}{% elsif
+    page.edition == 'getting-started-guide' %}{{site.base_gateway}} Getting Started Guide {% elsif
+    page.edition == 'mesh' %}{{site.mesh_product_name}}{% elsif
+    page.edition == 'konnect' %}{{site.konnect_product_name}}{% elsif
+    page.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}{% elsif
+    page.edition == 'deck' %}decK{% elsif
+    page.url contains '/hub/' %}Plugin Hub{% endif %}</div>

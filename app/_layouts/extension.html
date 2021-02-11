@@ -93,7 +93,7 @@ endif %}{% endfor
 
 {% capture plugin_config_for_service_admin_api %}
 
-For example, configure this plugin on a [Service](/latest/admin-api/#service-object) by
+For example, configure this plugin on a [Service](/gateway-oss/latest/admin-api/#service-object) by
 making the following request:
 
 ```bash
@@ -134,7 +134,7 @@ plugin: {{page.params.name}}
 ```
 
 Next, apply the KongPlugin resource to a
-[Service](/latest/admin-api/#service-object) by annotating the Service as
+[Service](/gateway-oss/latest/admin-api/#service-object) by annotating the Service as
 follows:
 
 ```yaml
@@ -168,7 +168,7 @@ spec:
 {% unless page.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
-For example, configure this plugin on a [Service](/latest/admin-api/#service-object) by
+For example, configure this plugin on a [Service](/gateway-oss/latest/admin-api/#service-object) by
 adding this section to your declarative configuration file:
 
 ``` yaml
@@ -201,7 +201,7 @@ plugins:
 {% if page.params.route_id %}
 
 {% capture plugin_config_for_route_admin_api %}
-For example, configure this plugin on a [Route](/latest/admin-api/#route-object) with:
+For example, configure this plugin on a [Route](/gateway-oss/latest/admin-api/#route-object) with:
 
 ```bash
 $ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
@@ -239,7 +239,7 @@ metadata:
 plugin: {{page.params.name}}
 ```
 
-Then, apply it to an ingress ([Route or Routes](/latest/admin-api/#route-object))
+Then, apply it to an ingress ([Route or Routes](/gateway-oss/latest/admin-api/#route-object))
 by annotating the ingress as follows:
 
 ``` yaml
@@ -273,7 +273,7 @@ spec:
 {% unless page.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
-For example, configure this plugin on a [Route](/latest/admin-api/#route-object) by
+For example, configure this plugin on a [Route](/gateway-oss/latest/admin-api/#route-object) by
 adding this section to your declarative configuration file:
 
 ```yaml
@@ -300,7 +300,7 @@ plugins:
 
 {% capture plugin_config_for_consumer_admin_api %}
 
-For example, configure this plugin on a [Consumer](/latest/admin-api/#consumer-object) with:
+For example, configure this plugin on a [Consumer](/gateway-oss/latest/admin-api/#consumer-object) with:
 
 ```bash
 $ curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
@@ -346,7 +346,7 @@ metadata:
 plugin: {{page.params.name}}
 ```
 
-Then, apply it to a [Consumer](/latest/admin-api/#consumer-object) by
+Then, apply it to a [Consumer](/gateway-oss/latest/admin-api/#consumer-object) by
 annotating the KongConsumer resource as follows:
 
 ``` yaml
@@ -371,7 +371,7 @@ metadata:
 {% unless page.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
-For example, configure this plugin on a [Consumer](/latest/admin-api/#consumer-object) by
+For example, configure this plugin on a [Consumer](/gateway-oss/latest/admin-api/#consumer-object) by
 adding this section to your declarative configuration file:
 
 ``` yaml
@@ -409,7 +409,7 @@ $ curl -X POST http://<admin-hostname>:8001/plugins/ \
 
 A plugin which is not associated to any Service, Route, or Consumer is
 considered _global_, and will be run on every request. Read the
-[Plugin Reference](/latest/admin-api/#add-plugin) and the [Plugin Precedence](/latest/admin-api/#precedence)
+[Plugin Reference](/gateway-oss/latest/admin-api/#add-plugin) and the [Plugin Precedence](/gateway-oss/latest/admin-api/#precedence)
 sections for more information.
 
 {% if page.params.yaml_examples == false and page.params.k8s_examples == false %}
@@ -624,7 +624,7 @@ plugins:
       <div class="alert alert-ee red condensed margin-bigger">
         <div class="alert-body">
           <div class="tag red">BETA</div>
-          <p><strong>WARNING:</strong> This plugin is released as <a href="/enterprise/latest/introduction/key-concepts/#beta">BETA</a> and should not be deployed in a production environment.
+          <p><strong>WARNING:</strong> This plugin is released as <a href="/enterprise/gateway-oss/latest/introduction/key-concepts/#beta">BETA</a> and should not be deployed in a production environment.
         </div>
       </div>
       {% endif %}

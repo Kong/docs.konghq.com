@@ -13,7 +13,7 @@ layout: default
       <h1>Public Lua API Reference</h1>
       <p>For plugins developers and core contributors</p>
     </div>
-    {% if site.data.kong_versions.size > 1 %}
+    {% if site.data.kong_versions_ce.size > 1 %}
       {% include lua-reference-dropdown.html
         page=page
         site=site
@@ -27,23 +27,23 @@ layout: default
     <nav>
       <ul>
         <li>
-          <a href="/{{page.kong_version}}"><h5>Back to docs</h5></a>
+          <a href="/gateway-oss/{{page.kong_version}}"><h5>Back to docs</h5></a>
         </li>
         <li>
-          <a href="/{{page.kong_version}}/lua-reference/"><h5>Index</h5></a>
+          <a href="/gateway-oss/{{page.kong_version}}/lua-reference/"><h5>Index</h5></a>
         </li>
         <li>
           <h5>Modules</h5>
           <ul>
             <li>kong.dao.cassandra.base_dao</li>
-            <li><a href="../../modules/kong.kong">kong.kong</a></li>
-            <li><a href="../../modules/kong.plugins.basic-auth.crypto">kong.plugins.basic-auth.crypto</a></li>
-            <li><a href="../../modules/kong.plugins.jwt.jwt_parser">kong.plugins.jwt.jwt_parser</a></li>
-            <li><a href="../../modules/kong.plugins.log-serializers.alf">kong.plugins.log-serializers.alf</a></li>
-            <li><a href="../../modules/kong.tools.io">kong.tools.io</a></li>
-            <li><a href="../../modules/kong.tools.responses">kong.tools.responses</a></li>
-            <li><a href="../../modules/kong.tools.timestamp">kong.tools.timestamp</a></li>
-            <li><a href="../../modules/kong.tools.utils">kong.tools.utils</a></li>
+            <li><a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.kong">kong.kong</a></li>
+            <li><a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.plugins.basic-auth.crypto">kong.plugins.basic-auth.crypto</a></li>
+            <li><a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.plugins.jwt.jwt_parser">kong.plugins.jwt.jwt_parser</a></li>
+            <li><a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.plugins.log-serializers.alf">kong.plugins.log-serializers.alf</a></li>
+            <li><a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.tools.io">kong.tools.io</a></li>
+            <li><a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.tools.responses">kong.tools.responses</a></li>
+            <li><a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.tools.timestamp">kong.tools.timestamp</a></li>
+            <li><a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.tools.utils">kong.tools.utils</a></li>
           </ul>
         </li>
       </ul>
@@ -191,7 +191,7 @@ Public methods developers can use in Kong core or in any plugin.
 
     <h5>See also:</h5>
     <ul>
-      <li><a href="../../modules/kong.dao.cassandra.base_dao#BaseDao:execute">execute</a></li>
+      <li><a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao#BaseDao:execute">execute</a></li>
     </ul>
 
 
@@ -300,7 +300,7 @@ Those methds are to be used in any child DAO and will perform the named operatio
 
     <h5>See also:</h5>
     <ul>
-      <li><a href="../../modules/kong.dao.cassandra.base_dao#BaseDao:execute">execute</a></li>
+      <li><a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao#BaseDao:execute">execute</a></li>
     </ul>
 
 
@@ -337,7 +337,7 @@ Those methds are to be used in any child DAO and will perform the named operatio
 
     <h5>See also:</h5>
     <ul>
-      <li><a href="../../modules/kong.dao.cassandra.base_dao#BaseDao:find_by_keys">find_by_keys</a></li>
+      <li><a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao#BaseDao:find_by_keys">find_by_keys</a></li>
     </ul>
 
 
@@ -455,8 +455,8 @@ Those methds are to be used in any child DAO and will perform the named operatio
 
     <h5>See also:</h5>
     <ul>
-      <li><a href="../../modules/kong.dao.cassandra.base_dao#BaseDao:check_unique_fields">check_unique_fields</a></li>
-      <li><a href="../../modules/kong.dao.cassandra.base_dao#BaseDao:check_foreign_fields">check_foreign_fields</a></li>
+      <li><a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao#BaseDao:check_unique_fields">check_unique_fields</a></li>
+      <li><a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao#BaseDao:check_foreign_fields">check_foreign_fields</a></li>
     </ul>
 
 
@@ -508,8 +508,8 @@ Those methds are to be used in any child DAO and will perform the named operatio
 
     <h5>See also:</h5>
     <ul>
-      <li><a href="../../modules/kong.dao.cassandra.base_dao#BaseDao:check_unique_fields">check_unique_fields</a></li>
-      <li><a href="../../modules/kong.dao.cassandra.base_dao#BaseDao:check_foreign_fields">check_foreign_fields</a></li>
+      <li><a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao#BaseDao:check_unique_fields">check_unique_fields</a></li>
+      <li><a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao#BaseDao:check_foreign_fields">check_foreign_fields</a></li>
     </ul>
 
 
@@ -554,7 +554,7 @@ Can be optionally overridden by a child DAO.
 
     <h5>See also:</h5>
     <ul>
-      <li><a href="../../modules/kong.dao.cassandra.base_dao#BaseDao:_unmarshall">_unmarshall</a></li>
+      <li><a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao#BaseDao:_unmarshall">_unmarshall</a></li>
     </ul>
 
 
@@ -590,7 +590,7 @@ Can be optionally overridden by a child DAO.
 
     <h5>See also:</h5>
     <ul>
-      <li><a href="../../modules/kong.dao.cassandra.base_dao#BaseDao:_marshall">_marshall</a></li>
+      <li><a href="/gateway-oss/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao#BaseDao:_marshall">_marshall</a></li>
     </ul>
 
 

@@ -13,7 +13,7 @@ layout: default
       <h1>Public Lua API Reference</h1>
       <p>For plugins developers and core contributors</p>
     </div>
-    {% if site.data.kong_versions.size > 1 %}
+    {% if site.data.kong_versions_ce.size > 1 %}
       {% include lua-reference-dropdown.html
         page=page
         site=site
@@ -27,10 +27,10 @@ layout: default
     <nav>
       <ul>
         <li>
-          <a href="/{{page.kong_version}}"><h5>Back to docs</h5></a>
+          <a href="/gateway-oss/{{page.kong_version}}"><h5>Back to docs</h5></a>
         </li>
         <li>
-          <a href="/{{page.kong_version}}/lua-reference/"><h5>Index</h5></a>
+          <a href="/gateway-oss/{{page.kong_version}}/lua-reference/"><h5>Index</h5></a>
         </li>
         <li>
           <h5>Modules</h5>
