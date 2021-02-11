@@ -737,6 +737,31 @@ HTTP 200 OK
 
 ---
 
+## Workspace Segmentation
+
+The following Admin API endpoints access the `default` workspace by default. To
+explicitely access a different workspace, prepend the endpoint with the
+workspace name in question:
+
+```
+GET /teamA/services
+GET /teamB/services
+```
+
+Specifying `default` as the workspace is equivalent to not specifying a
+workspace:
+
+```
+GET /services
+GET /default/services
+```
+
+See the [workspaces examples](workspaces-examples) for more discussion on creating and managing
+workspaces.
+
+
+---
+
 ## Tags
 
 Tags are strings associated to entities in Kong. Each tag must be composed of one or more
@@ -3072,3 +3097,4 @@ HTTP 200 OK
 [healthchecks]: /enterprise/{{page.kong_version}}/health-checks-circuit-breakers
 [secure-admin-api]: /enterprise/{{page.kong_version}}/secure-admin-api
 [proxy-reference]: /enterprise/{{page.kong_version}}/proxy
+[workspaces-examples]: /enterprise/{{page.kong_version}}/admin-api/workspaces/examples/
