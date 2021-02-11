@@ -23,6 +23,8 @@
 - title: Kong Gateway (Enterprise)
   icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
   items:
+    - text: 2.3.x
+      url: /../enterprise/2.3.x
     - text: 2.2.x
       url: /../enterprise/2.2.x
     - text: 2.1.x

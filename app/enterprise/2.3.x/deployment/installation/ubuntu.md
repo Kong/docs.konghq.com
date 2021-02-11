@@ -1,5 +1,5 @@
 ---
-title: Install Kong Gateway (Enterprise) on Ubuntu
+title: Install Kong Gateway on Ubuntu
 ---
 
 ## Introduction
@@ -13,54 +13,31 @@ the installation and configuration.
 Kong supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore. This guide provides
 steps to configure PostgreSQL. For assistance in setting up Cassandra, please contact your Kong Sales or Support representative.
 
+This software is governed by the
+[Kong Software License Agreement](https://konghq.com/enterprisesoftwarelicense/).
+
 ### Deployment options
 
-The following instructions assume that you are deploying {{site.ee_product_name}} in [classic embedded mode](/enterprise/{{page.kong_version}}/deployment/deployment-options).
-
-If you want to run {{site.ee_product_name}} in Hybrid mode, the instructions in this topic will walk you though setting up a Control Plane instance. Afterward, you will need to bring up additional Kong instances for the Data Planes, and perform further configuration steps. See [Hybrid Mode Setup](/enterprise/{{page.kong_version}}/deployment/hybrid-mode-setup) for details.
+{% include /md/{{page.kong_version}}/deployment-options.md %}
 
 ## Prerequisites
 
-To complete this installation you will need:
+To complete this installation you will need a supported Ubuntu system with
+root-equivalent access.
 
-{% include /md/{{page.kong_version}}/bintray-and-license.md %}
-* A supported Ubuntu system with root-equivalent access.
+## Step 1. Prepare to install Kong Gateway
 
-## Step 1. Prepare to install Kong Gateway and download license file
+Download the Debian package:
 
-### Download the Debian package
-
-1. Log in to [Bintray](http://bintray.com) using your Kong credentials. See [prerequisites](#prerequisites)
-for information on how to get access.
-2. Go to: [https://bintray.com/kong/kong-enterprise-edition-deb/ubuntu](https://bintray.com/kong/kong-enterprise-edition-deb/ubuntu).
-3. Select the latest Kong version from the list. {{site.ee_product_name}} versions are listed in reverse chronological order.
-4. From the Kong version detail page, select the **Files** tab.
-5. Click the `.deb` file matching your target Ubuntu OS version. For example, select `kong-enterprise-edition-{{page.kong_versions[9].version}}.bionic.all.deb` for the Ubuntu Bionic Beaver release.
-6. Copy the `.deb` file to your home directory on the Ubuntu system. For example:
+1. Go to: [https://bintray.com/kong/kong-gateway-deb/ubuntu](https://bintray.com/kong/kong-gateway-deb/ubuntu).
+2. Select the latest Kong version from the list. {{site.ee_product_name}} versions are listed in reverse chronological order.
+3. From the Kong version detail page, select the **Files** tab, then click the `pool/u/ubuntu` folder.
+4. Click the `.deb` file matching your target Ubuntu OS version. For example, select `kong-enterprise-edition-{{page.kong_versions[10].version}}.bionic.all.deb` for the Ubuntu Bionic Beaver release.
+5. Copy the `.deb` file to your home directory on the Ubuntu system. For example:
 
     ```bash
-    $ scp kong-enterprise-edition-{{page.kong_versions[9].version}}.bionic.all.deb <ubuntu_user>@<server>:~
+    $ scp kong-enterprise-edition-{{page.kong_versions[10].version}}.bionic.all.deb <ubuntu_user>@<server>:~
     ```
-
-### Download your enterprise license
-
-1. Download your license file from your [account files in Bintray](#prerequisites):
-
-    ```
-    https://bintray.com/kong/<YOUR_REPO_NAME>/license#files
-    ```
-
-2. Securely copy the license file to your home directory on the Ubuntu system:
-
-    ```bash
-    $ scp license.json <ubuntu_username>@<server>:~
-    ```
-
-### Result
-
-You should now have two files in your home directory on the target system:
-- The Kong `.deb` package file
-- The license file `license.json`
 
 ## Step 2. Install Kong Gateway
 
@@ -77,14 +54,6 @@ You should now have two files in your home directory on the target system:
     ```
 
     > Note: Your version may be different based on when you obtained the package
-
-3. Copy the license file to the `/etc/kong` directory
-
-    ```bash
-    $ sudo cp license.json /etc/kong/license.json
-    ```
-
-4. Kong will look for a valid license in this location.
 
 ## Step 3. Set up PostgreSQL
 
@@ -103,7 +72,7 @@ information about PostgreSQL on Ubuntu, see [https://www.postgresql.org/download
     $ sudo apt-get install postgresql postgresql-contrib
     ```
 
-2. Switch to PostgreSQL user and launch PostgreSQL
+2. Switch to PostgreSQL user and launch PostgreSQL.
 
     ```bash
     $ sudo -i -u postgres
@@ -112,7 +81,7 @@ information about PostgreSQL on Ubuntu, see [https://www.postgresql.org/download
 
 3. Create a Kong database with a username and password.
 
-    ```bash
+    ```sql
     $ psql> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
     ```
 
@@ -200,7 +169,12 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 5. You may now access Kong Manager on port `8002`.
 
-### Enable the Dev Portal
+### (Optional) Enable the Dev Portal
+
+<div class="alert alert-ee blue">
+<img class="no-image-expand" src="/assets/images/icons/documentation/icn-enterprise-blue.svg" alt="Enterprise" />
+This feature is only available with a {{site.konnect_product_name}} Enterprise subscription.
+</div>
 
 1. Enable the Dev Portal by updating `/etc/kong/kong.conf` to set the `portal` property to `on` and the `portal_gui_host` property to the DNS or IP address of the system. For example:
 
@@ -239,3 +213,6 @@ your setup, reach out to your Kong Support contact or go to the
 Check out {{site.base_gateway}}'s series of
 [Getting Started](/getting-started-guide/latest/overview) guides to get the most
 out of {{site.base_gateway}}.
+
+If you have an Enterprise subscription, add the license using the
+[`/licenses` Admin API endpoint](/enterprise/{{page.kong_version}}/deployment/licenses/deploy-license).

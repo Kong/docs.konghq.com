@@ -106,6 +106,8 @@
           url: /deployment/licensing
         - text: Access Your License
           url: /deployment/access-license
+        - text: Deploy Your License
+          url: /deployment/licenses/deploy-license
         - text: Monitor License Usage
           url: /deployment/licenses/report
     - text: Security
@@ -219,8 +221,8 @@
           url: /pdk/kong.service.response
         - text: kong.table
           url: /pdk/kong.table
-    - text: Go Plugin Development Kit
-      url: /go
+    - text: Plugins in Go and Other Languages
+      url: /external-plugins
     - text : Control Kong Gateway through systemd
       url: /systemd
 
@@ -254,6 +256,13 @@
     url: /admin-api/#upstream-object
   - text: Target Object
     url: /admin-api/#target-object
+  - text: Licenses
+    url: /admin-api/licenses/reference
+    items:
+      - text: Licenses Reference
+        url: /admin-api/licenses/reference
+      - text: Licenses Examples
+        url: /admin-api/licenses/examples
   - text: Workspaces
     url: /admin-api/workspaces/reference
     items:

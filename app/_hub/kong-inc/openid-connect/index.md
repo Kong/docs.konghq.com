@@ -122,6 +122,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.3.x
         - 2.2.x
 
 ---
