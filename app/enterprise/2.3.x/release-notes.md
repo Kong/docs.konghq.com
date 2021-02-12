@@ -23,7 +23,7 @@ A [Kong Konnect license](https://konghq.com/kong-konnect) is still
 required for Enterprise features, such as the
 [OIDC plugin](/hub/kong-inc/openid-connect/),
 [Vitals](/enterprise/{{page.kong_version}}/vitals/overview/),
-[Dev Portal](/enterprise/{{page.kong_version}}/dev-portal/overview/), and others.
+[Dev Portal](/enterprise/{{page.kong_version}}/developer-portal), and others.
 
 Learn more:
 * [Kong subscriptions](https://konghq.com/subscriptions/)
