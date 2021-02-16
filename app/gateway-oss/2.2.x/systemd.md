@@ -11,7 +11,7 @@ Debian and RPM based packages. Note that some of the supported GNU/Linux
 distributions for Kong may not have adopted systemd as their default init
 system (for example, CentOS 6 and RHEL 6). For the following instructions, it
 is assumed that Kong has already been [installed and
-configured](https://konghq.com/install/) on a systemd-supported GNU/Linux
+configured](https://konghq.com/install/#kong-community) on a systemd-supported GNU/Linux
 distribution.
 
 ## Start Kong

@@ -4,7 +4,7 @@ skip_read_time: true
 ---
 
 <div class="alert alert-warning">
-  <strong>Before you start:</strong> Make sure you've <a href="https://konghq.com/install/">installed Kong</a> &mdash; It should only take a minute!
+  <strong>Before you start:</strong> Make sure you've <a href="https://konghq.com/install/#kong-community">installed Kong</a> &mdash; It should only take a minute!
 </div>
 
 Before going further into Kong, make sure you understand its [purpose and philosophy](/about). Once you are confident with the concept of API Gateways, this guide is going to take you through a quick introduction on how to use Kong and perform basic operations such as:
