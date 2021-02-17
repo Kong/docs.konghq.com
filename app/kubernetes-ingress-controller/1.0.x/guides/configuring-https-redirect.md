@@ -88,28 +88,12 @@ Via: kong/1.2.1
 
 ## Setup HTTPS redirect
 
-Next, we will create a KongIngress resource which will enforce a policy
-on Kong to accept only HTTPS requests for the above Ingress rule and
-send back a redirect if the request matches the Ingress rule:
+To instruct Kong to redirect all HTTP requests matching this Ingress rule to
+HTTPS, we'll update its annotations to limit its protocols to HTTPS only and
+issue a 301 redirect:
 
 ```bash
-$ echo "apiVersion: configuration.konghq.com/v1
-kind: KongIngress
-metadata:
-    name: https-only
-route:
-  protocols:
-  - https
-  https_redirect_status_code: 302
-        " | kubectl apply -f -
-kongingress.configuration.konghq.com/https-only created
-```
-
-Next, we need to associate the KongIngress resource with the Ingress resource
-we created before:
-
-```bash
-$ kubectl patch ingress demo -p '{"metadata":{"annotations":{"konghq.com/override":"https-only"}}}'
+$ kubectl patch ingress demo -p '{"metadata":{"annotations":{"konghq.com/protocols":"https","konghq.com/https_redirect_status_code":"301"}}}'
 ingress.extensions/demo patched
 ```
 
@@ -120,7 +104,7 @@ being issued from Kong:
 
 ```bash
 $ curl $PROXY_IP/foo/headers -I
-HTTP/1.1 302 Moved Temporarily
+HTTP/1.1 301 Moved Temporarily
 Date: Tue, 06 Aug 2019 18:04:38 GMT
 Content-Type: text/html
 Content-Length: 167
