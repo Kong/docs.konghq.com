@@ -33,7 +33,7 @@ params:
       value_in_examples: BOOTSTRAP_SERVERS
       urlencode_in_examples: true
       default:
-      datatype:
+      datatype: set
       description: |
         List of bootstrap brokers in a `{host: host, port: port}` format.
     - name: topic
