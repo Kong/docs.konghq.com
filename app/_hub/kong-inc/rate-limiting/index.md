@@ -110,7 +110,7 @@ params:
       description: Header name to be used if `limit_by` is set to `header`.
     - name: path
       required: semi
-      datatype:
+      datatype: string
       description: Path to be used if `limit_by` is set to `path`.
     - name: policy
       required: false
