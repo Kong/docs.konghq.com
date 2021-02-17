@@ -5,7 +5,7 @@ skip_read_time: true
 
 <div class="alert alert-warning">
   <strong>Before you start:</strong> Make sure you've
-  <a href="https://konghq.com/install/">installed Kong</a> &mdash; It should only take a minute!
+  <a href="https://konghq.com/install/#kong-community">installed Kong</a> &mdash; It should only take a minute!
 </div>
 
 In this section, you'll learn how to manage your Kong instance. First, we'll
