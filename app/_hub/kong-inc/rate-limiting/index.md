@@ -71,41 +71,52 @@ params:
     - name: second
       required: semi
       value_in_examples: 5
+      datatype: number
       description: The number of HTTP requests that can be made per second.
     - name: minute
       required: semi
+      datatype: number
       description: The number of HTTP requests that can be made per minute.
     - name: hour
       required: semi
       value_in_examples: 10000
+      datatype: number
       description: The number of HTTP requests that can be made per hour.
     - name: day
       required: semi
+      datatype: number
       description: The number of HTTP requests that can be made per day.
     - name: month
       required: semi
+      datatype: number
       description: The number of HTTP requests that can be made per month.
     - name: year
       required: semi
+      datatype: number
       description: The number of HTTP requests that can be made per year.
     - name: limit_by
       required: false
       default: '`consumer`'
+      datatype: string
       description: |
         The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`, `service`, `header`, `path`. If the value for the entity chosen to aggregate the limit cannot be determined, the system will always fallback to `ip`. If value `service` is chosen, the `service_id` configuration must be provided. If value `header` is chosen, the `header_name` configuration must be provided. If value `path` is chosen, the `path` configuration must be provided.
     - name: service_id
       required: semi
+      datatype: string
       description: The service id to be used if `limit_by` is set to `service`.
     - name: header_name
       required: semi
+      datatype: string
       description: Header name to be used if `limit_by` is set to `header`.
     - name: path
       required: semi
+      datatype:
       description: Path to be used if `limit_by` is set to `path`.
     - name: policy
       required: false
       value_in_examples: "local"
       default: '`cluster`'
+      datatype: string
       description: |
         The rate-limiting policies to use for retrieving and incrementing the
         limits. Available values are:
@@ -123,33 +134,40 @@ params:
     - name: fault_tolerant
       required: false
       default: '`true`'
+      datatype: boolean
       description: |
-        A boolean value that determines if the requests should be proxied even if Kong has troubles connecting a third-party datastore. If `true` requests will be proxied anyways effectively disabling the rate-limiting function until the datastore is working again. If `false` then the clients will see `500` errors.
+        A boolean value that determines if the requests should be proxied even if Kong has troubles connecting a third-party datastore. If `true`, requests will be proxied anyway, effectively disabling the rate-limiting function until the datastore is working again. If `false`, then the clients will see `500` errors.
     - name: hide_client_headers
       required: false
       default: '`false`'
+      datatype: boolean
       description: Optionally hide informative response headers.
     - name: redis_host
       required: semi
+      datatype: string
       description: |
         When using the `redis` policy, this property specifies the address to the Redis server.
     - name: redis_port
       required: false
       default: '`6379`'
+      datatype: integer
       description: |
         When using the `redis` policy, this property specifies the port of the Redis server. By default is `6379`.
     - name: redis_password
       required: false
+      datatype: string
       description: |
         When using the `redis` policy, this property specifies the password to connect to the Redis server.
     - name: redis_timeout
       required: false
       default: '`2000`'
+      datatype: number
       description: |
         When using the `redis` policy, this property specifies the timeout in milliseconds of any command submitted to the Redis server.
     - name: redis_database
       required: false
       default: '`0`'
+      datatype: integer
       description: |
         When using the `redis` policy, this property specifies the Redis database to use.
   extra:
@@ -161,7 +179,8 @@ params:
 
 ## Headers sent to the client
 
-When this plugin is enabled, Kong will send some additional headers back to the client telling what are the limits allowed, how many requests are available and how long it will take until the quota will be restored, for example:
+When this plugin is enabled, Kong will send some additional headers back to the client telling what are the limits allowed, how many requests are available,
+and how long it will take until the quota will be restored. For example:
 
 ```
 RateLimit-Limit: 6
@@ -176,7 +195,7 @@ X-RateLimit-Limit-Minute: 10
 X-RateLimit-Remaining-Minute: 9
 ```
 
-or it will return a combination of more time limits, if more than one is being set:
+Or, it will return a combination of more time limits, if more than one is being set:
 
 ```
 X-RateLimit-Limit-Second: 5
