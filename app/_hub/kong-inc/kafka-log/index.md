@@ -1,6 +1,7 @@
 ---
 name: Kafka Log
 publisher: Kong Inc.
+version: 1.5.x # 0.1.1 internal handler
 
 desc: Publish logs to a Kafka topic
 description: |
@@ -20,7 +21,7 @@ kong_version_compatibility:
         - 2.2.x
         - 2.1.x
         - 1.5.x
-        - 1.3-x
+
 
 params:
 
@@ -32,6 +33,7 @@ params:
       value_in_examples: BOOTSTRAP_SERVERS
       urlencode_in_examples: true
       default:
+      datatype:
       description: |
         List of bootstrap brokers in a `{host: host, port: port}` format.
     - name: topic
@@ -39,66 +41,80 @@ params:
       value_in_examples: TOPIC
       urlencode_in_examples: true
       default:
+      datatype: string
       description: The Kafka topic to publish to.
     - name: timeout
       required: false
       default: "`10000`"
       value_in_examples: TIMEOUT
+      datatype: integer
       description: Socket timeout in milliseconds.
     - name: keepalive
       required: false
       default: "`60000`"
       value_in_examples: KEEPALIVE
+      datatype: integer
       description: Keepalive timeout in milliseconds.
     - name: producer_request_acks
       required: false
       default: "`1`"
       value_in_examples: PRODUCER_REQUEST_ACKS
+      datatype: integer
       description: |
-        The number of acknowledgments the producer requires the leader to have received before considering a request complete. Allowed values: 0 for no acknowledgments, 1 for only the leader, and -1 for the full ISR.
+        The number of acknowledgments the producer requires the leader to have received before considering a request complete.
+        Allowed values: 0 for no acknowledgments, 1 for only the leader, and -1 for the full ISR.
     - name: producer_request_timeout
       required: false
       default: "`2000`"
       value_in_examples: PRODUCER_REQUEST_TIMEOUT
+      datatype: integer
       description: |
         Time to wait for a Produce response in milliseconds.
     - name: producer_request_limits_messages_per_request
       required: false
       default: "`200`"
       value_in_examples: PRODUCER_REQUEST_LIMITS_MESSAGES_PER_REQUEST
+      datatype: integer
       description: Maximum number of messages to include in a single Produce request.
     - name: producer_request_limits_bytes_per_request
       required: false
       default: "`1048576`"
       value_in_examples: PRODUCER_REQUEST_LIMITS_BYTES_PER_REQUEST
+      datatype: integer
       description: Maximum size of a Produce request in bytes.
     - name: producer_request_retries_max_attempts
       required: false
       default: "`10`"
       value_in_examples: PRODUCER_REQUEST_RETRIES_MAX_ATTEMPTS
+      datatype: datatype: integer
       description: Maximum number of retry attempts per single Produce request.
     - name: producer_request_retries_backoff_timeout
       required: false
       default: "`100`"
+      datatype: integer
       description: Backoff interval between Produce retry attempts in milliseconds.
     - name: producer_async
       required: false
       default: "`true`"
+      datatype: boolean
       description: |
         Flag to enable asynchronous mode.
     - name: producer_async_flush_timeout
       required: false
       default: "`1000`"
+      datatype: integer
       description: |
         Maximum time interval in milliseconds between buffer flushes in asynchronous mode.
     - name: producer_async_buffering_limits_messages_in_memory
       required: false
       default: "`50000`"
+      datatype: integer
       description: |
         Maximum number of messages that can be buffered in memory in asynchronous mode.
     - name: api_version
       required: false
       default: "`0`"
+      datatype: integer
       description: |
         API version of a Produce request. Allowed values: `0`, `1`, or `2`.
 ---
@@ -106,13 +122,14 @@ params:
 ## Installation
 
 Manually download and install:
+
 ```
 $ git clone https://github.com/kong/kong-plugin-kafka-log.git /path/to/kong/plugins/kong-plugin-kafka-log
 $ cd /path/to/kong/plugins/kong-plugin-kafka-log
 $ luarocks make *.rockspec
 ```
 
-In both cases, you need to change your Kong [`plugins` configuration option](https://docs.konghq.com/1.3.x/configuration/#plugins)
+In both cases, you need to change your Kong [`plugins` configuration option](https://docs.konghq.com/2.3.x/configuration/#plugins)
 to include this plugin:
 
 ```
@@ -166,15 +183,15 @@ This plugin makes use of [lua-resty-kafka](https://github.com/doujiang24/lua-res
 
 Known limitations:
 
-1. There is no support for TLS
-2. There is no support for Authentication
-3. There is no support for message compression
+1. There is no support for TLS.
+2. There is no support for Authentication.
+3. There is no support for message compression.
 
 ## Quickstart
 
 The following guidelines assume that both `Kong` and `Kafka` have been installed on your local machine:
 
-1. Install `kong-plugin-kafka-log` as specified in the "Installation" section above.
+1. Install `kong-plugin-kafka-log` as specified in the Installation section above.
 
 2. Create `kong-log` topic in your `Kafka` cluster:
 
