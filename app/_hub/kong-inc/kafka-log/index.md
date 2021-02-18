@@ -130,7 +130,8 @@ $ cd /path/to/kong/plugins/kong-plugin-kafka-log
 $ luarocks make *.rockspec
 ```
 
-In both cases, you need to change your Kong [`plugins` configuration option](https://docs.konghq.com/2.3.x/configuration/#plugins)
+In both cases, you need to change your Kong `plugins`
+[configuration option](https://docs.konghq.com/latest/configuration/#plugins)
 to include this plugin:
 
 ```
