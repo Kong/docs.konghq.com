@@ -31,95 +31,114 @@ params:
       value_in_examples: <BOOTSTRAP_SERVERS>
       urlencode_in_examples: true
       default:
+      datatype: set of record elements
       description: |
-        List of bootstrap brokers in a `{host: host, port: port}` format.
+        Set of bootstrap brokers in a `{host: host, port: port}` list format.
     - name: topic
       required: true
       value_in_examples: <TOPIC>
       urlencode_in_examples: true
       default:
+      datatype: string
       description: |
          The Kafka topic to publish to.
     - name: timeout
       required: false
       default: "`10000`"
       value_in_examples: 10000
+      datatype: integer
       description: |
          Socket timeout in milliseconds.
     - name: keepalive
       required: false
       default: "`60000`"
       value_in_examples: 60000
+      datatype: integer
       description: |
          Keepalive timeout in milliseconds.
     - name: forward_method
       required: false
       default: "`false`"
+
       description: |
          Include the request method in the message.
     - name: forward_uri
       required: false
       default: "`false`"
+
       description: |
          Include the request URI and URI arguments (i.e., query arguments) in the message.
     - name: forward_headers
       required: false
       default: "`false`"
+
       description: |
          Include the request headers in the message.
     - name: forward_body
       required: false
       default: "`true`"
+
       description: |
          Include the request headers in the message.
     - name: producer_request_acks
       required: false
       default: "`1`"
       value_in_examples: -1
+      datatype: integer
       description: |
-         The number of acknowledgments the producer requires the leader to have received before considering a request complete. Allowed values are 0 for no acknowledgments, 1 for only the leader, and -1 for the full ISR.
+        The number of acknowledgments the producer requires the leader to have received before
+        considering a request complete. Allowed values: 0 for no acknowledgments; 1 for only the leader;
+      and -1 for the full ISR (In-Sync Replica set).
     - name: producer_request_timeout
       required: false
       default: "`2000`"
       value_in_examples: 2000
+
       description: |
          Time to wait for a Produce response in milliseconds
     - name: producer_request_limits_messages_per_request
       required: false
       default: "`200`"
       value_in_examples: 200
+
       description: |
          Maximum number of messages to include into a single Produce request.
     - name: producer_request_limits_bytes_per_request
       required: false
       default: "`1048576`"
       value_in_examples: 1048576
+
       description: |
          Maximum size of a Produce request in bytes.
     - name: producer_request_retries_max_attempts
       required: false
       default: "`10`"
       value_in_examples: 10
+
       description: |
          Maximum number of retry attempts per single Produce request.
     - name: producer_request_retries_backoff_timeout
       required: false
       default: "`100`"
+
       description: |
        Backoff interval between retry attempts in milliseconds.
     - name: producer_async
       required: false
       default: "`true`"
+
       description: |
          Flag to enable asynchronous mode.
     - name: producer_async_flush_timeout
       required: false
       default: "`1000`"
+
       description: |
          Maximum time interval in milliseconds between buffer flushes in asynchronous mode.
     - name: producer_async_buffering_limits_messages_in_memory
       required: false
       default: "`50000`"
+
       description: |
          Maximum number of messages that can be buffered in memory in asynchronous mode.
 
@@ -156,30 +175,28 @@ This plugin makes use of [lua-resty-kafka](https://github.com/doujiang24/lua-res
 
 When encoding request bodies, several things happen:
 
-* For requests with content-type header of `application/x-www-form-urlencoded`, `multipart/form-data`
-  or `application/json`, this plugin will pass the request body "raw" on the `body` attribute, but also try
-  to return a parse version of those arguments in `body_args`. If this parsing fails, an error message will be
-  returned and the message will not be sent.
-* If the `content-type` is not `text/plain`, `text/html`, `application/xml`, `text/xml` or `application/soap+xml`,
+* For requests with content-type header of `application/x-www-form-urlencoded`, `multipart/form-data`,
+  or `application/json`, this plugin will pass the raw request body on the `body` attribute, but also tries
+  to return a parsed version of those arguments in `body_args`. If this parsing fails, an error message is
+  returned and the message is not sent.
+* If the `content-type` is not `text/plain`, `text/html`, `application/xml`, `text/xml`, or `application/soap+xml`,
   then the body will be base64-encoded to ensure that the message can be sent as JSON. In such a case,
-  the message will have an extra attribute called `body_base64` set to `true`.
+  the message has an extra attribute called `body_base64` set to `true`.
 
 ## Known issues and limitations
 
 Known limitations:
 
-1. There is no support for TLS
-2. There is no support for Authentication
-3. There is no support for message compression
-4. The message format is not customizable
+1. There is no support for TLS.
+2. There is no support for Authentication.
+3. There is no support for message compression.
+4. The message format is not customizable.
 
 ## Quickstart
 
-The following guidelines assume that both `Kong` and `Kafka` have been installed on your local machine:
+The following guidelines assume that both `Kong` and `Kafka` have been installed on your local machine.
 
-1. Install `kong-plugin-kafka-upstream` as mentioned on the "Installation" section of this readme.
-
-2. Create `kong-upstream` topic in your `Kafka` cluster:
+1. Create a `kong-upstream` topic in your `Kafka` cluster:
 
     ```
     ${KAFKA_HOME}/bin/kafka-topics.sh --create \
@@ -189,7 +206,7 @@ The following guidelines assume that both `Kong` and `Kafka` have been installed
         --topic kong-upstream
     ```
 
-3. Create a Service-less Route, and add the `kong-plugin-kafka-upstream` plugin to it:
+2. Create a Service-less Route, and add the `kafka-upstream` plugin to it:
 
     ```
     curl -X POST http://localhost:8001/routes \
@@ -205,7 +222,7 @@ The following guidelines assume that both `Kong` and `Kafka` have been installed
         --data "config.topic=kong-upstream"
     ```
 
-4. (On a different console) start a Kafka consumer:
+3. In a different console, start a Kafka consumer:
 
     ```
     ${KAFKA_HOME}/bin/kafka-console-consumer.sh \
@@ -216,11 +233,11 @@ The following guidelines assume that both `Kong` and `Kafka` have been installed
         --timeout-ms 1000
     ```
 
-5. Make sample requests:
+4. Make sample requests:
 
     ```
     curl -X POST http://localhost:8000 --header 'Host: kafka-upstream.dev' foo=bar
     ```
 
     You should receive a `200 { message: "message sent" }` response, and should see the request bodies appear on
-    the Kafka consumer console you started on the previous step.
+    the Kafka consumer console you started in the previous step.
