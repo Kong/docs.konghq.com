@@ -35,7 +35,7 @@ params:
       default:
       datatype: set of record elements
       description: |
-        List of bootstrap brokers in a `{host: host, port: port}` format.
+        Set of bootstrap brokers in a `{host: host, port: port}` list format. For examples, see the Quickstart section.
     - name: topic
       required: true
       value_in_examples: TOPIC
