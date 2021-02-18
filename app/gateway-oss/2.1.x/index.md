@@ -5,9 +5,9 @@ is_homepage: true
 
 <div class="docs-grid">
   <div class="docs-grid-block">
-    <h3><a href="https://konghq.com/install/">Installation</a></h3>
+    <h3><a href="https://konghq.com/install/#kong-community">Installation</a></h3>
     <p>You can install Kong Gateway on most Linux distributions and MacOS. We even provide the source so you can compile it yourself.</p>
-    <a href="https://konghq.com/install/">Install Kong Gateway &rarr;</a>
+    <a href="https://konghq.com/install/#kong-community">Install Kong Gateway &rarr;</a>
   </div>
 
   <div class="docs-grid-block">

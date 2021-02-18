@@ -389,9 +389,9 @@
     pcre: "8.44"
 -
   release: "2.3.x"
-  version: "2.3.1"
+  version: "2.3.2"
   edition: "gateway-oss"
-  luarocks_version: "2.3.1-0"
+  luarocks_version: "2.3.2-0"
   dependencies:
     luajit: "2.1.0-beta3"
     luarocks: "3.4.0"
@@ -428,7 +428,7 @@
   edition: "konnect"
 -
   release: "1.1.x"
-  version: "1.1.3"
+  version: "1.1.4"
   edition: "mesh"
 -
   release: "1.0.x"

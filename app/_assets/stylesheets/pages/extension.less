@@ -59,7 +59,10 @@
       margin: 0 0 2.5rem 0;
     }
 
-    ol, ul {
+    ol {
+        padding-left: 2rem;
+        counter-reset: base;
+
       li {
         p {
           font-size: inherit;
@@ -67,11 +70,21 @@
       }
     }
 
+    ol > li::before {
+      counter-increment: base;
+      content: counter(base);
+      font-size: 13px;
+    }
+
     ul {
       margin-left: 0.5rem;
 
       li {
         list-style-type: disc;
+
+        p {
+          font-size: inherit;
+        }
       }
     }
 
