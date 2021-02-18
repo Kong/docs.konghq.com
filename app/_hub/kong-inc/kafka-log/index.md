@@ -86,7 +86,7 @@ params:
       required: false
       default: "`10`"
       value_in_examples: PRODUCER_REQUEST_RETRIES_MAX_ATTEMPTS
-      datatype: datatype: integer
+      datatype: integer
       description: Maximum number of retry attempts per single Produce request.
     - name: producer_request_retries_backoff_timeout
       required: false
