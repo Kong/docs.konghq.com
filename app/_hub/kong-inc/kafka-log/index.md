@@ -177,11 +177,11 @@ $ curl -X POST http://kong:8001/plugins \
 
 ## Log Format
 
-Similar to [HTTP Log Plugin](https://docs.konghq.com/hub/kong-inc/http-log#log-format).
+Similar to the [HTTP Log Plugin](https://docs.konghq.com/hub/kong-inc/http-log#log-format).
 
 ## Implementation details
 
-This plugin makes use of [lua-resty-kafka](https://github.com/doujiang24/lua-resty-kafka) client under the hood.
+This plugin makes use of the [lua-resty-kafka](https://github.com/doujiang24/lua-resty-kafka) client under the hood.
 
 ## Known issues and limitations
 
@@ -195,9 +195,9 @@ Known limitations:
 
 The following guidelines assume that both `Kong` and `Kafka` have been installed on your local machine:
 
-1. Install `kong-plugin-kafka-log` as specified in the Installation section above.
+1. Install `kong-plugin-kafka-log` as specified in the above Installation section.
 
-2. Create `kong-log` topic in your `Kafka` cluster:
+2. Create a `kong-log` topic in your `Kafka` cluster:
 
     ```
     ${KAFKA_HOME}/bin/kafka-topics.sh --create \
@@ -207,7 +207,7 @@ The following guidelines assume that both `Kong` and `Kafka` have been installed
         --topic kong-log
     ```
 
-3. Add `kong-plugin-kafka-log` plugin globally:
+3. Add the `kafka-log` plugin globally:
 
     ```
     curl -X POST http://localhost:8001/plugins \
@@ -225,7 +225,7 @@ The following guidelines assume that both `Kong` and `Kafka` have been installed
     for i in {1..50} ; do curl http://localhost:8000/request/$i ; done
     ```
 
-5. Verify the contents of `Kafka` topic:
+5. Verify the contents of the Kafka `kong-log` topic:
 
     ```
     ${KAFKA_HOME}/bin/kafka-console-consumer.sh \
