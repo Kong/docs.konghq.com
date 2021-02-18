@@ -215,7 +215,7 @@ The following guidelines assume that both `Kong` and `Kafka` have been installed
         --data "config.topic=kong-log"
     ```
 
-    Alternatively, create a Service with a Route, and attach the plugin to that Service.
+    Alternatively to a global configuration, create a Service with a Route and attach the plugin to that Service.
 
 4. Make sample requests:
 
