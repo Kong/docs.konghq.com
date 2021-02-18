@@ -88,57 +88,57 @@ params:
       description: |
         The number of acknowledgments the producer requires the leader to have received before
         considering a request complete. Allowed values: 0 for no acknowledgments; 1 for only the leader;
-      and -1 for the full ISR (In-Sync Replica set).
+        and -1 for the full ISR (In-Sync Replica set).
     - name: producer_request_timeout
       required: false
       default: "`2000`"
       value_in_examples: 2000
-
+      datatype: integer
       description: |
          Time to wait for a Produce response in milliseconds
     - name: producer_request_limits_messages_per_request
       required: false
       default: "`200`"
       value_in_examples: 200
-
+      datatype: integer
       description: |
          Maximum number of messages to include into a single Produce request.
     - name: producer_request_limits_bytes_per_request
       required: false
       default: "`1048576`"
       value_in_examples: 1048576
-
+      datatype: integer
       description: |
          Maximum size of a Produce request in bytes.
     - name: producer_request_retries_max_attempts
       required: false
       default: "`10`"
       value_in_examples: 10
-
+      datatype: integer
       description: |
          Maximum number of retry attempts per single Produce request.
     - name: producer_request_retries_backoff_timeout
       required: false
       default: "`100`"
-
+      datatype: integer
       description: |
        Backoff interval between retry attempts in milliseconds.
     - name: producer_async
       required: false
       default: "`true`"
-
+      datatype: boolean
       description: |
          Flag to enable asynchronous mode.
     - name: producer_async_flush_timeout
       required: false
       default: "`1000`"
-
+      datatype: integer
       description: |
          Maximum time interval in milliseconds between buffer flushes in asynchronous mode.
     - name: producer_async_buffering_limits_messages_in_memory
       required: false
       default: "`50000`"
-
+      datatype: integer
       description: |
          Maximum number of messages that can be buffered in memory in asynchronous mode.
 
