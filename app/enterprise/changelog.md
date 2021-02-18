@@ -11,7 +11,7 @@ skip_read_time: true
 The following sections list {{site.ee_product_name}}-exclusive updates,
 features, and fixes for the **2.3.2.0** version.
 
-Kong Enterprise is renamed to Kong Gateway or Kong Gateway (Enterprise) going forward. For a more detailed explanation, including information about Kong Gateway (OSS), see [Kong Gateway (Enterprise) 2.3.x Release Notes](https://docs.konghq.com/enterprise/2.3.x/release-notes/). 
+Kong Enterprise is renamed to Kong Gateway or Kong Gateway (Enterprise) going forward. For a more detailed explanation, including information about Kong Gateway (OSS), see [Kong Gateway (Enterprise) 2.3.x Release Notes](https://docs.konghq.com/enterprise/2.3.x/release-notes/).
 
 ### Features
 
@@ -129,6 +129,11 @@ being shown in the logs.
 - Fixed Lua `validate_function` in sandbox module.
 - Mark boolean fields with default values as required.
 
+#### Enterprise
+- Fixed an issue that incorrectly enforced plugins when they exist in the default and a named workspace.
+   The plugin configuration in the default workspace was incorrectly overriding the disabled plugin
+   configuration in the named workspace (FTI-2049, FTI-2228).
+
 #### CLI
 - Fixed issue where `kong reload -c <config>` would fail.
 - Fixed issue where the {{site.base_gateway}} configuration cache would get corrupted.
@@ -142,14 +147,14 @@ being shown in the logs.
   empty, rather than an object.
 
 #### Plugins
-- The [JWT](https://docs.konghq.com/hub/kong-inc/jwt/) (`jwt`) plugin disallows on consumers. 
+- The [JWT](https://docs.konghq.com/hub/kong-inc/jwt/) (`jwt`) plugin disallows on consumers.
 - The [Request Transformer](https://docs.konghq.com/hub/kong-inc/request-transformer/) (`request-transformer`)
 plugin does not allow `null` in config anymore as they can lead to runtime errors.
 - [OpenID Connect](https://docs.konghq.com/hub/kong-inc/openid-connect/) (`openid-connect`)
  - Fixed issue causing a 500 auth error when falling back to an anonymous user.  
  - Fixed consumer and discovery invalidation events that were returning when the operation was create. This could leave some cache entries in cache that need to be invalidated.
- - Fixed a circular dependency issue with redirect function
- - Fixed init worker on clients could take a long time
+ - Fixed a circular dependency issue with redirect function.
+ - Fixed init worker on clients could take a long time.
 - The [Rate Limiting](https://docs.konghq.com/hub/kong-inc/rate-limiting/) (`rate-limiting`) has improved counter accuracy.
 
 ### Deprecated
