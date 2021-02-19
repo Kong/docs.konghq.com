@@ -179,8 +179,8 @@ params:
 ## Headers sent to the client
 
 When this plugin is enabled, Kong sends some additional headers back to the client
-indicating the allowed limits, how many requests are available,
-and how long it will take until the quota is reset. For example:
+indicating the allowed limits, how many requests remain available,
+and the time remaining until the quota is reset (number of seconds). For example:
 
 ```
 RateLimit-Limit: 6
@@ -188,7 +188,7 @@ RateLimit-Remaining: 4
 RateLimit-Reset: 47
 ```
 
-The plugin also sends headers telling the limits in the time frame and the number of minutes remaining:
+The plugin also sends headers that indicate the limits in the time frame and the number of minutes remaining:
 
 ```
 X-RateLimit-Limit-Minute: 10
@@ -218,7 +218,7 @@ The headers `RateLimit-Limit`, `RateLimit-Remaining` and `RateLimit-Reset` are b
 
 ## Implementation considerations
 
-The plugin supports 3 policies, which each have their specific pros and cons.
+The plugin supports three policies, which each have their specific pros and cons.
 
 | policy    | pros                                                        | cons                                                                                                                                |
 | --------- | ----------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
@@ -226,7 +226,7 @@ The plugin supports 3 policies, which each have their specific pros and cons.
 | `redis`   | accurate, lesser performance impact than a `cluster` policy | extra redis installation required, bigger performance impact than a `local` policy                                                  |
 | `local`   | minimal performance impact                                  | less accurate, and unless a consistent-hashing load balancer is used in front of Kong, it diverges when scaling the number of nodes |
 
-There are 2 use cases that are most common:
+There are two use cases that are most common:
 
 1. _every transaction counts_. These are for example transactions with financial
    consequences. Here the highest level of accuracy is required.
