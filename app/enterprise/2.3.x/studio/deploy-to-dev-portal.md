@@ -2,6 +2,9 @@
 title: Deploy to the Dev Portal
 redirect_from: "/studio/1.0.x/deploy-to-dev-portal"
 ---
+<div class="alert alert-ee warning">
+<b>Note:</b> The Kong Studio plugin bundle is deprecated and will be replaced
+with tighter Insomnia integration in a future release.</div>
 
 ### Introduction
 
