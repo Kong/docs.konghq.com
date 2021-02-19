@@ -36,14 +36,17 @@ params:
     - name: functions
       required: true
       value_in_examples: [ "@example/my_function.lua" ]
+      datatype: array of string elements
       description: Array of functions used to transform any Kong proxy exit response.
     - name: handle_unknown
       default: "`false`"
       required: false
+      datatype: boolean
       description: Allow transform to apply to unmatched Service, Route, or Workspace (404) responses.
     - name: handle_unexpected
       default: "`false`"
       required: false
+      datatype: boolean
       description: Allow transform to apply to unexpected request (400) responses.
 
 ---
