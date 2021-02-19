@@ -128,9 +128,8 @@ params:
 
         In the case of DB-less mode, at least one of `local` or `redis` must be
         specified. For hybrid mode, only `redis` is supported.
-        Please refer to the
-        <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting/#implementation-considerations">Implementation Considerations</a>
-        for details on which policy should be used.
+        For details on which policy should be used, refer to the
+        <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting/#implementation-considerations">Implementation Considerations</a>.
     - name: fault_tolerant
       required: false
       default: '`true`'
@@ -172,15 +171,16 @@ params:
         When using the `redis` policy, this property specifies the Redis database to use.
   extra:
     <div class="alert alert-warning">
-        <strong>Note:</strong>At least one limit (`second`, `minute`, `hour`, `day`, `month`, `year`) must be configured. Multiple limits can be configured.
+        <strong>Note:</strong> At least one limit (`second`, `minute`, `hour`, `day`, `month`, `year`) must be configured. Multiple limits can be configured.
     </div>
 
 ---
 
 ## Headers sent to the client
 
-When this plugin is enabled, Kong will send some additional headers back to the client telling what are the limits allowed, how many requests are available,
-and how long it will take until the quota will be restored. For example:
+When this plugin is enabled, Kong sends some additional headers back to the client
+indicating the allowed limits, how many requests are available,
+and how long it will take until the quota is reset. For example:
 
 ```
 RateLimit-Limit: 6
@@ -188,14 +188,14 @@ RateLimit-Remaining: 4
 RateLimit-Reset: 47
 ```
 
-The plugin will also send headers telling the limits in the time frame and the number of requests remaining:
+The plugin also sends headers telling the limits in the time frame and the number of minutes remaining:
 
 ```
 X-RateLimit-Limit-Minute: 10
 X-RateLimit-Remaining-Minute: 9
 ```
 
-Or, it will return a combination of more time limits, if more than one is being set:
+Or, it returns a combination of more time limits, if more than one is being set:
 
 ```
 X-RateLimit-Limit-Second: 5
@@ -204,7 +204,7 @@ X-RateLimit-Limit-Minute: 10
 X-RateLimit-Remaining-Minute: 9
 ```
 
-If any of the limits configured is being reached, the plugin will return a `HTTP/1.1 429` status code to the client with the following JSON body:
+If any of the limits configured is being reached, the plugin returns a `HTTP/1.1 429` status code to the client with the following JSON body:
 
 ```json
 { "message": "API rate limit exceeded" }
