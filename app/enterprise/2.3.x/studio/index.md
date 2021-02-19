@@ -4,6 +4,11 @@ redirect_from: "/studio/"
 toc: false
 skip_read_time: true
 ---
+
+<div class="alert alert-ee warning">
+<b>Note:</b> The Kong Studio plugin bundle is deprecated and will be replaced
+with tighter Insomnia integration in a future release.</div>
+
 Kong Studio is a bundle for {{site.ee_product_name}} based on Insomnia Designer,
 which enables spec-first development for all REST and GraphQL services.
 

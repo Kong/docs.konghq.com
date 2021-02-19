@@ -3,6 +3,9 @@ title: Download and Install the Kong Studio Bundle
 toc: false
 redirect_from: "/studio/1.0.x/download-install/"
 ---
+<div class="alert alert-ee warning">
+<b>Note:</b> The Kong Studio plugin bundle is deprecated and will be replaced
+with tighter Insomnia integration in a future release.</div>
 
 In this guide, you will install:
 * Insomnia Designer: the base of the Kong Studio Bundle

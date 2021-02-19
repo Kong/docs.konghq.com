@@ -4,6 +4,10 @@ toc: false
 redirect_from: "/studio/1.0.x/using-insomnia-designer/"
 ---
 
+<div class="alert alert-ee warning">
+<b>Note:</b> The Kong Studio plugin bundle is deprecated and will be replaced
+with tighter Insomnia integration in a future release.</div>
+
 ### Introduction
 
 Kong Studio leverages the powerful open source debugging tool [Insomnia](https://insomnia.rest).
