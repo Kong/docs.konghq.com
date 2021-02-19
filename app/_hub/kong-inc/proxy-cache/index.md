@@ -43,7 +43,7 @@ params:
       required:
       default: 200, 301, 404
       value_in_examples: [ "200" ]
-      datatype: array of type integer
+      datatype: array integer elements
       description: |
         Upstream response status code considered cacheable.
     - name: request_method
