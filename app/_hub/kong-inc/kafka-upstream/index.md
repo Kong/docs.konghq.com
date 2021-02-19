@@ -57,29 +57,29 @@ params:
       description: |
          Keepalive timeout in milliseconds.
     - name: forward_method
-      required: false
+      required: semi
       default: "`false`"
-
+      datatype: boolean
       description: |
          Include the request method in the message.
     - name: forward_uri
-      required: false
+      required: semi
       default: "`false`"
-
+      datatype: boolean
       description: |
          Include the request URI and URI arguments (i.e., query arguments) in the message.
     - name: forward_headers
-      required: false
+      required: semi
       default: "`false`"
-
+      datatype: boolean
       description: |
          Include the request headers in the message.
     - name: forward_body
-      required: false
+      required: semi
       default: "`true`"
-
+      datatype: boolean
       description: |
-         Include the request headers in the message.
+         Include the request body in the message.
     - name: producer_request_acks
       required: false
       default: "`1`"
@@ -87,8 +87,8 @@ params:
       datatype: integer
       description: |
         The number of acknowledgments the producer requires the leader to have received before
-        considering a request complete. Allowed values: 0 for no acknowledgments; 1 for only the leader;
-        and -1 for the full ISR (In-Sync Replica set).
+        considering a request complete. Allowed values: 0 for no acknowledgments; 1 for only the
+        leader; and -1 for the full ISR (In-Sync Replica set).
     - name: producer_request_timeout
       required: false
       default: "`2000`"
