@@ -1,6 +1,8 @@
 ---
 name: Kafka Upstream
 publisher: Kong Inc.
+version: 1.3-x
+# internal 0.0.2, only former version 0.0.1.
 
 desc: Transform requests into Kafka messages in a Kafka topic
 description: |
@@ -70,7 +72,7 @@ params:
       description: |
          Include the request URI and URI arguments (i.e., query arguments) in the message.
          At least one of these must be true: `forward_method`, `forward_uri`, `forward_headers`,
-        `forward_body`.
+         `forward_body`.
     - name: forward_headers
       required: semi
       default: "`false`"
@@ -91,9 +93,9 @@ params:
       value_in_examples: -1
       datatype: integer
       description: |
-        The number of acknowledgments the producer requires the leader to have received before
-        considering a request complete. Allowed values: 0 for no acknowledgments; 1 for only the
-        leader; and -1 for the full ISR (In-Sync Replica set).
+         The number of acknowledgments the producer requires the leader to have received before
+         considering a request complete. Allowed values: 0 for no acknowledgments; 1 for only the
+         leader; and -1 for the full ISR (In-Sync Replica set).
     - name: producer_request_timeout
       required: false
       default: "`2000`"
@@ -127,7 +129,7 @@ params:
       default: "`100`"
       datatype: integer
       description: |
-       Backoff interval between retry attempts in milliseconds.
+         Backoff interval between retry attempts in milliseconds.
     - name: producer_async
       required: false
       default: "`true`"
