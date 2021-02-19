@@ -61,25 +61,30 @@ params:
       default: "`false`"
       datatype: boolean
       description: |
-         Include the request method in the message.
+         Include the request method in the message. At least one of these must be true:
+         `forward_method`, `forward_uri`, `forward_headers`, `forward_body`.
     - name: forward_uri
       required: semi
       default: "`false`"
       datatype: boolean
       description: |
          Include the request URI and URI arguments (i.e., query arguments) in the message.
+         At least one of these must be true: `forward_method`, `forward_uri`, `forward_headers`,
+        `forward_body`.
     - name: forward_headers
       required: semi
       default: "`false`"
       datatype: boolean
       description: |
-         Include the request headers in the message.
+         Include the request headers in the message. At least one of these must be true:
+         `forward_method`, `forward_uri`, `forward_headers`, `forward_body`.
     - name: forward_body
       required: semi
       default: "`true`"
       datatype: boolean
       description: |
-         Include the request body in the message.
+         Include the request body in the message. At least one of these must be true:
+         `forward_method`, `forward_uri`, `forward_headers`, `forward_body`.
     - name: producer_request_acks
       required: false
       default: "`1`"
