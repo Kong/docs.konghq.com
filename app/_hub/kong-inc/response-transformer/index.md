@@ -74,7 +74,7 @@ params:
       description: List of property names. Remove the property from the JSON body if it is present.
     - name: rename.headers
       required: false
-      array of string elements
+      datatype: array of string elements
       description: List of `original_header_name:new_header_name` pairs. If the header `original_headername` is already set, rename it to `new_headername`. Ignored if the header is not already set.
     - name: replace.headers
       required: false
