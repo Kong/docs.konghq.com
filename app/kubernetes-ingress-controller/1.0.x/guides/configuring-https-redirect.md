@@ -89,7 +89,7 @@ Via: kong/1.2.1
 ## Setup HTTPS redirect
 
 To instruct Kong to redirect all HTTP requests matching this Ingress rule to
-HTTPS, we'll update its annotations to limit its protocols to HTTPS only and
+HTTPS, update its annotations to limit its protocols to HTTPS only and
 issue a 301 redirect:
 
 ```bash
