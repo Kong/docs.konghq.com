@@ -74,17 +74,20 @@ params:
       required: semi
       default:
       value_in_examples: [ "group1", "group2" ]
+      datatype: array of string elements
       description: |
         Arbitrary group names that are allowed to consume the Service or Route. One of `config.allow` or `config.deny` must be specified.
     - name: deny
       required: semi
       default:
+      datatype: array of string elements
       description: |
         Arbitrary group names that are not allowed to consume the Service or Route. One of `config.allow` or `config.deny` must be specified.
     - name: hide_groups_header
-      required: false
+      required: true
       default: false
       value_in_examples: true
+      datatype: boolean
       description: |
         Flag that if enabled (`true`), prevents the `X-Consumer-Groups` header to be sent in the request to the Upstream service.
   extra: |
