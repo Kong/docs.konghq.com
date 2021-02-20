@@ -2,31 +2,37 @@
 title: Licenses Examples
 book: licenses
 ---
+<div class="alert alert-ee">
+<b>Note:</b> The <code>/licenses</code> endpoint does not override standard
+license configuration.
+</div>
 
-## **Note**: License's endpoint will not override standard license configuration
+The `/licenses` endpoint provides a way to configure your {{site.ee_gateway_name}}
+without using environment variables or placing a plaintext file
+in your system directories. In a hybrid mode deployment, the Admin API
+`/licenses` endpoint also configures all data planes in the cluster, simplifying
+the configuration process.
 
-License's endpoint provides a way to configure your {{site.ee_product_name}}
-without the need to create environment variables or placing a plain text file
-in your system directories. The admin-api licenses endpoint also configures the
-dataplane(s) in the cluster when using a hybrid configuration; thus simplifying
-the configuration process of those dataplane nodes.
+## Prerequisites
+Remove all standard license configurations from traditional deployments, control
+planes, and data planes.
 
-The standard license configuration takes precedence over the licenses endpoint
-and **does not** communicate license changes if configured. In order to use
-this feature correctly all standard license configurations in traditional,
-control plane(s), and dataplane(s) must be removed; otherwise the licenses
-endpoint will not trigger the use of licenses added or updated.
+If you deploy a license using environmental variables or a plaintext
+file, this configuration takes precedence over the
+`/licenses` endpoint and **does not** communicate any changes to the Admin API.
+If you try to use the `/licenses` endpoint while having a license configured
+in some other way, the new license will not apply.
 
-## List licenses
+## List all licenses
 
 Submit the following request:
 
 ```bash
-http GET :8001/licenses
+$ http GET :8001/licenses
 ```
 
-### Contains licenses
-
+{% navtabs codeblock %}
+{% navtab Response when license exists %}
 ```json
 {
   "data": [
@@ -40,8 +46,8 @@ http GET :8001/licenses
   "next": null,
 }
 ```
-
-### Does not contain any licenses
+{% endnavtab %}
+{% navtab Response if there is no license %}
 
 ```json
 {
@@ -49,13 +55,15 @@ http GET :8001/licenses
   "next": null
 }
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 ## List a license
 
-Submit the following providing the id of the license:
+Using the ID of the license, submit the following request:
 
 ```bash
-http GET :8001/licenses/30b4edb7-0847-4f65-af90-efbed8b0161f
+$ http GET :8001/licenses/30b4edb7-0847-4f65-af90-efbed8b0161f
 ```
 
 ```json
@@ -71,10 +79,14 @@ http GET :8001/licenses/30b4edb7-0847-4f65-af90-efbed8b0161f
 
 ### Auto-generated ID
 
+To generate an ID automatically, submit a `POST` request directly to `/licenses`:
+
 ```bash
-http POST :8001/licenses payload="{\"license\":{\"payload\":{\"admin_seats\":\"1\",\"customer\":\"Example Company, Inc\",\"dataplanes\":\"1\",\"license_creation_date\":\"2017-07-20\",\"license_expiration_date\":\"2017-07-20\",\"license_key\":\"00141000017ODj3AAG_a1V41000004wT0OEAU\",\"product_subscription\":\"Konnect Enterprise\",\"support_plan\":\"None\"},\"signature\":\"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b\",\"version\":\"1\"}}"
+$ http POST :8001/licenses \
+  payload='{\"license\":{\"payload\":{\"admin_seats\":\"1\",\"customer\":\"Example Company, Inc\",\"dataplanes\":\"1\",\"license_creation_date\":\"2017-07-20\",\"license_expiration_date\":\"2017-07-20\",\"license_key\":\"00141000017ODj3AAG_a1V41000004wT0OEAU\",\"product_subscription\":\"Konnect Enterprise\",\"support_plan\":\"None\"},\"signature\":\"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b\",\"version\":\"1\"}}'
 ```
 
+Response:
 ```json
 {
   "created_at": 1500508800,
@@ -86,10 +98,15 @@ http POST :8001/licenses payload="{\"license\":{\"payload\":{\"admin_seats\":\"1
 
 ### Manually provided ID
 
+To create a license with a custom ID, submit a `PUT` request to
+`/licenses/<uuid>`:
+
 ```bash
-http PUT :8001/licenses/e8201120-4ee3-43ca-9e92-3fed08b1a15d payload="{\"license\":{\"payload\":{\"admin_seats\":\"1\",\"customer\":\"Example Company, Inc\",\"dataplanes\":\"1\",\"license_creation_date\":\"2017-07-20\",\"license_expiration_date\":\"2017-07-20\",\"license_key\":\"00141000017ODj3AAG_a1V41000004wT0OEAU\",\"product_subscription\":\"Konnect Enterprise\",\"support_plan\":\"None\"},\"signature\":\"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b\",\"version\":\"1\"}}"
+$ http PUT :8001/licenses/e8201120-4ee3-43ca-9e92-3fed08b1a15d \
+  payload='{\"license\":{\"payload\":{\"admin_seats\":\"1\",\"customer\":\"Example Company, Inc\",\"dataplanes\":\"1\",\"license_creation_date\":\"2017-07-20\",\"license_expiration_date\":\"2017-07-20\",\"license_key\":\"00141000017ODj3AAG_a1V41000004wT0OEAU\",\"product_subscription\":\"Konnect Enterprise\",\"support_plan\":\"None\"},\"signature\":\"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b\",\"version\":\"1\"}}'
 ```
 
+Response:
 ```json
 {
   "created_at": 1500508800,
@@ -99,15 +116,20 @@ http PUT :8001/licenses/e8201120-4ee3-43ca-9e92-3fed08b1a15d payload="{\"license
 }
 ```
 
-**Note**: If provided ID exists the license will not be added, but will perform
-          an update to the license for the given ID.
+**Note**: If the provided ID exists, the request will perform
+          an update to the license for the given ID instead of creating a new
+          `license` entity.
 
 ## Update a license
 
+To update a license, submit a `PATCH` request to an existing license ID:
+
 ```bash
-http PATCH :8001/licenses/30b4edb7-0847-4f65-af90-efbed8b0161f payload="{\"license\":{\"payload\":{\"admin_seats\":\"1\",\"customer\":\"Example Company, Inc\",\"dataplanes\":\"1\",\"license_creation_date\":\"2017-07-20\",\"license_expiration_date\":\"2017-07-21\",\"license_key\":\"00141000017ODj3AAG_a1V41000004wT0OEAU\",\"product_subscription\":\"Konnect Enterprise\",\"support_plan\":\"None\"},\"signature\":\"24cc21223633044c15c300be19cacc26ccc5aca0dd9a12df8a7324a1970fe304bc07b8dcd7fb08d7b92e04169313377ae3b550ead653b951bc44cd2eb59f6beb\",\"version\":\"1\"}}"
+$ http PATCH :8001/licenses/30b4edb7-0847-4f65-af90-efbed8b0161f \
+  payload='{\"license\":{\"payload\":{\"admin_seats\":\"1\",\"customer\":\"Example Company, Inc\",\"dataplanes\":\"1\",\"license_creation_date\":\"2017-07-20\",\"license_expiration_date\":\"2017-07-21\",\"license_key\":\"00141000017ODj3AAG_a1V41000004wT0OEAU\",\"product_subscription\":\"Konnect Enterprise\",\"support_plan\":\"None\"},\"signature\":\"24cc21223633044c15c300be19cacc26ccc5aca0dd9a12df8a7324a1970fe304bc07b8dcd7fb08d7b92e04169313377ae3b550ead653b951bc44cd2eb59f6beb\",\"version\":\"1\"}}'
 ```
 
+Response:
 ```json
 {
   "created_at": 1500595200,
