@@ -130,7 +130,7 @@ Start the scheduler and worker.
 $ docker run -d --name celery-beat \
   --network=kong-ee-net \
   -e "CELERY_BROKER_URL=redis://redis:6379/0" \
-  kong-bi \
+  kong-immunity \
   celery beat -l info -A collector.scheduler.celery
 ```
 
