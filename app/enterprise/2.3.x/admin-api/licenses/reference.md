@@ -15,7 +15,7 @@ licenses_body: |
 
 ## Introduction
 
-The {{site.ee_base_gateway}} Licenses feature is configurable through the
+The {{site.base_gateway}} Licenses feature is configurable through the
 [Admin API]. This feature lets you configure a license in your
 {{site.base_gateway}} cluster, in both traditional and hybrid mode deployments.
 In hybrid mode deployments, the control plane sends licenses configured
