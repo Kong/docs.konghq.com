@@ -13,7 +13,7 @@ Immunity follows a different versioning scheme from Kong Enterprise, as defined 
 
 | Immunity Version                 | Kong Enterprise Version |
 |:---------------------------------|:------------------------|
-| 4.0.0                            | 2.2.x                   |
+| 4.0.0                            | 2.2.x, 2.3.x            |
 | 3.0.0                            | 1.5.x, 2.1.x            |
 
 ## Install Immunity on Kubernetes
@@ -50,7 +50,7 @@ $ docker login -u <your_username_from_bintray> -p <your_apikey_from_bintray> kon
 ```
 2. Pull the Kong Immunity Docker image.
 ```bash
-$ docker pull kong-docker-kong-immunity-base.bintray.io/kong-immunity:3.0.0
+$ docker pull kong-docker-kong-immunity-base.bintray.io/kong-immunity:4.0.0
 ```
 You should now have your Kong Immunity image locally.
 
