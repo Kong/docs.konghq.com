@@ -135,7 +135,7 @@ In your container, set `KONG_PORTAL` to `on`:
 
 ```sh
 $ echo "KONG_PORTAL=on \
-  kong reload exit" | docker exec -i <kong-container-id> /bin/sh \
+  kong reload exit" | docker exec -i <kong-container-id> /bin/sh
 ```
 
 Execute the following command. Change `<DNSorIP>` to the IP or valid DNS of your Docker host:
