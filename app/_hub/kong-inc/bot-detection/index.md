@@ -50,11 +50,13 @@ params:
     - name: allow
       required: false
       default:
+      datatype: array of string elements
       description: |
         An array of regular expressions that should be allowed. The regular expressions will be checked against the `User-Agent` header.
     - name: deny
       required: false
       default:
+      datatype: array of string elements
       description: |
         An array of regular expressions that should be denied. The regular expressions will be checked against the `User-Agent` header.
 
