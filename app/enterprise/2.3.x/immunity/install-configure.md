@@ -50,7 +50,7 @@ $ docker login -u <your_username_from_bintray> -p <your_apikey_from_bintray> kon
 ```
 2. Pull the Kong Immunity Docker image.
 ```bash
-$ docker pull kong-docker-immunity-base.bintray.io/kong-immunity:3.0.0
+$ docker pull kong-docker-kong-immunity-base.bintray.io/kong-immunity:3.0.0
 ```
 You should now have your Kong Immunity image locally.
 
@@ -174,7 +174,7 @@ configure the Collector Plugin:
     `http://collector:5000`.
     * The default values populating the remaining fields are valid for a
     minimal configuration.
-    
+
 7. Click **Create**. The Collector Plugin is configured.
 
 {% endnavtab %}
