@@ -91,6 +91,11 @@ defaults:
       layout: 'docs-v2'
 
   - scope:
+      path: 'enterprise'
+    values:
+      layout: 'docs-v2'
+
+  - scope:
       path: 'gateway-oss'
     values:
       layout: 'docs-v2'
@@ -99,11 +104,6 @@ defaults:
       path: 'install'
     values:
       layout: 'install'
-
-  - scope:
-      path: 'docs/ee'
-    values:
-      layout: 'docs'
 
   - scope:
       path: 'getting-started-guide'

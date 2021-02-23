@@ -2,8 +2,8 @@
 
 name: Rate Limiting Advanced
 publisher: Kong Inc.
-version: 2.2.x
-# internal plugin version 1.3.7
+version: 2.3.x
+# internal plugin version 1.3.8
 
 desc: Upgrades Kong Rate Limiting with more flexibility and higher performance
 description: |
@@ -22,6 +22,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.3.x
         - 2.2.x
         - 2.1.x
         - 1.5.x
@@ -224,6 +225,16 @@ params:
       datatype: string
       description: |
         Sets the time window type to either `sliding` (default) or `fixed`.
+    - name: retry_after_jitter_max
+      required: true
+      default: 0
+      value_in_examples:
+      datatype: number
+      description: |
+        The upper bound of a jitter (random delay) in seconds to be added to the `Retry-After`
+        header of denied requests (status = `429`) in order to prevent all the clients
+        from coming back at the same time. The lower bound of the jitter is `0`; in this case,
+        the `Retry-After` header is equal to the `RateLimit-Reset` header.
   extra: |
     **Notes:**
 

@@ -16,6 +16,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
         - 2.2.x      
         - 2.1.x
         - 2.0.x
@@ -31,16 +32,12 @@ kong_version_compatibility:
         - 0.11.x
     enterprise_edition:
       compatible:
+        - 2.3.x
         - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
-        - 0.34-x
-        - 0.33-x
-        - 0.32-x
-        - 0.31-x
 
 params:
   name: request-termination
@@ -54,17 +51,21 @@ params:
       required: false
       default: "`503`"
       value_in_examples: 403
-      description: The response code to send.
+      datatype: integer
+      description: The response code to send. Must be an integer between 100 and 599.
     - name: message
       required: false
       value_in_examples: "So long and thanks for all the fish!"
+      datatype: string
       description: The message to send, if using the default response generator.
     - name: body
       required: false
-      description: The raw response body to send, this is mutually exclusive with the `config.message` field.
+      datatype: string
+      description: The raw response body to send. This is mutually exclusive with the `config.message` field.
     - name: content_type
       required: false
       default: "`application/json; charset=utf-8`"
+      datatype: string
       description: Content type of the raw response configured with `config.body`.
   extra: |
     Once applied, every request (within the configured plugin scope of a Service,

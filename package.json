@@ -74,7 +74,7 @@
     "gulp-sourcemaps": "3.0.0",
     "jpegtran": "2.0.0",
     "list-assets": "0.0.2",
-    "lodash": "4.17.20",
+    "lodash": "4.17.21",
     "run-sequence": "2.2.1",
     "skeleton-css": "2.0.4",
     "standard": "15.0.1"

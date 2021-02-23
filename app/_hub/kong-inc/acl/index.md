@@ -28,6 +28,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
         - 2.2.x
         - 2.1.x
         - 2.0.x
@@ -49,16 +50,13 @@ kong_version_compatibility:
         - 0.5.x
     enterprise_edition:
       compatible:
+        - 2.3.x
         - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
-        - 0.34-x
-        - 0.33-x
-        - 0.32-x
-        - 0.31-x
+
 
 params:
   name: acl
@@ -76,17 +74,20 @@ params:
       required: semi
       default:
       value_in_examples: [ "group1", "group2" ]
+      datatype: array of string elements
       description: |
         Arbitrary group names that are allowed to consume the Service or Route. One of `config.allow` or `config.deny` must be specified.
     - name: deny
       required: semi
       default:
+      datatype: array of string elements
       description: |
         Arbitrary group names that are not allowed to consume the Service or Route. One of `config.allow` or `config.deny` must be specified.
     - name: hide_groups_header
-      required: false
+      required: true
       default: false
       value_in_examples: true
+      datatype: boolean
       description: |
         Flag that if enabled (`true`), prevents the `X-Consumer-Groups` header to be sent in the request to the Upstream service.
   extra: |

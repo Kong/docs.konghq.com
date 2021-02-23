@@ -3,13 +3,18 @@ title: Installing Kong for Kubernetes Enterprise
 skip_read_time: true
 ---
 
+<div class="alert alert-ee warning">
+<strong>Note:</strong>
+This deployment option is not supported in free mode.
+</div>
+
 ## Introduction
 Kong for Kubernetes Enterprise provides most {{site.ee_product_name}} plugins and runs
-without a database, but does not include other enterprise features (Kong
+without a database, but does not include other Enterprise features (Kong
 Manager, Dev Portal, Vitals, and so on).
 
 This installation topic walks you through a DB-less deployment on
-Kubernetes. For the full range of enterprise features, you need a
+Kubernetes. For the full range of Enterprise features, you need a
 database-backed or a hybrid deployment. See the instructions for
 [Installing {{site.ee_product_name}} on Kubernetes](/enterprise/{{page.kong_version}}/deployment/installation/kong-on-kubernetes),
 which walk you through a deployment with a database.
@@ -26,11 +31,12 @@ deployments.
 You can install Kong for Kubernetes Enterprise using YAML with `kubectl`, with
 OpenShift `oc`, or [with Helm](https://github.com/Kong/charts/tree/main/charts/kong).
 
+This software is governed by the
+[Kong Software License Agreement](https://konghq.com/enterprisesoftwarelicense/).
+
 ### Deployment options
 
-The following instructions assume that you are deploying {{site.ee_product_name}} in [classic embedded mode](/enterprise/{{page.kong_version}}/deployment/deployment-options).
-
-If you would like to run {{site.ee_product_name}} in Hybrid mode, the instructions in this topic will walk you though setting up a Control Plane instance. Afterward, you will need to bring up additional Kong instances for the Data Planes, and perform further configuration steps. See [Hybrid Mode setup documentation](https://github.com/Kong/charts/blob/main/charts/kong#hybrid-mode) for details.
+{% include /md/{{page.kong_version}}/deployment-options-k8s.md %}
 
 ## Prerequisites
 Before starting installation, be sure you have the following:
@@ -57,8 +63,9 @@ $ oc new-project kong
 {% endnavtab %}
 {% endnavtabs %}
 
-## Step 2. Set up license
-Running Kong for Kubernetes Enterprise requires a valid license. See [prerequisites](#prerequisites) for more information.
+## Step 2. (Optional) Set up license
+
+If you plan on using a license to unlock Enterprise features, see [prerequisites](#prerequisites) for more information.
 
 Save the license file temporarily to disk with filename `license` (no file extension) and execute the following:
 

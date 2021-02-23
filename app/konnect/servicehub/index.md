@@ -11,7 +11,7 @@ inventory and their dependencies.
 Using ServiceHub, you can catalog, manage, and track every service in your
 entire architecture.
 
-## Services in the ServiceHub Catalog
+## Services in the ServiceHub catalog
 
 Each entry in ServiceHub is called a **Service**.
 This is the abstraction of one of your own upstream services.
@@ -44,7 +44,7 @@ specifying its protocol, host, port, and path individually.
 **See more:**
 * [Get started with Service management](/konnect/servicehub/manage-services)
 
-### Kong Gateway Implementations
+### Kong Gateway implementations
 
 When configuring a {{site.ee_gateway_name}} implementation of a Service, you'll
 need to specify a Route. Routes determine how (and if) requests get sent to
@@ -74,7 +74,7 @@ Applies to a specific Service version.
 * [Upload Service Documentation to the Dev Portal](/konnect/servicehub/dev-portal/service-documentation)
 * [Publish a Service to the Dev Portal](/konnect/servicehub/dev-portal/publish)
 
-## Kong Gateway Plugins
+## Kong Gateway plugins
 
 Plugins can be configured to run in a variety of contexts,
 ranging from a specific Service version or Route to all Service versions. Plugins
@@ -84,28 +84,40 @@ has been proxied to the upstream API, as well as on any incoming responses.
 Any {{site.ee_gateway_names}} plugins supported in a self-hosted Hybrid mode
 deployment are also accessible through ServiceHub.
 
-### Functionality Differences from Self-Hosted Kong Gateway
+### Functionality differences from self-hosted Kong Gateway
 
 The Portal Application Registration plugin is enabled automatically when you
 enable application registration for the Dev Portal. You don't need to
 enable it directly.
 
-### Plugin Limitations
+### Plugin limitations
 
-* [Key Auth Encrypted:](/hub/kong-inc/key-auth-enc) This plugin is not
-available in {{site.konnect_short_name}} SaaS.
-* [Rate Limiting](/hub/kong-inc/rate-limiting) and
-[Rate Limiting Advanced:](/hub/kong-inc/rate-limiting-advanced) These
+The [Rate Limiting](/hub/kong-inc/rate-limiting) and
+[Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced)
 plugins only support the `redis` strategy, for which you must provide your own
 Redis cluster.
 
-### Custom Plugins
+The following plugins are not available with {{site.konnect_short_name}} SaaS:
+* Key Auth Encrypted
+* OAuth2 Authentication
+* OAuth2 Introspection
+* Request Size Limiting
+* Apache OpenWhisk
+* Datadog
+* Zipkin
+* Exit Transformer
+* Request Transformer
+* Request Transformer Advanced
+* Response Transformer Advanced
+* Route Transformer Advanced
 
-Currently, there is no way to add a custom plugin directly through the
-{{site.konnect_short_name}} SaaS application.
+### Custom plugins and serverless functions
 
-Custom plugins can be added manually to your organization by Kong Support, but
-your plugins must not have the following:
+Currently, there is no way to add a custom plugin or a serverless function
+directly through the {{site.konnect_short_name}} SaaS application. Contact Kong
+Support to get them manually added to your organization.
+
+Custom plugins must not have the following:
 
 * Admin API extensions: No `api.lua` file
 * Custom plugin database tables: No `dao.lua` file

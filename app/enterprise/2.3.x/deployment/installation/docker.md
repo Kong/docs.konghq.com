@@ -1,5 +1,5 @@
 ---
-title: Install Kong Gateway (Enterprise) on Docker
+title: Install Kong Gateway on Docker
 ---
 
 ## Introduction
@@ -13,29 +13,27 @@ the installation and configuration.
 {{site.base_gateway}} supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore. This guide provides
 steps to configure PostgreSQL.
 
+This software is governed by the
+[Kong Software License Agreement](https://konghq.com/enterprisesoftwarelicense/).
+
 ### Deployment options
 
-The following instructions assume that you are deploying {{site.ee_product_name}} in [classic embedded mode](/enterprise/{{page.kong_version}}/deployment/deployment-options).
-
-If you want to run {{site.ee_product_name}} in Hybrid mode, the instructions in this topic will walk you though setting up a Control Plane instance. Afterward, you will need to bring up additional Kong instances for the Data Planes, and perform further configuration steps. See [Hybrid Mode Setup](/enterprise/{{page.kong_version}}/deployment/hybrid-mode-setup) for details.
+{% include /md/{{page.kong_version}}/deployment-options.md %}
 
 ## Prerequisites
 
-To complete this installation you will need:
-
-{% include /md/{{page.kong_version}}/bintray-and-license.md %}
-* A Docker-enabled system with proper Docker access.
+To complete this installation you will need a Docker-enabled system with proper
+ Docker access.
 
 ## Step 1. Pull the Kong Gateway Docker image {#pull-image}
 
-Using Docker, log in to Bintray and pull the following Docker image:
+Using Docker, pull the following Docker image:
 
 ```bash
-$ docker login -u <your_username_from_bintray> -p <your_apikey_from_bintray> kong-docker-kong-enterprise-edition-docker.bintray.io
-$ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition:{{page.kong_versions[9].version}}-alpine
+$ docker pull kong-docker-kong-gateway-docker.bintray.io/kong-enterprise-edition:{{page.kong_versions[10].version}}-alpine
 ```
 
-You should now have your {{site.ee_product_name}} image locally.
+You should now have your {{site.base_gateway}} image locally.
 
 Verify that it worked, and find the image ID matching your repository:
 
@@ -73,38 +71,20 @@ $ docker run -d --name kong-ee-database \
   postgres:9.6
 ```
 
-## Step 4. Export the license key to a variable {#license-key}
-
-Run the following command, substituting your own license key (see
-[Prerequisites](#prerequisites)).
-
-The license data must contain straight quotes to be considered valid JSON
-(`'` and `"`, not `’` or `“`).
-
-<div class="alert alert-ee blue">
-<b>Note:</b>
-The following license is only an example. You must use the following format,
-but provide your own content.
-</div>
-
-```bash
-$ export KONG_LICENSE_DATA='{"license":{"signature":"LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tClZlcnNpb246IEdudVBHIHYyCgpvd0did012TXdDSFdzMTVuUWw3dHhLK01wOTJTR0tLWVc3UU16WTBTVTVNc2toSVREWk1OTFEzVExJek1MY3dTCjA0ek1UVk1OREEwc2pRM04wOHpNalZKVHpOTE1EWk9TVTFLTXpRMVRVNHpTRXMzTjA0d056VXdUTytKWUdNUTQKR05oWW1VQ21NWEJ4Q3NDc3lMQmorTVBmOFhyWmZkNkNqVnJidmkyLzZ6THhzcitBclZtcFZWdnN1K1NiKzFhbgozcjNCeUxCZzdZOVdFL2FYQXJ0NG5lcmVpa2tZS1ozMlNlbGQvMm5iYkRzcmdlWFQzek1BQUE9PQo9b1VnSgotLS0tLUVORCBQR1AgTUVTU0FHRS0tLS0tCg=","payload":{"customer":"Test Company Inc","license_creation_date":"2017-11-08","product_subscription":"Kong Enterprise","admin_seats":"5","support_plan":"None","license_expiration_date":"2017-11-10","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU"},"version":1}}'
-```
-
-## Step 5. Prepare the Kong database
+## Step 4. Prepare the Kong database
 
 ```bash
 $ docker run --rm --network=kong-ee-net \
   -e "KONG_DATABASE=postgres" \
   -e "KONG_PG_HOST=kong-ee-database" \
   -e "KONG_PG_PASSWORD=kong" \
-  -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
   -e "KONG_PASSWORD=<SOMETHING-YOU-KNOW>" \
   kong-ee kong migrations bootstrap
 ```
+
 **Note**: For `KONG_PASSWORD`, replace `<SOMETHING-YOU-KNOW>` with a valid password that only you know.
 
-## Step 6. Start the gateway with Kong Manager and Kong Dev Portal
+## Step 5. Start the gateway with Kong Manager
 
 ```bash
 $ docker run -d --name kong-ee --network=kong-ee-net \
@@ -116,8 +96,6 @@ $ docker run -d --name kong-ee --network=kong-ee-net \
   -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
   -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
   -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
-  -e "KONG_PORTAL=on" \
-  -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
   -e "KONG_PORTAL_GUI_HOST=<DNSorIP>:8003" \
   -e "KONG_ADMIN_GUI_URL=http://<DNSorIP>:8002" \
   -p 8000:8000 \
@@ -136,10 +114,7 @@ $ docker run -d --name kong-ee --network=kong-ee-net \
   * The DNS or IP address for `KONG_PORTAL_GUI_HOST` should _not_ be preceded with a protocol, e.g. `http://`.
   * `KONG_ADMIN_GUI_URL` _should_ have a protocol, e.g., `http://`.
 
-
-**Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. For example, assuming you've saved your `license.json` file into `C:\temp`, use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the license file.
-
-## Step 7. Verify your installation
+## Step 6. Verify your installation
 
 ```bash
 $ curl -i -X GET --url http://<DNSorIP>:8001/services
@@ -149,7 +124,19 @@ You should receive an `HTTP/1.1 200 OK` message.
 
 Verify that Kong Manager is running by accessing it using the URL specified in `KONG_ADMIN_GUI_URL` in [Step 6](#step-6-start-kong-enterprise-with-kong-manager-and-kong-developer-portal-enabled).
 
-## Step 8. Enable the Dev Portal
+## Step 7. (Optional) Enable the Dev Portal
+
+<div class="alert alert-ee">
+<img class="no-image-expand" src="/assets/images/icons/documentation/icn-enterprise-blue.svg" alt="Enterprise" />
+This feature is only available with a {{site.konnect_product_name}} Enterprise subscription.
+</div>
+
+In your container, set `KONG_PORTAL` to `on`:
+
+```sh
+$ echo "KONG_PORTAL=on \
+  kong reload exit" | docker exec -i <kong-container-id> /bin/sh
+```
 
 Execute the following command. Change `<DNSorIP>` to the IP or valid DNS of your Docker host:
 
@@ -171,3 +158,6 @@ setup, reach out to your **Support contact** or head over to the
 Check out {{site.base_gateway}}'s series of
 [Getting Started](/getting-started-guide/latest/overview) guides to get the most
 out of {{site.base_gateway}}.
+
+If you have an Enterprise subscription, add the license using the
+[`/licenses` Admin API endpoint](/enterprise/{{page.kong_version}}/deployment/licenses/deploy-license).
