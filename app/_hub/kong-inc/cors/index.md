@@ -62,14 +62,16 @@ params:
       value_in_examples: ["http://mockbin.com"]
       datatype: array of string elements
       description: |
-        List of allowed domains for the `Access-Control-Allow-Origin` header. If you want to allow all origins, add `*` as a single value to this configuration field. The accepted values can either be flat strings or PCRE regexes. **NOTE**: Prior to Kong 0.10.x, this parameter was `config.origin` (note the change in trailing `s`), and only accepted a single value, or the `*` special value.
+        List of allowed domains for the `Access-Control-Allow-Origin` header. If you want to allow all origins, add `*` as a single value to this configuration field. The accepted values can either be flat strings or PCRE regexes.
     - name: methods
       required: false
       default: "`GET, HEAD, PUT, PATCH, POST, DELETE, OPTIONS, TRACE, CONNECT`"
       value_in_examples: [ "GET", "POST" ]
       datatype: array of string elements
       description:
-        Value for the `Access-Control-Allow-Methods` header.
+        Value for the `Access-Control-Allow-Methods` header. Available
+        options include `GET`, `HEAD`, `PUT`, `PATCH`, `POST`, `DELETE`, `OPTIONS`, `TRACE`, `CONNECT`.
+        By default, all options are allowed.
     - name: headers
       required: false
       default: "Value of the `Access-Control-Request-Headers` request header"
