@@ -128,7 +128,7 @@ reload {{site.base_gateway}}.
       KONG_CLUSTER_TELEMETRY_SERVER_NAME=<kong-telemetry-example.service> \
       KONG_CLUSTER_CERT=/<path-to-file>/cluster.crt \
       KONG_CLUSTER_CERT_KEY=/<path-to-file>/cluster.key \
-      KONG_LUA_SSL_TRUSTED_CERTIFICATE=/<path-to-file>/ca.crt \
+      KONG_LUA_SSL_TRUSTED_CERTIFICATE=system,/<path-to-file>/ca.crt \
       kong reload exit" | docker exec -i <kong-container-id> /bin/sh
     ```
 
@@ -146,7 +146,7 @@ reload {{site.base_gateway}}.
       -e "KONG_CLUSTER_TELEMETRY_SERVER_NAME=<kong-telemetry-example.service>" \
       -e "KONG_CLUSTER_CERT=/<path-to-file>/cluster.crt" \
       -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/cluster.key" \
-      -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=/<path-to-file>/ca.crt" \
+      -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system,/<path-to-file>/ca.crt" \
       --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
       -p 8000:8000 \
       -p 8001:8001 \
@@ -189,7 +189,7 @@ parameters in the sample codeblock and add the parameters to the file:
     cluster_telemetry_server_name = <kong-telemetry-example.service>
     cluster_cert = /<path-to-file>/cluster.crt
     cluster_cert_key = /<path-to-file>/cluster.crt
-    lua_ssl_trusted_certificate = /<path-to-file>/ca.crt
+    lua_ssl_trusted_certificate = system,/<path-to-file>/ca.crt
     ```
 
     See [Parameters](#parameters) for descriptions and the matching fields
