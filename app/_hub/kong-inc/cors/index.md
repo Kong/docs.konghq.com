@@ -99,7 +99,7 @@ params:
       description: |
         Indicates how long the results of the preflight request can be cached, in `seconds`.
     - name: preflight_continue
-      required: false
+      required: true
       default: "`false`"
       datatype: boolean
       description: A boolean value that instructs the plugin to proxy the `OPTIONS` preflight request to the Upstream service.
