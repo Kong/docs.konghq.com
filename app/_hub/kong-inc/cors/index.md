@@ -60,7 +60,7 @@ params:
       required: false
       default:
       value_in_examples: ["http://mockbin.com"]
-
+      datatype: array of string elements
       description: |
         List of allowed domains for the `Access-Control-Allow-Origin` header. If you want to allow all origins, add `*` as a single value to this configuration field. The accepted values can either be flat strings or PCRE regexes. **NOTE**: Prior to Kong 0.10.x, this parameter was `config.origin` (note the change in trailing `s`), and only accepted a single value, or the `*` special value.
     - name: methods
