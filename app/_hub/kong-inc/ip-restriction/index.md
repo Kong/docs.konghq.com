@@ -56,11 +56,13 @@ params:
       required: semi
       default:
       value_in_examples: [ "54.13.21.1", "143.1.0.0/24" ]
+      datatype: array of string elements
       description: |
         List of IPs or CIDR ranges to allow. One of `config.allow` or `config.deny` must be specified.
     - name: deny
       required: semi
       default:
+      datatype: array of string elements
       description: |
         List of IPs or CIDR ranges to deny. One of `config.allow` or `config.deny` must be specified.
 
