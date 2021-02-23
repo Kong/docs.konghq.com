@@ -32,54 +32,63 @@ params:
       required:
       default: "default"
       value_in_examples:
+      datatype: string
       description: |
         Strategy to use to evaluate query costs. Either `default` or
         `node_quantifier`. See [default](/hub/kong-inc/graphql-rate-limiting-advanced/#default) and
         [node_quantifier](/hub/kong-inc/graphql-rate-limiting-advanced/#node_quantifier) respectively.
     - name: max_cost
-      required:
+      required: false
       default: 0
       value_in_examples:
+      datatype: number
       description: |
         A defined maximum cost per query. 0 means unlimited.
     - name: score_factor
-      required:
+      required: false
       default: 1.0
       value_in_examples:
+      datatype: number
       description: |
         A scoring factor to multiply (or divide) the cost.
     - name: limit
       required: true
       default:
       value_in_examples: [ "5" ]
+      datatype: array of number elements
       description: |
         One or more requests-per-window limits to apply.
     - name: window_size
       required: true
       default:
       value_in_examples: [ "30" ]
+      datatype: array of number elements
       description: |
         One or more window sizes to apply a limit to (defined in seconds).
     - name: identifier
-      required:
+      required: true
       default: consumer
       value_in_examples:
+      datatype: string
       description: |
         How to define the rate limit key. Can be `ip`, `credential`, `consumer`, `service`, or `header`.
     - name: header_name
       required: semi
+      datatype:
       description: |
         Header name to use as the rate limit key when the `header` identifier is defined.
     - name: dictionary_name
-      required:
+      required: true
       default: kong_rate_limiting_counters
       value_in_examples:
+      datatype: string
       description: |
         The shared dictionary where counters will be stored until the next sync cycle.
     - name: sync_rate
       required: true
       default:
       value_in_examples: -1
+      datatype: number
       description: |
         How often to sync counter data to the central data store. A value of 0
         results in synchronous behavior; a value of -1 ignores sync behavior
@@ -89,42 +98,49 @@ params:
       required: false
       default: random string
       value_in_examples:
+      datatype: string
       description: |
         The rate limiting library namespace to use for this plugin instance. Counter data and sync configuration is shared in a namespace.
     - name: strategy
       required:
       default: cluster
       value_in_examples:
+
       description: |
         The sync strategy to use; `cluster` and `redis` are supported.
     - name: redis.host
       required: semi
       default:
       value_in_examples:
+
       description: |
         Host to use for Redis connection when the `redis` strategy is defined.
     - name: redis.port
       required: semi
       default:
       value_in_examples:
+
       description: |
         Port to use for Redis connection when the `redis` strategy is defined.
     - name: redis.timeout
       required: semi
       default: 2000
       value_in_examples:
+
       description: |
         Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined.
     - name: redis.password
       required: semi
       default:
       value_in_examples:
+
       description: |
         Password to use for Redis connection when the `redis` strategy is defined. If undefined, no AUTH commands are sent to Redis.
     - name: redis.database
       required: semi
       default: 0
       value_in_examples:
+
       description: |
         Database to use for Redis connection when the `redis` strategy is defined.
     - name: redis.sentinel_master
@@ -137,6 +153,7 @@ params:
       required: semi
       default:
       value_in_examples:
+
       description: |
         Sentinel password to authenticate with a Redis Sentinel instance.
         **Note:** This parameter is only available for Kong Enterprise versions
@@ -151,6 +168,7 @@ params:
       required: semi
       default:
       value_in_examples:
+
       description: |
         Sentinel addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
     - name: redis.cluster_addresses
@@ -163,10 +181,11 @@ params:
       required:
       default: sliding
       value_in_examples:
+      datatype: string
       description: |
         This sets the time window to either `sliding` or `fixed`.
   extra: |
-    > Note:  Redis configuration values are ignored if the `cluster` strategy is used.
+    > Note: Redis configuration values are ignored if the `cluster` strategy is used.
 
     **Notes:**
 
