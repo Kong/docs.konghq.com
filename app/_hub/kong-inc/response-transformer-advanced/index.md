@@ -165,11 +165,11 @@ remove --> replace --> add --> append
 The plugin allows navigating complex JSON objects (arrays and nested objects)
 when `config.dots_in_keys` is set to `false` (the default is `true`).
 
-- `array[*]`: Will loop through all elements of the array.
-- `array[N]`: Will navigate to the `N`th element of the array (the index of the first element is `1`).
-- `top.sub`: Will navigate to the `sub` property of the `top` object.
+- `array[*]`: Loops through all elements of the array.
+- `array[N]`: Navigates to the `N`th element of the array (the index of the first element is `1`).
+- `top.sub`: Navigates to the `sub` property of the `top` object.
 
-These can be combined, for example, `config.remove.json: customers[*].info.phone` will remove
+These can be combined. For example, `config.remove.json: customers[*].info.phone` removes
 all `phone` properties from inside the `info` object of all entries in the `customers` array.
 
 ## Examples
