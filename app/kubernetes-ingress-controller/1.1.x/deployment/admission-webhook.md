@@ -48,7 +48,9 @@ Use openssl to generate a self-signed certificate:
 
 ```bash
 $ openssl req -x509 -newkey rsa:2048 -keyout tls.key -out tls.crt -days 365  \
-    -nodes -subj "/CN=kong-validation-webhook.kong.svc"
+    -nodes -subj "/CN=kong-validation-webhook.kong.svc" \
+    -extensions EXT -config <( \
+   printf "[dn]\nCN=kong-validation-webhook.kong.svc\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:kong-validation-webhook.kong.svc\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
 Generating a 2048 bit RSA private key
 ..........................................................+++
 .............+++
