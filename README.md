@@ -66,8 +66,9 @@ npm start
 
 ## Search
 
-We use Algolia [docsearch](https://www.algolia.com/docsearch) for our
-documentation search. The Algolia index for Kong is maintained by Algolia through their
+Documentation for our open-source projects uses
+[Algolia](https://www.algolia.com/docsearch) for search. The Algolia index for
+OSS docs is maintained by Algolia through their
 docsearch service. Their [scraper](https://github.com/algolia/docsearch-scraper)
 runs every 24 hours. The config used by the scraper is open source for
 [docs.konghq.com](docs.konghq.com) and can be found [here](https://github.com/algolia/docsearch-configs/blob/master/configs/getkong.json).
@@ -76,8 +77,8 @@ test a config change locally, you will need to run their open source
 [scraper](https://github.com/algolia/docsearch-scraper) against your own
 scraper to test out config changes.
 
-The rest of the documentation uses paid Algolia indices, which auto-update every
-24 hours via a [github action here](/.github/workflows/algolia.yml).
+The rest of the Kong documentation uses paid Algolia indices, which auto-update 
+every 24 hours via a [github action here](/.github/workflows/algolia.yml).
 
 ## Versioning the docs
 
@@ -156,7 +157,7 @@ docs, see the instructions on the [docs wiki](https://konghq.atlassian.net/wiki/
 
 The PDK docs, Admin API docs, `cli.md` and `configuration.md` for each release are generated from the Kong source code.
 
-In order to generate them, please switch into the `Kong/kong` repo and run:
+To generate them, go to the `Kong/kong` repo and run:
 
 ```
 scripts/autodoc <docs-folder> <kong-version>
@@ -169,12 +170,15 @@ cd /path/to/kong
 scripts/autodoc ../docs.konghq.com 2.3.x
 ```
 
-Assumes that the `Kong/docs.konghq.com` repo is cloned next to the `Kong/kong` repo, and that you want to
-generate the docs for Kong version `2.3.x`.
+This example assumes that the `Kong/docs.konghq.com` repo is cloned into the
+same directory as the `Kong/kong` repo, and that you want to generate the docs
+for version `2.3.x`. Adjust the paths and version as needed.
 
-Once everything is generated, review, open a branch with the changes, send a pull request, and review the changes.
+Once everything is generated, review, open a branch with the changes, send a
+pull request, and review the changes.
 
-You usually want to open a pr against a `release/*` branch. For example on the case above the branch was `release/2.3`.
+You usually want to open a PR against a `release/*` branch. For example, in the
+example above the branch was `release/2.3`.
 
 ```
 cd docs.konghq.com
