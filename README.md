@@ -81,22 +81,22 @@ The rest of the documentation uses paid Algolia indices, which auto-update every
 
 ## Versioning the docs
 
-The following instructions apply to the Kong Gateway OSS docs. For enterprise 
+The following instructions apply to the Kong Gateway OSS docs. For enterprise
 docs, see the instructions on the [docs wiki](https://konghq.atlassian.net/wiki/spaces/KD/pages/1053196506/Prepping+the+Private+Repo+for+a+Release).
 
 ### Creating a new community doc release version
 
 1. Create release branch: `release/<version>`
 
-2. Copy the doc folders for Kong Gateway (OSS):
+2. Copy the following doc folders for Kong Gateway (OSS):
 
-    1. Copy the following latest `app/gateway-oss` version folder and all of its contents and
-    rename to the new major or minor version, with `x` for the patch level.
+    1. Copy the latest `app/gateway-oss/` version folder and all of its contents.
+    Rename the folder to the new major or minor version, with `x` for the patch level.
 
         For example, copy `app/gateway-oss/2.3.x` and rename to
         `app/gateway-oss/2.4.x`.
 
-    2. Copy the latest `app/getting-started-guide` version folder and rename it
+    2. Copy the latest `app/getting-started-guide/` version folder and rename it
      to the new version.
 
     3. Copy the latest `app/_includes/md/` version folder and rename it
@@ -106,32 +106,32 @@ docs, see the instructions on the [docs wiki](https://konghq.atlassian.net/wiki/
 
     1. Copy the previous version section, which looks like the following:
 
-    ```yaml
-      release: "2.3.x"
-      version: "2.3.2"
-      edition: "gateway-oss"
-      luarocks_version: "2.3.2-0"
-      dependencies:
-        luajit: "2.1.0-beta3"
-        luarocks: "3.4.0"
-        cassandra: "3.x.x"
-        postgres: "9.5+"
-        openresty: "1.17.8.2"
-        openssl: "1.1.1i"
-        libyaml: "0.2.5"
-        pcre: "8.44"
-    ```
+        ```yaml
+          release: "2.3.x"
+          version: "2.3.2"
+          edition: "gateway-oss"
+          luarocks_version: "2.3.2-0"
+          dependencies:
+            luajit: "2.1.0-beta3"
+            luarocks: "3.4.0"
+            cassandra: "3.x.x"
+            postgres: "9.5+"
+            openresty: "1.17.8.2"
+            openssl: "1.1.1i"
+            libyaml: "0.2.5"
+            pcre: "8.44"
+        ```
 
     Update `release`, `version`, and any `dependencies`, if applicable.
 
     2. Do the same for `getting-started-guide`, copying the latest version,
     which looks like the following:
 
-      ```yaml
-        release: "2.3.x"
-        version: "2.3"
-        edition: "getting-started-guide"
-      ```
+        ```yaml
+          release: "2.3.x"
+          version: "2.3"
+          edition: "getting-started-guide"
+        ```
 
 3. Update the latest version in the full site Algolia configuration file:
 
@@ -139,9 +139,9 @@ docs, see the instructions on the [docs wiki](https://konghq.atlassian.net/wiki/
     2. In the `start_urls`, update the `gateway-oss` URL to the latest `x`
     version:
 
-      ```json
-      "url": "https://docs.konghq.com/gateway-oss/2.3.x/"
-      ```
+        ```json
+        "url": "https://docs.konghq.com/gateway-oss/2.3.x/"
+        ```
 
 4. Commit and push release branch to GitHub.
 
