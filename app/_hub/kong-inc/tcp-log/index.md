@@ -84,7 +84,7 @@ params:
       required: false
       default:
       datatype: string
-      description: An optional string that defines the SNI (Server Name Indication) hostname to send in the handshake.
+      description: An optional string that defines the SNI (Server Name Indication) hostname to send in the TLS handshake.
 
 
 ---
