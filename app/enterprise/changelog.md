@@ -287,6 +287,41 @@ fixed causing a 500 auth error when falling back to an anonymous user.
 #### Distributions
 - Support for CentOS-6 is removed and entered end-of-life on Nov 30, 2020.
 
+## 2.2.1.1
+**Release Date** 2020/02/24
+
+### Fixes
+
+#### Core
+- Certain incoming URI made it possible to bypass security rules applied on Route objects. 
+With this fix, such attacks are now more difficult because the incoming request's URI is 
+always normalized before matching against the Router. [FT-1679]
+
+#### Enterprise
+- Kong now display errors to better identify the issue when `validate_key` fails. [FTI-2237]
+- Kong now uses the correct workspace ID when selecting SNI in dbless/hybrid mode. [FTI-2165]
+- Fixed verification when using combined certificates.
+- Corrected healthchecker thresholds.
+
+#### DevPortal
+- Before, when enabling application registration with key authentication, developers who created 
+applications were able to see all Services for which the application registration plugin was enabled,
+regardless of the permissions granted to their role. With this fix, developers who create applications 
+will only see services if the role they are assigned to has been granted permissions to the relevant  
+specs. [FTI-2204]
+
+#### Plugins
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  - Fixed init workers that were prolonging Kong startup time. [FTI-2002]
+  - Fixed consumer and discovery invalidation events that were returning when the operation
+  was `create`. This could leave some cache entries in cache that need to be invalidated.
+  - Fixed a circular dependency issue with the redirect function.
+
+##### Plugin Dependencies
+- **OpenID Connect Library**
+  - Token introspection now checks the status code properly.
+  - More consistent response body checks on `HTTP` requests.
+
 
 ## 2.2.1.0
 **Release Date** 2020/12/31
