@@ -99,7 +99,7 @@ HTTP 201 Created
 {{ page.licenses_attribute_id }}
 
 When using `PUT`, if the request payload
-**does not** contain an entity's primary key (`id` for Licenses), the
+**does not** contain an entity's primary key (`id` for licenses), the
 license will be added and assigned the given ID.
 
 If the request payload
@@ -136,11 +136,11 @@ HTTP 200 OK
 {{ page.licenses_attribute_id }}
 
 When using `PATCH`, if the request payload
-**does** contain an entity's primary key (`id` for Licenses), the license will
+**does** contain an entity's primary key (`id` for licenses), the license will
 be replaced with the given payload attribute.
 
 If the request payload **does
-not** contain an entity's primary key (`id` for Licenses), a `404 NOT FOUND`
+not** contain an entity's primary key (`id` for licenses), a `404 NOT FOUND`
 will be returned or if the request payload contains a invalid licence, a `400
 BAD REQUEST` will be returned.
 
