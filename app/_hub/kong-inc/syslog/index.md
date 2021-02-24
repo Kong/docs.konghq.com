@@ -56,14 +56,14 @@ params:
       datatype: string
       description: |
         An optional logging severity assigned to all the successful requests with a response
-        status code less then 400. Available options are `debug`, `info`, `notice`, `warning`, `err`, `crit`, `alert`, `emerg`.
+        status code less then 400. Available options: `debug`, `info`, `notice`, `warning`, `err`, `crit`, `alert`, `emerg`.
     - name: client_errors_severity
       required: false
       default: "`info`"
       datatype: string
       description: |
         An optional logging severity assigned to all the failed requests with a
-        response status code 400 or higher but less than 500. Available options are `debug`, `info`, `notice`,
+        response status code 400 or higher but less than 500. Available options: `debug`, `info`, `notice`,
         `warning`, `err`, `crit`, `alert`, `emerg`.
     - name: server_errors_severity
       required: false
@@ -71,14 +71,14 @@ params:
       datatype: string
       description: |
         An optional logging severity assigned to all the failed requests with a
-        response status code 500 or higher. Available options are `debug`, `info`, `notice`, `warning`, `err`, `crit`, `alert`, `emerg`.
+        response status code 500 or higher. Available options: `debug`, `info`, `notice`, `warning`, `err`, `crit`, `alert`, `emerg`.
     - name: log_level
       required: false
       default: "`info`"
       datatype: string
       description: |
         An optional logging severity. Any request with equal or higher severity
-        will be logged to System log. Available options are `debug`, `info`, `notice`, `warning`, `err`, `crit`, `alert`, `emerg`.
+        will be logged to System log. Available options: `debug`, `info`, `notice`, `warning`, `err`, `crit`, `alert`, `emerg`.
 
 ---
 
