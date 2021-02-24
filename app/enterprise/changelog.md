@@ -307,7 +307,7 @@ request's URI before matching against the Router.
 - Before, when enabling application registration with key authentication, developers who created 
 applications were able to see all Services for which the application registration plugin was enabled,
 regardless of the permissions granted to their role. With this fix, developers who create applications 
-will only see services if the role they are assigned to has been granted permissions to the relevant  
+will only see Services if the role they are assigned to has been granted permissions to the relevant  
 specs.
 
 #### Plugins
@@ -320,7 +320,7 @@ specs.
 ##### Plugin Dependencies
 - **OpenID Connect Library**
   - Token introspection now checks the status code properly.
-  - More consistent response body checks on `HTTP` requests.
+  - Added more consistent response body checks on `HTTP` requests.
 
 
 ## 2.2.1.0
@@ -679,7 +679,7 @@ Kong will set the content of the header to the request's URI.
 - Before, when enabling application registration with key authentication, developers who created 
 applications were able to see all Services for which the application registration plugin was enabled,
 regardless of the permissions granted to their role. With this fix, developers who create applications 
-will only see services if the role they are assigned to has been granted permissions to the relevant  
+will only see Services if the role they are assigned to has been granted permissions to the relevant  
 specs.
 
 #### Plugins
@@ -693,7 +693,7 @@ specs.
 ##### Plugin Dependencies
 - **OpenID Connect Library**
   - Token introspection now checks the status code properly.
-  - More consistent response body checks on `HTTP` requests.
+  - Added more consistent response body checks on `HTTP` requests.
 
 ## 2.1.4.3
 **Release Date** 2020/12/31
