@@ -626,6 +626,39 @@ open-source **Kong Gateway 2.2.0.0**:
 - The `shorthands` attribute in schema definitions is deprecated in favor of
   the new `shorthand_fields` top-level attribute.
 
+## 2.1.4.4
+**Release Date** 2021/02/24
+
+### Fixes
+
+#### Core
+- Certain incoming URI made it possible to bypass security rules applied on Route objects. 
+With this fix, such attacks are now more difficult because the incoming request's URI is 
+always normalized before matching against the Router. [FT-1679]
+
+#### Enterprise
+- If a trusted source provides an `X-Forwarded-Path` header, it's proxied as-is; otherwise, 
+Kong will set the content of the header to the request's URI. [FT-1679]
+
+#### DevPortal
+- Before, when enabling application registration with key authentication, developers who created 
+applications were able to see all Services for which the application registration plugin was enabled,
+regardless of the permissions granted to their role. With this fix, developers who create applications 
+will only see services if the role they are assigned to has been granted permissions to the relevant  
+specs. [FTI-2204]
+
+#### Plugins
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  - Fixed init workers that were prolonging Kong startup time. [FTI-2002]
+  - Fixed consumer and discovery invalidation events that were returning when the operation
+  was `create`. This could leave some cache entries in cache that need to be invalidated.
+  - Fixed a circular dependency issue with the redirect function.
+  - Bumped `lua-resty-session` dependency to 3.8.
+
+##### Plugin Dependencies
+- **OpenID Connect Library**
+  - Token introspection now checks the status code properly.
+  - More consistent response body checks on `HTTP` requests.
 
 ## 2.1.4.3
 **Release Date** 2020/12/31
