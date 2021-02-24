@@ -99,7 +99,7 @@ certificate, the private key, and the remaining configuration details on the
 1. (Optional, if no gateway data plane exists) Using the
 [Docker installation documentation](/enterprise/latest/deployment/installation/docker),
 follow the instructions to:
-    1. [Download {{site.base_gateway}} 2.3.0.0 or later](/enterprise/latest/deployment/installation/docker#pull-image).
+    1. [Download {{site.base_gateway}} 2.3.2.0 or later](/enterprise/latest/deployment/installation/docker#pull-image).
     2. [Create a Docker network](/enterprise/latest/deployment/installation/docker/#create-network).
 
     <div class="alert alert-warning">
@@ -164,7 +164,7 @@ Manager overview.
 1. (Optional, if no gateway data plane exists) Find the documentation for
 [your platform](/enterprise/latest/deployment/installation),
 and follow the instructions in Steps 1 and 2 **only** to download and install
-{{site.base_gateway}} 2.3.0.0.
+{{site.base_gateway}} 2.3.2.0.
 
     <div class="alert alert-warning">
         Do not start or create a database on this node.
