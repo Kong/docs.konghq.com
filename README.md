@@ -66,8 +66,8 @@ npm start
 
 ## Search
 
-We are using Algolia [docsearch](https://www.algolia.com/docsearch) for our
-documentation search. The algolia index for Kong is maintained by Algolia through their
+We use Algolia [docsearch](https://www.algolia.com/docsearch) for our
+documentation search. The Algolia index for Kong is maintained by Algolia through their
 docsearch service. Their [scraper](https://github.com/algolia/docsearch-scraper)
 runs every 24 hours. The config used by the scraper is open source for
 [docs.konghq.com](docs.konghq.com) and can be found [here](https://github.com/algolia/docsearch-configs/blob/master/configs/getkong.json).
@@ -76,12 +76,78 @@ test a config change locally, you will need to run their open source
 [scraper](https://github.com/algolia/docsearch-scraper) against your own
 scraper to test out config changes.
 
-The Enterprise documentation uses paid algolia indices, which auto-update every
-24 hours via a [github action here](/.github/workflows/algolia.yml)
+The rest of the documentation uses paid Algolia indices, which auto-update every
+24 hours via a [github action here](/.github/workflows/algolia.yml).
 
-## Generating the PDK, Admin API, CLI and Configuration Documentation
+## Versioning the docs
 
-The PDK docs, Admin API docs, `cli.md` and `configuration.md` on each release are generated from the Kong source code.
+The following instructions apply to the Kong Gateway OSS docs. For enterprise 
+docs, see the instructions on the [docs wiki](https://konghq.atlassian.net/wiki/spaces/KD/pages/1053196506/Prepping+the+Private+Repo+for+a+Release).
+
+### Creating a new community doc release version
+
+1. Create release branch: `release/<version>`
+
+2. Copy the doc folders for Kong Gateway (OSS):
+
+    1. Copy the following latest `app/gateway-oss` version folder and all of its contents and
+    rename to the new major or minor version, with `x` for the patch level.
+
+        For example, copy `app/gateway-oss/2.3.x` and rename to
+        `app/gateway-oss/2.4.x`.
+
+    2. Copy the latest `app/getting-started-guide` version folder and rename it
+     to the new version.
+
+    3. Copy the latest `app/_includes/md/` version folder and rename it
+     to the new version.
+
+3. Add the newest CE version to `app/_data/kong_versions.yml`:
+
+    1. Copy the previous version section, which looks like the following:
+
+    ```yaml
+      release: "2.3.x"
+      version: "2.3.2"
+      edition: "gateway-oss"
+      luarocks_version: "2.3.2-0"
+      dependencies:
+        luajit: "2.1.0-beta3"
+        luarocks: "3.4.0"
+        cassandra: "3.x.x"
+        postgres: "9.5+"
+        openresty: "1.17.8.2"
+        openssl: "1.1.1i"
+        libyaml: "0.2.5"
+        pcre: "8.44"
+    ```
+
+    Update `release`, `version`, and any `dependencies`, if applicable.
+
+    2. Do the same for `getting-started-guide`, copying the latest version,
+    which looks like the following:
+
+      ```yaml
+        release: "2.3.x"
+        version: "2.3"
+        edition: "getting-started-guide"
+      ```
+
+3. Update the latest version in the full site Algolia configuration file:
+
+    1. Open  `/algolia/config-full-docs.json`
+    2. In the `start_urls`, update the `gateway-oss` URL to the latest `x`
+    version:
+
+      ```json
+      "url": "https://docs.konghq.com/gateway-oss/2.3.x/"
+      ```
+
+4. Commit and push release branch to GitHub.
+
+### Generating the PDK, Admin API, CLI and Configuration Documentation
+
+The PDK docs, Admin API docs, `cli.md` and `configuration.md` for each release are generated from the Kong source code.
 
 In order to generate them, please switch into the `Kong/kong` repo and run:
 
@@ -115,11 +181,10 @@ git push
 
 Then open a pull request against `release/2.3`.
 
-## Listing Your Extension in the Kong Hub
+## Listing Your Extension in the Plugin Hub
 
-We encourage developers to list their Kong plugins and integrations (which
-we refer to collectively as "extensions") in the
-[Kong Hub](https://docs.konghq.com/hub) with documentation hosted
-on the Kong website for ready access.
+We encourage developers to list their Kong Gateway plugins in the
+[Plugin Hub](https://docs.konghq.com/hub) with documentation hosted
+on the Kong docs website for ready access.
 
 See [CONTRIBUTING](https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md#contributing-to-kong-documentation-and-the-kong-hub) for more information.
