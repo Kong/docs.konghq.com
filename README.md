@@ -86,7 +86,14 @@ docs, see the instructions on the [docs wiki](https://konghq.atlassian.net/wiki/
 
 ### Creating a new community doc release version
 
-1. Create release branch: `release/<version>`
+1. Pull down the master branch of this repo and create a release branch
+(`release/<version>`):
+
+    ```sh
+    $ cd docs.konghq.com
+    $ git pull master
+    $ git checkout -b release/2.4
+    ```
 
 2. Copy the following doc folders for Kong Gateway (OSS):
 
@@ -122,7 +129,7 @@ docs, see the instructions on the [docs wiki](https://konghq.atlassian.net/wiki/
             pcre: "8.44"
         ```
 
-    Update `release`, `version`, and any `dependencies`, if applicable.
+        Update `release`, `version`, and any `dependencies`, if applicable.
 
     2. Do the same for `getting-started-guide`, copying the latest version,
     which looks like the following:
@@ -136,8 +143,8 @@ docs, see the instructions on the [docs wiki](https://konghq.atlassian.net/wiki/
 3. Update the latest version in the full site Algolia configuration file:
 
     1. Open  `/algolia/config-full-docs.json`
-    2. In the `start_urls`, update the `gateway-oss` URL to the latest `x`
-    version:
+    2. In the `start_urls` section, update the `gateway-oss` URL to the latest
+    `x.x.x` version:
 
         ```json
         "url": "https://docs.konghq.com/gateway-oss/2.3.x/"
@@ -145,7 +152,7 @@ docs, see the instructions on the [docs wiki](https://konghq.atlassian.net/wiki/
 
 4. Commit and push release branch to GitHub.
 
-### Generating the PDK, Admin API, CLI and Configuration Documentation
+### Generating the PDK, Admin API, CLI, and Configuration Documentation
 
 The PDK docs, Admin API docs, `cli.md` and `configuration.md` for each release are generated from the Kong source code.
 
