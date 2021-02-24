@@ -79,12 +79,12 @@ params:
       required: true
       default: false
       datatype: boolean
-      description: REVIEWERS description needed
+      description: Indicates whether to perform a TLS handshake against the remote server.
     - name: tls_sni
       required: false
       default:
       datatype: string
-      description: REVIEWERS description needed
+      description: An optional string that defines the SNI (Server Name Indication) hostname to send in the handshake.
 
 
 ---
