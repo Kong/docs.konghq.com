@@ -53,46 +53,63 @@ params:
     - name: host
       required: false
       default: "`logs-01.loggly.com`"
-      description: The IP address or host name of Loggly server
+      datatype: string
+      description: The IP address or hostname of Loggly server.
     - name: port
       required: false
       default: "`514`"
-      description: The UDP port to send data to on the Loggly server
+      datatype: integer
+      description: The UDP port to send data to on the Loggly server.
     - name: key
       required: true
       default:
       value_in_examples: YOUR_LOGGLY_SERVICE_TOKEN
+      datatype: string
       description: |
         Loggly [customer token](https://www.loggly.com/docs/customer-token-authentication-token/).
     - name: tags
       required: false
       default: "`kong`"
+      datatype: array of string elements
       description: |
-        An optional list of [tags](https://www.loggly.com/docs/tags/) to support segmentation & filtering of logs.
+        An optional list of [tags](https://www.loggly.com/docs/tags/) to support segmentation and filtering of logs.
     - name: timeout
       required: false
       default: "`10000`"
-      description: An optional timeout in milliseconds when sending data to the Loggly server
+      datatype: number
+      description: An optional timeout in milliseconds when sending data to the Loggly server.
     - name: successful_severity
       required: false
       default: "`info`"
+      datatype: string
       description: |
-        An optional logging severity assigned to the all successful requests with response status code 400 .
+        An optional logging severity assigned to all the successful requests with a response
+        status code 400. Available options: `debug`, `info`, `notice`, `warning`, `err`,
+        `crit`, `alert`, `emerg`.
     - name: client_errors_severity
       required: false
       default: "`info`"
+      datatype: string
       description: |
-        An optional logging severity assigned to the all failed requests with response status code 400 or higher but less than 500.
+        An optional logging severity assigned to all the failed requests with a response
+        status code 400 or higher but less than 500. Available options: `debug`, `info`,
+        `notice`, `warning`, `err`, `crit`, `alert`, `emerg`.
     - name: server_errors_severity
       required: false
       default: "`info`"
+      datatype: string
       description: |
-        An optional logging severity assigned to the all failed requests with response status code 500 or higher.
+        An optional logging severity assigned to all the failed requests with response status
+        code 500 or higher. Available options: `debug`, `info`, `notice`, `warning`, `err`,
+        `crit`, `alert`, `emerg`.
     - name: log_level
       required: false
       default: "`info`"
+      datatype: string
       description: |
-        An optional logging severity, any request with equal or higher severity will be logged to Loggly.
+        An optional logging severity, any request with equal or higher severity will be
+        logged to Loggly. Available options: `debug`, `info`, `notice`, `warning`, `err`,
+        `crit`, `alert`, `emerg`.
 
 ---
 
