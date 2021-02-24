@@ -31,21 +31,24 @@ params:
   config:
     - name: path
       required: false
+      datatype: string
       description: |
         Updates the upstream request path with given value/template. This value can only be used to update the path part of the URI, not the scheme, nor the hostname.
     - name: host
       required: false
+      datatype: string
       description: |
         Updates the upstream request Host with given value/template. This value can only be used to update the routing, it will not update the Host-header value.
     - name: port
       required: false
+      datatype: string
       description: |
          Updates the upstream request Port with given value/template. Note that the port as set may be overridden again by DNS resolution (in case of SRV records,or an Upstream)
 
 ---
 
 _NOTE_: The 'advanced' label is only attached since this is an Enterprise-only
-plugin. There is not a 'regular' version available.
+plugin. There is not a 'regular' plugin version available.
 
 ## Synopsis
 
