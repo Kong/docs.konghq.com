@@ -58,19 +58,34 @@ params:
     - name: host
       required: true
       value_in_examples: 127.0.0.1
+      datatype: string
       description: The IP address or host name to send data to.
     - name: port
       required: true
       value_in_examples: 9999
+      datatype: integer
       description: The port to send data to on the upstream server.
     - name: timeout
       required: false
       default: "`10000`"
+      datatype: number
       description: An optional timeout in milliseconds when sending data to the upstream server.
     - name: keepalive
       required: false
       default: "`60000`"
-      description: An optional value in milliseconds that defines for how long an idle connection will live before being closed.
+      datatype: number
+      description: An optional value in milliseconds that defines how long an idle connection lives before being closed.
+    - name: tls
+      required: true
+      default: false
+      datatype: boolean
+      description: REVIEWERS description needed
+    - name: tls_sni
+      required: false
+      default:
+      datatype: string
+      description: REVIEWERS description needed
+
 
 ---
 
