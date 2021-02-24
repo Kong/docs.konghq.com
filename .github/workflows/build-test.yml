@@ -1,7 +1,7 @@
 name: Build and Test
 on:
   pull_request:
-    types: [synchronize, ready_for_review]
+    types: [synchronize, ready_for_review, opened]
 jobs:
   build:
     if: github.event.pull_request.draft != true
