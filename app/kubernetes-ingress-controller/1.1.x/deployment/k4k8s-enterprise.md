@@ -13,8 +13,15 @@ This is available to enterprise customers of Kong, Inc. only.
 Before we can deploy Kong, we need to satisfy two
 prerequisites:
 
-- [Kong Enterprise License secret](#kong-enterprise-license-secret)
-- [Kong Enterprise Docker registry access](#kong-enterprise-docker-registry-access)
+- [Prerequisites](#prerequisites)
+  - [Kong Enterprise License secret](#kong-enterprise-license-secret)
+  - [Kong Enterprise Docker registry access](#kong-enterprise-docker-registry-access)
+- [Installers](#installers)
+  - [YAML manifests](#yaml-manifests)
+  - [Kustomize](#kustomize)
+  - [Helm](#helm)
+  - [Example values.yaml](#example-valuesyaml)
+- [Using Kong for Kubernetes Enterprise](#using-kong-for-kubernetes-enterprise)
 
 In order to create these secrets, let's provision the `kong`
 namespace first:
@@ -141,7 +148,7 @@ $ helm install kong/kong --generate-name
     --set ingressController.installCRDs=false
 ```
 
-#### Example values.yaml
+### Example values.yaml
 ```
 image:
   repository: kong-docker-kong-enterprise-k8s.bintray.io/kong-enterprise-k8s
