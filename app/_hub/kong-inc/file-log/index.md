@@ -68,7 +68,7 @@ params:
       description: |
         The file path of the output log file. The plugin creates the log file if it doesn't exist yet. Make sure Kong has write permissions to this file.
     - name: reopen
-      required: false
+      required: true
       default: "`false`"
       datatype: boolean
       description: |
