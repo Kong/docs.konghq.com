@@ -849,7 +849,7 @@ plugins:
                 {% endif %}
               {% endfor %}
               </ul><ul class="compat-list">
-              {% for v in site.data.kong_versions reversed %}
+              {% for v in site.data.kong_versions_ce reversed %}
                 {% if ce_compatible contains v.release or ce_incompatible contains v.release %}
                   {% unless first_ce %}
                   <h6>{{site.ce_product_name}}</h6>{% assign first_ce = true %}
