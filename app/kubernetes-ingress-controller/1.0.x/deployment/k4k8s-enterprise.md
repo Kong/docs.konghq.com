@@ -146,7 +146,7 @@ $ helm install kong/kong --generate-name
      --set ingressController.installCRDs=false
 ```
 
-#### Example Values
+#### Example values.yaml
 ```
 image:
   repository: kong-docker-kong-enterprise-k8s.bintray.io/kong-enterprise-k8s
