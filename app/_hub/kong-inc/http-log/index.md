@@ -58,7 +58,7 @@ params:
       default:
       value_in_examples: http://mockbin.org/bin/:id
       datatype: string
-      description: The HTTP endpoint (including the protocol to use) to which the data is sent.
+      description: The HTTP URL endpoint (including the protocol to use) to which the data is sent.
     - name: method
       required: false
       default: "`POST`"
