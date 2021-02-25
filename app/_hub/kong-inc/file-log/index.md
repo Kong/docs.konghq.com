@@ -12,14 +12,6 @@ description: |
   This plugin uses blocking I/O, which could affect performance when writing
   to physical files on slow (spinning) disks.
 
-  <div class="alert alert-warning">
-    <strong>Note:</strong> The functionality of this plugin as bundled
-    with versions of Kong prior to 0.10.2 differs from what is documented herein.
-    Refer to the
-    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
-    for details.
-  </div>
-
 
 type: plugin
 categories:
@@ -72,13 +64,17 @@ params:
       required: true
       default:
       value_in_examples: "/tmp/file.log"
+      datatype: string
       description: |
-        The file path of the output log file. The plugin will create the file if it doesn't exist yet. Make sure Kong has write permissions to this file.
+        The file path of the output log file. The plugin creates the log file if it doesn't exist yet. Make sure Kong has write permissions to this file.
     - name: reopen
-      required: false
+      required: true
       default: "`false`"
+      datatype: boolean
       description: |
-        Introduced in Kong `0.10.2`. Determines whether the log file is closed and reopened on every request. If the file is not reopened, and has been removed/rotated, the plugin will keep writing to the stale file descriptor, and hence lose information.
+        Determines whether the log file is closed and reopened on every request. If the file
+        is not reopened, and has been removed/rotated, the plugin keeps writing to the
+        stale file descriptor, and hence loses information.
 
 ---
 
