@@ -16,7 +16,7 @@ You will need the following:
 - A domain name for which you control the DNS records.
   This is necessary so that
   Let's Encrypt can verify the ownership of the domain and issue a certificate.
-  In the current guide, we use `yolo42.com`, please replace this with a domain
+  In the current guide, we use `konghq.com`, please replace this with a domain
   you control.
 
 This tutorial was written using Google Kubernetes Engine.
@@ -99,20 +99,20 @@ $ kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong
 
 Please note that the IP address in your case will be different.
 
-Next, setup a DNS records to resolve `proxy.yolo42.com` to the
+Next, setup a DNS records to resolve `proxy.konghq.com` to the
 above IP address:
 
 ```bash
-$ dig +short proxy.yolo42.com
+$ dig +short proxy.konghq.com
 35.233.170.67
 ```
 
-Next, setup a CNAME DNS record to resolve `demo.yolo42.com` to
-`proxy.yolo42.com`.
+Next, setup a CNAME DNS record to resolve `demo.konghq.com` to
+`proxy.konghq.com`.
 
 ```bash
 $ dig +short demo.yolo2.com
-proxy.yolo42.com.
+proxy.konghq.com.
 35.233.170.67
 ```
 
@@ -125,12 +125,12 @@ $ echo "
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: demo-yolo42-com
+  name: demo-konghq-com
   annotations:
     kubernetes.io/ingress.class: kong
 spec:
   rules:
-  - host: demo.yolo42.com
+  - host: demo.konghq.com
     http:
       paths:
       - path: /
@@ -138,13 +138,13 @@ spec:
           serviceName: echo
           servicePort: 80
 " | kubectl apply -f -
-ingress.extensions/demo-yolo42-com created
+ingress.extensions/demo-konghq-com created
 ```
 
 Access your application:
 
 ```bash
-$ curl -I demo.yolo42.com
+$ curl -I demo.konghq.com
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Connection: keep-alive
@@ -191,18 +191,18 @@ $ echo '
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: demo-yolo42-com
+  name: demo-konghq-com
   annotations:
     kubernetes.io/tls-acme: "true"
     cert-manager.io/cluster-issuer: letsencrypt-prod
     kubernetes.io/ingress.class: kong
 spec:
   tls:
-  - secretName: demo-yolo42-com
+  - secretName: demo-konghq-com
     hosts:
-    - demo.yolo42.com
+    - demo.konghq.com
   rules:
-  - host: demo.yolo42.com
+  - host: demo.konghq.com
     http:
       paths:
       - path: /
@@ -210,7 +210,7 @@ spec:
           serviceName: echo
           servicePort: 80
 ' | kubectl apply -f -
-ingress.extensions/demo-yolo42-com configured
+ingress.extensions/demo-konghq-com configured
 ```
 
 Things to note here:
@@ -222,7 +222,7 @@ Things to note here:
   cert-manager to use Let's Encrypt's production server to provision a TLS
   certificate.
 - `tls` section of the Ingress directs the {{site.kic_product_name}} to use the
-  secret `demo-yolo42-com` to encrypt the traffic for `demo.yolo42.com`.
+  secret `demo-konghq-com` to encrypt the traffic for `demo.konghq.com`.
   This secret will be created by cert-manager.
 
 Once you update the Ingress resource, cert-manager will start provisioning
@@ -255,10 +255,10 @@ Spec:
   Acme:
     Config:
       Domains:
-        demo.yolo42.com
+        demo.konghq.com
       Http 01:
   Dns Names:
-    demo.yolo42.com
+    demo.konghq.com
   Issuer Ref:
     Kind:       ClusterIssuer
     Name:       letsencrypt-prod
@@ -286,11 +286,11 @@ Events:
 Once all is in place, you can use HTTPS:
 
 ```bash
-$ curl -v https://demo.yolo42.com
-* Rebuilt URL to: https://demo.yolo42.com/
+$ curl -v https://demo.konghq.com
+* Rebuilt URL to: https://demo.konghq.com/
 *   Trying 35.233.170.67...
 * TCP_NODELAY set
-* Connected to demo.yolo42.com (35.233.170.67) port 443 (#0)
+* Connected to demo.konghq.com (35.233.170.67) port 443 (#0)
 * ALPN, offering h2
 * ALPN, offering http/1.1
 * Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
@@ -310,14 +310,14 @@ $ curl -v https://demo.yolo42.com
 * SSL connection using TLSv1.2 / ECDHE-RSA-AES256-GCM-SHA384
 * ALPN, server accepted to use http/1.1
 * Server certificate:
-*  subject: CN=demo.yolo42.com
+*  subject: CN=demo.konghq.com
 *  start date: Jun 21 19:42:19 2019 GMT
 *  expire date: Sep 19 19:42:19 2019 GMT
-*  subjectAltName: host "demo.yolo42.com" matched cert's "demo.yolo42.com"
+*  subjectAltName: host "demo.konghq.com" matched cert's "demo.konghq.com"
 *  issuer: C=US; O=Let's Encrypt; CN=Let's Encrypt Authority X3
 *  SSL certificate verify ok.
 > GET / HTTP/1.1
-> Host: demo.yolo42.com
+> Host: demo.konghq.com
 > User-Agent: curl/7.54.0
 > Accept: */*
 >
@@ -351,15 +351,15 @@ Request Information:
   query=
   request_version=1.1
   request_scheme=http
-  request_uri=http://demo.yolo42.com:8080/
+  request_uri=http://demo.konghq.com:8080/
 
 Request Headers:
   accept=*/*
   connection=keep-alive
-  host=demo.yolo42.com
+  host=demo.konghq.com
   user-agent=curl/7.54.0
   x-forwarded-for=10.138.0.6
-  x-forwarded-host=demo.yolo42.com
+  x-forwarded-host=demo.konghq.com
   x-forwarded-port=8443
   x-forwarded-proto=https
   x-real-ip=10.138.0.6
