@@ -138,8 +138,8 @@ $ curl -X POST http://<admin-hostname>:8001/services/<service>/plugins \
 Configure this plugin on a Service:
 
 1. In Kong Manager, open the Services page.
-2. Click on **View** for the Service row.
-3. Scroll down to plugins and click **Add Plugin**.
+2. Click **View** for the Service row.
+3. Scroll down to plugins and click **Add a Plugin**.
 4. Find and select the **{{ page.name }}** plugin.
 
     <div class="alert alert-ee blue">
@@ -147,9 +147,12 @@ Configure this plugin on a Service:
     for your product tier. See <a href="">Kong Gateway tiers</a>.
     </div>
 
-5. Ensure the plugin scope is set to **Scoped** and the Service field is
-pre-filled with the Service name and ID. Then, fill in the required
-[parameters](#parameters).
+5. If the option is available, set the plugin scope to **Scoped**.
+
+6. Add the Service field with the Service name and ID if it 
+is not already prefilled. 
+
+7. Enter the required [parameters](#parameters).
 
     {{ config_required_fields_manager }}
 
