@@ -57,7 +57,7 @@ params:
       required: true
       default:
       value_in_examples: http://mockbin.org/bin/:id
-      datatype: Reviewers cannot locate in typedefs schema, where is typedefs.url schema?
+      datatype: string
       description: The HTTP endpoint (including the protocol to use) to which the data is sent.
     - name: method
       required: false
