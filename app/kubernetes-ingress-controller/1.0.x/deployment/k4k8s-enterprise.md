@@ -142,8 +142,8 @@ $ helm install kong/kong \
 # Helm 3
 $ helm install kong/kong --generate-name
     --namespace kong \
-    --values values.yaml \
-     --set ingressController.installCRDs=false
+    -f values.yaml \
+    --set ingressController.installCRDs=false
 ```
 
 #### Example values.yaml
