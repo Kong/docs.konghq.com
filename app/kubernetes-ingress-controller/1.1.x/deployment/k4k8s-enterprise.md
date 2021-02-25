@@ -137,8 +137,23 @@ $ helm repo update
 # Helm 3
 $ helm install kong/kong --generate-name
     --namespace kong \
-    --values https://l.yolo42.com/k4k8s-enterprise-helm-values \
+    --values values.yaml \
      --set ingressController.installCRDs=false
+```
+
+#### Example Values
+```
+image:
+  repository: kong-docker-kong-enterprise-k8s.bintray.io/kong-enterprise-k8s
+  tag: 1.3.0.0-alpine
+  pullSecrets:
+  - kong-enterprise-k8s-docker
+env:
+  LICENSE_DATA:
+    valueFrom:
+      secretKeyRef:
+        name: kong-enterprise-license
+        key: license
 ```
 
 Once installed, set an environment variable, $PROXY_IP with the External IP address of
