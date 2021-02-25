@@ -70,7 +70,7 @@ params:
     - name: tags
       required: false
       default: "`kong`"
-      datatype: array of string elements
+      datatype: set of string elements
       description: |
         An optional list of [tags](https://www.loggly.com/docs/tags/) to support segmentation and filtering of logs.
     - name: timeout
