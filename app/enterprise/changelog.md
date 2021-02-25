@@ -317,8 +317,8 @@ specs.
   was `create`. This could leave some cache entries in cache that need to be invalidated.
   - Fixed a circular dependency issue with the redirect function.
 
-##### Plugin Dependencies
-- **OpenID Connect Library**
+#### Plugin Dependencies
+- OpenID Connect Library
   - Token introspection now checks the status code properly.
   - Added more consistent response body checks on `HTTP` requests.
 
@@ -690,8 +690,8 @@ specs.
   - Fixed a circular dependency issue with the redirect function.
   - Bumped `lua-resty-session` dependency to 3.8.
 
-##### Plugin Dependencies
-- **OpenID Connect Library**
+#### Plugin Dependencies
+- OpenID Connect Library
   - Token introspection now checks the status code properly.
   - Added more consistent response body checks on `HTTP` requests.
 
