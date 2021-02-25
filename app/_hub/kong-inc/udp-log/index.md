@@ -57,16 +57,19 @@ params:
     - name: host
       required: true
       value_in_examples: 127.0.0.1
+      datatype: string
       description: The IP address or host name to send data to.
     - name: port
       required: true
       value_in_examples: 9999
-      description: The port to send data to on the upstream server
+      datatype: integer
+      description: The port to send data to on the upstream server.
     - name: timeout
       required: false
       default: "`10000`"
       value_in_examples: 10000
-      description: An optional timeout in milliseconds when sending data to the upstream server
+      datatype: number
+      description: An optional timeout in milliseconds when sending data to the upstream server.
 
 ---
 
