@@ -73,7 +73,7 @@ params:
       value_in_examples:
       datatype: string
       description: |
-      REVIEWERS need description. The only available option is `application/json`.
+        REVIEWERS need description. The only available option is `application/json`.
     - name: timeout
       required: false
       default: "`10000`"
@@ -108,7 +108,12 @@ params:
       required: false
       default: empty table
       datatype: array of string elements
-      description: An optional table of headers added to the HTTP message to the upstream server.
+      description: |
+        An optional table of headers added to the HTTP message to the upstream server. The following
+        headers are not allowed: `Host`, `Content-Length`, `Content-Type`.
+
+        **Note:** This parameter is only available for versions
+        2.3.x and later.
   extra: |
     **NOTE:** If the `config.http_endpoint` contains a username and password (for example,
     `http://bob:password@example.com/logs`), then Kong Gateway automatically includes
