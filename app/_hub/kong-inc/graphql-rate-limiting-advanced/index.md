@@ -75,7 +75,7 @@ params:
         How to define the rate limit key. Can be `ip`, `credential`, `consumer`, `service`, or `header`.
     - name: header_name
       required: semi
-      datatype:
+      datatype: string
       description: |
         Header name to use as the rate limit key when the `header` identifier is defined.
     - name: dictionary_name
@@ -187,7 +187,15 @@ params:
       value_in_examples:
       datatype: string
       description: |
-        This sets the time window to either `sliding` or `fixed`.
+        Sets the time window to either `sliding` or `fixed`.
+    - name: hide_client_headers
+      required: false
+      default: hide_client_headers
+      value_in_examples:
+      datatype: boolean
+      description: |
+        Optionally hide informative response headers. Available options: `true` or `false`.
+
   extra: |
     > Note: Redis configuration values are ignored if the `cluster` strategy is used.
 
