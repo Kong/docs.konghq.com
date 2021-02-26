@@ -6,8 +6,9 @@ version: 1.3-x
 
 desc: Provide rate limiting for GraphQL queries
 description: |
-  The GraphQL Rate Limiting Advanced plugin is an extension of the
-  Rate Limiting Advanced plugin that provides rate limiting for GraphQL queries.
+  The GraphQL Rate Limiting Advanced plugin provides rate limiting for GraphQL queries. The
+  GraphQL Rate Limiting plugin extends the
+  [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) plugin.
 
 type: plugin
 enterprise: true
@@ -93,7 +94,7 @@ params:
         How often to sync counter data to the central data store. A value of 0
         results in synchronous behavior; a value of -1 ignores sync behavior
         entirely and only stores counters in node memory. A value greater than
-        0 will sync the counters in that many number of seconds.
+        0 syncs the counters in that many number of seconds.
     - name: namespace
       required: false
       default: random string
@@ -105,55 +106,56 @@ params:
       required:
       default: cluster
       value_in_examples:
-
+      datatype: string
       description: |
         The sync strategy to use; `cluster` and `redis` are supported.
     - name: redis.host
       required: semi
       default:
       value_in_examples:
-
+      datatype: string
       description: |
         Host to use for Redis connection when the `redis` strategy is defined.
     - name: redis.port
       required: semi
       default:
       value_in_examples:
-
+      datatype: integer
       description: |
         Port to use for Redis connection when the `redis` strategy is defined.
     - name: redis.timeout
       required: semi
       default: 2000
       value_in_examples:
-
+      datatype: number
       description: |
         Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined.
     - name: redis.password
       required: semi
       default:
       value_in_examples:
-
+      datatype: string
       description: |
         Password to use for Redis connection when the `redis` strategy is defined. If undefined, no AUTH commands are sent to Redis.
     - name: redis.database
       required: semi
       default: 0
       value_in_examples:
-
+      datatype: integer
       description: |
         Database to use for Redis connection when the `redis` strategy is defined.
     - name: redis.sentinel_master
       required: semi
       default:
       value_in_examples:
+      datatype: string
       description: |
         Sentinel master to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
     - name: redis.sentinel_password
       required: semi
       default:
       value_in_examples:
-
+      datatype: string
       description: |
         Sentinel password to authenticate with a Redis Sentinel instance.
         **Note:** This parameter is only available for Kong Enterprise versions
@@ -162,19 +164,21 @@ params:
       required: semi
       default:
       value_in_examples:
+      datatype: string
       description: |
         Sentinel role to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
     - name: redis.sentinel_addresses
       required: semi
       default:
       value_in_examples:
-
+      datatype: array of string elements
       description: |
         Sentinel addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
     - name: redis.cluster_addresses
       required: semi
       default:
       value_in_examples:
+      datatype: array of string elements
       description: |
         Cluster addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis cluster.
     - name: window_type
@@ -195,8 +199,8 @@ params:
 
 ---
 
-**GraphQL Rate Limiting Advanced** is an extension of
-**Rate Limiting Advanced** and provides rate limiting for
+The **GraphQL Rate Limiting Advanced** plugin is an extension of the
+**Rate Limiting Advanced** plugin and provides rate limiting for
 GraphQL queries.
 
 Due to the nature of client-specified GraphQL queries, the same HTTP request
