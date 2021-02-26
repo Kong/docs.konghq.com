@@ -133,6 +133,10 @@ being shown in the logs.
 - Fixed an issue that incorrectly enforced plugins when they exist in the default and a named workspace.
    The plugin configuration in the default workspace was incorrectly overriding the disabled plugin
    configuration in the named workspace (FTI-2049, FTI-2228).
+- Fixed an issue for vitals when proxy-cached-advanced or forward-proxy plugins (possibly others) 
+are in use. 
+   Requests that received a cache hit using the plugins were not showing up under 
+   service/route vitals, but were visible under workspace vitals. 
 
 #### CLI
 - Fixed issue where `kong reload -c <config>` would fail.
