@@ -73,7 +73,7 @@ params:
       value_in_examples:
       datatype: string
       description: |
-        REVIEWERS need description. The only available option is `application/json`.
+        Indicates the type of data sent. The only available option is `application/json`.
     - name: timeout
       required: false
       default: "`10000`"
