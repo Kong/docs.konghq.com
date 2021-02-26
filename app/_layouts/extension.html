@@ -9,21 +9,57 @@ breadcrumbs:
 {% unless page.type == "concept" %}
 {% if page.type == "plugin" %}
 
+<!-- Generate Konnect examples -->
+{% capture config_required_fields_konnect %}
+  {% for field in page.params.config %}
+    {% if field.value_in_examples != nil %}
+      {% if field.value_in_examples.first %}
+        For example:
+        {% for value in field.value_in_examples %}
+          {% if field.value_in_examples contains "'" %}
+            * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ value | replace: "'", "" | markdownify | strip_html | strip }}`
+          {% else %}
+            * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ value | markdownify | strip_html | strip }}`
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        {% if field.value_in_examples contains "'" %}
+          * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ field.value_in_examples | replace: "'", "" | markdownify | strip_html | strip }}`
+        {% else %}
+          * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ field.value_in_examples | markdownify | strip_html | strip }}`
+        {% endif %}
+      {% endif %}
+    {% elsif field.required == true %}
+        * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ field.default | markdownify | strip_html | strip }}`
+        {% endif %}
+  {% endfor %}
+{% endcapture %}
+
 <!-- Generate Kong Manager examples -->
 {% capture config_required_fields_manager %}
-    {% for field in page.params.config %}{%
-    if field.value_in_examples != nil %}{%
-    if field.value_in_examples.first %}For example:{%
-    for value in field.value_in_examples %}
-        {% if field.value_in_examples contains "'" %}* Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ value | replace: "'", "" | markdownify | strip_html | strip }}`{% else %}* Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ value | markdownify | strip_html | strip }}`{% endif %}{%
-      endfor %}{%
-      else %}
-      {% if field.value_in_examples contains "'" %}* Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ field.value_in_examples | replace: "'", "" | markdownify | strip_html | strip }}`{% else %}* Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ field.value_in_examples | markdownify | strip_html | strip }}`{% endif %}{%
-      endif %}{%
-      elsif field.required == true %}
-        * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ field.default | markdownify | strip_html | strip }}`{%
-      endif %}{% endfor
-%}{% endcapture %}
+  {% for field in page.params.config %}
+    {% if field.value_in_examples != nil %}
+      {% if field.value_in_examples.first %}
+        For example:
+        {% for value in field.value_in_examples %}
+          {% if field.value_in_examples contains "'" %}
+          * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ value | replace: "'", "" | markdownify | strip_html | strip }}`
+          {% else %}
+          * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ value | markdownify | strip_html | strip }}`
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        {% if field.value_in_examples contains "'" %}
+        * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ field.value_in_examples | replace: "'", "" | markdownify | strip_html | strip }}`
+        {% else %}
+        * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ field.value_in_examples | markdownify | strip_html | strip }}`
+        {% endif %}
+      {% endif %}
+    {% elsif field.required == true %}
+        * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ field.default | markdownify | strip_html | strip }}`
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
 
 <!-- Generate cURL examples -->
 {% capture config_required_fields %}{%
@@ -123,14 +159,14 @@ $ curl -X POST http://<admin-hostname>:8001/services/<service>/plugins \
 
 {% if page.params.yaml_examples == false and page.params.k8s_examples == false %}
 
-{{ plugin_config_for_service_admin_api }}
+  {{ plugin_config_for_service_admin_api }}
 
 {% else %}
 
 {% navtabs %}
 {% navtab Admin API %}
 
-{{ plugin_config_for_service_admin_api }}
+  {{ plugin_config_for_service_admin_api }}
 
 {% endnavtab %}
 {% unless page.params.manager_examples == false %}
@@ -221,6 +257,29 @@ plugins:
   {% if config_required_fields_yaml == 'config: ' %}config:
     <optional_parameter>: <value>{% else %}{{ config_required_fields_yaml }}{% endif %}
 ```
+{% endnavtab %}
+{% endunless %}
+{% unless page.params.konnect_examples == false %}
+{% navtab Konnect %}
+Configure this plugin on a Service:
+
+1. In Konnect, select **Services** in the left navigation.
+2. Select the service on the ServiceHub page.
+3. Scroll down to **Versions** and select the version.
+4. Scroll down to **Plugins** and click **New Plugin**.
+5. Find and select the **{{ page.name }}** plugin.
+
+    <div class="alert alert-ee blue">
+    <strong>Note:</strong> If the plugin is greyed out, then it is not available
+    for your product tier. See <a href="">Kong Gateway tiers</a>.
+    </div>
+
+6. Enter the required [parameters](#parameters).
+
+    {{ config_required_fields_manager }}
+
+7. Click **Create** to save.
+
 {% endnavtab %}
 {% endunless %}
 {% endnavtabs %}
