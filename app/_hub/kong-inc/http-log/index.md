@@ -57,42 +57,63 @@ params:
       required: true
       default:
       value_in_examples: http://mockbin.org/bin/:id
-      description: The HTTP endpoint (including the protocol to use) to which the data is sent.
+      datatype: string
+      description: The HTTP URL endpoint (including the protocol to use) to which the data is sent.
     - name: method
       required: false
       default: "`POST`"
       value_in_examples: POST
+      datatype: string
       description: |
-        An optional method used to send data to the HTTP server. Supported values are `POST` (default), `PUT`, and `PATCH`.
+        An optional method used to send data to the HTTP server. Supported values are
+        `POST` (default), `PUT`, and `PATCH`.
+    - name: content_type
+      required: false
+      default: "`application/json`"
+      value_in_examples:
+      datatype: string
+      description: |
+        Indicates the type of data sent. The only available option is `application/json`.
     - name: timeout
       required: false
       default: "`10000`"
       value_in_examples: 1000
+      datatype: number
       description: An optional timeout in milliseconds when sending data to the upstream server.
     - name: keepalive
       required: false
       default: "`60000`"
       value_in_examples: 1000
+      datatype: number
       description: An optional value in milliseconds that defines how long an idle connection will live before being closed.
     - name: flush_timeout
       required: false
       default: "`2`"
       value_in_examples: 2
+      datatype: number
       description: |  
         Optional time in seconds. If `queue_size` > 1, this is the max idle time before sending a log with less than `queue_size` records.    
     - name: retry_count
       required: false
       default: 10
       value_in_examples: 15
+      datatype: integer
       description: Number of times to retry when sending data to the upstream server.
     - name: queue_size
       required: false
       default: 1
+      datatype: integer
       description: Max number of log entries to be sent on each message to the upstream server.
     - name: headers
       required: false
       default: empty table
-      description: An optional table of headers added to the HTTP message to the upstream server.
+      datatype: array of string elements
+      description: |
+        An optional table of headers added to the HTTP message to the upstream server. The following
+        headers are not allowed: `Host`, `Content-Length`, `Content-Type`.
+
+        **Note:** This parameter is only available for versions
+        2.3.x and later.
   extra: |
     **NOTE:** If the `config.http_endpoint` contains a username and password (for example,
     `http://bob:password@example.com/logs`), then Kong Gateway automatically includes
