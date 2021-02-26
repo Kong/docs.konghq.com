@@ -51,7 +51,7 @@ params:
       value_in_examples:
       datatype: number
       description: |
-        A scoring factor to multiply (or divide) the cost.
+        A scoring factor to multiply (or divide) the cost. The `score_factor` must always be greater than 0.
     - name: limit
       required: true
       default:
