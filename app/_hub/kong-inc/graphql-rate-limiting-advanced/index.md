@@ -72,7 +72,7 @@ params:
       value_in_examples:
       datatype: string
       description: |
-        How to define the rate limit key. Can be `ip`, `credential`, `consumer`, `service`, or `header`.
+        How to define the rate limit key. Can be `ip`, `credential`, `consumer`.
     - name: header_name
       required: semi
       datatype: string
@@ -190,7 +190,7 @@ params:
         Sets the time window to either `sliding` or `fixed`.
     - name: hide_client_headers
       required: false
-      default: hide_client_headers
+      default: false
       value_in_examples:
       datatype: boolean
       description: |
