@@ -12,10 +12,21 @@
         <div class="navbar-item" onclick="toggleSubmenuVisible(this)">
           <a href="https://docs.konghq.com/">Docs</a>
           <div class="navbar-item-submenu">
-            <a href="/gateway-oss/" class="navbar-item">Kong Gateway</a>
-            <a href="/konnect/" class="navbar-item">Kong Konnect</a>
-            <a href="/mesh/" class="navbar-item">Kong Mesh</a>
-            <a href="/hub/" class="navbar-item">Plugin Hub</a>
+            <div class="submenu-section">
+              <span class="navbar-item submenu-section-title">Kong Konnect</span>
+              <a href="/konnect/" class="navbar-item">Konnect SaaS</a>
+              <a href="/enterprise/" class="navbar-item">Kong Gateway (Enterprise)</a>
+              <a href="/mesh/" class="navbar-item">Kong Mesh</a>
+              <a href="/hub/" class="navbar-item">Plugin Hub</a>
+            </div>
+            <div class="submenu-section">
+              <span class="navbar-item submenu-section-title">Open Source</span>
+              <a href="/gateway-oss/" class="navbar-item">Kong Gateway (OSS)</a>
+              <a href="/deck/" class="navbar-item">DecK</a>
+              <a href="/deck/" class="navbar-item">Kubernetes Ingress Controller</a>
+              <a href="https://support.insomnia.rest/" class="navbar-item">Insomnia</a>
+              <a href="https://kuma.io/docs/1.0.8/" class="navbar-item">Kuma</a>
+            </div>
           </div>
         </div>
         <a href="https://support.konghq.com/" class="navbar-item">Support</a>

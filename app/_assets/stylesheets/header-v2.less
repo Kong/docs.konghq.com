@@ -52,18 +52,41 @@ header.navbar-v2 {
           position: absolute;
           left: -16px;
           top: 100%;
+          width: 320px;
           display: flex;
           flex-direction: column;
           overflow: hidden;
           max-height: 0;
           background: white;
-          padding: 0 8px;
           box-shadow: 0 8px 24px rgba(4, 53, 88, 0.1);
           transition: max-height .25s, padding-top .25s, padding-bottom .25s;
 
-          .navbar-item {
-            margin: 0;
-            padding: 12px;
+          .submenu-section {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 8px;
+
+            &:first-child {
+              padding-top: 8px;
+            }
+
+            .submenu-section-title {
+              color: #4c6d80;
+              font-size: 12px;
+              line-height: 16px;
+              text-transform: uppercase;
+            }
+
+            .navbar-item {
+              margin: 0;
+              padding: 8px 16px;
+              font-weight: 500;
+              line-height: 24px;
+
+              &.submenu-section-title {
+                font-weight: 400;
+              }
+            }
           }
         }
 
@@ -77,7 +100,6 @@ header.navbar-v2 {
 
           .navbar-item-submenu {
             max-height: 800px;
-            padding: 4px 8px;
           }
         }
       }
