@@ -9,13 +9,13 @@ breadcrumbs:
 {% unless page.type == "concept" %}
 {% if page.type == "plugin" %}
 
-<!-- Generate Konnect examples -->
+<!-- Generate Konnect and Kong Manager examples -->
 {% capture config_required_fields_konnect %}{% 
   for field in page.params.config %}{% assign capfields = field.name | split: '_' %}{% capture titlecase %}{% for capfield in capfields %}{{ capfield | capitalize }} {% endfor %}{% endcapture %}{% 
     if field.required == true and field.value_in_examples == nil %} 
     * Config.{{ titlecase | rstrip }}: `{{ field.default | smartify }}`{% 
     elsif field.required == true and field.value_in_examples != nil %}{% 
-      if field.value_in_examples.first %} For example: {% 
+      if field.value_in_examples.first %}{% 
         for value in field.value_in_examples %}{% 
           if field.value_in_examples contains "'" %} 
     * Config.{{ titlecase | rstrip }}: `{{ value | replace: "'", "" }}`{% 
@@ -33,32 +33,6 @@ breadcrumbs:
     endif %}{% 
   endfor %}{%
 endcapture %}
-
-<!-- Generate Kong Manager examples -->
-{% capture config_required_fields_manager %}
-  {% for field in page.params.config %}
-    {% if field.value_in_examples != nil %}
-      {% if field.value_in_examples.first %}
-        For example:
-        {% for value in field.value_in_examples %}
-          {% if field.value_in_examples contains "'" %}
-          * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ value | replace: "'", "" | markdownify | strip_html | strip }}`
-          {% else %}
-          * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ value | markdownify | strip_html | strip }}`
-          {% endif %}
-        {% endfor %}
-      {% else %}
-        {% if field.value_in_examples contains "'" %}
-        * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ field.value_in_examples | replace: "'", "" | markdownify | strip_html | strip }}`
-        {% else %}
-        * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ field.value_in_examples | markdownify | strip_html | strip }}`
-        {% endif %}
-      {% endif %}
-    {% elsif field.required == true %}
-        * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ field.default | markdownify | strip_html | strip }}`
-    {% endif %}
-  {% endfor %}
-{% endcapture %}
 
 <!-- Generate cURL examples -->
 {% capture config_required_fields %}{%
@@ -181,13 +155,12 @@ Configure this plugin on a Service:
 6. Add the Service field with the Service name and ID if it 
 is not already prefilled. 
 
-7. Enter the following required [parameters](#parameters):
+7. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
   {% if config_required_fields_konnect == empty %}
     There are no required parameters for this plugin.
   {% else %}    
     {{ config_required_fields_konnect }}
   {% endif %}
-
 8. Click **Create** to save.
 
 {% endnavtab %}
@@ -270,13 +243,12 @@ Configure this plugin on a Service:
     for your product tier. See <a href="">Kong Gateway tiers</a>.
     </div>
 
-6. Enter the following required [parameters](#parameters):
+6. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
   {% if config_required_fields_konnect == empty %}
     There are no required parameters for this plugin.
   {% else %}    
     {{ config_required_fields_konnect }}
   {% endif %}
-
 7. Click **Create** to save.
 
 {% endnavtab %}
