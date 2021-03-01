@@ -10,7 +10,7 @@ description: |
    in an [Apache Kafka](https://kafka.apache.org/) topic. For more information, see
    [Kafka topics](https://kafka.apache.org/documentation/#intro_concepts_and_terms).
 
-   {{site.ee_product_name}} also provides a Kafka Log plugin for publishing logs to a Kafka topic.
+   Kong also provides a Kafka Log plugin for publishing logs to a Kafka topic.
    See [Kafka Log](/hub/kong-inc/kafka-log/).
 
 type: plugin
