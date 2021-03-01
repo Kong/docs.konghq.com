@@ -11,6 +11,13 @@ description: |
   daemon by enabling its [Statsd
   plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
 
+  **Tip:** The [StatsD Advanced plugin](/hub/kong-inc/statsd-advanced/) provides 
+  additional features not available in the open source StatsD plugin, such as:
+
+  - Ability to choose status codes to log to metrics.
+  - More granular status codes per workspace.
+  - Ability to use TCP instead of UDP.
+
 type: plugin
 categories:
   - logging
@@ -56,20 +63,24 @@ params:
       required: false
       default: "`127.0.0.1`"
       value_in_examples: 127.0.0.1
+      datatype: string
       description: The IP address or host name to send data to.
     - name: port
       required: false
       default: "`8125`"
       value_in_examples: 8125
-      description: The port to send data to on the upstream server
+      datatype: integer
+      description:  The port of StatsD server to send data to.
     - name: metrics
       required: false
       default: "All metrics<br>are logged"
+      datatype: Array of record elements
       description: List of Metrics to be logged. Available values are described under [Metrics](#metrics).
     - name: prefix
       required: false
       default: "`kong`"
-      description: String to be prefixed to each metric's name.
+      datatype: string
+      description: String to prefix to each metric's name.
 
 ---
 
