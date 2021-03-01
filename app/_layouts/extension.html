@@ -10,30 +10,29 @@ breadcrumbs:
 {% if page.type == "plugin" %}
 
 <!-- Generate Konnect examples -->
-{% capture config_required_fields_konnect %}
-  {% for field in page.params.config %}
-    {% if field.value_in_examples != nil %}
-      {% if field.value_in_examples.first %}
-        For example:
-        {% for value in field.value_in_examples %}
-          {% if field.value_in_examples contains "'" %}
-            * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ value | replace: "'", "" | markdownify | strip_html | strip }}`
-          {% else %}
-            * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ value | markdownify | strip_html | strip }}`
-          {% endif %}
-        {% endfor %}
-      {% else %}
-        {% if field.value_in_examples contains "'" %}
-          * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ field.value_in_examples | replace: "'", "" | markdownify | strip_html | strip }}`
-        {% else %}
-          * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ field.value_in_examples | markdownify | strip_html | strip }}`
-        {% endif %}
-      {% endif %}
-    {% elsif field.required == true %}
-        * Config.{{ field.name | replace: "_", " " | split: ' ' | capitalize }}: `{{ field.default | markdownify | strip_html | strip }}`
-        {% endif %}
-  {% endfor %}
-{% endcapture %}
+{% capture config_required_fields_konnect %}{% 
+  for field in page.params.config %}{% assign capfields = field.name | split: '_' %}{% capture titlecase %}{% for capfield in capfields %}{{ capfield | capitalize }} {% endfor %}{% endcapture %}{% 
+    if field.required == true and field.value_in_examples == nil %} 
+    * Config.{{ titlecase | rstrip }}: `{{ field.default | smartify }}`{% 
+    elsif field.required == true and field.value_in_examples != nil %}{% 
+      if field.value_in_examples.first %} For example: {% 
+        for value in field.value_in_examples %}{% 
+          if field.value_in_examples contains "'" %} 
+    * Config.{{ titlecase | rstrip }}: `{{ value | replace: "'", "" }}`{% 
+          else %} 
+    * Config.{{ titlecase | rstrip }}: `{{ value }}`{% 
+          endif %}{% 
+        endfor %}{% 
+      else %}{% 
+        if field.value_in_examples contains "'" %} 
+    * Config.{{ titlecase | rstrip }}: `{{ field.value_in_examples | replace: "'", "" }}`{% 
+        else %} 
+    * Config.{{ titlecase | rstrip }}: `{{ field.value_in_examples }}`{% 
+        endif %}{%
+      endif %}{% 
+    endif %}{% 
+  endfor %}{%
+endcapture %}
 
 <!-- Generate Kong Manager examples -->
 {% capture config_required_fields_manager %}
@@ -78,14 +77,8 @@ breadcrumbs:
 %}{% endcapture %}
 
 <!-- Generate declarative yaml examples -->
-{% capture config_required_fields_yaml
-  %}config: {%
-  for field in page.params.config %}{%
-  if field.value_in_examples != nil %}{%
-    if field.value_in_examples.first %}{%
-        if field.name contains "." %}{%
-          assign names = field.name | split: "." %}
-    {{ names[0] }}:{%
+{% capture config_required_fields_yaml %}config: {% for field in page.params.config %}{% if field.value_in_examples != nil %}{% if field.value_in_examples.first %}
+        {% if field.name contains "." %}{% assign names = field.name | split: "." %}{{ names[0] }}:{%
       for name in names offset:1 %}
       {{ name }}:{% endfor %}{%
       for value in field.value_in_examples %}
@@ -189,7 +182,7 @@ Configure this plugin on a Service:
 is not already prefilled. 
 
 7. Enter the required [parameters](#parameters).
-
+    
     {{ config_required_fields_manager }}
 
 8. Click **Create** to save.
@@ -274,9 +267,12 @@ Configure this plugin on a Service:
     for your product tier. See <a href="">Kong Gateway tiers</a>.
     </div>
 
-6. Enter the required [parameters](#parameters).
-
-    {{ config_required_fields_manager }}
+6. Enter the following required [parameters](#parameters):
+  {% if config_required_fields_konnect == empty %}
+    There are no required parameters for this plugin.
+  {% else %}    
+    {{ config_required_fields_konnect }}
+  {% endif %}
 
 7. Click **Create** to save.
 
