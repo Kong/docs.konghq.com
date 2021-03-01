@@ -18,12 +18,11 @@ kong_version_compatibility:
     enterprise_edition:
       compatible:
         - 2.3.x
-        - 2.2.x 
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
 
 params:
   name: request-validator
@@ -32,14 +31,16 @@ params:
   consumer_id: true
   config:
     - name: body_schema
-      required: true
+      required: false
       value_in_examples: '''[{"name":{"type": "string", "required": true}}]'''
-      description: Array of schema fields.
+      datatype: string
+      description: The request body schema specification.
 
     - name: allowed_content_types
-      required: false
+      required: true
       default: "application/json"
       value_in_examples:
+      datatype: Set of string elements
       description: |
         List of allowed content types. <br>**Note:** Body validation is only
         done for `application/json` and skipped for any other allowed content types.
@@ -48,24 +49,27 @@ params:
       required: true
       default: "kong"
       value_in_examples:
+      datatype: string
       description: |
-        What validator to use. Supported values are `kong` (default) for using Kong's own schema
+        Which validator to use. Supported values are `kong` (default) for using Kong's own schema
         validator, or `draft4` for using a JSON Schema Draft 4-compliant validator.
 
     - name: parameter_schema
       required: false
       value_in_examples:
+      datatype: Array of record elements
       description: Array of parameter validator specifications.
        For details and examples, see [Parameter Schema Definition](#parameter-schema-definition).
 
 
     - name: verbose_response
-      required: false
+      required: true
       default: false
       value_in_examples:
+      datatype: boolean
       description: |
         If enabled, the plugin returns more verbose and detailed validation errors
-        (e.g., the name of the required field that is missing).
+        (for example, the name of the required field that is missing).
 
 ---
 
@@ -127,7 +131,7 @@ Each field definition contains the following attributes:
 | Attribute | Required | Description |
 | --- | --- | --- |
 | `type` | yes | The expected type for the field |
-| `required` | no | Whether or not the field is required |
+| `required` | no | Whether the field is required |
 
 Additionally, specific types may have their own required fields:
 
@@ -211,7 +215,7 @@ validations:
 
 | Validator | Applies to | Description |
 | --- | --- | --- |
-| `between` | Integers | Whether the value is between two integer. Specified as an array; e.g., `{1, 10}` |
+| `between` | Integers | Whether the value is between two integers. Specified as an array; for example, `{1, 10}` |
 | `len_eq` | Arrays, Maps, Strings | Whether an array's length is a given value |
 | `len_min` | Arrays, Maps, Strings | Whether an array's length is at least a given value |
 | `len_max` | Arrays, Maps, strings | Whether an array's length is at most a given value |
@@ -316,7 +320,7 @@ Such a schema would validate the following request body:
 ### Parameter Schema Definition
 
 You can setup definitions for each parameter based on the OpenAPI Specification and
-the plugin will validate each parameter against it. For more information see the
+the plugin will validate each parameter against it. For more information, see the
 [OpenAPI specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#parameter-object)
 or the [OpenAPI examples](https://swagger.io/docs/specification/serialization/).
 
@@ -397,7 +401,7 @@ In this example, use the plugin to validate a request's path parameter.
     }
     ```
 
-3. Enable request-validator plugin to validate body and parameter:
+3. Enable `request-validator` plugin to validate body and parameter:
 
     ```
     curl -i -X POST http://kong:8001/services/httpbin/plugins \
