@@ -548,12 +548,15 @@
         - text: Developer Roles and Content Permissions
           url: /developer-portal/administration/developer-permissions
         - text: Application Registration
-          url: /developer-portal/administration/application-registration
           items:
-            - text: External OAuth2 Support
-              url: /developer-portal/administration/application-registration/3rd-party-oauth
+            - text: Authorization Provider Strategy
+              url: /developer-portal/administration/application-registration/auth-provider-strategy
             - text: Enable Application Registration
               url: /developer-portal/administration/application-registration/enable-application-registration
+            - text: Enable Key Authentication for Application Registration
+              url: /developer-portal/administration/application-registration/enable-key-auth-plugin
+            - text: External OAuth2 Support
+              url: /developer-portal/administration/application-registration/3rd-party-oauth
             - text: Set up Okta and Kong for external OAuth
               url: /developer-portal/administration/application-registration/okta-config
             - text: Set Up Azure AD and Kong for External Authentication
