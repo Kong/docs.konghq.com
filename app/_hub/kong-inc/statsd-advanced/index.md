@@ -9,8 +9,16 @@ description: |
   Log [metrics](#metrics) for a Service, Route (or the deprecated API entity)
   to a StatsD server.
   It can also be used to log metrics on [Collectd](https://collectd.org/)
-  daemon by enabling its [StatsD
-  plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
+  daemon by enabling its
+  [StatsD plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
+
+  The StatsD Advanced plugin provides additional features not available in the
+  open source [StatsD plugin](https://docs.konghq.com/hub/kong-inc/statsd/):
+
+  - Ability to choose status codes to log to metrics.
+  - More granular status codes per workspace.
+  - Ability to use TCP instead of UDP.
+
 
 enterprise: true
 type: plugin
@@ -28,8 +36,6 @@ kong_version_compatibility:
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
-        - 0.34-x
 
 params:
   name: statsd-advanced
@@ -43,36 +49,52 @@ params:
       required:
       default: "`127.0.0.1`"
       value_in_examples: 127.0.0.1
-      description: The IP address or host name of StatsD server to send data to
+      datatype: string
+      description: The IP address or hostname of StatsD server to send data to.
     - name: port
       required:
       default: "`8125`"
       value_in_examples: 8125
-      description: The port of StatsD server to send data to
+      datatype: integer
+      description: The port of StatsD server to send data to.
     - name: metrics
       required:
       default: "All metrics<br>are logged"
+      datatype: Array of record elements
       description: |
         List of Metrics to be logged. Available values are described under [Metrics](#metrics).
     - name: prefix
       required:
       default: "`kong`"
-      description: String to be prefixed to each metric's name
+      datatype: string
+      description: String to prefix to each metric's name.
+    - name: hostname_in_prefix
+      required:
+      default: "`false`"
+      datatype: boolean
+      description: Include the `hostname` in the `prefix` for each metric name.
     - name: udp_packet_size
       required:
       default: "`0` (not combined)"
-      description: Combine UDP packet up to the size configured
+      datatype: number
+      description: |
+        Combine UDP packet up to the size configured. If zero (0), don't combine the
+        UDP packet. Must be a number between 0 and 65507.
     - name: use_tcp
       required:
       default: "`false`"
-      description: Use TCP instead of UDP
+      datatype: boolean
+      description: Use TCP instead of UDP.
     - name: allow_status_codes
       required:
       default: "All responses are passed to log metrics"
       value_in_examples: ["200-205","400-499"]
-      description: List of status code ranges which are allowed to be logged in metrics  
+      datatype: array of string elements
+      description: List of status code ranges that are allowed to be logged in metrics.  
   extra: |
-    By default the Plugin sends a packet for each metric it observes. `udp_packet_size` configures the greatest datagram size the Plugin can combine. It should be less than 65507 according to UDP protocol. Please consider the MTU of the network when setting this parameter.
+    By default, the plugin sends a packet for each metric it observes. The `udp_packet_size` option
+    configures the greatest datagram size the plugin can combine. It should be less than
+    65507 according to UDP protocol. Please consider the MTU of the network when setting this parameter.
 ---
 
 ## Metrics
