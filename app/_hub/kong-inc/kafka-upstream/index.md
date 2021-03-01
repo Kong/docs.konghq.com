@@ -206,7 +206,7 @@ Known limitations:
 
 ## Quickstart
 
-The following guidelines assume that both `Kong` and `Kafka` have been installed on your local machine.
+The following guidelines assume that both `Kong` has been installed and that `Kafka Upstream` has been enabled.
 
 1. Create a `kong-upstream` topic in your `Kafka` cluster:
 
