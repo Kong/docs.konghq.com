@@ -181,9 +181,12 @@ Configure this plugin on a Service:
 6. Add the Service field with the Service name and ID if it 
 is not already prefilled. 
 
-7. Enter the required [parameters](#parameters).
-    
-    {{ config_required_fields_manager }}
+7. Enter the following required [parameters](#parameters):
+  {% if config_required_fields_konnect == empty %}
+    There are no required parameters for this plugin.
+  {% else %}    
+    {{ config_required_fields_konnect }}
+  {% endif %}
 
 8. Click **Create** to save.
 
