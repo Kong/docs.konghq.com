@@ -1920,22 +1920,22 @@ Redis connection timeout in milliseconds.
 
 #### config.session_redis_read_timeout
 
-Redis read timeout in milliseconds (not supported with Redis cluster).
+Redis read timeout in milliseconds for the Redis client.
 
 
 #### config.session_redis_send_timeout
 
-Redis send timeout in milliseconds (not supported with Redis cluster).
+Redis send timeout in milliseconds for the Redis client.
 
 
 #### config.session_redis_ssl
 
-Use SSL/TLS for Redis connection (not supported with Redis cluster).
+Use SSL/TLS for Redis connection.
 
 
 #### config.session_redis_ssl_verify
 
-Verify Redis server certificate (not supported with Redis cluster).
+Verify Redis server certificate.
 
 
 #### config.session_redis_cluster_nodes
