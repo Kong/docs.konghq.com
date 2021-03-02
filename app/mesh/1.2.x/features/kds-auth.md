@@ -2,8 +2,7 @@
 title: Multi-zone authentication
 ---
 
-Kong Mesh provides a built-in method for authentication of Remote Control Plane.
-Endpoints for synchronizing Global with Remote are often exposed across many clouds therefore secure setup is crucial. You should generate a control plane token for each remote control plane in your environment.
+To add to the security of your deployments, Kong Mesh provides token generation for authenticating remote control planes to the global control plane.
 
 The control plane token is a JWT that contains:
 
