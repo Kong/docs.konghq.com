@@ -41,7 +41,7 @@ an hypothetical Python plugin server called `pypluginserver.py`):
 ```
 pluginserver_names = go,python
 
-pluginserver_go_socket = /usr/local/kong/go_pluginserver.socket
+pluginserver_go_socket = /usr/local/kong/go_pluginserver.sock
 pluginserver_go_start_cmd = go-pluginserver -kong-prefix /usr/local/kong/ -plugins-directory /usr/local/kong/go-plugins
 pluginserver_go_query_cmd = go-pluginserver -dump-all-plugins -plugins-directory /usr/local/kong/go-plugins
 
