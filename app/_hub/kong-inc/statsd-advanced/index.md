@@ -59,7 +59,7 @@ params:
       description: The port of StatsD server to send data to.
     - name: metrics
       required:
-      default: "All metrics<br>are logged"
+      default: "All metrics are logged"
       datatype: Array of record elements
       description: |
         List of Metrics to be logged. Available values are described under [Metrics](#metrics).
