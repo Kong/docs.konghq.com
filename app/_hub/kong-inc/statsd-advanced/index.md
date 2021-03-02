@@ -39,7 +39,7 @@ kong_version_compatibility:
 
 params:
   name: statsd-advanced
-  api_id: true
+  api_id: false
   service_id: true
   route_id: true
   consumer_id: true
@@ -123,7 +123,7 @@ Metric                     | description | namespace
 `request_size`             | the request's body size in bytes | kong.global.unmatched.request.size
 `response_size`            | the response's body size in bytes | kong.global.unmatched.response.size
 `latency`                  | the time interval between the request started and response received from the upstream server | kong.global.unmatched.latency
-`status_count`             | the status code | kong.global.unmatched.status.\<status>.count
+`status_count`             | the status count | kong.global.unmatched.status.\<status>.count
 `kong_latency`             | the internal Kong latency that it took to run all the Plugins | kong.global.unmatched.kong_latency
 
 ### Metric Fields
