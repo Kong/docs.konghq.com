@@ -1920,12 +1920,12 @@ Redis connection timeout in milliseconds.
 
 #### config.session_redis_read_timeout
 
-Redis read timeout in milliseconds for the Redis client.
+The read timeout in milliseconds for the Redis client.
 
 
 #### config.session_redis_send_timeout
 
-Redis send timeout in milliseconds for the Redis client.
+The send timeout in milliseconds for the Redis client.
 
 
 #### config.session_redis_ssl
