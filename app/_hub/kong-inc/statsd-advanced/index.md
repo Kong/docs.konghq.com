@@ -46,47 +46,47 @@ params:
   protocols: ["http", "https", "grpc", "grpcs", "tcp", "tls", "udp"]
   config:
     - name: host
-      required:
+      required: true
       default: "`127.0.0.1`"
       value_in_examples: 127.0.0.1
       datatype: string
       description: The IP address or hostname of StatsD server to send data to.
     - name: port
-      required:
+      required: true
       default: "`8125`"
       value_in_examples: 8125
       datatype: integer
       description: The port of StatsD server to send data to.
     - name: metrics
-      required:
+      required: true
       default: "All metrics are logged"
       datatype: Array of record elements
       description: |
         List of Metrics to be logged. Available values are described under [Metrics](#metrics).
     - name: prefix
-      required:
+      required: true
       default: "`kong`"
       datatype: string
       description: String to prefix to each metric's name.
     - name: hostname_in_prefix
-      required:
+      required: true
       default: "`false`"
       datatype: boolean
       description: Include the `hostname` in the `prefix` for each metric name.
     - name: udp_packet_size
-      required:
+      required: true
       default: "`0` (not combined)"
       datatype: number
       description: |
         Combine UDP packet up to the size configured. If zero (0), don't combine the
         UDP packet. Must be a number between 0 and 65507 (inclusive).
     - name: use_tcp
-      required:
+      required: true
       default: "`false`"
       datatype: boolean
       description: Use TCP instead of UDP.
     - name: allow_status_codes
-      required:
+      required: true
       default: "All responses are passed to log metrics"
       value_in_examples: ["200-205","400-499"]
       datatype: array of string elements
