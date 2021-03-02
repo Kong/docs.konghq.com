@@ -99,7 +99,7 @@ params:
 
 ## Metrics
 
-Metric                     | description | namespace
+Metric                     | Description | Namespace
 ---                        | ---         | ---
 `request_count`            | the request count | kong.service.\<service_identifier>.request.count
 `request_size`             | the request's body size in bytes | kong.service.\<service_identifier>.request.size
@@ -117,31 +117,31 @@ Metric                     | description | namespace
 
 If a request URI doesn't match any Routes, the following metrics will be sent instead:
 
-Metric                     | description | namespace
+Metric                     | Description | Namespace
 ---                        | ---         | ---
 `request_count`            | the request count | kong.global.unmatched.request.count
 `request_size`             | the request's body size in bytes | kong.global.unmatched.request.size
 `response_size`            | the response's body size in bytes | kong.global.unmatched.response.size
 `latency`                  | the time interval between the request started and response received from the upstream server | kong.global.unmatched.latency
 `status_count`             | the status count | kong.global.unmatched.status.\<status>.count
-`kong_latency`             | the internal Kong latency that it took to run all the Plugins | kong.global.unmatched.kong_latency
+`kong_latency`             | the internal Kong latency that it took to run all the plugins | kong.global.unmatched.kong_latency
 
 ### Metric Fields
 
-Plugin can be configured with any combination of [Metrics](#metrics), with each entry containing the following fields:
+The plugin can be configured with any combination of [Metrics](#metrics), with each entry containing the following fields:
 
-Field         | description                                             | allowed values
----           | ---                                                     | ---
-`name`          | StatsD metric's name                                  | [Metrics](#metrics)          
-`stat_type`     | determines what sort of event the metric represents   | `gauge`, `timer`, `counter`, `histogram`, `meter` and `set`|
-`sample_rate`<br>*conditional*   | sampling rate                        | `number`                 
-`customer_identifier`<br>*conditional* | authenticated user detail       | `consumer_id`, `custom_id`, `username`
-`service_identifier`<br>*conditional* | Service detail       | `service_id`, `service_name`, `service_host`, `service_name_or_host`
-`workspace_identifier`<br>*conditional* | Workspace detail       | `workspace_id`, `workspace_name`
+Field         | Description                                             | Datatype | Allowed values
+---           | ---                                                     | ---        ---
+`name`          | StatsD metric's name. Required.                       | String   | [Metrics](#metrics)          
+`stat_type`     | Determines what sort of event a metric represents. Required.  | String   | `gauge`, `timer`, `counter`, `histogram`, `meter` and `set`|
+`sample_rate`<br>*conditional*   | Sampling rate. Required.              | Number        | `number`                 
+`customer_identifier`<br>*conditional* | Authenticated user detail. Required.  | String   | One of the following options: `consumer_id`, `custom_id`, `username`
+`service_identifier`<br>*conditional* | Service detail. Required.  | String   |  One of the following options:`service_id`, `service_name`, `service_host`, `service_name_or_host`
+`workspace_identifier`<br>*conditional* | Workspace detail. Required.  | String | One of the following options:`workspace_id`, `workspace_name`
 
 ### Metric Behaviors
 
-1.  By default all metrics get logged.
+1.  By default, all metrics get logged.
 2.  Metric with `stat_type` set to `counter` or `gauge` must have `sample_rate` defined as well.
 3.  `unique_users` metric only works with `stat_type` as `set`.
 4.  `status_count`, `status_count_per_user`, `status_count_per_user_per_route` and `request_per_user` work only with `stat_type` as `counter`.
