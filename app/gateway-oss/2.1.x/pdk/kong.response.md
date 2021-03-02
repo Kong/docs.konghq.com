@@ -496,10 +496,8 @@ return kong.response.exit(403, { message = "Access Forbidden" }, {
 
 ---
 
-```lua
 -- In L4 proxy mode
 return kong.response.exit(200, "Success")
-```
 ```
 
 [Back to top](#kongresponse)
@@ -569,4 +567,3 @@ return kong.response.error(403)
 ```
 
 [Back to top](#kongresponse)
-
