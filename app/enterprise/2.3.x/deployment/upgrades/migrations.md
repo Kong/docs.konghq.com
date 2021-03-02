@@ -35,8 +35,6 @@ upgrade to 2.2.x before upgrading to 2.3.x. Zero downtime is possible but _not_
 guaranteed if you are upgrading incrementally between versions, from 0.36.x to 1.3.x to
 1.5.x to 2.1.x to 2.2.x to 2.3.x. Plan accordingly.
 
-* If running a version of {{site.ee_product_name}} earlier than 1.3,
-  [migrate to 1.3](/enterprise/1.3-x/deployment/migrations/) first.
 * If running a version of {{site.ee_product_name}} earlier than 1.5,
   [migrate to 1.5](/enterprise/1.5.x/deployment/migrations/) first.
 * If running a version of {{site.ee_product_name}} earlier than 2.1,
@@ -51,7 +49,6 @@ There are no migrations necessary for the Dev Portal when upgrading from 2.2.x t
 
 If you are currently using the Developer Portal in 1.5.x, it will no longer work without
 [manually migrating files](/enterprise/2.1.x/developer-portal/latest-migrations) to version 2.1.x.
-
 
 ### Upgrade considerations
 
@@ -127,8 +124,8 @@ decommission it. For this reason, the full migration is split into two commands:
 
 #### Cassandra
 
-Due to internal changes, the table schemas used by {{site.ee_product_name}} 2.2.x on Cassandra
-are incompatible with those used by {{site.ee_product_name}} 2.3.x. Migrating using the usual commands
+Due to internal changes, the table schemas used by {{site.ee_product_name}} 2.3.x on Cassandra
+are incompatible with those used by {{site.ee_product_name}} 2.0.x. Migrating using the usual commands
 `kong migrations up` and `kong migrations finish` will require a small
 window of downtime, since the old and new versions cannot use the
 database at the same time. Alternatively, to keep your previous version fully
