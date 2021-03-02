@@ -3206,25 +3206,34 @@ attackers or unintentional modification of the Kong global environment.
 
 - `on`: allow loading of Lua functions from admin supplied sources and do not
   use a sandbox when executing them. Functions will have unrestricted access to
-  global environment and able to load any Lua modules. This is similar to the
-  behavior in Kong prior to 2.3.0.
+  global environment and able to load any Lua modules.
 
 LuaJIT bytecode loading is disabled.
 
-untrusted_lua_sandbox_requires = Comma-separated list of modules allowed to be
-loaded with `require` inside the sandboxed environment. Ignored if
-`untrusted_lua` is not `sandbox`.
+**Default:** `sandbox`
+
+---
+
+#### untrusted_lua_sandbox_requires
+
+Comma-separated list of modules allowed to be loaded with `require` inside the
+sandboxed environment. Ignored if `untrusted_lua` is not `sandbox`.
 
 Note: certain modules, when allowed, may cause sandbox escaping trivial.
 
-untrusted_lua_sandbox_environment = Comma-separated list of global Lua
-variables that should be made available inside the sandboxed environment.
-Ignored if `untrusted_lua` is not `sandbox`.
+**Default:** none
+
+---
+
+#### untrusted_lua_sandbox_environment
+
+Comma-separated list of global Lua variables that should be made available
+inside the sandboxed environment. Ignored if `untrusted_lua` is not `sandbox`.
 
 Note: certain variables, when made available, may cause sandbox escaping
 trivial.
 
-**Default:** `on`
+**Default:** none
 
 ---
 
