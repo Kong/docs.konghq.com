@@ -1417,20 +1417,23 @@ Generic Styling for Desktop
     }
 
   .breadcrumb-item {
+    color: @navy-text;
     display: inline-block;
-    font-weight: 100;
-    font-size: 15px;
+    font: normal 14px/22px Roboto;
     margin-left: 0;
 
     &:after {
-      content: " \203a";
-      font-size: 18px;
-      padding: 3px;
+      content: "\276f";
+      font-size: 14px;
+      padding: 6px;
     }
 
     &:first-of-type {
+      color: #4c6d80;
+      text-transform: uppercase;
+      font: normal 12px/16px Roboto;
+
       &:before {
-        content: "»";
         font-size: 18px;
         margin-left: -0.5rem;
         padding-right: 3px;
@@ -1438,9 +1441,15 @@ Generic Styling for Desktop
     }
 
     &:last-of-type {
+      font-weight: 500;
+
       &:after {
         content: " ";
       }
+    }
+
+    a {
+      color: @navy-text;
     }
   }
 
