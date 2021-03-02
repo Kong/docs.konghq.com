@@ -1,26 +1,29 @@
 ---
-title: Kong Mesh - OPAPolicy Support
+title: Kong Mesh - OPA Policy Integration
 ---
 
-## OPAPolicy plugin
+## OPA policy plugin
 
-[Open Policy Agent (OPA)](https://www.openpolicyagent.org/) is a way to control access to a various components of your infrastructure.
-OPA can also be used to control the access to a service, which is the case that Kong Mesh integration covers.
+Kong Mesh integrates the [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) to provide access control for your services.
 
-Usually, OPA agent is deployed as a sidecar next to your application, but Kong Mesh embeds OPA agent into data plane proxy sidecar removing the burden of operations.
+The agent is embedded in the data plane proxy sidecar, instead of the more common deployment as a separate sidecar.
 
-When `OPAPolicy` is applied, Kong Mesh control plane does two things
-1) It configures embedded OPA agent with a selected policy
-2) It configures Envoy to use [External Authorization](https://www.envoyproxy.io/docs/envoy/latest/api-v2/config/filter/http/ext_authz/v2/ext_authz.proto) pointing to a local embedded OPA agent.
+When `OPAPolicy` is applied, the control plane configures:
+
+- the embedded policy agent, with the specified policy
+- Envoy, to use [External Authorization](https://www.envoyproxy.io/docs/envoy/latest/api-v2/config/filter/http/ext_authz/v2/ext_authz.proto) that points to the embedded policy agent
 
 ## Usage
 
-To apply an OPA policy, we first need to select a group of dataplanes on which the policy will be applied using `selectors` section.
-Then, in the `conf` section we need to provide a list of OPA policies. Policies are defined using [Rego language](https://www.openpolicyagent.org/docs/latest/policy-language/).
+To apply a policy with OPA: 
+
+- Specify the group of data plane proxies to apply the policy to with the `selectors` property.
+- Provide the list of policies with the `conf` property. Policies are defined in the [Rego language](https://www.openpolicyagent.org/docs/latest/policy-language/).
 
 ### Inline
 
-**Kubernetes**
+{% navtabs %}
+{% navtab Kubernetes %}
 
 ```yaml
 apiVersion: kuma.io/v1alpha1
@@ -58,7 +61,8 @@ spec:
           }
 ```
 
-**Universal**
+{% endnavtab %}
+{% navtab Universal %}
 
 ```yaml
 type: OPAPolicy
@@ -99,109 +103,102 @@ conf:
         }
 ```
 
-### Secret
+{% endnavtab %}
+{% endnavtabs %}
 
-Policy can contain sensitive data, so we can use a [Secret](https://kuma.io/docs/1.0.7/documentation/secrets/#universal) as a source of the policy.
+### With Secrets
+
+Encoding the policy in a [Secret](https://kuma.io/docs/1.0.7/documentation/secrets/#universal) provides some security for policies that contain sensitive data.
 
 {% navtabs %}
 {% navtab Kubernetes %}
 
-First define a secret with a policy encoded as Base64.
+1.  Define a Secret with a policy that's Base64-encoded:
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: opa-policy
-  namespace: kong-mesh-system
-  labels:
-    kuma.io/mesh: default
-data:
-  value: cGFja2FnZSBlbnZveS5hdXRoegoKaW1wb3J0IGlucHV0LmF0dHJpYnV0ZXMucmVxdWVzdC5odHRwIGFzIGh0dHBfcmVxdWVzdAoKZGVmYXVsdCBhbGxvdyA9IGZhbHNlCgp0b2tlbiA9IHsidmFsaWQiOiB2YWxpZCwgInBheWxvYWQiOiBwYXlsb2FkfSB7CiAgICBbXywgZW5jb2RlZF0gOj0gc3BsaXQoaHR0cF9yZXF1ZXN0LmhlYWRlcnMuYXV0aG9yaXphdGlvbiwgIiAiKQogICAgW3ZhbGlkLCBfLCBwYXlsb2FkXSA6PSBpby5qd3QuZGVjb2RlX3ZlcmlmeShlbmNvZGVkLCB7InNlY3JldCI6ICJzZWNyZXQifSkKfQoKYWxsb3cgewogICAgaXNfdG9rZW5fdmFsaWQKICAgIGFjdGlvbl9hbGxvd2VkCn0KCmlzX3Rva2VuX3ZhbGlkIHsKICB0b2tlbi52YWxpZAogIG5vdyA6PSB0aW1lLm5vd19ucygpIC8gMTAwMDAwMDAwMAogIHRva2VuLnBheWxvYWQubmJmIDw9IG5vdwogIG5vdyA8IHRva2VuLnBheWxvYWQuZXhwCn0KCmFjdGlvbl9hbGxvd2VkIHsKICBodHRwX3JlcXVlc3QubWV0aG9kID09ICJHRVQiCiAgdG9rZW4ucGF5bG9hZC5yb2xlID09ICJhZG1pbiIKfQoK
-type: system.kuma.io/secret
-```
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: opa-policy
+      namespace: kong-mesh-system
+      labels:
+        kuma.io/mesh: default
+    data:
+      value: cGFja2FnZSBlbnZveS5hdXRoegoKaW1wb3J0IGlucHV0LmF0dHJpYnV0ZXMucmVxdWVzdC5odHRwIGFzIGh0dHBfcmVxdWVzdAoKZGVmYXVsdCBhbGxvdyA9IGZhbHNlCgp0b2tlbiA9IHsidmFsaWQiOiB2YWxpZCwgInBheWxvYWQiOiBwYXlsb2FkfSB7CiAgICBbXywgZW5jb2RlZF0gOj0gc3BsaXQoaHR0cF9yZXF1ZXN0LmhlYWRlcnMuYXV0aG9yaXphdGlvbiwgIiAiKQogICAgW3ZhbGlkLCBfLCBwYXlsb2FkXSA6PSBpby5qd3QuZGVjb2RlX3ZlcmlmeShlbmNvZGVkLCB7InNlY3JldCI6ICJzZWNyZXQifSkKfQoKYWxsb3cgewogICAgaXNfdG9rZW5fdmFsaWQKICAgIGFjdGlvbl9hbGxvd2VkCn0KCmlzX3Rva2VuX3ZhbGlkIHsKICB0b2tlbi52YWxpZAogIG5vdyA6PSB0aW1lLm5vd19ucygpIC8gMTAwMDAwMDAwMAogIHRva2VuLnBheWxvYWQubmJmIDw9IG5vdwogIG5vdyA8IHRva2VuLnBheWxvYWQuZXhwCn0KCmFjdGlvbl9hbGxvd2VkIHsKICBodHRwX3JlcXVlc3QubWV0aG9kID09ICJHRVQiCiAgdG9rZW4ucGF5bG9hZC5yb2xlID09ICJhZG1pbiIKfQoK
+    type: system.kuma.io/secret
+    ```
 
-Then refer to it in `OPAPolicy`
+1.  Pass the Secret to `OPAPolicy`:
 
-```yaml
-apiVersion: kuma.io/v1alpha1
-kind: OPAPolicy
-mesh: default
-metadata:
-  name: opa-1
-spec:
-  selectors:
-  - match:
-      kuma.io/service: '*'
-  conf:
-    policies:
-      - secret: opa-policy
-```
+    ```yaml
+    apiVersion: kuma.io/v1alpha1
+    kind: OPAPolicy
+    mesh: default
+    metadata:
+      name: opa-1
+    spec:
+      selectors:
+      - match:
+          kuma.io/service: '*'
+      conf:
+        policies:
+          - secret: opa-policy
+    ```
 
 {% endnavtab %}
 {% navtab Universal %}
 
-First define a secret with a policy encoded as Base64.
+1.  Define a Secret with a policy that's Base64-encoded:
 
-```yaml
-type: Secret
-name: sample-secret
-mesh: default
-data: cGFja2FnZSBlbnZveS5hdXRoegoKaW1wb3J0IGlucHV0LmF0dHJpYnV0ZXMucmVxdWVzdC5odHRwIGFzIGh0dHBfcmVxdWVzdAoKZGVmYXVsdCBhbGxvdyA9IGZhbHNlCgp0b2tlbiA9IHsidmFsaWQiOiB2YWxpZCwgInBheWxvYWQiOiBwYXlsb2FkfSB7CiAgICBbXywgZW5jb2RlZF0gOj0gc3BsaXQoaHR0cF9yZXF1ZXN0LmhlYWRlcnMuYXV0aG9yaXphdGlvbiwgIiAiKQogICAgW3ZhbGlkLCBfLCBwYXlsb2FkXSA6PSBpby5qd3QuZGVjb2RlX3ZlcmlmeShlbmNvZGVkLCB7InNlY3JldCI6ICJzZWNyZXQifSkKfQoKYWxsb3cgewogICAgaXNfdG9rZW5fdmFsaWQKICAgIGFjdGlvbl9hbGxvd2VkCn0KCmlzX3Rva2VuX3ZhbGlkIHsKICB0b2tlbi52YWxpZAogIG5vdyA6PSB0aW1lLm5vd19ucygpIC8gMTAwMDAwMDAwMAogIHRva2VuLnBheWxvYWQubmJmIDw9IG5vdwogIG5vdyA8IHRva2VuLnBheWxvYWQuZXhwCn0KCmFjdGlvbl9hbGxvd2VkIHsKICBodHRwX3JlcXVlc3QubWV0aG9kID09ICJHRVQiCiAgdG9rZW4ucGF5bG9hZC5yb2xlID09ICJhZG1pbiIKfQoK
-```
+    ```yaml
+    type: Secret
+    name: sample-secret
+    mesh: default
+    data: cGFja2FnZSBlbnZveS5hdXRoegoKaW1wb3J0IGlucHV0LmF0dHJpYnV0ZXMucmVxdWVzdC5odHRwIGFzIGh0dHBfcmVxdWVzdAoKZGVmYXVsdCBhbGxvdyA9IGZhbHNlCgp0b2tlbiA9IHsidmFsaWQiOiB2YWxpZCwgInBheWxvYWQiOiBwYXlsb2FkfSB7CiAgICBbXywgZW5jb2RlZF0gOj0gc3BsaXQoaHR0cF9yZXF1ZXN0LmhlYWRlcnMuYXV0aG9yaXphdGlvbiwgIiAiKQogICAgW3ZhbGlkLCBfLCBwYXlsb2FkXSA6PSBpby5qd3QuZGVjb2RlX3ZlcmlmeShlbmNvZGVkLCB7InNlY3JldCI6ICJzZWNyZXQifSkKfQoKYWxsb3cgewogICAgaXNfdG9rZW5fdmFsaWQKICAgIGFjdGlvbl9hbGxvd2VkCn0KCmlzX3Rva2VuX3ZhbGlkIHsKICB0b2tlbi52YWxpZAogIG5vdyA6PSB0aW1lLm5vd19ucygpIC8gMTAwMDAwMDAwMAogIHRva2VuLnBheWxvYWQubmJmIDw9IG5vdwogIG5vdyA8IHRva2VuLnBheWxvYWQuZXhwCn0KCmFjdGlvbl9hbGxvd2VkIHsKICBodHRwX3JlcXVlc3QubWV0aG9kID09ICJHRVQiCiAgdG9rZW4ucGF5bG9hZC5yb2xlID09ICJhZG1pbiIKfQoK
+    ```
 
-Then refer to it in `OPAPolicy`
+1.  Pass the Secret to `OPAPolicy`:
 
-```yaml
-type: OPAPolicy
-mesh: default
-name: opa-1
-selectors:
-- match:
-    kuma.io/service: '*'
-conf:
-  policies:
-    - secret: opa-policy
-```
+    ```yaml
+    type: OPAPolicy
+    mesh: default
+    name: opa-1
+    selectors:
+    - match:
+        kuma.io/service: '*'
+    conf:
+      policies:
+        - secret: opa-policy
+    ```
+
 {% endnavtab %}
 {% endnavtabs %}
 
-## OPA Configuration
+## Configuration
 
-OPA has a default configuration tuned for Kong Mesh, but you can still control the behavior of OPA itself for your need.
+Kong Mesh defines a default configuration for OPA, but you can adjust the configuration to meet your environment's requirements.
 
-### Universal
+The following environment variables are available:
 
-Kuma DP `run` command exposes set of parameters
+| Variable                   | Type      | What it configures     | Default value {:width=25%:}   |
+| -------------------------- | --------- | --------------------------------------| ------------------- |
+| KMESH_OPA_ADDR             | string    | Address OPA API server listens on     | `localhost:8181`    |
+| KMESH_OPA_CONFIG_PATH      | string    | Path to file of initial config        | N/A                 |
+| KMESH_OPA_DIAGNOSTIC_ADDR  | string    | Address of OPA diagnostics server     | `0.0.0.0:8282`      |
+| KMESH_OPA_ENABLED          | bool      | Whether `kuma-dp` starts embedded OPA | true                |
+| KMESH_OPA_EXT_AUTHZ_ADDR   | string    | Address of Envoy External AuthZ service | `localhost:9191`  |
+| KMESH_OPA_CONFIG_OVERRIDES | strings   | Overrides for OPA configuration, in addition to config file(*) | [plugins.envoy_ext_authz_grpc. query=data.envoy.authz.allow] |
 
-```
---opa-addr string                Address on which OPA API server will listen (default "localhost:8181")
---opa-config-path string         Path to a file which OPA will use to load initial configuration
---opa-diagnostic-addr string     Address on which OPA will expose diagnostics server (default "0.0.0.0:8282")
---opa-enabled                    If true, Kuma DP will start embedded Open Policy Agent (default true)
---opa-ext-authz-addr string      Address on which OPA will expose Envoy's External Authz service. Envoy will use this address to authorize requests (default "localhost:9191")
---opa-set strings                Overrides for the OPA configuration that are applied on top of config file (equivalent of --set in standalone OPA) (default [plugins.envoy_ext_authz_grpc.query=data.envoy.authz.allow])
-```
+{% navtabs %}
+{% navtab Kubernetes %}
 
-or equivalent environment variables
-```
-KMESH_OPA_ADDR
-KMESH_OPA_CONFIG_PATH
-KMESH_OPA_DIAGNOSTIC_ADDR
-KMESH_OPA_ENABLED
-KMESH_OPA_EXT_AUTHZ_ADDR
-KMESH_OPA_CONFIG_OVERRIDES
-```
+You can customize the agent in either of the following ways:
 
-### Kubernetes
+- Override variables in the data plane proxy config: 
+{% navtabs %}
+{% navtab kumactl %}
 
-There are two ways how we can parametrize
-
-1. Override variables whenever Kuma DP is injected.
-
-#### kumactl
-
-Deploy Kong Mesh CP. Edit `kong-mesh-control-plane-config` config map
+When you deploy the Mesh control plane, edit the `kong-mesh-control-plane-config` ConfigMap:
 
 ```yaml
 apiVersion: v1
@@ -221,9 +218,10 @@ data:
               KMESH_OPA_CONFIG_OVERRIDES: "config1:x,config2:y"
 ```
 
-#### HELM
+{% endnavtab %}
+{% navtab Helm %}
 
-Override HELM value in `Values.yaml`
+Override the Helm value in `values.yaml`
 
 ```yaml
 kuma:
@@ -239,9 +237,27 @@ kuma:
                 KMESH_OPA_CONFIG_OVERRIDES: "config1:x,config2:y"
 ```
 
-2. Override config for individual Kuma DP
+{% endnavtab %}
+{% endnavtabs %}
+{% endnavtab %}
+{% navtab Universal %}
 
-Place annotation on the Pod
+The `run` command on the data plane proxy accepts the following equivalent parameters if you prefer not to set environment variables:
+
+
+```
+--opa-addr 
+--opa-config-path 
+--opa-diagnostic-addr 
+--opa-enabled                    
+--opa-ext-authz-addr 
+--opa-set strings 
+```
+
+{% endnavtab %}
+{% endnavtabs %}
+
+- Override the config for individual data plane proxies by placing the appropriate annotations on the Pod:
 
 ```
 apiVersion: apps/v1
@@ -259,11 +275,9 @@ spec:
         kuma.io/sidecar-env-vars: "KMESH_OPA_ENABLED=false;KMESH_OPA_ADDR=:8888;KMESH_OPA_CONFIG_OVERRIDES=config1:x,config2:y"
 ```
 
-### Support for external Management API servers
+## Support for external API management servers
 
-OPAPolicy does not require `conf` section, therefore we can
-
-1. Apply OPAPolicy that configures Envoy with External Authorization filter, but won't configure OPA itself
+OPAPolicy does not require the `conf` section, so you can apply `OPAPolicy` to configure Envoy with External AuthZ only. This approach does not configure the policy agent itself:
 
 ```yaml
 type: OPAPolicy
@@ -274,7 +288,7 @@ selectors:
     kuma.io/service: '*'
 ```
 
-2. Provide custom OPA configuration (for example via file or set of parameters)
+You can also provide a custom OPA configuration with either a config file or an explicit set of parameters.
 
 ```
 $ cat /tmp/example-bootstrap.yaml
@@ -291,8 +305,5 @@ discovery:
   signing:
     keyid: my_global_key
     scope: read
-```
-
-```
 --opa-config-path /tmp/example-bootstrap.yaml
 ```
