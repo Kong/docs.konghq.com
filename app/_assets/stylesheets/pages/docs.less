@@ -309,7 +309,7 @@
 
 .docs-sidebar {
   float: left;
-  width: 285px;
+  width: 280px;
   position: sticky;
   top: 54px;
   height: ~"calc(100vh - 56px)";
@@ -336,23 +336,33 @@
   }
 
   ul.items {
-    padding-top: 4px;
     margin: 0;
 
     li {
       list-style: none;
       margin: 0;
-      padding-top: 4px;
-      padding-bottom: 4px;
+      padding: 16px 0;
+
+      &.accordion-item {
+        padding: 0;
+
+        label {
+          padding: 16px 0;
+        }
+      }
 
       ul {
         margin: 0;
+        padding: 0;
+
+        &.items li {
+          padding: 9px 0;
+        }
       }
 
       a {
-        font-size: 16px;
-        font-weight: normal;
-        color: rgba(0, 0, 0, 0.45);
+        color: #4C6D80;
+        font: normal 14px/22px Roboto;
         padding-right: 8px;
 
         &:hover {
@@ -360,8 +370,8 @@
         }
 
         &.active {
-          color: #4c4c4c;
-          font-weight: bold;
+          color: @blue-text;
+          font-weight: 500;
         }
       }
     }
@@ -369,7 +379,7 @@
 
   .accordion-container {
     > li.accordion-item > div > ul.items {
-      padding: 16px 0;
+      padding: 0 0 8px 0;
     }
   }
 

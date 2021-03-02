@@ -40,8 +40,7 @@
 
           .search-version-row {
             #version-dropdown {
-              width: auto;
-              padding: 0 16px;
+              padding: 0 8px;
               font-size: 12px;
             }
 
@@ -338,8 +337,12 @@
 
   .page-header-btn {
     &#version-dropdown {
-      width: 220px;
+      width: 200px;
       float: right;
+      text-align: left;
+      border-color: @gray-border;
+      background-color: @gray-background;
+
       @media screen and (max-width: 476px) {
         float: left;
       }
@@ -349,12 +352,11 @@
       width: 220px;
     }
     &:extend(.button all);
-    border-color: #d4d7d9;
-    background-image: linear-gradient(to top, #f7f9fa, #fcfcfc);
+
+    height: 32px;
     color: @gray-dark;
-    font-size: 14px;
-    line-height: 39px;
-    height: 40px;
+    text-transform: uppercase;
+    font: bold 12px/16px Roboto;
 
     &:active {
       background: #f7f9fa;
@@ -362,7 +364,6 @@
 
     em {
       font-style: normal;
-      color: #aab0b2;
     }
   }
 

@@ -1,3 +1,6 @@
+@color-text: #043558;
+@color-blue: #1155CB;
+
 .accordion-container {
   position: relative;
   margin: 0;
@@ -44,13 +47,13 @@
       align-items: center;
       cursor: pointer;
       margin: 0;
-      font-size: 16px;
-      font-weight: normal;
-      line-height: 30px;
+      color: @color-text;
+      font: normal 14px/22px Roboto;
 
       img {
         width: 20px;
-        margin-right: 18px;
+        max-height: 24px;
+        margin-right: 10px;
         opacity: 0.5;
         transition: opacity 0.5s linear;
         filter: grayscale(1);
@@ -66,7 +69,7 @@
         font-size: 12px;
         opacity: 0.3;
         right: 16px;
-        top: 12px;
+        top: 21px;
       }
     }
 
@@ -80,8 +83,8 @@
     &.active {
       > label {
         a {
-          color: #4c4c4c;
-          font-weight: bold;
+          color: @color-blue;
+          font-weight: 500;
         }
       }
     }
@@ -93,6 +96,7 @@
     > input {
       &:checked {
         + label {
+          color: @color-blue;
           border-left-color: rgb(0, 112, 191);
         }
       }
@@ -111,7 +115,7 @@
 
     > div {
       border-left: 2px solid rgb(0, 112, 191);
-      padding-left: 22px;
+      padding-left: 46px;
     }
   }
 }

@@ -2,7 +2,7 @@
   display: inline-block;
   width: 0;
   height: 0;
-  margin-left: 2px;
+  margin-left: 30px;
   vertical-align: middle;
   border-top: 4px dashed;
   border-right: 4px solid transparent;
@@ -15,20 +15,20 @@
 
 .dropdown-menu {
   position: absolute;
-  top: 100%;
+  top: 32px;
   left: 0;
   z-index: 1000;
   display: none;
   float: left;
-  min-width: 160px;
-  padding: 5px 0;
-  margin: 2px 0 0;
+  min-width: 200px;
+  padding: 4px 0;
+  margin: 4px 0 0;
   list-style: none;
   text-align: left;
   background-color: #fff;
   border: 1px solid @gray;
   border-radius: 3px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 16px 24px 0px rgba(13, 51, 79, 0.1);
 
   &.pull-right {
     right: 0;
@@ -37,27 +37,34 @@
 
   > li {
     margin: 0;
+    &:not(:last-child) {
+      padding-bottom: 4px;
+    }
 
     > a, span {
       display: block;
-      padding: 3px 20px;
+      margin: 5px 0;
+      padding: 0px 8px;
       clear: both;
+      font-size: 14px;
       font-weight: normal;
-      line-height: 25px;
+      line-height: 22px;
       white-space: nowrap;
+      border-left: 2px solid transparent;
+
+      em {
+        font-style: normal;
+      }
     }
   }
 }
 
 .versions-dropdown {
-  li {
-    border-left: 2px solid transparent;
-
-    &.active {
-      border-left-color: @blue;
-      a {
-        font-weight: 600;
-      }
+  li.active  {
+    a {
+      color: @blue-text;
+      font-weight: 500;
+      border-left-color: @blue-text;
     }
   }
 
@@ -66,6 +73,13 @@
       border-right-width: 0;
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
+    }
+  }
+
+  &.open {
+    #version-dropdown {
+      color: @gray-dark;
+      background: #fff;
     }
   }
 }
