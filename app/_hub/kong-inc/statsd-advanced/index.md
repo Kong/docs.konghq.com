@@ -79,7 +79,7 @@ params:
       datatype: number
       description: |
         Combine UDP packet up to the size configured. If zero (0), don't combine the
-        UDP packet. Must be a number between 0 and 65507.
+        UDP packet. Must be a number between 0 and 65507 (inclusive).
     - name: use_tcp
       required:
       default: "`false`"
