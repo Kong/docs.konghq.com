@@ -105,7 +105,9 @@ params:
       required: false
       value_in_examples: ["new-json-key:string", "another-json-key:boolean", "another-json-key:number"]
       datatype: array of string elements
-      description: List of JSON type names. Specify the types of the JSON values returned when adding a new JSON property.
+      description: |
+        List of JSON type names. Specify the types of the JSON values returned when adding
+        a new JSON property. Each string element can be one of: boolean, number, or string.
     - name: append.headers
       required: false
       value_in_examples: ["x-existing-header:some_value", "x-another-header:some_value"]
@@ -120,8 +122,10 @@ params:
       description: List of `property:value` pairs. If the property is not present in the JSON body, add it with the given value. If it is already present, the two values (old and new) will be aggregated in an array.
     - name: append.json_types
       required: false
-      datatype: array of string, boolean, or number elements
-      description: List of JSON type names. Specify the types of the JSON values returned when appending JSON properties.
+      datatype: array of string elements
+      description: |
+        List of JSON type names. Specify the types of the JSON values returned when appending
+        JSON properties. Each string element can be one of: boolean, number, or string.
 
 ---
 
