@@ -78,5 +78,8 @@
     "run-sequence": "2.2.1",
     "skeleton-css": "2.0.4",
     "standard": "15.0.1"
+  },
+  "dependencies": {
+    "node": "10.17.0"
   }
 }
