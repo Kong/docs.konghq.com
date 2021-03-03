@@ -188,7 +188,7 @@ This plugin makes use of [lua-resty-kafka](https://github.com/doujiang24/lua-res
 When encoding request bodies, several things happen:
 
 * For requests with content-type header of `application/x-www-form-urlencoded`, `multipart/form-data`,
-  or `application/json`, this plugin will pass the raw request body on the `body` attribute, but also tries
+  or `application/json`, this plugin passes the raw request body in the `body` attribute, and tries
   to return a parsed version of those arguments in `body_args`. If this parsing fails, an error message is
   returned and the message is not sent.
 * If the `content-type` is not `text/plain`, `text/html`, `application/xml`, `text/xml`, or `application/soap+xml`,
@@ -200,15 +200,15 @@ When encoding request bodies, several things happen:
 Known limitations:
 
 1. There is no support for TLS.
-2. There is no support for Authentication.
+2. There is no support for authentication.
 3. There is no support for message compression.
 4. The message format is not customizable.
 
 ## Quickstart
 
-The following guidelines assume that both `Kong` has been installed and that `Kafka Upstream` has been enabled.
+The following guidelines assume that {{site.base_gateway}} is installed and the Kafka Upstream plugin is enabled.
 
-1. Create a `kong-upstream` topic in your `Kafka` cluster:
+1. Create a `kong-upstream` topic in your Kafka cluster:
 
     ```
     ${KAFKA_HOME}/bin/kafka-topics.sh --create \
