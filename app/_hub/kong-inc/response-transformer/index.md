@@ -101,13 +101,16 @@ params:
     - name: add.json_types
       required: false
       value_in_examples: ["new-json-key:string", "another-json-key:boolean", "another-json-key:number"]
-      datatype: array of string, boolean, or number elements
+      datatype: array of string elements
       description: List of JSON type names. Specify the types of the JSON values returned when adding a new JSON property.
     - name: append.headers
       required: false
       value_in_examples: ["x-existing-header:some_value", "x-another-header:some_value"]
       datatype: array of string elements
-      description: List of `headername:value` pairs. If the header is not set, set it with the given value. If it is already set, a new header with the same name and the new value will be set.
+      description: |
+        List of `headername:value` pairs. If the header is not set, set it with the given value. If it is
+        already set, a new header with the same name and the new value will be set. Each string
+        can be either one of: boolean, number, or string.
     - name: append.json
       required: false
       datatype: array of string elements
