@@ -6,7 +6,7 @@ title: Kong Mesh - OPA Policy Integration
 
 Kong Mesh integrates the [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) to provide access control for your services.
 
-The agent is embedded in the data plane proxy sidecar, instead of the more common deployment as a separate sidecar.
+The agent is included in the data plane proxy sidecar, instead of the more common deployment as a separate sidecar.
 
 When `OPAPolicy` is applied, the control plane configures:
 
