@@ -188,7 +188,7 @@ This plugin makes use of the [lua-resty-kafka](https://github.com/doujiang24/lua
 Known limitations:
 
 1. There is no support for TLS.
-2. There is no support for Authentication.
+2. There is no support for authentication.
 3. There is no support for message compression.
 
 ## Quickstart
@@ -197,7 +197,7 @@ The following guidelines assume that both `Kong` and `Kafka` have been installed
 
 1. Install `kong-plugin-kafka-log` as specified in the above Installation section.
 
-2. Create a `kong-log` topic in your `Kafka` cluster:
+2. Create a `kong-log` topic in your Kafka cluster:
 
     ```
     ${KAFKA_HOME}/bin/kafka-topics.sh --create \
