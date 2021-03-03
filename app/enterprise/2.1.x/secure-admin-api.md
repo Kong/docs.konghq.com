@@ -70,40 +70,44 @@ encouraged, but fall outside the scope of this document.
 Kong's routing design allows it to serve as a proxy for the Admin API itself. In
 this manner, Kong itself can be used to provide fine-grained access control to
 the Admin API. Such an environment requires bootstrapping a new Service that defines
-the `admin_listen` address as the Service's `url`. For example:
+the `admin_listen` address as the Service's `url`.
+
+For example, let's assume that Kong `admin_listen` is `127.0.0.1:8001`, so it is only
+available from localhost. The port `8000` is serving proxy traffic, presumably exposed via
+`myhost.dev:8000`
+
+We want to expose Admin API via the url `:8000/admin-api`, in a controlled way. We can do so by
+creating a Service and Route for it from inside `127.0.0.1`:
 
 ```bash
-# assume that Kong has defined admin_listen as 127.0.0.1:8001, and we want to
-# reach the Admin API via the url `/admin-api`
-
-$ curl -X POST http://localhost:8001/services \
+$ curl -X POST http://127.0.0.1:8001/services \
   --data name=admin-api \
-  --data host=localhost \
+  --data host=127.0.0.1 \
   --data port=8001
 
-$ curl -X POST http://localhost:8001/services/admin-api/routes \
+$ curl -X POST http://127.0.0.1:8001/services/admin-api/routes \
   --data paths[]=/admin-api
+```
 
-# we can now transparently reach the Admin API through the proxy server
-$ curl localhost:8000/admin-api/apis
+We can now transparently reach the Admin API through the proxy server, from outside `127.0.0.1`:
+
+```bash
+$ curl myhost.dev:8000/admin-api/services
 {
    "data":[
       {
-         "uris":[
-            "\/admin-api"
-         ],
-         "id":"653b21bd-4d81-4573-ba00-177cc0108dec",
-         "upstream_read_timeout":60000,
-         "preserve_host":false,
-         "created_at":1496351805000,
-         "upstream_connect_timeout":60000,
-         "upstream_url":"http:\/\/localhost:8001",
-         "strip_uri":true,
-         "https_only":false,
-         "name":"admin-api",
-         "http_if_terminated":true,
-         "upstream_send_timeout":60000,
-         "retries":5
+        "id": "653b21bd-4d81-4573-ba00-177cc0108dec",
+        "created_at": 1422386534,
+        "updated_at": 1422386534,
+        "name": "admin-api",
+        "retries": 5,
+        "protocol": "http",
+        "host": "127.0.0.1",
+        "port": 8001,
+        "path": "/admin-api",
+        "connect_timeout": 60000,
+        "write_timeout": 60000,
+        "read_timeout": 60000
       }
    ],
    "total":1
@@ -114,6 +118,105 @@ From here, simply apply desired Kong-specific security controls (such as
 [basic][basic-auth] or [key authentication][key-auth],
 [IP restrictions][ip-restriction], or [access control lists][acl]) as you would
 normally to any other Kong API.
+
+If you are using Docker to host {{site.ee_product_name}}, you can accomplish a similar task using a declarative configuration such as this one:
+
+``` yaml
+_format_version: "1.1"
+
+services:
+- name: admin-api
+  url: http://127.0.0.1:8001
+  routes:
+    - paths:
+      - /admin-api
+  plugins:
+  - name: key-auth
+
+consumers:
+- username: admin
+  keyauth_credentials:
+  - key: secret
+```
+
+Under this configuration, the Admin API will be available through the `/admin-api`, but only for requests accompanied with `?apikey=secret` query
+parameters.
+
+Assuming that the file above is stored in `$(pwd)/kong.yml`, a DB-less {{site.ee_product_name}} can use it as it starts like this:
+
+``` bash
+$ docker run -d --name kong-ee \
+    -e "KONG_DATABASE=off" \
+    -e "KONG_DECLARATIVE_CONFIG=/home/kong/kong.yml"
+    -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+    -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+    -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+    -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+    -e "KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl" \
+    -v $(pwd):/home/kong
+    kong-ee
+```
+
+With a PostgreSQL database, the initialization steps would be the following:
+
+``` bash
+# Start PostgreSQL on a Docker container
+# Notice that PG_PASSWORD needs to be set
+$ docker run --name kong-ee-database \
+    -p 5432:5432 \
+    -e "POSTGRES_USER=kong" \
+    -e "POSTGRES_DB=kong" \
+    -e "POSTGRES_PASSWORD=$PG_PASSWORD" \
+    -d postgres:9.6
+
+# Run Kong migrations to initialize the database
+$ docker run --rm \
+    --link kong-ee-database:kong-ee-database \
+    -e "KONG_DATABASE=postgres" \
+    -e "KONG_PG_HOST=kong-ee-database" \
+    -e "KONG_PG_PASSWORD=$PG_PASSWORD" \
+    kong-ee kong migrations bootstrap
+
+# Load the configuration file which enables the Admin API loopback
+# Notice that it is assumed that kong.yml is located in $(pwd)/kong.yml
+$ docker run --rm \
+    --link kong-ee-database:kong-ee-database \
+    -e "KONG_DATABASE=postgres" \
+    -e "KONG_PG_HOST=kong-ee-database" \
+    -e "KONG_PG_PASSWORD=$PG_PASSWORD" \
+    -v $(pwd):/home/kong \
+    kong-ee kong config db_import /home/kong/kong.yml
+
+# Start Kong
+$ docker run -d --name kong \
+    --link kong-ee-database:kong-ee-database \
+    -e "KONG_DATABASE=postgres" \
+    -e "KONG_PG_HOST=kong-ee-database" \
+    -e "KONG_PG_PASSWORD=$PG_PASSWORD" \
+    -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+    -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+    -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+    -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+    -e "KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl" \
+    kong-ee
+```
+
+In both cases, once Kong is up and running, the Admin API would be available but protected:
+
+``` bash
+$ curl myhost.dev:8000/admin-api/services
+=> HTTP/1.1 401 Unauthorized
+
+$ curl myhost.dev:8000/admin-api/services?apikey=secret"
+=> HTTP/1.1 200 OK
+{
+    "data": [
+        {
+            "ca_certificates": null,
+            "client_certificate": null,
+            "connect_timeout": 60000,
+        ...
+```
 
 [Back to top](#introduction)
 
