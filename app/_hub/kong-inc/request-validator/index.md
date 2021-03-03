@@ -31,10 +31,12 @@ params:
   consumer_id: true
   config:
     - name: body_schema
-      required: false
+      required: semi
       value_in_examples: '''[{"name":{"type": "string", "required": true}}]'''
       datatype: string
-      description: The request body schema specification.
+      description: |
+        The request body schema specification. One of `body_schema` or `parameter_schema`
+        must be specified.
 
     - name: allowed_content_types
       required: true
@@ -55,11 +57,13 @@ params:
         validator, or `draft4` for using a JSON Schema Draft 4-compliant validator.
 
     - name: parameter_schema
-      required: false
+      required: semi
       value_in_examples:
       datatype: Array of record elements
-      description: Array of parameter validator specifications.
-       For details and examples, see [Parameter Schema Definition](#parameter-schema-definition).
+      description: |
+        Array of parameter validator specifications. For details and examples, see
+        [Parameter Schema Definition](#parameter-schema-definition). One of `body_schema` or `parameter_schema`
+        must be specified.
 
 
     - name: verbose_response
