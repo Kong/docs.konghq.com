@@ -86,8 +86,11 @@ params:
       description: List of `property:value` pairs. If and only if the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
     - name: replace.json_types
       required: false
-      datatype: array of string, boolean, or number elements
-      description: List of JSON type names. Specify the types of the JSON values returned when replacing JSON properties.
+      datatype: array of string elements
+      description: |
+        List of JSON type names. Specify the types of the JSON values returned when
+        replacing JSON properties. Each string
+        element can be one of: boolean, number, or string.
     - name: add.headers
       required: false
       value_in_examples: ["x-new-header:value","x-another-header:something"]
@@ -110,7 +113,7 @@ params:
       description: |
         List of `headername:value` pairs. If the header is not set, set it with the given value. If it is
         already set, a new header with the same name and the new value will be set. Each string
-        can be either one of: boolean, number, or string.
+        element can be one of: boolean, number, or string.
     - name: append.json
       required: false
       datatype: array of string elements
