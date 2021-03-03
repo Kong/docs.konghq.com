@@ -12,7 +12,7 @@ description: |
   rate-limiting object can limit the inbound requests per seconds, minutes, hours,
   days, months, or years.
 
-  If the underlying Service/Route (or deprecated API entity) has no authentication
+  If the underlying Service/Route has no authentication
   layer, the **Client IP** address will be used; otherwise, the Consumer will be
   used if an authentication plugin has been configured.
 
@@ -55,7 +55,7 @@ kong_version_compatibility:
 
 params:
   name: response-ratelimiting
-  api_id: true
+  api_id: false
   service_id: true
   route_id: true
   consumer_id: true
