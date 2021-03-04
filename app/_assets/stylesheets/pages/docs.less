@@ -338,7 +338,7 @@
       text-align: left;
       display: flex;
       align-items: center;
-      justify-content: space-between;      
+      justify-content: space-between;
       border-color: @gray-border;
       background-color: @gray-background;
 
@@ -410,6 +410,11 @@
   }
 
   .accordion-container {
+
+    #accordion-opened {
+      display: none;
+    }
+
     > li.accordion-item > div > ul.items {
       padding: 0 0 8px 0;
     }
