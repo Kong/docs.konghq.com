@@ -42,7 +42,7 @@ guaranteed if you are upgrading incrementally between versions, from 0.36.x to 1
 * If running a version of {{site.ee_product_name}} earlier than 2.2,
   [migrate to 2.2](/enterprise/2.2.x/deployment/upgrades/migrations/) first.
 
-#### Dev Portal migrations
+### Dev Portal migrations
 
 There are no migrations necessary for the Dev Portal when upgrading from 2.2.x to
 2.3.x.
@@ -77,6 +77,54 @@ upgrade the Control Plane first, and then the Data Planes.
 * The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) plugin does not
     support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
+### Kong for kubernetes considerations
+
+The Helm chart automates the upgrade migration process. When running `helm upgrade`, 
+the chart spawns an initial job to run `kong migrations up` and then spawns new 
+Kong pods with the updated version. Once these pods become ready, they begin processing 
+traffic and old pods are terminated. Once this is complete, the chart spawns another job 
+to run `kong migrations finish`.
+
+While the migrations themselves are automated, the chart does not automatically ensure 
+that you follow the recommended upgrade path. If you are upgrading from more than one minor 
+Kong version back, check the upgrade path recommendations for Kong open source or Kong Gateway.
+
+Although not required, users should upgrade their chart version and Kong version indepedently. 
+In the event of any issues, this will help clarify whether the issue stems from changes in 
+Kubernetes resources or changes in Kong.
+
+Users may encounter an error when upgrading which displays a large block of text ending with 
+`field is immutable`. This is typically due to a bug with the `init-migrations` job, which was 
+not removed automatically prior to 1.5.0. If you encounter this error, deleting any existing 
+`init-migrations` jobs will clear it.
+
+For specific Kong for kubernetes version upgrade considerations, see 
+[Upgrade considerations](https://github.com/Kong/charts/blob/main/charts/kong/UPGRADE.md)
+
+#### Kong deployment split across multiple releases
+
+The standard chart upgrade automation process assumes that there is only a single Kong release 
+in the Kong cluster, and runs both `migrations up` and `migrations finish` jobs. 
+
+If you split your Kong deployment across multiple Helm releases (to create proxy-only 
+and admin-only nodes, for example), you must set which migration jobs run based on your 
+upgrade order.
+
+To handle clusters split across multiple releases, you should:
+
+1. Upgrade one of the releases with:
+
+ `helm upgrade RELEASENAME -f values.yaml --set migrations.preUpgrade=true --set migrations.postUpgrade=false`
+
+2. Upgrade all but one of the remaining releases with:
+
+ `helm upgrade RELEASENAME -f values.yaml --set migrations.preUpgrade=false --set migrations.postUpgrade=false`
+
+3. Upgrade the final release with: 
+
+ `helm upgrade RELEASENAME -f values.yaml --set migrations.preUpgrade=false --set migrations.postUpgrade=true`
+
+This ensures that all instances are using the new Kong package before running kong migrations finish.
 
 ### Migrating databases for a major or minor version release {#migrate-db}
 
