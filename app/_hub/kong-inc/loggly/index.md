@@ -2,6 +2,7 @@
 name: Loggly
 publisher: Kong Inc.
 version: 2.0.x
+# internal handler version 2.0.1
 
 desc: Send request and response logs to Loggly
 description: |
