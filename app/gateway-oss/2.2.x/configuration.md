@@ -1787,6 +1787,90 @@ Default: `30`
 
 ---
 
+#### untrusted_lua
+
+Controls loading of Lua functions from admin-supplied sources such as the Admin
+API. LuaJIT bytecode loading is always disabled.
+
+**Warning:** LuaJIT is not designed as a secure runtime for running malicious
+code, therefore you should properly protect your Admin API endpoint even with
+sandboxing enabled. The sandbox only provides protection against trivial
+attackers or unintentional modification of the Kong global environment.
+
+Accepted values are: `off`, `sandbox`, or `on`:
+
+* `off`: Disallow loading of any arbitrary Lua functions. The `off` option
+disables any functionality that runs arbitrary Lua code, including the
+Serverless Functions plugins and any transformation plugin that allows custom
+Lua functions.
+
+* `sandbox`: Allow loading of Lua functions, but use a sandbox when executing
+them. The sandboxed function has restricted access to the global environment and
+only has access to standard Lua functions that will generally not cause harm to
+the Kong Gateway node.
+
+* `on`: Functions have unrestricted access to the global environment and can
+load any Lua modules. This is similar to the behavior in Kong Gateway prior to
+2.3.0.
+
+The default `sandbox` environment does not allow importing other modules or
+libraries, or executing anything at the OS level (for example, file read/write).
+The global environment is also not accessible.
+
+Examples of `untrusted_lua = sandbox` behavior:
+
+* You can't access or change global values such as
+`kong.configuration.pg_password` * You can run harmless lua: `local foo = 1 +
+1`. However, OS level functions are not allowed, like: `os.execute('rm -rf
+/*')`.
+
+For a full allowed/disallowed list, see:
+https://github.com/kikito/sandbox.lua/blob/master/sandbox.lua
+
+To customize the sandbox environment, use the `untrusted_lua_sandbox_requires`
+and `untrusted_lua_sandbox_environment` parameters below.
+
+**Default:** `sandbox`
+
+---
+
+#### untrusted_lua_sandbox_requires
+
+Comma-separated list of modules allowed to be loaded with `require` inside the
+sandboxed environment. Ignored if `untrusted_lua` is not `sandbox`.
+
+For example, say you have configured the Serverless pre-function plugin and it
+contains the following `requires`:
+
+```
+local template = require "resty.template"
+local split = require "kong.tools.utils".split
+```
+
+To run the plugin, add the modules to the allowed list:
+
+```
+untrusted_lua_sandbox_requires = resty.template, kong.tools.utils
+```
+
+**Warning:** Allowing certain modules may create opportunities to escape the
+sandbox. For example, allowing `os` or `luaposix` may be unsafe.
+
+**Default:** none
+
+---
+
+#### untrusted_lua_sandbox_environment
+
+Comma-separated list of global Lua variables that should be made available
+inside the sandboxed environment. Ignored if `untrusted_lua` is not `sandbox`.
+
+**Warning**: Certain variables, when made available, may create opportunities
+to escape the sandbox.
+
+**Default:** none
+
+---
 
 
 [Penlight]: http://stevedonovan.github.io/Penlight/api/index.html
