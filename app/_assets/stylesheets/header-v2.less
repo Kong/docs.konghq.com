@@ -20,10 +20,47 @@ header.navbar-v2 {
 
     .navbar-brand {
       flex-shrink: 0;
+
+      img {
+        max-width: 100px;
+      }
     }
 
     .separator {
       flex-grow: 1;
+    }
+
+    .search-input-wrapper {
+      display: flex;
+      align-items: center;
+      margin: 0 30px;
+      padding: 2px 16px;
+      background: rgba(248, 249, 252, 1);
+      border-radius: 100px;
+      width: 208px;
+      color: #4c6d80;
+
+      .algolia-autocomplete {
+        flex-grow: 1;
+      }
+
+      img {
+        max-width: 22px;
+      }
+
+      input {
+        width: 100%;
+        border: none;
+        box-shadow: none;
+        margin: 0;
+        font: 400 16px/22px Roboto;
+        color: #4c6d80;
+        background-color: transparent;
+
+        &::placeholder {
+          color: @color-text-light;
+        }
+      }
     }
 
     .navbar-items {
@@ -46,6 +83,14 @@ header.navbar-v2 {
 
         > a {
           color: #043558;
+        }
+
+        &.active {
+          font-weight: bold;
+
+          > a {
+            color: rgba(17, 85, 203, 1);
+          }
         }
 
         .navbar-item-submenu {
