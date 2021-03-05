@@ -83,7 +83,7 @@ params:
 
 ---
 
-## Log Format
+## Log format
 
 Every request is logged to the System log in [SYSLOG](https://en.wikipedia.org/wiki/Syslog) standard, with the
 with `message` component formatted as described below.
@@ -97,6 +97,6 @@ logging level severity the same as or lower than the set `config.log_level` for 
 
 {% include /md/plugins-hub/json-object-log.md %}
 
-## Kong Process Errors
+## Kong process errors
 
 {% include /md/plugins-hub/kong-process-errors.md %}

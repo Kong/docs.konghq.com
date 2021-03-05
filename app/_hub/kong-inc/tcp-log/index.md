@@ -89,7 +89,7 @@ params:
 
 ---
 
-## Log Format
+## Log format
 
 {% include /md/plugins-hub/log-format.md %}
 
@@ -97,6 +97,6 @@ params:
 
 {% include /md/plugins-hub/json-object-log.md %}
 
-## Kong Process Errors
+## Kong process errors
 
 {% include /md/plugins-hub/kong-process-errors.md %}

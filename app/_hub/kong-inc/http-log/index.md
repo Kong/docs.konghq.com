@@ -2,6 +2,7 @@
 name: HTTP Log
 publisher: Kong Inc.
 version: 2.0.x
+# internal handler version 2.0.1
 
 desc: Send request and response logs to an HTTP server
 description: |
@@ -121,7 +122,7 @@ params:
 
 ---
 
-## Log Format
+## Log format
 
 **Note:** If the `queue_size` argument > 1, a request is logged as an array of JSON objects.
 
@@ -131,6 +132,6 @@ params:
 
 {% include /md/plugins-hub/json-object-log.md %}
 
-## Kong Gateway Process Errors
+## Kong process rrrors
 
 {% include /md/plugins-hub/kong-process-errors.md %}
