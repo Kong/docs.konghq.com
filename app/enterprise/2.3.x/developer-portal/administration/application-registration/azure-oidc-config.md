@@ -11,7 +11,7 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 
 - The `portal_app_auth` configuration option is configured for your OAuth provider
   and strategy (`kong-oauth2` or `external-oauth2`). See
-  [Configure the Authorization Provider Strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/#portal-app-auth) for the Portal Application Registration plugin.
+  [Configure the Authorization Provider Strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/auth-provider-strategy) for the Portal Application Registration plugin.
 
 ## Create an Application in Azure
 

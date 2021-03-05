@@ -1920,22 +1920,22 @@ Redis connection timeout in milliseconds.
 
 #### config.session_redis_read_timeout
 
-Redis read timeout in milliseconds (not supported with Redis cluster).
+The read timeout in milliseconds for the Redis client.
 
 
 #### config.session_redis_send_timeout
 
-Redis send timeout in milliseconds (not supported with Redis cluster).
+The send timeout in milliseconds for the Redis client.
 
 
 #### config.session_redis_ssl
 
-Use SSL/TLS for Redis connection (not supported with Redis cluster).
+Use SSL/TLS for Redis connection.
 
 
 #### config.session_redis_ssl_verify
 
-Verify Redis server certificate (not supported with Redis cluster).
+Verify Redis server certificate.
 
 
 #### config.session_redis_cluster_nodes
@@ -3179,7 +3179,7 @@ Provider                                                        | Information  |
 [Dex](https://github.com/coreos/dex)                            | [Docs](https://github.com/coreos/dex/blob/master/Documentation/openid-connect.md) | - |
 [Gluu](https://gluu.org/)                                       | [Docs](https://gluu.org/docs/ce/api-guide/openid-connect-api/) | - |
 [IdentityServer4](http://identityserver.io/)                    | [Docs](https://identityserver4.readthedocs.io/) / [Discovery](https://demo.identityserver.io/.well-known/openid-configuration) / [Keys](https://demo.identityserver.io/.well-known/openid-configuration/jwks) | - |
-[Keycloak](http://www.keycloak.org/)                            | [Docs](https://keycloak.gitbooks.io/documentation/securing_apps/topics/oidc/oidc-generic.html) | - |
+[Keycloak](https://www.keycloak.org/)                            | [Docs](https://www.keycloak.org/docs/latest/server_admin/index.html#oidc-clients) | - |
 [OpenAM](https://www.forgerock.com/platform/access-management/) | [Docs](https://backstage.forgerock.com/docs/openam/13.5/admin-guide/chap-openid-connect) | - |
 [PingFederate](https://www.pingidentity.com/)                   | [Docs](https://documentation.pingidentity.com/pingfederate/pf84/) | - |
 [WSO2](https://wso2.com/)                                       | [Docs](https://is.docs.wso2.com/en/latest/learn/openid-connect) | - |
