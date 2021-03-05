@@ -11,8 +11,8 @@ description: |
   daemon by enabling its [Statsd
   plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
 
-  **Tip:** The [StatsD Advanced plugin](/hub/kong-inc/statsd-advanced/) provides 
-  additional features not available in the open source StatsD plugin, such as:
+  **Tip:** The [StatsD Advanced plugin](/hub/kong-inc/statsd-advanced/) provides
+  additional features not available in this open source StatsD plugin, such as:
 
   - Ability to choose status codes to log to metrics.
   - More granular status codes per workspace.
@@ -88,7 +88,7 @@ params:
 
 Metrics the plugin supports logging into the StatsD server.
 
-Metric                     | description | namespace
+Metric                     | Description | Namespace
 ---                        | ---         | ---
 `request_count`            | tracks the request | kong.\<service_name>.request.count
 `request_size`             | tracks the request's body size in bytes | kong.\<service_name>.request.size
@@ -103,18 +103,18 @@ Metric                     | description | namespace
 
 ### Metric Fields
 
-Plugin can be configured with any combination of [Metrics](#metrics), with each entry containing the following fields.
+The plugin can be configured with any combination of [Metrics](#metrics), with each entry containing the following fields:
 
-Field         | description                                             | allowed values
----           | ---                                                     | ---
-`name`          | StatsD metric's name                                  | [Metrics](#metrics)
-`stat_type`     | determines what sort of event the metric represents   | `gauge`, `timer`, `counter`, `histogram`, `meter` and `set`|
-`sample_rate`<br>*conditional*   | sampling rate                        | `number`
-`customer_identifier`<br>*conditional*| authenticated user detail       | `consumer_id`, `custom_id`, `username`
+Field         | Description                                             | Datatypes | Allowed values
+---           | ---                                                     | ---       | ---
+`name`          | StatsD metric's name. Required.                       | String   | [Metrics](#metrics)
+`stat_type`     | Determines what sort of event the metric represents. Required.  | String   | `gauge`, `timer`, `counter`, `histogram`, `meter`, and `set`|
+`sample_rate`<br>*conditional*   | Sampling rate. Required.             | Number | `number`
+`consumer_identifier`<br>*conditional*| Authenticated user detail. Required.   | String    | One of the following options: `consumer_id`, `custom_id`, `username`
 
 ### Metric Requirements
 
-1.  By default all metrics get logged.
+1.  By default, all metrics get logged.
 2.  Metric with `stat_type` set to `counter` or `gauge` must have `sample_rate` defined as well.
 3.  `unique_users` metric only works with `stat_type` as `set`.
 4.  `status_count`, `status_count_per_user` and `request_per_user` work only with `stat_type`  as `counter`.
