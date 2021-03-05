@@ -12,24 +12,32 @@ breadcrumbs:
 <!-- Generate Konnect and Kong Manager examples -->
 {% capture config_required_fields_konnect %}{% 
   for field in page.params.config %}{% assign capfields = field.name | split: '_' %}{% capture titlecase %}{% for capfield in capfields %}{{ capfield | capitalize }} {% endfor %}{% endcapture %}{% 
-    if field.required == true and field.value_in_examples == nil %} 
+    if field.required == true and field.value_in_examples == nil %}{%
+      if field.default == "`false`" or field.default == "`true`" %}
+    * Config.{{ titlecase | rstrip }}: {{ field.default | replace: "`false`", "clear checkbox" | replace: "`true`", "select checkbox" }}{% 
+      else %}   
     * Config.{{ titlecase | rstrip }}: `{{ field.default | smartify }}`{% 
-    elsif field.required == true and field.value_in_examples != nil %}{% 
-      if field.value_in_examples.first %}{% 
-        for value in field.value_in_examples %}{% 
-          if field.value_in_examples contains "'" %} 
-    * Config.{{ titlecase | rstrip }}: `{{ value | replace: "'", "" }}`{% 
-          else %} 
-    * Config.{{ titlecase | rstrip }}: `{{ value }}`{% 
-          endif %}{% 
-        endfor %}{% 
+      endif %}{%
+    elsif field.required == true and field.value_in_examples != nil %}{%
+      if field.value_in_examples == false or field.value_in_examples == true %}
+    * Config.{{ titlecase | rstrip }}: {{ field.value_in_examples | replace: false, "clear checkbox" | replace: true, "select checkbox" }}{% 
       else %}{% 
-        if field.value_in_examples contains "'" %} 
-    * Config.{{ titlecase | rstrip }}: `{{ field.value_in_examples | replace: "'", "" }}`{% 
-        else %} 
+        if field.value_in_examples.first %}{% 
+          for value in field.value_in_examples %}{% 
+            if field.value_in_examples contains "'" %} 
+    * Config.{{ titlecase | rstrip }}: `{{ value | replace: "'", "" }}`{% 
+            else %} 
+    * Config.{{ titlecase | rstrip }}: `{{ value }}`{% 
+            endif %}{% 
+          endfor %}{% 
+        else %}{% 
+          if field.value_in_examples contains "'" %} 
     * Config.{{ titlecase | rstrip }}: `{{ field.value_in_examples }}`{% 
-        endif %}{%
-      endif %}{% 
+          else %} 
+    * Config.{{ titlecase | rstrip }}: `{{ field.value_in_examples }}`{% 
+          endif %}{%
+        endif %}{% 
+      endif %}{%
     endif %}{% 
   endfor %}{%
 endcapture %}
@@ -155,13 +163,13 @@ Configure this plugin on a Service:
 6. Add the Service field with the Service name and ID if it 
 is not already prefilled. 
 
+{% if config_required_fields_konnect == empty %}
+7. Click **Create** to save.
+  {% else %}  
 7. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
-  {% if config_required_fields_konnect == empty %}
-    There are no required parameters for this plugin.
-  {% else %}    
     {{ config_required_fields_konnect }}
-  {% endif %}
 8. Click **Create** to save.
+  {% endif %}
 
 {% endnavtab %}
 {% endunless %}
@@ -243,13 +251,13 @@ Configure this plugin on a Service:
     for your product tier. See <a href="">Kong Gateway tiers</a>.
     </div>
 
-6. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
   {% if config_required_fields_konnect == empty %}
-    There are no required parameters for this plugin.
-  {% else %}    
+6. Click **Create** to save.
+  {% else %}  
+6. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
     {{ config_required_fields_konnect }}
-  {% endif %}
 7. Click **Create** to save.
+  {% endif %}
 
 {% endnavtab %}
 {% endunless %}
