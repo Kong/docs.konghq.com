@@ -93,10 +93,6 @@ Although not required, users should upgrade their chart version and Kong version
 In the event of any issues, this will help clarify whether the issue stems from changes in 
 Kubernetes resources or changes in Kong.
 
-Users may encounter an error when upgrading which displays a large block of text ending with 
-`field is immutable`. This is typically due to a bug with the `init-migrations` job, which was 
-not removed automatically prior to 1.5.0. If you encounter this error, deleting any existing 
-`init-migrations` jobs will clear it.
 
 For specific Kong for kubernetes version upgrade considerations, see 
 [Upgrade considerations](https://github.com/Kong/charts/blob/main/charts/kong/UPGRADE.md)
