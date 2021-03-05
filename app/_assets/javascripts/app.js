@@ -391,10 +391,6 @@ $(function () {
     });
   });
 
-  analytics.track(
-    "Viewed " + $.trim(document.title.split("|").shift()) + " page"
-  );
-
   $(".plugin-plate-link").each(function () {
     analytics.trackLink(this, "Click on plugin", {
       plugin_type: $(this).closest(".plugin-plate").find("h3").text(),
