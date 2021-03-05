@@ -94,7 +94,7 @@ In the event of any issues, this will help clarify whether the issue stems from 
 Kubernetes resources or changes in Kong.
 
 
-For specific Kong for kubernetes version upgrade considerations, see 
+For specific Kong for Kubernetes version upgrade considerations, see 
 [Upgrade considerations](https://github.com/Kong/charts/blob/main/charts/kong/UPGRADE.md)
 
 #### Kong deployment split across multiple releases
