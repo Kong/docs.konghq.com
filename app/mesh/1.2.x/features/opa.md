@@ -19,6 +19,7 @@ To apply a policy with OPA:
 
 - Specify the group of data plane proxies to apply the policy to with the `selectors` property.
 - Provide the list of policies with the `conf` property. Policies are defined in the [Rego language](https://www.openpolicyagent.org/docs/latest/policy-language/).
+- Optionally provide custom configuration for the policy agent.
 
 ### Inline
 
@@ -36,25 +37,35 @@ spec:
   - match:
       kuma.io/service: '*'
   conf:
+    agentConfig: # optional
+      inlineString: | # one of: inlineString, secret
+        decision_logs:
+          console: true
     policies:
-      - inlineString: |
+      - inlineString: | # one of: inlineString, secret
           package envoy.authz
+
           import input.attributes.request.http as http_request
+
           default allow = false
+
           token = {"valid": valid, "payload": payload} {
               [_, encoded] := split(http_request.headers.authorization, " ")
               [valid, _, payload] := io.jwt.decode_verify(encoded, {"secret": "secret"})
           }
+
           allow {
               is_token_valid
               action_allowed
           }
+
           is_token_valid {
             token.valid
             now := time.now_ns() / 1000000000
             token.payload.nbf <= now
             now < token.payload.exp
           }
+
           action_allowed {
             http_request.method == "GET"
             token.payload.role == "admin"
@@ -72,8 +83,12 @@ selectors:
 - match:
     kuma.io/service: '*'
 conf:
-  policies:
-    - inlineString: |
+  agentConfig: # optional
+    inlineString: | # one of: inlineString, secret
+      decision_logs:
+        console: true
+  policies: # optional
+    - inlineString: | # one of: inlineString, secret
         package envoy.authz
   
         import input.attributes.request.http as http_request
@@ -277,7 +292,38 @@ spec:
 
 ## Support for external API management servers
 
-OPAPolicy does not require the `conf` section, so you can apply `OPAPolicy` to configure Envoy with External AuthZ only. This approach does not configure the policy agent itself:
+The `agentConfig` field lets you define a custom configuration that points to an external management server:
+
+{% navtabs %}
+{% navtab Kubernetes %}
+
+```yaml
+apiVersion: kuma.io/v1alpha1
+kind: OPAPolicy
+mesh: default
+metadata:
+  name: opa-1
+spec:
+  selectors:
+  - match:
+      kuma.io/service: '*'
+  conf:
+    agentConfig:
+      inlineString: |
+        services:
+          acmecorp:
+            url: https://example.com/control-plane-api/v1
+            credentials:
+              bearer:
+                token: "bGFza2RqZmxha3NkamZsa2Fqc2Rsa2ZqYWtsc2RqZmtramRmYWxkc2tm"
+        
+        discovery:
+          name: example
+          resource: /configuration/example/discovery
+```
+
+{% endnavtab %}
+{% navtab Universal %}
 
 ```yaml
 type: OPAPolicy
@@ -286,24 +332,24 @@ name: opa-1
 selectors:
 - match:
     kuma.io/service: '*'
+conf:
+  agentConfig:
+    inlineString: | # one of: inlineString, secret
+      services:
+        acmecorp:
+          url: https://example.com/control-plane-api/v1
+          credentials:
+            bearer:
+              token: "bGFza2RqZmxha3NkamZsa2Fqc2Rsa2ZqYWtsc2RqZmtramRmYWxkc2tm"
+      discovery:
+        name: example
+        resource: /configuration/example/discovery
 ```
 
-You can also provide a custom OPA configuration with either a config file or an explicit set of parameters.
+{% endnavtab %}
+{% endnavtabs %}
 
-```
-$ cat /tmp/example-bootstrap.yaml
-services:
-  - name: acmecorp
-    url: https://example.com/control-plane-api/v1
-    credentials:
-      bearer:
-        token: "bGFza2RqZmxha3NkamZsa2Fqc2Rsa2ZqYWtsc2RqZmtramRmYWxkc2tm"
-discovery:
-  name: example
-  resource: /configuration/example/discovery.tar.gz
-  service: acmecorp
-  signing:
-    keyid: my_global_key
-    scope: read
---opa-config-path /tmp/example-bootstrap.yaml
-```
+
+
+
+
