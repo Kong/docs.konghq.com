@@ -144,6 +144,10 @@
         }
       }
 
+      @media (min-width: 1600px) {
+        padding-left: 325px;
+      }
+
       @media (max-width: 800px) {
         padding-left: 0;
         padding-right: 0;
@@ -205,6 +209,7 @@
       }
 
       .page-content-container {
+        margin-top: 64px;
         padding-right: 250px;
 
         .page-content {
@@ -1401,7 +1406,7 @@ Generic Styling for Desktop
 
 .breadcrumbs {
   margin-bottom: 1rem;
-  margin-top: -2rem;
+  margin-top: -2.3rem;
   margin-left: 0;
   padding: 0;
 
@@ -1450,6 +1455,12 @@ Generic Styling for Desktop
 
     a {
       color: @navy-text;
+
+      &:hover {
+        color: #1155cb;
+        opacity: 1;
+        text-decoration: none;
+      }
     }
   }
 

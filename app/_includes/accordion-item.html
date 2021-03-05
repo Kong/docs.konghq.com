@@ -35,6 +35,7 @@
       if ($('.accordion-item.active')[0]) {
         value = $('.accordion-item.active')[0].firstElementChild.id.split('-')[1];
       } else {
+        $('#accordion-opened').val(id.toString());
         return;
       }
     }

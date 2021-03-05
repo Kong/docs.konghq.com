@@ -2,16 +2,15 @@
   {% assign crumbs = page.dir | split: '/' %}
   <ul class="breadcrumbs">
     <li class="breadcrumb-item">
-      Home
+      {% if page.edition =='enterprise' or page.edition =='konnect' or page.edition == 'mesh' %}
+        Kong Konnect
+      {% else %}
+        Open Source
+      {% endif %}
     </li>
-    {% if page.edition =='enterprise' %}
-    <li class="breadcrumb-item">
-      <a href="/konnect/">{{site.konnect_product_name}}</a>
-    </li>
-    {% endif %}
     <li class="breadcrumb-item">
       {% if page.edition == 'enterprise' %}<a href="/enterprise/{% unless page.no_version == true %}{{page.kong_version}}/{% endunless %}">{{site.ee_product_name}}</a>
-      {% elsif page.edition == 'konnect' %}<a href="/konnect/">{{site.konnect_product_name}}</a>
+      {% elsif page.edition == 'konnect' %}<a href="/konnect/">{{site.konnect_saas}}</a>
       {% elsif page.edition == 'mesh' %}<a href="/mesh/{{page.kong_version}}/">{{site.mesh_product_name}}</a>
       {% elsif page.edition == 'deck' %}<a href="/deck/">decK</a>
       {% elsif page.edition == 'kubernetes-ingress-controller' %}<a href="/kubernetes-ingress-controller/{{page.kong_version}}/">{{site.kic_product_name}}</a>
