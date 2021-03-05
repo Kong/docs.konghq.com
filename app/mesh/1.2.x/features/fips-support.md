@@ -1,5 +1,6 @@
 ---
 title: Kong Mesh - FIPS Support
+toc: false
 ---
 
 With version 1.2.0, Kong Mesh provides built-in support for the Federal Information Processing Standard (FIPS-2). Compliance with this standard is typically required for working with U.S. federal government agencies and their contractors.
