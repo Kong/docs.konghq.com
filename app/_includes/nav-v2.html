@@ -6,10 +6,16 @@
         alt="Kong Logo"
       />
     </a>
+    {% if page.layout != "landing-page" %}
+    <div class="search-input-wrapper">
+      <img src="/assets/images/landing-page/search.svg" alt="search">
+      <input id="getkong-algolia-search-input" type="text" placeholder="Search...">
+    </div>
+    {% endif %}
     <div class="separator"></div>
     <div class="navbar-items">
       <div class="navbar-items">
-        <div class="navbar-item" onclick="toggleSubmenuVisible(this)">
+        <div class="navbar-item{% if page.layout != 'landing-page' %} active{% endif %}" onclick="toggleSubmenuVisible(this)">
           <a href="https://docs.konghq.com/">Docs</a>
           <div class="navbar-item-submenu">
             <div class="submenu-section">
@@ -22,7 +28,7 @@
             <div class="submenu-section">
               <span class="navbar-item submenu-section-title">Open Source</span>
               <a href="/gateway-oss/" class="navbar-item">Kong Gateway (OSS)</a>
-              <a href="/deck/" class="navbar-item">DecK</a>
+              <a href="/deck/" class="navbar-item">decK</a>
               <a href="/kubernetes-ingress-controller/1.1.x/introduction/" class="navbar-item">Kubernetes Ingress Controller</a>
               <a href="https://support.insomnia.rest/" target="_blank" class="navbar-item">Insomnia</a>
               <a href="https://kuma.io/docs/1.0.8/" target="_blank" class="navbar-item">Kuma</a>
@@ -64,3 +70,33 @@
     $(element.parentElement).toggleClass('submenu-opened')
   }
 </script>
+
+{% if page.layout != "landing-page" %}
+<style>
+  @media (max-width: 768px) {
+    .algolia-docsearch-suggestion--subcategory-column{
+      display: none !important;
+    }
+  }
+</style>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+
+<script type="text/javascript">
+  docsearch({
+    appId: 'T5JKD83LWT',
+    apiKey: '1390283021f26e36117242934deb8d9d',
+    indexName: 'prod_Full_Docs',
+    inputSelector: '#getkong-algolia-search-input',
+    algoliaOptions: {
+      hitsPerPage: 8
+    },
+    // Override selected event to allow for local environment navigation
+    handleSelected: function (input, event, suggestion) {
+      input.setVal('')
+      window.location.href = window.location.protocol + '//' + window.location.host + suggestion.url.split('docs.konghq.com')[1]
+    }
+    // ,debug: true // Set debug to true if you want to inspect the dropdown
+  })
+</script>
+{% endif %}
