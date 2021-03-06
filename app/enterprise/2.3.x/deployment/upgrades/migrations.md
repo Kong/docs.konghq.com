@@ -63,7 +63,7 @@ affect your current installation.
 
 <div class="alert alert-ee blue">
 <strong>Important:</strong> If you are currently running in 
-[hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/), 
+<a href="/enterprise/{{page.kong_version}}/deployment/hybrid-mode/">hybrid mode</a>, 
 upgrade the Control Plane first, and then the Data Planes.
 </div>
 
@@ -110,15 +110,25 @@ To handle clusters split across multiple releases, you should:
 
 1. Upgrade one of the releases with:
 
- `helm upgrade RELEASENAME -f values.yaml --set migrations.preUpgrade=true --set migrations.postUpgrade=false`
-
+   ```shell
+   helm upgrade RELEASENAME -f values.yaml \
+   --set migrations.preUpgrade=true \
+   --set migrations.postUpgrade=false
+   ```
 2. Upgrade all but one of the remaining releases with:
 
- `helm upgrade RELEASENAME -f values.yaml --set migrations.preUpgrade=false --set migrations.postUpgrade=false`
-
+   ```shell
+   helm upgrade RELEASENAME -f values.yaml \
+   --set migrations.preUpgrade=false \
+   --set migrations.postUpgrade=false
+   ```
 3. Upgrade the final release with: 
 
- `helm upgrade RELEASENAME -f values.yaml --set migrations.preUpgrade=false --set migrations.postUpgrade=true`
+   ```shell
+   helm upgrade RELEASENAME -f values.yaml \
+   --set migrations.preUpgrade=false \
+   --set migrations.postUpgrade=true
+   ```
 
 This ensures that all instances are using the new Kong package before running kong migrations finish.
 
