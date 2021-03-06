@@ -1,6 +1,5 @@
 ---
 title: Kong Studio
-redirect_from: "/studio/"
 toc: false
 skip_read_time: true
 ---

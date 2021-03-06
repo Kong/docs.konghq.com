@@ -43,3 +43,9 @@
 /0.4.x/*                                    /gateway-oss/0.4.x/:splat
 /0.3.x/*                                    /gateway-oss/0.3.x/:splat
 /0.2.x/*                                    /gateway-oss/0.2.x/:splat
+
+# Studio
+/enterprise/studio                          https://support.insomnia.rest/
+/enterprise/studio/*                        https://support.insomnia.rest/
+/studio                                     https://support.insomnia.rest/
+/studio/*                                   https://support.insomnia.rest/

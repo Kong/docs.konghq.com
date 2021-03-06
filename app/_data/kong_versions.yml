@@ -334,10 +334,6 @@
     openresty: "1.15.8.3"
   lua_doc: true
 -
-  release: "1.0.x"
-  version: "1.0"
-  edition: "studio"
--
   release: "1.5.x"
   version: "1.5.1"
   edition: "gateway-oss"

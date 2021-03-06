@@ -578,25 +578,6 @@
     - text: Helpers CLI
       url: /developer-portal/helpers/cli
 
-- title: Kong Studio
-  icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
-  url: /studio/
-  items:
-    - text: Changelog
-      url: https://insomnia.rest/changelog/
-      absolute_url: true
-    - text: Getting Started
-      items:
-        - text: Download and Install
-          url: /studio/download-install
-        - text: Using Insomnia Designer
-          url: https://support.insomnia.rest/article/94-introduction/
-          absolute_url: true
-        - text: Deploy to Dev Portal
-          url: /studio/deploy-to-dev-portal
-        - text: Generate Configuration
-          url: /studio/dec-conf-studio
-
 - title: Kong Vitals
   icon: /assets/images/icons/documentation/icn-vitals.svg
   items:
