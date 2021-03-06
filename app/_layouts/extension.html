@@ -148,27 +148,28 @@ $ curl -X POST http://<admin-hostname>:8001/services/<service>/plugins \
 {% navtab Kong Manager %}
 Configure this plugin on a Service:
 
-1. In Kong Manager, open the Services page.
-2. Click **View** for the Service row.
-3. Scroll down to plugins and click **Add a Plugin**.
-4. Find and select the **{{ page.name }}** plugin.
+1. In Kong Manager, select the workspace.
+2. From the Dashboard, select **Services**.
+3. Click **View** for the Service row.
+4. Scroll down to plugins and click **Add Plugin**.
+5. Find and select the **{{ page.name }}** plugin.
 
     <div class="alert alert-ee blue">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
     for your product tier. See <a href="">Kong Gateway tiers</a>.
     </div>
 
-5. If the option is available, set the plugin scope to **Scoped**.
+6. If the option is available, set the plugin scope to **Scoped**.
 
-6. Add the Service field with the Service name and ID if it 
+7. Add the Service field with the Service name and ID if it 
 is not already prefilled. 
 
 {% if config_required_fields_konnect == empty %}
-7. Click **Create** to save.
-  {% else %}  
-7. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
-    {{ config_required_fields_konnect }}
 8. Click **Create** to save.
+  {% else %}  
+8. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
+    {{ config_required_fields_konnect }}
+9. Click **Create** to save.
   {% endif %}
 
 {% endnavtab %}
@@ -240,11 +241,10 @@ plugins:
 {% navtab Konnect %}
 Configure this plugin on a Service:
 
-1. In Konnect, select **Services** in the left navigation.
-2. Select the service on the ServiceHub page.
-3. Scroll down to **Versions** and select the version.
-4. Scroll down to **Plugins** and click **New Plugin**.
-5. Find and select the **{{ page.name }}** plugin.
+1. In Konnect, select the service on the ServiceHub page.
+2. Scroll down to **Versions** and select the version.
+3. Scroll down to **Plugins** and click **New Plugin**.
+4. Find and select the **{{ page.name }}** plugin.
 
     <div class="alert alert-ee blue">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
@@ -252,11 +252,11 @@ Configure this plugin on a Service:
     </div>
 
   {% if config_required_fields_konnect == empty %}
-6. Click **Create** to save.
+5. Click **Create** to save.
   {% else %}  
-6. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
+5. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
     {{ config_required_fields_konnect }}
-7. Click **Create** to save.
+6. Click **Create** to save.
   {% endif %}
 
 {% endnavtab %}
@@ -304,6 +304,34 @@ $ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
 {{ plugin_config_for_route_admin_api }}
 
 {% endnavtab %}
+{% unless page.params.manager_examples == false %}
+{% navtab Kong Manager %}
+Configure this plugin on a Route:
+
+1. In Kong Manager, select the workspace.
+2. From the Dashboard, select **Routes** in the left navigation.
+3. Click **View** for the Route row.
+4. Scroll down to plugins and click **Add Plugin**.
+5. Find and select the **{{ page.name }}** plugin.
+
+    <div class="alert alert-ee blue">
+    <strong>Note:</strong> If the plugin is greyed out, then it is not available
+    for your product tier. See <a href="">Kong Gateway tiers</a>.
+    </div>
+
+6. If the option is available, set the plugin scope to **Scoped**.
+
+7. Add the Route ID if it is not already prefilled. 
+
+{% if config_required_fields_konnect == empty %}
+8. Click **Create** to save.
+  {% else %}  
+8. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
+    {{ config_required_fields_konnect }}
+9. Click **Create** to save.
+  {% endif %}
+{% endnavtab %}
+{% endunless %}
 {% unless page.params.k8s_compatible == false %}
 {% navtab Kubernetes %}
 
@@ -366,6 +394,30 @@ plugins:
 ```
 {% endnavtab %}
 {% endunless %}
+{% unless page.params.konnect_examples == false %}
+{% navtab Konnect %}
+Configure this plugin on a Route:
+
+1. In Konnect, select the Service from the ServiceHub page.
+2. Scroll down to **Versions** and select the version.
+3. Select the route.
+4. Scroll down to **Plugins** and click **Add Plugin**.
+5. Find and select the **{{ page.name }}** plugin.
+
+    <div class="alert alert-ee blue">
+    <strong>Note:</strong> If the plugin is greyed out, then it is not available
+    for your product tier. See <a href="">Kong Gateway tiers</a>.
+    </div>
+
+  {% if config_required_fields_konnect == empty %}
+6. Click **Create** to save.
+  {% else %}  
+6. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
+    {{ config_required_fields_konnect }}
+7. Click **Create** to save.
+  {% endif %}
+{% endnavtab %}
+{% endunless %}
 {% endnavtabs %}
 {% endif %}
 
@@ -411,6 +463,33 @@ $ curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
 {{ plugin_config_for_consumer_admin_api }}
 
 {% endnavtab %}
+{% unless page.params.manager_examples == false %}
+{% navtab Kong Manager %}
+Configure this plugin on a Consumer:
+
+1. In Kong Manager, select the workspace.
+2. From the Dashboard, select **Consumers** in the left navigation.
+3. Click **View** for the Consumer row.
+4. Select the **Plugins** tab.
+5. Click **Add Plugin**.
+6. Find and select the **{{ page.name }}** plugin.
+
+    <div class="alert alert-ee blue">
+    <strong>Note:</strong> If the plugin is greyed out, then it is not available
+    for your product tier. See <a href="">Kong Gateway tiers</a>.
+    </div>
+
+7. If the option is available, set the plugin scope to **Global**. 
+
+{% if config_required_fields_konnect == empty %}
+8. Click **Create** to save.
+  {% else %}  
+8. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
+    {{ config_required_fields_konnect }}
+9. Click **Create** to save.
+  {% endif %}
+{% endnavtab %}
+{% endunless %}
 {% unless page.params.k8s_compatible == false %}
 {% navtab Kubernetes %}
 
@@ -504,6 +583,32 @@ sections for more information.
 {{ plugin_global_config_admin_api }}
 
 {% endnavtab %}
+{% unless page.params.manager_examples == false %}
+{% navtab Kong Manager %}
+Configure this plugin globally:
+
+1. In Kong Manager, select the workspace.
+2. From the Dashboard, select **Plugins** in the left navigation.
+3. Click **New Plugin**.
+4. Find and select the **{{ page.name }}** plugin.
+
+    <div class="alert alert-ee blue">
+    <strong>Note:</strong> If the plugin is greyed out, then it is not available
+    for your product tier. See <a href="">Kong Gateway tiers</a>.
+    </div>
+
+5. If the option is available, set the plugin scope to **Global**. 
+
+{% if config_required_fields_konnect == empty %}
+6. Click **Create** to save.
+  {% else %}  
+6. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
+    {{ config_required_fields_konnect }}
+7. Click **Create** to save.
+  {% endif %}
+
+{% endnavtab %}
+{% endunless %}
 {% unless page.params.k8s_compatible == false %}
 {% navtab Kubernetes %}
 
