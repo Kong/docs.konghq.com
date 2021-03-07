@@ -68,7 +68,7 @@ Let's setup an environment variable to hold the IP address:
 $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong kong-proxy)
 ```
 
-> Note: It may take a while for Google to actually associate the
+> Note: It may take a while for Microsoft Azure to actually associate the
 IP address to the `kong-proxy` Service.
 
 Once you've installed the {{site.kic_product_name}}, please follow our
