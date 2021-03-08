@@ -22,18 +22,18 @@ Start by downloading the corresponding package for your configuration:
 You can also install Kong via YUM; follow the instructions on the "Set Me Up"
 section on the page below.
 
-- [RPM Repository](https://bintray.com/kong/kong-rpm)
+- [RPM Repository]({{ site.links.download }}/kong-rpm)
 
 **NOTE**: ensure that the `baseurl` field of the generated `.repo` file contains
 your CentOS version; for instance:
 
 ```
-baseurl=https://kong.bintray.com/kong-rpm/centos/6
+baseurl={{ site.links.download }}/kong-rpm/centos/6
 ```
 or
 
 ```
-baseurl=https://kong.bintray.com/kong-rpm/centos/7
+baseurl={{ site.links.download }}/kong-rpm/centos/7
 ```
 
 ----
@@ -52,10 +52,10 @@ baseurl=https://kong.bintray.com/kong-rpm/centos/7
     ```bash
     $ sudo yum update -y
     $ sudo yum install -y wget
-    $ wget https://bintray.com/kong/kong-rpm/rpm -O bintray-kong-kong-rpm.repo
+    $ wget {{ site.links.download }}/kong-rpm/rpm -O kong.repo
     $ export major_version=`grep -oE '[0-9]+\.[0-9]+' /etc/redhat-release | cut -d "." -f1`
-    $ sed -i -e 's/baseurl.*/&\/centos\/'$major_version''/ bintray-kong-kong-rpm.repo
-    $ sudo mv bintray-kong-kong-rpm.repo /etc/yum.repos.d/
+    $ sed -i -e 's/baseurl.*/&\/centos\/'$major_version''/ kong.repo
+    $ sudo mv kong.repo /etc/yum.repos.d/
     $ sudo yum update -y
     $ sudo yum install -y kong
     ```

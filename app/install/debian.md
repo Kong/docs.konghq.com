@@ -24,7 +24,7 @@ You can also install Kong via APT; follow the instructions on the "Set Me Up"
 section on the page below, setting  *distribution* to the appropriate value
 (e.g., `wheezy`) and *components* to `main`.
 
-- [Deb Repository](https://bintray.com/kong/kong-deb)
+- [Deb Repository]({{ site.links.download }}/kong-deb)
 
 ----
 
@@ -43,7 +43,7 @@ section on the page below, setting  *distribution* to the appropriate value
     ```bash
     $ sudo apt-get update
     $ sudo apt-get install -y apt-transport-https curl lsb-core
-    $ echo "deb https://kong.bintray.com/kong-deb `lsb_release -sc` main" | sudo tee -a /etc/apt/sources.list
+    $ echo "deb {{ site.links.download }}/kong-deb `lsb_release -sc` main" | sudo tee -a /etc/apt/sources.list
     $ curl -o bintray.key https://bintray.com/user/downloadSubjectPublicKey?username=bintray
     $ sudo apt-key add bintray.key
     $ sudo apt-get update

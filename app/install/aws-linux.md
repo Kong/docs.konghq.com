@@ -25,13 +25,13 @@ Start by downloading the following package specifically built for the Amazon Lin
 You can also install Kong via YUM; follow the instructions on the "Set Me Up"
 section on the page below.
 
-- [RPM Repository](https://bintray.com/kong/kong-rpm)
+- [RPM Repository]({{ site.links.download }}/kong-rpm)
 
 **NOTE**: ensure that the `baseurl` field of the generated `.repo` file contains
 amazonlinux/amazonlinux; for instance:
 
 ```
-baseurl=https://kong.bintray.com/kong-rpm/amazonlinux/amazonlinux
+baseurl={{ site.links.download }}/kong-rpm/amazonlinux/amazonlinux
 ```
 
 ----
@@ -50,9 +50,9 @@ baseurl=https://kong.bintray.com/kong-rpm/amazonlinux/amazonlinux
     ```bash
     $ sudo yum update -y
     $ sudo yum install -y wget
-    $ wget https://bintray.com/kong/kong-rpm/rpm -O bintray-kong-kong-rpm.repo
-    $ sed -i -e 's/baseurl.*/&\/amazonlinux\/amazonlinux'/ bintray-kong-kong-rpm.repo
-    $ sudo mv bintray-kong-kong-rpm.repo /etc/yum.repos.d/
+    $ wget {{ site.links.download }}/kong-rpm/rpm -O kong.repo
+    $ sed -i -e 's/baseurl.*/&\/amazonlinux\/amazonlinux'/ kong.repo
+    $ sudo mv kong.repo /etc/yum.repos.d/
     $ sudo yum update -y
     $ sudo yum install -y kong
     ```
