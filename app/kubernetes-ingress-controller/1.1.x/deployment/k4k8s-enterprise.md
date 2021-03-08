@@ -151,10 +151,10 @@ $ helm install kong/kong --generate-name
 ### Example values.yaml
 ```
 image:
-  repository: kong-docker-kong-enterprise-k8s.bintray.io/kong-enterprise-k8s
-  tag: 1.3.0.0-alpine
+  repository: kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition
+  tag: 2.2.1.0-alpine
   pullSecrets:
-  - kong-enterprise-k8s-docker
+  - kong-enterprise-edition-docker
 env:
   LICENSE_DATA:
     valueFrom:
