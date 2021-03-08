@@ -13,10 +13,6 @@ module Jekyll
         elem["edition"] && elem["edition"] == 'enterprise'
       end
 
-      studioVersions = site.data["kong_versions"].select do |elem|
-        elem["edition"] && elem["edition"] == 'studio'
-      end
-
       gsgVersions = site.data["kong_versions"].select do |elem|
         elem["edition"] && elem["edition"] == 'getting-started-guide'
       end
@@ -39,7 +35,6 @@ module Jekyll
 
       site.data["kong_versions_ce"] = ceVersions
       site.data["kong_versions_ee"] = eeVersions
-      site.data["kong_versions_studio"] = studioVersions
       site.data["kong_versions_gsg"] = gsgVersions
       site.data["kong_versions_deck"] = deckVersions
       site.data["kong_versions_mesh"] = meshVersions
@@ -50,7 +45,6 @@ module Jekyll
       # Retrieve the latest version and put it in `site.data.kong_latest.version`
       latestVersionCE = ceVersions.last
       latestVersionEE = eeVersions.last
-      latestVersionStudio = studioVersions.last
       latestVersionGSG = gsgVersions.last
       latestVersionDeck = deckVersions.last
       latestVersionMesh = meshVersions.last
@@ -69,7 +63,7 @@ module Jekyll
         parts = Pathname(page.path).each_filename.to_a
         page.data["has_version"] = true
         # Only apply those rules to documentation pages
-        if (parts[0] == "enterprise" || parts[0].match(/[0-3]\.[0-9]{1,2}(\..*)?$/) || parts[0] == 'studio' || parts[0] == 'getting-started-guide' || parts[0] == 'mesh' || parts[0] == 'deck' || parts[0] == 'konnect' || parts[0] == 'kubernetes-ingress-controller' || parts[0] == 'gateway-oss')
+        if (parts[0] == "enterprise" || parts[0].match(/[0-3]\.[0-9]{1,2}(\..*)?$/) || parts[0] == 'getting-started-guide' || parts[0] == 'mesh' || parts[0] == 'deck' || parts[0] == 'konnect' || parts[0] == 'kubernetes-ingress-controller' || parts[0] == 'gateway-oss')
           if(parts[0] == 'enterprise')
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]
@@ -77,13 +71,6 @@ module Jekyll
             page.data["kong_latest"] = latestVersionEE
             page.data["nav_items"] = site.data['docs_nav_ee_' + parts[1].gsub(/\./, '')]
             createAliases(page, '/enterprise', 1, parts, latestVersionEE["release"])
-          elsif(parts[0] == 'studio')
-            page.data["edition"] = parts[0]
-            page.data["kong_version"] = parts[1]
-            page.data["kong_versions"] = studioVersions
-            page.data["kong_latest"] = latestVersionStudio
-            page.data["nav_items"] = site.data['docs_nav_studio_' + parts[1].gsub(/\./, '')]
-            createAliases(page, '/studio', 1, parts, latestVersionStudio["release"])
           elsif(parts[0] == 'getting-started-guide')
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]
