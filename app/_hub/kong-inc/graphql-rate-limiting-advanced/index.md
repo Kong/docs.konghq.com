@@ -30,7 +30,7 @@ params:
   route_id: true
   config:
     - name: cost_strategy
-      required:
+      required: true
       default: "default"
       value_in_examples:
       datatype: string
@@ -182,7 +182,7 @@ params:
       description: |
         Cluster addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis cluster.
     - name: window_type
-      required:
+      required: true
       default: sliding
       value_in_examples:
       datatype: string
