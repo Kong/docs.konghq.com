@@ -56,4 +56,3 @@ The supplied Helm Chart takes care of upgrading the control plane. Because of th
     ```
 
 3.  Restart all the pods in the meshes to make sure the new sidecars are deployed and connected to the newly deployed control plane.
-
