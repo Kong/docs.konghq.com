@@ -6,7 +6,7 @@
 
 - title: Release notes
   icon: /assets/images/icons/documentation/icn-references-color.svg
-  items: 
+  items:
     - text: Changelog
       url: /mesh/changelog
       absolute_url: true
