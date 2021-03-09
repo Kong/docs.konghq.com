@@ -47,7 +47,7 @@ The generated token looks like:
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJab25lIjoid2VzdCIsIlRva2VuU2VyaWFsTnVtYmVyIjoxfQ.kIrS5W0CPMkEVhuRXcUxk3F_uUoeI3XK1Gw-uguWMpQ
 ```
 
-For authentication to the global control plane on Kubernetes, you can port-forward port 5681 port to access the API.
+For authentication to the global control plane on Kubernetes, you can port-forward port 5681 to access the API.
 
 ### Add token to each remote configuration
 
