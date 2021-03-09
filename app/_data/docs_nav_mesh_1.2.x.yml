@@ -52,5 +52,4 @@
       url: /features/kds-auth
     - text: FIPS support
       url: /features/fips-support
-    - text: FIPS support
-      url: /features/fips-support
+

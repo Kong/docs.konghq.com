@@ -34,7 +34,11 @@ After you install, follow the Kuma getting started guide to get
 ## 3. Learn more
 
 * Read the [Kuma documentation](https://kuma.io/docs/){:target="_blank"}
-* Learn about [enterprise features](/mesh/{{page.kong_version}}/features)
+* Learn about enterprise features:
+  * [Support for HashiCorp Vault CA](/mesh/{{page.kong_version}}/features/vault)
+  * [Support for Open Policy Agent](/mesh/{{page.kong_version}}/features/opa)
+  * [Multi-zone authentication](/mesh/{{page.kong_version}}/features/kds-auth)
+  * [Support for FIPS](/mesh/{{page.kong_version}}/features/fips-support)
 
 If you are a {{site.mesh_product_name}} customer, you can also open a support
 ticket with any question or feedback you may have.
