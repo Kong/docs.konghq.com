@@ -258,7 +258,6 @@ Configure this plugin on a Service:
     {{ config_required_fields_konnect }}
 6. Click **Create** to save.
   {% endif %}
-
 {% endnavtab %}
 {% endunless %}
 {% endnavtabs %}
@@ -268,10 +267,11 @@ Configure this plugin on a Service:
   configuration will target.
 
 {% if page.params.api_id %}
-  > **Note:** The legacy API entity has been **deprecated** in favor of Services
+<div class="alert alert-ee blue"><strong>Note:</strong>The legacy API entity has been **deprecated** in favor of Services
   since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">
   CE 0.13.0</a> and
   <a href="https://docs.konghq.com/enterprise/changelog/#0-32">EE 0.32</a>.
+</div>
 {% endif %}
 
 {% endcapture %}
