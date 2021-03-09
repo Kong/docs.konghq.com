@@ -348,3 +348,97 @@ conf:
 
 {% endnavtab %}
 {% endnavtabs %}
+
+## Example
+
+Follow those steps to see OPA Policy in action using Kubernetes deployment.
+
+1. Deploy Kuma Demo marketplace application
+```
+kubectl apply -f https://bit.ly/demokuma
+```
+2. Make requests from frontend to backend application
+```
+$ kubectl exec -i -t (kubectl get pod -l "app=kuma-demo-frontend" -o jsonpath='{.items[0].metadata.name}' -n kuma-demo) -n kuma-demo -- curl backend:3001 -v
+Defaulting container name to kuma-fe.
+Use 'kubectl describe pod/kuma-demo-app-6787b4f7f5-bwvnb -n kuma-demo' to see all of the containers in this pod.
+Hello World! Marketplace with sales and reviews made with <3 by the OCTO team at Kong Inc.⏎
+```
+3. Apply OPA Policy that requires valid JWT token
+```
+echo " 
+apiVersion: kuma.io/v1alpha1
+kind: OPAPolicy
+mesh: default
+metadata:
+  name: opa-1
+spec:
+  selectors:
+  - match:
+      kuma.io/service: '*'
+  conf:
+    policies:
+      - inlineString: |
+          package envoy.authz
+
+          import input.attributes.request.http as http_request
+
+          default allow = false
+
+          token = {\"valid\": valid, \"payload\": payload} {
+              [_, encoded] := split(http_request.headers.authorization, \" \")
+              [valid, _, payload] := io.jwt.decode_verify(encoded, {\"secret\": \"secret\"})
+          }
+
+          allow {
+              is_token_valid
+              action_allowed
+          }
+
+          is_token_valid {
+            token.valid
+            now := time.now_ns() / 1000000000
+            token.payload.nbf <= now
+            now < token.payload.exp
+          }
+
+          action_allowed {
+            http_request.method == \"GET\"
+            token.payload.role == \"admin\"
+          }
+" | kubectl apply -f -
+```
+4. Make invalid requests from frontend to backend application
+```
+$ kubectl exec -i -t (kubectl get pod -l "app=kuma-demo-frontend" -o jsonpath='{.items[0].metadata.name}' -n kuma-demo) -n kuma-demo -- curl backend:3001 -v
+Defaulting container name to kuma-fe.
+Use 'kubectl describe pod/kuma-demo-app-6787b4f7f5-bwvnb -n kuma-demo' to see all of the containers in this pod.
+*   Trying 10.105.146.164:3001...
+* TCP_NODELAY set
+* Connected to backend (10.105.146.164) port 3001 (#0)
+> GET / HTTP/1.1
+> Host: backend:3001
+> User-Agent: curl/7.67.0
+> Accept: */*
+>
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 403 Forbidden
+< date: Tue, 09 Mar 2021 16:50:40 GMT
+< server: envoy
+< x-envoy-upstream-service-time: 2
+< content-length: 0
+<
+* Connection #0 to host backend left intact
+```
+This time, application won't allow a request without a valid token.
+
+**Note**: it may take 30s for the policy to be fully propagated
+5. Make valid requests from frontend to backend application
+```
+$ export ADMIN_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJzdWIiOiJZbTlpIiwibmJmIjoxNTE0ODUxMTM5LCJleHAiOjE2NDEwODE1Mzl9.WCxNAveAVAdRCmkpIObOTaSd0AJRECY2Ch2Qdic3kU8"
+$ kubectl exec -i -t (kubectl get pod -l "app=kuma-demo-frontend" -o jsonpath='{.items[0].metadata.name}' -n kuma-demo) -n kuma-demo -- curl -H "Authorization: Bearer $ADMIN_TOKEN" backend:3001
+Defaulting container name to kuma-fe.
+Use 'kubectl describe pod/kuma-demo-app-6787b4f7f5-bwvnb -n kuma-demo' to see all of the containers in this pod.
+Hello World! Marketplace with sales and reviews made with <3 by the OCTO team at Kong Inc.⏎
+```
+The request is valid again because the token was signed by `secret` private key, has payload with role admin and has not expired.
