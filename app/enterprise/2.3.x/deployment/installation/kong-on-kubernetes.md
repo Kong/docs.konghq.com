@@ -202,7 +202,7 @@ In the following steps, replace `<your-password>` with a secure password.
     ```
 {% endnavtab %}
 {% endnavtabs %}
-## Step 7. Prepare Kong's configuration file
+## Step 6. Prepare Kong's configuration file
 
 1. Create a `values.yaml` file for Helm based on the template in the [Kong charts repository](https://github.com/Kong/charts/blob/main/charts/kong/values.yaml). This file contains all the possible parameters for your Kong deployment.
 
@@ -216,7 +216,7 @@ In the following steps, replace `<your-password>` with a secure password.
     |---------------|-------------------------------|
     |`enterprise.enabled` | `true` |
     |`enterprise.portal.enabled` | (Optional) Set to `true` to enable the [Kong Developer Portal](/enterprise/{{page.kong_version}}/developer-portal/). |
-    |`enterprise.rbac.enabled` | (Optional) Set to `true` to enable RBAC. Requires seeding the super admin password; see [above](#step-5-seed-the-super-admin-password). |
+    |`enterprise.rbac.enabled` | (Optional) Set to `true` to enable RBAC. Requires seeding the super admin password; see [above](#step-4-seed-the-super-admin-password). |
     |`env.database` | `"postgres"` or `"cassandra"` |
     |`env.pg_host` | (If using Postgres) Set to host of the Postgres server (only if `postgresql.enabled` is `false`). |
     |`env.pg_port` | (If using Postgres) Set to port of the Postgres server (only if `postgresql.enabled` is `false`). |
@@ -261,7 +261,7 @@ In the following steps, replace `<your-password>` with a secure password.
 
 4. Fill in the rest of the parameters as appropriate for your implementation. Use the comments in the sample file to guide you, and see the documentation on [{{site.ee_product_name}} parameters](https://github.com/Kong/charts/blob/main/charts/kong/README.md#kong-enterprise-parameters) for more details.
 
-## Step 8. Deploy Kong Gateway on Kubernetes
+## Step 7. Deploy Kong Gateway on Kubernetes
 The steps in this section show you how to install {{site.ee_product_name}} on Kubernetes using Helm.
 <div class="alert alert-ee blue">
 <strong>Note:</strong> The following instructions assume that you're running Helm 3.
@@ -325,7 +325,7 @@ The steps in this section show you how to install {{site.ee_product_name}} on Ku
 
 After migrations are complete and the `my-kong-kong-<ID>` pod is running, continue to the next section.
 
-## Step 9. Finalize configuration and verify installation
+## Step 8. Finalize configuration and verify installation
 {% navtabs %}
 {% navtab kubectl %}
 1. Run:
