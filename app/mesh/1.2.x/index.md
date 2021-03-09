@@ -29,19 +29,19 @@ is_homepage: true
   <div class="docs-grid-block">
     <h3><a href="/mesh/{{page.kong_version}}/features/vault">HashiCorp Vault CA</a></h3>
     <p>{{site.mesh_product_name}} supports HashiCorp Vault for CA storage.</p>
-    <a href="/mesh/{{page.kong_version}}/features/vault">Explore enterprise features &rarr;</a>
+    <a href="/mesh/{{page.kong_version}}/features/vault">Learn about Mesh and HashiCorp Vault &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
     <h3><a href="/mesh/{{page.kong_version}}/features/opa">Open Policy Agent</a></h3>
     <p>{{site.mesh_product_name}} integrates Open Policy Agent for improved policy management.</p>
-    <a href="/mesh/{{page.kong_version}}/features/opa">Explore enterprise features &rarr;</a>
+    <a href="/mesh/{{page.kong_version}}/features/opa">Learn about OPA integration in Mesh &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
     <h3><a href="/mesh/{{page.kong_version}}/features/kds-auth">Multi-zone authentication</a></h3>
     <p>{{site.mesh_product_name}} provides improved authentication for multi-zone control planes.</p>
-    <a href="/mesh/{{page.kong_version}}/features/kds-auth">Explore enterprise features &rarr;</a>
+    <a href="/mesh/{{page.kong_version}}/features/kds-auth">Learn how Mesh provides multi-zone authentication &rarr;</a>
   </div>
 
 </div>
