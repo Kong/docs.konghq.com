@@ -11,49 +11,49 @@ skip_read_time: true
 
 ### Changes 
 
-- Adding the Open Policy Agent integration
-- Authentication support for the Kuma Discovery Protocol (KDS) used in multi-zone deployments to connect
-- FIPS enabled side-car
-- Uses XDSv3 for Control Plane to Data plane proxy communication
-- Build on top of Kuma 1.1.0 with warious small [fixes and improvements](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#110)
+- Added Open Policy Agent integration
+- Improved authentication support for control planes in multi-zone deployments, with the Kuma Discovery Protocol (KDS)
+- Added FIPS support to the data plane proxy sidecar
+- Added XDSv3 for control plane to data plane proxy communication
+- Build on top of Kuma 1.1.0 with [fixes and improvements](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#110)
 
 ### Upgrading
 
 #### Kubernetes with `kumactl`
 
-If the previous installation of Kong Mesh was done using `kumactl install control-plane --license-path=... | kubectl apply -f -`,
-the upgrade needs to first uninstall the previous version and then install the new one from scratch. This also means that all the
-policies will be removed. We do recommend to backup all the related CRDs before applying the upgrade.
+If you previously installed Kong Mesh with `kumactl install control-plane --license-path=... | kubectl apply -f -`,
+you must first uninstall the previous version and then install the new version. All policies are removed when you uninstall,
+so make sure to back up all related CRDs before you start. Then:
 
-1. Install Kong Mesh for Kubernetes using `kumactl install control-plane ...` applyion all the neede customization command line arguments
+1.  Install Kong Mesh for Kubernetes using `kumactl install control-plane ...` with any additional command-line arguments you require.
 
-2. Delete the old Deployment, Service, Webhooks, Validation Hooks using the following commands
+2.  Delete the old Deployment, Service, Webhooks, and Validation hooks:
 
-```sh
-kubectl delete -n kong-mesh-system deploy/kuma-control-plane
-kubectl delete -n kong-mesh-system service/kuma-control-plane
-kubectl delete mutatingwebhookconfiguration/kuma-admission-mutating-webhook-configuration
-kubectl delete validatingwebhookconfiguration/kuma-validating-webhook-configuration
-```
+    ```sh
+    kubectl delete -n kong-mesh-system deploy/kuma-control-plane
+    kubectl delete -n kong-mesh-system service/kuma-control-plane
+    kubectl delete mutatingwebhookconfiguration/kuma-admission-mutating-webhook-configuration
+    kubectl delete validatingwebhookconfiguration/kuma-validating-webhook-configuration
+    ```
 
-3. Restart all the pods in the meshes to make sure the new side-cars are deployed and connected to the newly deployed Control Plane
+3.  Restart all the pods in the meshes to make sure the new sidecars are deployed and connected to the newly deployed control plane.
 
 #### Kubernetes with Helm
 
-The supplied Helm Chart will take care of the upgrades of the control plane. However, due to how [Helm handles CRDs](https://helm.sh/docs/chart_best_practices/custom_resource_definitions/)
-we need to apply the new OPA CRD. The steps for the upgrade are as follows
+The supplied Helm Chart takes care of upgrading the control plane. Because of the way [Helm handles CRDs](https://helm.sh/docs/chart_best_practices/custom_resource_definitions/), however, you must apply the new OPA CRD:
 
-1. Install the new CRD
+1.  Install the new CRD
 
-```sh
-kubectl apply -f https://docs.konghq.com/mesh/1.2.x/patches/opa-policy.yaml
-```
+    ```sh
+    kubectl apply -f https://docs.konghq.com/mesh/1.2.x/patches/opa-policy.yaml
+    ```
 
-2. Upgrade Kong Mesh with Helm:
-```sh
-helm repo update
-helm --namespace kong-mesh-system upgrade my-kong-mesh kong-mesh/kong-mesh
-```
+2.  Upgrade Kong Mesh with Helm:
 
-3. Restart all the pods in the meshes to make sure the new side-cars are deployed and connected to the newly deployed Control Plane
+    ```sh
+    helm repo update
+    helm --namespace kong-mesh-system upgrade my-kong-mesh kong-mesh/kong-mesh
+    ```
+
+3.  Restart all the pods in the meshes to make sure the new sidecars are deployed and connected to the newly deployed control plane.
 
