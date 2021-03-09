@@ -60,24 +60,24 @@ params:
   dbless_compatible: yes
   config:
     - name: host
-      required: false
+      required: true
       default: "`127.0.0.1`"
       value_in_examples: 127.0.0.1
       datatype: string
       description: The IP address or host name to send data to.
     - name: port
-      required: false
+      required: true
       default: "`8125`"
       value_in_examples: 8125
       datatype: integer
       description:  The port of StatsD server to send data to.
     - name: metrics
-      required: false
+      required: true
       default: "All metrics<br>are logged"
       datatype: Array of record elements
       description: List of Metrics to be logged. Available values are described under [Metrics](#metrics).
     - name: prefix
-      required: false
+      required: true
       default: "`kong`"
       datatype: string
       description: String to prefix to each metric's name.
