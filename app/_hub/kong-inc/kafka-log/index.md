@@ -1,10 +1,14 @@
 ---
 name: Kafka Log
 publisher: Kong Inc.
+version: 1.5.x # 0.1.1 internal handler
 
 desc: Publish logs to a Kafka topic
 description: |
-   Publish request and response logs to a [Kafka](https://kafka.apache.org/) topic.
+   Publish request and response logs to an [Apache Kafka](https://kafka.apache.org/) topic.
+   For more information, see [Kafka topics](https://kafka.apache.org/documentation/#intro_concepts_and_terms).
+
+   Kong also provides a Kafka plugin for request transformations. See [Kafka Upstream](/hub/kong-inc/kafka-upstream/).
 
 type: plugin
 enterprise: true
@@ -16,86 +20,104 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 1.5.x
-        - 1.3-x
 
 params:
 
   name: kafka-log
+  protocols: ["http", "https", "grpc", "grpcs", "tcp", "tls", "udp"]
   config:
     - name: bootstrap_servers
       required: true
       value_in_examples: BOOTSTRAP_SERVERS
       urlencode_in_examples: true
       default:
+      datatype: set of record elements
       description: |
-        List of bootstrap brokers in a `{host: host, port: port}` format.
+        Set of bootstrap brokers in a `{host: host, port: port}` list format. For examples, see the Quickstart section.
     - name: topic
       required: true
       value_in_examples: TOPIC
       urlencode_in_examples: true
       default:
+      datatype: string
       description: The Kafka topic to publish to.
     - name: timeout
       required: false
       default: "`10000`"
       value_in_examples: TIMEOUT
+      datatype: integer
       description: Socket timeout in milliseconds.
     - name: keepalive
       required: false
       default: "`60000`"
       value_in_examples: KEEPALIVE
+      datatype: integer
       description: Keepalive timeout in milliseconds.
     - name: producer_request_acks
       required: false
       default: "`1`"
       value_in_examples: PRODUCER_REQUEST_ACKS
+      datatype: integer
       description: |
-        The number of acknowledgments the producer requires the leader to have received before considering a request complete. Allowed values: 0 for no acknowledgments, 1 for only the leader, and -1 for the full ISR.
+         The number of acknowledgments the producer requires the leader to have received before
+         considering a request complete. Allowed values: 0 for no acknowledgments; 1 for only the leader;
+         and -1 for the full ISR (In-Sync Replica set).
     - name: producer_request_timeout
       required: false
       default: "`2000`"
       value_in_examples: PRODUCER_REQUEST_TIMEOUT
+      datatype: integer
       description: |
         Time to wait for a Produce response in milliseconds.
     - name: producer_request_limits_messages_per_request
       required: false
       default: "`200`"
       value_in_examples: PRODUCER_REQUEST_LIMITS_MESSAGES_PER_REQUEST
+      datatype: integer
       description: Maximum number of messages to include in a single Produce request.
     - name: producer_request_limits_bytes_per_request
       required: false
       default: "`1048576`"
       value_in_examples: PRODUCER_REQUEST_LIMITS_BYTES_PER_REQUEST
+      datatype: integer
       description: Maximum size of a Produce request in bytes.
     - name: producer_request_retries_max_attempts
       required: false
       default: "`10`"
       value_in_examples: PRODUCER_REQUEST_RETRIES_MAX_ATTEMPTS
+      datatype: integer
       description: Maximum number of retry attempts per single Produce request.
     - name: producer_request_retries_backoff_timeout
       required: false
       default: "`100`"
+      datatype: integer
       description: Backoff interval between Produce retry attempts in milliseconds.
     - name: producer_async
       required: false
       default: "`true`"
+      datatype: boolean
       description: |
         Flag to enable asynchronous mode.
     - name: producer_async_flush_timeout
       required: false
       default: "`1000`"
+      datatype: integer
       description: |
         Maximum time interval in milliseconds between buffer flushes in asynchronous mode.
     - name: producer_async_buffering_limits_messages_in_memory
       required: false
       default: "`50000`"
+      datatype: integer
       description: |
         Maximum number of messages that can be buffered in memory in asynchronous mode.
     - name: api_version
       required: false
       default: "`0`"
+      datatype: integer
       description: |
         API version of a Produce request. Allowed values: `0`, `1`, or `2`.
 ---
@@ -103,13 +125,15 @@ params:
 ## Installation
 
 Manually download and install:
+
 ```
 $ git clone https://github.com/kong/kong-plugin-kafka-log.git /path/to/kong/plugins/kong-plugin-kafka-log
 $ cd /path/to/kong/plugins/kong-plugin-kafka-log
 $ luarocks make *.rockspec
 ```
 
-In both cases, you need to change your Kong [`plugins` configuration option](https://docs.konghq.com/1.3.x/configuration/#plugins)
+In both cases, you need to change your Kong `plugins`
+[configuration option](https://docs.konghq.com/latest/configuration/#plugins)
 to include this plugin:
 
 ```
@@ -153,27 +177,27 @@ $ curl -X POST http://kong:8001/plugins \
 
 ## Log Format
 
-Similar to [HTTP Log Plugin](https://docs.konghq.com/hub/kong-inc/http-log#log-format).
+Similar to the [HTTP Log Plugin](https://docs.konghq.com/hub/kong-inc/http-log#log-format).
 
 ## Implementation details
 
-This plugin makes use of [lua-resty-kafka](https://github.com/doujiang24/lua-resty-kafka) client under the hood.
+This plugin makes use of the [lua-resty-kafka](https://github.com/doujiang24/lua-resty-kafka) client under the hood.
 
 ## Known issues and limitations
 
 Known limitations:
 
-1. There is no support for TLS
-2. There is no support for Authentication
-3. There is no support for message compression
+1. There is no support for TLS.
+2. There is no support for authentication.
+3. There is no support for message compression.
 
 ## Quickstart
 
 The following guidelines assume that both `Kong` and `Kafka` have been installed on your local machine:
 
-1. Install `kong-plugin-kafka-log` as specified in the "Installation" section above.
+1. Install `kong-plugin-kafka-log` as specified in the above Installation section.
 
-2. Create `kong-log` topic in your `Kafka` cluster:
+2. Create a `kong-log` topic in your Kafka cluster:
 
     ```
     ${KAFKA_HOME}/bin/kafka-topics.sh --create \
@@ -183,7 +207,7 @@ The following guidelines assume that both `Kong` and `Kafka` have been installed
         --topic kong-log
     ```
 
-3. Add `kong-plugin-kafka-log` plugin globally:
+3. Add the `kafka-log` plugin globally:
 
     ```
     curl -X POST http://localhost:8001/plugins \
@@ -193,7 +217,7 @@ The following guidelines assume that both `Kong` and `Kafka` have been installed
         --data "config.topic=kong-log"
     ```
 
-    Alternatively, create a Service with a Route, and attach the plugin to that Service.
+    Alternatively to a global configuration, create a Service with a Route and attach the plugin to that Service.
 
 4. Make sample requests:
 
@@ -201,7 +225,7 @@ The following guidelines assume that both `Kong` and `Kafka` have been installed
     for i in {1..50} ; do curl http://localhost:8000/request/$i ; done
     ```
 
-5. Verify the contents of `Kafka` topic:
+5. Verify the contents of the Kafka `kong-log` topic:
 
     ```
     ${KAFKA_HOME}/bin/kafka-console-consumer.sh \

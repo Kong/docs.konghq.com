@@ -7,14 +7,6 @@ desc: Use regular expressions, variables, and templates to transform requests
 description: |
   The Request Transformer plugin for Kong allows simple transformation of requests before they reach the upstream server. These transformations can be simple substitutions or complex ones matching portions of incoming requests using regular expressions, saving those matched strings into variables, and substituting those strings into transformed requests using flexible templates.
 
-  <div class="alert alert-warning">
-    <strong>Note:</strong> The functionality of this plugin as bundled
-    with versions of Kong prior to 0.10.0
-    differs from what is documented herein. Refer to the
-    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
-    for details.
-  </div>
-
 type: plugin
 categories:
   - transformations
@@ -22,6 +14,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x
@@ -44,14 +38,12 @@ kong_version_compatibility:
         - 0.3.x
     enterprise_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x       
         - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
-        - 0.34-x
-        - 0.33-x
-        - 0.32-x
 
 params:
   name: request-transformer

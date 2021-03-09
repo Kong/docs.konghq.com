@@ -14,6 +14,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x
@@ -33,15 +35,12 @@ kong_version_compatibility:
         - 0.6.x
     enterprise_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
-        - 0.34-x
-        - 0.33-x
-        - 0.32-x
-        - 0.31-x
 
 params:
   name: syslog
@@ -54,19 +53,32 @@ params:
     - name: successful_severity
       required: false
       default: "`info`"
-      description: An optional logging severity assigned to the all successful requests with response status code less then 400 .
+      datatype: string
+      description: |
+        An optional logging severity assigned to all the successful requests with a response
+        status code less then 400. Available options: `debug`, `info`, `notice`, `warning`, `err`, `crit`, `alert`, `emerg`.
     - name: client_errors_severity
       required: false
       default: "`info`"
-      description: An optional logging severity assigned to the all failed requests with response status code 400 or higher but less than 500.
+      datatype: string
+      description: |
+        An optional logging severity assigned to all the failed requests with a
+        response status code 400 or higher but less than 500. Available options: `debug`, `info`, `notice`,
+        `warning`, `err`, `crit`, `alert`, `emerg`.
     - name: server_errors_severity
       required: false
       default: "`info`"
-      description: An optional logging severity assigned to the all failed requests with response status code 500 or higher.
+      datatype: string
+      description: |
+        An optional logging severity assigned to all the failed requests with a
+        response status code 500 or higher. Available options: `debug`, `info`, `notice`, `warning`, `err`, `crit`, `alert`, `emerg`.
     - name: log_level
       required: false
       default: "`info`"
-      description: An optional logging severity, any request with equal or higher severity will be logged to System log.
+      datatype: string
+      description: |
+        An optional logging severity. Any request with equal or higher severity
+        will be logged to System log. Available options: `debug`, `info`, `notice`, `warning`, `err`, `crit`, `alert`, `emerg`.
 
 ---
 
@@ -204,4 +216,4 @@ A few considerations on the above JSON object:
 
 ## Kong Process Errors
 
-This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path: {[prefix](/{{site.data.kong_latest.release}}/configuration/#prefix)}/logs/error.log
+{% include /md/plugins-hub/kong-process-errors.md %}

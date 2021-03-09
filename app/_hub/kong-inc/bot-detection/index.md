@@ -14,6 +14,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x
@@ -30,15 +32,12 @@ kong_version_compatibility:
         - 0.9.x
     enterprise_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
-        - 0.34-x
-        - 0.33-x
-        - 0.32-x
-        - 0.31-x
 
 params:
   name: bot-detection
@@ -51,11 +50,13 @@ params:
     - name: allow
       required: false
       default:
+      datatype: array of string elements
       description: |
         An array of regular expressions that should be allowed. The regular expressions will be checked against the `User-Agent` header.
     - name: deny
       required: false
       default:
+      datatype: array of string elements
       description: |
         An array of regular expressions that should be denied. The regular expressions will be checked against the `User-Agent` header.
 

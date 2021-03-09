@@ -14,6 +14,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x      
@@ -33,15 +35,12 @@ kong_version_compatibility:
         - 0.6.x
     enterprise_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
-        - 0.34-x
-        - 0.33-x
-        - 0.32-x
-        - 0.31-x
 
 params:
   name: loggly
@@ -54,46 +53,63 @@ params:
     - name: host
       required: false
       default: "`logs-01.loggly.com`"
-      description: The IP address or host name of Loggly server
+      datatype: string
+      description: The IP address or hostname of Loggly server.
     - name: port
       required: false
       default: "`514`"
-      description: The UDP port to send data to on the Loggly server
+      datatype: integer
+      description: The UDP port to send data to on the Loggly server.
     - name: key
       required: true
       default:
       value_in_examples: YOUR_LOGGLY_SERVICE_TOKEN
+      datatype: string
       description: |
         Loggly [customer token](https://www.loggly.com/docs/customer-token-authentication-token/).
     - name: tags
       required: false
       default: "`kong`"
+      datatype: set of string elements
       description: |
-        An optional list of [tags](https://www.loggly.com/docs/tags/) to support segmentation & filtering of logs.
+        An optional list of [tags](https://www.loggly.com/docs/tags/) to support segmentation and filtering of logs.
     - name: timeout
       required: false
       default: "`10000`"
-      description: An optional timeout in milliseconds when sending data to the Loggly server
+      datatype: number
+      description: An optional timeout in milliseconds when sending data to the Loggly server.
     - name: successful_severity
       required: false
       default: "`info`"
+      datatype: string
       description: |
-        An optional logging severity assigned to the all successful requests with response status code 400 .
+        An optional logging severity assigned to all the successful requests with a response
+        status code 400. Available options: `debug`, `info`, `notice`, `warning`, `err`,
+        `crit`, `alert`, `emerg`.
     - name: client_errors_severity
       required: false
       default: "`info`"
+      datatype: string
       description: |
-        An optional logging severity assigned to the all failed requests with response status code 400 or higher but less than 500.
+        An optional logging severity assigned to all the failed requests with a response
+        status code 400 or higher but less than 500. Available options: `debug`, `info`,
+        `notice`, `warning`, `err`, `crit`, `alert`, `emerg`.
     - name: server_errors_severity
       required: false
       default: "`info`"
+      datatype: string
       description: |
-        An optional logging severity assigned to the all failed requests with response status code 500 or higher.
+        An optional logging severity assigned to all the failed requests with response status
+        code 500 or higher. Available options: `debug`, `info`, `notice`, `warning`, `err`,
+        `crit`, `alert`, `emerg`.
     - name: log_level
       required: false
       default: "`info`"
+      datatype: string
       description: |
-        An optional logging severity, any request with equal or higher severity will be logged to Loggly.
+        An optional logging severity, any request with equal or higher severity will be
+        logged to Loggly. Available options: `debug`, `info`, `notice`, `warning`, `err`,
+        `crit`, `alert`, `emerg`.
 
 ---
 
@@ -221,4 +237,4 @@ A few considerations on the above JSON object:
 
 ## Kong Process Errors
 
-This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path: {[prefix](/{{site.data.kong_latest.release}}/configuration/#prefix)}/logs/error.log
+{% include /md/plugins-hub/kong-process-errors.md %}

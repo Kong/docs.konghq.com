@@ -37,7 +37,7 @@
       url: /installation/macos
 
 - title: Enterprise Features
-  icon: /assets/images/icons/documentation/icn-brain-color.svg
+  icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
   items:
     - text: HashiCorp Vault CA
       url: /features/vault

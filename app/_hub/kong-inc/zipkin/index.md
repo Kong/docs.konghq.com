@@ -3,7 +3,7 @@ name: Zipkin
 publisher: Kong Inc.
 redirect_from:
   - /hub/kong-inc/zipkin/http-log/
-version: 1.1.0
+version: 1.2.0
 
 source_url: https://github.com/Kong/kong-plugin-zipkin
 
@@ -11,13 +11,6 @@ desc: Propagate Zipkin spans and report space to a Zipkin server
 description: |
   Propagate Zipkin distributed tracing spans, and report spans to a Zipkin server.
 
-  <div class="alert alert-warning">
-    <strong>Note:</strong> The functionality of this plugin as bundled
-    with versions of Kong prior to 0.14.1 and Kong Enterprise prior to 0.34
-    differs from what is documented herein. Refer to the
-    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
-    for details.
-  </div>
 
 type: plugin
 categories:
@@ -26,6 +19,8 @@ categories:
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.3.x
+      - 2.2.x
       - 2.1.x
       - 2.0.x
       - 1.5.x
@@ -37,14 +32,12 @@ kong_version_compatibility:
       - 0.14.x
   enterprise_edition:
     compatible:
+      - 2.3.x
+      - 2.2.x
       - 2.1.x
       - 1.5.x
       - 1.3-x
       - 0.36-x
-      - 0.35-x
-      - 0.34-x
-      - 0.33-x
-      - 0.32-x
 
 params:
   name: zipkin
@@ -55,11 +48,13 @@ params:
   dbless_compatible: yes
   config:
     - name: http_endpoint
-      required: true
+      required: false
       default: ''
       value_in_examples: http://your.zipkin.collector:9411/api/v2/spans
       description: |
         The full HTTP(S) endpoint to which Zipkin spans should be sent by Kong.
+        If not specified, the Zipkin plugin will only act as a tracing header
+        generator/transmitter.
     - name: sample_ratio
       required: false
       default: '`0.001`'
@@ -98,6 +93,19 @@ params:
         tracing headers (for example, when `header_type` is set to `b3` but a w3c-style tracing header is
         found in the incoming request), then the plugin will add both kinds of tracing headers
         to the request and generate a mismatch warning in the logs.
+    - name: default_header_type
+      required: true
+      default: b3
+      description: |
+        Allows specifying the type of header to be added to requests with no pre-existing tracing headers
+        and when `config.header_type` is set to `"preserve"`.
+        When `header_type` is set to any other value, `default_header_type` is ignored.
+    - name: static_tags
+      required: false
+      default: {}
+      value_in_examples: { { name = "color", value = "red" } }
+      description: |
+        The tags specified on this property will be added to the generated request traces.
 
 ---
 

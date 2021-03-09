@@ -1,6 +1,5 @@
 ---
 title: Kong Mesh with Amazon Linux
-no_search: true
 ---
 
 <div class="alert alert-ee blue">
@@ -37,13 +36,13 @@ $ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
 {% endnavtab %}
 {% navtab Manually %}
 
-You can also [download](https://kong.bintray.com/kong-mesh/kong-mesh-{{page.kong_latest.version}}-centos-amd64.tar.gz)
+You can also [download](https://kong.bintray.com/kong-mesh/kong-mesh-{{page.kong_versions[0].version}}-centos-amd64.tar.gz)
 the distribution manually.
 
 Then, extract the archive with:
 
 ```sh
-$ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
+$ tar xvzf kong-mesh-{{page.kong_versions[0].version}}*.tar.gz
 ```
 {% endnavtab %}
 {% endnavtabs %}

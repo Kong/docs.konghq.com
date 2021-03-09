@@ -93,7 +93,7 @@ endif %}{% endfor
 
 {% capture plugin_config_for_service_admin_api %}
 
-For example, configure this plugin on a [Service](/latest/admin-api/#service-object) by
+For example, configure this plugin on a [Service](/gateway-oss/latest/admin-api/#service-object) by
 making the following request:
 
 ```bash
@@ -112,7 +112,7 @@ $ curl -X POST http://<admin-hostname>:8001/services/<service>/plugins \
 {% else %}
 
 {% navtabs %}
-{% navtab Kong Admin API %}
+{% navtab Admin API %}
 
 {{ plugin_config_for_service_admin_api }}
 
@@ -134,7 +134,7 @@ plugin: {{page.params.name}}
 ```
 
 Next, apply the KongPlugin resource to a
-[Service](/latest/admin-api/#service-object) by annotating the Service as
+[Service](/gateway-oss/latest/admin-api/#service-object) by annotating the Service as
 follows:
 
 ```yaml
@@ -168,7 +168,7 @@ spec:
 {% unless page.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
-For example, configure this plugin on a [Service](/latest/admin-api/#service-object) by
+For example, configure this plugin on a [Service](/gateway-oss/latest/admin-api/#service-object) by
 adding this section to your declarative configuration file:
 
 ``` yaml
@@ -201,7 +201,7 @@ plugins:
 {% if page.params.route_id %}
 
 {% capture plugin_config_for_route_admin_api %}
-For example, configure this plugin on a [Route](/latest/admin-api/#route-object) with:
+For example, configure this plugin on a [Route](/gateway-oss/latest/admin-api/#route-object) with:
 
 ```bash
 $ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
@@ -218,7 +218,7 @@ $ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
 
 {% else %}
 {% navtabs %}
-{% navtab Kong Admin API %}
+{% navtab Admin API %}
 
 {{ plugin_config_for_route_admin_api }}
 
@@ -239,7 +239,7 @@ metadata:
 plugin: {{page.params.name}}
 ```
 
-Then, apply it to an ingress ([Route or Routes](/latest/admin-api/#route-object))
+Then, apply it to an ingress ([Route or Routes](/gateway-oss/latest/admin-api/#route-object))
 by annotating the ingress as follows:
 
 ``` yaml
@@ -273,7 +273,7 @@ spec:
 {% unless page.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
-For example, configure this plugin on a [Route](/latest/admin-api/#route-object) by
+For example, configure this plugin on a [Route](/gateway-oss/latest/admin-api/#route-object) by
 adding this section to your declarative configuration file:
 
 ```yaml
@@ -300,7 +300,7 @@ plugins:
 
 {% capture plugin_config_for_consumer_admin_api %}
 
-For example, configure this plugin on a [Consumer](/latest/admin-api/#consumer-object) with:
+For example, configure this plugin on a [Consumer](/gateway-oss/latest/admin-api/#consumer-object) with:
 
 ```bash
 $ curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
@@ -325,7 +325,7 @@ $ curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
 {% else %}
 
 {% navtabs %}
-{% navtab Kong Admin API %}
+{% navtab Admin API %}
 
 {{ plugin_config_for_consumer_admin_api }}
 
@@ -346,7 +346,7 @@ metadata:
 plugin: {{page.params.name}}
 ```
 
-Then, apply it to a [Consumer](/latest/admin-api/#consumer-object) by
+Then, apply it to a [Consumer](/gateway-oss/latest/admin-api/#consumer-object) by
 annotating the KongConsumer resource as follows:
 
 ``` yaml
@@ -371,7 +371,7 @@ metadata:
 {% unless page.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
-For example, configure this plugin on a [Consumer](/latest/admin-api/#consumer-object) by
+For example, configure this plugin on a [Consumer](/gateway-oss/latest/admin-api/#consumer-object) by
 adding this section to your declarative configuration file:
 
 ``` yaml
@@ -409,7 +409,7 @@ $ curl -X POST http://<admin-hostname>:8001/plugins/ \
 
 A plugin which is not associated to any Service, Route, or Consumer is
 considered _global_, and will be run on every request. Read the
-[Plugin Reference](/latest/admin-api/#add-plugin) and the [Plugin Precedence](/latest/admin-api/#precedence)
+[Plugin Reference](/gateway-oss/latest/admin-api/#add-plugin) and the [Plugin Precedence](/gateway-oss/latest/admin-api/#precedence)
 sections for more information.
 
 {% if page.params.yaml_examples == false and page.params.k8s_examples == false %}
@@ -418,7 +418,7 @@ sections for more information.
 
 {% else %}
 {% navtabs %}
-{% navtab Kong Admin API %}
+{% navtab Admin API %}
 
 {{ plugin_global_config_admin_api }}
 
@@ -610,7 +610,7 @@ plugins:
     {% endif %}
       {% if page.enterprise %}
         <div class="alert alert-ee warning">
-        <strong>Kong Enterprise only</strong>: This plugin is only available with a <a href="https://konghq.com/kong-enterprise-edition">Kong Enterprise subscription</a>. Please inquire about Kong Enterprise by <a href="https://konghq.com/request-demo">contacting us</a>, or start a <a href="https://konghq.com/free-trial/">free trial</a> today.</div>
+        <strong>{{site.konnect_product_name}} only</strong>: This plugin is only available with a <a href="https://konghq.com/kong-konnect">{{site.konnect_product_name}} subscription</a>. Please inquire about {{site.konnect_product_name}} by <a href="https://konghq.com/request-demo">contacting us</a>.</div>
       {% endif %}
       {% if page.alpha %}
       <div class="alert alert-ee red condensed margin-bigger">
@@ -624,7 +624,7 @@ plugins:
       <div class="alert alert-ee red condensed margin-bigger">
         <div class="alert-body">
           <div class="tag red">BETA</div>
-          <p><strong>WARNING:</strong> This plugin is released as <a href="/enterprise/latest/introduction/key-concepts/#beta">BETA</a> and should not be deployed in a production environment.
+          <p><strong>WARNING:</strong> This plugin is released as <a href="/enterprise/gateway-oss/latest/introduction/key-concepts/#beta">BETA</a> and should not be deployed in a production environment.
         </div>
       </div>
       {% endif %}
@@ -644,12 +644,6 @@ plugins:
 
       {% if page.type == "plugin" and page.params %}
         <h2 id="configuration">Configuration Reference</h2>
-        {% if page.params.yaml_examples != false %}
-        <p>You can configure this plugin using the
-        {% if page.enterprise %}<a href="/enterprise/latest/admin-api/#plugin-object">Kong Admin API</a>{% else %}<a href="/latest/admin-api/#plugin-object">Kong Admin API</a>{% endif %}
-        or through <a href="/deck">declarative configuration</a>, which involves directly editing
-        the Kong configuration file.<p/>
-        {% endif %}
         {% if page.params.protocols %}
           <p>This plugin is compatible with requests with the following protocols:</p>
           <ul>
@@ -667,7 +661,7 @@ plugins:
           <p>This plugin is <strong>not compatible</strong> with DB-less mode.</p>
         {% endif %}
         {% if page.params.dbless_compatible == "partially" or page.params.dbless_compatible == true %}
-          <p>In DB-less mode, Kong does not have an Admin API. If using this
+          <p>In DB-less mode, {{site.base_gateway}} does not have an Admin API. If using this
             mode, configure the plugin using declarative configuration.<p>
         {% endif %}
 
@@ -715,10 +709,24 @@ plugins:
     {% endcapture %}
 
     <aside class="page-navigation">
-      <span><a href="/hub">< Back to Kong Plugin Hub</a></span>
+      <div class="github-links">
+        <ul>
+          <li>
+            <a href="/hub">
+            <i class="fa fa-chevron-left"></i>Back to Kong Plugin Hub</a>
+          </li>
+          <li>
+            <a href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}">
+            <img src="/assets/images/logos/logo-github.svg" alt="github"/>Edit this page</a>
+          </li>
+          <li>
+            <a href="https://github.com/Kong/docs.konghq.com/issues">
+            <img src="/assets/images/icons/documentation/icn-monitoring-black.svg" alt="report-issue"/>Report an issue</a>
+          </li>
+        </ul>
+      </div>
       {% unless page.toc == false %}
         <nav>
-          <br/>
           {% include toc.html html=full_content h_min=2 h_max=3 sanitize=true %}
         </nav>
       {% endunless %}
@@ -820,11 +828,7 @@ plugins:
         {% if compat %}
           <tr class="kong-editions">
             <th colspan="2">
-              {% if path_array contains "kong-inc" %}
-                Bundled with...
-              {% else %}
-                Compatibility
-              {% endif %}
+                Version Compatibility
             </th>
           </tr>
           <tr class="kong-compatibility">
@@ -833,7 +837,7 @@ plugins:
               {% for v in site.data.kong_versions_ee reversed %}
                 {% if ee_compatible contains v.release or ee_incompatible contains v.release %}
                   {% unless first_ee %}
-                  <h6>Kong Enterprise</h6>{% assign first_ee = true %}
+                  <h6>{{site.ee_product_name}}</h6>{% assign first_ee = true %}
                   {% endunless %}
                   <li>
                   {% if ee_compatible contains v.release %}
@@ -845,10 +849,10 @@ plugins:
                 {% endif %}
               {% endfor %}
               </ul><ul class="compat-list">
-              {% for v in site.data.kong_versions reversed %}
+              {% for v in site.data.kong_versions_ce reversed %}
                 {% if ce_compatible contains v.release or ce_incompatible contains v.release %}
                   {% unless first_ce %}
-                  <h6>Kong Community</h6>{% assign first_ce = true %}
+                  <h6>{{site.ce_product_name}}</h6>{% assign first_ce = true %}
                   {% endunless %}
                   <li>
                   {% if ce_compatible contains v.release %}
@@ -874,6 +878,9 @@ plugins:
         </div>
       </div>
     </div>
+  </div>
+  <div id="scroll-to-top-button">
+    <i class="fas fa-chevron-up"></i>
   </div>
   {% if page.feedback != false %}
   {% include feedback-widget.html %}

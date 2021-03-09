@@ -4,15 +4,17 @@ sitemap: true
 id: documentation
 ---
 
+{% assign latest_page_url = page.url | replace: page.kong_version, page.kong_latest.release %}
+{% capture latest_page_exists %}{% page_exists {{latest_page_url}} %}{% endcapture %}
+
 <div class="page v2 {{ page.class }}">
   <header class="page-header">
     <div class="page-header-bg"></div>
     <div class="container">
       <nav class="docs-navigation v2">
-        <a href="/" {% if page.edition =='community' %} class="active" {% endif %}>{{site.ce_product_name}}</a>
-        <a href="/enterprise" {% if page.edition =='enterprise' %} class="active" {% endif %}>{{site.ee_product_name}}</a>
+        <a href="/konnect" {% if page.edition =='konnect' or page.edition == 'enterprise' %} class="active" {% endif %}>{{site.konnect_product_name}}</a>
+        <a href="/gateway-oss" {% if page.edition =='gateway-oss' %} class="active" {% endif %}>{{site.ce_product_name}}</a>
         <a href="/mesh" {% if page.edition =='mesh' %} class="active" {% endif %}>{{site.mesh_product_name}}</a>
-        <a href="/getting-started-guide/latest/overview" {% if page.edition =='getting-started-guide' %} class="active" {% endif %}>Getting Started</a>
 
         <div class="header-actions">
           <div class="search-version-row">
@@ -28,7 +30,7 @@ id: documentation
                 {% assign version_page_url = page.url | replace: page.kong_version, ver.release %}
                 {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}<li {% if page.kong_version==ver.release %} class="active" {% endif %}>
                 <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
-                  <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}{% endif %}"
+                  <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if page.edition == 'gateway-oss' %}gateway-oss/{% endif %}{% if page.edition == 'enterprise' %}enterprise/{% endif %}{% if page.edition == 'mesh' %}mesh/{% endif %}{{ver.release}}{% endif %}"
                     {% if ver.release==page.kong_version %} class="active" {% endif %}
                     data-version-id="{{ver.release}}"
                   >
@@ -90,30 +92,26 @@ id: documentation
 
       <div class="page-content">
         <div class="content show-anchor-links">
-          {% if page.edition == 'community' %}
+          {% unless page.no_breadcrumbs %}
+          {% include breadcrumbs.html %}
+          {% endunless %}
+          {% if page.edition == 'gateway-oss' %}
           <div class="alert alert-ee">
-            Maybe you were looking for the <a href="/enterprise"><strong>Enterprise Documentation</strong></a>
+            Maybe you were looking for the <a href="/enterprise"><strong>{{site.ee_product_name}} documentation</strong></a>
             instead?
           </div>
           {% endif %}
           {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
           <div class="alert alert-warning">
-            <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong {% if page.edition == 'community' %}{{site.ce_product_name}}{% endif %}{% if page.edition == 'enterprise' %}Enterprise{% endif %}. Go <a
-                  href="{% if page.edition == 'enterprise' %}/enterprise{% endif %}/latest">here</a>
-            to browse the documentation for the latest version.
+            You are browsing documentation for an outdated version. See the
+            <a href="{% if latest_page_exists == 'true' %}{{latest_page_url}}{% elsif page.edition == 'gateway-oss'%}/gateway-oss/{% elsif page.edition == 'enterprise'%}/enterprise/{% elsif page.edition == 'mesh'%}/mesh/{% elsif page.edition == 'kubernetes-ingress-controller/'%}/kubernetes-ingress-controller/{% else %}/{% endif %}">
+              latest documentation here</a>.
           </div>
-          {% elsif page.is_homepage != true and page.beta == true %}
-          <div class="alert alert-ee red condensed margin-bigger">
-            <div class="alert-body">
-              <div class="tag red">BETA</div>
-              <p>Warning: This feature is released as <a href="/enterprise/{{page.kong_version}}/introduction/key-concepts/#beta">BETA</a> and should not be deployed in a production environment.
-            </div>
-          </div>
-          {% elsif page.is_homepage == true and page.edition == 'enterprise' %}
+          {% elsif page.beta == true %}
           <div class="alert alert-ee condensed margin-bigger">
             <div class="alert-body">
-              <div class="tag green">NEW</div>
-              <p>{{site.ee_product_name}} {{page.kong_version}} released! We added <a href="/enterprise/changelog">new features</a> and updated docs!
+              <div class="tag">BETA</div>
+              <p>Warning: This feature is released as <a href="/enterprise/{{page.kong_version}}/introduction/key-concepts/#beta">BETA</a> and should not be deployed in a production environment.
             </div>
           </div>
         {% endif %}
@@ -166,14 +164,14 @@ id: documentation
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
 
-{% if page.edition == 'community' %}
+{% if page.edition == 'gateway-oss' %}
 <script type="text/javascript">
   docsearch({
     apiKey: '691286ef280379144076a4f8df47a1d1',
     indexName: 'getkong',
     inputSelector: '#getkong-algolia-search-input',
     algoliaOptions: {
-      hitsPerPage: 5,
+      hitsPerPage: 8,
       'facetFilters': ["version: {{page.kong_version}}"]
     },
     // Override selected event to allow for local environment navigation
@@ -195,7 +193,7 @@ id: documentation
     indexName: 'prod_EE',
     inputSelector: '#getkong-algolia-search-input',
     algoliaOptions: {
-      hitsPerPage: 5,
+      hitsPerPage: 8,
       'facetFilters': ["version: {{page.kong_version}}"]
     },
     // Override selected event to allow for local environment navigation
@@ -209,5 +207,96 @@ id: documentation
 
 </script>
 {% endif %}
+
+
+{% if page.edition == 'kubernetes-ingress-controller' %}
+<script type="text/javascript">
+  docsearch({
+    appId: 'T5JKD83LWT',
+    apiKey: '1390283021f26e36117242934deb8d9d',
+    indexName: 'prod_KIC',
+    inputSelector: '#getkong-algolia-search-input',
+    algoliaOptions: {
+      hitsPerPage: 8
+    },
+    // Override selected event to allow for local environment navigation
+    handleSelected: function (input, event, suggestion) {
+      input.setVal('');
+      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split(
+        "docs.konghq.com")[1]
+    }
+    // ,debug: true // Set debug to true if you want to inspect the dropdown
+  });
+
+</script>
+{% endif %}
+
+{% if page.edition == 'mesh' %}
+<script type="text/javascript">
+  docsearch({
+    appId: 'T5JKD83LWT',
+    apiKey: '1390283021f26e36117242934deb8d9d',
+    indexName: 'prod_Mesh',
+    inputSelector: '#getkong-algolia-search-input',
+    algoliaOptions: {
+      hitsPerPage: 8,
+      'facetFilters': ["version: {{page.kong_version}}"]
+    },
+    // Override selected event to allow for local environment navigation
+    handleSelected: function (input, event, suggestion) {
+      input.setVal('');
+      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split(
+        "docs.konghq.com")[1]
+    }
+    // ,debug: true // Set debug to true if you want to inspect the dropdown
+  });
+
+</script>
+{% endif %}
+
+{% if page.edition == 'deck' %}
+<script type="text/javascript">
+  docsearch({
+    appId: 'T5JKD83LWT',
+    apiKey: '1390283021f26e36117242934deb8d9d',
+    indexName: 'prod_decK',
+    inputSelector: '#getkong-algolia-search-input',
+    algoliaOptions: {
+      hitsPerPage: 8
+    },
+    // Override selected event to allow for local environment navigation
+    handleSelected: function (input, event, suggestion) {
+      input.setVal('');
+      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split(
+        "docs.konghq.com")[1]
+    }
+    // ,debug: true // Set debug to true if you want to inspect the dropdown
+  });
+
+</script>
+{% endif %}
+
+{% if page.edition == 'konnect' %}
+<script type="text/javascript">
+  docsearch({
+    appId: 'T5JKD83LWT',
+    apiKey: '1390283021f26e36117242934deb8d9d',
+    indexName: 'prod_Konnect',
+    inputSelector: '#getkong-algolia-search-input',
+    algoliaOptions: {
+      hitsPerPage: 8
+    },
+    // Override selected event to allow for local environment navigation
+    handleSelected: function (input, event, suggestion) {
+      input.setVal('');
+      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split(
+        "docs.konghq.com")[1]
+    }
+    // ,debug: true // Set debug to true if you want to inspect the dropdown
+  });
+
+</script>
+{% endif %}
+
 
 {% include image-modal.html %}

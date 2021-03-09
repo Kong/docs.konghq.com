@@ -2,6 +2,7 @@
 name: Exit Transformer
 publisher: Kong Inc.
 version: 1.5.x
+# internal is 0.3.0
 
 desc: Customize Kong exit responses sent downstream
 description: |
@@ -17,6 +18,8 @@ categories:
 kong_version_compatibility:
     enterprise_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -33,14 +36,17 @@ params:
     - name: functions
       required: true
       value_in_examples: [ "@example/my_function.lua" ]
+      datatype: array of string elements
       description: Array of functions used to transform any Kong proxy exit response.
     - name: handle_unknown
       default: "`false`"
       required: false
+      datatype: boolean
       description: Allow transform to apply to unmatched Service, Route, or Workspace (404) responses.
     - name: handle_unexpected
       default: "`false`"
       required: false
+      datatype: boolean
       description: Allow transform to apply to unexpected request (400) responses.
 
 ---
@@ -204,9 +210,9 @@ return function(status, body, headers)
   end
 
   if not headers then
-    headers = { X-Message = "This adds X-Message to an empty set of headers" }
+    headers = { ["X-Message"] = "This adds X-Message to an empty set of headers" }
   else
-    headers["X-Message"] = "This adds X-Message to an existing set of headers" }
+    headers["X-Message"] = "This adds X-Message to an existing set of headers"
   end
 
   return status, body, headers

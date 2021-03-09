@@ -20,6 +20,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -48,8 +49,8 @@ params:
       value_in_examples: 389
       description: |
         TCP port where the LDAP server is listening. 389 is the default
-        port for non-SSL LDAP and AD. 686 is the port required for SSL LDAP and AD. If `ldaps` is
-        configured, you must use port 686.
+        port for non-SSL LDAP and AD. 636 is the port required for SSL LDAP and AD. If `ldaps` is
+        configured, you must use port 636.
     - name: ldap_password
       required:
       default:
@@ -71,7 +72,7 @@ params:
       description: |
         Set it to `true` to use `ldaps`, a secure protocol (that can be configured
         to TLS) to connect to the LDAP server. When `ldaps` is
-        configured, you must use port 686. If the `ldap` setting is enabled, ensure the
+        configured, you must use port 636. If the `ldap` setting is enabled, ensure the
         `start_tls` setting is disabled.
     - name: base_dn
       required: true
@@ -151,20 +152,29 @@ params:
       default: "matches `conf.base_dn`"
       value_in_examples:
       description: |
-        Sets a distinguished name (DN) for the entry where LDAP searches for groups begin.
+        Sets a distinguished name (DN) for the entry where LDAP searches for groups begin. This field is case-insensitive.
     - name: group_name_attribute
       required:
       default: "matches `conf.attribute`"
       value_in_examples:
       description: |
-        Sets the attribute holding the name of a group, typically called `name`
-        (in Active Directory) or `cn` (in OpenLDAP).
+        Sets the attribute holding the name of a group, typically
+        called `name` (in Active Directory) or `cn` (in OpenLDAP). This
+        field is case-insensitive.
     - name: group_member_attribute
       required:
       default: "`memberOf`"
       value_in_examples:
       description: |
-        Sets the attribute holding the members of the LDAP group.
+        Sets the attribute holding the members of the LDAP group. This field is case-sensitive.
+    - name: log_search_results
+      required: false
+      default: "`false`"
+      value_in_examples:
+      description: |
+        Displays all the LDAP search results received from the LDAP
+        server for debugging purposes. Not recommended to be enabled in
+        a production environment.
 
 ---
 
@@ -230,3 +240,12 @@ $ ldapsearch -x -h "<config.ldap_host>" -D "<config.bind_dn>" -b
 ### Using Service Directory Mapping on the CLI
 
 {% include /md/2.1.x/ldap/ldap-service-directory-mapping.md %}
+
+## Notes
+
+`config.group_base_dn` and `config.base_dn` do not accept an array and
+it has to fully match the full DN the group is in - it won’t work if it
+is specified a more generic DN, therefore it needs to be specific. For
+example, considering a case where there are nested `"OU's"`. If a
+top-level DN such as `"ou=dev,o=company"` is specified instead of
+`"ou=role,ou=groups,ou=dev,o=company"`, the authentication will fail.

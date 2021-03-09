@@ -1,14 +1,34 @@
 ---
 name: Response Transformer Advanced
 publisher: Kong Inc.
-version: 2.1.x
+version: 2.3.x (0.4.4 internal)
 
 desc: Modify the upstream response before returning it to the client
 description: |
-  Transform the response sent by the upstream server on the fly on Kong, before returning the response to the client.
+  Transform the response sent by the upstream server on the fly before returning
+  the response to the client.
+
+  The Response Transformer Advanced plugin is a superset of the
+  open source [Response Transformer plugin](/hub/kong-inc/response-transformer/), and
+  provides additional features:
+
+  * When transforming a JSON payload, transformations are applied to nested JSON objects and
+    arrays. This can be turned off and on using the `config.dots_in_keys` configuration parameter.
+    See [Arrays and nested objects](#arrays-and-nested-objects).
+  * Transformations can be restricted to responses with specific status codes using various
+    `config.*.if_status` configuration parameters.
+  * JSON body contents can be restricted to a set of allowed properties with
+    `config.allow.json`.
+  * The entire response body can be replaced using `config.replace.body`.
+  * Arbitrary transformation functions written in Lua can be applied.
+  * The plugin will decompress and recompress Gzip-compressed payloads
+    when the `Content-Encoding` header is `gzip`.
 
   <div class="alert alert-warning">
-    <strong>Note on transforming bodies:</strong> Be aware of the performance of transformations on the response body. In order to parse and modify a JSON body, the plugin needs to retain it in memory, which might cause pressure on the worker's Lua VM when dealing with large bodies (several MBs). Because of Nginx's internals, the `Content-Length` header will not be set when transforming a response body.
+    <strong>Note on transforming bodies:</strong> Be aware of the performance of transformations on the
+    response body. In order to parse and modify a JSON body, the plugin needs to retain it in memory,
+    which might cause pressure on the worker's Lua VM when dealing with large bodies (several MBs).
+    Because of Nginx's internals, the <code>Content-Length</code> header will not be set when transforming a response body.
   </div>
 
 type: plugin
@@ -19,11 +39,12 @@ enterprise: true
 kong_version_compatibility:
     enterprise_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
 
 params:
   name: response-transformer-advanced
@@ -34,89 +55,129 @@ params:
     - name: remove.headers
       required: false
       value_in_examples: ["x-toremove", "x-another-one:application/json", "x-list-of-values:v1,v2,v3", "Set-Cookie:/JSESSIONID=.*/", "x-another-regex://status/$/", "x-one-more-regex:/^/begin//"]
-      description: List of header_name[:header_value]. If only header_name is given, unset the header field with the given header_name. If header_name:header_value is given, remove a specific header_value. If header_value starts and ends with a '/' (slash character), then it is considered to be a regular expression. Note that as per https://httpwg.org/specs/rfc7230.html#field.order multiple header values with the same header name are allowed if the entire field value for that header field is defined as a comma-separated list or the header field is a Set-Cookie header field.
+      datatype: array of string elements
+      description: List of `headername[:value]`. If only `headername` is given, unset the header field with the given `headername`. If `headername:value` is given, unset the header field `headername` when it has a specific `value`. If `value` starts and ends with a `/` (slash character), then it is considered to be a regular expression. Note that in accordance with [RFC 7230](https://httpwg.org/specs/rfc7230.html#field.order) multiple header values with the same header name are allowed if the entire field value for that header field is defined as a comma-separated list or the header field is a `Set-Cookie` header field.
     - name: remove.json
       required: false
+      datatype: array of string elements
       value_in_examples: ["json-key-toremove", "another-json-key"]
       description: List of property names. Remove the property from the JSON body if it is present.
     - name: remove.if_status
       required: false
+      datatype: array of string elements
       description: List of response status codes or status code ranges to which the transformation will apply. Empty means all response codes.
     - name: rename.headers
       required: false
-      description: List of headername:value pairs. Renames header with headername to new name.
+      datatype: array of string elements
+      description: List of `headername1:headername2` pairs. If a header with `headername1` exists and `headername2` is valid, rename header to `headername2`.
     - name: replace.headers
       required: false
-      description: List of headername:value pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set.
+      datatype: array of string elements
+      description: List of `headername:value` pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set.
     - name: replace.json
       required: false
-      description: List of property:value pairs. If and only if the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
+      datatype: array of string elements
+      description: List of property `name:value` pairs. If and only if the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
     - name: replace.json_types
       required: false
+      datatype: array of string, boolean, or number elements
       description: List of JSON type names. Specify the types of the JSON values returned when replacing JSON properties.
     - name: replace.body
       required: false
-      description: String with which to replace the entire response body
+      datatype: string
+      description: String with which to replace the entire response body.
     - name: replace.if_status
       required: false
-      description: List of response status codes or status code ranges to which the transformation will apply. Empty means all response codes
+      datatype: array of string elements
+      description: List of response status codes or status code ranges to which the transformation will apply. Empty means all response codes.
     - name: add.headers
       required: false
       value_in_examples: ["x-new-header:value","x-another-header:something"]
-      description: List of headername:value pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set.
+      datatype: array of string elements
+      description: List of `headername:value` pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set.
     - name: add.json
       required: false
       value_in_examples: ["new-json-key:some_value", "another-json-key:some_value"]
-      description: List of property:value pairs. If and only if the property is not present, add a new property with the given value to the JSON body. Ignored if the property is already present.
+      datatype: array of string elements
+      description: List of `name:value` pairs. If and only if the property is not present, add a new property with the given value to the JSON body. Ignored if the property is already present.
     - name: add.json_types
       required: false
-      value_in_examples: ["new-json-key:string", "another-json-key:boolean"]
+      value_in_examples: ["new-json-key:string", "another-json-key:boolean", "another-json-key:number"]
+      datatype: array of string, boolean, or number elements
       description: List of JSON type names. Specify the types of the JSON values returned when adding a new JSON property.
     - name: add.if_status
       required: false
-      description: List of response status codes or status code ranges to which the transformation will apply. Empty means all response codes
+      datatype: array of string elements
+      description: List of response status codes or status code ranges to which the transformation will apply. Empty means all response codes.
     - name: append.headers
       required: false
       value_in_examples: ["x-existing-header:some_value", "x-another-header:some_value"]
-      description: List of headername:value pairs. If the header is not set, set it with the given value. If it is already set, a new header with the same name and the new value will be set.
+      datatype: array of string elements
+      description: List of `headername:value` pairs. If the header is not set, set it with the given value. If it is already set, a new header with the same name and the new value will be set.
     - name: append.json
       required: false
-      description: List of property:value pairs. If the property is not present in the JSON body, add it with the given value. If it is already present, the two values (old and new) will be aggregated in an array.
+      datatype: array of string elements
+      description: List of `name:value` pairs. If the property is not present in the JSON body, add it with the given value. If it is already present, the two values (old and new) will be aggregated in an array.
     - name: append.json_types
       required: false
+      datatype: array of string, boolean, or number elements
       description: List of JSON type names. Specify the types of the JSON values returned when appending JSON properties.
     - name: append.if_status
       required: false
-      description: List of response status codes or status code ranges to which the transformation will apply. Empty means all response codes
+      datatype:
+      description: List of response status codes or status code ranges to which the transformation will apply. Empty means all response codes.
     - name: allow.json
       required: false
       default:
       value_in_examples:
+      datatype: array of string elements
       description: |
         Set of parameter names. Only allowed parameters are present in the JSON response body.
     - name: transform.functions
       required: false
+      datatype: array of function elements
       description: Set of Lua functions to perform arbitrary transforms in a response JSON body.
     - name: transform.if_status
       required: false
+      datatype: array of string elements
       description: List of response status codes or ranges to which the arbitrary transformation applies. Leaving empty implies that the transformations apply to all response codes.
-
+    - name: transform.json
+      required: false
+      datatype: array of string elements
+      description: Apply Lua functions to a particular list of JSON property `name` or `name:value` pairs.
+    - name: dots_in_keys
+      required: false
+      datatype: boolean
+      default: true
+      description: Whether dots (for example, `customers.info.phone`) should be treated as part of a property name or used to descend into nested JSON objects. See [Arrays and nested objects](#arrays-and-nested-objects).
 ---
 
-Note: if the value contains a `,` then the comma separated format for lists cannot be used. The array notation must be used instead.
+Note: If the value contains a `,` (comma), then the comma-separated format for lists cannot be used. The array notation must be used instead.
 
 ## Order of execution
 
-The plugin performs the response transformation in following order:
+The plugin performs the response transformation in the following order:
 
 remove --> replace --> add --> append
 
+## Arrays and nested objects
+
+The plugin allows navigating complex JSON objects (arrays and nested objects)
+when `config.dots_in_keys` is set to `false` (the default is `true`).
+
+- `array[*]`: Loops through all elements of the array.
+- `array[N]`: Navigates to the `N`th element of the array (the index of the first element is `1`).
+- `top.sub`: Navigates to the `sub` property of the `top` object.
+
+These can be combined. For example, `config.remove.json: customers[*].info.phone` removes
+all `phone` properties from inside the `info` object of all entries in the `customers` array.
+
 ## Examples
 
-In these examples, we have the plugin enabled on a Route. This would work
-similar for Services.
+In these examples, the plugin is enabled on a Route. This would work
+similarly for Services.
 
-- Add multiple headers by passing each header:value pair separately:
+- Add multiple headers by passing each `header:value` pair separately:
 
 ```bash
 $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
@@ -138,7 +199,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   </tr>
 </table>
 
-- Add multiple headers by passing comma separated header:value pair:
+- Add multiple headers by passing comma-separated `header:value` pair:
 
 ```bash
 $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
@@ -160,7 +221,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 </table>
 
 
-- Add multiple headers passing config as JSON body:
+- Add multiple headers passing config as a JSON body:
 
 ```bash
 $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
@@ -241,17 +302,29 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 |{"p2": "v2"}   | {"p2": "v2"} |
 |{"p1" : "v1", "p2" : "v1"}  | {"p2": "v2"} |
 
-- Replace entire response body if response code is 500
+- Replace entire response body if response code is 500:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.replace.body='{\"error\": \"internal server error\"}'" \
   --data "config.replace.if_status=500"
 ```
-
-**Note**: the plugin doesn't validate the value in `config.replace.body` against
+**Note**: The plugin doesn't validate the value in `config.replace.body` against
 the content type as defined in the `Content-Type` response header.
+
+- Remove nested JSON content:
+
+```bash
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  --data "name=response-transformer-advanced" \
+  --data "config.remove.json=customers.info.phone" \
+  --data "config.dots_in_keys=false"
+```
+
+When `dots_in_keys` is `false`, the `customers.info.phone` value is interpreted as
+nested JSON objects. When `dots_in_keys` is `true` (default), `customers.info.phone` is
+treated as a single property.
 
 - Perform arbitrary transforms to a JSON body
 
@@ -282,16 +355,16 @@ end
 ```bash
 $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   -F "name=response-transformer-advanced" \
-  -F "config.transform.functions=@transform.lua"
+  -F "config.transform.functions=@transform.lua" \
   -F "config.transform.if_status=200"
 ```
 
-- Remove the entire header field with a given header name
+- Remove the entire header field with a given header name:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
-  --data "config.remove.headers=h1, h2" \
+  --data "config.remove.headers=h1,h2"
 ```
 
 |upstream response headers | proxied response headers |
@@ -299,38 +372,39 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 |h1:v1,v2,v3   | {} |
 |h2:v2  | {} |
 
-- Remove a specific header value of a given header field
+- Remove a specific header value of a given header field:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
-  --data "config.remove.headers=h1:v1, h1:v2" \
+  --data "config.remove.headers=h1:v1,h1:v2"
 ```
 
 |upstream response headers | proxied response headers |
 |---           | --- |
 |h1:v1,v2,v3   | h1:v3 |
 
-- Remove a specific header value from a comma-separated list of a header values
+- Remove a specific header value from a comma-separated list of header values:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
-  --data "config.remove.headers=h1:v1, h1:v2" \
+  --data "config.remove.headers=h1:v1,h1:v2"
 ```
 
 |upstream response headers | proxied response headers |
 |---           | --- |
 |h1:v1,v2,v3   | h1:v3 |
 
-**Note**: the plugin doesn't remove header values if the values are not separated by commas, unless it's a Set-Cookie header field. RFC reference: https://httpwg.org/specs/rfc7230.html#field.order
+**Note**: The plugin doesn't remove header values if the values are not separated by commas, unless it's a `Set-Cookie` header field
+(as specified in [RFC 7230](https://httpwg.org/specs/rfc7230.html#field.order)).
 
 - Remove a specific header value defined by a regular expression
 
-```
+```bash
 $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
-  --data "config.remove.headers=h1:/JSESSIONID=.*/, h2://status/$/" \
+  --data "config.remove.headers=h1:/JSESSIONID=.*/, h2://status/$/"
 ```
 
 |upstream response headers | proxied response headers |
@@ -346,7 +420,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 
 - Explicitly set the type of the added JSON value `-1` to be a `number` (instead of the implicitly inferred type `string`) if the response code is 500:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.add.json=p1:-1" \

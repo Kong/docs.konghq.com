@@ -66,8 +66,9 @@ npm start
 
 ## Search
 
-We are using Algolia [docsearch](https://www.algolia.com/docsearch) for our
-documentation search. The algolia index for Kong is maintained by Algolia through their
+Documentation for our open-source projects uses
+[Algolia](https://www.algolia.com/docsearch) for search. The Algolia index for
+OSS docs is maintained by Algolia through their
 docsearch service. Their [scraper](https://github.com/algolia/docsearch-scraper)
 runs every 24 hours. The config used by the scraper is open source for
 [docs.konghq.com](docs.konghq.com) and can be found [here](https://github.com/algolia/docsearch-configs/blob/master/configs/getkong.json).
@@ -76,69 +77,125 @@ test a config change locally, you will need to run their open source
 [scraper](https://github.com/algolia/docsearch-scraper) against your own
 scraper to test out config changes.
 
-The Enterprise documentation uses paid algolia indices, which auto-update every
-24 hours via a [github action here](/.github/workflows/algolia.yml)
+The rest of the Kong documentation uses paid Algolia indices, which auto-update 
+every 24 hours via a [github action here](/.github/workflows/algolia.yml).
 
-## Generating the PDK, Admin API, CLI and Configuration Documentation
+## Versioning the docs
 
-The automated docs currently require using both the kong/kong repo and this repo (kong/docs.konghq.com, kong/docs for short) in combination.
+The following instructions apply to the Kong Gateway OSS docs. For enterprise
+docs, see the instructions on the [docs wiki](https://konghq.atlassian.net/wiki/spaces/KD/pages/1053196506/Prepping+the+Private+Repo+for+a+Release).
 
-The usual release process is taken care of by the Kong Gateway team. They have a set of scripts ([example](https://github.com/Kong/kong/blob/more-scripts/scripts/make-rc1-release#L471-L589))
-which run the following steps as part of the release process.
+### Creating a new community doc release version
 
-The following instructions replicate what that script does, in a more manual way.
+1. Pull down the master branch of this repo and create a release branch
+(`release/<version>`):
 
-You will need to know the **release** you are trying to generate docs for. The release looks
-like `0.14.x` in kong/docs, and like `0.14.1` or `0.14.2` in kong/kong.
+    ```sh
+    $ cd docs.konghq.com
+    $ git pull master
+    $ git checkout -b release/2.4
+    ```
 
-Prerequisites:
-- Make sure that the `resty` and `luajit` executables are in your `$PATH` (installing kong should install them).
-- Install Luarocks (comes with Kong).
-- Several Lua rocks are needed. The easiest way to get them all is to execute `make dev` in the Kong folder
-- Install `ldoc` using Luarocks: `luarocks install ldoc 1.4.6`
-- Have a local clone of Kong.
-- In the kong/kong repository, check out the desired branch/tag/release.
+2. Copy the following doc folders for Kong Gateway (OSS):
 
-To generate the PDK docs:
-- On the kong/doc repo, `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp pdk-docs`
-- This command will attempt to:
-  * Obtain an updated list of modules from your local PDK and put it inside
-    your nav file.
-  * Generate documentation for all the modules in your PDK (where possible) and
-    put in a folder inside your version docs.
-  * Note: the command used by the Kong Gateway team is different than this one (it does not use the `gulp` abstraction). But they are functionally equivalent.
+    1. Copy the latest `app/gateway-oss/` version folder and all of its contents.
+    Rename the folder to the new major or minor version, with `x` for the patch level.
 
-To generate the Admin API docs:
-- On the kong/kong repo, run `./scripts/autodoc-admin-api`
-- Copy `kong/kong/autodoc/output/admin-api/admin-api.md` into `kong/docs/app/0.14.x/admin-api.md` (replace `0.14.x` with current release)
-- Copy `kong/kong/autodoc/output/admin-api/db-less-admin-api.md` into `kong/docs/app/0.14.x/db-less-admin-api.md` (replace `0.14.x` with current release)
-- Copy `kong/kong/autodoc/output/nav/docs_nav.yml.admin-api.in` into `kong/docs/autodoc-nav/docs_nav_0.14.x.yml.head.in`. Replace `0.14.x` with release.
-- On the kong/docs repo, run `KONG_VERSION=0.14.x luajit ./autodoc-nav/run.lua` (replace `0.14.x` with current release). This will merge the navigation
-  info in the right place.
-- These commands generate a two big files for the admin API and a smaller file for the navigation, which needs to be inserted in a
-  specific place in the navigation yaml file.
+        For example, copy `app/gateway-oss/2.3.x` and rename to
+        `app/gateway-oss/2.4.x`.
 
-To generate the CLI docs:
-- In kong/docs `KONG_PATH=path/to/your/kong/repo KONG_VERSION=0.14.x luajit autodoc-cli/run.lua` (replace `0.14.x` with current release)
-- This command will:
-  * Extract the output of the `--help` for every `kong` CLI subcommand
-  * Generate a new `cli.md` in the path corresponding to the provided KONG_VERSION.
+    2. Copy the latest `app/getting-started-guide/` version folder and rename it
+     to the new version.
 
-To generate the Configuration docs:
-- In kong/docs: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x luajit autodoc-conf/run.lua` (replace `0.14.x` with current release)
-- This command will:
-  * Parse Kong's `kong.conf.default` file and extract sections, variable names, descriptions, and default values
-  * Write those down inside a `configuration.md` file in the path matching KONG_VERSION.
-  * The command will completely overwrite the file, including text before and after the list of vars.
-  * The data used for the before/after parts can be found in `autodoc-conf/data.lua`
+    3. Copy the latest `app/_includes/md/` version folder and rename it
+     to the new version.
 
-Once everything is generated, open a branch with the changes, send a pull request, and review the changes.
+3. Add the newest CE version to `app/_data/kong_versions.yml`:
 
-## Listing Your Extension in the Kong Hub
+    1. Copy the previous version section, which looks like the following:
 
-We encourage developers to list their Kong plugins and integrations (which
-we refer to collectively as "extensions") in the
-[Kong Hub](https://docs.konghq.com/hub) with documentation hosted
-on the Kong website for ready access.
+        ```yaml
+          release: "2.3.x"
+          version: "2.3.2"
+          edition: "gateway-oss"
+          luarocks_version: "2.3.2-0"
+          dependencies:
+            luajit: "2.1.0-beta3"
+            luarocks: "3.4.0"
+            cassandra: "3.x.x"
+            postgres: "9.5+"
+            openresty: "1.17.8.2"
+            openssl: "1.1.1i"
+            libyaml: "0.2.5"
+            pcre: "8.44"
+        ```
+
+        Update `release`, `version`, and any `dependencies`, if applicable.
+
+    2. Do the same for `getting-started-guide`, copying the latest version,
+    which looks like the following:
+
+        ```yaml
+          release: "2.3.x"
+          version: "2.3"
+          edition: "getting-started-guide"
+        ```
+
+3. Update the latest version in the full site Algolia configuration file:
+
+    1. Open  `/algolia/config-full-docs.json`
+    2. In the `start_urls` section, update the `gateway-oss` URL to the latest
+    `x.x.x` version:
+
+        ```json
+        "url": "https://docs.konghq.com/gateway-oss/2.3.x/"
+        ```
+
+4. Commit and push release branch to GitHub.
+
+### Generating the PDK, Admin API, CLI, and Configuration Documentation
+
+The PDK docs, Admin API docs, `cli.md` and `configuration.md` for each release are generated from the Kong source code.
+
+To generate them, go to the `Kong/kong` repo and run:
+
+```
+scripts/autodoc <docs-folder> <kong-version>
+```
+
+For example:
+
+```
+cd /path/to/kong
+scripts/autodoc ../docs.konghq.com 2.3.x
+```
+
+This example assumes that the `Kong/docs.konghq.com` repo is cloned into the
+same directory as the `Kong/kong` repo, and that you want to generate the docs
+for version `2.3.x`. Adjust the paths and version as needed.
+
+Once everything is generated, review, open a branch with the changes, send a
+pull request, and review the changes.
+
+You usually want to open a PR against a `release/*` branch. For example, in the
+example above the branch was `release/2.3`.
+
+```
+cd docs.konghq.com
+git fetch --all
+git checkout release/2.3
+git checkout -b release/2.3-autodocos
+git add -A .
+git commit -m "docs(2.3.x) add autodocs"
+git push
+```
+
+Then open a pull request against `release/2.3`.
+
+## Listing Your Extension in the Plugin Hub
+
+We encourage developers to list their Kong Gateway plugins in the
+[Plugin Hub](https://docs.konghq.com/hub) with documentation hosted
+on the Kong docs website for ready access.
 
 See [CONTRIBUTING](https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md#contributing-to-kong-documentation-and-the-kong-hub) for more information.

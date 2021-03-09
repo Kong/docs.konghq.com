@@ -18,14 +18,6 @@ description: |
     property).
   </div>
 
-  <div class="alert alert-warning">
-    <strong>Note:</strong> The functionality of this plugin as bundled
-    with versions of Kong prior to 0.12.0
-    differs from what is documented herein. Refer to the
-    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
-    for details.
-  </div>
-
 
 
 type: plugin
@@ -35,6 +27,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x
@@ -56,15 +50,12 @@ kong_version_compatibility:
         - 0.4.x
     enterprise_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
-        - 0.34-x
-        - 0.33-x
-        - 0.32-x
-        - 0.31-x
 
 params:
   name: oauth2
@@ -152,13 +143,6 @@ params:
       description: |
         An optional boolean value that indicates whether an OAuth refresh token is
         persisted when refreshing an access token.
-    - name: hash_secret
-      required: true
-      default: false
-      description: |
-        A boolean flag that indicates whether the OAuth `client_secret` will be
-        stored in hashed form. If enabled on existing plugin instances, client
-        secrets are hashed on the fly upon first usage.
     - name: pkce
       required: false
       default: "`lax`"
@@ -232,7 +216,8 @@ $ curl -X POST http://kong:8001/consumers/{consumer_id}/oauth2 \
     --data "name=Test%20Application" \
     --data "client_id=SOME-CLIENT-ID" \
     --data "client_secret=SOME-CLIENT-SECRET" \
-    --data "redirect_uris=http://some-domain/endpoint/"
+    --data "redirect_uris=http://some-domain/endpoint/" \
+    --data "hash_secret=true"
 ```
 
 `consumer_id`: The [Consumer][consumer-object] entity to associate the credentials to
@@ -243,6 +228,7 @@ form parameter                | default | description
 `client_id`<br>*optional*     |         | You can optionally set your own unique `client_id`. If missing, the plugin will generate one.
 `client_secret`<br>*optional* |         | You can optionally set your own unique `client_secret`. If missing, the plugin will generate one.
 `redirect_uris`               |         | An array with one or more URLs in your app where users will be sent after authorization ([RFC 6742 Section 3.1.2](https://tools.ietf.org/html/rfc6749#section-3.1.2))
+`hash_secret`                 | `false` | A boolean flag that indicates whether the `client_secret` field will be stored in hashed form. If enabled on existing plugin instances, client secrets are hashed on the fly upon first usage.
 
 ## Migrating Access Tokens
 

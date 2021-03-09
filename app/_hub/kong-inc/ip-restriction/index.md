@@ -14,6 +14,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x
@@ -35,15 +37,12 @@ kong_version_compatibility:
         - 0.4.x
     enterprise_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
-        - 0.34-x
-        - 0.33-x
-        - 0.32-x
-        - 0.31-x
 
 params:
   name: ip-restriction
@@ -57,11 +56,13 @@ params:
       required: semi
       default:
       value_in_examples: [ "54.13.21.1", "143.1.0.0/24" ]
+      datatype: array of string elements
       description: |
         List of IPs or CIDR ranges to allow. One of `config.allow` or `config.deny` must be specified.
     - name: deny
       required: semi
       default:
+      datatype: array of string elements
       description: |
         List of IPs or CIDR ranges to deny. One of `config.allow` or `config.deny` must be specified.
 

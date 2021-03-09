@@ -20,10 +20,13 @@ license_type: MIT
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.3.x
       - 2.2.x
       - 2.1.x
   enterprise_edition:
     compatible:
+      - 2.3.x
+      - 2.2.x
       - 2.1.x
 
 
@@ -38,6 +41,7 @@ params:
       required: false
       default:
       value_in_examples: path/to/hello.proto
+      datatype: string
       description: |
         Describes the gRPC types and methods.
         [HTTP configuration](https://github.com/googleapis/googleapis/blob/fc37c47e70b83c1cc5cc1616c9a307c4303fe789/google/api/http.proto)
@@ -49,7 +53,7 @@ params:
 
 This plugin translates requests and responses between gRPC and HTTP REST.
 
-![grpc-gateway](https://docs.google.com/drawings/d/12hp4CPqrNPFhattL_cIoJptFvlAqm5wLQ0ggqI5mkCg/pub?w=749&h=370)
+![grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/assets/images/architecture_introduction_diagram.svg)
 
 Image credit: [grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/)
 

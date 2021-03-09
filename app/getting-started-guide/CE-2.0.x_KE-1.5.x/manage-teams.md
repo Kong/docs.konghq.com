@@ -178,8 +178,6 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 
     **Note:** This setting lets the admin use the Kong Admin API as well as Kong Manager. If you don’t want this user to access the Admin API, uncheck this box.
 
-    For Enterprise Free Trials, the Admin role and the RBAC user role with an enabled token is separate. If you haven’t yet set up an RBAC user with a token, follow the instructions [here](/getting-started-guide/{{page.kong_version}}/prepare/#before-you-begin) before moving on.
-
 4. Click **Add/Edit Roles**.
 5. In the Workspace Access dialog, select the **SecureWorkspace**.
 6. Select the **workspace-admin** role, which makes this user the workspace administrator for the SecureWorkspace.

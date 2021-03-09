@@ -1,23 +1,16 @@
 ---
 name: Request Size Limiting
 publisher: Kong Inc.
-version: 1.0.0
+version: 2.0.0
 
 desc: Block requests with bodies greater than a specified size
 description: |
   <div class="alert alert-warning">
-    For security reasons we suggest enabling this plugin for any Service you add to Kong to prevent a DOS (Denial of Service) attack.
+    For security reasons, we suggest enabling this plugin for any Service you add
+    to Kong Gateway to prevent a DOS (Denial of Service) attack.
   </div>
 
   Block incoming requests whose body is greater than a specific size in megabytes.
-
-  <div class="alert alert-warning">
-    <strong>Note:</strong> The functionality of this plugin as bundled
-    with versions of Kong prior to 0.9.0
-    differs from what is documented herein. Refer to the
-    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
-    for details.
-  </div>
 
 type: plugin
 categories:
@@ -26,6 +19,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x
@@ -48,6 +43,8 @@ kong_version_compatibility:
         - 0.3.x
     enterprise_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -69,11 +66,19 @@ params:
     - name: allowed_payload_size
       required: true
       default: "`128`"
+      datatype: integer
       value_in_examples: 128
-      description: Allowed request payload size in megabytes, default is `128` (128000000 Bytes)
+      description: Allowed request payload size in megabytes. Default is `128` megabytes (128000000 bytes).
     - name: size_unit
       required: true
       default: "`megabytes`"
-      description: Size unit can be set either in `bytes`, `kilobytes`, or `megabytes`. Note- this configuration is only supported in Kong Enterprise 1.3 and above, and may eventually extend to Kong Gateway
+      datatype: string
+      description: Size unit can be set either in `bytes`, `kilobytes`, or `megabytes` (default). This configuration is not available in versions prior to Kong Enterprise 1.3 and Kong Gateway (OSS) 2.0.
+    - name: require_content_length
+      required: false
+      default: false
+      datatype: boolean
+      value_in_examples: false
+      description: Set to `true` to ensure a valid `Content-Length` header exists before reading the request body.
 
 ---

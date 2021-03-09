@@ -66,6 +66,9 @@ extensions:
     # - name: dev portal extension
     #   slug: dev-mod
 
+include:
+  - _redirects
+
 exclude:
   - node_modules
   - jekyll-cache
@@ -78,12 +81,17 @@ plugins:
 
 defaults:
   - scope:
-      path: 'studio'
+      path: ''
     values:
-      layout: 'docs'
+      layout: 'docs-v2'
 
   - scope:
-      path: ''
+      path: 'enterprise'
+    values:
+      layout: 'docs-v2'
+
+  - scope:
+      path: 'gateway-oss'
     values:
       layout: 'docs-v2'
 
@@ -91,11 +99,6 @@ defaults:
       path: 'install'
     values:
       layout: 'install'
-
-  - scope:
-      path: 'docs/ee'
-    values:
-      layout: 'docs'
 
   - scope:
       path: 'getting-started-guide'
@@ -113,6 +116,11 @@ defaults:
       layout: 'docs-v2'
 
   - scope:
+      path: 'kubernetes-ingress-controller'
+    values:
+      layout: 'docs-v2'
+
+  - scope:
       path: 'about'
     values:
       layout: 'about'
@@ -126,8 +134,18 @@ defaults:
       permalink: /:collection/:path
 
 # product name vars
-ee_gateway_name: Kong Gateway (Enterprise)
-ee_product_name: Kong Enterprise
-ce_product_name: Kong Gateway
+ee_gateway_name: Kong Gateway
+ee_product_name: Kong Gateway (Enterprise)
+ce_product_name: Kong Gateway (OSS)
 base_gateway: Kong Gateway
 mesh_product_name: Kong Mesh
+kic_product_name: Kubernetes Ingress Controller
+konnect_product_name: Kong Konnect
+konnect_short_name: Konnect
+package_name: Kong Konnect
+company_name: Kong Inc.
+
+# Konnect tier vars
+free_tier: Kong Gateway
+plus_tier: Kong Konnect Plus
+enterprise_tier: Kong Konnect Enterprise

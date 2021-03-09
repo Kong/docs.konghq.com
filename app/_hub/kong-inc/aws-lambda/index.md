@@ -1,7 +1,7 @@
 ---
 name: AWS Lambda
 publisher: Kong Inc.
-version: 3.4.x
+version: 3.5.x
 
 desc: Invoke and manage AWS Lambda functions from Kong
 description: |
@@ -24,6 +24,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x
@@ -39,6 +41,8 @@ kong_version_compatibility:
         - 0.10.x
     enterprise_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x      
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -151,7 +155,7 @@ params:
       required: false
       default: "`false`"
       description: |
-        An optional value that defines whether the response format to receive from the Lambda to [this format](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-output-format). Note that the parameter `isBase64Encoded` is not implemented.
+        An optional value that defines whether the response format to receive from the Lambda to [this format](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-output-format).
     - name: awsgateway_compatible
       required: false
       default: "`false`"
@@ -171,7 +175,16 @@ params:
       required: false
       default: "`true`"
       description: |
-        An optional value that defines whether Kong should send large bodies that are buffered to disk. To define the threshold for the body size, use the [client_body_buffer_size](https://docs.konghq.com/latest/configuration/#client_body_buffer_size) property. Note that sending large bodies will have an impact on system memory.
+        An optional value that defines whether Kong should send large
+        bodies that are buffered to disk. Note that 
+        enabling this option will have an impact on system memory depending on the number of requests simultaneously in flight at any given point in time and on the maximum size of each of them.
+        Also this option will block all requests being handled by the
+        nginx workers. That could be tens of thousands of other
+        transactions that are not being processed. For small I/O
+        operations, such a delay would generally not be problematic. In
+        cases where the body is in the order of MB, such a delay would
+        cause notable interruptions in request processing. Given all of the potential downsides resulting from enabling this option, please consider increasing the [client_body_buffer_size](http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size)
+        value instead.
 
   extra: |
     **Reminder**: By default, cURL sends payloads with an
@@ -189,47 +202,18 @@ params:
 Any form parameter sent along with the request will be also sent as an
 argument to the AWS Lambda function.
 
+---
 ### Notes
 
 If you do not provide an `aws_key` and `aws_secret`, the plugin uses an IAM role inherited from the instance running Kong.
 
 First, the plugin will try ECS metadata to get the role. If no ECS metadata is available, the plugin will fall back on EC2 metadata.
 
-### Known Issues
-
-#### Use a fake upstream service
-
-When using the AWS Lambda plugin, the response will be returned by the plugin
-itself without proxying the request to any upstream service. This means that
-a Service's `host`, `port`, and `path` properties will be ignored, but must
-still be specified for the entity to be validated by Kong. The `host` property
-in particular must either be an IP address, or a hostname that gets resolved by
-your nameserver.
-
-#### Response plugins
-
-There is a known limitation in the system that prevents some response plugins
-from being executed. We are planning to remove this limitation in the future.
-
-[configuration]: /latest/configuration
-[consumer-object]: /latest/admin-api/#consumer-object
-[acl-associating]: /plugins/acl/#associating-consumers
-[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
-
 ---
 ### Step-By-Step Guide
 
-#### Steps
-
 Prerequisite: You must have access to the AWS Console as a user who is
 allowed to operate with lambda functions, and create users and roles.
-
-1. Create an Execution role in AWS.
-2. Create a user that will invoke the function via Kong and test it.
-3. Create a Service and Route in Kong, add the aws-lambda plugin linked to
-our AWS function, and execute it.
-
-#### Configure
 
 1. First, create an execution role called `LambdaExecutor` for your
 lambda function.
@@ -264,53 +248,42 @@ to invoke the function.
 
     Test the lambda function from the AWS console and make sure the execution succeeds.
 
-4. Set up a Service and Route in Kong and link it to the
-`MyLambda` function you just created.
+4. Set up a Route in Kong and link it to the `MyLambda` function you just created.
 
 {% navtabs %}
 {% navtab With a database %}
 
+Create the Route:
+
 ```bash
-curl -i -X POST http://{kong_hostname}:8001/services \
+curl -i -X POST http://{kong_hostname}:8001/routes \
 --data 'name=lambda1' \
---data 'url=http://localhost:8000' \
-```
-
-The Service doesn't really need a real `url` because this example won't have an HTTP call to an Upstream but rather a response generated by the lambda function.
-
-Also create a Route for the Service:
-
-```
-curl -i -X POST http://{kong_hostname}:8001/services/lambda1/routes \
 --data 'paths[1]=/lambda1'
 ```
 
 Add the plugin:
 
 ```bash
-curl -i -X POST http://{kong_hostname}:8001/services/lambda1/plugins \
+curl -i -X POST http://{kong_hostname}:8001/routes/lambda1/plugins \
 --data 'name=aws-lambda' \
 --data-urlencode 'config.aws_key={KongInvoker user key}' \
 --data-urlencode 'config.aws_secret={KongInvoker user secret}' \
 --data 'config.aws_region=us-east-1' \
 --data 'config.function_name=MyLambda'
 ```
+
 {% endnavtab %}
 {% navtab Without a database %}
 
-Add a Service, Route, and Plugin to the declarative config file:
+Add a Route and Plugin to the declarative config file:
 
 ``` yaml
-services:
-- name: lambda1
-  url: http://localhost:8000
-
 routes:
-- service: lambda1
+- name: lambda1
   paths: [ "/lambda1" ]
 
 plugins:
-- service: lambda1
+- route: lambda1
   name: aws-lambda
   config:
     aws_key: {KongInvoker user key}
@@ -318,10 +291,13 @@ plugins:
     aws_region: us-east-1
     function_name: MyLambda
 ```
+
 {% endnavtab %}
 {% endnavtabs %}
 
-After everything is created, call the Service and verify the correct
+#### Test your Lambda with Kong
+
+After everything is created, make the http request and verify the correct
 invocation, execution, and response:
 
 ```bash

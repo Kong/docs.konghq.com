@@ -1,7 +1,7 @@
 ---
 name: Serverless Functions
 publisher: Kong Inc.
-version: 1.0-x
+version: 2.0-x
 
 source_url: https://github.com/Kong/kong-plugin-serverless-functions
 
@@ -12,7 +12,7 @@ description: |
   <div class="alert alert-ee red">
     <strong>Warning: </strong>The pre-function and post-function serverless plugin
     allows anyone who can enable the plugin to execute arbitrary code.
-    If your organization has security concerns about this, disable the plugin  
+    If your organization has security concerns about this, disable the plugin
     in your <code>kong.conf</code> file.
   </div>
 
@@ -23,9 +23,13 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
     enterprise_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 1.5.x
 
@@ -264,6 +268,36 @@ without requiring redeploying or restarting Kong.
 
 
 ### Notes
+
+#### Sandboxing
+
+Starting with version 2.0 of the plugin, the provided Lua environment is sandboxed.
+
+The sandboxing consists of several limitations in the way the Lua code can be executed,
+for heightened security.
+
+The following functions are not available because they can be used to abuse the system:
+
+* `string.rep`: Can be used to allocate millions of bytes in one operation.
+* `{set|get}metatable`: Can be used to modify the metatables of global objects (strings, numbers).
+* `collectgarbage`: Can be abused to kill the performance of other workers.
+* `_G`: Is the root node which has access to all functions. It is masked by a temporary table.
+* `load{file|string}`: Is deemed unsafe because it can grant access to global environment.
+* `raw{get|set|equal}`: Potentially unsafe because the sandboxing relies on some metatable manipulation.
+* `string.dump`: Can display confidential server information (such as implementation of functions).
+* `math.randomseed`: Can affect the host system. {{site.base_gateway}} already seeds the random number generator properly.
+* All `os.*` (except `os.clock`, `os.difftime`, and `os.time`: `os.execute`) can significantly alter the host system.
+* `io.*`: Provides access to the hard drive.
+* `dofile|require`: Provides access to the hard drive.
+
+The exclusion of `require` means that Plugins must only use PDK functions `kong.*`. The `ngx.*` abstraction is
+also available, but it is not guaranteed to be present in future versions of the plugin.
+
+In addition to the above restrictions:
+
+* All the provided modules (like `string` or `table`) are read-only and can't be modified.
+* Bytecode execution is disabled.
+
 
 #### Upvalues
 

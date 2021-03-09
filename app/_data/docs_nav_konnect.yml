@@ -1,0 +1,152 @@
+- title: Introduction
+  icon: /assets/images/icons/documentation/icn-flag.svg
+  items:
+    - text: Overview
+      url: /overview
+    - text: Using the Konnect Docs
+      url: /using-konnect-docs
+    - text: Key Concepts and Terms
+      url: /key-concepts-and-terms
+    - text: Konnect SaaS Updates
+      url: /updates
+    - text: Access a Kong Konnect Account
+      url: /access-account
+
+- title: Deployment
+  icon: /assets/images/icons/documentation/icn-deployment-color.svg
+  items:
+    - text: Deployment Overview
+      url: /deployment
+    - text: License Management
+      url: /deployment/license-management
+
+- title: Kong Gateway (Enterprise)
+  icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
+  items:
+    - text: 2.3.x
+      url: /../enterprise/2.3.x
+    - text: 2.2.x
+      url: /../enterprise/2.2.x
+    - text: 2.1.x
+      url: /../enterprise/2.1.x
+    - text: 1.5.x
+      url: /../enterprise/1.5.x
+    - text: 1.3-x
+      url: /../enterprise/1.3-x
+    - text: 0.36-x
+      url: /../enterprise/0.36-x
+    - text: 0.35-x
+      url: /../enterprise/0.35-x
+    - text: 0.34-x
+      url: /../enterprise/0.34-x
+    - text: 0.33-x
+      url: /../enterprise/0.33-x
+    - text: 0.32-x
+      url: /../enterprise/0.32-x
+    - text: 0.31-x
+      url: /../enterprise/0.31-x
+
+- title: Quickstart Guide
+  icon: /assets/images/icons/documentation/icn-quickstart-color.svg
+  items:
+    - text: Set up a Runtime
+      url: /getting-started/configure-runtime
+    - text: Configure a Service
+      url: /getting-started/configure-service
+    - text: Implement and Test the Service
+      url: /getting-started/implement-service
+
+- title: ServiceHub
+  icon: /assets/images/icons/documentation/icn-service-hub-color.svg
+  items:
+    - text: Overview
+      url: /servicehub
+    - text: Manage Services
+      url: /servicehub/manage-services
+    - text: Manage Plugins
+      items:
+        - text: Configure a Plugin on a Service
+          url: /servicehub/plugins/enable-service-plugin
+        - text: Configure a Plugin on a Route
+          url: /servicehub/plugins/enable-route-plugin
+    - text: Developer Portal
+      items:
+        - text: Manage Service Documentation
+          url: /servicehub/dev-portal/service-documentation
+        - text: Publish a Service to Dev Portal
+          url: /servicehub/dev-portal/publish
+
+- title: Runtime Manager
+  icon: /assets/images/icons/documentation/icn-runtime-manager-color.svg
+  items:
+    - text: Overview
+      url: /runtime-manager
+    - text: Manage a Kong Gateway Runtime
+      url: /runtime-manager/kong-gateway-runtime
+
+- title: Konnect Dev Portal
+  icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
+  items:
+    - text: Overview
+      url: /dev-portal
+
+    - text: Administrators
+      items:
+        - text: Application Registration
+          items:
+#            - text: Application Registration Overview
+#              url: /dev-portal/administrators/app-registration/app-reg-overview
+            - text: Enable App Registration
+              url: /dev-portal/administrators/app-registration/enable-app-reg
+            - text: Disable App Registration
+              url: /dev-portal/administrators/app-registration/disable-app-reg
+            - text: Manage Application Registration Requests
+              url: /dev-portal/administrators/app-registration/manage-app-reg-requests
+            - text: Manage Application Connections
+              url: /dev-portal/administrators/app-registration/manage-app-connections
+        - text: Manage Developer Access
+          url: /dev-portal/administrators/manage-devs
+        - text: Auto Approve Dev and App Registrations
+          url: /dev-portal/administrators/auto-approve-devs-apps
+        - text: Public Portal
+          url: /dev-portal/administrators/public-portal
+        - text: Customization
+          items:
+          - text: Customizing the Dev Portal Appearance
+            url: /dev-portal/administrators/customization/themes
+
+    - text: Developers
+      items:
+        - text: Developer Registration
+          url: /dev-portal/developers/dev-reg
+        - text: Applications
+          items:
+            - text: Create, Edit, and Delete an Application
+              url: /dev-portal/developers/dev-apps
+            - text: Register an Application with a Service
+              url: /dev-portal/developers/dev-reg-app-service
+            - text: Generate Credentials for an Application
+              url: /dev-portal/developers/dev-gen-creds
+
+
+- title: Konnect Vitals
+  icon: /assets/images/icons/documentation/icn-vitals.svg
+  items:
+    - text: Monitoring Health with Vitals
+      url: /vitals
+    - text: Generating Vitals Reports
+      url: /vitals/generate-reports
+
+- title: Reference
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  items:
+    - text: Proxy Traffic
+      url: /reference/proxy-traffic
+    - text: Users and Roles
+      url: /reference/org-management
+    - text: Using the Konnect API
+      url: /reference/konnect-api
+      items:
+        - text: Konnect API Reference
+          url: https://konnect.konghq.com/docs
+          absolute_url: true

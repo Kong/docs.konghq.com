@@ -1,7 +1,7 @@
 ---
 name: Kong JWT Signer
 publisher: Kong Inc.
-version: 1.3-x
+version: 2.2.x
 
 desc: Verify and (re-)sign one or two tokens in a request
 description: |
@@ -23,12 +23,12 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
-        - 0.34-x
 
 params:
   name: jwt-signer
@@ -44,6 +44,7 @@ params:
 * [Plugin Configuration Parameters](#plugin-configuration-parameters)
   * [Description of Plugin Configuration Parameters](#description-of-plugin-configuration-parameters)
     * [config.realm](#configrealm)
+    * [config.enable_hs_signatures](#configenable_hs_signatures)
     * [config.access_token_issuer](#configaccess_token_issuer)
     * [config.access_token_keyset](#configaccess_token_keyset)
     * [config.access_token_jwks_uri](#configaccess_token_jwks_uri)
@@ -155,6 +156,10 @@ Also for introspection to work, you need to specify introspection endpoints:
 When authentication or authorization fails, or there is an unexpected error, the plugin will
 send `WWW-Authenticate` header with `realm` attribute value of this configuration parameter.
 
+#### `config.enable_hs_signatures`
+
+Tokens signed with HMAC algorithms such as HS256, HS384 or HS512 are not accepted by default.
+If you need to accept such tokens for verification, you can enable this setting. Default: `false`.
 
 #### `config.enable_instrumentation`
 

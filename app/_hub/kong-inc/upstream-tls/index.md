@@ -3,6 +3,7 @@
 name: Upstream TLS
 publisher: Kong Inc.
 version: 0.36-x
+# do not update! deprecated and removed from code source v 1.5. should delete from repo.
 
 desc: Add TLS to your Services
 description: |
@@ -40,13 +41,13 @@ params:
        Set the maximum validation chain depth
     - name: trusted_certificates
       required: true
-      default: 
+      default:
       description: |
         PEM-encoded public certificate authorities of the upstream
 
 ---
 
-In Enterprise versions 0.35 and 0.36, Upstream TLS can be added on top of an existing Service by executing the 
+In Enterprise versions 0.35 and 0.36, Upstream TLS can be added on top of an existing Service by executing the
 following request on your Kong server:
 
 ```bash

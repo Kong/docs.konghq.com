@@ -414,12 +414,23 @@
     bottom: 0;
     max-width: 100%;
     background-size: cover;
-    background-image: linear-gradient(to bottom, #ffffff, 40%, transparent),
+    background-image: linear-gradient(
+        to bottom,
+        #ffffff,
+        40%,
+        transparent
+      ),
       url("/assets/images/docs/banner-bkg.png");
     background-image: -moz-linear-gradient(
         bottom,
         rgba(255, 255, 255, 0) 40%,
         #ffffff
+      ),
+      url("/assets/images/docs/banner-bkg.png");
+    background-image: -webkit-linear-gradient(
+        top,
+        rgba(255,255,255,1) 0%,
+        rgba(255,255,255,0) 100%
       ),
       url("/assets/images/docs/banner-bkg.png");
     transform: translateX(-50%);
@@ -440,7 +451,7 @@
 .page-navigation {
   float: right;
   width: 215px;
-  padding: 50px 0 0 20px;
+  padding: 25px 0 0 20px;
 
   .close-sidebar {
     display: none;
@@ -472,6 +483,45 @@
       transform: rotate(-45deg);
     }
   }
+
+  .github-links {
+    margin-bottom: 0;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+
+      li {
+        position: relative;
+        margin: 0;
+        border: none;
+        padding-bottom: 3px;
+        vertical-align: text-top;
+
+        a {
+          font-size: 14px;
+          color: @blue;
+
+            img, i {
+              float: left;
+              padding-right: 12px;
+              display: inline-block;
+              width: 16px;
+              opacity: 0.4;
+              position: relative;
+              top: 6px;
+              }
+
+            i {
+              opacity: 1;
+              font-size: 14px;
+              left: 1.5px;
+            }
+          }
+        }
+      }
+    }
 
   @media (max-width: 800px) {
     position: fixed;
@@ -605,10 +655,11 @@
 .page-content-container {
   .page-content {
     .reading-time {
-      font-style: italic;
+      font-size: 15px;
       display: block;
-      color: rgb(133, 137, 140);
+      color: #b9b9b9;
       margin-bottom: 14px;
+      padding-bottom: 1rem;
     }
 
     @media (max-width: 800px) {
@@ -638,7 +689,7 @@
 .content {
   padding: 50px 0;
   .font-source-sans();
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.5;
 
   .big {
@@ -679,10 +730,11 @@
   }
 
   h1 {
-    font-size: 34px;
+    font-size: 36px;
     color: #262e33;
-    margin-top: 2em;
-    margin-bottom: 0.9em;
+    margin-top: 1em;
+    margin-bottom: 0.8em;
+    font-weight: 100;
   }
 
   .alert + h1 {
@@ -696,8 +748,9 @@
   }
 
   h3 {
-    margin-top: 1.5em;
-    margin-bottom: 0.7em;
+    font-size: 30px;
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
   }
 
   h4 {
@@ -730,7 +783,6 @@
 
       &:before {
         color: @font-color;
-        font-size: 13px;
         width: 36px;
         height: 36px;
         line-height: 36px;
@@ -778,8 +830,8 @@
   }
 
   pre {
-    background-color: @gray-light;
-    border: 1px solid @gray;
+    background-color: @grey-100;
+    border: 1px solid @grey-200;
     color: #000;
     line-height: 24px;
     margin: 1.3em 0;
@@ -809,7 +861,7 @@
     }
 
     code {
-      padding: 0;
+      padding: 8px 0;
       color: #000;
       background: transparent;
     }
@@ -833,6 +885,15 @@ Generic Styling for Desktop
     border: none;
     border-collapse: collapse;
     margin-top: 1.5em;
+
+    i.fa-times {
+      color: @red-500;
+      opacity: 50%;
+    }
+
+    i.fa-check {
+      color: @green-400;
+    }
 
     code {
       white-space: normal;
@@ -904,7 +965,7 @@ Generic Styling for Desktop
 
   .alert {
     margin-bottom: 1.3em;
-    font-size: 14px;
+    font-size: 16px;
 
     &.alert-warning {
       color: hsl(45, 2%, 36%);
@@ -930,6 +991,14 @@ Generic Styling for Desktop
   }
 
   .docs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 16px;
+    grid-row-gap: 16px;
+    margin: 0;
+    justify-content: start;
+    align-content: start;
+
     &:after {
       content: " ";
       display: block;
@@ -937,20 +1006,33 @@ Generic Styling for Desktop
     }
 
     .docs-grid-block {
-      float: left;
-      height: 250px;
-      width: 50%;
-      border-bottom: 1px solid #eee;
+      border: 1px solid #eee;
       box-sizing: border-box;
-      padding-top: 40px;
+      border-radius: 4px;
+      text-align: left;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: start;
+      padding: 16px;
+      text-decoration: none;
+      margin-top: 0;
 
       h3 {
         margin-top: 0;
+        text-align: left;
 
         img {
           float: left;
           margin-right: 15px;
         }
+      }
+
+      p, a {
+        display: block;
+        padding-left: 15px;
       }
 
       &:nth-child(odd) {
@@ -1128,7 +1210,6 @@ Generic Styling for Desktop
 .instructions-steps {
   list-style: none;
   padding-left: 26px;
-  counter-reset: step;
 
   .instructions-step-item {
     position: relative;
@@ -1142,8 +1223,6 @@ Generic Styling for Desktop
     }
 
     &:before {
-      counter-increment: step;
-      content: counter(step);
       box-sizing: border-box;
       width: 36px;
       height: 36px;
@@ -1179,14 +1258,16 @@ Generic Styling for Desktop
 .alert {
   border: none;
   border-left: 3px solid @gray;
+  color: #757575;
+  background-color: #f9f9f9;
   border-radius: 0;
-  font-size: 18px;
+  font-size: 16px;
   padding: 8px 13px;
 
   pre, code {
     background-color: #fff;
     border: none;
-}
+  }
 
 }
 
@@ -1225,7 +1306,7 @@ Generic Styling for Desktop
   border: none;
   border-left: solid 3px #b3dfff;
   border-radius: 0;
-  font-size: 14px;
+  font-size: 16px;
 
   &.red {
     background-color: #fdf3f2;
@@ -1238,7 +1319,8 @@ Generic Styling for Desktop
   }
 
   &.info {
-    border-left: solid 3px #e0e0e0;
+    border-left: 3px solid @gray;
+    color: #757575;
     background-color: #f9f9f9;
   }
 
@@ -1275,6 +1357,7 @@ Generic Styling for Desktop
   img {
     width: 20px;
     margin-right: 5px;
+    margin-top: 3px;
     float: left;
     display: inline-block;
   }
@@ -1285,7 +1368,7 @@ Generic Styling for Desktop
 
   p {
     padding: 0 25px 0 75px;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   a {
@@ -1316,16 +1399,47 @@ Generic Styling for Desktop
 }
 
 .breadcrumbs {
-  margin: 0;
+  margin-bottom: 1rem;
+  margin-top: -2rem;
+  margin-left: 0;
   padding: 0;
-  list-style: none;
+
+  &.install {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    .breadcrumb-item {
+      display: inline-block;
+      margin: 0;
+      }
+    }
 
   .breadcrumb-item {
     display: inline-block;
-    margin: 0;
+    font-weight: 100;
+    font-size: 15px;
+    margin-left: 0;
 
     &:after {
       content: " \203a";
+      font-size: 18px;
+      padding: 3px;
+    }
+
+    &:first-of-type {
+      &:before {
+        content: "»";
+        font-size: 18px;
+        margin-left: -0.5rem;
+        padding-right: 3px;
+      }
+    }
+
+    &:last-of-type {
+      &:after {
+        content: " ";
+      }
     }
   }
 

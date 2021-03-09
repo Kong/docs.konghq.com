@@ -74,7 +74,10 @@ If you have a Docker installation, run the following command to set the needed e
 **Note:** make sure to replace `<kong-container-id>` with the ID of your container.
 
 ```sh
-$ echo "KONG_ENFORCE_RBAC=on KONG_ADMIN_GUI_AUTH=basic-auth KONG_ADMIN_GUI_SESSION_CONF='{\"secret\":\"secret\",\"storage\":\"kong\",\"cookie_secure\":false}' kong reload exit" | docker exec -i <kong-container-id>
+$ echo "KONG_ENFORCE_RBAC=on \
+  KONG_ADMIN_GUI_AUTH=basic-auth \
+  KONG_ADMIN_GUI_SESSION_CONF='{\"secret\":\"secret\",\"storage\":\"kong\",\"cookie_secure\":false}' \
+  kong reload exit" | docker exec -i <kong-container-id> /bin/sh
 ```
 
 This will turn on RBAC, tell {{site.ee_product_name}} to use basic authentication (username/password), and tell the Sessions Plugin how to create a session cookie.
@@ -180,8 +183,6 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 3. Ensure that **Enable RBAC Token** is enabled.
 
     **Note:** This setting lets the admin use the Kong Admin API as well as Kong Manager. If you don’t want this user to access the Admin API, uncheck this box.
-
-    For Enterprise Free Trials, the Admin role and the RBAC user role with an enabled token is separate. If you haven’t yet set up an RBAC user with a token, follow the instructions [here](/getting-started-guide/{{page.kong_version}}/prepare/#before-you-begin) before moving on.
 
 4. Click **Add/Edit Roles**.
 5. In the Workspace Access dialog, select the **SecureWorkspace**.

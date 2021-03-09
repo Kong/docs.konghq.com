@@ -2,7 +2,7 @@
 name: Route Transformer Advanced
 publisher: Kong Inc.
 
-desc: Transform routing by changing the upstream server, port, or path.
+desc: Transform routing by changing the upstream server, port, or path
 description: |
    This plugin transforms the routing on the fly in Kong, changing the upstream server, port, or path to hit. The substitutions can be configured via flexible templates.
 
@@ -16,6 +16,8 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -29,21 +31,24 @@ params:
   config:
     - name: path
       required: false
+      datatype: string
       description: |
         Updates the upstream request path with given value/template. This value can only be used to update the path part of the URI, not the scheme, nor the hostname.
     - name: host
       required: false
+      datatype: string
       description: |
         Updates the upstream request Host with given value/template. This value can only be used to update the routing, it will not update the Host-header value.
     - name: port
       required: false
+      datatype: string
       description: |
          Updates the upstream request Port with given value/template. Note that the port as set may be overridden again by DNS resolution (in case of SRV records,or an Upstream)
 
 ---
 
-_NOTE_: the 'advanced' label is only attached since this is an enterprise only
-plugin. There is not a 'regular' version available.
+_NOTE_: The 'advanced' label is only attached since this is an Enterprise-only
+plugin. There is not a 'regular' plugin version available.
 
 ## Synopsis
 

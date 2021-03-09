@@ -39,11 +39,11 @@ for information on how to get access.
 3. Select the latest Kong version from the list.
 4. From the Kong version detail page, select the **Files** tab.
 5. Select the RHEL version appropriate for your environment, such as `RHEL` -> `8`.
-6. Save the available RPM file. For example: `kong-enterprise-edition-{{page.kong_latest.version}}.rhel8.noarch.rpm`
+6. Save the available RPM file. For example: `kong-enterprise-edition-{{page.kong_versions[8].version}}.rhel8.noarch.rpm`
 7. Copy the RPM file to your home directory on the RHEL system. For example:
 
     ```bash
-    $ scp kong-enterprise-edition-{{page.kong_latest.version}}.rhel8.noarch.rpm <rhel user>@<server>:~
+    $ scp kong-enterprise-edition-{{page.kong_versions[8].version}}.rhel8.noarch.rpm <rhel user>@<server>:~
     ```
 
 ### (Optional) Verify the Package Integrity
@@ -51,7 +51,7 @@ for information on how to get access.
 1. Kong's official Key ID is `2cac36c51d5f3726`. Verify it by querying the RPM package and comparing it to the Key ID:
 
     ```bash
-    $ rpm -qpi kong-enterprise-edition-{{page.kong_latest.version}}.rhel8.noarch.rpm | grep Signature
+    $ rpm -qpi kong-enterprise-edition-{{page.kong_versions[8].version}}.rhel8.noarch.rpm | grep Signature
     ```
 
 2. Download Kong's official public key to ensure the integrity of the RPM package:
@@ -59,13 +59,13 @@ for information on how to get access.
     ```bash
     $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
     $ rpm --import kong.key
-    $ rpm -K kong-enterprise-edition-{{page.kong_latest.version}}.rhel8.noarch.rpm
+    $ rpm -K kong-enterprise-edition-{{page.kong_versions[8].version}}.rhel8.noarch.rpm
     ```
 
 3. Verify you get an OK check. Output should be similar to this:
 
     ```
-    kong-enterprise-edition-{{page.kong_latest.version}}.rhel8.noarch.rpm: digests signatures OK
+    kong-enterprise-edition-{{page.kong_versions[8].version}}.rhel8.noarch.rpm: digests signatures OK
     ```
 
 {% endnavtab %}

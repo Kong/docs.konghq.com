@@ -1,6 +1,5 @@
 ---
 title: Deploy to the Dev Portal
-redirect_from: "/studio/1.0.x/deploy-to-dev-portal"
 ---
 
 ### Introduction

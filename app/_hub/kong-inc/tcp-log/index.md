@@ -7,13 +7,6 @@ desc: Send request and response logs to a TCP server
 description: |
   Log request and response data to a TCP server.
 
-  <div class="alert alert-warning">
-    <strong>Note:</strong> The functionality of this plugin as bundled
-    with versions of Kong prior to 0.12.0
-    differs from what is documented herein. Refer to the
-    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
-    for details.
-  </div>
 
 type: plugin
 categories:
@@ -22,6 +15,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x
@@ -45,15 +40,12 @@ kong_version_compatibility:
         - 0.2.x
     enterprise_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
-        - 0.34-x
-        - 0.33-x
-        - 0.32-x
-        - 0.31-x
 
 params:
   name: tcp-log
@@ -66,19 +58,34 @@ params:
     - name: host
       required: true
       value_in_examples: 127.0.0.1
+      datatype: string
       description: The IP address or host name to send data to.
     - name: port
       required: true
       value_in_examples: 9999
-      description: The port to send data to on the upstream server
+      datatype: integer
+      description: The port to send data to on the upstream server.
     - name: timeout
       required: false
       default: "`10000`"
-      description: An optional timeout in milliseconds when sending data to the upstream server
+      datatype: number
+      description: An optional timeout in milliseconds when sending data to the upstream server.
     - name: keepalive
       required: false
       default: "`60000`"
-      description: An optional value in milliseconds that defines for how long an idle connection will live before being closed
+      datatype: number
+      description: An optional value in milliseconds that defines how long an idle connection lives before being closed.
+    - name: tls
+      required: true
+      default: false
+      datatype: boolean
+      description: Indicates whether to perform a TLS handshake against the remote server.
+    - name: tls_sni
+      required: false
+      default:
+      datatype: string
+      description: An optional string that defines the SNI (Server Name Indication) hostname to send in the TLS handshake.
+
 
 ---
 
@@ -214,4 +221,4 @@ Log plugins enabled on Services and Routes will contain information about the se
 
 ## Kong Process Errors
 
-This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path: {[prefix](/{{site.data.kong_latest.release}}/configuration/#prefix)}/logs/error.log
+{% include /md/plugins-hub/kong-process-errors.md %}

@@ -12,10 +12,18 @@
     &.active {
       color: @blue;
       border-bottom: 2px solid @blue;
+      margin-bottom: -2px;
+      cursor: text;
     }
 
-    &:hover {
-      border-bottom: 2px solid @black-40;
+    &:not(.active) {
+      &:hover, &:focus {
+        border-bottom: 2px solid @black-40;
+        margin-bottom: -2px;
+        transition: all 0.1s;
+        -moz-transition: all 0.1s;
+        -webkit-transition: all 0.1s;
+      }
     }
 
     &:first-child {
@@ -197,12 +205,15 @@
         float: none;
         width: auto;
         height: auto;
-        margin-top: 16px;
         border-bottom: 1px solid #eee;
         padding: 24px 32px 24px 0;
 
         h3 {
           font-size: 24px !important;
+        }
+
+        > a {
+          font-size: 16px;
         }
       }
 

@@ -1,0 +1,55 @@
+<header class="navbar-v2">
+  <div class="navbar-content">
+    <a href="https://konghq.com/" class="navbar-brand col col-xl-auto">
+      <img
+        src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/themes/konghq/assets/img/gradient-logo.svg"
+        alt="Kong Logo"
+      />
+    </a>
+    <div class="separator"></div>
+    <div class="navbar-items">
+      <div class="navbar-items">
+        <div class="navbar-item" onclick="toggleSubmenuVisible(this)">
+          <a href="https://docs.konghq.com/">Docs</a>
+          <div class="navbar-item-submenu">
+            <a href="/gateway-oss/" class="navbar-item">Kong Gateway</a>
+            <a href="/konnect/" class="navbar-item">Kong Konnect</a>
+            <a href="/mesh/" class="navbar-item">Kong Mesh</a>
+            <a href="/hub/" class="navbar-item">Plugin Hub</a>
+          </div>
+        </div>
+        <a href="https://support.konghq.com/" class="navbar-item">Support</a>
+        <a href="https://konghq.com/community/" class="navbar-item">Community</a>
+        <a href="https://learn.konghq.com/account/login/" class="navbar-item">Kong U</a>
+        <a href="https://portal.konglabs.io/workshops" class="navbar-item">Demos & Labs</a>
+      </div>
+      <a
+        href="https://konghq.com/get-started/?itm_source=website&amp;itm_medium=nav"
+        class="navbar-button"
+      >
+        Get Started
+      </a>
+    </div>
+    <div
+      id="navbar-menu-toggle-button"
+      class="small-screen-button"
+      aria-label="Toggle navigation"
+      onclick="toggleButtonClicked()"
+    >
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</header>
+
+<script>
+  function toggleButtonClicked () {
+    $('.navbar-v2').toggleClass('menu-opened')
+  }
+
+  function toggleSubmenuVisible (element) {
+    $(element).toggleClass('submenu-title')
+    $(element.parentElement).toggleClass('submenu-opened')
+  }
+</script>

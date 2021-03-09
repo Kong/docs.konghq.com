@@ -23,6 +23,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x      
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x      
@@ -42,13 +44,10 @@ kong_version_compatibility:
         - 0.6.x
     enterprise_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 0.36-x
-        - 0.35-x
-        - 0.34-x
-        - 0.33-x
-        - 0.32-x
-        - 0.31-x
 
 params:
   name: datadog
@@ -103,7 +102,7 @@ Field           | description                                           | allowe
 `name`          | Datadog metric's name                                 | [Metrics](#metrics)
 `stat_type`     | determines what sort of event the metric represents   | `gauge`, `timer`, `counter`, `histogram`, `meter` and `set`
 `sample_rate`<br>*conditional*   | sampling rate                        | `number`
-`customer_identifier`<br>*conditional*| authenticated user detail       | `consumer_id`, `custom_id`, `username`
+`consumer_identifier`<br>*conditional*| authenticated user detail       | `consumer_id`, `custom_id`, `username`
 `tags`<br>*optional*| List of tags                                      | `key[:value]`
 
 ### Metric requirements
@@ -127,7 +126,4 @@ avg:kong.latency.avg{name:sample-service}
 
 ## Kong Process Errors
 
-This logging plugin will only log HTTP request and response data. If you are
-looking for the Kong process error file (which is the nginx error file), then
-you can find it at the following path:
-{[prefix](/{{site.data.kong_latest.release}}/configuration/#prefix)}/logs/error.log
+{% include /md/plugins-hub/kong-process-errors.md %}

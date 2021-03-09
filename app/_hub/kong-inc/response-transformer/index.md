@@ -1,15 +1,21 @@
 ---
 name: Response Transformer
 publisher: Kong Inc.
-version: 1.0.0
+version: 1.0.x
 
 desc: Modify the upstream response before returning it to the client
 description: |
-  Transform the response sent by the upstream server on the fly on Kong, before returning the response to the client.
+  Transform the response sent by the upstream server on the fly before returning the response to the client.
 
   <div class="alert alert-warning">
-    <strong>Note on transforming bodies:</strong> Be aware of the performance of transformations on the response body. In order to parse and modify a JSON body, the plugin needs to retain it in memory, which might cause pressure on the worker's Lua VM when dealing with large bodies (several MBs). Because of Nginx's internals, the `Content-Length` header will not be set when transforming a response body.
+    <strong>Note on transforming bodies:</strong> Be aware of the performance of transformations
+    on the response body. In order to parse and modify a JSON body, the plugin needs to retain it in memory,
+    which might cause pressure on the worker's Lua VM when dealing with large bodies (several MBs).
+    Because of Nginx's internals, the `Content-Length` header will not be set when transforming a response body.
   </div>
+
+  For additional response transformation features, check out the
+  [Response Transformer Advanced plugin](/hub/kong-inc/response-transformer-advanced/).
 
 type: plugin
 categories:
@@ -18,6 +24,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x
@@ -38,15 +46,13 @@ kong_version_compatibility:
         - 0.5.x
     enterprise_edition:
       compatible:
+        - 2.3.x
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
-        - 0.34-x
-        - 0.33-x
-        - 0.32-x
-        - 0.31-x
+
 
 params:
   name: response-transformer
@@ -59,45 +65,67 @@ params:
     - name: remove.headers
       required: false
       value_in_examples: ["x-toremove", "x-another-one"]
+      datatype: array of string elements
       description: List of header names. Unset the header(s) with the given name.
     - name: remove.json
       required: false
       value_in_examples: ["json-key-toremove", "another-json-key"]
+      datatype: array of string elements
       description: List of property names. Remove the property from the JSON body if it is present.
     - name: rename.headers
       required: false
-      description: List of original_header_name:new_header_name pairs. If the header `original_headername` is already set, rename it to `new_headername`. Ignored if the header is not already set.
+      datatype: array of string elements
+      description: List of `original_header_name:new_header_name` pairs. If the header `original_headername` is already set, rename it to `new_headername`. Ignored if the header is not already set.
     - name: replace.headers
       required: false
-      description: List of headername:value pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set.
+      datatype: array of string elements
+      description: List of `headername:value` pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set.
     - name: replace.json
       required: false
-      description: List of property:value pairs. If and only if the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
+      datatype: array of string elements
+      description: List of `property:value` pairs. If and only if the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
     - name: replace.json_types
       required: false
-      description: List of JSON type names. Specify the types of the JSON values returned when replacing JSON properties.
+      datatype: array of string elements
+      description: |
+        List of JSON type names. Specify the types of the JSON values returned when
+        replacing JSON properties. Each string
+        element can be one of: boolean, number, or string.
     - name: add.headers
       required: false
       value_in_examples: ["x-new-header:value","x-another-header:something"]
-      description: List of headername:value pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set.
+      datatype: array of string elements
+      description: List of `headername:value` pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set.
     - name: add.json
       required: false
       value_in_examples: ["new-json-key:some_value", "another-json-key:some_value"]
-      description: List of property:value pairs. If and only if the property is not present, add a new property with the given value to the JSON body. Ignored if the property is already present.
+      datatype: array of string elements
+      description: List of `property:value` pairs. If and only if the property is not present, add a new property with the given value to the JSON body. Ignored if the property is already present.
     - name: add.json_types
       required: false
-      value_in_examples: ["new-json-key:string", "another-json-key:number"]
-      description: List of JSON type names. Specify the types of the JSON values returned when adding a new JSON property.
+      value_in_examples: ["new-json-key:string", "another-json-key:boolean", "another-json-key:number"]
+      datatype: array of string elements
+      description: |
+        List of JSON type names. Specify the types of the JSON values returned when adding
+        a new JSON property. Each string element can be one of: boolean, number, or string.
     - name: append.headers
       required: false
       value_in_examples: ["x-existing-header:some_value", "x-another-header:some_value"]
-      description: List of headername:value pairs. If the header is not set, set it with the given value. If it is already set, a new header with the same name and the new value will be set.
+      datatype: array of string elements
+      description: |
+        List of `headername:value` pairs. If the header is not set, set it with the given value. If it is
+        already set, a new header with the same name and the new value will be set. Each string
+        element can be one of: boolean, number, or string.
     - name: append.json
       required: false
-      description: List of property:value pairs. If the property is not present in the JSON body, add it with the given value. If it is already present, the two values (old and new) will be aggregated in an array.
+      datatype: array of string elements
+      description: List of `property:value` pairs. If the property is not present in the JSON body, add it with the given value. If it is already present, the two values (old and new) will be aggregated in an array.
     - name: append.json_types
       required: false
-      description: List of JSON type names. Specify the types of the JSON values returned when appending JSON properties.
+      datatype: array of string elements
+      description: |
+        List of JSON type names. Specify the types of the JSON values returned when appending
+        JSON properties. Each string element can be one of: boolean, number, or string.
 
 ---
 
