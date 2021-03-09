@@ -20,7 +20,7 @@ Sessions plugin. Developers will not be able to log in if this is not properly s
 For more information, see
 [Sessions in the Dev Portal](/enterprise/{{page.kong_version}}/developer-portal/configuration/authentication/sessions).
 
-- When Dev Portal Authentication is enabled, content files remain unauthenticated until a role is applied to them. The exceptions are `settings.txt` and `dashboard.txt` that begin with the `*` role. For more information, see
+- When Dev Portal Authentication is enabled, content files remain unauthenticated until a role is applied to them. The exceptions are `settings.txt` and `dashboard.txt`, which begin with the `*` role. For more information, see
 [Developer Roles and Content Permissions](/enterprise/{{page.kong_version}}/developer-portal/administration/developer-permissions).
 
 
