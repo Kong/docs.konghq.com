@@ -1080,6 +1080,31 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
 
 
+## 1.5.0.10
+**Release Date** 2021/03/??
+
+### Fixes
+
+#### Core
+- Fixed an issue where certain incoming URI may make it possible to bypass security rules applied
+on Route objects. This fix make such attacks more difficult by always normalizing the incoming
+request's URI before matching against the Router.
+- Sanitize path postfix for additional security.
+
+#### Enterprise
+- Added pgp signature to Bintray-rpm package of kong-enterprise, version 1.5.0.9.
+- Added the following updates with backport of bypass security vulnerability:
+  - Support for read transformations
+  - Support for `X-Forwarded-Prefix`
+  - `X-Forwarded-Path` heaader
+
+#### Developer Portal
+- Before, when enabling application registration with key authentication, developers who created 
+applications were able to see all Services for which the application registration plugin was enabled,
+regardless of the permissions granted to their role. With this fix, developers who create applications 
+will only see Services if the role they are assigned to has been granted permissions to the relevant  
+specs.
+
 ## 1.5.0.9
 **Release Date** 2020/12/31
 
