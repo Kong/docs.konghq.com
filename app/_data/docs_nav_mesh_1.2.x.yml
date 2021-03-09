@@ -46,3 +46,9 @@
   items:
     - text: HashiCorp Vault CA
       url: /features/vault
+    - text: OPAPolicy Support
+      url: /features/opa
+    - text: Multi-zone authentication
+      url: /features/kds-auth
+    - text: FIPS support
+      url: /features/fips-support
