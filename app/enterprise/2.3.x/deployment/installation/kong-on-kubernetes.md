@@ -55,7 +55,7 @@ $ oc new-project kong
 {% endnavtabs %}
 <!--end codeblock navtabs-->
 
-## Step 2. Set up license secret
+## Step 2. Set up license secret {#license}
 
 {% navtabs %}
 {% navtab Free mode %}
@@ -152,7 +152,15 @@ In the following steps, replace `<your-password>` with a secure password.
     ```bash
     $ echo '{"cookie_name":"admin_session","cookie_samesite":"off","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > admin_gui_session_conf
     ```
-2. (Optional, only with a license) Create a sessions config file for Kong Dev Portal:
+2. (Optional, only with a [license](#license)) Create a sessions config file for Kong Dev Portal:
+
+    <div class="alert alert-ee">
+    <img class="no-image-expand" src="/assets/images/icons/documentation/icn-enterprise-blue.svg" alt="Enterprise" />
+    This feature is only available with a
+    <a href="/enterprise/{{page.kong_version}}/deployment/licensing">
+    {{site.konnect_product_name}} Enterprise subscription</a>.
+    </div>
+
     ```bash
     $ echo '{"cookie_name":"portal_session","cookie_samesite":"off","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
     ```
@@ -180,10 +188,19 @@ In the following steps, replace `<your-password>` with a secure password.
     ```bash
     $ echo '{"cookie_name":"admin_session","cookie_samesite":"off","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > admin_gui_session_conf
     ```
-2. (Optional, only with a license) Create a sessions config file for Kong Dev Portal:
+2. (Optional, only with a [license](#license)) Create a sessions config file for Kong Dev Portal:
+
+    <div class="alert alert-ee">
+    <img class="no-image-expand" src="/assets/images/icons/documentation/icn-enterprise-blue.svg" alt="Enterprise" />
+    This feature is only available with a
+    <a href="/enterprise/{{page.kong_version}}/deployment/licensing">
+    {{site.konnect_product_name}} Enterprise subscription</a>.
+    </div>
+
     ```bash
     $ echo '{"cookie_name":"portal_session","cookie_samesite":"off","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
     ```
+
 3. Create the secret.
 
     With Kong Manager only:
