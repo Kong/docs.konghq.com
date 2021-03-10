@@ -135,6 +135,10 @@
     .page-content-container {
       padding-left: 285px;
 
+      &.no-sidebar {
+        padding-left: 75px;
+      }
+
       .page-content {
         padding-left: 75px;
 
@@ -142,10 +146,6 @@
           margin-bottom: 32px;
           font-size: 16px;
         }
-      }
-
-      @media (min-width: 1600px) {
-        padding-left: 325px;
       }
 
       @media (max-width: 800px) {
@@ -225,6 +225,10 @@
 
         @media screen and (max-width: 1080px) {
           padding-right: 0;
+
+          &.no-sidebar {
+            padding-left: 0;
+          }
 
           .page-content {
             padding: 0 32px;
@@ -622,6 +626,10 @@
   justify-content: space-between;
   height: 0;
   overflow: hidden;
+
+  &.no-sidebar {
+    justify-content: flex-end;
+  }
 
   .sidebar-toggle {
     display: block;
@@ -1436,7 +1444,7 @@ Generic Styling for Desktop
     &:first-of-type {
       color: #4c6d80;
       text-transform: uppercase;
-      font: normal 12px/16px Roboto;
+      font: normal 14px/16px Roboto;
 
       &:before {
         font-size: 18px;
@@ -1446,7 +1454,7 @@ Generic Styling for Desktop
     }
 
     &:last-of-type {
-      font-weight: 500;
+      font-weight: 600;
 
       &:after {
         content: " ";

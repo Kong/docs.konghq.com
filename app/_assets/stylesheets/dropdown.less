@@ -20,7 +20,7 @@
   z-index: 1000;
   display: none;
   float: left;
-  min-width: 200px;
+  min-width: 244px;
   padding: 4px 0;
   margin: 4px 0 0;
   list-style: none;
@@ -59,11 +59,11 @@
   }
 }
 
-.versions-dropdown {
+.versions-dropdown, .docsets-dropdown {
   li.active  {
     a {
       color: @blue-text;
-      font-weight: 500;
+      font-weight: 600;
       border-left-color: @blue-text;
     }
   }
@@ -82,6 +82,10 @@
       background: #fff;
     }
   }
+}
+
+.docsets-dropdown {
+  margin: 8px 0;
 }
 
 .dropdown-menu > .active > a {

@@ -9,8 +9,22 @@
     {% if page.layout != "landing-page" %}
     <div class="search-input-wrapper">
       <img src="/assets/images/landing-page/search.svg" alt="search">
-      <input id="getkong-algolia-search-input" type="text" placeholder="Search...">
+      <input id="getkong-algolia-search-input" type="text" placeholder="Search the docs...">
     </div>
+
+    <script type="text/javascript">
+      function getSearchPlaceholder () {
+        var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        if (w <= 800) {
+          document.getElementById('getkong-algolia-search-input').placeholder = 'Search...';
+        } else {
+          document.getElementById('getkong-algolia-search-input').placeholder = 'Search the docs...';
+        }
+      }
+    
+      getSearchPlaceholder();
+      window.addEventListener('resize', getSearchPlaceholder);
+    </script>
     {% endif %}
     <div class="separator"></div>
     <div class="navbar-items">

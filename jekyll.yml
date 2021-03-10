@@ -104,7 +104,7 @@ defaults:
   - scope:
       path: 'getting-started-guide'
     values:
-      layout: 'getting-started-guide'
+      layout: 'docs-v2'
 
   - scope:
       path: 'deck'
