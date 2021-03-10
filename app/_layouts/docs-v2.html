@@ -56,13 +56,13 @@ id: documentation
               <p>Warning: This feature is released as <a href="/enterprise/{{page.kong_version}}/introduction/key-concepts/#beta">BETA</a> and should not be deployed in a production environment.
             </div>
           </div>
-        {% endif %}
+          {% endif %}
 
           <h1 class="page-content-title">{{page.title | flatify }}</h1>
           {% if page.subtitle %}
-            <h2 class="page-content-subtitle">{{page.subtitle | flatify }}</h2>
+          <h2 class="page-content-subtitle">{{page.subtitle | flatify }}</h2>
           {% endif %}
-          
+
           {% unless page.skip_read_time == true or page.path contains '/admin-api' or page.path contains '/pdk' or page.is_homepage %}
           {% include read_time.html %}
           {% endunless %}
