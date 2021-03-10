@@ -14,12 +14,13 @@ description: |
   <div class="alert alert-ee blue"><strong>Tip:</strong> The <a xref="/hub/kong-inc/statsd-advanced/">StatsD Advanced plugin</a> provides
   additional features not available in this open source StatsD plugin, such as:
 
-<ul>
+  <ul>
   <li>Ability to choose status codes to log to metrics.</li>
   <li>More granular status codes per workspace.</li>
   <li>Ability to use TCP instead of UDP.</li>
   </ul>
-</div>
+  </div>
+
 type: plugin
 categories:
   - logging
