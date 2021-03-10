@@ -11,7 +11,7 @@ description: |
   daemon by enabling its [Statsd
   plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
 
-  <div class="alert alert-ee blue"><strong>Tip:</strong> The <a xref="/hub/kong-inc/statsd-advanced/">StatsD Advanced plugin</a> provides
+  <div class="alert alert-ee blue"><strong>Tip:</strong> The <a href="/hub/kong-inc/statsd-advanced/">StatsD Advanced plugin</a> provides
   additional features not available in this open source StatsD plugin, such as:
 
   <ul>
