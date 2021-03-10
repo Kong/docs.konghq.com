@@ -132,6 +132,6 @@ params:
 
 {% include /md/plugins-hub/json-object-log.md %}
 
-## Kong process rrrors
+## Kong process errors
 
 {% include /md/plugins-hub/kong-process-errors.md %}
