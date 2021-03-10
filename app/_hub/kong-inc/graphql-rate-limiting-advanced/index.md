@@ -571,7 +571,7 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
   --data config.max_cost=5000
 ```
 
-If `max_cost` needs to be updated, one can accomplish this by doing the following:
+To update `max_cost`:
 
 ```
 $ curl -X PATCH http://kong:8001/plugins/{plugin_id} \
@@ -601,7 +601,7 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
   --data config.score_factor=0.01
 ```
 
-If `score_factor` needs to be updated, one can accomplish this by doing the following:
+To update `score_factor`:
 
 ```
 $ curl -i -X PATCH http://kong:8001/plugins/{plugin_id} \
