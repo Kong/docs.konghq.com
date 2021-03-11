@@ -39,8 +39,8 @@ This is expected as Kong does not yet know how to proxy the request.
 
 ## Setup a Sample Service
 
-For the purpose of this guide, we will setup an [httpbin](https://httpbin.org)
-service in the cluster and proxy it.
+For the purpose of this guide, we will setup a simple HTTP service in the
+cluster and proxy it.
 
 ```bash
 $ echo '
