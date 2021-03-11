@@ -1,7 +1,6 @@
 ---
 title: Debugging Spec Files with Insomnia
 toc: false
-redirect_from: "/studio/1.0.x/using-insomnia-designer/"
 ---
 
 ### Introduction

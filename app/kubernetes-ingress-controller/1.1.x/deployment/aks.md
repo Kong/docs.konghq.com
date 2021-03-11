@@ -51,7 +51,7 @@ $ helm install kong/kong --generate-name --set ingressController.installCRDs=fal
 ## Setup environment variables
 
 Next, we will setup an environment variable with the IP address at which
-Kong is accesssible. This will be used to actually send reqeusts into the
+Kong is accessible. This will be used to actually send reqeusts into the
 Kubernetes cluster.
 
 Execute the following command to get the IP address at which Kong is accessible:
@@ -68,7 +68,7 @@ Let's setup an environment variable to hold the IP address:
 $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong kong-proxy)
 ```
 
-> Note: It may take a while for Google to actually associate the
+> Note: It may take a while for Microsoft Azure to actually associate the
 IP address to the `kong-proxy` Service.
 
 Once you've installed the {{site.kic_product_name}}, please follow our

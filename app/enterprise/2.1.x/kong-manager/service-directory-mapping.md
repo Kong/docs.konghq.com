@@ -1,5 +1,5 @@
 ---
-title: Mapping Service Directory Groups to Kong Roles
+title: Mapping LDAP Service Directory Groups to Kong Roles
 ---
 
 ### Introduction

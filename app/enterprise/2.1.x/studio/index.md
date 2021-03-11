@@ -1,6 +1,5 @@
 ---
 title: Kong Studio
-redirect_from: "/studio/"
 toc: false
 skip_read_time: true
 ---
@@ -29,9 +28,9 @@ Benefits for teams:
 | {{site.ee_product_name}} plugin support | <i class="fa fa-times"></i> |  <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |
 | Support from Kong | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |
 
-Insomnia Designer is referred to as Kong Studio when it is configured through the 
+Insomnia Designer is referred to as Kong Studio when it is configured through the
 [Kong Studio bundle](https://insomnia.rest/plugins/insomnia-plugin-kong-bundle).
-Kong Studio extends Insomnia Designer by allowing users to generate configuration 
+Kong Studio extends Insomnia Designer by allowing users to generate configuration
 for Kong Enterprise and sync API designs directly to the Kong Developer Portal.
 
 The following documentation series will guide you through downloading and installing

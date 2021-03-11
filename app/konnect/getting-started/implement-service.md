@@ -36,13 +36,15 @@ implementation to associate with your Service version.
 
     For this example, enter the following:
 
-    1. For Name, enter `mockbin`.
+    1. For **Name**, enter `mockbin`.
 
-    2. For Path(s), click **Add Path** and enter `/mock`.
+    2. For **Method**, enter `GET`.
 
-    3. For the remaining fields, use the default values listed.
+    3. For **Path(s)**, click **Add Path** and enter `/mock`.
 
-    4. Click **Create**.
+    4. For the remaining fields, use the default values listed.
+
+    5. Click **Create**.
 
     The **v.1** Service Version overview displays.
 
@@ -55,7 +57,7 @@ If you used the Docker script to create a container
 earlier in [Configure a Runtime](/konnect/getting-started/configure-runtime),
 your runtime's default proxy URL is `localhost:8000`.
 
-Enter the proxy URL into your browser’s address bar and append the route path 
+Enter the proxy URL into your browser’s address bar and append the route path
 you just set. The final URL should look something like this:
 
 ```

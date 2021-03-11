@@ -77,11 +77,6 @@ plugins:
 
 defaults:
   - scope:
-      path: 'studio'
-    values:
-      layout: 'docs'
-
-  - scope:
       path: ''
     values:
       layout: 'docs-v2'

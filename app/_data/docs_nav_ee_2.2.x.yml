@@ -285,8 +285,6 @@
   items:
     - text: Overview
       url: /kong-manager/overview
-    - text: Service Directory Mapping
-      url: /kong-manager/service-directory-mapping
     - text: Networking
       items:
         - text: Default and Custom Configuration
@@ -307,6 +305,10 @@
           url: /kong-manager/authentication/oidc
         - text: Sessions
           url: /kong-manager/authentication/sessions
+    - text: LDAP Service Directory Mapping
+      url: /kong-manager/service-directory-mapping
+    - text: OIDC Authenticated Group Mapping
+      url: /kong-manager/oidc-mapping
     - text: Reset Passwords and RBAC Tokens
       url: /kong-manager/reset-password
     - text: Administration

@@ -334,10 +334,6 @@
     openresty: "1.15.8.3"
   lua_doc: true
 -
-  release: "1.0.x"
-  version: "1.0"
-  edition: "studio"
--
   release: "1.5.x"
   version: "1.5.1"
   edition: "gateway-oss"
@@ -375,9 +371,9 @@
     pcre: "8.44"
 -
   release: "2.2.x"
-  version: "2.2.1"
+  version: "2.2.2"
   edition: "gateway-oss"
-  luarocks_version: "2.2.1-0"
+  luarocks_version: "2.2.2-0"
   dependencies:
     luajit: "2.1.0-beta3"
     luarocks: "3.3.1"
@@ -389,9 +385,9 @@
     pcre: "8.44"
 -
   release: "2.3.x"
-  version: "2.3.2"
+  version: "2.3.3"
   edition: "gateway-oss"
-  luarocks_version: "2.3.2-0"
+  luarocks_version: "2.3.3-0"
   dependencies:
     luajit: "2.1.0-beta3"
     luarocks: "3.4.0"
@@ -429,6 +425,10 @@
 -
   release: "1.1.x"
   version: "1.1.4"
+  edition: "mesh"
+-
+  release: "1.2.x"
+  version: "1.2.0"
   edition: "mesh"
 -
   release: "1.0.x"
