@@ -1,13 +1,14 @@
+{% assign id_str = include.id | split: '-' %}
 <li class="accordion-item{% if include.active == true %} active{% endif %}">
   {% if include.content %}
-  <input id="accordion-{{ include.id }}" type="checkbox" {% if include.active == true %}checked{% endif %}/>
+  <input id="accordion-{{ include.id }}" type="checkbox" {% if id_str.size == 1 %}onclick="toggleButtonClicked('{{ include.id }}')"{% endif %} {% if include.active == true %}checked{% endif %}/>
   {% endif %}
   {% if include.url and include.content == nil %}
   <a href="{{ include.url }}">
   {% endif %}
   <label for="accordion-{{ include.id }}">
     {% if include.icon %}
-    <img src="{{include.icon}}" alt="icon">
+    <img src="{{ include.icon }}" alt="icon">
     {% endif %}
     {% if include.url and include.content %}
     <a href="{{ include.url }}">{{ include.label }}</a>
@@ -25,3 +26,23 @@
     {{ include.content }}
   </div>
 </li>
+
+{% if id_str.size == 1 %}
+<script type="text/javascript">
+  function toggleButtonClicked (id) {
+    var value = $('#accordion-opened').val();
+    if (value === '') {
+      if ($('.accordion-item.active')[0]) {
+        value = $('.accordion-item.active')[0].firstElementChild.id.split('-')[1];
+      } else {
+        $('#accordion-opened').val(id.toString());
+        return;
+      }
+    }
+    if (value !== id.toString()) {
+      $('#accordion-' + value).prop('checked', false);
+      $('#accordion-opened').val(id.toString());
+    }
+  }
+</script>
+{% endif %}
