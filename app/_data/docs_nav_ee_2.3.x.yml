@@ -122,7 +122,7 @@
           url: /kong-security-update-process
     - text: Upgrades and Migrations
       items:
-        - text: Migrating Kong Gateway to Latest Version
+        - text: Migrating to the latest version
           url: /deployment/upgrades/migrations
         - text: Migrating from OSS to Enterprise
           url: /deployment/upgrades/migrate-ce-to-ke
