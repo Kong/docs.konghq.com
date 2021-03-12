@@ -7,10 +7,15 @@
       url: /using-konnect-docs
     - text: Key Concepts and Terms
       url: /key-concepts-and-terms
-    - text: Konnect SaaS Updates
-      url: /updates
+
     - text: Access a Kong Konnect Account
       url: /access-account
+
+- title: Release Notes
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  items:
+    - text: Konnect SaaS Updates
+      url: /updates
 
 - title: Deployment
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
