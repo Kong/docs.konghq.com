@@ -13,7 +13,7 @@
 - title: Release Notes
   icon: /assets/images/icons/documentation/icn-references-color.svg
   items:
-    - text: Konnect SaaS Updates
+    - text: Updates
       url: /updates
 
 - title: Deployment
