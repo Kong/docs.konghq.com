@@ -132,7 +132,7 @@ $ curl -X POST http://<admin-hostname>:8001/services/<service>/plugins \
 {% capture plugin_config_for_service %}
 ### Enabling the plugin on a Service
 
-{% if page.params.yaml_examples == false and page.params.k8s_examples == false %}
+{% if page.params.yaml_examples == false and page.params.k8s_examples == false and page.params.manager_examples == false and page.params.konnect_examples == false %}
 
   {{ plugin_config_for_service_admin_api }}
 
