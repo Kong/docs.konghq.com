@@ -139,19 +139,13 @@ $ curl -X POST http://<admin-hostname>:8001/services/<service>/plugins \
 {% else %}
 {% navtabs %}
 {% unless page.params.konnect_examples == false %}
-{% navtab Konnect %}
+{% navtab Konnect SaaS %}
 Configure this plugin on a service:
 
-1. In Konnect, select the service on the ServiceHub page.
+1. In {{site.konnect_saas}}, select the service on the ServiceHub page.
 2. Scroll down to **Versions** and select the version.
 3. Scroll down to **Plugins** and click **New Plugin**.
 4. Find and select the **{{ page.name }}** plugin.
-
-    <div class="alert alert-ee blue">
-    <strong>Note:</strong> If the plugin is greyed out, then it is not available
-    for your product tier. See <a href="">Kong Gateway tiers</a>.
-    </div>
-
   {% if config_required_fields_konnect == empty %}
 5. Click **Create**.
   {% else %}
@@ -162,7 +156,7 @@ Configure this plugin on a service:
 {% endnavtab %}
 {% endunless %}
 {% unless page.params.manager_examples == false %}
-{% navtab Kong Manager %}
+{% navtab Manager %}
 Configure this plugin on a service:
 
 1. In Kong Manager, select the workspace.
@@ -175,11 +169,9 @@ Configure this plugin on a service:
     for your product tier. See <a href="/enterprise/latest/deployment/licensing/">Kong Gateway tiers</a>.
     </div>
 
-5. If the option is available, set the plugin scope to **Scoped**.
-
+5. If the option is available, select **Scoped**.
 6. Add the service name and ID to the **Service** field if it
 is not already prefilled.
-
 {% if config_required_fields_konnect == empty %}
 8. Click **Create**.
   {% else %}
@@ -298,20 +290,14 @@ $ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
 {% else %}
 {% navtabs %}
 {% unless page.params.konnect_examples == false %}
-{% navtab Konnect %}
+{% navtab Konnect SaaS %}
 Configure this plugin on a route:
 
-1. In Konnect, select the service from the ServiceHub page.
+1. In {{site.konnect_saas}}, select the service from the ServiceHub page.
 2. Scroll down to **Versions** and select the version.
 3. Select the route.
 4. Scroll down to **Plugins** and click **Add Plugin**.
 5. Find and select the **{{ page.name }}** plugin.
-
-    <div class="alert alert-ee blue">
-    <strong>Note:</strong> If the plugin is greyed out, then it is not available
-    for your product tier. See <a href="">Kong Gateway tiers</a>.
-    </div>
-
   {% if config_required_fields_konnect == empty %}
 6. Click **Create**.
   {% else %}
@@ -322,7 +308,7 @@ Configure this plugin on a route:
 {% endnavtab %}
 {% endunless %}
 {% unless page.params.manager_examples == false %}
-{% navtab Kong Manager %}
+{% navtab Manager %}
 Configure this plugin on a route:
 
 1. In Kong Manager, select the workspace.
@@ -333,13 +319,11 @@ Configure this plugin on a route:
 
     <div class="alert alert-ee blue">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
-    for your product tier. See <a href="">Kong Gateway tiers</a>.
+    for your product tier. See <a href="/enterprise/latest/deployment/licensing/">Kong Gateway tiers</a>.
     </div>
 
-6. If the option is available, set the plugin scope to **Scoped**.
-
+6. If the option is available, select **Scoped**.
 7. Add the Route ID if it is not already prefilled.
-
 {% if config_required_fields_konnect == empty %}
 8. Click **Create**.
   {% else %}
@@ -462,10 +446,9 @@ $ curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
   configuration will target.
 
 {% else %}
-
 {% navtabs %}
 {% unless page.params.manager_examples == false %}
-{% navtab Kong Manager %}
+{% navtab Manager %}
 Configure this plugin on a consumer:
 
 1. In Kong Manager, select the workspace.
@@ -476,11 +459,10 @@ Configure this plugin on a consumer:
 
     <div class="alert alert-ee blue">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
-    for your product tier. See <a href="">Kong Gateway tiers</a>.
+    for your product tier. See <a href="/enterprise/latest/deployment/licensing/">Kong Gateway tiers</a>.
     </div>
 
-6. If the option is available, set the plugin scope to **Global**.
-
+6. If the option is available, select **Global**.
 {% if config_required_fields_konnect == empty %}
 7. Click **Create**.
   {% else %}
