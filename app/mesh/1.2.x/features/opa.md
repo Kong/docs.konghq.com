@@ -351,20 +351,24 @@ conf:
 
 ## Example
 
-Follow those steps to see OPA Policy in action using Kubernetes deployment.
+The following example shows how to deploy the OPA Policy with Kubernetes.
 
-1. Deploy Kuma Demo marketplace application
-```
-kubectl apply -f https://bit.ly/demokuma
-```
-2. Make requests from frontend to backend application
+1.  Deploy the Kuma demo marketplace application:
+
+    ```
+    kubectl apply -f https://bit.ly/demokuma
+    ```
+
+1.  Make requests from the frontend to the backend:
+
 ```
 $ kubectl exec -i -t (kubectl get pod -l "app=kuma-demo-frontend" -o jsonpath='{.items[0].metadata.name}' -n kuma-demo) -n kuma-demo -- curl backend:3001 -v
 Defaulting container name to kuma-fe.
 Use 'kubectl describe pod/kuma-demo-app-6787b4f7f5-bwvnb -n kuma-demo' to see all of the containers in this pod.
 Hello World! Marketplace with sales and reviews made with <3 by the OCTO team at Kong Inc.⏎
 ```
-3. Apply OPA Policy that requires valid JWT token
+
+3. Apply OPA Policy that requires valid JWT token:
 ```
 echo " 
 apiVersion: kuma.io/v1alpha1
