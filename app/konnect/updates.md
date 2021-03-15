@@ -9,13 +9,15 @@ SaaS, an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services.
 
-## February 2021
+## March 2021
 
 ### 2021.03.16
 **Runtime setup improvement**
 : Quick setup just got a little bit faster. When configuring a new runtime 
 through the Runtime Manager, HTTPie is no longer required for the 
 quick setup script.
+
+## February 2021
 
 ### 2021.02.23
 
