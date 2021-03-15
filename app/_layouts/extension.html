@@ -10,35 +10,35 @@ breadcrumbs:
 {% if page.type == "plugin" %}
 
 <!-- Generate Konnect and Kong Manager examples -->
-{% capture config_required_fields_konnect %}{% 
-  for field in page.params.config %}{% assign capfields = field.name | split: '_' %}{% capture titlecase %}{% for capfield in capfields %}{{ capfield | capitalize }} {% endfor %}{% endcapture %}{% 
+{% capture config_required_fields_konnect %}{%
+  for field in page.params.config %}{% assign capfields = field.name | split: '_' %}{% capture titlecase %}{% for capfield in capfields %}{{ capfield | capitalize }} {% endfor %}{% endcapture %}{%
     if field.required == true and field.value_in_examples == nil %}{%
       if field.default == "`false`" or field.default == "`true`" %}
-    * Config.{{ titlecase | rstrip }}: {{ field.default | replace: "`false`", "clear checkbox" | replace: "`true`", "select checkbox" }}{% 
-      else %}   
-    * Config.{{ titlecase | rstrip }}: `{{ field.default | smartify }}`{% 
+    * Config.{{ titlecase | rstrip }}: {{ field.default | replace: "`false`", "clear checkbox" | replace: "`true`", "select checkbox" }}{%
+      else %}
+    * Config.{{ titlecase | rstrip }}: `{{ field.default | smartify }}`{%
       endif %}{%
     elsif field.required == true and field.value_in_examples != nil %}{%
       if field.value_in_examples == false or field.value_in_examples == true %}
-    * Config.{{ titlecase | rstrip }}: {{ field.value_in_examples | replace: false, "clear checkbox" | replace: true, "select checkbox" }}{% 
-      else %}{% 
-        if field.value_in_examples.first %}{% 
-          for value in field.value_in_examples %}{% 
-            if field.value_in_examples contains "'" %} 
-    * Config.{{ titlecase | rstrip }}: `{{ value | replace: "'", "" }}`{% 
-            else %} 
-    * Config.{{ titlecase | rstrip }}: `{{ value }}`{% 
-            endif %}{% 
-          endfor %}{% 
-        else %}{% 
-          if field.value_in_examples contains "'" %} 
-    * Config.{{ titlecase | rstrip }}: `{{ field.value_in_examples }}`{% 
-          else %} 
-    * Config.{{ titlecase | rstrip }}: `{{ field.value_in_examples }}`{% 
+    * Config.{{ titlecase | rstrip }}: {{ field.value_in_examples | replace: false, "clear checkbox" | replace: true, "select checkbox" }}{%
+      else %}{%
+        if field.value_in_examples.first %}{%
+          for value in field.value_in_examples %}{%
+            if field.value_in_examples contains "'" %}
+    * Config.{{ titlecase | rstrip }}: `{{ value | replace: "'", "" }}`{%
+            else %}
+    * Config.{{ titlecase | rstrip }}: `{{ value }}`{%
+            endif %}{%
+          endfor %}{%
+        else %}{%
+          if field.value_in_examples contains "'" %}
+    * Config.{{ titlecase | rstrip }}: `{{ field.value_in_examples }}`{%
+          else %}
+    * Config.{{ titlecase | rstrip }}: `{{ field.value_in_examples }}`{%
           endif %}{%
-        endif %}{% 
+        endif %}{%
       endif %}{%
-    endif %}{% 
+    endif %}{%
   endfor %}{%
 endcapture %}
 
@@ -164,12 +164,12 @@ Configure this plugin on a Service:
 
 6. If the option is available, set the plugin scope to **Scoped**.
 
-7. Add the Service field with the Service name and ID if it 
-is not already prefilled. 
+7. Add the Service field with the Service name and ID if it
+is not already prefilled.
 
 {% if config_required_fields_konnect == empty %}
 8. Click **Create** to save.
-  {% else %}  
+  {% else %}
 8. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
     {{ config_required_fields_konnect }}
 9. Click **Create** to save.
@@ -217,7 +217,7 @@ spec:
   ```
 
 `<service>` is the `id` or `name` of the Service that this plugin
-    configuration will target.  
+    configuration will target.
 
 <div class="alert alert-ee blue">
   <strong>Note:</strong> The KongPlugin resource only needs to be defined once
@@ -263,7 +263,7 @@ Configure this plugin on a Service:
 
   {% if config_required_fields_konnect == empty %}
 5. Click **Create** to save.
-  {% else %}  
+  {% else %}
 5. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
     {{ config_required_fields_konnect }}
 6. Click **Create** to save.
@@ -334,11 +334,11 @@ Configure this plugin on a Route:
 
 6. If the option is available, set the plugin scope to **Scoped**.
 
-7. Add the Route ID if it is not already prefilled. 
+7. Add the Route ID if it is not already prefilled.
 
 {% if config_required_fields_konnect == empty %}
 8. Click **Create** to save.
-  {% else %}  
+  {% else %}
 8. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
     {{ config_required_fields_konnect }}
 9. Click **Create** to save.
@@ -430,7 +430,7 @@ Configure this plugin on a Route:
 
   {% if config_required_fields_konnect == empty %}
 6. Click **Create** to save.
-  {% else %}  
+  {% else %}
 6. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
     {{ config_required_fields_konnect }}
 7. Click **Create** to save.
@@ -500,11 +500,11 @@ Configure this plugin on a Consumer:
     for your product tier. See <a href="">Kong Gateway tiers</a>.
     </div>
 
-7. If the option is available, set the plugin scope to **Global**. 
+7. If the option is available, set the plugin scope to **Global**.
 
 {% if config_required_fields_konnect == empty %}
 8. Click **Create** to save.
-  {% else %}  
+  {% else %}
 8. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
     {{ config_required_fields_konnect }}
 9. Click **Create** to save.
@@ -621,11 +621,11 @@ Configure this plugin globally:
     for your product tier. See <a href="">Kong Gateway tiers</a>.
     </div>
 
-5. If the option is available, set the plugin scope to **Global**. 
+5. If the option is available, set the plugin scope to **Global**.
 
 {% if config_required_fields_konnect == empty %}
 6. Click **Create** to save.
-  {% else %}  
+  {% else %}
 6. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
     {{ config_required_fields_konnect }}
 7. Click **Create** to save.
