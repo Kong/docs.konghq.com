@@ -130,7 +130,7 @@ $ curl -X POST http://<admin-hostname>:8001/services/<service>/plugins \
 {% endcapture %}
 
 {% capture plugin_config_for_service %}
-### Enabling the plugin on a Service
+### Enabling the plugin on a service
 
 {% if page.params.yaml_examples == false and page.params.k8s_examples == false and page.params.manager_examples == false and page.params.konnect_examples == false %}
 
@@ -143,38 +143,36 @@ $ curl -X POST http://<admin-hostname>:8001/services/<service>/plugins \
 
   {{ plugin_config_for_service_admin_api }}
 
-  `<service>` is the `id` or `name` of the Service that this plugin
+  `<service>` is the `id` or `name` of the service that this plugin
     configuration will target.
 
 {% endnavtab %}
 {% unless page.params.manager_examples == false %}
 {% navtab Kong Manager %}
-Configure this plugin on a Service:
+Configure this plugin on a service:
 
 1. In Kong Manager, select the workspace.
-2. From the Dashboard, select **Services**.
-3. Click **View** for the Service row.
-4. Scroll down to plugins and click **Add Plugin**.
-5. Find and select the **{{ page.name }}** plugin.
+2. From the Dashboard, scroll down to **Services** and click **View** for the service row.
+3. Scroll down to plugins and click **Add Plugin**.
+4. Find and select the **{{ page.name }}** plugin.
 
     <div class="alert alert-ee blue">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
     for your product tier. See <a href="">Kong Gateway tiers</a>.
     </div>
 
-6. If the option is available, set the plugin scope to **Scoped**.
+5. If the option is available, set the plugin scope to **Scoped**.
 
-7. Add the Service field with the Service name and ID if it
+6. Add the service name and ID to the **Service** field if it
 is not already prefilled.
 
 {% if config_required_fields_konnect == empty %}
-8. Click **Create** to save.
+8. Click **Create**.
   {% else %}
-8. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
+8. Enter the following required [parameters](#parameters), updating the default or sample values as needed:
     {{ config_required_fields_konnect }}
-9. Click **Create** to save.
+9. Click **Create**.
   {% endif %}
-
 {% endnavtab %}
 {% endunless %}
 {% unless page.params.k8s_compatible == false %}
@@ -216,12 +214,12 @@ spec:
     app: <service>
   ```
 
-`<service>` is the `id` or `name` of the Service that this plugin
+`<service>` is the `id` or `name` of the service that this plugin
     configuration will target.
 
 <div class="alert alert-ee blue">
   <strong>Note:</strong> The KongPlugin resource only needs to be defined once
-  and can be applied to any Service, Consumer, or Route in the namespace. If you
+  and can be applied to any service, consumer, or route in the namespace. If you
   want the plugin to be available cluster-wide, create the resource as a
   <code>KongClusterPlugin</code> instead of <code>KongPlugin</code>.
 </div>
@@ -231,7 +229,7 @@ spec:
 {% unless page.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
-For example, configure this plugin on a [Service](/gateway-oss/latest/admin-api/#service-object) by
+For example, configure this plugin on a [service](/gateway-oss/latest/admin-api/#service-object) by
 adding this section to your declarative configuration file:
 
 ``` yaml
@@ -242,14 +240,14 @@ plugins:
     <optional_parameter>: <value>{% else %}{{ config_required_fields_yaml }}{% endif %}
 ```
 
-`<service>` is the `id` or `name` of the Service that this plugin
+`<service>` is the `id` or `name` of the service that this plugin
   configuration will target.
 
 {% endnavtab %}
 {% endunless %}
 {% unless page.params.konnect_examples == false %}
 {% navtab Konnect %}
-Configure this plugin on a Service:
+Configure this plugin on a service:
 
 1. In Konnect, select the service on the ServiceHub page.
 2. Scroll down to **Versions** and select the version.
@@ -262,9 +260,9 @@ Configure this plugin on a Service:
     </div>
 
   {% if config_required_fields_konnect == empty %}
-5. Click **Create** to save.
+5. Click **Create**.
   {% else %}
-5. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
+5. Enter the following required [parameters](#parameters), updating the default or sample values as needed:
     {{ config_required_fields_konnect }}
 6. Click **Create**.
   {% endif %}
@@ -272,15 +270,6 @@ Configure this plugin on a Service:
 {% endunless %}
 {% endnavtabs %}
 {% endif %}
-
-{% if page.params.api_id %}
-<div class="alert alert-ee blue"><strong>Note:</strong>The legacy API entity has been **deprecated** in favor of Services
-  since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">
-  CE 0.13.0</a> and
-  <a href="https://docs.konghq.com/enterprise/changelog/#0-32">EE 0.32</a>.
-</div>
-{% endif %}
-
 {% endcapture %}
 {% endif %}
 
@@ -289,7 +278,7 @@ Configure this plugin on a Service:
 {% if page.params.route_id %}
 
 {% capture plugin_config_for_route_admin_api %}
-For example, configure this plugin on a [Route](/gateway-oss/latest/admin-api/#route-object) with:
+For example, configure this plugin on a [route](/gateway-oss/latest/admin-api/#route-object) with:
 
 ```bash
 $ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
@@ -298,13 +287,13 @@ $ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
 {% endcapture %}
 
 {% capture plugin_config_for_route %}
-### Enabling the plugin on a Route
+### Enabling the plugin on a route
 
-{% if page.params.yaml_examples == false and page.params.k8s_examples == false %}
+{% if page.params.yaml_examples == false and page.params.k8s_examples == false and page.params.manager_examples == false and page.params.konnect_examples == false %}
 
 {{ plugin_config_for_route_admin_api }}
 
-`<route>` is the `id` or `name` of the Route that this plugin configuration
+`<route>` is the `id` or `name` of the route that this plugin configuration
   will target.
 
 {% else %}
@@ -313,17 +302,17 @@ $ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
 
 {{ plugin_config_for_route_admin_api }}
 
-`<route>` is the `id` or `name` of the Route that this plugin configuration
+`<route>` is the `id` or `name` of the route that this plugin configuration
   will target.
 
 {% endnavtab %}
 {% unless page.params.manager_examples == false %}
 {% navtab Kong Manager %}
-Configure this plugin on a Route:
+Configure this plugin on a route:
 
 1. In Kong Manager, select the workspace.
 2. From the Dashboard, select **Routes** in the left navigation.
-3. Click **View** for the Route row.
+3. Click **View** for the route row.
 4. Scroll down to plugins and click **Add Plugin**.
 5. Find and select the **{{ page.name }}** plugin.
 
@@ -339,9 +328,9 @@ Configure this plugin on a Route:
 {% if config_required_fields_konnect == empty %}
 8. Click **Create**.
   {% else %}
-8. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
+8. Enter the following required [parameters](#parameters), updating the default or sample values as needed:
     {{ config_required_fields_konnect }}
-9. Click **Create** to save.
+9. Click **Create**.
   {% endif %}
 {% endnavtab %}
 {% endunless %}
@@ -383,12 +372,12 @@ spec:
           servicePort: 80
   ```
 
-`<route>` is the `id` or `name` of the Route that this plugin configuration
+`<route>` is the `id` or `name` of the route that this plugin configuration
   will target.
 
 <div class="alert alert-ee blue">
   <strong>Note:</strong> The KongPlugin resource only needs to be defined once
-  and can be applied to any Service, Consumer, or Route in the namespace. If you
+  and can be applied to any service, consumer, or route in the namespace. If you
   want the plugin to be available cluster-wide, create the resource as a
   <code>KongClusterPlugin</code> instead of <code>KongPlugin</code>.
 </div>
@@ -398,7 +387,7 @@ spec:
 {% unless page.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
-For example, configure this plugin on a [Route](/gateway-oss/latest/admin-api/#route-object) by
+For example, configure this plugin on a [route](/gateway-oss/latest/admin-api/#route-object) by
 adding this section to your declarative configuration file:
 
 ```yaml
@@ -409,15 +398,15 @@ plugins:
     <optional_parameter>: <value>{% else %}{{ config_required_fields_yaml }}{% endif %}
 ```
 
-`<route>` is the `id` or `name` of the Route that this plugin configuration
+`<route>` is the `id` or `name` of the route that this plugin configuration
   will target.
 {% endnavtab %}
 {% endunless %}
 {% unless page.params.konnect_examples == false %}
 {% navtab Konnect %}
-Configure this plugin on a Route:
+Configure this plugin on a route:
 
-1. In Konnect, select the Service from the ServiceHub page.
+1. In Konnect, select the service from the ServiceHub page.
 2. Scroll down to **Versions** and select the version.
 3. Select the route.
 4. Scroll down to **Plugins** and click **Add Plugin**.
@@ -429,11 +418,11 @@ Configure this plugin on a Route:
     </div>
 
   {% if config_required_fields_konnect == empty %}
-6. Click **Create** to save.
+6. Click **Create**.
   {% else %}
-6. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
+6. Enter the following required [parameters](#parameters), updating the default or sample values as needed:
     {{ config_required_fields_konnect }}
-7. Click **Create** to save.
+7. Click **Create**.
   {% endif %}
 {% endnavtab %}
 {% endunless %}
@@ -448,7 +437,7 @@ Configure this plugin on a Route:
 
 {% capture plugin_config_for_consumer_admin_api %}
 
-For example, configure this plugin on a [Consumer](/gateway-oss/latest/admin-api/#consumer-object) with:
+For example, configure this plugin on a [consumer](/gateway-oss/latest/admin-api/#consumer-object) with:
 
 ```bash
 $ curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
@@ -464,13 +453,13 @@ $ curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
 {% endcapture %}
 
 {% capture plugin_config_for_consumer %}
-### Enabling the plugin on a Consumer
+### Enabling the plugin on a consumer
 
-{% if page.params.yaml_examples == false and page.params.k8s_examples == false %}
+{% if page.params.yaml_examples == false and page.params.k8s_examples == false and page.params.manager_examples == false %}
 
 {{ plugin_config_for_consumer_admin_api }}
 
-`<consumer>` is the `id` or `username` of the Consumer that this plugin
+`<consumer>` is the `id` or `username` of the consumer that this plugin
   configuration will target.
 
 {% else %}
@@ -480,34 +469,33 @@ $ curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
 
 {{ plugin_config_for_consumer_admin_api }}
 
-`<consumer>` is the `id` or `username` of the Consumer that this plugin
+`<consumer>` is the `id` or `username` of the consumer that this plugin
   configuration will target.
 
 {% endnavtab %}
 {% unless page.params.manager_examples == false %}
 {% navtab Kong Manager %}
-Configure this plugin on a Consumer:
+Configure this plugin on a consumer:
 
 1. In Kong Manager, select the workspace.
-2. From the Dashboard, select **Consumers** in the left navigation.
-3. Click **View** for the Consumer row.
-4. Select the **Plugins** tab.
-5. Click **Add Plugin**.
-6. Find and select the **{{ page.name }}** plugin.
+2. From the Dashboard, scroll down to **Consumers** and click **View** for the consumer row.
+3. Select the **Plugins** tab.
+4. Click **Add Plugin**.
+5. Find and select the **{{ page.name }}** plugin.
 
     <div class="alert alert-ee blue">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
     for your product tier. See <a href="">Kong Gateway tiers</a>.
     </div>
 
-7. If the option is available, set the plugin scope to **Global**.
+6. If the option is available, set the plugin scope to **Global**.
 
 {% if config_required_fields_konnect == empty %}
-8. Click **Create** to save.
+7. Click **Create**.
   {% else %}
-8. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
+7. Enter the following required [parameters](#parameters), updating the default or sample values as needed:
     {{ config_required_fields_konnect }}
-9. Click **Create** to save.
+8. Click **Create**.
   {% endif %}
 {% endnavtab %}
 {% endunless %}
@@ -527,7 +515,7 @@ metadata:
 plugin: {{page.params.name}}
 ```
 
-Then, apply it to a [Consumer](/gateway-oss/latest/admin-api/#consumer-object) by
+Then, apply it to a [consumer](/gateway-oss/latest/admin-api/#consumer-object) by
 annotating the KongConsumer resource as follows:
 
 ``` yaml
@@ -540,7 +528,7 @@ metadata:
     kubernetes.io/ingress.class: kong
   ```
 
-`<consumer>` is the `id` or `username` of the Consumer that this plugin
+`<consumer>` is the `id` or `username` of the consumer that this plugin
   configuration will target.
 
 <div class="alert alert-ee blue">
@@ -555,7 +543,7 @@ metadata:
 {% unless page.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
-For example, configure this plugin on a [Consumer](/gateway-oss/latest/admin-api/#consumer-object) by
+For example, configure this plugin on a [consumer](/gateway-oss/latest/admin-api/#consumer-object) by
 adding this section to your declarative configuration file:
 
 ``` yaml
@@ -566,7 +554,7 @@ plugins:
     <optional_parameter>: <value>{% else %}{{ config_required_fields_yaml }}{% endif %}
 ```
 
-`<consumer>` is the `id` or `username` of the Consumer that this plugin
+`<consumer>` is the `id` or `username` of the consumer that this plugin
   configuration will target.
 
 {% endnavtab %}
@@ -591,12 +579,12 @@ $ curl -X POST http://<admin-hostname>:8001/plugins/ \
 {% capture plugin_global_config %}
 ### Enabling the plugin globally
 
-A plugin which is not associated to any Service, Route, or Consumer is
+A plugin which is not associated to any service, route, or consumer is
 considered _global_, and will be run on every request. Read the
 [Plugin Reference](/gateway-oss/latest/admin-api/#add-plugin) and the [Plugin Precedence](/gateway-oss/latest/admin-api/#precedence)
 sections for more information.
 
-{% if page.params.yaml_examples == false and page.params.k8s_examples == false %}
+{% if page.params.yaml_examples == false and page.params.k8s_examples == false and page.params.manager_examples == false %}
 
 {{ plugin_global_config_admin_api }}
 
@@ -624,11 +612,11 @@ Configure this plugin globally:
 5. If the option is available, set the plugin scope to **Global**.
 
 {% if config_required_fields_konnect == empty %}
-6. Click **Create** to save.
+6. Click **Create**.
   {% else %}
 6. Enter the following required [parameters](#parameters), updating the default/sample values as needed:
     {{ config_required_fields_konnect }}
-7. Click **Create** to save.
+7. Click **Create**.
   {% endif %}
 
 {% endnavtab %}
