@@ -137,16 +137,30 @@ $ curl -X POST http://<admin-hostname>:8001/services/<service>/plugins \
   {{ plugin_config_for_service_admin_api }}
 
 {% else %}
-
 {% navtabs %}
-{% navtab Admin API %}
+{% unless page.params.konnect_examples == false %}
+{% navtab Konnect %}
+Configure this plugin on a service:
 
-  {{ plugin_config_for_service_admin_api }}
+1. In Konnect, select the service on the ServiceHub page.
+2. Scroll down to **Versions** and select the version.
+3. Scroll down to **Plugins** and click **New Plugin**.
+4. Find and select the **{{ page.name }}** plugin.
 
-  `<service>` is the `id` or `name` of the service that this plugin
-    configuration will target.
+    <div class="alert alert-ee blue">
+    <strong>Note:</strong> If the plugin is greyed out, then it is not available
+    for your product tier. See <a href="">Kong Gateway tiers</a>.
+    </div>
 
+  {% if config_required_fields_konnect == empty %}
+5. Click **Create**.
+  {% else %}
+5. Enter the following required [parameters](#parameters), updating the default or sample values as needed:
+    {{ config_required_fields_konnect }}
+6. Click **Create**.
+  {% endif %}
 {% endnavtab %}
+{% endunless %}
 {% unless page.params.manager_examples == false %}
 {% navtab Kong Manager %}
 Configure this plugin on a service:
@@ -175,6 +189,14 @@ is not already prefilled.
   {% endif %}
 {% endnavtab %}
 {% endunless %}
+{% navtab Admin API %}
+
+  {{ plugin_config_for_service_admin_api }}
+
+  `<service>` is the `id` or `name` of the service that this plugin
+    configuration will target.
+
+{% endnavtab %}
 {% unless page.params.k8s_compatible == false %}
 {% navtab Kubernetes %}
 
@@ -245,29 +267,6 @@ plugins:
 
 {% endnavtab %}
 {% endunless %}
-{% unless page.params.konnect_examples == false %}
-{% navtab Konnect %}
-Configure this plugin on a service:
-
-1. In Konnect, select the service on the ServiceHub page.
-2. Scroll down to **Versions** and select the version.
-3. Scroll down to **Plugins** and click **New Plugin**.
-4. Find and select the **{{ page.name }}** plugin.
-
-    <div class="alert alert-ee blue">
-    <strong>Note:</strong> If the plugin is greyed out, then it is not available
-    for your product tier. See <a href="">Kong Gateway tiers</a>.
-    </div>
-
-  {% if config_required_fields_konnect == empty %}
-5. Click **Create**.
-  {% else %}
-5. Enter the following required [parameters](#parameters), updating the default or sample values as needed:
-    {{ config_required_fields_konnect }}
-6. Click **Create**.
-  {% endif %}
-{% endnavtab %}
-{% endunless %}
 {% endnavtabs %}
 {% endif %}
 {% endcapture %}
@@ -298,14 +297,30 @@ $ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
 
 {% else %}
 {% navtabs %}
-{% navtab Admin API %}
+{% unless page.params.konnect_examples == false %}
+{% navtab Konnect %}
+Configure this plugin on a route:
 
-{{ plugin_config_for_route_admin_api }}
+1. In Konnect, select the service from the ServiceHub page.
+2. Scroll down to **Versions** and select the version.
+3. Select the route.
+4. Scroll down to **Plugins** and click **Add Plugin**.
+5. Find and select the **{{ page.name }}** plugin.
 
-`<route>` is the `id` or `name` of the route that this plugin configuration
-  will target.
+    <div class="alert alert-ee blue">
+    <strong>Note:</strong> If the plugin is greyed out, then it is not available
+    for your product tier. See <a href="">Kong Gateway tiers</a>.
+    </div>
 
+  {% if config_required_fields_konnect == empty %}
+6. Click **Create**.
+  {% else %}
+6. Enter the following required [parameters](#parameters), updating the default or sample values as needed:
+    {{ config_required_fields_konnect }}
+7. Click **Create**.
+  {% endif %}
 {% endnavtab %}
+{% endunless %}
 {% unless page.params.manager_examples == false %}
 {% navtab Kong Manager %}
 Configure this plugin on a route:
@@ -334,6 +349,14 @@ Configure this plugin on a route:
   {% endif %}
 {% endnavtab %}
 {% endunless %}
+{% navtab Admin API %}
+
+{{ plugin_config_for_route_admin_api }}
+
+`<route>` is the `id` or `name` of the route that this plugin configuration
+  will target.
+
+{% endnavtab %}
 {% unless page.params.k8s_compatible == false %}
 {% navtab Kubernetes %}
 
@@ -402,30 +425,6 @@ plugins:
   will target.
 {% endnavtab %}
 {% endunless %}
-{% unless page.params.konnect_examples == false %}
-{% navtab Konnect %}
-Configure this plugin on a route:
-
-1. In Konnect, select the service from the ServiceHub page.
-2. Scroll down to **Versions** and select the version.
-3. Select the route.
-4. Scroll down to **Plugins** and click **Add Plugin**.
-5. Find and select the **{{ page.name }}** plugin.
-
-    <div class="alert alert-ee blue">
-    <strong>Note:</strong> If the plugin is greyed out, then it is not available
-    for your product tier. See <a href="">Kong Gateway tiers</a>.
-    </div>
-
-  {% if config_required_fields_konnect == empty %}
-6. Click **Create**.
-  {% else %}
-6. Enter the following required [parameters](#parameters), updating the default or sample values as needed:
-    {{ config_required_fields_konnect }}
-7. Click **Create**.
-  {% endif %}
-{% endnavtab %}
-{% endunless %}
 {% endnavtabs %}
 {% endif %}
 {% endcapture %}
@@ -465,14 +464,6 @@ $ curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
 {% else %}
 
 {% navtabs %}
-{% navtab Admin API %}
-
-{{ plugin_config_for_consumer_admin_api }}
-
-`<consumer>` is the `id` or `username` of the consumer that this plugin
-  configuration will target.
-
-{% endnavtab %}
 {% unless page.params.manager_examples == false %}
 {% navtab Kong Manager %}
 Configure this plugin on a consumer:
@@ -499,6 +490,14 @@ Configure this plugin on a consumer:
   {% endif %}
 {% endnavtab %}
 {% endunless %}
+{% navtab Admin API %}
+
+{{ plugin_config_for_consumer_admin_api }}
+
+`<consumer>` is the `id` or `username` of the consumer that this plugin
+  configuration will target.
+
+{% endnavtab %}
 {% unless page.params.k8s_compatible == false %}
 {% navtab Kubernetes %}
 
@@ -590,11 +589,6 @@ sections for more information.
 
 {% else %}
 {% navtabs %}
-{% navtab Admin API %}
-
-{{ plugin_global_config_admin_api }}
-
-{% endnavtab %}
 {% unless page.params.manager_examples == false %}
 {% navtab Kong Manager %}
 Configure this plugin globally:
@@ -621,6 +615,11 @@ Configure this plugin globally:
 
 {% endnavtab %}
 {% endunless %}
+{% navtab Admin API %}
+
+{{ plugin_global_config_admin_api }}
+
+{% endnavtab %}
 {% unless page.params.k8s_compatible == false %}
 {% navtab Kubernetes %}
 
