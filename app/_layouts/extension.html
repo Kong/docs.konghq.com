@@ -143,6 +143,9 @@ $ curl -X POST http://<admin-hostname>:8001/services/<service>/plugins \
 
   {{ plugin_config_for_service_admin_api }}
 
+  `<service>` is the `id` or `name` of the Service that this plugin
+    configuration will target.
+
 {% endnavtab %}
 {% unless page.params.manager_examples == false %}
 {% navtab Kong Manager %}
@@ -213,6 +216,9 @@ spec:
     app: <service>
   ```
 
+`<service>` is the `id` or `name` of the Service that this plugin
+    configuration will target.  
+
 <div class="alert alert-ee blue">
   <strong>Note:</strong> The KongPlugin resource only needs to be defined once
   and can be applied to any Service, Consumer, or Route in the namespace. If you
@@ -235,6 +241,10 @@ plugins:
   {% if config_required_fields_yaml == 'config: ' %}config:
     <optional_parameter>: <value>{% else %}{{ config_required_fields_yaml }}{% endif %}
 ```
+
+`<service>` is the `id` or `name` of the Service that this plugin
+  configuration will target.
+
 {% endnavtab %}
 {% endunless %}
 {% unless page.params.konnect_examples == false %}
@@ -262,9 +272,6 @@ Configure this plugin on a Service:
 {% endunless %}
 {% endnavtabs %}
 {% endif %}
-
-`<service>` is the `id` or `name` of the Service that this plugin
-  configuration will target.
 
 {% if page.params.api_id %}
 <div class="alert alert-ee blue"><strong>Note:</strong>The legacy API entity has been **deprecated** in favor of Services
@@ -297,11 +304,17 @@ $ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
 
 {{ plugin_config_for_route_admin_api }}
 
+`<route>` is the `id` or `name` of the Route that this plugin configuration
+  will target.
+
 {% else %}
 {% navtabs %}
 {% navtab Admin API %}
 
 {{ plugin_config_for_route_admin_api }}
+
+`<route>` is the `id` or `name` of the Route that this plugin configuration
+  will target.
 
 {% endnavtab %}
 {% unless page.params.manager_examples == false %}
@@ -370,6 +383,9 @@ spec:
           servicePort: 80
   ```
 
+`<route>` is the `id` or `name` of the Route that this plugin configuration
+  will target.
+
 <div class="alert alert-ee blue">
   <strong>Note:</strong> The KongPlugin resource only needs to be defined once
   and can be applied to any Service, Consumer, or Route in the namespace. If you
@@ -392,6 +408,9 @@ plugins:
   {% if config_required_fields_yaml == 'config: ' %}config:
     <optional_parameter>: <value>{% else %}{{ config_required_fields_yaml }}{% endif %}
 ```
+
+`<route>` is the `id` or `name` of the Route that this plugin configuration
+  will target.
 {% endnavtab %}
 {% endunless %}
 {% unless page.params.konnect_examples == false %}
@@ -420,10 +439,6 @@ Configure this plugin on a Route:
 {% endunless %}
 {% endnavtabs %}
 {% endif %}
-
-`<route>` is the `id` or `name` of the Route that this plugin configuration
-  will target.
-
 {% endcapture %}
 {% endif %}
 
@@ -455,12 +470,18 @@ $ curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
 
 {{ plugin_config_for_consumer_admin_api }}
 
+`<consumer>` is the `id` or `username` of the Consumer that this plugin
+  configuration will target.
+
 {% else %}
 
 {% navtabs %}
 {% navtab Admin API %}
 
 {{ plugin_config_for_consumer_admin_api }}
+
+`<consumer>` is the `id` or `username` of the Consumer that this plugin
+  configuration will target.
 
 {% endnavtab %}
 {% unless page.params.manager_examples == false %}
@@ -519,6 +540,9 @@ metadata:
     kubernetes.io/ingress.class: kong
   ```
 
+`<consumer>` is the `id` or `username` of the Consumer that this plugin
+  configuration will target.
+
 <div class="alert alert-ee blue">
   <strong>Note:</strong> The KongPlugin resource only needs to be defined once
   and can be applied to any Service, Consumer, or Route in the namespace. If you
@@ -541,14 +565,14 @@ plugins:
   {% if config_required_fields_yaml == 'config: ' %}config:
     <optional_parameter>: <value>{% else %}{{ config_required_fields_yaml }}{% endif %}
 ```
-{% endnavtab %}
-{% endunless %}
-{% endnavtabs %}
-{% endif %}
 
 `<consumer>` is the `id` or `username` of the Consumer that this plugin
   configuration will target.
 
+{% endnavtab %}
+{% endunless %}
+{% endnavtabs %}
+{% endif %}
 {% endcapture %}
 {% endif %}
 
