@@ -5,11 +5,24 @@ no_version: true
 skip_read_time: true
 ---
 
+## 1.2.1
+
+> Released on 2021/03/09
+
+### Changes
+
+- Fix to include the OPA CRD in the deployment
+- Build on top of Kuma 1.1.1 with [fixes and improvements](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#111)
+
+### Upgrading
+
+Upgrades from `1.2.0` are seamless and no additional steps are needed. When using Helm to upgrade from 1.1.x to 1.2.1, the step to explicitly apply the OPA CRD is not needed anymore.
+
 ## 1.2.0
 
 > Released on 2021/03/09
 
-### Changes 
+### Changes
 
 - Added Open Policy Agent integration
 - Improved authentication support for control planes in multi-zone deployments, with the Kuma Discovery Protocol (KDS)
