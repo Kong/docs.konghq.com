@@ -19,7 +19,7 @@ runtime instances.
 * You have a {{site.konnect_product_name}} account. Contact your sales
 representative for access.
 * (Quick Setup only) Tools and permissions:
-  * **All platforms:** [Docker](https://docs.docker.com/get-docker/), [HTTPie (2.3.0 or later)](https://httpie.io/), and [jq](https://stedolan.github.io/jq/) installed
+  * **All platforms:** [Docker](https://docs.docker.com/get-docker/) and [jq](https://stedolan.github.io/jq/) installed
   * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
   * **Windows:** Docker Desktop [installed](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [integrated with a WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/)
 
