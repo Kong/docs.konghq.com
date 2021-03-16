@@ -242,6 +242,216 @@ pluginserver_my_plugin_query_cmd = /usr/local/bin/my-plugin -dump
 pluginserver_other_one_query_cmd = /usr/local/bin/other-one -dump
 ```
 
+## Developing JavaScript plugins
+
+{{site.base_gateway}} support for the JavaScript language is provided by [kong-js-pdk].
+The library provides a plugin server to provide runtime for JavaScript plugins, and
+functions to access {{site.base_gateway}} features of the [PDK][kong-pdk].
+
+TypeScript is also supported in the following ways:
+
+- [kong-js-pdk] includes type definitions for PDK functions that allows type checking
+when developing plugins in TypeScript.
+- Plugin written in TypeScript can be loaded directly and transpiled on-the-fly.
+
+### Development
+
+[kong-js-pdk] can be installed via `npm`. To install the plugin server binary globally, use:
+
+```
+npm install kong-pdk -g
+```
+
+To use it in your local development directory, use:
+
+```
+npm install kong-pdk --save
+```
+
+A valid JavaScript plugin implementation should export following object:
+
+```javascript
+module.exports = {
+  Plugin: KongPlugin,
+  Schema: [
+    { message: { type: "string" } },
+  ],
+  Version: '0.1.0',
+  Priority: 0,
+}
+```
+
+`Plugin` attribute defines the class that implements this plugin. `Schema` defines the config
+schema of plugin, it shares the same syntax as it's a Lua plugin. `Version` and `Priority`
+defines the version number and priority of execution respectively.
+
+**Note**: Check out [this repository](https://github.com/Kong/kong-js-pdk/tree/master/examples)
+for example JavaScript and TypeScript plugins.
+
+#### Phase Handlers
+
+Similarly to {{site.base_gateway}} Lua plugins, you can implement custom logic to be executed at
+various points of the request processing lifecycle. For example, to execute
+custom Javascript code in the access phase, define a function named `access`:
+
+```javascript
+class KongPlugin {
+  constructor(config) {
+    this.config = config
+  }
+
+  async access(kong) {
+    // ...
+  }
+}
+```
+
+The phases you can implement custom logic for are as follows, and the expected function
+signature is the same for all of them:
+- `certificate`
+- `rewrite`
+- `access`
+- `response`
+- `preread`
+- `log`
+
+Similar to Lua plugins, the presence of the `response` handler automatically enables the buffered proxy mode.
+
+#### PDK functions
+
+[kong-js-pdk] invokes PDK functions in Kong through network-based RPC. Thus each function returns a Promise
+instance; it's convient to use `async`/`await` keywords in phase handlers for better readibility.
+
+```javascript
+class KongPlugin {
+  constructor(config) {
+    this.config = config
+  }
+
+  async access(kong) {
+    let host = await kong.request.getHeader("host")
+    // do something to host
+  }
+}
+```
+
+Or consume Promise in a traditional way
+
+```javascript
+class KongPlugin {
+  constructor(config) {
+    this.config = config
+  }
+
+  async access(kong) {
+    kong.request.getHeader("host")
+      .then((host) => {
+        // do something to host
+      })
+  }
+}
+```
+
+## Developing Python plugins
+
+{{site.base_gateway}} support for the Python language is provided by [kong-python-pdk].
+The library provides a plugin server to provide runtime for Python plugins, and
+functions to access {{site.base_gateway}} features of the [PDK][kong-pdk].
+
+### Development
+
+[kong-python-pdk] can be installed via `pip`. To install the plugin server binary and PDK globally, use:
+
+```
+pip install kong-pdk
+```
+
+A valid Python plugin implementation has following attributes:
+
+```python
+Schema = (
+    { "message": { "type": "string" } },
+)
+
+version = '0.1.0'
+priority = 0
+
+class Plugin(object):
+  pass
+```
+
+A class named `Plugin` defines the class that implements this plugin. `Schema` defines the config
+schema of plugin, it shares the same syntax as it's a Lua plugin. `version` and `priority`
+defines the version number and priority of execution respectively.
+
+**Note**: Check out [this repository](https://github.com/Kong/kong-python-pdk/tree/master/examples)
+for example Python plugins.
+
+#### Phase Handlers
+
+Similarly to {{site.base_gateway}} Lua plugins, you can implement custom logic to be executed at
+various points of the request processing lifecycle. For example, to execute
+custom Go code in the access phase, define a function named `access`:
+
+```python
+class Plugin(object):
+    def __init__(self, config):
+        self.config = config
+
+    def access(self, kong):
+      pass
+```
+
+The phases you can implement custom logic for are as follows, and the expected function
+signature is the same for all of them:
+- `certificate`
+- `rewrite`
+- `access`
+- `response`
+- `preread`
+- `log`
+
+Similar to Lua plugins, the presence of the `response` handler automatically enables the buffered proxy mode.
+
+#### Type hints
+
+[kong-python-pdk] supports [type hint](https://www.python.org/dev/peps/pep-0484/) in Python 3.x, to use type lint
+and autocomplete in IDE, user can annotate the `kong` parameter in phase handler:
+
+```python
+import kong_pdk.pdk.kong as kong
+
+class Plugin(object):
+    def __init__(self, config):
+        self.config = config
+
+    def access(self, kong: kong.kong):
+        host, err = kong.request.get_header("host")
+```
+
+### Embedded server
+
+Each plugin can be a microservice. To use the embedded server, use the following code:
+
+```python
+if __name__ == "__main__":
+    from kong_pdk.cli import start_dedicated_server
+    start_dedicated_server("py-hello", Plugin, version, priority)
+```
+
+Note the first argument to `start_dedicated_server` defines the plugin name and must
+be unique across all languages.
+
+### Concurrency model
+
+Python plugin server and embedded server supports multiple concurrency model. By default
+the server starts in multi-threading mode.
+
+If your workload is IO intensive, consider the gevent model by adding `-g` to pluginserver's
+start_cmd.
+If your workload is CPU intensive, consider the multi-processing model by adding `-m` to pluginserver's
+start_cmd.
+
 
 ---
 
@@ -251,3 +461,5 @@ pluginserver_other_one_query_cmd = /usr/local/bin/other-one -dump
 [go-pdk]: https://github.com/Kong/go-pdk
 [kong-pdk]: https://docs.konghq.com/latest/plugin-development/
 [go-hello]: https://github.com/Kong/go-plugins/blob/master/go-hello.go
+[kong-js-pdk]: https://github.com/Kong/kong-js-pdk
+[kong-python-pdk]: https://github.com/Kong/kong-python-pdk
