@@ -243,29 +243,38 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 <div class="alert alert-ee">
 <img class="no-image-expand" src="/assets/images/icons/documentation/icn-enterprise-blue.svg" alt="Enterprise" />
-This feature is only available with a {{site.konnect_product_name}} Enterprise subscription.
+This feature is only available with a
+<a href="/enterprise/{{page.kong_version}}/deployment/licensing">
+{{site.konnect_product_name}} Enterprise subscription</a>.
 </div>
 
-1. The Dev Portal can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the DNS, or IP address, of the Amazon Linux system. For example:
+1. [Deploy a license](/enterprise/{{page.kong_version}}/deployment/licenses/deploy-license).
+
+2. Enable the Dev Portal by setting the `portal` property to `on` and the
+`portal_gui_host` property to the DNS or IP address of the Amazon Linux system.
+For example:
 
     ```
     portal = on
     portal_gui_host = <DNSorIP>:8003
     ```
 
-2. Restart Kong for the setting to take effect:
+3. Restart {{site.base_gateway}} for the setting to take effect:
 
     ```bash
     $ sudo /usr/local/bin/kong restart
     ```
 
-3. The final step is to enable the Developer Portal. To do this, execute the following command, updating `DNSorIP` to reflect the IP or valid DNS for the Amazon Linux system.
+4. Enable the Dev Portal for a workspace. Execute the following command,
+updating `DNSorIP` to reflect the IP or valid DNS for the Amazon Linux system:
 
     ```bash
-    $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default   --data "config.portal=true"
+    $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default \
+      --data "config.portal=true"
     ```
 
-4. You can now access the Developer Portal on the default workspace with a URL like:
+5. Access the Dev Portal for the default workspace using the following URL,
+substituting your own DNS or IP:
 
     ```
     http://<DNSorIP>:8003/default

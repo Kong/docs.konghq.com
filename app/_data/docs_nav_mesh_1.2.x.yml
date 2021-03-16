@@ -4,6 +4,13 @@
     - text: Overview
       url: /overview
 
+- title: Release notes
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  items:
+    - text: Changelog
+      url: /mesh/changelog
+      absolute_url: true
+
 - title: Getting Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   items:

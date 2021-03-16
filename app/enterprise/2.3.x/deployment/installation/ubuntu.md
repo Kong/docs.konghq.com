@@ -171,12 +171,16 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 ### (Optional) Enable the Dev Portal
 
-<div class="alert alert-ee blue">
+<div class="alert alert-ee">
 <img class="no-image-expand" src="/assets/images/icons/documentation/icn-enterprise-blue.svg" alt="Enterprise" />
-This feature is only available with a {{site.konnect_product_name}} Enterprise subscription.
+This feature is only available with a
+<a href="/enterprise/{{page.kong_version}}/deployment/licensing">
+{{site.konnect_product_name}} Enterprise subscription</a>.
 </div>
 
-1. Enable the Dev Portal by updating `/etc/kong/kong.conf` to set the `portal` property to `on` and the `portal_gui_host` property to the DNS or IP address of the system. For example:
+1. Enable the Dev Portal by updating `/etc/kong/kong.conf` to set the `portal`
+property to `on` and the `portal_gui_host` property to the DNS or IP address of
+the system. For example:
 
     ```
     portal = on
@@ -189,13 +193,16 @@ This feature is only available with a {{site.konnect_product_name}} Enterprise s
     $ sudo /usr/local/bin/kong restart
     ```
 
-3. The final step is to enable the Developer Portal. To do this, execute the following command, updating `DNSorIP` to reflect the IP or valid DNS for the system.
+4. Enable the Dev Portal for a workspace. Execute the following command,
+  updating `DNSorIP` to reflect the IP or valid DNS for the system:
 
     ```bash
-    $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default --data "config.portal=true"
+    $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default \
+      --data "config.portal=true"
     ```
 
-4. You can now access the Developer Portal on the default workspace with a URL like:
+5. Access the Dev Portal for the default workspace using the following URL,
+  substituting your own DNS or IP:
 
     ```
     http://<DNSorIP>:8003/default

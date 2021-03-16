@@ -99,7 +99,7 @@ defaults:
   - scope:
       path: 'getting-started-guide'
     values:
-      layout: 'getting-started-guide'
+      layout: 'docs-v2'
 
   - scope:
       path: 'deck'
@@ -143,6 +143,7 @@ mesh_product_name: Kong Mesh
 kic_product_name: Kubernetes Ingress Controller
 konnect_product_name: Kong Konnect
 konnect_short_name: Konnect
+konnect_saas: Konnect SaaS
 package_name: Kong Konnect
 company_name: Kong Inc.
 

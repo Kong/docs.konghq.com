@@ -94,16 +94,21 @@ details for the upstream service.
         This Route name must be unique in the account. Variations on
         capitalization are considered unique, for example, `foo` and `Foo`.
 
-    2. For **Path(s)**, click **Add Path** and enter a path in the format
+    2. For **Method**, enter an HTTP method or a comma-separated list of methods
+    that match this Route.
+
+        For example, `GET` or `GET, POST`.
+
+    3. For **Path(s)**, click **Add Path** and enter a path in the format
     `/<path>`.
 
-    3. (Optional) Click **View 4 Advanced Fields** to see all options.
+    4. (Optional) Click **View 4 Advanced Fields** to see all options.
     You can accept the defaults, or further customize your Route.
 
         See the [Route Object](/enterprise/latest/admin-api/#route-object)
         documentation for parameter descriptions.
 
-    4. Click **Create**.
+    5. Click **Create**.
 
     The Service version overview displays.
 
@@ -130,7 +135,7 @@ For any runtime instance created with the provided Docker script (see
 [Setting up a Kong Gateway Runtime](/konnect/runtime-manager/)),
 the default proxy URL is `localhost:8000`.
 
-Enter the proxy URL into your browser’s address bar and append any route path. 
+Enter the proxy URL into your browser’s address bar and append any route path.
 The final URL should look something like this:
 
 ```

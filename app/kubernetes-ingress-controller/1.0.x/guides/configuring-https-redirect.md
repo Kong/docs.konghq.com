@@ -93,7 +93,7 @@ HTTPS, update its annotations to limit its protocols to HTTPS only and
 issue a 301 redirect:
 
 ```bash
-$ kubectl patch ingress demo -p '{"metadata":{"annotations":{"konghq.com/protocols":"https","konghq.com/https_redirect_status_code":"301"}}}'
+$ kubectl patch ingress demo -p '{"metadata":{"annotations":{"konghq.com/protocols":"https","konghq.com/https-redirect-status-code":"301"}}}'
 ingress.extensions/demo patched
 ```
 
