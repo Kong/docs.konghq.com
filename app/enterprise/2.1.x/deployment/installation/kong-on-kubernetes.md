@@ -170,7 +170,7 @@ In the following steps, replace `<your-password>` with a secure password.
     $ echo '{"cookie_name":"portal_session","cookie_samesite":"off","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
     ```
 
-    If you have different subdomains for the `portal_api_url` and `portal_gui_host`, set the `cookie_domain`
+    Or, if you have different subdomains for the `portal_api_url` and `portal_gui_host`, set the `cookie_domain`
     and `cookie_samesite` properties as follows:
 
     ```
