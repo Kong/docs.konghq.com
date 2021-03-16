@@ -41,7 +41,7 @@
         "global": true,
         "default_value": "Kong"
       },
-      "lvl1": "h1",
+      "lvl1": ".content h1",
       "lvl2": ".content h2",
       "lvl3": ".content h3",
       "lvl4": ".content h4",
@@ -63,7 +63,9 @@
 
   "selectors_exclude": [
     "#next-steps",
-    "#next-steps ~ p"
+    "#next-steps ~ p",
+    ".breadcrumbs",
+    ".breadcrumbs ~ li"
   ],
   "only_content_level": true,
   "conversation_id": [
