@@ -9,7 +9,17 @@ SaaS, an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services.
 
-### February 23, 2021
+## March 2021
+
+### 2021.03.16
+**Runtime setup improvement**
+: Quick setup just got a little bit faster. When configuring a new runtime 
+through the Runtime Manager, HTTPie is no longer required for the 
+quick setup script.
+
+## February 2021
+
+### 2021.02.23
 
 **{{site.base_gateway}} 2.3 support**
 : {{site.konnect_short_name}} SaaS now supports {{site.base_gateway}} 2.3
@@ -35,7 +45,7 @@ through {{site.konnect_short_name}} SaaS. This includes:
 * [TCP Log](/hub/kong-inc/tcp-log)
 * [UDP Log](/hub/kong-inc/udp-log)
 
-### February 10, 2021
+### 2021.02.10
 
 **Portal authentication**
 : You can now [disable authentication on a Dev Portal](/konnect/dev-portal/administrators/public-portal/),
@@ -43,7 +53,7 @@ which exposes the Dev Portal publicly to anyone with the link. No one needs to r
 for Dev Portal access.
 : New application registrations aren't available through a public-facing portal.
 
-### February 1, 2021
+### 2021.02.01
 
 {{site.konnect_product_name}} ({{site.konnect_short_name}}) is now generally available!
 
