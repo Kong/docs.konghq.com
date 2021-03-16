@@ -5,7 +5,7 @@ no_version: true
 skip_read_time: true
 ---
 ## 2.3.2.0
-**Release Date** 2020/02/11
+**Release Date** 2021/02/11
 
 ### **Kong Gateway (Enterprise)**
 The following sections list {{site.ee_product_name}}-exclusive updates,
@@ -171,7 +171,7 @@ plugin does not allow `null` in config anymore as they can lead to runtime error
 
 
 ## 2.3.0.0 (beta)
-**Release Date** 2020/01/20
+**Release Date** 2021/01/20
 
 ### **Kong Enterprise**
 The following sections list {{site.ee_product_name}}-exclusive updates,
