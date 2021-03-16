@@ -38,7 +38,7 @@ If using HTTP while testing, include `"cookie_secure": false` in the config:
 portal_session_conf={ "cookie_name":"portal_session","secret":"<CHANGE_THIS>","storage":"kong","cookie_secure":false}
 ```
 
-If you have different subdomains for the `portal_api_url` and `portal_gui_host`, set the `cookie_domain`
+Or, if you have different subdomains for the `portal_api_url` and `portal_gui_host`, set the `cookie_domain`
 and `cookie_samesite` properties as follows:
 
 ```
