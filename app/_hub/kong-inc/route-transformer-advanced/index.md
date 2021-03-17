@@ -1,6 +1,7 @@
 ---
 name: Route Transformer Advanced
 publisher: Kong Inc.
+# internal handler version 0.2.1
 
 desc: Transform routing by changing the upstream server, port, or path
 description: |
