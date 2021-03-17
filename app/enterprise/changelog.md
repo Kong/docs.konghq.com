@@ -240,6 +240,8 @@ and where only Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are al
   as the default fallback certificate; on old cipher suite, the RSA
   certificate remains as the default. On custom certificates, the first
   certificate specified in the array is used.
+- Kong now runs as a `kong` user if it exists; if user does not exist
+  in the system, the `nobody` user is used, as before.
 
 ### Dependencies
 - Bumped `kong-plugin-serverless-functions` from 1.0 to 2.1.
