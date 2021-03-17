@@ -397,9 +397,6 @@ toc: false
 # Disables the right-hand nav for the page; useful if the page is short and has
 # one or no headers.
 
-skip_read_time: true
-# Disables estimated read time; useful for long reference content.
-
 beta: true
 alpha: true
 # Labels the page as beta or alpha; adds a banner to the top of the page.
@@ -524,14 +521,14 @@ will be the one displayed.
 
 ##### Navtabs for codeblocks
 
-A specialized use of navtabs is the `codeblock` style. This will create copyable 
-tabbed codeblocks for easy code comparison and better use of space. See 
-[here](https://docs.konghq.com/enterprise/2.1.x/deployment/installation/kong-for-kubernetes/) 
+A specialized use of navtabs is the `codeblock` style. This will create copyable
+tabbed codeblocks for easy code comparison and better use of space. See
+[here](https://docs.konghq.com/enterprise/2.1.x/deployment/installation/kong-for-kubernetes/)
 for an example of this style in use.
 
 > **Important!** Codeblock navtabs must contain codeblocks and **nothing else**.
 
-To create a tabbed codeblock, specify the `codeblock` class in the first element 
+To create a tabbed codeblock, specify the `codeblock` class in the first element
 when creating a `navtabs` group:
 
     {% navtabs codeblock %}
