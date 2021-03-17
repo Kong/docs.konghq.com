@@ -36,7 +36,7 @@ $ kong reload [-c configuration_file]
 ```
 
 <div class="alert alert-ee blue">
-<strong>Reminder:</strong> `kong reload` leverages the Nginx `reload` signal that seamlessly
+<strong>Reminder:</strong> <code>kong reload</code> leverages the Nginx <code>reload</code> signal that seamlessly
 starts new workers, which take over from old workers before those old workers
 are terminated. In this way, Kong will serve new requests via the new
 configuration, without dropping existing in-flight connections.
