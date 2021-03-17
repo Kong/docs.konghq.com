@@ -1,6 +1,7 @@
 ---
 name: Route Transformer Advanced
 publisher: Kong Inc.
+# internal handler version 0.2.1
 
 desc: Transform routing by changing the upstream server, port, or path
 description: |
@@ -47,8 +48,8 @@ params:
 
 ---
 
-_NOTE_: The 'advanced' label is only attached since this is an Enterprise-only
-plugin. There is not a 'regular' plugin version available.
+_NOTE_: The advanced label is only attached because this is an Enterprise-only
+plugin. There is not a corresponding community plugin version available.
 
 ## Synopsis
 
@@ -56,7 +57,7 @@ This plugin transforms the routing on the fly in Kong, changing the upstream ser
 
 ## History
 
-See [the changelog](https://github.com/Kong/kong-plugin-route-transformer-advanced/blob/master/CHANGELOG.md).
+See the [hangelog](https://github.com/Kong/kong-plugin-route-transformer-advanced/blob/master/CHANGELOG.md).
 
 ## Template as Value
 
