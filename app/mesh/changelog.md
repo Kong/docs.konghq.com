@@ -2,7 +2,6 @@
 title: Kong Mesh Changelog
 no_search: true
 no_version: true
-skip_read_time: true
 ---
 
 ## 1.2.1

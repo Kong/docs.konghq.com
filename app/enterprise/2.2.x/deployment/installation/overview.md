@@ -1,7 +1,6 @@
 ---
 title: Install Kong Gateway (Enterprise)
 toc: false
-skip_read_time: true
 disable_image_expand: true
 ---
 {% navtabs %}

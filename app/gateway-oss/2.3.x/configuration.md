@@ -5,7 +5,6 @@
 #  the files in https://github.com/Kong/kong/tree/master/autodoc/conf
 #
 title: Configuration Reference
-skip_read_time: true
 ---
 
 ## Configuration loading
