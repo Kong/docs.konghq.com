@@ -269,10 +269,6 @@ being shown in the logs.
   `lua-resty-healthcheck`.
 - Certificates for database connections now are loaded in the right order
   avoiding failures to connect to Postgres databases.
-  
-#### Configuration
-- Kong now runs as a `kong` user if it exists; if user does not exist
-  in the system, the `nobody` user is used, as before.
 
 #### CLI
 - Fixed issue where `kong reload -c <config>` would fail.
@@ -343,6 +339,11 @@ fixed causing a 500 auth error when falling back to an anonymous user.
 - [Session](/hub/kong-inc/session) (`session`)
   - Added endpoint key to Admin API.
   - Bumped `lua-resty-session` dependency to 3.8.
+
+#### Configuration
+
+- Kong now runs as a `kong` user if it exists; if user does not exist
+  in the system, the `nobody` user is used, as before.
 
 #### Breaking Changes
 - See *RCE (Remote Code Execution) Plugin Mitigations* in the Kong Enterprise section.
