@@ -155,6 +155,14 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ page.name }}
     href="/assets/hub.css?v={{ site.time | date: '%s' }}"
   />
   {% endif %}
+
+  {% assign latest_page_url = page.url | replace: page.kong_version, page.kong_latest.release %}
+  {% capture latest_page_exists %}{% page_exists {{latest_page_url}} %}{% endcapture %}
+
+  {% if page.kong_version == page.kong_latest.release and page.no_version != true %}<link rel="canonical" href="{{ site.links.web }}{{ page.url }}" />
+    {% elsif latest_page_exists == 'true' %}<link rel="canonical" href="{% capture latest_path %}{{ site.links.web }}{{ latest_page_url }}{% endcapture %}{{ latest_path }}" />
+  {% endif %}
+
 </head>
 
 <!-- Kong Cookie Policy -->
