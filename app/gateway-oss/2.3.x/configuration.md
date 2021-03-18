@@ -414,6 +414,27 @@ Default: `logs/error.log`
 
 ---
 
+#### proxy_stream_access_log
+
+Path for tcp streams proxy port request access logs. Set this value to `off` to disable
+logging proxy requests.
+
+If this value is a relative path, it will be placed under the `prefix`
+location.
+
+Default: `logs/access.log basic`
+
+---
+
+#### proxy_stream_error_log
+
+Path for tcp streams proxy port request error logs. The granularity of these logs is
+adjusted by the `log_level` property.
+
+Default: `logs/error.log`
+
+---
+
 #### admin_access_log
 
 Path for Admin API request access logs. If Hybrid Mode is enabled and the
