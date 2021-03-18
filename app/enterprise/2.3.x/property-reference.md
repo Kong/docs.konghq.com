@@ -5,7 +5,6 @@
 #  the files in https://github.com/Kong/docs.konghq.com/tree/master/autodoc-conf-ee
 #
 title: Configuration Reference for Kong Gateway (Enterprise)
-skip_read_time: true
 ---
 
 ## Configuration loading

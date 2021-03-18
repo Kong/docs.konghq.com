@@ -1,7 +1,6 @@
 ---
 title: Konnect SaaS Updates
 no_version: true
-skip_read_time: true
 ---
 
 The updates contained in this topic apply to {{site.konnect_short_name}}
@@ -13,8 +12,8 @@ services.
 
 ### 2021.03.16
 **Runtime setup improvement**
-: Quick setup just got a little bit faster. When configuring a new runtime 
-through the Runtime Manager, HTTPie is no longer required for the 
+: Quick setup just got a little bit faster. When configuring a new runtime
+through the Runtime Manager, HTTPie is no longer required for the
 quick setup script.
 
 ## February 2021

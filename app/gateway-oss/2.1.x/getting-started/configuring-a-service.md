@@ -1,6 +1,5 @@
 ---
 title: Configuring a Service
-skip_read_time: true
 ---
 
 <div class="alert alert-warning">
