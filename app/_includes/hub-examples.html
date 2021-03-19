@@ -229,7 +229,7 @@ service row.
 5. If the option is available, select **Scoped**.
 6. Add the service name and ID to the **Service** field if it
 is not already prefilled.{% unless
-   config_required_fields_gui == empty %}
+    config_required_fields_gui == empty %}
 8. Enter the following [parameters](#parameters), updating the default or sample values as needed:
     {{ config_required_fields_gui }}{% endunless %}
 9. Click **Create**.
@@ -337,7 +337,7 @@ Configure this plugin on a route:
 3. Select the route.
 4. Scroll down to **Plugins** and click **Add Plugin**.
 5. Find and select the **{{ page.name }}** plugin.{% unless
-  config_required_fields_gui == empty %}
+    config_required_fields_gui == empty %}
 6. Enter the following [parameters](#parameters), updating the default
 or sample values as needed:
     {{ config_required_fields_gui }}{% endunless %}
@@ -394,8 +394,8 @@ $ curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
 
 {% if page.params.service_id and page.params.route_id %}
 You can combine `consumer.id`, `service.id`, or `route.id`
- {% elsif page.params.service_id %} and `service.id`
- {% elsif page.params.route_id %} and `route.id`{%
+  {% elsif page.params.service_id %} and `service.id`
+  {% elsif page.params.route_id %} and `route.id`{%
   endif %} in the same request, to further narrow the scope of the plugin.
 
 {% endnavtab %}
@@ -475,7 +475,7 @@ Configure this plugin on a consumer:
     </div>
 
 6. If the option is available, select **Global**.{% unless
-  config_required_fields_gui == empty %}
+    config_required_fields_gui == empty %}
 7. Enter the following [parameters](#parameters), updating the default or sample values as needed:
     {{ config_required_fields_gui }}{% endunless %}
 8. Click **Create**.
@@ -557,7 +557,7 @@ Configure this plugin globally:
     </div>
 
 5. If the option is available, set the plugin scope to **Global**.{% unless
-   config_required_fields_gui == empty %}
+    config_required_fields_gui == empty %}
 6. Enter the following [parameters](#parameters), updating the
 default/sample values as needed:
     {{ config_required_fields_gui }}{% endunless %}
