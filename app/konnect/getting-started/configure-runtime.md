@@ -65,6 +65,12 @@ implementation.
 
 <!-- To change the default URL, see [link TBA].-->
 
+<div class="alert alert-ee warning">
+<b>Important:</b> {{site.konnect_saas}} provisions certificates for the data
+plane. These certificates expire after 30 days and must be renewed. See
+<a href="/konnect/runtime-manager/renew-certificates">Renew Certificates</a>.
+</div>
+
 ## Summary and Next Steps
 
 In this step, you ran a script which set up a Docker container with a

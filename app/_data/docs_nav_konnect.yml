@@ -61,6 +61,8 @@
       url: /runtime-manager
     - text: Manage a Kong Gateway Runtime
       url: /runtime-manager/kong-gateway-runtime
+    - text: Renew Certificates
+      url: /runtime-manager/renew-certificates
 
 - title: Konnect Dev Portal
   icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
