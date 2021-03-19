@@ -51,6 +51,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
+  konnect_examples: false
   config:
     - name: remove.headers
       required: false

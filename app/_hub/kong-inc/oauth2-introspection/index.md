@@ -40,6 +40,7 @@ params:
   api_id: true
   service_id: true
   route_id: true
+  konnect_examples: false
   config:
     - name: introspection_url
       required: true
