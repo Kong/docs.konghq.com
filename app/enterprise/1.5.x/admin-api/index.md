@@ -81,6 +81,7 @@ route_body: |
     `https_redirect_status_code` |  The status code Kong responds with when all properties of a Route match except the protocol i.e. if the protocol of the request is `HTTP` instead of `HTTPS`. `Location` header is injected by Kong if the field is set to 301, 302, 307 or 308.  Defaults to `426`.
     `regex_priority`<br>*optional* |  A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same `regex_priority`, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).  Defaults to `0`.
     `strip_path`<br>*optional* |  When matching a Route via one of the `paths`, strip the matching prefix from the upstream request URL.  Defaults to `true`.
+    `path_handling`<br>*optional* |  Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior.  Accepted values are: `"v0"`, `"v1"`.  Defaults to `"v1"`.
     `preserve_host`<br>*optional* |  When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service's `host`.
     `snis`<br>*semi-optional* |  A list of SNIs that match this Route when using stream routing.
     `sources`<br>*semi-optional* |  A list of IP sources of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port".
@@ -102,6 +103,7 @@ route_json: |
         "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
+        "path_handling": "v1",
         "preserve_host": false,
         "tags": ["user-level", "low-priority"],
         "service": {"id":"af8330d3-dbdc-48bd-b1be-55b98608834b"}
@@ -121,6 +123,7 @@ route_data: |
         "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
+        "path_handling": "v1",
         "preserve_host": false,
         "tags": ["user-level", "low-priority"],
         "service": {"id":"127dfc88-ed57-45bf-b77a-a9d3a152ad31"}
@@ -133,6 +136,7 @@ route_data: |
         "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
+        "path_handling": "v1",
         "preserve_host": false,
         "snis": ["foo.test", "example.com"],
         "sources": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
@@ -1154,6 +1158,33 @@ following attributes must be set:
 
 Routes can be both [tagged and filtered by tags](#tags).
 
+#### Path handling algorithms
+
+`"v0"` is the behavior used in Kong 0.x and 2.x. It treats `service.path`, `route.path` and request path as
+*segments* of a url. It will always join them via slashes. Given a service path `/s`, route path `/r`
+and request path `/re`, the concatenated path will be `/s/re`. If the resulting path is a single slash,
+no further transformation is done to it. If it's longer, then the trailing slash is removed.
+
+`"v1"` is the behavior used in Kong 1.x. It treats `service.path` as a *prefix*, and ignores the initial
+slashes of the request and route paths. Given service path `/s`, route path `/r` and request path `/re`,
+the concatenated path will be `/sre`.
+
+Both versions of the algorithm detect "double slashes" when combining paths, replacing them by single
+slashes.
+
+| `service.path` | `route.path` | `route.strip_path` | `route.path_handling` | request path | proxied path  |
+|----------------|--------------|--------------------|-----------------------|--------------|---------------|
+| `/s`           | `/fv0`       | `false`            | `v0`                  | `/fv0req`    | `/s/fv0req`   |
+| `/s`           | `/fv1`       | `false`            | `v1`                  | `/fv1req`    | `/sfv1req`    |
+| `/s`           | `/tv0`       | `true`             | `v0`                  | `/tv0req`    | `/s/req`      |
+| `/s`           | `/tv1`       | `true`             | `v1`                  | `/tv1req`    | `/sreq`       |
+| `/s`           | `/fv0/`      | `false`            | `v0`                  | `/fv0/req`   | `/s/fv0/req`  |
+| `/s`           | `/fv1/`      | `false`            | `v1`                  | `/fv1/req`   | `/sfv1/req`   |
+| `/s`           | `/tv0/`      | `true`             | `v0`                  | `/tv0/req`   | `/s/req`      |
+| `/s`           | `/tv1/`      | `true`             | `v1`                  | `/tv1/req    | `/sreq`       |
+
+
+Routes can be both [tagged and filtered by tags](#tags).
 
 ```json
 {{ page.route_json }}
