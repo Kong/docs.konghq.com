@@ -49,14 +49,14 @@ params:
   dbless_compatible: yes
   config:
     - name: header_name
-      required: false
+      required: true
       default: "`Kong-Request-ID`"
       value_in_examples: Kong-Request-ID
       datatype: string
       description: |
         The HTTP header name to use for the correlation ID.
     - name: generator
-      required: false
+      required: true
       default: "`uuid#counter`"
       value_in_examples: uuid#counter
       datatype: string
