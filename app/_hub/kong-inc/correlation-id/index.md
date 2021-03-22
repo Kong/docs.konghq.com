@@ -61,7 +61,7 @@ params:
       value_in_examples: uuid#counter
       datatype: string
       description: |
-        The generator to use for the correlation ID. Accepted values are `uuid`, `uuid#counter`, and `tracker` See [Generators](#generators).
+        The generator to use for the correlation ID. Accepted values are `uuid`, `uuid#counter`, and `tracker`. See [Generators](#generators).
     - name: echo_downstream
       required: true
       default: "`false`"
