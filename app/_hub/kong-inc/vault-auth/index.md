@@ -22,7 +22,6 @@ kong_version_compatibility:
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
 
 params:
   name: vault-auth
@@ -35,7 +34,7 @@ params:
       default: "`access_token`"
       datatype: array of string elements
       description: |
-        Describes an array of comma-separated parameter names where the plugin will look for an access token. The client must send the access token in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name.<br>*note*: the key names may only contain [a-z], [A-Z], [0-9], [_] and [-].
+        Describes an array of comma-separated parameter names where the plugin will look for an access token. The client must send the access token in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name. The key names can only contain [a-z], [A-Z], [0-9], [_], and [-].
     - name: vault.id
       required: true
       default:
@@ -48,7 +47,7 @@ params:
       default: "`secret_token`"
       datatype: array of string elements
       description: |
-        Describes an array of comma-separated parameter names where the plugin will look for a secret token. The client must send the secret in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name.<br>*note*: the key names may only contain [a-z], [A-Z], [0-9], [_] and [-].
+        Describes an array of comma-separated parameter names where the plugin will look for a secret token. The client must send the secret in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name. The key names can only contain [a-z], [A-Z], [0-9], [_], and [-].
     - name: tokens_in_body
       required: false
       default: "`false`"
