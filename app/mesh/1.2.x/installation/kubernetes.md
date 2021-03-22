@@ -93,13 +93,13 @@ $ ln -s ./kumactl /usr/local/bin/kumactl
 <strong>Note:</strong> It may take a while for Kubernetes to start the
 {{site.mesh_product_name}} resources. You can check the status by executing:
 <pre class="highlight">
-<code>$ kubectl get pod -n kuma-system</code></pre>
+<code>$ kubectl get pod -n kong-mesh-system</code></pre>
 </div>
 
 ## 3. Verify the Installation
 
 Now that {{site.mesh_product_name}} (`kuma-cp`) has been installed in the newly
-created `kuma-system` namespace, you can access the control plane using either
+created `kong-mesh-system` namespace, you can access the control plane using either
 the GUI, `kubectl`, the HTTP API, or the CLI:
 
 {% navtabs %}
@@ -111,7 +111,7 @@ the API port `5681`.
 To access {{site.mesh_product_name}}, port-forward the API service with:
 
 ```sh
-$ kubectl port-forward svc/kuma-control-plane -n kuma-system 5681:5681
+$ kubectl port-forward svc/kuma-control-plane -n kong-mesh-system 5681:5681
 ```
 
 Now you can navigate to `127.0.0.1:5681/gui` to see the GUI.
