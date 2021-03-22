@@ -45,6 +45,7 @@ params:
   service_id: true
   consumer_id: false
   route_id: false
+  konnect_examples: false
   protocols: ["http", "https", "grpc", "grpcs"]
   dbless_compatible: no
   config:

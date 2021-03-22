@@ -31,6 +31,7 @@ params:
   consumer_id: false
   yaml_examples: false
   k8s_examples: false
+  konnect_examples: false
   protocols: ["http", "https"]
   config:
     - name: functions
