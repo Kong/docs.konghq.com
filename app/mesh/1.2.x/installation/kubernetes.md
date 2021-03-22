@@ -111,7 +111,7 @@ the API port `5681`.
 To access {{site.mesh_product_name}}, port-forward the API service with:
 
 ```sh
-$ kubectl port-forward svc/kuma-control-plane -n kong-mesh-system 5681:5681
+$ kubectl port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
 ```
 
 Now you can navigate to `127.0.0.1:5681/gui` to see the GUI.
@@ -154,7 +154,7 @@ the HTTP API listens on port `5681`.
 To access {{site.mesh_product_name}}, port-forward the API service with:
 
 ```sh
-$ kubectl port-forward svc/kuma-control-plane -n kuma-system 5681:5681
+$ kubectl port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
 ```
 
 Now you can navigate to `127.0.0.1:5681` to see the HTTP API.
@@ -168,7 +168,7 @@ the {{site.mesh_product_name}} HTTP API. To use it, first port-forward the API
 service with:
 
 ```sh
-$ kubectl port-forward svc/kuma-control-plane -n kuma-system 5681:5681
+$ kubectl port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
 ```
 
 Then run `kumactl`. For example:
