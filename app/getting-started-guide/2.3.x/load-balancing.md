@@ -25,6 +25,21 @@ In the following example, you’ll use an application deployed across two differ
 In this section, you will create an Upstream named `upstream` and add two targets to it.
 
 {% navtabs %}
+{% navtab Using Kong Manager %}
+
+1. Access your Kong Manager instance and your **default** workspace.
+2. Go to **API Gateway** > **Upstreams**.
+3. Click **New Upstream**.
+4. For this example, enter `upstream` in the **Name** field.
+5. Scroll down and click **Create**.
+6. On the Upstreams page, find the new upstream service and click **View**.
+7. Scroll down and click **New Target**.
+8. In the target field, specify `httpbin.org` with port `80`, and click **Create**.
+9. Create another target, this time for `mockbin.org` with port `80`. Click **Create**.
+10. Open the **Services** page.
+11. Find your `example_service` and click **Edit**.
+12. Change the **Host** field to `upstream`, then click **Update**.
+{% endnavtab %}
 {% navtab Using the Admin API %}
 
 Call the Admin API on port `8001` and create an Upstream named `upstream`:
@@ -90,22 +105,6 @@ $ http POST :8001/upstreams/upstream/targets \
 {% endnavtabs %}
 <!-- end codeblock tabs -->
 
-{% endnavtab %}
-
-{% navtab Using Kong Manager %}
-
-1. Access your Kong Manager instance and your **default** workspace.
-2. Go to **API Gateway** > **Upstreams**.
-3. Click **New Upstream**.
-4. For this example, enter `upstream` in the **Name** field.
-5. Scroll down and click **Create**.
-6. On the Upstreams page, find the new upstream service and click **View**.
-7. Scroll down and click **New Target**.
-8. In the target field, specify `httpbin.org` with port `80`, and click **Create**.
-9. Create another target, this time for `mockbin.org` with port `80`. Click **Create**.
-10. Open the **Services** page.
-11. Find your `example_service` and click **Edit**.
-12. Change the **Host** field to `upstream`, then click **Update**.
 {% endnavtab %}
 
 {% navtab Using decK (YAML) %}

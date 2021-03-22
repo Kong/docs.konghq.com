@@ -20,6 +20,16 @@ of your control plane instance.
 
 ## Verify the Kong Gateway configuration
 {% navtabs %}
+{% navtab Using Kong Manager %}
+As a {{site.ee_product_name}} user, you can use Kong Manager for environment
+administration. You’re going to use it later on in this guide, so first make s
+ure you can access Kong Manager.
+
+Open a web browser and navigate to `http://<admin-hostname>:8002`.
+
+If {{site.ee_product_name}} was installed correctly, it automatically logs you
+in and presents the Kong Manager Overview page.
+{% endnavtab %}
 {% navtab Using the Admin API %}
 Ensure that you can send requests to the gateway's Admin API using either cURL
 or HTTPie.
@@ -43,17 +53,6 @@ $ http <admin-hostname>:8001
 <!-- end codeblock tabs -->
 
 The current configuration returns.
-{% endnavtab %}
-
-{% navtab Using Kong Manager %}
-As a {{site.ee_product_name}} user, you can use Kong Manager for environment
-administration. You’re going to use it later on in this guide, so first make s
-ure you can access Kong Manager.
-
-Open a web browser and navigate to `http://<admin-hostname>:8002`.
-
-If {{site.ee_product_name}} was installed correctly, it automatically logs you
-in and presents the Kong Manager Overview page.
 {% endnavtab %}
 
 {% navtab Using decK (YAML) %}

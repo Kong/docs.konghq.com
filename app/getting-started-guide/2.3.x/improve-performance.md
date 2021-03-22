@@ -19,6 +19,29 @@ Use proxy caching so that Upstream services are not bogged down with repeated re
 ## Set up the Proxy Caching plugin
 
 {% navtabs %}
+{% navtab Using Kong Manager %}
+
+1. Access your Kong Manager instance and your **default** workspace.
+
+2. Go to **API Gateway** and click **Plugins**.
+
+3. Click **New Plugin**.
+
+4. Scroll down to the Traffic Control section and find the **Proxy Caching** plugin.
+
+5. Click **Enable**.
+
+6. Select to apply the plugin as **Global**. This means that proxy caching applies to all requests.
+
+7. Scroll down and complete only the following fields with the parameters listed.
+    1. config.cache_ttl: `30`
+    2. config.content_type: `application/json; charset=utf-8`
+    3. config.strategy: `memory`
+
+    Besides the above fields, there may be others populated with default values. For this example, leave the rest of the fields as they are.
+
+8. Click **Create**.
+{% endnavtab %}
 {% navtab Using the Admin API %}
 
 Call the Admin API on port `8001` and configure plugins to enable in-memory caching globally, with a timeout of 30 seconds for Content-Type `application/json`.
@@ -46,29 +69,6 @@ $ http -f :8001/plugins \
 {% endnavtabs %}
 <!-- end codeblock tabs -->
 
-{% endnavtab %}
-{% navtab Using Kong Manager %}
-
-1. Access your Kong Manager instance and your **default** workspace.
-
-2. Go to **API Gateway** and click **Plugins**.
-
-3. Click **New Plugin**.
-
-4. Scroll down to the Traffic Control section and find the **Proxy Caching** plugin.
-
-5. Click **Enable**.
-
-6. Select to apply the plugin as **Global**. This means that proxy caching applies to all requests.
-
-7. Scroll down and complete only the following fields with the parameters listed.
-    1. config.cache_ttl: `30`
-    2. config.content_type: `application/json; charset=utf-8`
-    3. config.strategy: `memory`
-
-    Besides the above fields, there may be others populated with default values. For this example, leave the rest of the fields as they are.
-
-8. Click **Create**.
 {% endnavtab %}
 {% navtab Using decK (YAML) %}
 
@@ -125,7 +125,8 @@ plugin with a timeout of 30 seconds for Content-Type
 
 ## Validate Proxy Caching
 
-Let’s check that proxy caching works.
+Let’s check that proxy caching works. You'll need the Kong Admin API for this
+step.
 
 Access the */mock* route using the Admin API and note the response headers:
 

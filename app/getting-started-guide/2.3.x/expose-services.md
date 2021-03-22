@@ -47,47 +47,6 @@ configuration, including adding Services and Routes, is done through requests to
 the Admin API.
 
 {% navtabs %}
-{% navtab Using the Admin API %}
-
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
-```sh
-$ curl -i -X POST http://<admin-hostname>:8001/services \
-  --data name=example_service \
-  --data url='http://mockbin.org'
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-$ http POST :8001/services \
-  name=example_service \
-  url='http://mockbin.org'
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
-
-If the service is created successfully, you'll get a 201 success message.
-
-Verify the service’s endpoint:
-
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
-```sh
-$ curl -i http://<admin-hostname>:8001/services/example_service
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-$ http :8001/services/example_service
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
-
-{% endnavtab %}
 {% navtab Using Kong Manager %}
 
 1. On the Workspaces tab in Kong Manager, scroll to the Workspace section and
@@ -139,6 +98,47 @@ gateway instance:
     ```
 
 {% endnavtab %}
+{% navtab Using the Admin API %}
+
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -i -X POST http://<admin-hostname>:8001/services \
+  --data name=example_service \
+  --data url='http://mockbin.org'
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http POST :8001/services \
+  name=example_service \
+  url='http://mockbin.org'
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
+
+If the service is created successfully, you'll get a 201 success message.
+
+Verify the service’s endpoint:
+
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl -i http://<admin-hostname>:8001/services/example_service
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ http :8001/services/example_service
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
+
+{% endnavtab %}
 {% endnavtabs %}
 
 ## Add a Route
@@ -147,6 +147,29 @@ For the Service to be accessible through the API gateway, you need to add a
 Route to it.
 
 {% navtabs %}
+{% navtab Using Kong Manager %}
+1. From the `example_service` overview page, scroll down to the Routes section
+and click **Add Route**.  
+
+    The Create Route dialog displays with the Service field auto-populated with
+    the Service name and ID number. This field is required.
+
+    **Note:** If the Service field is not automatically populated, click
+    **Services** in the left navigation pane. Find your Service, click the
+    clipboard icon next to the id field, then go back to the Create Route
+    page and paste it into the Service field.
+
+2. Enter a name for the Route, and at least one of the following fields: Host,
+Methods, or Paths. For this example, use the following:
+      1. For **Name**, enter `mocking`.
+      2. For **Path(s)**, click **Add Path** and enter `/mock`.
+
+3. Click **Create**.
+
+The Route is created and you are automatically redirected back to the
+`example_service` overview page. The new Route appears under the Routes section.
+
+{% endnavtab %}
 {% navtab Using the Admin API %}
 
 Define a Route (`/mock`) for the Service (`example_service`) with a specific
@@ -173,29 +196,6 @@ $ http :8001/services/example_service/routes \
 <!-- end codeblock tabs -->
 
 A 201 message indicates the Route was created successfully.
-
-{% endnavtab %}
-{% navtab Using Kong Manager %}
-1. From the `example_service` overview page, scroll down to the Routes section
-and click **Add Route**.  
-
-    The Create Route dialog displays with the Service field auto-populated with
-    the Service name and ID number. This field is required.
-
-    **Note:** If the Service field is not automatically populated, click
-    **Services** in the left navigation pane. Find your Service, click the
-    clipboard icon next to the id field, then go back to the Create Route
-    page and paste it into the Service field.
-
-2. Enter a name for the Route, and at least one of the following fields: Host,
-Methods, or Paths. For this example, use the following:
-      1. For **Name**, enter `mocking`.
-      2. For **Path(s)**, click **Add Path** and enter `/mock`.
-
-3. Click **Create**.
-
-The Route is created and you are automatically redirected back to the
-`example_service` overview page. The new Route appears under the Routes section.
 
 {% endnavtab %}
 {% navtab Using decK (YAML) %}
@@ -289,6 +289,13 @@ The Route is created and you are automatically redirected back to the
 ## Verify the Route is forwarding requests to the Service
 
 {% navtabs %}
+{% navtab Using a Web Browser %}
+
+By default, {{site.base_gateway}} handles proxy requests on port `:8000`.
+
+From a web browser, enter `http://<admin-hostname>:8000/mock`.
+
+{% endnavtab %}
 {% navtab Using the Admin API %}
 
 Using the Admin API, issue the following:
@@ -307,13 +314,6 @@ $ http :8000/mock/request
 {% endnavtab %}
 {% endnavtabs %}
 <!-- end codeblock tabs -->
-
-{% endnavtab %}
-{% navtab Using a Web Browser %}
-
-By default, {{site.base_gateway}} handles proxy requests on port `:8000`.
-
-From a web browser, enter `http://<admin-hostname>:8000/mock`.
 
 {% endnavtab %}
 {% endnavtabs %}
