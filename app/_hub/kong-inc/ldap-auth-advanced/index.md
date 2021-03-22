@@ -26,8 +26,6 @@ kong_version_compatibility:
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
-        - 0.34-x
 
 params:
   name: ldap-auth-advanced
