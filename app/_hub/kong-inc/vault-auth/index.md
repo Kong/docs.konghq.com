@@ -49,7 +49,7 @@ params:
       datatype: array of string elements
       description: |
         Describes an array of comma-separated parameter names where the plugin will look for a secret token. The client must send the secret in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name.<br>*note*: the key names may only contain [a-z], [A-Z], [0-9], [_] and [-].
-    - name: key_in_body
+    - name: tokens_in_body
       required: false
       default: "`false`"
       datatype:
