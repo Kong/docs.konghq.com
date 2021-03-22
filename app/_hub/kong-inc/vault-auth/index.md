@@ -39,7 +39,7 @@ params:
       required: true
       default:
       value_in_examples: "<UUID>"
-      datatype: foreign
+      datatype: foreign ID
       description: |
         A reference to an existing `vault` object within the database. `vault` entities define the connection and authentication parameters used to connect to a Vault HTTP(S) API.
     - name: secret_token_name
@@ -49,13 +49,13 @@ params:
       description: |
         Describes an array of comma-separated parameter names where the plugin will look for a secret token. The client must send the secret in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name. The key names can only contain [a-z], [A-Z], [0-9], [_], and [-].
     - name: tokens_in_body
-      required: false
+      required: true
       default: "`false`"
-      datatype:
+      datatype: boolean
       description: |
         If enabled, the plugin will read the request body (if said request has one and its MIME type is supported) and try to find the key in it. Supported MIME types are `application/www-form-urlencoded`, `application/json`, and `multipart/form-data`.
     - name: hide_credentials
-      required: false
+      required: true
       default: "`false`"
       datatype: boolean
       description: |
@@ -63,15 +63,15 @@ params:
     - name: anonymous
       required: false
       default:
-      datatype: string
+      datatype: string UUID
       description: |
         An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Note that this value must refer to the Consumer `id` attribute that is internal to Kong, and **not** its `custom_id`.
     - name: run_on_preflight
-      required: false
+      required: true
       default: "`true`"
       datatype: boolean
       description: |
-        A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests, if set to `false` then `OPTIONS` requests will always be allowed.
+        A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests. If set to `false`, then `OPTIONS` requests will always be allowed.
 
 ---
 
