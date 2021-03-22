@@ -42,6 +42,7 @@ params:
       required: false
       default:
       value_in_examples: path/to/hello.proto
+      datatype: string
       description: |
         If present, describes the gRPC types and methods.
         Required to support payload transcoding. When absent, the
@@ -50,6 +51,7 @@ params:
       required: false
       default:
       value_in_examples:
+      datatype: boolean
       description:
         If set to `true` causes the plugin to pass the stripped request path to
         the upstream gRPC service (see the `strip_path` Route attribute).
