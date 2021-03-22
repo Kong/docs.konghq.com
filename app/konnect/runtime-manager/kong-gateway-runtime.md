@@ -23,10 +23,10 @@ representative for access.
   * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
   * **Windows:** Docker Desktop [installed](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [integrated with a WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/)
 
-## Set up a New Runtime Instance
+## Set up a new runtime instance
 
 {% navtabs %}
-{% navtab Quick Setup %}
+{% navtab Quick setup %}
 
 1. From the left navigation menu, open **Runtimes**.
 
@@ -212,7 +212,12 @@ Manager overview.
 {% endnavtab %}
 {% endnavtabs %}
 
-## Advanced Parameters for Kong Gateway {#parameters}
+<div class="alert alert-ee warning">
+<b>Important:</b> Certificates expire after 30 days and must be renewed. See
+<a href="/konnect/runtime-manager/renew-certificates">Renew Certificates</a>.
+</div>
+
+## Advanced parameters for Kong Gateway {#parameters}
 
 Refer to these parameters when using the **Advanced** runtime setup option.
 
@@ -229,7 +234,7 @@ Refer to these parameters when using the **Advanced** runtime setup option.
  [`cluster_cert_key`](/enterprise/latest/property-reference/#cluster_cert_key) | **Private Key** | The private key used for mTLS between CP/DP nodes.
  [`lua_ssl_trusted_certificate`](/enterprise/latest/property-reference/#lua_ssl_trusted_certificate) | **Root CA Certificate** | Lists files as trusted by OpenResty. Accepts a comma-separated list of paths. If you have already specified a different `lua_ssl_trusted_certificate`, adding the content of `cluster.crt` into that file achieves the same result.
 
-## Access Services using the Proxy URL
+## Access services using the proxy URL
 
 {{site.base_gateway}} uses port `8000` for the proxy, taking incoming
 traffic from Consumers, and forwarding it to upstream Services.
