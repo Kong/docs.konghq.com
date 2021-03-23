@@ -29,17 +29,17 @@ To complete this installation you will need a Docker-enabled system with proper
 
 Using Docker, pull the following Docker image:
 
-{% highlight bash %}
+```bash
 $ docker pull kong-docker-kong-gateway-docker.bintray.io/kong-enterprise-edition:{{page.kong_versions[10].version}}-alpine
-{% endhighlight %}
+```
 
 You should now have your {{site.base_gateway}} image locally.
 
 Verify that it worked, and find the image ID matching your repository:
 
-{% highlight bash %}
+```bash
 $ docker images
-{% endhighlight %}
+```
 
 Tag the image ID for easier use:
 
@@ -73,14 +73,14 @@ $ docker run -d --name kong-ee-database \
 
 ## Step 4. Prepare the Kong database
 
-{% highlight bash %} 
+```bash
 $ docker run --rm --network=kong-ee-net \
   -e "KONG_DATABASE=postgres" \
   -e "KONG_PG_HOST=kong-ee-database" \
   -e "KONG_PG_PASSWORD=kong" \
   -e "KONG_PASSWORD=<SOMETHING-YOU-KNOW>" \
   kong-ee kong migrations bootstrap
-{% endhighlight %}
+```
 
 **Note**: For `KONG_PASSWORD`, replace `<SOMETHING-YOU-KNOW>` with a valid password that only you know.
 
@@ -107,6 +107,7 @@ $ docker run -d --name kong-ee --network=kong-ee-net \
   -p 8004:8004 \
   kong-ee
 ```
+
 <div class="alert alert-ee">
 <b>Note:</b> For <code>KONG_ADMIN_GUI_URL</code>, replace <code>&lt;DNSorIP&gt;</code>
 with with the DNS name or IP of the Docker host. <code>KONG_ADMIN_GUI_URL</code>

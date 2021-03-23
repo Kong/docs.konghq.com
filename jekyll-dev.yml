@@ -6,8 +6,6 @@ timezone: America/San_Francisco
 markdown: kramdown
 kramdown:
   syntax_highlighter_opts:
-    formatter: Rouge::Formatters::HTMLLineTable
-    default_lang: html
     css_class: 'highlight'
     span:
       line_numbers: false
