@@ -143,14 +143,17 @@ params:
       value_in_examples:
       datatype: boolean
       description: |
-        Whether consumer mapping is optional. If `consumer_optional=true`, the plugin will not attempt to associate a consumer with the LDAP authenticated user. If `consumer_optional=false`, LDAP authenticated users can still access upstream resources. To prevent access from LDAP users that are not associated with consumers, set `consumer_optional=false`, set the `anonymous` field to an existing `consumer_id`, then use the Request Termination plugin to deny any requests from the anonymous consumer.
+        Whether consumer mapping is optional. If `consumer_optional=true`, the plugin will not attempt to associate a consumer with the
+        LDAP authenticated user. If `consumer_optional=false`, LDAP authenticated users can still access upstream resources.
+        To prevent access from LDAP users that are not associated with consumers, set `consumer_optional=false`, set the `anonymous` field to an
+        existing `consumer_id`, then use the [Request Termination plugin](/hub/kong-inc/request-termination/) to deny any requests from the anonymous consumer.
     - name: consumer_by
       required: false
       default: '`[ "username", "custom_id" ]`'
       value_in_examples:
-      datatype:
+      datatype: array of string elements
       description: |
-        Whether to authenticate Consumers based on `username` and/or `custom_id`.
+        Whether to authenticate consumers based on `username`, `custom_id`, or both.
     - name: hide_credentials
       required: true
       default: "`false`"
@@ -193,6 +196,7 @@ params:
       required: false
       default: "`false`"
       value_in_examples:
+      datatype: boolean
       description: |
         Displays all the LDAP search results received from the LDAP
         server for debugging purposes. Not recommended to be enabled in
