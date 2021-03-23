@@ -17,7 +17,15 @@ document for more information.
 
 **Note:** The Dev Portal does not automatically create developer accounts on login via OIDC.
 A developer account matching the `consumer_claim` configuration parameter has to be
-created and approved (if auto approve is not enabled) beforehand.
+created and approved (if auto approve is not enabled) beforehand. To manually create a developer account, the developer can simply register for a new account on the Dev Portal login screen using the email address that is matching the `consumer_claim`. To programmatically create many developer accounts that use the oidc plugin to authenticate using a 3rd party IdP, the following Admin API endpoint can be used to create developers: 
+
+```
+curl --request POST \
+  --url http://<kong-host>:<kong-admin-port>/<workspace>/developers \
+  --header 'Content-Type: application/json' \
+  --data '{"email":"'"<firstname.lastname@domain.com"'", "password":"'"<password>"'","meta":"{\"full_name\":\"'"<full name>"'\"}"}'
+```
+**Note:** When using the oidc plugin to authenticate to the Dev Portal and Kong Manager, the user's account in Kong (mapped to the oidc provider) is unique for the Developer Portal and for Kong Manager. Therefore the **same** `consumer_claim` cannot be used for login to both user interfaces. If you see an error when you are registering a developer that says “developer already exists with email:" then you need to use a separate consumer claim for the oidc plugin configuration for Dev Portal. The recommended approach is to use email as the `consumer_claim` for Dev Portal and use another claim to map to the oidc plugin for Kong Manager. 
 
 OIDC for the Dev Portal can be enabled in one of the following ways:
 
