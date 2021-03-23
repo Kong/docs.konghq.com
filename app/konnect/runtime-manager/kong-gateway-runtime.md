@@ -22,6 +22,7 @@ representative for access.
   * **All platforms:** [Docker](https://docs.docker.com/get-docker/) and [jq](https://stedolan.github.io/jq/) installed
   * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
   * **Windows:** Docker Desktop [installed](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [integrated with a WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/)
+* Advanced setup on Kubernetes: Helm installed
 
 ## Set up a new runtime instance
 
@@ -94,7 +95,7 @@ certificate, the private key, and the remaining configuration details on the
 **Configure Runtime** page.
 
 {% navtabs %}
-{% navtab Using Docker %}
+{% navtab Docker %}
 
 1. (Optional, if no gateway data plane exists) Using the
 [Docker installation documentation](/enterprise/latest/deployment/installation/docker),
@@ -159,7 +160,7 @@ Manager overview.
     The Runtime Manager will include a new entry for your instance.
 
 {% endnavtab %}
-{% navtab Using kong.conf %}
+{% navtab kong.conf (universal) %}
 
 1. (Optional, if no gateway data plane exists) Find the documentation for
 [your platform](/enterprise/latest/deployment/installation),
@@ -207,6 +208,98 @@ Manager overview.
     The Runtime Manager will include a new entry for your instance.
 
 {% endnavtab %}
+{% navtab Helm %}
+
+1. If you already have a {{site.base_gateway}} instance configured with Helm,
+move onto the next step.
+
+    If this is a new instance, set up the following:
+
+    1. Create a namespace:
+        ```sh
+        $ kubectl create namespace kong
+        ```
+
+    2. Add the Kong charts repository:
+        ```bash
+        $ helm repo add kong https://charts.konghq.com
+        ```
+
+    3. Update Helm:
+        ```bash
+        $ helm repo update
+        ```
+
+2. Create a `tls` secret using the `cluster.cert` and `cluster.key` files
+you saved earlier:
+
+    ```bash
+    $ kubectl create secret tls kong-cluster-cert \
+      --cert=/tmp/cluster.crt \
+      --key=/tmp/cluster.key
+    ```
+
+3. Create a generic secret for the CA cert:
+
+    ```bash
+    $ kubectl create secret generic kong-cluster-ca \
+      --from-file=ca.crt=/tmp/ca.crt
+    ```
+
+4. In the **Configuration Parameters** section, copy the codeblock.
+
+5. Open your instance's `values.yml` file, or use the
+[data plane template](https://github.com/Kong/charts/blob/main/charts/kong/example-values/minimal-kong-hybrid-data.yaml).
+Remove the `KONG_` prefix from the parameters in the sample codeblock and add
+the following parameters to the file.
+
+    Make sure to replace the values in `cluster_cert`, `cluster_cert_key`,
+    and `cluster_ca_cert` with references to the secret you created earlier:
+
+    ```yaml
+    secretVolumes:
+    - kong-cluster-cert
+    - kong-cluster-ca
+    admin:
+      enabled: false
+    env:
+      role: data_plane
+      database: "off"
+      anonymous_reports: off
+      cluster_mtls: pki
+      cluster_control_plane: <example.cp.konnect.foo>:443
+      cluster_server_name: <kong-cpoutlet-example.service>
+      cluster_telemetry_endpoint: <example.tp.konnect.foo>:443
+      cluster_telemetry_server_name: <kong-telemetry-example.service>
+      cluster_ca_cert: /etc/secrets/kong-cluster-ca/ca.crt
+      cluster_cert: /etc/secrets/kong-cluster-cert/tls.crt
+      cluster_cert_key: /etc/secrets/kong-cluster-cert/tls.key
+      lua_ssl_trusted_certificate: system,/etc/secrets/kong-cluster-ca/ca.crt
+    ```
+
+    See [Parameters](#parameters) for descriptions and the matching fields
+    in {{site.konnect_short_name}}.
+
+6. Apply the `values.yml`.
+
+    Existing instance:
+    ```bash
+    $ helm upgrade my-kong kong/kong -n kong \
+      --values ./values.yaml
+    ```
+
+    New instance:
+    ```bash
+    $ helm install my-kong kong/kong -n kong \
+      --values ./values.yaml
+    ```
+
+7. On the **Configure New Runtime** page, click **Done** to go to the Runtime
+Manager overview.
+
+    The Runtime Manager will include a new entry for your instance.
+
+{% endnavtab %}
 {% endnavtabs %}
 
 {% endnavtab %}
@@ -230,6 +323,7 @@ Refer to these parameters when using the **Advanced** runtime setup option.
  [`cluster_server_name`](/enterprise/latest/property-reference/#cluster_server_name) | n/a | The SNI (Server Name Indication extension) to use for data plane connections to the control plane through TLS. When not set, data plane will use `kong_clustering` as the SNI.
  [`cluster_telemetry_endpoint`](/enterprise/latest/property-reference/#cluster_telemetry_endpoint) | n/a | The address that the data plane uses to send Vitals telemetry data to the control plane. Must be in the format `host:port`, with port set to `443`. <br><br> **Example:**<br>Telemetry Endpoint in Konnect:<br>`https://example.tp.khcp.konghq.com`<br>Configuration value:<br>`example.tp.khcp.konghq.com:443`
  [`cluster_telemetry_server_name`](/enterprise/latest/property-reference/#cluster_telemetry_server_name) | n/a | The SNI (Server Name Indication extension) to use for Vitals telemetry data.
+ [`cluster_ca_cert`](/enterprise/latest/property-reference/#cluster_ca_cert) | **Certificate** | The trusted CA certificate file, in PEM format, used to verify the `cluster_cert`. 
  [`cluster_cert`](/enterprise/latest/property-reference/#cluster_cert) | **Certificate** | The certificate used for mTLS between CP/DP nodes.
  [`cluster_cert_key`](/enterprise/latest/property-reference/#cluster_cert_key) | **Private Key** | The private key used for mTLS between CP/DP nodes.
  [`lua_ssl_trusted_certificate`](/enterprise/latest/property-reference/#lua_ssl_trusted_certificate) | **Root CA Certificate** | Lists files as trusted by OpenResty. Accepts a comma-separated list of paths. If you have already specified a different `lua_ssl_trusted_certificate`, adding the content of `cluster.crt` into that file achieves the same result.
