@@ -286,7 +286,7 @@ The following functions are not available because they can be used to abuse the 
 * `raw{get|set|equal}`: Potentially unsafe because the sandboxing relies on some metatable manipulation.
 * `string.dump`: Can display confidential server information (such as implementation of functions).
 * `math.randomseed`: Can affect the host system. {{site.base_gateway}} already seeds the random number generator properly.
-* All `os.*` (except `os.clock`, `os.difftime`, and `os.time`: `os.execute`) can significantly alter the host system.
+* All `os.*` (except `os.clock`, `os.difftime`, and `os.time`. `os.execute`) can significantly alter the host system.
 * `io.*`: Provides access to the hard drive.
 * `dofile|require`: Provides access to the hard drive.
 
