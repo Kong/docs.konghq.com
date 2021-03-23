@@ -7,8 +7,9 @@
       />
     </a>
     {% if page.layout != "landing-page" %}
+    <div class="separator mobile"></div>
     <div class="search-input-wrapper">
-      <img src="/assets/images/landing-page/search.svg" alt="search">
+      <img src="/assets/images/landing-page/search.svg" alt="search" onclick="handleSearchClicked()">
       <input id="getkong-algolia-search-input" type="text" placeholder="Search the docs...">
     </div>
 
@@ -25,6 +26,7 @@
       getSearchPlaceholder();
       window.addEventListener('resize', getSearchPlaceholder);
     </script>
+    <div class="search-results-wrapper"></div>    
     {% endif %}
     <div class="separator"></div>
     <div class="navbar-items">
@@ -75,8 +77,16 @@
 </header>
 
 <script>
+  function handleSearchClicked () {
+    $('.navbar-v2').toggleClass('search-opened')
+  }
+
   function toggleButtonClicked () {
-    $('.navbar-v2').toggleClass('menu-opened')
+    if (!$('.navbar-v2').hasClass('search-opened')) {
+      $('.navbar-v2').toggleClass('menu-opened')
+    } else {
+      $('.navbar-v2').toggleClass('search-opened', false)      
+    }
   }
 
   function toggleSubmenuVisible (element) {

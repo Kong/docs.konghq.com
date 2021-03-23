@@ -621,11 +621,6 @@
 
 .toggles {
   display: flex;
-  position: sticky;
-  top: 60px;
-  justify-content: space-between;
-  height: 0;
-  overflow: hidden;
 
   &.no-sidebar {
     justify-content: flex-end;
@@ -635,6 +630,15 @@
     display: block;
     visibility: hidden;
     margin-left: 0;
+  }
+
+  .toc-sidebar-toggle {
+    position: fixed;
+    padding: 12px;
+    top: calc(50vh - 16px);
+    right: 0;
+    border-radius: 25px 0 0 25px;
+    background-color: @gray-background;
   }
 
   i {
@@ -1413,6 +1417,9 @@ Generic Styling for Desktop
 }
 
 .breadcrumbs {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   margin-bottom: 1rem;
   margin-top: -2.3rem;
   margin-left: 0;
@@ -1428,6 +1435,18 @@ Generic Styling for Desktop
       margin: 0;
       }
     }
+
+  .sidebar-toggle {
+    margin: 0;
+    display: none;
+    padding: 0 8px;
+    font-size: 16px;
+    margin-bottom: .2rem;
+
+    @media screen and (max-width: 800px) {
+      display: block;
+    }
+  }
 
   .breadcrumb-item {
     color: @navy-text;
