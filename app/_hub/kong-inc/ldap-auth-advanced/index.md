@@ -115,7 +115,7 @@ params:
         An optional timeout in milliseconds when waiting for connection with LDAP server.
     - name: keepalive
       required: false
-      default: "`10000`"
+      default: "`60000`"
       value_in_examples:
       datatype: number
       description: |
@@ -183,6 +183,7 @@ params:
       required:
       default: "`memberOf`"
       value_in_examples:
+      datatype: string
       description: |
         Sets the attribute holding the members of the LDAP group. This field is case-sensitive.
     - name: log_search_results
