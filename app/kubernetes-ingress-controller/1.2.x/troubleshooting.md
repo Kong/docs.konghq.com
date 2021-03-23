@@ -180,3 +180,42 @@ More information:
 If you want to use a kubeconfig file for authentication,
 follow the deploy procedure and
 add the flag `--kubeconfig=/etc/kubernetes/kubeconfig.yaml` to the deployment
+
+## Dumping generated Kong configuration
+
+If the controller generates configuration that it cannot apply to Kong
+successfully, reviewing the generated configuration manually and/or applying it
+in a test environment can help locate potential causes.
+
+Under normal operation, the controller does not store generated configuration:
+it is only sent to Kong's Admin API. The `--dump-config` flag enables a
+diagnostic mode where the controller also saves generated configuration to a
+temporary file. To use it:
+
+1. Set the `--dump-config` flag (or `CONTROLLER_DUMP_CONFIG` environment
+   variable) to either `enabled` or `sensitive`. `enabled` produces a redacted
+   configuration that omits certificate configuration and credentials, suitable
+   for sharing with Kong support. `sensitive` dumps the complete configuration
+   exactly as it is sent to the Admin API.
+1. Check controller logs for the dump location with `kubectl logs PODNAME -c
+   ingress-controller | grep "config dumps"`
+1. Optionally make a change to a Kubernetes resource that you know will
+   reproduce the issue. If you are unsure what change caused the issue
+   originally, you can omit this step.
+1. Copy dumped configuration out of the controller for local review with
+   `kubectl cp PODNAME:/path/to/dump/last_bad.json /tmp/last_bad.json -c
+   ingress-controller`. `last_good.json` will also be available if the
+   controller successfully applied configuration previously.
+
+Once you have dumped configuration, there are two main approaches to isolate
+issues:
+
+- If you know of a specific Kubernetes resource change that reproduces the
+  issue, diffing the `last_good.json` and `last_bad.json` will show the change
+  the controller is trying to apply unsuccessfully.
+- You can apply dumped configuration via the `/config` Admin API endpoint
+  (DB-less mode) or using decK (DB-backed mode) to a test instance not managed
+  by the ingress controller. This approach allows for easier review of requests
+  and responses (passing `--verbose 2` to decK will show all requests) and
+  quick addition of debug Kong Lua code when controller requests result in an
+  unhandled error (500 response).

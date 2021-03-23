@@ -37,6 +37,7 @@ Following table describes all the flags that are available:
 | --disable-ingress-extensionsv1beta1  |`boolean`  | `false`                         | Disable processing Ingress resources with apiVersion `extensions/v1beta1`.|
 | --disable-ingress-networkingv1beta1  |`boolean`  | `false`                         | Disable processing Ingress resources with apiVersion `networking/v1beta1`.|
 | --disable-ingress-networkingv1       |`boolean`  | `false`                         | Disable processing Ingress resources with apiVersion `networking/v1`.|
+| --dump-config                        |`string`   | none                            | Dump generated configuration to a temporary directory when set to "enabled".  When set to "sensitive", dumps will include certificate+key pairs and credentials.|
 | --election-id                        |`string`   | `ingress-controller-leader`     | The name of ConfigMap (in the same namespace) to use to facilitate leader-election between multiple instances of the controller.|
 | --ingress-class                      |`string`   | `kong`                          | Ingress class name to use to filter Ingress and custom resources when multiple Ingress Controllers are running in the same Kubernetes cluster.|
 | --kong-admin-ca-cert-file            |`string`   | none                            | Path to PEM-encoded CA certificate file to verify Kong's Admin SSL certificate.|
