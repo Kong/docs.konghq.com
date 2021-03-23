@@ -59,23 +59,27 @@ params:
   dbless_compatible: yes
   config:
     - name: host
-      required: false
+      required: true
       default: "`127.0.0.1`"
       value_in_examples: 127.0.0.1
+      datatype: string
       description: The IP address or host name to send data to.
     - name: port
-      required: false
+      required: true
       default: "`8125`"
       value_in_examples: 8125
+      datatype: integer
       description: The port to send data to on the upstream server
     - name: metrics
-      required: false
+      required: true
       default: All metrics are logged
+      datatype: array of record elements
       description: |
         List of Metrics to be logged. Available values are described at [Metrics](#metrics).
     - name: prefix
-      required: false
+      required: true
       default: "`kong`"
+      datatype: string
       description: String to be attached as prefix to metric's name.
 
 ---
