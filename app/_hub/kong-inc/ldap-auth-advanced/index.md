@@ -149,7 +149,7 @@ params:
       description: |
         Whether to authenticate Consumers based on `username` and/or `custom_id`.
     - name: hide_credentials
-      required: false
+      required: true
       default: "`false`"
       value_in_examples:
       datatype: boolean
