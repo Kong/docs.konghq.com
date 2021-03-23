@@ -126,14 +126,17 @@ params:
       value_in_examples:
       datatype: string
       description: |
-        An optional string (consumer UUID) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. The value must refer to the Consumer `id` attribute that is internal to Kong, **not** its `custom_id`.
+        An optional string (consumer UUID) value to use as an "anonymous" consumer if authentication fails. If empty (default), the
+        request will fail with an authentication failure `4xx`. The value must refer to the Consumer `id` attribute that is internal to Kong, **not** its `custom_id`.
     - name: header_type
       required: false
       default: "`ldap`"
       value_in_examples: ldap
       datatype: string
       description: |
-        An optional string to use as part of the Authorization header. By default, a valid Authorization header looks like this: `Authorization: ldap base64(username:password)`. If `header_type` is set to "basic", then the Authorization header would be `Authorization: basic base64(username:password)`. Note that `header_type` can take any string, not just `"ldap"` and `"basic"`.
+        An optional string to use as part of the Authorization header. By default, a valid Authorization header looks like this:
+        `Authorization: ldap base64(username:password)`. If `header_type` is set to "basic", then the Authorization header would be
+        `Authorization: basic base64(username:password)`. Note that `header_type` can take any string, not just `"ldap"` and `"basic"`.
     - name: consumer_optional
       required: false
       default: "`false`"
