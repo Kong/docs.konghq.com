@@ -40,12 +40,14 @@ params:
       required: true
       default:
       value_in_examples: ldap.example.com
+      datatype: string
       description: |
         Host on which the LDAP server is running.
     - name: ldap_port
       required: true
       default: 389
       value_in_examples: 389
+      datatype: number
       description: |
         TCP port where the LDAP server is listening. 389 is the default
         port for non-SSL LDAP and AD. 636 is the port required for SSL LDAP and AD. If `ldaps` is
@@ -54,12 +56,14 @@ params:
       required:
       default:
       value_in_examples:
+      datatype: string
       description: |
         The password to the LDAP server.
     - name: start_tls
       required: true
       default: "`false`"
       value_in_examples: true
+      datatype: boolean
       description: |
         Set it to `true` to issue StartTLS (Transport Layer Security) extended operation
         over `ldap` connection. If the `start_tls` setting is enabled, ensure the `ldaps`
@@ -68,6 +72,7 @@ params:
       required: true
       default: "`false`"
       value_in_examples:
+      datatype: boolean
       description: |
         Set it to `true` to use `ldaps`, a secure protocol (that can be configured
         to TLS) to connect to the LDAP server. When `ldaps` is
@@ -77,72 +82,84 @@ params:
       required: true
       default:
       value_in_examples: dc=example,dc=com
+      datatype: string
       description: |
         Base DN as the starting point for the search; e.g., "dc=example,dc=com".
     - name: verify_ldap_host
       required: true
       default: "`false`"
       value_in_examples: false
+      datatype: boolean
       description: |
         Set to `true` to authenticate LDAP server. The server certificate will be verified according to the CA certificates specified by the `lua_ssl_trusted_certificate` directive.
     - name: attribute
       required: true
       default:
       value_in_examples: cn
+      datatype: string
       description: |
         Attribute to be used to search the user; e.g., "cn".
     - name: cache_ttl
       required: true
       default: "`60`"
       value_in_examples: 60
+      datatype: number
       description: |
         Cache expiry time in seconds.
     - name: timeout
       required: false
       default: "`10000`"
       value_in_examples:
+      datatype: number
       description: |
         An optional timeout in milliseconds when waiting for connection with LDAP server.
     - name: keepalive
       required: false
       default: "`10000`"
       value_in_examples:
+      datatype: number
       description: |
         An optional value in milliseconds that defines how long an idle connection to LDAP server will live before being closed.
     - name: anonymous
       required: false
       default:
       value_in_examples:
+      datatype: string
       description: |
         An optional string (consumer UUID) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. The value must refer to the Consumer `id` attribute that is internal to Kong, **not** its `custom_id`.
     - name: header_type
       required: false
       default: "`ldap`"
       value_in_examples: ldap
+      datatype: string
       description: |
         An optional string to use as part of the Authorization header. By default, a valid Authorization header looks like this: `Authorization: ldap base64(username:password)`. If `header_type` is set to "basic", then the Authorization header would be `Authorization: basic base64(username:password)`. Note that `header_type` can take any string, not just `"ldap"` and `"basic"`.
     - name: consumer_optional
       required: false
       default: "`false`"
       value_in_examples:
+      datatype: boolean
       description: |
         Whether consumer mapping is optional. If `consumer_optional=true`, the plugin will not attempt to associate a consumer with the LDAP authenticated user. If `consumer_optional=false`, LDAP authenticated users can still access upstream resources. To prevent access from LDAP users that are not associated with consumers, set `consumer_optional=false`, set the `anonymous` field to an existing `consumer_id`, then use the Request Termination plugin to deny any requests from the anonymous consumer.
     - name: consumer_by
       required: false
       default: '`[ "username", "custom_id" ]`'
       value_in_examples:
+      datatype:
       description: |
         Whether to authenticate Consumers based on `username` and/or `custom_id`.
     - name: hide_credentials
       required: false
       default: "`false`"
       value_in_examples:
+      datatype: boolean
       description: |
         An optional boolean value telling the plugin to hide the credential to the upstream server. It will be removed by Kong before proxying the request.
     - name: bind_dn
-      required:
+      required: false
       default:
       value_in_examples:
+      datatype: string
       description: |
         The DN to bind to. Used to perform LDAP search of user. This `bind_dn`
         should have permissions to search for the user being authenticated.
@@ -150,12 +167,14 @@ params:
       required:
       default: "matches `conf.base_dn`"
       value_in_examples:
+      datatype: string
       description: |
         Sets a distinguished name (DN) for the entry where LDAP searches for groups begin. This field is case-insensitive.
     - name: group_name_attribute
       required:
       default: "matches `conf.attribute`"
       value_in_examples:
+      datatype: string
       description: |
         Sets the attribute holding the name of a group, typically
         called `name` (in Active Directory) or `cn` (in OpenLDAP). This
