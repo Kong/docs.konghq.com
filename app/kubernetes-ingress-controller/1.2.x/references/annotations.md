@@ -20,6 +20,8 @@ Following annotations are supported on Ingress resources:
 | [`konghq.com/regex-priority`](#konghqcomregex-priority) | Set the route's regex priority. |
 | [`konghq.com/methods`](#konghqcommethods) | Set methods matched by this Ingress. |
 | [`konghq.com/snis`](#konghqcomsnis) | Set SNI criteria for routes created from this Ingress. |
+| [`konghq.com/request-buffering`](#konghqcomrequest-buffering) | Set the request buffering setting on routes created from this Ingress. |
+| [`konghq.com/response-buffering`](#konghqcomresponse-buffering) | Set the response buffering setting on routes created from this Ingress. |
 | [`konghq.com/override`](#konghqcomoverride) | Control other routing attributes via `KongIngress` resource. |
 
 `kubernetes.io/ingress.class` is normally required, and its value should match
@@ -329,6 +331,32 @@ Sample usage:
 
 ```yaml
 konghq.com/snis: "foo.example.com, bar.example.com"
+```
+
+### konghq.com/request-buffering
+
+> Available since controller 1.2
+
+Enables or disables request buffering on the Kong route associated with this
+Ingress.
+
+Sample usage:
+
+```yaml
+konghq.com/request-buffering: "false"
+```
+
+### konghq.com/response-buffering
+
+> Available since controller 1.2
+
+Enables or disables response buffering on the Kong route associated with this
+Ingress.
+
+Sample usage:
+
+```yaml
+konghq.com/response-buffering: "false"
 ```
 
 ### konghq.com/override
