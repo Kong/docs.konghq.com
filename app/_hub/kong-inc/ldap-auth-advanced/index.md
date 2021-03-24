@@ -29,7 +29,6 @@ kong_version_compatibility:
 
 params:
   name: ldap-auth-advanced
-  api_id: false
   service_id: true
   route_id: true
   consumer_id: false
@@ -127,7 +126,9 @@ params:
       datatype: string
       description: |
         An optional string (consumer UUID) value to use as an "anonymous" consumer if authentication fails. If empty (default), the
-        request will fail with an authentication failure `4xx`. The value must refer to the Consumer `id` attribute that is internal to Kong, **not** its `custom_id`.
+        request will fail with an authentication failure `4xx`. 
+        
+        **Note:** The value must refer to the Consumer `id` attribute that is internal to Kong, **not** its `custom_id`.
     - name: header_type
       required: false
       default: "`ldap`"
@@ -145,6 +146,7 @@ params:
       description: |
         Whether consumer mapping is optional. If `consumer_optional=true`, the plugin will not attempt to associate a consumer with the
         LDAP authenticated user. If `consumer_optional=false`, LDAP authenticated users can still access upstream resources.
+        
         To prevent access from LDAP users that are not associated with consumers, set `consumer_optional=false`, set the `anonymous` field to an
         existing `consumer_id`, then use the [Request Termination plugin](/hub/kong-inc/request-termination/) to deny any requests from the anonymous consumer.
     - name: consumer_by
