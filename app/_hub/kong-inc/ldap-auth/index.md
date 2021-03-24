@@ -1,7 +1,8 @@
 ---
 name: LDAP Authentication
 publisher: Kong Inc.
-version: 2.2.0
+version: 2.2.x
+# internal handler version 2.2.0
 
 desc: Integrate Kong with an LDAP server
 description: |
@@ -59,25 +60,30 @@ params:
   dbless_compatible: yes
   config:
     - name: hide_credentials
-      required: false
+      required: true
       default: "`false`"
       value_in_examples: true
+      datatype: boolean
       description: An optional boolean value telling the plugin to hide the credential to the upstream server. It will be removed by Kong before proxying the request.
     - name: ldap_host
       required: true
       default:
       value_in_examples: ldap.example.com
+      datatype: string
       description: Host on which the LDAP server is running.
     - name: ldap_port
       required: true
       default: 389
       value_in_examples: 389
-      description: TCP port where the LDAP server is listening.  389 is the default
+      datatype: number
+      description: |
+        TCP port where the LDAP server is listening. 389 is the default
         port for non-SSL LDAP and AD. 636 is the port required for SSL LDAP and AD. If `ldaps` is
         configured, you must use port 636.
     - name: start_tls
       required: true
       default: "`false`"
+      datatype: boolean
       description: |
         Set it to `true` to issue StartTLS (Transport Layer Security) extended operation over `ldap`
         connection. If the `start_tls` setting is enabled, ensure the `ldaps`
@@ -85,6 +91,7 @@ params:
     - name: ldaps
       required: true
       default: "`false`"
+      datatype: boolean
       description: |
         Set to `true` to connect using the LDAPS protocol (LDAP over TLS).  When `ldaps` is
         configured, you must use port 636. If the `ldap` setting is enabled, ensure the
@@ -93,38 +100,49 @@ params:
       required: true
       default:
       value_in_examples: dc=example,dc=com
+      datatype: string
       description: Base DN as the starting point for the search; e.g., "dc=example,dc=com".
     - name: verify_ldap_host
       required: true
       default: "`false`"
+      datatype: boolean
       description: |
         Set to `true` to authenticate LDAP server. The server certificate will be verified according to the CA certificates specified by the `lua_ssl_trusted_certificate` directive.
     - name: attribute
       required: true
       default:
       value_in_examples: cn
+      datatype: string
       description: Attribute to be used to search the user; e.g., "cn".
     - name: cache_ttl
       required: true
       default: "`60`"
+      datatype: number
       description: Cache expiry time in seconds.
     - name: timeout
       required: false
       default: "`10000`"
+      datatype: number
       description: An optional timeout in milliseconds when waiting for connection with LDAP server.
     - name: keepalive
       required: false
       default: "`60000`"
-      description: An optional value in milliseconds that defines how long an idle connection to LDAP server will live before being closed.
+      datatype: number
+      description: |
+        An optional value in milliseconds that defines how long an idle connection to LDAP server will live before being closed.
     - name: anonymous
       required: false
       default:
+      datatype: string
       description: |
-        An optional string (consumer UUID) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. The value must refer to the Consumer `id` attribute that is internal to Kong, **not** its `custom_id`.
+        An optional string (consumer UUID) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`.
+
+        **Note:** The value must refer to the Consumer `id` attribute that is internal to Kong, **not** its `custom_id`.
     - name: header_type
       required: false
       default: "`ldap`"
       value_in_examples: ldap
+      datatype: string
       description: |
         An optional string to use as part of the Authorization header. By default, a valid Authorization header looks like this: `Authorization: ldap base64(username:password)`. If `header_type` is set to "basic", then the Authorization header would be `Authorization: basic base64(username:password)`. Note that `header_type` can take any string, not just `"ldap"` and `"basic"`.
   extra:
