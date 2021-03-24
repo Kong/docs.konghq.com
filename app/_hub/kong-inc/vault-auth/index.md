@@ -39,7 +39,7 @@ params:
       required: true
       default:
       value_in_examples: "<UUID>"
-      datatype: foreign ID
+      datatype: foreign UUID
       description: |
         A reference to an existing `vault` object within the database. `vault` entities define the connection and authentication parameters used to connect to a Vault HTTP(S) API.
     - name: secret_token_name
@@ -65,8 +65,8 @@ params:
       default:
       datatype: string UUID
       description: |
-        An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. 
-        
+        An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`.
+
         **Note:** This value must refer to the Consumer `id` attribute that is internal to Kong Gateway, and **not** its `custom_id`.
     - name: run_on_preflight
       required: true
