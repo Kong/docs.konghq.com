@@ -34,7 +34,7 @@ params:
       default: "`access_token`"
       datatype: array of string elements
       description: |
-        Describes an array of comma-separated parameter names where the plugin will look for an access token. The client must send the access token in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name. The key names can only contain [a-z], [A-Z], [0-9], [_], and [-].
+        Describes an array of comma-separated parameter names where the plugin looks for an access token. The client must send the access token in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name. The key names can only contain [a-z], [A-Z], [0-9], [_], and [-].
     - name: vault.id
       required: true
       default:
@@ -47,7 +47,7 @@ params:
       default: "`secret_token`"
       datatype: array of string elements
       description: |
-        Describes an array of comma-separated parameter names where the plugin will look for a secret token. The client must send the secret in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name. The key names can only contain [a-z], [A-Z], [0-9], [_], and [-].
+        Describes an array of comma-separated parameter names where the plugin looks for a secret token. The client must send the secret in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name. The key names can only contain [a-z], [A-Z], [0-9], [_], and [-].
     - name: tokens_in_body
       required: true
       default: "`false`"
@@ -65,7 +65,9 @@ params:
       default:
       datatype: string UUID
       description: |
-        An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Note that this value must refer to the Consumer `id` attribute that is internal to Kong, and **not** its `custom_id`.
+        An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. 
+        
+        **Note:** This value must refer to the Consumer `id` attribute that is internal to Kong Gateway, and **not** its `custom_id`.
     - name: run_on_preflight
       required: true
       default: "`true`"
