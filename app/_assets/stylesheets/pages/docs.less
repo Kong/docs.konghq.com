@@ -561,6 +561,44 @@
     font: normal 14px/16px Roboto;
   }
 
+  .github-links {
+    margin-bottom: 1.5em;
+
+    p {
+      padding: 0;
+      position: relative;
+      margin: 0;
+      border: none;
+      padding-bottom: 3px;
+      vertical-align: text-top;
+
+        a {
+          font: normal 14px/22px Roboto;
+          color: #043558;
+
+            img, i {
+              float: left;
+              padding-right: 12px;
+              display: inline-block;
+              width: 16px;
+              opacity: 0.4;
+              position: relative;
+              top: 6px;
+              }
+
+            i {
+              opacity: 1;
+              font-size: 14px;
+              left: 1.5px;
+            }
+
+            &:hover {
+            color: #1155cb;
+            }
+          }
+        }
+      }
+
   ul {
     margin: 0 0 0 4px;
     padding: 0;
@@ -626,6 +664,10 @@
     &.collapsed {
       width: 50px;
       overflow-y: hidden;
+
+      .github-links {
+        visibility: hidden;
+      }
 
       .docs-toc-title,
       > ul {
