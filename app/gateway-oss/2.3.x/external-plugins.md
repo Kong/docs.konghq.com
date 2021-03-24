@@ -250,25 +250,25 @@ functions to access {{site.base_gateway}} features of the [PDK][kong-pdk].
 
 TypeScript is also supported in the following ways:
 
-- [kong-js-pdk] includes type definitions for PDK functions that allows type checking
+- [kong-js-pdk] includes type definitions for PDK functions that allow type checking
 when developing plugins in TypeScript.
-- Plugin written in TypeScript can be loaded directly and transpiled on-the-fly.
+- Plugin written in TypeScript can be loaded directly and transpiled on the fly.
 
 ### Development
 
-[kong-js-pdk] can be installed via `npm`. To install the plugin server binary globally, use:
+[kong-js-pdk] can be installed using `npm`. To install the plugin server binary globally:
 
 ```
 npm install kong-pdk -g
 ```
 
-To use it in your local development directory, use:
+To install it in your local development directory:
 
 ```
 npm install kong-pdk --save
 ```
 
-A valid JavaScript plugin implementation should export following object:
+A valid JavaScript plugin implementation should export the following object:
 
 ```javascript
 module.exports = {
@@ -320,7 +320,7 @@ Similar to Lua plugins, the presence of the `response` handler automatically ena
 #### PDK functions
 
 [kong-js-pdk] invokes PDK functions in Kong through network-based RPC. Thus each function returns a Promise
-instance; it's convient to use `async`/`await` keywords in phase handlers for better readibility.
+instance; it's convenient to use `async`/`await` keywords in phase handlers for better readability.
 
 ```javascript
 class KongPlugin {
