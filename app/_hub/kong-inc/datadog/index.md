@@ -61,7 +61,7 @@ params:
   config:
     - name: host
       required: true
-      default: "`127.0.0.1`"
+      default: "`localhost`"
       value_in_examples: 127.0.0.1
       datatype: string
       description: The IP address or host name to send data to.
