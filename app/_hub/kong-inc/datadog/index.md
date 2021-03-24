@@ -86,9 +86,9 @@ params:
 ---
 
 ## Metrics
-Plugin currently logs the following metrics to the Datadog server about a Service or Route.
+The Datadog plugin currently logs the following metrics to the Datadog server about a Service or Route.
 
-Metric                     | description | namespace
+Metric                     | Description | Namespace
 ---                        | ---         | ---
 `request_count`            | tracks the request | kong.request.count
 `request_size`             | tracks the request's body size in bytes | kong.request.size
@@ -103,22 +103,22 @@ The metrics will be sent with the tags `name` and `status` carrying the API name
 
 Plugin can be configured with any combination of [Metrics](#metrics), with each entry containing the following fields.
 
-Field           | description                                           | allowed values
----             | ---                                                   | ---
-`name`          | Datadog metric's name                                 | [Metrics](#metrics)
-`stat_type`     | determines what sort of event the metric represents   | `gauge`, `timer`, `counter`, `histogram`, `meter` and `set`
-`sample_rate`<br>*conditional*   | sampling rate                        | `number`
-`consumer_identifier`<br>*conditional*| authenticated user detail       | `consumer_id`, `custom_id`, `username`
-`tags`<br>*optional*| List of tags                                      | `key[:value]`
+Field           | Description                                           | Datatypes   | Allowed values
+---             | ---                                                   | ---         | ---
+`name`          | Datadog metric's name                                 | String      | [Metrics](#metrics)
+`stat_type`     | determines what sort of event the metric represents   | String      | `gauge`, `timer`, `counter`, `histogram`, `meter` and `set`
+`sample_rate`<br>*conditional*   | sampling rate                        | Number      | `number`
+`consumer_identifier`<br>*conditional*| authenticated user detail       | String      | `consumer_id`, `custom_id`, `username`
+`tags`<br>*optional*| List of tags                                      | Array of strings    | `key[:value]`
 
 ### Metric requirements
 
-1.  by default all metrics get logged.
-2.  metric with `stat_type` as `counter` or `gauge` must have `sample_rate` defined as well.
+1.  All metrics get logged by default.
+2.  Metrics with `stat_type` as `counter` or `gauge` must have `sample_rate` defined as well.
 
 ## Migrating Datadog queries
 The plugin updates replace the api, status, and consumer-specific metrics with a generic metric name.
-You have to change your Datadog queries in dashboards and alerts to reflect the metrics updates.
+You must change your Datadog queries in dashboards and alerts to reflect the metrics updates.
 
 For example, the following query:
 ```
