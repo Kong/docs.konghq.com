@@ -63,7 +63,7 @@ params:
     - name: anonymous
       required: false
       default:
-      datatype: string UUID
+      datatype: string
       description: |
         An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`.
 
