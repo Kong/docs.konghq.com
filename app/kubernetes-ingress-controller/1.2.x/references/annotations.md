@@ -20,8 +20,8 @@ Following annotations are supported on Ingress resources:
 | [`konghq.com/regex-priority`](#konghqcomregex-priority) | Set the route's regex priority. |
 | [`konghq.com/methods`](#konghqcommethods) | Set methods matched by this Ingress. |
 | [`konghq.com/snis`](#konghqcomsnis) | Set SNI criteria for routes created from this Ingress. |
-| [`konghq.com/request-buffering`](#konghqcomrequest-buffering) | Set the request buffering setting on routes created from this Ingress. |
-| [`konghq.com/response-buffering`](#konghqcomresponse-buffering) | Set the response buffering setting on routes created from this Ingress. |
+| [`konghq.com/request-buffering`](#konghqcomrequest-buffering) | Set request buffering on routes created from this Ingress. |
+| [`konghq.com/response-buffering`](#konghqcomresponse-buffering) | Set response buffering on routes created from this Ingress. |
 | [`konghq.com/override`](#konghqcomoverride) | Control other routing attributes via `KongIngress` resource. |
 
 `kubernetes.io/ingress.class` is normally required, and its value should match
