@@ -11,6 +11,17 @@ description: |
   checks for valid credentials in the `Proxy-Authorization` and `Authorization` headers
   (in that order).
 
+  <div class="alert alert-ee blue"><strong>Tip:</strong> The LDAP Authentication Advanced plugin
+  provides additional features not available in the open source <a href="/hub/kong-inc/ldap-auth">LDAP Authentication plugin</a>, 
+  such as LDAP searches for group and consumer mapping:
+
+  <ul>
+  <li>Ability to authenticate based on username or custom ID.</li>
+  <li>The ability to bind to an enterprise LDAP directory with a password.</li>
+  <li>The ability to authenticate/authorize using a group base DN and specific group member or group name attributes.</li>
+  </ul>
+  </div>
+
 enterprise: true
 type: plugin
 categories:
@@ -21,6 +32,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.3.x
         - 2.2.x
         - 2.1.x
         - 1.5.x
@@ -126,8 +138,8 @@ params:
       datatype: string
       description: |
         An optional string (consumer UUID) value to use as an "anonymous" consumer if authentication fails. If empty (default), the
-        request will fail with an authentication failure `4xx`. 
-        
+        request will fail with an authentication failure `4xx`.
+
         **Note:** The value must refer to the Consumer `id` attribute that is internal to Kong, **not** its `custom_id`.
     - name: header_type
       required: false
@@ -146,7 +158,7 @@ params:
       description: |
         Whether consumer mapping is optional. If `consumer_optional=true`, the plugin will not attempt to associate a consumer with the
         LDAP authenticated user. If `consumer_optional=false`, LDAP authenticated users can still access upstream resources.
-        
+
         To prevent access from LDAP users that are not associated with consumers, set `consumer_optional=false`, set the `anonymous` field to an
         existing `consumer_id`, then use the [Request Termination plugin](/hub/kong-inc/request-termination/) to deny any requests from the anonymous consumer.
     - name: consumer_by
