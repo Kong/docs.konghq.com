@@ -130,7 +130,7 @@ params:
       required: true
       default:
       value_in_examples:
-      datatype: map of string values
+      datatype: map of string keys and string values
       description: |
         A list of custom headers to be added in the introspection request.
     - name: custom_claims_forward
