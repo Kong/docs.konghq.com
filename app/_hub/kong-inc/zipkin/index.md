@@ -66,11 +66,6 @@ params:
         How often to sample requests that do not contain trace ids.
         Set to `0` to turn sampling off, or to `1` to sample **all** requests. The
         value must be between zero (0) and one (1), inclusive.
-    - name: default_service_name
-      required: false
-      datatype: string
-      description: |
-        The default service name to override the unknown-service-name spans. XX REVIEWERS this option does not appear in the schema?
     - name: include_credential
       required: true
       default: true
