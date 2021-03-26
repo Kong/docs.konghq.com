@@ -4,6 +4,7 @@ publisher: Kong Inc.
 redirect_from:
   - /hub/kong-inc/zipkin/http-log/
 version: 1.3.x
+# internal handler version 1.3.0 4-26-2021
 
 source_url: https://github.com/Kong/kong-plugin-zipkin
 
@@ -19,6 +20,7 @@ categories:
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.4.x
       - 2.3.x
       - 2.2.x
       - 2.1.x
@@ -95,7 +97,9 @@ params:
         with a default of `b3` if none is found. In case of a mismatch between the expected and incoming
         tracing headers (for example, when `header_type` is set to `b3` but a w3c-style tracing header is
         found in the incoming request), then the plugin will add both kinds of tracing headers
-        to the request and generate a mismatch warning in the logs. `jaeger` will use and expect [Jaeger-style tracing headers](https://www.jaegertracing.io/docs/1.22/client-libraries/#propagation-format) (`uber-trace-id`). The `ot` option is for [OpenTelemetry tracing headers](https://github.com/open-telemetry/opentelemetry-java/blob/96e8523544f04c305da5382854eee06218599075/extensions/trace_propagators/src/main/java/io/opentelemetry/extensions/trace/propagation/OtTracerPropagator.java) of the form `ot-tracer-*`.
+        to the request and generate a mismatch warning in the logs. `jaeger` will use and expect
+        [Jaeger-style tracing headers](https://www.jaegertracing.io/docs/1.22/client-libraries/#propagation-format) (`uber-trace-id`).
+        The `ot` option is for [OpenTelemetry tracing headers](https://github.com/open-telemetry/opentelemetry-java/blob/96e8523544f04c305da5382854eee06218599075/extensions/trace_propagators/src/main/java/io/opentelemetry/extensions/trace/propagation/OtTracerPropagator.java) of the form `ot-tracer-*`.
     - name: default_header_type
       required: true
       default: b3
