@@ -52,7 +52,7 @@ params:
       required: false
       default: ''
       value_in_examples: http://your.zipkin.collector:9411/api/v2/spans
-      datatype: REVIEWERS
+      datatype: string
       description: |
         The full HTTP(S) endpoint to which Zipkin spans should be sent by Kong.
         If not specified, the Zipkin plugin will only act as a tracing header
@@ -100,7 +100,7 @@ params:
         with a default of `b3` if none is found. In case of a mismatch between the expected and incoming
         tracing headers (for example, when `header_type` is set to `b3` but a w3c-style tracing header is
         found in the incoming request), then the plugin will add both kinds of tracing headers
-        to the request and generate a mismatch warning in the logs. XX REVIEWERS need a description for jaeger and ot.
+        to the request and generate a mismatch warning in the logs. `jaeger` will use and expect [Jaeger-style tracing headers](https://www.jaegertracing.io/docs/1.22/client-libraries/#propagation-format) (`uber-trace-id`). The `ot` option is for [OpenTelemetry tracing headers](https://github.com/open-telemetry/opentelemetry-java/blob/96e8523544f04c305da5382854eee06218599075/extensions/trace_propagators/src/main/java/io/opentelemetry/extensions/trace/propagation/OtTracerPropagator.java) of the form `ot-tracer-*`.
     - name: default_header_type
       required: true
       default: b3
@@ -118,9 +118,8 @@ params:
         XX REVIEWERS need a description
     - name: static_tags
       required: false
-      default: {}
-      value_in_examples: { { name = "color", value = "red" } }
-      datatype: array
+      default: []
+      value_in_examples: [ { name = "color", value = "red" } ]
       description: |
         The tags specified on this property will be added to the generated request traces.
 
