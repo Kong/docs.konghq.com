@@ -89,7 +89,7 @@ To view the configuration changes between versions, clone the
 [Kong repository](https://github.com/kong/kong) and run `git diff`
 on the configuration templates, using `-w` for greater readability.
 
-Here's how to see the differences between 2.0.0 and 2.3.0:
+Here's how to see the differences between 2.0.0, 2.1.0, or 2.2.0 and 2.3.0:
 
 ```
 git clone https://github.com/kong/kong
