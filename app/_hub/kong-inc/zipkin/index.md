@@ -123,9 +123,11 @@ params:
     - name: static_tags
       required: false
       default: []
-      value_in_examples: [ { name: "color", value: "red" } ]
+      value_in_examples:
+      datatype: array of string tags
       description: |
-        The tags specified on this property will be added to the generated request traces.
+        The tags specified on this property will be added to the generated request traces. For example:
+        `[ { "name": "color", "value": "red" } ]`.
 
 ---
 
