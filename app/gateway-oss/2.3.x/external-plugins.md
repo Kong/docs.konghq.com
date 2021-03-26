@@ -17,8 +17,9 @@ main {{site.base_gateway}} process through Unix sockets.  If so configured, {{si
 those processes, starting, restarting and stopping as necessary.
 
 {{site.base_gateway}} currently maintains a Go language plugin server,
-[go-pluginserver] and the corresponding PDK library
-package, [go-pdk].
+[go-pluginserver], the corresponding PDK library
+package[go-pdk], the JavaScript language support [kong-js-pdk]
+and Python language support [kong-python-pdk].
 
 ## Kong Gateway plugin server configuration
 
@@ -46,8 +47,15 @@ pluginserver_go_start_cmd = go-pluginserver -kong-prefix /usr/local/kong/ -plugi
 pluginserver_go_query_cmd = go-pluginserver -dump-all-plugins -plugins-directory /usr/local/kong/go-plugins
 
 pluginserver_python_socket = /usr/local/kong/python_pluginserver.sock
-pluginserver_python_start_cmd = pypluginserver.py
-pluginserver_python_query_cmd = pypluginserver.py -dump
+pluginserver_python_start_cmd = kong-python-pluginserver
+pluginserver_python_query_cmd = kong-python-pluginserver --dump-all-plugins
+```
+
+To enable those plugins, add the each plugin name to the `plugins` config. Assume we have those hello plugins
+in each language:
+
+```
+plugins = bundled, go-hello, js-hello, py-hello
 ```
 
 ### Legacy configuration
@@ -121,7 +129,7 @@ configuration data coming from the datastore or the Admin API.  Since Go is a
 statically-typed language, all that specification is handled by defining a
 configuration structure:
 
-```
+```go
 type MyConfig struct {
     Path   string
     Reopen bool
@@ -132,7 +140,7 @@ Public fields (that is, those starting with a capital letter) will be filled
 with configuration data.  If you want them to have a different name in the
 datastore, add field tags as defined in the `encoding/json` package:
 
-```
+```go
 type MyConfig struct {
     Path   string `json:my_file_path`
     Reopen bool   `json:reopen`
@@ -144,7 +152,7 @@ type MyConfig struct {
 Your plugin must define a function called `New` that creates an instance of this type
 and returns as an `interface{}`.  In most cases, it’s just this:
 
-```
+```go
 func New() interface{} {
     return &MyConfig{}
 }
@@ -159,7 +167,7 @@ instances.
 Similarly to {{site.base_gateway}} Lua plugins, you can implement custom logic to be executed at
 various points of the request processing lifecycle. For example, to execute
 custom Go code in the access phase, define a function named `Access`:
-```
+```go
 func (conf *MyConfig) Access (kong *pdk.PDK) {
   ...
 }
@@ -176,6 +184,17 @@ signature is the same for all of them:
 
 Similar to Lua plugins, the presence of the `Response` handler automatically enables the buffered proxy mode.
 
+#### 4. Version and Priority
+
+Similarly to {{site.base_gateway}} Lua plugins, you can define the version number and priority of execution
+by having following lines in plugin code:
+
+```go
+const Version = "1.0.0"
+const Priority = 1
+```
+
+{{site.base_gateway}} executes plugins from highest priority to lowest ones.
 
 ### Embedded server
 
@@ -254,7 +273,7 @@ TypeScript is also supported in the following ways:
 when developing plugins in TypeScript.
 - Plugin written in TypeScript can be loaded directly and transpiled on the fly.
 
-### Development
+### Example configuration
 
 [kong-js-pdk] can be installed using `npm`. To install the plugin server binary globally:
 
@@ -262,7 +281,19 @@ when developing plugins in TypeScript.
 npm install kong-pdk -g
 ```
 
-To install it in your local development directory:
+Assume the plugins are stored in /usr/local/kong/js-plugins
+
+```
+pluginserver_names = js
+
+pluginserver_js_socket = /usr/local/kong/js_pluginserver.sock
+pluginserver_js_start_cmd = /usr/local/bin/kong-js-pluginserver --plugins-directory /usr/local/kong/js-plugins
+pluginserver_js_query_cmd = /usr/local/bin/kong-js-pluginserver --plugins-directory /usr/local/kong/js-plugins --dump-all-plugins
+```
+
+### Development
+
+Install [kong-js-pdk] in your local development directory:
 
 ```
 npm install kong-pdk --save
@@ -288,7 +319,7 @@ defines the version number and priority of execution respectively.
 **Note**: Check out [this repository](https://github.com/Kong/kong-js-pdk/tree/master/examples)
 for example JavaScript and TypeScript plugins.
 
-#### Phase Handlers
+#### 1. Phase Handlers
 
 Similarly to {{site.base_gateway}} Lua plugins, you can implement custom logic to be executed at
 various points of the request processing lifecycle. For example, to execute
@@ -317,7 +348,7 @@ signature is the same for all of them:
 
 Similar to Lua plugins, the presence of the `response` handler automatically enables the buffered proxy mode.
 
-#### PDK functions
+#### 2. PDK functions
 
 [kong-js-pdk] invokes PDK functions in Kong through network-based RPC. Thus each function returns a Promise
 instance; it's convenient to use `async`/`await` keywords in phase handlers for better readability.
@@ -358,13 +389,25 @@ class KongPlugin {
 The library provides a plugin server to provide runtime for Python plugins, and
 functions to access {{site.base_gateway}} features of the [PDK][kong-pdk].
 
-### Development
+### Example configuration
 
 [kong-python-pdk] can be installed via `pip`. To install the plugin server binary and PDK globally, use:
 
 ```
 pip install kong-pdk
 ```
+
+Assume the plugins are stored in /usr/local/kong/python-plugins
+
+```
+pluginserver_names = python
+
+pluginserver_python_socket = /usr/local/kong/python_pluginserver.sock
+pluginserver_python_start_cmd = /usr/local/bin/kong-python-pluginserver --plugins-directory /usr/local/kong/python-plugins
+pluginserver_python_query_cmd = /usr/local/bin/kong-python-pluginserver --plugins-directory /usr/local/kong/python-plugins --dump-all-plugins
+```
+
+### Development
 
 A valid Python plugin implementation has following attributes:
 
@@ -387,7 +430,7 @@ defines the version number and priority of execution respectively.
 **Note**: Check out [this repository](https://github.com/Kong/kong-python-pdk/tree/master/examples)
 for example Python plugins.
 
-#### Phase Handlers
+#### 1. Phase Handlers
 
 Similarly to {{site.base_gateway}} Lua plugins, you can implement custom logic to be executed at
 various points of the request processing lifecycle. For example, to execute
@@ -413,7 +456,7 @@ signature is the same for all of them:
 
 Similar to Lua plugins, the presence of the `response` handler automatically enables the buffered proxy mode.
 
-#### Type hints
+#### 2. Type hints
 
 [kong-python-pdk] supports [type hint](https://www.python.org/dev/peps/pep-0484/) in Python 3.x, to use type lint
 and autocomplete in IDE, user can annotate the `kong` parameter in phase handler:
@@ -441,6 +484,32 @@ if __name__ == "__main__":
 
 Note the first argument to `start_dedicated_server` defines the plugin name and must
 be unique across all languages.
+
+#### Example configuration
+
+Two standalone plugins, called `my-plugin` and `other-one`:
+
+```
+pluginserver_names = my-plugin,other-one
+
+pluginserver_my_plugin_socket = /usr/local/kong/my-plugin.socket
+pluginserver_my_plugin_start_cmd = /path/to/my-plugin.py
+pluginserver_my_plugin_query_cmd = /path/to/my-plugin.py --dump
+
+pluginserver_other_one_socket = /usr/local/kong/other-one.socket
+pluginserver_other_one_start_cmd = /path/to/other-one.py
+pluginserver_other_one_query_cmd = /path/to/other-one.py -dump
+
+```
+
+Note that the socket and start command settings coincide with
+their defaults, so they can be omitted:
+
+```
+pluginserver_names = my-plugin,other-one
+pluginserver_my_plugin_query_cmd = /path/to/my-plugin --dump
+pluginserver_other_one_query_cmd = /path/to/other-one --dump
+```
 
 ### Concurrency model
 
