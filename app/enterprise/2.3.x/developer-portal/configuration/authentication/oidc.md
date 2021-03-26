@@ -17,7 +17,7 @@ document for more information.
 
 **Note:** The Dev Portal does not automatically create developer accounts on login via OIDC.
 A developer account matching the `consumer_claim` configuration parameter has to be
-created and approved (if auto approve is not enabled) beforehand. To manually create a developer account, the developer can simply register for a new account on the Dev Portal login screen using the email address that is matching the `consumer_claim`. To programmatically create many developer accounts that use the oidc plugin to authenticate using a 3rd party IdP, the following Admin API endpoint can be used to create developers: 
+created and approved (if auto approve is not enabled) beforehand. To manually create a developer account, the developer can register for a new account on the Dev Portal login screen using the email address that is matching the `consumer_claim`. To programmatically create many developer accounts that use the oidc plugin to authenticate using a 3rd party IdP, the following Admin API endpoint can be used to create developers: 
 
 ```
 curl --request POST \
