@@ -4,6 +4,7 @@ on:
 name: Update indices every day
 jobs:
   updateAlgoliaIndexFullDocs:
+    if: github.repository == 'kong/docs.konghq.com'
     name: Index Full Kong Docs
     runs-on: ubuntu-latest
     steps:
