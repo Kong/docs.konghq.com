@@ -74,7 +74,7 @@ OpenResty, you will need the correct [OpenResty patches](https://github.com/Kong
 for this new version, including the latest release of [lua-kong-nginx-module](https://github.com/Kong/lua-kong-nginx-module).
 The [kong-build-tools](https://github.com/Kong/kong-build-tools)
 repository contains [openresty-build-tools](https://github.com/Kong/kong-build-tools/tree/master/openresty-build-tools),
-which allows you to build OpenResty with the necessary patches and modules easily.
+which allows you to more easily build OpenResty with the necessary patches and modules.
 
 There is a new way to deploy Go using Plugin Servers. You can read more about
 it the [Go section of the docs](https://docs.konghq.com/2.3.x/go).
