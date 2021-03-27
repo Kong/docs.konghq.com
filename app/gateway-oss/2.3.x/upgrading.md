@@ -169,7 +169,7 @@ database in the final expected state for Kong 2.3.0).
 **Cassandra**
 
 Due to internal changes, the table schemas used by Kong 2.3.x on Cassandra
-are incompatible with those used by Kong 2.1.x(or lower). Migrating using the usual commands
+are incompatible with those used by Kong 2.1.x (or lower). Migrating using the usual commands
 `kong migrations up` and `kong migrations finish` will require a small
 window of downtime, since the old and new versions cannot use the
 database at the same time. Alternatively, to keep your previous version fully
