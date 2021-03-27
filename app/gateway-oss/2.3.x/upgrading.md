@@ -3,7 +3,7 @@ title: Upgrade guide
 skip_read_time: true
 ---
 
-This document guides you through the process of upgrading Kong to the **latest version**.
+This document guides you through the process of upgrading {{site.ce_product_name}} to the **latest version**.
 To upgrade to prior versions, find the version number in the 
 [Upgrade doc in GitHub](https://github.com/Kong/kong/blob/master/UPGRADE.md).
 
