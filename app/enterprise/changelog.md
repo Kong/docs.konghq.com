@@ -10,12 +10,10 @@ skip_read_time: true
 ### Features
 
 #### Plugins
-- [Request Validator](/hub/kong-inc/request-validator) (updated to 1.1.3)
+- [Request Validator](/hub/kong-inc/request-validator) (`request-validator`) (updated to 1.1.3)
   - Content-type failures are now reported as such when `verbose_response` is enabled.
 - [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (updated to v1.4.1)
   - Disallows decimal values between 0,1 in `sync_rate`.
-- [Request Validator](/hub/kong-inc/request-validator) (updated to v1.1.3)
-  - Content-type failures are now reported as such when verbose_response is enabled.
 
 ### Fixes
 - Adjusted the `systemd reload` command to do a `kong prepare`.
@@ -42,7 +40,7 @@ for dbless or hybrid modes.
 core entities but don't explicitly depend on them.
 
 #### Plugins
-- [OpenID Connect](/hub/kong-inc/openid-connect) (updated to v1.9.0)
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`) (updated to v1.9.0)
   - Add `config.disable_session` to be able to disable session creation with
     specified authentication methods.
   - Changed `Cache-Control="no-store"` instead of `Cache-Control="no-cache, no-store"`,
@@ -52,21 +50,21 @@ core entities but don't explicitly depend on them.
   - Token introspection now checks the status code properly.
   - More consistent response body checks on HTTP requests.
   - Fixed an issue where enabling zlib compressor did not affect the size of the session cookie.
-- [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (updated to v1.4.1)
+- [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`) (updated to v1.4.1)
   - Now the plugin does not pre-create namespaces on `init-worker`. As a side effect to this patch
     the plugin will create namespaces on the fly. This may result in a slightly (10-20%) increased
     response time on the first request.
-- [Request Validator](/hub/kong-inc/request-validator) (updated to v1.1.3)
+- [Request Validator](/hub/kong-inc/request-validator) (`request-validator`) (updated to v1.1.3)
   - Now the plugin correctly decodes and normalizes arrays when there are multiple headers with
     the same field-name.
-- [Mutual TSL Authentication](/hub/kong-inc/mtls-auth) (updated to v0.3.1)
+- [Mutual TSL Authentication](/hub/kong-inc/mtls-auth) (`mtls-auth`) (updated to v0.3.1)
   - Remove CA existence check on plugin creation - the check was not compatible with DB-less mode.
   - Correctly fetch certificates from the end of the proof chain when consumer credentials are used.
-- [AWS Lambda](/hub/kong-inc/aws-lambda) (updated to v3.5.4)
+- [AWS Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`) (updated to v3.5.4)
   - The plugin now respects `skip_large_bodies` config setting when using AWS API Gateway compatibility.
-- [ACME](hub/kong-inc/acme) (updated to v0.2.14)
+- [ACME](hub/kong-inc/acme) (`acme`) (updated to v0.2.14)
   - Bump `lua-resty-acme` to 0.6.x; this fixes several issues with Pebble test server.
-- [OAuth 2.0 Authentication](/hub/kong-inc/oauth2)
+- [OAuth 2.0 Authentication](/hub/kong-inc/oauth2) (`oauth2`)
   - The plugin now has better handling for multiple cases of client invalid token generation.
 
 ## 2.3.2.0
@@ -395,11 +393,11 @@ specs.
   - More consistent response body checks on HTTP requests.
   - Fixed an issue where enabling zlib compressor the size of the session cookie was not
     changing in value.
-- [AWS Lambda](/hub/kong-inc/aws-lambda) (updated to v3.5.4)
+- [AWS Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`) (updated to v3.5.4)
   - The plugin now respects `skip_large_bodies` config setting when using AWS API Gateway compatibility.
 - [ACME](hub/kong-inc/acme) (updated to v0.2.14)
   - Bump `lua-resty-acme` to 0.6.x; this fixes several issues with Pebble test server.
-- [Exit Transformer](/hub/kong-inc/exit-transformer)
+- [Exit Transformer](/hub/kong-inc/exit-transformer) (`exit-transformer`)
   - The plugin now allows access to Kong modules within the sandbox, not only to `kong.request`.
 
 #### Plugin Dependencies
@@ -786,9 +784,9 @@ specs.
   - Token introspection now checks the status code properly.
   - More consistent response body checks on HTTP requests.
   - Fixed an issue where enabling zlib compressor did not affect the size of the session cookie.
-- [ACME](hub/kong-inc/acme) (updated to v0.2.14)
+- [ACME](hub/kong-inc/acme) (`acme`) (updated to v0.2.14)
   - Bump `lua-resty-acme` to 0.6.x; this fixes several issues with Pebble test server.
-- [Exit Transformer](/hub/kong-inc/exit-transformer)
+- [Exit Transformer](/hub/kong-inc/exit-transformer) (`exit-transformer`)
   - The plugin now allows access to Kong modules within the sandbox, not only to `kong.request`.
 
 #### Plugin Dependencies
