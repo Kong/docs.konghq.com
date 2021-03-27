@@ -77,7 +77,7 @@ repository contains [openresty-build-tools](https://github.com/Kong/kong-build-t
 which allows you to more easily build OpenResty with the necessary patches and modules.
 
 There is a new way to deploy Go using Plugin Servers. You can read more about
-it the [Go section of the docs](https://docs.konghq.com/2.3.x/go).
+For more information, see [Developing Go plugins](/gateway-oss/2.3.x/external-plugins/#developing-go-plugins).
 
 ### Template changes
 
