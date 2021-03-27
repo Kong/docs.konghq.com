@@ -88,7 +88,7 @@ To view the configuration changes between versions, clone the
 [Kong repository](https://github.com/kong/kong) and run `git diff`
 on the configuration templates, using `-w` for greater readability.
 
-Here's how to see the differences between 2.0.x, 2.1.x, or 2.2.x and 2.3.x:
+Here's how to see the differences between 2.0.x and 2.1.x, or 2.2.x and 2.3.x:
 
 ```
 git clone https://github.com/kong/kong
