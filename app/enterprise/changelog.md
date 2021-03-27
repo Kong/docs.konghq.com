@@ -353,7 +353,7 @@ fixed causing a 500 auth error when falling back to an anonymous user.
 - Support for CentOS-6 is removed and entered end-of-life on Nov 30, 2020.
 
 ## 2.2.1.1
-**Release Date** 2020/02/24
+**Release Date** 2020/03/26
 
 ### Fixes
 
@@ -747,7 +747,7 @@ open-source **Kong Gateway 2.2.0.0**:
   the new `shorthand_fields` top-level attribute.
 
 ## 2.1.4.4
-**Release Date** 2021/02/24
+**Release Date** 2021/03/26
 
 ### Fixes
 
@@ -1182,7 +1182,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 
 ## 1.5.0.10
-**Release Date** 2021/03/??
+**Release Date** 2021/03/26
 
 ### Fixes
 
