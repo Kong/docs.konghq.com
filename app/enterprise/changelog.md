@@ -4,12 +4,12 @@ no_search: true
 no_version: true
 ---
 ## 2.3.3.0
-**ReleaseDate** 2020/03/26
+**Release Date** 2021/03/26
 
 ### Features
 
 #### Plugins
-- [Request Validator](/hub/kong-inc/request-validator) (`request-validator`) (updated to 1.1.3)
+- [Request Validator](/hub/kong-inc/request-validator) (`request-validator`) (updated to v1.1.3)
   - Content-type failures are now reported as such when `verbose_response` is enabled.
 - [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (updated to v1.4.1)
   - Disallows decimal values between 0,1 in `sync_rate`.
@@ -19,12 +19,12 @@ no_version: true
 - Removed output messages from non-strict failure builds on license validation module.
 - Fixed an FFI table overflow issue when syncing DB-less declarative config.
 - Kong now accepts values for Subject Alternate Name (SAN) in a certificate as per RFC 5280.
-The [Mutual TSL Authentication](/hub/kong-inc/mtls-auth) plugin is now processing presented Alternate Names.
-- Fixed an Websocket issue where connection upgrades would fail with a 502 after upgrading to 2.3.2.0.
+The [Mutual TLS Authentication](/hub/kong-inc/mtls-auth) plugin is now processing presented Alternate Names.
+- Fixed a Websocket issue where connection upgrades would fail with a 502 after upgrading to v2.3.2.0.
 - Upgrade header is not cleared anymore when response Connection header contains Upgrade.
 - Avoided potential race conditions that could result in HTTP 500 errors when using the
 least-connection algorithm in the case where an upstream target becomes inaccessible.
-- Kong does not try to warmup upstream names when warming up DNS entries.
+- Kong does not try to warm up upstream names when warming up DNS entries.
 - Migrations order is now guaranteed to be always the same.
 - Buffered responses are disabled on connection upgrades.
 - Schema validations now log more descriptive error messages when types are invalid.
@@ -43,9 +43,9 @@ core entities but don't explicitly depend on them.
   - Add `config.disable_session` to be able to disable session creation with
     specified authentication methods.
   - Changed `Cache-Control="no-store"` instead of `Cache-Control="no-cache, no-store"`,
-    and only set `Pragme="no-cache"` with HTTP 1.0 (and below).
+    and only set `Pragma="no-cache"` with HTTP 1.0 (and below).
   - Fixed `/openid-connect/jwks` to not expose private keys (this bug was introduced
-    in 1.6.0 and affects all versions up to 1.8.3).
+    in v1.6.0 and affects all versions up to v1.8.3).
   - Token introspection now checks the status code properly.
   - More consistent response body checks on HTTP requests.
   - Fixed an issue where enabling zlib compressor did not affect the size of the session cookie.
@@ -56,13 +56,13 @@ core entities but don't explicitly depend on them.
 - [Request Validator](/hub/kong-inc/request-validator) (`request-validator`) (updated to v1.1.3)
   - Now the plugin correctly decodes and normalizes arrays when there are multiple headers with
     the same field-name.
-- [Mutual TSL Authentication](/hub/kong-inc/mtls-auth) (`mtls-auth`) (updated to v0.3.1)
+- [Mutual TLS Authentication](/hub/kong-inc/mtls-auth) (`mtls-auth`) (updated to v0.3.1)
   - Remove CA existence check on plugin creation - the check was not compatible with DB-less mode.
   - Correctly fetch certificates from the end of the proof chain when consumer credentials are used.
 - [AWS Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`) (updated to v3.5.4)
   - The plugin now respects `skip_large_bodies` config setting when using AWS API Gateway compatibility.
-- [ACME](hub/kong-inc/acme) (`acme`) (updated to v0.2.14)
-  - Bump `lua-resty-acme` to 0.6.x; this fixes several issues with Pebble test server.
+- [ACME](/hub/kong-inc/acme) (`acme`) (updated to v0.2.14)
+  - Bump `lua-resty-acme` to v0.6.x; this fixes several issues with Pebble test server.
 - [OAuth 2.0 Authentication](/hub/kong-inc/oauth2) (`oauth2`)
   - The plugin now has better handling for multiple cases of client invalid token generation.
 
