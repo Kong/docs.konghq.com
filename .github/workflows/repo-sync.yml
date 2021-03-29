@@ -14,14 +14,14 @@
 name: Repo Sync
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: 
   schedule:
-  - cron: "0 0 * * 1" # once every Monday at 12am"
+  - cron: "0 0 * * 1" # once every Monday at 12am
   
 
 jobs:
-  if: github.repository == 'kong/docs.konghq.com-private'
   repo-sync:
+    if: github.repository == 'kong/docs.konghq.com-private'
     name: Repo Sync
     runs-on: ubuntu-latest
     steps:
@@ -46,17 +46,17 @@ jobs:
         pr_body: "Automated PR for syncing the `main` branches of the Kong docs repos. Do not merge this PR manually!"
         pr_label: automated-pr
 
-      - name: Find pull request
-        uses: juliangruber/find-pull-request-action@v1
-        id: find-pull-request
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          branch: chore/repo-sync
-          base: main
+    - name: Find pull request
+      uses: juliangruber/find-pull-request-action@v1
+      id: find-pull-request
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        branch: chore/repo-sync
+        base: main
 
-      - name: Approve pull request
-        if: ${{ steps.find-pull-request.outputs.number }}
-        uses: juliangruber/approve-pull-request-action@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: ${{ steps.find-pull-request.outputs.number }}
+    - name: Approve pull request
+      if: ${{ steps.find-pull-request.outputs.number }}
+      uses: juliangruber/approve-pull-request-action@v1
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        number: ${{ steps.find-pull-request.outputs.number }}
