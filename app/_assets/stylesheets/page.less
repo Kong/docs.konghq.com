@@ -905,6 +905,10 @@
   table.rouge-table td.rouge-gutter {
       padding-right: 0.8rem;
       border-right: 1px solid @gray;
+
+      @media (max-width: 1100px) {
+        margin-left: -1.2rem;
+      }
   }
 
   table.rouge-table td.rouge-code {
@@ -918,7 +922,7 @@
   .lineno {
       text-align: center;
       height: 100%;
-      min-width: 1.6rem;
+      min-width: 1.8rem;
       color: @gray-dark;
   }
 
