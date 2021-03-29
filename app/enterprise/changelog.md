@@ -45,7 +45,7 @@ core entities but don't explicitly depend on them.
   - Changed `Cache-Control="no-store"` instead of `Cache-Control="no-cache, no-store"`,
     and only set `Pragma="no-cache"` with HTTP 1.0 (and below).
   - Fixed `/openid-connect/jwks` to not expose private keys (this bug was introduced
-    in v1.6.0 and affects all versions up to v1.8.3).
+    in v1.6.0 (Kong Enterprise v2.1.3.1) and affects all versions up to v1.8.3 (Kong Enterprise v2.3.2)).
   - Token introspection now checks the status code properly.
   - More consistent response body checks on HTTP requests.
   - Fixed an issue where enabling zlib compressor did not affect the size of the session cookie.
