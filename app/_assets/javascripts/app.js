@@ -660,7 +660,7 @@ $(function () {
       copyInput.text(
         snippet.data("copy-code") ||
           snippet
-            .find("code")
+            .find(".rouge-code")
             .text()
             .replace(/^\s*\$\s*/gi, "")
       );
