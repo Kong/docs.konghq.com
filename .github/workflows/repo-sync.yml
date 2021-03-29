@@ -14,8 +14,10 @@
 name: Repo Sync
 
 on:
+  workflow_dispatch:
   schedule:
   - cron: "0 0 * * 1" # once every Monday at 12am"
+  
 
 jobs:
   if: github.repository == 'kong/docs.konghq.com-private'
