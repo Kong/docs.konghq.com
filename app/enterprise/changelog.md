@@ -354,7 +354,7 @@ fixed causing a 500 auth error when falling back to an anonymous user.
 - Support for CentOS-6 is removed and entered end-of-life on Nov 30, 2020.
 
 ## 2.2.1.1
-**Release Date** 2020/03/26
+**Release Date** 2021/03/26
 
 ### Fixes
 
@@ -382,24 +382,21 @@ specs.
   - Fixed init workers that were prolonging Kong startup time.
   - Fixed consumer and discovery invalidation events that were returning when the operation
   was `create`. This could leave some cache entries in cache that need to be invalidated.
-  - Fixed a circular dependency issue with the redirect function.
-  - Fixed consumer and discovery invalidation events that were returning when the operation
-    was create. This could leave some cache entries in cache that need to be invalidated.
-  - Fixed a circular dependency issue with `redirect` function
+  - Fixed a circular dependency issue with `redirect` function.
   - Added `config.disable_session` to be able to disable session creation with specified
     authentication methods.
   - Changeed `Cache-Control="no-store"` instead of `Cache-Control="no-cache, no-store"`,
-    and only set `Pragme="no-cache"` with HTTP 1.0 (and below).
-  - Fixed `/openid-connect/jwks` to not expose private keys (this bug was introduced in
-    1.6.0 and affects all versions up to 1.8.3).
+    and only set `Pragma="no-cache"` with HTTP 1.0 (and below).
+  - Fixed `/openid-connect/jwks` to not expose private keys (this bug was introduced
+    in v1.6.0 (Kong Enterprise v2.1.3.1) and affects all versions up to v1.8.3 (Kong Enterprise v2.3.2)).
   - Token introspection now checks the status code properly.
   - More consistent response body checks on HTTP requests.
   - Fixed an issue where enabling zlib compressor the size of the session cookie was not
     changing in value.
-- [AWS Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`) (updated to v3.5.4)
+- [AWS Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`) 
   - The plugin now respects `skip_large_bodies` config setting when using AWS API Gateway compatibility.
-- [ACME](hub/kong-inc/acme) (updated to v0.2.14)
-  - Bump `lua-resty-acme` to 0.6.x; this fixes several issues with Pebble test server.
+- [ACME](/hub/kong-inc/acme)
+  - Bump `lua-resty-acme` to v0.6.x; this fixes several issues with Pebble test server.
 - [Exit Transformer](/hub/kong-inc/exit-transformer) (`exit-transformer`)
   - The plugin now allows access to Kong modules within the sandbox, not only to `kong.request`.
 
@@ -787,14 +784,14 @@ specs.
   - Added `config.disable_session` to be able to disable session creation with
     specified authentication methods.
   - Changed `Cache-Control="no-store"` instead of `Cache-Control="no-cache, no-store"`,
-    and only set `Pragme="no-cache"` with HTTP 1.0 (and below).
+    and only set `Pragma="no-cache"` with HTTP 1.0 (and below).
   - Fixed `/openid-connect/jwks` to not expose private keys (this bug was introduced
-    in 1.6.0 and affects all versions up to 1.8.3).
+    in v1.6.0 (Kong Enterprise v2.1.3.1) and affects all versions up to v1.8.3 (Kong Enterprise v2.3.2)).
   - Token introspection now checks the status code properly.
   - More consistent response body checks on HTTP requests.
   - Fixed an issue where enabling zlib compressor did not affect the size of the session cookie.
-- [ACME](hub/kong-inc/acme) (`acme`) (updated to v0.2.14)
-  - Bump `lua-resty-acme` to 0.6.x; this fixes several issues with Pebble test server.
+- [ACME](/hub/kong-inc/acme) (`acme`) (updated to v0.2.14)
+  - Bump `lua-resty-acme` to v0.6.x; this fixes several issues with Pebble test server.
 - [Exit Transformer](/hub/kong-inc/exit-transformer) (`exit-transformer`)
   - The plugin now allows access to Kong modules within the sandbox, not only to `kong.request`.
 
@@ -1201,11 +1198,11 @@ request's URI before matching against the Router.
 - Sanitize path postfix for additional security.
 
 #### Enterprise
-- Added pgp signature to Bintray-rpm package of kong-enterprise, version 1.5.0.9.
+- Added pgp signature to Bintray-rpm package of `kong-enterprise`, version 1.5.0.9.
 - Added the following updates with backport of bypass security vulnerability:
   - Support for read transformations
   - Support for `X-Forwarded-Prefix`
-  - `X-Forwarded-Path` heaader
+  - `X-Forwarded-Path` header
 
 #### Developer Portal
 - Before, when enabling application registration with key authentication, developers who created 
