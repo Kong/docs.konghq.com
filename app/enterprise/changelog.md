@@ -395,7 +395,7 @@ specs.
     changing in value.
 - [AWS Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`) 
   - The plugin now respects `skip_large_bodies` config setting when using AWS API Gateway compatibility.
-- [ACME](/hub/kong-inc/acme)
+- [ACME](/hub/kong-inc/acme) (`acme`)
   - Bump `lua-resty-acme` to v0.6.x; this fixes several issues with Pebble test server.
 - [Exit Transformer](/hub/kong-inc/exit-transformer) (`exit-transformer`)
   - The plugin now allows access to Kong modules within the sandbox, not only to `kong.request`.
