@@ -1,0 +1,60 @@
+# The repo sync workflow triggers a weekly Github Action that keeps the two
+# Kong docs repos in sync:
+# docs.konghq.com (public) and docs.konghq.com-private (...private).
+#
+# During times of heavy feature/doc development in the private repo, any repo
+# admin can either manually trigger the action, or temporarily change the
+# schedule to sync more often.
+#
+# Automated PRs are opened in the private repo only.
+#
+# This workflow is based on GitHub's implementation.
+# For more details, see https://github.com/repo-sync/repo-sync#how-it-works
+
+name: Repo Sync
+
+on:
+  schedule:
+  - cron: "0 0 * * 1" # once every Monday at 12am"
+
+jobs:
+  if: github.repository == 'kong/docs.konghq.com-private'
+  repo-sync:
+    name: Repo Sync
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@v2
+
+    - name: Sync repository to branch
+      uses: repo-sync/github-sync@v2
+      with:
+        source_repo: ${{ secrets.SOURCE_REPO }}
+        source_branch: main
+        destination_branch: chore/repo-sync
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Create pull request
+      uses: repo-sync/pull-request@v2
+      with:
+        source_branch: chore/repo-sync
+        destination_branch: main
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        pr_title: "(chore) Sync public to private"
+        pr_body: "Automated PR for syncing the `main` branches of the Kong docs repos. Do not merge this PR manually!"
+        pr_label: automated-pr
+
+      - name: Find pull request
+        uses: juliangruber/find-pull-request-action@v1
+        id: find-pull-request
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          branch: chore/repo-sync
+          base: main
+
+      - name: Approve pull request
+        if: ${{ steps.find-pull-request.outputs.number }}
+        uses: juliangruber/approve-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ steps.find-pull-request.outputs.number }}
