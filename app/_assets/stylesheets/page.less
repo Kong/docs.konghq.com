@@ -146,6 +146,10 @@
           margin-bottom: 32px;
           font-size: 16px;
         }
+
+        .content-edition, .content-version {
+          display: none;
+        }
       }
 
       @media (max-width: 800px) {
@@ -154,6 +158,22 @@
 
         .page-content {
           border-left: none;
+
+          .content-edition {
+            margin-bottom: 10px;
+            color: #043558;
+            font: 500 24px/28px Roboto;
+          }
+
+          .content-version {
+            color: #4c6d80;
+            text-transform: uppercase;
+            font: 700 12px/16px Roboto;
+          }
+
+          .content-edition, .content-version {
+            display: block;
+          }
         }
       }
     }
@@ -223,7 +243,7 @@
           }
         }
 
-        @media screen and (max-width: 1080px) {
+        @media screen and (min-width: 801px) and (max-width: 1080px) {
           padding-right: 0;
 
           &.no-sidebar {
@@ -235,6 +255,22 @@
 
             .content {
               padding-top: 32px;
+            }
+          }
+        }
+
+        @media screen and (max-width: 800px) {
+          padding-right: 0;
+
+          &.no-sidebar {
+            padding-left: 0;
+          }
+
+          .page-content {
+            padding: 0 8px;
+
+            .content {
+              padding-top: 0;
             }
           }
         }
@@ -633,6 +669,7 @@
   }
 
   .toc-sidebar-toggle {
+    display: none;
     position: fixed;
     padding: 12px;
     top: calc(50vh - 16px);
@@ -654,6 +691,10 @@
   @media screen and (max-width: 800px) {
     .sidebar-toggle {
       visibility: visible;
+    }
+
+    .toc-sidebar-toggle {
+      display: block;
     }
   }
 }
@@ -1445,6 +1486,8 @@ Generic Styling for Desktop
 
     @media screen and (max-width: 800px) {
       display: block;
+      padding: 0;
+      margin-right: 4px;
     }
   }
 
@@ -1494,6 +1537,10 @@ Generic Styling for Desktop
   .active a {
     color: @font-color;
     cursor: default;
+  }
+
+  @media screen and (max-width: 800px) {
+    margin-top: 10px;
   }
 }
 

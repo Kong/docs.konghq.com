@@ -44,9 +44,29 @@ id: documentation
 
       <div class="page-content">
         <div class="content show-anchor-links">
-          {% unless page.no_breadcrumbs %}
-          {% include breadcrumbs.html %}
-          {% endunless %}
+          <div class="content-header">
+            <div class="content-edition">
+              {% if page.edition == 'enterprise' %}{{site.ee_product_name}}
+              {% elsif page.edition == 'konnect' %}{{site.konnect_saas}}
+              {% elsif page.edition == 'mesh' %}{{site.mesh_product_name}}
+              {% elsif page.edition == 'deck' %}decK
+              {% elsif page.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
+              {% elsif page.edition == 'gateway-oss' %}{{site.ce_product_name}}
+              {% elsif page.edition == 'getting-started-guide' %}Getting Started with Kong Gateway
+              {% endif %}
+            </div>
+            {% if page.no_version == false or page.has_version == true %}
+            <div class="content-version">
+              {{page.kong_version}}
+              {% if page.kong_version == page.kong_latest.release %}
+                <span>(latest)</span>
+              {% endif %}
+            </div>
+            {% endif %}
+            {% unless page.no_breadcrumbs %}
+            {% include breadcrumbs.html %}
+            {% endunless %}
+          </div>
           {% if page.edition == 'gateway-oss' %}
           <div class="alert alert-ee">
             Maybe you were looking for the <a href="/enterprise"><strong>{{site.ee_product_name}} documentation</strong></a>
