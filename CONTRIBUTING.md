@@ -408,6 +408,7 @@ class: no-copy-code
 # Disables the copy code button in any code blocks on the page.
 ```
 
+[Back to TOC](#table-of-contents)
 
 #### Variables
 Use variables for product names and release versions.
@@ -416,6 +417,7 @@ Use variables for product names and release versions.
 - `{{site.ee_product_name}}` - Kong Enterprise
 - `{{site.ce_product_name}}` - Kong Gateway
 
+[Back to TOC](#table-of-contents)
 
 #### Links
 In markdown(`.md`) files, use relative links with a version variable.
@@ -428,6 +430,8 @@ relative to the versioned folder.
 
 For example, if the project path is `app/enterprise/2.1.x/overview`, the path in
 the nav file would be `/overview`.
+
+[Back to TOC](#table-of-contents)
 
 #### Info Blocks
 
@@ -459,6 +463,8 @@ For a breaking issue or notice of alpha/beta, use:
 </div>
 ```
 
+[Back to TOC](#table-of-contents)
+
 #### Table of Contents generator
 
 Almost all pages have an automatic Table of Contents (ToC) added to the right of
@@ -489,6 +495,34 @@ will cause the first H3 to be skipped, and should be corrected to:
 
 [Back to TOC](#table-of-contents)
 
+#### Codeblocks
+
+Codeblocks are containers for your code examples. In Markdown, you can create
+them using three backticks, aka fenced codeblocks:
+
+\```bash
+some code here
+\```
+
+Include a language whenever possible (in the example above, that language is
+`bash`). This will format your codeblocks using language-specific syntax.
+
+You can also create tabbed codeblocks, so that users can easily switch to
+their preferred format. See [navtabs for codeblocks](#navtabs-for-codeblocks).
+
+##### Line numbers
+By default, every codeblock is generated with line numbers, which is useful for
+calling out specific sections of code. If you need to disable the line numbers,
+use the `{% highlight %}` tag with an optional language class instead of
+ backticks. For example:
+
+```
+{% highlight bash %}
+some code here
+{% endhighlight %}
+```
+
+[Back to TOC](#table-of-contents)
 
 #### Using navtabs within topics
 
@@ -527,6 +561,7 @@ tabbed codeblocks for easy code comparison and better use of space. See
 for an example of this style in use.
 
 > **Important!** Codeblock navtabs must contain codeblocks and **nothing else**.
+Additionally, tabbed codeblocks can't be used in lists or steps.
 
 To create a tabbed codeblock, specify the `codeblock` class in the first element
 when creating a `navtabs` group:
