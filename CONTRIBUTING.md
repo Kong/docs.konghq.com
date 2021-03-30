@@ -501,11 +501,11 @@ will cause the first H3 to be skipped, and should be corrected to:
 Codeblocks are containers for your code examples. In Markdown, you can create
 them using three backticks, aka fenced codeblocks:
 
-\```bash
-
-some code here
-
-\```
+<code>
+```bash</br>
+some code here</br>
+```
+</code>
 
 Include a language whenever possible (in the example above, that language is
 `bash`). This will format your codeblocks using language-specific syntax.
@@ -551,7 +551,7 @@ Here's some more content.
 {% endnavtabs %}
 ```
 
-On initial page load, the first tab ("<your title here>" in the example above)
+On initial page load, the first tab (`"<your title here>"` in the example above)
 will be the one displayed.
 
 > **Note:** You can’t nest navtabs within navtabs.
