@@ -151,6 +151,7 @@ spec:
         backend:
           serviceName: productpage
           servicePort: 9080
+EOF
 ```
 
 ### Make some requests to the sample application
