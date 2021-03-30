@@ -32,6 +32,7 @@ Consult the Table of Contents below, and jump to the desired section.
     - [Links](#links)
     - [Info Blocks](#info-blocks)
     - [Table of Contents generator](#table-of-contents-generator)
+    - [Codeblocks](#codeblocks)
     - [Using navtabs within topics](#using-navtabs-within-topics)
   - [Contributor T-shirt](#contributor-t-shirt)
 
@@ -501,7 +502,9 @@ Codeblocks are containers for your code examples. In Markdown, you can create
 them using three backticks, aka fenced codeblocks:
 
 \```bash
+
 some code here
+
 \```
 
 Include a language whenever possible (in the example above, that language is
