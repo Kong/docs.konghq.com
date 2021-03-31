@@ -73,6 +73,14 @@ params:
       value_in_examples: 10000
       datatype: number
       description: An optional timeout in milliseconds when sending data to the upstream server.
+    - name: custom_fields_by_lua
+      required: false
+      default:
+      datatype: map
+      description: |
+        A list of key-value pairs, where the key is the name of a log field and
+        the value is a chunk of Lua code, whose return value sets or replaces
+        the log field value.
 
 ---
 
@@ -87,3 +95,7 @@ params:
 ## Kong process errors
 
 {% include /md/plugins-hub/kong-process-errors.md %}
+
+## Custom Fields by Lua
+
+{% include /md/plugins-hub/log_custom_fields_by_lua.md %}

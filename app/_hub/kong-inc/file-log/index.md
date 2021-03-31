@@ -78,6 +78,14 @@ params:
         Determines whether the log file is closed and reopened on every request. If the file
         is not reopened, and has been removed/rotated, the plugin keeps writing to the
         stale file descriptor, and hence loses information.
+    - name: custom_fields_by_lua
+      required: false
+      default:
+      datatype: map
+      description: |
+        A list of key-value pairs, where the key is the name of a log field and
+        the value is a chunk of Lua code, whose return value sets or replaces
+        the log field value.
 
 ---
 
@@ -92,3 +100,7 @@ params:
 ## Kong process errors
 
 {% include /md/plugins-hub/kong-process-errors.md %}
+
+## Custom Fields by Lua
+
+{% include /md/plugins-hub/log_custom_fields_by_lua.md %}
