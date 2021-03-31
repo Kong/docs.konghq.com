@@ -42,6 +42,7 @@ params:
     - name: key_names
       required: true
       default: "`apikey`"
+      value_in_examples: ["apikey"]
       datatype: array of strings
       description: |
         Describes an array of parameter names where the plugin will look for a key. The client must send the
