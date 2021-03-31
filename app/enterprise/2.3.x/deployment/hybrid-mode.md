@@ -96,3 +96,35 @@ Plane in Hybrid mode.
 Currently, there is no automated load balancing for connections between the
 Control Plane and the Data Plane. You can load balance manually by using
 multiple Control Planes and redirecting the traffic using a TCP proxy.
+
+## Version compatibility
+
+{{site.ee_product_name}} Control Plane only accepts Data Plane with
+same major version and at most two minor versions earlier (edge included)
+to connect. Control Plane doesn't allow Data Plane with newer version to
+connect.
+
+For example, with {{site.ee_product_name}} 2.4.2 Control Plane:
+
+- It accepts a {{site.ee_product_name}} 2.4.0, 2.4.1 and 2.4.2 Data Plane
+- It rejects a {{site.ee_product_name}} 2.4.3 Data Plane
+- It rejects a {{site.ee_product_name}} 2.3.9 Data Plane
+- It rejects a {{site.ee_product_name}} 1.0.0 Data Plane
+
+Furthermore, {{site.ee_product_name}} Control Planes checks plugins list
+installed on itself to those from Data Plane. It only accepts Data Plane
+whose list of plugins is a superset of itself. With plugin installed
+on both Control Plane and Data Plane, they must have same major and minor
+version.
+
+For example, with {{site.ee_product_name}} Control Plane has `plugin1` v1.1.1
+and `plugin2` v2.1.0 installed:
+
+- It accepts {{site.ee_product_name}} Data Plane with `plugin1` v1.1.2,
+`plugin2` v2.1.0 installed
+- It accepts {{site.ee_product_name}} Data Plane with `plugin1` v1.1.2,
+`plugin2` v2.1.0 and  `plugin3` v9.8.1 installed
+- It rejects {{site.ee_product_name}} Data Plane with `plugin1` v1.2.0,
+`plugin2` v2.1.0 installed
+- It rejects {{site.ee_product_name}} Data Plane with `plugin1` v1.1.1,
+`plugin3` v9.8.1 installed
