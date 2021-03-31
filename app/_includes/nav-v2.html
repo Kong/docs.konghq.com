@@ -79,6 +79,8 @@
 <script>
   function handleSearchClicked () {
     $('.navbar-v2').toggleClass('search-opened')
+    $('.navbar-v2').toggleClass('menu-opened', false)
+    $('#getkong-algolia-search-input').focus()
   }
 
   function toggleButtonClicked () {

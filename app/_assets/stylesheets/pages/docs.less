@@ -385,6 +385,10 @@
         border: 1px solid #e7ebee;
         text-transform: none;
         font: 500 18px/26px Roboto;
+
+        &:hover {
+          background-image: linear-gradient(to bottom,rgba(255,255,255,.15),rgba(189,230,207,.15))
+        }
       }
     }
   }
@@ -397,7 +401,7 @@
     color: rgba(0, 0, 0, 0.20);
     font-size: 20px;
     text-align: right;
-    
+
     &:before {
       cursor: pointer;
     }
@@ -732,5 +736,9 @@
     &.sidebar-open {
       transform: translateX(0);
     }
+  }
+
+  @media screen and (max-width: 400px) {
+    width: 100%;
   }
 }
