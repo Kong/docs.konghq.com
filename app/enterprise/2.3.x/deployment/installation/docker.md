@@ -107,6 +107,7 @@ $ docker run -d --name kong-ee --network=kong-ee-net \
   -p 8004:8004 \
   kong-ee
 ```
+
 <div class="alert alert-ee">
 <b>Note:</b> For <code>KONG_ADMIN_GUI_URL</code>, replace <code>&lt;DNSorIP&gt;</code>
 with with the DNS name or IP of the Docker host. <code>KONG_ADMIN_GUI_URL</code>

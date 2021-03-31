@@ -881,6 +881,51 @@
     }
   }
 
+  /* Rouge syntax and line numbers */
+
+  pre.highlight {
+      padding: 1rem 1.5rem;
+      overflow: auto;
+      line-height: 1.4rem;
+      position: relative;
+  }
+
+  table.rouge-table,
+  table.rouge-table tr,
+  table.rouge-table td,
+  table.rouge-table pre {
+      border: 0;
+      padding: 0;
+      margin: 0;
+      overflow: visible;
+      display: inline-block;
+      font-family: @family-code;
+  }
+
+  table.rouge-table td.rouge-gutter {
+      padding-right: 0.8rem;
+      border-right: 1px solid @gray;
+
+      @media (max-width: 1100px) {
+        margin-left: -1.2rem;
+      }
+  }
+
+  table.rouge-table td.rouge-code {
+      padding-left: 0.8em;
+  }
+
+  figure pre {
+      margin-bottom: 0;
+  }
+
+  .lineno {
+      text-align: center;
+      height: 100%;
+      min-width: 1.8rem;
+      color: @gray-dark;
+  }
+
   blockquote {
     opacity: 0.8;
     margin-left: 0;
@@ -1010,8 +1055,8 @@ Generic Styling for Desktop
     grid-column-gap: 16px;
     grid-row-gap: 16px;
     margin: 0;
-    justify-content: start;
-    align-content: start;
+    justify-content: flex-start;
+    align-content: flex-start;
 
     &:after {
       content: " ";
@@ -1029,7 +1074,7 @@ Generic Styling for Desktop
       flex-direction: column;
       -webkit-box-pack: justify;
       -ms-flex-pack: justify;
-      justify-content: start;
+      justify-content: flex-start;
       padding: 16px;
       text-decoration: none;
       margin-top: 0;
@@ -1071,8 +1116,8 @@ Generic Styling for Desktop
     grid-row-gap: 16px;
     max-width: 600px;
     margin: 0;
-    justify-content: start;
-    align-content: start;
+    justify-content: flex-start;
+    align-content: flex-start;
 
     .docs-grid-install-block {
       border: 1px solid #9dc6e3;
@@ -1084,7 +1129,7 @@ Generic Styling for Desktop
       align-items: center;
       -webkit-box-pack: justify;
       -ms-flex-pack: justify;
-      justify-content: start;
+      justify-content: flex-start;
       padding: 16px;
       text-decoration: none;
 
