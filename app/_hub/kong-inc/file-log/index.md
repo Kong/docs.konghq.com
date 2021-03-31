@@ -1,8 +1,8 @@
 ---
 name: File Log
 publisher: Kong Inc.
-version: 2.0.x
-# internal handler version 2.0.2
+version: 2.1.x
+# internal handler version 2.1.0
 
 desc: Append request and response data to a log file
 description: |
@@ -21,11 +21,12 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
         - 2.0.x
-        - 1.5.x      
+        - 1.5.x
         - 1.4.x
         - 1.3.x
         - 1.2.x
@@ -45,6 +46,7 @@ kong_version_compatibility:
         - 0.3.x
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
