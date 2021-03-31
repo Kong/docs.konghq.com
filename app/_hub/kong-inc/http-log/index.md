@@ -121,6 +121,14 @@ params:
     **NOTE:** If the `config.http_endpoint` contains a username and password (for example,
     `http://bob:password@example.com/logs`), then Kong Gateway automatically includes
     a basic-auth `Authorization` header in the log requests.
+    - name: custom_fields_by_lua
+      required: false
+      default:
+      datatype: map
+      description: |
+        A list of key-value pairs, where the key is the name of a log field and
+        the value is a chunk of Lua code, whose return value sets or replaces
+        the log field value.
 
 ---
 
@@ -151,3 +159,7 @@ The log server that receives these messages might require extra headers, e.g. fo
 ## Kong process errors
 
 {% include /md/plugins-hub/kong-process-errors.md %}
+
+## Custom Fields by Lua
+
+{% include /md/plugins-hub/log_custom_fields_by_lua.md %}
