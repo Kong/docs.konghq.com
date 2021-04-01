@@ -1,27 +1,16 @@
 # Generated via autodoc-nav
+- title: Introduction
+  icon: /assets/images/icons/documentation/icn-flag.svg
+  url: /
+  items:
+    - text: Changelog
+      url: https://github.com/Kong/kong/blob/master/CHANGELOG.md
+      absolute_url: true
+
 - title: Getting Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   items:
-    - text: Overview
-      url: /../../getting-started-guide/latest/overview
-    - text: Prepare to Administer
-      url: /../../getting-started-guide/latest/prepare
-    - text: Expose your Services
-      url: /../../getting-started-guide/latest/expose-services
-    - text: Protect your Services
-      url: /../../getting-started-guide/latest/protect-services
-    - text: Improve Performance
-      url: /../../getting-started-guide/latest/improve-performance
-    - text: Secure Services
-      url: /../../getting-started-guide/latest/secure-services
-    - text: Set Up Intelligent Load Balancing
-      url: /../../getting-started-guide/latest/load-balancing
-
-- title: Guides &amp; References
-  icon: /assets/images/icons/documentation/icn-references-color.svg
-  items:
     - text: Quickstart Guide
-      url: /getting-started/introduction
       items:
         - text: Five-minute quickstart
           url: /getting-started/quickstart
@@ -37,6 +26,27 @@
 
         - text: Adding Consumers
           url: /getting-started/adding-consumers
+
+    - text: Advanced Getting Started Guide
+      items:
+        - text: Overview
+          url: /../../getting-started-guide/latest/overview
+        - text: Prepare to Administer
+          url: /../../getting-started-guide/latest/prepare
+        - text: Expose your Services
+          url: /../../getting-started-guide/latest/expose-services
+        - text: Protect your Services
+          url: /../../getting-started-guide/latest/protect-services
+        - text: Improve Performance
+          url: /../../getting-started-guide/latest/improve-performance
+        - text: Secure Services
+          url: /../../getting-started-guide/latest/secure-services
+        - text: Set Up Intelligent Load Balancing
+          url: /../../getting-started-guide/latest/load-balancing
+
+- title: Guides &amp; References
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  items:
 
     - text: Configuration reference
       url: /configuration

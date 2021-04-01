@@ -4,8 +4,6 @@
   items:
     - text: Introduction
       items:
-        - text: Overview
-          url: /overview
         - text: Terminology
           url: /terminology
         - text: Architecture

@@ -1,8 +1,6 @@
-- title: Introduction
+- title: Kong Mesh Documentation
   icon: /assets/images/icons/documentation/icn-flag.svg
-  items:
-    - text: Overview
-      url: /overview
+  url: /
 
 - title: Release notes
   icon: /assets/images/icons/documentation/icn-references-color.svg

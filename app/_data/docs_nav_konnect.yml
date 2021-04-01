@@ -1,8 +1,7 @@
 - title: Introduction
   icon: /assets/images/icons/documentation/icn-flag.svg
+  url: /
   items:
-    - text: Overview
-      url: /overview
     - text: Using the Konnect Docs
       url: /using-konnect-docs
     - text: Key Concepts and Terms
