@@ -30,6 +30,8 @@ jobs:
 
     - name: Sync repository to branch
       uses: repo-sync/github-sync@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.REPO_SYNC_TOKEN }}
       with:
         source_repo: ${{ secrets.SOURCE_REPO }}
         source_branch: main
@@ -38,6 +40,8 @@ jobs:
 
     - name: Create pull request
       uses: repo-sync/pull-request@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.REPO_SYNC_TOKEN }}
       with:
         source_branch: chore/repo-sync
         destination_branch: main
