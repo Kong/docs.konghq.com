@@ -6,8 +6,8 @@ title: Enabling Plugins
   <strong>Before you start:</strong>
   <ol>
     <li>Make sure you've <a href="https://konghq.com/install/#kong-community">installed Kong</a> - It should only take a minute!</li>
-    <li>Make sure you've <a href="/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
-    <li>Also, make sure you've <a href="/{{page.kong_version}}/getting-started/configuring-a-service">configured your Service in Kong</a>.</li>
+    <li>Make sure you've <a href="/gateway-oss/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
+    <li>Also, make sure you've <a href="/gateway-oss/{{page.kong_version}}/getting-started/configuring-a-service">configured your Service in Kong</a>.</li>
   </ol>
 </div>
 
@@ -26,7 +26,7 @@ from unauthorized use.
 
 ## 1. Configure the key-auth plugin
 
-To configure the key-auth plugin for the Service you <a href="/{{page.kong_version}}/getting-started/configuring-a-service">configured in Kong</a>,
+To configure the key-auth plugin for the Service you <a href="/gateway-oss/{{page.kong_version}}/getting-started/configuring-a-service">configured in Kong</a>,
 issue the following cURL request:
 
 ```bash
@@ -71,4 +71,4 @@ Go to [Adding Consumers &rsaquo;][adding-consumers]
 
 [key-auth]: /plugins/key-authentication
 [plugins]: /plugins
-[adding-consumers]: /{{page.kong_version}}/getting-started/adding-consumers
+[adding-consumers]: /gateway-oss/{{page.kong_version}}/getting-started/adding-consumers

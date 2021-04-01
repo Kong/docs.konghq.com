@@ -584,7 +584,7 @@ target_data: |
   This page refers to the Admin API for running Kong configured with a
   database (Postgres or Cassandra). For using the Admin API for Kong
   in DB-less mode, please refer to the
-  <a href="/{{page.kong_version}}/db-less-admin-api">Admin API for DB-less Mode</a>
+  <a href="/gateway-oss/{{page.kong_version}}/db-less-admin-api">Admin API for DB-less Mode</a>
   page.
 </div>
 
@@ -3792,10 +3792,10 @@ HTTP 200 OK
 
 ---
 
-[clustering]: /{{page.kong_version}}/clustering
-[cli]: /{{page.kong_version}}/cli
-[active]: /{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
-[healthchecks]: /{{page.kong_version}}/health-checks-circuit-breakers
-[secure-admin-api]: /{{page.kong_version}}/secure-admin-api
-[proxy-reference]: /{{page.kong_version}}/proxy
-[db-less-admin-api]: /{{page.kong_version}}/db-less-admin-api
+[clustering]: /gateway-oss/{{page.kong_version}}/clustering
+[cli]: /gateway-oss/{{page.kong_version}}/cli
+[active]: /gateway-oss/{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
+[healthchecks]: /gateway-oss/{{page.kong_version}}/health-checks-circuit-breakers
+[secure-admin-api]: /gateway-oss/{{page.kong_version}}/secure-admin-api
+[proxy-reference]: /gateway-oss/{{page.kong_version}}/proxy
+[db-less-admin-api]: /gateway-oss/{{page.kong_version}}/db-less-admin-api

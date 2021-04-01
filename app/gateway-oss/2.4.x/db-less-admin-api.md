@@ -584,7 +584,7 @@ target_data: |
   This page refers to the Admin API for running Kong configured without a
   database, managing in-memory entities via declarative config.
   For using the Admin API for Kong with a database, please refer to the
-  <a href="/{{page.kong_version}}/admin-api">Admin API for Database Mode</a> page.
+  <a href="/gateway-oss/{{page.kong_version}}/admin-api">Admin API for Database Mode</a> page.
 </div>
 
 Kong comes with an **internal** RESTful Admin API for administration purposes.
@@ -2267,11 +2267,11 @@ HTTP 200 OK
 
 ---
 
-[clustering]: /{{page.kong_version}}/clustering
-[cli]: /{{page.kong_version}}/cli
-[active]: /{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
-[healthchecks]: /{{page.kong_version}}/health-checks-circuit-breakers
-[secure-admin-api]: /{{page.kong_version}}/secure-admin-api
-[proxy-reference]: /{{page.kong_version}}/proxy
-[db-less]: /{{page.kong_version}}/db-less-and-declarative-config
-[admin-api]: /{{page.kong_version}}/admin-api
+[clustering]: /gateway-oss/{{page.kong_version}}/clustering
+[cli]: /gateway-oss/{{page.kong_version}}/cli
+[active]: /gateway-oss/{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
+[healthchecks]: /gateway-oss/{{page.kong_version}}/health-checks-circuit-breakers
+[secure-admin-api]: /gateway-oss/{{page.kong_version}}/secure-admin-api
+[proxy-reference]: /gateway-oss/{{page.kong_version}}/proxy
+[db-less]: /gateway-oss/{{page.kong_version}}/db-less-and-declarative-config
+[admin-api]: /gateway-oss/{{page.kong_version}}/admin-api

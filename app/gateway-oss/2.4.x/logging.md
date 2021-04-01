@@ -5,7 +5,7 @@ toc: false
 
 ## Log Levels
 
-Log levels are set in [Kong's configuration](/{{page.kong_version}}/configuration/#log_level). Following are the log levels in increasing order of their severity, `debug`, `info`,
+Log levels are set in [Kong's configuration](/gateway-oss/{{page.kong_version}}/configuration/#log_level). Following are the log levels in increasing order of their severity, `debug`, `info`,
 `notice`, `warn`, `error` and `crit`.
 
 - *`debug`:* It provides debug information about the plugin's runloop and each individual plugin or other components. Only to be used during debugging since it is too chatty.

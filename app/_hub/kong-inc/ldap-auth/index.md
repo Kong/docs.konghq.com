@@ -192,8 +192,8 @@ the consumer in your code:
   <strong>Note:</strong>`X-Credential-Username` was deprecated in favor of `X-Credential-Identifier` in Kong 2.1.
 </div>
 
-[configuration]: /latest/configuration
-[consumer-object]: /latest/admin-api/#consumer-object
+[configuration]: /gateway-oss/latest/configuration
+[consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
 
 

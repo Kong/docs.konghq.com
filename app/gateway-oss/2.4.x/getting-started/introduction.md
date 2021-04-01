@@ -26,6 +26,6 @@ Now, lets get familiar with learning how to "start" and "stop" Kong.
 
 Go to [5-minute quickstart with Kong &rsaquo;][quickstart]
 
-[quickstart]: /{{page.kong_version}}/getting-started/quickstart
-[configuring-a-service]: /{{page.kong_version}}/getting-started/configuring-a-service
-[enabling-plugins]: /{{page.kong_version}}/getting-started/enabling-plugins
+[quickstart]: /gateway-oss/{{page.kong_version}}/getting-started/quickstart
+[configuring-a-service]: /gateway-oss/{{page.kong_version}}/getting-started/configuring-a-service
+[enabling-plugins]: /gateway-oss/{{page.kong_version}}/getting-started/enabling-plugins

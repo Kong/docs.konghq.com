@@ -84,7 +84,7 @@ section on the page below, setting  *distribution* to the appropriate value ( ls
 
     **Without a database**
 
-    If you are going to run Kong in [DB-less mode](/{{site.data.kong_latest.release}}/db-less-and-declarative-config/),
+    If you are going to run Kong in [DB-less mode](/gateway-oss/latest/db-less-and-declarative-config/),
     you should start by generating declarative config file. The following command will generate a `kong.yml`
     file in your current folder. It contains instructions about how to fill it up.
 
@@ -116,6 +116,6 @@ section on the page below, setting  *distribution* to the appropriate value ( ls
     $ curl -i http://localhost:8001/
     ```
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/gateway-oss/latest/getting-started/quickstart).
 
-[configuration]: /{{site.data.kong_latest.release}}/configuration#database
+[configuration]: /gateway-oss/latest/configuration#database

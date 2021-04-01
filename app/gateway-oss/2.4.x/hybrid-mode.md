@@ -437,5 +437,5 @@ of declarative config documentation for more information.
 
 ---
 
-[plugin-compat]: /{{page.kong_version}}/db-less-and-declarative-config#plugin-compatibility
-[db-less]: /{{page.kong_version}}/db-less-and-declarative-config
+[plugin-compat]: /gateway-oss/{{page.kong_version}}/db-less-and-declarative-config#plugin-compatibility
+[db-less]: /gateway-oss/{{page.kong_version}}/db-less-and-declarative-config
