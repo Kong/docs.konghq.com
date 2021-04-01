@@ -756,7 +756,6 @@ open-source **Kong Gateway 2.2.0.0**:
 ### Fixes
 
 #### Enterprise
-
 Fixed an issue when upgrading Kong Enterprise Gateway from v1.5.x to v2.1.x. Before the fix, when admin consumers were shared across multiple workspaces, it was possible for the migration to fail. This happened because plugin entities that depend on consumer entities must live in the same workspace as the consumer entity. This fix migrates these plugin entities to the same workspace as the consumer entities. Customers affected by this issue will need to upgrade to at least v2.1.4.5 before attempting to migrate from v1.5.x to v2.1.x.
 
 ## 2.1.4.4
