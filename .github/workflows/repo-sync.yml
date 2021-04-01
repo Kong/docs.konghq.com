@@ -34,14 +34,14 @@ jobs:
         source_repo: ${{ secrets.SOURCE_REPO }}
         source_branch: main
         destination_branch: chore/repo-sync
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.REPO_SYNC_TOKEN }}
 
     - name: Create pull request
       uses: repo-sync/pull-request@v2
       with:
         source_branch: chore/repo-sync
         destination_branch: main
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.REPO_SYNC_TOKEN }}
         pr_title: "(chore) Sync public to private"
         pr_body: "Automated PR for syncing the `main` branches of the Kong docs repos. Do not merge this PR manually!"
         pr_label: automated-pr
@@ -50,7 +50,7 @@ jobs:
       uses: juliangruber/find-pull-request-action@v1
       id: find-pull-request
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.REPO_SYNC_TOKEN }}
         branch: chore/repo-sync
         base: main
 
@@ -58,5 +58,5 @@ jobs:
       if: ${{ steps.find-pull-request.outputs.number }}
       uses: juliangruber/approve-pull-request-action@v1
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.REPO_SYNC_TOKEN }}
         number: ${{ steps.find-pull-request.outputs.number }}
