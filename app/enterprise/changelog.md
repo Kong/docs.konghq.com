@@ -751,7 +751,7 @@ open-source **Kong Gateway 2.2.0.0**:
   the new `shorthand_fields` top-level attribute.
 
 ## 2.1.4.5
-**Release Date** 2021/31/03
+**Release Date** 2021/03/31
 
 ### Fixes
 
