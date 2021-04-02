@@ -6,7 +6,7 @@ After installing {{site.ce_product_name}} on a GNU/Linux system, you can
 configure Kong to run as the built-in `kong` user and group instead of `root`.
 This makes the Nginx master and worker processes run as the `kong` user and
 group, overriding any settings in the
-[`nginx_user`](/{{page.kong_version}}/configuration/#nginx_user)
+[`nginx_user`](/gateway-oss/{{page.kong_version}}/configuration/#nginx_user)
 configuration property.
 
 <div class="alert alert-warning">

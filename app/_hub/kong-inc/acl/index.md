@@ -106,7 +106,7 @@ so that the plugin can identify the client Consumer making the request.
 {% navtab With a database %}
 
 After you have added an authentication plugin to a Service or a Route, and you have
-created your [Consumers](/latest/admin-api/#consumer-object), you can now
+created your [Consumers](/gateway-oss/latest/admin-api/#consumer-object), you can now
 associate a group to a Consumer using the following request:
 
 ```bash
@@ -227,4 +227,4 @@ Consumer.
 
 #### See also
 - [cidr](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
-- [configuration](/latest/configuration)
+- [configuration](/gateway-oss/latest/configuration)

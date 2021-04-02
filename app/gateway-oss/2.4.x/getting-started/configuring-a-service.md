@@ -6,7 +6,7 @@ title: Configuring a Service
   <strong>Before you start:</strong>
   <ol>
     <li>Make sure you've <a href="https://konghq.com/install/#kong-community">installed Kong</a> &mdash; It should only take a minute!</li>
-    <li>Make sure you've <a href="/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
+    <li>Make sure you've <a href="/gateway-oss/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
   </ol>
 </div>
 
@@ -131,7 +131,7 @@ Now that you've added your Service to Kong, let's learn how to enable plugins.
 
 Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 
-[API]: /{{page.kong_version}}/admin-api
-[enabling-plugins]: /{{page.kong_version}}/getting-started/enabling-plugins
-[proxy-port]: /{{page.kong_version}}/configuration/#nginx-section
+[API]: /gateway-oss/{{page.kong_version}}/admin-api
+[enabling-plugins]: /gateway-oss/{{page.kong_version}}/getting-started/enabling-plugins
+[proxy-port]: /gateway-oss/{{page.kong_version}}/configuration/#nginx-section
 [mockbin]: https://mockbin.com/

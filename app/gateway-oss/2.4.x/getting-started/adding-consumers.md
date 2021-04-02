@@ -6,8 +6,8 @@ title: Adding Consumers
   <strong>Before you start:</strong>
   <ol>
     <li>Make sure you've <a href="https://konghq.com/install/#kong-community">installed Kong</a> &mdash; It should only take a minute!</li>
-    <li>Make sure you've <a href="/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
-    <li>Also, make sure you've <a href="/{{page.kong_version}}/getting-started/configuring-a-service">configured your Service in Kong</a>.</li>
+    <li>Make sure you've <a href="/gateway-oss/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
+    <li>Also, make sure you've <a href="/gateway-oss/{{page.kong_version}}/getting-started/configuring-a-service">configured your Service in Kong</a>.</li>
   </ol>
 </div>
 
@@ -88,10 +88,10 @@ Questions? Issues? Contact us on one of the [Community Channels](/community)
 for help!
 
 [key-auth]: /plugins/key-authentication
-[API-consumers]: /{{page.kong_version}}/admin-api#create-consumer
-[enabling-plugins]: /{{page.kong_version}}/getting-started/enabling-plugins
-[configuration]: /{{page.kong_version}}/configuration
-[CLI]: /{{page.kong_version}}/cli
-[proxy]: /{{page.kong_version}}/proxy
-[API]: /{{page.kong_version}}/admin-api
-[cluster]: /{{page.kong_version}}/clustering
+[API-consumers]: /gateway-oss/{{page.kong_version}}/admin-api#create-consumer
+[enabling-plugins]: /gateway-oss/{{page.kong_version}}/getting-started/enabling-plugins
+[configuration]: /gateway-oss/{{page.kong_version}}/configuration
+[CLI]: /gateway-oss/{{page.kong_version}}/cli
+[proxy]: /gateway-oss/{{page.kong_version}}/proxy
+[API]: /gateway-oss/{{page.kong_version}}/admin-api
+[cluster]: /gateway-oss/{{page.kong_version}}/clustering

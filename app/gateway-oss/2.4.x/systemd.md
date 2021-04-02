@@ -110,7 +110,7 @@ To view the syslog logs:
 
 ### Customize Kong's Nginx instance [using the Nginx directive injection system
 
-To use the [Nginx directive injection system](/{{page.kong_version}}/configuration/#injecting-individual-nginx-directives),
+To use the [Nginx directive injection system](/gateway-oss/{{page.kong_version}}/configuration/#injecting-individual-nginx-directives),
 add the below `Environment` systemd directive to your custom service at
 `/etc/systemd/system/kong.service` if environment variables are preferred.
 Note the quoting rules defined by systemd to specify an environment variable
@@ -122,7 +122,7 @@ Environment="KONG_NGINX_HTTP_OUTPUT_BUFFERS=4 64k"
 
 ### Customize Kong's Nginx instance using `--nginx-conf`
 
-To use the [`--nginx-conf` argument](/{{page.kong_version}}/configuration/#custom-nginx-templates),
+To use the [`--nginx-conf` argument](/gateway-oss/{{page.kong_version}}/configuration/#custom-nginx-templates),
 modify the `ExecStartPre` systemd directive to execute `kong prepare` with the
 `--nginx-conf` argument. For example, if you have a custom template at
 `/usr/local/kong/custom-nginx.template`, modify the `ExecStartPre` directive
@@ -135,7 +135,7 @@ ExecStartPre=/usr/local/bin/kong prepare -p /usr/local/kong --nginx-conf /usr/lo
 ### Customize Kong's Nginx instance including files via the injected Nginx directives
 
 To [include files via the injected Nginx
-directives](/{{page.kong_version}}/configuration/#including-files-via-injected-nginx-directives),
+directives](/gateway-oss/{{page.kong_version}}/configuration/#including-files-via-injected-nginx-directives),
 add the below `Environment` systemd directive to your custom service at
 `/etc/systemd/system/kong.service` if environment variables are preferred:
 

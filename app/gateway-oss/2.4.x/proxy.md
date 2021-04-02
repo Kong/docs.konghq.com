@@ -1087,8 +1087,8 @@ subdomains, instead of creating an SNI for each.
 Valid wildcard positions are `mydomain.*`, `*.mydomain.com`, and `*.www.mydomain.com`.
 
 A default certificate can be added using the following parameters in Kong configuration:
-1. [`ssl_cert`](/latest/configuration/#ssl_cert)
-2. [`ssl_cert_key`](/latest/configuration/#ssl_cert_key)
+1. [`ssl_cert`](/gateway-oss/latest/configuration/#ssl_cert)
+2. [`ssl_cert_key`](/gateway-oss/latest/configuration/#ssl_cert_key)
 
 Or, by dynamically configuring the default certificate with an SNI of `*`:
 
@@ -1351,17 +1351,17 @@ just covered.
 
 [Back to top](#introduction)
 
-[plugin-configuration-object]: /{{page.kong_version}}/admin-api#plugin-object
-[plugin-development-guide]: /{{page.kong_version}}/plugin-development
-[plugin-association-rules]: /{{page.kong_version}}/admin-api/#precedence
-[proxy-websocket]: /{{page.kong_version}}/proxy/#proxy-websocket-traffic
-[load-balancing-reference]: /{{page.kong_version}}/loadbalancing
-[configuration-reference]: /{{page.kong_version}}/configuration/
-[configuration-trusted-ips]: /{{page.kong_version}}/configuration/#trusted_ips
-[configuring-a-service]: /{{page.kong_version}}/getting-started/configuring-a-service
-[API]: /{{page.kong_version}}/admin-api
-[service-entity]: /{{page.kong_version}}/admin-api/#add-service
-[route-entity]: /{{page.kong_version}}/admin-api/#add-route
+[plugin-configuration-object]: /gateway-oss/{{page.kong_version}}/admin-api#plugin-object
+[plugin-development-guide]: /gateway-oss/{{page.kong_version}}/plugin-development
+[plugin-association-rules]: /gateway-oss/{{page.kong_version}}/admin-api/#precedence
+[proxy-websocket]: /gateway-oss/{{page.kong_version}}/proxy/#proxy-websocket-traffic
+[load-balancing-reference]: /gateway-oss/{{page.kong_version}}/loadbalancing
+[configuration-reference]: /gateway-oss/{{page.kong_version}}/configuration/
+[configuration-trusted-ips]: /gateway-oss/{{page.kong_version}}/configuration/#trusted_ips
+[configuring-a-service]: /gateway-oss/{{page.kong_version}}/getting-started/configuring-a-service
+[API]: /gateway-oss/{{page.kong_version}}/admin-api
+[service-entity]: /gateway-oss/{{page.kong_version}}/admin-api/#add-service
+[route-entity]: /gateway-oss/{{page.kong_version}}/admin-api/#add-route
 
 [ngx-http-proxy-module]: http://nginx.org/en/docs/http/ngx_http_proxy_module.html
 [ngx-http-realip-module]: http://nginx.org/en/docs/http/ngx_http_realip_module.html
@@ -1371,5 +1371,5 @@ just covered.
 [ngx-server-port-variable]: http://nginx.org/en/docs/http/ngx_http_core_module.html#var_server_port
 [ngx-http-proxy-retries]: http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream_tries
 [SNI]: https://en.wikipedia.org/wiki/Server_Name_Indication
-[conf-grpc-service]: /{{page.kong_version}}/getting-started/configuring-a-grpc-service
+[conf-grpc-service]: /gateway-oss/{{page.kong_version}}/getting-started/configuring-a-grpc-service
 [file-log]: //file-log

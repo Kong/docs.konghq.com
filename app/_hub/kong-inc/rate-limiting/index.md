@@ -279,7 +279,7 @@ When the selected policy cannot be retrieved, the rate-limiting plugin will fall
 to limit using IP as the identifier. This can happen for several reasons, such as the
 selected header was not sent by the client or the configured service was not found.
 
-[api-object]: /latest/admin-api/#api-object
-[configuration]: /latest/configuration
-[consumer-object]: /latest/admin-api/#consumer-object
+[api-object]: /gateway-oss/latest/admin-api/#api-object
+[configuration]: /gateway-oss/latest/configuration
+[consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

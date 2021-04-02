@@ -184,7 +184,7 @@ It is not trivial to get everything built correctly, thus we provide
     $ curl --include http://localhost:8001/
     ```
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/gateway-oss/latest/getting-started/quickstart).
 
 ## Without a database
 
@@ -194,7 +194,7 @@ It is not trivial to get everything built correctly, thus we provide
 
     The following command will generate a `kong.yml` file in your current folder.
     It contains instructions about how to fill it up. Follow the
-    [Declarative Configuration Format]: /{{site.data.kong_latest.release}}/db-less-and-declarative-config/#the-declarative-configuration-format
+    [Declarative Configuration Format]: /gateway-oss/latest/db-less-and-declarative-config/#the-declarative-configuration-format
     instructions while doing so.
 
     ``` bash
@@ -220,5 +220,5 @@ It is not trivial to get everything built correctly, thus we provide
     $ curl --include http://localhost:8001/
     ```
 
-[configuration]: /{{site.data.kong_latest.release}}/configuration#database
-[go]: /{{site.data.kong_latest.release}}/go
+[configuration]: /gateway-oss/latest/configuration#database
+[go]: /gateway-oss/latest/go

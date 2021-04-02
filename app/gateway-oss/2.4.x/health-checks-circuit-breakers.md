@@ -351,12 +351,12 @@ upstreams.
 
 [Back to top](#introduction)
 
-[ringbalancer]: /{{page.kong_version}}/loadbalancing#ring-balancer
-[ringtarget]: /{{page.kong_version}}/loadbalancing#target
-[upstream]: /{{page.kong_version}}/loadbalancing#upstream
-[targetobject]: /{{page.kong_version}}/admin-api#target-object
-[addupstream]: /{{page.kong_version}}/admin-api#add-upstream
-[clustering]: /{{page.kong_version}}/clustering
-[upstreamobjects]: /{{page.kong_version}}/admin-api#upstream-objects
-[balancercaveats]: /{{page.kong_version}}/loadbalancing#balancing-caveats
-[dnscaveats]: /{{page.kong_version}}/loadbalancing#dns-caveats
+[ringbalancer]: /gateway-oss/{{page.kong_version}}/loadbalancing#ring-balancer
+[ringtarget]: /gateway-oss/{{page.kong_version}}/loadbalancing#target
+[upstream]: /gateway-oss/{{page.kong_version}}/loadbalancing#upstream
+[targetobject]: /gateway-oss/{{page.kong_version}}/admin-api#target-object
+[addupstream]: /gateway-oss/{{page.kong_version}}/admin-api#add-upstream
+[clustering]: /gateway-oss/{{page.kong_version}}/clustering
+[upstreamobjects]: /gateway-oss/{{page.kong_version}}/admin-api#upstream-objects
+[balancercaveats]: /gateway-oss/{{page.kong_version}}/loadbalancing#balancing-caveats
+[dnscaveats]: /gateway-oss/{{page.kong_version}}/loadbalancing#dns-caveats

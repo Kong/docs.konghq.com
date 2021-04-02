@@ -81,7 +81,7 @@ To begin, go to [Configuring a Service &rsaquo;][configuring-a-service]
 [CLI]: /0.13.x/cli
 [API]: /0.13.x/admin-api
 [GUI]: /enterprise/{{page.kong_version}}/admin-gui/overview
-[datastore-section]: /latest/configuration/#datastore-section
+[datastore-section]: /gateway-oss/latest/configuration/#datastore-section
 [configuring-a-service]: /enterprise/{{page.kong_version}}/getting-started/configuring-a-service
 [docker]: /enterprise/{{page.kong_version}}/installation/docker/
 [centos]: /enterprise/{{page.kong_version}}/installation/centos/

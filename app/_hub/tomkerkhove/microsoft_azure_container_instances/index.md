@@ -143,4 +143,4 @@ Running Kong on Azure Container Instances is super easy:
 
     That's it - You can now use Kong by browsing to `<dns-label>.westeurope.azurecontainer.io`.
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/gateway-oss/latest/getting-started/quickstart).
