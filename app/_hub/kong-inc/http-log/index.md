@@ -132,6 +132,20 @@ params:
 
 {% include /md/plugins-hub/json-object-log.md %}
 
+
+## Custom Headers
+
+The log server that receives these messages might require extra headers, e.g. for authorization purposes.
+
+```yaml
+...
+  - name: http-log
+    config:
+      headers:
+        Authorization: Bearer <<token>>
+...
+```
+
 ## Kong process errors
 
 {% include /md/plugins-hub/kong-process-errors.md %}
