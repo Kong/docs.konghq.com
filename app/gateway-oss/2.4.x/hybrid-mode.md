@@ -435,6 +435,36 @@ means it has the same limitations as declarative config as of today. Please refe
 to the [Plugin Compatibility section][plugin-compat]
 of declarative config documentation for more information.
 
+### Version compatibility
+
+{{site.ce_product_name}} Control Planes only connect to Data Planes with the
+same major version and at most two minor versions earlier (edge included).
+Control Planes won't connect to Data Planes with newer versions.
+
+For example, a {{site.ce_product_name}} v2.4.2 Control Plane:
+
+- Accepts a {{site.ce_product_name}} 2.4.0, 2.4.1 and 2.4.2 Data Plane
+- Rejects a {{site.ce_product_name}} 2.4.3 Data Plane
+- Rejects a {{site.ce_product_name}} 2.3.9 Data Plane
+- Rejects a {{site.ce_product_name}} 1.0.0 Data Plane
+
+Furthermore, {{site.ce_product_name}} Control Planes only accept Data Planes
+whose list of plugins is a superset of the plugins installed on it. Also, plugins installed
+on both Control Planes and Data Planes, must have the same major and minor
+versions.
+
+For example, if a {{site.ce_product_name}} Control Plane has `plugin1` v1.1.1
+and `plugin2` v2.1.0 installed:
+
+- It accepts {{site.ce_product_name}} Data Planes with `plugin1` v1.1.2,
+`plugin2` v2.1.0 installed
+- It accepts {{site.ce_product_name}} Data Planes with `plugin1` v1.1.2,
+`plugin2` v2.1.0 and  `plugin3` v9.8.1 installed
+- It rejects {{site.ce_product_name}} Data Planes with `plugin1` v1.2.0,
+`plugin2` v2.1.0 installed
+- It rejects {{site.ce_product_name}} Data Planes with `plugin1` v1.1.1,
+`plugin3` v9.8.1 installed
+
 ---
 
 [plugin-compat]: /{{page.kong_version}}/db-less-and-declarative-config#plugin-compatibility
