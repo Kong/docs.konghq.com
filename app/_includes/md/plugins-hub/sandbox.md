@@ -1,6 +1,6 @@
 <!---shared with plugins that accept custom lua code --->
 
-The sandboxing consists of several limitations in the way the Lua code can be executed,
+Sandboxing consists of several limitations in the way the Lua code can be executed,
 for heightened security.
 
 The following functions are not available because they can be used to abuse the system:
@@ -9,15 +9,15 @@ The following functions are not available because they can be used to abuse the 
 * `{set|get}metatable`: Can be used to modify the metatables of global objects (strings, numbers).
 * `collectgarbage`: Can be abused to kill the performance of other workers.
 * `_G`: Is the root node which has access to all functions. It is masked by a temporary table.
-* `load{file|string}`: Is deemed unsafe because it can grant access to global environment.
-* `raw{get|set|equal}`: Potentially unsafe because the sandboxing relies on some metatable manipulation.
+* `load{file|string}`: Is deemed unsafe because it can grant access to the global environment.
+* `raw{get|set|equal}`: Potentially unsafe because sandboxing relies on some metatable manipulation.
 * `string.dump`: Can display confidential server information (such as implementation of functions).
 * `math.randomseed`: Can affect the host system. {{site.base_gateway}} already seeds the random number generator properly.
 * All `os.*` (except `os.clock`, `os.difftime`, and `os.time`). `os.execute` can significantly alter the host system.
 * `io.*`: Provides access to the hard drive.
 * `dofile|require`: Provides access to the hard drive.
 
-The exclusion of `require` means that Plugins must only use PDK functions `kong.*`. The `ngx.*` abstraction is
+The exclusion of `require` means that plugins must only use PDK functions `kong.*`. The `ngx.*` abstraction is
 also available, but it is not guaranteed to be present in future versions of the plugin.
 
 In addition to the above restrictions:
