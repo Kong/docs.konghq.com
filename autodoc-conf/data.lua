@@ -8,7 +8,6 @@ data.header = [[
 #  the files in https://github.com/Kong/docs.konghq.com/tree/master/autodoc-conf
 #
 title: Configuration Reference
-skip_read_time: true
 ---
 
 ## Configuration loading

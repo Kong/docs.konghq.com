@@ -9,8 +9,20 @@ description: |
   Log [metrics](#metrics) for a Service, Route (or the deprecated API entity)
   to a StatsD server.
   It can also be used to log metrics on [Collectd](https://collectd.org/)
-  daemon by enabling its [StatsD
-  plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
+  daemon by enabling its
+  [StatsD plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
+
+  <div class="alert alert-ee blue"><strong>Tip:</strong> The StatsD Advanced plugin provides
+  additional features not available in the open source <a href="/hub/kong-inc/statsd/">StatsD</a> plugin,
+  such as:
+
+  <ul>
+  <li>Ability to choose status codes to log to metrics.</li>
+  <li>More granular status codes per workspace.</li>
+  <li>Ability to use TCP instead of UDP.</li>
+  </ul>
+  </div>
+
 
 enterprise: true
 type: plugin
@@ -28,56 +40,70 @@ kong_version_compatibility:
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
-        - 0.34-x
 
 params:
   name: statsd-advanced
-  api_id: true
+  api_id: false
   service_id: true
   route_id: true
   consumer_id: true
   protocols: ["http", "https", "grpc", "grpcs", "tcp", "tls", "udp"]
   config:
     - name: host
-      required:
+      required: true
       default: "`127.0.0.1`"
       value_in_examples: 127.0.0.1
-      description: The IP address or host name of StatsD server to send data to
+      datatype: string
+      description: The IP address or hostname of StatsD server to send data to.
     - name: port
-      required:
+      required: true
       default: "`8125`"
       value_in_examples: 8125
-      description: The port of StatsD server to send data to
+      datatype: integer
+      description: The port of StatsD server to send data to.
     - name: metrics
-      required:
-      default: "All metrics<br>are logged"
+      required: true
+      default: "All metrics are logged"
+      datatype: Array of record elements
       description: |
         List of Metrics to be logged. Available values are described under [Metrics](#metrics).
     - name: prefix
-      required:
+      required: true
       default: "`kong`"
-      description: String to be prefixed to each metric's name
-    - name: udp_packet_size
-      required:
-      default: "`0` (not combined)"
-      description: Combine UDP packet up to the size configured
-    - name: use_tcp
-      required:
+      datatype: string
+      description: String to prefix to each metric's name.
+    - name: hostname_in_prefix
+      required: true
       default: "`false`"
-      description: Use TCP instead of UDP
+      datatype: boolean
+      description: Include the `hostname` in the `prefix` for each metric name.
+    - name: udp_packet_size
+      required: true
+      default: "`0` (not combined)"
+      datatype: number
+      description: |
+        Combine UDP packet up to the size configured. If zero (0), don't combine the
+        UDP packet. Must be a number between 0 and 65507 (inclusive).
+    - name: use_tcp
+      required: true
+      default: "`false`"
+      datatype: boolean
+      description: Use TCP instead of UDP.
     - name: allow_status_codes
-      required:
+      required: true
       default: "All responses are passed to log metrics"
       value_in_examples: ["200-205","400-499"]
-      description: List of status code ranges which are allowed to be logged in metrics  
+      datatype: array of string elements
+      description: List of status code ranges that are allowed to be logged in metrics.  
   extra: |
-    By default the Plugin sends a packet for each metric it observes. `udp_packet_size` configures the greatest datagram size the Plugin can combine. It should be less than 65507 according to UDP protocol. Please consider the MTU of the network when setting this parameter.
+    By default, the plugin sends a packet for each metric it observes. The `udp_packet_size` option
+    configures the greatest datagram size the plugin can combine. It should be less than
+    65507 according to UDP protocol. Please consider the MTU of the network when setting this parameter.
 ---
 
 ## Metrics
 
-Metric                     | description | namespace
+Metric                     | Description | Namespace
 ---                        | ---         | ---
 `request_count`            | the request count | kong.service.\<service_identifier>.request.count
 `request_size`             | the request's body size in bytes | kong.service.\<service_identifier>.request.size
@@ -95,31 +121,31 @@ Metric                     | description | namespace
 
 If a request URI doesn't match any Routes, the following metrics will be sent instead:
 
-Metric                     | description | namespace
+Metric                     | Description | Namespace
 ---                        | ---         | ---
 `request_count`            | the request count | kong.global.unmatched.request.count
 `request_size`             | the request's body size in bytes | kong.global.unmatched.request.size
 `response_size`            | the response's body size in bytes | kong.global.unmatched.response.size
 `latency`                  | the time interval between the request started and response received from the upstream server | kong.global.unmatched.latency
-`status_count`             | the status code | kong.global.unmatched.status.\<status>.count
-`kong_latency`             | the internal Kong latency that it took to run all the Plugins | kong.global.unmatched.kong_latency
+`status_count`             | the status count | kong.global.unmatched.status.\<status>.count
+`kong_latency`             | the internal Kong latency that it took to run all the plugins | kong.global.unmatched.kong_latency
 
 ### Metric Fields
 
-Plugin can be configured with any combination of [Metrics](#metrics), with each entry containing the following fields:
+The plugin can be configured with any combination of [Metrics](#metrics), with each entry containing the following fields:
 
-Field         | description                                             | allowed values
----           | ---                                                     | ---
-`name`          | StatsD metric's name                                  | [Metrics](#metrics)          
-`stat_type`     | determines what sort of event the metric represents   | `gauge`, `timer`, `counter`, `histogram`, `meter` and `set`|
-`sample_rate`<br>*conditional*   | sampling rate                        | `number`                 
-`customer_identifier`<br>*conditional* | authenticated user detail       | `consumer_id`, `custom_id`, `username`
-`service_identifier`<br>*conditional* | Service detail       | `service_id`, `service_name`, `service_host`, `service_name_or_host`
-`workspace_identifier`<br>*conditional* | Workspace detail       | `workspace_id`, `workspace_name`
+Field         | Description                                             | Datatype | Allowed values
+---           | ---                                                     | ---        ---
+`name`          | StatsD metric's name. Required.                       | String   | [Metrics](#metrics)          
+`stat_type`     | Determines what sort of event a metric represents. Required.  | String   | `gauge`, `timer`, `counter`, `histogram`, `meter` and `set`|
+`sample_rate`<br>*conditional*   | Sampling rate. Required.              | Number        | `number`                 
+`consumer_identifier`<br>*conditional* | Authenticated user detail. Required.  | String   | One of the following options: `consumer_id`, `custom_id`, `username`
+`service_identifier`<br>*conditional* | Service detail. Required.  | String   |  One of the following options:`service_id`, `service_name`, `service_host`, `service_name_or_host`
+`workspace_identifier`<br>*conditional* | Workspace detail. Required.  | String | One of the following options:`workspace_id`, `workspace_name`
 
 ### Metric Behaviors
 
-1.  By default all metrics get logged.
+1.  By default, all metrics get logged.
 2.  Metric with `stat_type` set to `counter` or `gauge` must have `sample_rate` defined as well.
 3.  `unique_users` metric only works with `stat_type` as `set`.
 4.  `status_count`, `status_count_per_user`, `status_count_per_user_per_route` and `request_per_user` work only with `stat_type` as `counter`.

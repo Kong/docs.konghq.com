@@ -5,7 +5,7 @@ version: 1.0.0
 
 desc: Allow developers to make requests from the browser
 description: |
-  Easily add __Cross-origin resource sharing *(CORS)*__ to a Service and a Route
+  Easily add __cross-origin resource sharing *(CORS)*__ to a Service and a Route
   by enabling this plugin.
 
 type: plugin
@@ -60,41 +60,50 @@ params:
       required: false
       default:
       value_in_examples: ["http://mockbin.com"]
+      datatype: array of string elements
       description: |
-        List of allowed domains for the `Access-Control-Allow-Origin` header. If you want to allow all origins, add `*` as a single value to this configuration field. The accepted values can either be flat strings or PCRE regexes. **NOTE**: Prior to Kong 0.10.x, this parameter was `config.origin` (note the change in trailing `s`), and only accepted a single value, or the `*` special value.
+        List of allowed domains for the `Access-Control-Allow-Origin` header. If you want to allow all origins, add `*` as a single value to this configuration field. The accepted values can either be flat strings or PCRE regexes.
     - name: methods
       required: false
       default: "`GET, HEAD, PUT, PATCH, POST, DELETE, OPTIONS, TRACE, CONNECT`"
       value_in_examples: [ "GET", "POST" ]
+      datatype: array of string elements
       description:
-        Value for the `Access-Control-Allow-Methods` header.
+        Value for the `Access-Control-Allow-Methods` header. Available
+        options include `GET`, `HEAD`, `PUT`, `PATCH`, `POST`, `DELETE`, `OPTIONS`, `TRACE`, `CONNECT`.
+        By default, all options are allowed.
     - name: headers
       required: false
       default: "Value of the `Access-Control-Request-Headers` request header"
       value_in_examples: [ "Accept", "Accept-Version", "Content-Length", "Content-MD5", "Content-Type", "Date", "X-Auth-Token" ]
+      datatype: array of string elements
       description: |
         Value for the `Access-Control-Allow-Headers` header.
     - name: exposed_headers
       required: false
       default:
       value_in_examples: ["X-Auth-Token"]
+      datatype: array of string elements
       description: |
         Value for the `Access-Control-Expose-Headers` header. If not specified, no custom headers are exposed.
     - name: credentials
-      required: false
+      required: true
       default: "`false`"
       value_in_examples: true
+      datatype: boolean
       description: |
         Flag to determine whether the `Access-Control-Allow-Credentials` header should be sent with `true` as the value.
     - name: max_age
       required: false
       default:
       value_in_examples: 3600
+      datatype: number
       description: |
         Indicates how long the results of the preflight request can be cached, in `seconds`.
     - name: preflight_continue
-      required: false
+      required: true
       default: "`false`"
+      datatype: boolean
       description: A boolean value that instructs the plugin to proxy the `OPTIONS` preflight request to the Upstream service.
 
 ---

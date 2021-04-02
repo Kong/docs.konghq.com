@@ -7,7 +7,6 @@
 #
 title: Admin API for DB-less Mode
 toc: false
-skip_read_time: true
 
 service_body: |
     Attributes | Description

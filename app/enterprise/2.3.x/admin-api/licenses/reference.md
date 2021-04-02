@@ -5,22 +5,22 @@ book: licenses
 licenses_attribute_id: |
     Attributes | Description
     ---:| ---
-    `id` | The **License's** unique ID.
+    `id` | The **license's** unique ID.
 
 licenses_body: |
     Attribute | Description
     ---:| ---
-    `payload` | The **{{site.ee_product_name}} License** in JSON format.
+    `payload` | The **Kong Gateway license** in JSON format.
 ---
 
 ## Introduction
 
-The {{site.ee_product_name}} Licenses feature is configurable through the
-[Admin API]. This feature allows the configuration a license in your
-{{site.ee_product_name}} cluster; traditional and hybrid mode deployments. In
-hybrid mode deployments, licenses configured via the `/licenses` endpoint will
-be sent to all dataplanes in the cluster and the most recent `updated_at`
-license will be used.
+The {{site.base_gateway}} Licenses feature is configurable through the
+[Admin API]. This feature lets you configure a license in your
+{{site.base_gateway}} cluster, in both traditional and hybrid mode deployments.
+In hybrid mode deployments, the control plane sends licenses configured
+through the `/licenses` endpoint to all data planes in the cluster. The data
+planes use the most recent `updated_at` license.
 
 ### List Licenses
 **Endpoint**
@@ -47,7 +47,7 @@ HTTP 200 OK
 }
 ```
 
-If there are no licenses stored by {{site.ee_product_name}} the data array will
+If there are no licenses stored by {{site.base_gateway}}, the data array will
 be empty.
 
 ```json
@@ -59,20 +59,21 @@ be empty.
 
 ### Add License
 
-To create a license using an auto-generation UUID
+To create a license using an auto-generated UUID:
 
 **Endpoint**
 
 <div class="endpoint post">/licenses/</div>
 
-#### Request Body
+**Request Body**
 
 {{ page.licenses_body }}
 
-* The behavior of `POST` endpoint is the following: if the request payload
-contains a valid {{site.ee_product_name}} license, the license will be added.
-If the request payload contains a invalid licence, a `400 BAD REQUEST` will be
-returned.
+When using `POST`, if the request payload **does**
+contain a valid {{site.base_gateway}} license, the license will be added.
+
+If the request payload **does not** contain a valid licence, a `400 BAD REQUEST`
+will be returned.
 
 **Response**
 
@@ -97,15 +98,17 @@ HTTP 201 Created
 
 {{ page.licenses_attribute_id }}
 
-* The behavior of `PUT` endpoint is the following: if the request payload
-**does not** contain an entity's primary key (`id` for Licenses), the
-license will be added and assign the id given. If the request payload
-**does** contain an entity's primary key (`id` for Licenses), the license
-will be replaced with the given payload attribute. If the id is not a valid
-UUID, a `400 BAD REQUEST` will be returned or if the id omitted, a `405 NOT
-ALLOWED` will be returned.
+When using `PUT`, if the request payload
+**does not** contain an entity's primary key (`id` for licenses), the
+license will be added and assigned the given ID.
 
-#### Request Body
+If the request payload
+**does** contain an entity's primary key (`id` for Licenses), the license
+will be replaced with the given payload attribute.
+If the ID is not a valid UUID, a `400 BAD REQUEST` will be returned. If the ID
+is omitted, a `405 NOT ALLOWED` will be returned.
+
+**Request Body**
 
 {{ page.licenses_body }}
 
@@ -132,14 +135,16 @@ HTTP 200 OK
 
 {{ page.licenses_attribute_id }}
 
-* The behavior of `PATCH` endpoint is the following: if the request payload
-**does** contain an entity's primary key (`id` for Licenses), the license will
-be replaced with the given payload attribute. If the request payload **does
-not** contain an entity's primary key (`id` for Licenses), a `404 NOT FOUND`
+When using `PATCH`, if the request payload
+**does** contain an entity's primary key (`id` for licenses), the license will
+be replaced with the given payload attribute.
+
+If the request payload **does
+not** contain an entity's primary key (`id` for licenses), a `404 NOT FOUND`
 will be returned or if the request payload contains a invalid licence, a `400
 BAD REQUEST` will be returned.
 
-#### Request Body
+**Request Body**
 
 {{ page.licenses_body }}
 

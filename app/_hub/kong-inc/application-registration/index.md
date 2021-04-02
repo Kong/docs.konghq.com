@@ -45,6 +45,7 @@ params:
   service_id: true
   consumer_id: false
   route_id: false
+  konnect_examples: false
   protocols: ["http", "https", "grpc", "grpcs"]
   dbless_compatible: no
   config:
@@ -52,6 +53,7 @@ params:
       required: true
       default: "`false`"
       value_in_examples: false
+      datatype: boolean
       description: |
         If enabled, all new Service Contracts requests are automatically
         approved. See [Enable automatic registration approval](#enable-automatic-registration-approval). Otherwise, Dev Portal admins must manually approve requests.
@@ -59,18 +61,21 @@ params:
       required: false
       default:
       value_in_examples: <my_service_description>
+      datatype: string
       description: |
         Unique description displayed in information about a Service in the Developer Portal.
     - name: display_name
       required: true
       default:
       value_in_examples: <my_service_display_name>
+      datatype: string
       description: |
         Unique display name used for a Service in the Developer Portal.
     - name: show_issuer
-      required: false
+      required: true
       default: "`false`"
       value_in_examples: false
+      datatype: boolean
       description: |
         Displays the **Issuer URL** in the **Service Details** dialog.
 ---

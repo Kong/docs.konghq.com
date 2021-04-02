@@ -1,7 +1,7 @@
 ---
 name: Reedelk Transformer
 
-publisher: Reedelk
+publisher: codecentric AG
 
 categories:
   - transformations

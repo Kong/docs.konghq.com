@@ -47,7 +47,7 @@ The generated token looks like:
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJab25lIjoid2VzdCIsIlRva2VuU2VyaWFsTnVtYmVyIjoxfQ.kIrS5W0CPMkEVhuRXcUxk3F_uUoeI3XK1Gw-uguWMpQ
 ```
 
-For authentication to the global control plane on Kubernetes, you can port-forward port 5681 port to access the API.
+For authentication to the global control plane on Kubernetes, you can port-forward port 5681 to access the API.
 
 ### Add token to each remote configuration
 
@@ -60,7 +60,7 @@ If you install the remote control plane with `kumactl install control-plane`, pa
 $ kumactl install control-plane \
   --mode=remote \
   --zone=<zone name> \
-  --cp-token-path=/tmp/token
+  --cp-token-path=/tmp/token \
   --ingress-enabled \
   --kds-global-address grpcs://`<global-kds-address>` | kubectl apply -f - 
 ```
@@ -116,6 +116,8 @@ $ KUMA_MODE=remote \
 
 ### Enable authentication on the global control plane
 
+If you are starting from scratch and not securing existing Kong Mesh deployment, you can do this as a first step.
+
 {% navtabs %}
 {% navtab Kubernetes with kumactl %}
 
@@ -123,7 +125,7 @@ If you install the remote control plane with `kumactl install control-plane`, pa
 
 ```sh
 $ kumactl install control-plane \
-  --mode=global
+  --mode=global \
   --cp-auth=cpToken | kubectl apply -f -
 ```
 
@@ -279,4 +281,3 @@ The result looks like:
 ## Additional security
 
 By default, a connection from the remote control plane to the global control plane is secured with TLS. You should also configure the remote control plane to [verify the certificate authority (CA) of the global control plane](https://kuma.io/docs/1.0.8/security/certificates/){:target="_blank"}.
-

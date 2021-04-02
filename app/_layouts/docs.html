@@ -143,11 +143,6 @@ id: documentation
           </div>
           {% endif %}
 
-          {% if page.edition == 'enterprise' %}
-          {% unless page.skip_read_time == true or page.path contains '/admin-api/'
-          or page.path contains '/pdk/' %}{% include read_time.html %}{% endunless %}
-          {% endif %}
-
           {% assign filename = page.path | split: '/' | last %}
           {% if page.toc == true or
           page.toc != false and filename != "index.md" %}

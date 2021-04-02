@@ -391,10 +391,6 @@ $(function () {
     });
   });
 
-  analytics.track(
-    "Viewed " + $.trim(document.title.split("|").shift()) + " page"
-  );
-
   $(".plugin-plate-link").each(function () {
     analytics.trackLink(this, "Click on plugin", {
       plugin_type: $(this).closest(".plugin-plate").find("h3").text(),
@@ -664,7 +660,7 @@ $(function () {
       copyInput.text(
         snippet.data("copy-code") ||
           snippet
-            .find("code")
+            .find(".rouge-code")
             .text()
             .replace(/^\s*\$\s*/gi, "")
       );
@@ -703,7 +699,6 @@ $(function () {
    * ---
    * title: Install Kong Enterprise
    * toc: false
-   * skip_read_time: true
    * disable_image_expand: true
    * ---
    */

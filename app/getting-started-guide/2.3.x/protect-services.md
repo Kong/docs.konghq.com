@@ -20,6 +20,31 @@ Rate limiting protects the APIs from accidental or malicious overuse. Without ra
 ## Set up Rate Limiting
 
 {% navtabs %}
+{% navtab Using Kong Manager %}
+
+1. Access your Kong Manager instance and your **default** workspace.
+
+2. Go to **API Gateway** > **Plugins**.
+
+3. Click **New Plugin**.
+
+4. Scroll down to **Traffic Control** and find the **Rate Limiting Advanced** plugin. Click **Enable**.
+
+5. Apply the plugin as **Global**, which means the rate limiting applies to all requests, including every Service and Route in the Workspace.
+
+    If you switched it to **Scoped**, the rate limiting would apply the plugin to only one Service, Route, or Consumer.
+
+    > **Note**: By default, the plugin is automatically enabled when the form is submitted. You can also toggle the **This plugin is Enabled** button at the top of the form to configure the plugin without enabling it. For this example, keep the plugin enabled.
+
+6. Scroll down and complete only the following fields with the following parameters.
+    1. config.limit: `5`
+    2. config.sync_rate: `-1`
+    3. config.window_size: `30`
+
+    Besides the above fields, there may be others populated with default values. For this example, leave the rest of the fields as they are.
+
+7. Click **Create**.
+{% endnavtab %}
 {% navtab Using the Admin API %}
 
 <div class="alert alert-ee">
@@ -49,32 +74,6 @@ $ http -f post :8001/plugins \
 {% endnavtabs %}
 <!-- end codeblock tabs -->
 
-{% endnavtab %}
-
-{% navtab Using Kong Manager %}
-
-1. Access your Kong Manager instance and your **default** workspace.
-
-2. Go to **API Gateway** > **Plugins**.
-
-3. Click **New Plugin**.
-
-4. Scroll down to **Traffic Control** and find the **Rate Limiting Advanced** plugin. Click **Enable**.
-
-5. Apply the plugin as **Global**, which means the rate limiting applies to all requests, including every Service and Route in the Workspace.
-
-    If you switched it to **Scoped**, the rate limiting would apply the plugin to only one Service, Route, or Consumer.
-
-    > **Note**: By default, the plugin is automatically enabled when the form is submitted. You can also toggle the **This plugin is Enabled** button at the top of the form to configure the plugin without enabling it. For this example, keep the plugin enabled.
-
-6. Scroll down and complete only the following fields with the following parameters.
-    1. config.limit: `5`
-    2. config.sync_rate: `-1`
-    3. config.window_size: `30`
-
-    Besides the above fields, there may be others populated with default values. For this example, leave the rest of the fields as they are.
-
-7. Click **Create**.
 {% endnavtab %}
 {% navtab Using decK (YAML) %}
 
@@ -138,6 +137,14 @@ and in-memory, on the node:
 ## Validate Rate Limiting
 
 {% navtabs %}
+{% navtab Using a Web Browser %}
+
+1. Enter `<admin-hostname>:8000/mock` and refresh your browser six times.
+    After the 6th request, you’ll receive an error message.
+2. Wait at least 30 seconds and try again.
+    The service will be accessible until the sixth (6th) access attempt within a 30-second window.
+
+{% endnavtab %}
 {% navtab Using the Admin API %}
 
 To validate rate limiting, access the API six (6) times from the CLI to confirm the requests are rate limited.
@@ -164,14 +171,6 @@ After the 6th request, you should receive a 429 "API rate limit exceeded" error:
 "message": "API rate limit exceeded"
 }
 ```
-{% endnavtab %}
-{% navtab Using a Web Browser %}
-
-1. Enter `<admin-hostname>:8000/mock` and refresh your browser six times.
-    After the 6th request, you’ll receive an error message.
-2. Wait at least 30 seconds and try again.
-    The service will be accessible until the sixth (6th) access attempt within a 30-second window.
-
 {% endnavtab %}
 {% endnavtabs %}
 

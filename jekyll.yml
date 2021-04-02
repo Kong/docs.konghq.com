@@ -4,6 +4,14 @@ destination: dist
 permalink: pretty
 timezone: America/San_Francisco
 markdown: kramdown
+kramdown:
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
 incremental: true
 
 keep_files:
@@ -77,11 +85,6 @@ plugins:
 
 defaults:
   - scope:
-      path: 'studio'
-    values:
-      layout: 'docs'
-
-  - scope:
       path: ''
     values:
       layout: 'docs-v2'
@@ -104,7 +107,7 @@ defaults:
   - scope:
       path: 'getting-started-guide'
     values:
-      layout: 'getting-started-guide'
+      layout: 'docs-v2'
 
   - scope:
       path: 'deck'
@@ -148,6 +151,7 @@ mesh_product_name: Kong Mesh
 kic_product_name: Kubernetes Ingress Controller
 konnect_product_name: Kong Konnect
 konnect_short_name: Konnect
+konnect_saas: Konnect SaaS
 package_name: Kong Konnect
 company_name: Kong Inc.
 

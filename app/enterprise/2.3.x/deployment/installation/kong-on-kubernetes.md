@@ -2,11 +2,6 @@
 title: Installing Kong Gateway (Enterprise) on Kubernetes
 ---
 
-<div class="alert alert-ee warning">
-<strong>Note:</strong>
-This deployment option is not supported in free mode.
-</div>
-
 ## Introduction
 
 {{site.ee_product_name}} on Kubernetes supports all Enterprise plugins and features.
@@ -38,14 +33,15 @@ Before starting installation, be sure you have the following:
 - **Kubernetes cluster with load balancer**: Kong is compatible with all distributions of Kubernetes. You can use a [Minikube](https://kubernetes.io/docs/setup/minikube/), [GKE](https://cloud.google.com/kubernetes-engine/), or [OpenShift](https://www.openshift.com/products/container-platform) cluster.
 - **kubectl or oc access**: You should have `kubectl` or `oc` (if working with OpenShift) installed and configured to communicate to your Kubernetes cluster.
 - Helm installed.
-{% include /md/{{page.kong_version}}/bintray-and-license.md %}
+- **Enterprise users only**: You have received a `license.json` file from your sales representative.
 
 ## Step 1. Provision a namespace
 
 To create the secrets for license and Docker registry access,
 first provision the `kong` namespace:
 
-{% navtabs %}
+<!--codeblock navtabs-->
+{% navtabs codeblock %}
 {% navtab kubectl %}
 ```bash
 $ kubectl create namespace kong
@@ -57,123 +53,188 @@ $ oc new-project kong
 ```
 {% endnavtab %}
 {% endnavtabs %}
+<!--end codeblock navtabs-->
 
-## Step 2. (Optional) Set up license
+## Step 2. Set up license secret {#license}
+
+{% navtabs %}
+{% navtab Free mode %}
+
+Create a dummy license file:
+
+```bash
+$ echo '{ }' > license
+```
+
+{% endnavtab %}
+{% navtab Enterprise license %}
 
 If you plan on using a license to unlock Enterprise features, see [prerequisites](#prerequisites) for more information.
 
-Save the license file temporarily to disk with filename `license` (no file extension) and execute the following:
+Save the license file temporarily to disk with filename `license` (no file extension).
 
-{% navtabs %}
+{% endnavtab %}
+{% endnavtabs %}
+
+Run the following command:
+
+<!--codeblock navtabs -->
+{% navtabs codeblock %}
 {% navtab kubectl %}
-```
+```bash
 $ kubectl create secret generic kong-enterprise-license -n kong --from-file=./license
 ```
 {% endnavtab %}
 {% navtab OpenShift oc %}
-```
+```bash
 $ oc create secret generic kong-enterprise-license -n kong --from-file=./license
 ```
 {% endnavtab %}
 {% endnavtabs %}
+<!-- end of codeblock navtabs -->
 
 <div class="alert alert-ee blue">
 <strong>Note:</strong><br>
-<ul>
-  <li>There is no <code>.json</code> extension in the <code>--from-file</code> parameter.</li>
-  <li><code>-n kong</code> specifies the namespace in which you are deploying Kong for Kubernetes Enterprise. If you are deploying in a different namespace, change this value.</li></ul></div>
+  <ul>
+    <li>There is no <code>.json</code> extension in the <code>--from-file</code>
+    parameter.</li>
+    <li><code>-n kong</code> specifies the namespace in which you are deploying
+    Kong for Kubernetes Enterprise. If you are deploying in a different
+    namespace, change this value.</li>
+  </ul>
+</div>
 
 ## Step 3. Set up Helm
 
 1. Add the Kong charts repository:
-    ```
+    ```bash
     $ helm repo add kong https://charts.konghq.com
     ```
 2. Update Helm:
-    ```
+    ```bash
     $ helm repo update
     ```
 
-## Step 4. Configure Docker registry access
-Set up Docker credentials to allow Kubernetes nodes to pull down the {{site.ee_product_name}} Docker image, which is hosted in a private repository. You receive credentials for the Docker image when you sign up for {{site.konnect_product_name}}.
+## Step 4. Seed the Super Admin password
 
-{% navtabs %}
+(Optional) Create a password for the super admin:
+
+<!--codeblock navtabs -->
+{% navtabs codeblock %}
 {% navtab kubectl %}
-Set up the credentials:
-```
-$ kubectl create secret docker-registry kong-enterprise-edition-docker -n kong \
-    --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \
-    --docker-username=<your-bintray-username> \
-    --docker-password=<your-bintray-api-key>
+```bash
+$ kubectl create secret generic kong-enterprise-superuser-password \
+  -n kong \
+  --from-literal=password=<your-password>
 ```
 {% endnavtab %}
 {% navtab OpenShift oc %}
-Set up the credentials:
-```
-$ oc create secret docker-registry kong-enterprise-edition-docker -n kong \
-    --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \      
-    --docker-username=<your-bintray-username> \
-    --docker-password=<your-bintray-api-key>
+```bash
+$ oc create secret generic kong-enterprise-superuser-password \
+  -n kong \
+  --from-literal=password=<your-password>
 ```
 {% endnavtab %}
 {% endnavtabs %}
+<!-- end of codeblock navtabs -->
 
-## Step 5. Seed the Super Admin password
-{% navtabs %}
-{% navtab kubectl %}
-(Optional) Create a password for the super admin:
-```
-kubectl create secret generic kong-enterprise-superuser-password -n kong --from-literal=password=<your-password>
-```
-{% endnavtab %}
-{% navtab OpenShift oc %}
-(Optional) Create a password for the super admin:
-```
-oc create secret generic kong-enterprise-superuser-password -n kong --from-literal=password=<your-password>
-```
-{% endnavtab %}
-{% endnavtabs %}
 <div class="alert alert-warning">
 <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
 <strong>Important:</strong>Though not required, this is recommended if you want to use RBAC, as it cannot be done after initial setup.</div>
 
-## Step 6. Prepare the sessions plugin for Kong Manager and Dev Portal
+## Step 5. Prepare the sessions plugin for Kong Manager and Dev Portal
 In the following steps, replace `<your-password>` with a secure password.
 
 {% navtabs %}
 {% navtab kubectl %}
 
 1. Create a sessions config file for Kong Manager:
-    ```
+    ```bash
     $ echo '{"cookie_name":"admin_session","cookie_samesite":"off","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > admin_gui_session_conf
     ```
-2. Create a sessions config file for Kong Dev Portal:
-    ```
+2. (Optional, only with a [license](#license)) Create a sessions config file for Kong Dev Portal:
+
+    <div class="alert alert-ee">
+    <img class="no-image-expand" src="/assets/images/icons/documentation/icn-enterprise-blue.svg" alt="Enterprise" />
+    This feature is only available with a
+    <a href="/enterprise/{{page.kong_version}}/deployment/licensing">
+    {{site.konnect_product_name}} Enterprise subscription</a>.
+    </div>
+
+    ```bash
     $ echo '{"cookie_name":"portal_session","cookie_samesite":"off","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
     ```
-3. Create secret:
+
+    Or, if you have different subdomains for the `portal_api_url` and `portal_gui_host`, set the `cookie_domain`
+    and `cookie_samesite` properties as follows:
+
     ```
-    kubectl create secret generic kong-session-config -n kong --from-file=admin_gui_session_conf --from-file=portal_session_conf
+    $ echo '{"cookie_name":"portal_session","cookie_samesite":"off","cookie_domain":"<.your_subdomain.com">,"secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
+    ```
+
+3. Create the secret.
+
+    With Kong Manager only:
+    ```bash
+    $ kubectl create secret generic kong-session-config \
+      -n kong \
+      --from-file=admin_gui_session_conf
+    ```
+
+    With Kong Manager and Dev Portal:
+    ```bash
+    $ kubectl create secret generic kong-session-config \
+      -n kong \
+      --from-file=admin_gui_session_conf \
+      --from-file=portal_session_conf
     ```
 
 {% endnavtab %}
 {% navtab OpenShift oc %}
 
 1. Create a sessions config file for Kong Manager:
-    ```
+    ```bash
     $ echo '{"cookie_name":"admin_session","cookie_samesite":"off","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > admin_gui_session_conf
     ```
-2. Create a sessions config file for Kong Dev Portal:
-    ```
+2. (Optional, only with a [license](#license)) Create a sessions config file for Kong Dev Portal:
+
+    <div class="alert alert-ee">
+    <img class="no-image-expand" src="/assets/images/icons/documentation/icn-enterprise-blue.svg" alt="Enterprise" />
+    This feature is only available with a
+    <a href="/enterprise/{{page.kong_version}}/deployment/licensing">
+    {{site.konnect_product_name}} Enterprise subscription</a>.
+    </div>
+
+    ```bash
     $ echo '{"cookie_name":"portal_session","cookie_samesite":"off","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
     ```
-3. Create secret:
+
+    Or, if you have different subdomains for the `portal_api_url` and `portal_gui_host`, set the `cookie_domain`
+    and `cookie_samesite` properties as follows:
+
     ```
-    $ oc create secret generic kong-session-config -n kong --from-file=admin_gui_session_conf --from-file=portal_session_conf
+    $ echo '{"cookie_name":"portal_session","cookie_samesite":"off","cookie_domain":"<.your_subdomain.com">,"secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
+    ```
+
+3. Create the secret.
+
+    With Kong Manager only:
+    ```bash
+    $ oc create secret generic kong-session-config \
+      -n kong \
+      --from-file=admin_gui_session_conf
+    ```
+
+    With Kong Manager and Dev Portal:
+    ```bash
+    $ oc create secret generic kong-session-config \
+      -n kong \
+      --from-file=admin_gui_session_conf \
+      --from-file=portal_session_conf
     ```
 {% endnavtab %}
 {% endnavtabs %}
-## Step 7. Prepare Kong's configuration file
+## Step 6. Prepare Kong's configuration file
 
 1. Create a `values.yaml` file for Helm based on the template in the [Kong charts repository](https://github.com/Kong/charts/blob/main/charts/kong/values.yaml). This file contains all the possible parameters for your Kong deployment.
 
@@ -187,7 +248,7 @@ In the following steps, replace `<your-password>` with a secure password.
     |---------------|-------------------------------|
     |`enterprise.enabled` | `true` |
     |`enterprise.portal.enabled` | (Optional) Set to `true` to enable the [Kong Developer Portal](/enterprise/{{page.kong_version}}/developer-portal/). |
-    |`enterprise.rbac.enabled` | (Optional) Set to `true` to enable RBAC. Requires seeding the super admin password; see [above](#step-5-seed-the-super-admin-password). |
+    |`enterprise.rbac.enabled` | (Optional) Set to `true` to enable RBAC. Requires seeding the super admin password; see [above](#step-4-seed-the-super-admin-password). |
     |`env.database` | `"postgres"` or `"cassandra"` |
     |`env.pg_host` | (If using Postgres) Set to host of the Postgres server (only if `postgresql.enabled` is `false`). |
     |`env.pg_port` | (If using Postgres) Set to port of the Postgres server (only if `postgresql.enabled` is `false`). |
@@ -196,9 +257,8 @@ In the following steps, replace `<your-password>` with a secure password.
     |`env.pg_database` | (If using Postgres) Set to the Postgres database name (default `kong`). When `postgresql.enabled` is `true`, this has to match `postgresql.postgresqlDatabase`. |
     |`env.password.valueFrom.secretKeyRef.name` | Name of secret that holds the super admin password. In the example above, this is set to `kong-enterprise-superuser-password`. |
     |`env.password.valueFrom.secretKeyRef.key` | The type of secret key used for authentication. If you followed the default settings in the example above, this is `password`. |
-    |`image.repository` | The Docker repository. In this case, `kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition`. |
+    |`image.repository` | The Docker repository. In this case, `kong-docker-kong-gateway-docker.bintray.io/kong-enterprise-edition`. |
     |`image.tag` | The Docker image tag you want to pull down, e.g. `"{{page.kong_versions[10].version}}-alpine"`. |
-    |`image.pullSecrets` | Name of secret that holds the Docker repository credentials. In the example above, this is `kong-enterprise-edition-docker`. |
     |`admin.enabled` | Set to `true` to enable the Admin API, which is required for the Kong Manager. |
     |`ingressController.enabled` | Set to `true` if you want to use the Kong Ingress Controller, or `false` if you don't want to install it. |
     |`postgresql.enabled` | Set to `true` to deploy a Postgres database along with Kong. |
@@ -209,7 +269,7 @@ In the following steps, replace `<your-password>` with a secure password.
 3. In the `Kong Enterprise` section, enable Kong Manager (`manager`) and Kong Dev Portal (`portal`).
 
     For example:
-    ```
+    ```yaml
     manager:
       enabled: true
       type: LoadBalancer
@@ -233,7 +293,7 @@ In the following steps, replace `<your-password>` with a secure password.
 
 4. Fill in the rest of the parameters as appropriate for your implementation. Use the comments in the sample file to guide you, and see the documentation on [{{site.ee_product_name}} parameters](https://github.com/Kong/charts/blob/main/charts/kong/README.md#kong-enterprise-parameters) for more details.
 
-## Step 8. Deploy Kong Gateway on Kubernetes
+## Step 7. Deploy Kong Gateway on Kubernetes
 The steps in this section show you how to install {{site.ee_product_name}} on Kubernetes using Helm.
 <div class="alert alert-ee blue">
 <strong>Note:</strong> The following instructions assume that you're running Helm 3.
@@ -242,7 +302,7 @@ The steps in this section show you how to install {{site.ee_product_name}} on Ku
 {% navtabs %}
 {% navtab kubectl %}
 1. Run:
-    ```
+    ```bash
     $ helm install my-kong kong/kong -n kong --values ./values.yaml
     ```
     This may take some time.
@@ -250,44 +310,61 @@ The steps in this section show you how to install {{site.ee_product_name}} on Ku
     <div class="alert alert-warning">
     <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
     <strong>Important:</strong>
-    If you are running Postgres as a sub-chart and having problems with connecting to
-    the database, delete Postgres' persistent volumes in your Kubernetes cluster, then
-    retry the Helm install.
-    </div>
-
-    <div class="alert alert-warning">
-    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
-    <strong>Important:</strong>
-    If you have already installed the CRDs, run the command above with the following flag: <code>--set ingressController.installCRDs=false</code>.
+      <ul>
+        <li>If you have already installed the CRDs, run the command above with
+        the following flag: <code>--set ingressController.installCRDs=false</code>.
+        </li>
+        <li>If you are running Postgres as a sub-chart and having problems with
+        connecting to the database, delete Postgres' persistent volumes in your
+        Kubernetes cluster, then retry the Helm install.
+        </li>
+      </ul>
     </div>
 
 2. Check pod status:
-    ```
+    ```bash
     $ kubectl get pods -n kong
     ```
-    After migrations are complete and the `my-kong-kong-<ID>` pod is running, continue to the next section.
+
 {% endnavtab %}
 {% navtab OpenShift oc %}
 1. Run:
-    ```
+    ```bash
     $ helm install my-kong kong/kong -n kong --values ./values.yaml
     ```
     This may take some time.
 
+    <div class="alert alert-warning">
+    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+    <strong>Important:</strong>
+      <ul>
+        <li>If you have already installed the CRDs, run the command above with
+        the following flag: <code>--set ingressController.installCRDs=false</code>.
+        </li>
+        <li>If you are running Postgres as a sub-chart and having problems with
+        connecting to the database, delete Postgres' persistent volumes in your
+        Kubernetes cluster, then retry the Helm install.
+        </li>
+      </ul>
+    </div>
+
 2. Check pod status:
-    ```
+    ```bash
     $ oc get pods -n kong
     ```
-    After migrations are complete and the `my-kong-kong-<ID>` pod is running, continue to the next section.
 {% endnavtab %}
 {% endnavtabs %}
 
-## Step 9. Finalize configuration and verify installation
+After migrations are complete and the `my-kong-kong-<ID>` pod is running, continue to the next section.
+
+## Step 8. Finalize configuration and verify installation
 {% navtabs %}
 {% navtab kubectl %}
 1. Run:
-    ```
-    $ kubectl get svc -n kong my-kong-kong-admin --output=jsonpath='{.status.loadBalancer.ingress[0].ip}'
+    ```bash
+    $ kubectl get svc my-kong-kong-admin \
+      -n kong \
+      --output=jsonpath='{.status.loadBalancer.ingress[0].ip}'
     ```
     <div class="alert alert-warning">
     <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
@@ -302,28 +379,28 @@ The steps in this section show you how to install {{site.ee_product_name}} on Ku
     <strong>Note:</strong> Do not use IPs with RBAC. If you want to use RBAC, you need to set
     up a DNS hostname first, instead of directly specifying an IP.</div>
 
-    ```
+    ```yaml
     admin_api_uri: <your-DNSorIP>
     ```
 
 3. Clean up:
-    ```
+    ```bash
     $ kubectl delete jobs -n kong --all
     ```
 
 4. Update Kong to use the changed `values.yaml`:
-    ```
+    ```bash
     $ helm upgrade my-kong kong/kong -n kong --values ./values.yaml
     ```
 
 6. After the upgrade is complete, run:
-    ```
-    kubectl get svc -n kong
+    ```bash
+    $ kubectl get svc -n kong
     ```
 
     In the output, the IP in the `EXTERNAL_IP` column is your access point for Kong features, including Kong Manager and Kong Dev Portal:
 
-    ```
+    ```bash
     NAME                          TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                            AGE
     my-kong-kong-manager          LoadBalancer   10.96.61.116     10.96.61.116    8002:31308/TCP,8445:32420/TCP      24m
     my-kong-kong-portal           LoadBalancer   10.101.251.123   10.101.251.123  8003:31609/TCP,8446:32002/TCP      24m
@@ -331,9 +408,18 @@ The steps in this section show you how to install {{site.ee_product_name}} on Ku
 {% endnavtab %}
 {% navtab OpenShift oc %}
 1. Run:
+    ```bash
+    $ oc get svc my-kong-kong-admin \
+      -n kong \
+      --output=jsonpath='{.status.loadBalancer.ingress[0].ip}'
     ```
-    $ oc get svc my-kong-kong-admin -n kong --output=jsonpath='{.status.loadBalancer.ingress[0].ip}'
-    ```
+
+    <div class="alert alert-warning">
+    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+    <strong>Important:</strong> The command above requires the Kong Admin API. If you
+    have not set <code>admin.enabled</code> to <code>true</code> in your
+    <code>values.yaml</code>, then this command will not work.
+    </div>
 
 2. Copy the IP address from the output, then edit the `values.yaml` file to add the following line under `env` section:
 
@@ -342,28 +428,28 @@ The steps in this section show you how to install {{site.ee_product_name}} on Ku
     up a DNS hostname first, instead of directly specifying an IP.
     </div>
 
-    ```
+    ```yaml
     admin_api_uri: <your-DNSorIP>
     ```
 
 3. Clean up:
-    ```
+    ```bash
     $ oc delete jobs -n kong --all
     ```
 
 4. Update Kong to use the changed `values.yaml`:
-    ```
+    ```bash
     $ helm upgrade my-kong kong/kong -n kong --values ./values.yaml
     ```
 
 6. After the upgrade is complete, run:
-    ```
-    oc get svc -n kong
+    ```bash
+    $ oc get svc -n kong
     ```
 
     In the output, the IP in the `EXTERNAL_IP` column is your access point for Kong features, including Kong Manager and Kong Dev Portal:
 
-    ```
+    ```bash
     NAME                          TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                            AGE
     my-kong-kong-manager          LoadBalancer   10.96.61.116     10.96.61.116    8002:31308/TCP,8445:32420/TCP      24m
     my-kong-kong-portal           LoadBalancer   10.101.251.123   10.101.251.123  8003:31609/TCP,8446:32002/TCP      24m

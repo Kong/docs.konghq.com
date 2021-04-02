@@ -72,6 +72,8 @@ For more information, including instructions for switching images, see [Kong for
 
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
 
+  * The [legacy portal mode](/enterprise/2.1.x/developer-portal/legacy-migration/) is no longer supported.
+
 ## Deprecated Features
 
 Kong Brain is deprecated and not available for use in Kong Enterprise version 2.1.4.0 and later.

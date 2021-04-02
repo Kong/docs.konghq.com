@@ -349,7 +349,175 @@ conf:
 {% endnavtab %}
 {% endnavtabs %}
 
+## Example
 
+The following example shows how to deploy and test a sample OPA Policy on Kubernetes, using the kuma-demo application.
 
+1.  Deploy the example application:
 
+    ```
+    kubectl apply -f https://bit.ly/demokuma
+    ```
 
+1.  Make a request from the frontend to the backend:
+
+    ```
+    $ kubectl exec -i -t $(kubectl get pod -l "app=kuma-demo-frontend" -o jsonpath='{.items[0].metadata.name}' -n kuma-demo) -n kuma-demo -- curl backend:3001 -v
+    ```
+
+    The output looks like:
+
+    ```
+    Defaulting container name to kuma-fe.
+    Use 'kubectl describe pod/kuma-demo-app-6787b4f7f5-m428c -n kuma-demo' to see all of the containers in this pod.
+    *   Trying 10.111.108.218:3001...
+    * TCP_NODELAY set
+    * Connected to backend (10.111.108.218) port 3001 (#0)
+    > GET / HTTP/1.1
+    > Host: backend:3001
+    > User-Agent: curl/7.67.0
+    > Accept: */*
+    > 
+    * Mark bundle as not supporting multiuse
+    < HTTP/1.1 200 OK
+    < x-powered-by: Express
+    < cache-control: no-store, no-cache, must-revalidate, private
+    < access-control-allow-origin: *
+    < access-control-allow-methods: PUT, GET, POST, DELETE, OPTIONS
+    < access-control-allow-headers: *
+    < host: backend:3001
+    < user-agent: curl/7.67.0
+    < accept: */*
+    < x-forwarded-proto: http
+    < x-request-id: 1717af9c-2587-43b9-897f-f8061bba5ad4
+    < content-length: 90
+    < content-type: text/html; charset=utf-8
+    < date: Tue, 16 Mar 2021 15:33:18 GMT
+    < x-envoy-upstream-service-time: 1521
+    < server: envoy
+    < 
+    * Connection #0 to host backend left intact
+    Hello World! Marketplace with sales and reviews made with <3 by the OCTO team at Kong Inc.
+    ```
+
+1.  Apply an OPA Policy that requires a valid JWT token:
+
+    ```
+    echo " 
+    apiVersion: kuma.io/v1alpha1
+    kind: OPAPolicy
+    mesh: default
+    metadata:
+      name: opa-1
+    spec:
+      selectors:
+      - match:
+          kuma.io/service: '*'
+      conf:
+        policies:
+          - inlineString: |
+              package envoy.authz
+
+              import input.attributes.request.http as http_request
+
+              default allow = false
+
+              token = {\"valid\": valid, \"payload\": payload} {
+                  [_, encoded] := split(http_request.headers.authorization, \" \")
+                  [valid, _, payload] := io.jwt.decode_verify(encoded, {\"secret\": \"secret\"})
+              }
+
+              allow {
+                  is_token_valid
+                  action_allowed
+              }
+
+              is_token_valid {
+                token.valid
+                now := time.now_ns() / 1000000000
+                token.payload.nbf <= now
+                now < token.payload.exp
+              }
+
+              action_allowed {
+                http_request.method == \"GET\"
+                token.payload.role == \"admin\"
+              }
+    " | kubectl apply -f -
+    ```
+
+1.  Make an invalid request from the frontend to the backend:
+
+    ```
+    $ kubectl exec -i -t $(kubectl get pod -l "app=kuma-demo-frontend" -o jsonpath='{.items[0].metadata.name}' -n kuma-demo) -n kuma-demo -- curl backend:3001 -v
+    ```
+    The output looks like:
+
+    ```
+    Defaulting container name to kuma-fe.
+    Use 'kubectl describe pod/kuma-demo-app-6787b4f7f5-bwvnb -n kuma-demo' to see all of the containers in this pod.
+    *   Trying 10.105.146.164:3001...
+    * TCP_NODELAY set
+    * Connected to backend (10.105.146.164) port 3001 (#0)
+    > GET / HTTP/1.1
+    > Host: backend:3001
+    > User-Agent: curl/7.67.0
+    > Accept: */*
+    >
+    * Mark bundle as not supporting multiuse
+    < HTTP/1.1 403 Forbidden
+    < date: Tue, 09 Mar 2021 16:50:40 GMT
+    < server: envoy
+    < x-envoy-upstream-service-time: 2
+    < content-length: 0
+    <
+    * Connection #0 to host backend left intact
+    ```
+
+    Note the `HTTP/1.1 403 Forbidden` message. The application doesn't allow a request without a valid token.
+
+    The policy can take up to 30 seconds to propagate, so if this request succeeds the first time, wait and then try again.
+
+1.  Make a valid request from the frontend to the backend:
+
+    ```
+    $ export ADMIN_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJzdWIiOiJZbTlpIiwibmJmIjoxNTE0ODUxMTM5LCJleHAiOjE2NDEwODE1Mzl9.WCxNAveAVAdRCmkpIObOTaSd0AJRECY2Ch2Qdic3kU8"
+    $ kubectl exec -i -t $(kubectl get pod -l "app=kuma-demo-frontend" -o jsonpath='{.items[0].metadata.name}' -n kuma-demo) -n kuma-demo -- curl -H "Authorization: Bearer $ADMIN_TOKEN" backend:3001
+    ```
+
+    The output looks like:
+
+    ```
+    Defaulting container name to kuma-fe.
+    Use 'kubectl describe pod/kuma-demo-app-6787b4f7f5-m428c -n kuma-demo' to see all of the containers in this pod.
+    *   Trying 10.111.108.218:3001...
+    * TCP_NODELAY set
+    * Connected to backend (10.111.108.218) port 3001 (#0)
+    > GET / HTTP/1.1
+    > Host: backend:3001
+    > User-Agent: curl/7.67.0
+    > Accept: */*
+    > 
+    * Mark bundle as not supporting multiuse
+    < HTTP/1.1 200 OK
+    < x-powered-by: Express
+    < cache-control: no-store, no-cache, must-revalidate, private
+    < access-control-allow-origin: *
+    < access-control-allow-methods: PUT, GET, POST, DELETE, OPTIONS
+    < access-control-allow-headers: *
+    < host: backend:3001
+    < user-agent: curl/7.67.0
+    < accept: */*
+    < x-forwarded-proto: http
+    < x-request-id: 8fd7b398-1ba2-4c2e-b229-5159d04d782e
+    < content-length: 90
+    < content-type: text/html; charset=utf-8
+    < date: Tue, 16 Mar 2021 17:26:00 GMT
+    < x-envoy-upstream-service-time: 261
+    < server: envoy
+    < 
+    * Connection #0 to host backend left intact
+    Hello World! Marketplace with sales and reviews made with <3 by the OCTO team at Kong Inc.
+    ```
+
+    The request is valid again because the token is signed with the `secret` private key, its payload includes the admin role, and it is not expired.

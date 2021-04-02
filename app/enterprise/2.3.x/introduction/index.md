@@ -53,9 +53,9 @@ Kong Manager is the Graphical User Interface (GUI) for {{site.ee_product_name}}.
 
 Kong Vitals provides useful metrics about the health and performance of your {{site.ee_product_name}} nodes, as well as metrics about the usage of your gateway-proxied APIs. You can visually monitor vital signs and pinpoint anomalies in real-time, and use visual API analytics to see exactly how your APIs and Gateway are performing and access key statistics. Kong Vitals is part of the Kong Manager UI. For more information, see [_Kong Vitals_](/enterprise/{{page.kong_version}}/admin-api/vitals/).
 
-### Kong Studio
+### Insomnia
 
-Kong Studio enables spec-first development for all REST and GraphQL services. With Kong Studio, organizations can accelerate design and test workflows using automated testing, direct Git sync, and inspection of all response types. Teams of all sizes can use Kong Studio to increase development velocity, reduce deployment risk, and increase collaboration. For more information, see [_Kong Studio_](/enterprise/{{page.kong_version}}/studio/).
+Insomnia enables spec-first development for all REST and GraphQL services. With Insomnia, organizations can accelerate design and test workflows using automated testing, direct Git sync, and inspection of all response types. Teams of all sizes can use Insomnia to increase development velocity, reduce deployment risk, and increase collaboration. For more information, see [_Insomnia documentation_](https://support.insomnia.rest/){:target="_blank"}.
 
 
 ## Try Kong Gateway (Enterprise)

@@ -122,7 +122,7 @@
           url: /kong-security-update-process
     - text: Upgrades and Migrations
       items:
-        - text: Migrating Kong Gateway to Latest Version
+        - text: Migrating to the latest version
           url: /deployment/upgrades/migrations
         - text: Migrating from OSS to Enterprise
           url: /deployment/upgrades/migrate-ce-to-ke
@@ -289,170 +289,11 @@
   - text: Keyring and Data Encryption
     url: /admin-api/db-encryption
 
-- title: Kubernetes Ingress Controller
-  icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
-  items:
-    - text: Introduction
-      url: /../../kubernetes-ingress-controller/latest/introduction
-    - text: FAQ
-      url: /../../kubernetes-ingress-controller/latest/faq
-    - text: Changelog
-      url: https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
-      absolute_url: true
-    - text: Concepts
-      items:
-        - text: Architecture
-          url: /../../kubernetes-ingress-controller/latest/concepts/design
-        - text: Custom Resources
-          url: /../../kubernetes-ingress-controller/latest/concepts/custom-resources
-        - text: Deployment Methods
-          url: /../../kubernetes-ingress-controller/latest/concepts/deployment
-        - text: Kong for Kubernetes with Kong Enterprise
-          url: /../../kubernetes-ingress-controller/latest/concepts/k4k8s-with-kong-enterprise
-        - text: High-Availability and Scaling
-          url: /../../kubernetes-ingress-controller/latest/concepts/ha-and-scaling
-        - text: Resource Classes
-          url: /../../kubernetes-ingress-controller/latest/concepts/ingress-classes
-        - text: Security
-          url: /../../kubernetes-ingress-controller/latest/concepts/security
-        - text: Ingress Resource API Versions
-          url: /../../kubernetes-ingress-controller/latest/concepts/ingress-versions
-    - text: Deployment
-      items:
-        - text: Overview
-          url: /../../kubernetes-ingress-controller/latest/deployment/overview
-        - text: Kong Ingress on Minikube
-          url: /../../kubernetes-ingress-controller/latest/deployment/minikube
-        - text: Kong for Kubernetes
-          url: /../../kubernetes-ingress-controller/latest/deployment/k4k8s
-        - text: Kong for Kubernetes Enterprise
-          url: /../../kubernetes-ingress-controller/latest/deployment/k4k8s-enterprise
-        - text: Kong for Kubernetes with Kong Enterprise
-          url: /../../kubernetes-ingress-controller/latest/deployment/kong-enterprise
-        - text: Kong Ingress on AKS
-          url: /../../kubernetes-ingress-controller/latest/deployment/aks
-        - text: Kong Ingress on EKS
-          url: /../../kubernetes-ingress-controller/latest/deployment/eks
-        - text: Kong Ingress on GKE
-          url: /../../kubernetes-ingress-controller/latest/deployment/gke
-        - text: Admission Controller
-          url: /../../kubernetes-ingress-controller/latest/deployment/admission-webhook
-    - text: Guides
-      items:
-        - text: Overview
-          url: /../../kubernetes-ingress-controller/latest/guides/overview
-        - text: Getting Started with KIC
-          url: /../../kubernetes-ingress-controller/latest/guides/getting-started
-        - text: Getting Started using Istio
-          url: /../../kubernetes-ingress-controller/latest/guides/getting-started-istio
-        - text: Using Custom Resources
-          items:
-            - text: Using the KongPlugin Resource
-              url: /../../kubernetes-ingress-controller/latest/guides/using-kongplugin-resource
-            - text: Using the KongIngress Resource
-              url: /../../kubernetes-ingress-controller/latest/guides/using-kongingress-resource
-            - text: Using KongConsumer and KongCredential Resources
-              url: /../../kubernetes-ingress-controller/latest/guides/using-consumer-credential-resource
-            - text: Using the KongClusterPlugin Resource
-              url: /../../kubernetes-ingress-controller/latest/guides/using-kongclusterplugin-resource
-        - text: Using the ACL and JWT Plugins
-          url: /../../kubernetes-ingress-controller/latest/guides/configure-acl-plugin
-        - text: Using cert-manager with Kong
-          url: /../../kubernetes-ingress-controller/latest/guides/cert-manager
-        - text: Configuring a Fallback Service
-          url: /../../kubernetes-ingress-controller/latest/guides/configuring-fallback-service
-        - text: Using an External Service
-          url: /../../kubernetes-ingress-controller/latest/guides/using-external-service
-        - text: Configuring HTTPS Redirects for Services
-          url: /../../kubernetes-ingress-controller/latest/guides/configuring-https-redirect
-        - text: Using Redis for Rate Limiting
-          url: /../../kubernetes-ingress-controller/latest/guides/redis-rate-limiting
-        - text: Integrate KIC with Prometheus/Grafana
-          url: /../../kubernetes-ingress-controller/latest/guides/prometheus-grafana
-        - text: Configuring Circuit-Breaker and Health-Checking
-          url: /../../kubernetes-ingress-controller/latest/guides/configuring-health-checks
-        - text: Setting up a Custom Plugin
-          url: /../../kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins
-        - text: Using Ingress with gRPC
-          url: /../../kubernetes-ingress-controller/latest/guides/using-ingress-with-grpc
-        - text: Setting up Upstream mTLS
-          url: /../../kubernetes-ingress-controller/latest/guides/upstream-mtls
-        - text: Exposing a TCP-based Service
-          url: /../../kubernetes-ingress-controller/latest/guides/using-tcpingress
-        - text: Using the mTLS Auth Plugin
-          url: /../../kubernetes-ingress-controller/latest/guides/using-mtls-auth-plugin
-        - text: Configuring Custom Entities
-          url: /../../kubernetes-ingress-controller/latest/guides/configuring-custom-entities
-        - text: Using the OpenID Connect Plugin
-          url: /../../kubernetes-ingress-controller/latest/guides/using-oidc-plugin
-        - text: Rewriting Hosts and Paths
-          url: /../../kubernetes-ingress-controller/latest/guides/using-rewrites
-        - text: Preserving Client IP Address
-          url: /../../kubernetes-ingress-controller/latest/guides/preserve-client-ip
-    - text: References
-      items:
-        - text: KIC Annotations
-          url: /../../kubernetes-ingress-controller/latest/references/annotations
-        - text: CLI Arguments
-          url: /../../kubernetes-ingress-controller/latest/references/cli-arguments
-        - text: Custom Resource Definitions
-          url: /../../kubernetes-ingress-controller/latest/references/custom-resources
-        - text: Plugin Compatibility
-          url: /../../kubernetes-ingress-controller/latest/references/plugin-compatibility
-        - text: Version Compatibility
-          url: /../../kubernetes-ingress-controller/latest/references/version-compatibility
-        - text: Troubleshooting
-          url: /../../kubernetes-ingress-controller/latest/troubleshooting
-
-
-- title: decK
-  icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
-  items:
-    - text: Introduction
-      items:
-        - text: Overview
-          url: /../../deck/overview
-        - text: Terminology
-          url: /../../deck/terminology
-        - text: Architecture
-          url: /../../deck/design-architecture
-        - text: Compatibility Promise
-          url: /../../deck/compatibility-promise
-    - text: Installation
-      url: /../../deck/installation
-    - text: Guides
-      items:
-        - text: Getting Started with decK
-          url: /../../deck/guides/getting-started
-        - text: Backup and Restore
-          url: /../../deck/guides/backup-restore
-        - text: Configuration as Code and GitOps
-          url: /../../deck/guides/ci-driven-configuration
-        - text: Distributed Configuration
-          url: /../../deck/guides/distributed-configuration
-        - text: Best Practices
-          url: /../../deck/guides/best-practices
-        - text: Using decK with Kong Gateway (Enterprise)
-          url: /../../deck/guides/kong-enterprise
-        - text: Using Multiple Files to Store Configuration
-          url: /../../deck/guides/multi-file-state
-        - text: De-duplicate Plugin Configuration
-          url: /../../deck/guides/deduplicate-plugin-configuration
-    - text: decK CLI Reference
-      url: /../../deck/commands
-    - text: FAQ
-      url: /../../deck/faqs
-    - text: Changelog
-      url: https://github.com/kong/deck/blob/main/CHANGELOG.md
-      absolute_url: true
-
 - title: Kong Manager
   icon: /assets/images/icons/documentation/icn-manager-color.svg
   items:
     - text: Overview
       url: /kong-manager/overview
-    - text: Service Directory Mapping
-      url: /kong-manager/service-directory-mapping
     - text: Networking
       items:
         - text: Default and Custom Configuration
@@ -473,6 +314,10 @@
           url: /kong-manager/authentication/oidc
         - text: Sessions
           url: /kong-manager/authentication/sessions
+    - text: LDAP Service Directory Mapping
+      url: /kong-manager/service-directory-mapping
+    - text: OIDC Authenticated Group Mapping
+      url: /kong-manager/oidc-mapping
     - text: Reset Passwords and RBAC Tokens
       url: /kong-manager/reset-password
     - text: Administration
@@ -548,12 +393,15 @@
         - text: Developer Roles and Content Permissions
           url: /developer-portal/administration/developer-permissions
         - text: Application Registration
-          url: /developer-portal/administration/application-registration
           items:
-            - text: External OAuth2 Support
-              url: /developer-portal/administration/application-registration/3rd-party-oauth
+            - text: Authorization Provider Strategy
+              url: /developer-portal/administration/application-registration/auth-provider-strategy
             - text: Enable Application Registration
               url: /developer-portal/administration/application-registration/enable-application-registration
+            - text: Enable Key Authentication for Application Registration
+              url: /developer-portal/administration/application-registration/enable-key-auth-plugin
+            - text: External OAuth2 Support
+              url: /developer-portal/administration/application-registration/3rd-party-oauth
             - text: Set up Okta and Kong for external OAuth
               url: /developer-portal/administration/application-registration/okta-config
             - text: Set Up Azure AD and Kong for External Authentication
@@ -574,25 +422,6 @@
           url: /developer-portal/theme-customization/single-page-app
     - text: Helpers CLI
       url: /developer-portal/helpers/cli
-
-- title: Kong Studio
-  icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
-  url: /studio/
-  items:
-    - text: Changelog
-      url: https://insomnia.rest/changelog/
-      absolute_url: true
-    - text: Getting Started
-      items:
-        - text: Download and Install
-          url: /studio/download-install
-        - text: Using Insomnia Designer
-          url: https://support.insomnia.rest/article/94-introduction/
-          absolute_url: true
-        - text: Deploy to Dev Portal
-          url: /studio/deploy-to-dev-portal
-        - text: Generate Configuration
-          url: /studio/dec-conf-studio
 
 - title: Kong Vitals
   icon: /assets/images/icons/documentation/icn-vitals.svg

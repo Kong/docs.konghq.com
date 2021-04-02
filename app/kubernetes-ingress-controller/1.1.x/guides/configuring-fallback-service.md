@@ -39,13 +39,57 @@ This is expected as Kong does not yet know how to proxy the request.
 
 ## Setup a Sample Service
 
-For the purpose of this guide, we will setup an [httpbin](https://httpbin.org)
-service in the cluster and proxy it.
+For the purpose of this guide, we will setup a simple HTTP service in the
+cluster and proxy it.
 
 ```bash
-$ kubectl apply -f https://bit.ly/k8s-httpbin
-service/httpbin created
-deployment.apps/httpbin created
+$ echo '
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fallback-svc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fallback-svc
+  template:
+    metadata:
+      labels:
+        app: fallback-svc
+    spec:
+      containers:
+      - name: fallback-svc
+        image: hashicorp/http-echo
+        args:
+        - "-text"
+        - "This is not the path you are looking for. - Fallback service"
+        ports:
+        - containerPort: 5678
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fallback-svc
+  labels:
+    app: fallback-svc
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 5678
+    protocol: TCP
+    name: http
+  selector:
+    app: fallback-svc
+' | kubectl apply -f -
+```
+
+Result:
+
+```bash
+deployment.apps/fallback-svc created
+service/fallback-svc created
 ```
 
 Create an Ingress rule to proxy the httpbin service we just created:

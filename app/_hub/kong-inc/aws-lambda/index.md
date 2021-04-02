@@ -175,7 +175,16 @@ params:
       required: false
       default: "`true`"
       description: |
-        An optional value that defines whether Kong should send large bodies that are buffered to disk. To define the threshold for the body size, use the [client_body_buffer_size](https://docs.konghq.com/latest/configuration/#client_body_buffer_size) property. Note that sending large bodies will have an impact on system memory.
+        An optional value that defines whether Kong should send large
+        bodies that are buffered to disk. Note that 
+        enabling this option will have an impact on system memory depending on the number of requests simultaneously in flight at any given point in time and on the maximum size of each of them.
+        Also this option will block all requests being handled by the
+        nginx workers. That could be tens of thousands of other
+        transactions that are not being processed. For small I/O
+        operations, such a delay would generally not be problematic. In
+        cases where the body is in the order of MB, such a delay would
+        cause notable interruptions in request processing. Given all of the potential downsides resulting from enabling this option, please consider increasing the [client_body_buffer_size](http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size)
+        value instead.
 
   extra: |
     **Reminder**: By default, cURL sends payloads with an

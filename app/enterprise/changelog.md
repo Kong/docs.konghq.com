@@ -2,10 +2,72 @@
 title: Kong Gateway (Enterprise) Changelog
 no_search: true
 no_version: true
-skip_read_time: true
 ---
+## 2.3.3.0
+**Release Date** 2021/03/26
+
+### Features
+
+#### Plugins
+- [Request Validator](/hub/kong-inc/request-validator) (`request-validator`)
+  - Content-type failures are now reported as such when `verbose_response` is enabled.
+- [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced)
+  - Disallows decimal values between 0,1 in `sync_rate`.
+
+### Fixes
+- Adjusted the `systemd reload` command to do a `kong prepare`.
+- Removed output messages from non-strict failure builds on license validation module.
+- Fixed an FFI table overflow issue when syncing DB-less declarative config.
+- Kong now accepts values for Subject Alternate Name (SAN) in a certificate as per RFC 5280.
+The [Mutual TLS Authentication](/hub/kong-inc/mtls-auth) plugin is now processing presented Alternate Names.
+- Fixed a Websocket issue where connection upgrades would fail with a 502 after upgrading to v2.3.2.0.
+- Upgrade header is not cleared anymore when response Connection header contains Upgrade.
+- Avoided potential race conditions that could result in HTTP 500 errors when using the
+least-connection algorithm in the case where an upstream target becomes inaccessible.
+- Kong does not try to warm up upstream names when warming up DNS entries.
+- Migrations order is now guaranteed to be always the same.
+- Buffered responses are disabled on connection upgrades.
+- Schema validations now log more descriptive error messages when types are invalid.
+- Kong now ignores tags in Cassandra when filtering by multiple entities, which is the expected
+behavior and the one already existent when using Postgres databases
+- Kong accepts fully-qualified domain names ending in dots.
+- Now Kong does not leave plugin servers alive after exiting and does not try to start
+them in the unsupported stream subsystem.
+- Changed default values and validation rules for plugins that were not well-adjusted
+for dbless or hybrid modes.
+- Topological sort now prioritizes core, avoiding problems when plugin entities use
+core entities but don't explicitly depend on them.
+
+#### Plugins
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  - Add `config.disable_session` to be able to disable session creation with
+    specified authentication methods.
+  - Changed `Cache-Control="no-store"` instead of `Cache-Control="no-cache, no-store"`,
+    and only set `Pragma="no-cache"` with HTTP 1.0 (and below).
+  - Fixed `/openid-connect/jwks` to not expose private keys (this bug was introduced
+    in v1.6.0 (Kong Enterprise v2.1.3.1) and affects all versions up to v1.8.3 (Kong Enterprise v2.3.2)).
+  - Token introspection now checks the status code properly.
+  - More consistent response body checks on HTTP requests.
+  - Fixed an issue where enabling zlib compressor did not affect the size of the session cookie.
+- [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`) 
+  - Now the plugin does not pre-create namespaces on `init-worker`. As a side effect to this patch
+    the plugin will create namespaces on the fly. This may result in a slightly (10-20%) increased
+    response time on the first request.
+- [Request Validator](/hub/kong-inc/request-validator) (`request-validator`) 
+  - Now the plugin correctly decodes and normalizes arrays when there are multiple headers with
+    the same field-name.
+- [Mutual TLS Authentication](/hub/kong-inc/mtls-auth) (`mtls-auth`) 
+  - Remove CA existence check on plugin creation - the check was not compatible with DB-less mode.
+  - Correctly fetch certificates from the end of the proof chain when consumer credentials are used.
+- [AWS Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`)
+  - The plugin now respects `skip_large_bodies` config setting when using AWS API Gateway compatibility.
+- [ACME](/hub/kong-inc/acme) (`acme`) 
+  - Bump `lua-resty-acme` to v0.6.x; this fixes several issues with Pebble test server.
+- [OAuth 2.0 Authentication](/hub/kong-inc/oauth2) (`oauth2`)
+  - The plugin now has better handling for multiple cases of client invalid token generation.
+
 ## 2.3.2.0
-**Release Date** 2020/02/11
+**Release Date** 2021/02/11
 
 ### **Kong Gateway (Enterprise)**
 The following sections list {{site.ee_product_name}}-exclusive updates,
@@ -132,7 +194,11 @@ being shown in the logs.
 #### Enterprise
 - Fixed an issue that incorrectly enforced plugins when they exist in the default and a named workspace.
    The plugin configuration in the default workspace was incorrectly overriding the disabled plugin
-   configuration in the named workspace (FTI-2049, FTI-2228).
+   configuration in the named workspace.
+- Fixed an issue for vitals when proxy-cached-advanced or forward-proxy plugins (possibly others)
+are in use.
+- Requests that received a cache hit using the plugins were not showing up under
+   service/route vitals, but were visible under workspace vitals.
 
 #### CLI
 - Fixed issue where `kong reload -c <config>` would fail.
@@ -167,7 +233,7 @@ plugin does not allow `null` in config anymore as they can lead to runtime error
 
 
 ## 2.3.0.0 (beta)
-**Release Date** 2020/01/20
+**Release Date** 2021/01/20
 
 ### **Kong Enterprise**
 The following sections list {{site.ee_product_name}}-exclusive updates,
@@ -287,6 +353,58 @@ fixed causing a 500 auth error when falling back to an anonymous user.
 #### Distributions
 - Support for CentOS-6 is removed and entered end-of-life on Nov 30, 2020.
 
+## 2.2.1.1
+**Release Date** 2021/03/26
+
+### Fixes
+
+#### Core
+- Fixed an issue where certain incoming URI may make it possible to bypass security rules applied
+on Route objects. This fix make such attacks more difficult by always normalizing the incoming
+request's URI before matching against the Router.
+- Sanitize sanitize path postfix for additional security.
+
+#### Enterprise
+- Kong now display errors to better identify the issue when `validate_key` fails.
+- Kong now uses the correct workspace ID when selecting SNI in dbless/hybrid mode.
+- Fixed verification when using combined certificates.
+- Corrected healthchecker thresholds.
+
+#### DevPortal
+- Before, when enabling application registration with key authentication, developers who created 
+applications were able to see all Services for which the application registration plugin was enabled,
+regardless of the permissions granted to their role. With this fix, developers who create applications 
+will only see Services if the role they are assigned to has been granted permissions to the relevant  
+specs.
+
+#### Plugins
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  - Fixed init workers that were prolonging Kong startup time.
+  - Fixed consumer and discovery invalidation events that were returning when the operation
+  was `create`. This could leave some cache entries in cache that need to be invalidated.
+  - Fixed a circular dependency issue with `redirect` function.
+  - Added `config.disable_session` to be able to disable session creation with specified
+    authentication methods.
+  - Changeed `Cache-Control="no-store"` instead of `Cache-Control="no-cache, no-store"`,
+    and only set `Pragma="no-cache"` with HTTP 1.0 (and below).
+  - Fixed `/openid-connect/jwks` to not expose private keys (this bug was introduced
+    in v1.6.0 (Kong Enterprise v2.1.3.1) and affects all versions up to v1.8.3 (Kong Enterprise v2.3.2)).
+  - Token introspection now checks the status code properly.
+  - More consistent response body checks on HTTP requests.
+  - Fixed an issue where enabling zlib compressor the size of the session cookie was not
+    changing in value.
+- [AWS Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`) 
+  - The plugin now respects `skip_large_bodies` config setting when using AWS API Gateway compatibility.
+- [ACME](/hub/kong-inc/acme) (`acme`)
+  - Bump `lua-resty-acme` to v0.6.x; this fixes several issues with Pebble test server.
+- [Exit Transformer](/hub/kong-inc/exit-transformer) (`exit-transformer`)
+  - The plugin now allows access to Kong modules within the sandbox, not only to `kong.request`.
+
+#### Plugin Dependencies
+- OpenID Connect Library
+  - Token introspection now checks the status code properly.
+  - Added more consistent response body checks on `HTTP` requests.
+
 
 ## 2.2.1.0
 **Release Date** 2020/12/31
@@ -312,11 +430,12 @@ fixed causing a 500 auth error when falling back to an anonymous user.
   Several Kong plugins allow arbitrary code execution by design, including the `serverless` plugin (also known as `pre-function` and `post-function` capabilities) and the `exit-transformer` plugin (for example, allows an administrator to configure a Lua-based response transformation). Changes include:
   - A new change locks down these plugins so that they have limited functions available in a sandbox, providing significant additional security for a user with an exposed admin port.
   - Functions such as "require" are no longer available to scripts that run in these plugins for security purposes, because allowing "require" allows embedded additional arbitrary code execution.
-  - **Important**: This change causes a **breaking change** in this patch release and it cannot be avoided. Our recommendation is that [users lock down their admin ports](https://docs.konghq.com/latest/secure-admin-api/) to avoid attackers trying to exploit any API gateway, like Kong, to gain access to internal networks. If you need the previous release behavior, including the ability to arbitrarily "require" libraries or if you want to lock things down further, we have introduced four new settings you can use:
-    - `KONG_UNTRUSTED_LUA = on|off` Sets whether any custom Lua code can be used outside of Kong's distributed code. Defaults to "on".
-    - `KONG_UNTRUSTED_LUA_SANDBOX = on|off` Turns on or off the sandbox. Defaults to "on".
+  - **Important**: This change causes a **breaking change** in this patch release and it cannot be avoided. Our recommendation is that [users lock down their admin ports](https://docs.konghq.com/latest/secure-admin-api/) to avoid attackers trying to exploit any API gateway, like Kong, to gain access to internal networks. If you need the previous release behavior, including the ability to arbitrarily "require" libraries or if you want to lock things down further, we have introduced three new settings you can use:
+    - `KONG_UNTRUSTED_LUA = off | sandbox | on` Sets whether any custom Lua code can be used outside of Kong's distributed code. Defaults to "sandbox".
     - `KONG_UNTRUSTED_LUA_SANDBOX_REQUIRES = foo,bar` Which libraries, if any, you want to require in the sandbox. Defaults to an empty list.
     - `KONG_UNTRUSTED_LUA_SANDBOX_ENVIRONMENT = kong.request` Any additional objects you want to pass through to the sandbox environments.  Defaults to an empty list.
+
+    For detailed information about these new properties, see the [property reference documentation](https://docs.konghq.com/enterprise/2.3.x/property-reference/#untrusted_lua).
 
 #### Developer Portal
 - In the Developer Portal Edit Application dialog, the Edit button is renamed to Save.
@@ -334,6 +453,11 @@ fixed causing a 500 auth error when falling back to an anonymous user.
 - [Session](/hub/kong-inc/session) (`session`)
   - Added endpoint key to Admin API.
   - Bumped `lua-resty-session` dependency to 3.8.
+
+#### Configuration
+
+- Kong now runs as a `kong` user if it exists; if user does not exist
+  in the system, the `nobody` user is used, as before.
 
 #### Breaking Changes
 - See *RCE (Remote Code Execution) Plugin Mitigations* in the Kong Enterprise section.
@@ -626,6 +750,63 @@ open-source **Kong Gateway 2.2.0.0**:
 - The `shorthands` attribute in schema definitions is deprecated in favor of
   the new `shorthand_fields` top-level attribute.
 
+## 2.1.4.5
+**Release Date** 2021/03/31
+
+### Fixes
+
+#### Enterprise
+Fixed an issue when upgrading Kong Gateway (Enterprise) from v1.5.x to v2.1.x. Before the fix, when admin consumers were shared across multiple workspaces, it was possible for the migration to fail. The upgrade would fail because plugin entities that depend on consumer entities must live in the same workspace as the consumer entity. This fix migrates these plugin entities to the same workspace as the consumer entities. Customers affected by this issue will need to upgrade their 2.1 install to at least 2.1.4.5 before attempting to migrate from 1.5 to 2.1.
+
+## 2.1.4.4
+**Release Date** 2021/03/26
+
+### Fixes
+
+#### Core
+- Fixed an issue where certain incoming URI may make it possible to bypass security rules applied
+on Route objects. This fix make such attacks more difficult by always normalizing the incoming
+request's URI before matching against the Router.
+- Sanitize sanitize path postfix for additional security.
+
+#### Enterprise
+- If a trusted source provides an `X-Forwarded-Path` header, it's proxied as-is; otherwise, 
+Kong will set the content of the header to the request's URI.
+- Fixed a migration issue where workspaces IDs (`ws_id`) were not being appended to more than
+  1000 entities, resulting in `ws_id` being `null` after migrations have been successfully
+  completed with `kong migrations finish`.  
+
+#### DevPortal
+- Before, when enabling application registration with key authentication, developers who created 
+applications were able to see all Services for which the application registration plugin was enabled,
+regardless of the permissions granted to their role. With this fix, developers who create applications 
+will only see Services if the role they are assigned to has been granted permissions to the relevant  
+specs.
+
+#### Plugins
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  - Fixed init workers that were prolonging Kong startup time.
+  - Fixed consumer and discovery invalidation events that were returning when the operation
+  was `create`. This could leave some cache entries in cache that need to be invalidated.
+  - Fixed a circular dependency issue with the redirect function.
+  - Added `config.disable_session` to be able to disable session creation with
+    specified authentication methods.
+  - Changed `Cache-Control="no-store"` instead of `Cache-Control="no-cache, no-store"`,
+    and only set `Pragma="no-cache"` with HTTP 1.0 (and below).
+  - Fixed `/openid-connect/jwks` to not expose private keys (this bug was introduced
+    in v1.6.0 (Kong Enterprise v2.1.3.1) and affects all versions up to v1.8.3 (Kong Enterprise v2.3.2)).
+  - Token introspection now checks the status code properly.
+  - More consistent response body checks on HTTP requests.
+  - Fixed an issue where enabling zlib compressor did not affect the size of the session cookie.
+- [ACME](/hub/kong-inc/acme) (`acme`) (updated to v0.2.14)
+  - Bump `lua-resty-acme` to v0.6.x; this fixes several issues with Pebble test server.
+- [Exit Transformer](/hub/kong-inc/exit-transformer) (`exit-transformer`)
+  - The plugin now allows access to Kong modules within the sandbox, not only to `kong.request`.
+
+#### Plugin Dependencies
+- OpenID Connect Library
+  - Token introspection now checks the status code properly.
+  - Added more consistent response body checks on `HTTP` requests.
 
 ## 2.1.4.3
 **Release Date** 2020/12/31
@@ -644,11 +825,12 @@ open-source **Kong Gateway 2.2.0.0**:
   Several Kong plugins allow arbitrary code execution by design, including the `serverless` plugin (also known as `pre-function` and `post-function` capabilities) and the `exit-transformer` plugin (for example, allows an administrator to configure a Lua-based response transformation). Changes include:
   - A new change in this release locks down these plugins so that they have limited functions available in a sandbox, providing significant additional security for a user with an exposed admin port.
   - Functions such as "require" are no longer available to scripts that run in these plugins for security purposes, because allowing "require" allows embedded additional arbitrary code execution.
-  - **Important**: This change causes a **breaking change** in this patch release and it cannot be avoided. Our recommendation is that [users lock down their admin ports](https://docs.konghq.com/latest/secure-admin-api/) to avoid attackers trying to exploit any API gateway, like Kong, to gain access to internal networks. If you need the previous release behavior, including the ability to arbitrarily "require" libraries or if you want to lock things down further, we have introduced four new settings you can use:
-    - `KONG_UNTRUSTED_LUA = on|off` Sets whether any custom Lua code can be used outside of Kong's distributed code. Defaults to "on".
-    - `KONG_UNTRUSTED_LUA_SANDBOX = on|off` Turns on or off the sandbox. Defaults to "on".
+  - **Important**: This change causes a **breaking change** in this patch release and it cannot be avoided. Our recommendation is that [users lock down their admin ports](https://docs.konghq.com/latest/secure-admin-api/) to avoid attackers trying to exploit any API gateway, like Kong, to gain access to internal networks. If you need the previous release behavior, including the ability to arbitrarily "require" libraries or if you want to lock things down further, we have introduced three new settings you can use:
+    - `KONG_UNTRUSTED_LUA = off | sandbox | on` Sets whether any custom Lua code can be used outside of Kong's distributed code. Defaults to "sandbox".
     - `KONG_UNTRUSTED_LUA_SANDBOX_REQUIRES = foo,bar` Which libraries, if any, you want to require in the sandbox. Defaults to an empty list.
     - `KONG_UNTRUSTED_LUA_SANDBOX_ENVIRONMENT = kong.request` Any additional objects you want to pass through to the sandbox environments.  Defaults to an empty list.
+
+    For detailed information about these new properties, see the [property reference documentation](https://docs.konghq.com/enterprise/2.3.x/property-reference/#untrusted_lua).
 
 - Backport Admins Migration Fix: When upgrading from 1.5.x.y to versions prior to 2.2.0.0, there was a known migration issue that prevented the upgrade from continuing and also generated log errors. This issue was caused by a bug in the handling of which workspaces consumers were assigned to. Release 2.1.4.3 resolves this issue the same way it does for 2.2.0.0. It is recommended that if you are upgrading to 2.1.x.y, that you use 2.1.4.3 to avoid migration errors.
 
@@ -1012,6 +1194,31 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
 
 
+## 1.5.0.10
+**Release Date** 2021/03/26
+
+### Fixes
+
+#### Core
+- Fixed an issue where certain incoming URI may make it possible to bypass security rules applied
+on Route objects. This fix make such attacks more difficult by always normalizing the incoming
+request's URI before matching against the Router.
+- Sanitize path postfix for additional security.
+
+#### Enterprise
+- Added pgp signature to Bintray-rpm package of `kong-enterprise`, version 1.5.0.9.
+- Added the following updates with backport of bypass security vulnerability:
+  - Support for read transformations
+  - Support for `X-Forwarded-Prefix`
+  - `X-Forwarded-Path` header
+
+#### Developer Portal
+- Before, when enabling application registration with key authentication, developers who created 
+applications were able to see all Services for which the application registration plugin was enabled,
+regardless of the permissions granted to their role. With this fix, developers who create applications 
+will only see Services if the role they are assigned to has been granted permissions to the relevant  
+specs.
+
 ## 1.5.0.9
 **Release Date** 2020/12/31
 
@@ -1029,11 +1236,12 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
   Several Kong plugins allow arbitrary code execution by design, including the `serverless` plugin (also known as `pre-function` and `post-function` capabilities) and the `exit-transformer` plugin (for example, allows an administrator to configure a Lua-based response transformation). Changes include:
   - A new change in this release locks down these plugins so that they have limited functions available in a sandbox, providing significant additional security for a user with an exposed admin port.
   - Functions such as "require" are no longer available to scripts that run in these plugins for security purposes, because allowing "require" allows embedded additional arbitrary code execution.
-  - **Important**: This change causes a **breaking change** in this patch release and it cannot be avoided. Our recommendation is that [users lock down their admin ports](https://docs.konghq.com/latest/secure-admin-api/) to avoid attackers trying to exploit any API gateway, like Kong, to gain access to internal networks. If you need the previous release behavior, including the ability to arbitrarily "require" libraries or if you want to lock things down further, we have introduced four new settings you can use:
-    - `KONG_UNTRUSTED_LUA = on|off` Sets whether any custom Lua code can be used outside of Kong's distributed code. Defaults to "on".
-    - `KONG_UNTRUSTED_LUA_SANDBOX = on|off` Turns on or off the sandbox. Defaults to "on".
+  - **Important**: This change causes a **breaking change** in this patch release and it cannot be avoided. Our recommendation is that [users lock down their admin ports](https://docs.konghq.com/latest/secure-admin-api/) to avoid attackers trying to exploit any API gateway, like Kong, to gain access to internal networks. If you need the previous release behavior, including the ability to arbitrarily "require" libraries or if you want to lock things down further, we have introduced three new settings you can use:
+    - `KONG_UNTRUSTED_LUA = off | sandbox | on` Sets whether any custom Lua code can be used outside of Kong's distributed code. Defaults to "sandbox".
     - `KONG_UNTRUSTED_LUA_SANDBOX_REQUIRES = foo,bar` Which libraries, if any, you want to require in the sandbox. Defaults to an empty list.
     - `KONG_UNTRUSTED_LUA_SANDBOX_ENVIRONMENT = kong.request` Any additional objects you want to pass through to the sandbox environments.  Defaults to an empty list.
+
+    For detailed information about these new properties, see the [property reference documentation](https://docs.konghq.com/enterprise/2.3.x/property-reference/#untrusted_lua).
 
 #### Breaking Changes
 - See *RCE (Remote Code Execution) Plugin Mitigations* in the Kong Enterprise section.

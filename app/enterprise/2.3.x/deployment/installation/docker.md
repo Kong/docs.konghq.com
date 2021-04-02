@@ -84,7 +84,7 @@ $ docker run --rm --network=kong-ee-net \
 
 **Note**: For `KONG_PASSWORD`, replace `<SOMETHING-YOU-KNOW>` with a valid password that only you know.
 
-## Step 5. Start the gateway with Kong Manager
+## Step 5. Start the gateway with Kong Manager {#start-gateway}
 
 ```bash
 $ docker run -d --name kong-ee --network=kong-ee-net \
@@ -96,7 +96,6 @@ $ docker run -d --name kong-ee --network=kong-ee-net \
   -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
   -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
   -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
-  -e "KONG_PORTAL_GUI_HOST=<DNSorIP>:8003" \
   -e "KONG_ADMIN_GUI_URL=http://<DNSorIP>:8002" \
   -p 8000:8000 \
   -p 8443:8443 \
@@ -109,42 +108,68 @@ $ docker run -d --name kong-ee --network=kong-ee-net \
   kong-ee
 ```
 
-**Notes**
-- For `KONG_PORTAL_GUI_HOST` and `KONG_ADMIN_GUI_URL`, replace `<DNSorIP>` with with the DNS name or IP of the Docker host.
-  * The DNS or IP address for `KONG_PORTAL_GUI_HOST` should _not_ be preceded with a protocol, e.g. `http://`.
-  * `KONG_ADMIN_GUI_URL` _should_ have a protocol, e.g., `http://`.
+<div class="alert alert-ee">
+<b>Note:</b> For <code>KONG_ADMIN_GUI_URL</code>, replace <code>&lt;DNSorIP&gt;</code>
+with with the DNS name or IP of the Docker host. <code>KONG_ADMIN_GUI_URL</code>
+<i>should</i> have a protocol, for example, <code>http://</code>.
+</div>
 
 ## Step 6. Verify your installation
 
-```bash
-$ curl -i -X GET --url http://<DNSorIP>:8001/services
-```
+1. Access the `/services` endpoint using the Admin API:
 
-You should receive an `HTTP/1.1 200 OK` message.
+    ```bash
+    $ curl -i -X GET --url http://<DNSorIP>:8001/services
+    ```
 
-Verify that Kong Manager is running by accessing it using the URL specified in `KONG_ADMIN_GUI_URL` in [Step 6](#step-6-start-kong-enterprise-with-kong-manager-and-kong-developer-portal-enabled).
+    You should receive an `HTTP/1.1 200 OK` message.
+
+2. Verify that Kong Manager is running by accessing it using the URL specified
+in `KONG_ADMIN_GUI_URL` in [Step 5](#start-gateway):
+
+    ```
+    http://<DNSorIP>:8002
+    ```
 
 ## Step 7. (Optional) Enable the Dev Portal
 
 <div class="alert alert-ee">
 <img class="no-image-expand" src="/assets/images/icons/documentation/icn-enterprise-blue.svg" alt="Enterprise" />
-This feature is only available with a {{site.konnect_product_name}} Enterprise subscription.
+This feature is only available with a
+<a href="/enterprise/{{page.kong_version}}/deployment/licensing">
+{{site.konnect_product_name}} Enterprise subscription</a>.
 </div>
 
-In your container, set `KONG_PORTAL` to `on`:
+1. [Deploy a license](/enterprise/{{page.kong_version}}/deployment/licenses/deploy-license).
 
-```sh
-$ echo "KONG_PORTAL=on \
-  kong reload exit" | docker exec -i <kong-container-id> /bin/sh \
-```
+2. In your container, set the Portal URL and set `KONG_PORTAL` to `on`:
 
-Execute the following command. Change `<DNSorIP>` to the IP or valid DNS of your Docker host:
+    ```sh
+    $ echo "KONG_PORTAL_GUI_HOST=localhost:8003 KONG_PORTAL=off kong reload exit" \
+      | docker exec -i kong-ee /bin/sh
+    ```
 
-  ```bash
-  $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default --data "config.portal=true"
-  ```
+    <div class="alert alert-ee">
+    <b>Note:</b> For <code>KONG_PORTAL_GUI_HOST</code>, replace
+    <code>&lt;DNSorIP&gt;</code> with with the DNS name or IP of the Docker host.
+    The DNS or IP address for <code>KONG_PORTAL_GUI_HOST</code> should <i>not</i>
+    be preceded by a protocol, for example, <code>http://</code>.
+    </div>
 
-Verify the Developer Portal is running by accessing it at the URL specified in the `KONG_PORTAL_GUI_HOST` variable in [Step 6](#step-6-start-kong-enterprise-with-kong-manager-and-kong-developer-portal-enabled).
+3. Execute the following command. Change `<DNSorIP>` to the IP or valid DNS of
+your Docker host:
+
+    ```bash
+    $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default \
+      --data "config.portal=true"
+    ```
+
+4. Access the Dev Portal for the default workspace using the URL specified
+in the `KONG_PORTAL_GUI_HOST` variable:
+
+    ```
+    http://<DNSorIP>:8003/default
+    ```
 
 ## Troubleshooting
 
