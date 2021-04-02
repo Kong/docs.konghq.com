@@ -3,6 +3,8 @@
   icon: /assets/images/icons/documentation/icn-flag.svg
   url: /
   items:
+    - text: Introduction
+      url: /
     - text: Changelog
       url: https://github.com/Kong/kong/blob/master/CHANGELOG.md
       absolute_url: true
@@ -10,9 +12,9 @@
 - title: Getting Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   items:
-    - text: Quickstart Guide
+    - text: Quickstart
       items:
-        - text: Five-minute quickstart
+        - text: Start Kong Gateway
           url: /getting-started/quickstart
 
         - text: Configuring a Service
@@ -27,7 +29,7 @@
         - text: Adding Consumers
           url: /getting-started/adding-consumers
 
-    - text: Advanced Getting Started Guide
+    - text: Getting Started Guide
       items:
         - text: Overview
           url: /../../getting-started-guide/latest/overview

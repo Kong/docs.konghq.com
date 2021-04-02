@@ -1,4 +1,4 @@
-- title: Kong Mesh Documentation
+- title: Introduction
   icon: /assets/images/icons/documentation/icn-flag.svg
   url: /
 
@@ -11,9 +11,7 @@
 
 - title: Getting Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
-  items:
-    - text: Getting Started
-      url: /gettingstarted
+  url: /gettingstarted
 
 - title: Install
   icon: /assets/images/icons/documentation/icn-deployment-color.svg

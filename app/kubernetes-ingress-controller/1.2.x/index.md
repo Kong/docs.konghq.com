@@ -1,5 +1,6 @@
 ---
-title: Documentation for the Kong Ingress Controller
+title: Kubernetes Ingress Controller
+subtitle: An ingress controller for the Kong Gateway
 ---
 
 ## Concepts

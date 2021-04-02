@@ -1,10 +1,8 @@
 ---
-title: Documentation for Kong Konnect
+title: Kong Konnect
+subtitle: The full-stack connectivity platform for cloud-native applications
 no_version: true
 ---
-
-{{site.konnect_product_name}} ({{site.konnect_short_name}}) is a full-stack
-connectivity platform for cloud-native applications.
 
 ## End-to-end Service Connectivity Platform  
 We live in a connected world. Every application we use, whether within or outside

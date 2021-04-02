@@ -1,7 +1,7 @@
 ---
-title: Documentation for Kong Mesh
+title: Kong Mesh
+subtitle: A modern control plane built on top of Envoy and focused on simplicity, security, and scalability
 ---
-## Introduction
 
 <div class="alert alert-ee blue">
    <b>Demo</b>: To see {{site.mesh_product_name}} in action, you can

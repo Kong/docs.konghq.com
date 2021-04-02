@@ -1,8 +1,8 @@
 ---
-title: Documentation for decK
+title: decK
+subtitle: Manage Konnect and Kong Gateway configuration declaratively
 no_version: true
 ---
-## Introduction
 
 decK helps manage Kong’s configuration in a declarative fashion. It can sync
 configuration to a running Kong cluster, diff configuration to detect any drift

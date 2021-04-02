@@ -1,10 +1,17 @@
-- title: Kong Gateway (Enterprise)
+- title: Introduction
   icon: /assets/images/icons/documentation/icn-flag.svg
   url: /
   items:
+    - text: Introduction
+      url: /
     - text: Key Concepts and Terminology
       url: /introduction/key-concepts
-    - text: Release Notes
+
+- title: Release notes
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  url: /release-notes
+  items:
+    - text: Release notes
       url: /release-notes
     - text: Changelog
       url: /enterprise/changelog

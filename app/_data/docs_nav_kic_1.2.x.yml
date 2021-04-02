@@ -7,6 +7,7 @@
     - text: Changelog
       url: https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
       absolute_url: true
+
 - title: Concepts
   icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
   items:
