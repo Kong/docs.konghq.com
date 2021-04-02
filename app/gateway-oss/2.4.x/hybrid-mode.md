@@ -13,8 +13,8 @@ a database, using only in-memory storage for entities: we call this [**DB-less m
 In Kong 2.0, we introduced a new method of deploying Kong which is
 called the **Hybrid mode**, also known as **Control Plane / Data Plane Separation (CP/DP)**.
 
-In this mode Kong nodes in a cluster are separated into two roles: Control Plane (CP), where configuration is managed and the Admin API is served from,
-and Data Plane (DP), which serves traffic for the proxy. Each DP node is connected to one of the CP nodes. Instead of accessing the
+In this mode Kong nodes in a cluster are separated into two roles: control plane (CP), where configuration is managed and the Admin API is served from,
+and data plane (DP), which serves traffic for the proxy. Each DP node is connected to one of the CP nodes. Instead of accessing the
 database contents directly in the traditional deployment method, the DP nodes maintains
 connection with CP nodes, and receives the latest configuration.
 
@@ -33,8 +33,8 @@ Hybrid Mode introduces the following configuration properties:
 
 Parameter | Description
 --- | ---
-`cluster_listen` *Optional* | List of addresses and ports on which the Control Plane will listen for incoming Data Plane connections. Defaults to `0.0.0.0:8005`. Note this port is always protected with Mutual TLS (mTLS) encryption. Ignored on Data Plane nodes.
-`cluster_control_plane` *Required* | Address and port that the Data Plane nodes use to connect to the Control Plane. Must point to the port configured using the `cluster_listen` property on the Control Plane node. Ignored on Control Plane nodes.
+`cluster_listen` *Optional* | List of addresses and ports on which the control plane will listen for incoming data plane connections. Defaults to `0.0.0.0:8005`. Note this port is always protected with Mutual TLS (mTLS) encryption. Ignored on data plane nodes.
+`cluster_control_plane` *Required* | Address and port that the data plane nodes use to connect to the control plane. Must point to the port configured using the `cluster_listen` property on the control plane node. Ignored on control plane nodes.
 `cluster_mtls` *Optional* | One of `"shared"` or `"pki"`. Indicates whether Hybrid Mode will use a shared certificate/key pair for CP/DP mTLS or if PKI mode will be used. Defaults to `"shared"`. See below sections for differences in mTLS modes.
 
 The following properties are used differently between "shared" and "PKI" modes:
@@ -79,11 +79,11 @@ Observe proper permission setting on the key file to ensure it can only be read 
 
 ## Setting Up Kong Control Plane Nodes
 
-Starting the Control Plane is fairly simple. Aside from the database configuration
+Starting the control plane is fairly simple. Aside from the database configuration
 which is the same as today, we need to specify the "role" of the node to "control\_plane".
-This will cause Kong to listen on `0.0.0.0:8005` by default for Data Plane
-connections. The `8005` port on the Control Plane will need to be
-accessible by all the Data Plane it controls through any firewalls you may have
+This will cause Kong to listen on `0.0.0.0:8005` by default for data plane
+connections. The `8005` port on the control plane will need to be
+accessible by all the data plane it controls through any firewalls you may have
 in place.
 
 In addition, the `cluster_cert` and `cluster_cert_key` configuration need to point to
@@ -101,9 +101,9 @@ cluster_cert = cluster.crt
 cluster_cert_key = cluster.key
 ```
 
-Note that Control Plane still needs a database (Postgres or Cassandra) to store the
+Note that control plane still needs a database (Postgres or Cassandra) to store the
 "source of truth" configurations, although the database never needs to be access by
-Data Plane nodes. You may run more than a single Control Plane nodes to provide load balancing
+data plane nodes. You may run more than a single control plane nodes to provide load balancing
 and redundancy as long as they points to the same backend database.
 
 ## PKI mode
@@ -111,7 +111,7 @@ and redundancy as long as they points to the same backend database.
 Starting in Kong 2.1, the Hybrid cluster can use certificates signed by a central certificate authority (CA).
 This mode can be activated by setting `cluster_mtls` to `"pki"` in `kong.conf`. The default value is `"shared"`.
 
-In PKI mode, the Control Plane and Data Plane don't need to use the same `cluster_cert` and `cluster_cert_key`.
+In PKI mode, the control plane and data plane don't need to use the same `cluster_cert` and `cluster_cert_key`.
 Instead, Kong validates both sides by checking if they are from the same CA. This eliminates the risk of
 transporting private keys around.
 
@@ -265,7 +265,7 @@ Certificate:
 
 Kong doesn't validate the CommonName (CN) in the DP certificate; it can take an arbitrary value.
 
-Set the following configuration parameters in `kong.conf` on the Control Plane:
+Set the following configuration parameters in `kong.conf` on the control plane:
 
 ```
 cluster_mtls = pki
@@ -278,7 +278,7 @@ cluster_cert_key = control-plane.key
 certificate must be the root CA certificate and not any of an intermediate CA.
 Kong allows at most `3` levels of intermediate CAs to be used between the root CA and the cluster certificate.
 
-Set the following configuration parameters in `kong.conf` on the Data Plane:
+Set the following configuration parameters in `kong.conf` on the data plane:
 
 ```
 cluster_mtls = pki
@@ -287,16 +287,16 @@ cluster_cert = data-plane.crt
 cluster_cert_key = data-plane.crt
 ```
 
-`cluster_server_name` specifies the SNI (Server Name Indication extension) to use for Data Plane
-connections to the Control Plane through TLS. When not set, Data Plane will use `kong_clustering` as the SNI.
+`cluster_server_name` specifies the SNI (Server Name Indication extension) to use for data plane
+connections to the control plane through TLS. When not set, data plane will use `kong_clustering` as the SNI.
 
 
 ## Starting Data Plane Nodes
 
-Now we have a Control Plane running, it is not much useful if no Data Plane nodes are
-talking to it and serving traffic (remember Control Plane nodes can not be used
-for proxying). To start the Data Plane, all we need to do is to specify the "role"
-to "data\_plane", give it the address and port of where the Control Plane can be reached
+Now we have a control plane running, it is not much useful if no data plane nodes are
+talking to it and serving traffic (remember control plane nodes can not be used
+for proxying). To start the data plane, all we need to do is to specify the "role"
+to "data\_plane", give it the address and port of where the control plane can be reached
 and the node automatically connects and syncs itself up with the current configuration.
 
 Similar to the CP config above, `cluster_cert` and `cluster_cert_key` configuration need to
@@ -305,7 +305,7 @@ as trusted by OpenResty through the `lua_ssl_trusted_certificate` configuration.
 have already specified a different `lua_ssl_trusted_certificate`, then adding the content
 of `cluster.crt` into that file will achieve the same result.
 
-**Note:** In this release of the Hybrid Mode, the Data Plane receives updates from the Control
+**Note:** In this release of the Hybrid Mode, the data plane receives updates from the Control
 Plane via a format that is similar to the Declarative Config, therefore the `database`
 property has to be set to `off` for Kong to start up properly.
 
@@ -337,11 +337,11 @@ lua_ssl_trusted_certificate = cluster.crt
 
 You may want to check the status of the Kong cluster from time to time, such as
 checking to see the which nodes are actively receiving config updates from
-Control Plane, or when was it last updated. This can be achieved by using the
-Control Plane's new Cluster Status API:
+control plane, or when was it last updated. This can be achieved by using the
+control plane's new Cluster Status API:
 
 ```
-# on Control Plane node
+# on control plane node
 http :8001/clustering/data-planes
 
 
@@ -371,38 +371,50 @@ http :8001/clustering/data-planes
 ```
 
 The Cluster Status API provides helpful information such as
-the name of the node and last time it synced with the Control Plane, as
+the name of the node and last time it synced with the control plane, as
 well as config version currently running on them.
 
 ## Managing the cluster using Control Plane nodes
 
-Once the nodes are setup, use the Admin API on the Control Plane as usual,
-those changes will be synced and updated on the Data Plane nodes
+Once the nodes are setup, use the Admin API on the control plane as usual,
+those changes will be synced and updated on the data plane nodes
 automatically within seconds.
 
-## Version and compatibility checks
+### Version compatibility
 
-Starting with Kong Gateway 2.3.0, Control Plane nodes can perform version 
-compatibility checks to determine if connected Data Planes can be
-synced safely. If the compatibility checks fail, the Control Plane stops
-pushing out new config to the incompatible Data Planes to avoid breaking them.
+{{site.ce_product_name}} control planes only connect to data planes with the
+same major version and at most two minor versions earlier (edge included).
+Control planes won't connect to data planes with newer versions.
 
-The following conditions must be met for new configs being pushed to the Data
-Plane:
-1. The Kong Gateway version must be on the same major and minor release for both 
-Control Plane and Data Planes, and only the patch version can vary.
-For example, sync between Kong 2.2.0 and Kong 2.3.0 will fail, but sync between Kong 
-2.3.0 and Kong 2.3.2 should succeed. 
-2. The set of plugins enabled on the Control Plane and Data Plane must be
-the same.
-3. For enabled plugins, the plugin version number must be the same on both the 
-Control Plane and Data Planes. This check is more strict than the Kong Gateway 
-version check, as the plugin versions must match exactly, down to the patch level.  
-For example, if `foo-plugin` has version 0.1.2 on the Control Plane and 0.1.1 on a 
-Data Plane, sync will not happen.
+For example, a {{site.ce_product_name}} v2.4.2 control plane:
 
-If a config can not be pushed to a Data Plane due to failure of the
-compatibility checks, the Control Plane will contain `warn` level lines in the
+- Accepts a {{site.ce_product_name}} 2.4.0, 2.4.1 and 2.4.2 data plane
+- Rejects a {{site.ce_product_name}} 2.4.3 data plane
+- Rejects a {{site.ce_product_name}} 2.3.9 data plane
+- Rejects a {{site.ce_product_name}} 1.0.0 data plane
+
+Furthermore, {{site.ce_product_name}} control planes only accept data planes
+whose list of plugins is a superset of the plugins installed on it. Also,
+plugins installed on both control planes and data planes, must have the same
+major and minor versions.
+
+For example, if a {{site.ce_product_name}} control plane has `plugin1` v1.1.1
+and `plugin2` v2.1.0 installed:
+
+- It accepts {{site.ce_product_name}} data planes with `plugin1` v1.1.2,
+`plugin2` v2.1.0 installed
+- It accepts {{site.ce_product_name}} data planes with `plugin1` v1.1.2,
+`plugin2` v2.1.0 and  `plugin3` v9.8.1 installed
+- It rejects {{site.ce_product_name}} data planes with `plugin1` v1.2.0,
+`plugin2` v2.1.0 installed
+- It rejects {{site.ce_product_name}} data planes with `plugin1` v1.1.1,
+`plugin3` v9.8.1 installed
+
+If the compatibility checks fail, the control plane stops
+pushing out new config to the incompatible data planes to avoid breaking them.
+
+If a config can not be pushed to a data plane due to failure of the
+compatibility checks, the control plane will contain `warn` level lines in the
 `error.log` similar to the following:
 ```
 unable to send updated configuration to DP node with hostname: localhost.localdomain ip: 127.0.0.1 reason: version mismatches, CP version: 2.2 DP version: 2.1
@@ -410,20 +422,20 @@ unable to send updated configuration to DP node with hostname: localhost.localdo
 ```
 
 In addition, the `/clustering/data-planes` Admin API endpoint will return
-the version of the Data Plane node and the latest config hash the node is
+the version of the data plane node and the latest config hash the node is
 using. These will help detect version incompatibilities from the
-Control Plane side.
+control plane side.
 
 ## Fault tolerance
 
-A valid question you may ask is: What would happen if Control Plane nodes are down,
-will the Data Plane keep functioning? The answer is yes. Data plane caches
-the latest configuration it received from the Control Plane on the local disk.
-In case Control Plane stops working, Data Plane will keep serving requests using
+A valid question you may ask is: What would happen if control plane nodes are down,
+will the data plane keep functioning? The answer is yes. Data plane caches
+the latest configuration it received from the control plane on the local disk.
+In case the control plane stops working, the data plane will keep serving requests using
 cached configurations. It does so while constantly trying to reestablish communication
-with the Control Plane.
+with the control plane.
 
-This means that the Data Plane nodes can be restarted while the Control Plane
+This means that the data plane nodes can be restarted while the control plane
 is down, and still proxy traffic normally.
 
 ## Limitations
