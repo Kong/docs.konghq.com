@@ -16,7 +16,7 @@ name: Repo Sync
 on:
   workflow_dispatch: 
   schedule:
-  - cron: "0 0 * * 1" # once every Monday at 12am
+  - cron: "0 0 * * *" # once every day
   
 
 jobs:
@@ -54,7 +54,7 @@ jobs:
       uses: juliangruber/find-pull-request-action@v1
       id: find-pull-request
       with:
-        github-token: ${{ secrets.REPO_SYNC_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         branch: chore/repo-sync
         base: main
 
@@ -62,5 +62,5 @@ jobs:
       if: ${{ steps.find-pull-request.outputs.number }}
       uses: juliangruber/approve-pull-request-action@v1
       with:
-        github-token: ${{ secrets.REPO_SYNC_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         number: ${{ steps.find-pull-request.outputs.number }}
