@@ -36,8 +36,26 @@ to a database.
 
 Currently, the only supported runtime type in the
 {{site.konnect_product_name}} SaaS application is a [{{site.ee_gateway_name}}](/enterprise/latest/introduction)
-data plane running in a Docker container.
+data plane. Choose your installation below:
 
-**See more**:
-* [Set up a {{site.ee_gateway_name}} runtime](/konnect/runtime-manager/kong-gateway-runtime)
-* [{{site.ee_gateway_name}} documentation](/enterprise/latest/introduction)
+<div class="docs-grid-install">
+
+  <a href="/konnect/runtime-manager/gateway-runtime-kubernetes" class="docs-grid-install-block no-description">
+    <img class="install-icon" src="/assets/images/icons/documentation/kubernetes-logo.png" alt="Kubernetes" />
+    <div class="install-text">Kubernetes (Helm)</div>
+  </a>
+
+  <a href="/konnect/runtime-manager/gateway-runtime-docker" class="docs-grid-install-block no-description">
+    <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/docker.png" alt="Docker" />
+    <div class="install-text">Docker</div>
+  </a>
+
+    <a href="/konnect/runtime-manager/gateway-runtime-conf" class="docs-grid-install-block no-description">
+      <img class="install-icon" src="/assets/images/icons/documentation/helm-icon-color.svg" alt="Helm" />
+      <div class="install-text">Universal (kong.conf)</div>
+    </a>
+
+</div>
+
+
+For more information, see the [{{site.ee_gateway_name}} documentation](/enterprise/latest/introduction).

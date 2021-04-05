@@ -60,7 +60,15 @@
     - text: Overview
       url: /runtime-manager
     - text: Manage a Kong Gateway Runtime
-      url: /runtime-manager/kong-gateway-runtime
+      items:
+        - text: Docker
+          url: /runtime-manager/gateway-runtime-docker
+        - text: Kubernetes
+          url: /runtime-manager/gateway-runtime-kubernetes
+        - text: Universal (kong.conf)
+          url: /runtime-manager/gateway-runtime-conf
+        - text: Runtime Parameter Reference
+          url: runtime-manager/runtime-parameter-reference
     - text: Renew Certificates
       url: /runtime-manager/renew-certificates
 
