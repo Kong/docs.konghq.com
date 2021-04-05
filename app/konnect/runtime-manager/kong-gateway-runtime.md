@@ -239,16 +239,16 @@ you saved earlier:
       --key=/tmp/cluster.key
     ```
 
-1. Create a generic secret for the CA cert:
+3. Create a generic secret for the CA cert:
 
     ```bash
     $ kubectl create secret generic kong-cluster-ca -n kong \
       --from-file=ca.crt=/tmp/ca.crt
     ```
 
-2. In the **Configuration Parameters** section, copy the codeblock.
+4. In the **Configuration Parameters** section, copy the codeblock.
 
-3. Open your instance's `values.yml` file, or use the
+5. Open your instance's `values.yml` file, or use the
 [data plane template](https://github.com/Kong/charts/blob/main/charts/kong/example-values/minimal-kong-hybrid-data.yaml).
 Remove the `KONG_` prefix from the parameters in the sample codeblock and add
 the following parameters to the file.
