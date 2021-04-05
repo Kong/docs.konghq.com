@@ -105,7 +105,7 @@ To start creating your own plugins, check out the PDK documentation:
 * {{site.ee_product_name}}
     * [Lua Plugin Development Guide](/enterprise/latest/plugin-development) and
     the [Lua Plugin Development Kit reference](/enterprise/latest/pdk)
-    * [Go Plugin Development Kit](/enterprise/latest/go)
+    * [Go Plugin Development Kit](/enterprise/latest/external-plugins)
 
 ## Contributing custom plugins
 
