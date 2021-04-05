@@ -701,6 +701,30 @@ Default: `1209600`
 
 ---
 
+#### cluster_ocsp
+
+Whether to check for revocation status of DP certificates using OCSP (Online
+Certificate Status Protocol).
+
+If enabled, the DP certificate should contain the "Certificate Authority
+Information Access" extension and the OCSP method with URI of which the OCSP
+responder can be reached from CP.
+
+OCSP checks are only performed on CP nodes, it has no effect on DP nodes.
+
+Valid values to this setting are:
+
+- `on`: OCSP revocation check is enabled and DP must pass the check in order to
+  establish connection with CP.
+- `off`: OCSP revocation check is disabled.
+- `optional`: OCSP revocation check will be attempted, however, if the required
+  extension is not found inside DP provided certificate or communication with
+  the OCSP responder failed, then DP is still allowed through.
+
+Default: `off`
+
+---
+
 
 ### NGINX section
 
@@ -784,9 +808,6 @@ Some suffixes can be specified for each pair:
   parameter. In order for the larger `backlog` set here to take effect it is
   necessary to raise `net.core.somaxconn` at the same time to match or exceed
   the `backlog` number set.
-
-**Note:** The `ssl` suffix is not supported, and each address/port will accept
-TCP with or without TLS enabled.
 
 Examples:
 
@@ -1011,8 +1032,17 @@ Default: `1d`
 
 #### ssl_cert
 
-The absolute path to the SSL certificate for `proxy_listen` values with SSL
-enabled.
+Comma-separated list of the absolute path to the certificates for
+`proxy_listen` values with TLS enabled.
+
+If more than one certificates are specified, it can be used to provide
+alternate type of certificate (for example, ECC certificate) that will be served
+to clients that supports them. Note to properly serve using ECC certificates, it
+is recommended to also set `ssl_cipher_suite` to `modern` or `intermediate`.
+
+Unless this option is explicitly set, Kong will auto-generate a pair of default
+certificates (RSA + ECC) first time it starts up and use it for serving TLS
+requests.
 
 Default: none
 
@@ -1020,7 +1050,16 @@ Default: none
 
 #### ssl_cert_key
 
-The absolute path to the SSL key for `proxy_listen` values with SSL enabled.
+Comma-separated list of the absolute path to the keys for `proxy_listen` values
+with TLS enabled.
+
+If more than one certificate was specified for `ssl_cert`, then this option
+should contain the corresponding key for all certificates provided in the same
+order.
+
+Unless this option is explicitly set, Kong will auto-generate a pair of default
+private keys (RSA + ECC) first time it starts up and use it for serving TLS
+requests.
 
 Default: none
 
@@ -1028,8 +1067,8 @@ Default: none
 
 #### client_ssl
 
-Determines if Nginx should send client-side SSL certificates when proxying
-requests.
+Determines if Nginx should attempt to send client-side TLS certificates and
+perform Mutual TLS Authentication with upstream service when proxying requests.
 
 Default: `off`
 
@@ -1037,9 +1076,11 @@ Default: `off`
 
 #### client_ssl_cert
 
-If `client_ssl` is enabled, the absolute path to the client SSL certificate for
-the `proxy_ssl_certificate` directive. Note that this value is statically
-defined on the node, and currently cannot be configured on a per-API basis.
+If `client_ssl` is enabled, the absolute path to the client certificate for the
+`proxy_ssl_certificate` directive.
+
+This value can be overwritten dynamically with the `client_certificate`
+attribute of the `Service` object.
 
 Default: none
 
@@ -1047,9 +1088,11 @@ Default: none
 
 #### client_ssl_cert_key
 
-If `client_ssl` is enabled, the absolute path to the client SSL key for the
-`proxy_ssl_certificate_key` address. Note this value is statically defined on
-the node, and currently cannot be configured on a per-API basis.
+If `client_ssl` is enabled, the absolute path to the client TLS key for the
+`proxy_ssl_certificate_key` directive.
+
+This value can be overwritten dynamically with the `client_certificate`
+attribute of the `Service` object.
 
 Default: none
 
@@ -1057,8 +1100,10 @@ Default: none
 
 #### admin_ssl_cert
 
-The absolute path to the SSL certificate for `admin_listen` values with SSL
-enabled.
+Comma-separated list of the absolute path to the certificates for
+`admin_listen` values with TLS enabled.
+
+See docs for `ssl_cert` for detailed usage.
 
 Default: none
 
@@ -1066,7 +1111,10 @@ Default: none
 
 #### admin_ssl_cert_key
 
-The absolute path to the SSL key for `admin_listen` values with SSL enabled.
+Comma-separated list of the absolute path to the keys for `admin_listen` values
+with TLS enabled.
+
+See docs for `ssl_cert_key` for detailed usage.
 
 Default: none
 
@@ -1074,8 +1122,10 @@ Default: none
 
 #### status_ssl_cert
 
-The absolute path to the SSL certificate for `status_listen` values with SSL
-enabled.
+Comma-separated list of the absolute path to the certificates for
+`status_listen` values with TLS enabled.
+
+See docs for `ssl_cert` for detailed usage.
 
 Default: none
 
@@ -1083,7 +1133,10 @@ Default: none
 
 #### status_ssl_cert_key
 
-The absolute path to the SSL key for `status_listen` values with SSL enabled.
+Comma-separated list of the absolute path to the keys for `status_listen`
+values with TLS enabled.
+
+See docs for `ssl_cert_key` for detailed usage.
 
 Default: none
 
@@ -1890,7 +1943,7 @@ https://github.com/kikito/sandbox.lua/blob/master/sandbox.lua
 To customize the sandbox environment, use the `untrusted_lua_sandbox_requires`
 and `untrusted_lua_sandbox_environment` parameters below.
 
-**Default:** `sandbox`
+Default: `sandbox`
 
 ---
 
@@ -1916,7 +1969,7 @@ untrusted_lua_sandbox_requires = resty.template, kong.tools.utils
 **Warning:** Allowing certain modules may create opportunities to escape the
 sandbox. For example, allowing `os` or `luaposix` may be unsafe.
 
-**Default:** none
+Default: none
 
 ---
 
@@ -1928,9 +1981,10 @@ inside the sandboxed environment. Ignored if `untrusted_lua` is not `sandbox`.
 **Warning**: Certain variables, when made available, may create opportunities
 to escape the sandbox.
 
-**Default:** none
+Default: none
 
 ---
+
 
 
 [Penlight]: http://stevedonovan.github.io/Penlight/api/index.html

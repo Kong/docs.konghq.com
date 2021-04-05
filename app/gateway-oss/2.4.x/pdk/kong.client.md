@@ -163,7 +163,7 @@ Returns the credentials of the currently authenticated consumer.
 
 **Returns**
 
-*  the authenticated credential
+* `string` the authenticated credential
 
 
 **Usage**
@@ -180,7 +180,7 @@ end
 [Back to top](#kongclient)
 
 
-### kong.client.load_consumer(consumer_id, search_by_username)
+### kong.client.load_consumer(consumer_id[, search_by_username.])
 
 Returns the consumer from the datastore (or cache).
  Will look up the consumer by id, and optionally will do a second search by name.
@@ -192,7 +192,7 @@ Returns the consumer from the datastore (or cache).
 **Parameters**
 
 * **consumer_id** (string):  The consumer id to look up.
-* **search_by_username** ([opt]):  boolean. If truthy,
+* **search_by_username.** (boolean, _optional_):  If truthy,
  then if the consumer was not found by id,
  then a second search by username will be performed
 
@@ -270,7 +270,7 @@ kong.client.authenticate(consumer, credentials)
 [Back to top](#kongclient)
 
 
-### kong.client.get_protocol(allow_terminated)
+### kong.client.get_protocol([allow_terminated.])
 
 Returns the protocol matched by the current route (`"http"`, `"https"`, `"tcp"` or
  `"tls"`), or `nil`, if no route has been matched, which can happen when dealing with
@@ -282,7 +282,7 @@ Returns the protocol matched by the current route (`"http"`, `"https"`, `"tcp"` 
 
 **Parameters**
 
-* **allow_terminated** ([opt]):  boolean. If set, the `X-Forwarded-Proto` header will be checked when checking for https
+* **allow_terminated.** (boolean, _optional_):  If set, the `X-Forwarded-Proto` header will be checked when checking for https
 
 **Returns**
 
