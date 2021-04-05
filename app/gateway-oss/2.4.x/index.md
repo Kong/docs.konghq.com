@@ -91,9 +91,9 @@ is_homepage: true
   </div>
 
   <div class="docs-grid-block">
-    <h3><a href="/gateway-oss/{{page.kong_version}}/go">Go Plugins</a></h3>
-    <p>You can also write plugins using the Go programming language. Here's how to get started.</p>
-    <a href="/gateway-oss/{{page.kong_version}}/go">Read the guide &rarr;</a>
+    <h3><a href="/gateway-oss/{{page.kong_version}}/external-plugins">Go Plugins</a></h3>
+    <p>You can also write plugins using Go and other programming languages, such as Python and JavaScript. Here's how to get started.</p>
+    <a href="/gateway-oss/{{page.kong_version}}/external-plugins">Read the guide &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
