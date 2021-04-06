@@ -2,7 +2,7 @@
 name: JWT
 publisher: Kong Inc.
 version: 2.2.x
-# internal version handler
+# internal version handler 2.2.0 4/6/2021
 
 desc: Verify and authenticate JSON Web Tokens
 description: |
@@ -72,54 +72,54 @@ params:
     - name: uri_param_names
       required: false
       default: "`jwt`"
-      datatype:
+      datatype: set of string elements
       description: A list of querystring parameters that Kong will inspect to retrieve JWTs.
     - name: cookie_names
       required: false
       default:
-      datatype:
+      datatype: set of string elements
       description: A list of cookie names that Kong will inspect to retrieve JWTs.
     - name: header_names
       required: false
-      default: "`Authorization`"
-      datatype:
+      default: "`authorization`"
+      datatype: set of string elements
       description: A list of HTTP header names that Kong will inspect to retrieve JWTs.
     - name: claims_to_verify
       required: false
       default:
-      datatype:
+      datatype: set of string elements
       description: |
-        A list of registered claims (according to [RFC 7519](https://tools.ietf.org/html/rfc7519)) that Kong can verify as well. Accepted values: `exp`, `nbf`.
+        A list of registered claims (according to [RFC 7519](https://tools.ietf.org/html/rfc7519)) that Kong can verify as well. Accepted values: one of `exp` or `nbf`.
     - name: key_claim_name
       required: false
       default: "`iss`"
-      datatype:
+      datatype: string
       description: |
-        The name of the claim in which the `key` identifying the secret **must** be passed. Starting with version `0.13.1`, the plugin will attempt to read this claim from the JWT payload and the header, in this order.
+        The name of the claim in which the `key` identifying the secret **must** be passed. Starting with version `0.13.1`, the plugin will attempt to read this claim from the JWT payload and the header, in that order.
     - name: secret_is_base64
-      required: false
+      required: true
       default: "`false`"
-      datatype:
+      datatype: boolean
       description: |
-        If true, the plugin assumes the credential's `secret` to be base64 encoded. You will need to create a base64 encoded secret for your Consumer, and sign your JWT with the original secret.
+        If true, the plugin assumes the credential's `secret` to be base64 encoded. You will need to create a base64-encoded secret for your Consumer, and sign your JWT with the original secret.
     - name: anonymous
       required: false
       default:
-      datatype:
+      datatype: string
       description: |
         An optional string (consumer uuid) value to use as an anonymous consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. The anonymous value must refer to the Consumer `id` attribute that is internal to Kong, and **not** its `custom_id`.
     - name: run_on_preflight
-      required: false
+      required: true
       default: "`true`"
-      datatype:
+      datatype: boolean
       description: |
         A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests. If set to `false`, then `OPTIONS` requests will always be allowed.
     - name: maximum_expiration
       required: false
       default: 0
-      datatype:
+      datatype: number
       description: |
-        An integer limiting the lifetime of the JWT to `maximum_expiration` seconds in the future. Any JWT that has a longer lifetime is rejected (HTTP 403). If this value is specified, `exp` must be specified as well in the `claims_to_verify` property. The default value of `0` represents an indefinite period. Potential clock skew should be considered when configuring this setting.
+        A value between 0 and 31536000 (365 days) limiting the lifetime of the JWT to `maximum_expiration` seconds in the future. Any JWT that has a longer lifetime is rejected (HTTP 403). If this value is specified, `exp` must be specified as well in the `claims_to_verify` property. The default value of `0` represents an indefinite period. Potential clock skew should be considered when configuring this setting.
 
   extra: |
     <div class="alert alert-warning">
