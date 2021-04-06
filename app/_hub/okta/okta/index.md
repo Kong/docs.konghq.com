@@ -7,6 +7,8 @@ categories:
 
 type: integration
 
+enterprise: true
+
 desc: Integrate Okta's API Access Management (OAuth as a Service) with Kong API Gateway.
 
 description: |
