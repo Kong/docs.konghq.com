@@ -52,14 +52,14 @@ id: documentation
               {% elsif page.edition == 'getting-started-guide' %}Getting Started with Kong Gateway
               {% endif %}
             </div>
-            {% if page.no_version == false or page.has_version == true %}
+            {% unless page.no_version == true %}
             <div class="content-version">
               {{page.kong_version}}
               {% if page.kong_version == page.kong_latest.release %}
                 <span>(latest)</span>
               {% endif %}
             </div>
-            {% endif %}
+            {% endunless %}
             {% unless page.no_breadcrumbs %}
             {% include breadcrumbs.html %}
             {% endunless %}
@@ -111,10 +111,12 @@ id: documentation
 <script type="text/javascript">
   function toggleContentHeader () {
     var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    if (w <= 800 && !$(window).scrollTop()) {
+    if (w <= 800 && $(window).scrollTop() < 8) {
+      $('.content').toggleClass('scrolled', false);
       $('.content-header').toggleClass('scrolled', false);
       $('.content-version').show(250);
     } else {
+      $('.content').toggleClass('scrolled', true);
       $('.content-header').toggleClass('scrolled', true);
       $('.content-version').hide(250);
     }

@@ -33,15 +33,11 @@ header.navbar-v2 {
     .separator {
       flex-grow: 1;
 
-      @media (max-width: 767px) {
-        flex-grow: 0;
-      }
-
       &.mobile {
         flex-grow: unset;
 
         @media (max-width: 767px) {
-          flex-grow: 1;
+          flex-grow: 10;
         }
       }
     }
@@ -112,6 +108,21 @@ header.navbar-v2 {
         padding: 18px 0;
         white-space: nowrap;
         cursor: pointer;
+
+        &.with-submenu {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+
+          .caret {
+            margin: 0;
+
+            @media (min-width: 801px) {
+              display: none;
+            }
+          }
+        }
 
         > a {
           color: #043558;
@@ -310,6 +321,10 @@ header.navbar-v2 {
               transform: translate(calc(100% + 8px), 0);
               font-weight: 500;
 
+              .caret {
+                display: none;
+              }
+
               > a {
                 color: #043558;
               }
@@ -369,7 +384,8 @@ header.navbar-v2 {
         right: 0;
         min-height: calc(100vh - 60px);
         transform: translateY(-120%);
-        background: white;
+        background: white center no-repeat;
+        background-image: url("/assets/images/icons/icn-search.svg");
         z-index: -100;
         transition: transform 0.25s;
       }

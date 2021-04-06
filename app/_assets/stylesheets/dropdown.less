@@ -20,7 +20,7 @@
   z-index: 1000;
   display: none;
   float: left;
-  min-width: 244px;
+  width: 100%;
   padding: 4px 0;
   margin: 4px 0 0;
   list-style: none;
@@ -89,17 +89,42 @@
 
   .dropdown-menu {
     top: 56px;
+    padding: 8px 0;
 
     .dropdown-submenu-title {
       color: #4c6d80;
-      padding: 10px;
+      padding: 8px 16px;
       text-transform: uppercase;
       font: normal 12px/24px Roboto;
+
+      &:not(:first-child) {
+        margin-top: 8px;
+      }
     }
 
-    @media screen and (max-width: 400px) {
-      min-width: 100%;
+    li {
+      padding-bottom: 0;
+
+      a {
+        margin: 0;
+        color: #043558;
+        padding: 8px 16px;
+        font: 500 16px/24px Roboto;
+        transition: color .25s;
+
+        &:hover, &.active {
+          color: #1155cb;
+        }
+      }
     }
+
+    @media all and (max-width: 400px) {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    min-width: 100%;
   }
 }
 

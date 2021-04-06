@@ -18,8 +18,8 @@
         </span>
         <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
-        <span class="dropdown-submenu-title">Kong Konnect</span>
+      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="module-dropdown">
+        <div class="dropdown-submenu-title">Kong Konnect</div>
         <li {% if page.edition == 'konnect' %} class="active" {% endif %}>
           <a href="/konnect/" class="{% if page.edition == 'konnect' %}active{% endif %}">Konnect SaaS</a>
         </li>
@@ -32,7 +32,7 @@
         <li>
           <a href="/hub/">Plugin Hub</a>
         </li>
-        <span class="dropdown-submenu-title">Open Source</span>
+        <div class="dropdown-submenu-title">Open Source</div>
         <li {% if page.edition == 'gateway-oss' %} class="active" {% endif %}>
           <a href="/gateway-oss/" class="{% if page.edition == 'gateway-oss' %}active{% endif %}">Kong Gateway (OSS)</a>
         </li>

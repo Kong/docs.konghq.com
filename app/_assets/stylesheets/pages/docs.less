@@ -185,6 +185,14 @@
 
         @media screen and (max-width: 800px) {
           margin-left: 0;
+          white-space: nowrap;
+          overflow-x: scroll;
+
+
+          &::-webkit-scrollbar {
+            width: 15px;
+            height: 100%;
+          }
         }
       }
 
@@ -384,7 +392,7 @@
         background: transparent;
         border: 1px solid #e7ebee;
         text-transform: none;
-        font: 500 18px/26px Roboto;
+        font: 500 15.5px/26px Roboto;
 
         &:hover {
           background-image: linear-gradient(to bottom,rgba(255,255,255,.15),rgba(189,230,207,.15))
@@ -404,6 +412,7 @@
 
     &:before {
       cursor: pointer;
+      -webkit-text-stroke: 2px white;
     }
   }
 
@@ -725,7 +734,9 @@
     transition: all 300ms ease-in-out;
 
     .close-sidebar {
+      cursor: pointer;
       visibility: visible;
+      -webkit-text-stroke: 2px white;
     }
 
     .collapse-toc,
