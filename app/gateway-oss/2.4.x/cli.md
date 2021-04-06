@@ -160,6 +160,8 @@ Options:
 
  -c,--conf        (optional string) Configuration file.
 
+ -p,--prefix      (optional string)   Override prefix directory.
+
 
 ```
 
@@ -342,4 +344,4 @@ Options:
 ---
 
 
-[configuration-reference]: /gateway-oss/{{page.kong_version}}/configuration
+[configuration-reference]: /{{page.kong_version}}/configuration

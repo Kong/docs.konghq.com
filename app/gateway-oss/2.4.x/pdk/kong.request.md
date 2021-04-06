@@ -396,7 +396,7 @@ Returns the query component of the request's URL.  It is not normalized in
 
 **Returns**
 
-*  string the query component of the request's URL
+* `string` the query component of the request's URL
 
 
 **Usage**

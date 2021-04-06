@@ -76,7 +76,7 @@ Sets the path component for the request to the service.  It is not
 
 **Parameters**
 
-* **path** :  The path string. Example: "/v2/movies"
+* **path** (string):  The path string. Example: "/v2/movies"
 
 **Returns**
 
@@ -133,7 +133,7 @@ Sets the HTTP method for the request to the service.
 
 **Parameters**
 
-* **method** :  The method string, which should be given in all
+* **method** (string):  The method string, which should be given in all
  uppercase. Supported values are: `"GET"`, `"HEAD"`, `"PUT"`, `"POST"`,
  `"DELETE"`, `"OPTIONS"`, `"MKCOL"`, `"COPY"`, `"MOVE"`, `"PROPFIND"`,
  `"PROPPATCH"`, `"LOCK"`, `"UNLOCK"`, `"PATCH"`, `"TRACE"`.
