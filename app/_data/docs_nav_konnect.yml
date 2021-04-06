@@ -68,7 +68,7 @@
         - text: Universal (kong.conf)
           url: /runtime-manager/gateway-runtime-conf
         - text: Runtime Parameter Reference
-          url: runtime-manager/runtime-parameter-reference
+          url: /runtime-manager/runtime-parameter-reference
     - text: Renew Certificates
       url: /runtime-manager/renew-certificates
 

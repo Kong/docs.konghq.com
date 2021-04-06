@@ -36,7 +36,9 @@ to a database.
 
 Currently, the only supported runtime type in the
 {{site.konnect_product_name}} SaaS application is a [{{site.ee_gateway_name}}](/enterprise/latest/introduction)
-data plane. Choose your installation below:
+data plane.
+
+Choose your installation type below:
 
 <div class="docs-grid-install">
 
@@ -56,6 +58,3 @@ data plane. Choose your installation below:
     </a>
 
 </div>
-
-
-For more information, see the [{{site.ee_gateway_name}} documentation](/enterprise/latest/introduction).

@@ -2,7 +2,7 @@
 title: Set up a Kong Gateway Runtime on Kubernetes
 no_version: true
 ---
-Set up a [runtime](/konnect/overview/#konnect-key-concepts-and-terminology)
+Set up a Kubernetes [runtime](/konnect/overview/#konnect-key-concepts-and-terminology)
 through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
 configure your {{site.base_gateway}} instance to accept configuration from
@@ -50,13 +50,9 @@ representative for access.
 
 5. Store the files on your runtime's local filesystem.
 
-## Configure the runtime
+## Set up Helm
 
-Next, configure a {{site.base_gateway}} runtime using the
-certificate, the private key, and the remaining configuration details on the
-**Configure Runtime** page.
-
-### Set up Helm
+On your runtime's system, create a namespace and pull down the `kong` Helm repo.
 
 1. Create a namespace:
     ```sh
@@ -73,21 +69,30 @@ certificate, the private key, and the remaining configuration details on the
     $ helm repo update
     ```
 
+## Configure the runtime
+
+Next, configure a {{site.base_gateway}} runtime using the
+certificate, the private key, and the remaining configuration details on the
+**Configure Runtime** page.
+
 ### Configure secrets
 
-2. Create a `tls` secret using the `cluster.cert` and `cluster.key` files
+Store the certificates and key you generated through the Runtime Manager in
+Kubernetes secrets.
+
+1. Create a `tls` secret using the `cluster.cert` and `cluster.key` files
 you saved earlier:
 
     ```bash
-    $ kubectl create secret tls kong-cluster-cert \
+    $ kubectl create secret tls kong-cluster-cert -n kong \
       --cert=/tmp/cluster.crt \
       --key=/tmp/cluster.key
     ```
 
-3. Create a generic secret for the CA cert:
+2. Create a generic secret for the CA cert:
 
     ```bash
-    $ kubectl create secret generic kong-cluster-ca \
+    $ kubectl create secret generic kong-cluster-ca -n kong \
       --from-file=ca.crt=/tmp/ca.crt
     ```
 
@@ -95,8 +100,9 @@ you saved earlier:
 
 4. In the **Configuration Parameters** section, copy the codeblock.
 
-5. Open your instance's `values.yml` file, or use the
-[data plane template](https://github.com/Kong/charts/blob/main/charts/kong/example-values/minimal-kong-hybrid-data.yaml).
+5. Using the
+[data plane template](https://github.com/Kong/charts/blob/main/charts/kong/example-values/minimal-kong-hybrid-data.yaml),
+create a `values.yaml` file.
 Remove the `KONG_` prefix from the parameters in the sample codeblock and add
 the following parameters to the file.
 
@@ -127,7 +133,7 @@ the following parameters to the file.
     See [Parameters](#parameters) for descriptions and the matching fields
     in {{site.konnect_short_name}}.
 
-6. Apply the `values.yml`.
+6. Apply the `values.yaml`.
 
     Existing instance:
     ```bash
