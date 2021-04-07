@@ -35,7 +35,7 @@ params:
       required: false
       default:
       value_in_examples:
-      datatype: array of strings
+      datatype: array of string elements
       description: |
         Relevant headers considered for the cache key. If undefined, none of the headers are taken into consideration.
     - name: cache_ttl
