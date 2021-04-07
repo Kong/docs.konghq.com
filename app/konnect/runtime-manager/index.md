@@ -38,7 +38,7 @@ Currently, the only supported runtime type in the
 {{site.konnect_product_name}} SaaS application is a [{{site.ee_gateway_name}}](/enterprise/latest/introduction)
 data plane.
 
-Choose your installation type below:
+Choose an installation type below:
 
 <div class="docs-grid-install">
 
