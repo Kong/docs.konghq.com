@@ -91,7 +91,7 @@ params:
     - name: cookie_samesite
       required: false
       default: 'Strict'
-      datatype:
+      datatype: string
       description: |
         Determines whether and how a cookie may be sent with cross-site requests. `Strict`:
         The browser will send cookies only if the request originated from the website that set the cookie.
@@ -131,7 +131,7 @@ params:
     - name: logout_methods
       required: false
       default: '[`"POST"`, `"DELETE"`]'
-      datatype: array of strings
+      datatype: array of string elements
       description: |
         The methods that may be used to end sessions: POST, DELETE, GET.
     - name: logout_query_arg
