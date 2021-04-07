@@ -12,7 +12,7 @@ description: |
   (in that order).
 
   <div class="alert alert-ee blue"><strong>Tip:</strong> The LDAP Authentication Advanced plugin
-  provides additional features not available in the open source <a href="/hub/kong-inc/ldap-auth">LDAP Authentication plugin</a>, 
+  provides additional features not available in the open source <a href="/hub/kong-inc/ldap-auth">LDAP Authentication plugin</a>,
   such as LDAP searches for group and consumer mapping:
 
   <ul>
@@ -32,6 +32,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
