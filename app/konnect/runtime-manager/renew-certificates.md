@@ -17,7 +17,7 @@ files.
 1. Stop the data plane container.
 2. Open Runtime Manager and click **Configure New Runtime**.
 3. Run the script again to
-[create a new data plane](/konnect/runtime-manager/kong-gateway-runtime) with
+[create a new data plane](/konnect/runtime-manager/gateway-runtime-docker/#quick-setup) with
 updated certificates.
 4. Remove the old data plane container.
 
