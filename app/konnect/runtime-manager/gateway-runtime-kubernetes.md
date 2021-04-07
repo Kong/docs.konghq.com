@@ -97,6 +97,7 @@ in the sample codeblock and add the following parameters to the file.
       role: data_plane
       database: "off"
       anonymous_reports: off
+      vitals_ttl_days: 732
       cluster_mtls: pki
       cluster_control_plane: <example.cp.konnect.foo>:443
       cluster_server_name: <kong-cpoutlet-example.service>

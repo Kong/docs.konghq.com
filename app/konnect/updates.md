@@ -30,7 +30,7 @@ runtimes. There is no upgrade path for existing runtimes.
 Runtime Manager and run gateway instances outside of Docker. Use the
 **Advanced** option when configuring a new runtime to get started.
 
-See the runtime configuration guides for more information:
+: See the runtime configuration guides for more information:
 * [Kong Gateway runtime on Docker](/konnect/runtime-manager/gateway-runtime-docker/)
 * [Kong Gateway runtime on Kubernetes](/konnect/runtime-manager/gateway-runtime-kubernetes/)
 * [Kong Gateway runtime without a container](/konnect/runtime-manager/gateway-runtime-conf/)

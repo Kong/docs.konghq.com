@@ -73,7 +73,7 @@ representative for access.
     $ docker pull kong-docker-kong-gateway-docker.bintray.io/kong-enterprise-edition:{{site.data.kong_latest_ee.version}}-alpine
     ```
 
-You should now have your {{site.base_gateway}} image locally.
+    You should now have your {{site.base_gateway}} image locally.
 
 2. Verify that it worked, and find the image ID matching your repository:
 
