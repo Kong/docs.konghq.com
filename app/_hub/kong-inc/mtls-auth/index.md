@@ -29,7 +29,7 @@ params:
   name: mtls-auth
   service_id: true
   route_id: true
-  protocols: ["http", "https", "grpc", "grpcs", "tcp", "tls", "udp"]
+  protocols: ["http", "https", "grpc", "grpcs"]
   config:
     - name: anonymous
       required: false
