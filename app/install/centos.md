@@ -7,60 +7,43 @@ breadcrumbs:
   Installation: /install
 ---
 
-## Packages
-
-Start by downloading the corresponding package for your configuration:
-
-- [CentOS 6]({{ site.links.download }}/kong-rpm/download_file?file_path=centos/6/kong-{{site.data.kong_latest.version}}.el6.amd64.rpm)
-- [CentOS 7]({{ site.links.download }}/kong-rpm/download_file?file_path=centos/7/kong-{{site.data.kong_latest.version}}.el7.amd64.rpm)
-- [CentOS 8]({{ site.links.download }}/kong-rpm/download_file?file_path=centos/8/kong-{{site.data.kong_latest.version}}.el8.amd64.rpm)
-
-**Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
-
-### YUM Repositories
-
-You can also install Kong via YUM; follow the instructions on the "Set Me Up"
-section on the page below.
-
-- [RPM Repository]({{ site.links.download }}/kong-rpm)
-
-**NOTE**: ensure that the `baseurl` field of the generated `.repo` file contains
-your CentOS version; for instance:
-
-```
-baseurl={{ site.links.download }}/kong-rpm/centos/6
-```
-or
-
-```
-baseurl={{ site.links.download }}/kong-rpm/centos/7
-```
-
-----
-
 ## Installation
 
-1. **Install Kong**
+1. **Installation**
 
-    If you are downloading the [package](#packages), execute:
-
+    Kong can be installed by downloading a installation package or from our yum repository
+    
+    **Packages**
+    
+    - [CentOS 6]({{ site.links.download }}/kong-rpm/centos/6/Packages/k/kong-{{site.data.kong_latest.version}}.el6.amd64.rpm)
+    - [CentOS 7]({{ site.links.download }}/kong-rpm/centos/7/Packages/k/kong-{{site.data.kong_latest.version}}.el7.amd64.rpm)
+    - [CentOS 8]({{ site.links.download }}/kong-rpm/centos/8/Packages/k/kong-{{site.data.kong_latest.version}}.el8.amd64.rpm)
+    
+    To install from the command line
+    
     ```bash
-    $ sudo yum install /path/to/package.rpm --nogpgcheck
+    $ sudo yum install $(rpm --eval "{{ site.links.download }}/kong-rpm/centos/%{centos_ver}/Packages/k/kong-{{site.data.kong_latest.version}}.el%{centos_ver}.amd64.rpm")
     ```
-    If you are using the repository, execute:
-
+    
+    **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
+    
+    **YUM Repositories**
+    
+    - [CentOS 6]({{ site.links.download }}/kong-rpm/centos/6/)
+    - [CentOS 7]({{ site.links.download }}/kong-rpm/centos/7/)
+    - [CentOS 8]({{ site.links.download }}/kong-rpm/centos/8/)
+    
+    To install from the command line
+    
     ```bash
-    $ sudo yum update -y
-    $ sudo yum install -y wget
-    $ wget {{ site.links.download }}/kong-rpm/rpm -O kong.repo
-    $ export major_version=`grep -oE '[0-9]+\.[0-9]+' /etc/redhat-release | cut -d "." -f1`
-    $ sed -i -e 's/baseurl.*/&\/centos\/'$major_version''/ kong.repo
-    $ sudo mv kong.repo /etc/yum.repos.d/
-    $ sudo yum update -y
-    $ sudo yum install -y kong
+    $ curl $(rpm --eval "{{ site.links.download }}/kong-rpm/centos/%{centos_ver}/config.repo") | tee /etc/yum.repos.d/kong.repo
+    $ sudo yum info kong
+    $ sudo yum install -y kong-{{site.data.kong_latest.version}}
     ```
 
-2. **Prepare your database or declarative configuration file**
+## Setup
+
+1. **Prepare your database or declarative configuration file**
 
     Kong can run either with or without a database.
 
@@ -111,7 +94,9 @@ baseurl={{ site.links.download }}/kong-rpm/centos/7
     declarative_config = /path/to/kong.yml
     ```
 
-3. **Start Kong**
+## Run Kong
+
+1. **Run Kong**
 
     {% include /md/ce-kong-user.md %}
 
@@ -119,9 +104,11 @@ baseurl={{ site.links.download }}/kong-rpm/centos/7
     $ kong start [-c /path/to/kong.conf]
     ```
 
-4. **Use Kong**
+## Use Kong
 
-    Kong is running:
+1. **Use Kong**
+
+    Kong is running
 
     ```bash
     $ curl -i http://localhost:8001/
