@@ -1,9 +1,10 @@
 ---
+# Generated via autodoc/upgrading/generate.lua in the kong/kong repo
 title: Upgrade guide
 ---
 
 This document guides you through the process of upgrading {{site.ce_product_name}} to the **latest version**.
-To upgrade to prior versions, find the version number in the 
+To upgrade to prior versions, find the version number in the
 [Upgrade doc in GitHub](https://github.com/Kong/kong/blob/master/UPGRADE.md).
 
 ## Suggested upgrade path
@@ -12,13 +13,11 @@ Unless indicated otherwise in one of the upgrade paths of this document, it is
 possible to upgrade Kong **without downtime**.
 
 Assuming that Kong is already running on your system, acquire the latest
-version from any of the available [installation methods](https://getkong.org/install/) 
+version from any of the available [installation methods](https://getkong.org/install/)
 and proceed to install it, overriding your previous installation.
 
-<div class="alert alert-ee blue">
-If you are planning to make modifications to your configuration, this is a
-good time to do so.
-</div>
+**If you are planning to make modifications to your configuration, this is a
+good time to do so**.
 
 Then, run migration to upgrade your database schema:
 
@@ -28,19 +27,16 @@ $ kong migrations up [-c configuration_file]
 
 If the command is successful, and no migration ran
 (no output), then you only have to
-[reload](https://docs.konghq.com/1.0.x/cli/#kong-reload) Kong:
+[reload](https://docs.konghq.com/gateway-oss/2.3.x/cli/#kong-reload) Kong:
 
 ```shell
 $ kong reload [-c configuration_file]
 ```
 
-<div class="alert alert-ee blue">
-<strong>Reminder:</strong> <code>kong reload</code> leverages the Nginx
-<code>reload</code> signal that seamlessly starts new workers, which
-take over from old workers before those old workers are terminated.
-In this way, Kong will serve new requests using the new configuration,
-without dropping existing in-flight connections.
-</div>
+**Reminder**: `kong reload` leverages the Nginx `reload` signal that seamlessly
+starts new workers, which take over from old workers before those old workers
+are terminated. In this way, Kong will serve new requests via the new
+configuration, without dropping existing in-flight connections.
 
 ## Upgrade to `2.3.x`
 
@@ -76,7 +72,7 @@ repository contains [openresty-build-tools](https://github.com/Kong/kong-build-t
 which allows you to more easily build OpenResty with the necessary patches and modules.
 
 There is a new way to deploy Go using Plugin Servers.
-For more information, see [Developing Go plugins](/gateway-oss/2.3.x/external-plugins/#developing-go-plugins).
+For more information, see [Developing Go plugins](https://docs.konghq.com/gateway-oss/2.3.x/external-plugins/#developing-go-plugins).
 
 ### Template changes
 
@@ -94,26 +90,23 @@ git clone https://github.com/kong/kong
 cd kong
 git diff -w 2.0.0 2.3.0 kong/templates/nginx_kong*.lua
 ```
-<div class="alert alert-ee blue">
-<strong>Note:</strong> Adjust the starting version number 
-(2.0.x, 2.1.x, or 2.2.x) to the version number you are currently using.
-</div>
 
+**Note:** Adjust the starting version number
+(2.0.x, 2.1.x, or 2.2.x) to the version number you are currently using.
 
 To produce a patch file, use the following command:
 
 ```
 git diff 2.0.0 2.3.0 kong/templates/nginx_kong*.lua > kong_config_changes.diff
 ```
-<strong>Note:</strong> Adjust the starting version number 
+
+**Note:** Adjust the starting version number
 (2.0.x, 2.1.x, or 2.2.x) to the version number you are currently using.
-</div>
+
 
 ### Suggested upgrade path
 
-#### Upgrade from `2.2.x` to `2.3.x`
-
-##### Version preprequisites for migrating to version 2.3.x
+**Version prerequisites for migrating to version 2.3.x**
 
 The lowest version that Kong 2.3.x supports migrating from is 1.0.x.
 If you are migrating from a version lower than 0.14.1, you need to
@@ -122,15 +115,16 @@ please migrate to 1.5.x first.
 
 The steps for upgrading from 0.14.1 to 1.5.x are the same as upgrading
 from 0.14.1 to Kong 1.0. Please follow the steps described in the
-"Migration Steps from 0.14" in the 
-[Suggested Upgrade Path for Kong 1.0](#kong-1-0-upgrade-path), 
-with the addition of the `kong migrations migrate-apis` command, 
+"Migration Steps from 0.14" in the
+
+[Suggested Upgrade Path for Kong 1.0](https://github.com/Kong/kong/blob/master/UPGRADE.md#kong-1-0-upgrade-path)
+with the addition of the `kong migrations migrate-apis` command,
 which you can use to migrate legacy `apis` configurations.
 
 Once you migrated to 1.5.x, you can follow the instructions in the section
 below to migrate to 2.3.x.
 
-#### Upgrade from `1.0.x` - `2.2.x` to `2.3.x`
+### Upgrade from `1.0.x` - `2.2.x` to `2.3.x`
 
 **Postgres**
 
@@ -143,7 +137,7 @@ the database as it is migrated while the old Kong cluster keeps working until
 it is time to decommission it. For this reason, the migration is split into
 two steps, performed via commands `kong migrations up` (which does
 only non-destructive operations) and `kong migrations finish` (which puts the
-database in the final expected state for Kong 2.3.0).
+database in the final expected state for Kong 2.3.x).
 
 1. Download 2.3.x, and configure it to point to the same datastore
    as your old (1.0 to 2.0) cluster. Run `kong migrations up`.
@@ -190,7 +184,7 @@ data to a new keyspace via a database dump, as described below:
 6. When your traffic is fully migrated to the 2.3.x cluster,
    decommission your old nodes.
 
-#### Installing 2.3.x on a fresh datastore
+### Installing 2.3.x on a fresh datastore
 
 The following commands should be used to prepare a new 2.3.x cluster from a
 fresh datastore. By default the `kong` CLI tool will load the configuration
