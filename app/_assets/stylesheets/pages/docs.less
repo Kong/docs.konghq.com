@@ -187,12 +187,6 @@
           margin-left: 0;
           white-space: nowrap;
           overflow-x: scroll;
-
-
-          &::-webkit-scrollbar {
-            width: 15px;
-            height: 100%;
-          }
         }
       }
 
@@ -387,7 +381,9 @@
       }
 
       &#module-dropdown {
-        height: 56px;
+        height: auto;
+        min-height: 50px;
+        padding: 8px;
         color: #043558;
         background: transparent;
         border: 1px solid #e7ebee;
@@ -396,6 +392,11 @@
 
         &:hover {
           background-image: linear-gradient(to bottom,rgba(255,255,255,.15),rgba(189,230,207,.15))
+        }
+
+        span {
+          max-width: 100%;
+          white-space: normal;
         }
       }
     }
