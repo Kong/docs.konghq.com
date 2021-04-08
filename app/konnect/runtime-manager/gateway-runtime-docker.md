@@ -67,7 +67,11 @@ representative for access.
 
 ### Configure the runtime
 
-1. Using Docker, pull the following Docker image:
+Next, pull the {{site.base_gateway}} Docker image, and configure a
+{{site.base_gateway}} runtime using the certificate, the private key, and the
+remaining configuration details on the **Configure Runtime** page.
+
+1. Using Docker, pull the following image:
 
     ```bash
     $ docker pull kong-docker-kong-gateway-docker.bintray.io/kong-enterprise-edition:{{site.data.kong_latest_ee.version}}-alpine

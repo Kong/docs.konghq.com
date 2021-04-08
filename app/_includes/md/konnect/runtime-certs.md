@@ -21,12 +21,10 @@
     * Private key: `cluster.key`
     * Root CA Certificate: `ca.crt`
 
-    <div class="alert alert-warning">
-    <b>Important:</b> Do not navigate away from this page while saving the
-    certificate and key files. They are unique and won't display again.</div>
+    If you navigate away from this page before saving all of the
+    certificate and key files, you will need to regenerate them.
 
 5. Store the files on your runtime's local filesystem.
 
-Next, configure a {{site.base_gateway}} runtime using the
-certificate, the private key, and the remaining configuration details on the
-**Configure Runtime** page.
+For the next steps, keep the configuration page open, as you'll need to refer
+back to it for the configuration parameters.

@@ -45,9 +45,9 @@ On your runtime's system, create a namespace and pull down the `kong` Helm repo.
 
 ## Configure the runtime
 
-Next, on your runtime's system, prepare Helm and configure a
-{{site.base_gateway}} instance using the certificate, the private key, and the
-remaining configuration details on the **Configure Runtime** page.
+Next, configure a {{site.base_gateway}} instance using the certificate, the
+private key, and the remaining configuration details on the
+**Configure Runtime** page.
 
 ### Configure secrets
 

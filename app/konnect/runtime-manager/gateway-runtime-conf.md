@@ -25,10 +25,14 @@ representative for access.
 
 ## Configure the runtime
 
+Next, configure a {{site.base_gateway}} runtime using the
+certificate, the private key, and the remaining configuration details on the
+**Configure Runtime** page.
+
 1. Find the documentation for
 [your platform](/enterprise/latest/deployment/installation),
 and follow the instructions in Steps 1 and 2 **only** to download and install
-{{site.base_gateway}} 2.3.2.0.
+{{site.base_gateway}} {{site.data.kong_latest_ee.version}}.
 
     <div class="alert alert-warning">
         Do not start or create a database on this node.
@@ -47,7 +51,7 @@ parameters in the sample codeblock and add the parameters to the file:
     role = data_plane
     database = off
     anonymous_reports = off
-    vitals_ttl_days=732
+    vitals_ttl_days = 732
     cluster_mtls = pki
     cluster_control_plane = <example.cp.konnect.foo>:443
     cluster_server_name = <kong-cpoutlet-example.service>
