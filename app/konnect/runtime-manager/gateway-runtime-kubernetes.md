@@ -18,6 +18,11 @@ runtime instances.
 
 * You have a {{site.konnect_product_name}} account. Contact your sales
 representative for access.
+* **Kubernetes cluster with load balancer:** {{site.konnect_short_name}} is
+compatible with all distributions of Kubernetes. You can use a Minikube, GKE,
+or OpenShift cluster.
+* **kubectl or oc access:** You should have kubectl or oc (if working with OpenShift)
+installed and configured to communicate to your Kubernetes cluster.
 * [Helm 3](https://helm.sh/docs/intro/install/) is installed.
 
 ## Set up Helm
@@ -140,13 +145,24 @@ Manager overview.
 
 ## Access services using the proxy
 
-Run:
+To proxy traffic through this runtime, you'll need its external IP address.
+
+To find the address, run:
 
 ```bash
-$ kubectl get svc -n kong
+$ kubectl get service kong-proxy -n kong
 ```
 
 In the output, the IP in the `EXTERNAL_IP` column is the access point for
-your {{site.konnect_saas}} services.
+your {{site.konnect_saas}} services. Use this IP, along with any routes you set,
+to access your services.
 
-<need output example and validation that this is true - is this the proxy URL?>
+_<need output example and validation that this is true - the below is copied from an Enterprise install topic>_
+
+```bash
+NAME         TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)                      AGE
+kong-proxy   LoadBalancer   10.63.254.78   35.233.198.16   80:32697/TCP,443:32365/TCP   22h
+```
+
+For example, using the `EXTERNAL_IP` in the example above, access a service
+with the route `/mock` at `35.233.198.16:443/mock`.

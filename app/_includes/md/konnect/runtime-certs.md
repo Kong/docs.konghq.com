@@ -9,13 +9,15 @@
 2. (Optional) If this is not the first runtime configuration, click
 **Configure New Runtime**.
 
+2. Open the **Advanced** tab.
+
 3. Click **Generate Certificate**.
 
     Three new fields appear: a certificate, a private key, and a root CA
     certificate. The contents of these fields are unique to each
     runtime configuration.
 
-4. Save the contents of each field into a separate file in a safe location:
+5. Save the contents of each field into a separate file in a safe location:
 
     * Certificate: `cluster.crt`
     * Private key: `cluster.key`
@@ -24,7 +26,7 @@
     If you navigate away from this page before saving all of the
     certificate and key files, you will need to regenerate them.
 
-5. Store the files on your runtime's local filesystem.
+6. Store the files on your runtime's local filesystem.
 
 For the next steps, keep the configuration page open, as you'll need to refer
 back to it for the configuration parameters.

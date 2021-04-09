@@ -1,5 +1,5 @@
 ---
-title: Set up a Kong Gateway Runtime using kong.conf
+title: Set up a Kong Gateway Runtime on Linux
 no_version: true
 ---
 Using `kong.conf`, set up a [runtime](/konnect/overview/#konnect-key-concepts-and-terminology)
