@@ -35,9 +35,9 @@ serving traffic for the proxy. Data plane nodes are not directly connected
 to a database.
 
 Currently, the only supported runtime type in the
-{{site.konnect_product_name}} SaaS application is a [{{site.ee_gateway_name}}](/enterprise/latest/introduction)
+{{site.konnect_product_name}} SaaS application is a [{{site.ee_gateway_name}}](/enterprise/)
 data plane running in a Docker container.
 
 **See more**:
 * [Set up a {{site.ee_gateway_name}} runtime](/konnect/runtime-manager/kong-gateway-runtime)
-* [{{site.ee_gateway_name}} documentation](/enterprise/latest/introduction)
+* [{{site.ee_gateway_name}} documentation](/enterprise/)

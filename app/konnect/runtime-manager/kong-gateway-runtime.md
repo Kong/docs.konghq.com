@@ -2,7 +2,7 @@
 title: Setting up a Kong Gateway Runtime
 no_version: true
 ---
-Set up a [runtime](/konnect/overview/#konnect-key-concepts-and-terminology)
+Set up a [runtime](/konnect/#konnect-key-concepts-and-terminology)
 through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
 configure your {{site.base_gateway}} instance to accept configuration from
@@ -323,7 +323,7 @@ Refer to these parameters when using the **Advanced** runtime setup option.
  [`cluster_server_name`](/enterprise/latest/property-reference/#cluster_server_name) | n/a | The SNI (Server Name Indication extension) to use for data plane connections to the control plane through TLS. When not set, data plane will use `kong_clustering` as the SNI.
  [`cluster_telemetry_endpoint`](/enterprise/latest/property-reference/#cluster_telemetry_endpoint) | n/a | The address that the data plane uses to send Vitals telemetry data to the control plane. Must be in the format `host:port`, with port set to `443`. <br><br> **Example:**<br>Telemetry Endpoint in Konnect:<br>`https://example.tp.khcp.konghq.com`<br>Configuration value:<br>`example.tp.khcp.konghq.com:443`
  [`cluster_telemetry_server_name`](/enterprise/latest/property-reference/#cluster_telemetry_server_name) | n/a | The SNI (Server Name Indication extension) to use for Vitals telemetry data.
- [`cluster_ca_cert`](/enterprise/latest/property-reference/#cluster_ca_cert) | **Certificate** | The trusted CA certificate file, in PEM format, used to verify the `cluster_cert`. 
+ [`cluster_ca_cert`](/enterprise/latest/property-reference/#cluster_ca_cert) | **Certificate** | The trusted CA certificate file, in PEM format, used to verify the `cluster_cert`.
  [`cluster_cert`](/enterprise/latest/property-reference/#cluster_cert) | **Certificate** | The certificate used for mTLS between CP/DP nodes.
  [`cluster_cert_key`](/enterprise/latest/property-reference/#cluster_cert_key) | **Private Key** | The private key used for mTLS between CP/DP nodes.
  [`lua_ssl_trusted_certificate`](/enterprise/latest/property-reference/#lua_ssl_trusted_certificate) | **Root CA Certificate** | Lists files as trusted by OpenResty. Accepts a comma-separated list of paths. If you have already specified a different `lua_ssl_trusted_certificate`, adding the content of `cluster.crt` into that file achieves the same result.

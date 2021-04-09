@@ -4,7 +4,7 @@ title: Introduction to Kong Gateway (Enterprise)
 
 ## Introduction
 
-{{site.ee_product_name}} is Kong's API gateway with enterprise functionality. As part of [{{site.konnect_product_name}}](/konnect/overview), the gateway brokers an organization’s information across all services by allowing customers to manage the full lifecycle of services and APIs. On top of that, it enables users to simplify the management of APIs and microservices across hybrid-cloud and multi-cloud deployments.
+{{site.ee_product_name}} is Kong's API gateway with enterprise functionality. As part of [{{site.konnect_product_name}}](/konnect/), the gateway brokers an organization’s information across all services by allowing customers to manage the full lifecycle of services and APIs. On top of that, it enables users to simplify the management of APIs and microservices across hybrid-cloud and multi-cloud deployments.
 
 {{site.base_gateway}} is designed to run on decentralized architectures, leveraging workflow automation and modern GitOps practices. With {{site.base_gateway}}, users can:
 

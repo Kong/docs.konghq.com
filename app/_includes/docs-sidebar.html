@@ -67,7 +67,7 @@
           {% assign version_page_url = page.url | replace: page.kong_version, ver.release %}
           {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}
         <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
-          <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if page.edition == 'gateway-oss' %}gateway-oss/{% endif %}{% if page.edition == 'enterprise' %}enterprise/{% endif %}{% if page.edition == 'mesh' %}mesh/{% endif %}{{ver.release}}{% endif %}"
+          <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if page.edition == 'gateway-oss' %}gateway-oss/{% endif %}{% if page.edition == 'enterprise' %}enterprise/{% endif %}{% if page.edition == 'mesh' %}mesh/{% endif %}{% if page.edition == 'kubernetes-ingress-controller' %}kubernetes-ingress-controller/{% endif %}{{ver.release}}{% endif %}"
             {% if ver.release==page.kong_version %} class="active" {% endif %}
             data-version-id="{{ver.release}}"
           >

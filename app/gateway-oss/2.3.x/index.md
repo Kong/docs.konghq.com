@@ -22,11 +22,11 @@ This sets the foundations for a pluggable architecture, where Lua scripts (refer
 Pick your path:
 * **[Quickstart][quickstart]**: A quick-and-dirty introduction to
 {{site.base_gateway}}, common objects, and basic Admin API commands. Use this
-if you just want the basics. &rsaquo;
+if you just want the basics.
 * **[Getting started guide][getting-started]**: An alternative to the
 quickstart, the complete {{site.base_gateway}} getting started guide provides
 in-depth examples, explanations, and step-by-step instructions, and explores
-Kong's many available tools for managing the gateway. &rsaquo;
+Kong's many available tools for managing the gateway.
 
 [quickstart]: /{{page.kong_version}}/getting-started/quickstart
 [configuring-a-service]: /{{page.kong_version}}/getting-started/configuring-a-service
