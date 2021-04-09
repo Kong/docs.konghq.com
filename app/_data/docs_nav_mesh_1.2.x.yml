@@ -1,6 +1,7 @@
 - title: Introduction
   icon: /assets/images/icons/documentation/icn-flag.svg
-  url: /
+  url: /mesh/
+  absolute_url: true
 
 - title: Release notes
   icon: /assets/images/icons/documentation/icn-references-color.svg

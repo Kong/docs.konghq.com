@@ -1,9 +1,8 @@
 - title: Introduction
   icon: /assets/images/icons/documentation/icn-flag.svg
-  url: /
+  url: /enterprise/
+  absolute_url: true
   items:
-    - text: Introduction
-      url: /
     - text: Key Concepts and Terminology
       url: /introduction/key-concepts
 
@@ -135,23 +134,32 @@
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   items:
     - text: Overview
-      url: /../../getting-started-guide/latest/overview
+      url: /getting-started-guide/latest/overview
+      absolute_url: true
     - text: Prepare to Administer
-      url: /../../getting-started-guide/latest/prepare
+      url: /getting-started-guide/latest/prepare
+      absolute_url: true
     - text: Expose your Services
-      url: /../../getting-started-guide/latest/expose-services
+      url: /getting-started-guide/latest/expose-services
+      absolute_url: true
     - text: Protect your Services
-      url: /../../getting-started-guide/latest/protect-services
+      url: /getting-started-guide/latest/protect-services
+      absolute_url: true
     - text: Improve Performance
-      url: /../../getting-started-guide/latest/improve-performance
+      url: /getting-started-guide/latest/improve-performance
+      absolute_url: true
     - text: Secure Services
-      url: /../../getting-started-guide/latest/secure-services
+      url: /getting-started-guide/latest/secure-services
+      absolute_url: true
     - text: Set Up Intelligent Load Balancing
-      url: /../../getting-started-guide/latest/load-balancing
+      url: /getting-started-guide/latest/load-balancing
+      absolute_url: true
     - text: Manage Administrative Teams
-      url: /../../getting-started-guide/latest/manage-teams
+      url: /getting-started-guide/latest/manage-teams
+      absolute_url: true
     - text: Publish, Locate, and Consume Services
-      url: /../../getting-started-guide/latest/dev-portal
+      url: /getting-started-guide/latest/dev-portal
+      absolute_url: true
 
 - title: Guides & References
   icon: /assets/images/icons/documentation/icn-references-color.svg

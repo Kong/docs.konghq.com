@@ -1,10 +1,9 @@
 # Generated via autodoc-nav
 - title: Introduction
   icon: /assets/images/icons/documentation/icn-flag.svg
-  url: /
+  url: /gateway-oss/
+  absolute_url: true
   items:
-    - text: Introduction
-      url: /
     - text: Changelog
       url: https://github.com/Kong/kong/blob/master/CHANGELOG.md
       absolute_url: true
@@ -32,19 +31,26 @@
     - text: Getting Started Guide
       items:
         - text: Overview
-          url: /../../getting-started-guide/latest/overview
+          url: /getting-started-guide/latest/overview
+          absolute_url: true
         - text: Prepare to Administer
-          url: /../../getting-started-guide/latest/prepare
+          url: /getting-started-guide/latest/prepare
+          absolute_url: true
         - text: Expose your Services
-          url: /../../getting-started-guide/latest/expose-services
+          url: /getting-started-guide/latest/expose-services
+          absolute_url: true
         - text: Protect your Services
-          url: /../../getting-started-guide/latest/protect-services
+          url: /getting-started-guide/latest/protect-services
+          absolute_url: true
         - text: Improve Performance
-          url: /../../getting-started-guide/latest/improve-performance
+          url: /getting-started-guide/latest/improve-performance
+          absolute_url: true
         - text: Secure Services
-          url: /../../getting-started-guide/latest/secure-services
+          url: /getting-started-guide/latest/secure-services
+          absolute_url: true
         - text: Set Up Intelligent Load Balancing
-          url: /../../getting-started-guide/latest/load-balancing
+          url: /getting-started-guide/latest/load-balancing
+          absolute_url: true
 
 - title: Guides &amp; References
   icon: /assets/images/icons/documentation/icn-references-color.svg
