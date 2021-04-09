@@ -3,6 +3,7 @@
 name: GraphQL Proxy Caching Advanced
 publisher: Kong Inc.
 version: 1.3-x
+# internal handler version 0.2.2 as of April 6, 2021
 
 desc: Cache and serve commonly requested responses in Kong
 description: |
@@ -34,24 +35,28 @@ params:
       required: false
       default:
       value_in_examples:
+      datatype: array of string elements
       description: |
         Relevant headers considered for the cache key. If undefined, none of the headers are taken into consideration.
     - name: cache_ttl
       required:
       default: 300
       value_in_examples:
+      datatype: integer
       description: |
-        TTL, in seconds, of cache entities
+        TTL in seconds of cache entities. Must be a value greater than 0.
     - name: strategy
-      required:
-      default:
+      required: true
+      default: memory
       value_in_examples: memory
+      datatype: string
       description: |
-        The backing data store in which to hold cache entities. Accepted values are; `memory` at the moment.
+        The backing data store in which to hold cached entities. Accepted value is `memory`.
     - name: memory.dictionary_name
-      required:
-      default: kong_cache
+      required: true
+      default: kong_db_cache
       value_in_examples:
+      datatype: string
       description: |
         The name of the shared dictionary in which to hold cache entities when the memory strategy is selected. Note
         that this dictionary currently must be defined manually in the Kong Nginx template.

@@ -132,9 +132,6 @@
       - text: kong.client.tls
         url: /pdk/kong.client.tls
 
-      - text: kong.node
-        url: /pdk/kong.node
-
       - text: kong.ctx
         url: /pdk/kong.ctx
 
