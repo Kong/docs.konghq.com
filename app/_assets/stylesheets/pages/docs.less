@@ -184,9 +184,12 @@
         margin-left: -0.1rem;
 
         @media screen and (max-width: 800px) {
+          display: flex;
           margin-left: 0;
+          overflow-x: auto;
           white-space: nowrap;
-          overflow-x: scroll;
+          align-items: center;
+          justify-content: flex-start;
         }
       }
 
