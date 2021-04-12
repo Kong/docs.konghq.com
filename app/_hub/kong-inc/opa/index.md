@@ -172,7 +172,7 @@ Next, update the plugin configuration to use `/v1/data/example/allowDetailed` as
 
 The input to OPA has the following JSON structure:
 
-```json:
+```json
 {
   "input": {
     "request": { # details about the request from client to Kong
@@ -246,7 +246,7 @@ present for any given request in {{site.base_gateway}}.
 ## Expected response from OPA
 
 Once OPA is done executing policies, the plugin expects the policy evaluation
-result in one of the two defined formats. Any other format will result in the
+result in one of the two defined formats: boolean or object. Any other format will result in the
 plugin returning a `500 Internal Server Error` to the client.
 If the HTTP status code of the response from OPA is not `200 OK`, then it is
 treated as an error, which results in a `500 Internal Server Error` to the client.
@@ -290,7 +290,7 @@ The plugin expects the following structure in the OPA response in this case:
 {
   "result": {
     "allow": <boolean>,
-    "status: <HTTP status code>,
+    "status": <HTTP status code>,
     "headers": {
       "<key>": "<value>",
       "<key2>": "<value2>"
@@ -299,8 +299,8 @@ The plugin expects the following structure in the OPA response in this case:
 }
 ```
 
-The only required field in this response is `result.allow` and it must be a
-`boolean`, or else the plugin will error out.
+The only required field in this response is `result.allow`, which accepts a
+`boolean` value.
 
 If `result.allow` is set to `true`, then the key-value pairs in `result.headers` (if any)
 are injected into the request before it is forwarded to the upstream Service.
