@@ -414,7 +414,7 @@
   version: "2.3"
   edition: "getting-started-guide"
 -
-  version: "1.3.0"
+  version: "1.6.0"
   edition: "deck"
 -
   release: "1.0.x"
