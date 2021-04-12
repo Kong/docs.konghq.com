@@ -332,8 +332,8 @@ step | description
 ---|---
 config cache | If a file `config.json.gz` exists in the `kong_prefix` path (`/usr/local/kong` by default), the DP Node loads it as configuration.
 declarative_config | If there wasn't a config cache and the `declarative_config` parameter is set, it's loaded as usual.
-empty config | If neither the config cache or a declarative configuration is available, the Node starts with an empty configuration.  In this state it will return 404 to all requests.
-contact CP Node | In all cases, the DP Node contacts the CP Node to retrieve the latest configuration.  If successful, it will be stored in the local config cache (`config.json.gz`)
+empty config | If neither the config cache or a declarative configuration is available, the Node starts with an empty configuration. In this state, it returns 404 to all requests.
+contact CP Node | In all cases, the DP Node contacts the CP Node to retrieve the latest configuration. If successful, it will be stored in the local config cache (`config.json.gz`)
 
 
 ## Checking the status of the cluster
@@ -448,29 +448,29 @@ cached configurations. It does so while constantly trying to reestablish communi
 with the control plane.
 
 This means that the Data Plane nodes can be stopped even for extended periods
-of time, and the Data Plane will still proxy traffix normally.  Data Plane
+of time, and the Data Plane will still proxy traffic normally.  Data Plane
 nodes can be restarted while in disconnected mode, and will load the last
-configuarion in the cache to start working.  When the Control Plane is brought
+configuration in the cache to start working. When the Control Plane is brought
 up again, the Data Plane nodes will contact them and resume connected mode.
 
 ### Disconnected Mode
 
 The viability of the Data Plane while disconnected means that Control Plane
-updates or database restores can be done with peace of mind.  First bring down
-the Control Plane, perform all required downtime proceses, and only bring up
+updates or database restores can be done with peace of mind. First bring down
+the Control Plane, perform all required downtime processes, and only bring up
 the Control Plane after verifying the success and correctness of the procedure.
 During that time, the Data Plane will keep working with the latest configuration.
 
-A new Data Plane node can be provissioned during Control Plane downtime. This
+A new Data Plane node can be provisioned during Control Plane downtime. This
 requires either copying the config cache file (`config.json.gz`) from another
-Data Plane node, or a declarative configuration.  In either case, if it has the
+Data Plane node, or a declarative configuration. In either case, if it has the
 role of `"data_plane"`, it will also keep trying to contact the Control Plane
 until it's up again.
 
 To change a disconnected Data Plane node's configuration, you have to remove
 the config cache file (`config.json.gz`), ensure the `declarative_config`
 parameter or the `KONG_DECLARATIVE_CONFIG` environment variable is set, and set
-the whole configuration in the YAML file referenced.
+the whole configuration in the referenced YAML file.
 
 ## Limitations
 
