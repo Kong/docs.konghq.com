@@ -296,8 +296,8 @@ When Kong is running Hybrid mode with PKI mode, the Control Plane can be configu
 optionally check for revocation status of the conecting Data Plane certificate.
 
 The supported method is through Online Certificate Status Protocol (OCSP) responders.
-In addition, Data Plane certificates issued must contain the "Certificate Authority Information Access" extension
-which points to the URI of which the OCSP responder may be reached from the Control Plane.
+Data Plane certificates issued must contain the Certificate Authority Information Access extension
+that contains the URI of OCSP responder that may be reached from the Control Plane.
 
 To enable OCSP checks, set the `cluster_ocsp` config on the Control Plane to one of the following values:
 
