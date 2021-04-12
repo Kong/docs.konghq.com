@@ -10,6 +10,7 @@ description: |
     Forward request to Open Policy Agent and process the request only if the
     authorization policy allows for it.
 
+enterprise: true
 type: plugin
 categories:
   - security
