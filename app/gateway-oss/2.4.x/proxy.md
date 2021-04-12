@@ -709,7 +709,7 @@ Host: ...
 
 #### Normalization behavior
 
-In order to prevent trivial Route match bypass, the incoming request URI from client
+To prevent trivial Route match bypass, the incoming request URI from client
 is always normalized according to [RFC 3986](https://tools.ietf.org/html/rfc3986)
 before router match occurs. Specifically, the following normalization techniques are
 used for incoming request URIs which are selected because they generally do not change
