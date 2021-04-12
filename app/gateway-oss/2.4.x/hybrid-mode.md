@@ -305,7 +305,7 @@ To enable OCSP checks, set the `cluster_ocsp` config on the Control Plane to one
 with Control Plane. This implies that certificates without the OCSP extension or unreachable OCSP responder also prevents
 connection from being established.
 * `off`: OCSP revocation check is disabled (this is the default).
-* `optional`: OCSP revocation check will be attempted, however, if the required extension is not found inside Data Plane
+* `optional`: OCSP revocation check will be attempted, however, if the OCSP responder URI is not found inside Data Plane
 provided certificate or communication with the OCSP responder failed, then Data Plane is still allowed through.
 
 Note that OCSP checks are only performed on Control Plane against certificates provided by incoming Data Plane
