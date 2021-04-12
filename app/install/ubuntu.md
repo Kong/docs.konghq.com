@@ -7,49 +7,37 @@ breadcrumbs:
   Installation: /install
 ---
 
-## Packages
-
-Start by downloading the corresponding package for your configuration:
-
-- [16.04 Xenial]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.xenial.amd64.deb)
-- [18.04 Bionic]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.bionic.amd64.deb)
-- [20.04 Focal]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.focal.amd64.deb)
-
-**Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
-
-## APT Repositories
-
-You can also install Kong via APT; follow the instructions on the "Set Me Up"
-section on the page below, setting  *distribution* to the appropriate value ( lsb_release -sc )
-(e.g., `precise`) and *components* to `main`.
-
-- [Deb Repository]({{ site.links.download }}/kong-deb)
-
-----
-
 ## Installation
 
-1. **Install Kong**
+1. **Installation**
 
-    If you are downloading the [package](#packages), execute:
+    Kong can be installed by downloading an installation package or from our apt repository
+
+    **Packages**
+    
+    - [Xenial]({{ site.links.download }}/gateway-community/ubuntu/xenial/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb)
+    - [Bionic]({{ site.links.download }}/gateway-community/ubuntu/bionic/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb)
+    - [Focal]({{ site.links.download }}/gateway-community/ubuntu/focal/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb)
+    
+    To install from the command line
 
     ```bash
-    $ sudo apt-get update
-    $ sudo apt-get install /absolute/path/to/package.deb
+    $ curl -Lo kong.{{site.data.kong_latest.version}}.amd64.deb "{{ site.links.download }}/gateway-community/ubuntu/$(lsb_release -cs)/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb"
+    $ sudo dpkg -i kong.{{site.data.kong_latest.version}}.amd64.deb
     ```
 
-    If you are using the apt repository execute:
+    **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
+
+    **APT Repositories**
+    
     ```bash
-    $ sudo apt-get update
-    $ sudo apt-get install -y apt-transport-https curl lsb-core
-    $ echo "deb {{ site.links.download }}/kong-deb `lsb_release -sc` main" | sudo tee -a /etc/apt/sources.list
-    $ curl -o bintray.key https://bintray.com/user/downloadSubjectPublicKey?username=bintray
-    $ sudo apt-key add bintray.key
-    $ sudo apt-get update
-    $ sudo apt-get install -y kong
+    $ sudo apt-add-repository -u 'deb [allow-insecure=yes] {{ site.links.download }}/gateway-community/ubuntu/$(lsb_release -sc)/ default all'
+    $ sudo apt install -y kong={{site.data.kong_latest.version}}
     ```
 
-2. **Prepare your database or declarative configuration file**
+## Setup
+
+1. **Prepare your database or declarative configuration file**
 
     Kong can run either with or without a database.
 
@@ -100,7 +88,9 @@ section on the page below, setting  *distribution* to the appropriate value ( ls
     declarative_config = /path/to/kong.yml
     ```
 
-3. **Start Kong**
+## Run Kong
+
+1. **Start Kong**
 
     {% include /md/ce-kong-user.md %}
 
@@ -108,7 +98,9 @@ section on the page below, setting  *distribution* to the appropriate value ( ls
     $ kong start [-c /path/to/kong.conf]
     ```
 
-4. **Use Kong**
+## Use Kong
+
+1. **Use Kong**
 
     Kong is running:
 

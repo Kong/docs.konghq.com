@@ -16,22 +16,17 @@ This guide walks through downloading, installing, and starting **Kong Gateway** 
 
 Start by downloading the following package specifically built for the Amazon Linux AMI:
 
-- [Download]({{ site.links.download }}/kong-rpm/download_file?file_path=amazonlinux/amazonlinux2/kong-{{site.data.kong_latest.version}}.aws.amd64.rpm)
+- [CentOS 8]({{ site.links.download }}/kong-rpm/aws/2/kong-{{site.data.kong_latest.version}}.aws.amd64.rpm)
 
 **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
 
 ## YUM Repositories
 
-You can also install Kong via YUM; follow the instructions on the "Set Me Up"
-section on the page below.
-
-- [RPM Repository]({{ site.links.download }}/kong-rpm)
-
-**NOTE**: ensure that the `baseurl` field of the generated `.repo` file contains
-amazonlinux/amazonlinux; for instance:
+You can also install Kong via YUM
 
 ```
-baseurl={{ site.links.download }}/kong-rpm/amazonlinux/amazonlinux
+curl {{ site.links.download }}/kong-rpm/aws/2/config.repo | tee /etc/yum.repos.d/kong.repo
+yum install -y kong
 ```
 
 ----
