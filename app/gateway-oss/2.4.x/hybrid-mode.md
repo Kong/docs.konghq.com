@@ -310,6 +310,7 @@ provided certificate or communication with the OCSP responder failed, then Data 
 
 Note that OCSP checks are only performed on Control Plane against certificates provided by incoming Data Plane
 nodes. The `cluster_ocsp` config has no effect on Data Plane nodes.
+`cluster_oscp` affects all Hybrid mode connections established from Data Plane to Control Plane.
 
 
 ## Starting Data Plane Nodes
