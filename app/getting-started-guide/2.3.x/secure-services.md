@@ -61,7 +61,7 @@ created:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -X POST http://<admin-hostname>:8001/routes/mocking/plugins \
+$ curl -X POST http://<admin-hostname>:8001/services/mocking/plugins \
   --data name=key-auth
 ```
 {% endnavtab %}
