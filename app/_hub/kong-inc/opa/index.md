@@ -240,16 +240,15 @@ The input to OPA has the following JSON structure:
 
 ```
 
-> Please note that it is possible that Consumer and Service resources are not
+> Note that it is possible that Consumer and Service resources are not
 present for any given request in {{site.base_gateway}}.
 
 ## Expected response from OPA
 
-Once OPA is done executing policies, the plugin expects the policy evaluation
-result in one of the two defined formats: boolean or object. Any other format will result in the
-plugin returning a `500 Internal Server Error` to the client.
-If the HTTP status code of the response from OPA is not `200 OK`, then it is
-treated as an error, which results in a `500 Internal Server Error` to the client.
+After OPA is done executing policies, the plugin expects the policy evaluation
+result in one of the defined formats: boolean or object. Any other format
+or a status code other than `200 OK` results in the plugin returning a
+`500 Internal Server Error` to the client.
 
 ### Boolean result
 
