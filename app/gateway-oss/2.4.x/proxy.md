@@ -513,7 +513,7 @@ For a path to be considered as regex, it must fall **outside** of the following 
 ```
 
 In other words, if a path contains any character that is **not** alphanumerical, dot (`.`),
-dash (`-`), underscore (`_`), tilde (`~`), forward-slash (`/`) or percent (`%`), then
+dash (`-`), underscore (`_`), tilde (`~`), forward-slash (`/`), or percent (`%`), then
 it will be considered a regex path. Please note this determination is done on a per-path basis
 and it is allowed to mix plain text and regex paths inside the same `paths` array of the same
 Route object.
