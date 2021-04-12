@@ -38,27 +38,10 @@ kong_version_compatibility:
     community_edition:
       compatible:
         - 0.14.x
-      incompatible:
-        - 0.13.x
-        - 0.12.x
-        - 0.11.x
-        - 0.10.x
-        - 0.9.x
-        - 0.8.x
-        - 0.7.x
-        - 0.6.x
-        - 0.5.x
-        - 0.4.x
-        - 0.3.x
-        - 0.2.x
+
     enterprise_edition:
       compatible:
-      incompatible:
-        - 0.33-x
-        - 0.32-x
-        - 0.31-x
-        - 0.30-x
-        - 0.29-x
+
 
 
 ###############################################################################
