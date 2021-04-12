@@ -722,7 +722,7 @@ semantics of the request URI:
 
 The `paths` attribute of the Route object are also normalized. It is achieved by first determining
 if the path is a plain text or regex path. Based on the result, different normalization techniques
-are used:
+are used.
 
 For plain text Route path:
 
