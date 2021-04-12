@@ -61,7 +61,7 @@ params:
     - name: http_method
       required: false
       datatype: string
-      description: Changes the HTTP method for the upstream request.
+      description: Sets the HTTP method for the upstream request.
     - name: remove.headers
       required: false
       value_in_examples: [ "x-toremove", "x-another-one" ]
