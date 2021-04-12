@@ -716,7 +716,7 @@ used for incoming request URIs, which are selected because they generally do not
 semantics of the request URI:
 
 1. Percent-encoded triplets are converted to uppercase.  For example: `/foo%3a` becomes `/foo%3A`.
-2. Percent-encoded triplets of unreserved characters will be decoded. e.g. `/fo%6F` will become `/foo`.
+2. Percent-encoded triplets of unreserved characters are decoded. For example: `/fo%6F` becomes `/foo`.
 3. Dot-segments are removed as necessary. e.g. `/foo/./bar/../baz` will become `/foo/baz`.
 4. Duplicate slashes are merged. e.e. `/foo//bar` will become `/foo/bar`.
 
