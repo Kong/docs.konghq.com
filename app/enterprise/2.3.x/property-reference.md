@@ -725,6 +725,30 @@ its entry will be removed.
 
 ---
 
+#### cluster_ocsp
+
+Whether to check for revocation status of DP certificates using OCSP (Online
+Certificate Status Protocol).
+
+If enabled, the DP certificate should contain the "Certificate Authority
+Information Access" extension and the OCSP method with URI of which the OCSP
+responder can be reached from CP.
+
+OCSP checks are only performed on CP nodes, it has no effect on DP nodes.
+
+Valid values to this setting are:
+
+- `on`: OCSP revocation check is enabled and DP must pass the check in order to
+  establish connection with CP.
+- `off`: OCSP revocation check is disabled.
+- `optional`: OCSP revocation check will be attempted, however, if the required
+  extension is not found inside DP provided certificate or communication with
+  the OCSP responder failed, then DP is still allowed through.
+
+**Default:** `off`
+
+---
+
 
 ### NGINX section
 
@@ -834,9 +858,6 @@ Some suffixes can be specified for each pair:
   parameter. In order for the larger `backlog` set here to take effect it is
   necessary to raise `net.core.somaxconn` at the same time to match or exceed
   the `backlog` number set.
-
-**Note:** The `ssl` suffix is not supported, and each address/port will accept
-TCP with or without TLS enabled.
 
 Examples:
 
@@ -1072,8 +1093,17 @@ See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_timeout
 
 #### ssl_cert
 
-The absolute path to the SSL certificate for `proxy_listen` values with SSL
-enabled.
+Comma-separated list of the absolute path to the certificates for
+`proxy_listen` values with TLS enabled.
+
+If more than one certificates are specified, it can be used to provide
+alternate type of certificate (for example, ECC certificate) that will be served
+to clients that supports them. Note to properly serve using ECC certificates, it
+is recommended to also set `ssl_cipher_suite` to `modern` or `intermediate`.
+
+Unless this option is explicitly set, Kong will auto-generate a pair of default
+certificates (RSA + ECC) first time it starts up and use it for serving TLS
+requests.
 
 **Default:** none
 
@@ -1081,7 +1111,16 @@ enabled.
 
 #### ssl_cert_key
 
-The absolute path to the SSL key for `proxy_listen` values with SSL enabled.
+Comma-separated list of the absolute path to the keys for `proxy_listen` values
+with TLS enabled.
+
+If more than one certificate was specified for `ssl_cert`, then this option
+should contain the corresponding key for all certificates provided in the same
+order.
+
+Unless this option is explicitly set, Kong will auto-generate a pair of default
+private keys (RSA + ECC) first time it starts up and use it for serving TLS
+requests.
 
 **Default:** none
 
@@ -1089,8 +1128,8 @@ The absolute path to the SSL key for `proxy_listen` values with SSL enabled.
 
 #### client_ssl
 
-Determines if Nginx should send client-side SSL certificates when proxying
-requests.
+Determines if Nginx should attempt to send client-side TLS certificates and
+perform Mutual TLS Authentication with upstream service when proxying requests.
 
 **Default:** `off`
 
@@ -1098,9 +1137,11 @@ requests.
 
 #### client_ssl_cert
 
-If `client_ssl` is enabled, the absolute path to the client SSL certificate for
-the `proxy_ssl_certificate` directive. Note that this value is statically
-defined on the node, and currently cannot be configured on a per-API basis.
+If `client_ssl` is enabled, the absolute path to the client certificate for the
+`proxy_ssl_certificate` directive.
+
+This value can be overwritten dynamically with the `client_certificate`
+attribute of the `Service` object.
 
 **Default:** none
 
@@ -1108,9 +1149,11 @@ defined on the node, and currently cannot be configured on a per-API basis.
 
 #### client_ssl_cert_key
 
-If `client_ssl` is enabled, the absolute path to the client SSL key for the
-`proxy_ssl_certificate_key` address. Note this value is statically defined on
-the node, and currently cannot be configured on a per-API basis.
+If `client_ssl` is enabled, the absolute path to the client TLS key for the
+`proxy_ssl_certificate_key` directive.
+
+This value can be overwritten dynamically with the `client_certificate`
+attribute of the `Service` object.
 
 **Default:** none
 
@@ -1118,8 +1161,10 @@ the node, and currently cannot be configured on a per-API basis.
 
 #### admin_ssl_cert
 
-The absolute path to the SSL certificate for `admin_listen` values with SSL
-enabled.
+Comma-separated list of the absolute path to the certificates for
+`admin_listen` values with TLS enabled.
+
+See docs for `ssl_cert` for detailed usage.
 
 **Default:** none
 
@@ -1127,7 +1172,10 @@ enabled.
 
 #### admin_ssl_cert_key
 
-The absolute path to the SSL key for `admin_listen` values with SSL enabled.
+Comma-separated list of the absolute path to the keys for `admin_listen` values
+with TLS enabled.
+
+See docs for `ssl_cert_key` for detailed usage.
 
 **Default:** none
 
@@ -1135,8 +1183,10 @@ The absolute path to the SSL key for `admin_listen` values with SSL enabled.
 
 #### status_ssl_cert
 
-The absolute path to the SSL certificate for `status_listen` values with SSL
-enabled.
+Comma-separated list of the absolute path to the certificates for
+`status_listen` values with TLS enabled.
+
+See docs for `ssl_cert` for detailed usage.
 
 **Default:** none
 
@@ -1144,7 +1194,10 @@ enabled.
 
 #### status_ssl_cert_key
 
-The absolute path to the SSL key for `status_listen` values with SSL enabled.
+Comma-separated list of the absolute path to the keys for `status_listen`
+values with TLS enabled.
+
+See docs for `ssl_cert_key` for detailed usage.
 
 **Default:** none
 
@@ -2158,6 +2211,92 @@ attempts allowed.
 
 ---
 
+#### admin_gui_header_txt
+
+Kong Manager Header Text Sets text for Kong Manager Header Banner. Header
+Banner is not shown if this config is empty.
+
+**Default:** none
+
+---
+
+#### admin_gui_header_bg_color
+
+Kong Manager Header Background Color Sets background color for Kong Manager
+Header Banner Accepts css color keyword, #-hexadecimal or rgb format. Invalid
+values are ignored by Manager.
+
+**Default:** none
+
+---
+
+#### admin_gui_header_txt_color
+
+Kong Manager Header Text Color Sets text color for Kong Manager Header Banner.
+
+Accepts css color keyword, #-hexadecimal or rgb format. Invalid values are
+ignored by Kong Manager.
+
+**Default:** none
+
+---
+
+#### admin_gui_footer_txt
+
+Kong Manager Footer Text Sets text for Kong Manager Footer Banner. Footer
+Banner is not shown if this config is empty
+
+**Default:** none
+
+---
+
+#### admin_gui_footer_bg_color
+
+Kong Manager Footer Background Color Sets background color for Kong Manager
+Footer Banner.
+
+Accepts css color keyword, #-hexadecimal or rgb format. Invalid values are
+ignored by Manager.
+
+**Default:** none
+
+---
+
+#### admin_gui_footer_txt_color
+
+Kong Manager Footer Text Color Sets text color for Kong Manager Footer Banner.
+
+Accepts css color keyword, #-hexadecimal or rgb format. Invalid values are
+ignored by Kong Manager.
+
+**Default:** none
+
+---
+
+#### admin_gui_login_banner_title
+
+Kong Manager Login Banner Title Text Sets title text for Kong Manager Login
+Banner.
+
+Login Banner is not shown if both `admin_gui_login_banner_title` and
+`admin_gui_login_banner_body` are empty.
+
+**Default:** none
+
+---
+
+#### admin_gui_login_banner_body
+
+Kong Manager Login Banner Body Text Sets body text for Kong Manager Login
+Banner.
+
+Login Banner is not shown if both `admin_gui_login_banner_title` and
+`admin_gui_login_banner_body` are empty.
+
+**Default:** none
+
+---
+
 
 ### Vitals section
 
@@ -3062,9 +3201,22 @@ Trace types not defined in this list are ignored, regardless of their lifetime.
 The default special value of `all` results in all trace types being written,
 regardless of type.
 
-Included trace types are: `query`, `legacy_query`, `router`,
-`balancer.getPeer`, `balancer.toip`, `connect.toip`, `access.before`, and
-`access.after`, `cassandra_iterate`, and `plugin`.
+The following trace types are included:
+
+- `query`: trace the database query
+- `legacy_query`: (deprecated) trace the database query with legacy DAO
+- `router`: trace Kong routing the request; internal routing time
+- `balancer`: trace the execution of the overall balancer phase
+- `balancer.getPeer`: trace Kong selecting an upstream peer from the
+  ring-balancer
+- `balancer.toip`: trace balancer to resolve peer's host to IP
+- `connect.toip`: trace cosocket to resolve target's host to IP
+- `access.before`: trace the preprocessing of access phase, like parameter
+  parsing, route matching, and balance preparation
+- `access.after`: trace the postprocess of access phase, like balancer
+  execution and internal variable assigning
+- `cassandra_iterate`: trace Cassandra driver to paginate over results
+- `plugin`: trace plugins phase handlers
 
 **Default:** `all`
 
