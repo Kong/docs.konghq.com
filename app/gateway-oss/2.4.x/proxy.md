@@ -717,8 +717,8 @@ semantics of the request URI:
 
 1. Percent-encoded triplets are converted to uppercase.  For example: `/foo%3a` becomes `/foo%3A`.
 2. Percent-encoded triplets of unreserved characters are decoded. For example: `/fo%6F` becomes `/foo`.
-3. Dot-segments are removed as necessary. e.g. `/foo/./bar/../baz` will become `/foo/baz`.
-4. Duplicate slashes are merged. e.e. `/foo//bar` will become `/foo/bar`.
+3. Dot segments are removed as necessary.  For example: `/foo/./bar/../baz` becomes `/foo/baz`.
+4. Duplicate slashes are merged. For example: `/foo//bar` becomes `/foo/bar`.
 
 The `paths` attribute of the Route object are also normalized. It is achieved by first determining
 if the path is a plain text or regex path. Based on the result, different normalization techniques
@@ -726,14 +726,14 @@ are used.
 
 For plain text Route path:
 
-Same normalization technique as above is used, that is, method 1 through 4.
+Same normalization technique as above is used, that is, methods 1 through 4.
 
 For regex Route path:
 
-Only method 1 and 2 are used. In addition, if the decoded character becomes a regex
+Only methods 1 and 2 are used. In addition, if the decoded character becomes a regex
 meta character, it will be escaped with backslash.
 
-Please note that Kong normalizes any incoming request URI before performing router
+Kong normalizes any incoming request URI before performing router
 matches. As a result, any request URI sent over to the upstream services will also
 be in normalized form that preserves the original URI semantics.
 
