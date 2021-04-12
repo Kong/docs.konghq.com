@@ -353,6 +353,9 @@ $(function () {
     $(".docs-toc > .close-sidebar").click(function () {
       $(".docs-toc").removeClass("sidebar-open");
     });
+    $(".docs-toc .scroll-to").click(function () {
+      $(".docs-toc").removeClass("sidebar-open");
+    });
 
     $(".docs-toc > .collapse-toc").click(function () {
       $(".docs-toc").addClass("collapsed");

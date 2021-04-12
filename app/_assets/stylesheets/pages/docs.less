@@ -182,6 +182,15 @@
     .content {
       .breadcrumbs {
         margin-left: -0.1rem;
+
+        @media screen and (max-width: 800px) {
+          display: flex;
+          margin-left: 0;
+          overflow-x: auto;
+          white-space: nowrap;
+          align-items: center;
+          justify-content: flex-start;
+        }
       }
 
       .page-content-title {
@@ -373,6 +382,26 @@
       em {
         font-style: normal;
       }
+
+      &#module-dropdown {
+        height: auto;
+        min-height: 50px;
+        padding: 8px;
+        color: #043558;
+        background: transparent;
+        border: 1px solid #e7ebee;
+        text-transform: none;
+        font: 500 15.5px/26px Roboto;
+
+        &:hover {
+          background-image: linear-gradient(to bottom,rgba(255,255,255,.15),rgba(189,230,207,.15))
+        }
+
+        span {
+          max-width: 100%;
+          white-space: normal;
+        }
+      }
     }
   }
 
@@ -384,6 +413,11 @@
     color: rgba(0, 0, 0, 0.20);
     font-size: 20px;
     text-align: right;
+
+    &:before {
+      cursor: pointer;
+      -webkit-text-stroke: 2px white;
+    }
   }
 
   &::-webkit-scrollbar {
@@ -446,7 +480,7 @@
     }
   }
 
-  @media (max-width: 800px) {
+  @media screen and (max-width: 800px) {
     position: fixed;
     left: 0;
     padding: 0;
@@ -456,8 +490,8 @@
     background: #fff;
     overflow-y: auto;
     z-index: 100;
-    transform: translateX(-100%);
-    -webkit-transform: translateX(-100%);
+    transform: translateX(-105%);
+    -webkit-transform: translateX(-105%);
     transition: all 300ms ease-in-out;
 
     .close-sidebar {
@@ -468,6 +502,10 @@
     &.sidebar-open {
       transform: translateX(0);
     }
+  }
+
+  @media screen and (max-width: 400px) {
+    width: 100%;
   }
 }
 
@@ -700,7 +738,9 @@
     transition: all 300ms ease-in-out;
 
     .close-sidebar {
+      cursor: pointer;
       visibility: visible;
+      -webkit-text-stroke: 2px white;
     }
 
     .collapse-toc,
@@ -711,5 +751,9 @@
     &.sidebar-open {
       transform: translateX(0);
     }
+  }
+
+  @media screen and (max-width: 400px) {
+    width: 100%;
   }
 }
