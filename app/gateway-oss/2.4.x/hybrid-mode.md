@@ -463,9 +463,9 @@ During that time, the Data Plane will keep working with the latest configuration
 
 A new Data Plane node can be provisioned during Control Plane downtime. This
 requires either copying the config cache file (`config.json.gz`) from another
-Data Plane node, or a declarative configuration. In either case, if it has the
-role of `"data_plane"`, it will also keep trying to contact the Control Plane
-until it's up again.
+Data Plane node, or using a declarative configuration. In either case, if it
+has the role of `"data_plane"`, it will also keep trying to contact the Control
+Plane until it's up again.
 
 To change a disconnected Data Plane node's configuration, you have to remove
 the config cache file (`config.json.gz`), ensure the `declarative_config`
