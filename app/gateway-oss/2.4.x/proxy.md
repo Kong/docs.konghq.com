@@ -712,7 +712,7 @@ Host: ...
 To prevent trivial Route match bypass, the incoming request URI from client
 is always normalized according to [RFC 3986](https://tools.ietf.org/html/rfc3986)
 before router matching occurs. Specifically, the following normalization techniques are
-used for incoming request URIs which are selected because they generally do not change
+used for incoming request URIs, which are selected because they generally do not change
 semantics of the request URI:
 
 1. Percent-encoded triplets will be converted to uppercase. e.g. `/foo%3a` will become `/foo%3A`.
