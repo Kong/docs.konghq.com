@@ -292,7 +292,7 @@ connections to the control plane through TLS. When not set, data plane will use 
 
 ## Revocation check of Data Plane certificates
 
-When Kong is running Hybrid mode with PKI support, the Control Plane can be configured to
+When Kong is running Hybrid mode with PKI mode, the Control Plane can be configured to
 optionally check for revocation status of the conecting Data Plane certificate.
 
 The supported method is through Online Certificate Status Protocol (OCSP) respoders.
