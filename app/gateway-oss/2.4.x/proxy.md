@@ -720,7 +720,7 @@ semantics of the request URI:
 3. Dot-segments are removed as necessary. e.g. `/foo/./bar/../baz` will become `/foo/baz`.
 4. Duplicate slashes are merged. e.e. `/foo//bar` will become `/foo/bar`.
 
-`paths` attribute of the Route object are also normalized. It is achieved by first determining
+The `paths` attribute of the Route object are also normalized. It is achieved by first determining
 if the path is a plain text or regex path. Based on the result, different normalization techniques
 are used:
 
