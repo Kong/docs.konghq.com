@@ -1,3 +1,3 @@
 ---
-redirect_to: /enterprise/1.5.x/developer-portal
+redirect_to: /enterprise/2.2.x/developer-portal
 ---
