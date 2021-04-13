@@ -18,7 +18,7 @@ features:
             url: /konnect/dev-portal
           - text: Self-hosted version docs
             icon: /assets/images/icons/icn-server-blue.svg
-            url: /enterprise/latest/developer-portal/overview
+            url: /enterprise/latest/developer-portal/
 
       - name: Vitals
         description: View granular analytics with Vitals to monitor the health of environments, clusters, and individual services through the ServiceHub interface.
