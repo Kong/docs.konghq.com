@@ -18,7 +18,7 @@ description: |
   <ul>
   <li>Ability to authenticate based on username or custom ID.</li>
   <li>The ability to bind to an enterprise LDAP directory with a password.</li>
-  <li>The ability to authenticate/authorize using a group base DN and specific group member or group name attributes.</li>
+  <li>The ability to obtain LDAP groups and set them in a header to the request before proxying to the upstream which is useful for the Kong Manager role mapping, for example.</li>
   </ul>
   </div>
 
