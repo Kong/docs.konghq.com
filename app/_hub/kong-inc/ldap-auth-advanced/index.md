@@ -291,7 +291,7 @@ top-level DN such as `"ou=dev,o=company"` is specified instead of
 `"ou=role,ou=groups,ou=dev,o=company"`, the authentication will fail.
 
 Referrals are not supported in the plugin. A workaround is
-to hit the LDAP Global Catalog instead, which is usually listenning on a
+to hit the LDAP Global Catalog instead, which is usually listening on a
 different port than the default `389`. That way, referrals don't get sent
 back to the plugin.
 
