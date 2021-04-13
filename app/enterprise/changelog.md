@@ -115,7 +115,7 @@ no_version: true
 #### PDK
 - Now Kong does not leave plugin servers alive after exiting and does not try to
   start them in the unsupported stream subsystem. [6849](https://github.com/Kong/kong/pull/6849)
-- Golang does not cache `kong.log` methods. The `kong` table has some special-case magic
+- Golang does not cache `kong.log` methods. The `kong` table has some special-case logic
   for the `.log` subtable, and avoiding cacheing preserves this. [6701](https://github.com/Kong/kong/pull/6701)
 - The `response` phase is now included on the list of public phases. [6638](https://github.com/Kong/kong/pull/6638)
 - Config file style and options case are now consistent. [6981](https://github.com/Kong/kong/pull/6981)
