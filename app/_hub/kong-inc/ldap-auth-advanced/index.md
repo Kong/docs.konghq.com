@@ -290,12 +290,12 @@ example, considering a case where there are nested `"OU's"`. If a
 top-level DN such as `"ou=dev,o=company"` is specified instead of
 `"ou=role,ou=groups,ou=dev,o=company"`, the authentication will fail.
 
-Referrals are not supported in the plugin. One way to work around this is
+Referrals are not supported in the plugin. A workaround is
 to hit the LDAP Global Catalog instead, which is usually listenning on a
-different port than the default `389`. This way, referrals don't get sent
+different port than the default `389`. That way, referrals don't get sent
 back to the plugin.
 
 The plugin doesn’t authenticate users (allow/deny requests) based on group
 membership. For example:
-- if the user is member of an LDAP group, the request will be allowed -> 200 OK
-- if the user is _not_ member of a group, the request will still be allowed -> 200 OK
+- If the user is a member of an LDAP group, the request is allowed.
+- if the user is not member of an LDAP group, the request will still be allowed -> 200 OK
