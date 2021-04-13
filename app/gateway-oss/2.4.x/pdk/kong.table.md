@@ -71,3 +71,31 @@ kong.log(tab.foo) -- nil
 
 [Back to top](#kongtable)
 
+
+### kong.table.merge([t1[, t2]])
+
+Merges the contents of two tables together, producing a new one.
+ The entries of both tables are copied non-recursively to the new one.
+ If both tables have the same key, the second one takes precedence.
+ If only one table is given, it returns a copy.
+
+**Parameters**
+
+* **t1** (table, _optional_):  The first table
+* **t2** (table, _optional_):  The second table
+
+**Returns**
+
+* `table` The (new) merged table
+
+
+**Usage**
+
+``` lua
+local t1 = {1, 2, 3, foo = "f"}
+local t2 = {4, 5, bar = "b"}
+local t3 = kong.table.merge(t1, t2) -- {4, 5, 3, foo = "f", bar = "b"}
+```
+
+[Back to top](#kongtable)
+

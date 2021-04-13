@@ -182,7 +182,7 @@ end
 
 ### kong.client.load_consumer(consumer_id[, search_by_username.])
 
-Returns the consumer from the datastore (or cache).
+Returns the consumer from the datastore.
  Will look up the consumer by id, and optionally will do a second search by name.
 
 **Phases**

@@ -67,8 +67,13 @@ kong.service.request.set_scheme("https")
 
 ### kong.service.request.set_path(path)
 
-Sets the path component for the request to the service.  It is not
- normalized in any way and should **not** include the querystring.
+Sets the path component for the request to the service.
+
+ The input accepts any valid *normalized* URI (including UTF-8 characters)
+ and this API will perform necessary escaping according to the RFC
+ to make the request valid.
+
+ Input should **not** include the querystring.
 
 **Phases**
 
@@ -76,7 +81,7 @@ Sets the path component for the request to the service.  It is not
 
 **Parameters**
 
-* **path** (string):  The path string. Example: "/v2/movies"
+* **path** (string):  The path string. Special characters and UTF-8 characters are allowed. Example: "/v2/movies" or "/foo/😀"
 
 **Returns**
 

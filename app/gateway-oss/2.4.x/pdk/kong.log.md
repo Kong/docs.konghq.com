@@ -171,10 +171,6 @@ Like `kong.log()`, this function will produce a log with the `notice` level,
  via `kong.log.inspect.off()`, then this function prints nothing, and is
  aliased to a "NOP" function in order to save CPU cycles.
 
- ``` lua
- kong.log.inspect("...")
- ```
-
  This function differs from `kong.log()` in the sense that arguments will be
  concatenated with a space(`" "`), and each argument will be
  "pretty-printed":

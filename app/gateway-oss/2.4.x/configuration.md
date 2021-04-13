@@ -1557,6 +1557,10 @@ memory is allocated to it via the `mem_cache_size` property. You must also
 ensure that items in the cache never expire, which means that `db_cache_ttl`
 should preserve its default value of 0.
 
+If the Hybrid mode `role` is set to `data_plane` and there's no configuration
+cache file, this configuration is used before connecting to the Control Plane
+node as a user-controlled fallback.
+
 Default: none
 
 ---
@@ -1865,6 +1869,19 @@ verification will fail. This helps mitigate certificate based DoS attacks.
 See https://github.com/openresty/lua-nginx-module#lua_ssl_verify_depth
 
 Default: `1`
+
+---
+
+#### lua_ssl_protocols
+
+Defines the TLS versions supported when handshaking with OpenResty's TCP
+cosocket APIs.
+
+This affects connections made by Lua code, such as connections to the database
+Kong uses, or when sending logs using a logging plugin. It does *not* affect
+connections made to the upstream Service or from downstream clients.
+
+Default: `TLSv1.1 TLSv1.2 TLSv1.3`
 
 ---
 
