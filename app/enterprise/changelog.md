@@ -130,11 +130,11 @@ no_version: true
   plugins included default options that did not work well with DB-less or hybrid deployments mostly because the
   database was not available on gateway nodes. With this fix, the default values and validation rules are now
   compatible with DB-less or hybrid modes. [6885](https://github.com/Kong/kong/pull/6885)
-- [OAuth 2.0](/hub/kong-inc/oauth2): 
+- [OAuth 2.0](/hub/kong-inc/oauth2) (`oauth2`) 
   - To improve user experience and limit confusion, the plugin now handles cases of client invalid
     token generation in a more predictable way. Before the resulting error codes were confusing and
     unhelpful, often leading users to the wrong conclusions. [6594](https://github.com/Kong/kong/pull/6594)
-- [Zipkin](/hub/kong-inc/zipkin)
+- [Zipkin](/hub/kong-inc/zipkin) (`zipkin`)
   - The W3C parsing function was returning a non-used extra value that has been removed, and the plugin
     now early-exits if there is a problem with the W3C Trace Context header.
     [100](https://github.com/Kong/kong-plugin-zipkin/pull/100)
