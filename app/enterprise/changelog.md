@@ -3,6 +3,25 @@ title: Kong Gateway (Enterprise) Changelog
 no_search: true
 no_version: true
 ---
+## 2.3.3.1
+**Release Date** 2021/04/13
+
+### Features
+
+#### Enterprise
+- Now users can set a custom login message and classification banner (top and bottom) on the Kong Manager login page. This classification banner persists beyond the login page and can be configured in the `kong.config` file.
+
+### Fixes
+
+#### Core
+- Fixed an issue occurring when using upstreams for load balancing where Kong was attempting to resolve the upstream name instead of the hostname and failing, with the errors, "name resolution failed" and "dns server error: 3 name error". The following updates correct the issue:
+  - [Kong does not cache empty upstream name dictionaries.](https://github.com/Kong/kong/pull/7002)
+  - [Kong does not assume upstreams don't exist after init phases.](https://github.com/Kong/kong/pull/7010)
+
+#### Enterprise
+- Fixed an issue when upgrading Kong Gateway (Enterprise) from v1.5.x to v2.1.x. Before the fix, when admin consumers were shared across multiple workspaces, it was possible for the migration to fail. The upgrade would fail because plugin entities that depend on consumer entities must live in the same workspace as the consumer entity. This fix migrates these plugin entities to the same workspace as the consumer entities. Customers affected by this issue will need to upgrade their v2.1 install to at least v2.1.4.5 before attempting to migrate from v1.5 to v2.1.
+- Fixed an issue where customers could not add roles to new admin users via the Kong Cloud Manager. With this fix, role selection now properly displays available roles to assign.
+
 ## 2.3.3.0
 **Release Date** 2021/03/26
 
@@ -352,6 +371,15 @@ fixed causing a 500 auth error when falling back to an anonymous user.
 ### Deprecated
 #### Distributions
 - Support for CentOS-6 is removed and entered end-of-life on Nov 30, 2020.
+
+## 2.2.1.2
+**Release Date** 2021/04/13
+
+### Fixes
+
+#### Enterprise
+- Fixed an issue when upgrading Kong Gateway (Enterprise) from v1.5.x to v2.1.x. Before the fix, when admin consumers were shared across multiple workspaces, it was possible for the migration to fail. The upgrade would fail because plugin entities that depend on consumer entities must live in the same workspace as the consumer entity. This fix migrates these plugin entities to the same workspace as the consumer entities. Customers affected by this issue will need to upgrade their v2.1 install to at least v2.1.4.5 before attempting to migrate from v1.5 to v2.1.
+- Fixed an issue where customers could not add roles to new admin users via the Kong Cloud Manager. With this fix, role selection now properly displays available roles to assign.
 
 ## 2.2.1.1
 **Release Date** 2021/03/26
@@ -756,7 +784,7 @@ open-source **Kong Gateway 2.2.0.0**:
 ### Fixes
 
 #### Enterprise
-Fixed an issue when upgrading Kong Gateway (Enterprise) from v1.5.x to v2.1.x. Before the fix, when admin consumers were shared across multiple workspaces, it was possible for the migration to fail. The upgrade would fail because plugin entities that depend on consumer entities must live in the same workspace as the consumer entity. This fix migrates these plugin entities to the same workspace as the consumer entities. Customers affected by this issue will need to upgrade their 2.1 install to at least 2.1.4.5 before attempting to migrate from 1.5 to 2.1.
+Fixed an issue when upgrading Kong Gateway (Enterprise) from v1.5.x to v2.1.x. Before the fix, when admin consumers were shared across multiple workspaces, it was possible for the migration to fail. The upgrade would fail because plugin entities that depend on consumer entities must live in the same workspace as the consumer entity. This fix migrates these plugin entities to the same workspace as the consumer entities. Customers affected by this issue will need to upgrade their v2.1 install to at least v2.1.4.5 before attempting to migrate from v1.5 to v2.1.
 
 ## 2.1.4.4
 **Release Date** 2021/03/26
