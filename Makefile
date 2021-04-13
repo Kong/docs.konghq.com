@@ -1,14 +1,11 @@
 install-prerequisites:
-	npm install -g yarn
 	npm install -g gulp
 
 install:
-	-mkdir node_modules
+	-mkdir -p node_modules
 	chmod 777 node_modules
-	npm install
 	bundle install
 	yarn --ignore-engines
-	yarn upgrade
 	touch install
 
 run: install

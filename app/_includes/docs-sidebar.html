@@ -5,7 +5,7 @@
 
   <div class="sidebar-title-container">
     <div class="docsets-dropdown dropdown">
-      <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button class="dropdown-button" id="module-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span>
           {% if page.edition == 'enterprise' %}{{site.ee_product_name}}
           {% elsif page.edition == 'konnect' %}{{site.konnect_saas}}
@@ -18,7 +18,8 @@
         </span>
         <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="module-dropdown">
+        <div class="dropdown-submenu-title">Kong Konnect</div>
         <li {% if page.edition == 'konnect' %} class="active" {% endif %}>
           <a href="/konnect/" class="{% if page.edition == 'konnect' %}active{% endif %}">Konnect SaaS</a>
         </li>
@@ -31,6 +32,7 @@
         <li>
           <a href="/hub/">Plugin Hub</a>
         </li>
+        <div class="dropdown-submenu-title">Open Source</div>
         <li {% if page.edition == 'gateway-oss' %} class="active" {% endif %}>
           <a href="/gateway-oss/" class="{% if page.edition == 'gateway-oss' %}active{% endif %}">Kong Gateway (OSS)</a>
         </li>

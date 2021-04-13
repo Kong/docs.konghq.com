@@ -7,8 +7,9 @@
       />
     </a>
     {% if page.layout != "landing-page" %}
+    <div class="separator mobile"></div>
     <div class="search-input-wrapper">
-      <img src="/assets/images/landing-page/search.svg" alt="search">
+      <img src="/assets/images/landing-page/search.svg" alt="search" onclick="handleSearchClicked()">
       <input id="getkong-algolia-search-input" type="text" placeholder="Search the docs...">
     </div>
 
@@ -25,12 +26,14 @@
       getSearchPlaceholder();
       window.addEventListener('resize', getSearchPlaceholder);
     </script>
+    <div class="search-results-wrapper"></div>
     {% endif %}
     <div class="separator"></div>
     <div class="navbar-items">
       <div class="navbar-items">
-        <div class="navbar-item{% if page.layout != 'landing-page' %} active{% endif %}" onclick="toggleSubmenuVisible(this)">
+        <div class="navbar-item with-submenu{% if page.layout != 'landing-page' %} active{% endif %}" onclick="toggleSubmenuVisible(this)">
           <a href="https://docs.konghq.com/">Docs</a>
+          <span class="caret"></span>
           <div class="navbar-item-submenu">
             <div class="submenu-section">
               <span class="navbar-item submenu-section-title">Kong Konnect</span>
@@ -75,8 +78,18 @@
 </header>
 
 <script>
+  function handleSearchClicked () {
+    $('.navbar-v2').toggleClass('search-opened')
+    $('.navbar-v2').toggleClass('menu-opened', false)
+    $('#getkong-algolia-search-input').focus()
+  }
+
   function toggleButtonClicked () {
-    $('.navbar-v2').toggleClass('menu-opened')
+    if (!$('.navbar-v2').hasClass('search-opened')) {
+      $('.navbar-v2').toggleClass('menu-opened')
+    } else {
+      $('.navbar-v2').toggleClass('search-opened', false)
+    }
   }
 
   function toggleSubmenuVisible (element) {
@@ -88,8 +101,21 @@
 {% if page.layout != "landing-page" %}
 <style>
   @media (max-width: 768px) {
-    .algolia-docsearch-suggestion--subcategory-column{
+    .algolia-docsearch-suggestion--subcategory-column {
       display: none !important;
+    }
+
+    .algolia-autocomplete .ds-dropdown-menu {
+      max-width: calc(100% + 40px);
+      min-width: 300px;
+    }
+
+    .algolia-autocomplete.algolia-autocomplete-left .ds-dropdown-menu {
+      left: -40px !important;
+    }
+
+    .algolia-autocomplete.algolia-autocomplete-left .ds-dropdown-menu:before {
+      left: 88px;
     }
   }
 </style>

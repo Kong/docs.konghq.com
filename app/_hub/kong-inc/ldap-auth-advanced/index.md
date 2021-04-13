@@ -18,7 +18,7 @@ description: |
   <ul>
   <li>Ability to authenticate based on username or custom ID.</li>
   <li>The ability to bind to an enterprise LDAP directory with a password.</li>
-  <li>The ability to authenticate/authorize using a group base DN and specific group member or group name attributes.</li>
+  <li>The ability to obtain LDAP groups and set them in a header to the request before proxying to the upstream. This is useful for Kong Manager role mapping.</li>
   </ul>
   </div>
 
@@ -290,3 +290,17 @@ is specified a more generic DN, therefore it needs to be specific. For
 example, considering a case where there are nested `"OU's"`. If a
 top-level DN such as `"ou=dev,o=company"` is specified instead of
 `"ou=role,ou=groups,ou=dev,o=company"`, the authentication will fail.
+
+Referrals are not supported in the plugin. A workaround is
+to hit the LDAP Global Catalog instead, which is usually listening on a
+different port than the default `389`. That way, referrals don't get sent
+back to the plugin.
+
+The plugin doesn’t authenticate users (allow/deny requests) based on group
+membership. For example:
+- If the user is a member of an LDAP group, the request is allowed.
+- if the user is not a member of an LDAP group, the request is still allowed.
+
+The plugin obtains LDAP groups and sets them in a header, `x-authenticated-groups`,
+to the request before proxying to the upstream. This is useful for Kong Manager role
+mapping.
