@@ -49,3 +49,10 @@
 /enterprise/2.3.x/studio/*                  https://support.insomnia.rest/
 /studio                                     https://support.insomnia.rest/
 /studio/*                                   https://support.insomnia.rest/
+
+# Dev Portal
+/enterprise/2.1.x/developer-portal/introduction /enterprise/2.1.x/developer-portal
+/enterprise/2.3.x/developer-portal/introduction /enterprise/2.1.x/developer-portal
+/enterprise/2.2.x/developer-portal/introduction /enterprise/2.1.x/developer-portal
+/enterprise/latest/developer-portal/introduction /enterprise/latest/developer-portal
+/enterprise/latest/developer-portal/overview     /enterprise/latest/developer-portal
