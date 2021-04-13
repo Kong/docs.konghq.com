@@ -4,6 +4,18 @@ no_search: true
 no_version: true
 ---
 
+## 1.2.2
+
+> Released on 2021/04/09
+
+### Changes
+
+- Build on top of Kuma 1.1.2 with [fixes and improvements](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#112)
+
+### Upgrading
+
+Upgrades from `1.2.0` are seamless and no additional steps are needed.
+
 ## 1.2.1
 
 > Released on 2021/03/09
