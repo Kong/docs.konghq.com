@@ -379,15 +379,15 @@ class KongPlugin {
 #### 3. Plugin dependencies
 
 When using the plugin server, plugins are allowed to have extra dependencies, as long as the
-directory that holds plugin source codes also include a `node_modules` directory.
+directory that holds plugin source code also includes a `node_modules` directory.
 
-Assume plugins are stored under `/usr/local/kong/js-plugins`, the extra dependencies are
-then defined in `/usr/local/kong/js-plugins/package.json`. Developer will also need to
+Assuming plugins are stored under `/usr/local/kong/js-plugins`, the extra dependencies are
+then defined in `/usr/local/kong/js-plugins/package.json`. Developers also need to
 run `npm install` under `/usr/local/kong/js-plugins` to install those dependencies locally
 into `/usr/local/kong/js-plugins/node_modules`.
 
 Note in this case, the node version and architecture that runs the plugin server and
-the one runs `npm install` under plugins directory must match. For example, it may break
+the one that runs `npm install` under plugins directory must match. For example, it may break
 when you run `npm install` under macOS and mount the working directory into a Linux container.
 
 ## Developing Python plugins
