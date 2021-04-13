@@ -11,7 +11,7 @@ description: |
     authorization policy allows for it.
 
     <div class="alert alert-ee blue"><strong>Note:</strong> The OPA plugin is compatible with
-    the Kong Enterprise Gateway beta version 2.4.x.
+    the Kong Gateway (Enterprise) beta version 2.4.x.
     </div>  
 
 enterprise: true
@@ -176,7 +176,7 @@ Next, update the plugin configuration to use `/v1/data/example/allowDetailed` as
 
 The input to OPA has the following JSON structure:
 
-```json
+```
 {
   "input": {
     "request": { # details about the request from client to Kong
@@ -289,7 +289,7 @@ for rejected requests.
 
 The plugin expects the following structure in the OPA response in this case:
 
-```json
+```
 {
   "result": {
     "allow": <boolean>,
