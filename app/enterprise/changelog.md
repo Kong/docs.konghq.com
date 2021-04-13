@@ -107,8 +107,8 @@ no_version: true
 - Fixed an issue that occurred when using upstreams for load balancing, where Kong was attempting
   to resolve the upstream name instead of the hostname and failing with the errors `name resolution failed`
   and `dns server error: 3 name error`. The following updates correct the issue:
-  - [Kong does not cache empty upstream name dictionaries.](https://github.com/Kong/kong/pull/7002)
-  - [Kong does not assume upstreams don't exist after init phases.](https://github.com/Kong/kong/pull/7010)
+  - Kong does not cache empty upstream name dictionaries. [7002](https://github.com/Kong/kong/pull/7002)
+  - Kong does not assume upstreams don't exist after init phases. [7010](https://github.com/Kong/kong/pull/7010)
 - Opentracing libraries (opentracing, jaegar,datadog) bumped to latest versions.
 - The Developer Portal is now disabled when running without a license.
 
@@ -152,7 +152,7 @@ no_version: true
 - [Exit Transformer](/hub/kong-inc/exit-transformer) (`exit-transformer`)
   - The plugin was not allowing access to Kong module within the sandbox, only to `kong.request`,
     which prevented access to `kong.log` for example.
-    
+
 ## 2.3.3.0
 **Release Date** 2021/03/26
 
