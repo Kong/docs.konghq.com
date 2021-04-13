@@ -14,7 +14,7 @@ no_version: true
 ### Fixes
 
 #### Core
-- Fixed an issue occurring when using upstreams for load balancing where Kong was attempting to resolve the upstream name instead of the hostname and failing, with the errors, "name resolution failed" and "dns server error: 3 name error". The following updates correct the issue:
+- Fixed an issue that occurred when using upstreams for load balancing, where Kong was attempting to resolve the upstream name instead of the hostname and failing with the errors `name resolution failed` and `dns server error: 3 name error`. The following updates correct the issue:
   - [Kong does not cache empty upstream name dictionaries.](https://github.com/Kong/kong/pull/7002)
   - [Kong does not assume upstreams don't exist after init phases.](https://github.com/Kong/kong/pull/7010)
 
