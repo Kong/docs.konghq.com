@@ -9,7 +9,7 @@ no_version: true
 ### Features
 
 #### Enterprise
-- Now users can set a custom login message and classification banner (top and bottom) on the Kong Manager login page. This classification banner persists beyond the login page and can be configured in the `kong.config` file.
+- Users can now set a custom login message and classification banner (top and bottom) on the Kong Manager login page. This classification banner persists beyond the login page and can be configured in the `kong.conf` file.
 
 ### Fixes
 
