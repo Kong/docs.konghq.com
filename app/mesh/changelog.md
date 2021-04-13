@@ -10,7 +10,7 @@ no_version: true
 
 ### Changes
 
-- Build on top of Kuma 1.1.2 with [fixes and improvements](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#112). Features include:
+Built on top of Kuma 1.1.2 with [fixes and improvements](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#112). Features include:
 - 19 new observability charts and golden metrics.
 - IPv6 support across the service mesh.
 - New threshold configuration in the Circuit Breaker policy.
