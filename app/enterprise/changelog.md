@@ -29,7 +29,7 @@ no_version: true
   This update ensures that `luasec` will negotiate the most secure protocol available if not otherwise set.
 
 #### PDK
-- This release includes a new JavaScript Plugin Development Kit (PDK). This addition to the PDK
+- This release includes a new JavaScript Plugin Development Kit (PDK). This addition
   allows users to write Kong plugins in JavaScript and TypeScript.
 - This release includes support for Protobuf plugin communication protocol, which can be used in
   place of MessagePack to communicate with non-Lua plugins. [6941](https://github.com/Kong/kong/pull/6941)
@@ -47,11 +47,11 @@ no_version: true
     in production environment.**
 - [Zipkin](/hub/kong-inc/zipkin) (`zipkin`)
   - The plugin now supports OT and Jaeger style `uber-trace-id` headers. See `config.header_type` in
-    the Parameters section of the Zipkin plugin documentation for more information.
-    [101](https://github.com/Kong/kong-plugin-zipkin/pull/101 )
+    the [Parameters](https://docs.konghq.com/hub/kong-inc/zipkin/#parameters) section of the Zipkin
+    plugin documentation for more information. [101](https://github.com/Kong/kong-plugin-zipkin/pull/101 )
   - The plugin now allows insertion of custom tags on the Zipkin request trace. See `config.tags_header`
-    in the Parameters section of the Zipkin plugin documentation for more information.
-    [102](https://github.com/Kong/kong-plugin-zipkin/pull/102)
+    in the [Parameters](https://docs.konghq.com/hub/kong-inc/zipkin/#parameters) section of the Zipkin
+    plugin documentation for more information. [102](https://github.com/Kong/kong-plugin-zipkin/pull/102)
   - The plugin now allows the creation of baggage items on child spans.
     [98](https://github.com/Kong/kong-plugin-zipkin/pull/98)
 - [JWT](/hub/kong-inc/jwt) (`jwt`) 
@@ -99,11 +99,11 @@ no_version: true
   records and injects the new field on each copy.
   [6843](https://github.com/Kong/kong/commit/5f2a87259e3b474ec6129490bba82dac0aeba1cf)
 - The host header is updated between balancer retries. Before Kong set the `Host` header during
-  the access phase only and would send the wrong header if a target failed to server and needed
+  the access phase only and would send the wrong header if a target failed to serve and needed
   to be retried. [6796](https://github.com/Kong/kong/pull/6796)
 - The router prioritizes the route with most matching headers when matching headers.
   [6638](https://github.com/Kong/kong/pull/6638)
-- Fixed an edge case on multipart/form-data boundary check. [6638](https://github.com/Kong/kong/pull/6638)
+- Fixed an issue involving multipart/form-data boundary checks. [6638](https://github.com/Kong/kong/pull/6638)
 - Fixed an issue that occurred when using upstreams for load balancing, where Kong was attempting
   to resolve the upstream name instead of the hostname and failing with the errors `name resolution failed`
   and `dns server error: 3 name error`. The following updates correct the issue:
@@ -116,7 +116,7 @@ no_version: true
 - Now Kong does not leave plugin servers alive after exiting and does not try to
   start them in the unsupported stream subsystem. [6849](https://github.com/Kong/kong/pull/6849)
 - Golang does not cache `kong.log` methods. The `kong` table has some special-case logic
-  for the `.log` subtable, and avoiding cacheing preserves this. [6701](https://github.com/Kong/kong/pull/6701)
+  for the `.log` subtable, and avoiding cacheing preserves this logic. [6701](https://github.com/Kong/kong/pull/6701)
 - The `response` phase is now included on the list of public phases. [6638](https://github.com/Kong/kong/pull/6638)
 - Config file style and options case are now consistent. [6981](https://github.com/Kong/kong/pull/6981)
 - Added correct Protobuf MacOS path to enable external plugins in Homebrew installations. [6980](https://github.com/Kong/kong/pull/6980)
@@ -146,7 +146,7 @@ no_version: true
     - Treats JWE tokens as opaque, so that they can be introspected.
     - Adds support for Ed448 curve in EdDSA signing and verification and JWKS key generation.
 - [Kong JWT Signer](/hub/kong-inc/jwt-signer) (`jwt-signer`)
-  - Cache now uses upsert instead of insert/update with database.
+  - Cache now uses upsert instead of insert/update with databases.
   - Key rotation is now more resilient on errors.
   - Adds Db-less improvements.
 - [Exit Transformer](/hub/kong-inc/exit-transformer) (`exit-transformer`)
