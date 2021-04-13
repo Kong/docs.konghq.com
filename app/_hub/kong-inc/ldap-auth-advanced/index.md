@@ -298,4 +298,6 @@ back to the plugin.
 The plugin doesn’t authenticate users (allow/deny requests) based on group
 membership. For example:
 - If the user is a member of an LDAP group, the request is allowed.
-- if the user is not member of an LDAP group, the request will still be allowed -> 200 OK
+- if the user is not a member of an LDAP group, the request is still be allowed.
+
+The plugin obtains LDAP groups and sets them in a header, `x-authenticated-groups`, to the request before proxying to the upstream. This is useful for Kong Manager role mapping.
