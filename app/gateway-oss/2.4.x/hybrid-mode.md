@@ -290,10 +290,33 @@ cluster_cert_key = data-plane.crt
 `cluster_server_name` specifies the SNI (Server Name Indication extension) to use for data plane
 connections to the control plane through TLS. When not set, data plane will use `kong_clustering` as the SNI.
 
+## Revocation check of Data Plane certificates
+
+When Kong is running Hybrid mode with PKI mode, the Control Plane can be configured to
+optionally check for revocation status of the connecting Data Plane certificate.
+
+The supported method is through Online Certificate Status Protocol (OCSP) responders.
+Issued data plane certificates must contain the Certificate Authority Information Access extension
+that references the URI of OCSP responder that can be reached from the Control Plane.
+
+To enable OCSP checks, set the `cluster_ocsp` config on the Control Plane to one of the following values:
+
+* `on`: OCSP revocation check is enabled and the Data Plane must pass the revocation check
+to establish connection with the Control Plane. This implies that certificates without the
+OCSP extension or unreachable OCSP responder also prevents a connection from being established.
+* `off`: OCSP revocation check is disabled (default).
+* `optional`: OCSP revocation check will be attempted, however, if the OCSP responder URI is not
+found inside the Data Plane-provided certificate or communication with the OCSP responder failed,
+then Data Plane is still allowed through.
+
+Note that OCSP checks are only performed on the Control Plane against certificates provided by incoming Data Plane
+nodes. The `cluster_ocsp` config has no effect on Data Plane nodes.
+`cluster_oscp` affects all Hybrid mode connections established from a Data Plane to its Control Plane.
+
 
 ## Starting Data Plane Nodes
 
-Now we have a control plane running, it is not much useful if no data plane nodes are
+Now that a control plane is running, it is not very useful if no data plane nodes are
 talking to it and serving traffic (remember control plane nodes can not be used
 for proxying). To start the data plane, all we need to do is to specify the "role"
 to "data\_plane", give it the address and port of where the control plane can be reached
