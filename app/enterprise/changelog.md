@@ -18,7 +18,7 @@ no_version: true
     a version newer than the control plane’s version, or missing plugins from the control plane.
   </div>
 - UTF-8 characters can now be used in tags. This update expands the range of
-  accepted characters in tags from a limited set of ASCII characters to almost all of UTF-8 sequences.
+  accepted characters in tags from a limited set of ASCII characters to almost all UTF-8 sequences.
   Exceptions:
   - `,` and `/` are reserved for filtering tags with "and" and "or", and are not allowed in tags.
   - Non-printable ASCII (like the space character) is not allowed.
