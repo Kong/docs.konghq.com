@@ -98,7 +98,7 @@ no_version: true
 - Entity relationships are now traverse-order-independent. This fix keeps track of all copied
   records and injects the new field on each copy.
   [6843](https://github.com/Kong/kong/commit/5f2a87259e3b474ec6129490bba82dac0aeba1cf)
-- The host header is updated between balancer retries. Before Kong set the `Host` header during
+- The host header is updated between balancer retries. Before, Kong Gateway set the `Host` header during
   the access phase only and would send the wrong header if a target failed to serve and needed
   to be retried. [6796](https://github.com/Kong/kong/pull/6796)
 - The router prioritizes the route with most matching headers when matching headers.
