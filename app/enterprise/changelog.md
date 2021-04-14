@@ -56,7 +56,7 @@ no_version: true
     [98](https://github.com/Kong/kong-plugin-zipkin/pull/98)
 - [JWT](/hub/kong-inc/jwt) (`jwt`) 
   - The plugin now supports ES384 JWTs signature validation. [6854](https://github.com/Kong/kong/pull/6854)
-- Several plugins including: [File Log](/hub/kong-inc/file-log), [Loggly](/hub/kong-inc/loggly),
+- Logging plugins: [File Log](/hub/kong-inc/file-log), [Loggly](/hub/kong-inc/loggly),
   [Syslog](/hub/kong-inc/syslog), [TCP Log](/hub/kong-inc/tcp-log), [UDP Log](/hub/kong-inc/udp-log),
   and [HTTP Log](/hub/kong-inc/http-log)
   - Kong administrators now have a powerful new capability to transform logs to any format that’s needed
