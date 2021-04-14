@@ -150,8 +150,8 @@ no_version: true
   - Key rotation is now more resilient on errors.
   - Adds DB-less improvements.
 - [Exit Transformer](/hub/kong-inc/exit-transformer) (`exit-transformer`)
-  - The plugin was not allowing access to Kong module within the sandbox, only to `kong.request`,
-    which prevented access to `kong.log` for example.
+  - The plugin was not allowing access to any Kong modules within the sandbox except `kong.request`,
+    which prevented access to other necessary modules such as `kong.log`.
 
 ## 2.3.3.0
 **Release Date** 2021/03/26
