@@ -22,7 +22,7 @@ no_version: true
   Exceptions:
   - `,` and `/` are reserved for filtering tags with "and" and "or", and are not allowed in tags.
   - Non-printable ASCII (for example, the space character) is not allowed.
-- This Kong version supports Online Certificate Status Protocol (OCSP) responder in cluster for
+- Kong Gateway now supports using an Online Certificate Status Protocol (OCSP) responder in the cluster for
   hybrid mode control planes. This new feature can be configured in the `kong.conf` file.
   [6887](https://github.com/Kong/kong/pull/6887)
 - In this Kong version, Postgres `ssl_version` configuration now supports 'any' and will negotiate with server.
