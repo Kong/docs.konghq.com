@@ -127,7 +127,7 @@ no_version: true
 
 #### Plugins
 - The [Rate Limiting](/hub/kong-inc/rate-limiting) and [Response Rate Limiting](/hub/kong-inc/response-ratelimiting)
-  plugins included default options that did not work well with DB-less or hybrid deployments mostly because the
+  plugins included default options that did not work well with DB-less or hybrid deployments because the
   database was not available on gateway nodes. With this fix, the default values and validation rules are now
   compatible with DB-less or hybrid modes. [6885](https://github.com/Kong/kong/pull/6885)
 - [OAuth 2.0](/hub/kong-inc/oauth2) (`oauth2`) 
