@@ -81,7 +81,7 @@ no_version: true
 - Users can proxy websockets through Kong when using Chrome or Firefox. `HTTP Connection`
   headers usually carry a list of headers meant for receivers (in this case a proxy) that
   are not meant to be proxied further (hop-by-hop headers). The Kong Gateway correctly
-  cleans these headers, but it was a bit too aggressive and the`Upgrade` header was cleared
+  cleans these headers, but it was a bit too aggressive and the `Upgrade` header was cleared
   from response `Connection` headers, causing the connections to fail when using Firefox
   or Chrome. [6929](https://github.com/Kong/kong/pull/6929)
 - Kong now accepts fully-qualified domain names ending in dots to be compliant with RFC internet standards.
