@@ -20,7 +20,7 @@ no_version: true
 - This Kong version allows UTF-8 characters in tags. This update expands the range of
   accepted characters in tags from a limited set of ASCII characters to almost all of UTF-8 sequences.
   Exceptions:
-  - ',' and '/' are reserved for filtering tags with "and" and "or" and are not allowed in tags.
+  - `,` and `/` are reserved for filtering tags with "and" and "or", and are not allowed in tags.
   - Non-printable ASCII (like the space character) is not allowed.
 - This Kong version supports Online Certificate Status Protocol (OCSP) responder in cluster for
   hybrid mode control planes. This new feature can be configured in the `kong.conf` file.
