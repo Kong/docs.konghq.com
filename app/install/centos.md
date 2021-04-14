@@ -107,7 +107,7 @@ breadcrumbs:
 
 1. **Use Kong**
 
-    Kong is running
+    Verify that Kong is running:
 
     ```bash
     $ curl -i http://localhost:8001/
