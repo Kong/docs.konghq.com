@@ -38,7 +38,7 @@ params:
   service_id: true
   consumer_id: true
   route_id: true
-  protocols: ["http", "https"]
+  protocols: ["http", "https", "grpc", "grpcs"]
   dbless_compatible: yes
     # Degree of compatibility with DB-less mode. Three values allowed:
     # 'yes', 'no' or 'partially'.
