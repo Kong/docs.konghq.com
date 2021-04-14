@@ -1,8 +1,8 @@
 ---
 name: TCP Log
 publisher: Kong Inc.
-version: 2.0.x
-# internal handler version 2.0.1
+version: 2.1.x
+# internal handler version 2.1.0
 
 desc: Send request and response logs to a TCP server
 description: |
@@ -16,6 +16,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -41,6 +42,7 @@ kong_version_compatibility:
         - 0.2.x
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -86,6 +88,14 @@ params:
       default:
       datatype: string
       description: An optional string that defines the SNI (Server Name Indication) hostname to send in the TLS handshake.
+    - name: custom_fields_by_lua
+      required: false
+      default:
+      datatype: map
+      description: |
+        A list of key-value pairs, where the key is the name of a log field and
+        the value is a chunk of Lua code, whose return value sets or replaces
+        the log field value.
 
 ---
 
@@ -100,3 +110,7 @@ params:
 ## Kong process errors
 
 {% include /md/plugins-hub/kong-process-errors.md %}
+
+## Custom Fields by Lua
+
+{% include /md/plugins-hub/log_custom_fields_by_lua.md %}

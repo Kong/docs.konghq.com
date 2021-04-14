@@ -23,6 +23,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -117,7 +118,7 @@ params:
 
 ## Plugin Configuration
 
-Configure this plugin on a [Service](/latest/admin-api/#service-object) by
+Configure this plugin on a [Service](/gateway-oss/latest/admin-api/#service-object) by
 
 {% tabs %}
 {% tab With a database %}

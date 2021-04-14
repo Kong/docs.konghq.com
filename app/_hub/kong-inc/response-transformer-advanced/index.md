@@ -39,6 +39,7 @@ enterprise: true
 kong_version_compatibility:
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -413,9 +414,9 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 |h1:JSESSIONID=1876832,path=/   | h1:path=/ |
 |h2:/match/status/,/status/no-match/   | h2:/status/no-match/ |
 
-[api-object]: /latest/admin-api/#api-object
-[consumer-object]: /latest/admin-api/#consumer-object
-[configuration]: /latest/configuration
+[api-object]: /gateway-oss/latest/admin-api/#api-object
+[consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
+[configuration]: /gateway-oss/latest/configuration
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
 
 

@@ -92,7 +92,7 @@ baseurl=https://kong.bintray.com/kong-rpm/amazonlinux/amazonlinux
 
     **Without a database**
 
-    If you are going to run Kong in [DB-less mode](/{{site.data.kong_latest.release}}/db-less-and-declarative-config/),
+    If you are going to run Kong in [DB-less mode](/gateway-oss/latest/db-less-and-declarative-config/),
     you should start by generating declarative config file. The following command will generate a `kong.yml`
     file in your current folder. It contains instructions about how to populate it.
 
@@ -111,7 +111,7 @@ baseurl=https://kong.bintray.com/kong-rpm/amazonlinux/amazonlinux
 3. **Start Kong**
 
     {% include /md/ce-kong-user.md %}
-    
+
     ```bash
     $ kong start [-c /path/to/kong.conf]
     ```
@@ -124,6 +124,6 @@ baseurl=https://kong.bintray.com/kong-rpm/amazonlinux/amazonlinux
     $ curl -i http://localhost:8001/
     ```
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/gateway-oss/latest/getting-started/quickstart).
 
-[configuration]: /{{site.data.kong_latest.release}}/configuration#database
+[configuration]: /gateway-oss/latest/configuration#database

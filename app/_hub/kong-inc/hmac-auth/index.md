@@ -19,6 +19,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -41,6 +42,7 @@ kong_version_compatibility:
         - 0.5.x
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -485,5 +487,5 @@ for which to get the associated [Consumer][consumer-object].
 Note that `username` accepted here is **not** the `username` property of a
 Consumer.
 
-[consumer-object]: /latest/admin-api/#consumer-object
+[consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
 [clock-skew]: https://tools.ietf.org/html/draft-cavage-http-signatures-00#section-3.4

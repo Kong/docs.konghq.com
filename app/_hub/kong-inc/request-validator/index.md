@@ -17,6 +17,7 @@ categories:
 kong_version_compatibility:
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -492,7 +493,7 @@ In this example, use the plugin to validate a request's path parameter.
 
 The Kong schema validation format is based on the plugin schemas.
 For more information, see the Kong plugin docs on
-[storing custom entities](/latest/plugin-development/custom-entities/#defining-a-schema).
+[storing custom entities](/gateway-oss/latest/plugin-development/custom-entities/#defining-a-schema).
 
 ---
 
