@@ -41,8 +41,8 @@ no_version: true
   - The OPA plugin forwards requests to an Open Policy Agent and processes the request
     only if the authorization policy allows for it. **Released as BETA and should not be deployed
     in production environment.**
-- Mocking (`mocking`)
-  - New Kong Mocking plugin leverages standards-based Open API Specifications (OAS)
+- **New plugin:** Mocking (`mocking`)
+  - The Kong Mocking plugin leverages standards-based Open API Specifications (OAS)
     for sending out mock responses to APIs. **Released as BETA and should not be deployed
     in production environment.**
 - [Zipkin](/hub/kong-inc/zipkin) (`zipkin`)
