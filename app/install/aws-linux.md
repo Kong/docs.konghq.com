@@ -18,7 +18,6 @@ Start by downloading the following package specifically built for the Amazon Lin
 
 - [CentOS 8]({{ site.links.download }}/kong-rpm/aws/2/kong-{{site.data.kong_latest.version}}.aws.amd64.rpm)
 
-**Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
 
 ## YUM Repositories
 
