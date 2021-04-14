@@ -33,7 +33,7 @@ no_version: true
   allows users to write Kong plugins in JavaScript and TypeScript.
 - This release includes support for the Protobuf plugin communication protocol, which can be used in
   place of MessagePack to communicate with non-Lua plugins. [6941](https://github.com/Kong/kong/pull/6941)
-- This release enables `ssl_certificate` phase on plugins in `stream` module.
+- This release enables the `ssl_certificate` phase on plugins in the `stream` module.
   [6873](https://github.com/Kong/kong/pull/6873)
 
 #### Plugins
