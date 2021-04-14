@@ -12,7 +12,9 @@ no_version: true
 - This Kong Gateway version introduces relaxed version checks in hybrid mode between control planes
   and data planes, allowing data planes that are missing minor updates (up to two) to
   still connect to the control plane. Also, data planes are allowed to have a superset
-  of plugins in addition to the control plane plugins. [6932](https://github.com/Kong/kong/pull/6932)
+  of plugins in addition to the control plane plugins. See [Managing the cluster using Control Plane
+  nodes](/gateway-oss/2.4.x/hybrid-mode/#managing-the-cluster-using-control-plane-nodes) for
+  more information. [6932](https://github.com/Kong/kong/pull/6932)
   <div class="alert alert-ee blue">
     Data planes are not allowed to connect to control planes if they are a different major version,
     a version newer than the control plane’s version, or missing plugins from the control plane.
@@ -22,15 +24,19 @@ no_version: true
   Exceptions:
   - `,` and `/` are reserved for filtering tags with "and" and "or", and are not allowed in tags.
   - Non-printable ASCII (for example, the space character) is not allowed.
+  See [Tags](/gateway-oss/2.4.x/admin-api/#tags) in the Admin API documentation for more information.
 - Kong Gateway now supports using an Online Certificate Status Protocol (OCSP) responder in the cluster for
-  hybrid mode control planes. This new feature can be configured in the `kong.conf` file.
-  [6887](https://github.com/Kong/kong/pull/6887)
+  hybrid mode control planes. This new feature can be configured in the `kong.conf` file. See
+  [`cluster_oscp`](/gateway-oss/2.4.x/configuration/#cluster_ocsp) in the Configuration Reference for
+  more information. [6887](https://github.com/Kong/kong/pull/6887)
 - Postgres `ssl_version` configuration now defaults to `any`. If `ssl_version` is not explicitly set,
   the `any` option ensures that `luasec` will negotiate the most secure protocol available.
 
 #### PDK
 - This release includes a new JavaScript Plugin Development Kit (PDK). This addition
-  allows users to write Kong plugins in JavaScript and TypeScript.
+  allows users to write Kong plugins in JavaScript and TypeScript. See
+  [Developing JavaScript plugins](/gateway-oss/2.4.x/external-plugins/#developing-javascript-plugins)
+  for more information.
 - This release includes support for the Protobuf plugin communication protocol, which can be used in
   place of MessagePack to communicate with non-Lua plugins. [6941](https://github.com/Kong/kong/pull/6941)
 - This release enables the `ssl_certificate` phase on plugins in the `stream` module.
@@ -64,14 +70,24 @@ no_version: true
     execute custom Lua code, opening up a new range of possibilities for generating logs to whichever specification
     administrators need the most. This feature uses the new PDK method `kong.log.set_serialize_value`,
     as well as the new sandbox capability, both introduced in Kong v2.3. [6944](https://github.com/Kong/kong/pull/6944)
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  - `kong-openid-connect` library updated to v2.1.0
+    - Treats JWE tokens as opaque, so that they can be introspected.
+    - Adds support for Ed448 curve in EdDSA signing and verification and JWKS key generation.
+
+### Dependencies
+- Bumped `opentracing-cpp` from v1.5.1 to v1.6.0
+- Bumped `datadog` from v1.1.2 to v1.3.0
+- Bumped `nginx-opentracing` from v0.9.0 to v0.14.0
+- Bumped `jaeger` from v0.5.0 to v0.7.0
+- Bumped `lua-resty-nettle` from v1.8.3 to v2.0.0 
+- Bumped `openresty` from v1.17.8.2 to v1.19.3.1
 
 ### Fixes
 
 #### Core
 - Topological sort now prioritizes core, avoiding problems when plugin entities use core entities but
   don't explicitly depend on them. [6880](https://github.com/Kong/kong/pull/6880)
-- If needed, `Host` header is now updated between balancer retries.
-  [6796](https://github.com/Kong/kong/pull/6796)
 - Schema validations now log more descriptive error messages when types are invalid.
   [6593](https://github.com/Kong/kong/pull/6593)
 - Kong now ignores tags in Cassandra when filtering by multiple entities, which is the
@@ -109,7 +125,6 @@ no_version: true
   and `dns server error: 3 name error`. The following updates correct the issue:
   - Kong does not cache empty upstream name dictionaries. [7002](https://github.com/Kong/kong/pull/7002)
   - Kong does not assume upstreams don't exist after init phases. [7010](https://github.com/Kong/kong/pull/7010)
-- Opentracing libraries (opentracing, jaegar, datadog) bumped to latest versions.
 - The Developer Portal is now disabled when running without a license.
 
 #### PDK
@@ -140,11 +155,6 @@ no_version: true
     [100](https://github.com/Kong/kong-plugin-zipkin/pull/100)
   - Fixed a bug which randomly caused requests to fail with a 400 error code during span timestamping if
     the access phase was skipped. [105](https://github.com/Kong/kong-plugin-zipkin/pull/105)
-- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
-  - `kong-openid-connect` library updated to v2.1.0
-    - Updates `lua-resty-nettle` dependency to v2.0.
-    - Treats JWE tokens as opaque, so that they can be introspected.
-    - Adds support for Ed448 curve in EdDSA signing and verification and JWKS key generation.
 - [Kong JWT Signer](/hub/kong-inc/jwt-signer) (`jwt-signer`)
   - Cache now uses upsert instead of insert/update with databases.
   - Key rotation is now more resilient on errors.
