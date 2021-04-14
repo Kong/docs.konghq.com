@@ -47,10 +47,10 @@ no_version: true
     in production environment.**
 - [Zipkin](/hub/kong-inc/zipkin) (`zipkin`)
   - The plugin now supports OT and Jaeger style `uber-trace-id` headers. See `config.header_type` in
-    the [Parameters](https://docs.konghq.com/hub/kong-inc/zipkin/#parameters) section of the Zipkin
+    the [Parameters](/hub/kong-inc/zipkin/#parameters) section of the Zipkin
     plugin documentation for more information. [101](https://github.com/Kong/kong-plugin-zipkin/pull/101 )
   - The plugin now allows insertion of custom tags on the Zipkin request trace. See `config.tags_header`
-    in the [Parameters](https://docs.konghq.com/hub/kong-inc/zipkin/#parameters) section of the Zipkin
+    in the [Parameters](/hub/kong-inc/zipkin/#parameters) section of the Zipkin
     plugin documentation for more information. [102](https://github.com/Kong/kong-plugin-zipkin/pull/102)
   - The plugin now allows the creation of baggage items on child spans.
     [98](https://github.com/Kong/kong-plugin-zipkin/pull/98)
