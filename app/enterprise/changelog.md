@@ -37,8 +37,8 @@ no_version: true
   [6873](https://github.com/Kong/kong/pull/6873)
 
 #### Plugins
-- [OPA](/hub/kong-inc/opa) (`opa`)
-  - New OPA plugin forwards requests to an Open Policy Agent and processes the request
+- **New plugin:** [OPA](/hub/kong-inc/opa) (`opa`)
+  - The OPA plugin forwards requests to an Open Policy Agent and processes the request
     only if the authorization policy allows for it. **Released as BETA and should not be deployed
     in production environment.**
 - Mocking (`mocking`)
