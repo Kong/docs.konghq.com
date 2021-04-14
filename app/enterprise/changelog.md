@@ -113,7 +113,7 @@ no_version: true
 - The Developer Portal is now disabled when running without a license.
 
 #### PDK
-- Now Kong does not leave plugin servers alive after exiting and does not try to
+- Kong Gateway no longer leaves plugin servers alive after exiting and does not try to
   start them in the unsupported stream subsystem. [6849](https://github.com/Kong/kong/pull/6849)
 - Golang does not cache `kong.log` methods. The `kong` table has some special-case logic
   for the `.log` subtable, and avoiding cacheing preserves this logic. [6701](https://github.com/Kong/kong/pull/6701)
