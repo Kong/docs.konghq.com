@@ -26,7 +26,7 @@ enterprise: true
 type:
   plugin
 categories:
-  - deployment
+  - traffic control
 
 kong_version_compatibility:
   enterprise_edition:
@@ -57,11 +57,7 @@ params:
       required: semi
       default:
       datatype: string
-      value_in_examples:
-        # If the field is to appear in examples, this is the value to use.
-        # A required field with no value_in_examples entry will resort to
-        # the one in default.
-        # If providing an array, use the following format: [ "value1", "value2" ].
+      value_in_examples: myspec.yaml
       description: |
         The name of the specification file loaded into Kong DB. Either the `api_specification_filename`
         or the `api_specification` must be specified for the plugin. Use
