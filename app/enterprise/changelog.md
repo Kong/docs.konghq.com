@@ -9,7 +9,7 @@ no_version: true
 ### Features
 
 #### Core
-- This Kong version includes relaxed version check in hybrid mode between control planes
+- This Kong Gateway version introduces relaxed version checks in hybrid mode between control planes
   and data planes, allowing data planes that are missing minor updates (up to two) to
   still connect to the control plane. Also, data planes are allowed to have a superset
   of plugins in addition to the control plane plugins. [6932](https://github.com/Kong/kong/pull/6932)
