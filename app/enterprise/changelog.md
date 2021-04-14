@@ -148,7 +148,7 @@ no_version: true
 - [Kong JWT Signer](/hub/kong-inc/jwt-signer) (`jwt-signer`)
   - Cache now uses upsert instead of insert/update with databases.
   - Key rotation is now more resilient on errors.
-  - Adds Db-less improvements.
+  - Adds DB-less improvements.
 - [Exit Transformer](/hub/kong-inc/exit-transformer) (`exit-transformer`)
   - The plugin was not allowing access to Kong module within the sandbox, only to `kong.request`,
     which prevented access to `kong.log` for example.
