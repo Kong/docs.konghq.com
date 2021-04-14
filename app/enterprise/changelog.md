@@ -25,8 +25,8 @@ no_version: true
 - Kong Gateway now supports using an Online Certificate Status Protocol (OCSP) responder in the cluster for
   hybrid mode control planes. This new feature can be configured in the `kong.conf` file.
   [6887](https://github.com/Kong/kong/pull/6887)
-- In this Kong version, Postgres `ssl_version` configuration now supports 'any' and will negotiate with server.
-  This update ensures that `luasec` will negotiate the most secure protocol available if not otherwise set.
+- Postgres `ssl_version` configuration now defaults to `any`. If `ssl_versio`n is not explicitly set,
+  the `any` option ensures that `luasec` will negotiate the most secure protocol available.
 
 #### PDK
 - This release includes a new JavaScript Plugin Development Kit (PDK). This addition
