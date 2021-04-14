@@ -1,0 +1,21 @@
+- title: Getting Started Guide
+  icon: /assets/images/icons/documentation/icn-quickstart-color.svg
+  items:
+    - text: Overview
+      url: /overview
+    - text: Prepare to Administer
+      url: /prepare
+    - text: Expose your Services
+      url: /expose-services
+    - text: Protect your Services
+      url: /protect-services
+    - text: Improve Performance
+      url: /improve-performance
+    - text: Secure Services
+      url: /secure-services
+    - text: Set Up Intelligent Load Balancing
+      url: /load-balancing
+    - text: Manage Administrative Teams
+      url: /manage-teams
+    - text: Publish, Locate, and Consume Services
+      url: /dev-portal
