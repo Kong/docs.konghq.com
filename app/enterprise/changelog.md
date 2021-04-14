@@ -4,7 +4,7 @@ no_search: true
 no_version: true
 ---
 ## 2.3.3.1
-**Release Date** 2021/04/13
+**Release Date** 2021/04/14
 
 ### Features
 
@@ -21,6 +21,10 @@ no_version: true
 #### Enterprise
 - Fixed an issue with upgrades of Kong Gateway (Enterprise) from v1.5.x to v2.1.x. Before the fix, when admin consumers were shared across multiple workspaces, it was possible for the migration to fail. The upgrade would fail because plugin entities that depend on consumer entities must live in the same workspace as the consumer entity. This fix migrates these plugin entities to the same workspace as the consumer entities. Customers affected by this issue will need to upgrade their v2.1 install to at least v2.1.4.5 before attempting to migrate from v1.5 to v2.1.
 - Fixed an issue where customers could not add roles to new admin users via Kong Manager. With this fix, role selection now properly displays available roles to assign.
+
+#### Plugins
+- [Exit Transformer](/hub/kong-inc/exit-transformer) (`exit-transformer`)
+  - Fixed an issue where the plugin was running the exit hook twice. It now correctly runs the exit hook once.
 
 ## 2.3.3.0
 **Release Date** 2021/03/26
@@ -373,13 +377,17 @@ fixed causing a 500 auth error when falling back to an anonymous user.
 - Support for CentOS-6 is removed and entered end-of-life on Nov 30, 2020.
 
 ## 2.2.1.2
-**Release Date** 2021/04/13
+**Release Date** 2021/04/14
 
 ### Fixes
 
 #### Enterprise
 - Fixed an issue with upgrades of Kong Gateway (Enterprise) from v1.5.x to v2.1.x. Before the fix, when admin consumers were shared across multiple workspaces, it was possible for the migration to fail. The upgrade would fail because plugin entities that depend on consumer entities must live in the same workspace as the consumer entity. This fix migrates these plugin entities to the same workspace as the consumer entities. Customers affected by this issue will need to upgrade their v2.1 install to at least v2.1.4.5 before attempting to migrate from v1.5 to v2.1.
 - Fixed an issue where customers could not add roles to new admin users via the Kong Cloud Manager. With this fix, role selection now properly displays available roles to assign.
+
+#### Plugins
+- [Exit Transformer](/hub/kong-inc/exit-transformer) (`exit-transformer`)
+  - Fixed an issue where the plugin was running the exit hook twice. It now correctly runs the exit hook once.
 
 ## 2.2.1.1
 **Release Date** 2021/03/26
