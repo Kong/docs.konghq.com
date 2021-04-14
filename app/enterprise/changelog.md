@@ -61,7 +61,7 @@ no_version: true
   and [HTTP Log](/hub/kong-inc/http-log)
   - Kong administrators now have a powerful new capability to transform logs to any format that’s needed
     for capturing, indexing, and correlating logs. When formatting, developers also have the ability to
-    execute custom Lua code - opening up a new range of possibilities for generating logs to a specification
+    execute custom Lua code, opening up a new range of possibilities for generating logs to whichever specification
     that administrators need the most. This feature uses the new PDK method `kong.log.set_serialize_value`,
     as well as the new sandbox capability, both introduced in Kong v2.3. [6944](https://github.com/Kong/kong/pull/6944)
 
