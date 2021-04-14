@@ -25,7 +25,6 @@ breadcrumbs:
     $ sudo yum install $(rpm --eval "{{ site.links.download }}/gateway-community/centos/%{centos_ver}/Packages/k/kong-{{site.data.kong_latest.version}}.el%{centos_ver}.amd64.rpm")
     ```
     
-    **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
     
     **YUM Repositories**
     
