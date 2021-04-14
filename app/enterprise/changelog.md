@@ -120,7 +120,7 @@ no_version: true
 - The `response` phase is now included on the list of public phases. [6638](https://github.com/Kong/kong/pull/6638)
 - Config file style and options case are now consistent. [6981](https://github.com/Kong/kong/pull/6981)
 - Added correct Protobuf MacOS path to enable external plugins in Homebrew installations. [6980](https://github.com/Kong/kong/pull/6980)
-- Now Kong auto-escapes upstream paths(`kong.service.request.set_path()`) to avoid proxying errors.
+- Kong Gateway now auto-escapes upstream paths (`kong.service.request.set_path()`) to avoid proxying errors.
   [6978](https://github.com/Kong/kong/pull/6978)
 - In the Golang PDK, ports are now declared as `Int`. Before they were incorrectly declared
   `Strings`. [6994](https://github.com/Kong/kong/pull/6994)
