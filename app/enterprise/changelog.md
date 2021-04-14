@@ -90,7 +90,7 @@ no_version: true
   using upstreams for load balancing. When caching services, Kong does not warmup upstream
   names used as service hosts entries when warming up DNS entries, as they are not real DNS
   entries. [6891](https://github.com/Kong/kong/pull/6891)
-- Migrations order is now guaranteed to be always the same. Before the order in which the
+- Migrations order is now guaranteed to be always the same. Before, the order in which the
   subsystems were loaded changed randomly. Now, subsystems are sorted alphabetically, so the
   order in which migrations are executed is constant. [6901](https://github.com/Kong/kong/pull/6901)
 - Buffered responses are disabled on connection upgrades. Kong cannot do buffered responses with,
