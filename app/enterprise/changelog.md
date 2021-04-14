@@ -116,7 +116,7 @@ no_version: true
 - Kong Gateway no longer leaves plugin servers alive after exiting and does not try to
   start them in the unsupported stream subsystem. [6849](https://github.com/Kong/kong/pull/6849)
 - Golang does not cache `kong.log` methods. The `kong` table has some special-case logic
-  for the `.log` subtable, and avoiding cacheing preserves this logic. [6701](https://github.com/Kong/kong/pull/6701)
+  for the `.log` subtable, and avoiding caching preserves this logic. [6701](https://github.com/Kong/kong/pull/6701)
 - The `response` phase is now included on the list of public phases. [6638](https://github.com/Kong/kong/pull/6638)
 - Config file style and options case are now consistent. [6981](https://github.com/Kong/kong/pull/6981)
 - Added correct Protobuf MacOS path to enable external plugins in Homebrew installations. [6980](https://github.com/Kong/kong/pull/6980)
