@@ -132,7 +132,7 @@ no_version: true
   compatible with DB-less or hybrid modes. [6885](https://github.com/Kong/kong/pull/6885)
 - [OAuth 2.0](/hub/kong-inc/oauth2) (`oauth2`) 
   - To improve user experience and limit confusion, the plugin now handles cases of client invalid
-    token generation in a more predictable way. Before the resulting error codes were confusing and
+    token generation in a more predictable way. Before, the resulting error codes were confusing and
     unhelpful, often leading users to the wrong conclusions. [6594](https://github.com/Kong/kong/pull/6594)
 - [Zipkin](/hub/kong-inc/zipkin) (`zipkin`)
   - The W3C parsing function was returning a non-used extra value that has been removed, and the plugin
