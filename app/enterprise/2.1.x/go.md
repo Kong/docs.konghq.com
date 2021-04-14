@@ -117,8 +117,8 @@ $ go build github.com/Kong/go-pluginserver
 go build -buildmode plugin go-hello.go
 ```
 
-Note: when installing go-pluginserver binary globally user will need to
-enable go.mod support by using:
+Note: When installing the `go-pluginserver` binary globally, you  need to
+enable `go.mod` support:
 
 ```
 GO111MODULE=on go get -d -v github.com/Kong/go-pluginserver
