@@ -109,7 +109,7 @@ no_version: true
   and `dns server error: 3 name error`. The following updates correct the issue:
   - Kong does not cache empty upstream name dictionaries. [7002](https://github.com/Kong/kong/pull/7002)
   - Kong does not assume upstreams don't exist after init phases. [7010](https://github.com/Kong/kong/pull/7010)
-- Opentracing libraries (opentracing, jaegar,datadog) bumped to latest versions.
+- Opentracing libraries (opentracing, jaegar, datadog) bumped to latest versions.
 - The Developer Portal is now disabled when running without a license.
 
 #### PDK
