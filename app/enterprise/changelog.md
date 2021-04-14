@@ -31,7 +31,7 @@ no_version: true
 #### PDK
 - This release includes a new JavaScript Plugin Development Kit (PDK). This addition
   allows users to write Kong plugins in JavaScript and TypeScript.
-- This release includes support for Protobuf plugin communication protocol, which can be used in
+- This release includes support for the Protobuf plugin communication protocol, which can be used in
   place of MessagePack to communicate with non-Lua plugins. [6941](https://github.com/Kong/kong/pull/6941)
 - This release enables `ssl_certificate` phase on plugins in `stream` module.
   [6873](https://github.com/Kong/kong/pull/6873)
