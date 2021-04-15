@@ -171,7 +171,8 @@ no_version: true
 
 #### Enterprise
 - Users can now set a custom login message and classification banner (top and bottom) on the Kong Manager login page.
-  This classification banner persists beyond the login page and can be configured in the `kong.conf` file. 
+  This classification banner persists beyond the login page and can be configured in the `kong.conf` file.
+  
   The following new configuration options are now available:
   * `admin_gui_header_txt`
   * `admin_gui_header_bg_color`
@@ -181,6 +182,7 @@ no_version: true
   * `admin_gui_footer_txt_color`
   * `admin_gui_login_banner_title`
   * `admin_gui_login_banner_body`
+  
   See the [Kong Manager section](/enterprise/2.3.x/property-reference/#kong-manager-section) of the
   Configuration Property Reference for more information.
   
