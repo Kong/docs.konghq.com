@@ -724,7 +724,6 @@ its entry will be removed.
 
 ---
 
-
 ### NGINX section
 
 #### proxy_listen
@@ -834,6 +833,7 @@ Some suffixes can be specified for each pair:
   necessary to raise `net.core.somaxconn` at the same time to match or exceed
   the `backlog` number set.
 
+  
 **Note:** The `ssl` suffix is not supported, and each address/port will accept
 TCP with or without TLS enabled.
 
@@ -2154,6 +2154,94 @@ Number of times a user can attempt to login to Kong Manager. 0 means infinite
 attempts allowed.
 
 **Default:** `0`
+
+---
+
+#### admin_gui_header_txt
+
+Kong Manager Header Banner
+Sets text for Kong Manager Header Banner. Header Banner is not shown if this config is empty.
+
+**Default:** none
+
+---
+
+#### admin_gui_header_bg_color
+
+Kong Manager Header Background Color 
+Sets background color for Kong Manager Header Banner.
+Accepts css color keyword, #-hexadecimal or rgb format. Invalid values are ignored by Manager.
+
+**Default:** none
+
+---
+
+#### admin_gui_header_txt_color
+
+Kong Manager Header Text Color
+Sets text color for Kong Manager Header Banner.
+
+Accepts css color keyword, #-hexadecimal or rgb format. Invalid values are
+ignored by Kong Manager.
+
+**Default:** none
+
+---
+
+#### admin_gui_footer_txt
+
+Kong Manager Footer Text
+Sets text for Kong Manager Footer Banner. Footer Banner is not shown if this config is empty
+
+**Default:** none
+
+---
+
+#### admin_gui_footer_bg_color
+
+Kong Manager Footer Background Color
+Sets background color for Kong Manager Footer Banner.
+
+Accepts css color keyword, #-hexadecimal or rgb format. Invalid values are
+ignored by Manager.
+
+**Default:** none
+
+---
+
+#### admin_gui_footer_txt_color
+
+Kong Manager Footer Text Color
+Sets text color for Kong Manager Footer Banner.
+
+Accepts css color keyword, #-hexadecimal or rgb format. Invalid values are
+ignored by Kong Manager.
+
+**Default:** none
+
+---
+
+#### admin_gui_login_banner_title
+
+Kong Manager Login Banner Title Text
+Sets title text for Kong Manager Login Banner.
+
+Login Banner is not shown if both `admin_gui_login_banner_title` and
+`admin_gui_login_banner_body` are empty.
+
+**Default:** none
+
+---
+
+#### admin_gui_login_banner_body
+
+Kong Manager Login Banner Body Text
+Sets body text for Kong Manager Login Banner.
+
+Login Banner is not shown if both `admin_gui_login_banner_title` and
+`admin_gui_login_banner_body` are empty.
+
+**Default:** none
 
 ---
 
