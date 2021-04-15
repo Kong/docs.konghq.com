@@ -834,6 +834,9 @@ Some suffixes can be specified for each pair:
   necessary to raise `net.core.somaxconn` at the same time to match or exceed
   the `backlog` number set.
 
+  **Note:** The `ssl` suffix is not supported, and each address/port will accept
+  TCP with or without TLS enabled.
+
 Examples:
 
 ```
