@@ -3,5 +3,5 @@ title: Plugin Use Case Guides
 ---
 The guides in this section are examples of Kong Gateway plugins in use.
 
-For a complete list of Kong Gateway plugins and a breakdown of plugin availability by Konnect tier, see
-[Plugin Compatibility](/hub/plugins/compatibility).
+For a complete list of Kong Gateway plugins and a breakdown of plugin
+availability by Konnect tier, see the [Plugin Hub](/hub/).
