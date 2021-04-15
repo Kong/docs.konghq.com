@@ -1,8 +1,8 @@
 ---
 name: HTTP Log
 publisher: Kong Inc.
-version: 2.0.x
-# internal handler version 2.0.1
+version: 2.1.x
+# internal handler version 2.1.0
 
 desc: Send request and response logs to an HTTP server
 description: |
@@ -15,6 +15,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -39,6 +40,7 @@ kong_version_compatibility:
         - 0.3.x
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -119,6 +121,14 @@ params:
     **NOTE:** If the `config.http_endpoint` contains a username and password (for example,
     `http://bob:password@example.com/logs`), then Kong Gateway automatically includes
     a basic-auth `Authorization` header in the log requests.
+    - name: custom_fields_by_lua
+      required: false
+      default:
+      datatype: map
+      description: |
+        A list of key-value pairs, where the key is the name of a log field and
+        the value is a chunk of Lua code, whose return value sets or replaces
+        the log field value.
 
 ---
 
@@ -132,6 +142,24 @@ params:
 
 {% include /md/plugins-hub/json-object-log.md %}
 
+
+## Custom Headers
+
+The log server that receives these messages might require extra headers, e.g. for authorization purposes.
+
+```yaml
+...
+  - name: http-log
+    config:
+      headers:
+        Authorization: Bearer <<token>>
+...
+```
+
 ## Kong process errors
 
 {% include /md/plugins-hub/kong-process-errors.md %}
+
+## Custom Fields by Lua
+
+{% include /md/plugins-hub/log_custom_fields_by_lua.md %}

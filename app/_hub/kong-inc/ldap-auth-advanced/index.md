@@ -12,7 +12,7 @@ description: |
   (in that order).
 
   <div class="alert alert-ee blue"><strong>Tip:</strong> The LDAP Authentication Advanced plugin
-  provides additional features not available in the open source <a href="/hub/kong-inc/ldap-auth">LDAP Authentication plugin</a>, 
+  provides additional features not available in the open source <a href="/hub/kong-inc/ldap-auth">LDAP Authentication plugin</a>,
   such as LDAP searches for group and consumer mapping:
 
   <ul>
@@ -32,6 +32,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -271,9 +272,9 @@ $ ldapsearch -x -h "<config.ldap_host>" -D "<config.bind_dn>" -b
 "<config.attribute>=<username><config.base_dn>" -w "<config.ldap_password>"
 ```
 
-[api-object]: /latest/admin-api/#api-object
-[configuration]: /latest/configuration
-[consumer-object]: /latest/admin-api/#consumer-object
+[api-object]: /gateway-oss/latest/admin-api/#api-object
+[configuration]: /gateway-oss/latest/configuration
+[consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
 
 

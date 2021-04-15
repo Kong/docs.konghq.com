@@ -4,6 +4,23 @@ no_search: true
 no_version: true
 ---
 
+## 1.2.2
+
+> Released on 2021/04/09
+
+### Changes
+
+Built on top of Kuma 1.1.2 with [fixes and improvements](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#112). Features include:
+- 19 new observability charts and golden metrics.
+- IPv6 support across the service mesh.
+- New threshold configuration in the Circuit Breaker policy.
+- Performance improvements, especially with external services.
+- Stability improvements to kuma-cp and DNS resolution.
+
+### Upgrading
+
+Upgrades from `1.2.0` are seamless and no additional steps are needed.
+
 ## 1.2.1
 
 > Released on 2021/03/09

@@ -2,6 +2,7 @@
 name: OPA
 publisher: Kong Inc.
 version: 0.1.x
+beta: true
 # internal handler v 0.1.0
 
 desc: Authorize requests against Open Policy Agent
@@ -9,6 +10,11 @@ description: |
     Forward request to Open Policy Agent and process the request only if the
     authorization policy allows for it.
 
+    <div class="alert alert-ee blue"><strong>Note:</strong> The OPA plugin is compatible with
+    the Kong Gateway (Enterprise) beta version 2.4.x.
+    </div>  
+
+enterprise: true
 type: plugin
 categories:
   - security
@@ -58,19 +64,19 @@ params:
       datatype: boolean
       default: false
       description: |
-        If set to true, the Kong Service object in use for the current request is included as input to OPA.
+        If set to true, the Kong Gateway Service object in use for the current request is included as input to OPA.
     - name: include_route_in_opa_input
       required: false
       datatype: boolean
       default: false
       description: |
-        If set to true, the Kong Route object in use for the current request is included as input to OPA.
+        If set to true, the Kong Gateway Route object in use for the current request is included as input to OPA.
     - name: include_consumer_in_opa_input
       required: false
       datatype: boolean
       default: false
       description: |
-        If set to true, the Kong Consumer object in use for the current request (if any) is included as input to OPA.
+        If set to true, the Kong Gateway Consumer object in use for the current request (if any) is included as input to OPA.
 ---
 
 ## Usage
@@ -132,9 +138,9 @@ curl -XPUT localhost:8181/v1/policies/example --data-binary @example.rego
 The above command uses OPA's default port 8181. It could be different for your
 setup.
 
-### Set up Kong
+### Set up Kong Gateway
 
-Set up a Route and Service in Kong and then enable the plugin:
+Set up a Route and Service in {{site.base_gateway}} and then enable the plugin:
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
@@ -145,13 +151,13 @@ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
 
 ### Make a request
 
-Now, make a request to Kong:
+Now, make a request to {{site.base_gateway}}:
 
 ```bash
 curl http://kong:8000/{proxy_path}
 ```
 
-You will get a 403 response from Kong because OPA has rejected the request.
+You will get a 403 response from the gateway because OPA has rejected the request.
 
 Next, make the same request providing the necessary header:
 
@@ -170,7 +176,7 @@ Next, update the plugin configuration to use `/v1/data/example/allowDetailed` as
 
 The input to OPA has the following JSON structure:
 
-```json:
+```
 {
   "input": {
     "request": { # details about the request from client to Kong
@@ -238,15 +244,15 @@ The input to OPA has the following JSON structure:
 
 ```
 
-> Please note that it is possible that Consumer and Service resources are not present for any given request in Kong.
+> Note that it is possible that Consumer and Service resources are not
+present for any given request in {{site.base_gateway}}.
 
 ## Expected response from OPA
 
-Once OPA is done executing policies, the plugin expects the policy evaluation
-result in one of the two defined formats. Any other format will result in the
-plugin returning a `500 Internal Server Error` to the client.
-If the HTTP status code of the response from OPA is not `200 OK`, then it is
-treated as an error, which results in a `500 Internal Server Error` to the client.
+After OPA is done executing policies, the plugin expects the policy evaluation
+result in one of the defined formats: boolean or object. Any other format
+or a status code other than `200 OK` results in the plugin returning a
+`500 Internal Server Error` to the client.
 
 ### Boolean result
 
@@ -283,11 +289,11 @@ for rejected requests.
 
 The plugin expects the following structure in the OPA response in this case:
 
-```json
+```
 {
   "result": {
     "allow": <boolean>,
-    "status: <HTTP status code>,
+    "status": <HTTP status code>,
     "headers": {
       "<key>": "<value>",
       "<key2>": "<value2>"
@@ -296,8 +302,8 @@ The plugin expects the following structure in the OPA response in this case:
 }
 ```
 
-The only required field in this response is `result.allow` and it must be a
-`boolean`, or else the plugin will error out.
+The only required field in this response is `result.allow`, which accepts a
+`boolean` value.
 
 If `result.allow` is set to `true`, then the key-value pairs in `result.headers` (if any)
 are injected into the request before it is forwarded to the upstream Service.
