@@ -8,6 +8,7 @@
     - text: Changelog
       url: https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
       absolute_url: true
+      target_blank: true
 
 - title: Concepts
   icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
@@ -30,9 +31,8 @@
       url: /concepts/ingress-versions
 - title: Deployment
   icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
+  url: /deployment/overview
   items:
-    - text: Overview
-      url: /deployment/overview
     - text: Kong Ingress on Minikube
       url: /deployment/minikube
     - text: Kong for Kubernetes
@@ -51,9 +51,8 @@
       url: /deployment/admission-webhook
 - title: Guides
   icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
+  url: /guides/overview
   items:
-    - text: Overview
-      url: /guides/overview
     - text: Getting Started with KIC
       url: /guides/getting-started
     - text: Getting Started using Istio

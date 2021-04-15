@@ -10,8 +10,6 @@
   icon: /assets/images/icons/documentation/icn-references-color.svg
   url: /release-notes
   items:
-    - text: Release notes
-      url: /release-notes
     - text: Changelog
       url: /enterprise/changelog
       absolute_url: true
@@ -29,6 +27,7 @@
             - text: AWS (EKS)
               url: https://aws.amazon.com/marketplace/pp/B086MZ3TV3?qid=1586561274348&sr=0-4&ref_=srh_res_product_title
               absolute_url: true
+              target_blank: true
             - text: Docker
               url: /deployment/installation/docker
             - text: Kong for Kubernetes Enterprise
@@ -56,18 +55,23 @@
             - text: AWS (AMI)
               url: https://aws.amazon.com/marketplace/pp/B08P51PKC1?qid=1607026688511&sr=0-5&ref_=srh_res_product_title
               absolute_url: true
+              target_blank: true
             - text: AWS (EKS)
               url: https://aws.amazon.com/marketplace/pp/B086MZ3TV3?qid=1586561274348&sr=0-4&ref_=srh_res_product_title
               absolute_url: true
+              target_blank: true
             - text: Azure
               url: https://azuremarketplace.microsoft.com/en-us/marketplace/apps/konginc1581527938760.kongee2020ubuntuxenial?tab=Overview
               absolute_url: true
+              target_blank: true
             - text: Google Cloud
               url: https://console.cloud.google.com/marketplace/details/konghq-public/kongenterprise21
               absolute_url: true
+              target_blank: true
             - text: RedHat
               url: https://marketplace.redhat.com/en-us/products/kong-enterprise-rhm
               absolute_url: true
+              target_blank: true
     - text: Deployment Options
       url: /deployment/deployment-options
       items:
@@ -132,34 +136,42 @@
 
 - title: Getting Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
+  url: /getting-started-guide/latest/overview
+  absolute_url: true
+  target_blank: true
   items:
-    - text: Overview
-      url: /getting-started-guide/latest/overview
-      absolute_url: true
     - text: Prepare to Administer
       url: /getting-started-guide/latest/prepare
       absolute_url: true
+      target_blank: true
     - text: Expose your Services
       url: /getting-started-guide/latest/expose-services
       absolute_url: true
+      target_blank: true
     - text: Protect your Services
       url: /getting-started-guide/latest/protect-services
       absolute_url: true
+      target_blank: true
     - text: Improve Performance
       url: /getting-started-guide/latest/improve-performance
       absolute_url: true
+      target_blank: true
     - text: Secure Services
       url: /getting-started-guide/latest/secure-services
       absolute_url: true
+      target_blank: true
     - text: Set Up Intelligent Load Balancing
       url: /getting-started-guide/latest/load-balancing
       absolute_url: true
+      target_blank: true
     - text: Manage Administrative Teams
       url: /getting-started-guide/latest/manage-teams
       absolute_url: true
+      target_blank: true
     - text: Publish, Locate, and Consume Services
       url: /getting-started-guide/latest/dev-portal
       absolute_url: true
+      target_blank: true
 
 - title: Guides & References
   icon: /assets/images/icons/documentation/icn-references-color.svg
@@ -240,8 +252,6 @@
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
   url: /admin-api
   items:
-  - text: Overview
-    url: /admin-api
   - text: Supported Content Types
     url: /admin-api/#supported-content-types
   - text: Information Routes
@@ -301,9 +311,8 @@
 
 - title: Kong Manager
   icon: /assets/images/icons/documentation/icn-manager-color.svg
+  url: /kong-manager/overview
   items:
-    - text: Overview
-      url: /kong-manager/overview
     - text: Networking
       items:
         - text: Default and Custom Configuration
@@ -363,9 +372,8 @@
 
 - title: Kong Dev Portal
   icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
+  url: /developer-portal/
   items:
-    - text: Introduction
-      url: /developer-portal/
     - text: Enable the Dev Portal
       url: /developer-portal/enable-dev-portal
     - text: Structure and File Types
@@ -435,9 +443,8 @@
 
 - title: Kong Vitals
   icon: /assets/images/icons/documentation/icn-vitals.svg
+  url: /vitals/overview
   items:
-    - text: Overview
-      url: /vitals/overview
     - text: Metrics
       url: /vitals/vitals-metrics
     - text: Reports
@@ -449,9 +456,8 @@
 
 - title: Kong Immunity
   icon: /assets/images/icons/documentation/icn-immunity-color.svg
+  url: /immunity/overview
   items:
-    - text: Overview
-      url: /immunity/overview
     - text: Installation and Configuration
       url: /immunity/install-configure
     - text: Alerts
@@ -465,17 +471,16 @@
     - text: Changelog
       url: /immunity/changelog
 
-- title: Plugins
+- title: Plugin Use Cases
   icon: /assets/images/icons/documentation/icn-api-plugins-color.svg
+  url: /plugins
   items:
     - text: OpenID Connect
-      url: /hub/kong-inc/openid-connect
-      absolute_url: true
+      url: /plugins/oidc-use-case
       items:
-        - text: OpenID Connect Use Case
-          url: /plugins/oidc-use-case
         - text: OpenID Connect Plugin Reference
-          url: /plugins/openid-connect
+          url: /hub/kong-inc/openid-connect
+          absolute_url: true
         - text: OpenID Connect with Azure AD
           url: /plugins/oidc-azuread
         - text: OpenID Connect with Google
@@ -490,65 +495,6 @@
       items:
         - text: GraphQL Quickstart
           url: /plugins/graphql-quickstart
-        - text: DegraphQL
-          url: /plugins/degraphql
-        - text: GraphQL Proxy Cache Advanced
-          url: /plugins/graphql-proxy-cache-advanced
-        - text: GraphQL Rate Limiting Advanced
-          url: /plugins/graphql-rate-limiting-advanced
-    - text: Kafka
-      url: /hub/kong-inc/kafka-log
-      absolute_url: true
-      items:
-        - text: Kafka Log Plugin
-          url: /plugins/kafka-log
-        - text: Kafka Upstream Plugin
-          url: /plugins/kafka-upstream
-    - text: gRPC
-      url: /plugins/grpc
-      items:
-        - text: gRPC-Gateway Plugin
-          url: /hub/kong-inc/grpc-gateway
-          absolute_url: true
-        - text: gRPC-Web Plugin
-          url: /hub/kong-inc/grpc-web
-          absolute_url: true
-    - text: Proxy Cache Advanced Plugin
-      url: /plugins/proxy-cache-advanced
-    - text: Canary Release Plugin
-      url: /plugins/canary-release
-    - text: Rate Limiting Plugin
-      url: /plugins/rate-limiting-advanced
-    - text: Request Transformer Plugin
-      url: /plugins/request-transformer
-    - text: Response Transformer Advanced Plugin
-      url: /plugins/response-transformer-advanced
-    - text: OAuth2 Introspection Plugin
-      url: /plugins/oauth2-introspection
-    - text: HTTP Proxy Caching
-      url: /plugins/http-proxy-caching
-    - text: Forward Proxy
-      url: /plugins/forward-proxy
-    - text: StatsD Advanced Plugin
-      url: /plugins/statsd-advanced
-    - text: LDAP Auth Advanced Plugin
-      url: /plugins/ldap-authentication-advanced
-    - text: Session Plugin
-      url: /plugins/session
-    - text: Route By Header Plugin
-      url: /plugins/route-by-header
-    - text: Route Transformer Advanced
-      url: /plugins/route-transformer-advanced
-    - text: JWT Signer Plugin
-      url: /plugins/jwt-signer
-    - text: Vault Auth Plugin
-      url: /plugins/vault-auth
-    - text: Request Validator Plugin
-      url: /plugins/request-validator
-    - text: Exit Transformer Plugin
-      url: /plugins/exit-transformer
-    - text: Key Auth (encrypted)
-      url: /plugins/key-auth-enc
     - text: Implementation
       items:
         - text: Multiple Authentication Methods
