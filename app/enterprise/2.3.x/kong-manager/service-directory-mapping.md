@@ -62,6 +62,8 @@ admin_gui_session_conf = { "secret":"set-your-string-here" }
 
 Configure LDAP Authentication for Kong Manager with the following properties. Note the attribute variables are defined below:
 
+For Active Directory environments, instead of port 389, user the Global Catalog port which is 3268 by default.
+
 ```
 admin_gui_auth_conf = {
  "anonymous":"", \
