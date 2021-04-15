@@ -2,7 +2,7 @@
 title: Set up a Kong Gateway Runtime on Linux
 no_version: true
 ---
-Using `kong.conf`, set up a [runtime](/konnect/overview/#konnect-key-concepts-and-terminology)
+Using `kong.conf`, set up a [runtime](/konnect/#konnect-key-concepts-and-terminology)
 through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
 configure your {{site.base_gateway}} instance to accept configuration from

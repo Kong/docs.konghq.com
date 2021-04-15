@@ -2,7 +2,7 @@
 title: Set up a Kong Gateway Runtime with Docker
 no_version: true
 ---
-Set up a Docker [runtime](/konnect/overview/#konnect-key-concepts-and-terminology)
+Set up a Docker [runtime](/konnect/#konnect-key-concepts-and-terminology)
 through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
 configure your {{site.base_gateway}} instance to accept configuration from

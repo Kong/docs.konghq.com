@@ -35,7 +35,7 @@ serving traffic for the proxy. Data plane nodes are not directly connected
 to a database.
 
 Currently, the only supported runtime type in the
-{{site.konnect_product_name}} SaaS application is a [{{site.ee_gateway_name}}](/enterprise/latest/introduction)
+{{site.konnect_product_name}} SaaS application is a [{{site.ee_gateway_name}}](/enterprise/)
 data plane.
 
 Choose an installation type below:
