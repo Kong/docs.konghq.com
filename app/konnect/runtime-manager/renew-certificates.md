@@ -27,8 +27,8 @@ updated certificates.
 2. Click **Generate Certificates**.
 3. Save the new certificates and key into separate files:
 
-    * Certificate: `cluster.crt`
-    * Private key: `cluster.key`
+    * Certificate: `tls.crt`
+    * Private key: `tls.key`
     * Root CA Certificate: `ca.crt`
 
 4. Replace existing certificates on your data planes with the new files.

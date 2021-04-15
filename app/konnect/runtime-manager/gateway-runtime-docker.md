@@ -92,11 +92,11 @@ matching your repository:
     $ docker tag <IMAGE_ID> kong-ee
     ```
 
-4. Back in {{site.konnect_short_name}}, copy the
-codeblock from the **Configuration Parameters** section.
+4. Return to {{site.konnect_short_name}} and copy the
+codeblock in the **Step 2. Configuration Parameters** section.
 
 5. Replace the values in `KONG_CLUSTER_CERT`, `KONG_CLUSTER_CERT_KEY`,
-and `KONG_CLUSTER_CA_CERT` with the paths to your certificate files.
+and `KONG_LUA_SSL_TRUSTED_CERTIFICATE` with the paths to your certificate files.
 
 6. Using the provided values, bring up a new container.
 
@@ -114,8 +114,8 @@ and `KONG_CLUSTER_CA_CERT` with the paths to your certificate files.
       -e "KONG_CLUSTER_SERVER_NAME=<kong-cpoutlet-example.service>" \
       -e "KONG_CLUSTER_TELEMETRY_ENDPOINT=<example.tp.konnect.foo>:443" \
       -e "KONG_CLUSTER_TELEMETRY_SERVER_NAME=<kong-telemetry-example.service>" \
-      -e "KONG_CLUSTER_CERT=/<path-to-file>/cluster.crt" \
-      -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/cluster.key" \
+      -e "KONG_CLUSTER_CERT=/<path-to-file>/tls.crt" \
+      -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/tls.key" \
       -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system,/<path-to-file>/ca.crt" \
       --mount type=bind,source="$(pwd)",target=<path-to-keys-and-certs>,readonly \
       -p 8000:8000 \

@@ -38,32 +38,36 @@ and follow the instructions in Steps 1 and 2 **only** to download and install
         Do not start or create a database on this node.
     </div>
 
-2. Back in {{site.konnect_short_name}}, copy the
-codeblock from the **Configuration Parameters** section.
+2. Return to {{site.konnect_short_name}} and copy the
+codeblock in the **Step 2. Configuration Parameters** section.
 
-3. Replace the values in `KONG_CLUSTER_CERT`, `KONG_CLUSTER_CERT_KEY`,
-and `KONG_CLUSTER_CA_CERT` with the paths to your certificate files.
+3. Open your instance's `kong.conf` file. Add the parameters you just copied
+to the file, remove the `KONG_` prefix, and turn them into lowercase.
 
-4. Open your instance's `kong.conf` file. Remove the `KONG_` prefix from the
-parameters in the sample codeblock and add the parameters to the file:
+    The result should look something like this, replacing placeholder values
+    with your own from {{site.konnect_short_name}}:
 
     ```sh
     role = data_plane
     database = off
     anonymous_reports = off
-    vitals_ttl_days = 732
+    vitals_ttl_days = 723
     cluster_mtls = pki
     cluster_control_plane = <example.cp.konnect.foo>:443
     cluster_server_name = <kong-cpoutlet-example.service>
     cluster_telemetry_endpoint = <example.tp.konnect.foo>:443
     cluster_telemetry_server_name = <kong-telemetry-example.service>
-    cluster_cert = /<path-to-file>/cluster.crt
-    cluster_cert_key = /<path-to-file>/cluster.crt
+    cluster_cert = /<path-to-file>/tls.crt
+    cluster_cert_key = /<path-to-file>/tls.crt
     lua_ssl_trusted_certificate = system,/<path-to-file>/ca.crt
     ```
 
     See [Parameters](/konnect/runtime-manager/runtime-parameter-reference) for
     descriptions and the matching fields in {{site.konnect_short_name}}.
+
+4. Replace the values in `cluster_cert`, `cluster_cert_key`,
+and `lua_ssl_trusted_certificate` with the paths to your certificate and key
+files.
 
 5. Restart {{site.base_gateway}} for the settings to take effect:
 

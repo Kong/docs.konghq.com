@@ -20,9 +20,9 @@ runtime instances.
 representative for access.
 * **Kubernetes cluster with load balancer:** {{site.konnect_short_name}} is
 compatible with all distributions of Kubernetes. You can use a Minikube, GKE,
-or OpenShift cluster.
-* **kubectl or oc access:** You should have kubectl or oc (if working with OpenShift)
-installed and configured to communicate to your Kubernetes cluster.
+or OpenShift TLS.
+* **kubectl or oc access:** You have kubectl or oc (if working with OpenShift)
+installed and configured to communicate to your Kubernetes TLS.
 * [Helm 3](https://helm.sh/docs/intro/install/) is installed.
 
 ## Set up Helm
@@ -59,13 +59,13 @@ private key, and the remaining configuration details on the
 Store the certificates and key you generated through the Runtime Manager in
 Kubernetes secrets.
 
-1. Create a `tls` secret using the `cluster.cert` and `cluster.key` files
+1. Create a `tls` secret using the `tls.cert` and `tls.key` files
 you saved earlier:
 
     ```bash
     $ kubectl create secret tls kong-cluster-cert -n kong \
-      --cert=/<path-to-file>/cluster.crt \
-      --key=/<path-to-file>/cluster.key
+      --cert=/<path-to-file>/tls.crt \
+      --key=/<path-to-file>/tls.key
     ```
 
 2. Create a generic secret for the `ca.crt` file:
@@ -75,16 +75,11 @@ you saved earlier:
       --from-file=ca.crt=/<path-to-file>/ca.crt
     ```
 
-### Write configuration
+### Write and apply configuration
 
-1. Back in {{site.konnect_short_name}}, copy the
-codeblock from the **Configuration Parameters** section.
+1. Create a `values.yaml` file.
 
-2. Create a `values.yaml` file. Remove the `KONG_` prefix from the parameters
-in the sample codeblock and add the following parameters to the file.
-
-    Make sure to replace the values in `cluster_cert`, `cluster_cert_key`,
-    and `cluster_ca_cert` with references to the secrets you created earlier:
+2. Copy the template below into your `values.yaml` file.
 
     ```yaml
     image:
@@ -102,7 +97,7 @@ in the sample codeblock and add the following parameters to the file.
       role: data_plane
       database: "off"
       anonymous_reports: off
-      vitals_ttl_days: 732
+      vitals_ttl_days: 723
       cluster_mtls: pki
       cluster_control_plane: <example.cp.konnect.foo>:443
       cluster_server_name: <kong-cpoutlet-example.service>
@@ -118,22 +113,28 @@ in the sample codeblock and add the following parameters to the file.
       installCRDs: false
     ```
 
-    See [Parameters](/konnect/runtime-manager/runtime-parameter-reference) for
-    descriptions and the matching fields in {{site.konnect_short_name}}.
+3. Return to {{site.konnect_short_name}} and refer to the
+codeblock in the **Step 2. Configuration Parameters** section.
 
-6. Apply the `values.yaml`:
+4. Replace any placeholder values in the `env` section of the `values.yaml`
+with your specific values from {{site.konnect_short_name}}. The `KONG_` prefix
+is not needed for Helm.
+
+    If your cluster cert locations differ from the paths in the template, also update
+    the values in `cluster_cert`, `cluster_cert_key`, `cluster_ca_cert`, and
+    `lua_ssl_trusted_certificate` with references to the secrets you created earlier.
+
+    See [Parameters](/konnect/runtime-manager/runtime-parameter-reference) for
+    descriptions and matching values in {{site.konnect_short_name}}.
+
+5. Apply the `values.yaml`:
 
     ```bash
     $ helm install my-kong kong/kong -n kong \
       --values ./values.yaml
     ```
 
-7. Clean up:
-    ```bash
-    $ kubectl delete jobs -n kong --all
-    ```
-
-8. On the **Configure New Runtime** page, click **Done** to go to the Runtime
+6. On the **Configure New Runtime** page, click **Done** to go to the Runtime
 Manager overview.
 
     The Runtime Manager will include a new entry for your instance.
@@ -143,26 +144,52 @@ Manager overview.
 <a href="/konnect/runtime-manager/renew-certificates">Renew Certificates</a>.
 </div>
 
+### Troubleshooting
+
+If you configured everything above but don't see your runtime in Kong
+Manager, check the logs from your deployment:
+
+```bash
+$ kubectl logs deployment/my-kong-kong -n kong
+```
+
+If you find any errors and need to update `config.yaml`, make your changes,
+save the file, then reapply the configuration by running the Helm `upgrade`
+command:
+
+```bash
+$ helm upgrade my-kong kong/kong -n kong \
+    --values ./values.yaml
+```
+
 ## Access services using the proxy
 
-To proxy traffic through this runtime, you'll need its external IP address.
+To proxy traffic through this runtime, you'll need its external IP address,
+a port, and a route.
 
-To find the address, run:
+1. To find the address and port, run:
 
-```bash
-$ kubectl get service kong-proxy -n kong
-```
+    ```bash
+    $ kubectl get service my-kong-kong-proxy -n kong
+    ```
 
-In the output, the IP in the `EXTERNAL_IP` column is the access point for
-your {{site.konnect_saas}} services. Use this IP, along with any routes you set,
-to access your services.
+2. In the output, the IP in the `EXTERNAL_IP` column is the access point for
+your {{site.konnect_short_name}} services:
 
-_<need output example and validation that this is true - the below is copied from an Enterprise install topic>_
+    ```bash
+    NAME         TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)                      AGE
+    kong-proxy   LoadBalancer   10.63.254.78   35.233.198.16   80:32697/TCP,443:32365/TCP   22h
+    ```
 
-```bash
-NAME         TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)                      AGE
-kong-proxy   LoadBalancer   10.63.254.78   35.233.198.16   80:32697/TCP,443:32365/TCP   22h
-```
+3. With the external IP and one of the available ports (`80` or `443`),
+and assuming that you have configured a service with a route,
+you can now access your service at `<external-IP>:<port>/<route>`.
 
-For example, using the `EXTERNAL_IP` in the example above, access a service
-with the route `/mock` at `35.233.198.16:443/mock`.
+    For example, using the values above and a sample route, you now have the
+    following:
+    * IP: `35.233.198.16`
+    * Port: `80`
+    * Route: `/mock`
+
+    Putting them together, the end result looks like this:
+    `35.233.198.16:80/mock`

@@ -19,8 +19,8 @@
 
 5. Save the contents of each field into a separate file in a safe location:
 
-    * Certificate: `cluster.crt`
-    * Private key: `cluster.key`
+    * Certificate: `tls.crt`
+    * Private key: `tls.key`
     * Root CA Certificate: `ca.crt`
 
     If you navigate away from this page before saving all of the
