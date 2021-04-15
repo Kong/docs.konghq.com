@@ -859,6 +859,9 @@ Some suffixes can be specified for each pair:
   necessary to raise `net.core.somaxconn` at the same time to match or exceed
   the `backlog` number set.
 
+  **Note:** The `ssl` suffix is not supported, and each address/port will accept
+  TCP with or without TLS enabled.
+
 Examples:
 
 ```
@@ -1093,17 +1096,8 @@ See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_timeout
 
 #### ssl_cert
 
-Comma-separated list of the absolute path to the certificates for
-`proxy_listen` values with TLS enabled.
-
-If more than one certificates are specified, it can be used to provide
-alternate type of certificate (for example, ECC certificate) that will be served
-to clients that supports them. Note to properly serve using ECC certificates, it
-is recommended to also set `ssl_cipher_suite` to `modern` or `intermediate`.
-
-Unless this option is explicitly set, Kong will auto-generate a pair of default
-certificates (RSA + ECC) first time it starts up and use it for serving TLS
-requests.
+The absolute path to the SSL certificate for `proxy_listen` values with SSL
+enabled.
 
 **Default:** none
 
@@ -1111,16 +1105,7 @@ requests.
 
 #### ssl_cert_key
 
-Comma-separated list of the absolute path to the keys for `proxy_listen` values
-with TLS enabled.
-
-If more than one certificate was specified for `ssl_cert`, then this option
-should contain the corresponding key for all certificates provided in the same
-order.
-
-Unless this option is explicitly set, Kong will auto-generate a pair of default
-private keys (RSA + ECC) first time it starts up and use it for serving TLS
-requests.
+The absolute path to the SSL key for `proxy_listen` values with SSL enabled.
 
 **Default:** none
 
@@ -1128,8 +1113,8 @@ requests.
 
 #### client_ssl
 
-Determines if Nginx should attempt to send client-side TLS certificates and
-perform Mutual TLS Authentication with upstream service when proxying requests.
+Determines if Nginx should send client-side SSL certificates when proxying
+requests.
 
 **Default:** `off`
 
@@ -1137,11 +1122,9 @@ perform Mutual TLS Authentication with upstream service when proxying requests.
 
 #### client_ssl_cert
 
-If `client_ssl` is enabled, the absolute path to the client certificate for the
-`proxy_ssl_certificate` directive.
-
-This value can be overwritten dynamically with the `client_certificate`
-attribute of the `Service` object.
+If `client_ssl` is enabled, the absolute path to the client SSL certificate for
+the `proxy_ssl_certificate` directive. Note that this value is statically
+defined on the node, and currently cannot be configured on a per-API basis.
 
 **Default:** none
 
@@ -1149,11 +1132,9 @@ attribute of the `Service` object.
 
 #### client_ssl_cert_key
 
-If `client_ssl` is enabled, the absolute path to the client TLS key for the
-`proxy_ssl_certificate_key` directive.
-
-This value can be overwritten dynamically with the `client_certificate`
-attribute of the `Service` object.
+If `client_ssl` is enabled, the absolute path to the client SSL key for the
+`proxy_ssl_certificate_key` address. Note this value is statically defined on
+the node, and currently cannot be configured on a per-API basis.
 
 **Default:** none
 
@@ -1161,10 +1142,8 @@ attribute of the `Service` object.
 
 #### admin_ssl_cert
 
-Comma-separated list of the absolute path to the certificates for
-`admin_listen` values with TLS enabled.
-
-See docs for `ssl_cert` for detailed usage.
+The absolute path to the SSL certificate for `admin_listen` values with SSL
+enabled.
 
 **Default:** none
 
@@ -1172,10 +1151,7 @@ See docs for `ssl_cert` for detailed usage.
 
 #### admin_ssl_cert_key
 
-Comma-separated list of the absolute path to the keys for `admin_listen` values
-with TLS enabled.
-
-See docs for `ssl_cert_key` for detailed usage.
+The absolute path to the SSL key for `admin_listen` values with SSL enabled.
 
 **Default:** none
 
@@ -1183,10 +1159,8 @@ See docs for `ssl_cert_key` for detailed usage.
 
 #### status_ssl_cert
 
-Comma-separated list of the absolute path to the certificates for
-`status_listen` values with TLS enabled.
-
-See docs for `ssl_cert` for detailed usage.
+The absolute path to the SSL certificate for `status_listen` values with SSL
+enabled.
 
 **Default:** none
 
@@ -1194,10 +1168,7 @@ See docs for `ssl_cert` for detailed usage.
 
 #### status_ssl_cert_key
 
-Comma-separated list of the absolute path to the keys for `status_listen`
-values with TLS enabled.
-
-See docs for `ssl_cert_key` for detailed usage.
+The absolute path to the SSL key for `status_listen` values with SSL enabled.
 
 **Default:** none
 
@@ -2213,8 +2184,8 @@ attempts allowed.
 
 #### admin_gui_header_txt
 
-Kong Manager Header Text Sets text for Kong Manager Header Banner. Header
-Banner is not shown if this config is empty.
+Kong Manager Header Banner
+Sets text for Kong Manager Header Banner. Header Banner is not shown if this config is empty.
 
 **Default:** none
 
@@ -2222,9 +2193,9 @@ Banner is not shown if this config is empty.
 
 #### admin_gui_header_bg_color
 
-Kong Manager Header Background Color Sets background color for Kong Manager
-Header Banner Accepts css color keyword, #-hexadecimal or rgb format. Invalid
-values are ignored by Manager.
+Kong Manager Header Background Color 
+Sets background color for Kong Manager Header Banner.
+Accepts css color keyword, #-hexadecimal or rgb format. Invalid values are ignored by Manager.
 
 **Default:** none
 
@@ -2232,7 +2203,8 @@ values are ignored by Manager.
 
 #### admin_gui_header_txt_color
 
-Kong Manager Header Text Color Sets text color for Kong Manager Header Banner.
+Kong Manager Header Text Color
+Sets text color for Kong Manager Header Banner.
 
 Accepts css color keyword, #-hexadecimal or rgb format. Invalid values are
 ignored by Kong Manager.
@@ -2243,8 +2215,8 @@ ignored by Kong Manager.
 
 #### admin_gui_footer_txt
 
-Kong Manager Footer Text Sets text for Kong Manager Footer Banner. Footer
-Banner is not shown if this config is empty
+Kong Manager Footer Text
+Sets text for Kong Manager Footer Banner. Footer Banner is not shown if this config is empty
 
 **Default:** none
 
@@ -2252,8 +2224,8 @@ Banner is not shown if this config is empty
 
 #### admin_gui_footer_bg_color
 
-Kong Manager Footer Background Color Sets background color for Kong Manager
-Footer Banner.
+Kong Manager Footer Background Color
+Sets background color for Kong Manager Footer Banner.
 
 Accepts css color keyword, #-hexadecimal or rgb format. Invalid values are
 ignored by Manager.
@@ -2264,7 +2236,8 @@ ignored by Manager.
 
 #### admin_gui_footer_txt_color
 
-Kong Manager Footer Text Color Sets text color for Kong Manager Footer Banner.
+Kong Manager Footer Text Color
+Sets text color for Kong Manager Footer Banner.
 
 Accepts css color keyword, #-hexadecimal or rgb format. Invalid values are
 ignored by Kong Manager.
@@ -2275,8 +2248,8 @@ ignored by Kong Manager.
 
 #### admin_gui_login_banner_title
 
-Kong Manager Login Banner Title Text Sets title text for Kong Manager Login
-Banner.
+Kong Manager Login Banner Title Text
+Sets title text for Kong Manager Login Banner.
 
 Login Banner is not shown if both `admin_gui_login_banner_title` and
 `admin_gui_login_banner_body` are empty.
@@ -2287,8 +2260,8 @@ Login Banner is not shown if both `admin_gui_login_banner_title` and
 
 #### admin_gui_login_banner_body
 
-Kong Manager Login Banner Body Text Sets body text for Kong Manager Login
-Banner.
+Kong Manager Login Banner Body Text
+Sets body text for Kong Manager Login Banner.
 
 Login Banner is not shown if both `admin_gui_login_banner_title` and
 `admin_gui_login_banner_body` are empty.
