@@ -1,11 +1,11 @@
 <!-- Shared between Mesh installation topics: Ubuntu, Amazon Linux, RedHat, Debian, MacOS, CentOS -->
 ## 2. Run {{site.mesh_product_name}}
-Once downloaded, you will find the contents of {{site.mesh_product_name}} in the `kong-mesh-{{page.kong_versions[0].version}}` folder. In this folder, you will find &mdash; among other files &mdash; the bin directory that stores all the executables for {{site.mesh_product_name}}.
+Once downloaded, you will find the contents of {{site.mesh_product_name}} in the `kong-mesh-{{page.kong_latest.version}}` folder. In this folder, you will find &mdash; among other files &mdash; the bin directory that stores all the executables for {{site.mesh_product_name}}.
 
 Navigate to the `bin` folder:
 
 ```sh
-$ cd kong-mesh-{{page.kong_versions[0].version}}/bin
+$ cd kong-mesh-{{page.kong_latest.version}}/bin
 ```
 
 <div class="alert alert-ee blue">
