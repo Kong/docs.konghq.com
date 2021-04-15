@@ -1,4 +1,3 @@
-
 ## Installation
 
 Kong can be installed by downloading an installation package or from our apt repository
@@ -6,18 +5,22 @@ Kong can be installed by downloading an installation package or from our apt rep
 {% navtabs %}
 {% navtab Packages %}
 
-### Ubuntu
+{% if include.distribution == "ubuntu" %}
 
 - [Xenial]({{ site.links.download }}/gateway-community/ubuntu/xenial/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb)
 - [Bionic]({{ site.links.download }}/gateway-community/ubuntu/bionic/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb)
 - [Focal]({{ site.links.download }}/gateway-community/ubuntu/focal/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb)
 
-### Centos
+{% endif %}
+
+{% if include.distribution == "debian" %}
 
 - [8 Jessie]({{ site.links.download }}/gateway-community/debian/jessie/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb)
 - [9 Stretch]({{ site.links.download }}/gateway-community/debian/stretch/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb)
 - [10 Buster]({{ site.links.download }}/gateway-community/debian/buster/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb)
 - [11 Bullseye]({{ site.links.download }}/gateway-community/debian/bullseye/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb)
+
+{% endif %}
 
 To install from the command line
 
