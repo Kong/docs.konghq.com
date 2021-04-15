@@ -1,5 +1,6 @@
 ---
 title: Plugin Use Case Guides
+toc: false
 ---
 The guides in this section are examples of Kong Gateway plugins in use.
 
