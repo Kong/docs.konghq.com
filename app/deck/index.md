@@ -4,11 +4,18 @@ subtitle: Manage Konnect and Kong Gateway configuration declaratively
 no_version: true
 ---
 
-decK helps manage Kong’s configuration in a declarative fashion. It can sync
-configuration to a running Kong cluster, diff configuration to detect any drift
-or manual changes and backup your Kong’s configuration. It also can manage Kong’s
-configuration in a distributed way using tags, helping you split Kong’s
-configuration across various teams.
+decK helps manage Kong’s configuration in a declarative fashion. This means that
+a developer can define the desired state of Kong Gateway or Konnect &ndash;
+services, routes, plugins, and more &ndash; and let decK handle implementation
+without needing to execute each step manually, as you would with the Kong Admin
+API.
+
+Features include:
+* Sync configuration to a running Kong cluster
+* diff configuration to detect any drift or manual changes
+* Back up your instance's configuration
+* Manage Kong’s configuration in a distributed way using tags, helping you split
+the configuration across various teams
 
 Here is an introductory screencast explaining decK:
 <a href="https://asciinema.org/a/238318">
