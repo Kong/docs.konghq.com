@@ -50,7 +50,7 @@ portal_session_conf = {
 * `logout_query_arg`
 * `logout_post_arg`
 
-For detailed descriptions of each configuration property, see the [Session Plugin documentation](/enterprise/{{page.kong_version}}/plugins/session).
+For detailed descriptions of each configuration property, see the [Session Plugin documentation](/hub/kong-inc/session).
 
 ## Session Security
 
