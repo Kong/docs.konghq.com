@@ -39,7 +39,7 @@ processing invalid requests.
 <div class="alert alert-ee blue">
 <b>Note:</b> Currently, the only supported runtime type in
 {{site.konnect_short_name}} SaaS is a
-<a href="/enterprise/latest/introduction">{{site.ee_gateway_name}}</a>
+<a href="/enterprise/">{{site.ee_gateway_name}}</a>
 data plane.
 </div>
 

@@ -1,105 +1,34 @@
 ---
-title: Documentation for Kong Gateway (OSS)
-is_homepage: true
+title: Kong Gateway (OSS)
+subtitle: A lightweight open-source API gateway
 ---
 
-<div class="docs-grid">
-  <div class="docs-grid-block">
-    <h3><a href="https://konghq.com/install/#kong-community">Installation</a></h3>
-    <p>You can install {{site.ce_product_name}} on most Linux distributions and MacOS. We even provide the source so you can compile it yourself.</p>
-    <a href="https://konghq.com/install/#kong-community">Install {{site.ce_product_name}} &rarr;</a>
-  </div>
+Before going further into {{site.base_gateway}}, make sure you understand its [purpose and philosophy](/about). Once you are confident with the concept of API gateways, this guide is going to take you through a quick introduction on how to use {{site.base_gateway}} and perform basic operations such as:
 
-  <div class="docs-grid-block">
-    <h3><a href="/getting-started-guide/latest/overview">Getting Started</a></h3>
-    <p>Whether you’re an open-source or a {{site.konnect_product_name}}
-    user, use this guide to familiarize yourself with API gateway concepts and
-    learn how to use important features and capabilities.</p>
-    <a href="/getting-started-guide/latest/overview">Get started &rarr;</a>
-  </div>
+- [Running your own {{site.base_gateway}} instance][quickstart]
+- [Adding and consuming Services][configuring-a-service]
+- [Installing plugins on {{site.base_gateway}}][enabling-plugins]
 
-  <div class="docs-grid-block">
-    <h3><a href="/gateway-oss/{{page.kong_version}}/db-less-and-declarative-config">DB-less &amp; Declarative Configuration</a></h3>
-    <p>Learn how to leverage the declarative configuration format for using {{site.ce_product_name}} without a database, using in-memory storage only.</p>
-    <a href="/gateway-oss/{{page.kong_version}}/db-less-and-declarative-config">Read the tutorial &rarr;</a>
-  </div>
+## What is Kong Gateway, technically?
 
-  <div class="docs-grid-block">
-    <h3><a href="/gateway-oss/{{page.kong_version}}/kong-for-kubernetes/">Kong for Kubernetes</a></h3>
-    <p>Get Started with Kong for Kubernetes.</p>
-    <a href="/gateway-oss/{{page.kong_version}}/kong-for-kubernetes/">Learn More &rarr;</a>
-  </div>
+You’ve probably heard that {{site.base_gateway}} is built on Nginx, leveraging its stability and efficiency. But how is this possible exactly?
 
-  <div class="docs-grid-block">
-    <h3><a href="/gateway-oss/{{page.kong_version}}/upgrading">Upgrade Guide</a></h3>
-    <p>Already using {{site.ce_product_name}}, and wanting to upgrade? Here's the step-by-step guide.</p>
-    <a href="/gateway-oss/{{page.kong_version}}/upgrading">Read the upgrade guide &rarr;</a>
-  </div>
+To be more precise, {{site.base_gateway}} is a Lua application running in Nginx and made possible by the [lua-nginx-module](https://github.com/openresty/lua-nginx-module). Instead of compiling Nginx with this module, Kong is distributed along with [OpenResty](https://openresty.org/), which already includes lua-nginx-module. OpenResty is *not* a fork of Nginx, but a bundle of modules extending its capabilities.
 
-  <div class="docs-grid-block">
-    <h3><a href="/gateway-oss/{{page.kong_version}}/getting-started/quickstart">5-Minute Quickstart Guide</a></h3>
-    <p>Check out this guide if you just need the absolute basics: start {{site.ce_product_name}}, add a Service, enable plugins, and add consumers.</p>
-    <a href="/gateway-oss/{{page.kong_version}}/getting-started/quickstart">Start using {{site.ce_product_name}} &rarr;</a>
-  </div>
+This sets the foundations for a pluggable architecture, where Lua scripts (referred to as *plugins*) can be enabled and executed at runtime. Because of this, we like to think of {{site.base_gateway}} as **a paragon of microservice architecture**: at its core, it implements database abstraction, routing and plugin management. Plugins can live in separate code bases and be injected anywhere into the request lifecycle, all in a few lines of code.
 
-  <div class="docs-grid-block">
-    <h3><a href="/gateway-oss/{{page.kong_version}}/configuration">Configuration Reference</a></h3>
-    <p>Want to further optimize your {{site.ce_product_name}} cluster, database, or configure NGINX? Dive into the configuration.</p>
-    <a href="/gateway-oss/{{page.kong_version}}/configuration">Start configuration &rarr;</a>
-  </div>
+## Next Steps
 
-  <div class="docs-grid-block">
-    <h3><a href="/gateway-oss/{{page.kong_version}}/cli">CLI Reference</a></h3>
-    <p>Want a better understanding of the CLI tool and its options? Browse the detailed command reference.</p>
-    <a href="/gateway-oss/{{page.kong_version}}/cli">Use the CLI &rarr;</a>
-  </div>
+Pick your path:
+* **[Quickstart][quickstart]**: A quick-and-dirty introduction to
+{{site.base_gateway}}, common objects, and basic Admin API commands. Use this
+if you just want the basics.
+* **[Getting started guide][getting-started]**: An alternative to the
+quickstart, the complete {{site.base_gateway}} getting started guide provides
+in-depth examples, explanations, and step-by-step instructions, and explores
+Kong's many available tools for managing the gateway.
 
-  <div class="docs-grid-block">
-    <h3><a href="/gateway-oss/{{page.kong_version}}/admin-api">Admin API Reference</a></h3>
-    <p>Ready to learn the underlying interface? Browse the Admin API reference to learn how to start making requests.</p>
-    <a href="/gateway-oss/{{page.kong_version}}/admin-api">Explore the interface &rarr;</a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3><a href="/gateway-oss/{{page.kong_version}}/proxy">Proxy Reference</a></h3>
-    <p>Learn every way to configure proxies for your Services, serve them over SSL, or use WebSockets.</p>
-    <a href="/gateway-oss/{{page.kong_version}}/proxy">Read the Proxy Reference &rarr;</a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3><a href="/gateway-oss/{{page.kong_version}}/loadbalancing">Load Balancing Reference</a></h3>
-    <p>Learn how to load balance traffic through replicas of your upstream services.</p>
-    <a href="/gateway-oss/{{page.kong_version}}/loadbalancing">Read the Load balancing Reference &rarr;</a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3><a href="/gateway-oss/{{page.kong_version}}/health-checks-circuit-breakers">Health Checks &amp; Circuit Breakers</a></h3>
-    <p>Let the gateway monitor the availability of your services and adjust its load balancing accordingly.</p>
-    <a href="/gateway-oss/{{page.kong_version}}/health-checks-circuit-breakers">Learn about health checks and circuit breakers &rarr;</a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3><a href="/gateway-oss/{{page.kong_version}}/clustering">Clustering</a></h3>
-    <p>If you are starting more than one node, you must use clustering to make sure all the nodes belong to the same cluster.</p>
-    <a href="/gateway-oss/{{page.kong_version}}/clustering">Read the clustering reference &rarr;</a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3><a href="/gateway-oss/{{page.kong_version}}/plugin-development">Write Your Own Plugins</a></h3>
-    <p>Looking for something {{site.ce_product_name}} does not do for you? Easy: write it as a plugin. Learn how to write your own plugins for {{site.ce_product_name}}.</p>
-    <a href="/gateway-oss/{{page.kong_version}}/plugin-development">Read the plugin development guide &rarr;</a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3><a href="/gateway-oss/{{page.kong_version}}/external-plugins">Go Plugins</a></h3>
-    <p>You can also write plugins using Go and other programming languages, such as Python and JavaScript. Here's how to get started.</p>
-    <a href="/gateway-oss/{{page.kong_version}}/external-plugins">Read the guide &rarr;</a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3><a href="/gateway-oss/{{page.kong_version}}/hybrid-mode">Hybrid Mode</a></h3>
-    <p>Get started with Hybrid Mode, through which you can configure nodes with dedicated roles: you can have Control Plane nodes using a database and Data Plane nodes using DB-less mode.</p>
-    <a href="/gateway-oss/{{page.kong_version}}/hybrid-mode">Read the tutorial &rarr;</a>
-  </div>
-
-</div>
+[quickstart]: /{{page.kong_version}}/getting-started/quickstart
+[configuring-a-service]: /{{page.kong_version}}/getting-started/configuring-a-service
+[enabling-plugins]: /{{page.kong_version}}/getting-started/enabling-plugins
+[getting-started]: /getting-started-guide/latest/overview

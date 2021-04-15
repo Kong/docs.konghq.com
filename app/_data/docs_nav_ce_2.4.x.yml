@@ -1,29 +1,20 @@
 # Generated via autodoc-nav
+- title: Introduction
+  icon: /assets/images/icons/documentation/icn-flag.svg
+  url: /gateway-oss/
+  absolute_url: true
+
+- title: Release Notes
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  url: https://github.com/Kong/kong/blob/master/CHANGELOG.md
+  absolute_url: true
+
 - title: Getting Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   items:
-    - text: Overview
-      url: /../../getting-started-guide/latest/overview
-    - text: Prepare to Administer
-      url: /../../getting-started-guide/latest/prepare
-    - text: Expose your Services
-      url: /../../getting-started-guide/latest/expose-services
-    - text: Protect your Services
-      url: /../../getting-started-guide/latest/protect-services
-    - text: Improve Performance
-      url: /../../getting-started-guide/latest/improve-performance
-    - text: Secure Services
-      url: /../../getting-started-guide/latest/secure-services
-    - text: Set Up Intelligent Load Balancing
-      url: /../../getting-started-guide/latest/load-balancing
-
-- title: Guides &amp; References
-  icon: /assets/images/icons/documentation/icn-references-color.svg
-  items:
-    - text: Quickstart Guide
-      url: /getting-started/introduction
+    - text: Quickstart
       items:
-        - text: Five-minute quickstart
+        - text: Start Kong Gateway
           url: /getting-started/quickstart
 
         - text: Configuring a Service
@@ -37,6 +28,40 @@
 
         - text: Adding Consumers
           url: /getting-started/adding-consumers
+
+    - text: Getting Started Guide
+      items:
+        - text: Overview
+          url: /getting-started-guide/latest/overview
+          absolute_url: true
+          target_blank: true
+        - text: Prepare to Administer
+          url: /getting-started-guide/latest/prepare
+          absolute_url: true
+          target_blank: true
+        - text: Expose your Services
+          url: /getting-started-guide/latest/expose-services
+          absolute_url: true
+          target_blank: true
+        - text: Protect your Services
+          url: /getting-started-guide/latest/protect-services
+          absolute_url: true
+          target_blank: true
+        - text: Improve Performance
+          url: /getting-started-guide/latest/improve-performance
+          absolute_url: true
+          target_blank: true
+        - text: Secure Services
+          url: /getting-started-guide/latest/secure-services
+          absolute_url: true
+          target_blank: true
+        - text: Set Up Intelligent Load Balancing
+          url: /getting-started-guide/latest/load-balancing
+          absolute_url: true
+
+- title: Guides &amp; References
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  items:
 
     - text: Configuration reference
       url: /configuration
