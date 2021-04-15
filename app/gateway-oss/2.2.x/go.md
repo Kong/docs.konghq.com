@@ -95,7 +95,7 @@ we will assume its name is `go-hello`. You can find example Go plugins [here][go
 go build -buildmode plugin go-hello.go
 ```
 
-Note: When installing the `go-pluginserver` binary globally, you  need to
+Note: When installing the `go-pluginserver` binary globally, you need to
 enable `go.mod` support:
 
 ```
