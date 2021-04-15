@@ -1,8 +1,8 @@
 - title: Kubernetes Ingress Controller
   icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
+  url: /kubernetes-ingress-controller/1.0.x/
+  absolute_url: true
   items:
-    - text: Introduction
-      url: /introduction
     - text: FAQ
       url: /faq
     - text: Changelog

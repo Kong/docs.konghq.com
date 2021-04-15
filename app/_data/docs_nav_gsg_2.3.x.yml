@@ -1,8 +1,7 @@
 - title: Getting Started Guide
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
+  url: /overview
   items:
-    - text: Overview
-      url: /overview
     - text: Prepare to Administer
       url: /prepare
     - text: Expose your Services

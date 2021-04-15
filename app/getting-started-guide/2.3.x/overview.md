@@ -1,7 +1,6 @@
 ---
 title: Getting Started Guide
 subtitle: A single guide for both {{site.ce_product_name}} and {{site.ee_product_name}}
-is_homepage: true
 redirect_from:
   - /enterprise/latest/getting-started/
 ---

@@ -1,8 +1,8 @@
 ---
 name: File Log
 publisher: Kong Inc.
-version: 2.0.x
-# internal handler version 2.0.2
+version: 2.1.x
+# internal handler version 2.1.0
 
 desc: Append request and response data to a log file
 description: |
@@ -21,11 +21,12 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
         - 2.0.x
-        - 1.5.x      
+        - 1.5.x
         - 1.4.x
         - 1.3.x
         - 1.2.x
@@ -45,6 +46,7 @@ kong_version_compatibility:
         - 0.3.x
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -76,6 +78,14 @@ params:
         Determines whether the log file is closed and reopened on every request. If the file
         is not reopened, and has been removed/rotated, the plugin keeps writing to the
         stale file descriptor, and hence loses information.
+    - name: custom_fields_by_lua
+      required: false
+      default:
+      datatype: map
+      description: |
+        A list of key-value pairs, where the key is the name of a log field and
+        the value is a chunk of Lua code, whose return value sets or replaces
+        the log field value.
 
 ---
 
@@ -90,3 +100,7 @@ params:
 ## Kong process errors
 
 {% include /md/plugins-hub/kong-process-errors.md %}
+
+## Custom Fields by Lua
+
+{% include /md/plugins-hub/log_custom_fields_by_lua.md %}

@@ -106,7 +106,7 @@ Here is a quick example showing how to connect a Kong container to a Cassandra o
     $ curl -i http://localhost:8001/
     ```
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/gateway-oss/latest/getting-started/quickstart).
 
 ## DB-less mode
 
@@ -211,6 +211,6 @@ The steps involved in starting Kong in [DB-less mode] are the following:
     $ curl -i http://localhost:8001/services
     ```
 
-[DB-less mode]: /{{site.data.kong_latest.release}}/db-less-and-declarative-config/
-[Declarative Configuration Format]: /{{site.data.kong_latest.release}}/db-less-and-declarative-config/#the-declarative-configuration-format
+[DB-less mode]: /gateway-oss/latest/db-less-and-declarative-config/
+[Declarative Configuration Format]: /gateway-oss/latest/db-less-and-declarative-config/#the-declarative-configuration-format
 [Docker Volume]: https://docs.docker.com/storage/volumes/

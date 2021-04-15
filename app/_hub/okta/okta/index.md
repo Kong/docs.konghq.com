@@ -7,6 +7,8 @@ categories:
 
 type: integration
 
+enterprise: true
+
 desc: Integrate Okta's API Access Management (OAuth as a Service) with Kong API Gateway.
 
 description: |
@@ -21,29 +23,13 @@ source_url: https://github.com/tom-smith-okta/okta-api-center/tree/master/gatewa
 kong_version_compatibility:
     community_edition:
       compatible:
-      incompatible:
-        - 0.14.x
-        - 0.13.x
-        - 0.12.x
-        - 0.11.x
-        - 0.10.x
-        - 0.9.x
-        - 0.8.x
-        - 0.7.x
-        - 0.6.x
-        - 0.5.x
-        - 0.4.x
-        - 0.3.x
-        - 0.2.x
+
     enterprise_edition:
       compatible:
         - 0.34-x
         - 0.33-x
         - 0.32-x
-      incompatible:
-        - 0.31-x
-        - 0.30-x
-        - 0.29-x
+
 
 ###############################################################################
 # END YAML DATA

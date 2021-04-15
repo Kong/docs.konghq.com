@@ -32,4 +32,4 @@ Kong 64-bit Amazon Machine Image (AMI) is available on the AWS Marketplace, with
 
 3. **Use Kong**
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/gateway-oss/latest/getting-started/quickstart).

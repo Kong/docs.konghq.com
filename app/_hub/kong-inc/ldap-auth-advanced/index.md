@@ -12,13 +12,13 @@ description: |
   (in that order).
 
   <div class="alert alert-ee blue"><strong>Tip:</strong> The LDAP Authentication Advanced plugin
-  provides additional features not available in the open source <a href="/hub/kong-inc/ldap-auth">LDAP Authentication plugin</a>, 
+  provides additional features not available in the open source <a href="/hub/kong-inc/ldap-auth">LDAP Authentication plugin</a>,
   such as LDAP searches for group and consumer mapping:
 
   <ul>
   <li>Ability to authenticate based on username or custom ID.</li>
   <li>The ability to bind to an enterprise LDAP directory with a password.</li>
-  <li>The ability to authenticate/authorize using a group base DN and specific group member or group name attributes.</li>
+  <li>The ability to obtain LDAP groups and set them in a header to the request before proxying to the upstream. This is useful for Kong Manager role mapping.</li>
   </ul>
   </div>
 
@@ -32,6 +32,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -271,9 +272,9 @@ $ ldapsearch -x -h "<config.ldap_host>" -D "<config.bind_dn>" -b
 "<config.attribute>=<username><config.base_dn>" -w "<config.ldap_password>"
 ```
 
-[api-object]: /latest/admin-api/#api-object
-[configuration]: /latest/configuration
-[consumer-object]: /latest/admin-api/#consumer-object
+[api-object]: /gateway-oss/latest/admin-api/#api-object
+[configuration]: /gateway-oss/latest/configuration
+[consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
 
 
@@ -289,3 +290,17 @@ is specified a more generic DN, therefore it needs to be specific. For
 example, considering a case where there are nested `"OU's"`. If a
 top-level DN such as `"ou=dev,o=company"` is specified instead of
 `"ou=role,ou=groups,ou=dev,o=company"`, the authentication will fail.
+
+Referrals are not supported in the plugin. A workaround is
+to hit the LDAP Global Catalog instead, which is usually listening on a
+different port than the default `389`. That way, referrals don't get sent
+back to the plugin.
+
+The plugin doesn’t authenticate users (allow/deny requests) based on group
+membership. For example:
+- If the user is a member of an LDAP group, the request is allowed.
+- if the user is not a member of an LDAP group, the request is still allowed.
+
+The plugin obtains LDAP groups and sets them in a header, `x-authenticated-groups`,
+to the request before proxying to the upstream. This is useful for Kong Manager role
+mapping.

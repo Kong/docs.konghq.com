@@ -24,6 +24,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -41,6 +42,7 @@ kong_version_compatibility:
         - 0.10.x
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x      
         - 2.1.x
@@ -176,7 +178,7 @@ params:
       default: "`true`"
       description: |
         An optional value that defines whether Kong should send large
-        bodies that are buffered to disk. Note that 
+        bodies that are buffered to disk. Note that
         enabling this option will have an impact on system memory depending on the number of requests simultaneously in flight at any given point in time and on the maximum size of each of them.
         Also this option will block all requests being handled by the
         nginx workers. That could be tens of thousands of other

@@ -146,6 +146,11 @@
           margin-bottom: 32px;
           font-size: 16px;
         }
+
+        .content-edition, .content-version {
+          display: none;
+          visibility: hidden;
+        }
       }
 
       @media (max-width: 800px) {
@@ -154,6 +159,46 @@
 
         .page-content {
           border-left: none;
+
+          .content-edition {
+            margin-bottom: 10px;
+            color: #043558;
+            font: 500 24px/28px Roboto;
+            transition: font-size 0.25s;
+          }
+
+          .content-version {
+            color: #4c6d80;
+            text-transform: uppercase;
+            font: 700 12px/16px Roboto;
+          }
+
+          .content-edition, .content-version {
+            display: block;
+            visibility: visible;
+          }
+
+          .content-header {
+            z-index: 90;
+            margin-bottom: 24px;
+            max-height: 88px;
+            transition: max-height 0.25s ease-in-out;
+
+            &.scrolled {
+              max-height: 68px;
+              position: fixed;
+              padding: 4px 18px;
+              margin: -4px -20px;
+              top: 60px;
+              width: calc(100% - 32px);
+              background-color: white;
+              box-shadow: 0 20px 24px rgba(4, 53, 88, 0.1);
+
+              .content-edition {
+                font: 700 12px/16px Roboto;
+              }
+            }
+          }
         }
       }
     }
@@ -223,7 +268,7 @@
           }
         }
 
-        @media screen and (max-width: 1080px) {
+        @media screen and (min-width: 801px) and (max-width: 1080px) {
           padding-right: 0;
 
           &.no-sidebar {
@@ -235,6 +280,26 @@
 
             .content {
               padding-top: 32px;
+            }
+          }
+        }
+
+        @media screen and (max-width: 800px) {
+          padding-right: 0;
+
+          &.no-sidebar {
+            padding-left: 0;
+          }
+
+          .page-content {
+            padding: 0 8px;
+
+            .content {
+              padding-top: 0;
+
+              &.scrolled {
+                padding-top: 60px;
+              }
             }
           }
         }
@@ -294,7 +359,7 @@
   padding: 95px 0 20px;
 
   @media (max-width: 1100px) {
-    padding: 50px 0 10px;
+    padding: 95px 0 10px;
   }
 
   // Needs to be above page-content header margins
@@ -303,7 +368,7 @@
   }
 
   @media (max-width: 800px) {
-    padding: 25px 0;
+    padding: 95px 0 25px;
   }
 
   h1,
@@ -450,8 +515,11 @@
 .sidebar-toggle {
   display: none;
   margin-left: auto;
-  font-size: 14px;
   cursor: pointer;
+  width: 24px;
+  height: 26px;
+  margin-bottom: .2rem;
+  background: center no-repeat url(/assets/images/icons/icn-frame.svg);
 
   @media (max-width: 800px) {
     display: flex;
@@ -621,11 +689,6 @@
 
 .toggles {
   display: flex;
-  position: sticky;
-  top: 60px;
-  justify-content: space-between;
-  height: 0;
-  overflow: hidden;
 
   &.no-sidebar {
     justify-content: flex-end;
@@ -635,6 +698,16 @@
     display: block;
     visibility: hidden;
     margin-left: 0;
+  }
+
+  .toc-sidebar-toggle {
+    display: none;
+    position: fixed;
+    padding: 12px;
+    top: calc(50vh - 16px);
+    right: 0;
+    border-radius: 25px 0 0 25px;
+    background-color: @gray-background;
   }
 
   i {
@@ -650,6 +723,12 @@
   @media screen and (max-width: 800px) {
     .sidebar-toggle {
       visibility: visible;
+    }
+
+    .toc-sidebar-toggle {
+      cursor: pointer;
+      display: block;
+      z-index: 90;
     }
   }
 }
@@ -1474,6 +1553,21 @@ Generic Styling for Desktop
       }
     }
 
+  .sidebar-toggle {
+    margin: 0;
+    display: none;
+    padding: 0 8px;
+    font-size: 16px;
+    margin-bottom: .2rem;
+
+    @media screen and (max-width: 800px) {
+      display: block;
+      padding: 0;
+      margin-right: 4px;
+      min-width: 24px;
+    }
+  }
+
   .breadcrumb-item {
     color: @navy-text;
     display: inline-block;
@@ -1489,7 +1583,7 @@ Generic Styling for Desktop
     &:first-of-type {
       color: #4c6d80;
       text-transform: uppercase;
-      font: normal 14px/16px Roboto;
+      font: normal 14px/22px Roboto;
 
       &:before {
         font-size: 18px;
@@ -1503,6 +1597,7 @@ Generic Styling for Desktop
 
       &:after {
         content: " ";
+        padding: 0;
       }
     }
 
@@ -1520,6 +1615,10 @@ Generic Styling for Desktop
   .active a {
     color: @font-color;
     cursor: default;
+  }
+
+  @media screen and (max-width: 800px) {
+    margin-top: 10px;
   }
 }
 

@@ -27,26 +27,43 @@ id: documentation
             <img src="/assets/images/icons/documentation/icn-monitoring-black.svg" alt="report-issue"/>Report an issue</a>
           </p>
       </div>
-      <div class="docs-toc-title">On this page</div>
+      <div class="docs-toc-title"><a href="#">On this page</div>
       {% include toc.html html=content anchor_class="scroll-to" h_min=2 h_max=3 %}
     </aside>
     {% endif %}
 
     <div class="page-content-container v2 {% if page.no_version == true and page.has_version == false and page.nav_items == nil %}no-sidebar{% endif %}" id="documentation">
       <div class="toggles {% if page.no_version == true and page.has_version == false and page.nav_items == nil %}no-sidebar{% endif %}">
-        {% if page.no_version == false or page.has_version == true or page.nav_items != nil %}
-        <i class="fas fa-stream sidebar-toggle"></i>
-        {% endif %}
-        {% if page.toc == true or page.toc != false and filename != "index.md" %}
+        {% if page.toc == true or page.toc != false and filename != "index.md" and page.is_homepage != true and page.is_homepage != true %}
         <i class="far fa-list-alt toc-sidebar-toggle"></i>
         {% endif %}
       </div>
 
       <div class="page-content">
         <div class="content show-anchor-links">
-          {% unless page.no_breadcrumbs %}
-          {% include breadcrumbs.html %}
-          {% endunless %}
+          <div class="content-header">
+            <div class="content-edition">
+              {% if page.edition == 'enterprise' %}{{site.ee_product_name}}
+              {% elsif page.edition == 'konnect' %}{{site.konnect_saas}}
+              {% elsif page.edition == 'mesh' %}{{site.mesh_product_name}}
+              {% elsif page.edition == 'deck' %}decK
+              {% elsif page.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
+              {% elsif page.edition == 'gateway-oss' %}{{site.ce_product_name}}
+              {% elsif page.edition == 'getting-started-guide' %}Getting Started with Kong Gateway
+              {% endif %}
+            </div>
+            {% unless page.no_version == true %}
+            <div class="content-version">
+              {{page.kong_version}}
+              {% if page.kong_version == page.kong_latest.release %}
+                <span>(latest)</span>
+              {% endif %}
+            </div>
+            {% endunless %}
+            {% unless page.no_breadcrumbs %}
+            {% include breadcrumbs.html %}
+            {% endunless %}
+          </div>
           {% if page.edition == 'gateway-oss' %}
           <div class="alert alert-ee">
             Maybe you were looking for the <a href="/enterprise"><strong>{{site.ee_product_name}} documentation</strong></a>
@@ -90,3 +107,20 @@ id: documentation
 </div>
 
 {% include image-modal.html %}
+
+<script type="text/javascript">
+  function toggleContentHeader () {
+    var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    if (w <= 800 && $(window).scrollTop() < 8) {
+      $('.content').toggleClass('scrolled', false);
+      $('.content-header').toggleClass('scrolled', false);
+      $('.content-version').show(250);
+    } else {
+      $('.content').toggleClass('scrolled', true);
+      $('.content-header').toggleClass('scrolled', true);
+      $('.content-version').hide(250);
+    }
+  }
+
+  window.addEventListener('scroll', toggleContentHeader);
+</script>

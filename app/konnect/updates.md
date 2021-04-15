@@ -62,7 +62,7 @@ for Dev Portal access.
 
 To get started with {{site.konnect_short_name}}, see:
 - [Quickstart Guide](/konnect/getting-started/configure-runtime/)
-- [Kong {{site.konnect_short_name}} Overview](/konnect/overview/)
+- [Kong {{site.konnect_short_name}} Overview](/konnect/)
 - [Using the {{site.konnect_short_name}} Docs](/konnect/using-konnect-docs/)
 
 For more information about {{site.konnect_short_name}}, contact your Kong sales
