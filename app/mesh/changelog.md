@@ -4,6 +4,20 @@ no_search: true
 no_version: true
 ---
 
+## 1.2.3
+
+> Released on 2021/04/16
+
+### Changes
+
+Built on top of [Kuma 1.1.3]((https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#112)). Notably:
+
+- Built-in DNS provides support for specifying external services by original hostname and port
+
+### Upgrading
+
+Upgrades from `1.2.x` are seamless and no additional steps are needed. Note [specific configuration requirements](https://kuma.io/docs/1.1.3/networking/dns/#data-plane-proxy-built-in-dns) for taking advantage of built-in DNS. See also [new documentation for the external service policy](https://kuma.io/docs/1.1.3/policies/external-services/#usage)
+
 ## 1.2.2
 
 > Released on 2021/04/09
