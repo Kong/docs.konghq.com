@@ -98,7 +98,7 @@ this is done using the `INFLUXDB_DB` variable.
 
 <div class="alert alert-ee blue">
 <strong>Note:</strong> If you used the configuration in 
-<a href="#step-1-installing-kong-gateway-on-docker">Step 1. Installing {{site.base_gateway}} on Docker</a>,
+<a href="#step-1-install-kong-gateway">Step 1. Installing {{site.base_gateway}} on Docker</a>,
 then you do not need to complete this step.
 </div>
 
