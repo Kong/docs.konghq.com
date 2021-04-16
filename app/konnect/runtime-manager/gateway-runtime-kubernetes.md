@@ -84,7 +84,7 @@ you saved earlier:
     ```yaml
     image:
       repository: kong-docker-kong-gateway-docker.bintray.io/kong-enterprise-edition
-      tag: "{{site.data.kong_latest_ee.version}}-alpine"
+      tag: "2.3.2.0-alpine"
 
     secretVolumes:
     - kong-cluster-cert
