@@ -116,6 +116,8 @@ you saved earlier:
 3. Return to {{site.konnect_short_name}} and refer to the
 codeblock in the **Step 2. Configuration Parameters** section.
 
+    ![Konnect Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
+
 4. Replace any placeholder values in the `env` section of the `values.yaml`
 with your specific values from {{site.konnect_short_name}}. The `KONG_` prefix
 is not needed for Helm.
@@ -146,7 +148,7 @@ Manager overview.
 
 ### Troubleshooting
 
-If you configured everything above but don't see your runtime in Kong
+If you configured everything above but don't see your runtime in the Runtime
 Manager, check the logs from your deployment:
 
 ```bash

@@ -41,6 +41,8 @@ and follow the instructions in Steps 1 and 2 **only** to download and install
 2. Return to {{site.konnect_short_name}} and copy the
 codeblock in the **Step 2. Configuration Parameters** section.
 
+    ![Konnect Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
+
 3. Open your instance's `kong.conf` file. Add the parameters you just copied
 to the file, remove the `KONG_` prefix, and turn them into lowercase.
 
@@ -90,7 +92,7 @@ Manager overview.
 {{site.base_gateway}} uses port `8000` for the proxy, taking incoming
 traffic from consumers, and forwarding it to upstream services.
 
-The default proxy UR is `http://localhost:8000`. If you configured a different
+The default proxy URL is `http://localhost:8000`. If you configured a different
 host, replace `localhost` with your hostname. Use this URL, along with any
 routes you set, to access your services.
 

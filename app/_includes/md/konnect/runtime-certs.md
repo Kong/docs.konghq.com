@@ -28,5 +28,5 @@
 
 6. Store the files on your runtime's local filesystem.
 
-For the next steps, keep the configuration page open, as you'll need to refer
+Keep the configuration page open for the next section, as you'll need to refer
 back to it for the configuration parameters.

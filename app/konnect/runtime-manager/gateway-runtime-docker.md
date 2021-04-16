@@ -95,6 +95,8 @@ matching your repository:
 4. Return to {{site.konnect_short_name}} and copy the
 codeblock in the **Step 2. Configuration Parameters** section.
 
+    ![Konnect Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
+
 5. Replace the values in `KONG_CLUSTER_CERT`, `KONG_CLUSTER_CERT_KEY`,
 and `KONG_LUA_SSL_TRUSTED_CERTIFICATE` with the paths to your certificate files.
 
@@ -145,7 +147,7 @@ Manager overview.
 {{site.base_gateway}} uses port `8000` for the proxy, taking incoming
 traffic from consumers, and forwarding it to upstream services.
 
-The default proxy URL `http://localhost:8000`. If you configured a different
+The default proxy URL is `http://localhost:8000`. If you configured a different
 host above, replace `localhost` with your hostname. Use this URL,
 along with any routes you set, to access your services.
 
