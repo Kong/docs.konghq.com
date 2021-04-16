@@ -26,10 +26,10 @@
 /hub/api-fortress/api-fortress-http-log/*   /hub/
 
 # Konnect
-/konnect/access-beta                        /konnect/access-account
-/konnect/service-hub                        /konnect/servicehub/
-/konnect/service-hub/*                      /konnect/servicehub/:splat
-/konnect/overview                           /konnect/
+/konnect/access-beta                          /konnect/access-account
+/konnect/service-hub                          /konnect/servicehub/
+/konnect/service-hub/*                        /konnect/servicehub/:splat
+/konnect/runtime-manager/kong-gateway-runtime /konnect/runtime-manager/#kong-gateway
 
 # Community doc rebranding
 /latest/*                                   /gateway-oss/latest/:splat
