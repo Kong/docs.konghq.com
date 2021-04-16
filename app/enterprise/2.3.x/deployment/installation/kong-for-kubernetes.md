@@ -42,7 +42,9 @@ Before starting installation, be sure you have the following:
 
 - **Kubernetes cluster**: Kong is compatible with all distributions of Kubernetes. You can use a [Minikube](https://kubernetes.io/docs/setup/minikube/), [GKE](https://cloud.google.com/kubernetes-engine/), or [OpenShift](https://www.openshift.com/products/container-platform) cluster.
 - **kubectl or oc access**: You should have `kubectl` or `oc` (if working with OpenShift) installed and configured to communicate to your Kubernetes cluster.
-{% include /md/{{page.kong_version}}/bintray-and-license.md %}
+- **Enterprise customers**: If you have a paid {{site.konnect_product_name}}
+subscription and are not running {{site.base_gateway}} in free mode, you should
+have received a `license.json` file from Kong.
 
 ## Step 1. Provision a namespace
 

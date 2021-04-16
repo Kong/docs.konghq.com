@@ -23,7 +23,7 @@ If you want to run {{site.ee_product_name}} in Hybrid mode, the instructions in 
 
 To complete this installation guide you will need:
 
-{% include /md/{{page.kong_version}}/bintray-and-license.md %}
+{% include /md/enterprise/license.md license='prereq' %}
 * A supported Amazon Linux 1 system with root-equivalent access.
 
 ## Step 1. Prepare to Install Kong Enterprise and Download the License File

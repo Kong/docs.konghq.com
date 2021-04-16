@@ -17,7 +17,7 @@ steps to configure PostgreSQL. For assistance in setting up Cassandra, please co
 
 To complete this installation you will need:
 
-{% include /md/{{page.kong_version}}/bintray-and-license.md %}
+{% include /md/enterprise/license.md license='prereq' %}
 * A supported Ubuntu system with root-equivalent access.
 
 ## Step 1. Prepare to Install Kong Enterprise and Download the License File

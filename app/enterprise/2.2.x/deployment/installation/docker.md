@@ -23,7 +23,7 @@ If you want to run {{site.ee_product_name}} in Hybrid mode, the instructions in 
 
 To complete this installation you will need:
 
-{% include /md/{{page.kong_version}}/bintray-and-license.md %}
+{% include /md/enterprise/license.md license='prereq' %}
 * A Docker-enabled system with proper Docker access.
 
 ## Step 1. Pull the Kong Gateway Docker image {#pull-image}
