@@ -53,7 +53,7 @@ to the file, remove the `KONG_` prefix, and turn them into lowercase.
     role = data_plane
     database = off
     anonymous_reports = off
-    vitals_ttl_days = 723
+    vitals_ttl_days = 732
     cluster_mtls = pki
     cluster_control_plane = <example.cp.konnect.foo>:443
     cluster_server_name = <kong-cpoutlet-example.service>

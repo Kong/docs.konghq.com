@@ -110,7 +110,7 @@ and `KONG_LUA_SSL_TRUSTED_CERTIFICATE` with the paths to your certificate files.
       -e "KONG_ROLE=data_plane" \
       -e "KONG_DATABASE=off" \
       -e "KONG_ANONYMOUS_REPORTS=off" \
-      -e "KONG_VITALS_TTL_DAYS=723" \
+      -e "KONG_VITALS_TTL_DAYS=732" \
       -e "KONG_CLUSTER_MTLS=pki" \
       -e "KONG_CLUSTER_CONTROL_PLANE=<example.cp.konnect.foo>:443" \
       -e "KONG_CLUSTER_SERVER_NAME=<kong-cpoutlet-example.service>" \
