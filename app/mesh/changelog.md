@@ -10,7 +10,7 @@ no_version: true
 
 ### Changes
 
-Built on top of [Kuma 1.1.3]((https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#112)). Notably:
+Built on top of [Kuma 1.1.3](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#112). Notably:
 
 - Built-in DNS provides support for specifying external services by original hostname and port
 
