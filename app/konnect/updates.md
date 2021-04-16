@@ -8,6 +8,16 @@ SaaS, an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services.
 
+## April 2021
+
+### 2021.04.21
+**Certificate expiration limit extended**
+: The validity period for runtime certificates has been extended from 30 days to
+six months.
+
+: To take advantage of the new validity period, bring up new data planes through
+the Runtime Manager. For existing instances, [generate new certificates](/konnect/runtime-manager/renew-certificates).
+
 ## March 2021
 
 ### 2021.03.16
@@ -23,17 +33,13 @@ quick setup script.
 **{{site.base_gateway}} 2.3 support**
 : {{site.konnect_short_name}} SaaS now supports {{site.base_gateway}} 2.3
 runtimes. There is no upgrade path for existing runtimes.
-: To use {{site.base_gateway}} 2.3, [reprovision a new runtime](/konnect/runtime-manager/#kong-gateway).
+: To use {{site.base_gateway}} 2.3, [reprovision a new runtime](/konnect/runtime-manager/kong-gateway-runtime).
 
 **Advanced runtime configuration**
 : You can now configure custom {{site.base_gateway}} data planes through the
 Runtime Manager and run gateway instances outside of Docker. Use the
-**Advanced** option when configuring a new runtime to get started.
-
-: See the runtime configuration guides for more information:
-* [Kong Gateway runtime on Docker](/konnect/runtime-manager/gateway-runtime-docker/)
-* [Kong Gateway runtime on Kubernetes](/konnect/runtime-manager/gateway-runtime-kubernetes/)
-* [Kong Gateway runtime without a container](/konnect/runtime-manager/gateway-runtime-conf/)
+[advanced option](/konnect/runtime-manager/kong-gateway-runtime/) when
+configuring a new runtime to get started.
 
 **Logging plugins**
 : The full set of {{site.base_gateway}}'s logging plugins is now available

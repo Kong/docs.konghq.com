@@ -141,11 +141,6 @@ Manager overview.
 
     The Runtime Manager will include a new entry for your instance.
 
-<div class="alert alert-ee warning">
-<b>Important:</b> Certificates expire after 30 days and must be renewed. See
-<a href="/konnect/runtime-manager/renew-certificates">Renew Certificates</a>.
-</div>
-
 ### Troubleshooting
 
 If you configured everything above but don't see your runtime in the Runtime

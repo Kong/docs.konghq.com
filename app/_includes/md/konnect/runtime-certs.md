@@ -28,5 +28,10 @@
 
 6. Store the files on your runtime's local filesystem.
 
+<div class="alert alert-ee warning">
+<b>Important:</b> Certificates expire after six months and must be renewed. See
+<a href="/konnect/runtime-manager/renew-certificates">Renew Certificates</a>.
+</div>
+
 Keep the configuration page open for the next section, as you'll need to refer
 back to it for the configuration parameters.
