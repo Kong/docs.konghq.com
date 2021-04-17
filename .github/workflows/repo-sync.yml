@@ -47,7 +47,7 @@ jobs:
         destination_branch: main
         github_token: ${{ secrets.REPO_SYNC_TOKEN }}
         pr_title: "(chore) Sync public to private"
-        pr_body: "Automated PR for syncing the `main` branches of the Kong docs repos. When merging, choose the option to `Create a merge commit` on the big green button; **do not squash**!"
+        pr_body: "Automated PR for syncing the `main` branches of the Kong docs repos. When merging, choose the option to **Merge pull request** on the big green button (click the dropdown arrow and choose **Create a merge commit** if you don't see it); **do not squash**!"
         pr_label: automated-pr
 
     - name: Find pull request
