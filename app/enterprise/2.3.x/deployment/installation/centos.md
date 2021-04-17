@@ -33,7 +33,7 @@ There are two options to install {{site.base_gateway}} on CentOS.
 {% navtabs %}
 {% navtab Download RPM file %}
 
-1. Go to: [https://bintray.com/kong/kong-gateway-rpm/](https://bintray.com/kong/kong-gateway-rpm/).
+1. Go to: [{{ site.links.download }}/kong/kong-gateway-rpm/]({{ site.links.download }}/kong/kong-gateway-rpm/).
 2. Select the `centos` folder.
 3. Select the latest version from the list.
 4. Click the **Files** tab, then click the distribution folder, if applicable.
@@ -58,7 +58,7 @@ For example:
 2. Download Kong's official public key to ensure the integrity of the RPM package:
 
     ```bash
-    $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
+    $ curl -o kong.key {{ site.links.download }}/user/downloadSubjectPublicKey?username=kong
     $ rpm --import kong.key
     $ rpm -K kong-enterprise-edition-1.3.el7.noarch.rpm
     ```
@@ -75,7 +75,7 @@ For example:
 
 1. Download the {{site.base_gateway}} RPM repo file:
 
-    [https://bintray.com/kong/kong-gateway-rpm/rpm](https://bintray.com/kong/kong-gateway-rpm/rpm)
+    [{{ site.links.download }}/kong/kong-gateway-rpm/rpm]({{ site.links.download }}/kong/kong-gateway-rpm/rpm)
 
 2. Securely copy the repo file to your home directory on the CentOS system.
 For example:

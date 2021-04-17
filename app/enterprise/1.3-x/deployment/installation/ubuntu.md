@@ -17,16 +17,8 @@ steps to configure PostgreSQL. For assistance in setting up Cassandra, please co
 
 To complete this installation you will need:
 
-* A valid Bintray account. You will need your **username**, account **password** and account **API Key**.
-  * Example:
-    * **Bintray Access key**: `john-company`
-    * **Bintray username**: `john-company@kong`
-    * **Bintray password**: `12345678`
-    * **Bintray API key**: `12234e314356291a2b11058591bba195830`
-  * The API Key can be obtained by visiting [https://bintray.com/profile/edit](https://bintray.com/profile/edit) and selecting **API Key**
 * A supported Ubuntu system with root equivalent access.
-* A valid Kong Enterprise license JSON file, this can be found in your Bintray account. See [Accessing Your License](/enterprise/latest/deployment/access-license)
-
+{% include /md/enterprise/license.md license='prereq' %}
 
 ## Step 1. Prepare to Install Kong Enterprise and Download the License File
 
@@ -34,7 +26,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 
 ### Download the Debian package
 
-1. Go to: [https://bintray.com/kong/kong-enterprise-edition-deb/ubuntu](https://bintray.com/kong/kong-enterprise-edition-deb/ubuntu). 
+1. Go to: [https://bintray.com/kong/kong-enterprise-edition-deb/ubuntu](https://bintray.com/kong/kong-enterprise-edition-deb/ubuntu).
 2. Select the latest Kong version from the list. Kong Enterprise versions are listed in reverse chronological order.
 3. From the Kong version detail page, select the **Files** tab.
 4. Click the .deb file matching your target Ubuntu OS version. e.g. `kong-enterprise-edition-1.3.0.1.bionic.all.deb` for the Ubuntu Bionic Beaver release.
@@ -45,7 +37,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
     ```
 
 ### Download your Kong Enterprise License
-   
+
 1. Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 
 2. Securely copy the license file to your home directory on the Ubuntu system:
@@ -74,7 +66,7 @@ You should now have two files in your home directory on the target system:
     ```bash
     $ sudo dpkg -i kong-enterprise-edition-<VERSION_NUMBER>.deb
     ```
-  
+
     > Note: Your version may be different based on when you obtained the package
 
 3. Copy the license file to the `/etc/kong` directory
@@ -87,7 +79,7 @@ You should now have two files in your home directory on the target system:
 
 ## Step 3. Set up PostgreSQL
 
-PostgreSQL is available in all Ubuntu versions by default. However, Ubuntu "snapshots" a specific version of PostgreSQL that is then supported throughout the lifetime of that Ubuntu version. Other versions of PostgreSQL are available through the PostgreSQL apt repository. Kong supports version 9.5 and higher. Ensure the distribution of PostgreSQL for your version of Ubuntu is a supported version. More information about PostgreSQL on Ubuntu can be found here: [https://www.postgresql.org/download/linux/ubuntu/](https://www.postgresql.org/download/linux/ubuntu/). 
+PostgreSQL is available in all Ubuntu versions by default. However, Ubuntu "snapshots" a specific version of PostgreSQL that is then supported throughout the lifetime of that Ubuntu version. Other versions of PostgreSQL are available through the PostgreSQL apt repository. Kong supports version 9.5 and higher. Ensure the distribution of PostgreSQL for your version of Ubuntu is a supported version. More information about PostgreSQL on Ubuntu can be found here: [https://www.postgresql.org/download/linux/ubuntu/](https://www.postgresql.org/download/linux/ubuntu/).
 
 1. Install PostgreSQL. This command may not work on all version of Ubuntu.
 
@@ -109,7 +101,7 @@ PostgreSQL is available in all Ubuntu versions by default. However, Ubuntu "snap
     ```
 
     > ⚠️ **Note**: Make sure the username and password for the Kong Database are
-    > kept safe. This example uses a simple username and password for illustration purposes only. Note the database name, username and password for later. 
+    > kept safe. This example uses a simple username and password for illustration purposes only. Note the database name, username and password for later.
 
 4. Exit from PostgreSQL and return to your terminal account.
 
@@ -126,7 +118,7 @@ PostgreSQL is available in all Ubuntu versions by default. However, Ubuntu "snap
     $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
     ```
 
-2. Uncomment and update the PostgreSQL database properties in `/etc/kong/kong.conf` using your preferred text editor. Replace `pg_user`, `pg_password`, and `pg_database` with the values: 
+2. Uncomment and update the PostgreSQL database properties in `/etc/kong/kong.conf` using your preferred text editor. Replace `pg_user`, `pg_password`, and `pg_database` with the values:
 
     ```
     pg_user = kong
@@ -167,9 +159,9 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
     ```
     admin_gui_url = http://<DNSorIP>:8002
     ```
-  
+
     This setting needs to resolve to a network path that will reach the host.
-  
+
 2. It is necessary to update the administration API setting to listen on the needed network interfaces on the host. A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
 
     ```
@@ -226,6 +218,6 @@ your setup, reach out to your Kong Support contact or go to the
 
 ## Next Steps
 
-Check out Kong Enterprise's series of 
+Check out Kong Enterprise's series of
 [Getting Started](/enterprise/latest/getting-started) guides to get the most
 out of Kong Enterprise.

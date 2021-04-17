@@ -29,7 +29,7 @@ root-equivalent access.
 
 Download the Debian package:
 
-1. Go to: [https://bintray.com/kong/kong-gateway-deb/ubuntu](https://bintray.com/kong/kong-gateway-deb/ubuntu).
+1. Go to: [{{ site.links.download }}/kong/kong-gateway-deb/ubuntu]({{ site.links.download }}/kong/kong-gateway-deb/ubuntu).
 2. Select the latest Kong version from the list. {{site.ee_product_name}} versions are listed in reverse chronological order.
 3. From the Kong version detail page, select the **Files** tab, then click the `pool/u/ubuntu` folder.
 4. Click the `.deb` file matching your target Ubuntu OS version. For example, select `kong-enterprise-edition-{{page.kong_versions[10].version}}.bionic.all.deb` for the Ubuntu Bionic Beaver release.

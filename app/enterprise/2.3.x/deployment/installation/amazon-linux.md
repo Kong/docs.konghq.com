@@ -32,7 +32,7 @@ There are two options to install {{site.base_gateway}} on Amazon Linux 1.
 {% navtabs %}
 {% navtab Download RPM file %}
 
-1. Go to: [https://bintray.com/kong/kong-gateway-aws](https://bintray.com/kong/kong-gateway.aws).
+1. Go to: [{{ site.links.download }}/kong/kong-gateway-aws]({{ site.links.download }}/kong/kong-gateway.aws).
 2. Select the `aws` folder.
     {{site.base_gateway}} versions are listed in reverse chronological order.
 3. Select the latest version from the list.
@@ -50,7 +50,7 @@ There are two options to install {{site.base_gateway}} on Amazon Linux 1.
 1. Download Kong's official public key to ensure the integrity of the RPM package:
 
     ```bash
-    $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
+    $ curl -o kong.key {{ site.links.download }}/user/downloadSubjectPublicKey?username=kong
     $ sudo rpm --import kong.key
     $ sudo rpm -K kong-enterprise-edition-{{page.kong_versions[10].version}}.amzn2.noarch.rpm
     ```
@@ -66,7 +66,7 @@ There are two options to install {{site.base_gateway}} on Amazon Linux 1.
 
 1. Download the {{site.base_gateway}} RPM repo file:
 
-    [https://bintray.com/kong/kong-gateway-aws/rpm](https://bintray.com/kong/kong-gateway-aws/rpm)
+    [{{ site.links.download }}/kong/kong-gateway-aws/rpm]({{ site.links.download }}/kong/kong-gateway-aws/rpm)
 
 2. Securely copy the repo file to your home directory on the Amazon
 Linux 1 system. For example:

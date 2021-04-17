@@ -18,16 +18,7 @@ steps to configure PostgreSQL.
 
 To complete this installation you will need:
 
-* A valid *Bintray* account. You will need your *username*, account *password* and account *API Key*.
-  - Example:
-    * Bintray Access key = `john-company`
-    * Bintray username = `john-company@kong`
-    * Bintray password = `12345678`
-    * Bintray API key = `12234e314356291a2b11058591bba195830`
-  - The API Key can be obtained by visiting [https://bintray.com/profile/edit](https://bintray.com/profile/edit) and selecting **API Key**
-* A Docker-enabled system with proper Docker access.
-* A valid **Kong Enterprise License** JSON file.
-  - The license file can be found in your Bintray account. See [Accessing Your License](/enterprise/latest/deployment/access-license)
+{% include /md/enterprise/license.md license='prereq' %}
 
 ## Step 1. Add the Kong Docker Repository and Pull the Kong Enterprise Docker Image
 

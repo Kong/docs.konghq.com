@@ -28,21 +28,19 @@ To complete this installation guide you will need:
 
 ## Step 1. Prepare to install Kong Gateway and download license file
 
-There are two options to install {{site.ee_product_name}} on Amazon Linux 1. Both require a login to Bintray.
+There are two options to install {{site.ee_product_name}} on Amazon Linux 1.
 
 {% navtabs %}
 {% navtab Download RPM file %}
 
-1. Log in to [Bintray](http://bintray.com) using your Kong credentials. See [prerequisites](#prerequisites)
-for information on how to get access.
-2. Go to: [https://bintray.com/kong/kong-enterprise-edition-aws/aws](https://bintray.com/kong/kong-enterprise-edition-aws/aws).
+1. Go to: [{{ site.links.download }}/kong/kong-enterprise-edition-aws/aws]({{ site.links.download }}/kong/kong-enterprise-edition-aws/aws).
 
     {{site.ee_product_name}} versions are listed in reverse chronological order.
 
-3. Select the latest Kong version from the list.
-4. From the Kong version detail page, click the **Files** tab, then click the distribution folder.
-5. Save the available RPM file. For example: `kong-enterprise-edition-{{page.kong_versions[9].version}}.aws.rpm`.
-6. Copy the RPM file to your home directory on the Amazon Linux 1 system. You may use a command like:
+2. Select the latest Kong version from the list.
+3. From the Kong version detail page, click the **Files** tab, then click the distribution folder.
+4. Save the available RPM file. For example: `kong-enterprise-edition-{{page.kong_versions[9].version}}.aws.rpm`.
+5. Copy the RPM file to your home directory on the Amazon Linux 1 system. You may use a command like:
 
     ```bash
     $ scp kong-enterprise-edition-{{page.kong_versions[9].version}}.aws.rpm <amazon user>@<server>:~
@@ -53,7 +51,7 @@ for information on how to get access.
 1. Download Kong's official public key to ensure the integrity of the RPM package:
 
     ```bash
-    $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
+    $ curl -o kong.key {{ site.links.download }}/user/downloadSubjectPublicKey?username=kong
     $ sudo rpm --import kong.key
     $ sudo rpm -K kong-enterprise-edition-{{page.kong_versions[9].version}}.aws.rpm
     ```
@@ -66,29 +64,11 @@ for information on how to get access.
 {% endnavtab %}
 {% navtab Download Kong repo file and add to Yum repo %}
 
-1. Log in to [Bintray](http://bintray.com) using your Kong credentials. See [prerequisites](#prerequisites)
-for information on how to get access.
+1. Download the {{site.ee_product_name}} RPM repo file from:
 
-2. Download the {{site.ee_product_name}} RPM repo file from:
+    [{{ site.links.download }}/kong/kong-enterprise-edition-aws/rpm]({{ site.links.download }}/kong/kong-enterprise-edition-aws/rpm).
 
-    [https://bintray.com/kong/kong-enterprise-edition-aws/rpm](https://bintray.com/kong/kong-enterprise-edition-aws/rpm).
-
-3. Edit the repo file using your preferred editor and alter the `baseurl` line with your information as follows:
-
-      ```
-      baseurl=https://USERNAME:API_KEY@kong.bintray.com/kong-enterprise-edition-aws
-      ```
-
-      - Replace `USERNAME` with your Bintray account username.
-      - Replace `API_KEY` with your Bintray API key. To find the key, go to [https://bintray.com/profile/edit](https://bintray.com/profile/edit) and select **API Key**.
-
-      The result should look something like this:
-
-      ```
-      baseurl=https://john-company:12234e314356291a2b11058591bba195830@kong.bintray.com/kong-enterprise-edition-aws
-      ```
-
-4. Securely copy the changed repo file to your home directory on the Amazon
+2. Securely copy the changed repo file to your home directory on the Amazon
 Linux 1 system. For example:
 
     ```bash
@@ -97,22 +77,13 @@ Linux 1 system. For example:
 {% endnavtab %}
 {% endnavtabs %}
 
-### Download your license
-
-1. Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
-
-2. Securely copy the license file to your home directory on the Amazon Linux
+### Prepare the license
+Securely copy the license file to your home directory on the Amazon Linux
 system. For example:
 
-    ```bash
-    $ scp license.json <amazon username>@<server>:~
-    ```
-
-### Result
-
-You should now have two files in your home directory on the target Amazon system:
-- Either the Kong RPM or Kong Yum repo file.
-- The license file `license.json`
+```bash
+$ scp license.json <amazon username>@<server>:~
+```
 
 ## Step 2. Install Kong Gateway
 

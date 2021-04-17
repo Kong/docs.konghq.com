@@ -30,37 +30,23 @@ To complete this installation you will need:
 
 ### Download the Debian package
 
-1. Log in to [Bintray](http://bintray.com) using your Kong credentials. See [prerequisites](#prerequisites)
-for information on how to get access.
-2. Go to: [https://bintray.com/kong/kong-enterprise-edition-deb/ubuntu](https://bintray.com/kong/kong-enterprise-edition-deb/ubuntu).
-3. Select the latest Kong version from the list. Kong Enterprise versions are listed in reverse chronological order.
-4. From the Kong version detail page, select the **Files** tab.
-5. Click the `.deb` file matching your target Ubuntu OS version. For example, select `kong-enterprise-edition-{{page.kong_versions[8].version}}.bionic.all.deb` for the Ubuntu Bionic Beaver release.
-6. Copy the `.deb` file to your home directory on the Ubuntu system. For example:
+1. Go to: [{{ site.links.download }}/kong/kong-enterprise-edition-deb/ubuntu]({{ site.links.download }}/kong/kong-enterprise-edition-deb/ubuntu).
+2. Select the latest Kong version from the list. Kong Enterprise versions are listed in reverse chronological order.
+3. From the Kong version detail page, select the **Files** tab.
+4. Click the `.deb` file matching your target Ubuntu OS version. For example, select `kong-enterprise-edition-{{page.kong_versions[8].version}}.bionic.all.deb` for the Ubuntu Bionic Beaver release.
+5. Copy the `.deb` file to your home directory on the Ubuntu system. For example:
 
     ```bash
     $ scp kong-enterprise-edition-{{page.kong_versions[8].version}}.bionic.all.deb <ubuntu_user>@<server>:~
     ```
 
-### Download your Kong Enterprise License
+### Prepare your license
 
-1. Download your license file from your [account files in Bintray](#prerequisites):
+Securely copy the license file to your home directory on the Ubuntu system:
 
-    ```
-    https://bintray.com/kong/<YOUR_REPO_NAME>/license#files
-    ```
-
-2. Securely copy the license file to your home directory on the Ubuntu system:
-
-    ```bash
-    $ scp license.json <ubuntu_username>@<server>:~
-    ```
-
-### Result
-
-You should now have two files in your home directory on the target system:
-- The Kong `.deb` package file
-- The license file `license.json`
+```bash
+$ scp license.json <ubuntu_username>@<server>:~
+```
 
 ## Step 2. Install Kong Enterprise
 

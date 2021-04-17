@@ -29,7 +29,7 @@ To complete this installation guide you will need:
 
 ## Step 1. Prepare to Install Kong Enterprise and Download the License File
 
-There are two options to install Kong Enterprise on Amazon Linux 1. Both require a login to Bintray.
+There are two options to install Kong Enterprise on Amazon Linux 1. 
 
 Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will assign credentials to you.
 
