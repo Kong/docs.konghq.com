@@ -23,13 +23,17 @@ quick setup script.
 **{{site.base_gateway}} 2.3 support**
 : {{site.konnect_short_name}} SaaS now supports {{site.base_gateway}} 2.3
 runtimes. There is no upgrade path for existing runtimes.
-: To use {{site.base_gateway}} 2.3, [reprovision a new runtime](/konnect/runtime-manager/kong-gateway-runtime).
+: To use {{site.base_gateway}} 2.3, [reprovision a new runtime](/konnect/runtime-manager/#kong-gateway).
 
 **Advanced runtime configuration**
 : You can now configure custom {{site.base_gateway}} data planes through the
 Runtime Manager and run gateway instances outside of Docker. Use the
-[advanced option](/konnect/runtime-manager/kong-gateway-runtime/) when
-configuring a new runtime to get started.
+**Advanced** option when configuring a new runtime to get started.
+
+: See the runtime configuration guides for more information:
+* [Kong Gateway runtime on Docker](/konnect/runtime-manager/gateway-runtime-docker/)
+* [Kong Gateway runtime on Kubernetes](/konnect/runtime-manager/gateway-runtime-kubernetes/)
+* [Kong Gateway runtime without a container](/konnect/runtime-manager/gateway-runtime-conf/)
 
 **Logging plugins**
 : The full set of {{site.base_gateway}}'s logging plugins is now available
