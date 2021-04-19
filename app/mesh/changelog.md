@@ -12,7 +12,7 @@ no_version: true
 
 Built on top of [Kuma 1.1.4](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#112).
 
-Includes important bug fixes to version 1.1.3 of Kuma, plus improvements to the web UI.
+Includes important bug fixes to version 1.1.4 of Kuma, plus improvements to the web UI.
 
 ### Upgrading
 
