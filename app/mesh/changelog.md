@@ -4,6 +4,20 @@ no_search: true
 no_version: true
 ---
 
+## 1.2.4
+
+> Released on 2021/04/19
+
+### Changes
+
+Built on top of [Kuma 1.1.4](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#112).
+
+Includes important bug fixes to version 1.1.3 of Kuma, plus improvements to the web UI.
+
+### Upgrading
+
+Upgrades from `1.2.x` are seamless and no additional steps are needed. Note [specific configuration requirements](https://kuma.io/docs/1.1.3/networking/dns/#data-plane-proxy-built-in-dns) for taking advantage of built-in DNS. See also [new documentation for the external service policy](https://kuma.io/docs/1.1.3/policies/external-services/#usage).
+
 ## 1.2.3
 
 > Released on 2021/04/16
@@ -16,7 +30,7 @@ Built on top of [Kuma 1.1.3](https://github.com/kumahq/kuma/blob/master/CHANGELO
 
 ### Upgrading
 
-Upgrades from `1.2.x` are seamless and no additional steps are needed. Note [specific configuration requirements](https://kuma.io/docs/1.1.3/networking/dns/#data-plane-proxy-built-in-dns) for taking advantage of built-in DNS. See also [new documentation for the external service policy](https://kuma.io/docs/1.1.3/policies/external-services/#usage)
+Upgrades from `1.2.x` are seamless and no additional steps are needed. Note [specific configuration requirements](https://kuma.io/docs/1.1.3/networking/dns/#data-plane-proxy-built-in-dns) for taking advantage of built-in DNS. See also [new documentation for the external service policy](https://kuma.io/docs/1.1.3/policies/external-services/#usage).
 
 ## 1.2.2
 
