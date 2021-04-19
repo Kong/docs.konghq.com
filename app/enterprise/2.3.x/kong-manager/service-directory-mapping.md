@@ -62,8 +62,6 @@ admin_gui_session_conf = { "secret":"set-your-string-here" }
 
 Configure LDAP Authentication for Kong Manager with the following properties. Note the attribute variables are defined below:
 
-For Active Directory environments, instead of port 389, user the Global Catalog port which is 3268 by default.
-
 ```
 admin_gui_auth_conf = {
  "anonymous":"", \
@@ -95,6 +93,9 @@ admin_gui_auth_conf = {
     * For example, `ou=scientists,dc=ldap,dc=com`
 * `ldap_host`:`<ENTER_YOUR_LDAP_HOST_HERE>`: LDAP host domain.
     * For example, `ec2-XX-XXX-XX-XXX.compute-1.amazonaws.com`
+* `ldap_port`: The default LDAP port is 389. 636 is the port required for SSL LDAP and AD.
+   If ldaps is configured, you must use port 636. For more complex Active Directory (AD) environments,
+   instead of Domain Controller and port 389, consider using a Global Catalog host and port, which is port 3268 by default.    
 * `ldap_password`:`<ENTER_YOUR_LDAP_PASSWORD_HERE>`: LDAP password
     * *Important*: As with any configuration property, sensitive information may be set as an environment variable instead of being written directly in the configuration file.
 * `group_base_dn`:`<ENTER_YOUR_BASE_DN_HERE>`: Sets a distinguished name for the entry where LDAP searches for groups begin. The default is the value from `conf.base_dn`.
