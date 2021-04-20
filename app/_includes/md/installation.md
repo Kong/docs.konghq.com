@@ -3,7 +3,7 @@
 
 ## Setup
 
-1. **Prepare your database or declarative configuration file**
+    **Prepare your database or declarative configuration file**
 
     Kong can run either with or without a database.
 
@@ -50,7 +50,7 @@
 
 ## Run Kong
 
-1. **Start Kong**
+    **Start Kong**
 
     **Note:** When you start Kong, the Nginx master process runs
     as `root` and the worker processes as `kong` by default.
@@ -64,7 +64,7 @@
 
 ## Use Kong
 
-1. **Use Kong**
+    **Use Kong**
 
     Kong is running:
 
