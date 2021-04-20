@@ -19,7 +19,7 @@ please refer to [Kong Vitals](/enterprise/{{page.kong_version}}/admin-api/vitals
 
 ## Setting up Kong Vitals with InfluxDB
 
-### Step 1. Install {{site.base_gateway}}
+### Step 1. Install Kong Gateway
 
 If you have not installed {{site.base_gateway}}, a Docker installation will work for the purposes of this guide. 
 See [Install {{site.base_gateway}} on Docker](/enterprise/{{page.kong_version}}/deployment/installation/docker)
