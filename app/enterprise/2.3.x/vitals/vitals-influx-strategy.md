@@ -11,15 +11,18 @@ This document covers integrating Kong Vitals with a new or existing InfluxDB
 time series server or cluster. Leveraging a time series database for Vitals data
 can improve request and Vitals performance in very-high traffic {{site.ee_product_name}}
 clusters (such as environments handling tens or hundreds of thousands of
-requests per second), without placing addition write load on the database
+requests per second), without placing additional write load on the database
 backing the Kong cluster.
 
-For using Vitals with a database as the backend (i.e. PostgreSQL, Cassandra), 
-please refer to [Kong Vitals](/enterprise/{{page.kong_version}}/admin-api/vitals/).
+For information about using Kong Vitals with a database as the backend (for example,
+PostgreSQL, Cassandra), refer to
+[Kong Vitals](/enterprise/{{page.kong_version}}/admin-api/vitals/).
 
 ## Setting up Kong Vitals with InfluxDB
 
 ### Step 1. Install Kong Gateway
+
+If you already have a {{site.base_gateway}} instance, skip to Step 2.
 
 If you have not installed {{site.base_gateway}}, a Docker installation will work for the purposes of this guide. 
 See [Install {{site.base_gateway}} on Docker](/enterprise/{{page.kong_version}}/deployment/installation/docker)
@@ -59,9 +62,10 @@ with with the DNS name or IP of the Docker host. <code>KONG_ADMIN_GUI_URL</code>
 <i>should</i> have a protocol, for example, <code>http://</code>.
 </div>
 
-If you already have a {{site.base_gateway}} instance, skip to Step 2.
+### Step 2. Deploy a Kong Gateway (Enterprise) license
 
-### Step 2. Deploy a {{site.ee_product_name}} License
+If you already have a {{site.ee_product_name}} license attached to your {{site.base_gateway}}
+instance, skip to Step 3.
 
 You will not be able to access the Kong Vitals functionality without a valid
 {{site.ee_product_name}} license attached to your {{site.base_gateway}} instance.
@@ -69,14 +73,11 @@ You will not be able to access the Kong Vitals functionality without a valid
 See [Deploy an Enterprise License](/enterprise/{{page.kong_version}}/deployment/licenses/deploy-license)
 for instructions to apply a license to your {{site.base_gateway}} instance.
 
-If you already have a {{site.ee_product_name}} license attached to your {{site.base_gateway}}
-instance, skip to Step 3.
-
 ### Step 3. Start an InfluxDB database
 
 Production-ready InfluxDB installations should be deployed as a separate
 effort, but for proof-of-concept testing, running a local InfluxDB instance
-is possible via Docker:
+is possible with Docker:
 
 ```bash
 $ docker run -p 8086:8086 \
@@ -87,8 +88,8 @@ $ docker run -p 8086:8086 \
 ```
 
 <div class="alert alert-warning">
-You <strong>must</strong> use the listed version of
-InfluxDB as the most recent version will <strong>not</strong> work.  
+You <strong>must</strong> use InfluxDB 1.8.4-alpine because
+InfluxDB 2.0 will <strong>not</strong> work.  
 </div>
 
 Writing Vitals data to InfluxDB requires that the `kong` database is created, 
