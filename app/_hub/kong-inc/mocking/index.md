@@ -45,7 +45,7 @@ params:
   dbless_explanation: |
     Use the `api_specification` config for DB-less mode. Attach the spec contents directly
     instead of uploading to the Dev Portal. The API spec is configured directly in the plugin.
-  yaml_examples: true
+  yaml_examples: false
   k8s_examples: false
   examples: true
 
