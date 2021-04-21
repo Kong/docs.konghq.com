@@ -42,9 +42,9 @@ params:
   route_id: true
   protocols: ["http", "https", "grpc", "grpcs"]
   dbless_compatible: yes
-  dbless_explanation:
+  dbless_explanation: |
     Use the `api_specification` config for DB-less mode. Attach the spec contents directly
-    instead of uploading to the Dev Portal. (REVIEWERS need more info)
+    instead of uploading to the Dev Portal. The API spec is configured directly in the plugin.
   yaml_examples: true
   k8s_examples: false
   examples: true
@@ -56,25 +56,22 @@ params:
       datatype: string
       value_in_examples: myspec.yaml
       description: |
-        The name of the specification file loaded into Kong DB. Either the `api_specification_filename`
-        or the `api_specification` must be specified for the plugin. Use
-        `api_specification` for DB-less mode.
+        The name of the specification file loaded into Kong DB. Do not
+        use this option for DB-less mode.
     - name: api_specification
       required: semi
       default:
       datatype: string
       value_in_examples:
       description: |
-        The name of the specification file. Use `api_specification` for DB-less mode. Either
-        the `api_specification_filename` or the `api_specification` must be specified
-        for the plugin. Use `api_specification` for DB-less mode.
+        The name of the specification file. Use this option for DB-less mode.
     - name: random_delay
       required: false
       default: false
       datatype: boolean
       value_in_examples: true
       description: |
-        Enables random delay in the response. Used to introduce delays to simulate
+        Enables random delay in the mocked response. Introduces delays to simulate
         real-time response times by APIs.
     - name: max_delay_time
       required: semi
@@ -93,8 +90,10 @@ params:
         The minimum value in seconds of delay time. Set this value when `random_delay` is enabled
         and you want to adjust the default.
 
-  extra:
+  extra: |
 
+    Either the `api_specification_filename` or the `api_specification` must be specified for the
+    plugin according to the Kong Gateway (Enterprise) deployment mode.
 ---
 
 ## Prerequisites
@@ -102,10 +101,10 @@ params:
 - {{site.ee_product_name}} environment with the Dev Portal enabled on at least one workspace.
 - Enable the Mocking plugin.
 - An Open API Specification (`yaml` or `json`) that has at least one API method with an
-  example response.
+  example response. Multiple examples within a spec are supported.
 - Configure the specification depending on your mode:
   - Upload and deploy the spec to the Dev Portal using either Kong Manager or Insomnia. Specify
     the spec with the `api_specification_filename` config.
-  - Or, if using hybrid mode/dbless, directly attach the spec contents by configuring it in the plugin.
-    Specify the spec with the `api_specification` config.
+  - Or, if using hybrid mode/DB-less, directly attach the spec contents by configuring it in the plugin.
+    Indicate the specification with the `api_specification` config.
 - Enable the [CORS](/hub/kong-inc/cors/) plugin.
