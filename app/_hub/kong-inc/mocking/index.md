@@ -111,3 +111,10 @@ params:
   - Or, if using hybrid mode/DB-less, directly attach the spec contents by configuring it in the plugin.
     Indicate the specification with the `api_specification` config.
 - Enable the [CORS](/hub/kong-inc/cors/) plugin.
+
+
+
+## See also
+
+To view a video demonstration of the Mocking plugin used in conjunction with the Dev Portal and Insomnia,
+see the [Service Mocking](https://www.youtube.com/watch?v=l8uKbgkK6_I) video demo available on YouTube.
