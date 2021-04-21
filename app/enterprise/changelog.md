@@ -170,13 +170,12 @@ no_version: true
 ### Fixes
 
 #### Enterprise
-
-- When using Kong Gateway in Hybrid mode, schema changes and minor/major version changes lead to
+- When using Kong Gateway in hybrid mode, schema changes and minor/major version changes lead to
   a broken connection between the control planes and data planes. With this fix, the
   [OAuth 2.0 Authentication](/hub/kong-inc/oauth2) plugin is upgraded to v2.2.0 and the
   [OpenID Connect](/hub/kong-inc/openid-connect) plugin is downgraded from v1.9.0 to v1.8.4. 
 
-- When using the [Mutual TLS Authenication](/hug/kong-inc/mtls-auth) plugin with a service
+- When using the [Mutual TLS Authenication](/hub/kong-inc/mtls-auth) plugin with a service
   that was configured for mutual TLS, the Kong Gateway was not sending the client certificate
   to the upstream. With this fix, Kong Gateway now avoids patching a plugin's handler if it is
   not defined and supports client certificates in `buffered_proxying` mode.
