@@ -80,7 +80,8 @@ params:
       value_in_examples: 1
       description: |
         The maximum value in seconds of delay time. Set this value when `random_delay` is enabled
-        and you want to adjust the default.
+        and you want to adjust the default. The value must be greater than the
+        `min_delay_time`.
     - name: min_delay_time
       required: semi
       default: 0.001
@@ -88,7 +89,8 @@ params:
       value_in_examples: 0.001
       description: |
         The minimum value in seconds of delay time. Set this value when `random_delay` is enabled
-        and you want to adjust the default.
+        and you want to adjust the default. The value must be less than the
+        `max_delay_time`.
 
   extra: |
 
