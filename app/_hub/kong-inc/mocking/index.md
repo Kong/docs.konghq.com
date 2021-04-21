@@ -14,7 +14,7 @@ description: |
 
   Benefits of service mocking:
 
-  - Conforms to design-first approach as mock responses are within OAS.
+  - Conforms to design-first approach since mock responses are within OAS.
   - Accelerates development of services and APIs.
   - Promotes parallel development of APIs across distributed teams.
   - Provides an enhanced full lifecycle API development experience with Dev Portal
@@ -112,9 +112,11 @@ params:
     Indicate the specification with the `api_specification` config.
 - Enable the [CORS](/hub/kong-inc/cors/) plugin.
 
+## Enable the Mocking plugin
+
 
 
 ## See also
 
-To view a video demonstration of the Mocking plugin used in conjunction with the Dev Portal and Insomnia,
+To view a video demonstration of the Mocking plugin used in conjunction with the Dev Portal,
 see the [Service Mocking](https://www.youtube.com/watch?v=l8uKbgkK6_I) video available on YouTube.
