@@ -117,4 +117,4 @@ params:
 ## See also
 
 To view a video demonstration of the Mocking plugin used in conjunction with the Dev Portal and Insomnia,
-see the [Service Mocking](https://www.youtube.com/watch?v=l8uKbgkK6_I) video demo available on YouTube.
+see the [Service Mocking](https://www.youtube.com/watch?v=l8uKbgkK6_I) video available on YouTube.
