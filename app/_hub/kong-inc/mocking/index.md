@@ -98,7 +98,8 @@ params:
 
 ## Prerequisites
 
-- {{site.ee_product_name}} environment with the Dev Portal enabled on at least one workspace.
+- {{site.ee_product_name}} environment with the Dev Portal enabled on at least one workspace
+  (not applicable to DB-less).
 - Enable the Mocking plugin.
 - An Open API Specification (`yaml` or `json`) that has at least one API method with an
   example response. Multiple examples within a spec are supported.
