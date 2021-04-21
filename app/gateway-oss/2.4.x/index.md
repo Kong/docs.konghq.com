@@ -28,7 +28,7 @@ quickstart, the complete {{site.base_gateway}} getting started guide provides
 in-depth examples, explanations, and step-by-step instructions, and explores
 Kong's many available tools for managing the gateway.
 
-[quickstart]: /{{page.kong_version}}/getting-started/quickstart
-[configuring-a-service]: /{{page.kong_version}}/getting-started/configuring-a-service
-[enabling-plugins]: /{{page.kong_version}}/getting-started/enabling-plugins
+[quickstart]: /gateway-oss/{{page.kong_version}}/getting-started/quickstart
+[configuring-a-service]: /gateway-oss/{{page.kong_version}}/getting-started/configuring-a-service
+[enabling-plugins]: /gateway-oss/{{page.kong_version}}/getting-started/enabling-plugins
 [getting-started]: /getting-started-guide/latest/overview
