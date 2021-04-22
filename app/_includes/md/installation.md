@@ -56,7 +56,7 @@
     as `root` and the worker processes as `kong` by default.
     If this is not the desired behavior, you can switch the Nginx master process to run on the built-in
     `kong` user or to a custom non-root user before starting Kong. For more
-    information, see [Running Kong as a Non-Root User](/latest/kong-user).
+    information, see [Running Kong as a Non-Root User](/gateway-oss/{{site.data.kong_latest.release}}/kong-user).
 
     ```bash
     $ kong start [-c /path/to/kong.conf]
@@ -72,6 +72,6 @@
     $ curl -i http://localhost:8001/
     ```
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/gateway-oss/{{site.data.kong_latest.release}}/getting-started/quickstart).
 
-[configuration]: /{{site.data.kong_latest.release}}/configuration#database
+[configuration]: {{site.data.kong_latest.release}}/configuration#database
