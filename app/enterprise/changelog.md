@@ -558,6 +558,11 @@ fixed causing a 500 auth error when falling back to an anonymous user.
 #### Distributions
 - Support for CentOS-6 is removed and entered end-of-life on Nov 30, 2020.
 
+## 2.2.1.3
+**Release Date** 2021/04/22
+
+This release includes internal updates that do not affect product functionality.
+
 ## 2.2.1.2
 **Release Date** 2021/04/14
 
@@ -967,6 +972,25 @@ open-source **Kong Gateway 2.2.0.0**:
   superseded by the new `/clustering/data-planes` endpoint.
 - The `shorthands` attribute in schema definitions is deprecated in favor of
   the new `shorthand_fields` top-level attribute.
+
+## 2.1.4.6
+**Release Date** 2021/04/21
+
+This release includes internal updates that do not affect product functionality.
+
+### Fixes
+
+#### Enterprise
+- Fixed an issue encountered when users were deleting a Kong Dev Portal collection and
+  the collection was not defined in `portal.conf.yaml` or `portal.conf.yaml`
+  did not exist. Instead of deleting the content, users recieved an error.
+  This issue also occurred when users were using the Portal CLI to wipe or deploy
+  templates. With this fix, deleting content from the Kong Dev Portal works as
+  expected.
+- In Kong Manager, users could recieve an emtpy set of roles from an API request,
+  even when valid RBAC roles existed in the databse because of a filtering issue
+  with portal and default roles on a paginated set. With this fix, if valid RBAC
+  roles exist in the database an API request returns with those valid roles.
 
 ## 2.1.4.5
 **Release Date** 2021/03/31
@@ -1411,6 +1435,17 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
 
+## 1.5.0.11
+**Release Date** 2021/04/22
+
+This release includes internal updates that do not affect product functionality.
+
+### Fixes
+
+#### Enterprise
+- In Kong Manager, users could recieve an emtpy set of roles from an API response, even when valid RBAC
+  roles existed in the databse because of a filtering issue with portal and default roles on a paginated set.
+  With this fix, if valid RBAC roles exist in the database an API request returns with those valid roles.
 
 ## 1.5.0.10
 **Release Date** 2021/03/26
