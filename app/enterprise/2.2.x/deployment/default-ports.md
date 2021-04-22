@@ -1,7 +1,6 @@
 ---
 title: Default Ports
 toc: false
-skip_read_time: true
 ---
 By default, Kong Enterprise Gateway listens on the following ports:
 

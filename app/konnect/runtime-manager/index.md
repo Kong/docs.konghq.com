@@ -17,7 +17,7 @@ a whole, does not have access or visibility into the data flowing through your
 runtimes, and it does not store any data except the state and connection details
 for each runtime.
 
-## Hosting Runtimes
+## Hosting runtimes
 
 Kong does not host runtimes. You must provide your own runtime
 instances.
@@ -26,7 +26,7 @@ The Runtime Manager aims to simplify this process by providing a
 script to provision a {{site.ee_gateway_name}} runtime in a Docker container,
 eliminating any confusion about initial configuration or setup.
 
-## Type of Runtimes
+## Types of runtimes
 
 ### Kong Gateway
 
@@ -35,9 +35,26 @@ serving traffic for the proxy. Data plane nodes are not directly connected
 to a database.
 
 Currently, the only supported runtime type in the
-{{site.konnect_product_name}} SaaS application is a [{{site.ee_gateway_name}}](/enterprise/latest/introduction)
-data plane running in a Docker container.
+{{site.konnect_product_name}} SaaS application is a [{{site.ee_gateway_name}}](/enterprise/)
+data plane.
 
-**See more**:
-* [Set up a {{site.ee_gateway_name}} runtime](/konnect/runtime-manager/kong-gateway-runtime)
-* [{{site.ee_gateway_name}} documentation](/enterprise/latest/introduction)
+Choose an installation type below:
+
+<div class="docs-grid-install">
+
+  <a href="/konnect/runtime-manager/gateway-runtime-docker" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="https://doc-assets.konghq.com/install-logos/docker.png" alt="Docker" />
+    <div class="install-text">Docker</div>
+  </a>
+
+  <a href="/konnect/runtime-manager/gateway-runtime-kubernetes" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/kubernetes-logo.png" alt="Kubernetes" />
+    <div class="install-text">Kubernetes (Helm)</div>
+  </a>
+
+    <a href="/konnect/runtime-manager/gateway-runtime-conf" class="docs-grid-install-block no-description">
+      <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-markdown-editor.svg" alt="config file" />
+      <div class="install-text">Universal (kong.conf)</div>
+    </a>
+
+</div>

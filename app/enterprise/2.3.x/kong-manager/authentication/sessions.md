@@ -57,7 +57,7 @@ admin_gui_session_conf = {
 * `logout_post_arg`
 
 For detailed descriptions of each configuration property, learn more in the
-[Session Plugin documentation](/enterprise/{{page.kong_version}}/plugins/session).
+[Session Plugin documentation](/hub/kong-inc/session).
 
 ## Session Security
 

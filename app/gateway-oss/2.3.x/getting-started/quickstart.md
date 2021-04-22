@@ -1,6 +1,5 @@
 ---
-title: 5-minute Quickstart
-skip_read_time: true
+title: Start Kong Gateway (OSS)
 ---
 
 <div class="alert alert-warning">
@@ -14,7 +13,7 @@ interface, through which you manage your Services, Routes, Consumers, and more. 
 through the Admin API is stored in Kong's [datastore][datastore-section] (Kong
 supports PostgreSQL and Cassandra).
 
-## 1. Start Kong
+## 1. Start Kong Gateway
 
 Issue the following command to prepare your datastore by running the Kong
 migrations:

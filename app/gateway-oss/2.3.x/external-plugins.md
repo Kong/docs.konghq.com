@@ -121,7 +121,7 @@ configuration data coming from the datastore or the Admin API.  Since Go is a
 statically-typed language, all that specification is handled by defining a
 configuration structure:
 
-```
+```go
 type MyConfig struct {
     Path   string
     Reopen bool
@@ -132,7 +132,7 @@ Public fields (that is, those starting with a capital letter) will be filled
 with configuration data.  If you want them to have a different name in the
 datastore, add field tags as defined in the `encoding/json` package:
 
-```
+```go
 type MyConfig struct {
     Path   string `json:my_file_path`
     Reopen bool   `json:reopen`
@@ -144,7 +144,7 @@ type MyConfig struct {
 Your plugin must define a function called `New` that creates an instance of this type
 and returns as an `interface{}`.  In most cases, it’s just this:
 
-```
+```go
 func New() interface{} {
     return &MyConfig{}
 }
@@ -159,7 +159,7 @@ instances.
 Similarly to {{site.base_gateway}} Lua plugins, you can implement custom logic to be executed at
 various points of the request processing lifecycle. For example, to execute
 custom Go code in the access phase, define a function named `Access`:
-```
+```go
 func (conf *MyConfig) Access (kong *pdk.PDK) {
   ...
 }
@@ -175,7 +175,6 @@ signature is the same for all of them:
 - `Log`
 
 Similar to Lua plugins, the presence of the `Response` handler automatically enables the buffered proxy mode.
-
 
 ### Embedded server
 
@@ -241,7 +240,6 @@ pluginserver_names = my-plugin,other-one
 pluginserver_my_plugin_query_cmd = /usr/local/bin/my-plugin -dump
 pluginserver_other_one_query_cmd = /usr/local/bin/other-one -dump
 ```
-
 
 ---
 

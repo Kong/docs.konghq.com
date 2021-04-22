@@ -26,6 +26,7 @@ source_url: https://github.com/Kong/kong-plugin-session
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.4.x
       - 2.3.x
       - 2.2.x     
       - 2.1.x
@@ -36,13 +37,14 @@ kong_version_compatibility:
       - 1.2.x
   enterprise_edition:
     compatible:
+      - 2.4.x
       - 2.3.x
-      - 2.2.x 
+      - 2.2.x
       - 2.1.x
       - 1.5.x
       - 1.3-x
       - 0.36-x
-      - 0.35-x
+
 
 params:
   name: session
@@ -54,17 +56,21 @@ params:
       required: false
       default: random number generated from `kong.utils.random_string`
       value_in_examples: opensesame
+      datatype: string
       description: The secret that is used in keyed HMAC generation.​
     - name: cookie_name
       required: false
       default: '`session`'
+      datatype: string
       description: The name of the cookie.
     - name: cookie_lifetime
       required: false
       default: 3600
+      datatype: number
       description: The duration in seconds that the session will remain open.
     - name: cookie_idletime
       required: false
+      datatype: number
       description: |
         The cookie idle time (in seconds); if a cookie is not used for this time
         period, the session becomes invalid. This value is not set by default,
@@ -72,47 +78,74 @@ params:
     - name: cookie_renew
       required: false
       default: 600
+      datatype: number
       description: The remaining duration in seconds of a session at which point the Plugin renews the session.
     - name: cookie_path
       required: false
       default: '/'
+      datatype: string
       description: The resource in the host where the cookie is available.
     - name: cookie_domain
       required: false
       default: Set using Nginx variable host, but may be overridden
+      datatype: string
       description: The domain with which the cookie is intended to be exchanged.
     - name: cookie_samesite
       required: false
       default: 'Strict'
-      description: 'Determines whether and how a cookie may be sent with cross-site requests. `Strict`: The browser will send cookies only if the request originated from the website that set the cookie. `Lax`: Same-site cookies are withheld on cross-domain subrequests, but will be sent when a user navigates to the URL from an external site, for example, by following a link. `None` or `off`: Disables the same-site attribute so that a cookie may be sent with cross-site requests. `None` requires the Secure attribute (`cookie_secure`) in latest browser versions. For more info, see the [SameSite cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite).'
+      datatype: string
+      description: |
+        Determines whether and how a cookie may be sent with cross-site requests. `Strict`:
+        The browser will send cookies only if the request originated from the website that set the cookie.
+        `Lax`: Same-site cookies are withheld on cross-domain subrequests, but will be sent when a user navigates
+        to the URL from an external site, for example, by following a link. `None` or `off`: Disables
+        the same-site attribute so that a cookie may be sent with cross-site requests. `None` requires
+        the Secure attribute (`cookie_secure`) in latest browser versions. For more info, see the
+        [SameSite cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite).'
     - name: cookie_httponly
       required: false
       default: true
-      description: Applies the `HttpOnly` tag so that the cookie is sent only to a server. See the [Restrict access to cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Restrict_access_to_cookies).
+      datatype: boolean
+      description: |
+        Applies the `HttpOnly` tag so that the cookie is sent only to a server. See the
+        [Restrict access to cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Restrict_access_to_cookies).
     - name: cookie_secure
       required: false
       default: true
-      description: Applies the Secure directive so that the cookie may be sent to the server only with an encrypted request over the HTTPS protocol. See the [Restrict access to cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Restrict_access_to_cookies).
+      datatype: boolean
+      description: |
+        Applies the Secure directive so that the cookie may be sent to the server only with an encrypted
+        request over the HTTPS protocol. See the
+        [Restrict access to cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Restrict_access_to_cookies).
     - name: cookie_discard
       required: false
       default: 10
+      datatype: number
       description: The duration in seconds after which an old session’s TTL is updated that an old cookie is discarded.
     - name: storage
       required: false
       default: 'cookie'
-      description: "Determines where the session data is stored. `kong`: Stores encrypted session data into Kong's current database strategy (e.g. Postgres, Cassandra); the cookie will not contain any session data. `cookie`: Stores encrypted session data within the cookie itself."
+      datatype: string
+      description: |
+        Determines where the session data is stored. `kong`: Stores encrypted session data into Kong's current database
+        strategy (e.g. Postgres, Cassandra); the cookie will not contain any session data. `cookie`: Stores encrypted
+        session data within the cookie itself.
     - name: logout_methods
       required: false
       default: '[`"POST"`, `"DELETE"`]'
-      description: 'The methods that may be used to end sessions: POST, DELETE, GET.'
+      datatype: array of string elements
+      description: |
+        The methods that may be used to end sessions: POST, DELETE, GET.
     - name: logout_query_arg
       required: false
       default: session_logout
+      datatype: string
       description: The query argument passed to logout requests.
     - name: logout_post_arg
       required: false
       default: session_logout
-      description: The post argument passed to logout requests. Do not change this property.
+      datatype: string
+      description: The POST argument passed to logout requests. Do not change this property.
 ---
 
 ## Usage
@@ -129,7 +162,7 @@ session for usage with subsequent requests.
 
 When a new request comes in, and a session is already present, then the Kong Session
 **Plugin** will attach the `ngx.ctx` variables to let the authentication
-**Plugin** know that authentication has already occured via session validation.
+**Plugin** know that authentication has already occurred via session validation.
 Because this configuration is a logical OR scenario, and it is desired that anonymous
 access be forbidden, then the [Request Termination] **Plugin** should be
 configured on an anonymous consumer. Failure to do so will allow unauthorized

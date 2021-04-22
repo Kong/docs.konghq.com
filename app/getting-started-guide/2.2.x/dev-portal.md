@@ -48,7 +48,7 @@ This will expose the Dev Portal at `http://<admin-hostname>:8003/SecureWorkspace
 
 After the Dev Portal is enabled for the Workspace, a few new links appear in the left navigation menu. It may take a few seconds for the Settings page to populate.
 
-You can learn more about personalization in the [the Dev Portal documentation](/enterprise/latest/developer-portal/overview/), including:
+You can learn more about personalization in the [the Dev Portal documentation](/enterprise/latest/developer-portal/), including:
 
 * [Customizing the look and feel of the site and editor](/enterprise/latest/developer-portal/theme-customization/easy-theme-editing/)
 * [Managing access](/enterprise/latest/developer-portal/administration/)

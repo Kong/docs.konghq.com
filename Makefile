@@ -1,14 +1,11 @@
 install-prerequisites:
-	npm install -g yarn
 	npm install -g gulp
 
 install:
-	-mkdir node_modules
+	-mkdir -p node_modules
 	chmod 777 node_modules
-	npm install
 	bundle install
 	yarn --ignore-engines
-	yarn upgrade
 	touch install
 
 run: install
@@ -37,4 +34,4 @@ docker-test: background-docker-up
 	docker-compose exec -T jekyll npm test
 
 check-links: background-docker-up
-	docker-compose exec -T jekyll yarn blc http://localhost:3000 -efr --exclude careers --exclude hub --exclude kong-cloud --exclude community --exclude localhost:3000\/2\.3\.x --exclude localhost:3000\/2\.2\.x --exclude localhost:3000\/2\.1\.x --exclude localhost:3000\/2\.0\.x --exclude localhost:3000\/1\.5\.x --exclude localhost:3000\/1\.4\.x --exclude localhost:3000\/1\.3\.x --exclude localhost:3000\/1\.2\.x --exclude localhost:3000\/1\.1\.x --exclude localhost:3000\/1\.0\.x --exclude localhost:3000\/0\.15\.x --exclude localhost:3000\/0\.14\.x --exclude localhost:3000\/0\.13\.x --exclude localhost:3000\/0\.12\.x --exclude localhost:3000\/0\.11\.x --exclude localhost:3000\/0\.10\.x --exclude localhost:3000\/0\.9\.x --exclude localhost:3000\/0\.8\.x --exclude localhost:3000\/0\.7\.x --exclude localhost:3000\/0\.6\.x --exclude localhost:3000\/0\.5\.x --exclude localhost:3000\/0\.4\.x --exclude localhost:3000\/0\.3\.x --exclude localhost:3000\/0\.2\.x --exclude localhost:3000\/latest
+	docker-compose exec -T jekyll yarn blc http://localhost:3000 -efr --exclude careers --exclude hub --exclude kong-cloud --exclude community --exclude localhost:3000\/2\.4\.x --exclude localhost:3000\/2\.3\.x --exclude localhost:3000\/2\.2\.x --exclude localhost:3000\/2\.1\.x --exclude localhost:3000\/2\.0\.x --exclude localhost:3000\/1\.5\.x --exclude localhost:3000\/1\.4\.x --exclude localhost:3000\/1\.3\.x --exclude localhost:3000\/1\.2\.x --exclude localhost:3000\/1\.1\.x --exclude localhost:3000\/1\.0\.x --exclude localhost:3000\/0\.15\.x --exclude localhost:3000\/0\.14\.x --exclude localhost:3000\/0\.13\.x --exclude localhost:3000\/0\.12\.x --exclude localhost:3000\/0\.11\.x --exclude localhost:3000\/0\.10\.x --exclude localhost:3000\/0\.9\.x --exclude localhost:3000\/0\.8\.x --exclude localhost:3000\/0\.7\.x --exclude localhost:3000\/0\.6\.x --exclude localhost:3000\/0\.5\.x --exclude localhost:3000\/0\.4\.x --exclude localhost:3000\/0\.3\.x --exclude localhost:3000\/0\.2\.x

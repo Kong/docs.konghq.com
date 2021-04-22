@@ -1,8 +1,6 @@
 ---
 title: Kong Studio
-redirect_from: "/studio/"
 toc: false
-skip_read_time: true
 ---
 Kong Studio is a bundle for {{site.ee_product_name}} based on Insomnia Designer,
 which enables spec-first development for all REST and GraphQL services.

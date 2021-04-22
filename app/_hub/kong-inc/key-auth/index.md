@@ -22,6 +22,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -47,6 +48,7 @@ kong_version_compatibility:
         - 0.2.x
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -70,6 +72,7 @@ params:
     - name: key_names
       required: true
       default: "`apikey`"
+      value_in_examples: ["apikey"]
       datatype: array of strings
       description: |
         Describes an array of parameter names where the plugin will look for a key. The client must send the
@@ -388,7 +391,7 @@ Response:
 }
 ```
 
-[configuration]: /latest/configuration
-[consumer-object]: /latest/admin-api/#consumer-object
+[configuration]: /gateway-oss/latest/configuration
+[consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
 [acl-associating]: /plugins/acl/#associating-consumers
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

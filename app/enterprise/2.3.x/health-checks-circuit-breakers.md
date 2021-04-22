@@ -1,6 +1,5 @@
 ---
 title: Health Checks and Circuit Breakers Reference
-skip_read_time: true
 ---
 
 ## Introduction

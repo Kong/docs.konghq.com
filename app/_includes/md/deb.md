@@ -35,7 +35,7 @@ $ sudo dpkg -i kong.{{site.data.kong_latest.version}}.amd64.deb
 **APT Repositories**
 
 ```bash
-$ sudo apt-add-repository -u 'deb [allow-insecure=yes] {{ site.links.download }}/gateway-community/$(lsb_release -is)/$(lsb_release -sc)/ default all'
+$ sudo apt-add-repository -u "deb [allow-insecure=yes] {{ site.links.download }}/gateway-community/$(lsb_release -is)/$(lsb_release -sc)/ default all"
 $ sudo apt install -y kong={{site.data.kong_latest.version}}
 ```
 

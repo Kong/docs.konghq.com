@@ -122,6 +122,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
 
@@ -347,6 +348,10 @@ Parameter ¹                             | Description
 `scopes_claim`                          | The Name of the claim (or a path) where the scopes can be found.
 `audience_required`                     | The audience required to be present in access token (or introspection results) for successful authorization.
 `audience_claim`                        | The Name of the claim (or a path) where the audience can be found.
+`groups_required`                       | The groups required to be present in access token (or introspection results) for successful authorization.
+`groups_claim`                          | The Name of the claim (or a path) where the groups can be found.
+`roles_required`                        | The roles required to be present in access token (or introspection results) for successful authorization.
+`roles_claim`                           | The Name of the claim (or a path) where the roles can be found.
 `domains`                               | The domains to be verified against the `hd` claim.
 `max_age`                               | The `max_age` (in seconds) for the previous authentication, specifically the `auth_time` claim.
 `display_errors`                        | Display additional debugging information to the user when there's an error. Not recommended to be enabled in a production environment.
@@ -538,6 +543,10 @@ Parameter ¹                             | Type      | Required | Default
 `scopes_claim`                          | `array`   | `no`     | `"scope"`
 `audience_required`                     | `array`   | `no`     | `—`
 `audience_claim`                        | `array`   | `no`     | `"aud"`
+`groups_required`                       |	`array`	  | `no`	   | `—`
+`groups_claim`                          |	`array`   |	`no`     | `"groups"`
+`roles_required`                        |	`array`	  | `no`	   | `—`
+`roles_claim`                           |	`array`   |	`no`     | `"roles"`
 `domains`                               | `array`   | `no`     | `—`
 `max_age`                               | `number`  | `no`     | `—`
 `display_errors`                        | `boolean` | `no`     | `false`
@@ -1255,6 +1264,70 @@ Default                     | Required
 
 * `"aud"` -- top level claim
 * `"user,groups"` -- top level `user` claim (a JSON object) that has a sub-claim `groups`.
+
+#### config.groups_required
+
+Groups required to be present in access token (`groups` claim) or
+introspection results (`groups` claim) for authorization or
+in claim specified with `config.groups_claim`.
+
+Default                     | Required
+:--------------------------:|:-------:
+`none`                      | `no`
+
+This config parameter works in both **AND** / **OR** cases.
+
+**Examples:**
+
+* `"group1 group2"` -- both `group1` AND `group2` need to be present in access token (or introspection results)
+* `"group1,group2"` -- either `group1` OR `group2` need to be present in access token (or introspection results)
+
+
+#### config.groups_claim
+
+The name of the claim where the groups are picked for `config.groups_required`
+authorization.
+
+Default                     | Required
+:--------------------------:|:-------:
+`groups`                    | `no`
+
+**Examples:**
+
+* `"groups"` -- top level claim
+
+
+#### config.roles_required
+
+Roles required to be present in access token (`roles` claim) or
+introspection results (`roles` claim) for authorization or
+in claim specified with `config.roles_claim`.
+
+Default                     | Required
+:--------------------------:|:-------:
+`none`                      | `no`
+
+This config parameter works in both **AND** / **OR** cases.
+
+**Examples:**
+
+* `"role1 role2"` -- both `role1` AND `role2` need to be present in access token (or introspection results)
+* `"role1,role2"` -- either `role1` OR `role2` need to be present in access token (or introspection results)
+
+
+#### config.roles_claim
+
+The name of the claim where the roles are picked for `config.roles_required`
+authorization.
+
+Default                     | Required
+:--------------------------:|:-------:
+`"roles"`                   | `no`
+
+**Examples:**
+
+* `"roles"` -- top level claim
+* `"realm_access,roles"` -- top level `realm_access` claim (a JSON object) that has a sub-claim `roles`.
 
 
 #### config.domains
