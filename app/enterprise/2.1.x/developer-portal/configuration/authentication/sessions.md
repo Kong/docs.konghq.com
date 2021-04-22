@@ -2,7 +2,9 @@
 title: Sessions in the Dev Portal
 ---
 
-⚠️**Important:** Portal Session Configuration does not apply when using [OpenID Connect](/hub/kong-inc/openid-connect) for Dev Portal authentication. The following information assumes that the Dev Portal is configured with `portal_auth` other than `openid-connect`; for example, `key-auth` or `basic-auth`.
+⚠️**Important:** Portal Session Configuration does not apply when using [OpenID Connect](/hub/kong-inc/openid-connect)
+for Dev Portal authentication. The following information assumes that the Dev Portal is
+configured with `portal_auth` other than `openid-connect`; for example, `key-auth` or `basic-auth`.
 
 ## How does the Sessions Plugin work in the Dev Portal?
 
@@ -10,7 +12,7 @@ When a user logs in to the Dev Portal with their credentials, the Sessions Plugi
 
 The Session configuration is secure by default, which may [require alteration](#session-security) if using HTTP or different domains for [portal_api_url](/enterprise/{{page.kong_version}}/developer-portal/networking/#portal_api_url) and [portal_gui_host](/enterprise/{{page.kong_version}}/developer-portal/networking/#portal_gui_host). Even if an attacker were to obtain a stale cookie, it would not benefit them since the cookie is encrypted. The encrypted session data may be stored either in Kong or the cookie itself.
 
-## Configuration to Use the Sessions Plugin with the Dev Portal
+## Configuration to Use the Sessions Plugin with the Dev Portal {#portal-session-conf}
 
 To enable sessions authentication, configure the following:
 

@@ -14,6 +14,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -32,6 +33,7 @@ kong_version_compatibility:
         - 0.9.x
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -66,7 +68,7 @@ params:
 
 The plugin already includes a basic list of rules that will be checked on every request. You can find this list on GitHub at [https://github.com/Kong/kong/blob/master/kong/plugins/bot-detection/rules.lua](https://github.com/Kong/kong/blob/master/kong/plugins/bot-detection/rules.lua).
 
-[api-object]: /latest/admin-api/#api-object
-[configuration]: /latest/configuration
-[consumer-object]: /latest/admin-api/#consumer-object
+[api-object]: /gateway-oss/latest/admin-api/#api-object
+[configuration]: /gateway-oss/latest/configuration
+[consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

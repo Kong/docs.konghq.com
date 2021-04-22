@@ -1,6 +1,5 @@
 ---
 title: Generating Kong Declarative Config with Kong Studio
-redirect_from: "/studio/1.0.x/dec-conf-studio/"
 ---
 
 Traditionally, Kong Gateway has always required a database, either PostgreSQL or Cassandra, to store entities such as Routes, Services, and Plugins during runtime. The database settings are typically stored in a configuration file called `kong.conf`.

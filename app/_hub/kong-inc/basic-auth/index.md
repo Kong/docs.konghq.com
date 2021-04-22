@@ -5,15 +5,9 @@ version: 2.2.0
 
 desc: Add Basic Authentication to your Services
 description: |
-  Add Basic Authentication to a Service or a Route with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
+  Add Basic Authentication to a Service or a Route with username and password protection. The plugin
+  will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in that order).
 
-  <div class="alert alert-warning">
-    <strong>Note:</strong> The functionality of this plugin as bundled
-    with versions of Kong prior to 0.14.0 and Kong Enterprise prior to 0.34
-    differs from what is documented herein. Refer to the
-    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
-    for details.
-  </div>
 
 type: plugin
 categories:
@@ -22,6 +16,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x      
         - 2.1.x
@@ -47,17 +42,13 @@ kong_version_compatibility:
         - 0.2.x
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
-        - 0.34-x
-        - 0.33-x
-        - 0.32-x
-        - 0.31-x
 
 params:
   name: basic-auth
@@ -291,7 +282,7 @@ Credential for which to get the associated [Consumer][consumer-object].
 Note that the `username` accepted here is **not** the `username` property of a
 Consumer.
 
-[configuration]: /latest/configuration
-[consumer-object]: /latest/admin-api/#consumer-object
+[configuration]: /gateway-oss/latest/configuration
+[consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
 [acl-associating]: /plugins/acl/#associating-consumers
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

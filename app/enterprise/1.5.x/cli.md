@@ -1,6 +1,5 @@
 ---
 title: CLI Reference
-skip_read_time: true
 ---
 
 ## Introduction

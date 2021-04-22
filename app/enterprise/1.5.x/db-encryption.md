@@ -1,6 +1,5 @@
 ---
 title: Keyring & Data Encryption
-skip_read_time: true
 ---
 
 ## Introduction

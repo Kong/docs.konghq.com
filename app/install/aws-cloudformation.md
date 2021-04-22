@@ -162,4 +162,4 @@ stored with the declarative configuration to bootstrap all the Kong instances.
 
 7. **Use Kong**
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/gateway-oss/latest/getting-started/quickstart).

@@ -44,7 +44,7 @@ breadcrumbs:
     [Configure][configuration] Kong so it can connect to your database. Kong supports
     [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and
     [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as datastores, and
-    can also run in [DB-less mode](/{{site.data.kong_latest.release}}/db-less-and-declarative-config/)
+    can also run in [DB-less mode](/gateway-oss/latest/db-less-and-declarative-config/)
 
     If you are using Postgres, provision a database and a user before starting Kong:
 
@@ -74,7 +74,7 @@ breadcrumbs:
 
     **Without a database**
 
-    If you are going to run Kong in [DB-less mode](/{{site.data.kong_latest.release}}/db-less-and-declarative-config/),
+    If you are going to run Kong in [DB-less mode](/gateway-oss/latest/db-less-and-declarative-config/),
     you should start by generating a declarative config file. The following command will generate a `kong.yml`
     file in your current folder. It contains instructions about how to populate it.
 
@@ -104,6 +104,6 @@ breadcrumbs:
     $ curl -i http://localhost:8001/
     ```
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/gateway-oss/latest/getting-started/quickstart).
 
-[configuration]: /{{site.data.kong_latest.release}}/configuration#database
+[configuration]: /gateway-oss/latest/configuration#database

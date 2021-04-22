@@ -5,7 +5,6 @@
 #  the files in https://github.com/Kong/docs.konghq.com/tree/master/autodoc-conf-ee
 #
 title: Configuration Reference for Kong Gateway (Enterprise)
-skip_read_time: true
 ---
 
 ## Configuration loading
@@ -725,7 +724,6 @@ its entry will be removed.
 
 ---
 
-
 ### NGINX section
 
 #### proxy_listen
@@ -835,6 +833,7 @@ Some suffixes can be specified for each pair:
   necessary to raise `net.core.somaxconn` at the same time to match or exceed
   the `backlog` number set.
 
+  
 **Note:** The `ssl` suffix is not supported, and each address/port will accept
 TCP with or without TLS enabled.
 
@@ -2158,6 +2157,94 @@ attempts allowed.
 
 ---
 
+#### admin_gui_header_txt
+
+Kong Manager Header Banner
+Sets text for Kong Manager Header Banner. Header Banner is not shown if this config is empty.
+
+**Default:** none
+
+---
+
+#### admin_gui_header_bg_color
+
+Kong Manager Header Background Color 
+Sets background color for Kong Manager Header Banner.
+Accepts css color keyword, #-hexadecimal or rgb format. Invalid values are ignored by Manager.
+
+**Default:** none
+
+---
+
+#### admin_gui_header_txt_color
+
+Kong Manager Header Text Color
+Sets text color for Kong Manager Header Banner.
+
+Accepts css color keyword, #-hexadecimal or rgb format. Invalid values are
+ignored by Kong Manager.
+
+**Default:** none
+
+---
+
+#### admin_gui_footer_txt
+
+Kong Manager Footer Text
+Sets text for Kong Manager Footer Banner. Footer Banner is not shown if this config is empty
+
+**Default:** none
+
+---
+
+#### admin_gui_footer_bg_color
+
+Kong Manager Footer Background Color
+Sets background color for Kong Manager Footer Banner.
+
+Accepts css color keyword, #-hexadecimal or rgb format. Invalid values are
+ignored by Manager.
+
+**Default:** none
+
+---
+
+#### admin_gui_footer_txt_color
+
+Kong Manager Footer Text Color
+Sets text color for Kong Manager Footer Banner.
+
+Accepts css color keyword, #-hexadecimal or rgb format. Invalid values are
+ignored by Kong Manager.
+
+**Default:** none
+
+---
+
+#### admin_gui_login_banner_title
+
+Kong Manager Login Banner Title Text
+Sets title text for Kong Manager Login Banner.
+
+Login Banner is not shown if both `admin_gui_login_banner_title` and
+`admin_gui_login_banner_body` are empty.
+
+**Default:** none
+
+---
+
+#### admin_gui_login_banner_body
+
+Kong Manager Login Banner Body Text
+Sets body text for Kong Manager Login Banner.
+
+Login Banner is not shown if both `admin_gui_login_banner_title` and
+`admin_gui_login_banner_body` are empty.
+
+**Default:** none
+
+---
+
 
 ### Vitals section
 
@@ -3062,9 +3149,22 @@ Trace types not defined in this list are ignored, regardless of their lifetime.
 The default special value of `all` results in all trace types being written,
 regardless of type.
 
-Included trace types are: `query`, `legacy_query`, `router`,
-`balancer.getPeer`, `balancer.toip`, `connect.toip`, `access.before`, and
-`access.after`, `cassandra_iterate`, and `plugin`.
+The following trace types are included:
+
+- `query`: trace the database query
+- `legacy_query`: (deprecated) trace the database query with legacy DAO
+- `router`: trace Kong routing the request; internal routing time
+- `balancer`: trace the execution of the overall balancer phase
+- `balancer.getPeer`: trace Kong selecting an upstream peer from the
+  ring-balancer
+- `balancer.toip`: trace balancer to resolve peer's host to IP
+- `connect.toip`: trace cosocket to resolve target's host to IP
+- `access.before`: trace the preprocessing of access phase, like parameter
+  parsing, route matching, and balance preparation
+- `access.after`: trace the postprocess of access phase, like balancer
+  execution and internal variable assigning
+- `cassandra_iterate`: trace Cassandra driver to paginate over results
+- `plugin`: trace plugins phase handlers
 
 **Default:** `all`
 
@@ -3244,35 +3344,46 @@ Defines the token value used to communicate with the v2 KV Vault HTTP(S) API.
 
 #### untrusted_lua
 
-Accepted values are:
+Controls loading of Lua functions from admin-supplied sources such as the Admin
+API. LuaJIT bytecode loading is always disabled.
 
-- `off`: disallow any loading of Lua functions from admin supplied sources
-  (such as via the Admin API).
-
-Note using the `off` option will render plugins such as Serverless Functions
-unusable.
-
-- `sandbox`: allow loading of Lua functions from admin supplied sources, but
-  use a sandbox when executing them. The sandboxed function will have restricted
-  access to the global environment and only have access to standard Lua
-  functions that will generally not cause harm to the Kong node.
-
-In this mode, the `require` function inside the sandbox only allows loading
-external Lua modules that are explicitly listed in
-`untrusted_lua_sandbox_requires` below.
-
-LuaJIT bytecode loading is disabled.
-
-Warning: LuaJIT is not designed as a secure runtime for running malicious code,
-therefore, you should properly protect your Admin API endpoint even with
+**Warning:** LuaJIT is not designed as a secure runtime for running malicious
+code, therefore you should properly protect your Admin API endpoint even with
 sandboxing enabled. The sandbox only provides protection against trivial
 attackers or unintentional modification of the Kong global environment.
 
-- `on`: allow loading of Lua functions from admin supplied sources and do not
-  use a sandbox when executing them. Functions will have unrestricted access to
-  global environment and able to load any Lua modules.
+Accepted values are: `off`, `sandbox`, or `on`:
 
-LuaJIT bytecode loading is disabled.
+* `off`: Disallow loading of any arbitrary Lua functions. The `off` option
+disables any functionality that runs arbitrary Lua code, including the
+Serverless Functions plugins and any transformation plugin that allows custom
+Lua functions.
+
+* `sandbox`: Allow loading of Lua functions, but use a sandbox when executing
+them. The sandboxed function has restricted access to the global environment and
+only has access to standard Lua functions that will generally not cause harm to
+the Kong Gateway node.
+
+* `on`: Functions have unrestricted access to the global environment and can
+load any Lua modules. This is similar to the behavior in Kong Gateway prior to
+2.3.0.
+
+The default `sandbox` environment does not allow importing other modules or
+libraries, or executing anything at the OS level (for example, file read/write).
+The global environment is also not accessible.
+
+Examples of `untrusted_lua = sandbox` behavior:
+
+* You can't access or change global values such as
+`kong.configuration.pg_password` * You can run harmless lua: `local foo = 1 +
+1`. However, OS level functions are not allowed, like: `os.execute('rm -rf
+/*')`.
+
+For a full allowed/disallowed list, see:
+https://github.com/kikito/sandbox.lua/blob/master/sandbox.lua
+
+To customize the sandbox environment, use the `untrusted_lua_sandbox_requires`
+and `untrusted_lua_sandbox_environment` parameters below.
 
 **Default:** `sandbox`
 
@@ -3283,7 +3394,22 @@ LuaJIT bytecode loading is disabled.
 Comma-separated list of modules allowed to be loaded with `require` inside the
 sandboxed environment. Ignored if `untrusted_lua` is not `sandbox`.
 
-Note: certain modules, when allowed, may cause sandbox escaping trivial.
+For example, say you have configured the Serverless pre-function plugin and it
+contains the following `requires`:
+
+```
+local template = require "resty.template"
+local split = require "kong.tools.utils".split
+```
+
+To run the plugin, add the modules to the allowed list:
+
+```
+untrusted_lua_sandbox_requires = resty.template, kong.tools.utils
+```
+
+**Warning:** Allowing certain modules may create opportunities to escape the
+sandbox. For example, allowing `os` or `luaposix` may be unsafe.
 
 **Default:** none
 
@@ -3294,8 +3420,8 @@ Note: certain modules, when allowed, may cause sandbox escaping trivial.
 Comma-separated list of global Lua variables that should be made available
 inside the sandboxed environment. Ignored if `untrusted_lua` is not `sandbox`.
 
-Note: certain variables, when made available, may cause sandbox escaping
-trivial.
+**Warning**: Certain variables, when made available, may create opportunities
+to escape the sandbox.
 
 **Default:** none
 

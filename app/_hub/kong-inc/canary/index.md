@@ -3,6 +3,7 @@
 name: Canary Release
 publisher: Kong Inc.
 version: 2.2.x
+# internal handler version 0.3.0 4/7/2021
 
 desc: Slowly roll out software changes to a subset of users
 description: |
@@ -23,6 +24,7 @@ categories:
 kong_version_compatibility:
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x

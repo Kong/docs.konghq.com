@@ -14,7 +14,7 @@ the installation and configuration.
 steps to configure PostgreSQL. For assistance in setting up Cassandra, please contact your Sales or Support representative.
 
 This software is governed by the
-[Kong Software License Agreement](https://konghq.com/enterprisesoftwarelicense/).
+[Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
 
 ### Deployment options
 
@@ -251,29 +251,38 @@ This setting needs to resolve to a network path that will reach the RHEL host.
 
 <div class="alert alert-ee">
 <img class="no-image-expand" src="/assets/images/icons/documentation/icn-enterprise-blue.svg" alt="Enterprise" />
-This feature is only available with a {{site.konnect_product_name}} Enterprise subscription.
+This feature is only available with a
+<a href="/enterprise/{{page.kong_version}}/deployment/licensing">
+{{site.konnect_product_name}} Enterprise subscription</a>.
 </div>
 
-The Dev Portal can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the DNS, or IP address, of the RHEL system. For example:
+1. [Deploy a license](/enterprise/{{page.kong_version}}/deployment/licenses/deploy-license).
 
-```
-portal = on
-portal_gui_host = <DNSorIP>:8003
-```
+2. Enable the Dev Portal by setting the `portal` property to `on` and the
+`portal_gui_host` property to the DNS or IP address of the RHEL system. For
+example:
 
-1. Restart {{site.base_gateway}} for the setting to take effect:
+    ```
+    portal = on
+    portal_gui_host = <DNSorIP>:8003
+    ```
+
+3. Restart {{site.base_gateway}} for the setting to take effect:
 
     ```bash
     $ sudo /usr/local/bin/kong restart
     ```
 
-2. The final step is to enable the Developer Portal. To do this, execute the following command, updating `DNSorIP` to reflect the IP or valid DNS for the RHEL system.
+4. Enable the Dev Portal for a workspace. Execute the following command,
+ updating `DNSorIP` to reflect the IP or valid DNS for the RHEL system:
 
     ```bash
-    $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default   --data "config.portal=true"
+    $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default \
+      --data "config.portal=true"
     ```
 
-3. You can now access the Developer Portal on the default workspace with a URL like:
+5. Access the Dev Portal for the default workspace using the following URL,
+substituting your own DNS or IP:
 
     ```
     http://<DNSorIP>:8003/default

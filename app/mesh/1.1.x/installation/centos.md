@@ -40,8 +40,8 @@ $ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 {% endnavtab %}
 {% endnavtabs %}
 
-{% include /md/mesh/1.1.x/install-universal-run.md %}
+{% include /md/mesh/install-universal-run.md %}
 
-{% include /md/mesh/1.1.x/install-universal-verify.md %}
+{% include /md/mesh/install-universal-verify.md %}
 
-{% include /md/mesh/1.1.x/install-universal-quickstart.md %}
+{% include /md/mesh/install-universal-quickstart.md %}

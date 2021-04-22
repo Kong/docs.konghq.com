@@ -1,6 +1,5 @@
 ---
 title: OpenID Connect with Google
-layout: oidc
 IDP: Google
 ---
 
