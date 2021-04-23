@@ -52,6 +52,7 @@ description: |
   - [Auth0][auth0]
   - [Amazon AWS Cognito][cognito]
   - [Connect2id][connect2id]
+  - [Curity][curity]
   - [Dex][dex]
   - [Gluu][gluu]
   - [Google][google]
@@ -72,6 +73,7 @@ description: |
   work, even if it is not specifically tested against it. Let Kong know if you
   want your provider to be tested and added to the list.
 
+  [curity]: https://curity.io/resources/learn/openid-connect-overview/
   [connect]: http://openid.net/specs/openid-connect-core-1_0.html
   [oauth2plugin]: /hub/kong-inc/oauth2/
   [oauth2]: https://tools.ietf.org/html/rfc6749
