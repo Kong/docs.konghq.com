@@ -4,18 +4,11 @@ title: Install Kong Enterprise and on Amazon Linux
 
 ## Installation Steps
 
-```bash
-$ sudo yum update
-$ sudo vi /etc/yum.repos.d/bintray-kong-kong-enterprise-edition-aws.repo
-[kong-enterprise]
-name = kong-enterprise
-baseurl = https://<BINTRAY_USER:<PASSWORD>@kong.bintray.com/kong-enterprise-edition-aws
-gpgcheck = 0
-enabled = 1
-```
+{% include /md/enterprise/install.md %}
+
+Install Postgres
 
 ```bash
-$ sudo yum install kong-enterprise-edition
 $ sudo yum install postgresql95 postgresql-server95
 $ sudo service postgresql95 initdb
 $ sudo service postgresql95 start

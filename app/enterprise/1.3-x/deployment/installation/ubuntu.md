@@ -22,23 +22,20 @@ To complete this installation you will need:
 
 ## Step 1. Prepare to Install Kong Enterprise and Download the License File
 
-Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will assign credentials to you.
-
 ### Download the Debian package
 
-1. Go to: [https://bintray.com/kong/kong-enterprise-edition-deb/ubuntu](https://bintray.com/kong/kong-enterprise-edition-deb/ubuntu).
-2. Select the latest Kong version from the list. Kong Enterprise versions are listed in reverse chronological order.
-3. From the Kong version detail page, select the **Files** tab.
-4. Click the .deb file matching your target Ubuntu OS version. e.g. `kong-enterprise-edition-1.3.0.1.bionic.all.deb` for the Ubuntu Bionic Beaver release.
-5. Copy the .deb file to your home directory on the Ubuntu system. You may use a command like:
+1. Download the .deb file
 
-    ```bash
-    $ scp kong-enterprise-edition-1.3.0.1.bionic.all.deb <ubuntu_user>@<server>:~
-    ```
+    {% include /md/enterprise/install.md %}
+
+2. Save the RPM file.
+3. Copy the .deb file to your home directory on the Ubuntu system. 
 
 ### Download your Kong Enterprise License
 
-1. Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
+1. Download your license file
+
+    {% include /md/enterprise/license.md license='<1.3' %}
 
 2. Securely copy the license file to your home directory on the Ubuntu system:
 

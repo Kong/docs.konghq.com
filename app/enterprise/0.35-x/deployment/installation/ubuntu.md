@@ -23,22 +23,12 @@ To complete this guide you will need:
 
 1. Download the .deb package
 
-    Log in to [Bintray](http://bintray.com) to download the latest Kong
-    Enterprise .deb for the desired version of Ubuntu. Your **Sales** or
-    **Support** contact will email this credential to you.
-
-    Copy the file to your home directory:
-
-    ```
-    $ scp kong-enterprise-edition-0.35.xxx.xxx.deb <ubuntu user>@<serverip:~
-    ```
-
+    {% include /md/enterprise/install.md %}
+   
 2. Obtain your Kong Enterprise license
 
-    If you do not already have your license file, you can download it from your
-    account files in Bintray 
-    `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
-
+    {% include /md/enterprise/license.md license='<1.3' %}
+    
     Ensure your license file is in proper `JSON`:
 
     ```json

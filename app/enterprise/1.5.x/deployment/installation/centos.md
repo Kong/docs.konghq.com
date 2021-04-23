@@ -4,7 +4,6 @@ title: Install Kong Enterprise on CentOS
 
 ## Introduction
 
-
 This guide walks through downloading, installing, and starting **Kong Enterprise** on **CentOS**
 
 The configuration shown in this guide is intended as an example. Depending on your
@@ -25,8 +24,7 @@ To complete this installation you will need:
 
 There are two options to install Kong Enterprise on CentOS.
 
-{% navtabs %}
-{% navtab Download RPM file %}
+### Download RPM file %}
 
 1. Go to: [{{ site.links.download }}/kong/kong-enterprise-edition-rpm/centos]({{ site.links.download }}/kong/kong-enterprise-edition-rpm/centos).
 2. Select the latest Kong version from the list.
@@ -60,20 +58,6 @@ There are two options to install Kong Enterprise on CentOS.
     ```
     kong-enterprise-edition-{{page.kong_versions[7].version}}.el7.noarch.rpm: rsa sha1 (md5) pgp md5 OK
     ```
-{% endnavtab %}
-{% navtab Download Kong repo file and add to Yum repo %}
-
-1. Download the Kong Enterprise RPM repo file from:
-
-    [https://bintray.com/kong/kong-enterprise-edition-rpm/rpm](https://bintray.com/kong/kong-enterprise-edition-rpm/rpm)
-
-2. Securely copy the repo file to your home directory on the CentOS system:
-
-    ```
-    $ scp bintray--kong-kong-enterprise-edition-rpm.repo <centos user>@<server>:~
-    ```
-{% endnavtab %}
-{% endnavtabs %}
 
 ### Prepare your license
 
@@ -85,32 +69,13 @@ $ scp license.json <centos username>@<server>:~
 
 ## Step 2. Install Kong Enterprise
 
-{% navtabs %}
-{% navtab Using a downloaded RPM package %}
+### Using a downloaded RPM package %}
 
 1. Execute a command similar to the following, using the appropriate RPM file name you downloaded:
 
     ```bash
     $ sudo yum install /path/to/package.rpm --nogpgcheck
     ```
-{% endnavtab %}
-{% navtab Using Yum repo %}
-
-1. Move the repo file in your home directory to the /etc/yum.repos.d/ directory:
-
-    ```bash
-    $ sudo mv bintray--kong-kong-enterprise-edition-rpm.repo /etc/yum.repos.d/
-    ```
-
-2. Begin the installation using the Yum repository:
-
-    ```bash
-    $ sudo yum update -y
-    $ sudo yum install kong-enterprise-edition
-    ```
-
-{% endnavtab %}
-{% endnavtabs %}
 
 ### Copy the License File
 
