@@ -39,7 +39,6 @@ To install from the command line
 ```bash
 $ echo "deb [trusted=yes] {{ site.links.download }}/gateway-2.x-{{ include.distribution }}-$(lsb_release -sc)/ default all" | sudo tee /etc/apt/sources.list.d/kong.list 
 $ sudo apt-get update
-$ sudo apt-cache search kong
 $ sudo apt install -y kong={{site.data.kong_latest.version}}
 ```
 
