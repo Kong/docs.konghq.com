@@ -47,7 +47,7 @@ Here is a quick example showing how to build a (disposable) test setup:
     $ vagrant ssh -c "KONG_DATABASE=off kong start"
     ```
 
-    If you want to include a [declarative configuration file](/{{site.data.kong_latest.release}}/db-less-and-declarative-config/),
+    If you want to include a [declarative configuration file](/gateway-oss/latest/db-less-and-declarative-config/),
     put it inside a `./kong/kong.yml` folder, and it will be available through the `/kong/kong.yml` path in Vagrant:
 
     ```bash
@@ -70,4 +70,4 @@ Here is a quick example showing how to build a (disposable) test setup:
     $ curl http://127.0.0.1:8001
     ```
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/gateway-oss/latest/getting-started/quickstart).

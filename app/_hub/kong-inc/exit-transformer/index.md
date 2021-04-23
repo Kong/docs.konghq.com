@@ -18,6 +18,7 @@ categories:
 kong_version_compatibility:
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -31,6 +32,7 @@ params:
   consumer_id: false
   yaml_examples: false
   k8s_examples: false
+  konnect_examples: false
   protocols: ["http", "https"]
   config:
     - name: functions

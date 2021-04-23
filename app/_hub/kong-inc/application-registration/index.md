@@ -36,6 +36,7 @@ categories:
 kong_version_compatibility:
   enterprise_edition:
     compatible:
+    - 2.4.x
     - 2.3.x
     - 2.2.x
     - 2.1.x
@@ -45,6 +46,7 @@ params:
   service_id: true
   consumer_id: false
   route_id: false
+  konnect_examples: false
   protocols: ["http", "https", "grpc", "grpcs"]
   dbless_compatible: no
   config:

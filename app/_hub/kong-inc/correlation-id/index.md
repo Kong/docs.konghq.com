@@ -14,6 +14,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -33,6 +34,7 @@ kong_version_compatibility:
         - 0.8.x
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -49,21 +51,24 @@ params:
   dbless_compatible: yes
   config:
     - name: header_name
-      required: false
+      required: true
       default: "`Kong-Request-ID`"
       value_in_examples: Kong-Request-ID
+      datatype: string
       description: |
         The HTTP header name to use for the correlation ID.
     - name: generator
-      required: false
+      required: true
       default: "`uuid#counter`"
       value_in_examples: uuid#counter
+      datatype: string
       description: |
-        The generator to use for the correlation ID. Accepted values are `uuid`, `uuid#counter` and `tracker` See [Generators](#generators).
+        The generator to use for the correlation ID. Accepted values are `uuid`, `uuid#counter`, and `tracker`. See [Generators](#generators).
     - name: echo_downstream
-      required: false
+      required: true
       default: "`false`"
       value_in_examples: false
+      datatype: boolean
       description: |
         Whether to echo the header back to downstream (the client).
 
@@ -75,7 +80,7 @@ When enabled, this plugin will add a new header to all of the requests processed
 
 This header is always added to calls to your upstream services, and optionally echoed back to your clients according to the `config.echo_downstream` setting.
 
-If a header bearing the same name is already present in the client request, it is honored and this plugin will **not** temper with it.
+If a header bearing the same name is already present in the client request, it is honored and this plugin will **not** tamper with it.
 
 ## Generators
 

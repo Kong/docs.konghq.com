@@ -1,6 +1,5 @@
 ---
 title: Configuration Property Reference for Kong Enterprise
-skip_read_time: true
 ---
 
 ## General

@@ -72,6 +72,6 @@ $ echo $PROXY_IP
 http://192.168.99.100:32728
 ```
 
-Once you've installed teh {{site.kic_product_name}}, please follow our
+Once you've installed the {{site.kic_product_name}}, please follow our
 [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn
 about how to use the Ingress Controller.

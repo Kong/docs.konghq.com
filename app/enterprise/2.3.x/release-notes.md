@@ -98,8 +98,8 @@ These two parameters used to be hardcoded and set to 10m.
   serialization in a custom plugin.
 
 ## Deprecated features
-The Kong Studio plugin bundle is deprecated and will be
-replaced with tighter Insomnia integration in a future release.
+The Kong Studio plugin bundle is deprecated. It is
+replaced with tighter Insomnia integration in [Insomnia 2021.1.0](https://insomnia.rest/changelog#2021.1.0).
 
 ## Changelog
 For a complete list of features, fixes, known issues and workarounds, and other

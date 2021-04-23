@@ -95,6 +95,13 @@ we will assume its name is `go-hello`. You can find example Go plugins [here][go
 go build -buildmode plugin go-hello.go
 ```
 
+Note: When installing the `go-pluginserver` binary globally, you need to
+enable `go.mod` support:
+
+```
+GO111MODULE=on go get -d -v github.com/Kong/go-pluginserver
+```
+
 #### Environment Consistency Constraints
 
 Golang development is well known for its low entry barrier and ease of

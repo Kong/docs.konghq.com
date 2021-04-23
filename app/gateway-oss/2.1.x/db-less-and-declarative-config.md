@@ -1,6 +1,5 @@
 ---
 title: DB-less and Declarative Configuration
-skip_read_time: true
 ---
 
 

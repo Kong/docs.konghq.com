@@ -66,7 +66,7 @@ Each cloud-provider has some minor variations in how they allow configuring spec
 
 
 ## Using a database for Kong for Kubernetes
-If you are using a database, we recommend running Kong in the in-memory mode (also known as DB-less) inside Kubernetes as all of the configuration is stored in the Kubernetes control-plane. This setup simplifies Kong’s operations, so no need to worry about Database provisioning, backup, availability, security, etc.
+If you don't want to use a database, we recommend running Kong in the in-memory mode (also known as DB-less) inside Kubernetes as all of the configuration is stored in the Kubernetes control-plane. This setup simplifies Kong’s operations, so no need to worry about Database provisioning, backup, availability, security, etc.
 If you decide to use a database, we recommend that you run the database outside of Kubernetes. You can use a service like Amazon’s RDS or a similar managed Postgres service from your cloud-provider to automate database operations.
 
 We do not recommend using Kong with Cassandra on Kubernetes deployments, as the features covered by Kong’s use of Cassandra are handled by other means in Kubernetes.

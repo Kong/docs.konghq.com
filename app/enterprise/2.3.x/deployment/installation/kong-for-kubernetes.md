@@ -1,6 +1,5 @@
 ---
 title: Installing Kong for Kubernetes Enterprise
-skip_read_time: true
 ---
 
 <div class="alert alert-ee warning">
@@ -32,7 +31,7 @@ You can install Kong for Kubernetes Enterprise using YAML with `kubectl`, with
 OpenShift `oc`, or [with Helm](https://github.com/Kong/charts/tree/main/charts/kong).
 
 This software is governed by the
-[Kong Software License Agreement](https://konghq.com/enterprisesoftwarelicense/).
+[Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
 
 ### Deployment options
 

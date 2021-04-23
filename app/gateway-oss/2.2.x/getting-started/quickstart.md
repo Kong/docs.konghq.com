@@ -1,6 +1,5 @@
 ---
 title: 5-minute Quickstart
-skip_read_time: true
 ---
 
 <div class="alert alert-warning">

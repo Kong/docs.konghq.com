@@ -1,7 +1,6 @@
 ---
 title: Download and Install the Kong Studio Bundle
 toc: false
-redirect_from: "/studio/1.0.x/download-install/"
 ---
 
 In this guide, you will install:

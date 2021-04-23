@@ -69,44 +69,44 @@ affect your current installation.
 
 **Note:** There is not an upgrade migration path from 1.5.x to 2.1.x-beta.
 
-{{site.ee_product_name}} supports the zero downtime migration model. This means
-that while the migration is in process, you have two Kong clusters with different
-versions running that are sharing the same database. This is sometimes referred
-to as the
-[blue-green migration model](https://en.wikipedia.org/wiki/Blue-green_deployment).
+Due to internal changes, the table schemas used by Kong 2.1.x are incompatible
+with those used by Kong 1.5.x. Migrating using the usual commands `kong
+migrations up` and `kong migrations finish` will require a small window of
+downtime, since the old and new versions cannot use the database at the same
+time.
 
-The migrations are designed so that there is no need to fully copy
-the data. The new version of {{site.ee_product_name}} is able to use the data as it
-is migrated, and the old
-Kong cluster keeps working until it is finally time to decommission it. For this
-reason, the full migration is split into two commands:
+Alternatively, if you are able to perform a rolling restart of your Kong 1.5.x
+cluster you can use the following steps to cache entities and continue serving
+traffic while the upgrade is performed:
 
-- `kong migrations up`: performs only non-destructive operations
-- `kong migrations finish`: puts the database in the final expected state (DB-less
-  mode is not supported in {{site.ee_product_name}})
+1. Update the Kong 1.5.x cluster and set the
+   [`db_cache_warmup_entities`](https://docs.konghq.com/enterprise/1.5.x/property-reference/#db_cache_warmup_entities)
+   configuration value. Specify all the entities Kong has configured.
+2. Perform a rolling [restart](https://docs.konghq.com/1.5.x/cli/#kong-restart) of the Kong 1.5.x nodes
+   to pick up this new configuration value:
 
-1. Download 2.1.x, and configure it to point to the same datastore as your old
+   ```shell
+   $ kong restart [-c configuration_file]
+   ```
+
+   Monitor the `pg_stat_statements` on the Postgres server to ensure no
+   additional entities need to be warmed in the cache (added to the
+   `db_cache_warmup_entities` configuration).
+
+3. From this point onward, it is no longer possible to start nodes in the old
+   1.5 (or 2.1.x-beta) cluster or access its admin API. Traffic will continue to
+   be served.
+4. Download 2.1.x, and configure it to point to the same datastore as your old
    1.5.x (or 2.1.x-beta) cluster.
-2. Run `kong migrations up`.
-3. After that finishes running, both the old (1.5) and new (2.1) clusters can
-   now run simultaneously on the same datastore. Start provisioning 2.1 nodes,
-   but do _not_ use their Admin API yet.
-
-   **Important:** If you need to make Admin API requests,
-   these should be made to the old cluster's nodes. This prevents
-   the new cluster from generating data that is not understood by the old
-   cluster.
-
-4. Gradually divert traffic away from your old nodes, and redirect traffic to
+5. Run `kong migrations up` on the 2.1.x cluster.
+6. Run `kong migrations finish` on the 2.1.x cluster. From now on, you can
+   safely make Admin API requests to your 2.1 nodes.
+7. Start provisioning 2.1 nodes.
+8. Gradually divert traffic away from your old nodes, and redirect traffic to
    your 2.1 cluster. Monitor your traffic to make sure everything
    is going smoothly.
-5. When your traffic is fully migrated to the 2.1 cluster, decommission your
+9. When your traffic is fully migrated to the 2.1 cluster, decommission your
    old 1.5 (or 2.1.x-beta) nodes.
-6. From your 2.1 cluster, run `kong migrations finish`. From this point onward,
-   it is no longer possible to start nodes in the old 1.5 (or 2.1.x-beta) cluster
-   that still points to the same datastore. Run this command _only_ when you are
-   confident that your migration was successful. From now on, you can safely make
-   Admin API requests to your 2.1 nodes.
 
 ### Installing 2.1 on a fresh datastore
 

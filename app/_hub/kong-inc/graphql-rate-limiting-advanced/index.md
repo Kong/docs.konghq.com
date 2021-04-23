@@ -2,12 +2,14 @@
 
 name: GraphQL Rate Limiting Advanced
 publisher: Kong Inc.
-version: 1.3-x
+version: 2.3.x
+# internal handler version 0.2.3
 
 desc: Provide rate limiting for GraphQL queries
 description: |
-  The GraphQL Rate Limiting Advanced plugin is an extension of the
-  Rate Limiting Advanced plugin that provides rate limiting for GraphQL queries.
+  The GraphQL Rate Limiting Advanced plugin provides rate limiting for GraphQL queries. The
+  GraphQL Rate Limiting plugin extends the
+  [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) plugin.
 
 type: plugin
 enterprise: true
@@ -17,6 +19,7 @@ categories:
 kong_version_compatibility:
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -29,114 +32,165 @@ params:
   route_id: true
   config:
     - name: cost_strategy
-      required:
+      required: true
       default: "default"
       value_in_examples:
+      datatype: string
       description: |
         Strategy to use to evaluate query costs. Either `default` or
         `node_quantifier`. See [default](/hub/kong-inc/graphql-rate-limiting-advanced/#default) and
         [node_quantifier](/hub/kong-inc/graphql-rate-limiting-advanced/#node_quantifier) respectively.
     - name: max_cost
-      required:
+      required: false
       default: 0
       value_in_examples:
+      datatype: number
       description: |
         A defined maximum cost per query. 0 means unlimited.
     - name: score_factor
-      required:
+      required: false
       default: 1.0
       value_in_examples:
+      datatype: number
       description: |
-        A scoring factor to multiply (or divide) the cost.
+        A scoring factor to multiply (or divide) the cost. The `score_factor` must always be greater than 0.
     - name: limit
       required: true
       default:
       value_in_examples: [ "5" ]
+      datatype: array of number elements
       description: |
         One or more requests-per-window limits to apply.
     - name: window_size
       required: true
       default:
       value_in_examples: [ "30" ]
+      datatype: array of number elements
       description: |
         One or more window sizes to apply a limit to (defined in seconds).
     - name: identifier
-      required:
+      required: true
       default: consumer
       value_in_examples:
+      datatype: string
       description: |
-        How to define the rate limit key. Can be `ip`, `credential`, `consumer`, `service`, or `header`.
+        How to define the rate limit key. Can be `ip`, `credential`, `consumer`.
     - name: header_name
       required: semi
+      datatype: string
       description: |
         Header name to use as the rate limit key when the `header` identifier is defined.
     - name: dictionary_name
-      required:
+      required: true
       default: kong_rate_limiting_counters
       value_in_examples:
+      datatype: string
       description: |
         The shared dictionary where counters will be stored until the next sync cycle.
     - name: sync_rate
       required: true
       default:
       value_in_examples: -1
+      datatype: number
       description: |
         How often to sync counter data to the central data store. A value of 0
         results in synchronous behavior; a value of -1 ignores sync behavior
         entirely and only stores counters in node memory. A value greater than
-        0 will sync the counters in that many number of seconds.
+        0 syncs the counters in that many number of seconds.
     - name: namespace
       required: false
       default: random string
       value_in_examples:
+      datatype: string
       description: |
         The rate limiting library namespace to use for this plugin instance. Counter data and sync configuration is shared in a namespace.
     - name: strategy
       required:
       default: cluster
       value_in_examples:
+      datatype: string
       description: |
         The sync strategy to use; `cluster` and `redis` are supported.
     - name: redis.host
       required: semi
       default:
       value_in_examples:
+      datatype: string
       description: |
         Host to use for Redis connection when the `redis` strategy is defined.
     - name: redis.port
       required: semi
       default:
       value_in_examples:
+      datatype: integer
       description: |
         Port to use for Redis connection when the `redis` strategy is defined.
+    - name: redis.ssl
+      required: false
+      default: false
+      value_in_examples:
+      datatype: boolean
+      description: |
+        If set to true, then uses SSL to connect to Redis.
+
+        **Note:** This parameter is only available for Kong Enterprise versions
+        2.2.x and later.
+    - name: redis.ssl_verify
+      required: false
+      default: false
+      value_in_examples:
+      datatype: boolean
+      description: |
+        If set to true, then verifies the validity of the server SSL certificate. Note that you need to configure the
+        [lua_ssl_trusted_certificate](/enterprise/latest/property-reference/#lua_ssl_trusted_certificate)
+        to specify the CA (or server) certificate used by your redis server. You may also need to configure
+        [lua_ssl_verify_depth](/enterprise/latest/property-reference/#lua_ssl_verify_depth) accordingly.
+
+        **Note:** This parameter is only available for Kong Enterprise versions
+        2.2.x and later.
+    - name: redis.server_name
+      required: false
+      default:
+      value_in_examples:
+      datatype: string
+      description: |
+        Specifies the server name for the new TLS extension Server Name Indication (SNI) when connecting over SSL.
+
+        **Note:** This parameter is only available for Kong Enterprise versions
+        2.2.x and later.
     - name: redis.timeout
       required: semi
       default: 2000
       value_in_examples:
+      datatype: number
       description: |
         Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined.
     - name: redis.password
       required: semi
       default:
       value_in_examples:
+      datatype: string
       description: |
         Password to use for Redis connection when the `redis` strategy is defined. If undefined, no AUTH commands are sent to Redis.
     - name: redis.database
       required: semi
       default: 0
       value_in_examples:
+      datatype: integer
       description: |
         Database to use for Redis connection when the `redis` strategy is defined.
     - name: redis.sentinel_master
       required: semi
       default:
       value_in_examples:
+      datatype: string
       description: |
         Sentinel master to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
     - name: redis.sentinel_password
       required: semi
       default:
       value_in_examples:
+      datatype: string
       description: |
         Sentinel password to authenticate with a Redis Sentinel instance.
         **Note:** This parameter is only available for Kong Enterprise versions
@@ -145,28 +199,40 @@ params:
       required: semi
       default:
       value_in_examples:
+      datatype: string
       description: |
         Sentinel role to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
     - name: redis.sentinel_addresses
       required: semi
       default:
       value_in_examples:
+      datatype: array of string elements
       description: |
         Sentinel addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
     - name: redis.cluster_addresses
       required: semi
       default:
       value_in_examples:
+      datatype: array of string elements
       description: |
         Cluster addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis cluster.
     - name: window_type
-      required:
+      required: true
       default: sliding
       value_in_examples:
+      datatype: string
       description: |
-        This sets the time window to either `sliding` or `fixed`.
+        Sets the time window to either `sliding` or `fixed`.
+    - name: hide_client_headers
+      required: false
+      default: false
+      value_in_examples:
+      datatype: boolean
+      description: |
+        Optionally hide informative response headers. Available options: `true` or `false`.
+
   extra: |
-    > Note:  Redis configuration values are ignored if the `cluster` strategy is used.
+    > Note: Redis configuration values are ignored if the `cluster` strategy is used.
 
     **Notes:**
 
@@ -176,8 +242,8 @@ params:
 
 ---
 
-**GraphQL Rate Limiting Advanced** is an extension of
-**Rate Limiting Advanced** and provides rate limiting for
+The **GraphQL Rate Limiting Advanced** plugin is an extension of the
+**Rate Limiting Advanced** plugin and provides rate limiting for
 GraphQL queries.
 
 Due to the nature of client-specified GraphQL queries, the same HTTP request
@@ -506,7 +572,7 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
   --data config.max_cost=5000
 ```
 
-If `max_cost` needs to be updated, one can accomplish this by doing the following:
+To update `max_cost`:
 
 ```
 $ curl -X PATCH http://kong:8001/plugins/{plugin_id} \
@@ -536,7 +602,7 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
   --data config.score_factor=0.01
 ```
 
-If `score_factor` needs to be updated, one can accomplish this by doing the following:
+To update `score_factor`:
 
 ```
 $ curl -i -X PATCH http://kong:8001/plugins/{plugin_id} \

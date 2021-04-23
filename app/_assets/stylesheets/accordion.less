@@ -1,3 +1,6 @@
+@color-text: #043558;
+@color-blue: #1155CB;
+
 .accordion-container {
   position: relative;
   margin: 0;
@@ -30,7 +33,6 @@
     }
 
     a {
-      color: rgba(0, 0, 0, 0.7);
       transition: color 0.2s;
 
       &:hover {
@@ -44,20 +46,22 @@
       align-items: center;
       cursor: pointer;
       margin: 0;
-      font-size: 16px;
-      font-weight: normal;
+      color: @color-text;
+      font-size: 14px;
+      font-weight: 400;
       line-height: 30px;
 
       img {
         width: 20px;
-        margin-right: 18px;
+        max-height: 24px;
+        margin-right: 10px;
         opacity: 0.5;
-        transition: opacity 0.5s linear;
+        transition: opacity 0.25s linear;
         filter: grayscale(1);
       }
 
       a {
-        padding-right: 24px;
+        padding-right: 30px;
       }
 
       i {
@@ -66,7 +70,7 @@
         font-size: 12px;
         opacity: 0.3;
         right: 16px;
-        top: 12px;
+        top: 18px;
       }
     }
 
@@ -74,14 +78,14 @@
       overflow: hidden;
       max-height: 0;
       opacity: 0;
-      transition: all 0.5s linear;
+      transition: all 0.25s linear;
     }
 
     &.active {
       > label {
         a {
-          color: #4c4c4c;
-          font-weight: bold;
+          color: @color-blue;
+          font-weight: 600;
         }
       }
     }
@@ -90,9 +94,14 @@
   > li.accordion-item {
     border-bottom: 1px solid #ebebeb;
 
+    &:first-of-type {
+      border-top: 1px solid #ebebeb;
+    }
+
     > input {
       &:checked {
         + label {
+          color: @color-blue;
           border-left-color: rgb(0, 112, 191);
         }
       }
@@ -102,7 +111,7 @@
       font-size: 14px;
       padding: 16px 16px 16px 15px;
       border-left: 2px solid transparent;
-      transition: border-left-color 0.5s linear;
+      transition: border-left-color 0.25s linear;
 
       i {
         top: 24px;
@@ -111,7 +120,7 @@
 
     > div {
       border-left: 2px solid rgb(0, 112, 191);
-      padding-left: 22px;
+      padding-left: 46px;
     }
   }
 }

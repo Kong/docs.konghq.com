@@ -21,8 +21,9 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.4.x
         - 2.3.x
-        - 2.2.x 
+        - 2.2.x
         - 2.1.x
         - 1.5.x
         - 1.3-x
@@ -36,6 +37,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
+  konnect_examples: false
   config:
     - name: http_method
       required: false

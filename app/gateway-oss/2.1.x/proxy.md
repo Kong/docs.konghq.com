@@ -1,6 +1,5 @@
 ---
 title: Proxy Reference
-skip_read_time: true
 ---
 
 ## Introduction
@@ -1085,8 +1084,8 @@ subdomains, instead of creating an SNI for each.
 Valid wildcard positions are `mydomain.*`, `*.mydomain.com`, and `*.www.mydomain.com`.
 
 A default certificate can be added using the following parameters in Kong configuration:
-1. [`ssl_cert`](/latest/configuration/#ssl_cert)
-2. [`ssl_cert_key`](/latest/configuration/#ssl_cert_key)
+1. [`ssl_cert`](/gateway-oss/latest/configuration/#ssl_cert)
+2. [`ssl_cert_key`](/gateway-oss/latest/configuration/#ssl_cert_key)
 
 Or, by dynamically configuring the default certificate with an SNI of `*`:
 

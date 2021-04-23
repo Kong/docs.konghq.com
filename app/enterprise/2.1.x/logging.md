@@ -1,6 +1,5 @@
 ---
 title: Logging Reference
-skip_read_time: true
 ---
 
 ## Log Levels

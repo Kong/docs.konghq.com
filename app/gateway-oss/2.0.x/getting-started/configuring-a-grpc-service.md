@@ -1,6 +1,5 @@
 ---
 title: Configuring a gRPC Service
-skip_read_time: true
 ---
 
 <div class="alert alert-warning">
