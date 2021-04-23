@@ -145,7 +145,7 @@ This feature is only available with a
 2. In your container, set the Portal URL and set `KONG_PORTAL` to `on`:
 
     ```sh
-    $ echo "KONG_PORTAL_GUI_HOST=localhost:8003 KONG_PORTAL=off kong reload exit" \
+    $ echo "KONG_PORTAL_GUI_HOST=localhost:8003 KONG_PORTAL=on kong reload exit" \
       | docker exec -i kong-ee /bin/sh
     ```
 
