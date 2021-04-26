@@ -4,7 +4,7 @@ title: OpenID Connect with Curity
 
 ## Phantom Token Integration
 
-This guide describes how to integrate Kong Enterprise and the Curity Identity Server using the Kong OpenID Connect plugin.
+This guide describes how to integrate {{site.ee_product_name}} and the Curity Identity Server using the Kong [OpenID Connect](/hub/kong-inc/openid-connect/) plugin.
 
 This guide will focus on configuring the plugin for introspection and especially as it relates to the introspection using the [Phantom Token pattern][curity-phantom-token-pattern]. Some tweaks will be made so that a phantom token is provided in the introspection response and then passed on to the upstream API. 
 
