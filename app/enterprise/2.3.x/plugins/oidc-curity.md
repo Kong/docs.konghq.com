@@ -21,7 +21,7 @@ The Kong OpenID Connect plugin will be configured to introspect and incoming opa
 
 As part of the introspection, the OpenID Connect plugin also has the ability to validate that required scopes are available in the introspected token. Access to the requested API are denied if the correct scopes are missing.
 
-If access is granted the JWT from the introspection response will be added to a header and forwarded to the upstream API where it can be consumed.
+If access is granted, the JWT from the introspection response is added to a header and forwarded to the upstream API where it can be consumed.
 
 #### Create a service
 
