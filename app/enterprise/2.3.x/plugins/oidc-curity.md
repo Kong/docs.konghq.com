@@ -45,7 +45,7 @@ curl -i -X POST http://kong:8001/services/httpbin/routes \
 
 #### Configure the plugin
 
-The Kong OpenID Connect plugin is enabled for the previously created service. In the example below, the `openid` scope is required in order for access to be granted. As noted by the `config.upstream_headers_claims` configuration the plugin will be looking for the `JWT` (the phantom token) claim in the introspection response. The `config.upstream_headers_names` configuration will extract the `JWT` from the introspection response and add it to a `phantom_token` header in the call to the upstream API. 
+The Kong OpenID Connect plugin is enabled for the previously created service. In the example below, the `openid` scope is required in order for access to be granted. As noted by the `config.upstream_headers_claims` configuration, the plugin looks for the `JWT` (the phantom token) claim in the introspection response. The `config.upstream_headers_names` configuration extracts the `JWT` from the introspection response and adds it to a `phantom_token` header in the call to the upstream API. 
 
 ```bash
 curl -X POST http://kong:8001/services/httpbin/plugins \
@@ -69,23 +69,23 @@ Parameter | Description | Example | Required for integration
 `config.hide_credentials` | Boolean value. This will prevent the incoming Access Token from being forwarded to the upstream API. |`true` | No
 `config.upstream_headers_claims` | Contains claim that holds Phantom Token in the introspection result. | `phantom_token` | Yes  
 `config.upstream_headers_names` | Contains upstream header name that will hold the Phantom Token from the introspection result. | `phantom_token` | Yes 
-`config.auth_methods` | Several methods are supported for authenticating the request. For this use case this should be limited to `introspection`. |`introspection` | No
-`config.cache_introspection` | Boolean value that controls if introspection result should be cached. | `true` | No
-`config.introspect_jwt_tokens` | Boolean value that controls if JWTs sent in Authorization header should also be introspected. | `false` | No
+`config.auth_methods` | Several methods are supported for authenticating the request. For this use case, this should be limited to `introspection`. |`introspection` | No
+`config.cache_introspection` | Boolean value that controls whether an introspection result should be cached. | `true` | No
+`config.introspect_jwt_tokens` | Boolean value that controls if JWTs sent in an Authorization header should also be introspected. | `false` | No
 `config.introspection_endpoint` | Endpoint for introspection. Might be needed if discovery is not possible. | `https://idsvr.example.com/oauth/v2/oauth-introspect` | No
 
 ### Test the configuration
 
-Any supported OAuth/OIDC flow can be used to obtain an opaque Access Token from the Curity Identity Server. Several approaches for obtaining a token are outlined in the [Curity Getting Started Guide][curity-getting-started]. Make sure that the token issued contains the `openid` scope.
+Any supported OAuth/OIDC flow can be used to obtain an opaque access token from the Curity Identity Server. Several approaches for obtaining a token are outlined in the [Curity Getting Started Guide][curity-getting-started]. Make sure that the token issued contains the `openid` scope.
 
-Call the exposed service created earlier and pass the opaque Access Token in the `Authorization` header.
+Call the exposed service created earlier and pass the opaque access token in the `Authorization` header.
 
 ```bash
 curl -X GET http://kong:8000/httpbin/get \
 --header "Authorization: Bearer <OPAQUE ACCESS TOKEN"
 ```
 
-Kong will introspect the opaque token and receive the JWT in the response. The JWT is forwarded to the upstream API. Since the configured upstream API is Httpbin it will be echoed back. The below sample response shows the `phantom_token` containing the JWT and can be consumed by the API. The response is truncated for readability.
+Kong introspects the opaque token and receives the JWT in the response. The JWT is forwarded to the upstream API. Because the configured upstream API is `httpbin`, it is echoed back. The below sample response shows the `phantom_token` that contains the JWT and can be consumed by the API. The response is truncated for readability.
 
 ```json
 {
@@ -112,7 +112,7 @@ Kong will introspect the opaque token and receive the JWT in the response. The J
 
 ## Kong Dev Portal Authentication
 
-The [Kong Developer Portal][kong-dev-portal-doc] is a part of Kong Enterprise Gateway. The portal enables developers to access and manage configured services and documentation to provide a streamlined onboarding process. The Kong Dev Portal supports various options for user authentication and access control. This artiguide outlines how to configure the Kong OpenID Connect Plugin to leverage the Curity Identity Server as a third-party Identity Provider for user Authentication to the Dev Portal.
+The [Kong Developer Portal][kong-dev-portal-doc] is a part of {{site.ee_product_name}}. The portal enables developers to access and manage configured services and documentation to provide a streamlined onboarding process. The Kong Dev Portal supports various options for user authentication and access control. This guide outlines how to configure the Kong OpenID Connect Plugin to leverage the Curity Identity Server as a third-party Identity Provider for user Authentication to the Dev Portal.
 
 ### Curity Setup
 
@@ -124,7 +124,7 @@ The Kong Dev Portal needs a client configured in the Curity Identity Server. The
 - Choose suitable authentication methods.
 - Add redirect URI (by default `http://kong:8004/<WORKSPACE_NAME>/auth`).
 
-NOTE: There is an issue with short-lived Access Tokens that is under investigation. Increase the `Access Token Time to Live` in the client configuration to `3000` as a temporary workaround. 
+NOTE: There is an issue with short-lived access tokens that is under investigation. Increase the `Access Token Time to Live` in the client configuration to `3000` as a temporary workaround. 
 
 More information is available in the [Code Flow][curity-code-flow-tutorial] tutorial.
 
@@ -163,7 +163,7 @@ Below is an example configuration object that is used to configure the OIDC plug
 
 An Authentication Action to automatically provision the user to the Kong Developer Portal is available in the Curity GitHub repository. Using the Action is not mandatory as the user could be provisioned in other ways, such as manually through the Kong Developer portal login screen. However, using the Authentication Action would streamline the user flow as the Action will take the user's full name and the email from the Curity Authenticator and automatically provision that to the Kong Developer Portal using the exposed API.
 
-The [The Kong Developer Portal User Provisioner][curity-kong-dev-portal-user-provisioner] action is available as open-source and can be forked to fit the needs of the environment as needed.
+The [The Kong Developer Portal User Provisioner][curity-kong-dev-portal-user-provisioner] action is available as open source and can be forked to fit the needs of the environment as needed.
 
 #### Configuration
 
@@ -173,7 +173,7 @@ The Action also configures the URL to the registration endpoint of the Kong Deve
 
 ![Kong Dev Portal User Provisioner](/assets/images/docs/dev-portal/curity/kong-dev-portal-action.png)
 
-When the action is created, it can be assigned to the Authenticator(s) used in the client configured in the Curity Identity Server as described above.
+When the action is created, it can be assigned to the Authenticators used in the client configured in the Curity Identity Server as described above.
 
 #### Action to Resolve Additional User Information
 
