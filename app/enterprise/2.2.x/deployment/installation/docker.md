@@ -28,11 +28,10 @@ To complete this installation you will need:
 
 ## Step 1. Pull the Kong Gateway Docker image {#pull-image}
 
-Using Docker, log in to Bintray and pull the following Docker image:
+Pull the following Docker image:
 
 ```bash
-$ docker login -u <your_username_from_bintray> -p <your_apikey_from_bintray> kong-docker-kong-enterprise-edition-docker.bintray.io
-$ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition:{{page.kong_versions[9].version}}-alpine
+$ docker pull kong/kong-gateway:{{page.kong_versions[9].version}}-alpine
 ```
 
 You should now have your {{site.ee_product_name}} image locally.
