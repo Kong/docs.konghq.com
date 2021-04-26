@@ -119,17 +119,28 @@ params:
 2. Create a route.
 3. Enable the Mocking plugin.
 4. Enable the [CORS](/hub/kong-inc/cors/) plugin.
-5. Test the mocked response.
+5. Test the mocked response from the Dev Portal.
 
-### Create the Service
+### Create the service
 
 This example creates a service named `Stock-Service`.
 
 Command:
 
+
+{% navtabs %}
+{% navtab cURL %}
+
+
+{% endnavtab %}
+{% navtab HTTPie %}
+
 ```
 http :8001/services name=Stock-Service url='http://httpbin/anything'
 ```
+
+{% endnavtab %}
+{% endnavtabs %}
 
 Response:
 
@@ -168,11 +179,23 @@ vary: Origin
 
 ```
 
-### Create the Route
+### Create the route
+
+This example creates a route named `getStockQuote`.
+
+{% navtabs %}
+{% navtab cURL %}
+
+
+{% endnavtab %}
+{% navtab HTTPie %}
 
 ```
 http -f :8001/services/Stock-Service/routes name='getStockQuote' paths="/stock/historical"
 ```
+
+{% endnavtab %}
+{% endnavtabs %}
 
 Response:
 
@@ -223,11 +246,28 @@ vary: Origin
 
 ### Enable the Mocking plugin {#enable-mock-plugin}
 
+This example enables the Mocking plugin on the `getStockQuote` route.
+
 Command:
+
+{% navtabs %}
+{% navtab cURL %}
+
+```
+curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
+    --data "name=mocking"  \
+    --data "config.api_specification_filename=mtock-0.1.json"
+```
+
+{% endnavtab %}
+{% navtab HTTPie %}
 
 ```
 http -f :8001/routes/getStockQuote/plugins name=mocking config.api_specification_filename=stock-0.1.json
 ```
+
+{% endnavtab %}
+{% endnavtabs %}
 
 Response:
 
@@ -274,13 +314,28 @@ vary: Origin
 ### Enable the CORS plugin {#enable-cors-plugin}
 
 Cross-origin resource sharing (CORS) is disabled by default for security reasons. To test the mock response
-from the Dev Portal, enable the CORS plugin on the route.
+from the Dev Portal, enable the CORS plugin on the `getStockQuote` route.
 
 Command:
+
+{% navtabs %}
+{% navtab cURL %}
+
+```
+curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
+    --data "name=cors"  \
+    --data "config.origins=*"
+```
+
+{% endnavtab %}
+{% navtab HTTPie %}
 
 ```
 http -f :8001/routes/getStockQuote/plugins name=cors config.origins=*
 ```
+
+{% endnavtab %}
+{% endnavtabs %}
 
 Response:
 
@@ -337,6 +392,9 @@ vary: Origin
    "tags": null
 }
 ```
+
+### Test the mock response
+
 
 
 
