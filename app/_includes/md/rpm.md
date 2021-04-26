@@ -75,8 +75,7 @@ To install from the command line
 
 ```bash
 $ curl $(rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{centos_ver}/config.repo") | sudo tee /etc/yum.repos.d/kong.repo
-$ sudo yum info kong
-$ sudo yum install -y kong-{{site.data.kong_latest.version}}
+$ sudo yum install -y kong
 ```
         
     {% endif %}
