@@ -34,7 +34,7 @@ every cloud and environment.
 </div>
 <br>
 <center>
-  <img src="/assets/images/docs/mesh/kong-mesh-diagram@2x.png" width="500px"/>
+  <img src="/assets/images/docs/mesh/kong-mesh.png" width="500px"/>
   <br>
   <i>{{site.mesh_product_name}} extends CNCF's Kuma and Envoy to provide an
   enterprise-grade service mesh with unique features in the service mesh
