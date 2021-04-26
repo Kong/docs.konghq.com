@@ -181,7 +181,7 @@ Depending on the Authenticator used, an additional Action may be needed to resol
 
 ![Chain Actions](/assets/images/docs/dev-portal/curity/authentication-and-actions.png)
 
-By default, the Kong Developer Portal Provisioner Action works on the default account table schema of the Curity Identity Server database. This provides `email` as a column, but the `Full Name` is not readily available. The Action will operate on the `attributes` column and parse the information to pass the user's Full Name to the Kong Dev Portal.
+By default, the Kong Developer Portal Provisioner Action works on the default account table schema of the Curity Identity Server database. This provides `email` as a column, but the `Full Name` is not readily available. The Action operates on the `attributes` column and parse the information to pass the user's Full Name to the Kong Dev Portal.
 
 The attributes column contains this structure:
 
