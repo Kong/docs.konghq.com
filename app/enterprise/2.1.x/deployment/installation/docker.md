@@ -33,6 +33,10 @@ Pull the following Docker image:
 ```bash
 $ docker pull kong/kong-gateway:{{page.kong_versions[8].version}}-alpine
 ```
+<div class="alert alert-ee">
+<b>Note:</b> To access {{page.kong_version}} images prior to 2.1.4.6,
+contact <a href="https://support.konghq.com/">Kong Support</a>.
+</div>
 
 You should now have your {{site.ee_product_name}} image locally.
 
