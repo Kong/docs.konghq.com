@@ -17,29 +17,12 @@ steps to configure PostgreSQL.
 ## Prerequisites
 
 To complete this installation you will need:
-
+- Docker
 {% include /md/enterprise/license.md license='prereq' %}
 
 ## Step 1. Add the Kong Docker Repository and Pull the Kong Enterprise Docker Image
 
-```bash
-$ docker login -u <your_username_from_bintray> -p <your_apikey_from_bintray> kong-docker-kong-enterprise-edition-docker.bintray.io
-$ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition
-```
-
-You should now have your Kong Enterprise image locally.
-
-Verify that it worked, and find the image ID matching your repository:
-
-```bash
-$ docker images
-```
-
-Tag the image ID for easier use:
-
-```bash
-$ docker tag <IMAGE_ID> kong-ee
-```
+{% include /md/enterprise/install.md install='docker' %}
 
 **Note:** Replace `<IMAGE_ID>` with the one matching your repository.
 
@@ -65,6 +48,8 @@ $ docker run -d --name kong-ee-database \
 ```
 
 ## Step 4. Export the License Key to a Variable
+
+{% include /md/enterprise/license.md license='<1.3' %}
 
 Run the following command, substituting your own license key (see
 [Prerequisites](#prerequisites)).

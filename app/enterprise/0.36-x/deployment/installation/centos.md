@@ -21,7 +21,7 @@ To complete this guide you will need:
 
 ## Step 1. Download Kong Enterprise
 
-{% include /md/enterprise/install.md %}
+{% include /md/enterprise/install.md install='OS' %}
 
 ### Obtain your Kong Enterprise license
 

@@ -24,7 +24,7 @@ To complete this installation you will need:
 
 ### Download RPM File
 
-{% include /md/enterprise/install.md %}
+{% include /md/enterprise/install.md install='OS' %}
 
 3. Copy the RPM file to your home directory on the Amazon Linux 2 system.
 

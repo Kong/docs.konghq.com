@@ -24,7 +24,7 @@ To complete this installation guide you will need:
 
 ### Download RPM file
 
-{% include /md/enterprise/install.md %}
+{% include /md/enterprise/install.md install='OS' %}
 
 3. Copy the RPM file to your home directory on the Amazon Linux 1 system.
 

@@ -5,71 +5,31 @@ title: Install Kong Enterprise with Docker
 ## Introduction
 
 This guide walks through downloading, installing, and starting Kong Enterprise
-using Docker. The configuration shown in this guide is intended only as an 
-example. You will want to modify and take additional measures to secure your 
+using Docker. The configuration shown in this guide is intended only as an
+example. You will want to modify and take additional measures to secure your
 Kong Enterprise system before moving to a production environment.
 
 Docker images for Kong Enterprise are hosted on [Bintray](https://bintray.com).
 In order to download a Kong Enterprise Docker image, you will need valid Bintray
 credentials.
 
-
 ## Prerequisites
 
 To complete this guide you will need:
 
 - Docker
-- [Bintray](https://bintray.com) credentials (Your **Sales** or **Support** 
-contact will email your Bintray credential to you.)
-- A valid Kong Enterprise license file (accessed via Bintray)
+{% include /md/enterprise/license.md license='prereq' %}
 
 
 ## Step 1. Download Kong Enterprise
 
-1. Obtain your Bintray API Key
-
-    Log in to [Bintray](https://bintray.com)
-
-    Hover over your user name in the top navigation bar and select "Edit Profile"
-    from the dropdown.
-
-
-    From the Profile page, select "API Key" from the sidebar.
-
-
-    Submit your Bintray password and copy your API key to your clipboard.
-
-
-2. Log in to Docker and pull the image
-
-    ```
-    $ docker login -u <bintray_username> -p <bintray_API_key>
-    kong-docker-kong-enterprise-edition-docker.bintray.io
-
-    $ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition
-    ```
-
-    This will pull the latest edition of Kong Enterprise. To pull a specific
-    version of Kong Enterprise add the `<VERSION>` to the url:
-
-    ```
-    $ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition/<VERSION>
-    ```
-
-3. Run `docker images` to find the ID for the Kong Enterprise
-image.
-
-4. Tag the image ID for easier use in the commands that follow:
-
-    ```
-    $ docker tag <IMAGE_ID> kong-ee
-    ```
+{% include /md/enterprise/install.md install='docker' %}
 
 5. Create a Docker network (_optional_)
 
 
-    Containers require a network in order to discover and communicate with each other. 
-    To use this functionality create a network using the following command, 
+    Containers require a network in order to discover and communicate with each other.
+    To use this functionality create a network using the following command,
     replacing kong-ee-net with the name of your network:
 
     ```
@@ -79,16 +39,9 @@ image.
 
 ## Step 2. Export your Kong Enterprise License
 
-1. Download your license file
+{% include /md/enterprise/license.md license='<1.3' %}
 
-    If you do not already have your license file, you can download it from your 
-    Kong repository in Bintray. This typically follows the following pattern,
-    with <YOUR_REPO_NAME> being your company name. 
-
-    `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
-
-    If you cannot locate your Kong repository on Bintray please contact your
-    **Sales** or **Support** contact.
+1. Download your license file.
 
 2. Copy the license data in its entirety and export it as a shell variable:
 
@@ -127,7 +80,7 @@ Kong Enterprise requires a database and supports either Cassandra or PostgreSQL.
 
 2. Run Kong migrations:
 
-   Cassandra: 
+   Cassandra:
 
    ```bash
     $ docker run --rm --network=kong-ee-net \
@@ -148,10 +101,10 @@ Kong Enterprise requires a database and supports either Cassandra or PostgreSQL.
       kong-ee kong migrations bootstrap
     ```
 
-    **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment 
-    variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. 
-    For example, assuming you've saved your `license.json` file into `C:\temp`, 
-    use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the 
+    **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment
+    variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option.
+    For example, assuming you've saved your `license.json` file into `C:\temp`,
+    use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the
     license file.
 
 
@@ -183,7 +136,7 @@ Kong Enterprise requires a database and supports either Cassandra or PostgreSQL.
         -p 8004:8004 \
         kong-ee
     ```
-    
+
     PostgreSQL:
 
     ```bash
@@ -208,16 +161,16 @@ Kong Enterprise requires a database and supports either Cassandra or PostgreSQL.
         kong-ee
     ```
 
-    **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment 
-    variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. 
-    For example, assuming you've saved your `license.json` file into `C:\temp`, 
-    use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the 
+    **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment
+    variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option.
+    For example, assuming you've saved your `license.json` file into `C:\temp`,
+    use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the
     license file.
 
 2. Test that Kong Enterprise is running:
 
     Visit the Kong Manager at [http://localhost:8002](http://localhost:8002)
-    (replace `localhost` with your server IP or hostname when running Kong on a 
+    (replace `localhost` with your server IP or hostname when running Kong on a
     remote system).
 
 
@@ -238,10 +191,10 @@ Without a license properly referenced, you’ll get errors running migrations:
 Also, without a license, you will get no output if you do a `docker run` in
 "daemon mode"—the `-d` flag to `docker run`:
 
-    
+
     $ docker run -d ... kong start
     26a995171e23e37f89a4263a10bb084120ab0dbed1aa11a71c888c8e0d74a0b6
-    
+
 
 When you check the container, it won’t be running. Doing a `docker logs` will
 show you:

@@ -4,7 +4,7 @@ title: Install Kong Enterprise on Amazon Linux
 
 ## Download Kong Gateway
 
-{% include /md/enterprise/install.md %}
+{% include /md/enterprise/install.md install='OS' %}
 
 ### Obtain your Kong Enterprise license
 

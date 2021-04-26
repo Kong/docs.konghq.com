@@ -24,7 +24,7 @@ To complete this installation you will need:
 
 ### Download the Debian package
 
-{% include /md/enterprise/install.md %}
+{% include /md/enterprise/install.md install='OS' %}
 
 3. Copy the .deb file to your home directory on the Ubuntu system.
 

@@ -6,29 +6,13 @@ title: Installing Kong EE Docker Image
 
 <img src="/assets/images/distributions/docker.svg"/>
 
-A guide to installing Kong Enterprise Edition (and its license file) as a Docker Container. Trial users should skip directly to step 3.
+A guide to installing Kong Enterprise Edition (and its license file) as a Docker Container.
 
-1. Login to bintray.com (your credentials will have been emailed to you by your Sales or Support contact)
+{% include /md/enterprise/license.md license='<1.3' %}
 
-2. In the upper right corner, choose edit profile so you can retrieve your API key which you will use in step 3 (or click this link: https://bintray.com/profile/edit)
+## Download and Install Kong Gateway
 
-3. For **users with existing contracts** add the Kong Docker repository and pull the image:
-
-        docker login -u <your_username_from_bintray> -p <your_apikey_from_bintray> kong-docker-kong-enterprise-edition-docker.bintray.io
-        docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition
-
-    For **trial users**, run the following, replacing `<your trial image URL>` with the URL you received in your welcome email:
-
-        curl -Lsv "<your trial image URL>" -o /tmp/kong-docker-ee.tar.gz
-        docker load -i /tmp/kong-docker-ee.tar.gz
-
-
-    Now you have the docker image for EE locally this way
-    Run `docker images` to find the image
-
-4. Tag it (for easier use in the commands below) as follows (replace w/ your image’s IMAGE ID):
-
-        docker tag 92aa781a99db kong-ee
+{% include /md/enterprise/install.md install='docker' %}
 
 5. Generally, we'll be following the instructions [here](/install/docker/) with some slight (but important) differences
 
@@ -42,7 +26,7 @@ A guide to installing Kong Enterprise Edition (and its license file) as a Docker
         -e "POSTGRES_HOST_AUTH_METHOD=trust" \
         postgres:9.5
 
-7. To make the license data easier to handle, export it as a shell variable. Please note that your `KONG_LICENSE_DATA` will differ! Users with Bintray accounts should visit [https://bintray.com/kong/&lt;YOUR_REPO_NAME&gt;/license#files](https://bintray.com/kong/<YOUR_REPO_NAME>/license#files) to retrieve their license. Trial users should download their license from their welcome email. Once you have your license, you can set it in an environment variable:
+7. To make the license data easier to handle, export it as a shell variable. Please note that your `KONG_LICENSE_DATA` will differ!
 
         export KONG_LICENSE_DATA='{"license":{"signature":"LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tClZlcnNpb246IEdudVBHIHYyCgpvd0did012TXdDSFdzMTVuUWw3dHhLK01wOTJTR0tLWVc3UU16WTBTVTVNc2toSVREWk1OTFEzVExJek1MY3dTCjA0ek1UVk1OREEwc2pRM04wOHpNalZKVHpOTE1EWk9TVTFLTXpRMVRVNHpTRXMzTjA0d056VXdUTytKWUdNUTQKR05oWW1VQ21NWEJ4Q3NDc3lMQmorTVBmOFhyWmZkNkNqVnJidmkyLzZ6THhzcitBclZtcFZWdnN1K1NiKzFhbgozcjNCeUxCZzdZOVdFL2FYQXJ0NG5lcmVpa2tZS1ozMlNlbGQvMm5iYkRzcmdlWFQzek1BQUE9PQo9b1VnSgotLS0tLUVORCBQR1AgTUVTU0FHRS0tLS0tCg=","payload":{"customer":"Test Company Inc","license_creation_date":"2017-11-08","product_subscription":"Kong Enterprise Edition","admin_seats":"5","support_plan":"None","license_expiration_date":"2017-11-10","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU"},"version":1}}'
 
