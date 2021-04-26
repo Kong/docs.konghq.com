@@ -27,10 +27,10 @@ To complete this installation you will need a Docker-enabled system with proper
 
 ## Step 1. Pull the Kong Gateway Docker image {#pull-image}
 
-Using Docker, pull the following Docker image:
+Pull the following Docker image:
 
 ```bash
-$ docker pull kong-docker-kong-gateway-docker.bintray.io/kong-enterprise-edition:{{page.kong_versions[10].version}}-alpine
+$ docker pull kong/kong-gateway:{{page.kong_versions[10].version}}-alpine
 ```
 
 You should now have your {{site.base_gateway}} image locally.
