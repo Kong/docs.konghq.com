@@ -1,12 +1,18 @@
 ---
-title: install Kong Enterprise and on Amazon Linux
+title: Install Kong Enterprise and on Amazon Linux
 ---
 
-## Installation Steps
+## Download Kong Gateway
 
 {% include /md/enterprise/install.md %}
 
-Install Postgres
+### Obtain your Kong Enterprise license
+
+{% include /md/enterprise/license.md license='<1.3' %}
+
+{% include /md/enterprise/license.md license='json-example' %}
+
+## Install Postgres
 
 ```bash
 $ sudo yum install postgresql postgresql-server

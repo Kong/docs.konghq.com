@@ -24,18 +24,15 @@ To complete this installation you will need:
 
 ### Download RPM file
 
-1. Download the RPM file
+{% include /md/enterprise/install.md %}
 
-    {% include /md/enterprise/install.md %}
-
-2. Save the RPM file.
 3. Copy the RPM file to your home directory on the RHEL system.
 
 ### Download your Kong Enterprise License
 
-1. Download your license file
+{% include /md/enterprise/license.md license='<1.3' %}
 
-    {% include /md/enterprise/license.md license='<1.3' %}
+{% include /md/enterprise/license.md license='json-example' %}
 
 2. Securely copy the license file to your home directory on the RHEL system:
 

@@ -21,19 +21,13 @@ To complete this guide you will need:
 
 ## Step 1. Download Kong Enterprise
 
-1. Download the .deb package
+{% include /md/enterprise/install.md %}
 
-    {% include /md/enterprise/install.md %}
-   
-2. Obtain your Kong Enterprise license
+### Download your Kong Enterprise License
 
-    {% include /md/enterprise/license.md license='<1.3' %}
-    
-    Ensure your license file is in proper `JSON`:
+{% include /md/enterprise/license.md license='<1.3' %}
 
-    ```json
-      {"license":{"signature":"91e6dd9716d12ffsn4a5ckkb16a556dbebdbc4d0a66d9b2c53f8c8d717eb93dd2bdbe2cb3ef51c20806f14345128907da35","payload":{"customer":"Kong Inc","license_creation_date":"2019-05-07","product_subscription":"Kong Enterprise Edition","admin_seats":"5","support_plan":"None","license_expiration_date":"2021-04-01","license_key":"00Q1K00000zuUAwUAM_a1V1K000005kRhuUAE"},"version":1}}
-   ```
+{% include /md/enterprise/license.md license='json-example' %}
 
 3. Securely copy the license file to the Ubuntu system
 
@@ -137,7 +131,7 @@ must be modified to accept the correct PostgreSQL user and password.
 
 ## Step 6. Seed the Super Admin _(optional)_
 
-For the added security of Role-Based Access Control (RBAC), it is best to seed 
+For the added security of Role-Based Access Control (RBAC), it is best to seed
 the **Super Admin** before initial start-up.
 
 Create an environment variable with the desired **Super Admin** password:
@@ -146,7 +140,7 @@ Create an environment variable with the desired **Super Admin** password:
     $ export KONG_PASSWORD=<password-only-you-know>
 
 
-This will be used during migrations to seed the initial **Super Admin** 
+This will be used during migrations to seed the initial **Super Admin**
 password within Kong.
 
 
@@ -169,7 +163,7 @@ password within Kong.
     ```
     curl -i -X GET --url http://localhost:8001/services
     ```
-    
+
     You should receive an HTTP/1.1 200 OK message.
 
 
@@ -182,6 +176,6 @@ setup reach out to your **Support contact** or head over to the
 
 ## Next Steps
 
-Work through Kong Enterprise's series of 
+Work through Kong Enterprise's series of
 [Getting Started](/enterprise/{{page.kong_version}}/getting-started) guides to get the most
 out of Kong Enterprise.

@@ -24,18 +24,15 @@ To complete this installation you will need:
 
 ### Download the Debian package
 
-1. Download the .deb file
+{% include /md/enterprise/install.md %}
 
-    {% include /md/enterprise/install.md %}
-
-2. Save the RPM file.
-3. Copy the .deb file to your home directory on the Ubuntu system. 
+3. Copy the .deb file to your home directory on the Ubuntu system.
 
 ### Download your Kong Enterprise License
 
-1. Download your license file
+{% include /md/enterprise/license.md license='<1.3' %}
 
-    {% include /md/enterprise/license.md license='<1.3' %}
+{% include /md/enterprise/license.md license='json-example' %}
 
 2. Securely copy the license file to your home directory on the Ubuntu system:
 
