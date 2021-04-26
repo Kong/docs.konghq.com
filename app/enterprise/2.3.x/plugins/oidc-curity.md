@@ -17,7 +17,7 @@ Configuring the Curity Identity Server to provide a Phantom Token in the introsp
 
 ### Configure Kong
 
-The Kong OpenID Connect plugin will be configured to introspect and incoming opaque access token and in return receive a JWT in the introspection response from the Curity Identity Server. The plugin is enabled for a [service or a route][kong-add-service].
+The Kong OpenID Connect plugin is configured to introspect an incoming opaque access token and in return receive a JWT in the introspection response from the Curity Identity Server. The plugin is enabled for a [service or a route][kong-add-service].
 
 As part of the introspection, the OpenID Connect plugin also has the ability to validate that required scopes are available in the introspected token. Access to the requested API are denied if the correct scopes are missing.
 
@@ -161,7 +161,7 @@ Below is an example configuration object that is used to configure the OIDC plug
 
 ### Curity Authentication Action
 
-An Authentication Action to automatically provision the user to the Kong Developer Portal is available in the Curity GitHub repository. Using the Action is not mandatory as the user could be provisioned in other ways, such as manually through the Kong Developer portal login screen. However, using the Authentication Action would streamline the user flow as the Action will take the user's full name and the email from the Curity Authenticator and automatically provision that to the Kong Developer Portal using the exposed API.
+An Authentication Action to automatically provision the user to the Kong Developer Portal is available in the Curity GitHub repository. Using the Action is not mandatory as the user could be provisioned in other ways, such as manually through the Kong Developer portal login page. However, using the Authentication Action would streamline the user flow since the Action takes the user's full name and the email from the Curity Authenticator and automatically provision that to the Kong Developer Portal using the exposed API.
 
 The [The Kong Developer Portal User Provisioner][curity-kong-dev-portal-user-provisioner] action is available as open source and can be forked to fit the needs of the environment as needed.
 
