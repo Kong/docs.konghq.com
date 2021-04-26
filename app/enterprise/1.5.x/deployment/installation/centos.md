@@ -37,7 +37,7 @@ There are two options to install Kong Enterprise on CentOS.
     $ scp kong-enterprise-edition-{{page.kong_versions[7].version}}.el7.noarch.rpm <centos user>@<server>:~
     ```
 
-### (Optional) Verify the Package Integrity
+<!-- ### (Optional) Verify the Package Integrity
 
 1. Kong's official Key ID is `2cac36c51d5f3726`. Verify it by querying the RPM package and comparing it to the Key ID:
 
@@ -57,7 +57,7 @@ There are two options to install Kong Enterprise on CentOS.
 
     ```
     kong-enterprise-edition-{{page.kong_versions[7].version}}.el7.noarch.rpm: rsa sha1 (md5) pgp md5 OK
-    ```
+    ``` -->
 
 ### Prepare your license
 

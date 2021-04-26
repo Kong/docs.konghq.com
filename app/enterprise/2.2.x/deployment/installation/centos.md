@@ -4,7 +4,6 @@ title: Install Kong Gateway (Enterprise) on CentOS
 
 ## Introduction
 
-
 This guide walks through downloading, installing, and starting **{{site.ee_product_name}}** on **CentOS**.
 
 The configuration shown in this guide is intended as an example. Depending on your
@@ -29,23 +28,9 @@ To complete this installation you will need:
 
 ## Step 1. Prepare to install Kong Gateway and download license file
 
-There are two options to install {{site.ee_product_name}} on CentOS.
+{% include /md/enterprise/download/centos.md %}
 
-{% navtabs %}
-{% navtab Download RPM file %}
-
-1. Go to: [{{ site.links.download }}/kong/kong-enterprise-edition-rpm/centos]({{ site.links.download }}/kong/kong-enterprise-edition-rpm/centos).
-2. Select the latest Kong version from the list.
-3. From the Kong version detail page, select the **Files** tab.
-4. Select the CentOS version appropriate for your environment, such as `centos` -> `7`.
-5. Save the available RPM file. For example: `kong-enterprise-edition-{{page.kong_versions[9].version}}.el7.noarch.rpm`
-6. Copy the RPM file to your home directory on the CentOS system. For example:
-
-    ```bash
-    $ scp kong-enterprise-edition-{{page.kong_versions[9].version}}.el7.noarch.rpm <centos user>@<server>:~
-    ```
-
-### (Optional) Verify the package integrity
+<!-- ### (Optional) Verify the package integrity
 
 1. Kong's official Key ID is `2cac36c51d5f3726`. Verify it by querying the RPM package and comparing it to the Key ID:
 
@@ -65,21 +50,7 @@ There are two options to install {{site.ee_product_name}} on CentOS.
 
     ```
     kong-enterprise-edition-{{page.kong_versions[9].version}}.el7.noarch.rpm: rsa sha1 (md5) pgp md5 OK
-    ```
-{% endnavtab %}
-{% navtab Download Kong repo file and add to Yum repo %}
-
-1. Download the {{site.ee_product_name}} RPM repo file from:
-
-    [{{ site.links.download }}/kong/kong-enterprise-edition-rpm/rpm]({{ site.links.download }}/kong/kong-enterprise-edition-rpm/rpm)
-
-2. Securely copy the repo file to your home directory on the CentOS system:
-
-    ```
-    $ scp bintray--kong-kong-enterprise-edition-rpm.repo <centos user>@<server>:~
-    ```
-{% endnavtab %}
-{% endnavtabs %}
+    ``` -->
 
 ### Prepare the license
 
@@ -91,32 +62,7 @@ $ scp license.json <centos username>@<server>:~
 
 ## Step 2. Install Kong Gateway
 
-{% navtabs %}
-{% navtab Using a downloaded RPM package %}
-
-1. Execute a command similar to the following, using the appropriate RPM file name you downloaded:
-
-    ```bash
-    $ sudo yum install /path/to/package.rpm --nogpgcheck
-    ```
-{% endnavtab %}
-{% navtab Using Yum repo %}
-
-2. Move the repo file in your home directory to the /etc/yum.repos.d/ directory:
-
-    ```bash
-    $ sudo mv bintray--kong-kong-enterprise-edition-rpm.repo /etc/yum.repos.d/
-    ```
-
-3. Begin the installation using the Yum repository:
-
-    ```bash
-    $ sudo yum update -y
-    $ sudo yum install kong-enterprise-edition -y
-    ```
-
-{% endnavtab %}
-{% endnavtabs %}
+{% include /md/enterprise/install-2.x.md %}
 
 ### Copy the license file
 

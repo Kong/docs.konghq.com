@@ -33,7 +33,7 @@ To complete this installation you will need:
     $ scp kong-enterprise-edition-{{page.kong_versions[7].version}}.amzn2.noarch.rpm <amazon user>@<server>:~
     ```
 
-### (Optional) Verify the Package Integrity
+<!-- ### (Optional) Verify the Package Integrity
 
 1. Download Kong's official public key to ensure the integrity of the RPM package:
 
@@ -47,7 +47,7 @@ To complete this installation you will need:
 
     ```
     kong-enterprise-edition-{{page.kong_versions[7].version}}.el7.noarch.rpm: sha1 md5 OK
-    ```
+    ``` -->
 
 ### Prepare your license
 

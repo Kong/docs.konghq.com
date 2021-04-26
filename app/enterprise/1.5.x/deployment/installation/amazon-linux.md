@@ -36,7 +36,7 @@ To complete this installation guide you will need:
     $ scp kong-enterprise-edition-{{page.kong_versions[7].version}}.aws.rpm <amazon user>@<server>:~
     ```
 
-### (Optional) Verify the Package Integrity
+<!-- ### (Optional) Verify the Package Integrity
 
 1. Download Kong's official public key to ensure the integrity of the RPM package:
 
@@ -50,7 +50,7 @@ To complete this installation guide you will need:
 
       ```
       kong-enterprise-edition-{{page.kong_versions[7].version}}.el7.noarch.rpm: sha1 md5 OK
-      ```
+      ``` -->
 
 ### Prepare your license
 
@@ -63,7 +63,7 @@ $ scp license.json <amazon username>@<server>:~
 
 ## Step 2. Install Kong Enterprise
 
-### Using downloaded RPM package %}
+### Using downloaded RPM package 
 
 Execute a command similar to the following, using the appropriate RPM file name you downloaded:
 

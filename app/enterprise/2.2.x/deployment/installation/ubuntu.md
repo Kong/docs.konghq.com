@@ -30,15 +30,7 @@ To complete this installation you will need:
 
 ### Download the Debian package
 
-1. Go to: [{{ site.links.download }}/kong/kong-enterprise-edition-deb/ubuntu]({{ site.links.download }}/kong/kong-enterprise-edition-deb/ubuntu).
-2. Select the latest Kong version from the list. {{site.ee_product_name}} versions are listed in reverse chronological order.
-3. From the Kong version detail page, select the **Files** tab.
-4. Click the `.deb` file matching your target Ubuntu OS version. For example, select `kong-enterprise-edition-{{page.kong_versions[9].version}}.bionic.all.deb` for the Ubuntu Bionic Beaver release.
-5. Copy the `.deb` file to your home directory on the Ubuntu system. For example:
-
-    ```bash
-    $ scp kong-enterprise-edition-{{page.kong_versions[9].version}}.bionic.all.deb <ubuntu_user>@<server>:~
-    ```
+{% include /md/enterprise/download/ubuntu.md %}
 
 ### Prepare your license
 
