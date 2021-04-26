@@ -60,8 +60,7 @@ To install from the command line
 
 ```bash
 $ curl {{ site.links.download }}/gateway-2.x-amazonlinux-2/config.repo | sudo tee /etc/yum.repos.d/kong.repo
-$ sudo yum info kong
-$ sudo yum install -y kong-{{site.data.kong_latest.version}}
+$ sudo yum install -y kong
 ```
         
     {% endif %}    
