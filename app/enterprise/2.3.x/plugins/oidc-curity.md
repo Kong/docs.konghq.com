@@ -206,4 +206,4 @@ With relatively simple configurations in both the Curity Identity Server and the
 [curity-code-flow-tutorial]: https://curity.io/resources/learn/code-flow
 [curity-kong-dev-portal-user-provisioner]: https://curity.io/resources/learn/provision-kong-dev-portal-user
 [kong-dev-portal-doc]: https://docs.konghq.com/enterprise/latest/developer-portal
-[kong-dev-portal-doc-oidc]: https://docs.konghq.com/enterprise/2.3.x/developer-portal/configuration/authentication/oidc
+[kong-dev-portal-doc-oidc]: https://docs.konghq.com/enterprise/latest/developer-portal/configuration/authentication/oidc
