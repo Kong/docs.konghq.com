@@ -131,6 +131,12 @@ Command:
 {% navtabs %}
 {% navtab cURL %}
 
+```
+curl -i -X POST http://<admin-hostname>:8001/services \
+  --data name=Stock-Service \
+  --data url='http://httpbin/anything'
+```
+
 
 {% endnavtab %}
 {% navtab HTTPie %}
@@ -181,10 +187,14 @@ vary: Origin
 
 ### Create the route
 
-This example creates a route named `getStockQuote`.
+This example creates a route named `getStockQuote` on the service named `Stock-Service`.
 
 {% navtabs %}
 {% navtab cURL %}
+
+```
+
+```
 
 
 {% endnavtab %}
