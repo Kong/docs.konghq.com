@@ -10,3 +10,4 @@ For example:
     ```bash
     $ scp kong-enterprise-edition-{{page.kong_versions[10].version}}.rhel8.noarch.rpm <rhel user>@<server>:~
     ```
+    

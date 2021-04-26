@@ -6,3 +6,4 @@
     ```bash
     $ scp kong-enterprise-edition-{{page.kong_versions[10].version}}.amzn2.noarch.rpm <amazon user>@<server>:~
     ```
+    

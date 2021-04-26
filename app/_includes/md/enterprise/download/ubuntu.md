@@ -9,3 +9,4 @@
     ```bash
     $ scp kong-enterprise-edition-{{page.kong_versions[10].version}}.all.deb <ubuntu_user>@<server>:~
     ```
+    
