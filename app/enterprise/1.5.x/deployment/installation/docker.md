@@ -18,7 +18,7 @@ steps to configure PostgreSQL.
 
 To complete this installation you will need:
 
-{% include /md/{{page.kong_version}}/bintray-and-license.md %}
+{% include /md/enterprise/license.md license='prereq' %}
 * A Docker-enabled system with proper Docker access.
 
 ## Step 1. Pull the Kong Gateway Docker image {#pull-image}
@@ -28,6 +28,11 @@ Pull the following Docker image:
 ```bash
 $ docker pull kong/kong-gateway:{{page.kong_versions[7].version}}-alpine
 ```
+
+<div class="alert alert-ee">
+<b>Note:</b> To access {{page.kong_version}} images prior to 1.5.0.11,
+contact <a href="https://support.konghq.com/">Kong Support</a>.
+</div>
 
 You should now have your {{site.ee_product_name}} image locally.
 
