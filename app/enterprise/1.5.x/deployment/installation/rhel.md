@@ -22,59 +22,7 @@ To complete this installation you will need:
 
 ## Step 1. Prepare to Install Kong Enterprise and Download the License File
 
-There are two options to install Kong Enterprise on RHEL.
-
-{% navtabs %}
-{% navtab Download RPM file %}
-
-1. Go to: [{{ site.links.download }}/kong/kong-enterprise-edition-rpm/rhel]({{ site.links.download }}/kong/kong-enterprise-edition-rpm/rhel).
-2. Select the latest Kong version from the list.
-3. From the Kong version detail page, select the **Files** tab.
-4. Select the RHEL version appropriate for your environment, such as `RHEL` -> `8`.
-5. Save the available RPM file. For example: `kong-enterprise-edition-{{page.kong_versions[7].version}}.rhel8.noarch.rpm`
-6. Copy the RPM file to your home directory on the RHEL system. For example:
-
-    ```bash
-    $ scp kong-enterprise-edition-{{page.kong_versions[7].version}}.rhel8.noarch.rpm <rhel user>@<server>:~
-    ```
-
-### (Optional) Verify the Package Integrity
-
-1. Kong's official Key ID is `2cac36c51d5f3726`. Verify it by querying the RPM package and comparing it to the Key ID:
-
-    ```bash
-    $ rpm -qpi kong-enterprise-edition-{{page.kong_versions[7].version}}.rhel8.noarch.rpm | grep Signature
-    ```
-
-2. Download Kong's official public key to ensure the integrity of the RPM package:
-
-    ```bash
-    $ curl -o kong.key {{ site.links.download }}/user/downloadSubjectPublicKey?username=kong
-    $ rpm --import kong.key
-    $ rpm -K kong-enterprise-edition-{{page.kong_versions[7].version}}.rhel8.noarch.rpm
-    ```
-
-3. Verify you get an OK check. Output should be similar to this:
-
-    ```
-    kong-enterprise-edition-{{page.kong_versions[7].version}}.rhel8.noarch.rpm: digests signatures OK
-    ```
-
-{% endnavtab %}
-{% navtab Download Kong repo file and add to Yum repo %}
-
-1. Download the Kong Enterprise RPM repo file from:
-
-    [https://bintray.com/kong/kong-enterprise-edition-rpm/rpm](https://bintray.com/kong/kong-enterprise-edition-rpm/rpm).
-
-2. Securely copy the repo file to your home directory on the RHEL system:
-
-    ```bash
-    $ scp bintray--kong-kong-enterprise-edition-rpm.repo <rhel user>@<server>:~
-    ```
-
-{% endnavtab %}
-{% endnavtabs %}
+{% include /md/enterprise/download/rhel.md version='1.5' %}
 
 ### Prepare your license
 
@@ -86,33 +34,7 @@ $ scp license.json <rhel username>@<server>:~
 
 ## Step 2. Install Kong Enterprise
 
-{% navtabs %}
-{% navtab Using downloaded RPM package %}
-
-1. Execute a command similar to the following, using the appropriate RPM file name you downloaded:
-
-    ```bash
-    $ sudo yum install /path/to/package.rpm --nogpgcheck
-    ```
-*Note: If you're using RHEL 7.0, change the version of the RPM file above from 8 to 7.*
-
-{% endnavtab %}
-{% navtab Using Yum repo %}
-
-1. Move the repo file in your home directory to the /etc/yum.repos.d/ directory:
-
-    ```bash
-    $ sudo mv bintray--kong-kong-enterprise-edition-rpm.repo /etc/yum.repos.d/
-    ```
-
-2. Begin the installation using the Yum repository:
-
-    ```bash
-    $ sudo yum update -y
-    $ sudo yum install kong-enterprise-edition -y
-    ```
-{% endnavtab %}
-{% endnavtabs %}
+{% include /md/enterprise/install-2.x.md %}
 
 
 ### Copy the License File

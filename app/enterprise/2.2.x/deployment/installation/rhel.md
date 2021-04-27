@@ -28,7 +28,7 @@ To complete this installation you will need:
 
 ## Step 1. Prepare to install Kong Gateway and download license file
 
-{% include /md/enterprise/download/rhel.md %}
+{% include /md/enterprise/download/rhel.md version='2.x' %}
 
 <!-- ### (Optional) Verify the package integrity
 

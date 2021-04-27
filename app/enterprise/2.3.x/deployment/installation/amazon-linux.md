@@ -27,7 +27,7 @@ system with root-equivalent access.
 
 ## Step 1. Prepare to install Kong Gateway {#step-1}
 
-{% include /md/enterprise/download/amazon.md %}
+{% include /md/enterprise/download/amazon.md version='2.x' %}
 
 <!-- ### (Optional) Verify the package integrity
 

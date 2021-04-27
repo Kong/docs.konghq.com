@@ -28,7 +28,7 @@ To complete this installation you will need:
 
 ## Step 1. Prepare to Install Kong Enterprise and Download the License File
 
-{% include /md/enterprise/download/amazon-2.md %}
+{% include /md/enterprise/download/amazon-2.md version='2.x' %}
 
 <!-- ### (Optional) Verify the Package Integrity
 

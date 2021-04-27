@@ -22,32 +22,7 @@ To complete this installation you will need:
 
 ## Step 1. Prepare to Install Kong Enterprise and Download the License File
 
-### Download RPM File
-
-1. Go to: [{{ site.links.download }}/gateway-1.x-amazonlinux-2/Packages/k/]({{ site.links.download }}/kong/kong-enterprise-edition-aws).
-2. Select a version from the list of packages.
-3. Save the available RPM file. For example: `kong-enterprise-edition-{{page.kong_versions[7].version}}.amzn2.noarch.rpm`.
-4. Copy the RPM file to your home directory on the Amazon Linux 2 system. You can use a command like:
-
-    ```bash
-    $ scp kong-enterprise-edition-{{page.kong_versions[7].version}}.amzn2.noarch.rpm <amazon user>@<server>:~
-    ```
-
-<!-- ### (Optional) Verify the Package Integrity
-
-1. Download Kong's official public key to ensure the integrity of the RPM package:
-
-    ```bash
-    $ curl -o kong.key {{ site.links.download }}/user/downloadSubjectPublicKey?username=kong
-    $ sudo rpm --import kong.key
-    $ sudo rpm -K kong-enterprise-edition-{{page.kong_versions[7].version}}.amzn2.noarch.rpm
-    ```
-
-2. Verify you get an OK check. Output should be similar to this:
-
-    ```
-    kong-enterprise-edition-{{page.kong_versions[7].version}}.el7.noarch.rpm: sha1 md5 OK
-    ``` -->
+{% include /md/enterprise/download/amazon-2.md version='1.5' %}
 
 ### Prepare your license
 
@@ -60,13 +35,7 @@ $ scp license.json <amazon username>@<server>:~
 
 ## Step 2. Install Kong Enterprise
 
-### Using a downloaded RPM package
-
-Execute a command similar to the following, using the appropriate RPM file name you downloaded.
-
-```bash
-$ sudo yum install kong-enterprise-edition-{{page.kong_versions[7].version}}.amzn2.noarch.rpm
-```
+{% include /md/enterprise/install-2.x.md %}
 
 ### Copy the License File
 

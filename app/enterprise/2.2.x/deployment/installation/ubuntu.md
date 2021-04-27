@@ -30,7 +30,7 @@ To complete this installation you will need:
 
 ### Download the Debian package
 
-{% include /md/enterprise/download/ubuntu.md %}
+{% include /md/enterprise/download/ubuntu.md version='2.x' %}
 
 ### Prepare your license
 

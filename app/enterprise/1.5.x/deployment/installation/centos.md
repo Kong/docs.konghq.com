@@ -22,42 +22,7 @@ To complete this installation you will need:
 
 ## Step 1. Prepare to Install Kong Enterprise and Download the License File
 
-There are two options to install Kong Enterprise on CentOS.
-
-### Download RPM file %}
-
-1. Go to: [{{ site.links.download }}/kong/kong-enterprise-edition-rpm/centos]({{ site.links.download }}/kong/kong-enterprise-edition-rpm/centos).
-2. Select the latest Kong version from the list.
-3. From the Kong version detail page, select the **Files** tab.
-4. Select the CentOS version appropriate for your environment, such as `centos` -> `7`.
-5. Save the available RPM file. For example: `kong-enterprise-edition-{{page.kong_versions[7].version}}.el7.noarch.rpm`
-6. Copy the RPM file to your home directory on the CentOS system. For example:
-
-    ```bash
-    $ scp kong-enterprise-edition-{{page.kong_versions[7].version}}.el7.noarch.rpm <centos user>@<server>:~
-    ```
-
-<!-- ### (Optional) Verify the Package Integrity
-
-1. Kong's official Key ID is `2cac36c51d5f3726`. Verify it by querying the RPM package and comparing it to the Key ID:
-
-    ```bash
-    $ rpm -qpi kong-enterprise-edition-1.5.el7.noarch.rpm | grep Signature
-    ```
-
-2. Download Kong's official public key to ensure the integrity of the RPM package:
-
-    ```bash
-    $ curl -o kong.key {{ site.links.download }}/user/downloadSubjectPublicKey?username=kong
-    $ rpm --import kong.key
-    $ rpm -K kong-enterprise-edition-1.5.el7.noarch.rpm
-    ```
-
-3. Verify you get an OK check. Output should be similar to this:
-
-    ```
-    kong-enterprise-edition-{{page.kong_versions[7].version}}.el7.noarch.rpm: rsa sha1 (md5) pgp md5 OK
-    ``` -->
+{% include /md/enterprise/download/centos.md version='1.5' %}
 
 ### Prepare your license
 
@@ -69,13 +34,7 @@ $ scp license.json <centos username>@<server>:~
 
 ## Step 2. Install Kong Enterprise
 
-### Using a downloaded RPM package %}
-
-1. Execute a command similar to the following, using the appropriate RPM file name you downloaded:
-
-    ```bash
-    $ sudo yum install /path/to/package.rpm --nogpgcheck
-    ```
+{% include /md/enterprise/install-2.x.md %}
 
 ### Copy the License File
 

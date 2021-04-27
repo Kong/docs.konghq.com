@@ -27,7 +27,7 @@ root-equivalent access.
 
 ## Step 1. Prepare to install Kong Gateway
 
-{% include /md/enterprise/download/rhel.md %}
+{% include /md/enterprise/download/rhel.md version='2.x' %}
 
 <!-- ### (Optional) Verify the package integrity
 

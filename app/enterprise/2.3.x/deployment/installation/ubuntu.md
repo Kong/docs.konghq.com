@@ -29,7 +29,7 @@ root-equivalent access.
 
 Download the Debian package:
 
-{% include /md/{{page.kong_version}}/deployment-options.md %}
+{% include /md/enterprise/download/ubuntu.md version='2.x' %}
 
 ## Step 2. Install Kong Gateway
 
