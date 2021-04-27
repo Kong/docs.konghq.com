@@ -95,7 +95,7 @@ InfluxDB 2.0 will <strong>not</strong> work.
 Writing Vitals data to InfluxDB requires that the `kong` database is created, 
 this is done using the `INFLUXDB_DB` variable.
 
-### Step 4. Configure {{site.base_gateway}}
+### Step 4. Configure Kong Gateway
 
 <div class="alert alert-ee blue">
 <strong>Note:</strong> If you used the configuration in 
@@ -111,16 +111,20 @@ $ echo "KONG_VITALS_STRATEGY=influxdb KONG_VITALS_TSDB_ADDRESS=influxdb:8086 kon
 | docker exec -i kong-ee /bin/sh
 ```
 
-## InfluxDB Measurements
+## InfluxDB measurements
 
-Kong Vitals records metrics in two InfluxDB measurements- `kong_request`, which
-contains field values for request latencies and HTTP, and tags for various Kong
-entities associated with the requests (e.g., the Route and Service in question,
-etc.), and `kong_datastore_cache`, which contains points about cache hits and
-misses. Measurement schemas are listed below:
+Kong Vitals records metrics in two InfluxDB measurements: 
 
-```
-> show tag keys
+1. `kong_request`: Contains field values for request latencies and HTTP,
+  and tags for various Kong entities associated with the requests (for
+  example, the Route and Service in question).
+2. `kong_datastore_cache`: Contains points about cache hits and
+  misses. 
+
+To display measurement schemas:
+
+```sh
+$ show tag keys
 name: kong_request
 tagKey
 ------
@@ -139,7 +143,9 @@ hostname
 wid
 ```
 
-```
+
+
+```sh
 > show field keys
 name: kong_request
 fieldKey	         fieldType
@@ -163,7 +169,9 @@ duplicate metrics shipped at the same point in time.
 As demonstrated above, the series cardinality of the `kong_request` measurement
 varies based on the cardinality of the Kong cluster configuration - a greater
 number of Service/Route/Consumer/Workspace combinations handled by Kong results
-in a greater series cardinality as written by Vitals. Please consult the
+in a greater series cardinality as written by Vitals. 
+
+Consult the
 [InfluxDB sizing guidelines](https://docs.influxdata.com/influxdb/v1.7/guides/hardware_sizing/)
 for reference on appropriately sizing an InfluxDB node/cluster. Note that the
 query behavior when reading Vitals data falls under the "moderate" load
@@ -172,7 +180,7 @@ functions are used to generate the Vitals API responses, which can require
 significant CPU resources to execute when hundreds of thousands or millions of
 data points are present.
 
-## Query Behavior
+## Query behavior
 
 Kong buffers Vitals metrics and writes InfluxDB points in batches to improve
 throughput in InfluxDB and reduce overhead in the Kong proxy path. Each Kong
