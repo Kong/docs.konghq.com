@@ -9,11 +9,6 @@ using Docker. The configuration shown in this guide is intended only as an
 example. You will want to modify and take additional measures to secure your
 Kong Enterprise system before moving to a production environment.
 
-Docker images for Kong Enterprise are hosted on [Bintray](https://bintray.com).
-In order to download a Kong Enterprise Docker image, you will need valid Bintray
-credentials.
-
-
 ## Prerequisites
 
 To complete this guide you will need:
