@@ -15,7 +15,7 @@ please refer to [Kong Vitals](/enterprise/{{page.kong_version}}/admin-api/vitals
 
 ## Lifecycle Overview
 
-Kong Vitals integrates with Prometheus via an intermediary data exporter, the [Prometheus StatsD exporter](https://github.com/prometheus/statsd_exporter).
+Kong Vitals integrates with Prometheus using an intermediary data exporter, the [Prometheus StatsD exporter](https://github.com/prometheus/statsd_exporter).
 This integration allows Kong to efficiently ship Vitals metrics to an outside process where data points
 can be aggregated and made available for consumption by Prometheus, without impeding performance
 within the Kong proxy itself. In this design, Kong writes Vitals metrics to the StatsD exporter
@@ -53,9 +53,15 @@ using default config that listens on port `9090`.
 
 ### Download and configure StatsD exporter
 
-The latest release of StatsD exporter can be found at the
-[Bintray](https://bintray.com/kong/statsd-exporter). The binary is distributed
-with some specific features like min/max gauges and Unix domain socket support.
+The latest release of StatsD exporter can be pulled from Docker Hub with the
+following command: 
+
+```sh
+docker pull kong/statsd-exporter-advanced:0.3.1
+```
+
+The binary is distributed with some specific features like min/max gauges
+and Unix domain socket support.
 
 StatsD exporter needed to configured with a set of mapping rules to translate
 the StatsD UDP events to Prometheus metrics. A default set of mapping rules can

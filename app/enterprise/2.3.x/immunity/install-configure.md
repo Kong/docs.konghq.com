@@ -9,7 +9,7 @@ redirect_from:
 Kong Immunity (Immunity) is installed on Kong Enterprise, either on Kubernetes or Docker, as defined below. Immunity uses the Collector App and Collector Plugin to communicate with Kong Enterprise.
 
 ## Version Compatibility
-Immunity follows a different versioning scheme from Kong Enterprise, as defined in the version compatibility table below. The Immunity version reflects the `kong-immunity-base` package available in Bintray.
+Immunity follows a different versioning scheme from Kong Enterprise, as defined in the version compatibility table below. The Immunity version reflects the `kong-immunity-base` package available on Docker Hub.
 
 | Immunity Version                 | Kong Enterprise Version |
 |:---------------------------------|:------------------------|
@@ -25,32 +25,17 @@ Install Immunity by downloading, installing and starting the Collector App on Do
 ### Prerequisites
 To complete this installation you will need:
 
-* A valid *Bintray* account. You will need your *username*, account *password* and account *API Key*.
-  - Example:
-    * Bintray Access key = `john-company`
-    * Bintray username = `john-company@kong`
-    * Bintray password = `12345678`
-    * Bintray API key = `12234e314356291a2b11058591bba195830`
-  - The API Key can be obtained by visiting [https://bintray.com/profile/edit](https://bintray.com/profile/edit) and selecting *API Key*
-
 * A Docker-enabled system with proper Docker access.
 
 * Kong Enterprise 2.2.x or later is installed on Docker.
 
 * A valid Kong Enterprise License JSON file, including a license for Immunity.
-**Note**: You should receive your Bintray credentials with your purchase of Kong Enterprise. If you need Bintray credentials, contact Kong Support.
-
 
 ### Step 1. Add the Kong Docker Repository and Pull the Immunity Docker Image
 
-1. In a terminal window, add the Kong Docker Repository.
-Note: Be sure to replace the variables with your bintray username and bintray apikey.
+1. In a terminal window, pull the Kong Immunity Docker image.
 ```bash
-$ docker login -u <your_username_from_bintray> -p <your_apikey_from_bintray> kong-docker-kong-immunity-base.bintray.io
-```
-2. Pull the Kong Immunity Docker image.
-```bash
-$ docker pull kong-docker-kong-immunity-base.bintray.io/kong-immunity:4.0.0
+$ docker pull kong/immunity:4.0.0
 ```
 You should now have your Kong Immunity image locally.
 
