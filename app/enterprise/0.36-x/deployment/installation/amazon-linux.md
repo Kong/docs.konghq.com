@@ -2,20 +2,19 @@
 title: Install Kong Enterprise and on Amazon Linux
 ---
 
-## Installation Steps
+## Download Kong Gateway
+
+{% include /md/enterprise/install.md install='OS' %}
+
+### Obtain your Kong Enterprise license
+
+{% include /md/enterprise/license.md license='<1.3' %}
+
+{% include /md/enterprise/license.md license='json-example' %}
+
+## Install Postgres
 
 ```bash
-$ sudo yum update
-$ sudo vi /etc/yum.repos.d/bintray-kong-kong-enterprise-edition-aws.repo
-[kong-enterprise]
-name = kong-enterprise
-baseurl = https://<BINTRAY_USER:<PASSWORD>@kong.bintray.com/kong-enterprise-edition-aws
-gpgcheck = 0
-enabled = 1
-```
-
-```bash
-$ sudo yum install kong-enterprise-edition
 $ sudo yum install postgresql95 postgresql-server95
 $ sudo service postgresql95 initdb
 $ sudo service postgresql95 start
@@ -26,7 +25,7 @@ Create `kong` user
 
 ```bash
 $ psql
-> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong'; 
+> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
 > \q
 > exit
 ```
@@ -71,13 +70,13 @@ $ curl -i -X GET --url http://localhost:8001/services
 
 ```bash
 # Get the local IP address
-$ ifconfig 
+$ ifconfig
 
 # Uncomment the admin_listen setting, and update to the network IP in the step before.  For example `admin_listen = 172.31.3.8:8001`
 $ sudo vi /etc/kong.conf
 
 # Restart kong
-$ sudo /usr/local/bin/kong stop 
+$ sudo /usr/local/bin/kong stop
 $ sudo /usr/local/bin/kong start /etc/kong/kong.conf
 ```
 In a browser, load your server on port `8002`

@@ -101,8 +101,8 @@ docs, see the instructions on the [docs wiki](https://konghq.atlassian.net/wiki/
     1. Copy the latest `app/gateway-oss/` version folder and all of its contents.
     Rename the folder to the new major or minor version, with `x` for the patch level.
 
-        For example, copy `app/gateway-oss/2.3.x` and rename to
-        `app/gateway-oss/2.4.x`.
+        For example, copy `app/gateway-oss/2.4.x` and rename to
+        `app/gateway-oss/2.5.x`.
 
     2. Copy the latest `app/getting-started-guide/` version folder and rename it
      to the new version.
@@ -115,17 +115,17 @@ docs, see the instructions on the [docs wiki](https://konghq.atlassian.net/wiki/
     1. Copy the previous version section, which looks like the following:
 
         ```yaml
-          release: "2.3.x"
-          version: "2.3.2"
+          release: "2.4.x"
+          version: "2.4.2"
           edition: "gateway-oss"
-          luarocks_version: "2.3.2-0"
+          luarocks_version: "2.4.2-0"
           dependencies:
             luajit: "2.1.0-beta3"
-            luarocks: "3.4.0"
+            luarocks: "3.5.0"
             cassandra: "3.x.x"
             postgres: "9.5+"
-            openresty: "1.17.8.2"
-            openssl: "1.1.1i"
+            openresty: "1.19.3.1"
+            openssl: "1.1.1k"
             libyaml: "0.2.5"
             pcre: "8.44"
         ```
@@ -136,8 +136,8 @@ docs, see the instructions on the [docs wiki](https://konghq.atlassian.net/wiki/
     which looks like the following:
 
         ```yaml
-          release: "2.3.x"
-          version: "2.3"
+          release: "2.4.x"
+          version: "2.4"
           edition: "getting-started-guide"
         ```
 
@@ -148,9 +148,9 @@ docs, see the instructions on the [docs wiki](https://konghq.atlassian.net/wiki/
     `x.x.x` version:
 
         ```json
-        "url": "https://docs.konghq.com/gateway-oss/2.3.x/"
+        "url": "https://docs.konghq.com/gateway-oss/2.4.x/"
         ```
-
+    
 4. Commit and push release branch to GitHub.
 
 ### Generating the PDK, Admin API, CLI, and Configuration Documentation
@@ -167,30 +167,30 @@ For example:
 
 ```
 cd /path/to/kong
-scripts/autodoc ../docs.konghq.com 2.3.x
+scripts/autodoc ../docs.konghq.com 2.4.x
 ```
 
 This example assumes that the `Kong/docs.konghq.com` repo is cloned into the
 same directory as the `Kong/kong` repo, and that you want to generate the docs
-for version `2.3.x`. Adjust the paths and version as needed.
+for version `2.4.x`. Adjust the paths and version as needed.
 
 Once everything is generated, review, open a branch with the changes, send a
 pull request, and review the changes.
 
 You usually want to open a PR against a `release/*` branch. For example, in the
-example above the branch was `release/2.3`.
+example above the branch was `release/2.4`.
 
 ```
 cd docs.konghq.com
 git fetch --all
-git checkout release/2.3
-git checkout -b release/2.3-autodocos
+git checkout release/2.4
+git checkout -b release/2.4-autodocos
 git add -A .
-git commit -m "docs(2.3.x) add autodocs"
+git commit -m "docs(2.4.x) add autodocs"
 git push
 ```
 
-Then open a pull request against `release/2.3`.
+Then open a pull request against `release/2.4`.
 
 ## Listing Your Extension in the Plugin Hub
 

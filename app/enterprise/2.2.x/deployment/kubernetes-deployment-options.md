@@ -12,9 +12,6 @@ operation and is recommended for all deployments.
 * [DB-less installation with the Kong Ingress Controller][k4k8s-enterprise-install]
 * [Database-backed installation with or without the Kong Ingress Controller][k4k8s-with-enterprise-install]
 
-> The Bintray repository requires a login. If you see a 404, log in through the
-[Kong repository home page](https://bintray.com/kong) first.
-
 ### Migrating to 2.1.x
 
 Existing users of the `kong-enterprise-k8s` image who want to use 2.1.x should

@@ -20,7 +20,7 @@ An upgrade (or update) is the process of changing the version of the software cu
 12. Adapt your infrastructure, Kong configuration file and eventual custom nginx template according to with your previous experience in preproduction.
 13. Run the `kong migrations up` command and start Kong.
 
-Once a new version is available, you are informed by a distribution list email or via your designated Customer Success Engineer. The newer version will be available in the same repository in Bintray.
+Once a new version is available, you are informed by a distribution list email or via your designated Customer Success Engineer.
 
 Although you may already have backup processes in place, a most recent backup of your database prior upgrade is needed due to the fact that represents the most recent versions of your entities and other metrics which need to be preserved while upgrading. After such backup any changes applied via the Admin API won't appear in the destination environment, therefore we suggest not making any modifications on the Admin API during the upgrade process.
  For database backups you can use specific tools for each database such as `pg_dump` for Postgres or `nodetool snapshot` for Cassandra; however we recommend to always refer to an experienced DBA.

@@ -3,47 +3,18 @@ title: Installing Kong EE Docker Image
 redirect_from: '/enterprise/0.33-xinstallation/docker'
 ---
 
+## Introduction
+
 <img src="/assets/images/distributions/docker.svg"/>
 
-## Installation Steps
-
 A guide to installing Kong Enterprise Edition - and its license file - using
-Docker. **Trial users should skip directly to step 4**.
+Docker.
 
-1.  Login to [bintray.com](https://bintray.com) - your credentials will have been
-    emailed to you by your Sales or Support contact
+{% include /md/enterprise/license.md license='<1.3' %}
 
-2.  In the upper right corner, click Edit Profile, so you can retrieve your API
-    key, which you will use in step 3 - or click [here](https://bintray.com/profile/edit)
+## Download and Install Kong Gateway
 
-3.  For **users with existing contracts**, add the Kong Docker repository and
-    pull the image:
-
-        ```
-        $ docker login -u <your_username_from_bintray> -p <your_apikey_from_bintray> kong-docker-kong-enterprise-edition-docker.bintray.io
-        $ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition
-        ```
-
-4.  For **trial users**, run the following, replacing `<your trial image URL>`
-    with the URL you received in your welcome email:
-
-        ```
-        curl -Lsv "<your trial image URL>" -o /tmp/kong-docker-ee.tar.gz
-        docker load -i /tmp/kong-docker-ee.tar.gz
-        ```
-
-You should now have your Kong Enterprise Free Trial image locally. Run
-`docker images` to find it.
-
-5.  Tag it - for easier use in the commands below - as follows:
-
-    ```
-    docker tag <IMAGE ID> kong-ee
-    ```
-
-    Replace "IMAGE ID" with `7fc852f88079` if the Free Trial image is for Kong
-    Enterprise 0.31-1 or `78ffc3bce991` if it is for 0.32. Recent Kong Enterprise
-    Free Trial images (>= 0.33) come with a more intuitive name.
+{% include /md/enterprise/install.md install='docker' %}
 
 6.  Generally, we'll be following the instructions [here](/install/docker/) with
     some slight, but important, differences
@@ -62,10 +33,7 @@ You should now have your Kong Enterprise Free Trial image locally. Run
         ```
 
 8.  To make the license data easier to handle, export it as a shell variable.
-    Please note that **your license contents will differ**! Users with Bintray
-    accounts should visit [https://bintray.com/kong/&lt;YOUR_REPO_NAME&gt;/license#files](https://bintray.com/kong/<YOUR_REPO_NAME>/license#files)
-    to retrieve their license. Trial users should download their license from their
-    welcome email. Once you have your license, you can set it in an environment variable:
+    Please note that **your license contents will differ**!
 
         ```sh
         export KONG_LICENSE_DATA='{"license":{"signature":"LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tClZlcnNpb246IEdudVBHIHYyCgpvd0did012TXdDSFdzMTVuUWw3dHhLK01wOTJTR0tLWVc3UU16WTBTVTVNc2toSVREWk1OTFEzVExJek1MY3dTCjA0ek1UVk1OREEwc2pRM04wOHpNalZKVHpOTE1EWk9TVTFLTXpRMVRVNHpTRXMzTjA0d056VXdUTytKWUdNUTQKR05oWW1VQ21NWEJ4Q3NDc3lMQmorTVBmOFhyWmZkNkNqVnJidmkyLzZ6THhzcitBclZtcFZWdnN1K1NiKzFhbgozcjNCeUxCZzdZOVdFL2FYQXJ0NG5lcmVpa2tZS1ozMlNlbGQvMm5iYkRzcmdlWFQzek1BQUE9PQo9b1VnSgotLS0tLUVORCBQR1AgTUVTU0FHRS0tLS0tCg=","payload":{"customer":"Test Company Inc","license_creation_date":"2017-11-08","product_subscription":"Kong Enterprise Edition","admin_seats":"5","support_plan":"None","license_expiration_date":"2017-11-10","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU"},"version":1}}'
