@@ -48,7 +48,14 @@ endcapture %}
 %}{% endcapture %}
 
 <!-- Generate declarative yaml examples -->
-{% capture config_required_fields_yaml %}config: {% for field in page.params.config %}{% if field.value_in_examples != nil %}{% if field.value_in_examples.first %}{% if field.name contains "." %}{% assign names = field.name | split: "." %}{{ names[0] }}:{%
+{% capture config_required_fields_yaml
+  %}config: {%
+  for field in page.params.config %}{%
+  if field.value_in_examples != nil %}{%
+    if field.value_in_examples.first %}{%
+        if field.name contains "." %}{%
+          assign names = field.name | split: "." %}
+    {{ names[0] }}:{%
       for name in names offset:1 %}
       {{ name }}:{% endfor %}{%
       for value in field.value_in_examples %}
