@@ -24,7 +24,8 @@ PostgreSQL, Cassandra), refer to
 
 If you already have a {{site.base_gateway}} instance, skip to Step 2.
 
-If you have not installed {{site.base_gateway}}, a Docker installation will work for the purposes of this guide. 
+If you have not installed {{site.base_gateway}}, a Docker installation
+will work for the purposes of this guide. 
 See [Install {{site.base_gateway}} on Docker](/enterprise/{{page.kong_version}}/deployment/installation/docker)
 for installation instructions.
 
@@ -121,32 +122,59 @@ Kong Vitals records metrics in two InfluxDB measurements:
 2. `kong_datastore_cache`: Contains points about cache hits and
   misses. 
 
-To display measurement schemas:
+To display the measurement schemas on your InfluxDB instance running
+in Docker:
+
+1. Open command line in your InfluxDB Docker container
+
+  ```sh
+  $ docker exec -it influxdb /bin/sh
+  ```
+
+2. Log in to the InfluxDB CLI.
+
+  ```sh
+  $ influx -precision rfc3339
+  ```
+
+3. Enter the InfluxQL query for returning a list of tag keys associated
+with the specified database.
+
+  ```sql
+  > SHOW TAG KEYS ON kong
+  ```
+
+  Example result:
+
+  ```sql
+  name: kong_request
+  tagKey
+  ------
+  consumer
+  hostname
+  route
+  service
+  status_f
+  wid
+  workspace
+
+  name: kong_datastore_cache
+  tagKey
+  ------
+  hostname
+  wid
+  ```
+
+4. Enter the InfluxQL query for returning the field keys and the
+data type of their field values.
 
 ```sh
-$ show tag keys
-name: kong_request
-tagKey
-------
-consumer
-hostname
-route
-service
-status_f
-wid
-workspace
-
-name: kong_datastore_cache
-tagKey
-------
-hostname
-wid
+> SHOW FIELD KEYS ON kong
 ```
 
+Example result:
 
-
-```sh
-> show field keys
+```sql
 name: kong_request
 fieldKey	         fieldType
 --------	         ---------
@@ -170,6 +198,8 @@ As demonstrated above, the series cardinality of the `kong_request` measurement
 varies based on the cardinality of the Kong cluster configuration - a greater
 number of Service/Route/Consumer/Workspace combinations handled by Kong results
 in a greater series cardinality as written by Vitals. 
+
+
 
 Consult the
 [InfluxDB sizing guidelines](https://docs.influxdata.com/influxdb/v1.7/guides/hardware_sizing/)
