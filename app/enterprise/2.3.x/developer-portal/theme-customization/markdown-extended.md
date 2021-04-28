@@ -19,7 +19,7 @@ improves rendering significantly, especially for tables.
 
 ## Specify the markdown rendering module in a document
 
-1. Create a markdown file for your Dev Portal documentation.
+1. Create a markdown file for your Dev Portal documentation. The markdown file, for example `markdown-example.md` needs to be added under `content` folder. Add your markdown content, refer [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/) to start with. The example below has few content for your references.
 2. Call the markdown module using the `layout` parameter.
 3. Specify the `.css` file you want to use. You can use the default Github `.css` as shown, or specify your own custom `.css`.
 
@@ -42,4 +42,12 @@ improves rendering significantly, especially for tables.
 layout: system/markdown.html
 css: assets/style/markdown.css
 ---
+# Example Top Heading
+## Example Second Level Heading
+**How to bold content**:
+### Example Third Level Heading
+Example Table Content
+| Column Name | Column Description |
+| :--- | :--- |
+| Markdown Column | Example description that works in a table |
 ```
