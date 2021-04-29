@@ -2,17 +2,12 @@
 name: OPA
 publisher: Kong Inc.
 version: 0.1.x
-beta: true
 # internal handler v 0.1.0
 
 desc: Authorize requests against Open Policy Agent
 description: |
     Forward request to Open Policy Agent and process the request only if the
     authorization policy allows for it.
-
-    <div class="alert alert-ee blue"><strong>Note:</strong> The OPA plugin is compatible with
-    the Kong Gateway (Enterprise) beta version 2.4.x.
-    </div>  
 
 enterprise: true
 type: plugin
