@@ -132,6 +132,8 @@ copy and paste the `stock-01.json` example file into the Dev Portal using Editor
 2. Name the file `stock-01.json`.
 3. Copy and paste the contents below into the new file.
 
+The mocked response is between lines 44 to 59.
+
 ```json
 {"swagger": "2.0",
     "info" : {
