@@ -110,11 +110,143 @@ params:
 
 ## Tutorial Example
 
-1. Create a service.
-2. Create a route.
-3. Enable the Mocking plugin.
-4. Enable the [CORS](/hub/kong-inc/cors/) plugin.
-5. Test the mocked response from the Dev Portal.
+1. Deploy an OAS spec to the Dev Portal.
+2. Create a service.
+3. Create a route.
+4. Enable the Mocking plugin.
+5. Enable the [CORS](/hub/kong-inc/cors/) plugin.
+6. Test the mocked response from the Dev Portal.
+
+Before following the steps in this tutorial, you can view a video demonstration of the Mocking plugin
+used in conjunction with the Dev Portal. See the [Service Mocking](https://www.youtube.com/watch?v=l8uKbgkK6_I)
+video available on YouTube.
+
+### Deploy a spec to the Dev Portal
+
+Follow these steps to deploy a spec to the Dev Portal using Kong Manager. You can
+copy and paste the `stock-01.json` example file into the Dev Portal using Editor Mode.
+
+![Dev Portal Specs](/assets/images/docs/dev-portal/stock-spec-mocking-example.png)
+
+1. Open Editor Mode and click **New File**.
+2. Name the file `stock-01.json`.
+3. Copy and paste the contents below into the new file.
+
+```json
+{"swagger": "2.0",
+    "info" : {
+        "title": "Stock API",
+        "description": "Stock Information Service",
+        "version": "0.1"
+    },
+    "host": "apistore.kong.com:8000",
+    "basePath": "/",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+       "/stock/historical": {
+            "get": {
+                "description": "",
+                "operationId": "GET /stock/historical",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Production"
+                ],
+                "parameters": [
+                    {
+                        "required": true,
+                        "in": "query",
+                        "name": "tickers",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Status 200",
+                        "examples": {
+                            "application/json":
+                                  {
+                                "meta_data" : {
+                                  "api_name" : "historical_stock_price_v2",
+                                  "num_total_data_points" : 1,
+                                  "credit_cost" : 10,
+                                  "start_date" : "yesterday",
+                                  "end_date" : "yesterday"
+                                },
+                                "result_data" : {
+                                  "AAPL" : [ {
+                                    "date" : "2000-04-23",
+                                    "volume" : 33,
+                                    "high" : 100.75,
+                                    "low" : 100.87,
+                                    "adj_close" : 275.03,
+                                    "close" : 100.03,
+                                    "open" : 100.87
+                                  } ]
+                                }
+                              }
+                            }
+                          }
+                }
+           }
+       },
+     "/stock/closing": {
+            "get": {
+                "description": "",
+                "operationId": "GET /stock/closing",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Beta"
+                ],
+                "parameters": [
+                    {
+                        "required": true,
+                        "in": "query",
+                        "name": "tickers",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Status 200",
+                        "examples": {
+                            "application/json":
+                                  {
+                                "meta_data" : {
+                                  "api_name" : "closing_stock_price_v1"
+                                },
+                                "result_data" : {
+                                  "AAPL" : [ {
+                                    "date" : "2000-06-23",
+                                    "volume" : 33,
+                                    "high" : 100.75,
+                                    "low" : 100.87,
+                                    "adj_close" : 275.03,
+                                    "close" : 100.03,
+                                    "open" : 100.87
+                                  } ]
+                                }
+                              }
+                            }
+                          }
+                }
+           }
+       }
+    }
+}
+```
 
 ### Create the service
 
