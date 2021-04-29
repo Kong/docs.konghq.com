@@ -31,7 +31,7 @@ To complete this installation you will need:
 
 * A valid [Kong Enterprise License](/enterprise/{{page.kong_version}}/deployment/access-license/) JSON file, including a license for Immunity.
 
-### Step 1. Add the Kong Docker Repository and Pull the Immunity Docker Image
+### Step 1. Pull the Immunity Docker image
 
 1. In a terminal window, pull the Kong Immunity Docker image.
 ```bash
