@@ -28,7 +28,7 @@ $ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
 {% endnavtab %}
 {% navtab Manually %}
 
-You can also [download](https://kong.bintray.com/kong-mesh/kong-mesh-{{page.kong_latest.version}}-ubuntu-amd64.tar.gz)
+You can also [download](https://download.konghq.com/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-ubuntu-amd64.tar.gz)
  the distribution manually.
 
 Then, extract the archive with:
