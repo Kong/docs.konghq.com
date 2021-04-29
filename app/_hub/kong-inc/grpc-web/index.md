@@ -20,12 +20,14 @@ license_type: MIT
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.4.x
       - 2.3.x
       - 2.2.x
       - 2.1.x
 
   enterprise_edition:
     compatible:
+      - 2.4.x
       - 2.3.x
       - 2.2.x
       - 2.1.x
@@ -42,6 +44,7 @@ params:
       required: false
       default:
       value_in_examples: path/to/hello.proto
+      datatype: string
       description: |
         If present, describes the gRPC types and methods.
         Required to support payload transcoding. When absent, the
@@ -50,6 +53,7 @@ params:
       required: false
       default:
       value_in_examples:
+      datatype: boolean
       description:
         If set to `true` causes the plugin to pass the stripped request path to
         the upstream gRPC service (see the `strip_path` Route attribute).

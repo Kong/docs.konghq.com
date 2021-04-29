@@ -4,6 +4,14 @@ destination: dist
 permalink: pretty
 timezone: America/San_Francisco
 markdown: kramdown
+kramdown:
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
 incremental: true
 
 keep_files:
@@ -16,7 +24,7 @@ description: "Secure, Manage &amp; Extend your APIs or Microservices with plugin
 links:
   web: https://docs.konghq.com
   share: https://docs.konghq.com # legacy link, must maintain for social sharing counters
-  download: https://bintray.com/kong
+  download: https://download.konghq.com
   instaclustr: "https://www.instaclustr.com/products/kong/?utm_source=partnership&utm_medium=link&utm_campaign=mashape"
 repos:
   kong: https://github.com/Kong/kong

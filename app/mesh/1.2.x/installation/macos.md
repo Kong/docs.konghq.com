@@ -33,7 +33,7 @@ $ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
 {% endnavtab %}
 {% navtab Manually %}
 
-You can also [download](https://download.konghq.com/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-darwin-amd64.tar.gz)
+You can also [download]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-darwin-amd64.tar.gz)
 the distribution manually.
 
 Then, extract the archive with:
@@ -45,8 +45,8 @@ $ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 {% endnavtab %}
 {% endnavtabs %}
 
-{% include /md/mesh/1.2.x/install-universal-run.md %}
+{% include /md/mesh/install-universal-run.md %}
 
-{% include /md/mesh/1.2.x/install-universal-verify.md %}
+{% include /md/mesh/install-universal-verify.md %}
 
-{% include /md/mesh/1.2.x/install-universal-quickstart.md %}
+{% include /md/mesh/install-universal-quickstart.md %}

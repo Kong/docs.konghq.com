@@ -54,7 +54,7 @@ The GraphQL Rate Limiting Advanced plugin supports two rate-limiting strategies.
 
 A more advanced strategy is available for GraphQL schemas that enforce quantifier arguments on any connection, providing a good approximation on the number of nodes visited for satisfying a query. Any query without decorated quantifiers has a cost of 1. It is roughly based on [GitHub's GraphQL resource limits](https://developer.github.com/v4/guides/resource-limitations/).
 
-Read more about rate-limiting here: [GraphQL Rate Limiting Advanced Plugin](/enterprise/{{page.kong_version}}/plugins/graphql-rate-limiting-advanced)
+Read more about rate-limiting here: [GraphQL Rate Limiting Advanced Plugin](/hub/kong-inc/graphql-rate-limiting-advanced)
 
 ### New upstream
 

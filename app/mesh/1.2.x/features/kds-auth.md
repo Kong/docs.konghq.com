@@ -60,7 +60,7 @@ If you install the remote control plane with `kumactl install control-plane`, pa
 $ kumactl install control-plane \
   --mode=remote \
   --zone=<zone name> \
-  --cp-token-path=/tmp/token
+  --cp-token-path=/tmp/token \
   --ingress-enabled \
   --kds-global-address grpcs://`<global-kds-address>` | kubectl apply -f - 
 ```
@@ -116,6 +116,8 @@ $ KUMA_MODE=remote \
 
 ### Enable authentication on the global control plane
 
+If you are starting from scratch and not securing existing Kong Mesh deployment, you can do this as a first step.
+
 {% navtabs %}
 {% navtab Kubernetes with kumactl %}
 
@@ -123,7 +125,7 @@ If you install the remote control plane with `kumactl install control-plane`, pa
 
 ```sh
 $ kumactl install control-plane \
-  --mode=global
+  --mode=global \
   --cp-auth=cpToken | kubectl apply -f -
 ```
 

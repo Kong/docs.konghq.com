@@ -26,13 +26,14 @@ installation: |
 
   or install it from [source](https://github.com/Kong/kong-plugin-openwhisk).
   For more information on Plugin installation, please see the documentation
-  [Plugin Development - (un)Install your plugin](/latest/plugin-development/distribution/)
+  [Plugin Development - (un)Install your plugin](/gateway-oss/latest/plugin-development/distribution/)
 
 params:
   name: openwhisk
   service_id: true
   route_id: true
   consumer_id: true
+  konnect_examples: false
   config:
     - name: host
       required: true

@@ -21,7 +21,7 @@ for a feature breakdown and comparison between DB-less and database-backed deplo
 You can use `kubectl` or OpenShift `oc` to configure {{site.ee_product_name}} on Kubernetes, then deploy it [using Helm](https://github.com/Kong/charts/tree/main/charts/kong).
 
 This software is governed by the
-[Kong Software License Agreement](https://konghq.com/enterprisesoftwarelicense/).
+[Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
 
 ### Deployment options
 
@@ -164,6 +164,14 @@ In the following steps, replace `<your-password>` with a secure password.
     ```bash
     $ echo '{"cookie_name":"portal_session","cookie_samesite":"off","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
     ```
+
+    Or, if you have different subdomains for the `portal_api_url` and `portal_gui_host`, set the `cookie_domain`
+    and `cookie_samesite` properties as follows:
+
+    ```
+    $ echo '{"cookie_name":"portal_session","cookie_samesite":"off","cookie_domain":"<.your_subdomain.com">,"secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
+    ```
+
 3. Create the secret.
 
     With Kong Manager only:
@@ -199,6 +207,13 @@ In the following steps, replace `<your-password>` with a secure password.
 
     ```bash
     $ echo '{"cookie_name":"portal_session","cookie_samesite":"off","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
+    ```
+
+    Or, if you have different subdomains for the `portal_api_url` and `portal_gui_host`, set the `cookie_domain`
+    and `cookie_samesite` properties as follows:
+
+    ```
+    $ echo '{"cookie_name":"portal_session","cookie_samesite":"off","cookie_domain":"<.your_subdomain.com">,"secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
     ```
 
 3. Create the secret.

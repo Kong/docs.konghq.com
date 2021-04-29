@@ -353,6 +353,9 @@ $(function () {
     $(".docs-toc > .close-sidebar").click(function () {
       $(".docs-toc").removeClass("sidebar-open");
     });
+    $(".docs-toc .scroll-to").click(function () {
+      $(".docs-toc").removeClass("sidebar-open");
+    });
 
     $(".docs-toc > .collapse-toc").click(function () {
       $(".docs-toc").addClass("collapsed");
@@ -660,7 +663,7 @@ $(function () {
       copyInput.text(
         snippet.data("copy-code") ||
           snippet
-            .find("code")
+            .find(".rouge-code")
             .text()
             .replace(/^\s*\$\s*/gi, "")
       );
@@ -699,7 +702,6 @@ $(function () {
    * ---
    * title: Install Kong Enterprise
    * toc: false
-   * skip_read_time: true
    * disable_image_expand: true
    * ---
    */

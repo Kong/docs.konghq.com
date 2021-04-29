@@ -10,7 +10,7 @@ all runtime nodes, which use in-memory storage. These nodes can be installed
 anywhere, on-premise or in the cloud.
 
 Runtime nodes, acting as data planes, listen for traffic on the proxy port 443
-by default. The {{site.konnect_short_name}} SaaS control plane evaluates
+by default. The {{site.konnect_short_name}} data plane evaluates
 incoming client API requests and routes them to the appropriate backend APIs.
 While routing requests and providing responses, policies can be applied with
 plugins as necessary.
@@ -39,7 +39,7 @@ processing invalid requests.
 <div class="alert alert-ee blue">
 <b>Note:</b> Currently, the only supported runtime type in
 {{site.konnect_short_name}} SaaS is a
-<a href="/enterprise/latest/introduction">{{site.ee_gateway_name}}</a>
+<a href="/enterprise/">{{site.ee_gateway_name}}</a>
 data plane.
 </div>
 

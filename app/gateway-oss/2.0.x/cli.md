@@ -5,7 +5,6 @@
 #  the files in https://github.com/Kong/docs.konghq.com/tree/master/autodoc-cli
 #
 title: CLI Reference
-skip_read_time: true
 ---
 
 ## Introduction

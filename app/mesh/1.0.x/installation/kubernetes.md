@@ -38,16 +38,16 @@ You can also download the distribution manually. Download a distribution for
 the **client host** from where you will be executing the commands to access
 Kubernetes:
 
-* [CentOS](https://download.konghq.com/mesh-alpine/kong-mesh-{{page.kong_versions[0].version}}-centos-amd64.tar.gz)
-* [RedHat](https://download.konghq.com/mesh-alpine/kong-mesh-{{page.kong_versions[0].version}}-rhel-amd64.tar.gz)
-* [Debian](https://download.konghq.com/mesh-alpine/kong-mesh-{{page.kong_versions[0].version}}-debian-amd64.tar.gz)
-* [Ubuntu](https://download.konghq.com/mesh-alpine/kong-mesh-{{page.kong_versions[0].version}}-ubuntu-amd64.tar.gz)
-* [macOS](https://download.konghq.com/mesh-alpine/kong-mesh-{{page.kong_versions[0].version}}-darwin-amd64.tar.gz)
+* [CentOS]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_versions[0].version}}-centos-amd64.tar.gz)
+* [RedHat]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_versions[0].version}}-rhel-amd64.tar.gz)
+* [Debian]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_versions[0].version}}-debian-amd64.tar.gz)
+* [Ubuntu]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_versions[0].version}}-ubuntu-amd64.tar.gz)
+* [macOS]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_versions[0].version}}-darwin-amd64.tar.gz)
 
 Then, extract the archive with:
 
 ```sh
-$ tar xvzf kong-mesh-{{page.kong_versions[0].version}}*.tar.gz
+$ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 ```
 
 {% endnavtab %}
@@ -65,7 +65,7 @@ control plane process in the next step &mdash; which is served by the
 Navigate to the `bin` folder:
 
 ```sh
-$ cd kong-mesh-{{page.kong_versions[0].version}}/bin
+$ cd kong-mesh-{{page.kong_latest.version}}/bin
 ```
 
 Then, run the control plane with:

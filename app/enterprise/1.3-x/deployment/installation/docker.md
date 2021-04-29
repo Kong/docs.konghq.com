@@ -17,38 +17,12 @@ steps to configure PostgreSQL.
 ## Prerequisites
 
 To complete this installation you will need:
-
-* A valid *Bintray* account. You will need your *username*, account *password* and account *API Key*.
-  - Example:
-    * Bintray Access key = `john-company`
-    * Bintray username = `john-company@kong`
-    * Bintray password = `12345678`
-    * Bintray API key = `12234e314356291a2b11058591bba195830`
-  - The API Key can be obtained by visiting [https://bintray.com/profile/edit](https://bintray.com/profile/edit) and selecting **API Key**
-* A Docker-enabled system with proper Docker access.
-* A valid **Kong Enterprise License** JSON file.
-  - The license file can be found in your Bintray account. See [Accessing Your License](/enterprise/latest/deployment/access-license)
+- Docker
+{% include /md/enterprise/license.md license='prereq' %}
 
 ## Step 1. Add the Kong Docker Repository and Pull the Kong Enterprise Docker Image
 
-```bash
-$ docker login -u <your_username_from_bintray> -p <your_apikey_from_bintray> kong-docker-kong-enterprise-edition-docker.bintray.io
-$ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition
-```
-
-You should now have your Kong Enterprise image locally.
-
-Verify that it worked, and find the image ID matching your repository:
-
-```bash
-$ docker images
-```
-
-Tag the image ID for easier use:
-
-```bash
-$ docker tag <IMAGE_ID> kong-ee
-```
+{% include /md/enterprise/install.md install='docker' %}
 
 **Note:** Replace `<IMAGE_ID>` with the one matching your repository.
 
@@ -74,6 +48,8 @@ $ docker run -d --name kong-ee-database \
 ```
 
 ## Step 4. Export the License Key to a Variable
+
+{% include /md/enterprise/license.md license='<1.3' %}
 
 Run the following command, substituting your own license key (see
 [Prerequisites](#prerequisites)).

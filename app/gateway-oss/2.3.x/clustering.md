@@ -1,6 +1,5 @@
 ---
 title: Clustering Reference
-skip_read_time: true
 ---
 
 ## Introduction

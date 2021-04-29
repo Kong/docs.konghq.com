@@ -1,20 +1,35 @@
 # free trials
 /free-trial/guide/                    https://konghq.com/install
 
+# deck
+/deck/overview/                       /deck/
+/hub/kong-inc/deck/                   /deck/
+/hub/hbagdi/deck/                     /deck/
+
+# kubernetes ingress controller
+/kubernetes-ingress-controller/latest/introduction /kubernetes-ingress-controller/
+/kubernetes-ingress-controller/1.2.x/introduction  /kubernetes-ingress-controller/
+
+# enterprise gateway
+/enterprise/latest/introduction       /enterprise/
+/enterprise/2.3.x/introduction        /enterprise/
+
 # getting started guide
-/enterprise/latest/getting-started/   /getting-started-guide/latest/overview/
-/enterprise/1.5.x/getting-started/    /getting-started-guide/ce-2.0.x_ke-1.5.x/overview/
+/enterprise/latest/getting-started/              /getting-started-guide/latest/overview/
+/enterprise/1.5.x/getting-started/               /getting-started-guide/ce-2.0.x_ke-1.5.x/overview/
+/gateway-oss/2.3.x/getting-started/introduction  /gateway-oss/2.3.x/
+/gateway-oss/2.4.x/getting-started/introduction  /gateway-oss/2.4.x/
+/gateway-oss/latest/getting-started/introduction /gateway-oss/
 
 # plugins
-/hub/kong-inc/deck/                         /deck/
-/hub/hbagdi/deck/                           /deck/
 /hub/api-fortress/api-fortress-http-log/    /hub/
 /hub/api-fortress/api-fortress-http-log/*   /hub/
 
 # Konnect
-/konnect/access-beta                        /konnect/access-account
-/konnect/service-hub                        /konnect/servicehub/
-/konnect/service-hub/*                      /konnect/servicehub/:splat
+/konnect/access-beta                          /konnect/access-account
+/konnect/service-hub                          /konnect/servicehub/
+/konnect/service-hub/*                        /konnect/servicehub/:splat
+/konnect/runtime-manager/kong-gateway-runtime /konnect/runtime-manager/#kong-gateway
 
 # Community doc rebranding
 /latest/*                                   /gateway-oss/latest/:splat
@@ -49,3 +64,10 @@
 /enterprise/2.3.x/studio/*                  https://support.insomnia.rest/
 /studio                                     https://support.insomnia.rest/
 /studio/*                                   https://support.insomnia.rest/
+
+# Dev Portal
+/enterprise/2.1.x/developer-portal/introduction /enterprise/2.1.x/developer-portal
+/enterprise/2.2.x/developer-portal/introduction /enterprise/2.2.x/developer-portal
+/enterprise/2.3.x/developer-portal/introduction /enterprise/2.3.x/developer-portal
+/enterprise/latest/developer-portal/introduction /enterprise/latest/developer-portal
+/enterprise/latest/developer-portal/overview     /enterprise/latest/developer-portal

@@ -14,7 +14,7 @@ the installation and configuration.
 steps to configure PostgreSQL. For assistance in setting up Cassandra, please contact your Sales or Support representative.
 
 This software is governed by the
-[Kong Software License Agreement](https://konghq.com/enterprisesoftwarelicense/).
+[Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
 
 ### Deployment options
 
@@ -27,30 +27,14 @@ system with root-equivalent access.
 
 ## Step 1. Prepare to install Kong Gateway {#step-1}
 
-There are two options to install {{site.base_gateway}} on Amazon Linux 1.
+{% include /md/enterprise/download/amazon.md version='2.x' %}
 
-{% navtabs %}
-{% navtab Download RPM file %}
-
-1. Go to: [https://bintray.com/kong/kong-gateway-aws](https://bintray.com/kong/kong-gateway.aws).
-2. Select the `aws` folder.
-    {{site.base_gateway}} versions are listed in reverse chronological order.
-3. Select the latest version from the list.
-4. Click the **Files** tab, then click the distribution folder, if applicable.
-5. Click the RPM file to download it.
-    For example: `kong-enterprise-edition-{{page.kong_versions[10].version}}.amzn2.noarch.rpm`.
-6. Copy the RPM file to your home directory on the Amazon Linux 1 system. You may use a command like:
-
-    ```bash
-    $ scp kong-enterprise-edition-{{page.kong_versions[10].version}}.amzn2.noarch.rpm <amazon user>@<server>:~
-    ```
-
-### (Optional) Verify the package integrity
+<!-- ### (Optional) Verify the package integrity
 
 1. Download Kong's official public key to ensure the integrity of the RPM package:
 
     ```bash
-    $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
+    $ curl -o kong.key {{ site.links.download }}/user/downloadSubjectPublicKey?username=kong
     $ sudo rpm --import kong.key
     $ sudo rpm -K kong-enterprise-edition-{{page.kong_versions[10].version}}.amzn2.noarch.rpm
     ```
@@ -59,52 +43,11 @@ There are two options to install {{site.base_gateway}} on Amazon Linux 1.
 
       ```
       kong-enterprise-edition-{{page.kong_versions[10].version}}.amzn2.noarch.rpm: sha1 md5 OK
-      ```
-
-{% endnavtab %}
-{% navtab Download Kong repo file and add to Yum repo %}
-
-1. Download the {{site.base_gateway}} RPM repo file:
-
-    [https://bintray.com/kong/kong-gateway-aws/rpm](https://bintray.com/kong/kong-gateway-aws/rpm)
-
-2. Securely copy the repo file to your home directory on the Amazon
-Linux 1 system. For example:
-
-    ```bash
-    $ scp bintray--kong-kong-gateway-aws.repo <amazon user>@<server>:~
-    ```
-{% endnavtab %}
-{% endnavtabs %}
+      ``` -->
 
 ## Step 2. Install Kong Gateway
 
-{% navtabs %}
-{% navtab Using downloaded RPM package %}
-
-Execute a command similar to the following, using the appropriate RPM filename
-for the package you downloaded:
-
-```bash
-$ sudo yum install /path/to/package.rpm
-```
-{% endnavtab %}
-{% navtab Using Yum repo %}
-
-1. Move the repo file in your home directory to the `/etc/yum.repos.d/` directory:
-
-    ```bash
-    $ sudo mv bintray--kong-kong-gateway-aws.repo /etc/yum.repos.d/
-    ```
-
-2. Run the installation using the Yum repository:
-
-    ```bash
-    $ sudo yum update -y
-    $ sudo yum install kong-enterprise-edition -y
-    ```
-{% endnavtab %}
-{% endnavtabs %}
+{% include /md/enterprise/install-2.x.md %}
 
 ## Step 3. Set up PostgreSQL
 

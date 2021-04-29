@@ -1,22 +1,22 @@
 - title: Introduction
   icon: /assets/images/icons/documentation/icn-flag.svg
+  url: /
   items:
-    - text: Overview
-      url: /overview
     - text: Using the Konnect Docs
       url: /using-konnect-docs
     - text: Key Concepts and Terms
       url: /key-concepts-and-terms
-    - text: Konnect SaaS Updates
-      url: /updates
     - text: Access a Kong Konnect Account
       url: /access-account
 
+- title: Release Notes
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  url: /updates
+
 - title: Deployment
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
+  url: /deployment
   items:
-    - text: Deployment Overview
-      url: /deployment
     - text: License Management
       url: /deployment/license-management
 
@@ -32,9 +32,8 @@
 
 - title: ServiceHub
   icon: /assets/images/icons/documentation/icn-service-hub-color.svg
+  url: /servicehub
   items:
-    - text: Overview
-      url: /servicehub
     - text: Manage Services
       url: /servicehub/manage-services
     - text: Manage Plugins
@@ -52,18 +51,25 @@
 
 - title: Runtime Manager
   icon: /assets/images/icons/documentation/icn-runtime-manager-color.svg
+  url: /runtime-manager
   items:
-    - text: Overview
-      url: /runtime-manager
     - text: Manage a Kong Gateway Runtime
-      url: /runtime-manager/kong-gateway-runtime
+      items:
+        - text: Docker
+          url: /runtime-manager/gateway-runtime-docker
+        - text: Kubernetes
+          url: /runtime-manager/gateway-runtime-kubernetes
+        - text: Linux
+          url: /runtime-manager/gateway-runtime-conf
+        - text: Runtime Parameter Reference
+          url: /runtime-manager/runtime-parameter-reference
+    - text: Renew Certificates
+      url: /runtime-manager/renew-certificates
 
 - title: Konnect Dev Portal
   icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
+  url: /dev-portal
   items:
-    - text: Overview
-      url: /dev-portal
-
     - text: Administrators
       items:
         - text: Application Registration
@@ -105,9 +111,8 @@
 
 - title: Konnect Vitals
   icon: /assets/images/icons/documentation/icn-vitals.svg
+  url: /vitals
   items:
-    - text: Monitoring Health with Vitals
-      url: /vitals
     - text: Generating Vitals Reports
       url: /vitals/generate-reports
 
@@ -124,3 +129,4 @@
         - text: Konnect API Reference
           url: https://konnect.konghq.com/docs
           absolute_url: true
+          target_blank: true

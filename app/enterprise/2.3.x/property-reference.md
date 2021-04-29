@@ -5,7 +5,6 @@
 #  the files in https://github.com/Kong/docs.konghq.com/tree/master/autodoc-conf-ee
 #
 title: Configuration Reference for Kong Gateway (Enterprise)
-skip_read_time: true
 ---
 
 ## Configuration loading
@@ -725,7 +724,6 @@ its entry will be removed.
 
 ---
 
-
 ### NGINX section
 
 #### proxy_listen
@@ -835,6 +833,7 @@ Some suffixes can be specified for each pair:
   necessary to raise `net.core.somaxconn` at the same time to match or exceed
   the `backlog` number set.
 
+  
 **Note:** The `ssl` suffix is not supported, and each address/port will accept
 TCP with or without TLS enabled.
 
@@ -2158,6 +2157,94 @@ attempts allowed.
 
 ---
 
+#### admin_gui_header_txt
+
+Kong Manager Header Banner
+Sets text for Kong Manager Header Banner. Header Banner is not shown if this config is empty.
+
+**Default:** none
+
+---
+
+#### admin_gui_header_bg_color
+
+Kong Manager Header Background Color 
+Sets background color for Kong Manager Header Banner.
+Accepts css color keyword, #-hexadecimal or rgb format. Invalid values are ignored by Manager.
+
+**Default:** none
+
+---
+
+#### admin_gui_header_txt_color
+
+Kong Manager Header Text Color
+Sets text color for Kong Manager Header Banner.
+
+Accepts css color keyword, #-hexadecimal or rgb format. Invalid values are
+ignored by Kong Manager.
+
+**Default:** none
+
+---
+
+#### admin_gui_footer_txt
+
+Kong Manager Footer Text
+Sets text for Kong Manager Footer Banner. Footer Banner is not shown if this config is empty
+
+**Default:** none
+
+---
+
+#### admin_gui_footer_bg_color
+
+Kong Manager Footer Background Color
+Sets background color for Kong Manager Footer Banner.
+
+Accepts css color keyword, #-hexadecimal or rgb format. Invalid values are
+ignored by Manager.
+
+**Default:** none
+
+---
+
+#### admin_gui_footer_txt_color
+
+Kong Manager Footer Text Color
+Sets text color for Kong Manager Footer Banner.
+
+Accepts css color keyword, #-hexadecimal or rgb format. Invalid values are
+ignored by Kong Manager.
+
+**Default:** none
+
+---
+
+#### admin_gui_login_banner_title
+
+Kong Manager Login Banner Title Text
+Sets title text for Kong Manager Login Banner.
+
+Login Banner is not shown if both `admin_gui_login_banner_title` and
+`admin_gui_login_banner_body` are empty.
+
+**Default:** none
+
+---
+
+#### admin_gui_login_banner_body
+
+Kong Manager Login Banner Body Text
+Sets body text for Kong Manager Login Banner.
+
+Login Banner is not shown if both `admin_gui_login_banner_title` and
+`admin_gui_login_banner_body` are empty.
+
+**Default:** none
+
+---
+
 
 ### Vitals section
 
@@ -3062,9 +3149,22 @@ Trace types not defined in this list are ignored, regardless of their lifetime.
 The default special value of `all` results in all trace types being written,
 regardless of type.
 
-Included trace types are: `query`, `legacy_query`, `router`,
-`balancer.getPeer`, `balancer.toip`, `connect.toip`, `access.before`, and
-`access.after`, `cassandra_iterate`, and `plugin`.
+The following trace types are included:
+
+- `query`: trace the database query
+- `legacy_query`: (deprecated) trace the database query with legacy DAO
+- `router`: trace Kong routing the request; internal routing time
+- `balancer`: trace the execution of the overall balancer phase
+- `balancer.getPeer`: trace Kong selecting an upstream peer from the
+  ring-balancer
+- `balancer.toip`: trace balancer to resolve peer's host to IP
+- `connect.toip`: trace cosocket to resolve target's host to IP
+- `access.before`: trace the preprocessing of access phase, like parameter
+  parsing, route matching, and balance preparation
+- `access.after`: trace the postprocess of access phase, like balancer
+  execution and internal variable assigning
+- `cassandra_iterate`: trace Cassandra driver to paginate over results
+- `plugin`: trace plugins phase handlers
 
 **Default:** `all`
 

@@ -19,7 +19,7 @@ reside on the same node. This option is normally used for testing and developmen
 
 ![Classic embedded mode](/assets/images/docs/ee/deployment/deployment-classic-dev.png)
 
-To learn more, see the [installation documentation](/enterprise/{{page.kong_version}}/deployment/installation).
+To learn more, see the [installation documentation](/enterprise/{{page.kong_version}}/deployment/installation/overview).
 
 ## Distributed
 
