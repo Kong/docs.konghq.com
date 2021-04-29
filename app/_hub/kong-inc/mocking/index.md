@@ -2,7 +2,6 @@
 name: Mocking
 publisher: Kong Inc.
 version: 0.1.x
-beta: true
 # internal handler v 0.1.0
 
 desc: Provide mock endpoints to test your APIs against your services
@@ -21,10 +20,6 @@ description: |
     integration.
   - Easily enable and disable the Mocking plugin for flexibility when
     testing API behavior.
-
-  <div class="alert alert-ee blue"><strong>Note:</strong> The Mocking plugin is compatible with
-  the Kong Gateway (Enterprise) beta version 2.4.x.
-  </div>
 
 enterprise: true
 type:
