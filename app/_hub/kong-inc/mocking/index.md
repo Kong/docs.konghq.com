@@ -126,7 +126,7 @@ video available on YouTube.
 Follow these steps to deploy a spec to the Dev Portal using Kong Manager. You can
 copy and paste the `stock-01.json` example file into the Dev Portal using Editor Mode.
 
-![Dev Portal Specs](/assets/images/docs/dev-portal/stock-spec-mocking-example.png)
+![Dev Portal Specs](/assets/images/docs/dev-portal/stock-spec-mock-example.png)
 
 1. Open Editor Mode and click **New File**.
 2. Name the file `stock-01.json`.
