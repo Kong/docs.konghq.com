@@ -36,8 +36,7 @@ Before starting installation, be sure you have the following:
 
 ## Step 1. Provision a namespace
 
-To create the secrets for license and Docker registry access,
-first provision the `kong` namespace:
+To create the license secret, first provision the `kong` namespace:
 
 {% navtabs %}
 {% navtab kubectl %}
@@ -87,31 +86,7 @@ $ oc create secret generic kong-enterprise-license -n kong --from-file=./license
     $ helm repo update
     ```
 
-## Step 4. Configure Docker registry access
-Set up Docker credentials to allow Kubernetes nodes to pull down the {{site.ee_product_name}} Docker image, which is hosted in a private repository. You receive credentials for the Docker image when you sign up for {{site.konnect_product_name}}.
-
-{% navtabs %}
-{% navtab kubectl %}
-Set up the credentials:
-```
-$ kubectl create secret docker-registry kong-enterprise-edition-docker -n kong \
-    --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \
-    --docker-username=<your-bintray-username> \
-    --docker-password=<your-bintray-api-key>
-```
-{% endnavtab %}
-{% navtab OpenShift oc %}
-Set up the credentials:
-```
-$ oc create secret docker-registry kong-enterprise-edition-docker -n kong \
-    --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \      
-    --docker-username=<your-bintray-username> \
-    --docker-password=<your-bintray-api-key>
-```
-{% endnavtab %}
-{% endnavtabs %}
-
-## Step 5. Seed the Super Admin password
+## Step 4. Seed the Super Admin password
 {% navtabs %}
 {% navtab kubectl %}
 (Optional) Create a password for the super admin:
@@ -130,7 +105,7 @@ oc create secret generic kong-enterprise-superuser-password -n kong --from-liter
 <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
 <strong>Important:</strong>Though not required, this is recommended if you want to use RBAC, as it cannot be done after initial setup.</div>
 
-## Step 6. Prepare the sessions plugin for Kong Manager and Dev Portal
+## Step 5. Prepare the sessions plugin for Kong Manager and Dev Portal
 In the following steps, replace `<your-password>` with a secure password.
 
 {% navtabs %}
@@ -182,7 +157,7 @@ In the following steps, replace `<your-password>` with a secure password.
     ```
 {% endnavtab %}
 {% endnavtabs %}
-## Step 7. Prepare Kong's configuration file
+## Step 6. Prepare Kong's configuration file
 
 1. Create a `values.yaml` file for Helm based on the template in the [Kong charts repository](https://github.com/Kong/charts/blob/main/charts/kong/values.yaml). This file contains all the possible parameters for your Kong deployment.
 
@@ -205,9 +180,8 @@ In the following steps, replace `<your-password>` with a secure password.
     |`env.pg_database` | (If using Postgres) Set to the Postgres database name (default `kong`). When `postgresql.enabled` is `true`, this has to match `postgresql.postgresqlDatabase`. |
     |`env.password.valueFrom.secretKeyRef.name` | Name of secret that holds the super admin password. In the example above, this is set to `kong-enterprise-superuser-password`. |
     |`env.password.valueFrom.secretKeyRef.key` | The type of secret key used for authentication. If you followed the default settings in the example above, this is `password`. |
-    |`image.repository` | The Docker repository. In this case, `kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition`. |
+    |`image.repository` | The Docker repository. In this case, `kong/kong-gateway`. |
     |`image.tag` | The Docker image tag you want to pull down, e.g. `"{{page.kong_versions[9].version}}-alpine"`. |
-    |`image.pullSecrets` | Name of secret that holds the Docker repository credentials. In the example above, this is `kong-enterprise-edition-docker`. |
     |`admin.enabled` | Set to `true` to enable the Admin API, which is required for the Kong Manager. |
     |`ingressController.enabled` | Set to `true` if you want to use the Kong Ingress Controller, or `false` if you don't want to install it. |
     |`postgresql.enabled` | Set to `true` to deploy a Postgres database along with Kong. |
@@ -242,7 +216,7 @@ In the following steps, replace `<your-password>` with a secure password.
 
 4. Fill in the rest of the parameters as appropriate for your implementation. Use the comments in the sample file to guide you, and see the documentation on [{{site.ee_product_name}} parameters](https://github.com/Kong/charts/blob/main/charts/kong/README.md#kong-enterprise-parameters) for more details.
 
-## Step 8. Deploy Kong Gateway on Kubernetes
+## Step 7. Deploy Kong Gateway on Kubernetes
 The steps in this section show you how to install {{site.ee_product_name}} on Kubernetes using Helm.
 <div class="alert alert-ee blue">
 <strong>Note:</strong> The following instructions assume that you're running Helm 3.
@@ -291,7 +265,7 @@ The steps in this section show you how to install {{site.ee_product_name}} on Ku
 {% endnavtab %}
 {% endnavtabs %}
 
-## Step 9. Finalize configuration and verify installation
+## Step 8. Finalize configuration and verify installation
 {% navtabs %}
 {% navtab kubectl %}
 1. Run:
