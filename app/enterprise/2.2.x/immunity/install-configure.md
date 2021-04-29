@@ -9,7 +9,7 @@ redirect_from:
 Kong Immunity (Immunity) is installed on Kong Enterprise, either on Kubernetes or Docker, as defined below. Immunity uses the Collector App and Collector Plugin to communicate with Kong Enterprise.
 
 ## Version Compatibility
-Immunity follows a different versioning scheme from Kong Enterprise, as defined in the version compatibility table below. The Immunity version reflects the `kong-immunity-base` package available in Bintray.
+Immunity follows a different versioning scheme from Kong Enterprise, as defined in the version compatibility table below. The Immunity version reflects the `kong-immunity` package available on Docker Hub.
 
 | Immunity Version                 | Kong Enterprise Version |
 |:---------------------------------|:------------------------|
