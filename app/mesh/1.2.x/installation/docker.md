@@ -24,17 +24,17 @@ You have a license for {{site.mesh_product_name}}.
 ## 1. Download {{site.mesh_product_name}}
 
 {{site.mesh_product_name}} provides the following Docker images for all of its
-executables:
+executables, hosted on Docker Hub:
 
-* **kuma-cp**: at `docker.io/kong/kuma-cp:{{page.kong_latest.version}}`
-* **kuma-dp**: at `docker.io/kong/kuma-dp:{{page.kong_latest.version}}`
-* **kumactl**: at `docker.io/kong/kumactl:{{page.kong_latest.version}}`
-* **kuma-prometheus-sd**: at `docker.io/kong/kuma-prometheus-sd:{{page.kong_latest.version}}`
+* **kuma-cp**: at [`kong/kuma-cp:{{page.kong_latest.version}}`](https://hub.docker.com/r/kong/kuma-cp)
+* **kuma-dp**: at [`docker.io/kong/kuma-dp:{{page.kong_latest.version}}`](https://hub.docker.com/r/kong/kuma-dp)
+* **kumactl**: at [`kong/kumactl:{{page.kong_latest.version}}`](https://hub.docker.com/r/kong/kumactl)
+* **kuma-prometheus-sd**: at [`kong/kuma-prometheus-sd:{{page.kong_latest.version}}`](https://hub.docker.com/r/kong/kuma-prometheus-sd)
 
 `docker pull` each image that you need. For example:
 
 ```sh
-$ docker pull docker.io/kong/kuma-cp:{{page.kong_latest.version}}
+$ docker pull kong/kuma-cp:{{page.kong_latest.version}}
 ```
 
 ## 2. Run {{site.mesh_product_name}}
