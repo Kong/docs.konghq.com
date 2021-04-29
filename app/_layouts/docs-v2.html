@@ -8,66 +8,6 @@ id: documentation
 {% capture latest_page_exists %}{% page_exists {{latest_page_url}} %}{% endcapture %}
 
 <div class="page v2 {{ page.class }}">
-  <header class="page-header">
-    <div class="page-header-bg"></div>
-    <div class="container">
-      <nav class="docs-navigation v2">
-        <a href="/konnect" {% if page.edition =='konnect' or page.edition == 'enterprise' %} class="active" {% endif %}>{{site.konnect_product_name}}</a>
-        <a href="/gateway-oss" {% if page.edition =='gateway-oss' %} class="active" {% endif %}>{{site.ce_product_name}}</a>
-        <a href="/mesh" {% if page.edition =='mesh' %} class="active" {% endif %}>{{site.mesh_product_name}}</a>
-
-        <div class="header-actions">
-          <div class="search-version-row">
-            {% unless page.no_version == true %}
-            <div class="versions-dropdown dropdown {% unless page.no_search == true %}no-right-border{% endunless %}">
-              <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Version {{page.kong_version}}
-                {% if page.kong_version == page.kong_latest.release %} <em>(latest)</em>{% endif %}
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
-                {% for ver in page.kong_versions reversed %}
-                {% assign version_page_url = page.url | replace: page.kong_version, ver.release %}
-                {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}<li {% if page.kong_version==ver.release %} class="active" {% endif %}>
-                <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
-                  <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if page.edition == 'gateway-oss' %}gateway-oss/{% endif %}{% if page.edition == 'enterprise' %}enterprise/{% endif %}{% if page.edition == 'mesh' %}mesh/{% endif %}{{ver.release}}{% endif %}"
-                    {% if ver.release==page.kong_version %} class="active" {% endif %}
-                    data-version-id="{{ver.release}}"
-                  >
-                  {{ver.release}}
-                  {% if ver.release == page.kong_latest.release %} <em>(latest)</em>{% endif %}
-                  </a>
-                </li>
-                {% endfor %}
-              </ul>
-            </div>
-            {% endunless %}
-            {% unless page.no_search == true %}
-            <div class="dropdown" id="searchBar">
-              <div id="getkong-algolia-search" class="search-input v2">
-                <img class="icon" src="/assets/images/icons/icn-magnifying-glass.svg" alt="search">
-                <input type="text" placeholder="Type to search" id="getkong-algolia-search-input" />
-              </div>
-            </div>
-          </div>
-          <img id="search-version-icon" src="/assets/images/icons/icn-magnifying-glass.svg" alt="search">
-          {% endunless %}
-          <div class="edit-this-page v2">
-            <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}">
-              <img src="/assets/images/logos/logo-github.svg" alt="github"/>
-            </a>
-          </div>
-        </div>
-      </nav>
-
-      <div class="title-version-search-container">
-        <div class="page-header-title">
-          <h1>{{page.title | flatify }}</h1>
-          <h2>{{page.subtitle | flatify }}</h2>
-        </div>
-      </div>
-    </div>
-  </header>
 
   <div class="container">
     {% include docs-sidebar.html %}
@@ -82,9 +22,11 @@ id: documentation
     </aside>
     {% endif %}
 
-    <div class="page-content-container v2" id="documentation">
-      <div class="toggles">
+    <div class="page-content-container v2 {% if page.no_version == true and page.has_version == false and page.nav_items == nil %}no-sidebar{% endif %}" id="documentation">
+      <div class="toggles {% if page.no_version == true and page.has_version == false and page.nav_items == nil %}no-sidebar{% endif %}">
+        {% if page.no_version == false or page.has_version == true or page.nav_items != nil %}
         <i class="fas fa-stream sidebar-toggle"></i>
+        {% endif %}
         {% if page.toc == true or page.toc != false and filename != "index.md" %}
         <i class="far fa-list-alt toc-sidebar-toggle"></i>
         {% endif %}
@@ -114,7 +56,12 @@ id: documentation
               <p>Warning: This feature is released as <a href="/enterprise/{{page.kong_version}}/introduction/key-concepts/#beta">BETA</a> and should not be deployed in a production environment.
             </div>
           </div>
-        {% endif %}
+          {% endif %}
+
+          <h1 class="page-content-title">{{page.title | flatify }}</h1>
+          {% if page.subtitle %}
+          <h2 class="page-content-subtitle">{{page.subtitle | flatify }}</h2>
+          {% endif %}
 
           {% unless page.skip_read_time == true or page.path contains '/admin-api' or page.path contains '/pdk' or page.is_homepage %}
           {% include read_time.html %}
@@ -122,25 +69,6 @@ id: documentation
 
           {{ content }}
 
-          {% if page.is_homepage == true %}
-          <div class="knowledge-base-section">
-            <div class="knowledge-base-section-title">Visit our other resources</div>
-            <div class="knowledge-base-links">
-              <a class="knowledge-base-link" href="https://support.konghq.com/" target="_blank">
-                <div class="knowledge-base-link-title">Support</div>
-                <img class="no-image-expand" src="/assets/images/icons/documentation/icn-support.svg" />
-              </a>
-              <a class="knowledge-base-link" href="https://discuss.konghq.com/" target="_blank">
-                <div class="knowledge-base-link-title">Community</div>
-                <img class="no-image-expand" src="/assets/images/icons/documentation/icn-kongnation-md.svg" />
-              </a>
-              <a class="knowledge-base-link" href="https://learn.konghq.com/account/login/" target="_blank">
-                <div class="knowledge-base-link-title">Kong University</div>
-                <img class="no-image-expand" src="/assets/images/icons/documentation/icn-learning.svg" />
-              </a>
-            </div>
-          </div>
-          {% endif %}
         </div>
       </div>
     </div>
@@ -154,149 +82,5 @@ id: documentation
     {% endif %}
   {% endif %}
 </div>
-<style>
-  @media (max-width: 768px) {
-    .algolia-docsearch-suggestion--subcategory-column{
-      display: none !important;
-    }
-  }
-</style>
-
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
-
-{% if page.edition == 'gateway-oss' %}
-<script type="text/javascript">
-  docsearch({
-    apiKey: '691286ef280379144076a4f8df47a1d1',
-    indexName: 'getkong',
-    inputSelector: '#getkong-algolia-search-input',
-    algoliaOptions: {
-      hitsPerPage: 8,
-      'facetFilters': ["version: {{page.kong_version}}"]
-    },
-    // Override selected event to allow for local environment navigation
-    handleSelected: function (input, event, suggestion) {
-      input.setVal('');
-      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split(
-        "docs.konghq.com")[1]
-    }
-    // ,debug: true // Set debug to true if you want to inspect the dropdown
-  });
-</script>
-{% endif %}
-
-{% if page.edition == 'enterprise' %}
-<script type="text/javascript">
-  docsearch({
-    appId: 'T5JKD83LWT',
-    apiKey: '1390283021f26e36117242934deb8d9d',
-    indexName: 'prod_EE',
-    inputSelector: '#getkong-algolia-search-input',
-    algoliaOptions: {
-      hitsPerPage: 8,
-      'facetFilters': ["version: {{page.kong_version}}"]
-    },
-    // Override selected event to allow for local environment navigation
-    handleSelected: function (input, event, suggestion) {
-      input.setVal('');
-      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split(
-        "docs.konghq.com")[1]
-    }
-    // ,debug: true // Set debug to true if you want to inspect the dropdown
-  });
-
-</script>
-{% endif %}
-
-
-{% if page.edition == 'kubernetes-ingress-controller' %}
-<script type="text/javascript">
-  docsearch({
-    appId: 'T5JKD83LWT',
-    apiKey: '1390283021f26e36117242934deb8d9d',
-    indexName: 'prod_KIC',
-    inputSelector: '#getkong-algolia-search-input',
-    algoliaOptions: {
-      hitsPerPage: 8
-    },
-    // Override selected event to allow for local environment navigation
-    handleSelected: function (input, event, suggestion) {
-      input.setVal('');
-      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split(
-        "docs.konghq.com")[1]
-    }
-    // ,debug: true // Set debug to true if you want to inspect the dropdown
-  });
-
-</script>
-{% endif %}
-
-{% if page.edition == 'mesh' %}
-<script type="text/javascript">
-  docsearch({
-    appId: 'T5JKD83LWT',
-    apiKey: '1390283021f26e36117242934deb8d9d',
-    indexName: 'prod_Mesh',
-    inputSelector: '#getkong-algolia-search-input',
-    algoliaOptions: {
-      hitsPerPage: 8,
-      'facetFilters': ["version: {{page.kong_version}}"]
-    },
-    // Override selected event to allow for local environment navigation
-    handleSelected: function (input, event, suggestion) {
-      input.setVal('');
-      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split(
-        "docs.konghq.com")[1]
-    }
-    // ,debug: true // Set debug to true if you want to inspect the dropdown
-  });
-
-</script>
-{% endif %}
-
-{% if page.edition == 'deck' %}
-<script type="text/javascript">
-  docsearch({
-    appId: 'T5JKD83LWT',
-    apiKey: '1390283021f26e36117242934deb8d9d',
-    indexName: 'prod_decK',
-    inputSelector: '#getkong-algolia-search-input',
-    algoliaOptions: {
-      hitsPerPage: 8
-    },
-    // Override selected event to allow for local environment navigation
-    handleSelected: function (input, event, suggestion) {
-      input.setVal('');
-      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split(
-        "docs.konghq.com")[1]
-    }
-    // ,debug: true // Set debug to true if you want to inspect the dropdown
-  });
-
-</script>
-{% endif %}
-
-{% if page.edition == 'konnect' %}
-<script type="text/javascript">
-  docsearch({
-    appId: 'T5JKD83LWT',
-    apiKey: '1390283021f26e36117242934deb8d9d',
-    indexName: 'prod_Konnect',
-    inputSelector: '#getkong-algolia-search-input',
-    algoliaOptions: {
-      hitsPerPage: 8
-    },
-    // Override selected event to allow for local environment navigation
-    handleSelected: function (input, event, suggestion) {
-      input.setVal('');
-      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split(
-        "docs.konghq.com")[1]
-    }
-    // ,debug: true // Set debug to true if you want to inspect the dropdown
-  });
-
-</script>
-{% endif %}
-
 
 {% include image-modal.html %}

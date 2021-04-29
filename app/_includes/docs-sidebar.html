@@ -1,5 +1,84 @@
+{% if page.no_version == false or page.has_version == true or page.nav_items != nil %}
+
 <aside class="docs-sidebar">
   <i class="fa fa-times close-sidebar"></i>
+
+  <div class="sidebar-title-container">
+    <div class="docsets-dropdown dropdown">
+      <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span>
+          {% if page.edition == 'enterprise' %}{{site.ee_product_name}}
+          {% elsif page.edition == 'konnect' %}{{site.konnect_saas}}
+          {% elsif page.edition == 'mesh' %}{{site.mesh_product_name}}
+          {% elsif page.edition == 'deck' %}decK
+          {% elsif page.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
+          {% elsif page.edition == 'gateway-oss' %}{{site.ce_product_name}}
+          {% elsif page.edition == 'getting-started-guide' %}Getting Started with Kong Gateway
+          {% endif %}
+        </span>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+        <li {% if page.edition == 'konnect' %} class="active" {% endif %}>
+          <a href="/konnect/" class="{% if page.edition == 'konnect' %}active{% endif %}">Konnect SaaS</a>
+        </li>
+        <li {% if page.edition == 'enterprise' %} class="active" {% endif %}>
+          <a href="/enterprise/" class="{% if page.edition == 'enterprise' %}active{% endif %}">Kong Gateway (Enterprise)</a>
+        </li>
+        <li {% if page.edition == 'mesh' %} class="active" {% endif %}>
+          <a href="/mesh/" class="{% if page.edition == 'mesh' %}active{% endif %}">Kong Mesh</a>
+        </li>
+        <li>
+          <a href="/hub/">Plugin Hub</a>
+        </li>
+        <li {% if page.edition == 'gateway-oss' %} class="active" {% endif %}>
+          <a href="/gateway-oss/" class="{% if page.edition == 'gateway-oss' %}active{% endif %}">Kong Gateway (OSS)</a>
+        </li>
+        <li {% if page.edition == 'deck' %} class="active" {% endif %}>
+          <a href="/deck/" class="{% if page.edition == 'deck' %}active{% endif %}">decK</a>
+        </li>
+        <li {% if page.edition == 'kubernetes-ingress-controller' %} class="active" {% endif %}>
+          <a href="/kubernetes-ingress-controller/latest/introduction/" class="{% if page.edition == 'kubernetes-ingress-controller' %}active{% endif %}">Kubernetes Ingress Controller</a>
+        </li>
+        <li>
+          <a href="https://support.insomnia.rest/" target="_blank">Insomnia</a>
+        </li>
+        <li>
+          <a href="https://kuma.io/docs/" target="_blank">Kuma</a>
+        </li>
+      </ul>
+    </div>
+
+    {% unless page.no_version == true %}
+    <div class="versions-dropdown dropdown">
+      <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span>
+          Version {{page.kong_version}}
+          {% if page.kong_version == page.kong_latest.release %}
+            <em>(latest)</em>
+          {% endif %}
+        </span>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+          {% for ver in page.kong_versions reversed %}
+          {% assign version_page_url = page.url | replace: page.kong_version, ver.release %}
+          {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}
+        <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
+          <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if page.edition == 'gateway-oss' %}gateway-oss/{% endif %}{% if page.edition == 'enterprise' %}enterprise/{% endif %}{% if page.edition == 'mesh' %}mesh/{% endif %}{{ver.release}}{% endif %}"
+            {% if ver.release==page.kong_version %} class="active" {% endif %}
+            data-version-id="{{ver.release}}"
+          >
+            {{ver.release}}
+            {% if ver.release == page.kong_latest.release %} <em>(latest)</em>{% endif %}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endunless %}
+  </div>
+
   {% if page.edition == 'enterprise' %}
   {% assign docs_url = '/enterprise/' | append: page.kong_version %}
   {% elsif page.edition == 'studio' %}
@@ -19,8 +98,11 @@
   {% endif %}
 
   <ul class="accordion-container">
+    <input id="accordion-opened" type="text" />
     {% for nav in page.nav_items %}
     {% include docs-sidebar-item.html id=forloop.index docs_url=docs_url items=nav.items url=nav.url absolute_url=nav.absolute_url icon=nav.icon title=nav.title %}
     {% endfor %}
   </ul>
 </aside>
+
+{% endif %}
