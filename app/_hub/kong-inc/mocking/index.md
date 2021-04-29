@@ -393,7 +393,7 @@ Command:
 ```
 curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
     --data "name=mocking"  \
-    --data "config.api_specification_filename=mtock-0.1.json"
+    --data "config.api_specification_filename=stock-0.1.json"
 ```
 
 {% endnavtab %}
