@@ -401,6 +401,25 @@ curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
     --data "config.api_specification_filename=stock-0.1.json"
 ```
 
+Optional configuration for random delay:
+
+```
+curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
+    --data "name=mocking"  \
+    --data "config.api_specification_filename=stock-0.1.json" \
+    --data "config.random_delay=true" \
+    --data "config.max_delay_time=1" \
+    --data "config.min_delay_time=0.001"
+```
+
+DB-less configuration:
+
+```
+curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
+    --data "name=mocking"  \
+    --data "config.api_specification=stock-0.1.json"
+```
+
 {% endnavtab %}
 {% navtab HTTPie %}
 
@@ -537,11 +556,26 @@ vary: Origin
 
 ### Test the mock response
 
-Test from within the Dev Portal spec Try it Out:
+Test the mock response from within the Dev Portal spec using the Try it out feature:
 
+1. From the Dev Portal home page, click the **Stock API** Service tile.
+
+   ![Dev Portal Services](/assets/images/docs/dev-portal/stock-service.png)
+
+2. Click the **GET /stock/historical** method and the **Try it out** button.
+
+3. Enter the ticker sign **AAPL** in the **tickers** box and click **Execute**.
+
+   The Server response is displayed.
+
+   ![Try it out](/assets/images/docs/dev-portal/response_placeholder.png)
 
 
 Test from the command line:
+
+```
+
+```
 
 
 ### Example Mock API Specs {#ex-mock-spex}
