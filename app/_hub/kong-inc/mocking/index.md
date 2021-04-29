@@ -100,8 +100,9 @@ params:
 - {{site.ee_product_name}} environment with the Dev Portal enabled on at least one workspace
   (not applicable to DB-less).
 - An Open API Specification (`yaml` or `json`) that has at least one API method with an
-  embedded example response. Multiple examples within a spec are supported. See
-  [Example Mock API Specifications](#ex-mock-spex).
+  embedded example response. Multiple examples within a spec are supported. See the
+  [Example Mock API Specifications](#ex-mock-spex) and the
+  [Stock API spec example](#deploy-spec-portal).
 - Configure the specification depending on your mode:
   - Upload and deploy the spec to the Dev Portal using either Kong Manager or Insomnia. Specify
     the filename of the spec with the `api_specification_filename` config.
@@ -121,7 +122,7 @@ Before following the steps in this tutorial, you can view a video demonstration 
 used in conjunction with the Dev Portal. See the [Service Mocking](https://www.youtube.com/watch?v=l8uKbgkK6_I)
 video available on YouTube.
 
-### Deploy a spec to the Dev Portal
+### Deploy a spec to the Dev Portal {#deploy-spec-portal}
 
 Follow these steps to deploy a spec to the Dev Portal using Kong Manager. You can
 copy and paste the `stock-01.json` example file into the Dev Portal using Editor Mode.
@@ -133,6 +134,8 @@ copy and paste the `stock-01.json` example file into the Dev Portal using Editor
 3. Copy and paste the contents below into the new file.
 
 The mocked response is between lines 44 to 59.
+
+Stock API spec example:
 
 ```json
 {"swagger": "2.0",
@@ -534,7 +537,11 @@ vary: Origin
 
 ### Test the mock response
 
+Test from within the Dev Portal spec Try it Out:
 
+
+
+Test from the command line:
 
 
 ### Example Mock API Specs {#ex-mock-spex}
