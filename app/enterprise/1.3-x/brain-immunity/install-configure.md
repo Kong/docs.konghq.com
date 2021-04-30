@@ -18,7 +18,6 @@ Kong Brain and Kong Immunity are installed as add-ons on Kong Enterprise, using 
 Prerequisites for installing and configuring Brain and Immunity with Kong Enterprise include:
 * **Kong Enterprise** version 0.35.3+ or later, with a minimum of one Kong node and a working datastore (PostgreSQL).
 * Access to a platform for the Collector App with Docker installed. This system must be networked to communicate with the Kong Enterprise system where you have the Collector Plugin installed.
-* Access to Kong Bintray repository (https://bintray.com/kong), including your access credentials supplied by Kong. (BINTRAY_USERNAME, BINTRAY_API_KEY)
 * Docker compose file of your purchased version of Brain and Immunity, which display in Bintray as one of the following:
    * kong/kong-brain-immunity-base
    * kong/kong-brain-base
@@ -130,12 +129,8 @@ $ http --form POST http://<KONG_HOST>:8001/<workspace>/plugins name=collector co
 
 The information you need to run the Collector App, Brain and Immunity is included in the docker-compose files. The steps in this section will start several Docker containers, including a collector, a worker, and a scheduler.
 
-Kong provides a private Docker image that is used by the compose files. This image is distributed by Bintray, and the following is required for access:
-* Your Bintray User ID
-* Your Bintray API key
+Kong provides a private Docker image that is used by the compose files. This image is distributed by Docker Hub, and the following is required:
 * A server where you want to run Brain and Immunity with Docker installed
-
-Your Bintray credentials are provided to you with your purchase of Kong Enterprise. If you do not have these credentials, contact **Kong Support**.
 
 1. SSH/PuTTY into your running instance where you want to install Brain and Immunity.
 
