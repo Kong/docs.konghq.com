@@ -15,7 +15,6 @@ Kubernetes as well.
 Before we can deploy the {{site.kic_product_name}} with Kong Enterprise,
 we need to satisfy the following prerequisites:
 - [Kong Enterprise License secret](#kong-enterprise-license-secret)
-- [Kong Enterprise Docker registry access](#kong-enterprise-docker-registry-access)
 - [Kong Enterprise bootstrap password](#kong-enterprise-bootstrap-password)
 
 In order to create these secrets, let's provision the `kong`
@@ -40,25 +39,6 @@ secret/kong-enterprise-license created
 Please note that `-n kong` specifies the namespace in which you are deploying
   the {{site.kic_product_name}}. If you are deploying in a different namespace,
   please change this value.
-
-### Kong Enterprise Docker registry access
-
-Next, we need to setup Docker credentials in order to allow Kubernetes
-nodes to pull down Kong Enterprise Docker image, which is hosted as a private
-repository.
-As part of your sign up for Kong Enterprise, you should have received
-credentials to access Enterprise Bintray repositories.
-Your username is the same username you use
-to log in to Bintray and password
-is an API-key that can be provisioned via Bintray.
-
-```bash
-$ kubectl create secret -n kong docker-registry kong-enterprise-edition-docker \
-    --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \
-    --docker-username=<your-bintray-username@kong> \
-    --docker-password=<your-bintray-api-key>
-secret/kong-enterprise-edition-docker created
-```
 
 ### Kong Enterprise bootstrap password
 

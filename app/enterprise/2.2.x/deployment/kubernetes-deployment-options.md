@@ -7,7 +7,7 @@ resources into Kong configuration, and a proxy, which uses that configuration
 to route and control traffic.
 
 As of 2.1.x, Kong for Kubernetes with Kong Enterprise
-(the [kong-enterprise-edition][enterprise-bintray] proxy image) supports DB-less
+(the [kong-gateway][enterprise-download] proxy image) supports DB-less
 operation and is recommended for all deployments.
 * [DB-less installation with the Kong Ingress Controller][k4k8s-enterprise-install]
 * [Database-backed installation with or without the Kong Ingress Controller][k4k8s-with-enterprise-install]
@@ -15,12 +15,8 @@ operation and is recommended for all deployments.
 ### Migrating to 2.1.x
 
 Existing users of the `kong-enterprise-k8s` image who want to use 2.1.x should
-switch to the `kong-enterprise-edition` image.
+switch to the `kong-gateway` image.
 
-Switching images requires the following configuration changes:
-* Changing the image to `kong-enterprise-edition`.
-* Creating a registry secret for `kong-enterprise-edition`, if you have not
-created one already.
 If you encounter issues after switching images, please
 [contact Kong Enterprise Support][support].
 
@@ -152,8 +148,7 @@ unavailable plugins when migrating from a database-backed deployment to a
 DB-less deployment. No changes to Kubernetes resources are required if
 migrating in the opposite direction.
 
-[k8s-bintray]: https://bintray.com/kong/kong-enterprise-k8s
-[enterprise-bintray]: https://bintray.com/kong/kong-enterprise-edition-docker
+[enterprise-download]: https://hub.docker.com/r/kong/kong-gateway/
 [admission-webhook]: https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/deployment/admission-webhook.md
 [route-validation]: /enterprise/{{page.kong_version}}/property-reference/#route_validation_strategy
 [supported-plugins]: https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/references/plugin-compatibility.md

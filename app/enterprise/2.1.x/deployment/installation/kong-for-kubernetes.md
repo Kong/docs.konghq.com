@@ -41,8 +41,7 @@ Before starting installation, be sure you have the following:
 
 ## Step 1. Provision a Namespace
 
-To create the secrets for license and Docker registry access,
-first provision the `kong` namespace:
+To create the license secret, first provision the `kong` namespace:
 
 {% navtabs codeblock %}
 {% navtab kubectl %}
@@ -81,30 +80,7 @@ $ oc create secret generic kong-enterprise-license --from-file=./license -n kong
   <li>There is no <code>.json</code> extension in the <code>--from-file</code> parameter.</li>
   <li><code>-n kong</code> specifies the namespace in which you are deploying Kong for Kubernetes Enterprise. If you are deploying in a different namespace, change this value.</li></ul></div>
 
-## Step 3. Configure Kong Enterprise Docker registry access
-
-Set up Docker credentials to allow Kubernetes nodes to pull down the Kong Enterprise Docker image, which is hosted in a private repository. You receive credentials for the Kong Enterprise Docker image when you sign up for Kong Enterprise.
-
-{% navtabs codeblock %}
-{% navtab kubectl %}
-```sh
-$ kubectl create secret -n kong docker-registry kong-enterprise-edition-docker \
-    --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \
-    --docker-username=<your-bintray-username> \
-    --docker-password=<your-bintray-api-key>
-```
-{% endnavtab %}
-{% navtab OpenShift oc %}
-```sh
-$ oc create secret -n kong docker-registry kong-enterprise-edition-docker \
-    --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \
-    --docker-username=<your-bintray-username> \
-    --docker-password=<your-bintray-api-key>
-```
-{% endnavtab %}
-{% endnavtabs %}
-
-## Step 4. Deploy Kong for Kubernetes Enterprise
+## Step 3. Deploy Kong for Kubernetes Enterprise
 The steps in this section show you how to install Kong for Kubernetes Enterprise using YAML.
 
 {% navtabs codeblock %}

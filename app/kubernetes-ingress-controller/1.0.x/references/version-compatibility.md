@@ -27,6 +27,8 @@ Kong Gateway.
 
 ## Kong-enterprise-k8s
 
+{% include md/enterprise/k8s-image-note.md %}
+
 Kong-enterprise-k8s is an official distribution by Kong, Inc. which bundles
 all enterprise plugins into Open-Source Kong Gateway.
 

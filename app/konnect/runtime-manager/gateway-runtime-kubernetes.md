@@ -83,7 +83,7 @@ you saved earlier:
 
     ```yaml
     image:
-      repository: kong-docker-kong-gateway-docker.bintray.io/kong-enterprise-edition
+      repository: kong/kong-gateway
       tag: "2.3.2.0-alpine"
 
     secretVolumes:
