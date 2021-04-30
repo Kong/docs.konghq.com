@@ -59,7 +59,7 @@ $ oc create secret generic kong-enterprise-license --from-file=./license -n kong
   <li>There is no <code>.json</code> extension in the <code>--from-file</code> parameter.</li>
   <li><code>-n kong</code> specifies the namespace in which you are deploying Kong for Kubernetes Enterprise. If you are deploying in a different namespace, change this value.</li></ul></div>
 
-## Step 4. Deploy Kong for Kubernetes Enterprise
+## Step 3. Deploy Kong for Kubernetes Enterprise
 The steps in this section show you how to install Kong for Kubernetes Enterprise using YAML.
 
 {% navtabs %}

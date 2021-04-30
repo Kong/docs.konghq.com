@@ -22,7 +22,7 @@ Before installing Kong for Kubernetes Enterprise, be sure you have the following
 - An Enterprise Docker image for {{page.kong_version}}.
 
   If you have lost access to your {{page.kong_version}} image, Kong recommends
-  upgrading to the next major version and pulling {{site.base_gateway}} 1.5.0.11
+  upgrading to the next minor version and pulling {{site.base_gateway}} 1.5.0.11
   or later from [Docker Hub](https://hub.docker.com/r/kong/kong-gateway/).
 
   If upgrading is not possible, reach out to
