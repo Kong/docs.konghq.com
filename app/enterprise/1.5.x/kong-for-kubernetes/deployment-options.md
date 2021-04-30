@@ -13,7 +13,7 @@ to route and control traffic. There are two options for the proxy image:
 
 {% include md/enterprise/k8s-image-note.md %}
 
-The `kong-enterprise-k8s` provides most Kong Enterprise plugins and runs
+The `kong-enterprise-k8s` image provides most Kong Enterprise plugins and runs
 without a database, but does not provide other Kong Enterprise features (Kong
 Manager, Dev Portal, Vitals, etc.).
 
