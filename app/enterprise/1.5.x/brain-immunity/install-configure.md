@@ -5,7 +5,7 @@ title: Kong Brain and Kong Immunity Installation and Configuration
 ## Introduction
 Kong Brain (Brain) and Kong Immunity (Immunity) are installed on Kong Enterprise, either on Kubernetes or Docker, as defined below. The Collector App and Collector Plugin enable Brain and Immunity to communicate with Kong Enterprise.
 
-{% include /md/enterprise/download/immunity.md version="1.5" %}
+{% include /md/enterprise/download/immunity.md version='1.5-2.1' %}
 
 ### Step 2. Confirm the Kong EE Docker Network is available
 Confirm the Kong Enterprise network is available, which is the network you set up when installing Kong Enterprise on Docker named `kong-ee-net`.
@@ -52,7 +52,7 @@ docker run --rm --network=kong-ee-net \
 ```
 
 ### Step 6. Start Kong Collector App
-Start Kong Collector. 
+Start Kong Collector.
 
 ```bash
 $ docker run -d --name collector \
@@ -65,9 +65,9 @@ $ docker run -d --name collector \
   -e "KONG_PORT=8001" \
   kong-bi
 ```
-  
+
 ### Step 7. Start the Scheduler and Worker
-Start the scheduler and worker. 
+Start the scheduler and worker.
 
 1. Start celery-beat
 ```bash
@@ -102,13 +102,13 @@ You should receive an HTTP/1.1 200 OK message.
 
 Using Kong Manager, enable the Collector Plugin. To enable the plugin:
 1. Navigate to the **Workspaces** page.
-2. Click the workspace you want to use. For example, the **default** workspace. 
+2. Click the workspace you want to use. For example, the **default** workspace.
 3. Click **Plugins** in the API Gateway section of the left navigation bar.
 4. Click **New Plugin** which opens a page of plugin options.
 5. Scroll to the Analytics and Monitoring section, and click **Enable** on the **Collector** tile.
 6. The **Create new collector plugin** dialog displays. To **minimally** configure the Collector Plugin:
 ** In the **Config.Http Endpoint** field, enter the Collector App endpoint that Kong Enterprise can communicate with. For example, http://collector:5000.
-** The default values populating the remaining fields are valid for a minimal configuration. 
+** The default values populating the remaining fields are valid for a minimal configuration.
 7. Click **Create**. The Collector Plugin is configured.
 
 Using a cURL command enter:
@@ -118,9 +118,9 @@ $ curl -X POST localhost:8001/default/plugins \
     -d config.http_endpoint=http://collector:5000
 ```    
 
-### Step 10. Confirm the Collector Plugin is Enabled and Configured 
+### Step 10. Confirm the Collector Plugin is Enabled and Configured
 1. Click **Alerts** in the left navigation pane, and the Alerts page should say **Collector is connected**.
-2. Click **Service Map** in the left navigation pane, and the Service Map should display with the **Add Service** button. 
+2. Click **Service Map** in the left navigation pane, and the Service Map should display with the **Add Service** button.
 
 Using a cURL command, enter:
 ```bash
