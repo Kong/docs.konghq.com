@@ -11,10 +11,11 @@ to route and control traffic. There are two options for the proxy image:
 * [Kong for Kubernetes Enterprise][k4k8s-enterprise-install]
 * [Kong for Kubernetes with Kong Enterprise][k4k8s-with-enterprise-install]
 
-The `kong-enterprise-k8s` image is recommended for most deployments. It
-provides most Kong Enterprise plugins and runs without a database, but does not
-provide other Kong Enterprise features (Kong Manager, Dev Portal, Vitals,
-etc.).
+{% include md/enterprise/k8s-image-note.md %}
+
+The `kong-enterprise-k8s` provides most Kong Enterprise plugins and runs
+without a database, but does not provide other Kong Enterprise features (Kong
+Manager, Dev Portal, Vitals, etc.).
 
 The `kong-enterprise-edition` image is recommended for deployments that require
 features not supported by `kong-enterprise-k8s`. It supports all Kong

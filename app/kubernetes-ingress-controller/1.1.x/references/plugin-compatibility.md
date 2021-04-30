@@ -50,6 +50,8 @@ There are [two distributions of Kong Enterprise](https://github.com/Kong/kuberne
 `kong-enterprise-k8s` (used with Kong for Kubernetes Enterprise) and
 `kong-enterprise-edition` (used with Kong for Kubernetes with Kong Enterprise).
 
+{% include md/enterprise/k8s-image-note.md %}
+
 |  Plugin                          |  Kong for Kubernetes with Kong Enterprise  |  Kong for Kubernetes Enterprise           |
 |----------------------------------|--------------------------------------------|-------------------------------------------|
 |  acl                             |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
