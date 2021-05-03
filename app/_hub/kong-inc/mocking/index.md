@@ -53,7 +53,7 @@ params:
       datatype: string
       value_in_examples: myspec.yaml
       description: |
-        The name of the specification file loaded into Kong DB. Do not
+        The name of the specification file loaded into Kong DB. You cannot
         use this option for DB-less mode.
     - name: api_specification
       required: semi
@@ -61,7 +61,11 @@ params:
       datatype: string
       value_in_examples:
       description: |
-        The name of the specification file. Use this option for DB-less mode.
+        The contents of the specification file. You must use this option for hybrid or DB-less mode.
+        With this configuration option, you can specify the full specification as part of the configuration,
+        rather than specifying a separate file with `api_specification_filename` that lives next to the Kong Gateway (Enterprise).
+        In Kong Manager, you can copy and paste the contents of the spec directly into
+        the `Config. Api Specification` text field.
     - name: random_delay
       required: false
       default: false
@@ -111,12 +115,12 @@ params:
 
 ## Tutorial Example
 
-1. Deploy an OAS spec to the Dev Portal.
+1. Deploy an OAS spec that contains mocked responses to the Dev Portal.
 2. Create a service.
 3. Create a route.
 4. Enable the Mocking plugin.
 5. Enable the [CORS](/hub/kong-inc/cors/) plugin.
-6. Test the mocked response from the Dev Portal.
+6. Test the mocked response from the Dev Portal, the command line, or a tool such as Insomnia.
 
 Before following the steps in this tutorial, you can view a video demonstration of the Mocking plugin
 used in conjunction with the Dev Portal. See the [Service Mocking](https://www.youtube.com/watch?v=l8uKbgkK6_I)
@@ -589,7 +593,7 @@ Commands:
 {% navtab HTTPie %}
 
 ```
-
+http :8000/stock/historical?tickers=AAPL accept:application/json
 ```
 
 {% endnavtab %}
