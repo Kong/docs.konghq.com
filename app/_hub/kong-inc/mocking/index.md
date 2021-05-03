@@ -556,6 +556,9 @@ vary: Origin
 
 ### Test the mock response
 
+Test the mocked response from either Dev Portal Service or the command line. You can
+also use tools such as [Insomnia](https://insomnia.rest/download).
+
 Test the mock response from within the Dev Portal spec using the Try it out feature:
 
 1. From the Dev Portal home page, click the **Stock API** Service tile.
@@ -572,6 +575,27 @@ Test the mock response from within the Dev Portal spec using the Try it out feat
 
 
 Test from the command line:
+
+Commands:
+
+{% navtabs %}
+{% navtab cURL %}
+
+```
+
+```
+
+{% endnavtab %}
+{% navtab HTTPie %}
+
+```
+
+```
+
+{% endnavtab %}
+{% endnavtabs %}
+
+Response:
 
 ```
 
