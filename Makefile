@@ -13,7 +13,7 @@ run: install
 	gulp
 
 develop:
-	docker-compose up
+	docker-compose up --build
 
 clean:
 	-docker-compose stop

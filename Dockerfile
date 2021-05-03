@@ -18,6 +18,12 @@ RUN make install-prerequisites
 RUN chmod -R 777 /usr/lib/node_modules \
   && usermod -a -G root jekyll
 
+ADD Gemfile /Gemfile
+
+ADD Gemfile.lock /Gemfile.lock
+
+RUN make install
+
 EXPOSE 3000 3001
 
 HEALTHCHECK CMD curl --fail http://localhost:3000/ || exit 1
