@@ -137,7 +137,8 @@ copy and paste the `stock-01.json` example file into the Dev Portal using Editor
 2. Name the file `stock-01.json`.
 3. Copy and paste the contents below into the new file.
 
-The mocked response is between lines 44 to 59.
+The mocked responses are between lines 38 to 59 for `GET stock/historical`, and
+from lines 86 to 103 for `GET stock/closing`.
 
 Stock API spec example:
 
@@ -560,7 +561,7 @@ vary: Origin
 
 ### Test the mock response
 
-Test the mocked response from either Dev Portal Service or the command line. You can
+Test the mocked response from either within the Dev Portal Service or from the command line. You can
 also use tools such as [Insomnia](https://insomnia.rest/download).
 
 Test the mock response from within the Dev Portal spec using the Try it out feature:
