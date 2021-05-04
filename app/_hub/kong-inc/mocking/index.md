@@ -113,22 +113,17 @@ Prerequisites:
   (not applicable to DB-less).
 - An Open API Specification (`yaml` or `json`) that has at least one API method with an
   embedded example response. Multiple examples within a spec are supported. See the
-  [Example Mock API Specifications](#ex-mock-spex) and the
-  [Stock API spec example](#deploy-spec-portal).
-- Configure the specification:
-  - Upload and deploy the spec to the Dev Portal using either Kong Manager or Insomnia. Specify
-    the filename of the spec with the `api_specification_filename` config.
-  - Or, if using hybrid mode/DB-less, you must directly attach the spec contents by configuring
-    it within the plugin. Indicate the specification with the `api_specification` config.
+  [Stock API spec example](#deploy-spec-portal) and the
+  [Example Mock API Specifications](#ex-mock-spex).
 
 Tutorial steps:
 
-1. Deploy an OAS spec that contains mocked responses to the Dev Portal.
+1. Deploy an OAS spec that contains mocked responses to the Dev Portal or [Insomnia](#insomnia}).
 2. Create a service.
 3. Create a route.
 4. Enable the Mocking plugin.
 5. Enable the [CORS](/hub/kong-inc/cors/) plugin.
-6. Test the mocked response from the Dev Portal, the command line, or a tool such as Insomnia.
+6. Test the mocked response from the Dev Portal, Insomnia, or the command line.
 7. When your API mock testing is completed, update the Service URL and disable the Mocking plugin.
 
 ### Deploy a spec to the Dev Portal {#deploy-spec-portal}
@@ -140,15 +135,32 @@ copy and paste the `stock-01.json` example file into the Dev Portal using Editor
 
 1. Open Editor Mode and click **New File**.
 2. Name the file `stock-01.json`.
-3. Copy and paste the contents in the example below into the new file.
+3. Copy and paste the contents in the [example](#stock-spec) below into the new file.
 
 Alternatively, you can also use the [Portal Files API](/enterprise/latest/developer-portal/files-api/#post-a-content-file)
 to upload a spec to the Dev Portal.
 
+### Deploy a spec to Insomnia {#deploy-spec-insomnia}
+
+1. From the Insomnia dashboard, click **Create** > **Import from File** and select the
+   `stock-0.1.json` file.
+
+   ![Insomnia Dashboard Import File](/assets/images/docs/insomnia/insomnia-import-spec.png)
+
+   You are prompted to choose an import option.
+
+2. Click **Design Document**.
+
+   An import succeeded message is displayed. Click OK.
+
+3. (Optional) Click **Deploy to Portal** to deploy the spec to the Dev Portal.
+
+   ![Insomnia Dashboard Deploy Spec to Portal](/assets/images/docs/insomnia/insomnia-deploy-spec-dev-portal.png)
+
+### Stock API spec example {#stock-spec}
+
 The mocked responses in the example Stock spec are between lines 38 to 59 for `GET stock/historical`,
 and from lines 86 to 103 for `GET stock/closing`.
-
-Stock API spec example:
 
 ```json
 {"swagger": "2.0",
@@ -576,10 +588,12 @@ vary: Origin
 
 ### Test the mock response
 
-Test the mocked response from either within the Dev Portal Service or from the command line. You can
-also use tools such as [Insomnia](https://insomnia.rest/download).
+Test the mocked response from within the Dev Portal Service,
+[Insomnia](https://insomnia.rest/download), or from the command line.
 
-Test the mock response from within the Dev Portal spec using the Try it out feature:
+#### Dev Portal mock spec test
+
+Test the mock response from within the Dev Portal spec using the Try it out feature.
 
 1. From the Dev Portal home page, click the **Stock API** Service tile.
 
@@ -591,10 +605,25 @@ Test the mock response from within the Dev Portal spec using the Try it out feat
 
    The Server response is displayed.
 
-   ![Try it out](/assets/images/docs/dev-portal/response_placeholder.png)
+   ![Try it out Dev Portal](/assets/images/docs/dev-portal/response_placeholder.png)
 
+#### Insomnia mock spec test {#insomnia}
 
-Test from the command line:
+Test the mock response from within the Insomnia spec using the Try it out feature.
+
+1. From the Insomnia dashboard, click the Stock API 0.1 Document tile.
+
+   ![Insomnia Dashboard](/assets/images/docs/insomnia/insomnia-stock-spec.png)
+
+2. Click the **GET /stock/historical** method and the **Try it out** button.
+
+3. Enter the ticker sign **AAPL** in the **tickers** box and click **Execute**.
+
+   The Server response is displayed.
+
+   ![Try it out Insomnia](/assets/images/docs/insomnia/tryitout-insomnia.png)
+
+### Command line test
 
 {% navtabs %}
 {% navtab cURL %}
@@ -616,6 +645,8 @@ http :8000/stock/historical?tickers=AAPL accept:application/json
 The response matches the mocked response from within the spec.
 
 ### Disable the Mocking plugin and update the Service URL
+
+When your API mock testing is completed, update the Service URL and disable the Mocking plugin.
 
 Disable the Mocking plugin either in Kong Manager by clicking **Disable** for the plugin,
 or by using a command:
@@ -656,7 +687,7 @@ Response:
 }
 ```
 
-The `enabled` config reflects `false`.
+The `enabled` config reflects `false` in line 13.
 
 The Service URL can be anything for purposes of mocking. After you disable the Mocking plugin,
 ensure you set the actual URL for the Service so that the response can be received.
