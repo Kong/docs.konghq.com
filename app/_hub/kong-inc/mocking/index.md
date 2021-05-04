@@ -99,7 +99,15 @@ params:
     plugin according to the Kong Gateway (Enterprise) deployment mode.
 ---
 
-## Prerequisites
+
+
+## Tutorial Example
+
+Before following the steps in this tutorial, you can view a video demonstration of the Mocking plugin
+used in conjunction with the Dev Portal. See the [Service Mocking](https://www.youtube.com/watch?v=l8uKbgkK6_I)
+video available on YouTube.
+
+Prerequisites:
 
 - {{site.ee_product_name}} environment with the Dev Portal enabled on at least one workspace
   (not applicable to DB-less).
@@ -107,13 +115,13 @@ params:
   embedded example response. Multiple examples within a spec are supported. See the
   [Example Mock API Specifications](#ex-mock-spex) and the
   [Stock API spec example](#deploy-spec-portal).
-- Configure the specification depending on your mode:
+- Configure the specification:
   - Upload and deploy the spec to the Dev Portal using either Kong Manager or Insomnia. Specify
     the filename of the spec with the `api_specification_filename` config.
-  - Or, if using hybrid mode/DB-less, you must directly attach the spec contents by configuring it in the plugin.
-    Indicate the specification with the `api_specification` config.
+  - Or, if using hybrid mode/DB-less, you must directly attach the spec contents by configuring
+    it within the plugin. Indicate the specification with the `api_specification` config.
 
-## Tutorial Example
+Tutorial steps:
 
 1. Deploy an OAS spec that contains mocked responses to the Dev Portal.
 2. Create a service.
@@ -121,10 +129,7 @@ params:
 4. Enable the Mocking plugin.
 5. Enable the [CORS](/hub/kong-inc/cors/) plugin.
 6. Test the mocked response from the Dev Portal, the command line, or a tool such as Insomnia.
-
-Before following the steps in this tutorial, you can view a video demonstration of the Mocking plugin
-used in conjunction with the Dev Portal. See the [Service Mocking](https://www.youtube.com/watch?v=l8uKbgkK6_I)
-video available on YouTube.
+7. When your API mock testing is completed, update the Service URL and disable the Mocking plugin.
 
 ### Deploy a spec to the Dev Portal {#deploy-spec-portal}
 
@@ -135,10 +140,13 @@ copy and paste the `stock-01.json` example file into the Dev Portal using Editor
 
 1. Open Editor Mode and click **New File**.
 2. Name the file `stock-01.json`.
-3. Copy and paste the contents below into the new file.
+3. Copy and paste the contents in the example below into the new file.
 
-The mocked responses are between lines 38 to 59 for `GET stock/historical`, and
-from lines 86 to 103 for `GET stock/closing`.
+Alternatively, you can also use the [Portal Files API](/enterprise/latest/developer-portal/files-api/#post-a-content-file)
+to upload a spec to the Dev Portal.
+
+The mocked responses in the example Stock spec are between lines 38 to 59 for `GET stock/historical`,
+and from lines 86 to 103 for `GET stock/closing`.
 
 Stock API spec example:
 
@@ -422,7 +430,14 @@ DB-less configuration:
 ```
 curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
     --data "name=mocking"  \
-    --data "config.api_specification=stock-0.1.json"
+    --data "config.api_specification=<spec_contents>"
+```
+
+Because a spec can be rather lengthy to put into a command, use a local variable to post
+a spec:
+
+```
+mock_ex=$(cat example.yaml); curl -X POST http://<admin-hostname>:8001/routes/<route_id>/plugins --data name=mocking --data config.api_specification="$mock_ex"
 ```
 
 {% endnavtab %}
@@ -581,13 +596,11 @@ Test the mock response from within the Dev Portal spec using the Try it out feat
 
 Test from the command line:
 
-Commands:
-
 {% navtabs %}
 {% navtab cURL %}
 
 ```
-
+curl -X GET "http://<admin-hostname>:8000/stock/historical?tickers=AAPL" -H "accept: application/json"
 ```
 
 {% endnavtab %}
@@ -600,11 +613,53 @@ http :8000/stock/historical?tickers=AAPL accept:application/json
 {% endnavtab %}
 {% endnavtabs %}
 
+The response matches the mocked response from within the spec.
+
+### Disable the Mocking plugin and update the Service URL
+
+Disable the Mocking plugin either in Kong Manager by clicking **Disable** for the plugin,
+or by using a command:
+
+```
+curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
+    --data "name=mocking"  \
+    --data "enabled=false"
+```
+
 Response:
 
 ```
-
+{
+   "created_at":1620087882,
+   "protocols":[
+      "grpc",
+      "grpcs",
+      "http",
+      "https"
+   ],
+   "service":null,
+   "id":"3311500c-ea7d-4c31-8526-7cf25878372c",
+   "consumer":null,
+   "tags":null,
+   "enabled":false,
+   "name":"mocking",
+   "route":{
+      "id":"5ada3c98-c732-4c05-903f-9ba8ef026776"
+   },
+   "config":{
+      "random_delay":false,
+      "min_delay_time":0.001,
+      "max_delay_time":1,
+      "api_specification_filename":null,
+      "api_specification":null
+   }
+}
 ```
+
+The `enabled` config reflects `false`.
+
+The Service URL can be anything for purposes of mocking. After you disable the Mocking plugin,
+ensure you set the actual URL for the Service so that the response can be received.
 
 
 ### Example Mock API Specs {#ex-mock-spex}
