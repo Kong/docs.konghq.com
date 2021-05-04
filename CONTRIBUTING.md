@@ -163,11 +163,11 @@ start with, then the file name `index.md` should remain.
 1. Edit your `index.md` file based on the guidance in comments in that file -
 you'll find lots of helpful examples in other extension files. If you are
 documenting a Kong plugin, be sure to see the next section.
-1. If you have a custom logo, add a square-format PNG file to
+1. Custom logos are required for publication on the Kong plugin hub. If you don't have a custom logo yet, please duplicate
+an existing default logo file, and rename it as noted above. Custom logos should be a square-format PNG file, 
+with no transparency, and 120x120 pixels in size. Add the logo file to
 `/app/_assets/images/icons/hub/` - the filename of your image should be
 `publisher_extension` using the "publisher" and "extension" name from step 2.
-Custom logos are optional. If you don't have a custom logo, please duplicate
-an existing default logo file, and rename it as noted above.
 1. Be sure to run the docs site locally per the instructions in
 the README - you should find your Hub contribution listed at
 `localhost:3000/hub`
