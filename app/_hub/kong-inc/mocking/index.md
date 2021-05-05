@@ -101,7 +101,7 @@ params:
 
 ## Tutorial Example
 
-This example tutorial steps you through creating and testing a mock response for
+This example tutorial steps you through testing a mock response for
 a stock quote service API.
 
 Before following the steps in this tutorial, you can view a video demonstration of the Mocking plugin
@@ -110,8 +110,16 @@ video available on YouTube.
 
 Prerequisites:
 
-- {{site.ee_product_name}} environment with the [Dev Portal enabled]() on at least one workspace
-  (not applicable to DB-less).
+- {{site.ee_product_name}} environment with the Dev Portal enabled on at least one workspace. See
+  [enable the Dev Portal](/enterprise/latest/developer-portal/enable-dev-portal/) using `kong.conf`. Also refer to
+  the instructions for your environment:
+  - [Docker]((/enterprise/latest/deployment/installation/docker/#step-7-optional-enable-the-dev-portal)
+  - [Ubuntu](/enterprise/latest/deployment/installation/ubuntu/#optional-enable-the-dev-portal)
+  - [CentOS](/enterprise/latest/deployment/installation/centos/#optional-enable-the-dev-portal)
+  - [Amazon Linux 1](/enterprise/latest/deployment/installation/amazon-linux/#optional-enable-the-dev-portal)
+  - [Amazon Linux 2](/enterprise/latest/deployment/installation/amazon-linux-2/#optional-enable-the-dev-portal)
+  - [RHEL](/enterprise/latest/deployment/installation/rhel/#optional-enable-the-dev-portal)
+
 - An Open API Specification (`yaml` or `json`) that has at least one API method with an
   embedded example response. Multiple examples within a spec are supported. See the
   [Stock API spec example](#deploy-spec-portal).
@@ -124,7 +132,7 @@ Tutorial steps:
 4. Enable the [Mocking plugin](#enable-mock-plugin) on the get stock quote route.
 5. Enable the [CORS plugin](#enable-cors-plugin) on the get stock quote route.
 6. [Test the mocked response](#testing123) from the Dev Portal, Insomnia, or the command line.
-7. When your API mock testing is completed, [disable the Mocking plugin and update the Service URL](#post-test).
+7. When you've completed your API mock testing, [disable the Mocking plugin and update the Service URL](#post-test).
 
 ### Deploy a spec to the Dev Portal {#deploy-spec-portal}
 
