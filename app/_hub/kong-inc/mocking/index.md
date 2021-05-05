@@ -99,9 +99,10 @@ params:
     plugin according to the Kong Gateway (Enterprise) deployment mode.
 ---
 
-
-
 ## Tutorial Example
+
+This example tutorial steps you through creating and testing a mock response for
+a stock quote service API.
 
 Before following the steps in this tutorial, you can view a video demonstration of the Mocking plugin
 used in conjunction with the Dev Portal. See the [Service Mocking](https://www.youtube.com/watch?v=l8uKbgkK6_I)
@@ -109,22 +110,21 @@ video available on YouTube.
 
 Prerequisites:
 
-- {{site.ee_product_name}} environment with the Dev Portal enabled on at least one workspace
+- {{site.ee_product_name}} environment with the [Dev Portal enabled]() on at least one workspace
   (not applicable to DB-less).
 - An Open API Specification (`yaml` or `json`) that has at least one API method with an
   embedded example response. Multiple examples within a spec are supported. See the
-  [Stock API spec example](#deploy-spec-portal) and the
-  [Example Mock API Specifications](#ex-mock-spex).
+  [Stock API spec example](#deploy-spec-portal).
 
 Tutorial steps:
 
-1. Deploy an OAS spec that contains mocked responses to the Dev Portal or [Insomnia](#insomnia}).
-2. Create a service.
-3. Create a route.
-4. Enable the Mocking plugin.
-5. Enable the [CORS](/hub/kong-inc/cors/) plugin.
-6. Test the mocked response from the Dev Portal, Insomnia, or the command line.
-7. When your API mock testing is completed, update the Service URL and disable the Mocking plugin.
+1. Deploy an OAS spec that contains mocked responses to the [Dev Portal](#deploy-spec-portal) or [Insomnia](#deploy-spec-insomnia).
+2. Create the [Stock service](#create-stock-service).
+3. Create the [get stock quote route](#create-stock-quote-route).
+4. Enable the [Mocking plugin](#enable-mock-plugin) on the get stock quote route.
+5. Enable the [CORS plugin](#enable-cors-plugin) on the get stock quote route.
+6. [Test the mocked response](#testing123) from the Dev Portal, Insomnia, or the command line.
+7. When your API mock testing is completed, [disable the Mocking plugin and update the Service URL](#post-test).
 
 ### Deploy a spec to the Dev Portal {#deploy-spec-portal}
 
@@ -278,7 +278,7 @@ and from lines 86 to 103 for `GET stock/closing`.
 }
 ```
 
-### Create the service
+### Create the Stock service {#create-stock-service}
 
 This example creates a service named `Stock-Service`.
 
@@ -293,7 +293,6 @@ curl -i -X POST http://<admin-hostname>:8001/services \
   --data name=Stock-Service \
   --data url='http://httpbin/anything'
 ```
-
 
 {% endnavtab %}
 {% navtab HTTPie %}
@@ -342,7 +341,7 @@ vary: Origin
 
 ```
 
-### Create the route
+### Create the get stock quote route {#create-stock-quote-route}
 
 This example creates a route named `getStockQuote` on the service named `Stock-Service`.
 
@@ -507,7 +506,7 @@ vary: Origin
 ### Enable the CORS plugin {#enable-cors-plugin}
 
 Cross-origin resource sharing (CORS) is disabled by default for security reasons. To test the mock response
-from the Dev Portal, enable the CORS plugin on the `getStockQuote` route.
+from the Dev Portal, enable the [CORS plugin](/hub/kong-inc/cors/) on the `getStockQuote` route.
 
 Command:
 
@@ -586,7 +585,7 @@ vary: Origin
 }
 ```
 
-### Test the mock response
+### Test the mock response {#testing123}
 
 Test the mocked response from within the Dev Portal Service,
 [Insomnia](https://insomnia.rest/download), or from the command line.
@@ -611,7 +610,7 @@ Test the mock response from within the Dev Portal spec using the Try it out feat
 
 Test the mock response from within the Insomnia spec using the Try it out feature.
 
-1. From the Insomnia dashboard, click the Stock API 0.1 Document tile.
+1. From the Insomnia dashboard, click the **Stock API 0.1 Document** tile.
 
    ![Insomnia Dashboard](/assets/images/docs/insomnia/insomnia-stock-spec.png)
 
@@ -644,9 +643,9 @@ http :8000/stock/historical?tickers=AAPL accept:application/json
 
 The response matches the mocked response from within the spec.
 
-### Disable the Mocking plugin and update the Service URL
+### Disable the Mocking plugin and update the Service URL {#post-test}
 
-When your API mock testing is completed, update the Service URL and disable the Mocking plugin.
+When your API mock testing is completed, disable the Mocking plugin and update the Service URL.
 
 Disable the Mocking plugin either in Kong Manager by clicking **Disable** for the plugin,
 or by using a command:
@@ -691,14 +690,3 @@ The `enabled` config reflects `false` in line 13.
 
 The Service URL can be anything for purposes of mocking. After you disable the Mocking plugin,
 ensure you set the actual URL for the Service so that the response can be received.
-
-
-### Example Mock API Specs {#ex-mock-spex}
-
-
-
-
-## See also
-
-To view a video demonstration of the Mocking plugin used in conjunction with the Dev Portal,
-see the [Service Mocking](https://www.youtube.com/watch?v=l8uKbgkK6_I) video available on YouTube.
