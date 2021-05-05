@@ -106,8 +106,9 @@ a stock quote service API.
 
 <div class="alert alert-ee blue"><strong>Tip:</strong> Before following the steps in this
 tutorial, you can view a video demonstration of the Mocking plugin
-used in conjunction with the Dev Portal. See the [Service Mocking](https://www.youtube.com/watch?v=l8uKbgkK6_I)
-video available on YouTube.
+used in conjunction with the Dev Portal. See the
+<a href="https://www.youtube.com/watch?v=l8uKbgkK6_I">Service Mocking video demo</a>
+available on YouTube.
 </div>
 
 Prerequisites:
@@ -736,10 +737,10 @@ Response:
 }
 ```
 
-The `enabled` config reflects `false` in line 13.
+The `enabled` config reflects `false` in line `13`.
 
-The Service URL can be anything for purposes of mocking. After you disable the Mocking plugin,
-ensure you set the actual URL for your Service so that the response can be received.
+The service URL can be anything for purposes of mocking. After you disable the Mocking plugin,
+ensure you set the actual URL for your service so that the response can be received.
 
  ![Set Real Service URL](/assets/images/docs/dev-portal/km-service-url.png)
 
@@ -747,7 +748,7 @@ ensure you set the actual URL for your Service so that the response can be recei
 
 ### TypeError: Failed to Fetch
 
-If you see this error when testing the mock response in the Dev Portal or Insomnia, edit your `etc/hosts` file
+If you see this error when testing the mock response in the Dev Portal or Insomnia, edit your `/etc/hosts` file
 to include `apistore.kong.com`:
 
 ```
@@ -762,4 +763,4 @@ Ensure the `api.store.com` URL appears after `localhost`:
 
 ### Error: Service Temporarily Unavailable
 
-If you see this error (or `name resolution failed`) when testing the mock response, make sure the [Mocking plugin is enabled](#enable-mock-plugin).
+If you see this error (or `message: name resolution failed`) when testing the mock response, make sure the [Mocking plugin is enabled](#enable-mock-plugin).
