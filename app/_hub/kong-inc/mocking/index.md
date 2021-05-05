@@ -39,7 +39,7 @@ params:
   protocols: ["http", "https", "grpc", "grpcs"]
   dbless_compatible: yes
   dbless_explanation: |
-    Use the `api_specification` config for DB-less mode. Attach the spec contents directly
+    Use the `api_specification` config for DB-less or hybrid mode. Attach the spec contents directly
     instead of uploading to the Dev Portal. The API spec is configured directly in the plugin.
   yaml_examples: true
   k8s_examples: false
@@ -53,7 +53,7 @@ params:
       value_in_examples:
       description: |
         The path and name of the specification file loaded into Kong DB. You cannot
-        use this option for DB-less mode.
+        use this option for DB-less or hybrid mode.
     - name: api_specification
       required: semi
       default:
