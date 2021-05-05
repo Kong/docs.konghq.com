@@ -113,7 +113,7 @@ Prerequisites:
 - {{site.ee_product_name}} environment with the Dev Portal enabled on at least one workspace. See
   [enable the Dev Portal](/enterprise/latest/developer-portal/enable-dev-portal/) using `kong.conf`. Also refer to
   the instructions for your environment:
-  - [Docker]((/enterprise/latest/deployment/installation/docker/#step-7-optional-enable-the-dev-portal)
+  - [Docker](/enterprise/latest/deployment/installation/docker/#step-7-optional-enable-the-dev-portal)
   - [Ubuntu](/enterprise/latest/deployment/installation/ubuntu/#optional-enable-the-dev-portal)
   - [CentOS](/enterprise/latest/deployment/installation/centos/#optional-enable-the-dev-portal)
   - [Amazon Linux 1](/enterprise/latest/deployment/installation/amazon-linux/#optional-enable-the-dev-portal)
