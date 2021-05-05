@@ -411,6 +411,18 @@
     postgres: "9.5+"
     openresty: "1.15.8.3"
   lua_doc: true
+-
+  release: "2.4.x"
+  version: "2.4.0"
+  edition: "enterprise"
+  luarocks_version: "2.2.0.0"
+  dependencies:
+    luajit: "2.1.0-beta3"
+    luarocks: "3.3.1"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.15.8.3"
+  lua_doc: true
 
 -
   release: "CE-2.0.x_KE-1.5.x"
