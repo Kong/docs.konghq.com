@@ -619,7 +619,7 @@ Test the mock response from within the Dev Portal spec using the Try it out feat
 
    The Server response is displayed.
 
-   ![Try it out Dev Portal](/assets/images/docs/dev-portal/response_placeholder.png)
+   ![Try it out Dev Portal](/assets/images/docs/dev-portal/tryitout-portal.png)
 
 #### Insomnia mock spec test {#insomnia}
 
