@@ -6,14 +6,13 @@ version: 0.1.x
 
 desc: Provide mock endpoints to test your APIs against your services
 description: |
-  Mock your services.
-  This plugins reads the API specification file loaded from the Kong DB and presents
-  with response extracted from examples provided in the specification. Swagger v2 and OpenAPI
-  v3 specifications are supported.
+  Provide mock endpoints to test your APIs in development against your services.
+  The Mocking plugin leverages standards based on the Open API Specification (OAS)
+  for sending out mock responses to APIs.
 
   Benefits of service mocking with the Kong Mocking plugin:
 
-  - Conforms to design-first approach since mock responses are within OAS.
+  - Conforms to a design-first approach since mock responses are within OAS.
   - Accelerates development of services and APIs.
   - Promotes parallel development of APIs across distributed teams.
   - Provides an enhanced full lifecycle API development experience with Dev Portal
