@@ -42,7 +42,7 @@ params:
   dbless_explanation: |
     Use the `api_specification` config for DB-less mode. Attach the spec contents directly
     instead of uploading to the Dev Portal. The API spec is configured directly in the plugin.
-  yaml_examples: false
+  yaml_examples: true
   k8s_examples: false
   examples: true
 
@@ -51,15 +51,15 @@ params:
       required: semi
       default:
       datatype: string
-      value_in_examples: myspec.yaml
+      value_in_examples:
       description: |
-        The name of the specification file loaded into Kong DB. You cannot
+        The path and name of the specification file loaded into Kong DB. You cannot
         use this option for DB-less mode.
     - name: api_specification
       required: semi
       default:
       datatype: string
-      value_in_examples:
+      value_in_examples: <my_spec_contents>
       description: |
         The contents of the specification file. You must use this option for hybrid or DB-less mode.
         With this configuration option, you can specify the full specification as part of the configuration,
@@ -95,7 +95,7 @@ params:
 
   extra: |
 
-    Either the `api_specification_filename` or the `api_specification` must be specified for the
+    Either the `api_specification_filename` or the `api_specification` should be specified for the
     plugin according to the Kong Gateway (Enterprise) deployment mode.
 ---
 
@@ -104,9 +104,11 @@ params:
 This example tutorial steps you through testing a mock response for
 a stock quote service API.
 
-Before following the steps in this tutorial, you can view a video demonstration of the Mocking plugin
+<div class="alert alert-ee blue"><strong>Tip:</strong> Before following the steps in this
+tutorial, you can view a video demonstration of the Mocking plugin
 used in conjunction with the Dev Portal. See the [Service Mocking](https://www.youtube.com/watch?v=l8uKbgkK6_I)
 video available on YouTube.
+</div>
 
 Prerequisites:
 
@@ -298,14 +300,14 @@ Command:
 ```
 curl -i -X POST http://<admin-hostname>:8001/services \
   --data name=Stock-Service \
-  --data url='http://httpbin/anything'
+  --data url='http://httpbin.org/anything'
 ```
 
 {% endnavtab %}
 {% navtab HTTPie %}
 
 ```
-http :8001/services name=Stock-Service url='http://httpbin/anything'
+http :8001/services name=Stock-Service url='http://httpbin.org/anything'
 ```
 
 {% endnavtab %}
@@ -345,7 +347,6 @@ vary: Origin
     "updated_at": 1619187402,
     "write_timeout": 60000
 }
-
 ```
 
 ### Create the get stock quote route {#create-stock-quote-route}
@@ -461,6 +462,8 @@ mock_ex=$(cat example.yaml); curl -X POST http://<admin-hostname>:8001/routes/<r
 
 In Kong Manager, you can copy and paste the contents of the spec directly into
 the `Config. Api Specification` text field.
+
+![Kong Manager Config API Spec Text Field](/assets/images/docs/dev-portal/km-config-api-spec-txt-fld.png)
 
 {% endnavtab %}
 {% navtab HTTPie %}
@@ -652,7 +655,43 @@ http :8000/stock/historical?tickers=AAPL accept:application/json
 {% endnavtab %}
 {% endnavtabs %}
 
-The response matches the mocked response from within the spec.
+The response matches the mocked response from within the spec:
+
+```
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+Connection: keep-alive
+Content-Length: 279
+Content-Type: application/json; charset=utf-8
+Date: Wed, 05 May 2021 19:59:06 GMT
+Server: kong/2.4.0.0-beta1-enterprise-edition
+X-Kong-Mocking-Plugin: true
+X-Kong-Response-Latency: 40
+vary: Origin
+
+{
+    "meta_data": {
+        "api_name": "historical_stock_price_v2",
+        "credit_cost": 10,
+        "end_date": "yesterday",
+        "num_total_data_points": 1,
+        "start_date": "yesterday"
+    },
+    "result_data": {
+        "AAPL": [
+            {
+                "adj_close": 275.03,
+                "close": 100.03,
+                "date": "2000-04-23",
+                "high": 100.75,
+                "low": 100.87,
+                "open": 100.87,
+                "volume": 33
+            }
+        ]
+    }
+}
+```
 
 ### Disable the Mocking plugin and update the Service URL {#post-test}
 
@@ -700,4 +739,27 @@ Response:
 The `enabled` config reflects `false` in line 13.
 
 The Service URL can be anything for purposes of mocking. After you disable the Mocking plugin,
-ensure you set the actual URL for the Service so that the response can be received.
+ensure you set the actual URL for your Service so that the response can be received.
+
+ ![Set Real Service URL](/assets/images/docs/dev-portal/km-service-url.png)
+
+## Troubleshooting
+
+### TypeError: Failed to Fetch
+
+If you see this error when testing the mock response in the Dev Portal or Insomnia, edit your `etc/hosts` file
+to include `apistore.kong.com`:
+
+```
+sudo vim /etc/hosts
+```
+
+Ensure the `api.store.com` URL appears after `localhost`:
+
+```
+127.0.0.1       localhost apistore.kong.com
+```
+
+### Error: Service Temporarily Unavailable
+
+If you see this error (or `name resolution failed`) when testing the mock response, make sure the [Mocking plugin is enabled](#enable-mock-plugin).
