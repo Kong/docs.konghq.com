@@ -167,7 +167,7 @@ to upload a spec to the Dev Portal.
 
 ### Stock API spec example {#stock-spec}
 
-The mocked responses in the example Stock spec are between lines 38 to 59 for `GET stock/historical`,
+The mocked responses in the example Stock spec `stock-0.1.json` are between lines 38 to 59 for `GET stock/historical`,
 and from lines 86 to 103 for `GET stock/closing`.
 
 ```json
@@ -292,7 +292,6 @@ This example creates a service named `Stock-Service`.
 
 Command:
 
-
 {% navtabs %}
 {% navtab cURL %}
 
@@ -357,9 +356,10 @@ This example creates a route named `getStockQuote` on the service named `Stock-S
 {% navtab cURL %}
 
 ```
-
+curl -X POST http://localhost:8001/services/Stock-Service/routes \
+    --data "name=getStockQuote" \
+    --data paths="/stock/historical"
 ```
-
 
 {% endnavtab %}
 {% navtab HTTPie %}
@@ -433,7 +433,7 @@ curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
     --data "config.api_specification_filename=stock-0.1.json"
 ```
 
-Optional configuration for random delay:
+Optional configuration for random simulated delay:
 
 ```
 curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
@@ -458,6 +458,9 @@ a spec:
 ```
 mock_ex=$(cat example.yaml); curl -X POST http://<admin-hostname>:8001/routes/<route_id>/plugins --data name=mocking --data config.api_specification="$mock_ex"
 ```
+
+In Kong Manager, you can copy and paste the contents of the spec directly into
+the `Config. Api Specification` text field.
 
 {% endnavtab %}
 {% navtab HTTPie %}
