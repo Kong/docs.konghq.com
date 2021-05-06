@@ -354,7 +354,7 @@ and from lines 86 to 103 for `GET stock/closing`.
 }
 ```
 
-### Create the Stock service {#create-stock-service}
+### Create the stock service {#create-stock-service}
 
 This example creates a service named `Stock-Service`.
 
@@ -511,7 +511,7 @@ curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
     --data "config.min_delay_time=0.001"
 ```
 
-DB-less configuration:
+DB-less or hybrid mode configuration must use `config.api_specification`:
 
 ```
 curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
@@ -537,6 +537,12 @@ the `Config. Api Specification` text field.
 ```
 http -f :8001/routes/getStockQuote/plugins name=mocking config.api_specification_filename=stock-0.1.json
 ```
+
+```
+http -f localhost:8001/routes/mocking/plugins name=mocking config.api_specification=@../stock-0.1.json
+```
+
+Specify the path to your spec file.
 
 {% endnavtab %}
 {% endnavtabs %}
