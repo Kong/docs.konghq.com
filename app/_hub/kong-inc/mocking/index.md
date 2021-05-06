@@ -117,7 +117,7 @@ The `{service}` is the id or name of the service that this plugin configuration 
 
 ### Enable the plugin on a route
 
-Configure this plugin on a [route](/latest/admin-api/#Route-object):
+Configure this plugin on a [route](/latest/admin-api/#route-object):
 
 ```
 $ curl -X POST http://<admin-hostname>:8001/routes/{route}/plugins \
@@ -164,7 +164,7 @@ curl -X POST http://<admin-hostname>:8001/plugins/ \
     --data "config.min_delay_time=0.001"
 ```
 
-## Tutorial Example: Stock Quote Service Mock
+## Tutorial Example
 
 This example tutorial steps you through testing a mock response for
 a stock quote service API.
