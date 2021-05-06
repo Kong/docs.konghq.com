@@ -98,7 +98,73 @@ params:
     plugin according to the Kong Gateway (Enterprise) deployment mode.
 ---
 
-## Tutorial Example
+## Configuration
+
+### Enable the plugin on a service
+
+Configure this plugin on a [service](/latest/admin-api/#service-object):
+
+```
+curl -X POST http://<admin-hostname>:8001/services/{service}/plugins \
+  --data name=mocking \
+  --data config.api_specification_filename=multipleexamples.json \
+  --data config.random_delay=true \
+  --data config.max_delay_time=1 \
+  --data config.min_delay_time=0.01
+```
+
+The `{service}` is the id or name of the service that this plugin configuration will target.
+
+### Enable the plugin on a route
+
+Configure this plugin on a [route](/latest/admin-api/#Route-object):
+
+```
+$ curl -X POST http://<admin-hostname>:8001/routes/{route}/plugins \
+   --data name=mocking \
+   --data config.api_specification_filename=multipleexamples.json \
+   --data config.random_delay=true \
+   --data config.max_delay_time=1 \
+   --data config.min_delay_time=0.01
+   ```
+
+The `{route}` is the id or name of the route that this plugin configuration will target.
+
+### Enable the plugin on a consumer
+
+Configure this plugin on a [consumer](/latest/admin-api/#consumer-object):
+
+```
+curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
+    --data "name=mocking"  \
+    --data config.api_specification_filename=multipleexamples.json \
+    --data "config.random_delay=true" \
+    --data "config.max_delay_time=1" \
+    --data "config.min_delay_time=0.001"
+```
+
+The `<consumer>` is the id or username of the consumer that this plugin configuration will target.
+
+You can combine `consumer.id`, `service.id`, or `route.id` within the same request to further narrow the scope of the plugin.
+
+### Enable the plugin globally
+
+A plugin that is not associated to any service, route, or consumer is considered global, and
+will run on every request. Read the [Plugin Reference](/gateway-oss/latest/admin-api/#add-plugin) and the
+[Plugin Precedence](/gateway-oss/latest/admin-api/#prededence) sections for more information.
+
+Configure this plugin globally:
+
+```
+curl -X POST http://<admin-hostname>:8001/plugins/ \
+    --data "name=mocking"  \
+    --data config.api_specification_filename=multipleexamples.json \
+    --data "config.random_delay=true" \
+    --data "config.max_delay_time=1" \
+    --data "config.min_delay_time=0.001"
+```
+
+## Tutorial Example: Stock Quote Service Mock
 
 This example tutorial steps you through testing a mock response for
 a stock quote service API.
