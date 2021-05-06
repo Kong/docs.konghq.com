@@ -24,13 +24,12 @@ enterprise: true
 type:
   plugin
 categories:
-  - traffic control
+  - traffic-control
 
 kong_version_compatibility:
-  enterprise_edition:
-    compatible:
-    - 2.4.x
-
+    enterprise_edition:
+      compatible:
+        - 2.4.x
 params:
   name: mocking
   service_id: true
