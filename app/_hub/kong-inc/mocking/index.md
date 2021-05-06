@@ -105,11 +105,11 @@ Configure this plugin on a [service](/latest/admin-api/#service-object):
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/services/{service}/plugins \
-  --data name=mocking \
-  --data config.api_specification_filename=multipleexamples.json \
-  --data config.random_delay=true \
-  --data config.max_delay_time=1 \
-  --data config.min_delay_time=0.01
+  --data "name=mocking" \
+  --data "config.api_specification_filename=multipleexamples.json" \
+  --data "config.random_delay=true" \
+  --data "config.max_delay_time=1" \
+  --data "config.min_delay_time=0.01"
 ```
 
 The `{service}` is the id or name of the service that this plugin configuration will target.
@@ -120,11 +120,11 @@ Configure this plugin on a [route](/latest/admin-api/#route-object):
 
 ```bash
 $ curl -X POST http://<admin-hostname>:8001/routes/{route}/plugins \
-   --data name=mocking \
-   --data config.api_specification_filename=multipleexamples.json \
-   --data config.random_delay=true \
-   --data config.max_delay_time=1 \
-   --data config.min_delay_time=0.01
+   --data "name=mocking" \
+   --data "config.api_specification_filename=multipleexamples.json" \
+   --data "config.random_delay=true" \
+   --data "config.max_delay_time=1" \
+   --data "config.min_delay_time=0.01"
    ```
 
 The `{route}` is the id or name of the route that this plugin configuration will target.
@@ -136,7 +136,7 @@ Configure this plugin on a [consumer](/latest/admin-api/#consumer-object):
 ```bash
 curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
     --data "name=mocking"  \
-    --data config.api_specification_filename=multipleexamples.json \
+    --data "config.api_specification_filename=multipleexamples.json" \
     --data "config.random_delay=true" \
     --data "config.max_delay_time=1" \
     --data "config.min_delay_time=0.001"
@@ -157,7 +157,7 @@ Configure this plugin globally:
 ```bash
 curl -X POST http://<admin-hostname>:8001/plugins/ \
     --data "name=mocking"  \
-    --data config.api_specification_filename=multipleexamples.json \
+    --data "config.api_specification_filename=multipleexamples.json" \
     --data "config.random_delay=true" \
     --data "config.max_delay_time=1" \
     --data "config.min_delay_time=0.001"
