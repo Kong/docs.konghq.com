@@ -4,15 +4,32 @@ no_search: true
 no_version: true
 ---
 
+## 1.2.5
+
+> Released on 2021/05/05
+
+### Changes
+
+Built on top of [Kuma 1.1.5](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#115).
+
+- ⚠️ All installation scripts are updated to a new location, because Bintray is shutting down. If you've written automation scripts that refer to the Bintray location, you need to update your scripts to point to the new location.
+- Transparent proxying is improved.
+- The GUI is improved.
+- The locality is now always set in a multi-zone deployment.
+
+### Upgrading
+
+Upgrades from `1.2.x` are seamless and no additional steps are needed. Note [specific configuration requirements](https://kuma.io/docs/1.1.5/networking/dns/#data-plane-proxy-built-in-dns) for taking advantage of built-in DNS.
+
 ## 1.2.4
 
 > Released on 2021/04/19
 
 ### Changes
 
-Built on top of [Kuma 1.1.4](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#112).
+Built on top of [Kuma 1.1.4](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#114).
 
-Includes important bug fixes to version 1.1.4 of Kuma, plus improvements to the web UI.
+Includes important bug fixes to version 1.1.3 of Kuma, plus improvements to the web UI.
 
 ### Upgrading
 
@@ -24,7 +41,7 @@ Upgrades from `1.2.x` are seamless and no additional steps are needed. Note [spe
 
 ### Changes
 
-Built on top of [Kuma 1.1.3](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#112). Notably:
+Built on top of [Kuma 1.1.3](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#113). Notably:
 
 - Built-in DNS provides support for specifying external services by original hostname and port
 
