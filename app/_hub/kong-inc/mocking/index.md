@@ -103,7 +103,7 @@ params:
 
 Configure this plugin on a [service](/latest/admin-api/#service-object):
 
-```
+```bash
 curl -X POST http://<admin-hostname>:8001/services/{service}/plugins \
   --data name=mocking \
   --data config.api_specification_filename=multipleexamples.json \
@@ -118,7 +118,7 @@ The `{service}` is the id or name of the service that this plugin configuration 
 
 Configure this plugin on a [route](/latest/admin-api/#route-object):
 
-```
+```bash
 $ curl -X POST http://<admin-hostname>:8001/routes/{route}/plugins \
    --data name=mocking \
    --data config.api_specification_filename=multipleexamples.json \
@@ -133,7 +133,7 @@ The `{route}` is the id or name of the route that this plugin configuration will
 
 Configure this plugin on a [consumer](/latest/admin-api/#consumer-object):
 
-```
+```bash
 curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
     --data "name=mocking"  \
     --data config.api_specification_filename=multipleexamples.json \
@@ -154,7 +154,7 @@ will run on every request. Read the [Plugin Reference](/gateway-oss/latest/admin
 
 Configure this plugin globally:
 
-```
+```bash
 curl -X POST http://<admin-hostname>:8001/plugins/ \
     --data "name=mocking"  \
     --data config.api_specification_filename=multipleexamples.json \
@@ -362,7 +362,7 @@ Command:
 {% navtabs %}
 {% navtab cURL %}
 
-```
+```bash
 curl -i -X POST http://<admin-hostname>:8001/services \
   --data name=Stock-Service \
   --data url='http://httpbin.org/anything'
@@ -371,7 +371,7 @@ curl -i -X POST http://<admin-hostname>:8001/services \
 {% endnavtab %}
 {% navtab HTTPie %}
 
-```
+```bash
 http :8001/services name=Stock-Service url='http://httpbin.org/anything'
 ```
 
@@ -421,7 +421,7 @@ This example creates a route named `getStockQuote` on the service named `Stock-S
 {% navtabs %}
 {% navtab cURL %}
 
-```
+```bash
 curl -X POST http://localhost:8001/services/Stock-Service/routes \
     --data "name=getStockQuote" \
     --data paths="/stock/historical"
@@ -430,7 +430,7 @@ curl -X POST http://localhost:8001/services/Stock-Service/routes \
 {% endnavtab %}
 {% navtab HTTPie %}
 
-```
+```bash
 http -f :8001/services/Stock-Service/routes name='getStockQuote' paths="/stock/historical"
 ```
 
@@ -493,7 +493,7 @@ Command:
 {% navtabs %}
 {% navtab cURL %}
 
-```
+```bash
 curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
     --data "name=mocking"  \
     --data "config.api_specification_filename=stock-0.1.json"
@@ -501,7 +501,7 @@ curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
 
 Optional configuration for random simulated delay:
 
-```
+```bash
 curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
     --data "name=mocking"  \
     --data "config.api_specification_filename=stock-0.1.json" \
@@ -512,7 +512,7 @@ curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
 
 DB-less or hybrid mode configuration must use `config.api_specification`:
 
-```
+```bash
 curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
     --data "name=mocking"  \
     --data "config.api_specification=<spec_contents>"
@@ -521,7 +521,7 @@ curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
 Because a spec can be rather lengthy to put into a command, use a local variable to post
 a spec:
 
-```
+```bash
 mock_ex=$(cat example.yaml); curl -X POST http://<admin-hostname>:8001/routes/<route_id>/plugins --data name=mocking --data config.api_specification="$mock_ex"
 ```
 
@@ -533,11 +533,11 @@ the `Config. Api Specification` text field.
 {% endnavtab %}
 {% navtab HTTPie %}
 
-```
+```bash
 http -f :8001/routes/getStockQuote/plugins name=mocking config.api_specification_filename=stock-0.1.json
 ```
 
-```
+```bash
 http -f localhost:8001/routes/mocking/plugins name=mocking config.api_specification=@../stock-0.1.json
 ```
 
@@ -598,7 +598,7 @@ Command:
 {% navtabs %}
 {% navtab cURL %}
 
-```
+```bash
 curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
     --data "name=cors"  \
     --data "config.origins=*"
@@ -607,7 +607,7 @@ curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
 {% endnavtab %}
 {% navtab HTTPie %}
 
-```
+```bash
 http -f :8001/routes/getStockQuote/plugins name=cors config.origins=*
 ```
 
@@ -712,14 +712,14 @@ Test the mock response from within the Insomnia spec using the Try it out featur
 {% navtabs %}
 {% navtab cURL %}
 
-```
+```bash
 curl -X GET "http://<admin-hostname>:8000/stock/historical?tickers=AAPL" -H "accept: application/json"
 ```
 
 {% endnavtab %}
 {% navtab HTTPie %}
 
-```
+```bash
 http :8000/stock/historical?tickers=AAPL accept:application/json
 ```
 
@@ -771,7 +771,7 @@ When your API mock testing is completed, disable the Mocking plugin and update t
 Disable the Mocking plugin either in Kong Manager by clicking **Disable** for the plugin,
 or by using a command:
 
-```
+```bash
 curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
     --data "name=mocking"  \
     --data "enabled=false"
@@ -821,7 +821,7 @@ ensure you set the actual URL for your service so that the response can be recei
 If you see this error when testing the mock response in the Dev Portal or Insomnia, edit your `/etc/hosts` file
 to include `apistore.kong.com`:
 
-```
+```bash
 sudo vim /etc/hosts
 ```
 
