@@ -77,22 +77,22 @@ counterparts 1 and 2) would result in a structure with merely 3 entries,
 especially with a very small (or even 0) `ttl` value.
 
 - DNS is carried over UDP with a default limit of 512 Bytes. If there are many entries
-to be returned, a DNS Server will respond with partial data and set a truncate flag, 
+to be returned, a DNS Server will respond with partial data and set a truncate flag,
 indicating there are more entries unsent.
-DNS clients, including Kong's, will then make a second request over TCP to retrieve the full 
-list of entries. 
+DNS clients, including Kong's, will then make a second request over TCP to retrieve the full
+list of entries.
 
 - Some nameservers by default do not respond with the truncate flag, but trim the response
-to be under 512 byte UDP size. 
-   - Consul is an example. Consul, in its default configuration, returns up to the first 
-three entries only, and does not set the truncate flag to indicate there are remaining entries unsent. 
+to be under 512 byte UDP size.
+   - Consul is an example. Consul, in its default configuration, returns up to the first
+three entries only, and does not set the truncate flag to indicate there are remaining entries unsent.
 Consul includes an option to enable the truncate flag. Please refer to [Consul documentation](https://www.consul.io/docs/agent/options.html#enable_truncate)
 for more information.
 
-- If a deployed nameserver does not provide the truncate flag, the pool 
-of upstream instances might be loaded inconsistently. The Kong node is effectively 
-unaware of some of the instances, due to the limited information provided by the nameserver. 
-To mitigate this, use a different nameserver, use IP addresses instead of names, or make sure 
+- If a deployed nameserver does not provide the truncate flag, the pool
+of upstream instances might be loaded inconsistently. The Kong node is effectively
+unaware of some of the instances, due to the limited information provided by the nameserver.
+To mitigate this, use a different nameserver, use IP addresses instead of names, or make sure
 you use enough Kong nodes to still keep all upstream services in use.
 
 - When the nameserver returns a `3 name error`, then that is a valid response
@@ -119,7 +119,7 @@ entities.
     service resides, eg. "192.168.100.12:80". Each target gets an additional
     `weight` to indicate the relative load it gets. IP addresses can be
     in both IPv4 and IPv6 format.
-    
+
   - `upstream`: a 'virtual hostname' which can be used in a Route `host`
     field, e.g., an upstream named `weather.v2.service` would get all requests
     from a Service with `host=weather.v2.service`.
@@ -132,7 +132,7 @@ Each upstream gets its own ring-balancer. Each `upstream` can have many
 `target` entries attached to it, and requests proxied to the 'virtual hostname'
 (which can be overwritten before proxying, using `upstream`'s property
 `host_header`) will be load balanced over the targets. A ring-balancer has a
-pre-defined number of slots, and based on the target weights the slots get
+maximum pre-defined number of slots, and based on the target weights the slots get
 assigned to the targets of the upstream.
 
 Adding and removing targets can be done with a simple HTTP request on the
@@ -140,23 +140,12 @@ Admin API. This operation is relatively cheap. Changing the upstream
 itself is more expensive as the balancer will need to be rebuilt when the
 number of slots change for example.
 
-The only occurrence where the balancer will be rebuilt automatically is when
-the target history is cleaned; other than that, it will only rebuild upon changes.
-
-Within the balancer there are the positions (from 1 to `slots`),
+Within the balancer there are the positions (from 1 up to `slots`),
 which are __randomly distributed__ on the ring.
 The randomness is required to make invoking the ring-balancer cheap at
 runtime. A simple round-robin over the wheel (the positions) will do to
 provide a well distributed weighted round-robin over the `targets`, whilst
 also having cheap operations when inserting/deleting targets.
-
-The number of slots to use per target should (at least) be around 100 to make
-sure the slots are properly distributed. Eg. for an expected maximum of 8
-targets, the `upstream` should be defined with at least `slots=800`, even if
-the initial setup only features 2 targets.
-
-The tradeoff here is that the higher the number of slots, the better the random
-distribution, but the more expensive the changes are (add/removing targets)
 
 Detailed information on adding and manipulating
 upstreams is available in the `upstream` section of the
