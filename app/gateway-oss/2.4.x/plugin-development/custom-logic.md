@@ -50,7 +50,7 @@ of {{site.ce_product_name}}'s execution life-cycle:
 
 If a module implements the `response` function, {{site.ce_product_name}} will automatically activate the "buffered proxy" mode, as if the [`kong.service.request.enable_buffering()` function][enable_buffering] had been called.  Because of a current Nginx limitation, this doesn't work for HTTP/2 or gRPC upstreams.
 
-To reduce unexpected behaviour changes, {{site.ce_product_name}} will abort startup if a Plugin implements both `response` and either `header_filter` or `body_filter`.
+To reduce unexpected behaviour changes, {{site.ce_product_name}} does not start if a Plugin implements both `response` and either `header_filter` or `body_filter`.
 
 - **[Stream Module]** *is used for Plugins written for TCP and UDP stream connections*
 
