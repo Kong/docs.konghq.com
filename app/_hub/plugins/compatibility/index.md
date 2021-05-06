@@ -12,16 +12,25 @@ By design, some plugins require central database coordination or dynamic
 creation of entities.
 
 ## Compatibility
-{% navtabs %}
-{% navtab Kong Gateway (OSS) %}
-{{site.ce_product_name}} can be deployed in the following ways:
-* **Classic:** Every node is connected to a database. Refers to a classic deployment on any platform, including Kubernetes.
-* **DB-less:** Deployed without a database (available in {{site.ce_product_name}} 1.1 onward).
-Does not have an Admin API. Refers to a DB-less deployment on any platform, including Kubernetes.
+
+{{site.base_gateway}} can be deployed in the following ways:
+* **Classic:** Every node is connected to a database. Refers to a classic
+deployment on any platform, including Kubernetes.
+* **DB-less:** Deployed without a database (available in {{site.ce_product_name}}
+1.1 and {{site.ee_product_name}} 2.4 onward). Admin API is read-only,
+except for the `/config` endpoint. Refers to a DB-less deployment on any
+platform, including Kubernetes.
 * **Hybrid mode:** Nodes are split into control plane and data plane roles.
 The control plane coordinates configuration and propagates it to data plane
 nodes, so only control plane nodes require a database
-(available in {{site.ce_product_name}} 2.0 onward).
+(available in {{site.ce_product_name}} 2.0 and {{site.ee_product_name}} 2.1 onward).
+
+> **Note:** For details on the differences between deployment types, see
+[Kong Deployment Options](/enterprise/latest/deployment/deployment-options)
+and [{{site.ee_product_name}} for Kubernetes Deployment Options](/enterprise/latest/kong-for-kubernetes/deployment-options).
+
+{% navtabs %}
+{% navtab Kong Gateway (OSS) %}
 
 <div class="alert alert-info">
 <b>Legend</b>
@@ -96,19 +105,6 @@ nodes, so only control plane nodes require a database
 
 {% endnavtab %}
 {% navtab Kong Gateway (Enterprise) %}
-{{site.ee_product_name}} can be deployed in the following ways:
-* **Classic:** Every node is connected to a database. Refers to a classic
-deployment on any platform, including Kubernetes.
-* **DB-less {{site.ee_product_name}} on Kubernetes:** Deployed with the Kong Ingress
-Controller and no database.
-* **Hybrid mode:** Nodes are split into control plane and data plane roles.
-The control plane coordinates configuration and propagates it to data plane
-nodes, so only control plane nodes require a database
-(available in {{site.ee_product_name}} 2.1 onward).
-
-> **Note:** For details on the differences between deployment types, see
-[Kong Deployment Options](/enterprise/latest/deployment/deployment-options)
-and [{{site.ee_product_name}} for Kubernetes Deployment Options](/enterprise/latest/kong-for-kubernetes/deployment-options).
 
 <div class="alert alert-info">
 <b>Legend</b>
@@ -117,7 +113,7 @@ and [{{site.ee_product_name}} for Kubernetes Deployment Options](/enterprise/lat
 <br/> <i class="fa fa-times" style="opacity:50%;color:red"></i> Not supported
 </div>
 
-| Plugin  | Owner | Classic  | DB-less Kong Gateway on K8S |   Hybrid Mode   | Notes {:width=30%:} |
+| Plugin  | Owner | Classic  | DB-less |   Hybrid Mode   | Notes {:width=30%:} |
 |:--------|:------|:--------:|:-------------------------------------:|:---------------:|:--------------------|
 | [ACL](/hub/kong-inc/acl/)                                                          | Kong                |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
 | [Apache OpenWhisk](/hub/kong-inc/openwhisk/)                                       | Kong                |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
@@ -157,6 +153,7 @@ and [{{site.ee_product_name}} for Kubernetes Deployment Options](/enterprise/lat
 | [LDAP Authentication Advanced](/hub/kong-inc/ldap-auth-advanced)                   | Kong                |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
 | [LDAP Authentication](/hub/kong-inc/ldap-auth/)                                    | Kong                |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
 | [Loggly](/hub/kong-inc/loggly/)                                                    | Kong                |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
+| [Mocking](/hub/kong-inc/mocking/)                                                  | Kong                |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
 | [Moesif API Insights](/hub/moesif/kong-plugin-moesif/)                             | Third-party         |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
 | [Mutual TLS Authentication](/hub/kong-inc/mtls-auth/)                              | Kong                |      <i class="fa fa-check"></i>       |                <i class="fa fa-check"></i>                |                <i class="fa fa-check"></i>                |   |
 | [OAuth 2.0 Authentication](/hub/kong-inc/oauth2/)                                  | Kong                |      <i class="fa fa-check"></i>       | <i class="fa fa-times" style="opacity:50%;color:red"></i> | <i class="fa fa-times" style="opacity:50%;color:red"></i> | For its regular work, the plugin needs to both generate and delete tokens, and commit those changes to the database, which is not compatible with hybrid mode. |
