@@ -771,43 +771,60 @@ When your API mock testing is completed, disable the Mocking plugin and update t
 Disable the Mocking plugin either in Kong Manager by clicking **Disable** for the plugin,
 or by using a command:
 
-```bash
-curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
-    --data "name=mocking"  \
-    --data "enabled=false"
+{% navtabs %}
+{% navtab cURL %}
+
+
+{% endnavtab %}
+{% navtab HTTPie %}
+
 ```
+http PATCH :8001/plugins/<plugin-id> enabled=false -f
+```
+
+{% endnavtab %}
+{% endnavtabs %}
 
 Response:
 
 ```
+HTTP/1.1 200 OK
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Origin: http://localhost:8002
+Connection: keep-alive
+Content-Length: 347
+Content-Type: application/json; charset=utf-8
+Date: Fri, 07 May 2021 18:18:11 GMT
+Server: kong/2.4.0.0-beta1-enterprise-edition
+X-Kong-Admin-Latency: 11
+X-Kong-Admin-Request-ID: 0s7xacYAUBFIY0LPanSkobV8mSdhOSvk
+vary: Origin
 {
-   "created_at":1620087882,
-   "protocols":[
-      "grpc",
-      "grpcs",
-      "http",
-      "https"
-   ],
-   "service":null,
-   "id":"3311500c-ea7d-4c31-8526-7cf25878372c",
-   "consumer":null,
-   "tags":null,
-   "enabled":false,
-   "name":"mocking",
-   "route":{
-      "id":"5ada3c98-c732-4c05-903f-9ba8ef026776"
-   },
-   "config":{
-      "random_delay":false,
-      "min_delay_time":0.001,
-      "max_delay_time":1,
-      "api_specification_filename":null,
-      "api_specification":null
-   }
+    "config": {
+        "api_specification": null,
+        "api_specification_filename": "stock-0.1.json",
+        "max_delay_time": 1,
+        "min_delay_time": 0.001,
+        "random_delay": false
+    },
+    "consumer": null,
+    "created_at": 1620403609,
+    "enabled": false,
+    "id": "9a7dbe34-da00-47df-9939-5787abf2d3a1",
+    "name": "mocking",
+    "protocols": [
+        "grpc",
+        "grpcs",
+        "http",
+        "https"
+    ],
+    "route": null,
+    "service": null,
+    "tags": null
 }
 ```
 
-The `enabled` config reflects `false` in line `13`.
+The `enabled` config reflects `false` in line `22`.
 
 The service URL can be anything for purposes of mocking. After you disable the Mocking plugin,
 ensure you set the actual URL for your service so that the response can be received.
