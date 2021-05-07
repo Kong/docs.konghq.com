@@ -813,24 +813,3 @@ The service URL can be anything for purposes of mocking. After you disable the M
 ensure you set the actual URL for your service so that the response can be received.
 
  ![Set Real Service URL](/assets/images/docs/dev-portal/km-service-url.png)
-
-## Troubleshooting
-
-### TypeError: Failed to Fetch
-
-If you see this error when testing the mock response in the Dev Portal or Insomnia, edit your `/etc/hosts` file
-to include `apistore.kong.com`:
-
-```bash
-sudo vim /etc/hosts
-```
-
-Ensure the `api.store.com` URL appears after `localhost`:
-
-```
-127.0.0.1       localhost apistore.kong.com
-```
-
-### Error: Service Temporarily Unavailable
-
-If you see this error (or `message: name resolution failed`) when testing the mock response, make sure the [Mocking plugin is enabled](#enable-mock-plugin).
