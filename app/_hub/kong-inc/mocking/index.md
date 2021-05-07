@@ -63,7 +63,7 @@ params:
         With this configuration option, you can specify the full specification as part of the configuration,
         rather than specifying a separate file with `api_specification_filename` that lives next to the Kong Gateway (Enterprise).
         In Kong Manager, you can copy and paste the contents of the spec directly into
-        the `Config. Api Specification` text field.
+        the `Config.Api Specification` text field.
     - name: random_delay
       required: false
       default: false
