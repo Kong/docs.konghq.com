@@ -769,11 +769,18 @@ vary: Origin
 When your API mock testing is completed, disable the Mocking plugin and update the Service URL.
 
 Disable the Mocking plugin either in Kong Manager by clicking **Disable** for the plugin,
-or by using a command:
+or by using a command. You can copy and paste the plugin ID from within Kong Manager.
+
+![Copy Plugin ID](/assets/images/docs/dev-portal/km-copy-plugin-id.png)
 
 {% navtabs %}
 {% navtab cURL %}
 
+```
+curl -X PATCH http://localhost:8001/plugins/<plugin-id>  -i \
+    --data "name=mocking"  \
+    --data "enabled=false"
+```
 
 {% endnavtab %}
 {% navtab HTTPie %}
