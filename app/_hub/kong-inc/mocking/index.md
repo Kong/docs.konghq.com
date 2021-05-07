@@ -150,7 +150,7 @@ You can combine `consumer.id`, `service.id`, or `route.id` within the same reque
 
 A plugin that is not associated to any service, route, or consumer is considered global, and
 will run on every request. Read the [Plugin Reference](/gateway-oss/latest/admin-api/#add-plugin) and the
-[Plugin Precedence](/gateway-oss/latest/admin-api/#prededence) sections for more information.
+[Plugin Precedence](/gateway-oss/latest/admin-api/#precedence) sections for more information.
 
 Configure this plugin globally:
 
