@@ -210,7 +210,7 @@ copy and paste the `stock-01.json` example file into the Dev Portal using Editor
 
 1. Open Editor Mode and click **New File**.
 2. Name the file `stock-01.json`.
-3. Copy and paste the contents in the [example](#stock-spec) below into the new file.
+3. Copy and paste the contents in the [example](#stock-spec) into the new file.
 
 Alternatively, you can also use the [Portal Files API](/enterprise/latest/developer-portal/files-api/#post-a-content-file)
 to upload a spec to the Dev Portal.
@@ -234,8 +234,8 @@ to upload a spec to the Dev Portal.
 
 ### Stock API spec example {#stock-spec}
 
-The mocked responses in the example Stock spec `stock-0.1.json` are between lines 38 to 59 for `GET stock/historical`,
-and from lines 86 to 103 for `GET stock/closing`.
+The mocked responses in the example Stock spec `stock-0.1.json` are between lines `38` to `59` for `GET stock/historical`,
+and from lines `86` to `103` for `GET stock/closing`.
 
 ```json
 {"swagger": "2.0",
@@ -526,7 +526,7 @@ mock_ex=$(cat example.yaml); curl -X POST http://<admin-hostname>:8001/routes/<r
 ```
 
 In Kong Manager, you can copy and paste the contents of the spec directly into
-the `Config. Api Specification` text field.
+the `Config.Api Specification` text field.
 
 ![Kong Manager Config API Spec Text Field](/assets/images/docs/dev-portal/km-config-api-spec-txt-fld.png)
 
@@ -537,11 +537,11 @@ the `Config. Api Specification` text field.
 http -f :8001/routes/getStockQuote/plugins name=mocking config.api_specification_filename=stock-0.1.json
 ```
 
+Specify the path to your spec file if you are using `config.api_specification`:
+
 ```bash
 http -f localhost:8001/routes/mocking/plugins name=mocking config.api_specification=@../stock-0.1.json
 ```
-
-Specify the path to your spec file.
 
 {% endnavtab %}
 {% endnavtabs %}
