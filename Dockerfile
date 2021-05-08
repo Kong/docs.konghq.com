@@ -1,5 +1,5 @@
 # This should mirror the jekyll version in the Gemfile
-FROM jekyll/jekyll:3.8.6
+FROM jekyll/jekyll:4.2.0
 
 RUN apk add --update autoconf automake file build-base nasm musl libpng-dev zlib-dev curl
 RUN apk add --update-cache --upgrade curl
