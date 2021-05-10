@@ -17,15 +17,21 @@ configure a new runtime, instead of one **Advanced** tab, the Runtime Manager
 now has **Linux** and **Kubernetes** tabs. Choose the tab that fits your
 environment and copy the configuration parameters directly.
 
-: **Known issue with the Kubernetes tab:** The `image` and
-  `repository` parameters are in the wrong format and point to a
-  non-existent image. Substitute them with the following:
+: **Known issues with the Kubernetes tab:**
+: * The `image` and `repository` parameters are in the wrong format and
+point to a non-existent image. Substitute them with the following:
 
-  ```yaml
-  image:
-    repository: kong/kong-gateway
-    tag: "2.3.2.0-alpine"
-  ```
+    ```yaml
+    image:
+      repository: kong/kong-gateway
+      tag: "2.3.2.0-alpine"
+    ```
+* `cluster_telemetry_endpoint` is missing a space between
+the parameter and the value. Add a space to fix the formatting:
+
+    ```yaml
+    cluster_telemetry_endpoint: <your-instance-name>.tp.konnect.konghq.com:443
+    ```
 
 ## March 2021
 
