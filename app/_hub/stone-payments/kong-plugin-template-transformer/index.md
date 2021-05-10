@@ -30,6 +30,7 @@ params:
   service_id: True
   consumer_id: False
   route_id: True
+  dbless_compatible: yes
   config:
     - name: request_template
       required: 'no'

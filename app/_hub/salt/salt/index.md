@@ -54,6 +54,8 @@ kong_version_compatibility:
     compatible:
       - 0.35-x
       - 0.34-x
+params:
+  dbless_compatible: yes
 
 ---
 

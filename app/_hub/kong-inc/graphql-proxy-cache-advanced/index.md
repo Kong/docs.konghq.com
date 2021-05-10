@@ -31,6 +31,7 @@ params:
   name: graphql-proxy-cache-advanced
   service_id: true
   route_id: true
+  dbless_compatible: yes
   config:
     - name: vary_headers
       required: false

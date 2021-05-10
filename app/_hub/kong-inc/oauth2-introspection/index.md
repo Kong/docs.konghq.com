@@ -43,6 +43,7 @@ params:
   service_id: true
   route_id: true
   konnect_examples: false
+  dbless_compatible: yes
   config:
     - name: introspection_url
       required: true

@@ -42,7 +42,7 @@ params:
   service_id: true
   consumer_id: true
   route_id: true
-
+  dbless_compatible: yes
   config:
     - name: aggregate_by_http_method
       required: yes

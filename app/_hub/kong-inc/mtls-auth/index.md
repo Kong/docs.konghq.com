@@ -31,6 +31,7 @@ params:
   service_id: true
   route_id: true
   protocols: ["http", "https", "grpc", "grpcs"]
+  dbless_compatible: yes
   config:
     - name: anonymous
       required: false

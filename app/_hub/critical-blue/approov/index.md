@@ -29,6 +29,8 @@ kong_version_compatibility:
       - 1.5.x
       - 1.3-x
 
+params:
+  dbless_compatible: yes
 ---
 
 ## APPROOV TOKEN PLUGIN

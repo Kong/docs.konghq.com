@@ -126,6 +126,9 @@ kong_version_compatibility:
         - 2.3.x
         - 2.2.x
 
+params:
+  dbless_compatible: yes
+  
 ---
 
 ## Kong OpenID Connect Plugin

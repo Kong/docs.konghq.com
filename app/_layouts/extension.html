@@ -208,8 +208,10 @@ breadcrumbs:
           <p>This plugin is <strong>not compatible</strong> with DB-less mode.</p>
         {% endif %}
         {% if page.params.dbless_compatible == "partially" or page.params.dbless_compatible == true %}
-          <p>In DB-less mode, {{site.base_gateway}} does not have an Admin API. If using this
-            mode, configure the plugin using declarative configuration.<p>
+          <p>In DB-less mode, {{site.base_gateway}} the Admin API is read-only, except for setting a target's
+            health status in the load balancer, validating configurations against schemas, and uploading
+            the declarative configuration using the `/config` endpoint.
+            If using this mode, configure the plugin using declarative configuration.<p>
         {% endif %}
 
         {% if page.params.dbless_explanation %}
@@ -298,8 +300,7 @@ breadcrumbs:
           <td>
             <a href="/hub/plugins/compatibility">{% if page.params.dbless_compatible == "yes" or page.params.dbless_compatible == true %}Yes{% endif %}{%
               if page.params.dbless_compatible == "no" or page.params.dbless_compatible == false %}No{% endif %}{%
-              if page.params.dbless_compatible == "partially" %}Partially{% endif %}
-              {% if page.params.dbless_compatible == "yes" or page.params.dbless_compatible == true or page.params.dbless_compatible == "partially" %}({{site.ce_product_name}} only){% endif %}</a>
+              if page.params.dbless_compatible == "partially" %}Partially{% endif %}</a>
           </td>
         </tr>
         {% endunless %}
