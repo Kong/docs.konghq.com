@@ -61,7 +61,6 @@ Following table describes all the flags that are available:
 | --process-classless-ingress-v1beta1  |`boolean`  | `false`                         | Toggles whether the controller processes `extensions/v1beta1` and `networking/v1beta1` Ingress resources that have no `kubernetes.io/ingress.class` annotation.|
 | --process-classless-ingress-v1       |`boolean`  | `false`                         | Toggles whether the controller processes  `networking/v1` Ingress resources that have no `kubernetes.io/ingress.class` annotation or class field.|
 | --process-classless-kong-consumer    |`boolean`  | `false`                         | Toggles whether the controller processes KongConsumer resources that have no `kubernetes.io/ingress.class` annotation.|
-| --stderrthreshold                    |`string`   | `2`                             | logs at or above this threshold go to stderr.|
 | --sync-period                        |`duration` | `10m`                           | Relist and confirm cloud resources this often.|
 | --sync-rate-limit                    |`float32`  | `0.3`                           | Define the sync frequency upper limit. |
 | --update-status                      |`boolean`  | `true`                          | Indicates if the ingress controller should update the Ingress status IP/hostname.|
