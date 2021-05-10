@@ -14,6 +14,7 @@ description: |
 
 type: plugin
 enterprise: true
+plus: true
 categories:
   - traffic-control
 

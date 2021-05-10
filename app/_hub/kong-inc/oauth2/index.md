@@ -20,7 +20,7 @@ description: |
   </div>
 
 
-
+saas: false
 type: plugin
 categories:
   - authentication
