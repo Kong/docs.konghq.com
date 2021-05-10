@@ -8,6 +8,25 @@ SaaS, an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services.
 
+
+## May 2021
+### 2021.05.07
+**Runtime setup improvements**
+: Runtime setup for Linux and Kubernetes environments has improved. When you
+configure a new runtime, instead of one **Advanced** tab, the Runtime Manager
+now has **Linux** and **Kubernetes** tabs. Choose the tab that fits your
+environment and copy the configuration parameters directly.
+
+: **Known issue with the Kubernetes tab:** The `image` and
+  `repository` parameters are in the wrong format and point to a
+  non-existent image. Substitute them with the following:
+
+  ```yaml
+  image:
+    repository: kong/kong-gateway
+    tag: "2.3.2.0-alpine"
+  ```
+
 ## March 2021
 
 ### 2021.03.16
