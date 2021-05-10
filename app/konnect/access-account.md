@@ -3,44 +3,36 @@ title: Accessing a Kong Konnect SaaS Account
 no_version: true
 ---
 
-Currently, there is no self-serve account sign up for {{site.konnect_short_name}}.
-Contact your Kong sales representative to set up a {{site.konnect_short_name}}
-SaaS account. 
+Sign up for {{site.konnect_short_name}} to receive a 30 day free
+trial of {{site.konnect_short_name}} Plus. After 30 days, you can choose to
+downgrade to the free version, or continue with a paid Plus subscription.
 
-## Set up a Konnect SaaS account
+## Set up a new Konnect SaaS account
 
-1. Follow the link from your {{site.konnect_short_name}} welcome email to
-verify your account and reset the default password.
+1. Go to [konnect.konghq.com/register](https://konnect.konghq.com/register).
 
-2. Create a new password.
+2. On the registration screen, fill in your email address, first and last name,
+and organization name.
+
+    All fields are required.
+
+3. Create a password.
 
     The new password must be 8 characters long and contain at least two of the
     following: a lowercase letter, an uppercase letter, or a special
     character.
 
-3. Save, then sign in to {{site.konnect_short_name}} using your email and the
-new password.
+4. From your {{site.konnect_short_name}} welcome email, click the link
+ to verify your account.
 
+5. Sign in to {{site.konnect_short_name}} using your email and password.
 
-<!-- Not yet available
-## Sign Up for a Konnect SaaS Account (self-serve)
+    Your {{site.konnect_short_name}} Plus free trials starts now.
 
-1. Access {{site.konnect_product_name}} at
-[https://konnect.konghq.com/](https://konnect.konghq.com/).
-
-2. On the registration screen, fill in your email address, first and last name,
-and organization name.
-
-3. Create a password.
-
-    The password must be eight characters long and contain at least two of the
-    following: a lowercase letter, an uppercase letter, or a special
-    character.
-
-4. In the **Access Code** field, enter the code provided in your invitation
-    email.
-
--->
+    {{site.konnect_short_name}} notifies you three days before the trial ends.
+    At that point, you can choose whether to continue with
+    {{site.konnect_short_name}} Plus or downgrade to the
+    {{site.konnect_short_name}} Free plan.
 
 ## Reset password
 
@@ -59,7 +51,6 @@ landing page.
     The new password must be 8 characters long and contain at least two of the
     following: a lowercase letter, an uppercase letter, or a special
     character.
-
 
 ## Summary and next steps
 
