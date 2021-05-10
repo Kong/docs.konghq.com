@@ -22,6 +22,7 @@
 
 - title: Quickstart Guide
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
+  url: /getting-started/
   items:
     - text: Set up a Runtime
       url: /getting-started/configure-runtime
