@@ -243,6 +243,9 @@ to upload a spec to the Dev Portal.
 The mocked responses in the example Stock spec `stock-0.1.json` are between lines `38` to `59` for `GET stock/historical`,
 and from lines `86` to `103` for `GET stock/closing`.
 
+If applicable to your environment, replace the `host` entry in the spec with your
+IP address or URL for {{site.ee_gateway_name}}.
+
 ```json
 {"swagger": "2.0",
     "info" : {
