@@ -543,6 +543,12 @@ the `Config.Api Specification` text field.
 http -f :8001/routes/getStockQuote/plugins name=mocking config.api_specification_filename=stock-0.1.json
 ```
 
+Optional configuration for random simulated delay using default maximum and minimum delays:
+
+```bash
+http -f :8001/routes/getStockQuote/plugins name=mocking config.api_specification_filename=stock-0.1.json config.random_delay=true
+```
+
 Specify the path to your spec file if you are using `config.api_specification`:
 
 ```bash
@@ -552,7 +558,7 @@ http -f localhost:8001/routes/mocking/plugins name=mocking config.api_specificat
 {% endnavtab %}
 {% endnavtabs %}
 
-Response:
+Response (random delay not enabled):
 
 ```
 HTTP/1.1 201 Created
@@ -588,6 +594,48 @@ vary: Origin
     ],
     "route": {
         "id": "5ada3c98-c732-4c05-903f-9ba8ef026776"
+    },
+    "service": null,
+    "tags": null
+}
+```
+
+Response (random delay enabled):
+
+```
+HTTP/1.1 201 Created
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Origin: http://localhost:8002
+Connection: keep-alive
+Content-Length: 386
+Content-Type: application/json; charset=utf-8
+Date: Tue, 11 May 2021 14:50:19 GMT
+Server: kong/2.4.0.0-beta1-enterprise-edition
+X-Kong-Admin-Latency: 15
+X-Kong-Admin-Request-ID: 2ZPP5GE3T6vL2bhbLRL7PBA2u9zgUEB8
+vary: Origin
+
+{
+    "config": {
+        "api_specification": null,
+        "api_specification_filename": "stock-0.1.json",
+        "max_delay_time": 1,
+        "min_delay_time": 0.001,
+        "random_delay": true
+    },
+    "consumer": null,
+    "created_at": 1620744619,
+    "enabled": true,
+    "id": "273edea0-477a-4d9c-bb00-1cf99e48f191",
+    "name": "mocking",
+    "protocols": [
+        "grpc",
+        "grpcs",
+        "http",
+        "https"
+    ],
+    "route": {
+        "id": "b0fad1db-eedf-4e1c-ace3-a394a640a514"
     },
     "service": null,
     "tags": null
