@@ -189,11 +189,12 @@ Prerequisites:
 
 - An Open API Specification (`yaml` or `json`) that has at least one API method with an
   embedded example response. Multiple examples within a spec are supported. See the
-  [Stock API spec example](#deploy-spec-portal).
+  [Stock API spec example](#stock-spec).
 
 Tutorial steps:
 
-1. Deploy an OAS spec that contains mocked responses to the [Dev Portal](#deploy-spec-portal) or [Insomnia](#deploy-spec-insomnia).
+1. Deploy the example OAS spec that contains mocked responses to the [Dev Portal](#deploy-spec-portal) or
+   [Insomnia](#deploy-spec-insomnia).
 2. Create the [Stock service](#create-stock-service).
 3. Create the [get stock quote route](#create-stock-quote-route).
 4. Enable the [Mocking plugin](#enable-mock-plugin) on the get stock quote route.
@@ -201,7 +202,12 @@ Tutorial steps:
 6. [Test the mocked response](#testing123) from the Dev Portal, Insomnia, or the command line.
 7. When you've completed your API mock testing, [disable the Mocking plugin and update the Service URL](#post-test).
 
-### Deploy a spec to the Dev Portal {#deploy-spec-portal}
+### Step 1. Deploy the Stock API example spec
+
+Deploy the [Stock API spec example](#stock-spec) to either the [Dev Portal](#deploy-spec-portal) or
+[Insomnia](#deploy-spec-insomnia).
+
+#### Deploy a spec to the Dev Portal {#deploy-spec-portal}
 
 Follow these steps to deploy a spec to the Dev Portal using Kong Manager. You can
 copy and paste the `stock-01.json` example file into the Dev Portal using Editor Mode.
@@ -215,7 +221,7 @@ copy and paste the `stock-01.json` example file into the Dev Portal using Editor
 Alternatively, you can also use the [Portal Files API](/enterprise/latest/developer-portal/files-api/#post-a-content-file)
 to upload a spec to the Dev Portal.
 
-### Deploy a spec to Insomnia {#deploy-spec-insomnia}
+#### Deploy a spec to Insomnia {#deploy-spec-insomnia}
 
 1. From the Insomnia dashboard, click **Create** > **Import from File** and select the
    `stock-0.1.json` file.
@@ -232,7 +238,7 @@ to upload a spec to the Dev Portal.
 
    ![Insomnia Dashboard Deploy Spec to Portal](/assets/images/docs/insomnia/insomnia-deploy-spec-dev-portal.png)
 
-### Stock API spec example {#stock-spec}
+#### Stock API spec example {#stock-spec}
 
 The mocked responses in the example Stock spec `stock-0.1.json` are between lines `38` to `59` for `GET stock/historical`,
 and from lines `86` to `103` for `GET stock/closing`.
@@ -353,7 +359,7 @@ and from lines `86` to `103` for `GET stock/closing`.
 }
 ```
 
-### Create the stock service {#create-stock-service}
+### Step 2. Create the stock service {#create-stock-service}
 
 This example creates a service named `Stock-Service`.
 
@@ -414,7 +420,7 @@ vary: Origin
 }
 ```
 
-### Create the get stock quote route {#create-stock-quote-route}
+### Step 3. Create the get stock quote route {#create-stock-quote-route}
 
 This example creates a route named `getStockQuote` on the service named `Stock-Service`.
 
@@ -484,7 +490,7 @@ vary: Origin
 }
 ```
 
-### Enable the Mocking plugin {#enable-mock-plugin}
+### Step 4. Enable the Mocking plugin {#enable-mock-plugin}
 
 This example enables the Mocking plugin on the `getStockQuote` route.
 
@@ -588,7 +594,7 @@ vary: Origin
 }
 ```
 
-### Enable the CORS plugin {#enable-cors-plugin}
+### Step 5. Enable the CORS plugin {#enable-cors-plugin}
 
 Cross-origin resource sharing (CORS) is disabled by default for security reasons. To test the mock response
 from the Dev Portal, enable the [CORS plugin](/hub/kong-inc/cors/) on the `getStockQuote` route.
@@ -670,7 +676,7 @@ vary: Origin
 }
 ```
 
-### Test the mock response {#testing123}
+### Step 6. Test the mock response {#testing123}
 
 Test the mocked response from within the Dev Portal Service,
 [Insomnia](https://insomnia.rest/download), or from the command line.
@@ -707,7 +713,7 @@ Test the mock response from within the Insomnia spec using the Try it out featur
 
    ![Try it out Insomnia](/assets/images/docs/insomnia/tryitout-insomnia.png)
 
-### Command line test
+#### Command line test
 
 {% navtabs %}
 {% navtab cURL %}
@@ -764,9 +770,10 @@ vary: Origin
 }
 ```
 
-### Disable the Mocking plugin and update the Service URL {#post-test}
+### Step 7. Disable the Mocking plugin and update the Service URL {#post-test}
 
-When your API mock testing is completed, disable the Mocking plugin and update the Service URL.
+When your API mock testing is completed, disable the Mocking plugin and update the Service
+URL.
 
 Disable the Mocking plugin either in Kong Manager by clicking **Disable** for the plugin,
 or by using a command. You can copy and paste the plugin ID from within Kong Manager.
