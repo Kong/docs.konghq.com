@@ -26,6 +26,10 @@
   items:
     - text: License Management
       url: /deployment/license-management
+    - text: Port and Network Requirements
+      url: /deployment/network
+    - text: Network Resiliency and Availability
+      url: /deployment/network-resiliency
 
 - title: Quickstart Guide
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
