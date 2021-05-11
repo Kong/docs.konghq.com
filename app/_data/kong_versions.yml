@@ -442,6 +442,8 @@
 -
   edition: "konnect"
 -
+  edition: "konnect-platform"
+-
   release: "1.1.x"
   version: "1.1.4"
   edition: "mesh"

@@ -63,7 +63,7 @@ audio:not([controls]) {
 
 img {
     border-style: none;
-    vertical-align: middle
+    vertical-align: middle;
 }
 
 svg:not(:root) {
@@ -3821,8 +3821,6 @@ tbody.collapse.show {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    border: 1px solid rgba(0,0,0,.125);
-    border-radius: .25rem
 }
 
 .card-link:hover .card-title {
@@ -3838,7 +3836,7 @@ tbody.collapse.show {
 }
 
 .plugin-card:hover {
-    background: #FAFBFC;
+    background-color: #F8F9FC;
 }
 
 .card-block {
@@ -3854,7 +3852,13 @@ tbody.collapse.show {
 }
 
 .card-title {
-    margin-bottom: .75rem
+    margin-bottom: .75rem;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 25px;
+    text-align: center;
+    color: #043558;
+    }
 }
 
 .card-header,.card-subtitle,.card-text:last-child {
@@ -6413,10 +6417,24 @@ a.bg-inverse:focus,a.bg-inverse:hover {
 }
 
 .sticky-top {
+    float: left;
     position: -webkit-sticky;
     position: sticky;
-    top: 0;
-    z-index: 99;
+    top: 135px;
+    height: calc(100vh - 56px);
+    border-right: 1px solid #ebebeb;
+    overflow-y: auto;
+    margin-right: 10px;
+    margin-top: 0.5rem;
+}
+
+.sticky-top::-webkit-scrollbar {
+      width: 2px;
+    }
+
+.sticky-top::-webkit-scrollbar-thumb {
+  background-color: #dae3f2;
+  outline: 1px solid #dae3f2;
 }
 
 .sr-only {
@@ -11432,53 +11450,55 @@ a.text-gray-dark:focus,a.text-gray-dark:hover {
 .heading-2,h2 {
     font-size: 33px;
     font-weight: 400;
-    line-height: 43px
+    line-height: 43px;
+    color: #043558
 }
 
 .heading-3,h3 {
-    font-size: 29px;
+    font-size: 25px;
     font-weight: 300;
     line-height: 38px;
-    color: rgba(0,0,0,.7)
+    color: #4C6D80
 }
 
 .heading-4,h4 {
     font-size: 21px;
     font-weight: 400;
     line-height: 28px;
-    color: rgba(0,0,0,.7)
+    color: #043558
 }
 
 .heading-5,.heading-6,.kong-subnav_title,h5,h6 {
-    color: #062F4D;
+    color: #043558;
     font-size: 15px;
     font-weight: 500;
     letter-spacing: .5px;
-    text-transform: uppercase
+    text-transform: uppercase;
+    margin-left: 1.2rem;
 }
 
 .heading-6,h6 {
-    color: #062F4D
+    color: #043558
 }
 
 .page-subscriptions table thead th,p {
     font-size: 17px;
     line-height: 24px;
-    color: rgba(0,0,0,.85)
+    color: #043558
 }
 
 .home .list-group-item,.page-subscriptions table tbody td,.page-subscriptions table thead .related-posts .excerpt th,.page-subscriptions table thead th.sm,.related-posts .excerpt .page-subscriptions table thead th,.related-posts .excerpt p,p.sm {
     font-size: 15px;
     line-height: 20px;
     font-weight: 400;
-    color: rgba(0,0,0,.7)
+    color: rgba(0,0,0,0.45)
 }
 
 .page-subscriptions table thead th.mini,p.mini {
     font-size: 13px;
     line-height: 17px;
     font-weight: 400;
-    color: rgba(0,0,0,.45)
+    color: rgba(0,0,0,0.45)
 }
 
 .page-subscriptions table thead th.lrg,p.lrg {
@@ -13384,15 +13404,15 @@ section.bg-dkBlue {
 }
 
 .sidebar a {
-    color: rgba(0,0,0,.45);
+    color: rgba(0,0,0,0.45);
     transition: color .3s;
     will-change: color;
 }
 
 .sidebar .nav-item a:hover {
-    color: #062F4D;
+    color: #1155CB;
     font-weight: 500;
-    border-left: 2px solid rgba(0,0,0,.45);
+    border-left: 2px solid #1155CB;
     text-decoration: none;
 }
 
@@ -13401,9 +13421,9 @@ section.bg-dkBlue {
 }
 
 .sidebar .nav-item a.active {
-    color: #062F4D;
+    color: #1155CB;
     font-weight: 500;
-    border-left: 2px solid #062F4D;
+    border-left: 2px solid #1155CB;
 }
 
 .sidebar .btn {
@@ -13419,18 +13439,25 @@ section.bg-dkBlue {
 }
 
 .sidebar .cta-container {
-    margin-top: 32px;
-    margin-bottom: 32px;
+    margin-top: 0;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+}
+
+#introduction {
     padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 #scroll-sidebar {
-    padding-bottom: 32px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
     border-bottom: 1px solid #E6E6E6;
 }
 
 #facet-filters {
-    padding-bottom: 32px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .search-input-wrapper {
@@ -13815,7 +13842,7 @@ section.newsletter-container {
 }
 
 .page-subscriptions table thead section.newsletter-container th,section.newsletter-container .page-subscriptions table thead th,section.newsletter-container p {
-    color: #fff
+    color: rgba(0,0,0,0.45)
 }
 
 section.newsletter-container button.close {
@@ -14762,7 +14789,7 @@ nav.navigation.posts-navigation {
 }
 
 .heading-6,.kong-subnav_title,h5,h6 {
-    color: rgba(0,0,0,.7)
+    color: #043558
 }
 
 header.page-header {
@@ -14781,6 +14808,7 @@ header.page-header {
 
 .hub-cards {
   margin-top: 10px;
+  padding-left: 25px;
 }
 
 .hub-cards .row.category {
@@ -14791,20 +14819,22 @@ header.page-header {
   font-size: 21px;
   font-weight: 500;
   line-height: 28px;
-  color: rgba(0,0,0,.7);
   width: 100%;
   margin: 0 16px 16px;
+  color: #043558
 }
 
 .plugin-card {
-    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     transition: opacity .3s ease;
-    border: 1px solid #9DC6E3;
-    border-radius: 4px;
     background-color: #FFF;
     position: relative;
     overflow: hidden;
     padding: 25px;
+    box-shadow: 4px 4px 14px rgba(0, 48, 130, 0.1);
+    border-radius: 8px;
 }
 
 .plugin-card a {
@@ -14812,21 +14842,22 @@ header.page-header {
 }
 
 .plugin-card.enterprise:after {
-    position: absolute;
-    display: block;
-    content: 'Enterprise';
-    top: 0;
-    right: -20px;
-    height: 1.7rem;
-    width: 100px;
-    color: #026FC2;
-    font-size: 12px;
-    line-height: 1rem;
-    background: #E1EAFF;
-    border-bottom: 1px #9DC6E3 solid;
-    border-left:1px #9DC6E3 solid;
-    border-radius: 0 0 0 4px;
-    padding: 3px 12px 2px;
+  position: absolute;
+  display: block;
+  content: 'ENTERPRISE';
+  top: 0;
+  right: 0;
+  height: 1.7rem;
+  width: 75px;
+  color: white;
+  font-size: 10px;
+  font-weight: 500;
+  text-align: right;
+  line-height: 1rem;
+  opacity: 0.7;
+  background: #505659;
+  border-radius: 0px 0 0 4px;
+  padding: 4px 10px 2px;
 }
 
 .plugin-card.fadeOut {
@@ -14834,8 +14865,31 @@ header.page-header {
 }
 
 .plugin-card .name-desc {
-  padding-bottom: 40px;
+  padding-bottom: 50px;
   text-align: left;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 22px;
+  }
+
+  .name-desc.plus:after {
+    position: absolute;
+    display: block;
+    content: 'PLUS';
+    top: 20px;
+    right: 0;
+    height: 1.7rem;
+    width: 45px;
+    color: white;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.2rem;
+    text-align: right;
+    opacity: 0.5;
+    background: #1456cb;
+    border-radius: 4px 0 0 4px;
+    padding: 3px 10px 12px 3px;
+  }
 }
 
 .plugin-card.name-desc p:hover {
@@ -14861,6 +14915,7 @@ header.page-header {
 
 .publisher svg {
     margin-top: 5px;
+    opacity: 0.8;
 }
 
 .card-img-top {
@@ -15110,6 +15165,9 @@ body .newsletter .logo img{
     margin-bottom:10px;
 }
 
+body .container {
+  max-width: 100%;
+}
 
 body footer.marketing-footer--light-gray{
     padding-top:4rem !important;

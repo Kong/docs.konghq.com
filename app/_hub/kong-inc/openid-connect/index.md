@@ -113,6 +113,7 @@ description: |
   [Application Registration](/hub/kong-inc/application-registration) plugin.
 
 enterprise: true
+plus: true
 type: plugin
 categories:
   - authentication
