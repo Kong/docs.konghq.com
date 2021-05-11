@@ -20,10 +20,10 @@ cloud control plane.
 * **{{site.konnect_product_name}} Plus:** A pay-as-you-go, credit card-based
 option that provides a simple way for developers or operators on small teams to
 quickly start using the services they need right now.
-* **{{site.konnect_product_name}} Enterprise**: For organizations that want 
-to manage all services across their entire organization. {{site.konnect_short_name}} 
-Enterprise provides connectivity with enterprise-grade security, scalability, 
-and observability across any cloud, platform, and protocol to help teams build 
+* **{{site.konnect_product_name}} Enterprise**: For organizations that want
+to manage all services across their entire organization. {{site.konnect_short_name}}
+Enterprise provides connectivity with enterprise-grade security, scalability,
+and observability across any cloud, platform, and protocol to help teams build
 powerful digital services and experiences.
 
 : If you already have a {{site.konnect_short_name}} or {{site.ee_product_name}}
@@ -32,16 +32,16 @@ account and license, this license will roll over seamlessly into the new
 
 **{{site.konnect_short_name}} Plus free trials**
 : When you [sign up for a {{site.konnect_short_name}} account](/konnect/access-account),
-you get automatically enrolled into a 30-day {{site.konnect_short_name}} 
+you are automatically enrolled into a 30-day {{site.konnect_short_name}}
 Plus free trial. You don't need to provide a credit card or any info beyond
-the account registration. At the end of the trial, you'll have the choice to 
+the account registration. At the end of the trial, you'll have the choice to
 keep the account at the Plus tier or downgrade to Free.
 
 **Billing and plan management**
 : You can now [manage your plan subscription](/konnect/account-management/billing)
-for Free and Plus plan tiers directly from the app. {{site.konnect_short_name}} 
-now includes a Stripe integration, and the process is fully self-serve: choose 
-your plan, add a card, make payments, all through the {{site.konnect_short_name}} 
+for Free and Plus plan tiers directly from the app. {{site.konnect_short_name}}
+now includes a Stripe integration, and the process is fully self-serve: choose
+your plan, add a card, make payments, all through the {{site.konnect_short_name}}
 app and billing portal.
 
 **Self-serve account registration**
@@ -120,10 +120,8 @@ for Dev Portal access.
 
 {{site.konnect_product_name}} ({{site.konnect_short_name}}) is now generally available!
 
-To get started with {{site.konnect_short_name}}, see:
-- [Quickstart Guide](/konnect/getting-started/configure-runtime/)
-- [Kong {{site.konnect_short_name}} Overview](/konnect/)
-- [Using the {{site.konnect_short_name}} Docs](/konnect/using-konnect-docs/)
+To get started with {{site.konnect_short_name}}, see the
+[Quickstart Guide](/konnect/getting-started/configure-runtime/).
 
 For more information about {{site.konnect_short_name}}, contact your Kong sales
 representative.

@@ -1,6 +1,6 @@
 <!-- used in Konnect and Gateway docs -->
 
-By default, {{site.kong_gateway}} listens on the following ports:
+By default, {{site.base_gateway}} listens on the following ports:
 
 | Port                                                                               | Protocol | Description |
 |:-----------------------------------------------------------------------------------|:---------|:--|
