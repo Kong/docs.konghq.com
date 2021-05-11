@@ -16,7 +16,7 @@
         if extn.kong_version_compatibility.enterprise_edition.compatible != nil %}ee-compat {% endif %}{%
           if extn.plus or extn.kong_version_compatibility.community_edition.compatible != nil %}{%
             unless extn.saas == false %}plus {% endunless %}{% endif %}{%
-              if extn.enterprise %}enterprise {% 
+              if extn.enterprise %}enterprise {%
                 else %}open-source {% endif %}{%
                   else %}pub-not-konghq pub-{{extn_publisher}}{% endif %}">
       <a href="{{ extn.url | remove: '/index' }}">
