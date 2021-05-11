@@ -3,11 +3,18 @@
   url: /
   items:
     - text: Using the Konnect Docs
-      url: /using-konnect-docs
+      url: /
     - text: Key Concepts and Terms
       url: /key-concepts-and-terms
     - text: Access a Kong Konnect Account
       url: /access-account
+    - text: Konnect Plans, Billing, and Usage
+      url: /account-management
+      items:
+        - text: Change to a Different Plan
+          url: /account-management/change-plan
+        - text: Manage Payment Methods and Invoices
+          url: /account-management/billing
 
 - title: Release Notes
   icon: /assets/images/icons/documentation/icn-references-color.svg
@@ -19,9 +26,14 @@
   items:
     - text: License Management
       url: /deployment/license-management
+    - text: Port and Network Requirements
+      url: /deployment/network
+    - text: Network Resiliency and Availability
+      url: /deployment/network-resiliency
 
 - title: Quickstart Guide
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
+  url: /getting-started/
   items:
     - text: Set up a Runtime
       url: /getting-started/configure-runtime
