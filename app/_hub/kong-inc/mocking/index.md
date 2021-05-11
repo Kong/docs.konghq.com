@@ -250,7 +250,7 @@ and from lines `86` to `103` for `GET stock/closing`.
         "description": "Stock Information Service",
         "version": "0.1"
     },
-    "host": "apistore.kong.com:8000",
+    "host": "127.0.0.1:8000",
     "basePath": "/",
     "schemes": [
         "http",
