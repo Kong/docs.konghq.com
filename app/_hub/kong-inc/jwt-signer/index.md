@@ -14,6 +14,7 @@ description: |
   (one given to end user and one given to client application).
 
 enterprise: true
+plus: true
 type: plugin
 categories:
   - authentication

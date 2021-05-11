@@ -9,6 +9,7 @@ description: |
   Add mutual TLS authentication based on client-supplied certificate and configured trusted CA list. Automatically maps certificates to **Consumers** based on the common name field.
 
 enterprise: true
+plus: true
 type: plugin
 categories:
   - authentication

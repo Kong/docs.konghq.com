@@ -85,7 +85,14 @@ id: documentation
           </div>
           {% endif %}
 
-          <h1 class="page-content-title">{{page.title | flatify }}</h1>
+          <h1 class="page-content-title{%
+            if page.badge %} badge{%
+            if page.badge == 'plus' %} plus{% endif %}{%
+            if page.badge == 'enterprise' %} enterprise{% endif %}
+            {% endif %}"
+            >{{page.title | flatify }}</h1>
+          {% if page.enterprise %}
+          {% endif %}
           {% if page.subtitle %}
           <h2 class="page-content-subtitle">{{page.subtitle | flatify }}</h2>
           {% endif %}

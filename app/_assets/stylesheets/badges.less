@@ -1,0 +1,47 @@
+.badge {
+  &:after {
+    display: inline-flex;
+    font-weight: 500;
+    font-size: 10px;
+    vertical-align: middle;
+    text-align: center;
+    max-width: 200px;
+    line-height: 13px;
+    height: 13px;
+    width: auto;
+    padding: 3px 10px;
+    font-family: @family-display;
+    border-radius: 10px;
+    margin-left: 7px;
+  }
+
+  &.plus::after {
+      content: "PLUS";
+      opacity: 0.5;
+      color: white;
+      border-color: @blue-500;
+      background-color: @blue-500;
+
+    }
+  &.enterprise::after {
+      content: "ENTERPRISE";
+      color: white;
+      opacity: 0.6;
+      border-color: @black-80;
+      background-color: @black-80;
+    }
+
+  &.free::after {
+      content: "FREE";
+      opacity: 0.5;
+      color: black;
+      border-color: @black-30;
+      background-color: @black-30;
+    }
+}
+
+span.badge {
+  &:after {
+    margin: 2px;
+  }
+}
