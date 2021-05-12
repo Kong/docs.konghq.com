@@ -175,7 +175,7 @@ to the rest of the cluster or outside the cluster.
 If your Kubernetes cluster is running in a cloud environment, where
 Load Balancers can be provisioned with relative ease, it is recommended
 that you use a Service of type `LoadBalancer` to expose Kong to the outside
-world. For the Ingress Controller to function coorrectly, it is also required
+world. For the Ingress Controller to function correctly, it is also required
 that a L4 (or TCP) Load Balancer is used and not an L7 (HTTP(s)) one.
 
 If your Kubernetes cluster doesn't support a service of type `LoadBalancer`,

@@ -21,41 +21,15 @@ To complete this guide you will need:
 
 ## Step 1. Download Kong Enterprise
 
-1. Option 1. Download via **Packages**
+{% include /md/enterprise/install.md install='OS' %}
 
-    Log in to [Bintray](http://bintray.com) to download the latest Kong 
-    Enterprise RPM for CentOS. Your **Sales** or **Support** contact will
-    email this credential to you.
-    
-    Copy the file to your home directory:
+### Download your Kong Enterprise License
 
-    ```
-    $ scp kong-enterprise-edition-0.35-1.el7.noarch.rpm <centos user>@<serverip:~
-    ```
+{% include /md/enterprise/license.md license='<1.3' %}
 
-2. Option 2. Download via **YUM**
+{% include /md/enterprise/license.md license='json-example' %}
 
-    Edit the `baseurl` field in the yum repository file `/etc/yum.repos.d` :
-
-    ```
-    baseurl=https://<USERNAME>:<API_KEY>@kong.bintray.com/kong-enterprise-edition-rpm/centos/$releasever
-    ```
-    Replace `<USERNAME>` with your Bintray account information
-
-    Set `$releasever` to the correct CentOS version (e.g. `6` or `7`)
-
-3. Obtain your Kong Enterprise license
-
-   If you do not already have your license file, you can download it from your
-   account files in Bintray 
-   `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
-
-   Ensure your license file is in proper `JSON`:
-
-   ```json
-    {"license":{"signature":"91e6dd9716d12ffsn4a5ckkb16a556dbebdbc4d0a66d9b2c53f8c8d717eb93dd2bdbe2cb3ef51c20806f14345128907da35","payload":{"customer":"Kong Inc","license_creation_date":"2019-05-07","product_subscription":"Kong Enterprise Edition","admin_seats":"5","support_plan":"None","license_expiration_date":"2021-04-01","license_key":"00Q1K00000zuUAwUAM_a1V1K000005kRhuUAE"},"version":1}}
-   ```
-4. Securely copy the license file to the CentOS system
+3. Securely copy the license file to the CentOS system
 
     ```
     $ scp license.json <centos username>@<serverip>:~
@@ -190,7 +164,7 @@ must be modified to accept the correct PostgreSQL user and password.
 
 ## Step 6. Seed the Super Admin _(optional)_
 
-For the added security of Role-Based Access Control (RBAC), it is best to seed 
+For the added security of Role-Based Access Control (RBAC), it is best to seed
 the **Super Admin** before initial start-up.
 
 Create an environment variable with the desired **Super Admin** password:
@@ -199,7 +173,7 @@ Create an environment variable with the desired **Super Admin** password:
     $ export KONG_PASSWORD=<password-only-you-know>
 
 
-This will be used during migrations to seed the initial **Super Admin** 
+This will be used during migrations to seed the initial **Super Admin**
 password within Kong.
 
 
@@ -222,7 +196,7 @@ password within Kong.
     ```
     curl -i -X GET --url http://localhost:8001/services
     ```
-    
+
     You should receive an HTTP/1.1 200 OK message.
 
 ## Troubleshooting
@@ -234,6 +208,6 @@ setup reach out to your **Support contact** or head over to the
 
 ## Next Steps
 
-Work through Kong Enterprise's series of 
+Work through Kong Enterprise's series of
 [Getting Started](/enterprise/{{page.kong_version}}/getting-started) guides to get the most
 out of Kong Enterprise.

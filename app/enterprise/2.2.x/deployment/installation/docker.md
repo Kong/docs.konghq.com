@@ -23,17 +23,21 @@ If you want to run {{site.ee_product_name}} in Hybrid mode, the instructions in 
 
 To complete this installation you will need:
 
-{% include /md/{{page.kong_version}}/bintray-and-license.md %}
+{% include /md/enterprise/license.md license='prereq' %}
 * A Docker-enabled system with proper Docker access.
 
 ## Step 1. Pull the Kong Gateway Docker image {#pull-image}
 
-Using Docker, log in to Bintray and pull the following Docker image:
+Pull the following Docker image:
 
 ```bash
-$ docker login -u <your_username_from_bintray> -p <your_apikey_from_bintray> kong-docker-kong-enterprise-edition-docker.bintray.io
-$ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition:{{page.kong_versions[9].version}}-alpine
+$ docker pull kong/kong-gateway:{{page.kong_versions[9].version}}-alpine
 ```
+<div class="alert alert-ee">
+<b>Note:</b> To access {{page.kong_version}} images prior to 2.2.1.3,
+contact <a href="https://support.konghq.com/">Kong Support</a>.
+</div>
+
 
 You should now have your {{site.ee_product_name}} image locally.
 

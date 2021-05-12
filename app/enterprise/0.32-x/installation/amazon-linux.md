@@ -1,24 +1,20 @@
 ---
-title: install Kong Enterprise and PostgreSQL onto Amazon Linux
+title: Install Kong Enterprise and PostgreSQL onto Amazon Linux
 ---
 
-## Introduction
+## Download Kong Gateway
+
+{% include /md/enterprise/install.md install='OS' %}
+
+### Obtain your Kong Enterprise license
+
+{% include /md/enterprise/license.md license='<1.3' %}
+
+{% include /md/enterprise/license.md license='json-example' %}
+
+## Install Postgres
 
 ```bash
-$ sudo yum update
-$ wget 'https://<BINTRAY_USER:<PASSWORD>@bintray.com/kong/kong-enterprise-edition-aws/rpm' -O bintray-kong-kong-enterprise-edition-aws.repo --auth-no-challenge
-$ sudo mv bintray-kong-kong-enterprise-edition-aws.repo /etc/yum.repos.d/
-$ sudo vi /etc/yum.repos.d/bintray-kong-kong-enterprise-edition-aws.repo
-```
-
-Ensure `baseurl` is correct
-
-```bash
-baseurl=https://<BINTRAY_USER>:<BINTRAY_API_KEY>@kong.bintray.com/kong-enterprise-edition-aws
-```
-
-```bash
-$ sudo yum install kong-enterprise-edition
 $ sudo yum install postgresql95 postgresql95-server
 $ sudo service postgresql95 initdb
 $ sudo service postgresql95 start
@@ -33,7 +29,7 @@ Create `kong` user
 
 ```bash
 $ psql
-> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong'; 
+> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
 > \q
 ```
 
@@ -74,13 +70,13 @@ $ http :8000/ip
 
 ```bash
 # Get the local IP address
-$ ifconfig 
+$ ifconfig
 
 # Uncomment the admin_listen setting, and update to something like this `admin_listen = 172.31.3.8:8001`
-$ sudo vi [/path/to/kong.conf] 
+$ sudo vi [/path/to/kong.conf]
 
 # Restart kong
-$ sudo /usr/local/bin/kong stop 
+$ sudo /usr/local/bin/kong stop
 $ sudo /usr/local/bin/kong start [-c /path/to/kong.conf]
 ```
 

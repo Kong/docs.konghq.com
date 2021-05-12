@@ -14,7 +14,7 @@ Kong supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore. This g
 steps to configure PostgreSQL. For assistance in setting up Cassandra, please contact your Kong Sales or Support representative.
 
 This software is governed by the
-[Kong Software License Agreement](https://konghq.com/enterprisesoftwarelicense/).
+[Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
 
 ### Deployment options
 
@@ -29,15 +29,7 @@ root-equivalent access.
 
 Download the Debian package:
 
-1. Go to: [https://bintray.com/kong/kong-gateway-deb/ubuntu](https://bintray.com/kong/kong-gateway-deb/ubuntu).
-2. Select the latest Kong version from the list. {{site.ee_product_name}} versions are listed in reverse chronological order.
-3. From the Kong version detail page, select the **Files** tab, then click the `pool/u/ubuntu` folder.
-4. Click the `.deb` file matching your target Ubuntu OS version. For example, select `kong-enterprise-edition-{{page.kong_versions[10].version}}.bionic.all.deb` for the Ubuntu Bionic Beaver release.
-5. Copy the `.deb` file to your home directory on the Ubuntu system. For example:
-
-    ```bash
-    $ scp kong-enterprise-edition-{{page.kong_versions[10].version}}.bionic.all.deb <ubuntu_user>@<server>:~
-    ```
+{% include /md/enterprise/download/ubuntu.md version='2.x' %}
 
 ## Step 2. Install Kong Gateway
 

@@ -79,12 +79,19 @@ you saved earlier:
 
 1. Create a `values.yaml` file.
 
-2. Copy the template below into your `values.yaml` file.
+
+2. Return to {{site.konnect_short_name}} and copy the
+codeblock in the **Step 2. Configuration Parameters** section.
+
+    ![Konnect Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
+
+3. Paste the codeblock into your `values.yaml` file. It should look something
+like this:
 
     ```yaml
     image:
-      repository: kong-docker-kong-gateway-docker.bintray.io/kong-enterprise-edition
-      tag: "{{site.data.kong_latest_ee.version}}-alpine"
+      repository: kong/kong-gateway
+      tag: "2.3.2.0-alpine"
 
     secretVolumes:
     - kong-cluster-cert
@@ -113,16 +120,10 @@ you saved earlier:
       installCRDs: false
     ```
 
-3. Return to {{site.konnect_short_name}} and refer to the
-codeblock in the **Step 2. Configuration Parameters** section.
-
-    ![Konnect Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
-
 4. Replace any placeholder values in the `env` section of the `values.yaml`
-with your specific values from {{site.konnect_short_name}}. The `KONG_` prefix
-is not needed for Helm.
+with your specific values from {{site.konnect_short_name}}.
 
-    If your cluster cert locations differ from the paths in the template, also update
+    If your cluster cert locations differ from the paths in the template, update
     the values in `cluster_cert`, `cluster_cert_key`, `cluster_ca_cert`, and
     `lua_ssl_trusted_certificate` with references to the secrets you created earlier.
 

@@ -29,6 +29,7 @@ description: |
   [supported OAuth workflows](/enterprise/latest/developer-portal/administration/application-registration/3rd-party-oauth).
 
 enterprise: true
+plus: true
 type: plugin
 categories:
   - authentication

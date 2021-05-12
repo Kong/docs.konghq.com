@@ -16,7 +16,6 @@ type: plugin
 categories:
   - traffic-control
 
-enterprise: true
 type: plugin
 categories:
   - traffic-control

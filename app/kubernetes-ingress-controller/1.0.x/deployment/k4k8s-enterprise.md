@@ -10,21 +10,10 @@ This is available to enterprise customers of Kong, Inc. only.
 
 ## Prerequisites
 
-Before we can deploy Kong, we need to satisfy two
-prerequisites:
+Before we can deploy Kong, we need to satisfy one prerequisite: create a license
+secret.
 
-- [Prerequisites](#prerequisites)
-  - [Kong Enterprise License secret](#kong-enterprise-license-secret)
-  - [Kong Enterprise Docker registry access](#kong-enterprise-docker-registry-access)
-- [Installers](#installers)
-  - [YAML manifests](#yaml-manifests)
-  - [Kustomize](#kustomize)
-  - [Helm](#helm)
-  - [Example values.yaml](#example-valuesyaml)
-- [Using Kong for Kubernetes Enterprise](#using-kong-for-kubernetes-enterprise)
-
-In order to create these secrets, let's provision the `kong`
-namespace first:
+To create this secret, provision the `kong` namespace first:
 
 ```bash
 $ kubectl create namespace kong
@@ -48,30 +37,9 @@ Please note that `-n kong` specifies the namespace in which you are deploying
   the {{site.kic_product_name}}. If you are deploying in a different namespace,
   please change this value.
 
-### Kong Enterprise Docker registry access
-
-Next, we need to setup Docker credentials in order to allow Kubernetes
-nodes to pull down Kong Enterprise Docker image, which is hosted as a private
-repository.
-As part of your sign up for Kong Enterprise, you should have received
-credentials to access Enterprise Bintray repositories.
-Your username is the same username you use
-to log in to Bintray and password
-is an API-key that can be provisioned via Bintray.
-
-```bash
-$ kubectl create secret -n kong docker-registry kong-enterprise-edition-docker \
-    --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \
-    --docker-username=<your-bintray-username@kong> \
-    --docker-password=<your-bintray-api-key>
-secret/kong-enterprise-edition-docker created
-```
-
-Again, please take a note of the namespace `kong`.
-
 ## Installers
 
-Once the secrets are in-place, we can proceed with installation.
+Once the secret is in-place, we can proceed with installation.
 
 Kong for Kubernetes can be installed using an installer of
 your choice:
@@ -156,10 +124,8 @@ $ helm install kong/kong --generate-name
 ### Example values.yaml
 ```
 image:
-  repository: kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition
+  repository: kong/kong-gateway
   tag: 2.2.1.0-alpine
-  pullSecrets:
-  - kong-enterprise-edition-docker
 env:
   LICENSE_DATA:
     valueFrom:

@@ -44,7 +44,7 @@ codeblock in the **Step 2. Configuration Parameters** section.
     ![Konnect Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
 
 3. Open your instance's `kong.conf` file. Add the parameters you just copied
-to the file, remove the `KONG_` prefix, and turn them into lowercase.
+to the file.
 
     The result should look something like this, replacing placeholder values
     with your own from {{site.konnect_short_name}}:

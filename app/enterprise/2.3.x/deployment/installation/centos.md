@@ -15,7 +15,7 @@ the installation and configuration.
 steps to configure PostgreSQL. For assistance in setting up Cassandra, please contact your Sales or Support representative.
 
 This software is governed by the
-[Kong Software License Agreement](https://konghq.com/enterprisesoftwarelicense/).
+[Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
 
 ### Deployment options
 
@@ -28,26 +28,9 @@ root-equivalent access.
 
 ## Step 1. Prepare to install Kong Gateway {#step-1}
 
-There are two options to install {{site.base_gateway}} on CentOS.
+{% include /md/enterprise/download/centos.md version='2.x' %}
 
-{% navtabs %}
-{% navtab Download RPM file %}
-
-1. Go to: [https://bintray.com/kong/kong-gateway-rpm/](https://bintray.com/kong/kong-gateway-rpm/).
-2. Select the `centos` folder.
-3. Select the latest version from the list.
-4. Click the **Files** tab, then click the distribution folder, if applicable.
-5. Select the CentOS version appropriate for your environment, such as `centos` -> `7`.
-6. Click the RPM file to download it.
-    For example: `kong-enterprise-edition-{{page.kong_versions[10].version}}.el7.noarch.rpm`
-7. Copy the RPM file to your home directory on the CentOS system.
-For example:
-
-    ```bash
-    $ scp kong-enterprise-edition-{{page.kong_versions[10].version}}.el7.noarch.rpm <centos user>@<server>:~
-    ```
-
-### (Optional) Verify the package integrity
+<!-- ### (Optional) Verify the package integrity
 
 1. Kong's official Key ID is `2cac36c51d5f3726`. Verify it by querying the RPM package and comparing it to the Key ID:
 
@@ -58,7 +41,7 @@ For example:
 2. Download Kong's official public key to ensure the integrity of the RPM package:
 
     ```bash
-    $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
+    $ curl -o kong.key {{ site.links.download }}/user/downloadSubjectPublicKey?username=kong
     $ rpm --import kong.key
     $ rpm -K kong-enterprise-edition-1.3.el7.noarch.rpm
     ```
@@ -67,56 +50,11 @@ For example:
 
     ```
     kong-enterprise-edition-{{page.kong_versions[10].version}}.el7.noarch.rpm: rsa sha1 (md5) pgp md5 OK
-    ```
-
-{% endnavtab %}
-{% navtab Download Kong repo file and add to Yum repo %}
-
-
-1. Download the {{site.base_gateway}} RPM repo file:
-
-    [https://bintray.com/kong/kong-gateway-rpm/rpm](https://bintray.com/kong/kong-gateway-rpm/rpm)
-
-2. Securely copy the repo file to your home directory on the CentOS system.
-For example:
-
-    ```bash
-    $ scp bintray--kong-kong-gateway-rpm.repo <centos user>@<server>:~
-    ```
-
-{% endnavtab %}
-{% endnavtabs %}
+    ``` -->
 
 ## Step 2. Install Kong Gateway
 
-{% navtabs %}
-{% navtab Using a downloaded RPM package %}
-
-1. Execute a command similar to the following, using the appropriate RPM filename
-for the package you downloaded:
-
-    ```bash
-    $ sudo yum install /path/to/package.rpm
-    ```
-{% endnavtab %}
-{% navtab Using Yum repo %}
-
-2. Move the repo file in your home directory to the `/etc/yum.repos.d/`
-directory.
-
-    ```bash
-    $ sudo mv bintray--kong-kong-gateway-rpm.repo /etc/yum.repos.d/
-    ```
-
-3. Begin the installation using the Yum repository:
-
-    ```bash
-    $ sudo yum update -y
-    $ sudo yum install kong-enterprise-edition -y
-    ```
-
-{% endnavtab %}
-{% endnavtabs %}
+{% include /md/enterprise/install-2.x.md %}
 
 ## Step 3. Set up PostgreSQL
 

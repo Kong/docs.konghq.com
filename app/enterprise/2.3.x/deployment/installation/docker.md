@@ -14,7 +14,7 @@ the installation and configuration.
 steps to configure PostgreSQL.
 
 This software is governed by the
-[Kong Software License Agreement](https://konghq.com/enterprisesoftwarelicense/).
+[Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
 
 ### Deployment options
 
@@ -27,11 +27,15 @@ To complete this installation you will need a Docker-enabled system with proper
 
 ## Step 1. Pull the Kong Gateway Docker image {#pull-image}
 
-Using Docker, pull the following Docker image:
+Pull the following Docker image:
 
 ```bash
-$ docker pull kong-docker-kong-gateway-docker.bintray.io/kong-enterprise-edition:{{page.kong_versions[10].version}}-alpine
+$ docker pull kong/kong-gateway:{{page.kong_versions[10].version}}-alpine
 ```
+<div class="alert alert-ee">
+<b>Note:</b> To access {{page.kong_version}} images prior to 2.3.2.0,
+contact <a href="https://support.konghq.com/">Kong Support</a>.
+</div>
 
 You should now have your {{site.base_gateway}} image locally.
 
@@ -145,7 +149,7 @@ This feature is only available with a
 2. In your container, set the Portal URL and set `KONG_PORTAL` to `on`:
 
     ```sh
-    $ echo "KONG_PORTAL_GUI_HOST=localhost:8003 KONG_PORTAL=off kong reload exit" \
+    $ echo "KONG_PORTAL_GUI_HOST=localhost:8003 KONG_PORTAL=on kong reload exit" \
       | docker exec -i kong-ee /bin/sh
     ```
 

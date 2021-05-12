@@ -15,6 +15,7 @@ description: |
     </div>  
 
 enterprise: true
+saas: false
 type: plugin
 categories:
   - security

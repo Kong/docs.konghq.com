@@ -73,10 +73,11 @@ remaining configuration details on the **Configure Runtime** page.
 
 1. Using Docker, pull the following image:
 
-    ```bash
-    $ docker pull kong-docker-kong-gateway-docker.bintray.io/kong-enterprise-edition:{{site.data.kong_latest_ee.version}}-alpine
-    ```
 
+    ```bash
+    $ docker pull kong/kong-gateway:2.3.2.0-alpine
+    ```
+    
     You should now have your {{site.base_gateway}} image locally.
 
 2. Verify that it worked, and find the image ID matching your repository:

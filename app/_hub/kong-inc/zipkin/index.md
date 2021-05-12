@@ -14,6 +14,7 @@ description: |
 
 
 type: plugin
+saas: false
 categories:
   - analytics-monitoring
 
