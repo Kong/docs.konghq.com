@@ -152,7 +152,7 @@ The log server that receives these messages might require extra headers, such as
   - name: http-log
     config:
       headers:
-        Authorization: "Bearer <<token>>""
+        Authorization: "Bearer <<token>>"
 ...
 ```
 
