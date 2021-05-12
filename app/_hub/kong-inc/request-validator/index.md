@@ -10,6 +10,7 @@ description: |
   schema validator (body only) or a JSON Schema Draft 4-compliant validator.
 
 enterprise: true
+plus: true
 type: plugin
 categories:
   - traffic-control

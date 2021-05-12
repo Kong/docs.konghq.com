@@ -13,6 +13,7 @@ description: |
   or extend the function.
 
 type: plugin
+saas: false
 categories:
   - serverless
 

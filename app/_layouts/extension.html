@@ -304,6 +304,24 @@ breadcrumbs:
           </td>
         </tr>
         {% endunless %}
+        {% if extn_publisher == "kong-inc" %}
+        <tr>
+          <td>Konnect tier</td>
+          <td>
+            {% if page.plus %}<span class="badge plus"></span>{%
+            elsif page.enterprise %}<span class="badge enterprise"></span>{%
+            else %}<span class="badge free"></span>{% endif %}
+          </td>
+        </tr>
+        <tr>
+          <td>Konnect SaaS</td>
+          <td>
+            {% if page.saas == false %} Not available{%
+            elsif extn_release == extn_latest %}Available{%
+              else %}See latest plugin version for availability{% endif %}
+          </td>
+        </tr>
+        {% endif %}
         {% if page.support_url %}
           {% assign support_dom = page.support_url | split: "/" %}
           {% assign support_dom = support_dom[2] | remove: "www." | remove: "support." | remove: "help." | remove: "docs." %}

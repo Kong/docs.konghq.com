@@ -33,7 +33,10 @@
           </ul>
         {% endif %}
 
-        <h1>{{ header_title }}</h1>
+        <h1 {% if page.badge %} class="badge{%
+          if page.badge == 'plus' %} plus"{% endif %}{%
+          if page.badge == 'enterprise' %} enterprise"{% endif %}
+          {% endif %}>{{ header_title }}</h1>
 
         {% if page.header_caption or include.header_caption%}
           <p>{{ page.header_caption }}{{ include.header_caption }}</p>

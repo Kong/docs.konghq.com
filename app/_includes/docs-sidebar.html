@@ -9,6 +9,7 @@
         <span>
           {% if page.edition == 'enterprise' %}{{site.ee_product_name}}
           {% elsif page.edition == 'konnect' %}{{site.konnect_saas}}
+          {% elsif page.edition == 'konnect-platform' %}{{site.konnect_product_name}} Platform
           {% elsif page.edition == 'mesh' %}{{site.mesh_product_name}}
           {% elsif page.edition == 'deck' %}decK
           {% elsif page.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
@@ -19,7 +20,10 @@
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="module-dropdown">
-        <div class="dropdown-submenu-title">Kong Konnect</div>
+        <div class="dropdown-submenu-title">Kong Konnect Platform</div>
+        <li {% if page.edition == 'konnect_platform' %} class="active" {% endif %}>
+          <a href="/konnect-platform/" class="{% if page.edition == 'konnect_platform' %}active{% endif %}">{{site.konnect_product_name}} Platform</a>
+        </li>
         <li {% if page.edition == 'konnect' %} class="active" {% endif %}>
           <a href="/konnect/" class="{% if page.edition == 'konnect' %}active{% endif %}">Konnect SaaS</a>
         </li>

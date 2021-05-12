@@ -9,6 +9,7 @@ description: |
   Add authentication to a Service or Route with an access token and secret token. Credential tokens are stored securely via Vault. Credential lifecyles can be managed through the Kong Admin API, or independently via Vault.
 
 enterprise: true
+saas: false
 type: plugin
 categories:
   - authentication

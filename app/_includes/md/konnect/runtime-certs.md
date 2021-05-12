@@ -9,7 +9,8 @@
 2. (Optional) If this is not the first runtime configuration, click
 **Configure New Runtime**.
 
-2. Open the **Advanced** tab.
+2. Open the tab that suits your environment: **Quick Setup - Docker**,
+**Linux**, or **Kubernetes**.
 
 3. Click **Generate Certificate**.
 

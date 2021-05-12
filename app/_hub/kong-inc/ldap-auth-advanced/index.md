@@ -23,6 +23,7 @@ description: |
   </div>
 
 enterprise: true
+plus: true
 type: plugin
 categories:
   - authentication

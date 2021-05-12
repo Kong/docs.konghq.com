@@ -8,6 +8,72 @@ SaaS, an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services.
 
+## May 2021
+
+### 2021.05.11
+
+**{{site.konnect_short_name}} Plus is launched!**
+: {{site.konnect_short_name}} introduces a
+[new plan tier system](https://konghq.com/pricing) for subscriptions.
+* **{{site.konnect_product_name}} Free:** Basic features and plugins with a
+cloud control plane.
+* **{{site.konnect_product_name}} Plus:** A pay-as-you-go, credit card-based
+option that provides a simple way for developers or operators on small teams to
+quickly start using the services they need right now.
+* **{{site.konnect_product_name}} Enterprise**: For organizations that want
+to manage all services across their entire organization. {{site.konnect_short_name}}
+Enterprise provides connectivity with enterprise-grade security, scalability,
+and observability across any cloud, platform, and protocol to help teams build
+powerful digital services and experiences.
+
+: If you already have a {{site.konnect_short_name}} or {{site.ee_product_name}}
+account and license, this license will roll over seamlessly into the new
+{{site.konnect_short_name}} Enterprise tier.
+
+**{{site.konnect_short_name}} Plus free trials**
+: When you [sign up for a {{site.konnect_short_name}} account](/konnect/access-account),
+you are automatically enrolled into a 30-day {{site.konnect_short_name}}
+Plus free trial. You don't need to provide a credit card or any info beyond
+the account registration. At the end of the trial, you'll have the choice to
+keep the account at the Plus tier or downgrade to Free.
+
+**Billing and plan management**
+: You can now [manage your plan subscription](/konnect/account-management/billing)
+for Free and Plus plan tiers directly from the app. {{site.konnect_short_name}}
+now includes a Stripe integration, and the process is fully self-serve: choose
+your plan, add a card, make payments, all through the {{site.konnect_short_name}}
+app and billing portal.
+
+**Self-serve account registration**
+: You can now sign up for a {{site.konnect_short_name}} account without an
+access code. No more
+reaching out to Kong support or sales for access &ndash; just go
+to [https://konnect.konghq.com](https://konnect.konghq.com) and try it out!
+
+### 2021.05.07
+
+**Runtime setup improvements**
+: Runtime setup for Linux and Kubernetes environments has improved. When you
+configure a new runtime, instead of one **Advanced** tab, the Runtime Manager
+now has **Linux** and **Kubernetes** tabs. Choose the tab that fits your
+environment and copy the configuration parameters directly.
+
+: **Known issues with the Kubernetes tab:**
+: * The `image` and `repository` parameters are in the wrong format and
+point to a non-existent image. Substitute them with the following:
+
+    ```yaml
+    image:
+      repository: kong/kong-gateway
+      tag: "2.3.2.0-alpine"
+    ```
+* `cluster_telemetry_endpoint` is missing a space between
+the parameter and the value. Add a space to fix the formatting:
+
+    ```yaml
+    cluster_telemetry_endpoint: <your-instance-name>.tp.konnect.konghq.com:443
+    ```
+
 ## March 2021
 
 ### 2021.03.16
@@ -60,10 +126,8 @@ for Dev Portal access.
 
 {{site.konnect_product_name}} ({{site.konnect_short_name}}) is now generally available!
 
-To get started with {{site.konnect_short_name}}, see:
-- [Quickstart Guide](/konnect/getting-started/configure-runtime/)
-- [Kong {{site.konnect_short_name}} Overview](/konnect/)
-- [Using the {{site.konnect_short_name}} Docs](/konnect/using-konnect-docs/)
+To get started with {{site.konnect_short_name}}, see the
+[Quickstart Guide](/konnect/getting-started/configure-runtime/).
 
 For more information about {{site.konnect_short_name}}, contact your Kong sales
 representative.

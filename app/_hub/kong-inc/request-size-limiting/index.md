@@ -13,6 +13,7 @@ description: |
   Block incoming requests whose body is greater than a specific size in megabytes.
 
 type: plugin
+saas: false
 categories:
   - traffic-control
 

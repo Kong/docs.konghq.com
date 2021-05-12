@@ -20,6 +20,7 @@ description: |
   [oidcplugin]: /hub/kong-inc/openid-connect/
 
 enterprise: true
+plus: true
 type: plugin
 categories:
   - authentication

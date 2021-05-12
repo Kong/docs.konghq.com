@@ -9,6 +9,7 @@ desc: Route request based on request headers
 description: |
    Kong Enterprise plugin to route requests based on request headers.
 enterprise: true
+plus: true
 type: plugin
 categories:
   - traffic-control

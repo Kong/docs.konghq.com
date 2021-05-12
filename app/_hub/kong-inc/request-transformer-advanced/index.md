@@ -12,6 +12,7 @@ description: |
   substitute those strings into transformed requests via flexible templates.
 
 enterprise: true
+plus: true
 type: plugin
 categories:
   - transformations
