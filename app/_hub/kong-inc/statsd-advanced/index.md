@@ -109,12 +109,12 @@ Metric                     | Description | Namespace
 `request_count`            | the request count | kong.service.\<service_identifier>.request.count
 `request_size`             | the request's body size in bytes | kong.service.\<service_identifier>.request.size
 `response_size`            | the response's body size in bytes | kong.service.\<service_identifier>.response.size
-`latency`                  | the time interval between the request and response | kong.service.\<service_identifier>.latency
+`latency`                  | the time interval in milliseconds between the request and response | kong.service.\<service_identifier>.latency
 `status_count`             | tracks each status code returned in a response | kong.service.\<service_identifier>.request.status.\<status>.count and kong.\<service_name>.request.status.\<status>.total
 `unique_users`             | tracks unique users who made a requests to the underlying Service/Route | kong.service.\<service_identifier>.user.uniques
 `request_per_user`         | tracks the request count per Consumer | kong.service.\<service_identifier>.user.\<consumer_id>.request.count
-`upstream_latency`         | tracks the time it took for the final Service to process the request | kong.service.\<service_identifier>.upstream_latency
-`kong_latency`             | tracks the internal Kong latency that it took to run all the Plugins | kong.service.\<service_identifier>.kong_latency
+`upstream_latency`         | tracks the time in milliseconds it took for the final Service to process the request | kong.service.\<service_identifier>.upstream_latency
+`kong_latency`             | tracks the internal Kong latency in milliseconds that it took to run all the Plugins | kong.service.\<service_identifier>.kong_latency
 `status_count_per_user`    | tracks the status code for per Consumer per Service | kong.\<service_name>.user.\<customer_id>.request.status.\<status> and kong.\<service_name>.user.\<customer_id>.request.status.total
 `status_count_per_workspace`         | the status code per Workspace | kong.service.\<service_identifier>.workspace.\<workspace_identifier>.status.\<status>
 `status_count_per_user_per_route`    | the status code per Consumer per Route | kong.route.\<route_id>.user.\<customer_id>.status.\<status>
@@ -129,7 +129,7 @@ Metric                     | Description | Namespace
 `response_size`            | the response's body size in bytes | kong.global.unmatched.response.size
 `latency`                  | the time interval between the request started and response received from the upstream server | kong.global.unmatched.latency
 `status_count`             | the status count | kong.global.unmatched.status.\<status>.count
-`kong_latency`             | the internal Kong latency that it took to run all the plugins | kong.global.unmatched.kong_latency
+`kong_latency`             | the internal Kong latency in milliseconds that it took to run all the plugins | kong.global.unmatched.kong_latency
 
 ### Metric Fields
 

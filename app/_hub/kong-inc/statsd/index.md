@@ -98,7 +98,7 @@ Metric                     | Description | Namespace
 `request_count`            | tracks the request | kong.\<service_name>.request.count
 `request_size`             | tracks the request's body size in bytes | kong.\<service_name>.request.size
 `response_size`            | tracks the response's body size in bytes | kong.\<service_name>.response.size
-`latency`                  | tracks the time interval between the request started and response received from the upstream server | kong.\<service_name>.latency
+`latency`                  | tracks the time interval in milliseconds between the request started and response received from the upstream server | kong.\<service_name>.latency
 `status_count`             | tracks each status code returned in a response | kong.\<service_name>.request.status.\<status>.count and kong.\<service_name>.request.status.\<status>.total
 `unique_users`             | tracks unique users who made a requests to the underlying Service/Route | kong.\<service_name>.user.uniques
 `request_per_user`         | tracks request/user | kong.\<service_name>.user.\<consumer_id>.request.count
