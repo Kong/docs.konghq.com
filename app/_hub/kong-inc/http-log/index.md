@@ -145,14 +145,14 @@ params:
 
 ## Custom Headers
 
-The log server that receives these messages might require extra headers, e.g. for authorization purposes.
+The log server that receives these messages might require extra headers, such as for authorization purposes.
 
 ```yaml
 ...
   - name: http-log
     config:
       headers:
-        Authorization: Bearer <<token>>
+        Authorization: "Bearer <<token>>""
 ...
 ```
 
