@@ -192,6 +192,8 @@
       url: /health-checks-circuit-breakers
     - text: Clustering Reference
       url: /clustering
+    - text: DB-less and Declarative Configuration Format
+      url: /db-less-and-declarative-config
     - text: Logging Reference
       url: /logging
     - text: Plugin Development Guide
