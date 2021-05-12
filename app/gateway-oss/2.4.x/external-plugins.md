@@ -406,7 +406,7 @@ functions to access {{site.base_gateway}} features of the [PDK][kong-pdk].
 pip install kong-pdk
 ```
 
-Assume the plugins are stored in ``/usr/local/kong/python-plugins`:
+Assume the plugins are stored in `/usr/local/kong/python-plugins`:
 
 ```
 pluginserver_names = python
