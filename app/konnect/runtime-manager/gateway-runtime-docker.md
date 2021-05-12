@@ -138,11 +138,6 @@ Manager overview.
 
     The Runtime Manager will include a new entry for your instance.
 
-<div class="alert alert-ee warning">
-<b>Important:</b> Certificates expire after 30 days and must be renewed. See
-<a href="/konnect/runtime-manager/renew-certificates">Renew Certificates</a>.
-</div>
-
 ## Access services using the proxy URL
 
 {{site.base_gateway}} uses port `8000` for the proxy, taking incoming
