@@ -227,7 +227,7 @@ Usage of my-plugin:
         Kong prefix path (specified by the -p argument commonly used in the Kong CLI) (default "/usr/local/kong")
 ```
 
-When run without arguments, it will create a socket file with the
+When run without arguments, it creates a socket file with the
 `kong-prefix` and the executable name, appending `.socket`. For example,
 if the executable is `my-plugin`, it would be
 `/usr/local/kong/my-plugin.socket` by default.
@@ -278,7 +278,7 @@ when developing plugins in TypeScript.
 npm install kong-pdk -g
 ```
 
-Assume the plugins are stored in ``/usr/local/kong/js-plugins`:
+Assume the plugins are stored in `/usr/local/kong/js-plugins`:
 
 ```
 pluginserver_names = js
@@ -398,13 +398,13 @@ functions to access {{site.base_gateway}} features of the [PDK][kong-pdk].
 
 ### Example configuration
 
-[kong-python-pdk] can be installed via `pip`. To install the plugin server binary and PDK globally, use:
+[kong-python-pdk] can be installed using `pip`. To install the plugin server binary and PDK globally, use:
 
 ```
 pip install kong-pdk
 ```
 
-Assume the plugins are stored in ``/usr/local/kong/python-plugins`:
+Assume the plugins are stored in `/usr/local/kong/python-plugins`:
 
 ```
 pluginserver_names = python

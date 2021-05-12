@@ -147,7 +147,7 @@ type MyConfig struct {
 #### 2. New() Constructor
 
 Your plugin must define a function called `New` that creates an instance of this type
-and returns as an `interface{}`.  In most cases, it’s just this:
+and returns as an `interface{}`. In most cases, it’s just this:
 
 ```go
 func New() interface{} {
@@ -279,7 +279,7 @@ when developing plugins in TypeScript.
 npm install kong-pdk -g
 ```
 
-Assume the plugins are stored in /usr/local/kong/js-plugins
+Assume the plugins are stored in `/usr/local/kong/js-plugins`:
 
 ```
 pluginserver_names = js
