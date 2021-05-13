@@ -1,5 +1,5 @@
 ---
-title: Migrating Kong Gateway from 2.2.x to 2.3.x
+title: Migrating Kong Gateway from 2.3.x to 2.4.x
 toc: true
 ---
 
@@ -10,7 +10,7 @@ Upgrade to major, minor, and patch {{site.ee_product_name}} releases using the
 
 You can also use the commands to migrate all {{site.ce_product_name}} entities
 to {{site.ee_product_name}}. See
-[Migrating from Kong Gateway to Kong Enterprise](/enterprise/2.2.x/deployment/upgrades/migrate-ce-to-ke/).
+[Migrating from Kong Gateway to Kong Enterprise](/enterprise/2.3.x/deployment/upgrades/migrate-ce-to-ke/).
 
 If you experience any issues when running migrations, contact
 [Kong Support](https://support.konghq.com/support/s/) for assistance.
@@ -22,18 +22,18 @@ distinction between major, minor, and [patch](#patch) versions. The upgrade path
 for major and minor versions differs depending on the previous version from which
 you are migrating:
 
-- Upgrading from 2.2.x to 2.3.x is a minor upgrade; however, read below for important
+- Upgrading from 2.3.x to 2.4.x is a minor upgrade; however, read below for important
 instructions on [database migration](#migrate-db), especially for Cassandra users.
 
 - Upgrading from from 1.x is a major upgrade. Follow the [Version Prerequisites](#prereqs-v).
 Be aware of any noted breaking changes as documented in the version to which you are upgrading.
 
-### Version prerequisites for migrating to Kong Gateway 2.3.x {#prereqs-v}
+### Version prerequisites for migrating to Kong Gateway 2.4.x {#prereqs-v}
 
-If you are not on {{site.ee_product_name}} 2.2.x, you must first incrementally
-upgrade to 2.2.x before upgrading to 2.3.x. Zero downtime is possible but _not_
+If you are not on {{site.ee_product_name}} 2.3.x, you must first incrementally
+upgrade to 2.3.x before upgrading to 2.4.x. Zero downtime is possible but _not_
 guaranteed if you are upgrading incrementally between versions, from 0.36.x to 1.3.x to
-1.5.x to 2.1.x to 2.2.x to 2.3.x. Plan accordingly.
+1.5.x to 2.1.x to 2.2.x to 2.3.x to 2.4.x. Plan accordingly.
 
 * If running a version of {{site.ee_product_name}} earlier than 1.5,
   [migrate to 1.5](/enterprise/1.5.x/deployment/migrations/) first.
@@ -41,11 +41,13 @@ guaranteed if you are upgrading incrementally between versions, from 0.36.x to 1
   [migrate to 2.1](/enterprise/2.1.x/deployment/upgrades/migrations/) first.
 * If running a version of {{site.ee_product_name}} earlier than 2.2,
   [migrate to 2.2](/enterprise/2.2.x/deployment/upgrades/migrations/) first.
+* If running a version of {{site.ee_product_name}} earlier than 2.3,
+  [migrate to 2.2](/enterprise/2.3.x/deployment/upgrades/migrations/) first.
 
 ### Dev Portal migrations
 
-There are no migrations necessary for the Dev Portal when upgrading from 2.2.x to
-2.3.x.
+There are no migrations necessary for the Dev Portal when upgrading from 2.3.x to
+2.4.x.
 
 If you are currently using the Developer Portal in 1.5.x, it will no longer work without
 [manually migrating files](/enterprise/2.1.x/developer-portal/latest-migrations) to version 2.1.x.
@@ -67,7 +69,7 @@ affect your current installation.
 upgrade the Control Plane first, and then the Data Planes.
 </div>
 
-* If you are currently running 2.3.x in classic (traditional)
+* If you are currently running 2.4.x in classic (traditional)
   mode and want to run in hybrid mode instead, follow the hybrid mode
   [installation instructions](/enterprise/{{page.kong_version}}/deployment/hybrid-mode-setup/)
   after running the migration.
@@ -151,11 +153,11 @@ decommission it. For this reason, the full migration is split into two commands:
 
 #### Postgres
 
-1. Download 2.3.x, and configure it to point to the same datastore as your old
-   2.2.x (or 2.3.x-beta) cluster.
+1. Download 2.4.x, and configure it to point to the same datastore as your old
+   2.3.x (or 2.4.x-beta) cluster.
 2. Run `kong migrations up`.
-3. After that finishes running, both the old (2.2.x) and new (2.3.x) clusters can
-   now run simultaneously on the same datastore. Start provisioning 2.3.x nodes,
+3. After that finishes running, both the old (2.3.x) and new (2.4.x) clusters can
+   now run simultaneously on the same datastore. Start provisioning 2.4.x nodes,
    but do _not_ use their Admin API yet.
 
    <div class="alert alert-ee blue">
@@ -166,19 +168,19 @@ decommission it. For this reason, the full migration is split into two commands:
    </div>
 
 4. Gradually divert traffic away from your old nodes, and redirect traffic to
-   your 2.3.x cluster. Monitor your traffic to make sure everything
+   your 2.4.x cluster. Monitor your traffic to make sure everything
    is going smoothly.
-5. When your traffic is fully migrated to the 2.3.x cluster, decommission your
-   old 2.2.x (or 2.3.x-beta) nodes.
-6. From your 2.3.x cluster, run `kong migrations finish`. From this point onward,
-   it is no longer possible to start nodes in the old 2.2.x (or 2.3.x-beta) cluster
+5. When your traffic is fully migrated to the 2.4.x cluster, decommission your
+   old 2.3.x (or 2.4.x-beta) nodes.
+6. From your 2.4.x cluster, run `kong migrations finish`. From this point onward,
+   it is no longer possible to start nodes in the old 2.3.x (or 2.4.x-beta) cluster
    that still points to the same datastore. Run this command _only_ when you are
    confident that your migration was successful. From now on, you can safely make
-   Admin API requests to your 2.3.x nodes.
+   Admin API requests to your 2.4.x nodes.
 
 #### Cassandra
 
-Due to internal changes, the table schemas used by {{site.ee_product_name}} 2.3.x on Cassandra
+Due to internal changes, the table schemas used by {{site.ee_product_name}} 2.4.x on Cassandra
 are incompatible with those used by {{site.ee_product_name}} 2.0.x. Migrating using the usual commands
 `kong migrations up` and `kong migrations finish` will require a small
 window of downtime, since the old and new versions cannot use the
@@ -186,11 +188,11 @@ database at the same time. Alternatively, to keep your previous version fully
 operational while the new one initializes, you will need to transfer the
 data to a new keyspace using a database dump, as described below:
 
-1. Download 2.3.x, and configure it to point to a new keyspace.
+1. Download 2.4.x, and configure it to point to a new keyspace.
 
 2. Run `kong migrations bootstrap`.
 
-   Once that finishes running, both the old (2.2.x) and new (2.3.x)
+   Once that finishes running, both the old (2.3.x) and new (2.4.x)
    clusters can now run simultaneously, but the new cluster does not
    have any data yet.
 3. On the old cluster, run `kong config db_export`. This will create
@@ -198,16 +200,16 @@ data to a new keyspace using a database dump, as described below:
 4. Transfer the file to the new cluster and run
    `kong config db_import kong.yml`. This will load the data into the new cluster.
 5. Gradually divert traffic away from your old nodes, and into
-   your 2.3.x cluster. Monitor your traffic to make sure everything
+   your 2.4.x cluster. Monitor your traffic to make sure everything
    is going smoothly.
-6. When your traffic is fully migrated to the 2.3.x cluster,
+6. When your traffic is fully migrated to the 2.4.x cluster,
    decommission your old nodes.
 
-### Installing 2.3.x on a fresh datastore
+### Installing 2.4.x on a fresh datastore
 
-For installing on a fresh datastore, {{site.ee_product_name}} 2.3.x has the
+For installing on a fresh datastore, {{site.ee_product_name}} 2.4.x has the
 `kong migrations bootstrap` command. Run the following commands to
-prepare a new 2.3.x cluster from a fresh datastore. By default, the `kong` CLI tool
+prepare a new 2.4.x cluster from a fresh datastore. By default, the `kong` CLI tool
 loads the configuration from `/etc/kong/kong.conf`, but you can optionally use
 the `-c` flag to indicate the path to your configuration file:
 
