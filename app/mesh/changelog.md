@@ -4,6 +4,28 @@ no_search: true
 no_version: true
 ---
 
+## 1.2.6
+
+> Released on 2021/05/13
+
+### Changes
+
+Built on top of [Kuma 1.1.6](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#116).
+
+- Intermediate Certificate Authorities (CAs) are now supported with Vault integration.
+- You can now specify any and all tags in a Traffic Permission policy for Vault integration.
+- You can now specify TCP and HTTP health checks at the same time in the same policy. The health check policy also 
+now includes a `reuse_connection` option.
+- The `--gateway` flag is now available in the CLI.
+- You can now install Kong Ingress with the CLI.
+- You can now install the Kuma demo application with the CLI.
+
+
+### Upgrading
+
+Upgrades from `1.2.x` are seamless and no additional steps are needed. Note [specific configuration requirements](https://kuma.io/docs/1.1.5/networking/dns/#data-plane-proxy-built-in-dns) for taking advantage of built-in DNS.
+
+
 ## 1.2.5
 
 > Released on 2021/05/05
