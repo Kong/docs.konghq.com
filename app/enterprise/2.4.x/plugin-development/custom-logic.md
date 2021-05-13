@@ -12,10 +12,10 @@ chapter: 3
 ## Introduction
 
 A {{site.ee_product_name}} plugin allows you to inject custom logic (in Lua) at several
-entry-points in the life-cycle of a request/response or a tcp stream
+entry points in the lifecycle of a request/response or a tcp stream
 connection as it is proxied by {{site.ee_product_name}}. To do so, the file
 `kong.plugins.<plugin_name>.handler` must return a table with one or
-more functions with predetermined names. Those functions will be
+more functions with predetermined names. Those functions are
 invoked by {{site.ee_product_name}} at different phases when it processes traffic.
 
 The first parameter they take is always `self`. All functions except `init_worker`
@@ -48,7 +48,7 @@ of {{site.ee_product_name}}'s execution lifecycle:
 
 **Note:**
 
-If a module implements the `response` function, {{site.ee_product_name}} will automatically activate the "buffered proxy" mode, as if the [`kong.service.request.enable_buffering()` function][enable_buffering] had been called.  Because of a current Nginx limitation, this doesn't work for HTTP/2 or gRPC upstreams.
+If a module implements the `response` function, {{site.ee_product_name}} automatically activates the buffered proxy mode, as if the [`kong.service.request.enable_buffering()` function][enable_buffering] had been called. Because of a current Nginx limitation, this doesn't work for HTTP/2 or gRPC upstreams.
 
 To reduce unexpected behaviour changes, {{site.ee_product_name}} does not start if a plugin implements both `response`, and either `header_filter` or `body_filter`.
 
@@ -60,10 +60,10 @@ To reduce unexpected behaviour changes, {{site.ee_product_name}} does not start 
 | `preread`       | [preread]                                                                    | Executed once for every connection.
 | `log`           | [log](https://github.com/openresty/stream-lua-nginx-module#log_by_lua_block) | Executed once for each connection after it has been closed.
 
-All of those functions, except `init_worker`, take one parameter which is given
+All of those functions, except `init_worker`, take one parameter that is given
 by {{site.ee_product_name}} upon its invocation: the configuration of your plugin. This parameter
 is a Lua table, and contains values defined by your users, according to your
-Plugin's schema (described in the `schema.lua` module). More on Plugins schemas
+plugin's schema (described in the `schema.lua` module). More on plugin schemas
 in the [next chapter]({{page.book.next}}).
 
 Note that UDP streams don't have real connections. {{site.ee_product_name}} considers all
@@ -222,21 +222,21 @@ end
 ```
 
 See [the source code of the Key-Auth Plugin](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/handler.lua)
-for an example of a real-life handler code.
+for an example of real use case of handler code.
 
 ---
 
 ## Plugin Development Kit
 
-Logic implemented in those phases will most likely have to interact with the
-request/response objects or core components (e.g. access the cache, and
+Logic implemented in those phases most likely have to interact with the
+request/response objects or core components (such as access the cache and
 database). {{site.ee_product_name}} provides a [Plugin Development Kit][pdk] (or PDK) for such
 purposes: a set of Lua functions and variables that can be used by plugins to
 execute various gateway operations in a way that is guaranteed to be
 forward-compatible with future releases of {{site.ee_product_name}}.
 
 When you are trying to implement some logic that needs to interact with {{site.ee_product_name}}
-(e.g. retrieving request headers, producing a response from a Plugin, logging
+(such as retrieving request headers, producing a response from a plugin, or ogging
 some error or debug information), you should consult the [Plugin Development
 Kit Reference][pdk].
 
@@ -244,10 +244,10 @@ Kit Reference][pdk].
 
 ## Plugins execution order
 
-Some Plugins might depend on the execution of others to perform some
-operations. For example, Plugins relying on the identity of the consumer have
-to run **after** authentication Plugins. Considering this, {{site.ee_product_name}} defines
-**priorities** between Plugins execution to ensure that order is respected.
+Some plugins might depend on the execution of others to perform some
+operations. For example, plugins relying on the identity of the consumer have
+to run **after** authentication plugins. Considering this, {{site.ee_product_name}} defines
+**priorities** between plugins execution to ensure that order is respected.
 
 Your plugin's priority can be configured via a property accepting a number in
 the returned handler table:
@@ -256,8 +256,8 @@ the returned handler table:
 CustomHandler.PRIORITY = 10
 ```
 
-The higher the priority, the sooner your Plugin's phases will be executed in
-regard to other plugins' phases (such as `:access()`, `:log()`, etc.).
+The higher the priority, the sooner your plugin's phases will be executed with
+regard to other plugins' phases (such as `:access()`, `:log()`, and so forth).
 
 The current order of execution for the bundled plugins is:
 
