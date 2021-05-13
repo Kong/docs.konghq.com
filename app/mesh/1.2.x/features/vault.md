@@ -18,7 +18,7 @@ plane certificates.
 using a CA root certificate and key stored in a HashiCorp Vault
 server.
 
-## Vault Mode
+## Vault mode
 
 In `vault` mTLS mode, {{site.mesh_product_name}} communicates with the HashiCorp Vault PKI,
 which generates the data plane proxy certificates automatically.
@@ -164,7 +164,7 @@ The output should print a Vault token that you then provide as the `conf.fromCp.
 ### Configure Mesh
 
 `kuma-cp` communicates directly with Vault. To connect to
-Vault, you must provide credentials in the configuration of the `Mesh` object of `kuma-cp`.
+Vault, you must provide credentials in the configuration of the `mesh` object of `kuma-cp`.
 
 You can authenticate with the `token` or with client certificates by providing `clientKey` and `clientCert`.
 
