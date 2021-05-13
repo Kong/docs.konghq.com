@@ -109,8 +109,7 @@ To configure Vault for a different mesh, replace `default` with the mesh name of
     {% endnavtabs %}
     
 2. Create a role for generating data plane proxy certificates
-   
-    Create a role that will be used by the control plane to generate data plane proxy certificates.
+
     ```sh
     vault write kuma-pki-default/roles/dataplanes \
       allowed_uri_sans="spiffe://default/*,kuma://*" \
@@ -125,7 +124,6 @@ To configure Vault for a different mesh, replace `default` with the mesh name of
 
 3. Create a policy to use a new role
 
-    Create a policy that enables the control plane to generate certificates for data plane proxies.
     ```sh
     cat > kuma-default-dataplanes.hcl <<- EOM
     path "/kuma-pki-default/issue/dataplanes"
@@ -138,20 +136,17 @@ To configure Vault for a different mesh, replace `default` with the mesh name of
 
 4. Create a Vault token
 
-    Create a Vault token that will be used by the control plane.
     ```sh
     vault token create -format=json -policy="kuma-default-dataplanes" | jq -r ".auth.client_token"
     ```
     The output of the command should print a Vault token that can be then used in the `conf.fromCp.auth.token` setting on the `Mesh` object
 
-## Enabling Vault Authentication
+### Configure Mesh
 
 The communication to Vault happens directly from `kuma-cp`. To connect to
-Vault, you must provide the following values in the configuration for `kuma-cp`:
+Vault, you must provide the `token` in the configuration for `kuma-cp`.
 
-* A `clientKey`.
-* A `clientCert`.
-* A `secret` token.
+Additionally, you can configure mTLS between `kuma-cp` and Vault by providing `clientKey` and `clientCert`.
 
 These values can be inline (for testing purposes only), a path to a file on the
 same host as `kuma-cp`, or contained in a `secret`. See the official Kuma
