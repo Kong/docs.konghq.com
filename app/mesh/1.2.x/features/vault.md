@@ -138,7 +138,7 @@ vault write kuma-pki-default/roles/dataplanes \
   require_cn=false \
   basic_constraints_valid_for_non_ca=true \
   max_ttl="720h" \
-  "ttl"="720h"
+  ttl="720h"
 ```
 
 #### Step 3. Create a policy to use the new role:
