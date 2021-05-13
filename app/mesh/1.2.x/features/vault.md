@@ -144,9 +144,9 @@ To configure Vault for a different mesh, replace `default` with the mesh name of
 ### Configure Mesh
 
 The communication to Vault happens directly from `kuma-cp`. To connect to
-Vault, you must provide the `token` in the configuration for `kuma-cp`.
+Vault, you must provide credential in the configuration of the `Mesh` in `kuma-cp`.
 
-Additionally, you can configure mTLS between `kuma-cp` and Vault by providing `clientKey` and `clientCert`.
+You can either authenticate with the `token` or with client certificates by providing `clientKey` and `clientCert`.
 
 These values can be inline (for testing purposes only), a path to a file on the
 same host as `kuma-cp`, or contained in a `secret`. See the official Kuma
