@@ -57,8 +57,11 @@ vault secrets enable -path=kuma-pki-default pki
 
 Generate a new Root Certificate Authority for the `default` Mesh:
 
-```
+```sh
 vault secrets tune -max-lease-ttl=87600h kuma-pki-default
+```
+
+```sh
 vault write -field=certificate kuma-pki-default/root/generate/internal \
   common_name="Kuma Mesh Default" \
   uri_sans="spiffe://default" \
@@ -72,7 +75,13 @@ Create a new Root Certificate Authority and save it to a file called `ca.pem`:
 
 ```sh
 vault secrets enable pki
+```
+
+```sh
 vault secrets tune -max-lease-ttl=87600h pki
+```
+
+```sh
 vault write -field=certificate pki/root/generate/internal \
   common_name="Organization CA" \
   ttl=87600h > ca.pem
@@ -117,40 +126,40 @@ vault write kuma-pki-default/intermediate/set-signed certificate=@bundle.pem
 
 {% endnavtab %}
 {% endnavtabs %}
-    
+
 #### Step 2. Create a role for generating data plane proxy certificates:
 
-    ```sh
-    vault write kuma-pki-default/roles/dataplanes \
-      allowed_uri_sans="spiffe://default/*,kuma://*" \
-      key_usage="KeyUsageKeyEncipherment,KeyUsageKeyAgreement,KeyUsageDigitalSignature" \
-      ext_key_usage="ExtKeyUsageServerAuth,ExtKeyUsageClientAuth" \
-      client_flag=true \
-      require_cn=false \
-      basic_constraints_valid_for_non_ca=true \
-      max_ttl="720h" \
-      "ttl"="720h"
-    ```
+```sh
+vault write kuma-pki-default/roles/dataplanes \
+  allowed_uri_sans="spiffe://default/*,kuma://*" \
+  key_usage="KeyUsageKeyEncipherment,KeyUsageKeyAgreement,KeyUsageDigitalSignature" \
+  ext_key_usage="ExtKeyUsageServerAuth,ExtKeyUsageClientAuth" \
+  client_flag=true \
+  require_cn=false \
+  basic_constraints_valid_for_non_ca=true \
+  max_ttl="720h" \
+  "ttl"="720h"
+```
 
 #### Step 3. Create a policy to use the new role:
 
-    ```sh
-    cat > kuma-default-dataplanes.hcl <<- EOM
-    path "/kuma-pki-default/issue/dataplanes"
-    {
-      capabilities = ["create", "update"]
-    }
-    EOM
-    vault policy write kuma-default-dataplanes kuma-default-dataplanes.hcl
-    ```
+```sh
+cat > kuma-default-dataplanes.hcl <<- EOM
+path "/kuma-pki-default/issue/dataplanes"
+{
+  capabilities = ["create", "update"]
+}
+EOM
+vault policy write kuma-default-dataplanes kuma-default-dataplanes.hcl
+```
 
 #### Step 4. Create a Vault token:
 
-    ```sh
-    vault token create -format=json -policy="kuma-default-dataplanes" | jq -r ".auth.client_token"
-    ```
-    
-    The output should print a Vault token that you then provide as the `conf.fromCp.auth.token` value of the `Mesh` object.
+```sh
+vault token create -format=json -policy="kuma-default-dataplanes" | jq -r ".auth.client_token"
+```
+
+The output should print a Vault token that you then provide as the `conf.fromCp.auth.token` value of the `Mesh` object.
 
 ### Configure Mesh
 
