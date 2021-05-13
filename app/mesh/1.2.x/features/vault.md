@@ -44,79 +44,79 @@ The following steps show how to configure Vault for {{site.mesh_product_name}} w
 
 #### Step 1. Configure the Certificate Authority
 
-    {{site.mesh_product_name}} works with a Root CA or an Intermediate CA.
-    
-    {% navtabs %}
-    {% navtab Root CA %}
-    
-    Create a new PKI for the `default` Mesh called `kuma-pki-default`:
-    
-    ```sh
-    vault secrets enable -path=kuma-pki-default pki
-    ```
-    
-    Generate a new Root Certificate Authority for the `default` Mesh:
-    
-    ```
-    vault secrets tune -max-lease-ttl=87600h kuma-pki-default
-    vault write -field=certificate kuma-pki-default/root/generate/internal \
-      common_name="Kuma Mesh Default" \
-      uri_sans="spiffe://default" \
-      ttl=87600h
-    ```
-    
-    {% endnavtab %}
-    {% navtab Intermediate CA %}
-    
-    Create a new Root Certificate Authority and save it to a file called `ca.pem`:
-    
-    ```sh
-    vault secrets enable pki
-    vault secrets tune -max-lease-ttl=87600h pki
-    vault write -field=certificate pki/root/generate/internal \
-      common_name="Organization CA" \
-      ttl=87600h > ca.pem
-    ```
-    
-    You can also use your current Root CA, retrieve the PEM-encoded certificate, and save it to `ca.pem`.
-    
-    Create a new PKI for the `default` Mesh:
-    
-    ```sh
-    vault secrets enable -path=kuma-pki-default pki
-    ```
-    
-    Generate the Intermediate CA for the `default` Mesh:
-    
-    ```sh
-    vault write -format=json kuma-pki-default/intermediate/generate/internal \
-        common_name="Kuma Mesh Default" \
-        uri_sans="spiffe://default" \
-        | jq -r '.data.csr' > pki_intermediate.csr
-    ```
-    
-    Sign the Intermediate CA with the Root CA. Make sure to pass the right path for the PKI that has the Root CA.
-    In this example, the path  value is `pki`:
-    
-    ```sh
-    vault write -format=json pki/root/sign-intermediate csr=@pki_intermediate.csr \
-      format=pem_bundle \
-      ttl="43800h" \
-      | jq -r '.data.certificate' > intermediate.cert.pem
-    ```
-    
-    Set the certificate of signed Intermediate CA to the `default` Mesh PKI. You must include the public certificate of the Root CA
-    so that data plane proxies can verify the certificates:
-    
-    ```sh
-    cat intermediate.cert.pem > bundle.pem
-    echo "" >> bundle.pem
-    cat ca.pem >> bundle.pem
-    vault write kuma-pki-default/intermediate/set-signed certificate=@bundle.pem
-    ```
-    
-    {% endnavtab %}
-    {% endnavtabs %}
+{{site.mesh_product_name}} works with a Root CA or an Intermediate CA.
+
+{% navtabs %}
+{% navtab Root CA %}
+
+Create a new PKI for the `default` Mesh called `kuma-pki-default`:
+
+```sh
+vault secrets enable -path=kuma-pki-default pki
+```
+
+Generate a new Root Certificate Authority for the `default` Mesh:
+
+```
+vault secrets tune -max-lease-ttl=87600h kuma-pki-default
+vault write -field=certificate kuma-pki-default/root/generate/internal \
+  common_name="Kuma Mesh Default" \
+  uri_sans="spiffe://default" \
+  ttl=87600h
+```
+
+{% endnavtab %}
+{% navtab Intermediate CA %}
+
+Create a new Root Certificate Authority and save it to a file called `ca.pem`:
+
+```sh
+vault secrets enable pki
+vault secrets tune -max-lease-ttl=87600h pki
+vault write -field=certificate pki/root/generate/internal \
+  common_name="Organization CA" \
+  ttl=87600h > ca.pem
+```
+
+You can also use your current Root CA, retrieve the PEM-encoded certificate, and save it to `ca.pem`.
+
+Create a new PKI for the `default` Mesh:
+
+```sh
+vault secrets enable -path=kuma-pki-default pki
+```
+
+Generate the Intermediate CA for the `default` Mesh:
+
+```sh
+vault write -format=json kuma-pki-default/intermediate/generate/internal \
+    common_name="Kuma Mesh Default" \
+    uri_sans="spiffe://default" \
+    | jq -r '.data.csr' > pki_intermediate.csr
+```
+
+Sign the Intermediate CA with the Root CA. Make sure to pass the right path for the PKI that has the Root CA.
+In this example, the path  value is `pki`:
+
+```sh
+vault write -format=json pki/root/sign-intermediate csr=@pki_intermediate.csr \
+  format=pem_bundle \
+  ttl="43800h" \
+  | jq -r '.data.certificate' > intermediate.cert.pem
+```
+
+Set the certificate of signed Intermediate CA to the `default` Mesh PKI. You must include the public certificate of the Root CA
+so that data plane proxies can verify the certificates:
+
+```sh
+cat intermediate.cert.pem > bundle.pem
+echo "" >> bundle.pem
+cat ca.pem >> bundle.pem
+vault write kuma-pki-default/intermediate/set-signed certificate=@bundle.pem
+```
+
+{% endnavtab %}
+{% endnavtabs %}
     
 #### Step 2. Create a role for generating data plane proxy certificates:
 
