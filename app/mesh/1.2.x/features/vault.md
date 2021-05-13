@@ -23,10 +23,8 @@ server.
 Unlike the `builtin` and `provided` backends, when using the `vault` mTLS mode,
 {{site.mesh_product_name}} communicates with a third-party HashiCorp Vault PKI,
 which generates the data plane proxy certificates automatically.
-
-The `vault` mTLS backend expects a `kuma-pki-${MESH_NAME}` PKI already
-configured in Vault. For example, the PKI path for a mesh named `default` would
-be `kuma-pki-default`.
+{{site.mesh_product_name}} does not retrieve private key of the CA to generate data plane proxy certificates,
+which means that private key of the CA is secured by Vault and not exposed to third parties.
 
 To use this feature, you also need to point {{site.mesh_product_name}} to the
 Vault server and provide the appropriate credentials. {{site.mesh_product_name}}
@@ -36,6 +34,115 @@ data plane certificates.
 Once running, this backend is responsible for communicating with Vault and for
 using Vault's PKI to automatically issue and rotate data plane certificates for
 each proxy.
+
+### Configure Vault
+
+The `vault` mTLS backend expects a `kuma-pki-${MESH_NAME}` PKI already
+configured in Vault. For example, the PKI path for a mesh named `default` would
+be `kuma-pki-default`.
+
+Follow the steps below to configure Vault for {{site.mesh_product_name}}.
+The steps will consider configuring PKI for the mesh `default`.
+To configure Vault for a different mesh, replace `default` with the mesh name of your choice.
+
+1. Configure the Certificate Authority
+
+    {{site.mesh_product_name}} can work with either Root CA or with Intermediate CA.
+    
+    {% navtabs %}
+    {% navtab Root CA %}
+    Create a new PKI for the `default` Mesh called `kuma-pki-default`
+    ```sh
+    vault secrets enable -path=kuma-pki-default pki
+    ```
+    Generate a new Root Certificate Authority for the `default` Mesh
+    ```
+    vault secrets tune -max-lease-ttl=87600h kuma-pki-default
+    vault write -field=certificate kuma-pki-default/root/generate/internal \
+      common_name="Kuma Mesh Default" \
+      uri_sans="spiffe://default" \
+      ttl=87600h
+    ```
+    {% endnavtab %}
+    {% navtab Intermediate CA %}
+    Create a new Root Certificate Authority and save it to a file called `ca.pem`.
+    ```sh
+    vault secrets enable pki
+    vault secrets tune -max-lease-ttl=87600h pki
+    vault write -field=certificate pki/root/generate/internal \
+      common_name="Organization CA" \
+      ttl=87600h > ca.pem
+    ```
+    You can also use your current Root CA, retrieve PEM-encoded certificate and save it to `ca.pem`
+    
+    Create a new PKI for the `default` Mesh
+    ```sh
+    vault secrets enable -path=kuma-pki-default pki
+    ```
+    
+    Generate Intermediate CA for the `default` Mesh
+    ```sh
+    vault write -format=json kuma-pki-default/intermediate/generate/internal \
+        common_name="Kuma Mesh Default" \
+        uri_sans="spiffe://default" \
+        | jq -r '.data.csr' > pki_intermediate.csr
+    ```
+    
+    Sign the Intermediate CA with the Root CA. Make sure to pass the right path for the PKI that has the Root CA.
+    In this example, the path is just `pki`, if the PKI of you root CA is called `root-pki` the path would be `root-pki/root/sign-intermediate`   
+    ```sh
+    vault write -format=json pki/root/sign-intermediate csr=@pki_intermediate.csr \
+      format=pem_bundle \
+      ttl="43800h" \
+      | jq -r '.data.certificate' > intermediate.cert.pem
+    ```
+    
+    Set the certificate of signed Intermediate CA to the `default` Mesh PKI.
+    We have to include the public certificate of the Root CA, otherwise data plane proxies won't be able to verify the certificates.
+    ```sh
+    cat intermediate.cert.pem > bundle.pem
+    echo "" >> bundle.pem
+    cat ca.pem >> bundle.pem
+    vault write kuma-pki-default/intermediate/set-signed certificate=@bundle.pem
+    ```
+    {% endnavtab %}
+    {% endnavtabs %}
+    
+2. Create a role for generating data plane proxy certificates
+   
+    Create a role that will be used by the control plane to generate data plane proxy certificates.
+    ```sh
+    vault write kuma-pki-default/roles/dataplanes \
+      allowed_uri_sans="spiffe://default/*,kuma://*" \
+      key_usage="KeyUsageKeyEncipherment,KeyUsageKeyAgreement,KeyUsageDigitalSignature" \
+      ext_key_usage="ExtKeyUsageServerAuth,ExtKeyUsageClientAuth" \
+      client_flag=true \
+      require_cn=false \
+      basic_constraints_valid_for_non_ca=true \
+      max_ttl="720h" \
+      "ttl"="720h"
+    ```
+
+3. Create a policy to use a new role
+
+    Create a policy that enables the control plane to generate certificates for data plane proxies.
+    ```sh
+    cat > kuma-default-dataplanes.hcl <<- EOM
+    path "/kuma-pki-default/issue/dataplanes"
+    {
+      capabilities = ["create", "update"]
+    }
+    EOM
+    vault policy write kuma-default-dataplanes kuma-default-dataplanes.hcl
+    ```
+
+4. Create a Vault token
+
+    Create a Vault token that will be used by the control plane.
+    ```sh
+    vault token create -format=json -policy="kuma-default-dataplanes" | jq -r ".auth.client_token"
+    ```
+    The output of the command should print a Vault token that can be then used in the `conf.fromCp.auth.token` setting on the `Mesh` object
 
 ## Enabling Vault Authentication
 
@@ -82,12 +189,12 @@ spec:
               serverName: "" # verify sever name
             auth: # only one auth options is allowed so it's either "token" or "tls"
               token:
-                secret: token-1  # can be file, secret or inline
+                secret: token-1  # can be file, secret or inlineString
               tls:
                 clientKey:
                   secret: sec-2  # can be file, secret or inline
                 clientCert:
-                  file: /tmp/cert.pem # can be file, secret or inline
+                  file: /tmp/cert.pem # can be file, secret or inlineString
 ```
 
 Apply the configuration with `kubectl apply -f [..]`.
@@ -118,10 +225,10 @@ mtls:
           serverName: "" # verify sever name
         auth: # only one auth options is allowed so it's either "token" or "tls"
           token:
-            secret: token-1  # can be file, secret or inline
+            secret: token-1  # can be file, secret or inlineString
           tls:
             clientKey:
-              secret: sec-2  # can be file, secret or inline
+              secret: sec-2  # can be file, secret or inlineString
             clientCert:
               file: /tmp/cert.pem # can be file, secret or inline
 ```
