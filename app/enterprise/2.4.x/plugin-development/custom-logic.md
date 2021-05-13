@@ -11,7 +11,7 @@ chapter: 3
 
 ## Introduction
 
-A {{site.ee_product_name}} Plugin allows you to inject custom logic (in Lua) at several
+A {{site.ee_product_name}} plugin allows you to inject custom logic (in Lua) at several
 entry-points in the life-cycle of a request/response or a tcp stream
 connection as it is proxied by {{site.ee_product_name}}. To do so, the file
 `kong.plugins.<plugin_name>.handler` must return a table with one or
@@ -19,7 +19,7 @@ more functions with predetermined names. Those functions will be
 invoked by {{site.ee_product_name}} at different phases when it processes traffic.
 
 The first parameter they take is always `self`. All functions except `init_worker`
-can receive a second parameter which is a table with the plugin configuration.
+can receive a table with the plugin configuration as a second parameter.
 
 ## Module
 
@@ -30,8 +30,8 @@ kong.plugins.<plugin_name>.handler
 ## Available contexts
 
 If you define any of the following functions in your `handler.lua`
-file you'll implement custom logic at various entry-points
-of {{site.ee_product_name}}'s execution life-cycle:
+file, you'll implement custom logic at various entry points
+of {{site.ee_product_name}}'s execution lifecycle:
 
 - **[HTTP Module]** *is used for plugins written for HTTP/HTTPS requests*
 
@@ -50,7 +50,7 @@ of {{site.ee_product_name}}'s execution life-cycle:
 
 If a module implements the `response` function, {{site.ee_product_name}} will automatically activate the "buffered proxy" mode, as if the [`kong.service.request.enable_buffering()` function][enable_buffering] had been called.  Because of a current Nginx limitation, this doesn't work for HTTP/2 or gRPC upstreams.
 
-To reduce unexpected behaviour changes, {{site.ee_product_name}} does not start if a Plugin implements both `response` and either `header_filter` or `body_filter`.
+To reduce unexpected behaviour changes, {{site.ee_product_name}} does not start if a plugin implements both `response`, and either `header_filter` or `body_filter`.
 
 - **[Stream Module]** *is used for Plugins written for TCP and UDP stream connections*
 
@@ -61,14 +61,14 @@ To reduce unexpected behaviour changes, {{site.ee_product_name}} does not start 
 | `log`           | [log](https://github.com/openresty/stream-lua-nginx-module#log_by_lua_block) | Executed once for each connection after it has been closed.
 
 All of those functions, except `init_worker`, take one parameter which is given
-by {{site.ee_product_name}} upon its invocation: the configuration of your Plugin. This parameter
+by {{site.ee_product_name}} upon its invocation: the configuration of your plugin. This parameter
 is a Lua table, and contains values defined by your users, according to your
 Plugin's schema (described in the `schema.lua` module). More on Plugins schemas
 in the [next chapter]({{page.book.next}}).
 
-Note that UDP streams don't have real connections.  {{site.ee_product_name}} will consider all
+Note that UDP streams don't have real connections. {{site.ee_product_name}} considers all
 packets with the same origin and destination host and port as a single
-connection.  After a configurable time without any packet, the connection is
+connection. After a configurable time without any packet, the connection is
 considered closed and the `log` function is executed.
 
 [HTTP Module]: https://github.com/openresty/lua-nginx-module
@@ -90,27 +90,27 @@ considered closed and the `log` function is executed.
 <div class="alert alert-warning">
   <strong>Note:</strong> The BasePlugin class was deprecated in {{site.ee_product_name}}
   {{page.kong_version}} and will be removed in 3.0.x. Plugins should be updated to the newer,
-  simplier pattern described below.
+  simpler pattern.
 </div>
 
-{{site.ee_product_name}} processes requests in **phases**. A Plugin is a piece of code that gets
+{{site.ee_product_name}} processes requests in **phases**. A plugin is a piece of code that gets
 activated by {{site.ee_product_name}} as each phase is executed while the request gets proxied.
 
 Phases are limited in what they can do. For example, the `init_worker` phase
 does not have access to the `config` parameter because that information isn't
-available when kong is initializing each worker.
+available when {{site.ee_product_name}} is initializing each worker.
 
-A Plugin's `handler.lua` must return a table containing the functions it must
+A plugin's `handler.lua` must return a table containing the functions it must
 execute on each phase.
 
 {{site.ee_product_name}} can process HTTP and stream traffic. Some phases are executed when
 processing only when processing HTTP traffic, others when processing stream,
 and some (like `init_worker` and `log`) are invoked by both kinds of traffic.
 
-In addition to functions, a Plugin must define two fields:
+In addition to functions, a plugin must define two fields:
 
 * `VERSION` is an informative field, not used by {{site.ee_product_name}} directly. It usually
-  matches the version defined in a Plugin's Rockspec version, when it exists.
+  matches the version defined in a plugin's Rockspec version, when it exists.
 * `PRIORITY` is used to sort Plugins before executing each of their phases.
   Plugins with a higher priority are executed first. See the "Plugin Execution Order" below
   for more info about this field.
@@ -118,7 +118,7 @@ In addition to functions, a Plugin must define two fields:
 The following example `handler.lua` file defines custom functions for all
 the possible phases, in both http and stream traffic. It has no functionality
 besides writing a message to the log every time a phase is invoked. Note
-that a Plugin doesn't need to provide functions for all phases.
+that a plugin doesn't need to provide functions for all phases.
 
 ```lua
 local CustomHandler = {
@@ -183,13 +183,13 @@ function CustomHandler.access(self, config)
 end
 ```
 
-The Plugin's logic doesn't need to be all defined inside the `handler.lua` file.
+The plugin's logic doesn't need to be all defined inside the `handler.lua` file.
 It can be be split into several Lua files (also called *modules*).
 The `handler.lua` module can use `require` to include other modules in your plugin.
 
-For example, the following Plugin splits the functionality into three files.
+For example, the following plugin splits the functionality into three files.
 `access.lua` and `body_filter.lua` return functions. They are in the same
-folder as `handler.lua`, which requires and uses them to build the Plugin:
+folder as `handler.lua`, which requires and uses them to build the plugin:
 
 ```lua
 -- handler.lua
@@ -230,8 +230,8 @@ for an example of a real-life handler code.
 
 Logic implemented in those phases will most likely have to interact with the
 request/response objects or core components (e.g. access the cache, and
-database). {{site.ee_product_name}} provides a [Plugin Development Kit][pdk] (or "PDK") for such
-purposes: a set of Lua functions and variables that can be used by Plugins to
+database). {{site.ee_product_name}} provides a [Plugin Development Kit][pdk] (or PDK) for such
+purposes: a set of Lua functions and variables that can be used by plugins to
 execute various gateway operations in a way that is guaranteed to be
 forward-compatible with future releases of {{site.ee_product_name}}.
 
@@ -249,7 +249,7 @@ operations. For example, Plugins relying on the identity of the consumer have
 to run **after** authentication Plugins. Considering this, {{site.ee_product_name}} defines
 **priorities** between Plugins execution to ensure that order is respected.
 
-Your Plugin's priority can be configured via a property accepting a number in
+Your plugin's priority can be configured via a property accepting a number in
 the returned handler table:
 
 ```lua
@@ -257,9 +257,9 @@ CustomHandler.PRIORITY = 10
 ```
 
 The higher the priority, the sooner your Plugin's phases will be executed in
-regard to other Plugins' phases (such as `:access()`, `:log()`, etc.).
+regard to other plugins' phases (such as `:access()`, `:log()`, etc.).
 
-The current order of execution for the bundled Plugins is:
+The current order of execution for the bundled plugins is:
 
 Plugin                      | Priority
 ----------------------------|----------
