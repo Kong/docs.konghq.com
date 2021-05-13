@@ -60,7 +60,7 @@ to the file.
     cluster_telemetry_endpoint = <example.tp.konnect.foo>:443
     cluster_telemetry_server_name = <kong-telemetry-example.service>
     cluster_cert = /<path-to-file>/tls.crt
-    cluster_cert_key = /<path-to-file>/tls.crt
+    cluster_cert_key = /<path-to-file>/tls.key
     lua_ssl_trusted_certificate = system,/<path-to-file>/ca.crt
     ```
 
