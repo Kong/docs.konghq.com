@@ -21,6 +21,7 @@ description: |
     testing API behavior.
 
 enterprise: true
+saas: false
 type:
   plugin
 categories:
@@ -51,7 +52,7 @@ params:
       datatype: string
       value_in_examples:
       description: |
-        The path and name of the specification file loaded into Kong DB. You cannot
+        The path and name of the specification file loaded into Kong Gateway's database. You cannot
         use this option for DB-less or hybrid mode.
     - name: api_specification
       required: semi
@@ -60,8 +61,8 @@ params:
       value_in_examples: <my_spec_contents>
       description: |
         The contents of the specification file. You must use this option for hybrid or DB-less mode.
-        With this configuration option, you can specify the full specification as part of the configuration,
-        rather than specifying a separate file with `api_specification_filename` that lives next to the Kong Gateway (Enterprise).
+        With this configuration option, you can include the full specification as part of the configuration,
+        instead of referring to a separate file with `api_specification_filename` that lives next to the Kong Gateway (Enterprise).
         In Kong Manager, you can copy and paste the contents of the spec directly into
         the `Config.Api Specification` text field.
     - name: random_delay
@@ -70,7 +71,7 @@ params:
       datatype: boolean
       value_in_examples: true
       description: |
-        Enables random delay in the mocked response. Introduces delays to simulate
+        Enables a random delay in the mocked response. Introduces delays to simulate
         real-time response times by APIs.
     - name: max_delay_time
       required: semi
@@ -93,15 +94,15 @@ params:
 
   extra: |
 
-    Either the `api_specification_filename` or the `api_specification` should be specified for the
-    plugin according to the Kong Gateway (Enterprise) deployment mode.
+    Depending on the Kong Gateway deployment mode, set either the `api_specification_filename`
+    or the `api_specification` parameter. The plugin requires a spec to work.
 ---
 
 ## Configuration
 
 ### Enable the plugin on a service
 
-Configure this plugin on a [service](/latest/admin-api/#service-object):
+Configure this plugin on a [service](/enterprise/latest/admin-api/#service-object):
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/services/<service>/plugins \
@@ -116,7 +117,7 @@ The `<service>` is the id or name of the service that this plugin configuration 
 
 ### Enable the plugin on a route
 
-Configure this plugin on a [route](/latest/admin-api/#route-object):
+Configure this plugin on a [route](/enterprise/latest/admin-api/#route-object):
 
 ```bash
 $ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
@@ -131,7 +132,7 @@ The `<route>` is the id or name of the route that this plugin configuration will
 
 ### Enable the plugin on a consumer
 
-Configure this plugin on a [consumer](/latest/admin-api/#consumer-object):
+Configure this plugin on a [consumer](/enterprise/latest/admin-api/#consumer-object):
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
@@ -196,11 +197,11 @@ Tutorial steps:
 1. Deploy the example OAS spec that contains mocked responses to the [Dev Portal](#deploy-spec-portal) or
    [Insomnia](#deploy-spec-insomnia).
 2. Create the [Stock service](#create-stock-service).
-3. Create the [get stock quote route](#create-stock-quote-route).
-4. Enable the [Mocking plugin](#enable-mock-plugin) on the get stock quote route.
-5. Enable the [CORS plugin](#enable-cors-plugin) on the get stock quote route.
+3. Create the [`get stock quote` route](#create-stock-quote-route).
+4. Enable the [Mocking plugin](#enable-mock-plugin) on the `get stock quote` route.
+5. Enable the [CORS plugin](#enable-cors-plugin) on the `get stock quote` route.
 6. [Test the mocked response](#testing123) from the Dev Portal, Insomnia, or the command line.
-7. When you've completed your API mock testing, [disable the Mocking plugin and update the Service URL](#post-test).
+7. When you've completed your API mock testing, [disable the Mocking plugin and update the service URL](#post-test).
 
 ### Step 1. Deploy the Stock API example spec
 
@@ -228,11 +229,8 @@ to upload a spec to the Dev Portal.
 
    ![Insomnia Dashboard Import File](/assets/images/docs/insomnia/insomnia-import-spec.png)
 
-   You are prompted to choose an import option.
 
-2. Click **Design Document**.
-
-   An import succeeded message is displayed. Click OK.
+2. Click **Design Document**, then click OK on the success message.
 
 3. (Optional) Click **Deploy to Portal** to deploy the spec to the Dev Portal.
 
@@ -531,7 +529,10 @@ Because a spec can be rather lengthy to put into a command, use a local variable
 a spec:
 
 ```bash
-mock_ex=$(cat example.yaml); curl -X POST http://<admin-hostname>:8001/routes/<route_id>/plugins --data name=mocking --data config.api_specification="$mock_ex"
+mock_ex=$(cat example.yaml); \
+curl -X POST http://<admin-hostname>:8001/routes/<route_id>/plugins \
+  --data name=mocking \
+  --data config.api_specification="$mock_ex"
 ```
 
 In Kong Manager, you can copy and paste the contents of the spec directly into
@@ -742,9 +743,8 @@ Test the mock response from within the Dev Portal spec using the Try it out feat
 
 2. Click the **GET /stock/historical** method and the **Try it out** button.
 
-3. Enter the ticker sign **AAPL** in the **tickers** box and click **Execute**.
+3. Enter the ticker sign **AAPL** in the **tickers** box and click **Execute** to see the server response.
 
-   The Server response is displayed.
 
    ![Try it out Dev Portal](/assets/images/docs/dev-portal/tryitout-portal.png)
 
@@ -758,9 +758,8 @@ Test the mock response from within the Insomnia spec using the Try it out featur
 
 2. Click the **GET /stock/historical** method and the **Try it out** button.
 
-3. Enter the ticker sign **AAPL** in the **tickers** box and click **Execute**.
+3. Enter the ticker sign **AAPL** in the **tickers** box and click **Execute** to see the server response.
 
-   The Server response is displayed.
 
    ![Try it out Insomnia](/assets/images/docs/insomnia/tryitout-insomnia.png)
 
@@ -770,7 +769,8 @@ Test the mock response from within the Insomnia spec using the Try it out featur
 {% navtab cURL %}
 
 ```bash
-curl -X GET "http://<admin-hostname>:8000/stock/historical?tickers=AAPL" -H "accept: application/json"
+curl -X GET "http://<admin-hostname>:8000/stock/historical?tickers=AAPL" \
+  -H "accept: application/json"
 ```
 
 {% endnavtab %}
@@ -823,7 +823,7 @@ vary: Origin
 
 ### Step 7. Disable the Mocking plugin and update the Service URL {#post-test}
 
-When your API mock testing is completed, disable the Mocking plugin and update the Service
+When your API mock testing is completed, disable the Mocking plugin and update the service
 URL.
 
 Disable the Mocking plugin either in Kong Manager by clicking **Disable** for the plugin,
