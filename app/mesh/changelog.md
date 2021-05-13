@@ -17,7 +17,7 @@ Built on top of [Kuma 1.1.6](https://github.com/kumahq/kuma/blob/master/CHANGELO
 - You can now specify TCP and HTTP health checks at the same time in the same policy. The health check policy also 
 now includes a `reuse_connection` option.
 - The `--gateway` flag is now available in the CLI.
-- You can now install Kong Ingress with the CLI.
+- You can now install an ingress controller with the CLI. Kong Gateway is the first supported ingress controller.
 - You can now install the Kuma demo application with the CLI.
 
 
