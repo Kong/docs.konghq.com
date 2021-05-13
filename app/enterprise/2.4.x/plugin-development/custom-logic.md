@@ -112,8 +112,8 @@ In addition to functions, a plugin must define two fields:
 * `VERSION` is an informative field, not used by {{site.ee_product_name}} directly. It usually
   matches the version defined in a plugin's Rockspec version, when it exists.
 * `PRIORITY` is used to sort Plugins before executing each of their phases.
-  Plugins with a higher priority are executed first. See the "Plugin Execution Order" below
-  for more info about this field.
+  Plugins with a higher priority are executed first. See [Plugin Execution Order](#plugins-execution-order)
+  for more information about this field.
 
 The following example `handler.lua` file defines custom functions for all
 the possible phases, in both http and stream traffic. It has no functionality
