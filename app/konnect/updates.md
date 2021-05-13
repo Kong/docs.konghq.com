@@ -10,6 +10,14 @@ services.
 
 ## May 2021
 
+### 2021.05.12
+**Certificate expiration limit extended**
+: The validity period for runtime certificates has been extended from 30 days to
+six months.
+
+: To take advantage of the new validity period, bring up new data planes through
+the Runtime Manager. For existing instances, [generate new certificates](/konnect/runtime-manager/renew-certificates).
+
 ### 2021.05.11
 
 **{{site.konnect_short_name}} Plus is launched!**

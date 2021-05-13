@@ -67,7 +67,7 @@ implementation.
 
 <div class="alert alert-ee warning">
 <b>Important:</b> {{site.konnect_saas}} provisions certificates for the data
-plane. These certificates expire after 30 days and must be renewed. See
+plane. These certificates expire after six months and must be renewed. See
 <a href="/konnect/runtime-manager/renew-certificates">Renew Certificates</a>.
 </div>
 
