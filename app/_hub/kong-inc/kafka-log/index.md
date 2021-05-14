@@ -177,9 +177,12 @@ This plugin makes use of the [lua-resty-kafka](https://github.com/doujiang24/lua
 
 ## Known issues and limitations
 
-1. There is no support for TLS.
-2. There is no support for authentication.
-3. There is no support for message compression.
+There is currently no support for:
+
+- TLS
+- authentication
+- message compression
+
 
 [badge-travis-url]: https://travis-ci.com/Kong/kong-plugin-kafka-log/branches
 [badge-travis-image]: https://travis-ci.com/Kong/kong-plugin-kafka-log.svg?token=BfzyBZDa3icGPsKGmBHb&branch=master
