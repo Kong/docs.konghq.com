@@ -11,12 +11,15 @@ chapter: 3
 
 ## Introduction
 
-A Kong plugin allows you to inject custom logic (in Lua) at several
-entry-points in the life-cycle of a request/response or a tcp stream
-connection as it is proxied by Kong. To do so, one must implement one
-or several of the methods of the `base_plugin.lua` interface. Those
-methods are to be implemented in a module namespaced under:
-`kong.plugins.<plugin_name>.handler`
+A {{site.ee_product_name}} plugin allows you to inject custom logic (in Lua) at several
+entry points in the lifecycle of a request/response or a tcp stream
+connection as it is proxied by {{site.ee_product_name}}. To do so, the file
+`kong.plugins.<plugin_name>.handler` must return a table with one or
+more functions with predetermined names. Those functions are
+invoked by {{site.ee_product_name}} at different phases when it processes traffic.
+
+The first parameter they take is always `self`. All functions except `init_worker`
+can receive a table with the plugin configuration as a second parameter.
 
 ## Module
 
@@ -26,35 +29,47 @@ kong.plugins.<plugin_name>.handler
 
 ## Available contexts
 
-The plugins interface allows you to override any of the following methods in
-your `handler.lua` file to implement custom logic at various entry-points
-of the execution life-cycle of Kong:
+If you define any of the following functions in your `handler.lua`
+file, you'll implement custom logic at various entry points
+of {{site.ee_product_name}}'s execution lifecycle:
 
 - **[HTTP Module]** *is used for plugins written for HTTP/HTTPS requests*
 
-| Function name      | Phase             | Description
-|--------------------|-------------------|------------
-| `:init_worker()`   | [init_worker]     | Executed upon every Nginx worker process's startup.
-| `:certificate()`   | [ssl_certificate] | Executed during the SSL certificate serving phase of the SSL handshake.
-| `:rewrite()`       | [rewrite]         | Executed for every request upon its reception from a client as a rewrite phase handler. *NOTE* in this phase neither the `Service` nor the `Consumer` have been identified, hence this handler will only be executed if the plugin was configured as a global plugin!
-| `:access()`        | [access]          | Executed for every request from a client and before it is being proxied to the upstream service.
-| `:header_filter()` | [header_filter]   | Executed when all response headers bytes have been received from the upstream service.
-| `:body_filter()`   | [body_filter]     | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. hence this method can be called multiple times if the response is large. See the [lua-nginx-module] documentation for more details.
-| `:log()`           | [log]             | Executed when the last response byte has been sent to the client.
+| Function name   | Phase             | Description
+|-----------------|-------------------|------------
+| `init_worker`   | [init_worker]     | Executed upon every Nginx worker process's startup.
+| `certificate`   | [ssl_certificate] | Executed during the SSL certificate serving phase of the SSL handshake.
+| `rewrite`       | [rewrite]         | Executed for every request upon its reception from a client as a rewrite phase handler. *NOTE* in this phase neither the `Service` nor the `Consumer` have been identified, hence this handler will only be executed if the Plugin was configured as a global Plugin!
+| `access`        | [access]          | Executed for every request from a client and before it is being proxied to the upstream service.
+| `response` | [access] | Replaces both `header_filter()` and `body_filter()`.  Executed after the whole response has been received from the upstream service, but before sending any part of it to the client.
+| `header_filter` | [header_filter]   | Executed when all response headers bytes have been received from the upstream service.
+| `body_filter`   | [body_filter]     | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. hence this function can be called multiple times if the response is large. See the [lua-nginx-module] documentation for more details.
+| `log`           | [log]             | Executed when the last response byte has been sent to the client.
 
-- **[Stream Module]** *is used for plugins written for TCP stream connections*
+**Note:**
 
-| Function name      | Phase                                                                        | Description
-|--------------------|------------------------------------------------------------------------------|------------
-| `:init_worker()`   | [init_worker]                                                                | Executed upon every Nginx worker process's startup.
-| `:preread()`       | [preread]                                                                    | Executed once for every connection.
-| `:log()`           | [log](https://github.com/openresty/stream-lua-nginx-module#log_by_lua_block) | Executed once for each connection after it has been closed.
+If a module implements the `response` function, {{site.ee_product_name}} automatically activates the buffered proxy mode, as if the [`kong.service.request.enable_buffering()` function][enable_buffering] had been called. Because of a current Nginx limitation, this doesn't work for HTTP/2 or gRPC upstreams.
 
-All of those functions, except `init_worker`, take one parameter which is given
-by Kong upon its invocation: the configuration of your plugin. This parameter
+To reduce unexpected behaviour changes, {{site.ee_product_name}} does not start if a plugin implements both `response`, and either `header_filter` or `body_filter`.
+
+- **[Stream Module]** *is used for Plugins written for TCP and UDP stream connections*
+
+| Function name   | Phase                                                                        | Description
+|-----------------|------------------------------------------------------------------------------|------------
+| `init_worker`   | [init_worker]                                                                | Executed upon every Nginx worker process's startup.
+| `preread`       | [preread]                                                                    | Executed once for every connection.
+| `log`           | [log](https://github.com/openresty/stream-lua-nginx-module#log_by_lua_block) | Executed once for each connection after it has been closed.
+
+All of those functions, except `init_worker`, take one parameter that is given
+by {{site.ee_product_name}} upon its invocation: the configuration of your plugin. This parameter
 is a Lua table, and contains values defined by your users, according to your
-plugin's schema (described in the `schema.lua` module). More on plugins schemas
+plugin's schema (described in the `schema.lua` module). More on plugin schemas
 in the [next chapter]({{page.book.next}}).
+
+Note that UDP streams don't have real connections. {{site.ee_product_name}} considers all
+packets with the same origin and destination host and port as a single
+connection. After a configurable time without any packet, the connection is
+considered closed and the `log` function is executed.
 
 [HTTP Module]: https://github.com/openresty/lua-nginx-module
 [Stream Module]: https://github.com/openresty/stream-lua-nginx-module
@@ -66,175 +81,162 @@ in the [next chapter]({{page.book.next}}).
 [body_filter]: https://github.com/openresty/lua-nginx-module#body_filter_by_lua_block
 [log]: https://github.com/openresty/lua-nginx-module#log_by_lua_block
 [preread]: https://github.com/openresty/stream-lua-nginx-module#preread_by_lua_block
+[enable_buffering]: /enterprise/{{page.kong_version}}/pdk/kong.service.request/#kongservicerequestenable_buffering
 
 ---
 
 ## handler.lua specifications
 
-The `handler.lua` file must return a table implementing the functions you wish
-to be executed. In favor of brevity, here is a commented example module
-implementing all the available methods of both modules (please note some
-of them are shared between modules, like `log`):
-
 <div class="alert alert-warning">
-  <strong>Note:</strong> Kong uses the
-  <a href="https://github.com/rxi/classic">rxi/classic</a> module to simulate
-  classes in Lua and ease the inheritance pattern.
+  <strong>Note:</strong> The BasePlugin class was deprecated in {{site.ee_product_name}}
+  {{page.kong_version}} and will be removed in 3.0.x. Plugins should be updated to the newer,
+  simpler pattern.
 </div>
 
+{{site.ee_product_name}} processes requests in **phases**. A plugin is a piece of code that gets
+activated by {{site.ee_product_name}} as each phase is executed while the request gets proxied.
+
+Phases are limited in what they can do. For example, the `init_worker` phase
+does not have access to the `config` parameter because that information isn't
+available when {{site.ee_product_name}} is initializing each worker.
+
+A plugin's `handler.lua` must return a table containing the functions it must
+execute on each phase.
+
+{{site.ee_product_name}} can process HTTP and stream traffic. Some phases are executed when
+processing only when processing HTTP traffic, others when processing stream,
+and some (like `init_worker` and `log`) are invoked by both kinds of traffic.
+
+In addition to functions, a plugin must define two fields:
+
+* `VERSION` is an informative field, not used by {{site.ee_product_name}} directly. It usually
+  matches the version defined in a plugin's Rockspec version, when it exists.
+* `PRIORITY` is used to sort Plugins before executing each of their phases.
+  Plugins with a higher priority are executed first. See [Plugin Execution Order](#plugins-execution-order)
+  for more information about this field.
+
+The following example `handler.lua` file defines custom functions for all
+the possible phases, in both http and stream traffic. It has no functionality
+besides writing a message to the log every time a phase is invoked. Note
+that a plugin doesn't need to provide functions for all phases.
+
 ```lua
--- Extending the Base Plugin handler is optional, as there is no real
--- concept of interface in Lua, but the Base Plugin handler's methods
--- can be called from your child implementation and will print logs
--- in your `error.log` file (where all logs are printed).
-local BasePlugin = require "kong.plugins.base_plugin"
-
-
-local CustomHandler = BasePlugin:extend()
-
-
-CustomHandler.VERSION  = "1.0.0"
-CustomHandler.PRIORITY = 10
-
-
--- Your plugin handler's constructor. If you are extending the
--- Base Plugin handler, it's only role is to instantiate itself
--- with a name. The name is your plugin name as it will be printed in the logs.
-function CustomHandler:new()
-  CustomHandler.super.new(self, "my-custom-plugin")
-end
+local CustomHandler = {
+  VERSION  = "1.0.0"
+  PRIORITY = 10
+}
 
 function CustomHandler:init_worker()
-  -- Eventually, execute the parent implementation
-  -- (will log that your plugin is entering this context)
-  CustomHandler.super.init_worker(self)
-
-  -- Implement any custom logic here
+  -- Implement logic for the init_worker phase here (http/stream)
+  kong.log("init_worker")
 end
 
 
 function CustomHandler:preread(config)
-  -- Eventually, execute the parent implementation
-  -- (will log that your plugin is entering this context)
-  CustomHandler.super.preread(self)
-
-  -- Implement any custom logic here
+  -- Implement logic for the preread phase here (stream)
+  kong.log("preread")
 end
 
 
 function CustomHandler:certificate(config)
-  -- Eventually, execute the parent implementation
-  -- (will log that your plugin is entering this context)
-  CustomHandler.super.certificate(self)
-
-  -- Implement any custom logic here
+  -- Implement logic for the certificate phase here (http/stream)
+  kong.log("certificate")
 end
 
 function CustomHandler:rewrite(config)
-  -- Eventually, execute the parent implementation
-  -- (will log that your plugin is entering this context)
-  CustomHandler.super.rewrite(self)
-
-  -- Implement any custom logic here
+  -- Implement logic for the rewrite phase here (http)
+  kong.log("rewrite")
 end
 
 function CustomHandler:access(config)
-  -- Eventually, execute the parent implementation
-  -- (will log that your plugin is entering this context)
-  CustomHandler.super.access(self)
-
-  -- Implement any custom logic here
+  -- Implement logic for the rewrite phase here (http)
+  kong.log("access")
 end
 
 function CustomHandler:header_filter(config)
-  -- Eventually, execute the parent implementation
-  -- (will log that your plugin is entering this context)
-  CustomHandler.super.header_filter(self)
-
-  -- Implement any custom logic here
+  -- Implement logic for the header_filter phase here (http)
+  kong.log("header_filter")
 end
 
 function CustomHandler:body_filter(config)
-  -- Eventually, execute the parent implementation
-  -- (will log that your plugin is entering this context)
-  CustomHandler.super.body_filter(self)
-
-  -- Implement any custom logic here
+  -- Implement logic for the body_filter phase here (http)
+  kong.log("body_filter")
 end
 
 function CustomHandler:log(config)
-  -- Eventually, execute the parent implementation
-  -- (will log that your plugin is entering this context)
-  CustomHandler.super.log(self)
-
-  -- Implement any custom logic here
+  -- Implement logic for the log phase here (http/stream)
+  kong.log("log")
 end
 
--- This module needs to return the created table, so that Kong
--- can execute those functions.
+-- return the created table, so that Kong can execute it
 return CustomHandler
 ```
 
-Of course, the logic of your plugin itself can be abstracted away in another
-module, and called from your `handler` module. Many existing plugins have
-already chosen this pattern when their logic is verbose, but it is purely
-optional:
+Note that in the example above we are using Lua's `:` shorthand syntax for
+functions taking `self` as a first parameter. An equivalent unshortened version
+of the `access` function would be:
+
+``` lua
+function CustomHandler.access(self, config)
+  -- Implement logic for the rewrite phase here (http)
+  kong.log("access")
+end
+```
+
+The plugin's logic doesn't need to be all defined inside the `handler.lua` file.
+It can be be split into several Lua files (also called *modules*).
+The `handler.lua` module can use `require` to include other modules in your plugin.
+
+For example, the following plugin splits the functionality into three files.
+`access.lua` and `body_filter.lua` return functions. They are in the same
+folder as `handler.lua`, which requires and uses them to build the plugin:
 
 ```lua
-local BasePlugin = require "kong.plugins.base_plugin"
-
--- The actual logic is implemented in those modules
+-- handler.lua
 local access = require "kong.plugins.my-custom-plugin.access"
 local body_filter = require "kong.plugins.my-custom-plugin.body_filter"
 
+local CustomHandler = {
+  VERSION  = "1.0.0",
+  PRIORITY = 10
+}
 
-local CustomHandler = BasePlugin:extend()
-
-
-CustomHandler.VERSION  = "1.0.0"
-CustomHandler.PRIORITY = 10 
-
-
-function CustomHandler:new()
-  CustomHandler.super.new(self, "my-custom-plugin")
-end
-
-function CustomHandler:access(config)
-  CustomHandler.super.access(self)
-
-  -- Execute any function from the module loaded in `access`,
-  -- for example, `execute()` and passing it the plugin's configuration.
-  access.execute(config)
-end
-
-function CustomHandler:body_filter(config)
-  CustomHandler.super.body_filter(self)
-
-  -- Execute any function from the module loaded in `body_filter`,
-  -- for example, `execute()` and passing it the plugin's configuration.
-  body_filter.execute(config)
-end
-
+CustomHandler.access = access
+CustomHandler.body_filter = body_filter
 
 return CustomHandler
 ```
 
-See [the source code of the Key-Auth plugin](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/handler.lua)
-for an example of a real-life handler code.
+```lua
+-- access.lua
+return function(self, config)
+  kong.log("access phase")
+end
+```
+
+```lua
+-- body_filter.lua
+return function(self, config)
+  kong.log("body_filter phase")
+end
+```
+
+See [the source code of the Key-Auth Plugin](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/handler.lua)
+for an example of real use case of handler code.
 
 ---
 
 ## Plugin Development Kit
 
-Logic implemented in those phases will most likely have to interact with the
-request/response objects or core components (e.g. access the cache, and
-database). Kong provides a [Plugin Development Kit][pdk] (or "PDK") for such
+Logic implemented in those phases most likely have to interact with the
+request/response objects or core components (such as access the cache and
+database). {{site.ee_product_name}} provides a [Plugin Development Kit][pdk] (or PDK) for such
 purposes: a set of Lua functions and variables that can be used by plugins to
 execute various gateway operations in a way that is guaranteed to be
-forward-compatible with future releases of Kong.
+forward-compatible with future releases of {{site.ee_product_name}}.
 
-When you are trying to implement some logic that needs to interact with Kong
-(e.g. retrieving request headers, producing a response from a plugin, logging
+When you are trying to implement some logic that needs to interact with {{site.ee_product_name}}
+(such as retrieving request headers, producing a response from a plugin, or ogging
 some error or debug information), you should consult the [Plugin Development
 Kit Reference][pdk].
 
@@ -244,7 +246,7 @@ Kit Reference][pdk].
 
 Some plugins might depend on the execution of others to perform some
 operations. For example, plugins relying on the identity of the consumer have
-to run **after** authentication plugins. Considering this, Kong defines
+to run **after** authentication plugins. Considering this, {{site.ee_product_name}} defines
 **priorities** between plugins execution to ensure that order is respected.
 
 Your plugin's priority can be configured via a property accepting a number in
@@ -254,8 +256,8 @@ the returned handler table:
 CustomHandler.PRIORITY = 10
 ```
 
-The higher the priority, the sooner your plugin's phases will be executed in
-regard to other plugins' phases (such as `:access()`, `:log()`, etc.).
+The higher the priority, the sooner your plugin's phases will be executed with
+regard to other plugins' phases (such as `:access()`, `:log()`, and so forth).
 
 The current order of execution for the bundled plugins is:
 
@@ -265,6 +267,7 @@ pre-function                | `+inf`
 correlation-id              | 100001
 zipkin                      | 100000
 exit-transformer            | 9999
+ip-restriction              | 3000
 bot-detection               | 2500
 cors                        | 2000
 session                     | 1900
@@ -318,6 +321,7 @@ loggly                      | 6
 kafka-log                   | 5
 syslog                      | 4
 request-termination         | 2
+correlation-id              | 1
 post-function               | -1000
 
 ---
