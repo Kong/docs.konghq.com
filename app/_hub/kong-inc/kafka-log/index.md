@@ -31,10 +31,11 @@ params:
 
   name: kafka-log
   protocols: ["http", "https", "grpc", "grpcs", "tcp", "tls", "udp"]
+  examples: true
   config:
     - name: bootstrap_servers
       required: true
-      value_in_examples: BOOTSTRAP_SERVERS
+      value_in_examples: <BOOTSTRAP_SERVERS>
       urlencode_in_examples: true
       default:
       datatype: set of record elements
@@ -43,7 +44,7 @@ params:
         [Quickstart](#quickstart).
     - name: topic
       required: true
-      value_in_examples: TOPIC
+      value_in_examples: <KAFKA_TOPIC>
       urlencode_in_examples: true
       default:
       datatype: string
@@ -51,19 +52,19 @@ params:
     - name: timeout
       required: false
       default: "`10000`"
-      value_in_examples: TIMEOUT
+      value_in_examples: 10000
       datatype: integer
       description: Socket timeout in milliseconds.
     - name: keepalive
       required: false
       default: "`60000`"
-      value_in_examples: KEEPALIVE
+      value_in_examples: 60000
       datatype: integer
       description: Keepalive timeout in milliseconds.
     - name: producer_request_acks
       required: false
       default: "`1`"
-      value_in_examples: PRODUCER_REQUEST_ACKS
+      value_in_examples: 1
       datatype: integer
       description: |
          The number of acknowledgments the producer requires the leader to have received before
@@ -72,54 +73,59 @@ params:
     - name: producer_request_timeout
       required: false
       default: "`2000`"
-      value_in_examples: PRODUCER_REQUEST_TIMEOUT
+      value_in_examples: 2000
       datatype: integer
       description: |
         Time to wait for a Produce response in milliseconds.
     - name: producer_request_limits_messages_per_request
       required: false
       default: "`200`"
-      value_in_examples: PRODUCER_REQUEST_LIMITS_MESSAGES_PER_REQUEST
+      value_in_examples: 200
       datatype: integer
       description: Maximum number of messages to include in a single Produce request.
     - name: producer_request_limits_bytes_per_request
       required: false
       default: "`1048576`"
-      value_in_examples: PRODUCER_REQUEST_LIMITS_BYTES_PER_REQUEST
+      value_in_examples: 1048576
       datatype: integer
       description: Maximum size of a Produce request in bytes.
     - name: producer_request_retries_max_attempts
       required: false
       default: "`10`"
-      value_in_examples: PRODUCER_REQUEST_RETRIES_MAX_ATTEMPTS
+      value_in_examples: 10
       datatype: integer
       description: Maximum number of retry attempts per single Produce request.
     - name: producer_request_retries_backoff_timeout
       required: false
       default: "`100`"
+      value_in_examples: 100
       datatype: integer
       description: Backoff interval between Produce retry attempts in milliseconds.
     - name: producer_async
       required: false
       default: "`true`"
+      value_in_examples: true
       datatype: boolean
       description: |
         Flag to enable asynchronous mode.
     - name: producer_async_flush_timeout
       required: false
       default: "`1000`"
+      value_in_examples: 1000
       datatype: integer
       description: |
         Maximum time interval in milliseconds between buffer flushes in asynchronous mode.
     - name: producer_async_buffering_limits_messages_in_memory
       required: false
       default: "`50000`"
+      value_in_examples: 50000
       datatype: integer
       description: |
         Maximum number of messages that can be buffered in memory in asynchronous mode.
     - name: api_version
       required: false
       default: "`0`"
+      value_in_examples: 0
       datatype: integer
       description: |
         API version of a Produce request. Allowed values: `0`, `1`, or `2`.
