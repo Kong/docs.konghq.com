@@ -182,7 +182,3 @@ There is currently no support for:
 - TLS
 - authentication
 - message compression
-
-
-[badge-travis-url]: https://travis-ci.com/Kong/kong-plugin-kafka-log/branches
-[badge-travis-image]: https://travis-ci.com/Kong/kong-plugin-kafka-log.svg?token=BfzyBZDa3icGPsKGmBHb&branch=master
