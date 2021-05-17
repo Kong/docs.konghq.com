@@ -3,7 +3,7 @@ title: Migrating from Kong Community Gateway to Kong Enterprise
 toc: true
 ---
 
-## Migrating from Kong Community Gateway 2.3.x to Kong Enterprise 2.3.x {#migrate-ce-ee}
+## Migrating from Kong Community Gateway 2.4.x to Kong Enterprise 2.4.x {#migrate-ce-ee}
 
 As of {{site.ee_product_name}} version 2.1.x and later, it is no longer necessary to explicitly
 run the `migrate-community-to-enterprise` command parameter to to migrate all
@@ -23,16 +23,17 @@ supports the same {{site.ce_product_name}} version.
      {{site.ce_product_name}} to {{site.ee_product_name}}.
 </div>
 
-* If running a version of {{site.ce_product_name}} earlier than 2.3.x,
-  [upgrade to Kong 2.3.x](/2.3.x/upgrading/) before migrating
-  {{site.ce_product_name}} to {{site.ee_product_name}} 2.3.x.
+* If running a version of {{site.ce_product_name}} earlier than 2.4.x,
+  [upgrade to Kong 2.4.x](/2.4.x/upgrading/) before migrating
+  {{site.ce_product_name}} to {{site.ee_product_name}} 2.4.x.
 
 #### Migration steps
 
 The following steps guide you through the migration process.
 
-1. Download {{site.ee_product_name}} 2.3.x and configure it to point to the
-   same datastore as your {{site.ce_product_name}} 2.3.x node. The migration
+1. Download {{site.ee_product_name}} 2.4.x and configure it to point to the
+   same datastore as your {{site.ce_product_name}} 2.4
+   .x node. The migration
    command expects the datastore to be up-to-date on any pending migration:
 
    ```shell
