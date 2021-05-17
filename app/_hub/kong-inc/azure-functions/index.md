@@ -103,7 +103,7 @@ params:
       default: 600000
       value_in_examples:
       datatype: number
-      description: Timeout in milliseconds before aborting a connection to Azure Functions server.
+      description: Timeout in milliseconds before closing a connection to Azure Functions server.
     - name: keepalive
       required: false
       default: 60000
