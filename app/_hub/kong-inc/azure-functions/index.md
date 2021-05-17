@@ -85,7 +85,7 @@ params:
       default:
       value_in_examples:
       datatype: string
-      description: The clientid to access the Azure resources. If provided, it will be injected as the `x-functions-clientid` header.
+      description: The `clientid` to access the Azure resources. If provided, it will be injected as the `x-functions-clientid` header.
     - name: https_verify
       required: false
       default: false
@@ -103,13 +103,13 @@ params:
       default: 600000
       value_in_examples:
       datatype: number
-      description: Timeout in milliseconds before closing a connection to Azure Functions server.
+      description: Timeout in milliseconds before closing a connection to the Azure Functions server.
     - name: keepalive
       required: false
       default: 60000
       value_in_examples:
       datatype: number
-      description: Time in milliseconds for which an idle connection to the Azure Functions server will live before being closed.
+      description: Time in milliseconds during which an idle connection to the Azure Functions server lives before being closed.
 
   extra: |
     Note: If `config.https_verify` is set as `true`, then the server certificate
