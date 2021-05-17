@@ -40,7 +40,7 @@ kong_version_compatibility:
         - 1.5.x
         - 1.3-x
         - 0.36-x
-        - 0.35-x
+
 
 params:
   name: azure-functions
@@ -53,57 +53,67 @@ params:
     - name: functionname
       required: true
       default:
-      value_in_examples: AZURE_FUNCTIONNAME
+      value_in_examples: <AZURE_FUNCTIONNAME>
+      datatype: string
       description: Name of the Azure function to invoke.
     - name: appname
       required: true
       default:
-      value_in_examples: AZURE_APPNAME
+      value_in_examples: <AZURE_APPNAME>
+      datatype: string
       description: The Azure app name.
     - name: hostdomain
-      required: false
+      required: true
       default: azurewebsites.net
-      value_in_examples:
+      value_in_examples: azurewebsites.net
+      datatype: string
       description: The domain where the function resides.
     - name: routeprefix
       required: false
       default: /api
       value_in_examples:
+      datatype: string
       description: Route prefix to use.
     - name: apikey
       required: false
       default:
-      value_in_examples: AZURE_APIKEY
+      value_in_examples: <AZURE_APIKEY>
+      datatype: string
       description: The apikey to access the Azure resources. If provided, it will be injected as the `x-functions-key` header.
     - name: clientid
       required: false
       default:
       value_in_examples:
+      datatype: string
       description: The clientid to access the Azure resources. If provided, it will be injected as the `x-functions-clientid` header.
     - name: https_verify
       required: false
       default: false
       value_in_examples:
-      description: Set it to true to authenticate the Azure Functions server.
+      datatype: boolean
+      description: Set to true to authenticate the Azure Functions server.
     - name: https
       required: false
       default: true
       value_in_examples:
+      datatype: boolean
       description: Use of HTTPS to connect with the Azure Functions server.
     - name: timeout
       required: false
       default: 600000
       value_in_examples:
+      datatype: number
       description: Timeout in milliseconds before aborting a connection to Azure Functions server.
     - name: keepalive
       required: false
       default: 60000
       value_in_examples:
+      datatype: number
       description: Time in milliseconds for which an idle connection to the Azure Functions server will live before being closed.
 
   extra: |
     Note: If `config.https_verify` is set as `true`, then the server certificate
-    will be verified according to the CA certificates specified by the
+    is verified according to the CA certificates specified by the
     `lua_ssl_trusted_certificate` directive in your Kong configuration.
 
 ---
