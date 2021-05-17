@@ -18,9 +18,9 @@ If you experience any issues when running migrations, contact
 ## Upgrade path for Kong Gateway releases
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
-distinction between major, minor, and [patch](#patch) versions. The upgrade path
-for major and minor versions differs depending on the previous version from which
-you are migrating:
+distinction between major, minor, and [patch](#patch) versions. The upgrade 
+path for major and minor versions differs depending on the previous version 
+from which you are migrating:
 
 - Upgrading from 2.3.x to 2.4.x is a minor upgrade; however, read below for important
 instructions on [database migration](#migrate-db), especially for Cassandra users.
