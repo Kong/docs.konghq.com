@@ -254,10 +254,16 @@
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
   url: /admin-api
   items:
+  - text: DB-less Mode
+    url: /admin-api/#db-less-mode
+  - text: Declarative Configuration
+    url: /admin-api/#declarative-configuration
   - text: Supported Content Types
     url: /admin-api/#supported-content-types
   - text: Information Routes
     url: /admin-api/#information-routes
+  - text: Health Routes
+    url: /admin-api/#health-routes
   - text: Tags
     url: /admin-api/#tags
   - text: Service Object

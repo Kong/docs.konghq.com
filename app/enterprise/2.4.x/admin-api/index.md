@@ -558,6 +558,96 @@ care should be taken when setting up Kong environments to avoid undue public
 exposure of this API. See [this document][secure-admin-api] for a discussion
 of methods to secure the Admin API.
 
+---
+
+## DB-less mode
+
+In [DB-less mode](../db-less-and-declarative-config), the Admin API can be used to load a new declarative
+configuration, and for inspecting the current configuration. In DB-less mode,
+the Admin API for each Kong node functions independently, reflecting the memory state
+of that particular Kong node. This is the case because there is no database
+coordination between Kong nodes.
+
+In DB-less mode, you configure {{site.base_gateway}} declaratively.
+Therefore, the Admin API is mostly read-only. The only tasks it can perform are all
+related to handling the declarative config, including:
+
+* [Validating configurations against schemas](#validate-a-configuration-against-a-schema)
+* [Validating plugin configurations against schemas](#validate-a-plugin-configuration-against-the-schema)
+* [Reloading the declarative configuration](#reload-declarative-configuration)
+* [Setting a target's health status in the load balancer](#set-target-as-healthy)
+
+---
+
+## Declarative Configuration
+
+<div class="alert alert-ee blue"><strong>Note:</strong> We recommend using decK
+to manage your declarative configuration. See the <a href="/deck/">decK documentation</a> for more
+information.
+</div>
+
+Loading the declarative configuration of entities into Kong
+can be done in two ways: at start-up, through the `declarative_config`
+property, or at run-time, through the Admin API using the `/config`
+endpoint.
+
+To get started using declarative configuration, you need a file
+(in YAML or JSON format) containing entity definitions. You can
+generate a sample declarative configuration with the command:
+
+```
+kong config init
+```
+
+It generates a file named `kong.yml` in the current directory,
+containing the appropriate structure and examples.
+
+
+### Reload Declarative Configuration
+
+This endpoint allows resetting a DB-less Kong with a new
+declarative configuration data file. All previous contents
+are erased from memory, and the entities specified in the
+given file take their place.
+
+To learn more about the file format, see the
+[declarative configuration](../db-less-and-declarative-config) documentation.
+
+
+<div class="endpoint post indent">/config</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`config`<br>**required** | The config data (in YAML or JSON format) to be loaded.
+
+
+#### Request Querystring Parameters
+
+Attributes | Description
+---:| ---
+`check_hash`<br>*optional* | If set to 1, Kong will compare the hash of the input config data against that of the previous one. If the configuration is identical, it will not reload it and will return HTTP 304.
+
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+``` json
+{
+    { "services": [],
+      "routes": []
+    }
+}
+```
+
+The response contains a list of all the entities that were parsed from the
+input file.
+
+---
+
 ## Supported Content Types
 
 The Admin API accepts 2 content types on every endpoint:
@@ -589,8 +679,6 @@ a JSON representation of the data you want to send. Example:
 ---
 
 ## Information Routes
-
-
 
 ### Retrieve Node Information
 
@@ -633,8 +721,179 @@ HTTP 200 OK
   That is, the plugins configurations currently in the datastore shared
   by all Kong nodes.
 
+---
+
+### List Available Endpoints
+
+List all available endpoints provided by the Admin API.
+
+<div class="endpoint get">/endpoints</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "data": [
+        "/",
+        "/acls",
+        "/acls/{acls}",
+        "/acls/{acls}/consumer",
+        "/basic-auths",
+        "/basic-auths/{basicauth_credentials}",
+        "/basic-auths/{basicauth_credentials}/consumer",
+        "/ca_certificates",
+        "/ca_certificates/{ca_certificates}",
+        "/cache",
+        "/cache/{key}",
+        "..."
+    ]
+}
+```
+
 
 ---
+
+### Validate A Configuration against A Schema
+
+Check validity of a configuration against its entity schema.
+This allows you to test your input before submitting a request
+to the entity endpoints of the Admin API.
+
+Note that this only performs the schema validation checks,
+checking that the input configuration is well-formed.
+A requests to the entity endpoint using the given configuration
+may still fail due to other reasons, such as invalid foreign
+key relationships or uniqueness check failures against the
+contents of the data store.
+
+
+<div class="endpoint post">/schemas/{entity}/validate</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "message": "schema validation successful"
+}
+```
+
+
+---
+
+### Retrieve Entity Schema
+
+Retrieve the schema of an entity. This is useful to
+understand what fields an entity accepts, and can be used for building
+third-party integrations to the Kong.
+
+
+<div class="endpoint get">/schemas/{entity name}</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "fields": [
+        {
+            "id": {
+                "auto": true,
+                "type": "string",
+                "uuid": true
+            }
+        },
+        {
+            "created_at": {
+                "auto": true,
+                "timestamp": true,
+                "type": "integer"
+            }
+        },
+        ...
+    ]
+}
+```
+
+
+---
+
+### Retrieve Plugin Schema
+
+Retrieve the schema of a plugin's configuration. This is useful to
+understand what fields a plugin accepts, and can be used for building
+third-party integrations to the Kong's plugin system.
+
+
+<div class="endpoint get">/schemas/plugins/{plugin name}</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "fields": {
+        "hide_credentials": {
+            "default": false,
+            "type": "boolean"
+        },
+        "key_names": {
+            "default": "function",
+            "required": true,
+            "type": "array"
+        }
+    }
+}
+```
+
+
+---
+
+### Validate A Plugin Configuration against The Schema
+
+Check validity of a plugin configuration against the plugins entity schema.
+This allows you to test your input before submitting a request
+to the entity endpoints of the Admin API.
+
+Note that this only performs the schema validation checks,
+checking that the input configuration is well-formed.
+A requests to the entity endpoint using the given configuration
+may still fail due to other reasons, such as invalid foreign
+key relationships or uniqueness check failures against the
+contents of the data store.
+
+
+<div class="endpoint post">/schemas/plugins/validate</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "message": "schema validation successful"
+}
+```
+
+
+---
+
+## Health Routes
 
 ### Retrieve Node Status
 
@@ -737,7 +996,6 @@ HTTP 200 OK
     * `reachable`: A boolean value reflecting the state of the
       database connection. Please note that this flag **does not**
       reflect the health of the database itself.
-
 
 ---
 

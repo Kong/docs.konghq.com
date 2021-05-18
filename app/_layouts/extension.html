@@ -208,10 +208,14 @@ breadcrumbs:
           <p>This plugin is <strong>not compatible</strong> with DB-less mode.</p>
         {% endif %}
         {% if page.params.dbless_compatible == "partially" or page.params.dbless_compatible == true %}
-          <p>In DB-less mode, {{site.base_gateway}} the Admin API is read-only, except for setting a target's
-            health status in the load balancer, validating configurations against schemas, and uploading
-            the declarative configuration using the `/config` endpoint.
-            If using this mode, configure the plugin using declarative configuration.<p>
+          <p>In DB-less mode, you configure {{site.base_gateway}} declaratively.
+            Therefore, the Admin API is mostly read-only. The only tasks it can perform are all
+            related to handling the declarative config, including: </p>
+            <ul>
+              <li>setting a target's health status in the load balancer</li>
+              <li>validating configurations against schemas</li>
+              <li>uploading the declarative configuration using the <code>/config</code> endpoint</li>
+            </ul>
         {% endif %}
 
         {% if page.params.dbless_explanation %}
