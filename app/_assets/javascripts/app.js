@@ -846,21 +846,14 @@ $(function () {
 });
 
 jQuery(document).ready(function () {
-  var closed = localStorage.getItem("closebanner-survey");
-  console.log(closed);
-  var getUrl = window.location;
-  var baseUrl =
-    getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split("/")[0];
+  var closed = localStorage.getItem("closebanner-konnect");
   if (
-    closed !== "closeme" &&
-    window.location.href.indexOf("getting-started") === -1 &&
-    window.location.href.indexOf("2.1.x") > -1 &&
-    getUrl !== baseUrl
+    closed !== "closebanner"
   ) {
-    $("header.navbar").removeClass("closed");
+    $(".navbar-v2").removeClass("closed");
     $("body").addClass("banner");
   } else {
-    $("header.navbar").addClass("closed");
+    $(".navbar-v2").addClass("closed");
     $("body").removeClass("banner");
   }
 });
@@ -874,14 +867,14 @@ setInterval(function () {
   if (scrolling) {
     scrolling = false;
     if ($(document).scrollTop() < 85) {
-      $("header").removeClass("compress");
+      $(".navbar-v2").removeClass("compress");
     } else {
-      $("header").addClass("compress");
+      $(".navbar-v2").addClass("compress");
     }
   }
 }, 10);
 
 $(".closebanner").click(function () {
-  $("header.navbar").addClass("closed");
-  localStorage.setItem("closebanner-survey", "closeme");
+  $(".navbar-v2").addClass("closed");
+  localStorage.setItem("closebanner-konnect", "closebanner");
 });
