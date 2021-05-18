@@ -60,7 +60,7 @@ to the file.
     cluster_telemetry_endpoint = <example.tp.konnect.foo>:443
     cluster_telemetry_server_name = <kong-telemetry-example.service>
     cluster_cert = /<path-to-file>/tls.crt
-    cluster_cert_key = /<path-to-file>/tls.crt
+    cluster_cert_key = /<path-to-file>/tls.key
     lua_ssl_trusted_certificate = system,/<path-to-file>/ca.crt
     ```
 
@@ -81,11 +81,6 @@ files.
 Manager overview.
 
     The Runtime Manager will include a new entry for your instance.
-
-<div class="alert alert-ee warning">
-<b>Important:</b> Certificates expire after 30 days and must be renewed. See
-<a href="/konnect/runtime-manager/renew-certificates">Renew Certificates</a>.
-</div>
 
 ## Access services using the proxy URL
 
