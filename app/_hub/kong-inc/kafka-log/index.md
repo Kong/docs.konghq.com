@@ -31,6 +31,7 @@ params:
 
   name: kafka-log
   protocols: ["http", "https", "grpc", "grpcs", "tcp", "tls", "udp"]
+  dbless_compatible: yes
   examples: true
   config:
     - name: bootstrap_servers

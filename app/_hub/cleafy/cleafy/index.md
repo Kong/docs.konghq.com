@@ -54,6 +54,7 @@ params:
   service_id: false
   consumer_id: false
   route_id: true
+  dbless_compatible: yes
   config:
     - name: api_address
       required: yes
