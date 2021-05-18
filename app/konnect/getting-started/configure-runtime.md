@@ -28,9 +28,7 @@ organization admin permissions by default.
 * Tools and permissions:
   * **All platforms:** [Docker](https://docs.docker.com/get-docker/) and [jq](https://stedolan.github.io/jq/) installed
   * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
-  * **Windows:** The quick setup script does not currently work on Windows.
-  See the [Advanced](/konnect/runtime-manager/gateway-runtime-docker/#advanced-setup)
-  instructions instead, then move on to [configuring a service](/konnect/getting-started/configure-service).
+  * **Windows:** Docker Desktop [installed](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [integrated with a WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/).
 
 ## Set up a New Runtime Instance
 
