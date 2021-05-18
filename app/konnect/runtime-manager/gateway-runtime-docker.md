@@ -25,7 +25,8 @@ runtime instances.
 
 * You have **Runtime Admin** or **Organization Admin** permissions in
 {{site.konnect_saas}}.
-* Tools and permissions:
+* The quick setup script requires Docker and a Unix shell (for example, bash or
+  zshell). Platform-specific tools and permissions:
   * **All platforms:** [Docker](https://docs.docker.com/get-docker/) and [jq](https://stedolan.github.io/jq/) installed
   * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
   * **Windows:** Docker Desktop [installed](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [integrated with a WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/). If you can't set up a WSL 2 backend, see the [advanced](#advanced-setup) instructions for
