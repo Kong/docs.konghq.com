@@ -46,6 +46,7 @@ Customers with platinum or higher subscriptions may request fixes outside of the
 
 | Version  | Released Date | End of Full Support | End of Sunset Support |
 |:--------:|:-------------:|:-------------------:|:---------------------:|
+|  2.4.x.x |  2021-05-18   |     2023-05-17      |      2024-05-17       |  
 |  2.3.x.x |  2020-02-11   |     2022-08-24      |      2023-08-24       |
 |  2.2.x.x |  2020-11-17   |     2022-08-24      |      2023-08-24       |
 |  2.1.x.x |  2020-08-25   |     2022-08-24      |      2023-08-24       |
