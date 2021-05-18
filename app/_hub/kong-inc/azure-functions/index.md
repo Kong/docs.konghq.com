@@ -9,7 +9,7 @@ desc: Invoke and manage Azure functions from Kong
 description: |
   This plugin invokes
   [Azure Functions](https://azure.microsoft.com/en-us/services/functions/).
-  It can be used in combination with other request plugins to secure, manage
+  It can be used in combination with other request plugins to secure, manage, 
   or extend the function.
 
 type: plugin
@@ -79,19 +79,19 @@ params:
       default:
       value_in_examples: <AZURE_APIKEY>
       datatype: string
-      description: The apikey to access the Azure resources. If provided, it will be injected as the `x-functions-key` header.
+      description: The apikey to access the Azure resources. If provided, it is injected as the `x-functions-key` header.
     - name: clientid
       required: false
       default:
       value_in_examples:
       datatype: string
-      description: The `clientid` to access the Azure resources. If provided, it will be injected as the `x-functions-clientid` header.
+      description: The `clientid` to access the Azure resources. If provided, it is injected as the `x-functions-clientid` header.
     - name: https_verify
       required: false
       default: false
       value_in_examples:
       datatype: boolean
-      description: Set to true to authenticate the Azure Functions server.
+      description: Set to `true` to authenticate the Azure Functions server.
     - name: https
       required: false
       default: true
@@ -122,36 +122,35 @@ params:
 
 To demonstrate the plugin, set up the [Azure Functions "hello world" function](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-azure-function).
 
-1. In this example, we'll consider the following settings/placeholders, insert your own values
-   in the placeholders:
+1. In this example, we'll consider the following placeholder settings. Insert your own values
+    for the placeholders in the code examples:
 
-    ```
-    - `<appname>` for the Functions appname
+    - `<appname>` for the functions appname
     - `<functionname>` for the function name
     - `<apikey>` for the api key
-    ```
 
-2. Test your function to make sure it works before adding it to Kong:
+2. Test your function to make sure it works before adding it to {{site.base_gateway}}:
 
     ```bash
     curl -i -X GET https://<appname>.azurewebsites.net/api/<functionname>?name=Kong \
          -H "x-functions-key:<apikey>"
+    ```
 
+    ```
     HTTP/1.1 200 OK
     ...
     "Hello Kong!"
     ```
 
-3. Set up a Route in Kong and link it to the Azure function you just created.
+3. Set up a route in {{site.base_gateway}} and link it to the Azure function you just created.
 
 {% navtabs %}
 {% navtab With a database %}
 
-Create the Route:
+Create the route:
 
 ```bash
-
-curl -i -X POST http://{kong_hostname}:8001/routes \
+curl -i -X POST http://localhost:8001/routes \
 --data 'name=azure1' \
 --data 'paths[1]=/azure1'
 ```
@@ -164,12 +163,12 @@ curl -i -X POST http://localhost:8001/routes/azure1/plugins \
 --data "config.appname=<appname>" \
 --data "config.functionname=<functionname>" \
 --data "config.apikey=<apikey>"
-
 ```
+
 {% endnavtab %}
 {% navtab Without a database %}
 
-Add a Route and Plugin to the declarative config file:
+Add a route and plugin to the declarative config file:
 
 ``` yaml
 routes:
@@ -191,14 +190,16 @@ plugins:
 ### Test the Azure Function through Kong
 
 In this example, we're only passing a query parameter `name` to the Azure
-Function. Besides query parameters, also the HTTP method, path parameters,
-headers, and body will be passed to the Azure Function if provided.
-
-You should see the same result as step 2 above:
+Function. Besides query parameters, the HTTP method, path parameters,
+headers, and body are also passed to the Azure Function if provided.
 
 ```bash
 curl -i -X GET http://localhost:8000/azure1?name=Kong
+```
 
+You should see the same result as shown in step 2:
+
+```
 HTTP/1.1 200 OK
 ...
 "Hello Kong!"
