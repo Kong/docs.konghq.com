@@ -55,6 +55,7 @@ curl -X POST http://kong:8001/services/httpbin/plugins \
 --data config.client_secret="Password1" \
 --data config.scopes_required="openid" \
 --data config.hide_credentials="true" \
+--data config.upstream_access_token_header= \
 --data config.upstream_headers_claims="phantom_token" \
 --data config.upstream_headers_names="phantom_token" \
 --data config.auth_methods="introspection"
@@ -65,8 +66,9 @@ Parameter | Description | Example | Required for integration
 `config.issuer` | Used for discovery. Kong appends `/.well-known/openid-configuration`. Should be set to the `realm` or `iss` if no discovery endpoint is available. | `https://idsvr.example.com/oauth/v2/oauth-anonymous` | Yes
 `config.client_id` | The ID of a client with the introspection capability | `gateway-client`| Yes
 `config.client_secret` | Secret of the client used for introspection| `Password1` | Yes
-`config.scopes_required`| Optional scopes required in introspection result for authorization. | `openid email records_read`  | No
+`config.scopes_required`| Optional scopes required in introspection result for coarse grained authorization. By default the plugin looks for the scopes in the `scopes` claim in the introspection result. This could be overridden with the `config.scopes_claim` configuration. | `openid email records_read`  | No
 `config.hide_credentials` | Boolean value. This will prevent the incoming Access Token from being forwarded to the upstream API. |`true` | No
+`config.upstream_access_token_header` | In order to prevent the plugin from adding the Access Token back in the upstream request, actively set this value to nothing (aka, `nil`) by setting `config.upstream_access_token_header=` as in the example above . This configuration works in conjunction with `config.hide_credentials` to prevent the incoming Access Token from being passed to the upstream API. | `authorization:bearer` | No
 `config.upstream_headers_claims` | Contains claim that holds Phantom Token in the introspection result. | `phantom_token` | Yes  
 `config.upstream_headers_names` | Contains upstream header name that will hold the Phantom Token from the introspection result. | `phantom_token` | Yes 
 `config.auth_methods` | Several methods are supported for authenticating the request. For this use case, this should be limited to `introspection`. |`introspection` | No
