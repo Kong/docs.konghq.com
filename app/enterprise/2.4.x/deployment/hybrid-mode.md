@@ -62,6 +62,64 @@ in the `kong/charts` repository.
 
 ## Limitations
 
+### Version Compatibility
+{{site.ee_gateway_name}} control planes only connect to data planes with the
+same major version and at most two minor versions earlier (edge included).
+Control planes won't connect to data planes with newer versions.
+
+For example, a {{site.ee_product_name}} v2.4.2 control plane:
+
+- Accepts a {{site.ee_product_name}} 2.4.0, 2.4.1 and 2.4.2 data plane
+- Accepts a {{site.ee_product_name}} 2.3.8, 2.2.1 and 2.2.0 data plane
+- Rejects a {{site.ee_product_name}} 2.4.3 data plane
+- Rejects a {{site.ee_product_name}} 2.1.9 data plane
+- Rejects a {{site.ee_product_name}} 1.0.0 data plane
+
+Plugins installed on both control planes and data planes must have the same
+major and minor versions.
+
+For example, if a {{site.ee_product_name}} control plane has `plugin1` v1.1.1
+and `plugin2` v2.1.0 installed:
+
+- It accepts {{site.ee_product_name}} data planes with `plugin1` v1.1.2,
+`plugin2` v2.1.0 installed
+- It accepts {{site.ee_product_name}} data planes with `plugin1` v1.1.2,
+`plugin2` v2.1.0 and  `plugin3` v9.8.1 installed
+- It rejects {{site.ee_product_name}} data planes with `plugin1` v1.2.0,
+`plugin2` v2.1.0 installed
+
+Version compatibility checks between the control plane and data plane
+occur at configuration read time. As each data plane proxy receives
+configuration updates, it checks to see if it can enable the requested
+features. If the control plane has a newer version of {{site.base_gateway}}
+than the data plane proxy, but the configuration doesn’t include any new features
+from that newer version, the data plane proxy reads and applies it as expected.
+
+For instance, a new version of {{site.base_gateway}} includes a new
+plugin offering, and you update your control plane with that version. You can
+still send configurations to your data planes that are on a less recent version
+as long as you have not added the new plugin offering to your configuration.
+If you add the new plugin to your configuration, you will need to update your
+data planes to the newer version for the data planes to continue to read from
+the control plane.
+
+If the compatibility checks fail, the control plane stops
+pushing out new config to the incompatible data planes to avoid breaking them.
+
+If a config can not be pushed to a data plane due to failure of the
+compatibility checks, the control plane will contain `warn` level lines in the
+`error.log` similar to the following:
+
+```
+unable to send updated configuration to DP node with hostname: localhost.localdomain ip: 127.0.0.1 reason: version mismatches, CP version: 2.2 DP version: 2.1
+unable to send updated configuration to DP node with hostname: localhost.localdomain ip: 127.0.0.1 reason: CP and DP does not have same set of plugins installed or their versions might differ
+```
+
+In addition, the `/clustering/data-planes` Admin API endpoint returns
+the version of the data plane node and the latest config hash the node is
+using. This data helps detect version incompatibilities from the
+control plane side.
+
 ### Configuration Inflexibility
 When a configuration change is made at the Control Plane level via the Admin
 API, it immediately triggers a cluster-wide update of all Data Plane
