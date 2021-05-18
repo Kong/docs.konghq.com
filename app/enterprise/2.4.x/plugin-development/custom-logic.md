@@ -59,6 +59,7 @@ To reduce unexpected behaviour changes, {{site.ee_product_name}} does not start 
 | `init_worker`   | [init_worker]                                                                | Executed upon every Nginx worker process's startup.
 | `preread`       | [preread]                                                                    | Executed once for every connection.
 | `log`           | [log](https://github.com/openresty/stream-lua-nginx-module#log_by_lua_block) | Executed once for each connection after it has been closed.
+| `certificate`   | [ssl_certificate] | Executed during the SSL certificate serving phase of the SSL handshake.
 
 All of those functions, except `init_worker`, take one parameter that is given
 by {{site.ee_product_name}} upon its invocation: the configuration of your plugin. This parameter
