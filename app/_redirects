@@ -13,6 +13,7 @@
 # enterprise gateway
 /enterprise/latest/introduction       /enterprise/
 /enterprise/2.3.x/introduction        /enterprise/
+/enterprise/2.4.x/release-notes       /enterprise/changelog
 
 # getting started guide
 /enterprise/latest/getting-started/              /getting-started-guide/latest/overview/

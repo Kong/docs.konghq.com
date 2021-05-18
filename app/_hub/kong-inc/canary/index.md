@@ -36,6 +36,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
+  dbless_compatible: yes
   config:
     - name: start
       required: semi
