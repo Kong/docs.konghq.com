@@ -62,30 +62,40 @@ params:
   config:
     - name: aws_key
       required: semi
-      value_in_examples: AWS_KEY
+      value_in_examples: <AWS_KEY>
       urlencode_in_examples: true
       default:
-      description: The AWS key credential to be used when invoking the function. This value is required if `aws_secret` is defined. If `aws_key` and `aws_secret` are not set, the plugin uses an IAM role inherited from the instance running Kong to authenticate.
+      datatype:
+      description: |
+        The AWS key credential to be used when invoking the function. This value is required
+        if `aws_secret` is defined. If `aws_key` and `aws_secret` are not set, the plugin uses an
+        IAM role inherited from the instance running Kong to authenticate.
     - name: aws_secret
       required: semi
-      value_in_examples: AWS_SECRET
+      value_in_examples: <AWS_SECRET>
       urlencode_in_examples: true
       default:
-      description: The AWS secret credential to be used when invoking the function. This value is required if `aws_key` is defined. If `aws_key` and `aws_secret` are not set, the plugin uses an IAM role inherited from the instance running Kong to authenticate.
+      datatype:
+      description: |
+        The AWS secret credential to be used when invoking the function. This value is required
+        if `aws_key` is defined. If `aws_key` and `aws_secret` are not set, the plugin uses an
+        IAM role inherited from the instance running Kong to authenticate.
     - name: aws_region
       required: semi
       default:
-      value_in_examples: AWS_REGION
+      value_in_examples: <AWS_REGION>
+      datatype:
       description: |
         The AWS region where the Lambda function is located. The plugin does not
-        attempt to validate the supplied region name; if an invalid region name
-        is provided, the plugin will respond with an HTTP `500 Internal Server Error`
-        at run-time and log a DNS resolution failure. Either `aws_region` or `host`
+        attempt to validate the supplied region name. If an invalid region name
+        is provided, the plugin responds with an HTTP `500 Internal Server Error`
+        at run-time and logs a DNS resolution failure. Either `aws_region` or `host`
         must be provided.
     - name: host
       required: semi
       default:
       value_in_examples:
+      datatype:
       description: |
         The host where the Lambda function is located. This value can point to a
         local Lambda server, allowing for easier debugging. Either `host` or
@@ -93,95 +103,125 @@ params:
     - name: function_name
       required: true
       default:
-      value_in_examples: LAMBDA_FUNCTION_NAME
+      value_in_examples: <LAMBDA_FUNCTION_NAME>
+      datatype:
       description: The AWS Lambda function name to invoke.
     - name: qualifier
       required: false
       default:
+      datatype:
       description: |
         The [`Qualifier`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function.
     - name: invocation_type
       required: false
       default: "`RequestResponse`"
+      datatype:
       description: |
         The [`InvocationType`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function. Available types are `RequestResponse`, `Event`, `DryRun`.
     - name: log_type
       required: false
       default: "`Tail`"
+      datatype:
       description: |
         The [`LogType`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function. By default, `None` and `Tail` are supported.
     - name: timeout
       required: true
       default: "`60000`"
+      datatype:
       description: An optional timeout in milliseconds when invoking the function.
     - name: port
       required: false
       default: "`443`"
+      datatype:
       description: |
-        The TCP port that this plugin will use to connect to the server.
+        The TCP port that the plugin uses to connect to the server.
     - name: keepalive
       required: true
       default: "`60000`"
+      datatype:
       description: |
-        An optional value in milliseconds that defines how long an idle connection will live before being closed.
+        An optional value in milliseconds that defines how long an idle connection lives before being closed.
     - name: unhandled_status
       required: false
       default: "`200`, `202`, or `204`"
+      datatype:
       description: |
-        The response status code to use (instead of the default `200`, `202`, or `204`) in the case of an [`Unhandled` Function Error](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_ResponseSyntax).
+        The response status code to use (instead of the default `200`, `202`, or `204`) in the case of an
+        [`Unhandled` Function Error](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_ResponseSyntax).
     - name: forward_request_body
       required: false
       default: "`false`"
+      datatype:
       description: |
-        An optional value that defines whether the request body is to be sent in the `request_body` field of the JSON-encoded request. If the body arguments can be parsed, they will be sent in the separate `request_body_args` field of the request. The body arguments can be parsed for `application/json`, `application/x-www-form-urlencoded`, and `multipart/form-data` content types.
+        An optional value that defines whether the request body is sent in the `request_body` field of the JSON-encoded request.
+        If the body arguments can be parsed, they are sent in the separate `request_body_args` field of the request.
+        The body arguments can be parsed for `application/json`, `application/x-www-form-urlencoded`, and `multipart/form-data` content types.
     - name: forward_request_headers
       required: false
       default: "`false`"
+      datatype:
       description: |
-        An optional value that defines whether the original HTTP request headers are to be sent as a map in the `request_headers` field of the JSON-encoded request.
+        An optional value that defines whether the original HTTP request headers are
+        sent as a map in the `request_headers` field of the JSON-encoded request.
     - name: forward_request_method
       required: false
       default: "`false`"
+      datatype:
       description: |
-        An optional value that defines whether the original HTTP request method verb is to be sent in the `request_method` field of the JSON-encoded request.
+        An optional value that defines whether the original HTTP request method verb is
+        sent in the `request_method` field of the JSON-encoded request.
     - name: forward_request_uri
       required: false
       default: "`false`"
+      datatype:
       description: |
-        An optional value that defines whether the original HTTP request URI is to be sent in the `request_uri` field of the JSON-encoded request. Request URI arguments (if any) will be sent in the separate `request_uri_args` field of the JSON body.
+        An optional value that defines whether the original HTTP request URI is to be sent in
+        the `request_uri` field of the JSON-encoded request. Request URI arguments (if any) are sent in
+        the separate `request_uri_args` field of the JSON body.
     - name: is_proxy_integration
       required: false
       default: "`false`"
+      datatype:
       description: |
-        An optional value that defines whether the response format to receive from the Lambda to [this format](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-output-format).
+        An optional value that defines whether the response format to receive from the Lambda to
+        [this format](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-output-format).
     - name: awsgateway_compatible
       required: false
       default: "`false`"
+      datatype:
       description: |
         An optional value that defines whether the plugin should wrap requests into the Amazon API gateway.
     - name: proxy_url
       required: semi
       default:
+      datatype:
       description: |
-        An optional value that defines whether the plugin should connect through the given proxy server URL. This value is required if `proxy_scheme` is defined.
+        An optional value that defines whether the plugin should connect through the given proxy server URL.
+        The `proxy_url` value is required if `proxy_scheme` is defined.
     - name: proxy_scheme
       required: semi
       default:
+      datatype:
       description: |
-        An optional value that defines which HTTP scheme to use for connecting through the proxy server. The schemes supported are: `http` and `https`. This value is required if `proxy_url` is defined.
+        An optional value that defines which HTTP scheme to use for connecting through the proxy server. The
+        supported schemes are `http` and `https`. The `proxy_scheme` value is required if `proxy_url` is defined.
     - name: skip_large_bodies
       required: false
       default: "`true`"
+      datatype:
       description: |
         An optional value that defines whether Kong should send large
         bodies that are buffered to disk. Note that
-        enabling this option will have an impact on system memory depending on the number of requests simultaneously in flight at any given point in time and on the maximum size of each of them.
-        Also this option will block all requests being handled by the
+        enabling this option will have an impact on system memory depending on the number
+        of requests simultaneously in flight at any given point in time and on the maximum size of each of them.
+        Also this option blocks all requests being handled by the
         nginx workers. That could be tens of thousands of other
         transactions that are not being processed. For small I/O
         operations, such a delay would generally not be problematic. In
-        cases where the body is in the order of MB, such a delay would
-        cause notable interruptions in request processing. Given all of the potential downsides resulting from enabling this option, please consider increasing the [client_body_buffer_size](http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size)
+        cases where the body size is in the order of MB, such a delay would
+        cause notable interruptions in request processing. Given all of the potential
+        downsides resulting from enabling this option, consider increasing the
+        [client_body_buffer_size](http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size)
         value instead.
 
   extra: |
@@ -197,15 +237,17 @@ params:
 
 ### Sending parameters
 
-Any form parameter sent along with the request will be also sent as an
+Any form parameter sent along with the request is also sent as an
 argument to the AWS Lambda function.
 
 ---
 ### Notes
 
-If you do not provide an `aws_key` and `aws_secret`, the plugin uses an IAM role inherited from the instance running Kong.
+If you do not provide an `aws_key` and `aws_secret`, the plugin uses an IAM role inherited
+from the instance running Kong.
 
-First, the plugin will try ECS metadata to get the role. If no ECS metadata is available, the plugin will fall back on EC2 metadata.
+First, the plugin tries ECS metadata to get the role. If no ECS metadata is available,
+the plugin falls back on EC2 metadata.
 
 ---
 ### Step-By-Step Guide
@@ -251,7 +293,7 @@ to invoke the function.
 {% navtabs %}
 {% navtab With a database %}
 
-Create the Route:
+Create the route:
 
 ```bash
 curl -i -X POST http://{kong_hostname}:8001/routes \
@@ -273,7 +315,7 @@ curl -i -X POST http://{kong_hostname}:8001/routes/lambda1/plugins \
 {% endnavtab %}
 {% navtab Without a database %}
 
-Add a Route and Plugin to the declarative config file:
+Add a route and plugin to the declarative config file:
 
 ``` yaml
 routes:
