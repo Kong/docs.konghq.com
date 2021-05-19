@@ -394,13 +394,13 @@ when you run `npm install` under macOS and mount the working directory into a Li
 
 [kong-js-pdk] provides a mock framework to test plugin code correctness through `jest`.
 
-User will first install `jest` as a development dependency, and add `test` script in package.json:
+Install `jest` as a development dependency, and add  the `test` script in `package.json`:
 
 ```
 npm install jest --save-dev
 ```
 
-package.json will have a content similar to following:
+The `package.json` has content similar to the following:
 
     {
       "scripts": {
@@ -419,7 +419,7 @@ npm test
 ```
 
 **Note**: Check out [this repository](https://github.com/Kong/kong-js-pdk/tree/master/examples)
-for example on how to write test using `jest`.
+for examples on how to write test using `jest`.
 
 ## Developing Python plugins
 
