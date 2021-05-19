@@ -5,10 +5,9 @@ version: 3.5.x
 
 desc: Invoke and manage AWS Lambda functions from Kong
 description: |
-  Invoke an [AWS Lambda](https://aws.amazon.com/lambda/) function from Kong. It
-  can be used in combination with other request plugins to secure, manage, or
+  Invoke an [AWS Lambda](https://aws.amazon.com/lambda/) function from Kong. The
+  AWS Lambda plugin can be used in combination with other request plugins to secure, manage, or
   extend the function.
-
 
 type: plugin
 categories:
@@ -204,24 +203,21 @@ params:
       datatype: boolean
       description: |
         An optional value that defines whether Kong should send large
-        bodies that are buffered to disk. Note that
-        enabling this option will have an impact on system memory depending on the number
-        of requests simultaneously in flight at any given point in time and on the maximum size of each of them.
-        Also this option blocks all requests being handled by the
-        nginx workers. That could be tens of thousands of other
-        transactions that are not being processed. For small I/O
-        operations, such a delay would generally not be problematic. In
-        cases where the body size is in the order of MB, such a delay would
-        cause notable interruptions in request processing. Given all of the potential
+        bodies that are buffered to disk. Note that enabling this option will have an impact
+        on system memory depending on the number of requests simultaneously in flight at any given point in time
+        and on the maximum size of each request. Also this option blocks all requests being handled by the
+        nginx workers. That could be tens of thousands of other transactions that are not being processed. For small I/O
+        operations, such a delay would generally not be problematic. In cases where the body size is in the order of MB,
+        such a delay would cause notable interruptions in request processing. Given all of the potential
         downsides resulting from enabling this option, consider increasing the
         [client_body_buffer_size](http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size)
         value instead.
-      - name: base64_encode_body
-        required: false
-        default: "`true`"
-        datatype: boolean
-        description: |
-          An optional value that Base64-encodes the request body.
+    - name: base64_encode_body
+      required: false
+      default: "`true`"
+      datatype: boolean
+      description: |
+        An optional value that Base64-encodes the request body.
 
   extra: |
     **Reminder**: By default, cURL sends payloads with an
