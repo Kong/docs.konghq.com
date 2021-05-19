@@ -287,7 +287,7 @@ to invoke the function.
 
     Test the lambda function from the AWS console and make sure the execution succeeds.
 
-4. Set up a Route in Kong and link it to the `MyLambda` function you just created.
+4. Set up a route in Kong and link it to the `MyLambda` function you just created.
 
 {% navtabs %}
 {% navtab With a database %}
