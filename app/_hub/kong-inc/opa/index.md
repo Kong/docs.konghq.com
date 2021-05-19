@@ -54,7 +54,7 @@ params:
       datatype: string
       description: |
         The HTTP path to use when making a request to the OPA server. This is usually the path to the policy and rule to evaluate, prefixed with `/v1/data/`. For example,
-        if you want to evaluate the `allow` rule inside `example.kong` package, then the path would be `/v1/data/example/kong/allow`.
+        if you want to evaluate the `allow` rule inside `example.kong` package, then the path would be `/v1/data/example/kong/allowBoolean`.
     - name: include_service_in_opa_input
       required: false
       datatype: boolean
