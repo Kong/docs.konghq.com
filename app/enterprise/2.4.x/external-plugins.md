@@ -390,6 +390,37 @@ Note in this case, the node version and architecture that runs the plugin server
 the one that runs `npm install` under plugins directory must match. For example, it may break
 when you run `npm install` under macOS and mount the working directory into a Linux container.
 
+### Testing
+
+[kong-js-pdk] provides a mock framework to test plugin code correctness through `jest`.
+
+User will first install `jest` as a development dependency, and add `test` script in package.json:
+
+```
+npm install jest --save-dev
+```
+
+package.json will have a content similar to following:
+
+    {
+      "scripts": {
+        "test": "jest"
+      },
+      "devDependencies": {
+        "jest": "^26.6.3",
+        "kong-pdk": "^0.3.2"
+      }
+    }
+
+Run the test through npm with:
+
+```
+npm test
+```
+
+**Note**: Check out [this repository](https://github.com/Kong/kong-js-pdk/tree/master/examples)
+for example on how to write test using `jest`.
+
 ## Developing Python plugins
 
 {{site.base_gateway}} support for the Python language is provided by [kong-python-pdk].
