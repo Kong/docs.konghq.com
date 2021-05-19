@@ -58,7 +58,7 @@ params:
       value_in_examples: <AWS_KEY>
       urlencode_in_examples: true
       default:
-      datatype: string (encrypted)
+      datatype: string
       description: |
         The AWS key credential to be used when invoking the function. The `aws_key` value is required
         if `aws_secret` is defined. If `aws_key` and `aws_secret` are not set, the plugin uses an
@@ -68,7 +68,7 @@ params:
       value_in_examples: <AWS_SECRET>
       urlencode_in_examples: true
       default:
-      datatype: string (encrypted)
+      datatype: string
       description: |
         The AWS secret credential to be used when invoking the function. The `aws_secret` value is required
         if `aws_key` is defined. If `aws_key` and `aws_secret` are not set, the plugin uses an
