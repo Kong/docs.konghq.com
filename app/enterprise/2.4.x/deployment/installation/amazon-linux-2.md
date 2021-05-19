@@ -36,13 +36,13 @@ with root-equivalent access.
     ```bash
     $ curl -o kong.key {{ site.links.download }}/user/downloadSubjectPublicKey?username=kong
     $ sudo rpm --import kong.key
-    $ sudo rpm -K kong-enterprise-edition-{{page.kong_versions[10].version}}.amzn2.noarch.rpm
+    $ sudo rpm -K kong-enterprise-edition-{{page.kong_versions[11].version}}.amzn2.noarch.rpm
     ```
 
 2. Verify you get an OK check. Output should be similar to this:
 
     ```
-    kong-enterprise-edition-{{page.kong_versions[10].version}}.amzn2.noarch.rpm: sha1 md5 OK
+    kong-enterprise-edition-{{page.kong_versions[11].version}}.amzn2.noarch.rpm: sha1 md5 OK
     ``` -->
 
 ## Step 2. Install Kong Gateway

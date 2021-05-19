@@ -34,7 +34,7 @@ root-equivalent access.
 1. Kong's official Key ID is `2cac36c51d5f3726`. Verify it by querying the RPM package and comparing it to the Key ID:
 
     ```bash
-    $ rpm -qpi kong-enterprise-edition-{{page.kong_versions[10].version}}.rhel8.noarch.rpm | grep Signature
+    $ rpm -qpi kong-enterprise-edition-{{page.kong_versions[11].version}}.rhel8.noarch.rpm | grep Signature
     ```
 
 2. Download Kong's official public key to ensure the integrity of the RPM package:
@@ -42,13 +42,13 @@ root-equivalent access.
     ```bash
     $ curl -o kong.key {{ site.links.download }}/user/downloadSubjectPublicKey?username=kong
     $ rpm --import kong.key
-    $ rpm -K kong-enterprise-edition-{{page.kong_versions[10].version}}.rhel8.noarch.rpm
+    $ rpm -K kong-enterprise-edition-{{page.kong_versions[11].version}}.rhel8.noarch.rpm
     ```
 
 3. Verify you get an OK check. Output should be similar to this:
 
     ```
-    kong-enterprise-edition-{{page.kong_versions[10].version}}.rhel8.noarch.rpm: digests signatures OK
+    kong-enterprise-edition-{{page.kong_versions[11].version}}.rhel8.noarch.rpm: digests signatures OK
     ``` -->
 
 ## Step 2. Install Kong Gateway
