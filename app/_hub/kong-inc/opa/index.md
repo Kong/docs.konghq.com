@@ -50,7 +50,7 @@ params:
         The port of the OPA server.
     - name: opa_path
       required: true
-      value_in_examples: </v1/data/example/kong/allow>
+      value_in_examples: </v1/data/example/kong/allowBoolean>
       datatype: string
       description: |
         The HTTP path to use when making a request to the OPA server. This is usually the path to the policy and rule to evaluate, prefixed with `/v1/data/`. For example,
