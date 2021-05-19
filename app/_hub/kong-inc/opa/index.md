@@ -141,7 +141,7 @@ Set up a Route and Service in {{site.base_gateway}} and then enable the plugin:
 ```bash
 curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
     --data "name=opa"  \
-    --data "config.opa_path=/v1/data/example/allow" \
+    --data "config.opa_path=/v1/data/example/allowBoolean" \
     --data "config.opa_host=<host-where-opa is running>"
 ```
 
