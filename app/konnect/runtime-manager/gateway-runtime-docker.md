@@ -73,7 +73,7 @@ runtime instances.
 * Tools and permissions:
   * **All platforms:** [Docker](https://docs.docker.com/get-docker/) installed
   * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
-  * **Windows and MacOS:** Docker Desktop [installed](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows)
+  * **[Windows](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [MacOS](https://docs.docker.com/docker-for-mac/install/):** Docker Desktop installed
 
 ### Generate certificates
 {% include /md/konnect/runtime-certs.md %}
