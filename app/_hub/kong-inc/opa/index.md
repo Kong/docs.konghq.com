@@ -50,11 +50,11 @@ params:
         The port of the OPA server.
     - name: opa_path
       required: true
-      value_in_examples: </v1/data/example/kong/allow>
+      value_in_examples: </v1/data/example/kong/allowBoolean>
       datatype: string
       description: |
         The HTTP path to use when making a request to the OPA server. This is usually the path to the policy and rule to evaluate, prefixed with `/v1/data/`. For example,
-        if you want to evaluate the `allow` rule inside `example.kong` package, then the path would be `/v1/data/example/kong/allow`.
+        if you want to evaluate the `allow` rule inside `example.kong` package, then the path would be `/v1/data/example/kong/allowBoolean`.
     - name: include_service_in_opa_input
       required: false
       datatype: boolean
@@ -141,7 +141,7 @@ Set up a Route and Service in {{site.base_gateway}} and then enable the plugin:
 ```bash
 curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
     --data "name=opa"  \
-    --data "config.opa_path=/v1/data/example/allow" \
+    --data "config.opa_path=/v1/data/example/allowBoolean" \
     --data "config.opa_host=<host-where-opa is running>"
 ```
 
