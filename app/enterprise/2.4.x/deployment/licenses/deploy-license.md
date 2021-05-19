@@ -3,7 +3,7 @@ title: Deploy an Enterprise License
 ---
 
 Deploy a enterprise license to a {{site.base_gateway}} installation to gain access
-to [Enterprise-specific features](/enterprise/2.3.x/deployment/licensing).
+to [Enterprise-specific features](/enterprise/{{kong.page_version}}/deployment/licensing).
 
 You can deploy a license file in one of the following ways:
 
@@ -58,7 +58,7 @@ Result:
 ```
 
 For more detail and options, see the
-[Admin API `licenses` endpoint reference](/enterprise/2.3.x/admin-api/licenses/examples/).
+[Admin API `licenses` endpoint reference](/enterprise/{{page.kong_version}}/admin-api/licenses/examples/).
 
 {% endnavtab %}
 {% navtab Filesystem %}
