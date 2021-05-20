@@ -2,6 +2,10 @@
 title: Style guide
 ---
 
+https://github.com/vmware-tanzu/velero/blob/main/site/content/docs/main/style-guide.md - use markdown snippets for help
+
+> **TO DO: Heather to format this page.**
+
 ## Content best practices
 Use present tense
 Use active voice

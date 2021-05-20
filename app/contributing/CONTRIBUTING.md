@@ -2,6 +2,7 @@
 > contribute to Kong itself, then please go
 > [here](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md).
 
+> **TO DO: Jennifer will tackle this mess**
 
 # Contributing to docs.konghq.com 📜 🦍
 
@@ -17,8 +18,6 @@ Guideline](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#where-to-see
 for an overview of the communication channels at your disposal.
 
 
-
-
 ## Where to report bugs?
 
 If the bug is about the https://docs.konghq.com website itself, please report it
@@ -28,9 +27,6 @@ tracker](https://github.com/kong/docs.konghq.com/issues/new).
 If the bug is related to Kong itself, please refer to the [Kong Contributing
 Guideline](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#where-to-report-bugs)
 instead.
-
-
-
 
 ## Contributing to Kong documentation and the Kong Hub
 
@@ -59,7 +55,6 @@ When contributing, be aware of a few things:
   the change for older versions as well.
   Example: if you fix a typo in `app/docs/0.10.x/configuration.md`, this typo
   may also be present in `app/docs/0.9.x/configuration.md`.
-
 
 
 ### Kong's Technical Writing Guide & Style Guide
@@ -102,8 +97,6 @@ contributor of docs.konghq.com and member of the Kong community.
 
 Your changes will be deployed as soon as a maintainer gets a chance to trigger
 a build, which should generally happen right after your patch was merged.
-
-
 
 
 ### Kong Hub contributions
@@ -152,8 +145,6 @@ the README - you should find your Hub contribution listed at
 
 Kong staff will review your PR, suggest improvements and adjustments as
 necessary, and once approved, will merge and deploy your Kong Hub addition!
-
-
 
 
 ### Writing plugin documentation
@@ -216,8 +207,6 @@ naming scheme when pushing your branch(es):
   to the documentation itself, see the [Type](#type) section below)
 
 
-
-
 #### Commit atomicity
 
 When submitting patches, you must organize your commits in
@@ -262,7 +251,6 @@ Here is a template of what your commit message should look like:
 <BLANK LINE>
 <footer>
 ```
-
 
 ##### Type
 
@@ -316,8 +304,6 @@ From #623
 ```
 
 
-
-
 #### Linting
 
 As mentioned in the guidelines, to submit a patch, the linter must succeed. You
@@ -326,7 +312,6 @@ can run the linter like so:
 ```bash
 $ npm run test
 ```
-
 
 ### Contributing images, videos, etc
 
