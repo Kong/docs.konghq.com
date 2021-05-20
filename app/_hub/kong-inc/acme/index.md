@@ -7,7 +7,8 @@ source_url: https://github.com/Kong/kong-plugin-acme
 
 desc: Let's Encrypt and ACMEv2 integration with Kong
 description: |
-  This plugin allows Kong to apply certificates from Let's Encrypt or any other ACMEv2 service and serve dynamically. Renewal is handled with a configurable threshold time.
+  This plugin allows Kong to apply certificates from Let's Encrypt or any other ACMEv2 service and serve them dynamically.
+  Renewal is handled with a configurable threshold time.
 
 type: plugin
 categories:
@@ -41,26 +42,33 @@ params:
       required: yes
       default:
       value_in_examples: example@example.com
+      datatype:
       description: |
-        The account identifier, can be reused in different plugin instance.
+        The account identifier. Can be reused in a different plugin instance.
     - name: api_uri
       required: false
       default: "`https://acme-v02.api.letsencrypt.org`"
+      datatype:
       description: |
-        The ACMEv2 API endpoint to use. Users can specify the [Let's Encrypt staging environment](https://letsencrypt.org/docs/staging-environment/) (`https://acme-staging-v02.api.letsencrypt.org/directory`) for testing. Note that Kong doesn't automatically delete staging certificates: if you use same domain to test and use in production, you will need to delete those certificates manually after testing.
+        The ACMEv2 API endpoint to use. Users can specify the
+        [Let's Encrypt staging environment](https://letsencrypt.org/docs/staging-environment/) (`https://acme-staging-v02.api.letsencrypt.org/directory`) for testing. Note that Kong doesn't automatically delete staging certificates.
+        If you use the same domain in test and production environments, you need to manually delete those certificates after testing.
     - name: cert_type
       required: false
       default: "`rsa`"
+      datatype:
       description: |
         The certificate type to create. The possible values are `"rsa"` for RSA certificate or `"ecc"` for EC certificate.
     - name: domains
       required: false
       default: "`[]`"
+      datatype:
       description: |
-        The list of domains to create certificate for. To match subdomains under `example.com`, use `*.example.com`. Regex pattern is not supported. Note this config is only used to match domains, not to specify the Common Name or Subject Alternative Name to create certifcates; each domain will have its own certificate.
+        The list of domains to create certificate for. To match subdomains under `example.com`, use `*.example.com`. Regex pattern is not supported. Note this config is only used to match domains, not to specify the Common Name or Subject Alternative Name to create certifcates; each domain must have its own certificate.
     - name: fail_backoff_minutes
       required: false
       default: 5
+      datatype:
       description: |
         Minutes to wait for each domain that fails to create a certificate. This applies to both new certificate and renewal.
     - name: renew_threshold_days
@@ -71,28 +79,34 @@ params:
     - name: storage
       required: false
       default: "`shm`"
+      datatype:
       description: |
         The backend storage type to use. The possible values are `"kong"`, `"shm"`, `"redis"`, `"consul"`, or `"vault"`. In DB-less mode, `"kong"` storage is unavailable. Note that `"shm"` storage does not persist during Kong restarts and does not work for Kong running on different machines, so consider using one of `"kong"`, `"redis"`, `"consul"`, or `"vault"` in production.
     - name: storage_config
       required: false
       default:
+      datatype:
       description: |
         Storage configs for each backend storage. See below for its default value.
     - name: tos_accepted
       required: false
       default: "`false`"
+      datatype:
       description: |
-        If you are using Let's Encrypt, you must set this to true to agree the [Terms of Service](https://letsencrypt.org/repository/).
+        If you are using Let's Encrypt, you must set this to `true` to agree the [Terms of Service](https://letsencrypt.org/repository/).
     - name: eab_kid
       required: false
+      datatype:
       description: |
         External account binding (EAB) key id. You usually don't need to set this unless it is explicitly required by the CA.
     - name: eab_hmac_key
       required: false
+      datatype:
       description: |
         External account binding (EAB) base64-encoded URL string of the HMAC key. You usually don't need to set this unless it is explicitly required by the CA.
   extra: |
     `config.storage_config` is a table for all possible storage types. By default, it is:
+
     ```json
         "storage_config": {
           "kong": {},
@@ -137,7 +151,7 @@ params:
 
 ---
 
-### Using the Plugin
+### Using the plugin
 
 #### Configure Kong
 
@@ -146,7 +160,7 @@ params:
 verify Let's Encrypt API. The CA-bundle file is usually `/etc/ssl/certs/ca-certificates.crt` for
 Ubuntu/Debian and `/etc/ssl/certs/ca-bundle.crt` for CentOS/Fedora/RHEL.
 
-#### Configure Plugin
+#### Configure plugin
 
 Here's a sample declarative configuration with `redis` as storage:
 
@@ -178,13 +192,13 @@ plugins:
           port: 6379
 ```
 
-#### Enable the Plugin
+#### Enable the plugin
 
 For each the domain that needs a certificate, make sure `DOMAIN/.well-known/acme-challenge`
-is mapped to a Route in Kong. You can check this by sending
+is mapped to a route in Kong. You can check this by sending
 `curl KONG_IP/.well-known/acme-challenge/x -H "host:DOMAIN"` and getting the response `Not found`.
 You can also [use the Admin API](#create-certificates) to verify the setup.
-If not, add a Route and a dummy Service to catch this route.
+If not, add a route and a dummy service to catch this route.
 
 ```bash
 # add a dummy service if needed
@@ -244,7 +258,7 @@ $ curl https://mydomain.com
 
 *`ngrok` is only needed for local testing or development, it's **not** a requirement for the plugin itself.*
 
-Run ngrok with
+Run ngrok with:
 
 ```bash
 $ ./ngrok http localhost:8000
@@ -259,14 +273,14 @@ $ export NGROK_HOST=e2e034a5.ngrok.io
 
 Leave the process running.
 
-#### Configure Route and Service
+#### Configure route and service
 
 ```bash
 $ curl http://localhost:8001/services -d name=acme-test -d url=http://mockbin.org
 $ curl http://localhost:8001/routes -d service.name=acme-test -d hosts=$NGROK_HOST
 ```
 
-#### Enable Plugin
+#### Enable plugin
 
 ```bash
 $ curl localhost:8001/plugins -d name=acme \
@@ -298,5 +312,5 @@ Certificate entity is already defined in Kong, they will be overridden by the
 response.
 - The plugin only supports http-01 challenge, meaning a user will need a public
 IP and set up a resolvable DNS. Kong also needs to accept proxy traffic from port `80`.
-Also, note that a wildcard or star (*) certificate is not supported. Each domain will have its
+Also, note that a wildcard or star (*) certificate is not supported. Each domain must have its
 own certificate.
