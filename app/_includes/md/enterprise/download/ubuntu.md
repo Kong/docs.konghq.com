@@ -9,12 +9,12 @@
 
     Versions are listed in chronological order.
 
-    For example: `kong-enterprise-edition_{{page.kong_versions[10].version}}_all.deb`
+    For example: `kong-enterprise-edition_{{page.kong_versions[11].version}}_all.deb`
 
 6. Copy the `.deb` file to your home directory on the Ubuntu system. For example:
 
     ```bash
-    $ scp kong-enterprise-edition_{{page.kong_versions[10].version}}_all.deb <ubuntu_user>@<server>:~
+    $ scp kong-enterprise-edition_{{page.kong_versions[11].version}}_all.deb <ubuntu_user>@<server>:~
     ```
 
 {% endif %}

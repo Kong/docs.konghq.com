@@ -85,8 +85,8 @@ Notes:
 
 Notes:
 
-The {{site.base_gateway}} version 2.3 allows multiple plugin servers; in particular
-it's now possible to write single-plugin servers, in effect plugins as
+The {{site.base_gateway}} versions 2.3 and onward allow multiple plugin servers. 
+In particular, it's now possible to write single-plugin servers, in effect plugins as
 microservices. To help with this, version v0.6.0 of the [go-pdk] package
 includes an optional plugin server. See [Embedded Server](#embedded-server)
 for more information.

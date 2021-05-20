@@ -49,7 +49,7 @@ root-equivalent access.
 3. Verify you get an OK check. Output should be similar to this:
 
     ```
-    kong-enterprise-edition-{{page.kong_versions[10].version}}.el7.noarch.rpm: rsa sha1 (md5) pgp md5 OK
+    kong-enterprise-edition-{{page.kong_versions[11].version}}.el7.noarch.rpm: rsa sha1 (md5) pgp md5 OK
     ``` -->
 
 ## Step 2. Install Kong Gateway

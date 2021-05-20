@@ -15,14 +15,14 @@ There are two options to install {{site.base_gateway}} on CentOS.
 
     Versions are listed in chronological order.
 
-    For example: `kong-enterprise-edition-{{page.kong_versions[10].version}}.el8.noarch.rpm`
+    For example: `kong-enterprise-edition-{{page.kong_versions[11].version}}.el8.noarch.rpm`
 
 3. Copy the RPM file to your home directory on the CentOS system.
 
     For example:
 
     ```bash
-    $ scp kong-enterprise-edition-{{page.kong_versions[10].version}}.el8.noarch.rpm <centos user>@<server>:~
+    $ scp kong-enterprise-edition-{{page.kong_versions[11].version}}.el8.noarch.rpm <centos user>@<server>:~
     ```
 
 {% endnavtab %}

@@ -16,14 +16,14 @@ There are two options to install {{site.base_gateway}} on RHEL.
 
     Versions are listed in chronological order.
 
-    For example: `kong-enterprise-edition-{{page.kong_versions[10].version}}.rhel8.noarch.rpm`
+    For example: `kong-enterprise-edition-{{page.kong_versions[11].version}}.rhel8.noarch.rpm`
 
 3. Copy the RPM file to your home directory on the RHEL system.
 
     For example:
 
     ```bash
-    $ scp kong-enterprise-edition-{{page.kong_versions[10].version}}.rhel8.noarch.rpm <rhel user>@<server>:~
+    $ scp kong-enterprise-edition-{{page.kong_versions[11].version}}.rhel8.noarch.rpm <rhel user>@<server>:~
     ```
 
 {% endnavtab %}
