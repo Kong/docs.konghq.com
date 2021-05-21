@@ -1,310 +1,58 @@
-> You are reviewing the contributing guidelines of docs.konghq.com. If you want to
-> contribute to Kong itself, then please go
-> [here](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md).
+
 
 > **TO DO: Jennifer will tackle this mess**
 
 # Contributing to docs.konghq.com 📜 🦍
 
-Hello, and welcome! Whether you are looking for help, trying to report a bug,
-thinking about getting involved in the project or about to submit a patch, this document is for you!
+Hello, and welcome! Thanks for thinking about contributing to the Kong documentation.
 
-Consult the Table of Contents below, and jump to the desired section.
+This section of the docs is here to help you help us, so read on to learn how to ask questions and help effectively. 
+We respect your time, and the more you follow our guidelines the easier it is for us (docs maintainers) to respond 
+promptly and help you get your pull requests merged.
 
-## Where to seek help?
+## What we're looking for
 
-Consult the [Kong Contributing
-Guideline](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#where-to-seek-for-help)
-for an overview of the communication channels at your disposal.
+We welcome fixes to unclear prose, fixes to typos in docs for recent versions, docs for new features you've contributed to
+the code, and more.
 
+If you've written a Kong plug-in and need to contribute documentation for it, see [the page about plug-in docs](plugin-docs). 
+There are special guidelines for these docs.
 
-## Where to report bugs?
+We ask that you explore the existing documentation before you start a big docs contribution, though. Some types of docs
+don't belong on the site: end-to-end guides, tutorials, anything better suited to a blog post. If you're interested in 
+this kind of content, though, join the community on [Kong's forum](https://discuss.konghq.com/), on 
+[Gitter](https://gitter.im/Kong/kong), or on IRC at #kong.
 
-If the bug is about the https://docs.konghq.com website itself, please report it
-in this [repository's issues
-tracker](https://github.com/kong/docs.konghq.com/issues/new).
+The community is the place to ask support questions, too. We can't help you with the product in this repository.
 
-If the bug is related to Kong itself, please refer to the [Kong Contributing
-Guideline](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#where-to-report-bugs)
-instead.
+## How to contribute
 
-## Contributing to Kong documentation and the Kong Hub
+Depending on the bug, you can either [file an issue against the docs](https://github.com/kong/docs.konghq.com/issues/new) 
+or submit a pull request with a fix. If you submit a PR without an issue, you must fill out the PR template to explain why 
+you're making the change.
 
-Improving the documentation is a most welcome form of contribution to the Kong
-community! You are encouraged to suggest edits, improvements, or fix any typo
-you may find on this website. Please read the below section about
-[submitting a patch](#submitting-a-patch).
+For bugs against Kong Gateway functionality, see the [code repository]
+(https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#where-to-report-bugs).
 
-Adding and improving listings in the Kong Hub is also encouraged! Please
-read the below section
-about [Kong Hub contributions](#kong-hub-contributions).
+If you fix a typo (and we welcome typo fixes!), be sure to check for it everywhere, not just in the one instance you might 
+have found. Currently docs for each version live in separate directories, not branches, and much content doesn't change from 
+version to version. Chances are good that a typo on a page in one version appears on the same page in other versions too.
 
-If you wish to contribute to Kong itself (as opposed to the documentation
-website), then please consult the [Kong Contributing
-Guideline](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#contributing)
-instead.
+> TODO expand based on some of the old material and on https://github.com/nayafia/contributing-template/blob/master/CONTRIBUTING-template.md
 
-When contributing, be aware of a few things:
-
-- Documentation for Kong Hub listings, which includes all Kong Inc.-published
-  and community-published plugins and integrations lives in the `app/_hub`
-  and `app/_data/extensions` directories. **Versioning is optional, and thus potentially inconsistent, for this part of the documentation**.
-- Kong documentation lives in `app/x.x.x` and Kong Enterprise documentation
-  lives in `app/enterprise/`. **These parts of the documentation are versioned**.
-  When proposing a change in these parts of the documentation, consider proposing
-  the change for older versions as well.
-  Example: if you fix a typo in `app/docs/0.10.x/configuration.md`, this typo
-  may also be present in `app/docs/0.9.x/configuration.md`.
-
-
-### Kong's Technical Writing Guide & Style Guide
+## Kong's Technical Writing Guide & Style Guide
 
 To ensure consistency throughout all of Kong's documentation, we ask that all contributors reference our [Technical Writing Guide ](https://github.com/Kong/docs.konghq.com/blob/master/TECHNICAL-WRITING-GUIDE.md) and [Style Guide](https://github.com/Kong/docs.konghq.com/blob/master/STYLEGUIDE.md).
 
-### Submitting a patch
+## Git Best Practices
 
-Feel free to contribute fixes or minor features, we love to receive Pull
-Requests! If you are planning to develop a larger feature, come talk to us
-first in [Kong Nation](https://discuss.konghq.com/).
+> TODO trim and make sure relevant content is here or on another page. Removed branching section bc it's no longer relevant. Note netlify builds?
 
-When contributing, please follow the guidelines provided in this document. They
-will cover topics such as the commit message format to use or how to run the
-linter.
-
-Once you have read them, and you are ready to submit your Pull Request, be sure
-to verify a few things:
-
-- Your commit history is clean: changes are atomic and the git message format
-  was respected
-- Rebase your work on top of the base branch (seek help online on how to use
-  `git rebase`; this is important to ensure your commit history is clean and
-   linear)
-- The linting is succeeding: run `npm run test` (see the development
-  documentation for additional details).
-  _Note: The linter won't catch most errors in Plugin Hub documentation. You
-  need to check for any errors manually, with a [local build](https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md)._
-
-If the above guidelines are respected, your Pull Request has all its chances
-to be considered and will be reviewed by a maintainer.
-
-If you are asked to update your patch by a reviewer, please do so! Remember:
-**you are responsible for pushing your patch forward**. If you contributed it,
-you are probably the one in need of it. You must be prepared to apply changes
-to it if necessary.
-
-If your Pull Request was accepted, congratulations! You are now an official
-contributor of docs.konghq.com and member of the Kong community.
-
-Your changes will be deployed as soon as a maintainer gets a chance to trigger
-a build, which should generally happen right after your patch was merged.
-
-
-### Kong Hub contributions
-
-If you are planning on producing a new Kong plugin or integration, with the
-intent to list it in the Kong Hub, let us know! Email Gayle Neumann, Documentation Manager at gayle.neumann@konghq.com, to inform us that you are submitting a plugin or if you have any questions.
-
-Adding a new listing to the Kong Hub may be proposed by:
-
-1. Clone this repo
-    ```
-    git clone https://github.com/Kong/docs.konghq.com.git
-    ```
-2. Move into the repo's directory
-    ```
-    cd docs.konghq.com
-    ```
-1. Create a [separate branch from master](https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches)
-    ```
-    git checkout -b [name_of_your_new_branch]
-    ```
-1. Create a publisher directory at`_app/_hub/`, such as
- `_app/_hub/your-GitHub-handle` (if you are contributing as an individual)
- or `_app/_hub/company-name` (if you are contributing as a company). See other Kong Hub listings for examples of publisher names.
-1. Create a subdirectory for your extension within your publisher directory -
-such as `_app/_hub/your-name/your-extension`.
-1. Copy the `/app/_hub/_init/my-extension/index.md` file into your extension's
-subdirectory. If you are publishing a single version of your extension, which is typical to
-start with, then the file name `index.md` should remain.
-1. Edit your `index.md` file based on the guidance in comments in that file -
-you'll find lots of helpful examples in other extension files. If you are
-documenting a Kong plugin, be sure to see the next section.
-1. Custom logos are required for publication on the Kong plugin hub. Custom logos
-should be a square-format PNG file,
-with no transparency, and 120x120 pixels in size. Add the logo file to
-`/app/_assets/images/icons/hub/` - the filename of your image should be
-`publisher_extension` using the "publisher" and "extension" name from step 2.
-1. Be sure to run the docs site locally per the instructions in
-the README - you should find your Hub contribution listed at
-`localhost:3000/hub`
-1. Once you are happy with your listing, push your branch to the GitHub repository
-  ```
-  git push --set-upstream origin [name_of_your_new_branch]
-  ```
-1. Find [your branch](https://github.com/Kong/docs.konghq.com/branches/yours) and make [a Pull Request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) to add your documentation to the Kong Hub. [Having trouble, or have questions?](#where-to-seek-help)
-
-Kong staff will review your PR, suggest improvements and adjustments as
-necessary, and once approved, will merge and deploy your Kong Hub addition!
-
-
-### Writing plugin documentation
-
-Plugins are documented as extensions under `app/_hub/` - please look at
-the existing plugins for examples, and see additional advice in
-`app/_hub/_init/my-extension/index.md`.
-
-* `description` - text to be added in the Description section. Use YAML's
-  [pipe notation](https://stackoverflow.com/questions/15540635/what-is-the-use-of-pipe-symbol-in-yaml)
-  to write multi-paragraph text. Note that due to the order that data
-  is generated, you may not use forward-references in links (e.g. use
-  `[example](http://example.com)` and not `[example][example]` pointing to
-  an index at the end).
-* `desc` (string, required) - a short, one-line description of the extension.
-* `type` (array, required) - what kind of extension this is: `plugin` or
-`integration` are supported at this time, though more types will be considered.
-* `params`
-  * `name` - the name of the plugin as it is referred to in Kong's config and Kong's
-  Admin API (not always the same spelling as the page name)
-  * `api_id` - boolean - whether this plugin can be applied to an API.
-  Affects the generation of examples and config table.
-  * `route_id` - boolean - whether this plugin can be applied to a Route.
-  Affects the generation of examples and config table.
-  * `service_id` - boolean - whether this plugin can be applied to a Service.
-  Affects the generation of examples and config table.
-  * `consumer_id` - boolean - whether this plugin can be applied to a Consumer.
-  Affects the generation of examples and config table.
-  * `config` - the configuration table.
-  Each entry is a configuration item with the following fields:
-    * `name` - the field name as read by Kong
-    * `required` - `true` if required, `false` if optional, `semi`
-    if semi-required (required depending on other fields)
-    * `default` - the default value. If using Markdown
-    (e.g. to make values appear type-written), wrap it in double-quotes like
-    ``"`foobar`"``
-    * `value_in_examples` - if the field is to appear in examples, this is
-    the value to use. A required field with no `value_in_examples` entry
-    will resort to the one in `default`.
-    * `description` - description of the field.
-    Use YAML's pipe notation if writing longer Markdown text.
-
-
-
-### Git Best Practices
-
-#### Git branches
-
-In this repository, `master` represents the current state of the website, and
-should constantly be deployed. Branch off of this branch for local development.
-
-If you have write access to the GitHub repository, please follow the following
-naming scheme when pushing your branch(es):
-
-- `docs/<ce|ee>-foo-bar` for updates to contents of the documentation (Markdown
-  files), README.md, or this file
-- `feat/foo-bar` for new website features e.g. Ruby, JavaScript, HTML, or CSS
-  changes to support a new feature
-- `fix/foo-bar` for website bug fixes (**not** including typos and other fixes
-  to the documentation itself, see the [Type](#type) section below)
-
-
-#### Commit atomicity
-
-When submitting patches, you must organize your commits in
-logical units of work. You are free to propose a patch with one or many
-commits, as long as their atomicity is respected. This means that no unrelated
-changes should be included in a commit.
-
-For example, you are writing a patch to fix a bug, but in your endeavor, you
-spot another bug. **Do not fix both bugs in the same commit!**. Finish your
-work on the initial bug, propose your patch, and come back to the second bug
-later on. This is also valid for unrelated style fixes, refactorings, etc...
-
-You should use your best judgment when facing such decisions. A good approach
-for this is to put yourself in the shoes of the person who will review your
-patch: will they understand your changes and reasoning just by reading your
-commit history? Will they find unrelated changes in a particular commit? They
-shouldn't!
-
-Writing meaningful commit messages that follow our commit message format will
-also help you respect this mantra (see the below section).
-
-
-
-
-#### Commit message format
-
-To maintain a healthy Git history, we ask of you that you write your commit
-messages as follows:
-
-- The tense of your message must be **present**
-- Your message must be prefixed by a type, and a scope
-- The header of your message should not be longer than 50 characters
-- A blank line should be included between the header and the body
-- The body of your message should not contain lines longer than 72 characters
-
-Here is a template of what your commit message should look like:
-
-```
-<type>(<scope>) <subject>
-<BLANK LINE>
-<body>
-<BLANK LINE>
-<footer>
-```
-
-##### Type
-
-The type of your commit indicates what type of change this commit is about. The
-accepted types are:
-
-- **docs**: Changes made to any static content files associated with Kong, Kong
-  Enterprise, and Kong Hub documentation (including typo fixes),
-  the README.md or this file
-- **feat**: A new website feature e.g. Ruby, JavaScript, HTML, or CSS changes
-  to support a new feature
-- **fix**: A website bug fix (related to the Ruby, JavaScript, HTML, or CSS
-  assets). Typos and other fixes to the _contents_ of the documentation
-  (markdown files) are not included in this scope
-- **style**: CSS fixes, formatting, missing semicolons, :nail_care:
-- **refactor**: A code change that neither fixes a bug nor adds a feature, and
-  is too big to be considered `chore`
-- **chore**: Maintenance changes related to code cleaning that isn't considered
-  part of a refactor, build process updates, dependency bumps, or auxiliary
-  tools and libraries updates (npm modules, Travis-ci, etc...)
-
-
-##### Scope
-
-The scope is the part of the codebase that is affected by your change. Choosing
-it is at your discretion, but here are some of the most frequent ones:
-
-- **`<ce or ee>/<section>`**: A change that affects Kong docs or Kong
-  Enterprise docs and specifies which section.
-- **`admin`**: Changes related to the Admin API documentation
-- **`proxy`**: Changes related to the proxy documentation
-- **`conf`**: Changes related to the configuration file documentation (new
-  values, improvements...)
-- **`<plugin-or-extension-name>`**: A change to any of the listings in the
-  Kong Hub. This could be `basic-auth`, or `ldap` for example
-- **`*`**: When the change affects too many parts of the codebase at once (this
-  should be rare and avoided)
-
-
-##### Examples
-
-Here are a few examples of good commit messages to take inspiration from:
-
-```
-docs(ee/dev-portal) cleanup installation instructions
-
-* add ports exposed for Dev Portal functionality
-* use relative links and version them when necessary
-
-From #623
-```
-
+Link to good git tutorials elsewhere.
 
 #### Linting
+
+put in readme, as part of running locally -- or remove? we don't seem to actually require it
 
 As mentioned in the guidelines, to submit a patch, the linter must succeed. You
 can run the linter like so:
@@ -314,6 +62,8 @@ $ npm run test
 ```
 
 ### Contributing images, videos, etc
+
+> TODO check whether this is still current. Recommend not mentioning videos <shudder>
 
 Binary files like images and videos should not be included in your pull
 request, except custom icons for the Kong Hub - any request
@@ -331,10 +81,12 @@ Instead, please:
 
 ### Contributor T-shirt
 
+> TODO check whether this is still current.
+
 If your contribution to this repository was accepted and fixes a bug, adds
 functionality, or makes it significantly easier to use or understand Kong,
 congratulations! You are eligible to receive the very special Contributor
 T-shirt! Find out how to request your shirt
-[here](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#contributor-t-shirt).
+[here](https://github.com/Kong/kong/blob/main/CONTRIBUTING.md#contributor-t-shirt).
 
 Thank you for contributing!
