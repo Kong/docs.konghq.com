@@ -28,7 +28,7 @@ root-equivalent access.
 
 ## Step 1. Prepare to install Kong Gateway {#step-1}
 
-{% include /md/enterprise/download/centos.md version='2.x' %}
+{% include /md/enterprise/download/centos.md version='2.4.x' %}
 
 <!-- ### (Optional) Verify the package integrity
 
