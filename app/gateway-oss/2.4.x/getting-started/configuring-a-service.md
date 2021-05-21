@@ -36,7 +36,7 @@ to Kong:
 $ curl -i -X POST \
   --url http://localhost:8001/services/ \
   --data 'name=example-service' \
-  --data 'url=http://mockbin.org'
+  --data 'host=http://mockbin.org'
 ```
 
 You should receive a response similar to:
