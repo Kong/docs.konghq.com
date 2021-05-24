@@ -38,7 +38,190 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
+  protocols: ["http", "https", "grpc", "grpcs"]
   dbless_compatible: yes
+  config:
+    - name: realm
+      required: false
+      default:
+      datatype: string
+      description: |
+        When authentication or authorization fails, or there is an unexpected error, the plugin
+        sends an `WWW-Authenticate` header with the `realm` attribute value of this configuration parameter.
+    - name: enable_hs_signatures
+      required: false
+      default: false
+      datatype: boolean
+      description: |
+        Tokens signed with HMAC algorithms such as HS256, HS384, or HS512 are not accepted by default.
+        If you need to accept such tokens for verification, you can enable this setting.
+    - name: enable_instrumentation
+      required: false
+      default: false
+      datatype: boolean
+      description: |
+        When you are experiencing problems in production and don't want to change logging level
+        on Kong nodes, which requires a reload, use this parameter to enable instrumentation
+        for the request. The parameter writes log entries with some added information using `ngx.CRIT`
+        (CRITICAL) level.
+    - name: access_token_issuer
+      required: false
+      default: kong
+      datatype: string
+      description: |
+        The `iss` claim of a signed or resigned access token is set to this value. Original `iss` claim of the
+        incoming token (possibly introspected) is stored in `original_iss` claim of the newly
+        signed access token.
+    - name: access_token_keyset
+      required: false
+      default: kong
+      datatype: string
+      description: |
+        This configuration parameter selects the private key for access token signing.
+    - name: access_token_jwks_uri
+      required: false
+      default:
+      datatype: string
+      description: |
+        If you want to use `config.verify_access_token_signature`, you must specify the URI where the
+        plugin can fetch the public keys (JWKS) to verify the signature of the access token. If you
+        don't specify one, and you pass a JWT token to the plugin, then the plugin responds with
+        `401 Unauthorized`.
+    - name: access_token_request_header
+      required: false
+      default: Authorization
+      datatype: string
+      description: |
+        This parameter tells the name of the header where to look for the access token. By default,
+        we search it from `Authorization: Bearer <token>` header (the value being magic key
+        `authorization:bearer`). If you don't want to do anything with `access token`, then you can
+        set this to `null` or `""` (empty string). Any header can be used to pass the access token
+        to this plugin. Two predefined values are `authorization:bearer` and `authorization:basic`.
+    - name: access_token_request_leeway
+      required: false
+      default: 0
+      datatype: number
+      description: |
+        Use this parameter to adjust clock skew between the token issuer and Kong. The value
+        is added to token's `exp` claim before checking token expiry against Kong servers' current
+        time in seconds. You can disable access token `expiry` verification altogether with
+        `config.verify_access_token_expiry`.
+    - name: access_token_scopes_required
+      required: false
+      default:
+      datatype: array of string elements
+      description: |
+        With this parameter you can specify the required values (or scopes) that are looked from a
+        claim specified by `config.access_token_scopes_claim`. E.g. `[ "employee demo-service", "superadmin" ]`
+        which can be given as `"employee demo-service,superadmin"` (form post) would mean that claim
+        need to have values `"employee"` and `"demo-service"` **OR** that the claim need to have value
+        of `"superadmin"` to be successfully authorized for the upstream access. If required scopes are
+        not found in access token, the plugin will respond with `403 Forbidden`.
+    - name:
+      required:
+      default:
+      datatype:
+      description: |
+
+
+    - name:
+      required:
+      default:
+      datatype:
+      description: |
+    - name:
+      required:
+      default:
+      datatype:
+      description: |
+
+    - name:
+      required:
+      default:
+      datatype:
+      description: |
+
+    - name:
+      required:
+      default:
+      datatype:
+      description: |
+
+
+    - name:
+      required:
+      default:
+      datatype:
+      description: |
+    - name:
+      required:
+      default:
+      datatype:
+      description: |
+
+
+    - name:
+      required:
+      default:
+      datatype:
+      description: |
+
+    - name:
+      required:
+      default:
+      datatype:
+      description: |
+
+
+    - name:
+      required:
+      default:
+      datatype:
+      description: |
+    - name:
+      required:
+      default:
+      datatype:
+      description: |
+
+    - name:
+      required:
+      default:
+      datatype:
+      description: |
+
+    - name:
+      required:
+      default:
+      datatype:
+      description: |
+
+
+    - name:
+      required:
+      default:
+      datatype:
+      description: |
+    - name:
+      required:
+      default:
+      datatype:
+      description: |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ---
 
 ## Contents
@@ -46,14 +229,10 @@ params:
 * [Plugin Configuration](#plugin-configuration)
 * [Plugin Configuration Parameters](#plugin-configuration-parameters)
   * [Description of Plugin Configuration Parameters](#description-of-plugin-configuration-parameters)
-    * [config.realm](#configrealm)
-    * [config.enable_hs_signatures](#configenable_hs_signatures)
-    * [config.access_token_issuer](#configaccess_token_issuer)
-    * [config.access_token_keyset](#configaccess_token_keyset)
-    * [config.access_token_jwks_uri](#configaccess_token_jwks_uri)
-    * [config.access_token_request_header](#configaccess_token_request_header)
-    * [config.access_token_leeway](#configaccess_token_leeway)
-    * [config.access_token_scopes_required](#configaccess_token_scopes_required)
+
+
+
+
     * [config.access_token_scopes_claim](#configaccess_token_scopes_claim)
     * [config.access_token_consumer_claim](#configaccess_token_consumer_claim)
     * [config.access_token_consumer_by](#configaccess_token_consumer_by)
@@ -145,7 +324,7 @@ plugins:
 
 All the parameters are optional, but you need to specify some options to actually make it work.
 
-For example signature verification cannot be done without plugin knowing about:
+For example, signature verification cannot be done without the plugin knowing about:
 `config.access_token_jwks_uri` and/or `config.channel_token_jwks_uri`.
 
 Also for introspection to work, you need to specify introspection endpoints:
@@ -154,69 +333,6 @@ Also for introspection to work, you need to specify introspection endpoints:
 
 ### Description of Plugin Configuration Parameters
 
-#### `config.realm`
-
-When authentication or authorization fails, or there is an unexpected error, the plugin will
-send `WWW-Authenticate` header with `realm` attribute value of this configuration parameter.
-
-#### `config.enable_hs_signatures`
-
-Tokens signed with HMAC algorithms such as HS256, HS384 or HS512 are not accepted by default.
-If you need to accept such tokens for verification, you can enable this setting. Default: `false`.
-
-#### `config.enable_instrumentation`
-
-When you are experiencing problems in production and don't want to change logging level
-on Kong nodes, which requires a reload, you can use this parameter to enable instrumentation
-for the request. It will write log entries with some added information using `ngx.CRIT`
-(CRITICAL) level.
-
-
-#### `config.access_token_issuer`
-
-`iss` claim of (re-)signed access token is set to this value. Original `iss` claim of the
-incoming token (possibly introspected) will be stored in `original_iss` claim of the newly
-signed access token.
-
-
-#### `config.access_token_keyset`
-
-This configuration parameter is used to select the private key for access token signing.
-
-
-#### `config.access_token_jwks_uri`
-
-If you want to use `config.verify_access_token_signature`, you must specify URI where the
-plugin can fetch the public keys (JWKS) to verify the signature of the access token. If you
-don't specify one, and you pass JWT token to plugin, then the plugin will respond with
-`401 Unauthorized`.
-
-
-#### `config.access_token_request_header`
-
-This parameter tells the name of the header where to look at the access token. By default
-we search it from `Authorization: Bearer <token>` header (the value being magic key
-`authorization:bearer`). If you don't want to do anything with `access token` then you can
-set this to `null` or `""` (empty string). Any header can be used to pass the access token
-to this plugin. Two predefined values are `authorization:bearer` and `authorization:basic`.
-
-
-#### `config.access_token_leeway`
-
-You can use this parameter to adjust clock skew between the token issuer and Kong. The value
-will be added to token's `exp` claim before checking token expiry against Kong servers current
-time (in seconds). You can disable access token `expiry` verification altogether with
-`config.verify_access_token_expiry`.
-
-
-#### `config.access_token_scopes_required`
-
-With this parameter you can specify the required values (or scopes) that are looked from a
-claim specified by `config.access_token_scopes_claim`. E.g. `[ "employee demo-service", "superadmin" ]`
-which can be given as `"employee demo-service,superadmin"` (form post) would mean that claim
-need to have values `"employee"` and `"demo-service"` **OR** that the claim need to have value
-of `"superadmin"` to be successfully authorized for the upstream access. If required scopes are
-not found in access token, the plugin will respond with `403 Forbidden`.
 
 
 #### `config.access_token_scopes_claim`
