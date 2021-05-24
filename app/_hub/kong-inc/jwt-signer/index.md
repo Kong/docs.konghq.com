@@ -43,7 +43,7 @@ params:
   config:
     - name: realm
       required: false
-      default: `ngx.var.host`
+      default: "ngx.var.host"
       datatype: string
       description: |
         When authentication or authorization fails, or there is an unexpected error, the plugin
@@ -142,7 +142,7 @@ params:
         The plugin will also set a couple of standard Kong upstream consumer headers.
     - name: access_token_consumer_by
       required: false
-      default: `["username", "custom_id"]`
+      default: ["username", "custom_id"]
       datatype: array of string elements
       description: |
         When the plugin tries to do access token to Kong consumer mapping, it tries to find a matching Kong
@@ -337,39 +337,48 @@ params:
       datatype: boolean
       description: |
         Whether or not to cache access token introspection results.
-    - name:
+    - name: trust_access_token_introspection
+      required: false
+      default: true
+      datatype: boolean
+      description: |
+        When you provide a opaque access token that the plugin introspects, and you do expiry
+        and scopes verification on introspection results, you probably don't want to do another
+        round of checks on the payload before the plugin signs a new token. Or that you don't
+        want to do checks to a JWT token provided with introspection JSON specified with
+        `config.access_token_introspection_jwt_claim`. With this parameter you can enable /
+        disable further checks on payload before the new token is signed. If you set this
+        to `true` the expiry or scopes are not checked on payload.
+    - name: enable_access_token_introspection
+      required: false
+      default: true
+      datatype: boolean
+      description: |
+        If you don't want to support opaque access tokens, you can disable introspection by
+        changing this configuration parameter to `false`.
+    - name: channel_token_issuer
+      required: false
+      default: kong
+      datatype: string
+      description: |
+        `iss` claim of (re-)signed channel token is set to this value. Original `iss` claim of
+        the incoming token (possibly introspected) will be stored in `original_iss` claim of
+        the newly signed channel token.
+    - name: channel_token_keyset
+      required: false
+      default: kong
+      datatype: string
+      description: |
+        This configuration parameter is used to select the private key for channel token signing.
+    - name: channel_token_jwks_uri
       required: false
       default:
-      datatype:
+      datatype: string
       description: |
-
-
-
-    - name:
-      required: false
-      default:
-      datatype:
-      description: |
-
-
-    - name:
-      required: false
-      default:
-      datatype:
-      description: |
-    - name:
-      required: false
-      default:
-      datatype:
-      description: |
-
-
-    - name:
-      required: false
-      default:
-      datatype:
-      description: |
-
+        If you want to use `config.verify_channel_token_signature`, you must specify URI where
+        the plugin can fetch the public keys (JWKS) to verify the signature of the channel token.
+        If you don't specify one, and you pass JWT token to plugin, then the plugin will respond
+        with `401 Unauthorized`.
     - name:
       required: false
       default:
@@ -429,11 +438,8 @@ params:
 * [Plugin Configuration Parameters](#plugin-configuration-parameters)
   * [Description of Plugin Configuration Parameters](#description-of-plugin-configuration-parameters)
 
-    * [config.trust_access_token_introspection](#configtrust_access_token_introspection)
-    * [config.enable_access_token_introspection](#configenable_access_token_introspection)
-    * [config.channel_token_issuer](#configchannel_token_issuer)
-    * [config.channel_token_keyset](#configchannel_token_keyset)
-    * [config.channel_token_jwks_uri](#configchannel_token_jwks_uri)
+
+
     * [config.channel_token_request_header](#configchannel_token_request_header)
     * [config.channel_token_leeway](#configchannel_token_leeway)
     * [config.channel_token_scopes_required](#configchannel_token_scopes_required)
@@ -505,44 +511,6 @@ Also for introspection to work, you need to specify introspection endpoints:
 
 
 ### Description of Plugin Configuration Parameters
-
-
-
-
-#### `config.trust_access_token_introspection`
-
-When you provide a opaque access token that the plugin introspects, and you do expiry
-and scopes verification on introspection results, you probably don't want to do another
-round of checks on the payload before the plugin signs a new token. Or that you don't
-want to do checks to a JWT token provided with introspection JSON specified with
-`config.access_token_introspection_jwt_claim`. With this parameter you can enable /
-disable further checks on payload before the new token is signed. If you set this
-to `true` the expiry or scopes are not checked on payload.
-
-#### `config.enable_access_token_introspection`
-
-If you don't want to support opaque access tokens, you can disable introspection by
-changing this configuration parameter to `false`.
-
-
-#### `config.channel_token_issuer`
-
-`iss` claim of (re-)signed channel token is set to this value. Original `iss` claim of
-the incoming token (possibly introspected) will be stored in `original_iss` claim of
-the newly signed channel token.
-
-
-#### `config.channel_token_keyset`
-
-This configuration parameter is used to select the private key for channel token signing.
-
-
-#### `config.channel_token_jwks_uri`
-
-If you want to use `config.verify_channel_token_signature`, you must specify URI where
-the plugin can fetch the public keys (JWKS) to verify the signature of the channel token.
-If you don't specify one, and you pass JWT token to plugin, then the plugin will respond
-with `401 Unauthorized`.
 
 
 #### `config.channel_token_request_header`
