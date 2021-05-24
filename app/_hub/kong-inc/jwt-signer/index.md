@@ -302,35 +302,41 @@ params:
       description: |
         With this configuration parameter you can quickly turn on/off the access token
         signature verification.
-    - name:
+    - name: verify_access_token_expiry
       required: false
-      default:
-      datatype:
+      default: true
+      datatype: boolean
       description: |
-    - name:
+        With this configuration parameter you can quickly turn on/off the access token
+        expiry verification.
+    - name: verify_access_token_scopes
       required: false
-      default:
-      datatype:
+      default: true
+      datatype: boolean
       description: |
-
-    - name:
+        With this configuration parameter you can quickly turn on/off the access token
+        required scopes verification, specified with `config.access_token_scopes_required`.
+    - name: verify_access_token_introspection_expiry
       required: false
-      default:
-      datatype:
+      default: true
+      datatype: boolean
       description: |
-
-    - name:
+        With this configuration parameter you can quickly turn on/off the access token
+        introspection expiry verification.
+    - name: verify_access_token_introspection_scopes
       required: false
-      default:
-      datatype:
+      default: true
+      datatype: boolean
       description: |
-
-
-    - name:
+        With this configuration parameter you can quickly turn on/off the access token
+        introspection scopes verification, specified with
+        `config.access_token_introspection_scopes_required`.
+    - name: cache_access_token_introspection
       required: false
-      default:
-      datatype:
+      default: true
+      datatype: boolean
       description: |
+        Whether or not to cache access token introspection results.
     - name:
       required: false
       default:
@@ -423,12 +429,6 @@ params:
 * [Plugin Configuration Parameters](#plugin-configuration-parameters)
   * [Description of Plugin Configuration Parameters](#description-of-plugin-configuration-parameters)
 
-
-    * [config.verify_access_token_expiry](#configverify_access_token_expiry)
-    * [config.verify_access_token_scopes](#configverify_access_token_scopes)
-    * [config.verify_access_token_introspection_expiry](#configverify_access_token_introspection_expiry)
-    * [config.verify_access_token_introspection_scopes](#configverify_access_token_introspection_scopes)
-    * [config.cache_access_token_introspection](#configcache_access_token_introspection)
     * [config.trust_access_token_introspection](#configtrust_access_token_introspection)
     * [config.enable_access_token_introspection](#configenable_access_token_introspection)
     * [config.channel_token_issuer](#configchannel_token_issuer)
@@ -507,36 +507,6 @@ Also for introspection to work, you need to specify introspection endpoints:
 ### Description of Plugin Configuration Parameters
 
 
-
-
-#### `config.verify_access_token_expiry`
-
-With this configuration parameter you can quickly turn on/off the access token
-expiry verification.
-
-
-#### `config.verify_access_token_scopes`
-
-With this configuration parameter you can quickly turn on/off the access token
-required scopes verification, specified with `config.access_token_scopes_required`.
-
-
-#### `config.verify_access_token_introspection_expiry`
-
-With this configuration parameter you can quickly turn on/off the access token
-introspection expiry verification.
-
-
-#### `config.verify_access_token_introspection_scopes`
-
-With this configuration parameter you can quickly turn on/off the access token
-introspection scopes verification, specified with
-`config.access_token_introspection_scopes_required`.
-
-
-#### `config.cache_access_token_introspection`
-
-Whether or not to cache access token introspection results.
 
 
 #### `config.trust_access_token_introspection`
