@@ -6,7 +6,7 @@ version: 2.4.x
 
 desc: Verify and sign one or two tokens in a request
 description: |
-  The Kong JWT Signer plugin makes it possible to verify, sign, or and resign
+  The Kong JWT Signer plugin makes it possible to verify, sign, or resign
   one or two tokens in a request, that the plugin refers as to as an access token
   and channel token. The plugin supports both opaque tokens through introspection,
   and signed JWT tokens (through signature verification. The
