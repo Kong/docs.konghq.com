@@ -35,7 +35,6 @@ kong_version_compatibility:
 
 params:
   name: jwt-signer
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: false
