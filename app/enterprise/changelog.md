@@ -226,8 +226,8 @@ Kong now ensures targets with a weight of 0 are displayed in the Admin API.
   newer, simplier [pattern](/enterprise/2.4.x/plugin-development/custom-logic).
 
 ### Known issues
-The [MTLS Authentication](/hub/kong-inc/mtls-auth) plugin is incompatible with Kong Gateway v2.4.1.0.
-When making a call using the MTLS Authentication plugin, instead of a successful connection, users
+The [mTLS Authentication](/hub/kong-inc/mtls-auth) plugin is incompatible with Kong Gateway v2.4.1.0.
+When making a call using the mTLS Authentication plugin, instead of a successful connection, users
 recieve an error and the call is aborted. This error is caused by an update to the way Kong handles
 keep-alive connections. [7102](https://github.com/Kong/kong/pull/7102)
 
