@@ -2,42 +2,66 @@
 title: Style guide
 ---
 
-https://github.com/vmware-tanzu/velero/blob/main/site/content/docs/main/style-guide.md - use markdown snippets for help
+<!-- https://github.com/vmware-tanzu/velero/blob/main/site/content/docs/main/style-guide.md - use markdown snippets for help -->
 
-> **TO DO: Heather to format this page.**
+<!-- > **TO DO: Heather to format this page.** -->
+
 
 ## Content best practices
-Use present tense
-Use active voice
-Use conversational tone
-Use “run” vs “execute” (simpler words where clear)
-Don’t use Latin phrases
-Write short declarative sentences
-Patterns to avoid
-<<add examples here>>
-Do’s and don’ts
-Don’t: Which vs That
-Remove this type of language altogether
-If a clause use a comma before which
-Get rid of the issue altogether, if using which you are writing a compound sentence so break sentence apart.
-Don’t: This will be that
-Do:
-Don’t: Displays
-Do: Appears or Displayed
-“In the blank that appears, do the thing” but should use “do this”
-Don’t: Kong Mesh does 1, 2, 3  
-Do: “across your mesh”
+
+### Use present tense
+
+|Do|Don't|
+|--- |--- |
+|This `command` starts a proxy.|This command will start a proxy.|
+
+### Use active voice
+
+|Do|Don't|
+|--- |--- |
+|You can explore the API using a browser.|The API can be explored using a browser.|
+|The YAML file specifies the replica count.|The replica count is specified in the YAML file.|
+
+
+### Use conversational tone
+
+|Do|Don't|
+|--- |--- |
+|Run the program.|Execute the program.|
+|Utilize the Admin API.|Use the Admin API.|
+
+### Don’t use Latin phrases
+
+|Do|Don't|
+|--- |--- |
+|For example, ...|e.g., ...|
+|That is, ...|i.e., ...|
+
+### Write short declarative sentences
+
+
+## Patterns to avoid
+
+|Do|Don't|
+|--- |--- |
+|Remove "which" and "that". | This will be that. |
+|In the blank that appears, do the thing. | In the blank that displays, do the thing. |
 
 ## Documentation formatting standards
-Sentence case for headings
-except h1s (page title), where it’s title case
-Punctuation inside quotes
-Appropriate capitalization for terms
-Placeholder values
-Angle brackets
-Double braces
-Singles braces
-Curly braces
+
+### Use sentence case for headings.
+  Except Heading level 1s (page title), where you should use title case.
+
+### Use punctuation inside quotes
+
+### Use appropriate capitalization for terms
+
+### Use appropriate punctuation around placeholder values
+For instance:
+- Angle brackets
+- Double braces
+- Singles braces
+- Curly braces
 All caps or not
 Titles
 

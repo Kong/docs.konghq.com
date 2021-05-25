@@ -456,6 +456,8 @@
 -
   edition: "konnect-platform"
 -
+  edition: "contributing"
+-
   release: "1.1.x"
   version: "1.1.4"
   edition: "mesh"
