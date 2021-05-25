@@ -13,7 +13,7 @@ promptly and help you get your pull requests merged.
 We welcome fixes to unclear prose, fixes to typos in docs for recent versions, docs for new features you've contributed to
 the code, and more.
 
-If you've written a Kong plug-in and need to contribute documentation for it, see the docs [about plug-in docs](plugin-docs). 
+If you've written a Kong plug-in and need to contribute documentation for it, see the docs [about plug-in docs](../plugin-docs). 
 There are special guidelines for these docs.
 
 We ask that you explore the existing documentation before you start a big docs contribution. Some types of docs
@@ -28,7 +28,7 @@ For bugs against Kong Gateway functionality, see the [code repository]
 
 ## How to contribute
 
-We adhere to our own [code of conduct](LINK TO COME AFTER PUSHING THIS COMMIT) and we expect the same of our contributors. 
+We adhere to our own [code of conduct](https://github.com/Kong/docs.konghq.com/blob/main/CODE_OF_CONDUCT.md) and we expect the same of our contributors. 
 
 If you find a problem in the docs, you can [file an issue against the docs](https://github.com/kong/docs.konghq.com/issues/new) 
 or you can submit a pull request with a fix. If you submit a PR without an issue, make sure to fill out the PR template to explain why 
@@ -45,8 +45,7 @@ version to version. Chances are good that a typo on a page in one version appear
 
 ### Content requirements
 
-Before you change anything except fixes for typos or well-known grammar rules, look through our [style guide](/style-guide) and [markdown rules]
-(/markdown-rules). The style guide provides a minimal set of style guidelines we ask you to adhere to, and the markdown rules specify how you must
+Before you change anything except fixes for typos or well-known grammar rules, look through our [style guide](../style-guide) and [markdown rules](../markdown-rules). The style guide provides a minimal set of style guidelines we ask you to adhere to, and the markdown rules specify how you must
 work with certain kinds of content -- includes, variables, new pages -- to make sure they integrate with our Jekyll implementation.
 
 ### First-time contributors
@@ -71,7 +70,7 @@ Or consider a GUI client instead of the command line, such as GitHub Desktop, To
 If you're making small spelling or grammar changes, you're welcome to skip the whole learn-Git-fork-branch-work-locally flow and make your changes directly in the GitHub web UI. The UI takes care of forking/branching automatically, so you don't need to worry about it. Because we work with deploy previews in Netlify, this approach means you also don't need to worry about building locally before you submit your PR.
 
 If you're making more substantial changes, however, we ask that you take the time to build locally and make sure your changes appear as they 
-should in your local build. See [the README](https://github.com/Kong/docs.konghq.com/blob/main/README.md) for details.`
+should in your local build. See [the README](https://github.com/Kong/docs.konghq.com/blob/main/README.md) for details.
 
 ### Contributor T-shirt
 
