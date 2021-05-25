@@ -1,8 +1,6 @@
-
-
-> **TO DO: Jennifer will tackle this mess**
-
-# Contributing to docs.konghq.com 📜 🦍
+---
+title: Contributing to the Kong docs
+---
 
 Hello, and welcome! Thanks for thinking about contributing to the Kong documentation.
 
@@ -15,78 +13,72 @@ promptly and help you get your pull requests merged.
 We welcome fixes to unclear prose, fixes to typos in docs for recent versions, docs for new features you've contributed to
 the code, and more.
 
-If you've written a Kong plug-in and need to contribute documentation for it, see [the page about plug-in docs](plugin-docs). 
+If you've written a Kong plug-in and need to contribute documentation for it, see the docs [about plug-in docs](plugin-docs). 
 There are special guidelines for these docs.
 
-We ask that you explore the existing documentation before you start a big docs contribution, though. Some types of docs
+We ask that you explore the existing documentation before you start a big docs contribution. Some types of docs
 don't belong on the site: end-to-end guides, tutorials, anything better suited to a blog post. If you're interested in 
 this kind of content, though, join the community on [Kong's forum](https://discuss.konghq.com/), on 
 [Gitter](https://gitter.im/Kong/kong), or on IRC at #kong.
 
 The community is the place to ask support questions, too. We can't help you with the product in this repository.
 
-## How to contribute
-
-Depending on the bug, you can either [file an issue against the docs](https://github.com/kong/docs.konghq.com/issues/new) 
-or submit a pull request with a fix. If you submit a PR without an issue, you must fill out the PR template to explain why 
-you're making the change.
-
 For bugs against Kong Gateway functionality, see the [code repository]
 (https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#where-to-report-bugs).
+
+## How to contribute
+
+We adhere to our own [code of conduct](LINK TO COME AFTER PUSHING THIS COMMIT) and we expect the same of our contributors. 
+
+If you find a problem in the docs, you can [file an issue against the docs](https://github.com/kong/docs.konghq.com/issues/new) 
+or you can submit a pull request with a fix. If you submit a PR without an issue, make sure to fill out the PR template to explain why 
+you're making the change. We require the information we ask for in the template, and it's especially important if we don't have 
+an issue to refer to.
+
+The Kong docs team assigns someone to review PRs every day, so you can expect acknowledgment of your contribution and at least preliminary 
+feedback within about a day of your initial PR. We ask that you respond to feedback within a week if we ask for changes; otherwise, we'll close 
+your issue or PR, although you can always reopen it to finish your work.
 
 If you fix a typo (and we welcome typo fixes!), be sure to check for it everywhere, not just in the one instance you might 
 have found. Currently docs for each version live in separate directories, not branches, and much content doesn't change from 
 version to version. Chances are good that a typo on a page in one version appears on the same page in other versions too.
 
-> TODO expand based on some of the old material and on https://github.com/nayafia/contributing-template/blob/master/CONTRIBUTING-template.md
+### Content requirements
 
-## Kong's Technical Writing Guide & Style Guide
+Before you change anything except fixes for typos or well-known grammar rules, look through our [style guide](/style-guide) and [markdown rules]
+(/markdown-rules). The style guide provides a minimal set of style guidelines we ask you to adhere to, and the markdown rules specify how you must
+work with certain kinds of content -- includes, variables, new pages -- to make sure they integrate with our Jekyll implementation.
 
-To ensure consistency throughout all of Kong's documentation, we ask that all contributors reference our [Technical Writing Guide ](https://github.com/Kong/docs.konghq.com/blob/master/TECHNICAL-WRITING-GUIDE.md) and [Style Guide](https://github.com/Kong/docs.konghq.com/blob/master/STYLEGUIDE.md).
+### First-time contributors
 
-## Git Best Practices
+Make sure to fork the repository and create an appropriately named branch before you start working on any substantial changes.
 
-> TODO trim and make sure relevant content is here or on another page. Removed branching section bc it's no longer relevant. Note netlify builds?
+### Git/GitHub resources
 
-Link to good git tutorials elsewhere.
+If you're new to Git and GitHub, we suggest you take some time with some of the great resources for learning these tools. Their basic purpose 
+is version control, but they were made to support open source projects, so their design and implemenation might be different from what 
+you're used to. Resources we've found helpful, with thanks to the Write the Docs newsletter:
 
-#### Linting
+* [Learn Git in a Month of Lunches](https://www.amazon.com/Learn-Month-Lunches-Rick-Umali/dp/1617292419) (book). Recommended by the Write the Docs 
+community as a great "how to be productive with Git" tutorial.
+* [Pro Git](https://git-scm.com/book/en/v2) (book).
+* [Git Immersion](http://gitimmersion.com) (open source online course).
+* [Git and GitHub for Poets](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV) (YouTube series, course).
+* [Git and GitHub for Writers](https://www.udemy.com/course/git-and-github-for-writers) (Udemy course).
 
-put in readme, as part of running locally -- or remove? we don't seem to actually require it
+Or consider a GUI client instead of the command line, such as GitHub Desktop, TortoiseGit (Windows), Tower, Sourcetree, or GitKraken.
 
-As mentioned in the guidelines, to submit a patch, the linter must succeed. You
-can run the linter like so:
+If you're making small spelling or grammar changes, you're welcome to skip the whole learn-Git-fork-branch-work-locally flow and make your changes directly in the GitHub web UI. The UI takes care of forking/branching automatically, so you don't need to worry about it. Because we work with deploy previews in Netlify, this approach means you also don't need to worry about building locally before you submit your PR.
 
-```bash
-$ npm run test
-```
-
-### Contributing images, videos, etc
-
-> TODO check whether this is still current. Recommend not mentioning videos <shudder>
-
-Binary files like images and videos should not be included in your pull
-request, except custom icons for the Kong Hub - any request
-including them will be rejected.
-
-Instead, please:
-
-1. Include the HTML necessary to display your binary file in your code
-1. In place of the link to the binary file, use `FIXME`
-1. Email your binary files to support@konghq.com, and include a link to your
-   pull request
-1. Kong staff will host your binary files on our CDN, and will replace the
-   `FIXME`s in your code with URLs of the binaries
-
+If you're making more substantial changes, however, we ask that you take the time to build locally and make sure your changes appear as they 
+should in your local build. See [the README](https://github.com/Kong/docs.konghq.com/blob/main/README.md) for details.`
 
 ### Contributor T-shirt
-
-> TODO check whether this is still current.
 
 If your contribution to this repository was accepted and fixes a bug, adds
 functionality, or makes it significantly easier to use or understand Kong,
 congratulations! You are eligible to receive the very special Contributor
-T-shirt! Find out how to request your shirt
-[here](https://github.com/Kong/kong/blob/main/CONTRIBUTING.md#contributor-t-shirt).
+T-shirt! Fill out the [Contributors Submissions form](https://goo.gl/forms/5w6mxLaE4tz2YM0L2) and we'll 
+get it to you!
 
 Thank you for contributing!
