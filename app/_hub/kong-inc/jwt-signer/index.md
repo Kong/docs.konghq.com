@@ -7,9 +7,9 @@ version: 2.4.x
 desc: Verify and sign one or two tokens in a request
 description: |
   The Kong JWT Signer plugin makes it possible to verify, sign, or resign
-  one or two tokens in a request, that the plugin refers as to as an access token
+  one or two tokens in a request, that the plugin refers to as an access token
   and channel token. The plugin supports both opaque tokens through introspection,
-  and signed JWT tokens (through signature verification. The
+  and signed JWT tokens through signature verification. The
   `access_token` and `channel_token` are names of the tokens and they
   can be any valid verifiable tokens. For example, two access tokens,
   one given to end user and one given to client application.
@@ -475,28 +475,6 @@ params:
   * [Cached JWKS Admin API Endpoint](#cached-jwks-admin-api-endpoint)
   * [Cached JWKS Admin API Endpoint for a Key Set](#cached-jwks-admin-api-endpoint-for-a-key-set)
   * [Cached JWKS Admin API Endpoint for a Key Set Rotation](#cached-jwks-admin-api-endpoint-for-a-key-set-rotation)
-
-## Plugin Configuration
-
-Configure this plugin on a [Service](/gateway-oss/latest/admin-api/#service-object) by
-
-{% tabs %}
-{% tab With a database %}
-Make the following request:
-
-```bash
-$ curl -X POST http://<kong>:8001/service/{service}/plugins \
-       --data "name=jwt-signer"
-```
-{% tab Without a database %}
-Add a plugin to your declarative config file, in the `plugins:` yaml section:
-
-``` yaml
-plugins:
-- name: jwt-signer
-  service:  {service}
-```
-{% endtabs %}
 
 
 ## Plugin Configuration Parameters
