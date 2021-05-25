@@ -61,7 +61,7 @@ The controller leaves `ImplementationSpecific` path rules entirely up to the Kon
 router. It creates a route with the exact same path string as the Ingress rule.
 
 <div class="alert alert-warning">
-  <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+ 
   Both <code>Prefix</code> and <code>Exact</code> paths modify the paths you
   provide, and those modifications may interfere with user-provided regular
   expressions. If you are using your own regular expressions in paths, use

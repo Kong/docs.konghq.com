@@ -34,7 +34,7 @@ For a breakdown of the properties used by these modes, see the
 {% navtabs %}
 {% navtab Shared mode %}
 <div class="alert alert-warning">
-  <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+ 
   <strong>Protect the Private Key.</strong> Ensure the private key file can only be accessed by
   Kong nodes belonging to the cluster. If the key is compromised, you must
   regenerate and replace certificates and keys on all CP and DP nodes.

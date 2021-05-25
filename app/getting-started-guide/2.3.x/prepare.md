@@ -84,7 +84,7 @@ the following command in a terminal window:
     to see the {{site.base_gateway}}'s most recent configuration.
 
     <div class="alert alert-warning">
-    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+
     <strong>Be careful!</strong> Any subsequent <code>deck dump</code> will
     overwrite the existing <code>kong.yaml</code> file. Create backups as needed.
     </div>
