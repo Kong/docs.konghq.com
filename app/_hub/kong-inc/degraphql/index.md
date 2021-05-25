@@ -27,6 +27,7 @@ kong_version_compatibility:
 params:
   name: degraphql
   service_id: true
+  dbless_compatible: yes
   config:
 
 ---

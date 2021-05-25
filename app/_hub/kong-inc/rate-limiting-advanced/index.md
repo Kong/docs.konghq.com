@@ -37,6 +37,9 @@ params:
   route_id: true
   consumer_id: true
   protocols: ["http", "https", "grpc", "grpcs"]
+  dbless_compatible: partially
+  dbless_explanation: |
+   The cluster policy is not supported in DB-less and hybrid modes. For Kong Gateway on Kubernetes in DB-less mode, use one of `redis` or `local`; for hybrid mode, use `redis`.
   config:
     - name: limit
       required: true

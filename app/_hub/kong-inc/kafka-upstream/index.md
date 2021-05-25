@@ -34,6 +34,7 @@ kong_version_compatibility:
 params:
 
   name: kafka-upstream
+  dbless_compatible: yes
   config:
     - name: bootstrap_servers
       required: true

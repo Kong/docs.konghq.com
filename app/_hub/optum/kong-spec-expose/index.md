@@ -46,7 +46,7 @@ params:
   service_id: true
   consumer_id: false
   route_id: true
-
+  dbless_compatible: yes
   config:
     - name: spec_url
       required: true

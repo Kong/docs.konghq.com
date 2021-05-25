@@ -56,6 +56,13 @@ params:
   service_id: true
   consumer_id: false
   route_id: true
+  dbless_compatible: partially
+  dbless_explanation: |
+    Authentication plugins can only be used if the set of credentials is static
+    and specified as part of the declarative configuration.
+
+    Admin API endpoints to dynamically create, update, or delete credentials are
+    not available in DB-less mode.
   config:
     - name: uri_param_names
       required: false

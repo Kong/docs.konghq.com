@@ -31,6 +31,7 @@ params:
   name: graphql-rate-limiting-advanced
   service_id: true
   route_id: true
+  dbless_compatible: yes
   config:
     - name: cost_strategy
       required: true

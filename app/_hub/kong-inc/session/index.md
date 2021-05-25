@@ -51,6 +51,11 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
+  dbless_compatible: partially
+  dbless_explanation: |
+    `config.storage` must be set to `cookie`. The `kong` strategy uses
+    a database, and is not supported. The plugin currently lacks checks
+    for this invalid configuration in DB-less mode.
   config:
     - name: secret
       required: false

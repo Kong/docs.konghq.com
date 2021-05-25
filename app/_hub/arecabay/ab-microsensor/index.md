@@ -74,6 +74,7 @@ params:
   service_id: true
   consumer_id: true
   route_id: true
+  dbless_compatible: yes
   config: 
     - name: ab_localbay_ip
       required: yes
