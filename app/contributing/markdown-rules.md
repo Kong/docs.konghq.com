@@ -12,27 +12,23 @@ output.
 
 **Required:**
 
-``` yaml
+```yaml
 title: Page Title
 ```
 
 **Optional:**
 
-``` yaml
+```yaml
 no_search: true
 # Disables search for the page.
-
 toc: false
 # Disables the right-hand nav for the page; useful if the page is short and has
 # one or no headers.
-
 beta: true
 alpha: true
 # Labels the page as beta or alpha; adds a banner to the top of the page.
-
 disable_image_expand: true
 # Stops images from expanding in a modal on click. Sets it for the entire page.
-
 class: no-copy-code
 # Disables the copy code button in any code blocks on the page.
 ```
@@ -65,28 +61,28 @@ the nav file would be `/overview`.
 #### Info Blocks
 
 Info blocks are HTML divs that follow this basic format:
-```
+```html
 <div class="alert alert-type">
    Some text.
 </div>
 ```
 
 For a basic info block, use:
-```
+```html
 <div class="alert alert-ee blue">
 Some text.
 </div>
 ```
 
 For a warning, use:
-```
+```html
 <div class="alert alert-warning">
    Some text.
 </div>
 ```
 
 For a breaking issue or notice of alpha/beta, use:
-```
+```html
 <div class="alert alert-ee red">
    Some text.
 </div>
@@ -108,7 +104,7 @@ If a page has an incorrectly-formatted ToC, be sure to check the following:
 
 - Heading levels must be correctly nested. Thus, heading levels like this:
 
-```
+```markdown
 ### Sub-sub-heading Level 3
 ## Sub-heading Level 2
 ### Sub-sub-heading Level 3
@@ -116,7 +112,7 @@ If a page has an incorrectly-formatted ToC, be sure to check the following:
 
 will cause the first H3 to be skipped, and should be corrected to:
 
-```
+```markdown
 ## Sub-heading Level 2
 ## Sub-heading Level 2
 ### Sub-sub-heading Level 3
@@ -141,17 +137,6 @@ Include a language whenever possible (in the example above, that language is
 You can also create tabbed codeblocks, so that users can easily switch to
 their preferred format. See [navtabs for codeblocks](#navtabs-for-codeblocks).
 
-##### Line numbers
-By default, every codeblock is generated with line numbers, which is useful for
-calling out specific sections of code. If you need to disable the line numbers,
-use the `{% highlight %}` tag with an optional language class instead of
- backticks. For example:
-
-```
-{% highlight bash %}
-some code here
-{% endhighlight %}
-```
 
 
 
@@ -164,17 +149,13 @@ tabs between the Admin API and Kong Manager methods for adding a Service.
 
 Here's how you use them:
 
-```
+```liquid
 {% navtabs %}
 {% navtab <your title here> %}
-
 Here's some content.
-
 {% endnavtab %}
 {% navtab <some other title> %}
-
 Here's some more content.
-
 {% endnavtab %}
 {% endnavtabs %}
 ```
@@ -197,15 +178,15 @@ Additionally, tabbed codeblocks can't be used in lists or steps.
 To create a tabbed codeblock, specify the `codeblock` class in the first element
 when creating a `navtabs` group:
 
-    {% navtabs codeblock %}
-    {% navtab cURL %}
-     ```sh
-     $ curl some request
-     ```
-    {% endnavtab %}
-    {% navtab HTTPie %}
-     ```sh
-     $ httpie some request
-     ```
-    {% endnavtab %}
-    {% endnavtabs %}
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl some request
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ httpie some request
+```
+{% endnavtab %}
+{% endnavtabs %}
