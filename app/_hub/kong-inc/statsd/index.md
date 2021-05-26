@@ -11,15 +11,12 @@ description: |
   daemon by enabling its [Statsd
   plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
 
-  <div class="alert alert-ee blue"><strong>Tip:</strong> The <a href="/hub/kong-inc/statsd-advanced/">StatsD Advanced plugin</a> provides
+  {:.tip}
+  > **Tip:** The [StatsD Advanced plugin](/hub/kong-inc/statsd-advanced/) provides
   additional features not available in this open source StatsD plugin, such as:
-
-  <ul>
-  <li>Ability to choose status codes to log to metrics.</li>
-  <li>More granular status codes per workspace.</li>
-  <li>Ability to use TCP instead of UDP.</li>
-  </ul>
-  </div>
+  * Ability to choose status codes to log to metrics.
+  * More granular status codes per workspace.
+  * Ability to use TCP instead of UDP.
 
 type: plugin
 categories:
