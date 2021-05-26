@@ -30,10 +30,13 @@ $ docker pull kong/kong-gateway:{{page.kong_versions[7].version}}-alpine
 ```
 
 <div class="alert alert-ee">
-<b>Note:</b> To access {{page.kong_version}} images prior to 1.5.0.11,
-contact <a href="https://support.konghq.com/">Kong Support</a>.
+<b>Note:</b> Some
+<a href="https://support.konghq.com/support/s/article/Downloading-older-Kong-versions">
+older {{site.base_gateway}} images</a>
+are not publicly accessible. If you need a specific patch version and can't
+find it on Kong's public Docker Hub page, contact
+<a href="https://support.konghq.com/">Kong Support</a>.
 </div>
-
 You should now have your {{site.ee_product_name}} image locally.
 
 Verify that it worked, and find the image ID matching your repository:

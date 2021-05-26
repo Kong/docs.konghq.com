@@ -257,7 +257,7 @@ In the following steps, replace `<your-password>` with a secure password.
     |`env.password.valueFrom.secretKeyRef.name` | Name of secret that holds the super admin password. In the example above, this is set to `kong-enterprise-superuser-password`. |
     |`env.password.valueFrom.secretKeyRef.key` | The type of secret key used for authentication. If you followed the default settings in the example above, this is `password`. |
     |`image.repository` | The Docker repository. In this case, `kong/kong-gateway`. |
-    |`image.tag` | The Docker image tag you want to pull down, e.g. `"{{page.kong_versions[10].version}}-alpine"`. |
+    |`image.tag` | The Docker image tag you want to pull down, e.g. `"{{page.kong_versions[11].version}}-alpine"`. |
     |`admin.enabled` | Set to `true` to enable the Admin API, which is required for the Kong Manager. |
     |`ingressController.enabled` | Set to `true` if you want to use the Kong Ingress Controller, or `false` if you don't want to install it. |
     |`postgresql.enabled` | Set to `true` to deploy a Postgres database along with Kong. |

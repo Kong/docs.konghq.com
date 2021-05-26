@@ -148,7 +148,7 @@ section of the Hybrid Mode Overview for more information.
 - Kong now ensures HTTP code `405` is handled by Kong's error page. [6933](https://github.com/Kong/kong/pull/6933)
 - Kong now ensures errors in plugins `init_worker` do not break Kong's worker intialization.
   [7099](https://github.com/Kong/kong/pull/7099)
-- Fixed an issue where two subsequent TLS keepalive requests would lead to incorrect
+- Fixed an issue where two subsequent TLS keep-alive requests would lead to incorrect
   plugin execution. [7102](https://github.com/Kong/kong/pull/7102)
 - Kong now ensures Targets upsert operation behaves similarly to other entities' upsert method.
   [7052](https://github.com/Kong/kong/pull/7052)
@@ -224,6 +224,12 @@ Kong now ensures targets with a weight of 0 are displayed in the Admin API.
 - The BasePlugin class was deprecated in Kong v2.4.x and will be removed in v3.0.x. Plugins
   that extend `base_plugin.lua` will continue to work until v3.0.x but should be updated to the
   newer, simplier [pattern](/enterprise/2.4.x/plugin-development/custom-logic).
+
+### Known issues
+The [mTLS Authentication](/hub/kong-inc/mtls-auth) plugin is incompatible with Kong Gateway v2.4.1.0.
+When making a call using the mTLS Authentication plugin, instead of a successful connection, users
+recieve an error and the call is aborted. This error is caused by an update to the way Kong handles
+keep-alive connections. [7102](https://github.com/Kong/kong/pull/7102)
 
 ## 2.4.0.0 (beta)
 **Release Date** 2021/04/13

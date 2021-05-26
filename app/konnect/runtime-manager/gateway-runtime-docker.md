@@ -19,16 +19,20 @@ running on `localhost`.
 runtime instances.
 </div>
 
-## Prerequisites
+## Quick setup
 
-* You have a {{site.konnect_product_name}} account. Contact your sales
-representative for access.
-* (Quick Setup only) Tools and permissions:
+### Prerequisites
+
+* You have **Runtime Admin** or **Organization Admin** permissions in
+{{site.konnect_saas}}.
+* The quick setup script requires Docker and a Unix shell (for example, bash or
+  zshell). Platform-specific tools and permissions:
   * **All platforms:** [Docker](https://docs.docker.com/get-docker/) and [jq](https://stedolan.github.io/jq/) installed
   * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
-  * **Windows:** Docker Desktop [installed](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [integrated with a WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/)
+  * **Windows:** Docker Desktop [installed](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [integrated with a WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/). If you can't set up a WSL 2 backend, see the [advanced](#advanced-setup) instructions for
+  a custom Docker setup instead.
 
-## Quick setup
+### Run the quick setup script
 
 1. From the left navigation menu, open **Runtimes**.
 
@@ -62,10 +66,19 @@ representative for access.
 
 ## Advanced setup
 
+### Prerequisites
+
+* You have **Runtime Admin** or **Organization Admin** permissions in
+{{site.konnect_saas}}.
+* Tools and permissions:
+  * **All platforms:** [Docker](https://docs.docker.com/get-docker/) installed
+  * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
+  * **[Windows](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [MacOS](https://docs.docker.com/docker-for-mac/install/):** Docker Desktop installed
+
 ### Generate certificates
 {% include /md/konnect/runtime-certs.md %}
 
-### Configure the runtime
+### Prepare the Docker image
 
 Next, pull the {{site.base_gateway}} Docker image, and configure a
 {{site.base_gateway}} runtime using the certificate, the private key, and the
@@ -77,7 +90,7 @@ remaining configuration details on the **Configure Runtime** page.
     ```bash
     $ docker pull kong/kong-gateway:2.3.2.0-alpine
     ```
-    
+
     You should now have your {{site.base_gateway}} image locally.
 
 2. Verify that it worked, and find the image ID matching your repository:
@@ -93,47 +106,77 @@ matching your repository:
     $ docker tag <IMAGE_ID> kong-ee
     ```
 
-4. Return to {{site.konnect_short_name}} and copy the
-codeblock in the **Step 2. Configuration Parameters** section.
+### Start Kong Gateway
+
+Use the following `docker run` command sample as a guide to compile your actual values:
+
+{% navtabs codeblock %}
+{% navtab Any Unix shell %}
+```sh
+$ docker run -d --name kong-gateway-dp1 \
+  -e "KONG_ROLE=data_plane" \
+  -e "KONG_DATABASE=off" \
+  -e "KONG_ANONYMOUS_REPORTS=off" \
+  -e "KONG_VITALS_TTL_DAYS=732" \
+  -e "KONG_CLUSTER_MTLS=pki" \
+  -e "KONG_CLUSTER_CONTROL_PLANE=<example.cp.konnect.foo>:443" \
+  -e "KONG_CLUSTER_SERVER_NAME=<kong-cpoutlet-example.service>" \
+  -e "KONG_CLUSTER_TELEMETRY_ENDPOINT=<example.tp.konnect.foo>:443" \
+  -e "KONG_CLUSTER_TELEMETRY_SERVER_NAME=<kong-telemetry-example.service>" \
+  -e "KONG_CLUSTER_CERT=/<path-to-file>/tls.crt" \
+  -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/tls.key" \
+  -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system,/<path-to-file>/ca.crt" \
+  --mount type=bind,source="$(pwd)",target=<path-to-keys-and-certs>,readonly \
+  -p 8000:8000 \
+  kong-ee
+```
+{% endnavtab %}
+{% navtab Windows PowerShell %}
+```powershell
+docker run -d --name kong-gateway-dp1 `
+  -e "KONG_ROLE=data_plane" `
+  -e "KONG_DATABASE=off" `
+  -e "KONG_ANONYMOUS_REPORTS=off" `
+  -e "KONG_VITALS_TTL_DAYS=732" `
+  -e "KONG_CLUSTER_MTLS=pki" `
+  -e "KONG_CLUSTER_CONTROL_PLANE=<example.cp.konnect.foo>:443" `
+  -e "KONG_CLUSTER_SERVER_NAME=<kong-cpoutlet-example.service>" `
+  -e "KONG_CLUSTER_TELEMETRY_ENDPOINT=<example.tp.konnect.foo>:443" `
+  -e "KONG_CLUSTER_TELEMETRY_SERVER_NAME=<kong-telemetry-example.service>" `
+  -e "KONG_CLUSTER_CERT=/<path-to-file>/tls.crt" `
+  -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/tls.key" `
+  -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system,/<path-to-file>/ca.crt" `
+  --mount type=bind,source="$(pwd)",target=<path-to-keys-and-certs>,readonly `
+  -p 8000:8000 `
+  kong-ee
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+1. Replace the values in `KONG_CLUSTER_CERT`, `KONG_CLUSTER_CERT_KEY`,
+        and `KONG_LUA_SSL_TRUSTED_CERTIFICATE` with the paths to your certificate files.
+
+2. Check the **Linux** or **Kubernetes** tabs in the Konnect UI to find the values for
+        `KONG_CLUSTER_CONTROL_PLANE`, `KONG_CLUSTER_SERVER_NAME`,
+        `KONG_CLUSTER_TELEMETRY_ENDPOINT`, and `KONG_CLUSTER_TELEMETRY_SERVER_NAME`,
+        then substitute them in the example below.
 
     ![Konnect Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
-
-5. Replace the values in `KONG_CLUSTER_CERT`, `KONG_CLUSTER_CERT_KEY`,
-and `KONG_LUA_SSL_TRUSTED_CERTIFICATE` with the paths to your certificate files.
-
-6. Using the provided values, bring up a new container.
 
     See [Parameters](/konnect/runtime-manager/runtime-parameter-reference) for
     descriptions and the matching fields in {{site.konnect_short_name}}.
 
-    ```sh
-    $ docker run -d --name kong-gateway-dp1 \
-      -e "KONG_ROLE=data_plane" \
-      -e "KONG_DATABASE=off" \
-      -e "KONG_ANONYMOUS_REPORTS=off" \
-      -e "KONG_VITALS_TTL_DAYS=732" \
-      -e "KONG_CLUSTER_MTLS=pki" \
-      -e "KONG_CLUSTER_CONTROL_PLANE=<example.cp.konnect.foo>:443" \
-      -e "KONG_CLUSTER_SERVER_NAME=<kong-cpoutlet-example.service>" \
-      -e "KONG_CLUSTER_TELEMETRY_ENDPOINT=<example.tp.konnect.foo>:443" \
-      -e "KONG_CLUSTER_TELEMETRY_SERVER_NAME=<kong-telemetry-example.service>" \
-      -e "KONG_CLUSTER_CERT=/<path-to-file>/tls.crt" \
-      -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/tls.key" \
-      -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system,/<path-to-file>/ca.crt" \
-      --mount type=bind,source="$(pwd)",target=<path-to-keys-and-certs>,readonly \
-      -p 8000:8000 \
-      kong-ee
-    ```
+3. `-p 8000:8000` sets the proxy URL to `http://localhost:8000`.
+        If you want to change this, bind the port to a different host. For example,
+        you can explicitly set an IP:
 
-    `-p 8000:8000` sets the proxy URL to `http://localhost:8000`.
-    To change this, bind the port to a different host. For example, you can
-    explicitly set an IP:
+      ```sh
+      -p 127.0.0.1:8000:8000
+      ```
 
-    ```sh
-    -p 127.0.0.1:8000:8000
-    ```
+4. Run the `docker run` command with your substituted values.
 
-7. On the **Configure New Runtime** page, click **Done** to go to the Runtime
+5. On the **Configure New Runtime** page, click **Done** to go to the Runtime
 Manager overview.
 
     The Runtime Manager will include a new entry for your instance.

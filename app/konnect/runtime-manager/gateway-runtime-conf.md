@@ -16,8 +16,8 @@ runtime instances.
 
 ## Prerequisites
 
-You have a {{site.konnect_product_name}} account. Contact your sales
-representative for access.
+* You have **Runtime Admin** or **Organization Admin** permissions in
+{{site.konnect_saas}}.
 
 ## Generate certificates
 
