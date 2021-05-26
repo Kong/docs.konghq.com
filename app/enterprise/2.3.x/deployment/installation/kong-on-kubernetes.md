@@ -307,7 +307,7 @@ The steps in this section show you how to install {{site.ee_product_name}} on Ku
     This may take some time.
 
     <div class="alert alert-warning">
-    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+   
     <strong>Important:</strong>
       <ul>
         <li>If you have already installed the CRDs, run the command above with
@@ -334,7 +334,7 @@ The steps in this section show you how to install {{site.ee_product_name}} on Ku
     This may take some time.
 
     <div class="alert alert-warning">
-    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+   
     <strong>Important:</strong>
       <ul>
         <li>If you have already installed the CRDs, run the command above with
@@ -366,7 +366,7 @@ After migrations are complete and the `my-kong-kong-<ID>` pod is running, contin
       --output=jsonpath='{.status.loadBalancer.ingress[0].ip}'
     ```
     <div class="alert alert-warning">
-    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+   
     <strong>Important:</strong> The command above requires the Kong Admin API. If you
     have not set <code>admin.enabled</code> to <code>true</code> in your
     <code>values.yaml</code>, then this command will not work.
@@ -414,7 +414,7 @@ After migrations are complete and the `my-kong-kong-<ID>` pod is running, contin
     ```
 
     <div class="alert alert-warning">
-    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+   
     <strong>Important:</strong> The command above requires the Kong Admin API. If you
     have not set <code>admin.enabled</code> to <code>true</code> in your
     <code>values.yaml</code>, then this command will not work.

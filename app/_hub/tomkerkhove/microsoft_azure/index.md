@@ -122,16 +122,12 @@ Here are the simple steps to provision one:
     ```
 
 <div class="alert alert-warning">
-  <div class="text-center">
     <strong>Note</strong>: Before connecting to your new database, make sure your IP address is allowed in "Connection Security"
-  </div>
 </div>
 
 ### Running Cassandra on Azure with Azure Cosmos DB
 Currently,  [Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/)  is not supported as a Cassandra datastore.
 
 <div class="alert alert-info">
-  <div class="text-center">
     <strong>Note</strong>: See <a href="https://github.com/Kong/docker-kong/issues/188" target="blank">#188</a> for more information.
-  </div>
 </div>
