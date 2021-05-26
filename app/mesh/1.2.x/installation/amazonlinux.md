@@ -3,7 +3,7 @@ title: Kong Mesh with Amazon Linux
 ---
 
 <div class="alert alert-ee blue">
-If you want to use Kuma on Amazon EKS, follow the
+If you want to use {{site.mesh_product_name}} on Amazon EKS, follow the
 <a href="/mesh/{{page.kong_version}}/installation/kubernetes">Kubernetes instructions</a>
 instead.
 </div>

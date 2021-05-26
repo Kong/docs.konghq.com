@@ -47,9 +47,7 @@ suggest `kong-mesh-system`.
     Where `/path/to/license.json` is the path to a valid {{site.mesh_product_name}}
     license file on the file system.
 
-    <div class="alert alert-ee blue">
-    <strong>Note:</strong>The name of the file should be <code>license.json</code>, unless otherwise specified in <code>values.yaml</code>.
-    </div>
+    The filename should be <code>license.json</code>, unless otherwise specified in <code>values.yaml</code>.
 
 3. Deploy the {{site.mesh_product_name}} Helm chart:
 
