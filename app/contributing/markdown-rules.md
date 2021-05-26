@@ -211,11 +211,11 @@ With this order, the first H3 gets skipped.
 Codeblocks are containers for your code examples. In Markdown, you can create
 them using three backticks, aka fenced codeblocks:
 
-```
-/```bash
+````
+```bash
 some code here
-/```
 ```
+````
 
 Include a language whenever possible (in the example above, that language is
 `bash`). This will format your codeblocks using language-specific syntax.
@@ -240,8 +240,8 @@ some code here
 ## Tabs
 
 If your topic provides instructions for two or more methods of completing a
-task, you can nest them inside `navtabs`. For example, this topic
-[here](https://docs.konghq.com/getting-started-guide/latest/expose-services/#add-a-service)
+task, you can nest them inside `navtabs`. For example,
+[this topic](https://docs.konghq.com/getting-started-guide/latest/expose-services/#add-a-service)
 tabs between the Admin API and Kong Manager methods for adding a Service.
 
 Here's how you use them:
@@ -283,9 +283,7 @@ Here's some more content.
 ### Navtabs for codeblocks
 
 A specialized use of navtabs is the `codeblock` style. This will create copyable
-tabbed codeblocks for easy code comparison and better use of space. See
-[here](https://docs.konghq.com/enterprise/2.1.x/deployment/installation/kong-for-kubernetes/)
-for an example of this style in use.
+tabbed codeblocks for easy code comparison and better use of space.
 
 > **Important:** Codeblock navtabs must contain codeblocks and **nothing else**.
 Additionally, tabbed codeblocks can't be used in lists or steps.
@@ -294,18 +292,33 @@ To create a tabbed codeblock, specify the `codeblock` class in the first element
 when creating a `navtabs` group:
 
 {% raw %}
-```
+````
 {% navtabs codeblock %}
 {% navtab cURL %}
-/```sh
+```sh
 $ curl some request
-/```
+```
 {% endnavtab %}
 {% navtab HTTPie %}
-/```sh
+```sh
 $ httpie some request
-/```
+```
 {% endnavtab %}
 {% endnavtabs %}
-```
+````
 {% endraw %}
+
+And here's what that looks like:
+
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+$ curl some request
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+$ httpie some request
+```
+{% endnavtab %}
+{% endnavtabs %}
