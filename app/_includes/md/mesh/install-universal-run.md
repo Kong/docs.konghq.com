@@ -32,4 +32,3 @@ $ ln -s ./kumactl /usr/local/bin/kumactl
 <strong>Note:</strong> By default, this will run {{site.mesh_product_name}} with a memory
 <a href="https://kuma.io/docs/latest/documentation/backends/">backend</a>, but you can use a persistent storage like PostgreSQL by updating the
 <code>conf/kuma-cp.conf</code> file.
-
