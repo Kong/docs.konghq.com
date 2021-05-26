@@ -15,6 +15,7 @@
           {% elsif page.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
           {% elsif page.edition == 'gateway-oss' %}{{site.ce_product_name}}
           {% elsif page.edition == 'getting-started-guide' %}Get Started with Kong Gateway
+          {% elsif page.edition == 'contributing' %}Contribution guidelines
           {% endif %}
         </span>
         <span class="caret"></span>
@@ -52,6 +53,10 @@
         <li>
           <a href="https://kuma.io/docs/" target="_blank">Kuma</a>
         </li>
+          <div class="dropdown-submenu-title">Contribute to the docs</div>
+          <li>
+            <a href="/contributing/">Contribution guidelines</a>
+          </li>
       </ul>
     </div>
 
@@ -71,7 +76,7 @@
           {% assign version_page_url = page.url | replace: page.kong_version, ver.release %}
           {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}
         <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
-          <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if page.edition == 'gateway-oss' %}gateway-oss/{% endif %}{% if page.edition == 'enterprise' %}enterprise/{% endif %}{% if page.edition == 'mesh' %}mesh/{% endif %}{% if page.edition == 'kubernetes-ingress-controller' %}kubernetes-ingress-controller/{% endif %}{{ver.release}}{% endif %}"
+          <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if page.edition == 'gateway-oss' %}gateway-oss/{% endif %}{% if page.edition == 'enterprise' %}enterprise/{% endif %}{% if page.edition == 'mesh' %}mesh/{% endif %}{% if page.edition == 'kubernetes-ingress-controller' %}kubernetes-ingress-controller/{% endif %}{% if page.edition == 'contributing' %}contributing/{% endif %}{{ver.release}}{% endif %}"
             {% if ver.release==page.kong_version %} class="active" {% endif %}
             data-version-id="{{ver.release}}"
           >
@@ -101,6 +106,8 @@
   {% assign docs_url = '/deck' %}
   {% elsif page.edition == 'gateway-oss' %}
   {% assign docs_url = '/gateway-oss/' | append: page.kong_version %}
+  {% elsif page.edition == 'contributing' %}
+  {% assign docs_url = '/contributing/' %}
   {% endif %}
 
   <ul class="accordion-container">
