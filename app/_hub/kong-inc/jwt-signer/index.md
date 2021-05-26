@@ -162,7 +162,7 @@ params:
         plugin adds the Kong signed token. If you don't specify a value for this,
         such as use `null` or `""` (empty string), the plugin does not even try to
         sign or resign the token.
-    - name: token_upstream_leeway
+    - name: access_token_upstream_leeway
       required: false
       default: 0
       datatype: number
@@ -209,7 +209,7 @@ params:
     - name: access_token_introspection_jwt_claim
       required: false
       default:
-      datatype:
+      datatype: array of string elements
       description: |
         If your introspection endpoint returns an access token in one of the keys
         (or claims) within the introspection results (`JSON`), we can use that value
@@ -261,12 +261,12 @@ params:
         The plugin also sets a couple of standard Kong upstream consumer headers.
     - name: access_token_introspection_consumer_by
       required: false
-      default:
-      datatype:
+      default: ["username", "custom_id"]
+      datatype: array of string elements
       description: |
         When the plugin tries to do access token introspection results to Kong consumer mapping, it tries to
         find a matching Kong consumer from properties defined using this configuration parameter. The parameter
-        can take an array of values. Valid values are `id`, `username` and `custom_id`.
+        can take an array of values. Valid values are `id`, `username`, and `custom_id`.
     - name: access_token_introspection_leeway
       required: false
       default: 0
