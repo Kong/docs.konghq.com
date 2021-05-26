@@ -42,7 +42,6 @@ params:
         must be specified.
 
     - name: allowed_content_types
-      required: true
       default: "application/json"
       value_in_examples:
       datatype: Set of string elements
@@ -51,7 +50,6 @@ params:
         done for `application/json` and skipped for any other allowed content types.
 
     - name: version
-      required: true
       default: "kong"
       value_in_examples:
       datatype: string
@@ -70,7 +68,6 @@ params:
 
 
     - name: verbose_response
-      required: true
       default: false
       value_in_examples:
       datatype: boolean
