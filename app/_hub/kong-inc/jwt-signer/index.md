@@ -48,53 +48,55 @@ params:
       description: |
         When authentication or authorization fails, or there is an unexpected
         error, the plugin sends an `WWW-Authenticate` header with the `realm`
-        attribute value of this configuration parameter.
+        attribute value of the `realm` configuration parameter.
     - name: enable_hs_signatures
       required: false
       default: false
       datatype: boolean
       description: |
-        Tokens signed with HMAC algorithms such as HS256, HS384, or HS512 are not accepted by default.
-        If you need to accept such tokens for verification, you can enable this setting.
+        Tokens signed with HMAC algorithms such as HS256, HS384, or HS512 are not
+        accepted by default. If you need to accept such tokens for verification,
+        enable this setting.
     - name: enable_instrumentation
       required: false
       default: false
       datatype: boolean
       description: |
-        When you are experiencing problems in production and don't want to change logging level
-        on Kong nodes, which requires a reload, use this parameter to enable instrumentation
-        for the request. The parameter writes log entries with some added information using `ngx.CRIT`
-        (CRITICAL) level.
+        When you are experiencing problems in production and don't want to change
+        the logging level on Kong nodes, which requires a reload, use this
+        parameter to enable instrumentation for the request. The parameter writes
+        log entries with some added information using `ngx.CRIT` (CRITICAL) level.
     - name: access_token_issuer
       required: false
       default: kong
       datatype: string
       description: |
-        The `iss` claim of a signed or resigned access token is set to this value. Original `iss` claim of the
-        incoming token (possibly introspected) is stored in `original_iss` claim of the newly
-        signed access token.
+        The `iss` claim of a signed or resigned access token is set to this value.
+        Original `iss` claim of the incoming token (possibly introspected) is
+        stored in `original_iss` claim of the newly signed access token.
     - name: access_token_keyset
       required: false
       default: kong
       datatype: string
       description: |
-        This configuration parameter selects the private key for access token signing.
+        Selects the private key for access token signing.
     - name: access_token_jwks_uri
       required: false
       default:
       datatype: string
       description: |
-        If you want to use `config.verify_access_token_signature`, you must specify the URI where the
-        plugin can fetch the public keys (JWKS) to verify the signature of the access token. If you
-        don't specify one, and you pass a JWT token to the plugin, then the plugin responds with
+        If you want to use `config.verify_access_token_signature`, you must specify
+        the URI where the plugin can fetch the public keys (JWKS) to verify the
+        signature of the access token. If you don't specify a URI and you pass a
+        JWT token to the plugin, then the plugin responds with
         `401 Unauthorized`.
     - name: access_token_request_header
       required: false
       default: Authorization
       datatype: string
       description: |
-        This parameter tells the name of the header where to look for the access token. By default,
-        we search it from `Authorization: Bearer <token>` header (the value being magic key
+        This parameter tells the name of the header where to look for the access token.
+        By default, we search it from `Authorization: Bearer <token>` header (the value being magic key
         `authorization:bearer`). If you don't want to do anything with `access token`, then you can
         set this to `null` or `""` (empty string). Any header can be used to pass the access token
         to this plugin. Two predefined values are `authorization:bearer` and `authorization:basic`.
@@ -112,7 +114,7 @@ params:
       default:
       datatype: array of string elements
       description: |
-        With this parameter you can specify the required values (or scopes) that are looked from a
+        Specify the required values (or scopes) that are looked from a
         claim specified by `config.access_token_scopes_claim`. E.g. `[ "employee demo-service", "superadmin" ]`
         which can be given as `"employee demo-service,superadmin"` (form post) would mean that claim
         need to have values `"employee"` and `"demo-service"` **OR** that the claim need to have value
@@ -123,7 +125,7 @@ params:
       default:
       datatype: array of string elements
       description: |
-        With this parameter you can specify the claim in access token to be verified against values of
+        Specify the claim in access token to be verified against values of
         `config.access_token_scopes_required`. This supports nested claims, e.g. with Keycloak you could
         use `[ "realm_access", "roles" ]` which can be given as `realm_access,roles` (form post). If the
         claim is not found in access token, and you have specified `config.access_token_scopes_required`,
@@ -133,103 +135,110 @@ params:
       default:
       datatype: array of string elements
       description: |
-        When you set a value for this parameter, the plugin will try to map an arbitrary claim specified with
+        When you set a value for this parameter, the plugin tries to map an arbitrary claim specified with
         this configuration parameter (e.g. `sub` or `username`) in access token to Kong consumer entity. Kong
-        consumers have an `id`, a `username` and a `custom_id`. The `config.access_token_consumer_by` parameter
-        is used to tell the plugin what of these Kong consumer properties can be used for mapping. If this
-        parameter is enable but the mapping fails (e.g. in-existent Kong consumer), the plugin will respond
+        consumers have an `id`, a `username`, and a `custom_id`. The `config.access_token_consumer_by` parameter
+        tells the plugin which of these Kong consumer properties can be used for mapping. If this
+        parameter is enabled but the mapping fails (such as a non-existent Kong consumer), the plugin responds
         with `403 Forbidden`. Kong consumer mapping is useful when you want to communicate this information
-        to other plugins such as ACL (access control through allowed and denied lists) or rate-limiting.
-        The plugin will also set a couple of standard Kong upstream consumer headers.
+        to other plugins such as ACL or rate limiting. The plugin also sets a couple of standard Kong
+        upstream consumer headers.
     - name: access_token_consumer_by
       required: false
       default: ["username", "custom_id"]
       datatype: array of string elements
       description: |
-        When the plugin tries to do access token to Kong consumer mapping, it tries to find a matching Kong
-        consumer from properties defined using this configuration parameter. The parameter can take an array of
-        values. Valid values are `id`, `username` and `custom_id`.
+        When the plugin tries to apply an access token to a Kong consumer mapping,
+        it tries to find a matching Kong consumer from properties defined using
+        this configuration parameter. The parameter can take an array of
+        values. Valid values are `id`, `username`, and `custom_id`.
     - name: access_token_upstream_header
       required: false
       default: Authorization:Bearer
       datatype: string
       description: |
-        This plugin removes the `config.access_token_request_header` from the request after reading its
-        value. With `config.access_token_upstream_header` you can specify the upstream header where the
-        plugin will add the Kong signed token. If you don't specify value for this (e.g. use `null` or
-        `""` (empty string), the plugin will not even try to (re-)sign the token.
+        Removes the `config.access_token_request_header` from the request after reading its
+        value. With `config.access_token_upstream_header`, you can specify the upstream header where the
+        plugin adds the Kong signed token. If you don't specify a value for this,
+        such as use `null` or `""` (empty string), the plugin does not even try to
+        sign or resign the token.
     - name: token_upstream_leeway
       required: false
       default: 0
       datatype: number
       description: |
-        If you want to add or perhaps subtract (using negative value) expiry time of the original access
-        token, you can specify value that is added to original access token's `exp` claim.
+        If you want to add or perhaps subtract (using a negative value) expiry
+        time of the original access token, you can specify value that is added to
+        the original access token's `exp` claim.
     - name: access_token_introspection_endpoint
       required: false
       default:
       datatype: string
       description: |
-        When using `opaque` access tokens, and you want to turn on access token introspection, you need
-        to specify the OAuth 2.0 introspection endpoint uri with this configuration parameter. Otherwise
-        the plugin will not try introspection, and will instead give `401 Unauthorized` when using opaque
-        access tokens.
+        When you use `opaque` access tokens and you want to turn on access token
+        introspection, you need to specify the OAuth 2.0 introspection endpoint URI
+        with this configuration parameter. Otherwise, the plugin does not try
+        introspection, and instead returns `401 Unauthorized`.
     - name: access_token_introspection_authorization
       required: false
       default:
       datatype: string
       description: |
-        If the introspection endpoint requires client authentication (client being this plugin), you can
-        specify the `Authorization` header's value with this configuration parameter. E.g. if you use
-        client credentials you should enter value of `"Basic base64encode('client_id:client_secret')"`
-        to this configuration parameter (you are responsible to give full string of the header and do
-        all the necessary encodings (e.g. base64) that is required on given endpoint.
+        If the introspection endpoint requires client authentication (client being
+        this plugin), you can specify the `Authorization` header's value with this
+        configuration parameter. For example, if you use client credentials, enter
+        the value of `"Basic base64encode('client_id:client_secret')"`
+        to this configuration parameter (you are responsible to give full string
+        of the header and do all of the necessary encodings (e.g. base64)
+        required on a given endpoint.
     - name: access_token_introspection_body_args
       required: false
       default:
       datatype: string
       description: |
-        If you need to pass additional body arguments to introspection endpoint when the plugin introspects
-        the opaque access token, you can use this config parameter to specify them. You should url encode
-        the value, e.g. `resource=` or `a=1&b=&c`.
+        If you need to pass additional body arguments to an introspection endpoint
+        when the plugin introspects the opaque access token, use this config parameter
+        to specify them. You should url encode the value, e.g. `resource=` or `a=1&b=&c`.
     - name: access_token_introspection_hint
       required: false
       default: access_token
       datatype: string
       description: |
-        If you need to give `hint` parameter when introspecting access token you can use this parameter to
-        specify the value of such parameter. By default we send `hint=access_token`.
+        If you need to give `hint` parameter when introspecting access token use this parameter to
+        specify the value of such parameter. By default, we send `hint=access_token`.
     - name: access_token_introspection_jwt_claim
       required: false
       default:
       datatype:
       description: |
-        If your introspection endpoint return an access token in one of the keys (or claims) in the
-        introspection results (`JSON`), we can use that value instead of the introspection results when
-        doing expiry verification and signing of the new token issued by Kong. E.g. if you specify
-        `[ "token_string" ]` which can be given as `"token_string"` (form post) to this configuration
-        parameter, the plugin will look for key `token_string` in JSON of the introspection results
-        and use that as an access token (instead of using introspection JSON directly). If the key
-        cannot be found it, the plugin will respond with `401 Unauthorized`. Also if the key is found,
-        but cannot be decoded as JWT, it will also result `401 Unauthorized`.
+        If your introspection endpoint returns an access token in one of the keys
+        (or claims) within the introspection results (`JSON`), we can use that value
+        instead of the introspection results when doing expiry verification and
+        signing of the new token issued by Kong. For example, if you specify
+        `[ "token_string" ]`, which can be given as `"token_string"` (form post)
+        to this configuration parameter, the plugin looks for key `token_string`
+        in JSON of the introspection results and uses that as an access token instead
+        of using introspection JSON directly. If the key cannot be found, the
+        plugin responds with `401 Unauthorized`. Also if the key is found
+        but cannot be decoded as JWT, it also responds with `401 Unauthorized`.
     - name: access_token_introspection_scopes_required
       required: false
       default:
       datatype: array of string elements
       description: |
-        With this parameter you can specify the required values (or scopes) that are looked from an
+        Specify the required values (or scopes) that are looked from an
         introspection claim/property specified by `config.access_token_introspection_scopes_claim`.
         E.g. `[ "employee demo-service", "superadmin" ]` which can be given as `"employee demo-service,superadmin"`
         (form post) would mean that claim need to have values `"employee"` and `"demo-service"` **OR**
         that the claim need to have value of `"superadmin"` to be successfully authorized for the upstream
         access. If required scopes are not found in access token introspection results (`JSON`),
-        the plugin will respond with `403 Forbidden`.
+        the plugin responds with `403 Forbidden`.
     - name: access_token_introspection_scopes_claim
       required: true
       default: scope
       datatype: array of string elements
       description: |
-        With this parameter you can specify the claim/property in access token introspection results
+        Specify the claim/property in access token introspection results
         (`JSON`) to be verified against values of `config.access_token_introspection_scopes_required`.
         This supports nested claims, e.g. with Keycloak you could use `[ "realm_access", "roles" ]`
         which can be given as `realm_access,roles` (form post). If the claim is not found in access
@@ -240,15 +249,16 @@ params:
       default:
       datatype: array of string elements
       description: |
-        When you set a value for this parameter, the plugin will try to map an arbitrary claim specified with
-        this configuration parameter (e.g. `sub` or `username`) in access token introspection results to
-        Kong consumer entity. Kong consumers have an `id`, a `username` and a `custom_id`. The
-        `config.access_token_introspection_consumer_by` parameter is used to tell the plugin what of these
-        Kong consumer properties can be used for mapping. If this parameter is enable but the mapping fails
-        (e.g. in-existent Kong consumer), the plugin will respond with `403 Forbidden`. Kong consumer mapping
-        is useful when you want to communicate this information to other plugins such as ACL (access control
-        through allowed and denied lists) or rate-limiting. The plugin will also set a couple of standard
-        Kong upstream consumer headers.
+        When you set a value for this parameter, the plugin tries to map an arbitrary
+        claim specified with this configuration parameter (e.g. `sub` or `username`)
+        in access token introspection results to the Kong consumer entity. Kong consumers
+        have an `id`, a `username`, and a `custom_id`. The
+        `config.access_token_introspection_consumer_by` parameter tells the plugin which of these
+        Kong consumer properties can be used for mapping. If this parameter is enabled
+        but the mapping fails (such as non-existent Kong consumer), the plugin responds
+        with `403 Forbidden`. Kong consumer mapping is useful when you want to
+        communicate this information to other plugins such as ACL or rate limiting.
+        The plugin also sets a couple of standard Kong upstream consumer headers.
     - name: access_token_introspection_consumer_by
       required: false
       default:
@@ -262,17 +272,18 @@ params:
       default: 0
       datatype: number
       description: |
-        You can use this parameter to adjust clock skew between the token issuer introspection results
-        and Kong. The value will be added to introspection results (`JSON`) `exp` claim/property before
-        checking token expiry against Kong servers current time (in seconds). You can disable access
-        token introspection `expiry` verification altogether with `config.verify_access_token_introspection_expiry`.
+        Adjusts clock skew between the token issuer introspection results
+        and Kong. The value is added to introspection results (`JSON`) `exp` claim/property before
+        checking token expiry against Kong servers current time in seconds. You
+        can disable access token introspection `expiry` verification altogether
+        with `config.verify_access_token_introspection_expiry`.
     - name: access_token_introspection_timeout
       required: false
       default:
       datatype: number
       description: |
-        Timeout for introspection request. This plugin will try to introspect twice if the first request
-        fails for some reason. If both requests timeout, then the plugin will run two times the
+        Timeout for introspection request. The plugin tries to introspect twice if the first request
+        fails for some reason. If both requests timeout, then the plugin runs two times the
         `config.access_token_introspection_timeout` on access token introspection.
     - name: access_token_signing_algorithm
       required: true
@@ -280,11 +291,11 @@ params:
       datatype: string
       description: |
         When this plugin sets the upstream header, as specified with `config.access_token_upstream_header`,
-        it will also (re-)sign the original access token using private keys of this plugin. With this
+        it also resigns the original access token using private keys of this plugin. With this
         configuration parameter you can specify the algorithm that is used to sign the token. Currently
-        supported values are `"RS256"` and `"RS512"` (rest will be added later). `config.access_token_issuer`
-        specifies which `keyset` will be used to sign the new token issued by Kong, using the algorithm
-        specified with this configuration parameter.
+        supported values are `"RS256"` and `"RS512"` (XXXXX rest will be added later). `config.access_token_issuer`
+        specifies which `keyset` is used to sign the new token issued by Kong, using
+        the specified signing algorithm.
     - name: access_token_optional
       required: false
       default: false
@@ -322,14 +333,13 @@ params:
       default: true
       datatype: boolean
       description: |
-        With this configuration parameter you can quickly turn on/off the access token
-        introspection expiry verification.
+        Quickly turn on/off the access token introspection expiry verification.
     - name: verify_access_token_introspection_scopes
       required: false
       default: true
       datatype: boolean
       description: |
-        With this configuration parameter you can quickly turn on/off the access token
+        Quickly turn on/off the access token
         introspection scopes verification, specified with
         `config.access_token_introspection_scopes_required`.
     - name: cache_access_token_introspection
@@ -337,7 +347,7 @@ params:
       default: true
       datatype: boolean
       description: |
-        Whether or not to cache access token introspection results.
+        Whether to cache access token introspection results.
     - name: trust_access_token_introspection
       required: false
       default: true
