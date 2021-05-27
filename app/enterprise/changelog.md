@@ -21,7 +21,7 @@ no_version: true
 
 #### Plugins
 - When making a call using the [mTLS Authentication](/hub/kong-inc/mtls-auth) plugin,
-  instead of a successful connection, users received an error and the call was aborted.
+  instead of a successful connection, users received an error and the call was cancelled.
   With this fix, Kong Gateway now ensures the certificate phase is set in `ngx.ctx`,
   and the mTLS Authentication plugin works as expected.
  
