@@ -30,6 +30,8 @@
       url: /deployment/network
     - text: Network Resiliency and Availability
       url: /deployment/network-resiliency
+    - text: Migrate from a Self-Managed Deployment
+      url: /deployment/migrate-from-self-managed
 
 - title: Quickstart Guide
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
@@ -135,6 +137,8 @@
       url: /reference/proxy-traffic
     - text: Users and Roles
       url: /reference/org-management
+    - text: Manage Konnect Cloud with decK
+      url: /declarative-config
     - text: Using the Konnect API
       url: /reference/konnect-api
       items:
