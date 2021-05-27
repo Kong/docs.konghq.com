@@ -61,7 +61,7 @@ The Session configuration is secure by default, so the cookie uses the [Secure, 
 * If using different subdomains for the [portal_api_url](/enterprise/{{page.kong_version}}/developer-portal/networking/#portal_api_url) and [portal_gui_host](/enterprise/{{page.kong_version}}/developer-portal/networking/#portal_gui_host), see the example below for [Domains](https://docs.konghq.com/enterprise/2.1.x/developer-portal/configuration/authentication/sessions/#domains).
 
 <div class="alert alert-warning">
-   <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+  
    <strong>Important: </strong>Sessions are not invalidated when a user logs out if <code>"storage": "cookie"</code>
    (the default) is used. In that case, the cookie is deleted client-side. Only when session data is
    stored server-side with <code>"storage": "kong"</code> set is the session actively invalidated.

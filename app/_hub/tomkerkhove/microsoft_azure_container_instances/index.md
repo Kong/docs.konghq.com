@@ -134,9 +134,7 @@ Running Kong on Azure Container Instances is super easy:
     The `8000`, `8001`, `8443`, and `8444` will be forwarded to the container.
 
     <div class="alert alert-warning">
-      <div class="text-center">
         <strong>Note</strong>: This will expose both the proxy and the Admin API on the default ports. This can have security implications.
-      </div>
     </div>
 
 1. **Use Kong**

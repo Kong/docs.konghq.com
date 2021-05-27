@@ -8,6 +8,6 @@ toc: false
 <strong>Important:</strong> Kong Brain is deprecated and not available for use in Kong Enterprise version 2.1.4.2 and later.
 </div>
 
-The Kong Brain and Kong Immunity changelog can be found under the Kong Collector documentation at   [https://github.com/Kong/kong-collector/releases](https://github.com/Kong/kong-collector/releases). 
+The Kong Brain and Kong Immunity changelog can be found under the Kong Collector documentation at [https://github.com/Kong/kong-collector-helm/blob/master/collector-changelog.md](https://github.com/Kong/kong-collector-helm/blob/master/collector-changelog.md). 
 
 See this changelog for the latest release information for Kong Brain, Kong Immunity, and Kong Collector. 
