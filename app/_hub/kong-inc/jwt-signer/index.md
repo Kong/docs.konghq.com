@@ -7,8 +7,8 @@ version: 2.4.x
 desc: Verify and sign one or two tokens in a request
 description: |
   The Kong JWT Signer plugin makes it possible to verify, sign, or resign
-  one or two tokens in a request. For example, one token is given to an end user
-  and the other token given to the client application.
+  one or two tokens in a request. With a two token request, one token
+  is allocated to an end user and the other token to the client application.
 
   The plugin refers to tokens as an _access token_
   and _channel token_. Tokens can be any valid verifiable tokens. The plugin
@@ -853,13 +853,13 @@ $ curl -X GET http://<kong>:8001/jwt-signer/jwks/kong
 }
 ```
 
-The `http://<kong>:8001/jwt-signer/jwks/kong` being the URL that you can give to your
+The `http://<kong>:8001/jwt-signer/jwks/kong` is the URL that you can give to your
 upstream services for them to verify Kong-issued tokens. The response is a standard
 JWKS endpoint response. The `kong` suffix in the URI is the one that you can specify
 with `config.access_token_issuer` or `config.channel_token_issuer`.
 
-You can also make a loop-back to this endpoint by routing Kong proxy to this URL.
-Then you can use authentication plugin to protect access to this endpoint,
+You can also make a loopback to this endpoint by routing Kong proxy to this URL.
+Then you can use an authentication plugin to protect access to this endpoint,
 if that is needed.
 
 You can also `DELETE` a keyset by issuing following:
@@ -876,7 +876,7 @@ $ curl -X DELETE http://<kong>:8001/jwt-signer/jwks/kong
 
 The plugin automatically reloads or regenerates missing JWKS if it cannot
 find cached ones. The plugin also tries to reload JWKS if it cannot verify
-the signature of original access token and/or channel token, e.g. in case where
+the signature of original access token or channel token, such as when
 the original issuer has rotated its keys and signed with the new one that is not
 found in Kong cache.
 
@@ -885,7 +885,7 @@ found in Kong cache.
 Sometime you might want to rotate the keys Kong uses for signing tokens specified with
 `config.access_token_keyset` and `config.channel_token_keyset`, or perhaps
 reload tokens specified with `config.access_token_jwks_uri` and
-`config.channel_token_jwks_uri`. Kong stores and uses at maximum two set of keys:
+`config.channel_token_jwks_uri`. Kong stores and uses at most two set of keys:
 **current** and **previous**. If you want Kong to forget the previous keys, you need to
 rotate keys **twice**, as it effectively replaces both current and previous key sets
 with newly generated tokens or reloaded tokens if the keys were loaded from
