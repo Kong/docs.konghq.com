@@ -22,6 +22,7 @@ Following annotations are supported on Ingress resources:
 | [`konghq.com/snis`](#konghqcomsnis) | Set SNI criteria for routes created from this Ingress. |
 | [`konghq.com/request-buffering`](#konghqcomrequest-buffering) | Set request buffering on routes created from this Ingress. |
 | [`konghq.com/response-buffering`](#konghqcomresponse-buffering) | Set response buffering on routes created from this Ingress. |
+| [`konghq.com/host-aliases`](#konghqcomhostaliases) | Additional hosts for routes created from this Ingress's rules. |
 | [`konghq.com/override`](#konghqcomoverride) | Control other routing attributes via `KongIngress` resource. |
 
 `kubernetes.io/ingress.class` is normally required, and its value should match
@@ -358,6 +359,60 @@ Sample usage:
 ```yaml
 konghq.com/response-buffering: "false"
 ```
+
+### konghq.com/host-aliases
+
+> Available since controller 1.3
+
+Set addtional hosts for routes created from rules on this Ingress
+
+Sample usage:
+
+```yaml
+konghq.com/host-aliases: "example.com,example.net"
+```
+
+Note that this annotation applies to all rules equally. An Ingress like this:
+
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    konghq.com/host-aliases: "example.com,example.net"
+spec:
+  rules:
+  - host: "foo.example"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/bar"
+        backend:
+          service:
+            name: service1
+            port:
+              number: 80
+  - host: "bar.example"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/bar"
+        backend:
+          service:
+            name: service2
+            port:
+              number: 80
+```
+
+Will result in two routes:
+
+```
+{"hosts":["foo.example", "example.com", "example.net"], "paths":["/foo"]}
+{"hosts":["bar.example", "example.com", "example.net"], "paths":["/bar"]}
+
+Take care not to accidentally create unintentionally overlapping routes by not
+including the same path in multiple rules.
 
 ### konghq.com/override
 
