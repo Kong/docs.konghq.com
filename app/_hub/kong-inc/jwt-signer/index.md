@@ -7,12 +7,14 @@ version: 2.4.x
 desc: Verify and sign one or two tokens in a request
 description: |
   The Kong JWT Signer plugin makes it possible to verify, sign, or resign
-  one or two tokens in a request, that the plugin refers to as an access token
-  and channel token. The plugin supports both opaque tokens through introspection,
-  and signed JWT tokens through signature verification. The
-  `access_token` and `channel_token` are names of the tokens and they
-  can be any valid verifiable tokens. For example, two access tokens,
-  one given to end user and one given to client application.
+  one or two tokens in a request. For example, one token is given to an end user
+  and the other token given to the client application.
+
+  The plugin refers to tokens as an _access token_
+  and _channel token_. Tokens can be any valid verifiable tokens. The plugin
+  supports both opaque tokens through introspection,
+  and signed JWT tokens through signature verification. There are many available
+  configuration parameters to accommodate your requirements.
 
 enterprise: true
 plus: true
@@ -54,7 +56,7 @@ params:
       default: false
       datatype: boolean
       description: |
-        Tokens signed with HMAC algorithms such as HS256, HS384, or HS512 are not
+        Tokens signed with HMAC algorithms such as `HS256`, `HS384`, or `HS512` are not
         accepted by default. If you need to accept such tokens for verification,
         enable this setting.
     - name: enable_instrumentation
@@ -261,7 +263,7 @@ params:
         The plugin also sets a couple of standard Kong upstream consumer headers.
     - name: access_token_introspection_consumer_by
       required: false
-      default: `["username", "custom_id"]`
+      default: ["username", "custom_id"]
       datatype: array of string elements
       description: |
         When the plugin tries to do access token introspection results to Kong consumer mapping, it tries to
@@ -367,7 +369,7 @@ params:
         configuration parameter to `false` to disable introspection.
     - name: channel_token_issuer
       required: false
-      default: `"kong"`
+      default: "kong"
       datatype: string
       description: |
         The `iss` claim of the resigned channel token is set to this value, which
@@ -376,7 +378,7 @@ params:
         the newly signed channel token.
     - name: channel_token_keyset
       required: false
-      default: `"kong"`
+      default: "kong"
       datatype: string
       description: |
         Selects the private key for channel token signing.
@@ -422,7 +424,7 @@ params:
         found in channel token, the plugin will respond with `403 Forbidden`.
     - name: channel_token_scopes_claim
       required: false
-      default: `[ "scope" ]`
+      default: [ "scope" ]
       datatype: array of string elements
       description: |
         Specify the claim in a channel token to verfy against values of
@@ -528,7 +530,7 @@ params:
         respond with `403 Forbidden`.
     - name: channel_token_introspection_scopes_claim
       required: false
-      default:  `[ "scope" ]`
+      default:  [ "scope" ]
       datatype: array of string elements
       description: |
         With this parameter you can specify the claim/property in channel token introspection results (`JSON`)
@@ -553,7 +555,7 @@ params:
         Kong upstream consumer headers.
     - name: channel_token_introspection_consumer_by
       required: false
-      default: `["username", "custom_id"]`
+      default: ["username", "custom_id"]
       datatype: array of string elements
       description: |
         When the plugin tries to do channel token introspection results to Kong consumer mapping, it tries to
@@ -603,20 +605,20 @@ params:
       default: true
       datatype: boolean
       description: |
-        With this configuration parameter you can quickly turn on/off the channel token signature verification.
+        Quickly turn on/off the channel token signature verification.
     - name: verify_channel_token_expiry
       required: false
       default: true
       datatype: boolean
       description: |
-        With this configuration parameter you can quickly turn on/off the channel token expiry verification.
+        Quickly turn on/off the channel token expiry verification.
     - name: verify_channel_token_scopes
       required: false
       default: true
       datatype: boolean
       description: |
-        With this configuration parameter you can quickly turn on/off the channel token required scopes
-        verification, specified with `config.channel_token_scopes_required`.
+        Quickly turn on/off the channel token required scopes
+        verification specified with `config.channel_token_scopes_required`.
     - name: verify_channel_token_introspection_expiry
       required: false
       default: true
@@ -657,17 +659,18 @@ params:
         If you don't want to support opaque channel tokens, disable introspection by
         changing this configuration parameter to `false`.
 
+  extra: |
+    **Configuration Notes:**
+
+    Most of the parameters are optional, but you need to specify some options to actually
+    make the plugin work:
+
+    * For example, signature verification cannot be done without the plugin knowing about
+    `config.access_token_jwks_uri` and/or `config.channel_token_jwks_uri`.
+
+    * Also for introspection to work, you need to specify introspection endpoints
+    `config.access_token_introspection_endpoint` and/or `config.channel_token_introspection_endpoint`.
 ---
-
-## Plugin Configuration Parameters
-
-Most of the parameters are optional, but you need to specify some options to actually make the plugin work.
-
-For example, signature verification cannot be done without the plugin knowing about:
-`config.access_token_jwks_uri` and/or `config.channel_token_jwks_uri`.
-
-Also for introspection to work, you need to specify introspection endpoints:
-`config.access_token_introspection_endpoint` and/or `config.channel_token_introspection_endpoint`.
 
 ## Signing Key Management
 
@@ -675,7 +678,7 @@ If you specify `config.access_token_keyset` or `config.channel_token_keyset` wit
 `http://` or `https://` prefix, it will mean that token signing keys are externally managed (by you),
 and in that case the plugin will load the keys just like it does for `config.access_token_jwks_uri`
 and `config.channel_token_jwks_uri`. If the prefix is not `http://` or `https://`
-(e.g. `"my-company"` or `"kong"`), Kong will auto-generate JWKS for supported algorithms.
+(e.g. `"my-company"` or `"kong"`), Kong autogenerates JWKS for supported algorithms.
 
 External JWKS specified with `config.access_token_keyset` or
 `config.channel_token_keyset` should also contain private keys with supported `alg`,
@@ -705,10 +708,11 @@ Obviously you cannot map more than once. The order the plugin does the mapping i
 3. access token introspection results
 4. access token jwt payload
 
-of course, depending on input (opaque or JWT).
+Of course, the mapping order depends on input (opaque or JWT).
 
-When mapping is done, no other mappings are used. E.g. if access token already maps to Kong consumer,
-the plugin will not try to map channel token to consumer anymore (and will not even error on that case).
+When mapping is done, no other mappings are used. If access token already maps
+to a Kong consumer, the plugin does not try to map a channel token to a consumer
+anymore and does not even error in that case.
 
 General rule to follow would be to only map either access or channel token.
 
@@ -735,7 +739,7 @@ asymmetric (or public key) algorithms. Doing so also makes rotating the keys
 easier because the public keys can be shared between parties
 and published without revealing their secrets.
 
-All the public keys that Kong has loaded or generated can be viewed by accessing:
+View all of the public keys that Kong has loaded or generated:
 
 ```http
 GET kong:8001/jwt-signer/jwks
@@ -887,7 +891,8 @@ rotate keys **twice**, as it will effectively store replace both `current` and `
 with newly generated tokens OR reloaded tokens (in case the keys are loaded from
 an external URI).
 
-To rotate keys you can send `POST` request:
+To rotate keys, send a `POST` request:
+
 ```http
 POST kong:8001/jwt-signer/jwks/<name-or-id>/rotate
 ```
