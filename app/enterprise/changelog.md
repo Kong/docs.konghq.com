@@ -4,6 +4,28 @@ no_search: true
 no_version: true
 ---
 
+## 2.4.1.1
+**Release Date** 2021/05/27
+
+### Fixes
+
+#### Enterprise
+- Kong Gateway now automatically removes trailing and leading whitespaces from RBAC
+  `user_token` entries. Before, both Kong Manager and the Admin API (/rbac/users)
+  allowed creating RBAC tokens with trailing whitespace. However, HTTP does not
+  allow whitespace in the `Kong-Admin-Token` header value. Subsequently, a successfully
+  created RBAC token was not usable. This was especially an issue when using Kong Manager
+  to create tokens as it's hard to see any accidental whitespace in the text field.
+- Kong Immunity used to send query parameters in plain text. With this fix,
+  query parameters are now sent obfuscated.
+
+#### Plugins
+- When making a call using the [mTLS Authentication](/hub/kong-inc/mtls-auth) plugin,
+  instead of a successful connection, users received an error and the call was aborted.
+  With this fix, Kong Gateway now ensures the certificate phase is set in `ngx.ctx`,
+  and the mTLS Authentication plugin works as expected.
+ 
+
 ## 2.4.1.0
 **Release Date** 2021/05/18
 
