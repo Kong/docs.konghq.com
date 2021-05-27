@@ -100,7 +100,7 @@ params:
         `authorization:bearer`). If you don't want to do anything with `access token`, then you can
         set this to `null` or `""` (empty string). Any header can be used to pass the access token
         to this plugin. Two predefined values are `authorization:bearer` and `authorization:basic`.
-    - name: access_token_request_leeway
+    - name: access_token_leeway
       required: false
       default: 0
       datatype: number
@@ -122,14 +122,14 @@ params:
         not found in access token, the plugin will respond with `403 Forbidden`.
     - name: access_token_scopes_claim
       required: false
-      default:
+      default: `[ "scope" ]`
       datatype: array of string elements
       description: |
         Specify the claim in access token to be verified against values of
         `config.access_token_scopes_required`. This supports nested claims, e.g. with Keycloak you could
         use `[ "realm_access", "roles" ]` which can be given as `realm_access,roles` (form post). If the
-        claim is not found in access token, and you have specified `config.access_token_scopes_required`,
-        the plugin will respond with `403 Forbidden`.
+        claim is not found in the access token, and you have specified `config.access_token_scopes_required`,
+        the plugin responds with `403 Forbidden`.
     - name: access_token_consumer_claim
       required: false
       default:
@@ -154,7 +154,7 @@ params:
         values. Valid values are `id`, `username`, and `custom_id`.
     - name: access_token_upstream_header
       required: false
-      default: Authorization:Bearer
+      default:  `"authorization:bearer"`
       datatype: string
       description: |
         Removes the `config.access_token_request_header` from the request after reading its
@@ -201,7 +201,7 @@ params:
         to specify them. You should url encode the value, e.g. `resource=` or `a=1&b=&c`.
     - name: access_token_introspection_hint
       required: false
-      default: access_token
+      default:  `"access_token"`
       datatype: string
       description: |
         If you need to give `hint` parameter when introspecting access token use this parameter to
@@ -235,7 +235,7 @@ params:
         the plugin responds with `403 Forbidden`.
     - name: access_token_introspection_scopes_claim
       required: true
-      default: scope
+      default: `[ "scope" ]`
       datatype: array of string elements
       description: |
         Specify the claim/property in access token introspection results
@@ -261,7 +261,7 @@ params:
         The plugin also sets a couple of standard Kong upstream consumer headers.
     - name: access_token_introspection_consumer_by
       required: false
-      default: ["username", "custom_id"]
+      default: `["username", "custom_id"]`
       datatype: array of string elements
       description: |
         When the plugin tries to do access token introspection results to Kong consumer mapping, it tries to
@@ -299,7 +299,7 @@ params:
     - name: access_token_optional
       required: false
       default: false
-      datatype: bbolean
+      datatype: boolean
       description: |
         In case when access token is not provided or no `config.access_token_request_header` is specified,
         the plugin cannot obviously verify the access token. In that case the plugin normally responds
@@ -369,7 +369,7 @@ params:
         changing this configuration parameter to `false`.
     - name: channel_token_issuer
       required: false
-      default: kong
+      default: `"kong"`
       datatype: string
       description: |
         `iss` claim of (re-)signed channel token is set to this value. Original `iss` claim of
@@ -377,7 +377,7 @@ params:
         the newly signed channel token.
     - name: channel_token_keyset
       required: false
-      default: kong
+      default: `"kong"`
       datatype: string
       description: |
         This configuration parameter is used to select the private key for channel token signing.
@@ -401,8 +401,8 @@ params:
         token to this plugin. Two predefined values are `authorization:bearer` and `authorization:basic`.
     - name: channel_token_leeway
       required: false
-      default:
-      datatype:
+      default: 0
+      datatype: number
       description: |
         You can use this parameter to adjust clock skew between the token issuer and Kong. The value
         will be added to token's `exp` claim before checking token expiry against Kong servers current
@@ -421,7 +421,7 @@ params:
         found in channel token, the plugin will respond with `403 Forbidden`.
     - name: channel_token_scopes_claim
       required: false
-      default: ["scope"]
+      default: `[ "scope" ]`
       datatype: array of string elements
       description: |
         With this parameter you can specify the claim in channel token to be verified against values of
@@ -525,7 +525,7 @@ params:
         respond with `403 Forbidden`.
     - name: channel_token_introspection_scopes_claim
       required: false
-      default: ["scope"]
+      default:  `[ "scope" ]`
       datatype: array of string elements
       description: |
         With this parameter you can specify the claim/property in channel token introspection results (`JSON`)
@@ -550,7 +550,7 @@ params:
         Kong upstream consumer headers.
     - name: channel_token_introspection_consumer_by
       required: false
-      default: ["username", "custom_id"]
+      default: `["username", "custom_id"]`
       datatype: array of string elements
       description: |
         When the plugin tries to do channel token introspection results to Kong consumer mapping, it tries to
@@ -597,7 +597,7 @@ params:
         disable checks in that case).
     - name: verify_channel_token_signature
       required: false
-      default: false
+      default: true
       datatype: boolean
       description: |
         With this configuration parameter you can quickly turn on/off the channel token signature verification.
@@ -658,11 +658,9 @@ params:
 
 ## Contents
 
-* [Plugin Configuration](#plugin-configuration)
 * [Plugin Configuration Parameters](#plugin-configuration-parameters)
-  * [Default Plugin Configuration Values](#default-plugin-configuration-values)
-* [Note About Signing Key Management](#note-about-signing-key-management)
-* [Note About Consumer Mapping](#note-about-consumer-mapping)
+* [Signing Key Management](#signing-key-management)
+* [Consumer Mapping](#consumer-mapping)
 * [Kong Admin API Endpoints](#kong-admin-api-endpoints)
   * [Cached JWKS Admin API Endpoint](#cached-jwks-admin-api-endpoint)
   * [Cached JWKS Admin API Endpoint for a Key Set](#cached-jwks-admin-api-endpoint-for-a-key-set)
@@ -679,72 +677,8 @@ For example, signature verification cannot be done without the plugin knowing ab
 Also for introspection to work, you need to specify introspection endpoints:
 `config.access_token_introspection_endpoint` and/or `config.channel_token_introspection_endpoint`.
 
-### Default Plugin Configuration Values
 
-Parameter                                            | Default
------------------------------------------------------|--------
-`config.access_token_jwks_uri`                       |
-`config.access_token_leeway`                         | `0`
-`config.access_token_scopes_required`                |
-`config.access_token_scopes_claim`                   | `[ "scope" ]`
-`config.access_token_consumer_claim`                 |
-`config.access_token_consumer_by`                    | `[ "username", "custom_id" ]`
-`config.access_token_upstream_header`                | `"authorization:bearer"`
-`config.access_token_upstream_leeway`                | `0`
-`config.access_token_introspection_endpoint`         |
-`config.access_token_introspection_authorization`    |
-`config.access_token_introspection_body_args`        |
-`config.access_token_introspection_hint`             | `"access_token"`
-`config.access_token_introspection_jwt_claim`        |
-`config.access_token_introspection_scopes_required`  |
-`config.access_token_introspection_scopes_claim`     | `[ "scope" ]`
-`config.access_token_introspection_consumer_claim`   |
-`config.access_token_introspection_consumer_by`      | `[ "username", "custom_id" ]`
-`config.access_token_introspection_leeway`           | `0`
-`config.access_token_signing_algorithm`              | `"RS256"`
-`config.access_token_optional`                       | `false`
-`config.verify_access_token_signature`               | `true`
-`config.verify_access_token_expiry`                  | `true`
-`config.verify_access_token_scopes`                  | `true`
-`config.verify_access_token_introspection_expiry`    | `true`
-`config.verify_access_token_introspection_scopes`    | `true`
-`config.cache_access_token_introspection`            | `true`
-`config.trust_access_token_introspection`            | `true`
-`config.enable_access_token_introspection`           | `true`
-`config.channel_token_issuer`                        | `"kong"`
-`config.channel_token_keyset`                        | `"kong"`
-`config.channel_token_jwks_uri`                      |
-`config.channel_token_request_header`                |
-`config.channel_token_leeway`                        | `0`
-`config.channel_token_scopes_required`               |
-`config.channel_token_scopes_claim`                  | `[ "scope" ]`
-`config.channel_token_consumer_claim`                |
-`config.channel_token_consumer_by`                   | `[ "username", "custom_id" ]`
-`config.channel_token_upstream_header`               |
-`config.channel_token_upstream_leeway`               | `0`
-`config.channel_token_introspection_endpoint`        |
-`config.channel_token_introspection_authorization`   |
-`config.channel_token_introspection_body_args`       |
-`config.channel_token_introspection_hint`            |
-`config.channel_token_introspection_jwt_claim`       |
-`config.channel_token_introspection_scopes_required` |
-`config.channel_token_introspection_scopes_claim`    | `[ "scope" ]`
-`config.channel_token_introspection_consumer_claim`  |
-`config.channel_token_introspection_consumer_by`     | `[ "username", "custom_id" ]`
-`config.channel_token_introspection_leeway`          | `0`
-`config.channel_token_signing_algorithm`             | `"RS256"`
-`config.channel_token_optional`                      | `false`
-`config.verify_channel_token_signature`              | `true`
-`config.verify_channel_token_expiry`                 | `true`
-`config.verify_channel_token_scopes`                 | `true`
-`config.verify_channel_token_introspection_expiry`   | `true`
-`config.verify_channel_token_introspection_scopes`   | `true`
-`config.cache_channel_token_introspection`           | `true`
-`config.trust_channel_token_introspection`           | `true`
-`config.enable_channel_token_introspection`          | `true`
-
-
-## Note About Signing Key Management
+## Signing Key Management
 
 If you specify `config.access_token_keyset` or `config.channel_token_keyset` with either
 `http://` or `https://` prefix, it will mean that token signing keys are externally managed (by you),
@@ -752,20 +686,19 @@ and in that case the plugin will load the keys just like it does for `config.acc
 and `config.channel_token_jwks_uri`. If the prefix is not `http://` or `https://`
 (e.g. `"my-company"` or `"kong"`), Kong will auto-generate JWKS for supported algorithms.
 
-Please note that external JWKS specified with `config.access_token_keyset` or
+External JWKS specified with `config.access_token_keyset` or
 `config.channel_token_keyset` should also contain private keys with supported `alg`,
 either `"RS256"` or `"RS512"` for now. External URLs that contain private keys should
-be protected so that only Kong can access them. ATM Kong doesn't add any authentication
+be protected so that only Kong can access them. Currently, Kong doesn't add any authentication
 headers when it loads the keys from external endpoint, so you have to do it with network
 level restrictions. If it is a common need to manage private keys externally
-(instead of letting Kong to auto-generate them), we can add another parameter
+instead of letting Kong to autogenerate them, we can add another parameter
 for adding authentication header (possibly similar to
 `config.channel_token_introspection_authorization`).
 
 The key size (the modulo) for RSA keys is currently hard-coded to 2048 bits.
 
-
-## Note About Consumer Mapping
+## Consumer Mapping
 
 There are several parameters that provide a way to do consumer mapping:
 
