@@ -672,27 +672,27 @@ params:
     `config.access_token_introspection_endpoint` and/or `config.channel_token_introspection_endpoint`.
 ---
 
-## Signing Key Management
+## Manage key signing
 
-If you specify `config.access_token_keyset` or `config.channel_token_keyset` with either
-`http://` or `https://` prefix, it will mean that token signing keys are externally managed (by you),
-and in that case the plugin will load the keys just like it does for `config.access_token_jwks_uri`
+If you specify `config.access_token_keyset` or `config.channel_token_keyset` with either an
+`http://` or `https://` prefix, it means that token signing keys are externally managed by you.
+In that case, the plugin loads the keys just like it does for `config.access_token_jwks_uri`
 and `config.channel_token_jwks_uri`. If the prefix is not `http://` or `https://`
-(e.g. `"my-company"` or `"kong"`), Kong autogenerates JWKS for supported algorithms.
+(such as `"my-company"` or `"kong"`), Kong autogenerates JWKS for supported algorithms.
 
 External JWKS specified with `config.access_token_keyset` or
 `config.channel_token_keyset` should also contain private keys with supported `alg`,
 either `"RS256"` or `"RS512"` for now. External URLs that contain private keys should
 be protected so that only Kong can access them. Currently, Kong doesn't add any authentication
-headers when it loads the keys from external endpoint, so you have to do it with network
+headers when it loads the keys from an external endpoint, so you have to do it with network
 level restrictions. If it is a common need to manage private keys externally
-instead of letting Kong to autogenerate them, we can add another parameter
-for adding authentication header (possibly similar to
+instead of allowing Kong to autogenerate them, we can add another parameter
+for adding an authentication header (possibly similar to
 `config.channel_token_introspection_authorization`).
 
 The key size (the modulo) for RSA keys is currently hard-coded to 2048 bits.
 
-## Consumer Mapping
+## Consumer mapping
 
 There are several parameters that provide a way to do consumer mapping:
 
@@ -882,14 +882,14 @@ found in Kong cache.
 
 ### Cached JWKS Admin API Endpoint for a Key Set Rotation
 
-Sometime you may want to rotate the keys Kong uses for signing tokens specified with
+Sometime you might want to rotate the keys Kong uses for signing tokens specified with
 `config.access_token_keyset` and `config.channel_token_keyset`, or perhaps
 reload tokens specified with `config.access_token_jwks_uri` and
-`config.channel_token_jwks_uri`. Kong will store and use at maximum two set of keys:
+`config.channel_token_jwks_uri`. Kong stores and uses at maximum two set of keys:
 **current** and **previous**. If you want Kong to forget the previous keys, you need to
-rotate keys **twice**, as it will effectively store replace both `current` and `previous`
-with newly generated tokens OR reloaded tokens (in case the keys are loaded from
-an external URI).
+rotate keys **twice**, as it effectively replaces both current and previous key sets
+with newly generated tokens or reloaded tokens if the keys were loaded from
+an external URI.
 
 To rotate keys, send a `POST` request:
 
@@ -902,6 +902,8 @@ Example:
 ```bash
 $ curl -X POST http://<kong>:8001/jwt-signer/jwks/kong/rotate
 ```
+Response:
+
 ```json
 {
     "keys": [
