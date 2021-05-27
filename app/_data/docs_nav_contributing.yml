@@ -22,5 +22,5 @@
 - title: Templates
   icon: /assets/images/icons/documentation/icn-solution-guide.svg
   items:
-    - text: How to guides
+    - text: How-to guides
     - url: /templates/how-to

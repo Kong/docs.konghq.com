@@ -53,10 +53,10 @@
         <li>
           <a href="https://kuma.io/docs/" target="_blank">Kuma</a>
         </li>
-          <div class="dropdown-submenu-title">Contribute to the docs</div>
-          <li>
-            <a href="/contributing/">Contribution guidelines</a>
-          </li>
+        <div class="dropdown-submenu-title">Contribute to the docs</div>
+        <li {% if page.edition == 'contributing' %} class="active" {% endif %}>
+          <a href="/contributing/" class="{% if page.edition == 'contributing' %}active{% endif %}">Contribution guidelines</a>
+        </li>
       </ul>
     </div>
 
@@ -107,7 +107,7 @@
   {% elsif page.edition == 'gateway-oss' %}
   {% assign docs_url = '/gateway-oss/' | append: page.kong_version %}
   {% elsif page.edition == 'contributing' %}
-  {% assign docs_url = '/contributing/' %}
+  {% assign docs_url = '/contributing' %}
   {% endif %}
 
   <ul class="accordion-container">

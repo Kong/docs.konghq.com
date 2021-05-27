@@ -1,5 +1,5 @@
 ---
-title: Page title here
+title: How to guides
 no_version: true
 ---
 
