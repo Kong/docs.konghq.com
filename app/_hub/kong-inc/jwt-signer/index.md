@@ -122,7 +122,7 @@ params:
         not found in access token, the plugin will respond with `403 Forbidden`.
     - name: access_token_scopes_claim
       required: false
-      default: `[ "scope" ]`
+      default: [ "scope" ]
       datatype: array of string elements
       description: |
         Specify the claim in access token to be verified against values of
@@ -154,7 +154,7 @@ params:
         values. Valid values are `id`, `username`, and `custom_id`.
     - name: access_token_upstream_header
       required: false
-      default:  `"authorization:bearer"`
+      default: "authorization:bearer"
       datatype: string
       description: |
         Removes the `config.access_token_request_header` from the request after reading its
@@ -201,7 +201,7 @@ params:
         to specify them. You should url encode the value, e.g. `resource=` or `a=1&b=&c`.
     - name: access_token_introspection_hint
       required: false
-      default:  `"access_token"`
+      default: "access_token"
       datatype: string
       description: |
         If you need to give `hint` parameter when introspecting access token use this parameter to
@@ -235,7 +235,7 @@ params:
         the plugin responds with `403 Forbidden`.
     - name: access_token_introspection_scopes_claim
       required: true
-      default: `[ "scope" ]`
+      default: [ "scope" ]
       datatype: array of string elements
       description: |
         Specify the claim/property in access token introspection results
@@ -312,15 +312,13 @@ params:
       default: true
       datatype: boolean
       description: |
-        With this configuration parameter you can quickly turn on/off the access token
-        signature verification.
+        Quickly turn access token signature verification off and on as needed.
     - name: verify_access_token_expiry
       required: false
       default: true
       datatype: boolean
       description: |
-        With this configuration parameter you can quickly turn on/off the access token
-        expiry verification.
+        Quickly turn access token expiry verification off and on as needed.
     - name: verify_access_token_scopes
       required: false
       default: true
@@ -333,7 +331,7 @@ params:
       default: true
       datatype: boolean
       description: |
-        Quickly turn on/off the access token introspection expiry verification.
+        Quickly turn access token introspection expiry verification off and on as needed.
     - name: verify_access_token_introspection_scopes
       required: false
       default: true
@@ -365,22 +363,23 @@ params:
       default: true
       datatype: boolean
       description: |
-        If you don't want to support opaque access tokens, you can disable introspection by
-        changing this configuration parameter to `false`.
+        If you don't want to support opaque access tokens, change this
+        configuration parameter to `false` to disable introspection.
     - name: channel_token_issuer
       required: false
       default: `"kong"`
       datatype: string
       description: |
-        `iss` claim of (re-)signed channel token is set to this value. Original `iss` claim of
-        the incoming token (possibly introspected) will be stored in `original_iss` claim of
+        The `iss` claim of the resigned channel token is set to this value, which
+        is `kong` by default. The original `iss` claim of the incoming token
+        (possibly introspected) is stored in the `original_iss` claim of
         the newly signed channel token.
     - name: channel_token_keyset
       required: false
       default: `"kong"`
       datatype: string
       description: |
-        This configuration parameter is used to select the private key for channel token signing.
+        Selects the private key for channel token signing.
     - name: channel_token_jwks_uri
       required: false
       default:
@@ -393,20 +392,22 @@ params:
     - name: channel_token_request_header
       required: false
       default:
-      datatype:
+      datatype: string
       description: |
-        This parameter tells the name of the header where to look at the channel token. By default
-        we won't look for channel token. If you don't want to do anything with channel token then
-        you can set this to `null` or `""` (empty string). Any header can be used to pass the channel
-        token to this plugin. Two predefined values are `authorization:bearer` and `authorization:basic`.
+        This parameter tells the name of the header where to look for the channel token.
+        By default, the plugin doesn't look for channel token. If you don't want to
+        do anything with channel token, then you can set this to `null` or `""`
+        (empty string). Any header can be used to pass the channel
+        token to this plugin. Two predefined values are `authorization:bearer`
+        and `authorization:basic`.
     - name: channel_token_leeway
       required: false
       default: 0
       datatype: number
       description: |
-        You can use this parameter to adjust clock skew between the token issuer and Kong. The value
+        Adjusts clock skew between the token issuer and Kong. The value
         will be added to token's `exp` claim before checking token expiry against Kong servers current
-        time (in seconds). You can disable channel token `expiry` verification altogether with
+        time in seconds. You can disable channel token `expiry` verification altogether with
         `config.verify_channel_token_expiry`.
     - name: channel_token_scopes_required
       required: false
@@ -424,7 +425,7 @@ params:
       default: `[ "scope" ]`
       datatype: array of string elements
       description: |
-        With this parameter you can specify the claim in channel token to be verified against values of
+        Specify the claim in a channel token to verfy against values of
         `config.channel_token_scopes_required`. This supports nested claims, e.g. with Keycloak you could
         use `[ "realm_access", "roles" ]` which can be given as `realm_access,roles` (form post).
         If the claim is not found in channel token, and you have specified `config.channel_token_scopes_required`,
@@ -434,7 +435,7 @@ params:
       default:
       datatype: array of string elements
       description: |
-        When you set a value for this parameter, the plugin will try to map an arbitrary claim specified with
+        When you set a value for this parameter, the plugin tries to map an arbitrary claim specified with
         this configuration parameter (e.g. `sub` or `username`) in channel token to Kong consumer entity. Kong
         consumers have an `id`, a `username` and a `custom_id`. The `config.channel_token_consumer_by` parameter
         is used to tell the plugin what of these Kong consumer properties can be used for mapping. If this
@@ -447,18 +448,19 @@ params:
       default: ["username", "custom_id"]
       datatype: array of string elements
       description: |
-        When the plugin tries to do channel token to Kong consumer mapping, it tries to find a matching Kong
-        consumer from properties defined using this configuration parameter. The parameter can take an array of
-        values. Valid values are `id`, `username` and `custom_id`.
+        When the plugin tries to do channel token to Kong consumer mapping, it tries
+        to find a matching Kong consumer from properties defined using this configuration parameter.
+        The parameter can take an array of valid values: `id`, `username`, and `custom_id`.
     - name: channel_token_upstream_header
       required: false
       default:
       datatype: string
       description: |
-        This plugin removes the `config.channel_token_request_header` from the request after reading its value.
-        With `config.channel_token_upstream_header` you can specify the upstream header where the plugin will
-        add the Kong signed token. If you don't specify value for this (e.g. use `null` or `""` (empty string),
-        the plugin will not even try to (re-)sign the token.
+        This plugin removes the `config.channel_token_request_header` from the request
+        after reading its value.
+        With `config.channel_token_upstream_header` you can specify the upstream header where the plugin
+        adds the Kong-signed token. If you don't specify value for this (e.g. use `null` or `""` (empty string),
+        the plugin does not attempt to resign the token.
     - name: channel_token_upstream_leeway
       required: false
       default: 0
@@ -472,8 +474,9 @@ params:
       datatype: string
       description: |
         When using `opaque` channel tokens, and you want to turn on channel token introspection, you need to
-        specify the OAuth 2.0 introspection endpoint uri with this configuration parameter. Otherwise the plugin
-        will not try introspection, and will instead give `401 Unauthorized` when using opaque channel tokens.
+        specify the OAuth 2.0 introspection endpoint URI with this configuration parameter.
+        Otherwise the plugin will not try introspection, and instead returns `401 Unauthorized`
+        when using opaque channel tokens.
     - name: channel_token_introspection_authorization
       required: false
       default:
@@ -490,15 +493,15 @@ params:
       datatype: string
       description: |
         If you need to pass additional body arguments to introspection endpoint when the plugin introspects the
-        opaque channel token, you can use this config parameter to specify them. You should url encode the value,
+        opaque channel token, you can use this config parameter to specify them. You should URL encode the value,
         e.g. `resource=` or `a=1&b=&c`.
     - name: channel_token_introspection_hint
       required: false
       default:
       datatype: string
       description: |
-        If you need to give `hint` parameter when introspecting channel token you can use this parameter to
-        specify the value of such parameter. By default we don't send a `hint` with channel token introspection.
+        If you need to give `hint` parameter when introspecting a channel token, you can use this parameter to
+        specify the value of such parameter. By default, a `hint` isn't sent with channel token introspection.
     - name: channel_token_introspection_jwt_claim
       required: false
       default:
@@ -570,8 +573,8 @@ params:
       default:
       datatype: number
       description: |
-        Timeout for introspection request. This plugin will try to introspect twice if the first request
-        fails for some reason. If both requests timeout, then the plugin will run two times the
+        Timeout for introspection request. The plugin tries to introspect twice if the first request
+        fails for some reason. If both requests timeout, then the plugin runs two times the
         `config.access_token_introspection_timeout` on channel token introspection.
     - name: channel_token_signing_algorithm
       required: true
@@ -633,7 +636,7 @@ params:
       default: true
       datatype: boolean
       description: |
-        Whether or not to cache channel token introspection results.
+        Whether to cache channel token introspection results.
     - name: trust_channel_token_introspection
       required: false
       default: true
@@ -651,32 +654,20 @@ params:
       default: true
       datatype: boolean
       description: |
-        If you don't want to support opaque channel tokens, you can disable introspection by
+        If you don't want to support opaque channel tokens, disable introspection by
         changing this configuration parameter to `false`.
 
 ---
 
-## Contents
-
-* [Plugin Configuration Parameters](#plugin-configuration-parameters)
-* [Signing Key Management](#signing-key-management)
-* [Consumer Mapping](#consumer-mapping)
-* [Kong Admin API Endpoints](#kong-admin-api-endpoints)
-  * [Cached JWKS Admin API Endpoint](#cached-jwks-admin-api-endpoint)
-  * [Cached JWKS Admin API Endpoint for a Key Set](#cached-jwks-admin-api-endpoint-for-a-key-set)
-  * [Cached JWKS Admin API Endpoint for a Key Set Rotation](#cached-jwks-admin-api-endpoint-for-a-key-set-rotation)
-
-
 ## Plugin Configuration Parameters
 
-Most of the parameters are optional, but you need to specify some options to actually make it work.
+Most of the parameters are optional, but you need to specify some options to actually make the plugin work.
 
 For example, signature verification cannot be done without the plugin knowing about:
 `config.access_token_jwks_uri` and/or `config.channel_token_jwks_uri`.
 
 Also for introspection to work, you need to specify introspection endpoints:
 `config.access_token_introspection_endpoint` and/or `config.channel_token_introspection_endpoint`.
-
 
 ## Signing Key Management
 
@@ -721,29 +712,28 @@ the plugin will not try to map channel token to consumer anymore (and will not e
 
 General rule to follow would be to only map either access or channel token.
 
-
 ## Kong Admin API Endpoints
 
-This plugin also providers a few Admin API endpoints, and some actions upon them.
-
+This plugin also provides a few Admin API endpoints, and some actions upon them.
 
 ### Cached JWKS Admin API Endpoint
 
-The plugin will cache JWKS specified with `config.access_token_jwks_uri` and
+The plugin caches JWKS specified with `config.access_token_jwks_uri` and
 `config.channel_token_jwks_uri` to Kong database for quicker access to them. The plugin
 further caches JWKS in Kong node's shared memory, and on process a level memory for
-even quicker access. When the plugin is responsible for signing the tokens, it will
-also store its own keys in the database.
+even quicker access. When the plugin is responsible for signing the tokens, it
+also stores its own keys in the database.
 
-Admin API endpoints will never reveal private
-keys, but it will reveal the public keys. Private keys, that the plugin will auto-generate,
-can only be accessed from database directly (at least for now). Private parts in JWKS include
-properties such as `d`, `p`, `q`, `dp`, `dq`, `qi`, and `oth`. For public keys that are using
-a symmetric algorithm (such as `HS256`) and include `k` parameter, that is not hidden from
-admin api as that is practically used both to verify and to sign. This makes it a bit problematic
-to use, and we strongly suggest using asymmetric (or public key) algorithms, it will also make
-rotating the keys easier as the public keys can be shared between parties and published (without
-revealing the secrets).
+Admin API endpoints never reveal private keys but do reveal public keys.
+Private keys that the plugin autogenerates can only be accessed from database
+directly (at least for now). Private parts in JWKS include
+properties such as `d`, `p`, `q`, `dp`, `dq`, `qi`, and `oth`. For public keys
+that are using a symmetric algorithm (such as `HS256`) and include `k` parameter,
+that is not hidden from Admin API as that is practically used both to verify and
+to sign. This makes it a bit problematic to use, and we strongly suggest using
+asymmetric (or public key) algorithms. Doing so also makes rotating the keys
+easier because the public keys can be shared between parties
+and published without revealing their secrets.
 
 All the public keys that Kong has loaded or generated can be viewed by accessing:
 
@@ -751,7 +741,7 @@ All the public keys that Kong has loaded or generated can be viewed by accessing
 GET kong:8001/jwt-signer/jwks
 ```
 
-E.g.
+Example:
 
 ```bash
 $ curl -X GET http://<kong>:8001/jwt-signer/jwks
@@ -830,7 +820,7 @@ A particular keyset can be accessed in another endpoint:
 GET kong:8001/jwt-signer/jwks/<name-or-id>
 ```
 
-E.g.
+Example:
 
 ```bash
 $ curl -X GET http://<kong>:8001/jwt-signer/jwks/kong
@@ -860,9 +850,9 @@ $ curl -X GET http://<kong>:8001/jwt-signer/jwks/kong
 ```
 
 The `http://<kong>:8001/jwt-signer/jwks/kong` being the URL that you can give to your
-upstream services for them to verify Kong issued tokens. The response is a standard
+upstream services for them to verify Kong-issued tokens. The response is a standard
 JWKS endpoint response. The `kong` suffix in the URI is the one that you can specify
-with `config.access_token_issuer` and/or `config.channel_token_issuer`.
+with `config.access_token_issuer` or `config.channel_token_issuer`.
 
 You can also make a loop-back to this endpoint by routing Kong proxy to this URL.
 Then you can use authentication plugin to protect access to this endpoint,
@@ -874,18 +864,17 @@ You can also `DELETE` a keyset by issuing following:
 DELETE kong:8001/jwt-signer/jwks/<name-or-id>
 ```
 
-E.g.
+Example:
 
 ```bash
 $ curl -X DELETE http://<kong>:8001/jwt-signer/jwks/kong
 ```
 
-The plugin will automatically reload or regenerate missing JWKS if it cannot
-find a cached ones. The plugin will also try to reload JWKS if it cannot verify
+The plugin automatically reloads or regenerates missing JWKS if it cannot
+find cached ones. The plugin also tries to reload JWKS if it cannot verify
 the signature of original access token and/or channel token, e.g. in case where
 the original issuer has rotated its keys and signed with the new one that is not
 found in Kong cache.
-
 
 ### Cached JWKS Admin API Endpoint for a Key Set Rotation
 
@@ -895,15 +884,15 @@ reload tokens specified with `config.access_token_jwks_uri` and
 `config.channel_token_jwks_uri`. Kong will store and use at maximum two set of keys:
 **current** and **previous**. If you want Kong to forget the previous keys, you need to
 rotate keys **twice**, as it will effectively store replace both `current` and `previous`
-with newly generated tokens OR reloaded tokens (in case the keys are loaded from external
-uri).
+with newly generated tokens OR reloaded tokens (in case the keys are loaded from
+an external URI).
 
 To rotate keys you can send `POST` request:
 ```http
 POST kong:8001/jwt-signer/jwks/<name-or-id>/rotate
 ```
 
-E.g.
+Example:
 
 ```bash
 $ curl -X POST http://<kong>:8001/jwt-signer/jwks/kong/rotate
