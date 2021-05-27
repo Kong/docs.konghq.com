@@ -1,5 +1,6 @@
 ---
 title: Page title here
+no_version: true
 ---
 
 ## Introduction

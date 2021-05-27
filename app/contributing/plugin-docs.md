@@ -1,3 +1,8 @@
+---
+title: Plugin docs
+no_version: true
+---
+
 ### Kong Hub contributions
 
 If you are planning on producing a new Kong plugin or integration, with the
