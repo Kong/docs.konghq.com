@@ -1,5 +1,6 @@
 <!-- Shared between the Docker install page and the setting up Vitals with
-InfluxDB page -->
+InfluxDB page. Note it only contains the first 4 steps of the procedure as
+the last step differs when setting up InfluxDB with Vitals -->
 
 ## Introduction
 
@@ -13,7 +14,7 @@ the installation and configuration.
 steps to configure PostgreSQL.
 
 This software is governed by the
-[Kong Software License Agreement](https://konghq.com/enterprisesoftwarelicense/).
+[Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
 
 ### Deployment options
 
@@ -26,11 +27,15 @@ To complete this installation you will need a Docker-enabled system with proper
 
 ## Step 1. Pull the Kong Gateway Docker image {#pull-image}
 
-Using Docker, pull the following Docker image:
+Pull the following Docker image:
 
 ```bash
-$ docker pull kong-docker-kong-gateway-docker.bintray.io/kong-enterprise-edition:{{page.kong_versions[10].version}}-alpine
+$ docker pull kong/kong-gateway:{{page.kong_versions[10].version}}-alpine
 ```
+<div class="alert alert-ee">
+<b>Note:</b> To access {{page.kong_version}} images prior to 2.3.2.0,
+contact <a href="https://support.konghq.com/">Kong Support</a>.
+</div>
 
 You should now have your {{site.base_gateway}} image locally.
 
@@ -46,7 +51,8 @@ Tag the image ID for easier use:
 $ docker tag <IMAGE_ID> kong-ee
 ```
 
-**Note:** Replace `<IMAGE_ID>` with the one matching your repository.
+<div class="alert alert-ee blue"><strong>Note:</strong> Replace
+<code><IMAGE_ID></code> with the one matching your repository.</div>
 
 ## Step 2. Create a Docker network {#create-network}
 
@@ -81,5 +87,7 @@ $ docker run --rm --network=kong-ee-net \
   kong-ee kong migrations bootstrap
 ```
 
-<div class="alert alert-ee blue"><strong>Note:</strong> For <code>KONG_PASSWORD</code>, replace
- <code><SOMETHING-YOU-KNOW></code> with a valid password that only you know.</div>
+<div class="alert alert-ee blue"><strong>Note:</strong> For
+<code>KONG_PASSWORD</code>, replace <code><SOMETHING-YOU-KNOW></code>
+with a valid password that only you know.</div>
+

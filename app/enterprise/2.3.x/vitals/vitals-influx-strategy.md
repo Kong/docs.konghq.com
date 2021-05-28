@@ -26,12 +26,8 @@ If you already have a {{site.base_gateway}} instance, skip to Step 2.
 
 If you have not installed {{site.base_gateway}}, a Docker installation
 will work for the purposes of this guide. 
-See [Install {{site.base_gateway}} on Docker](/enterprise/{{page.kong_version}}/deployment/installation/docker)
-for installation instructions.
 
-**When you get to
-[Step 5. Start the gateway with Kong Manager](/enterprise/{{page.kong_version}}/deployment/installation/docker/#start-gateway),
-use the following configuration instead:**
+{% include /md/enterprise/docker-install.mc %}
 
 ```bash
 $ docker run -d --name kong-ee --network=kong-ee-net \
