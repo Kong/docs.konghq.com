@@ -6,7 +6,7 @@ version: 2.4.x
 
 desc: Verify and sign one or two tokens in a request
 description: |
-  The Kong JWT Signer plugin makes it possible to verify, sign, or resign
+  The Kong JWT Signer plugin makes it possible to verify, sign, or re-sign
   one or two tokens in a request. With a two token request, one token
   is allocated to an end user and the other token to the client application,
   for example.
@@ -51,7 +51,7 @@ params:
       description: |
         When authentication or authorization fails, or there is an unexpected
         error, the plugin sends an `WWW-Authenticate` header with the `realm`
-        attribute value of the `realm` configuration parameter.
+        attribute value.
     - name: enable_hs_signatures
       required: false
       default: false
@@ -74,7 +74,7 @@ params:
       default: kong
       datatype: string
       description: |
-        The `iss` claim of a signed or resigned access token is set to this value.
+        The `iss` claim of a signed or re-signed access token is set to this value.
         Original `iss` claim of the incoming token (possibly introspected) is
         stored in `original_iss` claim of the newly signed access token.
     - name: access_token_keyset
@@ -167,7 +167,7 @@ params:
         value. With `config.access_token_upstream_header`, you can specify the upstream header where the
         plugin adds the Kong signed token. If you don't specify a value for this,
         such as use `null` or `""` (empty string), the plugin does not even try to
-        sign or resign the token.
+        sign or re-sign the token.
     - name: access_token_upstream_leeway
       required: false
       default: 0
@@ -299,11 +299,25 @@ params:
       default: "RS256"
       datatype: string
       description: |
-        When this plugin sets the upstream header, as specified with `config.access_token_upstream_header`,
-        it also resigns the original access token using private keys of this plugin. With this
-        configuration parameter you can specify the algorithm that is used to sign the token. Currently
-        supported values are `"RS256"` and `"RS512"` (XXXXX rest will be added later). `config.access_token_issuer`
-        specifies which `keyset` is used to sign the new token issued by Kong, using
+        When this plugin sets the upstream header as specified with `config.access_token_upstream_header`,
+        it also re-signs the original access token using the private keys of the JWT Signer plugin.
+        Specify the algorithm that is used to sign the token. Currently
+        supported values:
+        - `"HS256"`
+        - `"HS384"`
+        - `"HS512"`
+        - `"RS256"`
+        - `"RS512"`
+        - `"ES256"`
+        - `"ES384"`
+        - `"ES512"`
+        - `"PS256"`
+        - `"PS384"`
+        - `"PS512"`
+        - `"EdDSA"`
+
+        The `config.access_token_issuer`
+        specifies which `keyset` is used to sign the new token issued by Kong using
         the specified signing algorithm.
     - name: access_token_optional
       required: false
@@ -366,7 +380,7 @@ params:
         want to do checks to a JWT token provided with introspection JSON specified with
         `config.access_token_introspection_jwt_claim`. With this parameter you can enable /
         disable further checks on payload before the new token is signed. If you set this
-        to `true` the expiry or scopes are not checked on payload.
+        to `true`, the expiry or scopes are not checked on payload.
     - name: enable_access_token_introspection
       required: false
       default: true
@@ -379,7 +393,7 @@ params:
       default: "kong"
       datatype: string
       description: |
-        The `iss` claim of the resigned channel token is set to this value, which
+        The `iss` claim of the re-signed channel token is set to this value, which
         is `kong` by default. The original `iss` claim of the incoming token
         (possibly introspected) is stored in the `original_iss` claim of
         the newly signed channel token.
@@ -394,9 +408,9 @@ params:
       default:
       datatype: string
       description: |
-        If you want to use `config.verify_channel_token_signature`, you must specify URI where
+        If you want to use `config.verify_channel_token_signature`, you must specify the URI where
         the plugin can fetch the public keys (JWKS) to verify the signature of the channel token.
-        If you don't specify one, and you pass JWT token to plugin, then the plugin will respond
+        If you don't specify a URI and you pass a JWT token to the plugin, then the plugin responds
         with `401 Unauthorized`.
     - name: channel_token_request_header
       required: false
@@ -469,7 +483,7 @@ params:
         after reading its value.
         With `config.channel_token_upstream_header` you can specify the upstream header where the plugin
         adds the Kong-signed token. If you don't specify value for this (e.g. use `null` or `""` (empty string),
-        the plugin does not attempt to resign the token.
+        the plugin does not attempt to re-sign the token.
     - name: channel_token_upstream_leeway
       required: false
       default: 0
@@ -591,11 +605,25 @@ params:
       default: "RS256"
       datatype: string
       description: |
-        When this plugin sets the upstream header, as specified with `config.channel_token_upstream_header`,
-        it will also (re-)sign the original channel token using private keys of this plugin. With this configuration
-        parameter you can specify the algorithm that is used to sign the token. Currently supported values are
-        `"RS256"` and `"RS512"` (rest will be added later XX REVIEWERS NEED TO ADD NOW SINCE ALL PRESENT IN SCHEMA?) XX. `config.channel_token_issuer` specifies which `keyset`
-        is used to sign the new token issued by Kong, using the specified signing algorithm.
+        When this plugin sets the upstream header as specified with `config.channel_token_upstream_header`,
+        it also re-signs the original channel token using private keys of this plugin.
+        Specify the algorithm that is used to sign the token. Currently
+        supported values:
+        - `"HS256"`
+        - `"HS384"`
+        - `"HS512"`
+        - `"RS256"`
+        - `"RS512"`
+        - `"ES256"`
+        - `"ES384"`
+        - `"ES512"`
+        - `"PS256"`
+        - `"PS384"`
+        - `"PS512"`
+        - `"EdDSA"`
+
+        The `config.channel_token_issuer` specifies which `keyset`
+        is used to sign the new token issued by Kong using the specified signing algorithm.
     - name: channel_token_optional
       required: false
       default: false
