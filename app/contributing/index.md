@@ -47,8 +47,20 @@ version to version. Chances are good that a typo on a page in one version appear
 
 ### Content requirements
 
-Before you change anything except fixes for typos or well-known grammar rules, look through our [style guide](../style-guide) and [markdown rules](../markdown-rules). The style guide provides a minimal set of style guidelines we ask you to adhere to, and the markdown rules specify how you must
-work with certain kinds of content -- includes, variables, new pages -- to make sure they integrate with our Jekyll implementation.
+Before you change anything except fixes for typos or well-known grammar rules, explore these resources:
+
+* Our [style guide](../style-guide). Provides a minimal set of style guidelines we ask you to adhere to.
+* Our set of [markdown rules](../markdown-rules) for making your content work with our Jekyll implementation. Specifies how you must
+work with certain kinds of content -- includes, variables, new pages.
+* Our [list of Kong-specific terms](../terms). Includes product names and other terms the Kong docs use in specific ways.
+
+### Build locally
+
+Updates to the Kong docs `main` branch are automatically published with our Netlify integration. We also work with Netlify preview deploys, so when you create a pull request on GitHub, Netlify automatically provides a preview build that includes your changes.
+
+If you are making substantial changes, we ask that you build locally before you create your PR. This lets you run tests locally, and helps you fix any build errors before working with Netlify.
+
+See [the README](https://github.com/Kong/docs.konghq.com/blob/main/README.md) for instructions to set up and build locally.
 
 ### First-time contributors
 
@@ -70,9 +82,6 @@ community as a great "how to be productive with Git" tutorial.
 Or consider a GUI client instead of the command line, such as GitHub Desktop, TortoiseGit (Windows), Tower, Sourcetree, or GitKraken.
 
 If you're making small spelling or grammar changes, you're welcome to skip the whole learn-Git-fork-branch-work-locally flow and make your changes directly in the GitHub web UI. The UI takes care of forking/branching automatically, so you don't need to worry about it. Because we work with deploy previews in Netlify, this approach means you also don't need to worry about building locally before you submit your PR.
-
-If you're making more substantial changes, however, we ask that you take the time to build locally and make sure your changes appear as they 
-should in your local build. See [the README](https://github.com/Kong/docs.konghq.com/blob/main/README.md) for details.
 
 ### Contributor T-shirt
 

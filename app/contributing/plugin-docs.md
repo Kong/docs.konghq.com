@@ -91,3 +91,8 @@ the existing plugins for examples, and see additional advice in
     * `description` - description of the field.
     Use YAML's pipe notation if writing longer Markdown text.
 
+## Listing Your Extension in the Plugin Hub
+
+We encourage developers to list their Kong Gateway plugins in the
+[Plugin Hub](https://docs.konghq.com/hub) with documentation hosted
+on the Kong docs website for ready access.
