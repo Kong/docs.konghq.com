@@ -9,168 +9,76 @@ redirect_from:
 
 This document covers integrating Kong Vitals with a new or existing InfluxDB
 time series server or cluster. Leveraging a time series database for Vitals data
-can improve request and Vitals performance in very-high traffic {{site.ee_product_name}}
+can improve request and Vitals performance in very-high traffic Kong Enterprise
 clusters (such as environments handling tens or hundreds of thousands of
-requests per second), without placing additional write load on the database
+requests per second), without placing addition write load on the database
 backing the Kong cluster.
 
-For information about using Kong Vitals with a database as the backend (for example,
-PostgreSQL, Cassandra), refer to
-[Kong Vitals](/enterprise/{{page.kong_version}}/admin-api/vitals/).
+For using Vitals with a database as the backend (i.e. PostgreSQL, Cassandra), 
+please refer to [Kong Vitals](/enterprise/{{page.kong_version}}/admin-api/vitals/).
 
-## Setting up Kong Vitals with InfluxDB
+## Getting Started
 
-### Step 1. Install Kong Gateway
+### Preparing InfluxDB
 
-If you already have a {{site.base_gateway}} instance, skip to Step 2.
-
-If you have not installed {{site.base_gateway}}, a Docker installation
-will work for the purposes of this guide. 
-
-{% include /md/enterprise/docker-install.mc %}
-
-```bash
-$ docker run -d --name kong-ee --network=kong-ee-net \
-  -e "KONG_DATABASE=postgres" \
-  -e "KONG_PG_HOST=kong-ee-database" \
-  -e "KONG_PG_PASSWORD=kong" \
-  -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
-  -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
-  -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
-  -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
-  -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
-  -e "KONG_ADMIN_GUI_URL=http://<DNSorIP>:8002" \
-  -e "KONG_VITALS_STRATEGY=influxdb" \
-  -e "KONG_VITALS_TSDB_ADDRESS=influxdb:8086" \
-  -p 8000:8000 \
-  -p 8443:8443 \
-  -p 8001:8001 \
-  -p 8444:8444 \
-  -p 8002:8002 \
-  -p 8445:8445 \
-  -p 8003:8003 \
-  -p 8004:8004 \
-  kong-ee
-```
-
-<div class="alert alert-ee blue">
-<strong>Note:</strong> For <code>KONG_ADMIN_GUI_URL</code>, replace <code>&lt;DNSorIP&gt;</code>
-with with the DNS name or IP of the Docker host. <code>KONG_ADMIN_GUI_URL</code>
-<i>should</i> have a protocol, for example, <code>http://</code>.
-</div>
-
-### Step 2. Deploy a Kong Gateway (Enterprise) license
-
-If you already have a {{site.ee_product_name}} license attached to your {{site.base_gateway}}
-instance, skip to Step 3.
-
-You will not be able to access the Kong Vitals functionality without a valid
-{{site.ee_product_name}} license attached to your {{site.base_gateway}} instance.
-
-See [Deploy an Enterprise License](/enterprise/{{page.kong_version}}/deployment/licenses/deploy-license)
-for instructions to apply a license to your {{site.base_gateway}} instance.
-
-### Step 3. Start an InfluxDB database
-
-Production-ready InfluxDB installations should be deployed as a separate
-effort, but for proof-of-concept testing, running a local InfluxDB instance
-is possible with Docker:
+This guide assumes an existing InfluxDB server or cluster is already installed
+and is accepting write traffic. Production-ready InfluxDB installations should
+be deployed as a separate effort, but for proof-of-concept testing, running a 
+local InfluxDB instance is possible via Docker:
 
 ```bash
 $ docker run -p 8086:8086 \
-  --network=<YOUR_NETWORK_NAME> \
-  --name influxdb \
-  -e INFLUXDB_DB=kong \
-  influxdb:1.8.4-alpine
+      -v $PWD:/var/lib/influxdb \
+      -e INFLUXDB_DB=kong \
+      influxdb
 ```
-
-<div class="alert alert-warning">
-You <strong>must</strong> use InfluxDB 1.8.4-alpine because
-InfluxDB 2.0 will <strong>not</strong> work.  
-</div>
 
 Writing Vitals data to InfluxDB requires that the `kong` database is created, 
 this is done using the `INFLUXDB_DB` variable.
 
-### Step 4. Configure Kong Gateway
+### Configuring Kong
 
-<div class="alert alert-ee blue">
-<strong>Note:</strong> If you used the configuration in 
-<a href="#step-1-install-kong-gateway">Step 1. Installing {{site.base_gateway}} on Docker</a>,
-then you do not need to complete this step.
-</div>
-
-In addition to enabling Kong Vitals, {{site.base_gateway}} must be configured to use InfluxDB as the
+In addition to enabling Vitals, Kong must be configured to use InfluxDB as the
 backing strategy for Vitals. The InfluxDB host and port must also be defined:
 
-```bash
-$ echo "KONG_VITALS_STRATEGY=influxdb KONG_VITALS_TSDB_ADDRESS=influxdb:8086 kong reload exit" \
-| docker exec -i kong-ee /bin/sh
+```
+vitals_strategy = influxdb
+vitals_tsdb_address = 127.0.0.1:8086 # the IP or hostname, and port, of InfluxDB
 ```
 
-## InfluxDB measurements
+As with other Kong configurations, changes take effect on kong reload or kong
+restart.
 
-Kong Vitals records metrics in two InfluxDB measurements: 
+## InfluxDB Measurements
 
-1. `kong_request`: Contains field values for request latencies and HTTP,
-  and tags for various Kong entities associated with the requests (for
-  example, the Route and Service in question).
-2. `kong_datastore_cache`: Contains points about cache hits and
-  misses. 
+Kong Vitals records metrics in two InfluxDB measurements- `kong_request`, which
+contains field values for request latencies and HTTP, and tags for various Kong
+entities associated with the requests (e.g., the Route and Service in question,
+etc.), and `kong_datastore_cache`, which contains points about cache hits and
+misses. Measurement schemas are listed below:
 
-To display the measurement schemas on your InfluxDB instance running
-in Docker:
+```
+> show tag keys
+name: kong_request
+tagKey
+------
+consumer
+hostname
+route
+service
+status_f
+wid
+workspace
 
-1. Open command line in your InfluxDB Docker container
-
-  ```sh
-  $ docker exec -it influxdb /bin/sh
-  ```
-
-2. Log in to the InfluxDB CLI.
-
-  ```sh
-  $ influx -precision rfc3339
-  ```
-
-3. Enter the InfluxQL query for returning a list of tag keys associated
-with the specified database.
-
-  ```sql
-  > SHOW TAG KEYS ON kong
-  ```
-
-  Example result:
-
-  ```sql
-  name: kong_request
-  tagKey
-  ------
-  consumer
-  hostname
-  route
-  service
-  status_f
-  wid
-  workspace
-
-  name: kong_datastore_cache
-  tagKey
-  ------
-  hostname
-  wid
-  ```
-
-4. Enter the InfluxQL query for returning the field keys and the
-data type of their field values.
-
-```sh
-> SHOW FIELD KEYS ON kong
+name: kong_datastore_cache
+tagKey
+------
+hostname
+wid
 ```
 
-Example result:
-
-```sql
+```
+> show field keys
 name: kong_request
 fieldKey	         fieldType
 --------	         ---------
@@ -193,11 +101,7 @@ duplicate metrics shipped at the same point in time.
 As demonstrated above, the series cardinality of the `kong_request` measurement
 varies based on the cardinality of the Kong cluster configuration - a greater
 number of Service/Route/Consumer/Workspace combinations handled by Kong results
-in a greater series cardinality as written by Vitals. 
-
-
-
-Consult the
+in a greater series cardinality as written by Vitals. Please consult the
 [InfluxDB sizing guidelines](https://docs.influxdata.com/influxdb/v1.7/guides/hardware_sizing/)
 for reference on appropriately sizing an InfluxDB node/cluster. Note that the
 query behavior when reading Vitals data falls under the "moderate" load
@@ -206,7 +110,7 @@ functions are used to generate the Vitals API responses, which can require
 significant CPU resources to execute when hundreds of thousands or millions of
 data points are present.
 
-## Query behavior
+## Query Behavior
 
 Kong buffers Vitals metrics and writes InfluxDB points in batches to improve
 throughput in InfluxDB and reduce overhead in the Kong proxy path. Each Kong
