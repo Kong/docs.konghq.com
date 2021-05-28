@@ -191,11 +191,11 @@ params:
       datatype: string
       description: |
         If the introspection endpoint requires client authentication (client being
-        this plugin), you can specify the `Authorization` header's value with this
+        the JWT Signer plugin), you can specify the `Authorization` header's value with this
         configuration parameter. For example, if you use client credentials, enter
         the value of `"Basic base64encode('client_id:client_secret')"`
-        to this configuration parameter (you are responsible to give full string
-        of the header and do all of the necessary encodings (e.g. base64)
+        to this configuration parameter. You are responsible to provide the full string
+        of the header and do all of the necessary encodings (such as base64)
         required on a given endpoint.
     - name: access_token_introspection_body_args
       required: false
@@ -210,8 +210,9 @@ params:
       default: "access_token"
       datatype: string
       description: |
-        If you need to give `hint` parameter when introspecting access token use this parameter to
-        specify the value of such parameter. By default, we send `hint=access_token`.
+        If you need to give `hint` parameter when introspecting an access token,
+        use this parameter to specify the value. By default, the plugin
+        sends `hint=access_token`.
     - name: access_token_introspection_jwt_claim
       required: false
       default:
@@ -289,7 +290,8 @@ params:
       default:
       datatype: number
       description: |
-        Timeout for introspection request. The plugin tries to introspect twice if the first request
+        Timeout for introspection request. XX REVIEWERS: what is the UoM? MS? S? What is a recommended value? XX
+        The plugin tries to introspect twice if the first request
         fails for some reason. If both requests timeout, then the plugin runs two times the
         `config.access_token_introspection_timeout` on access token introspection.
     - name: access_token_signing_algorithm
@@ -331,7 +333,7 @@ params:
       default: true
       datatype: boolean
       description: |
-        With this configuration parameter you can quickly turn on/off the access token
+        Quickly turn off and on the access token
         required scopes verification, specified with `config.access_token_scopes_required`.
     - name: verify_access_token_introspection_expiry
       required: false
@@ -344,7 +346,7 @@ params:
       default: true
       datatype: boolean
       description: |
-        Quickly turn on/off the access token
+        Quickly turn off and on the access token
         introspection scopes verification, specified with
         `config.access_token_introspection_scopes_required`.
     - name: cache_access_token_introspection
@@ -426,7 +428,7 @@ params:
         which can be given as `"employee demo-service,superadmin"` (form post) would mean that claim need
         to have values `"employee"` and `"demo-service"` **OR** that the claim need to have value of
         `"superadmin"` to be successfully authorized for the upstream access. If required scopes are not
-        found in channel token, the plugin will respond with `403 Forbidden`.
+        found in channel token, the plugin responds with `403 Forbidden`.
     - name: channel_token_scopes_claim
       required: false
       default: [ "scope" ]
@@ -592,9 +594,8 @@ params:
         When this plugin sets the upstream header, as specified with `config.channel_token_upstream_header`,
         it will also (re-)sign the original channel token using private keys of this plugin. With this configuration
         parameter you can specify the algorithm that is used to sign the token. Currently supported values are
-        `"RS256"` and `"RS512"` (rest will be added later XX REVIEWERS NEED TO ADD NOW SINCE ALL PRESENT IN SCHEMA). `config.channel_token_issuer` specifies which `keyset`
-        will be used to sign the new token issued by Kong, using the algorithm specified with this configuration
-        parameter.
+        `"RS256"` and `"RS512"` (rest will be added later XX REVIEWERS NEED TO ADD NOW SINCE ALL PRESENT IN SCHEMA?) XX. `config.channel_token_issuer` specifies which `keyset`
+        is used to sign the new token issued by Kong, using the specified signing algorithm.
     - name: channel_token_optional
       required: false
       default: false
