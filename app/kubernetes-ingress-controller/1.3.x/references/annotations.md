@@ -364,7 +364,7 @@ konghq.com/response-buffering: "false"
 
 > Available since controller 1.3
 
-Set addtional hosts for routes created from rules on this Ingress
+Set additional hosts for routes created from rules on this Ingress.
 
 Sample usage:
 
@@ -372,9 +372,9 @@ Sample usage:
 konghq.com/host-aliases: "example.com,example.net"
 ```
 
-Note that this annotation applies to all rules equally. An Ingress like this:
+This annotation applies to all rules equally. An Ingress like this:
 
-```
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -405,14 +405,15 @@ spec:
               number: 80
 ```
 
-Will result in two routes:
+Results in two routes:
 
 ```
 {"hosts":["foo.example", "example.com", "example.net"], "paths":["/foo"]}
 {"hosts":["bar.example", "example.com", "example.net"], "paths":["/bar"]}
+```
 
-Take care not to accidentally create unintentionally overlapping routes by not
-including the same path in multiple rules.
+{:.important}
+> To avoid creating overlapping routes, don't reuse the same path in multiple rules.
 
 ### konghq.com/override
 
