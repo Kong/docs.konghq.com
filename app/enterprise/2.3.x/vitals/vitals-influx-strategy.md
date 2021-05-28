@@ -9,45 +9,107 @@ redirect_from:
 
 This document covers integrating Kong Vitals with a new or existing InfluxDB
 time series server or cluster. Leveraging a time series database for Vitals data
-can improve request and Vitals performance in very-high traffic Kong Enterprise
+can improve request and Vitals performance in very-high traffic {{site.ee_product_name}}
 clusters (such as environments handling tens or hundreds of thousands of
-requests per second), without placing addition write load on the database
+requests per second), without placing additional write load on the database
 backing the Kong cluster.
 
-For using Vitals with a database as the backend (i.e. PostgreSQL, Cassandra), 
-please refer to [Kong Vitals](/enterprise/{{page.kong_version}}/admin-api/vitals/).
+For information about using Kong Vitals with a database as the backend (for example,
+PostgreSQL, Cassandra), refer to
+[Kong Vitals](/enterprise/{{page.kong_version}}/admin-api/vitals/).
 
-## Getting Started
+## Setting up Kong Vitals with InfluxDB
 
-### Preparing InfluxDB
+### Step 1. Install Kong Gateway
 
-This guide assumes an existing InfluxDB server or cluster is already installed
-and is accepting write traffic. Production-ready InfluxDB installations should
-be deployed as a separate effort, but for proof-of-concept testing, running a 
-local InfluxDB instance is possible via Docker:
+If you already have a {{site.base_gateway}} instance, skip to Step 2.
+
+If you have not installed {{site.base_gateway}}, a Docker installation will work for the purposes of this guide. 
+See [Install {{site.base_gateway}} on Docker](/enterprise/{{page.kong_version}}/deployment/installation/docker)
+for installation instructions.
+
+**When you get to
+[Step 5. Start the gateway with Kong Manager](/enterprise/{{page.kong_version}}/deployment/installation/docker/#start-gateway),
+use the following configuration instead:**
+
+```bash
+$ docker run -d --name kong-ee --network=kong-ee-net \
+  -e "KONG_DATABASE=postgres" \
+  -e "KONG_PG_HOST=kong-ee-database" \
+  -e "KONG_PG_PASSWORD=kong" \
+  -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+  -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+  -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+  -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+  -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
+  -e "KONG_ADMIN_GUI_URL=http://<DNSorIP>:8002" \
+  -e "KONG_VITALS_STRATEGY=influxdb" \
+  -e "KONG_VITALS_TSDB_ADDRESS=influxdb:8086" \
+  -p 8000:8000 \
+  -p 8443:8443 \
+  -p 8001:8001 \
+  -p 8444:8444 \
+  -p 8002:8002 \
+  -p 8445:8445 \
+  -p 8003:8003 \
+  -p 8004:8004 \
+  kong-ee
+```
+
+<div class="alert alert-ee blue">
+<strong>Note:</strong> For <code>KONG_ADMIN_GUI_URL</code>, replace <code>&lt;DNSorIP&gt;</code>
+with with the DNS name or IP of the Docker host. <code>KONG_ADMIN_GUI_URL</code>
+<i>should</i> have a protocol, for example, <code>http://</code>.
+</div>
+
+### Step 2. Deploy a Kong Gateway (Enterprise) license
+
+If you already have a {{site.ee_product_name}} license attached to your {{site.base_gateway}}
+instance, skip to Step 3.
+
+You will not be able to access the Kong Vitals functionality without a valid
+{{site.ee_product_name}} license attached to your {{site.base_gateway}} instance.
+
+See [Deploy an Enterprise License](/enterprise/{{page.kong_version}}/deployment/licenses/deploy-license)
+for instructions to apply a license to your {{site.base_gateway}} instance.
+
+### Step 3. Start an InfluxDB database
+
+Production-ready InfluxDB installations should be deployed as a separate
+effort, but for proof-of-concept testing, running a local InfluxDB instance
+is possible with Docker:
 
 ```bash
 $ docker run -p 8086:8086 \
-      -v $PWD:/var/lib/influxdb \
-      -e INFLUXDB_DB=kong \
-      influxdb
+  --network=<YOUR_NETWORK_NAME> \
+  --name influxdb \
+  -e INFLUXDB_DB=kong \
+  influxdb:1.8.4-alpine
 ```
+
+<div class="alert alert-warning">
+You <strong>must</strong> use InfluxDB 1.8.4-alpine because
+InfluxDB 2.0 will <strong>not</strong> work.  
+</div>
 
 Writing Vitals data to InfluxDB requires that the `kong` database is created, 
 this is done using the `INFLUXDB_DB` variable.
 
-### Configuring Kong
+### Step 4. Configure {{site.base_gateway}}
 
-In addition to enabling Vitals, Kong must be configured to use InfluxDB as the
+<div class="alert alert-ee blue">
+<strong>Note:</strong> If you used the configuration in 
+<a href="#step-1-install-kong-gateway">Step 1. Installing {{site.base_gateway}} on Docker</a>,
+then you do not need to complete this step.
+</div>
+
+In addition to enabling Kong Vitals, {{site.base_gateway}} must be configured to use InfluxDB as the
 backing strategy for Vitals. The InfluxDB host and port must also be defined:
 
+```bash
+$ echo "KONG_VITALS_STRATEGY=influxdb KONG_VITALS_TSDB_ADDRESS=influxdb:8086 kong reload exit" \
+| docker exec -i kong-ee /bin/sh
 ```
-vitals_strategy = influxdb
-vitals_tsdb_address = 127.0.0.1:8086 # the IP or hostname, and port, of InfluxDB
-```
-
-As with other Kong configurations, changes take effect on kong reload or kong
-restart.
 
 ## InfluxDB Measurements
 
