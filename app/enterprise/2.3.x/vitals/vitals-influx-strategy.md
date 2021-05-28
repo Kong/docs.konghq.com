@@ -5,10 +5,9 @@ redirect_from:
   - /enterprise/latest/admin-api/vitals/vitals-influx-strategy
 ---
 
-## Overview
+## Improve Vitals performance with InfluxDB
 
-This document covers integrating Kong Vitals with a new or existing InfluxDB
-time series server or cluster. Leveraging a time series database for Vitals data
+Leveraging a time series database for Vitals data
 can improve request and Vitals performance in very-high traffic {{site.ee_product_name}}
 clusters (such as environments handling tens or hundreds of thousands of
 requests per second), without placing additional write load on the database
@@ -22,15 +21,14 @@ PostgreSQL, Cassandra), refer to
 
 ### Step 1. Install Kong Gateway
 
-If you already have a {{site.base_gateway}} instance, skip to Step 2.
+If you already have a {{site.base_gateway}} instance, skip to [Step 2](#step-2-deploy-a-kong-gateway-enterprise-license).
 
-If you have not installed {{site.base_gateway}}, a Docker installation will work for the purposes of this guide. 
-See [Install {{site.base_gateway}} on Docker](/enterprise/{{page.kong_version}}/deployment/installation/docker)
-for installation instructions.
+If you have not installed {{site.base_gateway}}, a Docker installation
+will work for the purposes of this guide. 
 
-**When you get to
-[Step 5. Start the gateway with Kong Manager](/enterprise/{{page.kong_version}}/deployment/installation/docker/#start-gateway),
-use the following configuration instead:**
+{% include /md/2.3.x/docker-install-steps.md heading="#### " heading1="#### " heading2="#### " heading3="#### " %}
+
+#### Start the gateway with Kong Manager
 
 ```bash
 $ docker run -d --name kong-ee --network=kong-ee-net \
@@ -56,22 +54,20 @@ $ docker run -d --name kong-ee --network=kong-ee-net \
   kong-ee
 ```
 
-<div class="alert alert-ee blue">
-<strong>Note:</strong> For <code>KONG_ADMIN_GUI_URL</code>, replace <code>&lt;DNSorIP&gt;</code>
+{:.note}
+> **Note:** For `KONG_ADMIN_GUI_URL`, replace `DNSorIP`
 with with the DNS name or IP of the Docker host. <code>KONG_ADMIN_GUI_URL</code>
-<i>should</i> have a protocol, for example, <code>http://</code>.
-</div>
+_should_ have a protocol, for example, `http://`.
 
 ### Step 2. Deploy a Kong Gateway (Enterprise) license
 
 If you already have a {{site.ee_product_name}} license attached to your {{site.base_gateway}}
-instance, skip to Step 3.
+instance, skip to [Step 3](#step-3-start-an-influxdb-database).
 
 You will not be able to access the Kong Vitals functionality without a valid
 {{site.ee_product_name}} license attached to your {{site.base_gateway}} instance.
 
-See [Deploy an Enterprise License](/enterprise/{{page.kong_version}}/deployment/licenses/deploy-license)
-for instructions to apply a license to your {{site.base_gateway}} instance.
+{% include /md/enterprise/deploy-license.md heading="####" %}
 
 ### Step 3. Start an InfluxDB database
 
@@ -87,21 +83,19 @@ $ docker run -p 8086:8086 \
   influxdb:1.8.4-alpine
 ```
 
-<div class="alert alert-warning">
-You <strong>must</strong> use InfluxDB 1.8.4-alpine because
-InfluxDB 2.0 will <strong>not</strong> work.  
-</div>
+{:.warning}
+> You **must** use InfluxDB 1.8.4-alpine because
+InfluxDB 2.0 will **not** work.  
 
 Writing Vitals data to InfluxDB requires that the `kong` database is created, 
 this is done using the `INFLUXDB_DB` variable.
 
-### Step 4. Configure {{site.base_gateway}}
+### Step 4. Configure Kong Gateway
 
-<div class="alert alert-ee blue">
-<strong>Note:</strong> If you used the configuration in 
-<a href="#step-1-install-kong-gateway">Step 1. Installing {{site.base_gateway}} on Docker</a>,
+{:.note}
+> **Note:** If you used the configuration in 
+[Step 1. Installing {{site.base_gateway}} on Docker](#step-1-install-kong-gateway),
 then you do not need to complete this step.
-</div>
 
 In addition to enabling Kong Vitals, {{site.base_gateway}} must be configured to use InfluxDB as the
 backing strategy for Vitals. The InfluxDB host and port must also be defined:
@@ -111,36 +105,69 @@ $ echo "KONG_VITALS_STRATEGY=influxdb KONG_VITALS_TSDB_ADDRESS=influxdb:8086 kon
 | docker exec -i kong-ee /bin/sh
 ```
 
-## InfluxDB Measurements
+## Understanding Vitals data using InfluxDB measurements
 
-Kong Vitals records metrics in two InfluxDB measurements- `kong_request`, which
-contains field values for request latencies and HTTP, and tags for various Kong
-entities associated with the requests (e.g., the Route and Service in question,
-etc.), and `kong_datastore_cache`, which contains points about cache hits and
-misses. Measurement schemas are listed below:
+Kong Vitals records metrics in two InfluxDB measurements: 
 
+1. `kong_request`: Contains field values for request latencies and HTTP,
+  and tags for various Kong entities associated with the requests (for
+  example, the Route and Service in question).
+2. `kong_datastore_cache`: Contains points about cache hits and
+  misses. 
+
+To display the measurement schemas on your InfluxDB instance running
+in Docker:
+
+1. Open command line in your InfluxDB Docker container
+
+  ```sh
+  $ docker exec -it influxdb /bin/sh
+  ```
+
+2. Log in to the InfluxDB CLI.
+
+  ```sh
+  $ influx -precision rfc3339
+  ```
+
+3. Enter the InfluxQL query for returning a list of tag keys associated
+with the specified database.
+
+  ```sql
+  > SHOW TAG KEYS ON kong
+  ```
+
+  Example result:
+
+  ```sql
+  name: kong_request
+  tagKey
+  ------
+  consumer
+  hostname
+  route
+  service
+  status_f
+  wid
+  workspace
+
+  name: kong_datastore_cache
+  tagKey
+  ------
+  hostname
+  wid
+  ```
+
+4. Enter the InfluxQL query for returning the field keys and the
+data type of their field values.
+
+```sh
+> SHOW FIELD KEYS ON kong
 ```
-> show tag keys
-name: kong_request
-tagKey
-------
-consumer
-hostname
-route
-service
-status_f
-wid
-workspace
 
-name: kong_datastore_cache
-tagKey
-------
-hostname
-wid
-```
+Example result:
 
-```
-> show field keys
+```sql
 name: kong_request
 fieldKey	         fieldType
 --------	         ---------
@@ -163,16 +190,22 @@ duplicate metrics shipped at the same point in time.
 As demonstrated above, the series cardinality of the `kong_request` measurement
 varies based on the cardinality of the Kong cluster configuration - a greater
 number of Service/Route/Consumer/Workspace combinations handled by Kong results
-in a greater series cardinality as written by Vitals. Please consult the
+in a greater series cardinality as written by Vitals. 
+
+## Sizing an InfluxDB node/cluster for Vitals
+
+Consult the
 [InfluxDB sizing guidelines](https://docs.influxdata.com/influxdb/v1.7/guides/hardware_sizing/)
-for reference on appropriately sizing an InfluxDB node/cluster. Note that the
-query behavior when reading Vitals data falls under the "moderate" load
-category as defined by the above document - several `GROUP BY` statements and
+for reference on appropriately sizing an InfluxDB node/cluster. 
+
+{:.note}
+> **Note:** The query behavior when reading Vitals data falls under the "moderate" load
+category as defined by the InfluxDB sizing guidelines. Several `GROUP BY` statements and
 functions are used to generate the Vitals API responses, which can require
 significant CPU resources to execute when hundreds of thousands or millions of
 data points are present.
 
-## Query Behavior
+## Query frequency and precision
 
 Kong buffers Vitals metrics and writes InfluxDB points in batches to improve
 throughput in InfluxDB and reduce overhead in the Kong proxy path. Each Kong
@@ -181,13 +214,17 @@ whichever comes first.
 
 Metrics points are written with microsecond (`u`) precision. To comply with
 the [Vitals API](/enterprise/{{page.kong_version}}/admin-api/vitals/#vitals-api), measurement
-values are read back grouped by second. Note that due to limitations in the
-OpenResty API, writing values with microsecond precision requires an additional
-syscall per request.
+values are read back grouped by second. 
 
-Currently, Vitals InfluxDB data points are not downsampled or managed via
-retention policy by Kong. InfluxDB operators are encouraged to manually manage
+{:.note}
+> **Note:** Because of limitations in the OpenResty API, writing values with
+microsecond precision requires an additional syscall per request.
+
+## Managing the retention policy of the kong database
+
+Vitals InfluxDB data points are not downsampled or managed by a
+retention policy through Kong. InfluxDB operators are encouraged to manually manage
 the retention policy of the `kong` database to reduce the disk space and memory
-needed to manage Vitals data points. Currently, Kong Vitals ignores data points
-older than 25 hours; it is safe to create a retention policy with a 25-hour
+needed to manage Vitals data points. Kong Vitals ignores data points
+older than 25 hours, so it is safe to create a retention policy with a 25-hour
 duration for measurements written by Kong.
