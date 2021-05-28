@@ -25,73 +25,7 @@ This software is governed by the
 To complete this installation you will need a Docker-enabled system with proper
  Docker access.
 
-## Step 1. Pull the Kong Gateway Docker image {#pull-image}
-
-Pull the following Docker image:
-
-```bash
-$ docker pull kong/kong-gateway:{{page.kong_versions[11].version}}-alpine
-```
-
-<div class="alert alert-ee">
-<b>Note:</b> Some
-<a href="https://support.konghq.com/support/s/article/Downloading-older-Kong-versions">
-older {{site.base_gateway}} images</a>
-are not publicly accessible. If you need a specific patch version and can't
-find it on Kong's public Docker Hub page, contact
-<a href="https://support.konghq.com/">Kong Support</a>.
-</div>
-
-You should now have your {{site.base_gateway}} image locally.
-
-Verify that it worked, and find the image ID matching your repository:
-
-```bash
-$ docker images
-```
-
-Tag the image ID for easier use:
-
-```bash
-$ docker tag <IMAGE_ID> kong-ee
-```
-
-**Note:** Replace `<IMAGE_ID>` with the one matching your repository.
-
-## Step 2. Create a Docker network {#create-network}
-
-Create a custom network to allow the containers to discover and communicate with each other.
-
-```bash
-$ docker network create kong-ee-net
-```
-
-## Step 3. Start a database
-
-Start a PostgreSQL container:
-
-```bash
-$ docker run -d --name kong-ee-database \
-  --network=kong-ee-net \
-  -p 5432:5432 \
-  -e "POSTGRES_USER=kong" \
-  -e "POSTGRES_DB=kong" \
-  -e "POSTGRES_PASSWORD=kong" \
-  postgres:9.6
-```
-
-## Step 4. Prepare the Kong database
-
-```bash
-$ docker run --rm --network=kong-ee-net \
-  -e "KONG_DATABASE=postgres" \
-  -e "KONG_PG_HOST=kong-ee-database" \
-  -e "KONG_PG_PASSWORD=kong" \
-  -e "KONG_PASSWORD=<SOMETHING-YOU-KNOW>" \
-  kong-ee kong migrations bootstrap
-```
-
-**Note**: For `KONG_PASSWORD`, replace `<SOMETHING-YOU-KNOW>` with a valid password that only you know.
+{% include /md/2.4.x/docker-install-steps.md heading="## Step 1. " heading1="## Step 2. " heading2="## Step 3. " heading3="## Step 4. " %}
 
 ## Step 5. Start the gateway with Kong Manager {#start-gateway}
 
