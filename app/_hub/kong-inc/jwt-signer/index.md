@@ -108,20 +108,22 @@ params:
       default: 0
       datatype: number
       description: |
-        Use this parameter to adjust clock skew between the token issuer and Kong. The value
-        is added to token's `exp` claim before checking token expiry against Kong servers' current
-        time in seconds. You can disable access token `expiry` verification altogether with
-        `config.verify_access_token_expiry`.
+        Adjusts clock skew between the token issuer and Kong. The value
+        is added to the token's `exp` claim before checking token expiry against
+        Kong servers' current time in seconds. You can disable access token
+        `expiry` verification altogether with `config.verify_access_token_expiry`.
     - name: access_token_scopes_required
       required: false
       default:
       datatype: array of string elements
       description: |
         Specify the required values (or scopes) that are looked from a
-        claim specified by `config.access_token_scopes_claim`. E.g. `[ "employee demo-service", "superadmin" ]`
-        which can be given as `"employee demo-service,superadmin"` (form post) would mean that claim
-        need to have values `"employee"` and `"demo-service"` **OR** that the claim need to have value
-        of `"superadmin"` to be successfully authorized for the upstream access. If required scopes are
+        claim specified by `config.access_token_scopes_claim`. For example,
+        `[ "employee demo-service", "superadmin" ]` can be given as
+        `"employee demo-service,superadmin"` (form post) would mean that the claim
+        needs to have values `"employee"` and `"demo-service"` **OR** that the claim
+        needs to have the value of `"superadmin"` to be successfully authorized for
+        the upstream access. If required scopes are
         not found in access token, the plugin responds with `403 Forbidden`.
     - name: access_token_scopes_claim
       required: false
@@ -129,9 +131,10 @@ params:
       datatype: array of string elements
       description: |
         Specify the claim in an access token to verify against values of
-        `config.access_token_scopes_required`. This supports nested claims, e.g. with Keycloak you could
-        use `[ "realm_access", "roles" ]` which can be given as `realm_access,roles` (form post). If the
-        claim is not found in the access token, and you have specified `config.access_token_scopes_required`,
+        `config.access_token_scopes_required`. This supports nested claims. For
+        example, with Keycloak you could use `[ "realm_access", "roles" ]`, which can
+        be given as `realm_access,roles` (form post).
+        If the claim is not found in the access token, and you have specified `config.access_token_scopes_required`,
         the plugin responds with `403 Forbidden`.
     - name: access_token_consumer_claim
       required: false
@@ -139,14 +142,14 @@ params:
       datatype: array of string elements
       description: |
         When you set a value for this parameter, the plugin tries to map an arbitrary
-        claim specified with this configuration parameter (e.g. `sub` or `username`) in
-        access token to Kong consumer entity. Kong consumers have an `id`, a `username`,
+        claim specified with this configuration parameter (for example, `sub` or `username`) in
+        an access token to Kong consumer entity. Kong consumers have an `id`, a `username`,
         and a `custom_id`. The `config.access_token_consumer_by` parameter
-        tells the plugin which of these Kong consumer properties can be used for mapping. If this
-        parameter is enabled but the mapping fails (such as a non-existent Kong consumer),
-        the plugin responds with `403 Forbidden`. Kong consumer mapping is useful
-        when you want to communicate this information to other plugins such as
-        [ACL](/hub/kong-inc/acl/) or [rate limiting](/hub/kong-inc/rate-limiting/).
+        tells the plugin which of these Kong consumer properties can be used for mapping.
+        If this parameter is enabled but the mapping fails, such as when there's
+        a non-existent Kong consumer, the plugin responds with `403 Forbidden`.
+        Kong [consumer mapping](#consumer-mapping) is useful when you want to communicate this information
+        to other plugins such as [ACL](/hub/kong-inc/acl/) or [rate limiting](/hub/kong-inc/rate-limiting/).
         The JWT Signer plugin also sets a couple of standard Kong
         upstream consumer headers.
     - name: access_token_consumer_by
@@ -262,8 +265,9 @@ params:
         have an `id`, a `username`, and a `custom_id`. The
         `config.access_token_introspection_consumer_by` parameter tells the plugin which of these
         Kong consumer properties can be used for mapping. If this parameter is enabled
-        but the mapping fails (such as non-existent Kong consumer), the plugin responds
-        with `403 Forbidden`. Kong consumer mapping is useful when you want to
+        but the mapping fails, such as when there's
+        a non-existent Kong consumer, the plugin responds
+        with `403 Forbidden`. Kong [consumer mapping](#consumer-mapping) is useful when you want to
         communicate this information to other plugins such as [ACL](/hub/kong-inc/acl/)
         or [rate limiting](/kong-inc/rate-limiting/). The JWT Signer plugin also
         sets a couple of standard Kong upstream consumer headers.
@@ -290,7 +294,7 @@ params:
       default:
       datatype: number
       description: |
-        Timeout for introspection request. XX REVIEWERS: what is the UoM? MS? S? What is a recommended value? XX
+        Timeout for introspection request.
         The plugin tries to introspect twice if the first request
         fails for some reason. If both requests timeout, then the plugin runs two times the
         `config.access_token_introspection_timeout` on access token introspection.
@@ -461,10 +465,12 @@ params:
         When you set a value for this parameter, the plugin tries to map an arbitrary claim specified with
         this configuration parameter (e.g. `sub` or `username`) in channel token to Kong consumer entity. Kong
         consumers have an `id`, a `username` and a `custom_id`. The `config.channel_token_consumer_by` parameter
-        is used to tell the plugin what of these Kong consumer properties can be used for mapping. If this
-        parameter is enable but the mapping fails (e.g. in-existent Kong consumer), the plugin will respond
-        with `403 Forbidden`. Kong consumer mapping is useful when you want to communicate this information
-        to other plugins such as ACL](/hub/kong-inc/acl/) or [rate limiting](/hub/kong-inc/rate-limiting/).
+        tells the plugin which Kong consumer properties can be used for mapping. If this
+        parameter is enabled but the mapping fails, such as when there's
+        a non-existent Kong consumer, the plugin responds
+        with `403 Forbidden`. Kong [consumer mapping](#consumer-mapping) is useful
+        when you want to communicate this information
+        to other plugins such as [ACL](/hub/kong-inc/acl/) or [rate limiting](/hub/kong-inc/rate-limiting/).
         The JWT Signer plugin also sets a couple of standard Kong upstream consumer headers.
     - name: channel_token_consumer_by
       required: false
@@ -569,8 +575,10 @@ params:
         this configuration parameter (e.g. `sub` or `username`) in channel token introspection results to
         Kong consumer entity. Kong consumers have an `id`, a `username` and a `custom_id`. The
         `config.channel_token_introspection_consumer_by` parameter is used to tell the plugin what of these
-        Kong consumer properties can be used for mapping. If this parameter is enable but the mapping fails
-        (e.g. in-existent Kong consumer), the plugin will respond with `403 Forbidden`. Kong consumer mapping
+        Kong consumer properties can be used for mapping. If this parameter is enable
+        but the mapping fails, such as when there's
+        a non-existent Kong consumer, the plugin responds with `403 Forbidden`. Kong
+        [consumer mapping](#consumer-mapping)
         is useful when you want to communicate this information to other plugins such as
         [ACL](/hub/kong-inc/acl/) or [rate limiting](/hub/kong-inc/rate-limiting/). The
         JWT Signer plugin also sets a couple of standard
@@ -749,7 +757,7 @@ When mapping is done, no other mappings are used. If access token already maps
 to a Kong consumer, the plugin does not try to map a channel token to a consumer
 anymore and does not even error in that case.
 
-General rule to follow would be to only map either access or channel token.
+A general rule to follow would be to only map either the access token or the channel token.
 
 ## Kong Admin API Endpoints
 
