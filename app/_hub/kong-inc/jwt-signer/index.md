@@ -95,14 +95,15 @@ params:
         `401 Unauthorized`.
     - name: access_token_request_header
       required: false
-      default: Authorization
+      default: authorization
       datatype: string
       description: |
         This parameter tells the name of the header where to look for the access token.
-        By default, we search it from `Authorization: Bearer <token>` header (the value being magic key
-        `authorization:bearer`). If you don't want to do anything with `access token`, then you can
-        set this to `null` or `""` (empty string). Any header can be used to pass the access token
-        to the plugin. Two predefined values are `authorization:bearer` and `authorization:basic`.
+        By default, the plugin searches it from `Authorization: Bearer <token>` header
+        (the value being magic key `authorization:bearer`). If you don't want to
+        do anything with `access token`, then you can set this to `null` or `""` (empty string).
+        Any header can be used to pass the access token to the plugin. Two predefined
+        values are `authorization:bearer` and `authorization:basic`.
     - name: access_token_leeway
       required: false
       default: 0
@@ -134,7 +135,8 @@ params:
         `config.access_token_scopes_required`. This supports nested claims. For
         example, with Keycloak you could use `[ "realm_access", "roles" ]`, which can
         be given as `realm_access,roles` (form post).
-        If the claim is not found in the access token, and you have specified `config.access_token_scopes_required`,
+        If the claim is not found in the access token, and you have specified
+        `config.access_token_scopes_required`,
         the plugin responds with `403 Forbidden`.
     - name: access_token_consumer_claim
       required: false
@@ -207,7 +209,7 @@ params:
       description: |
         If you need to pass additional body arguments to an introspection endpoint
         when the plugin introspects the opaque access token, use this config parameter
-        to specify them. You should url encode the value, e.g. `resource=` or `a=1&b=&c`.
+        to specify them. You should url encode the value. For example: `resource=` or `a=1&b=&c`.
     - name: access_token_introspection_hint
       required: false
       default: "access_token"
@@ -222,7 +224,7 @@ params:
       datatype: array of string elements
       description: |
         If your introspection endpoint returns an access token in one of the keys
-        (or claims) within the introspection results (`JSON`), we can use that value
+        (or claims) within the introspection results (`JSON`), the plugin can use that value
         instead of the introspection results when doing expiry verification and
         signing of the new token issued by Kong. For example, if you specify
         `[ "token_string" ]`, which can be given as `"token_string"` (form post)
@@ -238,9 +240,9 @@ params:
       description: |
         Specify the required values (or scopes) that are looked from an
         introspection claim/property specified by `config.access_token_introspection_scopes_claim`.
-        E.g. `[ "employee demo-service", "superadmin" ]` which can be given as `"employee demo-service,superadmin"`
-        (form post) would mean that claim need to have values `"employee"` and `"demo-service"` **OR**
-        that the claim need to have value of `"superadmin"` to be successfully authorized for the upstream
+        For example, `[ "employee demo-service", "superadmin" ]` can be given as `"employee demo-service,superadmin"`
+        (form post) would mean that the claim needs to have values `"employee"` and `"demo-service"` **OR**
+        that the claim needs to have value of `"superadmin"` to be successfully authorized for the upstream
         access. If required scopes are not found in access token introspection results (`JSON`),
         the plugin responds with `403 Forbidden`.
     - name: access_token_introspection_scopes_claim
@@ -253,14 +255,14 @@ params:
         This supports nested claims, e.g. with Keycloak you could use `[ "realm_access", "roles" ]`
         which can be given as `realm_access,roles` (form post). If the claim is not found in access
         token introspection results, and you have specified `config.access_token_introspection_scopes_required`,
-        the plugin will respond with `403 Forbidden`.
+        the plugin responds with `403 Forbidden`.
     - name: access_token_introspection_consumer_claim
       required: false
       default:
       datatype: array of string elements
       description: |
         When you set a value for this parameter, the plugin tries to map an arbitrary
-        claim specified with this configuration parameter (e.g. `sub` or `username`)
+        claim specified with this configuration parameter (such as `sub` or `username`)
         in access token introspection results to the Kong consumer entity. Kong consumers
         have an `id`, a `username`, and a `custom_id`. The
         `config.access_token_introspection_consumer_by` parameter tells the plugin which of these
@@ -331,7 +333,7 @@ params:
         In case when access token is not provided or no `config.access_token_request_header` is specified,
         the plugin cannot obviously verify the access token. In that case the plugin normally responds
         with `401 Unauthorized` (client didn't send a token) or `500 Unexpected` (a configuration error).
-        With this parameter you can let the request to proceed even when there is no token to be checked.
+        Use this parameter to allow the request to proceed even when there is no token to check.
         If the token is provided, then this parameter has no effect (look other parameters to enable and
         disable checks in that case).
     - name: verify_access_token_signature
@@ -382,9 +384,9 @@ params:
         and scopes verification on introspection results, you probably don't want to do another
         round of checks on the payload before the plugin signs a new token. Or that you don't
         want to do checks to a JWT token provided with introspection JSON specified with
-        `config.access_token_introspection_jwt_claim`. With this parameter you can enable /
-        disable further checks on payload before the new token is signed. If you set this
-        to `true`, the expiry or scopes are not checked on payload.
+        `config.access_token_introspection_jwt_claim`. Use this parameter to enable and
+        disable further checks on a payload before the new token is signed. If you set this
+        to `true`, the expiry or scopes are not checked on a payload.
     - name: enable_access_token_introspection
       required: false
       default: true
@@ -422,8 +424,8 @@ params:
       datatype: string
       description: |
         This parameter tells the name of the header where to look for the channel token.
-        By default, the plugin doesn't look for channel token. If you don't want to
-        do anything with channel token, then you can set this to `null` or `""`
+        By default, the plugin doesn't look for the channel token. If you don't want to
+        do anything with the channel token, then you can set this to `null` or `""`
         (empty string). Any header can be used to pass the channel
         token to this plugin. Two predefined values are `authorization:bearer`
         and `authorization:basic`.
@@ -441,10 +443,10 @@ params:
       default:
       datatype: array of string elements
       description: |
-        With this parameter you can specify the required values (or scopes) that are looked from a claim
-        specified by `config.channel_token_scopes_claim`. E.g. `[ "employee demo-service", "superadmin" ]`
-        which can be given as `"employee demo-service,superadmin"` (form post) would mean that claim need
-        to have values `"employee"` and `"demo-service"` **OR** that the claim need to have value of
+        Specify the required values (or scopes) that are looked from a claim
+        specified by `config.channel_token_scopes_claim`. For example, `[ "employee demo-service", "superadmin" ]`
+        can be given as `"employee demo-service,superadmin"` (form post) would mean that claim needs
+        to have values `"employee"` and `"demo-service"` **OR** that the claim needs to have the value of
         `"superadmin"` to be successfully authorized for the upstream access. If required scopes are not
         found in channel token, the plugin responds with `403 Forbidden`.
     - name: channel_token_scopes_claim
