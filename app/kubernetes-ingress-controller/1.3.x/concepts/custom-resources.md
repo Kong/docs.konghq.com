@@ -124,8 +124,8 @@ release.
 Instead, please use secret-based credentials.
 
 [k8s-crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/
-[kong-consumer]: https://getkong.org/docs/latest/admin-api/#consumer-object
-[kong-plugin]: https://getkong.org/docs/latest/admin-api/#plugin-object
-[kong-route]: https://getkong.org/docs/latest/admin-api/#route-object
-[kong-service]: https://getkong.org/docs/latest/admin-api/#service-object
-[kong-upstream]: https://getkong.org/docs/latest/admin-api/#upstream-objects
+[kong-consumer]: /gateway-oss/latest/admin-api/#consumer-object
+[kong-plugin]: /gateway-oss/latest/admin-api/#plugin-object
+[kong-route]: /gateway-oss/latest/admin-api/#route-object
+[kong-service]: /gateway-oss/latest/admin-api/#service-object
+[kong-upstream]: /gateway-oss/latest/admin-api/#upstream-objects
