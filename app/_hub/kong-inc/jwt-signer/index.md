@@ -489,8 +489,8 @@ params:
       description: |
         This plugin removes the `config.channel_token_request_header` from the request
         after reading its value.
-        With `config.channel_token_upstream_header` you can specify the upstream header where the plugin
-        adds the Kong-signed token. If you don't specify value for this (e.g. use `null` or `""` (empty string),
+        With `config.channel_token_upstream_header`, you can specify the upstream header where the plugin
+        adds the Kong-signed token. If you don't specify a value (so `null` or `""` empty string),
         the plugin does not attempt to re-sign the token.
     - name: channel_token_upstream_leeway
       required: false
@@ -498,7 +498,7 @@ params:
       datatype: number
       description: |
         If you want to add or perhaps subtract (using negative value) expiry time of the original channel token,
-        you can specify value that is added to original channel token's `exp` claim.
+        you can specify a value that is added to the original channel token's `exp` claim.
     - name: channel_token_introspection_endpoint
       required: false
       default:
@@ -514,9 +514,9 @@ params:
       datatype: string
       description: |
         If the introspection endpoint requires client authentication (client being this plugin), you can specify
-        the `Authorization` header's value with this configuration parameter. E.g. if you use client credentials
-        you should enter value of `"Basic base64encode('client_id:client_secret')"` to this configuration parameter
-        (you are responsible to give full string of the header and do all the necessary encodings (e.g. base64)
+        the `Authorization` header's value with this configuration parameter. If you use client credentials,
+        you should enter the value of `"Basic base64encode('client_id:client_secret')"` to this configuration parameter.
+        You are responsible to give full string of the header and do all the necessary encodings (such as base64)
         that is required on given endpoint.
     - name: channel_token_introspection_body_args
       required: false
