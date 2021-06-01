@@ -444,29 +444,29 @@ params:
       datatype: array of string elements
       description: |
         Specify the required values (or scopes) that are looked from a claim
-        specified by `config.channel_token_scopes_claim`. For example, `[ "employee demo-service", "superadmin" ]`
-        can be given as `"employee demo-service,superadmin"` (form post) would mean that claim needs
-        to have values `"employee"` and `"demo-service"` **OR** that the claim needs to have the value of
+        specified by `config.channel_token_scopes_claim`. For example, if `[ "employee demo-service", "superadmin" ]`
+        was given as `"employee demo-service,superadmin"` (form post), the claim needs
+        to have values `"employee"` and `"demo-service"`, **OR** that the claim needs to have the value of
         `"superadmin"` to be successfully authorized for the upstream access. If required scopes are not
-        found in channel token, the plugin responds with `403 Forbidden`.
+        found in the channel token, the plugin responds with `403 Forbidden`.
     - name: channel_token_scopes_claim
       required: false
       default: [ "scope" ]
       datatype: array of string elements
       description: |
-        Specify the claim in a channel token to verfy against values of
-        `config.channel_token_scopes_required`. This supports nested claims, e.g. with Keycloak you could
-        use `[ "realm_access", "roles" ]` which can be given as `realm_access,roles` (form post).
-        If the claim is not found in channel token, and you have specified `config.channel_token_scopes_required`,
-        the plugin will respond with `403 Forbidden`.
+        Specify the claim in a channel token to verify against values of
+        `config.channel_token_scopes_required`. This supports nested claims. With Keycloak, you could
+        use `[ "realm_access", "roles" ]`, which can be given as `realm_access,roles` (form post).
+        If the claim is not found in the channel token, and you have specified `config.channel_token_scopes_required`,
+        the plugin responds with `403 Forbidden`.
     - name: channel_token_consumer_claim
       required: false
       default:
       datatype: array of string elements
       description: |
         When you set a value for this parameter, the plugin tries to map an arbitrary claim specified with
-        this configuration parameter (e.g. `sub` or `username`) in channel token to Kong consumer entity. Kong
-        consumers have an `id`, a `username` and a `custom_id`. The `config.channel_token_consumer_by` parameter
+        this configuration parameter (e.g. `sub` or `username`) in a channel token to a Kong consumer entity. Kong
+        consumers have an `id`, a `username`, and a `custom_id`. The `config.channel_token_consumer_by` parameter
         tells the plugin which Kong consumer properties can be used for mapping. If this
         parameter is enabled but the mapping fails, such as when there's
         a non-existent Kong consumer, the plugin responds
