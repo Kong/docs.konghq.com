@@ -41,339 +41,62 @@ and [{{site.ee_product_name}} for Kubernetes Deployment Options](/enterprise/lat
 
 <!-- To add or edit table entries in this topic, see /app/_data/tables/plugins.yml in this repo -->
 
-{% assign plugins=site.data.tables.plugins %}
+{% assign categories = site.data.tables.plugin_index %}
+{% assign plugins = site.data.tables.plugin_index.category.plugin %}
 
-{% capture plugin_table_header %}
-<th style="text-align: left; width: 10%">Plugin</th>
-<th style="text-align: center">Free</th>
-<th style="text-align: center">Plus</th>
-<th style="text-align: center">Enterprise</th>
-<th style="width: 20%">Supported Topologies</th>
-<th style="text-align: left; width: 35%">Notes</th>
-{% endcapture %}
-
-### Authentication
+{% for category in categories %}
+<h3 id="{{ category.name | downcase | split: " " | join: "-" }}">
+  {{ category.name }}
+</h3>
 
 <table>
-      <thead>
-         {{ plugin_table_header }}
-      </thead>
-      <tbody>
-        {% for plugin in plugins %}
-          {% if plugin.category == 'Authentication' %}
-          <tr>
-            <td>
-            <a href="{{plugin.url}}">{{ plugin.name }}</a>
-            </td>
-            <td style="text-align: center">
-            {% if plugin.free == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.free == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td style="text-align: center">
-            {% if plugin.plus == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.plus == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td style="text-align: center">
-            {% if plugin.enterprise == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.enterprise == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td>
-            {{ plugin.topologies }}
-            </td>
-            <td>
-            {{ plugin.notes }}
-            </td>
-          </tr>
+  <thead>
+      <th style="text-align: left; width: 10%">Plugin</th>
+      <th style="text-align: center">Free</th>
+      <th style="text-align: center">Plus</th>
+      <th style="text-align: center">Enterprise</th>
+      <th style="width: 20%">Supported Topologies</th>
+      <th style="text-align: left; width: 35%">Notes</th>
+  </thead>
+  <tbody>
+    {% for plugin in category.plugins %}
+      <tr>
+        <td>
+          <a href="{{plugin.url}}">{{ plugin.name }}</a>
+        </td>
+        <td style="text-align: center">
+          {% if plugin.free == true %}
+          <i class="fa fa-check"></i>
+          {% elsif plugin.free == false %}
+          <i class="fa fa-times"></i>
           {% endif %}
-        {% endfor %}
-      </tbody>
+        </td>
+        <td style="text-align: center">
+          {% if plugin.plus == true %}
+          <i class="fa fa-check"></i>
+          {% elsif plugin.plus == false %}
+          <i class="fa fa-times"></i>
+          {% endif %}
+        </td>
+        <td style="text-align: center">
+          {% if plugin.enterprise == true %}
+          <i class="fa fa-check"></i>
+          {% elsif plugin.enterprise == false %}
+          <i class="fa fa-times"></i>
+          {% endif %}
+        </td>
+        <td>
+          {{ plugin.topologies }}
+        </td>
+        <td>
+          {{ plugin.notes }}
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
 </table>
 
-### Security
-
-<table>
-      <thead>
-         {{ plugin_table_header }}
-      </thead>
-      <tbody>
-        {% for plugin in plugins %}
-          {% if plugin.category == 'Security' %}
-          <tr>
-            <td>
-            <a href="{{plugin.url}}">{{ plugin.name }}</a>
-            </td>
-            <td style="text-align: center">
-            {% if plugin.free == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.free == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td style="text-align: center">
-            {% if plugin.plus == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.plus == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td style="text-align: center">
-            {% if plugin.enterprise == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.enterprise == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td>
-            {{ plugin.topologies }}
-            </td>
-            <td>
-            {{ plugin.notes }}
-            </td>
-          </tr>
-          {% endif %}
-        {% endfor %}
-      </tbody>
-</table>
-
-
-### Traffic Control
-
-<table>
-      <thead>
-         {{ plugin_table_header }}
-      </thead>
-      <tbody>
-        {% for plugin in plugins %}
-          {% if plugin.category == 'Traffic Control' %}
-          <tr>
-            <td>
-            <a href="{{plugin.url}}">{{ plugin.name }}</a>
-            </td>
-            <td style="text-align: center">
-            {% if plugin.free == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.free == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td style="text-align: center">
-            {% if plugin.plus == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.plus == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td style="text-align: center">
-            {% if plugin.enterprise == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.enterprise == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td>
-            {{ plugin.topologies }}
-            </td>
-            <td>
-            {{ plugin.notes }}
-            </td>
-          </tr>
-          {% endif %}
-        {% endfor %}
-      </tbody>
-</table>
-
-### Serverless
-
-<table>
-      <thead>
-         {{ plugin_table_header }}
-      </thead>
-      <tbody>
-        {% for plugin in plugins %}
-          {% if plugin.category == 'Serverless' %}
-          <tr>
-            <td>
-            <a href="{{plugin.url}}">{{ plugin.name }}</a>
-            </td>
-            <td style="text-align: center">
-            {% if plugin.free == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.free == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td style="text-align: center">
-            {% if plugin.plus == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.plus == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td style="text-align: center">
-            {% if plugin.enterprise == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.enterprise == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td>
-            {{ plugin.topologies }}
-            </td>
-            <td>
-            {{ plugin.notes }}
-            </td>
-          </tr>
-          {% endif %}
-        {% endfor %}
-      </tbody>
-</table>
-
-### Analytics and Monitoring
-
-<table>
-      <thead>
-         {{ plugin_table_header }}
-      </thead>
-      <tbody>
-        {% for plugin in plugins %}
-          {% if plugin.category == 'Analytics and Monitoring' %}
-          <tr>
-            <td>
-            <a href="{{plugin.url}}">{{ plugin.name }}</a>
-            </td>
-            <td style="text-align: center">
-            {% if plugin.free == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.free == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td style="text-align: center">
-            {% if plugin.plus == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.plus == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td style="text-align: center">
-            {% if plugin.enterprise == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.enterprise == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td>
-            {{ plugin.topologies }}
-            </td>
-            <td>
-            {{ plugin.notes }}
-            </td>
-          </tr>
-          {% endif %}
-        {% endfor %}
-      </tbody>
-</table>
-
-### Transformations
-
-<table>
-      <thead>
-         {{ plugin_table_header }}
-      </thead>
-      <tbody>
-        {% for plugin in plugins %}
-          {% if plugin.category == 'Transformations' %}
-          <tr>
-            <td>
-            <a href="{{plugin.url}}">{{ plugin.name }}</a>
-            </td>
-            <td style="text-align: center">
-            {% if plugin.free == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.free == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td style="text-align: center">
-            {% if plugin.plus == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.plus == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td style="text-align: center">
-            {% if plugin.enterprise == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.enterprise == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td>
-            {{ plugin.topologies }}
-            </td>
-            <td>
-            {{ plugin.notes }}
-            </td>
-          </tr>
-          {% endif %}
-        {% endfor %}
-      </tbody>
-</table>
-
-### Logging
-
-<table>
-      <thead>
-         {{ plugin_table_header }}
-      </thead>
-      <tbody>
-        {% for plugin in plugins %}
-          {% if plugin.category == 'Logging' %}
-          <tr>
-            <td>
-            <a href="{{plugin.url}}"><a href="{{plugin.url}}">{{ plugin.name }}</a></a>
-            </td>
-            <td style="text-align: center">
-            {% if plugin.free == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.free == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td style="text-align: center">
-            {% if plugin.plus == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.plus == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td style="text-align: center">
-            {% if plugin.enterprise == true %}
-              <i class="fa fa-check"></i>
-              {% elsif plugin.enterprise == false %}
-              <i class="fa fa-times"></i>
-            {% endif %}
-            </td>
-            <td>
-            {{ plugin.topologies }}
-            </td>
-            <td>
-            {{ plugin.notes }}
-            </td>
-          </tr>
-          {% endif %}
-        {% endfor %}
-      </tbody>
-</table>
+{% endfor %}
 
 ### Deployment
 
