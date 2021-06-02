@@ -17,6 +17,7 @@ Disallow: /gateway-oss/2.2*
 Disallow: /gateway-oss/2.3*
 Disallow: /kubernetes-ingress-controller/1.0*
 Disallow: /kubernetes-ingress-controller/1.1*
+Disallow: /kubernetes-ingress-controller/1.2*
 Disallow: /getting-started-guide/CE*
 Disallow: /getting-started-guide/2.0*
 Disallow: /getting-started-guide/2.1*
