@@ -37,22 +37,26 @@ For details on the differences between deployment types, see
 [Kong Deployment Options](/enterprise/latest/deployment/deployment-options)
 and [{{site.ee_product_name}} for Kubernetes Deployment Options](/enterprise/latest/deployment/kubernetes-deployment-options/).
 
-{% assign plugins=site.data.tables.plugins %}
-
 ## Plugin Tiers and Topologies
 
 <!-- To add or edit table entries in this topic, see /app/_data/tables/plugins.yml in this repo -->
+
+{% assign plugins=site.data.tables.plugins %}
+
+{% capture plugin_table_header %}
+<th style="text-align: left; width: 10%">Plugin</th>
+<th style="text-align: center">Free</th>
+<th style="text-align: center">Plus</th>
+<th style="text-align: center">Enterprise</th>
+<th style="width: 20%">Supported Topologies</th>
+<th style="text-align: left; width: 35%">Notes</th>
+{% endcapture %}
 
 ### Authentication
 
 <table>
       <thead>
-         <th style="text-align: left; width: 10%">Plugin</th>
-         <th style="text-align: center">Free</th>
-         <th style="text-align: center">Plus</th>
-         <th style="text-align: center">Enterprise</th>
-         <th style="width: 20%">Supported Topologies</th>
-         <th style="text-align: left; width: 35%">Notes</th>
+         {{ plugin_table_header }}
       </thead>
       <tbody>
         {% for plugin in plugins %}
@@ -98,12 +102,7 @@ and [{{site.ee_product_name}} for Kubernetes Deployment Options](/enterprise/lat
 
 <table>
       <thead>
-         <th style="text-align: left">Plugin</th>
-         <th style="text-align: center">Free</th>
-         <th style="text-align: center">Plus</th>
-         <th style="text-align: center">Enterprise</th>
-         <th style="width: 20%">Supported Topologies</th>
-         <th style="text-align: left; width: 35%">Notes</th>
+         {{ plugin_table_header }}
       </thead>
       <tbody>
         {% for plugin in plugins %}
@@ -150,12 +149,7 @@ and [{{site.ee_product_name}} for Kubernetes Deployment Options](/enterprise/lat
 
 <table>
       <thead>
-         <th style="text-align: left; width: 15%">Plugin</th>
-         <th style="text-align: center">Free</th>
-         <th style="text-align: center">Plus</th>
-         <th style="text-align: center">Enterprise</th>
-         <th style="width: 20%">Supported Topologies</th>
-         <th style="text-align: left; width: 35%">Notes</th>
+         {{ plugin_table_header }}
       </thead>
       <tbody>
         {% for plugin in plugins %}
@@ -201,12 +195,7 @@ and [{{site.ee_product_name}} for Kubernetes Deployment Options](/enterprise/lat
 
 <table>
       <thead>
-         <th style="text-align: left; width: 15%">Plugin</th>
-         <th style="text-align: center">Free</th>
-         <th style="text-align: center">Plus</th>
-         <th style="text-align: center">Enterprise</th>
-         <th style="width: 20%">Supported Topologies</th>
-         <th style="text-align: left; width: 35%">Notes</th>
+         {{ plugin_table_header }}
       </thead>
       <tbody>
         {% for plugin in plugins %}
@@ -252,12 +241,7 @@ and [{{site.ee_product_name}} for Kubernetes Deployment Options](/enterprise/lat
 
 <table>
       <thead>
-         <th style="text-align: left; width: 15%">Plugin</th>
-         <th style="text-align: center">Free</th>
-         <th style="text-align: center">Plus</th>
-         <th style="text-align: center">Enterprise</th>
-         <th style="width: 20%">Supported Topologies</th>
-         <th style="text-align: left; width: 35%">Notes</th>
+         {{ plugin_table_header }}
       </thead>
       <tbody>
         {% for plugin in plugins %}
@@ -303,12 +287,7 @@ and [{{site.ee_product_name}} for Kubernetes Deployment Options](/enterprise/lat
 
 <table>
       <thead>
-         <th style="text-align: left; width: 15%">Plugin</th>
-         <th style="text-align: center">Free</th>
-         <th style="text-align: center">Plus</th>
-         <th style="text-align: center">Enterprise</th>
-         <th style="width: 20%">Supported Topologies</th>
-         <th style="text-align: left; width: 35%">Notes</th>
+         {{ plugin_table_header }}
       </thead>
       <tbody>
         {% for plugin in plugins %}
@@ -354,12 +333,7 @@ and [{{site.ee_product_name}} for Kubernetes Deployment Options](/enterprise/lat
 
 <table>
       <thead>
-         <th style="text-align: left; width: 15%">Plugin</th>
-         <th style="text-align: center">Free</th>
-         <th style="text-align: center">Plus</th>
-         <th style="text-align: center">Enterprise</th>
-         <th style="width: 20%">Supported Topologies</th>
-         <th style="text-align: left; width: 35%">Notes</th>
+         {{ plugin_table_header }}
       </thead>
       <tbody>
         {% for plugin in plugins %}
