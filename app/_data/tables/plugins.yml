@@ -1,0 +1,589 @@
+
+- name: Application Registration
+  free: No
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: Functionally different in Konnect Cloud, cannot be applied directly as a plugin.
+  category: Authentication
+  url: /hub/kong-inc/application-registration
+
+- name: Basic Auth
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Authentication
+  url: /hub/kong-inc/basic-auth
+
+- name: HMAC Auth
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Authentication
+  url: /hub/kong-inc/hmac-auth
+
+- name: JWT
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Authentication
+  url: /hub/kong-inc/jwt
+
+- name: JWT Signer
+  free: No
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Authentication
+  url: /hub/kong-inc/jwt-signer
+
+- name: Key Auth
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Authentication
+  url: /hub/kong-inc/key-auth
+
+- name: Key Auth Encrypted
+  free: No
+  plus: No
+  enterprise: Yes
+  topologies: Self-managed classic, db-less, and hybrid
+  notes: |
+    Limitation in hybrid: The time-to-live setting (ttl), which determines the
+    length of time a credential remains valid, does not work in hybrid mode.
+  category: Authentication
+  url: /hub/kong-inc/key-auth-enc
+
+- name: LDAP Auth
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Authentication
+  url: /hub/kong-inc/ldap-auth
+
+- name: LDAP Auth Advanced
+  free: No
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Authentication
+  url: /hub/kong-inc/ldap-auth-advanced
+
+- name: Mutual TLS
+  free: No
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Authentication
+  url: /hub/kong-inc/mtls-auth
+
+- name: OAuth 2
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: Self-managed classic only
+  notes:
+  category: Authentication
+  url: /hub/kong-inc/oauth2
+
+- name: OAuth 2 Introspection
+  free: No
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Authentication
+  url: /hub/kong-inc/oauth2-introspection
+
+- name: OpenID Connect
+  free: No
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Authentication
+  url: /hub/kong-inc/openid-connect
+
+- name: Session
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Authentication
+  url: /hub/kong-inc/session
+
+- name: Vault Auth
+  free: No
+  plus: No
+  enterprise: Yes
+  topologies: Self-managed classic, db-less, and hybrid
+  notes: --
+  category: Authentication
+  url: /hub/kong-inc/vault-auth
+
+- name: Acme
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Security
+  url: /hub/kong-inc/acme
+
+- name: Bot Detection
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Security
+  url: /hub/kong-inc/bot-detection
+
+- name: CORS
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Security
+  url: /hub/kong-inc/cors
+
+- name: IP Restriction
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Security
+  url: /hub/kong-inc/ip-restriction
+
+- name: OPA
+  free: No
+  plus: Yes
+  enterprise: Yes
+  topologies: Self-managed classic, db-less, and hybrid
+  notes: |
+    Available starting with Kong Gateway 2.4.
+    <br><br>
+    Konnect Cloud does not yet support 2.4.
+  category: Security
+  url: /hub/kong-inc/opa
+
+- name: ACL
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Traffic Control
+  url: /hub/kong-inc/acl
+
+- name: Canary
+  free: No
+  plus: No
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Traffic Control
+  url: /hub/kong-inc/canary
+
+- name: Forward Proxy
+  free: No
+  plus: No
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Traffic Control
+  url: /hub/kong-inc/forward-proxy
+
+- name: GraphQL Proxy Caching Advanced
+  free: No
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Traffic Control
+  url: /hub/kong-inc/graphql-proxy-cache-advanced
+
+- name: GraphQL Rate Limiting Advanced
+  free: No
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: |
+    Limitation in self-hosted hybrid and db-less: the cluster policy is not
+    supported in DB-less and hybrid modes.
+    <br><br>
+    In DB-less mode, use one of redis or local; for hybrid mode, use redis.
+  category: Traffic Control
+  category: Traffic Control
+  url: /hub/kong-inc/graphql-rate-limiting-advanced
+
+- name: Proxy Caching
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Traffic Control
+  url: /hub/kong-inc/proxy-cache
+
+- name: Proxy Caching Advanced
+  free: No
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Traffic Control
+  url: /hub/kong-inc/proxy-cache-advanced
+
+- name: Rate Limiting
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: |
+    Limitation in self-hosted hybrid and db-less: the cluster policy is not
+    supported in DB-less and hybrid modes.
+    <br><br>
+    In DB-less mode, use one of redis or local; for hybrid mode, use redis.
+  category: Traffic Control
+  url: /hub/kong-inc/rate-limiting
+
+- name: Rate Limiting Advanced
+  free: No
+  plus: No
+  enterprise: Yes
+  topologies: All
+  notes: |
+    Limitation in self-hosted hybrid and db-less: the cluster policy is not
+    supported in DB-less and hybrid modes.
+    <br><br>
+    In DB-less mode, use one of redis or local; for hybrid mode, use redis.
+  category: Traffic Control
+  url: /hub/kong-inc/rate-limiting-advanced
+
+- name: Request Size Limiting
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: Self-managed classic, db-less, and hybrid
+  notes: --
+  category: Traffic Control
+  url: /hub/kong-inc/request-size-limiting
+
+- name: Request Termination
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  url: /hub/kong-inc/request-termination
+
+- name: Request Validator
+  free: No
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Traffic Control
+  url: /hub/kong-inc/request-validator
+
+- name: Response Rate Limiting
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Traffic Control
+  url: /hub/kong-inc/response-ratelimiting
+
+- name: Route By Header
+  free: No
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Traffic Control
+  url: /hub/kong-inc/route-by-header
+
+- name: Mocking
+  free: No
+  plus: Yes
+  enterprise: Yes
+  topologies: Self-managed classic, db-less, and hybrid
+  notes: |
+    Available starting with Kong Gateway 2.4.
+    <br><br>
+    Konnect Cloud does not yet support 2.4.
+  category: Traffic Control
+  url: /hub/kong-inc/mocking
+
+- name: AWS Lambda
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Serverless
+  url: /hub/kong-inc/aws-lambda
+
+- name: Azure Functions
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Serverless
+  url: /hub/kong-inc/azure-functions
+
+- name: Serverless Functions
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: Self-managed classic, db-less, and hybrid
+  notes: |
+  category: Serverless
+  url: /hub/kong-inc/serverless-functions
+
+- name: OpenWhisk
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: Self-managed classic, db-less, and hybrid
+  notes: |
+    Not included in Gateway artifact builds, so it is not available Konnect
+    Cloud. Installed as a separate package.
+  category: Serverless
+  url: /hub/kong-inc/openwhisk
+
+- name: Collector
+  free: No
+  plus: No
+  enterprise: Yes
+  topologies: Self-managed classic, db-less, and hybrid
+  notes: |
+    This plugin activates Kong Immunity, which is not available in Konnect
+    Cloud.
+  category: Analytics and Monitoring
+  url: /enterprise/latest/immunity/install-configure
+
+- name: Datadog
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: Self-managed classic, db-less, and hybrid
+  notes: --
+  category: Analytics and Monitoring
+  url: /hub/kong-inc/datadog
+
+- name: Prometheus
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Analytics and Monitoring
+  url: /hub/kong-inc/prometheus
+
+- name: Zipkin
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: Self-managed classic, db-less, and hybrid
+  notes: --
+  category: Analytics and Monitoring
+  url: /hub/kong-inc/zipkin
+
+- name: Correlation ID
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Transformations
+  url: /hub/kong-inc/correlation-id
+
+- name: DeGraphQL
+  free: No
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Transformations
+  url: /hub/kong-inc/degraphql
+
+- name: Exit Transformer
+  free: No
+  plus: Yes
+  enterprise: Yes
+  topologies: Self-managed classic, db-less, and hybrid
+  notes: --
+  category: Transformations
+  url: /hub/kong-inc/exit-transformer
+
+- name: gRPC Gateway
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Transformations
+  url: /hub/kong-inc/grpc-gateway
+
+- name: gRPC Web
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  url: /hub/kong-inc/grpc-web
+
+- name: Kafka Upstream
+  free: No
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Transformations
+  url: /hub/kong-inc/kafka-upstream
+
+- name: Request Transformer
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: Self-managed classic, db-less, and hybrid
+  notes: Disabled in Konnect Cloud due to RCE issue
+  category: Transformations
+  url: /hub/kong-inc/request-transformer
+
+- name: Request Transformer Advanced
+  free: No
+  plus: No
+  enterprise: Yes
+  topologies: Self-managed classic, db-less, and hybrid
+  notes: Disabled in Konnect Cloud due to RCE issue
+  category: Transformations
+  url: /hub/kong-inc/request-transformer-advanced
+
+- name: Response Transformer
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  url: /hub/kong-inc/response-transformer
+
+- name: Response Transformer Advanced
+  free: No
+  plus: No
+  enterprise: Yes
+  topologies: Self-managed classic, db-less, and hybrid
+  notes: Disabled in Konnect Cloud due to RCE issue
+  category: Transformations
+  url: /hub/kong-inc/response-transformer-advanced
+
+- name: Route Transformer Advanced
+  free: No
+  plus: No
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Transformations
+  url: /hub/kong-inc/route-transformer-advanced
+
+- name: File Log
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Logging
+  url: /hub/kong-inc/file-log
+
+- name: HTTP Log
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Logging
+  url: /hub/kong-inc/http-log
+
+- name: Kafka Log
+  free: No
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Logging
+  url: /hub/kong-inc/kafka-log
+
+- name: Loggly
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Logging
+  url: /hub/kong-inc/loggly
+
+- name: StatsD
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Logging
+  url: /hub/kong-inc/statsd
+
+- name: StatsD Advanced
+  free: No
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Logging
+  url: /hub/kong-inc/statsd-advanced
+
+- name: Syslog
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Logging
+  url: /hub/kong-inc/syslog
+
+- name: TCP Log
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Logging
+  url: /hub/kong-inc/tcp-log
+
+- name: UDP Log
+  free: Yes
+  plus: Yes
+  enterprise: Yes
+  topologies: All
+  notes: --
+  category: Logging
+  url: /hub/kong-inc/udp-log
