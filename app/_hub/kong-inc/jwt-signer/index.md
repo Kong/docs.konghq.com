@@ -170,7 +170,7 @@ params:
       description: |
         Removes the `config.access_token_request_header` from the request after reading its
         value. With `config.access_token_upstream_header`, you can specify the upstream header where the
-        plugin adds the Kong signed token. If you don't specify a value for this,
+        plugin adds the Kong signed token. If you don't specify a value,
         such as use `null` or `""` (empty string), the plugin does not even try to
         sign or re-sign the token.
     - name: access_token_upstream_leeway
@@ -199,8 +199,8 @@ params:
         the JWT Signer plugin), you can specify the `Authorization` header's value with this
         configuration parameter. For example, if you use client credentials, enter
         the value of `"Basic base64encode('client_id:client_secret')"`
-        to this configuration parameter. You are responsible to provide the full string
-        of the header and do all of the necessary encodings (such as base64)
+        to this configuration parameter. You are responsible for providing the full string
+        of the header and doing all of the necessary encodings (such as base64)
         required on a given endpoint.
     - name: access_token_introspection_body_args
       required: false
@@ -296,7 +296,7 @@ params:
       default:
       datatype: number
       description: |
-        Timeout for introspection request.
+        Timeout in milliseconds for an introspection request.
         The plugin tries to introspect twice if the first request
         fails for some reason. If both requests timeout, then the plugin runs two times the
         `config.access_token_introspection_timeout` on access token introspection.
@@ -330,8 +330,8 @@ params:
       default: false
       datatype: boolean
       description: |
-        In case when access token is not provided or no `config.access_token_request_header` is specified,
-        the plugin cannot obviously verify the access token. In that case the plugin normally responds
+        If an access token is not provided or no `config.access_token_request_header` is specified,
+        the plugin cannot obviously verify the access token. In that case, the plugin normally responds
         with `401 Unauthorized` (client didn't send a token) or `500 Unexpected` (a configuration error).
         Use this parameter to allow the request to proceed even when there is no token to check.
         If the token is provided, then this parameter has no effect (look other parameters to enable and
@@ -516,8 +516,8 @@ params:
         If the introspection endpoint requires client authentication (client being this plugin), you can specify
         the `Authorization` header's value with this configuration parameter. If you use client credentials,
         you should enter the value of `"Basic base64encode('client_id:client_secret')"` to this configuration parameter.
-        You are responsible to give full string of the header and do all the necessary encodings (such as base64)
-        that is required on given endpoint.
+        You are responsible for providing the full string of the header and doing
+        all the necessary encodings (such as base64) required on a given endpoint.
     - name: channel_token_introspection_body_args
       required: false
       default:
@@ -607,7 +607,7 @@ params:
       default:
       datatype: number
       description: |
-        Timeout for introspection request. The plugin tries to introspect twice if the first request
+        Timeout in milliseconds for an introspection request. The plugin tries to introspect twice if the first request
         fails for some reason. If both requests timeout, then the plugin runs two times the
         `config.access_token_introspection_timeout` on channel token introspection.
     - name: channel_token_signing_algorithm
@@ -639,12 +639,12 @@ params:
       default: false
       datatype: boolean
       description: |
-        In case when channel token is not provided or no `config.channel_token_request_header` is specified,
-        the plugin cannot obviously verify the channel token. In that case the plugin normally responds
+        If a channel token is not provided or no `config.channel_token_request_header` is specified,
+        the plugin cannot obviously verify the channel token. In that case, the plugin normally responds
         with `401 Unauthorized` (client didn't send a token) or `500 Unexpected` (a configuration error).
-        With this parameter you can let the request to proceed even when there is no token to be checked.
-        If the token is provided, then this parameter has no effect (look other parameters to enable and
-        disable checks in that case).
+        Enable this parameter to allow the request to proceed even when there is no channel token
+        to check. If the channel token is provided, then this parameter has no effect
+        (look other parameters to enable and disable checks in that case).
     - name: verify_channel_token_signature
       required: false
       default: true
@@ -669,15 +669,15 @@ params:
       default: true
       datatype: boolean
       description: |
-        With this configuration parameter you can quickly turn on/off the channel token introspection expiry
+        Quickly turn on/off the channel token introspection expiry
         verification.
     - name: verify_channel_token_introspection_scopes
       required: false
       default: true
       datatype: boolean
       description: |
-        With this configuration parameter you can quickly turn on/off the channel token introspection scopes
-        verification, specified with `config.channel_token_introspection_scopes_required`.
+        Quickly turn on/off the channel token introspection scopes
+        verification specified with `config.channel_token_introspection_scopes_required`.
     - name: cache_channel_token_introspection
       required: false
       default: true
@@ -689,13 +689,13 @@ params:
       default: true
       datatype: boolean
       description: |
-        When you provide a opaque channel token that the plugin introspects, and you do expiry
+        When you provide an opaque channel token that the plugin introspects, and you do expiry
         and scopes verification on introspection results, you probably don't want to do another
-        round of checks on the payload before the plugin signs a new token. Or that you don't
+        round of checks on the payload before the plugin signs a new token. Or you don't
         want to do checks to a JWT token provided with introspection JSON specified with
-        `config.channel_token_introspection_jwt_claim`. With this parameter you can enable /
-        disable further checks on payload before the new token is signed. If you set this
-        to `true` the expiry or scopes are not checked on payload.
+        `config.channel_token_introspection_jwt_claim`. Use this parameter to enable or
+        disable further checks on a payload before the new token is signed. If you set this
+        to `true`, the expiry or scopes are not checked on a payload.
     - name: enable_channel_token_introspection
       required: false
       default: true
