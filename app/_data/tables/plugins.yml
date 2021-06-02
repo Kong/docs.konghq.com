@@ -57,7 +57,7 @@
   free: No
   plus: No
   enterprise: Yes
-  topologies: Self-managed classic, db-less, and hybrid
+  topologies: Self-managed classic, DB-less, and hybrid
   notes: |
     Limitation in hybrid: The time-to-live setting (ttl), which determines the
     length of time a credential remains valid, does not work in hybrid mode.
@@ -131,7 +131,7 @@
   free: No
   plus: No
   enterprise: Yes
-  topologies: Self-managed classic, db-less, and hybrid
+  topologies: Self-managed classic, DB-less, and hybrid
   notes: --
   category: Authentication
   url: /hub/kong-inc/vault-auth
@@ -176,7 +176,7 @@
   free: No
   plus: Yes
   enterprise: Yes
-  topologies: Self-managed classic, db-less, and hybrid
+  topologies: Self-managed classic, DB-less, and hybrid
   notes: |
     Available starting with Kong Gateway 2.4.
     <br><br>
@@ -226,10 +226,14 @@
   enterprise: Yes
   topologies: All
   notes: |
-    Limitation in self-hosted hybrid and db-less: the cluster policy is not
+    Limitation in self-hosted hybrid and DB-less: the cluster policy is not
     supported in DB-less and hybrid modes.
     <br><br>
-    In DB-less mode, use one of redis or local; for hybrid mode, use redis.
+    For DB-less and hybrid, use <code>local</code> for rate limiting individual data
+    planes, or use <code>redis</code> for cluster-wide rate limiting. If you want to apply
+    rate limiting globally over control and data planes in a hybrid deployment,
+    use <code>redis</code>.
+
   category: Traffic Control
   category: Traffic Control
   url: /hub/kong-inc/graphql-rate-limiting-advanced
@@ -258,10 +262,13 @@
   enterprise: Yes
   topologies: All
   notes: |
-    Limitation in self-hosted hybrid and db-less: the cluster policy is not
+    Limitation in self-hosted hybrid and DB-less: the cluster policy is not
     supported in DB-less and hybrid modes.
     <br><br>
-    In DB-less mode, use one of redis or local; for hybrid mode, use redis.
+    For DB-less and hybrid, use <code>local</code> for rate limiting individual data
+    planes, or use <code>redis</code> for cluster-wide rate limiting. If you want to apply
+    rate limiting globally over control and data planes in a hybrid deployment,
+    use <code>redis</code>.
   category: Traffic Control
   url: /hub/kong-inc/rate-limiting
 
@@ -271,10 +278,13 @@
   enterprise: Yes
   topologies: All
   notes: |
-    Limitation in self-hosted hybrid and db-less: the cluster policy is not
+    Limitation in self-hosted hybrid and DB-less: the cluster policy is not
     supported in DB-less and hybrid modes.
     <br><br>
-    In DB-less mode, use one of redis or local; for hybrid mode, use redis.
+    For DB-less and hybrid, use <code>local</code> for rate limiting individual data
+    planes, or use <code>redis</code> for cluster-wide rate limiting. If you want to apply
+    rate limiting globally over control and data planes in a hybrid deployment,
+    use <code>redis</code>.
   category: Traffic Control
   url: /hub/kong-inc/rate-limiting-advanced
 
@@ -282,7 +292,7 @@
   free: Yes
   plus: Yes
   enterprise: Yes
-  topologies: Self-managed classic, db-less, and hybrid
+  topologies: Self-managed classic, DB-less, and hybrid
   notes: --
   category: Traffic Control
   url: /hub/kong-inc/request-size-limiting
@@ -326,7 +336,7 @@
   free: No
   plus: Yes
   enterprise: Yes
-  topologies: Self-managed classic, db-less, and hybrid
+  topologies: Self-managed classic, DB-less, and hybrid
   notes: |
     Available starting with Kong Gateway 2.4.
     <br><br>
@@ -356,8 +366,8 @@
   free: Yes
   plus: Yes
   enterprise: Yes
-  topologies: Self-managed classic, db-less, and hybrid
-  notes: |
+  topologies: Self-managed classic, DB-less, and hybrid
+  notes: --
   category: Serverless
   url: /hub/kong-inc/serverless-functions
 
@@ -365,7 +375,7 @@
   free: Yes
   plus: Yes
   enterprise: Yes
-  topologies: Self-managed classic, db-less, and hybrid
+  topologies: Self-managed classic, DB-less, and hybrid
   notes: |
     Not included in Gateway artifact builds, so it is not available Konnect
     Cloud. Installed as a separate package.
@@ -376,7 +386,7 @@
   free: No
   plus: No
   enterprise: Yes
-  topologies: Self-managed classic, db-less, and hybrid
+  topologies: Self-managed classic, DB-less, and hybrid
   notes: |
     This plugin activates Kong Immunity, which is not available in Konnect
     Cloud.
@@ -387,7 +397,7 @@
   free: Yes
   plus: Yes
   enterprise: Yes
-  topologies: Self-managed classic, db-less, and hybrid
+  topologies: Self-managed classic, DB-less, and hybrid
   notes: --
   category: Analytics and Monitoring
   url: /hub/kong-inc/datadog
@@ -405,7 +415,7 @@
   free: Yes
   plus: Yes
   enterprise: Yes
-  topologies: Self-managed classic, db-less, and hybrid
+  topologies: Self-managed classic, DB-less, and hybrid
   notes: --
   category: Analytics and Monitoring
   url: /hub/kong-inc/zipkin
@@ -432,7 +442,7 @@
   free: No
   plus: Yes
   enterprise: Yes
-  topologies: Self-managed classic, db-less, and hybrid
+  topologies: Self-managed classic, DB-less, and hybrid
   notes: --
   category: Transformations
   url: /hub/kong-inc/exit-transformer
@@ -467,7 +477,7 @@
   free: Yes
   plus: Yes
   enterprise: Yes
-  topologies: Self-managed classic, db-less, and hybrid
+  topologies: Self-managed classic, DB-less, and hybrid
   notes: Disabled in Konnect Cloud due to RCE issue
   category: Transformations
   url: /hub/kong-inc/request-transformer
@@ -476,7 +486,7 @@
   free: No
   plus: No
   enterprise: Yes
-  topologies: Self-managed classic, db-less, and hybrid
+  topologies: Self-managed classic, DB-less, and hybrid
   notes: Disabled in Konnect Cloud due to RCE issue
   category: Transformations
   url: /hub/kong-inc/request-transformer-advanced
@@ -493,7 +503,7 @@
   free: No
   plus: No
   enterprise: Yes
-  topologies: Self-managed classic, db-less, and hybrid
+  topologies: Self-managed classic, DB-less, and hybrid
   notes: Disabled in Konnect Cloud due to RCE issue
   category: Transformations
   url: /hub/kong-inc/response-transformer-advanced
