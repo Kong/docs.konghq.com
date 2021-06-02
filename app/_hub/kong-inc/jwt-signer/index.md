@@ -538,25 +538,25 @@ params:
       default:
       datatype: array of string elements
       description: |
-        If your introspection endpoint return an channel token in one of the keys (or claims) in the introspection
-        results (`JSON`), we can use that value instead of the introspection results when doing expiry verification
-        and signing of the new token issued by Kong. E.g. if you specify `[ "token_string" ]` which can be given as
-        `"token_string"` (form post) to this configuration parameter, the plugin will look for key `token_string`
-        in JSON of the introspection results and use that as a channel token (instead of using introspection JSON
-        directly). If the key cannot be found it, the plugin will respond with `401 Unauthorized`. Also if the key
-        is found, but cannot be decoded as JWT, it will also result `401 Unauthorized`.
+        If your introspection endpoint returns a channel token in one of the keys (or claims) in the introspection
+        results (`JSON`), the plugin can use that value instead of the introspection results when doing expiry verification
+        and signing of the new token issued by Kong. For example, if you specify `[ "token_string" ]`, which can be given as
+        `"token_string"` (form post) to this configuration parameter, the plugin looks for key `token_string`
+        in JSON of the introspection results and uses that as a channel token instead of using introspection JSON
+        directly. If the key cannot be found, the plugin responds with `401 Unauthorized`. Also if the key
+        is found but cannot be decoded as JWT, the plugin responds with `401 Unauthorized`.
     - name: channel_token_introspection_scopes_required
       required: false
       default:
       datatype: array of string elements
       description: |
-        With this parameter you can specify the required values (or scopes) that are looked from an introspection
+        Use this parameter to specify the required values (or scopes) that are looked from an introspection
         claim/property specified by `config.channel_token_introspection_scopes_claim`.
-        E.g. `[ "employee demo-service", "superadmin" ]` which can be given as `"employee demo-service,superadmin"`
-        (form post) would mean that claim need to have values `"employee"` and `"demo-service"` **OR** that the
-        claim need to have value of `"superadmin"` to be successfully authorized for the upstream access.
-        If required scopes are not found in channel token introspection results (`JSON`), the plugin will
-        respond with `403 Forbidden`.
+        For example, `[ "employee demo-service", "superadmin" ]`, which can be given as `"employee demo-service,superadmin"`
+        (form post) would mean that the claim needs to have the values `"employee"` and `"demo-service"` **OR** that the
+        claim needs to have the value of `"superadmin"` to be successfully authorized for the upstream access.
+        If required scopes are not found in channel token introspection results (`JSON`), the plugin
+        responds with `403 Forbidden`.
     - name: channel_token_introspection_scopes_claim
       required: false
       default:  [ "scope" ]
@@ -573,11 +573,11 @@ params:
       default:
       datatype: array of string elements
       description: |
-        When you set a value for this parameter, the plugin will try to map an arbitrary claim specified with
-        this configuration parameter (e.g. `sub` or `username`) in channel token introspection results to
+        When you set a value for this parameter, the plugin tries to map an arbitrary claim specified with
+        this configuration parameter (such as `sub` or `username`) in channel token introspection results to
         Kong consumer entity. Kong consumers have an `id`, a `username` and a `custom_id`. The
-        `config.channel_token_introspection_consumer_by` parameter is used to tell the plugin what of these
-        Kong consumer properties can be used for mapping. If this parameter is enable
+        `config.channel_token_introspection_consumer_by` parameter tells the plugin which of these
+        Kong consumer properties can be used for mapping. If this parameter is enabled
         but the mapping fails, such as when there's
         a non-existent Kong consumer, the plugin responds with `403 Forbidden`. Kong
         [consumer mapping](#consumer-mapping)
@@ -695,7 +695,7 @@ params:
         want to do checks to a JWT token provided with introspection JSON specified with
         `config.channel_token_introspection_jwt_claim`. Use this parameter to enable or
         disable further checks on a payload before the new token is signed. If you set this
-        to `true`, the expiry or scopes are not checked on a payload.
+        to `true` (default), the expiry or scopes are not checked on a payload.
     - name: enable_channel_token_introspection
       required: false
       default: true
