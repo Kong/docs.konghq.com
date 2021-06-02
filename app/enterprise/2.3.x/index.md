@@ -59,12 +59,17 @@ Insomnia enables spec-first development for all REST and GraphQL services. With 
 
 ## Try Kong Gateway (Enterprise)
 
-{{site.ee_product_name}} is bundled with {{site.konnect_product_name}}. Here are
-a couple of ways to try {{site.konnect_short_name}}, or just the gateway alone:
+{{site.base_gateway}} is available in free mode.
+[Download it](/enterprise/{{page.kong_version}}/deployment/installation/overview)
+and start testing out Gateway's open source features with Kong Manager today.
 
-* Try out Kong for Kubernetes Enterprise using a live tutorial at
-[https://kubecon.konglabs.io/](https://kubecon.konglabs.io/)
-* If you are interested in evaluating {{site.konnect_short_name}} locally, the
+{{site.base_gateway}} is also bundled with {{site.konnect_product_name}}.
+There are a few ways to test out the gateway's Plus or Enterprise features:
+
+* Sign up for a [free trial of {{site.konnect_product_name}} Plus](https://konnect.konghq.com/register).
+* Try out {{site.base_gateway}} on Kubernetes using a live tutorial at
+[https://www.konglabs.io/kubernetes/](https://www.konglabs.io/kubernetes/).
+* If you are interested in evaluating Enterprise features locally, the
 Kong sales team manages evaluation licenses as part of a formal sales process.
 The best way to get started with the sales process is to
 [request a demo](https://konghq.com/get-started/#request-demo) and indicate

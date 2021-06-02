@@ -1011,12 +1011,6 @@
       color: @gray-dark;
   }
 
-  blockquote {
-    opacity: 0.8;
-    margin-left: 0;
-    font-style: italic;
-  }
-
   /*
 Generic Styling for Desktop
 */
@@ -1029,14 +1023,17 @@ Generic Styling for Desktop
     border: none;
     border-collapse: collapse;
     margin-top: 1.5em;
+    position: relative;
 
     i.fa-times {
       color: @red-500;
       opacity: 50%;
+      font-size: 20px;
     }
 
     i.fa-check {
       color: @green-400;
+      font-size: 18px;
     }
 
     code {
@@ -1057,6 +1054,10 @@ Generic Styling for Desktop
     font-weight: 600;
     color: @black-80;
     background-color: @grey-100;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 2;
   }
 
   td,
@@ -1108,28 +1109,294 @@ Generic Styling for Desktop
   }
 
   .alert {
-    margin-bottom: 1.3em;
-    font-size: 16px;
+    margin-bottom: 0.8em;
+    margin-top: 0.8em;
+    font-size: 17px;
+    border-radius: 3px;
 
     &.alert-warning {
       color: hsl(45, 2%, 36%);
-      border-color: hsl(41, 83%, 89%);
-      background-color: hsl(51, 100%, 96%);
-    }
+      background-color: @yellow-100;
+      border-left: solid 3px @yellow-400;
+
+        &::before {
+          content: "\f071";
+          font-family: "Font Awesome", FontAwesome;
+          color: @yellow-400;
+          display: inline-block;
+          font-weight: 600;
+          font-size: 17px;
+          padding: 0 5px 0 0;
+        }
+      }
 
     &.alert-red {
-      color: red;
-      border-color: red;
-      background-color: #fdf3f2;
+      background-color: @red-100;
+      border-left: solid 3px @red-500;
+
+      &::before {
+        content: "\f057";
+        font-family: "Font Awesome", FontAwesome;
+        color: @red-500;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 17px;
+        padding: 0 5px 0 0;
+      }
     }
 
-    ol {
-      list-style: none;
+    ol, li {
       margin-bottom: 0;
-      margin-top: 1em;
+      margin-top: 0.5em;
+    }
+  }
 
-      li {
-        margin-bottom: 0;
+  .alert-ee {
+    background-color: @blue-100;
+    border: none;
+    border-left: solid 3px @blue-400;
+    font-size: 17px;
+
+    &::before {
+      content: "\f05a";
+      font-family: "Font Awesome", FontAwesome;
+      color: @blue-400;
+      display: inline-block;
+      font-weight: 600;
+      font-size: 17px;
+      padding: 0 5px 0 0;
+    }
+
+    &.error {
+      background-color: @red-100;
+      border-left: solid 3px @red-500;
+
+      &::before {
+        content: "\f057";
+        font-family: "Font Awesome", FontAwesome;
+        color: @red-500;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 17px;
+        padding: 0 5px 0 0;
+      }
+    }
+
+    &.warning {
+      background-color: @yellow-100;
+      border-left: solid 3px @yellow-400;
+
+      &::before {
+        content: "\f071";
+        font-family: "Font Awesome", FontAwesome;
+        color: @yellow-400;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 17px;
+        padding: 0 5px 0 0;
+      }
+    }
+
+    &.info {
+      background-color: @blue-100;
+      border: none;
+      border-left: solid 3px @blue-400;
+
+      &::before {
+        content: "\f05a";
+        font-family: "Font Awesome", FontAwesome;
+        color: @blue-400;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 17px;
+        padding: 0 5px 0 0;
+      }
+    }
+
+    &.tip {
+      border-left: 3px solid @green-400;
+      background-color: @green-100;
+
+      &::before {
+        content: "\f058";
+        font-family: "Font Awesome", FontAwesome;
+        color: @green-400;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 17px;
+        padding: 0 5px 0 0;
+      }
+    }
+
+    .alert-body {
+      padding-top: 20px;
+    }
+
+    .left {
+      float: left;
+      padding-top: 5px;
+      margin: 0 20px 0;
+    }
+
+    .tag {
+      padding: 2px 8px;
+      margin-right: 12px;
+      border-radius: 11px;
+      font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont,
+        "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 10px;
+      font-weight: bold;
+      background: @blue;
+      color: white;
+
+      &.green {
+        background: #35cb05;
+      }
+
+      &.red {
+        background: @red;
+      }
+    }
+
+    img {
+      width: 20px;
+      margin-right: 5px;
+      margin-top: 3px;
+      float: left;
+      display: inline-block;
+    }
+
+    code {
+      font-size: 13px;
+    }
+
+    p {
+      padding: 0 25px 0 75px;
+      font-size: 16px;
+    }
+
+    a {
+      text-decoration: none;
+      color: @blue-light;
+    }
+
+    &.condensed {
+      padding: 6px 8px;
+
+      .alert-body {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+      }
+
+      p {
+        flex-grow: 1;
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+    &.margin-bigger {
+      margin-bottom: 32px;
+    }
+  }
+
+  blockquote {
+    margin-bottom: 1.3em;
+    padding: 15px 18px;
+    background-color: @blue-100;
+    border: none;
+    border-left: solid 3px @blue-400;
+    border-radius: 3px;
+    display: block;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+
+    ol, ul {
+      margin-top: 0.5em;
+      margin-bottom: 0;
+    }
+
+    pre, code {
+      background-color: #fff;
+      border: none;
+      padding: 3px;
+    }
+
+    p, b, strong {
+      padding: 0;
+      margin: 0;
+      display: inline;
+    }
+
+    &::before {
+      content: "\f05a";
+      font-family: "Font Awesome", FontAwesome;
+      color: @blue-400;
+      display: inline-block;
+      font-weight: 600;
+      font-size: 17px;
+      padding: 0 5px ;
+    }
+    &.warning {
+      background-color: @red-100;
+      border-left: solid 3px @red-500;
+
+      &::before {
+        content: "\f057";
+        font-family: "Font Awesome", FontAwesome;
+        color: @red-500;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 17px;
+        padding: 0 5px 0 0;
+      }
+    }
+
+    &.important {
+      background-color: @yellow-100;
+      border-left: solid 3px @yellow-400;
+
+      &::before {
+        content: "\f071";
+        font-family: "Font Awesome", FontAwesome;
+        color: @yellow-400;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 17px;
+        padding: 0 5px 0 0;
+      }
+    }
+
+    &.info {
+      background-color: @blue-100;
+      border: none;
+      border-left: solid 3px @blue-400;
+
+      &::before {
+        content: "\f05a";
+        font-family: "Font Awesome", FontAwesome;
+        color: @blue-400;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 17px;
+        padding: 0 5px 0 0;
+      }
+    }
+
+    &.tip {
+      border-left: 3px solid @green-400;
+      background-color: @green-100;
+
+      &::before {
+        content: "\f058";
+        font-family: "Font Awesome", FontAwesome;
+        color: @green-400;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 17px;
+        padding: 0 5px 0 0;
       }
     }
   }
@@ -1401,18 +1668,14 @@ Generic Styling for Desktop
 
 .alert {
   border: none;
-  border-left: 3px solid @gray;
-  color: #757575;
-  background-color: #f9f9f9;
   border-radius: 0;
   font-size: 16px;
-  padding: 8px 13px;
+  padding: 15px 18px;
 
   pre, code {
     background-color: #fff;
     border: none;
   }
-
 }
 
 .alert-info {
@@ -1424,121 +1687,6 @@ Generic Styling for Desktop
     color: #004a80;
     border-left: 3px solid #004b80;
     background-color: #edf7ff;
-  }
-}
-
-.alert-success {
-  color: #3dcc3d;
-  border-left: 3px solid #c0eac0;
-  background-color: #f4fff4;
-}
-
-.alert-warning {
-  color: #808060;
-  border-left: 3px solid #e0e0c9;
-  background-color: #fffff7;
-}
-
-.alert-danger {
-  color: #cc3d3d;
-  border-left: 3px solid #eac0c0;
-  background-color: #fff4f4;
-}
-
-.alert-ee {
-  background-color: #e5f4ff;
-  border: none;
-  border-left: solid 3px #b3dfff;
-  border-radius: 0;
-  font-size: 16px;
-
-  &.red {
-    background-color: #fdf3f2;
-    border-left: solid 3px @red;
-  }
-
-  &.warning {
-    background-color: #fffbea;
-    border-left: solid 3px #faebcb;
-  }
-
-  &.info {
-    border-left: 3px solid @gray;
-    color: #757575;
-    background-color: #f9f9f9;
-  }
-
-  .alert-body {
-    padding-top: 20px;
-  }
-
-  .left {
-    float: left;
-    padding-top: 5px;
-    margin: 0 20px 0;
-  }
-
-  .tag {
-    padding: 2px 8px;
-    margin-right: 12px;
-    border-radius: 11px;
-    font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont,
-      "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-size: 10px;
-    font-weight: bold;
-    background: @blue;
-    color: white;
-
-    &.green {
-      background: #35cb05;
-    }
-
-    &.red {
-      background: @red;
-    }
-  }
-
-  img {
-    width: 20px;
-    margin-right: 5px;
-    margin-top: 3px;
-    float: left;
-    display: inline-block;
-  }
-
-  code {
-    font-size: 13px;
-  }
-
-  p {
-    padding: 0 25px 0 75px;
-    font-size: 16px;
-  }
-
-  a {
-    text-decoration: none;
-    color: @blue-light;
-  }
-
-  &.condensed {
-    padding: 6px 8px;
-
-    .alert-body {
-      padding: 0;
-      margin: 0;
-      display: flex;
-      align-items: center;
-    }
-
-    p {
-      flex-grow: 1;
-      padding: 0;
-      margin: 0;
-    }
-  }
-
-  &.margin-bigger {
-    margin-bottom: 32px;
   }
 }
 

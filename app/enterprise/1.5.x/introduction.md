@@ -57,16 +57,16 @@ Kong Vitals provides useful metrics about the health and performance of your Kon
 
 Kong Studio enables spec-first development for all REST and GraphQL services. With Kong Studio, organizations can accelerate design and test workflows using automated testing, direct Git sync, and inspection of all response types. Teams of all sizes can use Kong Studio to increase development velocity, reduce deployment risk, and increase collaboration. For more information, see [_Kong Studio_](https://docs.konghq.com/studio/).
 
-## Try Kong Enterprise
+## Try Kong Gateway (Enterprise)
 
-Here are a few ways to try Kong Enterprise:
+{{site.ee_product_name}} is bundled with {{site.konnect_product_name}}.
+There are a few ways to test out the gateway's Plus or Enterprise features:
 
-* Sign up for the Kong Enterprise self-serve, cloud-based, 15 day
-[free trial](https://konghq.com/get-started/#free-trial/).
-* Try out Kong for Kubernetes Enterprise using a live tutorial at
-[https://kubecon.konglabs.io/](https://kubecon.konglabs.io/)
-* If you are interested in evaluating Kong Enterprise locally, the Kong sales
-team manages evaluation licenses as part of a formal sales process. The best
-way to get started with the sales process is to
+* Sign up for a [free trial of {{site.konnect_product_name}} Plus](https://konnect.konghq.com/register).
+* Try out {{site.base_gateway}} on Kubernetes using a live tutorial at
+[https://www.konglabs.io/kubernetes/](https://www.konglabs.io/kubernetes/).
+* If you are interested in evaluating Enterprise features locally, the
+Kong sales team manages evaluation licenses as part of a formal sales process.
+The best way to get started with the sales process is to
 [request a demo](https://konghq.com/get-started/#request-demo) and indicate
 your interest.
