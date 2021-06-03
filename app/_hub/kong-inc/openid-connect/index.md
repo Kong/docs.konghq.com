@@ -1781,9 +1781,8 @@ Follow up on next sections to enable OpenID Connect plugin for specific grants o
 
 Before you proceed, check that you have done [the preparations](#preparations).
 
-The examples are executed using [HTTPie](https://httpie.org/) and some output
-is stripped for a better readability. [httpbin.org](https://httpbin.org/) is
-used as an upstream service.
+We use [HTTPie](https://httpie.org/) to execute the examples. The output is stripped
+for a better readability. [httpbin.org](https://httpbin.org/) is used as an upstream service.
 
 Using Admin API is convenient when testing the plugin, but similar configs can
 be done in declarative format as well.
@@ -1801,10 +1800,9 @@ order for the credentials:
 8. [Client Credentials Grant](#client-credentials-grant)
 9. [Authorization Code Flow](#authorization-code-flow)
 
-In case plugin finds credentials, it will stop searching other credentials, which means that
-only a one grant / flow is tried. The only exception being the usage of basic authentication
-credentials and not passing the grant type to the plugin while both password grant and client
-credentials grant is enabled, the plugin will try them both.
+In case plugin finds credentials, it will stop searching other credentials. Some grants may
+use the same credentials, e.g., both password and client credentials grants can use credentials
+from basic authentication header.
 
 <div class="alert alert-warning">
 Because the httpbin.org is used as an upstream service, it is highly recommend that you do
