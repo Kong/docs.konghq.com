@@ -5,15 +5,15 @@
       free: No
       plus: Yes
       enterprise: Yes
-      topologies: All
-      notes: Functionally different in Konnect Cloud, cannot be applied directly as a plugin.
+      network_config_opts: All
+      notes: Cannot be applied directly as a plugin with Konnect Cloud.
       url: /hub/kong-inc/application-registration
 
     - name: Basic Auth
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/basic-auth
 
@@ -21,7 +21,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/hmac-auth
 
@@ -29,7 +29,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/jwt
 
@@ -37,7 +37,7 @@
       free: No
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/jwt-signer
 
@@ -45,7 +45,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/key-auth
 
@@ -53,17 +53,17 @@
       free: No
       plus: No
       enterprise: Yes
-      topologies: Self-managed classic, DB-less, and hybrid
+      network_config_opts: Self-managed classic, DB-less, and hybrid
       notes: |
-        Limitation in hybrid: The time-to-live setting (ttl), which determines the
-        length of time a credential remains valid, does not work in hybrid mode.
+        The time-to-live (ttl) does not work in hybrid mode. This setting
+        determines the length of time a credential remains valid.
       url: /hub/kong-inc/key-auth-enc
 
     - name: LDAP Auth
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/ldap-auth
 
@@ -71,7 +71,7 @@
       free: No
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/ldap-auth-advanced
 
@@ -79,7 +79,7 @@
       free: No
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/mtls-auth
 
@@ -87,15 +87,18 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: Self-managed classic only
-      notes:
+      network_config_opts: Self-managed classic only
+      notes: |
+        This plugin can't be used in hybrid or DB-less modes. It needs to
+        generate and delete tokens, and commit those changes to a database on the
+        same node.
       url: /hub/kong-inc/oauth2
 
     - name: OAuth 2 Introspection
       free: No
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/oauth2-introspection
 
@@ -103,7 +106,7 @@
       free: No
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/openid-connect
 
@@ -111,7 +114,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/session
 
@@ -119,7 +122,7 @@
       free: No
       plus: No
       enterprise: Yes
-      topologies: Self-managed classic, DB-less, and hybrid
+      network_config_opts: Self-managed classic, DB-less, and hybrid
       notes: --
       url: /hub/kong-inc/vault-auth
 
@@ -130,7 +133,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/acme
 
@@ -138,7 +141,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/bot-detection
 
@@ -146,7 +149,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/cors
 
@@ -154,7 +157,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/ip-restriction
 
@@ -162,11 +165,11 @@
       free: No
       plus: Yes
       enterprise: Yes
-      topologies: Self-managed classic, DB-less, and hybrid
+      network_config_opts: Self-managed classic, DB-less, and hybrid
       notes: |
-        Available starting with Kong Gateway 2.4.
+        Available in Kong Gateway v2.4 and later.
         <br><br>
-        Konnect Cloud does not yet support 2.4.
+        Konnect Cloud does not support v2.4.
       url: /hub/kong-inc/opa
 
 - category:
@@ -176,7 +179,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/acl
 
@@ -184,7 +187,7 @@
       free: No
       plus: No
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/canary
 
@@ -192,7 +195,7 @@
       free: No
       plus: No
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/forward-proxy
 
@@ -200,7 +203,7 @@
       free: No
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/graphql-proxy-cache-advanced
 
@@ -208,23 +211,17 @@
       free: No
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: |
-        Limitation in self-hosted hybrid and DB-less: the cluster policy is not
-        supported in DB-less and hybrid modes.
-        <br><br>
-        For DB-less and hybrid, use <code>local</code> for rate limiting individual data
-        planes, or use <code>redis</code> for cluster-wide rate limiting. If you want to apply
-        rate limiting globally over control and data planes in a hybrid deployment,
-        use <code>redis</code>.
-
+        In DB-less and hybrid modes, the <code>cluster</code> config strategy
+        is not supported. Use <code>redis</code> instead.
       url: /hub/kong-inc/graphql-rate-limiting-advanced
 
     - name: Proxy Caching
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/proxy-cache
 
@@ -232,7 +229,7 @@
       free: No
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/proxy-cache-advanced
 
@@ -240,37 +237,31 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: |
-        Limitation in self-hosted hybrid and DB-less: the cluster policy is not
-        supported in DB-less and hybrid modes.
+        In DB-less and hybrid modes, the <code>cluster</code> config policy
+        is not supported.
         <br><br>
-        For DB-less and hybrid, use <code>local</code> for rate limiting individual data
-        planes, or use <code>redis</code> for cluster-wide rate limiting. If you want to apply
-        rate limiting globally over control and data planes in a hybrid deployment,
-        use <code>redis</code>.
+        For DB-less mode, use one of <code>redis</code> or <code>local</code>;
+        for hybrid mode, use <code>redis</code>, or <code>local</code> for data
+        planes only.
       url: /hub/kong-inc/rate-limiting
 
     - name: Rate Limiting Advanced
       free: No
       plus: No
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: |
-        Limitation in self-hosted hybrid and DB-less: the cluster policy is not
-        supported in DB-less and hybrid modes.
-        <br><br>
-        For DB-less and hybrid, use <code>local</code> for rate limiting individual data
-        planes, or use <code>redis</code> for cluster-wide rate limiting. If you want to apply
-        rate limiting globally over control and data planes in a hybrid deployment,
-        use <code>redis</code>.
+        In DB-less and hybrid modes, the <code>cluster</code> config strategy
+        is not supported. Use <code>redis</code> instead.
       url: /hub/kong-inc/rate-limiting-advanced
 
     - name: Request Size Limiting
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: Self-managed classic, DB-less, and hybrid
+      network_config_opts: Self-managed classic, DB-less, and hybrid
       notes: --
       url: /hub/kong-inc/request-size-limiting
 
@@ -278,7 +269,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/request-termination
 
@@ -286,7 +277,7 @@
       free: No
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/request-validator
 
@@ -294,15 +285,21 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
-      notes: --
+      network_config_opts: All
+      notes: |
+        In DB-less and hybrid modes, the <code>cluster</code> config policy
+        is not supported.
+        <br><br>
+        For DB-less mode, use one of <code>redis</code> or <code>local</code>;
+        for hybrid mode, use <code>redis</code>, or <code>local</code> for data
+        planes only.
       url: /hub/kong-inc/response-ratelimiting
 
     - name: Route By Header
       free: No
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/route-by-header
 
@@ -310,11 +307,11 @@
       free: No
       plus: Yes
       enterprise: Yes
-      topologies: Self-managed classic, DB-less, and hybrid
+      network_config_opts: Self-managed classic, DB-less, and hybrid
       notes: |
-        Available starting with Kong Gateway 2.4.
+        Available in Kong Gateway v2.4.
         <br><br>
-        Konnect Cloud does not yet support 2.4.
+        Konnect Cloud does not support v2.4.
       url: /hub/kong-inc/mocking
 
 - category:
@@ -324,7 +321,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/aws-lambda
 
@@ -332,7 +329,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/azure-functions
 
@@ -340,7 +337,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: Self-managed classic, DB-less, and hybrid
+      network_config_opts: Self-managed classic, DB-less, and hybrid
       notes: --
       url: /hub/kong-inc/serverless-functions
 
@@ -348,10 +345,11 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: Self-managed classic, DB-less, and hybrid
+      network_config_opts: Self-managed classic, DB-less, and hybrid
       notes: |
-        Not included in Gateway artifact builds, so it is not available Konnect
-        Cloud. Installed as a separate package.
+        Not bundled with Kong Gateway.
+        <br><br>
+        Installed as a LuaRocks package.
       url: /hub/kong-inc/openwhisk
 
 - category:
@@ -361,17 +359,18 @@
       free: No
       plus: No
       enterprise: Yes
-      topologies: Self-managed classic, DB-less, and hybrid
+      network_config_opts: Self-managed classic, DB-less, and hybrid
       notes: |
-        This plugin activates Kong Immunity, which is not available in Konnect
-        Cloud.
+        Not bundled with Kong Gateway.
+        <br><br>
+        Kong Immunity is not available in Konnect Cloud.
       url: /enterprise/latest/immunity/install-configure
 
     - name: Datadog
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: Self-managed classic, DB-less, and hybrid
+      network_config_opts: Self-managed classic, DB-less, and hybrid
       notes: --
       url: /hub/kong-inc/datadog
 
@@ -379,7 +378,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/prometheus
 
@@ -387,7 +386,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: Self-managed classic, DB-less, and hybrid
+      network_config_opts: Self-managed classic, DB-less, and hybrid
       notes: --
       url: /hub/kong-inc/zipkin
 
@@ -398,7 +397,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/correlation-id
 
@@ -406,7 +405,7 @@
       free: No
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/degraphql
 
@@ -414,7 +413,7 @@
       free: No
       plus: Yes
       enterprise: Yes
-      topologies: Self-managed classic, DB-less, and hybrid
+      network_config_opts: Self-managed classic, DB-less, and hybrid
       notes: --
       url: /hub/kong-inc/exit-transformer
 
@@ -422,7 +421,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/grpc-gateway
 
@@ -430,7 +429,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/grpc-web
 
@@ -438,7 +437,7 @@
       free: No
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/kafka-upstream
 
@@ -446,23 +445,23 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: Self-managed classic, DB-less, and hybrid
-      notes: Disabled in Konnect Cloud due to RCE issue
+      network_config_opts: Self-managed classic, DB-less, and hybrid
+      notes: Disabled in Konnect Cloud due to RCE issue.
       url: /hub/kong-inc/request-transformer
 
     - name: Request Transformer Advanced
       free: No
       plus: No
       enterprise: Yes
-      topologies: Self-managed classic, DB-less, and hybrid
-      notes: Disabled in Konnect Cloud due to RCE issue
+      network_config_opts: Self-managed classic, DB-less, and hybrid
+      notes: Disabled in Konnect Cloud due to RCE issue.
       url: /hub/kong-inc/request-transformer-advanced
 
     - name: Response Transformer
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/response-transformer
 
@@ -470,15 +469,15 @@
       free: No
       plus: No
       enterprise: Yes
-      topologies: Self-managed classic, DB-less, and hybrid
-      notes: Disabled in Konnect Cloud due to RCE issue
+      network_config_opts: Self-managed classic, DB-less, and hybrid
+      notes: Disabled in Konnect Cloud due to RCE issue.
       url: /hub/kong-inc/response-transformer-advanced
 
     - name: Route Transformer Advanced
       free: No
       plus: No
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/route-transformer-advanced
 
@@ -489,7 +488,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/file-log
 
@@ -497,7 +496,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/http-log
 
@@ -505,7 +504,7 @@
       free: No
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/kafka-log
 
@@ -513,7 +512,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/loggly
 
@@ -521,7 +520,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/statsd
 
@@ -529,7 +528,7 @@
       free: No
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/statsd-advanced
 
@@ -537,7 +536,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/syslog
 
@@ -545,7 +544,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/tcp-log
 
@@ -553,6 +552,6 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      topologies: All
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/udp-log

@@ -11,17 +11,16 @@ access to a subset of plugins:
 * **Plus tier:** Open-source and Plus-specific plugins
 * **Enterprise tier:** All Kong plugins
 
-### Supported topologies
+### Network configuration options
 
-Some plugins can't be deployed in every {{site.konnect_short_name}} topology.
-{{site.konnect_short_name}} can be deployed in the following ways:
+{{site.konnect_short_name}} can be configured in the following ways:
 
 * **Kong-hosted cloud**: Hybrid deployment. Nodes are split into control plane and
-data plane roles. Kong provides and hosts the control plane and its database through
-{{site.konnect_saas}}, and you provide the data plane nodes.
+data plane roles. Kong provides and hosts the control plane and a database with
+{{site.konnect_saas}}, and you provide the data plane nodes (no databases required).
 
-* **Self-managed**: Using any hosting service of your choice or hosting
-on-premises, with any of the following topologies:
+* **Self-managed**: Use any hosting service of your choice or host on-premises,
+with any of the following network configurations:
     * **Classic:** Every node is connected to a database. Refers to a classic
     deployment on any platform, including Kubernetes.
     * **DB-less:** Deployed without a database (available in {{site.ce_product_name}}
@@ -37,9 +36,8 @@ For details on the differences between deployment types, see
 [Kong Deployment Options](/enterprise/latest/deployment/deployment-options)
 and [{{site.ee_product_name}} for Kubernetes Deployment Options](/enterprise/latest/deployment/kubernetes-deployment-options/).
 
-## Plugin Tiers and Topologies
-
-<!-- To add or edit table entries in this topic, see /app/_data/tables/plugins.yml in this repo -->
+## Plugin tiers and supported network configurations
+<!-- To add or edit table entries in this topic, see /app/_data/tables/plugin_index.yml in this repo -->
 
 {% assign categories = site.data.tables.plugin_index %}
 {% assign plugins = site.data.tables.plugin_index.category.plugin %}
@@ -55,7 +53,7 @@ and [{{site.ee_product_name}} for Kubernetes Deployment Options](/enterprise/lat
       <th style="text-align: center">Free</th>
       <th style="text-align: center">Plus</th>
       <th style="text-align: center">Enterprise</th>
-      <th style="width: 20%">Supported Topologies</th>
+      <th style="width: 20%">Supported network configuration</th>
       <th style="text-align: left; width: 35%">Notes</th>
   </thead>
   <tbody>
@@ -86,7 +84,7 @@ and [{{site.ee_product_name}} for Kubernetes Deployment Options](/enterprise/lat
           {% endif %}
         </td>
         <td>
-          {{ plugin.topologies }}
+          {{ plugin.network_config_opts }}
         </td>
         <td>
           {{ plugin.notes }}
