@@ -3,7 +3,7 @@ title: Ports and Network Requirements
 no_version: true
 ---
 
-## Konnect SaaS ports
+## Konnect Cloud ports
 
 The {{site.konnect_saas}} control plane uses the following port:
 

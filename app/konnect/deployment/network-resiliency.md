@@ -24,7 +24,7 @@ plane. The data plane sends a heartbeat to the control plane every 30 seconds to
 keep the connection alive. If it receives no answer, it tries to reconnect to the
 control plane node after a 5-10 second random delay.
 
-**What types of data travel between the Konnect SaaS control plane and the data planes, and how?**
+**What types of data travel between the Konnect Cloud control plane and the data planes, and how?**
 : There are two types of data that travel between the planes: configuration
 and telemetry. Both use the secure TCP port `443`.
   * **Configuration:** the control plane sends configuration data to any connected
@@ -43,7 +43,7 @@ immediately pushed to any connected data plane nodes.
 
 ## Connection behavior and incident recovery
 
-**What happens if Konnect SaaS goes down?**
+**What happens if Konnect Cloud goes down?**
 : If the Kong-hosted control plane goes down, the control plane/data plane
 connection gets interrupted. You can't access the control plane or
 change any configuration during this time.

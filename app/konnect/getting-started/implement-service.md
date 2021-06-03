@@ -82,7 +82,7 @@ request is sent to `http://mockbin.org`.
 front end, which you can now give to clients to make requests.
 
 For next steps, check out some of the other things you can do in
-{{site.konnect_short_name}} SaaS:
+{{site.konnect_saas}}:
 * Enable plugins on a [Service](/konnect/servicehub/plugins/enable-service-plugin) or a
 [Route](/konnect/servicehub/plugins/enable-route-plugin)
 * [Set up the Dev Portal](/konnect/servicehub/dev-portal/service-documentation)

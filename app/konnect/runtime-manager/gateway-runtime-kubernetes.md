@@ -7,7 +7,7 @@ through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
 configure your {{site.base_gateway}} instance to accept configuration from
 {{site.konnect_short_name}}. The Runtime Manager keeps track of all runtimes
-associated with the {{site.konnect_short_name}} SaaS account.
+associated with the {{site.konnect_saas}} account.
 
 <div class="alert alert-ee blue">
 <b>Note:</b> Kong does not host runtimes. You must install and host your own

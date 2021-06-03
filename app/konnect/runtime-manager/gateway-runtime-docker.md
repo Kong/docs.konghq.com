@@ -7,7 +7,7 @@ through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
 configure your {{site.base_gateway}} instance to accept configuration from
 {{site.konnect_short_name}}. The Runtime Manager keeps track of all runtimes
-associated with the {{site.konnect_short_name}} SaaS account.
+associated with the {{site.konnect_saas}} account.
 
 You have the following options when configuring a new runtime with Docker:
 * Use the [quick setup](#quick-setup) script, which generates a data plane
@@ -39,7 +39,7 @@ runtime instances.
     For the first runtime, the page opens to a **Configure New Runtime** form.
 
     Once configured, this page lists all runtimes associated with the
-    {{site.konnect_short_name}} SaaS account.
+    {{site.konnect_saas}} account.
 
 2. (Optional) If this is not the first runtime configuration, click
 **Configure New Runtime**.
@@ -49,13 +49,13 @@ runtime instances.
     You can expand the codeblock by clicking **Show** to see the entire script.
 
 4. Replace the placeholder for `<your-password>` with your own
-{{site.konnect_short_name}} SaaS password.
+{{site.konnect_saas}} password.
 
 5. Run the script on any host you choose.
 
     This script creates a Docker container running a simple
     {{site.base_gateway}} instance and connects it to your
-    {{site.konnect_short_name}} SaaS account.
+    {{site.konnect_saas}} account.
 
 6. Click **Done** to go to the Runtime Manager overview.
 
