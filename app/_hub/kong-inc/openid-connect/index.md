@@ -1814,7 +1814,7 @@ never use in production. The choices here are for simplicity.
 
 ### Authorization Code Flow
 
-The authorization code flow is also known as the three-legged OAuth/OpenID Connect flow.
+The authorization code flow is the three-legged OAuth/OpenID Connect flow.
 The sequence diagram below, describes the participants, and their interactions
 for this usage scenario, including the use of session cookies:
 
@@ -1886,9 +1886,9 @@ described on [the diagram](#authorization-code-flow) above.
 
 ### Password Grant
 
-Password grant is also known as the legacy password grant as it can be seen less
-secure way to authenticate end users than the authorization code flow, for example
-the passwords are shared with 3rd parties. The grant is rather simple though:
+Password grant is a legacy authentication grant. The password grant is a less
+secure way to authenticate the end users than the authorization code flow. For example
+the passwords get shared with 3rd parties. The grant is rather simple though:
 
 <img src="/assets/images/docs/openid-connect/password-grant.svg">
 
@@ -2262,7 +2262,7 @@ HTTP/1.1 200 OK
 
 ### User Info Authentication
 
-The user info authentication uses OpenID Connect standard user info endpoint to verify access token.
+The user info authentication uses OpenID Connect standard user info endpoint to verify the access token.
 In most cases it is preferable to use [Introspection Authentication](#introspection-authentication)
 as that is meant for retrieving information from the token itself, whereas the user info endpoint is
 meant for retrieving information about the user to which the token was given to. The sequence
