@@ -31,6 +31,7 @@ params:
   route_id: true
   consumer_id: false
   dbless_compatible: yes
+  manager_examples: false
   konnect_examples: false
   config:
     - name: access_token_name

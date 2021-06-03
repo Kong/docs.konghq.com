@@ -1,7 +1,7 @@
 <div id="breadcrumbs">
   {% assign crumbs = page.dir | split: '/' %}
   <ul class="breadcrumbs">
-    {% if page.no_version == false or page.has_version == true or page.nav_items != nil %}
+    {% if page.no_version == false or page.has_version == true %}
       <i class="sidebar-toggle"></i>
     {% endif %}
     <li class="breadcrumb-item">
@@ -13,6 +13,7 @@
     </li>
     <li class="breadcrumb-item">
       {% if page.edition == 'enterprise' %}<a href="/enterprise/{% unless page.no_version == true %}{{page.kong_version}}/{% endunless %}">{{site.ee_product_name}}</a>
+      {% elsif page.edition == 'konnect-platform' %}<a href="/konnect-platform/">Overview</a>
       {% elsif page.edition == 'konnect' %}<a href="/konnect/">{{site.konnect_saas}}</a>
       {% elsif page.edition == 'mesh' %}<a href="/mesh/{% unless page.no_version == true %}{{page.kong_version}}/{% endunless %}">{{site.mesh_product_name}}</a>
       {% elsif page.edition == 'deck' %}<a href="/deck/">decK</a>

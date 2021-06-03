@@ -648,8 +648,8 @@ pre code {
 .container,.container-fluid {
     margin-left: auto;
     margin-right: auto;
-    padding-right: 16px;
-    padding-left: 16px;
+    padding-right: 250px;
+    padding-left: 75px;
     position: relative
 }
 

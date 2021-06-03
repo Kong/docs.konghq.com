@@ -71,7 +71,7 @@ params:
   config:
     - name: key_names
       required: true
-      default: "`apikey`"
+      default: "[`apikey`]"
       value_in_examples: ["apikey"]
       datatype: array of strings
       description: |
