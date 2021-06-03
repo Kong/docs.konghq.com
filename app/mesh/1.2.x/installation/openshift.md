@@ -232,7 +232,7 @@ for the `kuma-dp` sidecar to avoid capturing traffic from
 to the application namespace:
 
 ```sh
-$ oc adm policy add-scc-to-group nonroot system:serviceaccounts:&lt;app-namespace&gt;
+$ oc adm policy add-scc-to-group nonroot system:serviceaccounts:<app-namespace>
 ```
 
 If the namespace is not configured properly, you will see the following error
