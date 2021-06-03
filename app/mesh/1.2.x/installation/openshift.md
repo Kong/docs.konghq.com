@@ -124,15 +124,16 @@ This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
 deployment, but there are more advanced [deployment modes](https://kuma.io/docs/latest/documentation/deployments/)
 like _multi-zone_.
 
-<strong>Note:</strong> It may take a while for OpenShift to start the
+It may take a while for OpenShift to start the
 {{site.mesh_product_name}} resources. You can check the status by running:
-<pre class="highlight">
-<code>$ oc get pod -n kong-mesh-system</code></pre>
+
+```sh
+$ oc get pod -n kong-mesh-system
+```
 
 ## 3. Verify the Installation
 
-Now that {{site.mesh_product_name}} (`kuma-cp`) is installed in the `kong-mesh-system` namespace, you can access the control plane with
-the GUI, `oc`, the HTTP API, or the CLI:
+Now you can access the control plane with the GUI, `oc`, the HTTP API, or the CLI:
 
 {% navtabs %}
 {% navtab GUI (Read-Only) %}
@@ -146,7 +147,7 @@ To access {{site.mesh_product_name}}, port-forward the API service with:
 $ oc port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
 ```
 
-Now you can navigate to `127.0.0.1:5681/gui` to see the GUI.
+Navigate to `127.0.0.1:5681/gui` to see the GUI.
 
 {% endnavtab %}
 {% navtab oc (Read & Write) %}
@@ -221,37 +222,40 @@ $ kumactl config control-planes add --name=XYZ --address=http://{address-to-kong
 {% endnavtab %}
 {% endnavtabs %}
 
-You will notice that {{site.mesh_product_name}} automatically creates a `Mesh`
+Notice that {{site.mesh_product_name}} automatically creates a `Mesh`
 entity with the name `default`.
 
-<strong>Note:</strong> {{site.mesh_product_name}} explicitly specifies a UID
-for the <code>kuma-dp</code> sidecar to avoid capturing traffic from
-<code>kuma-dp</code> itself. For that reason, a <code>nonroot</code>
-<a href="https://docs.openshift.com/container-platform/latest/authentication/managing-security-context-constraints.html">Security Context Constraint</a>
-must be granted to the application namespace:
+{{site.mesh_product_name}} explicitly specifies a UID
+for the `kuma-dp` sidecar to avoid capturing traffic from
+`kuma-dp` itself. You must grant a `nonroot` [Security Context Constraint]
+(https://docs.openshift.com/container-platform/latest/authentication/managing-security-context-constraints.html)
+to the application namespace:
 
-<pre>
-<code>$ oc adm policy add-scc-to-group nonroot system:serviceaccounts:&lt;app-namespace&gt;</code></pre>
+```sh
+$ oc adm policy add-scc-to-group nonroot system:serviceaccounts:&lt;app-namespace&gt;
+```
 
 If the namespace is not configured properly, you will see the following error
-on the <code>Deployment</code> or <code>DeploymentConfig</code>:
+on the `Deployment` or `DeploymentConfig`:
 
-<pre>
-<code>'pods "kuma-demo-backend-v0-cd6b68b54-" is forbidden: unable to validate against any security context constraint:
-[spec.containers[1].securityContext.securityContext.runAsUser: Invalid value: 5678: must be in the ranges: [1000540000, 1000549999]]'</code></pre>
+```sh
+'pods "kuma-demo-backend-v0-cd6b68b54-" is forbidden: unable to validate against any security context constraint:
+[spec.containers[1].securityContext.securityContext.runAsUser: Invalid value: 5678: must be in the ranges: [1000540000, 1000549999]]'
+```
 
 ## 4. Quickstart
 
 Congratulations! You have successfully installed {{site.mesh_product_name}}.
 
-<strong>Note:</strong> Before running the Kuma Demo in the Quickstart guide,
+Before running the Kuma Demo in the Quickstart guide,
 run the following command:
 
-<pre>
-<code>$ oc adm policy add-scc-to-group anyuid system:serviceaccounts:kuma-demo</code></pre>
+```sh
+$ oc adm policy add-scc-to-group anyuid system:serviceaccounts:kuma-demo
+```
 
 One of the components in the demo requires root access, therefore it uses the
-<code>anyuid</code> instead of the <code>nonroot</code> permission.
+`anyuid` instead of the `nonroot` permission.
 
 After installation and the above command, the Kuma quickstart documentation
 is fully compatible with {{site.mesh_product_name}}, except that you are

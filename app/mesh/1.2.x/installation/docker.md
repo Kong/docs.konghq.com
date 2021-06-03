@@ -55,10 +55,8 @@ This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
 deployment, but there are more advanced [deployment modes](https://kuma.io/docs/latest/documentation/deployments/)
 like _multi-zone_.
 
-<strong>Note:</strong> By default, this will run {{site.mesh_product_name}} with
-a memory <a href="https://kuma.io/docs/latest/documentation/backends/">backend</a>,
-but you can use a persistent storage like PostgreSQL by updating the
-<code>conf/kuma-cp.conf</code> file.
+This runs {{site.mesh_product_name}} with a [memory backend](https://kuma.io/docs/latest/documentation/backends/), 
+but you can use a persistent storage like PostgreSQL by updating the `conf/kuma-cp.conf` file.
 
 ## 3. Verify the Installation
 
@@ -112,7 +110,7 @@ $ echo "type: Mesh
     kong/kumactl:{{page.kong_latest.version}} kumactl apply -f -
 ```
 
-This runs <code>kumactl</code> from the Docker
+This runs `kumactl` from the Docker
 container on the same network as the host, but most likely you want to download
 a compatible version of {{site.mesh_product_name}} for the machine where you
 will be executing the commands.
