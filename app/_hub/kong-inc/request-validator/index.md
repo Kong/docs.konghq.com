@@ -43,7 +43,7 @@ params:
 
     - name: allowed_content_types
       required: true
-      default: "application/json"
+      default: ["application/json"]
       value_in_examples:
       datatype: Set of string elements
       description: |
