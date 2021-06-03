@@ -209,7 +209,7 @@ params:
       description: |
         If you need to pass additional body arguments to an introspection endpoint
         when the plugin introspects the opaque access token, use this config parameter
-        to specify them. You should url encode the value. For example: `resource=` or `a=1&b=&c`.
+        to specify them. You should URL encode the value. For example: `resource=` or `a=1&b=&c`.
     - name: access_token_introspection_hint
       required: false
       default: "access_token"
@@ -252,7 +252,7 @@ params:
       description: |
         Specify the claim/property in access token introspection results
         (`JSON`) to be verified against values of `config.access_token_introspection_scopes_required`.
-        This supports nested claims, e.g. with Keycloak you could use `[ "realm_access", "roles" ]`
+        This supports nested claims. For example, with Keycloak you could use `[ "realm_access", "roles" ]`,
         which can be given as `realm_access,roles` (form post). If the claim is not found in access
         token introspection results, and you have specified `config.access_token_introspection_scopes_required`,
         the plugin responds with `403 Forbidden`.
@@ -465,7 +465,7 @@ params:
       datatype: array of string elements
       description: |
         When you set a value for this parameter, the plugin tries to map an arbitrary claim specified with
-        this configuration parameter (e.g. `sub` or `username`) in a channel token to a Kong consumer entity. Kong
+        this configuration parameter (such as `sub` or `username`) in a channel token to a Kong consumer entity. Kong
         consumers have an `id`, a `username`, and a `custom_id`. The `config.channel_token_consumer_by` parameter
         tells the plugin which Kong consumer properties can be used for mapping. If this
         parameter is enabled but the mapping fails, such as when there's
@@ -524,8 +524,8 @@ params:
       datatype: string
       description: |
         If you need to pass additional body arguments to introspection endpoint when the plugin introspects the
-        opaque channel token, you can use this config parameter to specify them. You should URL encode the value,
-        e.g. `resource=` or `a=1&b=&c`.
+        opaque channel token, you can use this config parameter to specify them. You should URL encode the value.
+        For example: `resource=` or `a=1&b=&c`.
     - name: channel_token_introspection_hint
       required: false
       default:
@@ -562,11 +562,11 @@ params:
       default:  [ "scope" ]
       datatype: array of string elements
       description: |
-        With this parameter you can specify the claim/property in channel token introspection results (`JSON`)
+        Use this parameter to specify the claim/property in channel token introspection results (`JSON`)
         to be verified against values of `config.channel_token_introspection_scopes_required`. This supports
-        nested claims, e.g. with Keycloak you could use `[ "realm_access", "roles" ]` which can be given as
+        nested claims. For example, with Keycloak you could use `[ "realm_access", "roles" ]`, which can be given as
         `realm_access,roles` (form post). If the claim is not found in channel token introspection results,
-        and you have specified `config.channel_token_introspection_scopes_required`, the plugin will respond
+        and you have specified `config.channel_token_introspection_scopes_required`, the plugin responds
         with `403 Forbidden`.
     - name: channel_token_introspection_consumer_claim
       required: false
