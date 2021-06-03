@@ -1680,10 +1680,22 @@ As the Keycloak is documented elsewhere, here is just a quick summary what
 we have done one that side (you can also use any other standard identity provider):
 
 1. We created a confidential client `kong` with `private_key_jwt` authentication and pointed the
-   Keycloak to download the public keys from [the OpenID Connect Plugin JWKS endpoint][json-web-key-set].
+   Keycloak to download the public keys from [the OpenID Connect Plugin JWKS endpoint][json-web-key-set]:
+   <br><br>
+   <img src="/assets/images/docs/openid-connect/keycloak-client-kong-settings.png">
+   <br>
+   <img src="/assets/images/docs/openid-connect/keycloak-client-kong-auth.png">
+   <br>
 2. We created another confidential client `service` with `client_secret_basic` authentication,
-   and the secret of `cf4c655a-0622-4ce6-a0de-d3353ef0b714` for which we enabled the client credentials grant.
-3. We created user `john` with the password `doe` that we can use with the password grant.
+   and the secret of `cf4c655a-0622-4ce6-a0de-d3353ef0b714` for which we enabled the client credentials grant:
+   <br><br>
+   <img src="/assets/images/docs/openid-connect/keycloak-client-service-settings.png">
+   <br>
+   <img src="/assets/images/docs/openid-connect/keycloak-client-service-auth.png">
+   <br>
+3. We created user `john` with the password `doe` that we can use with the password grant:
+   <br><br>
+   <img src="/assets/images/docs/openid-connect/keycloak-user-john.png">
 
 [keycloak]: http://www.keycloak.org/
 
