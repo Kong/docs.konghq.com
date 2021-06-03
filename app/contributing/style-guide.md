@@ -18,31 +18,27 @@ no_version: true
 |Don’t use Latin phrases            |For example, ...                               |e.g., ...                                          |
 |                                   |That is, ...                                   |i.e., ...                                          |
 |---                                |---                                            |---                                                |
-|Write short declarative sentences  |                                               |                                                   |
-|---                                |---                                            |---                                                |
 |Avoid generic prounouns            |Once you have added **the inputs section**, ...|Once you have added **this**, ...                  |
-|Don't use displays                 |In the blank that **appears**, do the thing.   | In the blank that **displays**, do the thing.     |
+|Don't use displays                 |In the blank that **appears**, do the thing.   |In the blank that **displays**, do the thing.      |
+|---                                |---                                            |---                                                |
+|Use descriptive headings           |Overview                                       |Improve Vitals performance with InfluxDB           |
+|                                   |Query behavior                                 |Query frequency and precision                      |
+|---                                |---                                            |---                                                |
+|Use sentence case for headings     |Understanding traffic flow in Kong Gateway     |Understanding Traffic Flow in Kong Gateway         |
 |---                                |---                                            |---                                                |
 
 
 ## Formatting standards
 
-### Markdown elements
+### Admonitions
 
-#### Headings
-
-- Use sentence case for headings.
-   Except Heading level 1s (page title), where you should use title case.
-
-#### Admonitions
-
-- Do not stack admonitions, in other words, list several admonitions one after the other.
-
+- Do not stack admonitions, in other words, list several admonitions one after the other.<br/>
   Admonitions should be carefully selected, called-out text.
 - Admonition types:
-  - **Note:** information concerning program behavior that would not be exptected.
-  - **Warning:** information necessary to avoid breaking something or losing data.
-  - **Tip:** information that while not necessary could be beneficial to know.
+  - **Note:** Information concerning behavior that would not be exptected, but won't break anything if it's not followed.
+  - **Warning:** Information necessary to avoid breaking something or losing data.
+  - **Important:** Information that the reader really needs to pay attention to, otherwise things won't work.
+For more information about formatting admonitions see [markdown-rules](/markdown-rules/#callouts).
 
 ## Punctuation rules
 
@@ -50,15 +46,16 @@ no_version: true
 
 ## Capitalization guidelines
 
-- Follow the User Interface - if a term is capitalized in the UI, it should be capitalized in the documentation.
+Follow the user interface(UI). If a term is capitalized in the UI, it should be capitalized in the documentation.
 
 ### Kong-specific terms
 
+Capitalize the following Kong-specific terms:
+
 #### Product names
 - Kong Konnect (Kong Konnect for first mention, Konnect after)
-- Kong Gateway (Enterprise)
-- Kong Gateway (
-- Kong Mesh (Kong Mesh)
+- Kong Gateway 
+- Kong Mesh (Kong Mesh for first mention, Mesh after)
 - Insomnia
 
 #### Component names
@@ -81,13 +78,11 @@ Do not capitalize the following generic terms:
 ## Code formatting
 
 - Separate commands from output.
-- Include properly formatted comments.
-- For long commands, split the code block into separate lines.
+- Include properly formatted code comments.
+- For long commands, split the code block into separate lines to avoid horizontal scrolling.
 - Never have more than one command in a block/example.
-- Always set a language for codeblocks, for example, bash.
-   [List of supported languages](https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers)
-
-### Codeblock navtabs
+- Always set a language for codeblocks, for example, bash.<br/>
+  [List of supported languages](https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers)
 
 ### Inline code formatting
 
