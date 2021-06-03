@@ -151,7 +151,7 @@ mesh_product_name: Kong Mesh
 kic_product_name: Kubernetes Ingress Controller
 konnect_product_name: Kong Konnect
 konnect_short_name: Konnect
-konnect_saas: Konnect SaaS
+konnect_saas: Konnect Cloud
 package_name: Kong Konnect
 company_name: Kong Inc.
 
