@@ -2,16 +2,16 @@
 title: Kong Mesh with Helm
 ---
 
-To install and run {{site.mesh_product_name}} on Kubernetes using Helm, execute
-the following steps:
+To install and run {{site.mesh_product_name}} on Kubernetes using Helm:
 
-* [1. Add the {{site.mesh_product_name}} Helm Repository](#1-add-the-kong-mesh-helm-repository)
-* [2. Run {{site.mesh_product_name}}](#2-run-kong-mesh)
-* [3. Verify the Installation](#3-verify-the-installation)
+1. [Add the {{site.mesh_product_name}} Helm Repository](#1-add-the-kong-mesh-helm-repository)
+1. [Run {{site.mesh_product_name}}](#2-run-kong-mesh)
+1. [Verify the Installation](#3-verify-the-installation)
 
 Finally, you can follow the [Quickstart](#4-quickstart) to take it from here and continue your {{site.mesh_product_name}} journey.
 
 ## Prerequisites
+
 You have a license for {{site.mesh_product_name}}.
 
 ## 1. Add the {{site.mesh_product_name}} Helm Repository
@@ -29,7 +29,7 @@ Once the repo is added, any following updates can be fetched with
 ## 2. Run {{site.mesh_product_name}}
 
 Install and run {{site.mesh_product_name}} using the following commands.
-You can use any Kubernetes namespace to install Kuma, but as a default, we
+You can use any Kubernetes namespace to install {{site.mesh_product_name}}, but as a default, we
 suggest `kong-mesh-system`.
 
 1. Create the `kong-mesh-system` namespace:
@@ -158,12 +158,9 @@ entity with the name `default`.
 
 ## 4. Quickstart
 
-Congratulations! You have successfully installed {{site.mesh_product_name}} on
-Kubernetes.
-
-After installation, the Kuma quickstart documentation is fully compatible with
-{{site.mesh_product_name}}, except that you are running {{site.mesh_product_name}}
-binaries instead of the vanilla Kuma ones.
+The Kuma quickstart documentation
+is fully compatible with {{site.mesh_product_name}}, except that you are
+running {{site.mesh_product_name}} containers instead of Kuma containers.
 
 To start using {{site.mesh_product_name}}, see the
 [quickstart guide for Kubernetes deployments](https://kuma.io/docs/latest/quickstart/kubernetes/).

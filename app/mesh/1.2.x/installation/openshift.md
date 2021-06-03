@@ -2,17 +2,17 @@
 title: Kong Mesh with OpenShift
 ---
 
-To install and run {{site.mesh_product_name}} on OpenShift, execute the
-following steps:
+To install and run {{site.mesh_product_name}} on OpenShift:
 
-* [1. Download {{site.mesh_product_name}}](#1-download-kong-mesh)
-* [2. Run {{site.mesh_product_name}}](#2-run-kong-mesh)
-* [3. Verify the Installation](#3-verify-the-installation)
+1. [Download {{site.mesh_product_name}}](#1-download-kong-mesh)
+1. [Run {{site.mesh_product_name}}](#2-run-kong-mesh)
+1. [Verify the Installation](#3-verify-the-installation)
 
 Finally, you can follow the [Quickstart](#4-quickstart) to take it from here
 and continue your {{site.mesh_product_name}} journey.
 
 ## Prerequisites
+
 You have a license for {{site.mesh_product_name}}.
 
 ## 1. Download {{site.mesh_product_name}}
@@ -257,7 +257,7 @@ $ oc adm policy add-scc-to-group anyuid system:serviceaccounts:kuma-demo
 One of the components in the demo requires root access, therefore it uses the
 `anyuid` instead of the `nonroot` permission.
 
-After installation and the above command, the Kuma quickstart documentation
+The Kuma quickstart documentation
 is fully compatible with {{site.mesh_product_name}}, except that you are
 running {{site.mesh_product_name}} containers instead of Kuma containers.
 

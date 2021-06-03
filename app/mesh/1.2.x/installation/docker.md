@@ -5,9 +5,9 @@ title: Kong Mesh with Docker
 To install and run {{site.mesh_product_name}} on Docker, execute the following
 steps:
 
-* [1. Download {{site.mesh_product_name}}](#1-download-kong-mesh)
-* [2. Run {{site.mesh_product_name}}](#2-run-kong-mesh)
-* [3. Verify the Installation](#3-verify-the-installation)
+1. [Download {{site.mesh_product_name}}](#1-download-kong-mesh)
+1. [Run {{site.mesh_product_name}}](#2-run-kong-mesh)
+1. [Verify the Installation](#3-verify-the-installation)
 
 Finally, you can follow the [Quickstart](#4-quickstart) to take it from here
 and continue your {{site.mesh_product_name}} journey.
@@ -131,11 +131,9 @@ entity with the name `default`.
 
 ## 4. Quickstart
 
-Congratulations! You have successfully installed {{site.mesh_product_name}}.
-
-After installation, the Kuma quickstart documentation is fully compatible with
-{{site.mesh_product_name}}, except that you are running {{site.mesh_product_name}}
-binaries instead of the vanilla Kuma ones.
+The Kuma quickstart documentation
+is fully compatible with {{site.mesh_product_name}}, except that you are
+running {{site.mesh_product_name}} containers instead of Kuma containers.
 
 To start using {{site.mesh_product_name}}, see the
 [quickstart guide for Universal deployments](https://kuma.io/docs/latest/quickstart/universal/).
