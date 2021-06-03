@@ -12,7 +12,7 @@ description: |
   those matched strings into variables, and substituting those strings into transformed requests using flexible templates.
 
 type: plugin
-saas: false
+cloud: false
 categories:
   - transformations
 

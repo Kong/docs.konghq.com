@@ -21,7 +21,7 @@ description: |
     testing API behavior.
 
 enterprise: true
-saas: false
+cloud: false
 type:
   plugin
 categories:
@@ -43,6 +43,7 @@ params:
     instead of uploading to the Dev Portal. The API spec is configured directly in the plugin.
   yaml_examples: false
   k8s_examples: false
+  konnect_examples: false
   examples: false
 
   config:
