@@ -48,15 +48,25 @@
   }
 
   .page-content {
-    padding: 50px 0;
+    padding: 20px 0;
+
+    h2, h3, h4, h5 {
+      font-family: Roboto;
+    }
+
+    h2 {
+      font-size: 2.7rem;
+      font-weight: 400;
+    }
+
+    .inline-toc {
+      margin-bottom: 0;
+    }
+
     .content {
       h3 {
-        font-size: 22px;
-        margin-bottom: 1em;
-      }
-
-      pre {
-        margin: 1em 0;
+        font-size: 2.1rem;
+        font-weight: 400;
       }
 
       hr {
@@ -206,6 +216,31 @@
           margin: 0px 5px;
         }
       }
+    }
+  }
+
+  >.container {
+    max-width: 1020px;
+  }
+
+  .page-navigation {
+    padding: 20px 0 0 0;
+  }
+
+  .page-content-container {
+    margin-top: 5px;
+    border: none;
+    border-top: 1px solid @gray;
+  }
+
+  @media (max-width: 800px) {
+    h2 {
+      padding-top: 14px;
+    }
+
+    .page-header-title {
+      margin-bottom: none;
+      vertical-align: bottom;
     }
   }
 }

@@ -354,12 +354,10 @@
 
 .page-header {
   position: relative;
-  background-color: #fdfdfd;
-  border-bottom: 1px solid @gray;
   padding: 95px 0 20px;
 
   @media (max-width: 1100px) {
-    padding: 95px 0 10px;
+    padding: 95px 0 25px;
   }
 
   // Needs to be above page-content header margins
@@ -400,9 +398,14 @@
 
   .page-header-title {
     display: inline-block;
-    vertical-align: middle;
-    margin-right: 20px;
-    max-width: calc(~"100% - 460px");
+    vertical-align: bottom;
+
+    h1 {
+      color: #062e4d;
+      margin-bottom: 0.1em;
+      margin-top: 0.1em;
+      font: lighter 38px/40px Roboto;
+    }
 
     @media screen and (max-width: 1080px) {
       max-width: 100%;
@@ -411,33 +414,23 @@
 
   .page-header-btn {
     &#version-dropdown {
-      width: 200px;
-      float: right;
+      height: 32px;
+      color: @gray-dark;
+      text-transform: uppercase;
+      font: bold 12px/16px Roboto;
+      padding: 0 8px;
+      font-size: 12px;
+      width: 100%;
       text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       border-color: @gray-border;
       background-color: @gray-background;
 
       @media screen and (max-width: 476px) {
         float: left;
       }
-    }
-
-    &#searchBar {
-      width: 220px;
-    }
-    &:extend(.button all);
-
-    height: 32px;
-    color: @gray-dark;
-    text-transform: uppercase;
-    font: bold 12px/16px Roboto;
-
-    &:active {
-      background: #f7f9fa;
-    }
-
-    em {
-      font-style: normal;
     }
   }
 
@@ -480,36 +473,6 @@
       top: 90%;
     }
   }
-
-  .page-header-bg {
-    position: absolute;
-    width: 100%;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    max-width: 100%;
-    background-size: cover;
-    background-image: linear-gradient(
-        to bottom,
-        #ffffff,
-        40%,
-        transparent
-      ),
-      url("/assets/images/docs/banner-bkg.png");
-    background-image: -moz-linear-gradient(
-        bottom,
-        rgba(255, 255, 255, 0) 40%,
-        #ffffff
-      ),
-      url("/assets/images/docs/banner-bkg.png");
-    background-image: -webkit-linear-gradient(
-        top,
-        rgba(255,255,255,1) 0%,
-        rgba(255,255,255,0) 100%
-      ),
-      url("/assets/images/docs/banner-bkg.png");
-    transform: translateX(-50%);
-  }
 }
 
 .sidebar-toggle {
@@ -529,7 +492,11 @@
 .page-navigation {
   float: right;
   width: 215px;
-  padding: 25px 0 0 20px;
+  padding: 20px 0 0 10px;
+
+  &.with-dropdown {
+    padding: 80px 0 0 10px;
+  }
 
   .close-sidebar {
     display: none;
@@ -1110,7 +1077,6 @@ Generic Styling for Desktop
 
   .alert {
     margin-bottom: 0.8em;
-    margin-top: 0.8em;
     font-size: 17px;
     border-radius: 3px;
 
