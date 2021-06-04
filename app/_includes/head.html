@@ -1,6 +1,6 @@
 {% unless page.name and page.path contains '_hub' %} {% capture page_title %}{{
-page.title | escape }}{% if page.kong_version %} - v{{ page.kong_version |
-escape }}{% endif %}{% if page.title %} | {% endif %}{{ site.name }} - {{
+page.title | escape }}{% if page.kong_version and page.no_version != true %} -
+v{{ page.kong_version | escape }}{% endif %}{% if page.title %} | {% endif %}{{ site.name }} - {{
 site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ page.name }}
 {{ page.type }} | Kong{% endcapture %} {% endunless %}
 
