@@ -3,7 +3,7 @@ title: ServiceHub Overview
 no_version: true
 ---
 
-ServiceHub is a {{site.konnect_short_name}} SaaS functionality module that
+ServiceHub is a {{site.konnect_saas}} functionality module that
 lets you catalog all of your services in a single system of record. This
 catalog represents the single source of truth of your organization’s service
 inventory and their dependencies.
@@ -52,7 +52,7 @@ their Services after they reach the API gateway. A single Service version
 can have only one implementation, but potentially many Routes.
 
 After configuring the Service, version, implementation, and at least one Route,
-you’ll be able to start making requests through {{site.konnect_short_name}} SaaS.
+you’ll be able to start making requests through {{site.konnect_saas}}.
 
 ## Dev Portal
 
@@ -97,7 +97,7 @@ The [Rate Limiting](/hub/kong-inc/rate-limiting) and
 plugins only support the `redis` strategy, for which you must provide your own
 Redis cluster.
 
-The following plugins are not available with {{site.konnect_short_name}} SaaS:
+The following plugins are not available with {{site.konnect_saas}}:
 * Key Auth Encrypted
 * OAuth2 Authentication
 * OAuth2 Introspection
@@ -114,7 +114,7 @@ The following plugins are not available with {{site.konnect_short_name}} SaaS:
 ### Custom plugins and serverless functions
 
 Currently, there is no way to add a custom plugin or a serverless function
-directly through the {{site.konnect_short_name}} SaaS application. Contact Kong
+directly through the {{site.konnect_saas}} application. Contact Kong
 Support to get them manually added to your organization.
 
 Custom plugins must not have the following:
@@ -129,7 +129,7 @@ Custom plugins must not have the following:
 not bundled by default with {{site.konnect_product_name}}
 
 If your plugin meets these requirements and you want to use it in
-{{site.konnect_short_name}} SaaS, contact [Kong Support](https://support.konghq.com/).
+{{site.konnect_saas}}, contact [Kong Support](https://support.konghq.com/).
 
 **See more:**
 * [Plugin compatibility](/hub/plugins/compatibility/)

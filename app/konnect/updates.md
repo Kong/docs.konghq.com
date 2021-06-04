@@ -1,10 +1,10 @@
 ---
-title: Konnect SaaS Updates
+title: Konnect Cloud Updates
 no_version: true
 ---
 
-The updates contained in this topic apply to {{site.konnect_short_name}}
-SaaS, an application that lets you manage configuration for multiple runtimes
+The updates contained in this topic apply to {{site.konnect_saas}},
+an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services.
 
@@ -95,7 +95,7 @@ quick setup script.
 ### 2021.02.23
 
 **{{site.base_gateway}} 2.3 support**
-: {{site.konnect_short_name}} SaaS now supports {{site.base_gateway}} 2.3
+: {{site.konnect_saas}} now supports {{site.base_gateway}} 2.3
 runtimes. There is no upgrade path for existing runtimes.
 : To use {{site.base_gateway}} 2.3, [reprovision a new runtime](/konnect/runtime-manager/#kong-gateway).
 
@@ -111,7 +111,7 @@ Runtime Manager and run gateway instances outside of Docker. Use the
 
 **Logging plugins**
 : The full set of {{site.base_gateway}}'s logging plugins is now available
-through {{site.konnect_short_name}} SaaS. This includes:
+through {{site.konnect_saas}}. This includes:
 * [File Log](/hub/kong-inc/file-log)
 * [HTTP Log](/hub/kong-inc/http-log)
 * [Kafka Log](/hub/kong-inc/kafka-log)

@@ -10,7 +10,7 @@
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   url: /konnect-platform/guides
   items:
-    - text: Quickstart for Konnect SaaS
+    - text: Quickstart for Konnect Cloud
       url: https://docs.konghq.com/konnect/getting-started
       absolute_url: true
     - text: Get Started with Kong Gateway (self-hosted)

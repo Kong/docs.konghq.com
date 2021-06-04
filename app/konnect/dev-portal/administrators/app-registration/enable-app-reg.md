@@ -88,8 +88,8 @@ any time at your discretion.
 
 5. (Optional) Click to enable **Auto Approve** for application registrations for the selected Service.
 
-   Any developer registration requests for an application are automatically approved. A {{site.konnect_short_name}}
-   SaaS admin does not need to
+   Any developer registration requests for an application are automatically approved. A {{site.konnect_saas}}
+    admin does not need to
    [manually approve](/konnect/dev-portal/administrators/app-registration/manage-app-reg-requests/) application
    registration requests for developers.
 
