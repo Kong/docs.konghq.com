@@ -6,9 +6,8 @@ It has one parameter include.heading which must be included when used.  -->
 
 You can deploy a license file in one of the following ways:
 
-* Through the `/licenses` Admin API endpoint
-* As a file on the node filesystem
-* As an environmental variable
+* Through the `/licenses` Admin API endpoint.
+* As a file on the node filesystem.
 
 The recommended method is using the Admin API.
 
@@ -79,31 +78,5 @@ $ scp license.json /etc/kong/license.json
 {{site.base_gateway}} will look for a valid license in this location.
 
 
-{% endnavtab %}
-{% navtab Environmental variable %}
-
-Export the license key to a variable by running the following command,
-substituting your own license key.
-
-The license data must contain straight quotes to be considered valid JSON
-(`'` and `"`, not `’` or `“`).
-
-<div class="alert alert-ee blue">
-<b>Note:</b>
-The following license is only an example. You must use the following format,
-but provide your own content.
-</div>
-
-```bash
-$ export KONG_LICENSE_DATA='{"license":{"signature":"LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tClZlcnNpb246IEdudVBHIHYyCgpvd0did012TXdDSFdzMTVuUWw3dHhLK01wOTJTR0tLWVc3UU16WTBTVTVNc2toSVREWk1OTFEzVExJek1MY3dTCjA0ek1UVk1OREEwc2pRM04wOHpNalZKVHpOTE1EWk9TVTFLTXpRMVRVNHpTRXMzTjA0d056VXdUTytKWUdNUTQKR05oWW1VQ21NWEJ4Q3NDc3lMQmorTVBmOFhyWmZkNkNqVnJidmkyLzZ6THhzcitBclZtcFZWdnN1K1NiKzFhbgozcjNCeUxCZzdZOVdFL2FYQXJ0NG5lcmVpa2tZS1ozMlNlbGQvMm5iYkRzcmdlWFQzek1BQUE9PQo9b1VnSgotLS0tLUVORCBQR1AgTUVTU0FHRS0tLS0tCg=","payload":{"customer":"Test Company Inc","license_creation_date":"2017-11-08","product_subscription":"Kong Enterprise","admin_seats":"5","support_plan":"None","license_expiration_date":"2017-11-10","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU"},"version":1}}'
-```
-
-Apply the license to your {{site.base_gateway}} Docker container and reload the
-gateway:
-
-```sh
-echo "-e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
-kong reload exit" | docker exec -i <kong-container-id> /bin/sh \
-```
 {% endnavtab %}
 {% endnavtabs %}
