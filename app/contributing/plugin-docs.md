@@ -80,10 +80,8 @@ the existing plugins for examples, and see additional advice in
 
 The Kong Plugin Hub is documentation site. We do not host plugin source code or downloads.
 
-We do not accept new plugins into the Kong core repository.
-
 If you want to write a custom plugin for your own needs, start by reading the [Plugin Development Guide](/gateway-oss/latest/plugin-development).
 
 If you already wrote a plugin, and are thinking about making it available to the community, we strongly encourage you to host it on a publicly available repository (like GitHub), and distribute it via LuaRocks. A good resource on how to do so is the Distribution Section of the Plugin Development Guide.
 
-To give visibility to your plugin, you can create a post in the Announcements category of Kong Nation.
+To give visibility to your plugin, you can create a post in the [Announcements](https://discuss.konghq.com/c/announcements/7) category of Kong Nation.
