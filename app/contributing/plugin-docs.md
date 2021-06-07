@@ -3,20 +3,9 @@ title: Plugin docs
 no_version: true
 ---
 
-### Plugin Hub contributions
+> WORK IN PROGRESS
 
-The Kong Plugin Hub is documentation site.
-
-We do not accept new plugins into the Kong core repository.
-
-If you wish to write a new plugin for your own needs, you should start by reading the Plugin Development Guide.
-
-If you already wrote a plugin, and are thinking about making it available to the community, we strongly encourage you to host it on a publicly available repository (like GitHub), and distribute it via LuaRocks. A good resource on how to do so is the Distribution Section of the Plugin Development Guide.
-
-To give visibility to your plugin, you can:
-
-Add your plugin to the Kong Hub
-Create a post in the Announcements category of Kong Nation
+## Add a new plugin doc for a Kong Inc plugin
 
 1. Create a publisher directory at`_app/_hub/`, such as
  `_app/_hub/your-GitHub-handle` (if you are contributing as an individual)
@@ -47,7 +36,7 @@ Kong staff will review your PR, suggest improvements and adjustments as
 necessary, and once approved, will merge and deploy your Kong Hub addition!
 
 
-### Writing plugin documentation
+## Writing plugin documentation
 
 Plugins are documented as extensions under `app/_hub/` - please look at
 the existing plugins for examples, and see additional advice in
@@ -87,8 +76,14 @@ the existing plugins for examples, and see additional advice in
     * `description` - description of the field.
     Use YAML's pipe notation if writing longer Markdown text.
 
-## Listing Your Extension in the Plugin Hub
+## Custom plugins and documentation
 
-We encourage developers to list their Kong Gateway plugins in the
-[Plugin Hub](https://docs.konghq.com/hub) with documentation hosted
-on the Kong docs website for ready access.
+The Kong Plugin Hub is documentation site. We do not host plugin source code or downloads.
+
+We do not accept new plugins into the Kong core repository.
+
+If you want to write a custom plugin for your own needs, start by reading the [Plugin Development Guide](/gateway-oss/latest/plugin-development).
+
+If you already wrote a plugin, and are thinking about making it available to the community, we strongly encourage you to host it on a publicly available repository (like GitHub), and distribute it via LuaRocks. A good resource on how to do so is the Distribution Section of the Plugin Development Guide.
+
+To give visibility to your plugin, you can create a post in the Announcements category of Kong Nation.

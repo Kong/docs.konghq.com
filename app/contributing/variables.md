@@ -54,6 +54,8 @@ company_name | {{site.company_name}} | The name of the company. <br> Do not use 
 
 ## Versions
 
+> WORK IN PROGRESS
+
 kong_version
 
 Depends on the page
@@ -89,8 +91,6 @@ Outputs the specified version in the array
 Turns the list of versions into an array and pulls the specified version.
 
 E.g., if you want to pull the first version of the doc, you would use {{page.kong_versions[0].version}}, if you want to use the third published version, you would use {{page.kong_versions[2].version}}, etc
-
-
 
 {{page.kong_versions[0].version}}
 

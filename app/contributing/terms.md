@@ -3,6 +3,8 @@ title: Common terms in the docs
 no_version: true
 ---
 
+> WORK IN PROGRESS
+
 ## General terms
 
 #### Control plane
