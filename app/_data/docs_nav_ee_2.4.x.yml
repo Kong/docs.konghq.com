@@ -52,7 +52,7 @@
         - text: Marketplaces
           items:
             - text: AWS (AMI)
-              url: https://aws.amazon.com/marketplace/pp/B08P51PKC1?qid=1607026688511&sr=0-5&ref_=srh_res_product_title
+              url: https://aws.amazon.com/marketplace/pp/prodview-blxz2rdsx5cc6
               absolute_url: true
               target_blank: true
             - text: AWS (EKS)
