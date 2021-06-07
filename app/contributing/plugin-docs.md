@@ -3,25 +3,21 @@ title: Plugin docs
 no_version: true
 ---
 
-### Kong Hub contributions
+### Plugin Hub contributions
 
-If you are planning on producing a new Kong plugin or integration, with the
-intent to list it in the Kong Hub, let us know! Email Gayle Neumann, Documentation Manager at gayle.neumann@konghq.com, to inform us that you are submitting a plugin or if you have any questions.
+The Kong Plugin Hub is documentation site.
 
-Adding a new listing to the Kong Hub may be proposed by:
+We do not accept new plugins into the Kong core repository.
 
-1. Clone this repo
-    ```
-    git clone https://github.com/Kong/docs.konghq.com.git
-    ```
-2. Move into the repo's directory
-    ```
-    cd docs.konghq.com
-    ```
-1. Create a [separate branch from master](https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches)
-    ```
-    git checkout -b [name_of_your_new_branch]
-    ```
+If you wish to write a new plugin for your own needs, you should start by reading the Plugin Development Guide.
+
+If you already wrote a plugin, and are thinking about making it available to the community, we strongly encourage you to host it on a publicly available repository (like GitHub), and distribute it via LuaRocks. A good resource on how to do so is the Distribution Section of the Plugin Development Guide.
+
+To give visibility to your plugin, you can:
+
+Add your plugin to the Kong Hub
+Create a post in the Announcements category of Kong Nation
+
 1. Create a publisher directory at`_app/_hub/`, such as
  `_app/_hub/your-GitHub-handle` (if you are contributing as an individual)
  or `_app/_hub/company-name` (if you are contributing as a company). See other Kong Hub listings for examples of publisher names.

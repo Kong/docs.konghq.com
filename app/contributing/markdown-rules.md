@@ -217,25 +217,25 @@ $ httpie some request
 {% endnavtabs %}
 
 
-## Callouts
+## Admonitions
 
-When you need to highlight important information in some way, you can use a
-callout. In our docs, we do this with Markdown blockquotes (`>`) and a class:
+When you need to highlight important information in some way, you can use an
+admonition. In our docs, we do this with Markdown blockquotes (`>`) and a class:
 
 ```
 {:.note}
 > **Note**: Here's a note.
 ```
 
-When using callouts, think about whether the thing you're trying to note is
-_actually_ a note, or simply another piece of information that fits the flow
-of the task or content on the page. Avoid nesting too many elements inside
-callouts, and try to keep them short.
+When using admonitions, think about whether the thing you're trying to note is
+_actually_ a note (or warning, or caution), or simply another piece of
+information that fits the flow of the task or content on the page. Avoid
+nesting too many elements inside admonitions, and try to keep them short.
 
-You can set the callout label to anything you want. For example, you might
+You can set the admonition label to anything you want. For example, you might
 want an `important` note to start with **Protect your password!**.
 
-Set a class on the callout to display a specific style:
+Set a class on the admonition to display a specific style:
 
 * **Note:** {% raw %}`{:.note}`{% endraw %}
 
@@ -245,16 +245,6 @@ Set a class on the callout to display a specific style:
 
     {:.note}
     > **Note:** Here's some info.
-
-* **Tip:** {% raw %}`{:.tip}`{% endraw %}
-
-    Use the `tip` callout for information that might help the reader improve their
-    results or their experience. Use this option sparingly.
-
-    {:.tip}
-    > **Tip:** Hey, there's an advanced version of this plugin, you should check it out if
-    you want these extra features.
-
 
 * **Important:** {% raw %}`{:.important}`{% endraw %}
 

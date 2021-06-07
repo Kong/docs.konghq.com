@@ -35,10 +35,10 @@ no_version: true
 - Do not stack admonitions, in other words, list several admonitions one after the other.<br/>
   Admonitions should be carefully selected, called-out text.
 - Admonition types:
-  - **Note:** Information concerning behavior that would not be exptected, but won't break anything if it's not followed.
+  - **Note:** Information concerning behavior that would not be expected, but won't break anything if it's not followed.
   - **Warning:** Information necessary to avoid breaking something or losing data.
   - **Important:** Information that the reader really needs to pay attention to, otherwise things won't work.
-For more information about formatting admonitions see [markdown-rules](/markdown-rules/#callouts).
+For more information about formatting admonitions see [markdown-rules](/contributing/markdown-rules/#admonitions).
 
 ## Punctuation rules
 
@@ -54,7 +54,7 @@ Capitalize the following Kong-specific terms:
 
 #### Product names
 - Kong Konnect (Kong Konnect for first mention, Konnect after)
-- Kong Gateway 
+- Kong Gateway
 - Kong Mesh (Kong Mesh for first mention, Mesh after)
 - Insomnia
 
