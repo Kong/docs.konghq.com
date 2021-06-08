@@ -46,8 +46,8 @@ might have breaking changes in future releases.
 
 ### SEE ALSO
 
-* [deck](deck.md)	 - Administer your Kong declaratively
-* [deck konnect diff](deck_konnect_diff.md)	 - Diff the current entities in Konnect with the one on disks (in alpha)
-* [deck konnect dump](deck_konnect_dump.md)	 - Export configuration from Konnect (in alpha)
-* [deck konnect ping](deck_konnect_ping.md)	 - Verify connectivity with Konnect (in alpha)
-* [deck konnect sync](deck_konnect_sync.md)	 - Sync performs operations to get Konnect's configuration to match the state file (in alpha)
+* [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong declaratively
+* [deck konnect diff](/deck/{{page.kong_version}}/reference/deck_konnect_diff)	 - Diff the current entities in Konnect with the one on disks (in alpha)
+* [deck konnect dump](/deck/{{page.kong_version}}/reference/deck_konnect_dump)	 - Export configuration from Konnect (in alpha)
+* [deck konnect ping](/deck/{{page.kong_version}}/reference/deck_konnect_ping)	 - Verify connectivity with Konnect (in alpha)
+* [deck konnect sync](/deck/{{page.kong_version}}/reference/deck_konnect_sync)	 - Sync performs operations to get Konnect's configuration to match the state file (in alpha)

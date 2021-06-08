@@ -61,4 +61,4 @@ deck konnect diff [flags]
 
 ### SEE ALSO
 
-* [deck konnect](deck_konnect.md)	 - Configuration tool for Konnect (in alpha)
+* [deck konnect](/deck/{{page.kong_version}}/reference/deck_konnect)	 - Configuration tool for Konnect (in alpha)

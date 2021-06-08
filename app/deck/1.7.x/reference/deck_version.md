@@ -47,4 +47,4 @@ deck version [flags]
 
 ### SEE ALSO
 
-* [deck](deck.md)	 - Administer your Kong declaratively
+* [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong declaratively

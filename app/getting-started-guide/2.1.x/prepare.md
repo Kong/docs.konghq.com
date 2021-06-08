@@ -9,7 +9,7 @@ Before getting started with using {{site.base_gateway}}, verify that it was inst
 Before you start this section, make sure that:
 * {{site.base_gateway}} is installed and running.
 * Kong Manager (if applicable) and Kong Admin API ports are listening on the appropriate port/IP/DNS settings.
-* If using declarative configuration to configure Kong, [decK](/deck/{{page.kong_version}}/installation) is installed.
+* If using declarative configuration to configure Kong, [decK](/deck/latest/installation) is installed.
 
 In this guide, an instance of {{site.base_gateway}} is referenced via `<admin-hostname>`. Make sure to replace `<admin-hostname>` with the hostname of your control plane instance.
 

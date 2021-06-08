@@ -58,6 +58,8 @@
       url: /reference/deck_validate
     - text: deck version
       url: /reference/deck_version
+    - text: deck konnect
+      url: /reference/deck_konnect
     - text: deck konnect diff
       url: /reference/deck_konnect_diff
     - text: deck konnect dump
