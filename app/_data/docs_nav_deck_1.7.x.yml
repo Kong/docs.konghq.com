@@ -67,6 +67,7 @@
     - text: deck konnect ping
       url: /reference/deck_konnect_ping
     - text: deck konnect sync
+      url: /reference/deck_konnect_sync
 
 - title: FAQ
   icon: /assets/images/icons/documentation/icn-faq-color.svg
