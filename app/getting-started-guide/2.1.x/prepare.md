@@ -9,7 +9,7 @@ Before getting started with using {{site.base_gateway}}, verify that it was inst
 Before you start this section, make sure that:
 * {{site.base_gateway}} is installed and running.
 * Kong Manager (if applicable) and Kong Admin API ports are listening on the appropriate port/IP/DNS settings.
-* If using declarative configuration to configure Kong, [decK](/deck/installation) is installed.
+* If using declarative configuration to configure Kong, [decK](/deck/{{page.kong_version}}/installation) is installed.
 
 In this guide, an instance of {{site.base_gateway}} is referenced via `<admin-hostname>`. Make sure to replace `<admin-hostname>` with the hostname of your control plane instance.
 
@@ -69,7 +69,7 @@ command in a terminal window:
     to see the {{site.base_gateway}}'s most recent configuration.
 
     <div class="alert alert-warning">
-   
+
     <strong>Be careful!</strong> Any subsequent <code>deck dump</code> will
     overwrite the existing <code>kong.yaml</code> file. Create backups as needed.
     </div>
