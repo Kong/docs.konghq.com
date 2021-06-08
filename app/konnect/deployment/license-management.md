@@ -1,15 +1,15 @@
 ---
-title: License Management in Konnect SaaS
+title: License Management in Konnect Cloud
 no_version: true
 toc: false
 ---
 
-When you create a {{site.konnect_short_name}} SaaS account, a license is
-automatically provisioned to the SaaS service. You do not need to manage this
+When you create a {{site.konnect_saas}} account, a license is
+automatically provisioned to the Cloud service. You do not need to manage this
 license manually.
 
 Any runtimes configured through the [Runtime Manager](/konnect/runtime-manager)
-also implicitly receive the same license from {{site.konnect_short_name}} SaaS
+also implicitly receive the same license from {{site.konnect_saas}}
 control plane.
 
 For any license questions, contact your sales representative.

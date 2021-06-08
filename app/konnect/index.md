@@ -1,5 +1,5 @@
 ---
-title: Kong Konnect SaaS
+title: Kong Konnect Cloud
 subtitle: Kong's hosted control plane
 no_version: true
 ---
@@ -8,18 +8,18 @@ The {{site.konnect_saas}} docs provide information about how to manage and
 deploy {{site.konnect_short_name}} using Kong's hosted control
 plane.
 
-## Konnect SaaS control plane
+## Konnect Cloud control plane
 {{site.konnect_short_name}} lets you manage multiple runtimes from a
 single, cloud-based control plane, giving you an overview of all deployed
 services. You can deploy the runtimes in different environments, data
 centers, geographies, or zones without needing a local clustered database for
 each runtime group.
 
-### Using the Konnect SaaS docs
-If using the SaaS control plane to manage your {{site.konnect_short_name}}
+### Using the Konnect Cloud docs
+If using the Konnect Cloud control plane to manage your {{site.konnect_short_name}}
 deployment, see the following topics to get started:
 
-* Set up a [{{site.konnect_short_name}} SaaS account](/konnect/access-account)
+* Set up a [{{site.konnect_saas}} account](/konnect/access-account)
 * Using the [Quickstart Guide](/konnect/getting-started/):
   * [Set up a runtime](/konnect/getting-started/configure-runtime)
   * [Configure a Service and its first version](/konnect/getting-started/configure-service)

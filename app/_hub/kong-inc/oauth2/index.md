@@ -19,8 +19,7 @@ description: |
     property).
   </div>
 
-
-saas: false
+cloud: false
 type: plugin
 categories:
   - authentication

@@ -12,7 +12,10 @@ breadcrumbs:
 {% capture params_table %}
 <table>
   <thead>
-    <tr><th>Form Parameter</th><th>Description</th></tr>
+    <tr>
+      <th style="width: 25%;">Form Parameter</th>
+      <th style="width: 75%;">Description </th>
+    </tr>
   </thead>
   <tbody>
     <tr>
@@ -63,7 +66,7 @@ breadcrumbs:
           {% if field.required == false %}<br><em>optional</em>{% endif %}
           {% if field.required == "semi" %}<br><em>semi-optional</em>{% endif %}
           {% if field.datatype != nil %}<br><br><strong>Type: </strong>{{ field.datatype | markdownify | strip_html }}{% endif %}
-          {% if field.default != nil %}<br><br><strong>Default value: </strong>{{ field.default | markdownify | strip_html }}{% endif %}
+          {% if field.default != nil %}<br><br><strong>Default value: </strong><code>{{ field.default | markdownify | strip_html }}</code>{% endif %}
         </td>
         <td>
           <br>{{ field.description | markdownify }}</td>
@@ -249,7 +252,7 @@ breadcrumbs:
       {% endif %}
     {% endcapture %}
 
-    <aside class="page-navigation">
+    <aside class="page-navigation{% if extn_versions %} with-dropdown{% endif %}">
       <div class="github-links">
         <ul>
           <li>
@@ -318,9 +321,9 @@ breadcrumbs:
           </td>
         </tr>
         <tr>
-          <td>Konnect SaaS</td>
+          <td>Konnect Cloud</td>
           <td>
-            {% if page.saas == false %} Not available{%
+            {% if page.cloud == false %} Not available{%
             elsif extn_release == extn_latest %}Available{%
               else %}See latest plugin version for availability{% endif %}
           </td>

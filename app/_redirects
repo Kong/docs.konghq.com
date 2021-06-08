@@ -36,6 +36,7 @@
 /latest/*                                   /gateway-oss/latest/:splat
 /latest                                     /
 /community                                  /https://konghq.com/community-resources/
+/2.4.x/*                                    /gateway-oss/2.4.x/:splat
 /2.3.x/*                                    /gateway-oss/2.3.x/:splat
 /2.2.x/*                                    /gateway-oss/2.2.x/:splat
 /2.1.x/*                                    /gateway-oss/2.1.x/:splat

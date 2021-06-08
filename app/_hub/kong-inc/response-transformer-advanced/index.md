@@ -36,7 +36,7 @@ categories:
   - transformations
 
 enterprise: true
-saas: false
+cloud: false
 kong_version_compatibility:
     enterprise_edition:
       compatible:

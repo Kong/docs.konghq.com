@@ -5,18 +5,16 @@ title: Kong Mesh with Docker
 To install and run {{site.mesh_product_name}} on Docker, execute the following
 steps:
 
-* [1. Download {{site.mesh_product_name}}](#1-download-kong-mesh)
-* [2. Run {{site.mesh_product_name}}](#2-run-kong-mesh)
-* [3. Verify the Installation](#3-verify-the-installation)
+1. [Download {{site.mesh_product_name}}](#1-download-kong-mesh)
+1. [Run {{site.mesh_product_name}}](#2-run-kong-mesh)
+1. [Verify the Installation](#3-verify-the-installation)
 
 Finally, you can follow the [Quickstart](#4-quickstart) to take it from here
 and continue your {{site.mesh_product_name}} journey.
 
-<div class="alert alert-ee blue">
 The official Docker images are used by default in the
 <a href="/mesh/{{page.kong_version}}/installation/kubernetes">Kubernetes</a>
-distributions.  
-</div>
+distributions.
 
 ## Prerequisites
 You have a license for {{site.mesh_product_name}}.
@@ -39,13 +37,6 @@ $ docker pull kong/kuma-cp:{{page.kong_latest.version}}
 
 ## 2. Run {{site.mesh_product_name}}
 
-<div class="alert alert-ee blue">
-<strong>Note:</strong> Before running the {{site.mesh_product_name}}
-control plane process in the next step &mdash; which is served by the
-<code>kuma-cp</code> container &mdash; you need to have a valid
-{{site.mesh_product_name}} license in place.
-</div>
-
 Run the control plane with:
 
 ```sh
@@ -64,12 +55,8 @@ This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
 deployment, but there are more advanced [deployment modes](https://kuma.io/docs/latest/documentation/deployments/)
 like _multi-zone_.
 
-<div class="alert alert-ee blue">
-<strong>Note:</strong> By default, this will run {{site.mesh_product_name}} with
-a memory <a href="https://kuma.io/docs/latest/documentation/backends/">backend</a>,
-but you can use a persistent storage like PostgreSQL by updating the
-<code>conf/kuma-cp.conf</code> file.
-</div>
+This runs {{site.mesh_product_name}} with a [memory backend](https://kuma.io/docs/latest/documentation/backends/), 
+but you can use a persistent storage like PostgreSQL by updating the `conf/kuma-cp.conf` file.
 
 ## 3. Verify the Installation
 
@@ -123,12 +110,10 @@ $ echo "type: Mesh
     kong/kumactl:{{page.kong_latest.version}} kumactl apply -f -
 ```
 
-<div class="alert alert-ee blue">
-<strong>Note:</strong> We are running <code>kumactl</code> from the Docker
+This runs `kumactl` from the Docker
 container on the same network as the host, but most likely you want to download
 a compatible version of {{site.mesh_product_name}} for the machine where you
 will be executing the commands.
-</div>
 
 See the individual installation pages for your OS to download and extract
 `kumactl` to your machine:
@@ -146,11 +131,9 @@ entity with the name `default`.
 
 ## 4. Quickstart
 
-Congratulations! You have successfully installed {{site.mesh_product_name}}.
-
-After installation, the Kuma quickstart documentation is fully compatible with
-{{site.mesh_product_name}}, except that you are running {{site.mesh_product_name}}
-binaries instead of the vanilla Kuma ones.
+The Kuma quickstart documentation
+is fully compatible with {{site.mesh_product_name}}, except that you are
+running {{site.mesh_product_name}} containers instead of Kuma containers.
 
 To start using {{site.mesh_product_name}}, see the
 [quickstart guide for Universal deployments](https://kuma.io/docs/latest/quickstart/universal/).

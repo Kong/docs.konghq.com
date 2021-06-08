@@ -412,8 +412,8 @@ Please refer to the
 guide for details on how to use this resource.
 
 [k8s-crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/
-[kong-consumer]: https://getkong.org/docs/latest/admin-api/#consumer-object
-[kong-plugin]: https://getkong.org/docs/latest/admin-api/#plugin-object
-[kong-upstream]: https://getkong.org/docs/latest/admin-api/#upstream-objects
-[kong-service]: https://getkong.org/docs/latest/admin-api/#service-object
-[kong-route]: https://getkong.org/docs/latest/admin-api/#route-object
+[kong-consumer]: /gateway-oss/latest/admin-api/#consumer-object
+[kong-plugin]: /gateway-oss/latest/admin-api/#plugin-object
+[kong-upstream]: /gateway-oss/latest/admin-api/#upstream-objects
+[kong-service]: /gateway-oss/latest/admin-api/#service-object
+[kong-route]: /gateway-oss/latest/admin-api/#route-object

@@ -2,23 +2,20 @@
 title: Kong Mesh with Kubernetes
 ---
 
-To install and run {{site.mesh_product_name}} on Kubernetes, execute the
-following steps:
+To install and run {{site.mesh_product_name}} on Kubernetes:
 
-* [1. Download {{site.mesh_product_name}}](#1-download-kong-mesh)
-* [2. Run {{site.mesh_product_name}}](#2-run-kong-mesh)
-* [3. Verify the Installation](#3-verify-the-installation)
+1. [Download {{site.mesh_product_name}}](#1-download-kong-mesh)
+1. [Run {{site.mesh_product_name}}](#2-run-kong-mesh)
+1. [Verify the Installation](#3-verify-the-installation)
 
-Finally, you can follow the [Quickstart](#4-quickstart) to take it from here
-and continue your {{site.mesh_product_name}} journey.
+Finally, you can follow the [Quickstart](#4-quickstart) to take it from here and continue your {{site.mesh_product_name}} journey.
 
 ## Prerequisites
 You have a license for {{site.mesh_product_name}}.
 
 ## 1. Download {{site.mesh_product_name}}
 
-To run {{site.mesh_product_name}} on Kubernetes, you need to download a
-compatible version of {{site.mesh_product_name}} for the machine from which you
+Download a compatible version of {{site.mesh_product_name}} for the machine from which you
 will be executing the commands.
 
 {% navtabs %}
@@ -35,7 +32,7 @@ $ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
 {% navtab Manually %}
 
 You can also download the distribution manually. Download a distribution for
-the **client host** from where you will be executing the commands to access
+the client host from the machine where you plan to run the commands to access
 Kubernetes:
 
 * [CentOS]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-centos-amd64.tar.gz)
@@ -54,13 +51,6 @@ $ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 {% endnavtabs %}
 
 ## 2. Run {{site.mesh_product_name}}
-
-<div class="alert alert-ee blue">
-<strong>Note:</strong> Before running the {{site.mesh_product_name}}
-control plane process in the next step &mdash; which is served by the
-<code>kuma-cp</code> container &mdash; you need to have a valid
-{{site.mesh_product_name}} license in place.
-</div>
 
 Navigate to the `bin` folder:
 
@@ -82,24 +72,23 @@ deployment, but there are more advanced [deployment modes](https://kuma.io/docs/
 like _multi-zone_.
 
 We suggest adding the `kumactl` executable to your `PATH` so that it's always
-available in every working directory. Alternatively, you can also create a link
-in `/usr/local/bin/` by executing:
+available in every working directory. Alternatively, you can create a link
+in `/usr/local/bin/` by running:
 
 ```sh
 $ ln -s ./kumactl /usr/local/bin/kumactl
 ```
 
-<div class="alert alert-ee blue">
-<strong>Note:</strong> It may take a while for Kubernetes to start the
+It may take a while for Kubernetes to start the
 {{site.mesh_product_name}} resources. You can check the status by executing:
-<pre class="highlight">
-<code>$ kubectl get pod -n kong-mesh-system</code></pre>
-</div>
+
+```sh
+$ kubectl get pod -n kong-mesh-system</code>
+```
 
 ## 3. Verify the Installation
 
-Now that {{site.mesh_product_name}} (`kuma-cp`) has been installed in the newly
-created `kong-mesh-system` namespace, you can access the control plane using either
+You can access the control plane using either
 the GUI, `kubectl`, the HTTP API, or the CLI:
 
 {% navtabs %}
@@ -189,16 +178,14 @@ $ kumactl config control-planes add --name=XYZ --address=http://{address-to-kong
 {% endnavtab %}
 {% endnavtabs %}
 
-You will notice that {{site.mesh_product_name}} automatically creates a `Mesh`
+{{site.mesh_product_name}} automatically creates a `Mesh`
 entity with the name `default`.
 
 ## 4. Quickstart
 
-Congratulations! You have successfully installed {{site.mesh_product_name}}.
-
-After installation, the Kuma quickstart documentation is fully compatible with
-{{site.mesh_product_name}}, except that you are running {{site.mesh_product_name}}
-binaries instead of the vanilla Kuma ones.
+The Kuma quickstart documentation
+is fully compatible with {{site.mesh_product_name}}, except that you are
+running {{site.mesh_product_name}} containers instead of Kuma containers.
 
 To start using {{site.mesh_product_name}}, see the
 [quickstart guide for Kubernetes deployments](https://kuma.io/docs/latest/quickstart/kubernetes/).

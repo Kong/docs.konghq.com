@@ -23,7 +23,7 @@ of activity. To see historical data for a greater range,
 <a href="/konnect/vitals/generate-reports">generate a report</a>.
 </div>
 
-{{site.konnect_short_name}} SaaS has Vitals enabled by default.
+{{site.konnect_saas}} has Vitals enabled by default.
 
 ## View Vitals performance for a Service
 

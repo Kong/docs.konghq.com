@@ -18,7 +18,7 @@ description: |
   </div>
 
 type: plugin
-saas: false
+cloud: false
 categories:
   - analytics-monitoring
 

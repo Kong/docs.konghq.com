@@ -12,7 +12,7 @@ description: |
 
 type: plugin
 enterprise: true
-saas: false
+cloud: false
 categories:
   - transformations
 

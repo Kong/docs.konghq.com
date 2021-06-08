@@ -10,7 +10,7 @@ description: |
     authorization policy allows for it.
 
 enterprise: true
-saas: false
+cloud: false
 type: plugin
 categories:
   - security
@@ -27,6 +27,7 @@ params:
   consumer_id: false
   protocols: ["http", "https"]
   dbless_compatible: yes
+  konnect_examples: false
   config:
     - name: opa_protocol
       required: false
