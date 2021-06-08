@@ -83,7 +83,7 @@ features:
 
 contribute_links:
   - text: Contribution guidelines
-    url: https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md
+    url: /contributing/
   - text: GitHub Source code
     url: https://github.com/Kong/docs.konghq.com
   - text: GitHub Issues

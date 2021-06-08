@@ -1,3 +1,5 @@
+> This doc is outdated. See the latest style guide and contribution guidelines on our [docs site](https://docs.konghq.com/contributing/).
+
 # Documentation Style Guide
 
 ### active voice

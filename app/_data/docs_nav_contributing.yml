@@ -1,0 +1,23 @@
+# to do: Heather will fill this out
+- title: Contribution guidelines
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  url: /
+
+- title: Style guide
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  url: /style-guide
+
+- title: Markdown rules and formatting
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  url: /markdown-rules
+  items:
+    - text: Variables
+      url: /variables
+
+- title: Plugin docs
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  url: /plugin-docs
+
+- title: Terms
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  url: /terms
