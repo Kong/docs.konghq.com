@@ -68,6 +68,7 @@ module Jekyll
       site.data["kong_latest_mesh"] = latestVersionMesh
       site.data["kong_latest_gsg"] = latestVersionGSG
       site.data["kong_latest_KIC"] = latestVersionKIC
+      site.data["kong_latest_deck"] = latestVersionDeck
 
       # Add a `version` property to every versioned page
       # Also create aliases under /latest/ for all x.x.x doc pages
@@ -123,7 +124,7 @@ module Jekyll
             page.data["kong_version"] = parts[1]
             page.data["kong_versions"] = deckVersions
             page.data["kong_latest"] = latestVersionDeck
-            page.data["nav_items"] = site.data['docs_nav_deck']
+            page.data["nav_items"] = site.data['docs_nav_deck_' + parts[1].gsub(/\./, '')]
             createAliases(page, '/deck', 1, parts, latestVersionDeck["release"])
           elsif(parts[0] == 'contributing')
             page.data["edition"] = parts[0]

@@ -445,7 +445,12 @@
   version: "2.4"
   edition: "getting-started-guide"
 -
+  release: "0.x.x-1.6.x"
   version: "1.6.0"
+  edition: "deck"
+-
+  release: "1.7.x"
+  version: "1.7.0"
   edition: "deck"
 -
   release: "1.0.x"
