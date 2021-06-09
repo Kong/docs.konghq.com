@@ -41,7 +41,7 @@ Returns the HTTP status code currently set for the downstream response (as
 
 **Phases**
 
-* header_filter, body_filter, log, admin_api
+* header_filter, response, body_filter, log, admin_api
 
 **Returns**
 
@@ -75,7 +75,7 @@ Returns the value of the specified response header, as would be seen by
 
 **Phases**
 
-* header_filter, body_filter, log, admin_api
+* header_filter, response, body_filter, log, admin_api
 
 **Parameters**
 
@@ -132,7 +132,7 @@ Returns a Lua table holding the response headers.  Keys are header names.
 
 **Phases**
 
-* header_filter, body_filter, log, admin_api
+* header_filter, response, body_filter, log, admin_api
 
 **Parameters**
 
@@ -188,7 +188,7 @@ This function helps determining where the current response originated
 
 **Phases**
 
-* header_filter, body_filter, log, admin_api
+* header_filter, response, body_filter, log, admin_api
 
 **Returns**
 
@@ -215,13 +215,9 @@ end
 Allows changing the downstream response HTTP status code before sending it
  to the client.
 
- This function should be used in the `header_filter` phase, as Kong is
- preparing headers to be sent back to the client.
-
-
 **Phases**
 
-* rewrite, access, header_filter, admin_api
+* rewrite, access, header_filter, response, admin_api
 
 **Parameters**
 
@@ -246,9 +242,6 @@ kong.response.set_status(404)
 Sets a response header with the given value.  This function overrides any
  existing header with the same name.
 
- This function should be used in the `header_filter` phase, as Kong is
- preparing headers to be sent back to the client.
-
  Note: Underscores in Header names are automatically transformed into dashes
  by default. If you want to deactivate this behavior you should set
  the `lua_transform_underscores_in_response_headers` nginx config option to `off`
@@ -263,7 +256,7 @@ Sets a response header with the given value.  This function overrides any
 
 **Phases**
 
-* rewrite, access, header_filter, admin_api
+* rewrite, access, header_filter, response, admin_api
 
 **Parameters**
 
@@ -293,12 +286,10 @@ Adds a response header with the given value.  Unlike
  the response, then it is added with the given value, similarly to
  `kong.response.set_header().`
 
- This function should be used in the `header_filter` phase, as Kong is
- preparing headers to be sent back to the client.
 
 **Phases**
 
-* rewrite, access, header_filter, admin_api
+* rewrite, access, header_filter, response, admin_api
 
 **Parameters**
 
@@ -325,13 +316,9 @@ kong.response.add_header("Cache-Control", "no-store")
 Removes all occurrences of the specified header in the response sent to
  the client.
 
- This function should be used in the `header_filter` phase, as Kong is
- preparing headers to be sent back to the client.
-
-
 **Phases**
 
-* rewrite, access, header_filter, admin_api
+* rewrite, access, header_filter, response, admin_api
 
 **Parameters**
 
@@ -362,9 +349,6 @@ Sets the headers for the response.  Unlike `kong.response.set_header()`,
  (corresponding to a header's name), and each value is a string, or an
  array of strings.
 
- This function should be used in the `header_filter` phase, as Kong is
- preparing headers to be sent back to the client.
-
  The resulting headers are produced in lexicographical order. The order of
  entries with the same name (when values are given as an array) is
  retained.
@@ -375,7 +359,7 @@ Sets the headers for the response.  Unlike `kong.response.set_header()`,
 
 **Phases**
 
-* rewrite, access, header_filter, admin_api
+* rewrite, access, header_filter, response, admin_api
 
 **Parameters**
 
@@ -508,10 +492,8 @@ return kong.response.exit(403, { message = "Access Forbidden" }, {
 
 ---
 
-```lua
 -- In L4 proxy mode
 return kong.response.exit(200, "Success")
-```
 ```
 
 [Back to top](#kongresponse)
