@@ -30,8 +30,6 @@
       url: /deployment/network
     - text: Network Resiliency and Availability
       url: /deployment/network-resiliency
-    - text: Migrate from a Self-Managed Deployment
-      url: /deployment/migrate-from-self-managed
 
 - title: Quickstart Guide
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg

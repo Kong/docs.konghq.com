@@ -1,30 +1,30 @@
 ---
-title: Managing a Kong-hosted control plane with declarative config
+title: Managing Konnect Cloud with declarative config
 no_version: true
 ---
 
-Manage entities in your Konnect cloud control plane with declarative
-configuration. To do this, you need [decK](/deck/).
+Manage entities in your {{site.konnect_saas}} org with declarative
+configuration. To do this, you need [decK v1.7.0 or later](/deck/).
 
 With declarative configuration, you can manage:
 * **All parts of a service:** Service versions, implementations, routes, and
 plugins.
 * **Dev Portal documents:** Specs and markdown files.
-* **Global configuration:** If you want to use global plugins or consumers, you
-have to use declarative configuration. Global plugins appear in the
-Konnect UI as read-only.
+* **Global configuration:** Use declarative config to manage global plugins and
+ consumers. Global plugins appear in {{site.konnect_saas}} as read-only.
 
-DecK _cannot_ manage Dev Portal, application registration, or custom plugins.
+DecK _cannot_ publish content to the Dev Portal, manage application registration,
+or configure custom plugins.
 
 ## Prerequisites
 
-* Permissions?
-* decK is [installed](/deck/installation/).
+* You have [**Organization Admin**](/konnect/reference/org-management) permissions.
+* decK v1.7.0 or later is [installed](/deck/latest/installation/).
 
 ## Test your connection
 
-First, make sure that you can log in to Konnect and that decK recognizes your
-account credentials:
+First, make sure that you can log in to {{site.konnect_short_name}} and that decK
+recognizes your account credentials:
 
 ```sh
 deck konnect ping --konnect-email <email> --konnect-password <password>
@@ -37,9 +37,13 @@ attributed to the account:
 Successfully Konnected as Some Name (Kong)!
 ```
 
-{:.tip}
-> **Tip:** You can also use decK with Konnect more securely by storing your
-password in a file, then calling it with `--konnect-password-file <pass>.txt`.
+You can also use decK with {{site.konnect_short_name}} more securely by storing
+your password in a file, then calling it with either
+`--konnect-password-file <pass>.txt`, or by adding it to your decK configuration
+under the `konnect-password` option.
+
+The following steps all use `--konnect-password-file`.
+
 
 ## Create a configuration file
 
@@ -69,7 +73,7 @@ deck konnect dump --konnect-email <email> --konnect-password-file <pass>.txt \
 ### Make changes to configuration
 
 Make any changes you like using YAML or JSON format.
-For the sake of this example, let's add a new service.
+For this example, let's add a new service.
 
 1. Generate a UUID. You can do this in any way you want; a common tool is the
 `uuidgen` utility.
@@ -83,7 +87,6 @@ in the example with your generated UUID:
     - name: MyService
       versions:
       - implementation:
-          version: "1"
           type: kong-gateway
           kong:
             service:
@@ -98,6 +101,7 @@ in the example with your generated UUID:
                 name: mockpath
                 paths:
                 - /mockpath
+        version: "1"
     ```
 
     Every service must have at least one initial version.
@@ -109,8 +113,8 @@ changes:
     deck konnect diff --konnect-email <email> --konnect-password-file <pass>.txt
     ```
 
-    If the format and schema is correct, decK gives you a preview of what will
-    be added to the control plane configuration:
+    If the format and schema is correct, decK gives you a preview of what would
+    be added to the {{site.konnect_saas}} configuration:
 
     ```sh
     creating service 9595B5F9-3B6A-4C48-BE93-9EC1B0EA487A
@@ -123,7 +127,8 @@ changes:
       Deleted: 0
     ```
 
-4. If you're satisfied with the preview, sync the changes to the control plane:
+4. If you're satisfied with the preview, sync the changes to
+{{site.konnect_saas}}:
 
     ```sh
     deck konnect sync --konnect-email <email> --konnect-password-file <pass>.txt
@@ -142,16 +147,21 @@ changes:
       Deleted: 0
     ```
 
-5. Check Konnect Cloud to make sure the sync worked. You should see a
-new service named `MyService` in the ServiceHub.
+5. Check {{site.konnect_saas}} to make sure the sync worked. You should see a
+new service named `MyService` in the
+[ServiceHub](https://konnect.konghq.com/servicehub/).
 
     ![ServiceHub tiles](/assets/images/docs/konnect/konnect-myservice.png)
 
 
 ## Add global configuration
 
-While you can't fully edit global configuration through the Konnect Cloud GUI yet,
-you can do it with decK.
+Edit global {{site.konnect_saas}} configuration with decK.
+
+Global config applies to all entities in the cluster. For example, you can
+configure proxy caching on all of your services at once with one `proxy-cache`
+plugin entry.
+
 
 1. Add a consumer to the `konnect.yaml` file:
 
@@ -181,8 +191,8 @@ you can do it with decK.
     deck konnect diff --konnect-email <email> --konnect-password-file <pass>.txt
     ```
 
-4. If everything looks good, run another sync, then check Konnect to see your
-changes:
+4. If everything looks good, run another sync, then check {{site.konnect_saas}}
+to see your changes:
 
     ```sh
     deck konnect sync --konnect-email <email> --konnect-password-file <pass>.txt
@@ -190,7 +200,7 @@ changes:
 
     You can find the global configuration under the
     ![icon](/assets/images/icons/konnect/konnect-shared-config.svg){:.inline .no-image-expand}
-    **Shared Config** menu option.
+    **[Shared Config](https://konnect.konghq.com/configuration)** menu option.
 
     ![Shared config overview](/assets/images/docs/konnect/konnect-shared-config.png)
 
@@ -198,9 +208,10 @@ changes:
     > **Note:** If you add consumers to the `konnect.yaml` file and sync your
     local file to Konnect, it picks up consumers automatically. However, if you
     want to pull consumer configuration down **from** Konnect, use the
-    `--include-consumers` flag in your request.
+    `--include-consumers` flag in your command.
 
-## Next steps
+## See also
 
-If you haven't already, [set up a runtime](/konnect/runtime-manager/) to start
-proxying your services.
+* [decK CLI reference](/deck/latest/reference/konnect): decK commands for {{site.konnect_short_name}}
+<!-- * [Migrate from a self-managed {{site.base_gateway}} deployment](/konnect/deployment/migrate-from-self-managed):
+Use decK to migrate {{site.base_gateway}} entities to {{site.konnect_saas}} -->
