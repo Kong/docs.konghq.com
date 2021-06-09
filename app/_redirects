@@ -25,6 +25,7 @@
 # plugins
 /hub/api-fortress/api-fortress-http-log/    /hub/
 /hub/api-fortress/api-fortress-http-log/*   /hub/
+/hub/plugins/compatibility                  /konnect-platform/compatibility/plugins
 
 # Konnect
 /konnect/access-beta                          /konnect/access-account
