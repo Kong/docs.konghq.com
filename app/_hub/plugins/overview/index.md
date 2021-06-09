@@ -27,7 +27,7 @@ upstream API, as well as on any incoming responses.
 ## Plugin compatibility with deployment types
 
 {{site.base_gateway}} can be deployed in a variety of ways, and not all plugins
-are fully compatible with each mode. See [Plugin Compatibility](/hub/plugins/compatibility)
+are fully compatible with each mode. See [Plugin Compatibility](/konnect-platform/compatibility/plugins)
 for a comparison.
 
 

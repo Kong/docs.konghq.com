@@ -132,6 +132,6 @@ If your plugin meets these requirements and you want to use it in
 {{site.konnect_saas}}, contact [Kong Support](https://support.konghq.com/).
 
 **See more:**
-* [Plugin compatibility](/hub/plugins/compatibility/)
+* [Plugin compatibility](/konnect-platform/compatibility/plugins)
 * [Configure a plugin on a Service](/konnect/servicehub/plugins/enable-service-plugin)
 * [Configure a plugin on a Route](/konnect/servicehub/plugins/enable-route-plugin)
