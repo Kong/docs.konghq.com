@@ -15,5 +15,5 @@ Kong Brain and Kong Immunity are installed as add-ons on Kong Enterprise, using 
 
 ## Version Compatibility
 
-Kong Brain and Kong Immunity are not compatible with Kong Enterprise v1.3.x. To use Kong Brain and Immunity, you need to upgrade to Kong Enterprise v1.5.x or above.
+Kong Brain is deprecated, and Kong Immunity is no longer compatible with Kong Enterprise v1.3-x. To use Kong Immunity, you need to upgrade to Kong Enterprise v1.5.x or above.
 See [Migrating to 1.5](/enterprise/1.5.x/deployment/migrations/) for more information.
