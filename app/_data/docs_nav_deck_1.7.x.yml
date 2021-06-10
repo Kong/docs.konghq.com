@@ -1,6 +1,7 @@
 - title: Introduction
   icon: /assets/images/icons/documentation/icn-flag.svg
-  url: /
+  url: /deck/
+  absolute_url: true
   items:
     - text: Terminology
       url: /terminology
