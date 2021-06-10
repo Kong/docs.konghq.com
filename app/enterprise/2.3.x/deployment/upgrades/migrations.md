@@ -132,7 +132,7 @@ To handle clusters split across multiple releases, you should:
 
 This ensures that all instances are using the new Kong package before running kong migrations finish.
 
-### Migrating databases for a major or minor version release {#migrate-db}
+### Migrating databases for Upgrades {#migrate-db}
 
 {{site.ee_product_name}} supports the zero downtime migration model. This means
 that while the migration is in process, you have two Kong clusters with different
@@ -215,40 +215,3 @@ the `-c` flag to indicate the path to your configuration file:
 $ kong migrations bootstrap [-c /path/to/kong.conf]
 $ kong start [-c /path/to/kong.conf]
 ```
-
-## Patch releases {#patch}
-
-There are no migrations in upgrades between current or
-future patch releases of the same minor release of {{site.ee_product_name}}
-(for example, patching 2.1.1.0 to 2.1.1.1 and so forth). Therefore, the upgrade
-process is typically simpler for both minor and patch releases.
-
-### Prerequisites
-
-- Assuming that {{site.ee_product_name}} is already running on your system,
-  acquire the latest version from any of the available
-  [installation methods](/enterprise/{{page.kong_version}}/deployment/installation/overview/)
-  and install it, overriding your previous installation.
-
-- If you are planning to make modifications to your configuration, this is an
-  opportune time to do so.
-
-1. Run migrations to upgrade your database schema:
-
-   ```shell
-   $ kong migrations up [-c configuration_file]
-   ```
-
-2. If the command is successful, and no migration ran (no output),
-   then you only have to
-   [reload](https://docs.konghq.com/2.1.x/cli/#kong-reload) Kong:
-
-   ```shell
-   $ kong reload [-c configuration_file]
-   ```
-<div class="alert alert-ee blue">
-<strong>Reminder:</strong> The `kong reload` command leverages the Nginx `reload` signal that
-seamlessly starts new workers, which then take over from old workers before they
-are terminated. Kong serves new requests using the new
-configuration without dropping existing in-flight connections.
-</div>
