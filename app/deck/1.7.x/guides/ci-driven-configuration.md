@@ -1,7 +1,6 @@
 ---
 title: CI-driven Configuration
 toc: false
-no_version: true
 ---
 
 ## Configuration as code

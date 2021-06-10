@@ -1,6 +1,5 @@
 ---
 title: decK CLI Reference
-no_version: true
 ---
 
 ## Commands

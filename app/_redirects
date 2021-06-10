@@ -5,6 +5,7 @@
 /deck/overview/                       /deck/
 /hub/kong-inc/deck/                   /deck/
 /hub/hbagdi/deck/                     /deck/
+/deck/commands/                       /deck/latest/reference/deck/
 
 # kubernetes ingress controller
 /kubernetes-ingress-controller/latest/introduction /kubernetes-ingress-controller/

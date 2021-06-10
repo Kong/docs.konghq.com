@@ -1,6 +1,5 @@
 ---
 title: Installation
-no_version: true
 ---
 
 decK is entirely written in Go. The build process builds a single static binary,

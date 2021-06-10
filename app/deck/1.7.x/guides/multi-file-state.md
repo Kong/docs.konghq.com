@@ -1,7 +1,6 @@
 ---
 title: Using Multiple Files to Store Configuration
 toc: false
-no_version: true
 ---
 
 decK can construct a state by combining multiple JSON or YAML files inside a
@@ -31,4 +30,4 @@ split the configuration into different files as you see fit for your use case.
 
 
 Please note that having the state split across different files is not same
-as [distributed configuration](/deck/guides/distributed-configuration).
+as [distributed configuration](/deck/{{page.kong_version}}/guides/distributed-configuration).

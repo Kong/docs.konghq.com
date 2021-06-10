@@ -1,7 +1,6 @@
 ---
 title: decK
 subtitle: Manage Konnect and Kong Gateway configuration declaratively
-no_version: true
 ---
 
 decK helps manage Kong’s configuration in a declarative fashion. This means that
@@ -67,11 +66,11 @@ sync, reset, etc.) shows the help text along with supported flags for those
 commands.
 
 A list of all commands that are available in decK can be found
-[here](/deck/commands).
+[here](/deck/{{page.kong_version}}/reference/deck).
 
 ## Frequently Asked Questions (FAQs)
 
-You can find answers to FAQs [here](/deck/faqs).
+You can find answers to FAQs [here](/deck/{{page.kong_version}}/faqs).
 
 ## Explainer video
 
