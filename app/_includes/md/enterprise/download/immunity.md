@@ -27,7 +27,7 @@ To complete this installation you will need:
 
 1. Pull the Kong Brain and Kong Immunity Docker image.
 ```bash
-$ docker pull kong/immunity:4.0.0
+$ docker pull kong/immunity:4.1.0
 ```
 You should now have your Kong Brain and Kong Immunity image locally.
 
@@ -65,7 +65,7 @@ To complete this installation you will need:
 
 1. In a terminal window, pull the Kong Immunity Docker image.
 ```bash
-$ docker pull kong/immunity:4.0.0
+$ docker pull kong/immunity:4.1.0
 ```
 You should now have your Kong Immunity image locally.
 
