@@ -223,8 +223,10 @@ which must specify an Nginx configuration template. Such a template uses the
 the given Kong configuration, before being dumped in your Kong prefix
 directory, moments before starting Nginx.
 
-The default template can be found at:
-https://github.com/kong/kong/tree/master/kong/templates. It is split in two
+The default template for Kong Gateway OSS can be found at:
+https://github.com/kong/kong/tree/master/kong/templates. The default template for
+Kong Gateway Enterprise can be found by entering the following command on the system
+running your Kong instance: `find / -type d -name "templates" | grep kong`. It is split in two
 Nginx configuration files: `nginx.lua` and `nginx_kong.lua`. The former is
 minimalistic and includes the latter, which contains everything Kong requires
 to run. When `kong start` runs, right before starting Nginx, it copies these
