@@ -6,7 +6,7 @@ which is located in the install-configure.md file in the immuntiy folder -->
 Kong Immunity follows a different versioning scheme from Kong Enterprise. Note the following:
 * The Immunity version reflects the `kong/immunity` package available on Docker Hub.
 * For Kong Enterprise 1.5.x and 2.1.x, use Immunity 4.x.x.
-* Do not use Brain and Immunity 2.x.x or 3.x.x as they are end-of-life (EOL).         |
+* Do not use Brain and Immunity 2.x.x or 3.x.x as they are end-of-life (EOL).
 
 ## Install Brain and Immunity on Kubernetes
 Set up the Collector App via Helm. Use the public helm chart for setting up the Collector App and all its dependencies on Kubernetes. Instructions for setup can be found on the public repo at: [https://github.com/Kong/kong-collector-helm/blob/master/README.md](https://github.com/Kong/kong-collector-helm/blob/master/README.md).
