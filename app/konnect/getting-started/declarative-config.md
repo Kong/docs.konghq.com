@@ -1,29 +1,29 @@
 ---
-title: Managing Konnect Cloud with declarative config
+title: Manage Konnect Cloud with declarative config
 no_version: true
 ---
 
-Manage entities in your {{site.konnect_saas}} org with declarative
-configuration. To do this, you need [decK v1.7.0 or later](/deck/).
-
-With declarative configuration, you can manage:
+You can manage entities in your {{site.konnect_saas}} org with declarative
+configuration, including:
 * **All parts of a service:** Service versions, implementations, routes, and
 plugins.
 * **Dev Portal documents:** Specs and markdown files.
-* **Global configuration:** Use declarative config to manage global plugins and
- consumers. Global plugins appear in {{site.konnect_saas}} as read-only.
+* **Shared configuration:** Manage consumers, upstreams, and global plugins with
+declarative config. Global plugins appear in {{site.konnect_saas}} as read-only.
 
-DecK _cannot_ publish content to the Dev Portal, manage application registration,
-or configure custom plugins.
+To do this, you need [decK v1.7.0 or later](/deck/).
+
+You _cannot_ use decK to publish content to the Dev Portal, manage application
+registration, or configure custom plugins.
 
 ## Prerequisites
 
-* You have [**Organization Admin**](/konnect/reference/org-management) permissions.
-* decK v1.7.0 or later is [installed](/deck/latest/installation/).
+* [**Organization Admin**](/konnect/reference/org-management) permissions.
+* decK v1.7.0 or later [installed](/deck/latest/installation/).
 
 ## Test your connection
 
-First, make sure that you can log in to {{site.konnect_short_name}} and that decK
+Check that you can log in to {{site.konnect_short_name}} and that decK
 recognizes your account credentials:
 
 ```sh
@@ -31,15 +31,15 @@ deck konnect ping --konnect-email <email> --konnect-password <password>
 ```
 
 If the connection is successful, the terminal displays the first and last name
-attributed to the account:
+associated with the account:
 
 ```sh
 Successfully Konnected as Some Name (Kong)!
 ```
 
 You can also use decK with {{site.konnect_short_name}} more securely by storing
-your password in a file, then calling it with either
-`--konnect-password-file <pass>.txt`, or by adding it to your decK configuration
+your password in a file, then either calling it with
+`--konnect-password-file <pass>.txt`, or adding it to your decK configuration
 under the `konnect-password` option.
 
 The following steps all use `--konnect-password-file`.
@@ -47,22 +47,22 @@ The following steps all use `--konnect-password-file`.
 
 ## Create a configuration file
 
-Pull down Konnect configuration into a file:
+Download the {{site.konnect_short_name}} configuration file:
 
 ```sh
 deck konnect dump --konnect-email <email> --konnect-password-file <pass>.txt
 ```
 
 Your existing services and global configurations are saved locally to a file
-named `konnect.yaml`. If you have no services configured yet, decK still
-creates the file with a format version:
+named `konnect.yaml`. If you have no services configured, decK
+creates the file with only the format version:
 
 ```yaml
 _format_version: "0.1"
 ```
 
-You can also choose to set a different file name or location, or export the
-configuration in JSON format instead:
+You can specify a different file name or location, or export the
+configuration in JSON format:
 
 ```sh
 deck konnect dump --konnect-email <email> --konnect-password-file <pass>.txt \
@@ -93,7 +93,7 @@ in the example with your generated UUID:
               host: mockbin.org
               port: 80
               protocol: http
-              id: 9595B5F9-3B6A-4C48-BE93-9EC1B0EA487A
+              id: {_YOUR_GENERATED_UUID_}
               routes:
               - methods:
                 - GET
@@ -154,11 +154,11 @@ new service named `MyService` in the
     ![ServiceHub tiles](/assets/images/docs/konnect/konnect-myservice.png)
 
 
-## Add global configuration
+## Add shared configuration
 
-Edit global {{site.konnect_saas}} configuration with decK.
+Edit shared {{site.konnect_saas}} configuration with decK.
 
-Global config applies to all entities in the cluster. For example, you can
+Shared config applies to all entities in the cluster. For example, you can
 configure proxy caching on all of your services at once with one `proxy-cache`
 plugin entry.
 
