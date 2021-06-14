@@ -25,7 +25,7 @@ Returns the current `route` entity.  The request was matched against this
 
 **Phases**
 
-* access, header_filter, body_filter, log
+* access, header_filter, response, body_filter, log
 
 **Returns**
 
@@ -50,7 +50,7 @@ Returns the current `service` entity.  The request will be targetted to this
 
 **Phases**
 
-* access, header_filter, body_filter, log
+* access, header_filter, response, body_filter, log
 
 **Returns**
 
