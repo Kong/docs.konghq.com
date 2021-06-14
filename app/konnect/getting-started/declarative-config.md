@@ -198,7 +198,7 @@ to see your changes:
     deck konnect sync --konnect-email <email> --konnect-password-file <pass>.txt
     ```
 
-    You can find the global configuration under the
+    You can find the global plugins and consumers under the
     ![icon](/assets/images/icons/konnect/konnect-shared-config.svg){:.inline .no-image-expand}
     **[Shared Config](https://konnect.konghq.com/configuration)** menu option.
 
@@ -212,6 +212,6 @@ to see your changes:
 
 ## See also
 
-* [decK CLI reference](/deck/latest/reference/konnect): decK commands for {{site.konnect_short_name}}
+* [decK CLI reference](/deck/latest/reference/deck_konnect): decK commands for {{site.konnect_short_name}}
 <!-- * [Migrate from a self-managed {{site.base_gateway}} deployment](/konnect/deployment/migrate-from-self-managed):
 Use decK to migrate {{site.base_gateway}} entities to {{site.konnect_saas}} -->
