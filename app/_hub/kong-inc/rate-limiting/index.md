@@ -123,15 +123,19 @@ params:
         The rate-limiting policies to use for retrieving and incrementing the
         limits. Available values are:
         - `local`: Counters are stored locally in-memory on the node.
-        - `cluster`: Counters are stored in the datastore and shared across the
-        nodes.
+        - `cluster`: Counters are stored in the Kong datastore and shared across
+        the nodes.
         - `redis`: Counters are stored on a Redis server and shared
         across the nodes.
 
-        In the case of DB-less mode, at least one of `local` or `redis` must be
-        specified. For hybrid mode, only `redis` is supported.
+        In DB-less and hybrid modes, the `cluster` config policy is not supported.
+        For DB-less mode, use one of `redis` or `local`; for hybrid mode, use
+        `redis`, or `local` for data planes only.
+
+        In Konnect Cloud, the default policy is `redis`.
+
         For details on which policy should be used, refer to the
-        <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting/#implementation-considerations">Implementation Considerations</a>.
+        [implementation considerations](#implementation-considerations).
     - name: fault_tolerant
       required: false
       default: '`true`'

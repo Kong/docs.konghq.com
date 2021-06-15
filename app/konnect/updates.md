@@ -8,6 +8,32 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services.
 
+## June 2021
+
+### 2021.06.15
+**Default strategy/policy for rate limiting plugins**
+: The rate limiting plugins now default to `redis` as the rate limiting
+strategy or policy. This setting allows cluster-wide rate limiting using a
+Redis server. To store counters in-memory on each node, change this setting
+to `local`.
+
+: The `cluster` config strategy/policy is not supported in
+{{site.konnect_saas}}, and does not appear as an option in the plugin
+configuration anymore.
+
+: To find the setting based on the rate limiting plugin, see:
+* `config.policy`:
+    * [Rate Limiting](/hub/kong-inc/rate-limiting)
+    * [Response Rate Limiting](/hub/kong-inc/response-ratelimiting)
+* `config.strategy`:
+    * [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/)
+    * [Rate Limiting Advanced ](/hub/kong-inc/rate-limiting-advanced)
+
+**Sorting the runtime status table**
+: You can now sort the runtime status table in
+[Runtime Manager](https://konnect.konghq.com/runtime-manager) by the
+**Last Seen** or **Sync Status** columns.
+
 ## May 2021
 
 ### 2021.05.12
