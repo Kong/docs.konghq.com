@@ -123,7 +123,7 @@ config:
   - http://192.0.2.8.xip.io
 plugin: openid-connect
 " | kubectl apply -f -
-kongplugin.configuration.konghq.com/global-rate-limit created
+kongplugin.configuration.konghq.com/oidc-auth created
 ```
 
 The `redirect_uri` parameter must be a URI that matches the Ingress rule we
