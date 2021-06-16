@@ -6,7 +6,6 @@
 /hub/kong-inc/deck/                   /deck/
 /hub/hbagdi/deck/                     /deck/
 /deck/commands/                       /deck/latest/reference/deck/
-/deck/commands/                       /deck/latest/reference/deck/
 /deck/guides/*                        /deck/latest/guides/:splat
 /deck/compatibility-promise/          /deck/latest/compatibility-promise/
 /deck/design-architecture/            /deck/latest/design-architecture/
