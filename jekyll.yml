@@ -142,6 +142,11 @@ defaults:
       layout: extension
       permalink: /:collection/:path
 
+  - scope:
+      path: 'contributing'
+    values:
+      layout: 'docs-v2'
+
 # product name vars
 ee_gateway_name: Kong Gateway
 ee_product_name: Kong Gateway (Enterprise)

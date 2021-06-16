@@ -109,10 +109,25 @@ params:
     - name: strategy
       required:
       default: cluster
-      value_in_examples:
+      value_in_examples: local
       datatype: string
       description: |
-        The sync strategy to use; `cluster` and `redis` are supported.
+        The rate-limiting strategy to use for retrieving and incrementing the
+        limits. Available values are:
+        - `local`: Counters are stored locally in-memory on the node.
+        - `cluster`: Counters are stored in the Kong datastore and shared across
+        the nodes.
+        - `redis`: Counters are stored on a Redis server and shared
+        across the nodes.
+
+        In DB-less and hybrid modes, the `cluster` config strategy is not supported.
+        For DB-less mode, use one of `redis` or `local`; for hybrid mode, use
+        `redis`, or `local` for data planes only.
+
+        In Konnect Cloud, the default strategy is `redis`.
+
+        For details on which strategy should be used, refer to the
+        [implementation considerations](/hub/kong-inc/rate-limiting/#implementation-considerations).
     - name: redis.host
       required: semi
       default:

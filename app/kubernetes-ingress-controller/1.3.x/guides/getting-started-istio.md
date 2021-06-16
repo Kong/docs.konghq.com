@@ -109,7 +109,7 @@ namespace/my-istio-app created
 ```console
 $ kubectl label namespace my-istio-app istio-injection=enabled
 namespace/my-istio-app labeled
-kubectl apply -n my-istio-app -f istio-1.6.7/samples/bookinfo/platform/kube/bookinfo.yaml
+$ kubectl apply -n my-istio-app -f istio-1.6.7/samples/bookinfo/platform/kube/bookinfo.yaml
 ```
 Wait until the application is up:
 ```console
@@ -143,6 +143,7 @@ metadata:
   namespace: my-istio-app
   annotations:
     konghq.com/plugins: rate-limit
+    kubernetes.io/ingress.class: kong 
 spec:
   rules:
   - http:
@@ -151,6 +152,7 @@ spec:
         backend:
           serviceName: productpage
           servicePort: 9080
+EOF
 ```
 
 ### Make some requests to the sample application

@@ -34,20 +34,21 @@ params:
   dbless_compatible: yes
   config:
     - name: path
-      required: false
+      required: semi
+      value_in_examples: [ "/path" ]
       datatype: string
       description: |
-        Updates the upstream request path with given value/template. This value can only be used to update the path part of the URI, not the scheme, nor the hostname.
+        Updates the upstream request path with given value/template. This value can only be used to update the path part of the URI, not the scheme, nor the hostname. One of `config.path` or `config.host` or `config.port` must be specified.
     - name: host
-      required: false
+      required: semi
       datatype: string
       description: |
-        Updates the upstream request Host with given value/template. This value can only be used to update the routing, it will not update the Host-header value.
+        Updates the upstream request Host with given value/template. This value can only be used to update the routing, it will not update the Host-header value. One of `config.path` or `config.host` or `config.port` must be specified.
     - name: port
-      required: false
+      required: semi
       datatype: string
       description: |
-         Updates the upstream request Port with given value/template. Note that the port as set may be overridden again by DNS resolution (in case of SRV records,or an Upstream)
+         Updates the upstream request Port with given value/template. Note that the port as set may be overridden again by DNS resolution (in case of SRV records,or an Upstream) One of `config.path` or `config.host` or `config.port` must be specified.
 
 ---
 
