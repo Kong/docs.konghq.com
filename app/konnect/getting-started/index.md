@@ -1,9 +1,11 @@
 ---
-title: Quickstart Guide
+title: Get started with Konnect Cloud
 no_version: true
-toc: false
 ---
-New to {{site.konnect_saas}}? Get started with the basics:
+
+## Quickstart guide
+
+New to {{site.konnect_saas}}? Get started with the basics through the web app:
 
 1.  **Set up a runtime connection**:
 
@@ -37,3 +39,12 @@ New to {{site.konnect_saas}}? Get started with the basics:
     then proxy traffic through the route.
 
     [Implement the service &gt;](/konnect/getting-started/implement-service)
+
+## Get started with declarative config
+
+You can manage entities in your {{site.konnect_saas}} org using configuration
+files instead of the GUI or admin API commands. With decK, Kong's declarative
+configuration management tool, you can create, update,
+compare, and synchronize configuration as part of an automation pipeline.
+
+[Manage configuration with decK &gt;](/konnect/getting-started/declarative-config)
