@@ -1,10 +1,14 @@
 ---
-title: Manage Konnect Cloud with declarative config
+title: Manage Konnect Cloud with decK
 no_version: true
 ---
 
-You can manage entities in your {{site.konnect_saas}} org with declarative
-configuration, including:
+You can manage entities in your {{site.konnect_saas}} org using configuration
+files instead of the GUI or admin API commands. With decK, Kong's declarative
+configuration management tool, you can create, update,
+compare, and synchronize configuration as part of an automation pipeline.
+
+In {{site.konnect_saas}}, decK can manage:
 * **All parts of a service:** Service versions, implementations, routes, and
 plugins.
 * **Dev Portal documents:** Specs and markdown files.
@@ -20,6 +24,7 @@ registration, or configure custom plugins.
 
 * [**Organization Admin**](/konnect/reference/org-management) permissions.
 * decK v1.7.0 or later [installed](/deck/latest/installation/).
+* Optional: To test your configuration, [set up a simple runtime](/konnect/getting-started/configure-runtime).
 
 ## Test your connection
 
@@ -47,15 +52,14 @@ The following steps all use `--konnect-password-file`.
 
 ## Create a configuration file
 
-Download the {{site.konnect_short_name}} configuration file:
+Capture a snapshot of the current configuration in a file:
 
 ```sh
 deck konnect dump --konnect-email <email> --konnect-password-file <pass>.txt
 ```
 
-Your existing services and global configurations are saved locally to a file
-named `konnect.yaml`. If you have no services configured, decK
-creates the file with only the format version:
+The command creates a file named `konnect.yaml`. If you have nothing
+configured, decK creates the file with only the format version:
 
 ```yaml
 _format_version: "0.1"
@@ -70,7 +74,7 @@ deck konnect dump --konnect-email <email> --konnect-password-file <pass>.txt \
 --output-file examples/konnect2.yaml
 ```
 
-### Make changes to configuration
+## Make changes to configuration
 
 Make any changes you like using YAML or JSON format.
 For this example, let's add a new service.
@@ -78,8 +82,8 @@ For this example, let's add a new service.
 1. Generate a UUID. You can do this in any way you want; a common tool is the
 `uuidgen` utility.
 
-2. Add the following snippet to your `konnect.yaml` file, replacing the `id`
-in the example with your generated UUID:
+2. Add the following snippet to your `konnect.yaml` file, replacing the `id` in
+the example with your generated UUID:
 
     ```yaml
     _format_version: "0.1"
@@ -93,21 +97,32 @@ in the example with your generated UUID:
               host: mockbin.org
               port: 80
               protocol: http
-              id: {_YOUR_GENERATED_UUID_}
+              id: {YOUR_GENERATED_UUID}
               routes:
               - methods:
                 - GET
                 - POST
                 name: mockpath
                 paths:
-                - /mockpath
+                - /mock
+                plugins:
+                - name: key-auth
+                  config:
+                    key_names:
+                    - apikey
         version: "1"
     ```
 
-    Every service must have at least one initial version.
+    This snippet defines a service named `MyService` pointing to `mockbin.org`.
+    The service has one version, and the version gets implemented with the
+    route `/mockpath`, which means that you can access the service by appending
+    this route to your proxy URL.
 
-3. Check that the format is correct and that decK recognizes that you've made
-changes:
+    Because you're also enabling the `key-auth` plugin on the route, you need
+    a consumer key to access it, so you can't test the route yet.
+
+3. Compare your local file with the configuration currently in
+{{site.konnect_saas}}:
 
     ```sh
     deck konnect diff --konnect-email <email> --konnect-password-file <pass>.txt
@@ -154,16 +169,25 @@ new service named `MyService` in the
     ![ServiceHub tiles](/assets/images/docs/konnect/konnect-myservice.png)
 
 
-## Add shared configuration
+## Manage shared configuration
 
-Edit shared {{site.konnect_saas}} configuration with decK.
+Shared configuration defines objects that are not tied to a specific service or
+ route.
 
-Shared config applies to all entities in the cluster. For example, you can
-configure proxy caching on all of your services at once with one `proxy-cache`
-plugin entry.
+For this example, create a consumer and a global proxy caching plugin:
+
+* Consumers represent users of a service, and are most often used for
+authentication. They provide a way to divide access to your services, and
+make it easy to revoke that access without disturbing a service's function.
+
+* Global plugins are plugins that apply to all services, routes, and consumers
+in the cluster, as applicable. For example, you can configure proxy caching on
+all your services at once with one `proxy-cache` plugin entry.
 
 
-1. Add a consumer to the `konnect.yaml` file:
+1. In the previous section, you created a route with key authentication. To
+access this route, add a consumer to the `konnect.yaml` file and configure
+a key:
 
     ```yaml
     consumers:
@@ -173,7 +197,8 @@ plugin entry.
        - key: apikey
     ```
 
-2. Add a global proxy cache plugin:
+2. Enable proxy caching so that your upstream service is not bogged
+down with repeated requests. Add a global proxy cache plugin:
 
     ```yaml
     plugins:
@@ -198,7 +223,7 @@ to see your changes:
     deck konnect sync --konnect-email <email> --konnect-password-file <pass>.txt
     ```
 
-    You can find the global plugins and consumers under the
+    You can find consumers and global plugins under the
     ![icon](/assets/images/icons/konnect/konnect-shared-config.svg){:.inline .no-image-expand}
     **[Shared Config](https://konnect.konghq.com/configuration)** menu option.
 
@@ -209,6 +234,33 @@ to see your changes:
     local file to Konnect, it picks up consumers automatically. However, if you
     want to pull consumer configuration down **from** Konnect, use the
     `--include-consumers` flag in your command.
+
+
+## Test the service
+
+If you have already have a runtime set up, you can test this
+configuration now. Or, you can start a simple runtime using the
+[Docker quick setup](/konnect/getting-started/configure-runtime) script.
+
+The default proxy URL is `localhost:8000`.
+
+Enter the proxy URL into your browser’s address bar and append the route path
+`/mock` with an `apikey` query:
+
+```
+http://localhost:8000/mock?apikey=apikey
+```
+
+If successful, you should see the homepage for `mockbin.org`. On your Service
+Version overview page, you’ll see a record for status code 200. This might
+take a few moments.
+
+If you try to access the route without a key, you'll get an authorization error:
+
+```
+Kong Error
+No API key found in request.
+```
 
 ## See also
 
