@@ -6,7 +6,7 @@ This repository provides the source code and content for [Kong](https://github.c
 
 Not sure where to start? Head on over to the `issues` tab to and look for the `good first issue` label. These are issues Kong has identified as beginner friendly. Many of these can be addressed with the GitHub UI and do not require pulling the repository and building locally.
 
-First-time contributors, check out our [contributing guide on the website](docs.konghq.com/contributing), and the linked resources there.
+First-time contributors, check out our [contributing guide on the website](https://docs.konghq.com/contributing/), and the linked resources there.
 
 ## Building locally
 
