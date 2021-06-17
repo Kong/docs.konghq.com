@@ -4,6 +4,26 @@ no_search: true
 no_version: true
 ---
 
+## 1.3.0
+
+> Released on 2021/06/17
+
+### Changes
+
+Built on top of [Kuma 1.2.0](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#120)
+
+- New L7 Traffic Routing policy to route and modify HTTP traffic per path, method, header, or any other combination, with support for regex. Traffic can be modified before reaching the final destination.
+- New Rate-Limit policy to protect services from aggressive traffic. This policy can protect from downtime and improve the overall reliability of your applications.
+- The "Remote" control plane is renamed to "Zone" control plane. This means the "Ingress" resource is renamed "ZoneIngress". Thanks to community users for providing the feedback that drove this effort.
+- Traffic Permissions now work with external services.
+- Improved performance of our DNS resolution.
+- More improvements, including a fix for GCP/GKE's erratic IPv6 support.
+- Updated to Envoy 1.18.3.
+
+### Upgrading
+
+Upgrades from `1.2.x` are seamless and no additional steps are needed. Note [specific configuration requirements](https://kuma.io/docs/1.1.5/networking/dns/#data-plane-proxy-built-in-dns) for taking advantage of built-in DNS.
+
 ## 1.2.6
 
 > Released on 2021/05/13
