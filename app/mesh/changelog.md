@@ -22,7 +22,7 @@ Built on top of [Kuma 1.2.0](https://github.com/kumahq/kuma/blob/master/CHANGELO
 
 ### Upgrading
 
-Upgrades from `1.2.x` are seamless and no additional steps are needed. Note [specific configuration requirements](https://kuma.io/docs/1.1.5/networking/dns/#data-plane-proxy-built-in-dns) for taking advantage of built-in DNS.
+Upgrades from `1.2.x` are seamless and no additional steps are needed. Note [specific configuration requirements](https://kuma.io/docs/1.2.0/networking/dns/#data-plane-proxy-built-in-dns) for taking advantage of built-in DNS.
 
 ## 1.2.6
 
