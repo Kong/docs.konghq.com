@@ -146,6 +146,16 @@ function jekyll(cb) {
   })
 }
 
+function jekyll_pdf(cb) {
+  var command = 'bundle exec jekyll build --config jekyll-pdf.yml --profile --destination ' + paths.dist
+
+  childProcess.exec(command, function (err, stdout, stderr) {
+    log(stdout)
+    log(stderr)
+    cb(err)
+  })
+}
+
 function jekyll_dev(cb) {
   var command = 'bundle exec jekyll build --config jekyll-dev.yml --profile --destination ' + paths.dist
 
@@ -459,5 +469,7 @@ gulp.task("watch", gulp.series(browser_sync, watch_files))
 gulp.task("dev", gulp.series(set_dev, clean, gulp.parallel(js, images, fonts, css), jekyll, html, styles, browser_sync, watch_files))
 
 gulp.task('default', gulp.series(clean, gulp.parallel(js, images, fonts, css), jekyll_dev, html, styles, browser_sync, watch_files))
+
+gulp.task('pdf', gulp.series(clean, gulp.parallel(js, images, fonts, css), jekyll_pdf, html, styles))
 
 gulp.task("deploy", gulp.series(gulp.parallel(js_min, images_min, fonts, css), jekyll, html, styles, gh_pages))
