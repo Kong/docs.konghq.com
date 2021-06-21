@@ -18,7 +18,7 @@ If you experience any issues when running migrations, contact
 ## Upgrade Path for Kong Enterprise Releases
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
-distinction between major, minor, and [patch](#patch) versions. The upgrade path
+distinction between major, minor, and patch versions. The upgrade path
 for major and minor versions differs depending on the previous version from which
 you are migrating.
 
