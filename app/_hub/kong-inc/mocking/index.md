@@ -20,6 +20,11 @@ description: |
   - Easily enable and disable the Mocking plugin for flexibility when
     testing API behavior.
 
+  {:.note}
+  > To use this plugin in Konnect Cloud,
+  [upgrade your runtimes](/konnect/runtime-manager/upgrade) to at least
+  v2.4.1.1.
+
 enterprise: true
 cloud: false
 type:
