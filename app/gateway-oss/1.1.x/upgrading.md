@@ -97,40 +97,6 @@ database in the final expected state for Kong 1.1).
 The process is the same as for upgrading from 1.0 listed above, but on step 1
 you should run `kong migrations up --force` instead.
 
-### Upgrade Path for Patch Releases
-
-There are no migrations in upgrades between current or
-future patch releases of the same minor release of Kong
-(e.g. 1.0.0 to 1.0.1, 1.0.1 to 1.0.4, etc.). Therefore, the
-upgrade process is simpler.
-
-Assuming that Kong is already running on your system, acquire the latest
-version from any of the available [installation
-methods](https://getkong.org/install/) and proceed to install it, overriding
-your previous installation.
-
-If you are planning to make modifications to your configuration, this is a
-good time to do so.
-
-Then, run migration to upgrade your database schema:
-
-```shell
-$ kong migrations up [-c configuration_file]
-```
-
-If the command is successful, and no migration ran
-(no output), then you only have to
-[reload](https://getkong.org/docs/latest/cli/#reload) Kong:
-
-```shell
-$ kong reload [-c configuration_file]
-```
-
-**Reminder**: `kong reload` leverages the Nginx `reload` signal that seamlessly
-starts new workers, which take over from old workers before those old workers
-are terminated. In this way, Kong will serve new requests via the new
-configuration, without dropping existing in-flight connections.
-
 ### Installing 1.1 on a Fresh Datastore
 
 For installing on a fresh datastore, Kong 1.1 has the `kong migrations

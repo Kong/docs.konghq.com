@@ -8,39 +8,6 @@ you are planning to upgrade to. If such a section does not exist, the upgrade
 you want to perform does not have any particular instructions, and you can
 simply consult the [Suggested upgrade path](#suggested-upgrade-path).
 
-## Suggested upgrade path
-
-Unless indicated otherwise in one of the upgrade paths of this document, it is
-possible to upgrade Kong **without downtime**:
-
-Assuming that Kong is already running on your system, acquire the latest
-version from any of the available [installation
-methods](https://getkong.org/install/) and proceed to install it, overriding
-your previous installation.
-
-If you are planning to make modifications to your configuration, this is a
-good time to do so.
-
-Then, run migration to upgrade your database schema:
-
-```shell
-$ kong migrations up [-c configuration_file]
-```
-
-If the command is successful, and no migration ran
-(no output), then you only have to
-[reload](https://docs.konghq.com/1.0.x/cli/#kong-reload) Kong:
-
-```shell
-$ kong reload [-c configuration_file]
-```
-
-**Reminder**: `kong reload` leverages the Nginx `reload` signal that seamlessly
-starts new workers, which take over from old workers before those old workers
-are terminated. In this way, Kong will serve new requests via the new
-configuration, without dropping existing in-flight connections.
-
-
 ## Upgrade to `2.1.0`
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
@@ -193,7 +160,6 @@ $ kong migrations bootstrap [-c /path/to/your/kong.conf]
 $ kong start [-c /path/to/your/kong.conf]
 ```
 
-
 ## Upgrade to `2.0.0`
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
@@ -201,7 +167,6 @@ distinction between "major", "minor", and "patch" versions. The upgrade path
 will be different on which previous version from which you are migrating.
 Upgrading into 2.0.x is a major version upgrade, so be aware of any
 breaking changes listed in the [CHANGELOG.md](https://github.com/Kong/kong/blob/2.0.0/CHANGELOG.md) document.
-
 
 #### 1. Dependencies
 
@@ -229,6 +194,7 @@ version of the `go-pluginserver`. You can check the Go version used to
 build the `go-pluginserver` binary running `go-pluginserver -version`.
 
 <a name="breaking-changes-2.0"></a>
+
 #### 2. Breaking Changes
 
 Kong 2.0.0 does include a few breaking changes over Kong 1.x, all of them
@@ -668,7 +634,6 @@ $ kong migrations bootstrap [-c config]
 $ kong start [-c config]
 ```
 
-
 ## Upgrade to `1.5.0`
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
@@ -755,7 +720,6 @@ $ kong migrations bootstrap [-c config]
 $ kong start [-c config]
 ```
 
-
 ## Upgrade to `1.4.0`
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
@@ -764,7 +728,6 @@ will be different on which previous version from which you are migrating.
 If you are upgrading from 0.x, this is a major upgrade. If you are
 upgrading from 1.0.x or 1.3.x, this is a minor upgrade. Both scenarios are
 explained below.
-
 
 #### 1. Dependencies
 
@@ -1096,8 +1059,6 @@ $ kong migrations bootstrap [-c config]
 $ kong start [-c config]
 ```
 
-
-
 ## Upgrade to `1.2`
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
@@ -1106,7 +1067,6 @@ will be different on which previous version from which you are migrating.
 If you are upgrading from 0.x, this is a major upgrade. If you are
 upgrading from 1.0.x or 1.1.x, this is a minor upgrade. Both scenarios are
 explained below.
-
 
 #### 1. Dependencies
 
@@ -1192,7 +1152,6 @@ $ kong migrations bootstrap [-c config]
 $ kong start [-c config]
 ```
 
-
 ## Upgrade to `1.1`
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
@@ -1201,7 +1160,6 @@ will be different on which previous version from which you are migrating.
 If you are upgrading from 0.x, this is a major upgrade. If you are
 upgrading from 1.0.x, this is a minor upgrade. Both scenarios are
 explained below.
-
 
 #### 1. Dependencies
 
@@ -1286,20 +1244,6 @@ The following commands should be used to prepare a new 1.1 cluster from a fresh 
 $ kong migrations bootstrap [-c config]
 $ kong start [-c config]
 ```
-
-
-## Upgrading `1.0.x` patch releases
-
-If you are upgrading from another release in the 1.0.x series (e.g. from 1.0.0
-to 1.0.1), there are no migrations. Simply upgrade your Kong installation and
-[reload](https://docs.konghq.com/1.0.x/cli/#kong-reload) Kong:
-
-```shell
-$ kong reload [-c configuration_file]
-```
-
-If you are upgrading from 0.x, then read the following section for
-detailed migration instructions.
 
 ## Upgrade from `0.x` to `1.0.x`
 
@@ -1483,6 +1427,7 @@ plugins is now removed.
 There are no deprecation notices in this release.
 
 <a name="kong-1-0-upgrade-path"></a>
+
 #### 3. Suggested Upgrade Path
 
 ##### Preliminary Checks
@@ -1560,7 +1505,6 @@ For installing on a fresh datastore, Kong 1.0 introduces the `kong migrations bo
 $ kong migrations bootstrap [-c config]
 $ kong start [-c config]
 ```
-
 
 ## Upgrade to `0.15`
 
@@ -2074,7 +2018,8 @@ to **run migrations** and upgrade from a previous version of Kong.
 
 #### 1. Breaking Changes
 
-- **Note to Docker users**: The `latest` tag on Docker Hub now points to the
+{:.note}
+> **Note to Docker users**: The `latest` tag on Docker Hub now points to the
   **alpine** image instead of CentOS. This also applies to the `0.13.0` tag.
 
 ##### Dependencies
