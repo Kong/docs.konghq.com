@@ -25,7 +25,7 @@ A table that has the lifetime of the current request and is shared between
  Since only relevant in the context of a request, this table cannot be
  accessed from the top-level chunk of Lua modules. Instead, it can only be
  accessed in request phases, which are represented by the `rewrite`,
- `access`, `header_filter`, `body_filter`, `log`, and `preread` phases of
+ `access`, `header_filter`, `response`, `body_filter`, `log`, and `preread` phases of
  the plugin interfaces. Accessing this table in those functions (and their
  callees) is fine.
 
@@ -36,7 +36,7 @@ A table that has the lifetime of the current request and is shared between
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log, preread
+* rewrite, access, header_filter, response, body_filter, log, preread
 
 **Usage**
 
@@ -90,7 +90,7 @@ A table that has the lifetime of the current request - Unlike
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log, preread
+* rewrite, access, header_filter, response, body_filter, log, preread
 
 **Usage**
 
