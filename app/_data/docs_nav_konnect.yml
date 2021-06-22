@@ -31,16 +31,20 @@
     - text: Network Resiliency and Availability
       url: /deployment/network-resiliency
 
-- title: Quickstart Guide
+- title: Getting Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   url: /getting-started/
   items:
-    - text: Set up a Runtime
-      url: /getting-started/configure-runtime
-    - text: Configure a Service
-      url: /getting-started/configure-service
-    - text: Implement and Test the Service
-      url: /getting-started/implement-service
+    - text: Quickstart guide
+      items:
+        - text: Set up a Runtime
+          url: /getting-started/configure-runtime
+        - text: Configure a Service
+          url: /getting-started/configure-service
+        - text: Implement and Test the Service
+          url: /getting-started/implement-service
+    - text: Manage Konnect Cloud with decK
+      url: /getting-started/declarative-config
 
 - title: ServiceHub
   icon: /assets/images/icons/documentation/icn-service-hub-color.svg
