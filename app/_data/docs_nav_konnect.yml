@@ -75,6 +75,8 @@
           url: /runtime-manager/gateway-runtime-conf
         - text: Runtime Parameter Reference
           url: /runtime-manager/runtime-parameter-reference
+    - text: Upgrade a Runtime to a New Version
+      url: /runtime-manager/upgrade
     - text: Renew Certificates
       url: /runtime-manager/renew-certificates
 

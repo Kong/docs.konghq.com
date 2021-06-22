@@ -10,6 +10,15 @@ services.
 
 ## June 2021
 
+### 2021.06.21
+**{{site.base_gateway}} 2.4.1.1 support**
+: {{site.konnect_saas}} now supports {{site.base_gateway}} 2.4.1.1
+runtimes. There is no upgrade path for existing runtimes.
+: The 2.4.1.1 release includes two new plugins: [OPA](/hub/kong-inc/opa) and
+[Mocking](/hub/kong-inc/mocking). To use these plugins, and any other features
+newly introduced in this release, [reprovision a new runtime](/konnect/runtime-manager/upgrade).
+: For all the changes and new features in {{site.base_gateway}} 2.4.x, see the [changelog](/enterprise/changelog).
+
 ### 2021.06.15
 **Default strategy/policy for rate limiting plugins**
 : The rate limiting plugins now default to `redis` as the rate limiting
