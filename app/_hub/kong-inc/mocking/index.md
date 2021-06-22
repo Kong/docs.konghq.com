@@ -26,7 +26,6 @@ description: |
   v2.4.1.1.
 
 enterprise: true
-cloud: false
 type:
   plugin
 categories:

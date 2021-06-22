@@ -12,7 +12,6 @@ description: |
   exception that API keys are stored in an encrypted format within the API gateway datastore.
 
 enterprise: true
-cloud: false
 type: plugin
 categories:
   - authentication

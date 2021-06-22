@@ -13,11 +13,29 @@ services.
 ### 2021.06.21
 **{{site.base_gateway}} 2.4.1.1 support**
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 2.4.1.1
-runtimes. There is no upgrade path for existing runtimes.
+runtimes. You can keep using existing 2.3.x runtimes, or you can upgrade to
+2.4.1.1 to take advantage of any new features.
 : The 2.4.1.1 release includes two new plugins: [OPA](/hub/kong-inc/opa) and
 [Mocking](/hub/kong-inc/mocking). To use these plugins, and any other features
-newly introduced in this release, [reprovision a new runtime](/konnect/runtime-manager/upgrade).
+newly introduced in this release, [simply start up a new runtime](/konnect/runtime-manager/upgrade).
 : For all the changes and new features in {{site.base_gateway}} 2.4.x, see the [changelog](/enterprise/changelog).
+
+**More plugins available in {{site.konnect_saas}}**
+: The following plugins are now available:
+
+: * **Free tier**
+    * [Serverless Functions (Pre- and post-plugins)](/hub/kong-inc/serverless-functions/)
+    * [Datadog](/hub/kong-inc/datadog/)
+    * [Zipkin](/hub/kong-inc/zipkin/)
+    * [Request Size Limiting](/hub/kong-inc/request-size-limiting/)
+    * [Request Transformer](/hub/kong-inc/request-transformer/)
+* **Plus tier**
+    * [Exit Transformer](/hub/kong-inc/exit-transformer)
+* **Enterprise tier**
+    * [Key Auth Encrypted](/hub/kong-inc/key-auth-enc/)
+    * [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
+    * [Response Transformer Advanced](/hub/kong-inc/response-transformer-advanced/)
+
 
 ### 2021.06.15
 **Default strategy/policy for rate limiting plugins**
