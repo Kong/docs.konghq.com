@@ -18,7 +18,6 @@ description: |
   </div>
 
 type: plugin
-cloud: false
 categories:
   - analytics-monitoring
 

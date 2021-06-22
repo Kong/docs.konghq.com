@@ -88,7 +88,7 @@ remaining configuration details on the **Configure Runtime** page.
 
 
     ```bash
-    $ docker pull kong/kong-gateway:2.3.2.0-alpine
+    $ docker pull kong/kong-gateway:2.4.1.1-alpine
     ```
 
     You should now have your {{site.base_gateway}} image locally.

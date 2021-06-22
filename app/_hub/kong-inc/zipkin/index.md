@@ -14,7 +14,6 @@ description: |
 
 
 type: plugin
-cloud: false
 categories:
   - analytics-monitoring
 
