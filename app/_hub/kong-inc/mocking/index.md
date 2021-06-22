@@ -740,7 +740,7 @@ Test the mocked response from within the Dev Portal Service,
 
 #### Dev Portal mock spec test
 
-Test the mock response from within the Dev Portal spec using the Try it out feature.
+Test the mock response from within the Dev Portal spec using the **Try it out** feature.
 
 1. From the Dev Portal home page, click the **Stock API** Service tile.
 
@@ -755,7 +755,7 @@ Test the mock response from within the Dev Portal spec using the Try it out feat
 
 #### Insomnia mock spec test {#insomnia}
 
-Test the mock response from within the Insomnia spec using the Try it out feature.
+Test the mock response from within the Insomnia spec using the **Try it out** feature.
 
 1. From the Insomnia dashboard, click the **Stock API 0.1 Document** tile.
 
@@ -900,3 +900,7 @@ The service URL can be anything for purposes of mocking. After you disable the M
 ensure you set the actual URL for your service so that the response can be received.
 
  ![Set Real Service URL](/assets/images/docs/dev-portal/km-service-url.png)
+
+## See also
+* [Inso CLI documentation](https://support.insomnia.rest/collection/105-inso-cli)
+* [OpenAPI2Kong npm package](https://www.npmjs.com/package/openapi-2-kong)
