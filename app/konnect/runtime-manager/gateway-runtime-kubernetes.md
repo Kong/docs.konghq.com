@@ -90,7 +90,7 @@ like this:
     ```yaml
     image:
       repository: kong/kong-gateway
-      tag: "2.3.2.0-alpine"
+      tag: "2.4.1.1-alpine"
 
     secretVolumes:
     - kong-cluster-cert
