@@ -25,8 +25,7 @@ this kind of content, though, join the community on [Kong's forum](https://discu
 
 The community is the place to ask support questions, too. We can't help you with the product in this repository.
 
-For bugs against Kong Gateway functionality, see the [code repository]
-(https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#where-to-report-bugs).
+For bugs against Kong Gateway functionality, see the [code repository](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#where-to-report-bugs).
 
 ## How to contribute
 
