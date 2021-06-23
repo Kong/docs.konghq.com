@@ -294,19 +294,20 @@ With this order, the first H3 gets skipped.
 ## Badges
 
 Use badges when you need to label a heading, a page, or some other element as
-a specific Konnect tier.
+a specific Konnect tier or DB-less compatible.
 
 Badge | HTML tag | Markdown tag
 ------|----------|-------------
-<span class="badge free"></span> | `<span class="badge free"></span>` | `{:.badge free}`
-<span class="badge plus"></span> | `<span class="badge plus"></span>` | `{:.badge plus}`
-<span class="badge enterprise"></span> | `<span class="badge enterprise"></span>` | `{:.badge enterprise}`
+<span class="badge free"></span> | `<span class="badge free"></span>` | `{:.badge .free}`
+<span class="badge plus"></span> | `<span class="badge plus"></span>` | `{:.badge .plus}`
+<span class="badge enterprise"></span> | `<span class="badge enterprise"></span>` | `{:.badge .enterprise}`
+<span class="badge dbless"></span> | `<span class="badge dbless"></span>` | `{:.badge .dbless}`
 
 For example, you can use the Markdown tag on headers:
 
 ```markdown
 ### Set up the Dev Portal
-{:.badge enterprise}
+{:.badge .enterprise}
 ```
 
 The HTML span tag is useful for including a badge inline:

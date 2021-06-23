@@ -19,7 +19,7 @@ no_version: true
 |                                   |That is, ...                                   |i.e., ...                                          |
 |---                                |---                                            |---                                                |
 |Avoid generic prounouns            |Once you have added **the inputs section**, ...|Once you have added **this**, ...                  |
-|Don't use displays                 |In the blank that **appears**, do the thing.   |In the blank that **displays**, do the thing.      |
+|Don't use displays or appears      |In the blank that **appears**, do the thing.   |Do the thing.      |
 |---                                |---                                            |---                                                |
 |Use descriptive headings           |Overview                                       |Improve Vitals performance with InfluxDB           |
 |                                   |Query behavior                                 |Query frequency and precision                      |
@@ -27,11 +27,9 @@ no_version: true
 |Use sentence case for headings     |Understanding traffic flow in Kong Gateway     |Understanding Traffic Flow in Kong Gateway         |
 |---                                |---                                            |---                                                |
 
-
 ## Formatting standards
 
 ### Admonitions
-
 - Do not stack admonitions, in other words, list several admonitions one after the other.<br/>
   Admonitions should be carefully selected, called-out text.
 - Admonition types:
@@ -41,19 +39,22 @@ no_version: true
 For more information about formatting admonitions see [markdown-rules](/contributing/markdown-rules/#admonitions).
 
 ## Punctuation rules
+- Commas and periods always go inside quotation marks, and colons and semicolons (dashes as well) go outside.
+  - For example: “There was a storm last night,” Paul said.
 
 ### Placeholder values
+- Use single curly braces, all caps text, and underscores between words.
+  - For example: {EXAMPLE_VALUE}
 
 ## Capitalization guidelines
-
 Follow the user interface(UI). If a term is capitalized in the UI, it should be capitalized in the documentation.
 
 ### Kong-specific terms
-
 Capitalize the following Kong-specific terms:
 
 #### Product names
 - Kong Konnect (Kong Konnect for first mention, Konnect after)
+- Kong Gateway (Enterprise)
 - Kong Gateway
 - Kong Mesh (Kong Mesh for first mention, Mesh after)
 - Insomnia
@@ -65,7 +66,6 @@ Capitalize the following Kong-specific terms:
 - Immunity
 
 ### Generic terms
-
 Do not capitalize the following generic terms:
 - plugins
 - control plane
@@ -76,30 +76,27 @@ Do not capitalize the following generic terms:
 - consumer
 
 ## Code formatting
-
 - Separate commands from output.
 - Include properly formatted code comments.
 - For long commands, split the code block into separate lines to avoid horizontal scrolling.
 - Never have more than one command in a block/example.
 - Always set a language for codeblocks, for example, bash.<br/>
   [List of supported languages](https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers)
+- Do **NOT** use the command prompt marker ($) in code snippets.
 
 ### Inline code formatting
+- Enclose sample code with single backticks.
+  - For example: `sudo yum install /path/to/package.rpm`
 
 ## Images
-
+- Add files to the corresponding product folder by navigating in the repo from **app > assets > images > docs**.
+- When naming/titling image files, use lowercase letters and dashes only.
 - Use SVGs whenever possible, otherwise use PNGs.
 - Limit image file size to ~2MB.
 - Do not use shadows.
-
-### Screenshots
-
-### Diagrams
-
-## User Interface text
+- Borders can be added to screenshots only - 1px black.
 
 ## Reference style guides
-
 - [Valero Style Guide](https://velero.io/docs/v1.5/style-guide/#inline-code-formatting)
 - [Splunk Style Guide](https://docs.splunk.com/Documentation/StyleGuide/current/StyleGuide/Howtouse)
 - [Microsoft Style Guide](https://docs.microsoft.com/en-us/style-guide/welcome/)
