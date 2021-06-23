@@ -43,8 +43,8 @@ For more information about formatting admonitions see [markdown-rules](/contribu
   - For example: “There was a storm last night,” Paul said.
 
 ### Placeholder values
-- Use single curly braces, all caps text, and underscores between words.
-  - For example: {EXAMPLE_VALUE}
+- Use single curly braces, all caps text, and underscores between words.<br/>
+  For example: {EXAMPLE_VALUE}
 
 ## Capitalization guidelines
 Follow the user interface(UI). If a term is capitalized in the UI, it should be capitalized in the documentation.
@@ -85,8 +85,8 @@ Do not capitalize the following generic terms:
 - Do **NOT** use the command prompt marker ($) in code snippets.
 
 ### Inline code formatting
-- Enclose sample code with single backticks.
-  - For example: `sudo yum install /path/to/package.rpm`
+- Enclose sample code with single backticks.<br/>
+  For example: \`sudo yum install /path/to/package.rpm`
 
 ## Images
 - Add files to the corresponding product folder by navigating in the repo from **app > assets > images > docs**.
