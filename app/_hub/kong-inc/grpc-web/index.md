@@ -97,20 +97,20 @@ Same thing via the Admin API:
 
 ```bash
 $ # add the gRPC service
-$ curl -XPOST localhost:8001/services \
+$ curl -X POST localhost:8001/services \
   --data name=grpc \
   --data protocol=grpc \
   --data host=localhost \
   --data port=9000
 
 $ # add an http route
-$ curl -XPOST localhost:8001/services/grpc/routes \
+$ curl -X POST localhost:8001/services/grpc/routes \
   --data protocols=http \
   --data name=web-service \
   --data paths=/
 
 $ # add the plugin to the route
-$ curl -XPOST localhost:8001/routes/web-service/plugins \
+$ curl -X POST localhost:8001/routes/web-service/plugins \
   --data name=grpc-web
 ```
 
@@ -168,7 +168,7 @@ or via the Admin API:
 
 ```bash
 $ # add the plugin to the route
-$ curl -XPOST localhost:8001/routes/web-service/plugins \
+$ curl -X POST localhost:8001/routes/web-service/plugins \
   --data name=grpc-web \
   --data proto=path/to/hello.proto
 ```
@@ -199,4 +199,4 @@ separate records if it has to support multiple response messages.
 
 ## See also
 
-[Introduction to Kong gRPC plugins](/enterprise/2.1.x/plugins/grpc)
+[Introduction to Kong gRPC plugins](/enterprise/latest/plugins/grpc)
