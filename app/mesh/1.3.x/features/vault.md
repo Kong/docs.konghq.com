@@ -36,8 +36,7 @@ each proxy.
 
 ### Configure Vault
 
-The `vault` mTLS backend expects a `kuma-pki-${MESH_NAME}` PKI already
-configured in Vault. For example, the PKI path for a mesh named `default` is `kuma-pki-default`.
+The `vault` mTLS backend expects a configured PKI and role for generating data plane proxy certificates.
 
 The following steps show how to configure Vault for {{site.mesh_product_name}} with a mesh named 
 `default`. For your environment, replace `default` with the appropriate mesh name.
@@ -49,21 +48,21 @@ The following steps show how to configure Vault for {{site.mesh_product_name}} w
 {% navtabs %}
 {% navtab Root CA %}
 
-Create a new PKI for the `default` Mesh called `kuma-pki-default`:
+Create a new PKI for the `default` Mesh called `kmesh-pki-default`:
 
 ```sh
-vault secrets enable -path=kuma-pki-default pki
+vault secrets enable -path=kmesh-pki-default pki
 ```
 
 Generate a new Root Certificate Authority for the `default` Mesh:
 
 ```sh
-vault secrets tune -max-lease-ttl=87600h kuma-pki-default
+vault secrets tune -max-lease-ttl=87600h kmesh-pki-default
 ```
 
 ```sh
-vault write -field=certificate kuma-pki-default/root/generate/internal \
-  common_name="Kuma Mesh Default" \
+vault write -field=certificate kmesh-pki-default/root/generate/internal \
+  common_name="Kong Mesh Mesh Default" \
   uri_sans="spiffe://default" \
   ttl=87600h
 ```
@@ -92,14 +91,14 @@ You can also use your current Root CA, retrieve the PEM-encoded certificate, and
 Create a new PKI for the `default` Mesh:
 
 ```sh
-vault secrets enable -path=kuma-pki-default pki
+vault secrets enable -path=kmesh-pki-default pki
 ```
 
 Generate the Intermediate CA for the `default` Mesh:
 
 ```sh
-vault write -format=json kuma-pki-default/intermediate/generate/internal \
-    common_name="Kuma Mesh Default" \
+vault write -format=json kmesh-pki-default/intermediate/generate/internal \
+    common_name="Kong Mesh Mesh Default" \
     uri_sans="spiffe://default" \
     | jq -r '.data.csr' > pki_intermediate.csr
 ```
@@ -121,7 +120,7 @@ so that data plane proxies can verify the certificates:
 cat intermediate.cert.pem > bundle.pem
 echo "" >> bundle.pem
 cat ca.pem >> bundle.pem
-vault write kuma-pki-default/intermediate/set-signed certificate=@bundle.pem
+vault write kmesh-pki-default/intermediate/set-signed certificate=@bundle.pem
 ```
 
 {% endnavtab %}
@@ -130,7 +129,7 @@ vault write kuma-pki-default/intermediate/set-signed certificate=@bundle.pem
 #### Step 2. Create a role for generating data plane proxy certificates:
 
 ```sh
-vault write kuma-pki-default/roles/dataplanes \
+vault write kmesh-pki-default/roles/dataplane-proxies \
   allowed_uri_sans="spiffe://default/*,kuma://*" \
   key_usage="KeyUsageKeyEncipherment,KeyUsageKeyAgreement,KeyUsageDigitalSignature" \
   ext_key_usage="ExtKeyUsageServerAuth,ExtKeyUsageClientAuth" \
@@ -144,19 +143,19 @@ vault write kuma-pki-default/roles/dataplanes \
 #### Step 3. Create a policy to use the new role:
 
 ```sh
-cat > kuma-default-dataplanes.hcl <<- EOM
-path "/kuma-pki-default/issue/dataplanes"
+cat > kmesh-default-dataplane-proxies.hcl <<- EOM
+path "/kmesh-pki-default/issue/dataplane-proxies"
 {
   capabilities = ["create", "update"]
 }
 EOM
-vault policy write kuma-default-dataplanes kuma-default-dataplanes.hcl
+vault policy write kmesh-default-dataplane-proxies kmesh-default-dataplane-proxies.hcl
 ```
 
 #### Step 4. Create a Vault token:
 
 ```sh
-vault token create -format=json -policy="kuma-default-dataplanes" | jq -r ".auth.client_token"
+vault token create -format=json -policy="kmesh-default-dataplane-proxies" | jq -r ".auth.client_token"
 ```
 
 The output should print a Vault token that you then provide as the `conf.fromCp.auth.token` value of the `Mesh` object.
@@ -195,6 +194,8 @@ spec:
             address: https://vault.8200
             agentAddress: "" # optional
             namespace: "" # optional
+            pki: kmesh-pki-default # name of the configured PKI
+            role: dataplane-proxies # name of the role that will be used to generate data plane proxy certificates
             tls:
               caCert:
                 secret: sec-1
@@ -250,3 +251,11 @@ Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](htt
 
 {% endnavtab %}
 {% endnavtabs %}
+
+## Multizone
+
+In the multizone environment, the `Mesh` configuration is propagated from Global to the Zone control planes.
+Certificates for data plane proxies are issued on the Zone control planes, therefore we need to have
+connectivity from each Zone control plane to Vault using the same address.
+Additionally, when applying configuration with a new Vault backend, Kong Mesh executes connection validation by issuing a test certificate.
+In the mutlizone mode, this validation is done on the Global control plane, therefore we also need to have connectivity between the Global control plane and Vault.
