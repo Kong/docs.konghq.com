@@ -119,8 +119,8 @@ IDEA flow designer plugin using either of the following options:
 
 ### Build and package the plugin
 
-1. [Install](https://github.com/luarocks/luarocks/wiki/Download) the
-   [LuaRocks](http://luarocks.org) package manager.
+1. [Install](https://github.com/luarocks/luarocks/wiki/Download){:target="_blank"}{:rel="noopener noreferrer"} the
+   [LuaRocks](http://luarocks.org){:target="_blank"}{:rel="noopener noreferrer"} package manager.
 
 2. Clone the `kong-plugin-reedelk-transformer`:
 
@@ -146,7 +146,7 @@ IDEA flow designer plugin using either of the following options:
 This example uses a prepackaged `kong-reedelk` Docker image with Kong and the
 `reedelk-transformer` plugin already installed. You can find the `kong-reedelk`
 Docker images on
-[Docker Hub](https://hub.docker.com/repository/docker/reedelk/kong-reedelk-transformer-plugin).
+[Docker Hub](https://hub.docker.com/repository/docker/reedelk/kong-reedelk-transformer-plugin){:target="_blank"}{:rel="noopener noreferrer"}.
 
 The `kong-reedelk` image is preconfigured to use the following `kong.yml` file,
 which defines an upstream service mapped on Route `http://localhost:8000/transform`
@@ -159,11 +159,11 @@ http://host.docker.internal:8282/api/message
 
 #### Prerequisites
 
-- [Docker](https://www.docker.com/) must be [installed](https://www.docker.com/get-started).
-- [IntelliJ IDEA IDE](https://www.jetbrains.com/idea/) must be
-  [installed](https://www.jetbrains.com/idea/download).
-- [Reedelk IntelliJ Flow Designer Plugin](https://www.reedelk.com/documentation/intellijplugin)
-  must be [installed](https://www.reedelk.com/documentation/intellijplugin) on
+- [Docker](https://www.docker.com/) must be [installed](https://www.docker.com/get-started){:target="_blank"}{:rel="noopener noreferrer"}.
+- [IntelliJ IDEA IDE](https://www.jetbrains.com/idea/){:target="_blank"}{:rel="noopener noreferrer"} must be
+  [installed](https://www.jetbrains.com/idea/download){:target="_blank"}{:rel="noopener noreferrer"}.
+- [Reedelk IntelliJ Flow Designer Plugin](https://www.reedelk.com/documentation/intellijplugin){:target="_blank"}{:rel="noopener noreferrer"}
+  must be [installed](https://www.reedelk.com/documentation/intellijplugin){:target="_blank"}{:rel="noopener noreferrer"} on
   your IntelliJ distribution.
 
 #### Run the example
@@ -210,10 +210,10 @@ downstream transformer.
    `Hello World John`
 
 For more information about this example, including testing the IntelliJ Flow
-Designer Plugin workflow with [Insomnia](https://insomnia.rest/), see: 
-* Reedelk [Getting Started](https://www.reedelk.com/documentation/getting-started)
+Designer Plugin workflow with [Insomnia](https://insomnia.rest/){:target="_blank"}{:rel="noopener noreferrer"}, see: 
+* Reedelk [Getting Started](https://www.reedelk.com/documentation/getting-started){:target="_blank"}{:rel="noopener noreferrer"}
 documentation.
-* [Reedelk plugin documentation](https://github.com/reedelk/kong-plugin-reedelk-transformer#kong-reedelk-transformer-plugin-hello-world) 
+* [Reedelk plugin documentation](https://github.com/reedelk/kong-plugin-reedelk-transformer#kong-reedelk-transformer-plugin-hello-world){:target="_blank"}{:rel="noopener noreferrer"} 
 on GitHub. 
-* [Kong Reedelk Transformer Plugin Demo](https://www.youtube.com/watch?v=c5Aw2XpwKos&amp;feature=youtu.be) 
+* [Kong Reedelk Transformer Plugin Demo](https://www.youtube.com/watch?v=c5Aw2XpwKos&amp;feature=youtu.be){:target="_blank"}{:rel="noopener noreferrer"} 
 video on Youtube.

@@ -68,7 +68,7 @@ params:
 
 ### Installation
 
-1. The [LuaRocks](http://luarocks.org) package manager must be [Installed](https://github.com/luarocks/luarocks/wiki/Download).
+1. The [LuaRocks](http://luarocks.org){:target="_blank"}{:rel="noopener noreferrer"} package manager must be [Installed](https://github.com/luarocks/luarocks/wiki/Download){:target="_blank"}{:rel="noopener noreferrer"}.
 2. [Kong](https://konghq.com) must be [Installed](https://konghq.com/install/) and you must be familiar with using and configuring Kong.
 3. Install the module kong-plugin-upstream-auth-basic.
 ```

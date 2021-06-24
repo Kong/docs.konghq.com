@@ -74,9 +74,9 @@ params:
 # BEGIN MARKDOWN CONTENT
 ---
 
-More details on Wallarm NG WAF: https://wallarm.com/products/ng-waf.
+More details on [Wallarm NG WAF](https://wallarm.com/products/ng-waf){:target="_blank"}{:rel="noopener noreferrer"}.
 
-Free Wallarm trial license is available at https://my.wallarm.com/signup?utm_source=konghub.
+Free Wallarm trial license is available [here](https://my.wallarm.com/signup?utm_source=konghub){:target="_blank"}{:rel="noopener noreferrer"}.
 
 “Wallarm implementation was one of many steps to migrate our application iMedNet to AWS. Ensuring the ability to monitor and secure our web-based APIs and to meet HIPAA guidelines for PHI compliance were important in the decision to go with Wallarm”, said Gary Johnson, Infrastructure Architect at MedNetStudy.
 
@@ -84,4 +84,4 @@ Free Wallarm trial license is available at https://my.wallarm.com/signup?utm_sou
 
 ### Installation
 
-Wallarm is easy to deploy as a Kong module. Specific module installation instructions with complete OS-specific installation instructions provided here: https://docs.wallarm.com/en/admin-en/installation-kong-en.html
+Wallarm is easy to deploy as a Kong module. Specific module installation instructions with complete OS-specific installation instructions provided [here](https://docs.wallarm.com/en/admin-en/installation-kong-en.html){:target="_blank"}{:rel="noopener noreferrer"}. 
