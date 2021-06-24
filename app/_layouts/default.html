@@ -24,7 +24,7 @@
 
     {% include nav-v2.html %}
 
-    {{ content }}
+    {{ content | replace: '<a href="http', '<a rel="nofollow noopener noreferrer" href="http' }}
 
     {% include footer.html %} {% include anchor_links.html %}
 
