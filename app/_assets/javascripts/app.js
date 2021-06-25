@@ -663,7 +663,7 @@ $(function () {
       copyInput.text(
         snippet.data("copy-code") ||
           snippet
-            .find(".rouge-code")
+            .find("code")
             .text()
             .replace(/^\s*\$\s*/gi, "")
       );
@@ -877,4 +877,16 @@ setInterval(function () {
 $(".closebanner").click(function () {
   $(".navbar-v2").addClass("closed");
   localStorage.setItem("closebanner-konnect", "closebanner");
+});
+
+
+$('[contenteditable]').on('paste', function(e) {
+    //strips elements added to the editable tag when pasting
+    var $self = $(this);
+    setTimeout(function() {$self.html($self.text());}, 0);
+}).on('keypress', function(e) {
+    if (event.keyCode === 13) {
+     // unfocus when hitting enter key
+     $('[contenteditable]').blur();
+   }
 });
