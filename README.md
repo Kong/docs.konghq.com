@@ -1,60 +1,69 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/ae60f2a4-488e-4771-b24a-c26badc5f45d/deploy-status)](https://app.netlify.com/sites/kongdocs/deploys)
+[![](https://img.shields.io/github/license/kong/docs.konghq.com)](https://github.com/Kong/docs.konghq.com/blob/main/LICENSE)
+[![](https://img.shields.io/github/contributors/kong/docs.konghq.com)]()
 
 # KONG's Documentation Website
 
-This repository holds source code for [Kong](https://github.com/Kong/kong)'s documentation website. It's a [Jekyll](https://jekyllrb.com/) website deployed with [Netlify](https://www.netlify.com/).
+This repository holds source code for [Kong](https://github.com/Kong/kong)'s documentation website. It's built using [Jekyll](https://jekyllrb.com/) and deployed with [Netlify](https://www.netlify.com/). 
 
-If you'd like to contribute, head on over to [Issues](https://github.com/Kong/docs.konghq.com/issues). New beginners can find issues with the `good first issue` label, some of which can be handled via the GitHub GUI. 
+Here are some things to know before you get started:
 
-Before submitting an issue or PR, please review our [Contributing Guide](https://docs.konghq.com/contributing/).
+* **We're beginner-friendly**. Whether you're a Technical Writer getting into code-as-docs or an engineer practicing your documentation skills, we highly encourage your involvement in our project. If you'd like to contribute and don't have something in mind already, head on over to [Issues](https://github.com/Kong/docs.konghq.com/issues). We've added `good first issue` labels on beginner-friendly issues.
 
-If you're looking to contribute to our open source API gateway, see our [Kong/kong](https://github.com/Kong/kong) repository.
+* **We need more help in some areas**. We'd especially love some help with [plug-in](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub) documentation. 
+
+* **Our _Admin API_ docs are auto-generated**. That means that all PRs for ADMIN API should be open over at the [Kong/kong](https://github.com/Kong/kong) repository.
+
+* **Community is a priority for us**. Before submitting an issue or PR, please review our [Contributing Guide](https://docs.konghq.com/contributing/).
 
 ## Run local project
+***
 
-For anything other than minor changes, clone the repository onto your local machine and build locally. We offer the option to build with or without Docker. 
+For anything other than minor changes, clone the repository onto your local machine and build locally. We offer the option to run you project locally with Docker, gulp, and npm. 
 
-## Run local project with Docker
+## Run locally with Docker
+***
 
 ### Prerequisites
 
-- [gulp](https://gulpjs.com/docs/en/getting-started/quick-start/) globally
-- [Docker](https://www.docker.com/products/docker-desktop)(Note that you will not need to run the Docker container via Docker Desktop.)
+- [Docker](https://www.docker.com/products/docker-desktop) (You will not need to run the Docker container via Docker Desktop.)
 
-### Install dependencies and start container
+### Start container
+
+Start the Docker container (this installs dependencies for you and may take a few minutes):
+```
+make develop
+```
+
+If you have issues, run:
+```
+make clean
+```
+
+## Run locally with gulp
+***
+
+### Prerequisites
+
+- [gulp](https://gulpjs.com/docs/en/getting-started/quick-start/) installed globally
 
 Install dependencies:
 ```
 make install
 ```
 
-Start the Docker container:
-```
-make develop
-```
-
-### Run project using Docker
-
+Run the project:
 ```
 make run
 ```
 
-Check the Docker build output at http://localhost:3000.
-
-### Troubleshoot Docker issues
-
-If you have issues getting the build output, you can try re-installing and re-running your build with: 
+If you have issues, run:
 ```
-make clean && make run
-``` 
-
-### Test links with Docker
-
-```
-make check-links
+make clean
 ```
 
-## Develop locally without Docker
+## Run locally with npm
+***
 
 ### Prerequisites
 
@@ -65,30 +74,36 @@ make check-links
 - [Ruby](https://www.ruby-lang.org) (> 2.6)
 - [Python](https://www.python.org) (>= 2.7.X, < 3)
 
-### Install dependencies
 
->
+Install dependencies:
 ```
 gem install bundler
 npm install
 ```
 
-### Run project using npm
-
->
+Run the project: 
 ```
 npm start
 ```
 
-Check the build output at http://localhost:8000.
+## Plug-in contributors
 
-### Test links 
+If you have contributed a plug-in, we welcome you to add a Kong badge to your plug-in README.
+
+Use the following where you replace `test` with your plug-in name and `link-to-docs` with a link to the Kong docs for your plug-in. 
 
 ```
-make check-links-local
+[![](https://img.shields.io/badge/Kong-test-blue.svg?colorA=042943&colorB=00C4BB&style=flat&longCache=true&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4xOdTWsmQAAAIcSURBVDhPY2DRdCYb0Vgzh46btlcCmiAEEdDMb+w9a+Xmr99/FHdM49R1R5PFp5nPyHvfifP/weDvv39LNu4SMfdHVoBPs2VY9q4jpx8+ewnRDwRHz13h1veAK8CpmdfQq6xrRt2EeS7xxc9evYVovvf4mbhlIFwNTs1JlV1///4Fajh96UZIbt2nL1+B7B8/fznGFsDVYNcsYRX04jXUtn///m3ae7SgZcrnr9/aZixBDjYsmnn0Pe2j85++fAPRDAR///6btGitWXAGu7Yrskp0zaLmAWt2HLxy+35UUcvHzyCnQsCv37/zWiaxabkgK0ZoFrMIMA3OOH/t9j+w6j3HzmbW9wE9CeaBwJdv30PyGuDqgQiqWdDU9/TlG99//IQqBHt1wbodjZMX/PnzByr0///rdx+sI3JQNAMT4ML1O6HySOD3nz+FbVOBUsAUAhUCx5aqawxCc2HbFKA9UEmwHqATgOjdx092UXmCJr57j5+DyoHBqUs3RC0CoJqRXfv795/sxol+GVVA5JJQzK3vCVQgZx92+eY9qApI5O07BtUMFQODGcs3RRY1v3zzHug9IJq4cA3QU0A1+r7JT168hir6/x/IZtVyQdF85spNYGYAOunh0xcQEWAM5TRNBKoBIo/ksi9fv0PEgdEJFAFpvnbnARBduH4Hnm+BKQkiCETAMGfTBkWviJn/3mNnIYKp1d1QzWQiTWcA1wsS5+E9q+MAAAAASUVORK5CYII=)](link-to-docs)
 ```
 
-### Generate the PDK, Admin API, CLI, and Configuration documentation
+Here's how the badge looks: [![](https://img.shields.io/badge/Kong-test-blue.svg?colorA=042943&colorB=00C4BB&style=flat&longCache=true&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4xOdTWsmQAAAIcSURBVDhPY2DRdCYb0Vgzh46btlcCmiAEEdDMb+w9a+Xmr99/FHdM49R1R5PFp5nPyHvfifP/weDvv39LNu4SMfdHVoBPs2VY9q4jpx8+ewnRDwRHz13h1veAK8CpmdfQq6xrRt2EeS7xxc9evYVovvf4mbhlIFwNTs1JlV1///4Fajh96UZIbt2nL1+B7B8/fznGFsDVYNcsYRX04jXUtn///m3ae7SgZcrnr9/aZixBDjYsmnn0Pe2j85++fAPRDAR///6btGitWXAGu7Yrskp0zaLmAWt2HLxy+35UUcvHzyCnQsCv37/zWiaxabkgK0ZoFrMIMA3OOH/t9j+w6j3HzmbW9wE9CeaBwJdv30PyGuDqgQiqWdDU9/TlG99//IQqBHt1wbodjZMX/PnzByr0///rdx+sI3JQNAMT4ML1O6HySOD3nz+FbVOBUsAUAhUCx5aqawxCc2HbFKA9UEmwHqATgOjdx092UXmCJr57j5+DyoHBqUs3RC0CoJqRXfv795/sxol+GVVA5JJQzK3vCVQgZx92+eY9qApI5O07BtUMFQODGcs3RRY1v3zzHug9IJq4cA3QU0A1+r7JT168hir6/x/IZtVyQdF85spNYGYAOunh0xcQEWAM5TRNBKoBIo/ksi9fv0PEgdEJFAFpvnbnARBduH4Hnm+BKQkiCETAMGfTBkWviJn/3mNnIYKp1d1QzWQiTWcA1wsS5+E9q+MAAAAASUVORK5CYII=)](link-to-docs)
+
+See [Issue #908](https://github.com/Kong/docs.konghq.com/issues/908) for more information. Note that we're not currently hosting assets for badges. 
+
+## Generate the PDK, Admin API, CLI, and Configuration documentation
+***
+
+> This section is for Kong source code maintainers. You won't need to do anything here if you're contributing to this repo!
 
 The PDK docs, Admin API docs, `cli.md` and `configuration.md` for each release are generated from the Kong source code.
 
