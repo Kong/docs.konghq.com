@@ -2,42 +2,53 @@
 
 # KONG's Documentation Website
 
-This repository provides the source code and content for [Kong](https://github.com/Kong/kong)'s documentation website. It is a [Jekyll](https://jekyllrb.com/) website deployed with Netlify.
+This repository holds source code for [Kong](https://github.com/Kong/kong)'s documentation website. It's a [Jekyll](https://jekyllrb.com/) website deployed with [Netlify](https://www.netlify.com/).
 
-Not sure where to start? Head on over to the `issues` tab to and look for the `good first issue` label. These are issues Kong has identified as beginner friendly. Many of these can be addressed with the GitHub UI and do not require pulling the repository and building locally.
+If you'd like to contribute, head on over to [Issues](https://github.com/Kong/docs.konghq.com/issues). New beginners can find issues with the `good first issue` label, some of which can be handled via the GitHub GUI. 
 
-First-time contributors, check out our [contributing guide on the website](https://docs.konghq.com/contributing/), and the linked resources there.
+Before submitting an issue or PR, please review our [Contributing Guide](https://docs.konghq.com/contributing/).
 
-## Building locally
+If you're looking to contribute to our open source API gateway, see our [Kong/kong](https://github.com/Kong/kong) repository.
 
-If you're making more than a small typo or grammar change, we ask that you pull down the repository and build locally.
+## Run local project
 
-### Develop locally with Docker
+For anything other than minor changes, clone the repository onto your local machine and build locally. We offer the option to build with or without Docker. 
 
-```
-make install-prerequisites
-```
+## Run local project with Docker
 
->
-```bash
-make develop
-```
+### Prerequisites
 
-### Running a local build with Docker
+- [gulp](https://gulpjs.com/docs/en/getting-started/quick-start/) globally
+- [Docker](https://www.docker.com/products/docker-desktop)(Note that you will not need to run the Docker container via Docker Desktop.)
 
-Install tools:
+### Install dependencies and start container
+
+Install dependencies:
 ```
 make install
 ```
 
-Run the build:
+Start the Docker container:
+```
+make develop
+```
+
+### Run project using Docker
+
 ```
 make run
 ```
 
-Check the build output at http://localhost:3000.
+Check the Docker build output at http://localhost:3000.
 
-### Testing links with Docker
+### Troubleshoot Docker issues
+
+If you have issues getting the build output, you can try re-installing and re-running your build with: 
+```
+make clean && make run
+``` 
+
+### Test links with Docker
 
 ```
 make check-links
@@ -51,22 +62,30 @@ make check-links
 - [yarn](https://classic.yarnpkg.com)
 - [gulp](https://gulpjs.com/docs/en/getting-started/quick-start/)
 - [Bundler](https://bundler.io/) (< 2.0.0)
-- [Ruby](https://www.ruby-lang.org) (>= 2.0, < 2.3)
+- [Ruby](https://www.ruby-lang.org) (> 2.6)
 - [Python](https://www.python.org) (>= 2.7.X, < 3)
 
-### Install
+### Install dependencies
 
 >
-```bash
+```
 gem install bundler
 npm install
 ```
 
-### Run
+### Run project using npm
 
 >
-```bash
+```
 npm start
+```
+
+Check the build output at http://localhost:8000.
+
+### Test links 
+
+```
+make check-links-local
 ```
 
 ### Generate the PDK, Admin API, CLI, and Configuration documentation
