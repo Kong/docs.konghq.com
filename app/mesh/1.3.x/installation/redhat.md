@@ -14,6 +14,11 @@ Finally, you can follow the [Quickstart](#4-quickstart) to take it from here and
 
 You have a license for {{site.mesh_product_name}}.
 
+{:.note}
+> **Note:** {{site.mesh_product_name}} ships with a FIPS 140-2 compliant
+build of Envoy. This build is only available on RedHat 8 and later. For any previous
+versions, use [Docker](/mesh/{{page.kong_version}}/installation/docker/). 
+
 ## 1. Download {{site.mesh_product_name}}
 
 {% navtabs %}
