@@ -80,7 +80,7 @@ description: |
   ## Important Configuration Parameters
     
   This plugin contains many configuration parameters that might seem overwhelming
-  at the start. Here is a list of parameters that you should focus at first:
+  at the start. Here is a list of parameters that you should focus on first:
     
   1. The first parameter you should configure is: `config.issuer`.
     
@@ -92,7 +92,7 @@ description: |
      plugin, so configure: `config.auth_methods`.
     
      That parameter should contain only the grants that you want to
-     use; otherwise, you unnecessarily widen the attack surface.
+     use; otherwise, you inadvertently widen the attack surface.
     
   3. In many cases, you also need to specify `config.client_id`, and if your identity provider
      requires authentication, such as on a token endpoint, you will need to specify the client
@@ -107,7 +107,7 @@ description: |
   5. If you are using Kong in DB-less mode with the declarative configuration, you
      should set up `config.session_secret` if you are using the session cookie
      authentication method. Otherwise, each of your Nginx workers across all your
-     nodes would encrypt and sign the cookies with their own secrets.
+     nodes will encrypt and sign the cookies with their own secrets.
     
   In summary, start with the following parameters:
 
@@ -139,7 +139,7 @@ params:
   dbless_compatible: yes
   config:
     - group: Authentication Grants
-      description: enable only those that you want to use
+      description: Parameters for enabling only grants/credentials that you want to use.
     - name: auth_methods
       required: false
       default: [ "password", "client_credentials", "authorization_code", "bearer", "introspection", "userinfo", "kong_oauth2", "refresh_token", "session" ]
@@ -157,39 +157,39 @@ params:
         - `refresh_token`: OAuth refresh token grant
         - `session`: session cookie authentication
     - group: Anonymous Access
-      description: disabled by default
+      description: Parameter for allowing anonymous access. This parameter is disabled by default.
     - name: anonymous
       required: false
       default:
       datatype: uuid
       description: |
-        Let unauthenticated requests to pass, or skip the plugin if other authentication plugin
+        Let unauthenticated requests pass or skip the plugin if another authentication plugin
         has already authenticated the request by setting the value to anonymous Consumer.
     - group: General Settings
-      descriptions: settings that have an effect over different grants and flows
+      description: Parameters for settings that affect different grants and flows.
     - name: preserve_query_args
       required: false
       default: false
       datatype: boolean
       description: |
-        Preserve original query arguments over the authorization code flow redirections?
-        > When this is used with the `config.login_action=redirect`, the browser location
-        > will change, and show up the original query arguments. Otherwise, the upstream request
+        With this parameter, you can preserve request query arguments even when doing authorization code flow.
+        > When this parameter is used with the `config.login_action=redirect` parameter, the browser location
+        > will change and display the original query arguments. Otherwise, the upstream request
         > is modified to include the original query arguments, and the browser will not display
-        > them in location field.     
+        > them in the location field.     
     - name: refresh_tokens
       required: false
       default: true
       datatype: boolean
       description: |
-        Try to automatically refresh the expired access tokens when the plugin has a refresh token,
-        or an offline token available?
+        Specifies whether the plugin should try to refresh (soon to be) expired access tokens if the
+        plugin has a `refresh_token` available. 
     - name: hide_credentials
       required: false
       default: true
       datatype: boolean
       description: |
-        Remove the credentials used for the authentication from the request?
+        Remove the credentials used for authentication from the request.
         > If multiple credentials are sent with the same request, the plugin will
         > remove those that were used for successful authentication.
     - name: search_user_info
@@ -197,12 +197,12 @@ params:
       default: false
       datatype: boolean
       description: |
-        Whether to use user info endpoint to get addition claims for consumer mapping,
-        credential mapping, authenticated groups, and upstream and downstream headers?
-        > This requires an extra round-trip, and can add latency, but we can also cache
-        > the user info requests (see: `config.cache_user_info`).
+        Specify whether to use the user info endpoint to get addition claims for consumer mapping,
+        credential mapping, authenticated groups, and upstream and downstream headers.
+        > This requires an extra round-trip and can add latency, but the plugin can also cache
+        > user info requests (see: `config.cache_user_info`).
     - group: Discovery
-      description: for auto-configuring most of the settings, and providing the means of key rotation
+      description: Parameters for auto-configuring most of the settings and providing the means for key rotation.
     - name: issuer
       required: true
       default:
@@ -211,13 +211,13 @@ params:
       description: |
         The discovery endpoint (or just the issuer identifier).
         > When using Kong with the database, the discovery information and the JWKS
-        > are also cached to the Kong configuration database. 
+        > are cached to the Kong configuration database. 
     - name: rediscovery_lifetime
       required: false
       default: 30
       datatype: integer
       description: |
-        How long to wait after doing a discovery, before doing it again?
+        Specifies how often (in seconds) the plugin completes a re-discovery.
         > The re-discovery usually happens when the plugin cannot find a key for verifying
         > the signature.
     - group: Client
@@ -247,10 +247,10 @@ params:
       datatype: string
       description: |
         The client to use for this request (the selection is made with a request parameter with the same name).
-        For example setting this value to `Client`, and sending request header `Client: 1` will make the plugin
+        For example, setting this value to `Client`, and sending the request header `Client: 1` will cause the plugin
         to use the first client (see: `config.client_id`) from the client array.
     - group: Client Authentication
-      description: how should the client authenticate with the identity provider          
+      description: Parameters for configuring how the client should authenticate with the identity provider.          
     - name: client_auth
       required: false
       default: '(discovered or "client_secret_basic")'
@@ -265,7 +265,7 @@ params:
         
         > Private keys can be stored in a database, and they are by the default automatically generated 
         > in the database. It is also possible to specify private keys with `config.client_jwk` directly
-        > with the plugin configuration.
+        > in the plugin configuration.
     - name: client_secret
       required: false
       value_in_examples: [ "<client-secret>" ]
@@ -300,115 +300,115 @@ params:
         - `PS512`: RSASSA-PSS using SHA-512 and MGF1 with SHA-512
         - `EdDSA`: EdDSA with Ed25519
     - group: JWT Access Token Authentication
-      description: where to search for the bearer token and whether to introspect them
+      description: Parameters for setting where to search for the bearer token and whether to introspect them.
     - name: bearer_token_param_type
       required: false
       default: [ "header", "query", "body" ]
       datatype: array of string elements
       description: |
-        Where to search the bearer token:
-        - `header`: search from the headers
-        - `query`: search from the query string
-        - `body`: search from the body
-        - `cookie`: search from the cookies
+        Where to search for the bearer token:
+        - `header`: search the HTTP headers
+        - `query`: search the URL's query string
+        - `body`: search the HTTP request body
+        - `cookie`: search the HTTP request cookies specified with `config.bearer_token_cookie_name`
     - name: bearer_token_cookie_name
       required: false
       default: 
       datatype: string
-      description: The cookie name in which the bearer token is passed
+      description: The name of the cookie in which the bearer token is passed.
     - name: introspect_jwt_tokens
       required: false
       default: false
       datatype: boolean
-      description: Whether to introspect the JWT access tokens (can be used to check for revocations)?      
+      description: Specifies whether to introspect the JWT access tokens (can be used to check for revocations).
     - group: Client Credentials Grant
-      description: where to search for the client credentials
+      description: Parameters for where to search for the client credentials.
     - name: client_credentials_param_type
       required: false
       default: [ "header", "query", "body" ]
       datatype: array of string elements
       description: |
-        Where to search the client credentials:
-        - `header`: search from the headers
-        - `query`: search from the query string
-        - `body`: search from the body
+        Where to search for the client credentials:
+        - `header`: search the HTTP headers
+        - `query`: search the URL's query string
+        - `body`: search from the HTTP request body
     - group: Password Grant
-      description: where to search for the username and password
+      description: Parameters for where to search for the username and password.
     - name: password_param_type
       required: false
       default: [ "header", "query", "body" ]
       datatype: array of string elements
       description: |
-        Where to search the username and password
-        - `header`: search from the headers
-        - `query`: search from the query string
-        - `body`: search from the body
+        Where to search for the username and password:
+        - `header`: search the HTTP headers
+        - `query`: search the URL's query string
+        - `body`: search the HTTP request body
     - group: Refresh Token Grant
-      description: where to search for the refresh token (rarely used as the refresh tokens are in many cases bound to the client)
+      description: Parameters for where to search for the refresh token (rarely used as the refresh tokens are in many cases bound to the client).
     - name: refresh_token_param_type
       required: false
       default: [ "header", "query", "body" ]
       datatype: array of string elements
       description: |
-        Where to search the refresh token
-        - `header`: search from the headers
-        - `query`: search from the query string
-        - `body`: search from the body
+        Where to search for the refresh token:
+        - `header`: search the HTTP headers
+        - `query`: search the URL's query string
+        - `body`: search the HTTP request body
     - name: refresh_token_param_name
       required: false
       default: 
       datatype: string
-      description: The name of the parameter used to pass the refresh token
+      description: The name of the parameter used to pass the refresh token.
     - group: ID Token
-      description: where to search for the id token (rarely send as part of the request)
+      description: Parameters for where to search for the id token (rarely sent as part of the request).
     - name: id_token_param_type
       required: false
       default: [ "header", "query", "body" ]
       datatype: array of string elements
       description: |
-        Where to search the id token
-        - `header`: search from the headers
-        - `query`: search from the query string
-        - `body`: search from the body
+        Where to search for the id token:
+        - `header`: search the HTTP headers
+        - `query`: search the URL's query string
+        - `body`: search the HTTP request body
     - name: id_token_param_name
       required: false
       default: 
       datatype: string
-      description: The name of the parameter used to pass the id token
+      description: The name of the parameter used to pass the id token.
     - group: Consumer Mapping
-      description: how to map external identity provider managed identities to Kong managed ones?
+      description: Parameters for mapping external identity provider managed identities to Kong managed ones.
     - name: consumer_claim
       required: false
       default: 
       datatype: array of string elements
-      description: The claim which is used for the consumer mapping
+      description: The claim used for consumer mapping.
     - name: consumer_by
       required: false
       default: [ "username", "custom_id" ] 
       datatype: array of string elements
       description: |
         Consumer fields used for mapping:
-        - `id`: try to find Consumer by `id`
+        - `id`: try to find the matching Consumer by `id`
         - `username`: try to find the matching Consumer by `username` 
         - `custom_id`: try to find the matching Consumer by `custom_id`
     - name: consumer_optional
       required: false
       default: false
       datatype: boolean
-      description: Do not terminate the request, if consumer mapping fails?
+      description: Do not terminate the request if consumer mapping fails.
     - group: Credential Mapping
-      description: how to map external identity provider managed identities to a Kong credential (virtual in this case)
+      description: Parameters for mapping external identity provider managed identities to a Kong credential (virtual in this case).
     - name: credential_claim
       required: false
       default: [ "sub" ] 
       datatype: array of string elements
-      description: The claim from which to derive a virtual credential (e.g. for rate-limiting plugin), in case the Consumer mapping is not used.
+      description: The claim used to derive a virtual credential (for instance, for the rate-limiting plugin), in case the Consumer mapping is not used.
     - group: Issuer Verification
     - name: issuers_allowed
       required: false
       default: (discovered issuer)
       datatype: array of string elements
-      description: The issuers allowed to be present in the tokens (`iss` claim)
+      description: The issuers allowed to be present in the tokens (`iss` claim).
     - group: Authorization
     - name: authenticated_groups_claim
       required: false
@@ -417,91 +417,91 @@ params:
       description: |
         The claim that contains authenticated groups. This setting can be used together
         with ACL plugin, but it also enables IdP managed groups with other applications
-        and integrations (e.g. Kong Manager, and Developer portal). The OpenID Connect
-        plugin itself does not do anything else than set the context value.
+        and integrations (for example, Kong Manager and Dev Portal). The OpenID Connect
+        plugin itself does not do anything other than set the context value.
     - name: scopes_required
       required: false
       default: (discovered issuer)
       datatype: array of string elements
-      description: The scopes required to be in access token
+      description: The scopes required to be in the access token.
     - name: scopes_claim
       required: false
       default: [ "scope" ]
       datatype: array of string elements
-      description: The claim which contains the scopes
+      description: The claim that contains the scopes.
     - name: audience_required
       required: false
       default: 
       datatype: array of string elements
-      description: The audience required to be in access token
+      description: The audience required to be in the access token.
     - name: audience_claim
       required: false
       default: [ "aud" ]
       datatype: array of string elements
-      description: The claim which contains the audience
+      description: The claim that contains the audience.
     - name: groups_required
       required: false
       default: 
       datatype: array of string elements
-      description: The groups required to be in access token
+      description: The groups required to be in the access token.
     - name: groups_claim
       required: false
       default: [ "groups" ]
       datatype: array of string elements
-      description: The claim which contains the groups    
+      description: The claim that contains the groups.
     - name: roles_required
       required: false
       default: 
       datatype: array of string elements
-      description: The roles required to be in access token
+      description: The roles required to be in the access token.
     - name: roles_claim
       required: false
       default: [ "roles" ]
       datatype: array of string elements
-      description: The claim which contains the roles
+      description: The claim that contains the roles.
     - group: Claims Verification
-      description: verification rules for the standard claims 
+      description: Parameters for verification rules for standard claims.
     - name: verify_claims
       required: false
       default: true
       datatype: boolean
-      description: Verify tokens for standard claims?
+      description: Verify tokens for standard claims.
     - name: leeway
       required: false
       default: 0 
       datatype: integer
-      description: Allow some leeway on the ttl / expiry verification      
+      description: Allow some leeway on the ttl / expiry verification.      
     - name: domains
       required: false
       default: 
       datatype: array of string elements
-      description: The allowed values for the `hd` claim
+      description: The allowed values for the `hd` claim.
     - name: max_age
       required: false
       default: 
       datatype: integer
-      description: The maximum age (in seconds) compared to the `auth_time` claim
+      description: The maximum age (in seconds) compared to the `auth_time` claim.
     - name: jwt_session_claim
       required: false
       default: '"sid"'
       datatype: string
-      description: The claim to match against the JWT session cookie
+      description: The claim to match against the JWT session cookie.
     - name: jwt_session_cookie
       required: false
       default: 
       datatype: string
-      description: The name of the JWT session cookie
+      description: The name of the JWT session cookie.
     - group: Signature Verification
     - name: verify_signature
       required: false
       default: true
       datatype: boolean
-      description: Verify signature of tokens?
+      description: Verify signature of tokens.
     - name: enable_hs_signatures
       required: false
       default: false
       datatype: boolean
-      description: Enable shared secret, e.g. HS256, signatures (when disabled they will not be accepted)?
+      description: Enable shared secret, for example, HS256, signatures (when disabled they will not be accepted).
     - name: ignore_signature
       required: false
       default: 
@@ -519,157 +519,157 @@ params:
       required: false
       default:
       datatype: array of string elements
-      description: JWKS uris whose public keys are trusted (in addition to the keys found with the discovery)
+      description: JWKS URIs whose public keys are trusted (in addition to the keys found with the discovery).
     - group: Authorization Code Flow Verification
     - name: verify_nonce
       required: false
       default: true
       datatype: boolean
-      description: Verify nonce on authorization code flow?
+      description: Verify nonce on authorization code flow.
     - group: Introspection Verification
     - name: introspection_check_active
       required: false
       default: true
       datatype: boolean
-      description: Check that the introspection response has `active` claim with a value of `true`
+      description: Check that the introspection response has an `active` claim with a value of `true`.
     - group: Configuration Verification
     - name: verify_parameters
       required: false
       default: false
       datatype: boolean
-      description: Verify plugin configuration against discovery?
+      description: Verify plugin configuration against discovery.
     - group: Upstream Headers
-      description: the headers for the upstream service request
+      description: Parameters for the headers for the upstream service request.
     - name: upstream_headers_claims
       required: false
       default: 
       datatype: array of string elements
-      description: The upstream header claims
+      description: The upstream header claims.
     - name: upstream_headers_names
       required: false
       default: 
       datatype: array of string elements
-      description: The upstream header names for the claim values
+      description: The upstream header names for the claim values.
     - name: upstream_access_token_header  
       required: false
       default: authorization:bearer
       datatype: string
-      description: The upstream access token header    
+      description: The upstream access token header.
     - name: upstream_access_token_jwk_header  
       required: false
       default: 
       datatype: string
-      description: The upstream access token jwk header
+      description: The upstream access token JWK header.
     - name: upstream_id_token_header  
       required: false
       default: 
       datatype: string
-      description: The upstream id token header
+      description: The upstream id token header.
     - name: upstream_id_token_jwk_header  
       required: false
       default: 
       datatype: string
-      description: The upstream id token jwk header
+      description: The upstream id token JWK header.
     - name: upstream_refresh_token_header  
       required: false
       default: 
       datatype: string
-      description: The upstream refresh token header
+      description: The upstream refresh token header.
     - name: upstream_user_info_header
       required: false
       default: 
       datatype: string
-      description: The upstream user info header
+      description: The upstream user info header.
     - name: upstream_user_info_jwt_header
       required: false
       default: 
       datatype: string
-      description: The upstream user info jwt header (in case the user info returns a JWT response)
+      description: The upstream user info JWT header (in case the user info returns a JWT response).
     - name: upstream_introspection_header
       required: false
       default: 
       datatype: string
-      description: The upstream introspection header
+      description: The upstream introspection header.
     - name: upstream_introspection_jwt_header
       required: false
       default: 
       datatype: string
-      description: The upstream introspection header (in case the introspection returns a JWT response)
+      description: The upstream introspection header (in case the introspection returns a JWT response).
     - name: upstream_session_id_header
       required: false
       default: 
       datatype: string
-      description: The upstream session id header
+      description: The upstream session id header.
     - group: Downstream Headers 
-      description: the headers for the downstream response
+      description: Parameters for the headers for the downstream response.
     - name: downstream_headers_claims
       required: false
       default: 
       datatype: array of string elements
-      description: The downstream header claims
+      description: The downstream header claims.
     - name: downstream_headers_names
       required: false
       default: 
       datatype: array of string elements
-      description: The downstream header names for the claim values
+      description: The downstream header names for the claim values.
     - name: downstream_access_token_header  
       required: false
       default: authorization:bearer
       datatype: string
-      description: The downstream access token header    
+      description: The downstream access token header.
     - name: downstream_access_token_jwk_header  
       required: false
       default: 
       datatype: string
-      description: The downstream access token jwk header
+      description: The downstream access token JWK header.
     - name: downstream_id_token_header  
       required: false
       default: 
       datatype: string
-      description: The downstream id token header
+      description: The downstream id token header.
     - name: downstream_id_token_jwk_header  
       required: false
       default: 
       datatype: string
-      description: The downstream id token jwk header
+      description: The downstream id token JWK header.
     - name: downstream_refresh_token_header  
       required: false
       default: 
       datatype: string
-      description: The downstream refresh token header
+      description: The downstream refresh token header.
     - name: downstream_user_info_header
       required: false
       default: 
       datatype: string
-      description: The downstream user info header
+      description: The downstream user info header.
     - name: downstream_user_info_jwt_header
       required: false
       default: 
       datatype: string
-      description: The downstream user info jwt header (in case the user info returns a JWT response)
+      description: The downstream user info JWT header (in case the user info returns a JWT response).
     - name: downstream_introspection_header
       required: false
       default: 
       datatype: string
-      description: The downstream introspection header
+      description: The downstream introspection header.
     - name: downstream_introspection_jwt_header
       required: false
       default: 
       datatype: string
-      description: The downstream introspection header (in case the introspection returns a JWT response)
+      description: The downstream introspection header (in case the introspection returns a JWT response).
     - name: downstream_session_id_header
       required: false
       default: 
       datatype: string
-      description: The downstream session id header
+      description: The downstream session id header.
     - group: Cross-Origin Resource Sharing (CORS)
     - name: run_on_preflight
       required: false
       default: true
       datatype: boolean
-      description: Whether to run this plugin on pre-flight (`OPTIONS`) requests?
+      description: Specifies whether to run this plugin on pre-flight (`OPTIONS`) requests.
     - group: Login
-      description: what action the plugin takes after a successful login?
+      description: Parameters for what action the plugin completes after a successful login.
     - name: login_methods
       required: false
       default: [ "authorization_code" ]
@@ -718,27 +718,27 @@ params:
       default:
       datatype: array of urls (one for each client)
       description: |
-        Where to redirect the client when `login_action` is set to `redirect`?
-        > Tip: leave this empty, and the plugin will redirect client to the url that originally initiated the
+        Where to redirect the client when `login_action` is set to `redirect`.
+        > Tip: Leave this empty and the plugin will redirect the client to the URL that originally initiated the
         > flow with possible query args preserved from the original request when `config.preserve_query_args`
         > is enabled. 
     - group: Logout
-      description: how to trigger logout with plugin and the actions to take on logout?
+      description: Parameters for triggering logout with the plugin and the actions to take on logout.
     - name: logout_query_arg
       required: false
       default:
       datatype: string
-      description: The request query argument that activates the logout
+      description: The request query argument that activates the logout.
     - name: logout_post_arg
       required: false
       default:
       datatype: string
-      description: The request body argument that activates the logout
+      description: The request body argument that activates the logout.
     - name: logout_uri_suffix
       required: false
       default:
       datatype: string
-      description: The request uri suffix that activates the logout
+      description: The request URI suffix that activates the logout.
     - name: logout_methods
       required: false
       default:
@@ -752,85 +752,85 @@ params:
       required: false
       default: false
       datatype: boolean
-      description: Revoke tokens as part of the logout?         
+      description: Revoke tokens as part of the logout.         
     - name: logout_revoke_access_token
       required: false
       default: true
       datatype: boolean
-      description: Revoke the access token as part of the logout?
+      description: Revoke the access token as part of the logout.
     - name: logout_revoke_refresh_token
       required: false
       default: true
       datatype: boolean
-      description: Revoke the refresh token as part of the logout?
+      description: Revoke the refresh token as part of the logout.
     - name: logout_redirect_uri
       required: false
       default:
       datatype: array of urls (one for each client)
-      description: Where to redirect the client after the logout?
+      description: Where to redirect the client after the logout.
     - group: Unauthorized
-      description: how to handle unauthorized requests?
+      description: Parameters for how to handle unauthorized requests.
     - name: unauthorized_redirect_uri
       required: false
       default:
       datatype: array of urls (one for each client)
-      description: Where to redirect the client on unauthorized requests?
+      description: Where to redirect the client on unauthorized requests.
     - name: unauthorized_error_message
       required: false
       default: '"Forbidden"'
       datatype: string
-      description: The error message for the unauthorized requests (when not using the redirection)                  
+      description: The error message for the unauthorized requests (when not using the redirection).                 
     - group: Forbidden
-      description: how to handle forbidden requests?
+      description: Parameters for how to handle forbidden requests.
     - name: forbidden_redirect_uri
       required: false
       default:
       datatype: array of urls (one for each client)
-      description: Where to redirect the client on forbidden requests?
+      description: Where to redirect the client on forbidden requests.
     - name: forbidden_error_message
       required: false
       default: '"Forbidden"'
       datatype: string
-      description: The error message for the forbidden requests (when not using the redirection)
+      description: The error message for the forbidden requests (when not using the redirection).
     - name: forbidden_destroy_session
       required: false
       default: true
       datatype: boolean
-      description: Destroy the possible session for the forbidden requests?
+      description: Destroy the possible session for the forbidden requests.
     - group: Errors
-      description: how to handle unexpected errors?
+      description: Parameters for how to handle unexpected errors.
     - name: unexpected_redirect_uri
       required: false
       default:
       datatype: array of urls (one for each client)
-      description: Where to redirect the client on when unexpected errors happen with the requests?
+      description: Where to redirect the client when unexpected errors happen with the requests.
     - name: display_errors
       required: false
       default: false
       datatype: boolean
-      description: Display errors on failure responses?
+      description: Display errors on failure responses.
     - group: Authorization Cookie
-      description: used during authorization code flow for verification and preserving the settings
+      description: Parameters used during authorization code flow for verification and preserving settings.
     - name: authorization_cookie_name
       required: false
       default: '"authorization"'
       datatype: string
-      description: The authorization cookie name                
+      description: The authorization cookie name.            
     - name: authorization_cookie_lifetime
       required: false
       default: 600
       datatype: integer
-      description: The authorization cookie lifetime in seconds            
+      description: The authorization cookie lifetime in seconds.          
     - name: authorization_cookie_path
       required: false
       default: '"/"'
       datatype: string
-      description: The authorization cookie Path flag
+      description: The authorization cookie Path flag.
     - name: authorization_cookie_domain
       required: false
       default: 
       datatype: string
-      description: The authorization cookie Domain flag
+      description: The authorization cookie Domain flag.
     - name: authorization_cookie_samesite
       required: false
       default: '"off"'
