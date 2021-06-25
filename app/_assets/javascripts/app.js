@@ -886,7 +886,7 @@ $('[contenteditable]').on('paste', function(e) {
     setTimeout(function() {$self.html($self.text());}, 0);
 }).on('keypress', function(e) {
     if (event.keyCode === 13) {
-     // unfocus when hitting enter key
-     $('[contenteditable]').blur();
-   }
+      // unfocus when hitting enter key
+      $('[contenteditable]').blur();
+    }
 });
