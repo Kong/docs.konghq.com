@@ -19,7 +19,7 @@ Here are some things to know before you get started:
 ## Run local project
 ***
 
-For anything other than minor changes, clone the repository onto your local machine and build locally. We offer the option to run you project locally with Docker, gulp, and npm. 
+For anything other than minor changes, clone the repository onto your local machine and build locally. We offer the option to run your project locally with Docker, gulp, and npm. 
 
 ## Run locally with Docker
 ***
