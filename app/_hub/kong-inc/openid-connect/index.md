@@ -837,15 +837,15 @@ params:
       datatype: string
       description: |
         Controls whether a cookie is sent with cross-origin requests, providing some protection against cross-site request forgery attacks:
-        - `Strict`: Cookies will only be sent in a first-party context and not be sent along with requests initiated by third party websites
-        - `Lax`: Cookies are not sent on normal cross-site subrequests (for example to load images or frames into a third party site), but are sent when a user is navigating to the origin site (i.e. when following a link)
-        - `None`: Cookies will be sent in all contexts, i.e in responses to both first-party and cross-origin requests. If SameSite=None is set, the cookie Secure attribute must also be set (or the cookie will be blocked)
-        - `off`: do not set the Same-Site flag
+        - `Strict`: Cookies will only be sent in a first-party context and not be sent along with requests initiated by third party websites.
+        - `Lax`: Cookies are not sent on normal cross-site subrequests (for example to load images or frames into a third party site), but are sent when a user is navigating to the origin site (for instance, when following a link).
+        - `None`: Cookies will be sent in all contexts, for example in responses to both first-party and cross-origin requests. If `SameSite=None` is set, the cookie Secure attribute must also be set (or the cookie will be blocked).
+        - `off`: Do not set the Same-Site flag.
     - name: authorization_cookie_httponly
       required: false
       default: true
       datatype: boolean
-      description: Forbids JavaScript from accessing the cookie, for example, through the Document.cookie property.
+      description: Forbids JavaScript from accessing the cookie, for example, through the `Document.cookie` property.
     - name: authorization_cookie_secure
       required: false
       default: (from the request scheme)
@@ -854,52 +854,52 @@ params:
         Cookie is only sent to the server when a request is made with the https: scheme (except on localhost),
         and therefore is more resistant to man-in-the-middle attacks.
     - group: Session Cookie
-      description: used with the session cookie authentication 
+      description: Parameters used with the session cookie authentication.
     - name: session_cookie_name
       required: false
       default: '"session"'
       datatype: string
-      description: The session cookie name                
+      description: The session cookie name.             
     - name: session_cookie_lifetime
       required: false
       default: 3600
       datatype: integer
-      description: The session cookie lifetime in seconds            
+      description: The session cookie lifetime in seconds.           
     - name: session_cookie_idletime
       required: false
       default: 
       datatype: integer
-      description: The session cookie idle time in seconds            
+      description: The session cookie idle time in seconds.           
     - name: session_cookie_renew
       required: false
       default: 600
       datatype: integer
-      description: The session cookie renew time        
+      description: The session cookie renew time.
     - name: session_cookie_path
       required: false
       default: '"/"'
       datatype: string
-      description: The session cookie Path flag
+      description: The session cookie Path flag.
     - name: session_cookie_domain
       required: false
       default: 
       datatype: string
-      description: The session cookie Domain flag
+      description: The session cookie Domain flag.
     - name: session_cookie_samesite
       required: false
       default: '"Lax"' 
       datatype: string
       description: |
         Controls whether a cookie is sent with cross-origin requests, providing some protection against cross-site request forgery attacks:
-        - `Strict`: Cookies will only be sent in a first-party context and not be sent along with requests initiated by third party websites
-        - `Lax`: Cookies are not sent on normal cross-site subrequests (for example to load images or frames into a third party site), but are sent when a user is navigating to the origin site (i.e. when following a link)
-        - `None`: Cookies will be sent in all contexts, i.e in responses to both first-party and cross-origin requests. If SameSite=None is set, the cookie Secure attribute must also be set (or the cookie will be blocked)
-        - `off`: do not set the Same-Site flag
+        - `Strict`: Cookies will only be sent in a first-party context and not be sent along with requests initiated by third party websites.
+        - `Lax`: Cookies are not sent on normal cross-site subrequests (for example to load images or frames into a third party site), but are sent when a user is navigating to the origin site (for example, when following a link).
+        - `None`: Cookies will be sent in all contexts, for example in responses to both first-party and cross-origin requests. If SameSite=None is set, the cookie Secure attribute must also be set (or the cookie will be blocked)
+        - `off`: Do not set the Same-Site flag.
     - name: session_cookie_httponly
       required: false
       default: true
       datatype: boolean
-      description: Forbids JavaScript from accessing the cookie, for example, through the Document.cookie property.
+      description: Forbids JavaScript from accessing the cookie, for example, through the `Document.cookie` property.
     - name: session_cookie_secure
       required: false
       default: (from the request scheme)
@@ -911,14 +911,14 @@ params:
       required: false
       default: 4000
       datatype: integer
-      description: The maximum size of each cookie chunk in bytes
+      description: The maximum size of each cookie chunk in bytes.
     - group: Session Settings
     - name: session_secret
       required: false
       default: (with database, or traditional mode, the value is auto-generated and stored along the issuer discovery information in the database)
       datatype: string
       value_in_examples: <session-secret>
-      description: The session secret
+      description: The session secret.
     - name: disable_session
       required: false
       default: 
@@ -963,39 +963,39 @@ params:
       required: false
       default: false
       datatype: boolean
-      description: Whether to always verify tokens stored in the session?                  
+      description: Specifies whether to always verify tokens stored in the session.                  
     - group: Session Settings for Memcached
     - name: session_memcache_prefix
       required: false
       default: '"sessions"'
       datatype: string
-      description: The memcached session key prefix
+      description: The memcached session key prefix.
     - name: session_memcache_socket
       required: false
       default: 
       datatype: string
-      description: The memcached unix socket path
+      description: The memcached unix socket path.
     - name: session_memcache_host
       required: false
       default: '"127.0.0.1"'
       datatype: string
-      description: The memcached host
+      description: The memcached host.
     - name: session_memcache_port
       required: false
       default: 11211
       datatype: integer
-      description: The memcached port
+      description: The memcached port.
     - group: Session Settings for Redis
     - name: session_redis_prefix
       required: false
       default: '"sessions"'
       datatype: string
-      description: The Redis session key prefix
+      description: The Redis session key prefix.
     - name: session_redis_socket
       required: false
       default: 
       datatype: string
-      description: The Redis unix socket path
+      description: The Redis unix socket path.
     - name: session_redis_host
       required: false
       default: '"127.0.0.1"'
@@ -1005,91 +1005,91 @@ params:
       required: false
       default: 6379
       datatype: integer
-      description: The Redis port
+      description: The Redis port.
     - name: session_redis_auth
       required: false
       default: (from kong)
       datatype: string
-      description: The Redis password
+      description: The Redis password.
     - name: session_redis_connect_timeout
       required: false
       default: (from kong)
       datatype: integer
-      description: The Redis connection timeout in milliseconds
+      description: The Redis connection timeout in milliseconds.
     - name: session_redis_read_timeout
       required: false
       default: (from kong)
       datatype: integer
-      description: The Redis read timeout in milliseconds
+      description: The Redis read timeout in milliseconds.
     - name: session_redis_send_timeout
       required: false
       default: (from kong)
       datatype: integer
-      description: The Redis send timeout in milliseconds
+      description: The Redis send timeout in milliseconds.
     - name: session_redis_ssl
       required: false
       default: false
       datatype: boolean
-      description: Use SSL/TLS for Redis connection
+      description: Use SSL/TLS for Redis connection.
     - name: session_redis_ssl_verify
       required: false
       default: false
       datatype: boolean
-      description: Verify Redis server certificate?
+      description: Verify Redis server certificate.
     - name: session_redis_server_name
       required: false
       default: 
       datatype: string
-      description: The SNI used for connecting the Redis server
+      description: The SNI used for connecting the Redis server.
     - name: session_redis_cluster_nodes
       required: false
       default: 
       datatype: array of host records
-      description: The Redis cluster nodes
+      description: The Redis cluster nodes.
     - name: session_redis_cluster_maxredirections
       required: false
       default: 
       datatype: integer
-      description: The Redis cluster maximum redirects      
+      description: The Redis cluster maximum redirects.      
     - group: Endpoints
-      description: normally not needed as the endpoints are discovered
+      description: Parameters normally not needed as the endpoints are discovered.
     - name: authorization_endpoint
       required: false
       default: "(discovered uri)"
       datatype: url
-      description: The authorization endpoint
+      description: The authorization endpoint.
     - name: token_endpoint
       required: false
       default: "(discovered uri)"
       datatype: url
-      description: The token endpoint
+      description: The token endpoint.
     - name: introspection_endpoint
       required: false
       default: "(discovered uri)"
       datatype: url
-      description: The introspection endpoint
+      description: The introspection endpoint.
     - name: revocation_endpoint
       required: false
       default: "(discovered uri)"
       datatype: url
-      description: The revocation endpoint
+      description: The revocation endpoint.
     - name: userinfo_endpoint
       required: false
       default: "(discovered uri)"
       datatype: url
-      description: The user info endpoint
+      description: The user info endpoint.
     - name: end_session_endpoint
       required: false
       default: "(discovered uri)"
       datatype: url
-      description: The end session endpoint
+      description: The end session endpoint.
     - name: token_exchange_endpoint
       required: false
       default: "(discovered uri)"
       datatype: url
-      description: The token exchange endpoint
+      description: The token exchange endpoint.
     - group: Endpoint Authentication
-      description: normally not needed as the client authentication can be specified for the client
+      description: Parameters normally not needed as the client authentication can be specified for the client.
     - name: token_endpoint_auth_method
       required: false
       default: "(see: config.client_auth)"
@@ -1128,12 +1128,12 @@ params:
       required: false
       default: 
       datatype: array of string elements
-      description: Extra header names passed to the discovery endpoint
+      description: Extra header names passed to the discovery endpoint.
     - name: discovery_headers_values
       required: false
       default: 
       datatype: array of string elements
-      description: Extra header values passed to the discovery endpoint  
+      description: Extra header values passed to the discovery endpoint.  
     - group: Authorization Endpoint Arguments
     - name: response_mode
       required: false
@@ -1149,74 +1149,74 @@ params:
       required: false
       default: [ "code" ]
       datatype: array of string elements
-      description: The response type passed to the authorization endpoint
+      description: The response type passed to the authorization endpoint.
     - name: scopes
       required: false
       default: [ "openid" ]
       datatype: array of string elements
-      description: The scopes passed to the authorization and token endpoints
+      description: The scopes passed to the authorization and token endpoints.
     - name: audience
       required: false
       default: 
       datatype: array of string elements
-      description: The audience passed to the authorization endpoint
+      description: The audience passed to the authorization endpoint.
     - name: redirect_uri
       required: false
       default: "(request uri)" 
       datatype: array of urls (one for each client)
-      description: The redirect uri passed to the authorization and token endpoints
+      description: The redirect URI passed to the authorization and token endpoints.
     - name: authorization_query_args_names
       required: false
       default: 
       datatype: array of string elements
-      description: Extra query argument names passed to the authorization endpoint
+      description: Extra query argument names passed to the authorization endpoint.
     - name: authorization_query_args_values
       required: false
       default: 
       datatype: array of string elements
-      description: Extra query argument values passed to the authorization endpoint 
+      description: Extra query argument values passed to the authorization endpoint. 
     - name: authorization_query_args_client
       required: false
       default: 
       datatype: array of string elements
-      description: Extra query arguments passed from the client to the authorization endpoint
+      description: Extra query arguments passed from the client to the authorization endpoint.
     - group: Token Endpoint Arguments
     - name: token_headers_names
       required: false
       default: 
       datatype: array of string elements
-      description: Extra header names passed to the token endpoint
+      description: Extra header names passed to the token endpoint.
     - name: token_headers_values
       required: false
       default: 
       datatype: array of string elements
-      description: Extra header values passed to the token endpoint  
+      description: Extra header values passed to the token endpoint.  
     - name: token_headers_client
       required: false
       default: 
       datatype: array of string elements
-      description: Extra headers passed from the client to the token endpoint
+      description: Extra headers passed from the client to the token endpoint.
     - name: token_post_args_names
       required: false
       default: 
       datatype: array of string elements
-      description: Extra post argument names passed to the token endpoint
+      description: Extra post argument names passed to the token endpoint.
     - name: token_post_args_values
       required: false
       default: 
       datatype: array of string elements
-      description: Extra post argument values passed to the token endpoint
+      description: Extra post argument values passed to the token endpoint.
     - name: token_post_args_client
       required: false
       default: 
       datatype: array of string elements
-      description: Extra post arguments passed from the client to the token endpoint
+      description: Extra post arguments passed from the client to the token endpoint.
     - group: Token Endpoint Response Headers
-      description: An uncommon use case of sending certain token endpoint headers to the downstream client
+      description: Parameters for an uncommon use case of sending certain token endpoint headers to the downstream client.
     - name: token_headers_replay
       default: 
       datatype: array of string elements
-      description: The names of token endpoint response headers to forward to the downstream client
+      description: The names of token endpoint response headers to forward to the downstream client.
     - name: token_headers_prefix
       default: 
       datatype: string
@@ -1235,7 +1235,7 @@ params:
       required: false
       default: '"access_token"'
       datatype: string
-      description: Introspection hint parameter value passed to the introspection endpoint
+      description: Introspection hint parameter value passed to the introspection endpoint.
     - name: introspection_accept
       required: false
       default: '"application/json"'
@@ -1249,32 +1249,32 @@ params:
       required: false
       default: 
       datatype: array of string elements
-      description: Extra header names passed to the introspection endpoint
+      description: Extra header names passed to the introspection endpoint.
     - name: introspection_headers_values
       required: false
       default: 
       datatype: array of string elements
-      description: Extra header values passed to the introspection endpoint  
+      description: Extra header values passed to the introspection endpoint.
     - name: introspection_headers_client
       required: false
       default: 
       datatype: array of string elements
-      description: Extra headers passed from the client to the introspection endpoint
+      description: Extra headers passed from the client to the introspection endpoint.
     - name: introspection_post_args_names
       required: false
       default: 
       datatype: array of string elements
-      description: Extra post argument names passed to the introspection endpoint
+      description: Extra post argument names passed to the introspection endpoint.
     - name: introspection_post_args_values
       required: false
       default: 
       datatype: array of string elements
-      description: Extra post argument values passed to the introspection endpoint
+      description: Extra post argument values passed to the introspection endpoint.
     - name: introspection_post_args_client
       required: false
       default: 
       datatype: array of string elements
-      description: Extra post arguments passed from the client to the introspection endpoint
+      description: Extra post arguments passed from the client to the introspection endpoint.
     - group: User Info Endpoint Arguments
     - name: userinfo_accept
       required: false
@@ -1288,49 +1288,49 @@ params:
       required: false
       default: 
       datatype: array of string elements
-      description: Extra header names passed to the user info endpoint
+      description: Extra header names passed to the user info endpoint.
     - name: userinfo_headers_values
       required: false
       default: 
       datatype: array of string elements
-      description: Extra header values passed to the user info endpoint  
+      description: Extra header values passed to the user info endpoint.  
     - name: userinfo_headers_client
       required: false
       default: 
       datatype: array of string elements
-      description: Extra headers passed from the client to the user info endpoint
+      description: Extra headers passed from the client to the user info endpoint.
     - name: userinfo_query_args_names
       required: false
       default: 
       datatype: array of string elements
-      description: Extra query argument names passed to the user info endpoint
+      description: Extra query argument names passed to the user info endpoint.
     - name: userinfo_query_args_values
       required: false
       default: 
       datatype: array of string elements
-      description: Extra query argument values passed to the user info endpoint
+      description: Extra query argument values passed to the user info endpoint.
     - name: userinfo_query_args_client
       required: false
       default: 
       datatype: array of string elements
-      description: Extra query arguments passed from the client to the user info endpoint
+      description: Extra query arguments passed from the client to the user info endpoint.
     - group: HTTP Client
-      description: generic settings for HTTP client when the plugin needs to interact with the identity provider
+      description: Parameters for generic settings for the HTTP client when the plugin needs to interact with the identity provider.
     - name: keepalive
       required: false
       default: true
       datatype: boolean
-      description: Use keepalive with the HTTP client
+      description: Use keepalive with the HTTP client.
     - name: ssl_verify
       required: false
       default: false
       datatype: boolean
-      description: Verify identity provider server certificate
+      description: Verify identity provider server certificate.
     - name: timeout
       required: false
       default: 10000
       datatype: integer
-      description: Network IO timeout in milliseconds
+      description: Network IO timeout in milliseconds.
     - name: http_version
       required: false
       default: 1.1
@@ -1340,7 +1340,7 @@ params:
         - `1.1`: HTTP 1.1 (the default)
         - `1.0`: HTTP 1.0
     - group: HTTP Client Proxy Settings
-      description: only needed if the HTTP(S) requests to identity provider need to go through a proxy server
+      description: Parameters only needed if the HTTP(S) requests to identity provider need to go through a proxy server.
     - name: http_proxy
       required: false
       default: 
@@ -1350,7 +1350,7 @@ params:
       required: false
       default: 
       datatype: string
-      description: The HTTP proxy authorization      
+      description: The HTTP proxy authorization.      
     - name: https_proxy
       required: false
       default: 
@@ -1360,44 +1360,44 @@ params:
       required: false
       default: 
       datatype: string
-      description: The HTTPS proxy authorization      
+      description: The HTTPS proxy authorization.      
     - name: no_proxy
       required: false
       default: 
       datatype: array of string elements
-      description: Do not use proxy with these hosts
+      description: Do not use proxy with these hosts.
     - group: Cache TTLs
     - name: cache_ttl
       required: false
       default: 3600
       datatype: integer
-      description: The default cache ttl in seconds that is used in case the cached object does not specify the expiry
+      description: The default cache ttl in seconds that is used in case the cached object does not specify the expiry.
     - name: cache_ttl_max
       required: false
       default: 
       datatype: integer
-      description: The maximum cache ttl in seconds (enforced)
+      description: The maximum cache ttl in seconds (enforced).
     - name: cache_ttl_min
       required: false
       default: 
       datatype: integer
-      description: The minimum cache ttl in seconds (enforced)
+      description: The minimum cache ttl in seconds (enforced).
     - name: cache_ttl_neg
       required: false
       default: (derived from Kong configuration)
       datatype: integer
-      description: The negative cache ttl in seconds
+      description: The negative cache ttl in seconds.
     - name: cache_ttl_resurrect
       required: false
       default: (derived from Kong configuration)
       datatype: integer
-      description: The resurrection ttl in seconds
+      description: The resurrection ttl in seconds.
     - group: Cache Settings for the Endpoints
     - name: cache_tokens
       required: false
       default: true
       datatype: boolean
-      description: Cache the token endpoint requests?
+      description: Cache the token endpoint requests.
     - name: cache_tokens_salt
       required: false
       default: (auto generated)
@@ -1412,17 +1412,17 @@ params:
       required: false
       default: true
       datatype: boolean
-      description: Cache the introspection endpoint requests?         
+      description: Cache the introspection endpoint requests.         
     - name: cache_token_exchange
       required: false
       default: true
       datatype: boolean
-      description: Cache the token exchange endpoint requests?         
+      description: Cache the token exchange endpoint requests.         
     - name: cache_user_info
       required: false
       default: true
       datatype: boolean
-      description: Cache the user info requests?
+      description: Cache the user info requests.
   extra: |
     Once applied, any user with a valid credential can access the Service.
     To restrict usage to only some authenticated users, you can use authorization
@@ -1505,12 +1505,12 @@ jwks: |
 
 ## Records
 
-In above parameter list the two configuration settings used an array of records as a data type:
+In the above parameter list, two configuration settings used an array of records as a data type:
 
 - `config.client_jwk`: array of JWK records (one for each client)
 - `config.session_redis_cluster_nodes`: array of host records
 
-Here follows the description of the record types.
+Below are descriptions of the record types.
 
 ### JWK Record
 
@@ -1528,13 +1528,11 @@ Here is an example of JWK record generated by the plugin itself (see: [JSON Web 
 Host record used with the `config.session_redis_cluster_nodes` is a simple one. It just contains
 `ip` and `port` where the `port` defaults to `6379`.
 
-Here is example of Host record:
+Here is an example of Host record:
 
 ```json
 {{ page.host }}
 ``` 
-
----
 
 ## Admin API
 
@@ -1597,11 +1595,10 @@ HTTP 200 OK
 HTTP 204 No Content
 ```
 
-<div class="alert alert-warning">
-<strong>Note:</strong> The automatically generated session secret (that can be overridden with the
-<code>config.session_secret</code>) is stored with the discovery cache objects. Deleting discovery cache
+{:.note}
+> **Note:** The automatically generated session secret (that can be overridden with the
+`config.session_secret`) is stored with the discovery cache objects. Deleting discovery cache
 objects will invalidate all the sessions created with the associated secret.
-</div> 
 
 #### Delete Discovery Cache Object
 
@@ -1652,8 +1649,8 @@ HTTP 200 OK
 
 <div class="endpoint delete indent">/openid-connect/jwks</div>
 
-Deleting JWKS will also cause auto-generation of a new JWK set, thus it can be said that 
-the `DELETE` will actually cause a key rotation.
+Deleting JWKS will also cause auto-generation of a new JWK set, so 
+`DELETE` will actually cause a key rotation.
 
 ##### Response
 
@@ -1666,17 +1663,15 @@ HTTP 204 No Content
 [json-web-key-set]: #json-web-key-set
 
 
----
-
 ## Preparations
 
-The OpenID Connect plugin relies in the most cases on a 3rd party identity provider.
-In this section we go through configuration of Keycloak and Kong.
+The OpenID Connect plugin relies in most cases on a 3rd party identity provider.
+In this section, we explain configuration of Keycloak and Kong.
 
 ### Keycloak Configuration
 
 [Keycloak][keycloak] is used as the identity provider in the following examples.
-As the Keycloak is documented elsewhere, here is just a quick summary what
+As Keycloak is documented elsewhere, here is just a quick summary of what
 we have done one that side (you can also use any other standard identity provider):
 
 1. We created a confidential client `kong` with `private_key_jwt` authentication and pointed the
@@ -1801,16 +1796,14 @@ order for the credentials:
 9. [Authorization Code Flow](#authorization-code-flow)
 
 In case plugin finds credentials, it will stop searching other credentials. Some grants may
-use the same credentials, e.g., both password and client credentials grants can use credentials
+use the same credentials, in other words, both password and client credentials grants can use credentials
 from basic authentication header.
 
-<div class="alert alert-warning">
-Because the httpbin.org is used as an upstream service, it is highly recommend that you do
+{:.warning}
+> Because the httpbin.org is used as an upstream service, it is highly recommend that you do
 not run these usage examples with a production identity provider as there is great a chance
 of leaking information. Also the examples below use the plain HTTP protocol that you should
 never use in production. The choices here are for simplicity.
-</div>
-
 
 ### Authorization Code Flow
 
@@ -1822,15 +1815,15 @@ for this usage scenario, including the use of session cookies:
 
 #### Patch the Plugin
 
-Let's patch the plugin that we created on [Kong configuration](#kong-configuration) step:
+Let's patch the plugin that we created in the [Kong configuration](#kong-configuration) step:
 
-1. we want to only use the authorization code flow and the session authentication.
-2. we want to set the response mode to `form_post` so that authorization codes won't get logged to the access logs.
-3. we want to preserve the original request query arguments over the authorization code flow redirections.
-3. we want to redirect the client to original request url after the authorization code flow so that
+1. We want to only use the authorization code flow and the session authentication.
+2. We want to set the response mode to `form_post` so that authorization codes won't get logged to the access logs.
+3. We want to preserve the original request query arguments over the authorization code flow redirections.
+3. We want to redirect the client to original request url after the authorization code flow so that
    the `POST` request (because of `form_post`) is turned to the `GET` request, and the browser address bar is updated
    with the original request query arguments.
-4. we don't want to include any tokens in the browser address bar.
+4. We don't want to include any tokens in the browser address bar.
 
 ```bash
 http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
@@ -1865,13 +1858,13 @@ HTTP/1.1 200 OK
 
 #### Test the Authorization Code Flow
 
-1. Open Service Page with some query arguments:
+1. Open the Service Page with some query arguments:
    ```bash
    open http://service.test:8000/?hello=world 
    ```
    <img src="/assets/images/docs/openid-connect/authorization-code-flow-1.png">
    
-2. See that the browser is redirected to Keycloak login page:
+2. See that the browser is redirected to the Keycloak login page:
    <br><br>
    <img src="/assets/images/docs/openid-connect/authorization-code-flow-2.png">
    <br>
@@ -1882,22 +1875,22 @@ HTTP/1.1 200 OK
 4. Done.
    
 It looks rather simple from the user point of view, but what really happened is
-described on [the diagram](#authorization-code-flow) above.
+described in [the diagram](#authorization-code-flow) above.
 
 ### Password Grant
 
 Password grant is a legacy authentication grant. The password grant is a less
-secure way to authenticate the end users than the authorization code flow. For example
+secure way to authenticate the end users than the authorization code flow. For example,
 the passwords get shared with 3rd parties. The grant is rather simple though:
 
 <img src="/assets/images/docs/openid-connect/password-grant.svg">
 
 #### Patch the Plugin
 
-Let's patch the plugin that we created on [Kong configuration](#kong-configuration) step:
+Let's patch the plugin that we created in the [Kong configuration](#kong-configuration) step:
 
-1. we want to only use the password grant.
-2. we want to search credentials for password grant from the headers only.
+1. We want to only use the password grant.
+2. We want to search credentials for password grant from the headers only.
 
 ```bash
 http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
@@ -1923,7 +1916,7 @@ HTTP/1.1 200 OK
 
 #### Test the Password Grant
 
-1. Request the service with basic authentication credentials created on [Keycloak configuration](#keycloak-configuration) step:
+1. Request the service with basic authentication credentials created in the [Keycloak configuration](#keycloak-configuration) step:
    ```bash
    http -v -a john:doe :8000
    ```
@@ -1959,10 +1952,10 @@ below:
 
 #### Patch the Plugin
 
-Let's patch the plugin that we created on [Kong configuration](#kong-configuration) step:
+Let's patch the plugin that we created in the [Kong configuration](#kong-configuration) step:
 
-1. we want to only use the client credentials grant.
-2. we want to search credentials for client credentials from the headers only.
+1. We want to only use the client credentials grant.
+2. We want to search credentials for client credentials from the headers only.
 
 ```bash
 http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
@@ -1988,7 +1981,7 @@ HTTP/1.1 200 OK
 
 #### Test the Client Credentials Grant
 
-1. Request the service with client credentials created on [Keycloak configuration](#keycloak-configuration) step:
+1. Request the service with client credentials created in the [Keycloak configuration](#keycloak-configuration) step:
    ```bash
    http -v -a service:cf4c655a-0622-4ce6-a0de-d3353ef0b714 :8000
    ```
@@ -2014,7 +2007,7 @@ HTTP/1.1 200 OK
 
 ### Refresh Token Grant
 
-The refresh token grant can be used when the client has refresh token available. There is a caveat
+The refresh token grant can be used when the client has a refresh token available. There is a caveat
 with this: identity providers in general only allow refresh token grant to be executed with the same
 client that originally got the refresh token, and if there is a mismatch, it may not work. The mismatch
 is likely when Kong OpenID Connect is configured to use one client, and the refresh token is retrieved
@@ -2025,12 +2018,12 @@ with another. The grant itself is very similar to [password grant](#password-gra
 
 #### Patch the Plugin
 
-Let's patch the plugin that we created on [Kong configuration](#kong-configuration) step:
+Let's patch the plugin that we created in the [Kong configuration](#kong-configuration) step:
 
-1. we want to only use the refresh token grant, but we also enable [the password grant](#password-grant) for demoing purposes
-2. we want to search the refresh token for the refresh token grant from the headers only.
-3. we want to pass refresh token from the client in `Refresh-Token` header.
-4. we want to pass refresh token to upstream in `Refresh-Token` header.
+1. We want to only use the refresh token grant, but we also enable [the password grant](#password-grant) for demoing purposes
+2. We want to search the refresh token for the refresh token grant from the headers only.
+3. We want to pass refresh token from the client in `Refresh-Token` header.
+4. We want to pass refresh token to upstream in `Refresh-Token` header.
 
 ```bash
 http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
@@ -2108,18 +2101,18 @@ We can use the output in `Refresh-Token` header.
 
 For legacy reasons, the stateless `JWT Access Token` authentication is named `bearer` with the Kong
 OpenID Connect plugin (see: `config.auth_methods`). Stateless authentication basically means
-the signature verification using the identity provider published public keys, and the standard
+the signature verification using the identity provider published public keys and the standard
 claims' verification (such as `exp` (or expiry)). The client may have received the token directly
-from the identity provider, or by other means. It is simple:
+from the identity provider or by other means. It is simple:
 
 <img src="/assets/images/docs/openid-connect/bearer-authentication.svg">
 
 #### Patch the Plugin
 
-Let's patch the plugin that we created on [Kong configuration](#kong-configuration) step:
+Let's patch the plugin that we created in the [Kong configuration](#kong-configuration) step:
 
-1. we want to only use the bearer authentication, but we also enable [the password grant](#password-grant) for demoing purposes
-2. we want to search the bearer token for the bearer authentication from the headers only.
+1. We want to only use the bearer authentication, but we also enable [the password grant](#password-grant) for demoing purposes
+2. We want to search the bearer token for the bearer authentication from the headers only.
 
 ```bash
 http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
@@ -2148,8 +2141,8 @@ HTTP/1.1 200 OK
 ```
 
 The [password grant](#password-grant) is enabled so that we can get a JWT access token that we can use
-to show how the JWT access token authentication works. That is: we need a token. One way to get JWT access token
-is to issue following call (we use [jq](https://stedolan.github.io/jq/) to filter the response):
+to show how the JWT access token authentication works. That is: we need a token. One way to get a JWT access token
+is to issue the following call (we use [jq](https://stedolan.github.io/jq/) to filter the response):
 
 ```bash
 http -a john:doe :8000 | jq -r .headers.Authorization
@@ -2192,8 +2185,8 @@ We can use the output in `Authorization` header.
 ### Introspection Authentication
 
 As with [JWT Access Token Authentication](#jwt-access-token-authentication)), the introspection authentication
-relies on a bearer token that the client has already got from somewhere. The difference to stateless
-JWT authentication is that the plugin needs to call introspection endpoint of the identity provider
+relies on a bearer token that the client has already gotten from somewhere. The difference to stateless
+JWT authentication is that the plugin needs to call the introspection endpoint of the identity provider
 to find out whether the token is valid and active. This makes it possible to issue opaque tokens to
 the clients.
 
@@ -2201,10 +2194,10 @@ the clients.
 
 #### Patch the Plugin
 
-Let's patch the plugin that we created on [Kong configuration](#kong-configuration) step:
+Let's patch the plugin that we created in the [Kong configuration](#kong-configuration) step:
 
-1. we want to only use the introspection authentication, but we also enable [the password grant](#password-grant) for demoing purposes
-2. we want to search the bearer token for the introspection from the headers only.
+1. We want to only use the introspection authentication, but we also enable [the password grant](#password-grant) for demoing purposes
+2. We want to search the bearer token for the introspection from the headers only.
 
 ```bash
 http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
@@ -2265,17 +2258,17 @@ HTTP/1.1 200 OK
 The user info authentication uses OpenID Connect standard user info endpoint to verify the access token.
 In most cases it is preferable to use [Introspection Authentication](#introspection-authentication)
 as that is meant for retrieving information from the token itself, whereas the user info endpoint is
-meant for retrieving information about the user to which the token was given to. The sequence
+meant for retrieving information about the user for whom the token was given. The sequence
 diagram below looks almost identical to introspection authentication:
 
 <img src="/assets/images/docs/openid-connect/userinfo-authentication.svg">
 
 #### Patch the Plugin
 
-Let's patch the plugin that we created on [Kong configuration](#kong-configuration) step:
+Let's patch the plugin that we created in the [Kong configuration](#kong-configuration) step:
 
-1. we want to only use the user info authentication, but we also enable [the password grant](#password-grant) for demoing purposes
-2. we want to search the bearer token for the user info from the headers only.
+1. We want to only use the user info authentication, but we also enable [the password grant](#password-grant) for demoing purposes
+2. We want to search the bearer token for the user info from the headers only.
 
 ```bash
 http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
@@ -2353,11 +2346,11 @@ or [introspection authentication](#introspection-authentication):
      client_secret=secret                         \
      hash_secret=true
    ```
-3. Create a Route
+3. Create a Route:
    ```bash
    http -f put :8001/routes/auth paths=/auth
    ```
-4. Apply OAuth plugin to the Route
+4. Apply OAuth plugin to the Route:
    ```bash
    http -f put :8001/plugins/7cdeaa2d-5faf-416d-8df5-533d1e4cd2c4 \
      name=oauth2                                                  \
@@ -2399,10 +2392,10 @@ Output:
    
 #### Patch the Plugin
 
-Let's patch the plugin that we created on [Kong configuration](#kong-configuration) step:
+Let's patch the plugin that we created in the [Kong configuration](#kong-configuration) step:
 
-1. we want to only use the Kong OAuth authentication
-2. we want to search the bearer token for the Kong OAuth authentication from the headers only.
+1. We want to only use the Kong OAuth authentication
+2. We want to search the bearer token for the Kong OAuth authentication from the headers only.
 
 ```bash
 http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
@@ -2463,8 +2456,8 @@ HTTP/1.1 200 OK
 ### Session Authentication
 
 Kong OpenID Connect plugin can issue a session cookie that can be used for further
-session authentication. To make OpenID Connect to issue a session cookie, you need
-to first authenticate with one of the other grant / flow described above. In
+session authentication. To make OpenID Connect issue a session cookie, you need
+to first authenticate with one of the other grant / flows described above. In
 [authorization code flow](#authorization-code-flow) we already demonstrated session
 authentication when we used the redirect login action. The session authentication
 is described below:
@@ -2473,9 +2466,9 @@ is described below:
 
 #### Patch the Plugin
 
-Let's patch the plugin that we created on [Kong configuration](#kong-configuration) step:
+Let's patch the plugin that we created in the [Kong configuration](#kong-configuration) step:
 
-1. we want to only use the session authentication, but we also enable [the password grant](#password-grant) for demoing purposes
+1. We want to only use the session authentication, but we also enable [the password grant](#password-grant) for demoing purposes
 
 ```bash
 http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
@@ -2504,7 +2497,7 @@ HTTP/1.1 200 OK
 
 #### Test the Session Authentication
 
-1. Request the service with basic authentication credentials (created on [Keycloak configuration](#keycloak-configuration) step),
+1. Request the service with basic authentication credentials (created in the [Keycloak configuration](#keycloak-configuration) step),
    and store the session:
    ```bash
    http -v -a john:doe --session=john :8000 
@@ -2550,7 +2543,7 @@ HTTP/1.1 200 OK
 
 ## Authorization
 
-Before you proceed, check that you have done [the preparations](#preparations).
+Before you proceed, check that you have completed [the preparations](#preparations).
 
 The OpenID Connect plugin has several features to do coarse grained authorization:
 
@@ -2560,7 +2553,7 @@ The OpenID Connect plugin has several features to do coarse grained authorizatio
 
 ### Claims Based Authorization
 
-With claims verification you have a couple of configuration options that all work the same, and that
+With claims verification, you have a couple of configuration options that all work the same and that
 can be used for the authorization:
 
 1. `config.scopes_claim` and `config.scopes_required`
@@ -2568,10 +2561,10 @@ can be used for the authorization:
 3. `config.groups_claim` and `config.groups_required`
 4. `config.roles_claim` and `config.roles_required`
 
-The first configuration option, e.g. `config.scopes_claim`, points to a source, from which the value is
+The first configuration option, for example `config.scopes_claim`, points to a source, from which the value is
 retrieved and checked against the value of the second configuration option, in this case `config.scopes_required`.
 
-Let's take a look of an JWT access token:
+Let's take a look at a JWT access token:
 
 1. Patch the plugin to enable the password grant:
    ```bash
@@ -2610,13 +2603,13 @@ Let's take a look of an JWT access token:
    ```
    This payload may contain arbitrary claims, such as user roles and groups,
    but as we didn't configure them in Keycloak, let's just use the claims that
-   we got. In this case we want to authorize against the values in `scope` claim.
+   we have. In this case we want to authorize against the values in `scope` claim.
 
-Let's patch the plugin that we created on [Kong configuration](#kong-configuration) step:
+Let's patch the plugin that we created in the [Kong configuration](#kong-configuration) step:
 
-1. we want to only use the password grant for demonstration purposes
-2. we require the value `openid` and `email` to be present in `scope` claim of
-   the access token
+1. We want to only use the password grant for demonstration purposes.
+2. We require the value `openid` and `email` to be present in `scope` claim of
+   the access token.
 
 ```bash
 http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
@@ -2688,7 +2681,7 @@ HTTP/1.1 200 OK
 }
 ```
 
-As we know, the access token has `"aud": "account"`, and that does not match with the `"httpbin"`,
+As we know, the access token has `"aud": "account"`, and that does not match with `"httpbin"`, so
 the request should now be forbidden:
 
 ```bash
@@ -2704,7 +2697,7 @@ HTTP/1.1 403 Forbidden
 ```
 
 A few words about `config.scopes_claim` and `config.scores_required` (and the similar configuration options).
-You may have noticed that `config.scopes_claim` is an array of string elements. Why is it? It is used to traverse
+You may have noticed that `config.scopes_claim` is an array of string elements. Why? It is used to traverse
 the JSON when looking up a claim, take for example this imaginary payload:
 
 ```json
@@ -2720,10 +2713,10 @@ the JSON when looking up a claim, take for example this imaginary payload:
 ```
 
 In this case you would probably want to use `config.groups_claim` to point to `groups` claim, but that claim
-is not a top-level claim, thus you need to traverse there:
+is not a top-level claim, so you need to traverse there:
 
-1. first find the `user` claim, and under it
-2. find the the `groups` claim, and read the value
+1. Find the `user` claim and under it.
+2. Find the the `groups` claim, and read the value:
 
 ```json
 {
@@ -2744,7 +2737,7 @@ http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
   config.groups_claim=groups
 ```
 
-The value of claim can be:
+The value of a claim can be the following:
 
 - a space separated string (such as `scope` claim usually is)
 - an JSON array of strings (such as the imaginary `groups` claim above)
@@ -2779,7 +2772,7 @@ http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
   config.groups_required="super-admins"
 ```
 
-The above means that claim has to have:
+The above means that a claim has to have:
 1. `employee` **and** `marketing` values in it, **OR**
 2. `super-admins` value in it
 
@@ -2875,10 +2868,10 @@ HTTP/1.1 403 Forbidden
 
 ### Consumer Authorization
 
-The third option for authorization is to use Kong consumers, and dynamically map
+The third option for authorization is to use Kong consumers and dynamically map
 from a claim value to a Kong consumer. This means that we restrict the access to
 only those that do have a matching Kong consumer. Kong consumers can have ACL
-groups attached to them, and thus can be further authorized with the 
+groups attached to them and be further authorized with the 
 [Kong ACL Plugin](/hub/kong-inc/acl/).
 
 As a remainder our token payload looks like this:
@@ -2979,13 +2972,13 @@ HTTP/1.1 200 OK
 }
 ```
 
-Nice, as you can see the plugin even added the `X-Consumer-Id` and `X-Consumer-Username` as a request headers.
+Nice, as you can see the plugin even added the `X-Consumer-Id` and `X-Consumer-Username` as request headers.
 
 > It is possible to make consumer mapping optional and non-authorizing by setting the `config.consumer_optional=true`.
 
 ## Headers
 
-Before you proceed, check that you have done [the preparations](#preparations).
+Before you proceed, check that you have completed [the preparations](#preparations).
 
 The OpenID Connect plugin can pass claim values, tokens, JWKs, and the session identifier to the upstream service
 in request headers, and to the downstream client in response headers. By default, the plugin passes an access token
@@ -3010,7 +3003,7 @@ Let's take a look for an access token payload:
 }
 ```
 
-To pass `preferred_username` claim's value `john` to upstream with an `Authenticated-User` header,
+To pass the `preferred_username` claim's value `john` to the upstream with an `Authenticated-User` header,
 we need to patch our plugin:
 
 ```bash
@@ -3060,9 +3053,9 @@ See the [configuration parameters](#parameters) for other options.
 ## Logout
 
 The logout functionality is mostly useful together with [session authentication](#session-authentication)
-that on the other hand is mostly useful with [authorization code flow](#authorization-code-flow).
+that is mostly useful with [authorization code flow](#authorization-code-flow).
 
-As part of the logout the OpenID Connect plugin implements several features:
+As part of the logout, the OpenID Connect plugin implements several features:
 
 - session invalidation
 - token revocation
@@ -3128,7 +3121,7 @@ HTTP/1.1 200 OK
 > that makes it to store the original basic authentication credentials in
 > a session - not just the session cookies.
 
-At this point the client has logged out from both Kong, and the identity provider (Keycloak).
+At this point the client has logged out from both Kong and the identity provider (Keycloak).
 
 Check that the session is really gone:
 
@@ -3142,14 +3135,14 @@ HTTP/1.1 401 Unauthorized
 ## Debugging
 
 The OpenID Connect plugin is pretty complex, and it has to integrate with a 3rd party
-identity provider. This makes it a slightly more difficult to debug. In case you have
+identity provider. This makes it slightly more difficult to debug. If you have
 issues with the plugin or integration, try the following:
 
-1. set Kong [log level](/enterprise/latest/property-reference/#log_level) to `debug`, and check the Kong `error.log` (you can filter it with `openid-connect`)
+1. Set Kong [log level](/enterprise/latest/property-reference/#log_level) to `debug`, and check the Kong `error.log` (you can filter it with `openid-connect`)
    ```bash
    KONG_LOG_LEVEL=debug kong restart
    ```
-2. set the Kong OpenID Connect plugin to display errors:
+2. Set the Kong OpenID Connect plugin to display errors:
    ```json
    {
        "config": {                     
@@ -3157,7 +3150,7 @@ issues with the plugin or integration, try the following:
        }
    }
    ```
-3. disable the Kong OpenID Connect plugin verifications and see if you get further, but do it just for debugging purposes:
+3. Disable the Kong OpenID Connect plugin verifications and see if you get further, just for debugging purposes:
    ```json
    {
        "config": {                     
@@ -3167,7 +3160,7 @@ issues with the plugin or integration, try the following:
        }
    }
    ```
-4. see what kind of tokens the Kong OpenID Connect plugin gets:
+4. See what kind of tokens the Kong OpenID Connect plugin gets:
    ```json
    {
        "config": {                     
@@ -3189,10 +3182,10 @@ issues with the plugin or integration, try the following:
    ```
 
 With session related issues, you can try to store the session data in `Redis` or `memcache` as that will make the session
-cookie a much smaller. It is rather common that big cookies do cause issues. There is also possibility to enable session
+cookie much smaller. It is rather common that big cookies do cause issues. You can also enable session
 compression.
 
-Also try to eliminate the indirection as that makes it easier to find out where the problem is. By indirection, we
+Also try to eliminate indirection as that makes it easier to find out where the problem is. By indirection, we
 mean other gateways, load balancers, NATs, and such in front of Kong. If there is such, you may look at using:
 
 - [port maps](/enterprise/latest/property-reference/#port_maps)
