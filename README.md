@@ -86,7 +86,7 @@ Run the project:
 npm start
 ```
 
-## Plug-in contributors
+## Plugin contributors
 ***
 
 If you have contributed a plug-in, we welcome you to add a Kong badge to your plug-in README.
