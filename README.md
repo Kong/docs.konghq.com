@@ -12,7 +12,15 @@ Here are some things to know before you get started:
 
 * **We need more help in some areas**. We'd especially love some help with [plugin](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub) documentation. 
 
-* **Our _Admin API_ docs are auto-generated**. That means that all PRs for ADMIN API should be open over at the [Kong/kong](https://github.com/Kong/kong) repository.
+* **Some of our docs are auto-generated**. 
+    * Admin API
+    * [Configuration reference](https://docs.konghq.com/gateway-oss/latest/configuration/)
+    * [CLI reference](https://docs.konghq.com/gateway-oss/latest/cli/)
+    * [Upgrade guide](https://docs.konghq.com/gateway-osslatest/upgrading/) 
+
+All PRs for ADMIN API should be open over at the [Kong/kong](https://github.com/Kong/kong) repository.
+
+For [Gateway Enterprise configuration reference](https://docs.konghq.com/enterprise/latest/property-reference/) and [PDK reference](https://docs.konghq.com/gateway-oss/latest/pdk/) documentation, open an issue on this repo and we'll update the docs. 
 
 * **Community is a priority for us**. Before submitting an issue or PR, please review our [Contributing Guide](https://docs.konghq.com/contributing/).
 
