@@ -10,7 +10,7 @@ Here are some things to know before you get started:
 
 * **We're beginner-friendly**. Whether you're a Technical Writer getting into code-as-docs or an engineer practicing your documentation skills, we highly encourage your involvement in our project. If you'd like to contribute and don't have something in mind already, head on over to [Issues](https://github.com/Kong/docs.konghq.com/issues). We've added `good first issue` labels on beginner-friendly issues.
 
-* **We need more help in some areas**. We'd especially love some help with [plug-in](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub) documentation. 
+* **We need more help in some areas**. We'd especially love some help with [plugin](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub) documentation. 
 
 * **Our _Admin API_ docs are auto-generated**. That means that all PRs for ADMIN API should be open over at the [Kong/kong](https://github.com/Kong/kong) repository.
 
