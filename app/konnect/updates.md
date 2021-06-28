@@ -9,6 +9,11 @@ from a single, cloud-based control plane, and provides a catalog of all deployed
 services.
 
 ## June 2021
+### 2021.06.24
+**Global plugin support**
+: You can now configure global plugins through {{site.konnect_saas}}. Visit the
+new plugin configuration page through [shared configuration](https://konnect.konghq.com/configuration/)
+and select the **Plugin** menu option to get started.
 
 ### 2021.06.21
 **{{site.base_gateway}} 2.4.1.1 support**
