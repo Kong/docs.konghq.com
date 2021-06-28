@@ -6,20 +6,12 @@ version: 1.0.0
 desc: Control which Consumers can access Services
 description: |
   Restrict access to a Service or a Route by adding Consumers to allowed or
-  denied lists using arbitrary ACL group names. This plugin requires an
+  denied lists using arbitrary ACL groups. This plugin requires an
   [authentication plugin](/hub/#authentication) (such as
   [Basic Authentication](/hub/kong-inc/basic-auth/),
   [Key Authentication](/hub/kong-inc/key-auth/), [OAuth 2.0](/hub/kong-inc/oauth2/),
   and [OpenID Connect](/hub/kong-inc/openid-connect/))
   to have been already enabled on the Service or Route.
-
-  <div class="alert alert-warning">
-    <strong>Note:</strong> The functionality of this plugin as bundled
-    with versions of Kong prior to 0.14.1 and Kong Enterprise prior to 0.34
-    differs from what is documented herein. Refer to the
-    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
-    for details.
-  </div>
 
 type: plugin
 categories:
@@ -70,7 +62,7 @@ params:
   dbless_explanation: |
     Consumers and ACLs can be created with declarative configuration.
     
-    Admin API endpoints that do POST, PUT, PATCH or DELETE on ACLs will not work on DB-less mode.
+    Admin API endpoints that POST, PUT, PATCH or DELETE ACLs will not work on DB-less mode.
   config:
     - name: allow
       required: semi
@@ -93,7 +85,7 @@ params:
       description: |
         Flag that if enabled (`true`), prevents the `X-Consumer-Groups` header to be sent in the request to the Upstream service.
   extra: |
-    Note that the `allow` and `deny` models are mutually exclusive in their usage, as they provide complimentary approaches. That is, you cannot configure an ACL with both `allow` and `deny` configurations. An ACL with an `allow` provides a positive security model, in which the configured groups are allowed access to the resources, and all others are inherently rejected. By contrast, a `deny` configuration provides a negative security model, in which certain groups are explicitly denied access to the resource (and all others are inherently allowed).
+    Note that you cannot configure an ACL with both `allow` and `deny` configurations. An ACL with an `allow` provides a positive security model, in which the configured groups are allowed access to the resources, and all others are inherently rejected. By contrast, a `deny` configuration provides a negative security model, in which certain groups are explicitly denied access to the resource (and all others are  allowed).
 ---
 
 ### Usage
@@ -106,7 +98,7 @@ so that the plugin can identify the client Consumer making the request.
   <strong>Note:</strong> We support <a href="https://docs.konghq.com/enterprise/2.4.x/support-policy/">compatibility</a> with Kong version 1.5 or greater. 
 </div>
 
-#### Associate Consumers
+#### Associate Consumers to an ACL
 
 {% navtabs %}
 {% navtab With a database %}
@@ -129,16 +121,16 @@ form parameter        | default| description
 
 {% endnavtab %}
 {% navtab Without a database %}
-You can create ACL objects via the `acls:` entry in the declarative configuration file:
+You can create ACL objects via the `acls` entry in the declarative configuration file:
 
 ``` yaml
 acls:
-- consumer: { consumer }
+- consumer: {CONSUMER}
   group: group1
   tags: { tag1 }
 ```
 
-* `consumer`: The `id` or `username` property of the Consumer entity to associate the credentials to.
+* `CONSUMER`: The `id` or `username` property of the Consumer entity to associate the credentials to.
 * `group`: The arbitrary group name to associate to the Consumer.
 * `tags`: Optional descriptor tags for the group. 
 {% endnavtab %}
@@ -193,7 +185,7 @@ curl -X GET http://{HOST}:8001/acls
 Retrieves ACLs by Consumer. 
 
 ```bash
-curl -X GET http://{HOST}:8001/consumers/{USERNAME_OR_ID}/acls
+curl -X GET http://{HOST}:8001/consumers/{CONSUMER}/acls
 
 {
     "total": 1,
@@ -208,14 +200,14 @@ curl -X GET http://{HOST}:8001/consumers/{USERNAME_OR_ID}/acls
 }
 ```
 
-`USERNAME_OR_ID`: The username or id of the Consumer whose ACLs need to be listed
+`CONSUMER`: The `username` or `id` of the Consumer.
 
 #### Retrieve Consumer by ID
 
 Retrieves a Consumer by ID if the ACL belongs to the specified Consumer. 
 
 ```bash
-curl -X GET 'http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}'
+curl -X GET http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}
 
 {
     "group": "foo-group",
@@ -279,7 +271,7 @@ curl -X POST http://{HOST}:8001/consumers/{CONSUMER}/acls \
     "created_at": 1511391159000,
     "id": "724d1be7-c39e-443d-bf36-41db17452c75",
     "consumer": { "id": "89a41fef-3b40-4bb0-b5af-33da57a7ffcf" }
-},
+}
 ```
 
 `CONSUMER`: The `username` property of the Consumer entity.
