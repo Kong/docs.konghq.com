@@ -49,7 +49,7 @@
   "devDependencies": {
     "bootstrap": "3.4.1",
     "broken-link-checker": "0.7.8",
-    "browser-sync": "2.26.14",
+    "browser-sync": "2.27.3",
     "cloudflare": "2.7.0",
     "del": "6.0.0",
     "echint": "4.0.2",
