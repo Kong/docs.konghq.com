@@ -98,11 +98,15 @@ params:
 
 ### Usage
 
-Before you use the ACL plugin, you need to have properly configured your Service or
+Before you use the ACL plugin, configure your Service or
 Route with an [authentication plugin](/hub/#authentication)
 so that the plugin can identify the client Consumer making the request.
 
-#### Associating Consumers
+<div class="alert alert-warning">
+  <strong>Note:</strong> We support <a href="https://docs.konghq.com/enterprise/2.4.x/support-policy/">compatibility</a> with Kong version 1.5 or greater. 
+</div>
+
+#### Associate Consumers
 
 {% navtabs %}
 {% navtab With a database %}
@@ -112,15 +116,17 @@ created your [Consumers](/gateway-oss/latest/admin-api/#consumer-object), you ca
 associate a group to a Consumer using the following request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer}/acls \
-    --data "group=group1"
+curl -X POST http://{HOST}:8001/consumers/{CONSUMER}/acls \
+    --data "group=group1, tags={'tag1', 'tag2'}"
 ```
 
-`consumer`: The `id` or `username` property of the Consumer entity to associate the credentials to.
+`CONSUMER`: The `username` property of the Consumer entity to associate the credentials to.
 
 form parameter        | default| description
 ---                   | ---    | ---
-`group`               |        | The arbitrary group name to associate to the consumer.
+`group`               |        | The arbitrary group name to associate with the consumer.
+`tags`                |        | Optional descriptor tags for the group. 
+
 {% endnavtab %}
 {% navtab Without a database %}
 You can create ACL objects via the `acls:` entry in the declarative configuration file:
@@ -129,10 +135,12 @@ You can create ACL objects via the `acls:` entry in the declarative configuratio
 acls:
 - consumer: { consumer }
   group: group1
+  tags: { tag1 }
 ```
 
 * `consumer`: The `id` or `username` property of the Consumer entity to associate the credentials to.
 * `group`: The arbitrary group name to associate to the Consumer.
+* `tags`: Optional descriptor tags for the group. 
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -148,17 +156,12 @@ comma-separated list of groups that belong to the Consumer, like `admin, pro_use
 This header will not be injected in the request to the Upstream service if
 the `hide_groups_header` config flag is set to `true`.
 
-#### Paginate through the ACLs
+#### Return ACLs
 
-<div class="alert alert-warning">
-  <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
-</div>
-
-You can retrieve all the ACLs for all Consumers using the following
-request:
+Retrieves paginated ACLs. 
 
 ```bash
-$ curl -X GET http://kong:8001/acls
+curl -X GET http://{HOST}:8001/acls
 
 {
     "total": 3,
@@ -185,10 +188,12 @@ $ curl -X GET http://kong:8001/acls
 }
 ```
 
-You can filter the list by Consumer by using this other path:
+#### Retrieve ACLs by Consumer
+
+Retrieves ACLs by Consumer. 
 
 ```bash
-$ curl -X GET http://kong:8001/consumers/{username or id}/acls
+curl -X GET http://{HOST}:8001/consumers/{USERNAME_OR_ID}/acls
 
 {
     "total": 1,
@@ -203,19 +208,34 @@ $ curl -X GET http://kong:8001/consumers/{username or id}/acls
 }
 ```
 
-`username or id`: The username or id of the Consumer whose ACLs need to be listed
+`USERNAME_OR_ID`: The username or id of the Consumer whose ACLs need to be listed
+
+#### Retrieve Consumer by ID
+
+Retrieves a Consumer by ID if the ACL belongs to the specified Consumer. 
+
+```bash
+curl -X GET 'http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}'
+
+{
+    "group": "foo-group",
+    "created_at": 1511391159000,
+    "id": "724d1be7-c39e-443d-bf36-41db17452c75",
+    "consumer": { "id": "89a41fef-3b40-4bb0-b5af-33da57a7ffcf" }
+}
+```
+
+`CONSUMER`: The `username` property of the Consumer entity.
+
+`ID`: The Consumer ID.  
 
 #### Retrieve the Consumer associated with an ACL
 
-<div class="alert alert-warning">
-  <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
-</div>
-
-Retrieve a Consumer associated with an ACL
+Retrieves a Consumer associated with an ACL
 using the following request:
 
 ```bash
-curl -X GET http://kong:8001/acls/{id}/consumer
+curl -X GET http://{HOST}:8001/acls/{ID}/consumer
 
 {
    "created_at":1507936639000,
@@ -224,9 +244,57 @@ curl -X GET http://kong:8001/acls/{id}/consumer
 }
 ```
 
-`id`: The `id` property of the ACL for which to get the associated
+`ID`: The `id` property of the ACL for which to get the associated
 Consumer.
 
+#### Upsert an ACL group name
+
+Upserts the group name of the ACL. 
+
+```bash
+curl -X PUT 'http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}'
+
+{
+    "group": "foo-group",
+    "created_at": 1511391159000,
+    "id": "724d1be7-c39e-443d-bf36-41db17452c75",
+    "consumer": { "id": "89a41fef-3b40-4bb0-b5af-33da57a7ffcf" }
+}
+```
+
+`CONSUMER`: The `username` property of the Consumer entity.
+
+`ID`: The Consumer ID.  
+
+#### Update an ACL group by ID
+
+Updates an ACL group name by passing a new group name. 
+
+```bash
+curl -X POST http://{HOST}:8001/consumers/{CONSUMER}/acls \
+    --data "group=group1"
+
+{
+    "group": "group1",
+    "created_at": 1511391159000,
+    "id": "724d1be7-c39e-443d-bf36-41db17452c75",
+    "consumer": { "id": "89a41fef-3b40-4bb0-b5af-33da57a7ffcf" }
+},
+```
+
+`CONSUMER`: The `username` property of the Consumer entity.
+
+`group`: The arbitrary group name to associate to the Consumer.
+
+#### Delete an ACL group
+
+Deletes an ACL group by ID or group. 
+
+```bash
+curl -X DELETE http://{HOST}:8001/consumers/{CONSUMER}/acls 
+```
+
+A successful DELETE request return a `204` status. 
+
 #### See also
-- [cidr](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
 - [configuration](/gateway-oss/latest/configuration)
