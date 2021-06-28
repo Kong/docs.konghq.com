@@ -89,7 +89,7 @@ npm start
 ## Plugin contributors
 ***
 
-If you have contributed a plug-in, we welcome you to add a Kong badge to your plug-in README.
+If you have contributed a plugin, we welcome you to add a Kong badge to your plugin README.
 
 Use the following where you replace `test` with your plug-in name and `link-to-docs` with a link to the Kong docs for your plug-in. 
 
