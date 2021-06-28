@@ -11,13 +11,13 @@ type: plugin
 desc: User Behavior API analytics and observability  
 
 description: |
-  Monitor API logs and usage metrics in [Moesif](https://www.moesif.com/solutions/track-api-program?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong), which enables you to:
+  Monitor API logs and usage metrics in [Moesif](https://www.moesif.com/solutions/track-api-program?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}, which enables you to:
 
-  * [Understand customer API usage](https://www.moesif.com/features/api-analytics?utm_medium=docs&utm_campaign=partners&utm_source=kong) and the value they bring.
-  * [Debug issues quickly](https://www.moesif.com/features/api-logs?utm_medium=docs&utm_campaign=partners&utm_source=kong) with high-cardinality API logs and metrics.
-  * [Get alerted](https://www.moesif.com/features/api-monitoring?utm_medium=docs&utm_campaign=partners&utm_source=kong) of problems and anomalous behavior.
-  * [Trigger behavioral emails](https://www.moesif.com/features/user-behavioral-emails?utm_medium=docs&utm_campaign=partners&utm_source=kong) warning customers of issues.
-  * [Detect and Block API threats](https://www.moesif.com/solutions/api-security?utm_medium=docs&utm_campaign=partners&utm_source=kong) and abuse including OWASP Top 10 API threats.
+  * [Understand customer API usage](https://www.moesif.com/features/api-analytics?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"} and the value they bring.
+  * [Debug issues quickly](https://www.moesif.com/features/api-logs?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"} with high-cardinality API logs and metrics.
+  * [Get alerted](https://www.moesif.com/features/api-monitoring?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"} of problems and anomalous behavior.
+  * [Trigger behavioral emails](https://www.moesif.com/features/user-behavioral-emails?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"} warning customers of issues.
+  * [Detect and Block API threats](https://www.moesif.com/solutions/api-security?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"} and abuse including OWASP Top 10 API threats.
 
   This plugin supports automatic analysis of high-volume REST, GraphQL, and other APIs without adding latency.
 
@@ -76,7 +76,7 @@ params:
       required: true
       default:
       value_in_examples: MY_MOESIF_APPLICATION_ID
-      description: Your Moesif Application Id from your [Moesif](http://www.moesif.com) dashboard. Go to Top Right Menu -> Installation.
+      description: Your Moesif Application Id from your [Moesif](http://www.moesif.com){:target="_blank"}{:rel="noopener noreferrer"} dashboard. Go to Top Right Menu -> Installation.
     - name: api_endpoint
       required: false
       default: "`https://api.moesif.net`"
@@ -182,10 +182,10 @@ params:
 ### How it works
 
 When enabled, this plugin captures API traffic and logs it to
-[Moesif API Analytics](https://www.moesif.com/?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong). 
-This plugin logs to Moesif with an [asynchronous design](https://www.moesif.com/enterprise/api-analytics-infrastructure?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong) and doesn't add any latency to your API calls.
+[Moesif API Analytics](https://www.moesif.com/?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}. 
+This plugin logs to Moesif with an [asynchronous design](https://www.moesif.com/enterprise/api-analytics-infrastructure?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"} and doesn't add any latency to your API calls.
 
-[Package on Luarocks](http://luarocks.org/modules/moesif/kong-plugin-moesif)
+[Package on Luarocks](http://luarocks.org/modules/moesif/kong-plugin-moesif){:target="_blank"}{:rel="noopener noreferrer"}
 
 Moesif natively supports REST, GraphQL, Web3, SOAP, JSON-RPC, and more.
 
