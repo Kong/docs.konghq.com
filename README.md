@@ -16,7 +16,7 @@ Here are some things to know before you get started:
     * [Admin API](https://docs.konghq.com/gateway-oss/)
     * [Configuration reference](https://docs.konghq.com/gateway-oss/latest/configuration/)
     * [CLI reference](https://docs.konghq.com/gateway-oss/latest/cli/)
-    * [Upgrade guide](https://docs.konghq.com/gateway-osslatest/upgrading/) 
+    * [Upgrade guide](https://docs.konghq.com/gateway-oss/latest/upgrading/) 
 
 All PRs for these docs should be opened over at the [Kong/kong](https://github.com/Kong/kong) repository.
 
