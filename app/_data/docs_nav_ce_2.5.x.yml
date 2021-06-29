@@ -201,11 +201,12 @@
   url: /admin-api/
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
   items:
-    - text: DB-less
-      url: /db-less-admin-api
+
+    - text: DB-less Mode
+      url: /admin-api/#db-less-mode
 
     - text: Declarative Configuration
-      url: /db-less-admin-api/#declarative-configuration
+      url: /admin-api/#declarative-configuration
 
     - text: Supported Content Types
       url: /admin-api/#supported-content-types
@@ -227,6 +228,9 @@
 
         - text: Retrieve Plugin Schema
           url: /admin-api/#retrieve-plugin-schema
+
+        - text: Validate A Plugin Configuration against The Schema
+          url: /admin-api/#validate-a-plugin-configuration-against-the-schema
 
     - text: Health Routes
       url: /admin-api/#health-routes
@@ -426,6 +430,9 @@
         - text: List Targets
           url: /admin-api/#list-targets
 
+        - text: Update Target
+          url: /admin-api/#update-target
+
         - text: Delete Target
           url: /admin-api/#delete-target
 
@@ -443,7 +450,6 @@
 
         - text: List All Targets
           url: /admin-api/#list-all-targets
-
 - title: Kong for Kubernetes
   icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
   url: /kong-for-kubernetes/
