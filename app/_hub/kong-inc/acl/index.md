@@ -286,7 +286,7 @@ Deletes an ACL group by ID or group.
 curl -X DELETE http://{HOST}:8001/consumers/{CONSUMER}/acls 
 ```
 
-A successful DELETE request return a `204` status. 
+A successful DELETE request returns a `204` status. 
 
 #### See also
 - [configuration](/gateway-oss/latest/configuration)
