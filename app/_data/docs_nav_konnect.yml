@@ -53,6 +53,7 @@
     - text: Manage Services
       url: /servicehub/manage-services
     - text: Manage Plugins
+      url: /servicehub/plugins
       items:
         - text: Configure a Plugin on a Service
           url: /servicehub/plugins/enable-service-plugin
@@ -133,6 +134,13 @@
   items:
     - text: Generating Vitals Reports
       url: /vitals/generate-reports
+
+- title: Shared Config
+  icon: /assets/images/icons/konnect/konnect-shared-config.svg
+  url: /shared-config
+  items:
+    - text: Manage Plugins
+      url: /shared-config/plugins
 
 - title: Reference
   icon: /assets/images/icons/documentation/icn-references-color.svg

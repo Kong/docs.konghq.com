@@ -13,7 +13,7 @@ In {{site.konnect_saas}}, decK can manage:
 plugins.
 * **Dev Portal documents:** Specs and markdown files.
 * **Shared configuration:** Manage consumers, upstreams, and global plugins with
-declarative config. Global plugins appear in {{site.konnect_saas}} as read-only.
+declarative config.
 
 To do this, you need [decK v1.7.0 or later](/deck/).
 
