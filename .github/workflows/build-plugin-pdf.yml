@@ -1,10 +1,13 @@
-name: Build PDF
+name: Build Plugin PDF
 on:
   workflow_dispatch:
     inputs:
-      version:
-        description: "Version (e.g. ce_2.4.x - see 'app/_data/*.yml')"
+      plugin:
+        description: "Plugin name (e.g. basic-auth)"
         required: true
+      version:
+        description: "Version (leave empty for latest)"
+        required: false
 jobs:
   pdf:
     runs-on: ubuntu-latest
@@ -47,11 +50,13 @@ jobs:
       - name: Build Docs
         run: |
           npm ci
-          ./node_modules/.bin/gulp pdf
+          ./node_modules/.bin/gulp build
 
       # Build the PDF
-      - env:
-          KONG_DOC_VERSIONS: "${{ github.event.inputs.version }}"
+      - name: Generate PDF for Plugin "${{ github.event.inputs.plugin }}"
+        env:
+          KONG_PLUGIN_NAME: "${{ github.event.inputs.plugin }}"
+          KONG_PLUGIN_VERSION: "${{ github.event.inputs.version }}"
         run: |
           cd pdf-generation
           npm ci
