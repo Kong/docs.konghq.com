@@ -94,10 +94,6 @@ Before you use the ACL plugin, configure your Service or
 Route with an [authentication plugin](/hub/#authentication)
 so that the plugin can identify the client Consumer making the request.
 
-<div class="alert alert-warning">
-  <strong>Note:</strong> We support <a href="https://docs.konghq.com/enterprise/2.4.x/support-policy/">compatibility</a> with Kong version 1.5 or greater. 
-</div>
-
 #### Associate Consumers to an ACL
 
 {% navtabs %}
