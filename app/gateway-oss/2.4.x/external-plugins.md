@@ -55,10 +55,7 @@ in each language:
 plugins = bundled, go-hello, js-hello, py-hello
 ```
 
-{:.note}
-> **Note:** The `pluginserver_XXX_start_cmd` and `pluginserver_XXX_query_cmd` commands use
- a limited default `PATH` variable. In most cases, you have to specify the full executable
- path instead.
+**Note:** the start and query commands use a very limited default PATH variable.  In most cases you'll have to specify the full executable path.
 
 ### Legacy configuration
 
