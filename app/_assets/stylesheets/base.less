@@ -149,6 +149,52 @@ code {
   font-family: @family-code;
 }
 
+[contenteditable='true'] {
+    color: @green-400;
+    font-weight: bold;
+    margin: 1px;
+    padding: 0 0 0 5px;
+    font-size: 14px;
+    display: inline-block;
+    line-height: 16px;
+    border-radius: 2px;
+    -webkit-user-modify: read-write-plaintext-only;
+
+    &::after {
+      content: "\f040";
+      font-family: "Font Awesome", FontAwesome;
+      font-weight: 100;
+      color: @green-400;
+      display: inline-block;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 5px;
+      position: relative;
+    }
+
+    br {
+    display: none;
+    visibility: hidden;
+    }
+
+    &:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+
+    &:active {
+      border: none;
+      outline: none;
+    }
+
+    &:focus {
+    border: 1px solid @green-300;
+    background: #fff;
+    outline: 0;
+    margin: 0;
+    }
+}
+
 a {
   color: @blue;
   text-decoration: none;
