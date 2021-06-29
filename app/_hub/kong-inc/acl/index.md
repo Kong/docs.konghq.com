@@ -62,7 +62,7 @@ params:
   dbless_explanation: |
     Consumers and ACLs can be created with declarative configuration.
     
-    Admin API endpoints that POST, PUT, PATCH or DELETE ACLs will not work on DB-less mode.
+    Admin API endpoints that POST, PUT, PATCH, or DELETE ACLs do not work in DB-less mode.
   config:
     - name: allow
       required: semi
