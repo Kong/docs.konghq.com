@@ -289,7 +289,7 @@ by annotating the ingress as follows:
 apiVersion: networking/v1beta1
 kind: Ingress
 metadata:
-  name:{ROUTE}
+  name: {ROUTE}
   annotations:
     kubernetes.io/ingress.class: kong
     konghq.com/plugins: <{{page.params.name}}-example>
