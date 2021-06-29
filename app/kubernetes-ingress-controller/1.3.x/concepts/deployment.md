@@ -194,7 +194,7 @@ loss of functionality.
 #### Without a database
 
 In DB-less deployments, Kong's Ingress controller runs
-alongside Kong and configures Kong and dynamically configures
+alongside Kong and dynamically configures
 Kong as per the changes it receives from the Kubernetes API server.
 
 Following figure shows how this deployment looks like:
