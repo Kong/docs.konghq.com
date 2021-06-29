@@ -14,7 +14,8 @@ The framework is implemented as an extension to Kong's intergration test suite.
 
 ## Installation
 
-The frameworks uses `busted` and some Lua development dependencies of Kong. To setup the environment,
+The frameworks uses [busted](https://olivinelabs.com/busted/) and some
+Lua development dependencies of Kong. To setup the environment,
 run `make dev` under Kong repository to install all Lua dependencies.
 
 [Back to top](#introduction)
