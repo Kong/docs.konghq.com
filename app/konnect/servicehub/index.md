@@ -81,57 +81,5 @@ ranging from a specific Service version or Route to all Service versions. Plugin
 can execute actions inside {{site.konnect_product_name}} before or after a request
 has been proxied to the upstream API, as well as on any incoming responses.
 
-Any {{site.ee_gateway_names}} plugins supported in a self-hosted Hybrid mode
-deployment are also accessible through ServiceHub.
-
-### Functionality differences from self-hosted Kong Gateway
-
-The Portal Application Registration plugin is enabled automatically when you
-enable application registration for the Dev Portal. You don't need to
-enable it directly.
-
-### Plugin limitations
-
-The [Rate Limiting](/hub/kong-inc/rate-limiting) and
-[Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced)
-plugins only support the `redis` strategy, for which you must provide your own
-Redis cluster.
-
-The following plugins are not available with {{site.konnect_saas}}:
-* Key Auth Encrypted
-* OAuth2 Authentication
-* OAuth2 Introspection
-* Request Size Limiting
-* Apache OpenWhisk
-* Datadog
-* Zipkin
-* Exit Transformer
-* Request Transformer
-* Request Transformer Advanced
-* Response Transformer Advanced
-* Route Transformer Advanced
-
-### Custom plugins and serverless functions
-
-Currently, there is no way to add a custom plugin or a serverless function
-directly through the {{site.konnect_saas}} application. Contact Kong
-Support to get them manually added to your organization.
-
-Custom plugins must not have the following:
-
-* Admin API extensions: No `api.lua` file
-* Custom plugin database tables: No `dao.lua` file
-* Custom function validations: No function definitions in `schema.lua`
-* Code that runs on the control plane in the plugin handler:
-  * No `init_worker` callback
-  * No Lua code outside of the top-level functions
-* Third-party library dependencies: No `require()` calls to modules that are
-not bundled by default with {{site.konnect_product_name}}
-
-If your plugin meets these requirements and you want to use it in
-{{site.konnect_saas}}, contact [Kong Support](https://support.konghq.com/).
-
 **See more:**
-* [Plugin compatibility](/konnect-platform/compatibility/plugins)
-* [Configure a plugin on a Service](/konnect/servicehub/plugins/enable-service-plugin)
-* [Configure a plugin on a Route](/konnect/servicehub/plugins/enable-route-plugin)
+* [Manage plugins](/konnect/servicehub/plugins)
