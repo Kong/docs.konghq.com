@@ -1,7 +1,7 @@
 ---
 name: Prometheus
 publisher: Kong Inc.
-version: 0.9.0
+version: 1.3.0
 
 desc: Expose metrics related to Kong and proxied Upstream services in Prometheus exposition format
 description: |
@@ -14,7 +14,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
-        - 2.4.x      
+        - 2.4.x
         - 2.3.x
         - 2.2.x
         - 2.1.x
@@ -79,6 +79,10 @@ dashboard: [https://grafana.com/dashboards/7424](https://grafana.com/dashboards/
   writing, and number of accepted connections.
 - **Target Health**: The healthiness status (`healthchecks_off`, `healthy`, `unhealthy`, or `dns_error`) of Targets
   belonging to a given Upstream.
+- **Dataplane Status**: The last seen timestamp, config hash and config sync status for
+data plane nodes are exported on control plane.
+- **Enterprise License Information**: The {{site.ee_gateway_name}} license expiration date, features and
+license signature. Those metrics are only exported on {{site.ee_gateway_name}}.
 
 Here is an example of output you could expect from the `/metrics` endpoint:
 
@@ -166,6 +170,28 @@ kong_nginx_http_current_connections{state="reading"} 0
 kong_nginx_http_current_connections{state="total"} 8
 kong_nginx_http_current_connections{state="waiting"} 0
 kong_nginx_http_current_connections{state="writing"} 1
+# HELP kong_memory_lua_shared_dict_bytes Allocated slabs in bytes in a shared_dict
+# TYPE kong_memory_lua_shared_dict_bytes gauge
+kong_memory_lua_shared_dict_bytes{shared_dict="kong",kong_subsystem="http"} 40960
+.
+.
+# HELP kong_memory_lua_shared_dict_total_bytes Total capacity in bytes of a shared_dict
+# TYPE kong_memory_lua_shared_dict_total_bytes gauge
+kong_memory_lua_shared_dict_total_bytes{shared_dict="kong",kong_subsystem="http"} 5242880
+.
+.
+# HELP kong_memory_workers_lua_vms_bytes Allocated bytes in worker Lua VM
+# TYPE kong_memory_workers_lua_vms_bytes gauge
+kong_memory_workers_lua_vms_bytes{pid="7281",kong_subsystem="http"} 41124353
+# HELP kong_data_plane_config_hash Config hash value of the data plane
+# TYPE kong_data_plane_config_hash gauge
+kong_data_plane_config_hash{node_id="d4e7584e-b2f2-415b-bb68-3b0936f1fde3",hostname="ubuntu-bionic",ip="127.0.0.1"} 1.7158931820287e+38
+# HELP kong_data_plane_last_seen Last time data plane contacted control plane
+# TYPE kong_data_plane_last_seen gauge
+kong_data_plane_last_seen{node_id="d4e7584e-b2f2-415b-bb68-3b0936f1fde3",hostname="ubuntu-bionic",ip="127.0.0.1"} 1600190275
+# HELP kong_data_plane_version_compatible Version compatible status of the data plane, 0 is incompatible
+# TYPE kong_data_plane_version_compatible gauge
+kong_data_plane_version_compatible{node_id="d4e7584e-b2f2-415b-bb68-3b0936f1fde3",hostname="ubuntu-bionic",ip="127.0.0.1",kong_version="2.4.1"} 1
 # HELP kong_nginx_metric_errors_total Number of nginx-lua-prometheus errors
 # TYPE kong_nginx_metric_errors_total counter
 kong_nginx_metric_errors_total 0
