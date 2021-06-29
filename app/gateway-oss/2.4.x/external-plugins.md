@@ -55,6 +55,11 @@ in each language:
 plugins = bundled, go-hello, js-hello, py-hello
 ```
 
+{:.note}
+> **Note:** The `pluginserver_XXX_start_cmd` and `pluginserver_XXX_query_cmd` commands use
+ a limited default `PATH` variable. In most cases, you have to specify the full executable
+ path instead.
+
 ### Legacy configuration
 
 {{site.base_gateway}} versions 2.0.x to 2.2.x supported only Go external plugins and a single
