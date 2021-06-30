@@ -32,7 +32,7 @@ Returns the remote address of the client making the request.  This will
 
 **Phases**
 
-* certificate, rewrite, access, header_filter, body_filter, log
+* certificate, rewrite, access, header_filter, response, body_filter, log
 
 **Returns**
 
@@ -66,7 +66,7 @@ Returns the remote address of the client making the request.  Unlike
 
 **Phases**
 
-* certificate, rewrite, access, header_filter, body_filter, log
+* certificate, rewrite, access, header_filter, response, body_filter, log
 
 **Returns**
 
@@ -101,7 +101,7 @@ Returns the remote port of the client making the request.  This will
 
 **Phases**
 
-* certificate, rewrite, access, header_filter, body_filter, log
+* certificate, rewrite, access, header_filter, response, body_filter, log
 
 **Returns**
 
@@ -131,7 +131,7 @@ Returns the remote port of the client making the request.  Unlike
 
 **Phases**
 
-* certificate, rewrite, access, header_filter, body_filter, log
+* certificate, rewrite, access, header_filter, response, body_filter, log
 
 **Returns**
 
@@ -159,7 +159,7 @@ Returns the credentials of the currently authenticated consumer.
 
 **Phases**
 
-* access, header_filter, body_filter, log
+* access, header_filter, response, body_filter, log
 
 **Returns**
 
@@ -187,7 +187,7 @@ Returns the consumer from the datastore.
 
 **Phases**
 
-* access, header_filter, body_filter, log
+* access, header_filter, response, body_filter, log
 
 **Parameters**
 
@@ -220,7 +220,7 @@ Returns the `consumer` entity of the currently authenticated consumer.
 
 **Phases**
 
-* access, header_filter, body_filter, log
+* access, header_filter, response, body_filter, log
 
 **Returns**
 
@@ -278,7 +278,7 @@ Returns the protocol matched by the current route (`"http"`, `"https"`, `"tcp"` 
 
 **Phases**
 
-* access, header_filter, body_filter, log
+* access, header_filter, response, body_filter, log
 
 **Parameters**
 

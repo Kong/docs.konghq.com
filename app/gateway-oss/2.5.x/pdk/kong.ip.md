@@ -34,7 +34,7 @@ Depending on the `trusted_ips` configuration property,
 
 **Phases**
 
-* init_worker, certificate, rewrite, access, header_filter, body_filter, log
+* init_worker, certificate, rewrite, access, header_filter, response, body_filter, log
 
 **Parameters**
 

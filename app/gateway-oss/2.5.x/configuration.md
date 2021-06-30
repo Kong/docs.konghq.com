@@ -414,6 +414,30 @@ Default: `logs/error.log`
 
 ---
 
+#### proxy_stream_access_log
+
+Path for tcp streams proxy port access logs. Set this value to `off` to disable
+logging proxy requests.
+
+If this value is a relative path, it will be placed under the `prefix`
+location.
+
+`basic` is defined as `'$remote_addr [$time_local] ' '$protocol $status
+$bytes_sent $bytes_received ' '$session_time'`
+
+Default: `logs/access.log basic`
+
+---
+
+#### proxy_stream_error_log
+
+Path for tcp streams proxy port request error logs. The granularity of these
+logs is adjusted by the `log_level` property.
+
+Default: `logs/error.log`
+
+---
+
 #### admin_access_log
 
 Path for Admin API request access logs. If Hybrid Mode is enabled and the
@@ -442,7 +466,7 @@ Default: `logs/error.log`
 #### status_access_log
 
 Path for Status API request access logs. The default value of `off` implies
-that loggin for this API is disabled by default.
+that logging for this API is disabled by default.
 
 If this value is a relative path, it will be placed under the `prefix`
 location.
@@ -628,10 +652,15 @@ Default: none
 
 #### cluster_ca_cert
 
-The trusted CA certificate file in PEM format used to verify the
-`cluster_cert`.
+The trusted CA certificate file in PEM format used for Control Plane to verify
+Data Plane's certificate and Data Plane to verify Control Plane's certificate.
 
-Required if `cluster_mtls` is set to `pki`, ignored otherwise.
+Required on data plane if `cluster_mtls` is set to `pki`.
+
+If Control Plane certificate is issued by a well known CA, user can set
+`lua_ssl_trusted_certificate=system` on Data Plane and leave this field empty.
+
+This field is ignored if `cluster_mtls` is set to `shared`.
 
 Default: none
 
@@ -1442,6 +1471,15 @@ Default: `10m`
 
 ---
 
+#### nginx_http_lua_regex_match_limit
+
+Global `MATCH_LIMIT` for PCRE regex matching. The default of `100000` should
+ensure at worst any regex Kong executes could finish within roughly 2 seconds.
+
+Default: `100000`
+
+---
+
 
 ### Datastore section
 
@@ -1560,6 +1598,14 @@ should preserve its default value of 0.
 If the Hybrid mode `role` is set to `data_plane` and there's no configuration
 cache file, this configuration is used before connecting to the Control Plane
 node as a user-controlled fallback.
+
+Default: none
+
+---
+
+#### declarative_config_string
+
+The declarative configuration as a string
 
 Default: none
 

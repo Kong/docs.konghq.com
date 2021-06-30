@@ -86,7 +86,7 @@ Write a log line to the location specified by the current Nginx
 
 **Phases**
 
-* init_worker, certificate, rewrite, access, header_filter, body_filter, log
+* init_worker, certificate, rewrite, access, header_filter, response, body_filter, log
 
 **Parameters**
 
@@ -142,7 +142,7 @@ Similar to `kong.log()`, but the produced log will have the severity given by
 
 **Phases**
 
-* init_worker, certificate, rewrite, access, header_filter, body_filter, log
+* init_worker, certificate, rewrite, access, header_filter, response, body_filter, log
 
 **Parameters**
 
@@ -207,7 +207,7 @@ Like `kong.log()`, this function will produce a log with the `notice` level,
 
 **Phases**
 
-* init_worker, certificate, rewrite, access, header_filter, body_filter, log
+* init_worker, certificate, rewrite, access, header_filter, response, body_filter, log
 
 **Parameters**
 
@@ -232,7 +232,7 @@ Enables inspect logs for this logging facility.  Calls to
 
 **Phases**
 
-* init_worker, certificate, rewrite, access, header_filter, body_filter, log
+* init_worker, certificate, rewrite, access, header_filter, response, body_filter, log
 
 **Usage**
 
@@ -251,7 +251,7 @@ Disables inspect logs for this logging facility.  All calls to
 
 **Phases**
 
-* init_worker, certificate, rewrite, access, header_filter, body_filter, log
+* init_worker, certificate, rewrite, access, header_filter, response, body_filter, log
 
 **Usage**
 
@@ -280,7 +280,7 @@ Sets a value to be used on the `serialize` custom table
 
 **Phases**
 
-* certificate, rewrite, access, header_filter, body_filter, log
+* certificate, rewrite, access, header_filter, response, body_filter, log
 
 **Parameters**
 

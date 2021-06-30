@@ -26,7 +26,7 @@ Returns the scheme component of the request's URL.  The returned value is
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log, admin_api
+* rewrite, access, header_filter, response, body_filter, log, admin_api
 
 **Returns**
 
@@ -52,7 +52,7 @@ Returns the host component of the request's URL, or the value of the
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log, admin_api
+* rewrite, access, header_filter, response, body_filter, log, admin_api
 
 **Returns**
 
@@ -78,7 +78,7 @@ Returns the port component of the request's URL.  The value is returned
 
 **Phases**
 
-* certificate, rewrite, access, header_filter, body_filter, log, admin_api
+* certificate, rewrite, access, header_filter, response, body_filter, log, admin_api
 
 **Returns**
 
@@ -115,7 +115,7 @@ Returns the scheme component of the request's URL, but also considers
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log, admin_api
+* rewrite, access, header_filter, response, body_filter, log, admin_api
 
 **Returns**
 
@@ -151,7 +151,7 @@ Returns the host component of the request's URL or the value of the "host"
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log, admin_api
+* rewrite, access, header_filter, response, body_filter, log, admin_api
 
 **Returns**
 
@@ -193,7 +193,7 @@ Returns the port component of the request's URL, but also considers
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log, admin_api
+* rewrite, access, header_filter, response, body_filter, log, admin_api
 
 **Returns**
 
@@ -227,7 +227,7 @@ Returns the path component of the request's URL, but also considers
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log, admin_api
+* rewrite, access, header_filter, response, body_filter, log, admin_api
 
 **Returns**
 
@@ -267,7 +267,7 @@ Returns the prefix path component of the request's URL that Kong stripped
 
 **Phases**
 
-* access
+* rewrite, access, header_filter, response, body_filter, log, admin_api
 
 **Returns**
 
@@ -291,7 +291,7 @@ Returns the HTTP version used by the client in the request as a Lua
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log, admin_api
+* rewrite, access, header_filter, response, body_filter, log, admin_api
 
 **Returns**
 
@@ -315,7 +315,7 @@ Returns the HTTP method of the request.  The value is normalized to
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log, admin_api
+* rewrite, access, header_filter, response, body_filter, log, admin_api
 
 **Returns**
 
@@ -339,7 +339,7 @@ Returns the path component of the request's URL.  It is not normalized in
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log, admin_api
+* rewrite, access, header_filter, response, body_filter, log, admin_api
 
 **Returns**
 
@@ -365,7 +365,7 @@ Returns the path, including the querystring if any.  No
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log, admin_api
+* rewrite, access, header_filter, response, body_filter, log, admin_api
 
 **Returns**
 
@@ -392,7 +392,7 @@ Returns the query component of the request's URL.  It is not normalized in
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log, admin_api
+* rewrite, access, header_filter, response, body_filter, log, admin_api
 
 **Returns**
 
@@ -425,7 +425,7 @@ Returns the value of the specified argument, obtained from the query
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log, admin_api
+* rewrite, access, header_filter, response, body_filter, log, admin_api
 
 **Returns**
 
@@ -465,7 +465,7 @@ Returns the table of query arguments obtained from the querystring.  Keys
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log, admin_api
+* rewrite, access, header_filter, response, body_filter, log, admin_api
 
 **Parameters**
 
@@ -512,7 +512,7 @@ Returns the value of the specified request header.
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log, admin_api
+* rewrite, access, header_filter, response, body_filter, log, admin_api
 
 **Parameters**
 
@@ -557,7 +557,7 @@ Returns a Lua table holding the request headers.  Keys are header names.
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log, admin_api
+* rewrite, access, header_filter, response, body_filter, log, admin_api
 
 **Parameters**
 
@@ -602,7 +602,7 @@ Returns the plain request body.
 
 **Phases**
 
-* rewrite, access, admin_api
+* rewrite, access, response, admin_api
 
 **Returns**
 
@@ -657,7 +657,7 @@ Returns the request data as a key/value table.
 
 **Phases**
 
-* rewrite, access, admin_api
+* rewrite, access, response, admin_api
 
 **Parameters**
 
