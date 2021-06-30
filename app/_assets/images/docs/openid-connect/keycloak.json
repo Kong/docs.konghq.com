@@ -4,7 +4,7 @@
   "displayName" : "Keycloak",
   "displayNameHtml" : "<div class=\"kc-logo-text\"><span>Keycloak</span></div>",
   "notBefore" : 0,
-  "defaultSignatureAlgorithm" : "HS512",
+  "defaultSignatureAlgorithm" : "RS256",
   "revokeRefreshToken" : false,
   "refreshTokenMaxReuse" : 0,
   "accessTokenLifespan" : 60,
