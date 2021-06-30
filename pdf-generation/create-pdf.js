@@ -52,8 +52,7 @@ async function createPDF (name, urls) {
       content: `
         @page { size: A4 portrait; margin: 24px; }
         pre { max-height: 100% !important; white-space: pre-wrap; }
-        .rouge-gutter.gl {display:none !important;}
-        .rouge-code { padding-left: 0 !important; }
+        .code { padding-left: 0 !important; }
 
         .navtab-content { display: block !important } /* Expand tabbed content */
         .navtab-contents { padding: 0 !important; }
