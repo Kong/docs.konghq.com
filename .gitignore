@@ -23,3 +23,6 @@ dist
 # package managers
 node_modules
 vendor
+
+# pdf generation
+pdf-generation/pdfs/*.pdf
