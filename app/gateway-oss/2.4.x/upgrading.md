@@ -7,37 +7,6 @@ This document guides you through the process of upgrading {{site.ce_product_name
 To upgrade to prior versions, find the version number in the
 [Upgrade doc in GitHub](https://github.com/Kong/kong/blob/master/UPGRADE.md).
 
-## Suggested upgrade path
-
-Unless indicated otherwise in one of the upgrade paths of this document, it is
-possible to upgrade Kong **without downtime**.
-
-Assuming that Kong is already running on your system, acquire the latest
-version from any of the available [installation methods](https://getkong.org/install/)
-and proceed to install it, overriding your previous installation.
-
-**If you are planning to make modifications to your configuration, this is a
-good time to do so**.
-
-Then, run migration to upgrade your database schema:
-
-```shell
-$ kong migrations up [-c configuration_file]
-```
-
-If the command is successful, and no migration ran
-(no output), then you only have to
-[reload](https://docs.konghq.com/gateway-oss/2.4.x/cli/#kong-reload) Kong:
-
-```shell
-$ kong reload [-c configuration_file]
-```
-
-**Reminder**: `kong reload` leverages the Nginx `reload` signal that seamlessly
-starts new workers, which take over from old workers before those old workers
-are terminated. In this way, Kong will serve new requests via the new
-configuration, without dropping existing in-flight connections.
-
 ## Upgrade to `2.4.x`
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
@@ -52,7 +21,6 @@ If you are migrating from 1.x, upgrading into 2.4.x is a major upgrade,
 so, in addition, be aware of any [breaking changes](https://github.com/Kong/kong/blob/master/UPGRADE.md#breaking-changes-2.0)
 between the 1.x and 2.x series below, further detailed in the
 [CHANGELOG.md](https://github.com/Kong/kong/blob/2.0.0/CHANGELOG.md#200) document.
-
 
 ### Dependencies
 
@@ -91,7 +59,8 @@ cd kong
 git diff -w 2.0.0 2.4.0 kong/templates/nginx_kong*.lua
 ```
 
-**Note:** Adjust the starting version number
+{:.note}
+> **Note:** Adjust the starting version number
 (2.0.x, 2.1.x, 2.2.x or 2.3.x) to the version number you are currently using.
 
 To produce a patch file, use the following command:
@@ -100,9 +69,9 @@ To produce a patch file, use the following command:
 git diff 2.0.0 2.4.0 kong/templates/nginx_kong*.lua > kong_config_changes.diff
 ```
 
-**Note:** Adjust the starting version number
+{:.note}
+> **Note:** Adjust the starting version number
 (2.0.x, 2.1.x, 2.2.x or 2.3.x) to the version number you are currently using.
-
 
 ### Suggested upgrade path
 
@@ -195,31 +164,3 @@ indicate the path to your configuration file:
 $ kong migrations bootstrap [-c /path/to/your/kong.conf]
 $ kong start [-c /path/to/your/kong.conf]
 ```
-Unless indicated otherwise in one of the upgrade paths of this document, it is
-possible to upgrade Kong **without downtime**.
-
-Assuming that Kong is already running on your system, acquire the latest
-version from any of the available [installation methods](https://getkong.org/install/)
-and proceed to install it, overriding your previous installation.
-
-**If you are planning to make modifications to your configuration, this is a
-good time to do so**.
-
-Then, run migration to upgrade your database schema:
-
-```shell
-$ kong migrations up [-c configuration_file]
-```
-
-If the command is successful, and no migration ran
-(no output), then you only have to
-[reload](https://docs.konghq.com/gateway-oss/2.4.x/cli/#kong-reload) Kong:
-
-```shell
-$ kong reload [-c configuration_file]
-```
-
-**Reminder**: `kong reload` leverages the Nginx `reload` signal that seamlessly
-starts new workers, which take over from old workers before those old workers
-are terminated. In this way, Kong will serve new requests via the new
-configuration, without dropping existing in-flight connections.
