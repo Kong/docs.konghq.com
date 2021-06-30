@@ -638,7 +638,7 @@ containing the appropriate structure and examples.
 
 
 ### Reload Declarative Configuration
-{:.badge .dbless}
+<span class="badge dbless"></span>
 
 This endpoint allows resetting a DB-less Kong with a new
 declarative configuration data file. All previous contents
@@ -859,7 +859,7 @@ HTTP 200 OK
 ---
 
 ### Validate A Configuration against A Schema
-{:.badge .dbless}
+<span class="badge dbless"></span>
 
 Check validity of a configuration against its entity schema.
 This allows you to test your input before submitting a request
@@ -973,7 +973,7 @@ HTTP 200 OK
 ---
 
 ### Validate A Plugin Configuration against The Schema
-{:.badge .dbless}
+<span class="badge dbless"></span>
 
 Check validity of a plugin configuration against the plugins entity schema.
 This allows you to test your input before submitting a request
@@ -4084,7 +4084,7 @@ HTTP 204 No Content
 ---
 
 ### Set Target As Healthy
-{:.badge .dbless}
+<span class="badge dbless"></span>
 
 Set the current health status of a target in the load balancer to "healthy"
 in the entire Kong cluster. This sets the "healthy" status to all addresses
