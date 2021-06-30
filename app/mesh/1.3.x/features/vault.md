@@ -252,10 +252,8 @@ Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](htt
 {% endnavtab %}
 {% endnavtabs %}
 
-## Multizone
+## Multizone and Vault
 
-In the multizone environment, the `Mesh` configuration is propagated from Global to the Zone control planes.
-Certificates for data plane proxies are issued on the Zone control planes, therefore we need to have
-connectivity from each Zone control plane to Vault using the same address.
-Additionally, when applying configuration with a new Vault backend, Kong Mesh executes connection validation by issuing a test certificate.
-In the mutlizone mode, this validation is done on the Global control plane, therefore we also need to have connectivity between the Global control plane and Vault.
+In a multizone environment, the global control plane provides the `Mesh` to the zone control planes. However, you must make sure that each zone control plane communicates with Vault over the same address. This is because certificates for data plane proxies are issued from the zone control plane, not from the global control plane.
+
+You must also make sure the global control plane communicates with Vault. When a new Vault backend is configured, Kong Mesh validates the connection by issuing a test certificate. In a multizone environment, validation is performed on the global control plane.
