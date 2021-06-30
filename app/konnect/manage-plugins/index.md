@@ -4,17 +4,24 @@ no_version: true
 ---
 
 Any {{site.ee_gateway_names}} plugins supported in a self-managed hybrid mode
-deployment are also accessible through ServiceHub.
+deployment are also accessible through ServiceHub or Shared Config.
 
 ## Kong plugins in Konnect Cloud
 
-### Scoped vs global plugins
-In ServiceHub, all plugins attached to services and routes are **scoped** to
-an object, and only apply their configurations to that object.
+### Plugin configuration
 
-If you want to apply a plugin **globally** &ndash; that is, to all services, routes,
-and consumers in a cluster &ndash; or scope it to a specific consumer,
-set it up through [shared configuration](/konnect/shared-config/plugins).
+You can configure a plugin in {{site.konnect_saas}} by scoping it to an object,
+or applying it globally.
+
+* A **scoped** plugin applies configuration only to a specific service, route,
+or consumer. You can configure plugins on
+[services](/konnect/manage-plugins/enable-service-plugin) and
+[routes](/konnect/manage-plugins/enable-route-plugin) through ServiceHub, and on
+[consumers](/konnect/manage-plugins/shared-config) through Shared Config.
+
+* If you want to apply a plugin **globally** &ndash; that is, to all services,
+routes, and consumers in a cluster &ndash; set it up through
+[shared config](/konnect/manage-plugins/shared-config/).
 
 ### Functionality differences from self-managed Kong Gateway
 
@@ -61,8 +68,3 @@ not bundled by default with {{site.konnect_product_name}}
 
 If your plugin meets these requirements and you want to use it in
 {{site.konnect_saas}}, contact [Kong Support](https://support.konghq.com/).
-
-**See more:**
-* [Plugin compatibility](/konnect-platform/compatibility/plugins)
-* [Configure a plugin on a Service](/konnect/servicehub/plugins/enable-service-plugin)
-* [Configure a plugin on a Route](/konnect/servicehub/plugins/enable-route-plugin)
