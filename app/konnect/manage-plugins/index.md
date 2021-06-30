@@ -49,9 +49,9 @@ See the [plugin compatibility chart](/konnect-platform/compatibility/plugins)
 for a full comparison of plans and network configurations that each plugin
 supports.
 
-## Custom plugins and serverless functions
+## Custom plugins
 
-Currently, there is no way to add a custom plugin or a serverless function
+Currently, there is no way to add a custom plugin
 directly through the {{site.konnect_saas}} application. Contact Kong
 Support to get them manually added to your organization.
 
