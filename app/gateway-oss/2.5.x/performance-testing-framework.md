@@ -4,26 +4,26 @@ title: Performance Testing Framework
 
 ## Introduction
 
-Kong codebase includes a performance testing framework (hereinafter called the “framework").
-It allows Kong developers and users to evaluate performance of Kong itself,
-bundled or custom plugins, as well as plot framegraphs to debug performance bottleneck.
+The Kong codebase includes a performance testing framework (hereinafter referred to as the “framework").
+It allows Kong developers and users to evaluate the performance of Kong itself as well as 
+bundled or custom plugins, and plot framegraphs to debug performance bottlenecks.
 The framework collects RPS (request per second) and latencies of Kong processing the request
 to represent performance metrics under different workloads.
 
-The framework is implemented as an extension to Kong's intergration test suite.
+The framework is implemented as an extension to Kong's integration test suite.
 
 ## Installation
 
 The frameworks uses [busted](https://olivinelabs.com/busted/) and some
 Lua development dependencies of Kong. To setup the environment,
-run `make dev` under Kong repository to install all Lua dependencies.
+run `make dev` on your Kong repository to install all Lua dependencies.
 
 [Back to top](#introduction)
 
 ## Drivers
 
-Three "drivers" are implemented depending on different environment, accuracy
-requirement and difficulty to setup.
+Three "drivers" are implemented depending on different environments, accuracy
+requirements, and setup complexity.
 
 | Driver   | Test between git commits | Test between binary releases | Flamegraph | Test unreleased version |
 |----------|--------------------------|------------------------------|------------|-------------------------|
@@ -31,20 +31,20 @@ requirement and difficulty to setup.
 | docker   | yes                      | yes                          |            |                         |
 |terraform | yes                      | yes                          | yes        |                         |
 
-- **local** driver reuses users' local environment, it's faster to run.
-But the RPS and latency number may be influenced by other local programs and thus inaccurate.
+- **local** Driver reuses users' local environment. It's faster to run,
+but the RPS and latency number may be influenced by other local programs and thus inaccurate.
 
     * Requires Lua development dependencies of Kong, OpenResty and wrk to be installed.
     * Requires SystemTap, kernel headers and build chain to be installed if generating flamegraph.
 
-- **docker** driver is solely based on Docker images, it's most convenient to setup
-as it requires less dependency. But it may also influenced by other local programs
-and docker network performance. And it doesn't support flamegraph generation.
+- **docker** Driver is solely based on Docker images. It's the most convenient driver to setup
+as it requires less dependencies. But it may also be influenced by other local programs
+and Docker network performance. And it doesn't support FlameGraph generation.
 
-- **terraform** driver runs in remote VM or bare metal machine, it's thus most accurate.
-But it requires terraform knowledge to operate and setup.
+- **terraform** Driver runs in remote VM or bare metal machine. It's most accurate,
+but it requires Terraform knowledge to operate and setup.
 
-    * Requires [terraform](https://www.terraform.io/downloads.html) binary to be installed.
+    * Requires the [Terraform](https://www.terraform.io/downloads.html) binary be installed.
     * Requires git binary if testing between git commits. When testing between git commits,
     the framework assumes the current directory is Kong's repo. It will stash your working
     directory and unstash after test is finished. When using docker or terraform driver,
@@ -58,9 +58,9 @@ But it requires terraform knowledge to operate and setup.
 Like Kong's integration tests, the performance test is written in Lua. Several
 test cases can share the same Lua file.
 
-Following code demonstrates a basic workflow for defining a workload and load test Kong.
+The following code snippet demonstrates a basic workflow for defining a workload and load testing Kong.
 
-```
+```lua
 local perf = require("spec.helpers.perf")
 
 perf.use_driver("docker")
@@ -135,9 +135,9 @@ for _, version in ipairs(versions) do
 end
 ```
 
-The test can be ran just as a normal busted based test. Run it with bin/busted path/to/this_file_spec.lua.
+The test can be run as a normal busted-based test. Run it with `bin/busted path/to/this_file_spec.lua`.
 
-More examples can be found at [spec/04-perf](https://github.com/Kong/kong/tree/master/spec/04-perf) of Kong
+More examples can be found in the [spec/04-perf](https://github.com/Kong/kong/tree/master/spec/04-perf) folder in the Kong
 respository.
 
 [Back to top](#introduction)
@@ -148,12 +148,12 @@ respository.
 
 *syntax: perf.use_driver(name, options?)*
 
-Use driver of name, which must be one of "local", "docker"  or  "terraform". Additional
+Uses driver name, which must be one of "local", "docker"  or  "terraform". Additional
 parameters for driver can be specified in options as a Lua table. Throws error if any.
 
-Only terraform driver expect options parameter, which contains following keys:
+Only terraform driver expects options parameter, which contains following keys:
 
-- **provider** the service provider name, right now only "equinix-metal"
+- **provider** The service provider name, right now only "equinix-metal".
 - **tfvars** Terraform variables as a Lua table; for `equinix-metal` provider,
 `packet_project_id` and `packet_auth_token` is required.
 
@@ -163,7 +163,7 @@ Only terraform driver expect options parameter, which contains following keys:
 
 *syntax: perf.set_log_level(level)*
 
-Set the log level, expect one of `"debug"`, `"info"`, `"notice"`, `"warn"`, `"error"` and
+Sets the log level; expect one of `"debug"`, `"info"`, `"notice"`, `"warn"`, `"error"` and
 `"crit"`. The default log level is `"info"`.
 
 [Back to top](#introduction)
@@ -172,7 +172,7 @@ Set the log level, expect one of `"debug"`, `"info"`, `"notice"`, `"warn"`, `"er
 
 *syntax: perf.set_retry_count(count)*
 
-Set retry time for each “driver" operation. By default every operation is retried 3 times.
+Sets retry time for each “driver" operation. By default every operation is retried 3 times.
 
 [Back to top](#introduction)
 
@@ -180,10 +180,10 @@ Set retry time for each “driver" operation. By default every operation is retr
 
 *syntax: helpers = perf.setup()*
 
-Prepare environment and returns the spec.helpers module. Throws error if any.
+Prepares environment and returns the `spec.helpers` module. Throws error if any.
 
-The framework setup some environment variables before importing spec.helpers modules.
-The returned helpers is just a nomal spec.helpers module, user can use same pattern
+The framework sets up some environment variables before importing `spec.helpers` modules.
+The returned helper is just a normal `spec.helpers` module, user can use same pattern
 in integration tests to setup entities in Kong. DB-less mode is currently not implemented.
 
 [Back to top](#introduction)
@@ -192,7 +192,7 @@ in integration tests to setup entities in Kong. DB-less mode is currently not im
 
 *syntax: upstream_uri = perf.start_upstream(nginx_conf_blob)*
 
-Start upstream (Nginx/OpenResty) with given nginx_conf_blob. Returns the upstream
+Starts upstream (Nginx/OpenResty) with given `nginx_conf_blob`. Returns the upstream
 URI accessible from Kong's view. Throws error if any.
 
 [Back to top](#introduction)
@@ -201,7 +201,7 @@ URI accessible from Kong's view. Throws error if any.
 
 *syntax: perf.start_kong(version, kong_configs?)*
 
-Start Kong with given version and Kong configurations in kong_configs as a Lua table.
+Starts Kong with given version and Kong configurations in `kong_configs` as a Lua table.
 Throws error if any.
 
 To select a git hash or tag, use `"git:<hash>"` as version. Otherwise, the framework
@@ -222,8 +222,8 @@ Stops Kong. Throws error if any.
 
 *syntax: perf.teardown(full?)*
 
-Teardown. Throws error if any. With terraform driver, set full to true terminates
-all infrastructure while by default it does cleanup only to speed up successive runs.
+Teardown. Throws error if any. With the terraform driver, setting full to true terminates
+all infrastructure, while by default it does cleanup only to speed up successive runs.
 
 [Back to top](#introduction)
 
@@ -231,10 +231,10 @@ all infrastructure while by default it does cleanup only to speed up successive 
 
 *syntax: perf.start_stapxx(stapxx_file_name, arg?)*
 
-Start the Stap++ script with stapxx_file_name exists in   and addtional CLI args args. Throws error if any.
+Starts the Stap++ script with `stapxx_file_name` exists in and additional CLI args. Throws error if any.
 
-This function blocks until the SystemTap module is fully prepared and inserted into
-kernel. It should be called before perf.start_load.
+This function blocks until the `SystemTap` module is fully prepared and inserted into the
+kernel. It should be called before `perf.start_load`.
 
 [Back to top](#introduction)
 
@@ -242,14 +242,14 @@ kernel. It should be called before perf.start_load.
 
 *syntax: perf.start_load(options?)*
 
-Start to send load to Kong using wrk. Throws error if any. options is a Lua table that may contains:
+Starts to send load to Kong using `wrk`. Throws error if any. Options is a Lua table that may contain the following:
 
-- **path** string request path, default to / 
-- **uri** base URI except path, default to http://kong-ip:kong-port/
-- **connections** connection count, default to 1000
-- **threads** request thread count, default to 5 
-- **duration** number perf test duration in seconds, default to 10 
-- **script** content of wrk script as string, default to nil
+- **path** String request path; defaults to `/ `.
+- **uri** Base URI exception path; defaults to `http://kong-ip:kong-port/`.
+- **connections** Connection count; defaults to 1000.
+- **threads** Request thread count; defaults to 5. 
+- **duration** Number of performance tests duration in seconds; defaults to 10. 
+- **script** Content of wrk script as string; defaults to nil.
 
 [Back to top](#introduction)
 
@@ -257,9 +257,9 @@ Start to send load to Kong using wrk. Throws error if any. options is a Lua tabl
 
 *syntax: result = perf.start_load(options?)*
 
-Wait the load test to finish and return the result as string. Throws error if any.
+Waits for the load test to finish and returns the result as a string. Throws error if any.
 
-Currently this function waits indefintely until both wrkand stap++ process to exit.
+Currently this function waits indefinitely, until both wrk and stap++ process to exit.
 
 [Back to top](#introduction)
 
@@ -267,7 +267,7 @@ Currently this function waits indefintely until both wrkand stap++ process to ex
 
 *syntax: combined_result = perf.combine_results(results, …)*
 
-Calculate multiple results returned by perf.wait_result and return their average and min/max.
+Calculates multiple results returned by `perf.wait_result` and returns their average and min/max.
 Throws error if any.
 
 [Back to top](#introduction)
@@ -276,7 +276,7 @@ Throws error if any.
 
 *syntax: perf.generate_flamegraph(path, title?)*
 
-Generate a flamegraph with title and save to path. Throws error if any.
+Generates a FlameGraph with title and saves to path. Throws error if any.
 
 [Back to top](#introduction)
 
@@ -284,7 +284,7 @@ Generate a flamegraph with title and save to path. Throws error if any.
 
 *syntax: perf.save_error_log(path)*
 
-Save Kong error log to path. Throws error if any.
+Saves Kong error log to path. Throws error if any.
 
 [Back to top](#introduction)
 
@@ -292,8 +292,8 @@ Save Kong error log to path. Throws error if any.
 
 ### Add new test suite
 
-All tests are stored in `spec/04-perf/01-rps` and `spec/04-perf/02-flamegraph` of Kong repository.
-Add a new file under one of the directory and put `#tags` in test description.
+All tests are stored in `spec/04-perf/01-rps` and `spec/04-perf/02-flamegraph` of the Kong repository.
+Add a new file under one of the directories and put `#tags` in the test description.
 
 [Back to top](#introduction)
 
@@ -302,20 +302,20 @@ Add a new file under one of the directory and put `#tags` in test description.
 Users can use the terraform driver in most major service providers as long as
 it's supported by terraform. The following contracts are made between the framework and terraform module:
 
-The terraform files are stored in `spec/fixtures/perf/terraform/<provider>`
+The terraform files are stored in `spec/fixtures/perf/terraform/<provider>`.
 
-Two instances are provisioned, one for running Kong and another for running upstream
-and load (worker). Firewall allows bidirectional traffic between the two instances
-and from public internet. Both instances run Ubuntu 20.04/focal.
+Two instances are provisioned, one for running Kong and another for running an upstream
+and load (worker). A firewall allows bidirectional traffic between the two instances
+and from the public internet. Both instances run Ubuntu 20.04/focal.
 
-An SSH key to login into both instances exists or will be created
+An SSH key to login into both instances exists or will be created in
 `spec/fixtures/perf/terraform/<provider>/id_rsa`. The logged-in user has root privilege.
 
-Following terraform output variables:
+The following are terraform output variables:
 
-- **kong-ip** Kong node public IP
-- **kong-internal-ip** Kong node internal IP (if unavailable, provide kong-ip)
-- **worker-ip** Worker node public IP
-- **worker-internal-ip** Worker node internal IP (if unavailable, provide worker-ip)
+- **kong-ip** Kong node public IP.
+- **kong-internal-ip** Kong node internal IP (if unavailable, provide kong-ip).
+- **worker-ip** Worker node public IP.
+- **worker-internal-ip** Worker node internal IP (if unavailable, provide worker-ip).
 
 [Back to top](#introduction)
