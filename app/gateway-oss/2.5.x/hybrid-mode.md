@@ -425,7 +425,7 @@ For example, a {{site.ce_product_name}} v2.4.2 control plane:
 
 - Accepts a {{site.ce_product_name}} 2.4.0, 2.4.1 and 2.4.2 data plane
 - Accepts a {{site.ce_product_name}} 2.3.8, 2.2.1 and 2.2.0 data plane
-- Accepts a {{site.ce_product_name}} 2.4.3 data plane
+- Accepts a {{site.ce_product_name}} 2.4.3 data plane (newer patch version on the data plane is accepted)
 - Rejects a {{site.ce_product_name}} 1.0.0 data plane (major version differs)
 - Rejects a {{site.ce_product_name}} 2.5.0 data plane (minor version on data plane is newer)
 
