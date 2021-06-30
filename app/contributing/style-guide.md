@@ -19,7 +19,7 @@ no_version: true
 |                                   |That is, ...                                   |i.e., ...                                          |
 |---                                |---                                            |---                                                |
 |Avoid generic prounouns            |Once you have added **the inputs section**, ...|Once you have added **this**, ...                  |
-|Don't use displays or appears      |In the blank that **appears**, do the thing.   |Do the thing.      |
+|Don't use _displays_ or _appears_      |In the blank that **appears**, do the thing.   |Do the thing.      |
 |---                                |---                                            |---                                                |
 |Use descriptive headings           |Overview                                       |Improve Vitals performance with InfluxDB           |
 |                                   |Query behavior                                 |Query frequency and precision                      |
