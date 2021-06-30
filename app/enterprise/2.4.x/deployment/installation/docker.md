@@ -38,7 +38,7 @@ To complete this installation you will need a Docker-enabled system with proper
   -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
   -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
   -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
-  -e "KONG_ADMIN_GUI_URL=http://<div contenteditable="true">{DNS_OR_IP}</div>:8002" \
+  -e "KONG_ADMIN_GUI_URL=http://<div contenteditable="true">{HOSTNAME}</div>:8002" \
     -p 8000:8000 \
     -p 8443:8443 \
     -p 8001:8001 \
@@ -50,20 +50,20 @@ To complete this installation you will need a Docker-enabled system with proper
     kong-ee</code></pre>
 
 {:.note}
-> The DNS or IP address for `KONG_PORTAL_GUI_HOST` should be preceded by a protocol, for example, `http://`.
+> The `HOSTNAME` for `KONG_PORTAL_GUI_HOST` should be preceded by a protocol, for example, `http://`.
 
 ## Step 6. Verify your installation
 
 1. Access the `/services` endpoint using the Admin API:
 
-    <pre><code>curl -i -X GET --url http://<div contenteditable="true">{DNS_OR_IP}</div>:8001/services</code></pre>
+    <pre><code>curl -i -X GET --url http://<div contenteditable="true">{HOSTNAME}</div>:8001/services</code></pre>
 
     You should receive a `200` status code.
 
 2. Verify that Kong Manager is running by accessing it using the URL specified
 in `KONG_ADMIN_GUI_URL` in [Step 5](#start-gateway):
 
-    <pre><code>http://<div contenteditable="true">{DNS_OR_IP}</div>:8002</code></pre>
+    <pre><code>http://<div contenteditable="true">{HOSTNAME}</div>:8002</code></pre>
 
 ## Step 7. (Optional) Enable the Dev Portal
 
@@ -80,18 +80,17 @@ in `KONG_ADMIN_GUI_URL` in [Step 5](#start-gateway):
     ```
 
     {:.note}
-    > The DNS or IP address for `KONG_PORTAL_GUI_HOST` should not be preceded by a protocol, for example, `http://`.
+    > The `HOSTNAME` for `KONG_PORTAL_GUI_HOST` should not be preceded by a protocol, for example, `http://`.
 
-3. Execute the following command. Change `{DNS_OR_IP}` to the IP or valid DNS of
-your Docker host:
+3. Execute the following command. 
 
-    <pre><code>curl -X PATCH --url http://<div contenteditable="true">{DNS_OR_IP}</div>:8001/workspaces/default \
+    <pre><code>curl -X PATCH --url http://<div contenteditable="true">{HOSTNAME}</div>:8001/workspaces/default \
         --data "config.portal=true"</code></pre>
 
 4. Access the Dev Portal for the default workspace using the URL specified
 in the `KONG_PORTAL_GUI_HOST` variable:
 
-    <pre><code>http://<div contenteditable="true">{DNS_OR_IP}</div>:8003/default</code></pre>
+    <pre><code>http://<div contenteditable="true">{HOSTNAME}</div>:8003/default</code></pre>
 
 ## Troubleshooting
 
