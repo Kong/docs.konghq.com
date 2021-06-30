@@ -20,12 +20,12 @@ service_body: |
     `connect_timeout`<br>*optional* |  The timeout in milliseconds for establishing a connection to the upstream server.  Default: `60000`.
     `write_timeout`<br>*optional* |  The timeout in milliseconds between two successive write operations for transmitting a request to the upstream server.  Default: `60000`.
     `read_timeout`<br>*optional* |  The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server.  Default: `60000`.
-    `tags`<br>*optional* |  An optional set of strings associated with the Service for grouping and filtering.
+    `tags`<br>*optional* |  An optional set of strings associated with the Service for grouping and filtering. 
     `client_certificate`<br>*optional* |  Certificate to be used as client certificate while TLS handshaking to the upstream server. With form-encoded, the notation is `client_certificate.id=<client_certificate id>`. With JSON, use "`"client_certificate":{"id":"<client_certificate id>"}`.
-    `tls_verify`<br>*optional* |  Whether to enable verification of upstream server TLS certificate. If set to `null`, then the Nginx default is respected.
+    `tls_verify`<br>*optional* |  Whether to enable verification of upstream server TLS certificate. If set to `null`, then the Nginx default is respected. 
     `tls_verify_depth`<br>*optional* |  Maximum depth of chain while verifying Upstream server's TLS certificate. If set to `null`, then the Nginx default is respected.  Default: `null`.
     `ca_certificates`<br>*optional* |  Array of `CA Certificate` object UUIDs that are used to build the trust store while verifying upstream server's TLS certificate. If set to `null` when Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then handshake with upstream server will always fail (because no CA are trusted).  With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an Array.
-    `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never returns the URL).
+    `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never returns the URL). 
 
 service_json: |
     {
@@ -92,21 +92,21 @@ route_body: |
     ---:| ---
     `name`<br>*optional* | The name of the Route.
     `protocols` |  A list of the protocols this Route should allow. When set to `["https"]`, HTTP requests are answered with a request to upgrade to HTTPS.  Default: `["http", "https"]`.
-    `methods`<br>*semi-optional* |  A list of HTTP methods that match this Route.
+    `methods`<br>*semi-optional* |  A list of HTTP methods that match this Route. 
     `hosts`<br>*semi-optional* |  A list of domain names that match this Route.  With form-encoded, the notation is `hosts[]=example.com&hosts[]=foo.test`. With JSON, use an Array.
     `paths`<br>*semi-optional* |  A list of paths that match this Route.  With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an Array.
-    `headers`<br>*semi-optional* |  One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this attribute: hosts should be specified using the `hosts` attribute.
+    `headers`<br>*semi-optional* |  One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this attribute: hosts should be specified using the `hosts` attribute. 
     `https_redirect_status_code` |  The status code Kong responds with when all properties of a Route match except the protocol i.e. if the protocol of the request is `HTTP` instead of `HTTPS`. `Location` header is injected by Kong if the field is set to 301, 302, 307 or 308.  Accepted values are: `426`, `301`, `302`, `307`, `308`.  Default: `426`.
     `regex_priority`<br>*optional* |  A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same `regex_priority`, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).  Default: `0`.
     `strip_path` |  When matching a Route via one of the `paths`, strip the matching prefix from the upstream request URL.  Default: `true`.
     `path_handling`<br>*optional* |  Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior.  Accepted values are: `"v0"`, `"v1"`.  Default: `"v0"`.
-    `preserve_host` |  When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service's `host`.
+    `preserve_host` |  When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service's `host`. 
     `request_buffering` |  Whether to enable request body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that receive data with chunked transfer encoding.  Default: `true`.
     `response_buffering` |  Whether to enable response body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that send data with chunked transfer encoding.  Default: `true`.
-    `snis`<br>*semi-optional* |  A list of SNIs that match this Route when using stream routing.
-    `sources`<br>*semi-optional* |  A list of IP sources of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port".
-    `destinations`<br>*semi-optional* |  A list of IP destinations of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port".
-    `tags`<br>*optional* |  An optional set of strings associated with the Route for grouping and filtering.
+    `snis`<br>*semi-optional* |  A list of SNIs that match this Route when using stream routing. 
+    `sources`<br>*semi-optional* |  A list of IP sources of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port". 
+    `destinations`<br>*semi-optional* |  A list of IP destinations of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port". 
+    `tags`<br>*optional* |  An optional set of strings associated with the Route for grouping and filtering. 
     `service`<br>*optional* |  The Service this Route is associated to. This is where the Route proxies traffic to. With form-encoded, the notation is `service.id=<service id>` or `service.name=<service name>`. With JSON, use "`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
 
 route_json: |
@@ -119,7 +119,7 @@ route_json: |
         "methods": ["GET", "POST"],
         "hosts": ["example.com", "foo.test"],
         "paths": ["/foo", "/bar"],
-        "headers": {"x-my-header":["foo", "bar"], "x-another-header":["bla"]},
+        "headers": {"x-another-header":["bla"], "x-my-header":["foo", "bar"]},
         "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
@@ -141,7 +141,7 @@ route_data: |
         "methods": ["GET", "POST"],
         "hosts": ["example.com", "foo.test"],
         "paths": ["/foo", "/bar"],
-        "headers": {"x-my-header":["foo", "bar"], "x-another-header":["bla"]},
+        "headers": {"x-another-header":["bla"], "x-my-header":["foo", "bar"]},
         "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
@@ -165,8 +165,8 @@ route_data: |
         "request_buffering": true,
         "response_buffering": true,
         "snis": ["foo.test", "example.com"],
-        "sources": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
-        "destinations": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
+        "sources": [{"port":1234, "ip":"10.1.0.0/16"}, {"ip":"10.2.2.2"}, {"port":9123}],
+        "destinations": [{"port":1234, "ip":"10.1.0.0/16"}, {"ip":"10.2.2.2"}, {"port":9123}],
         "tags": ["admin", "high-priority", "critical"],
         "service": {"id":"ba641b07-e74a-430a-ab46-94b61e5ea66b"}
     }],
@@ -174,9 +174,9 @@ route_data: |
 consumer_body: |
     Attributes | Description
     ---:| ---
-    `username`<br>*semi-optional* |  The unique username of the Consumer. You must send either this field or `custom_id` with the request.
-    `custom_id`<br>*semi-optional* |  Field for storing an existing unique ID for the Consumer - useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request.
-    `tags`<br>*optional* |  An optional set of strings associated with the Consumer for grouping and filtering.
+    `username`<br>*semi-optional* |  The unique username of the Consumer. You must send either this field or `custom_id` with the request. 
+    `custom_id`<br>*semi-optional* |  Field for storing an existing unique ID for the Consumer - useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Consumer for grouping and filtering. 
 
 consumer_json: |
     {
@@ -205,14 +205,14 @@ consumer_data: |
 plugin_body: |
     Attributes | Description
     ---:| ---
-    `name` |  The name of the Plugin that's going to be added. Currently, the Plugin must be installed in every Kong instance separately.
+    `name` |  The name of the Plugin that's going to be added. Currently, the Plugin must be installed in every Kong instance separately. 
     `route`<br>*optional* |  If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.  Default: `null`.With form-encoded, the notation is `route.id=<route id>` or `route.name=<route name>`. With JSON, use "`"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
     `service`<br>*optional* |  If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.  Default: `null`.With form-encoded, the notation is `service.id=<service id>` or `service.name=<service name>`. With JSON, use "`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
     `consumer`<br>*optional* |  If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer.  Default: `null`.With form-encoded, the notation is `consumer.id=<consumer id>` or `consumer.username=<consumer username>`. With JSON, use "`"consumer":{"id":"<consumer id>"}` or `"consumer":{"username":"<consumer username>"}`.
-    `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).
+    `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/). 
     `protocols` |  A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.  Default: `["grpc", "grpcs", "http",`<wbr>` "https"]`.
     `enabled` | Whether the plugin is applied. Default: `true`.
-    `tags`<br>*optional* |  An optional set of strings associated with the Plugin for grouping and filtering.
+    `tags`<br>*optional* |  An optional set of strings associated with the Plugin for grouping and filtering. 
 
 plugin_json: |
     {
@@ -222,7 +222,7 @@ plugin_json: |
         "route": null,
         "service": null,
         "consumer": null,
-        "config": {"hour":500, "minute":20},
+        "config": {"minute":20, "hour":500},
         "protocols": ["http", "https"],
         "enabled": true,
         "tags": ["user-level", "low-priority"]
@@ -236,7 +236,7 @@ plugin_data: |
         "route": null,
         "service": null,
         "consumer": null,
-        "config": {"hour":500, "minute":20},
+        "config": {"minute":20, "hour":500},
         "protocols": ["http", "https"],
         "enabled": true,
         "tags": ["user-level", "low-priority"]
@@ -247,7 +247,7 @@ plugin_data: |
         "route": null,
         "service": null,
         "consumer": null,
-        "config": {"hour":500, "minute":20},
+        "config": {"minute":20, "hour":500},
         "protocols": ["tcp", "tls"],
         "enabled": true,
         "tags": ["admin", "high-priority", "critical"]
@@ -258,10 +258,10 @@ certificate_body: |
     ---:| ---
     `cert` | PEM-encoded public certificate chain of the SSL key pair.
     `key` | PEM-encoded private key of the SSL key pair.
-    `cert_alt`<br>*optional* |  PEM-encoded public certificate chain of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it.
-    `key_alt`<br>*optional* | PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it.
-    `tags`<br>*optional* |  An optional set of strings associated with the Certificate for grouping and filtering.
-    `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. To set this attribute this certificate must have a valid private key associated with it.
+    `cert_alt`<br>*optional* |  PEM-encoded public certificate chain of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. 
+    `key_alt`<br>*optional* | PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Certificate for grouping and filtering. 
+    `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. To set this attribute this certificate must have a valid private key associated with it. 
 
 certificate_json: |
     {
@@ -298,7 +298,7 @@ ca_certificate_body: |
     ---:| ---
     `cert` | PEM-encoded public certificate of the CA.
     `cert_digest`<br>*optional* | SHA256 hex digest of the public certificate.
-    `tags`<br>*optional* |  An optional set of strings associated with the Certificate for grouping and filtering.
+    `tags`<br>*optional* |  An optional set of strings associated with the Certificate for grouping and filtering. 
 
 ca_certificate_json: |
     {
@@ -328,7 +328,7 @@ sni_body: |
     Attributes | Description
     ---:| ---
     `name` | The SNI name to associate with the given certificate.
-    `tags`<br>*optional* |  An optional set of strings associated with the SNIs for grouping and filtering.
+    `tags`<br>*optional* |  An optional set of strings associated with the SNIs for grouping and filtering. 
     `certificate` |  The id (a UUID) of the certificate with which to associate the SNI hostname. The Certificate must have a valid private key associated with it to be used by the SNI object. With form-encoded, the notation is `certificate.id=<certificate id>`. With JSON, use "`"certificate":{"id":"<certificate id>"}`.
 
 sni_json: |
@@ -367,29 +367,29 @@ upstream_body: |
     `hash_on_cookie`<br>*semi-optional* | The cookie name to take the value from as hash input. Only required when `hash_on` or `hash_fallback` is set to `cookie`. If the specified cookie is not in the request, Kong will generate a value and set the cookie in the response.
     `hash_on_cookie_path`<br>*semi-optional* | The cookie path to set in the response headers. Only required when `hash_on` or `hash_fallback` is set to `cookie`. Default: `"/"`.
     `slots`<br>*optional* | The number of slots in the load balancer algorithm. If `algorithm` is set to `round-robin`, this setting determines the maximum number of slots. If `algorithm` is set to `consistent-hashing`, this setting determines the actual number of slots in the algorithm. Accepts an integer in the range `10`-`65536`. Default: `10000`.
-    `healthchecks.passive.`<wbr>`healthy.successes`<br>*optional* | Number of successes in proxied traffic (as defined by `healthchecks.passive.healthy.http_statuses`) to consider a target healthy, as observed by passive health checks. Default: `0`.
-    `healthchecks.passive.`<wbr>`healthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent healthiness when produced by proxied traffic, as observed by passive health checks. Default: `[200, 201, 202, 203, 204, 205,`<wbr>` 206, 207, 208, 226, 300, 301,`<wbr>` 302, 303, 304, 305, 306, 307,`<wbr>` 308]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=201`. With JSON, use an Array.
-    `healthchecks.passive.`<wbr>`type`<br>*optional* | Whether to perform passive health checks interpreting HTTP/HTTPS statuses, or just check for TCP connection success. In passive checks, `http` and `https` options are equivalent. Accepted values are: `"tcp"`, `"http"`, `"https"`, `"grpc"`, `"grpcs"`.  Default: `"http"`.
+    `healthchecks.active.`<wbr>`https_sni`<br>*optional* | The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host's certificate can be verified with the proper SNI.
+    `healthchecks.active.`<wbr>`concurrency`<br>*optional* | Number of targets to check concurrently in active health checks. Default: `10`.
+    `healthchecks.active.type`<br>*optional* | Whether to perform active health checks using HTTP or HTTPS, or just attempt a TCP connection. Accepted values are: `"tcp"`, `"http"`, `"https"`, `"grpc"`, `"grpcs"`.  Default: `"http"`.
+    `healthchecks.active.`<wbr>`healthy.successes`<br>*optional* | Number of successes in active probes (as defined by `healthchecks.active.healthy.http_statuses`) to consider a target healthy. Default: `0`.
+    `healthchecks.active.`<wbr>`healthy.http_statuses`<br>*optional* | An array of HTTP statuses to consider a success, indicating healthiness, when returned by a probe in active health checks. Default: `[200, 302]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=302`. With JSON, use an Array.
+    `healthchecks.active.`<wbr>`healthy.interval`<br>*optional* | Interval between active health checks for healthy targets (in seconds). A value of zero indicates that active probes for healthy targets should not be performed. Default: `0`.
+    `healthchecks.active.`<wbr>`unhealthy.interval`<br>*optional* | Interval between active health checks for unhealthy targets (in seconds). A value of zero indicates that active probes for unhealthy targets should not be performed. Default: `0`.
+    `healthchecks.active.`<wbr>`unhealthy.http_statuses`<br>*optional* | An array of HTTP statuses to consider a failure, indicating unhealthiness, when returned by a probe in active health checks. Default: `[429, 404, 500, 501, 502, 503,`<wbr>` 504, 505]`. With form-encoded, the notation is `http_statuses[]=429&http_statuses[]=404`. With JSON, use an Array.
+    `healthchecks.active.`<wbr>`unhealthy.tcp_failures`<br>*optional* | Number of TCP failures in active probes to consider a target unhealthy. Default: `0`.
+    `healthchecks.active.`<wbr>`unhealthy.timeouts`<br>*optional* | Number of timeouts in active probes to consider a target unhealthy. Default: `0`.
+    `healthchecks.active.`<wbr>`unhealthy.http_failures`<br>*optional* | Number of HTTP failures in active probes (as defined by `healthchecks.active.unhealthy.http_statuses`) to consider a target unhealthy. Default: `0`.
+    `healthchecks.active.`<wbr>`https_verify_certificate` | Whether to check the validity of the SSL certificate of the remote host when performing active health checks using HTTPS. Default: `true`.
+    `healthchecks.active.`<wbr>`timeout`<br>*optional* | Socket timeout for active health checks (in seconds). Default: `1`.
+    `healthchecks.active.`<wbr>`http_path`<br>*optional* | Path to use in GET HTTP request to run as a probe on active health checks. Default: `"/"`.
+    `healthchecks.passive.`<wbr>`unhealthy.timeouts`<br>*optional* | Number of timeouts in proxied traffic to consider a target unhealthy, as observed by passive health checks. Default: `0`.
     `healthchecks.passive.`<wbr>`unhealthy.tcp_failures`<br>*optional* | Number of TCP failures in proxied traffic to consider a target unhealthy, as observed by passive health checks. Default: `0`.
     `healthchecks.passive.`<wbr>`unhealthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent unhealthiness when produced by proxied traffic, as observed by passive health checks. Default: `[429, 500, 503]`. With form-encoded, the notation is `http_statuses[]=429&http_statuses[]=500`. With JSON, use an Array.
     `healthchecks.passive.`<wbr>`unhealthy.http_failures`<br>*optional* | Number of HTTP failures in proxied traffic (as defined by `healthchecks.passive.unhealthy.http_statuses`) to consider a target unhealthy, as observed by passive health checks. Default: `0`.
-    `healthchecks.passive.`<wbr>`unhealthy.timeouts`<br>*optional* | Number of timeouts in proxied traffic to consider a target unhealthy, as observed by passive health checks. Default: `0`.
-    `healthchecks.active.`<wbr>`timeout`<br>*optional* | Socket timeout for active health checks (in seconds). Default: `1`.
-    `healthchecks.active.`<wbr>`healthy.interval`<br>*optional* | Interval between active health checks for healthy targets (in seconds). A value of zero indicates that active probes for healthy targets should not be performed. Default: `0`.
-    `healthchecks.active.`<wbr>`healthy.http_statuses`<br>*optional* | An array of HTTP statuses to consider a success, indicating healthiness, when returned by a probe in active health checks. Default: `[200, 302]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=302`. With JSON, use an Array.
-    `healthchecks.active.`<wbr>`healthy.successes`<br>*optional* | Number of successes in active probes (as defined by `healthchecks.active.healthy.http_statuses`) to consider a target healthy. Default: `0`.
-    `healthchecks.active.`<wbr>`http_path`<br>*optional* | Path to use in GET HTTP request to run as a probe on active health checks. Default: `"/"`.
-    `healthchecks.active.`<wbr>`https_sni`<br>*optional* | The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host's certificate can be verified with the proper SNI.
-    `healthchecks.active.`<wbr>`https_verify_certificate` | Whether to check the validity of the SSL certificate of the remote host when performing active health checks using HTTPS. Default: `true`.
-    `healthchecks.active.type`<br>*optional* | Whether to perform active health checks using HTTP or HTTPS, or just attempt a TCP connection. Accepted values are: `"tcp"`, `"http"`, `"https"`, `"grpc"`, `"grpcs"`.  Default: `"http"`.
-    `healthchecks.active.`<wbr>`concurrency`<br>*optional* | Number of targets to check concurrently in active health checks. Default: `10`.
-    `healthchecks.active.`<wbr>`unhealthy.tcp_failures`<br>*optional* | Number of TCP failures in active probes to consider a target unhealthy. Default: `0`.
-    `healthchecks.active.`<wbr>`unhealthy.http_statuses`<br>*optional* | An array of HTTP statuses to consider a failure, indicating unhealthiness, when returned by a probe in active health checks. Default: `[429, 404, 500, 501, 502, 503,`<wbr>` 504, 505]`. With form-encoded, the notation is `http_statuses[]=429&http_statuses[]=404`. With JSON, use an Array.
-    `healthchecks.active.`<wbr>`unhealthy.http_failures`<br>*optional* | Number of HTTP failures in active probes (as defined by `healthchecks.active.unhealthy.http_statuses`) to consider a target unhealthy. Default: `0`.
-    `healthchecks.active.`<wbr>`unhealthy.interval`<br>*optional* | Interval between active health checks for unhealthy targets (in seconds). A value of zero indicates that active probes for unhealthy targets should not be performed. Default: `0`.
-    `healthchecks.active.`<wbr>`unhealthy.timeouts`<br>*optional* | Number of timeouts in active probes to consider a target unhealthy. Default: `0`.
+    `healthchecks.passive.`<wbr>`type`<br>*optional* | Whether to perform passive health checks interpreting HTTP/HTTPS statuses, or just check for TCP connection success. In passive checks, `http` and `https` options are equivalent. Accepted values are: `"tcp"`, `"http"`, `"https"`, `"grpc"`, `"grpcs"`.  Default: `"http"`.
+    `healthchecks.passive.`<wbr>`healthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent healthiness when produced by proxied traffic, as observed by passive health checks. Default: `[200, 201, 202, 203, 204, 205,`<wbr>` 206, 207, 208, 226, 300, 301,`<wbr>` 302, 303, 304, 305, 306, 307,`<wbr>` 308]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=201`. With JSON, use an Array.
+    `healthchecks.passive.`<wbr>`healthy.successes`<br>*optional* | Number of successes in proxied traffic (as defined by `healthchecks.passive.healthy.http_statuses`) to consider a target healthy, as observed by passive health checks. Default: `0`.
     `healthchecks.threshold`<br>*optional* | The minimum percentage of the upstream's targets' weight that must be available for the whole upstream to be considered healthy. Default: `0`.
-    `tags`<br>*optional* |  An optional set of strings associated with the Upstream for grouping and filtering.
+    `tags`<br>*optional* |  An optional set of strings associated with the Upstream for grouping and filtering. 
     `host_header`<br>*optional* | The hostname to be used as `Host` header when proxying requests through Kong.
     `client_certificate`<br>*optional* | If set, the certificate to be used as client certificate while TLS handshaking to the upstream server.With form-encoded, the notation is `client_certificate.id=<client_certificate id>`. With JSON, use "`"client_certificate":{"id":"<client_certificate id>"}`.
 
@@ -404,37 +404,37 @@ upstream_json: |
         "hash_on_cookie_path": "/",
         "slots": 10000,
         "healthchecks": {
-            "passive": {
+            "active": {
+                "https_sni": "example.com",
+                "concurrency": 10,
+                "type": "http",
                 "healthy": {
                     "successes": 0,
-                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]
+                    "http_statuses": [200, 302],
+                    "interval": 0
                 },
-                "type": "http",
                 "unhealthy": {
+                    "interval": 0,
+                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505],
+                    "tcp_failures": 0,
+                    "timeouts": 0,
+                    "http_failures": 0
+                },
+                "https_verify_certificate": true,
+                "timeout": 1,
+                "http_path": "/"
+            },
+            "passive": {
+                "unhealthy": {
+                    "timeouts": 0,
                     "tcp_failures": 0,
                     "http_statuses": [429, 500, 503],
-                    "http_failures": 0,
-                    "timeouts": 0
-                }
-            },
-            "active": {
-                "timeout": 1,
-                "healthy": {
-                    "interval": 0,
-                    "http_statuses": [200, 302],
-                    "successes": 0
+                    "http_failures": 0
                 },
-                "http_path": "/",
-                "https_sni": "example.com",
-                "https_verify_certificate": true,
                 "type": "http",
-                "concurrency": 10,
-                "unhealthy": {
-                    "tcp_failures": 0,
-                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505],
-                    "http_failures": 0,
-                    "interval": 0,
-                    "timeouts": 0
+                "healthy": {
+                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308],
+                    "successes": 0
                 }
             },
             "threshold": 0
@@ -455,37 +455,37 @@ upstream_data: |
         "hash_on_cookie_path": "/",
         "slots": 10000,
         "healthchecks": {
-            "passive": {
+            "active": {
+                "https_sni": "example.com",
+                "concurrency": 10,
+                "type": "http",
                 "healthy": {
                     "successes": 0,
-                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]
+                    "http_statuses": [200, 302],
+                    "interval": 0
                 },
-                "type": "http",
                 "unhealthy": {
+                    "interval": 0,
+                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505],
+                    "tcp_failures": 0,
+                    "timeouts": 0,
+                    "http_failures": 0
+                },
+                "https_verify_certificate": true,
+                "timeout": 1,
+                "http_path": "/"
+            },
+            "passive": {
+                "unhealthy": {
+                    "timeouts": 0,
                     "tcp_failures": 0,
                     "http_statuses": [429, 500, 503],
-                    "http_failures": 0,
-                    "timeouts": 0
-                }
-            },
-            "active": {
-                "timeout": 1,
-                "healthy": {
-                    "interval": 0,
-                    "http_statuses": [200, 302],
-                    "successes": 0
+                    "http_failures": 0
                 },
-                "http_path": "/",
-                "https_sni": "example.com",
-                "https_verify_certificate": true,
                 "type": "http",
-                "concurrency": 10,
-                "unhealthy": {
-                    "tcp_failures": 0,
-                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505],
-                    "http_failures": 0,
-                    "interval": 0,
-                    "timeouts": 0
+                "healthy": {
+                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308],
+                    "successes": 0
                 }
             },
             "threshold": 0
@@ -503,37 +503,37 @@ upstream_data: |
         "hash_on_cookie_path": "/",
         "slots": 10000,
         "healthchecks": {
-            "passive": {
+            "active": {
+                "https_sni": "example.com",
+                "concurrency": 10,
+                "type": "http",
                 "healthy": {
                     "successes": 0,
-                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]
+                    "http_statuses": [200, 302],
+                    "interval": 0
                 },
-                "type": "http",
                 "unhealthy": {
+                    "interval": 0,
+                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505],
+                    "tcp_failures": 0,
+                    "timeouts": 0,
+                    "http_failures": 0
+                },
+                "https_verify_certificate": true,
+                "timeout": 1,
+                "http_path": "/"
+            },
+            "passive": {
+                "unhealthy": {
+                    "timeouts": 0,
                     "tcp_failures": 0,
                     "http_statuses": [429, 500, 503],
-                    "http_failures": 0,
-                    "timeouts": 0
-                }
-            },
-            "active": {
-                "timeout": 1,
-                "healthy": {
-                    "interval": 0,
-                    "http_statuses": [200, 302],
-                    "successes": 0
+                    "http_failures": 0
                 },
-                "http_path": "/",
-                "https_sni": "example.com",
-                "https_verify_certificate": true,
                 "type": "http",
-                "concurrency": 10,
-                "unhealthy": {
-                    "tcp_failures": 0,
-                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505],
-                    "http_failures": 0,
-                    "interval": 0,
-                    "timeouts": 0
+                "healthy": {
+                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308],
+                    "successes": 0
                 }
             },
             "threshold": 0
@@ -546,9 +546,9 @@ upstream_data: |
 target_body: |
     Attributes | Description
     ---:| ---
-    `target` |  The target address (ip or hostname) and port. If the hostname resolves to an SRV record, the `port` value will be overridden by the value from the DNS record.
+    `target` |  The target address (ip or hostname) and port. If the hostname resolves to an SRV record, the `port` value will be overridden by the value from the DNS record. 
     `weight`<br>*optional* |  The weight this target gets within the upstream loadbalancer (`0`-`65535`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.  Default: `100`.
-    `tags`<br>*optional* |  An optional set of strings associated with the Target for grouping and filtering.
+    `tags`<br>*optional* |  An optional set of strings associated with the Target for grouping and filtering. 
 
 target_json: |
     {
@@ -580,25 +580,108 @@ target_data: |
 
 ---
 
-<div class="alert alert-info.blue" role="alert">
-  This page refers to the Admin API for running Kong configured with a
-  database (Postgres or Cassandra). For using the Admin API for Kong
-  in DB-less mode, please refer to the
-  <a href="/{{page.kong_version}}/db-less-admin-api">Admin API for DB-less Mode</a>
-  page.
-</div>
+{{site.base_gateway}} comes with an **internal** RESTful Admin API for administration purposes.
+ Requests to the Admin API can be sent to any node in the cluster, and Kong will
+ keep the configuration consistent across all nodes.
 
-Kong comes with an **internal** RESTful Admin API for administration purposes.
-Requests to the Admin API can be sent to any node in the cluster, and Kong will
-keep the configuration consistent across all nodes.
+ - `8001` is the default port on which the Admin API listens.
+ - `8444` is the default port for HTTPS traffic to the Admin API.
 
-- `8001` is the default port on which the Admin API listens.
-- `8444` is the default port for HTTPS traffic to the Admin API.
+ This API is designed for internal use and provides full control over Kong, so
+ care should be taken when setting up Kong environments to avoid undue public
+ exposure of this API. See [this document][secure-admin-api] for a discussion
+ of methods to secure the Admin API.
 
-This API is designed for internal use and provides full control over Kong, so
-care should be taken when setting up Kong environments to avoid undue public
-exposure of this API. See [this document][secure-admin-api] for a discussion
-of methods to secure the Admin API.
+---
+
+
+## DB-less Mode
+
+
+In [DB-less mode](../db-less-and-declarative-config), the Admin API can be used to load a new declarative
+configuration, and for inspecting the current configuration. In DB-less mode,
+the Admin API for each Kong node functions independently, reflecting the memory state
+of that particular Kong node. This is the case because there is no database
+coordination between Kong nodes.
+
+In DB-less mode, you configure {{site.base_gateway}} declaratively.
+Therefore, the Admin API is mostly read-only. The only tasks it can perform are all
+related to handling the declarative config, including:
+
+* [Validating configurations against schemas](#validate-a-configuration-against-a-schema)
+* [Validating plugin configurations against schemas](#validate-a-plugin-configuration-against-the-schema)
+* [Reloading the declarative configuration](#reload-declarative-configuration)
+* [Setting a target's health status in the load balancer](#set-target-as-healthy)
+
+
+---
+
+
+## Declarative Configuration
+
+
+Loading the declarative configuration of entities into {{site.base_gateway}}
+can be done in two ways: at start-up, through the `declarative_config`
+property, or at run-time, through the Admin API using the `/config`
+endpoint.
+
+To get started using declarative configuration, you need a file
+(in YAML or JSON format) containing entity definitions. You can
+generate a sample declarative configuration with the command:
+
+```
+kong config init
+```
+
+It generates a file named `kong.yml` in the current directory,
+containing the appropriate structure and examples.
+
+
+### Reload Declarative Configuration
+
+This endpoint allows resetting a DB-less Kong with a new
+declarative configuration data file. All previous contents
+are erased from memory, and the entities specified in the
+given file take their place.
+
+To learn more about the file format, see the
+[declarative configuration](../db-less-and-declarative-config) documentation.
+
+
+<div class="endpoint post indent">/config</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`config`<br>**required** | The config data (in YAML or JSON format) to be loaded.
+
+
+#### Request Querystring Parameters
+
+Attributes | Description
+---:| ---
+`check_hash`<br>*optional* | If set to 1, Kong will compare the hash of the input config data against that of the previous one. If the configuration is identical, it will not reload it and will return HTTP 304.
+
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+``` json
+{
+    { "services": [],
+      "routes": []
+    }
+}
+```
+
+The response contains a list of all the entities that were parsed from the
+input file.
+
+---
+
 
 ## Supported Content Types
 
@@ -689,6 +772,7 @@ curl -i -X POST http://localhost:8001/services/test-service/routes \
 
 
 ### Retrieve Node Information
+{:.badge .dbless}
 
 Retrieve generic details about a node.
 
@@ -733,6 +817,7 @@ HTTP 200 OK
 ---
 
 ### List Available Endpoints
+{:.badge .dbless}
 
 List all available endpoints provided by the Admin API.
 
@@ -767,6 +852,7 @@ HTTP 200 OK
 ---
 
 ### Validate A Configuration against A Schema
+{:.badge .dbless}
 
 Check validity of a configuration against its entity schema.
 This allows you to test your input before submitting a request
@@ -798,6 +884,7 @@ HTTP 200 OK
 ---
 
 ### Retrieve Entity Schema
+{:.badge .dbless}
 
 Retrieve the schema of an entity. This is useful to
 understand what fields an entity accepts, and can be used for building
@@ -838,6 +925,7 @@ HTTP 200 OK
 ---
 
 ### Retrieve Plugin Schema
+{:.badge .dbless}
 
 Retrieve the schema of a plugin's configuration. This is useful to
 understand what fields a plugin accepts, and can be used for building
@@ -872,6 +960,7 @@ HTTP 200 OK
 ---
 
 ### Validate A Plugin Configuration against The Schema
+{:.badge .dbless}
 
 Check validity of a plugin configuration against the plugins entity schema.
 This allows you to test your input before submitting a request
@@ -907,6 +996,7 @@ HTTP 200 OK
 
 
 ### Retrieve Node Status
+{:.badge .dbless}
 
 Retrieve usage information about a node, with some basic information
 about the connections being processed by the underlying nginx process,
@@ -1062,6 +1152,7 @@ Some notes:
 
 
 ### List All Tags
+{:.badge .dbless}
 
 Returns a paginated list of all the tags in the system.
 
@@ -1109,6 +1200,7 @@ HTTP 200 OK
 ---
 
 ### List Entity Ids by Tag
+{:.badge .dbless}
 
 Returns the entities that have been tagged with the specified tag.
 
@@ -1172,6 +1264,11 @@ Services can be both [tagged and filtered by tags](#tags).
 
 ### Add Service
 
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
+
 ##### Create Service
 
 <div class="endpoint post indent">/services</div>
@@ -1206,6 +1303,7 @@ HTTP 201 Created
 ---
 
 ### List Services
+{:.badge .dbless}
 
 ##### List All Services
 
@@ -1239,6 +1337,7 @@ HTTP 200 OK
 ---
 
 ### Retrieve Service
+{:.badge .dbless}
 
 ##### Retrieve Service
 
@@ -1295,6 +1394,11 @@ HTTP 200 OK
 ---
 
 ### Update Service
+
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
 
 ##### Update Service
 
@@ -1356,6 +1460,11 @@ HTTP 200 OK
 ---
 
 ### Update Or Create Service
+
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
 
 ##### Create Or Update Service
 
@@ -1430,6 +1539,11 @@ See POST and PATCH responses.
 ---
 
 ### Delete Service
+
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
 
 ##### Delete Service
 
@@ -1532,6 +1646,11 @@ Routes can be both [tagged and filtered by tags](#tags).
 
 ### Add Route
 
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
+
 ##### Create Route
 
 <div class="endpoint post indent">/routes</div>
@@ -1566,6 +1685,7 @@ HTTP 201 Created
 ---
 
 ### List Routes
+{:.badge .dbless}
 
 ##### List All Routes
 
@@ -1599,6 +1719,7 @@ HTTP 200 OK
 ---
 
 ### Retrieve Route
+{:.badge .dbless}
 
 ##### Retrieve Route
 
@@ -1645,6 +1766,11 @@ HTTP 200 OK
 ---
 
 ### Update Route
+
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
 
 ##### Update Route
 
@@ -1696,6 +1822,11 @@ HTTP 200 OK
 ---
 
 ### Update Or Create Route
+
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
 
 ##### Create Or Update Route
 
@@ -1761,6 +1892,11 @@ See POST and PATCH responses.
 
 ### Delete Route
 
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
+
 ##### Delete Route
 
 <div class="endpoint delete indent">/routes/{route name or id}</div>
@@ -1807,6 +1943,11 @@ Consumers can be both [tagged and filtered by tags](#tags).
 
 ### Add Consumer
 
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
+
 ##### Create Consumer
 
 <div class="endpoint post indent">/consumers</div>
@@ -1831,6 +1972,7 @@ HTTP 201 Created
 ---
 
 ### List Consumers
+{:.badge .dbless}
 
 ##### List All Consumers
 
@@ -1854,6 +1996,7 @@ HTTP 200 OK
 ---
 
 ### Retrieve Consumer
+{:.badge .dbless}
 
 ##### Retrieve Consumer
 
@@ -1889,6 +2032,11 @@ HTTP 200 OK
 ---
 
 ### Update Consumer
+
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
 
 ##### Update Consumer
 
@@ -1929,6 +2077,11 @@ HTTP 200 OK
 ---
 
 ### Update Or Create Consumer
+
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
 
 ##### Create Or Update Consumer
 
@@ -1982,6 +2135,11 @@ See POST and PATCH responses.
 ---
 
 ### Delete Consumer
+
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
 
 ##### Delete Consumer
 
@@ -2068,6 +2226,11 @@ would have otherwise matched config B.
 
 ### Add Plugin
 
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
+
 ##### Create Plugin
 
 <div class="endpoint post indent">/plugins</div>
@@ -2122,6 +2285,7 @@ HTTP 201 Created
 ---
 
 ### List Plugins
+{:.badge .dbless}
 
 ##### List All Plugins
 
@@ -2175,6 +2339,7 @@ HTTP 200 OK
 ---
 
 ### Retrieve Plugin
+{:.badge .dbless}
 
 ##### Retrieve Plugin
 
@@ -2233,6 +2398,11 @@ HTTP 200 OK
 ---
 
 ### Update Plugin
+
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
 
 ##### Update Plugin
 
@@ -2296,6 +2466,11 @@ HTTP 200 OK
 ---
 
 ### Update Or Create Plugin
+
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
 
 ##### Create Or Update Plugin
 
@@ -2373,6 +2548,11 @@ See POST and PATCH responses.
 
 ### Delete Plugin
 
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
+
 ##### Delete Plugin
 
 <div class="endpoint delete indent">/plugins/{plugin id}</div>
@@ -2426,6 +2606,7 @@ HTTP 204 No Content
 ---
 
 ### Retrieve Enabled Plugins
+{:.badge .dbless}
 
 Retrieve a list of all installed plugins on the Kong node.
 
@@ -2494,6 +2675,11 @@ Certificates can be both [tagged and filtered by tags](#tags).
 
 ### Add Certificate
 
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
+
 ##### Create Certificate
 
 <div class="endpoint post indent">/certificates</div>
@@ -2518,6 +2704,7 @@ HTTP 201 Created
 ---
 
 ### List Certificates
+{:.badge .dbless}
 
 ##### List All Certificates
 
@@ -2541,6 +2728,7 @@ HTTP 200 OK
 ---
 
 ### Retrieve Certificate
+{:.badge .dbless}
 
 ##### Retrieve Certificate
 
@@ -2576,6 +2764,11 @@ HTTP 200 OK
 ---
 
 ### Update Certificate
+
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
 
 ##### Update Certificate
 
@@ -2616,6 +2809,11 @@ HTTP 200 OK
 ---
 
 ### Update Or Create Certificate
+
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
 
 ##### Create Or Update Certificate
 
@@ -2670,6 +2868,11 @@ See POST and PATCH responses.
 
 ### Delete Certificate
 
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
+
 ##### Delete Certificate
 
 <div class="endpoint delete indent">/certificates/{certificate id}</div>
@@ -2713,6 +2916,11 @@ CA Certificates can be both [tagged and filtered by tags](#tags).
 
 ### Add CA Certificate
 
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
+
 ##### Create CA Certificate
 
 <div class="endpoint post indent">/ca_certificates</div>
@@ -2737,6 +2945,7 @@ HTTP 201 Created
 ---
 
 ### List CA Certificates
+{:.badge .dbless}
 
 ##### List All CA Certificates
 
@@ -2760,6 +2969,7 @@ HTTP 200 OK
 ---
 
 ### Retrieve CA Certificate
+{:.badge .dbless}
 
 ##### Retrieve CA Certificate
 
@@ -2785,6 +2995,11 @@ HTTP 200 OK
 ---
 
 ### Update CA Certificate
+
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
 
 ##### Update CA Certificate
 
@@ -2815,6 +3030,11 @@ HTTP 200 OK
 ---
 
 ### Update Or Create CA Certificate
+
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
 
 ##### Create Or Update CA Certificate
 
@@ -2859,6 +3079,11 @@ See POST and PATCH responses.
 
 ### Delete CA Certificate
 
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
+
 ##### Delete CA Certificate
 
 <div class="endpoint delete indent">/ca_certificates/{ca_certificate id}</div>
@@ -2894,6 +3119,11 @@ SNIs can be both [tagged and filtered by tags](#tags).
 
 ### Add SNI
 
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
+
 ##### Create SNI
 
 <div class="endpoint post indent">/snis</div>
@@ -2928,6 +3158,7 @@ HTTP 201 Created
 ---
 
 ### List SNIs
+{:.badge .dbless}
 
 ##### List All SNIs
 
@@ -2961,6 +3192,7 @@ HTTP 200 OK
 ---
 
 ### Retrieve SNI
+{:.badge .dbless}
 
 ##### Retrieve SNI
 
@@ -2997,6 +3229,11 @@ HTTP 200 OK
 ---
 
 ### Update SNI
+
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
 
 ##### Update SNI
 
@@ -3038,6 +3275,11 @@ HTTP 200 OK
 ---
 
 ### Update Or Create SNI
+
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
 
 ##### Create Or Update SNI
 
@@ -3093,6 +3335,11 @@ See POST and PATCH responses.
 
 ### Delete SNI
 
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
+
 ##### Delete SNI
 
 <div class="endpoint delete indent">/snis/{sni name or id}</div>
@@ -3144,6 +3391,11 @@ Upstreams can be both [tagged and filtered by tags](#tags).
 
 ### Add Upstream
 
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
+
 ##### Create Upstream
 
 <div class="endpoint post indent">/upstreams</div>
@@ -3178,6 +3430,7 @@ HTTP 201 Created
 ---
 
 ### List Upstreams
+{:.badge .dbless}
 
 ##### List All Upstreams
 
@@ -3211,6 +3464,7 @@ HTTP 200 OK
 ---
 
 ### Retrieve Upstream
+{:.badge .dbless}
 
 ##### Retrieve Upstream
 
@@ -3257,6 +3511,11 @@ HTTP 200 OK
 ---
 
 ### Update Upstream
+
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
 
 ##### Update Upstream
 
@@ -3308,6 +3567,11 @@ HTTP 200 OK
 ---
 
 ### Update Or Create Upstream
+
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
 
 ##### Create Or Update Upstream
 
@@ -3373,6 +3637,11 @@ See POST and PATCH responses.
 
 ### Delete Upstream
 
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
+
 ##### Delete Upstream
 
 <div class="endpoint delete indent">/upstreams/{upstream name or id}</div>
@@ -3414,6 +3683,7 @@ HTTP 204 No Content
 ---
 
 ### Show Upstream Health for Node
+{:.badge .dbless}
 
 Displays the health status for all Targets of a given Upstream, or for
 the whole Upstream, according to the perspective of a specific Kong node.
@@ -3534,6 +3804,11 @@ Targets can be both [tagged and filtered by tags](#tags).
 
 ### Add Target
 
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
+
 ##### Create Target Associated to a Specific Upstream
 
 <div class="endpoint post indent">/upstreams/{upstream host:port or id}/targets</div>
@@ -3563,6 +3838,7 @@ HTTP 201 Created
 ---
 
 ### List Targets
+{:.badge .dbless}
 
 ##### List Targets Associated to a Specific Upstream
 
@@ -3592,6 +3868,11 @@ HTTP 200 OK
 
 ### Update Target
 
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
+
 Update a target.
 
 
@@ -3615,6 +3896,11 @@ HTTP 201 Created
 
 ### Delete Target
 
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
+
 Remove a target from the load balancer.
 
 
@@ -3637,6 +3923,11 @@ HTTP 204 No Content
 ---
 
 ### Set Target Address As Healthy
+
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
 
 Set the current health status of an individual address resolved by a target
 in the load balancer to "healthy" in the entire Kong cluster.
@@ -3671,6 +3962,11 @@ HTTP 204 No Content
 ---
 
 ### Set Target Address As Unhealthy
+
+
+
+{:.note}
+> **Note**: Not available in DB-less mode.
 
 Set the current health status of an individual address resolved by a target
 in the load balancer to "unhealthy" in the entire Kong cluster.
@@ -3709,6 +4005,7 @@ HTTP 204 No Content
 ---
 
 ### Set Target As Healthy
+{:.badge .dbless}
 
 Set the current health status of a target in the load balancer to "healthy"
 in the entire Kong cluster. This sets the "healthy" status to all addresses
@@ -3743,6 +4040,7 @@ HTTP 204 No Content
 ---
 
 ### Set Target As Unhealthy
+{:.badge .dbless}
 
 Set the current health status of a target in the load balancer to "unhealthy"
 in the entire Kong cluster. This sets the "unhealthy" status to all addresses
@@ -3782,6 +4080,7 @@ HTTP 204 No Content
 ---
 
 ### List All Targets
+{:.badge .dbless}
 
 Lists all targets of the upstream. Multiple target objects for the same
 target may be returned, showing the history of changes for a specific target.
@@ -3833,4 +4132,3 @@ HTTP 200 OK
 [healthchecks]: /{{page.kong_version}}/health-checks-circuit-breakers
 [secure-admin-api]: /{{page.kong_version}}/secure-admin-api
 [proxy-reference]: /{{page.kong_version}}/proxy
-[db-less-admin-api]: /{{page.kong_version}}/db-less-admin-api
