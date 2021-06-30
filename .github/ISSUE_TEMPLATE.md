@@ -1,24 +1,22 @@
 <!-- 
-Did you spot a typo or do you want to contribute to documentation? Instead of a GitHub issue, we encourage you to submit a pull-request (https://help.github.com/articles/creating-a-pull-request/) and we will review your changes!
-
-For all other issues, please fill in the sections below.
-
-Check existing issues and pull-requests before submitting new ones, as a courtesy to the maintainers and making sure work isn't duplicated.
+Thank you for your interest in contributing!
+Before submitting an issue, check our existing issues and pull requests to see if someone else has reported your issue previously. 
+If you know how to resolve the issue you're reporting, we highly encourage that you submit a pull request instead: https://help.github.com/articles/creating-a-pull-request/.
+If you have a troubleshooting issue, reach out to our community on Kong Nation: https://discuss.konghq.com/.
 -->
 
-- `docs.konghq.com` url(s):
+### What part of the site needs attention?
+
+<!-- Link the part of the site that needs attention.  -->
 
 ### Summary
 
-SUMMARY_GOES_HERE
+<!-- 
+    Describe the issue in detail and, if applicable, tell us why this change is important.  
+        * Bad: "The ACL plugin documentation needs updating."
+        * Good: "Add the missing DELETE endpoint to ACL plugin documentation."
+-->
 
 ### Steps To Reproduce
 
-1.
-2.
-3.
-4.
-
-### Additional Details
-
-ADDITIONAL_DETAILS_GO_HERE
+<!-- Tell us how we can reproduce this issue, if applicable.  -->
