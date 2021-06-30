@@ -142,6 +142,47 @@ respository.
 
 [Back to top](#introduction)
 
+## Sample Output
+
+```
+### Result for Kong git:96326b894f712b5d03bb1bf7ac02d531f6128cd1 (run 1):
+Running 10s test @ http://10.88.145.9:8000/s1-r1
+  5 threads and 1000 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    17.51ms   61.46ms   1.04s    98.99%
+    Req/Sec    14.31k     2.61k   20.80k    82.59%
+  672831 requests in 10.07s, 154.07MB read
+  Socket errors: connect 0, read 0, write 0, timeout 246
+Requests/sec:  66803.45
+Transfer/sec:     15.30MB
+### Result for Kong git:96326b894f712b5d03bb1bf7ac02d531f6128cd1 (run 2):
+Running 10s test @ http://10.88.145.9:8000/s1-r1
+  5 threads and 1000 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    14.71ms   10.66ms  96.77ms   66.18%
+    Req/Sec    14.45k     1.79k   20.19k    70.80%
+  718942 requests in 10.08s, 164.70MB read
+Requests/sec:  71337.25
+Transfer/sec:     16.34MB
+### Result for Kong git:96326b894f712b5d03bb1bf7ac02d531f6128cd1 (run 3):
+Running 10s test @ http://10.88.145.9:8000/s1-r1
+  5 threads and 1000 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    14.47ms   10.13ms  82.81ms   66.57%
+    Req/Sec    14.60k     1.64k   22.98k    72.00%
+  726452 requests in 10.07s, 166.42MB read
+Requests/sec:  72141.41
+Transfer/sec:     16.53MB
+### Combined result for Kong git:96326b894f712b5d03bb1bf7ac02d531f6128cd1:
+RPS     Avg: 70094.04
+Latency Avg: 15.52ms    Max: 1040.00ms
+```
+
+With samples in [spec/04-perf](https://github.com/Kong/kong/tree/master/spec/04-perf), the RPS and latency
+results, Kong error logs and FlameGraph files are saved to `output` directory under current directory.
+
+[Back to top](#introduction)
+
 ## API
 
 ### perf.use_driver
