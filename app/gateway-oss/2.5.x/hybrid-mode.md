@@ -421,11 +421,11 @@ automatically within seconds.
 with the same major version.
 Control planes won't allow connections from data planes with newer minor versions.
 
-For example, a {{site.ce_product_name}} v2.4.2 control plane:
+For example, a {{site.ce_product_name}} v2.5.2 control plane:
 
-- Accepts a {{site.ce_product_name}} 2.4.0, 2.4.1 and 2.4.2 data plane
+- Accepts a {{site.ce_product_name}} 2.5.0, 2.5.1 and 2.5.2 data plane
 - Accepts a {{site.ce_product_name}} 2.3.8, 2.2.1 and 2.2.0 data plane
-- Accepts a {{site.ce_product_name}} 2.4.3 data plane (newer patch version on the data plane is accepted)
+- Accepts a {{site.ce_product_name}} 2.5.3 data plane (newer patch version on the data plane is accepted)
 - Rejects a {{site.ce_product_name}} 1.0.0 data plane (major version differs)
 - Rejects a {{site.ce_product_name}} 2.5.0 data plane (minor version on data plane is newer)
 
@@ -433,7 +433,9 @@ Furthermore, for every plugin that is configured on the {{site.ce_product_name}}
 control planes, new configs are only pushed to data planes that have those configured
 plugins installed and loaded, and the major version of those configured plugins must
 be the same on both control planes and data planes, and minor version on the data planes
-could not be newer than versions installed on the control planes. (Configured plugins means
+could not be newer than versions installed on the control planes. Note that similar to
+{{site.ce_product_name}} version checks, plugin patch versions are also ignored
+when determining the compatibility. (Configured plugins means
 any plugin that is either enabled globally, or configured via Services/Routes/Consumers.)
 
 For example, if a {{site.ce_product_name}} control plane has `plugin1` v1.1.1
