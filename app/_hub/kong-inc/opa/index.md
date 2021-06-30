@@ -15,6 +15,7 @@ description: |
     v2.4.1.1.
 
 enterprise: true
+plus: true
 type: plugin
 categories:
   - security
@@ -31,7 +32,6 @@ params:
   consumer_id: false
   protocols: ["http", "https"]
   dbless_compatible: yes
-  konnect_examples: false
   config:
     - name: opa_protocol
       required: false

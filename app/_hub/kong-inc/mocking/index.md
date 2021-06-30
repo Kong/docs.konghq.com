@@ -26,6 +26,7 @@ description: |
   v2.4.1.1.
 
 enterprise: true
+plus: true
 type:
   plugin
 categories:
@@ -45,9 +46,6 @@ params:
   dbless_explanation: |
     Use the `api_specification` config for DB-less or hybrid mode. Attach the spec contents directly
     instead of uploading to the Dev Portal. The API spec is configured directly in the plugin.
-  yaml_examples: false
-  k8s_examples: false
-  konnect_examples: false
   examples: false
 
   config:
