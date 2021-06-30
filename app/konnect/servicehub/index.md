@@ -82,4 +82,4 @@ can execute actions inside {{site.konnect_product_name}} before or after a reque
 has been proxied to the upstream API, as well as on any incoming responses.
 
 **See more:**
-* [Manage plugins](/konnect/servicehub/plugins)
+* [Manage plugins](/konnect/manage-plugins/)
