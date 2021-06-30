@@ -40,12 +40,12 @@ an hypothetical Python plugin server called `pypluginserver.py`):
 pluginserver_names = go,python
 
 pluginserver_go_socket = /usr/local/kong/go_pluginserver.sock
-pluginserver_go_start_cmd = go-pluginserver -kong-prefix /usr/local/kong/ -plugins-directory /usr/local/kong/go-plugins
-pluginserver_go_query_cmd = go-pluginserver -dump-all-plugins -plugins-directory /usr/local/kong/go-plugins
+pluginserver_go_start_cmd = /usr/local/bin/go-pluginserver -kong-prefix /usr/local/kong/ -plugins-directory /usr/local/kong/go-plugins
+pluginserver_go_query_cmd = /usr/local/bin/go-pluginserver -dump-all-plugins -plugins-directory /usr/local/kong/go-plugins
 
 pluginserver_python_socket = /usr/local/kong/python_pluginserver.sock
-pluginserver_python_start_cmd = kong-python-pluginserver
-pluginserver_python_query_cmd = kong-python-pluginserver --dump-all-plugins
+pluginserver_python_start_cmd = /usr/local/bin/kong-python-pluginserver
+pluginserver_python_query_cmd = /usr/local/bin/kong-python-pluginserver --dump-all-plugins
 ```
 
 To enable those plugins, add the each plugin name to the `plugins` config. Assume we have those hello plugins
@@ -54,6 +54,11 @@ in each language:
 ```
 plugins = bundled, go-hello, js-hello, py-hello
 ```
+
+{:.note}
+> **Note:** The `pluginserver_XXX_start_cmd` and `pluginserver_XXX_query_cmd` commands use
+ a limited default `PATH` variable. In most cases, you have to specify the full executable
+ path instead.
 
 ### Legacy configuration
 
