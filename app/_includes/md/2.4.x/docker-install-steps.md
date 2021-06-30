@@ -34,7 +34,7 @@ docker network create kong-ee-net
 
 Start a PostgreSQL container:
 
-```bash
+```p
 docker run -d --name kong-ee-database \
   --network=kong-ee-net \
   -p 5432:5432 \
@@ -46,12 +46,9 @@ docker run -d --name kong-ee-database \
 
 {{ include.heading3 }}Prepare the Kong database
 
-<pre>
-  <code>
-  docker run --rm --network=kong-ee-net \
-    -e "KONG_DATABASE=postgres" \
-    -e "KONG_PG_HOST=kong-ee-database" \
-    -e "KONG_PG_PASSWORD=kong" \
-    -e "KONG_PASSWORD=<div contenteditable="true">{PASSWORD}</div>" \
-    kong-ee kong migrations bootstrap</code>
-</pre>
+<pre><code>docker run --rm --network=kong-ee-net \
+  -e "KONG_DATABASE=postgres" \
+  -e "KONG_PG_HOST=kong-ee-database" \
+  -e "KONG_PG_PASSWORD=kong" \
+  -e "KONG_PASSWORD=<div contenteditable="true">{PASSWORD}</div>" \
+  kong-ee kong migrations bootstrap</code></pre>
