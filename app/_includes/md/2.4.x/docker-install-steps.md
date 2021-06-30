@@ -4,7 +4,7 @@ and in the vitals on influxdb docs. -->
 
 {{ include.heading }}Pull the Kong Gateway Docker image {#pull-image}
 
-Pull the following Docker image:
+Pull the following Docker image.
 
 ```bash
 docker pull kong/kong-gateway:{{page.kong_versions[11].version}}-alpine
@@ -12,25 +12,16 @@ docker pull kong/kong-gateway:{{page.kong_versions[11].version}}-alpine
 {:.important}
 > Some [older {{site.base_gateway}} images](https://support.konghq.com/support/s/article/Downloading-older-Kong-versions)
 are not publicly accessible. If you need a specific patch version and can't
-find it on Kong's public Docker Hub page, contact
+find it on [Kong's public Docker Hub page](https://hub.docker.com/_/kong), contact
 [Kong Support](https://support.konghq.com/).
-
 
 You should now have your {{site.base_gateway}} image locally.
 
-Verify that it worked, and find the image ID matching your repository:
+Tag the image. 
 
 ```bash
-docker images
+docker tag kong/kong-gateway:{{page.kong_versions[11].version}}-alpine kong-ee
 ```
-
-Tag the image ID for easier use:
-
-<pre><code>docker tag <div contenteditable="true">{IMAGE_ID}</div> kong-ee</code></pre>
-
-{:.note}
-> **Note:** Replace `{IMAGE_ID}` with the one matching your repository.
-
 {{ include.heading1 }}Create a Docker network {#create-network}
 
 Create a custom network to allow the containers to discover and communicate with each other.
@@ -43,7 +34,7 @@ docker network create kong-ee-net
 
 Start a PostgreSQL container:
 
-```bash
+```p
 docker run -d --name kong-ee-database \
   --network=kong-ee-net \
   -p 5432:5432 \
@@ -60,8 +51,4 @@ docker run -d --name kong-ee-database \
   -e "KONG_PG_HOST=kong-ee-database" \
   -e "KONG_PG_PASSWORD=kong" \
   -e "KONG_PASSWORD=<div contenteditable="true">{PASSWORD}</div>" \
-  kong-ee kong migrations bootstrap </code></pre>
-
-{:.note}
-> **Note:** For `KONG_PASSWORD`, replace `{PASSWORD}`
-with a valid password that only you know.
+  kong-ee kong migrations bootstrap</code></pre>
