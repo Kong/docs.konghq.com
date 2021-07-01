@@ -347,7 +347,8 @@ Similar to Lua plugins, the presence of the `response` handler automatically ena
 
 #### 2. PDK functions
 
-[kong-js-pdk] invokes PDK functions in Kong through network-based RPC. Thus each function returns a Promise
+[kong-js-pdk] invokes PDK functions in Kong through network-based IPC (inter-process communication).
+Thus each function returns a Promise
 instance; it's convenient to use `async`/`await` keywords in phase handlers for better readability.
 
 ```javascript
@@ -565,9 +566,9 @@ multiple CPU cores as well.
 Unlike Lua plugins where invoking PDK functions are handled in local processes,
 calling PDK functions in external plugin implies inter-process communications and is thus
 relatively expensive operation. In that case the performance of Kong using external plugins is
-highly related to the number of IPC calls in each request.
+highly related to the number of IPC (inter-process communication) calls in each request.
 
-The following graph demonstrates the correlation between performance and count of RPC
+The following graph demonstrates the correlation between performance and count of IPC
 calls per request. Numbers of RPS and latency are removed as they are dependent on
 hardware and to avoid confusion.
 
