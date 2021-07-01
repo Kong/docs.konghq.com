@@ -542,6 +542,23 @@ The provided regexes are evaluated with the `a` PCRE flag (`PCRE_ANCHORED`),
 meaning that they will be constrained to match at the first matching point
 in the path (the root `/` character).
 
+**Note**: regex matching is in general very fast, but it is possible to
+construct expressions that take a very long time to determine that they don't
+actually match.  This happens when the expression results in a "backtrace
+exponential explosion", which means that there's an astronomical number of
+tests to be performed before it's conclusive that they're all negative.
+If undetected, this could take hours to finish with a single regular expression.
+The [PCRE](http://pcre.org/) engine automatically detects most types of this
+and replaces with more direct approaches, but there are more complex expressions
+that could result in this scenario.
+
+To limit the worst-case scenario, Kong applies the OpenResty
+[`lua_regex_match_limit`](https://github.com/openresty/lua-nginx-module#lua_regex_match_limit)
+to ensure that any regex operation terminates in around two seconds in the
+worst case.  Apart from that, a smaller limit is applied to some "critical"
+regex operations, like those for path selection, in order to terminate them
+within two miliseconds, at most.
+
 [Back to top](#introduction)
 
 ##### Evaluation order
