@@ -140,15 +140,10 @@ fenced codeblocks.
 their contents very literally, so all newlines will output as newlines.
 * HTML codeblocks can't pick up syntax highlighting. For consistency, if you're
 using fenced codeblocks elsewhere on the same page, set the language to
-`plaintext`:
-    ````
-    ```plaintext
-    some code here
-    ```
-    ````
+`plaintext`.
 
 **Do:**
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Input %}
 ```
 <pre><code>host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
@@ -156,15 +151,13 @@ port: 80 </code></pre>
 ```
 {% endnavtab %}
 {% navtab Output %}
-
 <pre><code>host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
 port: 80 </code></pre>
-
 {% endnavtab %}
 {% endnavtabs %}
 
 **Don't do:**
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Input %}
 ```
 <pre>
@@ -176,18 +169,14 @@ port: 80 </code></pre>
 ```
 {% endnavtab %}
 {% navtab Output %}
-
 <pre>
   <code>
   host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
   port: 80
   </code>
 </pre>
-
 {% endnavtab %}
 {% endnavtabs %}
-
-
 
 ## Tabs
 
