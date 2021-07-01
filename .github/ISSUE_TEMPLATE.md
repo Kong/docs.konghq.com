@@ -5,7 +5,7 @@ Before submitting an issue, check our existing issues and pull requests to see i
 
 If you know how to resolve the issue you're reporting, we encourage you to submit a pull request instead: https://help.github.com/articles/creating-a-pull-request/.
 
-If you have a code-related troubleshooting issue, please reach out to our community.: https://github.com/Kong/kong/discussions.
+If you have a code-related troubleshooting issue, please reach out to our community: https://github.com/Kong/kong/discussions.
 -->
 
 ### What part of the site needs attention?
