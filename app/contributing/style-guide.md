@@ -43,11 +43,16 @@ For more information about formatting admonitions see [markdown-rules](/contribu
   - For example: “There was a storm last night,” Paul said.
 
 ### Placeholder values
-- Use single curly braces, all caps text, and underscores between words.<br/>
-  For example: {EXAMPLE_VALUE}
+- Use single curly braces, all caps text, and underscores between words.
+
+    For example: `{EXAMPLE_VALUE}`
+
+    In codeblocks, use [editable placeholders](/contributing/markdown-rules/#placeholders)
+    where you want a user to enter their own value.
 
 ## Capitalization guidelines
-Follow the user interface(UI). If a term is capitalized in the UI, it should be capitalized in the documentation.
+Follow the user interface (UI). If a term is capitalized in the UI, it should be
+capitalized in the documentation.
 
 ### Kong-specific terms
 Capitalize the following Kong-specific terms:
@@ -78,10 +83,13 @@ Do not capitalize the following generic terms:
 ## Code formatting
 - Separate commands from output.
 - Include properly formatted code comments.
-- For long commands, split the code block into separate lines to avoid horizontal scrolling.
+- For long commands, split the code block into separate lines with `\`
+to avoid horizontal scrolling.
 - Never have more than one command in a block/example.
-- Always set a language for codeblocks, for example, bash.<br/>
-  [List of supported languages](https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers)
+- Set a language for codeblocks, for example, bash, to enable syntax highlighting.
+    - [List of supported languages](https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers)
+    - If using HTML tags to create a codeblock for editable placeholders,
+    see [guidelines for editable placeholders](/contributing/markdown-rules/#editable-placeholders-in-codeblocks)
 - Do **NOT** use the command prompt marker ($) in code snippets.
 
 ### Inline code formatting
