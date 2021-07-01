@@ -10,7 +10,9 @@ in the cluster, as applicable.
 
 The shared config overview shows all plugins in the cluster. However, you can
 only edit **global** or **consumer-scoped** plugins here.
-Service and route plugins must be managed through the [ServiceHub](/konnect/servicehub/plugins).
+[Service](/konnect/manage-plugins/enable-service-plugin) and 
+[route](/konnect/manage-plugins/enable-route-plugin) plugins must be managed
+through the ServiceHub.
 
 ## Configure a new plugin
 
