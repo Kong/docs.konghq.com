@@ -219,3 +219,56 @@ approaches to isolate issues:
   and responses (passing `--verbose 2` to decK will show all requests) and
    add debug Kong Lua code when controller requests result in an
   unhandled error (500 response).
+
+## Inspecting network traffic with a tcpdump sidecar
+
+Inspecting network traffic allows you to review traffic between the ingress
+controller and Kong admin API and/or between the Kong proxy and upstream
+applications. You can use this in situations where logged information does not
+provide you sufficient data on the contents of requests and you wish to see
+exactly what was sent over the network.
+
+Although you cannot install and use tcpdump within the controller
+or Kong containers, you can add a tcpdump sidecar to your Pod's containers. The
+sidecar will be able to sniff traffic from other containers in the Pod. You can
+edit your Deployment (to add the sidecar to all managed Pods) or a single Pod
+and add the following under the `containers` section of the Pod spec:
+
+```yaml
+- name: tcpdump
+  securityContext:
+    runAsUser: 0
+  image: corfr/tcpdump
+  command:
+    - /bin/sleep
+    - infinity
+```
+
+If you are using the Kong Helm chart, you can alternately add this to the
+`sidecarContainers` section of values.yaml.
+
+Once the sidecar is running, you can use `kubectl exec -it POD_NAME -c tcpdump`
+and run a capture. For example, to capture traffic between the controller and
+Kong admin API:
+
+```bash
+tcpdump -npi any -s0 -w /tmp/capture.pcap host 127.0.0.1 and port 8001
+```
+
+or between Kong and an upstream application with endpoints `10.0.0.50` and
+`10.0.0.51`:
+
+```bash
+tcpdump -npi any -s0 -w /tmp/capture.pcap host 10.0.0.50 or host 10.0.0.51
+```
+
+Once you've replicated the issue, you can stop the capture, exit the
+container, and use `kubectl cp` to download the capture from the tcpdump
+container to a local system for review with
+[Wireshark](https://www.wireshark.org/).
+
+Note that you will typically need to temporarily disable TLS to inspect
+application-layer traffic. If you have acces to the server's private keys you
+can [decrypt TLS](https://wiki.wireshark.org/TLS#TLS_Decryption), though this
+does not work if the session uses an ephemeral cipher (neither the controller
+nor Kong proxy have support for dumping session secrets).
