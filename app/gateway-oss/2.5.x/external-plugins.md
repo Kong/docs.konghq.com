@@ -563,9 +563,9 @@ Python plugins can use dedicated plugin server to span workload to
 multiple CPU cores as well.
 
 Unlike Lua plugins where invoking PDK functions are handled in local processes,
-calling PDK functions in external plugin is handled with network RPC and is thus
+calling PDK functions in external plugin implies inter-process communications and is thus
 relatively expensive operation. In that case the performance of Kong using external plugins is
-highly related to the number of RPC calls in each request.
+highly related to the number of IPC calls in each request.
 
 The following graph demonstrates the correlation between performance and count of RPC
 calls per request. Numbers of RPS and latency are removed as they are dependent on
