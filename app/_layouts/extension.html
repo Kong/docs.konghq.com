@@ -135,7 +135,7 @@ breadcrumbs:
           {% if extn_release == extn_latest %}<em>(latest)</em>{% endif %}
           <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+        <ul class="dropdown-menu dropdown-menu-right" id="version-list" role="menu" aria-labelledby="version-dropdown">
           {% for ver in extn_versions %}
             {% if ver.release == extn_latest %}
               {% assign ver_path = "" %}

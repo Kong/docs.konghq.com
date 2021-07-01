@@ -2,6 +2,16 @@ article,aside,details,figcaption,figure,footer,header,main,menu,nav,section {
     display: block
 }
 
+/* keep for plugin detail pages dropdown menu */
+.open {
+    display: block;
+
+
+    a {
+        outline: 0;
+    }
+}
+
 h1 {
     margin: .67em 0
 }
