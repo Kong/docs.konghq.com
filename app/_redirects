@@ -36,10 +36,12 @@
 /hub/plugins/compatibility                  /konnect-platform/compatibility/plugins
 
 # Konnect
-/konnect/access-beta                          /konnect/access-account
-/konnect/service-hub                          /konnect/servicehub/
-/konnect/service-hub/*                        /konnect/servicehub/:splat
-/konnect/runtime-manager/kong-gateway-runtime /konnect/runtime-manager/#kong-gateway
+/konnect/access-beta                                /konnect/access-account
+/konnect/service-hub                                /konnect/servicehub/
+/konnect/service-hub/*                              /konnect/servicehub/:splat
+/konnect/runtime-manager/kong-gateway-runtime       /konnect/runtime-manager/#kong-gateway
+/konnect/servicehub/plugins/enable-service-plugin/  /konnect/manage-plugins/enable-service-plugin/
+/konnect/servicehub/plugins/enable-route-plugin/    /konnect/manage-plugins/enable-route-plugin/
 
 # Community doc rebranding
 /latest/*                                   /gateway-oss/latest/:splat
