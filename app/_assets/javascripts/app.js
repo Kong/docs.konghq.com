@@ -77,22 +77,6 @@ $(function () {
     });
   });
 
-  // // LUA
-  // $("#module-dropdown").on("click", function(e) {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-
-  //   $("#module-list").toggleClass("open");
-
-  //   $(document).one('click', function closeMenu (e){
-  //       if($('#module-list').has(e.target).length === 0){
-  //           $('#module-list').removeClass('open');
-  //       } else {
-  //           $(document).one('click', closeMenu);
-  //       }
-  //   });
-  // });
-
   // Hide banner on "I accept" and set cookie
   $(".cookie-policy-accept").on("click", function (e) {
     e.preventDefault();
