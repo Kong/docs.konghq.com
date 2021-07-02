@@ -79,8 +79,8 @@ dashboard: [https://grafana.com/dashboards/7424](https://grafana.com/dashboards/
   writing, and number of accepted connections.
 - **Target Health**: The healthiness status (`healthchecks_off`, `healthy`, `unhealthy`, or `dns_error`) of Targets
   belonging to a given Upstream.
-- **Dataplane Status**: The last seen timestamp, config hash and config sync status for
-data plane nodes are exported on control plane.
+- **Dataplane Status**: The last seen timestamp, config hash, and config sync status for
+data plane nodes is exported to control plane.
 - **Enterprise License Information**: The {{site.ee_gateway_name}} license expiration date, features and
 license signature. Those metrics are only exported on {{site.ee_gateway_name}}.
 
