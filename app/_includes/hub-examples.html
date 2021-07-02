@@ -1,4 +1,4 @@
-<!-- Generate Konnect and Kong Manager examples -->
+]<!-- Generate Konnect and Kong Manager examples -->
 {% capture config_required_fields_gui %}{%
   for field in page.params.config %}{% assign capfields = field.name | split: '_' %}{% capture titlecase %}{% for capfield in capfields %}{{ capfield | capitalize }} {% endfor %}{% endcapture %}{%
     if field.required == true and field.value_in_examples == nil %}{%
@@ -124,7 +124,7 @@ making the following request:
 
 ```bash
 curl -X POST http://{HOST}:8001/services/{SERVICE}/plugins \
-  --data "name={{page.params.name}}" {{ config_required_fields }}
+    --data "name={{page.params.name}}" {{ config_required_fields }}
 ```
 
 `SERVICE` is the `id` or `name` of the service that this plugin
@@ -173,11 +173,12 @@ spec:
 `{SERVICE}` is the `id` or `name` of the service that this plugin
     configuration will target.
 
-{:.note}
-> The KongPlugin resource only needs to be defined once
+<div class="alert alert-ee blue">
+  <strong>Note:</strong> The KongPlugin resource only needs to be defined once
   and can be applied to any service, consumer, or route in the namespace. If you
   want the plugin to be available cluster-wide, create the resource as a
-  `KongClusterPlugin` instead of `KongPlugin`.
+  <code>KongClusterPlugin</code> instead of <code>KongPlugin</code>.
+</div>
 
 {% endnavtab %}
 {% endunless %}
@@ -226,8 +227,10 @@ service row.
 3. Scroll down to plugins and click **Add Plugin**.
 4. Find and select the **{{ page.name }}** plugin.
 
-    {:.note}
-    > If the plugin is greyed out, then it is not available for your product tier. See [{{site.base_gateway}}](/enterprise/latest/deployment/licensing/) tiers.
+    <div class="alert alert-ee blue">
+    <strong>Note:</strong> If the plugin is greyed out, then it is not available
+    for your product tier. See <a href="/enterprise/latest/deployment/licensing/">{{site.base_gateway}} tiers</a>.
+    </div>
 
 5. If the option is available, select **Scoped**.
 6. Add the service name and ID to the **Service** field if it
@@ -255,8 +258,8 @@ is not already prefilled.{% unless
 For example, configure this plugin on a [route](/gateway-oss/latest/admin-api/#route-object) with:
 
 ```bash
-curl -X POST http://{HOST}:8001/routes/{ROUTE}/plugins \
-  --data "name={{page.params.name}}" {{ config_required_fields }}
+$ curl -X POST http://{HOST}:8001/routes/{ROUTE}/plugins \
+    --data "name={{page.params.name}}" {{ config_required_fields }}
 ```
 
 `ROUTE` is the `id` or `name` of the route that this plugin configuration
@@ -304,11 +307,12 @@ spec:
 `ROUTE` is the `id` or `name` of the route that this plugin configuration
   will target.
 
-{:.note}
-> The KongPlugin resource only needs to be defined once
+<div class="alert alert-ee blue">
+  <strong>Note:</strong> The KongPlugin resource only needs to be defined once
   and can be applied to any service, consumer, or route in the namespace. If you
   want the plugin to be available cluster-wide, create the resource as a
-  `KongClusterPlugin` instead of `KongPlugin`.
+  <code>KongClusterPlugin</code> instead of <code>KongPlugin</code>.
+</div>
 
 {% endnavtab %}
 {% endunless %}
@@ -356,8 +360,10 @@ Configure this plugin on a route:
 4. Scroll down to plugins and click **Add Plugin**.
 5. Find and select the **{{ page.name }}** plugin.
 
-    {:.note}
-    > If the plugin is greyed out, then it is not available for your product tier. See [{{site.base_gateway}}](/enterprise/latest/deployment/licensing/) tiers.
+    <div class="alert alert-ee blue">
+    <strong>Note:</strong> If the plugin is greyed out, then it is not available
+    for your product tier. See <a href="/enterprise/latest/deployment/licensing/">{{site.base_gateway}} tiers</a>.
+    </div>
 
 6. If the option is available, select **Scoped**.
 7. Add the Route ID if it is not already prefilled.{% unless
@@ -385,8 +391,8 @@ or sample values as needed:
 For example, configure this plugin on a [consumer](/gateway-oss/latest/admin-api/#consumer-object) with:
 
 ```bash
-curl -X POST http://{HOST}:8001/consumers/{CONSUMER}/plugins \
-  --data "name={{page.params.name}}" {{ config_required_fields }}
+$ curl -X POST http://{HOST}:8001/consumers/{CONSUMER}/plugins \
+    --data "name={{page.params.name}}" {{ config_required_fields }}
 ```
 
 `CONSUMER` is the `id` or `username` of the consumer that this plugin
@@ -426,16 +432,17 @@ metadata:
   annotations:
     konghq.com/plugins: <{{page.params.name}}-example>
     kubernetes.io/ingress.class: kong
-```
+  ```
 
 `CONSUMER` is the `id` or `username` of the consumer that this plugin
   configuration will target.
 
-{:.note}
-> The KongPlugin resource only needs to be defined once
+<div class="alert alert-ee blue">
+  <strong>Note:</strong> The KongPlugin resource only needs to be defined once
   and can be applied to any Service, Consumer, or Route in the namespace. If you
   want the plugin to be available cluster-wide, create the resource as a
-  `KongClusterPlugin` instead of `KongPlugin`.
+  <code>KongClusterPlugin</code> instead of <code>KongPlugin</code>.
+</div>
 
 {% endnavtab %}
 {% endunless %}
@@ -468,9 +475,10 @@ Configure this plugin on a consumer:
 4. Click **Add Plugin**.
 5. Find and select the **{{ page.name }}** plugin.
 
-    {:.note}
-    > If the plugin is greyed out, then it is not available
-    for your product tier. See [{{site.base_gateway}}](/enterprise/latest/deployment/licensing/) tiers.
+    <div class="alert alert-ee blue">
+    <strong>Note:</strong> If the plugin is greyed out, then it is not available
+    for your product tier. See <a href="/enterprise/latest/deployment/licensing/">{{site.base_gateway}} tiers</a>.
+    </div>
 
 6. If the option is available, select **Global**.{% unless
     config_required_fields_gui == empty %}
@@ -500,8 +508,8 @@ sections for more information.
 For example, configure this plugin globally with:
 
 ```bash
-curl -X POST http://{HOST}:8001/plugins \
-  --data "name={{page.params.name}}" {{ config_required_fields }}
+$ curl -X POST http://{HOST}:8001/plugins/ \
+    --data "name={{page.params.name}}" {{ config_required_fields }}
 ```
 
 {% endnavtab %}
@@ -529,7 +537,7 @@ plugin: {{page.params.name}}
 {% endunless %}
 {% unless page.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
-For example, configure this plugin using the `plugins:` entry in the declarative
+For example, configure this plugin using the <code>plugins:</code> entry in the declarative
 configuration file:
 
 ``` yaml
@@ -549,9 +557,10 @@ Configure this plugin globally:
 3. Click **New Plugin**.
 4. Find and select the **{{ page.name }}** plugin.
 
-    {:.note}
-    > If the plugin is greyed out, then it is not available
-    for your product tier. See [{{site.base_gateway}}](/enterprise/latest/deployment/licensing/) tiers.
+    <div class="alert alert-ee blue">
+    <strong>Note:</strong> If the plugin is greyed out, then it is not available
+    for your product tier. See <a href="">{{site.base_gateway}} tiers</a>.
+    </div>
 
 5. If the option is available, set the plugin scope to **Global**.{% unless
     config_required_fields_gui == empty %}
