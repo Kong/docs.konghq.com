@@ -16,7 +16,7 @@
   {% endif %}
   {% endunless %}
   <li>
-    <a {% if item.absolute_url %}href="{{item.url}}" {% else %}href="{{include.docs_url | append: item.url}}" {% endif %} {% if page.url==url %}class="active"{% endif %}{% if item.target_blank==true %} target="_blank"{% endif %}>
+    <a {% if item.absolute_url %}href="{{item.url}}" {% else %}href="{{include.docs_url | append: item.url}}" {% endif %}{% if item.target_blank==true %} target="_blank"{% endif %}>
       {{item.text}}
     </a>
   </li>
