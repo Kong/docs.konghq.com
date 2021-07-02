@@ -63,11 +63,16 @@ module Jekyll
         alias_file = File.extname(alias_path).empty? ? "index.html" : File.basename(alias_path)
 
         fs_path_to_dir   = File.join(@site.dest, alias_dir)
+        alias_index_path = File.join(alias_dir, alias_file)
 
         FileUtils.mkdir_p(fs_path_to_dir)
 
         File.open(File.join(fs_path_to_dir, alias_file), 'w') do |file|
           file.write(alias_template(page, destination_path))
+        end
+
+        (alias_index_path.split('/').size).times do |sections|
+          @site.static_files << Jekyll::AliasFile.new(@site, @site.dest, alias_index_path.split('/')[1, sections + 1].join('/'), '')
         end
       end
     end
