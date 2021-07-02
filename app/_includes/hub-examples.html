@@ -123,7 +123,8 @@ For example, configure this plugin on a [service](/gateway-oss/latest/admin-api/
 making the following request:
 
 <pre><code>curl -X POST http://<div contenteditable="true">{HOST}</div>:8001/services/<div contenteditable="true">{SERVICE}</div>/plugins \
-  --data "name={{page.params.name}}" {{ config_required_fields }} </code></pre>
+ --data "name={{page.params.name}}" {{ config_required_fields }}
+</code></pre>
 
 `SERVICE` is the `id` or `name` of the service that this plugin
 configuration will target.
@@ -253,7 +254,7 @@ is not already prefilled.{% unless
 For example, configure this plugin on a [route](/gateway-oss/latest/admin-api/#route-object) with:
 
 <pre><code>curl -X POST http://<div contenteditable="true">{HOST}</div>:8001/routes/<div contenteditable="true">{ROUTE}</div>/plugins \
-  --data "name={{page.params.name}}" {{ config_required_fields }} </code></pre>
+  --data "name={{page.params.name}}" {{ config_required_fields }}</code></pre>
 
 `ROUTE` is the `id` or `name` of the route that this plugin configuration
   will target.
@@ -381,7 +382,7 @@ or sample values as needed:
 For example, configure this plugin on a [consumer](/gateway-oss/latest/admin-api/#consumer-object) with:
 
 <pre><code>curl -X POST http://<div contenteditable="true">{HOST}</div>:8001/consumers/<div contenteditable="true">{CONSUMER}</div>/plugins \
-  --data "name={{page.params.name}}" {{ config_required_fields }} </code></pre>
+  --data "name={{page.params.name}}" {{ config_required_fields }}</code></pre>
 
 `CONSUMER` is the `id` or `username` of the consumer that this plugin
   configuration will target.
@@ -420,7 +421,7 @@ metadata:
   annotations:
     konghq.com/plugins: <{{page.params.name}}-example>
     kubernetes.io/ingress.class: kong
-  ```
+```
 
 `CONSUMER` is the `id` or `username` of the consumer that this plugin
   configuration will target.
@@ -494,7 +495,7 @@ sections for more information.
 For example, configure this plugin globally with:
 
 <pre><code>curl -X POST http://<div contenteditable="true">{HOST}</div>:8001/plugins \
-  --data "name={{page.params.name}}" {{ config_required_fields }} </code></pre>
+  --data "name={{page.params.name}}" {{ config_required_fields }}</code></pre>
 
 {% endnavtab %}
 {% unless page.params.k8s_examples == false %}
