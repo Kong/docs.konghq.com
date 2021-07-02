@@ -9,11 +9,11 @@ desc: Upgrades Kong Rate Limiting with more flexibility and higher performance
 description: |
   The Rate Limiting Advanced plugin for Konnect Enterprise is a re-engineered version of the Kong Gateway (OSS) [Rate Limiting plugin](/hub/kong-inc/rate-limiting/).
 
-  As compared to the standard Rate Limiting plugin, Rate Limiting Advanced provides the following additional configurations: `limit`, `window_size`, and `sync_rate`. It also has support for Redis Sentinel, Redis cluster, and Redis SSL.
-
- You also have more rate limiting algorithms to choose from. These algorithms are more accurate, as they enable configuration at a higher level of specificity. Learn more about our algorithms in [How to Design a Scalable Rate Limiting Algorithm](https://konghq.com/blog/how-to-design-a-scalable-rate-limiting-algorithm/).
-
-  Regarding performance, Rate Limiting Advanced has better throughput performance with better accuracy. Configure `sync_rate` to periodically sync with backend storage.
+  As compared to the standard Rate Limiting plugin, Rate Limiting Advanced provides:
+  * Additional configurations: `limit`, `window_size`, and `sync_rate`
+  * Support for Redis Sentinel, Redis cluster, and Redis SSL
+  * Increased performance: Rate Limiting Advanced has better throughput performance with better accuracy. Configure `sync_rate` to periodically sync with backend storage.
+  * More limiting algorithms to choose from: These algorithms are more accurate, since they enable configuration with more specificity. Learn more about our algorithms in [How to Design a Scalable Rate Limiting Algorithm](https://konghq.com/blog/how-to-design-a-scalable-rate-limiting-algorithm/).
 
 type: plugin
 enterprise: true
@@ -332,7 +332,7 @@ For example:
   --data config.limit=100 \
   --data config.window_size=60 \
   --data config.window_size=3600 \
-  --data config.sync_rate=10 </code></pre>
+  --data config.sync_rate=10</code></pre>
 
 This example applies rate limiting policies, one of which will trip when 10 hits have been counted in 60 seconds,
 or the other when 100 hits have been counted in 3600 seconds. For more information, see the
