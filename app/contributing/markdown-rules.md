@@ -114,19 +114,69 @@ Include a language whenever possible (in the example above, that language is
 You can also create tabbed codeblocks, so that users can easily switch to
 their preferred format. See [tabs for codeblocks](#tabs-for-codeblocks).
 
-### Line numbers
-By default, every codeblock is generated with line numbers, which is useful for
-calling out specific sections of code. If you need to disable the line numbers,
-use the `highlight` tag with an optional language class instead of
-backticks. For example:
+If you're including placeholders in codeblocks, use HTML tags instead of
+backticks. See [editable placeholders](#editable-placeholders-in-codeblocks).
 
-{% raw %}
+## Placeholders
+
+Use placeholders in both inline text and in codeblocks to
+denote a value that the user should edit. Always enclose placeholders in code
+formatting.
+
+### Inline placeholders
+If you're adding a placeholder inline, such as in a sentence, enclose it in single
+backticks: \`{EXAMPLE_TEXT}`
+
+### Editable placeholders in codeblocks
+If you have text in your codeblock that you want the user to edit before running
+the code, you can use editable placeholders.
+
+Editable placeholders are only supported in HTML, and are not supported with
+fenced codeblocks.
+
+* Use the `<pre>` and `<code>` tags to create a codeblock
+* Enclose your placeholder in `<div contenteditable="true"></div>` tags
+* Do not add any newlines around the `pre` and `code` tags. These tags read
+their contents very literally, so all newlines will output as newlines.
+* HTML codeblocks can't pick up syntax highlighting. For consistency, if you're
+using fenced codeblocks elsewhere on the same page, set the language to
+`plaintext`.
+
+**Do:**
+{% navtabs codeblock %}
+{% navtab Input %}
 ```
-{% highlight bash %}
-some code here
-{% endhighlight %}
+<pre><code>host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
+port: 80 </code></pre>
 ```
-{% endraw %}
+{% endnavtab %}
+{% navtab Output %}
+<pre><code>host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
+port: 80 </code></pre>
+{% endnavtab %}
+{% endnavtabs %}
+
+**Don't:**
+{% navtabs codeblock %}
+{% navtab Input %}
+```
+<pre>
+  <code>
+  host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
+  port: 80
+  </code>
+</pre>
+```
+{% endnavtab %}
+{% navtab Output %}
+<pre>
+  <code>
+  host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
+  port: 80
+  </code>
+</pre>
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Tabs
 
@@ -283,7 +333,7 @@ and will only pick up H2 and H3 level headings.
 Here, the headings are nested correctly, with the smaller heading H3 contained
 within H2.
 
-**Don't do:**
+**Don't:**
 ```markdown
 ### Sub-sub-heading Level 3
 ## Sub-heading Level 2
