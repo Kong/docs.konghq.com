@@ -124,7 +124,7 @@ making the following request:
 
 ```bash
 curl -X POST http://{HOST}:8001/services/{SERVICE}/plugins \
- --data "name={{page.params.name}}" {{ config_required_fields }}
+  --data "name={{page.params.name}}" {{ config_required_fields }}
 ```
 
 `SERVICE` is the `id` or `name` of the service that this plugin
