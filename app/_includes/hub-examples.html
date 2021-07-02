@@ -37,10 +37,10 @@ endcapture %}
   if field.value_in_examples != nil %}{%
   if field.value_in_examples.first %}{%
   for value in field.value_in_examples %} \
-    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} {% if field.value_in_examples contains "'" %}'config.{{ field.name }}={{ value | replace: "'", "" }}'{% else %}"config.{{ field.name }}={{ value }}"{% endif %}{%
+    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} {% if field.value_in_examples contains "'" %}'config.{{ field.name }}={{ value | replace: "'", "" }}'{% else %}"config.{{ field.name }}={{ value | strip_newlines }}"{% endif %}{%
   endfor %}{%
   else %} \
-    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} {% if field.value_in_examples contains "'" %}'config.{{ field.name }}={{ field.value_in_examples | replace: "'", "" }}'{% else %}"config.{{ field.name }}={{ field.value_in_examples }}"{% endif %}{%
+    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} {% if field.value_in_examples contains "'" %}'config.{{ field.name }}={{ field.value_in_examples | replace: "'", "" }}'{% else %}"config.{{ field.name }}={{ field.value_in_examples | strip_newlines }}"{% endif %}{%
   endif %}{%
   elsif field.required == true %} \
     --data{% if field.urlencode_in_examples %}-urlencode{% endif %} "config.{{ field.name }}={{ field.default | markdownify | strip_html | strip }}"{%
@@ -71,7 +71,7 @@ endcapture %}
       for name in names offset:1 %}
       {{ name }}:{% endfor %} {{ field.value_in_examples }}{%
     else %}
-    {{ field.name }}: {{ field.value_in_examples }}{%
+    {{ field.name }}: {{ field.value_in_examples | strip_newlines }}{%
     endif %}{%
   elsif field.required == true %}
     {{ field.name }}: {{ field.default | markdownify | strip_html | strip }}{%
@@ -102,7 +102,7 @@ if field.value_in_examples != nil %}{%
     for name in names offset:1 %}
     {{ name }}:{% endfor %} {{ field.value_in_examples }}{%
   else %}
-  {{ field.name }}: {{ field.value_in_examples }}{%
+  {{ field.name }}: {{ field.value_in_examples | strip_newlines }}{%
   endif %}{%
 elsif field.required == true %}
   {{ field.name }}: {{ field.default | markdownify | strip_html | strip }}{%
