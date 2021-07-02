@@ -61,7 +61,8 @@ params:
       required: semi
       default:
       datatype: string
-      value_in_examples: <my_spec_contents>
+      value_in_examples: |
+        {MY_SPEC_CONTENTS}
       description: |
         The contents of the specification file. You must use this option for hybrid or DB-less mode.
         With this configuration option, you can include the full specification as part of the configuration,

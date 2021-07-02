@@ -38,7 +38,8 @@ params:
   config:
     - name: bootstrap_servers
       required: true
-      value_in_examples: <BOOTSTRAP_SERVERS>
+      value_in_examples: |
+        {BOOTSTRAP_SERVERS}
       urlencode_in_examples: true
       default:
       datatype: set of record elements
@@ -46,7 +47,8 @@ params:
         Set of bootstrap brokers in a `{host: host, port: port}` list format.
     - name: topic
       required: true
-      value_in_examples: <TOPIC>
+      value_in_examples: |
+        {TOPIC}
       urlencode_in_examples: true
       default:
       datatype: string

@@ -54,7 +54,8 @@ params:
   config:
     - name: aws_key
       required: semi
-      value_in_examples: <AWS_KEY>
+      value_in_examples: |
+        {AWS_KEY}
       urlencode_in_examples: true
       default:
       datatype: string
@@ -66,7 +67,8 @@ params:
         is configured.
     - name: aws_secret
       required: semi
-      value_in_examples: <AWS_SECRET>
+      value_in_examples: |
+        {AWS_SECRET}
       urlencode_in_examples: true
       default:
       datatype: string
@@ -79,7 +81,8 @@ params:
     - name: aws_region
       required: true
       default:
-      value_in_examples: <AWS_REGION>
+      value_in_examples: |
+        {AWS_REGION}
       datatype: string
       description: |
         The AWS region where the Lambda function is located. The plugin does not
@@ -99,7 +102,8 @@ params:
     - name: function_name
       required: true
       default:
-      value_in_examples: <LAMBDA_FUNCTION_NAME>
+      value_in_examples: |
+        {LAMBDA_FUNCTION_NAME}
       datatype: string
       description: The AWS Lambda function name to invoke.
     - name: qualifier

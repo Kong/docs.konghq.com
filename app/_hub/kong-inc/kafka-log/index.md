@@ -36,7 +36,8 @@ params:
   config:
     - name: bootstrap_servers
       required: true
-      value_in_examples: <BOOTSTRAP_SERVERS>
+      value_in_examples: |
+        {BOOTSTRAP_SERVERS}
       urlencode_in_examples: true
       default:
       datatype: set of record elements
@@ -45,7 +46,8 @@ params:
         [Quickstart](#quickstart).
     - name: topic
       required: true
-      value_in_examples: <KAFKA_TOPIC>
+      value_in_examples: |
+        {KAFKA_TOPIC}
       urlencode_in_examples: true
       default:
       datatype: string

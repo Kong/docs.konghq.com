@@ -40,7 +40,8 @@ params:
     - name: host
       required: true
       default:
-      value_in_examples: <OPENWHISK_HOST>
+      value_in_examples: |
+        {OPENWHISK_HOST}
       datatype: string
       description: Host of the OpenWhisk server.
     - name: port
@@ -51,21 +52,24 @@ params:
     - name: path
       required: true
       default:
-      value_in_examples: <PATH_TO_ACTION>
+      value_in_examples: |
+        {PATH_TO_ACTION}
       datatype: string
       description: |
         The path to `Action` resource.
     - name: action
       required: true
       default:
-      value_in_examples: <ACTION_NAME>
+      value_in_examples: |
+        {ACTION_NAME}
       datatype: string
       description: |
         Name of the `Action` to be invoked by the plugin.
     - name: service_token
       required: false
       default:
-      value_in_examples: <AUTHENTICATION_TOKEN>
+      value_in_examples: |
+        {AUTHENTICATION_TOKEN}
       datatype: string
       description: The service token to access Openwhisk resources.
     - name: https_verify

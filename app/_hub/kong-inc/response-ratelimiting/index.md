@@ -72,7 +72,8 @@ params:
   config:
     - name: limits.{limit_name}
       required: true
-      value_in_examples: <SMS>
+      value_in_examples: |
+        {SMS}
       datatype: string
       description: This is a list of custom objects that you can set, with arbitrary names set in the `{limit_name`} placeholder, like `config.limits.sms.minute=20` if your object is called "SMS".
     - name: limits.{limit_name}.second

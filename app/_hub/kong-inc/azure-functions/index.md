@@ -9,7 +9,7 @@ desc: Invoke and manage Azure functions from Kong
 description: |
   This plugin invokes
   [Azure Functions](https://azure.microsoft.com/en-us/services/functions/).
-  It can be used in combination with other request plugins to secure, manage, 
+  It can be used in combination with other request plugins to secure, manage,
   or extend the function.
 
 type: plugin
@@ -53,13 +53,15 @@ params:
     - name: functionname
       required: true
       default:
-      value_in_examples: <AZURE_FUNCTIONNAME>
+      value_in_examples: |
+        {AZURE_FUNCTIONNAME}
       datatype: string
       description: Name of the Azure function to invoke.
     - name: appname
       required: true
       default:
-      value_in_examples: <AZURE_APPNAME>
+      value_in_examples: |
+        {AZURE_APPNAME}
       datatype: string
       description: The Azure app name.
     - name: hostdomain
@@ -77,7 +79,8 @@ params:
     - name: apikey
       required: false
       default:
-      value_in_examples: <AZURE_APIKEY>
+      value_in_examples: |
+        {AZURE_APIKEY}
       datatype: string
       description: The apikey to access the Azure resources. If provided, it is injected as the `x-functions-key` header.
     - name: clientid

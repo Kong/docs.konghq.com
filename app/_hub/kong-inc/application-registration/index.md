@@ -62,14 +62,16 @@ params:
     - name: description
       required: false
       default:
-      value_in_examples: <my_service_description>
+      value_in_examples: |
+        {MY_SERVICE_DESCRIPTION}
       datatype: string
       description: |
         Unique description displayed in information about a Service in the Developer Portal.
     - name: display_name
       required: true
       default:
-      value_in_examples: <my_service_display_name>
+      value_in_examples: |
+        {MY_SERVICE_DISPLAY_NAME}
       datatype: string
       description: |
         Unique display name used for a Service in the Developer Portal.
