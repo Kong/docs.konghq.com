@@ -19,6 +19,7 @@ clean:
 	-docker-compose stop
 	-docker-compose rm -f
 	-rm -rf dist
+	-rm -rf app/.jekyll-cache
 	-rm yarn.lock
 	-rm -rf node_modules
 	-rm install
