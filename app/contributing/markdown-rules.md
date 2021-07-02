@@ -124,7 +124,7 @@ denote a value that the user should edit. Always enclose placeholders in code
 formatting.
 
 ### Inline placeholders
-If you're adding a placeholder inline, such as in a sentence, enclose them single
+If you're adding a placeholder inline, such as in a sentence, enclose it in single
 backticks: \`{EXAMPLE_TEXT}`
 
 ### Editable placeholders in codeblocks
@@ -156,7 +156,7 @@ port: 80 </code></pre>
 {% endnavtab %}
 {% endnavtabs %}
 
-**Don't do:**
+**Don't:**
 {% navtabs codeblock %}
 {% navtab Input %}
 ```
@@ -333,7 +333,7 @@ and will only pick up H2 and H3 level headings.
 Here, the headings are nested correctly, with the smaller heading H3 contained
 within H2.
 
-**Don't do:**
+**Don't:**
 ```markdown
 ### Sub-sub-heading Level 3
 ## Sub-heading Level 2
