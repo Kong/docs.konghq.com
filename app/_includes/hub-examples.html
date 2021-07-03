@@ -1,4 +1,4 @@
-]<!-- Generate Konnect and Kong Manager examples -->
+<!-- Generate Konnect and Kong Manager examples -->
 {% capture config_required_fields_gui %}{%
   for field in page.params.config %}{% assign capfields = field.name | split: '_' %}{% capture titlecase %}{% for capfield in capfields %}{{ capfield | capitalize }} {% endfor %}{% endcapture %}{%
     if field.required == true and field.value_in_examples == nil %}{%
