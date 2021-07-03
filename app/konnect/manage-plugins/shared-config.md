@@ -3,14 +3,14 @@ title: Manage Plugins through Shared Config
 no_version: true
 ---
 
-Through shared config, you can manage global and consumer-scoped plugins.
+You can manage global and consumer-scoped plugins from the Shared Config page.
 
 **Global plugins** are plugins that apply to all services, routes, and consumers
 in the cluster, as applicable.
 
-The shared config overview shows all plugins in the cluster. However, you can
+The Shared Config page shows all plugins in the cluster. However, you can
 only edit **global** or **consumer-scoped** plugins here.
-[Service](/konnect/manage-plugins/enable-service-plugin) and 
+[Service](/konnect/manage-plugins/enable-service-plugin) and
 [route](/konnect/manage-plugins/enable-route-plugin) plugins must be managed
 through the ServiceHub.
 
@@ -43,7 +43,7 @@ plugin at any time.
 
 1. Open the
 ![icon](/assets/images/icons/konnect/konnect-shared-config.svg){:.inline .no-image-expand}
-Shared Config overview, then select **View All** for the plugins
+Shared Config page, then select **View All** for the plugins
 list, or open **Plugins** from the menu.
 
 2. Find your plugin in the plugins list and click **Edit**.
@@ -58,7 +58,7 @@ Deleting a plugin completely removes it and its configuration from
 
 1. Open the
 ![icon](/assets/images/icons/konnect/konnect-shared-config.svg){:.inline .no-image-expand}
-Shared Config overview, then select **View All** for the plugins
+Shared Config page, then select **View All** for the plugins
 list, or open **Plugins** from the menu.
 
 2. Find your plugin in the plugins list and click **Edit**.
