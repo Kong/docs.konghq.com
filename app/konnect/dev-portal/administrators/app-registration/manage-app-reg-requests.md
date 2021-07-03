@@ -12,15 +12,8 @@ developers must register their applications with a Service.
 
 ## Prerequisite
 
-You must be a {{site.konnect_short_name}} admin with the
-[correct roles and permissions](/konnect/reference/org-management/#role-definitions)
-to manage application registration requests for a Service.
-
-The following roles allow you to
-manage application registration requests:
-
-- Organization Admin
-- Service Admin
+[**Organization Admin** or **Service Admin**](/konnect/reference/org-management/#role-definitions)
+permissions.
 
 ## Application Registration Status
 
