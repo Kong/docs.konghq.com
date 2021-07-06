@@ -7,7 +7,7 @@ subtitle: An ingress controller for the Kong Gateway
 
 ### Architecture
 
-The [design][design] document explains how the {{site.kic_product_name}} works
+The [design document][design] explains how the {{site.kic_product_name}} works
 inside a Kubernetes cluster and configures Kong to proxy traffic as per
 rules defined in the Ingress resources.
 
@@ -22,12 +22,12 @@ A few custom resources are bundled with the {{site.kic_product_name}} to
 configure settings that are specific to Kong and provide fine-grained control
 over the proxying behavior.
 
-Please refer to [custom resources][crd] concept document for more details.
+Please refer to [custom resources concept document][crd] for more details.
 
 ### Deployment Methods
 
 The {{site.kic_product_name}} can be deployed in a variety of deployment patterns.
-Please refer to the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/deployment) documentation,
+Please refer to the [deployment documentation](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/deployment),
 which explains all the components
 involved and different ways of deploying them based on the use-case.
 
@@ -35,7 +35,7 @@ involved and different ways of deploying them based on the use-case.
 
 The {{site.kic_product_name}} is designed to scale with your traffic
 and infrastructure.
-Please refer to [this document](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling) to understand
+Please refer to the [High-availability and Scaling guide](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling) to understand
 failures scenarios, recovery methods, as well as scaling considerations.
 
 ### Ingress classes
@@ -46,12 +46,12 @@ load configuration intended for other instances or other ingress controllers.
 
 ### Security
 
-Please refer to [this document](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/security) to understand the
+Please refer to the [Security concepts guide](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/security) to understand the
 default security settings and how to further secure the Ingress Controller.
 
 ## Guides and Tutorials
 
-Please browse through [guides][guides] to get started or understand how to configure
+Browse through [guides][guides] to get started or understand how to configure
 a specific setting with the {{site.kic_product_name}}.
 
 ## Configuration Reference
@@ -78,7 +78,7 @@ understanding of how Ingress Controller is designed and deployed
 along alongside Kong.
 
 - [FAQs][faqs] might help as well.
-- [Troubleshooting][troubleshooting] guide can help
+- [Troubleshooting guide][troubleshooting] can help
   resolve some issues.  
   Please contribute back if you feel your experience can help
   the larger community.

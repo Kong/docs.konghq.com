@@ -16,10 +16,7 @@ Features include:
 * Manage Kong’s configuration in a distributed way using tags, helping you split
 the configuration across various teams
 
-Here is an introductory screencast explaining decK:
-<a href="https://asciinema.org/a/238318">
-  <img class="no-image-expand" src="https://asciinema.org/a/238318.svg" alt="deck screencast" />
-</a>
+[View our introductory screencast explaining decK](https://asciinema.org/a/238318).
 
 ## Features
 * **Export**: Export Kong configuration to a YAML configuration file.
@@ -65,26 +62,21 @@ The command line `--help` flag on the main command or a subcommand (like diff,
 sync, reset, etc.) shows the help text along with supported flags for those
 commands.
 
-A list of all commands that are available in decK can be found
-[here](/deck/{{page.kong_version}}/reference/deck).
+[See a list of all commands available with decK](/deck/{{page.kong_version}}/reference/deck).
 
 ## Frequently Asked Questions (FAQs)
 
-You can find answers to FAQs [here](/deck/{{page.kong_version}}/faqs).
+[Access our FAQs page](/deck/{{page.kong_version}}/faqs).
 
-## Explainer video
+## Kong Summit motivation behind decK video
 
-Harry Bagdi gave a talk on motivation behind decK and demonstrated a few key
-features of decK at Kong Summit 2019. The following is a recording of that session:
-
-<a href="https://www.youtube.com/watch?v=fzpNC5vWE3g">
-  <img class="no-image-expand" src="https://img.youtube.com/vi/fzpNC5vWE3g/0.jpg" alt="decK talk by Harry Bagdi" />
-</a>
+[Harry Bagdi gave a talk on the motivation behind decK](https://www.youtube.com/watch?v=fzpNC5vWE3g) and demonstrated a few key
+features of decK at Kong Summit 2019.
 
 ## Changelog
 
 The changelog can be found in the
-[CHANGELOG.md](https://github.com/kong/deck/blob/main/CHANGELOG.md) file.
+[CHANGELOG](https://github.com/kong/deck/blob/main/CHANGELOG.md) file.
 
 ## Licensing
 
@@ -95,34 +87,31 @@ Please read the
 ## Security
 
 decK does not offer to secure your Kong deployment but only configures it.
-It encourages you to protect your Kong's Admin API with authentication but
+It encourages you to protect your Kong Admin API implementation with authentication but
 doesn't offer such a service itself.
 
 decK's state file can contain sensitive data such as private keys of
-certificates, credentials, etc. It is left up to the user to manage
+certificates, credentials, etc. It is up to the user to manage
 and store the state file in a secure fashion.
 
 If you believe that you have found a security vulnerability in decK,
 submit a detailed report, along with reproducible steps
 to [security@konghq.com](mailto:security@konghq.com).
 
-## Getting help
+## Get help
 
-One of the design goals of decK is deliver a good developer experience to you.
-Part of it is getting the required help when you need it.
-To seek help, use the following resources:
+One of the design goals of decK is to deliver a good developer experience.
+To get help, use the following resources:
 - `--help` flag gives you the necessary help in the terminal itself and should
   solve most of your problems.
-- If you still need help, please open a
-  [Github issue](https://github.com/kong/deck/issues/new) to ask your
+- If you still need help, [open a Github issue](https://github.com/kong/deck/issues/new) to ask your
   question.
 - decK has very wide adoption by Kong's community and you can seek help
   from the larger community at [Kong Nation](https://discuss.konghq.com).
 
-## Reporting a bug
+## Report a bug
 
-If you believe you have run into a bug with decK, please open
-a [Github issue](https://github.com/kong/deck/issues/new).
+If you believe you have run into a bug with decK, [open a Github issue](https://github.com/kong/deck/issues/new).
 
-If you think you've found a security issue with decK, please read the
+If you think you've found a security issue with decK, read the
 [Security](#security) section.
