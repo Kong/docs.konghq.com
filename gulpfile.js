@@ -25,7 +25,7 @@ var sources = {
   content: 'app/**/*.{markdown,md,html,txt,yml,yaml}',
   styles: paths.assets + 'stylesheets/**/*',
   js: [
-    paths.assets + 'javascripts/jquery.2.1.3.min.js',
+    paths.assets + 'javascripts/jquery-3.6.0.min.js',
     paths.assets + 'javascripts/app.js'
   ],
   images: paths.assets + 'images/**/*',

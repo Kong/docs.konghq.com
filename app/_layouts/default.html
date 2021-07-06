@@ -237,9 +237,9 @@
       // Execute on load
       checkWidth();
       // Bind event listener
-      $(window).resize(checkWidth);
+      $(window).on("resize", checkWidth)
 
-      $('#menu-primary-nav .nav1 > a').click(function() {
+      $('#menu-primary-nav .nav1 > a').on("click", function() {
         if ($('nav.navbar').hasClass('mobile-triggers')) {
           event.preventDefault();
           $('.nav3').removeClass('active');
@@ -262,7 +262,7 @@
         }
       });
 
-      $('#menu-primary-nav .nav3 > a').click(function() {
+      $('#menu-primary-nav .nav3 > a').on("click", function() {
         if ($('nav.navbar').hasClass('mobile-triggers')) {
           event.preventDefault();
           $(this)
