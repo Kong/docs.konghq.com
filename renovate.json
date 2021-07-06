@@ -5,7 +5,6 @@
   "schedule": "every weekend",
   "bundler": {"enabled": true},
   "ignoreDeps": [
-    "jekyll",
-    "bootstrap"
+    "jekyll"
   ]
 }
