@@ -13,7 +13,7 @@ description: |
   * Additional configurations: `limit`, `window_size`, and `sync_rate`
   * Support for Redis Sentinel, Redis cluster, and Redis SSL
   * Increased performance: Rate Limiting Advanced has better throughput performance with better accuracy. Configure `sync_rate` to periodically sync with backend storage.
-  * More limiting algorithms to choose from: These algorithms are more accurate, since they enable configuration with more specificity. Learn more about our algorithms in [How to Design a Scalable Rate Limiting Algorithm](https://konghq.com/blog/how-to-design-a-scalable-rate-limiting-algorithm/).
+  * More limiting algorithms to choose from: These algorithms are more accurate and they enable configuration with more specificity. Learn more about our algorithms in [How to Design a Scalable Rate Limiting Algorithm](https://konghq.com/blog/how-to-design-a-scalable-rate-limiting-algorithm/).
 
 type: plugin
 enterprise: true
