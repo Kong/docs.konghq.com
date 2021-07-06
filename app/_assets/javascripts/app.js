@@ -2,7 +2,7 @@
 
 "use strict";
 
-$(function () {
+$(document).ready(function () {
   var NAV_HEIGHT = 56;
 
   var $window = $(window);
@@ -368,33 +368,33 @@ $(function () {
 
     $navItems.on("click", setNavItemActive);
 
-    $(".sidebar-toggle").click(function () {
+    $(".sidebar-toggle").on("click", function () {
       $(".page-navigation").addClass("sidebar-open");
       $(".docs-sidebar").addClass("sidebar-open");
     });
-    $(".page-navigation > .close-sidebar").click(function () {
+    $(".page-navigation > .close-sidebar").on("click", function () {
       $(".page-navigation").removeClass("sidebar-open");
     });
-    $(".docs-sidebar > .close-sidebar").click(function () {
+    $(".docs-sidebar > .close-sidebar").on("click", function () {
       $(".docs-sidebar").removeClass("sidebar-open");
     });
 
-    $(".toc-sidebar-toggle").click(function () {
+    $(".toc-sidebar-toggle").on("click", function () {
       $(".docs-toc").addClass("sidebar-open");
     });
-    $(".docs-toc > .close-sidebar").click(function () {
+    $(".docs-toc > .close-sidebar").on("click", function () {
       $(".docs-toc").removeClass("sidebar-open");
     });
-    $(".docs-toc .scroll-to").click(function () {
+    $(".docs-toc .scroll-to").on("click", function () {
       $(".docs-toc").removeClass("sidebar-open");
     });
 
-    $(".docs-toc > .collapse-toc").click(function () {
+    $(".docs-toc > .collapse-toc").on("click", function () {
       $(".docs-toc").addClass("collapsed");
       $(".page-content-container").addClass("toc-collapsed");
       setCookie("toc-collapsed", "true");
     });
-    $(".docs-toc > .expand-toc").click(function () {
+    $(".docs-toc > .expand-toc").on("click", function () {
       $(".docs-toc").removeClass("collapsed");
       $(".page-content-container").removeClass("toc-collapsed");
       setCookie("toc-collapsed", "false");
@@ -404,7 +404,7 @@ $(function () {
       $(".page-content-container").addClass("toc-collapsed");
     }
 
-    $("#search-version-icon").click(function () {
+    $("#search-version-icon").on("click", function () {
       const searchVersion = $(".search-version-row");
       if (searchVersion.hasClass("visible")) {
         searchVersion.removeClass("visible");
@@ -449,7 +449,7 @@ $(function () {
   analytics.trackLink($('a[href="#comparison"]')[0], "Clicked Why Kong");
 
   // Add Smooth scroll when link with attr clicked
-  $('a[data-link="scroll"]').click(function () {
+  $('a[data-link="scroll"]').on("click", function () {
     $("html, body").animate(
       {
         scrollTop: $($.attr(this, "href")).offset().top - NAV_HEIGHT, // Add spacing on top after scroll
@@ -480,7 +480,7 @@ $(function () {
   }
 
   // Plugins filter
-  $("a[data-filter]").click(function () {
+  $("a[data-filter]").on("click", function () {
     var target = $(this).data("filter");
 
     // Remove any active classes that may already be applied
@@ -518,11 +518,11 @@ $(function () {
     mobileTable();
   }
 
-  $window.resize(function () {
+  $(window).on("resize", (function(){
     if ($window.width() <= 1099) {
       mobileTable();
     }
-  });
+  }));
 
   function mobileTable() {
     $("table").each(function (index, value) {
@@ -545,7 +545,7 @@ $(function () {
   }
 
   // watch scroll and update active scroll-to anchor links
-  $window.scroll(() => {
+  $window.on("scroll", () => {
     const anchors = $("a.header-link");
     const scrollToLinks = $("a.scroll-to");
     if (!anchors.length || !scrollToLinks.length) {
@@ -572,7 +572,7 @@ $(function () {
 
   // navtabs
   const navtabs = $("div[data-navtab-id]");
-  navtabs.click(function () {
+  navtabs.on("click", function () {
     const navtabTitle = $(this);
     const navtabID = navtabTitle.data("navtab-id");
     const navtabContent = $(`div[data-navtab-content='${navtabID}']`);
@@ -613,17 +613,17 @@ $(function () {
     }, 2000);
   }
 
-  $("#feedback-comment-button-back").click(function () {
+  $("#feedback-comment-button-back").on("click", function () {
     $(".feedback-options").css("visibility", "visible");
     $(".feedback-comment").css("visibility", "hidden");
   });
 
-  $("#feedback-comment-button-submit").click(function () {
+  $("#feedback-comment-button-submit").on("click", function () {
     $(".feedback-comment").css("visibility", "hidden");
     sendFeedback("no", $("#feedback-comment-text").val());
   });
 
-  $(".feedback-options-button").click(function () {
+  $(".feedback-options-button").on("click", function () {
     const button = $(this);
     const result = button.data("feedback-result");
 
@@ -687,7 +687,7 @@ $(function () {
     snippet.addClass("copy-code-snippet");
 
     const action = $('<i class="copy-action fa fa-copy"></i>');
-    action.click(function () {
+    action.on("click", function () {
       if ($("#copy-code-success-info").length > 0) {
         return;
       }
@@ -752,8 +752,8 @@ $(function () {
   }
 
   if (imageModal.length > 0 && !imageModal.data("image-expand-disabled")) {
-    imageModal.find("i").click(closeModal);
-    imageModal.find(".image-modal-backdrop").click(closeModal);
+    imageModal.find("i").on("click", closeModal);
+    imageModal.find(".image-modal-backdrop").on("click", closeModal);
 
     $(".page-content > .content img:not(.no-image-expand)").each(function (
       index,
@@ -762,7 +762,7 @@ $(function () {
       const $img = $(img);
 
       img.style.cursor = "pointer";
-      $img.click(function () {
+      $img.on("click", function () {
         $(document.body).addClass("image-modal-no-scroll");
         imageModal.addClass("visible");
         imageModal.find("img").attr("src", $img.attr("src"));
@@ -795,7 +795,7 @@ $(function () {
     }
   }
 
-  scrollToTopButton.click(function () {
+  scrollToTopButton.on("click", function () {
     $("html, body").animate({ scrollTop: 0 }, "slow");
   });
   updateScrollToTopButttonVisibility();
@@ -859,7 +859,7 @@ $(function () {
     .map((params) => params[1])[0];
 
   const editionSwitch = $(".edition-switch");
-  editionSwitch.click(function () {
+  editionSwitch.on("click", function () {
     if (edition === "gateway-oss") {
       window.location.search = "?edition=enterprise";
     } else {
@@ -891,7 +891,7 @@ jQuery(document).ready(function () {
 });
 
 var scrolling = false;
-$(document).scroll(function () {
+$(document).on("scroll", function () {
   scrolling = true;
 });
 
@@ -906,7 +906,7 @@ setInterval(function () {
   }
 }, 10);
 
-$(".closebanner").click(function () {
+$(".closebanner").on("click", function () {
   $(".navbar-v2").addClass("closed");
   localStorage.setItem("closebanner-konnect", "closebanner");
 });
