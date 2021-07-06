@@ -4,7 +4,7 @@ no_version: true
 ---
 
 Any {{site.ee_gateway_names}} plugins supported in a self-managed hybrid mode
-deployment are also accessible through ServiceHub or Shared Config.
+deployment are also accessible through ServiceHub or the Shared Config page.
 
 ## Kong plugins in Konnect Cloud
 
@@ -17,11 +17,11 @@ or applying it globally.
 or consumer. You can configure plugins on
 [services](/konnect/manage-plugins/enable-service-plugin) and
 [routes](/konnect/manage-plugins/enable-route-plugin) through ServiceHub, and on
-[consumers](/konnect/manage-plugins/shared-config) through Shared Config.
+[consumers](/konnect/manage-plugins/shared-config) through the Shared Config page.
 
 * If you want to apply a plugin **globally** &ndash; that is, to all services,
-routes, and consumers in a cluster &ndash; set it up through
-[shared config](/konnect/manage-plugins/shared-config/).
+routes, and consumers in a cluster &ndash; set it up through the
+[Shared Config page](/konnect/manage-plugins/shared-config/).
 
 ### Functionality differences from self-managed Kong Gateway
 

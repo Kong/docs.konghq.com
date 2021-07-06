@@ -4,15 +4,12 @@ no_version: true
 toc: false
 ---
 
-[Shared configuration](https://konnect.konghq.com/configuration/)
-defines {{site.konnect_short_name}} objects that are not tied to a specific
-service, route, or Dev Portal.
-
-![Shared configuration overview](/assets/images/docs/konnect/konnect-shared-conf-overview.png)
-
 Use the ![icon](/assets/images/icons/konnect/konnect-shared-config.svg){:.inline .no-image-expand}
-**Shared Config** page in {{site.konnect_saas}} to manage consumers,
+[**Shared Config** page](https://konnect.konghq.com/configuration/) in
+{{site.konnect_saas}} to manage consumers,
 upstreams, certificates, SNIs, and global and consumer-scoped plugins.
+
+![Shared config overview](/assets/images/docs/konnect/konnect-shared-conf-overview.png)
 
 **Consumers**
 : Consumer objects represent users of a service, and are most often used for
@@ -25,7 +22,7 @@ make it easy to revoke that access without disturbing a service's function.
 : Plugins let you extend proxy functionality by adding rules, policies,
 transformations, and more on requests and responses.
 
-: You can manage global and consumer-scoped plugins from Shared Config, and
+: You can manage global and consumer-scoped plugins from the Shared Config page, and
 view all plugins in the cluster, including service and route plugins.
 
 : Global plugins are plugins that apply to all services, routes, and consumers

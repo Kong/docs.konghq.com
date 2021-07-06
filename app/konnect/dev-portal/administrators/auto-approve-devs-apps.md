@@ -21,22 +21,14 @@ If Auto Approve is enabled portal-wide, it overrides the per Service setting.
 
 ![Konnect Portal Settings for Auto Approve Developers and Applications](/assets/images/docs/konnect/konnect-portal-auto-approve.png)
 
-## Enable Auto Approve for Developer or Application Registrations
+## Enable or disable auto approve
 
-1. From the {{site.konnect_short_name}} menu, click the settings icon.
+1. From the {{site.konnect_short_name}} menu, click the
+![settings icon](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
+settings icon.
 
-2. Enable Auto Approve for one or both options:
-   * In the **Auto Approve Developers** pane, click the toggle to **Enabled**.
-   * In the **Auto Approve Applications** pane, click the toggle to **Enabled**.
-
-3. Click **Save**.
-
-## Disable Auto Approve for Developer or Application Registrations
-
-1. From the {{site.konnect_short_name}} menu, click the settings icon.
-
-2. Disable Auto Approve for one or both options:
-   * In the **Auto Approve Developers** pane, click the toggle to **Disabled**.
-   * In the **Auto Approve Applications** pane, click the toggle to **Disabled**.
+2. Click the toggle to enable or disable Auto Approve for one or both options:
+   * **Auto Approve Developers**
+   * **Auto Approve Applications**
 
 3. Click **Save**.

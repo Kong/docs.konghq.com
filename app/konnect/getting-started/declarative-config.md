@@ -12,8 +12,7 @@ In {{site.konnect_saas}}, decK can manage:
 * **All parts of a service:** Service versions, implementations, routes, and
 plugins.
 * **Dev Portal documents:** Specs and markdown files.
-* **Shared configuration:** Manage consumers, upstreams, and global plugins with
-declarative config.
+* Consumers, upstreams, and global plugins.
 
 To do this, you need [decK v1.7.0 or later](/deck/).
 
@@ -169,12 +168,10 @@ new service named `MyService` in the
     ![ServiceHub tiles](/assets/images/docs/konnect/konnect-myservice.png)
 
 
-## Manage shared configuration
+## Manage consumers and global plugins
 
-Shared configuration defines objects that are not tied to a specific service or
- route.
-
-For this example, create a consumer and a global proxy caching plugin:
+You can also use decK to manage objects not tied to a specific service or
+route. For this example, create a consumer and a global proxy caching plugin:
 
 * Consumers represent users of a service, and are most often used for
 authentication. They provide a way to divide access to your services, and
@@ -227,7 +224,7 @@ to see your changes:
     ![icon](/assets/images/icons/konnect/konnect-shared-config.svg){:.inline .no-image-expand}
     **[Shared Config](https://konnect.konghq.com/configuration)** menu option.
 
-    ![Shared config overview](/assets/images/docs/konnect/konnect-shared-config.png)
+    ![Shared Config overview page](/assets/images/docs/konnect/konnect-shared-config.png)
 
     {:.note}
     > **Note:** If you add consumers to the `konnect.yaml` file and sync your
