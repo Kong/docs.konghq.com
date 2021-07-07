@@ -204,29 +204,43 @@ parse successful
 
 ## Loading The Declarative Configuration File
 
-There are two ways to load a declarative configuration into Kong: via
-`kong.conf` and via the Admin API.
+There are two ways to load a declarative configuration file into Kong: using
+`kong.conf` or the Admin API.
 
-To load a declarative configuration at Kong start-up, use the
+To load a declarative configuration file at Kong start-up, use the
 `declarative_config` directive in `kong.conf` (or, as usual to all `kong.conf`
 entries, the equivalent `KONG_DECLARATIVE_CONFIG` environment variable).
 
 ```
-$ export KONG_DATABASE=off
-$ export KONG_DECLARATIVE_CONFIG=kong.yml
-$ kong start -c kong.conf
+export KONG_DATABASE=off /
+export KONG_DECLARATIVE_CONFIG=kong.yml /
+kong start -c kong.conf
 ```
 
-Alternatively, you can load a declarative configuration into a running
-Kong node via its Admin API, using the `/config` endpoint. The
+You can also load a declarative configuration file into a running
+Kong node by its Admin API, using the `/config` endpoint. The
 following example loads `kong.yml` using HTTPie:
 
 ```
 $ http :8001/config config=@kong.yml
 ```
 
-The `/config` endpoint replaces the entire set of entities in memory
+{:.important}
+> The `/config` endpoint replaces the entire set of entities in memory
 with the ones specified in the given file.
+
+Alternatively, you can start Kong in DB-less mode with a minimum
+declarative configuration in a string using the `KONG_DECLARATIVE_CONFIG`
+environment variable. 
+
+```
+docker run \
+-e KONG_DATABASE=off \
+-p 8000:8000 \
+-v $HOME/git/kong/kong/db/declarative/init.lua:/usr/local/share/lua/5.1/kong/db/declarative/init.lua \
+-e KONG_DECLARATIVE_CONFIG='{"_format_version":"1.1","services":[{"host":"mockbin.com","port":443,"protocol":"https","routes":[{"paths":["/"]}]}],"plugins":[{"name":"rate-limiting","config":{"policy":"local","limit_by":"ip","minute":3}}]}' \
+kong:latest
+```
 
 ## Using Kong in DB-less Mode
 
