@@ -1,0 +1,56 @@
+- product:
+  name: Kong Gateway
+  versions:
+    - release: 2.4.x
+      os:
+        amazon-linux: v1.0, v1.5, v2.0
+        centos: 1.0, 1.5, 2.0
+        rhel: 1.0, 1.5, 2.0
+        debian: 1.0, 1.5, 2.0
+      docker:
+        docker-engine: 1.0, 1.5, 2.0
+      kubernetes:
+        kic: 1.14, 1.15, 1.16, 1.17, 1.18, 1.19, 1.2, 1.21
+      pdk:
+        nodejs: "8-15"
+        golang: --
+      databases:
+        postgres: ">=9.5"
+        cassandra: "3.x"
+
+    - release: 2.3.x
+      os:
+        amazon-linux: v1.0, v1.5, v2.0
+        centos: 1.0, 1.5, 2.0
+        rhel: 1.0, 1.5, 2.0
+        debian: 1.0, 1.5, 2.0
+      docker:
+        docker-engine: 1.0, 1.5, 2.0
+      kubernetes:
+        kic: 1.14, 1.15, 1.16, 1.17, 1.18, 1.19, 1.2, 1.21
+      pdk:
+        nodejs: "8-15"
+        golang: --
+      databases:
+        postgres: ">=9.5"
+        cassandra: "3.x"
+
+- product:
+  name: Kong Gateway (OSS)
+  versions:
+    - release: 2.4.x
+      os:
+        amazon-linux: v1.0, v1.5, v2.0
+        centos: 1.0, 1.5, 2.0
+        rhel: 1.0, 1.5, 2.0
+        debian: 1.0, 1.5, 2.0
+      docker:
+        docker-engine: 1.0, 1.5, 2.0
+      kubernetes:
+        kic: 1.14, 1.15, 1.16, 1.17, 1.18, 1.19, 1.2, 1.21
+      pdk:
+        nodejs: "8-15"
+        golang: --
+      databases:
+        postgres: ">=9.5"
+        cassandra: "3.x"
