@@ -14,8 +14,8 @@ The framework is implemented as an extension to Kong's integration test suite.
 
 ## Installation
 
-The frameworks uses [busted](https://olivinelabs.com/busted/) and some
-Lua development dependencies of Kong. To setup the environment,
+The framework uses [busted](https://olivinelabs.com/busted/) and some
+Lua development dependencies of Kong. To set up the environment,
 run `make dev` on your Kong repository to install all Lua dependencies.
 
 [Back to top](#introduction)
@@ -34,8 +34,8 @@ requirements, and setup complexity.
 - **local** Driver reuses users' local environment. It's faster to run,
 but the RPS and latency number may be influenced by other local programs and thus inaccurate.
 
-    * Requires Lua development dependencies of Kong, OpenResty and wrk to be installed.
-    * Requires SystemTap, kernel headers and build chain to be installed if generating flamegraph.
+    * Requires Lua development dependencies of Kong, OpenResty, and `wrk` be installed.
+    * Requires SystemTap, kernel headers, and build chain to be installed if generating FlameGraph.
 
 - **docker** Driver is solely based on Docker images. It's the most convenient driver to setup
 as it requires less dependencies. But it may also be influenced by other local programs
@@ -47,9 +47,9 @@ but it requires Terraform knowledge to operate and setup.
     * Requires the [Terraform](https://www.terraform.io/downloads.html) binary be installed.
     * Requires git binary if testing between git commits. When testing between git commits,
     the framework assumes the current directory is Kong's repo. It will stash your working
-    directory and unstash after test is finished. When using docker or terraform driver,
-    the framework derives the base version of each commit and uses matching Docker image or
-    Kong binary package and pours local source code inside.
+    directory and unstash after test is finished. When using the docker or terraform driver,
+    the framework derives the base version of each commit and uses the matching Docker image or
+    Kong binary package and puts local source code inside.
 
 [Back to top](#introduction)
 
@@ -190,9 +190,9 @@ results, Kong error logs and FlameGraph files are saved to `output` directory un
 *syntax: perf.use_driver(name, options?)*
 
 Uses driver name, which must be one of "local", "docker"  or  "terraform". Additional
-parameters for driver can be specified in options as a Lua table. Throws error if any.
+parameters for the driver can be specified in options as a Lua table. Throws error if any.
 
-Only terraform driver expects options parameter, which contains following keys:
+Only the terraform driver expects an options parameter, which contains following keys:
 
 - **provider** The service provider name, right now only "equinix-metal".
 - **tfvars** Terraform variables as a Lua table; for `equinix-metal` provider,
@@ -224,7 +224,7 @@ Sets retry time for each “driver" operation. By default every operation is ret
 Prepares environment and returns the `spec.helpers` module. Throws error if any.
 
 The framework sets up some environment variables before importing `spec.helpers` modules.
-The returned helper is just a normal `spec.helpers` module, user can use same pattern
+The returned helper is just a normal `spec.helpers` module. Users can use the same pattern
 in integration tests to setup entities in Kong. DB-less mode is currently not implemented.
 
 [Back to top](#introduction)
@@ -290,7 +290,7 @@ Starts to send load to Kong using `wrk`. Throws error if any. Options is a Lua t
 - **connections** Connection count; defaults to 1000.
 - **threads** Request thread count; defaults to 5. 
 - **duration** Number of performance tests duration in seconds; defaults to 10. 
-- **script** Content of wrk script as string; defaults to nil.
+- **script** Content of `wrk` script as string; defaults to nil.
 
 [Back to top](#introduction)
 
@@ -300,7 +300,7 @@ Starts to send load to Kong using `wrk`. Throws error if any. Options is a Lua t
 
 Waits for the load test to finish and returns the result as a string. Throws error if any.
 
-Currently this function waits indefinitely, until both wrk and stap++ process to exit.
+Currently, this function waits indefinitely, or until both `wrk` and Stap++ processes exit.
 
 [Back to top](#introduction)
 
@@ -341,7 +341,7 @@ Add a new file under one of the directories and put `#tags` in the test descript
 ### Add new provider in terraform
 
 Users can use the terraform driver in most major service providers as long as
-it's supported by terraform. The following contracts are made between the framework and terraform module:
+it's supported by Terraform. The following contracts are made between the framework and terraform module:
 
 The terraform files are stored in `spec/fixtures/perf/terraform/<provider>`.
 
