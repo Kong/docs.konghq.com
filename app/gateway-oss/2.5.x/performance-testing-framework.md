@@ -272,9 +272,11 @@ all infrastructure, while by default it does cleanup only to speed up successive
 
 *syntax: perf.start_stapxx(stapxx_file_name, arg?)*
 
-Starts the Stap++ script with `stapxx_file_name` exists in and additional CLI args. Throws error if any.
+Starts the Stap++ script with `stapxx_file_name` exists in
+[available stapxx scripts](https://github.com/Kong/stapxx/tree/kong/samples)
+and additional CLI args. Throws error if any.
 
-This function blocks until the `SystemTap` module is fully prepared and inserted into the
+This function blocks test execution until the `SystemTap` module is fully prepared and inserted into the
 kernel. It should be called before `perf.start_load`.
 
 [Back to top](#introduction)
