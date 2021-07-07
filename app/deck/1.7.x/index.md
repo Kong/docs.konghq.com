@@ -68,7 +68,7 @@ commands.
 
 [Access our FAQs page](/deck/{{page.kong_version}}/faqs).
 
-## Kong Summit motivation behind decK video
+## Video: Kong Summit motivation behind decK
 
 [Harry Bagdi gave a talk on the motivation behind decK](https://www.youtube.com/watch?v=fzpNC5vWE3g) and demonstrated a few key
 features of decK at Kong Summit 2019.
