@@ -154,9 +154,18 @@ $ kubectl exec test-701078429-s5kca -- curl --cacert /var/run/secrets/kubernetes
 If it is not working, there are two possible reasons:
 
 1. The contents of the tokens are invalid.
-   Find the secret name with `kubectl get secrets --field-selector=type=kubernetes.io/service-account-token` and
-  delete it with `kubectl delete secret <name>`.  
-  It will automatically be recreated.
+    Find the secret name:
+
+    ```bash
+    kubectl get secrets --field-selector=type=kubernetes.io/service-account-token
+    ```
+    Delete the secret:
+
+    ```bash
+    kubectl delete secret {SECRET_NAME}
+    ```
+
+    It will automatically be recreated.
 1. You have a non-standard Kubernetes installation
    and the file containing the token may not be present.  
 
@@ -179,7 +188,7 @@ More information:
 
 If you want to use a kubeconfig file for authentication,
 follow the deploy procedure and
-add the flag `--kubeconfig=/etc/kubernetes/kubeconfig.yaml` to the deployment
+add the flag `--kubeconfig=/etc/kubernetes/kubeconfig.yaml` to the deployment.
 
 ## Dumping generated Kong configuration
 
@@ -197,17 +206,23 @@ temporary file. To use the diagnostic mode:
    configuration that omits certificate configuration and credentials, suitable
    for sharing with Kong support. `sensitive` dumps the complete configuration
    exactly as it is sent to the Admin API.
-1. Check controller logs for the dump location with `kubectl logs PODNAME -c
-   ingress-controller | grep "config dumps"`.
+1. Check controller logs for the dump location:
+    ```bash
+    kubectl logs PODNAME -c ingress-controller | grep "config dumps"
+    ```
 1. (Optional) Make a change to a Kubernetes resource that you know will
    reproduce the issue. If you are unsure what change caused the issue
    originally, you can omit this step.
-1. Copy dumped configuration out of the controller for local review with
-   `kubectl cp PODNAME:/path/to/dump/last_bad.json /tmp/last_bad.json -c
-   ingress-controller`. If the controller successfully applied configuration 
+1. Copy dumped configuration out of the controller for local review:
+
+   ```bash
+   kubectl cp PODNAME:/path/to/dump/last_bad.json /tmp/last_bad.json -c ingress-controller
+   ```
+
+   If the controller successfully applied configuration
    before the failure, you can also look at `last_good.json`.
 
-Once you have dumped configuration, take one of the following 
+Once you have dumped configuration, take one of the following
 approaches to isolate issues:
 
 - If you know of a specific Kubernetes resource change that reproduces the
