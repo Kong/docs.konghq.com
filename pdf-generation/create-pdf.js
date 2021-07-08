@@ -96,8 +96,8 @@ async function createPDF (name, urls) {
         '.copy-action',
         '.navtab-titles'
       ].join(', ')
-      var elements = document.querySelectorAll(toRemove)
-      for (var i = 0; i < elements.length; i++) {
+      const elements = document.querySelectorAll(toRemove)
+      for (let i = 0; i < elements.length; i++) {
         elements[i].parentNode.removeChild(elements[i])
       }
     })
