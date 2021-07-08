@@ -1594,7 +1594,7 @@ name   | description  | default
 **pg_database** | The database name to connect to. | `kong`
 **pg_schema** | The database schema to use. If unspecified, Kong will respect the `search_path` value of your PostgreSQL instance. | none
 **pg_ssl** | Toggles client-server TLS connections between Kong and PostgreSQL. Because PostgreSQL uses the same port for TLS and non-TLS, this is only a hint. If the server does not support TLS, the established connection will be a plain one. | `off`
-**pg_ssl_version** | When using ssl between Kong and PostgreSQL, the version of tls to use. Accepted values are `tlsv1` or `tlsv1_2` | `tlsv1`
+**pg_ssl_version** | When using ssl between Kong and PostgreSQL, the version of tls to use. Accepted values are `tlsv1`,  `tlsv1_2` or `tlsv1_3` | `tlsv1`
 **pg_ssl_required** | When `pg_ssl` is on this determines if TLS must be used between Kong and PostgreSQL. It aborts the connection if the server does not support SSL connections. | `off`
 **pg_ssl_verify** | Toggles server certificate verification if `pg_ssl` is enabled. See the `lua_ssl_trusted_certificate` setting to specify a certificate authority. | `off`
 **pg_ssl_cert** | The absolute path to the PEM encoded client TLS certificate for the PostgreSQL connection. Mutual TLS authentication against PostgreSQL is only enabled if this value is set. | none
