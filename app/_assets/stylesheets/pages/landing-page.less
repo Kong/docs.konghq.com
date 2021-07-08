@@ -14,7 +14,7 @@ header.navbar {
 }
 
 .landing-page {
-  max-width: 1280px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 120px 40px 96px;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -565,8 +565,6 @@ header.navbar {
   }
 
   @media (max-width: 1023px) {
-    padding-left: 16px;
-    padding-right: 16px;
     padding-bottom: 24px;
 
     .card {
@@ -701,6 +699,12 @@ header.navbar {
 
     section.additional-info {
       margin-top: 48px;
+    }
+  }
+
+  @media (max-width:450px) {
+    .textures img {
+      display: none;
     }
   }
 }
