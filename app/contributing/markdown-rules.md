@@ -85,7 +85,7 @@ Gateway and Kong Mesh, use the page version variable.
 * **Use `latest` in unversioned docs:** If you're linking to a versioned topic
 from an unversioned topic, use `/latest/` instead of a version name or variable.
 
-### Adding new entries to the ToC
+### Add new entries to the ToC
 
 If you're adding a new topic (or editing the name or location of an existing
 one), you also need to add it to the `yml` nav file for its version. These are
@@ -133,6 +133,16 @@ the code, you can use editable placeholders.
 
 Editable placeholders are only supported in HTML, and are not supported with
 fenced codeblocks.
+
+{:.important}
+> **Important:** Use plaintext placeholders for sensitive personal
+information, and **do not** use editable placeholders for these values. Personal
+information includes:
+> * Passwords
+> * Usernames
+> * Emails
+
+#### Create an editable placeholder
 
 * Use the `<pre>` and `<code>` tags to create a codeblock
 * Enclose your placeholder in `<div contenteditable="true"></div>` tags
