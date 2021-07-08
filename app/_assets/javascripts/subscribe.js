@@ -12,19 +12,19 @@ $("#subscribe-form").submit(function(e){
     xhrFields: {
       withCredentials: true,
     },
-    statusCode: {
-      302: function () {
-        $("#subscribe-form").css("display", "none");
-        $("#form-response").html("<br>Thank you for signing up!<br>");
-      }
-    },
     success: function () {
       $("#subscribe-form").css("display", "none");
-      $("#form-response").html("<br>Thank you for signing up!<br>");
+      $("#form-response").html("<br>Thank you for signing up!<br><br>");
     },
-    error: function () {
-      $("#subscribe-form").css("display", "none");
-      $("#form-response").html("<br>There was an error. Please try again.<br><br>");
+    error: function (response) {
+      console.log(response);
+      if (response.status == "302" || response.status == "200") {
+        $("#subscribe-form").css("display", "none");
+        $("#form-response").html("<br>Thank you for signing up!<br><br>");
+      } else {
+        $("#subscribe-form").css("display", "none");
+        $("#form-response").html("<br>There was an error. Please try again.<br><br>");
+      }
     }
   })
 });
