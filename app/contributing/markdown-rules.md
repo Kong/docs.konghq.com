@@ -131,8 +131,7 @@ backticks: \`{EXAMPLE_TEXT}`
 If you have text in your codeblock that you want the user to edit before running
 the code, you can use editable placeholders.
 
-Editable placeholders are only supported in HTML, and are not supported with
-fenced codeblocks.
+Editable placeholders require HTML markup. They are not supported in pure markdown (fenced) codeblocks.
 
 {:.important}
 > **Important:** Use plaintext placeholders for sensitive personal
