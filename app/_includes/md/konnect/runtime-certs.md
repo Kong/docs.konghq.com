@@ -4,7 +4,7 @@
     For the first runtime, the page opens to a **Configure New Runtime** form.
 
     Once configured, this page lists all runtimes associated with the
-    {{site.konnect_short_name}} SaaS account.
+    {{site.konnect_saas}} account.
 
 2. (Optional) If this is not the first runtime configuration, click
 **Configure New Runtime**.

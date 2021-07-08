@@ -17,7 +17,6 @@ description: |
   </div>
 
 type: plugin
-saas: false
 categories:
   - serverless
 
@@ -41,6 +40,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
+  konnect_examples: false
   protocols: ["http", "https"]
   dbless_compatible: partially
   dbless_explanation: |

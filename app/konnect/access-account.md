@@ -1,5 +1,5 @@
 ---
-title: Accessing a Kong Konnect SaaS Account
+title: Accessing a Kong Konnect Cloud Account
 no_version: true
 ---
 
@@ -7,7 +7,7 @@ Sign up for {{site.konnect_short_name}} to receive a 30 day free
 trial of {{site.konnect_short_name}} Plus. After 30 days, you can choose to
 downgrade to the free version, or continue with a paid Plus subscription.
 
-## Set up a new Konnect SaaS account
+## Set up a new Konnect Cloud account
 
 1. Go to [konnect.konghq.com/register](https://konnect.konghq.com/register).
 
@@ -54,7 +54,7 @@ landing page.
 
 ## Summary and next steps
 
-In this topic, you created a {{site.konnect_short_name}} SaaS account, or
+In this topic, you created a {{site.konnect_saas}} account, or
 reset a password if you forgot it.
 
 If this is your first time using {{site.konnect_short_name}}, see the

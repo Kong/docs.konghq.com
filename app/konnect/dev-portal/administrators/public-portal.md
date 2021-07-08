@@ -11,21 +11,15 @@ The Register options are not available in a public-facing portal.
 
 ![Konnect Settings for a Public Portal](/assets/images/docs/konnect/konnect-portal-auto-approve.png)
 
-You can enable and disable public access to a portal 
+You can enable and disable public access to a portal
 any time at your discretion.
 
-## Enable Public Access for a Dev Portal
+## Enable or disable public access for a Dev Portal
 
-1. From the {{site.konnect_short_name}} menu, click the settings icon.
+1. From the {{site.konnect_short_name}} menu, click the
+![settings icon](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
+settings icon.
 
-2. In the **Public Portal** pane, click the toggle to **Enabled**.
-
-3. Click **Save**.
-
-## Disable Public Access for a Dev Portal
-
-1. From the {{site.konnect_short_name}} menu, click the settings icon.
-
-2. In the **Public Portal** pane, click the toggle to **Disabled**.
+2. In the **Public Portal** pane, click the toggle to **Enabled** or **Disabled**.
 
 3. Click **Save**.

@@ -19,8 +19,7 @@ description: |
     property).
   </div>
 
-
-saas: false
+cloud: false
 type: plugin
 categories:
   - authentication
@@ -212,9 +211,7 @@ params:
 In order to use the plugin, you first need to create a consumer to associate one or more credentials to. The Consumer represents a developer using the upstream service.
 
 <div class="alert alert-warning">
-  <div class="text-center">
     <strong>Note</strong>: This plugin requires a database in order to work effectively. It *does not* work on DB-Less mode.
-  </div>
 </div>
 
 ### Endpoints
@@ -373,10 +370,8 @@ The authorization page is made of two parts:
 * The frontend page that the user will see, and that will allow him to authorize the client application to access his data
 * The backend that will process the HTML form displayed in the frontend, that will talk with the OAuth 2.0 plugin on Kong, and that will ultimately redirect the user to a third party URL.
 
-<div class="alert alert-warning">
-  <div class="container" style="text-align: center;">
+<div class="alert alert-info">
     <a href="{{ site.repos.oauth2_hello_world }}">You can see a sample implementation in node.js + express.js on GitHub</a>
-  </div>
 </div>
 
 A diagram representing this flow:

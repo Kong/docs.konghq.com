@@ -1,16 +1,35 @@
 .page-extension-profile .container .dropdown.page-header-right {
-  position: absolute;
-  text-align: right;
-  top: -100px;
-  right: 0;
   z-index: 10;
+  right: 20px;
+  top: 37px;
+  position: absolute;
+
+  button {
+    width: 200px;
+  }
 
   ul {
     right: 0;
   }
 }
 
-@media (max-width: 767px) {
+@media (min-width: 1601px) {
+  .page-extension-profile {
+    .container {
+      max-width: 1366px;
+    }
+  }
+}
+
+@media (max-width: 1600px) {
+  .page-extension-profile {
+    .container {
+      max-width: 95%;
+    }
+  }
+}
+
+@media (max-width: 800px) {
   .page-extension-profile .container .dropdown.page-header-right {
     position: relative;
     text-align: left;
@@ -34,8 +53,13 @@
   }
 
 .page-extension-profile {
+  >.container {
+    border: none;
+    border-top: 1px solid @gray;
+  }
+
   .content {
-    padding-top: 35px;
+    padding-top: 37px;
 
     h2, h3, h4, h5, h6 {
       font-family: @family-display;
@@ -43,7 +67,6 @@
     }
 
     h2 {
-      margin-top: 3.2rem;
       font-size: 2.7rem;
       font-weight: normal;
     }
@@ -96,6 +119,12 @@
           font-size: inherit;
         }
       }
+    }
+
+    hr {
+        border-top: 1px solid #ebebeb;
+        margin-top: 2em;
+        margin-bottom: 2em;
     }
 
     table {

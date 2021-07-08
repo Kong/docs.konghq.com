@@ -1,5 +1,6 @@
 <!-- Shared between Mesh installation topics: Ubuntu, Amazon Linux, RedHat, Debian, MacOS, CentOS -->
 ## 2. Run {{site.mesh_product_name}}
+
 Once downloaded, you will find the contents of {{site.mesh_product_name}} in the `kong-mesh-{{page.kong_latest.version}}` folder. In this folder, you will find &mdash; among other files &mdash; the bin directory that stores all the executables for {{site.mesh_product_name}}.
 
 Navigate to the `bin` folder:
@@ -7,13 +8,6 @@ Navigate to the `bin` folder:
 ```sh
 $ cd kong-mesh-{{page.kong_latest.version}}/bin
 ```
-
-<div class="alert alert-ee blue">
-<strong>Note:</strong> Before running the {{site.mesh_product_name}}
-control plane process in the next step &mdash; which is served by the <code>kuma-cp</code>
-executable &mdash; you need to have a valid {{site.mesh_product_name}} license
-in place.
-</div>
 
 Then, run the control plane with:
 
@@ -36,8 +30,5 @@ in `/usr/local/bin/` by executing:
 $ ln -s ./kumactl /usr/local/bin/kumactl
 ```
 
-<div class="alert alert-ee blue">
-<strong>Note:</strong> By default, this will run {{site.mesh_product_name}} with a memory
-<a href="https://kuma.io/docs/latest/documentation/backends/">backend</a>, but you can use a persistent storage like PostgreSQL by updating the
-<code>conf/kuma-cp.conf</code> file.
-</div>
+This runs {{site.mesh_product_name}} with a [memory backend](https://kuma.io/docs/latest/documentation/backends/), 
+but you can use a persistent storage like PostgreSQL by updating the `conf/kuma-cp.conf` file.

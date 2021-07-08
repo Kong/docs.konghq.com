@@ -26,11 +26,11 @@ description: |
   * Bad bots
   * Virtual patching
 
-  Additionally with [Power Rules and Network Learning Exchange](https://labs.signalsciences.com/product-launch-2018-power-rules-and-network-learning-exchange), Signal Sciences provides protections beyond what WAFs have traditionally been able to provide.
+  Additionally with [Power Rules and Network Learning Exchange](https://labs.signalsciences.com/product-launch-2018-power-rules-and-network-learning-exchange){:target="_blank"}{:rel="noopener noreferrer"}, Signal Sciences provides protections beyond what WAFs have traditionally been able to provide.
 
   Installation is simple, using a native NGINX module and a local agent that feed data into Signal Sciences Cloud Engine.
 
-  For a free trial of Signal Sciences, visit: https://info.signalsciences.com/request-a-trial-kong-signal-sciences-0
+  For a free trial of Signal Sciences, [send a request](https://info.signalsciences.com/request-a-trial-kong-signal-sciences-0){:target="_blank"}{:rel="noopener noreferrer"}.
 
   "Using the integrated solution from Kong and Signal Sciences gives us the support we need across all applications, including serverless applications, regardless of how or where they are deployed,” said Jonathan Agha, VP Information Security at WeWork. “With Kong and Signal Sciences, we get greater visibility and architectural flexibility than we have had in the past, without sacrificing performance."
 
@@ -94,4 +94,4 @@ params:
 
 ### Installation
 
-See https://docs.signalsciences.net/install-guides/other-modules/kong/ for installation instructions.
+See the [Signal Sciences intal guide](https://docs.signalsciences.net/install-guides/other-modules/kong/){:target="_blank"}{:rel="noopener noreferrer"} for installation instructions.

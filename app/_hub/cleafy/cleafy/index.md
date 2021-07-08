@@ -18,7 +18,7 @@ description: |
 
   Cleafy is client-less and does not require any change to the monitored applications. Cleafy passively monitors application traffic by integrating into any application delivery architecture, typically at ADC or API Gateway level. Cleafy plugin for Kong allows Cleafy to smoothly integrate into any Kong-powered architecture. 
 
-  For more details visit https://cleafy.com/resources.
+  For more details visit [the Cleafy resources page](https://cleafy.com/resources){:target="_blank"}{:rel="noopener noreferrer"}.
 
 support_url: https://www.cleafy.com
 

@@ -7,7 +7,7 @@ through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
 configure your {{site.base_gateway}} instance to accept configuration from
 {{site.konnect_short_name}}. The Runtime Manager keeps track of all runtimes
-associated with the {{site.konnect_short_name}} SaaS account.
+associated with the {{site.konnect_saas}} account.
 
 <div class="alert alert-ee blue">
 <b>Note:</b> Kong does not host runtimes. You must install and host your own
@@ -90,7 +90,7 @@ like this:
     ```yaml
     image:
       repository: kong/kong-gateway
-      tag: "2.3.2.0-alpine"
+      tag: "2.4.1.1-alpine"
 
     secretVolumes:
     - kong-cluster-cert

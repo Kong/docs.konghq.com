@@ -10,7 +10,7 @@ At this time, the only runtime type available is a {{site.ee_gateway_name}}
 data plane.
 
 {{site.ee_gateway_name}} data planes proxy service traffic. With
-{{site.konnect_short_name}} SaaS working as the control plane, a
+{{site.konnect_saas}} working as the control plane, a
 runtime doesn't need a database to store configuration data. Instead,
 configuration is stored in-memory on each node, and you can easily update
 multiple runtimes from one {{site.konnect_short_name}} account with a few clicks.
@@ -38,20 +38,20 @@ organization admin permissions by default.
     For the first runtime, the page opens to a **Configure New Runtime** form.
 
     Once configured, this page lists all runtimes associated with the
-    {{site.konnect_short_name}} SaaS account.
+    {{site.konnect_saas}} account.
 
 2. Click **Copy Script**.
 
     You can expand the codeblock by clicking **Show** to see the entire script.
 
 4. Replace the placeholder for `<your-password>` with your own
-{{site.konnect_short_name}} SaaS password.
+{{site.konnect_saas}} password.
 
 4. Run the script on any host you choose.
 
     This script creates a Docker container running a simple
     {{site.ee_gateway_name}} instance and connects it to your
-    {{site.konnect_short_name}} SaaS account.
+    {{site.konnect_saas}} account.
 
 5. Click **Done** to go to the Runtime Manager page.
 
@@ -79,4 +79,4 @@ In this step, you ran a script which set up a Docker container with a
 {{site.ee_gateway_name}} instance, adding your first runtime to the Runtime
 Manager.
 
-Next, [set up a your first Service through {{site.konnect_short_name}} SaaS](/konnect/getting-started/configure-service).
+Next, [set up a your first Service through {{site.konnect_saas}}](/konnect/getting-started/configure-service).

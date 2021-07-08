@@ -2,6 +2,16 @@ article,aside,details,figcaption,figure,footer,header,main,menu,nav,section {
     display: block
 }
 
+/* keep for plugin detail pages dropdown menu */
+.open {
+    display: block;
+
+
+    a {
+        outline: 0;
+    }
+}
+
 h1 {
     margin: .67em 0
 }
@@ -17,8 +27,6 @@ a:active,a:hover {
 
 abbr[title] {
     border-bottom: none;
-    text-decoration: underline;
-    text-decoration: underline dotted
 }
 
 b,strong {
@@ -231,7 +239,7 @@ summary {
     }
 
     a,a:visited {
-        text-decoration: underline
+        text-decoration: none;
     }
 
     abbr[title]::after {
@@ -290,7 +298,6 @@ label,output {
 
 body {
     margin: 0;
-    font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
     background-color: #fff
@@ -352,7 +359,7 @@ a {
 
 a:focus,a:hover {
     color: #000406;
-    text-decoration: underline
+    text-decoration: none;
 }
 
 .navbar-nav a:hover,.navbar-nav a:focus {
@@ -648,8 +655,8 @@ pre code {
 .container,.container-fluid {
     margin-left: auto;
     margin-right: auto;
-    padding-right: 16px;
-    padding-left: 16px;
+    padding-right: 250px;
+    padding-left: 75px;
     position: relative
 }
 
@@ -3162,7 +3169,7 @@ a.btn.disabled,a.disabled.nav-next,a.disabled.nav-previous,a.disabled.textbody_c
 
 .btn-link:focus,.btn-link:hover {
     color: #000406;
-    text-decoration: underline;
+    text-decoration: none;
     background-color: transparent
 }
 
@@ -3824,7 +3831,7 @@ tbody.collapse.show {
 }
 
 .card-link:hover .card-title {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .card-link:hover .card-description {
@@ -11363,7 +11370,7 @@ a.text-gray-dark:focus,a.text-gray-dark:hover {
 }
 
 .hljs-link {
-    text-decoration: underline
+    text-decoration: none;
 }
 
 .plugin-card a:hover,.bg-summit a:hover,.kong-post a:hover,.kong-sidebar .featured-post a,.nav-next a,.nav-previous a,.post-type-archive-plugins .kong-main .plugin-card a:active,.post-type-archive-plugins .kong-main .plugin-card a:hover,a.btn-gh,a.no-decoration {

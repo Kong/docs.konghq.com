@@ -5,13 +5,10 @@ permalink: pretty
 timezone: America/San_Francisco
 markdown: kramdown
 kramdown:
+  syntax_highlighter: rouge
   syntax_highlighter_opts:
     css_class: 'highlight'
-    span:
-      line_numbers: false
-    block:
-      line_numbers: true
-      start_line: 1
+    guess_lang: true
 incremental: true
 
 keep_files:
@@ -142,6 +139,11 @@ defaults:
       layout: extension
       permalink: /:collection/:path
 
+  - scope:
+      path: 'contributing'
+    values:
+      layout: 'docs-v2'
+
 # product name vars
 ee_gateway_name: Kong Gateway
 ee_product_name: Kong Gateway (Enterprise)
@@ -151,7 +153,7 @@ mesh_product_name: Kong Mesh
 kic_product_name: Kubernetes Ingress Controller
 konnect_product_name: Kong Konnect
 konnect_short_name: Konnect
-konnect_saas: Konnect SaaS
+konnect_saas: Konnect Cloud
 package_name: Kong Konnect
 company_name: Kong Inc.
 

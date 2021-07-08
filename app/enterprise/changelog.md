@@ -4,6 +4,28 @@ no_search: true
 no_version: true
 ---
 
+## 2.4.1.1
+**Release Date** 2021/05/27
+
+### Fixes
+
+#### Enterprise
+- Kong Gateway now automatically removes trailing and leading whitespaces from RBAC
+  `user_token` entries. Before, both Kong Manager and the Admin API (/rbac/users)
+  allowed creating RBAC tokens with trailing whitespace. However, HTTP does not
+  allow whitespace in the `Kong-Admin-Token` header value. Subsequently, a successfully
+  created RBAC token was not usable. This was especially an issue when using Kong Manager
+  to create tokens as it's hard to see any accidental whitespace in the text field.
+- Kong Immunity used to send query parameters in plain text. With this fix,
+  query parameters are now sent obfuscated.
+
+#### Plugins
+- When making a call using the [mTLS Authentication](/hub/kong-inc/mtls-auth) plugin,
+  instead of a successful connection, users received an error and the call was cancelled.
+  With this fix, Kong Gateway now ensures the certificate phase is set in `ngx.ctx`,
+  and the mTLS Authentication plugin works as expected.
+ 
+
 ## 2.4.1.0
 **Release Date** 2021/05/18
 
@@ -148,7 +170,7 @@ section of the Hybrid Mode Overview for more information.
 - Kong now ensures HTTP code `405` is handled by Kong's error page. [6933](https://github.com/Kong/kong/pull/6933)
 - Kong now ensures errors in plugins `init_worker` do not break Kong's worker intialization.
   [7099](https://github.com/Kong/kong/pull/7099)
-- Fixed an issue where two subsequent TLS keepalive requests would lead to incorrect
+- Fixed an issue where two subsequent TLS keep-alive requests would lead to incorrect
   plugin execution. [7102](https://github.com/Kong/kong/pull/7102)
 - Kong now ensures Targets upsert operation behaves similarly to other entities' upsert method.
   [7052](https://github.com/Kong/kong/pull/7052)
@@ -224,6 +246,12 @@ Kong now ensures targets with a weight of 0 are displayed in the Admin API.
 - The BasePlugin class was deprecated in Kong v2.4.x and will be removed in v3.0.x. Plugins
   that extend `base_plugin.lua` will continue to work until v3.0.x but should be updated to the
   newer, simplier [pattern](/enterprise/2.4.x/plugin-development/custom-logic).
+
+### Known issues
+The [mTLS Authentication](/hub/kong-inc/mtls-auth) plugin is incompatible with Kong Gateway v2.4.1.0.
+When making a call using the mTLS Authentication plugin, instead of a successful connection, users
+recieve an error and the call is aborted. This error is caused by an update to the way Kong handles
+keep-alive connections. [7102](https://github.com/Kong/kong/pull/7102)
 
 ## 2.4.0.0 (beta)
 **Release Date** 2021/04/13

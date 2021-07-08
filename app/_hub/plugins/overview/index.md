@@ -27,7 +27,7 @@ upstream API, as well as on any incoming responses.
 ## Plugin compatibility with deployment types
 
 {{site.base_gateway}} can be deployed in a variety of ways, and not all plugins
-are fully compatible with each mode. See [Plugin Compatibility](/hub/plugins/compatibility)
+are fully compatible with each mode. See [Plugin Compatibility](/konnect-platform/compatibility/plugins)
 for a comparison.
 
 
@@ -111,5 +111,5 @@ To start creating your own plugins, check out the PDK documentation:
 
 If you are interested in sharing your custom plugin with other Kong users, you
 must also submit plugin reference documentation to the Kong Plugin Hub. See the
-[contribution guidelines](https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md#kong-hub-contributions)
+[contribution guidelines](/contributing/)
 for adding documentation.

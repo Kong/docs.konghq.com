@@ -9,13 +9,8 @@ enable [auto approve](/konnect/dev-portal/administrators/auto-approve-devs-apps)
 
 ## Prerequisite
 
-You must be a {{site.konnect_short_name}} admin with the
-[correct roles and permissions](/konnect/reference/org-management/#role-definitions)
-to manage developers and their access to your {{site.konnect_short_name}} Dev Portal.
-The following roles allow you to manage developers:
-
-- Organization Admin
-- Portal Admin
+[**Organization Admin** or **Portal Admin**](/konnect/reference/org-management/#role-definitions)
+permissions.
 
 ## Developer Status
 

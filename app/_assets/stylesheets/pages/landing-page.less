@@ -234,8 +234,9 @@ header.navbar {
       color: @color-blue;
       font-weight: bold;
 
-      &:hover {
-        text-decoration: underline;
+      &:hover, &:focus {
+        text-decoration: none;
+        opacity: 0.7;
       }
     }
 
@@ -536,8 +537,9 @@ header.navbar {
         .link-text {
           margin: 8px 0;
 
-          &:hover {
-            text-decoration: underline;
+          &:hover, &:focus {
+            text-decoration: none;
+            opacity: 0.7;
           }
         }
       }

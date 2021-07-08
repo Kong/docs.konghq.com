@@ -24,7 +24,7 @@ proxies all matching gRPC traffic to an upstream gRPC service; the latter demons
 how to use a Route per gRPC method.
 
 In Kong 1.3, gRPC support assumes gRPC over HTTP/2 framing. As such, make sure
-you have at least one HTTP/2 proxy listener (check out the [Configuration Reference][configuration-rerefence]
+you have at least one HTTP/2 proxy listener (check out the [Configuration Reference][configuration-reference]
 for how to). In this guide, we will assume Kong is listening for HTTP/2 proxy
 requests on port 9080.
 
@@ -279,7 +279,7 @@ $ tail -f grpc-say-hello.log
 
 [enabling-plugins]: /gateway-oss/{{page.kong_version}}/getting-started/enabling-plugins
 [conf-service]: /gateway-oss/{{page.kong_version}}/getting-started/configuring-a-service
-[configuration-reference]: /gateway-oss/{{page.kong_version}}/configuration-reference
+[configuration-reference]: /gateway-oss/{{page.kong_version}}/configuration
 [grpc-reflection]: https://github.com/grpc/grpc/blob/master/doc/server_reflection_tutorial.md
 [grpcbin]: https://github.com/moul/grpcbin
 [grpcurl]: https://github.com/fullstorydev/grpcurl

@@ -76,8 +76,6 @@ Edit basic details like the name, reference ID, and description of your applicat
 
 1. From the [application details page](#app-details-page), click **Edit**.
 
-   The Update Application dialog is displayed.
-
    ![Update App Details Dialog](/assets/images/docs/konnect/konnect-edit-app.png)
 
 2. Make your changes and click **Update**.
@@ -91,6 +89,5 @@ from the following locations:
 
   ![Konnect Dev Portal Delete an App](/assets/images/docs/konnect/konnect-portal-delete-app.png)
 
-- In the [Update Application](#edit-my-app) dialog, click **Delete**.
-
-You are prompted to confirm the deletion.
+- In the [Update Application](#edit-my-app) dialog, click **Delete**, then
+confirm deletion.

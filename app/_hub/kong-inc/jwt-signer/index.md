@@ -118,7 +118,7 @@ params:
       default:
       datatype: array of string elements
       description: |
-        Specify the required values (or scopes) that are looked from a
+        Specify the required values (or scopes) that are checked by a
         claim specified by `config.access_token_scopes_claim`. For example,
         `[ "employee demo-service", "superadmin" ]` can be given as
         `"employee demo-service,superadmin"` (form post) would mean that the claim
@@ -238,7 +238,7 @@ params:
       default:
       datatype: array of string elements
       description: |
-        Specify the required values (or scopes) that are looked from an
+        Specify the required values (or scopes) that are checked by an
         introspection claim/property specified by `config.access_token_introspection_scopes_claim`.
         For example, `[ "employee demo-service", "superadmin" ]` can be given as `"employee demo-service,superadmin"`
         (form post) would mean that the claim needs to have values `"employee"` and `"demo-service"` **OR**
@@ -331,7 +331,7 @@ params:
       datatype: boolean
       description: |
         If an access token is not provided or no `config.access_token_request_header` is specified,
-        the plugin cannot obviously verify the access token. In that case, the plugin normally responds
+        the plugin cannot verify the access token. In that case, the plugin normally responds
         with `401 Unauthorized` (client didn't send a token) or `500 Unexpected` (a configuration error).
         Use this parameter to allow the request to proceed even when there is no token to check.
         If the token is provided, then this parameter has no effect (look other parameters to enable and
@@ -443,7 +443,7 @@ params:
       default:
       datatype: array of string elements
       description: |
-        Specify the required values (or scopes) that are looked from a claim
+        Specify the required values (or scopes) that are checked by a claim
         specified by `config.channel_token_scopes_claim`. For example, if `[ "employee demo-service", "superadmin" ]`
         was given as `"employee demo-service,superadmin"` (form post), the claim needs
         to have values `"employee"` and `"demo-service"`, **OR** that the claim needs to have the value of
@@ -550,7 +550,7 @@ params:
       default:
       datatype: array of string elements
       description: |
-        Use this parameter to specify the required values (or scopes) that are looked from an introspection
+        Use this parameter to specify the required values (or scopes) that are checked by an introspection
         claim/property specified by `config.channel_token_introspection_scopes_claim`.
         For example, `[ "employee demo-service", "superadmin" ]`, which can be given as `"employee demo-service,superadmin"`
         (form post) would mean that the claim needs to have the values `"employee"` and `"demo-service"` **OR** that the
@@ -640,7 +640,7 @@ params:
       datatype: boolean
       description: |
         If a channel token is not provided or no `config.channel_token_request_header` is specified,
-        the plugin cannot obviously verify the channel token. In that case, the plugin normally responds
+        the plugin cannot verify the channel token. In that case, the plugin normally responds
         with `401 Unauthorized` (client didn't send a token) or `500 Unexpected` (a configuration error).
         Enable this parameter to allow the request to proceed even when there is no channel token
         to check. If the channel token is provided, then this parameter has no effect
@@ -739,27 +739,27 @@ The key size (the modulo) for RSA keys is currently hard-coded to 2048 bits.
 
 ## Consumer mapping
 
-There are several parameters that provide a way to do consumer mapping:
+The following parameters let you provide consumer mapping:
 
 - `config.access_token_consumer_claim`
 - `config.access_token_introspection_consumer_claim`
 - `config.channel_token_consumer_claim`
 - `config.channel_token_introspection_consumer_claim`
 
-Obviously you cannot map more than once. The order the plugin does the mapping is:
+You can map only once. The plugin applies mappings in the following order:
 
 1. access token introspection results
 2. access token jwt payload
 3. access token introspection results
 4. access token jwt payload
 
-Of course, the mapping order depends on input (opaque or JWT).
+The mapping order depends on input (opaque or JWT).
 
 When mapping is done, no other mappings are used. If access token already maps
 to a Kong consumer, the plugin does not try to map a channel token to a consumer
 anymore and does not even error in that case.
 
-A general rule to follow would be to only map either the access token or the channel token.
+A general rule is to map either the access token or the channel token.
 
 ## Kong Admin API Endpoints
 

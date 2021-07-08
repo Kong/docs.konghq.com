@@ -75,7 +75,7 @@ on AWS RDS for you.
 
 ## Kong in DB-less mode
 
-Provisions Kong resources in a new VPC or existing VPC. 
+Provisions Kong resources in a new VPC or existing VPC.
 
 Note: User would need to provide an S3 bucket location where `kong.yml` is
 stored with the declarative configuration to bootstrap all the Kong instances.
@@ -155,9 +155,7 @@ stored with the declarative configuration to bootstrap all the Kong instances.
     **Note**: *To monitor the progress go to AWS CloudFormation console, select the stack in the list. In the stack details pane, click the "Events" tab to see the progress.*
 
     <div class="alert alert-warning">
-      <div class="text-center">
         <strong>Note</strong>: Check out the <a href="{{ site.repos.cloudformation }}">kong-dist-cloudformation</a> repository for further details.
-      </div>
     </div>
 
 7. **Use Kong**

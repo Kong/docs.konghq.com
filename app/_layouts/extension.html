@@ -6,13 +6,17 @@ breadcrumbs:
   Hub: '/hub'
 
 ---
+
 {% unless page.type == "concept" %}
 {% if page.type == "plugin" %}
 
 {% capture params_table %}
 <table>
   <thead>
-    <tr><th>Form Parameter</th><th>Description</th></tr>
+    <tr>
+      <th style="width: 25%;">Form Parameter</th>
+      <th style="width: 75%;">Description </th>
+    </tr>
   </thead>
   <tbody>
     <tr>
@@ -57,17 +61,22 @@ breadcrumbs:
       </tr>
     {% endif %}
     {% for field in page.params.config %}
+      {% if field.group %}
+    <tr><td colspan="2"><strong><br><br>{{ field.group | markdownify | strip_html }} {% if field.description %}<br><small>{{ field.description | markdownify | strip_html }}</small>{% endif %}</strong></td></tr>
+      <tr><th>Form Parameter</th><th>Description</th></tr>
+      {% else %}
       <tr>
         <td><code>config.{{ field.name }}</code>
           {% if field.required == true %}<br><em>required</em>{% endif %}
           {% if field.required == false %}<br><em>optional</em>{% endif %}
           {% if field.required == "semi" %}<br><em>semi-optional</em>{% endif %}
           {% if field.datatype != nil %}<br><br><strong>Type: </strong>{{ field.datatype | markdownify | strip_html }}{% endif %}
-          {% if field.default != nil %}<br><br><strong>Default value: </strong>{{ field.default | markdownify | strip_html }}{% endif %}
+          {% if field.default != nil %}<br><br><strong>Default value: </strong><code>{{ field.default | markdownify | strip_html }}</code>{% endif %}
         </td>
         <td>
           <br>{{ field.description | markdownify }}</td>
       </tr>
+      {% endif %}
     {% endfor %}
   </tbody>
 </table>
@@ -110,6 +119,7 @@ breadcrumbs:
 {% endunless %}
 
 <!-- BEGIN PAGE OUTPUT -->
+<div class="search-selector">Plugin Hub</div>
 
 <div class="page page-extension-profile">
   {% if page.header_icon or page.header_title %}
@@ -130,7 +140,7 @@ breadcrumbs:
           {% if extn_release == extn_latest %}<em>(latest)</em>{% endif %}
           <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+        <ul class="dropdown-menu dropdown-menu-right" id="version-list" role="menu" aria-labelledby="version-dropdown">
           {% for ver in extn_versions %}
             {% if ver.release == extn_latest %}
               {% assign ver_path = "" %}
@@ -249,7 +259,7 @@ breadcrumbs:
       {% endif %}
     {% endcapture %}
 
-    <aside class="page-navigation">
+    <aside class="page-navigation{% if extn_versions %} with-dropdown{% endif %}">
       <div class="github-links">
         <ul>
           <li>
@@ -302,7 +312,7 @@ breadcrumbs:
         <tr>
           <td>DB-less compatible?</td>
           <td>
-            <a href="/hub/plugins/compatibility">{% if page.params.dbless_compatible == "yes" or page.params.dbless_compatible == true %}Yes{% endif %}{%
+            <a href="/konnect-platform/compatibility/plugins">{% if page.params.dbless_compatible == "yes" or page.params.dbless_compatible == true %}Yes{% endif %}{%
               if page.params.dbless_compatible == "no" or page.params.dbless_compatible == false %}No{% endif %}{%
               if page.params.dbless_compatible == "partially" %}Partially{% endif %}</a>
           </td>
@@ -318,9 +328,9 @@ breadcrumbs:
           </td>
         </tr>
         <tr>
-          <td>Konnect SaaS</td>
+          <td>Konnect Cloud</td>
           <td>
-            {% if page.saas == false %} Not available{%
+            {% if page.cloud == false %} Not available{%
             elsif extn_release == extn_latest %}Available{%
               else %}See latest plugin version for availability{% endif %}
           </td>
@@ -444,5 +454,7 @@ breadcrumbs:
   {% include feedback-widget.html %}
   {% endif %}
 </div>
+
+{% include image-modal.html %}
 
 <!-- {% include intercom.html %} -->

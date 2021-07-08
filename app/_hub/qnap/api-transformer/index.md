@@ -33,14 +33,14 @@ params:
       value_in_examples: /home/foo/api_xxx/req_transformer.lua
       description: |
         The .lua script to be used for the transformation. 
-        Available OpenResty variables and utils: [Check readme](https://github.com/qnap-dev/kong-plugin-api-transformer#for-developer)
+        Available OpenResty variables and utils: [Check README](https://github.com/qnap-dev/kong-plugin-api-transformer#for-developer){:target="_blank"}{:rel="noopener noreferrer"}
     - name: response_transformer
       required: 'yes'
       default:
       value_in_examples: /home/foo/api_xxx/resp_transformer.lua
       description: |
         The .lua script to be used for the transformation. 
-        Available OpenResty variables and utils: [Check readme](https://github.com/qnap-dev/kong-plugin-api-transformer#for-developer)
+        Available OpenResty variables and utils: [Check README](https://github.com/qnap-dev/kong-plugin-api-transformer#for-developer){:target="_blank"}{:rel="noopener noreferrer"}
     - name: http_200_always
       required: 'no'
       default: true
@@ -68,7 +68,7 @@ params:
 
 ## Kong Plugin API Transformer
 
-For questions, details or contributions, please reach us at https://github.com/qnap-dev/kong-plugin-api-transformer
+For questions, details or contributions, please reach us via the [API Transformer GitHub repo](https://github.com/qnap-dev/kong-plugin-api-transformer){:target="_blank"}{:rel="noopener noreferrer"}.
 
 
 ### request transformer example
@@ -171,7 +171,7 @@ This table `ngx.ctx` can be used to store per-request Lua context data and has a
 
 ### Convensions in writing the transformer
 
-In the transformer, we need to return a Lua tuple: `(f_status, body_or_err)`, please check the detail via [test case](https://github.com/qnap-dev/kong-plugin-api-transformer/tree/master/spec).
+In the transformer, we need to return a Lua tuple: `(f_status, body_or_err)`, please check the detail via [test case](https://github.com/qnap-dev/kong-plugin-api-transformer/tree/master/spec){:target="_blank"}{:rel="noopener noreferrer"}.
 
 ```
 if f_status == true then

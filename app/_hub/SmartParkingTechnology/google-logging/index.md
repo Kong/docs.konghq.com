@@ -39,7 +39,7 @@ params:
       default: "cloudresourcemanager.googleapis.com%2Factivity"
       value_in_examples:
       description: |
-        The log id in: `projects/[PROJECT_ID]/logs/[LOG_ID]`. Also see [LogEntry](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry).
+        The log id in: `projects/[PROJECT_ID]/logs/[LOG_ID]`. Also see [LogEntry](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry){:target="_blank"}{:rel="noopener noreferrer"}.
     - name: google_key
       required: false
       default:
@@ -55,7 +55,7 @@ params:
       required: false
       default:
       value_in_examples:
-      description: The Google monitor resource. Also see [MonitoredResource](https://cloud.google.com/logging/docs/reference/v2/rest/v2/MonitoredResource]).
+      description: The Google monitor resource. Also see [MonitoredResource](https://cloud.google.com/logging/docs/reference/v2/rest/v2/MonitoredResource){:target="_blank"}{:rel="noopener noreferrer"}.
     - name: retry_count
       required: false
       default: 0
@@ -85,18 +85,18 @@ For every request, the following data is exported:
 - latency_request
 - latency_gateway
 - latency_proxy
-- [httpRequest](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry#HttpRequest)
+- [httpRequest](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry#HttpRequest){:target="_blank"}{:rel="noopener noreferrer"}
 
 The logs are labeled with: `"source": "kong-google-logging"`.
 
 ## Usage
 
 The plugin requires some Google service account credentials to write log entries to Google Cloud Logging.
-The service account requires the scope as described in the [API docs](https://cloud.google.com/logging/docs/reference/v2/rest/v2/entries/write).
+The service account requires the scope as described in the [API docs](https://cloud.google.com/logging/docs/reference/v2/rest/v2/entries/write){:target="_blank"}{:rel="noopener noreferrer"}.
 The credential details can be configured using the `google_key` parameter OR by providing a path to the key file using the `google_key_file` parameter.
 
 The plugin uses Kong's batch queue to send out log entries to Google in batches.
-For more information about the batch queue parameters, see [batch_queue.lua](https://github.com/Kong/kong/blob/master/kong/tools/batch_queue.lua).
+For more information about the batch queue parameters, see [batch_queue.lua](https://github.com/Kong/kong/blob/master/kong/tools/batch_queue.lua){:target="_blank"}{:rel="noopener noreferrer"}.
 
 Sample configuration via declarative (YAML):
 

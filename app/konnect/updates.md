@@ -1,12 +1,70 @@
 ---
-title: Konnect SaaS Updates
+title: Konnect Cloud Updates
 no_version: true
 ---
 
-The updates contained in this topic apply to {{site.konnect_short_name}}
-SaaS, an application that lets you manage configuration for multiple runtimes
+The updates contained in this topic apply to {{site.konnect_saas}},
+an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services.
+
+## June 2021
+### 2021.06.24
+**Global plugin support**
+: You can now configure global plugins through {{site.konnect_saas}}. Visit the
+[Shared Config page](https://konnect.konghq.com/configuration/)
+and select the **Plugin** menu option to get started.
+
+### 2021.06.21
+**{{site.base_gateway}} 2.4.1.1 support**
+: {{site.konnect_saas}} now supports {{site.base_gateway}} 2.4.1.1
+runtimes. You can keep using existing 2.3.x runtimes, or you can upgrade to
+2.4.1.1 to take advantage of any new features.
+: The 2.4.1.1 release includes two new plugins: [OPA](/hub/kong-inc/opa) and
+[Mocking](/hub/kong-inc/mocking). To use these plugins, and any other features
+newly introduced in this release, [start up a new runtime](/konnect/runtime-manager/upgrade).
+: For all the changes and new features in {{site.base_gateway}} 2.4.x, see the [changelog](/enterprise/changelog).
+
+**More plugins available in {{site.konnect_saas}}**
+: The following plugins are now available:
+
+: * **Free tier**
+    * [Serverless Functions (Pre- and post-plugins)](/hub/kong-inc/serverless-functions/)
+    * [Datadog](/hub/kong-inc/datadog/)
+    * [Zipkin](/hub/kong-inc/zipkin/)
+    * [Request Size Limiting](/hub/kong-inc/request-size-limiting/)
+    * [Request Transformer](/hub/kong-inc/request-transformer/)
+* **Plus tier**
+    * [Exit Transformer](/hub/kong-inc/exit-transformer)
+* **Enterprise tier**
+    * [Key Auth Encrypted](/hub/kong-inc/key-auth-enc/)
+    * [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
+    * [Response Transformer Advanced](/hub/kong-inc/response-transformer-advanced/)
+
+
+### 2021.06.15
+**Default strategy/policy for rate limiting plugins**
+: The rate limiting plugins now default to `redis` as the rate limiting
+strategy or policy. This setting allows cluster-wide rate limiting using a
+Redis server. To store counters in-memory on each node, change this setting
+to `local`.
+
+: The `cluster` config strategy/policy is not supported in
+{{site.konnect_saas}}, and does not appear as an option in the plugin
+configuration anymore.
+
+: To find the setting based on the rate limiting plugin, see:
+* `config.policy`:
+    * [Rate Limiting](/hub/kong-inc/rate-limiting)
+    * [Response Rate Limiting](/hub/kong-inc/response-ratelimiting)
+* `config.strategy`:
+    * [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/)
+    * [Rate Limiting Advanced ](/hub/kong-inc/rate-limiting-advanced)
+
+**Sorting the runtime status table**
+: You can now sort the runtime status table in
+[Runtime Manager](https://konnect.konghq.com/runtime-manager) by the
+**Last Seen** or **Sync Status** columns.
 
 ## May 2021
 
@@ -95,7 +153,7 @@ quick setup script.
 ### 2021.02.23
 
 **{{site.base_gateway}} 2.3 support**
-: {{site.konnect_short_name}} SaaS now supports {{site.base_gateway}} 2.3
+: {{site.konnect_saas}} now supports {{site.base_gateway}} 2.3
 runtimes. There is no upgrade path for existing runtimes.
 : To use {{site.base_gateway}} 2.3, [reprovision a new runtime](/konnect/runtime-manager/#kong-gateway).
 
@@ -111,7 +169,7 @@ Runtime Manager and run gateway instances outside of Docker. Use the
 
 **Logging plugins**
 : The full set of {{site.base_gateway}}'s logging plugins is now available
-through {{site.konnect_short_name}} SaaS. This includes:
+through {{site.konnect_saas}}. This includes:
 * [File Log](/hub/kong-inc/file-log)
 * [HTTP Log](/hub/kong-inc/http-log)
 * [Kafka Log](/hub/kong-inc/kafka-log)
