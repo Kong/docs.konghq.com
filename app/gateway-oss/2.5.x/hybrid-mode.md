@@ -323,17 +323,16 @@ to "data\_plane", give it the address and port of where the control plane can be
 and the node automatically connects and syncs itself up with the current configuration.
 
 Similar to the CP config above, `cluster_cert` and `cluster_cert_key` configuration need to
-point to the same files as the CP has. In addition the `cluster.crt` file need to be listed
-as trusted by OpenResty through the `lua_ssl_trusted_certificate` configuration. If you
-have already specified a different `lua_ssl_trusted_certificate`, then adding the content
-of `cluster.crt` into that file will achieve the same result.
+point to the same files as the CP has. In addition, the certificate from `cluster_cert`
+(in "shared" mode) or `cluster_ca_cert` (in "pki" mode) is automatically added to the trusted
+chain in `lua_ssl_trusted_certificate`.
 
 **Note:** In this release of the Hybrid Mode, the data plane receives updates from the Control
 Plane via a format that is similar to the Declarative Config, therefore the `database`
 property has to be set to `off` for Kong to start up properly.
 
 ```
-KONG_ROLE=data_plane KONG_CLUSTER_CONTROL_PLANE=control-plane.example.com:8005 KONG_CLUSTER_CERT=cluster.crt KONG_CLUSTER_CERT_KEY=cluster.key KONG_LUA_SSL_TRUSTED_CERTIFICATE=cluster.crt KONG_DATABASE=off kong start
+KONG_ROLE=data_plane KONG_CLUSTER_CONTROL_PLANE=control-plane.example.com:8005 KONG_CLUSTER_CERT=cluster.crt KONG_CLUSTER_CERT_KEY=cluster.key KONG_DATABASE=off kong start
 ```
 
 Or in `kong.conf`:
@@ -344,7 +343,6 @@ cluster_control_plane = control-plane.example.com:8005
 database = off
 cluster_cert = cluster.crt
 cluster_cert_key = cluster.key
-lua_ssl_trusted_certificate = cluster.crt
 ```
 
 ### DP Node Stat Sequence
