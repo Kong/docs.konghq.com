@@ -441,7 +441,7 @@ when determining the compatibility.
 > Configured plugins means any plugin that is either enabled globally or configured by Services, Routes, or Consumers.
 
 For example, if a {{site.ce_product_name}} control plane has `plugin1` v1.1.1
-and `plugin2` v2.1.0 installed, and `plugin1` is configured via a `Route` object:
+and `plugin2` v2.1.0 installed, and `plugin1` is configured by a `Route` object:
 
 - It accepts {{site.ce_product_name}} data planes with `plugin1` v1.1.2,
 `plugin2` not installed
