@@ -438,7 +438,7 @@ could not be newer than versions installed on the control planes. Note that simi
 when determining the compatibility. 
 
 {:.important}
-any plugin that is either enabled globally, or configured via Services/Routes/Consumers.)
+> Configured plugins means any plugin that is either enabled globally or configured by Services, Routes, or Consumers.
 
 For example, if a {{site.ce_product_name}} control plane has `plugin1` v1.1.1
 and `plugin2` v2.1.0 installed, and `plugin1` is configured via a `Route` object:
