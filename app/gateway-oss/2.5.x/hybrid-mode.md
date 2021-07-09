@@ -457,7 +457,7 @@ and `plugin2` not installed.
 If the compatibility checks fail, the control plane stops
 pushing out new config to the incompatible data planes to avoid breaking them.
 
-When new configs are sent out from control planes to data planes, the data planes
+When new configs are sent from control planes to data planes, the data planes
 runs it's own schema validator against control plane supplied DB-less config. Data planes
 reject any config that does not pass the schema validation.
 
