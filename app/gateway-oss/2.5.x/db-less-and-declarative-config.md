@@ -234,12 +234,12 @@ declarative configuration in a string using the `KONG_DECLARATIVE_CONFIG`
 environment variable. 
 
 ```
-docker run \
--e KONG_DATABASE=off \
--p 8000:8000 \
--v $HOME/git/kong/kong/db/declarative/init.lua:/usr/local/share/lua/5.1/kong/db/declarative/init.lua \
--e KONG_DECLARATIVE_CONFIG='{"_format_version":"1.1","services":[{"host":"mockbin.com","port":443,"protocol":"https","routes":[{"paths":["/"]}]}],"plugins":[{"name":"rate-limiting","config":{"policy":"local","limit_by":"ip","minute":3}}]}' \
-kong:latest
+export KONG_DATABASE=off \
+export KONG_DECLARATIVE_CONFIG_STRING='{"_format_version":"1.1", \
+"services":[{"host":"mockbin.com","port":443,"protocol":"https", \
+"routes":[{"paths":["/"]}]}],"plugins":[{"name":"rate-limiting", \
+"config":{"policy":"local","limit_by":"ip","minute":3}}]}' \
+kong start
 ```
 
 ## Using Kong in DB-less Mode
