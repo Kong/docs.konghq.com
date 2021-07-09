@@ -459,7 +459,7 @@ pushing out new config to the incompatible data planes to avoid breaking them.
 
 When new configs are sent out from control planes to data planes, the data planes
 runs it's own schema validator against control plane supplied DB-less config. Data planes
-rejects any config that could not pass the schema validation.
+reject any config that does not pass the schema validation.
 
 One exception to the validation on data planes is that if the value of a control plane
 supplied field is `null` and data plane's schema does not have information about
