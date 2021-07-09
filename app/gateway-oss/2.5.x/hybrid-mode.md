@@ -444,7 +444,7 @@ For example, if a {{site.ce_product_name}} control plane has `plugin1` v1.1.1
 and `plugin2` v2.1.0 installed, and `plugin1` is configured by a `Route` object:
 
 - It accepts {{site.ce_product_name}} data planes with `plugin1` v1.1.2,
-`plugin2` not installed
+and `plugin2` not installed.
 - It accepts {{site.ce_product_name}} data planes with `plugin1` v1.1.2,
 `plugin2` v2.1.0 and  `plugin3` v9.8.1 installed
 - It rejects {{site.ce_product_name}} data planes with `plugin1` v1.2.0,
