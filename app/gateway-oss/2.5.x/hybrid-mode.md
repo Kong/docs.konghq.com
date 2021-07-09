@@ -430,7 +430,7 @@ For example, a {{site.ce_product_name}} v2.5.2 control plane:
 - Rejects a {{site.ce_product_name}} 2.6.0 data plane (minor version on data plane is newer)
 
 Furthermore, for every plugin that is configured on the {{site.ce_product_name}}
-control planes, new configs are only pushed to data planes that have those configured
+control plane, new configs are only pushed to data planes that have those configured
 plugins installed and loaded. The major version of those configured plugins must
 be the same on both the control planes and data planes. Also, the minor versions of the plugins on the data planes
 could not be newer than versions installed on the control planes. Note that similar to
