@@ -458,7 +458,7 @@ If the compatibility checks fail, the control plane stops
 pushing out new config to the incompatible data planes to avoid breaking them.
 
 When new configs are sent from control planes to data planes, the data planes
-runs it's own schema validator against control plane supplied DB-less config. Data planes
+run their own schema validator against a control plane supplied DB-less config. Data planes
 reject any config that does not pass the schema validation.
 
 One exception to the validation on data planes is that if the value of a control plane
