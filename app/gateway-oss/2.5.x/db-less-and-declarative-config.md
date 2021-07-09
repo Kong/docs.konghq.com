@@ -212,8 +212,8 @@ To load a declarative configuration file at Kong start-up, use the
 entries, the equivalent `KONG_DECLARATIVE_CONFIG` environment variable).
 
 ```
-export KONG_DATABASE=off /
-export KONG_DECLARATIVE_CONFIG=kong.yml /
+export KONG_DATABASE=off \
+export KONG_DECLARATIVE_CONFIG=kong.yml \
 kong start -c kong.conf
 ```
 
@@ -230,7 +230,7 @@ $ http :8001/config config=@kong.yml
 with the ones specified in the given file.
 
 Alternatively, you can start Kong in DB-less mode with a minimum
-declarative configuration in a string using the `KONG_DECLARATIVE_CONFIG`
+declarative configuration in a string using the `KONG_DECLARATIVE_CONFIG_STRING`
 environment variable. 
 
 ```
