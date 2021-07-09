@@ -448,7 +448,7 @@ and `plugin2` not installed.
 - It accepts {{site.ce_product_name}} data planes with `plugin1` v1.1.2,
 `plugin2` v2.1.0, and  `plugin3` v9.8.1 installed.
 - It rejects {{site.ce_product_name}} data planes with `plugin1` v1.2.0,
-`plugin2` v2.1.0 installed (minor version of plugin on data plane is newer)
+ and `plugin2` v2.1.0 installed (minor version of plugin on data plane is newer).
 - It accepts {{site.ce_product_name}} data planes with `plugin1` v1.1.1,
 `plugin3` v9.8.1 installed
 - It rejects {{site.ce_product_name}} data planes with `plugin1` not installed
