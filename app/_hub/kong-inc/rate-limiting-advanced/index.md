@@ -7,10 +7,13 @@ version: 2.3.x
 
 desc: Upgrades Kong Rate Limiting with more flexibility and higher performance
 description: |
-  The Rate Limiting Advanced plugin for Kong Enterprise is a re-engineered
-  version of the incredibly popular Kong Community
-  [Rate Limiting plugin](/hub/kong-inc/rate-limiting/),
-  with greatly enhanced configuration options and performance.
+  The Rate Limiting Advanced plugin for Konnect Enterprise is a re-engineered version of the Kong Gateway (OSS) [Rate Limiting plugin](/hub/kong-inc/rate-limiting/).
+
+  As compared to the standard Rate Limiting plugin, Rate Limiting Advanced provides:
+  * Additional configurations: `limit`, `window_size`, and `sync_rate`
+  * Support for Redis Sentinel, Redis cluster, and Redis SSL
+  * Increased performance: Rate Limiting Advanced has better throughput performance with better accuracy. Configure `sync_rate` to periodically sync with backend storage.
+  * More limiting algorithms to choose from: These algorithms are more accurate and they enable configuration with more specificity. Learn more about our algorithms in [How to Design a Scalable Rate Limiting Algorithm](https://konghq.com/blog/how-to-design-a-scalable-rate-limiting-algorithm/).
 
 type: plugin
 enterprise: true
@@ -276,7 +279,7 @@ until the quota will be restored.
 
 For example:
 
-```
+```plaintext
 RateLimit-Limit: 6
 RateLimit-Remaining: 4
 RateLimit-Reset: 47
@@ -285,7 +288,7 @@ RateLimit-Reset: 47
 The plugin also sends headers indicating the limits in the time frame and the number
 of remaining minutes:
 
-```
+```plaintext
 X-RateLimit-Limit-Minute: 10
 X-RateLimit-Remaining-Minute: 9
 ```
@@ -294,7 +297,7 @@ You can optionally hide the limit and remaining headers with the `hide_client_he
 
 If more than one limit is being set, the plugin returns a combination of more time limits:
 
-```
+```plaintext
 X-RateLimit-Limit-Second: 5
 X-RateLimit-Remaining-Second: 4
 X-RateLimit-Limit-Minute: 10
@@ -304,7 +307,7 @@ X-RateLimit-Remaining-Minute: 9
 If any of the limits configured has been reached, the plugin returns an `HTTP/1.1 429` status
 code to the client with the following JSON body:
 
-```json
+```plaintext
 { "message": "API rate limit exceeded" }
 ```
 
@@ -312,11 +315,9 @@ The [`Retry-After`] header will be present on `429` errors to indicate how long 
 expected to be unavailable to the client. When using `window_type=sliding` and `RateLimit-Reset`, `Retry-After`
 may increase due to the rate calculation for the sliding window.
 
-<div class="alert alert-warning">
-The headers `RateLimit-Limit`, `RateLimit-Remaining`, and `RateLimit-Reset` are based on the Internet-Draft
-<a href="https://tools.ietf.org/html/draft-polli-ratelimit-headers-02">RateLimit Header Fields for HTTP</a>
-and may change in the future to respect specification updates.
-</div>
+{:.important}
+> The headers `RateLimit-Limit`, `RateLimit-Remaining`, and `RateLimit-Reset` are based on the Internet-Draft [RateLimit Header Fields for HTTP](https://tools.ietf.org/html/draft-polli-ratelimit-headers-02) and may change in the future to respect specification updates.
+
 
 ### Multiple Limits and Window Sizes {#multi-limits-windows}
 
@@ -325,15 +326,13 @@ multiple rate limiting windows (e.g., rate limit per minute and per hour, and pe
 Because of limitations with Kong's plugin configuration interface, each *nth* limit will apply to each *nth* window size.
 For example:
 
-```bash
-$ curl -X POST http://kong:8001/services/{service}/plugins \
+<pre><code>curl -X POST http://kong:8001/services/<div contenteditable="true">{SERVICE}</div>/plugins \
   --data name=rate-limiting-advanced \
   --data config.limit=10 \
   --data config.limit=100 \
   --data config.window_size=60 \
   --data config.window_size=3600 \
-  --data config.sync_rate=10
-```
+  --data config.sync_rate=10</code></pre>
 
 This example applies rate limiting policies, one of which will trip when 10 hits have been counted in 60 seconds,
 or the other when 100 hits have been counted in 3600 seconds. For more information, see the
@@ -342,7 +341,7 @@ or the other when 100 hits have been counted in 3600 seconds. For more informati
 The number of configured window sizes and limits parameters must be equal (as shown above);
 otherwise, an error occurs:
 
-```bash
+```plaintext
 You must provide the same number of windows and limits
 ```
 

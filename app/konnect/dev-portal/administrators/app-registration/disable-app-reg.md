@@ -25,20 +25,14 @@ again any time at your discretion.
 
 1. From the {{site.konnect_short_name}} menu, click **Services**.
 
-   The Services page is displayed.
-
    ![Konnect Services Page](/assets/images/docs/konnect/konnect-services-page.png)
 
 2. Depending on your view, click the tile for the Service in cards view or the row
    for the Service in table view.
 
-   The Overview page for the service is displayed.
-
    ![Konnect Disable App Registration](/assets/images/docs/konnect/konnect-disable-app-reg.png)
 
 3. From the **Actions** menu, click **Disable app registration**.
-
-   You are prompted to confirm the disable action.
 
    ![Konnect Confirm Disable App Registration](/assets/images/docs/konnect/konnect-confirm-disable-app-reg.png)
 

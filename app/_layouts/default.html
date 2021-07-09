@@ -24,20 +24,13 @@
 
     {% include nav-v2.html %}
 
-    {{ content }}
+    {{ content | replace: '<a href="http', '<a rel="nofollow noopener noreferrer" href="http' }}
 
     {% include footer.html %} {% include anchor_links.html %}
 
     <script src="/assets/app.js?v={{ site.time | date: '%s' }}"></script>
 
     <div id="fb-root"></div>
-
-    <script
-      src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/themes/konghq/assets/js/vendor/bootstrap.min.js"
-      async
-      defer
-    ></script>
-
     <script
       id="github-bjs"
       src="https://buttons.github.io/buttons.js"
@@ -237,9 +230,9 @@
       // Execute on load
       checkWidth();
       // Bind event listener
-      $(window).resize(checkWidth);
+      $(window).on("resize", checkWidth)
 
-      $('#menu-primary-nav .nav1 > a').click(function() {
+      $('#menu-primary-nav .nav1 > a').on("click", function() {
         if ($('nav.navbar').hasClass('mobile-triggers')) {
           event.preventDefault();
           $('.nav3').removeClass('active');
@@ -262,7 +255,7 @@
         }
       });
 
-      $('#menu-primary-nav .nav3 > a').click(function() {
+      $('#menu-primary-nav .nav3 > a').on("click", function() {
         if ($('nav.navbar').hasClass('mobile-triggers')) {
           event.preventDefault();
           $(this)

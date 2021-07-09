@@ -3,8 +3,6 @@ title: Customizing the Dev Portal Appearance
 no_version: true
 ---
 
-## Customize the appearance of your Konnect Developer Portal
-
 Customize the appearance of your {{site.konnect_short_name}} Dev Portal to match
 your own unique branding. Upload your own logo and a favicon for browser tabs.
 

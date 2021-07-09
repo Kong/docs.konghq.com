@@ -154,9 +154,18 @@ $ kubectl exec test-701078429-s5kca -- curl --cacert /var/run/secrets/kubernetes
 If it is not working, there are two possible reasons:
 
 1. The contents of the tokens are invalid.
-   Find the secret name with `kubectl get secrets --field-selector=type=kubernetes.io/service-account-token` and
-  delete it with `kubectl delete secret <name>`.  
-  It will automatically be recreated.
+    Find the secret name:
+
+    ```bash
+    kubectl get secrets --field-selector=type=kubernetes.io/service-account-token
+    ```
+    Delete the secret:
+
+    ```bash
+    kubectl delete secret {SECRET_NAME}
+    ```
+
+    It will automatically be recreated.
 1. You have a non-standard Kubernetes installation
    and the file containing the token may not be present.  
 
@@ -179,7 +188,7 @@ More information:
 
 If you want to use a kubeconfig file for authentication,
 follow the deploy procedure and
-add the flag `--kubeconfig=/etc/kubernetes/kubeconfig.yaml` to the deployment
+add the flag `--kubeconfig=/etc/kubernetes/kubeconfig.yaml` to the deployment.
 
 ## Dumping generated Kong configuration
 
@@ -197,17 +206,23 @@ temporary file. To use the diagnostic mode:
    configuration that omits certificate configuration and credentials, suitable
    for sharing with Kong support. `sensitive` dumps the complete configuration
    exactly as it is sent to the Admin API.
-1. Check controller logs for the dump location with `kubectl logs PODNAME -c
-   ingress-controller | grep "config dumps"`.
+1. Check controller logs for the dump location:
+    ```bash
+    kubectl logs PODNAME -c ingress-controller | grep "config dumps"
+    ```
 1. (Optional) Make a change to a Kubernetes resource that you know will
    reproduce the issue. If you are unsure what change caused the issue
    originally, you can omit this step.
-1. Copy dumped configuration out of the controller for local review with
-   `kubectl cp PODNAME:/path/to/dump/last_bad.json /tmp/last_bad.json -c
-   ingress-controller`. If the controller successfully applied configuration 
+1. Copy dumped configuration out of the controller for local review:
+
+   ```bash
+   kubectl cp PODNAME:/path/to/dump/last_bad.json /tmp/last_bad.json -c ingress-controller
+   ```
+
+   If the controller successfully applied configuration
    before the failure, you can also look at `last_good.json`.
 
-Once you have dumped configuration, take one of the following 
+Once you have dumped configuration, take one of the following
 approaches to isolate issues:
 
 - If you know of a specific Kubernetes resource change that reproduces the
@@ -219,3 +234,56 @@ approaches to isolate issues:
   and responses (passing `--verbose 2` to decK will show all requests) and
    add debug Kong Lua code when controller requests result in an
   unhandled error (500 response).
+
+## Inspecting network traffic with a tcpdump sidecar
+
+Inspecting network traffic allows you to review traffic between the ingress
+controller and Kong admin API and/or between the Kong proxy and upstream
+applications. You can use this in situations where logged information does not
+provide you sufficient data on the contents of requests and you wish to see
+exactly what was sent over the network.
+
+Although you cannot install and use tcpdump within the controller
+or Kong containers, you can add a tcpdump sidecar to your Pod's containers. The
+sidecar will be able to sniff traffic from other containers in the Pod. You can
+edit your Deployment (to add the sidecar to all managed Pods) or a single Pod
+and add the following under the `containers` section of the Pod spec:
+
+```yaml
+- name: tcpdump
+  securityContext:
+    runAsUser: 0
+  image: corfr/tcpdump
+  command:
+    - /bin/sleep
+    - infinity
+```
+
+If you are using the Kong Helm chart, you can alternately add this to the
+`sidecarContainers` section of values.yaml.
+
+Once the sidecar is running, you can use `kubectl exec -it POD_NAME -c tcpdump`
+and run a capture. For example, to capture traffic between the controller and
+Kong admin API:
+
+```bash
+tcpdump -npi any -s0 -w /tmp/capture.pcap host 127.0.0.1 and port 8001
+```
+
+or between Kong and an upstream application with endpoints `10.0.0.50` and
+`10.0.0.51`:
+
+```bash
+tcpdump -npi any -s0 -w /tmp/capture.pcap host 10.0.0.50 or host 10.0.0.51
+```
+
+Once you've replicated the issue, you can stop the capture, exit the
+container, and use `kubectl cp` to download the capture from the tcpdump
+container to a local system for review with
+[Wireshark](https://www.wireshark.org/).
+
+Note that you will typically need to temporarily disable TLS to inspect
+application-layer traffic. If you have acces to the server's private keys you
+can [decrypt TLS](https://wiki.wireshark.org/TLS#TLS_Decryption), though this
+does not work if the session uses an ephemeral cipher (neither the controller
+nor Kong proxy have support for dumping session secrets).

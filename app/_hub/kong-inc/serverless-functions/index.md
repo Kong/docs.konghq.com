@@ -17,7 +17,6 @@ description: |
   </div>
 
 type: plugin
-cloud: false
 categories:
   - serverless
 

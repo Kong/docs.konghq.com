@@ -13,7 +13,7 @@ description: |
 
   ArecaBay's Kong plugin installed in the Kong cluster is one type of ArecaBay MicroSensors that are light-weight software components built to access real-time API call level data without any modification to the applications or their runtime. They enable ArecaBay’s <b>Dynamic API Risk Trackers (DART)</b> and <b>API DLP</b>: a set of API level trackers and Data Leakage Prevention.
 
-  DART provides an API data security posture dashboard for DevSecOps to continuously discover and monitor APIs across all clouds with zero-impact to apps. DART’s anomaly detection enables API DLP to take policy action against highly targeted data fields and transactions. Please visit this <a href = "https://www.arecabay.com/dart/">link</a> for more details.
+  DART provides an API data security posture dashboard for DevSecOps to continuously discover and monitor APIs across all clouds with zero-impact to apps. DART’s anomaly detection enables API DLP to take policy action against highly targeted data fields and transactions. Please visit this [link](https://www.arecabay.com/dart/){:target="_blank"}{:rel="noopener noreferrer"} for more details.
 
   In addition to API Security, for developers and/or DevOps, ArecaBay's Kong plugin can be used to monitor and log application API calls with selective object level data.  
 
@@ -141,4 +141,4 @@ custom_plugins = ab-microsensor
 ```
 
 ### Access ArecaBay Cloud Webconsole and setup LocalBay
-Please visit the following page <a href = "https://www.arecabay.com/partners/kong">https://www.arecabay.com/partners/kong</a> and request your ArecaBay Cloud Webconsole account. Follow the quickstart guide within the Webconsole to configure your Kong Plugin as a MicroSensor. This involves providing details for the Kong Plugin MicroSensor and downloading the setup script. Run the setup script which internally uses the Kong Admin API to configure & run the Kong Plugin as a global plugin.  
+Please visit the [Partners page](https://www.arecabay.com/partners/kong) and request your ArecaBay Cloud Webconsole account. Follow the quickstart guide within the Webconsole to configure your Kong Plugin as a MicroSensor. This involves providing details for the Kong Plugin MicroSensor and downloading the setup script. Run the setup script which internally uses the Kong Admin API to configure & run the Kong Plugin as a global plugin.  

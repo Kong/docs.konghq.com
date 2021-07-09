@@ -84,15 +84,15 @@ kong_version_compatibility: # required
 ---
 
 ## Running Kong on Azure Container Instances
-[Azure Container Instances](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview) is a great way to run lightweight containers in a serverless fashion.
+[Azure Container Instances](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview){:target="_blank"}{:rel="noopener noreferrer"} is a great way to run lightweight containers in a serverless fashion.
 
 Running Kong on Azure Container Instances is super easy:
 
 1. **Provision a datastore**
 
     Provision the datastore that you want to use:
-    1. [Running Cassandra on Azure with Azure Cosmos DB](/hub/tomkerkhove/microsoft_azure/#running-cassandra-on-azure-with-azure-cosmos-db)
-    1. [Running PostgreSQL on Azure with Azure Database for PostgreSQL](/hub/tomkerkhove/microsoft_azure/#running-postgresql-on-azure-with-azure-database-for-postgresql)
+    1. [Running Cassandra on Azure with Azure Cosmos DB](/hub/tomkerkhove/microsoft_azure/#running-cassandra-on-azure-with-azure-cosmos-db){:target="_blank"}{:rel="noopener noreferrer"}
+    1. [Running PostgreSQL on Azure with Azure Database for PostgreSQL](/hub/tomkerkhove/microsoft_azure/#running-postgresql-on-azure-with-azure-database-for-postgresql){:target="_blank"}{:rel="noopener noreferrer"}
 
 1. **Open the Cloud Shell or Azure CLI**
 
@@ -108,7 +108,7 @@ Running Kong on Azure Container Instances is super easy:
                                                   KONG_PG_PASSWORD="<password>" \
                           --command-line "kong migrations bootstrap"
     ```
-    In this example, we are using a PostgreSQL database running on [Azure Database for PostgreSQL](/hub/tomkerkhove/microsoft_azure/#running-postgresql-on-azure-with-azure-database-for-postgresql).
+    In this example, we are using a PostgreSQL database running on [Azure Database for PostgreSQL](/hub/tomkerkhove/microsoft_azure/#running-postgresql-on-azure-with-azure-database-for-postgresql){:target="_blank"}{:rel="noopener noreferrer"}.
 
     **Note for Kong < 0.15**: with Kong versions below 0.15 (up to 0.14), use
     the `up` sub-command instead of `bootstrap`.
@@ -141,4 +141,4 @@ Running Kong on Azure Container Instances is super easy:
 
     That's it - You can now use Kong by browsing to `<dns-label>.westeurope.azurecontainer.io`.
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/gateway-oss/latest/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/gateway-oss/latest/getting-started/quickstart){:target="_blank"}{:rel="noopener noreferrer"}.

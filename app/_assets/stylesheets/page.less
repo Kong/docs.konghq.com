@@ -861,8 +861,8 @@
     text-decoration: none;
     color: @blue;
 
-    &:hover {
-      text-decoration: underline;
+    &:hover, &:focus {
+      text-decoration: none;
       opacity: 0.7;
     }
   }
@@ -932,51 +932,6 @@
       color: #000;
       background: transparent;
     }
-  }
-
-  /* Rouge syntax and line numbers */
-
-  pre.highlight {
-      padding: 1rem 1.5rem;
-      overflow: auto;
-      line-height: 1.4rem;
-      position: relative;
-  }
-
-  table.rouge-table,
-  table.rouge-table tr,
-  table.rouge-table td,
-  table.rouge-table pre {
-      border: 0;
-      padding: 0;
-      margin: 0;
-      overflow: visible;
-      display: inline-block;
-      font-family: @family-code;
-  }
-
-  table.rouge-table td.rouge-gutter {
-      padding-right: 0.8rem;
-      border-right: 1px solid @gray;
-
-      @media (max-width: 1100px) {
-        margin-left: -1.2rem;
-      }
-  }
-
-  table.rouge-table td.rouge-code {
-      padding-left: 0.8em;
-  }
-
-  figure pre {
-      margin-bottom: 0;
-  }
-
-  .lineno {
-      text-align: center;
-      height: 100%;
-      min-width: 1.8rem;
-      color: @gray-dark;
   }
 
   /*
@@ -1346,7 +1301,7 @@ Generic Styling for Desktop
         font-family: "Font Awesome", FontAwesome;
         color: @blue-400;
         display: inline-block;
-        font-weight: 600;
+        font-weight: bold;
         font-size: 17px;
         padding: 0 5px 0 0;
       }

@@ -44,7 +44,10 @@ $ docker tag <IMAGE_ID> kong-bi
 {% if include.version == ">2.1" %}
 ## Version Compatibility
 Immunity follows a different versioning scheme from Kong Enterprise. The Immunity version reflects the `kong/immunity` package available on Docker Hub.
-For Kong Enterprise 2.1.x and above, use Immunity 4.x.x.          |
+For Kong Enterprise 2.1.x and above, use Immunity 4.x.x.
+
+{:.warning}
+> **Warning:** Kong Immunity is not compatible with Kong Enterprise v2.4.x.
 
 ## Install Immunity on Kubernetes
 Set up the Collector App via Helm. Use the public helm chart for setting up the Collector App and all its dependencies on Kubernetes. Setup instructions can be found on the public repo at: [https://github.com/Kong/kong-collector-helm/blob/master/README.md](https://github.com/Kong/kong-collector-helm/blob/master/README.md).

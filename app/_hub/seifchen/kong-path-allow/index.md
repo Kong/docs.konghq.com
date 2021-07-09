@@ -66,4 +66,4 @@ $ luarocks make *.rockspec
 See the README in the plugin source repository for more usage examples.
 
 ### Maintainers
-[seifchen](https://github.com/seifchen)
+[seifchen](https://github.com/seifchen){:target="_blank"}{:rel="noopener noreferrer"}
