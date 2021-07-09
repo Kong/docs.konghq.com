@@ -417,37 +417,53 @@ automatically within seconds.
 
 ### Version compatibility
 
-{{site.ce_product_name}} control planes only connect to data planes with the
-same major version and at most two minor versions earlier (edge included).
-Control planes won't connect to data planes with newer versions.
+{{site.ce_product_name}} control planes only allow connections from data planes
+with the same major version.
+Control planes won't allow connections from data planes with newer minor versions.
 
-For example, a {{site.ce_product_name}} v2.4.2 control plane:
+For example, a {{site.ce_product_name}} v2.5.2 control plane:
 
-- Accepts a {{site.ce_product_name}} 2.4.0, 2.4.1 and 2.4.2 data plane
+- Accepts a {{site.ce_product_name}} 2.5.0, 2.5.1 and 2.5.2 data plane
 - Accepts a {{site.ce_product_name}} 2.3.8, 2.2.1 and 2.2.0 data plane
-- Rejects a {{site.ce_product_name}} 2.4.3 data plane
-- Rejects a {{site.ce_product_name}} 2.1.9 data plane
-- Rejects a {{site.ce_product_name}} 1.0.0 data plane
+- Accepts a {{site.ce_product_name}} 2.5.3 data plane (newer patch version on the data plane is accepted)
+- Rejects a {{site.ce_product_name}} 1.0.0 data plane (major version differs)
+- Rejects a {{site.ce_product_name}} 2.6.0 data plane (minor version on data plane is newer)
 
-Furthermore, {{site.ce_product_name}} control planes only accept data planes
-whose list of plugins is a superset of the plugins installed on it. Also,
-plugins installed on both control planes and data planes, must have the same
-major and minor versions.
+Furthermore, for every plugin that is configured on the {{site.ce_product_name}}
+control plane, new configs are only pushed to data planes that have those configured
+plugins installed and loaded. The major version of those configured plugins must
+be the same on both the control planes and data planes. Also, the minor versions of the plugins on the data planes
+could not be newer than versions installed on the control planes. Note that similar to
+{{site.ce_product_name}} version checks, plugin patch versions are also ignored
+when determining the compatibility. 
+
+{:.important}
+> Configured plugins means any plugin that is either enabled globally or configured by Services, Routes, or Consumers.
 
 For example, if a {{site.ce_product_name}} control plane has `plugin1` v1.1.1
-and `plugin2` v2.1.0 installed:
+and `plugin2` v2.1.0 installed, and `plugin1` is configured by a `Route` object:
 
 - It accepts {{site.ce_product_name}} data planes with `plugin1` v1.1.2,
-`plugin2` v2.1.0 installed
+and `plugin2` not installed.
 - It accepts {{site.ce_product_name}} data planes with `plugin1` v1.1.2,
-`plugin2` v2.1.0 and  `plugin3` v9.8.1 installed
+`plugin2` v2.1.0, and  `plugin3` v9.8.1 installed.
 - It rejects {{site.ce_product_name}} data planes with `plugin1` v1.2.0,
-`plugin2` v2.1.0 installed
-- It rejects {{site.ce_product_name}} data planes with `plugin1` v1.1.1,
-`plugin3` v9.8.1 installed
+ and `plugin2` v2.1.0 installed (minor version of plugin on data plane is newer).
+- It accepts {{site.ce_product_name}} data planes with `plugin1` v1.1.1,
+ and `plugin3` v9.8.1 installed.
+- It rejects {{site.ce_product_name}} data planes with `plugin1` not installed
+(plugin configured on control plane but not installed on data plane).
 
 If the compatibility checks fail, the control plane stops
-pushing out new config to the incompatible data planes to avoid breaking them.
+pushing out new configs to the incompatible data planes to avoid breaking them.
+
+When new configs are sent from control planes to data planes, the data planes
+run their own schema validator against a control plane supplied DB-less config. Data planes
+reject any config that does not pass the schema validation.
+
+One exception to the validation on data planes is that if the value of a control plane
+supplied field is `null` and the data plane's schema does not have information about
+this `null` valued field, then the field is simply ignored.
 
 If a config can not be pushed to a data plane due to failure of the
 compatibility checks, the control plane will contain `warn` level lines in the
