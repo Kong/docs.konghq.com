@@ -462,7 +462,7 @@ runs it's own schema validator against control plane supplied DB-less config. Da
 reject any config that does not pass the schema validation.
 
 One exception to the validation on data planes is that if the value of a control plane
-supplied field is `null` and data plane's schema does not have information about
+supplied field is `null` and the data plane's schema does not have information about
 this `null` valued field, then the field is simply ignored.
 
 If a config can not be pushed to a data plane due to failure of the
