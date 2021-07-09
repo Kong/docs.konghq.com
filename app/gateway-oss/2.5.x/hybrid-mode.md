@@ -452,7 +452,7 @@ and `plugin2` not installed.
 - It accepts {{site.ce_product_name}} data planes with `plugin1` v1.1.1,
  and `plugin3` v9.8.1 installed.
 - It rejects {{site.ce_product_name}} data planes with `plugin1` not installed
-(plugin configured but not installed on data plane)
+(plugin configured on control plane but not installed on data plane).
 
 If the compatibility checks fail, the control plane stops
 pushing out new configs to the incompatible data planes to avoid breaking them.
