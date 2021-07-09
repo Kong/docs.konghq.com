@@ -435,7 +435,9 @@ plugins installed and loaded. The major version of those configured plugins must
 be the same on both the control planes and data planes. Also, the minor versions of the plugins on the data planes
 could not be newer than versions installed on the control planes. Note that similar to
 {{site.ce_product_name}} version checks, plugin patch versions are also ignored
-when determining the compatibility. (Configured plugins means
+when determining the compatibility. 
+
+{:.important}
 any plugin that is either enabled globally, or configured via Services/Routes/Consumers.)
 
 For example, if a {{site.ce_product_name}} control plane has `plugin1` v1.1.1
