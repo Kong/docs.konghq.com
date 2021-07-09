@@ -505,6 +505,19 @@ means it has the same limitations as declarative config as of today. Please refe
 to the [Plugin Compatibility section][plugin-compat]
 of declarative config documentation for more information.
 
+## Readonly Status API endpoints on Data Plane
+
+Several readonly endpoints from [Admin API](/{{page.kong_version}}/admin-api)
+are exposed to [Status API](/{{page.kong_version}}/configuration/#status_listen) on Data Plane.
+
+- GET /upstreams/{upstream}/targets/
+- GET /upstreams/{upstream}/health/
+- GET /upstreams/{upstream}/targets/all/
+- GET /upstreams/{upstream}/targets/{target}
+
+Please refer to [Upstream objects](/{{page.kong_version}}/admin-api/#upstream-object) for above
+endpoints.
+
 ---
 
 [plugin-compat]: /gateway-oss/{{page.kong_version}}/db-less-and-declarative-config#plugin-compatibility
