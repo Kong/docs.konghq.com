@@ -565,6 +565,12 @@ $(document).ready(function () {
     });
   }
 
+  // Active link
+  var url = $(".page.v2").data("url");
+  var urlNoSlash = url.slice(0, -1);
+  var activeNav = $(".docs-sidebar li a[href='"+url+"'], .docs-sidebar li a[href='"+urlNoSlash+"'] ").addClass("active");
+  activeNav.parents(".accordion-item").addClass("active");
+
   // LEFT-HAND NAV: open docs sidebar items
   $(".docs-sidebar a.active, li.accordion-item.active").each(function (
     index,
@@ -681,12 +687,6 @@ jQuery(document).ready(function () {
     $(".navbar-v2").addClass("closed");
     $("body").removeClass("banner");
   }
-
-  // Active link
-  var url = $(".page.v2").data("url");
-  var urlNoSlash = url.slice(0, -1);
-  var activeNav = $(".docs-sidebar li a[href='"+url+"'], .docs-sidebar li a[href='"+urlNoSlash+"'] ").addClass("active");
-  activeNav.parents(".accordion-item").addClass("active");
 
 var scrolling = false;
 $(document).on("scroll", function () {
