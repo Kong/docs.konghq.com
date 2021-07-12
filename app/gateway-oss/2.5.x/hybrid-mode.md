@@ -525,11 +525,11 @@ Several readonly endpoints from the [Admin API](/{{page.kong_version}}/admin-api
 are exposed to the [Status API](/{{page.kong_version}}/configuration/#status_listen) on data planes, including the following:
 
 - GET /upstreams/{upstream}/targets/
-- [GET /upstreams/{upstream}/health/](/{{page.kong_version}}/admin-api/#show-upstream-health-for-node)
-- [GET /upstreams/{upstream}/targets/all/](/{{page.kong_version}}/admin-api/#list-all-targets)
+- [GET /upstreams/{upstream}/health/](/gateway-oss/{{page.kong_version}}/admin-api/#show-upstream-health-for-node)
+- [GET /upstreams/{upstream}/targets/all/](/gateway-oss/{{page.kong_version}}/admin-api/#list-all-targets)
 - GET /upstreams/{upstream}/targets/{target}
 
-Please refer to [Upstream objects](/{{page.kong_version}}/admin-api/#upstream-object) in the Admin API documentation for more information about the
+Please refer to [Upstream objects](/gateway-oss/{{page.kong_version}}/admin-api/#upstream-object) in the Admin API documentation for more information about the
 endpoints.
 
 ---
