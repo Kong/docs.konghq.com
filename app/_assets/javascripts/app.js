@@ -772,18 +772,6 @@ $(document).ready(function () {
     });
   }
 
-  // open docs sidebar items
-  $(".docs-sidebar a.active, li.accordion-item.active").each(function (
-    index,
-    a
-  ) {
-    $(a)
-      .parents("li.accordion-item")
-      .each(function (index, item) {
-        $(item).addClass("active");
-        $(item).find("> input").prop("checked", true);
-      });
-  });
 
   const scrollToTopButton = $("#scroll-to-top-button");
 
@@ -888,6 +876,26 @@ jQuery(document).ready(function () {
     $(".navbar-v2").addClass("closed");
     $("body").removeClass("banner");
   }
+
+  // Active link
+  var url = $(".page.v2").data("url");
+  var urlNoSlash = url.slice(0, -1);
+  var activeNav = $(".docs-sidebar li a[href='"+url+"'], .docs-sidebar li a[href='"+urlNoSlash+"'] ").addClass("active");
+  activeNav.parents(".accordion-item").addClass("active");
+
+
+  // open docs sidebar items
+  $(".docs-sidebar a.active, li.accordion-item.active").each(function (
+    index,
+    a
+  ) {
+    $(a)
+      .parents("li.accordion-item")
+      .each(function (index, item) {
+        $(item).addClass("active");
+        $(item).find("> input").prop("checked", true);
+      });
+  });
 });
 
 var scrolling = false;
