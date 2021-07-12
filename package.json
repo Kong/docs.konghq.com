@@ -21,8 +21,7 @@
       "node_modules/**",
       "Dockerfile",
       "gulpfile.js",
-      "app/_assets/javascripts/app.js",
-      "app/_assets/javascripts/subscribe.js",
+      "app/_assets/javascripts/*",
       "app/_redirects"
     ]
   },

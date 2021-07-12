@@ -16,19 +16,6 @@
       <input id="getkong-algolia-search-input" type="text" placeholder="Search the docs...">
     </div>
 
-    <script type="text/javascript">
-      function getSearchPlaceholder () {
-        var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        if (w <= 800) {
-          document.getElementById('getkong-algolia-search-input').placeholder = 'Search...';
-        } else {
-          document.getElementById('getkong-algolia-search-input').placeholder = 'Search the docs...';
-        }
-      }
-
-      getSearchPlaceholder();
-      window.addEventListener('resize', getSearchPlaceholder);
-    </script>
     <div class="search-results-wrapper"></div>
     {% endif %}
     <div class="separator"></div>
@@ -84,27 +71,6 @@
     </div>
   </div>
 </header>
-
-<script>
-  function handleSearchClicked () {
-    $('.navbar-v2').toggleClass('search-opened')
-    $('.navbar-v2').toggleClass('menu-opened', false)
-    $('#getkong-algolia-search-input').focus()
-  }
-
-  function toggleButtonClicked () {
-    if (!$('.navbar-v2').hasClass('search-opened')) {
-      $('.navbar-v2').toggleClass('menu-opened')
-    } else {
-      $('.navbar-v2').toggleClass('search-opened', false)
-    }
-  }
-
-  function toggleSubmenuVisible (element) {
-    $(element).toggleClass('submenu-title')
-    $(element.parentElement).toggleClass('submenu-opened')
-  }
-</script>
 
 {% if page.layout != "landing-page" %}
 <style>

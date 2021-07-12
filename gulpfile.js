@@ -27,7 +27,10 @@ var sources = {
   js: [
     paths.assets + 'javascripts/jquery-3.6.0.min.js',
     paths.assets + 'javascripts/app.js',
-    paths.assets + 'javascripts/subscribe.js'
+    paths.assets + 'javascripts/subscribe.js',
+    paths.assets + 'javascripts/navbar.js',
+    paths.assets + 'javascripts/promo-banner.js',
+    paths.assets + 'javascripts/editable-code-snippet.js'
   ],
   images: paths.assets + 'images/**/*',
   fonts: [
