@@ -521,8 +521,8 @@ of declarative config documentation for more information.
 
 ## Readonly Status API endpoints on Data Plane
 
-Several readonly endpoints from the [Admin API](/{{page.kong_version}}/admin-api)
-are exposed to the [Status API](/{{page.kong_version}}/configuration/#status_listen) on data planes, including the following:
+Several readonly endpoints from the [Admin API](/gateway-oss/{{page.kong_version}}/admin-api)
+are exposed to the [Status API](/gateway-oss/{{page.kong_version}}/configuration/#status_listen) on data planes, including the following:
 
 - GET /upstreams/{upstream}/targets/
 - [GET /upstreams/{upstream}/health/](/gateway-oss/{{page.kong_version}}/admin-api/#show-upstream-health-for-node)
