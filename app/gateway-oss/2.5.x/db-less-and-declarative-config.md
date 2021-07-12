@@ -218,7 +218,7 @@ kong start -c kong.conf
 ```
 
 You can also load a declarative configuration file into a running
-Kong node by its Admin API, using the `/config` endpoint. The
+Kong node with the Admin API, using the `/config` endpoint. The
 following example loads `kong.yml` using HTTPie:
 
 ```
@@ -229,16 +229,13 @@ $ http :8001/config config=@kong.yml
 > The `/config` endpoint replaces the entire set of entities in memory
 with the ones specified in the given file.
 
-Alternatively, you can start Kong in DB-less mode with a minimum
+Or another way you can start Kong in DB-less mode is with a 
 declarative configuration in a string using the `KONG_DECLARATIVE_CONFIG_STRING`
 environment variable. 
 
 ```
-export KONG_DATABASE=off \
-export KONG_DECLARATIVE_CONFIG_STRING='{"_format_version":"1.1", \
-"services":[{"host":"mockbin.com","port":443,"protocol":"https", \
-"routes":[{"paths":["/"]}]}],"plugins":[{"name":"rate-limiting", \
-"config":{"policy":"local","limit_by":"ip","minute":3}}]}' \
+export KONG_DATABASE=off 
+export KONG_DECLARATIVE_CONFIG_STRING='{"_format_version":"1.1", "services":[{"host":"mockbin.com","port":443,"protocol":"https", "routes":[{"paths":["/"]}]}],"plugins":[{"name":"rate-limiting", "config":{"policy":"local","limit_by":"ip","minute":3}}]}' 
 kong start
 ```
 
