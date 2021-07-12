@@ -879,9 +879,11 @@ jQuery(document).ready(function () {
 
   // Active link
   var url = $(".page.v2").data("url");
-  var urlNoSlash = url.slice(0, -1);
-  var activeNav = $(".docs-sidebar li a[href='"+url+"'], .docs-sidebar li a[href='"+urlNoSlash+"'] ").addClass("active");
-  activeNav.parents(".accordion-item").addClass("active");
+  if (url){
+    var urlNoSlash = url.slice(0, -1);
+    var activeNav = $(".docs-sidebar li a[href='"+url+"'], .docs-sidebar li a[href='"+urlNoSlash+"'] ").addClass("active");
+    activeNav.parents(".accordion-item").addClass("active");
+  }
 
 
   // open docs sidebar items
