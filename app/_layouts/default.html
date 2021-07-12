@@ -5,7 +5,7 @@
   {% assign is_plugin_hub = true %}
   {% endif %}
 
-  {% include_cached head.html is_plugin_hub=is_plugin_hub%}
+  {% include_cached head.html is_plugin_hub=is_plugin_hub name=page.name title=page.title url=page.url %}
 
   <body
     id="{{ page.id }}"
