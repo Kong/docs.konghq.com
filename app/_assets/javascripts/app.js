@@ -28,6 +28,14 @@ $(document).ready(function () {
     );
   });
 
+    // Active link
+  var url = $(".page.v2").data("url");
+  if (url){
+    var urlNoSlash = url.slice(0, -1);
+    var activeNav = $(".docs-sidebar li a[href='"+url+"'], .docs-sidebar li a[href='"+urlNoSlash+"'] ").addClass("active");
+    activeNav.parents(".accordion-item").addClass("active");
+  }
+
   // Change header download button color
 
   if (!$("body#enterprise").length) {
@@ -877,15 +885,6 @@ jQuery(document).ready(function () {
     $("body").removeClass("banner");
   }
 
-  // Active link
-  var url = $(".page.v2").data("url");
-  if (url){
-    var urlNoSlash = url.slice(0, -1);
-    var activeNav = $(".docs-sidebar li a[href='"+url+"'], .docs-sidebar li a[href='"+urlNoSlash+"'] ").addClass("active");
-    activeNav.parents(".accordion-item").addClass("active");
-  }
-
-
   // open docs sidebar items
   $(".docs-sidebar a.active, li.accordion-item.active").each(function (
     index,
@@ -919,16 +918,4 @@ setInterval(function () {
 $(".closebanner").on("click", function () {
   $(".navbar-v2").addClass("closed");
   localStorage.setItem("closebanner-konnect", "closebanner");
-});
-
-
-$('[contenteditable]').on('paste', function(e) {
-    //strips elements added to the editable tag when pasting
-    var $self = $(this);
-    setTimeout(function() {$self.html($self.text());}, 0);
-}).on('keypress', function(e) {
-    if (event.keyCode === 13) {
-      // unfocus when hitting enter key
-      $('[contenteditable]').blur();
-    }
 });
