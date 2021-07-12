@@ -108,6 +108,9 @@
     - text: Control Kong Community Gateway through systemd
       url: /systemd
 
+    - text: Performance Testing Framework
+      url: /performance-testing-framework
+
     - text: Running Kong as a Non-Root User
       url: /kong-user
 

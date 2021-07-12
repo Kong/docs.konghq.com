@@ -344,4 +344,4 @@ Options:
 ---
 
 
-[configuration-reference]: /{{page.kong_version}}/configuration
+[configuration-reference]: /gateway-oss/{{page.kong_version}}/configuration
