@@ -507,15 +507,15 @@ of declarative config documentation for more information.
 
 ## Readonly Status API endpoints on Data Plane
 
-Several readonly endpoints from [Admin API](/{{page.kong_version}}/admin-api)
-are exposed to [Status API](/{{page.kong_version}}/configuration/#status_listen) on Data Plane.
+Several readonly endpoints from the [Admin API](/{{page.kong_version}}/admin-api)
+are exposed to the [Status API](/{{page.kong_version}}/configuration/#status_listen) on data planes, including the following:
 
 - GET /upstreams/{upstream}/targets/
-- GET /upstreams/{upstream}/health/
-- GET /upstreams/{upstream}/targets/all/
+- [GET /upstreams/{upstream}/health/](/{{page.kong_version}}/admin-api/#show-upstream-health-for-node)
+- [GET /upstreams/{upstream}/targets/all/](/{{page.kong_version}}/admin-api/#list-all-targets)
 - GET /upstreams/{upstream}/targets/{target}
 
-Please refer to [Upstream objects](/{{page.kong_version}}/admin-api/#upstream-object) for above
+Please refer to [Upstream objects](/{{page.kong_version}}/admin-api/#upstream-object) in the Admin API documentation for more information about the
 endpoints.
 
 ---
