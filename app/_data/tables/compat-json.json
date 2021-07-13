@@ -1,6 +1,7 @@
 [
    {
       "name": "Kong Gateway",
+      "noversions": "false",
       "versions": [
          {
             "release": "2.4.x",
@@ -54,6 +55,7 @@
    },
    {
       "name": "Kong Gateway (OSS)",
+      "noversions": "false",
       "versions": [
          {
             "release": "2.4.x",
@@ -83,6 +85,7 @@
    },
    {
       "name": "no version product",
+      "noversions": "true",
       "versions": [
          {
             "release": null,

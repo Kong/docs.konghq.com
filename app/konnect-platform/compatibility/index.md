@@ -35,20 +35,17 @@ Revert to page load state, only product is displayed
     <option value="0" selected>Select product</option>
     {% for product in products %}
     <option value="{{ product.name }}">{{ product.name }}</option>
-    {% endfor %}
-  </select>
-  <!-- grab the selected value and use this to determine which version dropdown to show -->
-  <!-- add a version dropdown if there is a version for that product -->
-  <br><br>
-    <!-- {% if product.versions %}
-    {% assign version = product.versions | map: "release" %}
-    Version: <select name="version" id="version-compat-dropdown">
-    <option value="0" selected>Select version</option>
-      {% for release in product.versions %}
-        <option value="{{ release }}">{{ release }}</option>
-      {% endfor %}
+    </select>
+    <!-- grab the selected value and use this to determine which version dropdown to show -->
+    <!-- add a version dropdown if there is a version for that product -->
+    <br><br>
+    {% if product.noversions === "false" %}
+      Version: <select name="version" id="version-compat-dropdown">
+        <option value="0" selected>Select version</option>
+        <option value="{{ product.versions[0].release }}">{{ product.versions[0].release }}</option>
       </select>
-    {% endif %} -->
+    {% endif %}
+  {% endfor %}
 </form>
 
 <button type="button" onclick="getFormValues()">View Results</button>
