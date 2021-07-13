@@ -80,5 +80,34 @@
             }
          }
       ]
+   },
+   {
+      "name": "no version product",
+      "versions": [
+         {
+            "release": null,
+            "os": {
+               "amazon-linux": "v1.0, v1.5, v2.0",
+               "centos": "1.0, 1.5, 2.0",
+               "rhel": "1.0, 1.5, 2.0",
+               "debian": "1.0, 1.5, 2.0"
+            },
+            "docker": {
+               "docker-engine": "1.0, 1.5, 2.0",
+               "docker-compose": "1.0, 1.5, 2.0"
+            },
+            "kubernetes": {
+               "kong-ingress-controller": "1.14, 1.15, 1.16, 1.17, 1.18, 1.19, 1.2, 1.21"
+            },
+            "pdk": {
+               "nodejs": "8-15",
+               "golang": "--"
+            },
+            "databases": {
+               "postgres": ">=9.5",
+               "cassandra": "3.x"
+            }
+         }
+      ]
    }
 ]

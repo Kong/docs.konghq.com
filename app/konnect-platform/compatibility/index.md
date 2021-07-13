@@ -22,25 +22,41 @@ Revert to page load state, only product is displayed
 
 -->
 
-## Choose your product
-
-Product: { DROPDOWN }
-
-Version: { DROPDOWN }
-
-
-{ View Results } { Reset }
-
----
-
-## Results
-
+<!-- VARIABLES -->
 {% assign products = site.data.tables.compat-json %}
 {% assign systems = product.versions.os %}
 {% assign docker-components = product.versions.docker %}
 {% assign k8s-components = product.versions.kubernetes %}
 {% assign dbs = product.versions.databases %}
 {% assign langs = product.versions.pdk %}
+
+<form name="compat-form" id="compat-form" action="/compat-dropdown">
+  Product: <select name="product" id="product-compat-dropdown">
+    <option value="0" selected>Select product</option>
+    {% for product in products %}
+    <option value="{{ product.name }}">{{ product.name }}</option>
+    {% endfor %}
+  </select>
+  <!-- grab the selected value and use this to determine which version dropdown to show -->
+  <!-- add a version dropdown if there is a version for that product -->
+  <br><br>
+    <!-- {% if product.versions %}
+    {% assign version = product.versions | map: "release" %}
+    Version: <select name="version" id="version-compat-dropdown">
+    <option value="0" selected>Select version</option>
+      {% for release in product.versions %}
+        <option value="{{ release }}">{{ release }}</option>
+      {% endfor %}
+      </select>
+    {% endif %} -->
+</form>
+
+<button type="button" onclick="getFormValues()">View Results</button>
+<button type="button" onclick="resetForm()">Reset Form</button>
+
+---
+
+## Results
 
 <!-- Test #3: One big table for all the things, per version -->
 

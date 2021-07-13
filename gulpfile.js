@@ -26,7 +26,8 @@ var sources = {
   styles: paths.assets + 'stylesheets/**/*',
   js: [
     paths.assets + 'javascripts/jquery-3.6.0.min.js',
-    paths.assets + 'javascripts/app.js'
+    paths.assets + 'javascripts/app.js',
+    paths.assets + 'javascripts/compat-dropdown.js'
   ],
   images: paths.assets + 'images/**/*',
   fonts: [
