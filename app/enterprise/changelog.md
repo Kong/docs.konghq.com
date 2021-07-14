@@ -54,11 +54,11 @@ no_version: true
   Parameters section of the [Syslog documentation](/hub/kong-inc/syslog) for more
   information. [#6081](https://github.com/kong/kong/pull/6081).
 - [Prometheus](/hub/kong-inc/prometheus) (`prometheus`) The Prometheus plugin now exposes connected data planes'
-  status on the  control plane. New metrics include the following:  `data_plane_last_seen`, `data_plane_config_hash` and `data_plane_version_compatible`. These metrics can be useful for troubleshooting when data planes have inconsistent configurations across the cluster. See the [Available metrics](/hub/kong-inc/prometheus/#available-metrics) section of the Prometheus plugin documentation for more information. [98](https://github.com/Kong/kong-plugin-prometheus/pull/98)
+  status on the  control plane. New metrics include the following:  `data_plane_last_seen`, `data_plane_config_hash` and `data_plane_version_compatible`. These metrics can be useful for troubleshooting when data planes have inconsistent configurations across the cluster. See the [Available metrics](/hub/kong-inc/prometheus/#available-metrics) section of the Prometheus plugin documentation for more information. [#98](https://github.com/Kong/kong-plugin-prometheus/pull/98)
 - [Zipkin](/hub/kong-inc/zipkin) (`zipkin`) 
   The Zipkin plugin now includes the following tags: `kong.route`,`kong.service_name` and `kong.route_name`.
   See the [Spans](/hub/kong-inc/zipkin/#spans) section of the Zipkin plugin documentation for more information.
-  [115](https://github.com/Kong/kong-plugin-zipkin/pull/115)
+  [#115](https://github.com/Kong/kong-plugin-zipkin/pull/115)
 
 #### Hybrid Mode
 - Kong now exposes an upstream health checks endpoint (using the status API) on the data plane for better
@@ -210,7 +210,7 @@ no_version: true
 - [Prometheus](/hub/kong-inc/prometheus) (`prometheus`) 
   The Prometheus plugin exporter now attaches subsystem labels to memory stats. Before, the HTTP
   and Stream subsystems were not distinguished, so their metrics were interpreted as duplicate entries by Prometheus.
-  [118](https://github.com/Kong/kong-plugin-prometheus/pull/118)
+  [#118](https://github.com/Kong/kong-plugin-prometheus/pull/118)
 - [Zipkin](/hub/kong-inc/zipkin) (`zipkin`)
   - The plugin now works even when `balancer_latency` is `nil`.
   - The plugin no longer shares context between several Zipkin plugins. Before the plugin was using `ngx.ctx` exclusively,
