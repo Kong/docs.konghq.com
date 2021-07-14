@@ -702,9 +702,18 @@ header.navbar {
     }
   }
 
+  .textures > .mobile-texture {
+    display: none;
+  }
+
   @media (max-width:450px) {
-    .textures img {
+    .textures > .top-left, .top-right {
       display: none;
+    }
+    .textures > .mobile-texture {
+      display: block;
+      position: absolute;
+      padding-top: 60px;
     }
   }
 }
