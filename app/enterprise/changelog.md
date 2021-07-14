@@ -30,7 +30,7 @@ no_version: true
   See [Starting Data Plane Nodes](/gateway-oss/2.5.x/hybrid-mode/#starting-data-plane-nodes)
   in the Hybrid Mode guide for more information. [#7044](https://github.com/kong/kong/pull/7044)
 - New `declarative_config_string` option allows loading a declarative config directly from a string. See the
-  [Loading The Declarative Configuration File](gateway-oss/2.5.x/db-less-and-declarative-config/#loading-the-declarative-configuration-file) section of the DB-less and Declarative Configuration guide for more information.
+  [Loading The Declarative Configuration File](/gateway-oss/2.5.x/db-less-and-declarative-config/#loading-the-declarative-configuration-file) section of the DB-less and Declarative Configuration guide for more information.
   [#7379](https://github.com/kong/kong/pull/7379)
 
 #### PDK
@@ -46,15 +46,15 @@ no_version: true
   the HTTP version number. The inclusion of the HTTP version number in the signature caused requests to the same target
   but using different request methods(such as HTTP/2) to have different signatures. The newly added request-target field
   only includes the lowercase request method and request URI when calculating the hash, avoiding those issues.
-  See the [HMAC Authentication](https://docs.konghq.com/hub/kong-inc/hmac-auth) documentation for more information.
+  See the [HMAC Authentication](/hub/kong-inc/hmac-auth) documentation for more information.
   [#7037](https://github.com/kong/kong/pull/7037)
 - [Syslog](/hub/kong-inc/syslog) (`syslog`) 
   The Syslog plugin now includes facility configuration options, which are a way for the plugin to group
   error messages from different sources. See the description for the facility parameter in the
-  [Parameters](/hub/kong-inc/syslog/#parameters) section of the Syslog documentation for more
-  information. [#6081](https://github.com/kong/kong/pull/6081). Thanks, [jideel](https://github.com/jideel)!
+  Parameters section of the [Syslog documentation](/hub/kong-inc/syslog) for more
+  information. [#6081](https://github.com/kong/kong/pull/6081).
 - [Prometheus](/hub/kong-inc/prometheus) (`prometheus`) The Prometheus plugin now exposes connected data planes'
-  status on the  control plane. New metrics include the following:  `data_plane_last_seen`, `data_plane_config_hash` and `data_plane_version_compatible`. These metrics can be useful for troubleshooting when data planes have inconsistent configurations across the cluster. See the [Available metrics](/hub/kong-inc/prometheus) section of the Prometheus plugin documentation for more information. [98](https://github.com/Kong/kong-plugin-prometheus/pull/98)
+  status on the  control plane. New metrics include the following:  `data_plane_last_seen`, `data_plane_config_hash` and `data_plane_version_compatible`. These metrics can be useful for troubleshooting when data planes have inconsistent configurations across the cluster. See the [Available metrics](/hub/kong-inc/prometheus/#available-metrics) section of the Prometheus plugin documentation for more information. [98](https://github.com/Kong/kong-plugin-prometheus/pull/98)
 - [Zipkin](/hub/kong-inc/zipkin) (`zipkin`) 
   The Zipkin plugin now includes the following tags: `kong.route`,`kong.service_name` and `kong.route_name`.
   See the [Spans](/hub/kong-inc/zipkin/#spans) section of the Zipkin plugin documentation for more information.
@@ -166,7 +166,7 @@ no_version: true
 - The stream access log configuration options are now properly separated from the HTTP access log. Before when users
   used Kong with TCP, they couldn’t use a custom log format. With this fix, `proxy_stream_access_log` and `proxy_stream_error_log`
   have been added to differentiate stream access log from the HTTP subsystem. See
-  [`proxy_stream_access_log`]/gateway-oss/2.5.x/configuration/#proxy_stream_access_log)
+  [`proxy_stream_access_log`](/gateway-oss/2.5.x/configuration/#proxy_stream_access_log)
   and [`proxy_stream_error`](/gateway-oss/2.5.x/configuration/#proxy_stream_error) in the Configuration
   Property Reference for more information. [#7046](https://github.com/kong/kong/pull/7046)
 
@@ -183,11 +183,7 @@ no_version: true
   `kong.response.get_XXX()` functions required data from the response object, which was not accessible in the
   post-log timer used to call log handlers in external plugins. Now these functions work by accessing the required
   data from the set saved at the start of the log phase.
-<<<<<<< HEAD
-  See [`kong.response`](/gateway-oss/2.5.x/kong.response)
-=======
-  See [`kong.response`](/gateway-oss/{{page.kong_version}}/kong.response)
->>>>>>> e52b1fd373f484f20cd83eb2bbdccd6dc975563c
+  See [`kong.response`](/gateway-oss/2.5.x/pdk/kong.response)
   in the Plugin Development Kit for more information. [#7048](https://github.com/kong/kong/pull/7048)
 - External plugins handle certain error conditions better while the Kong balancer is being refreshed. Before
   when an `instance_id` of an external plugin changed, and the plugin instance attempted to reset and retry,
@@ -198,7 +194,8 @@ no_version: true
 - Kong no longer sandboxes the `string.rep` function. Before `string.rep` was sandboxed to disallow a single operation
   from allocating too much memory. However, a single operation allocating too much memory is no longer an issue
   because in LuaJIT there are no debug hooks and it is trivial to implement a loop to allocate memory on every single iteration.
-  Additionally, since the `string` table is global and obtainable by any sandboxed string, its sandboxing provoked issues on global state. [#7167](https://github.com/kong/kong/pull/7167)
+  Additionally, since the `string` table is global and obtainable by any sandboxed string, its sandboxing provoked issues on global state.
+  [#7167](https://github.com/kong/kong/pull/7167)
 - The `kong.pdk.node` function can now correctly iterates over all the shared dict metrics. Before this fix,
   users using the `kong.pdk.node` function could not see all shared dict metrics under the Stream subsystem.
   [#7078](https://github.com/kong/kong/pull/7078)
