@@ -29,7 +29,9 @@ var sources = {
     paths.assets + 'javascripts/app.js',
     paths.assets + 'javascripts/subscribe.js',
     paths.assets + 'javascripts/editable-code-snippet.js',
-    paths.assets + 'javascripts/navbar.js'
+    paths.assets + 'javascripts/navbar.js',
+    paths.assets + 'javascripts/promo-banner.js',
+    paths.assets + 'javascripts/copy-code-snippet-support.js'
   ],
   images: paths.assets + 'images/**/*',
   fonts: [
