@@ -23,5 +23,6 @@ $(document).ready(function(){
     $("#product-compat-dropdown").on("change", function() {
         let product = $(this).val();
         console.log("A change in the selected text has been detected. The product selected is: " + product);
+
     });
 })
