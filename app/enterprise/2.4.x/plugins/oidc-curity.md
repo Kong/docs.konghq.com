@@ -208,5 +208,5 @@ With relatively simple configurations in both the Curity Identity Server and the
 [curity-phantom-token-pattern]: https://curity.io/resources/learn/phantom-token-pattern
 [curity-code-flow-tutorial]: https://curity.io/resources/learn/code-flow
 [curity-kong-dev-portal-user-provisioner]: https://curity.io/resources/learn/provision-kong-dev-portal-user
-[kong-dev-portal-doc]: /enterprise/latest/developer-portal
-[kong-dev-portal-doc-oidc]: /enterprise/latest/developer-portal/configuration/authentication/oidc
+[kong-dev-portal-doc]: /enterprise/{{page.kong_version}}/developer-portal
+[kong-dev-portal-doc-oidc]: /enterprise/{{page.kong_version}}/developer-portal/configuration/authentication/oidc
