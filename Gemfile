@@ -1,6 +1,7 @@
-source 'https://rubygems.org'
-gem 'jekyll', '3.9.0'
-gem 'kramdown-parser-gfm'
-gem 'jekyll-redirect-from'
-gem 'redcarpet', '3.5.1'
-gem 'rouge', '3.26.0'
+source "https://rubygems.org"
+gem "jekyll", "4.2.0"
+gem "kramdown-parser-gfm"
+gem "jekyll-redirect-from"
+gem "rouge", "3.26.0"
+gem "liquid-c"
+gem "jekyll-include-cache"

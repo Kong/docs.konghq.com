@@ -13,7 +13,7 @@ title: Deployment Options
 In this deployment mode, you install one instance of Kong, and all of its add-ons
 reside on the same node. This option is normally used for testing and development.
 <div class="alert alert-warning">
-  <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+ 
   <b>Warning:</b> The embedded mode is intended for evaluation and development
   environments and <b>should not</b> be used for a production environment.
 </div>

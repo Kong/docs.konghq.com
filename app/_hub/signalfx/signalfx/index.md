@@ -8,7 +8,7 @@ type: plugin
 
 desc: Monitor and analyze Kong in SignalFx
 description: |
-  This Kong plugin is intended for SignalFx users to obtain performance metrics from their Kong deployments for aggregation and reporting via the [Smart Agent](https://github.com/signalfx/signalfx-agent) or the [collectd-kong](https://github.com/signalfx/collectd-kong) collectd plugin. It works similarly to other Kong logging plugins and provides connection state and request/response count, latency, status, and size metrics available through a `/signalfx` Admin API endpoint.
+  This Kong plugin is intended for SignalFx users to obtain performance metrics from their Kong deployments for aggregation and reporting via the [Smart Agent](https://github.com/signalfx/signalfx-agent){:target="_blank"}{:rel="noopener noreferrer"} or the [collectd-kong](https://github.com/signalfx/collectd-kong){:target="_blank"}{:rel="noopener noreferrer"} collectd plugin. It works similarly to other Kong logging plugins and provides connection state and request/response count, latency, status, and size metrics available through a `/signalfx` Admin API endpoint.
 
 support_url: https://support.signalfx.com/hc/en-us
 
@@ -42,7 +42,7 @@ params:
   service_id: true
   consumer_id: true
   route_id: true
-
+  dbless_compatible: yes
   config:
     - name: aggregate_by_http_method
       required: yes
@@ -67,4 +67,4 @@ params:
 
 ### Installation and configuration
 
-See details on [https://github.com/signalfx/kong-plugin-signalfx](https://github.com/signalfx/kong-plugin-signalfx) and [https://github.com/signalfx/collectd-kong](https://github.com/signalfx/collectd-kong).
+See details on [https://github.com/signalfx/kong-plugin-signalfx](https://github.com/signalfx/kong-plugin-signalfx){:target="_blank"}{:rel="noopener noreferrer"} and [https://github.com/signalfx/collectd-kong](https://github.com/signalfx/collectd-kong){:target="_blank"}{:rel="noopener noreferrer"}.

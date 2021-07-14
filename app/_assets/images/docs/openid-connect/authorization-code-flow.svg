@@ -1,0 +1,304 @@
+<svg width="937.0" height="1754.0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<!-- Generator: Sequence Diagram - v1.8.6-(192) - http://www.macsequencediagram.com -->
+
+<rect x="0.0" y="0.0" width="937.0" height="1754.0" style="fill:#ECECEC;fill-opacity:1.0;"/>
+<g id="Participant" class="ParticipantView">
+	<rect x="61.0" y="60.0" width="133.0" height="61.0" rx="5.0" ry="5.0" style="fill:#D8D8D8;stroke:#979797;stroke-width:1.0;"/>
+	<text x="127.5" y="90.5" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica Neue" font-size="14.0" font-weight="300" style="fill:#000000;fill-opacity:1.0;">User 👴🏻</text>
+</g>
+<g id="Participant" class="ParticipantView">
+	<rect x="214.0" y="60.0" width="155.0" height="61.0" rx="5.0" ry="5.0" style="fill:#D8D8D8;stroke:#979797;stroke-width:1.0;"/>
+	<text x="291.5" y="90.5" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica Neue" font-size="14.0" font-weight="300" style="fill:#000000;fill-opacity:1.0;">Browser 🧭</text>
+</g>
+<g id="Participant" class="ParticipantView">
+	<rect x="389.0" y="60.0" width="138.0" height="61.0" rx="5.0" ry="5.0" style="fill:#D8D8D8;stroke:#979797;stroke-width:1.0;"/>
+	<text x="458.0" y="90.5" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica Neue" font-size="14.0" font-weight="300" style="fill:#000000;fill-opacity:1.0;">Kong 🐵</text>
+</g>
+<g id="Participant" class="ParticipantView">
+	<rect x="550.0" y="60.0" width="160.0" height="61.0" rx="5.0" ry="5.0" style="fill:#D8D8D8;stroke:#979797;stroke-width:1.0;"/>
+	<text x="630.0" y="90.5" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica Neue" font-size="14.0" font-weight="300" style="fill:#000000;fill-opacity:1.0;">Keycloak 🔑</text>
+</g>
+<g id="Participant" class="ParticipantView">
+	<rect x="730.0" y="60.0" width="147.0" height="61.0" rx="5.0" ry="5.0" style="fill:#D8D8D8;stroke:#979797;stroke-width:1.0;"/>
+	<text x="803.5" y="90.5" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica Neue" font-size="14.0" font-weight="300" style="fill:#000000;fill-opacity:1.0;">httpbin 🌐</text>
+</g>
+<g id="Lifeline" class="LifelineView">
+	<line x1="126.0" y1="121.0" x2="128.0" y2="1633.0" style="fill:none;stroke:#636363;stroke-opacity:1.0;stroke-width:1.0;" stroke-dasharray="20.0, 10.0"/>
+</g>
+<g id="Lifeline" class="LifelineView">
+	<line x1="290.0" y1="121.0" x2="292.0" y2="1633.0" style="fill:none;stroke:#636363;stroke-opacity:1.0;stroke-width:1.0;" stroke-dasharray="20.0, 10.0"/>
+</g>
+<g id="Lifeline" class="LifelineView">
+	<line x1="457.0" y1="121.0" x2="459.0" y2="1633.0" style="fill:none;stroke:#636363;stroke-opacity:1.0;stroke-width:1.0;" stroke-dasharray="20.0, 10.0"/>
+</g>
+<g id="Lifeline" class="LifelineView">
+	<line x1="629.0" y1="121.0" x2="631.0" y2="1633.0" style="fill:none;stroke:#636363;stroke-opacity:1.0;stroke-width:1.0;" stroke-dasharray="20.0, 10.0"/>
+</g>
+<g id="Lifeline" class="LifelineView">
+	<line x1="803.0" y1="121.0" x2="805.0" y2="1633.0" style="fill:none;stroke:#636363;stroke-opacity:1.0;stroke-width:1.0;" stroke-dasharray="20.0, 10.0"/>
+</g>
+<g id="Lifeline Activation" class="LifelineActivationBoxView">
+	<rect x="119.0" y="209.0" width="16.0" height="8.0" style="fill:#FFFFFF;fill-opacity:1.0;stroke:#636363;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Lifeline Activation" class="LifelineActivationBoxView">
+	<rect x="283.0" y="209.0" width="16.0" height="194.0" style="fill:#FFFFFF;fill-opacity:1.0;stroke:#636363;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Lifeline Activation" class="LifelineActivationBoxView">
+	<rect x="450.0" y="271.0" width="16.0" height="70.0" style="fill:#FFFFFF;fill-opacity:1.0;stroke:#636363;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Lifeline Activation" class="LifelineActivationBoxView">
+	<rect x="622.0" y="395.0" width="16.0" height="96.0" style="fill:#FFFFFF;fill-opacity:1.0;stroke:#636363;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Lifeline Activation" class="LifelineActivationBoxView">
+	<rect x="283.0" y="483.0" width="16.0" height="177.0" style="fill:#FFFFFF;fill-opacity:1.0;stroke:#636363;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Lifeline Activation" class="LifelineActivationBoxView">
+	<rect x="119.0" y="528.0" width="16.0" height="70.0" style="fill:#FFFFFF;fill-opacity:1.0;stroke:#636363;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Lifeline Activation" class="LifelineActivationBoxView">
+	<rect x="622.0" y="652.0" width="16.0" height="113.0" style="fill:#FFFFFF;fill-opacity:1.0;stroke:#636363;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Lifeline Activation" class="LifelineActivationBoxView">
+	<rect x="283.0" y="757.0" width="16.0" height="70.0" style="fill:#FFFFFF;fill-opacity:1.0;stroke:#636363;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Lifeline Activation" class="LifelineActivationBoxView">
+	<rect x="450.0" y="819.0" width="16.0" height="147.0" style="fill:#FFFFFF;fill-opacity:1.0;stroke:#636363;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Lifeline Activation" class="LifelineActivationBoxView">
+	<rect x="622.0" y="958.0" width="16.0" height="113.0" style="fill:#FFFFFF;fill-opacity:1.0;stroke:#636363;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Lifeline Activation" class="LifelineActivationBoxView">
+	<rect x="450.0" y="1063.0" width="16.0" height="404.0" style="fill:#FFFFFF;fill-opacity:1.0;stroke:#636363;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Lifeline Activation" class="LifelineActivationBoxView">
+	<rect x="283.0" y="1185.0" width="16.0" height="87.0" style="fill:#FFFFFF;fill-opacity:1.0;stroke:#636363;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Lifeline Activation" class="LifelineActivationBoxView">
+	<rect x="796.0" y="1369.0" width="16.0" height="53.0" style="fill:#FFFFFF;fill-opacity:1.0;stroke:#636363;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Lifeline Activation" class="LifelineActivationBoxView">
+	<rect x="283.0" y="1459.0" width="16.0" height="53.0" style="fill:#FFFFFF;fill-opacity:1.0;stroke:#636363;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Lifeline Activation" class="LifelineActivationBoxView">
+	<rect x="119.0" y="1504.0" width="16.0" height="8.0" style="fill:#FFFFFF;fill-opacity:1.0;stroke:#636363;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="213.0" y="180.0" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">service with</text>
+	<text x="213.0" y="196.0" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">query arguments</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="378.5" y="242.0" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">service with</text>
+	<text x="378.5" y="258.0" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">query arguments</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="378.5" y="304.0" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">redirect to keycloak</text>
+	<text x="378.5" y="320.0" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">with client parameters</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="464.5" y="366.0" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">keycloak/auth with</text>
+	<text x="464.5" y="382.0" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">client parameters</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="618.0" y="427.5" text-anchor="end" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">verify client parameters</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="464.5" y="470.5" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">login page</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="213.0" y="515.5" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">login page</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="213.0" y="561.0" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">login with user</text>
+	<text x="213.0" y="577.0" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">credentials</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="464.5" y="623.0" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">keycloak/auth with</text>
+	<text x="464.5" y="639.0" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">user credentials</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="618.0" y="684.5" text-anchor="end" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">verify user credentials</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="464.5" y="728.0" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">redirect to service with</text>
+	<text x="464.5" y="744.0" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">authorization code</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="378.5" y="790.0" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">service with</text>
+	<text x="378.5" y="806.0" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">authorization code</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="446.0" y="852.0" text-anchor="end" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">verify authorization</text>
+	<text x="446.0" y="868.0" text-anchor="end" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">code flow</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="548.0" y="912.5" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">keycloak/token</text>
+	<text x="548.0" y="928.5" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">with client credentials</text>
+	<text x="548.0" y="944.5" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">and authorization code</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="618.0" y="991.0" text-anchor="end" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">authenticate client and</text>
+	<text x="618.0" y="1007.0" text-anchor="end" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">verify authorization code</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="548.0" y="1050.5" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">return tokens</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="446.0" y="1095.5" text-anchor="end" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">verify tokens</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="378.5" y="1139.5" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">redirect to service</text>
+	<text x="378.5" y="1155.5" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">with query arguments</text>
+	<text x="378.5" y="1171.5" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">and session cookie</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="378.5" y="1218.5" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">service with</text>
+	<text x="378.5" y="1234.5" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">query arguments</text>
+	<text x="378.5" y="1250.5" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">and session cookie</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="446.0" y="1296.5" text-anchor="end" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">verify session cookie</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="635.0" y="1340.0" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">request with access token</text>
+	<text x="635.0" y="1356.0" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">and query arguments</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="635.0" y="1401.5" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">response</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="378.5" y="1446.5" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">response</text>
+</g>
+<g id="Signal" class="SignalMessageView">
+	<text x="213.0" y="1491.5" text-anchor="middle" alignment-baseline="middle" font-family="Helvetica" font-size="13.0" font-weight="400" style="fill:#000000;fill-opacity:1.0;">response</text>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 273.0,208.0 L 283.0,213.5 L 273.0,218.0 L 273.0, 208.0" style="fill:#000000;fill-opacity:1.0;"/>
+	
+	<line x1="135.0" y1="213.5" x2="273.0" y2="213.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 440.0,270.0 L 450.0,275.5 L 440.0,280.0 L 440.0, 270.0" style="fill:#000000;fill-opacity:1.0;"/>
+	
+	<line x1="299.0" y1="275.5" x2="440.0" y2="275.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 309.0,332.0 L 299.0,337.5 L 309.0,342.0 L 309.0, 332.0" style="fill:#000000;fill-opacity:1.0;"/>
+	
+	<line x1="309.0" y1="337.5" x2="450.0" y2="337.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 612.0,394.0 L 622.0,399.5 L 612.0,404.0 L 612.0, 394.0" style="fill:#000000;fill-opacity:1.0;"/>
+	
+	<line x1="299.0" y1="399.5" x2="612.0" y2="399.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 648.0,437.0 L 637.5,441.5 L 648.0,447.0 L 648.0,437.0" style="fill:#000000;fill-opacity:1.0;"/>
+	<line x1="638.5" y1="419.5" x2="677.5" y2="419.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+	<line x1="677.5" y1="441.5" x2="648.0" y2="441.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+	<path d="M 677.5,419.5 Q 687.5,419.5 687.5, 429.5 L 687.5 431.5 Q 687.5,441.5 677.5,441.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 309.0,482.0 L 299.0,487.5 L 309.0,492.0 L 309.0, 482.0" style="fill:#000000;fill-opacity:1.0;"/>
+	
+	<line x1="309.0" y1="487.5" x2="622.0" y2="487.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 145.0,527.0 L 135.0,532.5 L 145.0,537.0 L 145.0, 527.0" style="fill:#000000;fill-opacity:1.0;"/>
+	
+	<line x1="145.0" y1="532.5" x2="283.0" y2="532.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 273.0,589.0 L 283.0,594.5 L 273.0,599.0 L 273.0, 589.0" style="fill:#000000;fill-opacity:1.0;"/>
+	
+	<line x1="135.0" y1="594.5" x2="273.0" y2="594.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 612.0,651.0 L 622.0,656.5 L 612.0,661.0 L 612.0, 651.0" style="fill:#000000;fill-opacity:1.0;"/>
+	
+	<line x1="299.0" y1="656.5" x2="612.0" y2="656.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 648.0,694.0 L 637.5,698.5 L 648.0,704.0 L 648.0,694.0" style="fill:#000000;fill-opacity:1.0;"/>
+	<line x1="638.5" y1="676.5" x2="677.5" y2="676.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+	<line x1="677.5" y1="698.5" x2="648.0" y2="698.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+	<path d="M 677.5,676.5 Q 687.5,676.5 687.5, 686.5 L 687.5 688.5 Q 687.5,698.5 677.5,698.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 309.0,756.0 L 299.0,761.5 L 309.0,766.0 L 309.0, 756.0" style="fill:#000000;fill-opacity:1.0;"/>
+	
+	<line x1="309.0" y1="761.5" x2="622.0" y2="761.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 440.0,818.0 L 450.0,823.5 L 440.0,828.0 L 440.0, 818.0" style="fill:#000000;fill-opacity:1.0;"/>
+	
+	<line x1="299.0" y1="823.5" x2="440.0" y2="823.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 476.0,878.0 L 465.5,882.5 L 476.0,888.0 L 476.0,878.0" style="fill:#000000;fill-opacity:1.0;"/>
+	<line x1="466.5" y1="843.5" x2="505.5" y2="843.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+	<line x1="505.5" y1="882.5" x2="476.0" y2="882.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+	<path d="M 505.5,843.5 Q 515.5,843.5 515.5, 853.5 L 515.5 872.5 Q 515.5,882.5 505.5,882.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 612.0,957.0 L 622.0,962.5 L 612.0,967.0 L 612.0, 957.0" style="fill:#000000;fill-opacity:1.0;"/>
+	
+	<line x1="466.0" y1="962.5" x2="612.0" y2="962.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 648.0,1017.0 L 637.5,1021.5 L 648.0,1027.0 L 648.0,1017.0" style="fill:#000000;fill-opacity:1.0;"/>
+	<line x1="638.5" y1="982.5" x2="677.5" y2="982.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+	<line x1="677.5" y1="1021.5" x2="648.0" y2="1021.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+	<path d="M 677.5,982.5 Q 687.5,982.5 687.5, 992.5 L 687.5 1011.5 Q 687.5,1021.5 677.5,1021.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 476.0,1062.0 L 466.0,1067.5 L 476.0,1072.0 L 476.0, 1062.0" style="fill:#000000;fill-opacity:1.0;"/>
+	
+	<line x1="476.0" y1="1067.5" x2="622.0" y2="1067.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 476.0,1105.0 L 465.5,1109.5 L 476.0,1115.0 L 476.0,1105.0" style="fill:#000000;fill-opacity:1.0;"/>
+	<line x1="466.5" y1="1087.5" x2="505.5" y2="1087.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+	<line x1="505.5" y1="1109.5" x2="476.0" y2="1109.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+	<path d="M 505.5,1087.5 Q 515.5,1087.5 515.5, 1097.5 L 515.5 1099.5 Q 515.5,1109.5 505.5,1109.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 309.0,1184.0 L 299.0,1189.5 L 309.0,1194.0 L 309.0, 1184.0" style="fill:#000000;fill-opacity:1.0;"/>
+	
+	<line x1="309.0" y1="1189.5" x2="450.0" y2="1189.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 440.0,1263.0 L 450.0,1268.5 L 440.0,1273.0 L 440.0, 1263.0" style="fill:#000000;fill-opacity:1.0;"/>
+	
+	<line x1="299.0" y1="1268.5" x2="440.0" y2="1268.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 476.0,1306.0 L 465.5,1310.5 L 476.0,1316.0 L 476.0,1306.0" style="fill:#000000;fill-opacity:1.0;"/>
+	<line x1="466.5" y1="1288.5" x2="505.5" y2="1288.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+	<line x1="505.5" y1="1310.5" x2="476.0" y2="1310.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+	<path d="M 505.5,1288.5 Q 515.5,1288.5 515.5, 1298.5 L 515.5 1300.5 Q 515.5,1310.5 505.5,1310.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 786.0,1368.0 L 796.0,1373.5 L 786.0,1378.0 L 786.0, 1368.0" style="fill:#000000;fill-opacity:1.0;"/>
+	
+	<line x1="466.0" y1="1373.5" x2="786.0" y2="1373.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 476.0,1413.0 L 466.0,1418.5 L 476.0,1423.0 L 476.0, 1413.0" style="fill:#000000;fill-opacity:1.0;"/>
+	
+	<line x1="476.0" y1="1418.5" x2="796.0" y2="1418.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 309.0,1458.0 L 299.0,1463.5 L 309.0,1468.0 L 309.0, 1458.0" style="fill:#000000;fill-opacity:1.0;"/>
+	
+	<line x1="309.0" y1="1463.5" x2="450.0" y2="1463.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+<g id="Signal line" class="SignalLineView">
+	<path d="M 145.0,1503.0 L 135.0,1508.5 L 145.0,1513.0 L 145.0, 1503.0" style="fill:#000000;fill-opacity:1.0;"/>
+	
+	<line x1="145.0" y1="1508.5" x2="283.0" y2="1508.5" style="fill:none;stroke:#979797;stroke-opacity:1.0;stroke-width:1.0;"/>
+</g>
+
+<!-- Generator: Sequence Diagram - v1.8.6-(192) - http://www.macsequencediagram.com -->
+
+</svg>

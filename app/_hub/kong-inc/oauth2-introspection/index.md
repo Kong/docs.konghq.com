@@ -20,6 +20,7 @@ description: |
   [oidcplugin]: /hub/kong-inc/openid-connect/
 
 enterprise: true
+plus: true
 type: plugin
 categories:
   - authentication
@@ -43,6 +44,7 @@ params:
   service_id: true
   route_id: true
   konnect_examples: false
+  dbless_compatible: yes
   config:
     - name: introspection_url
       required: true

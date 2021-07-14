@@ -10,6 +10,7 @@ description: |
   schema validator (body only) or a JSON Schema Draft 4-compliant validator.
 
 enterprise: true
+plus: true
 type: plugin
 categories:
   - traffic-control
@@ -30,6 +31,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
+  dbless_compatible: yes
   config:
     - name: body_schema
       required: semi
@@ -41,7 +43,7 @@ params:
 
     - name: allowed_content_types
       required: true
-      default: "application/json"
+      default: ["application/json"]
       value_in_examples:
       datatype: Set of string elements
       description: |

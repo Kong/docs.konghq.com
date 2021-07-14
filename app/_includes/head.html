@@ -1,10 +1,17 @@
 {% unless page.name and page.path contains '_hub' %} {% capture page_title %}{{
-page.title | escape }}{% if page.kong_version %} - v{{ page.kong_version |
-escape }}{% endif %}{% if page.title %} | {% endif %}{{ site.name }} - {{
+page.title | escape }}{% if page.kong_version and page.no_version != true %} -
+v{{ page.kong_version | escape }}{% endif %}{% if page.title %} | {% endif %}{{ site.name }} - {{
 site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ page.name }}
 {{ page.type }} | Kong{% endcapture %} {% endunless %}
 
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NL48VKT');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -90,66 +97,8 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ page.name }}
     href="/assets/styles.css?v={{ site.time | date: '%s' }}"
   />
 
-  <script>
-    !(function(w) {
-      var clearbit = (w.clearbit = w.clearbit || []);
-      if (!clearbit.initialize)
-        if (clearbit.invoked)
-          w.console &&
-            console.error &&
-            console.error("Clearbit snippet included twice.");
-        else {
-          clearbit.invoked = !0;
-          clearbit.methods = [
-            "trackSubmit",
-            "trackClick",
-            "trackLink",
-            "trackForm",
-            "pageview",
-            "identify",
-            "reset",
-            "group",
-            "track",
-            "ready",
-            "alias",
-            "page",
-            "once",
-            "off",
-            "on"
-          ];
-          clearbit.factory = function(t) {
-            return function() {
-              var e = Array.prototype.slice.call(arguments);
-              e.unshift(t);
-              clearbit.push(e);
-              return clearbit;
-            };
-          };
-          for (var t = 0; t < clearbit.methods.length; t++) {
-            var e = clearbit.methods[t];
-            clearbit[e] = clearbit.factory(e);
-          }
-          clearbit.load = function(t) {
-            var e = document.createElement("script");
-            e.async = !0;
-            e.src =
-              ("https:" === document.location.protocol
-                ? "https://"
-                : "http://") +
-              "x.clearbitjs.com/v1/" +
-              t +
-              "/clearbit.js";
-            var n = document.getElementsByTagName("script")[0];
-            n.parentNode.insertBefore(e, n);
-          };
-          clearbit.SNIPPET_VERSION = "3.1.0";
-          clearbit.load("pk_1bdbdbad26342e32516473510e95c3ff");
-          clearbit.page();
-        }
-    })(window);
-  </script>
 
-  {% if page.path == "_hub/index.html" %}
+  {% if include.is_plugin_hub %}
   <link
     rel="stylesheet"
     href="/assets/hub.css?v={{ site.time | date: '%s' }}"

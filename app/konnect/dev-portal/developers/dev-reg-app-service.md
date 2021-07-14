@@ -20,9 +20,8 @@ This procedure assumes that there are no
 existing Services configured for an application yet. You can register an application with multiple
 applicable Services.
 
-1. Log in to the {{site.konnect_short_name}} Dev Portal.
-
-   The Service Catalog is displayed.
+1. Log in to the {{site.konnect_short_name}} Dev Portal to access the Service
+Catalog.
 
 2. Click on a Service tile.
 
@@ -30,8 +29,6 @@ applicable Services.
    if you need it enabled on a Service.
 
 3. Click **Register**.
-
-   The Register for Service dialog is displayed.
 
    ![Konnect Register App with Service](/assets/images/docs/konnect/konnect-register-app-service-request.png)
 
@@ -60,11 +57,7 @@ the **Services** pane.
 
 1. Click **Dashboard**.
 
-   The My Apps dashboard page is displayed.
-
 2. Click the application you want to unregister.
-
-   The application details page is displayed.
 
    ![Konnect Unregister App from Service](/assets/images/docs/konnect/konnect-unregister-app-service.png)
 

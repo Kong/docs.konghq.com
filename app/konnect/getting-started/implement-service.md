@@ -82,8 +82,8 @@ request is sent to `http://mockbin.org`.
 front end, which you can now give to clients to make requests.
 
 For next steps, check out some of the other things you can do in
-{{site.konnect_short_name}} SaaS:
-* Enable plugins on a [Service](/konnect/servicehub/plugins/enable-service-plugin) or a
-[Route](/konnect/servicehub/plugins/enable-route-plugin)
+{{site.konnect_saas}}:
+* Enable plugins on a [Service](/konnect/manage-plugins/enable-service-plugin/) or a
+[Route](/konnect/manage-plugins/enable-route-plugin/)
 * [Set up the Dev Portal](/konnect/servicehub/dev-portal/service-documentation)
 * [Manage your teams and users with RBAC](/konnect/reference/org-management)

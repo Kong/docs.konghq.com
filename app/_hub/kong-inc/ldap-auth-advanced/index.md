@@ -11,18 +11,16 @@ description: |
   checks for valid credentials in the `Proxy-Authorization` and `Authorization` headers
   (in that order).
 
-  <div class="alert alert-ee blue"><strong>Tip:</strong> The LDAP Authentication Advanced plugin
-  provides additional features not available in the open source <a href="/hub/kong-inc/ldap-auth">LDAP Authentication plugin</a>,
+  {:.tip}
+  > **Tip:** The LDAP Authentication Advanced plugin
+  provides additional features not available in the open source [LDAP Authentication plugin](/hub/kong-inc/ldap-auth/),
   such as LDAP searches for group and consumer mapping:
-
-  <ul>
-  <li>Ability to authenticate based on username or custom ID.</li>
-  <li>The ability to bind to an enterprise LDAP directory with a password.</li>
-  <li>The ability to obtain LDAP groups and set them in a header to the request before proxying to the upstream. This is useful for Kong Manager role mapping.</li>
-  </ul>
-  </div>
+  * Ability to authenticate based on username or custom ID.
+  * The ability to bind to an enterprise LDAP directory with a password.
+  * The ability to obtain LDAP groups and set them in a header to the request before proxying to the upstream. This is useful for Kong Manager role mapping.
 
 enterprise: true
+plus: true
 type: plugin
 categories:
   - authentication

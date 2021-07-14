@@ -23,30 +23,14 @@ If you want to run {{site.ee_product_name}} in Hybrid mode, the instructions in 
 
 To complete this installation you will need:
 
-{% include /md/{{page.kong_version}}/bintray-and-license.md %}
+{% include /md/enterprise/license.md license='prereq' %}
 * A supported RHEL system with root-equivalent access.
 
 ## Step 1. Prepare to install Kong Gateway and download license file
 
-There are two options to install {{site.ee_product_name}} on RHEL. Both require a login to Bintray.
+{% include /md/enterprise/download/rhel.md version='2.x' %}
 
-{% navtabs %}
-{% navtab Download RPM file %}
-
-1. Log in to [Bintray](http://bintray.com) using your Kong credentials. See [prerequisites](#prerequisites)
-for information on how to get access.
-2. Go to: [https://bintray.com/kong/kong-enterprise-edition-rpm/rhel](https://bintray.com/kong/kong-enterprise-edition-rpm/rhel).
-3. Select the latest Kong version from the list.
-4. From the Kong version detail page, select the **Files** tab.
-5. Select the RHEL version appropriate for your environment, such as `RHEL` -> `8`.
-6. Save the available RPM file. For example: `kong-enterprise-edition-{{page.kong_versions[9].version}}.rhel8.noarch.rpm`
-7. Copy the RPM file to your home directory on the RHEL system. For example:
-
-    ```bash
-    $ scp kong-enterprise-edition-{{page.kong_versions[9].version}}.rhel8.noarch.rpm <rhel user>@<server>:~
-    ```
-
-### (Optional) Verify the package integrity
+<!-- ### (Optional) Verify the package integrity
 
 1. Kong's official Key ID is `2cac36c51d5f3726`. Verify it by querying the RPM package and comparing it to the Key ID:
 
@@ -57,7 +41,7 @@ for information on how to get access.
 2. Download Kong's official public key to ensure the integrity of the RPM package:
 
     ```bash
-    $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
+    $ curl -o kong.key {{ site.links.download }}/user/downloadSubjectPublicKey?username=kong
     $ rpm --import kong.key
     $ rpm -K kong-enterprise-edition-{{page.kong_versions[9].version}}.rhel8.noarch.rpm
     ```
@@ -66,87 +50,19 @@ for information on how to get access.
 
     ```
     kong-enterprise-edition-{{page.kong_versions[9].version}}.rhel8.noarch.rpm: digests signatures OK
-    ```
+    ``` -->
 
-{% endnavtab %}
-{% navtab Download Kong repo file and add to Yum repo %}
+### Prepare your license
 
-1. Log in to [Bintray](http://bintray.com) using your Kong credentials. See [prerequisites](#prerequisites)
-for information on how to get access.
+Securely copy the license file to your home directory on the RHEL system:
 
-2. Download the {{site.ee_product_name}} RPM repo file from:
-
-    [https://bintray.com/kong/kong-enterprise-edition-rpm/rpm](https://bintray.com/kong/kong-enterprise-edition-rpm/rpm).
-
-3. Edit the repo file using your preferred editor and alter the `baseurl` line with your information as follows:
-
-    ```
-    baseurl=https://USERNAME:API_KEY@kong.bintray.com/kong-enterprise-edition-rpm/rhel/RELEASEVER
-    ```
-
-    * Replace `USERNAME` with your Bintray account username.
-    * Replace `API_KEY` with your Bintray API key. To find the key, go to [https://bintray.com/profile/edit](https://bintray.com/profile/edit) and select **API Key**.
-    * Replace `RELEASEVER` with the major RHEL version number on your target system. For example, for version 7.7.1908, the appropriate `RELEASEVER` replacement is 7.
-
-    The result should look something like this:
-    ```
-    baseurl=https://john-company:12234e314356291a2b11058591bba195830@kong.bintray.com/kong-enterprise-edition-rpm/rhel/8
-    ```
-
-4. Securely copy the changed repo file to your home directory on the RHEL system:
-
-    ```bash
-    $ scp bintray--kong-kong-enterprise-edition-rpm.repo <rhel user>@<server>:~
-    ```
-
-{% endnavtab %}
-{% endnavtabs %}
-
-### Download your enterprise license
-
-1. Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
-
-2. Securely copy the license file to your home directory on the RHEL system:
-
-    ```
-    $ scp license.json <rhel username>@<server>:~
-    ```
-
-### Result
-
-You should now have two files in your home directory on the target RHEL system:
-- Either the Kong RPM or Kong Yum repo file.
-- The license file `license.json`
+```
+$ scp license.json <rhel username>@<server>:~
+```
 
 ## Step 2. Install Kong Gateway
 
-{% navtabs %}
-{% navtab Using downloaded RPM package %}
-
-1. Execute a command similar to the following, using the appropriate RPM file name you downloaded:
-
-    ```bash
-    $ sudo yum install /path/to/package.rpm --nogpgcheck
-    ```
-
-{% endnavtab %}
-{% navtab Using Yum repo %}
-
-2. Move the repo file in your home directory to the /etc/yum.repos.d/ directory:
-
-    ```bash
-    $ sudo mv bintray--kong-kong-enterprise-edition-rpm.repo /etc/yum.repos.d/
-    ```
-
-3. Begin the installation using the Yum repository:
-
-    ```bash
-    $ sudo yum update -y
-    $ sudo yum install kong-enterprise-edition -y
-    ```
-{% endnavtab %}
-{% endnavtabs %}
-
+{% include /md/enterprise/install-2.x.md %}
 
 ### Copy the license file
 

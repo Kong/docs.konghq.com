@@ -25,10 +25,11 @@ var sources = {
   content: 'app/**/*.{markdown,md,html,txt,yml,yaml}',
   styles: paths.assets + 'stylesheets/**/*',
   js: [
-    paths.assets + 'javascripts/jquery.2.1.3.min.js',
+    paths.assets + 'javascripts/jquery-3.6.0.min.js',
     paths.assets + 'javascripts/app.js',
-    paths.modules + 'bootstrap/js/dropdown.js',
-    paths.modules + 'bootstrap/js/affix.js'
+    paths.assets + 'javascripts/subscribe.js',
+    paths.assets + 'javascripts/editable-code-snippet.js',
+    paths.assets + 'javascripts/navbar.js'
   ],
   images: paths.assets + 'images/**/*',
   fonts: [

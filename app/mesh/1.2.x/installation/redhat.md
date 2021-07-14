@@ -2,16 +2,16 @@
 title: Kong Mesh with RedHat
 ---
 
-To install and run {{site.mesh_product_name}} on RedHat (**x86_64**), execute
-the following steps:
+To install and run {{site.mesh_product_name}} on RedHat (**x86_64**):
 
-* [1. Download {{site.mesh_product_name}}](#1-download-kong-mesh)
-* [2. Run {{site.mesh_product_name}}](#2-run-kong-mesh)
-* [3. Verify the Installation](#3-verify-the-installation)
+1. [Download {{site.mesh_product_name}}](#1-download-kong-mesh)
+1. [Run {{site.mesh_product_name}}](#2-run-kong-mesh)
+1. [Verify the Installation](#3-verify-the-installation)
 
 Finally, you can follow the [Quickstart](#4-quickstart) to take it from here and continue your {{site.mesh_product_name}} journey.
 
 ## Prerequisites
+
 You have a license for {{site.mesh_product_name}}.
 
 ## 1. Download {{site.mesh_product_name}}
@@ -27,7 +27,7 @@ $ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
 ```
 {% endnavtab %}
 {% navtab Manually %}
-You can also [download](https://kong.bintray.com/kong-mesh/kong-mesh-{{page.kong_latest.version}}-rhel-amd64.tar.gz) the distribution manually.
+You can also [download]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-rhel-amd64.tar.gz) the distribution manually.
 
 Then, extract the archive with:
 

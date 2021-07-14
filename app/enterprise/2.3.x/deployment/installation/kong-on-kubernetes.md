@@ -37,8 +37,7 @@ Before starting installation, be sure you have the following:
 
 ## Step 1. Provision a namespace
 
-To create the secrets for license and Docker registry access,
-first provision the `kong` namespace:
+To create the license secret, first provision the `kong` namespace:
 
 <!--codeblock navtabs-->
 {% navtabs codeblock %}
@@ -257,7 +256,7 @@ In the following steps, replace `<your-password>` with a secure password.
     |`env.pg_database` | (If using Postgres) Set to the Postgres database name (default `kong`). When `postgresql.enabled` is `true`, this has to match `postgresql.postgresqlDatabase`. |
     |`env.password.valueFrom.secretKeyRef.name` | Name of secret that holds the super admin password. In the example above, this is set to `kong-enterprise-superuser-password`. |
     |`env.password.valueFrom.secretKeyRef.key` | The type of secret key used for authentication. If you followed the default settings in the example above, this is `password`. |
-    |`image.repository` | The Docker repository. In this case, `kong-docker-kong-gateway-docker.bintray.io/kong-enterprise-edition`. |
+    |`image.repository` | The Docker repository. In this case, `kong/kong-gateway`. |
     |`image.tag` | The Docker image tag you want to pull down, e.g. `"{{page.kong_versions[10].version}}-alpine"`. |
     |`admin.enabled` | Set to `true` to enable the Admin API, which is required for the Kong Manager. |
     |`ingressController.enabled` | Set to `true` if you want to use the Kong Ingress Controller, or `false` if you don't want to install it. |
@@ -308,7 +307,7 @@ The steps in this section show you how to install {{site.ee_product_name}} on Ku
     This may take some time.
 
     <div class="alert alert-warning">
-    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+   
     <strong>Important:</strong>
       <ul>
         <li>If you have already installed the CRDs, run the command above with
@@ -335,7 +334,7 @@ The steps in this section show you how to install {{site.ee_product_name}} on Ku
     This may take some time.
 
     <div class="alert alert-warning">
-    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+   
     <strong>Important:</strong>
       <ul>
         <li>If you have already installed the CRDs, run the command above with
@@ -367,7 +366,7 @@ After migrations are complete and the `my-kong-kong-<ID>` pod is running, contin
       --output=jsonpath='{.status.loadBalancer.ingress[0].ip}'
     ```
     <div class="alert alert-warning">
-    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+   
     <strong>Important:</strong> The command above requires the Kong Admin API. If you
     have not set <code>admin.enabled</code> to <code>true</code> in your
     <code>values.yaml</code>, then this command will not work.
@@ -415,7 +414,7 @@ After migrations are complete and the `my-kong-kong-<ID>` pod is running, contin
     ```
 
     <div class="alert alert-warning">
-    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+   
     <strong>Important:</strong> The command above requires the Kong Admin API. If you
     have not set <code>admin.enabled</code> to <code>true</code> in your
     <code>values.yaml</code>, then this command will not work.

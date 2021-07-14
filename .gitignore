@@ -16,6 +16,7 @@ yarn.lock
 # jekyll
 dist
 .jekyll-metadata
+.jekyll-cache
 
 # deploy
 .gh-pages
@@ -23,3 +24,6 @@ dist
 # package managers
 node_modules
 vendor
+
+# pdf generation
+pdf-generation/pdfs/*.pdf

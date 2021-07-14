@@ -12,6 +12,7 @@ description: |
 
 type: plugin
 enterprise: true
+plus: true
 categories:
   - transformations
 
@@ -34,6 +35,7 @@ params:
   k8s_examples: false
   konnect_examples: false
   protocols: ["http", "https"]
+  dbless_compatible: yes
   config:
     - name: functions
       required: true

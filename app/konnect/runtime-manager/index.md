@@ -3,7 +3,7 @@ title: Runtime Manager Overview
 no_version: true
 ---
 
-The Runtime Manager is a {{site.konnect_short_name}} SaaS functionality module
+The Runtime Manager is a {{site.konnect_saas}} functionality module
 that lets you catalogue, connect to, and monitor the status of all runtimes in
 one place.
 
@@ -12,7 +12,7 @@ doesn't need a database to store configuration data. Instead, configuration
 is stored in-memory on each node, and you can easily update multiple runtimes
 from one {{site.konnect_short_name}} account with a few clicks.
 
-The Runtime Manager, and the {{site.konnect_product_name}} SaaS application as
+The Runtime Manager, and the {{site.konnect_saas}} application as
 a whole, does not have access or visibility into the data flowing through your
 runtimes, and it does not store any data except the state and connection details
 for each runtime.
@@ -35,7 +35,7 @@ serving traffic for the proxy. Data plane nodes are not directly connected
 to a database.
 
 Currently, the only supported runtime type in the
-{{site.konnect_product_name}} SaaS application is a [{{site.ee_gateway_name}}](/enterprise/)
+{{site.konnect_saas}} application is a [{{site.ee_gateway_name}}](/enterprise/)
 data plane.
 
 Choose an installation type below:

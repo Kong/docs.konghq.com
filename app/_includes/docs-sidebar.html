@@ -9,19 +9,24 @@
         <span>
           {% if page.edition == 'enterprise' %}{{site.ee_product_name}}
           {% elsif page.edition == 'konnect' %}{{site.konnect_saas}}
+          {% elsif page.edition == 'konnect-platform' %}{{site.konnect_product_name}} Platform
           {% elsif page.edition == 'mesh' %}{{site.mesh_product_name}}
           {% elsif page.edition == 'deck' %}decK
           {% elsif page.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
           {% elsif page.edition == 'gateway-oss' %}{{site.ce_product_name}}
           {% elsif page.edition == 'getting-started-guide' %}Get Started with Kong Gateway
+          {% elsif page.edition == 'contributing' %}Contribution guidelines
           {% endif %}
         </span>
         <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="module-dropdown">
-        <div class="dropdown-submenu-title">Kong Konnect</div>
+      <ul class="dropdown-menu dropdown-menu-right" id="module-list" role="menu" aria-labelledby="module-dropdown">
+        <div class="dropdown-submenu-title">Kong Konnect Platform</div>
+        <li {% if page.edition == 'konnect_platform' %} class="active" {% endif %}>
+          <a href="/konnect-platform/" class="{% if page.edition == 'konnect_platform' %}active{% endif %}">{{site.konnect_product_name}} Platform</a>
+        </li>
         <li {% if page.edition == 'konnect' %} class="active" {% endif %}>
-          <a href="/konnect/" class="{% if page.edition == 'konnect' %}active{% endif %}">Konnect SaaS</a>
+          <a href="/konnect/" class="{% if page.edition == 'konnect' %}active{% endif %}">Konnect Cloud</a>
         </li>
         <li {% if page.edition == 'enterprise' %} class="active" {% endif %}>
           <a href="/enterprise/" class="{% if page.edition == 'enterprise' %}active{% endif %}">Kong Gateway (Enterprise)</a>
@@ -48,6 +53,10 @@
         <li>
           <a href="https://kuma.io/docs/" target="_blank">Kuma</a>
         </li>
+        <div class="dropdown-submenu-title">Contribute to the docs</div>
+        <li {% if page.edition == 'contributing' %} class="active" {% endif %}>
+          <a href="/contributing/" class="{% if page.edition == 'contributing' %}active{% endif %}">Contribution guidelines</a>
+        </li>
       </ul>
     </div>
 
@@ -62,12 +71,12 @@
         </span>
         <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+      <ul class="dropdown-menu dropdown-menu-right" id="version-list" role="menu" aria-labelledby="version-dropdown">
           {% for ver in page.kong_versions reversed %}
           {% assign version_page_url = page.url | replace: page.kong_version, ver.release %}
           {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}
         <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
-          <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if page.edition == 'gateway-oss' %}gateway-oss/{% endif %}{% if page.edition == 'enterprise' %}enterprise/{% endif %}{% if page.edition == 'mesh' %}mesh/{% endif %}{% if page.edition == 'kubernetes-ingress-controller' %}kubernetes-ingress-controller/{% endif %}{{ver.release}}{% endif %}"
+          <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if page.edition == 'gateway-oss' %}gateway-oss/{% endif %}{% if page.edition == 'enterprise' %}enterprise/{% endif %}{% if page.edition == 'mesh' %}mesh/{% endif %}{% if page.edition == 'kubernetes-ingress-controller' %}kubernetes-ingress-controller/{% endif %}{% if page.edition == 'contributing' %}contributing/{% endif %}{% if page.edition == 'deck' %}deck/{% endif %}{{ver.release}}{% endif %}"
             {% if ver.release==page.kong_version %} class="active" {% endif %}
             data-version-id="{{ver.release}}"
           >
@@ -94,9 +103,11 @@
   {% elsif page.edition == 'kubernetes-ingress-controller' %}
   {% assign docs_url = '/kubernetes-ingress-controller/' | append: page.kong_version %}
   {% elsif page.edition == 'deck' %}
-  {% assign docs_url = '/deck' %}
+  {% assign docs_url = '/deck/' | append: page.kong_version %}
   {% elsif page.edition == 'gateway-oss' %}
   {% assign docs_url = '/gateway-oss/' | append: page.kong_version %}
+  {% elsif page.edition == 'contributing' %}
+  {% assign docs_url = '/contributing' %}
   {% endif %}
 
   <ul class="accordion-container">

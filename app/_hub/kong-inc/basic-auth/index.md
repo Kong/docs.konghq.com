@@ -93,14 +93,15 @@ In order to use the plugin, you first need to create a Consumer to associate one
 You need to associate a credential to an existing [Consumer][consumer-object] object.
 A Consumer can have many credentials.
 
-{% tabs %}
-{% tab With a Database %}
+{% navtabs %}
+{% navtab With a Database %}
 To create a Consumer, you can execute the following request:
 
 ```bash
 curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
 ```
-{% tab Without a Database %}
+{% endnavtab %}
+{% navtab Without a Database %}
 Your declarative configuration file will need to have one or more Consumers. You can create them
 on the `consumers:` yaml section:
 
@@ -109,7 +110,8 @@ consumers:
 - username: user123
   custom_id: SOME_CUSTOM_ID
 ```
-{% endtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
 In both cases, the parameters are as described below:
 
@@ -124,8 +126,8 @@ service, you must add the new consumer to the allowed group. See
 
 ### Create a Credential
 
-{% tabs %}
-{% tab With a Database %}
+{% navtabs %}
+{% navtab With a Database %}
 You can provision new username/password credentials by making the following HTTP request:
 
 ```bash
@@ -134,7 +136,8 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/basic-auth \
     --data "password=OpenSesame"
 ```
 
-{% tab Without a Database %}
+{% endnavtab %}
+{% navtab Without a Database %}
 
 You can add credentials on your declarative config file on the `basicauth_credentials` yaml entry:
 
@@ -144,8 +147,8 @@ basicauth_credentials:
   username: Aladdin
   password: OpenSesame
 ```
-
-{% endtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
 In both cases, the fields / parameters work as described below:
 

@@ -7,7 +7,7 @@ through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
 configure your {{site.base_gateway}} instance to accept configuration from
 {{site.konnect_short_name}}. The Runtime Manager keeps track of all runtimes
-associated with the {{site.konnect_short_name}} SaaS account.
+associated with the {{site.konnect_saas}} account.
 
 <div class="alert alert-ee blue">
 <b>Note:</b> Kong does not host runtimes. You must install and host your own
@@ -16,8 +16,7 @@ runtime instances.
 
 ## Prerequisites
 
-* You have a {{site.konnect_product_name}} account. Contact your sales
-representative for access.
+* You have **Runtime Admin** or **Organization Admin** permissions in {{site.konnect_saas}}.
 * **Kubernetes cluster with load balancer:** {{site.konnect_short_name}} is
 compatible with all distributions of Kubernetes. You can use a Minikube, GKE,
 or OpenShift TLS.
@@ -79,12 +78,19 @@ you saved earlier:
 
 1. Create a `values.yaml` file.
 
-2. Copy the template below into your `values.yaml` file.
+
+2. Return to {{site.konnect_short_name}} and copy the
+codeblock in the **Step 2. Configuration Parameters** section.
+
+    ![Konnect Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
+
+3. Paste the codeblock into your `values.yaml` file. It should look something
+like this:
 
     ```yaml
     image:
-      repository: kong-docker-kong-gateway-docker.bintray.io/kong-enterprise-edition
-      tag: "2.3.2.0-alpine"
+      repository: kong/kong-gateway
+      tag: "2.4.1.1-alpine"
 
     secretVolumes:
     - kong-cluster-cert
@@ -113,16 +119,10 @@ you saved earlier:
       installCRDs: false
     ```
 
-3. Return to {{site.konnect_short_name}} and refer to the
-codeblock in the **Step 2. Configuration Parameters** section.
-
-    ![Konnect Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
-
 4. Replace any placeholder values in the `env` section of the `values.yaml`
-with your specific values from {{site.konnect_short_name}}. The `KONG_` prefix
-is not needed for Helm.
+with your specific values from {{site.konnect_short_name}}.
 
-    If your cluster cert locations differ from the paths in the template, also update
+    If your cluster cert locations differ from the paths in the template, update
     the values in `cluster_cert`, `cluster_cert_key`, `cluster_ca_cert`, and
     `lua_ssl_trusted_certificate` with references to the secrets you created earlier.
 
@@ -140,11 +140,6 @@ is not needed for Helm.
 Manager overview.
 
     The Runtime Manager will include a new entry for your instance.
-
-<div class="alert alert-ee warning">
-<b>Important:</b> Certificates expire after 30 days and must be renewed. See
-<a href="/konnect/runtime-manager/renew-certificates">Renew Certificates</a>.
-</div>
 
 ### Troubleshooting
 

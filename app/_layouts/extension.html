@@ -6,13 +6,17 @@ breadcrumbs:
   Hub: '/hub'
 
 ---
+
 {% unless page.type == "concept" %}
 {% if page.type == "plugin" %}
 
 {% capture params_table %}
 <table>
   <thead>
-    <tr><th>Form Parameter</th><th>Description</th></tr>
+    <tr>
+      <th style="width: 25%;">Form Parameter</th>
+      <th style="width: 75%;">Description </th>
+    </tr>
   </thead>
   <tbody>
     <tr>
@@ -57,17 +61,22 @@ breadcrumbs:
       </tr>
     {% endif %}
     {% for field in page.params.config %}
+      {% if field.group %}
+    <tr><td colspan="2"><strong><br><br>{{ field.group | markdownify | strip_html }} {% if field.description %}<br><small>{{ field.description | markdownify | strip_html }}</small>{% endif %}</strong></td></tr>
+      <tr><th>Form Parameter</th><th>Description</th></tr>
+      {% else %}
       <tr>
         <td><code>config.{{ field.name }}</code>
           {% if field.required == true %}<br><em>required</em>{% endif %}
           {% if field.required == false %}<br><em>optional</em>{% endif %}
           {% if field.required == "semi" %}<br><em>semi-optional</em>{% endif %}
           {% if field.datatype != nil %}<br><br><strong>Type: </strong>{{ field.datatype | markdownify | strip_html }}{% endif %}
-          {% if field.default != nil %}<br><br><strong>Default value: </strong>{{ field.default | markdownify | strip_html }}{% endif %}
+          {% if field.default != nil %}<br><br><strong>Default value: </strong><code>{{ field.default | markdownify | strip_html }}</code>{% endif %}
         </td>
         <td>
           <br>{{ field.description | markdownify }}</td>
       </tr>
+      {% endif %}
     {% endfor %}
   </tbody>
 </table>
@@ -110,6 +119,7 @@ breadcrumbs:
 {% endunless %}
 
 <!-- BEGIN PAGE OUTPUT -->
+<div class="search-selector">Plugin Hub</div>
 
 <div class="page page-extension-profile">
   {% if page.header_icon or page.header_title %}
@@ -130,7 +140,7 @@ breadcrumbs:
           {% if extn_release == extn_latest %}<em>(latest)</em>{% endif %}
           <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+        <ul class="dropdown-menu dropdown-menu-right" id="version-list" role="menu" aria-labelledby="version-dropdown">
           {% for ver in extn_versions %}
             {% if ver.release == extn_latest %}
               {% assign ver_path = "" %}
@@ -208,8 +218,14 @@ breadcrumbs:
           <p>This plugin is <strong>not compatible</strong> with DB-less mode.</p>
         {% endif %}
         {% if page.params.dbless_compatible == "partially" or page.params.dbless_compatible == true %}
-          <p>In DB-less mode, {{site.base_gateway}} does not have an Admin API. If using this
-            mode, configure the plugin using declarative configuration.<p>
+          <p>In DB-less mode, you configure {{site.base_gateway}} declaratively.
+            Therefore, the Admin API is mostly read-only. The only tasks it can perform are all
+            related to handling the declarative config, including: </p>
+            <ul>
+              <li>setting a target's health status in the load balancer</li>
+              <li>validating configurations against schemas</li>
+              <li>uploading the declarative configuration using the <code>/config</code> endpoint</li>
+            </ul>
         {% endif %}
 
         {% if page.params.dbless_explanation %}
@@ -217,7 +233,7 @@ breadcrumbs:
         {% endif %}
 
         {% if page.params.examples != false %}
-          {% include hub-examples.html %}
+          {% include_cached hub-examples.html params=page.params %}
         {% endif %}
 
         <h3 id="parameters">Parameters</h3>
@@ -243,7 +259,7 @@ breadcrumbs:
       {% endif %}
     {% endcapture %}
 
-    <aside class="page-navigation">
+    <aside class="page-navigation{% if extn_versions %} with-dropdown{% endif %}">
       <div class="github-links">
         <ul>
           <li>
@@ -262,7 +278,7 @@ breadcrumbs:
       </div>
       {% unless page.toc == false %}
         <nav>
-          {% include toc.html html=full_content h_min=2 h_max=3 sanitize=true %}
+          {% include_cached toc.html html=full_content h_min=2 h_max=3 sanitize=true %}
         </nav>
       {% endunless %}
 
@@ -296,13 +312,30 @@ breadcrumbs:
         <tr>
           <td>DB-less compatible?</td>
           <td>
-            <a href="/hub/plugins/compatibility">{% if page.params.dbless_compatible == "yes" or page.params.dbless_compatible == true %}Yes{% endif %}{%
+            <a href="/konnect-platform/compatibility/plugins">{% if page.params.dbless_compatible == "yes" or page.params.dbless_compatible == true %}Yes{% endif %}{%
               if page.params.dbless_compatible == "no" or page.params.dbless_compatible == false %}No{% endif %}{%
-              if page.params.dbless_compatible == "partially" %}Partially{% endif %}
-              {% if page.params.dbless_compatible == "yes" or page.params.dbless_compatible == true or page.params.dbless_compatible == "partially" %}({{site.ce_product_name}} only){% endif %}</a>
+              if page.params.dbless_compatible == "partially" %}Partially{% endif %}</a>
           </td>
         </tr>
         {% endunless %}
+        {% if extn_publisher == "kong-inc" %}
+        <tr>
+          <td>Konnect tier</td>
+          <td>
+            {% if page.plus %}<span class="badge plus"></span>{%
+            elsif page.enterprise %}<span class="badge enterprise"></span>{%
+            else %}<span class="badge free"></span>{% endif %}
+          </td>
+        </tr>
+        <tr>
+          <td>Konnect Cloud</td>
+          <td>
+            {% if page.cloud == false %} Not available{%
+            elsif extn_release == extn_latest %}Available{%
+              else %}See latest plugin version for availability{% endif %}
+          </td>
+        </tr>
+        {% endif %}
         {% if page.support_url %}
           {% assign support_dom = page.support_url | split: "/" %}
           {% assign support_dom = support_dom[2] | remove: "www." | remove: "support." | remove: "help." | remove: "docs." %}
@@ -421,5 +454,7 @@ breadcrumbs:
   {% include feedback-widget.html %}
   {% endif %}
 </div>
+
+{% include image-modal.html %}
 
 <!-- {% include intercom.html %} -->

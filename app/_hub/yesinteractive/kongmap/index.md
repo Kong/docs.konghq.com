@@ -72,15 +72,15 @@ configuration editing can be disabled by KongMap configuration, or managed with 
 ![alt text](https://github.com/yesinteractive/kong-map/blob/main/screenshots/kongmap-deck.png?raw=true "kongmap")
 
 
-Full documentation is available here: [https://github.com/yesinteractive/kong-map/](https://github.com/yesinteractive/kong-map/)
+Full documentation is available here: [https://github.com/yesinteractive/kong-map/](https://github.com/yesinteractive/kong-map/){:target="_blank"}{:rel="noopener noreferrer"}. 
 
 ## Compatibility ## 
 KongMap supports Kong Gateway (OSS) and Kong Enterprise clusters version 1.5 and later, in both DB-backed and DB-less configurations. KongMap also supports Kong for Kubernetes Ingress Controller versions 0.6 and later. In Kong for Kubernetes, the Ingress Controller's proxy container must have its Admin API exposed in some fashion.
 
 ## Installation Instructions ##
 
-Installation instructions are available here: [https://github.com/yesinteractive/kong-map/](https://github.com/yesinteractive/kong-map/).
+Installation instructions are available here: [https://github.com/yesinteractive/kong-map/](https://github.com/yesinteractive/kong-map/){:target="_blank"}{:rel="noopener noreferrer"}.
 
 ## Feedback and Issues
 
-If you have questions, feedback, or want to submit issues, please do so here: [https://github.com/yesinteractive/kong-map/issues](https://github.com/yesinteractive/kong-map/issues).
+If you have questions, feedback, or want to submit issues, please do so here: [https://github.com/yesinteractive/kong-map/issues](https://github.com/yesinteractive/kong-map/issues){:target="_blank"}{:rel="noopener noreferrer"}.

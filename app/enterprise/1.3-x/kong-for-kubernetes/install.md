@@ -18,20 +18,24 @@ Before installing Kong for Kubernetes Enterprise, be sure you have the following
 - A valid Kong Enterprise License
   * If you have a license, continue to [Step 1. Set Kong Enterprise License](#step-1-set-kong-enterprise-license) below. If you need your license file information, contact Kong Support.
   * If you need a license, request a trial license through our [Request Demo](https://konghq.com/request-demo/) page.
-  * Or, try out Kong for Kubernetes Enterprise using a live tutorial at [https://kubecon.konglabs.io/](https://kubecon.konglabs.io/)
-- Kong Enterprise Docker registry access.
+  * Or, try out Kong for Kubernetes Enterprise using a live tutorial at [https://www.konglabs.io/kubernetes/](https://www.konglabs.io/kubernetes/)
+- An Enterprise Docker image for {{page.kong_version}}.
 
+  If you have lost access to your {{page.kong_version}} image, Kong recommends
+  upgrading to the next minor version and pulling {{site.base_gateway}} 1.5.0.11
+  or later from [Docker Hub](https://hub.docker.com/r/kong/kong-gateway/).
+
+  If upgrading is not possible, reach out to
+  [Kong Support](https://support.konghq.com) for access to an older version.
 
 ## Installing Kong for Kubernetes Enterprise
 The steps in this section include installing Kong for Kubernetes Enterprise using YAML.
 
 Installation steps include:
 - [Step 1. Set Kong Enterprise License ](#step-1-set-kong-enterprise-license)
-- [Step 2. Configure Kong Enterprise Docker registry access](#step-2-configure-kong-enterprise-docker-registry-access)
-- [Step 3. Deploy Kong for Kubernetes Enterprise](#step-3-deploy-kong-for-kubernetes-enterprise)
+- [Step 2. Deploy Kong for Kubernetes Enterprise](#step-3-deploy-kong-for-kubernetes-enterprise)
 
-In order to create the secrets for license and Docker registry access,
-first provision the `kong` namespace:
+To create the license secret, first provision the `kong` namespace:
 
 ```bash
 $ kubectl create namespace kong
@@ -59,39 +63,7 @@ On OpenShift:
 $ oc create secret generic kong-enterprise-license --from-file=./license -n kong
 ```
 
-### Step 2. Configure Kong Enterprise Docker registry access
-Set up Docker credentials to allow Kubernetes nodes to pull down the Kong Enterprise Docker image, which is hosted as a private repository. You receive credentials for the Kong Enterprise Docker image when you sign up for Kong Enterprise.
-
-```
-$ kubectl create secret -n kong docker-registry kong-enterprise-k8s-docker \
-    --docker-server=kong-docker-kong-enterprise-k8s.bintray.io \
-    --docker-username=<your-bintray-username@kong> \
-    --docker-password=<your-bintray-api-key>
-
-$ kubectl create secret -n kong docker-registry kong-enterprise-edition-docker \
-    --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \
-    --docker-username=<your-bintray-username@kong> \
-    --docker-password=<your-bintray-api-key>
-```
-
-On OpenShift:
-```
-$ oc create secret -n kong docker-registry kong-enterprise-k8s-docker \
-    --docker-server=kong-docker-kong-enterprise-k8s.bintray.io \
-    --docker-username=<your-bintray-username@kong> \
-    --docker-password=<your-bintray-api-key>
-
-$ oc create secret -n kong docker-registry kong-enterprise-edition-docker \
-    --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \
-    --docker-username=<your-bintray-username@kong> \
-    --docker-password=<your-bintray-api-key>
-```
-
-For future reference, make a note of the namespace in which you are deploying Kong.
-Once these credentials are created, you are ready to deploy Kong Enterprise Ingress Controller.
-
-
-### Step 3. Deploy Kong for Kubernetes Enterprise
+### Step 2. Deploy Kong for Kubernetes Enterprise
 
 ```
 $ kubectl apply -f https://bit.ly/k4k8s-enterprise

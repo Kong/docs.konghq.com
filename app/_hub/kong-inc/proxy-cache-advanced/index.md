@@ -16,6 +16,7 @@ description: |
 
 type: plugin
 enterprise: true
+plus: true
 categories:
   - traffic-control
 
@@ -40,6 +41,7 @@ params:
   route_id: true
   consumer_id: true
   protocols: ["http", "https", "grpc", "grpcs"]
+  dbless_compatible: yes
   config:
     - name: response_code
       required: true

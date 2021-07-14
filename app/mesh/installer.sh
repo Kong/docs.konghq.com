@@ -88,9 +88,9 @@ printf "INFO\t$PRODUCT_NAME version: %s\n" "$VERSION"
 printf "INFO\t$PRODUCT_NAME architecture: %s\n" "$ARCH"
 printf "INFO\tOperating system: %s\n" "$DISTRO"
 
-URL="https://kong.bintray.com/$REPO_PREFIX/$REPO_PREFIX-$VERSION-$DISTRO-$ARCH.tar.gz"
+URL="https://download.konghq.com/mesh-alpine/$REPO_PREFIX-$VERSION-$DISTRO-$ARCH.tar.gz"
 
-if ! curl -s --head "$URL" | head -n 1 | grep "HTTP/1.[01] [23].." > /dev/null; then
+if ! curl -s --head "$URL" | head -n 1 | grep -E 'HTTP/1.1 [23]..|HTTP/2 [23]..' > /dev/null; then
   printf "ERROR\tUnable to download $PRODUCT_NAME at the following URL: %s\n" "$URL"
   exit 1
 fi

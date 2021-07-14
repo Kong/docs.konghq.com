@@ -23,44 +23,22 @@ If you want to run {{site.ee_product_name}} in Hybrid mode, the instructions in 
 
 To complete this installation you will need:
 
-{% include /md/{{page.kong_version}}/bintray-and-license.md %}
+{% include /md/enterprise/license.md license='prereq' %}
 * A supported Ubuntu system with root-equivalent access.
 
 ## Step 1. Prepare to Install Kong Enterprise and Download the License File
 
 ### Download the Debian package
 
-1. Log in to [Bintray](http://bintray.com) using your Kong credentials. See [prerequisites](#prerequisites)
-for information on how to get access.
-2. Go to: [https://bintray.com/kong/kong-enterprise-edition-deb/ubuntu](https://bintray.com/kong/kong-enterprise-edition-deb/ubuntu).
-3. Select the latest Kong version from the list. Kong Enterprise versions are listed in reverse chronological order.
-4. From the Kong version detail page, select the **Files** tab.
-5. Click the `.deb` file matching your target Ubuntu OS version. For example, select `kong-enterprise-edition-{{page.kong_versions[8].version}}.bionic.all.deb` for the Ubuntu Bionic Beaver release.
-6. Copy the `.deb` file to your home directory on the Ubuntu system. For example:
+{% include /md/enterprise/download/ubuntu.md version='2.x' %}
 
-    ```bash
-    $ scp kong-enterprise-edition-{{page.kong_versions[8].version}}.bionic.all.deb <ubuntu_user>@<server>:~
-    ```
+### Prepare your license
 
-### Download your Kong Enterprise License
+Securely copy the license file to your home directory on the Ubuntu system:
 
-1. Download your license file from your [account files in Bintray](#prerequisites):
-
-    ```
-    https://bintray.com/kong/<YOUR_REPO_NAME>/license#files
-    ```
-
-2. Securely copy the license file to your home directory on the Ubuntu system:
-
-    ```bash
-    $ scp license.json <ubuntu_username>@<server>:~
-    ```
-
-### Result
-
-You should now have two files in your home directory on the target system:
-- The Kong `.deb` package file
-- The license file `license.json`
+```bash
+$ scp license.json <ubuntu_username>@<server>:~
+```
 
 ## Step 2. Install Kong Enterprise
 

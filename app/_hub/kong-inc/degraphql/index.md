@@ -10,6 +10,7 @@ description: |
 
 type: plugin
 enterprise: true
+plus: true
 categories:
   - transformations
 
@@ -26,6 +27,7 @@ kong_version_compatibility:
 params:
   name: degraphql
   service_id: true
+  dbless_compatible: yes
   config:
 
 ---

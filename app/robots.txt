@@ -2,4 +2,28 @@
 layout: null
 ---
 User-agent: *
+Disallow: /enterprise/0*
+Disallow: /enterprise/1*
+Disallow: /enterprise/2.1.x/
+Disallow: /enterprise/2.2.x/
+Disallow: /enterprise/2.3.x/
+Disallow: /mesh/1.0*
+Disallow: /mesh/1.1*
+Disallow: /mesh/1.2*
+Disallow: /gateway-oss/0*
+Disallow: /gateway-oss/1*
+Disallow: /gateway-oss/2.0*
+Disallow: /gateway-oss/2.1*
+Disallow: /gateway-oss/2.2*
+Disallow: /gateway-oss/2.3*
+Disallow: /kubernetes-ingress-controller/1.0*
+Disallow: /kubernetes-ingress-controller/1.1*
+Disallow: /kubernetes-ingress-controller/1.2*
+Disallow: /getting-started-guide/CE*
+Disallow: /getting-started-guide/2.0*
+Disallow: /getting-started-guide/2.1*
+Disallow: /getting-started-guide/2.2*
+Disallow: /getting-started-guide/2.3*
+Disallow: /deck/pre-1.7*
+
 Sitemap: {{site.links.web}}/sitemap.xml

@@ -150,31 +150,36 @@
 
     // titles proportions overridden from base.less
 
+    h2, h3, h4, h5, h6 {
+      font-family: @family-display;
+      margin-bottom: 1.2rem;
+    }
+
     h2 {
       margin-top: 3.2rem;
-      margin-bottom: 1rem;
-      font-size: 3.2rem;
-      font-weight: 500;
+      font-size: 2.7rem;
+      font-weight: normal;
     }
 
     h3 {
-      font-size: 2.4rem;
-      font-weight: 400;
+      margin-top: 2.7rem;
+      font-size: 2.1rem;
+      font-weight: normal;
     }
 
     h4 {
-      font-size: 2rem;
-      font-weight: 300;
+      font-size: 1.7rem;
+      font-weight: bold;
     }
 
     h5 {
-      font-size: 1.6rem;
-      font-weight: 300;
+      font-size: 1.4rem;
+      font-weight: normal;
     }
 
     h6 {
       font-size: 1.2rem;
-      font-weight: 200;
+      font-weight: bold;
     }
   }
 
@@ -297,7 +302,7 @@
     color: @blue-light;
   }
 
-  @media (max-width: 1080px) {
+  @media (max-width: 800px) {
     float: initial;
     display: inline-block;
     margin-right: 5px;
@@ -708,7 +713,7 @@
     outline: 1px solid #b3dfff;
   }
 
-  @media screen and (min-width: 1081px) {
+  @media screen and (min-width: 1301px) {
     &.collapsed {
       width: 50px;
       overflow-y: hidden;
@@ -733,7 +738,7 @@
     }
   }
 
-  @media screen and (max-width: 1080px) {
+  @media screen and (max-width: 1300px) {
     position: fixed;
     right: 0;
     padding: 16px 24px;

@@ -246,10 +246,10 @@ Each configuration item is made up of a few parts:
       - `:name`: Replaces namespace with the filename of a piece of content.
       - `:collection`: Replaces namespace with name of current collection.
       - `:stub`: Replaces namespace with value of `headmatter.stub` in each contents headmatter.
-- ###### `route`
-    - **required**: true
-      - **type**: `boolean`
-      - **description**: The `layout` attribute determines what HTML layout the collections use to render.  The path root is assessed from within the current themes `layouts` directory.
+- ###### `layout`
+  - **required**: true
+  - **type**: `string`
+  - **description**: The `layout` attribute determines what HTML layout the collections use to render. The path root is accessed from within the current themes `layouts` directory.
 
 ##### `content/_posts/post1.md`
 

@@ -19,5 +19,3 @@ jobs:
       run: sudo chmod -R 777 .
     - name: Run tests
       run: make docker-test
-    - name: Check links
-      run: make check-links

@@ -53,7 +53,7 @@ params:
     # List of protocols this plugin is compatible with.
     # Valid values: "http", "https", "tcp", "tls"
     # Example: ["http", "https"]
-  dbless_compatible: true
+  dbless_compatible: yes
     # Degree of compatibility with DB-less mode. Three values allowed:
     # 'yes', 'no' or 'partially'
   dbless_explanation: Fully compatible with DB and DB-less (K8s, Declarative) Kong implementations.
@@ -77,4 +77,4 @@ params:
 
 ## Installation & Usage
 
-A tutorial, installation steps, and further information can be found at [https://github.com/yesinteractive/kong-log-google](https://github.com/yesinteractive/kong-log-google).
+A tutorial, installation steps, and further information can be found at [https://github.com/yesinteractive/kong-log-google](https://github.com/yesinteractive/kong-log-google){:target="_blank"}{:rel="noopener noreferrer"}.

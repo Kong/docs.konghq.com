@@ -11,15 +11,12 @@ description: |
   daemon by enabling its [Statsd
   plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
 
-  <div class="alert alert-ee blue"><strong>Tip:</strong> The <a href="/hub/kong-inc/statsd-advanced/">StatsD Advanced plugin</a> provides
+  {:.tip}
+  > **Tip:** The [StatsD Advanced plugin](/hub/kong-inc/statsd-advanced/) provides
   additional features not available in this open source StatsD plugin, such as:
-
-  <ul>
-  <li>Ability to choose status codes to log to metrics.</li>
-  <li>More granular status codes per workspace.</li>
-  <li>Ability to use TCP instead of UDP.</li>
-  </ul>
-  </div>
+  * Ability to choose status codes to log to metrics.
+  * More granular status codes per workspace.
+  * Ability to use TCP instead of UDP.
 
 type: plugin
 categories:
@@ -98,7 +95,7 @@ Metric                     | Description | Namespace
 `request_count`            | tracks the request | kong.\<service_name>.request.count
 `request_size`             | tracks the request's body size in bytes | kong.\<service_name>.request.size
 `response_size`            | tracks the response's body size in bytes | kong.\<service_name>.response.size
-`latency`                  | tracks the time interval between the request started and response received from the upstream server | kong.\<service_name>.latency
+`latency`                  | tracks the time interval in milliseconds between the request started and response received from the upstream server | kong.\<service_name>.latency
 `status_count`             | tracks each status code returned in a response | kong.\<service_name>.request.status.\<status>.count and kong.\<service_name>.request.status.\<status>.total
 `unique_users`             | tracks unique users who made a requests to the underlying Service/Route | kong.\<service_name>.user.uniques
 `request_per_user`         | tracks request/user | kong.\<service_name>.user.\<consumer_id>.request.count

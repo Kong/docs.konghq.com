@@ -7,7 +7,7 @@ through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
 configure your {{site.base_gateway}} instance to accept configuration from
 {{site.konnect_short_name}}. The Runtime Manager keeps track of all runtimes
-associated with the {{site.konnect_short_name}} SaaS account.
+associated with the {{site.konnect_saas}} account.
 
 <div class="alert alert-ee blue">
 <b>Note:</b> Kong does not host runtimes. You must install and host your own
@@ -16,8 +16,8 @@ runtime instances.
 
 ## Prerequisites
 
-You have a {{site.konnect_product_name}} account. Contact your sales
-representative for access.
+* You have **Runtime Admin** or **Organization Admin** permissions in
+{{site.konnect_saas}}.
 
 ## Generate certificates
 
@@ -44,7 +44,7 @@ codeblock in the **Step 2. Configuration Parameters** section.
     ![Konnect Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
 
 3. Open your instance's `kong.conf` file. Add the parameters you just copied
-to the file, remove the `KONG_` prefix, and turn them into lowercase.
+to the file.
 
     The result should look something like this, replacing placeholder values
     with your own from {{site.konnect_short_name}}:
@@ -60,7 +60,7 @@ to the file, remove the `KONG_` prefix, and turn them into lowercase.
     cluster_telemetry_endpoint = <example.tp.konnect.foo>:443
     cluster_telemetry_server_name = <kong-telemetry-example.service>
     cluster_cert = /<path-to-file>/tls.crt
-    cluster_cert_key = /<path-to-file>/tls.crt
+    cluster_cert_key = /<path-to-file>/tls.key
     lua_ssl_trusted_certificate = system,/<path-to-file>/ca.crt
     ```
 
@@ -81,11 +81,6 @@ files.
 Manager overview.
 
     The Runtime Manager will include a new entry for your instance.
-
-<div class="alert alert-ee warning">
-<b>Important:</b> Certificates expire after 30 days and must be renewed. See
-<a href="/konnect/runtime-manager/renew-certificates">Renew Certificates</a>.
-</div>
 
 ## Access services using the proxy URL
 

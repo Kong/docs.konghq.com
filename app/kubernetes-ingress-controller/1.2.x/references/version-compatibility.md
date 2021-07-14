@@ -33,6 +33,8 @@ all enterprise plugins into Open-Source Kong Gateway.
 The compatibility for this distribution will largely follow that of the
 Open-Source Kong Gateway compatibility (the previous section).
 
+{% include md/enterprise/k8s-image-note.md %}
+
 | {{site.kic_product_name}}   |           0.6.2+            |            0.7.x            |            0.8.x            |            0.9.x            |           0.10.x            |            1.0.x            |            1.1.x            |            1.2.x            |
 |:----------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
 | Kong-enterprise-k8s 1.3.x.y | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> |

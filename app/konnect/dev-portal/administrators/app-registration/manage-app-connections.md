@@ -14,15 +14,8 @@ them about the change in status.--->
 
 ## Prerequisite
 
-You must be a {{site.konnect_short_name}} admin with the
-[correct roles and permissions](/konnect/reference/org-management/#role-definitions)
-to manage application connections to a Service.
-
-The following roles allow you to
-manage application connections to a Service:
-
-- Organization Admin
-- Service Admin
+[**Organization Admin** or **Service Admin**](/konnect/reference/org-management/#role-definitions)
+permissions.
 
 ## Application Connection to a Service Status
 
@@ -94,16 +87,10 @@ that was revoked for a Service can be approved again any time at your discretion
 
 1. Click **Connections > Applications**.
 
-   The Applications page is displayed.
-
 2. Click on an application row.
 
-   The Connections details for an application are displayed.
-
-3. In the row for Service whose connection status you want to change, click the icon and choose **Approve** from the
-   context menu.
-
-   The status is updated to **Approved**.
+3. In the row for Service whose connection status you want to change, click the
+icon and choose **Approve** from the context menu.
 
 ### Delete an Application's Connection to a Service {#delete-app-connection}
 
@@ -113,13 +100,7 @@ to the Service can be made again by a developer.
 
 1. Click **Connections > Applications**.
 
-   The Applications page is displayed.
-
 2. Click on an application row.
-
-   The Connections details for an application are displayed.
 
 3. In the row for application connection you want to delete, click the icon and choose **Delete** from the
    context menu.
-
-   The application connection to the Service is deleted and removed from the **Connections** pane.

@@ -4,12 +4,13 @@
     For the first runtime, the page opens to a **Configure New Runtime** form.
 
     Once configured, this page lists all runtimes associated with the
-    {{site.konnect_short_name}} SaaS account.
+    {{site.konnect_saas}} account.
 
 2. (Optional) If this is not the first runtime configuration, click
 **Configure New Runtime**.
 
-2. Open the **Advanced** tab.
+2. Open the tab that suits your environment: **Quick Setup - Docker**,
+**Linux**, or **Kubernetes**.
 
 3. Click **Generate Certificate**.
 
@@ -27,6 +28,11 @@
     certificate and key files, you will need to regenerate them.
 
 6. Store the files on your runtime's local filesystem.
+
+<div class="alert alert-ee warning">
+<b>Important:</b> Certificates expire after six months and must be renewed. See
+<a href="/konnect/runtime-manager/renew-certificates">Renew Certificates</a>.
+</div>
 
 Keep the configuration page open for the next section, as you'll need to refer
 back to it for the configuration parameters.

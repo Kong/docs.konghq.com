@@ -9,6 +9,7 @@ desc: Route request based on request headers
 description: |
    Kong Enterprise plugin to route requests based on request headers.
 enterprise: true
+plus: true
 type: plugin
 categories:
   - traffic-control
@@ -33,6 +34,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
+  dbless_compatible: yes
   config:
     - name: rules
       required: false

@@ -1,4 +1,7 @@
 <header class="navbar-v2">
+  <div id="promo-banner">
+    <div class="container"><div class="closebanner"></div> <strong><label>New</label> Konnect Plus: Pay-as-you-go from startup friendly to enterprise scale. <a target="_blank" href="https://konghq.com/pricing/">See Pricing &rarr;</a></strong></div>
+  </div>
   <div class="navbar-content">
     <a href="https://konghq.com/" class="navbar-brand col col-xl-auto">
       <img
@@ -13,19 +16,6 @@
       <input id="getkong-algolia-search-input" type="text" placeholder="Search the docs...">
     </div>
 
-    <script type="text/javascript">
-      function getSearchPlaceholder () {
-        var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        if (w <= 800) {
-          document.getElementById('getkong-algolia-search-input').placeholder = 'Search...';
-        } else {
-          document.getElementById('getkong-algolia-search-input').placeholder = 'Search the docs...';
-        }
-      }
-
-      getSearchPlaceholder();
-      window.addEventListener('resize', getSearchPlaceholder);
-    </script>
     <div class="search-results-wrapper"></div>
     {% endif %}
     <div class="separator"></div>
@@ -36,8 +26,9 @@
           <span class="caret"></span>
           <div class="navbar-item-submenu">
             <div class="submenu-section">
-              <span class="navbar-item submenu-section-title">Kong Konnect</span>
-              <a href="/konnect/" class="navbar-item">Konnect SaaS</a>
+              <span class="navbar-item submenu-section-title">Kong Konnect Platform</span>
+              <a href="/konnect-platform/" class="navbar-item">Konnect Platform</a>
+              <a href="/konnect/" class="navbar-item">Konnect Cloud</a>
               <a href="/enterprise/" class="navbar-item">Kong Gateway (Enterprise)</a>
               <a href="/mesh/" class="navbar-item">Kong Mesh</a>
               <a href="/hub/" class="navbar-item">Plugin Hub</a>
@@ -49,6 +40,10 @@
               <a href="/kubernetes-ingress-controller/" class="navbar-item">Kubernetes Ingress Controller</a>
               <a href="https://support.insomnia.rest/" target="_blank" class="navbar-item">Insomnia</a>
               <a href="https://kuma.io/docs/" target="_blank" class="navbar-item">Kuma</a>
+            </div>
+            <div class="submenu-section">
+              <span class="navbar-item submenu-section-title">Contribute to the docs</span>
+              <a href="/contributing/" class="navbar-item">Contribution guidelines</a>
             </div>
           </div>
         </div>
@@ -76,27 +71,6 @@
     </div>
   </div>
 </header>
-
-<script>
-  function handleSearchClicked () {
-    $('.navbar-v2').toggleClass('search-opened')
-    $('.navbar-v2').toggleClass('menu-opened', false)
-    $('#getkong-algolia-search-input').focus()
-  }
-
-  function toggleButtonClicked () {
-    if (!$('.navbar-v2').hasClass('search-opened')) {
-      $('.navbar-v2').toggleClass('menu-opened')
-    } else {
-      $('.navbar-v2').toggleClass('search-opened', false)
-    }
-  }
-
-  function toggleSubmenuVisible (element) {
-    $(element).toggleClass('submenu-title')
-    $(element.parentElement).toggleClass('submenu-opened')
-  }
-</script>
 
 {% if page.layout != "landing-page" %}
 <style>

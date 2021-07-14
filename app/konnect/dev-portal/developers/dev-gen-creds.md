@@ -19,18 +19,13 @@ You can generate multiple credentials and delete as needed.
 
 1. From the Dev Portal, click the **Dashboard** menu under your login name.
 
-   The My Apps page is displayed.
+   This opens the **My Apps** page.
 
 2. Click the application for which you want to generate a credential.
 
-   The [application details](/konnect/dev-portal/developers/dev-apps#app-details-page) page is displayed.
-
 3. In the **Authentication** pane, click **Generate Credential**.
 
-   The credential is generated and displayed in
-   the Authentication pane of the application details page.
-
-4. Test the credential by making a call to the service the
+4. Test the generated credential by making a call to the service the
    [application is registered with](/konnect/dev-portal/developers/dev-reg-app-service)
    using your `key-auth` credential (API key).
 
@@ -46,5 +41,3 @@ You can generate multiple credentials and delete as needed.
    and click **Delete** from the context menu.
 
    ![Konnect Application Delete API Keys](/assets/images/docs/konnect/konnect-dev-gen-app-cred-api-key.png)
-
-   The credential is deleted from the **Authentication** pane.

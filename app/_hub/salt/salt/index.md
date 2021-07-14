@@ -54,6 +54,8 @@ kong_version_compatibility:
     compatible:
       - 0.35-x
       - 0.34-x
+params:
+  dbless_compatible: yes
 
 ---
 
@@ -69,7 +71,7 @@ Once you have obtained the `.rock` file from your Salt Security distributor, ins
 $ luarocks install kong-plugin-salt-agent-0.1.0-1.all.rock
 ```
 
-If you need help with installation, see the documentation on [Installing a Plugin](https://docs.konghq.com/1.2.x/plugin-development/distribution/#installing-the-plugin).
+If you need help with installation, see the documentation on [Installing a Plugin](/gateway-oss/latest/plugin-development/distribution/).
 
 ### Configure the plugin
 

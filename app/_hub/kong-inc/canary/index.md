@@ -16,7 +16,6 @@ type: plugin
 categories:
   - traffic-control
 
-enterprise: true
 type: plugin
 categories:
   - traffic-control
@@ -37,6 +36,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
+  dbless_compatible: yes
   config:
     - name: start
       required: semi

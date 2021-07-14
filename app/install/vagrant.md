@@ -57,9 +57,7 @@ Here is a quick example showing how to build a (disposable) test setup:
     The host ports `8000`, `8001`, `8443`, and `8444` will be forwarded to the Vagrant box.
 
     <div class="alert alert-warning">
-      <div class="text-center">
         <strong>Note</strong>: Check out the <a href="{{ site.repos.vagrant }}">kong-vagrant</a> repository for further details on customizations and development.
-      </div>
     </div>
 
 3. **Use Kong**

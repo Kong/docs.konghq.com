@@ -49,7 +49,7 @@ Kong Enterprise 2.1.x docs includes any changes made for the 2.1.0.0 beta docs.
 ### Plugins
 * New declarative configuration (YAML) examples added to Plugins. For example, see the [Key Authentication Encrypted - Enabling the plugin on a Service](/hub/kong-inc/key-auth-enc/#enabling-the-plugin-on-a-service) section and click the **Declarative (YAML)** tab.
 * New [Plugin Overview](/hub/plugins/overview/) introduces the most basic things you need to know to get started with plugins: what they are, why you might use them, terminology, and information on creating your own plugins and plugin documentation.
-* New [Plugin Compatibility Matrix](/hub/plugins/compatibility/) compares the various Kong Gateway deployment modes.
+* New [Plugin Compatibility Matrix](/konnect-platform/compatibility/plugins) compares the various Kong Gateway deployment modes.
 * Updated [gRPC Gateway](/hub/kong-inc/grpc-gateway/) Plugin documentation.
 
 ### Doc Site Improvements

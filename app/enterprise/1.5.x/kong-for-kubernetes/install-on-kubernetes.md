@@ -18,12 +18,11 @@ Before starting installation, be sure you have the following:
 - **Kubernetes cluster with load balancer**: Kong is compatible with all distributions of Kubernetes. You can use a [Minikube](https://kubernetes.io/docs/setup/minikube/), [GKE](https://cloud.google.com/kubernetes-engine/), or [OpenShift](https://www.openshift.com/products/container-platform) cluster.
 - **kubectl or oc access**: You should have `kubectl` or `oc` (if working with OpenShift) installed and configured to communicate to your Kubernetes cluster.
 - Helm installed.
-{% include /md/{{page.kong_version}}/bintray-and-license.md %}
+{% include /md/enterprise/license.md license='prereq' %}
 
 ## Step 1. Provision a namespace
 
-To create the secrets for license and Docker registry access,
-first provision the `kong` namespace:
+To create the license secret, first provision the `kong` namespace:
 
 {% navtabs %}
 {% navtab kubectl %}
@@ -73,31 +72,7 @@ $ oc create secret generic kong-enterprise-license -n kong --from-file=./license
     $ helm repo update
     ```
 
-## Step 4. Configure Kong Enterprise Docker registry access
-Set up Docker credentials to allow Kubernetes nodes to pull down the Kong Enterprise Docker image, which is hosted in a private repository. You receive credentials for the Kong Enterprise Docker image when you sign up for Kong Enterprise.
-
-{% navtabs %}
-{% navtab kubectl %}
-Set up the credentials:
-```
-$ kubectl create secret docker-registry kong-enterprise-edition-docker -n kong \
-    --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \
-    --docker-username=<your-bintray-username> \
-    --docker-password=<your-bintray-api-key>
-```
-{% endnavtab %}
-{% navtab OpenShift oc %}
-Set up the credentials:
-```
-$ oc create secret docker-registry kong-enterprise-edition-docker -n kong \
-    --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \      
-    --docker-username=<your-bintray-username> \
-    --docker-password=<your-bintray-api-key>
-```
-{% endnavtab %}
-{% endnavtabs %}
-
-## Step 5. Seed the Super Admin password
+## Step 4. Seed the Super Admin password
 {% navtabs %}
 {% navtab kubectl %}
 (Optional) Create a password for the super admin:
@@ -115,7 +90,7 @@ oc create secret generic kong-enterprise-superuser-password -n kong --from-liter
 {% endnavtab %}
 {% endnavtabs %}
 
-## Step 6. Prepare the sessions plugin for Kong Manager and Dev Portal
+## Step 5. Prepare the sessions plugin for Kong Manager and Dev Portal
 In the following steps, replace `<your-password>` with a secure password.
 
 {% navtabs %}
@@ -151,12 +126,12 @@ In the following steps, replace `<your-password>` with a secure password.
     ```
 {% endnavtab %}
 {% endnavtabs %}
-## Step 7. Prepare Kong's configuration file
+## Step 6. Prepare Kong's configuration file
 
-1. Create a `values.yaml` file for Helm based on the template in the [Kong charts repository](https://github.com/Kong/charts/blob/main/charts/kong/values.yaml). This file contains all the possible parameters for your Kong deployment. 
+1. Create a `values.yaml` file for Helm based on the template in the [Kong charts repository](https://github.com/Kong/charts/blob/main/charts/kong/values.yaml). This file contains all the possible parameters for your Kong deployment.
 
-    You can also base your configuration on a sample Kong Enterprise `values.yaml` 
-    file. For example, [this values file](https://github.com/Kong/charts/blob/main/charts/kong/example-values/full-k4k8s-with-kong-enterprise.yaml) 
+    You can also base your configuration on a sample Kong Enterprise `values.yaml`
+    file. For example, [this values file](https://github.com/Kong/charts/blob/main/charts/kong/example-values/full-k4k8s-with-kong-enterprise.yaml)
     enables most Kong Enterprise features.
 
 2. Minimally, for setting up Kong Enterprise on Kubernetes, you will need to set the following parameters:
@@ -174,9 +149,8 @@ In the following steps, replace `<your-password>` with a secure password.
     |`env.pg_database` | (If using Postgres) Set to the Postgres database name (default `kong`). When `postgresql.enabled` is `true`, this has to match `postgresql.postgresqlDatabase`. |
     |`env.password.valueFrom.secretKeyRef.name` | Name of secret that holds the super admin password. In the example above, this is set to `kong-enterprise-superuser-password`. |
     |`env.password.valueFrom.secretKeyRef.key` | The type of secret key used for authentication. If you followed the default settings in the example above, this is `password`. |
-    |`image.repository` | The Docker repository. In this case, `kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition`. |
+    |`image.repository` | The Docker repository. In this case, `kong/kong-gateway`. |
     |`image.tag` | The Docker image tag you want to pull down, e.g. `"{{page.kong_latest.version}}-alpine"`. |
-    |`image.pullSecrets` | Name of secret that holds the Docker repository credentials. In the example above, this is `kong-enterprise-edition-docker`. |
     |`admin.enabled` | Set to `true` to enable the Admin API, which is required for the Kong Manager. |
     |`ingressController.enabled` | Set to `true` if you want to use the Kong Ingress Controller, or `false` if you don't want to install it. |
     |`postgresql.enabled` | Set to `true` to deploy a Postgres database along with Kong. |
@@ -211,7 +185,7 @@ In the following steps, replace `<your-password>` with a secure password.
 
 4. Fill in the rest of the parameters as appropriate for your implementation. Use the comments in the sample file to guide you, and see the documentation on [Kong Enterprise parameters](https://github.com/Kong/charts/blob/main/charts/kong/README.md#kong-enterprise-parameters) for more details.
 
-## Step 8. Deploy Kong Enterprise on Kubernetes
+## Step 7. Deploy Kong Enterprise on Kubernetes
 The steps in this section show you how to install Kong Enterprise on Kubernetes using Helm.
 >Note: the following instructions assume that you're running Helm 3.
 
@@ -224,7 +198,7 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     This may take some time.
 
     <div class="alert alert-warning">
-    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+   
     <strong>Important:</strong>
     If you are running Postgres as a sub-chart and having problems with connecting to
     the database, delete Postgres' persistent volumes in your Kubernetes cluster, then
@@ -232,7 +206,7 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     </div>
 
     <div class="alert alert-warning">
-    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+   
     <strong>Important:</strong>
     If you have already installed the CRDs, run the command above with the following flag: <code>--set ingressController.installCRDs=false</code>.
     </div>
@@ -259,7 +233,7 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
 {% endnavtab %}
 {% endnavtabs %}
 
-## Step 9. Finalize Configuration and Verify Installation
+## Step 8. Finalize Configuration and Verify Installation
 {% navtabs %}
 {% navtab kubectl %}
 1. Run:
@@ -268,7 +242,7 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     ```
 
     <div class="alert alert-warning">
-    <i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
+   
     <strong>Important:</strong> The command above requires the Kong Admin API. If you
     have not set <code>admin.enabled</code> to <code>true</code> in your
     <code>values.yaml</code>, then this command will not work.

@@ -2,12 +2,13 @@
   &.v2 {
     .container {
       padding: 0;
+      width: 1600px;
 
       @media screen and (max-width: 1600px) {
         width: 99%;
       }
 
-      @media screen and (max-width: 1100px) {
+      @media screen and (max-width: 800px) {
         padding: 8px;
       }
     }
@@ -136,11 +137,11 @@
       padding-left: 285px;
 
       &.no-sidebar {
-        padding-left: 75px;
+        padding-left: 50px;
       }
 
       .page-content {
-        padding-left: 75px;
+        padding-left: 50px;
 
         .welcome-text {
           margin-bottom: 32px;
@@ -232,7 +233,7 @@
           min-height: 100px;
         }
 
-        @media screen and (max-width: 1080px) {
+        @media screen and (max-width: 1300px) {
           .title-version-search-container {
             padding-left: 316px;
             padding-right: 32px;
@@ -258,8 +259,8 @@
         padding-right: 250px;
 
         .page-content {
-          padding-left: 75px;
-          padding-right: 75px;
+          padding-left: 50px;
+          padding-right: 50px;
         }
 
         @media screen and (min-width: 1081px) {
@@ -268,7 +269,7 @@
           }
         }
 
-        @media screen and (min-width: 801px) and (max-width: 1080px) {
+        @media screen and (min-width: 801px) and (max-width: 1300px) {
           padding-right: 0;
 
           &.no-sidebar {
@@ -276,10 +277,10 @@
           }
 
           .page-content {
-            padding: 0 32px;
+            padding: 0 50px;
 
             .content {
-              padding-top: 32px;
+              padding-top: 50px;
             }
           }
         }
@@ -354,12 +355,10 @@
 
 .page-header {
   position: relative;
-  background-color: #fdfdfd;
-  border-bottom: 1px solid @gray;
   padding: 95px 0 20px;
 
   @media (max-width: 1100px) {
-    padding: 95px 0 10px;
+    padding: 95px 0 25px;
   }
 
   // Needs to be above page-content header margins
@@ -400,9 +399,14 @@
 
   .page-header-title {
     display: inline-block;
-    vertical-align: middle;
-    margin-right: 20px;
-    max-width: calc(~"100% - 460px");
+    vertical-align: bottom;
+
+    h1 {
+      color: #062e4d;
+      margin-bottom: 0.1em;
+      margin-top: 0.1em;
+      font: lighter 38px/40px Roboto;
+    }
 
     @media screen and (max-width: 1080px) {
       max-width: 100%;
@@ -411,33 +415,23 @@
 
   .page-header-btn {
     &#version-dropdown {
-      width: 200px;
-      float: right;
+      height: 32px;
+      color: @gray-dark;
+      text-transform: uppercase;
+      font: bold 12px/16px Roboto;
+      padding: 0 8px;
+      font-size: 12px;
+      width: 100%;
       text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       border-color: @gray-border;
       background-color: @gray-background;
 
       @media screen and (max-width: 476px) {
         float: left;
       }
-    }
-
-    &#searchBar {
-      width: 220px;
-    }
-    &:extend(.button all);
-
-    height: 32px;
-    color: @gray-dark;
-    text-transform: uppercase;
-    font: bold 12px/16px Roboto;
-
-    &:active {
-      background: #f7f9fa;
-    }
-
-    em {
-      font-style: normal;
     }
   }
 
@@ -461,7 +455,7 @@
     margin-top: 0px;
     min-width: 220px;
 
-    @media (max-width: 1080px) {
+    @media (max-width: 1300px) {
       position: static;
       margin-top: 20px;
       display: inline-block;
@@ -479,36 +473,6 @@
       float: left;
       top: 90%;
     }
-  }
-
-  .page-header-bg {
-    position: absolute;
-    width: 100%;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    max-width: 100%;
-    background-size: cover;
-    background-image: linear-gradient(
-        to bottom,
-        #ffffff,
-        40%,
-        transparent
-      ),
-      url("/assets/images/docs/banner-bkg.png");
-    background-image: -moz-linear-gradient(
-        bottom,
-        rgba(255, 255, 255, 0) 40%,
-        #ffffff
-      ),
-      url("/assets/images/docs/banner-bkg.png");
-    background-image: -webkit-linear-gradient(
-        top,
-        rgba(255,255,255,1) 0%,
-        rgba(255,255,255,0) 100%
-      ),
-      url("/assets/images/docs/banner-bkg.png");
-    transform: translateX(-50%);
   }
 }
 
@@ -529,7 +493,11 @@
 .page-navigation {
   float: right;
   width: 215px;
-  padding: 25px 0 0 20px;
+  padding: 20px 0 0 10px;
+
+  &.with-dropdown {
+    padding: 80px 0 0 10px;
+  }
 
   .close-sidebar {
     display: none;
@@ -720,7 +688,7 @@
     height: auto;
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1300px) {
     .sidebar-toggle {
       visibility: visible;
     }
@@ -893,8 +861,8 @@
     text-decoration: none;
     color: @blue;
 
-    &:hover {
-      text-decoration: underline;
+    &:hover, &:focus {
+      text-decoration: none;
       opacity: 0.7;
     }
   }
@@ -909,6 +877,12 @@
     display: block;
     max-width: 100%;
     height: auto;
+  }
+
+  img.inline {
+    display: inline-block;
+    padding-left: 0.25rem;
+    margin-bottom: -0.2rem;
   }
 
   figcaption {
@@ -960,57 +934,6 @@
     }
   }
 
-  /* Rouge syntax and line numbers */
-
-  pre.highlight {
-      padding: 1rem 1.5rem;
-      overflow: auto;
-      line-height: 1.4rem;
-      position: relative;
-  }
-
-  table.rouge-table,
-  table.rouge-table tr,
-  table.rouge-table td,
-  table.rouge-table pre {
-      border: 0;
-      padding: 0;
-      margin: 0;
-      overflow: visible;
-      display: inline-block;
-      font-family: @family-code;
-  }
-
-  table.rouge-table td.rouge-gutter {
-      padding-right: 0.8rem;
-      border-right: 1px solid @gray;
-
-      @media (max-width: 1100px) {
-        margin-left: -1.2rem;
-      }
-  }
-
-  table.rouge-table td.rouge-code {
-      padding-left: 0.8em;
-  }
-
-  figure pre {
-      margin-bottom: 0;
-  }
-
-  .lineno {
-      text-align: center;
-      height: 100%;
-      min-width: 1.8rem;
-      color: @gray-dark;
-  }
-
-  blockquote {
-    opacity: 0.8;
-    margin-left: 0;
-    font-style: italic;
-  }
-
   /*
 Generic Styling for Desktop
 */
@@ -1023,14 +946,17 @@ Generic Styling for Desktop
     border: none;
     border-collapse: collapse;
     margin-top: 1.5em;
+    position: relative;
 
     i.fa-times {
       color: @red-500;
       opacity: 50%;
+      font-size: 20px;
     }
 
     i.fa-check {
       color: @green-400;
+      font-size: 18px;
     }
 
     code {
@@ -1051,6 +977,10 @@ Generic Styling for Desktop
     font-weight: 600;
     color: @black-80;
     background-color: @grey-100;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 2;
   }
 
   td,
@@ -1102,28 +1032,293 @@ Generic Styling for Desktop
   }
 
   .alert {
-    margin-bottom: 1.3em;
-    font-size: 16px;
+    margin-bottom: 0.8em;
+    font-size: 17px;
+    border-radius: 3px;
 
     &.alert-warning {
       color: hsl(45, 2%, 36%);
-      border-color: hsl(41, 83%, 89%);
-      background-color: hsl(51, 100%, 96%);
-    }
+      background-color: @yellow-100;
+      border-left: solid 3px @yellow-400;
+
+        &::before {
+          content: "\f071";
+          font-family: "Font Awesome", FontAwesome;
+          color: @yellow-400;
+          display: inline-block;
+          font-weight: 600;
+          font-size: 17px;
+          padding: 0 5px 0 0;
+        }
+      }
 
     &.alert-red {
-      color: red;
-      border-color: red;
-      background-color: #fdf3f2;
+      background-color: @red-100;
+      border-left: solid 3px @red-500;
+
+      &::before {
+        content: "\f057";
+        font-family: "Font Awesome", FontAwesome;
+        color: @red-500;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 17px;
+        padding: 0 5px 0 0;
+      }
     }
 
-    ol {
-      list-style: none;
+    ol, li {
       margin-bottom: 0;
-      margin-top: 1em;
+      margin-top: 0.5em;
+    }
+  }
 
-      li {
-        margin-bottom: 0;
+  .alert-ee {
+    background-color: @blue-100;
+    border: none;
+    border-left: solid 3px @blue-400;
+    font-size: 17px;
+
+    &::before {
+      content: "\f05a";
+      font-family: "Font Awesome", FontAwesome;
+      color: @blue-400;
+      display: inline-block;
+      font-weight: 600;
+      font-size: 17px;
+      padding: 0 5px 0 0;
+    }
+
+    &.error {
+      background-color: @red-100;
+      border-left: solid 3px @red-500;
+
+      &::before {
+        content: "\f057";
+        font-family: "Font Awesome", FontAwesome;
+        color: @red-500;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 17px;
+        padding: 0 5px 0 0;
+      }
+    }
+
+    &.warning {
+      background-color: @yellow-100;
+      border-left: solid 3px @yellow-400;
+
+      &::before {
+        content: "\f071";
+        font-family: "Font Awesome", FontAwesome;
+        color: @yellow-400;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 17px;
+        padding: 0 5px 0 0;
+      }
+    }
+
+    &.info {
+      background-color: @blue-100;
+      border: none;
+      border-left: solid 3px @blue-400;
+
+      &::before {
+        content: "\f05a";
+        font-family: "Font Awesome", FontAwesome;
+        color: @blue-400;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 17px;
+        padding: 0 5px 0 0;
+      }
+    }
+
+    &.tip {
+      border-left: 3px solid @green-400;
+      background-color: @green-100;
+
+      &::before {
+        content: "\f058";
+        font-family: "Font Awesome", FontAwesome;
+        color: @green-400;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 17px;
+        padding: 0 5px 0 0;
+      }
+    }
+
+    .alert-body {
+      padding-top: 20px;
+    }
+
+    .left {
+      float: left;
+      padding-top: 5px;
+      margin: 0 20px 0;
+    }
+
+    .tag {
+      padding: 2px 8px;
+      margin-right: 12px;
+      border-radius: 11px;
+      font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont,
+        "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 10px;
+      font-weight: bold;
+      background: @blue;
+      color: white;
+
+      &.green {
+        background: #35cb05;
+      }
+
+      &.red {
+        background: @red;
+      }
+    }
+
+    img {
+      width: 20px;
+      margin-right: 5px;
+      margin-top: 3px;
+      float: left;
+      display: inline-block;
+    }
+
+    code {
+      font-size: 13px;
+    }
+
+    p {
+      padding: 0 25px 0 75px;
+      font-size: 16px;
+    }
+
+    a {
+      text-decoration: none;
+      color: @blue-light;
+    }
+
+    &.condensed {
+      padding: 6px 8px;
+
+      .alert-body {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+      }
+
+      p {
+        flex-grow: 1;
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+    &.margin-bigger {
+      margin-bottom: 32px;
+    }
+  }
+
+  blockquote {
+    margin-bottom: 1.3em;
+    padding: 15px 18px;
+    background-color: @blue-100;
+    border: none;
+    border-left: solid 3px @blue-400;
+    border-radius: 3px;
+    display: block;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+
+    ol, ul {
+      margin-top: 0.5em;
+      margin-bottom: 0;
+    }
+
+    pre, code {
+      background-color: #fff;
+      border: none;
+      padding: 3px;
+    }
+
+    p, b, strong {
+      padding: 0;
+      margin: 0;
+      display: inline;
+    }
+
+    &::before {
+      content: "\f05a";
+      font-family: "Font Awesome", FontAwesome;
+      color: @blue-400;
+      display: inline-block;
+      font-weight: 600;
+      font-size: 17px;
+      padding: 0 5px ;
+    }
+    &.warning {
+      background-color: @red-100;
+      border-left: solid 3px @red-500;
+
+      &::before {
+        content: "\f057";
+        font-family: "Font Awesome", FontAwesome;
+        color: @red-500;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 17px;
+        padding: 0 5px 0 0;
+      }
+    }
+
+    &.important {
+      background-color: @yellow-100;
+      border-left: solid 3px @yellow-400;
+
+      &::before {
+        content: "\f071";
+        font-family: "Font Awesome", FontAwesome;
+        color: @yellow-400;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 17px;
+        padding: 0 5px 0 0;
+      }
+    }
+
+    &.info {
+      background-color: @blue-100;
+      border: none;
+      border-left: solid 3px @blue-400;
+
+      &::before {
+        content: "\f05a";
+        font-family: "Font Awesome", FontAwesome;
+        color: @blue-400;
+        display: inline-block;
+        font-weight: bold;
+        font-size: 17px;
+        padding: 0 5px 0 0;
+      }
+    }
+
+    &.tip {
+      border-left: 3px solid @green-400;
+      background-color: @green-100;
+
+      &::before {
+        content: "\f058";
+        font-family: "Font Awesome", FontAwesome;
+        color: @green-400;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 17px;
+        padding: 0 5px 0 0;
       }
     }
   }
@@ -1395,18 +1590,14 @@ Generic Styling for Desktop
 
 .alert {
   border: none;
-  border-left: 3px solid @gray;
-  color: #757575;
-  background-color: #f9f9f9;
   border-radius: 0;
   font-size: 16px;
-  padding: 8px 13px;
+  padding: 15px 18px;
 
   pre, code {
     background-color: #fff;
     border: none;
   }
-
 }
 
 .alert-info {
@@ -1418,121 +1609,6 @@ Generic Styling for Desktop
     color: #004a80;
     border-left: 3px solid #004b80;
     background-color: #edf7ff;
-  }
-}
-
-.alert-success {
-  color: #3dcc3d;
-  border-left: 3px solid #c0eac0;
-  background-color: #f4fff4;
-}
-
-.alert-warning {
-  color: #808060;
-  border-left: 3px solid #e0e0c9;
-  background-color: #fffff7;
-}
-
-.alert-danger {
-  color: #cc3d3d;
-  border-left: 3px solid #eac0c0;
-  background-color: #fff4f4;
-}
-
-.alert-ee {
-  background-color: #e5f4ff;
-  border: none;
-  border-left: solid 3px #b3dfff;
-  border-radius: 0;
-  font-size: 16px;
-
-  &.red {
-    background-color: #fdf3f2;
-    border-left: solid 3px @red;
-  }
-
-  &.warning {
-    background-color: #fffbea;
-    border-left: solid 3px #faebcb;
-  }
-
-  &.info {
-    border-left: 3px solid @gray;
-    color: #757575;
-    background-color: #f9f9f9;
-  }
-
-  .alert-body {
-    padding-top: 20px;
-  }
-
-  .left {
-    float: left;
-    padding-top: 5px;
-    margin: 0 20px 0;
-  }
-
-  .tag {
-    padding: 2px 8px;
-    margin-right: 12px;
-    border-radius: 11px;
-    font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont,
-      "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-size: 10px;
-    font-weight: bold;
-    background: @blue;
-    color: white;
-
-    &.green {
-      background: #35cb05;
-    }
-
-    &.red {
-      background: @red;
-    }
-  }
-
-  img {
-    width: 20px;
-    margin-right: 5px;
-    margin-top: 3px;
-    float: left;
-    display: inline-block;
-  }
-
-  code {
-    font-size: 13px;
-  }
-
-  p {
-    padding: 0 25px 0 75px;
-    font-size: 16px;
-  }
-
-  a {
-    text-decoration: none;
-    color: @blue-light;
-  }
-
-  &.condensed {
-    padding: 6px 8px;
-
-    .alert-body {
-      padding: 0;
-      margin: 0;
-      display: flex;
-      align-items: center;
-    }
-
-    p {
-      flex-grow: 1;
-      padding: 0;
-      margin: 0;
-    }
-  }
-
-  &.margin-bigger {
-    margin-bottom: 32px;
   }
 }
 

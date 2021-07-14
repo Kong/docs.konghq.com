@@ -46,6 +46,6 @@ displayed on the **Dev Portal** page. The format looks something like this:
       if [auto approve](/konnect/dev-portal/administrators/auto-approve-devs-apps) is not enabled.
 
 6. After your request has been [approved by an admin](/konnect/dev-portal/administrators/manage-devs) or automatically approved,
-   click **Login**. The Login dialog is displayed.
+   click **Login**.
 
 7. Enter your credentials and log in. If you experience any access issues, contact your {{site.konnect_short_name}} admin.

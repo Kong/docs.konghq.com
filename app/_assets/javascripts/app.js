@@ -2,7 +2,7 @@
 
 "use strict";
 
-$(function () {
+$(document).ready(function () {
   var NAV_HEIGHT = 56;
 
   var $window = $(window);
@@ -28,6 +28,14 @@ $(function () {
     );
   });
 
+    // Active link
+  var url = $(".page.v2").data("url");
+  if (url){
+    var urlNoSlash = url.slice(0, -1);
+    var activeNav = $(".docs-sidebar li a[href='"+url+"'], .docs-sidebar li a[href='"+urlNoSlash+"'] ").addClass("active");
+    activeNav.parents(".accordion-item").addClass("active");
+  }
+
   // Change header download button color
 
   if (!$("body#enterprise").length) {
@@ -44,6 +52,38 @@ $(function () {
       }
     });
   }
+
+  // MODULE DROPDOWN: dropdown menu functionality (handles main product dropdown)
+  $("#module-dropdown").on("click", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    $("#module-list").toggleClass("open");
+
+    $(document).one('click', function closeMenu (e){
+        if($('#module-list').has(e.target).length === 0){
+            $('#module-list').removeClass('open');
+        } else {
+            $(document).one('click', closeMenu);
+        }
+    });
+  });
+
+  // VERSION DROPDOWN: dropdown menu functionality (handles plugin detail page, lua, and main versions dropdown)
+  $("#version-dropdown").on("click", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    $("#version-list").toggleClass("open");
+
+    $(document).one('click', function closeMenu (e){
+        if($('#version-list').has(e.target).length === 0){
+            $('#version-list').removeClass('open');
+        } else {
+            $(document).one('click', closeMenu);
+        }
+    });
+  });
 
   // Hide banner on "I accept" and set cookie
   $(".cookie-policy-accept").on("click", function (e) {
@@ -336,33 +376,33 @@ $(function () {
 
     $navItems.on("click", setNavItemActive);
 
-    $(".sidebar-toggle").click(function () {
+    $(".sidebar-toggle").on("click", function () {
       $(".page-navigation").addClass("sidebar-open");
       $(".docs-sidebar").addClass("sidebar-open");
     });
-    $(".page-navigation > .close-sidebar").click(function () {
+    $(".page-navigation > .close-sidebar").on("click", function () {
       $(".page-navigation").removeClass("sidebar-open");
     });
-    $(".docs-sidebar > .close-sidebar").click(function () {
+    $(".docs-sidebar > .close-sidebar").on("click", function () {
       $(".docs-sidebar").removeClass("sidebar-open");
     });
 
-    $(".toc-sidebar-toggle").click(function () {
+    $(".toc-sidebar-toggle").on("click", function () {
       $(".docs-toc").addClass("sidebar-open");
     });
-    $(".docs-toc > .close-sidebar").click(function () {
+    $(".docs-toc > .close-sidebar").on("click", function () {
       $(".docs-toc").removeClass("sidebar-open");
     });
-    $(".docs-toc .scroll-to").click(function () {
+    $(".docs-toc .scroll-to").on("click", function () {
       $(".docs-toc").removeClass("sidebar-open");
     });
 
-    $(".docs-toc > .collapse-toc").click(function () {
+    $(".docs-toc > .collapse-toc").on("click", function () {
       $(".docs-toc").addClass("collapsed");
       $(".page-content-container").addClass("toc-collapsed");
       setCookie("toc-collapsed", "true");
     });
-    $(".docs-toc > .expand-toc").click(function () {
+    $(".docs-toc > .expand-toc").on("click", function () {
       $(".docs-toc").removeClass("collapsed");
       $(".page-content-container").removeClass("toc-collapsed");
       setCookie("toc-collapsed", "false");
@@ -372,7 +412,7 @@ $(function () {
       $(".page-content-container").addClass("toc-collapsed");
     }
 
-    $("#search-version-icon").click(function () {
+    $("#search-version-icon").on("click", function () {
       const searchVersion = $(".search-version-row");
       if (searchVersion.hasClass("visible")) {
         searchVersion.removeClass("visible");
@@ -417,7 +457,7 @@ $(function () {
   analytics.trackLink($('a[href="#comparison"]')[0], "Clicked Why Kong");
 
   // Add Smooth scroll when link with attr clicked
-  $('a[data-link="scroll"]').click(function () {
+  $('a[data-link="scroll"]').on("click", function () {
     $("html, body").animate(
       {
         scrollTop: $($.attr(this, "href")).offset().top - NAV_HEIGHT, // Add spacing on top after scroll
@@ -448,7 +488,7 @@ $(function () {
   }
 
   // Plugins filter
-  $("a[data-filter]").click(function () {
+  $("a[data-filter]").on("click", function () {
     var target = $(this).data("filter");
 
     // Remove any active classes that may already be applied
@@ -486,11 +526,11 @@ $(function () {
     mobileTable();
   }
 
-  $window.resize(function () {
+  $(window).on("resize", (function(){
     if ($window.width() <= 1099) {
       mobileTable();
     }
-  });
+  }));
 
   function mobileTable() {
     $("table").each(function (index, value) {
@@ -513,7 +553,7 @@ $(function () {
   }
 
   // watch scroll and update active scroll-to anchor links
-  $window.scroll(() => {
+  $window.on("scroll", () => {
     const anchors = $("a.header-link");
     const scrollToLinks = $("a.scroll-to");
     if (!anchors.length || !scrollToLinks.length) {
@@ -540,7 +580,7 @@ $(function () {
 
   // navtabs
   const navtabs = $("div[data-navtab-id]");
-  navtabs.click(function () {
+  navtabs.on("click", function () {
     const navtabTitle = $(this);
     const navtabID = navtabTitle.data("navtab-id");
     const navtabContent = $(`div[data-navtab-content='${navtabID}']`);
@@ -581,17 +621,17 @@ $(function () {
     }, 2000);
   }
 
-  $("#feedback-comment-button-back").click(function () {
+  $("#feedback-comment-button-back").on("click", function () {
     $(".feedback-options").css("visibility", "visible");
     $(".feedback-comment").css("visibility", "hidden");
   });
 
-  $("#feedback-comment-button-submit").click(function () {
+  $("#feedback-comment-button-submit").on("click", function () {
     $(".feedback-comment").css("visibility", "hidden");
     sendFeedback("no", $("#feedback-comment-text").val());
   });
 
-  $(".feedback-options-button").click(function () {
+  $(".feedback-options-button").on("click", function () {
     const button = $(this);
     const result = button.data("feedback-result");
 
@@ -655,7 +695,7 @@ $(function () {
     snippet.addClass("copy-code-snippet");
 
     const action = $('<i class="copy-action fa fa-copy"></i>');
-    action.click(function () {
+    action.on("click", function () {
       if ($("#copy-code-success-info").length > 0) {
         return;
       }
@@ -663,7 +703,7 @@ $(function () {
       copyInput.text(
         snippet.data("copy-code") ||
           snippet
-            .find(".rouge-code")
+            .find("code")
             .text()
             .replace(/^\s*\$\s*/gi, "")
       );
@@ -720,8 +760,8 @@ $(function () {
   }
 
   if (imageModal.length > 0 && !imageModal.data("image-expand-disabled")) {
-    imageModal.find("i").click(closeModal);
-    imageModal.find(".image-modal-backdrop").click(closeModal);
+    imageModal.find("i").on("click", closeModal);
+    imageModal.find(".image-modal-backdrop").on("click", closeModal);
 
     $(".page-content > .content img:not(.no-image-expand)").each(function (
       index,
@@ -730,7 +770,7 @@ $(function () {
       const $img = $(img);
 
       img.style.cursor = "pointer";
-      $img.click(function () {
+      $img.on("click", function () {
         $(document.body).addClass("image-modal-no-scroll");
         imageModal.addClass("visible");
         imageModal.find("img").attr("src", $img.attr("src"));
@@ -740,18 +780,6 @@ $(function () {
     });
   }
 
-  // open docs sidebar items
-  $(".docs-sidebar a.active, li.accordion-item.active").each(function (
-    index,
-    a
-  ) {
-    $(a)
-      .parents("li.accordion-item")
-      .each(function (index, item) {
-        $(item).addClass("active");
-        $(item).find("> input").prop("checked", true);
-      });
-  });
 
   const scrollToTopButton = $("#scroll-to-top-button");
 
@@ -763,7 +791,7 @@ $(function () {
     }
   }
 
-  scrollToTopButton.click(function () {
+  scrollToTopButton.on("click", function () {
     $("html, body").animate({ scrollTop: 0 }, "slow");
   });
   updateScrollToTopButttonVisibility();
@@ -827,7 +855,7 @@ $(function () {
     .map((params) => params[1])[0];
 
   const editionSwitch = $(".edition-switch");
-  editionSwitch.click(function () {
+  editionSwitch.on("click", function () {
     if (edition === "gateway-oss") {
       window.location.search = "?edition=enterprise";
     } else {
@@ -846,27 +874,33 @@ $(function () {
 });
 
 jQuery(document).ready(function () {
-  var closed = localStorage.getItem("closebanner-survey");
-  console.log(closed);
-  var getUrl = window.location;
-  var baseUrl =
-    getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split("/")[0];
+  var closed = localStorage.getItem("closebanner-konnect");
   if (
-    closed !== "closeme" &&
-    window.location.href.indexOf("getting-started") === -1 &&
-    window.location.href.indexOf("2.1.x") > -1 &&
-    getUrl !== baseUrl
+    closed !== "closebanner"
   ) {
-    $("header.navbar").removeClass("closed");
+    $(".navbar-v2").removeClass("closed");
     $("body").addClass("banner");
   } else {
-    $("header.navbar").addClass("closed");
+    $(".navbar-v2").addClass("closed");
     $("body").removeClass("banner");
   }
+
+  // open docs sidebar items
+  $(".docs-sidebar a.active, li.accordion-item.active").each(function (
+    index,
+    a
+  ) {
+    $(a)
+      .parents("li.accordion-item")
+      .each(function (index, item) {
+        $(item).addClass("active");
+        $(item).find("> input").prop("checked", true);
+      });
+  });
 });
 
 var scrolling = false;
-$(document).scroll(function () {
+$(document).on("scroll", function () {
   scrolling = true;
 });
 
@@ -874,14 +908,14 @@ setInterval(function () {
   if (scrolling) {
     scrolling = false;
     if ($(document).scrollTop() < 85) {
-      $("header").removeClass("compress");
+      $(".navbar-v2").removeClass("compress");
     } else {
-      $("header").addClass("compress");
+      $(".navbar-v2").addClass("compress");
     }
   }
 }, 10);
 
-$(".closebanner").click(function () {
-  $("header.navbar").addClass("closed");
-  localStorage.setItem("closebanner-survey", "closeme");
+$(".closebanner").on("click", function () {
+  $(".navbar-v2").addClass("closed");
+  localStorage.setItem("closebanner-konnect", "closebanner");
 });

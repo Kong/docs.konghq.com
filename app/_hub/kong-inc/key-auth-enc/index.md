@@ -12,7 +12,6 @@ description: |
   exception that API keys are stored in an encrypted format within the API gateway datastore.
 
 enterprise: true
-alpha: false
 type: plugin
 categories:
   - authentication
@@ -200,6 +199,7 @@ In both cases, the fields/parameters work as follows:
 field/parameter     | description
 ---                 | ---
 `{consumer}`        | The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+`ttl`<br>*optional* | The number of seconds the key is going to be valid. If missing, the `ttl` is unlimited.
 `key`<br>*optional* | You can optionally set your own unique `key` to authenticate the client. If missing, the plugin will generate one.
 
 ### Make a Request with the Key

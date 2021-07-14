@@ -43,6 +43,7 @@ header.navbar {
     font-size: 20px;
     line-height: 28px;
     color: @color-text;
+
   }
 
   h4 {
@@ -50,6 +51,14 @@ header.navbar {
     font-weight: normal;
     font-size: 20px;
     line-height: 28px;
+    color: @color-text-light;
+  }
+
+  h5 {
+    text-align: left;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
     color: @color-text-light;
   }
 
@@ -225,8 +234,9 @@ header.navbar {
       color: @color-blue;
       font-weight: bold;
 
-      &:hover {
-        text-decoration: underline;
+      &:hover, &:focus {
+        text-decoration: none;
+        opacity: 0.7;
       }
     }
 
@@ -235,16 +245,73 @@ header.navbar {
     }
   }
 
+
   section.cloud-platform {
-    margin-top: 96px;
+    margin-top: 52px;
+
+    hr {
+      width: 90%;
+      margin-bottom: 1em;
+      margin-top: 0;
+    }
+
+    section.konnect-docs {
+      .shadowed-card;
+      margin-bottom: 45px;
+
+      .platform-links {
+        padding: 5px 0 20px;
+        justify-content: center;
+        flex-direction: row;
+        display: flex;
+        width: 100%;
+
+          a.name-link {
+            padding: 0 5px;
+            transition: background-color @hover-transition-time;
+            border-radius: 8px;
+
+            .name-label {
+              .link-text {
+              padding: 7px 15px;
+              }
+            }
+
+            &:hover {
+              background-color: #F8F9FC;
+            }
+          }
+        }
+    }
+
+    .platform-title {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 30px;
+      color: #043558;
+      text-align: center;
+      padding: 20px 24px 20px;
+      background-image: url(/assets/images/landing-page/hero-konnect.png);
+      border-top-right-radius: 8px;
+      border-top-left-radius: 8px;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .platform-description {
+      padding: 5px 24px;
+      text-align: center;
+      font-size: 14px;
+    }
 
     .cards-container {
-      .shadowed-card;
-
       align-items: stretch;
       justify-content: center;
       padding-right: 24px;
       padding-left: 24px;
+            .shadowed-card;
 
       .arrow-card {
         display: flex;
@@ -329,8 +396,10 @@ header.navbar {
         flex-grow: 1;
 
         .card {
+          position: relative;
           padding-top: 114px;
           margin-right: 24px;
+          width: 100%;
 
           .banner-image {
             position: absolute;
@@ -468,8 +537,9 @@ header.navbar {
         .link-text {
           margin: 8px 0;
 
-          &:hover {
-            text-decoration: underline;
+          &:hover, &:focus {
+            text-decoration: none;
+            opacity: 0.7;
           }
         }
       }
@@ -495,8 +565,6 @@ header.navbar {
   }
 
   @media (max-width: 1023px) {
-    padding-left: 16px;
-    padding-right: 16px;
     padding-bottom: 24px;
 
     .card {
@@ -569,6 +637,19 @@ header.navbar {
           }
         }
       }
+
+      section.konnect-docs {
+        .platform-links {
+            flex-direction: column;
+            align-items: center;
+            padding-top: 8px;
+            padding-bottom: 8px;
+
+            a.name-link {
+              flex-direction: column;
+            }
+        }
+      }
     }
 
     section.docs {
@@ -618,6 +699,12 @@ header.navbar {
 
     section.additional-info {
       margin-top: 48px;
+    }
+  }
+
+  @media (max-width:450px) {
+    .textures img {
+      display: none;
     }
   }
 }

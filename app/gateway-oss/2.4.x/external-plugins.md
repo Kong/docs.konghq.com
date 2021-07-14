@@ -10,7 +10,7 @@ enabling the use of any programming language for which an appropriate
 plugin server is available.
 
 Each plugin server hosts one or more plugins and communicates with the
-main {{site.base_gateway}} process through Unix sockets.  If so configured, {{site.base_gateway}} can manage
+main {{site.base_gateway}} process through Unix sockets. If so configured, {{site.base_gateway}} can manage
 those processes, starting, restarting and stopping as necessary.
 
 {{site.base_gateway}} currently maintains a Go language plugin server,
@@ -21,7 +21,7 @@ and Python language support [kong-python-pdk].
 ## Kong Gateway plugin server configuration
 
 The `pluginserver_names` property is a comma-separated list of names, one
-for each plugin server process.  These names are used to group each process'
+for each plugin server process. These names are used to group each process'
 properties and to annotate log entries.
 
 For each name, other properties can be defined:
@@ -40,12 +40,12 @@ an hypothetical Python plugin server called `pypluginserver.py`):
 pluginserver_names = go,python
 
 pluginserver_go_socket = /usr/local/kong/go_pluginserver.sock
-pluginserver_go_start_cmd = go-pluginserver -kong-prefix /usr/local/kong/ -plugins-directory /usr/local/kong/go-plugins
-pluginserver_go_query_cmd = go-pluginserver -dump-all-plugins -plugins-directory /usr/local/kong/go-plugins
+pluginserver_go_start_cmd = /usr/local/bin/go-pluginserver -kong-prefix /usr/local/kong/ -plugins-directory /usr/local/kong/go-plugins
+pluginserver_go_query_cmd = /usr/local/bin/go-pluginserver -dump-all-plugins -plugins-directory /usr/local/kong/go-plugins
 
 pluginserver_python_socket = /usr/local/kong/python_pluginserver.sock
-pluginserver_python_start_cmd = kong-python-pluginserver
-pluginserver_python_query_cmd = kong-python-pluginserver --dump-all-plugins
+pluginserver_python_start_cmd = /usr/local/bin/kong-python-pluginserver
+pluginserver_python_query_cmd = /usr/local/bin/kong-python-pluginserver --dump-all-plugins
 ```
 
 To enable those plugins, add the each plugin name to the `plugins` config. Assume we have those hello plugins
@@ -55,10 +55,15 @@ in each language:
 plugins = bundled, go-hello, js-hello, py-hello
 ```
 
+{:.note}
+> **Note:** The `pluginserver_XXX_start_cmd` and `pluginserver_XXX_query_cmd` commands use
+ a limited default `PATH` variable. In most cases, you have to specify the full executable
+ path instead.
+
 ### Legacy configuration
 
-{{site.base_gateway}} versions 2.0.x to 2.2.x  supported only Go external plugins and a single
-plugin server using a different configuration style.  Starting with {{site.base_gateway}} version 2.3,
+{{site.base_gateway}} versions 2.0.x to 2.2.x supported only Go external plugins and a single
+plugin server using a different configuration style. Starting with {{site.base_gateway}} version 2.3,
 the old style is recognized and internally transformed to the new style.
 
 If property `pluginserver_names` isn't defined, the legacy properties
@@ -122,7 +127,7 @@ for example Go plugins.
 #### 1. Configuration Structure
 
 Plugins written in Lua define a schema to specify how to read and validate
-configuration data coming from the datastore or the Admin API.  Since Go is a
+configuration data coming from the datastore or the Admin API. Since Go is a
 statically-typed language, all that specification is handled by defining a
 configuration structure:
 
@@ -134,7 +139,7 @@ type MyConfig struct {
 ```
 
 Public fields (that is, those starting with a capital letter) will be filled
-with configuration data.  If you want them to have a different name in the
+with configuration data. If you want them to have a different name in the
 datastore, add field tags as defined in the `encoding/json` package:
 
 ```go
@@ -147,7 +152,7 @@ type MyConfig struct {
 #### 2. New() Constructor
 
 Your plugin must define a function called `New` that creates an instance of this type
-and returns as an `interface{}`.  In most cases, it’s just this:
+and returns as an `interface{}`. In most cases, it’s just this:
 
 ```go
 func New() interface{} {
@@ -170,8 +175,9 @@ func (conf *MyConfig) Access (kong *pdk.PDK) {
 }
 ```
 
-The phases you can implement custom logic for are, and the expected function
+The phases you can implement custom logic for are as follows, and the expected function
 signature is the same for all of them:
+
 - `Certificate`
 - `Rewrite`
 - `Access`
@@ -227,8 +233,8 @@ Usage of my-plugin:
         Kong prefix path (specified by the -p argument commonly used in the Kong CLI) (default "/usr/local/kong")
 ```
 
-When run without arguments, it will create a socket file with the
-`kong-prefix` and the executable name, appending `.socket`.  For example,
+When run without arguments, it creates a socket file with the
+`kong-prefix` and the executable name, appending `.socket`. For example,
 if the executable is `my-plugin`, it would be
 `/usr/local/kong/my-plugin.socket` by default.
 
@@ -278,7 +284,7 @@ when developing plugins in TypeScript.
 npm install kong-pdk -g
 ```
 
-Assume the plugins are stored in /usr/local/kong/js-plugins
+Assume the plugins are stored in `/usr/local/kong/js-plugins`:
 
 ```
 pluginserver_names = js
@@ -319,7 +325,7 @@ for example JavaScript and TypeScript plugins.
 
 Similarly to {{site.base_gateway}} Lua plugins, you can implement custom logic to be executed at
 various points of the request processing lifecycle. For example, to execute
-custom Javascript code in the access phase, define a function named `access`:
+custom JavaScript code in the access phase, define a function named `access`:
 
 ```javascript
 class KongPlugin {
@@ -334,6 +340,7 @@ class KongPlugin {
 
 The phases you can implement custom logic for are as follows, and the expected function
 signature is the same for all of them:
+
 - `certificate`
 - `rewrite`
 - `access`
@@ -360,7 +367,7 @@ class KongPlugin {
 }
 ```
 
-Or consume Promise in a traditional way
+Or consume Promise in a traditional way:
 
 ```javascript
 class KongPlugin {
@@ -390,6 +397,37 @@ Note in this case, the node version and architecture that runs the plugin server
 the one that runs `npm install` under plugins directory must match. For example, it may break
 when you run `npm install` under macOS and mount the working directory into a Linux container.
 
+### Testing
+
+[kong-js-pdk] provides a mock framework to test plugin code correctness through `jest`.
+
+Install `jest` as a development dependency, and add  the `test` script in `package.json`:
+
+```
+npm install jest --save-dev
+```
+
+The `package.json` has content similar to the following:
+
+    {
+      "scripts": {
+        "test": "jest"
+      },
+      "devDependencies": {
+        "jest": "^26.6.3",
+        "kong-pdk": "^0.3.2"
+      }
+    }
+
+Run the test through npm with:
+
+```
+npm test
+```
+
+**Note**: Check out [this repository](https://github.com/Kong/kong-js-pdk/tree/master/examples)
+for examples on how to write test using `jest`.
+
 ## Developing Python plugins
 
 {{site.base_gateway}} support for the Python language is provided by [kong-python-pdk].
@@ -398,13 +436,13 @@ functions to access {{site.base_gateway}} features of the [PDK][kong-pdk].
 
 ### Example configuration
 
-[kong-python-pdk] can be installed via `pip`. To install the plugin server binary and PDK globally, use:
+[kong-python-pdk] can be installed using `pip`. To install the plugin server binary and PDK globally, use:
 
 ```
 pip install kong-pdk
 ```
 
-Assume the plugins are stored in /usr/local/kong/python-plugins
+Assume the plugins are stored in `/usr/local/kong/python-plugins`:
 
 ```
 pluginserver_names = python
@@ -450,6 +488,7 @@ class Plugin(object):
 
 The phases you can implement custom logic for are as follows, and the expected function
 signature is the same for all of them:
+
 - `certificate`
 - `rewrite`
 - `access`
@@ -461,7 +500,7 @@ Similar to Lua plugins, the presence of the `response` handler automatically ena
 
 #### 2. Type hints
 
-[kong-python-pdk] supports [type hint](https://www.python.org/dev/peps/pep-0484/) in Python 3.x, to use type lint
+[kong-python-pdk] supports [type hint](https://www.python.org/dev/peps/pep-0484/) in Python 3.x. To use type lint
 and autocomplete in IDE, user can annotate the `kong` parameter in phase handler:
 
 ```python
@@ -511,7 +550,7 @@ pluginserver_other_one_query_cmd = /path/to/other-one --dump
 
 ### Concurrency model
 
-Python plugin server and embedded server supports multiple concurrency model. By default
+Python plugin server and embedded server supports multiple concurrency model. By default,
 the server starts in multi-threading mode.
 
 If your workload is IO intensive, consider the gevent model by adding `-g` to pluginserver's

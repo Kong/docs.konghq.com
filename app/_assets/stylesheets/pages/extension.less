@@ -1,16 +1,35 @@
 .page-extension-profile .container .dropdown.page-header-right {
-  position: absolute;
-  text-align: right;
-  top: -100px;
-  right: 0;
   z-index: 10;
+  right: 20px;
+  top: 37px;
+  position: absolute;
+
+  button {
+    width: 200px;
+  }
 
   ul {
     right: 0;
   }
 }
 
-@media (max-width: 767px) {
+@media (min-width: 1601px) {
+  .page-extension-profile {
+    .container {
+      max-width: 1366px;
+    }
+  }
+}
+
+@media (max-width: 1600px) {
+  .page-extension-profile {
+    .container {
+      max-width: 95%;
+    }
+  }
+}
+
+@media (max-width: 800px) {
   .page-extension-profile .container .dropdown.page-header-right {
     position: relative;
     text-align: left;
@@ -34,29 +53,43 @@
   }
 
 .page-extension-profile {
-  .content {
-    padding-top: 35px;
+  >.container {
+    border: none;
+    border-top: 1px solid @gray;
+  }
 
-    h1.page-extension-test {
-      color: blue
+  .content {
+    padding-top: 37px;
+
+    h2, h3, h4, h5, h6 {
+      font-family: @family-display;
+      margin-bottom: 1.2rem;
     }
 
     h2 {
-      font-size: 30px;
-      margin: 20px 0;
+      font-size: 2.7rem;
+      font-weight: normal;
     }
 
     h3 {
-      font-size: 23px;
-      margin-top: 1.5em;
+      margin-top: 2.7rem;
+      font-size: 2.1rem;
+      font-weight: normal;
     }
 
     h4 {
-      font-size: 17px;
+      font-size: 1.7rem;
+      font-weight: bold;
     }
 
-    h2, h4, p .highlight {
-      margin: 0 0 2.5rem 0;
+    h5 {
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    h6 {
+      font-size: 1.2rem;
+      font-weight: bold;
     }
 
     ol {
@@ -86,6 +119,12 @@
           font-size: inherit;
         }
       }
+    }
+
+    hr {
+        border-top: 1px solid #ebebeb;
+        margin-top: 2em;
+        margin-bottom: 2em;
     }
 
     table {
