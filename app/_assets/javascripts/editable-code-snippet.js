@@ -1,4 +1,4 @@
-$(document).ready(function () {
+jQuery(function () {
     $('[contenteditable]').on('paste', function(e) {
         //strips elements added to the editable tag when pasting
         var $self = $(this);
