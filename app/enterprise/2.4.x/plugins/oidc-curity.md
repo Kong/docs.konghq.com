@@ -126,7 +126,8 @@ The Kong Dev Portal needs a client configured in the Curity Identity Server. The
 - Choose suitable authentication methods.
 - Add redirect URI (by default `http://kong:8004/<WORKSPACE_NAME>/auth`).
 
-NOTE: There is an issue with short-lived access tokens that is under investigation. Increase the `Access Token Time to Live` in the client configuration to `3000` as a temporary workaround. 
+{:.note}
+> **NOTE:** There is an issue with short-lived access tokens that is under investigation. Increase the `Access Token Time to Live` in the client configuration to `3000` as a temporary workaround. 
 
 More information is available in the [Code Flow][curity-code-flow-tutorial] tutorial.
 
@@ -207,5 +208,5 @@ With relatively simple configurations in both the Curity Identity Server and the
 [curity-phantom-token-pattern]: https://curity.io/resources/learn/phantom-token-pattern
 [curity-code-flow-tutorial]: https://curity.io/resources/learn/code-flow
 [curity-kong-dev-portal-user-provisioner]: https://curity.io/resources/learn/provision-kong-dev-portal-user
-[kong-dev-portal-doc]: https://docs.konghq.com/enterprise/latest/developer-portal
-[kong-dev-portal-doc-oidc]: https://docs.konghq.com/enterprise/latest/developer-portal/configuration/authentication/oidc
+[kong-dev-portal-doc]: /enterprise/latest/developer-portal
+[kong-dev-portal-doc-oidc]: /enterprise/latest/developer-portal/configuration/authentication/oidc
