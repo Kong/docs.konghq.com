@@ -30,7 +30,7 @@ no_version: true
   See [Starting Data Plane Nodes](/gateway-oss/2.5.x/hybrid-mode/#starting-data-plane-nodes)
   in the Hybrid Mode guide for more information. [#7044](https://github.com/kong/kong/pull/7044)
 - New `declarative_config_string` option allows loading a declarative config directly from a string. See the
-  [Loading The Declarative Configuration File](/2.5.x/db-less-and-declarative-config/#loading-the-declarative-configuration-file) section of the DB-less and Declarative Configuration guide for more information.
+  [Loading The Declarative Configuration File](gateway-oss/2.5.x/db-less-and-declarative-config/#loading-the-declarative-configuration-file) section of the DB-less and Declarative Configuration guide for more information.
   [#7379](https://github.com/kong/kong/pull/7379)
 
 #### PDK
@@ -183,7 +183,7 @@ no_version: true
   `kong.response.get_XXX()` functions required data from the response object, which was not accessible in the
   post-log timer used to call log handlers in external plugins. Now these functions work by accessing the required
   data from the set saved at the start of the log phase.
-  See [`kong.response`](/gateway-oss/{{page.kong_version}}/kong.response)
+  See [`kong.response`](/gateway-oss/2.5.x/kong.response)
   in the Plugin Development Kit for more information. [#7048](https://github.com/kong/kong/pull/7048)
 - External plugins handle certain error conditions better while the Kong balancer is being refreshed. Before
   when an `instance_id` of an external plugin changed, and the plugin instance attempted to reset and retry,
