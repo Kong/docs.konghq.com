@@ -4,7 +4,7 @@ no_search: true
 no_version: true
 ---
 
-## 2.5.0.0 (beta)
+## 2.5.0.0 (beta1)
 **Release Date** 2021/07/13
 
 ### Features
