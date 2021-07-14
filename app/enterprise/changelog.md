@@ -183,7 +183,11 @@ no_version: true
   `kong.response.get_XXX()` functions required data from the response object, which was not accessible in the
   post-log timer used to call log handlers in external plugins. Now these functions work by accessing the required
   data from the set saved at the start of the log phase.
+<<<<<<< HEAD
   See [`kong.response`](/gateway-oss/2.5.x/kong.response)
+=======
+  See [`kong.response`](/gateway-oss/{{page.kong_version}}/kong.response)
+>>>>>>> e52b1fd373f484f20cd83eb2bbdccd6dc975563c
   in the Plugin Development Kit for more information. [#7048](https://github.com/kong/kong/pull/7048)
 - External plugins handle certain error conditions better while the Kong balancer is being refreshed. Before
   when an `instance_id` of an external plugin changed, and the plugin instance attempted to reset and retry,
