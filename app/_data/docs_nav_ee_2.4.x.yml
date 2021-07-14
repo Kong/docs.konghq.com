@@ -488,6 +488,8 @@
         - text: OpenID Connect Plugin Reference
           url: /hub/kong-inc/openid-connect
           absolute_url: true
+        - text: OpenID Connect with Curity
+          url: /plugins/oidc-curity
         - text: OpenID Connect with Azure AD
           url: /plugins/oidc-azuread
         - text: OpenID Connect with Google

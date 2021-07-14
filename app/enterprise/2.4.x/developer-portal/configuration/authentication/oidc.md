@@ -6,7 +6,8 @@ title: Enable OpenID Connect in the Dev Portal
 
 The [OpenID Connect Plugin](/hub/kong-inc/openid-connect/) (OIDC)
 allows the Kong Developer Portal to hook into existing authentication setups using third-party
-*Identity Providers* (IdP) such as Google, Okta, Microsoft Azure AD, etc.
+*Identity Providers* (IdP) such as Google, Okta, Microsoft Azure AD,
+[Curity](/enterprise/latest/plugins/oidc-curity/#kong-dev-portal-authentication), etc.
 
 [OIDC](/hub/kong-inc/openid-connect/) must be used with
 the `session` method, utilizing cookies for Dev Portal File API requests.
