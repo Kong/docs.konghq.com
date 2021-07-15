@@ -30,22 +30,22 @@ Revert to page load state, only product is displayed
 {% assign dbs = product.versions.databases %}
 {% assign langs = product.versions.pdk %}
 
+<script>
+  window.productCompatibility = {{ site.data.tables.compat-json | jsonify }}
+</script>
+
 <form name="compat-form" id="compat-form" action="/compat-dropdown">
   Product: <select name="product" id="product-compat-dropdown">
-    <option value="0" selected>Select product</option>
     {% for product in products %}
-    <option value="{{ product.name }}">{{ product.name }}</option>
+    <option value="{{ product.slug }}">{{ product.name }}</option>
     {% endfor %}
     </select>
     <!-- grab the selected value and use this to determine which version dropdown to show -->
     <!-- add a version dropdown if there is a version for that product -->
     <br><br>
-    <!-- {% if !product.noversions %}
-      Version: <select name="version" id="version-compat-dropdown">
-        <option value="0" selected>Select version</option>
-        <option value="{{ product.versions[0].release }}">{{ product.versions[0].release }}</option>
-      </select>
-    {% endif %} -->
+    <div id="version-selector" style="display:none">
+    Version: <select name="version" id="version-compat-dropdown"></select>
+    </div>
 </form>
 
 <button type="button" onclick="getFormValues()">View Results</button>
@@ -58,11 +58,15 @@ Revert to page load state, only product is displayed
 <!-- Test #3: One big table for all the things, per version -->
 
 {% for product in products %}
-<h3 id="{{ product.name }}">{{ product.name }}</h3>
-
 {% for version in product.versions %}
 
+<div class="results-table" id="{{ product.slug }}-{{ version.release | replace: '.', '_' }}" style="display:none;">
+
+<h3 id="{{ product.name }}">{{ product.name }}</h3>
+
+{% if version.release %}
 **Version {{ version.release }}**
+{% endif %}
 
 <table style="width: 80%; display: table; background-color: #f5f5f5">
   <thead>
@@ -108,6 +112,7 @@ Revert to page load state, only product is displayed
   {% endfor %}
   </tbody>
 </table>
+</div>
 
 {% endfor %}
 {% endfor %}
