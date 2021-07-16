@@ -13,7 +13,7 @@ no_version: true
 |                                   |The YAML file specifies the replica count.     |The replica count is specified in the YAML file.   |
 |---                                |---                                            |---                                                |
 |Use conversational tone            |Run the program.                               |Execute the program.                               |
-|                                   |Utilize the Admin API.                         |Use the Admin API.                                 |
+|                                   |Use the Admin API.                         |Utilize the Admin API.                                 |
 |---                                |---                                            |---                                                |
 |Don’t use Latin phrases            |For example, ...                               |e.g., ...                                          |
 |                                   |That is, ...                                   |i.e., ...                                          |
@@ -101,8 +101,14 @@ to avoid horizontal scrolling.
 - When naming/titling image files, use lowercase letters and dashes only.
 - Use SVGs whenever possible, otherwise use PNGs.
 - Limit image file size to ~2MB.
+- Compress and resize images before adding them to the site. 
 - Do not use shadows.
-- Borders can be added to screenshots only - 1px black.
+- Borders can be added to screenshots only `-1px` black.
+- Add an `alt` attribute and detailed description of the image. 
+
+## Links
+- Don't use link titles like "Read more" and "Click here". Instead, write descriptive titles that properly detail what content is accessible by clicking the link. 
+- If the linked content is a larger area like a panel, add a `title` attribute that describes the linked content to the `a` tag. 
 
 ## Reference style guides
 - [Valero Style Guide](https://velero.io/docs/v1.5/style-guide/#inline-code-formatting)

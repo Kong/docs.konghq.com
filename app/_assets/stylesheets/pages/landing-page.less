@@ -565,8 +565,6 @@ header.navbar {
   }
 
   @media (max-width: 1023px) {
-    padding-left: 16px;
-    padding-right: 16px;
     padding-bottom: 24px;
 
     .card {
@@ -701,6 +699,21 @@ header.navbar {
 
     section.additional-info {
       margin-top: 48px;
+    }
+  }
+
+  .textures > .mobile-texture {
+    display: none;
+  }
+
+  @media (max-width:450px) {
+    .textures > .top-left, .top-right {
+      display: none;
+    }
+    .textures > .mobile-texture {
+      display: block;
+      position: absolute;
+      padding-top: 60px;
     }
   }
 }

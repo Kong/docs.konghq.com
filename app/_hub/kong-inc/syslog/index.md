@@ -1,8 +1,8 @@
 ---
 name: Syslog
 publisher: Kong Inc.
-version: 2.1.x
-# internal handler version 2.1.0
+version: 2.2.x
+# internal handler version 2.2.0
 
 desc: Send request and response logs to Syslog
 description: |
@@ -15,6 +15,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.5.x
         - 2.4.x
         - 2.3.x
         - 2.2.x
@@ -90,6 +91,15 @@ params:
         A list of key-value pairs, where the key is the name of a log field and
         the value is a chunk of Lua code, whose return value sets or replaces
         the log field value.
+    - name: facility
+      required: false
+      default: "`user`"
+      datatype: string
+      description: |
+        The facility is used by the operating system to decide how to handle each log message. This
+        optional argument defines what must be the facility set by the plugin when logging. Available
+        options: `auth`, `authpriv`, `cron`, `daemon`, `ftp`, `kern`, `lpr`, `mail`, `news`, `syslog`,
+        `user`, `uucp`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
 
 ---
 

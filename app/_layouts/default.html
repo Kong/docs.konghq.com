@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/Article">
-  {% include head.html %}
+  {% assign is_plugin_hub = false %}
+  {% if page.path == "_hub/index.html" %}
+  {% assign is_plugin_hub = true %}
+  {% endif %}
+
+  {% include_cached head.html is_plugin_hub=is_plugin_hub name=page.name title=page.title url=page.url %}
 
   <body
     id="{{ page.id }}"
@@ -22,11 +27,11 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    {% include nav-v2.html %}
+    {% include_cached nav-v2.html layout=page.layout %}
 
     {{ content | replace: '<a href="http', '<a rel="nofollow noopener noreferrer" href="http' }}
 
-    {% include footer.html %} {% include anchor_links.html %}
+    {% include_cached footer.html %} {% include_cached anchor_links.html %}
 
     <script src="/assets/app.js?v={{ site.time | date: '%s' }}"></script>
 
