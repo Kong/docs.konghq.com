@@ -12,8 +12,8 @@ no_version: true
 
 Built on top of [Kuma 1.2.2](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#122)
 
-- :rocket: Datadog is now available as a traffic tracing option.
-- :rocket: Message limit for gRPC stream is increased to better support Kuma discovery service (KDS)
+- Datadog is now available as a traffic tracing option.
+- Message limit for gRPC stream is increased to better support Kuma discovery service (KDS)
 - Improved leader election during unexpected failures.
 - Improved SDS and XDS on rapid DP restarts.
 - Fixed HDS on the dpserver when bootstrapping an ingress.
