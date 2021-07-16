@@ -4,6 +4,24 @@ no_search: true
 no_version: true
 ---
 
+## 1.3.2
+
+> Released on 2021/07/16
+
+### Changes
+
+Built on top of [Kuma 1.2.2](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#122)
+
+- :rocket: Datadog is now available as a traffic tracing option.
+- :rocket: Message limit for gRPC stream is increased to better support Kuma discovery service (KDS)
+- Improved leader election during unexpected failures.
+- Improved SDS and XDS on rapid DP restarts.
+- Fixed HDS on the dpserver when bootstrapping an ingress.
+
+### Upgrading
+
+Upgrades from `1.3.0` are seamless and no additional steps are needed.
+
 ## 1.3.1
 
 > Released on 2021/06/30
