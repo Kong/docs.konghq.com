@@ -1,6 +1,7 @@
 ---
-title: Compatibility Guide
+title: Platform Compatibility
 no_version: true
+toc: false
 ---
 
 <!-- ## Form logic
