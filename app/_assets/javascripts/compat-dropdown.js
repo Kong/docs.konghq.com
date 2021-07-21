@@ -8,6 +8,8 @@ function resetForm() {
 
   productDropdown.val("0");
   versionDropdown.val("0");
+
+  $(".results-table").hide();
 }
 
 function getFormValues() {
