@@ -8,7 +8,6 @@ var ghPages = require("gh-pages");
 var gulp = require("gulp");
 var path = require("path");
 var fs = require("fs");
-var sequence = require("run-sequence");
 var dev = false;
 
 // load gulp plugins
@@ -62,36 +61,18 @@ function css() {
 }
 
 function styles() {
-  return (
-    gulp
-      .src(paths.assets + "stylesheets/index.less")
-      .pipe($.plumber())
-      .pipe($.if(dev, $.sourcemaps.init()))
-      .pipe($.less())
-      .pipe($.autoprefixer())
-      // .pipe($.purifycss([dest.html], {
-      //   whitelist: [
-      //     '.affix',
-      //     '.alert',
-      //     '.close',
-      //     '.collaps',
-      //     '.fade',
-      //     '.has',
-      //     '.help',
-      //     '.in',
-      //     '.modal',
-      //     '.open',
-      //     '.popover',
-      //     '.tooltip'
-      //   ]
-      // }))
-      .pipe($.cleanCss({ compatibility: "ie8" }))
-      .pipe($.rename("styles.css"))
-      .pipe($.if(dev, $.sourcemaps.write()))
-      .pipe(gulp.dest(paths.dist + "assets"))
-      .pipe($.size())
-      .pipe(browserSync.stream())
-  );
+  return gulp
+    .src(paths.assets + "stylesheets/index.less")
+    .pipe($.plumber())
+    .pipe($.if(dev, $.sourcemaps.init()))
+    .pipe($.less())
+    .pipe($.autoprefixer())
+    .pipe($.cleanCss({ compatibility: "ie8" }))
+    .pipe($.rename("styles.css"))
+    .pipe($.if(dev, $.sourcemaps.write()))
+    .pipe(gulp.dest(paths.dist + "assets"))
+    .pipe($.size())
+    .pipe(browserSync.stream());
 }
 
 function js() {
