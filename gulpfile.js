@@ -45,11 +45,6 @@ var dest = {
   js: paths.dist + "assets/app.js",
 };
 
-var reload = (done) => {
-  browserSync.reload();
-  done();
-};
-
 /* Functions
 --------------------------------------- */
 
@@ -80,29 +75,21 @@ function js() {
     .src(sources.js)
     .pipe($.plumber())
     .pipe($.if(dev, $.sourcemaps.init()))
-    .pipe($.concat("app.js"))
-    .pipe($.if(dev, $.sourcemaps.write()))
-    .pipe(gulp.dest("dist/assets"))
-    .pipe(browserSync.stream());
-}
-
-function js_min() {
-  return gulp
-    .src(sources.js)
-    .pipe($.plumber())
-    .pipe($.if(dev, $.sourcemaps.init()))
     .pipe(
-      $.minify({
-        noSource: true,
-        ext: {
-          min: ".js",
-        },
-      })
+      $.if(
+        !dev,
+        $.minify({
+          noSource: true,
+          ext: {
+            min: ".js",
+          },
+        })
+      )
     )
     .pipe($.concat("app.js"))
     .pipe($.if(dev, $.sourcemaps.write()))
     .pipe(gulp.dest("dist/assets"))
-    .pipe($.size())
+    .pipe($.if(!dev, $.size()))
     .pipe(browserSync.stream());
 }
 
@@ -110,16 +97,9 @@ function images() {
   return gulp
     .src(sources.images)
     .pipe($.plumber())
-    .pipe(gulp.dest(paths.dist + "assets/images"));
-}
-
-function images_min() {
-  return gulp
-    .src(sources.images)
-    .pipe($.plumber())
-    .pipe($.imagemin())
+    .pipe($.if(!dev, $.imagemin()))
     .pipe(gulp.dest(paths.dist + "assets/images"))
-    .pipe($.size());
+    .pipe($.if(!dev, $.size()));
 }
 
 function fonts() {
@@ -127,25 +107,18 @@ function fonts() {
     .src(sources.fonts)
     .pipe($.plumber())
     .pipe(gulp.dest(paths.dist + "assets/fonts"))
-    .pipe($.size())
+    .pipe($.if(!dev, $.size()))
     .pipe(browserSync.stream());
 }
 
 function jekyll(cb) {
-  var command =
-    "bundle exec jekyll build --config jekyll.yml --profile --destination " +
-    paths.dist;
+  var profile = "";
+  if (dev) {
+    profile = "-dev";
+  }
 
-  childProcess.exec(command, function (err, stdout, stderr) {
-    log(stdout);
-    log(stderr);
-    cb(err);
-  });
-}
-
-function jekyll_dev(cb) {
   var command =
-    "bundle exec jekyll build --config jekyll-dev.yml --profile --destination " +
+    `bundle exec jekyll build --config jekyll${profile}.yml --profile --destination ` +
     paths.dist;
 
   childProcess.exec(command, function (err, stdout, stderr) {
@@ -160,7 +133,7 @@ function html() {
     .src(paths.dist + "/**/*.html")
     .pipe($.plumber())
     .pipe(gulp.dest(paths.dist))
-    .pipe($.size());
+    .pipe($.if(!dev, $.size()));
 }
 
 // Lua Tasks
@@ -395,39 +368,10 @@ function browser_sync(done) {
   done();
 }
 
-function gh_pages(cb) {
-  var cmd = "git rev-parse --short HEAD";
-
-  childProcess.exec(cmd, function (err, stdout, stderr) {
-    if (err) {
-      cb(err);
-    }
-
-    ghPages.publish(
-      path.join(__dirname, paths.dist),
-      {
-        message: "Deploying " + stdout + "(" + new Date().toISOString() + ")",
-      },
-      cb
-    );
-  });
-}
-
-function cloudflare(cb) {
-  // configure cloudflare
-  var cloudflare = require("cloudflare").createClient({
-    email: process.env.MASHAPE_CLOUDFLARE_EMAIL,
-    token: process.env.MASHAPE_CLOUDFLARE_TOKEN,
-  });
-
-  cloudflare.clearCache("docs.getkong.com", function (err) {
-    if (err) {
-      log(err.message);
-    }
-
-    cb();
-  });
-}
+var reload_browser = (done) => {
+  browserSync.reload();
+  done();
+};
 
 function clean() {
   ghPages.clean();
@@ -435,10 +379,10 @@ function clean() {
 }
 
 function watch_files() {
-  gulp.watch(sources.content, gulp.series(jekyll, html, reload));
+  gulp.watch(sources.content, gulp.series(jekyll, html, reload_browser));
   gulp.watch(sources.styles, styles);
-  gulp.watch(sources.images, gulp.series(images, reload));
-  gulp.watch(sources.js, gulp.series(js, reload));
+  gulp.watch(sources.images, gulp.series(images, reload_browser));
+  gulp.watch(sources.js, gulp.series(js, reload_browser));
   gulp.watch(paths.assets + "css/hub.css", css);
 }
 
@@ -450,15 +394,14 @@ function set_dev(cb) {
 /*----------------------------------------*/
 
 // Basic Tasks
-gulp.task("js", js);
-gulp.task("js_min", js_min);
+gulp.task("js", gulp.series(set_dev, js));
+gulp.task("js_min", js);
 gulp.task("css", css);
 gulp.task("styles", styles);
-gulp.task("images", images);
-gulp.task("images_min", images_min);
+gulp.task("images", gulp.series(set_dev, images));
+gulp.task("images_min", images);
 gulp.task("fonts", fonts);
 gulp.task("jekyll", jekyll);
-gulp.task("jekyll_dev", jekyll_dev);
 gulp.task("html", html);
 
 // Lua Tasks
@@ -470,52 +413,31 @@ gulp.task("nav_docs", nav_docs);
 
 // Custom Tasks
 gulp.task("browser_sync", browser_sync);
-gulp.task("gh_pages", gh_pages);
-gulp.task("cloudflare", cloudflare);
 gulp.task("set_dev", set_dev);
 
-// Gulp Commands
-gulp.task(
-  "build",
-  gulp.series(gulp.parallel(js, images, fonts, css), jekyll, html, styles)
-);
+// Call the tasks in the correct order
+function build_site(steps, append) {
+  steps = steps || [];
+  append = append || [];
 
-gulp.task("watch", gulp.series(browser_sync, watch_files));
-
-gulp.task(
-  "dev",
-  gulp.series(
-    set_dev,
+  // These are the steps that always run for every build
+  // If set_dev is called, some of these methods behave differently
+  steps = steps.concat([
     clean,
     gulp.parallel(js, images, fonts, css),
     jekyll,
     html,
     styles,
-    browser_sync,
-    watch_files
-  )
-);
+  ]);
 
-gulp.task(
-  "default",
-  gulp.series(
-    clean,
-    gulp.parallel(js, images, fonts, css),
-    jekyll_dev,
-    html,
-    styles,
-    browser_sync,
-    watch_files
-  )
-);
+  if (append.length) {
+    steps = steps.concat(append);
+  }
 
-gulp.task(
-  "deploy",
-  gulp.series(
-    gulp.parallel(js_min, images_min, fonts, css),
-    jekyll,
-    html,
-    styles,
-    gh_pages
-  )
-);
+  return gulp.series.apply(null, steps);
+}
+
+gulp.task("default", build_site([set_dev], [browser_sync, watch_files]));
+gulp.task("dev", build_site([set_dev], [browser_sync, watch_files]));
+gulp.task("prod", build_site(null, [browser_sync, watch_files]));
+gulp.task("build", build_site());
