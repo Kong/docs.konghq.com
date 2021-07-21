@@ -150,3 +150,24 @@ git push
 ```
 
 Then open a pull request against `release/2.4`.
+
+## Testing
+
+Tests for this site are written using `rspec` and `capybara` with the `apparition` driver.
+
+> You'll need Google Chrome installed to run these tests
+
+To run the tests, you must first build the site by running `make build` before running `make rspec`
+
+Many of the tests are smoke tests to check issues that occurred whilst adding caching to the site, such as ensuring that the side navigation isn't cached.
+
+To add your own tests, look in the `spec` directory and use `home_spec.rb` as a sample. You specify which URL to visit and then a CSS selector to search for, before asserting that the contents match what you expect.
+
+```ruby
+it "has the 'Welcome to Kong' header" do
+  visit "/"
+  expect(find(".landing-page h1").text).to eq("Welcome to Kong Docs")
+end
+```
+
+This test framework can also be used to test behaviour added with JavaScript, but we do not have any examples at this time
