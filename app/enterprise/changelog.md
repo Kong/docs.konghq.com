@@ -10,7 +10,7 @@ no_version: true
 ### Features
 
 #### Enterprise
-- Updated banner content informing users about free mode to include the benefits of and a link for updating to Konnect.
+- For users running in free mode, Kong has updated the top banner to include information on the benefits of and a link for updating to Konnect.
 - This release includes several updates to Kong Manager, the Kong Gateway UI, including the following:
   - Support for the Mocking and Response Rate Limiting plugins.
   - Updates to the Konnect Plugin page, allowing users to:
@@ -62,12 +62,11 @@ no_version: true
 
 #### Hybrid Mode
 - Kong now exposes an upstream health checks endpoint (using the status API) on the data plane for better
-  observability. [#7429](https://github.com/Kong/kong/pull/7429)
+  observability. See [Readonly Status API endpoints on Data Plane](/gateway-oss/2.5.x/hybrid-mode/#readonly-status-api-endpoints-on-data-plane)
+  in the Hybrid Mode guide for more information. [#7429](https://github.com/Kong/kong/pull/7429)
 - Control Planes are now more lenient when checking Data Planes' compatibility in Hybrid mode. See the
   [Version compatibility](/gateway-oss/2.5.x/hybrid-mode/#version_compatibility)
   section of the Hybrid Mode guide for more information. [#7488](https://github.com/Kong/kong/pull/7488)
-- This release starts the groundwork for Hybrid Mode 2.0 Protocol. This code isn't active by default in Kong 2.5,
-  but it allows future development. [#7462](https://github.com/Kong/kong/pull/7462)
 
 ### Dependencies
 - Bumped `openresty` from 1.19.3.1 to 1.19.3.2 [#7430](https://github.com/kong/kong/pull/7430)
@@ -90,10 +89,12 @@ no_version: true
   anonymous reports enabled. Before, users received an error on their control planes about
   a function that could not be used. 
 - Kong now starts even when `SSL_CIPHER_SUITE` is set to `modern` when the Kong Dev Portal is enabled.
-  Before, Kong would fail to start with an NGINX configuration error concerning the number of arguments
-  in 'ssl_ciphers' directives.
-- Updated `lua-resty-openssl` to v0.7.3 which fixes an error users were encountering when trying
-  to synchronize configurations from control planes to data planes.
+  Before, Kong would fail to start with an NGINX configuration error, "invalid number of arguments in
+  'ssl_ciphers' directive".
+- Updated `lua-resty-openssl` to v0.7.3, fixing an error users were encountering when trying
+  to synchronize configurations from control planes to data planes. Users were seeing the following errors
+  in the ingress controller logs, indicating their configurations were not successfully being pushed to the
+  Kong proxy node: "failed to update kong configuration","declarative config is invalid," and "failed to sync".
 - Users can now set `enforce_rbac` to `both` and still be able to log into Kong Gateway's UI, Kong Manager.
 - Updated `lua-resty-healthcheck` to v1.4.2 which fixes an error where Kong would spam ‘nothing to do’ in
   the logs multiple times per second, slowing down performance.
@@ -177,6 +178,8 @@ no_version: true
   With this fix, migrations no longer expect `init.lua` to be a part of the path. [#6993](https://github.com/kong/kong/pull/6993)
 - Kong no longer emits errors when doing `ALTER COLUMN` operations in Apache Cassandra 4.0.
   [#7490](https://github.com/Kong/kong/pull/7490)
+  {:.important}
+  > **Important:** Even with this fix, Cassandra 4.0 is not yet fully supported.
 
 #### PDK
 - With this update, `kong.response.get_XXX()` functions now work in the log phase on external plugins. Before
@@ -217,8 +220,9 @@ no_version: true
     even in a global context, which meant more than one instance of the Zipkin plugin would override each other. Now the plugin
     uses `kong.ctx.plugin` to hold the `zipkin` table, instead of `ngx.ctx`.
 - [External plugins](/gateway-oss/2.5.x/external-plugins)
-  This release includes better error messages when external plugins fail to start. 
-  [#7523](https://github.com/Kong/kong/pull/7523)
+  This release includes better error messages when external plugins fail to start. With this fix, Kong detects the return code
+  127 (command not found), allowing it to display an appropriate error message, "external plugin server start command exited
+  with command not found". [#7523](https://github.com/Kong/kong/pull/7523)
 
 
 ## 2.4.1.1
