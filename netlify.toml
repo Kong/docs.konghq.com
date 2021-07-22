@@ -1,0 +1,4 @@
+[build]
+  publish = "dist"
+  command = "gulp build"
+  environment = { RUBY_VERSION = "2.4.0", NODE_OPTIONS = "--max_old_space_size=8192" }
