@@ -6,15 +6,21 @@
       url: /
     - text: Key Concepts and Terms
       url: /key-concepts-and-terms
+
+- title: Account and Org Management
+  icon: /assets/images/icons/documentation/icn-developer.svg
+  url: /account-management
+  items:
     - text: Access a Kong Konnect Account
       url: /access-account
-    - text: Konnect Plans, Billing, and Usage
-      url: /account-management
-      items:
-        - text: Change to a Different Plan
-          url: /account-management/change-plan
-        - text: Manage Payment Methods and Invoices
-          url: /account-management/billing
+    - text: Change to a Different Plan
+      url: /account-management/change-plan
+    - text: Manage Payment Methods and Invoices
+      url: /account-management/billing
+    - text: Users and Roles
+      url: /reference/org-management
+    - text: Set up Okta IdP Auth
+      url: /account-management/okta-idp
 
 - title: Release Notes
   icon: /assets/images/icons/documentation/icn-references-color.svg
@@ -144,8 +150,6 @@
   items:
     - text: Proxy Traffic
       url: /reference/proxy-traffic
-    - text: Users and Roles
-      url: /reference/org-management
     - text: Using the Konnect API
       url: /reference/konnect-api
       items:
