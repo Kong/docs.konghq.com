@@ -30,3 +30,19 @@ function toggleSubmenuVisible (element) {
     $(element).toggleClass('submenu-title')
     $(element.parentElement).toggleClass('submenu-opened')
 }
+
+// open Docs menu item upon enter and enable tabbing through menu
+jQuery(function () {
+  $("#docs-link").on("keypress keydown", function(e) {
+    if(e.keyCode == 13) {
+      e.preventDefault();
+      $(".with-submenu").toggleClass("submenu-opened");
+      return false;
+    }
+  });
+
+  // close docs dropdown menu when tabbing on Support menu item
+  $("#support-link").on("focus", function(e) {
+    $(".with-submenu").removeClass("submenu-opened");
+  })
+});
