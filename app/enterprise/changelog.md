@@ -166,9 +166,9 @@ no_version: true
   [#7412](https://github.com/kong/kong/pull/7412)
 - The stream access log configuration options are now properly separated from the HTTP access log. Before when users
   used Kong with TCP, they couldn’t use a custom log format. With this fix, `proxy_stream_access_log` and `proxy_stream_error_log`
-  have been added to differentiate stream access log from the HTTP subsystem. See
-  [`proxy_stream_access_log`](/gateway-oss/2.5.x/configuration/#proxy_stream_access_log)
-  and [`proxy_stream_error`](/gateway-oss/2.5.x/configuration/#proxy_stream_error) in the Configuration
+  have been added to differentiate the Stream access log from the HTTP subsystem. See
+  [`proxy_stream_access_log`](/enterprise/2.4.x/configuration/#proxy_stream_access_log)
+  and [`proxy_stream_error`](/enterprise/2.4.x/configuration/#proxy_stream_error) in the Configuration
   Property Reference for more information. [#7046](https://github.com/kong/kong/pull/7046)
 
 #### Migrations
@@ -186,7 +186,7 @@ no_version: true
   `kong.response.get_XXX()` functions required data from the response object, which was not accessible in the
   post-log timer used to call log handlers in external plugins. Now these functions work by accessing the required
   data from the set saved at the start of the log phase.
-  See [`kong.response`](/gateway-oss/2.5.x/pdk/kong.response)
+  See [`kong.response`](/enterprise/2.4.x/pdk/kong.response)
   in the Plugin Development Kit for more information. [#7048](https://github.com/kong/kong/pull/7048)
 - External plugins handle certain error conditions better while the Kong balancer is being refreshed. Before
   when an `instance_id` of an external plugin changed, and the plugin instance attempted to reset and retry,
@@ -207,7 +207,7 @@ no_version: true
 - [LDAP Authentication](/hub/kong-inc/ldap-auth) (`ldap-auth`) 
   The LDAP Authentication schema now includes a default value for the `config.ldap_port` parameter
   that matches the documentation. Before the plugin documentation
-  [Parameters](https://docs.konghq.com/hub/kong-inc/ldap-auth/#parameters)
+  [Parameters](/hub/kong-inc/ldap-auth/#parameters)
   section included a reference to a default value for the LDAP port; however, the default value was not included in the plugin schema.
   [#7438](https://github.com/kong/kong/pull/7438)
 - [Prometheus](/hub/kong-inc/prometheus) (`prometheus`) 
@@ -219,7 +219,7 @@ no_version: true
   - The plugin no longer shares context between several Zipkin plugins. Before the plugin was using `ngx.ctx` exclusively,
     even in a global context, which meant more than one instance of the Zipkin plugin would override each other. Now the plugin
     uses `kong.ctx.plugin` to hold the `zipkin` table, instead of `ngx.ctx`.
-- [External plugins](/gateway-oss/2.5.x/external-plugins)
+- [External plugins](/enterprise/2.4.x/external-plugins)
   This release includes better error messages when external plugins fail to start. With this fix, Kong detects the return code
   127 (command not found), allowing it to display an appropriate error message, "external plugin server start command exited
   with command not found". [#7523](https://github.com/Kong/kong/pull/7523)
