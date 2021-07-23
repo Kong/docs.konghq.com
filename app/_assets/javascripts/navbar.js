@@ -39,15 +39,13 @@ jQuery(function () {
       $(".with-submenu").toggleClass("submenu-opened");
       $(".navbar-item-docs").setAttribute("aria-hidden", "false");
       return false;
-    } 
-
+    }
     // if user doesn't open Docs submenu, move focus to Support menu item
     let submenu = $(".with-submenu")
     if(!submenu.hasClass("submenu-opened")) {
       $("#support-link").focus();
     }
-  });
-
+  })
   // close docs dropdown menu when tabbing on Support menu item
   $("#support-link").on("focus", function(e) {
     $(".with-submenu").removeClass("submenu-opened");
