@@ -33,12 +33,10 @@ For a breakdown of the properties used by these modes, see the
 
 {% navtabs %}
 {% navtab Shared mode %}
-<div class="alert alert-warning">
- 
-  <strong>Protect the Private Key.</strong> Ensure the private key file can only be accessed by
+{:.warning}
+ > **Warning:** Protect the Private Key. Ensure the private key file can only be accessed by
   Kong nodes belonging to the cluster. If the key is compromised, you must
   regenerate and replace certificates and keys on all CP and DP nodes.
-</div>
 
 1. On an existing {{site.base_gateway}} instance, create a certificate/key pair:
     ```bash
@@ -319,7 +317,8 @@ be accessed by Data Plane nodes. You may run multiple Control Plane nodes to
 provide load balancing and redundancy, as long as they all point to the same
 backend database.
 
->**Note:** Control Plane nodes cannot be used for proxying.
+{:.note}
+> **Note:** Control Plane nodes cannot be used for proxying.
 
 ## Step 3: Install and Start Data Planes
 Now that the Control Plane is running, you can attach Data Plane nodes to it to
@@ -330,12 +329,10 @@ point them to the Control Plane, set certificate/key parameters to point at
 the location of your certificates and keys, and ensure the database
 is disabled.
 
-<div class="alert alert-warning">
-<i class="fas fa-exclamation-triangle" style="color:orange; margin-right:3px"></i>
-<b>Important:</b> Data Plane nodes receive updates from the Control Plane via a format
-similar to declarative config, therefore <code>database</code> has to be set to
-<code>off</code> for Kong to start up properly.
-</div>
+{:.warning}}
+> **Important:** Data Plane nodes receive updates from the Control Plane via a format
+similar to declarative config, therefore `database` has to be set to
+`off` for Kong to start up properly.
 
 {% navtabs %}
 {% navtab Using Docker %}
@@ -345,9 +342,9 @@ follow the instructions to:
     2. [Create a Docker network](/enterprise/{{page.kong_version}}/deployment/installation/docker/#create-network).
     3. [Export the license key to a variable](/enterprise/{{page.kong_version}}/deployment/installation/docker/#license-key).
 
-    <div class="alert alert-warning">
-        Do not start or create a database on this node.
-    </div>
+    {:.warning}
+    > **Warning:** Do not start or create a database on this node.
+    
 
 2. Bring up your Data Plane container with the following settings:
 
@@ -361,7 +358,6 @@ follow the instructions to:
     -e "KONG_CLUSTER_TELEMETRY_ENDPOINT=control-plane.<admin-hostname>.com:8006" \
     -e "KONG_CLUSTER_CERT=/<path-to-file>/cluster.crt" \
     -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/cluster.key" \
-    -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=/<path-to-file>/cluster.crt" \
     --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
     -p 8000:8000 \
     kong-ee-dp1
@@ -380,7 +376,6 @@ follow the instructions to:
     -e "KONG_CLUSTER_CERT=data-plane.crt" \
     -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/data-plane.crt" \
     -e "KONG_CLUSTER_CA_CERT=/<path-to-file>/ca-cert.pem" \
-    -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=/<path-to-file>/ca-cert.pem" \
     --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
     -p 8000:8000 \
     kong-ee-dp1
@@ -395,10 +390,9 @@ follow the instructions to:
     : Specifies whether this node connects directly to a database.
 
     `KONG_LUA_SSL_TRUSTED_CERTIFICATE`
-    : Lists files as trusted by OpenResty. Accepts a comma-separated list of
-    paths. If you have already specified a different
-    `lua_ssl_trusted_certificate`, adding the content of `cluster.crt`
-    into that file achieves the same result.
+    : Lists files as trusted by OpenResty. The certificate from `cluster_cert`
+    (in "shared" mode) or `cluster_ca_cert` (in "pki" mode) is automatically
+    added to the trusted chain in `lua_ssl_trusted_certificate`.
 
     `<path-to-file>` and `target=<path-to-keys-and-certs>`
     : Are the same path, pointing to the location of the `cluster.key` and
@@ -421,13 +415,14 @@ follow the instructions to:
 and follow the instructions in Steps 1 and 2 **only** to download
 {{site.ee_product_name}} and the Enterprise license, then install Kong.
 
+    {:.note}
     > **Note:** for Docker, see the **Docker** tab above. For Kubernetes, see the
     [Hybrid mode documentation](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
     in the `kong/charts` repository.
 
-    <div class="alert alert-warning">
-        Do not start or create a database on this node.
-    </div>
+    {:.warning}
+    > Do not start or create a database on this node.
+    
 
 2. In `kong.conf`, set the following configuration parameters:
 
@@ -455,7 +450,6 @@ and follow the instructions in Steps 1 and 2 **only** to download
     cluster_cert = /<path-to-file>/data-plane.crt
     cluster_cert_key = /<path-to-file>/data-plane.crt
     cluster_ca_cert = /<path-to-file>/ca-cert.pem
-    lua_ssl_trusted_certificate = /<path-to-file>/ca-cert.pem
     ```
 
     Where:
@@ -467,10 +461,9 @@ and follow the instructions in Steps 1 and 2 **only** to download
     : Specifies whether this node connects directly to a database.
 
     `lua_ssl_trusted_certificate`
-    : Lists files as trusted by OpenResty. Accepts a comma-separated list of
-    paths. If you have already specified a different
-    `lua_ssl_trusted_certificate`, adding the content of `cluster.crt`
-    into that file achieves the same result.
+    : Lists files as trusted by OpenResty. The certificate from `cluster_cert`
+    (in "shared" mode) or `cluster_ca_cert` (in "pki" mode) is automatically
+    added to the trusted chain in `lua_ssl_trusted_certificate`.
 
     `<path-to-file>`
     : Specifies the location of the `cluster.key` and `cluster.crt` files.
@@ -552,7 +545,6 @@ Parameter | Description | CP or DP {:width=10%:}
 [`cluster_telemetry_endpoint`](/enterprise/{{page.kong_version}}/property-reference/#cluster_telemetry_endpoint) <br>*Required* | The port that the Data Plane uses to send Vitals telemetry data to the Control Plane. Ignored on Control Plane nodes. | DP
 [`cluster_control_plane`](/enterprise/{{page.kong_version}}/property-reference/#cluster_control_plane) <br>*Required* | Address and port that the Data Plane nodes use to connect to the Control Plane. Must point to the port configured using the [`cluster_listen`](/enterprise/{{page.kong_version}}/property-reference/#cluster_listen) property on the Control Plane node. Ignored on Control Plane nodes. | DP
 [`cluster_mtls`](/enterprise/{{page.kong_version}}/property-reference/#cluster_mtls) <br>*Optional* <br><br>**Default:** `"shared"` | One of `"shared"` or `"pki"`. Indicates whether Hybrid Mode will use a shared certificate/key pair for CP/DP mTLS or if PKI mode will be used. See below sections for differences in mTLS modes. | Both
-[`lua_ssl_trusted_certificate`](/enterprise/{{page.kong_version}}/property-reference/#lua_ssl_trusted_certificate) <br>*Optional* | Comma-separated list of paths to certificate authority files for Lua cosockets in PEM format. | DP
 
 The following properties are used differently between `shared` and `pki` modes:
 

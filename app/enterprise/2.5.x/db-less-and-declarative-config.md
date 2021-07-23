@@ -60,8 +60,8 @@ to `off`. As usual, you can do this by editing `kong.conf` and setting
 as usual:
 
 ```
-$ export KONG_DATABASE=off
-$ kong start -c kong.conf
+export KONG_DATABASE=off
+kong start -c kong.conf
 ```
 
 Once Kong starts, access the `/` endpoint of the Admin API to verify that it
@@ -71,7 +71,7 @@ verify that `database` is set to `off`.
 Command:
 
 ```
-$ http :8001/
+http :8001/
 ```
 
 Sample response:
@@ -102,7 +102,7 @@ Services or entities of any kind.
 Command:
 
 ```
-$ http :8001/routes
+http :8001/routes
 ```
 
 Sample response:
@@ -124,17 +124,16 @@ Server: kong/2.1.0
 
 ## Creating a declarative configuration file
 
-<div class="alert alert-ee blue"><strong>Note:</strong> We recommend using decK
-to manage your declarative configuration. See the <a href="https://docs.konghq.com/deck/">decK documentation</a> for more
-information.
-</div>
+{:.note}
+> **Note:** We recommend using decK to manage your declarative configuration.
+See the [decK documentation](/deck) for more information.
 
 To load entities into DB-less Kong, we need a declarative configuration
 file. The following command will create a skeleton file to get you
 started:
 
 ```
-$ kong config -c kong.conf init
+kong config -c kong.conf init
 ```
 
 This command creates a `kong.yml` file in the current directory,
@@ -220,29 +219,40 @@ parse successful
 
 ## Loading the declarative configuration file
 
-There are two ways to load a declarative configuration into Kong: via
-`kong.conf` and via the Admin API.
+There are two ways to load a declarative configuration file into Kong: using
+`kong.conf` or the Admin API.
 
-To load a declarative configuration at Kong start-up, use the
+To load a declarative configuration file at Kong start-up, use the
 `declarative_config` directive in `kong.conf` (or, as usual to all `kong.conf`
 entries, the equivalent `KONG_DECLARATIVE_CONFIG` environment variable).
 
 ```
-$ export KONG_DATABASE=off
-$ export KONG_DECLARATIVE_CONFIG=kong.yml
-$ kong start -c kong.conf
+export KONG_DATABASE=off \
+export KONG_DECLARATIVE_CONFIG=kong.yml \
+kong start -c kong.conf
 ```
 
-Alternatively, you can load a declarative configuration into a running
-Kong node via its Admin API, using the `/config` endpoint. The
+You can also load a declarative configuration file into a running
+Kong node with the Admin API, using the `/config` endpoint. The
 following example loads `kong.yml` using HTTPie:
 
 ```
 $ http :8001/config config=@kong.yml
 ```
 
+{:.important}
 The `/config` endpoint replaces the entire set of entities in memory
 with the ones specified in the given file.
+
+Or another way you can start Kong in DB-less mode is with a 
+declarative configuration in a string using the `KONG_DECLARATIVE_CONFIG_STRING`
+environment variable. 
+
+```
+export KONG_DATABASE=off 
+export KONG_DECLARATIVE_CONFIG_STRING='{"_format_version":"1.1", "services":[{"host":"mockbin.com","port":443,"protocol":"https", "routes":[{"paths":["/"]}]}],"plugins":[{"name":"rate-limiting", "config":{"policy":"local","limit_by":"ip","minute":3}}]}' 
+kong start
+```
 
 ## Using Kong in DB-less mode
 
