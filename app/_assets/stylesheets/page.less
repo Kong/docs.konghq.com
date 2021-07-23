@@ -547,7 +547,7 @@
 
         a {
           font-size: 14px;
-          color: @blue;
+          color: @blue-500;
 
             img, i {
               float: left;
@@ -637,7 +637,7 @@
 
   a {
     font-size: 14px;
-    color: @blue;
+    color: @blue-500;
 
     &:hover {
     opacity: 0.5;
@@ -650,7 +650,7 @@
 
   table {
     a {
-      color: @blue;
+      color: @blue-500;
     }
   }
 }
@@ -773,7 +773,7 @@
   h5,
   h6 {
     .font-source-sans();
-    color: #505659;
+    color: @font-color;
   }
 
   h1,
@@ -859,10 +859,10 @@
 
   a {
     text-decoration: none;
-    color: @blue;
+    color: @blue-500;
 
     &:hover, &:focus {
-      text-decoration: none;
+      text-decoration: underline;
       opacity: 0.7;
     }
   }
@@ -941,10 +941,11 @@ Generic Styling for Desktop
   table {
     display: block;
     max-width: 100%;
-    font-size: 14px;
+    font-size: 16px;
     overflow-x: auto;
     border: none;
     border-collapse: collapse;
+    border-radius: 3px;
     margin-top: 1.5em;
     position: relative;
 
@@ -962,6 +963,13 @@ Generic Styling for Desktop
     code {
       white-space: normal;
       font-size: 13px;
+      background-color: #fff;
+      border: 1px solid @steel-200;
+    }
+
+    a {
+      text-decoration: none;
+      color: @blue-500;
     }
   }
 
@@ -975,20 +983,35 @@ Generic Styling for Desktop
 
   th {
     font-weight: 600;
+    font-size: 15px;
     color: @black-80;
-    background-color: @grey-100;
+    background-color: #fff;
+    padding: 8px 16px 8px;
+    border-bottom: 2px solid @steel-200;
+    border-top: none;
     position: -webkit-sticky;
     position: sticky;
+    vertical-align: bottom;
     top: 0;
     z-index: 2;
+    text-transform: uppercase;
   }
 
-  td,
-  th {
+  td {
     padding: 8px 16px 8px;
-    border-bottom: 1px solid @grey-300;
-    border-top: 1px solid @grey-300;
   }
+
+  tr:nth-child(even) {
+    background-color: @steel-080;
+    border: 1px solid @steel-100;
+  }
+
+  tr:nth-child(odd) {
+    background-color: @steel-100;
+    border: 1px solid @steel-100;
+  }
+
+
 
   @media only screen and (max-width: 1099px) {
     table,
@@ -1009,14 +1032,14 @@ Generic Styling for Desktop
       }
 
       tr {
-        border-top: 1px solid @grey-300;
-        border-bottom: 1px solid @grey-300;
+        border-top: 1px solid @steel-200;
+        border-bottom: 1px solid @steel-200;
       }
 
       td {
         /* Behave  like a "row" */
         border: none;
-        border-bottom: 1px solid @grey-300;
+        border-bottom: 1px solid @steel-200;
         position: relative;
       }
 
@@ -1199,7 +1222,7 @@ Generic Styling for Desktop
 
     a {
       text-decoration: none;
-      color: @blue-light;
+      color: @blue-500;
     }
 
     &.condensed {
@@ -1463,7 +1486,6 @@ Generic Styling for Desktop
     font-size: 14px;
     border-radius: 3px;
     display: block;
-    background-color: @gray-light;
     border: 1px solid @gray;
 
     &:before {
@@ -1681,9 +1703,9 @@ Generic Styling for Desktop
       color: @navy-text;
 
       &:hover {
-        color: #1155cb;
+        color: @blue-500;
         opacity: 1;
-        text-decoration: none;
+        text-decoration: underline;
       }
     }
   }
