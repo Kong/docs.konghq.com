@@ -29,7 +29,7 @@ view all plugins in the cluster, including service and route plugins.
 in the cluster, as applicable, and consumer-scoped plugins only apply to a
 specific consumer.
 
-: [Configure global and consumer-scoped plugins &gt;](/konnect/shared-config/plugins)
+: [Configure global and consumer-scoped plugins &gt;](/konnect/manage-plugins/shared-config/)
 : [Plugin object reference &gt;](/enterprise/latest/admin-api/#plugin-object)
 : [Plugin Hub &gt;](/hub/)
 
