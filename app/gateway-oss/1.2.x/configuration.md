@@ -920,7 +920,7 @@ name   | description  | default
 **pg_schema** | The database schema to use. If unspecified, Kong will respect the `search_path` value of your PostgreSQL instance. | none
 **pg_ssl** | Toggles client-server TLS connections between Kong and PostgreSQL. | `off`
 **pg_ssl_verify** | Toggles server certificate verification if `pg_ssl` is enabled. See the `lua_ssl_trusted_certificate` setting to specify a certificate authority. | `off`
-**pg_max_concurrent_queries** | Sets the maximum number of concurrent queries that can be executing at any given time. This limit is enforced per worker process; the total number of concurrent queries for this node will be will be: `pg_max_concurrent_queries * nginx_worker_processes`. The default value of 0 removes this concurrency limitation. | `0`
+**pg_max_concurrent_queries** | Sets the maximum number of concurrent queries that can be executing at any given time. This limit is enforced per worker process; the total number of concurrent queries for this node will be: `pg_max_concurrent_queries * nginx_worker_processes`. The default value of 0 removes this concurrency limitation. | `0`
 **pg_semaphore_timeout** | Defines the timeout (in ms) after which PostgreSQL query semaphore resource acquisition attempts will fail. Such failures will generally result in the associated proxy or Admin API request failing with an HTTP 500 status code. Detailed discussion of this behavior is available in the online documentation. | `60000`
 
 #### Cassandra settings
