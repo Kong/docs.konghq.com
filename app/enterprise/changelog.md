@@ -167,8 +167,8 @@ no_version: true
 - The stream access log configuration options are now properly separated from the HTTP access log. Before when users
   used Kong with TCP, they couldn’t use a custom log format. With this fix, `proxy_stream_access_log` and `proxy_stream_error_log`
   have been added to differentiate the Stream access log from the HTTP subsystem. See
-  [`proxy_stream_access_log`](/enterprise/2.4.x/configuration/#proxy_stream_access_log)
-  and [`proxy_stream_error`](/enterprise/2.4.x/configuration/#proxy_stream_error) in the Configuration
+  [`proxy_stream_access_log`](/enterprise/2.4.x/property-reference/#proxy_stream_access_log)
+  and [`proxy_stream_error_log`](/enterprise/2.4.x/property-reference/#proxy_stream_error_log) in the Configuration
   Property Reference for more information. [#7046](https://github.com/kong/kong/pull/7046)
 
 #### Migrations
