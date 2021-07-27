@@ -1,119 +1,336 @@
 [
-   {
-      "name": "Kong Gateway",
-      "slug": "kong-gateway",
-      "noversions": false,
-      "versions": [
-         {
-            "release": "2.4.x",
-            "os": {
-               "amazon-linux": "v1.0, v1.5, v2.0",
-               "centos": "1.0, 1.5, 2.0",
-               "rhel": "1.0, 1.5, 2.0",
-               "debian": "1.0, 1.5, 2.0"
-            },
-            "docker": {
-               "docker-engine": "1.0, 1.5, 2.0",
-               "docker-compose": "1.0, 1.5, 2.0"
-            },
-            "kubernetes": {
-               "kong-ingress-controller": "1.14, 1.15, 1.16, 1.17, 1.18, 1.19, 1.2, 1.21"
-            },
-            "pdk": {
-               "nodejs": "8-15",
-               "golang": "--"
-            },
-            "databases": {
-               "postgres": ">=9.5",
-               "cassandra": "3.x"
-            }
-         },
-         {
-            "release": "2.3.x",
-            "os": {
-               "amazon-linux": "v1.0, v1.5, v2.0",
-               "centos": "1.0, 1.5, 2.0",
-               "rhel": "1.0, 1.5, 2.0",
-               "debian": "1.0, 1.5, 2.0"
-            },
-            "docker": {
-               "docker-engine": "1.0, 1.5, 2.0",
-               "docker-compose": "1.0, 1.5, 2.0"
-            },
-            "kubernetes": {
-               "kong-ingress-controller": "1.14, 1.15, 1.16, 1.17, 1.18, 1.19, 1.2, 1.21"
-            },
-            "pdk": {
-               "nodejs": "8-15",
-               "golang": "--"
-            },
-            "databases": {
-               "postgres": ">=9.5",
-               "cassandra": "3.x"
-            }
-         }
-      ]
-   },
-   {
-      "name": "Kong Gateway (OSS)",
-      "slug": "kong-gateway-oss",
-      "noversions": false,
-      "versions": [
-         {
-            "release": "2.4.x",
-            "os": {
-               "amazon-linux": "v1.0, v1.5, v2.0",
-               "centos": "1.0, 1.5, 2.0",
-               "rhel": "1.0, 1.5, 2.0",
-               "debian": "1.0, 1.5, 2.0"
-            },
-            "docker": {
-               "docker-engine": "1.0, 1.5, 2.0",
-               "docker-compose": "1.0, 1.5, 2.0"
-            },
-            "kubernetes": {
-               "kong-ingress-controller": "1.14, 1.15, 1.16, 1.17, 1.18, 1.19, 1.2, 1.21"
-            },
-            "pdk": {
-               "nodejs": "8-15",
-               "golang": "--"
-            },
-            "databases": {
-               "postgres": ">=9.5",
-               "cassandra": "3.x"
-            }
-         }
-      ]
-   },
-   {
-      "name": "no version product",
-      "slug": "no-version-product",
-      "noversions": true,
-      "versions": [
-         {
-            "release": null,
-            "os": {
-               "amazon-linux": "v1.0, v1.5, v2.0",
-               "centos": "1.0, 1.5, 2.0",
-               "rhel": "1.0, 1.5, 2.0",
-               "debian": "1.0, 1.5, 2.0"
-            },
-            "docker": {
-               "docker-engine": "1.0, 1.5, 2.0",
-               "docker-compose": "1.0, 1.5, 2.0"
-            },
-            "kubernetes": {
-               "kong-ingress-controller": "1.14, 1.15, 1.16, 1.17, 1.18, 1.19, 1.2, 1.21"
-            },
-            "pdk": {
-               "nodejs": "8-15",
-               "golang": "--"
-            },
-            "databases": {
-               "postgres": ">=9.5",
-               "cassandra": "3.x"
-            }
-         }
-      ]
-   }
+  {
+    "name": "Kong Gateway",
+    "slug": "kong-gateway",
+    "noversions": false,
+    "versions": [
+      {
+        "release": "2.4.x",
+        "os": {
+          "docker-engine": "unknown",
+          "amazon-linux": "unknown",
+          "centos": "unknown",
+          "rhel": "unknown",
+          "debian": "unknown",
+          "ubuntu": "unknown",
+          "macOS": "unknown"
+        },
+        "kubernetes": {
+          "kong-ingress-controller": "0.9.x, 0.10.x, 1.0.x, 1.1.x, 1.2.x, 1.3.x"
+        },
+        "pdk": {
+          "nodejs": "unknown",
+          "golang": "unknown"
+        },
+        "databases": {
+          "postgres": "unknown",
+          "cassandra": "unknown"
+        }
+      },
+      {
+        "release": "2.3.x",
+        "os": {
+          "docker-engine": "unknown",
+          "amazon-linux": "unknown",
+          "centos": "unknown",
+          "rhel": "unknown",
+          "debian": "unknown",
+          "ubuntu": "unknown",
+          "macOS": "unknown"
+        },
+        "kubernetes": {
+          "kong-ingress-controller": "0.9.x, 0.10.x, 1.0.x, 1.1.x, 1.2.x, 1.3.x"
+        },
+        "pdk": {
+          "nodejs": "unknown",
+          "golang": "unknown"
+        },
+        "databases": {
+          "postgres": "unknown",
+          "cassandra": "unknown"
+        }
+      },
+      {
+        "release": "2.2.x",
+        "os": {
+          "docker-engine": "unknown",
+          "amazon-linux": "unknown",
+          "centos": "unknown",
+          "rhel": "unknown",
+          "debian": "unknown",
+          "ubuntu": "unknown",
+          "macOS": "unknown"
+        },
+        "kubernetes": {
+          "kong-ingress-controller": "0.9.x, 0.10.x, 1.0.x, 1.1.x, 1.2.x, 1.3.x"
+        },
+        "pdk": {
+          "nodejs": "unknown",
+          "golang": "unknown"
+        },
+        "databases": {
+          "postgres": "unknown",
+          "cassandra": "unknown"
+        }
+      },
+      {
+        "release": "2.1.x",
+        "os": {
+          "docker-engine": "unknown",
+          "amazon-linux": "unknown",
+          "centos": "unknown",
+          "rhel": "unknown",
+          "debian": "unknown",
+          "ubuntu": "unknown",
+          "macOS": "unknown"
+        },
+        "kubernetes": {
+          "kong-ingress-controller": "0.9.x, 0.10.x, 1.0.x, 1.1.x, 1.2.x, 1.3.x"
+        },
+        "pdk": {
+          "nodejs": "unknown",
+          "golang": "unknown"
+        },
+        "databases": {
+          "postgres": "unknown",
+          "cassandra": "unknown"
+        }
+      },
+      {
+        "release": "1.5.x",
+        "os": {
+          "docker-engine": "unknown",
+          "amazon-linux": "unknown",
+          "centos": "unknown",
+          "rhel": "unknown",
+          "debian": "unknown",
+          "ubuntu": "unknown",
+          "macOS": "unknown"
+        },
+        "kubernetes": {
+          "kong-ingress-controller": "0.7.x, 0.8.x, 0.9.x, 0.10.x"
+        },
+        "pdk": {
+          "nodejs": "unknown",
+          "golang": "unknown"
+        },
+        "databases": {
+          "postgres": "unknown",
+          "cassandra": "unknown"
+        }
+      },
+    ]
+  },
+  {
+    "name": "Kong Gateway (OSS)",
+    "slug": "kong-gateway-oss",
+    "noversions": false,
+    "versions": [
+      {
+        "release": "2.5.x",
+        "os": {
+          "docker-engine": "unknown",
+          "amazon-linux": "1, 2",
+          "centos": "7, 8",
+          "rhel": "7, 8",
+          "debian": "8, 9, 10, 11",
+          "ubuntu": "16.04 Xenial, 18.04 Bionic, 20.04 Focal",
+          "macOS": "unknown"
+        },
+        "kubernetes": {
+          "kong-ingress-controller": "0.9.x, 0.10.x, 1.0.x, 1.1.x, 1.2.x, 1.3.x"
+        },
+        "pdk": {
+          "nodejs": "unknown",
+          "golang": "unknown"
+        },
+        "databases": {
+          "postgres": "13",
+          "cassandra": "3.9"
+        }
+      },
+      {
+        "release": "2.4.x",
+        "os": {
+          "docker-engine": "unknown",
+          "amazon-linux": "1, 2",
+          "centos": "7, 8",
+          "rhel": "7, 8",
+          "debian": "8, 9, 10, 11",
+          "ubuntu": "16.04 Xenial, 18.04 Bionic, 20.04 Focal",
+          "macOS": "unknown"
+        },
+        "kubernetes": {
+          "kong-ingress-controller": "0.9.x, 0.10.x, 1.0.x, 1.1.x, 1.2.x, 1.3.x"
+        },
+        "pdk": {
+          "nodejs": "unknown",
+          "golang": "unknown"
+        },
+        "databases": {
+          "postgres": "13",
+          "cassandra": "3.9"
+        }
+      },
+      {
+        "release": "2.3.x",
+        "os": {
+          "docker-engine": "unknown",
+          "amazon-linux": "1, 2",
+          "centos": "7, 8",
+          "rhel": "7, 8",
+          "debian": "8, 9, 10, 11",
+          "ubuntu": "16.04 Xenial, 18.04 Bionic, 20.04 Focal",
+          "macOS": "unknown"
+        },
+        "kubernetes": {
+          "kong-ingress-controller": "0.9.x, 0.10.x, 1.0.x, 1.1.x, 1.2.x, 1.3.x"
+        },
+        "pdk": {
+          "nodejs": "unknown",
+          "golang": "unknown"
+        },
+        "databases": {
+          "postgres": "9.5",
+          "cassandra": "3.9"
+        }
+      },
+      {
+        "release": "2.2.x",
+        "os": {
+          "docker-engine": "unknown",
+          "amazon-linux": "1, 2",
+          "centos": "7, 8",
+          "rhel": "7, 8",
+          "debian": "8, 9, 10, 11",
+          "ubuntu": "16.04 Xenial, 18.04 Bionic, 20.04 Focal",
+          "macOS": "unknown"
+        },
+        "kubernetes": {
+          "kong-ingress-controller": "0.9.x, 0.10.x, 1.0.x, 1.1.x, 1.2.x, 1.3.x"
+        },
+        "pdk": {
+          "nodejs": "unknown",
+          "golang": "unknown"
+        },
+        "databases": {
+          "postgres": "9.5",
+          "cassandra": "3.9"
+        }
+      },
+      {
+        "release": "2.1.x",
+        "os": {
+          "docker-engine": "unknown",
+          "amazon-linux": "1",
+          "centos": "7, 8",
+          "rhel": "7, 8",
+          "debian": "8, 9, 10, 11",
+          "ubuntu": "16.04 Xenial, 18.04 Bionic, 20.04 Focal",
+          "macOS": "unknown"
+        },
+        "kubernetes": {
+          "kong-ingress-controller": "0.9.x, 0.10.x, 1.0.x, 1.1.x, 1.2.x, 1.3.x"
+        },
+        "pdk": {
+          "nodejs": "unknown",
+          "golang": "unknown"
+        },
+        "databases": {
+          "postgres": "9.5",
+          "cassandra": "2.2, 3.9"
+        }
+      },
+      {
+        "release": "2.0.x",
+        "os": {
+          "docker-engine": "unknown",
+          "amazon-linux": "1",
+          "centos": "7, 8",
+          "rhel": "7, 8",
+          "debian": "8, 9, 10, 11",
+          "ubuntu": "16.04 Xenial, 18.04 Bionic",
+          "macOS": "unknown"
+        },
+        "kubernetes": {
+          "kong-ingress-controller": "0.7.x, 0.8.x, 0.9.x, 0.10.x, 1.0.x, 1.1.x, 1.2.x, 1.3.x"
+        },
+        "pdk": {
+          "nodejs": "unknown",
+          "golang": "unknown"
+        },
+        "databases": {
+          "postgres": "9.5",
+          "cassandra": "2.2, 3.9"
+        }
+      },
+      {
+        "release": "1.5.x",
+        "os": {
+          "docker-engine": "unknown",
+          "amazon-linux": "not supported",
+          "centos": "7",
+          "rhel": "not supported",
+          "debian": "8, 9, 10",
+          "ubuntu": "16.04 Xenial, 18.04 Bionic",
+          "macOS": "unknown"
+        },
+        "kubernetes": {
+          "kong-ingress-controller": "0.7.x, 0.8.x, 0.9.x, 0.10.x"
+        },
+        "pdk": {
+          "nodejs": "unknown",
+          "golang": "unknown"
+        },
+        "databases": {
+          "postgres": "9.5",
+          "cassandra": "2.2, 3.9"
+        }
+      },
+      {
+        "release": "1.4.x",
+        "os": {
+          "docker-engine": "unknown",
+          "amazon-linux": "not supported",
+          "centos": "7",
+          "rhel": "not supported",
+          "debian": "8, 9, 10",
+          "ubuntu": "16.04 Xenial, 18.04 Bionic",
+          "macOS": "unknown"
+        },
+        "kubernetes": {
+          "kong-ingress-controller": "0.6.x, 0.7.x, 0.8.x, 0.9.x"
+        },
+        "pdk": {
+          "nodejs": "unknown",
+          "golang": "unknown"
+        },
+        "databases": {
+          "postgres": "9.5",
+          "cassandra": "2.2, 3.9"
+        }
+      },
+    ]
+  },
+  {
+    "name": "Konnect Cloud",
+    "slug": "konnect-cloud",
+    "noversions": true,
+    "versions": [
+      {
+        "release": null,
+        "gateways": {
+          "kong-gateway": "2.3.x, 2.4.1.1"
+        },
+        "browsers": {
+          "internet-explorer": "not supported",
+          "edge": "supported",
+          "firefox": "supported",
+          "chrome": "supported",
+          "safari": "supported",
+          "opera": "unknown"
+        }
+      }
+    ]
+  }
 ]
