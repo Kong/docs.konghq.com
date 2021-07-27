@@ -219,35 +219,8 @@ header.navbar {
     }
   }
 
-  section.other-docs {
-    margin-top: 48px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 22px;
-    color: @color-text;
-
-    a {
-      color: @color-blue;
-      font-weight: bold;
-
-      &:hover, &:focus {
-        text-decoration: none;
-        opacity: 0.7;
-      }
-    }
-
-    img {
-      margin-right: 8px;
-    }
-  }
-
-
   section.cloud-platform {
-    margin-top: 52px;
+    margin-top: 72px;
 
     hr {
       width: 90%;
@@ -565,8 +538,6 @@ header.navbar {
   }
 
   @media (max-width: 1023px) {
-    padding-left: 16px;
-    padding-right: 16px;
     padding-bottom: 24px;
 
     .card {
@@ -625,6 +596,8 @@ header.navbar {
     }
 
     section.cloud-platform {
+      margin-top: 54px;
+
       .cards-container {
         flex-direction: column;
         align-items: center;
@@ -701,6 +674,21 @@ header.navbar {
 
     section.additional-info {
       margin-top: 48px;
+    }
+  }
+
+  .textures > .mobile-texture {
+    display: none;
+  }
+
+  @media (max-width:450px) {
+    .textures > .top-left, .top-right {
+      display: none;
+    }
+    .textures > .mobile-texture {
+      display: block;
+      position: absolute;
+      padding-top: 60px;
     }
   }
 }

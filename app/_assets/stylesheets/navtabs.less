@@ -3,10 +3,8 @@
   margin-bottom: 1.5rem;
 
     &.codeblock {
-      background-color: @grey-100;
-      border-bottom: 1px solid @grey-200;
-      border-left: 1px solid @grey-200;
-      border-right: 1px solid @grey-200;
+      background-color: @grey-200;
+      border: 1px solid @grey-200;
       border-radius: 3px;
       line-height: 24px;
 
@@ -75,14 +73,14 @@
         width: 100%;
         left: 0;
         top: 100%;
-        background: @blue;
+        background: @blue-500;
         height: 2px;
         transition: opacity 0.2s;
       }
 
       &.active {
         opacity: 1;
-        color: @blue;
+        color: @blue-500;
         cursor: text;
 
         &::after {

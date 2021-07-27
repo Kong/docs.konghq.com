@@ -7,7 +7,6 @@ install
 .project
 .bundle
 .idea
-.ruby-version
 .ruby-gemset
 *.log
 .vscode/

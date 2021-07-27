@@ -7,7 +7,7 @@ markdown: kramdown
 kramdown:
   syntax_highlighter: rouge
   syntax_highlighter_opts:
-    css_class: 'highlight'
+    css_class: "highlight"
     guess_lang: true
 incremental: true
 
@@ -83,52 +83,53 @@ icons_dir: assets/images/icons
 
 plugins:
   - jekyll-redirect-from
+  - jekyll-include-cache
 
 defaults:
   - scope:
-      path: ''
+      path: ""
     values:
-      layout: 'docs-v2'
+      layout: "docs-v2"
 
   - scope:
-      path: 'enterprise'
+      path: "enterprise"
     values:
-      layout: 'docs-v2'
+      layout: "docs-v2"
 
   - scope:
-      path: 'gateway-oss'
+      path: "gateway-oss"
     values:
-      layout: 'docs-v2'
+      layout: "docs-v2"
 
   - scope:
-      path: 'install'
+      path: "install"
     values:
-      layout: 'install'
+      layout: "install"
 
   - scope:
-      path: 'getting-started-guide'
+      path: "getting-started-guide"
     values:
-      layout: 'docs-v2'
+      layout: "docs-v2"
 
   - scope:
-      path: 'deck'
+      path: "deck"
     values:
-      layout: 'docs-v2'
+      layout: "docs-v2"
 
   - scope:
-      path: 'mesh'
+      path: "mesh"
     values:
-      layout: 'docs-v2'
+      layout: "docs-v2"
 
   - scope:
-      path: 'kubernetes-ingress-controller'
+      path: "kubernetes-ingress-controller"
     values:
-      layout: 'docs-v2'
+      layout: "docs-v2"
 
   - scope:
-      path: 'about'
+      path: "about"
     values:
-      layout: 'about'
+      layout: "about"
       header_html: '<a class="github-button" href="https://github.com/Kong/kong" data-style="mega" data-count-href="/Kong/kong/stargazers" data-count-api="/repos/Kong/kong#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star Kong/kong on GitHub">Star</a>&nbsp;<a class="github-button" href="https://github.com/Kong/kong/fork" data-icon="octicon-repo-forked" data-style="mega" data-count-href="/Kong/kong/network" data-count-api="/repos/Kong/kong#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork Kong/kong on GitHub">Fork</a>'
       breadcrumbs: null
 
@@ -139,9 +140,9 @@ defaults:
       permalink: /:collection/:path
 
   - scope:
-      path: 'contributing'
+      path: "contributing"
     values:
-      layout: 'docs-v2'
+      layout: "docs-v2"
 
 # product name vars
 ee_gateway_name: Kong Gateway

@@ -233,7 +233,7 @@ breadcrumbs:
         {% endif %}
 
         {% if page.params.examples != false %}
-          {% include hub-examples.html %}
+          {% include_cached hub-examples.html params=page.params %}
         {% endif %}
 
         <h3 id="parameters">Parameters</h3>
@@ -278,7 +278,7 @@ breadcrumbs:
       </div>
       {% unless page.toc == false %}
         <nav>
-          {% include toc.html html=full_content h_min=2 h_max=3 sanitize=true %}
+          {% include_cached toc.html html=full_content h_min=2 h_max=3 sanitize=true %}
         </nav>
       {% endunless %}
 
