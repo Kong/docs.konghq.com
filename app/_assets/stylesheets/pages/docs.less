@@ -203,8 +203,12 @@
         margin-bottom: 0.4em;
         font: lighter 34px/40px Roboto;
 
+        // shifts anchor link to display properly
         &::before {
-          display: none;
+          top:-120px;
+          display: block;
+          position: relative;
+          visibility: hidden;
         }
       }
 
