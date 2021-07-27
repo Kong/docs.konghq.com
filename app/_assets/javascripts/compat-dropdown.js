@@ -28,6 +28,8 @@ function getFormValues() {
 }
 
 $(document).ready(function () {
+  resetForm();
+  
   $("#product-compat-dropdown")
     .on("change", function () {
       let productSelection = $(this).val();
