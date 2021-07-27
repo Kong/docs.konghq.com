@@ -4,6 +4,10 @@ no_version: true
 toc: false
 ---
 
+Select a product and a version (if applicable) to see all third-party dependencies
+officially supported by Kong.
+
+
 <!-- ## Form logic
 Only product is displayed on page load
 Hide version form if product is not selected
@@ -35,47 +39,49 @@ Revert to page load state, only product is displayed
   window.productCompatibility = {{ site.data.tables.compat-json | jsonify }}
 </script>
 
+<div class="compat-form">
 <form name="compat-form" id="compat-form" action="/compat-dropdown">
-  Product: <select name="product" id="product-compat-dropdown">
+  <div class="dropdown-label">Product:</div> <select class="product-dropdown" name="product" id="product-compat-dropdown">
     {% for product in products %}
     <option value="{{ product.slug }}">{{ product.name }}</option>
     {% endfor %}
     </select>
     <!-- grab the selected value and use this to determine which version dropdown to show -->
     <!-- add a version dropdown if there is a version for that product -->
-    <br><br>
+    <br>
     <div id="version-selector" style="display:none">
-    Version: <select name="version" id="version-compat-dropdown"></select>
+    <div class="dropdown-label">Version: </div><select class="version-dropdown" name="version" id="version-compat-dropdown"></select>
     </div>
 </form>
 
-<button type="button" onclick="getFormValues()">View Results</button>
-<button type="button" onclick="resetForm()">Reset Form</button>
+<button type="button" class="compat-button" onclick="getFormValues()">View Results</button>
+<button type="button" class="compat-button" onclick="resetForm()">Reset Form</button>
 
----
+</div>
 
-## Results
+<!-- ## Results
+{:.compat-title} -->
 
-<!-- Test #3: One big table for all the things, per version -->
+<!-- Output of the product and version selector form -->
 
 {% for product in products %}
 {% for version in product.versions %}
 
-<div class="results-table" id="{{ product.slug }}-{{ version.release | replace: '.', '_' }}" style="display:none;">
+<div class="results-table" id="{{ product.slug }}-{{ version.release | replace: '.', '_' }}">
 
-<h3 id="{{ product.name }}">{{ product.name }}</h3>
+<h3 class="compat-title" id="{{ product.name }}">{{ product.name }}</h3>
 
 {% if version.release %}
-**Version {{ version.release }}**
+<strong>Version {{ version.release }}</strong>
 {% endif %}
 
-<table style="width: 80%; display: table; background-color: #f5f5f5">
+<table class="compat-table">
   <thead>
     <th style="width: 33%"><b>Component</b></th>
     <th style="width: 33%"><b>Category</b></th>
     <th><b>Supported Versions</b></th>
   </thead>
-  <tbody style="width: 80%">
+  <tbody>
   {% for system in version.os %}
     <tr>
       <td>{{ system[0] | split: "-" | join: " " | capitalize }}</td>
@@ -84,7 +90,7 @@ Revert to page load state, only product is displayed
     </tr>
   {% endfor %}
   {% for docker-component in version.docker %}
-    <tr style="background-color: #fafafa">
+    <tr>
       <td>{{ docker-component[0] | split: "-" | join: " " | capitalize }}</td>
       <td>Docker</td>
       <td>{{ docker-component[1] }}</td>
@@ -98,7 +104,7 @@ Revert to page load state, only product is displayed
     </tr>
   {% endfor %}
   {% for db in version.databases %}
-    <tr style="background-color: #fafafa">
+    <tr>
       <td>{{ db[0] | capitalize }}</td>
       <td>Database</td>
       <td>{{ db[1] }}</td>
@@ -117,8 +123,6 @@ Revert to page load state, only product is displayed
 
 {% endfor %}
 {% endfor %}
-
----
 
 <!-- Test #2: Pulled all version content into lists with literals, then printed
 the value for each item.
