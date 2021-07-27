@@ -5,6 +5,7 @@
   border: 1px solid @grey-200;
   border-radius: 3px;
   margin-top: 5px;
+  margin-bottom: 40px;
   padding: 30px;
   box-shadow: 4px 4px 14px rgb(0 48 130 / 10%);
 }
@@ -12,19 +13,55 @@
 table.compat-table {
   display: table;
   width: 100%;
+  margin-top: 15px;
 }
 
 .dropdown-label {
-  font-size: 1.7rem;
+  font-size: 17px;
   font-weight: 700;
   padding-right: 10px;
   display: inline-block;
   margin-bottom: 1px;
 }
 
-h2.compat-title {
-  border-bottom: 1px solid @grey-400;
+.version-dropdown {
+  margin-left: 9px;
+  display: inline-block;
+}
+
+.product-dropdown {
+  margin-left: 1px;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.compat-title {
+  font-family: @family-display;
+  display: inline-block;
   padding-bottom: 2px;
+  letter-spacing: 0;
+  color: #262e33;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.version-title {
+  font-family: @family-display;
+  display: inline-block;
+  padding-bottom: 2px;
+  letter-spacing: 0;
+  color: #262e33;
+  font-size: 20px;
+  font-weight: normal;
+
+    &:before {
+      content: "|";
+      font-size: 23px;
+      line-height: 20px;
+      vertical-align: middle;
+      padding-left: 5px;
+      padding-right: 5px;
+  }
 }
 
 .results-table {
