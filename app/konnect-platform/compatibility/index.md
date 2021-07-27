@@ -28,7 +28,7 @@ Revert to page load state, only product is displayed
 -->
 
 <!-- VARIABLES -->
-{% assign products = site.data.tables.compat-json %}
+{% assign products = site.data.tables.compat %}
 {% assign systems = product.versions.os %}
 {% assign k8s-components = product.versions.kubernetes %}
 {% assign dbs = product.versions.databases %}
@@ -37,7 +37,7 @@ Revert to page load state, only product is displayed
 {% assign gtws = product.versions.gateways %}
 
 <script>
-  window.productCompatibility = {{ site.data.tables.compat-json | jsonify }}
+  window.productCompatibility = {{ site.data.tables.compat | jsonify }}
 </script>
 
 <div class="compat-form">
