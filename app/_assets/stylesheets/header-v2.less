@@ -6,8 +6,35 @@ header.navbar-v2 {
   height: 60px;
   background: white;
   box-shadow: 0 8px 24px rgba(4, 53, 88, 0.1);
-  z-index: 100;
+  z-index: 10;
   padding: 0 24px;
+
+  a.skip-main {
+    left:-999px;
+    position:absolute;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+    z-index:-999;
+  }
+
+  a.skip-main:focus, a.skip-main:active {
+      color: black;
+      background-color:white;
+      left: auto;
+      top: auto;
+      width: 30%;
+      height: auto;
+      overflow:auto;
+      margin: 10px 35%;
+      padding: 5px;
+      border-radius: 10px;
+      border: 2px solid black;
+      text-align: center;
+      font-size: 1em;
+      z-index: 999;
+  }
 
   @media screen and (max-width: 800px) {
     box-shadow: none;
