@@ -89,6 +89,15 @@ header.navbar {
     }
   }
 
+
+  #feature-title {
+    padding-top: 40px;
+
+    @media (max-width:767px) {
+      text-align: center;
+    }
+  }
+
   .cards-container {
     display: flex;
     align-items: flex-start;
@@ -467,7 +476,7 @@ header.navbar {
   }
 
   section.features {
-    margin-top: 72px;
+    margin-top: 40px;
 
     .cards-container {
       display: grid;
@@ -629,7 +638,7 @@ header.navbar {
     }
 
     section.docs {
-      flex-direction: column;
+      flex-direction: row;
       margin-top: 32px;
 
       section.title-cards {
@@ -638,6 +647,8 @@ header.navbar {
 
         .cards-container {
           flex-direction: column;
+          margin-right: 24px;
+          justify-content: center;
 
           .card {
             margin-right: 0;
@@ -651,10 +662,9 @@ header.navbar {
       margin-top: 32px;
 
       .cards-container {
-        overflow-x: auto;
         padding: 8px 16px 8px 16px;
         grid-template-columns: none;
-        grid-auto-flow: column;
+        grid-auto-flow: row;
         grid-gap: 16px;
         box-sizing: border-box;
         margin-left: -16px;
@@ -670,6 +680,11 @@ header.navbar {
           width: 1px;
           height: 10px;
         }
+      }
+
+      @media (max-width:767px) {
+        justify-content: center;
+        display: flex;
       }
     }
 

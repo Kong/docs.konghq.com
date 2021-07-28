@@ -176,8 +176,8 @@ id: landing-page
   </section>
 
   {% for feature in site.data.landing_page.features %}
+  <h3 id="feature-title">{{ feature.title }}</h3>
   <section class="features">
-    <h3>{{ feature.title }}</h3>
     <div class="cards-container">
       {% for item in feature.items %}
       <div class="card default">
