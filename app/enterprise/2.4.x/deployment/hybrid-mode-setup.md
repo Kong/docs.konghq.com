@@ -34,7 +34,7 @@ For a breakdown of the properties used by these modes, see the
 {% navtabs %}
 {% navtab Shared mode %}
 <div class="alert alert-warning">
- 
+
   <strong>Protect the Private Key.</strong> Ensure the private key file can only be accessed by
   Kong nodes belonging to the cluster. If the key is compromised, you must
   regenerate and replace certificates and keys on all CP and DP nodes.
@@ -337,6 +337,9 @@ similar to declarative config, therefore <code>database</code> has to be set to
 <code>off</code> for Kong to start up properly.
 </div>
 
+See the [DP node start sequence](#dp-node-start-sequence) for more information 
+on how data plane nodes process configuration.
+
 {% navtabs %}
 {% navtab Using Docker %}
 1. Using the [Docker installation documentation](/enterprise/{{page.kong_version}}/deployment/installation/docker),
@@ -537,6 +540,22 @@ The output shows all of the connected Data Plane instances in the cluster:
     "next": null
 }
 ```
+
+## DP Node Start Sequence
+
+When set as a DP node, {{site.base_gateway}} processes configuration in the
+following order:
+
+1. **Config cache**: If the file `config.json.gz` exists in the `kong_prefix`
+path (`/usr/local/kong` by default), the DP node loads it as configuration.
+2. **`declarative_config` exists**: If there is no config cache and the
+`declarative_config` parameter is set, the DP node loads the specified file.
+3. **Empty config**: If there is no config cache or declarative
+configuration file available, the node starts with empty configuration. In this
+state, it returns 404 to all requests.
+4. **Contact CP Node**: In all cases, the DP node contacts the CP node to retrieve
+the latest configuration. If successful, it gets stored in the local config
+cache (`config.json.gz`).
 
 ## Configuration Reference
 
