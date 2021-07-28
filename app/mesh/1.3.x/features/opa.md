@@ -349,7 +349,7 @@ conf:
 {% endnavtabs %}
 
 By default, the body will not be sent to the agent.
-To send it set `authConfig.requestBody.maxSize` to the maximum size of your body.
+To send it, set `authConfig.requestBody.maxSize` to the maximum size of your body.
 If the request body is larger than this parameter it will be truncated and the header `x-envoy-auth-partial-body` will be set to `true`.
 
 ## Support for external API management servers
