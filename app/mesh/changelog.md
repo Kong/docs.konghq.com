@@ -10,7 +10,7 @@ no_version: true
 
 ### Changes
 
-Built on top of [Kuma 1.2.2](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#122)
+Built on top of [Kuma 1.2.3](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#123)
 
 - kumactl now always warns when the client and server versions cannot be confirmed to match.
 - The data plane proxy type is now checked for a valid value (one of `ingress` or `dataplane`).
