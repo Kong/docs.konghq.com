@@ -4,6 +4,22 @@ no_search: true
 no_version: true
 ---
 
+## 1.3.3
+
+> Released on 2021/07/29
+
+### Changes
+
+Built on top of [Kuma 1.2.3](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#123)
+
+- kumactl now always warns when the client and server versions cannot be confirmed to match.
+- The data plane proxy type is now checked for a valid value (one of `ingress` or `dataplane`).
+- Improvements to the control plane.
+
+### Upgrading
+
+Upgrades from `1.3.0` are seamless and no additional steps are needed.
+
 ## 1.3.2
 
 > Released on 2021/07/16
