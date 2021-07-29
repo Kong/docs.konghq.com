@@ -406,6 +406,7 @@
       margin-bottom: 0.1em;
       margin-top: 0.1em;
       font: lighter 38px/40px Roboto;
+      scroll-margin-top: 100px;
     }
 
     @media screen and (max-width: 1080px) {
@@ -547,7 +548,7 @@
 
         a {
           font-size: 14px;
-          color: @blue;
+          color: @blue-500;
 
             img, i {
               float: left;
@@ -637,7 +638,7 @@
 
   a {
     font-size: 14px;
-    color: @blue;
+    color: @blue-500;
 
     &:hover {
     opacity: 0.5;
@@ -650,7 +651,7 @@
 
   table {
     a {
-      color: @blue;
+      color: @blue-500;
     }
   }
 }
@@ -773,7 +774,7 @@
   h5,
   h6 {
     .font-source-sans();
-    color: #505659;
+    color: @font-color;
   }
 
   h1,
@@ -859,10 +860,10 @@
 
   a {
     text-decoration: none;
-    color: @blue;
+    color: @blue-500;
 
     &:hover, &:focus {
-      text-decoration: none;
+      text-decoration: underline;
       opacity: 0.7;
     }
   }
@@ -941,10 +942,11 @@ Generic Styling for Desktop
   table {
     display: block;
     max-width: 100%;
-    font-size: 14px;
+    font-size: 16px;
     overflow-x: auto;
     border: none;
     border-collapse: collapse;
+    border-radius: 3px;
     margin-top: 1.5em;
     position: relative;
 
@@ -962,6 +964,13 @@ Generic Styling for Desktop
     code {
       white-space: normal;
       font-size: 13px;
+      background-color: #fff;
+      border: 1px solid @steel-200;
+    }
+
+    a {
+      text-decoration: none;
+      color: @blue-500;
     }
   }
 
@@ -975,20 +984,35 @@ Generic Styling for Desktop
 
   th {
     font-weight: 600;
+    font-size: 15px;
     color: @black-80;
-    background-color: @grey-100;
+    background-color: #fff;
+    padding: 8px 16px 8px;
+    border-bottom: 2px solid @steel-200;
+    border-top: none;
     position: -webkit-sticky;
     position: sticky;
+    vertical-align: bottom;
     top: 0;
     z-index: 2;
+    text-transform: uppercase;
   }
 
-  td,
-  th {
+  td {
     padding: 8px 16px 8px;
-    border-bottom: 1px solid @grey-300;
-    border-top: 1px solid @grey-300;
   }
+
+  tr:nth-child(even) {
+    background-color: @steel-080;
+    border: 1px solid @steel-100;
+  }
+
+  tr:nth-child(odd) {
+    background-color: @steel-100;
+    border: 1px solid @steel-100;
+  }
+
+
 
   @media only screen and (max-width: 1099px) {
     table,
@@ -1009,14 +1033,14 @@ Generic Styling for Desktop
       }
 
       tr {
-        border-top: 1px solid @grey-300;
-        border-bottom: 1px solid @grey-300;
+        border-top: 1px solid @steel-200;
+        border-bottom: 1px solid @steel-200;
       }
 
       td {
         /* Behave  like a "row" */
         border: none;
-        border-bottom: 1px solid @grey-300;
+        border-bottom: 1px solid @steel-200;
         position: relative;
       }
 
@@ -1199,7 +1223,7 @@ Generic Styling for Desktop
 
     a {
       text-decoration: none;
-      color: @blue-light;
+      color: @blue-500;
     }
 
     &.condensed {
@@ -1463,7 +1487,6 @@ Generic Styling for Desktop
     font-size: 14px;
     border-radius: 3px;
     display: block;
-    background-color: @gray-light;
     border: 1px solid @gray;
 
     &:before {
@@ -1681,9 +1704,9 @@ Generic Styling for Desktop
       color: @navy-text;
 
       &:hover {
-        color: #1155cb;
+        color: @blue-500;
         opacity: 1;
-        text-decoration: none;
+        text-decoration: underline;
       }
     }
   }
@@ -1696,274 +1719,6 @@ Generic Styling for Desktop
   @media screen and (max-width: 800px) {
     margin-top: 10px;
   }
-}
-
-.section {
-  padding: 80px 0;
-
-  @media (max-width: 550px) {
-    padding: 20px 0;
-  }
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 45px;
-
-  h2 {
-    margin: 0;
-    font-size: 34px;
-    color: #45494d;
-  }
-
-  p {
-    font-size: 16px;
-    color: #74777a;
-    margin: 7px 0 0;
-  }
-}
-
-.section-buttons {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.subscribe-section {
-  background-color: @navy-darker;
-  border-top: 1px solid @gray;
-  border-bottom: 1px solid #e8e8eb;
-  text-align: center;
-  padding: 35px 0;
-
-  .newsletter-icon {
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    color: #fff;
-    float: left;
-    margin-right: 10px !important;
-    background: rgba(255, 255, 255, 0.2);
-    justify-content: center;
-    display: flex;
-  }
-
-  .newsletter-headline {
-    font-size: 19px;
-    line-height: 24px;
-    font-weight: 400;
-    color: #ffffff;
-    margin-top: 5px;
-  }
-
-  .section-header {
-    margin-bottom: 20px;
-  }
-
-  .form-message {
-    display: none;
-    font-size: 16px;
-    text-align: center;
-    line-height: 24px;
-    padding: 9px 0;
-  }
-
-  .loader {
-    margin: 0 auto;
-    padding: 9px 0;
-  }
-
-  .message {
-    position: absolute;
-    top: 40px;
-    display: none;
-  }
-
-  .success-message {
-    color: @green;
-    display: block;
-  }
-
-  .error-message {
-    color: @red;
-    display: block;
-  }
-
-  h2 {
-    text-align: center;
-    font-size: 28px;
-    margin-bottom: 30px;
-  }
-
-  .subscribe-form {
-    &:extend(.u-cf);
-    margin: 0;
-    display: inline-block;
-  }
-
-  input,
-  .button {
-    margin: 0;
-    float: left;
-  }
-
-  input[type="text"] {
-    border-radius: 3px;
-    border: 2px solid rgba(0, 0, 0, 0.1);
-    width: 100%;
-    height: 40px;
-    padding-left: 12px;
-    font-size: 16px;
-
-    &.error {
-      border-color: @red;
-    }
-  }
-
-  .button {
-    border-radius: 2px;
-    padding: 0 19px;
-    position: absolute;
-    top: 3px;
-    right: 3px;
-    background-color: @green;
-    cursor: pointer;
-    height: auto;
-    line-height: 32px;
-    font-size: 14px;
-    color: @white-90;
-    letter-spacing: 1px;
-
-    &:hover,
-    &:focus {
-      background-color: @green;
-      color: @white-90;
-    }
-  }
-
-  @media screen and (max-width: @grid-width-md) {
-    .one-half {
-      width: 100%;
-      margin-bottom: 15px;
-    }
-
-    .newsletter-icon,
-    .hidden-sm-down {
-      display: none;
-    }
-  }
-}
-
-// Gitter
-
-.js-gitter-toggle-chat-button {
-  z-index: 10000;
-  position: fixed;
-
-  bottom: 15px;
-  right: 20px;
-  width: 48px;
-  height: 48px;
-
-  background-color: @blue;
-  background-image: url("https://js.intercomcdn.com/images/acquire.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 26px 25px;
-  box-shadow: 0px 6px 13px 0px rgba(0, 0, 0, 0.23);
-
-  border: 1px solid @navy-dark;
-  border-radius: 50%;
-
-  transform: translateX(0vw) translateZ(0) scale(1, 1);
-  transition: background-size 0.3s,
-    transform 0.3s cubic-bezier(0.16, 0.22, 0.22, 1.7), opacity 0.3s,
-    box-shadow 0.3s;
-
-  &:hover {
-    box-shadow: 0px 6px 13px 3px rgba(0, 0, 0, 0.5);
-  }
-
-  &.close-gitter {
-    background-size: 0 0;
-    transform: translateX(-40vw);
-
-    @media (max-width: 1150px) {
-      transform: translateX(-55vw);
-    }
-    @media (max-width: 944px) {
-      transform: translateX(-70vw);
-    }
-    @media (max-width: 600px) {
-      transform: translateX(-81vw);
-    }
-    @media (max-width: 500px) {
-      display: none;
-    }
-  }
-
-  &::before {
-    content: "Chat with Kong Developers";
-    display: block;
-    position: relative;
-    width: 200px;
-    top: 9px;
-    right: 214px;
-    padding: 5px;
-    border-radius: 4px 14px 14px 4px;
-    background-color: @blue;
-    text-align: center;
-    color: #fff;
-    opacity: 0;
-
-    transition: opacity 0.3s;
-  }
-
-  &:hover::before {
-    opacity: 1;
-  }
-
-  &.close-gitter::before {
-    opacity: 0;
-  }
-
-  &::after {
-    content: "\f00d";
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    font-family: "FontAwesome";
-    font-size: 0;
-    text-align: center;
-    line-height: 46px;
-    color: #fff;
-
-    transition: font-size 0.3s;
-  }
-
-  &.close-gitter::after {
-    font-size: 40px;
-  }
-}
-
-// Gitter plugin styles
-.gitter-chat-embed {
-  z-index: 1002;
-}
-
-.gitter-chat-embed-action-bar-item-collapse-chat {
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNzEuNDI5IDE3MS40MjkiIGZpbGw9IiMzYTMxMzMiPjxwYXRoIGQ9Ik0xMjIuNDMzLDEwNi4xMzhsLTE2LjI5NSwxNi4yOTVjLTAuNzQ0LDAuNzQ0LTEuNiwxLjExNi0yLjU2NiwxLjExNmMtMC45NjgsMC0xLjgyMy0wLjM3Mi0yLjU2Ny0xLjExNmwtMTUuMjktMTUuMjkgbC0xNS4yOSwxNS4yOWMtMC43NDQsMC43NDQtMS42LDEuMTE2LTIuNTY3LDEuMTE2cy0xLjgyMy0wLjM3Mi0yLjU2Ny0xLjExNmwtMTYuMjk0LTE2LjI5NWMtMC43NDQtMC43NDQtMS4xMTYtMS42LTEuMTE2LTIuNTY2IGMwLTAuOTY4LDAuMzcyLTEuODIzLDEuMTE2LTIuNTY3bDE1LjI5LTE1LjI5bC0xNS4yOS0xNS4yOWMtMC43NDQtMC43NDQtMS4xMTYtMS42LTEuMTE2LTIuNTY3czAuMzcyLTEuODIzLDEuMTE2LTIuNTY3IEw2NS4yOSw0OC45OTZjMC43NDQtMC43NDQsMS42LTEuMTE2LDIuNTY3LTEuMTE2czEuODIzLDAuMzcyLDIuNTY3LDEuMTE2bDE1LjI5LDE1LjI5bDE1LjI5LTE1LjI5IGMwLjc0NC0wLjc0NCwxLjYtMS4xMTYsMi41NjctMS4xMTZjMC45NjcsMCwxLjgyMiwwLjM3MiwyLjU2NiwxLjExNmwxNi4yOTUsMTYuMjk0YzAuNzQ0LDAuNzQ0LDEuMTE2LDEuNiwxLjExNiwyLjU2NyBzLTAuMzcyLDEuODIzLTEuMTE2LDIuNTY3bC0xNS4yOSwxNS4yOWwxNS4yOSwxNS4yOWMwLjc0NCwwLjc0NCwxLjExNiwxLjYsMS4xMTYsMi41NjcgQzEyMy41NDksMTA0LjUzOSwxMjMuMTc3LDEwNS4zOTQsMTIyLjQzMywxMDYuMTM4eiBNMTQ2LjQyOSw4NS43MTRjMC0xMS4wMTItMi43MTctMjEuMTY4LTguMTQ4LTMwLjQ2OSBzLTEyLjc5Ny0xNi42NjctMjIuMDk4LTIyLjA5OFM5Ni43MjYsMjUsODUuNzE0LDI1cy0yMS4xNjgsMi43MTYtMzAuNDY5LDguMTQ3UzM4LjU3OSw0NS45NDUsMzMuMTQ3LDU1LjI0NlMyNSw3NC43MDMsMjUsODUuNzE0IHMyLjcxNiwyMS4xNjgsOC4xNDcsMzAuNDY5czEyLjc5NywxNi42NjYsMjIuMDk4LDIyLjA5OHMxOS40NTcsOC4xNDgsMzAuNDY5LDguMTQ4czIxLjE2OC0yLjcxNywzMC40NjktOC4xNDggczE2LjY2Ni0xMi43OTcsMjIuMDk4LTIyLjA5OFMxNDYuNDI5LDk2LjcyNiwxNDYuNDI5LDg1LjcxNHogTTE3MS40MjksODUuNzE0YzAsMTUuNTUxLTMuODMyLDI5Ljg5My0xMS40OTYsNDMuMDI0IGMtNy42NjQsMTMuMTMzLTE4LjA2MiwyMy41My0zMS4xOTQsMzEuMTk0Yy0xMy4xMzIsNy42NjQtMjcuNDc0LDExLjQ5Ni00My4wMjQsMTEuNDk2cy0yOS44OTItMy44MzItNDMuMDI0LTExLjQ5NiBjLTEzLjEzMy03LjY2NC0yMy41MzEtMTguMDYyLTMxLjE5NC0zMS4xOTRDMy44MzIsMTE1LjYwNywwLDEwMS4yNjUsMCw4NS43MTRTMy44MzIsNTUuODIyLDExLjQ5Niw0Mi42OSBjNy42NjQtMTMuMTMzLDE4LjA2Mi0yMy41MzEsMzEuMTk0LTMxLjE5NEM1NS44MjIsMy44MzIsNzAuMTY0LDAsODUuNzE0LDBzMjkuODkzLDMuODMyLDQzLjAyNCwxMS40OTYgYzEzLjEzMyw3LjY2NCwyMy41MywxOC4wNjIsMzEuMTk0LDMxLjE5NEMxNjcuNTk3LDU1LjgyMiwxNzEuNDI5LDcwLjE2NCwxNzEuNDI5LDg1LjcxNHoiLz48L3N2Zz4=) !important;
-}
-
-.gitter-chat-embed-action-bar-item:not(.gitter-chat-embed-action-bar-item-pop-out):active {
-  color: #555 !important;
-  background: none;
-  background-size: 57%;
-  background-position: center center;
-  background-repeat: no-repeat;
 }
 
 #scroll-to-top-button {

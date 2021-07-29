@@ -202,6 +202,7 @@
         color: #062e4d;
         margin-bottom: 0.4em;
         font: lighter 34px/40px Roboto;
+        scroll-margin-top: 100px;
 
         &::before {
           display: none;
@@ -430,8 +431,8 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #b3dfff;
-    outline: 1px solid #b3dfff;
+    background-color: @blue-200;
+    outline: 1px solid @blue-200;
   }
 
   ul.items {
@@ -646,7 +647,8 @@
             }
 
             &:hover {
-            color: #1155cb;
+            color: @blue-500;
+            text-decoration: underline;
             }
           }
         }
@@ -709,8 +711,8 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #b3dfff;
-    outline: 1px solid #b3dfff;
+    background-color: @blue-200;
+    outline: 1px solid @blue-200;
   }
 
   @media screen and (min-width: 1301px) {

@@ -290,6 +290,68 @@ spec:
         kuma.io/sidecar-env-vars: "KMESH_OPA_ENABLED=false;KMESH_OPA_ADDR=:8888;KMESH_OPA_CONFIG_OVERRIDES=config1:x,config2:y"
 ```
 
+## Configuring the authorization filter
+
+{% navtabs %}
+{% navtab Kubernetes %}
+
+```yaml
+apiVersion: kuma.io/v1alpha1
+kind: OPAPolicy
+mesh: default
+metadata:
+  name: opa-1
+spec:
+  selectors:
+  - match:
+      kuma.io/service: '*'
+  conf:
+    authConfig: # optional
+        statusOnError: 413 # optional: defaults to 403.
+        onAgentFailure: allow # optional: one of 'allow' or 'deny', defaults to 'deny' defines the behaviour when communication with the agent fails or the policy execution fails.
+        requestBody: # optional
+            maxSize: 1024 # the max number of bytes to send to the agent, if we exceed this, the request to the agent will have: `x-envoy-auth-partial-body: true`.
+            sendRawBody: true # use when the body is not plaintext. The agent request will have `raw_body` instead of `body`
+    agentConfig: # optional
+      inlineString: | # one of: inlineString, secret
+        decision_logs:
+          console: true
+    policies:
+      - secret: opa-policy
+```
+
+{% endnavtab %}
+{% navtab Universal %}
+
+```yaml
+type: OPAPolicy
+mesh: default
+name: opa-1
+selectors:
+- match:
+    kuma.io/service: '*'
+conf:
+    authConfig: # optional
+        statusOnError: 413 # optional: defaults to 403. http statusCode to use when the connection to the agent failed.
+        onAgentFailure: allow # optional: one of 'allow' or 'deny', defaults to 'deny'. defines the behaviour when communication with the agent fails or the policy execution fails.
+        requestBody: # optional
+            maxSize: 1024 # the maximum number of bytes to send to the agent, if we exceed this, the request to the agent will have: `x-envoy-auth-partial-body: true`.
+            sendRawBody: true # use when the body is not plaintext. The agent request will have `raw_body` instead of `body`
+  agentConfig: # optional
+    inlineString: | # one of: inlineString, secret
+      decision_logs:
+        console: true
+  policies: # optional
+    - secret: opa-policy
+```
+
+{% endnavtab %}
+{% endnavtabs %}
+
+By default, the body will not be sent to the agent.
+To send it, set `authConfig.requestBody.maxSize` to the maximum size of your body.
+If the request body is larger than this parameter, it will be truncated and the header `x-envoy-auth-partial-body` will be set to `true`.
+
 ## Support for external API management servers
 
 The `agentConfig` field lets you define a custom configuration that points to an external management server:
