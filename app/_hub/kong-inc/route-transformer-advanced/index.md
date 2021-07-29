@@ -61,7 +61,7 @@ This plugin transforms the routing on the fly in Kong, changing the upstream ser
 
 ## Template as value
 
-The templates that can be used as values are the same as the [request-transformer](x/hub/kong-inc/request-transformer-advanced/).
+The templates that can be used as values are the same as the [request-transformer](/hub/kong-inc/request-transformer-advanced/).
 
 [badge-travis-url]: https://travis-ci.com/Kong/kong-plugin-route-transformer-advanced/branches
 [badge-travis-image]: https://travis-ci.com/Kong/kong-plugin-route-transformer-advanced.svg?token=BfzyBZDa3icGPsKGmBHb&branch=master
