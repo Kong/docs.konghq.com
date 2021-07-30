@@ -129,11 +129,11 @@ params:
 
         {:.important}
         > There is no local storage strategy. However, you can achieve local
-        rate limiting by using a dummy `strategy` value (either `cluster` or `redis`)
+        rate limiting by using a placeholder `strategy` value (either `cluster` or `redis`)
         and a `sync_rate` of `-1`. This setting stores counters in-memory on the
         node.
-        <br><br>If using `redis` as the dummy value, you must fill in all
-        additional `redis` configuration parameters with dummy values.
+        <br><br>If using `redis` as the placeholder value, you must fill in all
+        additional `redis` configuration parameters with placeholder values.
 
         For details on which strategy should be used, refer to the
         [implementation considerations](/hub/kong-inc/rate-limiting/#implementation-considerations).
