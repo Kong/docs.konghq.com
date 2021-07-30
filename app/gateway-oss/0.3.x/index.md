@@ -17,9 +17,9 @@ is_homepage: true
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/about/faq">FAQ</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="https://konghq.com/faqs/">FAQ</a></h3>
     <p>Learn the answers to some of the most asked questions about Kong</p>
-    <a href="/about/faq">Read the FAQ &rarr;</a>
+    <a href="https://konghq.com/faqs/">Read the FAQ &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
