@@ -58,7 +58,7 @@ The Session configuration is secure by default, so the cookie uses the [Secure, 
 
 ⚠️**Important:** The following properties must be altered depending on the protocol and domains in use:
 * If using HTTP instead of HTTPS: `"cookie_secure": false`
-* If using different domains for [portal_api_url](/enterprise/{{page.kong_version}}/property-reference//#portal_api_url) and [portal_gui_host](/enterprise/{{page.kong_version}}/property-reference/#portal_gui_host): `"cookie_samesite": "off"`
+* If using different domains for [portal_api_url](/enterprise/{{page.kong_version}}/property-reference/#portal_api_url) and [portal_gui_host](/enterprise/{{page.kong_version}}/property-reference/#portal_gui_host): `"cookie_samesite": "off"`
 
 ## Example Configurations
 
