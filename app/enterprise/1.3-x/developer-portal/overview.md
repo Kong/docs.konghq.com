@@ -102,10 +102,10 @@ Read the full Kong Enterprise 1.3 Changelog [here](/enterprise/changelog).
   <div class="docs-grid-block">
     <h3>
         <img src="/assets/images/icons/documentation/icn-doc-reference.svg" />
-        <a href="/enterprise/1.3-x/developer-portal/networking">Networking</a>
+        <a href="/enterprise/1.3-x/property-reference/#developer-portal-section">Networking</a>
     </h3>
     <p></p>
-    <a href="/enterprise/1.3-x/developer-portal/networking">
+    <a href="/enterprise/1.3-x/property-reference/#developer-portal-section">
       View the Developer Portal Networking Property Reference &rarr;
     </a>
   </div>
