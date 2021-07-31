@@ -8,6 +8,22 @@ jQuery(function () {
   var $window = $(window);
   var $docs = $("#documentation");
 
+  // smooth scroll
+  $(".scroll-to").on("click", function (e) {
+    e.preventDefault();
+    if ($(window).width() <= 1000) {
+      var offset = NAV_HEIGHT + 40;
+    } else {
+      var offset = NAV_HEIGHT;
+    }
+    $("html, body").animate(
+      {
+        scrollTop: $($(this).attr("href")).offset().top - offset, // Header height
+      },
+      700
+    );
+  });
+
   // Active link
   var url = $(".page.v2").data("url");
   if (url){

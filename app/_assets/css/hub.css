@@ -219,15 +219,6 @@ summary {
     text-align: center
 }
 
-.tab-content>.tab-pane {
-    display: none
-}
-
-.tab-content>.active {
-    display: block
-}
-
-
 @media print {
     blockquote,img,pre,tr {
         page-break-inside: avoid
@@ -3809,14 +3800,6 @@ tbody.collapse.show {
 
 .breadcrumb::after {
     content: ""
-}
-
-.tab-content>.tab-pane {
-    display: none
-}
-
-.tab-content>.active {
-    display: block
 }
 
 .card {
@@ -13554,35 +13537,6 @@ section.bg-dkBlue {
     top: 0;
 }
 
-.demo-form-container iframe {
-    height: 1150px
-}
-
-.demo-form-container .form-thanks {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
-    padding-top: 25%
-}
-
-.demo-form-container .form-thanks img {
-    width: 128px;
-    margin: 0 auto 2rem
-}
-
-.demo-form-container .form-thanks h1 {
-    margin-bottom: 1rem
-}
-
 .page-thanks svg {
     width: 100%;
     margin-top: -15%
@@ -13812,98 +13766,6 @@ a.btn-gh:hover {
 
 .btn-white:hover {
     background-color: #ddd
-}
-
-.modal-open {
-    padding-right: 0!important
-}
-
-@media (min-width: 992px) {
-    .demo-form-container iframe {
-        height:900px
-    }
-
-    .modal-xxl {
-        max-width: 80%
-    }
-}
-
-#kongModal .modal-header {
-    border: none
-}
-
-#kongModal .close {
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    width: 16px;
-    height: 16px;
-    background: url(../img/icons/icon-close.svg);
-    z-index: 9999
-}
-
-section.newsletter-container {
-    padding-top: 1.5rem;
-    padding-bottom: 1rem;
-    background-color: #041F33
-}
-
-.page-subscriptions table thead section.newsletter-container th,section.newsletter-container .page-subscriptions table thead th,section.newsletter-container p {
-    color: rgba(0,0,0,0.45)
-}
-
-section.newsletter-container button.close {
-    position: absolute;
-    top: 0;
-    right: 5px;
-    color: #fff;
-    z-index: 2
-}
-
-@media (max-width: 767px) {
-    section.newsletter-container button.close {
-        display:none
-    }
-}
-
-section.newsletter-container .newsletter-icon {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    color: #fff;
-    background: rgba(255,255,255,.2)
-}
-
-@media (max-width: 767px) {
-    section.newsletter-container .newsletter-icon {
-        display:none
-    }
-}
-
-section.newsletter-container .newsletter-form .form-control:focus {
-    background-color: #ededed
-}
-
-section.newsletter-container .newsletter-form .form-control:focus::-webkit-input-placeholder {
-    color: transparent
-}
-
-section.newsletter-container .newsletter-form .form-control:disabled {
-    background-color: #E0E1E2
-}
-
-.page-subscriptions table thead section.newsletter-container .newsletter-form th,section.newsletter-container .newsletter-form .page-subscriptions table thead th,section.newsletter-container .newsletter-form p {
-    margin: 0;
-    text-align: center
 }
 
 @media (max-width: 1278px) {
@@ -14952,10 +14814,14 @@ header.page-header {
 .page-hub {
   h2 {
     margin-top: 130px;
-  }
+  },
   h3 {
     margin-bottom: 68px;
   }
+}
+
+#main {
+    scroll-margin-top: 100px;
 }
 
 #free-trial-form-container .hide {
@@ -15161,9 +15027,6 @@ header.page-header {
 @media (min-width: 1080px){
     .navbar.full-width {
         margin-top:5px;
-    }
-    .navbar.full-width .kong-navbar_nav #menu-primary-nav>li.demo-btn{
-        top:-2.5px;
     }
 }
 

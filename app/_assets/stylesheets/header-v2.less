@@ -9,6 +9,33 @@ header.navbar-v2 {
   z-index: 100;
   padding: 0 24px;
 
+  a.skip-main {
+    left:-999px;
+    position:absolute;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+    z-index:-999;
+  }
+
+  a.skip-main:focus, a.skip-main:active {
+      color: black;
+      background-color:white;
+      left: auto;
+      top: auto;
+      width: 30%;
+      height: auto;
+      overflow:auto;
+      margin: 10px 35%;
+      padding: 5px;
+      border-radius: 10px;
+      border: 2px solid black;
+      text-align: center;
+      font-size: 1em;
+      z-index: 999;
+  }
+
   @media screen and (max-width: 800px) {
     box-shadow: none;
   }
@@ -126,6 +153,10 @@ header.navbar-v2 {
         white-space: nowrap;
         cursor: pointer;
 
+        a:hover {
+          text-decoration: underline;
+        }
+
         &.with-submenu {
           display: flex;
           flex-direction: row;
@@ -143,14 +174,6 @@ header.navbar-v2 {
 
         > a {
           color: #043558;
-        }
-
-        &.active {
-          font-weight: bold;
-
-          > a {
-            color: rgba(17, 85, 203, 1);
-          }
         }
 
         .navbar-item-submenu {

@@ -112,7 +112,7 @@ Starting in Kong 2.1, the Hybrid cluster can use certificates signed by a centra
 This mode can be activated by setting `cluster_mtls` to `"pki"` in `kong.conf`. The default value is `"shared"`.
 
 In PKI mode, the Control Plane and Data Plane don't need to use the same `cluster_cert` and `cluster_cert_key`.
-Instead, Kong validates both sides by checking if they are from the same CA. This eliminates the risk of
+Instead, Kong validates both sides by checking if they are issued by configured CA. This eliminates the risk of
 transporting private keys around.
 
 {% navtabs %}

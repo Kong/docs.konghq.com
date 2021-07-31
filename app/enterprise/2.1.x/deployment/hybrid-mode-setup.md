@@ -25,7 +25,7 @@ Before using Hybrid mode, you need a certificate/key pair.
 pair, then distribute copies across nodes. The certificate/key pair is shared
 by both CP and DP nodes.
 * **PKI mode:** Provide certificates signed by a central certificate authority
-(CA). Kong validates both sides by checking if they are from the same CA. This
+(CA). Kong validates both sides by checking if they are issued by configured CA. This
 eliminates the risks associated with transporting private keys.
 
 For a breakdown of the properties used by these modes, see the
@@ -61,7 +61,7 @@ certificate authority (CA).
 
 In this mode, the Control Plane and Data Plane don't need to use the same
 `cluster_cert` and `cluster_cert_key`. Instead, Kong validates both sides by
-checking if they are from the same CA.
+checking if they are issued by configured CA.
 
 Prepare your CA certificates on the hosts where Kong will be running.
 

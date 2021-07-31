@@ -112,7 +112,7 @@ Starting in Kong 2.1, the Hybrid cluster can use certificates signed by a centra
 This mode can be activated by setting `cluster_mtls` to `"pki"` in `kong.conf`. The default value is `"shared"`.
 
 In PKI mode, the control plane and data plane don't need to use the same `cluster_cert` and `cluster_cert_key`.
-Instead, Kong validates both sides by checking if they are from the same CA. This eliminates the risk of
+Instead, Kong validates both sides by checking if they are issued by configured CA. This eliminates the risk of
 transporting private keys around.
 
 {% navtabs %}
@@ -347,16 +347,21 @@ cluster_cert_key = cluster.key
 lua_ssl_trusted_certificate = cluster.crt
 ```
 
-### DP Node Stat Sequence
+### DP Node Start Sequence
 
-When set as a DP node, Kong will follow the following steps regarding its configuration: 
+When set as a DP node, {{site.base_gateway}} processes configuration in the
+following order:
 
-step | description
----|---
-config cache | If a file `config.json.gz` exists in the `kong_prefix` path (`/usr/local/kong` by default), the DP Node loads it as configuration.
-declarative_config | If there wasn't a config cache and the `declarative_config` parameter is set, it's loaded as usual.
-empty config | If neither the config cache or a declarative configuration is available, the Node starts with an empty configuration. In this state, it returns 404 to all requests.
-contact CP Node | In all cases, the DP Node contacts the CP Node to retrieve the latest configuration. If successful, it will be stored in the local config cache (`config.json.gz`)
+1. **Config cache**: If the file `config.json.gz` exists in the `kong_prefix`
+path (`/usr/local/kong` by default), the DP node loads it as configuration.
+2. **`declarative_config` exists**: If there is no config cache and the
+`declarative_config` parameter is set, the DP node loads the specified file.
+3. **Empty config**: If there is no config cache or declarative
+configuration file available, the node starts with empty configuration. In this
+state, it returns 404 to all requests.
+4. **Contact CP Node**: In all cases, the DP node contacts the CP node to retrieve
+the latest configuration. If successful, it gets stored in the local config
+cache (`config.json.gz`).
 
 
 ## Checking the status of the cluster
