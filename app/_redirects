@@ -84,3 +84,9 @@
 /enterprise/2.3.x/developer-portal/introduction /enterprise/2.3.x/developer-portal
 /enterprise/latest/developer-portal/introduction /enterprise/latest/developer-portal
 /enterprise/latest/developer-portal/overview     /enterprise/latest/developer-portal
+
+# About
+/about/faq                 https://konghq.com/faqs/
+/about/faq/*               https://konghq.com/faqs/:splat
+/about/*                   https://konghq.com/about-kong-inc/
+/about                     https://konghq.com/about-kong-inc/
