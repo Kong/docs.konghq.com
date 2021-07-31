@@ -31,7 +31,10 @@ params:
   name: graphql-rate-limiting-advanced
   service_id: true
   route_id: true
-  dbless_compatible: yes
+  dbless_compatible: partially
+  dbless_explanation: |
+   The cluster strategy is not supported in DB-less and hybrid modes. For Kong
+   Gateway in DB-less or hybrid mode, use the `redis` strategy.
   config:
     - name: cost_strategy
       required: true
@@ -109,22 +112,28 @@ params:
     - name: strategy
       required:
       default: cluster
-      value_in_examples: local
+      value_in_examples: cluster
       datatype: string
       description: |
         The rate-limiting strategy to use for retrieving and incrementing the
         limits. Available values are:
-        - `local`: Counters are stored locally in-memory on the node.
         - `cluster`: Counters are stored in the Kong datastore and shared across
         the nodes.
         - `redis`: Counters are stored on a Redis server and shared
         across the nodes.
 
-        In DB-less and hybrid modes, the `cluster` config strategy is not supported.
-        For DB-less mode, use one of `redis` or `local`; for hybrid mode, use
-        `redis`, or `local` for data planes only.
+        In DB-less and hybrid modes, the `cluster` config strategy is not
+        supported.
 
         In Konnect Cloud, the default strategy is `redis`.
+
+        {:.important}
+        > There is no local storage strategy. However, you can achieve local
+        rate limiting by using a placeholder `strategy` value (either `cluster` or `redis`)
+        and a `sync_rate` of `-1`. This setting stores counters in-memory on the
+        node.
+        <br><br>If using `redis` as the placeholder value, you must fill in all
+        additional `redis` configuration parameters with placeholder values.
 
         For details on which strategy should be used, refer to the
         [implementation considerations](/hub/kong-inc/rate-limiting/#implementation-considerations).

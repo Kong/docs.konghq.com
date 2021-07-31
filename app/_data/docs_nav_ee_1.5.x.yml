@@ -328,7 +328,7 @@
     - text: Using the Editor
       url: /developer-portal/using-the-editor
     - text: Networking
-      url: /developer-portal/networking
+      url: /property-reference/#dev-portal
     - text: Configuration
       url: /developer-portal/configuration
       items:

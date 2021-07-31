@@ -367,7 +367,7 @@
     - text: Using the Editor
       url: /developer-portal/using-the-editor
     - text: Networking
-      url: /developer-portal/networking
+      url: /property-reference/#developer-portal-section
     - text: Configuration
       items:
         - text: Authentication
