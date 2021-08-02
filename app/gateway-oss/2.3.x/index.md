@@ -3,12 +3,6 @@ title: Kong Gateway (OSS)
 subtitle: A lightweight open-source API gateway
 ---
 
-Before going further into {{site.base_gateway}}, make sure you understand its [purpose and philosophy](/about). Once you are confident with the concept of API gateways, this guide is going to take you through a quick introduction on how to use {{site.base_gateway}} and perform basic operations such as:
-
-- [Running your own {{site.base_gateway}} instance][quickstart]
-- [Adding and consuming Services][configuring-a-service]
-- [Installing plugins on {{site.base_gateway}}][enabling-plugins]
-
 ## What is Kong Gateway, technically?
 
 You’ve probably heard that {{site.base_gateway}} is built on Nginx, leveraging its stability and efficiency. But how is this possible exactly?

@@ -288,4 +288,4 @@ selected header was not sent by the client or the configured service was not fou
 [api-object]: /gateway-oss/latest/admin-api/#api-object
 [configuration]: /gateway-oss/latest/configuration
 [consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
-[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
+
