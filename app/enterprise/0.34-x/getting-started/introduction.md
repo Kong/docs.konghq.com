@@ -4,9 +4,7 @@ title: Welcome to Kong Enterprise
 
 ## Introduction
 
-Before going further into Kong Enterprise, make sure you understand
-its [purpose and philosophy](/about). Once you are confident with the concept
-of API Gateways, this guide is going to take you through a quick introduction on
+This guide is going to take you through a quick introduction on
 how to use Kong and perform basic operations such as:
 
 - [Running your own Kong instance][quickstart].

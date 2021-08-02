@@ -20,7 +20,7 @@ Kong 64-bit Amazon Machine Image (AMI) is available on the AWS Marketplace, with
 
 1. **Cassandra**
 
-    The Kong AWS Marketplace AMI image is designed for simplicity and fast deployment, this means it comes bundled with [Cassandra](/about/faq/#how-does-it-work) on the same image.
+    The Kong AWS Marketplace AMI image is designed for simplicity and fast deployment, this means it comes bundled with [Cassandra](https://konghq.com/faqs/) on the same image.
 
     **Note**: *For optimal performance, we recommend deploying a Cassandra cluster separately from the Kong Cluster.*
 
@@ -28,7 +28,7 @@ Kong 64-bit Amazon Machine Image (AMI) is available on the AWS Marketplace, with
 
 2. **Scaling**
 
-    Each EC2 Node is self-contained, running both Kong & Cassandra. In order to add more nodes and start a cluster, you'll have have to turn on [Clustering in Cassandra](/about/faq/#apache-cassandra), and modify each node's [`kong.yml`](https://docs.konghq.com/0.5.x/configuration/#databases_available) with the updated Cassandra information.
+    Each EC2 Node is self-contained, running both Kong & Cassandra. In order to add more nodes and start a cluster, you'll have have to turn on [Clustering in Cassandra](https://konghq.com/faqs/), and modify each node's [`kong.yml`](https://docs.konghq.com/0.5.x/configuration/#databases_available) with the updated Cassandra information.
 
 3. **Use Kong**
 
