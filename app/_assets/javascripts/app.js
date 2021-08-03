@@ -406,7 +406,7 @@ jQuery(function () {
    * Expandable images
    *
    * To enable on specific page, add the following include directive at the bottom of the page html:
-   * {% include image-modal.html %}
+   * {% include_cached image-modal.html disable_image_expand=page.disable_image_expand %}
    *
    * To disable for a specific img tag add 'no-image-expand' class. Example:
    * <img class="install-icon no-image-expand" src="https://doc-assets.konghq.com/install-logos/docker.png" alt="docker" />
