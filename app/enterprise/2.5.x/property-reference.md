@@ -653,10 +653,15 @@ should be a different certificate for each DP node.
 
 #### cluster_ca_cert
 
-The trusted CA certificate file in PEM format used to verify the
-`cluster_cert`.
+The trusted CA certificate file in PEM format used for Control Plane to verify
+Data Plane's certificate and Data Plane to verify Control Plane's certificate.
 
-Required if `cluster_mtls` is set to `pki`, ignored otherwise.
+Required on data plane if `cluster_mtls` is set to `pki`.
+
+If Control Plane certificate is issued by a well known CA, user can set
+`lua_ssl_trusted_certificate=system` on Data Plane and leave this field empty.
+
+This field is ignored if `cluster_mtls` is set to `shared`.
 
 **Default:** none
 
@@ -1527,6 +1532,15 @@ Defines the buffer size for reading the request body on Admin API.
 
 ---
 
+#### nginx_http_lua_regex_match_limit
+
+Global `MATCH_LIMIT` for PCRE regex matching. The default of `100000` should
+ensure at worst any regex Kong executes could finish within roughly 2 seconds.
+
+**Default:** `100000`
+
+---
+
 
 ### Datastore section
 
@@ -1594,7 +1608,7 @@ name   | description  | default
 **pg_database** | The database name to connect to. | `kong`
 **pg_schema** | The database schema to use. If unspecified, Kong will respect the `search_path` value of your PostgreSQL instance. | none
 **pg_ssl** | Toggles client-server TLS connections between Kong and PostgreSQL. Because PostgreSQL uses the same port for TLS and non-TLS, this is only a hint. If the server does not support TLS, the established connection will be a plain one. | `off`
-**pg_ssl_version** | When using ssl between Kong and PostgreSQL, the version of tls to use. Accepted values are `tlsv1`,  `tlsv1_2` or `tlsv1_3` | `tlsv1`
+**pg_ssl_version** | When using ssl between Kong and PostgreSQL, the version of tls to use. Accepted values are `tlsv1`, `tlsv1_2`, or `tlsv1_3`. | `tlsv1`
 **pg_ssl_required** | When `pg_ssl` is on this determines if TLS must be used between Kong and PostgreSQL. It aborts the connection if the server does not support SSL connections. | `off`
 **pg_ssl_verify** | Toggles server certificate verification if `pg_ssl` is enabled. See the `lua_ssl_trusted_certificate` setting to specify a certificate authority. | `off`
 **pg_ssl_cert** | The absolute path to the PEM encoded client TLS certificate for the PostgreSQL connection. Mutual TLS authentication against PostgreSQL is only enabled if this value is set. | none
@@ -1653,6 +1667,14 @@ should preserve its default value of 0.
 If the Hybrid mode `role` is set to `data_plane` and there's no configuration
 cache file, this configuration is used before connecting to the Control Plane
 node as a user-controlled fallback.
+
+**Default:** none
+
+---
+
+#### declarative_config_string
+
+The declarative configuration as a string
 
 **Default:** none
 
@@ -2036,6 +2058,21 @@ Defines the name of the HTTP request header from which the Admin API will
 attempt to authenticate the RBAC user.
 
 **Default:** `Kong-Admin-Token`
+
+---
+
+#### event_hooks_enabled
+
+When enabled, event hook entities represent a relationship between an event
+(source and event) and an action (handler). Similar to web hooks, event hooks
+can be used to communicate Kong Gateway service events. When a particular event
+happens on a service, the event hook calls a URL with information about that
+event. Event hook configurations differ depending on the handler. The events
+that are triggered send associated data.
+
+See: https://docs.konghq.com/enterprise/latest/admin-api/event-hooks/reference/
+
+**Default:** `on`
 
 ---
 
