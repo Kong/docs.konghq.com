@@ -1,5 +1,5 @@
 ---
-title: Manage Developer Access to Konnect Dev Portal
+title: Manage Developer Access
 no_version: true
 ---
 
