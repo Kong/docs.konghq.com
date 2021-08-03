@@ -188,6 +188,28 @@ params:
       datatype: number
       description: |
         Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined.
+        This field is deprecated and replaced with `redis.connect_timeout`, `redis.send_timeout`, and `redis.read_timeout`.
+        The `redis.timeout` field will continue to work in a backwards compatible way, but it is recommended to use the replacement fields.
+        If set to something other than the default, a deprecation warning will be logged in the log file, stating the field's deprecation
+        and planned removal in v3.x.x.
+    - name: redis.connect_timeout
+      required: semi
+      default: 2000
+      datatype: number
+      description: |
+        Connection timeout to use for Redis connection when the `redis` strategy is defined.
+    - name: redis.send_timeout
+      required: semi
+      default: 2000
+      datatype: number
+      description: |
+        Send timeout to use for Redis connection when the `redis` strategy is defined.
+    - name: redis.read_timeout
+      required: semi
+      default: 2000
+      datatype: number
+      description: |
+        Read timeout to use for Redis connection when the `redis` strategy is defined.
     - name: redis.password
       required: semi
       default:
@@ -216,7 +238,7 @@ params:
       value_in_examples:
       datatype: string
       description: |
-            Sentinel password to authenticate with a Redis Sentinel instance.
+            Sentinel password to authenticate with a Redis Sentinel instance. If undefined, no AUTH commands are sent to Redis Sentinels.
             **Note:** This parameter is only available for Kong Enterprise versions
             1.3.0.2 and later.
     - name: redis.sentinel_role
