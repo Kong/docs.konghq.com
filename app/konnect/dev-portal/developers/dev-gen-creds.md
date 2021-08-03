@@ -4,10 +4,7 @@ no_version: true
 toc: true
 ---
 
-Generate credentials (API keys) for an application. The API key identifies and authenticates
-the developer application making a call. Use the API key either in the request URL (as a query parameter),
-or in the request header. An API key generated in the {{site.konnect_short_name}}
-Dev Portal is a 32-character string associated with an application.
+The API key identifies and authenticates the developer application making a call. Use the API key either in the request URL (as a query parameter), or in the request header. An API key generated in the {{site.konnect_short_name}} Dev Portal is a 32-character string associated with an application.
 
 You can generate multiple credentials and delete as needed.
 

@@ -1,5 +1,5 @@
 ---
-title: Register or Unregister an Application for a Service on the Konnect Dev Portal
+title: Register or Unregister an Application for a Service
 no_version: true
 toc: true
 ---
