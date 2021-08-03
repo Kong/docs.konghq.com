@@ -313,6 +313,13 @@
         url: /admin-api/admins/reference
       - text: Examples
         url: /admin-api/admins/examples
+  - text: Event Hooks
+    url: /admin-api/event-hooks/reference
+    items:
+      - text: Event Hooks Reference
+        url: /admin-api/event-hooks/reference
+      - text: Examples
+        url: /admin-api/event-hooks/examples
   - text: Audit Logging
     url: /admin-api/audit-log
   - text: Keyring and Data Encryption
