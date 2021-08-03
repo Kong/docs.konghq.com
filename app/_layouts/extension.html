@@ -233,7 +233,7 @@ breadcrumbs:
         {% endif %}
 
         {% if page.params.examples != false %}
-          {% include_cached hub-examples.html params=page.params %}
+          {% include_cached hub-examples.html params=page.params publisher=page.publisher name=page.name %}
         {% endif %}
 
         <h3 id="parameters">Parameters</h3>
