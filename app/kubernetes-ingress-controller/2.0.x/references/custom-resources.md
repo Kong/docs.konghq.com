@@ -336,6 +336,32 @@ and Kong will terminate the TLS session based on the SNI.
 Also note that, the port in this case should be configured with `ssl` parameter
 in Kong.
 
+## UDPIngress
+
+The `UDPIngress` API makes it possible to route traffic to your [UDP][udp] services
+using Kong (e.g. DNS, Game Servers, e.t.c.).
+
+```yaml
+apiVersion: configuration.konghq.com/v1beta1
+kind: UDPIngress
+metadata:
+  name: <object name>
+  namespace: <object namespace>
+  annotations:
+    kubernetes.io/ingress.class: <controller ingress class, "kong" by default>
+spec:
+  rules:
+  - port: <port on which to expose this service, required>
+    backend:
+      serviceName: <name of the kubernetes service, required>
+      servicePort: <port number to forward on the service, required>
+```
+
+For each rule provided in the spec the Kong proxy environment must be updated to
+listen to UDP on that port as well.
+
+[udp]:https://datatracker.ietf.org/doc/html/rfc768
+
 ## KongConsumer
 
 This custom resource configures a consumer in Kong:

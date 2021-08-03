@@ -20,6 +20,7 @@ The following CRDs allow users to declaratively configure all aspects of Kong:
 - [**KongClusterPlugin**](#kongclusterplugin)
 - [**KongConsumer**](#kongconsumer)
 - [**TCPIngress**](#tcpingress)
+- [**UDPIngress**](#udpingress)
 - [**KongCredential (Deprecated)**](#kongcredential-deprecated)
 
 ## KongIngress
@@ -112,6 +113,18 @@ you want to use a single cloud LoadBalancer for all kinds
 of traffic into your Kubernetes cluster.
 
 It is very similar to the Ingress resource that ships with Kubernetes.
+
+## UDPIngress
+
+_This resource requires the `kubernetes.io/ingress.class` annotation. Its value
+must match the value of the controller's `--ingress-class` argument, which is
+"kong" by default._
+
+This Custom Resource is used for exposing [UDP][udp] services
+running inside Kubernetes to the outside world via Kong.
+
+This is useful for services such as DNS servers, Game Servers,
+VPN software and a variety of other applications.
 
 ## KongCredential (Deprecated)
 

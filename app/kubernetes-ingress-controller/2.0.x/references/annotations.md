@@ -115,6 +115,7 @@ The following resources _require_ this annotation by default:
 - Ingress
 - KongConsumer
 - TCPIngress
+- UDPIngress
 - KongClusterPlugin
 - Secret resources with the `ca-cert` label
 
