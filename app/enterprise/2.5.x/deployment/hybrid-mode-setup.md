@@ -352,6 +352,10 @@ point them to the Control Plane, set certificate/key parameters to point at
 the location of your certificates and keys, and ensure the database
 is disabled.
 
+In addition, the certificate from `cluster_cert` (in `shared` mode) or `cluster_ca_cert` 
+(in `pki` mode) is automatically added to the trusted chain in 
+[`lua_ssl_trusted_certificate`](/enterprise/{{page.kong_version}}/property-reference/#lua_ssl_trusted_certificate).
+
 {:.warning}
 > **Important:** Data Plane nodes receive updates from the Control Plane via a format
 similar to declarative config, therefore `database` has to be set to
@@ -416,11 +420,6 @@ follow the instructions to:
     `KONG_DATABASE`
     : Specifies whether this node connects directly to a database.
 
-    `KONG_LUA_SSL_TRUSTED_CERTIFICATE`
-    : Lists files as trusted by OpenResty. The certificate from `cluster_cert`
-    (in "shared" mode) or `cluster_ca_cert` (in "pki" mode) is automatically
-    added to the trusted chain in `lua_ssl_trusted_certificate`.
-
     `<path-to-file>` and `target=<path-to-keys-and-certs>`
     : Are the same path, pointing to the location of the `cluster.key` and
     `cluster.crt` files.
@@ -462,7 +461,6 @@ and follow the instructions in Steps 1 and 2 **only** to download
     cluster_telemetry_endpoint = control-plane.<admin-hostname>.com:8006
     cluster_cert = /<path-to-file>/cluster.crt
     cluster_cert_key = /<path-to-file>/cluster.key
-    lua_ssl_trusted_certificate = /<path-to-file>/cluster.crt
     ```
 
     For `pki` certificate mode, use:
@@ -486,11 +484,6 @@ and follow the instructions in Steps 1 and 2 **only** to download
 
     `database`
     : Specifies whether this node connects directly to a database.
-
-    `lua_ssl_trusted_certificate`
-    : Lists files as trusted by OpenResty. The certificate from `cluster_cert`
-    (in "shared" mode) or `cluster_ca_cert` (in "pki" mode) is automatically
-    added to the trusted chain in `lua_ssl_trusted_certificate`.
 
     `<path-to-file>`
     : Specifies the location of the `cluster.key` and `cluster.crt` files.
