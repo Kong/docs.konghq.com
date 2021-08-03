@@ -202,25 +202,20 @@ diagnostic mode where the controller also saves generated configuration to a
 temporary file. To use the diagnostic mode:
 
 1. Set the `--dump-config` flag (or `CONTROLLER_DUMP_CONFIG` environment
-   variable) to either `enabled` or `sensitive`. `enabled` produces a redacted
-   configuration that omits certificate configuration and credentials, suitable
-   for sharing with Kong support. `sensitive` dumps the complete configuration
-   exactly as it is sent to the Admin API.
-1. Check controller logs for the dump location:
-    ```bash
-    kubectl logs PODNAME -c ingress-controller | grep "config dumps"
-    ```
+   variable) to `true`. Optionally set the `--dump-sensitive-config` flag to
+   `true` to include un-redacted TLS certificate keys and credentials.
 1. (Optional) Make a change to a Kubernetes resource that you know will
    reproduce the issue. If you are unsure what change caused the issue
    originally, you can omit this step.
-1. Copy dumped configuration out of the controller for local review:
-
+1. Port forward to the diagnostic server:
    ```bash
-   kubectl cp PODNAME:/path/to/dump/last_bad.json /tmp/last_bad.json -c ingress-controller
+   kubectl port-forward -n CONTROLLER_NAMESPACE CONTROLLER_POD 10256:10256
    ```
-
-   If the controller successfully applied configuration
-   before the failure, you can also look at `last_good.json`.
+1. Retrieve successfully- and/or unsuccessfully-applied configuration:
+   ```bash
+   curl -svo last_good.json localhost:10256/debug/config/successful
+   curl -svo last_bad.json localhost:10256/debug/config/failed
+   ```
 
 Once you have dumped configuration, take one of the following
 approaches to isolate issues:
