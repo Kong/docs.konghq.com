@@ -24,7 +24,7 @@ supports the same {{site.ce_product_name}} version.
 </div>
 
 * If running a version of {{site.ce_product_name}} earlier than 2.5.x,
-  [upgrade to Kong 2.5.x](/2.5.x/upgrading/) before migrating
+  [upgrade to Kong 2.5.x](/gateway-oss/2.5.x/upgrading/) before migrating
   {{site.ce_product_name}} to {{site.ee_product_name}} 2.5.x.
 
 #### Migration steps
