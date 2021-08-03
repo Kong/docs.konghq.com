@@ -126,6 +126,8 @@ running inside Kubernetes to the outside world via Kong.
 This is useful for services such as DNS servers, Game Servers,
 VPN software and a variety of other applications.
 
+[udp]:https://datatracker.ietf.org/doc/html/rfc768
+
 ## KongCredential (Deprecated)
 
 Once a `KongConsumer` resource is created,
