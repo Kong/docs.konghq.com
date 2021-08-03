@@ -183,8 +183,6 @@
       url: /rate-limiting
     - text: Proxy Reference
       url: /proxy
-    - text: Performance Testing Framework
-      url: /performance-testing-framework
     - text: Authentication Reference
       url: /auth
     - text: Load Balancing Reference
