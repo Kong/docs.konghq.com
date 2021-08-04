@@ -75,7 +75,7 @@ params:
       description: The port to send data to on the upstream server
     - name: metrics
       required: true
-      default: DEFAULT_METRICS
+      default: 'DEFAULT_METRICS'
       datatype: array of record elements
       description: |
         List of Metrics to be logged. Available values are described at [Metrics](#metrics).
