@@ -4,15 +4,15 @@ no_version: true
 toc: false
 ---
 
-Developer registration is Service-specific, and credential sets used to log into [Konnect](https://konnect.konghq.com/) and the portal link (as seen in step 3) may differ. All developer registrations are either automatically or manually approved by {{site.konnect_short_name}} admins. 
+Everyone accessing a {{site.konnect_short_name}} Dev Portal needs to register for that specific Dev Portal as a Developer, including Dev Portal admins. This means that admins will have credentials for both [Konnect](https://konnect.konghq.com/) and the Dev Portal. 
 
-1. Log in to [konnect.konghq.com](https://konnect.konghq.com/). 
+All Developer registrations are either automatically or manually approved by {{site.konnect_short_name}} admins.
+
+1. As an admin, log in to [konnect.konghq.com](https://konnect.konghq.com/). 
 
 2. Use the left-side menu to navigate to **Dev Portal**, then **Published Services**. 
 
 3. Under the title heading **Published Services**, click the **Portal URL** link.
-
-   ![Konnect Dev Portal URL](/assets/images/docs/konnect/konnect-pub-services-portal-url.png)
 
 4. The **Portal URL** leads to a login page. 
 
