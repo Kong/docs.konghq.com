@@ -1,7 +1,6 @@
 ---
 title: Developer Registration
 no_version: true
-toc: false
 ---
 
 Anyone accessing a {{site.konnect_short_name}} Dev Portal needs to register as a Developer for that specific Dev Portal, including {{site.konnect_short_name}} admins. This means that admins will have separate credentials for [Konnect](https://konnect.konghq.com/) and the Dev Portal.
@@ -33,6 +32,12 @@ All Developers must register through the {{site.konnect_short_name}} Dev Portal.
 
 4. Check your email for registration confirmation. 
 
-5. After you have confirmed your email, you _will not be able_ to log in, unless  [auto approve](/konnect/dev-portal/administrators/auto-approve-devs-apps) is enabled by a {{site.konnect_short_name}} service admin or organization admin. If you try to log in right after creating the account and receive an error message, it's likely that the admin hasn't approved your account yet.
+5. After you have confirmed your email and received approval from your admin, log 
+into the Dev Portal.
+    
+    If your admin has auto-approve enabled, you can log in right after confirming 
+    your email. Otherwise, you _will not be able_ to log in until your admin approves 
+    the request. If you try to log in right after creating the account and receive an 
+    error message, it's likely that the admin hasn't approved your account yet.
 
 Contact your {{site.konnect_short_name}} admin if you have login issues.
