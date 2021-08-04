@@ -4,24 +4,35 @@ no_version: true
 toc: false
 ---
 
-Everyone accessing a {{site.konnect_short_name}} Dev Portal needs to register for that specific Dev Portal as a Developer, including Dev Portal admins. This means that admins will have credentials for both [Konnect](https://konnect.konghq.com/) and the Dev Portal. 
+Anyone accessing a {{site.konnect_short_name}} Dev Portal needs to register as a Developer for that specific Dev Portal, including {{site.konnect_short_name}} admins. This means that admins will have separate credentials for [Konnect](https://konnect.konghq.com/) and the Dev Portal.
 
-All Developer registrations are either automatically or manually approved by {{site.konnect_short_name}} admins.
+All Developer registrations are either automatically or manually approved by {{site.konnect_short_name}} service admins and organization admins. For instructions on registering as a Developer, see [Register as a Developer](#register-as-a-developer).
+
+## Locate Dev Portal URL
+
+Admins can find the Dev Portal URL in [konnect.konghq.com](https://konnect.konghq.com/). If you don't have admin access and want to register as a Developer, ask your {{site.konnect_short_name}} admin for the Dev Portal URL.
+
+{:.note}
+> **Note**: If you are an admin planning to create Applications and register Services, you must also [Register as a Developer](#register-as-a-developer).
 
 1. As an admin, log in to [konnect.konghq.com](https://konnect.konghq.com/). 
 
-2. Use the left-side menu to navigate to **Dev Portal**, then **Published Services**. 
+2. Use the left-side menu to navigate to **Dev Portal**, then **Published Services**.
 
-3. Under the title heading **Published Services**, click the **Portal URL** link.
+3. Under the title heading **Published Services**, see the **Portal URL** link.
 
-4. The **Portal URL** leads to a login page. 
+## Register as a Developer
 
-5. At the bottom of the login form, click **Sign Up**. 
+All Developers must register through the {{site.konnect_short_name}} Dev Portal. As each Dev Portal has a unique URL, reach out to your {{site.konnect_short_name}} admin for the URL you should access.
 
-6. Fill out the registration form and click **Create Account**. 
+1. Navigate to the {{site.konnect_short_name}} Dev Portal URL provided by your {{site.konnect_short_name}} admin.
 
-7. Check your email for registration confirmation. 
+2. At the bottom of the login form, click **Sign Up**.
 
-8. Once your email is confirmed, you _will not be able_ to log in until an admin approves your request. However, if the admin has set the Konnect account to [auto approve](/konnect/dev-portal/administrators/auto-approve-devs-apps) developer registrations, you will be able to login immediately. 
+3. Fill out the registration form and click **Create Account**. 
 
-9. Once approved, log in using your Portal credentials. Contact your {{site.konnect_short_name}} admin if you have login issues.
+4. Check your email for registration confirmation. 
+
+5. After you have confirmed your email, you _will not be able_ to log in, unless  [auto approve](/konnect/dev-portal/administrators/auto-approve-devs-apps) is enabled by a {{site.konnect_short_name}} service admin or organization admin. If you try to log in right after creating the account and receive an error message, it's likely that the admin hasn't approved your account yet.
+
+Contact your {{site.konnect_short_name}} admin if you have login issues.
