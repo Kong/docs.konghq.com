@@ -4,7 +4,11 @@ no_version: true
 layout: 'docs-v2'
 ---
 
-Hello, and welcome! Thanks for your interest in contributing to the Kong docs. The following information will help you contribute effectively, which will in turn help us to get your pull requests merged faster. 
+Hello, and welcome! Thanks for thinking about contributing to the Kong documentation.
+
+This section of the docs is here to help you help us, so read on to learn how to ask questions and help effectively.
+We respect your time, and the more you follow our guidelines the easier it is for us (docs maintainers) to respond
+promptly and help you get your pull requests merged.
 
 ## What we're looking for
 
@@ -17,14 +21,14 @@ Explore the existing documentation before you start a big docs contribution. Som
 this kind of content or have support questions, join the community on [Kong's forum](https://discuss.konghq.com/), on
 [Gitter](https://gitter.im/Kong/kong), or on IRC at #kong.
 
-To report Kong Gateway bugs, visit the [Kong product contributing guide](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#where-to-report-bugs).
+We can't provide product support in this repository. To report Kong Gateway bugs, visit the [Kong product contributing guide](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#where-to-report-bugs).
 
 ## How to contribute
 
 We adhere to our own [code of conduct](https://github.com/Kong/docs.konghq.com/blob/main/CODE_OF_CONDUCT.md) and we expect the same of our contributors.
 
 If you find a problem in the docs, you can [file an issue](https://github.com/kong/docs.konghq.com/issues/new)
-or you can submit a pull request (PR) with a fix. 
+or you can submit a pull request (PR) with a fix. Please fill out the issue or PR template! We can't help if we don't understand the problem.
 
 The Kong docs team assigns someone to review PRs every day, so you can expect acknowledgment of your contribution and at least preliminary
 feedback within about a day of your initial PR. We ask that you respond to feedback within a week if we ask for changes; otherwise, we'll close
