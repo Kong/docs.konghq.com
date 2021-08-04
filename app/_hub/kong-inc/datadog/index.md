@@ -75,7 +75,7 @@ params:
       description: The port to send data to on the upstream server
     - name: metrics
       required: true
-      default: 'DEFAULT_METRICS'
+      default: 
       datatype: array of record elements
       description: |
         List of Metrics to be logged. Available values are described at [Metrics](#metrics).
@@ -117,10 +117,6 @@ Field           | Description                                           | Dataty
 
 - All metrics get logged by default.
 - Metrics with `stat_type` as `counter` or `gauge` must have `sample_rate` defined as well.
-
-## Setting specific metrics
-
-
 
 ## Migrating Datadog queries
 The plugin updates replace the api, status, and consumer-specific metrics with a generic metric name.
