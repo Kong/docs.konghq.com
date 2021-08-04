@@ -11,7 +11,7 @@ page.kong_latest.release %}
 <div class="page v2 {{ page.class }}" data-url={{ page.url }}>
 
   <div class="container">
-    {% include_cached docs-sidebar.html kong_version=page.kong_version edition=page.edition %}
+    {% include_cached docs-sidebar.html url=page.url kong_version=page.kong_version edition=page.edition %}
 
     {% if page.toc == true or page.toc != false and filename != "index.md" and page.is_homepage != true %}
       <aside class="docs-toc">
