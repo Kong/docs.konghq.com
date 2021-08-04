@@ -112,9 +112,6 @@ no_version: true
   the logs multiple times per second, slowing down performance.
 - Updated `lua-resty-dns-client` to v6.0.1 which fixes an issue users were encountering when
   adding more than 1000 endpoints, resulting in the error `lua_max_running_timers are not enough` throughout the logs.
-- Kong Gateway now synchronizes all workers/timers so only one rotates Kong Vitals tables. Before Kong Gateway would
-  complete multiple concurrent DDL queries to Postgres when rotating Kong Vitals tables and users
-  were receiving "duplicate key value violates unique constraint" errors in Postgres hourly. 
 - Kong Gateway now ensures proper keyspace, table, and table names are used when performing migrations on Apache Cassandra v2.2.
 - This release includes an update that circumvents a potential security issue with a buffer overflow when validating the Kong Gateway license.
 - Users can now successfully delete workspaces after deleting all entities associated with that workspace.
