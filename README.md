@@ -24,6 +24,8 @@ For [Gateway Enterprise configuration reference](https://docs.konghq.com/enterpr
 
 * **Community is a priority for us**. Before submitting an issue or PR, please review our [Contributing Guide](https://docs.konghq.com/contributing/).
 
+* We are currently accepting plugin submissions, on a limited basis, from trusted technical partners to our plugin hub. To learn more about our partner program, see our [Kong Partners page](https://konghq.com/partners/).
+
 ## Run local project
 ***
 
