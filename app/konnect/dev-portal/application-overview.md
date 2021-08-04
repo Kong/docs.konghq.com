@@ -4,37 +4,22 @@ no_version: true
 toc: true
 ---
 
-Applications contain Services and authentication settings. Admins [enable application registration](konnect/dev-portal/administrators/app-registration/enable-app-reg/) so that Developers can associate Services with Applications. 
+Applications consume Services in {{site.konnect_short_name}} via Application-level authentication. Developers use Applications they create through the {{site.konnect_short_name}} Dev Portal. 
 
-For a Developer to be able to manage applications, they must be [granted access by an admin](/konnect/dev-portal/administrators/manage-devs/) to the {{site.konnect_short_name}} Dev Portal, they will be able to manage applications. For more information about registering for a {{site.konnect_short_name}} Dev Portal as a Developer, see [Developer Registration](/konnect/dev-portal/developers/dev-reg/). 
+Admins [enable application registration](konnect/dev-portal/administrators/app-registration/enable-app-reg/) through [konnect.konghq.com](https://konnect.konghq.com) so that Developers can associate Services with Applications. 
 
-{:.note}
-> **Note**: The following is all done through the Dev Portal, not through [konnect.konghq.com](https://konnect.konghq.com). As an admin, find the Dev Portal URL via **Dev Portal** > **Published Services**. 
+For a Developer to be able to manage Applications, they must be [granted access by an admin](/konnect/dev-portal/administrators/manage-devs/) to the {{site.konnect_short_name}} Dev Portal. For more information about registering for a {{site.konnect_short_name}} Dev Portal as a Developer, see [Developer Registration](/konnect/dev-portal/developers/dev-reg/). 
 
-## Application summary
+## Applications and Services
 
-What are “applications” in this context?
+Multiple Services can be registered to a single Application. In the {{site.konnect_short_name}} Dev Portal, Services registered to an Application will be listed in the Application detail page, available through **My Apps** in the top-right corner dropdown menu beneath the Developer's login email. 
 
-How do they relate to Dev Portal? How do they relate to Konnect?
+The purpose of registering Services to an Application is to consume those Services using the Application-level authentication. Grouping authentication enables most succinct access to the Services, and a more organized Application interface with many different Services.  
 
-Applications are created through Dev Portal through **My Apps** in the top right dropdown menu under your login email. 
-
-On the admin side through [konnect.konghq.com](https://konnect.konghq.com), admins can enable app registration on a Service-by-Service basis. At this time, admins also select the authentication type that applies to that Service. Going back to the Dev Portal, Developers are then able to go to a Service, and click **Register**. 
-
-Who works with applications? Who manages them?
-
-Developers work with applications and admins manage them. 
-
-What can you do with applications in Konnect?
-
-## Services and applications
-
-How are services and applications related? What’s the purpose of tying an application to a service? What benefit does that provide?
-
-Services optionally belong to Applications. The purpose of tying a Service to an Application is to gain the configurations on the Application level. The benefits of registering a Service to an Application is gaining another layer of authentication. 
-
-Services that are registered to Applications will receive top-level configurations, including authentication. 
+As an example, the Application can represent a mobile banking app and the Services I may use are a billing API, users API, and legal agreements API. 
 
 ## Application authentication
 
-What are the authentication options? Why would you choose one over another (unsure if this is relevant, or if this is just dependent on the user’s existing environment)
+Generate Application credentials through the {{site.konnect_short_name}} Dev Portal in the Application detail page. The Application can have multiple credentials, or API keys. For more information about Application Credentials, refer to [Generate Credentials for an Application](/konnect/dev-portal/developers/dev-gen-creds/). 
+
+In [konnect.konghq.com](https://konnect.konghq.com), admins can access a list of the installed authentication plugins via **Shared Config**. See [Enable Application Registration for a Service](/konnect/dev-portal/administrators/app-registration/enable-app-reg/) for more information about authentication flows. 

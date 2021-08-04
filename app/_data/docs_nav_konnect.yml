@@ -113,8 +113,6 @@
           url: /dev-portal/developers/dev-reg
         - text: Applications
           items:
-            - text: Application Overview
-              url: /dev-portal/developers/dev-app-overview/
             - text: Create, Edit, and Delete an Application
               url: /dev-portal/developers/dev-apps
             - text: Register an Application with a Service
