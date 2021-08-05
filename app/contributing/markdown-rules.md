@@ -291,9 +291,92 @@ To indent your tabs so you can maintain your numbering, including codeblock tabs
 you can use the indent filter on a capture of your tabs.
 
 {% raw %}
+```
 {% capture the_code %}
-{%  %}
+{% navtabs codeblock %}
+{% navtab cURL %}
+<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
+-d source=crud \
+-d event=consumers \
+-d handler=webhook \
+-d config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+{% endnavtab %}
+{% navtab HTTPie %}
+<div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
+source=crud \
+event=consumers \
+handler=webhook \
+config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
+```
 {% endraw %}
+
+And here's what it looks like:
+
+To make a technical writer smile, **always** do the following:
+
+1. Use the Oxford comma. It matters. (With indent filter)
+
+{% capture the_code %}
+{% navtabs codeblock %}
+{% navtab cURL %}
+<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
+-d source=crud \
+-d event=consumers \
+-d handler=webhook \
+-d config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+{% endnavtab %}
+{% navtab HTTPie %}
+<div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
+source=crud \
+event=consumers \
+handler=webhook \
+config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
+
+2. Laugh at all of their awesome puns. Using puns used to be considered a sign of great intelligence afterall. (Without the indent filter)
+
+  {% navtabs codeblock %}
+  {% navtab cURL %}
+  <div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
+  -d source=crud \
+  -d event=consumers \
+  -d handler=webhook \
+  -d config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+  {% endnavtab %}
+  {% navtab HTTPie %}
+  <div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
+  source=crud \
+  event=consumers \
+  handler=webhook \
+  config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+  {% endnavtab %}
+  {% endnavtabs %}
+
+3. Bring chocolate. There's nothing wrong with bribery. (Without the indent filter)
+
+  {% navtabs codeblock %}
+  {% navtab cURL %}
+  <div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
+  -d source=crud \
+  -d event=consumers \
+  -d handler=webhook \
+  -d config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+  {% endnavtab %}
+  {% navtab HTTPie %}
+  <div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
+  source=crud \
+  event=consumers \
+  handler=webhook \
+  config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+  {% endnavtab %}
+  {% endnavtabs %}
 
 ## Admonitions
 
