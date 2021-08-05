@@ -287,12 +287,12 @@ ways to complete the task, like with the Admin API as well as the Kong Manager U
 want to include tabs. Tabs do not indent well though and often reset the numbering of
 ordered lists.
 
-To indent your tabs, including codeblock tabs, you can use the indent filter on a capture
-of your tabs.
+To indent your tabs so you can maintain your numbering, including codeblock tabs,
+you can use the indent filter on a capture of your tabs.
 
 {% raw %}
 {% capture the_code %}
-{%%}
+{%  %}
 {% endraw %}
 
 ## Admonitions
