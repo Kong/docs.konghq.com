@@ -1,51 +1,43 @@
 ---
-title: Developer Registration for the Konnect Dev Portal
+title: Developer Registration
 no_version: true
-toc: false
 ---
 
-Developers can view documentation for and request access to a Service on the
-{{site.konnect_short_name}} Dev Portal. Developers can access and register for the
-portal using the default portal URL displayed in {{site.konnect_short_name}}.
+Anyone accessing a {{site.konnect_short_name}} Dev Portal needs to register as a Developer for that specific Dev Portal, including {{site.konnect_short_name}} admins. This means that admins will have separate credentials for [Konnect](https://konnect.konghq.com/) and the Dev Portal.
 
-Access the Dev Portal for any published Service through the URL
-displayed on the **Dev Portal** page. The format looks something like this:
+All Developer registrations are either automatically or manually approved by {{site.konnect_short_name}} service admins and organization admins. For instructions on registering as a Developer, see [Register as a Developer](#register-as-a-developer).
 
-```
-<org-name>.portal.konnect.konghq.com/portal/published-services
-```
+## Locate Dev Portal URL
 
-1. Navigate to the {{site.konnect_short_name}} Dev Portal page.
+Admins can find the Dev Portal URL in [konnect.konghq.com](https://konnect.konghq.com/). If you don't have admin access and want to register as a Developer, ask your {{site.konnect_short_name}} admin for the Dev Portal URL.
 
-   1. From the **Services** page, click the **Dev Portal** menu.
-   2. In **Published Services**, click the **Portal URL** link.
+{:.note}
+> **Note**: If you are an admin planning to create Applications and register Services, you must also [Register as a Developer](#register-as-a-developer).
 
-   ![Konnect Portal URL](/assets/images/docs/konnect/konnect-pub-services-portal-url.png)
+1. As an admin, log in to [konnect.konghq.com](https://konnect.konghq.com/). 
 
-2. In the Dev Portal, click **Sign up**. The {{site.konnect_short_name}} Developer dialog appears.
+2. Use the left-side menu to navigate to **Dev Portal**, then **Published Services**.
 
-   ![Konnect Developer Registration](/assets/images/docs/konnect/konnect-dev-sign-up.png)
+3. Under the title heading **Published Services**, see the **Portal URL** link.
 
-3. Complete the {{site.konnect_short_name}} Developer dialog:
+## Register as a Developer
 
-   1. Enter your **First Name** and **Last Name**.
+All Developers must register through the {{site.konnect_short_name}} Dev Portal. As each Dev Portal has a unique URL, reach out to your {{site.konnect_short_name}} admin for the URL you should access.
 
-   2. Enter your **Email** address.
+1. Navigate to the {{site.konnect_short_name}} Dev Portal URL provided by your {{site.konnect_short_name}} admin.
 
-   3. Enter a **Password**.
+2. At the bottom of the login form, click **Sign Up**.
 
-      The password must be a minimum of 8 characters long and contain at least two of the
-      following: a lowercase letter, an uppercase letter, or a special
-      character.
+3. Fill out the registration form and click **Create Account**. 
 
-   4. Click **Create Account**.
+4. Check your email for registration confirmation. 
 
-   5. Check your email for registration confirmation. In the confirm your address email, click the confirmation link.
+5. After you have confirmed your email and received approval from your admin, log 
+into the Dev Portal.
+    
+    If your admin has auto-approve enabled, you can log in right after confirming 
+    your email. Otherwise, you _will not be able_ to log in until your admin approves 
+    the request. If you try to log in right after creating the account and receive an 
+    error message, it's likely that the admin hasn't approved your account yet.
 
-   6. A message indicates your email has been confirmed, and your account is awaiting approval
-      if [auto approve](/konnect/dev-portal/administrators/auto-approve-devs-apps) is not enabled.
-
-6. After your request has been [approved by an admin](/konnect/dev-portal/administrators/manage-devs) or automatically approved,
-   click **Login**.
-
-7. Enter your credentials and log in. If you experience any access issues, contact your {{site.konnect_short_name}} admin.
+Contact your {{site.konnect_short_name}} admin if you have login issues.
