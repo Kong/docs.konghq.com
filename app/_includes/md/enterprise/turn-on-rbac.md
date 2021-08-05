@@ -5,32 +5,19 @@ To enable RBAC, you will need the initial KONG_PASSWORD that was used when you f
 {% navtabs %}
 {% navtab UNIX-based system or Windows %}
 1. Modify configuration settings below in your `kong.conf` file. Navigate to the file at `/etc/kong/kong.conf`:
-    ```sh
-    $ cd /etc/kong/
-    ```
+    <pre><code>cd /etc/kong/</code></pre>
 2. Copy the `kong.conf.default` file so you know you have a working copy to fall back to.
-
-    ```sh
-    $ cp kong.conf.default kong.conf
-    ```
-
+    <pre><code>cp kong.conf.default kong.conf</code></pre>
 3. Now, edit the following settings in `kong.conf`:
 
-    ```sh
-    $ echo >> “enforce_rbac = on” >> /etc/kong/kong.conf
-    $ echo >> “admin_gui_auth = basic-auth” >> /etc/kong.conf
-    $ echo >> “admin_gui_session_conf = {"secret":"secret","storage":"kong","cookie_secure":false}”
-    ```
+    <pre><code>echo >> “enforce_rbac = on” >> /etc/kong/kong.conf<br>echo >> “admin_gui_auth = basic-auth” >> /etc/kong.conf<br>echo >> “admin_gui_session_conf = {"secret":"secret","storage":"kong","cookie_secure":false}”</code></pre>
 
     This will turn on RBAC, tell {{site.base_gateway}} to use basic authentication (username/password), and tell the Sessions Plugin how to create a session cookie.
 
     The cookie is used for all subsequent requests to authenticate the user until it expires. The session has a limited duration and renews at a configurable interval, which helps prevent an attacker from obtaining and using a stale cookie after the session has ended.
 
 4. Restart {{site.base_gateway}} and point to the new config file:
-
-    ```sh
-    $ kong restart -c /etc/kong/kong.conf
-    ```
+    <pre><code>kong restart -c /etc/kong/kong.conf</code></pre>
 {% endnavtab %}
 {% navtab Docker %}
 
@@ -38,12 +25,7 @@ If you have a Docker installation, run the following command to set the needed e
 
 **Note:** make sure to replace `<kong-container-id>` with the ID of your container.
 
-```sh
-$ echo "KONG_ENFORCE_RBAC=on \
-  KONG_ADMIN_GUI_AUTH=basic-auth \
-  KONG_ADMIN_GUI_SESSION_CONF='{\"secret\":\"secret\",\"storage\":\"kong\",\"cookie_secure\":false}' \
-  kong reload exit" | docker exec -i <kong-container-id> /bin/sh
-```
+<pre><code>echo "KONG_ENFORCE_RBAC=on \<br>KONG_ADMIN_GUI_AUTH=basic-auth \<br>KONG_ADMIN_GUI_SESSION_CONF='{\"secret\":\"secret\",\"storage\":\"kong\",\"cookie_secure\":false}' \<br>kong reload exit" | docker exec -i <div contenteditable="true">{KONG_CONTAINER_ID}</div> /bin/sh</code></pre>
 
 This will turn on RBAC, tell {{site.base_gateway}} to use basic authentication (username/password), and tell the Sessions Plugin how to create a session cookie.
 
