@@ -28,7 +28,23 @@ root-equivalent access.
 
 ## Step 1. Prepare to install Kong Gateway {#step-1}
 
-{% include /md/enterprise/download/centos.md version='2.4.x' %}
+1. Choose your CentOS version:
+    * [CentOS 8]({{ site.links.download }}/gateway-2.x-centos-8/Packages/k/)
+    * [CentOS 7]({{ site.links.download }}/gateway-2.x-centos-7/Packages/k/)
+
+2. Click a {{site.base_gateway}} version from the list to download it.
+
+    Versions are listed in chronological order.
+
+    For example: `kong-enterprise-edition-{{page.kong_versions[12].version}}.el8.noarch.rpm`
+
+3. Copy the RPM file to your home directory on the CentOS system.
+
+    For example:
+
+    ```bash
+    $ scp kong-enterprise-edition-{{page.kong_versions[12].version}}.el8.noarch.rpm <centos user>@<server>:~
+    ```
 
 <!-- ### (Optional) Verify the package integrity
 
