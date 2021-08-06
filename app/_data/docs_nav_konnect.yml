@@ -82,12 +82,12 @@
   icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
   url: /dev-portal
   items:
+    - text: Application Overview
+      url: /dev-portal/application-overview
     - text: Administrators
       items:
         - text: Application Registration
           items:
-#            - text: Application Registration Overview
-#              url: /dev-portal/administrators/app-registration/app-reg-overview
             - text: Enable App Registration
               url: /dev-portal/administrators/app-registration/enable-app-reg
             - text: Disable App Registration
