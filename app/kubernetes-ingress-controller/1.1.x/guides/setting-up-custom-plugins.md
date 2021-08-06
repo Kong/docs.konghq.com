@@ -131,12 +131,6 @@ spec:
           name: kong-plugin-myheader
 ```
 
-This is also available as a Kustomization:
-
-```shell
-$ kustomize build github.com/hbagdi/yaml/kong/kong-custom-plugin
-```
-
 ### Helm chart
 
 With Helm, this is as simple as adding the following values to
