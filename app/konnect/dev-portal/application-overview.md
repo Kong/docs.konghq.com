@@ -6,7 +6,7 @@ toc: true
 
 Applications consume Services in {{site.konnect_short_name}} via Application-level authentication. Developers, or the persona that logs into the {{site.konnect_short_name}} Dev Portal, use Applications they create in the Dev Portal. 
 
-Admins [enable application registration](konnect/dev-portal/administrators/app-registration/enable-app-reg/) through [konnect.konghq.com](https://konnect.konghq.com) so that Developers can associate Services with Applications. 
+Admins [enable application registration](/konnect/dev-portal/administrators/app-registration/enable-app-reg/) through [konnect.konghq.com](https://konnect.konghq.com) so that Developers can associate Services with Applications. 
 
 For a Developer to be able to manage Applications, they must be [granted access by an admin](/konnect/dev-portal/administrators/manage-devs/) to the {{site.konnect_short_name}} Dev Portal. For more information about registering for a {{site.konnect_short_name}} Dev Portal as a Developer, see [Developer Registration](/konnect/dev-portal/developers/dev-reg/). 
 

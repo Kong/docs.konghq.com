@@ -6,7 +6,7 @@ no_version: true
 When auto approval is enabled, {{site.konnect_short_name}} admins do not
 need to manually approve Developer and Application requests. 
 
-If auto approve is not enabled for Developers or Applications, admins will need to approve new Developers and Applications manually. For more information on manual approval, see [Manage Developer Access](konnect/dev-portal/administrators/manage-devs/) and [Manage Application Registration Requests](/konnect/dev-portal/administrators/app-registration/manage-app-reg-requests/).
+If auto approve is not enabled for Developers or Applications, admins will need to approve new Developers and Applications manually. For more information on manual approval, see [Manage Developer Access](/konnect/dev-portal/administrators/manage-devs/) and [Manage Application Registration Requests](/konnect/dev-portal/administrators/app-registration/manage-app-reg-requests/).
 
 Note that if auto approve is enabled through the Portal for Applications, it overrides the Service setting.
 
