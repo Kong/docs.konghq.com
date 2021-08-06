@@ -23,7 +23,10 @@ applicable Services.
 1. Log in to the {{site.konnect_short_name}} Dev Portal to access the Service
 Catalog.
 
-2. Click on a Service tile. Not all Services may have app registration enabled. Contact your {{site.konnect_short_name}} admin if you need it enabled on a Service.
+2. Click on a Service tile. 
+
+    Not all Services may have app registration enabled. Contact 
+    your {{site.konnect_short_name}} admin if you need it enabled on a Service.
 
 3. Click **Register**.
 
@@ -64,4 +67,4 @@ If you encounter any of the errors below that appear in the Register dialog, fol
 
 Error Message | Solution 
 ------------|------------
-| Application registration is not enabled for this Service. | [Enable application registration for the Service](/konnect/dev-portal/administrators/app-registration/enable-app-reg/). Contact your {{site.konnect_short_name}} admin if you do not have the role permissions to do so.  |
+Application registration is not enabled for this Service. | [Enable application registration for the Service](/konnect/dev-portal/administrators/app-registration/enable-app-reg/). Contact your {{site.konnect_short_name}} admin if you do not have the role permissions to do so.
