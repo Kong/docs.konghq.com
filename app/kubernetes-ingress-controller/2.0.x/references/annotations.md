@@ -159,7 +159,6 @@ following custom resources as well:
 
 - KongPlugin: To configure (global) plugins only in one of the Kong clusters.
 - KongConsumer: To create different consumers in different Kong clusters.
-- KongCredential: To create associated credentials for consumers.
 
 ### konghq.com/plugins
 

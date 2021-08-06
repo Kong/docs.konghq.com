@@ -21,7 +21,6 @@ The following CRDs allow users to declaratively configure all aspects of Kong:
 - [**KongConsumer**](#kongconsumer)
 - [**TCPIngress**](#tcpingress)
 - [**UDPIngress**](#udpingress)
-- [**KongCredential (Deprecated)**](#kongcredential-deprecated)
 
 ## KongIngress
 
@@ -127,17 +126,6 @@ This is useful for services such as DNS servers, Game Servers,
 VPN software and a variety of other applications.
 
 [udp]:https://datatracker.ietf.org/doc/html/rfc768
-
-## KongCredential (Deprecated)
-
-Once a `KongConsumer` resource is created,
-credentials associated with the `Consumer` can be provisioned inside Kong
-using KongCredential custom resource.
-
-This Custom Resource has been deprecated and will be removed in a future
-release.
-Instead, please use secret-based credentials.
-
 [k8s-crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/
 [kong-consumer]: /gateway-oss/latest/admin-api/#consumer-object
 [kong-plugin]: /gateway-oss/latest/admin-api/#plugin-object

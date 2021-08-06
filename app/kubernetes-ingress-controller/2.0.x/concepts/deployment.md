@@ -78,7 +78,6 @@ on the following Kubernetes resources:
 - Ingress
 - KongPlugins
 - KongConsumers
-- KongCredentials
 - KongIngress
 
 By default, the controller listens for events and above resources across
