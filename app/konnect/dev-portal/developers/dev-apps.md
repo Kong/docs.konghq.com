@@ -23,17 +23,17 @@ Developers can create an application and link it to a Service.
    [OIDC](/konnect/dev-portal/administrators/app-registration/enable-app-reg#oidc-flow)
    flow for application registration, enter the ID of your third-party OAuth2 claim.
 
-4. Click **Create** and you will be taken to your new application's detail page. 
+4. Click **Create** to save and see your new application's detail page.    
 
 ## View Application Details
 
-Access and modify applications via an application's details page. Find a list of your current applications on the **My Apps** page, accessible via the dropdown menu in the top right corner under your login email. 
+Access and modify applications from an application's details page. Find a list of your current applications on the **My Apps** page, accessible through the dropdown menu in the top right corner under your login email. 
 
-The following can be performed through the application details page. 
+You can do the following through the application details page: 
 
 - [Edit](#edit-an-application) the name, reference ID, and description of an application.
 - [Generate or delete credentials](/konnect/dev-portal/developers/dev-gen-creds).
-- View a catalog of Services that can be [registered with an application](/konnect/dev-portal/developers/dev-reg-app-service) with if the application is not registered. 
+- View a catalog of Services that can be [registered with the application](/konnect/dev-portal/developers/dev-reg-app-service), if no Services are registered yet.
 - View the status of an application registration to a Service.
 
 ## Edit an Application
@@ -42,10 +42,10 @@ Edit the name, reference ID, and description of your application by going to **M
 
 ## Delete an Application
 
-The Dev Portal enables permanently deleting an application. 
+You can permanently delete an Application from the Dev Portal:
 
 - On the **My Apps** page in the dropdown menu under your login email, click the cog icon next to an application and click **Delete**.
 
 - Confirm deletion in the pop-up modal. 
 
-You can also delete an application from the application details page, see [Edit an Application](#edit-an-application). 
+You can also delete an application from the application details page. See [Edit an Application](#edit-an-application). 

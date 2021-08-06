@@ -14,7 +14,7 @@ For a Developer to be able to manage Applications, they must be [granted access 
 
 Multiple Services can be registered to a single Application. In the {{site.konnect_short_name}} Dev Portal, Services registered to an Application will be listed in the Application detail page, available through **My Apps** in the top-right corner dropdown menu beneath the Developer's login email. 
 
-The purpose of registering Services to an Application is to consume those Services using the Application-level authentication. Grouping authentication enables most succinct access to the Services, and a more organized Application interface with many different Services.  
+The purpose of registering Services to an Application is to consume those Services using the Application-level authentication. Grouping authentication enables direct access to multiple Services.
 
 As an example, the Application can represent a mobile banking app and the Services registered to the Application can be a billing API, a users API, and a legal agreements API. 
 
