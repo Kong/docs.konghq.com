@@ -1,5 +1,5 @@
 ---
-title: Register or Unregister an Application for a Service on the Konnect Dev Portal
+title: Register or Unregister an Application for a Service
 no_version: true
 toc: true
 ---
@@ -12,9 +12,9 @@ developers must register their applications with a Service. Requests for access 
 ## Prerequisites
 
 - Application registration must be enabled for the Service by a {{site.konnect_short_name}} admin.
-- [Create an Application](/konnect/dev-portal/developers/dev-apps#create-app-portal).
+- [Create an Application](/konnect/dev-portal/developers/dev-apps#create-an-application).
 
-## Register an Application with a Service from the Dev Portal
+## Register an Application
 
 This procedure assumes that there are no
 existing Services configured for an application yet. You can register an application with multiple
@@ -23,14 +23,12 @@ applicable Services.
 1. Log in to the {{site.konnect_short_name}} Dev Portal to access the Service
 Catalog.
 
-2. Click on a Service tile.
+2. Click on a Service tile. 
 
-   **Note:** Not all Services might have app registration enabled. Contact your {{site.konnect_short_name}} admin
-   if you need it enabled on a Service.
+    Not all Services may have app registration enabled. Contact 
+    your {{site.konnect_short_name}} admin if you need it enabled on a Service.
 
 3. Click **Register**.
-
-   ![Konnect Register App with Service](/assets/images/docs/konnect/konnect-register-app-service-request.png)
 
 4. Select the application you want to register from the **Select Application** list.
 
@@ -42,7 +40,7 @@ Catalog.
    You can check the status of your request in the
    [application details](/konnect/dev-portal/developers/dev-apps/#app-details-page) page.
 
-## Unregister an Application from a Service
+## Unregister an Application
 
 Unregister an application from a Service. Reasons for unregistering include requesting
 registration for the incorrect Service, an application is being decommissioned,
@@ -55,11 +53,9 @@ approval queue.
 If a {{site.konnect_short_name}} admin deletes the pending request, the pending request is removed from
 the **Services** pane.
 
-1. Click **Dashboard**.
+1. Click **My Apps**.
 
 2. Click the application you want to unregister.
-
-   ![Konnect Unregister App from Service](/assets/images/docs/konnect/konnect-unregister-app-service.png)
 
 3. In the **Services** pane, click the icon for the Service and choose **Unregister**.
 
@@ -69,6 +65,6 @@ the **Services** pane.
 
 If you encounter any of the errors below that appear in the Register dialog, follow the recommended solution.
 
-| Error Message | Solution |
-|------------------------------|---------------------------------------------------------------------------------|
-| Application registration is not enabled for this Service. | [Enable application registration for the Service](/konnect/dev-portal/administrators/app-registration/enable-app-reg/). Contact your {{site.konnect_short_name}} admin if you do not have the role permissions to do so.  |
+Error Message | Solution 
+------------|------------
+Application registration is not enabled for this Service. | [Enable application registration for the Service](/konnect/dev-portal/administrators/app-registration/enable-app-reg/). Contact your {{site.konnect_short_name}} admin if you do not have the role permissions to do so.

@@ -3,8 +3,7 @@ title: Manage Application Registration Requests
 no_version: true
 ---
 
-Manage requests from developers to register applications for a Service. When a
-developer [registers an application with a Service](/konnect/dev-portal/developers/dev-reg-app-service),
+When a developer [registers an application with a Service](/konnect/dev-portal/developers/dev-reg-app-service),
 the requests must be approved by an admin if
 [auto approve](/konnect/dev-portal/administrators/auto-approve-devs-apps) is not enabled. When
 [application registration is enabled](/konnect/dev-portal/administrators/app-registration/enable-app-reg),

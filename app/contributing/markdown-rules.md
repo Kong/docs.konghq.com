@@ -115,7 +115,7 @@ You can also create tabbed codeblocks, so that users can easily switch to
 their preferred format. See [tabs for codeblocks](#tabs-for-codeblocks).
 
 If you're including placeholders in codeblocks, use HTML tags instead of
-backticks. See [editable placeholders](#editable-placeholders-in-codeblocks).
+backticks. See [editable placeholders](#editable-placeholders-in-codeblocks). 
 
 ## Placeholders
 
@@ -143,6 +143,7 @@ information includes:
 
 #### Create an editable placeholder
 
+* Enclose the entire codeblock in a `<div>` tag with a "copy-code-snippet" class: `<div class="copy-code-snippet"></div>`
 * Use the `<pre>` and `<code>` tags to create a codeblock
 * Enclose your placeholder in `<div contenteditable="true"></div>` tags
 * Do not add any newlines around the `pre` and `code` tags. These tags read
@@ -155,13 +156,13 @@ using fenced codeblocks elsewhere on the same page, set the language to
 {% navtabs codeblock %}
 {% navtab Input %}
 ```
-<pre><code>host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
-port: 80 </code></pre>
+<div class="copy-code-snippet"><pre><code>host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
+port: 80 </code></pre></div>
 ```
 {% endnavtab %}
 {% navtab Output %}
-<pre><code>host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
-port: 80 </code></pre>
+<div class="copy-code-snippet"><pre><code>host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
+port: 80 </code></pre></div>
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -169,21 +170,25 @@ port: 80 </code></pre>
 {% navtabs codeblock %}
 {% navtab Input %}
 ```
-<pre>
-  <code>
-  host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
-  port: 80
-  </code>
-</pre>
+<div class="copy-code-snippet">
+  <pre>
+    <code>
+    host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
+    port: 80
+    </code>
+  </pre>
+</div>
 ```
 {% endnavtab %}
 {% navtab Output %}
-<pre>
-  <code>
-  host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
-  port: 80
-  </code>
-</pre>
+<div class="copy-code-snippet">
+  <pre>
+      <code>
+      host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
+      port: 80
+      </code>
+  </pre>
+</div>
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -275,6 +280,103 @@ $ httpie some request
 {% endnavtab %}
 {% endnavtabs %}
 
+### Indenting tabs in an ordered list
+
+Sometimes you are writing an ordered list of steps and may need to include multiple
+ways to complete the task, like with the Admin API as well as the Kong Manager UI, and
+want to include tabs. Tabs do not indent well though and often reset the numbering of
+ordered lists.
+
+To indent your tabs so you can maintain your numbering, including codeblock tabs,
+you can use the indent filter on a capture of your tabs.
+
+{% raw %}
+```
+{% capture the_code %}
+{% navtabs codeblock %}
+{% navtab cURL %}
+<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
+-d source=crud \
+-d event=consumers \
+-d handler=webhook \
+-d config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+{% endnavtab %}
+{% navtab HTTPie %}
+<div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
+source=crud \
+event=consumers \
+handler=webhook \
+config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
+```
+{% endraw %}
+
+And here's what it looks like:
+
+To make a technical writer smile, **always** do the following:
+
+1. Use the Oxford comma. It matters. (With indent filter)
+
+{% capture the_code %}
+{% navtabs codeblock %}
+{% navtab cURL %}
+<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
+-d source=crud \
+-d event=consumers \
+-d handler=webhook \
+-d config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+{% endnavtab %}
+{% navtab HTTPie %}
+<div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
+source=crud \
+event=consumers \
+handler=webhook \
+config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
+
+2. Laugh at all of their awesome puns. Using puns used to be considered a sign of great intelligence afterall. (Without the indent filter)
+
+  {% navtabs codeblock %}
+  {% navtab cURL %}
+  <div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
+  -d source=crud \
+  -d event=consumers \
+  -d handler=webhook \
+  -d config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+  {% endnavtab %}
+  {% navtab HTTPie %}
+  <div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
+  source=crud \
+  event=consumers \
+  handler=webhook \
+  config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+  {% endnavtab %}
+  {% endnavtabs %}
+
+3. Bring chocolate. There's nothing wrong with bribery. (Without the indent filter)
+
+  {% navtabs codeblock %}
+  {% navtab cURL %}
+  <div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
+  -d source=crud \
+  -d event=consumers \
+  -d handler=webhook \
+  -d config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+  {% endnavtab %}
+  {% navtab HTTPie %}
+  <div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
+  source=crud \
+  event=consumers \
+  handler=webhook \
+  config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+  {% endnavtab %}
+  {% endnavtabs %}
 
 ## Admonitions
 

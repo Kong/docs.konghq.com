@@ -6,13 +6,12 @@ id: documentation
 
 {% assign latest_page_url = page.url | replace: page.kong_version,
 page.kong_latest.release %}
-{% capture latest_page_exists %}{% page_exists {{latest_page_url}} %}
-{% endcapture %}
+{% capture latest_page_exists %}{% page_exists {{latest_page_url}} %}{% endcapture %}
 
 <div class="page v2 {{ page.class }}" data-url={{ page.url }}>
 
   <div class="container">
-    {% include_cached docs-sidebar.html kong_version=page.kong_version edition=page.edition %}
+    {% include_cached docs-sidebar.html url=page.url kong_version=page.kong_version edition=page.edition %}
 
     {% if page.toc == true or page.toc != false and filename != "index.md" and page.is_homepage != true %}
       <aside class="docs-toc">

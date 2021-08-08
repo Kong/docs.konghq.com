@@ -4,7 +4,6 @@ no_version: true
 toc: true
 ---
 
-Enable application registration on a Service in {{site.konnect_short_name}}.
 When application registration is enabled for a Service, developers must
 [register an application](/konnect/dev-portal/developers/dev-reg-app-service)
 in order to access a Service.
