@@ -79,6 +79,8 @@ params:
       datatype: array of record elements
       description: |
         List of Metrics to be logged. Available values are described at [Metrics](#metrics).
+        By default, the plugin logs all available metrics. If you specify an array of metrics,
+        only the listed metrics are logged.
     - name: prefix
       required: true
       default: "`kong`"
