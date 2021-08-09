@@ -8,23 +8,17 @@ As an alternative to Konnect Cloud’s native basic authentication, you can set 
 org access through Okta. This way, your users can log in to Konnect Cloud
 using their Okta credentials, and without needing a separate login.
 
-By mapping Okta groups to Konnect groups, you can also manage authorization through
-your Okta app.
-
 You can't mix authenticators in Konnect Cloud. With Okta IdP
 authentication enabled, all non-admin Konnect users will subsequently log in
 through Okta. Only Konnect admins can continue to log in with basic
 authentication.
-
-If your org already has non-admin Konnect users, they will be mapped to the Okta
-application.
 
 > This feature is only available with Kong Konnect Enterprise.
 
 ## Prerequisites
 * [**Organization Admin**](/konnect/reference/org-management/#role-definitions)
 permissions in Konnect Cloud
-* [Okta developer account](https://developer.okta.com/) (with x permissions?)
+* [Okta developer account](https://developer.okta.com/)
 
 ## Set up Okta IdP Auth
 
@@ -85,9 +79,3 @@ your Okta dashboard.
     1. **Initiate login URI**: Paste your organization's login URL.
         You can find this URL in Konnect Cloud under **Settings** >
         **Identity Management**.
-
-## Map groups
-TBA
-
-## Invite users
-TBA

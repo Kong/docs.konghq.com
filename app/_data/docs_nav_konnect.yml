@@ -9,18 +9,20 @@
 
 - title: Account and Org Management
   icon: /assets/images/icons/documentation/icn-developer.svg
-  url: /account-management
   items:
-    - text: Access a Kong Konnect Account
+    - text: Access a Konnect Account
       url: /access-account
+    - text: Manage a Konnect Account or Plan
+      url: /account-management
     - text: Change to a Different Plan
       url: /account-management/change-plan
     - text: Manage Payment Methods and Invoices
       url: /account-management/billing
     - text: Users and Roles
-      url: /reference/org-management
+      url: /org-management/users-and-roles
     - text: Set up Okta IdP Auth
-      url: /account-management/okta-idp
+      url: /org-management/okta-idp
+    - text: Map Roles to Okta Groups
 
 - title: Release Notes
   icon: /assets/images/icons/documentation/icn-references-color.svg
