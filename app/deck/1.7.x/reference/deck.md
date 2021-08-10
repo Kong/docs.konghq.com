@@ -38,13 +38,12 @@ It can be used to export, import, or sync entities to Kong.
 
 ### See also
 
-* [deck completion](deck_completion.md)	 - Generate completion script
-* [deck convert](deck_convert.md)	 - Convert files from one format into another format
-* [deck diff](deck_diff.md)	 - Diff the current entities in Kong with the one on disks
-* [deck dump](deck_dump.md)	 - Export Kong configuration to a file
-* [deck konnect](deck_konnect.md)	 - Configuration tool for Konnect (in alpha)
-* [deck ping](deck_ping.md)	 - Verify connectivity with Kong
-* [deck reset](deck_reset.md)	 - Reset deletes all entities in Kong
-* [deck sync](deck_sync.md)	 - Sync performs operations to get Kong's configuration to match the state file
-* [deck validate](deck_validate.md)	 - Validate the state file
-* [deck version](deck_version.md)	 - Print the decK version
+* [deck convert](/deck/{{page.kong_version}}/reference/deck_convert)	 - Convert files from one format into another format
+* [deck diff](/deck/{{page.kong_version}}/reference/deck_diff)	 - Diff the current entities in Kong with the one on disks
+* [deck dump](/deck/{{page.kong_version}}/reference/deck_dump)	 - Export Kong configuration to a file
+* [deck konnect](/deck/{{page.kong_version}}/reference/deck_konnect)	 - Configuration tool for Konnect (in alpha)
+* [deck ping](/deck/{{page.kong_version}}/reference/deck_ping)	 - Verify connectivity with Kong
+* [deck reset](/deck/{{page.kong_version}}/reference/deck_reset)	 - Reset deletes all entities in Kong
+* [deck sync](/deck/{{page.kong_version}}/reference/deck_sync)	 - Sync performs operations to get Kong's configuration to match the state file
+* [deck validate](/deck/{{page.kong_version}}/reference/deck_validate)	 - Validate the state file
+* [deck version](/deck/{{page.kong_version}}/reference/deck_version)	 - Print the decK version
