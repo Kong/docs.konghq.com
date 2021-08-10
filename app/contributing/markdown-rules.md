@@ -115,7 +115,7 @@ You can also create tabbed codeblocks, so that users can easily switch to
 their preferred format. See [tabs for codeblocks](#tabs-for-codeblocks).
 
 If you're including placeholders in codeblocks, use HTML tags instead of
-backticks. See [editable placeholders](#editable-placeholders-in-codeblocks). 
+backticks. See [editable placeholders](#editable-placeholders-in-codeblocks).
 
 ## Placeholders
 
@@ -463,6 +463,7 @@ Badge | HTML tag | Markdown tag
 <span class="badge plus"></span> | `<span class="badge plus"></span>` | `{:.badge .plus}`
 <span class="badge enterprise"></span> | `<span class="badge enterprise"></span>` | `{:.badge .enterprise}`
 <span class="badge dbless"></span> | `<span class="badge dbless"></span>` | `{:.badge .dbless}`
+<span class="badge beta"></span> | `<span class="badge beta"></span>` | `{:.badge .beta}`
 
 For example, you can use the Markdown tag on headers:
 
