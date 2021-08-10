@@ -67,7 +67,7 @@ instance, skip to [Step 3](#step-3-start-an-influxdb-database).
 You will not be able to access the Kong Vitals functionality without a valid
 {{site.ee_product_name}} license attached to your {{site.base_gateway}} instance.
 
-{% include /md/enterprise/deploy-license.md heading="####" %}
+{% include /md/enterprise/deploy-license.md heading="####" kong_version=page.kong_version %}
 
 ### Step 3. Start an InfluxDB database
 
