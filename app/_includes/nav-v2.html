@@ -11,7 +11,7 @@
         alt="Kong Logo"
       />
     </a>
-    {% if page.layout != "landing-page" %}
+    {% if include.layout != "landing-page" %}
     <div class="separator mobile"></div>
     <div class="search-input-wrapper">
       <img src="/assets/images/landing-page/search.svg" alt="search" onclick="handleSearchClicked()">
@@ -23,7 +23,7 @@
     <div class="separator"></div>
     <div class="navbar-items" role="navigation" aria-label="Main menu">
       <ul class="navbar-items" role="menubar">
-        <li aria-haspopup="true" role="menuitem" class="navbar-item main-menu-item with-submenu{% if page.layout != 'landing-page' %} active{% endif %}" onclick="toggleSubmenuVisible(this)">
+        <li aria-haspopup="true" role="menuitem" class="navbar-item main-menu-item with-submenu{% if include.layout != 'landing-page' %} active{% endif %}" onclick="toggleSubmenuVisible(this)">
           <a href="https://docs.konghq.com/" tabindex="0" id="docs-link">Docs</a>
           <span class="caret"></span>
           <ul class="navbar-item-submenu" role="menu" aria-hidden="true">
@@ -104,7 +104,7 @@
   </div>
 </header>
 
-{% if page.layout != "landing-page" %}
+{% if include.layout != "landing-page" %}
 <style>
   @media (max-width: 768px) {
     .algolia-docsearch-suggestion--subcategory-column {
