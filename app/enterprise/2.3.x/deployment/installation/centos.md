@@ -19,7 +19,7 @@ This software is governed by the
 
 ### Deployment options
 
-{% include /md/{{page.kong_version}}/deployment-options.md %}
+{% include /md/{{page.kong_version}}/deployment-options.md kong_version=page.kong_version %}
 
 ## Prerequisites
 
