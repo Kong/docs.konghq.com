@@ -1,3 +1,7 @@
+---
+title: deck
+---
+
 ## deck
 
 The deck tool helps you manage Kong clusters with a declarative

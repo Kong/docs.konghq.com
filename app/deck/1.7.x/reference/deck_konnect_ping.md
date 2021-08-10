@@ -1,3 +1,7 @@
+---
+title: deck konnect ping
+---
+
 ## deck konnect ping
 
 The konnect ping command can be used to verify if decK

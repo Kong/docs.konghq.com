@@ -1,3 +1,7 @@
+---
+title: deck convert
+---
+
 ## deck convert
 
 The convert command changes configuration files from one format

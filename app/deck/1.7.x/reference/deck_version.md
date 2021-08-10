@@ -1,3 +1,7 @@
+---
+title: deck version
+---
+
 ## deck version
 
 The version command prints the version of decK along with a Git short

@@ -1,3 +1,7 @@
+---
+title: deck diff
+---
+
 ## deck diff
 
 The diff command is similar to a dry run of the 'decK sync' command.

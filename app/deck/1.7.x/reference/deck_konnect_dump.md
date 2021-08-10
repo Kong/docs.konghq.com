@@ -1,3 +1,7 @@
+---
+title: deck konnect dump
+---
+
 ## deck konnect dump
 
 The konnect dump command reads all entities present in Konnect

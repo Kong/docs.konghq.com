@@ -1,3 +1,7 @@
+---
+title: deck reset
+---
+
 ## deck reset
 
 Reset command will delete all entities in Kong's database.string.

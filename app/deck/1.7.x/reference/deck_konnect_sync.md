@@ -1,3 +1,7 @@
+---
+title: deck konnect sync
+---
+
 ## deck konnect sync
 
 The konnect sync command reads the state file and performs operations in Konnect

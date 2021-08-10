@@ -1,3 +1,7 @@
+---
+title: deck konnect diff
+---
+
 ## deck konnect diff
 
 The konnect diff command is similar to a dry run of the 'deck konnect sync' command.

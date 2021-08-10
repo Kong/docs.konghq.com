@@ -1,3 +1,7 @@
+---
+title: deck ping
+---
+
 ## deck ping
 
 The ping command can be used to verify if decK
