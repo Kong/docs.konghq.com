@@ -6,7 +6,7 @@
   {% for item in include.items %}
   {% if item.items %}
   {% assign id = include.id | append: '-' | append: forloop.index %}
-  {% include docs-sidebar-item.html id=id docs_url=include.docs_url items=item.items title=item.text url=item.url absolute_url=item.absolute_url active=item_active %}
+  {% include docs-sidebar-item.html id=id url=include.url docs_url=include.docs_url items=item.items title=item.text url=item.url absolute_url=item.absolute_url active=item_active %}
   {% else %}
   {% assign url = include.docs_url | append: item.url %}
   {% assign last_url_char = item.url | slice: -1, 1 %}
@@ -40,7 +40,7 @@
 {% endif %}
 {% endunless %}
 {% endif %}
-{% if page.url == item_url %}{% assign item_active = true %}{% endif %}
+{% if include.url == item_url %}{% assign item_active = true %}{% endif %}
 {% else %}
 {% assign item_url = false %}
 {% endif %}
