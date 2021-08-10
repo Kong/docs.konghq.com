@@ -1,7 +1,7 @@
 ## deck dump
 
 The dump command reads all entities present in Kong
-and writes them to a file on the disk.
+and writes them to a local file.
 
 The file can then be read using the sync command or diff command to
 configure Kong.
@@ -19,7 +19,7 @@ deck dump [flags]
   -o, --output-file string    file to which to write Kong's configuration.Use '-' to write to stdout. (default "kong")
       --rbac-resources-only   export only the RBAC resources (Kong Enterprise only).
       --select-tag strings    only entities matching tags specified with this flag are exported.
-                              When there are multiple tags, entities must match all tags.
+                              When this setting has multiple tag values, entities must match every tag.
       --skip-consumers        skip exporting consumers and any plugins associated with consumers.
       --with-id               write ID of all entities in the output
   -w, --workspace string      dump configuration of a specific Workspace(Kong Enterprise only).
@@ -36,7 +36,7 @@ deck dump [flags]
       --headers strings                HTTP headers (key:value) to inject in all requests to Kong's Admin API.
                                        This flag can be specified multiple times to inject multiple headers.
       --kong-addr string               HTTP address of Kong's Admin API.
-                                       This value can also be set using the DECK_KONG_ADDR
+                                       This value can also be set using the environment variable DECK_KONG_ADDR
                                         environment variable. (default "http://localhost:8001")
       --konnect-addr string            Address of the Konnect endpoint. (default "https://konnect.konghq.com")
       --konnect-email string           Email address associated with your Konnect account.
@@ -44,7 +44,7 @@ deck dump [flags]
       --konnect-password-file string   File containing the password to your Konnect account.
       --no-color                       Disable colorized output
       --skip-workspace-crud            Skip API calls related to Workspaces (Kong Enterprise only).
-      --timeout int                    Set requests timeout for client to connect with Kong (in seconds). (default 10)
+      --timeout int                    Set a request timeout for the client to connect with Kong (in seconds). (default 10)
       --tls-server-name string         Name to use to verify the hostname in Kong's Admin TLS certificate.
                                        This value can also be set using DECK_TLS_SERVER_NAME environment variable.
       --tls-skip-verify                Disable verification of Kong's Admin TLS certificate.
