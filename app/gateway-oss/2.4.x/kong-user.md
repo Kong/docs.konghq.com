@@ -29,7 +29,7 @@ configuration property.
 * [Amazon Linux](/install/aws-linux)
 * [CentOS](/install/centos)
 * [Debian](/install/debian)
-* [RedHat](/install/redhat)
+* [Red Hat](/install/redhat)
 * [Ubuntu](/install/ubuntu)
 
 ## Run Kong Gateway as a non-root user

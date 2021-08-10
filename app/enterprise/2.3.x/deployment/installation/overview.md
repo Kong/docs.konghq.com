@@ -91,8 +91,8 @@ disable_image_expand: true
   </a>
 
   <a href="https://marketplace.redhat.com/en-us/products/kong-enterprise-rhm" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/uploads/2020/05/Red-Hat-Marketplace-logo-832-320-1.png" alt="RedHat Marketplace" />
-    <div class="install-text">RedHat</div>
+    <img class="install-icon" src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/uploads/2020/05/Red-Hat-Marketplace-logo-832-320-1.png" alt="Red Hat Marketplace" />
+    <div class="install-text">Red Hat</div>
   </a>
 
 </div>

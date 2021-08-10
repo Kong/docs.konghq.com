@@ -35,8 +35,8 @@ $ sudo yum install kong-{{site.data.kong_latest.version}}.amd64.rpm
     
     {% if include.distribution == "rhel" %}
     
-- [Redhat 7]({{ site.links.download }}/gateway-2.x-rhel-7/Packages/k/kong-{{site.data.kong_latest.version}}.rhel7.noarch.rpm)
-- [Redhat 8]({{ site.links.download }}/gateway-2.x-rhel-7/Packages/k/kong-{{site.data.kong_latest.version}}.rhel8.noarch.rpm)
+- [Red Hat 7]({{ site.links.download }}/gateway-2.x-rhel-7/Packages/k/kong-{{site.data.kong_latest.version}}.rhel7.amd64.rpm)
+- [Red Hat 8]({{ site.links.download }}/gateway-2.x-rhel-7/Packages/k/kong-{{site.data.kong_latest.version}}.rhel8.amd64.rpm)
 
 To install from the command line
 
@@ -81,8 +81,8 @@ $ sudo yum install -y kong
     
     {% if include.distribution == "rhel" %}
     
-- [Redhat 7]({{ site.links.download }}/gateway-2.x-rhel-7/)
-- [Redhat 8]({{ site.links.download }}/gateway-2.x-rhel-8/)
+- [Red Hat 7]({{ site.links.download }}/gateway-2.x-rhel-7/)
+- [Red Hat 8]({{ site.links.download }}/gateway-2.x-rhel-8/)
 
 ```bash
 $ curl $(rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{rhel}/config.repo") | sudo tee /etc/yum.repos.d/kong.repo

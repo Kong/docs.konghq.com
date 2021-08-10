@@ -26,7 +26,7 @@
       url: /installation/docker
     - text: CentOS
       url: /installation/centos
-    - text: RedHat
+    - text: Red Hat
       url: /installation/redhat
     - text: Amazon Linux
       url: /installation/amazonlinux

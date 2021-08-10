@@ -64,7 +64,7 @@
             - text: Google Cloud
               url: https://console.cloud.google.com/marketplace/details/konghq-public/kongenterprise21
               absolute_url: true
-            - text: RedHat
+            - text: Red Hat
               url: https://marketplace.redhat.com/en-us/products/kong-enterprise-rhm
               absolute_url: true
     - text: Deployment Options
