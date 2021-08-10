@@ -2,8 +2,6 @@
 title: deck sync
 ---
 
-## deck sync
-
 The sync command reads the state file and performs operation on Kong
 to get Kong's state in sync with the input state.
 

@@ -2,8 +2,6 @@
 title: deck convert
 ---
 
-## deck convert
-
 The convert command changes configuration files from one format
 into another compatible format. For example, a configuration for 'kong-gateway'
 can be converted into a 'konnect' configuration file.

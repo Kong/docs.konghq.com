@@ -2,8 +2,6 @@
 title: deck validate
 ---
 
-## deck validate
-
 The validate command reads the state file and ensures validity.
 
 It reads all the specified state files and reports YAML/JSON

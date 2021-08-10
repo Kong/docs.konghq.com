@@ -2,8 +2,6 @@
 title: deck dump
 ---
 
-## deck dump
-
 The dump command reads all entities present in Kong
 and writes them to a local file.
 

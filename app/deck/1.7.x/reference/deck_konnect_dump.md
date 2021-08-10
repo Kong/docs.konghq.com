@@ -2,8 +2,6 @@
 title: deck konnect dump
 ---
 
-## deck konnect dump
-
 The konnect dump command reads all entities present in Konnect
 	and writes them to a local file.
 	

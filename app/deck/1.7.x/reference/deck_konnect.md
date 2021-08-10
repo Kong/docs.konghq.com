@@ -2,8 +2,6 @@
 title: deck konnect
 ---
 
-## deck konnect
-
 The konnect command prints subcommands that can be used to
 configure Konnect.
 
