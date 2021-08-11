@@ -39,7 +39,7 @@ the **client host** from where you will be executing the commands to access
 Kubernetes:
 
 * [CentOS]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_versions[0].version}}-centos-amd64.tar.gz)
-* [RedHat]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_versions[0].version}}-rhel-amd64.tar.gz)
+* [Red Hat]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_versions[0].version}}-rhel-amd64.tar.gz)
 * [Debian]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_versions[0].version}}-debian-amd64.tar.gz)
 * [Ubuntu]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_versions[0].version}}-ubuntu-amd64.tar.gz)
 * [macOS]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_versions[0].version}}-darwin-amd64.tar.gz)
