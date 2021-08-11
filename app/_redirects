@@ -18,8 +18,8 @@
 /kubernetes-ingress-controller/1.2.x/introduction  /kubernetes-ingress-controller/
 
 # kic beta
-/kubernetes-ingress-controller-beta/   https://kic-v2-beta--kongdocs.netlify.app/
-/kubernetes-ingress-controller-beta/*  https://kic-v2-beta--kongdocs.netlify.app/:splat
+/kubernetes-ingress-controller-beta/   https://kic-v2-beta--kongdocs.netlify.app/kubernetes-ingress-controller/
+/kubernetes-ingress-controller-beta/*  https://kic-v2-beta--kongdocs.netlify.app/kubernetes-ingress-controller/:splat
 
 # enterprise gateway
 /enterprise/latest/introduction       /enterprise/
