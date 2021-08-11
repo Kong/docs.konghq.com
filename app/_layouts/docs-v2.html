@@ -6,13 +6,12 @@ id: documentation
 
 {% assign latest_page_url = page.url | replace: page.kong_version,
 page.kong_latest.release %}
-{% capture latest_page_exists %}{% page_exists {{latest_page_url}} %}
-{% endcapture %}
+{% capture latest_page_exists %}{% page_exists {{latest_page_url}} %}{% endcapture %}
 
 <div class="page v2 {{ page.class }}" data-url={{ page.url }}>
 
   <div class="container">
-    {% include_cached docs-sidebar.html kong_version=page.kong_version edition=page.edition %}
+    {% include_cached docs-sidebar.html url=page.url kong_version=page.kong_version edition=page.edition %}
 
     {% if page.toc == true or page.toc != false and filename != "index.md" and page.is_homepage != true %}
       <aside class="docs-toc">
@@ -91,13 +90,21 @@ page.kong_latest.release %}
             </div>
               </div>
             {% endif %}
+            {% if page.url contains "/kubernetes-ingress-controller/" %}
+            <blockquote class="note">
+              <p>Kong's Kubernetes Ingress Controller v2.0.0 is currently in beta. Check out the
+              <a href="/kubernetes-ingress-controller-beta/">beta documentation</a> and try out
+              <a href="https://github.com/Kong/kubernetes-ingress-controller/releases/tag/v2.0.0-beta.1">v2.0.0</a> for yourself.</p>
+            </blockquote>
+            {% endif %}
 
-            <h1 class="page-content-title{%
+
+            <h1 tabindex="-1" id="main" class="page-content-title{%
             if page.badge %} badge{%
             if page.badge == 'plus' %} plus{% endif %}{%
             if page.badge == 'enterprise' %} enterprise{% endif %}
             {% endif %}"
-            >{{page.title | flatify }}</h1>
+            >{{page.title | flatify }} </h1>
             {% if page.enterprise %}{% endif %}
             {% if page.subtitle %}
               <h2 class="page-content-subtitle">{{page.subtitle | flatify }}</h2>

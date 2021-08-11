@@ -133,7 +133,7 @@ will be executing the commands.
 See the individual installation pages for your OS to download and extract
 `kumactl` to your machine:
 * [CentOS](/mesh/{{page.kong_version}}/installation/centos)
-* [RedHat](/mesh/{{page.kong_version}}/installation/redhat)
+* [Red Hat](/mesh/{{page.kong_version}}/installation/redhat)
 * [Debian](/mesh/{{page.kong_version}}/installation/debian)
 * [Ubuntu](/mesh/{{page.kong_version}}/installation/ubuntu)
 * [macOS](/mesh/{{page.kong_version}}/installation/macos)

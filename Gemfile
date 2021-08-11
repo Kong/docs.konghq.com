@@ -5,3 +5,12 @@ gem "jekyll-redirect-from"
 gem "rouge", "3.26.0"
 gem "liquid-c"
 gem "jekyll-include-cache"
+
+group :development do
+  gem "rspec"
+  gem "capybara"
+  gem "rack-jekyll"
+  gem "puma"
+  gem "pry"
+  gem "apparition"
+end

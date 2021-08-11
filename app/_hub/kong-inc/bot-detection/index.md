@@ -71,4 +71,4 @@ The plugin already includes a basic list of rules that will be checked on every 
 [api-object]: /gateway-oss/latest/admin-api/#api-object
 [configuration]: /gateway-oss/latest/configuration
 [consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
-[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
+

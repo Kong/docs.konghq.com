@@ -19,7 +19,7 @@ distributions that provide a drop-in replacement to Kuma's native binaries.
 * [OpenShift](/mesh/{{page.kong_version}}/installation/openshift)
 * [Docker](/mesh/{{page.kong_version}}/installation/docker)
 * [CentOS](/mesh/{{page.kong_version}}/installation/centos)
-* [RedHat](/mesh/{{page.kong_version}}/installation/redhat)
+* [Red Hat](/mesh/{{page.kong_version}}/installation/redhat)
 * [Amazon Linux](/mesh/{{page.kong_version}}/installation/amazonlinux)
 * [Debian](/mesh/{{page.kong_version}}/installation/debian)
 * [Ubuntu](/mesh/{{page.kong_version}}/installation/ubuntu)

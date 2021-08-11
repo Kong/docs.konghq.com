@@ -25,7 +25,7 @@ Before using Hybrid mode, you need a certificate/key pair.
 pair, then distribute copies across nodes. The certificate/key pair is shared
 by both CP and DP nodes.
 * **PKI mode:** Provide certificates signed by a central certificate authority
-(CA). Kong validates both sides by checking if they are from the same CA. This
+(CA). Kong validates both sides by checking if they are issued by configured CA. This
 eliminates the risks associated with transporting private keys.
 
 For a breakdown of the properties used by these modes, see the
@@ -34,7 +34,7 @@ For a breakdown of the properties used by these modes, see the
 {% navtabs %}
 {% navtab Shared mode %}
 <div class="alert alert-warning">
- 
+
   <strong>Protect the Private Key.</strong> Ensure the private key file can only be accessed by
   Kong nodes belonging to the cluster. If the key is compromised, you must
   regenerate and replace certificates and keys on all CP and DP nodes.
@@ -61,7 +61,7 @@ certificate authority (CA).
 
 In this mode, the Control Plane and Data Plane don't need to use the same
 `cluster_cert` and `cluster_cert_key`. Instead, Kong validates both sides by
-checking if they are from the same CA.
+checking if they are issued by configured CA.
 
 Prepare your CA certificates on the hosts where Kong will be running.
 
@@ -321,6 +321,29 @@ backend database.
 
 >**Note:** Control Plane nodes cannot be used for proxying.
 
+### (Optional) Revocation checks of Data Plane certificates
+
+When Kong is running Hybrid mode with PKI mode, the Control Plane can be configured to
+optionally check for revocation status of the connecting Data Plane certificate.
+
+The supported method is through Online Certificate Status Protocol (OCSP) responders.
+Issued data plane certificates must contain the Certificate Authority Information Access extension
+that references the URI of OCSP responder that can be reached from the Control Plane.
+
+To enable OCSP checks, set the `cluster_ocsp` config on the Control Plane to one of the following values:
+
+* `on`: OCSP revocation check is enabled and the Data Plane must pass the revocation check
+to establish connection with the Control Plane. This implies that certificates without the
+OCSP extension or unreachable OCSP responder also prevents a connection from being established.
+* `off`: OCSP revocation check is disabled (default).
+* `optional`: OCSP revocation check will be attempted, however, if the OCSP responder URI is not
+found inside the Data Plane-provided certificate or communication with the OCSP responder failed,
+then Data Plane is still allowed through.
+
+Note that OCSP checks are only performed on the Control Plane against certificates provided by incoming Data Plane
+nodes. The `cluster_ocsp` config has no effect on Data Plane nodes.
+`cluster_oscp` affects all Hybrid mode connections established from a Data Plane to its Control Plane.
+
 ## Step 3: Install and Start Data Planes
 Now that the Control Plane is running, you can attach Data Plane nodes to it to
 start serving traffic.
@@ -336,6 +359,9 @@ is disabled.
 similar to declarative config, therefore <code>database</code> has to be set to
 <code>off</code> for Kong to start up properly.
 </div>
+
+See the [DP node start sequence](#dp-node-start-sequence) for more information
+on how data plane nodes process configuration.
 
 {% navtabs %}
 {% navtab Using Docker %}
@@ -538,7 +564,24 @@ The output shows all of the connected Data Plane instances in the cluster:
 }
 ```
 
-## Configuration Reference
+## References
+### DP Node Start Sequence
+
+When set as a DP node, {{site.base_gateway}} processes configuration in the
+following order:
+
+1. **Config cache**: If the file `config.json.gz` exists in the `kong_prefix`
+path (`/usr/local/kong` by default), the DP node loads it as configuration.
+2. **`declarative_config` exists**: If there is no config cache and the
+`declarative_config` parameter is set, the DP node loads the specified file.
+3. **Empty config**: If there is no config cache or declarative
+configuration file available, the node starts with empty configuration. In this
+state, it returns 404 to all requests.
+4. **Contact CP Node**: In all cases, the DP node contacts the CP node to retrieve
+the latest configuration. If successful, it gets stored in the local config
+cache (`config.json.gz`).
+
+### Configuration Reference
 
 Use the following configuration properties to configure {{site.ee_product_name}}
 in Hybrid mode.

@@ -60,9 +60,7 @@ For the full Kubernetes Hybrid mode documentation, see
 [Hybrid mode](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
 in the `kong/charts` repository.
 
-## Limitations
-
-### Version Compatibility
+## Version Compatibility
 {{site.ee_gateway_name}} control planes only connect to data planes with the
 same major version and at most two minor versions earlier (edge included).
 Control planes won't connect to data planes with newer versions.
@@ -119,6 +117,42 @@ In addition, the `/clustering/data-planes` Admin API endpoint returns
 the version of the data plane node and the latest config hash the node is
 using. This data helps detect version incompatibilities from the
 control plane side.
+
+## Fault tolerance
+
+A valid question you may ask is: What would happen if control plane nodes are down,
+will the data plane keep functioning? The answer is yes. Data plane caches
+the latest configuration it received from the control plane on the local disk.
+In case the control plane stops working, the data plane will keep serving requests using
+cached configurations. It does so while constantly trying to reestablish communication
+with the control plane.
+
+This means that the Data Plane nodes can be stopped even for extended periods
+of time, and the Data Plane will still proxy traffic normally.  Data Plane
+nodes can be restarted while in disconnected mode, and will load the last
+configuration in the cache to start working. When the Control Plane is brought
+up again, the Data Plane nodes will contact them and resume connected mode.
+
+### Disconnected Mode
+
+The viability of the Data Plane while disconnected means that Control Plane
+updates or database restores can be done with peace of mind. First bring down
+the Control Plane, perform all required downtime processes, and only bring up
+the Control Plane after verifying the success and correctness of the procedure.
+During that time, the Data Plane will keep working with the latest configuration.
+
+A new Data Plane node can be provisioned during Control Plane downtime. This
+requires either copying the config cache file (`config.json.gz`) from another
+Data Plane node, or using a declarative configuration. In either case, if it
+has the role of `"data_plane"`, it will also keep trying to contact the Control
+Plane until it's up again.
+
+To change a disconnected Data Plane node's configuration, you have to remove
+the config cache file (`config.json.gz`), ensure the `declarative_config`
+parameter or the `KONG_DECLARATIVE_CONFIG` environment variable is set, and set
+the whole configuration in the referenced YAML file.
+
+## Limitations
 
 ### Configuration Inflexibility
 When a configuration change is made at the Control Plane level via the Admin

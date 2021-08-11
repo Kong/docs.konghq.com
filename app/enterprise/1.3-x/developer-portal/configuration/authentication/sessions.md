@@ -8,7 +8,7 @@ title: Sessions in the Dev Portal
 
 When a user logs in to the Dev Portal with their credentials, the Sessions Plugin will create a session cookie. The cookie is used for all subsequent requests and is valid to authenticate the user. The session has a limited duration and renews at a configurable interval, which helps prevent an attacker from obtaining and using a stale cookie after the session has ended.
 
-The Session configuration is secure by default, which may [require alteration](#session-security) if using HTTP or different domains for [portal_api_url](/enterprise/{{page.kong_version}}/developer-portal/networking/#portal_api_url) and [portal_gui_host](/enterprise/{{page.kong_version}}/developer-portal/networking/#portal_gui_host). Even if an attacker were to obtain a stale cookie, it would not benefit them since the cookie is encrypted. The encrypted session data may be stored either in Kong or the cookie itself.
+The Session configuration is secure by default, which may [require alteration](#session-security) if using HTTP or different domains for [portal_api_url](/enterprise/{{page.kong_version}}/property-reference/#portal_api_url) and [portal_gui_host](/enterprise/{{page.kong_version}}/property-reference/#portal_gui_host). Even if an attacker were to obtain a stale cookie, it would not benefit them since the cookie is encrypted. The encrypted session data may be stored either in Kong or the cookie itself.
 
 ## Configuration to Use the Sessions Plugin with the Dev Portal
 
@@ -56,7 +56,7 @@ The Session configuration is secure by default, so the cookie uses the [Secure, 
 
 ⚠️**Important:** The following properties must be altered depending on the protocol and domains in use:
 * If using HTTP instead of HTTPS: `"cookie_secure": false`
-* If using different domains for [portal_api_url](/enterprise/{{page.kong_version}}/developer-portal/networking/#portal_api_url) and [portal_gui_host](/enterprise/{{page.kong_version}}/developer-portal/networking/#portal_gui_host): `"cookie_samesite": "off"`
+* If using different domains for [portal_api_url](/enterprise/{{page.kong_version}}/property-reference/#portal_api_url) and [portal_gui_host](/enterprise/{{page.kong_version}}/property-reference/#portal_gui_host): `"cookie_samesite": "off"`
 
 ## Example Configurations
 

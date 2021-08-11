@@ -42,7 +42,8 @@ params:
   protocols: ["http", "https", "grpc", "grpcs"]
   dbless_compatible: partially
   dbless_explanation: |
-   The cluster policy is not supported in DB-less and hybrid modes. For Kong Gateway on Kubernetes in DB-less mode, use one of `redis` or `local`; for hybrid mode, use `redis`.
+   The cluster strategy is not supported in DB-less and hybrid modes. For Kong
+   Gateway in DB-less or hybrid mode, use the `redis` strategy.
   config:
     - name: limit
       required: true
@@ -100,22 +101,28 @@ params:
     - name: strategy
       required: true
       default: cluster
-      value_in_examples: local
+      value_in_examples: cluster
       datatype: string
       description: |
         The rate-limiting strategy to use for retrieving and incrementing the
         limits. Available values are:
-        - `local`: Counters are stored locally in-memory on the node.
         - `cluster`: Counters are stored in the Kong datastore and shared across
          the nodes.
         - `redis`: Counters are stored on a Redis server and shared
         across the nodes.
 
-        In DB-less and hybrid modes, the `cluster` config strategy is not supported.
-        For DB-less mode, use one of `redis` or `local`; for hybrid mode, use
-        `redis`, or `local` for data planes only.
+        In DB-less and hybrid modes, the `cluster` config strategy is not
+        supported.
 
         In Konnect Cloud, the default strategy is `redis`.
+
+        {:.important}
+        > There is no local storage strategy. However, you can achieve local
+        rate limiting by using a placeholder `strategy` value (either `cluster` or `redis`)
+        and a `sync_rate` of `-1`. This setting stores counters in-memory on the
+        node.
+        <br><br>If using `redis` as the placeholder value, you must fill in all
+        additional `redis` configuration parameters with placeholder values.
 
         For details on which strategy should be used, refer to the
         [implementation considerations](/hub/kong-inc/rate-limiting/#implementation-considerations).
@@ -181,6 +188,28 @@ params:
       datatype: number
       description: |
         Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined.
+        This field is deprecated and replaced with `redis.connect_timeout`, `redis.send_timeout`, and `redis.read_timeout`.
+        The `redis.timeout` field will continue to work in a backwards compatible way, but it is recommended to use the replacement fields.
+        If set to something other than the default, a deprecation warning will be logged in the log file, stating the field's deprecation
+        and planned removal in v3.x.x.
+    - name: redis.connect_timeout
+      required: semi
+      default: 2000
+      datatype: number
+      description: |
+        Connection timeout to use for Redis connection when the `redis` strategy is defined.
+    - name: redis.send_timeout
+      required: semi
+      default: 2000
+      datatype: number
+      description: |
+        Send timeout to use for Redis connection when the `redis` strategy is defined.
+    - name: redis.read_timeout
+      required: semi
+      default: 2000
+      datatype: number
+      description: |
+        Read timeout to use for Redis connection when the `redis` strategy is defined.
     - name: redis.password
       required: semi
       default:
@@ -209,7 +238,7 @@ params:
       value_in_examples:
       datatype: string
       description: |
-            Sentinel password to authenticate with a Redis Sentinel instance.
+            Sentinel password to authenticate with a Redis Sentinel instance. If undefined, no AUTH commands are sent to Redis Sentinels.
             **Note:** This parameter is only available for Kong Enterprise versions
             1.3.0.2 and later.
     - name: redis.sentinel_role

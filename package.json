@@ -12,7 +12,7 @@
     "start": "gulp",
     "dev": "gulp dev",
     "pdk-docs": "KONG_PATH=${KONG_PATH:=} KONG_VERSION=${KONG_VERSION:=} gulp pdk-docs",
-    "test": "standard && echint --verbose"
+    "test": "standard --verbose"
   },
   "standard": {
     "ignore": [
@@ -25,33 +25,11 @@
       "app/_redirects"
     ]
   },
-  "echint": {
-    "ignore": [
-      "Makefile",
-      "dist/**",
-      "app/*.x/**",
-      "app/enterprise/**/*",
-      "app/gateway-oss/**/*",
-      "app/_assets/images/**",
-      "app/_assets/fonts/**",
-      "app/license/index.md",
-      "ldoc/*",
-      "Gemfile.lock",
-      "autodoc-admin-api/*.lua",
-      "autodoc-conf/*.lua",
-      "autodoc-conf-ee/*.lua",
-      "vendor/**",
-      "node_modules/**",
-      "Docker",
-      "app/_redirects"
-    ]
-  },
   "devDependencies": {
     "broken-link-checker": "0.7.8",
-    "browser-sync": "2.27.4",
+    "browser-sync": "2.27.5",
     "cloudflare": "2.7.0",
     "del": "6.0.0",
-    "echint": "4.0.2",
     "fancy-log": "1.3.3",
     "font-awesome": "4.7.0",
     "gh-pages": "3.2.3",

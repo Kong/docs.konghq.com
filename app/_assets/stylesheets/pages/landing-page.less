@@ -25,6 +25,7 @@ header.navbar {
     font-size: 48px;
     line-height: 67px;
     color: @color-text;
+    scroll-margin-top: 100px;
 
     > span {
       white-space: nowrap;
@@ -39,11 +40,11 @@ header.navbar {
   }
 
   h3 {
+    padding-top: 45px;
     font-weight: normal;
     font-size: 20px;
     line-height: 28px;
     color: @color-text;
-
   }
 
   h4 {
@@ -86,6 +87,11 @@ header.navbar {
       width: 20px;
       margin-right: 8px;
     }
+  }
+
+
+  #feature-title {
+    padding-top: 45px;
   }
 
   .cards-container {
@@ -230,7 +236,6 @@ header.navbar {
 
     section.konnect-docs {
       .shadowed-card;
-      margin-bottom: 45px;
 
       .platform-links {
         padding: 5px 0 20px;
@@ -355,7 +360,6 @@ header.navbar {
 
   section.docs {
     display: flex;
-    margin-top: 40px;
 
     section.title-cards {
       display: flex;
@@ -466,8 +470,6 @@ header.navbar {
   }
 
   section.features {
-    margin-top: 72px;
-
     .cards-container {
       display: grid;
       grid-gap: 24px;
@@ -552,7 +554,7 @@ header.navbar {
 
     section.docs {
       section.title-cards {
-        margin-right: 24px;
+        margin-right: 48px;
 
         .cards-container {
           .card {
@@ -628,8 +630,7 @@ header.navbar {
     }
 
     section.docs {
-      flex-direction: column;
-      margin-top: 32px;
+      flex-direction: row;
 
       section.title-cards {
         margin-top: 8px;
@@ -637,38 +638,39 @@ header.navbar {
 
         .cards-container {
           flex-direction: column;
+          margin-right: 48px;
+          justify-content: center;
 
           .card {
             margin-right: 0;
-            margin-bottom: 24px;
+
+            &:first-child {
+              margin-bottom:24px;
+            }
           }
         }
       }
     }
 
     section.features {
-      margin-top: 32px;
 
       .cards-container {
-        overflow-x: auto;
         padding: 8px 16px 8px 16px;
         grid-template-columns: none;
-        grid-auto-flow: column;
+        grid-auto-flow: row;
         grid-gap: 16px;
         box-sizing: border-box;
         margin-left: -16px;
         margin-right: -16px;
 
         .card {
-          width: 288px;
           flex-shrink: 0;
         }
+      }
 
-        &:after {
-          content: "";
-          width: 1px;
-          height: 10px;
-        }
+      @media (max-width:767px) {
+        justify-content: center;
+        display: flex;
       }
     }
 

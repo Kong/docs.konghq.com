@@ -420,10 +420,10 @@
   luarocks_version: "2.2.0.0"
   dependencies:
     luajit: "2.1.0-beta3"
-    luarocks: "3.3.1"
+    luarocks: "3.5.0"
     cassandra: "3.x.x"
     postgres: "9.5+"
-    openresty: "1.15.8.3"
+    openresty: "1.17.8.2"
   lua_doc: true
 -
   release: "2.4.x"
@@ -432,10 +432,23 @@
   luarocks_version: "2.2.0.0"
   dependencies:
     luajit: "2.1.0-beta3"
-    luarocks: "3.3.1"
+    luarocks: "3.7.0"
     cassandra: "3.x.x"
     postgres: "9.5+"
-    openresty: "1.15.8.3"
+    openresty: "1.19.3.1"
+  lua_doc: true
+
+-
+  release: "2.5.x"
+  version: "2.5.0.0"
+  edition: "enterprise"
+  luarocks_version: "2.2.0.0"
+  dependencies:
+    luajit: "2.1.0-beta3"
+    luarocks: "3.7.1"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.19.3.1"
   lua_doc: true
 
 -
@@ -457,6 +470,10 @@
 -
   release: "2.4.x"
   version: "2.4"
+  edition: "getting-started-guide"
+-
+  release: "2.5.x"
+  version: "2.5"
   edition: "getting-started-guide"
 -
   release: "pre-1.7"
@@ -486,7 +503,7 @@
   edition: "mesh"
 -
   release: "1.3.x"
-  version: "1.3.2"
+  version: "1.3.3"
   edition: "mesh"
 -
   release: "1.0.x"

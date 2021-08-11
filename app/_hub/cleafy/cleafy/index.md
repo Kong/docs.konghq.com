@@ -46,8 +46,6 @@ kong_version_compatibility:
       - 0.35-x
       - 0.36-x
 
-kong_legacy_api: false
-
 params:
   name: cleafy-plugin-for-kong
   api_id: false

@@ -12,7 +12,7 @@ id: landing-page
     <div class="top-gradient"></div>
   </div>
 
-  <h1>Welcome <span>to Kong Docs</span></h1>
+  <h1 id="main" tabindex="-1">Welcome <span>to Kong Docs</span></h1>
   <h4>Find all the information you need to use the {{site.konnect_product_name}} platform and Kong’s projects</h4>
 
   <section class="search">
@@ -176,8 +176,8 @@ id: landing-page
   </section>
 
   {% for feature in site.data.landing_page.features %}
+  <h3 id="feature-title">{{ feature.title }}</h3>
   <section class="features">
-    <h3>{{ feature.title }}</h3>
     <div class="cards-container">
       {% for item in feature.items %}
       <div class="card default">
