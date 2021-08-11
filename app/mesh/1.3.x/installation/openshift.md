@@ -227,8 +227,8 @@ entity with the name `default`.
 
 {{site.mesh_product_name}} explicitly specifies a UID
 for the `kuma-dp` sidecar to avoid capturing traffic from
-`kuma-dp` itself. You must grant a `nonroot` [Security Context Constraint]
-(https://docs.openshift.com/container-platform/latest/authentication/managing-security-context-constraints.html)
+`kuma-dp` itself. You must grant a `nonroot` 
+[Security Context Constraint](https://docs.openshift.com/container-platform/latest/authentication/managing-security-context-constraints.html)
 to the application namespace:
 
 ```sh

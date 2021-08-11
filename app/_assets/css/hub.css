@@ -11481,7 +11481,7 @@ a.text-gray-dark:focus,a.text-gray-dark:hover {
     font-size: 15px;
     line-height: 20px;
     font-weight: 400;
-    color: rgba(0,0,0,0.45)
+    color: #4c6d80;
 }
 
 .page-subscriptions table thead th.mini,p.mini {
@@ -14714,19 +14714,19 @@ header.page-header {
   position: absolute;
   display: block;
   content: 'ENTERPRISE';
-  top: 0;
-  right: 0;
-  height: 1.7rem;
-  width: 75px;
+  top: 7px;
+  left: 0;
+  height: 2rem;
+  width: 90px;
   color: white;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
-  text-align: right;
-  line-height: 1rem;
-  opacity: 0.7;
+  text-align: left;
+  line-height: 1.2rem;
+  opacity: 0.8;
   background: #505659;
-  border-radius: 0px 0 0 4px;
-  padding: 4px 10px 2px;
+  border-radius: 0 10px 10px 0;
+  padding: 4px 10px 4px;
 }
 
 .plugin-card.fadeOut {
@@ -14734,8 +14734,9 @@ header.page-header {
 }
 
 .plugin-card .name-desc {
-  padding-bottom: 50px;
-  text-align: left;
+  padding-bottom: 60px;
+  padding-top: 15px;
+  text-align: center;
   font-weight: normal;
   font-size: 12px;
   line-height: 22px;
@@ -14745,19 +14746,19 @@ header.page-header {
     position: absolute;
     display: block;
     content: 'PLUS';
-    top: 20px;
-    right: 0;
-    height: 1.7rem;
-    width: 45px;
+    top: 30px;
+    left: 0;
+    height: 2rem;
+    width: 50px;
     color: white;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 500;
-    line-height: 1.2rem;
-    text-align: right;
-    opacity: 0.5;
+    line-height: 1.5rem;
+    text-align: left;
+    opacity: 0.8;
     background: #1456cb;
-    border-radius: 4px 0 0 4px;
-    padding: 3px 10px 12px 3px;
+    border-radius: 0 10px 10px 0;
+    padding: 3px 10px 3px;
   }
 }
 
@@ -14768,13 +14769,13 @@ header.page-header {
 .plugin-card .publisher {
   /* support by:: */
   width: 100%;
-  text-align: left;
-  font-size: 13px;
-  color: rgba(0,0,0,0.45);
+  text-align: right;
+  font-size: 15px;
+  color: #4c6d80;
   letter-spacing: 0.25px;
   position: absolute;
   bottom: 25px;
-  left: 25px;
+  right: 28px;
   z-index: 5;
 }
 

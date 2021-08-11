@@ -3,7 +3,7 @@ title: Disable App Registration for a Service
 no_version: true
 ---
 
-Disable application registration for a Service. Disabling application registration
+Disabling application registration
 deletes all plugins that were initially enabled for a Service. You cannot manually
 delete a plugin that was automatically enabled by app registration, such as the
 `acl` and `key-auth` or `openid-connect` plugins that
@@ -21,7 +21,7 @@ toggle set to disabled.
 
 You can
 [enable application registration](/konnect/dev-portal/administrators/app-registration/enable-app-reg)
-again any time at your discretion.
+again any time.
 
 1. From the {{site.konnect_short_name}} menu, click **Services**.
 
