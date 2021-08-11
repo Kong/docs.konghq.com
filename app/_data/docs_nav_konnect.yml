@@ -7,22 +7,28 @@
     - text: Key Concepts and Terms
       url: /key-concepts-and-terms
 
-- title: Account and Org Management
+- title: Manage Accounts and Orgs
   icon: /assets/images/icons/documentation/icn-developer.svg
   items:
     - text: Access a Konnect Account
       url: /access-account
-    - text: Manage a Konnect Account or Plan
-      url: /account-management
-    - text: Change to a Different Plan
-      url: /account-management/change-plan
-    - text: Manage Payment Methods and Invoices
-      url: /account-management/billing
-    - text: Users and Roles
-      url: /org-management/users-and-roles
-    - text: Set up Okta IdP Auth
-      url: /org-management/okta-idp
-    - text: Map Roles to Okta Groups
+    - text: Plans and Billing
+      items:
+        - text: Manage a Konnect Account or Plan
+          url: /account-management
+        - text: Change to a Different Plan
+          url: /account-management/change-plan
+        - text: Manage Payment Methods and Invoices
+          url: /account-management/billing
+    - text: Authentication and Authorization
+      url: /org-management/auth
+      items:
+        - text: Users and Roles
+          url: /org-management/users-and-roles
+        - text: Set up Okta IdP Auth
+          url: /org-management/okta-idp
+        - text: Map Roles to Okta Groups
+          url: /org-management/okta-role-mapping
 
 - title: Release Notes
   icon: /assets/images/icons/documentation/icn-references-color.svg
