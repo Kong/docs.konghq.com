@@ -27,15 +27,17 @@ permissions in Konnect Cloud
 Create a new application in Okta to manage Konnect Cloud account integration.
 
 1. Sign in to your [Okta developer account](https://developer.okta.com/).
-1. Click **Applications**, then **Create Integration**.
+1. From the left menu, select **Applications**, then **Create Integration**.
 1. Select the application type:
     1. Under **Sign-on method**, select **OIDC - OpenID Connect**.
     1. Under **Application Type**, select **Web Application**.
-1. Click **Next**.Configure the application:
+1. Click **Next**. Configure the application:
     1. Create a unique name for your application.
     1. Under **Grant Type**, select **Authorization Code**.
     1. In both the **Sign-in redirect URIs** and
-**Sign-out redirect URIs** fields, enter `https://{YOUR_KONNECT_APP_DOMAIN}/login`.
+**Sign-out redirect URIs** fields, enter:
+
+      `https://<div contenteditable="true">{YOUR_KONNECT_APP_DOMAIN}</div>/login`.
 
       Replace `{YOUR_KONNECT_APP_DOMAIN}` with your own domain.
 1. Save your settings to generate connection details.
@@ -45,30 +47,37 @@ Create a new application in Okta to manage Konnect Cloud account integration.
 
 ### Set the default IdP for Konnect Cloud
 
-1. In a separate browser tab, log in to Konnect Cloud.
-1. Open **Settings**, then **Identity Management**.
+1. In a separate browser tab, log in to [Konnect Cloud](https://konnect.konghq.com).
+1. Open ![settings icon](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
+**Settings**, then **Identity Management**.
 1. Select **Okta**.
 1. Copy and paste the **Client ID** and **Client Secret** from your Okta
 application into Konnect Cloud.
+
+    See the [Okta developer documentation](https://developer.okta.com/docs/guides/find-your-app-credentials/findcreds/)
+    to learn more about client credentials in Okta.
+
 1. Create the **Issuer URL**:
     1. Copy the **Okta domain** from your Okta application.
     1. Paste it into the **Issuer** field in Konnect using the following format:
 
-        `https://{OKTA_DOMAIN}/oauth2/default`
+        `https://<div contenteditable="true">{OKTA_DOMAIN}</div>/oauth2/default`
 1. Save your changes.
 1. Copy the generated login URL.
 
-    This is your organization's login URL. Provide this URL to users to let them
+    This is your organization's new login URL. Provide this URL to users to let them
     log in to Konnect with Okta.
 
 1. Paste the URL into a browser window.
-This should load an Okta application login screen.
+
+    This should load an Okta application login screen.
+
 1. Log in with your Okta credentials.
 
 ### Enable Konnect Cloud as a dashboard app in Okta
 
-If you want your users to have easy access to Konnect Cloud, you can add it to
-your Okta dashboard.
+If you want your users to have easy access to Konnect Cloud alongside their other apps,
+you can add it to your Okta dashboard.
 
 1. Sign in to your [Okta developer account](https://developer.okta.com/).
 1. Click **Applications**, then open your Konnect Cloud Okta application.
