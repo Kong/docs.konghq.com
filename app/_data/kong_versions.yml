@@ -450,7 +450,10 @@
     postgres: "9.5+"
     openresty: "1.19.3.1"
   lua_doc: true
-
+-
+  release: "2.5.x"
+  version: "2.5.0.0"
+  edition: "gateway"
 -
   release: "CE-2.0.x_KE-1.5.x"
   version: "CE-2.0.x/KE-1.5.x"

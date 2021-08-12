@@ -52,6 +52,7 @@ page.kong_latest.release %}
                 {% elsif page.edition == 'deck' %}decK
               {% elsif page.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
                 {% elsif page.edition == 'gateway-oss' %}{{site.ce_product_name}}
+                {% elsif page.edition == 'gateway' %}Kong Gateway
                 {% elsif page.edition == 'getting-started-guide' %}Getting Started with Kong Gateway
               {% elsif page.edition == 'contributing' %}Contribution guidelines
               {% endif %}
@@ -79,7 +80,7 @@ page.kong_latest.release %}
           {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
             <div class="alert alert-warning">
             You are browsing documentation for an outdated version. See the
-            <a href="{% if latest_page_exists == 'true' %}{{latest_page_url}}{% elsif page.edition == 'gateway-oss'%}/gateway-oss/{% elsif page.edition == 'enterprise'%}/enterprise/{% elsif page.edition == 'mesh'%}/mesh/{% elsif page.edition == 'kubernetes-ingress-controller/'%}/kubernetes-ingress-controller/{% else %}/{% endif %}">
+            <a href="{% if latest_page_exists == 'true' %}{{latest_page_url}}{% elsif page.edition == 'gateway-oss'%}/gateway-oss/{% elsif page.edition == 'enterprise'%}/enterprise/{% elsif page.edition == 'gateway'%}/gateway/{% elsif page.edition == 'mesh'%}/mesh/{% elsif page.edition == 'kubernetes-ingress-controller'%}/kubernetes-ingress-controller/{% else %}/{% endif %}">
               latest documentation here</a>.
           </div>
             {% elsif page.beta == true %}

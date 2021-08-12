@@ -5,7 +5,7 @@
       <i class="sidebar-toggle"></i>
     {% endif %}
     <li class="breadcrumb-item">
-      {% if page.edition =='enterprise' or page.edition =='konnect' or page.edition =='konnect-platform' or page.edition == 'mesh' %}
+      {% if page.edition =='enterprise' or page.edition =='konnect' or page.edition =='konnect-platform' or page.edition == 'mesh' or page.edition == 'gateway' %}
         Kong Konnect Platform
       {% elsif page.edition == 'contributing' %}
         Contribute to the docs
@@ -21,6 +21,7 @@
       {% elsif page.edition == 'deck' %}<a href="/deck/">decK</a>
       {% elsif page.edition == 'kubernetes-ingress-controller' %}<a href="/kubernetes-ingress-controller/{{page.kong_version}}/">{{site.kic_product_name}}</a>
       {% elsif page.edition == 'gateway-oss' %}<a href="/gateway-oss/{{page.kong_version}}/">{{site.ce_product_name}}</a>
+      {% elsif page.edition == 'gateway' %}<a href="/gateway/{{page.kong_version}}/">{{site.base_gateway}}</a>
       {% elsif page.edition == 'getting-started-guide' %}<a href="/getting-started-guide/{{page.kong_version}}/overview">Get Started with Kong Gateway</a>
       {% elsif page.edition == 'contributing' %}<a href="/contributing/">Style guide and contribution guidelines</a>
       {% endif %}
