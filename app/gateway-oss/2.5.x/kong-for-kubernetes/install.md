@@ -51,7 +51,7 @@ For more information about using a Helm Chart, see chart
 Kong’s manifests for Kubernetes can be declaratively patched using Kubernetes’ [kustomize](https://kustomize.io/). An example of a remote custom build is:
 
 ```
-kustomize build github.com/Kong/kubernetes-ingress-controller/tree/main/config/base
+kustomize build github.com/Kong/kubernetes-ingress-controller/config/base
 ```
 
 kustomizations are available in Kong’s [repository](https://github.com/Kong/kubernetes-ingress-controller/tree/main/config) for different types of deployments.
