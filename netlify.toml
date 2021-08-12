@@ -1,4 +1,4 @@
 [build]
   publish = "dist"
   command = "gulp build"
-  environment = { NODE_OPTIONS = "--max_old_space_size=8192" }
+  environment = { BUNDLE_WITHOUT = "development", NODE_OPTIONS = "--max_old_space_size=8192" }

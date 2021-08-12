@@ -1,8 +1,8 @@
 ---
-title: Kong Mesh with RedHat
+title: Kong Mesh with Red Hat
 ---
 
-To install and run {{site.mesh_product_name}} on RedHat (**x86_64**):
+To install and run {{site.mesh_product_name}} on Red Hat (**x86_64**):
 
 1. [Download {{site.mesh_product_name}}](#1-download-kong-mesh)
 1. [Run {{site.mesh_product_name}}](#2-run-kong-mesh)
@@ -16,7 +16,7 @@ You have a license for {{site.mesh_product_name}}.
 
 {:.note}
 > **Note:** {{site.mesh_product_name}} ships with a FIPS 140-2 compliant
-build of Envoy. This build is only available on RedHat 8 and later. For any previous
+build of Envoy. This build is only available on Red Hat 8 and later. For any previous
 versions, use [Docker](/mesh/{{page.kong_version}}/installation/docker/). 
 
 ## 1. Download {{site.mesh_product_name}}
