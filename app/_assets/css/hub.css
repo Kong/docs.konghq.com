@@ -7992,6 +7992,10 @@ a.text-gray-dark:focus,a.text-gray-dark:hover {
     .hidden-xs-down {
         display:none!important
     }
+
+    .plugin-card {
+        width: 300px;
+    }
 }
 
 @media (max-width: 991px) {
