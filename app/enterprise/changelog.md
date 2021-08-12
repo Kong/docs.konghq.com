@@ -4,6 +4,20 @@ no_search: true
 no_version: true
 ---
 
+## 2.5.0.1
+**Release Date** 2021/08/12
+
+### Fixes
+
+#### Enterprise
+- Updates Kong Dev Portal templates' JQuery dependency to v3.6.0, improving security.
+
+#### Plugins
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  With this fix, when the OpenID Connect plugin is configured with a `config.anonymous` consumer and
+  `config.scopes_required` is set, a token missing the required scopes will have the anonymous consumer
+  headers set when sent to the upstream.
+
 ## 2.5.0.0
 **Release Date** 2021/08/03
 
@@ -479,6 +493,31 @@ no_version: true
   with command not found". [#7523](https://github.com/Kong/kong/pull/7523)
 
 
+## 2.4.1.2
+**Release Date** 2021/08/12
+
+### Fixes
+
+#### Enterprise
+- Users can now successfully delete workspaces after deleting all entities associated with that workspace.
+  Previously, Kong Gateway was not correctly cleaning up parent-child relationships. For example, creating
+  an Admin also creates a Consumer and RBAC user. When deleting the Admin, the Consumer and RBAC user are
+  also deleted, but accessing the `/workspaces/workspace_name/meta` endpoint would show counts for Consumers
+  and RBAC users, which prevented the workspace from being deleted. Now deleting entities correctly updates
+  the counts, allowing an empty workspace to be deleted.
+- Updates Kong Dev Portal templates' JQuery dependency to v3.6.0, improving security.
+- Users with the `kong_admin` role can now log in to Kong Manager when `enforce_rbac=both` is set. 
+- Renamed the property identifying control planes in hybrid mode when using Kong Vitals with anonymous
+  reports enabled. Before, users received the error, `Cannot use this function in data plane`, on their control planes.
+
+#### Plugins
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  With this fix, when the OpenID Connect plugin is configured with a `config.anonymous` consumer and
+  `config.scopes_required` is set, a token missing the required scopes will have the anonymous consumer
+  headers set when sent to the upstream.
+- Fixes a regression in the Kong Collector plugin that caused HARs to be kept in its queue indefinitely.
+
+
 ## 2.4.1.1
 **Release Date** 2021/05/27
 
@@ -886,6 +925,32 @@ keep-alive connections. [7102](https://github.com/Kong/kong/pull/7102)
 - [Exit Transformer](/hub/kong-inc/exit-transformer) (`exit-transformer`)
   - The plugin was not allowing access to any Kong modules within the sandbox except `kong.request`,
     which prevented access to other necessary modules such as `kong.log`.
+
+
+## 2.3.3.3
+**Release Date** 2021/08/12
+
+### Fixes
+
+#### Enterprise
+- Users can now successfully delete workspaces after deleting all entities associated with that workspace.
+  Previously, Kong Gateway was not correctly cleaning up parent-child relationships. For example, creating
+  an Admin also creates a Consumer and RBAC user. When deleting the Admin, the Consumer and RBAC user are
+  also deleted, but accessing the `/workspaces/workspace_name/meta` endpoint would show counts for Consumers
+  and RBAC users, which prevented the workspace from being deleted. Now deleting entities correctly updates
+  the counts, allowing an empty workspace to be deleted.
+- Updates Kong Dev Portal templates' JQuery dependency to v3.6.0, improving security.
+- Users can now include special characters ".", "-", "_", "~" in workspace names. Before when users created
+  workspaces using the UI, the workspace name was validated; however, when using the Admin API to add users,
+  the workspace name was not validated. Because the name was not validated in the Admin Api, users could create workspace names with special characters that would then break the environment.
+- Kong Gateway now escapes "-" and "." special characters in workspace names when building the compiled pattern
+  for collision detection. 
+
+#### Plugins
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  With this fix, when the OpenID Connect plugin is configured with a `config.anonymous` consumer and
+  `config.scopes_required` is set, a token missing the required scopes will have the anonymous consumer
+  headers set when sent to the upstream.
 
 ## 2.3.3.2
 **Release Date** 2021/04/21
@@ -1296,6 +1361,26 @@ fixed causing a 500 auth error when falling back to an anonymous user.
 ### Deprecated
 #### Distributions
 - Support for CentOS-6 is removed and entered end-of-life on Nov 30, 2020.
+
+## 2.2.1.4
+**Release Date** 2021/08/12
+
+### Fixes
+
+#### Enterprise
+- Users can now successfully delete workspaces after deleting all entities associated with that workspace.
+  Previously, Kong Gateway was not correctly cleaning up parent-child relationships. For example, creating
+  an Admin also creates a Consumer and RBAC user. When deleting the Admin, the Consumer and RBAC user are
+  also deleted, but accessing the `/workspaces/workspace_name/meta` endpoint would show counts for Consumers
+  and RBAC users, which prevented the workspace from being deleted. Now deleting entities correctly updates
+  the counts, allowing an empty workspace to be deleted.
+- Updates Kong Dev Portal templates' JQuery dependency to v3.6.0, improving security.
+
+#### Plugins
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  With this fix, when the OpenID Connect plugin is configured with a `config.anonymous` consumer and
+  `config.scopes_required` is set, a token missing the required scopes will have the anonymous consumer
+  headers set when sent to the upstream.
 
 ## 2.2.1.3
 **Release Date** 2021/04/22
@@ -1712,6 +1797,26 @@ open-source **Kong Gateway 2.2.0.0**:
 - The `shorthands` attribute in schema definitions is deprecated in favor of
   the new `shorthand_fields` top-level attribute.
 
+## 2.1.4.7
+**Release Date** 2021/08/12
+
+### Fixes
+
+#### Enterprise
+- Users can now successfully delete workspaces after deleting all entities associated with that workspace.
+  Previously, Kong Gateway was not correctly cleaning up parent-child relationships. For example, creating
+  an Admin also creates a Consumer and RBAC user. When deleting the Admin, the Consumer and RBAC user are
+  also deleted, but accessing the `/workspaces/workspace_name/meta` endpoint would show counts for Consumers
+  and RBAC users, which prevented the workspace from being deleted. Now deleting entities correctly updates
+  the counts, allowing an empty workspace to be deleted.
+- Updates Kong Dev Portal templates' JQuery dependency to v3.6.0, improving security.
+
+#### Plugins
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  With this fix, when the OpenID Connect plugin is configured with a `config.anonymous` consumer and
+  `config.scopes_required` is set, a token missing the required scopes will have the anonymous consumer
+  headers set when sent to the upstream.
+
 ## 2.1.4.6
 **Release Date** 2021/04/21
 
@@ -1722,12 +1827,12 @@ This release includes internal updates that do not affect product functionality.
 #### Enterprise
 - Fixed an issue encountered when users were deleting a Kong Dev Portal collection and
   the collection was not defined in `portal.conf.yaml` or `portal.conf.yaml`
-  did not exist. Instead of deleting the content, users recieved an error.
+  did not exist. Instead of deleting the content, users received an error.
   This issue also occurred when users were using the Kong Dev Portal CLI to wipe or deploy
   templates. With this fix, deleting content from the Kong Dev Portal works as
   expected.
-- In Kong Manager, users could recieve an emtpy set of roles from an API request,
-  even when valid RBAC roles existed in the databse because of a filtering issue
+- In Kong Manager, users could receive an empty set of roles from an API request,
+  even when valid RBAC roles existed in the database because of a filtering issue
   with portal and default roles on a paginated set. With this fix, if valid RBAC
   roles exist in the database, an API request returns with those valid roles.
 
