@@ -11,6 +11,8 @@ no_version: true
 
 #### Enterprise
 - Updates Kong Dev Portal templates' JQuery dependency to v3.6.0, improving security.
+- Now, bootstrap migrations for multi-node Apache Cassandra 4.0.0 clusters work as expected.
+  With this fix, inserts are performed after schema agreement.
 
 #### Plugins
 - [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
@@ -44,7 +46,7 @@ no_version: true
   See [Starting Data Plane Nodes](/gateway-oss/2.5.x/hybrid-mode/#starting-data-plane-nodes)
   in the Hybrid Mode guide for more information. [#7044](https://github.com/kong/kong/pull/7044)
 - New `declarative_config_string` option allows loading declarative configurations directly from a string. See the
-  [Loading The Declarative Configuration File](/gateway-oss/2.5.x/db-less-and-declarative-config/#loading-the-declarative-configuration-file)
+  [Loading The Declarative Configuration File](/enterprise/2.5.x/db-less-and-declarative-config/#loading-the-declarative-configuration-file)
   section of the DB-less and Declarative Configuration guide for more information.
   [#7379](https://github.com/kong/kong/pull/7379)
 
@@ -95,10 +97,10 @@ no_version: true
 
 #### Hybrid Mode
 - Kong Gateway now exposes an upstream health checks endpoint (using the status API) on the data plane for better
-  observability. See [Readonly Status API endpoints on Data Plane](/gateway-oss/2.5.x/hybrid-mode/#readonly-status-api-endpoints-on-data-plane)
+  observability. See [Readonly Status API endpoints on Data Plane](/enterprise/2.5.x/deployment/hybrid-mode/#readonly-status-api-endpoints-on-data-plane)
   in the Hybrid Mode guide for more information. [#7429](https://github.com/Kong/kong/pull/7429)
 - Control planes are now more lenient when checking data planes' compatibility in hybrid mode. See the
-  [Version compatibility](/gateway-oss/2.5.x/hybrid-mode/#version_compatibility)
+  [Version compatibility](/enterprise/2.5.x/deployment/hybrid-mode/#version-compatibility)
   section of the Hybrid Mode guide for more information. [#7488](https://github.com/Kong/kong/pull/7488)
 
 ### Dependencies
@@ -208,8 +210,8 @@ no_version: true
 - The stream access log configuration options are now properly separated from the HTTP access log. Before when users
   used Kong Gateway with TCP, they couldn’t use a custom log format. With this fix, `proxy_stream_access_log` and `proxy_stream_error_log`
   have been added to differentiate the Stream access log from the HTTP subsystem. See
-  [`proxy_stream_access_log`](/enterprise/2.4.x/property-reference/#proxy_stream_access_log)
-  and [`proxy_stream_error_log`](/enterprise/2.4.x/property-reference/#proxy_stream_error_log) in the Configuration
+  [`proxy_stream_access_log`](/enterprise/2.5.x/property-reference/#proxy_stream_access_log)
+  and [`proxy_stream_error_log`](/enterprise/2.5.x/property-reference/#proxy_stream_error_log) in the Configuration
   Property Reference for more information. [#7046](https://github.com/kong/kong/pull/7046)
 
 #### Migrations
@@ -260,7 +262,7 @@ no_version: true
   - The plugin no longer shares context between several Zipkin plugins. Before the plugin was using `ngx.ctx` exclusively,
     even in a global context, which meant more than one instance of the Zipkin plugin would override each other. Now the plugin
     uses `kong.ctx.plugin` to hold the `zipkin` table, instead of `ngx.ctx`.
-- [External plugins](/enterprise/2.4.x/external-plugins)
+- [External plugins](/enterprise/2.5.x/external-plugins)
   This release includes better error messages when external plugins fail to start. With this fix, Kong Gateway detects the return code
   127 (command not found), allowing it to display an appropriate error message, "external plugin server start command exited
   with command not found". [#7523](https://github.com/Kong/kong/pull/7523)
@@ -517,6 +519,10 @@ no_version: true
   headers set when sent to the upstream.
 - Fixes a regression in the Kong Collector plugin that caused HARs to be kept in its queue indefinitely.
 
+#### Hybrid Mode
+- Control planes are now more lenient when checking data planes' compatibility in hybrid mode. See the
+  [Version compatibility](/gateway-oss/2.5.x/hybrid-mode/#version_compatibility)
+  section of the Hybrid Mode guide for more information. [#7488](https://github.com/Kong/kong/pull/7488)
 
 ## 2.4.1.1
 **Release Date** 2021/05/27
@@ -951,6 +957,11 @@ keep-alive connections. [7102](https://github.com/Kong/kong/pull/7102)
   With this fix, when the OpenID Connect plugin is configured with a `config.anonymous` consumer and
   `config.scopes_required` is set, a token missing the required scopes will have the anonymous consumer
   headers set when sent to the upstream.
+
+#### Hybrid Mode
+- Control planes are now more lenient when checking data planes' compatibility in hybrid mode. See the
+  [Version compatibility](/enterprise/2.5.x/deployment/hybrid-mode/#version-compatibility)
+  section of the Hybrid Mode guide for more information. [#7488](https://github.com/Kong/kong/pull/7488)
 
 ## 2.3.3.2
 **Release Date** 2021/04/21
