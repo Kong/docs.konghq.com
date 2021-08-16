@@ -113,7 +113,7 @@
   <ul class="accordion-container">
     <input id="accordion-opened" type="text" />
     {% for nav in include.nav_items %}
-    {% include docs-sidebar-item.html id=forloop.index url=include.url docs_url=docs_url items=nav.items url=nav.url absolute_url=nav.absolute_url target=item.target icon=nav.icon title=nav.title %}
+    {% include docs-sidebar-item.html id=forloop.index docs_url=docs_url items=nav.items url=nav.url absolute_url=nav.absolute_url target=item.target icon=nav.icon title=nav.title %}
     {% endfor %}
   </ul>
 </aside>
