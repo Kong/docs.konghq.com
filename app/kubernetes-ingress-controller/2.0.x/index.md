@@ -65,6 +65,7 @@ Please refer to the following documents detailing this process:
 - [CLI arguments](/kubernetes-ingress-controller/{{page.kong_version}}/references/cli-arguments)
 - [Version compatibility matrix](/kubernetes-ingress-controller/{{page.kong_version}}/references/version-compatibility)
 - [Plugin compatibility matrix](/kubernetes-ingress-controller/{{page.kong_version}}/references/plugin-compatibility)
+- [Prometheus metrics](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus)
 
 ## FAQs
 
@@ -79,7 +80,7 @@ along alongside Kong.
 
 - [FAQs][faqs] might help as well.
 - [Troubleshooting guide][troubleshooting] can help
-  resolve some issues.  
+  resolve some issues.
   Please contribute back if you feel your experience can help
   the larger community.
 
