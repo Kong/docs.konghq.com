@@ -8,7 +8,12 @@ how the services in your Kubernetes cluster are responding to the
 inbound traffic.
 
 This how-to guide walks through the steps of how to configure Kong and
-Prometheus to collect metrics from the {{site.kic_product_name}}.
+Prometheus to collect metrics from Kong Gateway.
+
+<div class="alert alert-red no-icon">
+The guide below walks you through setting up monitoring for Kong Gateway.<br />
+As of {{site.kic_product_name}} 2.0, there are additional performance metrics associated with the configuration process (as opposed to the runtime performance of the Gateway), described in detail in the [Prometheus metrics reference](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus).
+</div>
 
 > Note: This guide was originally posted on Kong Inc's blog:
 [https://konghq.com/blog/observability-kubernetes-kong/](https://konghq.com/blog/observability-kubernetes-kong/)
