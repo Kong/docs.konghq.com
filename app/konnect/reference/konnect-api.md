@@ -15,7 +15,8 @@ For a list of all endpoints, see:
 
 You can run {{site.konnect_short_name}} API requests using
 [Insomnia](https://insomnia.rest), Kong's open-source API client. If you have
-Insomnia installed, click the button below to import the Konnect API spec.
+Insomnia v2021.4.0 or later installed, click the button below to import the Konnect 
+API spec.
 
 <!-- Button to export spec into Insomnia -->
 [![Run in Insomnia](https://insomnia.rest/images/run.svg){:.no-image-expand}](https://insomnia.rest/run/?label=Konnect%20API&uri=https%3A%2F%2Fkonnect.konghq.com%2Fdocs-json)
