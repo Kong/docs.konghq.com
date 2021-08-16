@@ -4,6 +4,20 @@ no_search: true
 no_version: true
 ---
 
+## 1.4.0
+
+> Released on INSERT_DATE
+
+### Changes
+
+Built on top of [Kuma 1.3.0](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#123)
+
+- TODO
+
+### Upgrading
+
+Upgrades from `1.3.0` are seamless and no additional steps are needed.
+
 ## 1.3.3
 
 > Released on 2021/07/29
