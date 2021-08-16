@@ -268,7 +268,6 @@ pre-function                | `+inf`
 correlation-id              | 100001
 zipkin                      | 100000
 exit-transformer            | 9999
-ip-restriction              | 3000
 bot-detection               | 2500
 cors                        | 2000
 session                     | 1900
