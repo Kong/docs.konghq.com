@@ -61,30 +61,43 @@ For the full Kubernetes Hybrid mode documentation, see
 in the `kong/charts` repository.
 
 ## Version Compatibility
-{{site.ee_gateway_name}} control planes only connect to data planes with the
-same major version and at most two minor versions earlier (edge included).
-Control planes won't connect to data planes with newer versions.
+{{site.ee_gateway_name}} control planes only allow connections from data planes with the
+same major version.
+Control planes won't allow connections from data planes with newer minor versions.
 
-For example, a {{site.ee_product_name}} v2.4.2 control plane:
+For example, a {{site.ee_product_name}} v2.5.2 control plane:
 
-- Accepts a {{site.ee_product_name}} 2.4.0, 2.4.1 and 2.4.2 data plane
-- Accepts a {{site.ee_product_name}} 2.3.8, 2.2.1 and 2.2.0 data plane
-- Rejects a {{site.ee_product_name}} 2.4.3 data plane
-- Rejects a {{site.ee_product_name}} 2.1.9 data plane
-- Rejects a {{site.ee_product_name}} 1.0.0 data plane
+- Accepts a {{site.ee_product_name}} 2.5.0, 2.5.1 and 2.5.2 data plane.
+- Accepts a {{site.ee_product_name}} 2.3.8, 2.2.1 and 2.2.0 data plane.
+- Accepts a {{site.ee_product_name}} 2.5.3 data plane (newer patch version on the data plane is accepted).
+- Rejects a {{site.ee_product_name}} 1.0.0 data plane (major version differs).
+- Rejects a {{site.ee_product_name}} 2.6.0 data plane (minor version on data plane is newer).
 
-Plugins installed on both control planes and data planes must have the same
-major and minor versions.
+Furthermore, for every plugin that is configured on the {{site.ee_product_name}}
+control plane, new configs are only pushed to data planes that have those configured
+plugins installed and loaded. The major version of those configured plugins must
+be the same on both the control planes and data planes. Also, the minor versions
+of the plugins on the data planes can not be newer than versions installed on the
+control planes. Similar to {{site.ee_product_name}} version checks,
+plugin patch versions are also ignored when determining compatibility.
+
+{:.important}
+> Configured plugins means any plugin that is either enabled globally or
+configured by services, routes, or consumers.
 
 For example, if a {{site.ee_product_name}} control plane has `plugin1` v1.1.1
-and `plugin2` v2.1.0 installed:
+and `plugin2` v2.1.0 installed, and `plugin1` is configured by a `Route` object:
 
 - It accepts {{site.ee_product_name}} data planes with `plugin1` v1.1.2,
-`plugin2` v2.1.0 installed
+`plugin2` not installed.
 - It accepts {{site.ee_product_name}} data planes with `plugin1` v1.1.2,
-`plugin2` v2.1.0 and  `plugin3` v9.8.1 installed
+`plugin2` v2.1.0, and  `plugin3` v9.8.1 installed.
+- It accepts {{site.ee_product_name}} data planes with `plugin1` v1.1.1
+and `plugin3` v9.8.1 installed.
 - It rejects {{site.ee_product_name}} data planes with `plugin1` v1.2.0,
-`plugin2` v2.1.0 installed
+`plugin2` v2.1.0 installed (minor version of plugin on data plane is newer).
+- It rejects {{site.ee_product_name}} data planes with `plugin1` not installed
+(plugin configured on control plane but not installed on data plane).
 
 Version compatibility checks between the control plane and data plane
 occur at configuration read time. As each data plane proxy receives

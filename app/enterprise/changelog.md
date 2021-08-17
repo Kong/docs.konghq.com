@@ -11,7 +11,7 @@ no_version: true
 
 #### Enterprise
 - Updates Kong Dev Portal templates' JQuery dependency to v3.6.0, improving security.
-- Now, bootstrap migrations for multi-node Apache Cassandra 4.0.0 clusters work as expected.
+- Now, bootstrap migrations for multi-node Apache Cassandra clusters work as expected.
   With this fix, inserts are performed after schema agreement.
 
 #### Plugins
@@ -521,7 +521,7 @@ no_version: true
 
 #### Hybrid Mode
 - Control planes are now more lenient when checking data planes' compatibility in hybrid mode. See the
-  [Version compatibility](/gateway-oss/2.5.x/hybrid-mode/#version_compatibility)
+  [Version compatibility](/gateway-oss/2.4.x/hybrid-mode/#version_compatibility)
   section of the Hybrid Mode guide for more information. [#7488](https://github.com/Kong/kong/pull/7488)
 
 ## 2.4.1.1
@@ -960,7 +960,7 @@ keep-alive connections. [7102](https://github.com/Kong/kong/pull/7102)
 
 #### Hybrid Mode
 - Control planes are now more lenient when checking data planes' compatibility in hybrid mode. See the
-  [Version compatibility](/enterprise/2.5.x/deployment/hybrid-mode/#version-compatibility)
+  [Version compatibility](/enterprise/2.3.x/deployment/hybrid-mode/#version-compatibility)
   section of the Hybrid Mode guide for more information. [#7488](https://github.com/Kong/kong/pull/7488)
 
 ## 2.3.3.2
