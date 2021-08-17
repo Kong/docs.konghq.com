@@ -99,7 +99,7 @@ as part of the Validation Webhook configuration
 as the API-server already trusts the internal CA.
 
 ```bash
-$ echo "apiVersion: admissionregistration.k8s.io/v1beta1
+$ echo "apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
   name: kong-validations
@@ -107,7 +107,7 @@ webhooks:
 - name: validations.kong.konghq.com
   failurePolicy: Fail
   sideEffects: None
-  admissionReviewVersions: ["v1beta1"]
+  admissionReviewVersions: ["v1", "v1beta1"]
   rules:
   - apiGroups:
     - configuration.konghq.com
