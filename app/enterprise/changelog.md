@@ -521,7 +521,7 @@ no_version: true
 
 #### Hybrid Mode
 - Control planes are now more lenient when checking data planes' compatibility in hybrid mode. See the
-  [Version compatibility](/gateway-oss/2.4.x/hybrid-mode/#version_compatibility)
+  [Version compatibility](/gateway-oss/2.4.x/deployment/hybrid-mode/#version_compatibility)
   section of the Hybrid Mode guide for more information. [#7488](https://github.com/Kong/kong/pull/7488)
 
 ## 2.4.1.1
