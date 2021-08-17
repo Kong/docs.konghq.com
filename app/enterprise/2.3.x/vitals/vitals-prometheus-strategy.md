@@ -53,7 +53,7 @@ using default config that listens on port `9090`.
 
 ### Download and configure StatsD exporter
 
-{% include /md/enterprise/download/statsd.md version="2.3" %}
+{% include /md/enterprise/download/statsd.md kong_version=page.kong_version version="2.3" %}
 
 ### Configure Prometheus to scrape StatsD exporter
 

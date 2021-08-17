@@ -3,7 +3,7 @@ layout: default
 ---
 
 <div class="page {{ page.id }}">
-  {% include header.html %}
+  {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.header_title img=page.header_icon header_caption=page.header_caption %}</a>
 
   <div class="container">
     <div class="content" id="main" tabindex="-1">

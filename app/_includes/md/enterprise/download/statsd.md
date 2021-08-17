@@ -14,7 +14,7 @@ socket support.
 StatsD exporter needed to configured with a set of mapping rules to translate
 the StatsD UDP events to Prometheus metrics. A default set of mapping rules can
 be downloaded at
-[statsd.rules.yaml](/enterprise/{{page.kong_version}}/plugins/statsd.rules.yaml).
+[statsd.rules.yaml](/enterprise/{{include.kong_version}}/plugins/statsd.rules.yaml).
 Then start StatsD exporter with
 
 ```bash
