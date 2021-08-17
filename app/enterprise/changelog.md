@@ -13,7 +13,8 @@ no_version: true
 - Updates Kong Dev Portal templates' JQuery dependency to v3.6.0, improving security.
 - Now, bootstrap migrations for multi-node Apache Cassandra clusters work as expected.
   With this fix, inserts are performed after schema agreement.
-- Updated Nettle version from `3.7.2` to `3.7.3` which fixes bugs that could make RSA decription crash on invalid inputs.
+- Updates Nettle dependency version from `3.7.2` to `3.7.3`, fixing bugs that could cause
+  RSA decryption functions to crash with invalid inputs.
 
 #### Plugins
 - [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
@@ -510,9 +511,10 @@ no_version: true
   the counts, allowing an empty workspace to be deleted.
 - Updates Kong Dev Portal templates' JQuery dependency to v3.6.0, improving security.
 - Users with the `kong_admin` role can now log in to Kong Manager when `enforce_rbac=both` is set. 
-- Renamed the property identifying control planes in hybrid mode when using Kong Vitals with anonymous
+- Renames the property identifying control planes in hybrid mode when using Kong Vitals with anonymous
   reports enabled. Before, users received the error, `Cannot use this function in data plane`, on their control planes.
-- Updated Nettle version from `3.7.2` to `3.7.3` which fixes bugs that could make RSA decription crash on invalid inputs.
+- Updates Nettle dependency version from `3.7.2` to `3.7.3`, fixing bugs that could cause
+  RSA decryption functions to crash with invalid inputs.
 
 #### Plugins
 - [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
