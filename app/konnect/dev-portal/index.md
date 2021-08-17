@@ -9,5 +9,5 @@ document and manage Application registration for your Services. Admin roles publ
 
 The Dev Portal lives at a separate URL from Konnect and requires that all users, including Admin roles, [register as a Developer](konnect/dev-portal/developers/dev-reg/). 
 
-Also see:
+See also:
 * [Application Overview](/konnect/dev-portal/application-overview)
