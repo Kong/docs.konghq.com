@@ -51,13 +51,12 @@ Create an Ingress rule to proxy the echo-server created previously:
 
 ```bash
 $ echo "
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: demo
-  annotations:
-    kubernetes.io/ingress.class: kong
 spec:
+  ingressClassName: kong
   rules:
   - http:
       paths:
@@ -120,14 +119,14 @@ Create a new Ingress resource which uses this plugin:
 
 ```bash
 $ echo "
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: demo-example-com
   annotations:
     konghq.com/plugins: request-id
-    kubernetes.io/ingress.class: kong
 spec:
+  ingressClassName: kong
   rules:
   - host: example.com
     http:

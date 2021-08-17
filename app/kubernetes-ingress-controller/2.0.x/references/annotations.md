@@ -28,13 +28,6 @@ Following annotations are supported on Ingress resources:
 `kubernetes.io/ingress.class` is normally required, and its value should match
 the value of the `--ingress-class` controller argument ("kong" by default).
 
-Setting the `--process-classless-ingress-v1beta1` controller flag removes that requirement:
-when enabled, the controller will process Ingresses with no
-`kubernetes.io/ingress.class` annotation. Recommended best practice is to set
-the annotation and leave this flag disabled; the flag is intended for
-older configurations, as controller versions prior to 0.10 processed classless
-Ingress resources by default.
-
 ## Service resource
 
 Following annotations are supported on Service resources:
@@ -72,13 +65,22 @@ KongConsumer resources by default.
 
 ### kubernetes.io/ingress.class
 
+<div class="alert alert-ee blue">
+<a href="https://kubernetes.io/docs/concepts/services-networking/ingress/#deprecated-annotation">Kubernetes versions after 1.18</a>
+introduced the new <code>ingressClassName</code> field to the Ingress spec
+and deprecated the <code>kubernetes.io/ingress.class</code> annotation.
+Ingress resources should now use the <code>ingressClassName</code> field.
+Kong resources (KongConsumer, TCPIngress, etc.) still use the
+<code>kubernetes.io/ingress.class</code> annotation.
+</div>
+
 If you have multiple Ingress controllers in a single cluster,
 you can pick one by specifying the `ingress.class` annotation.
 Following is an example of
 creating an Ingress with an annotation:
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: test-1
@@ -110,6 +112,25 @@ metadata:
 will target the {{site.kic_product_name}}, forcing the GCE controller
 to ignore it.
 
+With the `ingressClassName` field instead of the annotation:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: test-1
+spec:
+  ingressClassName: kong
+  rules:
+  - host: example.com
+    http:
+      paths:
+      - path: /test1
+        backend:
+          serviceName: echo
+          servicePort: 80
+```
+
 The following resources _require_ this annotation by default:
 
 - Ingress
@@ -118,18 +139,6 @@ The following resources _require_ this annotation by default:
 - UDPIngress
 - KongClusterPlugin
 - Secret resources with the `ca-cert` label
-
-You can optionally allow Ingress or KongConsumer resources with no class
-annotation (by setting the `--process-classless-ingress-v1beta1` or
-`--process-classless-kong-consumer` flags, respectively), though recommended
-best practice is to leave these flags disabled: the flags are primarily
-intended for compatibility with configuration created before this requirement
-was introduced in controller 0.10.
-
-If you allow classless resources, you must take care when using multiple
-controller instances in a single cluster: only one controller instance should
-enable these flags to avoid different controller instances fighting over
-classless resources, which will result in unexpected and unknown behavior.
 
 The ingress class used by the {{site.kic_product_name}} to filter Ingress
 resources can be changed using the `CONTROLLER_INGRESS_CLASS`

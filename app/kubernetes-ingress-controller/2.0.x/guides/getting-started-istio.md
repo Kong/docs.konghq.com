@@ -136,15 +136,15 @@ EOF
 
 ```console
 $ kubectl apply -f - <<EOF
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: productpage
   namespace: my-istio-app
   annotations:
     konghq.com/plugins: rate-limit
-    kubernetes.io/ingress.class: kong 
 spec:
+  ingressClassName: kong
   rules:
   - http:
       paths:
