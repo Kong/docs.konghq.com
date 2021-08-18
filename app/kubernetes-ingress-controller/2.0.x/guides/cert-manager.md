@@ -241,7 +241,7 @@ Metadata:
   Creation Timestamp:  2019-06-21T20:41:54Z
   Generation:          1
   Owner References:
-    API Version:           extensions/v1beta1
+    API Version:           networking.k8s.io/v1
     Block Owner Deletion:  true
     Controller:            true
     Kind:                  Ingress
