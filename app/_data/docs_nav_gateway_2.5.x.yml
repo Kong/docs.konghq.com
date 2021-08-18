@@ -30,12 +30,23 @@
 
 - title: Plan and Deploy
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
+  items:
+    - text: Running Kong as a Non-Root User
+      url: /plan-and-deploy/kong-user
+    - text: Resource Sizing Guidelines
+      url: /plan-and-deploy/sizing-guidelines
+    - text: Control Kong Gateway through systemd
+      url: /plan-and-deploy/systemd
 
 - title: Configure
   icon: /assets/images/icons/konnect/konnect-settings.svg
   items:
     - text: Authentication Reference
       url: /configure/auth
+    - text: Logging Reference
+      url: /configure/logging
+    - text: Network and Firewall
+      url: /configure/network
 
 - title: Administer
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
@@ -181,6 +192,13 @@
 - title: Reference
   icon: /assets/images/icons/documentation/icn-references-color.svg
   items:
+    - text: Rate Limiting Library
+      url: /rate-limiting
+    - text: Admin API
+      url: /admin-api
+      items: 
+        - text: Securing the Admin API
+          url: /admin-api/secure-admin-api
     - text: Plugin Development Kit
       url: /pdk
       items:
