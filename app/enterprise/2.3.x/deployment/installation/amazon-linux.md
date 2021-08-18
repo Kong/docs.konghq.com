@@ -18,7 +18,7 @@ This software is governed by the
 
 ### Deployment options
 
-{% include /md/{{page.kong_version}}/deployment-options.md %}
+{% include /md/{{page.kong_version}}/deployment-options.md kong_version=page.kong_version %}
 
 ## Prerequisites
 
@@ -153,7 +153,7 @@ Linux 1 system. For example:
 
 ## Step 5. Seed the Super Admin password and bootstrap Kong Gateway
 
-{% include /md/{{page.kong_version}}/ee-kong-user.md %}
+{% include /md/{{page.kong_version}}/ee-kong-user.md kong_version=page.kong_version %}
 
 Setting a password for the **Super Admin** before initial start-up is strongly recommended. This will permit the use of RBAC (Role Based Access Control) at a later time, if needed.
 

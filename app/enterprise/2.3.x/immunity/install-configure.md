@@ -8,7 +8,7 @@ redirect_from:
 ## Introduction
 Kong Immunity (Immunity) is installed on Kong Enterprise, either on Kubernetes or Docker, as defined below. Immunity uses the Collector App and Collector Plugin to communicate with Kong Enterprise.
 
-{% include /md/enterprise/download/immunity.md version='>2.1' %}
+{% include /md/enterprise/download/immunity.md kong_version=page.kong_version version='>2.1' %}
 
 ### Step 2. Confirm the Kong EE Docker Network is available
 Confirm the Kong Enterprise network is available, which is the network you set up when installing Kong Enterprise on Docker named `kong-ee-net`.

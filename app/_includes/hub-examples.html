@@ -1,6 +1,6 @@
 <!-- Generate Konnect and Kong Manager examples -->
 {% capture config_required_fields_gui %}{%
-  for field in page.params.config %}{% assign capfields = field.name | split: '_' %}{% capture titlecase %}{% for capfield in capfields %}{{ capfield | capitalize }} {% endfor %}{% endcapture %}{%
+  for field in include.params.config %}{% assign capfields = field.name | split: '_' %}{% capture titlecase %}{% for capfield in capfields %}{{ capfield | capitalize }} {% endfor %}{% endcapture %}{%
     if field.required == true and field.value_in_examples == nil %}{%
       if field.default == "`false`" or field.default == "`true`" %}
     * Config.{{ titlecase | rstrip }}: {{ field.default | replace: "`false`", "clear checkbox" | replace: "`true`", "select checkbox" }}{%
@@ -33,7 +33,7 @@ endcapture %}
 
 <!-- Generate cURL examples -->
 {% capture config_required_fields %}{%
-  for field in page.params.config %}{%
+  for field in include.params.config %}{%
   if field.value_in_examples != nil %}{%
   if field.value_in_examples.first %}{%
   for value in field.value_in_examples %} \
@@ -50,7 +50,7 @@ endcapture %}
 <!-- Generate declarative yaml examples -->
 {% capture config_required_fields_yaml
   %}config: {%
-  for field in page.params.config %}{%
+  for field in include.params.config %}{%
   if field.value_in_examples != nil %}{%
     if field.value_in_examples.first %}{%
         if field.name contains "." %}{%
@@ -81,7 +81,7 @@ endcapture %}
 <!-- Generate kubernetes examples (different indentation from declarative) -->
 {% capture config_required_fields_k8s
 %}config: {%
-for field in page.params.config %}{%
+for field in include.params.config %}{%
 if field.value_in_examples != nil %}{%
   if field.value_in_examples.first %}{%
       if field.name contains "." %}{%
@@ -111,7 +111,7 @@ endif %}{% endfor
 
 <!-- Service config example -->
 
-{% if page.params.service_id %}
+{% if include.params.service_id %}
 
 {% capture plugin_config_for_service %}
 ### Enable the plugin on a service
@@ -124,14 +124,14 @@ making the following request:
 
 ```bash
 curl -X POST http://{HOST}:8001/services/{SERVICE}/plugins \
-    --data "name={{page.params.name}}" {{ config_required_fields }}
+    --data "name={{include.params.name}}" {{ config_required_fields }}
 ```
 
 `SERVICE` is the `id` or `name` of the service that this plugin
 configuration will target.
 
 {% endnavtab %}
-{% unless page.params.k8s_examples == false %}
+{% unless include.params.k8s_examples == false %}
 {% navtab Kubernetes %}
 
 First, create a [KongPlugin](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/references/custom-resources.md#kongplugin)
@@ -141,10 +141,10 @@ resource:
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
-  name: <{{page.params.name}}-example>
+  name: <{{include.params.name}}-example>
 {% if config_required_fields_k8s == 'config: ' %}config:
   <optional_parameter>: <value>{% else %}{{ config_required_fields_k8s }}{% endif %}
-plugin: {{page.params.name}}
+plugin: {{include.params.name}}
 ```
 
 Next, apply the KongPlugin resource to a
@@ -159,7 +159,7 @@ metadata:
   labels:
     app: {SERVICE}
   annotations:
-    konghq.com/plugins: <{{page.params.name}}-example>
+    konghq.com/plugins: <{{include.params.name}}-example>
 spec:
   ports:
   - port: 80
@@ -182,7 +182,7 @@ spec:
 
 {% endnavtab %}
 {% endunless %}
-{% unless page.params.yaml_examples == false %}
+{% unless include.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
 For example, configure this plugin on a [service](/gateway-oss/latest/admin-api/#service-object) by
@@ -190,7 +190,7 @@ adding this section to your declarative configuration file:
 
 ``` yaml
 plugins:
-- name: {{page.params.name}}
+- name: {{include.params.name}}
   service: {SERVICE}
   {% if config_required_fields_yaml == 'config: ' %}config:
     <optional_parameter>: <value>{% else %}{{ config_required_fields_yaml }}{% endif %}
@@ -201,14 +201,14 @@ plugins:
 
 {% endnavtab %}
 {% endunless %}
-{% unless page.params.konnect_examples == false or page.publisher != "Kong Inc." %}
+{% unless include.params.konnect_examples == false or include.publisher != "Kong Inc." %}
 {% navtab Konnect Cloud %}
 Configure this plugin on a service:
 
 1. In Konnect Cloud, select the service on the ServiceHub page.
 2. Scroll down to **Versions** and select the version.
 3. Scroll down to **Plugins** and click **New Plugin**.
-4. Find and select the **{{ page.name }}** plugin.{% unless
+4. Find and select the **{{ include.name }}** plugin.{% unless
   config_required_fields_gui == empty %}
 5. Enter the following [parameters](#parameters), updating the default
 or sample values as needed:
@@ -217,7 +217,7 @@ or sample values as needed:
 
 {% endnavtab %}
 {% endunless %}
-{% unless page.params.manager_examples == false or page.publisher != "Kong Inc." %}
+{% unless include.params.manager_examples == false or include.publisher != "Kong Inc." %}
 {% navtab Manager %}
 Configure this plugin on a service:
 
@@ -225,7 +225,7 @@ Configure this plugin on a service:
 2. From the Dashboard, scroll down to **Services** and click **View** for the
 service row.
 3. Scroll down to plugins and click **Add Plugin**.
-4. Find and select the **{{ page.name }}** plugin.
+4. Find and select the **{{ include.name }}** plugin.
 
     <div class="alert alert-ee blue">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
@@ -248,7 +248,7 @@ is not already prefilled.{% unless
 
 <!-- Route config example -->
 
-{% if page.params.route_id %}
+{% if include.params.route_id %}
 {% capture plugin_config_for_route %}
 ### Enable the plugin on a route
 
@@ -259,14 +259,14 @@ For example, configure this plugin on a [route](/gateway-oss/latest/admin-api/#r
 
 ```bash
 $ curl -X POST http://{HOST}:8001/routes/{ROUTE}/plugins \
-    --data "name={{page.params.name}}" {{ config_required_fields }}
+    --data "name={{include.params.name}}" {{ config_required_fields }}
 ```
 
 `ROUTE` is the `id` or `name` of the route that this plugin configuration
   will target.
 
 {% endnavtab %}
-{% unless page.params.k8s_examples == false %}
+{% unless include.params.k8s_examples == false %}
 {% navtab Kubernetes %}
 
 First, create a [KongPlugin](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/references/custom-resources.md#kongplugin)
@@ -276,10 +276,10 @@ resource:
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
-  name: <{{page.params.name}}-example>
+  name: <{{include.params.name}}-example>
 {% if config_required_fields_k8s == 'config: ' %}config:
   <optional_parameter>: <value>{% else %}{{ config_required_fields_k8s }}{% endif %}
-plugin: {{page.params.name}}
+plugin: {{include.params.name}}
 ```
 
 Then, apply it to an ingress ([Route or Routes](/gateway-oss/latest/admin-api/#route-object))
@@ -292,7 +292,7 @@ metadata:
   name: {ROUTE}
   annotations:
     kubernetes.io/ingress.class: kong
-    konghq.com/plugins: <{{page.params.name}}-example>
+    konghq.com/plugins: <{{include.params.name}}-example>
 spec:
   rules:
   - host: examplehostname.com
@@ -316,7 +316,7 @@ spec:
 
 {% endnavtab %}
 {% endunless %}
-{% unless page.params.yaml_examples == false %}
+{% unless include.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
 For example, configure this plugin on a [route](/gateway-oss/latest/admin-api/#route-object) by
@@ -324,7 +324,7 @@ adding this section to your declarative configuration file:
 
 ```yaml
 plugins:
-- name: {{page.params.name}}
+- name: {{include.params.name}}
   route: <route>
   {% if config_required_fields_yaml == 'config: ' %}config:
     <optional_parameter>: <value>{% else %}{{ config_required_fields_yaml }}{% endif %}
@@ -334,7 +334,7 @@ plugins:
   will target.
 {% endnavtab %}
 {% endunless %}
-{% unless page.params.konnect_examples == false or page.publisher != "Kong Inc." %}
+{% unless include.params.konnect_examples == false or include.publisher != "Kong Inc." %}
 {% navtab Konnect Cloud %}
 Configure this plugin on a route:
 
@@ -342,7 +342,7 @@ Configure this plugin on a route:
 2. Scroll down to **Versions** and select the version.
 3. Select the route.
 4. Scroll down to **Plugins** and click **Add Plugin**.
-5. Find and select the **{{ page.name }}** plugin.{% unless
+5. Find and select the **{{ include.name }}** plugin.{% unless
     config_required_fields_gui == empty %}
 6. Enter the following [parameters](#parameters), updating the default
 or sample values as needed:
@@ -350,7 +350,7 @@ or sample values as needed:
 7. Click **Create**.
 {% endnavtab %}
 {% endunless %}
-{% unless page.params.manager_examples == false or page.publisher != "Kong Inc." %}
+{% unless include.params.manager_examples == false or include.publisher != "Kong Inc." %}
 {% navtab Manager %}
 Configure this plugin on a route:
 
@@ -358,7 +358,7 @@ Configure this plugin on a route:
 2. From the Dashboard, select **Routes** in the left navigation.
 3. Click **View** for the route row.
 4. Scroll down to plugins and click **Add Plugin**.
-5. Find and select the **{{ page.name }}** plugin.
+5. Find and select the **{{ include.name }}** plugin.
 
     <div class="alert alert-ee blue">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
@@ -381,7 +381,7 @@ or sample values as needed:
 
 <!-- Consumer config example -->
 
-{% if page.params.consumer_id %}
+{% if include.params.consumer_id %}
 {% capture plugin_config_for_consumer %}
 ### Enabling the plugin on a consumer
 
@@ -392,20 +392,20 @@ For example, configure this plugin on a [consumer](/gateway-oss/latest/admin-api
 
 ```bash
 $ curl -X POST http://{HOST}:8001/consumers/{CONSUMER}/plugins \
-    --data "name={{page.params.name}}" {{ config_required_fields }}
+    --data "name={{include.params.name}}" {{ config_required_fields }}
 ```
 
 `CONSUMER` is the `id` or `username` of the consumer that this plugin
   configuration will target.
 
-{% if page.params.service_id and page.params.route_id %}
+{% if include.params.service_id and include.params.route_id %}
 You can combine `consumer.id`, `service.id`, or `route.id`
-  {% elsif page.params.service_id %} and `service.id`
-  {% elsif page.params.route_id %} and `route.id`{%
+  {% elsif include.params.service_id %} and `service.id`
+  {% elsif include.params.route_id %} and `route.id`{%
   endif %} in the same request, to further narrow the scope of the plugin.
 
 {% endnavtab %}
-{% unless page.params.k8s_examples == false %}
+{% unless include.params.k8s_examples == false %}
 {% navtab Kubernetes %}
 
 First, create a [KongPlugin](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/references/custom-resources.md#kongplugin)
@@ -415,10 +415,10 @@ resource:
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
-  name: <{{page.params.name}}-example>
+  name: <{{include.params.name}}-example>
 {% if config_required_fields_k8s == 'config: ' %}config:
   <optional_parameter>: <value>{% else %}{{ config_required_fields_k8s }}{% endif %}
-plugin: {{page.params.name}}
+plugin: {{include.params.name}}
 ```
 
 Then, apply it to a [consumer](/gateway-oss/latest/admin-api/#consumer-object) by
@@ -430,7 +430,7 @@ kind: KongConsumer
 metadata:
   name: {CONSUMER}
   annotations:
-    konghq.com/plugins: <{{page.params.name}}-example>
+    konghq.com/plugins: <{{include.params.name}}-example>
     kubernetes.io/ingress.class: kong
   ```
 
@@ -446,7 +446,7 @@ metadata:
 
 {% endnavtab %}
 {% endunless %}
-{% unless page.params.yaml_examples == false %}
+{% unless include.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
 For example, configure this plugin on a [consumer](/gateway-oss/latest/admin-api/#consumer-object) by
@@ -454,7 +454,7 @@ adding this section to your declarative configuration file:
 
 ``` yaml
 plugins:
-- name: {{page.params.name}}
+- name: {{include.params.name}}
   consumer: {CONSUMER}
   {% if config_required_fields_yaml == 'config: ' %}config:
     <optional_parameter>: <value>{% else %}{{ config_required_fields_yaml }}{% endif %}
@@ -465,7 +465,7 @@ plugins:
 
 {% endnavtab %}
 {% endunless %}
-{% unless page.params.manager_examples == false or page.publisher != "Kong Inc." %}
+{% unless include.params.manager_examples == false or include.publisher != "Kong Inc." %}
 {% navtab Manager %}
 Configure this plugin on a consumer:
 
@@ -473,7 +473,7 @@ Configure this plugin on a consumer:
 2. From the Dashboard, scroll down to **Consumers** and click **View** for the consumer row.
 3. Select the **Plugins** tab.
 4. Click **Add Plugin**.
-5. Find and select the **{{ page.name }}** plugin.
+5. Find and select the **{{ include.name }}** plugin.
 
     <div class="alert alert-ee blue">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
@@ -509,11 +509,11 @@ For example, configure this plugin globally with:
 
 ```bash
 $ curl -X POST http://{HOST}:8001/plugins/ \
-    --data "name={{page.params.name}}" {{ config_required_fields }}
+    --data "name={{include.params.name}}" {{ config_required_fields }}
 ```
 
 {% endnavtab %}
-{% unless page.params.k8s_examples == false %}
+{% unless include.params.k8s_examples == false %}
 {% navtab Kubernetes %}
 
 Create a [KongClusterPlugin](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/references/custom-resources.md#kongclusterplugin)
@@ -523,39 +523,39 @@ resource and label it as global:
 apiVersion: configuration.konghq.com/v1
 kind: KongClusterPlugin
 metadata:
-  name: <global-{{page.params.name}}>
+  name: <global-{{include.params.name}}>
   annotations:
     kubernetes.io/ingress.class: kong
   labels:
     global: \"true\"
 {% if config_required_fields_k8s == 'config: ' %}config:
   <optional_parameter>: <value>{% else %}{{ config_required_fields_k8s }}{% endif %}
-plugin: {{page.params.name}}
+plugin: {{include.params.name}}
 ```
 
 {% endnavtab %}
 {% endunless %}
-{% unless page.params.yaml_examples == false %}
+{% unless include.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 For example, configure this plugin using the <code>plugins:</code> entry in the declarative
 configuration file:
 
 ``` yaml
 plugins:
-- name: {{page.params.name}}
+- name: {{include.params.name}}
   {% if config_required_fields_yaml == 'config: ' %}config:
     <optional_parameter>: <value>{% else %}{{ config_required_fields_yaml }}{% endif %}
 ```
 {% endnavtab %}
 {% endunless %}
-{% unless page.params.manager_examples == false or page.publisher != "Kong Inc." %}
+{% unless include.params.manager_examples == false or include.publisher != "Kong Inc." %}
 {% navtab Kong Manager %}
 Configure this plugin globally:
 
 1. In Kong Manager, select the workspace.
 2. From the Dashboard, select **Plugins** in the left navigation.
 3. Click **New Plugin**.
-4. Find and select the **{{ page.name }}** plugin.
+4. Find and select the **{{ include.name }}** plugin.
 
     <div class="alert alert-ee blue">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
@@ -576,16 +576,16 @@ default/sample values as needed:
 {% endcapture %}
 
 <!-- Layout text -->
-{% if page.params.service_id %}
+{% if include.params.service_id %}
   {{ plugin_config_for_service | markdownify }}
 {% endif %}
-{% if page.params.route_id %}
+{% if include.params.route_id %}
   {{ plugin_config_for_route | markdownify }}
 {% endif %}
-{% if page.params.consumer_id %}
+{% if include.params.consumer_id %}
   {{ plugin_config_for_consumer | markdownify }}
 {% endif %}
-{% if page.params.api_id %}
+{% if include.params.api_id %}
   {{ plugin_config_for_api | markdownify }}
 {% endif %}
 {{ plugin_global_config | markdownify }}

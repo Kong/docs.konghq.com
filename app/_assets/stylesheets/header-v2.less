@@ -37,7 +37,7 @@ header.navbar-v2 {
   }
 
   @media screen and (max-width: 800px) {
-    box-shadow: none;
+    // box-shadow: none;
   }
 
   .docs-dropdown-li {
@@ -60,7 +60,7 @@ header.navbar-v2 {
   .navbar-content {
     width: 100%;
     height: 100%;
-    max-width: 1440px;
+    max-width: 1600px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -68,10 +68,24 @@ header.navbar-v2 {
 
     .navbar-brand {
       flex-shrink: 0;
+      max-width: 100px;
 
-      img {
+      #kong-logo {
         max-width: 100px;
       }
+
+      #kong-docs-logo {
+        max-width: 55px;
+      }
+    }
+
+    .logo-divider {
+      font-size: 28px;
+      text-align: middle;
+      margin-right: 8px;
+      margin-left: 8px;
+      color: @steel-200;
+      padding-bottom: 6px;
     }
 
     .separator {
@@ -355,11 +369,12 @@ header.navbar-v2 {
 
           &.submenu-opened {
             transform: translateX(-100%);
-            height: 500px;
+            height: 530px;
 
             .navbar-item.submenu-title {
               transform: translate(calc(100% + 8px), 0);
               font-weight: 500;
+              display: block;
 
               .caret {
                 display: none;

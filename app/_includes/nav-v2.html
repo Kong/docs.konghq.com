@@ -5,13 +5,14 @@
       <div class="closebanner"></div> <strong><label>New</label> Konnect Plus: Pay-as-you-go from startup friendly to enterprise scale. <a target="_blank" href="https://konghq.com/pricing/">See Pricing &rarr;</a></strong></div>
   </div>
   <div class="navbar-content">
-    <a href="https://konghq.com/" class="navbar-brand col col-xl-auto">
-      <img
-        src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/themes/konghq/assets/img/gradient-logo.svg"
-        alt="Kong Logo"
-      />
+    <a href="https://konghq.com" class="navbar-brand col col-xl-auto">
+      <img src="/assets/images/logos/kong-logo-blue.svg" alt="Kong Logo" id="kong-logo">
     </a>
-    {% if page.layout != "landing-page" %}
+    <span class="logo-divider">|</span>
+    <a href="/" class="navbar-brand col col-xl-auto">
+      <img src="/assets/images/logos/docs-logo-steel.svg" alt="Kong Docs Logo" id="kong-docs-logo">
+    </a>
+    {% if include.layout != "landing-page" %}
     <div class="separator mobile"></div>
     <div class="search-input-wrapper">
       <img src="/assets/images/landing-page/search.svg" alt="search" onclick="handleSearchClicked()">
@@ -23,8 +24,8 @@
     <div class="separator"></div>
     <div class="navbar-items" role="navigation" aria-label="Main menu">
       <ul class="navbar-items" role="menubar">
-        <li aria-haspopup="true" role="menuitem" class="navbar-item main-menu-item with-submenu{% if page.layout != 'landing-page' %} active{% endif %}" onclick="toggleSubmenuVisible(this)">
-          <a href="https://docs.konghq.com/" tabindex="0" id="docs-link">Docs</a>
+        <li aria-haspopup="true" role="menuitem" class="navbar-item main-menu-item with-submenu{% if include.layout != 'landing-page' %} active{% endif %}" onclick="toggleSubmenuVisible(this)">
+          <a href="/" tabindex="0" id="docs-link">Docs</a>
           <span class="caret"></span>
           <ul class="navbar-item-submenu" role="menu" aria-hidden="true">
             <div class="submenu-section">
@@ -104,7 +105,7 @@
   </div>
 </header>
 
-{% if page.layout != "landing-page" %}
+{% if include.layout != "landing-page" %}
 <style>
   @media (max-width: 768px) {
     .algolia-docsearch-suggestion--subcategory-column {

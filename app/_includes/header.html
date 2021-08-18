@@ -1,12 +1,8 @@
 {% if include.img %}
   {% assign header_icon = include.img %}
-{% elsif page.header_icon %}
-  {% assign header_icon = page.header_icon %}
 {% endif %}
 {% if include.name %}
   {% assign header_title = include.name %}
-{% elsif page.header_title %}
-    {% assign header_title = page.header_title %}
 {% endif %}
 {% if header_title %}
   <header class="page-header">
@@ -18,11 +14,11 @@
       {% endif %}
 
       <div class="page-header-title">
-        {% if page.breadcrumbs %}
+        {% if include.breadcrumbs %}
           <ul class="breadcrumbs install">
-            {% for breadcrumb in page.breadcrumbs %}
-              <li class="breadcrumb-item{% if page.url == breadcrumb[1] %} active{% endif %}">
-                {% if page.id == 'page-plugin' %}
+            {% for breadcrumb in include.breadcrumbs %}
+              <li class="breadcrumb-item{% if include.url == breadcrumb[1] %} active{% endif %}">
+                {% if include.id == 'page-plugin' %}
                 <a href="https://konghq.com/plugins">Plugins</a>
                 {% else %}
                 <a href="{{ breadcrumb[1] }}">{{ breadcrumb[0] }}</a>
@@ -34,8 +30,8 @@
 
         <h1 id="main" tabindex="-1">{{ header_title }}</h1>
 
-        {% if page.header_caption or include.header_caption%}
-          <p>{{ page.header_caption }}{{ include.header_caption }}</p>
+        {% if include.header_caption%}
+          <p>{{ include.header_caption }}</p>
         {% endif %}
       </div>
     </div>

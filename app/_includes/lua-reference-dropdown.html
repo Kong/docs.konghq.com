@@ -1,13 +1,13 @@
 <div class="dropdown page-header-right">
   <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Version {{page.kong_version}}
-    {% if page.kong_version == site.data.kong_latest.release %}<em>(latest)</em>{% endif %}
+    Version {{include.page.kong_version}}
+    {% if include.page.kong_version == site.data.kong_latest.release %}<em>(latest)</em>{% endif %}
     <span class="caret"></span>
   </button>
 
   <ul class="versions-dropdown dropdown-menu dropdown-menu-right" id="version-list" role="menu" aria-labelledby="version-dropdown">
     {% for ver in site.data.kong_versions_ce %}
-      <li {% if ver.release== page.kong_version %} class="active" {% endif %}>
+      <li {% if ver.release== include.page.kong_version %} class="active" {% endif %}>
         {% if ver.lua_doc %}
           <a href="/gateway-oss/{{ver.release}}/lua-reference/">
             {{ver.release}}
