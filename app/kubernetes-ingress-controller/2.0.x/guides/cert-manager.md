@@ -122,13 +122,12 @@ Setup an Ingress rule to expose the application:
 
 ```bash
 $ echo "
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: demo-example-com
-  annotations:
-    kubernetes.io/ingress.class: kong
 spec:
+  ingressClassName: kong
   rules:
   - host: demo.example.com
     http:
@@ -188,15 +187,15 @@ Next, update your Ingress resource to provision a certificate and then use it:
 
 ```bash
 $ echo '
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: demo-example-com
   annotations:
     kubernetes.io/tls-acme: "true"
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    kubernetes.io/ingress.class: kong
 spec:
+  ingressClassName: kong
   tls:
   - secretName: demo-example-com
     hosts:
@@ -242,7 +241,7 @@ Metadata:
   Creation Timestamp:  2019-06-21T20:41:54Z
   Generation:          1
   Owner References:
-    API Version:           extensions/v1beta1
+    API Version:           networking.k8s.io/v1
     Block Owner Deletion:  true
     Controller:            true
     Kind:                  Ingress

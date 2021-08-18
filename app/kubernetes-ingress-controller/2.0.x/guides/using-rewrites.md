@@ -81,14 +81,13 @@ request paths starting at `/`.
 
 ```bash
 echo '
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: my-app
   namespace: echo
-  annotations:
-    kubernetes.io/ingress.class: kong
 spec:
+  ingressClassName: kong
   rules:
   - host: myapp.example.com
     http:

@@ -115,14 +115,14 @@ spec:
 The KongPlugin above can be applied to a specific ingress (route or routes):
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: demo-example-com
   annotations:
     konghq.com/plugins: request-id
-    kubernetes.io/ingress.class: kong
 spec:
+  ingressClassName: kong
   rules:
   - host: example.com
     http:

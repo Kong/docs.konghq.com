@@ -50,14 +50,14 @@ Create an Ingress rule to proxy the httpbin service we just created:
 
 ```bash
 $ echo '
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: demo
   annotations:
     konghq.com/strip-path: "true"
-    kubernetes.io/ingress.class: kong
 spec:
+  ingressClassName: kong
   rules:
   - http:
       paths:

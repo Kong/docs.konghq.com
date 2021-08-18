@@ -60,14 +60,14 @@ by defining Ingress rules.
 
 ```bash
 $ echo '
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: demo
   annotations:
     konghq.com/strip-path: "true"
-    kubernetes.io/ingress.class: kong
 spec:
+  ingressClassName: kong
   rules:
   - http:
       paths:
@@ -127,14 +127,14 @@ service:
 
 ```bash
 $ echo '
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: demo-2
   annotations:
     konghq.com/strip-path: "true"
-    kubernetes.io/ingress.class: kong
 spec:
+  ingressClassName: kong
   rules:
   - http:
       paths:
