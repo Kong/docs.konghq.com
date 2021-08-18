@@ -65,14 +65,13 @@ KongConsumer resources by default.
 
 ### kubernetes.io/ingress.class
 
-<div class="alert alert-ee blue">
-<a href="https://kubernetes.io/docs/concepts/services-networking/ingress/#deprecated-annotation">Kubernetes versions after 1.18</a>
-introduced the new <code>ingressClassName</code> field to the Ingress spec
-and deprecated the <code>kubernetes.io/ingress.class</code> annotation.
-Ingress resources should now use the <code>ingressClassName</code> field.
-Kong resources (KongConsumer, TCPIngress, etc.) still use the
-<code>kubernetes.io/ingress.class</code> annotation.
-</div>
+{:.note}
+> Kubernetes versions after 1.18 introduced the new `ingressClassName` 
+field to the Ingress spec and 
+[deprecated the `kubernetes.io/ingress.class` annotation](https://kubernetes.io/docs/concepts/services-networking/ingress/#deprecated-annotation). 
+Ingress resources should now use the `ingressClassName` field. 
+Kong resources (KongConsumer, TCPIngress, etc.) 
+still use the `kubernetes.io/ingress.class` annotation.
 
 If you have multiple Ingress controllers in a single cluster,
 you can pick one by specifying the `ingress.class` annotation.
