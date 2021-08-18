@@ -41,10 +41,15 @@ First, we will install Prometheus with a
 scrape interval of 10 seconds to have fine-grained data points for all metrics.
 We’ll install both Prometheus and Grafana in a dedicated `monitoring` namespace.
 
-To install Prometheus, execute the following:
+To install Prometheus through helm, execute the following:
 
 ```bash
 $ helm install --name prometheus stable/prometheus --namespace monitoring --values https://bit.ly/2RgzDtg --version 11.0.3
+```
+
+After install Prometheus , apply following PodMonitor manifest :
+```bash
+$ kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/main/config/prometheus/monitor.yaml
 ```
 
 ### Grafana
