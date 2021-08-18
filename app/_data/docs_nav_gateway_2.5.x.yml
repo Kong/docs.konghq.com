@@ -33,6 +33,9 @@
 
 - title: Configure
   icon: /assets/images/icons/konnect/konnect-settings.svg
+  items:
+    - text: Authentication Reference
+      url: /configure/auth
 
 - title: Administer
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
