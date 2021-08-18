@@ -4,7 +4,7 @@ no_version: true
 badge: enterprise
 ---
 By mapping Okta groups to [Konnect roles](/konnect/org-management/users-and-roles),
-you can manage user authorization directly through your Okta app.
+you can manage a user's Konnect roles directly through Okta group membership.
 
 After mapping is set up:
 * Okta users belonging to the mapped groups can log into Konnect.
@@ -13,8 +13,8 @@ Konnect will automatically provision an account with the relevant permission.
 * As a Konnect org admin, you will be able to see those users in Konnect,
 but you won't be able to edit them from the Konnect side. To manage
 automatically-created users, adjust user permissions through Okta.
-* If your org already has non-admin Konnect users before mapping, they will be
-mapped to the Okta application.
+* If your org already has non-admin Konnect users before mapping, on their next
+login they will be mapped to the roles defined by their Okta group membership.
 
 Any changes to the mapped Okta groups on the Okta side will be reflected in
 {{site.konnect_saas}}. For example:
@@ -26,7 +26,6 @@ to align with the new group-to-role mapping.
 * [**Organization Admin**](/konnect/reference/org-management/#role-definitions)
 permissions in Konnect Cloud
 * [Okta admin account](https://admin.okta.com/)
-    (not a developer account? and should we even provide a URL; they will probably have an org-specific URL, right?)
 * Okta authentication enabled for {{site.konnect_saas}}
 * [Groups created](https://help.okta.com/en/prod/Content/Topics/users-groups-profiles/usgp-groups-main.htm) in the Okta application
 

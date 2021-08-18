@@ -4,21 +4,21 @@ no_version: true
 badge: enterprise
 ---
 
-As an alternative to Konnect Cloud’s native basic authentication, you can set up
-org access through Okta. This way, your users can log in to Konnect Cloud
+As an alternative to Konnect Cloud’s native authentication, you can set up
+access to Konnect through Okta. This way, your users can log in to Konnect Cloud
 using their Okta credentials, and without needing a separate login.
 
 You can't mix authenticators in Konnect Cloud. With Okta IdP
 authentication enabled, all non-admin Konnect users will subsequently log in
-through Okta. Only Konnect admins can continue to log in with basic
-authentication.
+through Okta. Only the Konnect org owner can continue to log in with Konnect's
+native authentication.
 
 > This feature is only available with Kong Konnect Enterprise.
 
 ## Prerequisites
 * [**Organization Admin**](/konnect/reference/org-management/#role-definitions)
 permissions in Konnect Cloud
-* [Okta developer account](https://developer.okta.com/)
+* Access to the Okta configuration for your organization
 
 ## Set up Okta IdP Auth
 
@@ -26,7 +26,7 @@ permissions in Konnect Cloud
 
 Create a new application in Okta to manage Konnect Cloud account integration.
 
-1. Sign in to your [Okta developer account](https://developer.okta.com/).
+1. Sign in to your [Okta admin account](https://admin.okta.com/).
 1. From the left menu, select **Applications**, then **Create Integration**.
 1. Select the application type:
     1. Under **Sign-on method**, select **OIDC - OpenID Connect**.
@@ -57,11 +57,8 @@ application into Konnect Cloud.
     See the [Okta developer documentation](https://developer.okta.com/docs/guides/find-your-app-credentials/findcreds/)
     to learn more about client credentials in Okta.
 
-1. Create the **Issuer URL**:
-    1. Copy the **Okta domain** from your Okta application.
-    1. Paste it into the **Issuer** field in Konnect using the following format:
-
-        `https://<div contenteditable="true">{OKTA_DOMAIN}</div>/oauth2/default`
+1. Copy the **Okta domain** from your Okta application, then paste it into
+the **Issuer URL** field in Konnect.
 1. Save your changes.
 1. Copy the generated login URL.
 
