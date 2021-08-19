@@ -3,11 +3,11 @@ title: Community expectations
 no_version: true
 ---
 
-This section outlines our primary community expectations. 
+This section outlines our community expectations around inclusive language and accessibility. 
 
 ## Inclusive language
 
-Use inclusive language that does not exclude groups. Be aware of how impactful language is, and use it with care. We will not except contributions that 
+Use inclusive language that does not exclude groups. Be aware of how impactful language is, and use it with care. 
 
 See: [Microsoft's Bias-free communication](https://docs.microsoft.com/en-us/style-guide/bias-free-communication). 
 
@@ -25,7 +25,7 @@ For code-based contributions, check the following:
 
 * All clickable elements can be tabbed through in a predictable sequence. 
 * HTML is written:
-    * without skipping header level (`h1` to `h2`, instead of `h1` to `h3`)
-    * using the proper elements (`li` for lists instead of `div`)
-* No accessibility should be "hacked" by using JavaScript or other means. For example, don't force tabbing. Instead, write HTML that tabs properly. 
+    * without skipping header level (`h1` to `h2`, instead of `h1` to `h3`).
+    * using the proper elements (`li` for lists instead of `div`).
+* No accessibility should be "hacked" by using JavaScript or other means. For example, don't force tabbing (`.on('keyup')`). Instead, write HTML that tabs properly. 
 * Color contrast is compatible with WCAG standards. Use a [color contrast checker](https://color.a11y.com/) or Dev Tools. 
