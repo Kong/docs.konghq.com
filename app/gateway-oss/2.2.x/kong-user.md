@@ -28,7 +28,7 @@ configuration property. It is also possible to run Kong as a custom non-root use
 * [Amazon Linux](/install/aws-linux)
 * [CentOS](/install/centos)
 * [Debian](/install/debian)
-* [RedHat](/install/redhat)
+* [Red Hat](/install/redhat)
 * [Ubuntu](/install/ubuntu)
 
 ## Run {{site.ce_product_name}} as the built-in kong user

@@ -7,5 +7,5 @@ as <code>root</code>, and the worker processes run as <code>kong</code> by
 default. If this is not the desired behavior, you can switch the Nginx master process to run on the built-in
 <code>kong</code> user or to a custom non-root user before starting Kong.
 For more information, see
-<a href="/enterprise/{{page.kong_version}}/deployment/kong-user">Running Kong as a Non-Root User</a>.
+<a href="/enterprise/{{include.kong_version}}/deployment/kong-user">Running Kong as a Non-Root User</a>.
 </div>

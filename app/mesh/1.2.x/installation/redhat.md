@@ -1,8 +1,8 @@
 ---
-title: Kong Mesh with RedHat
+title: Kong Mesh with Red Hat
 ---
 
-To install and run {{site.mesh_product_name}} on RedHat (**x86_64**):
+To install and run {{site.mesh_product_name}} on Red Hat (**x86_64**):
 
 1. [Download {{site.mesh_product_name}}](#1-download-kong-mesh)
 1. [Run {{site.mesh_product_name}}](#2-run-kong-mesh)
@@ -37,7 +37,7 @@ $ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 {% endnavtab %}
 {% endnavtabs %}
 
-{% include /md/mesh/install-universal-run.md %}
+{% include /md/mesh/install-universal-run.md kong_latest=page.kong_latest %}
 
 {% include /md/mesh/install-universal-verify.md %}
 

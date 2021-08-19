@@ -25,7 +25,7 @@ This software is governed by the
 
 ### Deployment options
 
-{% include /md/{{page.kong_version}}/deployment-options-k8s.md %}
+{% include /md/{{page.kong_version}}/deployment-options-k8s.md kong_version=page.kong_version %}
 
 ## Prerequisites
 Before starting installation, be sure you have the following:

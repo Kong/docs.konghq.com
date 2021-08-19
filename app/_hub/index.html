@@ -86,11 +86,11 @@ body_id: page-hub
               <h5>{{ cat.name }}</h5>
               {% assign extns = kong_extns | where_exp: "extn","extn.categories contains cat.slug" %}
               {% for extn in extns  %}
-                {% include hub_cards.html %}
+                {% include hub_cards.html header_icon=page.header_icon %}
               {% endfor %}
               {% assign extns = third_extns | where_exp: "extn","extn.categories contains cat.slug" %}
               {% for extn in extns  %}
-                {% include hub_cards.html %}
+                {% include hub_cards.html header_icon=page.header_icon %}
               {% endfor %}
             </div>
           {% endfor %}

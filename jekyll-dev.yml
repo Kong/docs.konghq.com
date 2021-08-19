@@ -15,9 +15,9 @@ keep_files:
   - assets
 
 # Site settings
-name: Kong
-title: Open-Source API Management and Microservice Management
-description: "Secure, Manage &amp; Extend your APIs or Microservices with plugins for authentication, logging, rate-limiting, transformations and more."
+name: Kong Docs
+title: Kong Docs
+description: "Documentation for Kong, the Cloud Connectivity Company for APIs and Microservices."
 links:
   web: https://docs.konghq.com
   share: https://docs.konghq.com # legacy link, must maintain for social sharing counters
