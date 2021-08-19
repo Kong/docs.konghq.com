@@ -192,8 +192,12 @@
 - title: Reference
   icon: /assets/images/icons/documentation/icn-references-color.svg
   items:
+    - text: Load Balancing Reference
+      url: /reference/loadbalancing
+    - text: Proxy Reference
+      url: /reference/proxy
     - text: Rate Limiting Library
-      url: /rate-limiting
+      url: /reference/rate-limiting
     - text: Admin API
       url: /admin-api
       items: 
