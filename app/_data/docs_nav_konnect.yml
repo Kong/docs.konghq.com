@@ -8,7 +8,7 @@
       url: /key-concepts-and-terms
 
 - title: Manage Accounts and Orgs
-  icon: /assets/images/icons/documentation/icn-developer.svg
+  icon: /assets/images/icons/konnect/konnect-organization.svg
   items:
     - text: Access a Konnect Account
       url: /access-account
@@ -23,11 +23,11 @@
     - text: Authentication and Authorization
       url: /org-management/auth
       items:
-        - text: Users and Roles
+        - text: Manage Users and Roles
           url: /org-management/users-and-roles
         - text: Set up Okta IdP Auth
           url: /org-management/okta-idp
-        - text: Map Roles to Okta Groups
+        - text: Map Konnect Roles to Okta Groups
           url: /org-management/okta-role-mapping
 
 - title: Release Notes
