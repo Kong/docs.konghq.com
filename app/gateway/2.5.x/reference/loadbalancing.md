@@ -1,5 +1,5 @@
 ---
-title: Load balancing reference
+title: Load Balancing Reference
 ---
 
 Kong provides multiple ways of load balancing requests to multiple backend

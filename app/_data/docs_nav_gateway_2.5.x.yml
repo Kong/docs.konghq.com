@@ -181,6 +181,10 @@
 - title: Reference
   icon: /assets/images/icons/documentation/icn-references-color.svg
   items:
+    - text: Load Balancing Reference
+      url: /loadbalancing
+    - text: Proxy Reference
+      url: /proxy
     - text: Plugin Development Kit
       url: /pdk
       items:
