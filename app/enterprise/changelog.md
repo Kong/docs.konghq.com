@@ -5,7 +5,7 @@ no_version: true
 ---
 
 ## 2.5.0.1
-**Release Date** 2021/08/12
+**Release Date** 2021/08/18
 
 ### Fixes
 
@@ -498,7 +498,7 @@ no_version: true
 
 
 ## 2.4.1.2
-**Release Date** 2021/08/12
+**Release Date** 2021/08/18
 
 ### Fixes
 
@@ -938,7 +938,7 @@ keep-alive connections. [7102](https://github.com/Kong/kong/pull/7102)
 
 
 ## 2.3.3.3
-**Release Date** 2021/08/12
+**Release Date** 2021/08/18
 
 ### Fixes
 
@@ -1378,7 +1378,7 @@ fixed causing a 500 auth error when falling back to an anonymous user.
 - Support for CentOS-6 is removed and entered end-of-life on Nov 30, 2020.
 
 ## 2.2.1.4
-**Release Date** 2021/08/12
+**Release Date** 2021/08/18
 
 ### Fixes
 
@@ -1813,7 +1813,7 @@ open-source **Kong Gateway 2.2.0.0**:
   the new `shorthand_fields` top-level attribute.
 
 ## 2.1.4.7
-**Release Date** 2021/08/12
+**Release Date** 2021/08/18
 
 ### Fixes
 
