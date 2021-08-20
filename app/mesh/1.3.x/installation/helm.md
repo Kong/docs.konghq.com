@@ -54,7 +54,21 @@ suggest `kong-mesh-system`.
    By default the license option is disabled and so you need to enable it in order for the license to take effect.
    This can be done in two ways:
    
-   a. Using `values.yaml` file
+   a. Overriding the values using the `--set` switch on the helm command
+      
+      The easiest option is to override each field on the CLI, the only 
+      downside with this is every time you run a helm upgrade you need to supply these values otherwise they will be 
+      reverted back to what the charts default values are for those fields
+   
+      ```sh
+      $ helm repo update
+      $ helm upgrade -i -n kong-mesh-system kong-mesh kong-mesh/kong-mesh \
+        --set kuma.controlPlane.secrets[0].Env="KMESH_LICENSE_INLINE" \
+        --set kuma.controlPlane.secrets[0].Secret="kong-mesh-license" \
+        --set kuma.controlPlane.secrets[0].Key="license.json"
+      ```
+   
+   b. Using `values.yaml` file
    
       To get the default values file run the following command and write it to a `values.yaml` file
       
@@ -122,19 +136,6 @@ suggest `kong-mesh-system`.
       $ helm repo update
       $ helm upgrade -i -n kong-mesh-system kong-mesh kong-mesh/kong-mesh --values values.yaml
       ```
-   
-   b. Overriding the values using the `--set` switch on the helm command
-   
-      You can do the same thing without downloading the values file by overriding each field on the CLI, the only 
-      downside with this is every time you run a helm upgrade you need to supply these values otherwise they will be 
-      reverted back to what the charts default values are for those fields
-    ```sh
-    $ helm repo update
-    $ helm upgrade -i -n kong-mesh-system kong-mesh kong-mesh/kong-mesh \
-       --set kuma.controlPlane.secrets[0].Env="KMESH_LICENSE_INLINE" \
-       --set kuma.controlPlane.secrets[0].Secret="kong-mesh-license" \
-       --set kuma.controlPlane.secrets[0].Key="license.json"
-    ```
 
     This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
     deployment, but there are more advanced [deployment modes](https://kuma.io/docs/latest/documentation/deployments/)
