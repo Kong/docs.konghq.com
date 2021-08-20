@@ -17,8 +17,14 @@ If you've not done so, please follow one of the
 If everything is setup correctly, making a request to Kong should return back
 a HTTP 404 Not Found.
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ curl -i $PROXY_IP
+curl -i $PROXY_IP
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 HTTP/1.1 404 Not Found
 Date: Fri, 21 Jun 2019 17:01:07 GMT
 Content-Type: application/json; charset=utf-8
@@ -28,6 +34,8 @@ Server: kong/1.1.2
 
 {"message":"no Route matched with those values"}
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 This is expected since Kong doesn't know how to proxy the request yet.
 
@@ -36,11 +44,19 @@ This is expected since Kong doesn't know how to proxy the request yet.
 Setup an echo-server application to demonstrate how
 to use the {{site.kic_product_name}}:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ kubectl apply -f https://bit.ly/echo-service
+kubectl apply -f https://bit.ly/echo-service
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 service/echo created
 deployment.apps/echo created
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 This application just returns information about the
 pod and details from the HTTP request.
@@ -49,8 +65,10 @@ pod and details from the HTTP request.
 
 Create an Ingress rule to proxy the echo-server created previously:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ echo "
+echo "
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -65,13 +83,25 @@ spec:
           serviceName: echo
           servicePort: 80
 " | kubectl apply -f -
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 ingress.extensions/demo created
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Test the Ingress rule:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ curl -i $PROXY_IP/foo
+curl -i $PROXY_IP/foo
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Transfer-Encoding: chunked
@@ -82,8 +112,6 @@ X-Kong-Upstream-Latency: 0
 X-Kong-Proxy-Latency: 1
 Via: kong/1.1.2
 
-
-
 Hostname: echo-758859bbfb-txt52
 
 Pod Information:
@@ -93,6 +121,9 @@ Pod Information:
         pod IP: 172.17.0.14
 <-- clipped -->
 ```
+{% endnavtab %}
+{% endnavtabs %}
+
 
 If everything is deployed correctly, you should see the above response.
 This verifies that Kong can correctly route traffic to an application running
@@ -102,8 +133,10 @@ inside Kubernetes.
 
 Setup a KongPlugin resource:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ echo "
+echo "
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
@@ -112,13 +145,21 @@ config:
   header_name: my-request-id
 plugin: correlation-id
 " | kubectl apply -f -
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 kongplugin.configuration.konghq.com/request-id created
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Create a new Ingress resource which uses this plugin:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ echo "
+echo "
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -136,16 +177,28 @@ spec:
           serviceName: echo
           servicePort: 80
 " | kubectl apply -f -
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 ingress.extensions/demo-example-com created
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 The above resource directs Kong to execute the request-id plugin whenever
 a request is proxied matching any rule defined in the resource.
 
 Send a request to Kong:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ curl -i -H "Host: example.com" $PROXY_IP/bar/sample
+curl -i -H "Host: example.com" $PROXY_IP/bar/sample
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Transfer-Encoding: chunked
@@ -155,8 +208,6 @@ Server: echoserver
 X-Kong-Upstream-Latency: 1
 X-Kong-Proxy-Latency: 1
 Via: kong/1.1.2
-
-
 
 Hostname: echo-758859bbfb-cnfmx
 
@@ -193,6 +244,8 @@ Request Headers:
 Request Body:
         -no body in request-
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 The `my-request-id` can be seen in the request received by echo-server.
 It is injected by Kong as the request matches one
@@ -206,8 +259,10 @@ no matter which Ingress path it came from.
 
 Create a KongPlugin resource:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ echo "
+echo "
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
@@ -218,8 +273,14 @@ config:
   policy: local
 plugin: rate-limiting
 " | kubectl apply -f -
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 kongplugin.configuration.konghq.com/rl-by-ip created
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Next, apply the `konghq.com/plugins` annotation on the Kubernetes Service
 that needs rate-limiting:
@@ -232,8 +293,14 @@ kubectl patch svc echo \
 Now, any request sent to this service will be protected by a rate-limit
 enforced by Kong:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ curl -I $PROXY_IP/foo
+curl -I $PROXY_IP/foo
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Connection: keep-alive
@@ -244,8 +311,20 @@ X-RateLimit-Remaining-minute: 2
 X-Kong-Upstream-Latency: 0
 X-Kong-Proxy-Latency: 4
 Via: kong/1.1.2
+```
+{% endnavtab %}
+{% endnavtabs %}
 
-$ curl -I -H "Host: example.com" $PROXY_IP/bar/sample
+Try another one:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+curl -I -H "Host: example.com" $PROXY_IP/bar/sample
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Connection: keep-alive
@@ -257,6 +336,8 @@ X-Kong-Upstream-Latency: 1
 X-Kong-Proxy-Latency: 2
 Via: kong/1.1.2
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Result
 

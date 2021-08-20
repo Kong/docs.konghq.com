@@ -22,50 +22,93 @@ For this guide, you will need:
 
 Download the Istio bundle at version 1.6.7:
 
-```console
-$ curl -L https://istio.io/downloadIstio | env ISTIO_VERSION=1.6.7 sh -
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+curl -L https://istio.io/downloadIstio | env ISTIO_VERSION=1.6.7 sh -
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 ...
 ...
 Istio 1.6.7 Download Complete!                                                                                                 
 
-Istio has been successfully downloaded into the istio-1.6.7 folder on your system.                                                                                                                                                                            
+Istio has been successfully downloaded into the istio-1.6.7 folder on your system.
 ...
 ...
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 ### Install Istio Operator
 
 Invoke `istioctl` to deploy the Istio Operator to the Kubernetes cluster:
 
-```console
-$ ./istio-1.6.7/bin/istioctl operator init
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+./istio-1.6.7/bin/istioctl operator init
+```
+{% endnavtab %}
+{% navtab Response %}
+```
 Using operator Deployment image: docker.io/istio/operator:1.6.7
 ✔ Istio operator installed                                                                                                                                                                                                                                    
 ✔ Installation complete
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 ### Deploy Istio using Operator
 
-Deploy Istio using Istio Operator:
+Deploy Istio using Istio Operator.
 
-```console
-$ kubectl create namespace istio-system
+Create a namespace:
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl create namespace istio-system
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 namespace/istio-system created
 ```
-```console
-$ kubectl apply -f - <<EOF
-  apiVersion: install.istio.io/v1alpha1
-  kind: IstioOperator
-  metadata:
-    namespace: istio-system
-    name: example-istiocontrolplane
-  spec:
-    profile: demo
+{% endnavtab %}
+{% endnavtabs %}
+
+Deploy Istio:
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl apply -f - <<EOF
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+metadata:
+  namespace: istio-system
+  name: example-istiocontrolplane
+spec:
+  profile: demo
 EOF
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 istiooperator.install.istio.io/example-istiocontrolplane created
 ```
-```console
-$ kubectl describe istiooperator -n istio-system
+{% endnavtab %}
+{% endnavtabs %}
+
+Check the status:
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl describe istiooperator -n istio-system
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 ...
 ...
 Status:
@@ -73,21 +116,53 @@ Status:
 ...
 ...
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Wait until the `kubectl describe istiooperator` command returns `Status: HEALTHY`.
 
 ### Deploy the {{site.kic_product_name}} in an Istio-enabled namespace {#deploy-kic-istio-namespace}
 
-```console
-$ kubectl create namespace kong-istio
+Create a namespace:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl create namespace kong-istio
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 namespace/kong-istio created
 ```
-```console
-$ kubectl label namespace kong-istio istio-injection=enabled
+{% endnavtab %}
+{% endnavtabs %}
+
+Label the namespace:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl label namespace kong-istio istio-injection=enabled
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 namespace/kong-istio labeled
 ```
-```console
-$ helm install -n kong-istio example-kong kong/kong --set ingressController.installCRDs=false
+{% endnavtab %}
+{% endnavtabs %}
+
+Deploy the Kong Ingress Controller in the new namespace:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+helm install -n kong-istio example-kong kong/kong --set ingressController.installCRDs=false
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 ...
 NAME: example-kong
 LAST DEPLOYED: Mon Aug 10 15:14:44 2020
@@ -95,33 +170,58 @@ NAMESPACE: kong-istio
 STATUS: deployed
 ...
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 _Optional:_ Run `kubectl describe pod -n kong-istio -l app.kubernetes.io/instance=example-kong` to see that the Istio sidecar (`istio-proxy`) is running alongside the {{site.kic_product_name}}.
 
 ### Deploy bookinfo in an Istio-enabled namespace
 
-Deploy the sample _bookinfo_ app from the Istio bundle:
+Deploy the sample _bookinfo_ app from the Istio bundle.
 
-```console
-$ kubectl create namespace my-istio-app
+Create a namespace:
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl create namespace my-istio-app
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 namespace/my-istio-app created
 ```
-```console
-$ kubectl label namespace my-istio-app istio-injection=enabled
-namespace/my-istio-app labeled
-$ kubectl apply -n my-istio-app -f istio-1.6.7/samples/bookinfo/platform/kube/bookinfo.yaml
+{% endnavtab %}
+{% endnavtabs %}
+
+Label the namespace:
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl label namespace my-istio-app istio-injection=enabled
 ```
+{% endnavtab %}
+{% navtab Response %}
+```bash
+namespace/my-istio-app labeled
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+Apply the configuration:
+```bash
+kubectl apply -n my-istio-app -f istio-1.6.7/samples/bookinfo/platform/kube/bookinfo.yaml
+```
+
 Wait until the application is up:
-```console
-$ kubectl wait --for=condition=Available deployment productpage -n my-istio-app --timeout=240s
+```bash
+kubectl wait --for=condition=Available deployment productpage -n my-istio-app --timeout=240s
 ```
 ### Deploy ingress
 
-Define a `KongPlugin` rate-limiting access to 100 requests per minute. Define an `Ingress` telling Kong to proxy traffic
-to a service belonging to the sample application:
+Define a `KongPlugin` rate-limiting access to 100 requests per minute:
 
-```console
-$ kubectl apply -f - <<EOF
+```bash
+kubectl apply -f - <<EOF
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
@@ -134,8 +234,11 @@ config:
 EOF
 ```
 
-```console
-$ kubectl apply -f - <<EOF
+Define an `Ingress` telling Kong to proxy traffic to a service belonging to the
+sample application:
+
+```bash
+kubectl apply -f - <<EOF
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -162,13 +265,21 @@ Connect to the sample application served via Kong and Istio.
 Note that `8080:80` means that `kubectl` will open the `tcp/8080` port on the local system and forward all requests to
 Kong's port `80`.
 
-```console
-$ # Keep the command below running in the background
-$ kubectl port-forward service/example-kong-kong-proxy 8080:80 -n kong-istio
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+# Keep the command below running in the background
+kubectl port-forward service/example-kong-kong-proxy 8080:80 -n kong-istio
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 Forwarding from 127.0.0.1:8080 -> 8000
 Forwarding from [::1]:8080 -> 8000
 ...
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Navigate your web browser to `http://localhost:8080/` You should be able to see a bookstore web application. Click
 through any available links several times. As you hit 30 requests per minute (for example, by holding down the "Refresh"
@@ -178,13 +289,21 @@ key combination, e.g. `<Ctrl-R>` or `<Command-R>`), you should obtain a `Kong Er
 
 Connect to Kiali (the Istio dashboard):
 
-```console
-$ # Keep the command below running in the background
-$ kubectl port-forward service/kiali 20001:20001 -n istio-system
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+# Keep the command below running in the background
+kubectl port-forward service/kiali 20001:20001 -n istio-system
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 Forwarding from 127.0.0.1:20001 -> 20001
 Forwarding from [::1]:20001 -> 20001
 ...
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 * Navigate your web browser to `http://localhost:20001/`.
 * Log in using the default credentials (`admin`/`admin`).
@@ -200,13 +319,21 @@ application services such as `ratings-v1` and `details-v1`.
 
 Connect to Grafana (a dashboard frontend for Prometheus which has been deployed with Istio):
 
-```console
-$ # Keep the command below running in the background
-$ kubectl port-forward service/grafana 3000:3000 -n istio-system
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+# Keep the command below running in the background
+kubectl port-forward service/grafana 3000:3000 -n istio-system
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 Forwarding from 127.0.0.1:3000 -> 3000
 Forwarding from [::1]:3000 -> 3000
 ...
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 * Navigate your web browser to `http://localhost:3000/`.
 * Expand the dashboard selection drop-down menu from the top of the screen. Expand the `istio` directory and choose the

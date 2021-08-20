@@ -25,8 +25,14 @@ This tutorial was written using Google Kubernetes Engine.
 
 Execute the following to install the Ingress Controller:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ kubectl create -f https://bit.ly/k4k8s
+kubectl create -f https://bit.ly/k4k8s
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 namespace/kong created
 customresourcedefinition.apiextensions.k8s.io/kongplugins.configuration.example.com created
 customresourcedefinition.apiextensions.k8s.io/kongconsumers.configuration.example.com created
@@ -40,6 +46,8 @@ service/kong-proxy created
 service/kong-validation-webhook created
 deployment.extensions/kong created
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Set up cert-manager
 
@@ -48,8 +56,14 @@ on how to install cert-manager onto your cluster.
 
 Once installed, verify all the components are running using:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 kubectl get all -n cert-manager
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 NAME                                           READY   STATUS    RESTARTS   AGE
 pod/cert-manager-86478c5ff-mkhb9               1/1     Running   0          23m
 pod/cert-manager-cainjector-65dbccb8b6-6dnjl   1/1     Running   0          23m
@@ -68,60 +82,105 @@ replicaset.apps/cert-manager-86478c5ff               1         1         1      
 replicaset.apps/cert-manager-cainjector-65dbccb8b6   1         1         1       23m
 replicaset.apps/cert-manager-webhook-78f9d55fdf      1         1         1       23m
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Set up your application
 
 Any HTTP-based application can be used, for the purpose of the demo, install
 the following echo server:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ kubectl apply -f https://bit.ly/echo-service
+kubectl apply -f https://bit.ly/echo-service
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 service/echo created
 deployment.apps/echo created
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Set up DNS
 
 Get the IP address of the load balancer for Kong:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ kubectl get service -n kong kong-proxy
+kubectl get service -n kong kong-proxy
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 NAME         TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)                      AGE
 kong-proxy   LoadBalancer   10.63.250.199   35.233.170.67   80:31929/TCP,443:31408/TCP   58d
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 To get only the IP address:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong kong-proxy
+kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong kong-proxy
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 35.233.170.67
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Please note that the IP address in your case will be different.
 
 Next, setup a DNS records to resolve `proxy.example.com` to the
 above IP address:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ dig +short proxy.example.com
+dig +short proxy.example.com
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 35.233.170.67
 ```
+{% endnavtab %}
+{% endnavtabs %}
+
 
 Next, setup a CNAME DNS record to resolve `demo.example.com` to
 `proxy.example.com`.
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ dig +short demo.yolo2.com
+dig +short demo.example.com
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 proxy.example.com.
 35.233.170.67
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Expose your application to the Internet
 
 Setup an Ingress rule to expose the application:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ echo "
+echo "
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -137,13 +196,25 @@ spec:
           serviceName: echo
           servicePort: 80
 " | kubectl apply -f -
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 ingress.extensions/demo-example-com created
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Access your application:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ curl -I demo.example.com
+curl -I demo.example.com
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Connection: keep-alive
@@ -153,11 +224,15 @@ X-Kong-Upstream-Latency: 1
 X-Kong-Proxy-Latency: 1
 Via: kong/1.1.2
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Request TLS Certificate from Let's Encrypt
 
 First, setup a ClusterIssuer for cert-manager
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 $ echo "apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
@@ -174,8 +249,14 @@ spec:
     - http01:
         ingress:
           class: kong" | kubectl apply -f -
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 clusterissuer.cert-manager.io/letsencrypt-prod configured
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 *Note*: If you run into issues configuring this,
 be sure that the group (`cert-manager.io`) and
@@ -185,6 +266,8 @@ This directs cert-manager which CA authority to use to issue the certificate.
 
 Next, update your Ingress resource to provision a certificate and then use it:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 $ echo '
 apiVersion: networking.k8s.io/v1
@@ -209,8 +292,14 @@ spec:
           serviceName: echo
           servicePort: 80
 ' | kubectl apply -f -
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 ingress.extensions/demo-example-com configured
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Things to note here:
 
@@ -229,8 +318,14 @@ the certificate and in sometime the certificate will be available for use.
 
 You can track the progress of certificate issuance:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ kubectl describe certificate demo-example-com
+kubectl describe certificate demo-example-com
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 Name:         demo-example-com
 Namespace:    default
 Labels:       <none>
@@ -279,13 +374,21 @@ Events:
   Normal  OrderComplete       53m   cert-manager  Order "demo-example-com-3811625818" completed successfully
   Normal  CertIssued          53m   cert-manager  Certificate issued successfully
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Test HTTPS
 
 Once all is in place, you can use HTTPS:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ curl -v https://demo.example.com
+curl -v https://demo.example.com
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 * Rebuilt URL to: https://demo.example.com/
 *   Trying 35.233.170.67...
 * TCP_NODELAY set
@@ -366,6 +469,8 @@ Request Headers:
 Request Body:
   -no body in request-
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Et voilà ! You've secured your API with HTTPS
 with the {{site.kic_product_name}} and cert-manager.
