@@ -5,7 +5,7 @@
   {% assign is_plugin_hub = true %}
   {% endif %}
 
-  {% include_cached head.html is_plugin_hub=is_plugin_hub name=page.name title=page.title url=page.url %}
+  {% include_cached head.html is_plugin_hub=is_plugin_hub name=page.name path=page.path title=page.title url=page.url kong_version=page.kong_version no_version=page.no_version type=page.type kong_latest=page.kong_latest %}
 
   <body
     id="{{ page.id }}"

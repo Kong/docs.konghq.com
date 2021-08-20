@@ -26,7 +26,7 @@ If you already have a {{site.base_gateway}} instance, skip to [Step 2](#step-2-d
 If you have not installed {{site.base_gateway}}, a Docker installation
 will work for the purposes of this guide. 
 
-{% include /md/2.4.x/docker-install-steps.md heading="#### " heading1="#### " heading2="#### " heading3="#### " %}
+{% include /md/2.5.x/docker-install-steps.md heading="#### " heading1="#### " heading2="#### " heading3="#### " kong_versions=page.kong_versions %}
 
 #### Start the gateway with Kong Manager
 

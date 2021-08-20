@@ -20,6 +20,10 @@ Admins can find the Dev Portal URL in [konnect.konghq.com](https://konnect.kongh
 
 3. Under the title heading **Published Services**, see the **Portal URL** link.
 
+{:.note}
+> **Note**: Admins cannot currently set up a custom Dev Portal URL through
+{{site.konnect_short_name}}. If needed, contact [Kong Support](https://support.konghq.com/), and we will manually set up a custom Dev Portal URL for your {{site.konnect_short_name}} account.
+
 ## Register as a Developer
 
 All Developers must register through the {{site.konnect_short_name}} Dev Portal. As each Dev Portal has a unique URL, reach out to your {{site.konnect_short_name}} admin for the URL you should access.
