@@ -198,6 +198,10 @@
       url: /reference/proxy
     - text: Rate Limiting Library
       url: /reference/rate-limiting
+    - text: Health Checks and Circuit Breakers Reference
+      url: /reference/health-checks-circuit-breakers
+    - text: Clustering Reference
+      url: /reference/clustering
     - text: Admin API
       url: /admin-api
       items: 
