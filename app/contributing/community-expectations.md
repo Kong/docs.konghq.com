@@ -23,7 +23,7 @@ We are currently working on making our Docs site accessible in compliance with [
 
 For code-based contributions, check the following:
 
-* All clickable elements can be tabbed through in a predictable sequence. 
+* All clickable elements can be tabbed through in a [predictable sequence](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-focus-order.html). 
 * HTML is written:
     * without skipping header level (`h1` to `h2`, instead of `h1` to `h3`).
     * using the proper elements (`li` for lists instead of `div`).

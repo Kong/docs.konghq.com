@@ -35,6 +35,8 @@ Great! Let's first check to see if someone had the same idea as you. Go to [Issu
 
 If you find an Issue that aligns with what you want to contribute, go ahead and assign it to yourself in the right-side column and add a comment stating that you're going to be working on this task. Then, head to [Make your contribution](#make-your-contribution). 
 
+If you don't find an Issue that aligns with what you want to contribute, there's no need to open one up. Instead, go to [Make your contribution](#make-your-contribution). 
+
 ### I need ideas on what to contribute
 
 Go to [Issues](https://github.com/Kong/docs.konghq.com/issues) and read through the titles to see if something catches your eye. If you don't find anything of your interest there, explore the following:
@@ -66,4 +68,4 @@ Once you've identified what you want to work on, let's get to writing!
 
 6. Submit your PR!
 
-We encourage you to explore the [README](/Kong/docs.konghq.com) more, read through our [contributing guidelines](/contributing/), and also try out setting up your project locally (via instructions in our README). We appreciate your interest and involvement and are looking forward to seeing your future contributions!
+We encourage you to explore the [README](https://github.com/Kong/docs.konghq.com/blob/main/README.md) more, read through our [contributing guidelines](/contributing/), and also try out setting up your project locally (via instructions in our README). We appreciate your interest and involvement and are looking forward to seeing your future contributions!
