@@ -51,9 +51,89 @@ suggest `kong-mesh-system`.
 
 3. Deploy the {{site.mesh_product_name}} Helm chart:
 
+   By default the license option is disabled and so you need to enable it in order for the license to take effect.
+   This can be done in two ways:
+   
+   a. Using `values.yaml` file
+   
+      To get the default values file run the following command and write it to a `values.yaml` file
+      
+      ```sh
+      helm show values kong-mesh/kong-mesh > values.yaml
+      ```
+      This is the what the default values file looks like
+      ```sh
+      kuma:
+        nameOverride: kong-mesh
+        # The default registry and tag to use for all Kuma images
+        global:
+          image:
+            registry: "docker.io/kong"
+            tag: "1.3.3"
+    
+        controlPlane:
+          image:
+            repository: "kuma-cp"
+      #   secrets:
+      #   - Env: "KMESH_LICENSE_INLINE"
+      #     Secret: "kong-mesh-license"
+      #     Key: "license.json"
+          webhooks:
+            validator:
+              additionalRules: |
+                - apiGroups:
+                    - kuma.io
+                  apiVersions:
+                    - v1alpha1
+                  operations:
+                    - CREATE
+                    - UPDATE
+                    - DELETE
+                  resources:
+                    - opapolicies
+            ownerReference:
+              additionalRules: |
+                - apiGroups:
+                    - kuma.io
+                  apiVersions:
+                    - v1alpha1
+                  operations:
+                    - CREATE
+                  resources:
+                    - opapolicies
+        # Configuration for the kuma dataplane sidecar
+        dataPlane:
+          image:
+            repository: "kuma-dp"
+        
+          # Configuration for the kuma init phase in the sidecar
+          initImage:
+            repository: "kuma-init"
+     ```  
+      All you need to do is uncomment the following section and then run the helm upgrade command passing 
+      the values files in
+      ```sh
+      #    secrets:
+      #      - Env: "KMESH_LICENSE_INLINE"
+      #        Secret: "kong-mesh-license"
+      #        Key: "license.json"
+      ```
+      ```
+      $ helm repo update
+      $ helm upgrade -i -n kong-mesh-system kong-mesh kong-mesh/kong-mesh --values values.yaml
+      ```
+   
+   b. Overriding the values using the `--set` switch on the helm command
+   
+      You can do the same thing without downloading the values file by overriding each field on the CLI, the only 
+      downside with this is every time you run a helm upgrade you need to supply these values otherwise they will be 
+      reverted back to what the charts default values are for those fields
     ```sh
     $ helm repo update
-    $ helm upgrade -i -n kong-mesh-system kong-mesh kong-mesh/kong-mesh
+    $ helm upgrade -i -n kong-mesh-system kong-mesh kong-mesh/kong-mesh \
+       --set kuma.controlPlane.secrets[0].Env="KMESH_LICENSE_INLINE" \
+       --set kuma.controlPlane.secrets[0].Secret="kong-mesh-license" \
+       --set kuma.controlPlane.secrets[0].Key="license.json"
     ```
 
     This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
