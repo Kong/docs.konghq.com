@@ -4,7 +4,7 @@ publisher: Kong Inc.
 version: 1.3-x
 # internal 0.0.2, only former version 0.0.1.
 
-desc: Transform requests into Kafka messages in a Kafka topic
+desc: Transform requests into Kafka messages in a Kafka topic.
 description: |
    This plugin transforms requests into [Kafka](https://kafka.apache.org/) messages
    in an [Apache Kafka](https://kafka.apache.org/) topic. For more information, see
@@ -35,7 +35,7 @@ params:
   config:
     - name: bootstrap_servers
       required: true
-      value_in_examples: <BOOTSTRAP_SERVERS>
+      value_in_examples: {BOOTSTRAP_SERVERS}
       urlencode_in_examples: true
       default:
       datatype: set of record elements
@@ -43,7 +43,7 @@ params:
         Set of bootstrap brokers in a `{host: host, port: port}` list format.
     - name: topic
       required: true
-      value_in_examples: <TOPIC>
+      value_in_examples: {TOPIC}
       urlencode_in_examples: true
       default:
       datatype: string
@@ -56,7 +56,7 @@ params:
       default:
       datatype: string
       description: |
-         Authentication strategy one of: sasl
+         The authentication strategy for the plugin, the only option for the value is `sasl`.
     - name: authentication.mechanism
       required: false
       value_in_examples: PLAIN
@@ -64,7 +64,7 @@ params:
       default:
       datatype: string
       description: |
-        SASL mechanism one of: PLAIN,SCRAM-SHA-256
+        The SASL authentication mechanism, the two options for the value are: `PLAIN` and `SCRAM-SHA-256`.
     - name: authentication.user
       required: false
       value_in_examples: admin
@@ -87,7 +87,7 @@ params:
       default: false
       datatype: boolean
       description: |
-        Enable this to indicate DelegationToken authentication
+        Enable this to indicate `DelegationToken` authentication.
     - name: security.ssl
       required: false
       value_in_examples: false
@@ -102,7 +102,7 @@ params:
       default:
       datatype: string
       description: |
-        UUID of certificate entity for mTLS authentication
+        UUID of certificate entity for mTLS authentication.
     - name: timeout
       required: false
       default: "`10000`"
@@ -129,7 +129,7 @@ params:
       default: "`false`"
       datatype: boolean
       description: |
-         Include the request URI and URI arguments (i.e., query arguments) in the message.
+         Include the request URI and URI arguments (as in, query arguments) in the message.
          At least one of these must be true: `forward_method`, `forward_uri`, `forward_headers`,
          `forward_body`.
     - name: forward_headers
@@ -161,7 +161,7 @@ params:
       value_in_examples: 2000
       datatype: integer
       description: |
-         Time to wait for a Produce response in milliseconds
+         Time to wait for a Produce response in milliseconds.
     - name: producer_request_limits_messages_per_request
       required: false
       default: "`200`"
@@ -210,7 +210,7 @@ params:
 
 ---
 
-### Enabling on a serviceless route
+### Enabling on a service-less route
 
 ```bash
 $ curl -X POST http://kong:8001/routes/my-route/plugins \
@@ -237,11 +237,11 @@ $ curl -X POST http://kong:8001/routes/my-route/plugins \
 
 ## Implementation details
 
-This plugin makes use of [lua-resty-kafka](https://github.com/kong/lua-resty-kafka) client under the hood.
+This plugin makes use of the [lua-resty-kafka](https://github.com/kong/lua-resty-kafka) client under the hood.
 
 When encoding request bodies, several things happen:
 
-* For requests with content-type header of `application/x-www-form-urlencoded`, `multipart/form-data`,
+* For requests with a content-type header of `application/x-www-form-urlencoded`, `multipart/form-data`,
   or `application/json`, this plugin passes the raw request body in the `body` attribute, and tries
   to return a parsed version of those arguments in `body_args`. If this parsing fails, an error message is
   returned and the message is not sent.
@@ -252,43 +252,41 @@ When encoding request bodies, several things happen:
 
 ## TLS
 
-Enable TLS by setting `config.security.ssl` to `true`
+Enable TLS by setting `config.security.ssl` to `true`.
 
 ## mTLS
 
-Enable mTLS by setting a valid UUID of a certificate in `config.security.certificate_id`. Note that this option needs `config.security.ssl` set to true.
-[Refer this this section on how to set up Certificates](https://docs.konghq.com/enterprise/2.5.x/admin-api/#certificate-object)
+Enable mTLS by setting a valid UUID of a certificate in `config.security.certificate_id`. 
+
+Note that this option needs `config.security.ssl` set to true.
+See [Certificate Object](https://docs.konghq.com/enterprise/2.5.x/admin-api/#certificate-object)
+in the Admin API documentation for information on how to set up Certificates.
 
 ## SASL Authentication
 
-To use SASL auth set the config option `config.authentication.strategy` to `sasl`.
+To use SASL authentication, set the configuration option `config.authentication.strategy` to `sasl`.
 
 Make sure that these mechanism are enabled on the Kafka side as well.
 
-This plugin supports multiple mechanisms:
+This plugin supports multiple authentication mechanisms including the following:
 
-- PLAIN:
+- **PLAIN:** Enable this mechanism by setting `config.authentication.mechanism` to `PLAIN`.
+  You also need to provide a username and password with the config options `config.authentication.user`
+  and `config.authentication.password` respectively.
+- **SCRAM-SHA-256:** Enable this mechanism by setting `config.authentication.mechanism`
+  to `SCRAM-SHA-256`. You also need to provide a username and password with the config options
+  `config.authentication.user` and `config.authentication.password` respectively.
+  {:.note}
+  > In cryptography, the Salted Challenge Response Authentication Mechanism (SCRAM)
+    is a family of modern, password-based challenge–response authentication mechanisms
+    providing authentication of a user to a server.
+- **Delegation Tokens:** Delegation Tokens can be generated in Kafka and then used to authenticate
+  this plugin. `Delegation Tokens` leverage the `SCRAM-SHA-256` authentication mechanism. The `tokenID`
+  is provided with the `config.authentication.user` field and the `token-hmac` is provided with the
+  `config.authentication.password` field. To indicate that a token is used you have to set the
+  `config.authentication.tokenauth` setting to `true`.
 
-Enable this mechanism with set `config.authentication.mechanism` to `PLAIN`.
-
-Provide a username and password with the config options `config.authentication.user` and `config.authentication.password` respectively.
-
-- SCRAM-SHA-256:
-
-> In cryptography, the Salted Challenge Response Authentication Mechanism (SCRAM) is a family of modern, password-based challenge–response authentication mechanisms providing authentication of a user to a server.
-
-Enable this mechanism with set `config.authentication.mechanism` to `SCRAM-SHA-256`.
-
-Provide a username and password with the config options `config.authentication.user` and `config.authentication.password` respectively.
-
-
-- Delegation Tokens:
-
-Delegation Tokens can be generated in Kafka and then used to authenticate this plugin. [Read more on how to create, renew and revoke them.](https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_delegation.html#authentication-using-delegation-tokens)
-
-
-`Delegation Tokens` leverage the `SCRAM-SHA-256` authentication mechanism. The `tokenID` is provided via the `config.authentication.user` field and the `token-hmac` is provided via the `config.authentication.password` field. To indicate that a token is used you have to set the `config.authentication.tokenauth` setting to `true`.
-
+  [Read more on how to create, renew and revoke delegation tokens.](https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_delegation.html#authentication-using-delegation-tokens)
 
 ## Known issues and limitations
 
