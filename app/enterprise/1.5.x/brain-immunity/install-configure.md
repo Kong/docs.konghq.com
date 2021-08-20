@@ -5,7 +5,7 @@ title: Kong Brain and Kong Immunity Installation and Configuration
 ## Introduction
 Kong Brain (Brain) and Kong Immunity (Immunity) are installed on Kong Enterprise, either on Kubernetes or Docker, as defined below. The Collector App and Collector Plugin enable Brain and Immunity to communicate with Kong Enterprise.
 
-{% include /md/enterprise/download/immunity.md version='1.5-2.1' %}
+{% include /md/enterprise/download/immunity.md kong_version=page.kong_version version='1.5-2.1' %}
 
 ### Step 2. Confirm the Kong EE Docker Network is available
 Confirm the Kong Enterprise network is available, which is the network you set up when installing Kong Enterprise on Docker named `kong-ee-net`.

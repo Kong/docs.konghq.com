@@ -21,7 +21,7 @@ To complete this installation you will need:
 
 * Kong Enterprise 1.5.x or later is installed on Docker.
 
-* A valid [Kong Enterprise License](/enterprise/{{page.kong_version}}/deployment/access-license/) JSON file, including a license for Immunity.
+* A valid [Kong Enterprise License](/enterprise/{{include.kong_version}}/deployment/access-license/) JSON file, including a license for Immunity.
 
 ### Step 1. Pull the Kong Brain and Kong Immunity Docker Image
 
@@ -62,7 +62,7 @@ To complete this installation you will need:
 
 * Kong Enterprise 2.2.x or later is installed on Docker.
 
-* A valid [Kong Enterprise License](/enterprise/{{page.kong_version}}/deployment/access-license/) JSON file, including a license for Immunity.
+* A valid [Kong Enterprise License](/enterprise/{{include.kong_version}}/deployment/access-license/) JSON file, including a license for Immunity.
 
 ### Step 1. Pull the Immunity Docker image
 
