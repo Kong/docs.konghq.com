@@ -25,9 +25,9 @@ permissions in {{site.konnect_saas}}
 Create a new application in Okta to manage {{site.konnect_saas}} account integration.
 
 1. Sign in to your [Okta admin account](https://admin.okta.com/).
-1. From the left menu, select **Applications**, then **Create Integration**.
+1. From the left menu, select **Applications**, then **Create App Integration**.
 1. Select the application type:
-    1. Under **Sign-on method**, select **OIDC - OpenID Connect**.
+    1. Under **Sign-in method**, select **OIDC - OpenID Connect**.
     1. Under **Application Type**, select **Web Application**.
 1. Click **Next**. Configure the application:
     1. Create a unique name for your application.
@@ -56,7 +56,7 @@ application into {{site.konnect_saas}}.
     to learn more about client credentials in Okta.
 
 1. Copy the **Okta domain** from your Okta application, then paste it into
-the **Issuer URL** field in {{site.konnect_short_name}}.
+the **Okta Domain** field in {{site.konnect_short_name}}.
 1. Save your changes.
 1. Copy the generated login URL.
 
@@ -81,7 +81,7 @@ you can add it to your Okta dashboard.
     Field | Value
     ---   | ---
     Grant Type | `Implicit (Hybrid)`
-    Login Initiated by | `Either Okta or App`
+    Login initiated by | `Either Okta or App`
     Application visibility | `Display application icon to users`
     Initiate login URI | Your organization's login URL. You can find this URL in {{site.konnect_saas}} under **Settings** > **Identity Management**.
 

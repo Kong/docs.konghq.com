@@ -16,7 +16,7 @@ secure your administration environment.
 > **Note:** If Okta integration is [enabled](/konnect/org-management/okta-idp),
 {{site.konnect_short_name}} users and roles become read-only. An organization
 admin can view all registered users in {{site.konnect_short_name}}, but cannot
-edit them from the {{site.konnect_short_name}} side. To manage
+edit their roles from the {{site.konnect_short_name}} side. To manage
 automatically-created users, adjust user permissions through Okta, or
 [adjust role mapping](/konnect/org-management/okta-role-mapping).
 
@@ -30,8 +30,8 @@ automatically-created users, adjust user permissions through Okta, or
 3. Enter the user’s information, then click **Next**.
 5. Assign a role or roles for the new user by checking the box next to the role.
     * A user can have more than one role.
-    * For role descriptions, click the information (`i`) icon next to the role,
-    or see the [Role Definitions section](#role-definitions) below.
+    * For role descriptions, hover over the information (`i`) icon next to the role,
+    or see the [Role Definitions](#role-definitions) section below.
 6. Click **Invite User**.
 
     An email invitation is sent to the user.
@@ -40,8 +40,8 @@ automatically-created users, adjust user permissions through Okta, or
 1. Click on the link in the invitation email to set up your account.
 2. Create a password.
 
-    The password must be 8 characters long and contain at least two of the
-    following: a lowercase letter, an uppercase letter, or a special
+    The password must be 8 characters long and contain at least three of the
+    following: a lowercase letter, an uppercase letter, a number, or a special
     character.
 
     The first and last name, organization, and email address are filled in for

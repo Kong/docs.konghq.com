@@ -9,11 +9,11 @@ you can manage a user's {{site.konnect_short_name}} roles directly through Okta 
 After mapping is set up:
 * Okta users belonging to the mapped groups can log into {{site.konnect_short_name}}.
 * When a user logs into {{site.konnect_short_name}} with their Okta account for the first time,
-{{site.konnect_short_name}} automatically provisions an account with the relevant permission.
+{{site.konnect_short_name}} automatically provisions an account with the relevant permissions.
 * If your org already has non-admin {{site.konnect_short_name}} users before mapping, on their next
 login they will be mapped to the roles defined by their Okta group membership.
 * An organization admin can view all registered users in {{site.konnect_short_name}},
-but cannot edit them from the {{site.konnect_short_name}} side. To manage
+but cannot edit their roles from the {{site.konnect_short_name}} side. To manage
 automatically-created users, adjust user permissions through Okta, or
 adjust the role mapping.
 
