@@ -27,8 +27,8 @@
           url: /org-management/users-and-roles
         - text: Set up Okta IdP Auth
           url: /org-management/okta-idp
-        - text: Map Konnect Roles to Okta Groups
-          url: /org-management/okta-role-mapping
+#        - text: Map Konnect Roles to Okta Groups
+#          url: /org-management/okta-role-mapping
 
 - title: Release Notes
   icon: /assets/images/icons/documentation/icn-references-color.svg

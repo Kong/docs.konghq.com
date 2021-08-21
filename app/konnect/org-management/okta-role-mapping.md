@@ -3,25 +3,6 @@ title: Map Konnect Roles to Okta Groups
 no_version: true
 badge: enterprise
 ---
-By mapping Okta groups to [{{site.konnect_short_name}} roles](/konnect/org-management/users-and-roles),
-you can manage a user's {{site.konnect_short_name}} roles directly through Okta group membership.
-
-After mapping is set up:
-* Okta users belonging to the mapped groups can log into {{site.konnect_short_name}}.
-* When a user logs into {{site.konnect_short_name}} with their Okta account for the first time,
-{{site.konnect_short_name}} automatically provisions an account with the relevant permissions.
-* If your org already has non-admin {{site.konnect_short_name}} users before mapping, on their next
-login they will be mapped to the roles defined by their Okta group membership.
-* An organization admin can view all registered users in {{site.konnect_short_name}},
-but cannot edit their roles from the {{site.konnect_short_name}} side. To manage
-automatically-created users, adjust user permissions through Okta, or
-adjust the role mapping.
-
-Any changes to the mapped Okta groups on the Okta side are reflected in
-{{site.konnect_saas}}. For example:
-* Removing a user from a group in Okta also deactivates their {{site.konnect_short_name}} account
-* Moving a user from one group to another changes their permissions in Konnect
-to align with the new group-to-role mapping.
 
 ## Prerequisites
 * [Organization Admin](/konnect/reference/org-management/#role-definitions)
@@ -40,15 +21,16 @@ in the Okta application
 Map Okta groups directly to {{site.konnect_short_name}} roles.
 
 1. In [{{site.konnect_saas}}](https://konnect.konghq.com), open
-![settings icon](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
+![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
  **Settings** from the left menu, then **Identity Management**.
 1. Scroll down to **Role Mapping**.
 1. Enter your Okta groups in the relevant fields, then save.
 
     For example, if you have a `service_admin` group in Okta, you might map it
-    to the `Service Admin` role in {{site.konnect_short_name}}. You can hover over the info icon
-    beside each field to learn more about the role, or see
-    [Users and Roles](/konnect/org-management/users-and-roles) for more information.
+    to the `Service Admin` role in {{site.konnect_short_name}}. You can hover
+    over the info (`i`) icon beside each field to learn more about the role, or
+    see [Users and Roles](/konnect/org-management/users-and-roles) for more
+    information.
 
     You can now manage your org's user permissions entirely from the Okta
     application.
@@ -56,7 +38,7 @@ Map Okta groups directly to {{site.konnect_short_name}} roles.
 ## Test role mapping and user creation
 1. Go to your {{site.konnect_short_name}} organization's login URI.
 
-    You can always find it under ![settings icon](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
+    You can always find it under ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
      **Settings > Identity Management**, then copy **Organization Login URI** from this page.
 
 1. Using an account that belongs to one of the groups you just mapped

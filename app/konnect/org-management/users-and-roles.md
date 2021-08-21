@@ -8,7 +8,7 @@ no_version: true
 Many organizations have strict security requirements. For example, organizations
 need the ability to segregate the duties of an administrator to ensure that a
 mistake or malicious act by one administrator doesn’t cause an outage.
-{{site.konnect_product_name}} provides the ability to manage authorization
+{{site.konnect_short_name}} provides the ability to manage authorization
 through inviting users and granting them defined or custom roles, helping you
 secure your administration environment.
 
@@ -24,7 +24,7 @@ automatically-created users, adjust user permissions through Okta, or
 ## Creating a new user
 
 ### Invite a new user
-1. In {{site.konnect_saas}}, open the ![org icon](/assets/images/icons/konnect/konnect-organization.svg){:.inline .no-image-expand}
+1. In {{site.konnect_saas}}, open the ![](/assets/images/icons/konnect/konnect-organization.svg){:.inline .no-image-expand}
  **Organization > Users** page.
 2. Click **Invite New User**.
 3. Enter the user’s information, then click **Next**.
@@ -53,7 +53,7 @@ assigned to this account.
 ## Manage your organization
 
 ### View and manage users
-1. In {{site.konnect_saas}}, open the ![org icon](/assets/images/icons/konnect/konnect-organization.svg){:.inline .no-image-expand}
+1. In {{site.konnect_saas}}, open the ![](/assets/images/icons/konnect/konnect-organization.svg){:.inline .no-image-expand}
  **Organization > Users** page.
 2. From the Users page, you can:
    * View usernames, email addresses, and assigned role(s).
@@ -65,7 +65,7 @@ assigned to this account.
    selected user.
 
 ### View and manage roles
-1. In {{site.konnect_saas}}, open the ![org icon](/assets/images/icons/konnect/konnect-organization.svg){:.inline .no-image-expand}
+1. In {{site.konnect_saas}}, open the ![](/assets/images/icons/konnect/konnect-organization.svg){:.inline .no-image-expand}
  **Organization > Roles** page.
 2. From the Roles page, you can:
    * View role titles and a description of each role.
