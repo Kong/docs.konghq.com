@@ -94,7 +94,7 @@ params:
       default: false
       datatype: boolean
       description: |
-        Enables TLS
+        Enables TLS.
     - name: security.certificate_id
       required: false
       urlencode_in_examples: true
@@ -292,7 +292,7 @@ This plugin supports multiple authentication mechanisms including the following:
 
 Known limitations:
 
-1. There is no support for message compression.
+1. Message compression is not supported.
 2. The message format is not customizable.
 
 ## Quickstart
