@@ -14,10 +14,19 @@
     - text: Variables
       url: /variables
 
-- title: Plugin docs
+- title: Community
   icon: /assets/images/icons/documentation/icn-references-color.svg
-  url: /plugin-docs
+  url: /community
+  items:
+    - text: Community Expectations
+      url: /community-expectations
+    - text: Hackathons
+      url: /hackathons
 
-- title: Terms
-  icon: /assets/images/icons/documentation/icn-references-color.svg
-  url: /terms
+# - title: Plugin docs
+#   icon: /assets/images/icons/documentation/icn-references-color.svg
+#   url: /plugin-docs
+
+# - title: Terms
+#   icon: /assets/images/icons/documentation/icn-references-color.svg
+#   url: /terms
