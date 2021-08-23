@@ -237,7 +237,7 @@ $ curl -X POST http://kong:8001/routes/my-route/plugins \
 
 ## Implementation details
 
-This plugin makes use of [lua-resty-kafka](https://github.com/kong/lua-resty-kafka) client under the hood.
+This plugin makes use of [lua-resty-kafka](https://github.com/kong/lua-resty-kafka) client.
 
 When encoding request bodies, several things happen:
 
