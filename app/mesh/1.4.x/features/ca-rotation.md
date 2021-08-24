@@ -84,6 +84,7 @@ mtls:
   - name: ca-1
     type: builtin
 ```
+{% endnavtab %}
 {% endnavtabs %}
 
 The following steps show how to rotate certificates to a new `provided` backend named `ca-2`.
