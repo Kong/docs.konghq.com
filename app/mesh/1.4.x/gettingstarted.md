@@ -39,6 +39,7 @@ After you install, follow the Kuma getting started guide to get
   * [Support for Open Policy Agent](/mesh/{{page.kong_version}}/features/opa)
   * [Multi-zone authentication](/mesh/{{page.kong_version}}/features/kds-auth)
   * [Support for FIPS](/mesh/{{page.kong_version}}/features/fips-support)
+  * [Certificate Authority rotation](/mesh/{{page.kong_version}}/features/ca-rotation)
 
 If you are a {{site.mesh_product_name}} customer, you can also open a support
 ticket with any question or feedback you may have.
