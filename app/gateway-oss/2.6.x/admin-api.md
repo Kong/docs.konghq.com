@@ -14,7 +14,7 @@ service_body: |
     `name`<br>*optional* | The Service name.
     `retries`<br>*optional* | The number of retries to execute upon failure to proxy. Default: `5`.
     `protocol` |  The protocol used to communicate with the upstream.  Accepted values are: `"grpc"`, `"grpcs"`, `"http"`, `"https"`, `"tcp"`, `"tls"`, `"udp"`.  Default: `"http"`.
-    `host` | The host of the upstream server.
+    `host` | The host of the upstream server. Note that the host value is case sensitive.
     `port` | The upstream server port. Default: `80`.
     `path`<br>*optional* | The path to be used in requests to the upstream server.
     `connect_timeout`<br>*optional* |  The timeout in milliseconds for establishing a connection to the upstream server.  Default: `60000`.
@@ -90,10 +90,10 @@ service_data: |
 route_body: |
     Attributes | Description
     ---:| ---
-    `name`<br>*optional* | The name of the Route.
-    `protocols` |  A list of the protocols this Route should allow. When set to `["https"]`, HTTP requests are answered with a request to upgrade to HTTPS.  Default: `["http", "https"]`.
+    `name`<br>*optional* | The name of the Route. Name values must be unique.
+    `protocols` |  An array of the protocols this Route should allow. See the [Route Object](#route-object) section for a list of accepted protocols. When set to only `"https"`, HTTP requests are answered with an upgrade error. When set to only `"http"`, HTTPS requests are answered with an error.  Default: `["http", "https"]`.
     `methods`<br>*semi-optional* |  A list of HTTP methods that match this Route. 
-    `hosts`<br>*semi-optional* |  A list of domain names that match this Route.  With form-encoded, the notation is `hosts[]=example.com&hosts[]=foo.test`. With JSON, use an Array.
+    `hosts`<br>*semi-optional* |  A list of domain names that match this Route. Note that the hosts value is case sensitive.  With form-encoded, the notation is `hosts[]=example.com&hosts[]=foo.test`. With JSON, use an Array.
     `paths`<br>*semi-optional* |  A list of paths that match this Route.  With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an Array.
     `headers`<br>*semi-optional* |  One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this attribute: hosts should be specified using the `hosts` attribute. 
     `https_redirect_status_code` |  The status code Kong responds with when all properties of a Route match except the protocol i.e. if the protocol of the request is `HTTP` instead of `HTTPS`. `Location` header is injected by Kong if the field is set to 301, 302, 307 or 308.  Accepted values are: `426`, `301`, `302`, `307`, `308`.  Default: `426`.
@@ -119,7 +119,7 @@ route_json: |
         "methods": ["GET", "POST"],
         "hosts": ["example.com", "foo.test"],
         "paths": ["/foo", "/bar"],
-        "headers": {"x-another-header":["bla"], "x-my-header":["foo", "bar"]},
+        "headers": {"x-my-header":["foo", "bar"], "x-another-header":["bla"]},
         "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
@@ -141,7 +141,7 @@ route_data: |
         "methods": ["GET", "POST"],
         "hosts": ["example.com", "foo.test"],
         "paths": ["/foo", "/bar"],
-        "headers": {"x-another-header":["bla"], "x-my-header":["foo", "bar"]},
+        "headers": {"x-my-header":["foo", "bar"], "x-another-header":["bla"]},
         "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
@@ -165,8 +165,8 @@ route_data: |
         "request_buffering": true,
         "response_buffering": true,
         "snis": ["foo.test", "example.com"],
-        "sources": [{"port":1234, "ip":"10.1.0.0/16"}, {"ip":"10.2.2.2"}, {"port":9123}],
-        "destinations": [{"port":1234, "ip":"10.1.0.0/16"}, {"ip":"10.2.2.2"}, {"port":9123}],
+        "sources": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
+        "destinations": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
         "tags": ["admin", "high-priority", "critical"],
         "service": {"id":"ba641b07-e74a-430a-ab46-94b61e5ea66b"}
     }],
@@ -222,7 +222,7 @@ plugin_json: |
         "route": null,
         "service": null,
         "consumer": null,
-        "config": {"minute":20, "hour":500},
+        "config": {"hour":500, "minute":20},
         "protocols": ["http", "https"],
         "enabled": true,
         "tags": ["user-level", "low-priority"]
@@ -236,7 +236,7 @@ plugin_data: |
         "route": null,
         "service": null,
         "consumer": null,
-        "config": {"minute":20, "hour":500},
+        "config": {"hour":500, "minute":20},
         "protocols": ["http", "https"],
         "enabled": true,
         "tags": ["user-level", "low-priority"]
@@ -247,7 +247,7 @@ plugin_data: |
         "route": null,
         "service": null,
         "consumer": null,
-        "config": {"minute":20, "hour":500},
+        "config": {"hour":500, "minute":20},
         "protocols": ["tcp", "tls"],
         "enabled": true,
         "tags": ["admin", "high-priority", "critical"]
@@ -367,27 +367,27 @@ upstream_body: |
     `hash_on_cookie`<br>*semi-optional* | The cookie name to take the value from as hash input. Only required when `hash_on` or `hash_fallback` is set to `cookie`. If the specified cookie is not in the request, Kong will generate a value and set the cookie in the response.
     `hash_on_cookie_path`<br>*semi-optional* | The cookie path to set in the response headers. Only required when `hash_on` or `hash_fallback` is set to `cookie`. Default: `"/"`.
     `slots`<br>*optional* | The number of slots in the load balancer algorithm. If `algorithm` is set to `round-robin`, this setting determines the maximum number of slots. If `algorithm` is set to `consistent-hashing`, this setting determines the actual number of slots in the algorithm. Accepts an integer in the range `10`-`65536`. Default: `10000`.
-    `healthchecks.active.`<wbr>`https_sni`<br>*optional* | The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host's certificate can be verified with the proper SNI.
-    `healthchecks.active.`<wbr>`concurrency`<br>*optional* | Number of targets to check concurrently in active health checks. Default: `10`.
-    `healthchecks.active.type`<br>*optional* | Whether to perform active health checks using HTTP or HTTPS, or just attempt a TCP connection. Accepted values are: `"tcp"`, `"http"`, `"https"`, `"grpc"`, `"grpcs"`.  Default: `"http"`.
-    `healthchecks.active.`<wbr>`healthy.successes`<br>*optional* | Number of successes in active probes (as defined by `healthchecks.active.healthy.http_statuses`) to consider a target healthy. Default: `0`.
-    `healthchecks.active.`<wbr>`healthy.http_statuses`<br>*optional* | An array of HTTP statuses to consider a success, indicating healthiness, when returned by a probe in active health checks. Default: `[200, 302]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=302`. With JSON, use an Array.
-    `healthchecks.active.`<wbr>`healthy.interval`<br>*optional* | Interval between active health checks for healthy targets (in seconds). A value of zero indicates that active probes for healthy targets should not be performed. Default: `0`.
-    `healthchecks.active.`<wbr>`unhealthy.interval`<br>*optional* | Interval between active health checks for unhealthy targets (in seconds). A value of zero indicates that active probes for unhealthy targets should not be performed. Default: `0`.
-    `healthchecks.active.`<wbr>`unhealthy.http_statuses`<br>*optional* | An array of HTTP statuses to consider a failure, indicating unhealthiness, when returned by a probe in active health checks. Default: `[429, 404, 500, 501, 502, 503,`<wbr>` 504, 505]`. With form-encoded, the notation is `http_statuses[]=429&http_statuses[]=404`. With JSON, use an Array.
-    `healthchecks.active.`<wbr>`unhealthy.tcp_failures`<br>*optional* | Number of TCP failures in active probes to consider a target unhealthy. Default: `0`.
-    `healthchecks.active.`<wbr>`unhealthy.timeouts`<br>*optional* | Number of timeouts in active probes to consider a target unhealthy. Default: `0`.
-    `healthchecks.active.`<wbr>`unhealthy.http_failures`<br>*optional* | Number of HTTP failures in active probes (as defined by `healthchecks.active.unhealthy.http_statuses`) to consider a target unhealthy. Default: `0`.
-    `healthchecks.active.`<wbr>`https_verify_certificate` | Whether to check the validity of the SSL certificate of the remote host when performing active health checks using HTTPS. Default: `true`.
-    `healthchecks.active.`<wbr>`timeout`<br>*optional* | Socket timeout for active health checks (in seconds). Default: `1`.
-    `healthchecks.active.`<wbr>`http_path`<br>*optional* | Path to use in GET HTTP request to run as a probe on active health checks. Default: `"/"`.
-    `healthchecks.passive.`<wbr>`unhealthy.timeouts`<br>*optional* | Number of timeouts in proxied traffic to consider a target unhealthy, as observed by passive health checks. Default: `0`.
+    `healthchecks.passive.`<wbr>`type`<br>*optional* | Whether to perform passive health checks interpreting HTTP/HTTPS statuses, or just check for TCP connection success. In passive checks, `http` and `https` options are equivalent. Accepted values are: `"tcp"`, `"http"`, `"https"`, `"grpc"`, `"grpcs"`.  Default: `"http"`.
+    `healthchecks.passive.`<wbr>`healthy.successes`<br>*optional* | Number of successes in proxied traffic (as defined by `healthchecks.passive.healthy.http_statuses`) to consider a target healthy, as observed by passive health checks. Default: `0`.
+    `healthchecks.passive.`<wbr>`healthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent healthiness when produced by proxied traffic, as observed by passive health checks. Default: `[200, 201, 202, 203, 204, 205,`<wbr>` 206, 207, 208, 226, 300, 301,`<wbr>` 302, 303, 304, 305, 306, 307,`<wbr>` 308]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=201`. With JSON, use an Array.
     `healthchecks.passive.`<wbr>`unhealthy.tcp_failures`<br>*optional* | Number of TCP failures in proxied traffic to consider a target unhealthy, as observed by passive health checks. Default: `0`.
     `healthchecks.passive.`<wbr>`unhealthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent unhealthiness when produced by proxied traffic, as observed by passive health checks. Default: `[429, 500, 503]`. With form-encoded, the notation is `http_statuses[]=429&http_statuses[]=500`. With JSON, use an Array.
     `healthchecks.passive.`<wbr>`unhealthy.http_failures`<br>*optional* | Number of HTTP failures in proxied traffic (as defined by `healthchecks.passive.unhealthy.http_statuses`) to consider a target unhealthy, as observed by passive health checks. Default: `0`.
-    `healthchecks.passive.`<wbr>`type`<br>*optional* | Whether to perform passive health checks interpreting HTTP/HTTPS statuses, or just check for TCP connection success. In passive checks, `http` and `https` options are equivalent. Accepted values are: `"tcp"`, `"http"`, `"https"`, `"grpc"`, `"grpcs"`.  Default: `"http"`.
-    `healthchecks.passive.`<wbr>`healthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent healthiness when produced by proxied traffic, as observed by passive health checks. Default: `[200, 201, 202, 203, 204, 205,`<wbr>` 206, 207, 208, 226, 300, 301,`<wbr>` 302, 303, 304, 305, 306, 307,`<wbr>` 308]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=201`. With JSON, use an Array.
-    `healthchecks.passive.`<wbr>`healthy.successes`<br>*optional* | Number of successes in proxied traffic (as defined by `healthchecks.passive.healthy.http_statuses`) to consider a target healthy, as observed by passive health checks. Default: `0`.
+    `healthchecks.passive.`<wbr>`unhealthy.timeouts`<br>*optional* | Number of timeouts in proxied traffic to consider a target unhealthy, as observed by passive health checks. Default: `0`.
+    `healthchecks.active.`<wbr>`concurrency`<br>*optional* | Number of targets to check concurrently in active health checks. Default: `10`.
+    `healthchecks.active.`<wbr>`timeout`<br>*optional* | Socket timeout for active health checks (in seconds). Default: `1`.
+    `healthchecks.active.`<wbr>`http_path`<br>*optional* | Path to use in GET HTTP request to run as a probe on active health checks. Default: `"/"`.
+    `healthchecks.active.`<wbr>`https_sni`<br>*optional* | The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host's certificate can be verified with the proper SNI.
+    `healthchecks.active.type`<br>*optional* | Whether to perform active health checks using HTTP or HTTPS, or just attempt a TCP connection. Accepted values are: `"tcp"`, `"http"`, `"https"`, `"grpc"`, `"grpcs"`.  Default: `"http"`.
+    `healthchecks.active.`<wbr>`healthy.http_statuses`<br>*optional* | An array of HTTP statuses to consider a success, indicating healthiness, when returned by a probe in active health checks. Default: `[200, 302]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=302`. With JSON, use an Array.
+    `healthchecks.active.`<wbr>`healthy.successes`<br>*optional* | Number of successes in active probes (as defined by `healthchecks.active.healthy.http_statuses`) to consider a target healthy. Default: `0`.
+    `healthchecks.active.`<wbr>`healthy.interval`<br>*optional* | Interval between active health checks for healthy targets (in seconds). A value of zero indicates that active probes for healthy targets should not be performed. Default: `0`.
+    `healthchecks.active.`<wbr>`https_verify_certificate` | Whether to check the validity of the SSL certificate of the remote host when performing active health checks using HTTPS. Default: `true`.
+    `healthchecks.active.`<wbr>`unhealthy.tcp_failures`<br>*optional* | Number of TCP failures in active probes to consider a target unhealthy. Default: `0`.
+    `healthchecks.active.`<wbr>`unhealthy.http_statuses`<br>*optional* | An array of HTTP statuses to consider a failure, indicating unhealthiness, when returned by a probe in active health checks. Default: `[429, 404, 500, 501, 502, 503,`<wbr>` 504, 505]`. With form-encoded, the notation is `http_statuses[]=429&http_statuses[]=404`. With JSON, use an Array.
+    `healthchecks.active.`<wbr>`unhealthy.http_failures`<br>*optional* | Number of HTTP failures in active probes (as defined by `healthchecks.active.unhealthy.http_statuses`) to consider a target unhealthy. Default: `0`.
+    `healthchecks.active.`<wbr>`unhealthy.timeouts`<br>*optional* | Number of timeouts in active probes to consider a target unhealthy. Default: `0`.
+    `healthchecks.active.`<wbr>`unhealthy.interval`<br>*optional* | Interval between active health checks for unhealthy targets (in seconds). A value of zero indicates that active probes for unhealthy targets should not be performed. Default: `0`.
     `healthchecks.threshold`<br>*optional* | The minimum percentage of the upstream's targets' weight that must be available for the whole upstream to be considered healthy. Default: `0`.
     `tags`<br>*optional* |  An optional set of strings associated with the Upstream for grouping and filtering. 
     `host_header`<br>*optional* | The hostname to be used as `Host` header when proxying requests through Kong.
@@ -404,37 +404,37 @@ upstream_json: |
         "hash_on_cookie_path": "/",
         "slots": 10000,
         "healthchecks": {
-            "active": {
-                "https_sni": "example.com",
-                "concurrency": 10,
+            "passive": {
                 "type": "http",
                 "healthy": {
                     "successes": 0,
-                    "http_statuses": [200, 302],
-                    "interval": 0
+                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]
                 },
                 "unhealthy": {
-                    "interval": 0,
-                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505],
-                    "tcp_failures": 0,
-                    "timeouts": 0,
-                    "http_failures": 0
-                },
-                "https_verify_certificate": true,
-                "timeout": 1,
-                "http_path": "/"
-            },
-            "passive": {
-                "unhealthy": {
-                    "timeouts": 0,
                     "tcp_failures": 0,
                     "http_statuses": [429, 500, 503],
-                    "http_failures": 0
-                },
+                    "http_failures": 0,
+                    "timeouts": 0
+                }
+            },
+            "active": {
+                "concurrency": 10,
+                "timeout": 1,
+                "http_path": "/",
+                "https_sni": "example.com",
                 "type": "http",
                 "healthy": {
-                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308],
-                    "successes": 0
+                    "http_statuses": [200, 302],
+                    "successes": 0,
+                    "interval": 0
+                },
+                "https_verify_certificate": true,
+                "unhealthy": {
+                    "tcp_failures": 0,
+                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505],
+                    "http_failures": 0,
+                    "timeouts": 0,
+                    "interval": 0
                 }
             },
             "threshold": 0
@@ -455,37 +455,37 @@ upstream_data: |
         "hash_on_cookie_path": "/",
         "slots": 10000,
         "healthchecks": {
-            "active": {
-                "https_sni": "example.com",
-                "concurrency": 10,
+            "passive": {
                 "type": "http",
                 "healthy": {
                     "successes": 0,
-                    "http_statuses": [200, 302],
-                    "interval": 0
+                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]
                 },
                 "unhealthy": {
-                    "interval": 0,
-                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505],
-                    "tcp_failures": 0,
-                    "timeouts": 0,
-                    "http_failures": 0
-                },
-                "https_verify_certificate": true,
-                "timeout": 1,
-                "http_path": "/"
-            },
-            "passive": {
-                "unhealthy": {
-                    "timeouts": 0,
                     "tcp_failures": 0,
                     "http_statuses": [429, 500, 503],
-                    "http_failures": 0
-                },
+                    "http_failures": 0,
+                    "timeouts": 0
+                }
+            },
+            "active": {
+                "concurrency": 10,
+                "timeout": 1,
+                "http_path": "/",
+                "https_sni": "example.com",
                 "type": "http",
                 "healthy": {
-                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308],
-                    "successes": 0
+                    "http_statuses": [200, 302],
+                    "successes": 0,
+                    "interval": 0
+                },
+                "https_verify_certificate": true,
+                "unhealthy": {
+                    "tcp_failures": 0,
+                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505],
+                    "http_failures": 0,
+                    "timeouts": 0,
+                    "interval": 0
                 }
             },
             "threshold": 0
@@ -503,37 +503,37 @@ upstream_data: |
         "hash_on_cookie_path": "/",
         "slots": 10000,
         "healthchecks": {
-            "active": {
-                "https_sni": "example.com",
-                "concurrency": 10,
+            "passive": {
                 "type": "http",
                 "healthy": {
                     "successes": 0,
-                    "http_statuses": [200, 302],
-                    "interval": 0
+                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]
                 },
                 "unhealthy": {
-                    "interval": 0,
-                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505],
-                    "tcp_failures": 0,
-                    "timeouts": 0,
-                    "http_failures": 0
-                },
-                "https_verify_certificate": true,
-                "timeout": 1,
-                "http_path": "/"
-            },
-            "passive": {
-                "unhealthy": {
-                    "timeouts": 0,
                     "tcp_failures": 0,
                     "http_statuses": [429, 500, 503],
-                    "http_failures": 0
-                },
+                    "http_failures": 0,
+                    "timeouts": 0
+                }
+            },
+            "active": {
+                "concurrency": 10,
+                "timeout": 1,
+                "http_path": "/",
+                "https_sni": "example.com",
                 "type": "http",
                 "healthy": {
-                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308],
-                    "successes": 0
+                    "http_statuses": [200, 302],
+                    "successes": 0,
+                    "interval": 0
+                },
+                "https_verify_certificate": true,
+                "unhealthy": {
+                    "tcp_failures": 0,
+                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505],
+                    "http_failures": 0,
+                    "timeouts": 0,
+                    "interval": 0
                 }
             },
             "threshold": 0
@@ -4126,9 +4126,9 @@ HTTP 200 OK
 
 ---
 
-[clustering]: /gateway-oss/{{page.kong_version}}/clustering
-[cli]: /gateway-oss/{{page.kong_version}}/cli
-[active]: /gateway-oss/{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
-[healthchecks]: /gateway-oss/{{page.kong_version}}/health-checks-circuit-breakers
-[secure-admin-api]: /gateway-oss/{{page.kong_version}}/secure-admin-api
-[proxy-reference]: /gateway-oss/{{page.kong_version}}/proxy
+[clustering]: /{{page.kong_version}}/clustering
+[cli]: /{{page.kong_version}}/cli
+[active]: /{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
+[healthchecks]: /{{page.kong_version}}/health-checks-circuit-breakers
+[secure-admin-api]: /{{page.kong_version}}/secure-admin-api
+[proxy-reference]: /{{page.kong_version}}/proxy
