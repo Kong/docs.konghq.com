@@ -52,13 +52,9 @@ suggest `kong-mesh-system`.
 3. Deploy the {{site.mesh_product_name}} Helm chart:
 
    By default the license option is disabled and so you need to enable it in order for the license to take effect.
-   This can be done in two ways:
-   
-   a. Overriding the values using the `--set` switch on the helm command
-      
-      The easiest option is to override each field on the CLI, the only 
-      downside with this is every time you run a helm upgrade you need to supply these values otherwise they will be 
-      reverted back to what the charts default values are for those fields
+   The easiest option is to override each field on the CLI, the only 
+   downside with this is every time you run a helm upgrade you need to supply these values otherwise they will be 
+   reverted back to what the charts default values are for those fields, i.e. disabled
    
       ```sh
       $ helm repo update
@@ -68,75 +64,6 @@ suggest `kong-mesh-system`.
         --set kuma.controlPlane.secrets[0].Key="license.json"
       ```
    
-   b. Using `values.yaml` file
-   
-      To get the default values file run the following command and write it to a `values.yaml` file
-      
-      ```sh
-      helm show values kong-mesh/kong-mesh > values.yaml
-      ```
-      This is the what the default values file looks like
-      ```sh
-      kuma:
-        nameOverride: kong-mesh
-        # The default registry and tag to use for all Kuma images
-        global:
-          image:
-            registry: "docker.io/kong"
-            tag: "1.3.3"
-    
-        controlPlane:
-          image:
-            repository: "kuma-cp"
-      #   secrets:
-      #   - Env: "KMESH_LICENSE_INLINE"
-      #     Secret: "kong-mesh-license"
-      #     Key: "license.json"
-          webhooks:
-            validator:
-              additionalRules: |
-                - apiGroups:
-                    - kuma.io
-                  apiVersions:
-                    - v1alpha1
-                  operations:
-                    - CREATE
-                    - UPDATE
-                    - DELETE
-                  resources:
-                    - opapolicies
-            ownerReference:
-              additionalRules: |
-                - apiGroups:
-                    - kuma.io
-                  apiVersions:
-                    - v1alpha1
-                  operations:
-                    - CREATE
-                  resources:
-                    - opapolicies
-        # Configuration for the kuma dataplane sidecar
-        dataPlane:
-          image:
-            repository: "kuma-dp"
-        
-          # Configuration for the kuma init phase in the sidecar
-          initImage:
-            repository: "kuma-init"
-     ```  
-      All you need to do is uncomment the following section and then run the helm upgrade command passing 
-      the values files in
-      ```sh
-      #    secrets:
-      #      - Env: "KMESH_LICENSE_INLINE"
-      #        Secret: "kong-mesh-license"
-      #        Key: "license.json"
-      ```
-      ```
-      $ helm repo update
-      $ helm upgrade -i -n kong-mesh-system kong-mesh kong-mesh/kong-mesh --values values.yaml
-      ```
-
     This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
     deployment, but there are more advanced [deployment modes](https://kuma.io/docs/latest/documentation/deployments/)
     like _multi-zone_.
