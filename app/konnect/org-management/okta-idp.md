@@ -73,7 +73,7 @@ claims to extract that information.
 
 1. Go to the Claims tab.
 
-    You will need to configure two claims: `groups` and `user.login`.
+    You will need to configure two claims: `groups` and `login_email`.
 
 1. In the **Claim type** menu, select **ID**, then click **Add Claim**.
 
@@ -126,7 +126,7 @@ for troubleshooting:
 
 3. Set the scope to `openid`, then click **Preview Token**.
 
-4. In the generated preview, check to make sure that `groups` and `user_email`
+4. In the generated preview, check to make sure that `groups` and `login_email`
 values are present.
 
 5. From the list of groups in the preview, identify groups that you want to use in
