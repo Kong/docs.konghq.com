@@ -4,11 +4,12 @@ title: Certificate Authority rotation
 
 ## Overview
 
-Kong Mesh lets us secure communication between applications by using mTLS.
-In some situations, like migration from builtin CA to Vault CA, we may want to switch from one mTLS backend to another.
-Kong Mesh lets us smoothly switch the backend without dropping any requests.
+{{site.mesh_product_name}} lets you provide secure communication between applications with mTLS. You can change the mTLS backend with 
+Certificate Authority rotation, to support a scenario such as migrating from the builtin CA to a Vault CA.
 
-In Kong Mesh, we can define many backends in `mtls` section in the Mesh.
+You can define many backends in the `mtls` section of the Mesh configuration. The data plane proxy is configured to support 
+certificates signed by the CA of each defined backend. However, the proxy uses only one certificate, specified by the `enabledBackend` 
+tag. For example:
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -52,12 +53,9 @@ mtls:
 {% endnavtab %}
 {% endnavtabs %}
 
-Whenever we define many backends, the data plane proxy is configured to support certificates signed by CA of every defined backend.
-However, data plane proxy always has at most one identity certificate signed by CA specified in `enabledBackend`.
-
 ## Usage
 
-Let's assume we already enabled mTLS with `builtin` backend named `ca-1`
+Start with mTLS enabled and a `builtin` backend named `ca-1`:
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -87,13 +85,13 @@ mtls:
 {% endnavtab %}
 {% endnavtabs %}
 
-The following steps show how to rotate certificates to a new `provided` backend named `ca-2`.
-Every step may take from a couple of seconds up to a couple of minutes depending on the number of data plane proxies in the mesh.
-Kong Mesh provides validators so we won't execute the next step too soon.
+Then, follow the steps to rotate certificates to a new `provided` backend named `ca-2`.
+Each step can take some time, but {{site.mesh_product_name}} provides validators to prevent you from 
+continuing too soon.
 
 {% navtabs %}
 {% navtab Kubernetes %}
-1.  Define a new backend in the list of backends.
+1.  Add a new backend to the list of backends:
 
     ```yaml
     apiVersion: kuma.io/v1alpha1
@@ -115,10 +113,10 @@ Kong Mesh provides validators so we won't execute the next step too soon.
               secret: ca-2-key
     ```
 
-    After a short while, all data plane proxies should support both CA from `ca-1` and `ca-2`.
-    At this point, all data plane proxies still have identity certificates signed by `ca-1`.
+    After the configuration finishes, all data plane proxies support CAs from `ca-1` and `ca-2`.
+    But the data plane proxy certificates are still signed by the CA from `ca-1`.
 
-2.  Change enabled backend to the new backend
+2.  Change `enabledBackend` to the new backend:
 
     ```yaml
     apiVersion: kuma.io/v1alpha1
@@ -140,10 +138,10 @@ Kong Mesh provides validators so we won't execute the next step too soon.
               secret: ca-2-key
     ```
 
-    After a short while, all data plane proxies should receive identity certificates signed by `ca-2`.
-    At this point, all data plane proxies still support CA for both `ca-1` and `ca-2`.
+    After the configuration finishes, the data plane proxy certicates are signed by the CA from `ca-2`.
+    The data plane proxies still support CAs from `ca-1` and `ca-2`.
 
-3.  Remove the old backend
+3.  Remove the old backend:
 
     ```yaml
     apiVersion: kuma.io/v1alpha1
@@ -163,10 +161,12 @@ Kong Mesh provides validators so we won't execute the next step too soon.
               secret: ca-2-key
     ```
 
-    After a short while, all data plane proxies should only support certificates signed by CA from `ca-2`.
+    After the configuration finishes, the data plane proxy certicates should still be signed by the CA from `ca-2`.
+    But the data plane proxies no longer support the CA from `ca-1`.
+
 {% endnavtab %}
 {% navtab Universal %}
-1.  Define a new backend in the list of backends.
+1.  Add a new backend to the list of backends:
 
     ```yaml
     type: Mesh
@@ -185,10 +185,10 @@ Kong Mesh provides validators so we won't execute the next step too soon.
             secret: ca-2-key
     ```
 
-    After a short while, all data plane proxies should support both CA from `ca-1` and `ca-2`.
-    At this point, all data plane proxies still have identity certificates signed by `ca-1`.
+    After the configuration finishes, all data plane proxies support CAs from `ca-1` and `ca-2`.
+    But the data plane proxy certificates are still signed by the CA from `ca-1`.
 
-2.  Change enabled backend to the new backend
+2.  Change `enabledBackend` to the new backend:
 
     ```yaml
     type: Mesh
@@ -207,10 +207,10 @@ Kong Mesh provides validators so we won't execute the next step too soon.
             secret: ca-2-key
     ```
 
-    After a short while, all data plane proxies should receive identity certificates signed by `ca-2`.
-    At this point, all data plane proxies still support CA for both `ca-1` and `ca-2`.
+    After the configuration finishes, the data plane proxy certicates are signed by the CA from `ca-2`.
+    The data plane proxies still support CAs from `ca-1` and `ca-2`.
 
-3.  Remove the old backend
+3.  Remove the old backend:
 
     ```yaml
     type: Mesh
@@ -227,6 +227,7 @@ Kong Mesh provides validators so we won't execute the next step too soon.
             secret: ca-2-key
     ```
 
-    After a short while, all data plane proxies should only support certificates signed by CA from `ca-2`.
+    After the configuration finishes, the data plane proxy certicates should still be signed by the CA from `ca-2`.
+    But the data plane proxies no longer support the CA from `ca-1`.
 {% endnavtab %}
 {% endnavtabs %}
