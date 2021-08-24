@@ -228,4 +228,5 @@ Kong Mesh provides validators so we won't execute the next step too soon.
     ```
 
     After a short while, all data plane proxies should only support certificates signed by CA from `ca-2`.
+{% endnavtab %}
 {% endnavtabs %}
