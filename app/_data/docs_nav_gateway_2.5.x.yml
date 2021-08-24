@@ -38,7 +38,7 @@
     - text: Control Kong Gateway through systemd
       url: /plan-and-deploy/systemd
     - text: Performance Testing Framework
-      url: performance-testing-framework
+      url: /plan-and-deploy/performance-testing-framework
 
 - title: Configure
   icon: /assets/images/icons/konnect/konnect-settings.svg
@@ -160,7 +160,7 @@
   icon: /assets/images/icons/documentation/icn-references-color.svg
   items:
     - text: DB-less and Declarative Configuration
-      url: db-less-and-declarative-config
+      url: /reference/db-less-and-declarative-config
     - text: Load Balancing Reference
       url: /reference/loadbalancing
     - text: Proxy Reference
@@ -176,49 +176,49 @@
       url: /pdk-reference
       items:
         - text: kong.client
-          url: /pdk/kong.client
+          url: /pdk/pdk-reference/kong.client
 
         - text: kong.client.tls
-          url: /pdk/kong.client.tls
+          url: /pdk/pdk-reference/kong.client.tls
 
         - text: kong.cluster
-          url: /pdk/kong.cluster
+          url: /pdk/pdk-reference/kong.cluster
 
         - text: kong.ctx
-          url: /pdk/kong.ctx
+          url: /pdk/pdk-reference//kong.ctx
 
         - text: kong.ip
-          url: /pdk/kong.ip
+          url: /pdk/pdk-reference/kong.ip
 
         - text: kong.log
-          url: /pdk/kong.log
+          url: /pdk/pdk-reference/kong.log
 
         - text: kong.nginx
-          url: /pdk/kong.nginx
+          url: /pdk/pdk-reference/kong.nginx
 
         - text: kong.node
-          url: /pdk/kong.node
+          url: /pdk/pdk-reference/kong.node
 
         - text: kong.request
-          url: /pdk/kong.request
+          url: /pdk/pdk-reference/kong.request
 
         - text: kong.response
-          url: /pdk/kong.response
+          url: /pdk/pdk-reference/kong.response
 
         - text: kong.router
-          url: /pdk/kong.router
+          url: /pdk/pdk-reference/kong.router
 
         - text: kong.service
-          url: /pdk/kong.service
+          url: /pdk/pdk-reference/kong.service
 
         - text: kong.service.request
-          url: /pdk/kong.service.request
+          url: /pdk/pdk-reference/kong.service.request
 
         - text: kong.service.response
-          url: /pdk/kong.service.response
+          url: /pdk/pdk-reference/kong.service.response
 
         - text: kong.table
-          url: /pdk/kong.table
+          url: /pdk/pdk-reference/kong.table
 
     - text: Plugin Development Guide
       url: /plugin-development
