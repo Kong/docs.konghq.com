@@ -173,7 +173,7 @@
         - text: Securing the Admin API
           url: /admin-api/secure-admin-api
     - text: Plugin Development Kit
-      url: /pdk-reference
+      url: /pdk/pdk-reference
       items:
         - text: kong.client
           url: /pdk/pdk-reference/kong.client
