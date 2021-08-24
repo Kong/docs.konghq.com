@@ -37,6 +37,8 @@
       url: /plan-and-deploy/sizing-guidelines
     - text: Control Kong Gateway through systemd
       url: /plan-and-deploy/systemd
+    - text: Performance Testing Framework
+      url: /plan-and-deploy/performance-testing-framework
     - text: DNS Considerations
       url: /plan-and-deploy/dns-considerations
 
@@ -155,7 +157,76 @@
               url: /developer-portal/theme-customization/single-page-app
         - text: Helpers CLI
           url: /developer-portal/helpers/cli
-    - text: Lua Plugin Development Guide
+
+- title: Reference
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  items:
+    - text: DB-less and Declarative Configuration
+      url: /reference/db-less-and-declarative-config
+    - text: Load Balancing Reference
+      url: /reference/loadbalancing
+    - text: Proxy Reference
+      url: /reference/proxy
+    - text: Rate Limiting Library
+      url: /reference/rate-limiting
+    - text: Health Checks and Circuit Breakers Reference
+      url: /reference/health-checks-circuit-breakers
+    - text: Clustering Reference
+      url: /reference/clustering
+    - text: Admin API
+      url: /admin-api
+      items:
+        - text: Securing the Admin API
+          url: /admin-api/secure-admin-api
+    - text: Plugin Development Kit
+      url: /pdk/pdk-reference
+      items:
+        - text: kong.client
+          url: /pdk/pdk-reference/kong.client
+
+        - text: kong.client.tls
+          url: /pdk/pdk-reference/kong.client.tls
+
+        - text: kong.cluster
+          url: /pdk/pdk-reference/kong.cluster
+
+        - text: kong.ctx
+          url: /pdk/pdk-reference//kong.ctx
+
+        - text: kong.ip
+          url: /pdk/pdk-reference/kong.ip
+
+        - text: kong.log
+          url: /pdk/pdk-reference/kong.log
+
+        - text: kong.nginx
+          url: /pdk/pdk-reference/kong.nginx
+
+        - text: kong.node
+          url: /pdk/pdk-reference/kong.node
+
+        - text: kong.request
+          url: /pdk/pdk-reference/kong.request
+
+        - text: kong.response
+          url: /pdk/pdk-reference/kong.response
+
+        - text: kong.router
+          url: /pdk/pdk-reference/kong.router
+
+        - text: kong.service
+          url: /pdk/pdk-reference/kong.service
+
+        - text: kong.service.request
+          url: /pdk/pdk-reference/kong.service.request
+
+        - text: kong.service.response
+          url: /pdk/pdk-reference/kong.service.response
+
+        - text: kong.table
+          url: /pdk/pdk-reference/kong.table
+
+    - text: Plugin Development Guide
       url: /plugin-development
       items:
         - text: Introduction
@@ -190,69 +261,3 @@
 
     - text: Plugins in Other Languages
       url: /develop/external-plugins
-
-- title: Reference
-  icon: /assets/images/icons/documentation/icn-references-color.svg
-  items:
-    - text: Load Balancing Reference
-      url: /reference/loadbalancing
-    - text: Proxy Reference
-      url: /reference/proxy
-    - text: Rate Limiting Library
-      url: /reference/rate-limiting
-    - text: Health Checks and Circuit Breakers Reference
-      url: /reference/health-checks-circuit-breakers
-    - text: Clustering Reference
-      url: /reference/clustering
-    - text: Admin API
-      url: /admin-api
-      items:
-        - text: Securing the Admin API
-          url: /admin-api/secure-admin-api
-    - text: Plugin Development Kit
-      url: /pdk
-      items:
-        - text: kong.client
-          url: /pdk/kong.client
-
-        - text: kong.client.tls
-          url: /pdk/kong.client.tls
-
-        - text: kong.cluster
-          url: /pdk/kong.cluster
-
-        - text: kong.ctx
-          url: /pdk/kong.ctx
-
-        - text: kong.ip
-          url: /pdk/kong.ip
-
-        - text: kong.log
-          url: /pdk/kong.log
-
-        - text: kong.nginx
-          url: /pdk/kong.nginx
-
-        - text: kong.node
-          url: /pdk/kong.node
-
-        - text: kong.request
-          url: /pdk/kong.request
-
-        - text: kong.response
-          url: /pdk/kong.response
-
-        - text: kong.router
-          url: /pdk/kong.router
-
-        - text: kong.service
-          url: /pdk/kong.service
-
-        - text: kong.service.request
-          url: /pdk/kong.service.request
-
-        - text: kong.service.response
-          url: /pdk/kong.service.response
-
-        - text: kong.table
-          url: /pdk/kong.table

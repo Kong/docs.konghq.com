@@ -3,11 +3,7 @@ title: Plugins in Other Languages
 
 ---
 
-## Introduction
-
-External plugins are those that run on a process separate from {{site.base_gateway}} itself,
-enabling the use of any programming language for which an appropriate
-plugin server is available.
+External plugins are those that run on a process separate from {{site.base_gateway}} itself, enabling the use of any programming language for which an appropriate plugin server is available.
 
 Each plugin server hosts one or more plugins and communicates with the
 main {{site.base_gateway}} process through Unix sockets. If so configured, {{site.base_gateway}} can manage
@@ -90,8 +86,7 @@ Notes:
 
 Notes:
 
-The {{site.base_gateway}} version 2.3 allows multiple plugin servers; in particular
-it's now possible to write single-plugin servers, in effect plugins as
+{{site.base_gateway}} allows multiple plugin servers. It's now possible to write single-plugin servers, in effect creating plugins as
 microservices. To help with this, version v0.6.0 of the [go-pdk] package
 includes an optional plugin server. See [Embedded Server](#embedded-server)
 for more information.
@@ -124,7 +119,7 @@ To write a {{site.base_gateway}} plugin in Go, you need to:
 **Note**: Check out [this repository](https://github.com/Kong/go-plugins)
 for example Go plugins.
 
-#### 1. Configuration Structure
+#### 1. Configuration structure
 
 Plugins written in Lua define a schema to specify how to read and validate
 configuration data coming from the datastore or the Admin API. Since Go is a
@@ -187,7 +182,7 @@ signature is the same for all of them:
 
 Similar to Lua plugins, the presence of the `Response` handler automatically enables the buffered proxy mode.
 
-#### 4. Version and Priority
+#### 4. Version and priority
 
 Similarly to {{site.base_gateway}} Lua plugins, you can define the version number and priority of execution
 by having following lines in plugin code:
@@ -215,8 +210,7 @@ func main () {
 Note that the `main()` function must have a `package main` line at the
 top of the file.
 
-Then, a standard Go build creates an executable. There are no extra go-pluginserver,
-no plugin loading, and no compiler/library/environment compatibility issues.
+Then, a standard Go build creates an executable. There are no extra go-pluginserver, no plugin loading, and no compiler/library/environment compatibility issues.
 
 The resulting executable can be placed somewhere in your path (for example,
 `/usr/local/bin`). The common `-h` flag shows a usage help message:
@@ -266,9 +260,8 @@ pluginserver_other_one_query_cmd = /usr/local/bin/other-one -dump
 
 ## Developing JavaScript plugins
 
-{{site.base_gateway}} support for the JavaScript language is provided by [kong-js-pdk].
-The library provides a plugin server to provide runtime for JavaScript plugins, and
-functions to access {{site.base_gateway}} features of the [PDK][kong-pdk].
+{{site.base_gateway}} support for JavaScript is provided by [kong-js-pdk].
+The library provides a plugin server to provide runtime for JavaScript plugins, and functions to access {{site.base_gateway}} features of the [PDK][kong-pdk].
 
 TypeScript is also supported in the following ways:
 
@@ -321,7 +314,7 @@ defines the version number and priority of execution respectively.
 **Note**: Check out [this repository](https://github.com/Kong/kong-js-pdk/tree/master/examples)
 for example JavaScript and TypeScript plugins.
 
-#### 1. Phase Handlers
+#### 1. Phase handlers
 
 Similarly to {{site.base_gateway}} Lua plugins, you can implement custom logic to be executed at
 various points of the request processing lifecycle. For example, to execute
@@ -473,7 +466,7 @@ defines the version number and priority of execution respectively.
 **Note**: Check out [this repository](https://github.com/Kong/kong-python-pdk/tree/master/examples)
 for example Python plugins.
 
-#### 1. Phase Handlers
+#### 1. Phase handlers
 
 Similarly to {{site.base_gateway}} Lua plugins, you can implement custom logic to be executed at
 various points of the request processing lifecycle. For example, to execute
