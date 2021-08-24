@@ -141,7 +141,7 @@ Kong Mesh provides validators so we won't execute the next step too soon.
     ```
 
     After a short while, all data plane proxies should receive identity certificates signed by `ca-2`.
-    At this point, all data plane proxies still support CA for both `ca-1` and `ca-2`
+    At this point, all data plane proxies still support CA for both `ca-1` and `ca-2`.
 
 3.  Remove the old backend
 
@@ -208,7 +208,7 @@ Kong Mesh provides validators so we won't execute the next step too soon.
     ```
 
     After a short while, all data plane proxies should receive identity certificates signed by `ca-2`.
-    At this point, all data plane proxies still support CA for both `ca-1` and `ca-2`
+    At this point, all data plane proxies still support CA for both `ca-1` and `ca-2`.
 
 3.  Remove the old backend
 
