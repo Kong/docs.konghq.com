@@ -56,7 +56,7 @@ Result:
 ```
 
 For more detail and options, see the
-[Admin API `licenses` endpoint reference](/enterprise/{{page.kong_version}}/admin-api/licenses/examples/).
+[Admin API `licenses` endpoint reference](/enterprise/{{include.kong_version}}/admin-api/licenses/examples/).
 
 {% endnavtab %}
 {% navtab Filesystem %}

@@ -11,7 +11,7 @@ page.kong_latest.release %}
 <div class="page v2 {{ page.class }}" data-url={{ page.url }}>
 
   <div class="container">
-    {% include_cached docs-sidebar.html url=page.url kong_version=page.kong_version edition=page.edition %}
+    {% include_cached docs-sidebar.html url=page.url kong_version=page.kong_version edition=page.edition no_version=page.no_version has_version=page.has_version nav_items=page.nav_items edition=page.edition kong_version=page.kong_version kong_latest=page.kong_latest kong_versions=page.kong_versions %}
 
     {% if page.toc == true or page.toc != false and filename != "index.md" and page.is_homepage != true %}
       <aside class="docs-toc">
@@ -66,7 +66,7 @@ page.kong_latest.release %}
               </div>
             {% endunless %}
             {% unless page.no_breadcrumbs %}
-              {% include_cached breadcrumbs.html edition=page.edition dir=page.dir%}
+              {% include_cached breadcrumbs.html edition=page.edition no_version=page.no_version has_version=page.has_version kong_version=page.kong_version url=page.url dir=page.dir%}
             {% endunless %}
           </div>
           {% if page.edition == 'gateway-oss' %}
@@ -127,7 +127,7 @@ page.kong_latest.release %}
     {% endif %}
   </div>
 
-  {% include_cached image-modal.html %}
+  {% include_cached image-modal.html disable_image_expand=page.disable_image_expand %}
 
   <script type="text/javascript">
     function toggleContentHeader() {

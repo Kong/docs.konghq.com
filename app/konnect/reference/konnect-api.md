@@ -13,6 +13,21 @@ For a list of all endpoints, see:
 * [Konnect API Swagger documentation](https://konnect.konghq.com/docs)
 * [Raw Swagger JSON](https://konnect.konghq.com/docs-json)
 
+You can run {{site.konnect_short_name}} API requests using
+[Insomnia](https://insomnia.rest), Kong's open-source API client. If you have
+Insomnia installed, click the button below to import the Konnect 
+API spec.
+
+<!-- Button to export spec into Insomnia -->
+[![Run in Insomnia](https://insomnia.rest/images/run.svg){:.no-image-expand}](https://insomnia.rest/run/?label=Konnect%20API&uri=https%3A%2F%2Fkonnect.konghq.com%2Fdocs-json)
+<!-- End button -->
+
+{:.note}
+> **Note**: If you have trouble importing the spec into Insomnia,
+> update to the latest Insomnia version. If you have automatic
+> updates enabled but are still running an older version, restart Insomnia
+> to trigger the update. 
+
 ## Making a Request to the Konnect API
 
 Requests to the Konnect API must be authenticated. A request without

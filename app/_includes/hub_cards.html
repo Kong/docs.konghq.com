@@ -4,8 +4,8 @@
 {% assign extn_publisher = path_array[1] %}
 {% capture extn_id %}{{ extn_publisher }}_{{ extn_slug }}{% endcapture %}
 {% if filename == "index.md" and extn.type %}
-  {% if page.header_icon %}
-    {% assign header_icon = page.header_icon %}
+  {% if include.header_icon %}
+    {% assign header_icon = include.header_icon %}
   {% else %}
     {% capture header_icon %}/assets/images/icons/hub/{{ extn_id }}.png{% endcapture %}
   {% endif %}

@@ -39,6 +39,8 @@
       url: /plan-and-deploy/systemd
     - text: Performance Testing Framework
       url: /plan-and-deploy/performance-testing-framework
+    - text: DNS Considerations
+      url: /plan-and-deploy/dns-considerations
 
 - title: Configure
   icon: /assets/images/icons/konnect/konnect-settings.svg
@@ -167,9 +169,13 @@
       url: /reference/proxy
     - text: Rate Limiting Library
       url: /reference/rate-limiting
+    - text: Health Checks and Circuit Breakers Reference
+      url: /reference/health-checks-circuit-breakers
+    - text: Clustering Reference
+      url: /reference/clustering
     - text: Admin API
       url: /admin-api
-      items: 
+      items:
         - text: Securing the Admin API
           url: /admin-api/secure-admin-api
     - text: Plugin Development Kit
