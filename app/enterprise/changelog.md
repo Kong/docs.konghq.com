@@ -510,7 +510,7 @@ no_version: true
   and RBAC users, which prevented the workspace from being deleted. Now deleting entities correctly updates
   the counts, allowing an empty workspace to be deleted.
 - Updates Kong Dev Portal templates' JQuery dependency to v3.6.0, improving security.
-- Users with the `kong_admin` role can now log in to Kong Manager when `enforce_rbac=both` is set. 
+- Users with the `kong_admin` role can now log in to Kong Manager when `enforce_rbac=both` is set.
 - Renames the property identifying control planes in hybrid mode when using Kong Vitals with anonymous
   reports enabled. Before, users received the error, `Cannot use this function in data plane`, on their control planes.
 - Updates Nettle dependency version from `3.7.2` to `3.7.3`, fixing bugs that could cause
@@ -525,7 +525,7 @@ no_version: true
 
 #### Hybrid Mode
 - Control planes are now more lenient when checking data planes' compatibility in hybrid mode. See the
-  [Version compatibility](/gateway-oss/2.4.x/deployment/hybrid-mode/#version_compatibility)
+  [Version compatibility](/gateway-oss/2.4.x/hybrid-mode/#version-compatibility)
   section of the Hybrid Mode guide for more information. [#7488](https://github.com/Kong/kong/pull/7488)
 
 ## 2.4.1.1
@@ -954,7 +954,7 @@ keep-alive connections. [7102](https://github.com/Kong/kong/pull/7102)
   workspaces using the UI, the workspace name was validated; however, when using the Admin API to add users,
   the workspace name was not validated. Because the name was not validated in the Admin Api, users could create workspace names with special characters that would then break the environment.
 - Kong Gateway now escapes "-" and "." special characters in workspace names when building the compiled pattern
-  for collision detection. 
+  for collision detection.
 
 #### Plugins
 - [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
