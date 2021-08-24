@@ -18,7 +18,7 @@ secure your administration environment.
 admin can view all registered users in {{site.konnect_short_name}}, but cannot
 edit their roles from the {{site.konnect_short_name}} side. To manage
 automatically-created users, adjust user permissions through Okta, or
-[adjust role mapping](/konnect/org-management/okta-role-mapping).
+[adjust role mapping](/konnect/org-management/okta-idp/#map-roles-to-groups).
 
 
 ## Creating a new user
