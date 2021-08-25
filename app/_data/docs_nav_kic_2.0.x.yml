@@ -55,6 +55,8 @@
   items:
     - text: Getting Started with KIC
       url: /guides/getting-started
+    - text: Upgrading from KIC 1.3.x
+      url: /guides/upgrade
     - text: Getting Started using Istio
       url: /guides/getting-started-istio
     - text: Using Custom Resources
