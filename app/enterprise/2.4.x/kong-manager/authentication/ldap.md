@@ -26,7 +26,6 @@ admin_gui_auth_conf = {                                       \
     "bind_dn":"<ENTER_YOUR_BIND_DN_HERE>",                    \
     "base_dn":"<ENTER_YOUR_BASE_DN_HERE>",                    \
     "cache_ttl": 2,                                           \
-    "consumer_by":["username", "custom_id"],                  \
     "header_type":"Basic",                                    \
     "keepalive":60000,                                        \
     "ldap_host":"<ENTER_YOUR_LDAP_HOST_HERE>",                \
@@ -35,6 +34,7 @@ admin_gui_auth_conf = {                                       \
     "start_tls":false,                                        \
     "timeout":10000,                                          \
     "verify_ldap_host":true                                   \
+    "consumer_by":["username", "custom_id"],                  \
 }
 ```
 
@@ -65,4 +65,3 @@ invitations to join Kong Manager and log in with their LDAP credentials.
 ### Using Service Directory Mapping on the CLI
 
 {% include /md/{{page.kong_version}}/ldap/ldap-service-directory-mapping.md %}
-
