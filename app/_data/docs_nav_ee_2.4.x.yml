@@ -67,7 +67,7 @@
               url: https://console.cloud.google.com/marketplace/details/konghq-public/kongenterprise21
               absolute_url: true
               target_blank: true
-            - text: RedHat
+            - text: Red Hat
               url: https://marketplace.redhat.com/en-us/products/kong-enterprise-rhm
               absolute_url: true
               target_blank: true
@@ -392,7 +392,7 @@
     - text: Using the Editor
       url: /developer-portal/using-the-editor
     - text: Networking
-      url: /developer-portal/networking
+      url: /property-reference/#developer-portal-section
     - text: Configuration
       items:
         - text: Authentication
@@ -488,6 +488,8 @@
         - text: OpenID Connect Plugin Reference
           url: /hub/kong-inc/openid-connect
           absolute_url: true
+        - text: OpenID Connect with Curity
+          url: /plugins/oidc-curity
         - text: OpenID Connect with Azure AD
           url: /plugins/oidc-azuread
         - text: OpenID Connect with Google

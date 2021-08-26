@@ -4,7 +4,6 @@ no_version: true
 toc: true
 ---
 
-Enable application registration on a Service in {{site.konnect_short_name}}.
 When application registration is enabled for a Service, developers must
 [register an application](/konnect/dev-portal/developers/dev-reg-app-service)
 in order to access a Service.
@@ -22,10 +21,12 @@ conjunction with the `key-auth` or `OIDC` plugins. After app registration is ena
 the `key-auth` or `OIDC` and `ACL` plugins are no longer available on the Plugins page because
 they have already been enabled.
 
-<div class="alert alert-ee warning"><strong>WARNING:</strong>
-It is possible to view the Consumers in the Shared Config. Do not delete the ACLs associated
-with a Consumer managed by application registration.
-</div>
+{:.important}
+> **Important:** Developers registered through app registration appear as
+consumers on the
+![icon](/assets/images/icons/konnect/konnect-shared-config.svg){:.inline .no-image-expand}
+Shared Config page. Do not delete the ACLs associated with a consumer managed
+by app registration.
 
 Plugins enabled by app registration cannot be disabled using the toggle in the **Plugins** pane
 on the Services Version page. The only way to disable or delete them is to disable app registration,
@@ -39,17 +40,8 @@ any time at your discretion.
 
 ## Prerequisites
 
-- Proper role permissions.
-
-  You must be a {{site.konnect_short_name}} admin with the
-  [correct roles and permissions](/konnect/reference/org-management/#role-definitions)
-  to manage application connections to a Service.
-
-  The following roles allow you to
-  enable app registration for a Service:
-
-  - Organization Admin
-  - Service Admin
+- [**Organization Admin** or **Service Admin**](/konnect/reference/org-management/#role-definitions)
+permissions.
 
 - The Services have been created, versioned, and published to the
   {{site.konnect_short_name}} Dev Portal so that they appear in the Catalog.
@@ -67,20 +59,14 @@ any time at your discretion.
 
 1. From the {{site.konnect_short_name}} menu, click **Services**.
 
-   The Services page is displayed.
-
    ![Konnect Services Page](/assets/images/docs/konnect/konnect-services-page.png)
 
 2. Depending on your view, click the tile for the Service in cards view or the row
    for the Service in table view.
 
-   The Overview page for the Service is displayed.
-
    ![Konnect Enable App Registration](/assets/images/docs/konnect/konnect-enable-app-reg-service-menu.png)
 
 3. From the **Actions** menu, click **Enable app registration**.
-
-   The Enable App Registration dialog is displayed.
 
    ![Konnect Enable App Registration with Key Authentication](/assets/images/docs/konnect/konnect-enable-app-reg-key-auth.png)
 
@@ -99,9 +85,8 @@ any time at your discretion.
 
 6. Click **Enable**.
 
-   The status for application registration changes to **Enabled**.
-
-   The Version information page for the service shows the `acl` and `key-auth` plugins were automatically enabled.
+    With app registration enabled, all versions of this service now include
+    read-only entries for the `acl` and `key-auth` plugins.
 
    ![Konnect App Registration Key Auth Plugins](/assets/images/docs/konnect/key-auth-acl-plugins.png)
 
@@ -145,9 +130,8 @@ any time at your discretion.
 
 6. Click **Enable**.
 
-   The status for application registration changes to **Enabled**.
-
-   The Version information page for the service shows the `acl` and `oidc` plugins were automatically enabled.
+    With app registration enabled, all versions of this service now include
+    read-only entries for the `acl` and `oidc` plugins.
 
 ###  OpenID Connect Configuration Parameters {#openid-config-params}
 

@@ -193,7 +193,7 @@ the consumer in your code:
 
 [configuration]: /gateway-oss/latest/configuration
 [consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
-[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
+
 
 
 ### Using Service Directory Mapping on the CLI

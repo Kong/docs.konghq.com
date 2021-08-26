@@ -1,61 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   id="svg3634"
-   version="1.1"
-   inkscape:version="0.91 r"
-   width="125"
-   height="33.75"
-   viewBox="0 0 125 33.75"
-   sodipodi:docname="vagrant.svg">
-  <metadata
-     id="metadata3640">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <defs
-     id="defs3638" />
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="2560"
-     inkscape:window-height="1363"
-     id="namedview3636"
-     showgrid="false"
-     inkscape:zoom="19.552"
-     inkscape:cx="62.5"
-     inkscape:cy="16.875"
-     inkscape:window-x="0"
-     inkscape:window-y="25"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg3634" />
-  <image
-     width="125"
-     height="33.75"
-     preserveAspectRatio="none"
-     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAAAbCAYAAACKlipAAAAABmJLR0QA/wD/AP+gvaeTAAAACXBI
+<svg height="33.75" viewBox="0 0 125 33.75" width="125" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><image height="33.75" preserveAspectRatio="none" width="125" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAAAbCAYAAACKlipAAAAABmJLR0QA/wD/AP+gvaeTAAAACXBI
 WXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wkFDwc6l2OeUQAACalJREFUaN7tmntwFfUVxz+/vTcP
 EiAhwUQQgotSrrQV1Gyr0kFUHB/T0auDHUVRExWrQFlrOz6oLYw47VQtG6SkVQy2PmotDkHrWEWs
 HYwFNkCpA8SirLlAgM3DSN43uffXP/K7yWa5ISFap3/kzOwku+f3POd3vud7fgkocV33x67rHnJd
@@ -100,9 +43,4 @@ k+/mNN40dVT2jrqYLNvTITQhkFLiNDRzVu6ouECMfC48sW34In2of6A6ufwpMzVIQfbIHnD89daG
 EalkpGgsnD6SWEoGje3y0rJwwZFhsw5dBvyng1CJvRvEuYn3qbnpnJOXyfo9dcwYn8PotBQ6YpAW
 oKksXDC6qDzCuiR3V8PyFUBWqMSGOLOQcgcShIQrzx5DdnpQEbxuIEsLsA/4xrAz/scOqVpigCa+
 qDKNQgSTpZCNq7YdYdOnzeRkpAK0SOSlZeGCacDRYWd8jRJS1Cxk2XPnrNsXv3NjZBFA0YbIsHG+
-Qvkve2Aq9Zs/GoQAAAAASUVORK5CYII=
-"
-     id="image3642"
-     x="0"
-     y="0" />
-</svg>
+Qvkve2Aq9Zs/GoQAAAAASUVORK5CYII="/></svg>

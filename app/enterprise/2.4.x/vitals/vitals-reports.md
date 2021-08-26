@@ -28,7 +28,7 @@ To create a time-series report containing Vitals data, complete the steps in thi
 
 1. On the Vitals view, click the **Reports** button.
 
-2. On the Reports page select the **Timeframe**, up to 12 hours, for which you want to create the report.
+2. On the Reports page select the **Timeframe** for which you want to create the report.
 
 3. Select the report criteria for the report:
 

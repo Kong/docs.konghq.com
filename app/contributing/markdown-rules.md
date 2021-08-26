@@ -85,7 +85,7 @@ Gateway and Kong Mesh, use the page version variable.
 * **Use `latest` in unversioned docs:** If you're linking to a versioned topic
 from an unversioned topic, use `/latest/` instead of a version name or variable.
 
-### Adding new entries to the ToC
+### Add new entries to the ToC
 
 If you're adding a new topic (or editing the name or location of an existing
 one), you also need to add it to the `yml` nav file for its version. These are
@@ -114,19 +114,83 @@ Include a language whenever possible (in the example above, that language is
 You can also create tabbed codeblocks, so that users can easily switch to
 their preferred format. See [tabs for codeblocks](#tabs-for-codeblocks).
 
-### Line numbers
-By default, every codeblock is generated with line numbers, which is useful for
-calling out specific sections of code. If you need to disable the line numbers,
-use the `highlight` tag with an optional language class instead of
-backticks. For example:
+If you're including placeholders in codeblocks, use HTML tags instead of
+backticks. See [editable placeholders](#editable-placeholders-in-codeblocks).
 
-{% raw %}
+## Placeholders
+
+Use placeholders in both inline text and in codeblocks to
+denote a value that the user should edit. Always enclose placeholders in code
+formatting.
+
+### Inline placeholders
+If you're adding a placeholder inline, such as in a sentence, enclose it in single
+backticks: \`{EXAMPLE_TEXT}`
+
+### Editable placeholders in codeblocks
+If you have text in your codeblock that you want the user to edit before running
+the code, you can use editable placeholders.
+
+Editable placeholders require HTML markup. They are not supported in pure markdown (fenced) codeblocks.
+
+{:.important}
+> **Important:** Use plaintext placeholders for sensitive personal
+information, and **do not** use editable placeholders for these values. Personal
+information includes:
+> * Passwords
+> * Usernames
+> * Emails
+
+#### Create an editable placeholder
+
+* Enclose the entire codeblock in a `<div>` tag with a "copy-code-snippet" class: `<div class="copy-code-snippet"></div>`
+* Use the `<pre>` and `<code>` tags to create a codeblock
+* Enclose your placeholder in `<div contenteditable="true"></div>` tags
+* Do not add any newlines around the `pre` and `code` tags. These tags read
+their contents very literally, so all newlines will output as newlines.
+* HTML codeblocks can't pick up syntax highlighting. For consistency, if you're
+using fenced codeblocks elsewhere on the same page, set the language to
+`plaintext`.
+
+**Do:**
+{% navtabs codeblock %}
+{% navtab Input %}
 ```
-{% highlight bash %}
-some code here
-{% endhighlight %}
+<div class="copy-code-snippet"><pre><code>host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
+port: 80 </code></pre></div>
 ```
-{% endraw %}
+{% endnavtab %}
+{% navtab Output %}
+<div class="copy-code-snippet"><pre><code>host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
+port: 80 </code></pre></div>
+{% endnavtab %}
+{% endnavtabs %}
+
+**Don't:**
+{% navtabs codeblock %}
+{% navtab Input %}
+```
+<div class="copy-code-snippet">
+  <pre>
+    <code>
+    host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
+    port: 80
+    </code>
+  </pre>
+</div>
+```
+{% endnavtab %}
+{% navtab Output %}
+<div class="copy-code-snippet">
+  <pre>
+      <code>
+      host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
+      port: 80
+      </code>
+  </pre>
+</div>
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Tabs
 
@@ -216,6 +280,103 @@ $ httpie some request
 {% endnavtab %}
 {% endnavtabs %}
 
+### Indenting tabs in an ordered list
+
+Sometimes you are writing an ordered list of steps and may need to include multiple
+ways to complete the task, like with the Admin API as well as the Kong Manager UI, and
+want to include tabs. Tabs do not indent well though and often reset the numbering of
+ordered lists.
+
+To indent your tabs so you can maintain your numbering, including codeblock tabs,
+you can use the indent filter on a capture of your tabs.
+
+{% raw %}
+```
+{% capture the_code %}
+{% navtabs codeblock %}
+{% navtab cURL %}
+<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
+-d source=crud \
+-d event=consumers \
+-d handler=webhook \
+-d config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+{% endnavtab %}
+{% navtab HTTPie %}
+<div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
+source=crud \
+event=consumers \
+handler=webhook \
+config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
+```
+{% endraw %}
+
+And here's what it looks like:
+
+To make a technical writer smile, **always** do the following:
+
+1. Use the Oxford comma. It matters. (With indent filter)
+
+{% capture the_code %}
+{% navtabs codeblock %}
+{% navtab cURL %}
+<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
+-d source=crud \
+-d event=consumers \
+-d handler=webhook \
+-d config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+{% endnavtab %}
+{% navtab HTTPie %}
+<div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
+source=crud \
+event=consumers \
+handler=webhook \
+config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
+
+2. Laugh at all of their awesome puns. Using puns used to be considered a sign of great intelligence afterall. (Without the indent filter)
+
+  {% navtabs codeblock %}
+  {% navtab cURL %}
+  <div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
+  -d source=crud \
+  -d event=consumers \
+  -d handler=webhook \
+  -d config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+  {% endnavtab %}
+  {% navtab HTTPie %}
+  <div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
+  source=crud \
+  event=consumers \
+  handler=webhook \
+  config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+  {% endnavtab %}
+  {% endnavtabs %}
+
+3. Bring chocolate. There's nothing wrong with bribery. (Without the indent filter)
+
+  {% navtabs codeblock %}
+  {% navtab cURL %}
+  <div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
+  -d source=crud \
+  -d event=consumers \
+  -d handler=webhook \
+  -d config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+  {% endnavtab %}
+  {% navtab HTTPie %}
+  <div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
+  source=crud \
+  event=consumers \
+  handler=webhook \
+  config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+  {% endnavtab %}
+  {% endnavtabs %}
 
 ## Admonitions
 
@@ -283,7 +444,7 @@ and will only pick up H2 and H3 level headings.
 Here, the headings are nested correctly, with the smaller heading H3 contained
 within H2.
 
-**Don't do:**
+**Don't:**
 ```markdown
 ### Sub-sub-heading Level 3
 ## Sub-heading Level 2
@@ -294,19 +455,21 @@ With this order, the first H3 gets skipped.
 ## Badges
 
 Use badges when you need to label a heading, a page, or some other element as
-a specific Konnect tier.
+a specific Konnect tier or DB-less compatible.
 
 Badge | HTML tag | Markdown tag
 ------|----------|-------------
-<span class="badge free"></span> | `<span class="badge free"></span>` | `{:.badge free}`
-<span class="badge plus"></span> | `<span class="badge plus"></span>` | `{:.badge plus}`
-<span class="badge enterprise"></span> | `<span class="badge enterprise"></span>` | `{:.badge enterprise}`
+<span class="badge free"></span> | `<span class="badge free"></span>` | `{:.badge .free}`
+<span class="badge plus"></span> | `<span class="badge plus"></span>` | `{:.badge .plus}`
+<span class="badge enterprise"></span> | `<span class="badge enterprise"></span>` | `{:.badge .enterprise}`
+<span class="badge dbless"></span> | `<span class="badge dbless"></span>` | `{:.badge .dbless}`
+<span class="badge beta"></span> | `<span class="badge beta"></span>` | `{:.badge .beta}`
 
 For example, you can use the Markdown tag on headers:
 
 ```markdown
 ### Set up the Dev Portal
-{:.badge enterprise}
+{:.badge .enterprise}
 ```
 
 The HTML span tag is useful for including a badge inline:

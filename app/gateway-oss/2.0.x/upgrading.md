@@ -21,7 +21,6 @@ will be different on which previous version from which you are migrating.
 Upgrading into 2.0.x is a major version upgrade, so be aware of any
 breaking changes listed in the [CHANGELOG.md](https://github.com/Kong/kong/blob/2.0.0/CHANGELOG.md) document.
 
-
 #### 1. Dependencies
 
 If you are using the provided binary packages, all necessary dependencies
@@ -46,7 +45,6 @@ Kong if Go plugin support is enabled in Kong's configuration.
 Note that the Go version used to compile any Go plugins needs to match the Go
 version of the `go-pluginserver`. You can check the Go version used to
 build the `go-pluginserver` binary running `go-pluginserver -version`.
-
 
 #### 2. Breaking Changes
 

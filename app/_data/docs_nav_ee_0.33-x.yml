@@ -130,7 +130,7 @@
       url: /edition-versioning
     - text: Multiple Authentication Methods
       url: /allowing-multiple-authentication-methods
-    - text: PostgreSQL on RedHat
+    - text: PostgreSQL on Red Hat
       url: /postgresql-redhat
     - text: OpenID Connect with Google
       url: /oidc-google

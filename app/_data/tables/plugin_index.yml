@@ -53,7 +53,7 @@
       free: No
       plus: No
       enterprise: Yes
-      network_config_opts: Self-managed classic, DB-less, and hybrid
+      network_config_opts: All
       notes: |
         The time-to-live (ttl) does not work in hybrid mode. This setting
         determines the length of time a credential remains valid.
@@ -165,11 +165,8 @@
       free: No
       plus: Yes
       enterprise: Yes
-      network_config_opts: Self-managed classic, DB-less, and hybrid
-      notes: |
-        Available in Kong Gateway v2.4 and later.
-        <br><br>
-        Konnect Cloud does not support v2.4.
+      network_config_opts: All
+      notes: --
       url: /hub/kong-inc/opa
 
 - category:
@@ -261,7 +258,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      network_config_opts: Self-managed classic, DB-less, and hybrid
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/request-size-limiting
 
@@ -307,11 +304,8 @@
       free: No
       plus: Yes
       enterprise: Yes
-      network_config_opts: Self-managed classic, DB-less, and hybrid
-      notes: |
-        Available in Kong Gateway v2.4.
-        <br><br>
-        Konnect Cloud does not support v2.4.
+      network_config_opts: All
+      notes: --
       url: /hub/kong-inc/mocking
 
 - category:
@@ -337,7 +331,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      network_config_opts: Self-managed classic, DB-less, and hybrid
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/serverless-functions
 
@@ -370,7 +364,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      network_config_opts: Self-managed classic, DB-less, and hybrid
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/datadog
 
@@ -386,7 +380,7 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      network_config_opts: Self-managed classic, DB-less, and hybrid
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/zipkin
 
@@ -413,7 +407,7 @@
       free: No
       plus: Yes
       enterprise: Yes
-      network_config_opts: Self-managed classic, DB-less, and hybrid
+      network_config_opts: All
       notes: --
       url: /hub/kong-inc/exit-transformer
 
@@ -445,16 +439,16 @@
       free: Yes
       plus: Yes
       enterprise: Yes
-      network_config_opts: Self-managed classic, DB-less, and hybrid
-      notes: Disabled in Konnect Cloud due to RCE issue.
+      network_config_opts: All
+      notes: --
       url: /hub/kong-inc/request-transformer
 
     - name: Request Transformer Advanced
       free: No
       plus: No
       enterprise: Yes
-      network_config_opts: Self-managed classic, DB-less, and hybrid
-      notes: Disabled in Konnect Cloud due to RCE issue.
+      network_config_opts: All
+      notes: --
       url: /hub/kong-inc/request-transformer-advanced
 
     - name: Response Transformer
@@ -469,8 +463,8 @@
       free: No
       plus: No
       enterprise: Yes
-      network_config_opts: Self-managed classic, DB-less, and hybrid
-      notes: Disabled in Konnect Cloud due to RCE issue.
+      network_config_opts: All
+      notes: --
       url: /hub/kong-inc/response-transformer-advanced
 
     - name: Route Transformer Advanced

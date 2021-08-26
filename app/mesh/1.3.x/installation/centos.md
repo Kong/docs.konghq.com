@@ -15,6 +15,14 @@ and continue your {{site.mesh_product_name}} journey.
 
 You have a license for {{site.mesh_product_name}}.
 
+<<<<<<< HEAD
+=======
+{:.note}
+> **Note:** {{site.mesh_product_name}} ships with a FIPS 140-2 compliant
+build of Envoy. This build is only available on CentOS 8 and later. For any previous
+versions, use [Docker](/mesh/{{page.kong_version}}/installation/docker/). 
+
+>>>>>>> 00a2b3b8794585096e12f54414e12df484aabec7
 ## 1. Download {{site.mesh_product_name}}
 
 {% navtabs %}

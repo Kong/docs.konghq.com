@@ -2,12 +2,12 @@
   &:after {
     display: inline-flex;
     font-weight: 500;
-    font-size: 10px;
+    font-size: 12px;
     vertical-align: middle;
     text-align: center;
     max-width: 200px;
-    line-height: 13px;
-    height: 13px;
+    line-height: 14px;
+    height: 14px;
     width: auto;
     padding: 3px 10px;
     font-family: @family-display;
@@ -17,7 +17,7 @@
 
   &.plus::after {
       content: "PLUS";
-      opacity: 0.5;
+      opacity: 0.8;
       color: white;
       border-color: @blue-500;
       background-color: @blue-500;
@@ -26,17 +26,34 @@
   &.enterprise::after {
       content: "ENTERPRISE";
       color: white;
-      opacity: 0.6;
+      opacity: 0.8;
       border-color: @black-80;
       background-color: @black-80;
     }
 
   &.free::after {
       content: "FREE";
-      opacity: 0.5;
+      // opacity: 0.8;
       color: black;
-      border-color: @black-30;
-      background-color: @black-30;
+      border-color: @black-20;
+      background-color: @black-20;
+    }
+
+  &.dbless::after {
+      content: "DB-LESS COMPATIBLE";
+      opacity: 0.8;
+      color: white;
+      border-color: @green-500;
+      background-color: @green-500;
+    }
+
+  &.beta::after {
+      content: "BETA";
+      opacity: 0.7;
+      color: white;
+      border-color: @red-700;
+      background-color: @red-700;
+      text-align: center;
     }
 }
 

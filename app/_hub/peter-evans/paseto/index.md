@@ -11,7 +11,7 @@ desc: PASETO (Platform-Agnostic Security Tokens)
 description: |
   Paseto (Platform-Agnostic SEcurity TOkens) is a specification and reference implementation for secure stateless tokens.
 
-  Verify requests containing signed PASETOs (as specified in [PASETO RFC](https://paseto.io/rfc/)).
+  Verify requests containing signed PASETOs (as specified in [PASETO RFC](https://paseto.io/rfc/){:target="_blank"}{:rel="noopener noreferrer"}).
   Each of your Consumers will have PASETO credentials (public and secret keys) which must be used to sign their PASETOs.
   A token can then be passed through:
 
@@ -122,9 +122,9 @@ params:
 
 ### Sodium Crypto Library
 
-This plugin uses the [PASETO for Lua](https://github.com/peter-evans/paseto-lua) library, which in turn depends on the [Sodium crypto library (libsodium)](https://github.com/jedisct1/libsodium).
+This plugin uses the [PASETO for Lua](https://github.com/peter-evans/paseto-lua){:target="_blank"}{:rel="noopener noreferrer"} library, which in turn depends on the [Sodium crypto library (libsodium)](https://github.com/jedisct1/libsodium){:target="_blank"}{:rel="noopener noreferrer"}.
 The following is a convenient way to install libsodium via LuaRocks.
-Alternatively, see [libsodium's documentation](https://download.libsodium.org/doc/installation/) for full installation instructions.
+Alternatively, see [libsodium's documentation](https://download.libsodium.org/doc/installation/){:target="_blank"}{:rel="noopener noreferrer"} for full installation instructions.
 
 ```
 luarocks install libsodium

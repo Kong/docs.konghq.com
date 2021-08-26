@@ -159,7 +159,7 @@ Following are the difference options to consider while deploying the
 - [**Kubernetes Service Type**](#kubernetes-service-types):
   Chose between Load Balancer vs Node-Port
 - [**Database**](#database):
-  Backing Kong with a Databse or running without a database
+  Backing Kong with a Database or running without a database
 - [**Multiple Ingress Controllers**](#multiple-ingress-controllers):
   Running multiple {{site.kic_product_name}}s inside the same Kubernetes cluster
 - [**Runtime**](#runtime):
@@ -175,7 +175,7 @@ to the rest of the cluster or outside the cluster.
 If your Kubernetes cluster is running in a cloud environment, where
 Load Balancers can be provisioned with relative ease, it is recommended
 that you use a Service of type `LoadBalancer` to expose Kong to the outside
-world. For the Ingress Controller to function coorrectly, it is also required
+world. For the Ingress Controller to function correctly, it is also required
 that a L4 (or TCP) Load Balancer is used and not an L7 (HTTP(s)) one.
 
 If your Kubernetes cluster doesn't support a service of type `LoadBalancer`,
@@ -194,7 +194,7 @@ loss of functionality.
 #### Without a database
 
 In DB-less deployments, Kong's Ingress controller runs
-alongside Kong and configures Kong and dynamically configures
+alongside and dynamically configures
 Kong as per the changes it receives from the Kubernetes API server.
 
 Following figure shows how this deployment looks like:
@@ -219,7 +219,7 @@ is a little different.
 
 Please refer to the below figure:
 
-![Kong with a databse](/assets/images/docs/kubernetes-ingress-controller/db-deployment.png "Kong with database")
+![Kong with a database](/assets/images/docs/kubernetes-ingress-controller/db-deployment.png "Kong with database")
 
 In this type of deployment, there are two types of deployments created,
 separating the control and data flow:

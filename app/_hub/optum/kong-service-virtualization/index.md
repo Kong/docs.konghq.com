@@ -162,7 +162,7 @@ $ luarocks make *.rockspec
 ```
 
 ### Maintainers
-[jeremyjpj0916](https://github.com/jeremyjpj0916)  
-[rsbrisci](https://github.com/rsbrisci)  
+[jeremyjpj0916](https://github.com/jeremyjpj0916){:target="_blank"}{:rel="noopener noreferrer"}  
+[rsbrisci](https://github.com/rsbrisci){:target="_blank"}{:rel="noopener noreferrer"}  
 
-Feel free to [open issues](https://github.com/Optum/kong-service-virtualization/issues), or refer to our [Contribution Guidelines](https://github.com/Optum/kong-service-virtualization/blob/master/CONTRIBUTING.md) if you have any questions.
+Feel free to [open issues](https://github.com/Optum/kong-service-virtualization/issues){:target="_blank"}{:rel="noopener noreferrer"}, or refer to our [Contribution Guidelines](https://github.com/Optum/kong-service-virtualization/blob/master/CONTRIBUTING.md){:target="_blank"}{:rel="noopener noreferrer"} if you have any questions.

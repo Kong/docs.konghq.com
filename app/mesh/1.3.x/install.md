@@ -54,8 +54,13 @@ links to cloud marketplace integrations.
   </a>
 
   <a href="/mesh/{{page.kong_version}}/installation/redhat" class="docs-grid-install-block no-description">
+<<<<<<< HEAD
     <img class="install-icon" src="https://www.redhat.com/cms/managed-files/styles/wysiwyg_full_width/s3/Logo-RedHat-Hat-Color-CMYK%20%281%29.jpg?itok=Mf0Ff9jq" alt="RedHat" />
     <div class="install-text">RedHat</div>
+=======
+    <img class="install-icon" src="https://www.redhat.com/cms/managed-files/styles/wysiwyg_full_width/s3/Logo-RedHat-Hat-Color-CMYK%20%281%29.jpg?itok=Mf0Ff9jq" alt="Red Hat" />
+    <div class="install-text">Red Hat</div>
+>>>>>>> 00a2b3b8794585096e12f54414e12df484aabec7
   </a>
 
   <a href="/mesh/{{page.kong_version}}/installation/amazonlinux" class="docs-grid-install-block no-description">

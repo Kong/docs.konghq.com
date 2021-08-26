@@ -56,4 +56,4 @@ kong_version_compatibility:
 
 ## Documentation
 
-A tutorial, installation steps and further information can be found [here](https://github.com/justeat/kongverge).
+A tutorial, installation steps and further information can be found [here](https://github.com/justeat/kongverge){:target="_blank"}{:rel="noopener noreferrer"}.

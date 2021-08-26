@@ -26,7 +26,11 @@
       url: /installation/docker
     - text: CentOS
       url: /installation/centos
+<<<<<<< HEAD
     - text: RedHat
+=======
+    - text: Red Hat
+>>>>>>> 00a2b3b8794585096e12f54414e12df484aabec7
       url: /installation/redhat
     - text: Amazon Linux
       url: /installation/amazonlinux

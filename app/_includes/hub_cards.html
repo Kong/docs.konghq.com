@@ -19,7 +19,7 @@
               if extn.enterprise %}enterprise {%
                 else %}open-source {% endif %}{%
                   else %}pub-not-konghq pub-{{extn_publisher}}{% endif %}">
-      <a href="{{ extn.url | remove: '/index' }}">
+      <a href="{{ extn.url | remove: '/index' }}" title="{{ extn.name }}: {{ extn.desc }}">
         <div>
           <div class="name-desc {% if extn.plus and extn_publisher == 'kong-inc' %}plus{% endif %}">
             <img class="card-img-top" src="{{ header_icon }}" />

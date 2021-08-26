@@ -1,0 +1,58 @@
+- title: Introduction
+  icon: /assets/images/icons/documentation/icn-flag.svg
+  url: /mesh/
+  absolute_url: true
+
+- title: Release notes
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  url: /mesh/changelog
+  absolute_url: true
+
+- title: Getting Started
+  icon: /assets/images/icons/documentation/icn-quickstart-color.svg
+  url: /gettingstarted
+
+- title: Install
+  icon: /assets/images/icons/documentation/icn-deployment-color.svg
+  url: /install
+  items:
+    - text: Kubernetes
+      url: /installation/kubernetes
+    - text: Helm
+      url: /installation/helm
+    - text: OpenShift
+      url: /installation/openshift
+    - text: Docker
+      url: /installation/docker
+    - text: CentOS
+      url: /installation/centos
+    - text: Red Hat
+      url: /installation/redhat
+    - text: Amazon Linux
+      url: /installation/amazonlinux
+    - text: Debian
+      url: /installation/debian
+    - text: Ubuntu
+      url: /installation/ubuntu
+    - text: macOS
+      url: /installation/macos
+    - text: Marketplaces
+      items:
+        - text: Azure (AKS)
+          url: https://azuremarketplace.microsoft.com/en-us/marketplace/apps/konginc1581527938760.kongmesh
+          absolute_url: true
+          target_blank: true
+
+- title: Enterprise Features
+  icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
+  items:
+    - text: HashiCorp Vault CA
+      url: /features/vault
+    - text: OPAPolicy Support
+      url: /features/opa
+    - text: Multi-zone authentication
+      url: /features/kds-auth
+    - text: FIPS support
+      url: /features/fips-support
+    - text: Certificate Authority rotation
+      url: /features/ca-rotation

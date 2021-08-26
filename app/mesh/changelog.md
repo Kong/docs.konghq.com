@@ -4,6 +4,72 @@ no_search: true
 no_version: true
 ---
 
+## 1.4.0
+
+> Released on INSERT_DATE
+
+### Changes
+
+Built on top of [Kuma 1.3.0](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#123)
+
+- TODO
+
+### Upgrading
+
+Upgrades from `1.3.0` are seamless and no additional steps are needed.
+
+## 1.3.3
+
+> Released on 2021/07/29
+
+### Changes
+
+Built on top of [Kuma 1.2.3](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#123)
+
+- kumactl now always warns when the client and server versions cannot be confirmed to match.
+- The data plane proxy type is now checked for a valid value (one of `ingress` or `dataplane`).
+- Improvements to the control plane.
+
+### Upgrading
+
+Upgrades from `1.3.0` are seamless and no additional steps are needed.
+
+## 1.3.2
+
+> Released on 2021/07/16
+
+### Changes
+
+Built on top of [Kuma 1.2.2](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#122)
+
+- Datadog is now available as a traffic tracing option.
+- Message limit for gRPC stream is increased to better support Kuma discovery service (KDS)
+- Improved leader election during unexpected failures.
+- Improved SDS and XDS on rapid DP restarts.
+- Fixed HDS on the dpserver when bootstrapping an ingress.
+
+### Upgrading
+
+Upgrades from `1.3.0` are seamless and no additional steps are needed.
+
+## 1.3.1
+
+> Released on 2021/06/30
+
+### Changes
+
+Built on top of [Kuma 1.2.1](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#121)
+
+- (Kuma) The data plane proxy now provides an advertised address to the control plane for communication in cases where the address is not directly reachable.
+- (Kuma) An SNI header is now added when TLS is enabled, to permit communication with external services that require it.
+- (Kong Mesh only) New parameters `pki` and `role` are available for Vault.
+- (Kong Mesh only) The CNI config name is now always prefixed with `kuma-cni`.
+- (Kong Mesh only) TTL is no longer validated for Vault.
+
+### Upgrading
+
+Upgrades from `1.3.0` are seamless and no additional steps are needed.
+
 ## 1.3.0
 
 > Released on 2021/06/17
@@ -22,7 +88,36 @@ Built on top of [Kuma 1.2.0](https://github.com/kumahq/kuma/blob/master/CHANGELO
 
 ### Upgrading
 
+<<<<<<< HEAD
 Upgrades from `1.2.x` are seamless and no additional steps are needed. Note [specific configuration requirements](https://kuma.io/docs/1.1.5/networking/dns/#data-plane-proxy-built-in-dns) for taking advantage of built-in DNS.
+=======
+For a Universal deployment, see the [Kuma upgrade instructions](https://github.com/kumahq/kuma/blob/master/UPGRADE.md).
+
+For Kubernetes, you should be aware of the following changes:
+
+#### `kumactl` on Kubernetes
+
+- Changes in arguments/flags for `kumactl install control-plane`:
+
+   - `--mode` now accepts now accepts the values `standalone`, `zone`, and `global`. `zone` replaces `remote`, which is still available in earlier versions.
+
+   - `--tls-kds-remote-client-secret` flag is renamed to `--tls-kds-zone-client-secret`.
+
+- Service `kong-mesh-global-remote-sync` is changed to `kong-mesh-global-zone-sync`. After you upgrade the global control plane, you must manually remove the old service. For example:
+
+   ```sh
+   kubectl delete -n kong-mesh-system service/kong-mesh-global-remote-sync 
+   ```
+   The IP address or hostname that provides the KDS address when you install the control planes can change. Make sure that you update the address when you upgrade the remote control planes to the latest version.
+
+#### Helm
+
+Changes in values in Kong Mesh’s Helm chart:
+
+* `kuma.controlPlane.mode` now accepts the values `standalone`, `zone`, and `global`. `zone` replaces `remote`, which is still available in earlier versions.
+* `kuma.controlPlane.globalRemoteSyncService` is renamed to `kuma.controlPlane.globalZoneSyncService`.
+* `kuma.controlPlane.tls.kdsRemoteClient` is renamed to `kuma.controlPlane.tls.kdsZoneClient`.
+>>>>>>> 00a2b3b8794585096e12f54414e12df484aabec7
 
 ## 1.2.6
 

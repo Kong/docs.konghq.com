@@ -20,7 +20,7 @@
         </span>
         <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="module-dropdown">
+      <ul class="dropdown-menu dropdown-menu-right" id="module-list" role="menu" aria-labelledby="module-dropdown">
         <div class="dropdown-submenu-title">Kong Konnect Platform</div>
         <li {% if page.edition == 'konnect_platform' %} class="active" {% endif %}>
           <a href="/konnect-platform/" class="{% if page.edition == 'konnect_platform' %}active{% endif %}">{{site.konnect_product_name}} Platform</a>
@@ -71,7 +71,7 @@
         </span>
         <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+      <ul class="dropdown-menu dropdown-menu-right" id="version-list" role="menu" aria-labelledby="version-dropdown">
           {% for ver in page.kong_versions reversed %}
           {% assign version_page_url = page.url | replace: page.kong_version, ver.release %}
           {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}

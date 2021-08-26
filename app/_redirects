@@ -17,6 +17,10 @@
 /kubernetes-ingress-controller/latest/introduction /kubernetes-ingress-controller/
 /kubernetes-ingress-controller/1.2.x/introduction  /kubernetes-ingress-controller/
 
+# kic beta
+/kubernetes-ingress-controller-beta/   https://kic-v2-beta--kongdocs.netlify.app/kubernetes-ingress-controller/
+/kubernetes-ingress-controller-beta/*  https://kic-v2-beta--kongdocs.netlify.app/kubernetes-ingress-controller/:splat
+
 # enterprise gateway
 /enterprise/latest/introduction       /enterprise/
 /enterprise/2.3.x/introduction        /enterprise/
@@ -28,6 +32,7 @@
 /gateway-oss/2.3.x/getting-started/introduction  /gateway-oss/2.3.x/
 /gateway-oss/2.4.x/getting-started/introduction  /gateway-oss/2.4.x/
 /gateway-oss/latest/getting-started/introduction /gateway-oss/
+/getting-started-guide/                          /getting-started-guide/latest/overview/
 
 # plugins
 /hub/api-fortress/api-fortress-http-log/    /hub/
@@ -35,10 +40,12 @@
 /hub/plugins/compatibility                  /konnect-platform/compatibility/plugins
 
 # Konnect
-/konnect/access-beta                          /konnect/access-account
-/konnect/service-hub                          /konnect/servicehub/
-/konnect/service-hub/*                        /konnect/servicehub/:splat
-/konnect/runtime-manager/kong-gateway-runtime /konnect/runtime-manager/#kong-gateway
+/konnect/access-beta                                /konnect/access-account
+/konnect/service-hub                                /konnect/servicehub/
+/konnect/service-hub/*                              /konnect/servicehub/:splat
+/konnect/runtime-manager/kong-gateway-runtime       /konnect/runtime-manager/#kong-gateway
+/konnect/servicehub/plugins/enable-service-plugin/  /konnect/manage-plugins/enable-service-plugin/
+/konnect/servicehub/plugins/enable-route-plugin/    /konnect/manage-plugins/enable-route-plugin/
 
 # Community doc rebranding
 /latest/*                                   /gateway-oss/latest/:splat
@@ -81,3 +88,9 @@
 /enterprise/2.3.x/developer-portal/introduction /enterprise/2.3.x/developer-portal
 /enterprise/latest/developer-portal/introduction /enterprise/latest/developer-portal
 /enterprise/latest/developer-portal/overview     /enterprise/latest/developer-portal
+
+# About
+/about/faq                 https://konghq.com/faqs/
+/about/faq/*               https://konghq.com/faqs/:splat
+/about/*                   https://konghq.com/about-kong-inc/
+/about                     https://konghq.com/about-kong-inc/
