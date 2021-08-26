@@ -1,0 +1,64 @@
+name: 🐞 Bug Report
+description: |
+    File a docs bug report, including typos, grammatical errors, and broken
+    links.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for your interest in contributing!
+        Before submitting an issue, check our existing issues and pull requests
+        to see if someone else has reported your issue previously.
+        If you know how to resolve the issue you're reporting, we encourage you
+        to submit a [pull request instead](https://help.github.com/articles/creating-a-pull-request/).
+        If you have a code-related troubleshooting issue, please reach out
+        to our [community](https://github.com/Kong/kong/discussions).
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Contributing guidelines
+      description: |
+          Before submitting this issue, please read the
+          [Kong Docs contributing guidelines](https://docs.konghq.com/contributing/).
+      options:
+        - label: I have read the Kong Docs contributing guidelines.
+          required: true
+  - type: input
+    id: link
+    attributes:
+      label: Where is the problem?
+      description: Link to the affected page(s)
+      placeholder: e.g. https://docs.konghq.com/hub/kong-inc/basic-auth
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      placeholder: Tell us what you see!
+      value: "A bug happened!"
+    validations:
+      required: true
+  - type: textarea
+    id: what-did-you-expect
+    attributes:
+      label: What did you expect to happen?
+      placeholder: Tell us what you think should've happened.
+      value: "I wanted it to not be broken!"
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct and Community Expectations
+      description: |
+          By submitting this issue, you agree to follow our
+          [Code of Conduct](https://example.com) and
+          [community expectations](https://docs.konghq.com/contributing/community-expectations/).
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
+        - label: I agree to abide by the community expectations
+          required: true
