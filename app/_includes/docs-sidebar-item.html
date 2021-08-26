@@ -40,9 +40,8 @@
 {% endif %}
 {% endunless %}
 {% endif %}
-{% if page.url == item_url %}{% assign item_active = true %}{% endif %}
 {% else %}
 {% assign item_url = false %}
 {% endif %}
 
-{% include accordion-item.html id=include.id icon=include.icon url=item_url label=include.title active=item_active content=item_content %}
+{% include accordion-item.html id=include.id icon=include.icon url=item_url label=include.title content=item_content %}

@@ -123,11 +123,11 @@ breadcrumbs:
 
 <div class="page page-extension-profile">
   {% if page.header_icon or page.header_title %}
-    {% include header.html type=extn_type name=page.header_title %}
+    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs type=extn_type name=page.header_title img=page.header_icon header_caption=page.header_caption %}
   {% elsif page.type == concept %}
-      {% include header.html name=page.title %}
+    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.title img=page.header_icon header_caption=page.header_caption %}
   {% else %}
-    {% include header.html img=extn_icon name=page.name %}
+    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.name img=extn_icon header_caption=page.header_caption %}
   {% endif %}
 
   <div class="container">
@@ -233,7 +233,7 @@ breadcrumbs:
         {% endif %}
 
         {% if page.params.examples != false %}
-          {% include_cached hub-examples.html params=page.params %}
+          {% include_cached hub-examples.html params=page.params publisher=page.publisher name=page.name %}
         {% endif %}
 
         <h3 id="parameters">Parameters</h3>
@@ -455,6 +455,6 @@ breadcrumbs:
   {% endif %}
 </div>
 
-{% include image-modal.html %}
+{% include_cached image-modal.html disable_image_expand=page.disable_image_expand %}
 
 <!-- {% include intercom.html %} -->

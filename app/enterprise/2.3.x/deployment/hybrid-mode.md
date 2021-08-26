@@ -60,6 +60,80 @@ For the full Kubernetes Hybrid mode documentation, see
 [Hybrid mode](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
 in the `kong/charts` repository.
 
+
+## Version Compatibility
+{{site.ee_gateway_name}} control planes only allow connections from data planes with the
+same major version.
+Control planes won't allow connections from data planes with newer minor versions.
+
+For example, a {{site.ee_product_name}} v2.5.2 control plane:
+
+- Accepts a {{site.ee_product_name}} 2.5.0, 2.5.1 and 2.5.2 data plane.
+- Accepts a {{site.ee_product_name}} 2.3.8, 2.2.1 and 2.2.0 data plane.
+- Accepts a {{site.ee_product_name}} 2.5.3 data plane (newer patch version on the data plane is accepted).
+- Rejects a {{site.ee_product_name}} 1.0.0 data plane (major version differs).
+- Rejects a {{site.ee_product_name}} 2.6.0 data plane (minor version on data plane is newer).
+
+Furthermore, for every plugin that is configured on the {{site.ee_product_name}}
+control plane, new configs are only pushed to data planes that have those configured
+plugins installed and loaded. The major version of those configured plugins must
+be the same on both the control planes and data planes. Also, the minor versions
+of the plugins on the data planes can not be newer than versions installed on the
+control planes. Similar to {{site.ee_product_name}} version checks,
+plugin patch versions are also ignored when determining compatibility.
+
+{:.important}
+> Configured plugins means any plugin that is either enabled globally or
+configured by services, routes, or consumers.
+
+For example, if a {{site.ee_product_name}} control plane has `plugin1` v1.1.1
+and `plugin2` v2.1.0 installed, and `plugin1` is configured by a `Route` object:
+
+- It accepts {{site.ee_product_name}} data planes with `plugin1` v1.1.2,
+`plugin2` not installed.
+- It accepts {{site.ee_product_name}} data planes with `plugin1` v1.1.2,
+`plugin2` v2.1.0, and  `plugin3` v9.8.1 installed.
+- It accepts {{site.ee_product_name}} data planes with `plugin1` v1.1.1
+and `plugin3` v9.8.1 installed.
+- It rejects {{site.ee_product_name}} data planes with `plugin1` v1.2.0,
+`plugin2` v2.1.0 installed (minor version of plugin on data plane is newer).
+- It rejects {{site.ee_product_name}} data planes with `plugin1` not installed
+(plugin configured on control plane but not installed on data plane).
+
+Version compatibility checks between the control plane and data plane
+occur at configuration read time. As each data plane proxy receives
+configuration updates, it checks to see if it can enable the requested
+features. If the control plane has a newer version of {{site.base_gateway}}
+than the data plane proxy, but the configuration doesn’t include any new features
+from that newer version, the data plane proxy reads and applies it as expected.
+
+For instance, a new version of {{site.base_gateway}} includes a new
+plugin offering, and you update your control plane with that version. You can
+still send configurations to your data planes that are on a less recent version
+as long as you have not added the new plugin offering to your configuration.
+If you add the new plugin to your configuration, you will need to update your
+data planes to the newer version for the data planes to continue to read from
+the control plane.
+
+If the compatibility checks fail, the control plane stops
+pushing out new config to the incompatible data planes to avoid breaking them.
+
+If a config can not be pushed to a data plane due to failure of the
+compatibility checks, the control plane will contain `warn` level lines in the
+`error.log` similar to the following:
+
+```
+unable to send updated configuration to DP node with hostname: localhost.localdomain ip: 127.0.0.1 reason: version mismatches, CP version: 2.2 DP version: 2.1
+unable to send updated configuration to DP node with hostname: localhost.localdomain ip: 127.0.0.1 reason: CP and DP does not have same set of plugins installed or their versions might differ
+```
+
+In addition, the `/clustering/data-planes` Admin API endpoint returns
+the version of the data plane node and the latest config hash the node is
+using. This data helps detect version incompatibilities from the
+control plane side.
+
+
+
 ## Limitations
 
 ### Configuration Inflexibility
