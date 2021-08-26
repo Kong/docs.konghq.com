@@ -104,7 +104,8 @@ page.kong_latest.release %}
             <h1 tabindex="-1" id="main" class="page-content-title{%
             if page.badge %} badge{%
             if page.badge == 'plus' %} plus{% endif %}{%
-            if page.badge == 'enterprise' %} enterprise{% endif %}
+            if page.badge == 'enterprise' %} enterprise{% endif %}{%
+            if page.badge == 'oss' %} oss{% endif %}
             {% endif %}"
             >{{page.title | flatify }} </h1>
             {% if page.enterprise %}{% endif %}
