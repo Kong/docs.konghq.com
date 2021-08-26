@@ -6,31 +6,17 @@ no_version: true
 
 ## 1.4.0
 
-> Released on 2021/08/26
+> Released on INSERT_DATE
 
 ### Changes
 
-Built on top of [Kuma 1.3.0](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#130)
+Built on top of [Kuma 1.3.0](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#123)
 
-- You can now configure CA rotation in {{site.mesh_product_name}}.
-- A service map topology view is available that provides visualization of service traffic dependencies.
-- Support for mutual TLS in permissive mode is available, to support migrating applications into the service mesh.
-- You can now customize hostnames and ports for data plane proxies with a new virtual outbound policy.
-- You can more easily specify intermediate CAs with mTLS.
+- TODO
 
 ### Upgrading
 
-Upgrades from `1.3.0` are seamless, but note the following:
-
-- In version 1.4.0 and laster, the number of mTLS backends is limited to one (1). Check that the correct backend is applied 
-before you upgrade.
-- Outbounds generated internally are no longer listed in `dataplane.network.outbound[]`. On Kubernetes, they are automatically removed. 
-On Universal, to remove them you must recreate your `Dataplane` resources with `kumactl apply`. Or, if the proxy lifecycle is 
-managed by Kuma, restart the services.
-- You may notice some proxies or zones indicated as Offline in the GUI when you upgrade the control plane. This can happen if 
-upgrading all instances of the control plane takes more than five (5) minutes. It's temporary, and occurs because of a new mechanism for 
-better tracking proxy and zone status. A heartbeat periodically increments the `generation` counter for Insights. The offline status 
-should disappear after all control plane instances are upgraded to 1.4.0.
+Upgrades from `1.3.0` are seamless and no additional steps are needed.
 
 ## 1.3.3
 
