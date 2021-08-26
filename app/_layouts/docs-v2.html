@@ -92,18 +92,21 @@ page.kong_latest.release %}
               </div>
             {% endif %}
             {% if page.url contains "/kubernetes-ingress-controller/" %}
+            {% unless page.kong_version == "2.0.x" %}
             <blockquote class="note">
               <p>Kong's Kubernetes Ingress Controller v2.0.0 is currently in beta. Check out the
               <a href="/kubernetes-ingress-controller-beta/">beta documentation</a> and try out
               <a href="https://github.com/Kong/kubernetes-ingress-controller/releases/tag/v2.0.0-beta.1">v2.0.0</a> for yourself.</p>
             </blockquote>
+            {% endunless %}
             {% endif %}
 
 
             <h1 tabindex="-1" id="main" class="page-content-title{%
             if page.badge %} badge{%
             if page.badge == 'plus' %} plus{% endif %}{%
-            if page.badge == 'enterprise' %} enterprise{% endif %}
+            if page.badge == 'enterprise' %} enterprise{% endif %}{%
+            if page.badge == 'oss' %} oss{% endif %}
             {% endif %}"
             >{{page.title | flatify }} </h1>
             {% if page.enterprise %}{% endif %}

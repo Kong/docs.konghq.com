@@ -88,7 +88,7 @@ IP address to the `kong-proxy` Service.
 Use Kustomize to install Kong for Kubernetes Enterprise:
 
 ```
-kustomize build github.com/kong/kubernetes-ingress-controller/deploy/manifests/enterprise-k8s
+kustomize build github.com/kong/kubernetes-ingress-controller/config/variants/enterprise
 ```
 
 You can use the above URL as a base kustomization and build on top of it

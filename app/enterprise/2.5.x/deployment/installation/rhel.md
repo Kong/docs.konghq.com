@@ -56,7 +56,7 @@ root-equivalent access.
 
     * [RHEL 8]({{ site.links.download }}/gateway-2.x-rhel-8/config.repo)
     * [RHEL 7]({{ site.links.download }}/gateway-2.x-rhel-7/config.repo)
-    
+
 2. Securely copy the repo file to your home directory on the RHEL system:
 
     ```bash
@@ -169,7 +169,7 @@ root-equivalent access.
 
 ## Step 5. Seed the Super Admin password and bootstrap Kong Gateway
 
-{% include /md/{{page.kong_version}}/ee-kong-user.md %}
+{% include /md/{{page.kong_version}}/ee-kong-user.md kong_version=page.kong_version %}
 
 Setting a password for the **Super Admin** before initial start-up is strongly recommended. This will permit the use of RBAC (Role Based Access Control) at a later time, if needed.
 
