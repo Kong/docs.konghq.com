@@ -16,7 +16,7 @@ body:
         If you have a code-related troubleshooting issue, please reach out
         to our [community](https://github.com/Kong/kong/discussions).
   - type: checkboxes
-    id: terms
+    id: contributing-guidelines
     attributes:
       label: Contributing guidelines
       description: |
@@ -60,5 +60,5 @@ body:
       options:
         - label: I agree to follow this project's Code of Conduct
           required: true
-        - label: I agree to abide by the community expectations
-          required: true
+#         - label: I agree to abide by the community expectations
+#           required: true
