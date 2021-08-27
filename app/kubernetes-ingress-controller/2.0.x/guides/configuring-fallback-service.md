@@ -108,9 +108,12 @@ spec:
   - http:
       paths:
       - path: /foo
+        pathType: ImplementationSpecific
         backend:
-          serviceName: httpbin
-          servicePort: 80
+          service:
+            name: httpbin
+            port:
+              number: 80
 ' | kubectl apply -f -
 ingress.extensions/demo created
 ```
@@ -155,8 +158,10 @@ metadata:
 spec:
   ingressClassName: kong
   backend:
-    serviceName: fallback-svc
-    servicePort: 80
+    service:
+      name: fallback-svc
+      port:
+        number: 80
 " | kubectl apply -f -
 ```
 

@@ -93,9 +93,12 @@ spec:
     http:
       paths:
       - path: /myapp
+        pathType: ImplementationSpecific
         backend:
-          serviceName: echo
-          servicePort: 80
+          service:
+            name: echo
+            port:
+              number: 80
 ' | kubectl create -f -
 ```
 

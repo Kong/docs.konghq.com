@@ -72,13 +72,19 @@ spec:
   - http:
       paths:
       - path: /foo
+        pathType: ImplementationSpecific
         backend:
-          serviceName: httpbin
-          servicePort: 80
+          service:
+            name: httpbin
+            port:
+              number: 80
       - path: /bar
+        pathType: ImplementationSpecific
         backend:
-          serviceName: echo
-          servicePort: 80
+          service:
+            name: echo
+            port:
+              number: 80
 ' | kubectl apply -f -
 ingress.extensions/demo created
 ```
@@ -139,9 +145,12 @@ spec:
   - http:
       paths:
       - path: /baz
+        pathType: ImplementationSpecific
         backend:
-          serviceName: httpbin
-          servicePort: 80
+          service:
+            name: httpbin
+            port:
+              number: 80
 ' | kubectl apply -f -
 ingress.extensions/demo-2 created
 ```

@@ -128,9 +128,12 @@ spec:
     http:
       paths:
       - path: /bar
+        pathType: ImplementationSpecific
         backend:
-          serviceName: echo
-          servicePort: 80
+          service:
+            name: echo
+            port:
+              number: 80
 ```
 
 A plugin can also be applied to a specific KongConsumer by adding
