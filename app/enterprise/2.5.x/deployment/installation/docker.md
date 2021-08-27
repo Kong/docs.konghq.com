@@ -25,7 +25,7 @@ This software is governed by the
 To complete this installation you will need a Docker-enabled system with proper
  Docker access.
 
-{% include /md/{{page.kong_version}}/docker-install-steps.md heading="## Step 1. " heading1="## Step 2. " heading2="## Step 3. " heading3="## Step 4. " kong_version=page.kong_version %}
+{% include /md/{{page.kong_version}}/docker-install-steps.md heading="## Step 1. " heading1="## Step 2. " heading2="## Step 3. " heading3="## Step 4. " kong_versions=page.kong_versions %}
 
 ## Step 5. Start the gateway with Kong Manager {#start-gateway}
 
