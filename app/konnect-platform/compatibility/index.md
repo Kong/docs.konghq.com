@@ -1,15 +1,12 @@
 ---
-title: Platform Compatibility
+title: Kong Platform Compatibility
 no_version: true
 toc: false
 ---
 
-Select a product and a version (if applicable) to see the third-party
-dependencies officially supported and validated by Kong. 
+Provided below are compatibility tables for Kong products. Select a Kong product and version (if applicable) to see technologies that have been tested for interoperability with the Kong platform. 
 
-Please see the [Kong Gateway Version Support](https://docs.konghq.com/enterprise/latest/support-policy/) for more information about types of releases, sunset support, version support for Kong Gateway, and our [Support & Maintenance Policy](https://konghq.com/supportandmaintenancepolicy/).
-
-If you have questions about compatibility, happy to help via [Contact us](https://konghq.com/contact-sales)
+Please see  [Kong Gateway Version Support](https://docs.konghq.com/enterprise/latest/support-policy/) for more information about Kong's support for Kong Gateway and our [Support & Maintenance Policy](https://konghq.com/supportandmaintenancepolicy/).
 
 
 <!-- ## Form logic
