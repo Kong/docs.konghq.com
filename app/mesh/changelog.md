@@ -22,8 +22,6 @@ Built on top of [Kuma 1.3.0](https://github.com/kumahq/kuma/blob/master/CHANGELO
 
 Upgrades from `1.3.0` are seamless, but note the following:
 
-- In version 1.4.0 and laster, the number of mTLS backends is limited to one (1). Check that the correct backend is applied 
-before you upgrade.
 - Outbounds generated internally are no longer listed in `dataplane.network.outbound[]`. On Kubernetes, they are automatically removed. 
 On Universal, to remove them you must recreate your `Dataplane` resources with `kumactl apply`. Or, if the proxy lifecycle is 
 managed by Kuma, restart the services.
