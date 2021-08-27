@@ -150,7 +150,7 @@ Manager, check the logs from your deployment:
 $ kubectl logs deployment/my-kong-kong -n kong
 ```
 
-If you find any errors and need to update `config.yaml`, make your changes,
+If you find any errors and need to update `values.yaml`, make your changes,
 save the file, then reapply the configuration by running the Helm `upgrade`
 command:
 
