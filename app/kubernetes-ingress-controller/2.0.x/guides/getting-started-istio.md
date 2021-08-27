@@ -149,9 +149,12 @@ spec:
   - http:
       paths:
       - path: /
+        pathType: ImplementationSpecific
         backend:
-          serviceName: productpage
-          servicePort: 9080
+          service:
+            name: productpage
+            port:
+              number: 9080
 EOF
 ```
 

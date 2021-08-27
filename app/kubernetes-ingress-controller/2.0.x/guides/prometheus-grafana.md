@@ -216,17 +216,26 @@ spec:
   - http:
      paths:
      - path: /billing
+       pathType: ImplementationSpecific
        backend:
-         serviceName: billing
-         servicePort: 80
+         service:
+           name: billing
+           port:
+             number: 80
      - path: /comments
+       pathType: ImplementationSpecific
        backend:
-         serviceName: comments
-         servicePort: 80
+         service:
+           name: comments
+           port:
+             number: 80
      - path: /invoice
+       pathType: ImplementationSpecific
        backend:
-         serviceName: invoice
-         servicePort: 80
+         service:
+           name: invoice
+           port:
+             number: 80
 ' | kubectl apply -f -
 ```
 

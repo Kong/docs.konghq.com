@@ -62,9 +62,12 @@ spec:
   - http:
       paths:
       - path: /get
+        pathType: ImplementationSpecific
         backend:
-          serviceName: httpbin
-          servicePort: 80
+          service:
+            name: httpbin
+            port:
+              number: 80
 ' | kubectl apply -f -
 
 $ echo '
@@ -80,9 +83,12 @@ spec:
   - http:
       paths:
       - path: /post
+        pathType: ImplementationSpecific
         backend:
-          serviceName: httpbin
-          servicePort: 80
+          service:
+            name: httpbin
+            port:
+              number: 80
 ' | kubectl apply -f -
 ```
 
@@ -171,9 +177,12 @@ spec:
   - http:
       paths:
       - path: /get
+        pathType: ImplementationSpecific
         backend:
-          serviceName: httpbin
-          servicePort: 80
+          service:
+            name: httpbin
+            port:
+              number: 80
 ' | kubectl apply -f -
 
 $ echo '
@@ -190,9 +199,12 @@ spec:
   - http:
       paths:
       - path: /post
+        pathType: ImplementationSpecific
         backend:
-          serviceName: httpbin
-          servicePort: 80
+          service:
+            name: httpbin
+            port:
+              number: 80
 ' | kubectl apply -f -
 ```
 
@@ -591,9 +603,12 @@ spec:
   - http:
       paths:
       - path: /get
+        pathType: ImplementationSpecific
         backend:
-          serviceName: httpbin
-          servicePort: 80
+          service:
+            name: httpbin
+            port:
+              number: 80
 ' | kubectl apply -f -
 
 $ echo '
@@ -610,9 +625,12 @@ spec:
   - http:
       paths:
       - path: /post
+        pathType: ImplementationSpecific
         backend:
-          serviceName: httpbin
-          servicePort: 80
+          service:
+            name: httpbin
+            port:
+              number: 80
 ' | kubectl apply -f -
 ```
 

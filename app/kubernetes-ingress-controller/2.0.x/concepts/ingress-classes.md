@@ -107,9 +107,12 @@ spec:
   - http:
       paths:
       - path: /vsemznakom
+        pathType: ImplementationSpecific
         backend:
-          serviceName: httpbin
-          servicePort: 80
+          service:
+            name: httpbin
+            port:
+              number: 80
 
 ---
 

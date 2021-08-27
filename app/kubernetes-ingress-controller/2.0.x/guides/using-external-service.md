@@ -68,9 +68,12 @@ spec:
   - http:
       paths:
       - path: /foo
+        pathType: ImplementationSpecific
         backend:
-          serviceName: proxy-to-httpbin
-          servicePort: 80
+          service:
+            name: proxy-to-httpbin
+            port:
+              number: 80
 ' | kubectl create -f -
 ```
 

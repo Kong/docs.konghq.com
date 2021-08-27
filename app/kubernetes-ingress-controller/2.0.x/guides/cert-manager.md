@@ -133,9 +133,12 @@ spec:
     http:
       paths:
       - path: /
+        pathType: ImplementationSpecific
         backend:
-          serviceName: echo
-          servicePort: 80
+          service:
+            name: echo
+            port:
+              number: 80
 " | kubectl apply -f -
 ingress.extensions/demo-example-com created
 ```
@@ -205,9 +208,12 @@ spec:
     http:
       paths:
       - path: /
+        pathType: ImplementationSpecific
         backend:
-          serviceName: echo
-          servicePort: 80
+          service:
+            name: echo
+            port:
+              number: 80
 ' | kubectl apply -f -
 ingress.extensions/demo-example-com configured
 ```
