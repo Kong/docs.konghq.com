@@ -1,25 +1,17 @@
-name: 🐞 Bug Report
+name: Improve existing documentation
 description: |
-    File a docs bug report, including typos, grammatical errors, and broken links.
+    Make a suggestion to improve the content in an existing doc.
 body:
   - type: markdown
     attributes:
       value: |
-        Thank you for your interest in contributing! 
-        
-        Before submitting an issue, check our existing issues and pull requests to see if someone else has reported your issue previously.
-        
-        If you know how to resolve the issue you're reporting, we encourage you to submit a [pull request instead](https://help.github.com/articles/creating-a-pull-request/).
-        If you have a code-related troubleshooting issue, please reach out to our [community](https://github.com/Kong/kong/discussions).
-  - type: checkboxes
-    id: contributing-guidelines
-    attributes:
-      label: Contributing guidelines
-      description: |
-          Before submitting this issue, please read the [Kong Docs contributing guidelines](https://docs.konghq.com/contributing/).
-      options:
-        - label: I have read the Kong Docs contributing guidelines.
-          required: true
+        Thank you for your interest in contributing to Kong Docs!
+
+        Before submitting a new issue:
+        * Please read the [Kong Docs contributing guidelines](https://docs.konghq.com/contributing/).
+        * Check our existing [issues](https://github.com/Kong/docs.konghq.com/issues) and [pull requests](https://github.com/Kong/docs.konghq.com/pulls) to see if someone else has reported your issue previously.
+        * If you know how to resolve the issue you're reporting, we encourage you to submit a [pull request instead](https://help.github.com/articles/creating-a-pull-request/).
+        * If you have a code-related troubleshooting issue, please reach out to our [community](https://github.com/Kong/kong/discussions).
   - type: input
     id: link
     attributes:
@@ -33,7 +25,9 @@ body:
     attributes:
       label: What happened?
       description: Tell us what the problem is.
-      placeholder: "A bug happened!🐞"
+      placeholder: |
+          "I wanted information about this feature, but couldn't find it in the docs!"
+          "The instructions for {X} didn't work as documented."
     validations:
       required: true
   - type: textarea
@@ -41,7 +35,8 @@ body:
     attributes:
       label: What did you expect to happen?
       description: Tell us what you think should have happened.
-      placeholder: "I wanted it to not be broken!"
+      placeholder: |
+          "This feature should have been documented with {X}, {Y}, and {Z} details."
     validations:
       required: true
   - type: checkboxes
