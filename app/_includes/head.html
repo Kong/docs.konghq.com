@@ -1,8 +1,8 @@
-{% unless page.name and page.path contains '_hub' %} {% capture page_title %}{{
-page.title | escape }}{% if page.kong_version and page.no_version != true %} -
-v{{ page.kong_version | escape }}{% endif %}{% if page.title %} | {% endif %}{{ site.name }} - {{
-site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ page.name }}
-{{ page.type }} | Kong{% endcapture %} {% endunless %}
+{% unless include.name and include.path contains '_hub' %} {% capture page_title %}{{
+include.title | escape }}{% if include.kong_version and include.no_version != true %} -
+v{{ include.kong_version | escape }}{% endif %}{% if include.title %} | {% endif %}{{
+site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.name }}
+{{ include.type }} | Kong{% endcapture %} {% endunless %}
 
 <head>
   <!-- Google Tag Manager -->
@@ -19,7 +19,7 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ page.name }}
   <title>{{ page_title }}</title>
   <meta name="description" content="{{ site.description }}" />
   <meta name="author" content="KongHQ" />
-  <meta property="og:title" content="{{ site.title }}" />
+  <meta property="og:title" content="{{ site.title }} | {{ page.title }}" />
   <meta property="og:site_name" content="{{ site.name }}" />
   <!-- use share link for facebook -->
   <meta property="og:url" content="{{ site.links.share }}" />
@@ -105,11 +105,11 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ page.name }}
   />
   {% endif %}
 
-  {% assign latest_page_url = page.url | replace: page.kong_version, page.kong_latest.release %}
-  {% capture latest_page_exists %}{% page_exists {{latest_page_url}} %}{% endcapture %}
+  {% assign latest_include.url = include.url | replace: include.kong_version, include.kong_latest.release %}
+  {% capture latest_page_exists %}{% page_exists {{latest_include.url}} %}{% endcapture %}
 
-  {% if page.kong_version == page.kong_latest.release and page.no_version != true %}<link rel="canonical" href="{{ site.links.web }}{{ page.url }}" />
-    {% elsif latest_page_exists == 'true' %}<link rel="canonical" href="{% capture latest_path %}{{ site.links.web }}{{ latest_page_url }}{% endcapture %}{{ latest_path }}" />
+  {% if include.kong_version == include.kong_latest.release and include.no_version != true %}<link rel="canonical" href="{{ site.links.web }}{{ include.url }}" />
+    {% elsif latest_page_exists == 'true' %}<link rel="canonical" href="{% capture latest_path %}{{ site.links.web }}{{ latest_include.url }}{% endcapture %}{{ latest_path }}" />
   {% endif %}
 
 </head>

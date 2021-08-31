@@ -1,11 +1,12 @@
 ---
 title: Performance Testing Framework
+badge: oss
 ---
 
 ## Introduction
 
 The Kong codebase includes a performance testing framework (hereinafter referred to as the “framework").
-It allows Kong developers and users to evaluate the performance of Kong itself as well as 
+It allows Kong developers and users to evaluate the performance of Kong itself as well as
 bundled or custom plugins, and plot framegraphs to debug performance bottlenecks.
 The framework collects RPS (request per second) and latencies of Kong processing the request
 to represent performance metrics under different workloads.
@@ -290,8 +291,8 @@ Starts to send load to Kong using `wrk`. Throws error if any. Options is a Lua t
 - **path** String request path; defaults to `/ `.
 - **uri** Base URI exception path; defaults to `http://kong-ip:kong-port/`.
 - **connections** Connection count; defaults to 1000.
-- **threads** Request thread count; defaults to 5. 
-- **duration** Number of performance tests duration in seconds; defaults to 10. 
+- **threads** Request thread count; defaults to 5.
+- **duration** Number of performance tests duration in seconds; defaults to 10.
 - **script** Content of `wrk` script as string; defaults to nil.
 
 [Back to top](#introduction)

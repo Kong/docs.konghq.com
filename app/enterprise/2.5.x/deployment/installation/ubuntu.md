@@ -18,7 +18,7 @@ This software is governed by the
 
 ### Deployment options
 
-{% include /md/{{page.kong_version}}/deployment-options.md %}
+{% include /md/{{page.kong_version}}/deployment-options.md kong_version=page.kong_version %}
 
 ## Prerequisites
 
@@ -120,7 +120,7 @@ information about PostgreSQL on Ubuntu, see [https://www.postgresql.org/download
 
 ## Step 5. Seed the Super Admin's password and bootstrap Kong Gateway
 
-{% include /md/{{page.kong_version}}/ee-kong-user.md %}
+{% include /md/{{page.kong_version}}/ee-kong-user.md kong_version=page.kong_version %}
 
 Setting a password for the **Super Admin** before initial start-up is strongly recommended. This will permit the use of RBAC (Role Based Access Control) at a later time, if needed.
 

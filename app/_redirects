@@ -18,8 +18,8 @@
 /kubernetes-ingress-controller/1.2.x/introduction  /kubernetes-ingress-controller/
 
 # kic beta
-/kubernetes-ingress-controller-beta/   https://kic-v2-beta--kongdocs.netlify.app/
-/kubernetes-ingress-controller-beta/*  https://kic-v2-beta--kongdocs.netlify.app/:splat
+/kubernetes-ingress-controller-beta/   https://kic-v2-beta--kongdocs.netlify.app/kubernetes-ingress-controller/
+/kubernetes-ingress-controller-beta/*  https://kic-v2-beta--kongdocs.netlify.app/kubernetes-ingress-controller/:splat
 
 # enterprise gateway
 /enterprise/latest/introduction       /enterprise/
@@ -46,6 +46,7 @@
 /konnect/runtime-manager/kong-gateway-runtime       /konnect/runtime-manager/#kong-gateway
 /konnect/servicehub/plugins/enable-service-plugin/  /konnect/manage-plugins/enable-service-plugin/
 /konnect/servicehub/plugins/enable-route-plugin/    /konnect/manage-plugins/enable-route-plugin/
+/konnect/dev-portal/administrators/customization/themes         /konnect/dev-portal
 
 # Community doc rebranding
 /latest/*                                   /gateway-oss/latest/:splat

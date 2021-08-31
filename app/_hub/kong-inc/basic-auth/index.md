@@ -6,7 +6,7 @@ version: 2.2.0
 desc: Add Basic Authentication to your Services
 description: |
   Add Basic Authentication to a Service or a Route with username and password protection. The plugin
-  will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in that order).
+  checks for valid credentials in the `Proxy-Authorization` and `Authorization` headers (in that order).
 
 
 type: plugin
@@ -86,7 +86,7 @@ params:
 
 ## Usage
 
-In order to use the plugin, you first need to create a Consumer to associate one or more credentials to. The Consumer represents a developer or an application consuming the upstream service.
+To use the plugin, you first need to create a Consumer to associate one or more credentials to. The Consumer represents a developer or an application consuming the upstream service.
 
 ### Create a Consumer
 
@@ -98,24 +98,24 @@ A Consumer can have many credentials.
 To create a Consumer, you can execute the following request:
 
 ```bash
-curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
+curl -d "username={USER123}&custom_id={SOME_CUSTOM_ID}" http://kong:8001/consumers/
 ```
 {% endnavtab %}
 {% navtab Without a Database %}
-Your declarative configuration file will need to have one or more Consumers. You can create them
-on the `consumers:` yaml section:
+Your declarative configuration file needs to have one or more Consumers.
+You can create them using a `consumers:` YAML section:
 
 ``` yaml
 consumers:
-- username: user123
-  custom_id: SOME_CUSTOM_ID
+- username: {USER123}
+  custom_id: {SOME_CUSTOM_ID}
 ```
 {% endnavtab %}
 {% endnavtabs %}
 
-In both cases, the parameters are as described below:
+Consumer parameters:
 
-parameter                       | description
+Parameter                       | Description
 ---                             | ---
 `username`<br>*semi-optional*   | The username of the consumer. Either this field or `custom_id` must be specified.
 `custom_id`<br>*semi-optional*  | A custom identifier used to map the consumer to another database. Either this field or `username` must be specified.
@@ -131,32 +131,32 @@ service, you must add the new consumer to the allowed group. See
 You can provision new username/password credentials by making the following HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer}/basic-auth \
-    --data "username=Aladdin" \
-    --data "password=OpenSesame"
+curl -X POST http://kong:8001/consumers/{CONSUMER}/basic-auth \
+  --data "username=Aladdin" \
+  --data "password=OpenSesame"
 ```
 
 {% endnavtab %}
 {% navtab Without a Database %}
 
-You can add credentials on your declarative config file on the `basicauth_credentials` yaml entry:
+You can add credentials on your declarative config file with the `basicauth_credentials` YAML entry:
 
 ``` yaml
 basicauth_credentials:
-- consumer: {consumer}
+- consumer: {CONSUMER}
   username: Aladdin
   password: OpenSesame
 ```
 {% endnavtab %}
 {% endnavtabs %}
 
-In both cases, the fields / parameters work as described below:
+Consumer credential parameters:
 
-field/parameter            | description
----                        | ---
-`{consumer}`               | The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
-`username`                 | The username to use in the Basic Authentication
-`password`<br>*optional*   | The password to use in the Basic Authentication
+field/parameter | description
+---             | ---
+`consumer`      | The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+`username`      | The username to use in the basic authentication credential.
+`password`      | The password to use in the basic authentication credential.
 
 
 ### Using the Credential
@@ -165,53 +165,53 @@ The authorization header must be base64 encoded. For example, if the credential
 uses `Aladdin` as the username and `OpenSesame` as the password, then the field's
 value is the base64-encoding of `Aladdin:OpenSesame`, or `QWxhZGRpbjpPcGVuU2VzYW1l`.
 
-Then the `Authorization` (or `Proxy-Authorization`) header must appear as:
+The `Authorization` (or `Proxy-Authorization`) header must appear as:
 
 ```
 Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l
 ```
 
-Simply make a request with the header:
+Make a request with the header:
 
 ```bash
-$ curl http://kong:8000/{path matching a configured Route} \
-    -H 'Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l'
+curl http://kong:8000/{PATH_MATCHING_CONFIGURED_ROUTE} \
+  -H 'Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l'
 ```
 
 gRPC clients are supported too:
 
 ```bash
-$ grpcurl -H 'Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l' ...
+grpcurl -H 'Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l' ...
 ```
 
 ### Upstream Headers
 
-When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream service, so that you can identify the Consumer in your code:
+When a client has been authenticated, the plugin appends some headers to the request before proxying it to the upstream service, so that you can identify the Consumer in your code:
 
-* `X-Consumer-ID`, the ID of the Consumer on Kong
-* `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)
-* `X-Consumer-Username`, the `username` of the Consumer (if set)
-* `X-Credential-Identifier`, the identifier of the Credential (only if the consumer is not the 'anonymous' consumer)
-* `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
+* `X-Consumer-ID`: the ID of the Consumer in Kong Gateway
+* `X-Consumer-Custom-ID`: the `custom_id` of the Consumer (if set)
+* `X-Consumer-Username`: the `username` of the Consumer (if set)
+* `X-Credential-Identifier`: the identifier of the Credential (only if the consumer is not the 'anonymous' consumer)
+* `X-Anonymous-Consumer`: set to `true` if authentication fails, and the 'anonymous' consumer is set instead
 
-You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
+You can use this information on your side to implement additional logic. Use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
 
-<div class="alert alert-warning">
-  <strong>Note:</strong>`X-Credential-Username` was deprecated in favor of `X-Credential-Identifier` in Kong 2.1.
-</div>
+{:.important}
+> **Important:** `X-Credential-Username` was deprecated in favor of `X-Credential-Identifier` in Kong 2.1.
 
 ### Paginate through the basic-auth Credentials
-
-<div class="alert alert-warning">
-  <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
-</div>
 
 You can paginate through the basic-auth Credentials for all Consumers using the
 following request:
 
+{% navtabs codeblock %}
+{% navtab Request %}
 ```bash
-$ curl -X GET http://kong:8001/basic-auths
-
+curl -X GET http://kong:8001/basic-auths
+```
+{% endnavtab %}
+{% navtab Response %}
+```json
 {
     "total": 3,
     "data": [
@@ -239,12 +239,19 @@ $ curl -X GET http://kong:8001/basic-auths
     ]
 }
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
-You can filter the list by consumer by using this other path:
+You can filter the list by Consumer with the following endpoint:
 
+{% navtabs codeblock %}
+{% navtab Request %}
 ```bash
-$ curl -X GET http://kong:8001/consumers/{username or id}/basic-auth
-
+curl -X GET http://kong:8001/consumers/{USERNAME_OR_ID}/basic-auth
+```
+{% endnavtab %}
+{% navtab Response %}
+```json
 {
     "total": 1,
     "data": [
@@ -258,27 +265,33 @@ $ curl -X GET http://kong:8001/consumers/{username or id}/basic-auth
     ]
 }
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
-`username or id`: The username or id of the consumer whose credentials need to be listed
+`username` or `id`: The username or id of the consumer whose credentials need
+to be listed.
 
 ### Retrieve the Consumer associated with a Credential
-
-<div class="alert alert-warning">
-  <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
-</div>
 
 It is possible to retrieve a [Consumer][consumer-object] associated with a
 basic-auth Credential using the following request:
 
+{% navtabs codeblock %}
+{% navtab Request %}
 ```bash
-curl -X GET http://kong:8001/basic-auths/{username or id}/consumer
-
+curl -X GET http://kong:8001/basic-auths/{USERNAME_OR_ID}/consumer
+```
+{% endnavtab %}
+{% navtab Response %}
+```json
 {
    "created_at":1507936639000,
    "username":"foo",
    "id":"c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
 }
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 `username or id`: The `id` or `username` property of the basic-auth
 Credential for which to get the associated [Consumer][consumer-object].
@@ -288,4 +301,3 @@ Consumer.
 [configuration]: /gateway-oss/latest/configuration
 [consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
 [acl-associating]: /plugins/acl/#associating-consumers
-

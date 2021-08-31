@@ -1,5 +1,5 @@
 {% assign id_str = include.id | split: '-' %}
-<li class="accordion-item{% if include.active == true %} active{% endif %}">
+<li class="accordion-item">
   {% if include.content %}
   <input id="accordion-{{ include.id }}" type="checkbox" {% if id_str.size == 1 %}onclick="accordionItemClick('{{ include.id }}')"{% endif %} {% if include.active == true %}checked{% endif %}/>
   {% endif %}

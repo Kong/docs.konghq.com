@@ -18,14 +18,14 @@ This software is governed by the
 
 ### Deployment options
 
-{% include /md/{{page.kong_version}}/deployment-options.md %}
+{% include /md/{{page.kong_version}}/deployment-options.md kong_version=page.kong_version %}
 
 ## Prerequisites
 
 To complete this installation you will need a Docker-enabled system with proper
  Docker access.
 
-{% include /md/{{page.kong_version}}/docker-install-steps.md heading="## Step 1. " heading1="## Step 2. " heading2="## Step 3. " heading3="## Step 4. " %}
+{% include /md/{{page.kong_version}}/docker-install-steps.md heading="## Step 1. " heading1="## Step 2. " heading2="## Step 3. " heading3="## Step 4. " kong_versions=page.kong_versions %}
 
 ## Step 5. Start the gateway with Kong Manager {#start-gateway}
 
@@ -82,7 +82,7 @@ in `KONG_ADMIN_GUI_URL` in [Step 5](#start-gateway):
     {:.note}
     > The `HOSTNAME` for `KONG_PORTAL_GUI_HOST` should not be preceded by a protocol, for example, `http://`.
 
-3. Execute the following command. 
+3. Execute the following command.
 
     <pre><code>curl -X PATCH --url http://<div contenteditable="true">{HOSTNAME}</div>:8001/workspaces/default \
         --data "config.portal=true"</code></pre>
@@ -106,4 +106,3 @@ out of {{site.base_gateway}}.
 
 If you have an Enterprise subscription, add the license using the
 [`/licenses` Admin API endpoint](/enterprise/{{page.kong_version}}/deployment/licenses/deploy-license).
-
