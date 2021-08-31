@@ -93,4 +93,4 @@ Keywords:
 | Service Developer   | Users can view services, and fully manage versions of existing services and their Portal specs. |
 | Portal Admin        | Users can fully manage all developer portal content, which includes service pages and supporting content, as well as Dev Portal configuration and Connections. |
 | Service Page Editor | Users can partially manage (read, update) the documentation and specs for services and versions, publish services to the developer portal, and enable or disable application registration for service. |
-| Runtime Admin       | Users can configure runtimes for the organization and fully manage related global configuration: upstreams, SNIs, and certs.
+| Runtime Admin       | Users can configure runtimes for the organization and fully manage related global configurations: upstreams, SNIs, and certs.

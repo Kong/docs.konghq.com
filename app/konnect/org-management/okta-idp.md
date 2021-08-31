@@ -8,8 +8,8 @@ As an alternative to {{site.konnect_saas}}’s native authentication, you can se
 up single sign-on (SSO) access to {{site.konnect_short_name}} through
 [Okta](https://developer.okta.com/docs/guides/) with
 [OpenID Connect](https://developer.okta.com/docs/concepts/oauth-openid/#openid-connect).
-This way, your users can log in to {{site.konnect_saas}}
-using their Okta credentials, and without needing a separate login.
+This authentication method allows your users to log in to {{site.konnect_saas}}
+using their Okta credentials, without needing a separate login.
 
 You can't mix authenticators in {{site.konnect_saas}}. With Okta
 authentication enabled, all non-admin {{site.konnect_short_name}} users have to
@@ -28,7 +28,7 @@ ready to manage authentication and authorization through Okta for this
 
 ## Prerequisites and overview of steps
 
-To set up Okta SSO for {{site.konnect_short_name}}, you need access to an
+To set up Okta single sign-on (SSO) for {{site.konnect_short_name}}, you need access to an
 Okta admin account and a
 [{{site.konnect_short_name}} admin account](/konnect/reference/org-management/#role-definitions),
 which you will access concurrently.
@@ -63,7 +63,7 @@ Create a new application in Okta to manage {{site.konnect_saas}} account integra
     1. In both the **Sign-in redirect URIs** and
     **Sign-out redirect URIs** fields, enter: `https://konnect.konghq.com/login`
     1. In the Assigments section, for **Controlled access**, choose your
-    preferred access level for this application. This sets the permissions for
+    preferred access level for this application. This preferred access level sets the permissions for
     Okta admins.
 
 1. Save your settings to generate connection details.
@@ -77,9 +77,9 @@ The connection between {{site.konnect_short_name}} and Okta uses OpenID Connect
 tokens. To have Okta send the correct information to your {{site.konnect_short_name}} org, set up
 claims to extract that information.
 
-1. Open your Okta account again in a new browser tab.
+1. Open your Okta account in a new browser tab.
 
-1. From the left menu, select **Security**, then **API**.
+1. From the left menu, select **Security > API**.
 
 1. Select the Custom Authorization Server that you want to configure.
 
@@ -199,7 +199,7 @@ adjust the role mapping.
 Any changes to the mapped Okta groups on the Okta side are reflected in
 {{site.konnect_saas}}. For example:
 * Removing a user from a group in Okta also deactivates their
-{{site.konnect_short_name}} account
+{{site.konnect_short_name}} account.
 * Moving a user from one group to another changes their permissions in {{site.konnect_short_name}}
 to align with the new group-to-role mapping.
 
