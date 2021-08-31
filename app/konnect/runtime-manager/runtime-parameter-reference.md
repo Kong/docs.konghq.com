@@ -20,4 +20,3 @@ Refer to these parameters when using the **Advanced** runtime setup option.
  [`cluster_ca_cert`](/enterprise/latest/property-reference/#cluster_ca_cert) | **Certificate** | The trusted CA certificate file, in PEM format, used to verify the `cluster_cert`.
  [`cluster_cert`](/enterprise/latest/property-reference/#cluster_cert) | **Certificate** | The certificate used for mTLS between CP/DP nodes.
  [`cluster_cert_key`](/enterprise/latest/property-reference/#cluster_cert_key) | **Private Key** | The private key used for mTLS between CP/DP nodes.
- [`lua_ssl_trusted_certificate`](/enterprise/latest/property-reference/#lua_ssl_trusted_certificate) | **Root CA Certificate** | Lists files as trusted by OpenResty. Accepts a comma-separated list of paths. If you have already specified a different `lua_ssl_trusted_certificate`, adding the content of `cluster.crt` into that file achieves the same result.
