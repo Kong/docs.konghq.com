@@ -4,29 +4,13 @@ no_version: true
 toc: false
 ---
 
-Provided below are compatibility tables for Kong products. Select a Kong product and version (if applicable) to see technologies that have been tested for interoperability with the Kong platform. 
+Provided below are compatibility tables for Kong products. Select a Kong product
+and version (if applicable) to see technologies that have been tested for
+interoperability with the Kong platform.
 
-Please see  [Kong Gateway Version Support](https://docs.konghq.com/enterprise/latest/support-policy/) for more information about Kong's support for Kong Gateway and our [Support & Maintenance Policy](https://konghq.com/supportandmaintenancepolicy/).
-
-
-<!-- ## Form logic
-Only product is displayed on page load
-Hide version form if product is not selected
-If (product) has been selected AND only has ("current") version, hide version form
-
-
-## View results button
-
-If (product + version), show compatible
-If (product + version == "current" ), show compatible
-If (missing product or version from dropdown selection) then throw error OR have default values
-If product or version is missing, show nothing OR show error
-
-## Reset button
-Clicking reset button resets form AND results
-Revert to page load state, only product is displayed
-
--->
+Please see [Kong Gateway Version Support](https://docs.konghq.com/enterprise/latest/support-policy/)
+for more information about Kong's support for {{site.base_gateway}} and our
+[Support & Maintenance Policy](https://konghq.com/supportandmaintenancepolicy/).
 
 <!-- VARIABLES -->
 {% assign products = site.data.tables.compat %}
@@ -34,9 +18,10 @@ Revert to page load state, only product is displayed
 {% assign k8s-components = product.versions.kubernetes %}
 {% assign dbs = product.versions.databases %}
 {% assign langs = product.versions.pdk %}
-{% assign brs = product.versions.browsers %}
-{% assign gtws = product.versions.gateways %}
+<!-- {% assign brs = product.versions.browsers %}
+{% assign gtws = product.versions.gateways %} -->
 
+<!-- Dropdown selector and buttons -->
 <script>
   window.productCompatibility = {{ site.data.tables.compat | jsonify }}
 </script>
@@ -61,9 +46,6 @@ Revert to page load state, only product is displayed
 
 </div>
 
-<!-- ## Results
-{:.compat-title} -->
-
 <!-- Output of the product and version selector form -->
 
 {% for product in products %}
@@ -83,7 +65,7 @@ Revert to page load state, only product is displayed
     <th><b>Supported Versions</b></th>
   </thead>
   <tbody>
-  {% for br in version.browsers %}
+  <!-- {% for br in version.browsers %}
     <tr>
       <td>{{ br[0] | split: "-" | join: " " | capitalize }}</td>
       <td>Browser</td>
@@ -102,7 +84,7 @@ Revert to page load state, only product is displayed
       <td>Kong Gateway</td>
       <td>{{ gtw[1] }}</td>
     </tr>
-  {% endfor %}
+  {% endfor %} -->
   {% for system in version.os %}
     <tr>
       <td>{{ system[0] | split: "-" | join: " " | capitalize }}</td>
