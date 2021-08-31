@@ -122,7 +122,7 @@ like this:
 with your specific values from {{site.konnect_short_name}}.
 
     If your cluster cert locations differ from the paths in the template, update
-    the values in `cluster_cert`, `cluster_cert_key` and `cluster_ca_cert`
+    the values in `cluster_cert`, `cluster_cert_key`, and `cluster_ca_cert`
     with references to the secrets you created earlier.
 
     See [Parameters](/konnect/runtime-manager/runtime-parameter-reference) for
