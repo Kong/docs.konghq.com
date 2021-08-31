@@ -287,27 +287,6 @@
         "kubernetes": {
           "kong-ingress-controller": "0.6.x, 0.7.x, 0.8.x, 0.9.x"
         }
-      },
-    ]
-  },
-  {
-    "name": "Konnect Cloud",
-    "slug": "konnect-cloud",
-    "noversions": true,
-    "versions": [
-      {
-        "release": null,
-        "gateways": {
-          "kong-gateway": "2.3.x, 2.4.1.1"
-        },
-        "browsers": {
-          "internet-explorer": "not supported",
-          "edge": "supported",
-          "firefox": "supported",
-          "chrome": "supported",
-          "safari": "supported",
-          "opera": "unknown"
-        }
       }
     ]
   }
