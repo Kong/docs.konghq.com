@@ -47,6 +47,7 @@
 /konnect/servicehub/plugins/enable-service-plugin/  /konnect/manage-plugins/enable-service-plugin/
 /konnect/servicehub/plugins/enable-route-plugin/    /konnect/manage-plugins/enable-route-plugin/
 /konnect/dev-portal/administrators/customization/themes         /konnect/dev-portal
+/konnect-platform/compatibility             /konnect-platform/
 
 # Community doc rebranding
 /latest/*                                   /gateway-oss/latest/:splat
