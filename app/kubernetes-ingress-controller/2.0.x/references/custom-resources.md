@@ -18,6 +18,8 @@ Following CRDs enables users to declaratively configure all aspects of Kong:
 - [**TCPIngress**](#tcpingress):
   This resource can configure TCP-based routing in Kong for non-HTTP
   services running inside Kubernetes.
+- [**UDPIngress**](#udpingress):
+  This resource can configure UDP-based routing in Kong.
 - [**KongCredential (Deprecated)**](#kongcredential-deprecated):
   This resource maps to
   a credential (key-auth, basic-auth, jwt, hmac-auth) that is associated with
