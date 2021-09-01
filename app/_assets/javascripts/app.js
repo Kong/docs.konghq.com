@@ -64,6 +64,22 @@ jQuery(function () {
     });
   });
 
+    // COMPAT DROPDOWN: dropdown menu functionality (handles /konnect-platform/compatibility dropdown)
+    $("#compat-dropdown").on("click", function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      $("#compat-list").toggleClass("open");
+
+      $(document).one('click', function closeMenu (e){
+          if($('#compat-list').has(e.target).length === 0){
+              $('#compat-list').removeClass('open');
+          } else {
+              $(document).one('click', closeMenu);
+          }
+      });
+    });
+
   // COOKIE MODAL: Hide banner on "I accept" and set cookie
   $(".cookie-policy-accept").on("click", function (e) {
     e.preventDefault();
