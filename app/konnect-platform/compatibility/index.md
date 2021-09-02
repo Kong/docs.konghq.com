@@ -2,7 +2,7 @@
 title: Kong Platform Compatibility
 no_version: true
 toc: false
-redirect_to: /konnect-platform/
+<!-- redirect_to: /konnect-platform/ -->
 ---
 
 Provided below are compatibility tables for Kong products. Select a Kong product
@@ -57,6 +57,16 @@ for more information about Kong's support for {{site.base_gateway}} and our
 <div class="compat-title" id="{{ product.name }}">{{ product.name }}</div>
 {% if version.release %}
 <div class="version-title"> Version {{ version.release }}</div>
+{% endif %}
+
+{% if product.slug == 'kong-gateway' %}
+<br><br><p> If you need help using Kong Gateway with any of the supported technologies, ask a question in <a href="https://discuss.konghq.com/">our community</a>.</p>
+
+<p>If you have an Enterprise tier subscription, contact <a href="https://support.konghq.com/">Kong Support</a>.</p>
+
+{% elsif product.slug == 'kong-gateway-oss' %}
+<br><br><p> If you need help using Kong Gateway (OSS) with any of the supported technologies, <a href="https://github.com/Kong/kong/discussions">ask a question</a> or <a href="https://github.com/Kong/kong/issues">file an issue</a> in our GitHub repository.</p>
+
 {% endif %}
 
 <table class="compat-table">
