@@ -14,6 +14,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.6.x
+        - 2.5.x
         - 2.4.x
         - 2.3.x
         - 2.2.x
@@ -196,11 +198,15 @@ kong_data_plane_version_compatible{node_id="d4e7584e-b2f2-415b-bb68-3b0936f1fde3
 # TYPE kong_nginx_metric_errors_total counter
 kong_nginx_metric_errors_total 0
 # HELP kong_upstream_target_health Health status of targets of upstream. States = healthchecks_off|healthy|unhealthy|dns_error, value is 1 when state is populated.
-kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="healthchecks_off"} 0
-kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="healthy"} 1
-kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="unhealthy"} 0
-kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="dns_error"} 0
+kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="healthchecks_off",subsystem="http"} 0
+kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="healthy",subsystem="http"} 1
+kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="unhealthy",subsystem="http"} 0
+kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="dns_error",subsystem="http"} 0
 ```
+
+**Note:** Upstreams targets health information are exported once per subsystem: if both
+stream and HTTP listeners are enabled, targets health will appear twice. Health metrics
+have a `subsystem` label to indicate which subsystem the metric refers to.
 
 ### Accessing the metrics
 
