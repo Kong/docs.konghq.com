@@ -3,6 +3,8 @@ title: Set Up SSO with Okta
 no_version: true
 badge: enterprise
 ---
+{:.warning .no-icon}
+> This feature is available for **tech preview only**, which means the feature is still in development, and should not be deployed in a production environment.
 
 As an alternative to {{site.konnect_saas}}’s native authentication, you can set
 up single sign-on (SSO) access to {{site.konnect_short_name}} through
