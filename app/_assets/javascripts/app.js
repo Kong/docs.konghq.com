@@ -463,6 +463,7 @@ jQuery(function () {
         $(document.body).addClass("image-modal-no-scroll");
         imageModal.addClass("visible");
         imageModal.find("img").attr("src", $img.attr("src"));
+        imageModal.find("img").attr("alt", $img.attr("alt"));
 
         document.addEventListener("keydown", imageModalKeyDown);
       });
