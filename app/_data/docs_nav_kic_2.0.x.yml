@@ -120,3 +120,5 @@
       url: /references/version-compatibility
     - text: Troubleshooting
       url: /troubleshooting
+    - text: Prometheus Metrics
+      url: /references/prometheus
