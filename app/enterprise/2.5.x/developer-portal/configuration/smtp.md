@@ -15,7 +15,7 @@ curl http://localhost:8001/workspaces/<WORKSPACE_NAME> \
 
 If they are not modified manually, the Dev Portal will use the default value defined in the Kong Configuration file.
 
-In 1.3.0.1 or greater, [Developer Portal email content and styling can be customized via template files](/enterprise/{{page.kong_version}}/developer-portal/theme-customization/emails/)
+In 1.3.0.1 or greater, [Dev Portal email content and styling can be customized via template files](/enterprise/{{page.kong_version}}/developer-portal/theme-customization/emails/)
 
 
 ### portal_invite_email
@@ -27,11 +27,11 @@ When enabled, Kong admins will be able to invite developers to a Dev Portal by u
 
 **Email:**
 ```
-Subject: Invite to access Developer Portal <WORKSPACE_NAME>
+Subject: Invite to access Dev Portal <WORKSPACE_NAME>
 
 Hello Developer!
 
-You have been invited to create a Developer Portal account at %s.
+You have been invited to create a Dev Portal account at %s.
 Please visit `<DEV_PORTAL_URL/register>` to create your account.
 ```
 
@@ -52,11 +52,11 @@ When enabled, developers will receive an email upon registration to verify their
 When enabled, Kong Admins specified by `smtp_admin_emails` will receive an email when a Developer requests access to a Dev Portal.
 
 ```
-Subject: Request to access Developer Portal <WORKSPACE NAME>
+Subject: Request to access Dev Portal <WORKSPACE NAME>
 
 Hello Admin!
 
-<DEVELOPER NAME> has requested Developer Portal access for <WORKSPACE_NAME>.
+<DEVELOPER NAME> has requested Dev Portal access for <WORKSPACE_NAME>.
 Please visit <KONG_MANAGER_URL/developers/requested> to review this request.
 ```
 
@@ -69,7 +69,7 @@ Please visit <KONG_MANAGER_URL/developers/requested> to review this request.
 When enabled, developers will receive an email when access to a Dev Portal has been approved.
 
 ```
-Subject: Developer Portal access approved
+Subject: Dev Portal access approved
 
 Hello Developer!
 You have been approved to access <WORKSPACE_NAME>.
@@ -87,11 +87,11 @@ When enabled, developers will be able to use the Reset Password flow on a Dev Po
 When disabled, developers will *not* be able to reset their account passwords.
 
 ```
-Subject: Password Reset Instructions for Developer Portal <WORKSPACE_NAME>.
+Subject: Password Reset Instructions for Dev Portal <WORKSPACE_NAME>.
 
 Hello Developer,
 
-Please click the link below to reset your Developer Portal password.
+Please click the link below to reset your Dev Portal password.
 
 <DEV_PORTAL_URL/reset?token=12345>
 
@@ -111,10 +111,10 @@ When enabled, developers will receive an email after successfully reseting their
 When disabled, developers will still be able to reset their account passwords, but will not receive a confirmation email.
 
 ```
-Subject: Developer Portal password change success
+Subject: Dev Portal password change success
 
 Hello Developer,
-We are emailing you to let you know that your Developer Portal password at <DEV_PORTAL_URL> has been changed.
+We are emailing you to let you know that your Dev Portal password at <DEV_PORTAL_URL> has been changed.
 
 Click the link below to sign in with your new credentials.
 

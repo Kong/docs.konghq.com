@@ -4,7 +4,7 @@ title: Developer Roles and Content Permissions
 
 ## Introduction
 
-Access to the Developer Portal can be fine-tuned with the use of Developer
+Access to the Dev Portal can be fine-tuned with the use of Developer
 Roles and Content Permissions, managed through the Dev Portal Permissions page
 of Kong Manager. This page can be found by clicking the **Permissions** link
 under **Dev Portal** in the Kong Manager navigation bar.
