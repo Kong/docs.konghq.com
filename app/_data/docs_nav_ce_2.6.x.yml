@@ -460,8 +460,6 @@
     - text: Install Kong for Kubernetes
       url: /kong-for-kubernetes/install
 
-    - text: Using Kong for Kubernetes
-      url: /kong-for-kubernetes/using-kong-for-kubernetes
-
-    - text: Changelog
-      url: /kong-for-kubernetes/changelog
+    - text: Kong Ingress Controller Changelog
+      url: https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
+      absolute_url: true
