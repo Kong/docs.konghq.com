@@ -26,41 +26,41 @@ jQuery(function () {
 
   // Active link
   var url = $(".page.v2").data("url");
-  if (url){
+  if (url) {
     var urlNoSlash = url.slice(0, -1);
-    var activeNav = $(".docs-sidebar li a[href='"+url+"'], .docs-sidebar li a[href='"+urlNoSlash+"'] ").addClass("active");
+    var activeNav = $(".docs-sidebar li a[href='" + url + "'], .docs-sidebar li a[href='" + urlNoSlash + "'] ").addClass("active");
     activeNav.parents(".accordion-item").addClass("active");
   };
 
   // MODULE DROPDOWN: dropdown menu functionality (handles main product dropdown)
-  $("#module-dropdown").on("click", function(e) {
+  $("#module-dropdown").on("click", function (e) {
     e.preventDefault();
     e.stopPropagation();
 
     $("#module-list").toggleClass("open");
 
-    $(document).one('click', function closeMenu (e){
-        if($('#module-list').has(e.target).length === 0){
-            $('#module-list').removeClass('open');
-        } else {
-            $(document).one('click', closeMenu);
-        }
+    $(document).one('click', function closeMenu(e) {
+      if ($('#module-list').has(e.target).length === 0) {
+        $('#module-list').removeClass('open');
+      } else {
+        $(document).one('click', closeMenu);
+      }
     });
   });
 
   // VERSION DROPDOWN: dropdown menu functionality (handles plugin detail page, lua, and main versions dropdown)
-  $("#version-dropdown").on("click", function(e) {
+  $("#version-dropdown").on("click", function (e) {
     e.preventDefault();
     e.stopPropagation();
 
     $("#version-list").toggleClass("open");
 
-    $(document).one('click', function closeMenu (e){
-        if($('#version-list').has(e.target).length === 0){
-            $('#version-list').removeClass('open');
-        } else {
-            $(document).one('click', closeMenu);
-        }
+    $(document).one('click', function closeMenu(e) {
+      if ($('#version-list').has(e.target).length === 0) {
+        $('#version-list').removeClass('open');
+      } else {
+        $(document).one('click', closeMenu);
+      }
     });
   });
 
@@ -301,7 +301,7 @@ jQuery(function () {
     mobileTable();
   }
 
-  $(window).on("resize", (function(){
+  $(window).on("resize", (function () {
     if ($window.width() <= 1099) {
       mobileTable();
     }
@@ -564,7 +564,7 @@ jQuery(function () {
 });
 
 jQuery(function () {
-  var closed = localStorage.getItem("closebanner-konnect");
+  var closed = localStorage.getItem("closebanner-summit");
   if (
     closed !== "closebanner"
   ) {
@@ -607,5 +607,5 @@ setInterval(function () {
 
 $(".closebanner").on("click", function () {
   $(".navbar-v2").addClass("closed");
-  localStorage.setItem("closebanner-konnect", "closebanner");
+  localStorage.setItem("closebanner-summit", "closebanner");
 });
