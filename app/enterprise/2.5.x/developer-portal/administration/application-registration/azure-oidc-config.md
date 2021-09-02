@@ -189,7 +189,7 @@ next procedure.
 
 ## Create an Application in Kong
 
-1. Log in to your Developer Portal and create a new application:
+1. Log in to your Dev Portal and create a new application:
    1. Select the **My Apps** menu -> **New Application**.
    2. Enter the **Name** of your Azure application.
    3. Paste the `aud` value generated in JWT in the **Reference ID** field.
