@@ -11,7 +11,7 @@ no_version: true
 
 #### Enterprise
 - This release fixes a regression in the Kong Dev Portal templates that removed dynamic menu navigation and other improvements
-from portals created in Kong Gateway v2.2.1.4.
+from portals created in Kong Gateway v2.5.0.1.
 
 #### Plugins
 - [Mocking](/hub/kong-inc/mocking) (`mocking`)
@@ -518,7 +518,7 @@ from portals created in Kong Gateway v2.2.1.4.
 
 #### Enterprise
 - This release fixes a regression in the Kong Dev Portal templates that removed dynamic menu navigation and other improvements
-from portals created in Kong Gateway v2.2.1.4.
+from portals created in Kong Gateway v2.4.1.2.
 
 ## 2.4.1.2
 **Release Date** 2021/08/18
@@ -967,7 +967,7 @@ keep-alive connections. [7102](https://github.com/Kong/kong/pull/7102)
 
 #### Enterprise
 - This release fixes a regression in the Kong Dev Portal templates that removed dynamic menu navigation and other improvements
-from portals created in Kong Gateway v2.2.1.4.
+from portals created in Kong Gateway v2.3.3.3.
 
 ## 2.3.3.3
 **Release Date** 2021/08/18
