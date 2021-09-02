@@ -4,6 +4,20 @@ no_search: true
 no_version: true
 ---
 
+## 2.5.0.2
+**Release Date** 2021/09/02
+
+### Fixes
+
+#### Enterprise
+- This release fixes a regression in the Kong Dev Portal templates that removed dynamic menu navigation and other improvements
+from portals created in Kong Gateway v2.2.1.4.
+
+#### Plugins
+- [Mocking](/hub/kong-inc/mocking) (`mocking`)
+  This release fixes special character handling in path matching for the plugin. Before, if a path contained a hyphen
+  the plugin failed to match the path.
+
 ## 2.5.0.1
 **Release Date** 2021/08/18
 
@@ -497,6 +511,15 @@ no_version: true
   with command not found". [#7523](https://github.com/Kong/kong/pull/7523)
 
 
+## 2.4.1.3
+**Release Date** 2021/09/02
+
+### Fixes
+
+#### Enterprise
+- This release fixes a regression in the Kong Dev Portal templates that removed dynamic menu navigation and other improvements
+from portals created in Kong Gateway v2.2.1.4.
+
 ## 2.4.1.2
 **Release Date** 2021/08/18
 
@@ -937,6 +960,15 @@ keep-alive connections. [7102](https://github.com/Kong/kong/pull/7102)
     which prevented access to other necessary modules such as `kong.log`.
 
 
+## 2.3.3.4
+**Release Date** 2021/09/02
+
+### Fixes
+
+#### Enterprise
+- This release fixes a regression in the Kong Dev Portal templates that removed dynamic menu navigation and other improvements
+from portals created in Kong Gateway v2.2.1.4.
+
 ## 2.3.3.3
 **Release Date** 2021/08/18
 
@@ -1376,6 +1408,15 @@ fixed causing a 500 auth error when falling back to an anonymous user.
 ### Deprecated
 #### Distributions
 - Support for CentOS-6 is removed and entered end-of-life on Nov 30, 2020.
+
+## 2.2.1.5
+**Release Date** 2021/09/02
+
+### Fixes
+
+#### Enterprise
+- This release fixes a regression in the Kong Dev Portal templates that removed dynamic menu navigation and other improvements
+from portals created in Kong Gateway v2.2.1.4.
 
 ## 2.2.1.4
 **Release Date** 2021/08/18
