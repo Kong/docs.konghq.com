@@ -49,11 +49,20 @@ suggest `kong-mesh-system`.
 
     The filename should be <code>license.json</code>, unless otherwise specified in <code>values.yaml</code>.
 
-3. Deploy the {{site.mesh_product_name}} Helm chart:
+3. Deploy the {{site.mesh_product_name}} Helm chart.
 
+   By default, the license option is disabled, so you need to enable it for the license to take effect.
+   The easiest option is to override each field on the CLI. The only 
+   downside to this method is that you need to supply these values every time you run a 
+   `helm upgrade`, otherwise they will be reverted back to what the chart's default values are 
+   for those fields, i.e. disabled.
+    
     ```sh
     $ helm repo update
-    $ helm upgrade -i -n kong-mesh-system kong-mesh kong-mesh/kong-mesh
+    $ helm upgrade -i -n kong-mesh-system kong-mesh kong-mesh/kong-mesh \
+      --set kuma.controlPlane.secrets[0].Env="KMESH_LICENSE_INLINE" \
+      --set kuma.controlPlane.secrets[0].Secret="kong-mesh-license" \
+      --set kuma.controlPlane.secrets[0].Key="license.json"
     ```
 
     This example will run {{site.mesh_product_name}} in standalone mode for a _flat_

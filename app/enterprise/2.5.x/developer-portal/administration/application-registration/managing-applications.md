@@ -3,11 +3,11 @@ title: Manage Applications
 ---
 
 ## Manage Developer Applications from Kong Manager
-Developers can create applications from the Kong Developer Portal. An application can apply to any number of Services. This is called a Service Contract. To use an application with a Service, the Service Contract must have an Approved status. To enable automatic approval for all new Service Contracts, enable Auto-approve for the Portal Application Registration plugin.
+Developers can create applications from the Kong Dev Portal. An application can apply to any number of Services. This is called a Service Contract. To use an application with a Service, the Service Contract must have an Approved status. To enable automatic approval for all new Service Contracts, enable Auto-approve for the Portal Application Registration plugin.
 
 ### Create an Application
 
-1. Log in to the Kong Developer Portal.
+1. Log in to the Kong Dev Portal.
 2. Click **My Apps** in the top navigation bar.
 3. Click **New Application**.
 4. Complete the **Create Application** dialog:
