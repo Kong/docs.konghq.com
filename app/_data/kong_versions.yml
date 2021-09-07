@@ -281,7 +281,7 @@
     pcre: "8.44"
 -
   release: "2.5.x"
-  version: "2.5.0"
+  version: "2.5.1"
   edition: "gateway-oss"
   luarocks_version: "2.5.1-0"
   dependencies:
