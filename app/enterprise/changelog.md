@@ -43,7 +43,7 @@ no_version: true
 
 
 ## 2.5.0.2
-**Release Date** 2021/09/02cf
+**Release Date** 2021/09/02
 
 ### Fixes
 
