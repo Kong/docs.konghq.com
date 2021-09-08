@@ -36,10 +36,6 @@ header.navbar-v2 {
       z-index: 999;
   }
 
-  @media screen and (max-width: 800px) {
-    // box-shadow: none;
-  }
-
   .docs-dropdown-li {
     list-style-type: none;
   }
@@ -94,7 +90,7 @@ header.navbar-v2 {
       &.mobile {
         flex-grow: unset;
 
-        @media (max-width: 767px) {
+        @media (max-width: 1100px) {
           flex-grow: 10;
         }
       }
@@ -114,7 +110,7 @@ header.navbar-v2 {
         width: 368px;
       }
 
-      @media (max-width: 767px) {
+      @media (max-width: 1100px) {
         background: transparent;
         margin: 0 10px;
         padding: 2px;
@@ -143,7 +139,7 @@ header.navbar-v2 {
           color: @color-text-light;
         }
 
-        @media (max-width: 767px) {
+        @media (max-width: 1100px) {
           display: none;
         }
       }
@@ -180,7 +176,7 @@ header.navbar-v2 {
           .caret {
             margin: 0;
 
-            @media (min-width: 801px) {
+            @media (min-width: 1100px) {
               display: none;
             }
           }
@@ -322,7 +318,7 @@ header.navbar-v2 {
     }
   }
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1100px) {
     padding: 0 12px;
 
     .navbar-content {
@@ -338,7 +334,7 @@ header.navbar-v2 {
     }
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 1100px) {
     .navbar-content {
       > .navbar-items {
         position: absolute;
@@ -457,7 +453,7 @@ header.navbar-v2 {
     &.search-opened {
       .navbar-content {
 
-        .navbar-brand {
+        .navbar-brand, .logo-divider {
           display: none;
         }
 
