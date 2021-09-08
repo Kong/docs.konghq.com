@@ -29,26 +29,7 @@ For [Gateway Enterprise configuration reference](https://docs.konghq.com/enterpr
 ## Run local project
 ***
 
-For anything other than minor changes, clone the repository onto your local machine and build locally. We offer the option to run your project locally with Docker, gulp, and npm. 
-
-## Run locally with Docker
-***
-
-### Prerequisites
-
-- [Docker](https://www.docker.com/products/docker-desktop) (You will not need to run the Docker container via Docker Desktop.)
-
-### Start container
-
-Start the Docker container (this installs dependencies for you and may take a few minutes):
-```
-make develop
-```
-
-If you have issues, run:
-```
-make clean
-```
+For anything other than minor changes, clone the repository onto your local machine and build locally. 
 
 ## Run locally with gulp
 ***
@@ -157,9 +138,9 @@ Then open a pull request against `release/2.4`.
 
 Tests for this site are written using `rspec` and `capybara` with the `apparition` driver.
 
-> You'll need Google Chrome installed to run these tests
+> You'll need Google Chrome installed to run these tests.
 
-To run the tests, you must first build the site by running `make build` before running `make rspec`
+To run the tests, you must first build the site by running `make build` before running `make rspec`.
 
 Many of the tests are smoke tests to check issues that occurred whilst adding caching to the site, such as ensuring that the side navigation isn't cached.
 
@@ -172,11 +153,11 @@ it "has the 'Welcome to Kong' header" do
 end
 ```
 
-This test framework can also be used to test behaviour added with JavaScript, but we do not have any examples at this time
+This test framework can also be used to test behavior added with JavaScript, but we do not have any examples at this time.
 
 ## Continuous Integration
 
-We run various quality checks at build time to ensure that the documentation is maintainable.G
+We run various quality checks at build time to ensure that the documentation is maintainable.
 
 ### include-check
 
