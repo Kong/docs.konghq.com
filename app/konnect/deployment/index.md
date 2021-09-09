@@ -45,8 +45,10 @@ data plane.
 
 |                                   | {{site.konnect_saas}} |
 |-----------------------------------|:--------------------------------:|
-| {{site.ee_product_name}} 2.4.x    | <i class="fa fa-check"></i> ¹    |
+| {{site.ee_product_name}} 2.5.x    | <i class="fa fa-check"></i> ¹    |
+| {{site.ee_product_name}} 2.4.x    | <i class="fa fa-check"></i> ²    |
 | {{site.ee_product_name}} 2.3.x    | <i class="fa fa-check"></i>      |
 | {{site.ee_product_name}} 2.2.x or earlier | <i class="fa fa-times"></i> |
 
-¹⁾ Supports 2.4.1.1 onward.
+¹⁾ Supports 2.4.1.1 onward.<br>
+²⁾ Supports 2.5.0.1 onward.
