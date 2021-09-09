@@ -98,7 +98,6 @@ function images() {
   return gulp
     .src(sources.images)
     .pipe($.plumber())
-    .pipe($.if(!dev, $.imagemin()))
     .pipe(gulp.dest(paths.dist + "assets/images"))
     .pipe($.if(!dev, $.size()));
 }
@@ -400,7 +399,6 @@ gulp.task("js_min", js);
 gulp.task("css", css);
 gulp.task("styles", styles);
 gulp.task("images", gulp.series(set_dev, images));
-gulp.task("images_min", images);
 gulp.task("fonts", fonts);
 gulp.task("jekyll", jekyll);
 gulp.task("html", html);
