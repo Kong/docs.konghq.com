@@ -2,9 +2,8 @@
 title: TCPIngress with Kong
 ---
 
-This guide walks through using TCPIngress Custom Resource
-resource to expose TCP-based services running in Kubernetes to the out
-side world.
+This guide walks through using TCPIngress Custom Resource to expose TCP-based
+services running in Kubernetes to the outside world.
 
 ## Overview
 
@@ -12,7 +11,7 @@ TCP-based Ingress means that Kong simply forwards the TCP stream to a Pod
 of a Service that's running inside Kubernetes. Kong will not perform any
 sort of transformations.
 
-There are two modes avaialble:
+There are two modes available:
 - **Port based routing**: In this mode, Kong simply proxies all traffic it
   receives on a specific port to the Kubernetes Service. TCP connections are
   load balanced across all the available pods of the Service.
@@ -116,13 +115,9 @@ $ kubectl patch service -n kong kong-proxy --patch '{
 service/kong-proxy patched
 ```
 
-You are free to choose other ports as well.
-
 ## Install TCP echo service
 
-Next, we will install a dummy TCP service.
-If you already have a TCP-based service running in your cluster,
-you can use that as well.
+Next, we will install an example TCP service.
 
 ```shell
 $ kubectl apply -f https://bit.ly/tcp-echo
