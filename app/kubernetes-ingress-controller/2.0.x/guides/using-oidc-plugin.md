@@ -26,7 +26,6 @@ HTTP 404 Not Found.
 ```bash
 $ curl -i $PROXY_IP
 HTTP/1.1 404 Not Found
-Date: Fri, 21 Jun 2019 17:01:07 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 Content-Length: 48
@@ -87,7 +86,6 @@ Content-Type: text/html; charset=utf-8
 Content-Length: 0
 Connection: keep-alive
 Server: gunicorn/19.9.0
-Date: Wed, 17 Jul 2019 19:25:32 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2

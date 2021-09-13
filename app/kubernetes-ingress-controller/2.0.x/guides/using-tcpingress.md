@@ -42,7 +42,6 @@ HTTP 404 Not Found.
 ```bash
 $ curl -i $PROXY_IP
 HTTP/1.1 404 Not Found
-Date: Fri, 21 Jun 2019 17:01:07 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 Content-Length: 48

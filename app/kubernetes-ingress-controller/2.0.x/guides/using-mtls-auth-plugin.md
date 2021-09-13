@@ -28,7 +28,6 @@ HTTP 404 Not Found.
 ```bash
 $ curl -i $PROXY_IP
 HTTP/1.1 404 Not Found
-Date: Fri, 21 Jun 2019 17:01:07 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 Content-Length: 48
@@ -178,7 +177,6 @@ or not when we make the request:
 ```
 $ curl -k https://$PROXY_IP
 HTTP/2 401
-date: Mon, 11 May 2020 18:15:05 GMT
 content-type: application/json; charset=utf-8
 content-length: 50
 x-kong-response-latency: 0
@@ -296,7 +294,6 @@ service:
 $ curl --key client.key --cert client.crt  https://$PROXY_IP/foo -k -I
 HTTP/2 200
 content-type: text/plain; charset=UTF-8
-date: Mon, 11 May 2020 18:27:22 GMT
 server: echoserver
 x-kong-upstream-latency: 1
 x-kong-proxy-latency: 1
