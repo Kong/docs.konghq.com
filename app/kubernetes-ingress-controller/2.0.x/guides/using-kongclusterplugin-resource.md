@@ -2,7 +2,7 @@
 title: Using KongClusterPlugin resource
 ---
 
-In this guide, we will learn how to use KongClusterPlugin resource to configure
+In this guide we will learn how to use KongClusterPlugin resource to configure
 plugins in Kong.
 The guide will cover configuring a plugin for services across different
 namespaces.
@@ -69,7 +69,7 @@ metadata:
   name: httpbin-app
   namespace: httpbin
   annotations:
-    konghq.com/strip-path: "true"
+    konghq.com/strip-path: 'true'
 spec:
   ingressClassName: kong
   rules:
