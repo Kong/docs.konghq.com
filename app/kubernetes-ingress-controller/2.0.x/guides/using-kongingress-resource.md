@@ -247,5 +247,5 @@ $ curl -s $PROXY_IP/foo | grep "pod IP"
 ```
 
 
-You can experiement with various load balancing and healthchecking settings
+You can experiment with various load balancing and health-checking settings
 that KongIngress resource exposes to suit your specific use case.
