@@ -1,9 +1,9 @@
-describe "plugins", type: :feature, js: true do
-  it "renders the plugin card CSS correctly" do
-    # This means that hub.css has been included
-    visit "/hub/"
-    expect(first(".plugin-card")).to match_style("display" => "flex")
-  end
+# describe "plugins", type: :feature, js: true do
+#   it "renders the plugin card CSS correctly" do
+#     # This means that hub.css has been included
+#     visit "/hub/"
+#     expect(first(".plugin-card")).to match_style("display" => "flex")
+#   end
 
   # These tests ensure that the generated samples are correct
   # We had a caching issue previously where they all showed the same information
