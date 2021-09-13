@@ -13,7 +13,7 @@ deployments of the {{site.kic_product_name}} in the same cluster: a
 ## Configuring the controller ingress class
 
 The `--ingress-class` flag (or `CONTROLLER_INGRESS_CLASS` environment variable)
-specify the ingress class expected by the {{site.kic_product_name}}. By default,
+specifies the ingress class expected by the {{site.kic_product_name}}. By default,
 it expects the `kong` class.
 
 ## Loading resources by class
@@ -32,10 +32,10 @@ KongConsumer is translated directly into a
 an authentication plugin credential is _not_ translated directly: it is only
 translated into Kong configuration if a KongConsumer resource references it.
 
-Because they create Kong configuration indenpendent of any other resources,
+Because they create Kong configuration independent of any other resources,
 directly-translated resources require an ingress class, and their class must
 match the class configured for the controller. Referenced resources do not
-require a class, but must be referenced by a directly-translated resource
+require a class, but must be referenced by a directly translated resource
 that matches the controller.
 
 ### Adding class information to resources
@@ -128,7 +128,7 @@ resources that the controller uses as a basis for building Kong configuration.
 The Secret and KongPlugin _do not_ have class annotations, as they are
 referenced by other resources that do.
 
-[class-annotation]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#kubernetesioingressclass
-[knative-class]: /kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kong-with-knative/#ingress-class
-[knative-override]: https://knative.tips/networking/ingress-override/
-[ingress-class-name]: https://kubernetes.io/docs/concepts/services-networking/ingress/#deprecated-annotation
+[class-annotation]:/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#kubernetesioingressclass
+[knative-class]:/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kong-with-knative/#ingress-class
+[knative-override]:https://knative.tips/networking/ingress-override/
+[ingress-class-name]:https://kubernetes.io/docs/concepts/services-networking/ingress/#deprecated-annotation
