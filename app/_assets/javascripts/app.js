@@ -334,46 +334,6 @@ $("a[data-filter]").on("keypress", function(e) {
     }
 }});
 
-//
-// var pluginFilter = function() {
-//   $("html, body").animate({ scrollTop: 0 });
-//   var target = $(this).data("filter");
-//
-//   // Remove any active classes that may already be applied
-//   $("a[data-filter]").removeClass("active");
-//   // Add active class sidebar a
-//   $(this).addClass("active");
-//
-//   // For all faded cards, replace href with data-href target
-//   $(".card-group.fadeOut").each(function () {
-//     var link = $(this).find("a");
-//     link.attr("href", $(link).attr("data-href"));
-//     link.removeAttr("data-href");
-//   });
-//
-//   // Remove any fade states that may already be applied
-//   $(".card-group").removeClass("fadeOut");
-//
-//   // If the target of the li is not all continue
-//   if (target !== "all") {
-//     // Fade all cards that don't have matching filter
-//     $(".card-group")
-//       .not("." + target)
-//       .addClass("fadeOut");
-//     // For each faded card, move href to data-href and remove href
-//     $(".card-group.fadeOut").each(function () {
-//       var link = $(this).find("a");
-//       link.attr("data-href", $(link).attr("href"));
-//       link.removeAttr("href");
-//     });
-//   }
-// }
-//
-// Call the plugin filter function on click and keypress
-// $("a[data-filter]").click(pluginFilter).on("keypress", function(event) {
-//    if (event.keyCode == 13) { pluginFilter()};
-// });
-
   // Responsive Tables
   if ($window.width() <= 1099) {
     mobileTable();
