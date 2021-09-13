@@ -69,6 +69,10 @@
           url: /guides/using-consumer-credential-resource
         - text: Using the KongClusterPlugin Resource
           url: /guides/using-kongclusterplugin-resource
+        - text: Using the TCPIngress Resource
+          url: /guides/using-tcpingress
+        - text: Using the UDPIngress Resource
+          url: /guides/using-udpingress
     - text: Using the ACL and JWT Plugins
       url: /guides/configure-acl-plugin
     - text: Using cert-manager with Kong
