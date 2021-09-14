@@ -602,7 +602,7 @@ $("a[data-filter]").on("keypress", function(e) {
 });
 
 jQuery(function () {
-  var closed = localStorage.getItem("closebanner-summit");
+  var closed = localStorage.getItem("closebanner-hackathon");
   if (
     closed !== "closebanner"
   ) {
@@ -645,5 +645,5 @@ setInterval(function () {
 
 $(".closebanner").on("click", function () {
   $(".navbar-v2").addClass("closed");
-  localStorage.setItem("closebanner-summit", "closebanner");
+  localStorage.setItem("closebanner-hackathon", "closebanner");
 });
