@@ -383,7 +383,7 @@ function watch_files() {
   gulp.watch(sources.styles, styles);
   gulp.watch(sources.images, gulp.series(images, reload_browser));
   gulp.watch(sources.js, gulp.series(js, reload_browser));
-  gulp.watch(paths.assets + "css/hub.css", css);
+  gulp.watch(paths.assets, css);
 }
 
 function set_dev(cb) {

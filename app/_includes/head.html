@@ -98,14 +98,6 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.name
     href="/assets/styles.css?v={{ site.time | date: '%s' }}"
   />
 
-
-  {% if include.is_plugin_hub %}
-  <link
-    rel="stylesheet"
-    href="/assets/hub.css?v={{ site.time | date: '%s' }}"
-  />
-  {% endif %}
-
   {% assign latest_include.url = include.url | replace: include.kong_version, include.kong_latest.release %}
   {% capture latest_page_exists %}{% page_exists {{latest_include.url}} %}{% endcapture %}
 
