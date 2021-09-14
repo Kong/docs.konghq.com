@@ -4,7 +4,7 @@ title: deck konnect dump
 
 The konnect dump command reads all entities present in Konnect
 	and writes them to a local file.
-	
+
 	The file can then be read using the 'deck konnect sync' command or 'deck konnect diff' command to
 	configure Konnect.
 
@@ -15,7 +15,7 @@ might have breaking changes in future releases.
 deck konnect dump [flags]
 ```
 
-### Options
+## Options
 
 ```
       --format string        output file format: json or yaml. (default "yaml")
@@ -26,7 +26,7 @@ deck konnect dump [flags]
       --yes                  Assume 'yes' to prompts and run non-interactively.
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
@@ -54,6 +54,6 @@ deck konnect dump [flags]
                                        between decK and Kong.
 ```
 
-### See also
+## See also
 
 * [deck konnect](/deck/{{page.kong_version}}/reference/deck_konnect)	 - Configuration tool for Konnect (in alpha)

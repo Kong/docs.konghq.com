@@ -12,7 +12,7 @@ configure Kong.
 deck dump [flags]
 ```
 
-### Options
+## Options
 
 ```
       --all-workspaces        dump configuration of all Workspaces (Kong Enterprise only).
@@ -28,7 +28,7 @@ deck dump [flags]
       --yes                   assume 'yes' to prompts and run non-interactively.
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
@@ -56,6 +56,6 @@ deck dump [flags]
                                        between decK and Kong.
 ```
 
-### See also
+## See also
 
 * [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively

@@ -1,23 +1,77 @@
 ---
-title: deck convert
+title: deck completion
 ---
 
-The convert command changes configuration files from one format
-into another compatible format. For example, a configuration for 'kong-gateway'
-can be converted into a 'konnect' configuration file.
+Generate completion script.
 
+```sh
+deck completion [bash|zsh|fish|powershell]
 ```
-deck convert [flags]
+
+## Usage
+To load completions, follow the instructions for your shell below.
+
+### Bash
+
+```sh
+source <(deck completion bash)
 ```
+
+To load completions for each session, execute once:
+
+**Linux:**
+```sh
+deck completion bash > /etc/bash_completion.d/deck
+```
+
+**macOS:**
+```sh
+deck completion bash > /usr/local/etc/bash_completion.d/deck
+```
+
+### Zsh
+
+If shell completion is not already enabled in your environment,
+you will need to enable it. You can execute the following once:
+```sh
+echo "autoload -U compinit; compinit" >> ~/.zshrc
+```
+
+To load completions for each session, execute once:
+```sh
+deck completion zsh > "${fpath[1]}/_yourprogram"
+```
+
+You will need to start a new shell for this setup to take effect.
+
+### fish
+
+```sh
+deck completion fish | source
+```
+
+To load completions for each session, execute once:
+```sh
+deck completion fish > ~/.config/fish/completions/deck.fish
+```
+
+### PowerShell
+
+```powershell
+PS> deck completion powershell | Out-String | Invoke-Expression
+```
+
+To load completions for every new session, run:
+```powershell
+PS> deck completion powershell > deck.ps1
+```
+
+Then source this file from your PowerShell profile.
 
 ## Options
 
 ```
-      --from string          format of the source file, allowed formats: [kong-gateway]
-  -h, --help                 help for convert
-      --input-file string    configuration file to be converted. Use '-' to read from stdin.
-      --output-file string   file to write configuration to after conversion. Use '-' to write to stdout.
-      --to string            desired format of the output, allowed formats: [konnect]
+  -h, --help   help for completion
 ```
 
 ## Options inherited from parent commands
@@ -50,4 +104,4 @@ deck convert [flags]
 
 ## See also
 
-* [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively
+* [deck](/deck/{{page.kong_version}}/reference/deck) - Administer your Kong clusters declaratively

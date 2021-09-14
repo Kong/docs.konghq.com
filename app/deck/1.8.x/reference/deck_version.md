@@ -9,13 +9,13 @@ commit hash of the source tree.
 deck version [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help   help for version
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
@@ -43,6 +43,6 @@ deck version [flags]
                                        between decK and Kong.
 ```
 
-### See also
+## See also
 
 * [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively

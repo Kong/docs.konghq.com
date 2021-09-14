@@ -7,7 +7,7 @@ configuration file.
 
 It can be used to export, import, or sync entities to Kong.
 
-### Options
+## Options
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
@@ -36,8 +36,8 @@ It can be used to export, import, or sync entities to Kong.
                                        between decK and Kong.
 ```
 
-### See also
-
+## See also
+* [deck completion](/deck/{{page.kong_version}}/reference/deck_completion)	 - Generate completion script
 * [deck convert](/deck/{{page.kong_version}}/reference/deck_convert)	 - Convert files from one format into another format
 * [deck diff](/deck/{{page.kong_version}}/reference/deck_diff)	 - Diff the current entities in Kong with the one on disks
 * [deck dump](/deck/{{page.kong_version}}/reference/deck_dump)	 - Export Kong configuration to a file

@@ -13,7 +13,7 @@ that will be created, updated, or deleted.
 deck diff [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help                  help for diff
@@ -33,7 +33,7 @@ deck diff [flags]
                               This takes precedence over _workspace fields in state files.
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
@@ -61,6 +61,6 @@ deck diff [flags]
                                        between decK and Kong.
 ```
 
-### See also
+## See also
 
 * [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively

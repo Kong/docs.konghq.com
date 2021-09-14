@@ -15,7 +15,7 @@ might have breaking changes in future releases.
 deck konnect diff [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help                 help for diff
@@ -29,7 +29,7 @@ deck konnect diff [flags]
                              This flag can be specified multiple times for multiple files. (default [konnect.yaml])
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
@@ -57,6 +57,6 @@ deck konnect diff [flags]
                                        between decK and Kong.
 ```
 
-### See also
+## See also
 
 * [deck konnect](/deck/{{page.kong_version}}/reference/deck_konnect)	 - Configuration tool for Konnect (in alpha)
