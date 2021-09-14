@@ -43,6 +43,8 @@
   icon: /assets/images/icons/documentation/icn-references-color.svg
   url: /reference/deck
   items:
+    - text: deck completion
+      url: /reference/deck_completion
     - text: deck convert
       url: /reference/deck_convert
     - text: deck diff
