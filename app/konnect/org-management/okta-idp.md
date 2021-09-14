@@ -4,7 +4,7 @@ no_version: true
 badge: enterprise
 ---
 {:.warning .no-icon}
-> This feature is available for **tech preview only**, which means the feature is still in development, and should not be deployed in a production environment.
+> This feature is available in **beta** with limited support. It should not be deployed in a production environment.
 
 As an alternative to {{site.konnect_saas}}’s native authentication, you can set
 up single sign-on (SSO) access to {{site.konnect_short_name}} through
@@ -168,14 +168,14 @@ application into {{site.konnect_saas}}.
 1. For the **Organization Login Path**, enter a unique string
 (for example, `somepath`).
 
+    {{site.konnect_short_name}} uses this string to generate a custom login
+    URL for your organization.
+
     Requirements:
     * The path must be unique *across all {{site.konnect_short_name}} organizations*.
     If your desired path is already taken, you will need to choose another one.
     * The path can be any alphanumeric string.
     * The path does not require a slash (`/`).
-
-    {{site.konnect_short_name}} uses this string to generate a custom login
-    URL for your organization.
 
 ### Map roles to groups
 

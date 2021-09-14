@@ -10,7 +10,7 @@ need the ability to segregate the duties of an administrator to ensure that a
 mistake or malicious act by one administrator doesn’t cause an outage.
 {{site.konnect_short_name}} provides the ability to manage authorization
 through inviting users and granting them defined or custom roles, helping you
-secure your administration environment.
+secure your environment.
 
 {:.note}
 > **Note:** If Okta integration is [enabled](/konnect/org-management/okta-idp),
