@@ -2,7 +2,7 @@
 title: Kong Platform Compatibility
 no_version: true
 toc: false
-<!-- redirect_to: /konnect-platform/ -->
+redirect_to: /konnect-platform/
 ---
 
 Provided below are compatibility tables for Kong products. Select a Kong product
