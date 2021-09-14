@@ -702,7 +702,7 @@ For example, if two Routes are configured like so:
 ```
 
 The second Route has a `hosts` field **and** a `methods` field so that it will be
-evaluated first by Kong. By doing so, we avoid the first Route, "shadowing"
+evaluated first by Kong. By doing so, we avoid the first Route "shadowing"
 calls intended for the second one.
 
 Thus, this request will match the first Route
