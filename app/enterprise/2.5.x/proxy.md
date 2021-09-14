@@ -678,7 +678,7 @@ A Route may define matching rules based on its `hosts`, `paths`, and `methods`
 fields. For Kong to match an incoming request to a Route, all existing fields
 must be satisfied. However, Kong allows for quite some flexibility by allowing
 two or more Routes to be configured with fields containing the same values -
-when this occurs; Kong applies a priority rule.
+when this occurs, Kong applies a priority rule.
 
 The rule is: **when evaluating a request, Kong will first try to match the
 Routes with the most rules**.
