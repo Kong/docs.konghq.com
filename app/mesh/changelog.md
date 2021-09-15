@@ -30,6 +30,14 @@ upgrading all instances of the control plane takes more than five (5) minutes. I
 better tracking proxy and zone status. A heartbeat periodically increments the `generation` counter for Insights. The offline status 
 should disappear after all control plane instances are upgraded to 1.4.0.
 
+## 1.3.4
+
+> Released on 2021/09/15
+
+Built on top of [Kuma 1.2.3](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#123)
+
+- Moved to a Kuma fork of `go-control-plane` that fixes a Goroutine leak
+
 ## 1.3.3
 
 > Released on 2021/07/29
