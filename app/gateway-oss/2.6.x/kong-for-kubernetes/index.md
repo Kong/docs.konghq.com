@@ -2,7 +2,7 @@
 title: Kong for Kubernetes
 ---
 
-**Kong for Kubernetes includes the following features:**
+Running {{site.base_gateway}} with the Kong Ingress Controller provides the following benefits:
 
 - Kong is configured dynamically and responds to the changes in your infrastructure.
 - Kong is deployed onto Kubernetes with a Controller, which is responsible for configuring Kong.
@@ -12,3 +12,9 @@ title: Kong for Kubernetes
 - DB-less by default, meaning Kong has the capability of running without a database and using only memory storage for entities.
 
 <img src="https://doc-assets.konghq.com/kubernetes/Kong-for-Kubernetes-Diagram.png" alt="Kong for Kubernetes control diagram">
+
+## See also
+* [Install](/gateway-oss/{{page.kong_version}}/kong-for-kubernetes/install) {{site.base_gateway}} with the Kong Ingress controller
+* [Kong Ingress Controller docs](/kubernetes-ingress-controller/)
+* [Kong Ingress Controller changelog](https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md)
+* [{{site.base_gateway}} changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md)
