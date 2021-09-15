@@ -21,8 +21,8 @@ address or DNS name will certainly keep things simpler and easy for you.
 If you don't have knative installed, you need to install Knative:
 
 ```
-kubectl apply --filename https://github.com/knative/serving/releases/download/v0.13.0/serving-crds.yaml
-kubectl apply --filename https://github.com/knative/serving/releases/download/v0.13.0/serving-core.yaml
+kubectl apply --filename https://github.com/knative/serving/releases/download/v0.18.0/serving-crds.yaml
+kubectl apply --filename https://github.com/knative/serving/releases/download/v0.18.0/serving-core.yaml
 ```
 
 This will install the resources that are required to run Knative.
