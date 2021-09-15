@@ -18,6 +18,7 @@
 /kubernetes-ingress-controller/1.2.x/introduction  /kubernetes-ingress-controller/
 /enterprise/2.5.x/deployment/using-kong-for-kubernetes/   /kubernetes-ingress-controller/
 /enterprise/latest/deployment/using-kong-for-kubernetes/   /kubernetes-ingress-controller/
+/enterprise/2.1.x/kong-for-kubernetes/install-on-kubernetes/  /enterprise/2.1.x/deployment/installation/kong-for-kubernetes/
 
 # kic beta
 /kubernetes-ingress-controller-beta/   https://kic-v2-beta--kongdocs.netlify.app/kubernetes-ingress-controller/
@@ -40,6 +41,18 @@
 /hub/api-fortress/api-fortress-http-log/    /hub/
 /hub/api-fortress/api-fortress-http-log/*   /hub/
 /hub/plugins/compatibility                  /konnect-platform/compatibility/plugins
+/enterprise/latest/plugins/statsd-advanced/ /hub/kong-inc/statsd-advanced/
+/hub/kong-inc/basic-auth/1.0-x.html         /hub/kong-inc/basic-auth/2.1-x.html
+/hub/kong-inc/basic-authentication/         /hub/kong-inc/basic-auth/
+/hub/kong-inc/hmac-auth/1.0-x.html          /hub/kong-inc/hmac-auth/2.1-x.html
+/hub/kong-inc/key-authentication            /hub/kong-inc/key-auth/
+/hub/kong-inc/ldap-auth/1.0-x.html          /hub/kong-inc/ldap-auth/2.1-x.html
+/hub/kong-inc/ldap-authentication-advanced  /hub/kong-inc/ldap-auth-advanced/
+/hub/kong-inc/proxy-cache/0.35-x.html       /hub/kong-inc/proxy-cache/
+/hub/kong-inc/upstream-tls/0.36-x.html      /hub/
+/hub/rate-limiting-advanced                 /hub/kong-inc/rate-limiting-advanced/
+/kong-inc/rate-limiting/                    /hub/kong-inc/rate-limiting/
+/latest/pdk/kong.service.request/           /gateway-oss/latest/pdk/kong.service.request/
 
 # Konnect
 /konnect/access-beta                                /konnect/access-account
@@ -53,7 +66,8 @@
 # Community doc rebranding
 /latest/*                                   /gateway-oss/latest/:splat
 /latest                                     /
-/community                                  /https://konghq.com/community-resources/
+/community                                  https://konghq.com/community-resources/
+/2.5.x/*                                    /gateway-oss/2.5.x/:splat
 /2.4.x/*                                    /gateway-oss/2.4.x/:splat
 /2.3.x/*                                    /gateway-oss/2.3.x/:splat
 /2.2.x/*                                    /gateway-oss/2.2.x/:splat
@@ -78,6 +92,7 @@
 /0.4.x/*                                    /gateway-oss/0.4.x/:splat
 /0.3.x/*                                    /gateway-oss/0.3.x/:splat
 /0.2.x/*                                    /gateway-oss/0.2.x/:splat
+/admin-api/                                 /gateway-oss/latest/admin-api
 
 # Studio
 /enterprise/2.3.x/studio                    https://support.insomnia.rest/
