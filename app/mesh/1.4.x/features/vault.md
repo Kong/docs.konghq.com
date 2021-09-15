@@ -135,6 +135,8 @@ vault write kmesh-pki-default/roles/dataplane-proxies \
   ext_key_usage="ExtKeyUsageServerAuth,ExtKeyUsageClientAuth" \
   client_flag=true \
   require_cn=false \
+  allowed_domains="mesh" \ # use only when commonName in mTLS Vault backend is set
+  allow_subdomains=true \ # use only when commonName in mTLS Vault backend is set
   basic_constraints_valid_for_non_ca=true \
   max_ttl="720h" \
   ttl="720h"
@@ -196,6 +198,7 @@ spec:
             namespace: "" # optional
             pki: kmesh-pki-default # name of the configured PKI
             role: dataplane-proxies # name of the role that will be used to generate data plane proxy certificates
+            commonName: '{{ tag "kuma.io/service" }}.mesh' # optional. If set, then common name is added to the certificate. You can use "tag" directive to pick a tag which will be base for common name.
             tls:
               caCert:
                 secret: sec-1
@@ -232,6 +235,9 @@ mtls:
         address: https://vault.8200
         agentAddress: "" # optional
         namespace: "" # optional
+        pki: kmesh-pki-default # name of the configured PKI
+        role: dataplane-proxies # name of the role that will be used to generate data plane proxy certificates
+        commonName: '{{ tag "kuma.io/service" }}.mesh' # optional. If set, then common name is added to the certificate. You can use "tag" directive to pick a tag which will be base for common name.
         tls:
           caCert:
             secret: sec-1
