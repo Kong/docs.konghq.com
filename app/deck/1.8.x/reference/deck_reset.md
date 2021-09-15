@@ -13,7 +13,7 @@ By default, this command will ask for confirmation.
 deck reset [flags]
 ```
 
-### Options
+## Options
 
 ```
       --all-workspaces        reset configuration of all workspaces (Kong Enterprise only).
@@ -26,7 +26,7 @@ deck reset [flags]
   -w, --workspace string      reset configuration of a specific workspace(Kong Enterprise only).
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
@@ -54,6 +54,6 @@ deck reset [flags]
                                        between decK and Kong.
 ```
 
-### See also
+## See also
 
 * [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively

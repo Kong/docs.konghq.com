@@ -15,7 +15,7 @@ this command.
 deck validate [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help                  help for validate
@@ -25,7 +25,7 @@ deck validate [flags]
                               Use '-' to read from stdin. (default [kong.yaml])
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
@@ -53,6 +53,6 @@ deck validate [flags]
                                        between decK and Kong.
 ```
 
-### See also
+## See also
 
 * [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively

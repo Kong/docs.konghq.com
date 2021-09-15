@@ -9,10 +9,10 @@ to get Kong's state in sync with the input state.
 deck sync [flags]
 ```
 
-### Options
+## Options
 
 ```
-      --db-update-propagation-delay int   artificial delay (in seconds) that is injected between insert operations 
+      --db-update-propagation-delay int   artificial delay (in seconds) that is injected between insert operations
                                           for related entities (usually for Cassandra deployments).
                                           See 'db_update_propagation' in kong.conf.
   -h, --help                              help for sync
@@ -29,7 +29,7 @@ deck sync [flags]
                                           This takes precedence over _workspace fields in state files.
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
@@ -57,6 +57,6 @@ deck sync [flags]
                                        between decK and Kong.
 ```
 
-### See also
+## See also
 
 * [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively

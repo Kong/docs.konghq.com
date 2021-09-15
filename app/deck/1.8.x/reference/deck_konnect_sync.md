@@ -12,7 +12,7 @@ might have breaking changes in future releases.
 deck konnect sync [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help                help for sync
@@ -23,7 +23,7 @@ deck konnect sync [flags]
                             This flag can be specified multiple times for multiple files. (default [konnect.yaml])
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
@@ -51,6 +51,6 @@ deck konnect sync [flags]
                                        between decK and Kong.
 ```
 
-### See also
+## See also
 
 * [deck konnect](/deck/{{page.kong_version}}/reference/deck_konnect)	 - Configuration tool for Konnect (in alpha)

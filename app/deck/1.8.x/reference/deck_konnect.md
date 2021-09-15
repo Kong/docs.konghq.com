@@ -8,13 +8,13 @@ configure Konnect.
 WARNING: This command is currently in alpha state. This command
 might have breaking changes in future releases.
 
-### Options
+## Options
 
 ```
   -h, --help   help for konnect
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
@@ -42,7 +42,7 @@ might have breaking changes in future releases.
                                        between decK and Kong.
 ```
 
-### See also
+## See also
 
 * [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively
 * [deck konnect diff](/deck/{{page.kong_version}}/reference/deck_konnect_diff)	 - Diff the current entities in Konnect with the one on disks (in alpha)

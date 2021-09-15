@@ -9,7 +9,7 @@ can connect to Kong's Admin API.
 deck ping [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help               help for ping
@@ -17,7 +17,7 @@ deck ping [flags]
                            Useful when RBAC permissions are scoped to a Workspace.
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
@@ -45,6 +45,6 @@ deck ping [flags]
                                        between decK and Kong.
 ```
 
-### See also
+## See also
 
 * [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively

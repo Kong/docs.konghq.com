@@ -37,7 +37,6 @@ deck konnect ping [flags]
       --konnect-password-file string   File containing the password to your Konnect account.
       --no-color                       Disable colorized output
       --skip-workspace-crud            Skip API calls related to Workspaces (Kong Enterprise only).
-      --timeout int                    Set a request timeout for the client to connect with Kong (in seconds). (default 10)
       --tls-server-name string         Name to use to verify the hostname in Kong's Admin TLS certificate.
                                        This value can also be set using DECK_TLS_SERVER_NAME environment variable.
       --tls-skip-verify                Disable verification of Kong's Admin TLS certificate.

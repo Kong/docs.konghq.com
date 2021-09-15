@@ -10,7 +10,7 @@ can be converted into a 'konnect' configuration file.
 deck convert [flags]
 ```
 
-### Options
+## Options
 
 ```
       --from string          format of the source file, allowed formats: [kong-gateway]
@@ -20,7 +20,7 @@ deck convert [flags]
       --to string            desired format of the output, allowed formats: [konnect]
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
@@ -48,6 +48,6 @@ deck convert [flags]
                                        between decK and Kong.
 ```
 
-### See also
+## See also
 
 * [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively

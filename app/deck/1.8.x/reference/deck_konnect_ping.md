@@ -13,13 +13,13 @@ might have breaking changes in future releases.
 deck konnect ping [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help   help for ping
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
@@ -47,6 +47,6 @@ deck konnect ping [flags]
                                        between decK and Kong.
 ```
 
-### See also
+## See also
 
 * [deck konnect](/deck/{{page.kong_version}}/reference/deck_konnect)	 - Configuration tool for Konnect (in alpha)
