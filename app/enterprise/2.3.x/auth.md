@@ -212,4 +212,4 @@ tokens etc. will require authentication by the other configured auth plugins.
 </div>
 
 [plugins]: /hub/
-[key-auth]: /hub/kong-inc/key-authentication
+[key-auth]: /hub/kong-inc/key-auth

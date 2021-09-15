@@ -271,7 +271,7 @@ params:
         a non-existent Kong consumer, the plugin responds
         with `403 Forbidden`. Kong [consumer mapping](#consumer-mapping) is useful when you want to
         communicate this information to other plugins such as [ACL](/hub/kong-inc/acl/)
-        or [rate limiting](/kong-inc/rate-limiting/). The JWT Signer plugin also
+        or [rate limiting](/hub/kong-inc/rate-limiting/). The JWT Signer plugin also
         sets a couple of standard Kong upstream consumer headers.
     - name: access_token_introspection_consumer_by
       required: false

@@ -86,7 +86,7 @@ Plugins, feel free to read more on Kong in one of the following documents:
 - [Admin API Reference][API]
 - [Clustering Reference][cluster]
 
-Questions? Issues? Contact us on one of the [Community Channels](/community)
+Questions? Issues? Contact us on one of the [Community Channels](https://konghq.com/community/)
 for help!
 
 [key-auth]: /plugins/key-authentication
