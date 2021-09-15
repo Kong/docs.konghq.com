@@ -23,7 +23,7 @@ A credential, or API key, generated in the {{site.konnect_short_name}} Dev Porta
    using your `key-auth` credential:
 
    ```
-   <proxy-url or proxy-ip>/<route>?apikey=<apikey>
+   {PROXY_URL_OR_PROXY_IP}/{ROUTE}?apikey={APIKEY}
    ```
 
 ## Delete a credential
