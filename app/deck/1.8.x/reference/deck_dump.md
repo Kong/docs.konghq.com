@@ -12,7 +12,7 @@ configure Kong.
 deck dump [flags]
 ```
 
-### Options
+## Options
 
 ```
       --all-workspaces        dump configuration of all Workspaces (Kong Enterprise only).
@@ -28,7 +28,7 @@ deck dump [flags]
       --yes                   assume 'yes' to prompts and run non-interactively.
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
@@ -46,6 +46,7 @@ deck dump [flags]
       --konnect-password-file string   File containing the password to your Konnect account.
       --no-color                       Disable colorized output
       --skip-workspace-crud            Skip API calls related to Workspaces (Kong Enterprise only).
+      --timeout int                    Set a request timeout for the client to connect with Kong (in seconds). (default 10)
       --tls-server-name string         Name to use to verify the hostname in Kong's Admin TLS certificate.
                                        This value can also be set using DECK_TLS_SERVER_NAME environment variable.
       --tls-skip-verify                Disable verification of Kong's Admin TLS certificate.
@@ -55,6 +56,6 @@ deck dump [flags]
                                        between decK and Kong.
 ```
 
-### See also
+## See also
 
 * [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively

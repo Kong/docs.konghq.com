@@ -1,34 +1,31 @@
 ---
-title: deck dump
+title: deck validate
 ---
 
-The dump command reads all entities present in Kong
-and writes them to a local file.
+The validate command reads the state file and ensures validity.
 
-The file can then be read using the sync command or diff command to
-configure Kong.
+It reads all the specified state files and reports YAML/JSON
+parsing issues. It also checks for foreign relationships
+and alerts if there are broken relationships, or missing links present.
+No communication takes places between decK and Kong during the execution of
+this command.
 
-```
-deck dump [flags]
-```
-
-### Options
 
 ```
-      --all-workspaces        dump configuration of all Workspaces (Kong Enterprise only).
-      --format string         output file format: json or yaml. (default "yaml")
-  -h, --help                  help for dump
-  -o, --output-file string    file to which to write Kong's configuration.Use '-' to write to stdout. (default "kong")
-      --rbac-resources-only   export only the RBAC resources (Kong Enterprise only).
-      --select-tag strings    only entities matching tags specified with this flag are exported.
-                              When this setting has multiple tag values, entities must match every tag.
-      --skip-consumers        skip exporting consumers and any plugins associated with consumers.
-      --with-id               write ID of all entities in the output
-  -w, --workspace string      dump configuration of a specific Workspace(Kong Enterprise only).
-      --yes                   assume 'yes' to prompts and run non-interactively.
+deck validate [flags]
 ```
 
-### Options inherited from parent commands
+## Options
+
+```
+  -h, --help                  help for validate
+      --rbac-resources-only   indicate that the state file(s) contains RBAC resources only (Kong Enterprise only).
+  -s, --state strings         file(s) containing Kong's configuration.
+                              This flag can be specified multiple times for multiple files.
+                              Use '-' to read from stdin. (default [kong.yaml])
+```
+
+## Options inherited from parent commands
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
@@ -46,6 +43,7 @@ deck dump [flags]
       --konnect-password-file string   File containing the password to your Konnect account.
       --no-color                       Disable colorized output
       --skip-workspace-crud            Skip API calls related to Workspaces (Kong Enterprise only).
+      --timeout int                    Set a request timeout for the client to connect with Kong (in seconds). (default 10)
       --tls-server-name string         Name to use to verify the hostname in Kong's Admin TLS certificate.
                                        This value can also be set using DECK_TLS_SERVER_NAME environment variable.
       --tls-skip-verify                Disable verification of Kong's Admin TLS certificate.
@@ -55,6 +53,6 @@ deck dump [flags]
                                        between decK and Kong.
 ```
 
-### See also
+## See also
 
 * [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively

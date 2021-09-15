@@ -1,34 +1,13 @@
 ---
-title: deck dump
+title: deck
 ---
 
-The dump command reads all entities present in Kong
-and writes them to a local file.
+The deck tool helps you manage Kong clusters with a declarative
+configuration file.
 
-The file can then be read using the sync command or diff command to
-configure Kong.
+It can be used to export, import, or sync entities to Kong.
 
-```
-deck dump [flags]
-```
-
-### Options
-
-```
-      --all-workspaces        dump configuration of all Workspaces (Kong Enterprise only).
-      --format string         output file format: json or yaml. (default "yaml")
-  -h, --help                  help for dump
-  -o, --output-file string    file to which to write Kong's configuration.Use '-' to write to stdout. (default "kong")
-      --rbac-resources-only   export only the RBAC resources (Kong Enterprise only).
-      --select-tag strings    only entities matching tags specified with this flag are exported.
-                              When this setting has multiple tag values, entities must match every tag.
-      --skip-consumers        skip exporting consumers and any plugins associated with consumers.
-      --with-id               write ID of all entities in the output
-  -w, --workspace string      dump configuration of a specific Workspace(Kong Enterprise only).
-      --yes                   assume 'yes' to prompts and run non-interactively.
-```
-
-### Options inherited from parent commands
+## Options
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
@@ -37,6 +16,7 @@ deck dump [flags]
       --config string                  Config file (default is $HOME/.deck.yaml).
       --headers strings                HTTP headers (key:value) to inject in all requests to Kong's Admin API.
                                        This flag can be specified multiple times to inject multiple headers.
+  -h, --help                           help for deck
       --kong-addr string               HTTP address of Kong's Admin API.
                                        This value can also be set using the environment variable DECK_KONG_ADDR
                                         environment variable. (default "http://localhost:8001")
@@ -46,6 +26,7 @@ deck dump [flags]
       --konnect-password-file string   File containing the password to your Konnect account.
       --no-color                       Disable colorized output
       --skip-workspace-crud            Skip API calls related to Workspaces (Kong Enterprise only).
+      --timeout int                    Set a request timeout for the client to connect with Kong (in seconds). (default 10)
       --tls-server-name string         Name to use to verify the hostname in Kong's Admin TLS certificate.
                                        This value can also be set using DECK_TLS_SERVER_NAME environment variable.
       --tls-skip-verify                Disable verification of Kong's Admin TLS certificate.
@@ -55,6 +36,14 @@ deck dump [flags]
                                        between decK and Kong.
 ```
 
-### See also
-
-* [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively
+## See also
+* [deck completion](/deck/{{page.kong_version}}/reference/deck_completion)	 - Generate completion script
+* [deck convert](/deck/{{page.kong_version}}/reference/deck_convert)	 - Convert files from one format into another format
+* [deck diff](/deck/{{page.kong_version}}/reference/deck_diff)	 - Diff the current entities in Kong with the one on disks
+* [deck dump](/deck/{{page.kong_version}}/reference/deck_dump)	 - Export Kong configuration to a file
+* [deck konnect](/deck/{{page.kong_version}}/reference/deck_konnect)	 - Configuration tool for Konnect (in alpha)
+* [deck ping](/deck/{{page.kong_version}}/reference/deck_ping)	 - Verify connectivity with Kong
+* [deck reset](/deck/{{page.kong_version}}/reference/deck_reset)	 - Reset deletes all entities in Kong
+* [deck sync](/deck/{{page.kong_version}}/reference/deck_sync)	 - Sync performs operations to get Kong's configuration to match the state file
+* [deck validate](/deck/{{page.kong_version}}/reference/deck_validate)	 - Validate the state file
+* [deck version](/deck/{{page.kong_version}}/reference/deck_version)	 - Print the decK version
