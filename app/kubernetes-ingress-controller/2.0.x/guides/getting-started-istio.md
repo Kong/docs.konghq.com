@@ -145,11 +145,13 @@ $ istioctl x precheck
 
 Now you're ready to move on to Istio deployment.
 
-> **NOTE** If you're interested in other installation methods see the [Istio
-FAQ][install-method-faq] for more details on the differences between methods.
+> **NOTE** If you're interested in other installation methods see the
+  [Istio FAQ][install-method-faq] for more details on the differences
+  between methods.
+
 > **NOTE** If you use one of the other installation mechanisms note that the
-examples in this guide may not work without experiementation and manual
-intervention.
+  examples in this guide may not work without experiementation and manual
+  intervention.
 
 [istio-install]:https://istio.io/latest/docs/setup/install/
 [istio-quickstart]:https://istio.io/latest/docs/setup/getting-started/
