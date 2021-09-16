@@ -38,7 +38,7 @@ In this guide, you will:
 * A Kubernetes `v1.19` (or newer) cluster
 * [kubectl][kubectl] `v1.19` (or newer)
 * [Helm][helm] `v3.5` (or newer)
-* [CURL][curl] `v7` (or newer)
+* [cURL][curl] `v7` (or newer)
 
 You can use a managed cluster from a cloud provider such as [AWS (EKS)][eks],
 [Google Cloud (GKE)][gke] or [Azure (AKS)][aks], or you can work locally with 
