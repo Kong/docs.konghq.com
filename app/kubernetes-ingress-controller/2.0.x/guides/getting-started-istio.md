@@ -656,9 +656,9 @@ Now you've got an Istio mesh enable service with Kong features available to it!
 For more examples of features you can take advantage of with Kong see our
 [available guides][kic-guides] and experiment further with this environment.
 
-[kongplugin]:/guides/using-kongplugin-resource/
+[kongplugin]:/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource/
 [anns]:https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
-[kic-guides]:/guides/overview/
+[kic-guides]:/kubernetes-ingress-controller/{{page.kong_version}}/guides/overview/
 
 ### Mesh Network Observability with Kiali
 
