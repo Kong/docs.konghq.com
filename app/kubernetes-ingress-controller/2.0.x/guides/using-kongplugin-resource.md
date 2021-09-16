@@ -284,8 +284,8 @@ Server: kong/1.2.1
 ```
 
 You can also see how the `demo` header was injected only for `/foo`,
-as the request also matched one of the rules defined in the `demo` `Ingress`
-resource but `/baz` does not match.
+as the request matched one of the rules defined in the `Ingress`
+resource, but not for `/baz` because that request does not match.
 
 ## Configure consumer and credential
 

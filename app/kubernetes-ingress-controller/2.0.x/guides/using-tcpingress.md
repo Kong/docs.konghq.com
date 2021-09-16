@@ -2,7 +2,7 @@
 title: TCPIngress with Kong
 ---
 
-This guide walks through using TCPIngress Custom Resource to expose TCP-based
+This guide walks through using the TCPIngress Custom Resource to expose TCP-based
 services running in Kubernetes to the outside world.
 
 ## Overview
