@@ -427,7 +427,7 @@ available before proceeding to the next steps:
 {% navtab Command %}
 
 ```console
-$ kubectl -n bookinfo wait --for=condition=Available deployment productpage-v1
+$ kubectl -n bookinfo wait --timeout 120s --for=condition=Available deployment productpage-v1
 ```
 
 {% endnavtab %}
