@@ -2,29 +2,29 @@
 title: Running the Kubernetes Ingress Controller with Istio
 ---
 
-This guide walks you through deploying Kong as the Gateway for [Istio][istio] to
-utilize the features of both Kong for ingress traffic and Istio's mesh
-functionality simoltaneously.
+This guide walks you through deploying Kong as the gateway for [Istio][istio] to
+combine the features of Kong for ingress traffic with Istio's mesh
+functionality.
 
 [istio]:https://istio.io
 
 ## Overview
 
-[Istio][istio] is a popular [service mesh][mesh] which enables [Traffic
-Management][traffic-management], [Security][security] and [Observability][obs]
+[Istio][istio] is a popular [service mesh][mesh] that enables [traffic
+management][traffic-management], [security][security] and [observability][obs]
 features for [Kubernetes][k8s] clusters.
 
-When using Kong as the gateway for Istio it's possible to leverage both the
-mesh features of Istio intra-cluster while enabling Kong's rich featureset
-for ingress traffic coming in from outside the cluster.
+With Kong as the gateway for Istio you can leverage the
+mesh features of Istio intra-cluster while enabling Kong's rich feature set
+for ingress traffic from outside the cluster.
 
 In this guide, you will:
 
-* Install Istio `v1.11` and Kong in your cluster
-* Deploy an example Istio-enabled application
-* Deploy an `Ingress` customized with a `KongPlugin` for the example application
-* Make several requests to the sample application via Kong and Istio
-* Use some of the observability features of Istio to visualize cluster traffic
+* Install Istio `v1.11` and Kong in your cluster.
+* Deploy an example Istio-enabled application.
+* Deploy an `Ingress` customized with a `KongPlugin` for the example application.
+* Make requests to the sample application via Kong and Istio.
+* Explore observability features of Istio to visualize cluster traffic.
 
 [istio]:https://istio.io
 [mesh]:https://istio.io/latest/docs/concepts/
@@ -35,28 +35,26 @@ In this guide, you will:
 
 ### Prerequisites
 
-For this guide, you will need:
-
 * A Kubernetes `v1.19` (or newer) cluster
 * [kubectl][kubectl] `v1.19` (or newer)
 * [Helm][helm] `v3.5` (or newer)
 * [CURL][curl] `v7` (or newer)
 
 You can use a managed cluster from a cloud provider such as [AWS (EKS)][eks],
-[Google Cloud (GKE)][gke] or [Azure (AKS)][aks], or you can use a local cluster
-provide such as [Minikube][minikube] or [Microk8s][microk8s].
+[Google Cloud (GKE)][gke] or [Azure (AKS)][aks], or you can work locally with 
+tools such as [Minikube][minikube] or [Microk8s][microk8s].
 
-> **NOTE** Your Kubernetes cluster needs to be capable of provisioning
+Your Kubernetes cluster needs to be capable of provisioning
   `LoadBalancer` type [Services][svc] (if you're not certain what this means,
   see the [relevant documentation][svc-lb]). Cloud providers will generally
   automate `LoadBalancer` type `Service` provisioning with their default
   settings, but for other cluster types you may need to check your Kubernetes
   distribution's documentation for options to enable this.
 
-> **NOTE** Several examples using `kubectl` in this guide assume that the test
+Several examples using `kubectl` in this guide assume the test
   cluster you want to use is the current default cluster context. If you're
-  uncertain what this means or you need to reconfigure `kubectl` to accommodate
-  for this then make sure to review the
+  uncertain what this means or if you need to reconfigure `kubectl` to allow
+  for this, make sure to review the
   [configuring access to multiple clusters][contexts] documentation and make
   any changes needed before continuing.
 
@@ -74,10 +72,15 @@ provide such as [Minikube][minikube] or [Microk8s][microk8s].
 
 ### Downloading & Verifying Istio
 
-If you review the [Istio Installation Guides][istio-install] you may note that
-there are currently several alternative deployment mechanisms available. For the
-purposes of this example the [istioctl installation method][istioctl] will be
-used as it is the community recommended method.
+In this guide you'll work with the [istioctl installation method][istioctl] 
+because it's the community recommended method. The [Istio Installation Guides][istio-install] 
+explain alternative deployment mechanisms.
+
+For other installation methods, see also the
+  [Istio FAQ][install-method-faq] for more details on the differences
+  between methods. If you use one of the other installation mechanisms note that the
+  examples in this guide may not work without experiementation and manual
+  intervention.
 
 Download the `istioctl` command-line utility for your platform:
 
@@ -114,7 +117,7 @@ Need more information? Visit https://istio.io/latest/docs/setup/install/
 {% endnavtab %}
 {% endnavtabs %}
 
-In the above you'll notice that some instructions were provided for how to
+You'll notice that some instructions are provided for how to
 further set up the `istioctl` program locally and do pre-check validation of
 the Istio installation. Make sure to add `istioctl` to your shell's path:
 
@@ -144,14 +147,6 @@ $ istioctl x precheck
 {% endnavtabs %}
 
 Now you're ready to move on to Istio deployment.
-
-> **NOTE** If you're interested in other installation methods see the
-  [Istio FAQ][install-method-faq] for more details on the differences
-  between methods.
-
-> **NOTE** If you use one of the other installation mechanisms note that the
-  examples in this guide may not work without experiementation and manual
-  intervention.
 
 [istio-install]:https://istio.io/latest/docs/setup/install/
 [istio-quickstart]:https://istio.io/latest/docs/setup/getting-started/
@@ -190,19 +185,19 @@ $ istioctl install --set profile=demo -y
 
 The Istio components are now deployed to your cluster in the `istio-system`
 [namespace][k8s-namespaces] and you're ready to deploy Kong and a sample
-application with which to utilize the stack.
+application.
 
 [istio-profiles]:https://istio.io/latest/docs/setup/additional-setup/config-profiles/
 [k8s-namespaces]:https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 ### Creating an Istio-enabled Namespace for {{site.kic_product_name}}
 
-In order to utilize Istio's mesh functionality for any given Kubernetes
-[Pod][k8s-pods] a [namespace][k8s-namespaces] must be [labeled][k8s-labels]
+To integrate Istio's mesh functionality in any given Kubernetes
+[Pod][k8s-pods], a [namespace][k8s-namespaces] must be [labeled][k8s-labels]
 with the `istio-injection=enabled` label to instruct [IstioD][istiod] (the main
-control program for Istio) to manage them and add them to the mesh network.
+control program for Istio) to manage the pods and add them to the mesh network.
 
-For this guide we'll create a distinct Istio-enabled namespace for our Kong
+This guide shows how to create a distinct Istio-enabled namespace for our Kong
 pods so that they will automatically be joined to the mesh network:
 
 {% navtabs %}
@@ -252,10 +247,10 @@ applications.
 ### Deploy {{site.kic_product_name}}
 
 We'll use the [Kong Helm Chart][chart] to deploy the {{site.kic_product_name}}
-to our Istio-enabled `kong-istio` namespace so that we can start proxying
-traffic from outside the cluster into our mesh-enabled services.
+to our Istio-enabled `kong-istio` namespace so we can start proxying
+traffic from outside the cluster to our mesh-enabled services.
 
-Ensure that you have the Kong Helm repository configured locally:
+Make sure you have the Kong Helm repository configured locally:
 
 {% navtabs %}
 {% navtab Command %}
@@ -298,7 +293,7 @@ STATUS: deployed
 {% endnavtab %}
 {% endnavtabs %}
 
-You can verify that Kong deployed and the Istio sidecar container was injected
+You can verify that Kong is deployed and the Istio sidecar container is injected
 properly into Kong by running `kubectl describe` to [review the
 events][k8s-describe-pod] for the `Pod`:
 
@@ -346,7 +341,7 @@ a basic example application commonly used to exercise and evaluate Istio's
 mesh features.
 
 Similar to what we did in previous steps for the Kong pods we'll need to create
-and label a namespace where the `BookInfo` app will be deployed so that it will
+and label a namespace where the `BookInfo` app will be deployed so it will
 be automatically joined to the mesh network.
 
 Create the namespace:
@@ -490,8 +485,7 @@ ingress.networking.k8s.io/productpage created
 {% endnavtabs %}
 
 We're ready to start making connections to the `BookInfo` product page, but
-we'll need to gather the `LoadBalancer` IP address of the Kong Gateway in
-order to make our HTTP requests.
+we'll need the `LoadBalancer` IP address of the Kong Gateway to make our HTTP requests.
 
 Gather the `LoadBalancer` address and store it in the local `PROXY_IP`
 environment variable:
@@ -500,11 +494,11 @@ environment variable:
 $ export PROXY_IP=$(kubectl -n kong-istio get svc kong-istio-kong-proxy -o=jsonpath='{.status.loadBalancer.ingress[0].ip}')
 ```
 
-> **NOTE** for some cluster types (such as with AWS) the `.ip` in the above
-command wont work as the `LoadBalancer` provisioner does not provide an IP
+> **NOTE** for some cluster types (such as with AWS), the `.ip` in the above
+command does not work because the `LoadBalancer` provisioner does not provide an IP
 address but instead only provides a DNS name. For these situations either
-replace `.ip` with `.hostname` in the above command or instead you can just
-manually locate the external host yourself by finding it in the output of
+replace `.ip` with `.hostname`, or you can find the external host 
+in the output of
 `kubectl get svc kong-istio-kong-proxy`. In any case make sure the contents
 of your local `PROXY_IP` environment variable end up as that value.
 
@@ -552,9 +546,9 @@ $ curl -s -v http://$PROXY_IP | head -4
 {% endnavtab %}
 {% endnavtabs %}
 
-Note the following in the above response:
+Note the following in the response:
 
-- `<title>Simple Bookstore App</title>` - this indicates that we're connected
+- `<title>Simple Bookstore App</title>` - indicates that we're connected
   properly to the `BookInfo` app as expected.
 - `server: istio-envoy` - shows that the Istio mesh network is in use for
   the `BookInfo` product page.
@@ -566,9 +560,9 @@ Note the following in the above response:
 ### Configure Ratelimits with Kong
 
 The `BookInfo` app is now accessible outside of the cluster but we've yet to
-take advantage of Kong featuresets when accessing it. To demonstrate using Kong
-features for Istio enabled services we'll create a [KongPlugin][kongplugin]
-which will enforce Kong rate-limiting on ingress requests to the `BookInfo`
+take advantage of Kong features  when accessing it. To demonstrate Kong
+features for Istio enabled services, we'll create a [KongPlugin][kongplugin]
+that enforces Kong rate-limiting on ingress requests to the `BookInfo`
 service.
 
 Save the following `KongPlugin` as `bookinfo-ratelimiter.yaml`:
@@ -586,7 +580,7 @@ config:
 ```
 
 This plugin will add rate limiting to the `BookInfo` application and limit
-outside access to `30` requests per minute.
+outside access to 30 requests per minute.
 
 Apply the `bookinfo-ratelimiter.yaml` manifest:
 
@@ -627,7 +621,7 @@ ingress.networking.k8s.io/productpage patched
 {% endnavtab %}
 {% endnavtabs %}
 
-After the above is complete we should see the ratelimiter reflected in the
+We should see the ratelimiter reflected in the
 headers in responses from the product page:
 
 {% navtabs %}
@@ -667,12 +661,12 @@ externally via Kong and we've seen the ingress features Kong can provide us at
 the edge of the mesh network. In the following example we'll focus on exploring
 some of the [observability][obs] features of Istio inside the mesh network.
 
-For observability Istio includes a web console called [Kiali][kiali] which is
-capable of providing [topology][kiali-topology], [health][kiali-health] and a
-[wide variety of other features][kiali-features] which give you deep insights
+For observability Istio includes a web console called [Kiali][kiali] that can
+provide [topology][kiali-topology], [health][kiali-health] and 
+[other features][kiali-features] to give you insights
 into your application traffic.
 
-To support several metrics related features of Kiali we'll need to deploy
+To support metrics related features of Kiali we'll need to deploy
 Istio's [Prometheus][prometheus] metrics server:
 
 {% navtabs %}
@@ -697,7 +691,7 @@ deployment.apps/prometheus created
 {% endnavtab %}
 {% endnavtabs %}
 
-Additionally we'll install [Graphana][graphana] which includes visualization
+We'll also install [Grafana][graphana] which includes visualization
 dashboards for Istio:
 
 {% navtabs %}
@@ -722,7 +716,7 @@ configmap/istio-services-grafana-dashboards created
 {% endnavtab %}
 {% endnavtabs %}
 
-With these components deployed we can now move on to deploying Kiali itself:
+We can now move on to deploying Kiali itself:
 
 {% navtabs %}
 {% navtab Command %}
@@ -749,7 +743,7 @@ deployment.apps/kiali created
 {% endnavtab %}
 {% endnavtabs %}
 
-With Kiali now running we'll need to generate some traffic for our `BookInfo`
+Now we'll need to generate some traffic for our `BookInfo`
 app to populate metrics:
 
 ```console
@@ -757,11 +751,11 @@ $ COUNT=25 ; until [ $COUNT -le 0 ]; do curl -s -o /dev/null http://$PROXY_IP ; 
 ```
 
 Since this sample version of Kiali isn't tuned for security and is meant to be
-cluster internal only, we wont expose this via Kong but instead we'll use the
+cluster internal only, we won't expose this via Kong. Instead, we'll use the
 [port-forwarding][k8s-port-forwarding] functionality available in `istioctl` to
 tunnel our connection to the Kiali service.
 
-Run the following command in a new terminal which will run a `port-forward` to
+Run the following command in a new terminal. This will run a `port-forward` to
 Kiali for you in the background and open it up in your web browser:
 
 {% navtabs %}
@@ -781,10 +775,10 @@ http://localhost:20001/kiali
 {% endnavtab %}
 {% endnavtabs %}
 
-This command should have automatically opened the http://localhost:20001/kiali
-link in your web browser, but if not then navigate to that page manually.
+This command should have automatically opened http://localhost:20001/kiali
+in your web browser, but if not then navigate to that page manually.
 
-You're not connected to Kiali and have a window into the traffic moving across
+You're now connected to Kiali and have a window into the traffic moving across
 your mesh network. Familiarize yourself with Kiali and graphically view the
 topology for your `BookInfo` application's web requests:
 
@@ -802,9 +796,8 @@ of Istio. The Kiali console for Istio provides a wide range of features. To
 explore beyond this guide and learn Kiali further, see the
 [Kiali Documentation][kiali-docs].
 
-If after this you're interested in exploring Istio further in terms of more
-general features and operations (e.g. no just Kiali) check out the [Istio Task
-Documentation][istio-tasks] which includes several walkthroughs for a variety
+To explore Istio features and operations further, check out the [Istio Task
+Documentation][istio-tasks], which includes several walkthroughs for a variety
 of other Istio features.
 
 [obs]:https://istio.io/latest/docs/concepts/observability/
