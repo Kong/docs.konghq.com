@@ -66,7 +66,7 @@ dynamically configures Kong to automatically load balance across pods
 of a service as any service is scaled in our out.
 
 For this reason, it requires [RBAC][k8s-rbac] permissions to access resources
-stored in Kubernetes object store.
+stored in the Kubernetes object store.
 
 It needs read permissions (get,list,watch)
 on the following Kubernetes resources:
@@ -288,7 +288,7 @@ open-source gateway.
 If you are a Kong Enterprise customer you have access to Enterprise K8s in
 addition to OSS.
 
-Kong Enterprise K8S is a package that takes the Open-Source Kong Gateway and
+Kong Enterprise K8S is a package that takes the open-source Kong Gateway and
 adds enterprise-only plugins to it.
 
 You simply need to deploy Kong Enterprise K8S instead of the Open-Source
