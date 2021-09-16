@@ -13,7 +13,7 @@ Kong Enterprise is designed to run on decentralized architectures, leveraging wo
 * Proactively identify API-related anomalies and threats
 * Secure and govern APIs/services, and improve API visibility across the entire organization
 
-Kong Enterprise is a combination of several features and add-ons on top of the open-sourced Kong Gateway Community, as shown in the diagram and described in the next section [_Kong Enterprise Features_](https://docs.konghq.com/enterprise/{{page.kong_version}}/key-concepts).
+Kong Enterprise is a combination of several features and add-ons on top of the open-sourced Kong Gateway Community, as shown in the diagram and described in the next section [_Kong Enterprise Features_](https://docs.konghq.com/enterprise/{{page.kong_version}}/introduction/key-concepts).
 
 ![Introduction to Kong Enterprise](/assets/images/docs/ee/introduction.png)
 
