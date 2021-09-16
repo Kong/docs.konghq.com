@@ -49,6 +49,7 @@
 /hub/kong-inc/key-authentication            /hub/kong-inc/key-auth/
 /hub/kong-inc/ldap-auth/1.0-x.html          /hub/kong-inc/ldap-auth/2.1-x.html
 /hub/kong-inc/ldap-authentication-advanced  /hub/kong-inc/ldap-auth-advanced/
+/hub/kong-inc/ldap-authentication           /hub/kong-inc/ldap-auth/
 /hub/kong-inc/proxy-cache/0.35-x.html       /hub/kong-inc/proxy-cache/
 /hub/kong-inc/upstream-tls/0.36-x.html      /hub/
 /hub/rate-limiting-advanced                 /hub/kong-inc/rate-limiting-advanced/
