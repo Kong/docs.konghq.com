@@ -800,7 +800,7 @@ deployed at the edge of our cluster down to the backend `BookInfo` application
 and with this you should have a sense of some of the fundamental capabilities
 of Istio. The Kiali console for Istio provides a wide range of features. To
 explore beyond this guide and learn Kiali further, see the
-[Kiali Documentation][kialidocs].
+[Kiali Documentation][kiali-docs].
 
 If after this you're interested in exploring Istio further in terms of more
 general features and operations (e.g. no just Kiali) check out the [Istio Task
@@ -814,6 +814,6 @@ of other Istio features.
 [kiali-features]:https://kiali.io/documentation/latest/features/
 [prometheus]:https://prometheus.io
 [graphana]:https://grafana.com/
-[kiali-docs]:https://kiali.io/documentation/latest/
 [k8s-port-forwarding]:https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/
+[kiali-docs]:https://kiali.io/documentation/latest/
 [istio-tasks]:https://istio.io/latest/docs/tasks/
