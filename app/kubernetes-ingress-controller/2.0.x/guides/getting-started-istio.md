@@ -480,7 +480,7 @@ $ kubectl apply -f bookinfo-ingress.yaml
 ```
 
 {% endnavtab %}
-{% navtab Command %}
+{% navtab Response %}
 
 ```console
 ingress.networking.k8s.io/productpage created
