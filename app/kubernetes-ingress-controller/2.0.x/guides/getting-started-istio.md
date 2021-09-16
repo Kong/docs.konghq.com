@@ -749,13 +749,20 @@ deployment.apps/kiali created
 {% endnavtab %}
 {% endnavtabs %}
 
+With Kiali now running we'll need to generate some traffic for our `BookInfo`
+app to populate metrics:
+
+```console
+$ COUNT=25 ; until [ $COUNT -le 0 ]; do curl -s -o /dev/null http://$PROXY_IP ; ((COUNT--)); done
+```
+
 Since this sample version of Kiali isn't tuned for security and is meant to be
 cluster internal only, we wont expose this via Kong but instead we'll use the
 [port-forwarding][k8s-port-forwarding] functionality available in `istioctl` to
 tunnel our connection to the Kiali service.
 
-Run the following command in a new terminal as it will run continually in the
-background:
+Run the following command in a new terminal which will run a `port-forward` to
+Kiali for you in the background and open it up in your web browser:
 
 {% navtabs %}
 {% navtab Command %}
@@ -774,13 +781,8 @@ http://localhost:20001/kiali
 {% endnavtab %}
 {% endnavtabs %}
 
-With that running in the background you can now access Kiala via your systems
-`localhost` network, but first you'll want to populate some sample traffic to
-the `BookInfo` app for metrics collection:
-
-```console
-$ COUNT=25 ; until [ $COUNT -le 0 ]; do curl -s -o /dev/null http://$PROXY_IP ; ((COUNT--)); done
-```
+This command should have automatically opened the http://localhost:20001/kiali
+link in your web browser, but if not then navigate to that page manually.
 
 Now we've got some requests processed for our `BookInfo` app and we're ready
 to use our Kiali console to observe. Perform the following tasks to access
