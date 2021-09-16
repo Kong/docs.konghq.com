@@ -4,7 +4,7 @@ no_search: true
 no_version: true
 ---
 
-## 2.5.1.0 
+## 2.5.1.0
 **Release Date** 2021/09/08
 
 ### Dependencies
@@ -3804,7 +3804,7 @@ for details.
 
 #### Kong Manager
   - User information is no longer stored in local storage. A user exchanges
-  credentials for a session. See the [**Session Plugin**](/hub/kong-inc/sessions)
+  credentials for a session. See the [**Session Plugin**](/hub/kong-inc/session)
   for details.
   - Enable and view **Plugins** in context of a **Service** and **Route**
   - Type-ahead service name/ID search on routes form
@@ -3825,7 +3825,7 @@ for details.
   - **Dev Portal** is disabled for each **Workspace** by default.
   - Default theme shipped with **Kong Enterprise** now supports IE11.
   - User information is no longer stored in local storage. A user exchanges
-  credentials for a session. See the [**Session Plugin**](/hub/kong-in/sessions)
+  credentials for a session. See the [**Session Plugin**](/hub/kong-inc/session)
   for details.
   - **Dev Portal** page, partial, and specification look-ups moved to
   server-side.

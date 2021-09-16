@@ -28,6 +28,7 @@
 /enterprise/latest/introduction       /enterprise/
 /enterprise/2.3.x/introduction        /enterprise/
 /enterprise/2.4.x/release-notes       /enterprise/changelog
+/enterprise/latest/setting-up-admin-api-rbac  /enterprise/latest/admin-api/rbac/reference/
 
 # getting started guide
 /enterprise/latest/getting-started/              /getting-started-guide/latest/overview/
@@ -53,6 +54,9 @@
 /hub/rate-limiting-advanced                 /hub/kong-inc/rate-limiting-advanced/
 /kong-inc/rate-limiting/                    /hub/kong-inc/rate-limiting/
 /latest/pdk/kong.service.request/           /gateway-oss/latest/pdk/kong.service.request/
+/hub/kong-in/sessions                       /hub/kong-inc/session/
+/hub/kong-inc/sessions                      /hub/kong-inc/session/
+/hub/kong-inc/zipkin/http-log/              /hub/kong-inc/zipkin/
 
 # Konnect
 /konnect/access-beta                                /konnect/access-account
