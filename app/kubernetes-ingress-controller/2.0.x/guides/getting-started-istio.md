@@ -16,7 +16,7 @@ features for [Kubernetes][k8s] clusters.
 
 When using Kong as the gateway for Istio it's possible to leverage both the
 mesh features of Istio intra-cluster while enabling Kong's rich featureset
-for ingress traffic.
+for ingress traffic coming in from outside the cluster.
 
 In this guide, you will:
 
