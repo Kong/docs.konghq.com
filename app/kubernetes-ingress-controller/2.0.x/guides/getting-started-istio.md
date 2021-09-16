@@ -670,7 +670,7 @@ some of the [observability][obs] features of Istio inside the mesh network.
 For observability Istio includes a web console called [Kiali][kiali] which is
 capable of providing [topology][kiali-topology], [health][kiali-health] and a
 [wide variety of other features][kiali-features] which give you deep insights
-into your Istio mesh network.
+into your application traffic.
 
 To support several metrics related features of Kiali we'll need to deploy
 Istio's [Prometheus][prometheus] metrics server:
