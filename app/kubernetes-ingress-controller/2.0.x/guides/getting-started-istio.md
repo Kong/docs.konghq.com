@@ -11,8 +11,8 @@ functionality simoltaneously.
 ## Overview
 
 [Istio][istio] is a popular [service mesh][mesh] which enables [Traffic
-Management][mgmt], [Security][sec] and [Observability][obs] features for
-for [Kubernetes][k8s] clusters.
+Management][traffic-management], [Security][security] and [Observability][obs]
+features for [Kubernetes][k8s] clusters.
 
 When using Kong as the gateway for Istio it's possible to leverage both the
 mesh features of Istio intra-cluster while enabling Kong's rich featureset
@@ -28,6 +28,8 @@ In this guide, you will:
 
 [istio]:https://istio.io
 [mesh]:https://istio.io/latest/docs/concepts/
+[traffic-management]:https://istio.io/latest/docs/concepts/traffic-management/
+[security]:https://istio.io/latest/docs/concepts/security/
 [obs]:https://istio.io/latest/docs/concepts/observability/
 [k8s]:https://kubernetes.io
 
