@@ -199,8 +199,8 @@ application with which to utilize the stack.
 
 In order to utilize Istio's mesh functionality for any given Kubernetes
 [Pod][k8s-pods] a [namespace][k8s-namespaces] must be [labeled][k8s-labels]
-with the `istio-injection=enabled` label to instruct [IstioD][istiod] to manage
-them and add them to the mesh network.
+with the `istio-injection=enabled` label to instruct [IstioD][istiod] (the main
+control program for Istio) to manage them and add them to the mesh network.
 
 For this guide we'll create a distinct Istio-enabled namespace for our Kong
 pods so that they will automatically be joined to the mesh network:
