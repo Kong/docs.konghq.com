@@ -784,12 +784,10 @@ http://localhost:20001/kiali
 This command should have automatically opened the http://localhost:20001/kiali
 link in your web browser, but if not then navigate to that page manually.
 
-Now we've got some requests processed for our `BookInfo` app and we're ready
-to use our Kiali console to observe. Perform the following tasks to access
-and familiarize yourself with Kiali and graphically view the topology for your
-`BookInfo` application's web requests:
+You're not connected to Kiali and have a window into the traffic moving across
+your mesh network. Familiarize yourself with Kiali and graphically view the
+topology for your `BookInfo` application's web requests:
 
-- Navigate your web browser to `http://localhost:20001/`.
 - Choose _Workloads_ from the menu on the left.
 - Select `bookinfo` in the _Namespace_ drop-down menu.
 - Click the _productpage-v1_ service name.
