@@ -4,11 +4,13 @@ publisher: Kong Inc.
 versions: 0.1.x
 beta: true
 
-desc: Provides arbitrary jq transformations to a JSON object.
+desc: Transform JSON objects included in API requests or responses using jq filters and programs.
 description: |
-    Provides arbitrary jq transformations to a JSON object. The source of the object can either be the request or response body, and the transformed result can either replace the body or be used to set HTTP headers.
+    The Kong jq plugin enables arbitrary jq transformations on JSON objects included in API requests or responses. The source of the object can either be the request or response body, and the transformed result can either replace the body or be used to set HTTP headers.
 
     Multiple filters can be specified in the configuration. You can use these filters to set request headers from values present in the request body, and then rewrite the response body with a separate jq program.
+
+    See jq's documentation on [Basic filters](https://stedolan.github.io/jq/manual/#Basicfilters) for more information on writing programs and filters with jq.
 
 enterprise: true
 type: plugin
@@ -28,7 +30,7 @@ params:
   yaml_examples: false
   k8s_examples: false
   konnect_examples: false
-  protocols: ["http"]
+  protocols: ["http,"https"]
   dbless_compatible:
   config:
     - name: request_jq_program
@@ -36,8 +38,8 @@ params:
       datatype: string
       description: |
         The jq program to run on the request body. For example, `.[0] | { "X-Foo": .foo }`. 
-        Either `request_jq_program` or `response_jq_plugin` must be included in configuration.
-    - name: request_jq_options
+        Either `request_jq_program` or `response_jq_plugin` **must** be included in configuration.
+    - name: request_jq_program_options
       required: false
       datatype: record
       description: |
@@ -50,8 +52,6 @@ params:
            them as escape sequences (like "\u03bc"). Using this option, you can force jq to produce pure ASCII
            output, replacing every non-ASCII character with the equivalent escape sequence. Default is `false`.
         - `sort_keys`: Outputs the fields of each object with the keys in sorted order. Default is `false`.
-
-        For further explanations, see the [lua-resty-jq documentation](https://github.com/bungle/lua-resty-jq#filter).
     - name: request_if_media_type
       required: false
       datatype: array of strings
@@ -64,7 +64,7 @@ params:
       description: |
         The jq program to run on the response body. For example, `.[0] | { "X-Foo": .foo }`. 
         Either `request_jq_program` or `response_jq_plugin` must be included in configuration.
-    - name: response_jq_options
+    - name: response_jq_program_options
       required: false
       datatype: record
       description: |
@@ -77,8 +77,6 @@ params:
            them as escape sequences (like "\u03bc"). Using this option, you can force jq to produce pure ASCII
            output, replacing every non-ASCII character with the equivalent escape sequence. Default is `false`.
         - `sort_keys`: Outputs the fields of each object with the keys in sorted order. Default is `false`.
-
-        For further explanations, see the [lua-resty-jq documentation](https://github.com/bungle/lua-resty-jq#filter).
     - name: response_if_media_type
       required: false
       datatype: array of strings
