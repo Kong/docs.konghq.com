@@ -24,7 +24,7 @@ colocated containers in the same pod and each controller configures the Kong
 container that it is running with.
 
 For cases when a database is necessary, the Controllers can be deployed
-on multiple zones to provide redudancy. In such a case, a leader election
+on multiple zones to provide redundancy. In such a case, a leader election
 process will elect one instance as a leader, which will manipulate Kong's
 configuration.
 

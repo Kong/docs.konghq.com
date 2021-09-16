@@ -7,10 +7,10 @@ title: Kubernetes Ingress Controller Design
 The {{site.kic_product_name}} configures Kong
 using Ingress resources created inside a Kubernetes cluster.
 
-The {{site.kic_product_name}} is made up of two components:
+The {{site.kic_product_name}} is made up of two high level components:
 
 - Kong, the core proxy that handles all the traffic
-- Controller, a process that syncs the configuration from Kubernetes to Kong
+- Controller Manager, a series of processes that synchronize the configuration from Kubernetes to Kong
 
 The {{site.kic_product_name}} performs more than just proxying the traffic coming
 into a Kubernetes cluster. It is possible to configure plugins,
@@ -21,7 +21,7 @@ The following figure shows how it works:
 
 ![high-level-design](/assets/images/docs/kubernetes-ingress-controller/high-level-design.png "High Level Design")
 
-The Controller listens for changes happening inside the Kubernetes
+The Controller Manager listens for changes happening inside the Kubernetes
 cluster and updates Kong in response to those changes to correctly
 proxy all the traffic.
 
@@ -51,8 +51,8 @@ configuration:
   This maps to two objects in Kong: Service and Upstream.
   The service object in Kong holds the information on the protocol
   to use to talk to the upstream service and various other protocol
-  specific settings. The Upstream object defines load balancing
-  and healthchecking behavior.
+  specific settings. The Upstream object defines load-balancing
+  and health-checking behavior.
 - Pods associated with a Service in Kubernetes map as a Target belonging
   to the Upstream (the upstream corresponding to the Kubernetes
   Service) in Kong. Kong load balances across the Pods of your service.

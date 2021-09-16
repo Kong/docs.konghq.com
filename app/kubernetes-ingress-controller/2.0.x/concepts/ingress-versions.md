@@ -151,7 +151,7 @@ Kong does not support any dedicated resource backend configurations, though it
 does have support for Routes without Services in some cases (for example, when
 using the [AWS Lambda plugin][lambda-plugin]). For these routes, you should
 create a placeholder Kubernetes Service for them, using an [ExternalName
-Service][external-name] with an RFC 2606 invalid hostname, e.g.
+Service][external-name] with an [RFC 2606][rfc-2606] invalid hostname, e.g.
 `kong.invalid`. You can use these placeholder services with either v1 or
 v1beta1 Ingresses.
 
@@ -168,3 +168,4 @@ v1beta1 Ingresses.
 [external-name]: https://kubernetes.io/docs/concepts/services-networking/service/#externalname
 [deprecated-annotation]: https://kubernetes.io/docs/concepts/services-networking/ingress/#deprecated-annotation
 [ingress-class-api]: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#ingressclass-v1-networking-k8s-io
+[rfc-2606]:https://datatracker.ietf.org/doc/html/rfc2606

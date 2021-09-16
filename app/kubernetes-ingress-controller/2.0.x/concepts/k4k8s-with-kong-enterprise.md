@@ -11,7 +11,7 @@ of the Ingress Controller, which includes
 all the Enterprise plugins but does not include Kong Manager or any
 other Enterprise features. This makes it possible to
 run the Ingress layer without a database, providing a very low
-operational and maintance footprint.
+operational and maintenance footprint.
 
 However, in some cases, those enterprise features are necessary,
 and for such use-cases we support another deployment - Kong for

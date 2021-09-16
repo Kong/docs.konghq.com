@@ -32,7 +32,7 @@ they are used, so that they can be tweaked as necessary for a specific use-case.
 
 > optional
 
-The {{site.kic_product_name}} can be deployed in any [namespace][k8s-namespace].  
+The {{site.kic_product_name}} can be deployed in any [namespace][k8s-namespace].
 If {{site.kic_product_name}} is being used to proxy traffic for all namespaces
 in a Kubernetes cluster, which is generally the case,
 it is recommended that it is installed in a dedicated
@@ -61,12 +61,12 @@ concept document for details.
 
 > required
 
-The {{site.kic_product_name}} communciates with the Kubernetes API-server and
+The {{site.kic_product_name}} communicates with the Kubernetes API-server and
 dynamically configures Kong to automatically load balance across pods
 of a service as any service is scaled in our out.
 
-For this reason, it requires RBAC permissions to access resources stored
-in Kubernetes object store.
+For this reason, it requires [RBAC][k8s-rbac] permissions to access resources
+stored in the Kubernetes object store.
 
 It needs read permissions (get,list,watch)
 on the following Kubernetes resources:
@@ -102,7 +102,7 @@ has the above permissions. The Ingress Controller Pod then has this
 necessary authentication and authorization tokens to communicate with the
 Kubernetes API-server.
 
-[rbac.yaml](https://github.com/Kong/kubernetes-ingress-controller/blob/main/deploy/manifests/base/rbac.yaml) contains the permissions
+[rbac.yaml](https://github.com/Kong/kubernetes-ingress-controller/tree/main/config/rbac) contains the permissions
 needed for the Ingress Controller to operate correctly.
 
 ### Ingress Controller deployment
@@ -137,7 +137,7 @@ of all the domains that Kong should be proxying, to route the traffic to Kong.
 The {{site.kic_product_name}} can run with or without a database.
 If a database is being deployed, then following resources are required:
 
-- A `StatefulSet` which runs a Postgresql pod backed with a `PersistenceVolume`
+- A `StatefulSet` which runs a Postgresql pod backed with a `PersistentVolume`
   to store Kong's configuration.
 - An internal `Service` which resolves to the Postgresql pod. This ensures
   that Kong can find the Postgresql instance using DNS inside
@@ -239,7 +239,7 @@ separating the control and data flow:
   cluster should be able to connect to this database.
 
 A database driven deployment should be used if your use-case requires
-dynamica creation of Consumers and/or credentials in Kong at a scale large
+dynamic creation of Consumers and/or credentials in Kong at a scale large
 enough that the consumers will not fit entirely in memory.
 
 ## Multiple Ingress Controllers
@@ -250,20 +250,20 @@ the same Kubernetes cluster.
 
 There are a few different ways of accomplishing this:
 
-- Using `kubernetes.io/ingress.class` annotation:  
+- Using `kubernetes.io/ingress.class` annotation:
   It is common to deploy Ingress Controllers on a cluster level, meaning
   an Ingress Controller will satisfy Ingress rules created in all the namespaces
   inside a Kubernetes cluster.
   Use the annotation on Ingress and Custom resources to segment
-  the Ingress resources between multiple Ingress Controllers.  
-  **Warning!**  
+  the Ingress resources between multiple Ingress Controllers.
+  **Warning!**
   When you use another Ingress Controler, which is default for cluster
   (without set any `kubernetes.io/ingress.class`), be aware of using default `kong`
   ingress class. There is special behavior of the default `kong` ingress class,
   where any ingress resource that is not annotated is picked up.
   Therefore with different ingress class then `kong`, you have to use that
   ingress class with every Kong CRD object (plugin, consumer) which you use.
-- Namespace based isolation:  
+- Namespace based isolation:
   {{site.kic_product_name}} supports a deployment option where it will satisfy
   Ingress resources in a specific namespace. With this model, one can deploy
   a controller in multiple namespaces and they will run in an isolated manner.
@@ -275,7 +275,7 @@ There are a few different ways of accomplishing this:
 
 ## Runtime
 
-The {{site.kic_product_name}} is compatible a variety of runtimes:
+The {{site.kic_product_name}} is compatible with a variety of runtimes:
 
 ### Kong Gateway (OSS)
 
@@ -285,10 +285,11 @@ open-source gateway.
 
 ### Kong Enterprise K8S
 
-If you are a Kong Enterprise customer, you have access to two more runtimes.
+If you are a Kong Enterprise customer you have access to Enterprise K8s in
+addition to OSS.
 
-The first one, Kong Enterprise K8S, is an package that takes the Open-Source
-Kong Gateway and adds enterprise-only plugins to it.
+Kong Enterprise K8S is a package that takes the open-source Kong Gateway and
+adds enterprise-only plugins to it.
 
 You simply need to deploy Kong Enterprise K8S instead of the Open-Source
 Gateway in-order to take full-advantage of enterprise plugins.
@@ -299,6 +300,7 @@ The {{site.kic_product_name}} is also compatible with the full-blown version of
 Kong Enterprise. This runtime ships with Kong Manager, Kong Portal, and a
 number of other enterprise-only features.
 [This doc](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise) provides a high-level
-overivew of the architecture.
+overview of the architecture.
 
 [k8s-namespace]: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+[k8s-rbac]:https://kubernetes.io/docs/reference/access-authn-authz/rbac/
