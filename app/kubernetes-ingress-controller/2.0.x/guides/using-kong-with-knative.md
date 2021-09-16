@@ -100,7 +100,6 @@ Send a request to the above domain that we have configured:
 ```bash
 curl -i http://35.247.39.83.xip.io/
 HTTP/1.1 404 Not Found
-Date: Wed, 11 Mar 2020 00:18:49 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 Content-Length: 48
@@ -145,7 +144,6 @@ HTTP/1.1 200 OK
 Content-Type: text/plain; charset=utf-8
 Content-Length: 20
 Connection: keep-alive
-Date: Tue, 10 Mar 2020 23:45:14 GMT
 X-Kong-Upstream-Latency: 2723
 X-Kong-Proxy-Latency: 0
 Via: kong/1.4.3
@@ -221,7 +219,6 @@ HTTP/1.1 200 OK
 Content-Type: text/plain; charset=utf-8
 Content-Length: 20
 Connection: keep-alive
-Date: Wed, 11 Mar 2020 00:35:07 GMT
 demo:  injected-by-kong
 X-Kong-Upstream-Latency: 2455
 X-Kong-Proxy-Latency: 1

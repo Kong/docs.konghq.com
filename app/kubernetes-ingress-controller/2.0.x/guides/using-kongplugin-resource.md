@@ -25,7 +25,6 @@ HTTP 404 Not Found.
 ```bash
 $ curl -i $PROXY_IP
 HTTP/1.1 404 Not Found
-Date: Fri, 21 Jun 2019 17:01:07 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 Content-Length: 48
@@ -98,7 +97,6 @@ Content-Type: text/html; charset=utf-8
 Content-Length: 0
 Connection: keep-alive
 Server: gunicorn/19.9.0
-Date: Wed, 17 Jul 2019 21:38:00 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2
@@ -110,7 +108,6 @@ HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Transfer-Encoding: chunked
 Connection: keep-alive
-Date: Wed, 17 Jul 2019 21:38:17 GMT
 Server: echoserver
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 1
@@ -197,7 +194,6 @@ Content-Type: text/html; charset=utf-8
 Content-Length: 9593
 Connection: keep-alive
 Server: gunicorn/19.9.0
-Date: Wed, 17 Jul 2019 21:54:31 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 demo:  injected-by-kong
@@ -209,7 +205,6 @@ $ curl -I $PROXY_IP/bar
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Connection: keep-alive
-Date: Wed, 17 Jul 2019 21:54:39 GMT
 Server: echoserver
 demo:  injected-by-kong
 X-Kong-Upstream-Latency: 2
@@ -230,7 +225,6 @@ Content-Type: text/html; charset=utf-8
 Content-Length: 9593
 Connection: keep-alive
 Server: gunicorn/19.9.0
-Date: Wed, 17 Jul 2019 21:56:20 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 3
@@ -273,7 +267,6 @@ no matter which `Ingress` rule it matched:
 ```bash
 $ curl -I $PROXY_IP/baz
 HTTP/1.1 401 Unauthorized
-Date: Wed, 17 Jul 2019 22:09:04 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 WWW-Authenticate: Key realm="kong"
@@ -282,7 +275,6 @@ Server: kong/1.2.1
 
 $ curl -I $PROXY_IP/foo
 HTTP/1.1 401 Unauthorized
-Date: Wed, 17 Jul 2019 22:12:13 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 WWW-Authenticate: Key realm="kong"
@@ -291,14 +283,14 @@ demo:  injected-by-kong
 Server: kong/1.2.1
 ```
 
-You can also see how the `demo` header was injected as the request also
-matched one of the rules defined in the `demo` `Ingress` resource.
+You can also see how the `demo` header was injected only for `/foo`,
+as the request matched one of the rules defined in the `Ingress`
+resource, but not for `/baz` because that request does not match.
 
 ## Configure consumer and credential
 
 Follow the [Using Consumers and Credentials](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-consumer-credential-resource)
-guide to provision a user and an apikey.
-Once you have it, please continue:
+guide to provision a user and an `apikey`.
 
 Use the API key to pass authentication:
 
@@ -309,7 +301,6 @@ Content-Type: text/html; charset=utf-8
 Content-Length: 9593
 Connection: keep-alive
 Server: gunicorn/19.9.0
-Date: Wed, 17 Jul 2019 22:16:35 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2
@@ -322,7 +313,6 @@ Content-Type: text/html; charset=utf-8
 Content-Length: 9593
 Connection: keep-alive
 Server: gunicorn/19.9.0
-Date: Wed, 17 Jul 2019 22:15:34 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 demo:  injected-by-kong
@@ -372,7 +362,6 @@ Content-Type: text/html; charset=utf-8
 Content-Length: 9593
 Connection: keep-alive
 Server: gunicorn/19.9.0
-Date: Wed, 17 Jul 2019 22:34:10 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-RateLimit-Limit-minute: 5
@@ -386,7 +375,6 @@ $ curl -I $PROXY_IP/bar
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Connection: keep-alive
-Date: Wed, 17 Jul 2019 22:34:14 GMT
 Server: echoserver
 X-RateLimit-Limit-minute: 5
 X-RateLimit-Remaining-minute: 4
@@ -448,7 +436,6 @@ Content-Type: text/html; charset=utf-8
 Content-Length: 9593
 Connection: keep-alive
 Server: gunicorn/19.9.0
-Date: Wed, 17 Jul 2019 22:34:10 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-RateLimit-Limit-minute: 10
@@ -463,7 +450,6 @@ $ curl -I $PROXY_IP/bar
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Connection: keep-alive
-Date: Wed, 17 Jul 2019 22:34:14 GMT
 Server: echoserver
 X-RateLimit-Limit-minute: 5
 X-RateLimit-Remaining-minute: 4

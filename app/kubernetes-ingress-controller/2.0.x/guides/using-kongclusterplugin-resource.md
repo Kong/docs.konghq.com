@@ -2,7 +2,7 @@
 title: Using KongClusterPlugin resource
 ---
 
-In this guide, we will learn how to use KongClusterPlugin resource to configure
+In this guide we will learn how to use KongClusterPlugin resource to configure
 plugins in Kong.
 The guide will cover configuring a plugin for services across different
 namespaces.
@@ -25,7 +25,6 @@ HTTP 404 Not Found.
 ```bash
 $ curl -i $PROXY_IP
 HTTP/1.1 404 Not Found
-Date: Fri, 21 Jun 2019 17:01:07 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 Content-Length: 48
@@ -70,7 +69,7 @@ metadata:
   name: httpbin-app
   namespace: httpbin
   annotations:
-    konghq.com/strip-path: "true"
+    konghq.com/strip-path: 'true'
 spec:
   ingressClassName: kong
   rules:
@@ -118,7 +117,6 @@ Content-Type: text/html; charset=utf-8
 Content-Length: 0
 Connection: keep-alive
 Server: gunicorn/19.9.0
-Date: Wed, 17 Jul 2019 21:38:00 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2
@@ -131,7 +129,6 @@ HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Transfer-Encoding: chunked
 Connection: keep-alive
-Date: Wed, 17 Jul 2019 21:38:17 GMT
 Server: echoserver
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 1
@@ -205,7 +202,6 @@ Content-Type: text/html; charset=utf-8
 Content-Length: 9593
 Connection: keep-alive
 Server: gunicorn/19.9.0
-Date: Wed, 17 Jul 2019 21:54:31 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 demo:  injected-by-kong
@@ -217,7 +213,6 @@ $ curl -I $PROXY_IP/bar
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Connection: keep-alive
-Date: Wed, 17 Jul 2019 21:54:39 GMT
 Server: echoserver
 demo:  injected-by-kong
 X-Kong-Upstream-Latency: 2

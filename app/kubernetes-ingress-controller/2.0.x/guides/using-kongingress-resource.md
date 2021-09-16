@@ -23,7 +23,6 @@ HTTP 404 Not Found.
 ```bash
 $ curl -i $PROXY_IP
 HTTP/1.1 404 Not Found
-Date: Fri, 21 Jun 2019 17:01:07 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 Content-Length: 48
@@ -79,7 +78,6 @@ HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Transfer-Encoding: chunked
 Connection: keep-alive
-Date: Wed, 17 Jul 2019 21:38:17 GMT
 Server: echoserver
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 1
@@ -249,5 +247,5 @@ $ curl -s $PROXY_IP/foo | grep "pod IP"
 ```
 
 
-You can experiement with various load balancing and healthchecking settings
+You can experiment with various load balancing and health-checking settings
 that KongIngress resource exposes to suit your specific use case.
