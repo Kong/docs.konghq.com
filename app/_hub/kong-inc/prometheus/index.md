@@ -209,7 +209,7 @@ need to be set up to require authentication. Here are a couple of options to
 allow access to the `/metrics` endpoint to Prometheus:
 
 
-1. If the [Status API](/enterprise/latest/configuration/#status_listen)
+1. If the [Status API](/gateway-oss/latest/configuration/#status_listen)
    is enabled, then its `/metrics` endpoint can be used.
    This is the preferred method.
 

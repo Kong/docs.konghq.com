@@ -20,7 +20,7 @@ Generally speaking having multiple Kong nodes is a good practice for a number of
   <img src="/assets/images/docs/clustering.png" style="height: 400px"/>
 </center>
 
-To make sure every Kong node can process requests properly, each node must point to the same datastore so that they can share the same data. This means for example that APIs, Consumers and Plugins created by a Kong node will also be available to other Kong nodes that are pointing to the same datastore. 
+To make sure every Kong node can process requests properly, each node must point to the same datastore so that they can share the same data. This means for example that APIs, Consumers and Plugins created by a Kong node will also be available to other Kong nodes that are pointing to the same datastore.
 
 By doing so it doesn't matter which Kong node is being requested, as long as they all point to the same datastore every node will be able to retrieve the same data and thus process requests in the same way.
 
@@ -38,7 +38,7 @@ Kong cluster settings are specified in the configuration file at the following e
 
 To understand why a Kong Cluster is needed, we need to spend a few words on how Kong interacts with the datastore.
 
-Every time a new incoming API requests hits a Kong server, Kong loads some data from the datastore to understand how to proxy the request, load any associated plugin, authenticate the Consumer, and so on. Doing this on every request would be very expensive in terms of performance, because Kong would need to communicate with the datastore on every request and this would be extremely inefficient. 
+Every time a new incoming API requests hits a Kong server, Kong loads some data from the datastore to understand how to proxy the request, load any associated plugin, authenticate the Consumer, and so on. Doing this on every request would be very expensive in terms of performance, because Kong would need to communicate with the datastore on every request and this would be extremely inefficient.
 
 To avoid querying the datastore every time, Kong tries to cache as much data as possible locally in-memory after the first time it has been requested. Because a local in-memory lookup is tremendously faster than communicating with the datastore every time, this allows Kong to have a good performance on every request.
 
@@ -65,7 +65,7 @@ To gracefully stop and remove a node from the cluster just execute the `kong qui
 When a node is not reachable for whatever reason, its state transitions to `failed`. Kong will automatically try to re-join a failed node just in case it becomes available again. You can exclude a failed node from the cluster in two ways:
 
 * Using the [`kong cluster force-leave`][cli-cluster] CLI command
-* Using the [API][cluster-api-remove]. 
+* Using the [API][cluster-api-remove].
 
 Check the [Node Failures](#node-failures) paragraph for more info.
 
@@ -110,7 +110,7 @@ The node data will persist for 1 hour in the datastore in case the node crashes,
 
 ## 8. Problems and bug reports
 
-Clustering is a new feature introduced with Kong >= 0.6.x - if you experience any problem please contact us through our [Community Channels][community-channels].
+Clustering is a new feature introduced with Kong >= 0.6.x - if you experience any problem please contact us through our Community Channels.
 
 [cluster_listen]: /{{page.kong_version}}/configuration/#cluster_listen
 [cluster_listen_rpc]: /{{page.kong_version}}/configuration/#cluster_listen_rpc
@@ -118,4 +118,3 @@ Clustering is a new feature introduced with Kong >= 0.6.x - if you experience an
 [cli-cluster]: /{{page.kong_version}}/cli/#cluster
 [cluster-api-status]: /{{page.kong_version}}/admin-api/#retrieve-cluster-status
 [cluster-api-remove]: /{{page.kong_version}}/admin-api/#forcibly-remove-a-node
-[community-channels]: /community
