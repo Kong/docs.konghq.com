@@ -4,13 +4,20 @@ publisher: Kong Inc.
 versions: 0.1.x
 beta: true
 
-desc: Transform JSON objects included in API requests or responses using jq filters and programs.
+desc: Transform JSON objects included in API requests or responses using jq programs.
 description: |
-    The Kong jq plugin enables arbitrary jq transformations on JSON objects included in API requests or responses. The source of the object can either be the request or response body, and the transformed result can either replace the body or be used to set HTTP headers.
+    The Kong jq plugin enables arbitrary jq transformations on JSON objects included in API requests or responses.
+    The configuration accepts two sets of options: one for the request and another for the response.
+    For both the request and response, a jq program string can be included, along with some jq option flags
+    and a list of media types. One of the media types must included in the `Content-Type` header for
+    the jq program to run (the media type in the `Content-Type` header defaults to `application/json`).
+	  In the response context, you also have the option to specify a list of status codes, one of which must match the response status code (the response status code defaults to `200`).
+	
+    {:.note}
+	  **Note:** In the response context the entire body must be buffered to be processed. This requirement also
+    implies that the `Content-Length` header will be dropped if present, and the body transferred with chunked encoding.
 
-    Multiple filters can be specified in the configuration. You can use these filters to set request headers from values present in the request body, and then rewrite the response body with a separate jq program.
-
-    See jq's documentation on [Basic filters](https://stedolan.github.io/jq/manual/#Basicfilters) for more information on writing programs and filters with jq.
+    See jq's documentation on [Basic filters](https://stedolan.github.io/jq/manual/#Basicfilters) for more information on writing programs with jq.
 
 enterprise: true
 type: plugin
@@ -57,13 +64,13 @@ params:
       datatype: array of strings
       default: ["application/json"]
       description: |
-        A list of media type strings, which must be present in the `Content-Type` header for the request program to run.
+        A list of media type strings, which **must** be present in the `Content-Type` header for the request program to run.
     - name: response_jq_program
       required: semi
       datatype: string
       description: |
         The jq program to run on the response body. For example, `.[0] | { "X-Foo": .foo }`. 
-        Either `request_jq_program` or `response_jq_plugin` must be included in configuration.
+        Either `request_jq_program` or `response_jq_plugin` **must** be included in configuration.
     - name: response_jq_program_options
       required: false
       datatype: record
@@ -82,13 +89,13 @@ params:
       datatype: array of strings
       default: ["application/json"]
       description: |
-        A list of media type strings, which must be present in the `Content-Type` header for the response program to run.
+        A list of media type strings, which **must** be present in the `Content-Type` header for the response program to run.
     - name: response_if_status_code
       required: false
       datatype: array of integers
       default: [200]
       description: |
-        A list of HTTP response status codes which must be present for the response program to run.
+        A list of HTTP response status codes which **must** be present for the response program to run.
 ---
 
 
