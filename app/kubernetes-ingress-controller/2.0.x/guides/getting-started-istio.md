@@ -20,7 +20,7 @@ for ingress traffic from outside the cluster.
 
 In this guide, you will:
 
-* Install Istio `v1.11` and Kong in your cluster.
+* Install Istio `v1.11` and Kong Gateway in your cluster.
 * Deploy an example Istio-enabled application.
 * Deploy an `Ingress` customized with a `KongPlugin` for the example application.
 * Make requests to the sample application via Kong and Istio.
