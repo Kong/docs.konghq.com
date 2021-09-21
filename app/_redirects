@@ -58,6 +58,8 @@
 /hub/kong-in/sessions                       /hub/kong-inc/session/
 /hub/kong-inc/sessions                      /hub/kong-inc/session/
 /hub/kong-inc/zipkin/http-log/              /hub/kong-inc/zipkin/
+/plugins/                                   /hub/
+/plugins/*                                  /hub/kong-inc/:splat
 
 # Konnect
 /konnect/access-beta                                /konnect/access-account
