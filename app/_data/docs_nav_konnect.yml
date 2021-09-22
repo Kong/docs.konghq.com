@@ -102,10 +102,6 @@
           url: /dev-portal/administrators/auto-approve-devs-apps
         - text: Public Portal
           url: /dev-portal/administrators/public-portal
-        - text: Customization
-          items:
-          - text: Customizing the Dev Portal Appearance
-            url: /dev-portal/administrators/customization/themes
 
     - text: Developers
       items:

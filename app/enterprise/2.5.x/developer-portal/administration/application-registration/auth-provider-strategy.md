@@ -45,7 +45,7 @@ applications across all Workspaces (Dev Portals) in a {{site.base_gateway}} clus
 ### Authorization provider strategy configuration for Application Registration {#portal-app-auth}
 
 The `portal_app_auth` configuration option must be set in `kong.conf` to enable
-the Developer Portal Application Registration plugin with your chosen
+the Dev Portal Application Registration plugin with your chosen
 authorization strategy. The default setting (`kong-oauth2`) accommodates the
 OAuth2 or Key Authentication plugins.
 
@@ -74,7 +74,7 @@ If you are using an external IdP, follow these steps.
 
    ```
    portal_app_auth = external-oauth2
-            # Developer Portal application registration
+            # Dev Portal application registration
             # auth provider and strategy. Must be set to configure
             # authentication in conjunction with the application_registration plugin.
             # Currently accepts kong-oauth2 or external-oauth2.

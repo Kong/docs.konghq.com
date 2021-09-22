@@ -74,7 +74,7 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
 ## Register an application in Okta
 
 Follow these steps to register an application in Okta and associate the Okta
-application with an application in the Kong Developer Portal.
+application with an application in the Kong Dev Portal.
 
 1. Sign in to the [Developer Okta site](https://developer.okta.com/).
 2. Click **Applications** > **+ Add Application**.
@@ -99,7 +99,7 @@ your Okta application will vary:
 ## Associate the identity provider application with your Kong application
 
 Now that the application has been configured in Okta, you need to associate the
-Okta application with the corresponding application in Kong's Developer Portal.
+Okta application with the corresponding application in Kong's Dev Portal.
 
 <div class="alert alert-warning">
   <strong>Note:</strong> Each developer should have their own application in both Okta and Kong.  

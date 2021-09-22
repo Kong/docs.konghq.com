@@ -4,6 +4,58 @@ no_search: true
 no_version: true
 ---
 
+## 2.5.1.0
+**Release Date** 2021/09/08
+
+### Dependencies
+- Bumped `grpcurl` from 1.8.1 to 1.8.2 [#7659](https://github.com/Kong/kong/pull/7659)
+- Bumped `lua-resty-openssl` from 0.7.3 to 0.7.4 [#7657](https://github.com/Kong/kong/pull/7657)
+- Bumped `penlight` from 1.10.0 to 1.11.0 [#7736](https://github.com/Kong/kong/pull/7736)
+- Bumped `luasec` from 1.0.1 to 1.0.2 [#7750](https://github.com/Kong/kong/pull/7750)
+- Bumped `OpenSSL` from 1.1.1k to 1.1.1l [#7767](https://github.com/Kong/kong/pull/7767)
+
+### Fixes
+
+#### Core
+- You can now successfully delete workspaces after deleting all entities associated with that workspace.
+  Previously, Kong Gateway was not correctly cleaning up parent-child relationships. For example, creating
+  an Admin also creates a Consumer and RBAC user. When deleting the Admin, the Consumer and RBAC user are
+  also deleted, but accessing the `/workspaces/workspace_name/meta` endpoint would show counts for Consumers
+  and RBAC users, which prevented the workspace from being deleted. Now deleting entities correctly updates
+  the counts, allowing an empty workspace to be deleted. [#7560](https://github.com/Kong/kong/pull/7560)
+- When an upstream event is received from the DAO, `handler.lua` now gets the workspace ID from the request
+  and adds it to the upstream entity that will be used in the worker and cluster events. Before this change,
+  when posting balancer CRUD events, the workspace ID was lost and the balancer used the default
+  workspace ID as a fallback. [#7778](https://github.com/Kong/kong/pull/7778)
+
+#### CLI
+- Fixes regression that included an issue where Go plugins prevented CLI commands like `kong config parse`
+  or `kong config db_import` from working as expected. [#7589](https://github.com/Kong/kong/pull/7589)
+
+#### Admin API
+- Kong Gateway now validates workspace names, preventing the use of reserved names on workspaces.
+  [#7380](https://github.com/Kong/kong/pull/7380)
+
+#### Plugins
+- [Azure Functions](/hub/kong-inc/azure-functions) (`azure-functions`)
+  This relese updates the `lua-resty-http` dependency to v0.16.1, which means the plugin no longer
+  uses the deprecated functions.
+
+
+## 2.5.0.2
+**Release Date** 2021/09/02
+
+### Fixes
+
+#### Enterprise
+- This release fixes a regression in the Kong Dev Portal templates that removed dynamic menu navigation and other improvements
+from portals created in Kong Gateway v2.5.0.1.
+
+#### Plugins
+- [Mocking](/hub/kong-inc/mocking) (`mocking`)
+  This release fixes special character handling in path matching for the plugin. Before, if a path contained a hyphen
+  the plugin failed to match the path.
+
 ## 2.5.0.1
 **Release Date** 2021/08/18
 
@@ -497,6 +549,15 @@ no_version: true
   with command not found". [#7523](https://github.com/Kong/kong/pull/7523)
 
 
+## 2.4.1.3
+**Release Date** 2021/09/02
+
+### Fixes
+
+#### Enterprise
+- This release fixes a regression in the Kong Dev Portal templates that removed dynamic menu navigation and other improvements
+from portals created in Kong Gateway v2.4.1.2.
+
 ## 2.4.1.2
 **Release Date** 2021/08/18
 
@@ -510,7 +571,7 @@ no_version: true
   and RBAC users, which prevented the workspace from being deleted. Now deleting entities correctly updates
   the counts, allowing an empty workspace to be deleted.
 - Updates Kong Dev Portal templates' JQuery dependency to v3.6.0, improving security.
-- Users with the `kong_admin` role can now log in to Kong Manager when `enforce_rbac=both` is set. 
+- Users with the `kong_admin` role can now log in to Kong Manager when `enforce_rbac=both` is set.
 - Renames the property identifying control planes in hybrid mode when using Kong Vitals with anonymous
   reports enabled. Before, users received the error, `Cannot use this function in data plane`, on their control planes.
 - Updates Nettle dependency version from `3.7.2` to `3.7.3`, fixing bugs that could cause
@@ -525,7 +586,7 @@ no_version: true
 
 #### Hybrid Mode
 - Control planes are now more lenient when checking data planes' compatibility in hybrid mode. See the
-  [Version compatibility](/gateway-oss/2.4.x/deployment/hybrid-mode/#version_compatibility)
+  [Version compatibility](/gateway-oss/2.4.x/hybrid-mode/#version-compatibility)
   section of the Hybrid Mode guide for more information. [#7488](https://github.com/Kong/kong/pull/7488)
 
 ## 2.4.1.1
@@ -937,6 +998,15 @@ keep-alive connections. [7102](https://github.com/Kong/kong/pull/7102)
     which prevented access to other necessary modules such as `kong.log`.
 
 
+## 2.3.3.4
+**Release Date** 2021/09/02
+
+### Fixes
+
+#### Enterprise
+- This release fixes a regression in the Kong Dev Portal templates that removed dynamic menu navigation and other improvements
+from portals created in Kong Gateway v2.3.3.3.
+
 ## 2.3.3.3
 **Release Date** 2021/08/18
 
@@ -954,7 +1024,7 @@ keep-alive connections. [7102](https://github.com/Kong/kong/pull/7102)
   workspaces using the UI, the workspace name was validated; however, when using the Admin API to add users,
   the workspace name was not validated. Because the name was not validated in the Admin Api, users could create workspace names with special characters that would then break the environment.
 - Kong Gateway now escapes "-" and "." special characters in workspace names when building the compiled pattern
-  for collision detection. 
+  for collision detection.
 
 #### Plugins
 - [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
@@ -1376,6 +1446,15 @@ fixed causing a 500 auth error when falling back to an anonymous user.
 ### Deprecated
 #### Distributions
 - Support for CentOS-6 is removed and entered end-of-life on Nov 30, 2020.
+
+## 2.2.1.5
+**Release Date** 2021/09/02
+
+### Fixes
+
+#### Enterprise
+- This release fixes a regression in the Kong Dev Portal templates that removed dynamic menu navigation and other improvements
+from portals created in Kong Gateway v2.2.1.4.
 
 ## 2.2.1.4
 **Release Date** 2021/08/18
@@ -3725,7 +3804,7 @@ for details.
 
 #### Kong Manager
   - User information is no longer stored in local storage. A user exchanges
-  credentials for a session. See the [**Session Plugin**](/hub/kong-inc/sessions)
+  credentials for a session. See the [**Session Plugin**](/hub/kong-inc/session)
   for details.
   - Enable and view **Plugins** in context of a **Service** and **Route**
   - Type-ahead service name/ID search on routes form
@@ -3746,7 +3825,7 @@ for details.
   - **Dev Portal** is disabled for each **Workspace** by default.
   - Default theme shipped with **Kong Enterprise** now supports IE11.
   - User information is no longer stored in local storage. A user exchanges
-  credentials for a session. See the [**Session Plugin**](/hub/kong-in/sessions)
+  credentials for a session. See the [**Session Plugin**](/hub/kong-inc/session)
   for details.
   - **Dev Portal** page, partial, and specification look-ups moved to
   server-side.

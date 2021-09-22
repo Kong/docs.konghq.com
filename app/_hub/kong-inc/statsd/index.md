@@ -11,9 +11,7 @@ description: |
   daemon by enabling its [Statsd
   plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
 
-  {:.tip}
-  > **Tip:** The [StatsD Advanced plugin](/hub/kong-inc/statsd-advanced/) provides
-  additional features not available in this open source StatsD plugin, such as:
+  This plugin is the open-source version of the [StatsD Advanced plugin](/hub/kong-inc/statsd-advanced/), which provides additional features such as:
   * Ability to choose status codes to log to metrics.
   * More granular status codes per workspace.
   * Ability to use TCP instead of UDP.

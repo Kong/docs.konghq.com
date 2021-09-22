@@ -88,7 +88,7 @@ remaining configuration details on the **Configure Runtime** page.
 
 
     ```bash
-    $ docker pull kong/kong-gateway:2.4.1.1-alpine
+    $ docker pull kong/kong-gateway:2.5.0.1-alpine
     ```
 
     You should now have your {{site.base_gateway}} image locally.
@@ -125,7 +125,6 @@ $ docker run -d --name kong-gateway-dp1 \
   -e "KONG_CLUSTER_TELEMETRY_SERVER_NAME=<kong-telemetry-example.service>" \
   -e "KONG_CLUSTER_CERT=/<path-to-file>/tls.crt" \
   -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/tls.key" \
-  -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system,/<path-to-file>/ca.crt" \
   --mount type=bind,source="$(pwd)",target=<path-to-keys-and-certs>,readonly \
   -p 8000:8000 \
   kong-ee
@@ -145,7 +144,6 @@ docker run -d --name kong-gateway-dp1 `
   -e "KONG_CLUSTER_TELEMETRY_SERVER_NAME=<kong-telemetry-example.service>" `
   -e "KONG_CLUSTER_CERT=/<path-to-file>/tls.crt" `
   -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/tls.key" `
-  -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system,/<path-to-file>/ca.crt" `
   --mount type=bind,source="$(pwd)",target=<path-to-keys-and-certs>,readonly `
   -p 8000:8000 `
   kong-ee
@@ -153,8 +151,8 @@ docker run -d --name kong-gateway-dp1 `
 {% endnavtab %}
 {% endnavtabs %}
 
-1. Replace the values in `KONG_CLUSTER_CERT`, `KONG_CLUSTER_CERT_KEY`,
-        and `KONG_LUA_SSL_TRUSTED_CERTIFICATE` with the paths to your certificate files.
+1. Replace the values in `KONG_CLUSTER_CERT` and `KONG_CLUSTER_CERT_KEY` with
+the paths to your certificate and key files.
 
 2. Check the **Linux** or **Kubernetes** tabs in the Konnect UI to find the values for
         `KONG_CLUSTER_CONTROL_PLANE`, `KONG_CLUSTER_SERVER_NAME`,

@@ -61,15 +61,13 @@ to the file.
     cluster_telemetry_server_name = <kong-telemetry-example.service>
     cluster_cert = /<path-to-file>/tls.crt
     cluster_cert_key = /<path-to-file>/tls.key
-    lua_ssl_trusted_certificate = system,/<path-to-file>/ca.crt
     ```
 
     See [Parameters](/konnect/runtime-manager/runtime-parameter-reference) for
     descriptions and the matching fields in {{site.konnect_short_name}}.
 
-4. Replace the values in `cluster_cert`, `cluster_cert_key`,
-and `lua_ssl_trusted_certificate` with the paths to your certificate and key
-files.
+4. Replace the values in `cluster_cert` and `cluster_cert_key` with the paths
+to your certificate and key files.
 
 5. Restart {{site.base_gateway}} for the settings to take effect:
 

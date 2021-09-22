@@ -90,7 +90,7 @@ like this:
     ```yaml
     image:
       repository: kong/kong-gateway
-      tag: "2.4.1.1-alpine"
+      tag: "2.5.0.1-alpine"
 
     secretVolumes:
     - kong-cluster-cert
@@ -112,7 +112,6 @@ like this:
       cluster_ca_cert: /etc/secrets/kong-cluster-ca/ca.crt
       cluster_cert: /etc/secrets/kong-cluster-cert/tls.crt
       cluster_cert_key: /etc/secrets/kong-cluster-cert/tls.key
-      lua_ssl_trusted_certificate: /etc/secrets/kong-cluster-ca/ca.crt
 
     ingressController:
       enabled: false
@@ -123,8 +122,8 @@ like this:
 with your specific values from {{site.konnect_short_name}}.
 
     If your cluster cert locations differ from the paths in the template, update
-    the values in `cluster_cert`, `cluster_cert_key`, `cluster_ca_cert`, and
-    `lua_ssl_trusted_certificate` with references to the secrets you created earlier.
+    the values in `cluster_cert`, `cluster_cert_key`, and `cluster_ca_cert`
+    with references to the secrets you created earlier.
 
     See [Parameters](/konnect/runtime-manager/runtime-parameter-reference) for
     descriptions and matching values in {{site.konnect_short_name}}.
@@ -150,7 +149,7 @@ Manager, check the logs from your deployment:
 $ kubectl logs deployment/my-kong-kong -n kong
 ```
 
-If you find any errors and need to update `config.yaml`, make your changes,
+If you find any errors and need to update `values.yaml`, make your changes,
 save the file, then reapply the configuration by running the Helm `upgrade`
 command:
 

@@ -1,0 +1,52 @@
+name: Improve existing documentation
+description: |
+    Make a suggestion to improve the content in an existing doc.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for your interest in contributing to Kong Docs!
+
+        Before submitting a new issue:
+        * Please read the [Kong Docs contributing guidelines](https://docs.konghq.com/contributing/).
+        * Check our existing [issues](https://github.com/Kong/docs.konghq.com/issues) and [pull requests](https://github.com/Kong/docs.konghq.com/pulls) to see if someone else has reported your issue previously.
+        * If you know how to resolve the issue you're reporting, we encourage you to submit a [pull request instead](https://help.github.com/articles/creating-a-pull-request/).
+        * If you have a code-related troubleshooting issue, please reach out to our [community](https://github.com/Kong/kong/discussions).
+  - type: input
+    id: link
+    attributes:
+      label: Where is the problem?
+      description: Link to the affected page(s)
+      placeholder: e.g. https://docs.konghq.com/hub/kong-inc/basic-auth
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Tell us what the problem is.
+      placeholder: |
+          "I wanted information about this feature, but couldn't find it in the docs!"
+          "The instructions for {X} didn't work as documented."
+    validations:
+      required: true
+  - type: textarea
+    id: what-did-you-expect
+    attributes:
+      label: What did you expect to happen?
+      description: Tell us what you think should have happened.
+      placeholder: |
+          "This feature should have been documented with {X}, {Y}, and {Z} details."
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct and Community Expectations
+      description: |
+          By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/Kong/docs.konghq.com/blob/main/CODE_OF_CONDUCT.md) and [Community Expectations](https://docs.konghq.com/contributing/community-expectations/).
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
+        - label: I agree to abide by the Community Expectations
+          required: true

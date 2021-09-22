@@ -40,7 +40,6 @@ and [{{site.ee_product_name}} for Kubernetes Deployment Options](/enterprise/lat
 <!-- To add or edit table entries in this topic, see /app/_data/tables/plugin_index.yml in this repo -->
 
 {% assign categories = site.data.tables.plugin_index %}
-{% assign plugins = site.data.tables.plugin_index.category.plugin %}
 
 {% for category in categories %}
 <h3 id="{{ category.name | downcase | split: " " | join: "-" }}">

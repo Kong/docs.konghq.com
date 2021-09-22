@@ -3,16 +3,16 @@ title: Enable Application Registration
 ---
 
 ## Introduction
-Application Registration allows registered developers on the Kong Developer Portal to
+Application Registration allows registered developers on the Kong Dev Portal to
 authenticate with supported Authentication plugins against a Service on Kong. Either {{site.base_gateway}} or
 external identity provider admins can selectively admit access to Services using Kong Manager.
 
 ## Prerequisites
 * {{site.ee_product_name}} is installed, version 2.1.0.0 or later. If you plan to use
 key authentication, version 2.2.1.0 or later.
-* Developer Portal is enabled on the same Workspace as the Service.
+* Dev Portal is enabled on the same Workspace as the Service.
 * The Service is created and enabled with HTTPS.
-* Authentication is enabled on the Developer Portal.
+* Authentication is enabled on the Dev Portal.
 * Logged in as an admin with read and write roles on applications, services, and
   developers.
 * The `portal_app_auth` configuration option is configured for your OAuth provider
@@ -62,8 +62,8 @@ In Kong Manager, access the Service for which you want to enable Application Reg
 | `Service` | The Service that this plugin configuration will target. Required. |
 | `Tags` | A set of strings for grouping and filtering, separated by commas. Optional. |
 | `Auto Approve` | If enabled, all new Service contract requests are automatically approved. Otherwise, Dev Portal admins must manually approve requests. Default: `false`. |
-| `Description` | Description displayed in the information about a Service in the Developer Portal. Optional. |
-| `Display Name` | Unique name displayed in the information about a Service in the Developer Portal. Required. |
+| `Description` | Description displayed in the information about a Service in the Dev Portal. Optional. |
+| `Display Name` | Unique name displayed in the information about a Service in the Dev Portal. Required. |
 | `Show Issuer` | Displays the Issuer URL in the Service Details page. Default: `false`. **Important:** Exposing the **Issuer URL** is essential for the [Authorization Code Flow](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth/#ac-flow) workflow configured for third-party identity providers. |
 
 ## Next steps

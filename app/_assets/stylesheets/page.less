@@ -1282,7 +1282,7 @@ Generic Styling for Desktop
       display: inline;
     }
 
-    &::before {
+    &:not(.no-icon)::before {
       content: "\f05a";
       font-family: "Font Awesome", FontAwesome;
       color: @blue-400;
@@ -1291,11 +1291,12 @@ Generic Styling for Desktop
       font-size: 17px;
       padding: 0 5px ;
     }
+
     &.warning {
       background-color: @red-100;
       border-left: solid 3px @red-500;
 
-      &::before {
+      &:not(.no-icon)::before {
         content: "\f057";
         font-family: "Font Awesome", FontAwesome;
         color: @red-500;
@@ -1310,7 +1311,7 @@ Generic Styling for Desktop
       background-color: @yellow-100;
       border-left: solid 3px @yellow-400;
 
-      &::before {
+      &:not(.no-icon)::before {
         content: "\f071";
         font-family: "Font Awesome", FontAwesome;
         color: @yellow-400;
@@ -1321,32 +1322,17 @@ Generic Styling for Desktop
       }
     }
 
-    &.info {
+    &.note {
       background-color: @blue-100;
       border: none;
       border-left: solid 3px @blue-400;
 
-      &::before {
+      &:not(.no-icon)::before {
         content: "\f05a";
         font-family: "Font Awesome", FontAwesome;
         color: @blue-400;
         display: inline-block;
         font-weight: bold;
-        font-size: 17px;
-        padding: 0 5px 0 0;
-      }
-    }
-
-    &.tip {
-      border-left: 3px solid @green-400;
-      background-color: @green-100;
-
-      &::before {
-        content: "\f058";
-        font-family: "Font Awesome", FontAwesome;
-        color: @green-400;
-        display: inline-block;
-        font-weight: 600;
         font-size: 17px;
         padding: 0 5px 0 0;
       }
