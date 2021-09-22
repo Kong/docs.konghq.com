@@ -21,8 +21,8 @@
 /enterprise/2.1.x/kong-for-kubernetes/install-on-kubernetes/  /enterprise/2.1.x/deployment/installation/kong-for-kubernetes/
 
 # kic beta
-/kubernetes-ingress-controller-beta/   https://kic-v2-beta--kongdocs.netlify.app/kubernetes-ingress-controller/
-/kubernetes-ingress-controller-beta/*  https://kic-v2-beta--kongdocs.netlify.app/kubernetes-ingress-controller/:splat
+/kubernetes-ingress-controller-beta/   /kubernetes-ingress-controller/
+/kubernetes-ingress-controller-beta/*  /kubernetes-ingress-controller/:splat
 
 # enterprise gateway
 /enterprise/latest/introduction       /enterprise/
