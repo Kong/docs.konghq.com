@@ -577,6 +577,56 @@ hardware and to avoid confusion.
 
 <center><img title="Latency" src="/assets/images/docs/external-plugins/latency.png"/></center>
 
+## Use external plugins in container and Kubernetes
+
+When using external plugin servers in container, they need to be installed inside the container
+alongside with any external plugins as well.
+
+For Golang, user may build external plugins in embedded server mode in a builder container
+and copy or mount the binary artifacts into Kong container.
+For JavaScript, user may install Node and npm first and use npm to install `kong-pdk`, then
+copy or mount the plugins source code into Kong container.
+For Python, user may install Python and pip and use pip to install `kong-pdk`, then
+copy or mount the plugins source code into Kong container.
+
+Please also refer to previous sections on how to configure Kong after you build the image
+or created the container.
+
+Note official Kong images are configured to run as `nobody` user. To copy files into
+the Kong images to build a custom image, user need to temporary set the user back to `root`.
+
+```dockerfile
+FROM kong
+USER root
+
+# Example for GO:
+COPY your-go-plugin /usr/local/bin/your-go-plugin
+
+# Example for JavaScript:
+RUN apk update && apk add nodejs npm && npm install -g kong-pdk
+COPY you-js-plugin /path/to/your/js-plugins/you-js-plugin
+
+# Example for Python
+# PYTHONWARNINGS=ignore is needed to build gevent on Python 3.9
+RUN apk update && \
+    apk add python3 py3-pip python3-dev musl-dev libffi-dev gcc g++ file make && \
+    PYTHONWARNINGS=ignore pip3 install kong-pdk
+COPY you-py-plugin /path/to/your/py-plugins/you-py-plugin
+
+# reset back the defaults
+USER kong
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
+EXPOSE 8000 8443 8001 8444
+
+STOPSIGNAL SIGQUIT
+
+HEALTHCHECK --interval=10s --timeout=10s --retries=10 CMD kong health
+
+CMD ["kong", "docker-start"]
+```
+
 ---
 
 [go-pluginserver]: https://github.com/Kong/go-pluginserver
