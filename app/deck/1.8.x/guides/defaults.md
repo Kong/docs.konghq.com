@@ -153,10 +153,8 @@ Summary:
 {% endcapture %}
 {{ deck_diff2 | indent | replace: " </code>", "</code>" }}
 
-    Notice that even though you've made no changes, the response shows a list
-    of new property configurations. This is happening because
-    {{site.base_gateway}} applied defaults and decK is unaware of them, so decK
-    treats them like changes to the configuration.
+    Even though you've made no changes, the response shows a list
+    of new property configurations. The list of new configurations appears because {{site.base_gateway}} applied defaults and decK is unaware of them, so decK treats them like changes to the configuration.
 
 ### Set defaults
 
