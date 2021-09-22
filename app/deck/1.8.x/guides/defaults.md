@@ -1,10 +1,10 @@
 ---
 title: Set Up Object Defaults
 ---
-Use object defaults to enforce a set of standard values and help avoid
+Use object defaults to enforce a set of standard values and avoid
 repetition in your configuration.
 
-You can set configuration defaults for core {{site.base_gateway}} objects:
+You can set configuration defaults for the following core {{site.base_gateway}} objects:
 - Service
 - Route
 - Upstream
@@ -16,11 +16,11 @@ decK supports setting object defaults both in self-managed
 {:.important}
 > **Important:** This feature has the following limitations:
 * Plugin object defaults are not supported.
-* If an existing property's default value changes in a future Gateway release,
+* If an existing property's default value changes in a future {{site.base_gateway}} release,
 decK has no way of knowing that this change has occured, as its `defaults`
 configuration would overwrite the value in your environment.
 
-## Behavior
+## Object defaults behavior
 
 Defaults get applied to both new and existing objects. If an object has an
 explicit setting for a property, the object-level setting takes precedence over
@@ -30,7 +30,7 @@ the default.
 what the defaults are for each object in the
 [Admin API reference](/gateway-oss/latest/admin-api/), or use the
 [`/schemas`](/gateway-oss/latest/admin-api/#retrieve-entity-schema) endpoint to
-retrieve the latest object schemas for your instance of the Gateway.
+retrieve the latest object schemas for your instance of the {{site.base_gateway}}.
 
 Configuring your own defaults is a good way to keep updated on potential
 breaking changes between versions. If you upgrade {{site.base_gateway}} to a
@@ -38,10 +38,9 @@ version which introduces a new property with a default value, a `deck diff`
 will catch the difference.
 
 If defaults are not set in the declarative configuration file, any newly
-configured object picks up {{site.base_gateway}}'s defaults and diverges from
-the source configuration file. This creates a false positive: decK sees
-a diff where one doesn't exist. You can see
-[an example of this](#create-a-file-and-test-without-defaults) in this guide.
+configured objects pick up {{site.base_gateway}}'s defaults and diverge from
+the source configuration file. This situation creates a false positive: decK sees
+a diff where one doesn't exist. Refer to ["Create a file and test without defaults"](#create-a-file-and-test-without-defaults) for an example.
 
 ## Configure object defaults
 The following guide creates a sample `kong.yaml` file with a service and
@@ -188,7 +187,7 @@ Summary:
     You can define defaults for `service`, `route`, `upstream`, and `target`
     objects.
 
-    For this example, set:
+    For example:
 
     ```yaml
     _format_version: "0.1"
@@ -247,7 +246,7 @@ Summary:
 ## Defaults reference
 The following properties are the defaults applied by {{site.base_gateway}} (as of
 v2.5.x), and setting them in your declarative configuration file is required to
-avoid differences between the configuration file and the Gateway.
+avoid differences between the configuration file and the {{site.base_gateway}}.
 
 {:.note}
 > **Note:** The following are only properties that **have defaults**, and are
@@ -415,4 +414,4 @@ http :8001/schemas/targets
 * [Deduplicate plugin configuration](/deck/{{page.kong_version}}/guides/deduplicate-plugin-configuration)
 * [Distributed configuration for Kong Gateway using decK](/deck/{{page.kong_version}}/guides/distributed-configuration)
 * [Using multiple files to store configuration](/deck/{{page.kong_version}}/guides/multi-file-state)
-* Kong Gateway admin API: [`/schemas` endpoint](/gateway-oss/latest/admin-api/#retrieve-entity-schema)
+* {{site.base_gateway}} admin API: [`/schemas` endpoint](/gateway-oss/latest/admin-api/#retrieve-entity-schema)
