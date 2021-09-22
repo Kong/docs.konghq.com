@@ -6,18 +6,18 @@ beta: true
 
 desc: Transform JSON objects included in API requests or responses using jq programs.
 description: |
-    The Kong jq plugin enables arbitrary jq transformations on JSON objects included in API requests or responses.
-    The configuration accepts two sets of options: one for the request and another for the response.
-    For both the request and response, a jq program string can be included, along with some jq option flags
-    and a list of media types. One of the media types must included in the `Content-Type` header for
-    the jq program to run (the media type in the `Content-Type` header defaults to `application/json`).
-	  In the response context, you also have the option to specify a list of status codes, one of which must match the response status code (the response status code defaults to `200`).
-	
-    {:.note}
-	  **Note:** In the response context the entire body must be buffered to be processed. This requirement also
-    implies that the `Content-Length` header will be dropped if present, and the body transferred with chunked encoding.
+  The Kong jq plugin enables arbitrary jq transformations on JSON objects included in API requests or responses.
+  The configuration accepts two sets of options: one for the request and another for the response.
+  For both the request and response, a jq program string can be included, along with some jq option flags
+  and a list of media types. One of the media types must included in the `Content-Type` header for
+  the jq program to run (the media type in the `Content-Type` header defaults to `application/json`).
+  In the response context, you also have the option to specify a list of status codes, one of which must match the response status code (the response status code defaults to `200`).
 
-    See jq's documentation on [Basic filters](https://stedolan.github.io/jq/manual/#Basicfilters) for more information on writing programs with jq.
+  {:.note}
+  > **Note:** In the response context the entire body must be buffered to be processed. This requirement also
+  implies that the `Content-Length` header will be dropped if present, and the body transferred with chunked encoding.
+
+  See jq's documentation on [Basic filters](https://stedolan.github.io/jq/manual/#Basicfilters) for more information on writing programs with jq.
 
 enterprise: true
 type: plugin
@@ -37,7 +37,7 @@ params:
   yaml_examples: false
   k8s_examples: false
   konnect_examples: false
-  protocols: ["http,"https"]
+  protocols: ["http","https"]
   dbless_compatible:
   config:
     - name: request_jq_program
