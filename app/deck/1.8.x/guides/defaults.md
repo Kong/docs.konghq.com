@@ -1,6 +1,8 @@
 ---
 title: Set Up Object Defaults
 ---
+Use object defaults to enforce a set of standard values and help avoid
+repetition in your configuration.
 
 You can set configuration defaults for core {{site.base_gateway}} objects:
 - Service
@@ -8,32 +10,38 @@ You can set configuration defaults for core {{site.base_gateway}} objects:
 - Upstream
 - Target
 
-Defaults enforce a set of standard values and help avoid repetition in your
-configuration. Any new defaults are applied retroactively, with existing
-objects picking them up on the next sync. If an existing object already has
-an explicit setting for a property, the object-level setting takes precendence
-over the default.
-
-{{site.base_gateway}} sets some default values for most objects. You can see
-what the defaults are for each object in the
-[Admin API reference](/gateway-oss/latest/admin-api/).
-
-If defaults are not set in the declarative configuration file, any newly
-configured object picks up {{site.base_gateway}}'s defaults and diverges from
-the source configuration file. You can see
-[an example of this](#create-a-file-and-test-without-defaults) in this guide.
-
 decK supports setting object defaults both in self-managed
 {{site.base_gateway}} and with {{site.konnect_saas}}.
 
 {:.important}
 > **Important:** This feature has the following limitations:
-> * Plugin object defaults are not supported.
->* This method of defining defaults is manual and requires upkeep. If
-configuration defaults change in future {{site.base_gateway}} versions, it
-could cause conflicts with the defaults defined in your declarative
-configuration. If this happens, check the latest
-[Gateway changelog](/enterprise/changelog) to find the source of the conflict.
+* Plugin object defaults are not supported.
+* If an existing property's default value changes in a future Gateway release,
+decK has no way of knowing that this change has occured, as its `defaults`
+configuration would overwrite the value in your environment.
+
+## Behavior
+
+Defaults get applied to both new and existing objects. If an object has an
+explicit setting for a property, the object-level setting takes precedence over
+the default.
+
+{{site.base_gateway}} sets some default values for most objects. You can see
+what the defaults are for each object in the
+[Admin API reference](/gateway-oss/latest/admin-api/), or use the
+[`/schemas`](/gateway-oss/latest/admin-api/#retrieve-entity-schema) endpoint to
+retrieve the latest object schemas for your instance of the Gateway.
+
+Configuring your own defaults is a good way to keep updated on potential
+breaking changes between versions. If you upgrade {{site.base_gateway}} to a
+version which introduces a new property with a default value, a `deck diff`
+will catch the difference.
+
+If defaults are not set in the declarative configuration file, any newly
+configured object picks up {{site.base_gateway}}'s defaults and diverges from
+the source configuration file. This creates a false positive: decK sees
+a diff where one doesn't exist. You can see
+[an example of this](#create-a-file-and-test-without-defaults) in this guide.
 
 ## Configure object defaults
 The following guide creates a sample `kong.yaml` file with a service and
@@ -241,9 +249,6 @@ The following properties are the defaults applied by {{site.base_gateway}} (as o
 v2.5.x), and setting them in your declarative configuration file is required to
 avoid differences between the configuration file and the Gateway.
 
-For the most accurate default values for your version of {{site.base_gateway}}, see the
-[Admin API reference](/gateway-oss/latest/admin-api/).
-
 {:.note}
 > **Note:** The following are only properties that **have defaults**, and are
 not all of the available properties for each object.
@@ -371,10 +376,43 @@ For all available properties, see the
 
 {% endnavtab %}
 {% navtab Target %}
-Targets have no required default properties. However, you can set custom
-defaults as desired.
+
+Set the following property to the value you want to use across all Targets:
+
+```yaml
+_info:
+  defaults:
+    target:
+      weight: 100
+```
 For all available properties, see the
 [Target object](/gateway-oss/latest/admin-api/#target-object) documentation.
 
 {% endnavtab %}
 {% endnavtabs %}
+
+### Find default values for your Gateway version
+
+For the most accurate default values for your version of {{site.base_gateway}}, see the
+[Admin API reference](/gateway-oss/latest/admin-api/), or use the
+[`/schemas`](/gateway-oss/latest/admin-api/#retrieve-entity-schema) endpoint. For example, you can check the schema for `targets` and look for any value that
+has defined defaults:
+
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+curl -i -X GET http://localhost:8001/schemas/targets
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+http :8001/schemas/targets
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+## See also
+* [Deduplicate plugin configuration](/deck/{{page.kong_version}}/guides/deduplicate-plugin-configuration)
+* [Distributed configuration for Kong Gateway using decK](/deck/{{page.kong_version}}/guides/distributed-configuration)
+* [Using multiple files to store configuration](/deck/{{page.kong_version}}/guides/multi-file-state)
+* Kong Gateway admin API: [`/schemas` endpoint](/gateway-oss/latest/admin-api/#retrieve-entity-schema)
