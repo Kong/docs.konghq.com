@@ -77,16 +77,18 @@ page.kong_latest.release %}
           </div>
           {% endif %}
             {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
+              {% unless page.url contains "/kubernetes-ingress-controller/" and page.kong_version == "1.3.x" %}
               <div class="alert alert-warning">
               You are browsing documentation for an outdated version. See the
               <a href="{% if latest_page_exists == 'true' %}{{latest_page_url}}{% elsif page.edition == 'gateway-oss'%}/gateway-oss/{% elsif page.edition == 'enterprise'%}/enterprise/{% elsif page.edition == 'mesh'%}/mesh/{% elsif page.edition == 'kubernetes-ingress-controller/'%}/kubernetes-ingress-controller/{% else %}/{% endif %}">
                 latest documentation here</a>.
-            </div>
+              </div>
+              {% endunless %}
             {% endif %}
             {% if page.edition == "kubernetes-ingress-controller" and page.kong_version == "2.0.x" %}
             <div class="alert alert-red no-icon">
-              This version is released as <span class="badge beta"></span> and should not be deployed in a production environment.
-              <br> For the latest stable version, see the documentation for <a href ="https://docs.konghq.com/kubernetes-ingress-controller/1.3.x">Kubernetes Ingress Controller v1.3.x</a>.
+              <p>Kong's Kubernetes Ingress Controller v2.0 is available in <b>beta</b> with limited support. It should not be deployed in a production environment.</p>
+              For the latest stable version, see the documentation for <a href ="https://docs.konghq.com/kubernetes-ingress-controller/1.3.x">Kubernetes Ingress Controller v1.3.x</a>.
             </div>
             {% endif %}
             {% if page.url contains "/kubernetes-ingress-controller/" %}
