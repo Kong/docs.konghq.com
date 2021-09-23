@@ -1,7 +1,7 @@
 module Jekyll
   class Books < Jekyll::Generator
     def generate(site)
-      books = Hash.new
+      books = {}
 
       site.pages.each do |page|
         if page.data.key?("book")

@@ -53,7 +53,7 @@ module Jekyll
 
     def generate_aliases(destination_path, page)
       aliases = page.data['alias']
-      alias_paths ||= Array.new
+      alias_paths ||= []
       alias_paths << aliases
       alias_paths.compact!
 
