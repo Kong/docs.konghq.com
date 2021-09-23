@@ -7,10 +7,10 @@ title: Start Kong Gateway (OSS)
   <a href="https://konghq.com/install/#kong-community">installed Kong</a> &mdash; It should only take a minute!
 </div>
 
-In this section, you'll learn how to manage your Kong instance. First, we'll
-have you start Kong in order to give you access to the RESTful Admin
+In this section, you'll learn how to manage your Kong instance. First, you
+have to start Kong in order to give you access to the RESTful Admin
 interface, through which you manage your Services, Routes, Consumers, and more. Data sent
-through the Admin API is stored in Kong's [datastore][datastore-section] (Kong
+through the Admin API get storage in Kong's [datastore][datastore-section] (Kong
 supports PostgreSQL and Cassandra).
 
 ## 1. Start Kong Gateway
@@ -26,7 +26,7 @@ You should see a message that tells you Kong has successfully migrated your
 database. If not, you probably incorrectly configured your database
 connection settings in your configuration file.
 
-Now let's [start][CLI] Kong:
+Now, let's [start][CLI] Kong:
 
 ```bash
 $ kong start [-c /path/to/kong.conf]
@@ -43,16 +43,16 @@ informing you that Kong is running.
 By default, Kong listens on the following ports:
 
 - `:8000` on which Kong listens for incoming HTTP traffic from your
-  clients, and forwards it to your upstream services.
-- `:8443` on which Kong listens for incoming HTTPS traffic. This port has a
-  similar behavior as the `:8000` port, except that it expects HTTPS
-  traffic only. This port can be disabled via the configuration file.
+  clients and forwards it to your upstream services.
+- `:8443` on which Kong listens for incoming HTTPS traffic. This port
+  behaves like the `:8000` port, except that it only expects HTTPS
+  traffic. You can disable this port via the configuration file.
 - `:8001` on which the [Admin API][API] used to configure Kong listens.
 - `:8444` on which the Admin API listens for HTTPS traffic.
 
 ## 3. Stop Kong
 
-As needed you can stop the Kong process by issuing the following
+As needed, you can stop the Kong process by issuing the following
 [command][CLI]:
 
 ```bash
@@ -69,7 +69,7 @@ $ kong reload
 
 ## Next Steps
 
-Now that you have Kong running you can interact with the Admin API.
+Now that you have Kong running, you can interact with the Admin API.
 
 To begin, go to [Configuring a Service &rsaquo;][configuring-a-service]
 
