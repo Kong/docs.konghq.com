@@ -1,17 +1,24 @@
 ---
-name: Kong jq
+name: jq
 publisher: Kong Inc.
 versions: 0.1.x
 beta: true
 
 desc: Transform JSON objects included in API requests or responses using jq programs.
 description: |
-  The Kong jq plugin enables arbitrary jq transformations on JSON objects included in API requests or responses.
+  The jq plugin enables arbitrary jq transformations on JSON objects included in API requests or responses.
+
   The configuration accepts two sets of options: one for the request and another for the response.
   For both the request and response, a jq program string can be included, along with some jq option flags
-  and a list of media types. One of the media types must included in the `Content-Type` header for
-  the jq program to run (the media type in the `Content-Type` header defaults to `application/json`).
-  In the response context, you also have the option to specify a list of status codes, one of which must match the response status code (the response status code defaults to `200`).
+  and a list of media types. 
+  
+  One of the configured media types must be included in the `Content-Type` header of
+  the request or response for the jq program to run. The default media type in the `Content-Type`
+  header is `application/json`. 
+  
+  In the response context, you can also specify a list of status
+  codes, one of which must match the response status code. 
+  The default response status code is `200`.
 
   {:.note}
   > **Note:** In the response context the entire body must be buffered to be processed. This requirement also
@@ -39,6 +46,7 @@ params:
   konnect_examples: false
   protocols: ["http","https"]
   dbless_compatible:
+  examples: false
   config:
     - name: request_jq_program
       required: semi
@@ -56,7 +64,7 @@ params:
         - `raw_output`: Outputs as raw strings, not JSON quoted. Default is `false`.
         - `join_output`: Similar to `raw_output` but does not output newline separators. Default is `false`.
         - `ascii_output`: jq usually outputs non-ASCII Unicode codepoints as UTF-8, even if the input specified
-           them as escape sequences (like "\u03bc"). Using this option, you can force jq to produce pure ASCII
+           them as escape sequences (like `\u03bc`). Using this option, you can force jq to produce pure ASCII
            output, replacing every non-ASCII character with the equivalent escape sequence. Default is `false`.
         - `sort_keys`: Outputs the fields of each object with the keys in sorted order. Default is `false`.
     - name: request_if_media_type
@@ -64,7 +72,8 @@ params:
       datatype: array of strings
       default: ["application/json"]
       description: |
-        A list of media type strings, which **must** be present in the `Content-Type` header for the request program to run.
+        A list of media type strings. At least one media type on this list **must** be present in the
+        `Content-Type` request header for the program to run.
     - name: response_jq_program
       required: semi
       datatype: string
@@ -81,7 +90,7 @@ params:
         - `raw_output`: Outputs as raw strings, not JSON quoted. Default is `false`.
         - `join_output`: Similar to `raw_output` but does not output newline separators. Default is `false`.
         - `ascii_output`: jq usually outputs non-ASCII Unicode codepoints as UTF-8, even if the input specified
-           them as escape sequences (like "\u03bc"). Using this option, you can force jq to produce pure ASCII
+           them as escape sequences (like `\u03bc`). Using this option, you can force jq to produce pure ASCII
            output, replacing every non-ASCII character with the equivalent escape sequence. Default is `false`.
         - `sort_keys`: Outputs the fields of each object with the keys in sorted order. Default is `false`.
     - name: response_if_media_type
@@ -89,7 +98,8 @@ params:
       datatype: array of strings
       default: ["application/json"]
       description: |
-        A list of media type strings, which **must** be present in the `Content-Type` header for the response program to run.
+        A list of media type strings. At least one media type on this list **must** be present in the
+        `Content-Type` response header for the program to run.
     - name: response_if_status_code
       required: false
       datatype: array of integers
