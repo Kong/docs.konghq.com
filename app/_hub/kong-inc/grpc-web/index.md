@@ -62,14 +62,14 @@ params:
 
 ## Purpose
 
-A service that presents a gRPC API can be used by clients written in many languages,
+Clients written in many languages use a service that presents a gRPC API, 
 but the network specifications are oriented primarily to connections within a
 datacenter. [gRPC-Web] lets you expose the gRPC API to the Internet so
-that it can be consumed by browser-based JavaScript applications.
+that browser-based JavaScript applications can consume it.
 
 This plugin translates requests and responses between [gRPC-Web] and
 [gRPC](https://github.com/grpc/grpc). The plugin supports both HTTP/1.1
-and HTTP/2, over plaintext (HTTP) and TLS (HTTPS) connections.
+and HTTP/2 over plaintext (HTTP) and TLS (HTTPS) connections.
 
 ## Usage
 
@@ -114,15 +114,15 @@ $ curl -X POST localhost:8001/routes/web-service/plugins \
   --data name=grpc-web
 ```
 
-In these examples, we don't set any configuration for the plugin.
+In these examples, there is no setting of configuration for the plugin.
 This minimal setup works for the default varieties of the [gRPC-Web protocol],
 which use ProtocolBuffer messages either directly in binary or with base64-encoding.
 The related `Content-Type` headers are `application/grpc-web` or `application/grpc-web+proto`
 for binary, and `application/grpc-web-text` or `application/grpc-web-text+proto` for text.
 
 If you want to use JSON encoding, you have to provide the gRPC specification in
-a `.proto` file, which needs to be installed in the Kong node running the plugin.
-A path starting with a `/` is considered absolute; otherwise, it will be interpreted
+a `.proto` file, which you must install in the Kong node running the plugin.
+A path starting with a `/` is considered absolute; otherwise, the interpretation will be
 relative to the Kong node's prefix (`/usr/local/kong/` by default). For example:
 
 ```protobuf
@@ -176,26 +176,27 @@ $ curl -X POST localhost:8001/routes/web-service/plugins \
 With this setup, we can support gRPC-Web/JSON clients using `Content-Type` headers
 like `application/grpc-web+json` or `application/grpc-web-text+json`.
 
-Note that even when using JSON encoding, the [gRPC-Web protocol] specifies that
+When using JSON encoding, you have to keep in mind that the [gRPC-Web protocol] specifies that
 both request and response data consist of a series of frames, in a similar way
 to the full [gRPC protocol]. The [gRPC-Web] library performs this framing as expected.
 
 As an extension, this plugin also allows naked JSON requests with the POST method and
 `Content-Type: application/json` header. These requests are encoded to ProtocolBuffer,
-framed, and forwarded to the gRPC service. Likewise, the responses are transformed
+framed, and forwarded to the gRPC service. Likewise, the responses go through a transformation
 on the way back, allowing any HTTP client to use a gRPC service without special
 libraries. This feature is limited to unary (non-streaming) requests. Streaming
-responses are encoded into multiple JSON objects; it's up to the client to split into
+responses get an encoding into multiple JSON objects; it's up to the client to split into
 separate records if it has to support multiple response messages.
 
 ## Related information
-[Kong]: https://konghq.com
-[gRPC protocol]: https://github.com/grpc/grpc
-[gRPC-Web]: https://github.com/grpc/grpc-web
-[gRPC-Web protocol]: https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md#protocol-differences-vs-grpc-over-http2
-[lua-protobuf]: https://github.com/starwing/lua-protobuf
-[lua-cjson]: https://github.com/openresty/lua-cjson
-[lua-pack]: https://github.com/Kong/lua-pack
+
+- [Kong](https://konghq.com)
+- [gRPC protocol](https://github.com/grpc/grpc)
+- [gRPC-Web](https://github.com/grpc/grpc-web)
+- [gRPC-Web protocol](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md#protocol-differences-vs-grpc-over-http2)
+- [lua-protobuf](https://github.com/starwing/lua-protobuf)
+- [lua-cjson](https://github.com/openresty/lua-cjson)
+- [lua-pack](https://github.com/Kong/lua-pack)
 
 ## See also
 
