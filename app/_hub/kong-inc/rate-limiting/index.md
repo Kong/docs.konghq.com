@@ -245,33 +245,32 @@ include [Redis Sentinel](https://redis.io/topics/sentinel) support. Only [Kong E
 
 ### Every transaction counts
 
-In this scenario, because accuracy is important, the `local` policy is not an option. The choice is either `cluster` or `redis`. The consideration here is the support effort for
-Redis. 
+In this scenario, because accuracy is important, the `local` policy is not an option. Consider the support effort you might need 
+for Redis, and then choose either `cluster` or `redis`. 
 
-The recommendation is to start with the `cluster` policy, with the option to move to `redis`
+You could start with the `cluster` policy, and move to `redis`
 if performance reduces drastically. 
 
-Existing usage metrics cannot
-be ported from the datastore to Redis. This might not be a problem with shortlived metrics (for example, seconds or minutes)
+You cannot port the existing usage metrics from the datastore to Redis. 
+This might not be a problem with shortlived metrics (for example, seconds or minutes)
 but if you use metrics with a longer time frame (for example, months), plan
 your switch carefully.
 
 ### Backend protection
 
-If accuracy is of lesser importance, the `local` policy can be used. You might need to experiment a little
-before you get a setting that works for your scenario. For example, if a user can make 100 requests every second, and you have an
+If accuracy is of lesser importance, choose the `local` policy. You might need to experiment a little
+before you get a setting that works for your scenario. As the cluster scales to more nodes, more user requests are handled. 
+When the cluster scales down, the probability of false negatives increases. So, adjust your limits when scaling.
+
+For example, if a user can make 100 requests every second, and you have an
 equally balanced 5-node Kong cluster, setting the `local` limit to something like 30 requests every second
-should work. If you see too many false-negatives, increase the limit.
+should work. If you see too many false negatives, increase the limit.
 
-As the cluster scales to more nodes, more user requests are handled. 
-When the cluster scales down, the probability of false-negatives increases. So, in general, increase your
-limits when scaling.
-
-To minimise inaccuracies, you can use a consistent-hashing load balancer in front of
+To minimise inaccuracies, consider using a consistent-hashing load balancer in front of
 Kong. The load balancer ensures that a user is always directed to the same Kong node, thus reducing
 inaccuracy and preventing scaling problems.
 
-It's likely that users are able make more requests than the specified limits, but the `local` policy
+It might happen that users are able make more requests than their quota, but the `local` policy
 can effectively block any attacks while maintaining good performance.
 
 ### Fallback to IP
