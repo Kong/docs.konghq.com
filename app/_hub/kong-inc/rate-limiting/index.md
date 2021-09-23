@@ -225,23 +225,21 @@ The plugin supports three policies.
 
 | Policy    | Pros | Cons   |
 | --------- | ---- | ------ |
-| `cluster` | Accurate, no extra components to support. | Each request forces a read and a write on the datastore; therefore, relatively the biggest performance impact. |
-| `redis`   | Accurate, less performance impact than a `cluster` policy | Needs a Redis installation. Bigger performance impact than a `local` policy. |
-| `local`   | Minimal performance impact | Less accurate. Unless there's a consistent-hashing load balancer in front of Kong, it diverges when scaling the number of nodes. |
+| `cluster` | Accurate, no extra components to support. | Each request forces a read and a write on the datastore. Therefore, relatively, the biggest performance impact. |
+| `redis`   | Accurate, less performance impact than a `cluster` policy. | Needs a Redis installation. Bigger performance impact than a `local` policy. |
+| `local`   | Minimal performance impact. | Less accurate. Unless there's a consistent-hashing load balancer in front of Kong, it diverges when scaling the number of nodes. |
 
 Two common use cases are:
 
 1. _Every transaction counts_. The highest level of accuracy is needed. An example is a transaction with financial
    consequences.
-2. _Backend protection_. Accuracy is not as relevant; it is
-   used only to protect backend services from overloading that's caused either by specific
+2. _Backend protection_. Accuracy is not as relevant. The requirement is
+   only to protect backend services from overloading that's caused either by specific
    users or by attacks.
 
 {:.warning}
 > **Note**: **Enterprise-Only**: The Kong Community Edition of this Rate Limiting plugin does not
-include [Redis Sentinel](https://redis.io/topics/sentinel) support. Only [Kong Enterprise Subscription]
-(https://www.konghq.com/enterprise/) customers can use Redis Sentinel with Kong Rate Limiting, enabling them to deliver highly available primary-replica deployments.
-</div>
+include [Redis Sentinel](https://redis.io/topics/sentinel) support. Only [Kong Enterprise Subscription](https://www.konghq.com/enterprise/) customers can use Redis Sentinel with Kong Rate Limiting, enabling them to deliver highly available primary-replica deployments.
 
 ### Every transaction counts
 
@@ -251,7 +249,7 @@ for Redis, and then choose either `cluster` or `redis`.
 You could start with the `cluster` policy, and move to `redis`
 if performance reduces drastically. 
 
-You cannot port the existing usage metrics from the datastore to Redis. 
+Do remember that you cannot port the existing usage metrics from the datastore to Redis. 
 This might not be a problem with shortlived metrics (for example, seconds or minutes)
 but if you use metrics with a longer time frame (for example, months), plan
 your switch carefully.
@@ -268,9 +266,9 @@ should work. If you see too many false negatives, increase the limit.
 
 To minimise inaccuracies, consider using a consistent-hashing load balancer in front of
 Kong. The load balancer ensures that a user is always directed to the same Kong node, thus reducing
-inaccuracy and preventing scaling problems.
+inaccuracies and preventing scaling problems.
 
-It might happen that users are able make more requests than their quota, but the `local` policy
+It might happen that users can make more requests than their quota, but the `local` policy
 can effectively block any attacks while maintaining good performance.
 
 ### Fallback to IP
