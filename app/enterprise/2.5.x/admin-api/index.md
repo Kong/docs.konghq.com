@@ -1442,16 +1442,19 @@ the concatenated path will be `/sre`.
 Both versions of the algorithm detect "double slashes" when combining paths, replacing them by single
 slashes.
 
-| `service.path` | `route.path` | `route.strip_path` | `route.path_handling` | request path | proxied path  |
-|----------------|--------------|--------------------|-----------------------|--------------|---------------|
-| `/s`           | `/fv0`       | `false`            | `v0`                  | `/fv0req`    | `/s/fv0req`   |
-| `/s`           | `/fv1`       | `false`            | `v1`                  | `/fv1req`    | `/sfv1req`    |
-| `/s`           | `/tv0`       | `true`             | `v0`                  | `/tv0req`    | `/s/req`      |
-| `/s`           | `/tv1`       | `true`             | `v1`                  | `/tv1req`    | `/sreq`       |
-| `/s`           | `/fv0/`      | `false`            | `v0`                  | `/fv0/req`   | `/s/fv0/req`  |
-| `/s`           | `/fv1/`      | `false`            | `v1`                  | `/fv1/req`   | `/sfv1/req`   |
-| `/s`           | `/tv0/`      | `true`             | `v0`                  | `/tv0/req`   | `/s/req`      |
-| `/s`           | `/tv1/`      | `true`             | `v1`                  | `/tv1/req    | `/sreq`       |
+The following table shows all combinations of path handling version and strip path with the final 2 columns showing with
+and without a request path = `req`
+
+| `service.path` | `route.path` | `route.strip_path` | `route.path_handling` | request path          | proxied path             |
+|----------------|--------------|--------------------|-----------------------|-----------------------|--------------------------|
+| `/s`           | `/fv0`       | `false`            | `v0`                  | `/fv0req`  | `/fv0`   | `/s/fv0req`  | `/s/fv0`  |
+| `/s`           | `/fv1`       | `false`            | `v1`                  | `/fv1req`  | `/fv1`   | `/sfv1req`   | `/sfv1`   |
+| `/s`           | `/tv0`       | `true`             | `v0`                  | `/tv0req`  | `/tv0`   | `/s/req`     | `/s/`     |
+| `/s`           | `/tv1`       | `true`             | `v1`                  | `/tv1req`  | `/tv1`   | `/sreq`      | `/s`      |
+| `/s`           | `/fv0/`      | `false`            | `v0`                  | `/fv0/req` | `/fv0/`  | `/s/fv0/req` | `/s/fv01` |
+| `/s`           | `/fv1/`      | `false`            | `v1`                  | `/fv0/req` | `/fv1/`  | `/sfv1/req`  | `/sfv1/`  |
+| `/s`           | `/tv0/`      | `true`             | `v0`                  | `/tv0/req` | `/tv0/`  | `/s/req`     | '/s/`     |
+| `/s`           | `/tv1/`      | `true`             | `v1`                  | `/tv1/req` | `/tv1/`  | `/sreq`      | `/s`      |
 
 
 Routes can be both [tagged and filtered by tags](#tags).
