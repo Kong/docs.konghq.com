@@ -233,7 +233,7 @@ For usage with [Key Auth] plugin
      --data "username=anonymous_users"
    ```
 
-   Be sure to note the Consumer `id` which is needed later.
+   Be sure to note the Consumer `id`, which is needed later.
 
    Now create a consumer that authenticates via sessions:
 
