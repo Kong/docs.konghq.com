@@ -432,7 +432,7 @@ out based on the HTTP verb. When `logout_query_arg` is set, it checks the
 presence of the URL query param specified, and likewise when `logout_post_arg`
 is set, it checks the presence of the specified variable in the request body.
 Allowed HTTP verbs are `GET`, `DELETE`, and `POST`. When there is a session
-present and the incoming request is a logout request, the Session plugin
+present and the incoming request is a logout request, the Kong Session plugin
 returns a 200 before continuing in the plugin run loop, and the request does not
 continue to the upstream.
 
