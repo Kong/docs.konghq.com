@@ -206,7 +206,7 @@ For usage with [Key Auth] plugin
      --data 'name=key-auth'
    ```
 
-   Be sure to note the created plugin `id` which is needed later.
+   Be sure to note the created plugin `id`, which is needed later.
 
 1. Verify that the key-auth plugin is properly configured
 
