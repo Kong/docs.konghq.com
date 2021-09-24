@@ -385,7 +385,7 @@ plugins:
 
 ### Defaults
 
-By default, the Session plugin favors security using a `Secure`, `HTTPOnly`,
+By default, the Kong Session plugin favors security using a `Secure`, `HTTPOnly`,
 `Samesite=Strict` cookie. `cookie_domain` is automatically set using Nginx
 variable host, but can be overridden.
 
