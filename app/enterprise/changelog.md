@@ -4,6 +4,196 @@ no_search: true
 no_version: true
 ---
 
+## 2.6.0.0
+**Release date:** 2021/09/28
+
+### Features
+
+#### Enterprise
+
+#### Core
+- This release includes the addition of a new schema entity validator: `mutually_exclusive`. Before, the
+  `only_one_of` validator required at least one of the fields included be configured. This new entity validator allows
+  only one or neither of the fields be configured.
+  [#7765](https://github.com/Kong/kong/pull/7765)
+
+#### Performance
+
+For this release we've focused on performance improvement.
+
+There's a new performance workflow which periodically checks new code additions against some
+typical scenarios. [#7030](https://github.com/Kong/kong/pull/7030) [#7547](https://github.com/Kong/kong/pull/7547)
+
+Additionally, the following changes were specifically included to improve performance:
+
+- Reduced unnecessary reads of `ngx.var`.
+  [#7840](https://github.com/Kong/kong/pull/7840)
+- Loaded more indexed variables.
+  [#7849](https://github.com/Kong/kong/pull/7849)
+- Optimized table creation in Balancer.
+  [#7852](https://github.com/Kong/kong/pull/7852)
+- Reduced calls to `ngx.update_time`.
+  [#7853](https://github.com/Kong/kong/pull/7853)
+- Use read-only replica for PostgreSQL meta-schema reading.
+  [#7454](https://github.com/Kong/kong/pull/7454)
+- URL escaping detects cases when it's not needed and early-exists.
+  [#7742](https://github.com/Kong/kong/pull/7742)
+- Accelerated variable loading via indexes.
+  [#7818](https://github.com/Kong/kong/pull/7818)
+
+#### Configuration
+
+- Enable IPV6 on `dns_order` as unsupported experimental feature.
+  [#7819](https://github.com/Kong/kong/pull/7819).
+- The template renderer can now use `os.getenv`.
+  [#6872](https://github.com/Kong/kong/pull/6872).
+
+#### Hybrid Mode
+
+- Data plane is able to eliminate some unknown fields when Control Plane is using a more modern version.
+  [#7827](https://github.com/Kong/kong/pull/7827).
+
+#### Admin API
+
+- Add support for HEAD requests.
+  [#7796](https://github.com/Kong/kong/pull/7796)
+- Improve support for OPTIONS requests.
+  [#7830](https://github.com/Kong/kong/pull/7830)
+
+#### Plugins
+
+- [jq](/hub/kong-inc/jq) (`jq`)
+  New jq plugin added. 
+- [Rate Limiting](/hub/kong-inc/rate-limiting) (`rate-limiting`)
+  - A new identifier type  was added: `path`, allowing rate limiting by matching request paths.
+  - Add a “local” strategy in the schema (it automatically sets `config.sync_rate` to -1).
+- [OPA](/hub/kong-inc/opa) (`opa`)
+  Add request path, allowing administrators to set policies on a path basis more easily. 
+- [AWS-Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`) 
+  The plugin will now try to detect the AWS region by using `AWS_REGION` and
+  `AWS_DEFAULT_REGION` environment variables (when not specified with the plugin configuration).
+  [#7765](https://github.com/Kong/kong/pull/7765)
+- [Datadog](/hub/kong-inc/datadog) (`datadog`)
+  `host` and `port` config options can be configured from `ENV` variables.
+  [#7463](https://github.com/Kong/kong/pull/7463)
+- [Prometheus](/hub/kong-inc/prometheus) (`prometheus`) 
+  The new `data_plane_cluster_cert_expiry_timestamp` exposes DP cert expiry timestamp.
+  [#7800](https://github.com/Kong/kong/pull/7800).
+- [GRPC-Gateway](/hub/kong-inc/grpc-gateway) (grpc-gateway)
+  - The plugin can decode entities of type `.google.protobuf.Timestamp`
+    [#7538](https://github.com/Kong/kong/pull/7538)
+  - Added support for structured URI arguments
+    [#7564](https://github.com/Kong/kong/pull/7564)
+- [Request Termination](/hub/kong-inc/request-termination) (`request-termination`)
+  - New `trigger` config option, which makes the plugin activate for any requests with a header or query parameter
+    named like the trigger
+    [#6744](https://github.com/Kong/kong/pull/6744).
+  - The `request-echo` config option. If not set, the plugin activates on all requests.
+    If set, then the plugin only activates for any requests with a header or query parameter
+    named like the trigger
+    [#6744](https://github.com/Kong/kong/pull/6744).
+
+### Dependencies
+- Bumped `openresty` from 1.19.3.2 to [1.19.9.1](https://openresty.org/en/changelog-1019009.html)
+  [#7430](https://github.com/Kong/kong/pull/7727)
+- Bumped `openssl` from `1.1.1k` to `1.1.1l`
+  [7767](https://github.com/Kong/kong/pull/7767)
+- Bumped `lua-resty-http` from 0.15 to 0.16.1
+  [#7797](https://github.com/kong/kong/pull/7797)
+- Bumped `Penlight` to 1.11.0
+  [#7736](https://github.com/Kong/kong/pull/7736)
+- Bumped `lua-resty-http` from 0.15 to 0.16.1
+  [#7797](https://github.com/kong/kong/pull/7797)
+- Bumped `lua-protobuf` from 0.3.2 to 0.3.3
+  [#7656](https://github.com/Kong/kong/pull/7656)
+- Bumped `lua-resty-openssl` from 0.7.3 to 0.7.4
+  [#7657](https://github.com/Kong/kong/pull/7657)
+- Bumped `lua-resty-acme` from 0.6 to 0.7.1
+  [#7658](https://github.com/Kong/kong/pull/7658)
+- Bumped `grpcurl` from 1.8.1 to 1.8.2
+  [#7659](https://github.com/Kong/kong/pull/7659)
+- Bumped `luasec` from 1.0.1 to 1.0.2
+  [#7750](https://github.com/Kong/kong/pull/7750)
+- Bumped `lua-resty-ipmatcher` to 0.6.1
+  [#7703](https://github.com/Kong/kong/pull/7703)
+
+All Kong Gateway OSS plugins will be moved from individual repositories and centralized
+into the main Kong Gateway (OSS) repository. We are making a gradual transition. On this
+release:
+
+- Moved AWS-Lambda inside the Kong repo
+  [#7464](https://github.com/Kong/kong/pull/7464).
+- Moved ACME inside the Kong repo
+  [#7464](https://github.com/Kong/kong/pull/7464).
+- Moved Prometheus inside the Kong repo
+  [#7666](https://github.com/Kong/kong/pull/7666).
+- Moved Session inside the Kong repo
+  [#7738](https://github.com/Kong/kong/pull/7738).
+- Moved GRPC-web inside the Kong repo
+  [#7782](https://github.com/Kong/kong/pull/7782).
+- Moved Serverless functions inside the Kong repo
+  [#7792](https://github.com/Kong/kong/pull/7792).
+
+### Fixes
+
+#### Enterprise
+- Fixed the Vitals InfluxDB timestamp generation when inserting metrics.
+- Do not export consumer_reset_secrets.
+
+#### Core
+- Balancer retries now correctly set the `:authority` pseudo-header on balancer retries.
+  [#7725](https://github.com/Kong/kong/pull/7725).
+- Healthchecks are now stopped while the Balancer is being recreated.
+  [#7549](https://github.com/Kong/kong/pull/7549).
+- Fixed an issue in which a malformed `Accept` header could cause unexpected HTTP 500.
+  [#7757](https://github.com/Kong/kong/pull/7757).
+- Kong no longer removes `Proxy-Authentication` request header and `Proxy-Authenticate` response header.
+  [#7724](https://github.com/Kong/kong/pull/7724).
+- Fixed an issue where Kong would not sort correctly Routes with both regex and prefix paths.
+  [#7695](https://github.com/Kong/kong/pull/7695)
+
+#### Hybrid Mode
+- Ensure data plane config thread is terminated gracefully, preventing a semi-deadlocked state.
+  [#7568](https://github.com/Kong/kong/pull/7568)
+
+##### CLI
+- `kong config parse` no longer crashes when there's a Go plugin server enabled.
+  [#7589](https://github.com/Kong/kong/pull/7589).
+
+##### Configuration
+- Declarative Configuration parser now prints more correct errors when pointing unknown foreign references.
+  [#7756](https://github.com/Kong/kong/pull/7756).
+- YAML anchors in Declarative Configuration are properly processed.
+  [#7748](https://github.com/Kong/kong/pull/7748).
+
+##### Admin API
+- `GET /upstreams/:upstreams/targets/:target` no longer returns 404 when target weight is 0.
+  [#7758](https://github.com/Kong/kong/pull/7758).
+
+##### PDK
+- `kong.response.exit` now uses customized "Content-Length" header when found.
+  [#7828](https://github.com/Kong/kong/pull/7828).
+
+##### Plugins
+- [Vault Auth](/hub/kong-inc/vault-auth) (`vault-auth)
+  This plugin is now available for selection in the Kong Manager UI, previously it was hidden.
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  Upgrade to v2.0.x keeping version compatibility with older data planes.
+  - Allow the OpenID Connect plugin to handle jwt responses from a userinfo endpoint.
+  - Support for JWE Introspection.
+- [ACME](/hub/kong-inc/acme) (`acme`)
+  Dots in wildcard domains are escaped.
+  [#7839](https://github.com/Kong/kong/pull/7839).
+- [Prometheus](/hub/kong-inc/prometheus) (`prometheus`)
+  Upstream's health info now includes previously missing `subsystem` field.
+  [#7802](https://github.com/Kong/kong/pull/7802).
+- [Proxy-Cache](/hub/kong-inc/proxy-cache) (`proxy-cache`) 
+  Fixed an issue where the plugin would sometimes fetch data from the cache but not return it.
+  [#7775](https://github.com/Kong/kong/pull/7775)
+
+#### Deprecations
+- InfluxDB reports UI and /vitals/reports/:entity_type endpoint.
+
 ## 2.5.1.0
 **Release Date** 2021/09/08
 
