@@ -1453,7 +1453,7 @@ and without a request path = `req`
 | `/s`           | `/tv1`       | `true`             | `v1`                  | `/tv1req`   `/tv1`    | `/sreq`        `/s`      |
 | `/s`           | `/fv0/`      | `false`            | `v0`                  | `/fv0/req`  `/fv0/`   | `/s/fv0/req`   `/s/fv01` |
 | `/s`           | `/fv1/`      | `false`            | `v1`                  | `/fv0/req`  `/fv1/`   | `/sfv1/req`    `/sfv1/`  |
-| `/s`           | `/tv0/`      | `true`             | `v0`                  | `/tv0/req`  `/tv0/`   | `/s/req`       '/s/`     |
+| `/s`           | `/tv0/`      | `true`             | `v0`                  | `/tv0/req`  `/tv0/`   | `/s/req`       `/s/`     |
 | `/s`           | `/tv1/`      | `true`             | `v1`                  | `/tv1/req`  `/tv1/`   | `/sreq`        `/s`      |
 
 
