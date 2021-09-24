@@ -57,6 +57,16 @@ params:
       description:
         If set to `true` causes the plugin to pass the stripped request path to
         the upstream gRPC service (see the `strip_path` Route attribute).
+    - name: allow_origin_header
+      required: false
+      datatype: string
+      default: "*"
+      value_in_examples:
+      description: |
+        The value of the `Access-Control-Allow-Origin` header in the response to
+        the gRPC-Web client.  The default of `*` is appropriate for requests without
+        credentials.  In other cases, specify the allowed origins of the client code.
+        More information [here](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Origin).
 
 ---
 
