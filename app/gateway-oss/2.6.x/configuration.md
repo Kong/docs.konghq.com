@@ -1764,7 +1764,8 @@ Default: `/etc/hosts`
 
 The order in which to resolve different record types. The `LAST` type means the
 type of the last successful lookup (for the specified name). The format is a
-(case insensitive) comma separated list.
+(case insensitive) comma separated list. `AAAA` is also supported to resolve
+IPv6 addresses.
 
 Default: `LAST,SRV,A,CNAME`
 
