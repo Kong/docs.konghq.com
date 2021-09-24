@@ -152,32 +152,31 @@ params:
 
 ## Usage
 
-The Kong Session **Plugin** can be configured globally or with an entity (e.g., Service, Route)
+The Kong Session plugin can be configured globally or with an entity (e.g., Service, Route)
 and is always used in conjunction with another Kong Authentication [Plugin]. This
-**Plugin** is intended to work similarly to the [multiple authentication] setup.
+plugin is intended to work similarly to the [multiple authentication] setup.
 
-After the Kong Session **Plugin** is enabled in conjunction with an Authentication **Plugin**,
-it will run prior to the credential verification. If no session is found, then the
-authentication **Plugin** will run again and credentials will be checked normally. If the
-credential verification is successful, then the session **Plugin** will create a new
+After the Session plugin is enabled in conjunction with an Authentication plugin,
+it runs prior to the credential verification. If no session is found, then the
+authentication plugin runs again and credentials are checked normally. If the
+credential verification is successful, then the Session plugin creates a new
 session for usage with subsequent requests.
 
-When a new request comes in and a session is already present, then the Kong Session
-**Plugin** will attach the `ngx.ctx` variables to let the authentication
-**Plugin** know that authentication has already occurred via session validation.
-Because this configuration is a logical OR scenario, and it is desired that anonymous
-access be forbidden, then the [Request Termination] **Plugin** should be
-configured on an anonymous consumer. Failure to do so will allow unauthorized
+When a new request comes in and a session is already present, then the Session
+plugin attaches the `ngx.ctx` variables to let the authentication
+plugin know that authentication has already occurred via session validation.
+As this configuration is a logical OR scenario, and it is desired that anonymous
+access be forbidden, you should configure the [Request Termination] plugin on an anonymous consumer. Failure to do so allows unauthorized
 requests. For more information, see [multiple authentication].
 
 ### Set up With a Database
 
-For usage with [Key Auth] **Plugin**
+For usage with [Key Auth] plugin
 
 1. Create an example Service and a Route
 
    Issue the following cURL request to create `example-service` pointing to
-   mockbin.org, which will echo the request:
+   mockbin.org, which echoes the request:
 
    ```bash
    $ curl -i -X POST \
@@ -194,12 +193,12 @@ For usage with [Key Auth] **Plugin**
      --data 'paths[]=/sessions-test'
    ```
 
-   The URL `http://localhost:8000/sessions-test` will now echo whatever is being
+   The URL `http://localhost:8000/sessions-test` now echoes whatever is being
    requested.
 
-1. Configure the key-auth **Plugin** for the Service
+1. Configure the key-auth plugin for the Service
 
-   Issue the following cURL request to add the key-auth **Plugin** to the Service:
+   Issue the following cURL request to add the key-auth plugin to the Service:
 
    ```bash
    $ curl -i -X POST \
@@ -207,25 +206,25 @@ For usage with [Key Auth] **Plugin**
      --data 'name=key-auth'
    ```
 
-   Be sure to note the created **Plugin** `id` which you will need later.
+   Be sure to note the created plugin `id` which is needed later.
 
-1. Verify that the key-auth **Plugin** is properly configured
+1. Verify that the key-auth plugin is properly configured
 
    Issue the following cURL request to verify that the [key-auth][key-auth]
-   **Plugin** was properly configured on the Service:
+   plugin is properly configured on the Service:
 
    ```bash
    $ curl -i -X GET \
      --url http://localhost:8000/sessions-test
    ```
 
-   Since the required header or parameter `apikey` was not specified, and
-   anonymous access was not yet enabled, the response should be `401 Unauthorized`.
+   Since the required header or parameter `apikey` is not specified, and
+   anonymous access is not yet enabled, the response should be `401 Unauthorized`.
 
 1. Create a Consumer and an anonymous Consumer
 
    Every request proxied and authenticated by Kong must be associated with a
-   Consumer. You'll now create a Consumer named `anonymous_users` by issuing
+   Consumer. You can now create a Consumer named `anonymous_users` by issuing
    the following request:
 
    ```bash
@@ -234,9 +233,9 @@ For usage with [Key Auth] **Plugin**
      --data "username=anonymous_users"
    ```
 
-   Be sure to note the Consumer `id` which you will need later.
+   Be sure to note the Consumer `id` which is needed later.
 
-   Now create a consumer that will authenticate via sessions:
+   Now create a consumer that authenticates via sessions:
 
    ```bash
    $ curl -i -X POST \
@@ -254,7 +253,7 @@ For usage with [Key Auth] **Plugin**
 
 1. Enable anonymous access
 
-   You'll now re-configure the key-auth **Plugin** to permit anonymous access by
+   You can now re-configure the key-auth plugin to permit anonymous access by
    issuing the following request (**replace the uuids below with the `id` value
    from previous steps**):
 
@@ -264,7 +263,7 @@ For usage with [Key Auth] **Plugin**
      --data "config.anonymous=<anonymous_consumer_id>"
    ```
 
-1. Add the Kong Session **Plugin** to the service
+1. Add the Session plugin to the service
 
    ```bash
    $ curl -X POST http://localhost:8001/services/example-service/plugins \
@@ -276,10 +275,10 @@ For usage with [Key Auth] **Plugin**
    > Note: cookie_secure is true by default, and should always be true, but is set to
    > false for the sake of this demo to avoid using HTTPS.
 
-1. Add the Request Termination **Plugin**
+1. Add the Request Termination plugin
 
    To disable anonymous access to only allow users access via sessions or via
-   authentication credentials, enable the Request Termination **Plugin**.
+   authentication credentials, enable the Request Termination plugin.
 
    ```bash
    $ curl -X POST http://localhost:8001/services/example-service/plugins \
@@ -371,18 +370,22 @@ plugins:
    This request should succeed and the `Set-Cookie` response header does not appear
    until the renewal period.
 
-3. Now you can also verify that the cookie is attached to the browser session: Navigate to
-   `http://localhost:8000/sessions-test`, it should return `403`
-   and show the message- "So long and thanks for all the fish!"
-4. You can also navigate to `http://localhost:8000/sessions-test?apikey=open_sesame`,
-   and it returns `200`, authenticated via `key-auth` key query param.
-5. Alternatively, you can now navigate to `http://localhost:8000/sessions-test`,
-   which will use the session cookie that was granted by the Kong Session
-   **Plugin**.
+3. Navigate to `http://localhost:8000/sessions-test`
+  
+   If the cookie is attached to the browser session, it should return the 
+   code `403` and the message “So long and thanks for all the fish!”.
+   
+4. Navigate to `http://localhost:8000/sessions-test?apikey=open_sesame`
+   
+   It should return `200` and authenticated via `key-auth` key query param.
+   
+5. Navigate to `http://localhost:8000/sessions-test`
+   
+   It can now use the session cookie that is granted by the Session plugin.
 
 ### Defaults
 
-By default, the Kong Session **Plugin** favors security using a `Secure`, `HTTPOnly`,
+By default, the Session plugin favors security using a `Secure`, `HTTPOnly`,
 `Samesite=Strict` cookie. `cookie_domain` is automatically set using Nginx
 variable host, but can be overridden.
 
@@ -406,16 +409,16 @@ the `access` and `header_filter` phases in the plugin.
 Authenticated groups are stored on `ngx.ctx.authenticated_groups` from other
 authentication plugins and the session plugin will store them in the data of
 the current session. Since the session plugin runs before authentication
-plugins, it will also set `authenticated_groups` associated headers.
+plugins, it also sets `authenticated_groups` associated headers.
 
 ## Kong Storage Adapter
 
-The Kong Session **Plugin** extends the functionality of [lua-resty-session] with its own
-session data storage adapter when `storage=kong`. This will store encrypted
+The Session plugin extends the functionality of [lua-resty-session] with its own
+session data storage adapter when `storage=kong`. This stores encrypted
 session data into the current database strategy (e.g., Postgres, Cassandra, etc.)
-and the cookie will not contain any session data. Data stored in the database is
-encrypted and the cookie will contain only the session id, expiration time, and
-HMAC signature. Sessions will use the built-in Kong DAO `ttl` mechanism that destroys
+and the cookie does not contain any session data. Data stored in the database is
+encrypted and the cookie contains only the session id, expiration time, and
+HMAC signature. Sessions use the built-in Kong DAO `ttl` mechanism that destroys
 sessions after specified `cookie_lifetime` unless renewal occurs during normal
 browser activity. It is recommended to logout the application via XHR request
 (or something similar) to manually handle the redirects.
@@ -425,12 +428,12 @@ browser activity. It is recommended to logout the application via XHR request
 It is typical to provide users the ability to log out (i.e., to manually destroy) their
 current session. Logging out is possible with either query params or `POST` params in
 the request URL. The config's `logout_methods` allows the **Plugin** to limit logging
-out based on the HTTP verb. When `logout_query_arg` is set, it will check the
+out based on the HTTP verb. When `logout_query_arg` is set, it checks the
 presence of the URL query param specified, and likewise when `logout_post_arg`
-is set, it will check the presence of the specified variable in the request body.
+is set, it checks the presence of the specified variable in the request body.
 Allowed HTTP verbs are `GET`, `DELETE`, and `POST`. When there is a session
-present and the incoming request is a logout request, the Kong Session **Plugin** will
-return a 200 before continuing in the **Plugin** run loop, and the request will not
+present and the incoming request is a logout request, the Session plugin
+returns a 200 before continuing in the plugin run loop, and the request does not
 continue to the upstream.
 
 ## Known Limitations
@@ -438,7 +441,7 @@ continue to the upstream.
 Due to limitations of OpenResty, the `header_filter` phase cannot connect to the
 database, which poses a problem for initial retrieval of a cookie (fresh session).
 There is a small window of time where the cookie is sent to client, but the database
-insert has not yet been committed because the database call is in a `ngx.timer` thread.
+insert has not been committed yet because the database call is in a `ngx.timer` thread.
 The current workaround is to wait for some interval of time (~100-500ms) after
 `Set-Cookie` header is sent to the client, before making subsequent requests. This is
 _not_ a problem during session renewal period as renew happens in `access` phase.
