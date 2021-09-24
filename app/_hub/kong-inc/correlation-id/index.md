@@ -127,4 +127,4 @@ form parameter      | description
 
 ### Can I see my correlation ids in my Kong logs?
 
-The correlation id does not show up in the Nginx access or error logs. However, you can use this plugin along with one of the Logging plugins, or store this id on your backend-side.
+The correlation id doesn't show up in the Nginx access or error logs. However, you can use this plugin along with one of the Logging plugins, or store the id on your backend.
