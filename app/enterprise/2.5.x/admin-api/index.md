@@ -1445,7 +1445,7 @@ slashes.
 The following table shows all combinations of path handling version, strip path and request
 
 | `service.path` | `route.path` | `route.strip_path` | `route.path_handling` | request | request path | upstream path |
-|----------------|--------------|--------------------|-----------------------|------------------------|---------------|
+|----------------|--------------|--------------------|-----------------------|---------|--------------|---------------|
 | `/s`           | `/fv0`       | `false`            | `v0`                  | `req`   | `/fv0req`    | `/s/fv0req`   |
 | `/s`           | `/fv0`       | `false`            | `v0`                  | `blank` | `/fv0`       | `/s/fv0`      |
 | `/s`           | `/fv1`       | `false`            | `v1`                  | `req`   | `/fv1req`    | `/sfv1req`    |
