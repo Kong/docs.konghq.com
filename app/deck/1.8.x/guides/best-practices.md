@@ -36,9 +36,9 @@ toc: false
   Instead, you can use Kong's Admin API to
   configure Kong first and then export the configuration. You
   must make any subsequent changes by manually editing the file and pushing
-  the change via CI. If you're making a large change, make the change in Kong,
-  export the new file, and then differentiate the two state files to review the made
-  changes.
+  the change via CI. If you're making a large change with several small changes, 
+  make the changes in Kong, export the new file, and then differentiate the 
+  two state files to review the made changes.
 - Configure a `cronjob` to run `deck diff` periodically to ensure that Kong's
   database is the same as the state file checking into your Git repositories.
   Trigger an alert if decK detects a drift in the configuration.
