@@ -42,39 +42,41 @@ Additionally, the following changes were specifically included to improve perfor
   [#7818](https://github.com/Kong/kong/pull/7818)
 
 #### Configuration
-
 - Enable IPV6 on `dns_order` as unsupported experimental feature.
   [#7819](https://github.com/Kong/kong/pull/7819).
 - The template renderer can now use `os.getenv`.
   [#6872](https://github.com/Kong/kong/pull/6872).
 
 #### Hybrid Mode
-
 - Data plane is able to eliminate some unknown fields when Control Plane is using a more modern version.
   [#7827](https://github.com/Kong/kong/pull/7827).
 
 #### Admin API
-
 - Add support for HEAD requests.
   [#7796](https://github.com/Kong/kong/pull/7796)
 - Improve support for OPTIONS requests.
   [#7830](https://github.com/Kong/kong/pull/7830)
 
 #### Plugins
-
-- [jq](/hub/kong-inc/jq) (`jq`)
-  New jq plugin added. 
-- [Rate Limiting](/hub/kong-inc/rate-limiting) (`rate-limiting`)
-  - A new identifier type  was added: `path`, allowing rate limiting by matching request paths.
-  - Add a “local” strategy in the schema (it automatically sets `config.sync_rate` to -1).
+- **New plugin:** [jq](/hub/kong-inc/jq) (`jq`)
+  The jq plugin enables arbitrary jq transformations on JSON objects included in API requests or responses.
+- [Kafka Log](/hub/kong-inc/kafka-log) (`kafka-log`)
+  The Kafka Log plugin now supports TLS, mTLS, and SASL auth.
+- [Kafka Upstream](/hub/kong-inc/kafka-upstream) (`kafka-upstream`)
+  The Kafka Upstream plugin now supports TLS, mTLS, and SASL auth.
+- [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
+  - The Rate Limiting plugin now has a new identifier type: `path`, which allows rate limiting by matching request paths.
+  - The plugin now has a “local” strategy in the schema. The local strategy automatically sets `config.sync_rate` to -1.
 - [OPA](/hub/kong-inc/opa) (`opa`)
-  Add request path, allowing administrators to set policies on a path basis more easily. 
+  The OPA plugin now has a request path, which makes setting policies on a path easier for administrators.
+- [Canary](/hub/kong-inc/canary) (`canary`)
+  The Canary plugin now has the option to hash on the header (falls back on IP, and then random).
 - [AWS-Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`) 
   The plugin will now try to detect the AWS region by using `AWS_REGION` and
   `AWS_DEFAULT_REGION` environment variables (when not specified with the plugin configuration).
   [#7765](https://github.com/Kong/kong/pull/7765)
 - [Datadog](/hub/kong-inc/datadog) (`datadog`)
-  `host` and `port` config options can be configured from `ENV` variables.
+  The Datadog plugin now allows `host` and `port` config options be configured from `ENV` variables.
   [#7463](https://github.com/Kong/kong/pull/7463)
 - [Prometheus](/hub/kong-inc/prometheus) (`prometheus`) 
   The new `data_plane_cluster_cert_expiry_timestamp` exposes DP cert expiry timestamp.
@@ -137,8 +139,8 @@ release:
 ### Fixes
 
 #### Enterprise
-- Fixed the Vitals InfluxDB timestamp generation when inserting metrics.
-- Do not export consumer_reset_secrets.
+- This release includes a fix for an issue with the Vitals InfluxDB timestamp generation when inserting metrics. 
+- Kong Gateway (Enterprise) no longer exports `consumer_reset_secrets`.
 
 #### Core
 - Balancer retries now correctly set the `:authority` pseudo-header on balancer retries.
@@ -178,9 +180,9 @@ release:
 - [Vault Auth](/hub/kong-inc/vault-auth) (`vault-auth)
   This plugin is now available for selection in the Kong Manager UI, previously it was hidden.
 - [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
-  Upgrade to v2.0.x keeping version compatibility with older data planes.
-  - Allow the OpenID Connect plugin to handle jwt responses from a userinfo endpoint.
-  - Support for JWE Introspection.
+  Upgrade to v2.0.x to maintain version compatibility with older data planes.
+  - The OpenID Connect plugin can now handle JWT responses from a `userinfo` endpoint.
+  - The plugin now supports JWE Introspection.
 - [ACME](/hub/kong-inc/acme) (`acme`)
   Dots in wildcard domains are escaped.
   [#7839](https://github.com/Kong/kong/pull/7839).
@@ -192,7 +194,7 @@ release:
   [#7775](https://github.com/Kong/kong/pull/7775)
 
 #### Deprecations
-- InfluxDB reports UI and /vitals/reports/:entity_type endpoint.
+- InfluxDB reports UI and `/vitals/reports/:entity_type` endpoint.
 
 ## 2.5.1.0
 **Release Date** 2021/09/08
