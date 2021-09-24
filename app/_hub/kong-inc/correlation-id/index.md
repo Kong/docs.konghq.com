@@ -117,7 +117,7 @@ The following is a detailed description of the field
 form parameter      | description
 ---                 | ---
 `ip` | an address of the server that accepts a request
-`port` | port of the server which accepts a request
+`port` | port of the server that accepts a request
 `pid` | pid of the nginx worker process
 `connection` | connection serial number
 `connection_requests` | current number of requests made through a connection
