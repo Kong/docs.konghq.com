@@ -165,7 +165,7 @@ session for usage with subsequent requests.
 When a new request comes in and a session is already present, then the Kong Session
 plugin attaches the `ngx.ctx` variables to let the authentication
 plugin know that authentication has already occurred via session validation.
-As this configuration is a logical OR scenario, and it is desired that anonymous
+As this configuration is a logical OR scenario, and it's desired that anonymous
 access be forbidden, you should configure the [Request Termination] plugin on an anonymous consumer. Failure to do so allows unauthorized
 requests. For more information, see [multiple authentication].
 
