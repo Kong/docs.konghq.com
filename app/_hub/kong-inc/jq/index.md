@@ -53,7 +53,7 @@ params:
       datatype: string
       description: |
         The jq program to run on the request body. For example, `.[0] | { "X-Foo": .foo }`. 
-        Either `request_jq_program` or `response_jq_plugin` **must** be included in configuration.
+        Either `request_jq_program` or `response_jq_plugin` **must** be included in the configuration.
     - name: request_jq_program_options
       required: false
       datatype: record
@@ -72,8 +72,8 @@ params:
       datatype: array of strings
       default: ["application/json"]
       description: |
-        A list of media type strings. At least one media type on this list **must** be present in the
-        `Content-Type` request header for the program to run.
+        A list of media type strings. The media type included in the `Content-Type` request header **must**
+        match one of the media types on this list for the program to run.
     - name: response_jq_program
       required: semi
       datatype: string
@@ -98,15 +98,16 @@ params:
       datatype: array of strings
       default: ["application/json"]
       description: |
-        A list of media type strings. At least one media type on this list **must** be present in the
-        `Content-Type` response header for the program to run.
+        A list of media type strings. The media type included in the `Content-Type` response header **must**
+        match one of the media types on this list for the program to run.
     - name: response_if_status_code
       required: false
       datatype: array of integers
       default: [200]
       description: |
-        A list of HTTP response status codes. At least one response status code on this list **must**
-        match the response status code for the response program to run.
+        A list of HTTP response status codes. The response status code **must**
+        match one of the response status codes on this list for the program to run.
+
 ---
 
 
