@@ -73,7 +73,7 @@ and HTTP/2, over plaintext (HTTP) and TLS (HTTPS) connections.
 
 ## Usage
 
-This plugin should be enabled on a Kong Route that serves the `http(s)` protocol
+You should enable this plugin on a Kong Route that serves the `http(s)` protocol
 but proxies to a Service with the `grpc(s)` protocol.
 
 Sample configuration via declarative (YAML):
@@ -114,7 +114,7 @@ $ curl -X POST localhost:8001/routes/web-service/plugins \
   --data name=grpc-web
 ```
 
-In these examples, we don't set any configuration for the plugin.
+In these examples, there is no setting of configuration for the plugin.
 This minimal setup works for the default varieties of the [gRPC-Web protocol],
 which use ProtocolBuffer messages either directly in binary or with base64-encoding.
 The related `Content-Type` headers are `application/grpc-web` or `application/grpc-web+proto`
@@ -122,8 +122,8 @@ for binary, and `application/grpc-web-text` or `application/grpc-web-text+proto`
 
 If you want to use JSON encoding, you have to provide the gRPC specification in
 a `.proto` file, which needs to be installed in the Kong node running the plugin.
-A path starting with a `/` is considered absolute; otherwise, it will be interpreted
-relative to the Kong node's prefix (`/usr/local/kong/` by default). For example:
+A path starting with a `/` is considered absolute; otherwise, it interprets 
+relatively to the Kong node's prefix (`/usr/local/kong/` by default). For example:
 
 ```protobuf
 syntax = "proto2";
@@ -173,10 +173,10 @@ $ curl -X POST localhost:8001/routes/web-service/plugins \
   --data proto=path/to/hello.proto
 ```
 
-With this setup, we can support gRPC-Web/JSON clients using `Content-Type` headers
+With this setup, there is support for gRPC-Web/JSON clients using `Content-Type` headers
 like `application/grpc-web+json` or `application/grpc-web-text+json`.
 
-Note that even when using JSON encoding, the [gRPC-Web protocol] specifies that
+> **Note**: When using JSON encoding, the [gRPC-Web protocol] specifies that
 both request and response data consist of a series of frames, in a similar way
 to the full [gRPC protocol]. The [gRPC-Web] library performs this framing as expected.
 
@@ -189,13 +189,13 @@ responses are encoded into multiple JSON objects; it's up to the client to split
 separate records if it has to support multiple response messages.
 
 ## Related information
-[Kong]: https://konghq.com
-[gRPC protocol]: https://github.com/grpc/grpc
-[gRPC-Web]: https://github.com/grpc/grpc-web
-[gRPC-Web protocol]: https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md#protocol-differences-vs-grpc-over-http2
-[lua-protobuf]: https://github.com/starwing/lua-protobuf
-[lua-cjson]: https://github.com/openresty/lua-cjson
-[lua-pack]: https://github.com/Kong/lua-pack
+- [Kong](https://konghq.com)
+- [gRPC protocol](https://github.com/grpc/grpc)
+- [gRPC-Web](https://github.com/grpc/grpc-web)
+- [gRPC-Web protocol](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md#protocol-differences-vs-grpc-over-http2)
+- [lua-protobuf](https://github.com/starwing/lua-protobuf)
+- [lua-cjson](https://github.com/openresty/lua-cjson)
+- [lua-pack](https://github.com/Kong/lua-pack)
 
 ## See also
 
