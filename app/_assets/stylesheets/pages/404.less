@@ -1,8 +1,55 @@
 .page-404 {
-  ul {
-    font-size: 16px;
-    list-style: disc;
-    list-style-position: inside;
-    margin: 4rem 0 0 1.5em;
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    text-align: center;
+    user-select: none;
+  }
+  .container h1 {
+    font-size: 10rem;
+  }
+  .container h1 .fas {
+    animation: animate1 2s linear infinite alternate;
+  }
+  .container h1 .num {
+    animation: animate2 2s linear infinite alternate;
+  }
+  .container p {
+    margin-top: 20px;
+    word-spacing: 5px;
+  }
+  
+  li{
+    list-style-type: none;
+    font-weight: bold;
+  }
+  
+  .anchor-text {
+    color: black;
+  }
+  /* animation */
+
+  @keyframes animate1 {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes animate2 {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 }
