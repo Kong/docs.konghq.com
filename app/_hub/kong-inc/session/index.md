@@ -427,7 +427,7 @@ browser activity. It is recommended to logout the application via XHR request
 
 It is typical to provide users the ability to log out (i.e., to manually destroy) their
 current session. Logging out is possible with either query params or `POST` params in
-the request URL. The config's `logout_methods` allows the **Plugin** to limit logging
+the request URL. The config's `logout_methods` allows the plugin to limit logging
 out based on the HTTP verb. When `logout_query_arg` is set, it checks the
 presence of the URL query param specified, and likewise when `logout_post_arg`
 is set, it checks the presence of the specified variable in the request body.
