@@ -152,17 +152,17 @@ params:
 
 ## Usage
 
-The Kong Session **Plugin** can be configured globally or per entity (e.g., Service, Route)
+The Kong Session **Plugin** can be configured globally or with an entity (e.g., Service, Route)
 and is always used in conjunction with another Kong Authentication [Plugin]. This
 **Plugin** is intended to work similarly to the [multiple authentication] setup.
 
 After the Kong Session **Plugin** is enabled in conjunction with an Authentication **Plugin**,
-it will run prior to credential verification. If no session is found, then the
-authentication **Plugin** will run and credentials will be checked as normal. If the
+it will run prior to the credential verification. If no session is found, then the
+authentication **Plugin** will run again and credentials will be checked normally. If the
 credential verification is successful, then the session **Plugin** will create a new
 session for usage with subsequent requests.
 
-When a new request comes in, and a session is already present, then the Kong Session
+When a new request comes in and a session is already present, then the Kong Session
 **Plugin** will attach the `ngx.ctx` variables to let the authentication
 **Plugin** know that authentication has already occurred via session validation.
 Because this configuration is a logical OR scenario, and it is desired that anonymous
@@ -207,7 +207,7 @@ For usage with [Key Auth] **Plugin**
      --data 'name=key-auth'
    ```
 
-   Be sure to note the created **Plugin** `id` - you will need it later.
+   Be sure to note the created **Plugin** `id` which you will need later.
 
 1. Verify that the key-auth **Plugin** is properly configured
 
@@ -234,7 +234,7 @@ For usage with [Key Auth] **Plugin**
      --data "username=anonymous_users"
    ```
 
-   Be sure to note the Consumer `id` - you will need it later.
+   Be sure to note the Consumer `id` which you will need later.
 
    Now create a consumer that will authenticate via sessions:
 
@@ -368,16 +368,16 @@ plugins:
        -H "cookie:session=emjbJ3MdyDsoDUkqmemFqw..|1544654411|4QMKAE3I-jFSgmvjWApDRmZHMB8."
    ```
 
-   This request should succeed, and `Set-Cookie` response header will not appear
+   This request should succeed and the `Set-Cookie` response header does not appear
    until the renewal period.
 
-3. You can also now verify cookie is attached to the browser session: Navigate to
-   `http://localhost:8000/sessions-test`, which should return `403`
-   and see the message "So long and thanks for all the fish!"
-4. In the same browser session, navigate to `http://localhost:8000/sessions-test?apikey=open_sesame`,
-   which should return `200`, authenticated via `key-auth` key query param.
-5. In the same browser session, navigate to `http://localhost:8000/sessions-test`,
-   which will now use the session cookie that was granted by the Kong Session
+3. Now you can also verify that the cookie is attached to the browser session: Navigate to
+   `http://localhost:8000/sessions-test`, it should return `403`
+   and show the message- "So long and thanks for all the fish!"
+4. You can also navigate to `http://localhost:8000/sessions-test?apikey=open_sesame`,
+   and it returns `200`, authenticated via `key-auth` key query param.
+5. Alternatively, you can now navigate to `http://localhost:8000/sessions-test`,
+   which will use the session cookie that was granted by the Kong Session
    **Plugin**.
 
 ### Defaults
@@ -417,8 +417,8 @@ and the cookie will not contain any session data. Data stored in the database is
 encrypted and the cookie will contain only the session id, expiration time, and
 HMAC signature. Sessions will use the built-in Kong DAO `ttl` mechanism that destroys
 sessions after specified `cookie_lifetime` unless renewal occurs during normal
-browser activity. It is recommended that the application logout via XHR request
-(or something similar) to manually handle redirects.
+browser activity. It is recommended to logout the application via XHR request
+(or something similar) to manually handle the redirects.
 
 ## Logging Out
 
@@ -439,8 +439,8 @@ Due to limitations of OpenResty, the `header_filter` phase cannot connect to the
 database, which poses a problem for initial retrieval of a cookie (fresh session).
 There is a small window of time where the cookie is sent to client, but the database
 insert has not yet been committed because the database call is in a `ngx.timer` thread.
-Current workaround is to wait some interval of time (~100-500ms) after
-`Set-Cookie` header is sent to the client before making subsequent requests. This is
+The current workaround is to wait for some interval of time (~100-500ms) after
+`Set-Cookie` header is sent to the client, before making subsequent requests. This is
 _not_ a problem during session renewal period as renew happens in `access` phase.
 
 [plugin]: https://docs.konghq.com/hub/
