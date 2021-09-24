@@ -268,9 +268,6 @@ To minimise inaccuracies, consider using a consistent-hashing load balancer in f
 Kong. The load balancer ensures that a user is always directed to the same Kong node, thus reducing
 inaccuracies and preventing scaling problems.
 
-It might happen that users can make more requests than their quota, but the `local` policy
-can effectively block any attacks while maintaining good performance.
-
 ### Fallback to IP
 
 When the selected policy cannot be retrieved, the plugin falls back
