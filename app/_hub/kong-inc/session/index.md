@@ -263,7 +263,7 @@ For usage with [Key Auth] plugin
      --data "config.anonymous=<anonymous_consumer_id>"
    ```
 
-1. Add the Session plugin to the service
+1. Add the Kong Session plugin to the service
 
    ```bash
    $ curl -X POST http://localhost:8001/services/example-service/plugins \
