@@ -4,12 +4,12 @@ toc: false
 ---
 
 - Always ensure that you have one decK process running at any time. Multiple
-  processes will step on each other and can corrupt Kong's configuration.
+  processes step on each other and can corrupt Kong's configuration.
 - Do not mix up decK's declarative configuration with `cURL` or any other
   script. Either manage the configuration with decK or manage it with your
-  homegrown script. Mixing the two on the same dataset will get cumbersome
-  and will be error-prone.
-- If you have a very large installation, then it is recommended to split out
+  homegrown script. Mixing the two on the same dataset gets cumbersome
+  and is error-prone.
+- If you have a very large installation, then you can split out
   your configuration into smaller subsets. You can find more info for it
   in the guide to practicing
   [distributed configuration](/deck/{{page.kong_version}}/guides/distributed-configuration).
@@ -21,11 +21,11 @@ toc: false
   keys of your certificates and credentials of consumers in
   plaintext. Please be careful in how and where you store
   this file to avoid any security breaches.
-  You should always store these in an encrypted form and provide a plaintext version
+  You should always store the sensitive information in an encrypted form and provide a plaintext version
   of it on a need-only basis.
 - If you have many consumers in your database, do not export
-  or manage them using decK. Declarative configuration is for- Configuration,
-  it is not meant for the end-user data that can easily grow into hundreds of thousands or millions.
+  or manage them using decK. Declarative configuration is only for configuration.
+  It is not meant for the end-user data which can easily grow into hundreds of thousands or millions.
 - Always run a `deck diff` command before running a `deck sync`
   to ensure that the change works properly.
 - Adopt a [CI-driven configuration](/deck/{{page.kong_version}}/guides/ci-driven-configuration) practice.
