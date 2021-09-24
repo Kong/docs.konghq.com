@@ -9,7 +9,7 @@
     user-select: none;
   }
   .container h1 {
-    font-size: 15rem;
+    font-size: 10rem;
   }
   .container h1 .fas {
     animation: animate1 2s linear infinite alternate;
@@ -21,33 +21,12 @@
     margin-top: 20px;
     word-spacing: 5px;
   }
-  .spider {
-    font-size: 3rem;
-    animation: animate3 2s linear infinite alternate;
-    position: absolute;
-    top: 0;
-    right: 25px;
-    transform: rotate(180deg);
+  
+  li{
+    list-style-type: none;
+    font-weight: bold;
   }
-  .spider::after {
-    content: "";
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    width: 0.5px;
-    height: 30vh;
-    opacity: 0.5;
-    background: black;
-  }
-  .spider::before {
-    content: "Oops";
-    position: fixed;
-    top: -50px;
-    left: -13px;
-    opacity: 0.5;
-    transform: rotate(180deg);
-  }
-
+  
   .anchor-text {
     color: black;
   }
@@ -71,15 +50,6 @@
     }
     100% {
       opacity: 1;
-    }
-  }
-  @keyframes animate3 {
-    0% {
-      opacity: 0.1;
-    }
-    100% {
-      opacity: 1;
-      top: 20%;
     }
   }
 }
