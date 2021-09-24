@@ -166,7 +166,7 @@ When a new request comes in and a session is already present, then the Kong Sess
 plugin attaches the `ngx.ctx` variables to let the authentication
 plugin know that authentication has already occurred via session validation.
 As this configuration is a logical OR scenario, and it's desired that anonymous
-access be forbidden, you should configure the [Request Termination] plugin on an anonymous consumer. Failure to do so allows unauthorized
+access be forbidden, you should configure the [Request Termination](https://docs.konghq.com/hub/kong-inc/request-termination/) plugin on an anonymous consumer. Failure to do so allows unauthorized
 requests. For more information, see [multiple authentication].
 
 ### Set up With a Database
