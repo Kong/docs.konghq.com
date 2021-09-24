@@ -420,7 +420,7 @@ and the cookie does not contain any session data. Data stored in the database is
 encrypted and the cookie contains only the session id, expiration time, and
 HMAC signature. Sessions use the built-in Kong DAO `ttl` mechanism that destroys
 sessions after specified `cookie_lifetime` unless renewal occurs during normal
-browser activity. It is recommended to logout the application via XHR request
+browser activity. Log out the application via XHR request
 (or something similar) to manually handle the redirects.
 
 ## Logging Out
