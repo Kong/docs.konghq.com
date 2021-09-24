@@ -162,7 +162,7 @@ authentication plugin runs again and credentials are checked normally. If the
 credential verification is successful, then the Session plugin creates a new
 session for usage with subsequent requests.
 
-When a new request comes in and a session is already present, then the Session
+When a new request comes in and a session is already present, then the Kong Session
 plugin attaches the `ngx.ctx` variables to let the authentication
 plugin know that authentication has already occurred via session validation.
 As this configuration is a logical OR scenario, and it is desired that anonymous
