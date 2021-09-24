@@ -443,7 +443,7 @@ database, which poses a problem for initial retrieval of a cookie (fresh session
 There is a small window of time where the cookie is sent to client, but the database
 insert has not been committed yet because the database call is in a `ngx.timer` thread.
 The current workaround is to wait for some interval of time (~100-500ms) after
-`Set-Cookie` header is sent to the client, before making subsequent requests. This is
+`Set-Cookie` header is sent to the client before making subsequent requests. This is
 _not_ a problem during session renewal period as renew happens in `access` phase.
 
 [plugin]: https://docs.konghq.com/hub/
