@@ -156,7 +156,7 @@ The Kong Session plugin can be configured globally or with an entity (e.g., Serv
 and is always used in conjunction with another Kong Authentication [Plugin]. This
 plugin is intended to work similarly to the [multiple authentication] setup.
 
-After the Session plugin is enabled in conjunction with an Authentication plugin,
+After the Kong Session plugin is enabled in conjunction with an Authentication plugin,
 it runs prior to the credential verification. If no session is found, then the
 authentication plugin runs again and credentials are checked normally. If the
 credential verification is successful, then the Session plugin creates a new
