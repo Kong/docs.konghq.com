@@ -105,7 +105,8 @@ params:
       datatype: array of integers
       default: [200]
       description: |
-        A list of HTTP response status codes which **must** be present for the response program to run.
+        A list of HTTP response status codes. At least one response status code on this list **must**
+        match the response status code for the response program to run.
 ---
 
 
