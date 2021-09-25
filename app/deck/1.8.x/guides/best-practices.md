@@ -7,8 +7,7 @@ toc: false
   processes step on each other and can corrupt Kong's configuration.
 - Do not mix up decK's declarative configuration with `cURL` or any other
   script. Either manage the configuration with decK or manage it with your
-  homegrown script. Mixing the two on the same dataset gets cumbersome
-  and is error-prone.
+  homegrown script. Mixing the two on the same dataset is cumbersome and error-prone.
 - If you have a very large installation, you can split out
   your configuration into smaller subsets. You can find more info for it
   in the guide to practicing
