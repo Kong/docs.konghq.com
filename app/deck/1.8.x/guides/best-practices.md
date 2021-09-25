@@ -31,8 +31,8 @@ toc: false
 - Adopt a [CI-driven configuration](/deck/{{page.kong_version}}/guides/ci-driven-configuration) practice.
 - Always secure Kong's Admin API with a reliable authentication method.
 - Do not write the state file by hand to avoid errors.
-  Always use Kong's Admin API to
-  configure Kong for the first time and then export the configuration. Any
+  Use Kong's Admin API to configure Kong for the first time, then 
+  export the configuration to a declarative configuration file. Any
   subsequent changes should be made by manually editing the file and pushing
   the change via CI. If you're making a larger change, make the change in Kong first, then
   export the new file. Then you can `diff` the two state files to review the changes
