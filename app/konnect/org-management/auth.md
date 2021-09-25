@@ -3,24 +3,25 @@ title: Authentication and Authorization
 no_version: true
 ---
 
-Authentication options in {{site.konnect_saas}}:
+Secure your {{site.konnect_saas}} organization by setting up roles and
+permissions, or enable an external authenticator to manage
+{{site.konnect_saas}} authentication and authorization from your own identity
+provider.
 
-* Native: Basic auth
+## Native authentication through Konnect Cloud
 
-  This is the default option in Konnect. You don't have to do anything to set it
-  up.
+The default authentication option in {{site.konnect_saas}} is basic
+authentication. You don't have to do anything special to set it up.
 
-* External auth:
-[Single-sign on (SSO) through Okta identity provider (IdP) integration](/konnect/org-management/okta-idp)
-<span class="badge enterprise"></span>
+* Manage organization [user and role permissions](/konnect/org-management/users-and-roles)
 
-    As an alternative to {{site.konnect_saas}}’s native authentication, you can set
-    up single sign-on (SSO) access to {{site.konnect_short_name}} through
-    [Okta](https://developer.okta.com/docs/guides/) with
-    [OpenID Connect](https://developer.okta.com/docs/concepts/oauth-openid/#openid-connect).
+## External authentication
+{:.badge .enterprise}
 
+{{site.konnect_saas}} supports single sign-on (SSO) access through
+[Okta](https://developer.okta.com/docs/guides/) with
+[OpenID Connect](https://developer.okta.com/docs/concepts/oauth-openid/#openid-connect).
 
-Authorization options depend on your authenticator:
-
-* Native auth: Set up Konnect [user and role permissions](/konnect/org-management/users-and-roles)
-* External auth (Okta): [Map Okta roles to Konnect roles](/konnect/org-management/okta-idp/#map-roles-to-groups)
+* Set up [Okta integration](/konnect/org-management/okta-idp)
+* View {{site.konnect_saas}} [user and role permissions](/konnect/org-management/users-and-roles)
+* [Map Okta groups to Konnect roles](/konnect/org-management/okta-idp/#map-roles-to-groups)
