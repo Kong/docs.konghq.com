@@ -4,7 +4,8 @@ no_version: true
 badge: enterprise
 ---
 {:.warning .no-icon}
-> This feature is available in **beta** with limited support. It should not be deployed in a production environment.
+> This feature is in **beta** with limited availability and support.
+It should not be deployed in a production environment.
 
 As an alternative to {{site.konnect_saas}}’s native authentication, you can set
 up single sign-on (SSO) access to {{site.konnect_short_name}} through
@@ -20,9 +21,10 @@ owner can continue to log in with {{site.konnect_short_name}}'s native
 authentication.
 
 {:.important}
-> **Important:** Enabling SSO through Okta for a particular {{site.konnect_short_name}}
-organization is **irreversible**. You cannot revert to native
-{{site.konnect_short_name}} authentication after the switch has been made.
+> **Important:** Enabling SSO through Okta for a particular
+{{site.konnect_short_name}} organization is **irreversible**. You cannot revert
+to native {{site.konnect_short_name}} authentication after the switch has been
+made.
 > <br><br>
 > Make sure that you are certain you want to switch, and are
 ready to manage authentication and authorization through Okta for this
@@ -45,6 +47,7 @@ Then, you can set up {{site.konnect_short_name}} to talk to the Okta application
 * [Set up Okta IDP in {{site.konnect_short_name}}](#set-up-konnect), referring
 back to Okta for details
 * [Map {{site.konnect_short_name}} roles to Okta groups](#map-roles-to-groups)
+* [Test and publish config](#test-the-integration)
 
 ## Set up Okta
 
@@ -59,7 +62,7 @@ Create a new application in Okta to manage {{site.konnect_saas}} account integra
     1. Under **Sign-in method**, select **OIDC - OpenID Connect**.
     1. Under **Application Type**, select **Web Application**.
 
-1. Click **Next**. Configure the application:
+1. Select **Next**. Configure the application:
     1. Create a unique name for your application.
     1. Under **Grant Type**, select **Authorization Code**.
     1. In both the **Sign-in redirect URIs** and
@@ -89,7 +92,7 @@ claims to extract that information.
 
     You need to configure two claims: `groups` and `login_email`.
 
-1. In the **Claim type** menu, select **ID**, then click **Add Claim**.
+1. In the **Claim type** menu, select **ID**, then select **Add Claim**.
 
 1. Configure a `Groups` claim by filling in the following fields:
 
@@ -112,7 +115,7 @@ claims to extract that information.
     re-create them directly in Okta. They can do this by exporting the group in
     question in CSV format, then importing the CSV file to populate the new group.
 
-1. Click **Create** to save. Add another claim, this time for user login
+1. Select **Create** to save. Add another claim, this time for user login
 information:
 
     Field | Value
@@ -125,7 +128,7 @@ information:
 
     This claim uses emails to map users to {{site.konnect_short_name}} login instances.
 
-1. Click **Create** to save the second claim.
+1. Select **Create** to save the second claim.
 
 If you have problems setting up these claims, refer to the Okta documentation
 for troubleshooting:
@@ -139,7 +142,7 @@ for troubleshooting:
 2. Select your client, set **Grant Type** to Authorization Code, and choose an
 Okta user to test the claim with.
 
-3. Set the scope to `openid`, then click **Preview Token**.
+3. Set the scope to `openid`, then select **Preview Token**.
 
 4. In the generated preview, check to make sure that `groups` and `login_email`
 values are present.
@@ -225,7 +228,7 @@ in Okta, locate the Okta groups you want to map.
 
     You must have at least one group mapped to save configuration changes.
 
-## Finish and apply configuration
+## Test and apply configuration
 
 1. (Optional) Under **Logout Behavior**, enable Single Logout (SLO) by checking
 the box.
@@ -233,20 +236,33 @@ the box.
     If this option is enabled, signing out from {{site.konnect_short_name}}
     also signs users out of their Okta session.
 
-1. Save your changes, then confirm that you want to change your identity provider
-to Okta.
+1. Select **Test Configuration** to make sure the configuration details are
+valid.
+
+    You must test configuration before saving. If you have filled out all
+    required fields but the **Save** button remains greyed out, run the test
+    first to enable saving.
+
+    When you test the configuration, Konnect runs a connection check. If the
+    connection test succeeds, the page reloads and prints the message
+    `Configuration tested successfully`.
+
+    Any subsequent changes to the configuration require a test before saving.
+
+1. Save your changes, then confirm that you want to change your identity
+provider to Okta.
 
     {:.warning}
     > **Warning:** This change is irreversible. Once you switch to Okta, you
     cannot revert to using native {{site.konnect_short_name}} authentication.
 
-1. {{site.konnect_short_name}} generates a login URI based on the Organization Login
-   Path you set earlier. Copy this URI.
+1. {{site.konnect_short_name}} generates a login URI based on the Organization
+Login Path you set earlier. Copy this URI.
 
    You can now manage your org's user permissions entirely from the Okta
    application.
 
-## Test the integration
+## Log in through Okta to test the integration
 1. Copy your {{site.konnect_short_name}} organization's login URI.
 
     If you ever need to find the path again, you can always find it under
@@ -277,8 +293,8 @@ If you want your users to have easy access to {{site.konnect_saas}} alongside th
 you can add it to your Okta dashboard.
 
 1. Sign in to your [Okta admin account](https://admin.okta.com/).
-1. Click **Applications**, then open your {{site.konnect_saas}} Okta application.
-1. Scroll to **General Settings** and click **Edit**.
+1. Select **Applications**, then open your {{site.konnect_saas}} Okta application.
+1. Scroll to **General Settings** and select **Edit**.
 1. In the **Application** section, set **Grant type** to `Implicit (Hybrid)`.
 1. In the **Login** section:
     1. Set **Login Initiated by** to `Either Okta or App`.
@@ -286,7 +302,7 @@ you can add it to your Okta dashboard.
     1. Set **Initiate login URI** to your organization's login URI. You can
     find the URI in {{site.konnect_saas}} under
     **Settings** > **Identity Management**.
-1. Click **Save**.
+1. Select **Save**.
 
 ## Okta reference docs
 * [Build an Okta SSO integration](https://developer.okta.com/docs/guides/build-sso-integration/openidconnect/overview/)
