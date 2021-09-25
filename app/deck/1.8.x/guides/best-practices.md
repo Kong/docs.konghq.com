@@ -21,8 +21,8 @@ toc: false
   keys of your certificates and credentials of consumers in
   plaintext. Please be careful in how and where you store
   this file to avoid any security breaches.
-  You should always store the sensitive information in an encrypted form and provide a plaintext version
-  of it on a need-only basis.
+  Always store the sensitive information in an encrypted form and provide a plaintext 
+  version of it on a need-only basis.
 - If you have many consumers in your database, do not export
   or manage them using decK. Declarative configuration is only for configuration.
   It is not meant for the end-user data which can easily grow into hundreds of thousands or millions.
