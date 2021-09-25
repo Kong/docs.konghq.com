@@ -27,7 +27,7 @@ toc: false
   configuration. It is not meant for end-user data, which can easily grow into 
   hundreds of thousands or millions of records.
 - Always run a `deck diff` command before running a `deck sync`
-  to ensure that the change works properly.
+  to ensure that the change is correct.
 - Adopt a [CI-driven configuration](/deck/{{page.kong_version}}/guides/ci-driven-configuration) practice.
 - Always secure Kong's Admin API with a reliable authentication method.
 - Do not write the state file by hand to avoid errors.
