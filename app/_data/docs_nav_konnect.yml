@@ -25,7 +25,7 @@
       items:
         - text: Manage Users and Roles
           url: /org-management/users-and-roles
-        - text: Set up Okta IdP Auth
+        - text: Set up SSO with Okta
           url: /org-management/okta-idp
 
 - title: Release Notes

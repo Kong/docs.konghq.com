@@ -26,18 +26,18 @@ automatically-created users, adjust user permissions through Okta, or
 ### Invite a new user
 1. In {{site.konnect_saas}}, open the ![](/assets/images/icons/konnect/konnect-organization.svg){:.inline .no-image-expand}
  **Organization > Users** page.
-2. Click **Invite New User**.
-3. Enter the user’s information, then click **Next**.
+2. Select **Invite New User**.
+3. Enter the user’s information, then select **Next**.
 5. Assign a role or roles for the new user by checking the box next to the role.
     * A user can have more than one role.
     * For role descriptions, hover over the information (`i`) icon next to the role,
     or see the [Role Definitions](#role-definitions) section below.
-6. Click **Invite User**.
+6. Select **Invite User**.
 
     An email invitation is sent to the user.
 
 ### Accept invite and create account
-1. Click on the link in the invitation email to set up your account.
+1. From the invitation email, follow the link to set up your account.
 2. Create a password.
 
     The password must be 8 characters long and contain at least three of the
@@ -59,8 +59,8 @@ assigned to this account.
    * View usernames, email addresses, and assigned role(s).
    * For users that have been invited but haven't set up an account yet,
    a **pending** indicator displays by their name.
-   * To edit assigned roles, click the user's name to drill down to their
-   assigned role(s) and the description of each role. Click
+   * To edit assigned roles, select a user's name to drill down to their
+   assigned role(s) and the description of each role. Select
    **Actions > Add/Remove Roles** to add or remove role(s) from the
    selected user.
 
@@ -73,9 +73,9 @@ assigned to this account.
    the role are listed in the Users column.
    * Hover over the number in the Users column to display the users assigned
    to the role.
-   * Click a **Role** title to display the users assigned to the role and their
+   * Select a **Role** title to display the users assigned to the role and their
    email address.
-   * Click **Actions > Add/Remove Users** to add or remove user(s) from the
+   * Select **Actions > Add/Remove Users** to add or remove user(s) from the
    selected role.
 
 ## Role Definitions
