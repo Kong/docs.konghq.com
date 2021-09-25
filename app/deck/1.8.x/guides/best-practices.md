@@ -34,7 +34,7 @@ toc: false
   Always use Kong's Admin API to
   configure Kong for the first time and then export the configuration. Any
   subsequent changes should be made by manually editing the file and pushing
-  the change via CI. If you're making a larger change, make the changes in Kong and
+  the change via CI. If you're making a larger change, make the change in Kong first, then
   export the new file. Then you can differentiate the two state files to review the changes
   being made.
 - Configure a `cronjob` to run `deck diff` periodically to ensure that Kong's
