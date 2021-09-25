@@ -9,7 +9,7 @@ toc: false
   script. Either manage the configuration with decK or manage it with your
   homegrown script. Mixing the two on the same dataset gets cumbersome
   and is error-prone.
-- If you have a very large installation, then you can split out
+- If you have a very large installation, you can split out
   your configuration into smaller subsets. You can find more info for it
   in the guide to practicing
   [distributed configuration](/deck/{{page.kong_version}}/guides/distributed-configuration).
