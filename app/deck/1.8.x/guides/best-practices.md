@@ -23,8 +23,9 @@ toc: false
   Always store the sensitive information in an encrypted form and provide a plaintext 
   version of it on a need-only basis.
 - If you have many consumers in your database, do not export
-  or manage them using decK. Declarative configuration is only for configuration.
-  It is not meant for the end-user data which can easily grow into hundreds of thousands or millions.
+  or manage them using decK. Declarative configuration is only meant for entity 
+  configuration. It is not meant for end-user data, which can easily grow into 
+  hundreds of thousands or millions of records.
 - Always run a `deck diff` command before running a `deck sync`
   to ensure that the change works properly.
 - Adopt a [CI-driven configuration](/deck/{{page.kong_version}}/guides/ci-driven-configuration) practice.
