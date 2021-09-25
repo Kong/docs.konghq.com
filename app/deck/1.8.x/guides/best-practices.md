@@ -16,9 +16,9 @@ toc: false
   Use a specific version of decK in production to achieve declarative 
   configuration. If you upgrade to a new version of decK or Kong,
   please safely test the changes in a staging environment first.
-- decK does not manage encryption of sensitive information. The state file stores the private
-  keys of your certificates and credentials of consumers in
-  plaintext. Please be careful in how and where you store
+- decK does not manage encryption of sensitive information. The state file 
+  stores the private keys of your certificates and credentials of consumers in
+  plaintext. Be careful in how and where you store
   this file to avoid any security breaches.
   Always store the sensitive information in an encrypted form and provide a plaintext 
   version of it on a need-only basis.
