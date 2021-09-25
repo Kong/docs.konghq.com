@@ -14,8 +14,8 @@ toc: false
   in the guide to practicing
   [distributed configuration](/deck/{{page.kong_version}}/guides/distributed-configuration).
 - Always use a pinned version of decK and Kong.
-  Use a specific version of decK in
-  production to achieve declarative configuration. If you're going to opt for a new version of decK or Kong,
+  Use a specific version of decK in production to achieve declarative 
+  configuration. If you upgrade to a new version of decK or Kong,
   please safely test the changes in a staging environment first.
 - decK does not manage encryption of sensitive information. The state file stores the private
   keys of your certificates and credentials of consumers in
