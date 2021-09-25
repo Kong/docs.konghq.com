@@ -28,5 +28,6 @@ Disallow: /getting-started-guide/2.2*
 Disallow: /getting-started-guide/2.3*
 Disallow: /getting-started-guide/2.4*
 Disallow: /deck/pre-1.7*
+Disallow: /deck/1.7*
 
 Sitemap: {{site.links.web}}/sitemap.xml

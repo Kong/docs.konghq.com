@@ -1,7 +1,3 @@
-### Review
-<!-- (Optional) Assign this PR, or add [wip] if not ready for review. -->
-@reviewer
-
 ### Summary
 <!-- Description of PR, with any special instructions for your reviewers. -->
 

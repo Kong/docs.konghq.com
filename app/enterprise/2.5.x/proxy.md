@@ -4,8 +4,8 @@ title: Proxy Reference
 
 ## Introduction
 
-In this document we will cover Kong's **proxying capabilities**  by explaining
-its routing capabilities and internal workings in details.
+In this document, we will cover Kong's **proxying capabilities**  by explaining
+its routing capabilities and internal workings in detail.
 
 Kong exposes several interfaces which can be tweaked by two configuration
 properties:
@@ -34,15 +34,13 @@ below.</p>
 - `Service`: Service entities, as the name implies, are abstractions of each of
   your own upstream services. Examples of Services would be a data
   transformation microservice, a billing API, etc.
-- `Route`: This refers to the Kong Routes entity. Routes are entrypoints into
-  Kong, and defining rules for a request to be matched, and routed to a given
+- `Route`: This refers to the Kong Routes entity. Routes are entry points into
+  Kong, and defining rules for a request to be matched and routed to a given
   Service.
 - `Plugin`: This refers to Kong "plugins", which are pieces of business logic
   that run in the proxying lifecycle. Plugins can be configured through the
   Admin API - either globally (all incoming traffic) or on specific Routes
   and Services.
-
-[Back to top](#introduction)
 
 ## Overview
 
@@ -69,8 +67,6 @@ Server: kong/<x.x.x>
     "message": "no route and no Service found with those values"
 }
 ```
-
-[Back to top](#introduction)
 
 ## Reminder: How to configure a Service
 
@@ -109,7 +105,7 @@ points to `http://foo-service.com` (your upstream).
 `protocol`, `host`, `port`, and `path` attributes at once.
 
 Now, in order to send traffic to this Service through Kong, we need to specify
-a Route, which acts as an entrypoint to Kong:
+a Route, which acts as an entry point to Kong:
 
 ```bash
 $ curl -i -X POST http://localhost:8001/routes/ \
@@ -150,8 +146,6 @@ proxying this traffic to `http://foo-service.com`.
 Kong is a transparent proxy, and it will by default forward the request to your
 upstream service untouched, with the exception of various headers such as
 `Connection`, `Date`, and others as required by the HTTP specifications.
-
-[Back to top](#introduction)
 
 ## Routes and matching capabilities
 
@@ -213,14 +207,12 @@ GET /foo HTTP/1.1
 Host: foo.com
 ```
 
-All three of these requests satisfy only two of configured conditions. The
+All three of these requests satisfy only two configured conditions. The
 first request's path is not a match for any of the configured `paths`, same for
 the second request's HTTP method, and the third request's Host header.
 
 Now that we understand how the `hosts`, `paths`, and `methods` properties work
 together, let's explore each property individually.
-
-[Back to top](#introduction)
 
 ### Request Host header
 
@@ -267,13 +259,11 @@ or:
 Host: foo-service.com
 ```
 
-[Back to top](#introduction)
-
 #### Using wildcard hostnames
 
 To provide flexibility, Kong allows you to specify hostnames with wildcards in
 the `hosts` field. Wildcard hostnames allow any matching Host header to satisfy
-the condition, and thus match a given Route.
+the condition and thus match a given Route.
 
 Wildcard hostnames **must** contain **only one** asterisk at the leftmost
 **or** rightmost label of the domain. Examples:
@@ -303,15 +293,13 @@ GET / HTTP/1.1
 Host: service.com
 ```
 
-[Back to top](#introduction)
-
 #### The `preserve_host` property
 
 When proxying, Kong's default behavior is to set the upstream request's Host
 header to the hostname specified in the Service's `host`. The
 `preserve_host` field accepts a boolean flag instructing Kong not to do so.
 
-For example, when the `preserve_host` property is not changed and a Route is
+For example, when the `preserve_host` property is not changed, and a Route is
 configured like so:
 
 ```json
@@ -330,7 +318,7 @@ GET / HTTP/1.1
 Host: service.com
 ```
 
-Kong would extract the Host header value from the Service's `host` property, ,
+Kong would extract the Host header value from the Service's `host` property
 and would send the following upstream request:
 
 ```http
@@ -364,8 +352,6 @@ upstream request instead:
 GET / HTTP/1.1
 Host: service.com
 ```
-
-[Back to top](#introduction)
 
 ### Request path
 
@@ -403,14 +389,12 @@ one of the Routes's `paths` values. By default, Kong would then proxy the
 request upstream without changing the URL path.
 
 When proxying with path prefixes, **the longest paths get evaluated first**.
-This allow you to define two Routes with two paths: `/service` and
+This allows you to define two Routes with two paths: `/service` and
 `/service/resource`, and ensure that the former does not "shadow" the latter.
-
-[Back to top](#introduction)
 
 #### Using regexes in paths
 
-Kong supports regular expression pattern matching for an Route's `paths` field
+Kong supports regular expression pattern matching for a Route's `paths` field
 via [PCRE](http://pcre.org/) (Perl Compatible Regular Expression). You can
 assign paths as both prefixes and regexes to a Route at the same time.
 
@@ -421,8 +405,8 @@ For a path to be considered as regex, it must fall **outside** of the following 
 ```
 
 In other words, if a path contains any character that is **not** alphanumerical, dot (`.`),
-dash (`-`), underscore (`_`), tilde (`~`), forward-slash (`/`), or percent (`%`), then
-it will be considered a regex path. This determination is done on a per-path basis
+dash (`-`), underscore (`_`), tilde (`~`), forward-slash (`/`), or percentage (`%`), then
+it will be considered a regex path. This determination is done on a per path basis,
 and it is allowed to mix plain text and regex paths inside the same `paths` array of the same
 Route object.
 
@@ -450,14 +434,14 @@ The provided regexes are evaluated with the `a` PCRE flag (`PCRE_ANCHORED`),
 meaning that they will be constrained to match at the first matching point
 in the path (the root `/` character).
 
-**Note**: Regex matching is in general very fast, but it is possible to
+**Note**: Regex matching is, in general, very fast, but it is possible to
 construct expressions that take a very long time to determine that they don't
-actually match.  This happens when the expression results in a "backtrace
+actually match. This happens when the expression results in a "backtrace
 exponential explosion", which means that there's an astronomical number of
 tests to be performed before it's conclusive that they're all negative.
 If undetected, this could take hours to finish with a single regular expression.
 The [PCRE](http://pcre.org/) engine automatically detects most types of this
-and replaces with more direct approaches, but there are more complex expressions
+and replaces it with more direct approaches, but there are more complex expressions
 that could result in this scenario.
 
 To limit the worst-case scenario, Kong applies the OpenResty
@@ -466,8 +450,6 @@ to ensure that any regex operation terminates in around two seconds in the
 worst case.  Apart from that, a smaller limit is applied to some "critical"
 regex operations, like those for path selection, in order to terminate them
 within two milliseconds, at most.
-
-[Back to top](#introduction)
 
 ##### Evaluation order
 
@@ -516,8 +498,6 @@ As usual, a request must still match a Route's `hosts` and `methods` properties
 as well, and Kong will traverse your Routes until it finds one that [matches
 the most rules](#matching-priorities).
 
-[Back to top](#introduction)
-
 ##### Capturing groups
 
 Capturing groups are also supported, and the matched group will be extracted
@@ -545,13 +525,11 @@ local router_matches = ngx.ctx.router_matches
 -- { "1", "john", version = "1", user = "john" }
 ```
 
-[Back to top](#introduction)
-
 ##### Escaping special characters
 
 Next, it is worth noting that characters found in regexes are often
 reserved characters according to
-[RFC 3986](https://tools.ietf.org/html/rfc3986) and as such,
+[RFC 3986](https://tools.ietf.org/html/rfc3986) and, as such,
 should be percent-encoded. **When configuring Routes with regex paths via the
 Admin API, be sure to URL encode your payload if necessary**. For example,
 with `curl` and using an `application/x-www-form-urlencoded` MIME type:
@@ -564,14 +542,12 @@ HTTP/1.1 201 Created
 ```
 
 Note that `curl` does not automatically URL encode your payload, and note the
-usage of `--data-urlencode`, which prevents the `+` character to be URL decoded
+usage of `--data-urlencode`, which prevents the `+` character from being URL decoded
 and interpreted as a space ` ` by Kong's Admin API.
-
-[Back to top](#introduction)
 
 #### The `strip_path` property
 
-It may be desirable to specify a path prefix to match a Route, but not
+It may be desirable to specify a path prefix to match a Route but not
 include it in the upstream request. To do so, use the `strip_path` boolean
 property by configuring a Route like so:
 
@@ -585,7 +561,7 @@ property by configuring a Route like so:
 }
 ```
 
-Enabling this flag instructs Kong that when matching this Route, and proceeding
+Enabling this flag instructs Kong that when matching this Route and proceeding
 with the proxying to a Service, it should **not** include the matched part of
 the URL path in the upstream request's URL. For example, the following
 client's request to the above Route:
@@ -602,7 +578,7 @@ GET /path/to/resource HTTP/1.1
 Host: ...
 ```
 
-The same way, if a regex path is defined on a Route that has `strip_path`
+In the same way, if a regex path is defined on a Route that has `strip_path`
 enabled, the entirety of the request URL matching sequence will be stripped.
 Example:
 
@@ -630,11 +606,9 @@ GET /path/to/resource HTTP/1.1
 Host: ...
 ```
 
-[Back to top](#introduction)
-
 #### Normalization behavior
 
-To prevent trivial Route match bypass, the incoming request URI from client
+To prevent trivial Route match bypass, the incoming request URI from the client
 is always normalized according to [RFC 3986](https://tools.ietf.org/html/rfc3986)
 before router matching occurs. Specifically, the following normalization techniques are
 used for incoming request URIs, which are selected because they generally do not change
@@ -645,24 +619,22 @@ semantics of the request URI:
 3. Dot segments are removed as necessary.  For example: `/foo/./bar/../baz` becomes `/foo/baz`.
 4. Duplicate slashes are merged. For example: `/foo//bar` becomes `/foo/bar`.
 
-The `paths` attribute of the Route object are also normalized. It is achieved by first determining
+The `paths` attribute of the Route object is also normalized. It is achieved by first determining
 if the path is a plain text or regex path. Based on the result, different normalization techniques
 are used.
 
 For plain text Route path:
 
-Same normalization technique as above is used, that is, methods 1 through 4.
+The same normalization technique as above is used, that is, methods 1 through 4.
 
 For regex Route path:
 
 Only methods 1 and 2 are used. In addition, if the decoded character becomes a regex
-meta character, it will be escaped with backslash.
+meta character, it will be escaped with a backslash.
 
 Kong normalizes any incoming request URI before performing router
 matches. As a result, any request URI sent over to the upstream services will also
-be in normalized form that preserves the original URI semantics.
-
-[Back to top](#introduction)
+be in a normalized form that preserves the original URI semantics.
 
 ### Request HTTP method
 
@@ -696,11 +668,9 @@ Host: ...
 But it would not match a `POST` or `DELETE` request. This allows for much more
 granularity when configuring plugins on Routes. For example, one could imagine
 two Routes pointing to the same service: one with unlimited unauthenticated
-`GET` requests, and a second one allowing only authenticated and rate-limited
-`POST` requests (by applying the authentication and rate limiting plugins to
+`GET` requests and a second one allowing only authenticated and rate-limited
+`POST` requests (by applying the authentication and rate-limiting plugins to
 such requests).
-
-[Back to top](#introduction)
 
 ## Matching priorities
 
@@ -731,7 +701,7 @@ For example, if two Routes are configured like so:
 }
 ```
 
-The second Route has a `hosts` field **and** a `methods` field, so it will be
+The second Route has a `hosts` field **and** a `methods` field, and will be
 evaluated first by Kong. By doing so, we avoid the first Route "shadowing"
 calls intended for the second one.
 
@@ -753,16 +723,12 @@ Following this logic, if a third Route was to be configured with a `hosts`
 field, a `methods` field, and a `uris` field, it would be evaluated first by
 Kong.
 
-[Back to top](#introduction)
-
 ## Proxying behavior
 
 The proxying rules above detail how Kong forwards incoming requests to your
 upstream services. Below, we detail what happens internally between the time
-Kong *matches* an HTTP request with a registered Route, and the actual
+Kong *matches* an HTTP request with a registered Route and the actual
 *forwarding* of the request.
-
-[Back to top](#introduction)
 
 ### 1. Load balancing
 
@@ -771,8 +737,6 @@ requests across a pool of instances of an upstream service.
 
 You can find more information about configuring load balancing by consulting
 the [Load Balancing Reference][load-balancing-reference].
-
-[Back to top](#introduction)
 
 ### 2. Plugins execution
 
@@ -785,21 +749,19 @@ specific Routes and Services. In both cases, you must create a [plugin
 configuration][plugin-configuration-object] via the Admin API.
 
 Once a Route has been matched (and its associated Service entity), Kong will
-run plugins associated to either of those entities. Plugins configured on a
-Route run before plugins configured on a Service, but otherwise, the usual
+run plugins associated with either of those entities. Plugins configured on a
+Route run before plugins are configured on a Service, but otherwise, the usual
 rules of [plugins association][plugin-association-rules] apply.
 
 These configured plugins will run their `access` phase, which you can find more
 information about in the [Plugin development guide][plugin-development-guide].
-
-[Back to top](#introduction)
 
 ### 3. Proxying & upstream timeouts
 
 Once Kong has executed all the necessary logic (including plugins), it is ready
 to forward the request to your upstream service. This is done via Nginx's
 [ngx_http_proxy_module][ngx-http-proxy-module]. You can configure the desired
-timeouts for the connection between Kong and a given upstream, via the following
+timeouts for the connection between Kong and a given upstream via the following
 properties of a Service:
 
 - `upstream_connect_timeout`: defines in milliseconds the timeout for
@@ -811,7 +773,7 @@ properties of a Service:
   successive read operations for receiving a request from your upstream
   service.  Defaults to `60000`.
 
-Kong will send the request over HTTP/1.1, and set the following headers:
+Kong will send the request over HTTP/1.1 and set the following headers:
 
 - `Host: <your_upstream_host>`, as previously described in this document.
 - `Connection: keep-alive`, to allow for reusing the upstream connections.
@@ -834,7 +796,7 @@ Kong will send the request over HTTP/1.1, and set the following headers:
   addresses, the request header with the same name gets forwarded if provided.
   Otherwise, the value of the `$host` variable provided by
   [ngx_http_core_module][ngx-host-variable] will be used.
-- `X-Forwarded-Port: <port>`, where `<port>` is the port of the server which
+- `X-Forwarded-Port: <port>`, where `<port>` is the port of the server that
   accepted a request. In the case where `$realip_remote_addr` is one of the
   **trusted** addresses, the request header with the same name gets forwarded
   if provided. Otherwise, the value of the `$server_port` variable provided by
@@ -852,8 +814,6 @@ client and your upstream services:
 More information on this topic is covered in the
 [Proxy WebSocket traffic][proxy-websocket] section.
 
-[Back to top](#introduction)
-
 ### 4. Errors & retries
 
 Whenever an error occurs during proxying, Kong will use the underlying
@@ -865,27 +825,25 @@ There are two configurable elements here:
 1. The number of retries: this can be configured per Service using the
    `retries` property. See the [Admin API][API] for more details on this.
 
-2. What exactly constitutes an error: here Kong uses the Nginx defaults, which
+2. What exactly constitutes an error: here, Kong uses the Nginx defaults, which
    means an error or timeout occurring while establishing a connection with the
    server, passing a request to it, or reading the response headers.
 
 The second option is based on Nginx's
 [proxy_next_upstream][proxy_next_upstream] directive. This option is not
-directly configurable through Kong, but can be added using a custom Nginx
+directly configurable through Kong but can be added using a custom Nginx
 configuration. See the [configuration reference][configuration-reference] for
 more details.
-
-[Back to top](#introduction)
 
 ### 5. Response
 
 Kong receives the response from the upstream service and sends it back to the
-downstream client in a streaming fashion. At this point Kong will execute
-subsequent plugins added to the Route and/or Service that implement a hook in
+downstream client in a streaming fashion. At this point, Kong will execute
+subsequent plugins added to the Route and/or Service that implements a hook in
 the `header_filter` phase.
 
 Once the `header_filter` phase of all registered plugins has been executed, the
-following headers will be added by Kong and the full set of headers be sent to
+following headers will be added by Kong, and the full set of headers be sent to
 the client:
 
 - `Via: kong/x.x.x`, where `x.x.x` is the Kong version in use
@@ -898,13 +856,11 @@ the client:
 
 Once the headers are sent to the client, Kong will start executing
 registered plugins for the Route and/or Service that implement the
-`body_filter` hook. This hook may be called multiple times, due to the
+`body_filter` hook. This hook may be called multiple times due to the
 streaming nature of Nginx. Each chunk of the upstream response that is
 successfully processed by such `body_filter` hooks is sent back to the client.
 You can find more information about the `body_filter` hook in the [Plugin
 development guide][plugin-development-guide].
-
-[Back to top](#introduction)
 
 ## Configuring a fallback Route
 
@@ -927,19 +883,17 @@ Here is an example of such a fallback Route:
 ```
 
 As you can guess, any HTTP request made to Kong would actually match this
-Route, since all URIs are prefixed by the root character `/`. As we know from
+Route since all URIs are prefixed by the root character `/`. As we know from
 the [Request path][proxy-request-path] section, the longest URL paths are
 evaluated first by Kong, so the `/` path will eventually be evaluated last by
 Kong, and effectively provide a "fallback" Route, only matched as a last
 resort. You can then send traffic to a special Service or apply any plugin you
 wish on this Route.
 
-[Back to top](#introduction)
-
 ## Configuring SSL for a Route
 
 Kong provides a way to dynamically serve SSL certificates on a per-connection
-basis. SSL certificates are directly handled by the core, and configurable via
+basis. SSL certificates are directly handled by the core and configurable via
 the Admin API. Clients connecting to Kong over TLS must support the [Server
 Name Indication][SNI] extension to make use of this feature.
 
@@ -969,9 +923,9 @@ associating the uploaded certificate to it.
 
 Note that one of the SNI names defined in `snis` above contains a wildcard
 (`*.ssl-example.com`). An SNI may contain a single wildcard in the leftmost (prefix) or
-rightmost (suffix) postion. This can be useful when maintaining multiple subdomains. A
+rightmost (suffix) position. This can be useful when maintaining multiple subdomains. A
 single `sni` configured with a wildcard name can be used to match multiple
-subdomains, instead of creating an SNI for each.
+subdomains instead of creating an SNI for each.
 
 Valid wildcard positions are `mydomain.*`, `*.mydomain.com`, and `*.www.mydomain.com`.
 
@@ -1005,8 +959,6 @@ When establishing the connection and negotiating the SSL handshake, if your
 client sends `prefix.ssl-example.com` as part of the SNI extension, Kong will serve
 the `cert.pem` certificate previously configured.
 
-[Back to top](#introduction)
-
 ### Restricting the client protocol (HTTP/HTTPS/TCP/TLS)
 
 Routes have a `protocols` property to restrict the client protocol they should
@@ -1027,7 +979,7 @@ A Route with `http` and `https` will accept traffic in both protocols.
 }
 ```
 
-Not specifying any protocol has the same effect, since routes default to
+Not specifying any protocol has the same effect since routes default to
 `["http", "https"]`.
 
 However, a Route with *only* `https` would _only_ accept traffic over HTTPS. It
@@ -1078,7 +1030,7 @@ connections by using `"tcp"` in the `protocols` attribute:
 }
 ```
 
-Similarly, we can create routes which accept raw TLS traffic (not necessarily HTTPS) with
+Similarly, we can create routes that accept raw TLS traffic (not necessarily HTTPS) with
 the `"tls"` value:
 
 ```json
@@ -1110,9 +1062,6 @@ It is also possible to accept both TCP and TLS simultaneously:
 
 ```
 
-
-[Back to top](#introduction)
-
 ## Proxy WebSocket traffic
 
 Kong supports WebSocket traffic thanks to the underlying Nginx implementation.
@@ -1129,10 +1078,8 @@ Upgrade: WebSocket
 ```
 
 This will make Kong forward the `Connection` and `Upgrade` headers to your
-upstream service, instead of dismissing them due to the hop-by-hop nature of a
+upstream service instead of dismissing them due to the hop-by-hop nature of a
 standard HTTP proxy.
-
-[Back to top](#introduction)
 
 ### WebSocket and TLS
 
@@ -1144,31 +1091,27 @@ When setting up the [Service][service-entity] to point to your upstream
 WebSocket service, you should carefully pick the protocol you want to use
 between Kong and the upstream. If you want to use TLS (`wss`), then the
 upstream WebSocket service must be defined using the `https` protocol in the
-Service `protocol` property, and the proper port (usually 443). To connect
+Service `protocol` property and the proper port (usually 443). To connect
 without TLS (`ws`), then the `http` protocol and port (usually 80) should be
 used in `protocol` instead.
 
 If you want Kong to terminate SSL/TLS, you can accept `wss` only from the
-client, but proxy to the upstream service over plain text, or `ws`.
-
-[Back to top](#introduction)
+client but proxy to the upstream service over plain text or `ws`.
 
 ## Conclusion
 
 Through this guide, we hope you gained knowledge of the underlying proxying
 mechanism of Kong, from how does a request match a Route to be routed to its
-associated Service, on to how to allow for using the WebSocket protocol or
+associated Service on to how to allow for using the WebSocket protocol or
 setup dynamic SSL certificates.
 
 This website is Open-Source and can be found at
 [github.com/Kong/docs.konghq.com](https://github.com/Kong/docs.konghq.com/).
-Feel free to provide feedback to this document there, or propose improvements!
+Feel free to provide feedback to this document there or propose improvements!
 
 If you haven't already, we suggest that you also read the [Load balancing
 Reference][load-balancing-reference], as it closely relates to the topic we
 just covered.
-
-[Back to top](#introduction)
 
 [plugin-configuration-object]: /enterprise/{{page.kong_version}}/admin-api#plugin-object
 [plugin-development-guide]: /enterprise/{{page.kong_version}}/plugin-development

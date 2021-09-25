@@ -1,8 +1,6 @@
 ---
 name: Zipkin
 publisher: Kong Inc.
-redirect_from:
-  - /hub/kong-inc/zipkin/http-log/
 version: 1.3.x
 # internal handler version 1.3.0 4-26-2021
 

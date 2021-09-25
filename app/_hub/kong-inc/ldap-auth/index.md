@@ -10,11 +10,8 @@ description: |
   checks for valid credentials in the `Proxy-Authorization` and `Authorization` headers
   (in that order).
 
-  {:.tip}
-  > **Tip:** The
-  [LDAP Authentication Advanced plugin](/hub/kong-inc/ldap-auth-advanced/) provides
-  additional features not available in this open source LDAP plugin, such as LDAP searches
-  for group and consumer mapping:
+  This plugin is the open-source version of the [LDAP Authentication Advanced plugin](/hub/kong-inc/ldap-auth-advanced/), which provides
+  additional features such as LDAP searches for group and consumer mapping:
   * Ability to authenticate based on username or custom ID.
   * The ability to bind to an enterprise LDAP directory with a password.
   * The ability to authenticate/authorize using a group base DN and specific group member or group name attributes.

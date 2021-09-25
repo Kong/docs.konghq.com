@@ -423,6 +423,14 @@ Set a class on the admonition to display a specific style:
     {:.warning}
     > **Warning:** Everything will break forever if you do this.
 
+* **No icon:** {% raw %}`{:.no-icon}`{% endraw %}
+
+    If you have a situation where you need to use a specific admonition type but
+    the icon doesn't belong, you can hide the icon by setting `no-icon` along
+    with any other admonition class. For example, here's the result of using `{:.warning .no-icon}`:
+
+    {:.warning .no-icon}
+    > This is something that's vital in a special way and the icon doesn't apply.
 
 ## Page-level navigation
 

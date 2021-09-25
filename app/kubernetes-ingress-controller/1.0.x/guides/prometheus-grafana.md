@@ -47,6 +47,11 @@ To install Prometheus, execute the following:
 $ helm install --name prometheus stable/prometheus --namespace monitoring --values https://bit.ly/2RgzDtg --version 11.0.3
 ```
 
+after prometheus installation, execute following command:
+```bash
+kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/main/config/prometheus/monitor.yaml
+```
+
 ### Grafana
 
 Grafana is installed with the following values for its Helm chart
