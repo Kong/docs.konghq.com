@@ -12,10 +12,10 @@ no_version: true
 #### Enterprise
 
 #### Core
-- This release includes the addition of a new schema entity validator: `mutually_exclusive`. Before, the
-  `only_one_of` validator required at least one of the fields included be configured. This new entity validator allows
-  only one or neither of the fields be configured.
-  [#7765](https://github.com/Kong/kong/pull/7765)
+This release includes the addition of a new schema entity validator: `mutually_exclusive`. Before, the
+`only_one_of` validator required at least one of the fields included be configured. This new entity validator allows
+only one or neither of the fields be configured.
+[#7765](https://github.com/Kong/kong/pull/7765)
 
 #### Performance
 
@@ -192,9 +192,6 @@ release:
 - [Proxy-Cache](/hub/kong-inc/proxy-cache) (`proxy-cache`) 
   Fixed an issue where the plugin would sometimes fetch data from the cache but not return it.
   [#7775](https://github.com/Kong/kong/pull/7775)
-
-#### Deprecations
-- InfluxDB reports UI and `/vitals/reports/:entity_type` endpoint.
 
 ## 2.5.1.0
 **Release Date** 2021/09/08
