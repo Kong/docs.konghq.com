@@ -581,7 +581,7 @@ hardware and to avoid confusion.
 
 To use plugins requiring external plugin servers, both the plugin servers and the plugins themselves need to be installed inside the {{ site.base_gateway }} container.
 
-For Golang, build external plugins in embedded server mode in a builder container
+For plugins written in Golang, build external plugins in embedded server mode in a builder container
 and copy or mount the binary artifacts into the {{ site.base_gateway }} container.
 For plugins written in JavaScript, first install Node and `npm`, then use `npm` to install `kong-pdk`, and finally
 copy or mount the plugins source code into the {{ site.base_gateway }} container.
