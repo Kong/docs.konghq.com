@@ -75,7 +75,7 @@ box to save.
 
 6. Click **Delete Version** to permanently delete the Service version, or **Archive Version** to remove the Service version from use but not permanently delete it. You will not see archived versions in Service detail page versions dropdown.
 
-If you want to unarchive a version, return to the Service version detail page. Click **Actions**, and then click **Publish Version**.
+If you want to republish an archived version, return to the Service version detail page. Click **Actions**, and then click **Publish Version**.
 
 ### Implement a Service Version (Kong Gateway) {#implement-service-version}
 
