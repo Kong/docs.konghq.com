@@ -173,7 +173,7 @@ $ curl -X POST localhost:8001/routes/web-service/plugins \
   --data proto=path/to/hello.proto
 ```
 
-With this setup, there is support for gRPC-Web/JSON clients using `Content-Type` headers
+With this setup, there's support for gRPC-Web/JSON clients using `Content-Type` headers
 like `application/grpc-web+json` or `application/grpc-web-text+json`.
 
 > **Note**: When using JSON encoding, the [gRPC-Web protocol] specifies that
