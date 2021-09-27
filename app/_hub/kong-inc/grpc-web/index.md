@@ -176,7 +176,7 @@ $ curl -X POST localhost:8001/routes/web-service/plugins \
 With this setup, there's support for gRPC-Web/JSON clients using `Content-Type` headers
 like `application/grpc-web+json` or `application/grpc-web-text+json`.
 
-> **Note**: When using JSON encoding, the [gRPC-Web protocol] specifies that
+> **Note**: When using JSON encoding, the [gRPC-Web protocol](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md#protocol-differences-vs-grpc-over-http2) specifies that
 both request and response data consist of a series of frames, in a similar way
 to the full [gRPC protocol](https://github.com/grpc/grpc). The [gRPC-Web](https://github.com/grpc/grpc-web) library performs this framing as expected.
 
