@@ -21,41 +21,41 @@
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu dropdown-menu-right" id="module-list" role="menu" aria-labelledby="module-dropdown">
-        <div class="dropdown-submenu-title">Kong Konnect Platform</div>
+        <div class="dropdown-submenu-title" tabindex="0">Kong Konnect Platform</div>
         <li {% if include.edition == 'konnect_platform' %} class="active" {% endif %}>
           <a href="/konnect-platform/" class="{% if include.edition == 'konnect_platform' %}active{% endif %}">{{site.konnect_product_name}} Platform</a>
         </li>
-        <li {% if include.edition == 'konnect' %} class="active" {% endif %}>
+        <li {% if include.edition == 'konnect' %} class="active" {% endif %} tabindex="0">
           <a href="/konnect/" class="{% if include.edition == 'konnect' %}active{% endif %}">Konnect Cloud</a>
         </li>
         <li {% if include.edition == 'enterprise' %} class="active" {% endif %}>
-          <a href="/enterprise/" class="{% if include.edition == 'enterprise' %}active{% endif %}">Kong Gateway (Enterprise)</a>
+          <a href="/enterprise/" class="{% if include.edition == 'enterprise' %}active{% endif %}" tabindex="0">Kong Gateway (Enterprise)</a>
         </li>
         <li {% if include.edition == 'mesh' %} class="active" {% endif %}>
-          <a href="/mesh/" class="{% if include.edition == 'mesh' %}active{% endif %}">Kong Mesh</a>
+          <a href="/mesh/" class="{% if include.edition == 'mesh' %}active{% endif %}" tabindex="0">Kong Mesh</a>
         </li>
         <li>
-          <a href="/hub/">Plugin Hub</a>
+          <a href="/hub/" tabindex="0">Plugin Hub</a>
         </li>
-        <div class="dropdown-submenu-title">Open Source</div>
+        <div class="dropdown-submenu-title" tabindex="0">Open Source</div>
         <li {% if include.edition == 'gateway-oss' %} class="active" {% endif %}>
-          <a href="/gateway-oss/" class="{% if include.edition == 'gateway-oss' %}active{% endif %}">Kong Gateway (OSS)</a>
+          <a href="/gateway-oss/" class="{% if include.edition == 'gateway-oss' %}active{% endif %}" tabindex="0">Kong Gateway (OSS)</a>
         </li>
         <li {% if include.edition == 'deck' %} class="active" {% endif %}>
-          <a href="/deck/" class="{% if include.edition == 'deck' %}active{% endif %}">decK</a>
+          <a href="/deck/" class="{% if include.edition == 'deck' %}active{% endif %}" tabindex="0">decK</a>
         </li>
         <li {% if include.edition == 'kubernetes-ingress-controller' %} class="active" {% endif %}>
-          <a href="/kubernetes-ingress-controller/" class="{% if include.edition == 'kubernetes-ingress-controller' %}active{% endif %}">Kubernetes Ingress Controller</a>
+          <a href="/kubernetes-ingress-controller/" class="{% if include.edition == 'kubernetes-ingress-controller' %}active{% endif %}" tabindex="0">Kubernetes Ingress Controller</a>
         </li>
         <li>
-          <a href="https://support.insomnia.rest/" target="_blank">Insomnia</a>
+          <a href="https://support.insomnia.rest/" target="_blank" tabindex="0">Insomnia</a>
         </li>
         <li>
-          <a href="https://kuma.io/docs/" target="_blank">Kuma</a>
+          <a href="https://kuma.io/docs/" target="_blank" tabindex="0">Kuma</a>
         </li>
         <div class="dropdown-submenu-title">Contribute to the docs</div>
         <li {% if include.edition == 'contributing' %} class="active" {% endif %}>
-          <a href="/contributing/" class="{% if include.edition == 'contributing' %}active{% endif %}">Contribution guidelines</a>
+          <a href="/contributing/" class="{% if include.edition == 'contributing' %}active{% endif %}" tabindex="0">Contribution guidelines</a>
         </li>
       </ul>
     </div>
@@ -84,7 +84,7 @@
         <li {% if include.kong_version==ver.release %} class="active" {% endif %}>
           <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if include.edition == 'gateway-oss' %}gateway-oss/{% endif %}{% if include.edition == 'enterprise' %}enterprise/{% endif %}{% if include.edition == 'mesh' %}mesh/{% endif %}{% if include.edition == 'kubernetes-ingress-controller' %}kubernetes-ingress-controller/{% endif %}{% if include.edition == 'contributing' %}contributing/{% endif %}{% if include.edition == 'deck' %}deck/{% endif %}{{ver.release}}{% endif %}"
             {% if ver.release==include.kong_version %} class="active" {% endif %}
-            data-version-id="{{ver.release}}"
+            data-version-id="{{ver.release}}" tabindex="0"
           >
             {{ver.release}}
               {% if page.edition == "kubernetes-ingress-controller" and ver.release == "2.0.x" %}
