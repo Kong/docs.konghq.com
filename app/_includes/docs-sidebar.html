@@ -5,7 +5,7 @@
 
   <div class="sidebar-title-container">
     <div class="docsets-dropdown dropdown">
-      <button class="dropdown-button" id="module-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button class="dropdown-button" id="module-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
         <span>
           {% if include.edition == 'enterprise' %}{{site.ee_product_name}}
           {% elsif include.edition == 'konnect' %}{{site.konnect_saas}}
@@ -62,7 +62,7 @@
 
     {% unless include.no_version == true %}
     <div class="versions-dropdown dropdown">
-      <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
         <span>
           Version {{page.kong_version}}
           {% if page.edition == 'kubernetes-ingress-controller' %}
