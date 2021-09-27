@@ -164,31 +164,3 @@ indicate the path to your configuration file:
 $ kong migrations bootstrap [-c /path/to/your/kong.conf]
 $ kong start [-c /path/to/your/kong.conf]
 ```
-Unless indicated otherwise in one of the upgrade paths of this document, it is
-possible to upgrade Kong **without downtime**.
-
-Assuming that Kong is already running on your system, acquire the latest
-version from any of the available [installation methods](https://getkong.org/install/)
-and proceed to install it, overriding your previous installation.
-
-**If you are planning to make modifications to your configuration, this is a
-good time to do so**.
-
-Then, run migration to upgrade your database schema:
-
-```shell
-$ kong migrations up [-c configuration_file]
-```
-
-If the command is successful, and no migration ran
-(no output), then you only have to
-[reload](https://docs.konghq.com/gateway-oss/2.6.x/cli/#kong-reload) Kong:
-
-```shell
-$ kong reload [-c configuration_file]
-```
-
-**Reminder**: `kong reload` leverages the Nginx `reload` signal that seamlessly
-starts new workers, which take over from old workers before those old workers
-are terminated. In this way, Kong will serve new requests via the new
-configuration, without dropping existing in-flight connections.
