@@ -579,21 +579,21 @@ hardware and to avoid confusion.
 
 ## Use external plugins in container and Kubernetes
 
-When using external plugin servers in container, they need to be installed inside the container
-alongside with any external plugins as well.
+To use plugins requiring external plugin servers, both the plugin servers and the plugins themselves need to be installed inside the {{ site.base_gateway }} container.
 
-For Golang, user may build external plugins in embedded server mode in a builder container
-and copy or mount the binary artifacts into Kong container.
-For JavaScript, user may install Node and npm first and use npm to install `kong-pdk`, then
-copy or mount the plugins source code into Kong container.
-For Python, user may install Python and pip and use pip to install `kong-pdk`, then
-copy or mount the plugins source code into Kong container.
+For Golang, build external plugins in embedded server mode in a builder container
+and copy or mount the binary artifacts into the {{ site.base_gateway }} container.
+For plugins written in JavaScript, first install Node and `npm`, then use `npm` to install `kong-pdk`, and finally
+copy or mount the plugins source code into the {{ site.base_gateway }} container.
+For plugins written in Python, install Python and `pip`. Then use `pip` to install `kong-pdk`. Finally,
+copy or mount the plugin's source code into the {{ site.base_gateway }} container.
 
-Please also refer to previous sections on how to configure Kong after you build the image
-or created the container.
+Refer to previous sections on how to configure {{ site.base_gateway }} after you build the image
+or create the container.
 
-Note official Kong images are configured to run as `nobody` user. To copy files into
-the Kong images to build a custom image, user need to temporary set the user back to `root`.
+{:.note}
+> **Note:** Official {{ site.base_gateway }} images are configured to run as the `nobody` user. When building a custom image, to copy files into
+the {{ site.base_gateway }} image, you must temporarily set the user to `root`.
 
 ```dockerfile
 FROM kong
