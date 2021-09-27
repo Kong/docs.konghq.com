@@ -7,10 +7,9 @@ title: Start Kong Gateway (OSS)
   <a href="https://konghq.com/install/#kong-community">installed Kong</a> &mdash; It should only take a minute!
 </div>
 
-In this section, you'll learn how to manage your Kong instance. First, we'll
-have you start Kong in order to give you access to the RESTful Admin
-interface, through which you manage your Services, Routes, Consumers, and more. Data sent
-through the Admin API is stored in Kong's [datastore][datastore-section] (Kong
+In this section, you're going to learn how to manage your Kong instance. First, you
+have to start Kong in order to give yourself access to the RESTful Admin
+interface, through which you manage your Services, Routes, Consumers, and more. Data that you send through the Admin API is stored in Kong's [datastore][datastore-section] (Kong
 supports PostgreSQL and Cassandra).
 
 ## 1. Start Kong Gateway
@@ -22,7 +21,7 @@ migrations:
 $ kong migrations bootstrap [-c /path/to/kong.conf]
 ```
 
-You should see a message that tells you Kong has successfully migrated your
+You can see a message that tells you Kong has successfully migrated your
 database. If not, you probably incorrectly configured your database
 connection settings in your configuration file.
 
@@ -37,7 +36,7 @@ allowing you to point to [your own configuration][configuration-loading].
 
 ## 2. Verify that Kong has started successfully
 
-If everything went well, you should see a message (`Kong started`)
+If everything goes well, you can see a message (`Kong started`)
 informing you that Kong is running.
 
 By default, Kong listens on the following ports:
