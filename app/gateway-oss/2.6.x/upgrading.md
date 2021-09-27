@@ -13,7 +13,7 @@ Kong adheres to [semantic versioning](https://semver.org/), which makes a
 distinction between "major", "minor", and "patch" versions. The upgrade path
 will be different depending on which previous version from which you are migrating.
 
-If you are migrating from 2.0.x, 2.1.x, 2.2.x, 2.3.x, 2.4.x, or 2.5.x, upgrading to 2.6.x is a
+If you are migrating from 2.0.x, 2.1.x, 2.2.x or 2.3.x, 2.4.x or 2.5.x into 2.6.x is a
 minor upgrade, but read below for important instructions on database migration,
 especially for Cassandra users.
 
@@ -31,9 +31,9 @@ for the gateway are bundled and you can skip this section.
 If you are building your dependencies by hand, there are changes since the
 previous release, so you will need to rebuild them with the latest patches.
 
-The required OpenResty version for Kong Gateway 2.6.x is
-[1.19.3.1](https://openresty.org/en/changelog-1019003.html). This is more recent
-than the version in Kong Gateway 2.3.0 (which used `1.17.8.2`). In addition to an upgraded
+The required OpenResty version for kong 2.6.x is
+[1.19.9.1](https://openresty.org/en/changelog-1019003.html). This is more recent
+than the version in Kong 2.5.0 (which used `1.19.3.2`). In addition to an upgraded
 OpenResty, you will need the correct [OpenResty patches](https://github.com/Kong/kong-build-tools/tree/master/openresty-build-tools/openresty-patches)
 for this new version, including the latest release of [lua-kong-nginx-module](https://github.com/Kong/lua-kong-nginx-module).
 The [kong-build-tools](https://github.com/Kong/kong-build-tools)
@@ -46,13 +46,13 @@ For more information, see [Developing Go plugins](https://docs.konghq.com/gatewa
 ### Template changes
 
 There are **Changes in the Nginx configuration file**, between kong 2.0.x,
-2.1.x, 2.2.x, 2.3.x, 2.4.x, 2.5.x, and 2.6.x.
+2.1.x, 2.2.x, 2.3.x, 2.4.x and 2.5.x.
 
 To view the configuration changes between versions, clone the
 [Kong repository](https://github.com/kong/kong) and run `git diff`
 on the configuration templates, using `-w` for greater readability.
 
-Here's how to see the differences between previous versions and 2.4.x:
+Here's how to see the differences between previous versions and 2.6.x:
 
 ```
 git clone https://github.com/kong/kong
@@ -60,9 +60,8 @@ cd kong
 git diff -w 2.0.0 2.6.0 kong/templates/nginx_kong*.lua
 ```
 
-{:.note}
-> **Note:** Adjust the starting version number
-(2.0.x, 2.1.x, 2.2.x, 2.3.x, 2.4.x, or 2.5.x) to the version number you are currently using.
+**Note:** Adjust the starting version number
+(2.0.x, 2.1.x, 2.2.x, 2.3.x, 2.4.x or 2.5.x) to the version number you are currently using.
 
 To produce a patch file, use the following command:
 
@@ -70,9 +69,9 @@ To produce a patch file, use the following command:
 git diff 2.0.0 2.6.0 kong/templates/nginx_kong*.lua > kong_config_changes.diff
 ```
 
-{:.note}
-> **Note:** Adjust the starting version number
-(2.0.x, 2.1.x, 2.2.x, 2.3.x, 2.4.x, or 2.5.x) to the version number you are currently using.
+**Note:** Adjust the starting version number
+(2.0.x, 2.1.x, 2.2.x, 2.3.x, 2.4.x or 2.5.x) to the version number you are currently using.
+
 
 ### Suggested upgrade path
 
@@ -87,7 +86,7 @@ The steps for upgrading from 0.14.1 to 1.5.x are the same as upgrading
 from 0.14.1 to Kong 1.0. Please follow the steps described in the
 "Migration Steps from 0.14" in the
 
-[Suggested Upgrade Path for Kong Gateway 1.0](https://github.com/Kong/kong/blob/master/UPGRADE.md#kong-1-0-upgrade-path)
+[Suggested Upgrade Path for Kong 1.0](https://github.com/Kong/kong/blob/master/UPGRADE.md#kong-1-0-upgrade-path)
 with the addition of the `kong migrations migrate-apis` command,
 which you can use to migrate legacy `apis` configurations.
 
@@ -98,12 +97,12 @@ below to migrate to 2.6.x.
 
 **Postgres**
 
-Kong Gateway 2.6.x supports a no-downtime migration model. This means that while the
+Kong 2.6.x supports a no-downtime migration model. This means that while the
 migration is ongoing, you will have two Kong clusters running, sharing the
 same database. (This is sometimes called the Blue/Green migration model.)
 
-The migrations are designed so that the new version of Kong Gateway is able to use
-the database as it is migrated while the old Kong Gateway cluster keeps working until
+The migrations are designed so that the new version of Kong is able to use
+the database as it is migrated while the old Kong cluster keeps working until
 it is time to decommission it. For this reason, the migration is split into
 two steps, performed via commands `kong migrations up` (which does
 only non-destructive operations) and `kong migrations finish` (which puts the
@@ -131,7 +130,7 @@ database in the final expected state for Kong 2.6.x).
 
 **Cassandra**
 
-Due to internal changes, the table schemas used by Kong Gateway 2.6.x on Cassandra
+Due to internal changes, the table schemas used by Kong 2.6.x on Cassandra
 are incompatible with those used by Kong 2.1.x (or lower). Migrating using the usual commands
 `kong migrations up` and `kong migrations finish` will require a small
 window of downtime, since the old and new versions cannot use the

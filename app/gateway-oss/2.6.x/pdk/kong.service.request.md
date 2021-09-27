@@ -216,7 +216,7 @@ Sets a header in the request to the Service with the given value.  Any existing 
 
 **Phases**
 
-* `rewrite`, `access`
+* `rewrite`, `access`, `balancer`
 
 **Parameters**
 

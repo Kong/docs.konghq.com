@@ -162,7 +162,7 @@ local body = kong.service.response.get_raw_body()
 [Back to top](#kongserviceresponse)
 
 
-### kong.service.response.get_body(mimetype[, mimetype[, max_args]])
+### kong.service.response.get_body([mimetype[, max_args]])
 
 Returns the decoded buffered body.
 
@@ -172,8 +172,7 @@ Returns the decoded buffered body.
 
 **Parameters**
 
-* **mimetype** (string, _optional_):  the MIME type
-* **mimetype** (string, _optional_):  the MIME type
+* **mimetype** (string, _optional_):  The mime-type of the response (if known)
 * **max_args** (number, _optional_):  set a limit on the maximum number of parsed
 
 **Returns**
