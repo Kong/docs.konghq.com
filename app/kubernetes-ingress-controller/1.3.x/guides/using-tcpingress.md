@@ -91,7 +91,7 @@ $ kubectl patch deploy -n kong ingress-kong --patch '{
     }
   }
 }'
-deployment.extensions/ingress-kong patched
+deployment.apps/ingress-kong patched
 ```
 
 ```shell
