@@ -178,7 +178,7 @@ like `application/grpc-web+json` or `application/grpc-web-text+json`.
 
 > **Note**: When using JSON encoding, the [gRPC-Web protocol] specifies that
 both request and response data consist of a series of frames, in a similar way
-to the full [gRPC protocol]. The [gRPC-Web] library performs this framing as expected.
+to the full [gRPC protocol](https://github.com/grpc/grpc). The [gRPC-Web](https://github.com/grpc/grpc-web) library performs this framing as expected.
 
 As an extension, this plugin also allows naked JSON requests with the POST method and
 `Content-Type: application/json` header. These requests are encoded to ProtocolBuffer,
