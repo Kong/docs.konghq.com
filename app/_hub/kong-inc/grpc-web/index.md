@@ -123,7 +123,7 @@ for binary, and `application/grpc-web-text` or `application/grpc-web-text+proto`
 If you want to use JSON encoding, you have to provide the gRPC specification in
 a `.proto` file, which needs to be installed in the Kong node running the plugin.
 A path starting with a `/` is considered absolute; otherwise, it interprets 
-relatively to the Kong node's prefix (`/usr/local/kong/` by default). For example:
+relative to the Kong node's prefix (`/usr/local/kong/` by default). For example:
 
 ```protobuf
 syntax = "proto2";
