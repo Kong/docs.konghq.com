@@ -73,7 +73,7 @@ and HTTP/2, over plaintext (HTTP) and TLS (HTTPS) connections.
 
 ## Usage
 
-You should enable this plugin on a Kong Route that serves the `http(s)` protocol
+Enable this plugin on a Kong Route that serves the `http(s)` protocol
 but proxies to a Service with the `grpc(s)` protocol.
 
 Sample configuration via declarative (YAML):
