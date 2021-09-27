@@ -1,7 +1,7 @@
 ---
 name: jq
 publisher: Kong Inc.
-versions: 0.1.x
+versions: 0.0.1
 beta: true
 
 desc: Transform JSON objects included in API requests or responses using jq programs.
