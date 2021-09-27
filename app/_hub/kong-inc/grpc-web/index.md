@@ -114,7 +114,7 @@ $ curl -X POST localhost:8001/routes/web-service/plugins \
   --data name=grpc-web
 ```
 
-In these examples, there is no setting of configuration for the plugin.
+In these examples, we don't set any plugin configurations.
 This minimal setup works for the default varieties of the [gRPC-Web protocol],
 which use ProtocolBuffer messages either directly in binary or with base64-encoding.
 The related `Content-Type` headers are `application/grpc-web` or `application/grpc-web+proto`
