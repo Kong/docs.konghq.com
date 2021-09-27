@@ -115,7 +115,7 @@ $ curl -X POST localhost:8001/routes/web-service/plugins \
 ```
 
 In these examples, we don't set any plugin configurations.
-This minimal setup works for the default varieties of the [gRPC-Web protocol],
+This minimal setup works for the default varieties of the [gRPC-Web protocol](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md#protocol-differences-vs-grpc-over-http2),
 which use ProtocolBuffer messages either directly in binary or with base64-encoding.
 The related `Content-Type` headers are `application/grpc-web` or `application/grpc-web+proto`
 for binary, and `application/grpc-web-text` or `application/grpc-web-text+proto` for text.
