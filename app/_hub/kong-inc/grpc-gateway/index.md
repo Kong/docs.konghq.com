@@ -164,11 +164,13 @@ curl -XPOST localhost:8000/v1/messages/Kong2.0 -d '{"name":"kong2.0"}'
 
 All syntax defined in [Path template syntax](https://github.com/googleapis/googleapis/blob/fc37c47e70b83c1cc5cc1616c9a307c4303fe789/google/api/http.proto#L225) is supported.
 
-Object fields not mentioned in the paths like `/messages/{name}` can be passed as URL arguments (like `/v1/messages?name=Kong`).  Structured arguments are supported; a request like
+Object fields not mentioned in the endpoint paths as in `/messages/{name}` can be passed as URL arguments, for example `/v1/messages?name=Kong`.  Structured arguments are supported.
+
+ For example, a request like the following:
 
 `/v1/messages?dest.name=Freddy&dest.address=1428+Elm+Street&message=One+Two...`
 
-is interpreted like a JSON object:
+is interpreted like the following JSON object:
 
 ```json
 {
