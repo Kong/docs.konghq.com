@@ -1,8 +1,7 @@
 ---
 name: Kafka Upstream
 publisher: Kong Inc.
-version: 1.3-x
-# internal 0.0.2, only former version 0.0.1.
+version: 0.2.x
 
 desc: Transform requests into Kafka messages in a Kafka topic.
 description: |
@@ -56,7 +55,7 @@ params:
       default:
       datatype: string
       description: |
-         Authentication strategy; one of: sasl.
+         The authentication strategy for the plugin, the only option for the value is `sasl`.
     - name: authentication.mechanism
       required: false
       value_in_examples: PLAIN
@@ -64,7 +63,7 @@ params:
       default:
       datatype: string
       description: |
-        SASL mechanism; one of: PLAIN, SCRAM-SHA-256.
+        The SASL authentication mechanism, the two options for the value are: `PLAIN` and `SCRAM-SHA-256`.
     - name: authentication.user
       required: false
       value_in_examples: admin
@@ -87,14 +86,14 @@ params:
       default: false
       datatype: boolean
       description: |
-        Enable this to indicate DelegationToken authentication.
+        Enable this to indicate `DelegationToken` authentication.
     - name: security.ssl
       required: false
       value_in_examples: false
       default: false
       datatype: boolean
       description: |
-        Enables TLS
+        Enables TLS.
     - name: security.certificate_id
       required: false
       urlencode_in_examples: true
@@ -129,7 +128,7 @@ params:
       default: "`false`"
       datatype: boolean
       description: |
-         Include the request URI and URI arguments (for example, query arguments) in the message.
+         Include the request URI and URI arguments (as in, query arguments) in the message.
          At least one of these must be true: `forward_method`, `forward_uri`, `forward_headers`,
          `forward_body`.
     - name: forward_headers
@@ -237,7 +236,7 @@ $ curl -X POST http://kong:8001/routes/my-route/plugins \
 
 ## Implementation details
 
-This plugin makes use of the [lua-resty-kafka](https://github.com/kong/lua-resty-kafka) client under the hood.
+This plugin uses the [lua-resty-kafka](https://github.com/kong/lua-resty-kafka) client.
 
 When encoding request bodies, several things happen:
 
@@ -255,7 +254,8 @@ Enable TLS by setting `config.security.ssl` to `true`.
 
 ## mTLS
 
-Enable mTLS by setting a valid UUID of a certificate in `config.security.certificate_id`.
+Enable mTLS by setting a valid UUID of a certificate in `config.security.certificate_id`. 
+
 Note that this option needs `config.security.ssl` set to true.
 See [Certificate Object](https://docs.konghq.com/enterprise/2.5.x/admin-api/#certificate-object)
 in the Admin API documentation for information on how to set up Certificates.
@@ -290,7 +290,7 @@ This plugin supports multiple authentication mechanisms including the following:
 
 Known limitations:
 
-1. There is no support for message compression.
+1. Message compression is not supported.
 2. The message format is not customizable.
 
 ## Quickstart
