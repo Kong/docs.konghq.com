@@ -248,6 +248,16 @@ from the instance running Kong.
 First, the plugin tries ECS metadata to get the role. If no ECS metadata is available,
 the plugin falls back on EC2 metadata.
 
+### AWS Region as Environment Variable
+
+If the plugin configuration `aws_region` is unset, the plugin attempts to obtain the
+AWS region through environment variables `AWS_REGION` and `AWS_DEFAULT_REGION`,
+with the former taking higher precedence. For example, if both `AWS_REGION` and
+`AWS_DEFAULT_REGION` are set, the `AWS_REGION` value is used; otherwise, if only
+`AWS_DEFAULT_REGION` is set, its value is used. If neither configuration `aws_region`
+nor environment variables are set, a run-time error "no region or host specified"
+will be thrown.
+
 ---
 ### Step-By-Step Guide
 
