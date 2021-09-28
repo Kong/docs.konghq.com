@@ -152,8 +152,6 @@ only one or neither of the fields be configured.
   [#7828](https://github.com/Kong/kong/pull/7828).
 
 ##### Plugins
-- [Vault Auth](/hub/kong-inc/vault-auth) (`vault-auth)
-  This plugin is now available for selection in the Kong Manager UI, previously it was hidden.
 - [ACME](/hub/kong-inc/acme) (`acme`)
   Dots in wildcard domains are escaped.
   [#7839](https://github.com/Kong/kong/pull/7839).
