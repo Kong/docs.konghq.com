@@ -204,7 +204,8 @@ kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address
 kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="dns_error",subsystem="http"} 0
 ```
 
-**Note:** Upstreams targets health information are exported once per subsystem: if both
+{:.note}
+> **Note:** Upstream targets' health information is exported once per subsystem. If both
 stream and HTTP listeners are enabled, targets health will appear twice. Health metrics
 have a `subsystem` label to indicate which subsystem the metric refers to.
 
