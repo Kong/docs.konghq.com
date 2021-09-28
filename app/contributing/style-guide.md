@@ -7,19 +7,21 @@ no_version: true
 
 |Best practice                      |Do                                             |Don't                                              |
 |---                                |---                                            |---                                                |  
+|Use US English (not British English)|The response **should** look like...          |The response **shall** look like...                |
+|                                   |In the previous section, you **learned**...    |In the previous section, you **learnt**...         |
 |Use present tense                  |This `command` **starts** a proxy.             |This `command` **will start** a proxy.             |
 |---                                |---                                            |---                                                |
 |Use active voice                   |You can explore the API using a browser.       |The API can be explored using a browser.           |
 |                                   |The YAML file specifies the replica count.     |The replica count is specified in the YAML file.   |
 |---                                |---                                            |---                                                |
 |Use conversational tone            |Run the program.                               |Execute the program.                               |
-|                                   |Use the Admin API.                         |Utilize the Admin API.                                 |
+|                                   |Use the Admin API.                             |Utilize the Admin API.                             |
 |---                                |---                                            |---                                                |
 |Don’t use Latin phrases            |For example, ...                               |e.g., ...                                          |
 |                                   |That is, ...                                   |i.e., ...                                          |
 |---                                |---                                            |---                                                |
-|Avoid generic prounouns            |Once you have added **the inputs section**, ...|Once you have added **this**, ...                  |
-|Don't use _displays_ or _appears_      |In the blank that **appears**, do the thing.   |Do the thing.      |
+|Avoid generic pronouns             |Once you have added **the inputs section**, ...|Once you have added **this**, ...                  |
+|Don't use _displays_ or _appears_  |In the blank that **appears**, do the thing.   |Do the thing.                                      |
 |---                                |---                                            |---                                                |
 |Use descriptive headings           |Overview                                       |Improve Vitals performance with InfluxDB           |
 |                                   |Query behavior                                 |Query frequency and precision                      |
