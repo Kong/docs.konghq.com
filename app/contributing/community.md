@@ -33,7 +33,7 @@ From here, determine which applies to you:
 
 Great! Let's first check to see if someone had the same idea as you. Go to [Issues](https://github.com/Kong/docs.konghq.com/issues) and read through the titles to see if something sounds similar to what you want to contribute or fix. 
 
-If you find an Issue that aligns with what you want to contribute, go ahead and assign it to yourself in the right-side column and add a comment stating that you're going to be working on this task. Then, head to [Make your contribution](#make-your-contribution). 
+If you find an Issue that aligns with what you want to contribute, go ahead and add a comment stating that you're going to be working on this task. We don't assign Issues. Then, head to [Make your contribution](#make-your-contribution). 
 
 If you don't find an Issue that aligns with what you want to contribute, there's no need to open one up. Instead, go to [Make your contribution](#make-your-contribution). 
 
