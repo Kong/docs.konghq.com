@@ -28,9 +28,12 @@ only one or neither of the fields be configured.
   [#7827](https://github.com/Kong/kong/pull/7827).
 
 #### Admin API
-- Add support for HEAD requests.
+- Added support for the HTTP HEAD method for all Admin API endpoints.
   [#7796](https://github.com/Kong/kong/pull/7796)
-- Improve support for OPTIONS requests.
+- Added better support for OPTIONS requests. Previously, the Admin API replied the same on all OPTIONS requests,
+  where as now OPTIONS request will only reply to routes that our Admin API has. Non-existing routes will have a
+  404 returned. Additionally, the Allow header was added to responses. Both Allow and Access-Control-Allow-Methods
+  now contain only the methods that the specific API supports.
   [#7830](https://github.com/Kong/kong/pull/7830)
 
 #### Plugins
@@ -54,25 +57,34 @@ only one or neither of the fields be configured.
 - [AWS-Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`) 
   The plugin will now try to detect the AWS region by using `AWS_REGION` and
   `AWS_DEFAULT_REGION` environment variables (when not specified with the plugin configuration).
+  This allows users to specify a 'region' on a per Kong node basis, adding the ability to invoke the
+  Lambda function in the same region where Kong is located.
   [#7765](https://github.com/Kong/kong/pull/7765)
 - [Datadog](/hub/kong-inc/datadog) (`datadog`)
-  The Datadog plugin now allows `host` and `port` config options be configured from `ENV` variables.
+  The Datadog plugin now allows `host` and `port` config options be configured from environment variables,
+  `KONG_DATADOG_AGENT_HOST` and `KONG_DATADOG_AGENT_PORT`. This update enables users to set 
+   different destinations on a per Kong node basis, which makes multi-DC setups easier and in Kubernetes helps 
+   with the ability to run the Datadog agents as a daemon-set.
   [#7463](https://github.com/Kong/kong/pull/7463)
 - [Prometheus](/hub/kong-inc/prometheus) (`prometheus`) 
-  The new `data_plane_cluster_cert_expiry_timestamp` exposes DP cert expiry timestamp.
+  The Prometheus plugin now includes a new metric, `data_plane_cluster_cert_expiry_timestamp`, to expose the Data Plane's `cluster_cert` 
+   expiry timestamp for improved monitoring in Hybrid Mode.
   [#7800](https://github.com/Kong/kong/pull/7800).
 - [GRPC-Gateway](/hub/kong-inc/grpc-gateway) (grpc-gateway)
-  - The plugin can decode entities of type `.google.protobuf.Timestamp`
+  - Fields of type `.google.protobuf.Timestamp` on the gRPC side are now
+    transcoded to and from ISO8601 strings in the REST side.
     [#7538](https://github.com/Kong/kong/pull/7538)
-  - Added support for structured URI arguments
+  - URI arguments like `..?foo.bar=x&foo.baz=y` are interpreted as structured
+    fields, equivalent to `{"foo": {"bar": "x", "baz": "y"}}`.
     [#7564](https://github.com/Kong/kong/pull/7564)
 - [Request Termination](/hub/kong-inc/request-termination) (`request-termination`)
-  - New `trigger` config option, which makes the plugin activate for any requests with a header or query parameter
-    named like the trigger
+  - The Request Termination plugin now includes a new `trigger` config option, which makes the plugin
+    only activate for any requests with a header or query parameter named like the trigger. This config option
+    can be a great debugging aid, without impacting actual traffic being processed.
     [#6744](https://github.com/Kong/kong/pull/6744).
-  - The `request-echo` config option. If not set, the plugin activates on all requests.
-    If set, then the plugin only activates for any requests with a header or query parameter
-    named like the trigger
+  - The `request-echo` config option was added. If set, the plugin responds with a copy of the incoming request.
+    This config option eases troubleshooting when Kong Gateway is behind one or more other proxies or LB's,
+    especially when combined with the new `trigger` option.
     [#6744](https://github.com/Kong/kong/pull/6744).
 
 ### Dependencies
