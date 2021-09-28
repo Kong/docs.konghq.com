@@ -10,15 +10,15 @@ title: Configuring a Service
   </ol>
 </div>
 
-In this section, you're going to add an API to Kong. In order to do this, you must add a _Service_; that is the name Kong uses to refer to the upstream APIs and microservices
+In this section, you'll add an API to Kong. In order to do this, you must add a _Service_.  A Service in Kong refers to the upstream APIs and microservices
 it manages.
 
-For the purpose of this guide, you have to create a Service pointing to the [Mockbin API][mockbin]. Mockbin is an "echo" type public website which returns the requests it gets back to the requester, as responses. This makes it helpful for learning how Kong proxies your API requests.
+For the purpose of this guide, you'll create a Service pointing to the [Mockbin API][mockbin]. Mockbin is an "echo" type public website that returns the requests it gets back to the requester as responses. This is helpful in learning how Kong proxies your API requests.
 
-Before you can start making requests against the Service, you have to add a _Route_ to it.
+Before you can start making requests against the Service, you have to add a _Route_ to the Service.
 Routes specify how (and _if_) requests are sent to their Services after they reach Kong. A single Service can have many Routes.
 
-After configuring the Service and the Route, you can make requests through Kong using them.
+After configuring the Service and the Route, you'll be able to make requests through Kong using them.
 
 Kong exposes a [RESTful Admin API][API] on port `:8001`. Kong's configuration, including adding Services and Routes, is made via requests on that API.
 
@@ -34,7 +34,7 @@ $ curl -i -X POST \
   --data 'url=http://mockbin.org'
 ```
 
-You shall receive a response similar to:
+You should receive a response similar to:
 
 ```http
 HTTP/1.1 201 Created
@@ -66,7 +66,7 @@ $ curl -i -X POST \
   --data 'hosts[]=example.com'
 ```
 
-The answer shall be similar to:
+The answer should be similar to:
 
 ```http
 HTTP/1.1 201 Created
@@ -111,7 +111,7 @@ $ curl -i -X GET \
 
 A successful response means Kong is now forwarding requests made to
 `http://localhost:8000` to the `url` you configured in step #1,
-and is forwarding the response back to you. Kong knows how to do this through
+and is forwarding the response back to you. Kong knows to do this through
 the header defined in the above cURL request:
 
 <ul>

@@ -11,7 +11,7 @@ title: Enabling Plugins
   </ol>
 </div>
 
-In this section, you're going to learn how to configure Kong plugins. One of the core
+In this section, you'll learn how to configure Kong plugins. One of the core
 principles of Kong is its extensibility through [plugins][plugins]. Plugins
 allow you to easily add new features to your Service and make it easier to
 manage.
@@ -45,13 +45,13 @@ Issue the following cURL request to verify that the [key-auth][key-auth]
 plugin is properly configured on the Service:
 
 ```bash
-$ curl -i -X GET \
+curl -i -X GET \
   --url http://localhost:8000/ \
   --header 'Host: example.com'
 ```
 
 Since you did not specify the required `apikey` header or parameter, the
-response shall be `401 Unauthorized`:
+response should be `401 Unauthorized`:
 
 ```http
 HTTP/1.1 401 Unauthorized
