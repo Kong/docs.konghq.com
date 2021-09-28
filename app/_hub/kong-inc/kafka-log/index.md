@@ -1,7 +1,7 @@
 ---
 name: Kafka Log
 publisher: Kong Inc.
-version: 1.6.x # 0.1.1 internal handler
+version: 0.2.x # 0.1.1 internal handler
 
 desc: Publish logs to a Kafka topic
 description: |
