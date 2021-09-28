@@ -87,11 +87,7 @@ dashboard: [https://grafana.com/dashboards/7424](https://grafana.com/dashboards/
 - **Connections**: Various Nginx connection metrics like active, reading,
   writing, and number of accepted connections.
 - **Target Health**: The healthiness status (`healthchecks_off`, `healthy`, `unhealthy`, or `dns_error`) of Targets
-<<<<<<< HEAD
-  belonging to a given Upstream.
-=======
   belonging to a given Upstream as well as their subsystem (`http` or `stream`).
->>>>>>> f572c84a7ddb7d3e6e8ff1e955213d3aac3aabf4
 - **Dataplane Status**: The last seen timestamp, config hash, config sync status and certificate expiration timestamp for
 data plane nodes is exported to control plane.
 - **Enterprise License Information**: The {{site.ee_gateway_name}} license expiration date, features and
