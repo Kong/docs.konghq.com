@@ -40,7 +40,7 @@ This guide shows how to:
 * [cURL][curl] version 7.x.x
 
 You can use a managed cluster from a cloud provider, such as [AWS (EKS)][eks],
-[Google Cloud (GKE)][gke] or [Azure (AKS)][aks], or you can work locally with 
+[Google Cloud (GKE)][gke], or [Azure (AKS)][aks], or you can work locally with 
 tools such as [Minikube][minikube] or [Microk8s][microk8s].
 
 Your Kubernetes cluster must provision
@@ -75,29 +75,29 @@ explain alternative deployment mechanisms.
 
 You can also explore the
   [Istio FAQ][install-method-faq] for more information about the differences
-  between methods. If you choose another installation method, however, 
+  between methods. However, if you choose another installation method,
   you might need to adjust the examples in this guide.
 
 1.  Download the `istioctl` command-line utility for your platform:
 
     ```console
-    $ curl -s -L https://istio.io/downloadIstio | ISTIO_VERSION=1.11.2 sh -
+    curl -s -L https://istio.io/downloadIstio | ISTIO_VERSION=1.11.2 sh -
     ```
 
-    The response includes instructions to set up `istioctl` program locally and perform 
+    The response includes instructions to set up the `istioctl` program locally and perform 
     pre-check validation of the Istio installation. 
     
 1.  Make sure to add `istioctl` to your shell's path:
 
     ```console
-    $ export PATH="$PATH:$PWD/istio-1.11.2/bin"
+    export PATH="$PATH:$PWD/istio-1.11.2/bin"
     ```
 
 1.  Verify that `istioctl` is working, and run checks on your
 Kubernetes cluster to ensure Istio will deploy to it properly:
 
     ```console
-    $ istioctl x precheck
+    istioctl x precheck
     ```
 
 [istio-install]:https://istio.io/latest/docs/setup/install/
@@ -114,7 +114,7 @@ the `demo` profile, which is meant for testing and evaluation.
 Deploy Istio with the `demo` profile:
 
 ```console
-$ istioctl install --set profile=demo -y
+istioctl install --set profile=demo -y
 ```
 
 [istio-profiles]:https://istio.io/latest/docs/setup/additional-setup/config-profiles/
@@ -130,13 +130,13 @@ control program for Istio -- to manage the pods and add them to the mesh network
 1.  Create the Istio-enabled namespace:
 
     ```console
-    $ kubectl create namespace kong-istio
+    kubectl create namespace kong-istio
     ```
 
 1.  Enable the namespace for the Istio mesh:
 
     ```console
-    $ kubectl label namespace kong-istio istio-injection=enabled
+    kubectl label namespace kong-istio istio-injection=enabled
     ```
 
 [k8s-pods]:https://kubernetes.io/docs/concepts/workloads/pods/
@@ -153,20 +153,20 @@ to the Istio-enabled `kong-istio` namespace.
 1.  Make sure you have the Kong Helm repository configured locally:
 
     ```console
-    $ helm repo add kong https://charts.konghq.com && helm repo update
+    helm repo add kong https://charts.konghq.com && helm repo update
     ```
 
 1.  Deploy the chart:
 
     ```console
-    $ helm install -n kong-istio kong-istio kong/kong
+    helm install -n kong-istio kong-istio kong/kong
     ```
 
 1.  Verify that Kong containers are deployed and the Istio sidecar container is injected
 properly: 
 
     ```console
-    $ kubectl describe pod -n kong-istio -l app.kubernetes.io/instance=kong-istio
+    kubectl describe pod -n kong-istio -l app.kubernetes.io/instance=kong-istio
     ```
     The output should look like: 
 
@@ -196,7 +196,7 @@ properly:
 [chart]:https://github.com/Kong/charts
 [k8s-describe-pod]:https://kubernetes.io/docs/tasks/debug-application-cluster/debug-application-introspection/#using-kubectl-describe-pod-to-fetch-details-about-pods
 
-### Deploy "BookInfo" example application
+### Deploy BookInfo example application
 
 The Istio [BookInfo][bookinfo] application provides a basic example that lets 
 you explore and evaluate Istio's mesh features.
@@ -207,20 +207,20 @@ then deploy.
 1.  Create the namespace:
 
     ```console
-    $ kubectl create namespace bookinfo
+    kubectl create namespace bookinfo
     ```
 
 1.  Label the namespace for Istio injection:
 
     ```console
-    $ kubectl label namespace bookinfo istio-injection=enabled
+    kubectl label namespace bookinfo istio-injection=enabled
     ```
 
 
 1.  Deploy the `BookInfo` app from the Istio bundle:
 
     ```console
-    $ kubectl -n bookinfo apply -f istio-1.11.2/samples/bookinfo/platform/kube/bookinfo.yaml
+    kubectl -n bookinfo apply -f istio-1.11.2/samples/bookinfo/platform/kube/bookinfo.yaml
     ```
     
     The response should look like:
@@ -245,7 +245,7 @@ then deploy.
 1.  Wait until the application is up:
 
     ```console
-    $ kubectl -n bookinfo wait --timeout 120s --for=condition=Available deployment productpage-v1
+    kubectl -n bookinfo wait --timeout 120s --for=condition=Available deployment productpage-v1
     ```
 
 [bookinfo]:https://istio.io/latest/docs/examples/bookinfo/
@@ -280,7 +280,7 @@ to expose it as a service with [Ingress][ingress].
 1.  Apply the manifest:
 
     ```console
-    $ kubectl apply -f bookinfo-ingress.yaml
+    kubectl apply -f bookinfo-ingress.yaml
     ```
 
 1.  To make HTTP requests using Kong Gateway as ingress, you need the IP address of the 
@@ -288,7 +288,7 @@ load balancer. Get the `LoadBalancer` address and store it in a local `PROXY_IP`
 environment variable:
 
     ```console
-    $ export PROXY_IP=$(kubectl -n kong-istio get svc kong-istio-kong-proxy -o=jsonpath='{.status.loadBalancer.ingress[0].ip}')
+    export PROXY_IP=$(kubectl -n kong-istio get svc kong-istio-kong-proxy -o=jsonpath='{.status.loadBalancer.ingress[0].ip}')
     ```
 
     If you're running your cluster on AWS, specify `.hostname` instead of `.ip`. This is because the AWS load balancer 
@@ -300,13 +300,13 @@ environment variable:
 1.  Make an external connection request:
 
     ```console
-    $ curl -s -v http://$PROXY_IP | head -4
+    curl -s -v http://$PROXY_IP | head -4
     ```
     
     The response should look like:
 
     ```console
-    $ curl -s -v http://$PROXY_IP | head -4
+    curl -s -v http://$PROXY_IP | head -4
     *   Trying 127.0.0.1:80...
     * Connected to 127.0.0.1 (127.0.0.1) port 80 (#0)
     > GET / HTTP/1.1
@@ -337,7 +337,7 @@ Note the following in the response:
 
 - `<title>Simple Bookstore App</title>` - connected to the `BookInfo` app as expected.
 - `server: istio-envoy` - the Istio mesh network is in use for the `BookInfo` product page.
-- `via: kong/2.5.0` -  Kong Gateway provides the connection to the backend `BookInfo` service.
+- `via: kong/2.5.0` -  {{site.base_gateway}} provides the connection to the backend `BookInfo` service.
 
 [ingress]:https://kubernetes.io/docs/concepts/services-networking/ingress/
 
@@ -364,19 +364,19 @@ service. The plugin adds rate limiting to the `BookInfo` application and limits 
 1.  Apply the manifest:
 
     ```console
-    $ kubectl apply -f bookinfo-ratelimiter.yaml
+    kubectl apply -f bookinfo-ratelimiter.yaml
     ```
 
 1.  Add an annotation to the `Ingress` resource to attach rate limiting:
 
     ```console
-    $ kubectl -n bookinfo patch ingress productpage -p '{"metadata":{"annotations":{"konghq.com/plugins":"rate-limit"}}}'
+    kubectl -n bookinfo patch ingress productpage -p '{"metadata":{"annotations":{"konghq.com/plugins":"rate-limit"}}}'
     ```
 
 1.  Inspect the headers in the response from the BookInfo product page:
 
     ```console
-    $ curl -s -v http://$PROXY_IP 2>&1 | grep ratelimit
+    curl -s -v http://$PROXY_IP 2>&1 | grep ratelimit
     ```
 
     The response should look like:
@@ -399,7 +399,7 @@ For more examples of Kong features to add to your environment, see the
 ### Mesh network observability with Kiali
 
 For observability, Istio includes a web console called [Kiali][kiali] that can
-provide [topology][kiali-topology], [health][kiali-health] and 
+provide [topology][kiali-topology], [health][kiali-health], and 
 [other features][kiali-features] to provide insights
 into your application traffic.
 
@@ -409,7 +409,7 @@ Istio includes these as addons. Here's what to do:
 1.  Install Prometheus:
 
     ```console
-    $ kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.11/samples/addons/prometheus.yaml
+    kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.11/samples/addons/prometheus.yaml
     ```
     The response should look like:
 
@@ -425,7 +425,7 @@ Istio includes these as addons. Here's what to do:
 1.  Install [Grafana][graphana]:
 
     ```console
-    $ kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.11/samples/addons/grafana.yaml
+    kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.11/samples/addons/grafana.yaml
     ```
 
     The response should look like:
@@ -442,7 +442,7 @@ Istio includes these as addons. Here's what to do:
 1.  Install Kiali:
 
     ```console
-    $ kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.11/samples/addons/kiali.yaml
+    kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.11/samples/addons/kiali.yaml
     ```
 
     The response should look like:
@@ -462,7 +462,7 @@ Istio includes these as addons. Here's what to do:
 1.  Generate traffic for the BookInfo application, to create traffic metrics to view in Kiali:
 
     ```console
-    $ COUNT=25 ; until [ $COUNT -le 0 ]; do curl -s -o /dev/null http://$PROXY_IP ; ((COUNT--)); done
+    COUNT=25 ; until [ $COUNT -le 0 ]; do curl -s -o /dev/null http://$PROXY_IP ; ((COUNT--)); done
     ```
 
 1.  In a production environment, you'd access the Kiali dashboard through the Kong 
@@ -473,7 +473,7 @@ provides.
     In a new terminal, run: 
 
     ```console
-    $ istioctl dashboard kiali
+    istioctl dashboard kiali
     ```
 
     This runs a `port-forward` to Kiali in the background and opens it in your web browser. 
@@ -497,7 +497,7 @@ topology for your `BookInfo` application's web requests:
 - Select the three dots button in the top-right corner of _Graph Overview_ and select _Show full graph_.
 - Select `kong-istio` alongside `bookinfo` in the _Namespace_ diagram.
 
-You should see a connection graph that shows connections from the Kong Gateway 
+You should see a connection graph that shows connections from the {{site.base_gateway}} 
 deployed at the edge of your cluster down to the backend BookInfo application.
 The graph demonstrates some of the fundamental capabilities of Istio, and you can 
 explore further with Kiali. For more information, see the
