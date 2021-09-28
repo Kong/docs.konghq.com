@@ -62,6 +62,7 @@
 /plugins/*                                  /hub/kong-inc/:splat
 
 # Konnect
+/konnect/org-management/okta-role-mapping           /konnect/org-management/okta-idp/#map-roles-to-groups
 /konnect/access-beta                                /konnect/access-account
 /konnect/service-hub                                /konnect/servicehub/
 /konnect/service-hub/*                              /konnect/servicehub/:splat
