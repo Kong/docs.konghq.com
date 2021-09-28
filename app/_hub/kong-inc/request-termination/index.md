@@ -80,7 +80,7 @@ params:
     - name: echo
       required: false
       default: false
-      description: When set, the plugin will echo a copy of the request back to the client. The main usecase for this is debugging. It can be combined with `trigger` in order to debug requests on live systems without disturbing real traffic
+      description: When set, the plugin will echo a copy of the request back to the client. The main usecase for this is debugging. It can be combined with `trigger` in order to debug requests on live systems without disturbing real traffic.
 
   extra: |
     Once applied, every request (within the configured plugin scope of a Service,

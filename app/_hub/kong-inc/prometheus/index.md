@@ -54,6 +54,7 @@ params:
 ### New in 1.4.x
 
 * New `data_plane_cluster_cert_expiry_timestamp` metric
+* Added `subsystem` label to Upstream Target health metrics
 
 Metrics are available on both the Admin API and Status API at the
 `http://localhost:<port>/metrics`
@@ -86,7 +87,11 @@ dashboard: [https://grafana.com/dashboards/7424](https://grafana.com/dashboards/
 - **Connections**: Various Nginx connection metrics like active, reading,
   writing, and number of accepted connections.
 - **Target Health**: The healthiness status (`healthchecks_off`, `healthy`, `unhealthy`, or `dns_error`) of Targets
+<<<<<<< HEAD
   belonging to a given Upstream.
+=======
+  belonging to a given Upstream as well as their subsystem (`http` or `stream`).
+>>>>>>> f572c84a7ddb7d3e6e8ff1e955213d3aac3aabf4
 - **Dataplane Status**: The last seen timestamp, config hash, config sync status and certificate expiration timestamp for
 data plane nodes is exported to control plane.
 - **Enterprise License Information**: The {{site.ee_gateway_name}} license expiration date, features and
@@ -204,10 +209,10 @@ kong_data_plane_version_compatible{node_id="d4e7584e-b2f2-415b-bb68-3b0936f1fde3
 # TYPE kong_nginx_metric_errors_total counter
 kong_nginx_metric_errors_total 0
 # HELP kong_upstream_target_health Health status of targets of upstream. States = healthchecks_off|healthy|unhealthy|dns_error, value is 1 when state is populated.
-kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="healthchecks_off"} 0
-kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="healthy"} 1
-kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="unhealthy"} 0
-kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="dns_error"} 0
+kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="healthchecks_off",subsystem="http"} 0
+kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="healthy",subsystem="http"} 1
+kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="unhealthy",subsystem="http"} 0
+kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="dns_error",subsystem="http"} 0
 ```
 
 ### Accessing the metrics
