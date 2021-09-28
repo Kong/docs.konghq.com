@@ -1,0 +1,79 @@
+- title: Introduction
+  icon: /assets/images/icons/documentation/icn-flag.svg
+  url: /deck/
+  absolute_url: true
+  items:
+    - text: Terminology
+      url: /terminology
+    - text: Architecture
+      url: /design-architecture
+    - text: Compatibility Promise
+      url: /compatibility-promise
+
+- title: Changelog
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  url: https://github.com/kong/deck/blob/main/CHANGELOG.md
+  absolute_url: true
+
+- title: Installation
+  icon: /assets/images/icons/documentation/icn-deployment-color.svg
+  url: /installation
+
+- title: Guides
+  icon: /assets/images/icons/documentation/icn-solution-guide.svg
+  items:
+    - text: Getting Started with decK
+      url: /guides/getting-started
+    - text: Backup and Restore
+      url: /guides/backup-restore
+    - text: Configuration as Code and GitOps
+      url: /guides/ci-driven-configuration
+    - text: Distributed Configuration
+      url: /guides/distributed-configuration
+    - text: Best Practices
+      url: /guides/best-practices
+    - text: Using decK with Kong Gateway (Enterprise)
+      url: /guides/kong-enterprise
+    - text: Using Multiple Files to Store Configuration
+      url: /guides/multi-file-state
+    - text: De-duplicate Plugin Configuration
+      url: /guides/deduplicate-plugin-configuration
+    - text: Set Up Object Defaults
+      url: /guides/defaults
+
+- title: decK CLI Reference
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  url: /reference/deck
+  items:
+    - text: deck completion
+      url: /reference/deck_completion
+    - text: deck convert
+      url: /reference/deck_convert
+    - text: deck diff
+      url: /reference/deck_diff
+    - text: deck dump
+      url: /reference/deck_dump
+    - text: deck ping
+      url: /reference/deck_ping
+    - text: deck reset
+      url: /reference/deck_reset
+    - text: deck sync
+      url: /reference/deck_sync
+    - text: deck validate
+      url: /reference/deck_validate
+    - text: deck version
+      url: /reference/deck_version
+    - text: deck konnect
+      url: /reference/deck_konnect
+    - text: deck konnect diff
+      url: /reference/deck_konnect_diff
+    - text: deck konnect dump
+      url: /reference/deck_konnect_dump
+    - text: deck konnect ping
+      url: /reference/deck_konnect_ping
+    - text: deck konnect sync
+      url: /reference/deck_konnect_sync
+
+- title: FAQ
+  icon: /assets/images/icons/documentation/icn-faq-color.svg
+  url: /faqs

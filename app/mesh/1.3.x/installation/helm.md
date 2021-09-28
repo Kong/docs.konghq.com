@@ -51,11 +51,19 @@ suggest `kong-mesh-system`.
 
 3. Deploy the {{site.mesh_product_name}} Helm chart:
 
-    ```sh
-    $ helm repo update
-    $ helm upgrade -i -n kong-mesh-system kong-mesh kong-mesh/kong-mesh
-    ```
-
+   By default the license option is disabled and so you need to enable it in order for the license to take effect.
+   The easiest option is to override each field on the CLI, the only 
+   downside with this is every time you run a helm upgrade you need to supply these values otherwise they will be 
+   reverted back to what the charts default values are for those fields, i.e. disabled
+   
+      ```sh
+      $ helm repo update
+      $ helm upgrade -i -n kong-mesh-system kong-mesh kong-mesh/kong-mesh \
+        --set kuma.controlPlane.secrets[0].Env="KMESH_LICENSE_INLINE" \
+        --set kuma.controlPlane.secrets[0].Secret="kong-mesh-license" \
+        --set kuma.controlPlane.secrets[0].Key="license.json"
+      ```
+   
     This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
     deployment, but there are more advanced [deployment modes](https://kuma.io/docs/latest/documentation/deployments/)
     like _multi-zone_.

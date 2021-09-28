@@ -4,51 +4,32 @@
 
 # KONG's Documentation Website
 
-This repository holds source code for [Kong](https://github.com/Kong/kong)'s documentation website. It's built using [Jekyll](https://jekyllrb.com/) and deployed with [Netlify](https://www.netlify.com/). 
+This repository contains the source content and code for [Kong](https://github.com/Kong/kong)'s documentation website. It's built using [Jekyll](https://jekyllrb.com/) and deployed with [Netlify](https://www.netlify.com/). 
 
 Here are some things to know before you get started:
 
-* **We're beginner-friendly**. Whether you're a Technical Writer getting into code-as-docs or an engineer practicing your documentation skills, we highly encourage your involvement in our project. If you'd like to contribute and don't have something in mind already, head on over to [Issues](https://github.com/Kong/docs.konghq.com/issues). We've added `good first issue` labels on beginner-friendly issues.
+* **We're beginner-friendly**. Whether you're a Technical Writer learning about docs-as-code or an engineer practicing your documentation skills, we welcome your involvement. If you'd like to contribute and don't have something in mind already, head on over to [Issues](https://github.com/Kong/docs.konghq.com/issues). We've added `good first issue` labels on beginner-friendly issues.
 
 * **We need more help in some areas**. We'd especially love some help with [plugin](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub) documentation. 
 
-* **Some of our docs are auto-generated**. 
+* **Some of our docs are generated**. 
     * [Admin API](https://docs.konghq.com/gateway-oss/)
     * [Configuration reference](https://docs.konghq.com/gateway-oss/latest/configuration/)
     * [CLI reference](https://docs.konghq.com/gateway-oss/latest/cli/)
     * [Upgrade guide](https://docs.konghq.com/gateway-oss/latest/upgrading/) 
 
-All PRs for these docs should be opened over at the [Kong/kong](https://github.com/Kong/kong) repository.
+All pull requests for these docs should be opened on the [Kong/kong](https://github.com/Kong/kong) repository.
 
 For [Gateway Enterprise configuration reference](https://docs.konghq.com/enterprise/latest/property-reference/) and [PDK reference](https://docs.konghq.com/gateway-oss/latest/pdk/) documentation, open an issue on this repo and we'll update the docs. 
 
-* **Community is a priority for us**. Before submitting an issue or PR, please review our [Contributing Guide](https://docs.konghq.com/contributing/).
+* **Community is a priority for us**. Before submitting an issue or pull request, make sure to review our [Contributing Guide](https://docs.konghq.com/contributing/).
 
-* We are currently accepting plugin submissions, on a limited basis, from trusted technical partners to our plugin hub. To learn more about our partner program, see our [Kong Partners page](https://konghq.com/partners/).
+* We are currently accepting plugin submissions to our plugin hub from trusted technical partners, on a limited basis. For more information, see the [Kong Partners page](https://konghq.com/partners/).
 
 ## Run local project
 ***
 
-For anything other than minor changes, clone the repository onto your local machine and build locally. We offer the option to run your project locally with Docker, gulp, and npm. 
-
-## Run locally with Docker
-***
-
-### Prerequisites
-
-- [Docker](https://www.docker.com/products/docker-desktop) (You will not need to run the Docker container via Docker Desktop.)
-
-### Start container
-
-Start the Docker container (this installs dependencies for you and may take a few minutes):
-```
-make develop
-```
-
-If you have issues, run:
-```
-make clean
-```
+For anything other than minor changes, clone the repository onto your local machine and build locally. 
 
 ## Run locally with gulp
 ***
@@ -99,7 +80,7 @@ npm start
 ## Plugin contributors
 ***
 
-If you have contributed a plugin, we welcome you to add a Kong badge to your plugin README.
+If you have contributed a plugin, you can add a Kong badge to your plugin README.
 
 Use the following, where you replace `test` with your plugin name and `link-to-docs` with a link to the Kong docs for your plugin. 
 
@@ -114,7 +95,7 @@ See [Issue #908](https://github.com/Kong/docs.konghq.com/issues/908) for more in
 ## Generate the PDK, Admin API, CLI, and Configuration documentation
 ***
 
-> This section is for Kong source code maintainers. You won't need to do anything here if you're contributing to this repo!
+> This section is for Kong source code maintainers. You don't need to do anything here if you're contributing to this repo!
 
 The PDK docs, Admin API docs, `cli.md` and `configuration.md` for each release are generated from the Kong source code.
 
@@ -157,9 +138,9 @@ Then open a pull request against `release/2.4`.
 
 Tests for this site are written using `rspec` and `capybara` with the `apparition` driver.
 
-> You'll need Google Chrome installed to run these tests
+> You'll need Google Chrome installed to run these tests.
 
-To run the tests, you must first build the site by running `make build` before running `make rspec`
+To run the tests, you must first build the site by running `make build` before running `make rspec`.
 
 Many of the tests are smoke tests to check issues that occurred whilst adding caching to the site, such as ensuring that the side navigation isn't cached.
 
@@ -172,11 +153,11 @@ it "has the 'Welcome to Kong' header" do
 end
 ```
 
-This test framework can also be used to test behaviour added with JavaScript, but we do not have any examples at this time
+This test framework can also be used to test behavior added with JavaScript, but we do not have any examples at this time.
 
 ## Continuous Integration
 
-We run various quality checks at build time to ensure that the documentation is maintainable.G
+We run various quality checks at build time to ensure that the documentation is maintainable.
 
 ### include-check
 

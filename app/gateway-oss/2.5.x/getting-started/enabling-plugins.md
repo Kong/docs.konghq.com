@@ -13,14 +13,14 @@ title: Enabling Plugins
 
 In this section, you'll learn how to configure Kong plugins. One of the core
 principles of Kong is its extensibility through [plugins][plugins]. Plugins
-allow you to easily add new features to your Service or make it easier to
+allow you to easily add new features to your Service and make it easier to
 manage.
 
-In the steps below, you will configure the [key-auth][key-auth] plugin to add
+In the steps below, you have to configure the [key-auth][key-auth] plugin to add
 authentication to your Service. Prior to the addition of this plugin, **all**
-requests to your Service would be proxied upstream. Once you add and configure this
-plugin, **only** requests with the correct key(s) will be proxied - all
-other requests will be rejected by Kong, thus protecting your upstream service
+requests to your Service is going to be proxied upstream. Once you add and configure this
+plugin, **only** requests with the correct key(s) are proxied. All
+other requests are rejected by Kong to protect your upstream service
 from unauthorized use.
 
 
@@ -42,10 +42,10 @@ are supported) that are supposed to contain the apikey during a request.
 ## 2. Verify that the plugin is properly configured
 
 Issue the following cURL request to verify that the [key-auth][key-auth]
-plugin was properly configured on the Service:
+plugin is properly configured on the Service:
 
 ```bash
-$ curl -i -X GET \
+curl -i -X GET \
   --url http://localhost:8000/ \
   --header 'Host: example.com'
 ```
@@ -65,7 +65,7 @@ HTTP/1.1 401 Unauthorized
 ## Next Steps
 
 Now that you've configured the **key-auth** plugin lets learn how to add
-consumers to your Service so we can continue proxying requests through Kong.
+consumers to your Service so that you can continue proxying requests through Kong.
 
 Go to [Adding Consumers &rsaquo;][adding-consumers]
 

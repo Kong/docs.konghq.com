@@ -26,43 +26,59 @@ jQuery(function () {
 
   // Active link
   var url = $(".page.v2").data("url");
-  if (url){
+  if (url) {
     var urlNoSlash = url.slice(0, -1);
-    var activeNav = $(".docs-sidebar li a[href='"+url+"'], .docs-sidebar li a[href='"+urlNoSlash+"'] ").addClass("active");
+    var activeNav = $(".docs-sidebar li a[href='" + url + "'], .docs-sidebar li a[href='" + urlNoSlash + "'] ").addClass("active");
     activeNav.parents(".accordion-item").addClass("active");
   };
 
   // MODULE DROPDOWN: dropdown menu functionality (handles main product dropdown)
-  $("#module-dropdown").on("click", function(e) {
+  $("#module-dropdown").on("click", function (e) {
     e.preventDefault();
     e.stopPropagation();
 
     $("#module-list").toggleClass("open");
 
-    $(document).one('click', function closeMenu (e){
-        if($('#module-list').has(e.target).length === 0){
-            $('#module-list').removeClass('open');
-        } else {
-            $(document).one('click', closeMenu);
-        }
+    $(document).one('click', function closeMenu(e) {
+      if ($('#module-list').has(e.target).length === 0) {
+        $('#module-list').removeClass('open');
+      } else {
+        $(document).one('click', closeMenu);
+      }
     });
   });
 
   // VERSION DROPDOWN: dropdown menu functionality (handles plugin detail page, lua, and main versions dropdown)
-  $("#version-dropdown").on("click", function(e) {
+  $("#version-dropdown").on("click", function (e) {
     e.preventDefault();
     e.stopPropagation();
 
     $("#version-list").toggleClass("open");
 
-    $(document).one('click', function closeMenu (e){
-        if($('#version-list').has(e.target).length === 0){
-            $('#version-list').removeClass('open');
-        } else {
-            $(document).one('click', closeMenu);
-        }
+    $(document).one('click', function closeMenu(e) {
+      if ($('#version-list').has(e.target).length === 0) {
+        $('#version-list').removeClass('open');
+      } else {
+        $(document).one('click', closeMenu);
+      }
     });
   });
+
+    // COMPAT DROPDOWN: dropdown menu functionality (handles /konnect-platform/compatibility dropdown)
+    $("#compat-dropdown").on("click", function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      $("#compat-list").toggleClass("open");
+
+      $(document).one('click', function closeMenu (e){
+          if($('#compat-list').has(e.target).length === 0){
+              $('#compat-list').removeClass('open');
+          } else {
+              $(document).one('click', closeMenu);
+          }
+      });
+    });
 
   // COOKIE MODAL: Hide banner on "I accept" and set cookie
   $(".cookie-policy-accept").on("click", function (e) {
@@ -246,8 +262,46 @@ jQuery(function () {
     ); // Adjust scroll speed
   }
 
-  // Plugins filter
-  $("a[data-filter]").on("click", function () {
+// Plugins filter on click
+$("a[data-filter]").on("click", function () {
+  $("html, body").animate({ scrollTop: 0 });
+  var target = $(this).data("filter");
+  console.log(this);
+
+  // Remove any active classes that may already be applied
+  $("a[data-filter]").removeClass("active");
+  // Add active class sidebar a
+  $(this).addClass("active");
+
+  // For all faded cards, replace href with data-href target
+  $(".card-group.fadeOut").each(function () {
+    var link = $(this).find("a");
+    link.attr("href", $(link).attr("data-href"));
+    link.removeAttr("data-href");
+  });
+
+  // Remove any fade states that may already be applied
+  $(".card-group").removeClass("fadeOut");
+
+  // If the target of the li is not all continue
+  if (target !== "all") {
+    // Fade all cards that don't have matching filter
+    $(".card-group")
+      .not("." + target)
+      .addClass("fadeOut");
+    // For each faded card, move href to data-href and remove href
+    $(".card-group.fadeOut").each(function () {
+      var link = $(this).find("a");
+      link.attr("data-href", $(link).attr("href"));
+      link.removeAttr("href");
+    });
+  }
+});
+
+// Plugin filter on keypress
+$("a[data-filter]").on("keypress", function(e) {
+  if (e.keyCode === 13) {
+    $("html, body").animate({ scrollTop: 0 });
     var target = $(this).data("filter");
 
     // Remove any active classes that may already be applied
@@ -256,36 +310,36 @@ jQuery(function () {
     $(this).addClass("active");
 
     // For all faded cards, replace href with data-href target
-    $(".plugin-card.fadeOut").each(function () {
+    $(".card-group.fadeOut").each(function () {
       var link = $(this).find("a");
       link.attr("href", $(link).attr("data-href"));
       link.removeAttr("data-href");
     });
 
     // Remove any fade states that may already be applied
-    $(".plugin-card").removeClass("fadeOut");
+    $(".card-group").removeClass("fadeOut");
 
     // If the target of the li is not all continue
     if (target !== "all") {
       // Fade all cards that don't have matching filter
-      $(".plugin-card")
+      $(".card-group")
         .not("." + target)
         .addClass("fadeOut");
       // For each faded card, move href to data-href and remove href
-      $(".plugin-card.fadeOut").each(function () {
+      $(".card-group.fadeOut").each(function () {
         var link = $(this).find("a");
         link.attr("data-href", $(link).attr("href"));
         link.removeAttr("href");
       });
     }
-  });
+}});
 
   // Responsive Tables
   if ($window.width() <= 1099) {
     mobileTable();
   }
 
-  $(window).on("resize", (function(){
+  $(window).on("resize", (function () {
     if ($window.width() <= 1099) {
       mobileTable();
     }
@@ -447,6 +501,7 @@ jQuery(function () {
         $(document.body).addClass("image-modal-no-scroll");
         imageModal.addClass("visible");
         imageModal.find("img").attr("src", $img.attr("src"));
+        imageModal.find("img").attr("alt", $img.attr("alt"));
 
         document.addEventListener("keydown", imageModalKeyDown);
       });
@@ -547,7 +602,7 @@ jQuery(function () {
 });
 
 jQuery(function () {
-  var closed = localStorage.getItem("closebanner-konnect");
+  var closed = localStorage.getItem("closebanner-hackathon");
   if (
     closed !== "closebanner"
   ) {
@@ -590,5 +645,5 @@ setInterval(function () {
 
 $(".closebanner").on("click", function () {
   $(".navbar-v2").addClass("closed");
-  localStorage.setItem("closebanner-konnect", "closebanner");
+  localStorage.setItem("closebanner-hackathon", "closebanner");
 });

@@ -1,0 +1,369 @@
+
+.page-hub {
+  font-family: @family-display;
+
+    // Sets scroll distance for skip to content button
+    #main {
+      scroll-margin-top: 100px;
+    }
+
+    h1 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 67px;
+    color: #043558;
+    margin-bottom: 10px;
+    }
+
+    h2 {
+      text-align: center;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 28px;
+      color: #4c6d80;
+    }
+
+    h3 {
+        color: @blue-700;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: .5px;
+        text-transform: uppercase;
+        margin-left: 1.2rem;
+    }
+
+    h4 {
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 28px;
+        width: 100%;
+        letter-spacing: .5px;
+        margin: 15px 16px 10px;
+        color: @blue-700;
+    }
+
+.page-header {
+      margin: 10px auto;
+      background-color: #ffffff;
+      border-bottom: none;
+      text-align: center;
+  }
+
+  @media (max-width: 991px) {
+  .page-header {
+      max-width: 80%;
+    }
+  }
+
+  // Container for sidebar and plugin cards
+  .container {
+    display: flex;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    position: relative;
+
+    *,::after,::before {
+        box-sizing: inherit;
+    }
+  }
+
+  @media (min-width: 1200px) {
+      .container {
+          padding-right: 16px;
+          padding-left: 16px;
+          max-width: 1280px;
+      }
+    }
+
+  @media (max-width: 1350px) {
+      .container {
+        .card-group {
+            flex: 0 0 50%;
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 50%;
+            max-width: 50%;
+        }
+      }
+    }
+
+  @media (max-width: 991px) {
+      .container {
+          .sidebar  {
+            display: none;
+        }
+      }
+    }
+
+  @media (max-width: 690px) {
+      .container {
+        .card-group {
+            flex: 0 0 100%;
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 100%;
+            max-width: 100%;
+            align-items: center;
+        }
+      }
+    }
+
+  // Card rows
+  .row {
+      display: flex;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+      margin-bottom: 2rem;
+  }
+
+  // Card container that defines relationships between cards
+  .card-group {
+      position: relative;
+      display: flex;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-box-flex: 0;
+      flex-flow: row wrap;
+      -ms-flex-flow: row wrap;
+      flex: 0 0 33.33333%;
+      -ms-flex: 0 0 33.33333%;
+      max-width: 33.33333%;
+      width: 33.3333%;
+      margin-top: 1rem;
+      min-height: 1px;
+      padding-right: 16px;
+      padding-left: 16px;
+  }
+
+  //  Occurs when you click on a filter
+  .fadeOut {
+      display: none;
+  }
+
+  // Internal card container
+  .plugin-card {
+      display: inline-block;
+      align-items: center;
+      transition: opacity .3s ease;
+      background-color: #FFF;
+      position: relative;
+      overflow: hidden;
+      padding: 25px;
+      box-shadow: 4px 4px 14px rgba(0, 48, 130, 0.1);
+      border-radius: 8px;
+      width: 100%;
+      margin-bottom: .75rem;
+
+      a {
+          display: block;
+      }
+
+    // PLUS badge
+    .plugin-badge.plus:after {
+        position: absolute;
+        display: block;
+        content: 'PLUS';
+        top: 30px;
+        left: 0;
+        height: 2rem;
+        width: 50px;
+        color: white;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1.5rem;
+        text-align: left;
+        opacity: 0.8;
+        background: @blue-500;
+        border-radius: 0 10px 10px 0;
+        padding: 3px 10px 3px;
+    }
+
+    // ENTERPRISE badge
+    .plugin-badge.enterprise:after {
+      position: absolute;
+      display: block;
+      content: 'ENTERPRISE';
+      top: 7px;
+      left: 0;
+      height: 2rem;
+      width: 90px;
+      color: white;
+      font-size: 12px;
+      font-weight: 500;
+      text-align: left;
+      line-height: 1.2rem;
+      opacity: 0.8;
+      background: #505659;
+      border-radius: 0 10px 10px 0;
+      padding: 4px 10px 4px;
+    }
+
+    // Plugin name and description
+    .name-desc {
+      padding-bottom: 60px;
+      padding-top: 15px;
+      text-align: center;
+      font-weight: normal;
+      font-size: 15px;
+      line-height: 22px;
+      color: #043558;
+    }
+
+    .plugin-name {
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
+      font-size: 17px;
+      line-height: 24px;
+    }
+
+    .plugin-desc {
+      line-height: 20px;
+      font-weight: 400;
+      color: #4c6d80;
+    }
+
+    // Plugin icon
+    .card-img-top {
+      height: 64px;
+      width: 65px;
+      margin-bottom: 8px;
+      border-top-right-radius: calc(.25rem - 1px);
+      border-top-left-radius: calc(.25rem - 1px)
+    }
+
+    // "Support by" label
+    .publisher {
+      width: 100%;
+      text-align: right;
+      font-size: 15px;
+      color: @steel-500;
+      letter-spacing: 0.25px;
+      position: absolute;
+      bottom: 25px;
+      right: 28px;
+      z-index: 5;
+
+      p {
+          margin-bottom: 8px;
+      }
+
+      svg {
+          margin-top: 5px;
+          opacity: 0.8;
+      }
+    }
+  }
+
+  .plugin-card:hover {
+      background-color: #F8F9FC;
+
+      .plugin-name {
+        color: @blue-500;
+      }
+    }
+
+  // Left side navigation
+  .sidebar {
+      position: relative;
+      max-width: 100%;
+      min-height: 1px;
+      padding-right: 16px;
+      padding-left: 16px;
+      -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+      -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+      flex-grow: 1;
+      float: left;
+      padding-top: 10px;
+      color: @blue-700;
+
+      a {
+        color: rgba(0,0,0,0.45);
+        transition: color .3s;
+        will-change: color;
+        font-size: 15px;
+      }
+
+      .no-link {
+          font-size: 13px;
+          font-weight: 500;
+          letter-spacing: 0;
+          line-height: 20px;
+          margin: 15px -10px 10px;
+          text-transform: uppercase;
+        }
+
+      .cta-container {
+          margin-top: 0;
+          margin-left: 30px;
+          margin-bottom: 50px;
+          padding-bottom: 30px;
+      }
+
+      .nav-item {
+          list-style: none;
+          margin-bottom: .3em;
+          margin-right: 40px;
+
+          a {
+            border-left: 2px solid transparent;
+            color: #4c6d80;
+            cursor: pointer;
+
+            &.active {
+              color: @blue-500;
+              font-weight: 500;
+              border-left: 2px solid @blue-500;
+            }
+
+            &:hover {
+              color: @blue-500;
+              font-weight: 500;
+              border-left: 2px solid @blue-500;
+              text-decoration: none;
+            }
+        }
+
+        .nav-link {
+            display: block;
+            padding: 5px 15px;
+        }
+      }
+
+    #introduction, #facet-filters, #scroll-sidebar {
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    // Scroll behavior
+    .sticky-top {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 135px;
+        height: calc(100vh - 56px);
+        border-right: 1px solid @grey-200;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        margin-right: 10px;
+        margin-top: 1rem;
+        z-index: 2px;
+        scrollbar-width: thin;
+    }
+
+    .sticky-top::-webkit-scrollbar {
+          width: 2px;
+        }
+
+    .sticky-top::-webkit-scrollbar-thumb {
+      background-color: @steel-200;
+      outline: 1px solid @steel-200;
+    }
+  }
+}

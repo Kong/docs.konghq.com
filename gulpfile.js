@@ -26,6 +26,7 @@ var sources = {
   js: [
     paths.assets + "javascripts/jquery-3.6.0.min.js",
     paths.assets + "javascripts/app.js",
+    paths.assets + "javascripts/compat-dropdown.js",
     paths.assets + "javascripts/subscribe.js",
     paths.assets + "javascripts/editable-code-snippet.js",
     paths.assets + "javascripts/navbar.js",
@@ -97,7 +98,6 @@ function images() {
   return gulp
     .src(sources.images)
     .pipe($.plumber())
-    .pipe($.if(!dev, $.imagemin()))
     .pipe(gulp.dest(paths.dist + "assets/images"))
     .pipe($.if(!dev, $.size()));
 }
@@ -383,7 +383,7 @@ function watch_files() {
   gulp.watch(sources.styles, styles);
   gulp.watch(sources.images, gulp.series(images, reload_browser));
   gulp.watch(sources.js, gulp.series(js, reload_browser));
-  gulp.watch(paths.assets + "css/hub.css", css);
+  gulp.watch(paths.assets, css);
 }
 
 function set_dev(cb) {
@@ -399,7 +399,6 @@ gulp.task("js_min", js);
 gulp.task("css", css);
 gulp.task("styles", styles);
 gulp.task("images", gulp.series(set_dev, images));
-gulp.task("images_min", images);
 gulp.task("fonts", fonts);
 gulp.task("jekyll", jekyll);
 gulp.task("html", html);

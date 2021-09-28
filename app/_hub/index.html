@@ -14,76 +14,76 @@ body_id: page-hub
 {% assign types = site.extensions.types %}
 
 <div class="page page-hub">
-  <header class="page-header">
-    <h2 class="text-center" id="main" tabindex="-1">Kong Plugin Hub</h2>
-    <h3 class="text-center">Extend {{site.konnect_product_name}} with powerful plugins and easy integrations</h3>
-  </header>
-  <div class="container kong-plugins">
+  <div class="page-header">
+    <h1 id="main" tabindex="-1">Kong Plugin Hub</h1>
+    <h2>Extend {{site.konnect_product_name}} with powerful plugins and easy integrations</h2>
+  </div>
+  <div class="container">
     <div class="row">
-      <div class="col col-lg-3 hidden-md-down sidebar">
-        <div class="sticky-top" style="top: 135px;">
-          <h5 class="my-1x">Introduction</h5>
-          <ul class="nav flex-column" id="introduction">
-            <li class="nav-item">
+      <aside class="sidebar">
+        <div class="sticky-top">
+          <h3>Introduction</h3>
+          <ul class="nav flex-column" id="introduction" role="menu">
+            <li class="nav-item" role="menuitem">
               <a class="nav-link" href="/hub/plugins/overview">
                 Plugin Overview
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" role="menuitem">
               <a class="nav-link" href="/konnect-platform/compatibility/plugins">
                 Compatibility
               </a>
             </li>
           </ul>
-          <h5 class="my-1x">Filters</h5>
-          <ul class="nav flex-column" id="facet-filters">
+          <h3>Filters</h3>
+          <ul class="nav flex-column" id="facet-filters" role="menu">
             <li class="nav-item">
-              <a class="nav-link active" data-filter="">
+              <a class="nav-link active" data-filter="" role="menuitem" tabindex="0">
                 All Plugins
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-filter="pub-not-konghq">
+              <a class="nav-link" data-filter="pub-not-konghq" role="menuitem" tabindex="0">
                 Third-Party
               </a>
             </li>
-            <p class="cta-description sm font-weight-bold">{{site.konnect_short_name}} license tiers</p>
+            <p class="no-link">{{site.konnect_short_name}} license tiers</p>
             <li class="nav-item">
-              <a class="nav-link" data-filter="open-source">
+              <a class="nav-link" data-filter="open-source" role="menuitem" tabindex="0">
                 Free
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-filter="plus">
+              <a class="nav-link" data-filter="plus" role="menuitem" tabindex="0">
                 Plus
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" data-filter="ee-compat">
+            <li class="nav-item" role="menuitem">
+              <a class="nav-link" data-filter="ee-compat" role="menuitem" tabindex="0">
                 Enterprise
               </a>
             </li>
           </ul>
-          <h5 class="my-1x">Functionality</h5>
-          <ul class="nav flex-column" id="scroll-sidebar">
+          <h3>Functionality</h3>
+          <ul class="nav flex-column" id="scroll-sidebar" role="menu">
             {% for cat in categories %}
-              <li class="nav-item">
+              <li class="nav-item" role="menuitem">
                 <a class="nav-link" data-link="scroll" href="#{{ cat.slug }}">
                   {{ cat.name }}
                 </a>
               </li>
             {% endfor %}
           </ul>
-          <div class="cta-container">
+          <!-- <div class="cta-container">
             <a class="nav-link" href="/contributing/plugin-docs" target="_blank">List your plugin here</a>
-          </div>
+          </div> -->
         </div>
       </div>
-      <div class="col-12 col-lg-9 hub-cards">
-        <div class="row mb-2x">
+      <div class="hub-cards">
+        <div class="row">
           {% for cat in categories %}
             <div class="row category" id="{{cat.slug}}">
-              <h5>{{ cat.name }}</h5>
+              <h4>{{ cat.name }}</h4>
               {% assign extns = kong_extns | where_exp: "extn","extn.categories contains cat.slug" %}
               {% for extn in extns  %}
                 {% include hub_cards.html header_icon=page.header_icon %}
@@ -94,8 +94,7 @@ body_id: page-hub
               {% endfor %}
             </div>
           {% endfor %}
-        </div><!-- row mb-2x  -->
-      </div><!-- col-12  -->
-    </div><!-- row -->
-  </div><!-- kong-plugins -->
-</div><!-- page -->
+        </div>
+      </div>
+    </div>
+</div>

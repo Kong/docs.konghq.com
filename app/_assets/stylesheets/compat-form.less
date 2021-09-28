@@ -1,0 +1,85 @@
+// Styling for the compatibility form and table located under
+// /app/konnect-platform/compatibility
+
+.compat-form {
+  border: 1px solid @grey-200;
+  border-radius: 3px;
+  margin-top: 5px;
+  margin-bottom: 40px;
+  padding: 30px;
+  box-shadow: 4px 4px 14px rgba(0, 48, 130, 0.1);
+}
+
+table.compat-table {
+  display: table;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.dropdown-label {
+  font-size: 17px;
+  font-weight: 700;
+  padding-right: 10px;
+  display: inline-block;
+  margin-bottom: 1px;
+}
+
+.version-dropdown {
+  margin-left: 8px;
+  display: inline-block;
+}
+
+.product-dropdown {
+  margin-left: 1px;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.compat-title {
+  font-family: @family-display;
+  display: inline-block;
+  padding-bottom: 2px;
+  letter-spacing: 0;
+  color: #262e33;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.version-title {
+  font-family: @family-display;
+  display: inline-block;
+  padding-bottom: 2px;
+  letter-spacing: 0;
+  color: #262e33;
+  font-size: 20px;
+  font-weight: normal;
+
+    &:before {
+      content: "|";
+      font-size: 23px;
+      line-height: 20px;
+      vertical-align: middle;
+      padding-left: 5px;
+      padding-right: 5px;
+  }
+}
+
+.results-table {
+  display: none;
+}
+
+button.compat-button {
+  font-size: 14px;
+  margin-right: 8px;
+  width: 120px;
+  text-align: center;
+
+  &:hover {
+    background: #004B80;
+    color: white;
+  }
+
+  &:focus-visible {
+    outline: 3px solid #004B80;
+  }
+}

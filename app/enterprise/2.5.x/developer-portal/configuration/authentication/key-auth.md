@@ -4,7 +4,7 @@ title: Enable Key Auth in the Dev Portal
 
 ### Introduction
 
-The Kong Developer Portal can be fully or partially authenticated using API keys or **Key
+The Kong Dev Portal can be fully or partially authenticated using API keys or **Key
 Authentication**. Users provide a unique key upon registering and use this key
 to log into the Dev Portal.
 

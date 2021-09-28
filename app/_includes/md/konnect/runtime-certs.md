@@ -9,8 +9,10 @@
 2. (Optional) If this is not the first runtime configuration, click
 **Configure New Runtime**.
 
-2. Open the tab that suits your environment: **Quick Setup - Docker**,
-**Linux**, or **Kubernetes**.
+2. Open the tab that suits your environment: **Linux** or **Kubernetes**.
+
+    For an advanced **Docker** setup, use either tab. Do not use the
+    **Quick Setup** tab.
 
 3. Click **Generate Certificate**.
 
@@ -29,10 +31,9 @@
 
 6. Store the files on your runtime's local filesystem.
 
-<div class="alert alert-ee warning">
-<b>Important:</b> Certificates expire after six months and must be renewed. See
-<a href="/konnect/runtime-manager/renew-certificates">Renew Certificates</a>.
-</div>
+{:.important}
+> **Important:** Certificates expire every six (6) months and must be renewed.
+See [Renew Certificates](/konnect/runtime-manager/renew-certificates).
 
 Keep the configuration page open for the next section, as you'll need to refer
 back to it for the configuration parameters.

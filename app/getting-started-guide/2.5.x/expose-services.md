@@ -9,7 +9,8 @@ If you are following the Getting Started workflow, make sure you have completed
 before moving on.
 
 If you are not following the Getting Started workflow, make sure you have
-{{site.base_gateway}} installed and started.
+{{site.base_gateway}} installed and started. For [DB-less mode](https://docs.konghq.com/gateway-oss/2.5.x/db-less-and-declarative-config/),
+make sure you use [decK](https://docs.konghq.com/deck/) below.
 
 ## What are Services and Routes?
 

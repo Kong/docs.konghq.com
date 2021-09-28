@@ -7,7 +7,7 @@ book: admin_gui
 
 Kong Enterprise offers the ability to bind authentication for Kong Manager
 *Admins* to a company's Active Directory using the
-[LDAP Authentication Advanced plugin](/hub/kong-inc/ldap-authentication-advanced).
+[LDAP Authentication Advanced plugin](/hub/kong-inc/ldap-auth-advanced).
 
 ⚠️ **IMPORTANT**: by using the configuration below, it is unnecessary to
 manually apply the **Plugin**; the configuration alone will enable LDAP
@@ -26,6 +26,7 @@ admin_gui_auth_conf = {                                       \
     "bind_dn":"<ENTER_YOUR_BIND_DN_HERE>",                    \
     "base_dn":"<ENTER_YOUR_BASE_DN_HERE>",                    \
     "cache_ttl": 2,                                           \
+    "consumer_by":["username", "custom_id"],                  \
     "header_type":"Basic",                                    \
     "keepalive":60000,                                        \
     "ldap_host":"<ENTER_YOUR_LDAP_HOST_HERE>",                \
@@ -34,7 +35,6 @@ admin_gui_auth_conf = {                                       \
     "start_tls":false,                                        \
     "timeout":10000,                                          \
     "verify_ldap_host":true                                   \
-    "consumer_by":["username", "custom_id"],                  \
 }
 ```
 

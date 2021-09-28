@@ -6,15 +6,27 @@
       url: /
     - text: Key Concepts and Terms
       url: /key-concepts-and-terms
-    - text: Access a Kong Konnect Account
+
+- title: Manage Accounts and Orgs
+  icon: /assets/images/icons/konnect/konnect-organization.svg
+  items:
+    - text: Access a Konnect Account
       url: /access-account
-    - text: Konnect Plans, Billing, and Usage
-      url: /account-management
+    - text: Plans and Billing
       items:
+        - text: Manage a Konnect Account or Plan
+          url: /account-management
         - text: Change to a Different Plan
           url: /account-management/change-plan
         - text: Manage Payment Methods and Invoices
           url: /account-management/billing
+    - text: Authentication and Authorization
+      url: /org-management/auth
+      items:
+        - text: Manage Users and Roles
+          url: /org-management/users-and-roles
+        - text: Set up SSO with Okta
+          url: /org-management/okta-idp
 
 - title: Release Notes
   icon: /assets/images/icons/documentation/icn-references-color.svg
@@ -102,10 +114,6 @@
           url: /dev-portal/administrators/auto-approve-devs-apps
         - text: Public Portal
           url: /dev-portal/administrators/public-portal
-        - text: Customization
-          items:
-          - text: Customizing the Dev Portal Appearance
-            url: /dev-portal/administrators/customization/themes
 
     - text: Developers
       items:
@@ -148,8 +156,6 @@
   items:
     - text: Proxy Traffic
       url: /reference/proxy-traffic
-    - text: Users and Roles
-      url: /reference/org-management
     - text: Using the Konnect API
       url: /reference/konnect-api
       items:
