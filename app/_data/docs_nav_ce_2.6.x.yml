@@ -220,6 +220,12 @@
         - text: Retrieve Node Information
           url: /admin-api/#retrieve-node-information
 
+        - text: Check Endpoint Or Entity Existence
+          url: /admin-api/#check-endpoint-or-entity-existence
+
+        - text: List Http Methods by Endpoint
+          url: /admin-api/#list-http-methods-by-endpoint
+
         - text: List Available Endpoints
           url: /admin-api/#list-available-endpoints
 

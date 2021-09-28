@@ -816,6 +816,52 @@ HTTP 200 OK
 
 ---
 
+### Check Endpoint Or Entity Existence
+{:.badge .dbless}
+
+Similar to `HTTP GET`, but does not return the body. Returns `HTTP 200` when the endpoint exits or `HTTP 404` when it does not. Other status codes are possible.
+
+<div class="endpoint head">/&lt;any-endpoint&gt;</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```http
+Access-Control-Allow-Origin: *
+Content-Length: 11389
+Content-Type: application/json; charset=utf-8
+X-Kong-Admin-Latency: 1
+```
+
+
+---
+
+### List Http Methods by Endpoint
+{:.badge .dbless}
+
+List all the supported `HTTP` methods by an endpoint. This can also be used with a `CORS` preflight request.
+
+<div class="endpoint options">/&lt;any-endpoint&gt;</div>
+
+#### Response
+
+```
+HTTP 204 No Content
+```
+
+```http
+Access-Control-Allow-Headers: Content-Type
+Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+Access-Control-Allow-Origin: *
+Allow: GET, HEAD, OPTIONS
+```
+
+
+---
+
 ### List Available Endpoints
 {:.badge .dbless}
 
