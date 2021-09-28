@@ -66,7 +66,7 @@ params:
         The value of the `Access-Control-Allow-Origin` header in the response to
         the gRPC-Web client.  The default of `*` is appropriate for requests without
         credentials.  In other cases, specify the allowed origins of the client code.
-        More information [here](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Origin).
+        For more information, see [MDN Web Docs - Access-Control-Allow-Origin](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Origin).
 
 ---
 
