@@ -1,7 +1,7 @@
 ---
 name: AWS Lambda
 publisher: Kong Inc.
-version: 3.5.x
+version: 3.6.x
 
 desc: Invoke and manage AWS Lambda functions from Kong
 description: |
