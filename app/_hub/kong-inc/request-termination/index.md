@@ -76,7 +76,7 @@ params:
     - name: trigger
       required: false
       default:
-      description: When not set, the plugin always activates. When set to a string, the plugin will activate exclusively on requests containing either a header or a query parameter named like said string.
+      description: When not set, the plugin always activates. When set to a string, the plugin will activate exclusively on requests containing either a header or a query parameter that is named the string.
     - name: echo
       required: false
       default: false
