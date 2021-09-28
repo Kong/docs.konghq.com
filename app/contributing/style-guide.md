@@ -7,7 +7,7 @@ no_version: true
 
 |Best practice                      |Do                                             |Don't                                              |
 |---                                |---                                            |---                                                |  
-|Use US English (not British English)|The response **should** look like...          |The response **shall** look like...                |
+|Use [US English](https://www.merriam-webster.com) (not British English)|The response **should** look like...|The response **shall** look like...|
 |                                   |In the previous section, you **learned**...    |In the previous section, you **learnt**...         |
 |Use present tense                  |This `command` **starts** a proxy.             |This `command` **will start** a proxy.             |
 |---                                |---                                            |---                                                |
