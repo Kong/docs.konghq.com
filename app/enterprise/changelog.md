@@ -4,7 +4,7 @@ no_search: true
 no_version: true
 ---
 
-## 2.6.0.0
+## 2.6.0.0 (beta1)
 **Release date:** 2021/09/28
 
 ### Features
@@ -16,30 +16,6 @@ This release includes the addition of a new schema entity validator: `mutually_e
 `only_one_of` validator required at least one of the fields included be configured. This new entity validator allows
 only one or neither of the fields be configured.
 [#7765](https://github.com/Kong/kong/pull/7765)
-
-#### Performance
-
-For this release we've focused on performance improvement.
-
-There's a new performance workflow which periodically checks new code additions against some
-typical scenarios. [#7030](https://github.com/Kong/kong/pull/7030) [#7547](https://github.com/Kong/kong/pull/7547)
-
-Additionally, the following changes were specifically included to improve performance:
-
-- Reduced unnecessary reads of `ngx.var`.
-  [#7840](https://github.com/Kong/kong/pull/7840)
-- Loaded more indexed variables.
-  [#7849](https://github.com/Kong/kong/pull/7849)
-- Optimized table creation in Balancer.
-  [#7852](https://github.com/Kong/kong/pull/7852)
-- Reduced calls to `ngx.update_time`.
-  [#7853](https://github.com/Kong/kong/pull/7853)
-- Use read-only replica for PostgreSQL meta-schema reading.
-  [#7454](https://github.com/Kong/kong/pull/7454)
-- URL escaping detects cases when it's not needed and early-exists.
-  [#7742](https://github.com/Kong/kong/pull/7742)
-- Accelerated variable loading via indexes.
-  [#7818](https://github.com/Kong/kong/pull/7818)
 
 #### Configuration
 - Enable IPV6 on `dns_order` as unsupported experimental feature.
@@ -65,12 +41,16 @@ Additionally, the following changes were specifically included to improve perfor
 - [Kafka Upstream](/hub/kong-inc/kafka-upstream) (`kafka-upstream`)
   The Kafka Upstream plugin now supports TLS, mTLS, and SASL auth.
 - [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
-  - The Rate Limiting plugin now has a new identifier type: `path`, which allows rate limiting by matching request paths.
-  - The plugin now has a “local” strategy in the schema. The local strategy automatically sets `config.sync_rate` to -1.
+  - The Rate Limiting Advanced plugin now has a new identifier type: `path`, which allows rate limiting by matching request paths.
+  - The plugin now has a `local` strategy in the schema. The local strategy automatically sets `config.sync_rate` to -1.
 - [OPA](/hub/kong-inc/opa) (`opa`)
-  The OPA plugin now has a request path, which makes setting policies on a path easier for administrators.
+  The OPA plugin now has a request path parameter, which makes setting policies on a path easier for administrators.
 - [Canary](/hub/kong-inc/canary) (`canary`)
   The Canary plugin now has the option to hash on the header (falls back on IP, and then random).
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  Upgrade to v2.0.x to maintain version compatibility with older data planes.
+  - The OpenID Connect plugin can now handle JWT responses from a `userinfo` endpoint.
+  - The plugin now supports JWE Introspection.
 - [AWS-Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`) 
   The plugin will now try to detect the AWS region by using `AWS_REGION` and
   `AWS_DEFAULT_REGION` environment variables (when not specified with the plugin configuration).
@@ -119,23 +99,6 @@ Additionally, the following changes were specifically included to improve perfor
 - Bumped `lua-resty-ipmatcher` to 0.6.1
   [#7703](https://github.com/Kong/kong/pull/7703)
 
-All Kong Gateway OSS plugins will be moved from individual repositories and centralized
-into the main Kong Gateway (OSS) repository. We are making a gradual transition. On this
-release:
-
-- Moved AWS-Lambda inside the Kong repo
-  [#7464](https://github.com/Kong/kong/pull/7464).
-- Moved ACME inside the Kong repo
-  [#7464](https://github.com/Kong/kong/pull/7464).
-- Moved Prometheus inside the Kong repo
-  [#7666](https://github.com/Kong/kong/pull/7666).
-- Moved Session inside the Kong repo
-  [#7738](https://github.com/Kong/kong/pull/7738).
-- Moved GRPC-web inside the Kong repo
-  [#7782](https://github.com/Kong/kong/pull/7782).
-- Moved Serverless functions inside the Kong repo
-  [#7792](https://github.com/Kong/kong/pull/7792).
-
 ### Fixes
 
 #### Enterprise
@@ -163,7 +126,7 @@ release:
   [#7589](https://github.com/Kong/kong/pull/7589).
 
 ##### Configuration
-- Declarative Configuration parser now prints more correct errors when pointing unknown foreign references.
+- Declarative Configuration parser now prints more correct errors when printing unknown foreign references.
   [#7756](https://github.com/Kong/kong/pull/7756).
 - YAML anchors in Declarative Configuration are properly processed.
   [#7748](https://github.com/Kong/kong/pull/7748).
@@ -179,10 +142,6 @@ release:
 ##### Plugins
 - [Vault Auth](/hub/kong-inc/vault-auth) (`vault-auth)
   This plugin is now available for selection in the Kong Manager UI, previously it was hidden.
-- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
-  Upgrade to v2.0.x to maintain version compatibility with older data planes.
-  - The OpenID Connect plugin can now handle JWT responses from a `userinfo` endpoint.
-  - The plugin now supports JWE Introspection.
 - [ACME](/hub/kong-inc/acme) (`acme`)
   Dots in wildcard domains are escaped.
   [#7839](https://github.com/Kong/kong/pull/7839).
