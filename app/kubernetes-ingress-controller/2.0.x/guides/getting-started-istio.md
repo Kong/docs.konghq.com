@@ -6,9 +6,8 @@ This guide walks you through deploying Kong as the gateway for [Istio][istio] to
 combine the features of Kong for ingress traffic with Istio's mesh
 functionality.
 
-A [version compatibility reference][compat] is available for this guide which
-shows the versions of {{site.kic_product_name}} and Istio which are tested for
-compatibility.
+See the [version compatibility reference][compat] for the
+tested compatible versions of {{site.kic_product_name}} and Istio.
 
 [istio]:https://istio.io
 [compat]:/kubernetes-ingress-controller/{{page.kong_version}}/references/version-compatibility/#istio

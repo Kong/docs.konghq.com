@@ -55,9 +55,9 @@ other enterprise functionality, built on top of the Open-Source Kong Gateway.
 
 ## Istio
 
-The {{site.kic_product_name}} can be integrated with an [Istio Service Mesh][istio] in order to use Kong Gateway as an ingress gateway for application traffic into the mesh network, an example of this is provided in our [Istio Guide][istio-guide].
+The {{site.kic_product_name}} can be integrated with an [Istio Service Mesh][istio] to use Kong Gateway as an ingress gateway for application traffic into the mesh network. See an example of this in the [Istio Guide][istio-guide].
 
-For each {{site.kic_product_name}} release tests are run to verify this documentation with upcoming versions of KIC and Istio: The result is the following table which highlights the combinations which have been tested:
+For each {{site.kic_product_name}} release, tests are run to verify this documentation with upcoming versions of KIC and Istio. The following table lists the tested combinations:
 
 | {{site.kic_product_name}} |            1.0.x            |            1.1.x            |            1.2.x            |            1.3.x            |            2.0.x            |
 |:--------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
