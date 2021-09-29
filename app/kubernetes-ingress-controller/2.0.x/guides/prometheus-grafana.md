@@ -34,67 +34,56 @@ These settings are not meant for production usage.
 
 ## Install Prometheus and Grafana
 
-If you already have Prometheus and Grafana installed on your Kubernetes cluster,
-you can skip these steps.
+If you already have the [Prometheus
+Operator](https://github.com/prometheus-operator/prometheus-operator) and
+Grafana installed in your cluster, you can skip these steps. Note that you do
+specifically need the Prometheus Operator, as we use its PodMonitor custom
+resource to configure scrape rules.
 
-### Prometheus
+### Prometheus and Grafana
 
 First, we will install Prometheus with a
 scrape interval of 10 seconds to have fine-grained data points for all metrics.
 We’ll install both Prometheus and Grafana in a dedicated `monitoring` namespace.
 
-To install Prometheus, execute the following:
+First, create a values.yaml to set the scrape interval, use Grafana
+persistence, and install Kong's dashboard:
+
+```yaml
+prometheus:
+  prometheusSpec:
+    scrapeInterval: 10s
+grafana:
+  persistence:
+    enabled: true  # enable persistence using Persistent Volumes
+  dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+      - name: 'default' # Configure a dashboard provider file to
+        orgId: 1        # put Kong dashboard into.
+        folder: ''
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards/default
+  dashboards:
+    default:
+      kong-dash:
+        gnetId: 7424  # Install the following Grafana dashboard in the
+        revision: 5   # instance: https://grafana.com/dashboards/7424
+        datasource: Prometheus
+  
+```
+
+To install Prometheus and Grafana, execute the following, specifying the path
+to the values.yaml you created earlier:
 
 ```bash
 $ kubectl create namespace monitoring
 $ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-$ helm install --name prometheus prometheus-community/prometheus --namespace monitoring --values https://bit.ly/2RgzDtg --version 11.0.3
-```
-
-### Grafana
-
-Grafana is installed with the following values for its Helm chart
-(see comments for explanation):
-
-```yaml
-persistence:
-  enabled: true  # enable persistence using Persistent Volumes
-datasources:
- datasources.yaml:
-   apiVersion: 1
-   Datasources:  # configure Grafana to read metrics from Prometheus
-   - name: Prometheus
-     type: prometheus
-     url: http://prometheus-server # Since Prometheus is deployed in
-     access: proxy    # same namespace, this resolves
-                      # to the Prometheus Server we installed previous
-     isDefault: true  # The default data source is Prometheus
-
-dashboardProviders:
-  dashboardproviders.yaml:
-    apiVersion: 1
-    providers:
-    - name: 'default' # Configure a dashboard provider file to
-      orgId: 1        # put Kong dashboard into.
-      folder: ''
-      type: file
-      disableDeletion: false
-      editable: true
-      options:
-        path: /var/lib/grafana/dashboards/default
-dashboards:
-  default:
-    kong-dash:
-      gnetId: 7424  # Install the following Grafana dashboard in the
-      revision: 5   # instance: https://grafana.com/dashboards/7424
-      datasource: Prometheus
-```
-
-To install Grafana, execute the following:
-
-```bash
-$ helm repo add grafana https://grafana.github.io/helm-charts
-$ helm install grafana grafana/grafana --namespace monitoring --values http://bit.ly/2FuFVfV --version 5.0.8
+$ helm install promstack prometheus-community/kube-prometheus-stack --namespace monitoring --version 19.0.0 -f /path/to/values.yaml
 ```
 
 ## Install Kong
@@ -107,8 +96,12 @@ $ helm repo add kong https://charts.konghq.com
 $ helm repo update
 
 $ kubectl create namespace kong
-$ helm install mykong kong/kong --namespace kong --values https://bit.ly/2UAv0ZE
+$ helm install mykong kong/kong --namespace kong --set serviceMonitor.enabled=true --set serviceMonitor.labels.release=promstack
 ```
+
+By default, kube-prometheus-stack [selects ServiceMonitors and PodMonitors by a
+`release` label equal to the release name](https://github.com/prometheus-community/helm-charts/blob/kube-prometheus-stack-19.0.1/charts/kube-prometheus-stack/values.yaml#L2128-L2169). The labels setting here adds a label matching the
+`promstack` release name from the example earlier.
 
 ### Enable Prometheus plugin in Kong
 
@@ -141,19 +134,19 @@ It is not advisable to do this in production.
 Open a new terminal and execute the following commands:
 
 ```bash
-POD_NAME=$(kubectl get pods --namespace monitoring -l "app=prometheus,component=server" -o jsonpath="{.items[0].metadata.name}")
+POD_NAME=$(kubectl get pods --namespace monitoring -l "app.kubernetes.io/instance=promstack-kube-prometheus-prometheus" -o jsonpath="{.items[0].metadata.name}")
 kubectl --namespace monitoring  port-forward $POD_NAME 9090 &
 
-# You can access Prometheus in your browser at localhost:9090
 
-POD_NAME=$(kubectl get pods --namespace monitoring -l "app.kubernetes.io/instance=grafana" -o jsonpath="{.items[0].metadata.name}")
+POD_NAME=$(kubectl get pods --namespace monitoring -l "app.kubernetes.io/name=grafana" -o jsonpath="{.items[0].metadata.name}")
 kubectl --namespace monitoring port-forward $POD_NAME 3000 &
 
-# You can access Grafana in your browser at localhost:3000
 
 POD_NAME=$(kubectl get pods --namespace kong -o jsonpath="{.items[0].metadata.name}")
 kubectl --namespace kong port-forward $POD_NAME 8000 &
 
+# You can access Prometheus in your browser at localhost:9090
+# You can access Grafana in your browser at localhost:3000
 # Kong proxy port is now your localhost 8000 port
 # We are using plain-text HTTP proxy for this purpose of
 # demo.
@@ -168,7 +161,7 @@ To access Grafana, you need to get the password for the admin user.
 Execute the following to read the password and take note of it:
 
 ```bash
-kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+kubectl get secret --namespace monitoring promstack-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 ```
 
 Now, browse to [http://localhost:3000](http://localhost:3000) and
@@ -188,7 +181,7 @@ We will set up three services: billing, invoice, and comments.
 Execute the following to spin these services up:
 
 ```bash
-kubectl apply -f https://gist.githubusercontent.com/hbagdi/2d8ef66fe22cb99e1514f410f992268d/raw/a03d789b70c46ccd0b99d9f1ed838dc21419fc33/multiple-services.yaml
+curl -s https://gist.githubusercontent.com/hbagdi/2d8ef66fe22cb99e1514f410f992268d/raw/a03d789b70c46ccd0b99d9f1ed838dc21419fc33/multiple-services.yaml | sed -e "s/apiVersion: extensions\/v1beta1/apiVersion: apps\/v1/g" | kubectl apply -f -
 ```
 
 ### Install Ingress for the Services
