@@ -94,6 +94,14 @@
   icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
   url: /dev-portal
   items:
+    - text: Access and Approval
+      items:
+        - text: Developer Registration
+          url: /dev-portal/access-and-approval/dev-reg
+        - text: Manage Developer Access
+          url: /dev-portal/access-and-approval/manage-devs
+        - text: Auto Approve Dev and App Registrations
+          url: /dev-portal/access-and-approval/auto-approve-devs-apps
     - text: Applications
       items:
         - text: Application Overview
@@ -112,18 +120,10 @@
           url: /dev-portal/applications/dev-reg-app-service
         - text: Generate Credentials for an Application
           url: /dev-portal/applications/dev-gen-creds
-    - text: Administrators
+    - text: Customization
       items:
-        - text: Manage Developer Access
-          url: /dev-portal/administrators/manage-devs
-        - text: Auto Approve Dev and App Registrations
-          url: /dev-portal/administrators/auto-approve-devs-apps
         - text: Public Portal
-          url: /dev-portal/administrators/public-portal
-    - text: Developers
-      items:
-        - text: Developer Registration
-          url: /dev-portal/developers/dev-reg
+          url: /dev-portal/customization/public-portal
 
 - title: Konnect Vitals
   icon: /assets/images/icons/documentation/icn-vitals.svg
