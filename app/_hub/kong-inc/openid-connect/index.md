@@ -396,7 +396,7 @@ params:
       required: false
       default: false
       datatype: boolean               
-      description: Whether or not `consumer_by` `username` can match consumers case-insensitively.
+      description: If `consumer_by` is set to `username`, specify whether `username` can match consumers case-insensitively.
     - name: consumer_optional
       required: false
       default: false
