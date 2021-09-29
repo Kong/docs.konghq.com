@@ -114,14 +114,11 @@
 /enterprise/2.3.x/developer-portal/introduction /enterprise/2.3.x/developer-portal
 /enterprise/latest/developer-portal/introduction /enterprise/latest/developer-portal
 /enterprise/latest/developer-portal/overview     /enterprise/latest/developer-portal
-/dev-portal/application-overview                /dev-portal/applications/application-overview
-/dev-portal/developers/dev-apps                 /dev-portal/applications/dev-apps
-/dev-portal/administrators/app-registration/enable-app-reg      /dev-portal/applications/enable-app-reg
-/dev-portal/administrators/app-registration/disable-app-reg     /dev-portal/applications/disable-app-reg
-/dev-portal/administrators/app-registration/manage-app-reg-requests     /dev-portal/applications/manage-app-reg-requests
-/dev-portal/administrators/app-registration/manage-app-connections      /dev-portal/applications/manage-app-connections
-/dev-portal/developers/dev-reg-app-service                  /dev-portal/applications/dev-reg-app-service
-/dev-portal/developers/dev-gen-creds                /dev-portal/applications/dev-gen-creds
+/konnect/dev-portal/application-overview                /konnect/dev-portal/applications/application-overview
+/konnect/dev-portal/developers/dev-apps                 /konnect/dev-portal/applications/dev-apps
+/konnect/dev-portal/administrators/app-registration/*      /konnect/dev-portal/applications/:splat
+/konnect/dev-portal/developers/dev-reg-app-service                  /konnect/dev-portal/applications/dev-reg-app-service
+/konnect/dev-portal/developers/dev-gen-creds                /konnect/dev-portal/applications/dev-gen-creds
 
 # About
 /about/faq                 https://konghq.com/faqs/
