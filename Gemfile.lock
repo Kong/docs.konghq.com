@@ -65,7 +65,7 @@ GEM
     mini_mime (1.1.0)
     mini_portile2 (2.6.1)
     nio4r (2.5.8)
-    nokogiri (1.12.2)
+    nokogiri (1.12.5)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     pathutil (0.16.2)
