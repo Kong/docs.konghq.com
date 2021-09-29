@@ -11,6 +11,8 @@
   icon: /assets/images/icons/documentation/icn-references-color.svg
   url: /markdown-rules
   items:
+    - text: Reusable content
+      url: /includes
     - text: Variables
       url: /variables
 
