@@ -392,6 +392,11 @@ params:
         - `id`: try to find the matching Consumer by `id`
         - `username`: try to find the matching Consumer by `username` 
         - `custom_id`: try to find the matching Consumer by `custom_id`
+    - name: by_username_ignore_case
+      required: false
+      default: false
+      datatype: boolean               
+      description: Whether or not `consumer_by` `username` can match consumers case-insensitively.
     - name: consumer_optional
       required: false
       default: false
