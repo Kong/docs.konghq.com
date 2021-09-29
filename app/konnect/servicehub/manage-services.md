@@ -61,7 +61,7 @@ box to save.
 
 4. Enter a version name and click **Create** to save.
 
-### Archive or Delete a Service Version
+### Delete a Service Version
 
 1. From the left navigation menu, click **Services**.
 
@@ -69,13 +69,11 @@ box to save.
 
 3. Navigate to **Versions**.
 
-4. Click on the version you want to archive or delete, and you'll be taken to the version detail page.
+4. Click on the version you want to delete, and you'll be taken to the version detail page.
 
 5. Click on the **Actions** dropdown menu.
 
-6. Click **Delete Version** to permanently delete the Service version, or **Archive Version** to remove the Service version from use but not permanently delete it. You will not see archived versions in Service detail page versions dropdown.
-
-If you want to republish an archived version, return to the Service version detail page. Click **Actions**, and then click **Publish Version**.
+6. Click **Delete Version** to permanently delete the Service version.
 
 ### Implement a Service Version (Kong Gateway) {#implement-service-version}
 
