@@ -52,3 +52,16 @@ other enterprise functionality, built on top of the Open-Source Kong Gateway.
 | Kubernetes 1.20           | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 | Kubernetes 1.21           | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 | Kubernetes 1.22           | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |
+
+## Istio
+
+The {{site.kic_product_name}} can be integrated with an [Istio Service Mesh][istio] to use Kong Gateway as an ingress gateway for application traffic into the mesh network. See an example of this in the [Istio Guide][istio-guide].
+
+For each {{site.kic_product_name}} release, tests are run to verify this documentation with upcoming versions of KIC and Istio. The following table lists the tested combinations:
+
+| {{site.kic_product_name}} |            1.0.x            |            1.1.x            |            1.2.x            |            1.3.x            |            2.0.x            |
+|:--------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
+| Istio 1.11                | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+
+[istio]:https://istio.io
+[istio-guide]:/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started-istio/

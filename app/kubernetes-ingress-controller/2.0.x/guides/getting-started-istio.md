@@ -5,7 +5,11 @@ title: Running the Kubernetes Ingress Controller with Istio
 This guide walks you through deploying {{site.base_gateway}} with {{site.kic_product_name}} 
 as the gateway for [Istio][istio] as your service mesh solution.
 
+See the [version compatibility reference][compat] for the
+tested compatible versions of {{site.kic_product_name}} and Istio.
+
 [istio]:https://istio.io
+[compat]:/kubernetes-ingress-controller/{{page.kong_version}}/references/version-compatibility/#istio
 
 ## Overview
 
