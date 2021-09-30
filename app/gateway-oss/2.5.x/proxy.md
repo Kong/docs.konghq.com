@@ -70,7 +70,7 @@ If one attempts to configure a Route with a routing attribute it doesn't support
 (e.g., an `http` route with `sources` or `destinations` fields), an error message
 will be reported:
 
-```
+```http
 HTTP/1.1 400 Bad Request
 Content-Type: application/json
 Server: kong/<x.x.x>

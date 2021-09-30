@@ -262,8 +262,46 @@ jQuery(function () {
     ); // Adjust scroll speed
   }
 
-  // Plugins filter
-  $("a[data-filter]").on("click", function () {
+// Plugins filter on click
+$("a[data-filter]").on("click", function () {
+  $("html, body").animate({ scrollTop: 0 });
+  var target = $(this).data("filter");
+  console.log(this);
+
+  // Remove any active classes that may already be applied
+  $("a[data-filter]").removeClass("active");
+  // Add active class sidebar a
+  $(this).addClass("active");
+
+  // For all faded cards, replace href with data-href target
+  $(".card-group.fadeOut").each(function () {
+    var link = $(this).find("a");
+    link.attr("href", $(link).attr("data-href"));
+    link.removeAttr("data-href");
+  });
+
+  // Remove any fade states that may already be applied
+  $(".card-group").removeClass("fadeOut");
+
+  // If the target of the li is not all continue
+  if (target !== "all") {
+    // Fade all cards that don't have matching filter
+    $(".card-group")
+      .not("." + target)
+      .addClass("fadeOut");
+    // For each faded card, move href to data-href and remove href
+    $(".card-group.fadeOut").each(function () {
+      var link = $(this).find("a");
+      link.attr("data-href", $(link).attr("href"));
+      link.removeAttr("href");
+    });
+  }
+});
+
+// Plugin filter on keypress
+$("a[data-filter]").on("keypress", function(e) {
+  if (e.keyCode === 13) {
+    $("html, body").animate({ scrollTop: 0 });
     var target = $(this).data("filter");
 
     // Remove any active classes that may already be applied
@@ -272,29 +310,29 @@ jQuery(function () {
     $(this).addClass("active");
 
     // For all faded cards, replace href with data-href target
-    $(".plugin-card.fadeOut").each(function () {
+    $(".card-group.fadeOut").each(function () {
       var link = $(this).find("a");
       link.attr("href", $(link).attr("data-href"));
       link.removeAttr("data-href");
     });
 
     // Remove any fade states that may already be applied
-    $(".plugin-card").removeClass("fadeOut");
+    $(".card-group").removeClass("fadeOut");
 
     // If the target of the li is not all continue
     if (target !== "all") {
       // Fade all cards that don't have matching filter
-      $(".plugin-card")
+      $(".card-group")
         .not("." + target)
         .addClass("fadeOut");
       // For each faded card, move href to data-href and remove href
-      $(".plugin-card.fadeOut").each(function () {
+      $(".card-group.fadeOut").each(function () {
         var link = $(this).find("a");
         link.attr("data-href", $(link).attr("href"));
         link.removeAttr("href");
       });
     }
-  });
+}});
 
   // Responsive Tables
   if ($window.width() <= 1099) {
@@ -564,7 +602,7 @@ jQuery(function () {
 });
 
 jQuery(function () {
-  var closed = localStorage.getItem("closebanner-summit");
+  var closed = localStorage.getItem("closebanner-hackathon");
   if (
     closed !== "closebanner"
   ) {
@@ -607,5 +645,5 @@ setInterval(function () {
 
 $(".closebanner").on("click", function () {
   $(".navbar-v2").addClass("closed");
-  localStorage.setItem("closebanner-summit", "closebanner");
+  localStorage.setItem("closebanner-hackathon", "closebanner");
 });

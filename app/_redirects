@@ -16,15 +16,19 @@
 # kubernetes ingress controller
 /kubernetes-ingress-controller/latest/introduction /kubernetes-ingress-controller/
 /kubernetes-ingress-controller/1.2.x/introduction  /kubernetes-ingress-controller/
+/enterprise/2.5.x/deployment/using-kong-for-kubernetes/   /kubernetes-ingress-controller/
+/enterprise/latest/deployment/using-kong-for-kubernetes/   /kubernetes-ingress-controller/
+/enterprise/2.1.x/kong-for-kubernetes/install-on-kubernetes/  /enterprise/2.1.x/deployment/installation/kong-for-kubernetes/
 
 # kic beta
-/kubernetes-ingress-controller-beta/   https://kic-v2-beta--kongdocs.netlify.app/kubernetes-ingress-controller/
-/kubernetes-ingress-controller-beta/*  https://kic-v2-beta--kongdocs.netlify.app/kubernetes-ingress-controller/:splat
+/kubernetes-ingress-controller-beta/   /kubernetes-ingress-controller/
+/kubernetes-ingress-controller-beta/*  /kubernetes-ingress-controller/:splat
 
 # enterprise gateway
 /enterprise/latest/introduction       /enterprise/
 /enterprise/2.3.x/introduction        /enterprise/
 /enterprise/2.4.x/release-notes       /enterprise/changelog
+/enterprise/latest/setting-up-admin-api-rbac  /enterprise/latest/admin-api/rbac/reference/
 
 # getting started guide
 /enterprise/latest/getting-started/              /getting-started-guide/latest/overview/
@@ -38,8 +42,27 @@
 /hub/api-fortress/api-fortress-http-log/    /hub/
 /hub/api-fortress/api-fortress-http-log/*   /hub/
 /hub/plugins/compatibility                  /konnect-platform/compatibility/plugins
+/enterprise/latest/plugins/statsd-advanced/ /hub/kong-inc/statsd-advanced/
+/hub/kong-inc/basic-auth/1.0-x.html         /hub/kong-inc/basic-auth/2.1-x.html
+/hub/kong-inc/basic-authentication/         /hub/kong-inc/basic-auth/
+/hub/kong-inc/hmac-auth/1.0-x.html          /hub/kong-inc/hmac-auth/2.1-x.html
+/hub/kong-inc/key-authentication            /hub/kong-inc/key-auth/
+/hub/kong-inc/ldap-auth/1.0-x.html          /hub/kong-inc/ldap-auth/2.1-x.html
+/hub/kong-inc/ldap-authentication-advanced  /hub/kong-inc/ldap-auth-advanced/
+/hub/kong-inc/ldap-authentication           /hub/kong-inc/ldap-auth/
+/hub/kong-inc/proxy-cache/0.35-x.html       /hub/kong-inc/proxy-cache/
+/hub/kong-inc/upstream-tls/0.36-x.html      /hub/
+/hub/rate-limiting-advanced                 /hub/kong-inc/rate-limiting-advanced/
+/kong-inc/rate-limiting/                    /hub/kong-inc/rate-limiting/
+/latest/pdk/kong.service.request/           /gateway-oss/latest/pdk/kong.service.request/
+/hub/kong-in/sessions                       /hub/kong-inc/session/
+/hub/kong-inc/sessions                      /hub/kong-inc/session/
+/hub/kong-inc/zipkin/http-log/              /hub/kong-inc/zipkin/
+/plugins/                                   /hub/
+/plugins/*                                  /hub/kong-inc/:splat
 
 # Konnect
+/konnect/org-management/okta-role-mapping           /konnect/org-management/okta-idp/#map-roles-to-groups
 /konnect/access-beta                                /konnect/access-account
 /konnect/service-hub                                /konnect/servicehub/
 /konnect/service-hub/*                              /konnect/servicehub/:splat
@@ -51,7 +74,8 @@
 # Community doc rebranding
 /latest/*                                   /gateway-oss/latest/:splat
 /latest                                     /
-/community                                  /https://konghq.com/community-resources/
+/community                                  https://konghq.com/community-resources/
+/2.5.x/*                                    /gateway-oss/2.5.x/:splat
 /2.4.x/*                                    /gateway-oss/2.4.x/:splat
 /2.3.x/*                                    /gateway-oss/2.3.x/:splat
 /2.2.x/*                                    /gateway-oss/2.2.x/:splat
@@ -76,6 +100,7 @@
 /0.4.x/*                                    /gateway-oss/0.4.x/:splat
 /0.3.x/*                                    /gateway-oss/0.3.x/:splat
 /0.2.x/*                                    /gateway-oss/0.2.x/:splat
+/admin-api/                                 /gateway-oss/latest/admin-api
 
 # Studio
 /enterprise/2.3.x/studio                    https://support.insomnia.rest/
@@ -84,11 +109,20 @@
 /studio/*                                   https://support.insomnia.rest/
 
 # Dev Portal
-/enterprise/2.1.x/developer-portal/introduction /enterprise/2.1.x/developer-portal
-/enterprise/2.2.x/developer-portal/introduction /enterprise/2.2.x/developer-portal
-/enterprise/2.3.x/developer-portal/introduction /enterprise/2.3.x/developer-portal
-/enterprise/latest/developer-portal/introduction /enterprise/latest/developer-portal
-/enterprise/latest/developer-portal/overview     /enterprise/latest/developer-portal
+/enterprise/2.1.x/developer-portal/introduction            /enterprise/2.1.x/developer-portal
+/enterprise/2.2.x/developer-portal/introduction            /enterprise/2.2.x/developer-portal
+/enterprise/2.3.x/developer-portal/introduction            /enterprise/2.3.x/developer-portal
+/enterprise/latest/developer-portal/introduction           /enterprise/latest/developer-portal
+/enterprise/latest/developer-portal/overview               /enterprise/latest/developer-portal
+/konnect/dev-portal/application-overview                   /konnect/dev-portal/applications/application-overview
+/konnect/dev-portal/developers/dev-apps                    /konnect/dev-portal/applications/dev-apps
+/konnect/dev-portal/administrators/app-registration/*      /konnect/dev-portal/applications/:splat
+/konnect/dev-portal/developers/dev-reg-app-service         /konnect/dev-portal/applications/dev-reg-app-service
+/konnect/dev-portal/developers/dev-gen-creds               /konnect/dev-portal/applications/dev-gen-creds
+/konnect/dev-portal/administrators/public-portal           /konnect/dev-portal/customization/public-portal
+/konnect/dev-portal/developers/dev-reg                     /konnect/dev-portal/access-and-approval/dev-reg
+/konnect/dev-portal/administrators/manage-devs             /konnect/dev-portal/access-and-approval/manage-devs
+/konnect/dev-portal/administrators/auto-approve-devs-apps  /konnect/dev-portal/access-and-approval/auto-approve-devs-apps
 
 # About
 /about/faq                 https://konghq.com/faqs/

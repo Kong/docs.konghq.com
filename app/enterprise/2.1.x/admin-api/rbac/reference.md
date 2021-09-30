@@ -434,12 +434,12 @@ HTTP 201 Created
 ## Retrieve a Role Endpoint Permission
 **Endpoint**
 
-<div class="endpoint get">/rbac/roles/{name_or_id}/endpoints/{worspace_name_or_id}/{endpoint}</div>
+<div class="endpoint get">/rbac/roles/{name_or_id}/endpoints/{workspace_name_or_id}/{endpoint}</div>
 
 | Attribute             | Description                                  |
 | ---------             | -----------                                  |
 | `name_or_id`          | The RBAC role name or UUID.                  |
-| `worspace_name_or_id` | The worspace name or UUID.                   |
+| `workspace_name_or_id` | The workspace name or UUID.                   |
 | `endpoint`            | The endpoint associated with this permission. |
 
 **Response**
@@ -524,12 +524,12 @@ HTTP 200 OK
 ## Update a Role Endpoint Permission
 **Endpoint**
 
-<div class="endpoint patch">/rbac/roles/{name_or_id}/endpoints/{worspace_name_or_id}/{endpoint}</div>
+<div class="endpoint patch">/rbac/roles/{name_or_id}/endpoints/{workspace_name_or_id}/{endpoint}</div>
 
 | Attribute             | Description                                  |
 | ---------             | -----------                                  |
 | `name_or_id`          | The RBAC role name or UUID.                  |
-| `worspace_name_or_id` | The worspace name or UUID.                   |
+| `workspace_name_or_id` | The workspace name or UUID.                   |
 | `endpoint`            | The endpoint associated with this permission. |
 
 **Request Body**
@@ -570,12 +570,12 @@ HTTP 200 OK
 ## Delete a Role Endpoint Permission
 **Endpoint**
 
-<div class="endpoint delete">/rbac/roles/{name_or_id}/endpoints/{worspace_name_or_id}/{endpoint}</div>
+<div class="endpoint delete">/rbac/roles/{name_or_id}/endpoints/{workspace_name_or_id}/{endpoint}</div>
 
 | Attribute             | Description                                  |
 | ---------             | -----------                                  |
 | `name_or_id`          | The RBAC role name or UUID.                  |
-| `worspace_name_or_id` | The worspace name or UUID.                   |
+| `workspace_name_or_id` | The workspace name or UUID.                   |
 | `endpoint`            | The endpoint associated with this permission. |
 
 **Response**
