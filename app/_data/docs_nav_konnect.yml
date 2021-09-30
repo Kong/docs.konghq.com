@@ -122,6 +122,8 @@
           url: /dev-portal/applications/dev-gen-creds
     - text: Customization
       items:
+        - text: Customization Overview
+          url: /dev-portal/customization/customization-overview
         - text: Public Portal
           url: /dev-portal/customization/public-portal
 
