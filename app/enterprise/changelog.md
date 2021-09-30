@@ -5,7 +5,7 @@ no_version: true
 ---
 
 ## 2.6.0.0 (beta1)
-**Release date:** 2021/09/28
+**Release date:** 2021/09/30
 
 ### Features
 
@@ -40,20 +40,31 @@ only one or neither of the fields be configured.
 - **New plugin:** [jq](/hub/kong-inc/jq) (`jq`)
   The jq plugin enables arbitrary jq transformations on JSON objects included in API requests or responses.
 - [Kafka Log](/hub/kong-inc/kafka-log) (`kafka-log`)
-  The Kafka Log plugin now supports TLS, mTLS, and SASL auth.
+  The Kafka Log plugin now supports TLS, mTLS, and SASL auth. SASL auth includes support for PLAIN, SCRAM-SHA-256,
+  and delegation tokens.
 - [Kafka Upstream](/hub/kong-inc/kafka-upstream) (`kafka-upstream`)
-  The Kafka Upstream plugin now supports TLS, mTLS, and SASL auth.
+  The Kafka Upstream plugin now supports TLS, mTLS, and SASL auth. SASL auth includes support for PLAIN, SCRAM-SHA-256,
+  and delegation tokens.
 - [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
-  - The Rate Limiting Advanced plugin now has a new identifier type: `path`, which allows rate limiting by matching request paths.
+  - The Rate Limiting Advanced plugin now has a new identifier type, `path`, which allows rate limiting by
+    matching request paths.
   - The plugin now has a `local` strategy in the schema. The local strategy automatically sets `config.sync_rate` to -1.
+  - The highest sync-rate configurable was a 1 second interval. This sync-rate has been increased by reducing
+    the minimum allowed interval from 1 to 0.020 second (20ms).
+  - The plugin now supports rate limit consumer groups, which allow different rate limit configurations
+    to be applied for consumers in consumer groups.
 - [OPA](/hub/kong-inc/opa) (`opa`)
   The OPA plugin now has a request path parameter, which makes setting policies on a path easier for administrators.
 - [Canary](/hub/kong-inc/canary) (`canary`)
   The Canary plugin now has the option to hash on the header (falls back on IP, and then random).
 - [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
-  Upgrade to v2.0.x to maintain version compatibility with older data planes.
-  - The OpenID Connect plugin can now handle JWT responses from a `userinfo` endpoint.
-  - The plugin now supports JWE Introspection.
+  Upgrade to v2.1.0 to maintain version compatibility with older data planes.
+  - Features from v2.0.x include the following:
+    - The OpenID Connect plugin can now handle JWT responses from a `userinfo` endpoint.
+    - The plugin now supports JWE Introspection.
+  - Feature from to v2.1.x includes the following:
+    - The plugin now has a new param, `by_username_ignore_case`, which allows `consumer_by` username values to be
+      matched case-insensitive with Identity Provider claims.
 - [AWS-Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`) 
   The plugin will now try to detect the AWS region by using `AWS_REGION` and
   `AWS_DEFAULT_REGION` environment variables (when not specified with the plugin configuration).
@@ -116,6 +127,13 @@ only one or neither of the fields be configured.
 #### Enterprise
 - This release includes a fix for an issue with the Vitals InfluxDB timestamp generation when inserting metrics. 
 - Kong Gateway (Enterprise) no longer exports `consumer_reset_secrets`.
+- Fixes an issue where keyring data was not being properly generated and activated
+  on a Kong process start (for example, kong start).
+- Kong Gateway now returns keyring-encrypted fields early when a decrypt attempt is made, giving you time
+  to import the keys so Kong Gateway can recognize the decrypted fields. Before if there were data fields
+  keyring-encrypted in the database, Kong Gateway attempted to decrypt them on the `init*` phases (`init` or `init_worker`
+  phases - when the Kong process is started), and you would get errors like "no request found". **Keys must still be imported after the Kong process is started.**
+- The [Keyring Encryption](/enterprise/2.6.x/db-encryption/) feature is no longer in an alpha quality state.
 
 #### Core
 - Balancer retries now correctly set the `:authority` pseudo-header on balancer retries.
