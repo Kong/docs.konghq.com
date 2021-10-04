@@ -203,7 +203,7 @@ plugins:
 
 ## diff and sync the configuration to Kong Gateway
 
-1. Perform a diff:
+1. Run the diff command:
 
     ```shell
     deck diff
