@@ -1,5 +1,5 @@
 ---
-title: Getting Started with decK
+title: Get Started with decK
 ---
 
 Once you have [installed](/deck/{{page.kong_version}}/installation) decK, use this guide to get started with it.
