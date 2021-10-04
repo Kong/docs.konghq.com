@@ -14,6 +14,10 @@
 /deck/terminology/                    /deck/latest/terminology/
 
 # kubernetes ingress controller
+/gateway-oss/2.6.x/kong-for-kubernetes/changelog    https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
+/gateway-oss/latest/kong-for-kubernetes/changelog   https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
+/gateway-oss/2.6.x/kong-for-kubernetes/using-kong-for-kubernetes  /kubernetes-ingress-controller/
+/gateway-oss/latest/kong-for-kubernetes/using-kong-for-kubernetes  /kubernetes-ingress-controller/
 /kubernetes-ingress-controller/latest/introduction /kubernetes-ingress-controller/
 /kubernetes-ingress-controller/1.2.x/introduction  /kubernetes-ingress-controller/
 /enterprise/2.5.x/deployment/using-kong-for-kubernetes/   /kubernetes-ingress-controller/
