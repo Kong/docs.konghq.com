@@ -69,6 +69,11 @@ params:
       datatype: string
       description: |
         How to define the rate limit key. Can be `ip`, `credential`, `consumer`, `service`, `header`, or `path`.
+    - name: path
+      required: semi
+      datatype: string
+      description: |
+        Request path to use as the rate limit key when the `path` identifier is defined.
     - name: header_name
       required: semi
       datatype: string
