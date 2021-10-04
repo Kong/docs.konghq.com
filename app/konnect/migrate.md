@@ -171,7 +171,7 @@ applications registered through the Portal, those developers need to create new
 accounts in {{site.konnect_saas}} and register their applications in the new
 location.
     * [Developer registration](/konnect/dev-portal/access-and-approval/dev-reg)
-    * [Enable application registration](/konnect/dev-portal/administrators/app-registration/enable-app-reg):
+    * [Enable application registration](/konnect/dev-portal/applications/enable-app-reg):
     App registration in {{site.konnect_saas}} works through a different
     mechanism than in self-hosted {{site.base_gateway}}. Enable app
     registration on each service that requires it.
