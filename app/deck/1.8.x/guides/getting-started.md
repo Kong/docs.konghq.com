@@ -23,7 +23,7 @@ If you already have {{site.base_gateway}} set up with the configuration of your 
 1. Create a service:
 
     ```shell
-    $ curl -s -X POST http://localhost:8001/services -d 'name=foo' -d 'url=http://example.com' | jq
+    curl -s -X POST http://localhost:8001/services -d 'name=foo' -d 'url=http://example.com' | jq
     {
       "host": "example.com",
       "created_at": 1573161698,
@@ -45,7 +45,7 @@ If you already have {{site.base_gateway}} set up with the configuration of your 
 2. Create a route associated with the service:
 
     ```sh
-    $ curl -s -XPOST http://localhost:8001/services/foo/routes -d 'name=bar' -d 'paths[]=/bar' | jq
+    curl -s -X POST http://localhost:8001/services/foo/routes -d 'name=bar' -d 'paths[]=/bar' | jq
     {
       "id": "83c2798d-6bd8-4182-a799-2632c9f670a5",
       "tags": null,
@@ -78,7 +78,7 @@ If you already have {{site.base_gateway}} set up with the configuration of your 
 3. Create a global plugin:
 
     ```sh
-    $ curl -s -XPOST http://localhost:8001/plugins -d 'name=prometheus' | jq
+    curl -s -X POST http://localhost:8001/plugins -d 'name=prometheus' | jq
     {
         "config": {},
         "consumer": null,
