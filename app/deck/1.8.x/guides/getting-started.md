@@ -2,9 +2,9 @@
 title: Getting Started with decK
 ---
 
-Once you've [installed](/deck/{{page.kong_version}}/installation) decK, use this guide to get started with it.
+Once you have [installed](/deck/{{page.kong_version}}/installation) decK, use this guide to get started with it.
 
-You can find help in the terminal for any command using the `-help`
+You can find help in the terminal for any command using the `--help`
 flag, or see the [CLI reference](/deck/{{page.kong_version}}/reference/deck).
 
 ## Install Kong Gateway
