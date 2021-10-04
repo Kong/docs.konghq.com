@@ -51,8 +51,6 @@ only one or neither of the fields be configured.
   - The plugin now has a `local` strategy in the schema. The local strategy automatically sets `config.sync_rate` to -1.
   - The highest sync-rate configurable was a 1 second interval. This sync-rate has been increased by reducing
     the minimum allowed interval from 1 to 0.020 second (20ms).
-  - The plugin now supports rate limit consumer groups, which allow different rate limit configurations
-    to be applied for consumers in consumer groups.
 - [OPA](/hub/kong-inc/opa) (`opa`)
   The OPA plugin now has a request path parameter, which makes setting policies on a path easier for administrators.
 - [Canary](/hub/kong-inc/canary) (`canary`)
