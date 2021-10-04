@@ -5,7 +5,7 @@ no_version: true
 ---
 
 ## 2.6.0.0 (beta1)
-**Release date:** 2021/09/30
+**Release date:** 2021/10/04
 
 ### Features
 
