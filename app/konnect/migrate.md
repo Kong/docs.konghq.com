@@ -67,17 +67,18 @@ a warning if this occurs.
     ```
 
     {:.note}
-    > You can also use decK with Konnect more securely by storing your password
-    in a file, then either calling it with `--konnect-password-file pass.txt`,
-    or adding it to your decK configuration under the `konnect-password` option.
-    See the [`deck konnect`](/deck/latest/reference/deck_konnect) reference for
-    more information about the flag.
+    > **Note:** You can also use decK with {{site.konnect_saas}} more securely
+    by storing your password in a file, then either calling it with
+    `--konnect-password-file pass.txt`, or adding it to your decK configuration
+    under the `konnect-password` option. See the
+    [`deck konnect`](/deck/latest/reference/deck_konnect) reference for more
+    information about the flag.
 
 2. If you're satisfied with the preview, run [`deck konnect sync`](/deck/latest/reference/deck_konnect_sync):
 
     ```sh
     deck konnect sync \
-      --konnect-email {YOUR_EMAIL}\
+      --konnect-email {YOUR_EMAIL} \
       --konnect-password {YOUR_PASSWORD} \
       --state konnect.yaml
     ```
@@ -123,7 +124,7 @@ each Service version can have one spec in YAML or JSON format.
     {:.important}
     > You **must** set `published: true`, otherwise the file will not be
     uploaded to {{site.konnect_saas}}. This parameter **does not** control
-    whether the Service itself is published to the Portal.
+    whether the Service itself is published to the Dev Portal.
     > <br><br>
     > The same principle applies to Service version specs.
 
@@ -134,7 +135,7 @@ include a path to the spec:
     service_packages:
     - name: MyService
       document:
-        path: {PATH_TO_FILE}/installation.md
+        path: {PATH_TO_FILE}/description.md
         published: true
       versions:
       - version: "1"
@@ -159,8 +160,8 @@ your preferred deployment type.
 2. Once you have created or converted the data plane nodes, `kong stop` your
 old Gateway runtimes, then shut them down.
 
-3. If any of the nodes had connected PostgreSQL or Cassandra instances, you can
-shut them down now.
+3. If any of the old nodes have connected PostgreSQL or Cassandra instances,
+you can shut them down now.
 
 ## Post-migration tasks
 
