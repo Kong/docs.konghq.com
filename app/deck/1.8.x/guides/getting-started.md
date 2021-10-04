@@ -5,7 +5,7 @@ title: Getting Started with decK
 Once you've [installed](/deck/{{page.kong_version}}/installation) decK, use this guide to get started with it.
 
 You can find help in the terminal for any command using the `-help`
-flag, or see the [CLI reference](/deck/{{page.kong_version}}/reference/deck)
+flag, or see the [CLI reference](/deck/{{page.kong_version}}/reference/deck).
 
 ## Install Kong Gateway
 
@@ -23,7 +23,7 @@ If you already have {{site.base_gateway}} set up with the configuration of your 
 1. Create a service:
 
     ```shell
-    $ curl -s -XPOST http://localhost:8001/services -d 'name=foo' -d 'url=http://example.com' | jq
+    $ curl -s -X POST http://localhost:8001/services -d 'name=foo' -d 'url=http://example.com' | jq
     {
       "host": "example.com",
       "created_at": 1573161698,
@@ -101,13 +101,26 @@ If you already have {{site.base_gateway}} set up with the configuration of your 
 
 ## Export the configuration
 
-1. Export {{site.base_gateway}}'s configuration:
+1. Check that decK recognizes your {{site.base_gateway}} installation:
+
+    ```sh
+    deck konnect ping
+    ```
+
+    If the connection is successful, the terminal displays your gateway version:
+
+    ```sh
+    Successfully connected to Kong!
+    Kong version:  2.5.1
+    ```
+
+2. Export {{site.base_gateway}}'s configuration:
 
     ```shell
     deck dump
     ```
 
-2. Open the generated `kong.yaml` file. If you're using the sample
+3. Open the generated `kong.yaml` file. If you're using the sample
 configuration in this guide, the file should look like this:
 
     ```yaml
@@ -190,7 +203,7 @@ plugins:
 
 ## diff and sync the configuration to Kong Gateway
 
-1. Let's perform a diff:
+1. Perform a diff:
 
     ```shell
     deck diff
@@ -210,7 +223,7 @@ plugins:
     curl -i -X GET http://localhost:8001/services
     ```
 
-4. You can also run the diff command, which should report no changes:
+4. Run the diff command again, which should report no changes:
 
     ```sh
     deck diff
@@ -221,7 +234,7 @@ plugins:
 1. Create a consumer in {{site.base_gateway}}:
 
     ```shell
-    curl -s -XPOST http://localhost:8001/consumers -d 'username=example-consumer' | jq
+    curl -s -X POST http://localhost:8001/consumers -d 'username=example-consumer' | jq
     ```
 
     Response:
