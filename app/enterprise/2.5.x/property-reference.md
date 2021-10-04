@@ -3376,9 +3376,7 @@ documentation site.
 Encrypted data is transparently decrypted before being displayed to the Admin
 API or made available to plugins or core routing logic.
 
-Do note that this feature is currently alpha quality. It is strongly
-recommended that this not be enabled on production clusters. No guarantees about
-forward- compatability or stability are provided with this, and mis-management
+No guarantees about forward-compatability or stability are provided with this, and mis-management
 of keyring data will result in irrecoverable data loss.
 
 ---
