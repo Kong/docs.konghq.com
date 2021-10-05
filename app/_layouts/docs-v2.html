@@ -11,7 +11,7 @@ page.kong_latest.release %}
 <div class="page v2 {{ page.class }}" data-url={{ page.url }}>
 
   <div class="container">
-    {% include_cached docs-sidebar.html url=page.url kong_version=page.kong_version edition=page.edition no_version=page.no_version has_version=page.has_version nav_items=page.nav_items edition=page.edition kong_version=page.kong_version kong_latest=page.kong_latest kong_versions=page.kong_versions %}
+    {% include_cached docs-sidebar.html url=page.url kong_version=page.kong_version edition=page.edition no_version=page.no_version has_version=page.has_version nav_items=page.nav_items edition=page.edition kong_version=page.kong_version kong_latest=page.kong_latest kong_versions=page.kong_versions badge=page.badge %}
 
     {% if page.toc == true or page.toc != false and filename != "index.md" and page.is_homepage != true %}
       <aside class="docs-toc">
@@ -102,14 +102,17 @@ page.kong_latest.release %}
             {% endif %}
 
 
-            <h1 tabindex="-1" id="main" class="page-content-title{%
-            if page.badge %} badge{%
-            if page.badge == 'plus' %} plus{% endif %}{%
-            if page.badge == 'enterprise' %} enterprise{% endif %}{%
-            if page.badge == 'oss' %} oss{% endif %}
-            {% endif %}"
-            >{{page.title | flatify }} </h1>
-            {% if page.enterprise %}{% endif %}
+            <h1 tabindex="-1" id="main" class="page-content-title"
+            >{{page.title | flatify }}
+            {% if page.badge %}
+              <a href="https://konghq.com/pricing" {%
+                if page.badge == 'plus' %}class="badge plus" aria-label="available with plus subscription"{% endif %}{%
+                if page.badge == 'enterprise' %}class="badge enterprise" aria-label="available with enterprise subscription"{% endif %}{%
+                if page.badge == 'oss' %}class="badge oss" aria-label="open-source only"{% endif %}>
+              </a>
+              {% endif %}
+            </h1>
+
             {% if page.subtitle %}
               <h2 class="page-content-subtitle">{{page.subtitle | flatify }}</h2>
             {% endif %}
