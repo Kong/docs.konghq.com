@@ -114,9 +114,11 @@ params:
         The rate-limiting strategy to use for retrieving and incrementing the
         limits. Available values are:
         - `cluster`: Counters are stored in the Kong datastore and shared across
-         the nodes.
+           the nodes.
         - `redis`: Counters are stored on a Redis server and shared
-        across the nodes.
+           across the nodes.
+        - `local`: Counters are stored locally in-memory on the node (same effect
+           as setting `sync_rate` to `-1`).
 
         In DB-less and hybrid modes, the `cluster` config strategy is not
         supported.
