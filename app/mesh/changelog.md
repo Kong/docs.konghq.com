@@ -4,6 +4,16 @@ no_search: true
 no_version: true
 ---
 
+## 1.4.1
+
+> Released on 2021/10/06
+
+### Changes
+
+Built on top of [Kuma 1.3.0](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#130)
+
+- 
+
 ## 1.4.0
 
 > Released on 2021/08/26
