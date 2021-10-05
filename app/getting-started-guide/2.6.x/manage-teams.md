@@ -1,9 +1,7 @@
 ---
 title: Manage Administrative Teams
+badge: enterprise
 ---
-<div class="alert alert-ee">
-<img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /> This feature is only available with a {{site.konnect_product_name}} subscription.
-</div>
 
 In this topic, you’ll learn how to manage and configure user authorization using workspaces and teams in {{site.ee_product_name}}.
 

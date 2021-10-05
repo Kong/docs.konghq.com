@@ -28,13 +28,8 @@ for microservices, delivering unparalleled latency, performance, and scalability
  If you just want the basics, this option will work for you.
 
 ### {{site.ee_product_name}}
-<div class="alert alert-ee">
-<img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" />
-This guide also includes some features available with {{site.konnect_product_name}}.
-They'll be called out in blue blocks like this, or in their own Kong Manager
-tabs.
-</div>
-{{site.konnect_product_name}} extends the {{site.base_gateway}} with enterprise
+
+{{site.konnect_product_name}} extends the {{site.base_gateway}} with Enterprise
 features and support. It provides advanced functionality using plugins for
 security, collaboration, performance at scale, and use of advanced protocols.
 
@@ -101,11 +96,11 @@ variable with the actual URL of your {{site.base_gateway}} installation.
 * Throughout this guide, you will have the option to configure Kong in a few
 different ways. Choose your preferred method, if options are available —
 you don’t have to walk through all of them:
-  * Programmatically manage Kong using its REST-based Admin API
-  * Use the Kong Manager GUI *({{site.konnect_product_name}} users only)*
+  * Programmatically manage {{site.base_gateway}} using its REST-based Admin API
+  * Use the Kong Manager GUI *(Not available for open-source Gateway)*
   * Use decK for declarative configuration (YAML)
-* If you're running Kong in Hybrid mode, all tasks contained in this guide take
-place on the Control Plane.
+* If you're running {{site.base_gateway}} in Hybrid mode, all tasks contained
+in this guide take place on the Control Plane.
 * This guide provides Kong Admin API examples in both HTTPie and cURL. If you
 want to use HTTPie, install it from [here](https://httpie.org/).
 * Any references to “{{site.base_gateway}}” refer to features or concepts

@@ -1,9 +1,7 @@
 ---
 title: Publish, Locate, and Consume Services
+badge: enterprise
 ---
-<div class="alert alert-ee">
-<img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /> This feature is only available with a {{site.konnect_product_name}} subscription.
-</div>
 
 The Kong Developer Portal (Dev Portal) provides a single source of truth for all developers to locate, access, and consume services. With intuitive content management for documentation, streamlined developer onboarding, and role-based access control (RBAC), the Dev Portal provides a comprehensive solution for creating and customizing a unified developer experience.
 
