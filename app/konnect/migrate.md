@@ -183,7 +183,7 @@ location.
 Custom plugins are supported in {{site.konnect_saas}}, but with limitations. As
 long as your plugins fit the criteria, or if you can adjust them to do so,
 contact Kong Support to get the plugin manually added to your account.
-* [**Review roles and permissions**](/konnect/reference/org-management):
+* [**Review roles and permissions**](/konnect/org-management/users-and-roles/):
 {{site.konnect_saas}} roles and permissions don't map directly to
 {{site.base_gateway}} RBAC. You also can't create custom roles, or adjust
 permissions on the existing roles. Instead, invite users to your
