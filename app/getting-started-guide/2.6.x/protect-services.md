@@ -7,11 +7,10 @@ If you are following the getting started workflow, make sure you have completed 
 
 ## What is Rate Limiting?
 
-Rate Limiting lets you restrict how many requests your upstream services receive from your API consumers, or how often each user can call the API.
+Kong's [Rate Limiting plugin](/hub/kong-inc/rate-limiting) lets you restrict how many requests your upstream services receive from your API consumers, or how often each user can call the API.
 
-<div class="alert alert-ee">
-<img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /> For {{site.ee_product_name}}, the Rate Limiting Advanced plugin provides support for the sliding window algorithm to prevent the API from being overloaded near the window boundaries, and adds Redis support for greater performance.
-</div>
+{:.note}
+> The [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced) <span class="badge enterprise"></span> plugin provides support for the sliding window algorithm to prevent the API from being overloaded near the window boundaries, and adds Redis support for greater performance.
 
 ## Why Use Rate Limiting?
 
@@ -47,9 +46,8 @@ Rate limiting protects the APIs from accidental or malicious overuse. Without ra
 {% endnavtab %}
 {% navtab Using the Admin API %}
 
-<div class="alert alert-ee">
-<img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /><strong>Note:</strong> This section sets up the basic Rate Limiting plugin. If you have a {{site.ee_product_name}} instance, see instructions for <strong>Using Kong Manager</strong> to set up Rate Limiting Advanced with sliding window support instead.
-</div>
+{:.note}
+> **Note:** This section sets up the basic Rate Limiting plugin. If you have a {{site.ee_product_name}} instance, see instructions for **Using Kong Manager** to set up Rate Limiting Advanced with sliding window support instead.
 
 Call the Admin API on port `8001` and configure plugins to enable a limit of five (5) requests per minute, stored locally and in-memory, on the node.
 
@@ -77,9 +75,8 @@ $ http -f post :8001/plugins \
 {% endnavtab %}
 {% navtab Using decK (YAML) %}
 
-<div class="alert alert-ee">
-<img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /><strong>Note:</strong> This section sets up the basic Rate Limiting plugin. If you have a {{site.ee_product_name}} instance, see instructions for <strong>Using Kong Manager</strong> to set up Rate Limiting Advanced instead.
-</div>
+{:.note}
+> **Note:** This section sets up the basic Rate Limiting plugin. If you have a {{site.ee_product_name}} instance, see instructions for **Using Kong Manager** to set up Rate Limiting Advanced with sliding window support instead.
 
 1. Add a new `plugins` section to the bottom of your `kong.yaml` file. Enable
 `rate-limiting` with a limit of five (5) requests per minute, stored locally
