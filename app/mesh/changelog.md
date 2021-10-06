@@ -10,9 +10,16 @@ no_version: true
 
 ### Changes
 
-Built on top of [Kuma 1.3.0](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#130)
+Built on top of [Kuma 1.3.1](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#131)
 
-- 
+- Common name support for Vault certificate storage is now available.
+- You can now disable zones as needed.
+- The number of Postgres connections is now limited to 50 by default. The default value was previously unlimited; you can still configure the limit if needed.
+- You can now select a specific zone in the Kuma Service dashboard and in the Service to Service dashboard.
+
+### Upgrading
+
+Upgrades from `1.4.0` are seamless and no additional steps are needed.
 
 ## 1.4.0
 
