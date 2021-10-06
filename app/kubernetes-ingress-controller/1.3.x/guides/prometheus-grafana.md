@@ -44,7 +44,9 @@ We’ll install both Prometheus and Grafana in a dedicated `monitoring` namespac
 To install Prometheus, execute the following:
 
 ```bash
-$ helm install --name prometheus stable/prometheus --namespace monitoring --values https://bit.ly/2RgzDtg --version 11.0.3
+$ kubectl create namespace monitoring
+$ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+$ helm install prometheus prometheus-community/prometheus --namespace monitoring --values https://bit.ly/2RgzDtg --version 11.0.3
 ```
 
 ### Grafana
@@ -89,7 +91,8 @@ dashboards:
 To install Grafana, execute the following:
 
 ```bash
-$ helm install stable/grafana --name grafana --namespace monitoring --values http://bit.ly/2FuFVfV --version 5.0.8
+$ helm repo add grafana https://grafana.github.io/helm-charts
+$ helm install grafana grafana/grafana --namespace monitoring --values http://bit.ly/2FuFVfV --version 5.0.8
 ```
 
 ## Install Kong
@@ -101,11 +104,8 @@ but you can also use plain manifests for this purpose.
 $ helm repo add kong https://charts.konghq.com
 $ helm repo update
 
-# helm 2
-$ helm install kong/kong --namespace kong --name mykong --version 1.3.1 --values https://bit.ly/2UAv0ZE
-
-# helm 3
-$ helm install kong/kong --namespace kong --name mykong --version 1.3.1 --values https://bit.ly/2UAv0ZE --set ingressController.installCRDs=false
+$ kubectl create namespace kong
+$ helm install mykong kong/kong --namespace kong --values https://bit.ly/2UAv0ZE
 ```
 
 ### Enable Prometheus plugin in Kong
