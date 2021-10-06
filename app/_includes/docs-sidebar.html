@@ -65,13 +65,7 @@
       <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span>
           Version {{page.kong_version}}
-          {% if page.edition == 'kubernetes-ingress-controller' %}
-            {% if page.kong_version == "2.0.x" %}
-            <span>(beta)</span>
-            {% elsif page.kong_version == "1.3.x" %}
-            <span>(latest)</span>
-            {% endif %}
-          {% elsif page.edition != 'kubernetes-ingress-controller' and page.kong_version == page.kong_latest.release %}
+          {% if page.kong_version == page.kong_latest.release %}
             <span>(latest)</span>
           {% endif %}
         </span>
@@ -87,12 +81,8 @@
             data-version-id="{{ver.release}}"
           >
             {{ver.release}}
-              {% if page.edition == "kubernetes-ingress-controller" and ver.release == "2.0.x" %}
-                <em>(beta)</em>
-                {% elsif page.edition == "kubernetes-ingress-controller" and ver.release == "1.3.x" %}
-                <em>(latest)</em>
-                {% elsif ver.release == page.kong_latest.release %} <em>(latest)</em>
-              {% endif %}
+            {% if ver.release == page.kong_latest.release %} <em>(latest)</em>
+            {% endif %}
           </a>
         </li>
         {% endfor %}
