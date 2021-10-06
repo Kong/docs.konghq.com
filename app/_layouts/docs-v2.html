@@ -77,30 +77,12 @@ page.kong_latest.release %}
           </div>
           {% endif %}
             {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
-              {% unless page.url contains "/kubernetes-ingress-controller/" and page.kong_version == "1.3.x" %}
               <div class="alert alert-warning">
               You are browsing documentation for an outdated version. See the
               <a href="{% if latest_page_exists == 'true' %}{{latest_page_url}}{% elsif page.edition == 'gateway-oss'%}/gateway-oss/{% elsif page.edition == 'enterprise'%}/enterprise/{% elsif page.edition == 'mesh'%}/mesh/{% elsif page.edition == 'kubernetes-ingress-controller/'%}/kubernetes-ingress-controller/{% else %}/{% endif %}">
                 latest documentation here</a>.
               </div>
-              {% endunless %}
             {% endif %}
-            {% if page.edition == "kubernetes-ingress-controller" and page.kong_version == "2.0.x" %}
-            <div class="alert alert-red no-icon">
-              <p>Kong's Kubernetes Ingress Controller v2.0 is available in <b>beta</b> with limited support. It should not be deployed in a production environment.</p>
-              For the latest stable version, see the documentation for <a href ="https://docs.konghq.com/kubernetes-ingress-controller/1.3.x">Kubernetes Ingress Controller v1.3.x</a>.
-            </div>
-            {% endif %}
-            {% if page.url contains "/kubernetes-ingress-controller/" %}
-            {% unless page.kong_version == "2.0.x" %}
-            <blockquote class="note">
-              <p>Kong's Kubernetes Ingress Controller v2.0.0 is currently in beta. Check out the
-              <a href="/kubernetes-ingress-controller-beta/">beta documentation</a> and try out
-              <a href="https://github.com/Kong/kubernetes-ingress-controller/releases/tag/v2.0.0-beta.1">v2.0.0</a> for yourself.</p>
-            </blockquote>
-            {% endunless %}
-            {% endif %}
-
 
             <h1 tabindex="-1" id="main" class="page-content-title"
             >{{page.title | flatify }}
