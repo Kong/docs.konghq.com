@@ -11,9 +11,9 @@ This document is a reference for the former type.
 
 | Metric name | Description |
 |-------------|-------------|
-| `send_configuration_count[success=true|false][type=post-config|deck]` | Counts the success/failure events of converting kubernetes resources to a KongState, including conversion. |
-| `ingress_parse_count[success=true|false]` | Counts (successful and unsuccessful) events of interpreting ingress configurations in Kubernetes. `success=false` means a configuration error and is a good candidate for an alert. |
-| `proxy_configuration_duration_milliseconds` | Duration of the last successful configuration. |
+| `ingress_controller_configuration_push_count[success=true|false][protocol=db-less|deck]` | Count of successful/failed configuration pushes to Kong. `protocol` describes the configuration protocol (`db-less` or `deck`) in use. `success` describes whether there were unrecoverable errors (`false`) or not (`true`).|
+| `ingress_controller_translation_count[success=true|false]` | Count of translations from Kubernetes state to Kong state. `success` describes whether there were unrecoverable errors (`false`) or not (`true`). |
+| `ingress_controller_configuration_push_duration_milliseconds` | How long it took to push the configuration to Kong, in milliseconds. `protocol` describes the configuration protocol (`db-less` or `deck`) in use. `success` describes whether there were unrecoverable errors (`false`) or not (`true`). |
 
 In addition to the above, {{site.kic_product_name}} exposes more low-level performance metrics - these may however change from version to version, as they are provided by underlying frameworks of {{site.kic_product_name}}.
 
