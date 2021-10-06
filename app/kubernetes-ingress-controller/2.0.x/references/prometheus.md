@@ -23,4 +23,4 @@ A non-exhaustive list of these low-level metrics is present in the following pla
 
 [kongplugin-guide]: /kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource/
 [grafana-guide]: /kubernetes-ingress-controller/{{page.kong_version}}/guides/prometheus-grafana/
-[prom-plugin]: /hub/kong-inc/prometheus/k
+[prom-plugin]: /hub/kong-inc/prometheus/

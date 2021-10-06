@@ -20,7 +20,7 @@ Service level, disable app registration and then enable it again with the Auto A
 toggle set to disabled.
 
 You can
-[enable application registration](/konnect/dev-portal/administrators/app-registration/enable-app-reg)
+[enable application registration](/konnect/dev-portal/applications/enable-app-reg)
 again any time.
 
 1. From the {{site.konnect_short_name}} menu, click **Services**.

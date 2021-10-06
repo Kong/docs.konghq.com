@@ -32,9 +32,9 @@ ready to manage authentication and authorization through Okta for this
 
 ## Prerequisites and overview of steps
 
-To set up Okta single sign-on (SSO) for {{site.konnect_short_name}}, you need access to an
-Okta admin account and a
-[{{site.konnect_short_name}} admin account](/konnect/reference/org-management/#role-definitions),
+To set up Okta single sign-on (SSO) for {{site.konnect_short_name}}, you need
+access to an Okta admin account and a
+[{{site.konnect_short_name}} admin account](/konnect/org-management/users-and-roles), 
 which you will access concurrently.
 
 Here are the steps you need to complete, in both Okta and

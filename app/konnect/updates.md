@@ -193,7 +193,7 @@ through {{site.konnect_saas}}. This includes:
 ### 2021.02.10
 
 **Portal authentication**
-: You can now [disable authentication on a Dev Portal](/konnect/dev-portal/administrators/public-portal/),
+: You can now [disable authentication on a Dev Portal](/konnect/dev-portal/customization/public-portal/),
 which exposes the Dev Portal publicly to anyone with the link. No one needs to register
 for Dev Portal access.
 : New application registrations aren't available through a public-facing portal.
