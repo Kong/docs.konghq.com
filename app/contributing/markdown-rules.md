@@ -15,7 +15,7 @@ Plugin Hub docs have specialized front matter elements. See the
 
 **Required:**
 
-`title: <page title>`
+`title: {PAGE_TITLE}`
 : The title of the topic you're adding.
 
 **Optional:**
@@ -486,3 +486,23 @@ The HTML span tag is useful for including a badge inline:
 ```html
 The Dev Portal <span class="badge plus"></span> is a thing.
 ```
+
+## Escape Liquid syntax
+
+Jekyll processes all Liquid filters in code blocks. This means that if you are
+using a language that contains double curly braces
+(`{% raw %}{{ }}{% endraw %}`), you need to place <code>&#123;% raw %}</code>
+and <code>&#123;% endraw %}</code> tags around your code.
+
+For example:
+
+{% navtabs codeblock %}
+{% navtab Input %}
+<div class="copy-code-snippet"><pre><code>&#123;% raw %}'{% raw %}{{ tag "kuma.io/service" }}{% endraw %}.mesh'&#123;% endraw %}</code></pre></div>
+{% endnavtab %}
+{% navtab Output %}
+```
+{% raw %}'{{ tag "kuma.io/service" }}.mesh'{% endraw %}
+```
+{% endnavtab %}
+{% endnavtabs %}
