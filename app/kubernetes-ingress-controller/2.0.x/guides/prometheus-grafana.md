@@ -36,9 +36,11 @@ These settings are not meant for production usage.
 
 If you already have the [Prometheus
 Operator](https://github.com/prometheus-operator/prometheus-operator) and
-Grafana installed in your cluster, you can skip these steps. Note that you do
-specifically need the Prometheus Operator, as we use its PodMonitor custom
-resource to configure scrape rules.
+Grafana installed in your cluster, you can skip these steps. 
+
+{:.note}
+> **Note:** The Prometheus Operator is required, as the {{site.kic_product_name}} 
+uses its PodMonitor custom resource to configure scrape rules.
 
 ### Prometheus and Grafana
 
@@ -46,9 +48,8 @@ First, we will install Prometheus with a
 scrape interval of 10 seconds to have fine-grained data points for all metrics.
 We’ll install both Prometheus and Grafana in a dedicated `monitoring` namespace.
 
-First, create a values.yaml to set the scrape interval, use Grafana
+Create a `values.yaml` to set the scrape interval, use Grafana
 persistence, and install Kong's dashboard:
-
 ```yaml
 prometheus:
   prometheusSpec:
@@ -78,7 +79,7 @@ grafana:
 ```
 
 To install Prometheus and Grafana, execute the following, specifying the path
-to the values.yaml you created earlier:
+to the `values.yaml` you created earlier:
 
 ```bash
 $ kubectl create namespace monitoring
@@ -100,8 +101,8 @@ $ helm install mykong kong/kong --namespace kong --set serviceMonitor.enabled=tr
 ```
 
 By default, kube-prometheus-stack [selects ServiceMonitors and PodMonitors by a
-`release` label equal to the release name](https://github.com/prometheus-community/helm-charts/blob/kube-prometheus-stack-19.0.1/charts/kube-prometheus-stack/values.yaml#L2128-L2169). The labels setting here adds a label matching the
-`promstack` release name from the example earlier.
+`release` label equal to the release name](https://github.com/prometheus-community/helm-charts/blob/kube-prometheus-stack-19.0.1/charts/kube-prometheus-stack/values.yaml#L2128-L2169). The `labels` setting here adds a label matching the
+`promstack` release name from the example.
 
 ### Enable Prometheus plugin in Kong
 
