@@ -198,7 +198,7 @@ spec:
             namespace: "" # optional
             pki: kmesh-pki-default # name of the configured PKI
             role: dataplane-proxies # name of the role that will be used to generate data plane proxy certificates
-            commonName: '{{ tag "kuma.io/service" }}.mesh' # optional. If set, then common name is added to the certificate. You can use "tag" directive to pick a tag which will be base for common name.
+            commonName: '{{ tag "kuma.io/service" }}.mesh' # optional. If set, then commonName is added to the certificate. You can use "tag" directive to pick a tag which will be base for commonName.
             tls:
               caCert:
                 secret: sec-1
@@ -237,7 +237,7 @@ mtls:
         namespace: "" # optional
         pki: kmesh-pki-default # name of the configured PKI
         role: dataplane-proxies # name of the role that will be used to generate data plane proxy certificates
-        commonName: '{{ tag "kuma.io/service" }}.mesh' # optional. If set, then common name is added to the certificate. You can use "tag" directive to pick a tag which will be base for common name.
+        commonName: '{{ tag "kuma.io/service" }}.mesh' # optional. If set, then commonName is added to the certificate. You can use "tag" directive to pick a tag which will be base for commonName.
         tls:
           caCert:
             secret: sec-1
