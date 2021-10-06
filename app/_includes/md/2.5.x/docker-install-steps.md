@@ -12,12 +12,12 @@ docker pull kong/kong-gateway:{{include.kong_versions[12].version}}-alpine
 {:.important}
 > Some [older {{site.base_gateway}} images](https://support.konghq.com/support/s/article/Downloading-older-Kong-versions)
 are not publicly accessible. If you need a specific patch version and can't
-find it on [Kong's public Docker Hub page](https://hub.docker.com/_/kong), contact
+find it on [Kong's public Docker Hub page](https://hub.docker.com/r/kong/kong-gateway), contact
 [Kong Support](https://support.konghq.com/).
 
 You should now have your {{site.base_gateway}} image locally.
 
-Tag the image. 
+Tag the image.
 
 ```bash
 docker tag kong/kong-gateway:{{include.kong_versions[12].version}}-alpine kong-ee
