@@ -62,7 +62,7 @@ vault secrets tune -max-lease-ttl=87600h kmesh-pki-default
 
 ```sh
 vault write -field=certificate kmesh-pki-default/root/generate/internal \
-  common_name="Kong Mesh Mesh Default" \
+  common_name="Kong Mesh Default" \
   uri_sans="spiffe://default" \
   ttl=87600h
 ```
