@@ -12,7 +12,7 @@ deck sync [flags]
 ### Options
 
 ```
-      --db-update-propagation-delay int   artificial delay (in seconds) that is injected between insert operations 
+      --db-update-propagation-delay int   artificial delay (in seconds) that is injected between insert operations
                                           for related entities (usually for Cassandra deployments).
                                           See 'db_update_propagation' in kong.conf.
   -h, --help                              help for sync
@@ -20,7 +20,6 @@ deck sync [flags]
       --rbac-resources-only               diff only the RBAC resources (Kong Enterprise only).
       --select-tag strings                only entities matching tags specified via this flag are synced.
                                           When this setting has multiple tag values, entities must match every tag.
-      --silence-events                    disable printing events to stdout
       --skip-consumers                    do not diff consumers or any plugins associated with consumers.
   -s, --state strings                     file(s) containing Kong's configuration.
                                           This flag can be specified multiple times for multiple files.
@@ -47,7 +46,6 @@ deck sync [flags]
       --konnect-password-file string   File containing the password to your Konnect account.
       --no-color                       Disable colorized output
       --skip-workspace-crud            Skip API calls related to Workspaces (Kong Enterprise only).
-      --timeout int                    Set a request timeout for the client to connect with Kong (in seconds). (default 10)
       --tls-server-name string         Name to use to verify the hostname in Kong's Admin TLS certificate.
                                        This value can also be set using DECK_TLS_SERVER_NAME environment variable.
       --tls-skip-verify                Disable verification of Kong's Admin TLS certificate.

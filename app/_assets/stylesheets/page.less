@@ -840,7 +840,7 @@
       padding: 7px 0 15px 35px;
 
       &:last-child {
-        padding-bottom: 15px;
+        padding-bottom: 5px;
       }
 
       &:before {
@@ -1089,6 +1089,12 @@ Generic Styling for Desktop
         font-size: 17px;
         padding: 0 5px 0 0;
       }
+
+      &.no-icon {
+      &::before {
+        display: none;
+      }
+    }
     }
 
     ol, li {
@@ -1530,6 +1536,24 @@ Generic Styling for Desktop
       &:before {
         content: "DELETE";
         background-color: #e23b3b;
+      }
+    }
+
+    &.head {
+      border-color: #f28bc7;
+
+      &:before {
+        content: "HEAD";
+        background-color: #e32391;
+      }
+    }
+
+    &.options {
+      border-color: #9fe0d6;
+
+      &:before {
+        content: "OPTIONS";
+        background-color: #3fb4a2;
       }
     }
   }

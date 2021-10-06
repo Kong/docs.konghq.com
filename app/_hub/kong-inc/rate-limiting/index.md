@@ -184,9 +184,9 @@ params:
 
 ## Headers sent to the client
 
-When this plugin is enabled, Kong sends some additional headers back to the client
-indicating the allowed limits, how many requests remain available,
-and the time remaining until the quota is reset (number of seconds). For example:
+When this plugin is enabled, Kong sends additional headers
+to show the allowed limits, number of available requests,
+and the time remaining (in seconds) until the quota is reset. Here's an example header:
 
 ```
 RateLimit-Limit: 6
@@ -194,14 +194,14 @@ RateLimit-Remaining: 4
 RateLimit-Reset: 47
 ```
 
-The plugin also sends headers that indicate the limits in the time frame and the number of minutes remaining:
+The plugin also sends headers to show the time limit and the minutes still available:
 
 ```
 X-RateLimit-Limit-Minute: 10
 X-RateLimit-Remaining-Minute: 9
 ```
 
-Or, it returns a combination of more time limits, if more than one is being set:
+If more than one time limit is set, the header contains all of these:
 
 ```
 X-RateLimit-Limit-Second: 5
@@ -210,79 +210,68 @@ X-RateLimit-Limit-Minute: 10
 X-RateLimit-Remaining-Minute: 9
 ```
 
-If any of the limits configured is being reached, the plugin returns a `HTTP/1.1 429` status code to the client with the following JSON body:
+When a limit is reached, the plugin returns an `HTTP/1.1 429` status code, with the following JSON body:
 
 ```json
 { "message": "API rate limit exceeded" }
 ```
 
-**NOTE**:
-
-<div class="alert alert-warning">
-The headers `RateLimit-Limit`, `RateLimit-Remaining` and `RateLimit-Reset` are based on the Internet-Draft <a href="https://tools.ietf.org/html/draft-polli-ratelimit-headers-01">RateLimit Header Fields for HTTP</a> and may change in the future, respecting updates to the specification.
-</div>
+{:.warning}
+> **Warning**: The headers `RateLimit-Limit`, `RateLimit-Remaining`, and `RateLimit-Reset` are based on the Internet-Draft [RateLimit Header Fields for HTTP](https://tools.ietf.org/html/draft-polli-ratelimit-headers-01). These could change if the specification is updated.
 
 ## Implementation considerations
 
-The plugin supports three policies, which each have their specific pros and cons.
+The plugin supports three policies.
 
-| policy    | pros                                                        | cons                                                                                                                                |
-| --------- | ----------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `cluster` | accurate, no extra components to support                    | relatively the biggest performance impact, each request forces a read and a write on the underlying datastore.                      |
-| `redis`   | accurate, lesser performance impact than a `cluster` policy | extra redis installation required, bigger performance impact than a `local` policy                                                  |
-| `local`   | minimal performance impact                                  | less accurate, and unless a consistent-hashing load balancer is used in front of Kong, it diverges when scaling the number of nodes |
+| Policy    | Pros | Cons   |
+| --------- | ---- | ------ |
+| `cluster` | Accurate, no extra components to support. | Each request forces a read and a write on the datastore. Therefore, relatively, the biggest performance impact. |
+| `redis`   | Accurate, less performance impact than a `cluster` policy. | Needs a Redis installation. Bigger performance impact than a `local` policy. |
+| `local`   | Minimal performance impact. | Less accurate. Unless there's a consistent-hashing load balancer in front of Kong, it diverges when scaling the number of nodes. |
 
-There are two use cases that are most common:
+Two common use cases are:
 
-1. _every transaction counts_. These are for example transactions with financial
-   consequences. Here the highest level of accuracy is required.
-2. _backend protection_. This is where accuracy is not as relevant, but it is
-   merely used to protect backend services from overload. Either by specific
-   users, or to protect against an attack in general.
+1. _Every transaction counts_. The highest level of accuracy is needed. An example is a transaction with financial
+   consequences.
+2. _Backend protection_. Accuracy is not as relevant. The requirement is
+   only to protect backend services from overloading that's caused either by specific
+   users or by attacks.
 
-**NOTE**:
-
-<div class="alert alert-warning">
-  <strong>Enterprise-Only</strong> The Kong Community Edition of this Rate Limiting plugin does not
-include <a href="https://redis.io/topics/sentinel">Redis Sentinel</a> support.
-<a href="https://www.konghq.com/enterprise/">Kong Enterprise Subscription</a> customers have the option
-of using Redis Sentinel with Kong Rate Limiting to deliver highly available primary-replica deployments.
-</div>
+{:.warning}
+> **Note**: **Enterprise-Only**: The Kong Community Edition of this Rate Limiting plugin does not
+include [Redis Sentinel](https://redis.io/topics/sentinel) support. Only [Kong Enterprise Subscription](https://www.konghq.com/enterprise/) customers can use Redis Sentinel with Kong Rate Limiting, enabling them to deliver highly available primary-replica deployments.
 
 ### Every transaction counts
 
-In this scenario, the `local` policy is not an option. So here the decision is between
-the extra performance of the `redis` policy against its extra support effort. Based on that balance,
-the choice should either be `cluster` or `redis`.
+In this scenario, because accuracy is important, the `local` policy is not an option. Consider the support effort you might need 
+for Redis, and then choose either `cluster` or `redis`. 
 
-The recommendation is to start with the `cluster` policy, with the option to move over to `redis`
-if performance reduces drastically. Keep in mind existing usage metrics cannot
-be ported from the datastore to redis. Generally with shortlived metrics (per second or per minute)
-this is not an issue, but with longer lived ones (months) it might be, so you might want to plan
-your switch more carefully.
+You could start with the `cluster` policy, and move to `redis`
+if performance reduces drastically. 
+
+Do remember that you cannot port the existing usage metrics from the datastore to Redis. 
+This might not be a problem with shortlived metrics (for example, seconds or minutes)
+but if you use metrics with a longer time frame (for example, months), plan
+your switch carefully.
 
 ### Backend protection
 
-If accuracy is of lesser importance, the `local` policy can be used. It might require some experimenting
-to get the proper setting. For example, if the user is bound to 100 requests per second, and you have an
-equally balanced 5 node Kong cluster, setting the `local` limit to something like 30 requests per second
-should work. If you are worried about too many false-negatives, increase the value.
+If accuracy is of lesser importance, choose the `local` policy. You might need to experiment a little
+before you get a setting that works for your scenario. As the cluster scales to more nodes, more user requests are handled. 
+When the cluster scales down, the probability of false negatives increases. So, adjust your limits when scaling.
 
-Keep in mind as the cluster scales to more nodes, the users will get more requests granted, and likewise
-when the cluster scales down the probability of false-negatives increases. So in general, update your
-limits when scaling.
+For example, if a user can make 100 requests every second, and you have an
+equally balanced 5-node Kong cluster, setting the `local` limit to something like 30 requests every second
+should work. If you see too many false negatives, increase the limit.
 
-The above-mentioned inaccuracy can be mitigated by using a consistent-hashing load balancer in front of
-Kong, which ensures the same user is always directed to the same Kong node. This will both reduce the
-inaccuracy and prevent the scaling issues.
-
-Most likely the user will be granted more than was agreed when using the `local` policy, but it will
-effectively block any attacks while maintaining the best performance.
+To minimise inaccuracies, consider using a consistent-hashing load balancer in front of
+Kong. The load balancer ensures that a user is always directed to the same Kong node, thus reducing
+inaccuracies and preventing scaling problems.
 
 ### Fallback to IP
 
-When the selected policy cannot be retrieved, the rate-limiting plugin will fallback
-to limit using IP as the identifier. This can happen for several reasons, such as the
+When the selected policy cannot be retrieved, the plugin falls back
+to limiting usage by identifying the IP address. This can happen for several reasons, such as the
 selected header was not sent by the client or the configured service was not found.
 
 [api-object]: /gateway-oss/latest/admin-api/#api-object

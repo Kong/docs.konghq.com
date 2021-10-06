@@ -1,2 +1,4 @@
-- release: 1.0-x
+- release: 2.1.x
+- release: 2.0.x
+- release: 1.0.x
 - release: 0.1-x

@@ -15,17 +15,17 @@ Kong with an upstream REST API, check out the [Configuring a Service guide][conf
 
 Starting with version 1.3, gRPC proxying is natively supported in Kong. In this
 section, you'll learn how to configure Kong to manage your gRPC services. For the
-purpose of this guide, we'll use [grpcurl][grpcurl] and [grpcbin][grpcbin] - they
+purpose of this guide, you can use [grpcurl][grpcurl] and [grpcbin][grpcbin] - they
 provide a gRPC client and gRPC services, respectively.
 
-We will describe two setups: Single gRPC Service and Route and single gRPC Service
+You have to describe two setups: Single gRPC Service and Route and single gRPC Service
 with multiple Routes. In the former, a single catch-all Route is configured, which
-proxies all matching gRPC traffic to an upstream gRPC service; the latter demonstrates
+proxies all matching gRPC traffic to an upstream gRPC service. The latter demonstrates
 how to use a Route per gRPC method.
 
 In Kong 1.3, gRPC support assumes gRPC over HTTP/2 framing. As such, make sure
 you have at least one HTTP/2 proxy listener (check out the [Configuration Reference][configuration-reference]
-for how to). In this guide, we will assume Kong is listening for HTTP/2 proxy
+for how to). In this guide, we'll assume Kong is listening for HTTP/2 proxy
 requests on port 9080.
 
 ## 1. Single gRPC Service and Route
@@ -85,8 +85,7 @@ Response trailers received:
 Sent 1 request and received 1 response
 ```
 
-Notice that Kong response headers, such as `via` and `x-kong-proxy-latency`, were
-inserted in the response.
+Notice that the response inserts the Kong response headers, such as `via` and `x-kong-proxy-latency`.
 
 ## 2. Single gRPC Service with Multiple Routes
 
@@ -94,8 +93,7 @@ Building on top of the previous example, let's create a few more routes, for
 individual gRPC methods.
 
 The gRPC "HelloService" service being used in this example exposes a few different
-methods, as can be seen in [its protobuf file][protobuf]. We will create individual
-routes for its "SayHello" and LotsOfReplies methods.
+methods which can be seen in [its protobuf file][protobuf]. You'll create individual routes for its "SayHello" and LotsOfReplies methods.
 
 Create a Route for "SayHello":
 
@@ -116,7 +114,7 @@ $ curl -XPOST localhost:8001/services/grpc/routes \
 ```
 
 With this setup, gRPC requests to the "SayHello" method will match the first
-Route, while requests to "LotsOfReplies" will be routed to the latter.
+Route, while requests to "LotsOfReplies" are routed to the latter.
 
 Issue a gRPC request to the "SayHello" method:
 
@@ -126,7 +124,7 @@ $ grpcurl -v -d '{"greeting": "Kong 1.3!"}' \
   localhost:9080 hello.HelloService.SayHello
 ```
 
-(Notice we are sending a header `kong-debug`, which causes Kong to insert
+(Notice that we are sending a header `kong-debug`, which causes Kong to insert
 debugging information in response headers.)
 
 The response should look like:
@@ -159,7 +157,7 @@ Response trailers received:
 Sent 1 request and received 1 response
 ```
 
-Notice the Route ID should refer to the first route we created.
+Notice that the Route ID refers to the first route we created.
 
 Similarly, let's issue a request to the "LotsOfReplies" gRPC method:
 
@@ -250,11 +248,11 @@ and refers to the second Route created in this page.
 **Note:**
 Some gRPC clients (typically CLI clients) issue ["gRPC Reflection Requests"][grpc-reflection]
 as a means of determining what methods a server exports and how those methods are called.
-Said requests have a particular path; for example, `/grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo`
-is a valid reflection path. As with any proxy request, Kong needs to know how to
-route these; in the current example, they would be routed to the catch-all route
+Those requests have a particular path; for example, `/grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo`, 
+which is a valid reflection path. As with any proxy request, Kong needs to know how to
+route these. In the current example, they would be routed to the catch-all route
 (whose path is `/`, matching any path). If no route matches the gRPC reflection
-request, Kong will respond, as expected, with a `404 Not Found` response.
+request, Kong responds with a `404 Not Found` response.
 
 ## 3. Enabling Plugins
 

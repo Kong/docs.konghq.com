@@ -123,11 +123,11 @@ breadcrumbs:
 
 <div class="page page-extension-profile">
   {% if page.header_icon or page.header_title %}
-    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs type=extn_type name=page.header_title img=page.header_icon header_caption=page.header_caption %}
+    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs type=extn_type name=page.header_title img=page.header_icon header_caption=page.header_caption plus=page.plus enterprise=page.enterprise publisher=page.publisher %}
   {% elsif page.type == concept %}
-    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.title img=page.header_icon header_caption=page.header_caption %}
+    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.title img=page.header_icon header_caption=page.header_caption plus=page.plus enterprise=page.enterprise publisher=page.publisher %}
   {% else %}
-    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.name img=extn_icon header_caption=page.header_caption %}
+    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.name img=extn_icon header_caption=page.header_caption plus=page.plus enterprise=page.enterprise publisher=page.publisher %}
   {% endif %}
 
   <div class="container">
@@ -165,10 +165,6 @@ breadcrumbs:
         </div>
       {% endunless %}
     {% endif %}
-      {% if page.enterprise %}
-        <div class="alert alert-ee warning">
-        <strong>{{site.konnect_product_name}} only</strong>: This plugin is only available with a <a href="https://konghq.com/kong-konnect">{{site.konnect_product_name}} subscription</a>. Please inquire about {{site.konnect_product_name}} by <a href="https://konghq.com/request-demo">contacting us</a>.</div>
-      {% endif %}
       {% if page.alpha %}
       <div class="alert alert-ee red condensed margin-bigger">
         <div class="alert-body">
@@ -178,11 +174,8 @@ breadcrumbs:
       </div>
       {% endif %}
       {% if page.beta %}
-      <div class="alert alert-ee red condensed margin-bigger">
-        <div class="alert-body">
-          <div class="tag red">BETA</div>
-          <p><strong>WARNING:</strong> This plugin is released as <a href="/enterprise/latest/introduction/key-concepts/#beta">BETA</a> and should not be deployed in a production environment.
-        </div>
+      <div class="alert alert-red">
+        This plugin is released as <a href="/enterprise/latest/introduction/key-concepts/#beta"><span class="badge beta"></span></a> and should not be deployed in a production environment.
       </div>
       {% endif %}
 
