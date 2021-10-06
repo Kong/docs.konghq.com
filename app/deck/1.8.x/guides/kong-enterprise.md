@@ -73,12 +73,9 @@ services:
 ```
 
 {:.note}
-> **Note:** decK cannot create or delete workspaces. Make sure that the
-workspace you specify already exists.
-<br><br>
-If you use `--workspace` or `--all-workspaces` with `deck reset`, decK  
-deletes the entire configuration inside the workspace, but not the workspace
-itself.
+> **Note:** decK cannot delete workspaces. If you use `--workspace` or
+`--all-workspaces` with `deck reset`, decK deletes the entire configuration 
+inside the workspace, but not the workspace itself.
 
 ### Manage multiple workspaces
 

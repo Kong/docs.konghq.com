@@ -66,10 +66,6 @@ to is determined via the `_workspace` property inside the state file.
 It is recommended to manage one workspace at a time and not clump
 configurations of all the workspaces at the same time.
 
-{:.note}
-> **Note**: decK cannot create workspaces. Make sure that the 
-workspace you specify already exists.
-
 ### Reset
 
 Same as the `dump` command, you can use `--workspace` to reset configuration of a
