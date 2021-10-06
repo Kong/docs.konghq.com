@@ -1,5 +1,5 @@
 ---
-title: decK and Kong Enterprise
+title: decK and Kong Gateway (Enterprise)
 ---
 
 All features of decK work with both {{site.ce_product_name}} and {{site.ee_product_name}}.
@@ -15,20 +15,29 @@ decK is compatible with {{site.ee_product_name}} 0.35 and above.
 
 decK manages only the core proxy entities in {{site.ee_product_name}}. It doesn't
 manage enterprise-only entities such as admins, RBAC permissions, RBAC roles,
-or any entities related to Developer Portal.
+or any entities related to Dev Portal.
 
 ## RBAC
 
 You should have authentication and RBAC configured for Kong's Admin API.
-You can supply the RBAC token to decK so that decK can authenticate itself
-against the Admin API:
-- Use the `--headers` flag (example: `--headers "kong-admin-token:<your-token>"`).
-  Please note that this is not a secure method. The entire command along with
-  its flags will be logged to your shell's history file, potentially leaking
-  the token. You can store the token in a file and load it as you execute the
-  command, for example: `--headers "kong-admin-token:$(cat token.txt)"`
-- Use the `DECK_HEADERS` environment variable to supply the same token, but via
-  an environment variable.
+Supply the RBAC token to decK so that decK can authenticate itself
+against the Admin API.
+
+Use the `--headers` flag to pass the RBAC token to decK. For example, you can pass the token as a string:
+
+```sh
+deck diff --headers "kong-admin-token:<your-token>"
+```
+
+However, passing the token directly is not secure and should only be used for testing. The command and all of its flags are logged to your shell's history file, potentially leaking the token.
+
+For a more secure approach, you can store the token in a file and load the file as you execute the command. For example:
+
+```sh
+deck diff --headers "kong-admin-token:$(cat token.txt)"
+```
+
+You can also use the `DECK_HEADERS` environment variable to supply the same token with an environment variable.
 
 It is advised that you do not use an RBAC token with super admin privileges
 with decK, and always scope down the exact permissions you need to give
@@ -38,41 +47,51 @@ decK.
 
 decK is workspace-aware, meaning it can interact with multiple workspaces.
 
-### Dump
+### Manage one workspace at a time
 
-To export the configuration of a specific workspace, use the `--workspace` flag:
+To manage the configuration of a specific workspace, use the `--workspace` flag with [`sync`](/deck/{{page.kong_version}}/reference/deck_sync),
+[`diff`](/deck/{{page.kong_version}}/reference/deck_diff),
+[`ping`](/deck/{{page.kong_version}}/reference/deck_ping),
+[`dump`](/deck/{{page.kong_version}}/reference/deck_dump), or
+[`reset`](/deck/{{page.kong_version}}/reference/deck_reset). For example, to
+export the configuration of the workspace `my-workspace`:
 
-```
+```sh
 deck dump --workspace my-workspace
 ```
 
-If you do not specify a flag, the configuration of the `default` workspace will
-be managed.
+If you do not specify a `--workspace` flag, decK uses the `default` workspace.
 
-You can export the configurations of all workspaces in {{site.ee_product_name}} with
-the `--all-workspaces` flag:
+To set a workspace directly in the state file, use the `_workspace` parameter.
+For example:
 
+```yaml
+_format_version: "1.1"
+_workspace: default
+services:
+- name: example_service
 ```
+
+{:.note}
+> **Note:** decK cannot create or delete workspaces. Make sure that the
+workspace you specify already exists.
+<br><br>
+If you use `--workspace` or `--all-workspaces` with `deck reset`, decK  
+deletes the entire configuration inside the workspace, but not the workspace
+itself.
+
+### Manage multiple workspaces
+
+You can manage the configurations of all workspaces in {{site.ee_product_name}}
+with the `--all-workspaces` flag:
+
+```sh
 deck dump --all-workspaces
 ```
 
-This creates one configuration file per workspace.
+This creates one configuration file per workspace, or applies one file to all
+workspaces.
 
-### Sync
-
-If a workspace is not present, decK will error out.
-You should ensure that a workspace already exists before using decK.
-
-`diff` and `sync` commands work with workspaces, and the workspace to sync
-to is determined via the `_workspace` property inside the state file.
-
-It is recommended to manage one workspace at a time and not clump
-configurations of all the workspaces at the same time.
-
-### Reset
-
-Same as the `dump` command, you can use `--workspace` to reset configuration of a
-specific workspace, or use `--all-workspaces` to reset configuration of all
-workspaces in Kong.
-Please note that decK doesn't delete the workspace itself but deletes the
-entire configuration inside the workspace.
+{:.important}
+> Be careful when using this flag to avoid overwriting the wrong workspace. We
+recommend using the singular `--workspace` flag in most situations.
