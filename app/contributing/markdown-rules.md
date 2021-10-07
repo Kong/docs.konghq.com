@@ -96,11 +96,31 @@ For example, if the project path is `app/enterprise/2.1.x/overview`, the path in
 the nav file would be `/overview`, and you would add it to the file
 `app/_data/docs_nav_ee_2.1.x.yml`.
 
+### Add redirects
+
+If you're making an organization change like updating page nesting or renaming a top-level 
+menu item, you'll need to set up a redirect. Redirects prevent `404` pages, and 
+redirect users automatically to the new content location.
+
+1. Navigate to `app` then `_redirects`.
+2. Find the section of the documentation for which the redirect applies. For example, Dev Portal.
+3. Add a new line with the link you want to redirect **from**.
+4. On the same line, add the link you want to redirect **to**.
+
+```bash
+\\ Start the link with what appears after https://docs.konghq.com/.
+
+\\ In the following example, we created a new menu section called Applications 
+in the Dev Portal section of the docs. And we moved the dev-apps page to our
+new menu section. 
+
+/konnect/dev-portal/developers/dev-apps                    /konnect/dev-portal/applications/dev-apps
+```
 
 ## Codeblocks
 
 Codeblocks are containers for your code examples. In Markdown, you can create
-them using three backticks, aka fenced codeblocks:
+them using three backticks, or fenced codeblocks:
 
 ````
 ```bash
@@ -124,10 +144,12 @@ denote a value that the user should edit. Always enclose placeholders in code
 formatting.
 
 ### Inline placeholders
+
 If you're adding a placeholder inline, such as in a sentence, enclose it in single
 backticks: \`{EXAMPLE_TEXT}`
 
 ### Editable placeholders in codeblocks
+
 If you have text in your codeblock that you want the user to edit before running
 the code, you can use editable placeholders.
 
