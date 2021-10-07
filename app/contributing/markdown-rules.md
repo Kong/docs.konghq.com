@@ -116,7 +116,11 @@ new menu section.
 
 /konnect/dev-portal/developers/dev-apps                    /konnect/dev-portal/applications/dev-apps
 ```
-
+{:.important}
+> **Important:** When making organizational changes, update all internal links 
+in the documentation to the new links. **Don't** rely on redirects to change 
+internal links. Redirects are not great for SEO (search engine optimization), 
+and they create slower page loading times, especially if there's a redirect chain. 
 ## Codeblocks
 
 Codeblocks are containers for your code examples. In Markdown, you can create
