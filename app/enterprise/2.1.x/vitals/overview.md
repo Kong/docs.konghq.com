@@ -19,6 +19,7 @@ Vitals is enabled by default in {{site.ee_product_name}} and available upon the 
 
 You will need one of the following databases to use Vitals:
 * InfluxDB
+* Prometheus
 * PostgresSQL 9.5+
 * Cassandra 2.1+
 
