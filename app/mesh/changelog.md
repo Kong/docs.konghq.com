@@ -4,6 +4,23 @@ no_search: true
 no_version: true
 ---
 
+## 1.4.1
+
+> Released on 2021/10/06
+
+### Changes
+
+Built on top of [Kuma 1.3.1](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#131)
+
+- Common Name (CN) support for Vault certificate storage is now available.
+- You can now disable zones as needed.
+- The number of Postgres connections is now limited to 50 by default. The default value was previously unlimited; you can still configure the limit if needed.
+- You can now select a specific zone in the Kuma Service dashboard and in the Service to Service dashboard.
+
+### Upgrading
+
+Upgrades from `1.4.0` are seamless and no additional steps are needed.
+
 ## 1.4.0
 
 > Released on 2021/08/26
@@ -29,6 +46,14 @@ managed by Kuma, restart the services.
 upgrading all instances of the control plane takes more than five (5) minutes. It's temporary, and occurs because of a new mechanism for 
 better tracking proxy and zone status. A heartbeat periodically increments the `generation` counter for Insights. The offline status 
 should disappear after all control plane instances are upgraded to 1.4.0.
+
+## 1.3.4
+
+> Released on 2021/09/15
+
+Built on top of [Kuma 1.2.3](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#123)
+
+- Moved to a Kuma fork of `go-control-plane` that fixes a Goroutine leak
 
 ## 1.3.3
 

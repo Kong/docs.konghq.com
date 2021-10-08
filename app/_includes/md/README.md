@@ -13,3 +13,8 @@ Examples:
 
 - Content for current version continues to live at the root of the product directory
 - Versioned content (for non-current versions only!) lives in a sub-directory named <version_number>
+
+## Learn how to use includes
+
+For guidelines on how to write includes and call them in target topics, see the
+[Kong Docs contributing guidelines](https://docs.konghq.com/contributing/includes). 

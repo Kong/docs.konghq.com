@@ -26,7 +26,7 @@ routes, and consumers in a cluster &ndash; set it up through the
 ### Functionality differences from self-managed Kong Gateway
 
 Application registration is built into the ServiceHub.
-[Enabling it on a service](/konnect/dev-portal/administrators/app-registration/enable-app-reg)
+[Enabling it on a service](/konnect/dev-portal/applications/enable-app-reg)
 also enables two plugins in read-only mode: ACL, and one of Key Auth or OpenID
 Connect. These plugins appear in the service's plugin list, and you can view their
 configurations, but you can't edit or delete them directly.

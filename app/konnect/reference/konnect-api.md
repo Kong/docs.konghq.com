@@ -7,7 +7,7 @@ no_version: true
 
 This API is designed for internal use and provides full control over a Konnect
 organization and its entities, so care should be taken when setting up
-[user permissions](/konnect/reference/org-management/#role-definitions).
+[user permissions](/konnect/org-management/users-and-roles).
 
 For a list of all endpoints, see:
 * [Konnect API Swagger documentation](https://konnect.konghq.com/docs)
@@ -15,7 +15,7 @@ For a list of all endpoints, see:
 
 You can run {{site.konnect_short_name}} API requests using
 [Insomnia](https://insomnia.rest), Kong's open-source API client. If you have
-Insomnia installed, click the button below to import the Konnect 
+Insomnia installed, click the button below to import the Konnect
 API spec.
 
 <!-- Button to export spec into Insomnia -->
@@ -26,7 +26,7 @@ API spec.
 > **Note**: If you have trouble importing the spec into Insomnia,
 > update to the latest Insomnia version. If you have automatic
 > updates enabled but are still running an older version, restart Insomnia
-> to trigger the update. 
+> to trigger the update.
 
 ## Making a Request to the Konnect API
 

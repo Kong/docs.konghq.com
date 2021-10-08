@@ -97,7 +97,8 @@
 #documentation {
   .content {
     ol {
-      padding-left: 2rem;
+      padding-left: 1rem;
+      padding-top: 1rem;
       counter-reset: base;
 
       li {
@@ -113,28 +114,29 @@
       font-size: 13px;
     }
 
-    ul {
+    ol, ul {
       // avoid nested lists and lists elements to have smaller and smaller
       // font sizes
       font-size: inherit;
-      margin-left: 0.5rem;
+      margin-left: 0.7rem;
       list-style: none;
 
       li {
         // avoid ridiculously big spaces between lists elements
-        margin-bottom: 0.2rem;
+        margin-bottom: 0.1rem;
         list-style-type: disc;
 
         p {
-          font-size: inherit;
+          // font-size: inherit;
+          margin-bottom: 1.2rem;
         }
       }
 
-      ul {
+      ol, ul {
         // avoid nested lists to have too much margin
         margin-left: 1.3rem;
-        margin-top: 0.3rem;
-        margin-bottom: 0.3rem;
+        margin-top: 0.7rem;
+        margin-bottom: 0.7rem;
       }
     }
 

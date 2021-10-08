@@ -1658,7 +1658,7 @@ functionality which was possibly used by custom plugins is now removed.
   - As a result of being moved to the new Admin API implementation,
     all endpoints supporting `PUT` do so with proper semantics.
   - See the [Admin API
-    reference](https://docs.konghq.com/0.15/admin-api)
+    reference](/gateway-oss/{{page.kong_version}}/admin-api)
     for more details.
 
 #### 2. Deprecation Notices

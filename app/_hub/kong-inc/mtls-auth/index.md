@@ -123,7 +123,7 @@ requested **Route** or **Service**.
 
 
 ### Client Certificate request
-Client certificates are requested in the `ssl_certifica_by_lua` phase where Kong does not
+Client certificates are requested in the `ssl_certificate_by_lua` phase where Kong does not
 have access to `route` and `workspace` information. Due to this information gap, Kong will ask for
 the client certificate on every handshake if the `mtls-auth` plugin is configured on any Route or Service.
 In most cases, the failure of the client to present a client certificate is not going to affect subsequent

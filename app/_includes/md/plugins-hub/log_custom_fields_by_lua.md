@@ -25,5 +25,5 @@ that can run in said phase can be used.
 
 ---
 
-[configuration]: /latest/configuration
-[pdk]: /latest/pdk
+[configuration]: /gateway-oss/latest/configuration
+[pdk]: /gateway-oss/latest/pdk

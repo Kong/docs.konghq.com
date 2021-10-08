@@ -172,8 +172,8 @@ curl -X POST http://<admin-hostname>:8001/plugins/ \
 This example tutorial steps you through testing a mock response for
 a stock quote service API.
 
-{:.tip}
-> **Tip:** Before following the steps in this
+{:.note}
+> **Note:** Before following the steps in this
 tutorial, you can view a video demonstration of the Mocking plugin
 used in conjunction with the Dev Portal. See the
 [Service Mocking video demo](https://www.youtube.com/watch?v=l8uKbgkK6_I)

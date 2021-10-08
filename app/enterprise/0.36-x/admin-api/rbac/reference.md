@@ -1,7 +1,5 @@
 ---
 title: RBAC Reference
-redirect_from:
-  - /enterprise/latest/setting-up-admin-api-rbac
 book: rbac
 ---
 

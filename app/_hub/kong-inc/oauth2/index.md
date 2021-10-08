@@ -350,7 +350,7 @@ You can use this information on your side to implement additional logic. You can
 
 ## OAuth 2.0 Flows
 
-## Client Credentials
+### Client Credentials
 
 The [Client Credentials](https://tools.ietf.org/html/rfc6749#section-4.4) flow will work out of the box, without building any authorization page. The clients will need to use the `/oauth2/token` endpoint to request an access token.
 

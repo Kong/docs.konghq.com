@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/Article">
-  {% assign is_plugin_hub = false %}
-  {% if page.path == "_hub/index.html" %}
-  {% assign is_plugin_hub = true %}
-  {% endif %}
 
-  {% include_cached head.html is_plugin_hub=is_plugin_hub name=page.name path=page.path title=page.title url=page.url kong_version=page.kong_version no_version=page.no_version type=page.type kong_latest=page.kong_latest %}
+  {% include_cached head.html path=page.path name=page.name title=page.title url=page.url kong_version=page.kong_version no_version=page.no_version type=page.type kong_latest=page.kong_latest %}
 
   <body
     id="{{ page.id }}"
