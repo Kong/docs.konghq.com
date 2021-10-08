@@ -28,10 +28,10 @@ deployment, see the following topics to get started:
 * Use the Dev Portal:
   * [Set up the Dev Portal for a Service](/konnect/servicehub/dev-portal/service-documentation)
   * [Publish a Service version to the Dev Portal](/konnect/servicehub/dev-portal/publish)
-  * Enable [application registration](/konnect/dev-portal/administrators/app-registration/enable-app-reg)
-  * Manage [developer registration](/konnect/dev-portal/administrators/manage-devs)
+  * Enable [application registration](/konnect/dev-portal/applications/enable-app-reg)
+  * Manage [developer registration](/konnect/dev-portal/access-and-approval/manage-devs)
 * Use Vitals to [monitor the status of your Services](/konnect/vitals)
-* Set up [users and roles](/konnect/reference/org-management)
+* Set up [users and roles](/konnect/org-management/users-and-roles)
 * Get familiar with the [Konnect Admin API](/konnect/reference/konnect-api)
 
 ## Self-hosted Konnect

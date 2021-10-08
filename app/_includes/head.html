@@ -1,8 +1,9 @@
-{% unless include.name and include.path contains '_hub' %} {% capture page_title %}{{
-include.title | escape }}{% if include.kong_version and include.no_version != true %} -
-v{{ include.kong_version | escape }}{% endif %}{% if include.title %} | {% endif %}{{
-site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.name }}
-{{ include.type }} | Kong{% endcapture %} {% endunless %}
+{% unless include.name and include.path contains '_hub' %}
+{% capture page_title %}{{
+include.title | escape }}{% if include.kong_version and include.no_version != true %} - v{{ include.kong_version | escape }}{% endif %}{% if include.title %} | {% endif %}{{
+site.title }}{% endcapture %} {% else %} {% capture page_title %}{% if page.path contains "/hub/" %}{{ include.title }}{% else %}{{ include.name }}{% endif %}
+{{ include.type }} | {{site.title}}{% endcapture %}
+{% endunless %}
 
 <head>
   <!-- Google Tag Manager -->
@@ -19,7 +20,7 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.name
   <title>{{ page_title }}</title>
   <meta name="description" content="{{ site.description }}" />
   <meta name="author" content="KongHQ" />
-  <meta property="og:title" content="{{ site.title }} | {{ page.title }}" />
+  <meta property="og:title" content="{{ page_title }}" />
   <meta property="og:site_name" content="{{ site.name }}" />
   <!-- use share link for facebook -->
   <meta property="og:url" content="{{ site.links.share }}" />
@@ -96,14 +97,6 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.name
     rel="stylesheet"
     href="/assets/styles.css?v={{ site.time | date: '%s' }}"
   />
-
-
-  {% if include.is_plugin_hub %}
-  <link
-    rel="stylesheet"
-    href="/assets/hub.css?v={{ site.time | date: '%s' }}"
-  />
-  {% endif %}
 
   {% assign latest_include.url = include.url | replace: include.kong_version, include.kong_latest.release %}
   {% capture latest_page_exists %}{% page_exists {{latest_include.url}} %}{% endcapture %}

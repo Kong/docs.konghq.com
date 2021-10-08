@@ -76,11 +76,11 @@ params:
 
 ## How it works
 
-When enabled, this plugin will add a new header to all of the requests processed by Kong. This header bears the name configured in `config.header_name`, and a unique value generated according to `config.generator`.
+When you enable this plugin, it adds a new header to all of the requests processed by Kong. This header bears the name configured in `config.header_name`, and a unique value is generated according to `config.generator`.
 
-This header is always added to calls to your upstream services, and optionally echoed back to your clients according to the `config.echo_downstream` setting.
+This header is always added in calls to your upstream services, and optionally echoed back to your clients according to the `config.echo_downstream` setting.
 
-If a header bearing the same name is already present in the client request, it is honored and this plugin will **not** tamper with it.
+If a header with the same name is already present in the client request, the plugin honors it and does **not** tamper with it.
 
 ## Generators
 
@@ -91,8 +91,7 @@ Format:
 xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 ```
 
-Using this format, a UUID is generated in its hexadecimal form for each request.
-
+This format generates a heaxadecimal UUID for each request.
 ### uuid#counter
 
 Format:
@@ -100,9 +99,9 @@ Format:
 xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx#counter
 ```
 
-In this format, a single UUID is generated on a per-worker basis, and further requests simply append a counter to the UUID after a `#` character. The `counter` value starts at `0` for each worker, and gets incremented independently of the others.
+This format generates a single UUID on a per-worker basis, and further the requests simply append a counter to the UUID after a `#` character. The `counter` value starts at `0` for each worker, and gets incremented independently of the others.
 
-This format provides a better performance, but might be harder to store or process for analyzing (due to its format and low cardinality).
+This format provides better performance, but might be harder to store or process for analyzing (due to its format and low cardinality).
 
 ### tracker
 
@@ -111,21 +110,21 @@ Format:
 ip-port-pid-connection-connection_requests-timestamp
 ```
 
-In this format, the correlation id contains more practical implications for each request.
+This correlation id contains more practical implications for each request.
 
 The following is a detailed description of the field
 
 form parameter      | description
 ---                 | ---
-`ip` | an address of the server which accepted a request
-`port` | port of the server which accepted a request
+`ip` | an address of the server that accepts a request
+`port` | port of the server that accepts a request
 `pid` | pid of the nginx worker process
 `connection` | connection serial number
 `connection_requests` | current number of requests made through a connection
-`timestamp` | a floating-point number for the elapsed time in seconds (including milliseconds as the decimal part) from the epoch for the current time stamp from the nginx cached time
+`timestamp` | a floating-point number for the elapsed time in seconds (including milliseconds as the decimal part) from the epoch for the current timestamp from the nginx cached time
 
 ## FAQ
 
 ### Can I see my correlation ids in my Kong logs?
 
-The correlation id will not show up in the Nginx access or error logs. As such, we suggest you use this plugin alongside one of the Logging plugins, or store this id on your backend-side.
+The correlation id doesn't show up in the Nginx access or error logs. However, you can use this plugin along with one of the Logging plugins, or store the id on your backend.

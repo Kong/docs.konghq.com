@@ -10,21 +10,25 @@
     {% capture header_icon %}/assets/images/icons/hub/{{ extn_id }}.png{% endcapture %}
   {% endif %}
   {% assign extn_slug_array = extn_slug | split: "-" %}
-  <div class="col-12 col-md-6 col-lg-4 my-1x card-group">
-    <div class="card plugin-card align-items-center {{ extn.type }} {{ extn.categories | join: ' ' }} {%
-      if extn_publisher == 'kong-inc' %}pub-konghq {%
-        if extn.kong_version_compatibility.enterprise_edition.compatible != nil %}ee-compat {% endif %}{%
-          if extn.plus or extn.kong_version_compatibility.community_edition.compatible != nil %}{%
-            unless extn.cloud == false %}plus {% endunless %}{% endif %}{%
-              if extn.enterprise %}enterprise {%
-                else %}open-source {% endif %}{%
-                  else %}pub-not-konghq pub-{{extn_publisher}}{% endif %}">
+  <div class="card-group {{ extn.type }} {{ extn.categories | join: ' ' }} {%
+    if extn_publisher == 'kong-inc' %}pub-konghq {%
+      if extn.kong_version_compatibility.enterprise_edition.compatible != nil %}ee-compat {% endif %}{%
+        if extn.plus or extn.kong_version_compatibility.community_edition.compatible != nil %}{%
+          unless extn.cloud == false %}plus {% endunless %}{% endif %}{%
+            if extn.enterprise %}enterprise {%
+              else %}open-source {% endif %}{%
+                else %}pub-not-konghq pub-{{extn_publisher}}{% endif %}">
+    <div class="plugin-card">
       <a href="{{ extn.url | remove: '/index' }}" title="{{ extn.name }}: {{ extn.desc }}">
         <div>
-          <div class="name-desc {% if extn.plus and extn_publisher == 'kong-inc' %}plus{% endif %}">
-            <img class="card-img-top" src="{{ header_icon }}" />
-            <p class="lg mt-1x fw-500">{{ extn.name }}</p>
-            <p class="sm">{{ extn.desc }}</p>
+          <div class="name-desc">
+            {% if extn.plus and extn_publisher == 'kong-inc' %}
+            <span class="plugin-badge plus"></span>{% endif %}
+            {% if extn.enterprise and extn_publisher == 'kong-inc' %}
+            <span class="plugin-badge enterprise"></span> {% endif %}
+            <img class="card-img-top" src="{{ header_icon }}" alt="" />
+            <p class="plugin-name">{{ extn.name }}</p>
+            <p class="plugin-desc">{{ extn.desc }}</p>
           </div>
           <div class="publisher">
             Support by:<br>

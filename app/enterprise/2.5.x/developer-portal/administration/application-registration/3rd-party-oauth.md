@@ -127,7 +127,7 @@ the OIDC and Application Registration plugins. Click on the image to expand its
 
 | Step | Explanation                                                          |
 |:------|:--------------------------------------------------------------------|
-| a | A developer copies the target Service's `issuer_id`, which can be exposed in the Developer Portal application view Service Details page. Developers can configure their application to make a request to this endpoint to authenticate the user and retrieve an access token. |
+| a | A developer copies the target Service's `issuer_id`, which can be exposed in the Dev Portal application view Service Details page. Developers can configure their application to make a request to this endpoint to authenticate the user and retrieve an access token. |
 | b | Okta redirects the user to a login page. |
 | c | The user inputs their Single Sign-On (SSO) information. |
 | d | The user submits the SSO form that contains their Okta username and password. |

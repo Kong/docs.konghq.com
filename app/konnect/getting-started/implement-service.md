@@ -86,4 +86,4 @@ For next steps, check out some of the other things you can do in
 * Enable plugins on a [Service](/konnect/manage-plugins/enable-service-plugin/) or a
 [Route](/konnect/manage-plugins/enable-route-plugin/)
 * [Set up the Dev Portal](/konnect/servicehub/dev-portal/service-documentation)
-* [Manage your teams and users with RBAC](/konnect/reference/org-management)
+* [Manage your teams and users with RBAC](/konnect/org-management/users-and-roles)

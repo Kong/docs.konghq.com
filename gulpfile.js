@@ -26,10 +26,13 @@ var sources = {
   js: [
     paths.assets + "javascripts/jquery-3.6.0.min.js",
     paths.assets + "javascripts/app.js",
+    paths.assets + "javascripts/compat-dropdown.js",
     paths.assets + "javascripts/subscribe.js",
     paths.assets + "javascripts/editable-code-snippet.js",
     paths.assets + "javascripts/navbar.js",
-    paths.assets + "javascripts/promo-banner.js",
+    // uncomment the path to promo-banner.js when adding a new promo banner
+    // also uncomment the promo banner sections in app/_assets/stylesheets/header.less and /app/_includes/nav-v2.html -->
+    // paths.assets + "javascripts/promo-banner.js",
     paths.assets + "javascripts/copy-code-snippet-support.js"
   ],
   images: paths.assets + "images/**/*",
@@ -97,7 +100,6 @@ function images() {
   return gulp
     .src(sources.images)
     .pipe($.plumber())
-    .pipe($.if(!dev, $.imagemin()))
     .pipe(gulp.dest(paths.dist + "assets/images"))
     .pipe($.if(!dev, $.size()));
 }
@@ -383,7 +385,7 @@ function watch_files() {
   gulp.watch(sources.styles, styles);
   gulp.watch(sources.images, gulp.series(images, reload_browser));
   gulp.watch(sources.js, gulp.series(js, reload_browser));
-  gulp.watch(paths.assets + "css/hub.css", css);
+  gulp.watch(paths.assets, css);
 }
 
 function set_dev(cb) {
@@ -399,7 +401,6 @@ gulp.task("js_min", js);
 gulp.task("css", css);
 gulp.task("styles", styles);
 gulp.task("images", gulp.series(set_dev, images));
-gulp.task("images_min", images);
 gulp.task("fonts", fonts);
 gulp.task("jekyll", jekyll);
 gulp.task("html", html);

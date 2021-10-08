@@ -1,9 +1,13 @@
-<header class="navbar-v2">
+<header class="navbar-v2 closed">
   <a class="skip-main" href="#main">Skip to content</a>
-  <div id="promo-banner">
+  <!-- uncomment the promo-banner div when adding a new promo banner
+  <!--also uncomment the promo banner sections in app/assets/stylesheets/header.less and gulpfile.js-->
+  <!-- <div id="promo-banner">
     <div class="container">
-      <div class="closebanner"></div> <strong><label>New</label> Konnect Plus: Pay-as-you-go from startup friendly to enterprise scale. <a target="_blank" href="https://konghq.com/pricing/">See Pricing &rarr;</a></strong></div>
-  </div>
+      <div class="closebanner"></div> <strong><label>EVENT</label> Join the Kong Summit Hackathon &nbsp;&mdash;<a target="_blank"
+          href="https://konghq.com/summit-hackathon">Start Hacking &rarr;</a></strong>
+    </div>
+  </div> -->
   <div class="navbar-content">
     <a href="https://konghq.com" class="navbar-brand col col-xl-auto">
       <img src="/assets/images/logos/kong-logo-blue.svg" alt="Kong Logo" id="kong-logo">
@@ -24,7 +28,9 @@
     <div class="separator"></div>
     <div class="navbar-items" role="navigation" aria-label="Main menu">
       <ul class="navbar-items" role="menubar">
-        <li aria-haspopup="true" role="menuitem" class="navbar-item main-menu-item with-submenu{% if include.layout != 'landing-page' %} active{% endif %}" onclick="toggleSubmenuVisible(this)">
+        <li aria-haspopup="true" role="menuitem"
+          class="navbar-item main-menu-item with-submenu{% if include.layout != 'landing-page' %} active{% endif %}"
+          onclick="toggleSubmenuVisible(this)">
           <a href="/" tabindex="0" id="docs-link">Docs</a>
           <span class="caret"></span>
           <ul class="navbar-item-submenu" role="menu" aria-hidden="true">
@@ -55,10 +61,12 @@
                 <a href="/deck/" class="navbar-item navbar-item-docs">decK</a>
               </li>
               <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="/kubernetes-ingress-controller/" class="navbar-item navbar-item-docs">Kubernetes Ingress Controller</a>
+                <a href="/kubernetes-ingress-controller/" class="navbar-item navbar-item-docs">Kubernetes Ingress
+                  Controller</a>
               </li>
               <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="https://support.insomnia.rest/" target="_blank" class="navbar-item navbar-item-docs">Insomnia</a>
+                <a href="https://support.insomnia.rest/" target="_blank"
+                  class="navbar-item navbar-item-docs">Insomnia</a>
               </li>
               <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
                 <a href="https://kuma.io/docs/" target="_blank" class="navbar-item navbar-item-docs">Kuma</a>
@@ -79,31 +87,21 @@
           </ul>
         </li>
         <li role="menuitem" tabindex="0" id="support-link" class="main-menu-item">
-            <a href="https://support.konghq.com/" class="navbar-item">Support</a>
+          <a href="https://support.konghq.com/" class="navbar-item">Support</a>
         </li>
         <li role="menuitem" class="main-menu-item">
           <a href="https://konghq.com/community/" class="navbar-item">Community</a>
         </li>
         <li role="menuitem" class="main-menu-item">
-          <a href="https://learn.konghq.com/account/login/" class="navbar-item">Kong U</a>
-        </li>
-        <li role="menuitem" class="main-menu-item">
-          <a href="https://portal.konglabs.io/workshops" class="navbar-item">Demos & Labs</a>
+          <a href="https://education.konghq.com/" class="navbar-item">Kong Academy</a>
         </li>
       </ul>
-      <a
-        href="https://konghq.com/get-started/?itm_source=website&amp;itm_medium=nav"
-        class="navbar-button"
-      >
+      <a href="https://konghq.com/get-started/?itm_source=website&amp;itm_medium=nav" class="navbar-button">
         Get Started
       </a>
     </div>
-    <div
-      id="navbar-menu-toggle-button"
-      class="small-screen-button"
-      aria-label="Toggle navigation"
-      onclick="toggleButtonClicked()"
-    >
+    <div id="navbar-menu-toggle-button" class="small-screen-button" aria-label="Toggle navigation"
+      onclick="toggleButtonClicked()">
       <div></div>
       <div></div>
       <div></div>

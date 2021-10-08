@@ -88,7 +88,7 @@ remaining configuration details on the **Configure Runtime** page.
 
 
     ```bash
-    $ docker pull kong/kong-gateway:2.4.1.1-alpine
+    $ docker pull kong/kong-gateway:2.5.0.1-alpine
     ```
 
     You should now have your {{site.base_gateway}} image locally.
@@ -99,11 +99,11 @@ remaining configuration details on the **Configure Runtime** page.
     $ docker images
     ```
 
-3. Tag the image ID for easier use, replacing `<IMAGE_ID>` with the one
+3. Tag the image ID for easier use, replacing `{IMAGE_ID}` with the one
 matching your repository:
 
     ```bash
-    $ docker tag <IMAGE_ID> kong-ee
+    $ docker tag {IMAGE_ID} kong-ee
     ```
 
 ### Start Kong Gateway
@@ -119,14 +119,14 @@ $ docker run -d --name kong-gateway-dp1 \
   -e "KONG_ANONYMOUS_REPORTS=off" \
   -e "KONG_VITALS_TTL_DAYS=732" \
   -e "KONG_CLUSTER_MTLS=pki" \
-  -e "KONG_CLUSTER_CONTROL_PLANE=<example.cp.konnect.foo>:443" \
-  -e "KONG_CLUSTER_SERVER_NAME=<kong-cpoutlet-example.service>" \
-  -e "KONG_CLUSTER_TELEMETRY_ENDPOINT=<example.tp.konnect.foo>:443" \
-  -e "KONG_CLUSTER_TELEMETRY_SERVER_NAME=<kong-telemetry-example.service>" \
-  -e "KONG_CLUSTER_CERT=/<path-to-file>/tls.crt" \
-  -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/tls.key" \
-  -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system,/<path-to-file>/ca.crt" \
-  --mount type=bind,source="$(pwd)",target=<path-to-keys-and-certs>,readonly \
+  -e "KONG_CLUSTER_CONTROL_PLANE={example.cp.konnect.foo}:443" \
+  -e "KONG_CLUSTER_SERVER_NAME={kong-cpoutlet-example.service}" \
+  -e "KONG_CLUSTER_TELEMETRY_ENDPOINT={example.tp.konnect.foo}:443" \
+  -e "KONG_CLUSTER_TELEMETRY_SERVER_NAME={kong-telemetry-example.service}" \
+  -e "KONG_CLUSTER_CERT=/{PATH_TO_FILE}/tls.crt" \
+  -e "KONG_CLUSTER_CA_CERT=/{PATH_TO_FILE}/ca.crt" \
+  -e "KONG_CLUSTER_CERT_KEY=/{PATH_TO_FILE}/tls.key" \
+  --mount type=bind,source="$(pwd)",target={PATH_TO_KEYS_AND_CERTS},readonly \
   -p 8000:8000 \
   kong-ee
 ```
@@ -139,22 +139,22 @@ docker run -d --name kong-gateway-dp1 `
   -e "KONG_ANONYMOUS_REPORTS=off" `
   -e "KONG_VITALS_TTL_DAYS=732" `
   -e "KONG_CLUSTER_MTLS=pki" `
-  -e "KONG_CLUSTER_CONTROL_PLANE=<example.cp.konnect.foo>:443" `
-  -e "KONG_CLUSTER_SERVER_NAME=<kong-cpoutlet-example.service>" `
-  -e "KONG_CLUSTER_TELEMETRY_ENDPOINT=<example.tp.konnect.foo>:443" `
-  -e "KONG_CLUSTER_TELEMETRY_SERVER_NAME=<kong-telemetry-example.service>" `
-  -e "KONG_CLUSTER_CERT=/<path-to-file>/tls.crt" `
-  -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/tls.key" `
-  -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system,/<path-to-file>/ca.crt" `
-  --mount type=bind,source="$(pwd)",target=<path-to-keys-and-certs>,readonly `
+  -e "KONG_CLUSTER_CONTROL_PLANE={EXAMPLE.CP.KONNECT.FOO}:443" `
+  -e "KONG_CLUSTER_SERVER_NAME={KONG-CPOUTLET-EXAMPLE.SERVICE}" `
+  -e "KONG_CLUSTER_TELEMETRY_ENDPOINT={EXAMPLE.TP.KONNECT.FOO}:443" `
+  -e "KONG_CLUSTER_TELEMETRY_SERVER_NAME={KONG-TELEMETRY-EXAMPLE.SERVICE}" `
+  -e "KONG_CLUSTER_CERT=/{PATH_TO_FILE}/tls.crt" `
+  -e "KONG_CLUSTER_CA_CERT=/{PATH_TO_FILE}/ca.crt" `
+  -e "KONG_CLUSTER_CERT_KEY=/{PATH_TO_FILE}/tls.key" `
+  --mount type=bind,source="$(pwd)",target={PATH_TO_KEYS_AND_CERTS},readonly `
   -p 8000:8000 `
   kong-ee
 ```
 {% endnavtab %}
 {% endnavtabs %}
 
-1. Replace the values in `KONG_CLUSTER_CERT`, `KONG_CLUSTER_CERT_KEY`,
-        and `KONG_LUA_SSL_TRUSTED_CERTIFICATE` with the paths to your certificate files.
+1. Replace the values in `KONG_CLUSTER_CERT`, `KONG_CLUSTER_CA_CERT`, and
+`KONG_CLUSTER_CERT_KEY` with the paths to your certificate and key files.
 
 2. Check the **Linux** or **Kubernetes** tabs in the Konnect UI to find the values for
         `KONG_CLUSTER_CONTROL_PLANE`, `KONG_CLUSTER_SERVER_NAME`,

@@ -65,7 +65,7 @@ GEM
     mini_mime (1.1.0)
     mini_portile2 (2.6.1)
     nio4r (2.5.8)
-    nokogiri (1.12.2)
+    nokogiri (1.12.5)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     pathutil (0.16.2)
@@ -81,7 +81,7 @@ GEM
     rack-jekyll (0.5.0)
       jekyll (>= 1.3)
       listen (>= 1.3)
-      rack (~> 1.5)
+      rack (>= 2.1.4)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rb-fsevent (0.11.0)
@@ -89,7 +89,7 @@ GEM
       ffi (~> 1.0)
     regexp_parser (2.1.1)
     rexml (3.2.5)
-    rouge (3.26.0)
+    rouge (3.26.1)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
@@ -129,7 +129,7 @@ DEPENDENCIES
   pry
   puma
   rack-jekyll
-  rouge (= 3.26.0)
+  rouge (= 3.26.1)
   rspec
 
 BUNDLED WITH

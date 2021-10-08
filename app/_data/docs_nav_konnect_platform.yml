@@ -20,5 +20,7 @@
 - title: Compatibility
   icon: /assets/images/icons/documentation/icn-references-color.svg
   items:
+    # - text: Platform Compatibility
+    #   url: /konnect-platform/compatibility
     - text: Plugin Compatibility
       url: /konnect-platform/compatibility/plugins

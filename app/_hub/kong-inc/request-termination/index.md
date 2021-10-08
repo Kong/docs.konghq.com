@@ -1,7 +1,7 @@
 ---
 name: Request Termination
 publisher: Kong Inc.
-version: 1.0.0
+version: 2.1.0
 
 desc: Terminates all requests with a specific response
 description: |
@@ -16,9 +16,11 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.6.x
+        - 2.5.x
         - 2.4.x
         - 2.3.x
-        - 2.2.x      
+        - 2.2.x
         - 2.1.x
         - 2.0.x
         - 1.5.x
@@ -33,6 +35,8 @@ kong_version_compatibility:
         - 0.11.x
     enterprise_edition:
       compatible:
+        - 2.6.x
+        - 2.5.x
         - 2.4.x
         - 2.3.x
         - 2.2.x
@@ -69,6 +73,15 @@ params:
       default: "`application/json; charset=utf-8`"
       datatype: string
       description: Content type of the raw response configured with `config.body`.
+    - name: trigger
+      required: false
+      default:
+      description: When not set, the plugin always activates. When set to a string, the plugin will activate exclusively on requests containing either a header or a query parameter that is named the string.
+    - name: echo
+      required: false
+      default: false
+      description: When set, the plugin will echo a copy of the request back to the client. The main usecase for this is debugging. It can be combined with `trigger` in order to debug requests on live systems without disturbing real traffic.
+
   extra: |
     Once applied, every request (within the configured plugin scope of a Service,
     Route, Consumer, or global) will be immediately terminated by
@@ -76,9 +89,15 @@ params:
 
 ---
 
+## New in 2.1.0
+
+- `trigger` config option
+- `echo` config option
+
 ## Example Use Cases
 
 - Temporarily disable a Service (e.g. it is under maintenance).
 - Temporarily disable a Route (e.g. the rest of the Service is up and running, but a particular endpoint must be disabled).
 - Temporarily disable a Consumer (e.g. excessive consumption).
 - Block anonymous access with multiple auth plugins in a logical `OR` setup.
+- Debugging erroneous requests in live systems.

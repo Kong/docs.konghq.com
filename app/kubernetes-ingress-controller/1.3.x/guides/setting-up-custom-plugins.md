@@ -131,12 +131,6 @@ spec:
           name: kong-plugin-myheader
 ```
 
-This is also available as a Kustomization:
-
-```shell
-$ kustomize build github.com/hbagdi/yaml/kong/kong-custom-plugin
-```
-
 ### Helm chart
 
 With Helm, this is as simple as adding the following values to
@@ -157,6 +151,12 @@ Please ensure that you add in other configuration values
 you might need for your installation to work.
 
 ### Deploy
+
+<div class="alert alert-warning">
+  Kustomize manifests are provided for illustration purposes only and are not officially supported by Kong.
+  There is no guarantee of backwards compatibility or upgrade capabilities for our Kustomize manifests.
+  For a production setup with Kong support, use the <a href="https://github.com/kong/charts">Helm Chart</a>.
+</div>
 
 Once, you have all the pieces in place, you are ready
 to deploy the {{site.kic_product_name}}:

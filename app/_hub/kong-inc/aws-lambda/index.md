@@ -1,7 +1,7 @@
 ---
 name: AWS Lambda
 publisher: Kong Inc.
-version: 3.5.x
+version: 3.6.x
 
 desc: Invoke and manage AWS Lambda functions from Kong
 description: |
@@ -16,6 +16,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.6.x
+        - 2.5.x
         - 2.4.x
         - 2.3.x
         - 2.2.x
@@ -34,6 +36,8 @@ kong_version_compatibility:
         - 0.10.x
     enterprise_edition:
       compatible:
+        - 2.6.x
+        - 2.5.x
         - 2.4.x
         - 2.3.x
         - 2.2.x      
@@ -77,7 +81,7 @@ params:
         if using Kong Gateway (Enterprise) and [data encryption](https://docs.konghq.com/enterprise/latest/db-encryption/)
         is configured.
     - name: aws_region
-      required: true
+      required: false
       default:
       value_in_examples: <AWS_REGION>
       datatype: string
@@ -85,17 +89,21 @@ params:
         The AWS region where the Lambda function is located. The plugin does not
         attempt to validate the supplied region name. If an invalid region name
         is provided, the plugin responds with an HTTP `500 Internal Server Error`
-        at run-time and logs a DNS resolution failure. Either `aws_region` or `host`
-        must be provided.
+        at run-time and logs a DNS resolution failure. The plugin will automatically
+        detect AWS region on runtime via `AWS_REGION` or `AWS_DEFAULT_REGION` environment
+        variables when neither `region` nor `host` is specified in plugin configuration.
+        Using environment variables enables regionally distributed Kong cluster nodes
+        to connect to the closest AWS region. If `region`, `host` and environment
+        variables have not been specified, the plugin responds with an HTTP
+        `500 Internal Server Error` at run-time.
     - name: host
-      required: semi
+      required: false
       default:
       value_in_examples:
       datatype: string
       description: |
         The host where the Lambda function is located. This value can point to a
-        local Lambda server, allowing for easier debugging. Either `host` or
-        `aws_region` must be provided.
+        local Lambda server, allowing for easier debugging.
     - name: function_name
       required: true
       default:
@@ -247,6 +255,16 @@ from the instance running Kong.
 
 First, the plugin tries ECS metadata to get the role. If no ECS metadata is available,
 the plugin falls back on EC2 metadata.
+
+### AWS Region as Environment Variable
+
+If the plugin configuration `aws_region` is unset, the plugin attempts to obtain the
+AWS region through environment variables `AWS_REGION` and `AWS_DEFAULT_REGION`,
+with the former taking higher precedence. For example, if both `AWS_REGION` and
+`AWS_DEFAULT_REGION` are set, the `AWS_REGION` value is used; otherwise, if only
+`AWS_DEFAULT_REGION` is set, its value is used. If neither configuration `aws_region`
+nor environment variables are set, a run-time error "no region or host specified"
+will be thrown.
 
 ---
 ### Step-By-Step Guide

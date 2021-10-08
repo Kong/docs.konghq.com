@@ -55,21 +55,20 @@ to the file.
     anonymous_reports = off
     vitals_ttl_days = 732
     cluster_mtls = pki
-    cluster_control_plane = <example.cp.konnect.foo>:443
-    cluster_server_name = <kong-cpoutlet-example.service>
-    cluster_telemetry_endpoint = <example.tp.konnect.foo>:443
-    cluster_telemetry_server_name = <kong-telemetry-example.service>
-    cluster_cert = /<path-to-file>/tls.crt
-    cluster_cert_key = /<path-to-file>/tls.key
-    lua_ssl_trusted_certificate = system,/<path-to-file>/ca.crt
+    cluster_control_plane = {EXAMPLE.CP.KONNECT.FOO}:443
+    cluster_server_name = {KONG-CPOUTLET-EXAMPLE.SERVICE}
+    cluster_telemetry_endpoint = {EXAMPLE.TP.KONNECT.FOO}:443
+    cluster_telemetry_server_name = {KONG-TELEMETRY-EXAMPLE.SERVICE}
+    cluster_cert = /{PATH_TO_FILE}/tls.crt
+    cluster_ca_cert = /{PATH_TO_FILE}/ca.crt
+    cluster_cert_key = /{PATH_TO_FILE}/tls.key
     ```
 
     See [Parameters](/konnect/runtime-manager/runtime-parameter-reference) for
     descriptions and the matching fields in {{site.konnect_short_name}}.
 
-4. Replace the values in `cluster_cert`, `cluster_cert_key`,
-and `lua_ssl_trusted_certificate` with the paths to your certificate and key
-files.
+4. Replace the values in `cluster_cert`, `cluster_ca_cert`, and
+`cluster_cert_key` with the paths to your certificate and key files.
 
 5. Restart {{site.base_gateway}} for the settings to take effect:
 

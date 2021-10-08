@@ -1,7 +1,7 @@
 ---
 name: Prometheus
 publisher: Kong Inc.
-version: 1.3.0
+version: 1.4.0
 
 desc: Expose metrics related to Kong and proxied Upstream services in Prometheus exposition format
 description: |
@@ -14,6 +14,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.6.x
+        - 2.5.x
         - 2.4.x
         - 2.3.x
         - 2.2.x
@@ -28,6 +30,8 @@ kong_version_compatibility:
         - 0.14.x
     enterprise_edition:
       compatible:
+        - 2.6.x
+        - 2.5.x
         - 2.4.x
         - 2.3.x
         - 2.2.x
@@ -46,6 +50,11 @@ params:
     The database will always be reported as reachable in Prometheus with DB-less.
 
 ---
+
+### New in 1.4.x
+
+* New `data_plane_cluster_cert_expiry_timestamp` metric
+* Added `subsystem` label to Upstream Target health metrics
 
 Metrics are available on both the Admin API and Status API at the
 `http://localhost:<port>/metrics`
@@ -78,8 +87,8 @@ dashboard: [https://grafana.com/dashboards/7424](https://grafana.com/dashboards/
 - **Connections**: Various Nginx connection metrics like active, reading,
   writing, and number of accepted connections.
 - **Target Health**: The healthiness status (`healthchecks_off`, `healthy`, `unhealthy`, or `dns_error`) of Targets
-  belonging to a given Upstream.
-- **Dataplane Status**: The last seen timestamp, config hash, and config sync status for
+  belonging to a given Upstream as well as their subsystem (`http` or `stream`).
+- **Dataplane Status**: The last seen timestamp, config hash, config sync status and certificate expiration timestamp for
 data plane nodes is exported to control plane.
 - **Enterprise License Information**: The {{site.ee_gateway_name}} license expiration date, features and
 license signature. Those metrics are only exported on {{site.ee_gateway_name}}.
@@ -196,11 +205,16 @@ kong_data_plane_version_compatible{node_id="d4e7584e-b2f2-415b-bb68-3b0936f1fde3
 # TYPE kong_nginx_metric_errors_total counter
 kong_nginx_metric_errors_total 0
 # HELP kong_upstream_target_health Health status of targets of upstream. States = healthchecks_off|healthy|unhealthy|dns_error, value is 1 when state is populated.
-kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="healthchecks_off"} 0
-kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="healthy"} 1
-kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="unhealthy"} 0
-kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="dns_error"} 0
+kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="healthchecks_off",subsystem="http"} 0
+kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="healthy",subsystem="http"} 1
+kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="unhealthy",subsystem="http"} 0
+kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="dns_error",subsystem="http"} 0
 ```
+
+{:.note}
+> **Note:** Upstream targets' health information is exported once per subsystem. If both
+stream and HTTP listeners are enabled, targets' health will appear twice. Health metrics
+have a `subsystem` label to indicate which subsystem the metric refers to.
 
 ### Accessing the metrics
 
@@ -209,11 +223,11 @@ need to be set up to require authentication. Here are a couple of options to
 allow access to the `/metrics` endpoint to Prometheus:
 
 
-1. If the [Status API](https://docs.konghq.com/latest/configuration/#status_listen)
+1. If the [Status API](/gateway-oss/latest/configuration/#status_listen)
    is enabled, then its `/metrics` endpoint can be used.
    This is the preferred method.
 
 1. The `/metrics` endpoint is also available on the Admin API, which can be used
    if the Status API is not enabled. Note that this endpoint is unavailable
-   when [RBAC](/enterprise/latest/setting-up-admin-api-rbac) is enabled on the
+   when [RBAC](/enterprise/latest/admin-api/rbac/reference/) is enabled on the
    Admin API (Prometheus does not support Key-Auth to pass the token).

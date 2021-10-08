@@ -69,9 +69,9 @@
     <div class="versions-dropdown dropdown">
       <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span>
-          Version {{include.kong_version}}
-          {% if include.kong_version == include.kong_latest.release %}
-            <em>(latest)</em>
+          Version {{page.kong_version}}
+          {% if page.kong_version == page.kong_latest.release %}
+            <span>(latest)</span>
           {% endif %}
         </span>
         <span class="caret"></span>
@@ -86,7 +86,8 @@
             data-version-id="{{ver.release}}"
           >
             {{ver.release}}
-            {% if ver.release == include.kong_latest.release %} <em>(latest)</em>{% endif %}
+            {% if ver.release == page.kong_latest.release %} <em>(latest)</em>
+            {% endif %}
           </a>
         </li>
         {% endfor %}

@@ -8,6 +8,16 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services.
 
+## August 2021
+### 2021.08.31
+**{{site.base_gateway}} 2.5.0.1 support**
+: {{site.konnect_saas}} now supports {{site.base_gateway}} 2.5.0.1.
+runtimes. You can keep using existing 2.4.x runtimes, or you can upgrade to
+2.5.0.1 to take advantage of any new features, updates, and bug fixes.
+: This release includes [event hook support](/enterprise/latest/admin-api/event-hooks/reference),
+improvements to CP-DP communication, new configuration options in plugins, and more.
+: For all the changes and new features in {{site.base_gateway}} 2.5.x, see the [changelog](/enterprise/changelog).
+
 ## June 2021
 ### 2021.06.24
 **Global plugin support**
@@ -183,7 +193,7 @@ through {{site.konnect_saas}}. This includes:
 ### 2021.02.10
 
 **Portal authentication**
-: You can now [disable authentication on a Dev Portal](/konnect/dev-portal/administrators/public-portal/),
+: You can now [disable authentication on a Dev Portal](/konnect/dev-portal/customization/public-portal/),
 which exposes the Dev Portal publicly to anyone with the link. No one needs to register
 for Dev Portal access.
 : New application registrations aren't available through a public-facing portal.
