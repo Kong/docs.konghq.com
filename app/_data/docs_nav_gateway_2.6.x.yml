@@ -56,8 +56,32 @@
 - title: Configure
   icon: /assets/images/icons/konnect/konnect-settings.svg
   items:
-    - text: Authentication Reference
-      url: /configure/auth
+    - text: Authentication and Authorization
+      items:
+        - text: Authentication Reference
+          url: /configure/auth
+        - text: OpenID Connect Plugin
+          url: /configure/auth/oidc-use-case
+          items:
+            - text: OpenID Connect with Curity
+              url: /configure/auth/oidc-curity
+            - text: OpenID Connect with Azure AD
+              url: /configure/auth/oidc-azuread
+            - text: OpenID Connect with Google
+              url: /configure/auth/oidc-google
+            - text: OpenID Connect with Okta
+              url: /configure/auth/oidc-okta
+            - text: OpenID Connect with Auth0
+              url: /configure/auth/oidc-auth0
+            - text: OpenID Connect with Cognito
+              url: /configure/auth/oidc-cognito
+            - text: OpenID Connect Plugin Reference
+              url: /hub/kong-inc/openid-connect
+              absolute_url: true
+        - text: Multiple Authentication Methods
+          url: /configure/auth/allowing-multiple-authentication-methods
+    - text: Configure gRPC Plugins
+      url: /configure/grpc
     - text: Logging Reference
       url: /configure/logging
     - text: Network and Firewall
@@ -169,6 +193,8 @@
               url: /developer-portal/theme-customization/single-page-app
         - text: Helpers CLI
           url: /developer-portal/helpers/cli
+    - text: GraphQL Quickstart
+      url: /develop/graphql-quickstart
 
 - title: Reference
   icon: /assets/images/icons/documentation/icn-references-color.svg
