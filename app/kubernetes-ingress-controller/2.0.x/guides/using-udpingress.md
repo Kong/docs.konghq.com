@@ -327,7 +327,7 @@ using `UDPIngress`:
 {% navtab Command %}
 
 ```shell
-$ dig @${KONG_UDP_ENDPOINT} konghq.com
+$ dig @${KONG_UDP_ENDPOINT} -p 9999 konghq.com
 ```
 
 {% endnavtab %}
