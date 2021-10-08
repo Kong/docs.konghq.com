@@ -2,7 +2,10 @@
 title: Install Kong Gateway on Docker
 ---
 
-## Introduction
+{:.install-banner}
+> See the list of Docker tags and pull the [**Kong Gateway Docker image**](https://hub.docker.com/r/kong/kong-gateway/tags)
+>
+> (latest {{site.base_gateway}} version: {{site.data.kong_latest_ee.version}})
 
 This guide walks through downloading, installing, and starting **{{site.ee_product_name}}** on **Docker**.
 

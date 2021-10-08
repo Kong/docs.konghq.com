@@ -1276,20 +1276,27 @@ Generic Styling for Desktop
       padding: 3px;
     }
 
-    p, b, strong {
+    b, strong {
       padding: 0;
       margin: 0;
       display: inline;
+    }
+
+    p {
+      margin-bottom: 0;
+      padding: 0;
+      display: block;
     }
 
     &:not(.no-icon)::before {
       content: "\f05a";
       font-family: "Font Awesome", FontAwesome;
       color: @blue-400;
-      display: inline-block;
+      display: inline;
       font-weight: 600;
       font-size: 17px;
-      padding: 0 5px ;
+      padding: 0 10px 0 0;
+      float: left;
     }
 
     &.warning {
@@ -1303,7 +1310,8 @@ Generic Styling for Desktop
         display: inline-block;
         font-weight: 600;
         font-size: 17px;
-        padding: 0 5px 0 0;
+        padding: 0 10px 0 0;
+        float: left;
       }
     }
 
@@ -1318,7 +1326,8 @@ Generic Styling for Desktop
         display: inline-block;
         font-weight: 600;
         font-size: 17px;
-        padding: 0 5px 0 0;
+        padding: 0 10px 0 0;
+        float: left;
       }
     }
 
@@ -1334,7 +1343,33 @@ Generic Styling for Desktop
         display: inline-block;
         font-weight: bold;
         font-size: 17px;
-        padding: 0 5px 0 0;
+        padding: 0 10px 0 0;
+        float: left;
+      }
+    }
+
+    &.install-banner {
+      background-color: @blue-100;
+      border: none;
+
+      &:not(.no-icon)::before {
+        content: "\f019";
+        font-family: "Font Awesome", FontAwesome;
+        color: @blue-600;
+        display: inline-block;
+        font-weight: bold;
+        font-size: 20px;
+        padding: 0 10px 0 0;
+        float: left;
+      }
+
+      > p {
+        margin-left: 25px;
+      }
+
+      .install-subtitle {
+        opacity: 0.7;
+        font-style: italic;
       }
     }
   }

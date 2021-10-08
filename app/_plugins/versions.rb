@@ -80,6 +80,7 @@ module Jekyll
           if(parts[0] == 'enterprise')
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]
+            page.data["kong_version_patch"] = parts[2]
             page.data["kong_versions"] = eeVersions
             page.data["kong_latest"] = latestVersionEE
             page.data["nav_items"] = site.data['docs_nav_ee_' + parts[1].gsub(/\./, '')]
@@ -87,6 +88,7 @@ module Jekyll
           elsif(parts[0] == 'getting-started-guide')
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]
+            page.data["kong_version_patch"] = parts[2]
             page.data["kong_versions"] = gsgVersions
             page.data["kong_latest"] = latestVersionGSG
             page.data["nav_items"] = site.data['docs_nav_gsg_' + parts[1].gsub(/\./, '')]
@@ -94,6 +96,7 @@ module Jekyll
           elsif(parts[0] == 'mesh')
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]
+            page.data["kong_version_patch"] = parts[2]
             page.data["kong_versions"] = meshVersions
             page.data["kong_latest"] = latestVersionMesh
             page.data["nav_items"] = site.data['docs_nav_mesh_' + parts[1].gsub(/\./, '')]
