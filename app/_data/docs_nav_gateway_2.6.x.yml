@@ -166,6 +166,10 @@
   items:
     - text: DB-less and Declarative Configuration
       url: /reference/db-less-and-declarative-config
+    - text: Configuration Reference
+      url: /reference/property-reference
+    - text: CLI Reference
+      url: /reference/cli
     - text: Load Balancing Reference
       url: /reference/loadbalancing
     - text: Proxy Reference
