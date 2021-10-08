@@ -43,6 +43,15 @@
       url: /plan-and-deploy/dns-considerations
     - text: Default Ports
       url: /plan-and-deploy/default-ports
+    - text: Licensing
+      url: /plan-and-deploy/licenses/licensing
+      items:
+        - text: Access Your License
+          url: /plan-and-deploy/licenses/access-license
+        - text: Deploy Your License
+          url: /plan-and-deploy/licenses/deploy-license
+        - text: Monitor License Usage
+          url: /plan-and-deploy/licenses/report
 
 - title: Configure
   icon: /assets/images/icons/konnect/konnect-settings.svg
