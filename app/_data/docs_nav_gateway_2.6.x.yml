@@ -177,10 +177,79 @@
     - text: Clustering Reference
       url: /reference/clustering
     - text: Admin API
-      url: /reference/admin-api
+      url: /admin-api
       items:
+        - text: DB-less Mode
+          url: /admin-api/#db-less-mode
+        - text: Declarative Configuration
+          url: /admin-api/#declarative-configuration
+        - text: Supported Content Types
+          url: /admin-api/#supported-content-types
+        - text: Information Routes
+          url: /admin-api/#information-routes
+        - text: Health Routes
+          url: /admin-api/#health-routes
+        - text: Tags
+          url: /admin-api/#tags
+        - text: Service Object
+          url: /admin-api/#service-object
+        - text: Route Object
+          url: /admin-api/#route-object
+        - text: Consumer Object
+          url: /admin-api/#consumer-object
+        - text: Plugin Object
+          url: /admin-api/#plugin-object
+        - text: Certificate Object
+          url: /admin-api/#certificate-object
+        - text: CA Certificate Object
+          url: /admin-api/#ca-certificate-object
+        - text: SNI Object
+          url: /admin-api/#sni-object
+        - text: Upstream Object
+          url: /admin-api/#upstream-object
+        - text: Target Object
+          url: /admin-api/#target-object
+        - text: Licenses
+          url: /admin-api/licenses/reference
+          items:
+            - text: Licenses Reference
+              url: /admin-api/licenses/reference
+            - text: Licenses Examples
+              url: /admin-api/licenses/examples
+        - text: Workspaces
+          url: /admin-api/workspaces/reference
+          items:
+            - text: Workspaces Reference
+              url: /admin-api/workspaces/reference
+            - text: Workspace Examples
+              url: /admin-api/workspaces/examples
+        - text: RBAC
+          url: /admin-api/rbac/reference
+          items:
+            - text: RBAC Reference
+              url: /admin-api/rbac/reference
+            - text: RBAC Examples
+              url: /admin-api/rbac/examples
+        - text: Admins
+          url: /admin-api/admins/reference
+          items:
+            - text: API Reference
+              url: /admin-api/admins/reference
+            - text: Examples
+              url: /admin-api/admins/examples
+        - text: Event Hooks
+          url: /admin-api/event-hooks/reference
+          items:
+            - text: Event Hooks Reference
+              url: /admin-api/event-hooks/reference
+            - text: Examples
+              url: /admin-api/event-hooks/examples
+        - text: Audit Logging
+          url: /admin-api/audit-log
+        - text: Keyring and Data Encryption
+          url: /admin-api/db-encryption
         - text: Securing the Admin API
-          url: /reference/admin-api/secure-admin-api
+          url: /admin-api/secure-admin-api
     - text: Plugin Development Kit
       url: /pdk/pdk-reference
       items:

@@ -27,8 +27,6 @@ could seriously compromise the security of your Kong cluster as a whole.
 For example, **avoid binding Kong to all of your interfaces**, by using
 values such as `0.0.0.0:8001`.
 
-[Back to top](#introduction)
-
 ### Layer 3/4 Network Controls
 
 In cases where the Admin API must be exposed beyond a localhost interface,
@@ -43,26 +41,24 @@ input traffic ranges. For example:
 # assume that Kong is listening on the address defined below, as defined as a
 # /24 CIDR block, and only a select few hosts in this range should have access
 
-$ grep admin_listen /etc/kong/kong.conf
+grep admin_listen /etc/kong/kong.conf
 admin_listen 10.10.10.3:8001
 
 # explicitly allow TCP packets on port 8001 from the Kong node itself
 # this is not necessary if Admin API requests are not sent from the node
-$ iptables -A INPUT -s 10.10.10.3 -m tcp -p tcp --dport 8001 -j ACCEPT
+iptables -A INPUT -s 10.10.10.3 -m tcp -p tcp --dport 8001 -j ACCEPT
 
 # explicitly allow TCP packets on port 8001 from the following addresses
-$ iptables -A INPUT -s 10.10.10.4 -m tcp -p tcp --dport 8001 -j ACCEPT
-$ iptables -A INPUT -s 10.10.10.5 -m tcp -p tcp --dport 8001 -j ACCEPT
+iptables -A INPUT -s 10.10.10.4 -m tcp -p tcp --dport 8001 -j ACCEPT
+iptables -A INPUT -s 10.10.10.5 -m tcp -p tcp --dport 8001 -j ACCEPT
 
 # drop all TCP packets on port 8001 not in the above IP list
-$ iptables -A INPUT -m tcp -p tcp --dport 8001 -j DROP
+iptables -A INPUT -m tcp -p tcp --dport 8001 -j DROP
 
 ```
 
 Additional controls, such as similar ACLs applied at a network device level, are
 encouraged, but fall outside the scope of this document.
-
-[Back to top](#introduction)
 
 ## Kong API Loopback
 
@@ -79,19 +75,19 @@ We want to expose Admin API via the url `:8000/admin-api`, in a controlled way. 
 creating a Service and Route for it from inside `127.0.0.1`:
 
 ```bash
-$ curl -X POST http://127.0.0.1:8001/services \
+curl -X POST http://127.0.0.1:8001/services \
   --data name=admin-api \
   --data host=127.0.0.1 \
   --data port=8001
 
-$ curl -X POST http://127.0.0.1:8001/services/admin-api/routes \
+curl -X POST http://127.0.0.1:8001/services/admin-api/routes \
   --data paths[]=/admin-api
 ```
 
 We can now transparently reach the Admin API through the proxy server, from outside `127.0.0.1`:
 
 ```bash
-$ curl myhost.dev:8000/admin-api/services
+curl myhost.dev:8000/admin-api/services
 {
    "data":[
       {
@@ -144,7 +140,7 @@ parameters.
 Assuming that the file above is stored in `$(pwd)/kong.yml`, a DB-less {{site.ee_product_name}} can use it as it starts like this:
 
 ``` bash
-$ docker run -d --name kong-ee \
+docker run -d --name kong-ee \
     -e "KONG_DATABASE=off" \
     -e "KONG_DECLARATIVE_CONFIG=/home/kong/kong.yml"
     -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
@@ -161,7 +157,7 @@ With a PostgreSQL database, the initialization steps would be the following:
 ``` bash
 # Start PostgreSQL on a Docker container
 # Notice that PG_PASSWORD needs to be set
-$ docker run --name kong-ee-database \
+docker run --name kong-ee-database \
     -p 5432:5432 \
     -e "POSTGRES_USER=kong" \
     -e "POSTGRES_DB=kong" \
@@ -169,7 +165,7 @@ $ docker run --name kong-ee-database \
     -d postgres:9.6
 
 # Run Kong migrations to initialize the database
-$ docker run --rm \
+docker run --rm \
     --link kong-ee-database:kong-ee-database \
     -e "KONG_DATABASE=postgres" \
     -e "KONG_PG_HOST=kong-ee-database" \
@@ -178,7 +174,7 @@ $ docker run --rm \
 
 # Load the configuration file which enables the Admin API loopback
 # Notice that it is assumed that kong.yml is located in $(pwd)/kong.yml
-$ docker run --rm \
+docker run --rm \
     --link kong-ee-database:kong-ee-database \
     -e "KONG_DATABASE=postgres" \
     -e "KONG_PG_HOST=kong-ee-database" \
@@ -187,7 +183,7 @@ $ docker run --rm \
     kong-ee kong config db_import /home/kong/kong.yml
 
 # Start Kong
-$ docker run -d --name kong \
+docker run -d --name kong \
     --link kong-ee-database:kong-ee-database \
     -e "KONG_DATABASE=postgres" \
     -e "KONG_PG_HOST=kong-ee-database" \
@@ -203,10 +199,10 @@ $ docker run -d --name kong \
 In both cases, once Kong is up and running, the Admin API would be available but protected:
 
 ``` bash
-$ curl myhost.dev:8000/admin-api/services
+curl myhost.dev:8000/admin-api/services
 => HTTP/1.1 401 Unauthorized
 
-$ curl myhost.dev:8000/admin-api/services?apikey=secret"
+curl myhost.dev:8000/admin-api/services?apikey=secret"
 => HTTP/1.1 200 OK
 {
     "data": [
@@ -216,8 +212,6 @@ $ curl myhost.dev:8000/admin-api/services?apikey=secret"
             "connect_timeout": 60000,
         ...
 ```
-
-[Back to top](#introduction)
 
 ## Custom Nginx Configuration
 
@@ -231,8 +225,6 @@ OpenResty environment on which custom/complex security controls can be built.
 
 For more information on integrating Kong into custom Nginx configurations, see
 [Custom Nginx configuration & embedding Kong][custom-configuration].
-
-[Back to top](#introduction)
 
 ## Role Based Access Control ##
 
@@ -251,8 +243,6 @@ uses.
 
 If you are not a Kong Enterprise customer, you can inquire about our
 Enterprise offering by [contacting us](/enterprise).
-
-[Back to top](#introduction)
 
 
 [acl]: /hub/kong-inc/acl
