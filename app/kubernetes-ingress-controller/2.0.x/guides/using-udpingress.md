@@ -174,8 +174,9 @@ Apply the `Deployment` configuration file:
 $ kubectl apply -f coredns-deployment.yaml
 ```
 
-Watch the pods with `kubectl get pods`. Once they are running, you can 
-move on to the next sections: exposing the pods through `Service` and `UDPIngress`.
+Watch the pods with `kubectl -n udpingress-example get pods`. Once they are
+running, you can move on to the next sections: exposing the pods through
+`Service` and `UDPIngress`.
 
 [corefile]:https://coredns.io/manual/toc/#configuration
 [nameservers]:https://datatracker.ietf.org/doc/html/rfc1035#section-6
