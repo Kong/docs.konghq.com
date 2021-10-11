@@ -14,6 +14,10 @@
 /deck/terminology/                    /deck/latest/terminology/
 
 # kubernetes ingress controller
+/gateway-oss/2.6.x/kong-for-kubernetes/changelog    https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
+/gateway-oss/latest/kong-for-kubernetes/changelog   https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
+/gateway-oss/2.6.x/kong-for-kubernetes/using-kong-for-kubernetes  /kubernetes-ingress-controller/
+/gateway-oss/latest/kong-for-kubernetes/using-kong-for-kubernetes  /kubernetes-ingress-controller/
 /kubernetes-ingress-controller/latest/introduction /kubernetes-ingress-controller/
 /kubernetes-ingress-controller/1.2.x/introduction  /kubernetes-ingress-controller/
 /enterprise/2.5.x/deployment/using-kong-for-kubernetes/   /kubernetes-ingress-controller/
@@ -109,11 +113,20 @@
 /studio/*                                   https://support.insomnia.rest/
 
 # Dev Portal
-/enterprise/2.1.x/developer-portal/introduction /enterprise/2.1.x/developer-portal
-/enterprise/2.2.x/developer-portal/introduction /enterprise/2.2.x/developer-portal
-/enterprise/2.3.x/developer-portal/introduction /enterprise/2.3.x/developer-portal
-/enterprise/latest/developer-portal/introduction /enterprise/latest/developer-portal
-/enterprise/latest/developer-portal/overview     /enterprise/latest/developer-portal
+/enterprise/2.1.x/developer-portal/introduction            /enterprise/2.1.x/developer-portal
+/enterprise/2.2.x/developer-portal/introduction            /enterprise/2.2.x/developer-portal
+/enterprise/2.3.x/developer-portal/introduction            /enterprise/2.3.x/developer-portal
+/enterprise/latest/developer-portal/introduction           /enterprise/latest/developer-portal
+/enterprise/latest/developer-portal/overview               /enterprise/latest/developer-portal
+/konnect/dev-portal/application-overview                   /konnect/dev-portal/applications/application-overview
+/konnect/dev-portal/developers/dev-apps                    /konnect/dev-portal/applications/dev-apps
+/konnect/dev-portal/administrators/app-registration/*      /konnect/dev-portal/applications/:splat
+/konnect/dev-portal/developers/dev-reg-app-service         /konnect/dev-portal/applications/dev-reg-app-service
+/konnect/dev-portal/developers/dev-gen-creds               /konnect/dev-portal/applications/dev-gen-creds
+/konnect/dev-portal/administrators/public-portal           /konnect/dev-portal/customization/public-portal
+/konnect/dev-portal/developers/dev-reg                     /konnect/dev-portal/access-and-approval/dev-reg
+/konnect/dev-portal/administrators/manage-devs             /konnect/dev-portal/access-and-approval/manage-devs
+/konnect/dev-portal/administrators/auto-approve-devs-apps  /konnect/dev-portal/access-and-approval/auto-approve-devs-apps
 
 # About
 /about/faq                 https://konghq.com/faqs/

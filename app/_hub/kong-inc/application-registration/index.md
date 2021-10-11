@@ -6,7 +6,7 @@ version: 2.0.x
 desc: Allow portal developers to register applications against Services
 description: |
   Applications allow registered developers on Kong Developer Portal to
-  authenticate against a gateway Service. Dev Portal admins can
+  authenticate against a Gateway Service. Dev Portal admins can
   selectively admit access to Services using the
   [Application Registration](/enterprise/latest/developer-portal/administration/application-registration/enable-application-registration) plugin.
 
@@ -16,6 +16,8 @@ description: |
   (`external-oauth2`) can be the system of record (SoR) for application credentials. For more
   information, see
   [Configure an Authorization Provider Strategy](/enterprise/latest/developer-portal/administration/application-registration/auth-provider-strategy).
+
+  To learn how to set up key authentication, see [Enable Key Authentication for Application Registration](/enterprise/latest/developer-portal/administration/application-registration/enable-key-auth-plugin/). 
 
   Supported authorization plugins for use with application registration:
 
