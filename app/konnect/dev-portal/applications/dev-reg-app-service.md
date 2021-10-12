@@ -4,15 +4,15 @@ no_version: true
 toc: true
 ---
 
-When [application registration is enabled](/konnect/dev-portal/administrators/app-registration/enable-app-reg/),
+When [application registration is enabled](/konnect/dev-portal/applications/enable-app-reg/),
 developers must register their applications with a Service. Requests for access must be
-[approved by a Konnect admin](/konnect/dev-portal/administrators/app-registration/manage-app-reg-requests) if
-[auto approve](/konnect/dev-portal/administrators/auto-approve-devs-apps) is not enabled.
+[approved by a Konnect admin](/konnect/dev-portal/applications/manage-app-reg-requests) if
+[auto approve](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps) is not enabled.
 
 ## Prerequisites
 
 - Application registration must be enabled for the Service by a {{site.konnect_short_name}} admin.
-- [Create an Application](/konnect/dev-portal/developers/dev-apps#create-an-application).
+- [Create an Application](/konnect/dev-portal/applications/dev-apps#create-an-application).
 
 ## Register an Application
 
@@ -23,9 +23,9 @@ applicable Services.
 1. Log in to the {{site.konnect_short_name}} Dev Portal to access the Service
 Catalog.
 
-2. Click on a Service tile. 
+2. Click on a Service tile.
 
-    Not all Services may have app registration enabled. Contact 
+    Not all Services may have app registration enabled. Contact
     your {{site.konnect_short_name}} admin if you need it enabled on a Service.
 
 3. Click **Register**.
@@ -38,7 +38,7 @@ Catalog.
    and you will be notified by email upon approval. Click **Close**.
 
    You can check the status of your request in the
-   [application details](/konnect/dev-portal/developers/dev-apps/#app-details-page) page.
+   [application details](/konnect/dev-portal/applications/dev-apps/#app-details-page) page.
 
 ## Unregister an Application
 
@@ -65,6 +65,6 @@ the **Services** pane.
 
 If you encounter any of the errors below that appear in the Register dialog, follow the recommended solution.
 
-Error Message | Solution 
+Error Message | Solution
 ------------|------------
-Application registration is not enabled for this Service. | [Enable application registration for the Service](/konnect/dev-portal/administrators/app-registration/enable-app-reg/). Contact your {{site.konnect_short_name}} admin if you do not have the role permissions to do so.
+Application registration is not enabled for this Service. | [Enable application registration for the Service](/konnect/dev-portal/applications/enable-app-reg/). Contact your {{site.konnect_short_name}} admin if you do not have the role permissions to do so.

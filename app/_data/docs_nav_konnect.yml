@@ -42,6 +42,8 @@
       url: /deployment/network
     - text: Network Resiliency and Availability
       url: /deployment/network-resiliency
+    - text: Migrate from Kong Gateway to Konnect Cloud
+      url: /migrate
 
 - title: Getting Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
@@ -107,7 +109,7 @@
         - text: Application Overview
           url: /dev-portal/applications/application-overview
         - text: Create, Edit, and Delete an Application
-          url: /dev-portal/applications/dev-apps 
+          url: /dev-portal/applications/dev-apps
         - text: Enable App Registration
           url: /dev-portal/applications/enable-app-reg
         - text: Disable App Registration
@@ -122,6 +124,8 @@
           url: /dev-portal/applications/dev-gen-creds
     - text: Customization
       items:
+        - text: Customization Overview
+          url: /dev-portal/customization/customization-overview
         - text: Public Portal
           url: /dev-portal/customization/public-portal
 

@@ -21,7 +21,7 @@ registration, or configure custom plugins.
 
 ## Prerequisites
 
-* [**Organization Admin**](/konnect/reference/org-management) permissions.
+* [**Organization Admin**](/konnect/org-management/users-and-roles) permissions.
 * decK v1.7.0 or later [installed](/deck/latest/installation/).
 * Optional: To test your configuration, [set up a simple runtime](/konnect/getting-started/configure-runtime).
 

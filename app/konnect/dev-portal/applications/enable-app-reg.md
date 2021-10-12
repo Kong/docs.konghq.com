@@ -5,7 +5,7 @@ toc: true
 ---
 
 When application registration is enabled for a Service, developers must
-[register an application](/konnect/dev-portal/developers/dev-reg-app-service)
+[register an application](/konnect/dev-portal/applications/dev-reg-app-service)
 in order to access a Service.
 
 All versions of a Service
@@ -35,12 +35,12 @@ Any other plugins that were enabled manually, such as `rate-limiting`, remain en
 
 ![Konnect Enable App Registration with OIDC](/assets/images/docs/konnect/konnect-enable-app-reg-oidc-toggle.png)
 
-You can [disable application registration](/konnect/dev-portal/administrators/app-registration/disable-app-reg/)
+You can [disable application registration](/konnect/dev-portal/applications/disable-app-reg/)
 any time at your discretion.
 
 ## Prerequisites
 
-- [**Organization Admin** or **Service Admin**](/konnect/reference/org-management/#role-definitions)
+- [**Organization Admin** or **Service Admin**](/konnect/org-management/users-and-roles)
 permissions.
 
 - The Services have been created, versioned, and published to the
@@ -52,7 +52,7 @@ permissions.
     appropriate for your requirements. Refer to your IdP/OP documentation for instructions.
 
   - Be sure to edit the **Reference ID** field in the Dev Portal
-    [Update Application](/konnect/dev-portal/developers/dev-apps#edit-my-app)
+    [Update Application](/konnect/dev-portal/applications/dev-apps#edit-my-app)
     dialog to match to your third-party OAuth2 claim.
 
 ## Enable App Registration for the Key Authentication Flow {#konnect-key-auth-flow}
@@ -76,10 +76,10 @@ permissions.
 
    Any developer registration requests for an application are automatically approved. A {{site.konnect_saas}}
     admin does not need to
-   [manually approve](/konnect/dev-portal/administrators/app-registration/manage-app-reg-requests/) application
+   [manually approve](/konnect/dev-portal/applications/manage-app-reg-requests/) application
    registration requests for developers.
 
-   You can also [enable Auto Approve portal-wide](/konnect/dev-portal/administrators/auto-approve-devs-apps)
+   You can also [enable Auto Approve portal-wide](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps)
    using the Settings page for the Dev Portal. If Auto Approve is
    enabled portal-wide, it overrides the per-Service Auto Approve setting.
 
@@ -121,10 +121,10 @@ permissions.
       Any developer registration
       requests for an application are automatically approved. A {{site.konnect_short_name}}
       cloud admin does not need to
-      [manually approve](/konnect/dev-portal/administrators/app-registration/manage-app-reg-requests/) application
+      [manually approve](/konnect/dev-portal/applications/manage-app-reg-requests/) application
       registration requests for developers.
 
-      You can also [enable Auto Approve portal-wide](/konnect/dev-portal/administrators/auto-approve-devs-apps)
+      You can also [enable Auto Approve portal-wide](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps)
       using the Portal Settings. If Auto Approve is
       enabled or disabled portal-wide, it overrides the per Service Auto Approve setting.
 
@@ -142,7 +142,7 @@ permissions.
    | `Consumer claims` |  Name of the claim that is used to find a consumer. Required. |
    | `Auth method` | The supported authentication method or methods you want to enable. This field should contain only the authentication methods that you need to use; otherwise, you unnecessarily widen the attack surface. Separate multiple entries with a comma. Available options: `password`, `client_credentials`, `authorization_code`, `bearer`, `introspection`, `kong_oauth2`, `refresh_token`, `session`. Required. |
    | `Hide Credentials` | Whether to show or hide the credential from the Upstream service. If enabled, the plugin strips the credential from the request (in the header, query string, or request body that contains the key) before proxying it. Default: disabled. Optional.|
-   | `Auto Approve` | Automatically approve developer registration requests for an application. A Konnect admin does not need to [manually approve](/konnect/dev-portal/administrators/app-registration/manage-app-reg-requests/) application registration requests. Default: disabled. Optional. |
+   | `Auto Approve` | Automatically approve developer registration requests for an application. A Konnect admin does not need to [manually approve](/konnect/dev-portal/applications/manage-app-reg-requests/) application registration requests. Default: disabled. Optional. |
 
    For more background information about OpenID Connect plugin parameters, see
    [Important Configuration Parameters](/hub/kong-inc/openid-connect/#important-configuration-parameters).
