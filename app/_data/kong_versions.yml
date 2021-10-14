@@ -466,6 +466,19 @@
   lua_doc: true
 
 -
+  release: "2.6.x"
+  version: "2.6.0.0"
+  edition: "enterprise"
+  luarocks_version: "2.2.0.0"
+  dependencies:
+    luajit: "2.1.0-beta3"
+    luarocks: "3.7.1"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.19.3.1"
+  lua_doc: true
+
+-
   release: "CE-2.0.x_KE-1.5.x"
   version: "CE-2.0.x/KE-1.5.x"
   edition: "getting-started-guide"
