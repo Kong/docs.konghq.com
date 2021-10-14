@@ -1444,24 +1444,24 @@ slashes.
 
 The following table shows all combinations of path handling version, strip path and request
 
-| `service.path` | `route.path` | `route.strip_path` | `route.path_handling` | request | request path | upstream path |
-|----------------|--------------|--------------------|-----------------------|---------|--------------|---------------|
-| `/s`           | `/fv0`       | `false`            | `v0`                  | `req`   | `/fv0req`    | `/s/fv0req`   |
-| `/s`           | `/fv0`       | `false`            | `v0`                  | `blank` | `/fv0`       | `/s/fv0`      |
-| `/s`           | `/fv1`       | `false`            | `v1`                  | `req`   | `/fv1req`    | `/sfv1req`    |
-| `/s`           | `/fv1`       | `false`            | `v1`                  | `blank` | `/fv1`       | `/sfv1`       |
-| `/s`           | `/tv0`       | `true`             | `v0`                  | `req`   | `/tv0req`    | `/s/req`      |
-| `/s`           | `/tv0`       | `true`             | `v0`                  | `blank` | `/tv0`       | `/s/`         |
-| `/s`           | `/tv1`       | `true`             | `v1`                  | `req`   | `/tv1req`    | `/sreq`       |
-| `/s`           | `/tv1`       | `true`             | `v1`                  | `blank` | `/tv1`       | `/s`          |
-| `/s`           | `/fv0/`      | `false`            | `v0`                  | `req`   | `/fv0/req`   | `/s/fv0/req`  |
-| `/s`           | `/fv0/`      | `false`            | `v0`                  | `blank` | `/fv0/`      | `/s/fv01`     |
-| `/s`           | `/fv1/`      | `false`            | `v1`                  | `req`   | `/fv1/req`   | `/sfv1/req`   |
-| `/s`           | `/fv1/`      | `false`            | `v1`                  | `blank` | `/fv1/`      | `/sfv1/`      |
-| `/s`           | `/tv0/`      | `true`             | `v0`                  | `req`   | `/tv0/req`   | `/s/req`      |
-| `/s`           | `/tv0/`      | `true`             | `v0`                  | `blank` | `/tv0/`      | `/s/`         |
-| `/s`           | `/tv1/`      | `true`             | `v1`                  | `req`   | `/tv1/req`   | `/sreq`       |
-| `/s`           | `/tv1/`      | `true`             | `v1`                  | `blank` | `/tv1/`      | `/s`          |
+| `service.path` | `route.path` | `request` |`route.strip_path` | `route.path_handling` | request path | upstream path |
+|----------------|--------------|-----------|-------------------|-----------------------|--------------|---------------|
+| `/s`           | `/fv0`       | `req`     | `false`           | `v0`                  |  `/fv0/req`  | `/s/fv0/req`  |
+| `/s`           | `/fv0`       | `blank`   | `false`           | `v0`                  |  `/fv0`      | `/s/fv0`      |
+| `/s`           | `/fv1`       | `req`     | `false`           | `v1`                  |  `/fv1/req`  | `/sfv1/req`   |
+| `/s`           | `/fv1`       | `blank`   | `false`           | `v1`                  |  `/fv1`      | `/sfv1`       |
+| `/s`           | `/tv0`       | `req`     | `true`            | `v0`                  |  `/tv0/req`  | `/s/req`      |
+| `/s`           | `/tv0`       | `blank`   | `true`            | `v0`                  |  `/tv0`      | `/s`          |
+| `/s`           | `/tv1`       | `req`     | `true`            | `v1`                  |  `/tv1/req`  | `/s/req`      |
+| `/s`           | `/tv1`       | `blank`   | `true`            | `v1`                  |  `/tv1`      | `/s`          |
+| `/s`           | `/fv0/`      | `req`     | `false`           | `v0`                  |  `/fv0/req`  | `/s/fv0/req`  |
+| `/s`           | `/fv0/`      | `blank`   | `false`           | `v0`                  |  `/fv0/`     | `/s/fv01/`    |
+| `/s`           | `/fv1/`      | `req`     | `false`           | `v1`                  |  `/fv1/req`  | `/sfv1/req`   |
+| `/s`           | `/fv1/`      | `blank`   | `false`           | `v1`                  |  `/fv1/`     | `/sfv1/`      |
+| `/s`           | `/tv0/`      | `req`     | `true`            | `v0`                  |  `/tv0/req`  | `/s/req`      |
+| `/s`           | `/tv0/`      | `blank`   | `true`            | `v0`                  |  `/tv0/`     | `/s/`         |
+| `/s`           | `/tv1/`      | `req`     | `true`            | `v1`                  |  `/tv1/req`  | `/sreq`       |
+| `/s`           | `/tv1/`      | `blank`   | `true`            | `v1`                  |  `/tv1/`     | `/s`          |
 
 
 Routes can be both [tagged and filtered by tags](#tags).
