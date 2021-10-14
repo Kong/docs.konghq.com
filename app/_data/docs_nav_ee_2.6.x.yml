@@ -128,8 +128,6 @@
           url: /deployment/upgrades/migrations
         - text: Migrating from OSS to Enterprise
           url: /deployment/upgrades/migrate-ce-to-ke
-    - text: Kong Cloud
-      url: /kong-cloud
 
 - title: Getting Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
