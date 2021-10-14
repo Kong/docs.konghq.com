@@ -18,7 +18,7 @@ describe "sidebar", type: :feature, js: true do
   describe "Outdated version documentation", type: :feature, js: true do
 
     # If the test is failing, make sure this is the latest version
-    latest_version = "2.5.x"
+    latest_version = "2.6.x"
 
     it "does not show on the latest version" do
       visit "/enterprise/#{latest_version}/deployment/installation/docker/"
