@@ -1,9 +1,7 @@
 ---
-
 name: Canary Release
 publisher: Kong Inc.
-version: 2.2.x
-# internal handler version 0.3.0 4/7/2021
+version: 0.5.x
 
 desc: Slowly roll out software changes to a subset of users
 description: |
@@ -104,7 +102,7 @@ params:
       value_in_examples:
       datatype: string
       description: |
-        Entity to be used for hashing. Options: `consumer`, `ip`, `allow`, `deny`, or `none`.
+        Entity to be used for hashing. Options: `consumer`, `ip`, `header`, `allow`, `deny`, or `none`.
         When using `consumer` or `ip`, make sure to properly set the settings for trusted IPs
         (see the `trusted_ips` and `real_ip_header` settings in the Kong configuration file.)
     - name: groups
@@ -115,6 +113,13 @@ params:
       description: |
         An array of strings with the group names that are allowed or denied. Set `hash` to either `allow` (the listed groups
         go into the canary) or `deny` (the listed groups will NOT go into the canary.)
+    - name: hash_header
+      required: semi
+      default: 
+      value_in_examples:
+      datatype: string
+      description: |
+        Header name whose value will be used as hash input. Required if `config.hash` is set to `header`.
 
 ---
 
@@ -153,9 +158,10 @@ When set to `consumer`, Canary ensures each Consumer will
 consistently end up in the same bucket. The effect is that once a Consumer's bucket
 switches to _Service B_, it will then always go to
 _Service B_, and will not flip-flop between A and B. Alternatively, if it is set to
-`ip`, then the same concept applies but on the basis of the originating IP address.
+`ip` or `header`, then the same concept applies but on the basis of the originating IP address
+or header value.
 
-When using either the `consumer` or `ip` setting, if any specific Consumer or IP
+When using either the `consumer`, `header`, or `ip` setting, if any specific Consumer, Header, or IP
 is responsible for more than the average percentage of traffic, the migration
 may not be evenly distributed, e.g., if the percentage is set to 50%, then 50% of
 either the Consumers or IPs will be rerouted, but not necessarily 50% of the total requests.
@@ -164,7 +170,7 @@ When set to `none`, the requests will be evenly distributed; each bucket
 will get the same number of requests, but a Consumer or IP might flip-flop between
 _Service A_ and _Service B_ on consecutive requests.
 
-Canary provides an automatic fallback if, for some reason, a Consumer or IP can
+Canary provides an automatic fallback if, for some reason, a Consumer, Header, or IP can
 not be identified. The fallback order is `consumer`->`ip`->`none`.
 
 ### Finalizing the Canary
