@@ -221,7 +221,12 @@ Kong can be started, reloaded and restarted with an `--nginx-conf` argument,
 which must specify an Nginx configuration template. Such a template uses the
 [Penlight][Penlight] [templating engine][pl.template], which is compiled using
 the given Kong configuration, before being dumped in your Kong prefix
-directory, moments before starting Nginx.
+directory, moments before starting Nginx. The following Lua functions are
+available in the [templating engine][pl.template]:
+
+- `pairs`, `ipairs`
+- `tostring`
+- `os.getenv`
 
 The default template for
 Kong Gateway Enterprise can be found by entering the following command on the system
