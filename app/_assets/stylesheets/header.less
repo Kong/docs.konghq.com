@@ -113,37 +113,29 @@ body {
         margin-top: 17.5px;
         background: transparent;
       }
-
-      header.navbar-v2 {
-        transition: transform 0.2s ease-in-out;
-        will-change: transform;
-        height: 95px;
-      }
-
-      header.navbar-v2.closed {
-        transition: 0s ease-in-out;
-      }
-
-      header.closed,
-      header.compress {
-        transform: translateY(-35px);
-      }
-      header:not(.closed) ~ .landing-page {
-        margin-top: 35px;
-      }
-      header:not(.closed) ~ div.page {
-        margin-top: 100px;
-      }
+      // uncomment this section when adding a new promo banner
+      // also uncomment the promo banner sections in /app/_includes/nav-v2.html and gulpfile.js
+      // header.navbar-v2 {
+      //   transition: transform 0.2s ease-in-out;
+      //   will-change: transform;
+      //   height: 95px;
+      // }
+      //
+      // header.navbar-v2.closed {
+      //   transition: 0s ease-in-out;
+      // }
+      //
+      // header.closed,
+      // header.compress {
+      //   transform: translateY(-35px);
+      // }
+      //
+      // header:not(.closed) ~ .landing-page {
+      //   margin-top: 35px;
+      // }
+      // header:not(.closed) ~ div.page {
+      //   margin-top: 100px;
+      // }
     }
   }
 }
-
-// Add maring to page while cookie policy is open
-// .page.page-cookie-policy{
-//   // NOTE: Commenting out until summit banner is removed
-//   // margin-top: 50px;
-//   margin-top: 150px;
-//   @media screen and (max-width: 1100px) {
-//     margin-top: 0;
-//   }
-// }

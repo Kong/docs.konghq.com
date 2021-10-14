@@ -79,7 +79,7 @@ spec:
 ## Test the service
 
 ```bash
-$ curl -i $PROXY_IP/foo
+$ curl -i $PROXY_IP/foo -H "Host: httpbin.org"
 ```
 
 [0]: https://kubernetes.io/docs/concepts/services-networking/service/#services-without-selectors

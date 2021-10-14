@@ -63,15 +63,15 @@ you saved earlier:
 
     ```bash
     $ kubectl create secret tls kong-cluster-cert -n kong \
-      --cert=/<path-to-file>/tls.crt \
-      --key=/<path-to-file>/tls.key
+      --cert=/{PATH_TO_FILE}/tls.crt \
+      --key=/{PATH_TO_FILE}/tls.key
     ```
 
 2. Create a generic secret for the `ca.crt` file:
 
     ```bash
     $ kubectl create secret generic kong-cluster-ca -n kong \
-      --from-file=ca.crt=/<path-to-file>/ca.crt
+      --from-file=ca.crt=/{PATH_TO_FILE}/ca.crt
     ```
 
 ### Write and apply configuration
@@ -105,10 +105,10 @@ like this:
       anonymous_reports: off
       vitals_ttl_days: 732
       cluster_mtls: pki
-      cluster_control_plane: <example.cp.konnect.foo>:443
-      cluster_server_name: <kong-cpoutlet-example.service>
-      cluster_telemetry_endpoint: <example.tp.konnect.foo>:443
-      cluster_telemetry_server_name: <kong-telemetry-example.service>
+      cluster_control_plane: {EXAMPLE.CP.KONNECT.FOO}:443
+      cluster_server_name: {KONG-CPOUTLET-EXAMPLE.SERVICE}
+      cluster_telemetry_endpoint: {EXAMPLE.TP.KONNECT.FOO}:443
+      cluster_telemetry_server_name: {KONG-TELEMETRY-EXAMPLE.SERVICE}
       cluster_ca_cert: /etc/secrets/kong-cluster-ca/ca.crt
       cluster_cert: /etc/secrets/kong-cluster-cert/tls.crt
       cluster_cert_key: /etc/secrets/kong-cluster-cert/tls.key
@@ -179,7 +179,7 @@ your {{site.konnect_short_name}} services:
 
 3. With the external IP and one of the available ports (`80` or `443`),
 and assuming that you have configured a service with a route,
-you can now access your service at `<external-IP>:<port>/<route>`.
+you can now access your service at `{EXTERNAL_IP}:{PORT}/{ROUTE}`.
 
     For example, using the values above and a sample route, you now have the
     following:

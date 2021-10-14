@@ -1,8 +1,8 @@
 ---
 name: Datadog
 publisher: Kong Inc.
-version: 3.0.x
-# internal handler version 3.0.1
+version: 3.1.x
+# internal handler version 3.1.0
 
 desc: Visualize metrics on Datadog
 description: |
@@ -24,6 +24,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.6.x
+        - 2.5.x
         - 2.4.x
         - 2.3.x      
         - 2.2.x
@@ -133,6 +135,18 @@ would need to change to:
 ```
 avg:kong.latency.avg{name:sample-service}
 ```
+
+## Setting host and port per Kong node basis
+
+When installing a multi-data center setup, you might want to set Datadog's agent host and port on a per Kong node basis. This configuration is possible by setting the host and port properties using environment variables.
+
+{:.note}
+> **Note:** `host` and `port` fields in the plugin config take precedence over environment variables.
+
+Field           | Description                                           | Datatypes
+---             | ---                                                   | ---
+`KONG_DATADOG_AGENT_HOST` | The IP address or host name to send data to. | string
+`KONG_DATADOG_AGENT_PORT` | The port to send data to on the upstream server | integer
 
 ## Kong Process Errors
 

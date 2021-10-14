@@ -1,7 +1,7 @@
 ---
 name: gRPC-gateway
 publisher: Kong Inc.
-version: 0.1.x
+version: 0.2.x
 
 categories:
   - transformations
@@ -20,12 +20,16 @@ license_type: MIT
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.6.x
+      - 2.5.x
       - 2.4.x
       - 2.3.x
       - 2.2.x
       - 2.1.x
   enterprise_edition:
     compatible:
+      - 2.6.x
+      - 2.5.x
       - 2.4.x
       - 2.3.x
       - 2.2.x
@@ -159,6 +163,26 @@ curl -XPOST localhost:8000/v1/messages/Kong2.0 -d '{"name":"kong2.0"}'
 ```
 
 All syntax defined in [Path template syntax](https://github.com/googleapis/googleapis/blob/fc37c47e70b83c1cc5cc1616c9a307c4303fe789/google/api/http.proto#L225) is supported.
+
+Object fields not mentioned in the endpoint paths as in `/messages/{name}` can be passed as URL arguments, for example `/v1/messages?name=Kong`.  Structured arguments are supported.
+
+ For example, a request like the following:
+
+`/v1/messages?dest.name=Freddy&dest.address=1428+Elm+Street&message=One+Two...`
+
+is interpreted like the following JSON object:
+
+```json
+{
+  "dest": {
+    "name": "Freddy",
+    "address": "1428 Elm Street"
+  },
+  "message": "One Two..."
+}
+```
+
+Similarly, fields of the type `google.protobuf.Timestamp` are converted to and from strings in ISO8601 format.
 
 Currently only unary requests are supported; streaming requests are not supported.
 
