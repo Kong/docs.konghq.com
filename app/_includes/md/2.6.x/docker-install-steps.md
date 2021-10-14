@@ -7,7 +7,7 @@ and in the vitals on influxdb docs. -->
 Pull the following Docker image.
 
 ```bash
-docker pull kong/kong-gateway:{{include.kong_versions[12].version}}-alpine
+docker pull kong/kong-gateway:{{include.kong_versions[13].version}}-alpine
 ```
 {:.important}
 > Some [older {{site.base_gateway}} images](https://support.konghq.com/support/s/article/Downloading-older-Kong-versions)
@@ -20,7 +20,7 @@ You should now have your {{site.base_gateway}} image locally.
 Tag the image.
 
 ```bash
-docker tag kong/kong-gateway:{{include.kong_versions[12].version}}-alpine kong-ee
+docker tag kong/kong-gateway:{{include.kong_versions[13].version}}-alpine kong-ee
 ```
 {{ include.heading1 }}Create a Docker network {#create-network}
 
