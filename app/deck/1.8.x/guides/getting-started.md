@@ -104,7 +104,7 @@ If you already have {{site.base_gateway}} set up with the configuration of your 
 1. Check that decK recognizes your {{site.base_gateway}} installation:
 
     ```sh
-    deck konnect ping
+    deck ping
     ```
 
     If the connection is successful, the terminal displays your gateway version:
