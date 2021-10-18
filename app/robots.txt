@@ -20,6 +20,7 @@ Disallow: /gateway-oss/2.2*
 Disallow: /gateway-oss/2.3*
 Disallow: /gateway-oss/2.4*
 Disallow: /gateway-oss/2.5*
+Disallow: /gateway-oss/2.6*
 Disallow: /kubernetes-ingress-controller/1.0*
 Disallow: /kubernetes-ingress-controller/1.1*
 Disallow: /kubernetes-ingress-controller/1.2*
@@ -30,6 +31,7 @@ Disallow: /getting-started-guide/2.2*
 Disallow: /getting-started-guide/2.3*
 Disallow: /getting-started-guide/2.4*
 Disallow: /getting-started-guide/2.5*
+Disallow: /getting-started-guide/2.6*
 Disallow: /deck/pre-1.7*
 Disallow: /deck/1.7*
 
