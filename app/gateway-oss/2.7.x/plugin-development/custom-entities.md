@@ -97,7 +97,7 @@ return {
         "created_at"   TIMESTAMP WITHOUT TIME ZONE,
         "col1"         TEXT
       );
-    
+
       DO $$
       BEGIN
         CREATE INDEX IF NOT EXISTS "my_plugin_table_col1"
@@ -115,7 +115,7 @@ return {
         created_at  timestamp,
         col1        text
       );
-      
+
       CREATE INDEX IF NOT EXISTS ON my_plugin_table (col1);
     ]],
   }
@@ -222,14 +222,14 @@ local typedefs = require "kong.db.schema.typedefs"
 
 return {
   -- this plugin only results in one custom DAO, named `keyauth_credentials`:
-  keyauth_credentials = {
+  {
     name                  = "keyauth_credentials", -- the actual table in the database
     endpoint_key          = "key",
     primary_key           = { "id" },
     cache_key             = { "key" },
     generate_admin_api    = true,
     admin_api_name        = "key-auths",
-    admin_api_nested_name = "key-auth",    
+    admin_api_nested_name = "key-auth",
     fields = {
       {
         -- a value to be inserted by the DAO itself
@@ -318,7 +318,7 @@ Here is a description of some top-level properties:
   <td><code>boolean</code> (optional)</td>
   <td>
     When <code>generate_admin_api</code> is enabled the admin api auto-generator uses the <code>name</code>
-    to derive the collection urls for the auto-generated admin api. Sometimes you may want to name the 
+    to derive the collection urls for the auto-generated admin api. Sometimes you may want to name the
     collection urls differently from the <code>name</code>. E.g. with DAO <code>keyauth_credentials</code>
     we actually wanted the auto-generator to generate endpoints for this dao with alternate and more
     url-friendly name <code>key-auths</code>, e.g. <code>http://&lt;KONG_ADMIN&gt;/key-auths</code> instead of
