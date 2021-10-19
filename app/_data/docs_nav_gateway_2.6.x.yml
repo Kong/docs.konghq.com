@@ -9,24 +9,36 @@
 - title: Get Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   items:
-    - text: Overview
-      url: /get-started/overview
-    - text: Prepare to Administer
-      url: /get-started/prepare
-    - text: Expose your Services
-      url: /get-started/expose-services
-    - text: Protect your Services
-      url: /get-started/protect-services
-    - text: Improve Performance
-      url: /get-started/improve-performance
-    - text: Secure Services
-      url: /get-started/secure-services
-    - text: Set Up Intelligent Load Balancing
-      url: /get-started/load-balancing
-    - text: Manage Administrative Teams
-      url: /get-started/manage-teams
-    - text: Publish, Locate, and Consume Services
-      url: /get-started/dev-portal
+    - text: Quickstart Guide
+      url: /get-started/quickstart
+      items:
+        - text: Configuring a Service
+          url: /get-started/quickstart/configuring-a-service
+        - text: Configuring a gRPC Service
+          url: /get-started/quickstart/configuring-a-grpc-service
+        - text: Enabling Plugins
+          url: /get-started/quickstart/enabling-plugins
+        - text: Adding Consumers
+          url: /get-started/quickstart/adding-consumers
+    - text: Comprehensive Guide
+      url: /get-started/comprehensive/overview
+      items:
+        - text: Prepare to Administer
+          url: /get-started/comprehensive/prepare
+        - text: Expose your Services
+          url: /get-started/comprehensive/expose-services
+        - text: Protect your Services
+          url: /get-started/comprehensive/protect-services
+        - text: Improve Performance
+          url: /get-started/comprehensive/improve-performance
+        - text: Secure Services
+          url: /get-started/comprehensive/secure-services
+        - text: Set Up Intelligent Load Balancing
+          url: /get-started/comprehensive/load-balancing
+        - text: Manage Administrative Teams
+          url: /get-started/comprehensive/manage-teams
+        - text: Publish, Locate, and Consume Services
+          url: /get-started/comprehensive/dev-portal
 
 - title: Plan and Deploy
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
