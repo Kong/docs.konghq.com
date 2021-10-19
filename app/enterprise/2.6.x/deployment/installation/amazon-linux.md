@@ -2,6 +2,13 @@
 title: Install Kong Gateway on Amazon Linux 1
 ---
 
+{:.install-banner}
+> Download the latest {{site.base_gateway}} package for [**Amazon Linux 1**]({{ site.links.download }}/gateway-2.x-amazonlinux-1/Packages/k/kong-enterprise-edition-{{site.data.kong_latest_ee.version}}.amzn1.noarch.rpm)
+>
+>(latest {{site.base_gateway}} version: {{site.data.kong_latest_ee.version}})
+> <br><br>
+> <span class="install-subtitle">View the list of all [**Amazon Linux 1**]({{ site.links.download }}/gateway-2.x-amazonlinux-1/Packages/k/) packages </span>
+
 ## Introduction
 
 This guide walks through downloading, installing, and starting **{{site.ee_product_name}}** on **Amazon Linux 1**.
