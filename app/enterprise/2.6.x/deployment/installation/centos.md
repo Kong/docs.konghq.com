@@ -2,12 +2,19 @@
 title: Install Kong Gateway on CentOS
 ---
 
+<!-- Banner with links to latest downloads -->
+<!-- The install-link and install-listing-link classes are used for tracking, do not remove -->
+
 {:.install-banner}
-> Download the latest {{site.base_gateway}} package for [**CentOS 7**]({{ site.links.download }}/gateway-2.x-centos-7/Packages/k/kong-enterprise-edition-{{site.data.kong_latest_ee.version}}.el7.noarch.rpm) or [**CentOS 8**]({{ site.links.download }}/gateway-2.x-centos-8/Packages/k/kong-enterprise-edition-{{site.data.kong_latest_ee.version}}.el8.noarch.rpm)
+> Download the latest {{site.base_gateway}} package for
+> [**CentOS 7**]({{ site.links.download }}/gateway-2.x-centos-7/Packages/k/kong-enterprise-edition-{{site.data.kong_latest_ee.version}}.el7.noarch.rpm){:.install-link} or
+> [**CentOS 8**]({{ site.links.download }}/gateway-2.x-centos-8/Packages/k/kong-enterprise-edition-{{site.data.kong_latest_ee.version}}.el8.noarch.rpm){:.install-link}
 >
 >(latest {{site.base_gateway}} version: {{site.data.kong_latest_ee.version}})
 > <br><br>
-> <span class="install-subtitle">View the list of all [**CentOS 7**]({{ site.links.download }}/gateway-2.x-centos-7/Packages/k/) or [**CentOS 8**]({{ site.links.download }}/gateway-2.x-centos-8/Packages/k/) packages </span>
+> <span class="install-subtitle">View the list of all
+> [**CentOS 7**]({{ site.links.download }}/gateway-2.x-centos-7/Packages/k/){:.install-listing-link} or
+> [**CentOS 8**]({{ site.links.download }}/gateway-2.x-centos-8/Packages/k/){:.install-listing-link} packages </span>
 
 ## Introduction
 
