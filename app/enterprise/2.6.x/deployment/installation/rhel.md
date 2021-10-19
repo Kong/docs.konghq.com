@@ -2,6 +2,13 @@
 title: Install Kong Gateway on RHEL
 ---
 
+{:.install-banner}
+> Download the latest {{site.base_gateway}} package for [**RHEL 7**]({{ site.links.download }}/gateway-2.x-rhel-7/Packages/k/kong-enterprise-edition-{{site.data.kong_latest_ee.version}}.rhel7.noarch.rpm) or [**RHEL 8**]({{ site.links.download }}/gateway-2.x-rhel-8/Packages/k/kong-enterprise-edition-{{site.data.kong_latest_ee.version}}.rhel8.noarch.rpm)
+>
+>(latest {{site.base_gateway}} version: {{site.data.kong_latest_ee.version}})
+> <br><br>
+> <span class="install-subtitle">View the list of all [**RHEL 7**]({{ site.links.download }}/gateway-2.x-rhel-7/Packages/k/) or [**RHEL 8**]({{ site.links.download }}/gateway-2.x-rhel-8/Packages/k/) packages </span>
+
 ## Introduction
 
 This guide walks through downloading, installing, and starting **{{site.ee_product_name}}** on **RHEL**.

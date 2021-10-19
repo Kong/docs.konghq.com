@@ -2,6 +2,15 @@
 title: Install Kong Gateway on Ubuntu
 ---
 
+{:.install-banner}
+> Download the latest {{site.base_gateway}} package for Ubuntu [**Xenial**]({{ site.links.download }}/gateway-2.x-ubuntu-xenial/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{site.data.kong_latest_ee.version}}_all.deb), [**Focal**]({{ site.links.download }}/gateway-2.x-ubuntu-focal/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{site.data.kong_latest_ee.version}}_all.deb), or [**Bionic**]({{ site.links.download }}/gateway-2.x-ubuntu-bionic/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{site.data.kong_latest_ee.version}}_all.deb)
+>
+>(latest {{site.base_gateway}} version: {{site.data.kong_latest_ee.version}})
+> <br><br>
+> <span class="install-subtitle">View the list of all Ubuntu [**Xenial**]({{ site.links.download }}/gateway-2.x-ubuntu-xenial/pool/all/k/kong-enterprise-edition/), [**Focal**]({{ site.links.download }}/gateway-2.x-ubuntu-focal/pool/all/k/kong-enterprise-edition/), or [**Bionic**]({{ site.links.download }}/gateway-2.x-ubuntu-bionic/pool/all/k/kong-enterprise-edition/)
+> packages </span>
+
+
 ## Introduction
 
 This guide walks through downloading, installing, and starting **{{site.ee_product_name}}** on **Ubuntu**.

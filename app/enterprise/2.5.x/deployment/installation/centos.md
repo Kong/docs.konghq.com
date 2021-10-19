@@ -2,14 +2,6 @@
 title: Install Kong Gateway on CentOS
 ---
 
-{:.install-banner}
-> Download the latest {{site.base_gateway}} package for [**CentOS 7**]({{ site.links.download }}/gateway-2.x-centos-7/Packages/k/kong-enterprise-edition-{{site.data.kong_latest_ee.version}}.el7.noarch.rpm) or [**CentOS 8**]({{ site.links.download }}/gateway-2.x-centos-8/Packages/k/kong-enterprise-edition-{{site.data.kong_latest_ee.version}}.el8.noarch.rpm)
->
->(latest {{site.base_gateway}} version: {{site.data.kong_latest_ee.version}})
-> <br><br>
-> <span class="install-subtitle">View the list of all [**CentOS 7**]({{ site.links.download }}/gateway-2.x-centos-7/Packages/k/) or [**CentOS 8**]({{ site.links.download }}/gateway-2.x-centos-8/Packages/k/) packages </span>
-
-
 This guide walks through downloading, installing, and starting **{{site.ee_product_name}}** on **CentOS**.
 
 The configuration shown in this guide is intended as an example. Depending on your
