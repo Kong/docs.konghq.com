@@ -75,20 +75,53 @@
               url: /configure/auth/oidc-auth0
             - text: OpenID Connect with Cognito
               url: /configure/auth/oidc-cognito
+            - text: OIDC Authenticated Group Mapping
+              url: /configure/auth/oidc-mapping
             - text: OpenID Connect Plugin Reference
               url: /hub/kong-inc/openid-connect
               absolute_url: true
-        - text: Multiple Authentication Methods
+        - text: Allowing Multiple Authentication Methods
           url: /configure/auth/allowing-multiple-authentication-methods
+        - text: Auth for Kong Manager
+          url: /configure/auth/kong-manager
+          items:
+            - text: Create a Super Admin
+              url: /configure/auth/kong-manager/super-admin
+            - text: Configure Networking
+              url: /configure/auth/kong-manager/networking
+            - text: Configure Kong Manager to Send Email
+              url: /configure/auth/kong-manager/email
+            - text: Reset Passwords and RBAC Tokens
+              url: /configure/auth/kong-manager/reset-password/
+            - text: Configure Workspaces
+              url: /configure/auth/kong-manager/workspaces
+            - text: Basic Auth
+              url: /configure/auth/kong-manager/basic
+            - text: LDAP
+              url: /configure/auth/kong-manager/ldap
+            - text: OIDC
+              url: /configure/auth/kong-manager/oidc
+            - text: Sessions
+              url: /configure/auth/kong-manager/sessions
+
+        - text: Role-based Access Control (RBAC)
+          url: /configure/auth/rbac
+          items:
+            - text: Add a Role
+              url: /configure/auth/rbac/add-role
+            - text: Add a User
+              url: /configure/auth/rbac/add-user
+            - text: Add an Admin
+              url: /configure/auth/rbac/add-admin
+        - text: Mapping LDAP Service Directory Groups to Kong Roles
+          url: /configure/auth/service-directory-mapping
+
     - text: Configure gRPC Plugins
       url: /configure/grpc
     - text: Logging Reference
       url: /configure/logging
     - text: Network and Firewall
       url: /configure/network
-
-- title: Administer
-  icon: /assets/images/icons/documentation/icn-admin-api-color.svg
 
 - title: Monitor
   icon: /assets/images/icons/documentation/icn-vitals.svg

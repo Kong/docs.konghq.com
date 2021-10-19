@@ -51,7 +51,14 @@ This sets the foundations for a modular architecture, where Lua scripts (referre
 ### Kong Manager
 {:.badge .free}
 
-Kong Manager is the Graphical User Interface (GUI) for {{site.base_gateway}}. It uses the Kong Admin API under the hood to administer and control {{site.ce_product_name}}. Use Kong Manager to organize teams, adjust policies, and monitor performance with just a few clicks. Group your teams, services, plugins, consumer management, and more exactly how you want them. Create new routes and services, activate or deactivate plugins in seconds.
+Kong Manager is the graphical user interface (GUI) for {{site.base_gateway}}. It uses the Kong Admin API under the hood to administer and control {{site.ce_product_name}}.
+
+Here are some of the things you can do with Kong Manager:
+
+* Create new Routes and Services.
+* Activate or deactivate plugins with a couple of clicks.
+* Group your teams, services, plugins, consumer management, and everything else exactly how you want them.
+* Monitor performance: visualize cluster-wide, workspace-level, or even object-level health using intuitive, customizable dashboards.
 
 ### Kong plugins
 

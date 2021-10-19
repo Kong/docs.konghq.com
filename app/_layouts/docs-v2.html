@@ -91,6 +91,7 @@ page.kong_latest.release %}
               <a href="https://konghq.com/pricing" {%
                 if page.badge == 'plus' %}class="badge plus" aria-label="available with plus subscription"{% endif %}{%
                 if page.badge == 'enterprise' %}class="badge enterprise" aria-label="available with enterprise subscription"{% endif %}{%
+                if page.badge == 'free' %}class="badge free" aria-label="available in Kong Gateway free mode"{% endif %}{%
                 if page.badge == 'oss' %}class="badge oss" aria-label="open-source only"{% endif %}>
               </a>
               {% endif %}
