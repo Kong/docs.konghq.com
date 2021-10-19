@@ -2,6 +2,8 @@
 title: Install Kong Gateway on Docker
 ---
 
+## Introduction
+
 This guide walks through downloading, installing, and starting **{{site.ee_product_name}}** on **Docker**.
 
 The configuration shown in this guide is intended as an example. Depending on your
