@@ -31,12 +31,12 @@ async function createPDF (name, urls) {
 
             // If the image src is the same as the page href,
             // don't wait for it to load, just pretend that it did
-            if (img.src === document.location.href) {
+            if (img.src === (document.location.origin + document.location.pathname)) {
               return img.dispatchEvent(new CustomEvent("load")); // eslint-disable-line
             }
 
             // Image failed, so it has no height
-            throw new Error('Image failed to load')
+            throw new Error(`Image failed to load: ${img.src} on ${document.location.origin + document.location.pathname}`)
           }
           // Image hasn’t loaded yet, added an event listener to know when it does
           return new Promise((resolve, reject) => {
