@@ -48,7 +48,8 @@ You can use this method for any sensitive content.
 
 3. Run `deck sync -s env-demo.yaml` to sync this file.
 
-4. You will see below output. In this example, `abc` is the apiKey I stored in environment variable.
+    The output should look something like this, where `abc` is the apiKey stored 
+    in the environment variable:
 
     ```plaintext
     creating consumer demo
