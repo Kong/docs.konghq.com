@@ -17,7 +17,7 @@ You can use this method for any sensitive content.
 1. Create Environment variable
     <div class="copy-code-snippet"><pre><code>export DECK_API_KEY=<div contenteditable="true">{API_KEY}</div></code></pre></div>
 
-2. Save below to `env-demo.yaml` 
+2. Save the following snippet into a `env-demo.yaml` file:
 
     ```yaml
     _format_version: "1.1"
