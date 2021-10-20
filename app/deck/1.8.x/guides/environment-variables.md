@@ -9,7 +9,8 @@ can also store sensitive information, for example `apiKey` or `client_secret`, i
 environment variables. decK can then read data directly from the environment
 variables and apply it.
 
-What you need to do is to create environment variables with `DECK_` prefix and reference them as `{%raw%}${{ env "DECK_*" }}{%endraw%}` on your state file.
+Create environment variables with the `DECK_` prefix and reference them as 
+`{%raw%}${{ env "DECK_*" }}{%endraw%}` in your state file.
 
 The following example demonstrates how to apply an apiKey stored in an environment variable. 
 You can use this method for any sensitive content. 
