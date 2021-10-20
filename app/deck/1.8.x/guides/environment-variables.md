@@ -14,7 +14,7 @@ What you need to do is to create environment variables with `DECK_` prefix and r
 The following example demonstrates how to apply an apiKey stored in an environment variable. 
 You can use this method for any sensitive content. 
 
-1. Create Environment variable
+1. Create an environment variable:
     <div class="copy-code-snippet"><pre><code>export DECK_API_KEY=<div contenteditable="true">{API_KEY}</div></code></pre></div>
 
 2. Save the following snippet into a `env-demo.yaml` file:
