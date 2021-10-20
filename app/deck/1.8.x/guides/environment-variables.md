@@ -11,7 +11,8 @@ variables and apply it.
 
 What you need to do is to create environment variables with `DECK_` prefix and reference them as `{%raw%}${{ env "DECK_*" }}{%endraw%}` on your state file.
 
-Below example demonstrates how to apply apiKey stored in environment variable. It enables [key authentication][key-auth] plugin globally, create a consumer `demo` with an apiKey.
+The following example demonstrates how to apply an apiKey stored in an environment variable. 
+You can use this method for any sensitive content. 
 
 1. Create Environment variable
     <div class="copy-code-snippet"><pre><code>export DECK_API_KEY=<div contenteditable="true">{API_KEY}</div></code></pre></div>
