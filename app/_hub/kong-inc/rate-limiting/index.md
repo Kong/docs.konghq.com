@@ -169,6 +169,23 @@ params:
       datatype: string
       description: |
         When using the `redis` policy, this property specifies the password to connect to the Redis server.
+    - name: redis_ssl
+      required: true
+      default: '`false`'
+      datatype: boolean
+      description: |
+        When using the `redis` policy, this property specifies if SSL is used to connect to the Redis server.
+    - name: redis_ssl_verify
+      required: true
+      default: '`false`'
+      datatype: boolean
+      description: |
+        When using the `redis` policy with `redis_ssl` set to `true`, this property specifies it server SSL certificate is validated. Note that you need to configure the lua_ssl_trusted_certificate to specify the CA (or server) certificate used by your Redis server. You may also need to configure lua_ssl_verify_depth accordingly.
+    - name: redis_server_name  
+      required: false
+      datatype: string
+      description: |
+        When using the `redis` policy with `redis_ssl` set to `true`, this property specifies the server name for the TLS extension Server Name Indication (SNI)
     - name: redis_timeout
       required: false
       default: '`2000`'
