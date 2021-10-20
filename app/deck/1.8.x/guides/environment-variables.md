@@ -3,7 +3,11 @@ title: Using environment variables with decK
 toc: false
 ---
 
-When you use deck to apply configurations to Kong, decK reads data in plain text on a state file by default. To add more security, you can also store sensitive information, for example `apiKey`, `client_secret` in environment variables. decK can then read data directly from environment variables and apply it.
+When you use decK to apply configurations to {{site.base_gateway}},
+decK reads data in plain text from a state file by default. To improve security, you 
+can also store sensitive information, for example `apiKey` or `client_secret`, in 
+environment variables. decK can then read data directly from the environment
+variables and apply it.
 
 What you need to do is to create environment variables with `DECK_` prefix and reference them as `{%raw%}${{ env "DECK_*" }}{%endraw%}` on your state file.
 
