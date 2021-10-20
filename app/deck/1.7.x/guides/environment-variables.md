@@ -24,7 +24,7 @@ You can use this method for any sensitive content.
     _format_version: "1.1"
     consumers:
     - keyauth_credentials:
-      - key: ${{ env "DECK_API_KEY" }}
+      - key: {%raw%}${{ env "DECK_API_KEY" }}{%endraw%}
       username: demo
       id: 36718320-e67d-4162-8b50-aa685e06c64c
     plugins:
