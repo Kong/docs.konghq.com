@@ -45,7 +45,8 @@ You can use this method for any sensitive content.
       - http
       - https
     ```
-
+    This snippet enables the [key authentication][key-auth] plugin globally and creates
+     a consumer named `demo` with an apiKey.
 3. Run `deck sync -s env-demo.yaml` to sync this file.
 
     The output should look something like this, where `abc` is the apiKey stored 
