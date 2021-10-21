@@ -716,13 +716,6 @@
 
 .page-content-container {
   .page-content {
-    .reading-time {
-      font-size: 15px;
-      display: block;
-      color: #b9b9b9;
-      margin-bottom: 14px;
-      padding-bottom: 1rem;
-    }
 
     @media (max-width: 800px) {
       padding: 0;
@@ -1255,15 +1248,12 @@ Generic Styling for Desktop
   }
 
   blockquote {
-    margin-bottom: 1.3em;
-    padding: 15px 18px;
-    background-color: @blue-100;
     border: none;
-    border-left: solid 3px @blue-400;
-    border-radius: 3px;
     display: block;
     margin-inline-start: 0;
     margin-inline-end: 0;
+    opacity: 0.7;
+    font-size: 15px;
 
     ol, ul {
       margin-top: 0.5em;
@@ -1288,15 +1278,12 @@ Generic Styling for Desktop
       display: block;
     }
 
-    &:not(.no-icon)::before {
-      content: "\f05a";
-      font-family: "Font Awesome", FontAwesome;
-      color: @blue-400;
-      display: inline;
-      font-weight: 600;
+    &.warning, &.important, &.note {
+      margin-bottom: 1em;
+      padding: 15px 18px;
+      opacity: 1;
+      font-style: normal;
       font-size: 17px;
-      padding: 0 10px 0 0;
-      float: left;
     }
 
     &.warning {
