@@ -357,7 +357,7 @@ only one or neither of the fields be configured.
   [#7775](https://github.com/Kong/kong/pull/7775)
 
 ## 2.5.1.1
-**Release Date** 2021/10/21
+**Release Date** 2021/10/25
 
 ### Fixes
 
@@ -373,7 +373,7 @@ only one or neither of the fields be configured.
   **Keys must still be imported after the Kong process is started.**
 - The [Keyring Encryption](/enterprise/2.6.x/db-encryption/) feature is no longer in an alpha quality state.
 - When using Redis Cluster with a Kong Gateway plugin and the cluster nodes are configured by hostname,
-  if the entire cluster is rebooted because of new IP addresses, now the connection will eventually self heal once DNS is updated.
+  if the entire cluster is rebooted and appears on new IP addresses, now the connection will eventually self heal once DNS is updated.
 
 #### Plugins
 - [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
