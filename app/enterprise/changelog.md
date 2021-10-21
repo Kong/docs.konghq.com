@@ -376,7 +376,7 @@ only one or neither of the fields be configured.
   if the entire cluster is rebooted because of new IP addresses, now the connection will eventually self heal once DNS is updated.
 
 #### Plugins
-- OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
   The plugin now allows Redis Cluster nodes to be specified by hostname, which is helpful if the cluster IPs are not static. 
 
 ## 2.5.1.0
