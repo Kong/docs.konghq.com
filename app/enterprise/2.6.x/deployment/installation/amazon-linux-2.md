@@ -2,12 +2,17 @@
 title: Install Kong Gateway on Amazon Linux 2
 ---
 
+<!-- Banner with links to latest downloads -->
+<!-- The install-link and install-listing-link classes are used for tracking, do not remove -->
+
 {:.install-banner}
-> Download the latest {{site.base_gateway}} package for [**Amazon Linux 2**]({{ site.links.download }}/gateway-2.x-amazonlinux-2/Packages/k/kong-enterprise-edition-{{site.data.kong_latest_ee.version}}.amzn2.noarch.rpm)
+> Download the latest {{site.base_gateway}} package for
+> [**Amazon Linux 2**]({{ site.links.download }}/gateway-2.x-amazonlinux-2/Packages/k/kong-enterprise-edition-{{site.data.kong_latest_ee.version}}.amzn2.noarch.rpm){:.install-link}
 >
 >(latest {{site.base_gateway}} version: {{site.data.kong_latest_ee.version}})
 > <br><br>
-> <span class="install-subtitle">View the list of all [**Amazon Linux 2**]({{ site.links.download }}/gateway-2.x-amazonlinux-2/Packages/k/) packages </span>
+> <span class="install-subtitle">View the list of all
+> [**Amazon Linux 2**]({{ site.links.download }}/gateway-2.x-amazonlinux-2/Packages/k/){:.install-listing-link} packages </span>
 
 ## Introduction
 

@@ -2,12 +2,21 @@
 title: Install Kong Gateway on Ubuntu
 ---
 
+<!-- Banner with links to latest downloads -->
+<!-- The install-link and install-listing-link classes are used for tracking, do not remove -->
+
 {:.install-banner}
-> Download the latest {{site.base_gateway}} package for Ubuntu [**Xenial**]({{ site.links.download }}/gateway-2.x-ubuntu-xenial/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{site.data.kong_latest_ee.version}}_all.deb), [**Focal**]({{ site.links.download }}/gateway-2.x-ubuntu-focal/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{site.data.kong_latest_ee.version}}_all.deb), or [**Bionic**]({{ site.links.download }}/gateway-2.x-ubuntu-bionic/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{site.data.kong_latest_ee.version}}_all.deb)
+> Download the latest {{site.base_gateway}} package for Ubuntu
+> [**Xenial**]({{ site.links.download }}/gateway-2.x-ubuntu-xenial/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{site.data.kong_latest_ee.version}}_all.deb){:.install-link},
+> [**Focal**]({{ site.links.download }}/gateway-2.x-ubuntu-focal/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{site.data.kong_latest_ee.version}}_all.deb){:.install-link}, or
+> [**Bionic**]({{ site.links.download }}/gateway-2.x-ubuntu-bionic/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{site.data.kong_latest_ee.version}}_all.deb){:.install-link}
 >
 >(latest {{site.base_gateway}} version: {{site.data.kong_latest_ee.version}})
 > <br><br>
-> <span class="install-subtitle">View the list of all Ubuntu [**Xenial**]({{ site.links.download }}/gateway-2.x-ubuntu-xenial/pool/all/k/kong-enterprise-edition/), [**Focal**]({{ site.links.download }}/gateway-2.x-ubuntu-focal/pool/all/k/kong-enterprise-edition/), or [**Bionic**]({{ site.links.download }}/gateway-2.x-ubuntu-bionic/pool/all/k/kong-enterprise-edition/)
+> <span class="install-subtitle">View the list of all Ubuntu
+> [**Xenial**]({{ site.links.download }}/gateway-2.x-ubuntu-xenial/pool/all/k/kong-enterprise-edition/){:.install-listing-link},
+> [**Focal**]({{ site.links.download }}/gateway-2.x-ubuntu-focal/pool/all/k/kong-enterprise-edition/){:.install-listing-link}, or
+> [**Bionic**]({{ site.links.download }}/gateway-2.x-ubuntu-bionic/pool/all/k/kong-enterprise-edition/){:.install-listing-link}
 > packages </span>
 
 
