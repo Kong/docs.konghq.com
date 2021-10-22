@@ -357,7 +357,7 @@ only one or neither of the fields be configured.
   [#7775](https://github.com/Kong/kong/pull/7775)
 
 ## 2.5.1.1
-**Release Date** 2021/10/25
+**Release Date** 2021/10/22
 
 ### Fixes
 
