@@ -1,7 +1,7 @@
 ---
 name: OpenID Connect
 publisher: Kong Inc.
-version: 2.4.x
+version: 2.1.x
 
 desc: Integrate Kong with a third-party OpenID Connect provider
 description: |
@@ -129,7 +129,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
-        - 2.4.x
+        - 2.6.x
 
 params:
   name: openid-connect
@@ -392,6 +392,11 @@ params:
         - `id`: try to find the matching Consumer by `id`
         - `username`: try to find the matching Consumer by `username` 
         - `custom_id`: try to find the matching Consumer by `custom_id`
+    - name: by_username_ignore_case
+      required: false
+      default: false
+      datatype: boolean               
+      description: If `consumer_by` is set to `username`, specify whether `username` can match consumers case-insensitively.
     - name: consumer_optional
       required: false
       default: false

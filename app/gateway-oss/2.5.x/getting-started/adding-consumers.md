@@ -22,10 +22,10 @@ plugin][enabling-plugins] or skip steps two and three.
 
 ## 1. Create a Consumer through the RESTful API
 
-Lets create a user named `Jason` by issuing the following request:
+Let's create a user named `Jason` by issuing the following request:
 
 ```bash
-$ curl -i -X POST \
+curl -i -X POST \
   --url http://localhost:8001/consumers/ \
   --data "username=Jason"
 ```
@@ -56,7 +56,7 @@ Now, we can create a key for our recently created consumer `Jason` by
 issuing the following request:
 
 ```bash
-$ curl -i -X POST \
+curl -i -X POST \
   --url http://localhost:8001/consumers/Jason/key-auth/ \
   --data 'key=ENTER_KEY_HERE'
 ```
