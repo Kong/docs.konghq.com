@@ -96,17 +96,17 @@ params:
       required: false
       default: "name"
       datatype: string
-      description: String to be attached as name of the service
+      description: String to be attached as name of the service.
     - name: status_tag
       required: false
       default: "status"
       datatype: string
-      description: String to be attached as name of the http status
+      description: String to be attached as name of the http status.
     - name: consumer_tag
       required: false
       default: "status"
       datatype: string
-      description: String to be attached as name of the consumer
+      description: String to be attached as name of the consumer.
 
 ---
 
