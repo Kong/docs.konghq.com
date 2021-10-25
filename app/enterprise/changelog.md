@@ -356,6 +356,29 @@ only one or neither of the fields be configured.
   Fixed an issue where the plugin would sometimes fetch data from the cache but not return it.
   [#7775](https://github.com/Kong/kong/pull/7775)
 
+## 2.5.1.1
+**Release Date** 2021/10/22
+
+### Fixes
+
+#### Enterprise
+- This release includes a fix for an issue with the Vitals InfluxDB timestamp generation when inserting metrics.
+- Kong Gateway now displays a DEBUG log message alerting users Kong Vitals is not enabled when running Kong Gateway (Enterprise) in "free" mode.
+- Fixes an issue where keyring data was not being properly generated and activated
+  on a Kong Gateway process start (for example, `kong start`).
+- Kong Gateway now returns keyring-encrypted fields early when a decrypt attempt is made, giving you time
+  to import the keys so Kong Gateway can recognize the decrypted fields. Before if there were data fields
+  keyring-encrypted in the database, Kong Gateway attempted to decrypt them on the `init*` phases (`init` or `init_worker`
+  phases - when the Kong process is started), and you would get errors like "no request found".
+  **Keys must still be imported after the Kong process is started.**
+- The [Keyring Encryption](/enterprise/2.6.x/db-encryption/) feature is no longer in an alpha quality state.
+- When using Redis Cluster with a Kong Gateway plugin and the cluster nodes are configured by hostname,
+  if the entire cluster is rebooted and appears on new IP addresses, now the connection will eventually self heal once DNS is updated.
+
+#### Plugins
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  The plugin now allows Redis Cluster nodes to be specified by hostname, which is helpful if the cluster IPs are not static. 
+
 ## 2.5.1.0
 **Release Date** 2021/09/08
 

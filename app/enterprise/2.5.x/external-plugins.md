@@ -577,6 +577,56 @@ hardware and to avoid confusion.
 
 <center><img title="Latency" src="/assets/images/docs/external-plugins/latency.png"/></center>
 
+## Use external plugins in container and Kubernetes
+
+To use plugins requiring external plugin servers, both the plugin servers and the plugins themselves need to be installed inside the {{ site.base_gateway }} container.
+
+For plugins written in Golang, build external plugins in embedded server mode in a builder container
+and copy or mount the binary artifacts into the {{ site.base_gateway }} container.
+For plugins written in JavaScript, first install Node and `npm`, then use `npm` to install `kong-pdk`, and finally
+copy or mount the plugins source code into the {{ site.base_gateway }} container.
+For plugins written in Python, install Python and `pip`. Then use `pip` to install `kong-pdk`. Finally,
+copy or mount the plugin's source code into the {{ site.base_gateway }} container.
+
+Refer to previous sections on how to configure {{ site.base_gateway }} after you build the image
+or create the container.
+
+{:.note}
+> **Note:** Official {{ site.base_gateway }} images are configured to run as the `nobody` user. When building a custom image, to copy files into
+the {{ site.base_gateway }} image, you must temporarily set the user to `root`.
+
+```dockerfile
+FROM kong
+USER root
+
+# Example for GO:
+COPY your-go-plugin /usr/local/bin/your-go-plugin
+
+# Example for JavaScript:
+RUN apk update && apk add nodejs npm && npm install -g kong-pdk
+COPY you-js-plugin /path/to/your/js-plugins/you-js-plugin
+
+# Example for Python
+# PYTHONWARNINGS=ignore is needed to build gevent on Python 3.9
+RUN apk update && \
+    apk add python3 py3-pip python3-dev musl-dev libffi-dev gcc g++ file make && \
+    PYTHONWARNINGS=ignore pip3 install kong-pdk
+COPY you-py-plugin /path/to/your/py-plugins/you-py-plugin
+
+# reset back the defaults
+USER kong
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
+EXPOSE 8000 8443 8001 8444
+
+STOPSIGNAL SIGQUIT
+
+HEALTHCHECK --interval=10s --timeout=10s --retries=10 CMD kong health
+
+CMD ["kong", "docker-start"]
+```
+
 ---
 
 [go-pluginserver]: https://github.com/Kong/go-pluginserver
