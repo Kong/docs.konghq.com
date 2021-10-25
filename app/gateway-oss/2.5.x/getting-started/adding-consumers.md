@@ -11,8 +11,8 @@ title: Adding Consumers
   </ol>
 </div>
 
-In the last section, we learned how to add plugins to Kong, in this section
-we're going to learn how to add consumers to your Kong instances. Consumers are
+In the last section, you learned how to add plugins to Kong, in this section
+you're going to learn how to add consumers to your Kong instances. Consumers are
 associated to individuals using your Service, and can be used for tracking, access
 management, and more.
 
@@ -22,10 +22,10 @@ plugin][enabling-plugins] or skip steps two and three.
 
 ## 1. Create a Consumer through the RESTful API
 
-Lets create a user named `Jason` by issuing the following request:
+Let's create a user named `Jason` by issuing the following request:
 
 ```bash
-$ curl -i -X POST \
+curl -i -X POST \
   --url http://localhost:8001/consumers/ \
   --data "username=Jason"
 ```
@@ -56,18 +56,18 @@ Now, we can create a key for our recently created consumer `Jason` by
 issuing the following request:
 
 ```bash
-$ curl -i -X POST \
+curl -i -X POST \
   --url http://localhost:8001/consumers/Jason/key-auth/ \
   --data 'key=ENTER_KEY_HERE'
 ```
 
 ## 3. Verify that your Consumer credentials are valid
 
-We can now issue the following request to verify that the credentials of
-our `Jason` Consumer is valid:
+You can now issue the following request to verify that the credentials of
+your `Jason` Consumer is valid:
 
 ```bash
-$ curl -i -X GET \
+curl -i -X GET \
   --url http://localhost:8000 \
   --header "Host: example.com" \
   --header "apikey: ENTER_KEY_HERE"
@@ -75,8 +75,7 @@ $ curl -i -X GET \
 
 ## Next Steps
 
-Now that we've covered the basics of adding Services, Routes, Consumers and enabling
-Plugins, feel free to read more on Kong in one of the following documents:
+Read more about the following related topics:
 
 - [Configuration file Reference][configuration]
 - [CLI Reference][CLI]

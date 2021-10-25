@@ -29,6 +29,12 @@ Please pick one of the following guides depending on your platform:
 
 ### Kustomize
 
+<div class="alert alert-warning">
+  Kustomize manifests are provided for illustration purposes only and are not officially supported by Kong.
+  There is no guarantee of backwards compatibility or upgrade capabilities for our Kustomize manifests.
+  For a production setup with Kong support, use the <a href="https://github.com/kong/charts">Helm Chart</a>.
+</div>
+
 Use Kustomize to install Kong for Kubernetes:
 
 ```

@@ -2,8 +2,7 @@
 
 name: Rate Limiting Advanced
 publisher: Kong Inc.
-version: 2.3.x
-# internal plugin version 1.3.8
+version: 1.5.x
 
 desc: Upgrades Kong Rate Limiting with more flexibility and higher performance
 description: |
@@ -25,6 +24,8 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 2.6.x
+        - 2.5.x
         - 2.4.x
         - 2.3.x
         - 2.2.x
@@ -67,7 +68,12 @@ params:
       value_in_examples: consumer
       datatype: string
       description: |
-        How to define the rate limit key. Can be `ip`, `credential`, `consumer`, `service`, or `header`.
+        How to define the rate limit key. Can be `ip`, `credential`, `consumer`, `service`, `header`, or `path`.
+    - name: path
+      required: semi
+      datatype: string
+      description: |
+        Request path to use as the rate limit key when the `path` identifier is defined.
     - name: header_name
       required: semi
       datatype: string
@@ -89,7 +95,8 @@ params:
         How often to sync counter data to the central data store. A value of 0
         results in synchronous behavior; a value of -1 ignores sync behavior
         entirely and only stores counters in node memory. A value greater than
-        0 will sync the counters in the specified number of seconds.
+        0 will sync the counters in the specified number of seconds. The minimum
+        allowed interval is 0.02 seconds (20ms).
     - name: namespace
       required: true
       default: random_auto_generated_string
@@ -107,22 +114,16 @@ params:
         The rate-limiting strategy to use for retrieving and incrementing the
         limits. Available values are:
         - `cluster`: Counters are stored in the Kong datastore and shared across
-         the nodes.
+           the nodes.
         - `redis`: Counters are stored on a Redis server and shared
-        across the nodes.
+           across the nodes.
+        - `local`: Counters are stored locally in-memory on the node (same effect
+           as setting `sync_rate` to `-1`).
 
         In DB-less and hybrid modes, the `cluster` config strategy is not
         supported.
 
         In Konnect Cloud, the default strategy is `redis`.
-
-        {:.important}
-        > There is no local storage strategy. However, you can achieve local
-        rate limiting by using a placeholder `strategy` value (either `cluster` or `redis`)
-        and a `sync_rate` of `-1`. This setting stores counters in-memory on the
-        node.
-        <br><br>If using `redis` as the placeholder value, you must fill in all
-        additional `redis` configuration parameters with placeholder values.
 
         For details on which strategy should be used, refer to the
         [implementation considerations](/hub/kong-inc/rate-limiting/#implementation-considerations).

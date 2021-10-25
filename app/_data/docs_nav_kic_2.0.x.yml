@@ -1,0 +1,128 @@
+- title: Introduction
+  icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
+  url: /kubernetes-ingress-controller/
+  absolute_url: true
+  items:
+    - text: FAQ
+      url: /faq
+    - text: Changelog
+      url: https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
+      absolute_url: true
+      target_blank: true
+
+- title: Concepts
+  icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
+  items:
+    - text: Architecture
+      url: /concepts/design
+    - text: Custom Resources
+      url: /concepts/custom-resources
+    - text: Deployment Methods
+      url: /concepts/deployment
+    - text: Kong for Kubernetes with Kong Enterprise
+      url: /concepts/k4k8s-with-kong-enterprise
+    - text: High-Availability and Scaling
+      url: /concepts/ha-and-scaling
+    - text: Resource Classes
+      url: /concepts/ingress-classes
+    - text: Security
+      url: /concepts/security
+    - text: Ingress Resource API Versions
+      url: /concepts/ingress-versions
+- title: Deployment
+  icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
+  url: /deployment/overview
+  items:
+    - text: Kong Ingress on Minikube
+      url: /deployment/minikube
+    - text: Kong for Kubernetes
+      url: /deployment/k4k8s
+    - text: Kong for Kubernetes Enterprise
+      url: /deployment/k4k8s-enterprise
+    - text: Kong for Kubernetes with Kong Enterprise
+      url: /deployment/kong-enterprise
+    - text: Kong Ingress on AKS
+      url: /deployment/aks
+    - text: Kong Ingress on EKS
+      url: /deployment/eks
+    - text: Kong Ingress on GKE
+      url: /deployment/gke
+    - text: Admission Controller
+      url: /deployment/admission-webhook
+- title: Guides
+  icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
+  url: /guides/overview
+  items:
+    - text: Getting Started with KIC
+      url: /guides/getting-started
+    - text: Upgrading from KIC 1.3.x
+      url: /guides/upgrade
+    - text: Getting Started using Istio
+      url: /guides/getting-started-istio
+    - text: Using Custom Resources
+      items:
+        - text: Using the KongPlugin Resource
+          url: /guides/using-kongplugin-resource
+        - text: Using the KongIngress Resource
+          url: /guides/using-kongingress-resource
+        - text: Using KongConsumer and KongCredential Resources
+          url: /guides/using-consumer-credential-resource
+        - text: Using the KongClusterPlugin Resource
+          url: /guides/using-kongclusterplugin-resource
+        - text: Using the TCPIngress Resource
+          url: /guides/using-tcpingress
+        - text: Using the UDPIngress Resource
+          url: /guides/using-udpingress
+    - text: Using the ACL and JWT Plugins
+      url: /guides/configure-acl-plugin
+    - text: Using cert-manager with Kong
+      url: /guides/cert-manager
+    - text: Configuring a Fallback Service
+      url: /guides/configuring-fallback-service
+    - text: Using an External Service
+      url: /guides/using-external-service
+    - text: Configuring HTTPS Redirects for Services
+      url: /guides/configuring-https-redirect
+    - text: Using Redis for Rate Limiting
+      url: /guides/redis-rate-limiting
+    - text: Integrate KIC with Prometheus/Grafana
+      url: /guides/prometheus-grafana
+    - text: Configuring Circuit-Breaker and Health-Checking
+      url: /guides/configuring-health-checks
+    - text: Setting up a Custom Plugin
+      url: /guides/setting-up-custom-plugins
+    - text: Using Ingress with gRPC
+      url: /guides/using-ingress-with-grpc
+    - text: Setting up Upstream mTLS
+      url: /guides/upstream-mtls
+    - text: Exposing a TCP-based Service
+      url: /guides/using-tcpingress
+    - text: Exposing a UDP-based Service
+      url: /guides/using-udpingress
+    - text: Using the mTLS Auth Plugin
+      url: /guides/using-mtls-auth-plugin
+    - text: Configuring Custom Entities
+      url: /guides/configuring-custom-entities
+    - text: Using the OpenID Connect Plugin
+      url: /guides/using-oidc-plugin
+    - text: Rewriting Hosts and Paths
+      url: /guides/using-rewrites
+    - text: Preserving Client IP Address
+      url: /guides/preserve-client-ip
+- title: References
+  icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
+  items:
+    - text: KIC Annotations
+      url: /references/annotations
+    - text: CLI Arguments
+      url: /references/cli-arguments
+    - text: Custom Resource Definitions
+      url: /references/custom-resources
+    - text: Plugin Compatibility
+      url: /references/plugin-compatibility
+    - text: Version Compatibility
+      url: /references/version-compatibility
+    - text: Troubleshooting
+      url: /troubleshooting
+    - text: Prometheus Metrics
+      url: /references/prometheus

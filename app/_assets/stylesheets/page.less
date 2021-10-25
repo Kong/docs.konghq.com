@@ -716,13 +716,6 @@
 
 .page-content-container {
   .page-content {
-    .reading-time {
-      font-size: 15px;
-      display: block;
-      color: #b9b9b9;
-      margin-bottom: 14px;
-      padding-bottom: 1rem;
-    }
 
     @media (max-width: 800px) {
       padding: 0;
@@ -840,7 +833,7 @@
       padding: 7px 0 15px 35px;
 
       &:last-child {
-        padding-bottom: 15px;
+        padding-bottom: 5px;
       }
 
       &:before {
@@ -1089,6 +1082,12 @@ Generic Styling for Desktop
         font-size: 17px;
         padding: 0 5px 0 0;
       }
+
+      &.no-icon {
+      &::before {
+        display: none;
+      }
+    }
     }
 
     ol, li {
@@ -1249,15 +1248,12 @@ Generic Styling for Desktop
   }
 
   blockquote {
-    margin-bottom: 1.3em;
-    padding: 15px 18px;
-    background-color: @blue-100;
     border: none;
-    border-left: solid 3px @blue-400;
-    border-radius: 3px;
     display: block;
     margin-inline-start: 0;
     margin-inline-end: 0;
+    opacity: 0.7;
+    font-size: 15px;
 
     ol, ul {
       margin-top: 0.5em;
@@ -1270,20 +1266,24 @@ Generic Styling for Desktop
       padding: 3px;
     }
 
-    p, b, strong {
+    b, strong {
       padding: 0;
       margin: 0;
       display: inline;
     }
 
-    &:not(.no-icon)::before {
-      content: "\f05a";
-      font-family: "Font Awesome", FontAwesome;
-      color: @blue-400;
-      display: inline-block;
-      font-weight: 600;
+    p {
+      margin-bottom: 0;
+      padding: 0;
+      display: block;
+    }
+
+    &.warning, &.important, &.note {
+      margin-bottom: 1em;
+      padding: 15px 18px;
+      opacity: 1;
+      font-style: normal;
       font-size: 17px;
-      padding: 0 5px ;
     }
 
     &.warning {
@@ -1297,7 +1297,8 @@ Generic Styling for Desktop
         display: inline-block;
         font-weight: 600;
         font-size: 17px;
-        padding: 0 5px 0 0;
+        padding: 0 10px 0 0;
+        float: left;
       }
     }
 
@@ -1312,7 +1313,8 @@ Generic Styling for Desktop
         display: inline-block;
         font-weight: 600;
         font-size: 17px;
-        padding: 0 5px 0 0;
+        padding: 0 10px 0 0;
+        float: left;
       }
     }
 
@@ -1328,7 +1330,33 @@ Generic Styling for Desktop
         display: inline-block;
         font-weight: bold;
         font-size: 17px;
-        padding: 0 5px 0 0;
+        padding: 0 10px 0 0;
+        float: left;
+      }
+    }
+
+    &.install-banner {
+      background-color: @blue-100;
+      border: none;
+
+      &:not(.no-icon)::before {
+        content: "\f019";
+        font-family: "Font Awesome", FontAwesome;
+        color: @blue-600;
+        display: inline-block;
+        font-weight: bold;
+        font-size: 20px;
+        padding: 0 10px 0 0;
+        float: left;
+      }
+
+      > p {
+        margin-left: 25px;
+      }
+
+      .install-subtitle {
+        opacity: 0.7;
+        font-style: italic;
       }
     }
   }
@@ -1530,6 +1558,24 @@ Generic Styling for Desktop
       &:before {
         content: "DELETE";
         background-color: #e23b3b;
+      }
+    }
+
+    &.head {
+      border-color: #f28bc7;
+
+      &:before {
+        content: "HEAD";
+        background-color: #e32391;
+      }
+    }
+
+    &.options {
+      border-color: #9fe0d6;
+
+      &:before {
+        content: "OPTIONS";
+        background-color: #3fb4a2;
       }
     }
   }

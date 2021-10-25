@@ -38,6 +38,10 @@
       url: /guides/multi-file-state
     - text: De-duplicate Plugin Configuration
       url: /guides/deduplicate-plugin-configuration
+    - text: Set Up Object Defaults
+      url: /guides/defaults
+    - text: Using environment variables with decK
+      url: /guides/environment-variables
 
 - title: decK CLI Reference
   icon: /assets/images/icons/documentation/icn-references-color.svg

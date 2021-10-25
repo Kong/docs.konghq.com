@@ -1,8 +1,7 @@
 ---
 name: OPA
 publisher: Kong Inc.
-version: 0.1.x
-# internal handler v 0.1.0
+version: 0.2.x
 
 desc: Authorize requests against Open Policy Agent
 description: |
@@ -23,6 +22,8 @@ categories:
 kong_version_compatibility:
     enterprise_edition:
       compatible:
+        - 2.6.x
+        - 2.5.x
         - 2.4.x
 
 params:
@@ -187,6 +188,7 @@ The input to OPA has the following JSON structure:
         "tls": {},             # TLS details if the request was made on HTTPS and Kong terminated the TLS connection
         "method": "GET",       # HTTP method used in the request
         "scheme": "http",      # protocol used to make the request by the client, this can be either `http` or `https`
+        "path": "/foo/bar",    # HTTP path used in the request
         "querystring": {       # Query string in the HTTP request as key-value pairs
           "foo" : "bar",
           "foo2" : "bar2",

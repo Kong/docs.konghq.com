@@ -11,7 +11,7 @@ page.kong_latest.release %}
 <div class="page v2 {{ page.class }}" data-url={{ page.url }}>
 
   <div class="container">
-    {% include_cached docs-sidebar.html url=page.url kong_version=page.kong_version edition=page.edition no_version=page.no_version has_version=page.has_version nav_items=page.nav_items edition=page.edition kong_version=page.kong_version kong_latest=page.kong_latest kong_versions=page.kong_versions %}
+    {% include_cached docs-sidebar.html url=page.url kong_version=page.kong_version edition=page.edition no_version=page.no_version has_version=page.has_version nav_items=page.nav_items edition=page.edition kong_version=page.kong_version kong_latest=page.kong_latest kong_versions=page.kong_versions badge=page.badge %}
 
     {% if page.toc == true or page.toc != false and filename != "index.md" and page.is_homepage != true %}
       <aside class="docs-toc">
@@ -59,7 +59,7 @@ page.kong_latest.release %}
             {% unless page.no_version == true %}
               <div class="content-version">
                 {{page.kong_version}}
-                {% if page.kong_version == page.kong_latest.release %}
+                  {% if page.kong_version == page.kong_latest.release %}
                   <span>(latest)</span>
                 {% endif %}
               </div>
@@ -76,39 +76,25 @@ page.kong_latest.release %}
             instead?
           </div>
           {% endif %}
-          {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
-            <div class="alert alert-warning">
-            You are browsing documentation for an outdated version. See the
-            <a href="{% if latest_page_exists == 'true' %}{{latest_page_url}}{% elsif page.edition == 'gateway-oss'%}/gateway-oss/{% elsif page.edition == 'enterprise'%}/enterprise/{% elsif page.edition == 'mesh'%}/mesh/{% elsif page.edition == 'kubernetes-ingress-controller/'%}/kubernetes-ingress-controller/{% else %}/{% endif %}">
-              latest documentation here</a>.
-          </div>
-            {% elsif page.beta == true %}
-            <div class="alert alert-ee condensed margin-bigger">
-              <div class="alert-body">
-                <div class="tag">BETA</div>
-                <p>Warning: This feature is released as <a href="/enterprise/{{page.kong_version}}/introduction/key-concepts/#beta">BETA</a> and should not be deployed in a production environment.
-            </div>
+            {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
+              <div class="alert alert-warning">
+              You are browsing documentation for an outdated version. See the
+              <a href="{% if latest_page_exists == 'true' %}{{latest_page_url}}{% elsif page.edition == 'gateway-oss'%}/gateway-oss/{% elsif page.edition == 'enterprise'%}/enterprise/{% elsif page.edition == 'mesh'%}/mesh/{% elsif page.edition == 'kubernetes-ingress-controller/'%}/kubernetes-ingress-controller/{% else %}/{% endif %}">
+                latest documentation here</a>.
               </div>
             {% endif %}
-            {% if page.url contains "/kubernetes-ingress-controller/" %}
-            {% unless page.kong_version == "2.0.x" %}
-            <blockquote class="note">
-              <p>Kong's Kubernetes Ingress Controller v2.0.0 is currently in beta. Check out the
-              <a href="/kubernetes-ingress-controller-beta/">beta documentation</a> and try out
-              <a href="https://github.com/Kong/kubernetes-ingress-controller/releases/tag/v2.0.0-beta.1">v2.0.0</a> for yourself.</p>
-            </blockquote>
-            {% endunless %}
-            {% endif %}
 
+            <h1 tabindex="-1" id="main" class="page-content-title"
+            >{{page.title | flatify }}
+            {% if page.badge %}
+              <a href="https://konghq.com/pricing" {%
+                if page.badge == 'plus' %}class="badge plus" aria-label="available with plus subscription"{% endif %}{%
+                if page.badge == 'enterprise' %}class="badge enterprise" aria-label="available with enterprise subscription"{% endif %}{%
+                if page.badge == 'oss' %}class="badge oss" aria-label="open-source only"{% endif %}>
+              </a>
+              {% endif %}
+            </h1>
 
-            <h1 tabindex="-1" id="main" class="page-content-title{%
-            if page.badge %} badge{%
-            if page.badge == 'plus' %} plus{% endif %}{%
-            if page.badge == 'enterprise' %} enterprise{% endif %}{%
-            if page.badge == 'oss' %} oss{% endif %}
-            {% endif %}"
-            >{{page.title | flatify }} </h1>
-            {% if page.enterprise %}{% endif %}
             {% if page.subtitle %}
               <h2 class="page-content-subtitle">{{page.subtitle | flatify }}</h2>
             {% endif %}
