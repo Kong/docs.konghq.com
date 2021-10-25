@@ -3376,7 +3376,10 @@ documentation site.
 Encrypted data is transparently decrypted before being displayed to the Admin
 API or made available to plugins or core routing logic.
 
-No guarantees about forward-compatability or stability are provided with this, and mis-management
+While this feature is GA, do note that we currently do not provide normal semantic
+versioning compatibility guarantees on the keyring feature's APIs in that Kong may
+make a breaking change to the feature in a minor version. Also note that
+mis-management of keyring data may result in irrecoverable data loss.
 of keyring data will result in irrecoverable data loss.
 
 ---
