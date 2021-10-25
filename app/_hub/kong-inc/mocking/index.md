@@ -1,8 +1,7 @@
 ---
 name: Mocking
 publisher: Kong Inc.
-version: 0.1.x
-# internal handler v 0.1.0
+version: 0.2.x
 
 desc: Provide mock endpoints to test your APIs against your services
 description: |
@@ -100,7 +99,7 @@ params:
       datatype: boolean
       value_in_examples: true
       description: |
-        Randomly selects one example and returns it. This requires the spec to have multiple examples configured.
+        Randomly selects one example and returns it. This parameter requires the spec to have multiple examples configured.
 
 
   extra: |
