@@ -76,13 +76,13 @@ params:
       default: 403
       datatype: integer
       description: |
-        The HTTP status of the requests that will be rejected by the plugin
+        The HTTP status of the requests that will be rejected by the plugin.
     - name: message
       required: false
       default: "Your IP address is not allowed"
       datatype: string
       description: |
-        The message to send as a response body to rejected requests
+        The message to send as a response body to rejected requests.
 
   extra: |
 
