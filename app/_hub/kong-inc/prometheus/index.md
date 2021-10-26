@@ -48,6 +48,16 @@ params:
   dbless_compatible: yes
   dbless_explanation: |
     The database will always be reported as reachable in Prometheus with DB-less.
+  config:
+    - name: per_consumer
+      required: false
+      datatype: boolean
+      default: '`false`'
+      description: |
+        A boolean value that determines if per-consumer metrics should be
+        collected.
+        If enabled, a `kong_http_consumer_status` metric will be added to
+        exported metrics.
 
 ---
 
@@ -73,7 +83,7 @@ dashboard: [https://grafana.com/dashboards/7424](https://grafana.com/dashboards/
 ### Available metrics
 
 - **Status codes**: HTTP status codes returned by Upstream services.
-  These are available per service and across all services.
+  These are available per service, across all services and per route per consumer.
 - **Latencies Histograms**: Latency as measured at Kong:
    - **Request**: Total time taken by Kong and Upstream services to serve
      requests.
@@ -116,6 +126,9 @@ kong_bandwidth{type="ingress",service="google"} 254
 # HELP kong_datastore_reachable Datastore reachable from Kong, 0 is unreachable
 # TYPE kong_datastore_reachable gauge
 kong_datastore_reachable 1
+# HELP kong_http_consumer_status HTTP status codes for customer per service/route in Kong
+# TYPE kong_http_consumer_status counter
+kong_http_consumer_status{service="s1",route="s1.route-1",code="200",consumer="<consumer_username>"} 3
 # HELP kong_http_status_total HTTP status codes aggreggated across all services in Kong
 # TYPE kong_http_status_total counter
 kong_http_status_total{code="301"} 2
