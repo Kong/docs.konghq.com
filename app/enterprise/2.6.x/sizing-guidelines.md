@@ -21,7 +21,7 @@ Resource requirements vary substantially based on configuration. The following
 high-level matricies offer a guideline for determining system requirements
 based on overall configuration and performance requirements.
 
-Consider the following simplified examples, where latency and throughput requirements are considered on a per-node basis. Use this table as a rough outlook on the usage requirements:
+Consider the following simplified examples, where latency and throughput requirements are considered on a per-node basis. This table has rough usage requirement estimates:
 
 | Size | Number of Configured Entities | Latency Requirements | Throughput Requirements | Usage Pattern |
 |---|---|---|---|---|
@@ -32,7 +32,7 @@ Consider the following simplified examples, where latency and throughput require
 ### Database resources
 
 We do not provide any hard numbers for database sizing (DB sizing), as it
-depends on your particular setup. Sizing may vary based on:
+depends on your particular setup. Sizing varies based on:
 * Traffic
 * Number of nodes
 * Enabled features: for example, Vitals, or if rate limiting uses a
@@ -58,7 +58,7 @@ There are [settings](/enterprise/{{page.kong_version}}/property-reference/#datas
 that you can adjust to keep database access minimal (also see [in-memory caching](#in-memory-caching)), or
 [keep {{site.base_gateway}} operational](https://support.konghq.com/support/s/article/Keeping-Kong-Functional-During-DB-Down-Times)
 if the DB is down for maintenance. If you choose to keep the database
-operational during downtimes, note that vitals data is not written to the
+operational during downtimes, vitals data is not written to the
 database during this time.
 
 ### Cluster resource allocations
@@ -102,13 +102,12 @@ cluster itself, is a crucial step in successfully deploying
 {{site.base_gateway}}.
 
 {{site.base_gateway}} measures performance in the following dimensions:
-**latency** and **throughput**.
 
 * **Latency** refers to the delay between the downstream client
 sending a request and receiving a response. {{site.base_gateway}} measures
 latency introduced into the request in terms of microseconds or milliseconds.
 Increasing the number of Routes and Plugins in a {{site.base_gateway}} cluster
-increases the amount of latency that is added into each request.
+increases the amount of latency that's added to each request.
 * **Throughput** refers to the number of
 requests that {{site.base_gateway}} can process in a given time span, typically
 measured in seconds or minutes.
@@ -124,9 +123,9 @@ meet specific throughput requirements.
 
 {{site.base_gateway}}'s maximum throughput is a CPU-bound dimension, and minimum
 latency is memory-bound.
-* Latency-sensitive workload: making more memory available for database caching
+* **Latency-sensitive workload**: making more memory available for database caching
 is more beneficial than adding more compute power to the cluster.
-* Throughput-sensitive workload: these workloads are dependant on both adequate
+* **Throughput-sensitive workload**: these workloads are dependant on both adequate
 memory and CPU resources, but adding more
 compute power by scaling {{site.base_gateway}} vertically or horizontally is
 the better choice, as it provides near-unlimited throughput capacity. In this
@@ -146,7 +145,7 @@ including:
 * **Number of configured Routes and Services**: Increasing the count of Routes
 and Services on the cluster requires more CPU to evaluate the request.
 However, {{site.base_gateway}}'s request router can handle running at large
-scale: we have seen clusters of {{site.base_gateway}} nodes serving tens of
+scale. We've seen clusters of {{site.base_gateway}} nodes serving tens of
 thousands of Routes with minimal impact to latency as a result of request route
 evaluation.
 
