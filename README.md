@@ -18,7 +18,7 @@ Here are some things to know before you get started:
     * [CLI reference](https://docs.konghq.com/gateway-oss/latest/cli/)
     * [Upgrade guide](https://docs.konghq.com/gateway-oss/latest/upgrading/)
 
-All pull requests for these docs should be opened on the [Kong/kong](https://github.com/Kong/kong) repository.
+All pull requests for these docs should be opened on the [Kong/kong](https://github.com/Kong/kong) repository. Fork the repository and submit PRs from your fork.
 
 For [Gateway Enterprise configuration reference](https://docs.konghq.com/enterprise/latest/property-reference/) and [PDK reference](https://docs.konghq.com/gateway-oss/latest/pdk/) documentation, open an issue on this repo and we'll update the docs.
 
