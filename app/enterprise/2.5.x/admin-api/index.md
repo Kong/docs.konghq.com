@@ -1442,7 +1442,7 @@ the concatenated path will be `/sre`.
 Both versions of the algorithm detect "double slashes" when combining paths, replacing them by single
 slashes.
 
-The following table shows all combinations of path handling version, strip path and request
+The following table shows all combinations of path handling version, strip path and request:
 
 | `service.path` | `route.path` | `request` |`route.strip_path` | `route.path_handling` | request path | upstream path |
 |----------------|--------------|-----------|-------------------|-----------------------|--------------|---------------|
