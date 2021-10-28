@@ -83,7 +83,7 @@ It may take a while for Kubernetes to start the
 {{site.mesh_product_name}} resources. You can check the status by executing:
 
 ```sh
-$ kubectl get pod -n kong-mesh-system</code>
+$ kubectl get pod -n kong-mesh-system
 ```
 
 ## 3. Verify the Installation
