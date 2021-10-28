@@ -64,6 +64,7 @@
 /hub/kong-inc/zipkin/http-log/              /hub/kong-inc/zipkin/
 /plugins/                                   /hub/
 /plugins/*                                  /hub/kong-inc/:splat
+/hub/heroku/kong-app/                       /hub/
 
 # Konnect
 /konnect/org-management/okta-role-mapping           /konnect/org-management/okta-idp/#map-roles-to-groups
