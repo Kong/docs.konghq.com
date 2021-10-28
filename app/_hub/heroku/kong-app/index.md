@@ -10,13 +10,7 @@ type: integration
 desc: Deploy Kong clusters to Heroku Common Runtime or Private Spaces
 
 description: |
-  Easily deploy Kong as a Heroku app. Supports both
-  Heroku Common Runtime and Private Spaces. Includes a preset secure-by-default
-  loopback proxy to Kong's Admin API.
-
-  Try it for free with a single dyno and a Heroku Postgres hobby dev database.
-  Then, scale-up to a cluster of high-performance dynos and a premium database
-  plan.
+  ❌  No longer maintained.
 
 support_url: https://github.com/heroku/heroku-kong/issues
 
@@ -36,8 +30,6 @@ terms_of_service: This app is a community proof-of-concept, provided "as is", wi
 kong_version_compatibility: # required
   community_edition:
     compatible:
-      - 1.0.x
-      - 0.14.x
     #incompatible:
   #enterprise_edition: # optional
     #compatible:
@@ -57,4 +49,4 @@ kong_version_compatibility: # required
 
 ### Deployment
 
-▶️ **Get started at the [GitHub repo](https://github.com/heroku/heroku-kong){:target="_blank"}{:rel="noopener noreferrer"}.**
+❌  No longer maintained.
