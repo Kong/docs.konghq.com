@@ -46,7 +46,21 @@ Go to [Issues](https://github.com/Kong/docs.konghq.com/issues) and read through 
 
 ### Make your contribution
 
-Once you've identified what you want to work on, let's get to writing!
+Once you've identified what you want to work on, let's get to writing! You can either use the **Edit this page** feature on Github or make your changes locally.
+
+#### Use the Edit this page option
+
+Use this method if you are making minor edits to a single file.
+
+1. On any text documentation page, you will see an **Edit this page** link in the right sidebar. Click it and you'll be taken to the GitHub editor.
+
+2. Make your changes in the GitHub editor.
+
+3. When you're finished, scroll to the bottom of the page. Enter the requested information and click `Propose changes`.
+
+#### Make your changes locally
+
+Use this method if you are very comfortable with Git, are making a code change, or are planning to make changes across multiple files.
 
 1. Work on your [fork](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks) of our docs repository. Since you're working from a fork, it's not uncommon to work off the `main` branch.
 
