@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Looking for the Kong code repo instead?
+    url: https://github.com/Kong/kong
+    about: If you have Kong product related issues, visit our Kong repo.
