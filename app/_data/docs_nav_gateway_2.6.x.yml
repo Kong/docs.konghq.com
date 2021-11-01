@@ -69,6 +69,15 @@
           url: /plan-and-deploy/licenses/deploy-license
         - text: Monitor License Usage
           url: /plan-and-deploy/licenses/report
+    - text: Security
+      url: /plan-and-deploy/security
+      items:
+        - text: Start Kong Gateway Securely
+          url: /plan-and-deploy/security/start-kong-securely
+        - text: Keyring and Data Encryption
+          url: /plan-and-deploy/security/db-encryption
+        - text: Kong Security Update Process
+          url: /plan-and-deploy/security/kong-security-update-process
 
 - title: Configure
   icon: /assets/images/icons/konnect/konnect-settings.svg
