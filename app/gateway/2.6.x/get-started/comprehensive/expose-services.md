@@ -42,7 +42,7 @@ API. Mockbin is an “echo” type public website that returns requests back to 
 requester as responses. This visualization will be helpful for learning how Kong
 Gateway proxies API requests.
 
-{{site.base_gateway}} exposes the RESTful Admin API on port `:8001`. The gateway’s
+{{site.base_gateway}} exposes the RESTful Admin API on port `8001`. The gateway’s
 configuration, including adding Services and Routes, is done through requests to
 the Admin API.
 
@@ -84,7 +84,7 @@ define a Service with the name `example_service` and the URL
 gateway instance:
 
     ``` bash
-    $ deck sync
+    deck sync
     ```
 
     The message should show that you’re creating a service:
@@ -104,14 +104,14 @@ gateway instance:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -i -X POST http://<admin-hostname>:8001/services \
+curl -i -X POST http://<admin-hostname>:8001/services \
   --data name=example_service \
   --data url='http://mockbin.org'
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http POST :8001/services \
+http POST :8001/services \
   name=example_service \
   url='http://mockbin.org'
 ```
@@ -127,12 +127,12 @@ Verify the service’s endpoint:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -i http://<admin-hostname>:8001/services/example_service
+curl -i http://<admin-hostname>:8001/services/example_service
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http :8001/services/example_service
+http :8001/services/example_service
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -180,14 +180,14 @@ methods must be set for the Route to be matched to the service.
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -i -X POST http://<admin-hostname>:8001/services/example_service/routes \
+curl -i -X POST http://<admin-hostname>:8001/services/example_service/routes \
   --data 'paths[]=/mock' \
   --data name=mocking
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http :8001/services/example_service/routes \
+http :8001/services/example_service/routes \
   paths:='["/mock"]' \
   name=mocking
 ```
@@ -195,7 +195,7 @@ $ http :8001/services/example_service/routes \
 {% endnavtabs %}
 <!-- end codeblock tabs -->
 
-A 201 message indicates the Route was created successfully.
+A `201` message indicates the Route was created successfully.
 
 {% endnavtab %}
 {% navtab Using decK (YAML) %}
@@ -230,7 +230,7 @@ A 201 message indicates the Route was created successfully.
 2. Sync the configuration:
 
     ``` bash
-    $ deck sync
+    deck sync
     ```
 
 3. (Optional) You can update your local file with the new configuration:
@@ -304,12 +304,12 @@ Using the Admin API, issue the following:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -i -X GET http://<admin-hostname>:8000/mock/request
+curl -i -X GET http://<admin-hostname>:8000/mock/request
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http :8000/mock/request
+http :8000/mock/request
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -320,7 +320,9 @@ $ http :8000/mock/request
 
 
 ## Summary and next steps
+
 In this section, you:
+
 * Added a Service named `example_service` with a URL of `http://mockbin.org`.
 * Added a Route named `/mock`.
 * This means if an HTTP request is sent to the {{site.base_gateway}} node on

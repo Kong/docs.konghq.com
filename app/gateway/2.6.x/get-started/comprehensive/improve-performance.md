@@ -50,7 +50,7 @@ Call the Admin API on port `8001` and configure plugins to enable in-memory cach
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -i -X POST http://<admin-hostname>:8001/plugins \
+curl -i -X POST http://<admin-hostname>:8001/plugins \
   --data name=proxy-cache \
   --data config.content_type="application/json; charset=utf-8" \
   --data config.cache_ttl=30 \
@@ -59,7 +59,7 @@ $ curl -i -X POST http://<admin-hostname>:8001/plugins \
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http -f :8001/plugins \
+http -f :8001/plugins \
   name=proxy-cache \
   config.strategy=memory \
   config.cache_ttl=30 \
@@ -116,7 +116,7 @@ plugin with a timeout of 30 seconds for Content-Type
 2. Sync the configuration:
 
     ```bash
-    $ deck sync
+    deck sync
     ```
 
 {% endnavtab %}
@@ -134,12 +134,12 @@ Access the */mock* route using the Admin API and note the response headers:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -i -X GET http://<admin-hostname>:8000/mock/request
+curl -i -X GET http://<admin-hostname>:8000/mock/request
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http :8000/mock/request
+http :8000/mock/request
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -179,12 +179,12 @@ To test more rapidly, the cache can be deleted by calling the Admin API:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -i -X DELETE http://<admin-hostname>:8001/proxy-cache
+curl -i -X DELETE http://<admin-hostname>:8001/proxy-cache
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http delete :8001/proxy-cache
+http delete :8001/proxy-cache
 ```
 {% endnavtab %}
 {% endnavtabs %}

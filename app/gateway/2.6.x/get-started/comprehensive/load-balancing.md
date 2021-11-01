@@ -48,13 +48,13 @@ Call the Admin API on port `8001` and create an Upstream named `upstream`:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -X POST http://<admin-hostname>:8001/upstreams \
+curl -X POST http://<admin-hostname>:8001/upstreams \
   --data name=upstream
 ```
 {% endnavtab %}
 {% navtab HTTPie %}    
 ```sh
-$ http POST :8001/upstreams \
+http POST :8001/upstreams \
   name=upstream
 ```
 {% endnavtab %}
@@ -67,13 +67,13 @@ Update the service you created previously to point to this upstream:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -X PATCH http://<admin-hostname>:8001/services/example_service \
+curl -X PATCH http://<admin-hostname>:8001/services/example_service \
   --data host='upstream'
 ```
 {% endnavtab %}
 {% navtab HTTPie %}    
 ```sh
-$ http PATCH :8001/services/example_service \
+http PATCH :8001/services/example_service \
   host='upstream'
 ```
 {% endnavtab %}
@@ -87,18 +87,18 @@ Add two targets to the upstream, each with port 80: `mockbin.org:80` and
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -X POST http://<admin-hostname>:8001/upstreams/upstream/targets \
+curl -X POST http://<admin-hostname>:8001/upstreams/upstream/targets \
   --data target='mockbin.org:80'
 
-$ curl -X POST http://<admin-hostname>:8001/upstreams/upstream/targets \
+curl -X POST http://<admin-hostname>:8001/upstreams/upstream/targets \
   --data target='httpbin.org:80'
 ```
 {% endnavtab %}
 {% navtab HTTPie %}    
 ```sh
-$ http POST :8001/upstreams/upstream/targets \
+http POST :8001/upstreams/upstream/targets \
   target=mockbin.org:80
-$ http POST :8001/upstreams/upstream/targets \
+http POST :8001/upstreams/upstream/targets \
   target=httpbin.org:80
 ```
 {% endnavtab %}
@@ -177,7 +177,7 @@ Upstream:
 3. Sync the configuration:
 
     ``` bash
-    $ deck sync
+    deck sync
     ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -192,6 +192,7 @@ You now have an Upstream with two targets, `httpbin.org` and `mockbin.org`, and 
 ## Summary and next steps
 
 In this topic, you:
+
 * Created an Upstream object named `upstream` and pointed the Service `example_service` to it.
 * Added two targets, `httpbin.org` and `mockbin.org`, with equal weight to the Upstream.
 

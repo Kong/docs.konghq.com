@@ -61,13 +61,13 @@ created:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -X POST http://<admin-hostname>:8001/routes/mocking/plugins \
+curl -X POST http://<admin-hostname>:8001/routes/mocking/plugins \
   --data name=key-auth
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http :8001/routes/mocking/plugins \
+http :8001/routes/mocking/plugins \
   name=key-auth
 ```
 {% endnavtab %}
@@ -80,12 +80,12 @@ Try to access the service again:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -i http://<admin-hostname>:8000/mock
+curl -i http://<admin-hostname>:8000/mock
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http :8000/mock
+http :8000/mock
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -147,7 +147,7 @@ add a plugin section and enable the `key-auth` plugin:
 2. Sync the configuration:
 
     ``` bash
-    $ deck sync
+    deck sync
     ```
 
 Now, if you try to access the route at `http://<admin-hostname>:8000/mock`
@@ -187,14 +187,14 @@ The following creates a new consumer called **consumer**:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -i -X POST http://<admin-hostname>:8001/consumers/ \
+curl -i -X POST http://<admin-hostname>:8001/consumers/ \
   --data username=consumer \
   --data custom_id=consumer
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http :8001/consumers \
+http :8001/consumers \
   username=consumer \
   custom_id=consumer
 ```
@@ -209,13 +209,13 @@ created above. For this example, set the key to `apikey`.
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -i -X POST http://<admin-hostname>:8001/consumers/consumer/key-auth \
+curl -i -X POST http://<admin-hostname>:8001/consumers/consumer/key-auth \
   --data key=apikey
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http :8001/consumers/consumer/key-auth \
+http :8001/consumers/consumer/key-auth \
   key=apikey
 ```
 {% endnavtab %}
@@ -290,7 +290,7 @@ You now have a consumer with an API key provisioned to access the route.
 2. Sync the configuration:
 
     ``` bash
-    $ deck sync
+    deck sync
     ```
 
 You now have a consumer with an API key provisioned to access the route.
@@ -317,13 +317,13 @@ To validate the Key Authentication plugin, access the *mocking* route again, usi
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -i http://<admin-hostname>:8000/mock/request \
+curl -i http://<admin-hostname>:8000/mock/request \
   -H 'apikey:apikey'
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http :8000/mock/request apikey:apikey
+http :8000/mock/request apikey:apikey
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -350,12 +350,12 @@ Find the plugin ID and copy it:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -X GET http://<admin-hostname>:8001/routes/mocking/plugins/
+curl -X GET http://<admin-hostname>:8001/routes/mocking/plugins/
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http :8001/routes/mocking/plugins
+http :8001/routes/mocking/plugins
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -372,13 +372,13 @@ Disable the plugin:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -X PATCH http://<admin-hostname>:8001/routes/mocking/plugins/{<plugin-id>} \
+curl -X PATCH http://<admin-hostname>:8001/routes/mocking/plugins/{<plugin-id>} \
   --data enabled=false
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http -f patch :8001/routes/mocking/plugins/{<plugin-id>} \
+http -f patch :8001/routes/mocking/plugins/{<plugin-id>} \
   enabled=false
 ```
 {% endnavtab %}
