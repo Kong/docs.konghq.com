@@ -1,6 +1,5 @@
 ---
 title: Kong Security Update Process
-badge: enterprise
 ---
 
 ## Reporting a Vulnerability
