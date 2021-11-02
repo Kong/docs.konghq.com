@@ -5,7 +5,16 @@
 
 - title: Install and Run
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
+  url: /install-and-run/
   items:
+    - text: Amazon Linux
+      url: /install-and-run/amazon-linux
+    - text: CentOS
+      url: /install-and-run/centos
+    - text: RHEL
+      url: /install-and-run/rhel
+    - text: Ubuntu
+      url: /install-and-run/ubuntu
     - text: Migrating from OSS to EE
       url: /install-and-run/migrate-ce-to-ke
     - text: Upgrade Guide

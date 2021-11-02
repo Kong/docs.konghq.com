@@ -11,7 +11,7 @@ page.kong_latest.release %}
 <div class="page v2 {{ page.class }}" data-url={{ page.url }}>
 
   <div class="container">
-    {% include_cached docs-sidebar.html url=page.url kong_version=page.kong_version edition=page.edition no_version=page.no_version has_version=page.has_version nav_items=page.nav_items edition=page.edition kong_version=page.kong_version kong_latest=page.kong_latest kong_versions=page.kong_versions badge=page.badge %}
+    {% include_cached docs-sidebar.html url=page.url kong_version=page.kong_version edition=page.edition no_version=page.no_version has_version=page.has_version nav_items=page.nav_items edition=page.edition kong_version=page.kong_version kong_latest=page.kong_latest kong_versions=page.kong_versions badge=page.badge version_index=page.version_index %}
 
     {% if page.toc == true or page.toc != false and filename != "index.md" and page.is_homepage != true %}
       <aside class="docs-toc">

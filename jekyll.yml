@@ -133,6 +133,12 @@ defaults:
       layout: "docs-v2"
 
   - scope:
+      path: "gateway/2.6.x/install-and-run"
+    values:
+      layout: "docs-v2"
+      version-index: 0
+
+  - scope:
       path: "about"
     values:
       layout: "about"

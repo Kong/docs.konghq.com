@@ -479,7 +479,8 @@
   lua_doc: true
 -
   release: "2.6.x"
-  version: "2.6.0.0"
+  ee-version: "2.6.0.0"
+  ce-version: "2.6.0"
   edition: "gateway"
 -
   release: "CE-2.0.x_KE-1.5.x"
