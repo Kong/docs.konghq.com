@@ -47,7 +47,7 @@ Rate limiting protects the APIs from accidental or malicious overuse. Without ra
 {% navtab Using the Admin API %}
 
 {:.note}
-> **Note:** This section sets up the basic Rate Limiting plugin. If you have a {{site.ee_product_name}} instance, see instructions for **Using Kong Manager** to set up Rate Limiting Advanced with sliding window support instead.
+> **Note:** This section sets up the basic Rate Limiting plugin. If you have a {{site.base_gateway}} instance, see instructions for **Using Kong Manager** to set up Rate Limiting Advanced with sliding window support instead.
 
 Call the Admin API on port `8001` and configure plugins to enable a limit of five (5) requests per minute, stored locally and in-memory, on the node.
 
@@ -55,7 +55,7 @@ Call the Admin API on port `8001` and configure plugins to enable a limit of fiv
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -i -X POST http://<admin-hostname>:8001/plugins \
+curl -i -X POST http://<admin-hostname>:8001/plugins \
   --data name=rate-limiting \
   --data config.minute=5 \
   --data config.policy=local
@@ -63,7 +63,7 @@ $ curl -i -X POST http://<admin-hostname>:8001/plugins \
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http -f post :8001/plugins \
+http -f post :8001/plugins \
   name=rate-limiting \
   config.minute=5 \
   config.policy=local
@@ -76,7 +76,7 @@ $ http -f post :8001/plugins \
 {% navtab Using decK (YAML) %}
 
 {:.note}
-> **Note:** This section sets up the basic Rate Limiting plugin. If you have a {{site.ee_product_name}} instance, see instructions for **Using Kong Manager** to set up Rate Limiting Advanced with sliding window support instead.
+> **Note:** This section sets up the basic Rate Limiting plugin. If you have a {{site.base_gateway}} instance, see instructions for **Using Kong Manager** to set up Rate Limiting Advanced with sliding window support instead.
 
 1. Add a new `plugins` section to the bottom of your `kong.yaml` file. Enable
 `rate-limiting` with a limit of five (5) requests per minute, stored locally
@@ -124,7 +124,7 @@ and in-memory, on the node:
 2. Sync the configuration:
 
     ``` bash
-    $ deck sync
+    deck sync
     ```
 
 {% endnavtab %}
@@ -150,12 +150,12 @@ To validate rate limiting, access the API six (6) times from the CLI to confirm 
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -i -X GET http://<admin-hostname>:8000/mock/request
+curl -i -X GET http://<admin-hostname>:8000/mock/request
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http :8000/mock/request
+http :8000/mock/request
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -175,6 +175,7 @@ After the 6th request, you should receive a 429 "API rate limit exceeded" error:
 ## Summary and next steps
 
 In this section:
+
 * If using the Admin API or decK, you enabled the Rate Limiting plugin,
 setting the rate limit to 5 times per minute.
 * If using Kong Manager, you enabled the Rate Limiting Advanced plugin,

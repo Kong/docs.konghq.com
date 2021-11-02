@@ -3,13 +3,13 @@ title: Manage Administrative Teams
 badge: enterprise
 ---
 
-In this topic, you’ll learn how to manage and configure user authorization using workspaces and teams in {{site.ee_product_name}}.
+In this topic, you’ll learn how to manage and configure user authorization using workspaces and teams in {{site.base_gateway}}.
 
 If you are following the getting started workflow, make sure you have completed [Set Up Intelligent Load Balancing](/getting-started-guide/{{page.kong_version}}/load-balancing) before moving on.
 
-## Overview of Workspaces and Teams
+## Overview of workspaces and Teams
 
-Many organizations have strict security requirements. For example, organizations need the ability to segregate the duties of an administrator to ensure that a mistake or malicious act by one administrator doesn’t cause an outage. {{site.ee_product_name}} provides a number of security capabilities to help customers secure the administration environment.
+Many organizations have strict security requirements. For example, organizations need the ability to segregate the duties of an administrator to ensure that a mistake or malicious act by one administrator doesn’t cause an outage. {{site.base_gateway}} provides a number of security capabilities to help customers secure the administration environment.
 
 **Workspaces** enable an organization to segment objects and admins into namespaces. The segmentation allows teams of admins sharing the same {{site.base_gateway}} cluster to adopt **roles** for interacting with specific objects. For example, one team (Team A) may be responsible for managing a particular service, whereas another team (Team B) may be responsible for managing another service. Teams should only have the roles they need to perform the administrative tasks within their specific workspaces.
 
@@ -25,7 +25,7 @@ configuration.
 At a high level, securing {{site.base_gateway}} administration is a two-step process:
 
 1. Turn on RBAC.
-2. Create a Workspace and an admin for segregated administration.
+2. Create a workspace and an admin for segregated administration.
 
 At this point in the Getting Started Guide, you have been interacting with your environment as the built-in Super Admin, `kong_admin`. The password for this `kong_admin` user was “seeded” during the installation process using the KONG_PASSWORD environment variable. After RBAC is enabled, you will need to authenticate to the Kong Manager and the {{site.base_gateway}} Admin API using the proper credentials.
 
@@ -35,11 +35,13 @@ In the following sections, you will need the `kong_admin` account’s password t
 
 {% include /md/enterprise/turn-on-rbac.md %}
 
-## Create a Workspace
+## Create a workspace
+
 {% navtabs %}
 {% navtab Using Kong Manager %}
 
 #### Log into Kong Manager
+
 1. Go to Kong Manager, or reload the page if you already have it open and you will see the following login screen.
 2. Log in to Kong Manager with the built-in Super Admin account, `kong_admin`, and its password.
 
@@ -50,21 +52,22 @@ In the following sections, you will need the `kong_admin` account’s password t
     If this step did not work, and you know the credentials are correct, then something is likely wrong with your {{site.base_gateway}} configuration. Double-check the settings. If the cause of the problem still isn’t clear, work with your {{site.konnect_product_name}} account team and [Kong Support](https://support.konghq.com/) for assistance.
 
 #### Create the Workspace
+
 1. Access your Kong Manager instance.
-2. On the Workspaces tab, click on **New Workspace**.
-3. Create a Workspace named `SecureWorkspace` and select a color for the Workspace avatar.
+2. On the workspaces tab, click on **New Workspace**.
+3. Create a workspace named `SecureWorkspace` and select a color for the workspace avatar.
 
-    **Note:** Each Workspace name should be unique, regardless of letter case. For example, naming one Workspace “Payments” and another one “payments” will create two different workspaces that appear identical.
+    **Note:** Each workspace name should be unique, regardless of letter case. For example, naming one workspace “Payments” and another one “payments” will create two different workspaces that appear identical.
 
-    **WARNING:** Do not give a Workspace the same name as any of these major routes in Kong Manager:
+    **WARNING:** Do not give a workspace the same name as any of these major routes in Kong Manager:
 
     |---------|-----------|--------------|---------------|
     | Admins  | APIs      | Certificates | Consumers     |
     | Plugins | Portal    | Routes       | Services      |
     | SNIs    | Upstreams | Vitals       | PermalinkStep |
 
-4. Click **Create New Workspace**.
-5. On the new Workspace, click **Teams**.
+4. Click **Create New workspace**.
+5. On the new workspace, click **Teams**.
 6. From the Teams page, click the **Roles** tab to view the default roles that come with {{site.base_gateway}}.
 7. Next to SecureWorkspace, click **View** to see its assigned roles.
 8. There are different roles available for the SecureWorkspace. By default, each new workspace has the following roles and privileges:
@@ -72,7 +75,7 @@ In the following sections, you will need the `kong_admin` account’s password t
     | Role                     | Description                                                                                  |
     |--------------------------|----------------------------------------------------------------------------------------------|
     | *workspace-admin*        | Can administer the objects in a workspace but can’t add new administrators to the workspace. |
-    | *workspace-portal-admin* | Can manage the Developer Portal. |
+    | *workspace-portal-admin* | Can manage the Dev Portal. |
     | *workspace-read-only*    | Can view anything in the workspace, but can’t make any changes. |
     | *workspace-super-admin*  | Can do anything inside the workspace. |
 
@@ -85,21 +88,21 @@ In the following sections, you will need the `kong_admin` account’s password t
 * You can also create custom roles by clicking on the **Add Role** button and specifying the endpoints that the administrator with the role will be able to interact with.
 {% endnavtab %}
 {% navtab Using the Admin API %}
-Create a new Workspace called SecureWorkspace, substituting the `kong_admin`
+Create a new workspace called SecureWorkspace, substituting the `kong_admin`
 account’s password in place of `<super-user-token>`:
 
 <!-- codeblock tabs -->
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -X POST http://<admin-hostname>:8001/workspaces \
+curl -X POST http://<admin-hostname>:8001/workspaces \
   -H Kong-Admin-Token:<super-user-token> \
   --data 'name=SecureWorkspace'
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http :8001/workspaces \
+http :8001/workspaces \
   name=SecureWorkspace \
   Kong-Admin-Token:<super-user-token>
 ```
@@ -107,11 +110,11 @@ $ http :8001/workspaces \
 {% endnavtabs %}
 <!-- end codeblock tabs -->
 
-**Note:** Each Workspace name should be unique, regardless of letter case. For example, naming one Workspace “Payments” and another one “payments” will create two different workspaces that appear identical.
+**Note:** Each workspace name should be unique, regardless of letter case. For example, naming one workspace “Payments” and another one “payments” will create two different workspaces that appear identical.
 
 **WARNING:**
 * Granting access to the **default** workspace gives access to all workspaces in the organization.
-* Do not give a Workspace the same name as any of these major routes in Kong Manager:
+* Do not give a workspace the same name as any of these major routes in Kong Manager:
 
     |---------|-----------|--------------|---------------|
     | Admins  | APIs      | Certificates | Consumers     |
@@ -130,6 +133,7 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 {% navtabs %}
 {% navtab Using Kong Manager %}
 #### Invite a New Admin
+
 <div class="alert alert-warning">
 <strong>Note:</strong> If you also use the Admin API, once you've created this admin, you can find it under the <em>/admins</em> endpoint.</div>
 
@@ -184,7 +188,7 @@ Create a new user named `secureworkspaceadmin` with the RBAC token
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/users \
+curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/users \
   -H Kong-Admin-Token:<super-user-token> \
   --data 'name=secureworkspaceadmin' \
   --data 'user_token=secureadmintoken'
@@ -192,7 +196,7 @@ $ curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/users \
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http :8001/SecureWorkspace/rbac/users \
+http :8001/SecureWorkspace/rbac/users \
   name=secureworkspaceadmin \
   user_token=secureadmintoken \
   Kong-Admin-Token:<super-user-token>
@@ -207,14 +211,14 @@ Create a blank role in the workspace and name it `admin`:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/roles \
+curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/roles \
   -H Kong-Admin-Token:<super-user-token> \
   --data 'name=admin' \
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http :8001/SecureWorkspace/rbac/roles/ \
+http :8001/SecureWorkspace/rbac/roles/ \
   name=admin \
   Kong-Admin-Token:<super-user-token>
 ```
@@ -229,7 +233,7 @@ workspace:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/roles/admin/endpoints/ \
+curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/roles/admin/endpoints/ \
   -H Kong-Admin-Token:<super-user-token> \
   --data 'endpoint=*'
   --data 'workspace=SecureWorkspace' \
@@ -238,7 +242,7 @@ $ curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/roles/admin/end
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http :8001/secureworkspace/rbac/roles/admin/endpoints/ \
+http :8001/secureworkspace/rbac/roles/admin/endpoints/ \
   endpoint='*' \
   workspace=SecureWorkspace \
   actions='*' \
@@ -254,14 +258,14 @@ Grant the `admin` role to `secureworkspaceadmin`:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
+curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
   -H Kong-Admin-Token:<super-user-token> \
   --data 'role=admin'
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http :8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
+http :8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
   roles=admin \
   Kong-Admin-Token:<super-user-token>
 ```
@@ -290,7 +294,7 @@ $ http :8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
 
     *Using cURL:*
     ```sh
-    $ curl -H Kong-Admin-Token:secureadmintoken -X GET http://<admin-hostname>:8001/default/rbac/users
+    curl -H Kong-Admin-Token:secureadmintoken -X GET http://<admin-hostname>:8001/default/rbac/users
     ```
     *Or using HTTPie:*
 
@@ -308,7 +312,7 @@ $ http :8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
 
     *Using cURL:*
     ```sh
-    $ curl -H Kong-Admin-Token:secureadmintoken -X GET http://<admin-hostname>:8001/SecureWorkspace/rbac/users
+    curl -H Kong-Admin-Token:secureadmintoken -X GET http://<admin-hostname>:8001/SecureWorkspace/rbac/users
     ```
     *Or using HTTPie:*
 
@@ -330,7 +334,7 @@ Once RBAC is enabled, you will have to pass the `kong-admin-token` in a header
 any time you use decK:
 
 ``` bash
-$ deck sync --headers "kong-admin-token:mytoken"   
+deck sync --headers "kong-admin-token:mytoken"   
 ```
 > **Note:** You should not use an RBAC token with Super Admin
 privileges for decK. Always scope down to the exact permissions you need to
@@ -342,13 +346,13 @@ When you have multiple workspaces, decK creates a file for each one. Export
 them as follows:
 
 ``` bash
-$ deck dump --all-workspaces
+deck dump --all-workspaces
 ```
 
 Or, to export the configuration for only one workspace:
 
 ``` bash
-$ deck dump --workspace SecureWorkspace
+deck dump --workspace SecureWorkspace
 ```
 
 You can use these flags with any decK commands to update and export your
@@ -357,8 +361,9 @@ configuration.
 ## Summary and next steps
 
 In this topic, you:
+
 * Enabled RBAC.
 * Created a workspace named `SecureWorkspace`.
 * Created an admin named `secureworkspaceadmin` and granted them permissions to manage to everything in the `SecureWorkspace`.
 
-Next, set up the [Kong Developer Portal](/getting-started-guide/{{page.kong_version}}/dev-portal).
+Next, set up the [Dev Portal](/getting-started-guide/{{page.kong_version}}/dev-portal).

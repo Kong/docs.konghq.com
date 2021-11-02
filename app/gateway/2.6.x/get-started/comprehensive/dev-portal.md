@@ -3,7 +3,7 @@ title: Publish, Locate, and Consume Services
 badge: enterprise
 ---
 
-The Kong Developer Portal (Dev Portal) provides a single source of truth for all developers to locate, access, and consume services. With intuitive content management for documentation, streamlined developer onboarding, and role-based access control (RBAC), the Dev Portal provides a comprehensive solution for creating and customizing a unified developer experience.
+Dev Portal provides a single source of truth for all developers to locate, access, and consume services. With intuitive content management for documentation, streamlined developer onboarding, and role-based access control (RBAC), the Dev Portal provides a comprehensive solution for creating and customizing a unified developer experience.
 
 ## Before you begin
 
@@ -27,13 +27,13 @@ Make sure the Dev Portal is on. You should have enabled it during [installation]
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-$ curl -X PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace \
+curl -X PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace \
   --data config.portal=true
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-$ http -f PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace \
+http -f PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace \
   config.portal=true
 ```
 {% endnavtab %}
@@ -52,7 +52,7 @@ You can learn more about personalization in the [the Dev Portal documentation](/
 * [Managing access](/enterprise/latest/developer-portal/administration/)
 * [Configuring the Dev Portal](/enterprise/latest/developer-portal/configuration/)
 
-## Access and Interact with the Developer Portal
+## Access and Interact with the Dev Portal
 
 1. Go back to **Dev Portal** > **Overview** and open the link in a new tab, or open the Dev Portal directly using this URL: `http://<admin-hostname>:8003/SecureWorkspace`.
 
@@ -69,7 +69,7 @@ You can learn more about personalization in the [the Dev Portal documentation](/
     1. Under **HTTP Methods**, click the GET method.
     2. Click **Try it Out**, then click **Execute**. Review the results of the response.
 
-## Publish a Spec to Developer Portal
+## Publish a Spec to Dev Portal
 
 In this section, you’re going to add a new spec, the *Kong Vitals API*, to the Dev Portal catalog. The Kong Vitals API shows how {{site.base_gateway}} and connected APIs are performing.
 
@@ -94,6 +94,7 @@ In this section, you’re going to add a new spec, the *Kong Vitals API*, to the
 ## Summary
 
 In this topic, you:
+
 * Enabled the Dev Portal on the Workspace `SecureWorkspace`.
 * Tested the httpbin `GET` method.
 * Added a new spec for the Kong Vitals API to the Dev Portal catalog.

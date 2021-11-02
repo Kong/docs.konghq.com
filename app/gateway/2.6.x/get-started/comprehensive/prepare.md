@@ -8,6 +8,7 @@ installed correctly, and that you’re ready to administer it.
 ## Before you begin
 
 Before you start this section, make sure that:
+
 * {{site.base_gateway}} is installed and running.
 * Kong Manager (if applicable) and Kong Admin API ports are listening on the
 appropriate port/IP/DNS settings.
@@ -21,13 +22,13 @@ of your control plane instance.
 ## Verify the Kong Gateway configuration
 {% navtabs %}
 {% navtab Using Kong Manager %}
-As a {{site.ee_product_name}} user, you can use Kong Manager for environment
+As a {{site.base_gateway}} user, you can use Kong Manager for environment
 administration. You’re going to use it later on in this guide, so first make s
 ure you can access Kong Manager.
 
 Open a web browser and navigate to `http://<admin-hostname>:8002`.
 
-If {{site.ee_product_name}} was installed correctly, it automatically logs you
+If {{site.base_gateway}} was installed correctly, it automatically logs you
 in and presents the Kong Manager Overview page.
 {% endnavtab %}
 {% navtab Using the Admin API %}
@@ -41,12 +42,12 @@ window:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-$ curl -i -X GET http://<admin-hostname>:8001
+curl -i -X GET http://<admin-hostname>:8001
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-$ http <admin-hostname>:8001
+http <admin-hostname>:8001
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -60,7 +61,7 @@ The current configuration returns.
 1. Check that decK is connected to {{site.base_gateway}}:
 
     ``` bash
-    $ deck ping
+    deck ping
     ```
 
     You should see a success message with the version that you're
@@ -74,7 +75,7 @@ The current configuration returns.
 the following command in a terminal window:
 
     ``` bash
-    $ deck dump
+    deck dump
     ```
 
     This command creates a `kong.yaml` file with the gateway's entire current
@@ -114,12 +115,12 @@ Run the following on a Control Plane:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-$ curl -i -X GET http://<admin-hostname>:8001/clustering/data-planes
+curl -i -X GET http://<admin-hostname>:8001/clustering/data-planes
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-$ http :8001/clustering/data-planes
+http :8001/clustering/data-planes
 ```
 {% endnavtab %}
 {% endnavtabs %}
