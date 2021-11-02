@@ -56,7 +56,7 @@ params:
       description: |
         A boolean value that determines if per-consumer metrics should be
         collected.
-        If enabled, a `kong_http_consumer_status` metric will be added to
+        If enabled, a `kong_http_consumer_status` metric is added to
         exported metrics.
 
 ---
@@ -83,7 +83,7 @@ dashboard: [https://grafana.com/dashboards/7424](https://grafana.com/dashboards/
 ### Available metrics
 
 - **Status codes**: HTTP status codes returned by Upstream services.
-  These are available per service, across all services and per route per consumer.
+  These are available per service, across all services, and per route per consumer.
 - **Latencies Histograms**: Latency as measured at Kong:
    - **Request**: Total time taken by Kong and Upstream services to serve
      requests.
@@ -124,7 +124,7 @@ kong_bandwidth{type="ingress",service="google",route="google.route-1"} 254
 kong_datastore_reachable 1
 # HELP kong_http_consumer_status HTTP status codes for customer per service/route in Kong
 # TYPE kong_http_consumer_status counter
-kong_http_consumer_status{service="s1",route="s1.route-1",code="200",consumer="<consumer_username>"} 3
+kong_http_consumer_status{service="s1",route="s1.route-1",code="200",consumer="<CONSUMER_USERNAME>"} 3
 # HELP kong_http_status HTTP status codes per service/route in Kong
 # TYPE kong_http_status counter
 kong_http_status{code="301",service="google",route="google.route-1"} 2
