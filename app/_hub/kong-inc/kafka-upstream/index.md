@@ -300,7 +300,7 @@ The following steps assume that {{site.base_gateway}} is installed and the Kafka
 {:.note}
 > **Note**: We use `zookeeper` in the following example, which is not required or has been removed on some Kafka versions. Refer to the [Kafka ZooKeeper documentation](https://kafka.apache.org/documentation/#zk) for more information.
 
-1. Create a topic on Kafka. In this example, we'll set up the topic `kong-upstream` on Kafka:
+1. Create a `kong-upstream` topic in your Kafka cluster:
 
     ```
     ${KAFKA_HOME}/bin/kafka-topics.sh --create \
