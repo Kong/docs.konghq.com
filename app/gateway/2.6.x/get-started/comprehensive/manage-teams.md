@@ -55,7 +55,7 @@ In the following sections, you will need the `kong_admin` account’s password t
 
 1. Access your Kong Manager instance.
 2. On the workspaces tab, click on **New Workspace**.
-3. Create a Wwrkspace named `SecureWorkspace` and select a color for the workspace avatar.
+3. Create a workspace named `SecureWorkspace` and select a color for the workspace avatar.
 
     **Note:** Each workspace name should be unique, regardless of letter case. For example, naming one workspace “Payments” and another one “payments” will create two different workspaces that appear identical.
 
