@@ -445,7 +445,7 @@ params:
       description: |
         The audiences (`audience_claim` claim) required to be present in the access token (or introspection results) for successful authorization. This config parameter works in both **AND** / **OR** cases. 
         - When `["audience1 audience2"]` are in the same array indices, both `audience1` AND `audience2` need to be present in access token (or introspection results). 
-        - When `["audience1,audience2"]` are in different array indices, either `audience1` OR `audience2` need to be present in access token (or introspection results).
+        - When `["audience1", "audience2"]` are in different array indices, either `audience1` OR `audience2` need to be present in access token (or introspection results).
     - name: audience_claim
       required: false
       default: [ "aud" ]
