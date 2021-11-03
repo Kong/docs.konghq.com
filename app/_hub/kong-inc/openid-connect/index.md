@@ -432,7 +432,7 @@ params:
       description: |
         The scopes (`scopes_claim` claim) required to be present in the access token (or introspection results) for successful authorization. This config parameter works in both **AND** / **OR** cases. 
         - When `["scope1 scope2"]` are in the same array indices, both `scope1` AND `scope2` need to be present in access token (or introspection results). 
-        - When `["scope1,scope2"]` are in different array indices, either `scope1` OR `scope2` need to be present in access token (or introspection results).
+        - When `["scope1", "scope2"]` are in different array indices, either `scope1` OR `scope2` need to be present in access token (or introspection results).
     - name: scopes_claim
       required: false
       default: [ "scope" ]
