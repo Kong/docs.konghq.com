@@ -184,6 +184,9 @@ params:
 The following guidelines assume that both {{site.ee_product_name}} and `Kafka` have been
 installed on your local machine.
 
+{:.note}
+> **Note**: We use `zookeeper` in the following example, which is not required or has been removed on some Kafka versions. Refer to the [Kafka ZooKeeper documentation](https://kafka.apache.org/documentation/#zk) for more information.
+
 1. Create a `kong-log` topic in your Kafka cluster:
 
     ```
