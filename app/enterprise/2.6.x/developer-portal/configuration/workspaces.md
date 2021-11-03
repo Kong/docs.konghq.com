@@ -38,7 +38,8 @@ curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE_NAME> \
 On initialization, Kong will populate the new Dev Portal with the [**Default Settings**](/enterprise/{{page.kong_version}}/property-reference/#dev-portal) defined in Kong's configuration file.
 
 {:.note}
-> **Note**: A Workspace can only enable a Dev Portal if the Dev Portal feature has been enabled in Kong's configuration.
+> **Note**: You can only enable a Dev Portal for a Workspace if the 
+Dev Portal feature has been [enabled for Kong Gateway](/enterprise/{{page.kong_version}}/developer-portal/enable-dev-portal).
 
 ### Define the Dev Portal URL structure
 
