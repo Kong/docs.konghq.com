@@ -429,7 +429,10 @@ params:
       required: false
       default: (discovered issuer)
       datatype: array of string elements
-      description: The scopes required to be in the access token.
+      description: |
+        The scopes (`scopes_claim` claim) required to be present in the access token (or introspection results) for successful authorization. This config parameter works in both **AND** / **OR** cases. 
+        - When `["scope1 scope2"]` are in the same array indices, both `scope1` AND `scope2` need to be present in access token (or introspection results). 
+        - When `["scope1,scope2"]` are in different array indices, either `scope1` or `scope2` need to be present in access token (or introspection results).
     - name: scopes_claim
       required: false
       default: [ "scope" ]
@@ -439,7 +442,10 @@ params:
       required: false
       default: 
       datatype: array of string elements
-      description: The audience required to be in the access token.
+      description: |
+        The audiences (`audience_claim` claim) required to be present in the access token (or introspection results) for successful authorization. This config parameter works in both **AND** / **OR** cases. 
+        - When `["audience1 audience2"]` are in the same array indices, both `audience1` AND `audience2` need to be present in access token (or introspection results). 
+        - When `["audience1,audience2"]` are in different array indices, either `audience1` or `audience2` need to be present in access token (or introspection results).
     - name: audience_claim
       required: false
       default: [ "aud" ]
@@ -449,7 +455,10 @@ params:
       required: false
       default: 
       datatype: array of string elements
-      description: The groups required to be in the access token.
+      description: |
+        The groups (`groups_claim` claim) required to be present in the access token (or introspection results) for successful authorization. This config parameter works in both **AND** / **OR** cases. 
+        - When `["group1 group2"]` are in the same array indices, both `group1` AND `group2` need to be present in access token (or introspection results). 
+        - When `["group1,group2"]` are in different array indices, either `group1` or `group2` need to be present in access token (or introspection results).
     - name: groups_claim
       required: false
       default: [ "groups" ]
@@ -459,7 +468,10 @@ params:
       required: false
       default: 
       datatype: array of string elements
-      description: The roles required to be in the access token.
+      description: |
+        The roles (`roles_claim` claim) required to be present in the access token (or introspection results) for successful authorization. This config parameter works in both **AND** / **OR** cases. 
+        - When `["role1 role2"]` are in the same array indices, both `role1` AND `role2` need to be present in access token (or introspection results). 
+        - When `["role1,role2"]` are in different array indices, either `role1` or `role2` need to be present in access token (or introspection results).
     - name: roles_claim
       required: false
       default: [ "roles" ]
