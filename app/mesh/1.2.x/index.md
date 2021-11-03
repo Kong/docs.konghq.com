@@ -126,7 +126,7 @@ simple and distributed deployments, including multi-cloud, multi-cluster, and
 hybrid Kubernetes/VMs:
 
 <center>
-  <img src="/assets/images/docs/mesh/multi-zone.jpg" width="600px"/>
+  <img src="/assets/images/docs/mesh/multi-zone_old.jpg" width="600px"/>
   <br>
   <i>{{site.mesh_product_name}} can support multiple zones (like a Kubernetes
     cluster, VPC, datacenter, etc.) together in the same distributed deployment.
