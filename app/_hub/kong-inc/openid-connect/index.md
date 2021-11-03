@@ -471,7 +471,7 @@ params:
       description: |
         The roles (`roles_claim` claim) required to be present in the access token (or introspection results) for successful authorization. This config parameter works in both **AND** / **OR** cases. 
         - When `["role1 role2"]` are in the same array indices, both `role1` AND `role2` need to be present in access token (or introspection results). 
-        - When `["role1,role2"]` are in different array indices, either `role1` OR `role2` need to be present in access token (or introspection results).
+        - When `["role1", "role2"]` are in different array indices, either `role1` OR `role2` need to be present in access token (or introspection results).
     - name: roles_claim
       required: false
       default: [ "roles" ]
