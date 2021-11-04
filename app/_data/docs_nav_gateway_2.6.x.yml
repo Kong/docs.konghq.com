@@ -11,6 +11,10 @@
       url: /install-and-run/amazon-linux
     - text: CentOS
       url: /install-and-run/centos
+    - text: macOS
+      url: /install-and-run/macos
+    - text: Debian
+      url: /install-and-run/debian
     - text: RHEL
       url: /install-and-run/rhel
     - text: Ubuntu
