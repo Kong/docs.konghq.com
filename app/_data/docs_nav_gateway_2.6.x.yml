@@ -61,6 +61,11 @@
       url: /plan-and-deploy/kong-user
     - text: Resource Sizing Guidelines
       url: /plan-and-deploy/sizing-guidelines
+    - text: Hybrid Mode
+      url: /plan-and-deploy/hybrid-mode
+      items:
+        - text: Deploy Kong Gateway in Hybrid Mode
+          url: /plan-and-deploy/hybrid-mode/hybrid-mode-setup
     - text: Control Kong Gateway through systemd
       url: /plan-and-deploy/systemd
     - text: Performance Testing Framework
