@@ -55,7 +55,9 @@ jQuery(function () {
       } else {
         $(document).one('click', closeMenu);
       }
-    }).closeDropdownOnEscape();
+    }).on('keypress keydown', function(e) {
+        closeDropdownOnEscape()
+    });
   });
 
   // Enables tabbing through the module menu
@@ -105,7 +107,9 @@ jQuery(function () {
       } else {
         $(document).one('click', closeMenu);
       }
-    }).closeDropdownOnEscape();
+    }).on('keypress keydown', function(e) {
+        closeDropdownOnEscape()
+    });
   });
 
   // Enables tabbing through the version menu

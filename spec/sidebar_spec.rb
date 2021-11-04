@@ -21,7 +21,7 @@ describe "sidebar", type: :feature, js: true do
     latest_version = "2.6.x"
 
     it "does not show on the latest version" do
-      visit "/enterprise/#{latest_version}/deployment/installation/docker/"
+      visit "/gateway/#{latest_version}/install-and-run/rhel/"
       expect(page).not_to have_selector(".alert.alert-warning a", visible: true)
     end
 
