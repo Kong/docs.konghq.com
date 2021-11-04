@@ -1,6 +1,9 @@
 - title: Konnect Platform Overview
   icon: /assets/images/icons/documentation/icn-flag.svg
   url: /konnect-platform
+  items:
+    - text: Key Concepts
+      url: /konnect-platform/key-concepts
 
 - title: Version Support Policy
   icon: /assets/images/icons/documentation/icn-support.svg
