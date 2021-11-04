@@ -22,18 +22,25 @@ This software is governed by the
 
 For this installation, you'll need a Docker-enabled system with proper Docker access.
 
-## Install Gateway with a database
+## Pull and tag the Kong Gateway image
 
 1. Pull the Docker image:
-    ```bash
-    # Kong Gateway 
-     docker pull kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
-     ```
 
-    ```bash
-    # Kong Gateway (OSS)
-    docker pull kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
-    ```
+{% capture pull_image %}
+{% navtabs codeblock %}
+{% navtab Kong Gateway %}
+```bash
+docker pull kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```bash
+docker pull kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ pull_image | indent | replace: " </code>", "</code>" }}
 
    {:.important}
    > Some [older {{site.base_gateway}} images](https://support.konghq.com/support/s/article/Downloading-older-Kong-versions)
@@ -45,26 +52,31 @@ For this installation, you'll need a Docker-enabled system with proper Docker ac
 
 2. Tag the image:
 
-    ```bash
-    # Kong Gateway 
-     docker tag kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine kong-ee
-     ```
-    ```bash
-    # Kong Gateway (OSS)
-    docker tag kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kong
-    ```
+{% capture tag_image %}
+{% navtabs codeblock %}
+{% navtab Kong Gateway %}
+```bash
+ docker tag kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine kong-ee
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```bash
+docker tag kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kong
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ tag_image | indent | replace: " </code>", "</code>" }}
 
-3. Create a Docker network:
+### Prepare the database
 
-   Create a custom network to allow the containers to discover and communicate with each other.
+1. Create a custom Docker network to allow the containers to discover and communicate with each other:
 
    ```bash
    docker network create kong-net
    ```
 
-4. **Start a database**
-
-   Start a PostgreSQL container:
+2. Start a PostgreSQL container:
 
    ```p
    docker run -d --name kong-database \
@@ -77,35 +89,76 @@ For this installation, you'll need a Docker-enabled system with proper Docker ac
    ```
 
 5. Prepare the Kong database:
-
-   <pre><code>docker run --rm --network=kong-net \
-     -e "KONG_DATABASE=postgres" \
-     -e "KONG_PG_HOST=kong-database" \
-     -e "KONG_PG_PASSWORD=kong" \
-     -e "KONG_PASSWORD=<div contenteditable="true">{PASSWORD}</div>" \
-     kong kong migrations bootstrap</code></pre>
+{% capture migrations %}
+{% navtabs codeblock %}
+{% navtab Kong Gateway %}
+<pre><code>docker run --rm --network=kong-net \
+ -e "KONG_DATABASE=postgres" \
+ -e "KONG_PG_HOST=kong-database" \
+ -e "KONG_PG_PASSWORD=kong" \
+ -e "KONG_PASSWORD=<div contenteditable="true">{PASSWORD}</div>" \
+ kong-ee migrations bootstrap</code></pre>
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+<pre><code>docker run --rm --network=kong-net \
+ -e "KONG_DATABASE=postgres" \
+ -e "KONG_PG_HOST=kong-database" \
+ -e "KONG_PG_PASSWORD=kong" \
+ -e "KONG_PASSWORD=<div contenteditable="true">{PASSWORD}</div>" \
+ kong migrations bootstrap</code></pre>
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ migrations | indent | replace: " </code>", "</code>" }}
 
 6. Start Gateway:
 
-   <pre><code>docker run -d --name kong --network=kong-net \
-     -e "KONG_DATABASE=postgres" \
-     -e "KONG_PG_HOST=kong-database" \
-     -e "KONG_PG_PASSWORD=kong" \
-     -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
-     -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
-     -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
-     -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
-     -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
-     -e "KONG_ADMIN_GUI_URL=http://<div contenteditable="true">{HOSTNAME}</div>:8002" \
-       -p 8000:8000 \
-       -p 8443:8443 \
-       -p 8001:8001 \
-       -p 8444:8444 \
-       -p 8002:8002 \
-       -p 8445:8445 \
-       -p 8003:8003 \
-       -p 8004:8004 \
-       kong</code></pre>
+{% capture start_container %}
+{% navtabs codeblock %}
+{% navtab Kong Gateway %}
+<div class="copy-code-snippet"><pre><code>docker run -d --name kong-ee \
+ --network=kong-net \
+ -e "KONG_DATABASE=postgres" \
+ -e "KONG_PG_HOST=kong-database" \
+ -e "KONG_PG_PASSWORD=kong" \
+ -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
+ -e "KONG_ADMIN_GUI_URL=http://<div contenteditable="true">{HOSTNAME}</div>:8002" \
+ -p 8000:8000 \
+ -p 8443:8443 \
+ -p 8001:8001 \
+ -p 8444:8444 \
+ -p 8002:8002 \
+ -p 8445:8445 \
+ -p 8003:8003 \
+ -p 8004:8004 \
+ kong-ee</code></pre></div>
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+<div class="copy-code-snippet"><pre><code>docker run -d --name kong \
+ --network=kong-net \
+ -e "KONG_DATABASE=postgres" \
+ -e "KONG_PG_HOST=kong-database" \
+ -e "KONG_PG_USER=kong" \
+ -e "KONG_PG_PASSWORD=kong" \
+ -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
+ -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl" \
+ -p 8000:8000 \
+ -p 8443:8443 \
+ -p 127.0.0.1:8001:8001 \
+ -p 127.0.0.1:8444:8444 \
+ kong:latest</code></pre></div>
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ start_container | indent | replace: " </code>", "</code>" }}
 
    {:.note}
    > **Note**: The `HOSTNAME` for `KONG_PORTAL_GUI_HOST` should be preceded by a protocol, for example, `http://`.
@@ -120,10 +173,15 @@ For this installation, you'll need a Docker-enabled system with proper Docker ac
 
   8. (Not available in OSS) Verify that Kong Manager is running by accessing it using the URL specified in `KONG_ADMIN_GUI_URL`:
 
-    <pre><code>http://<div contenteditable="true">{HOSTNAME}</div>:8002</code></pre>
+      <pre><code>http://<div contenteditable="true">{HOSTNAME}</div>:8002</code></pre>
 
-## Install Gateway in DB-less mode 
-{:.badge .oss}
+## Install Gateway in DB-less mode
+
+{:.important}
+> **Important**: Running {{site.base_gateway}} on Docker in DB-less mode is
+supported for both Enterprise and OSS images. However, there is currently no
+documentation for setting up an Enterprise image in DB-less mode, so adjust the
+following steps as needed for an Enterprise deploy.
 
 The steps involved in starting Kong in [DB-less mode] are the following:
 
