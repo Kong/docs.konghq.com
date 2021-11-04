@@ -32,12 +32,22 @@ jQuery(function () {
     activeNav.parents(".accordion-item").addClass("active");
   };
 
+// Function to close menus on pressing the "Escape" key
+  function closeDropdownOnEscape () {
+    if (event.key === 'Escape') {
+      $('#module-list').removeClass('open');
+      $('#version-list').removeClass('open');
+    }
+  };
+
   // MODULE DROPDOWN: dropdown menu functionality (handles main product dropdown)
-  $("#module-dropdown").on("click", function (e) {
+
+  // Actions that occur on click and escape button press
+  $('#module-dropdown').on('click', function (e) {
     e.preventDefault();
     e.stopPropagation();
 
-    $("#module-list").toggleClass("open");
+    $('#module-list').toggleClass('open');
 
     $(document).one('click', function closeMenu(e) {
       if ($('#module-list').has(e.target).length === 0) {
@@ -45,15 +55,49 @@ jQuery(function () {
       } else {
         $(document).one('click', closeMenu);
       }
+    }).closeDropdownOnEscape();
+  });
+
+  // Enables tabbing through the module menu
+  $('#module-dropdown').on('keypress keydown', function(e) {
+    if(e.keyCode == 13) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    $('#module-list')
+      .toggleClass('open')
+      .setAttribute('aria-hidden', 'false')
+      .setAttribute('aria-expanded', 'true');
+    return false;
+    }
+   // if user doesn't open product submenu, move focus to version menu item
+    let submenu = $('#module-list')
+    if(!submenu.hasClass('open')) {
+      $('#version-list').focus();
+    }
+
+    // close docs dropdown menu when tabbing to the version dropdown
+    $('#version-dropdown').on('focus', function(e) {
+      $('#module-list').removeClass('open');
+    });
+
+    // close product or version dropdown menu when tabbing on the first navigation menu item
+    $('.accordion-link').on('focus', function(e) {
+      $('#module-list').removeClass('open');
+      $('#version-list').removeClass('open');
+    });
+
+    $(document).on('keypress keydown', function(e) {
+        closeDropdownOnEscape()
     });
   });
 
   // VERSION DROPDOWN: dropdown menu functionality (handles plugin detail page, lua, and main versions dropdown)
-  $("#version-dropdown").on("click", function (e) {
+  $('#version-dropdown').on('click', function (e) {
     e.preventDefault();
     e.stopPropagation();
 
-    $("#version-list").toggleClass("open");
+    $('#version-list').toggleClass('open');
 
     $(document).one('click', function closeMenu(e) {
       if ($('#version-list').has(e.target).length === 0) {
@@ -61,24 +105,41 @@ jQuery(function () {
       } else {
         $(document).one('click', closeMenu);
       }
+    }).closeDropdownOnEscape();
+  });
+
+  // Enables tabbing through the version menu
+  $('#version-dropdown').on('keypress keydown', function(e) {
+    if(e.keyCode == 13) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    $('#version-list')
+      .toggleClass('open')
+      .setAttribute('aria-hidden', 'false')
+      .setAttribute('aria-expanded', 'true');
+    return false;
+    }
+    $(document).on('keypress keydown', function(e) {
+      closeDropdownOnEscape ()
     });
   });
 
-    // COMPAT DROPDOWN: dropdown menu functionality (handles /konnect-platform/compatibility dropdown)
-    $("#compat-dropdown").on("click", function(e) {
-      e.preventDefault();
-      e.stopPropagation();
+  // COMPAT DROPDOWN: dropdown menu functionality (handles /konnect-platform/compatibility dropdown)
+  $("#compat-dropdown").on("click", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
 
-      $("#compat-list").toggleClass("open");
+    $("#compat-list").toggleClass("open");
 
-      $(document).one('click', function closeMenu (e){
-          if($('#compat-list').has(e.target).length === 0){
-              $('#compat-list').removeClass('open');
-          } else {
-              $(document).one('click', closeMenu);
-          }
-      });
+    $(document).one('click', function closeMenu (e){
+        if($('#compat-list').has(e.target).length === 0){
+            $('#compat-list').removeClass('open');
+        } else {
+            $(document).one('click', closeMenu);
+        }
     });
+  });
 
   // COOKIE MODAL: Hide banner on "I accept" and set cookie
   $(".cookie-policy-accept").on("click", function (e) {
