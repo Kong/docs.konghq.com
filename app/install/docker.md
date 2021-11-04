@@ -73,10 +73,8 @@ Here is a quick example showing how to connect a Kong container to a Cassandra o
     Kong 0.15, 1.0, and above.
 
 4. **Start Kong**
-   
-   **Warnings:**
-   
-   - *The settings below are intended for non-production use and override the default `admin_listen` setting to listen for requests from any source. Do not use these setting in environments directly exposed to the internet.*
+
+{% include_cached /md/admin-listen.md desc='long' %}
 
     When the migrations have run and your database is ready, start a Kong
     container that will connect to your database container, just like the
@@ -177,9 +175,7 @@ The steps involved in starting Kong in [DB-less mode] are the following:
 
 4. **Start Kong in DB-less mode**
 
-   **Warnings:**
-   
-   - *The settings below are intended for non-production use and override the default admin_listen setting to listen for requests from any source. Do not use these setting in environments directly exposed to the internet.*
+{% include_cached /md/admin-listen.md desc='long' %}
 
    Although it's possible to start the Kong container with just `KONG_DATABASE=off`, it is usually
    desirable to also include the declarative configuration file as a parameter via the

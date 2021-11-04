@@ -204,6 +204,8 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 2. It is necessary to update the administration API setting to listen on the needed network interfaces on the Amazon Linux host. A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
 
+{% include_cached /md/admin-listen.md desc='long' %}
+
     ```
     admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
     ```
