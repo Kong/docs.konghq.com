@@ -6,23 +6,17 @@ title: Install Kong Gateway on Docker
 <!-- The install-link and install-listing-link classes are used for tracking, do not remove -->
 
 {:.install-banner}
-> See the list of Docker tags and pull the
-> [**Kong Gateway Docker image**](https://hub.docker.com/r/kong/kong-gateway/tags){:.install-listing-link}
+> See the list of Docker tags and pull the Docker image:
+> * [**Kong Gateway**](https://hub.docker.com/r/kong/kong-gateway/tags){:.install-listing-link}
+> * [**Kong Gateway (OSS)**](https://hub.docker.com/_/kong){:.install-listing-link}
 >
 > (latest {{site.base_gateway}} version: {{site.data.kong_latest_ee.version}})
 
-Details about how to use Kong in Docker can also be found on the DockerHub repository hosting the image: [kong](https://hub.docker.com/_/kong/). We also have a [Docker Compose template](https://github.com/Kong/docker-kong/tree/master/compose) with built-in orchestration and scalability.
-
 {{site.base_gateway}} supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore. This guide provides steps to configure PostgreSQL.
 
+If you prefer to use the open-source {{site.base_gateway}} image with Docker Compose, Kong also provides a [Docker Compose template](https://github.com/Kong/docker-kong/tree/master/compose) with built-in orchestration and scalability.
 This software is governed by the
 [Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
-
-## Deployment options
-
-The following instructions assume that you are deploying {{site.base_gateway}} in [classic embedded mode](/enterprise/{{include.kong_version}}/deployment/deployment-options).
-
-If you want to run {{site.base_gateway}} in Hybrid mode, the instructions in this topic will walk you though setting up a Control Plane instance. Afterward, you will need to bring up additional gateway instances for the Data Planes, and perform further configuration steps. See [Hybrid Mode Setup](/enterprise/{{include.kong_version}}/deployment/hybrid-mode-setup) for details.
 
 ## Prerequisites
 
@@ -30,11 +24,16 @@ For this installation, you'll need a Docker-enabled system with proper Docker ac
 
 ## Install Gateway with a database
 
-1. **Pull the Docker image**
+1. Pull the Docker image:
+    ```bash
+    # Kong Gateway 
+     docker pull kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+     ```
 
-   ```bash
-   docker pull kong/kong-gateway:{{include.kong_versions[13].version}}-alpine
-   ```
+    ```bash
+    # Kong Gateway (OSS)
+    docker pull kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
+    ```
 
    {:.important}
    > Some [older {{site.base_gateway}} images](https://support.konghq.com/support/s/article/Downloading-older-Kong-versions)
@@ -44,13 +43,18 @@ For this installation, you'll need a Docker-enabled system with proper Docker ac
 
    You should now have your {{site.base_gateway}} image locally.
 
-2. **Tag the image**
+2. Tag the image:
 
-   ```bash
-   docker tag kong/kong-gateway:{{include.kong_versions[13].version}}-alpine kong
-   ```
+    ```bash
+    # Kong Gateway 
+     docker tag kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine kong-ee
+     ```
+    ```bash
+    # Kong Gateway (OSS)
+    docker tag kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kong
+    ```
 
-3. **Create a Docker network**
+3. Create a Docker network:
 
    Create a custom network to allow the containers to discover and communicate with each other.
 
@@ -72,16 +76,16 @@ For this installation, you'll need a Docker-enabled system with proper Docker ac
      postgres:9.6
    ```
 
-5. **Prepare the Kong database**
+5. Prepare the Kong database:
 
    <pre><code>docker run --rm --network=kong-net \
      -e "KONG_DATABASE=postgres" \
-     -e "KONG_PG_HOST=kong-ee-database" \
+     -e "KONG_PG_HOST=kong-database" \
      -e "KONG_PG_PASSWORD=kong" \
      -e "KONG_PASSWORD=<div contenteditable="true">{PASSWORD}</div>" \
      kong kong migrations bootstrap</code></pre>
 
-6. **Start Gateway with Kong Manager**
+6. Start Gateway:
 
    <pre><code>docker run -d --name kong --network=kong-net \
      -e "KONG_DATABASE=postgres" \
@@ -106,7 +110,7 @@ For this installation, you'll need a Docker-enabled system with proper Docker ac
    {:.note}
    > **Note**: The `HOSTNAME` for `KONG_PORTAL_GUI_HOST` should be preceded by a protocol, for example, `http://`.
 
-7. **Verify your installation**
+7. Verify your installation:
 
     Access the `/services` endpoint using the Admin API:
 
@@ -114,15 +118,16 @@ For this installation, you'll need a Docker-enabled system with proper Docker ac
 
     You should receive a `200` status code.
 
-    Verify that Kong Manager is running by accessing it using the URL specified in `KONG_ADMIN_GUI_URL`:
+  8. (Not available in OSS) Verify that Kong Manager is running by accessing it using the URL specified in `KONG_ADMIN_GUI_URL`:
 
     <pre><code>http://<div contenteditable="true">{HOSTNAME}</div>:8002</code></pre>
 
-## Install Gateway in DB-less mode
+## Install Gateway in DB-less mode 
+{:.badge .oss}
 
 The steps involved in starting Kong in [DB-less mode] are the following:
 
-1. **Create a Docker network**
+1. Create a Docker network:
 
     This is the same as in the Pg/Cassandra guide. We're also using `kong-net` as the
     network name and it can also be changed to something else.
@@ -135,7 +140,7 @@ The steps involved in starting Kong in [DB-less mode] are the following:
     precaution in case you want to add other things in the future (like a rate-limiting plugin
     backed up by a Redis cluster).
 
-2. **Create a Docker volume**
+2. Create a Docker volume:
 
     For the purposes of this guide, a [Docker Volume] is a folder inside the host machine which
     can be mapped into a folder in the container. Volumes have a name. In this case we're going
@@ -169,7 +174,7 @@ The steps involved in starting Kong in [DB-less mode] are the following:
 
     Notice the `MountPoint` entry. We will need that path in the next step.
 
-3. **Prepare your declarative configuration file**
+3. Prepare your declarative configuration file:
 
     The syntax and properties are described on the [Declarative Configuration Format] guide.
 
@@ -181,7 +186,7 @@ The steps involved in starting Kong in [DB-less mode] are the following:
     guide, that would be `/var/lib/docker/volumes/kong-vol/_data/kong.yml`
 
 
-4. **Start Kong in DB-less mode**
+4. Start Kong in DB-less mode:
 
    Although it's possible to start the Kong container with just `KONG_DATABASE=off`, it is usually
    desirable to also include the declarative configuration file as a parameter via the
@@ -207,9 +212,7 @@ The steps involved in starting Kong in [DB-less mode] are the following:
         kong:latest
     ```
 
-4. **Use Kong**
-
-    Kong should be running and it should contain some of the entities added in kong.yml:
+4. Verify that {{site.base_gateway}} is running:
 
     ```bash
     curl -i http://localhost:8001/
