@@ -115,3 +115,10 @@ your interest.
 [configuring-a-service]: /gateway-oss/{{page.kong_version}}/getting-started/configuring-a-service
 [enabling-plugins]: /gateway-oss/{{page.kong_version}}/getting-started/enabling-plugins
 [getting-started]: /getting-started-guide/latest/overview
+
+## Support policy
+Kong primarily follows a [semantic versioning](https://semver.org/) (SemVer)
+model for its products. 
+
+For the latest version support information for  {{site.ee_product_name}} and
+{{site.mesh_product_name}}, see our [version support policy](/konnect-platform/support-policy).

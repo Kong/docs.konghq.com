@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 50 49">
-    <g fill="none" fill-rule="evenodd" stroke-width="2">
+    <g fill="none" fill-rule="evenodd" stroke-width="4">
         <path stroke="#1155CB" d="M11.897 3.5l5.777 9.149m-5.136 4.889L3 12.09m42 22.037L35.907 29.5m-5.635 5.363l4.856 8.636" transform="translate(1 1)"/>
         <path stroke="#004B80" d="M36.103 3.5l-5.777 9.149m5.136 4.889L45 12.09M3 34.127l9.093-4.626m5.635 5.363L12.872 43.5" transform="translate(1 1)"/>
         <g stroke="#3A8FE6">

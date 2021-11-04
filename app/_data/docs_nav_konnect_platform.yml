@@ -2,6 +2,10 @@
   icon: /assets/images/icons/documentation/icn-flag.svg
   url: /konnect-platform
 
+- title: Version Support Policy
+  icon: /assets/images/icons/documentation/icn-support.svg
+  url: /konnect-platform/support-policy
+
 - title: Konnect Plans
   icon: /assets/images/icons/documentation/icn-references-color.svg
   url: /konnect-platform/plans
