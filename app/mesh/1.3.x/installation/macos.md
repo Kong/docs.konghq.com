@@ -11,6 +11,9 @@ To install and run {{site.mesh_product_name}} on macOS,:
 Finally, you can follow the [Quickstart](#4-quickstart) to take it from here
 and continue your {{site.mesh_product_name}} journey.
 
+{:.important .no-icon}
+> FIPS compliance is not supported on macOS.
+
 ## Prerequisites
 
 You have a license for {{site.mesh_product_name}}.

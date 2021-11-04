@@ -209,10 +209,10 @@ params:
 
 ---
 
-### Enabling on a service-less route
+### Enable on a service-less route
 
 ```bash
-$ curl -X POST http://kong:8001/routes/my-route/plugins \
+curl -X POST http://kong:8001/routes/my-route/plugins \
     --data "name=kafka-upstream" \
     --data "config.bootstrap_servers[1].host=localhost" \
     --data "config.bootstrap_servers[1].port=9092" \
@@ -295,7 +295,10 @@ Known limitations:
 
 ## Quickstart
 
-The following guidelines assume that {{site.base_gateway}} is installed and the Kafka Upstream plugin is enabled.
+The following steps assume that {{site.base_gateway}} is installed and the Kafka Upstream plugin is enabled.
+
+{:.note}
+> **Note**: We use `zookeeper` in the following example, which is not required or has been removed on some Kafka versions. Refer to the [Kafka ZooKeeper documentation](https://kafka.apache.org/documentation/#zk) for more information.
 
 1. Create a `kong-upstream` topic in your Kafka cluster:
 
