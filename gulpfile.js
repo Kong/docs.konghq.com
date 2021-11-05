@@ -33,7 +33,7 @@ var sources = {
     paths.assets + "javascripts/feedback-widget.js",
     // uncomment the path to promo-banner.js when adding a new promo banner
     // also uncomment the promo banner sections in app/_assets/stylesheets/header.less and /app/_includes/nav-v2.html -->
-    // paths.assets + "javascripts/promo-banner.js",
+    paths.assets + "javascripts/promo-banner.js",
     paths.assets + "javascripts/copy-code-snippet-support.js"
   ],
   images: paths.assets + "images/**/*",

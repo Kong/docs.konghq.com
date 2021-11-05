@@ -60,7 +60,7 @@ page.kong_latest.release %}
             {% unless page.no_version == true %}
               <div class="content-version">
                 {{page.kong_version}}
-                  {% if page.kong_version == page.kong_latest.release %}
+                  {% if page.kong_version == page.kong_latest.release and page.edition != 'gateway-oss' and page.edition != 'enterprise' and page.edition != 'getting-started-guide' %}
                   <span>(latest)</span>
                 {% endif %}
               </div>
@@ -69,18 +69,15 @@ page.kong_latest.release %}
               {% include_cached breadcrumbs.html edition=page.edition no_version=page.no_version has_version=page.has_version kong_version=page.kong_version url=page.url dir=page.dir%}
             {% endunless %}
           </div>
-          {% if page.edition == 'gateway-oss' %}
-            <div class="alert alert-ee">
-            Maybe you were looking for the <a href="/enterprise">
-                <strong>{{site.ee_product_name}} documentation</strong>
-              </a>
-            instead?
-          </div>
+          {% if page.edition == 'gateway-oss' or page.edition == 'enterprise' %}
+          <blockquote class="note">
+            The <a href="/gateway/">latest {{site.base_gateway}} documentation </a> is now available as a combined doc set for both open-source and Enterprise Gateway.
+          </blockquote>
           {% endif %}
             {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
               <div class="alert alert-warning">
               You are browsing documentation for an outdated version. See the
-              <a href="{% if latest_page_exists == 'true' %}{{latest_page_url}}{% elsif page.edition == 'gateway-oss'%}/gateway-oss/{% elsif page.edition == 'enterprise'%}/enterprise/{% elsif page.edition == 'mesh'%}/mesh/{% elsif page.edition == 'kubernetes-ingress-controller/'%}/kubernetes-ingress-controller/{% else %}/{% endif %}">
+              <a href="{% if latest_page_exists == 'true' %}{{latest_page_url}}{% elsif page.edition == 'gateway-oss' or page.edition == 'enterprise' or page.edition == 'gateway' %}/gateway/{% elsif page.edition == 'mesh'%}/mesh/{% elsif page.edition == 'kubernetes-ingress-controller/'%}/kubernetes-ingress-controller/{% else %}/{% endif %}">
                 latest documentation here</a>.
               </div>
             {% endif %}

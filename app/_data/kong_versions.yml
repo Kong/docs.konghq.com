@@ -1,4 +1,5 @@
 -
+# Old OSS Gateway docs
   release: "0.2.x"
   version: "0.2.1"
   edition: "gateway-oss"
@@ -294,20 +295,7 @@
     libyaml: "0.2.5"
     pcre: "8.44"
 -
-  release: "2.6.x"
-  version: "2.6.0"
-  edition: "gateway-oss"
-  luarocks_version: "2.5.1-0"
-  dependencies:
-    luajit: "2.1.0-beta3"
-    luarocks: "3.7.0"
-    cassandra: "3.x.x"
-    postgres: "9.5+"
-    openresty: "1.19.3.2"
-    openssl: "1.1.1k"
-    libyaml: "0.2.5"
-    pcre: "8.44"
--
+# Old Enterprise Gateway docs
   release: "0.31-x"
   version: "0.31"
   edition: "enterprise"
@@ -464,24 +452,23 @@
     postgres: "9.5+"
     openresty: "1.19.3.1"
   lua_doc: true
-
 -
+# Combined Gateway docs (single-sourced)
   release: "2.6.x"
-  version: "2.6.0.0"
-  edition: "enterprise"
-  luarocks_version: "2.2.0.0"
+  ee-version: "2.6.0.0"
+  ce-version: "2.6.0"
+  edition: "gateway"
+  luarocks_version: "2.5.1-0"
   dependencies:
     luajit: "2.1.0-beta3"
     luarocks: "3.7.1"
     cassandra: "3.x.x"
     postgres: "9.5+"
-    openresty: "1.19.3.1"
+    openresty: "1.19.3.2"
+    openssl: "1.1.1k"
+    libyaml: "0.2.5"
+    pcre: "8.44"
   lua_doc: true
--
-  release: "2.6.x"
-  ee-version: "2.6.0.0"
-  ce-version: "2.6.0"
-  edition: "gateway"
 -
   release: "CE-2.0.x_KE-1.5.x"
   version: "CE-2.0.x/KE-1.5.x"
@@ -505,10 +492,6 @@
 -
   release: "2.5.x"
   version: "2.5"
-  edition: "getting-started-guide"
--
-  release: "2.6.x"
-  version: "2.6"
   edition: "getting-started-guide"
 -
   release: "pre-1.7"

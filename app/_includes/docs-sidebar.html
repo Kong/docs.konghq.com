@@ -63,13 +63,20 @@
       <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">
         <span>
           Version {{page.kong_version}}
-          {% if page.kong_version == page.kong_latest.release %}
+          {% if page.kong_version == page.kong_latest.release and page.edition != 'gateway-oss' and page.edition != 'enterprise' and page.edition != 'getting-started-guide' %}
             <span>(latest)</span>
           {% endif %}
         </span>
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu dropdown-menu-right" id="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+        {% if include.edition == 'gateway-oss' or include.edition == 'enterprise' or include.edition == 'getting-started-guide' %}
+        <li role="menuitem" tabindex="-1">
+          <a href="/gateway/">
+            Later versions (Enterprise and OSS)
+          </a>
+        </li>
+        {% endif %}
           {% for ver in include.kong_versions reversed %}
           {% assign version_page_url = include.url | replace: include.kong_version, ver.release %}
           {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}
@@ -79,11 +86,23 @@
             data-version-id="{{ver.release}}"
           >
             {{ver.release}}
-            {% if ver.release == page.kong_latest.release %} <em>(latest)</em>
+            {% if ver.release == page.kong_latest.release and include.edition != 'enterprise' and include.edition != 'gateway-oss' and page.edition != 'getting-started-guide' %} <em>(latest)</em>
             {% endif %}
           </a>
         </li>
         {% endfor %}
+        {% if include.edition == 'gateway' %}
+        <li role="menuitem" tabindex="-1">
+          <a href="/enterprise/">
+            Older Enterprise versions
+          </a>
+        </li>
+        <li role="menuitem" tabindex="-1">
+          <a href="/gateway-oss/">
+            Older OSS versions
+          </a>
+        </li>
+        {% endif %}
       </ul>
     </div>
     {% endunless %}
