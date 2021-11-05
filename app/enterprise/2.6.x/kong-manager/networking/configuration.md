@@ -28,6 +28,8 @@ Common configurations to enable are
   8444 on localhost. Change [`admin_listen`] if necessary, or set
   [`admin_api_uri`].
 
+{% include_cached /md/admin-listen.md desc='short' %}
+
 * Securing Kong Manager and serving it from a dedicated node
 
   When Kong Manager is **secured and served from a dedicated node**,
