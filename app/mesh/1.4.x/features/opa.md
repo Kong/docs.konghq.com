@@ -21,6 +21,56 @@ To apply a policy with OPA:
 - Provide the list of policies with the `conf` property. Policies are defined in the [Rego language](https://www.openpolicyagent.org/docs/latest/policy-language/).
 - Optionally provide custom configuration for the policy agent.
 
+You must also specify the HTTP protocol in your mesh configuration:
+
+{% navtabs %}
+{% navtab Kubernetes %}
+
+Add the HTTP protocol annotation to the Kubernetes Service configuration, with the general syntax `<port>.service.kuma.io/protocol`.
+
+Example:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+  namespace: kong-mesh-example
+  annotations:
+    8080.service.kuma.io/protocol: http # required for OPA support
+spec:
+  selector:
+    app: web
+  ports:
+  - port: 8080
+```
+
+{% endnavtab %}
+{% navtab Universal %}
+
+Add the HTTP protocol tag to the `Dataplane` configuration.
+
+Example:
+
+```yaml
+type: Dataplane
+mesh: default
+name: web
+networking:
+  address: 192.168.0.1 
+  inbound:
+  - port: 80
+    servicePort: 8080
+    tags:
+      kuma.io/service: web
+      kuma.io/protocol: http # required for OPA support
+```
+
+{% endnavtab %}
+{% endnavtabs %}
+
+For more information, see [the Kuma documentation about protocol support](https://kuma.io/docs/latest/policies/protocol-support-in-kuma/).
+
 ### Inline
 
 {% navtabs %}
