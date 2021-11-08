@@ -7,10 +7,10 @@ desc: Constructs the upstream hostname dynamically based on incoming request par
 description: |
   This plugin can be used to dynamically construct upstream hostname with port number based on the key identifier passed in the incoming request. If the same upstream API is deployed in different servers/data centres then this plugin can form the hostname of this upstream API dynamically to route it to particular server/data centre without any change in Kong route or service.
   This plugin extracts the key identifier from incoming request and following are the supported parameters -
-* Header param
-* Query param
-* Path param
-* Json or form-urlencoded request body
+  * Header param
+  * Query param
+  * Path param
+  * Json or form-urlencoded request body
 
 type: plugin
 categories:
