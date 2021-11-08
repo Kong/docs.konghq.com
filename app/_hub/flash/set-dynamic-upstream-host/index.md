@@ -1,6 +1,6 @@
 ---
 name: Set Dynamic Upstream Host
-publisher: Hawkeye
+publisher: Flash
 version: 1.0.0
 
 desc: Constructs the upstream hostname dynamically based on incoming request parameters
@@ -76,16 +76,16 @@ params:
       datatype: string
       description: |
         Variable name which needs to be replaced from `config.upstream_host`.
-        For eg: `config.upstream_host = nodenumber.org`
-        `string_to_replace_from_host = nodenumber`
-        Here `nodenumber` in upstream host will be replaced with actual value coming in incoming request.
+        For eg: If `config.upstream_host = nodenumber.org` and 
+        `string_to_replace_from_host = nodenumber` then
+        `nodenumber` in upstream host will be replaced with actual value coming in incoming request.
     - name: header
       required: semi
       value_in_examples: target
       default:
       datatype: string
       description: |
-        Header param name which will be used to form the upstream host. Only one header name needs to be passed here.
+        Header param name which will be used to form the upstream host. Only one header name is supported.
         For eg: `-H target : httpbin`. Here the value `httpbin` from the header `target` will be used to form the upstream host.
     - name: query_arg
       required: semi
@@ -93,7 +93,7 @@ params:
       default:
       datatype: string
       description: |
-        Query param name which will be used to form the upstream host. Only one query param name needs to be passed here. 
+        Query param name which will be used to form the upstream host. Only one query param name is supported. 
         For eg: `/api?target=httpbin`. Here the value `httpbin` from the query `target` will be used to form the upstream host.
     - name: path_index
       required: semi
@@ -102,15 +102,14 @@ params:
       datatype: number
       description: |
         Path param index which will be used to form the upstream host.
-        For eg: `/api/httpbin`
-        For getting path param path_index here will be 2. Target will have `httpbin` in the hostname.
+        For eg: `/api/httpbin`. Path index is required to get the path param value and here path_index will be 2. Target will have `httpbin` in the hostname.
     - name: body_param
       required: semi
       value_in_examples:
       default:
       datatype: string
       description: |
-        Body parameter name which will be used to form the upstream host.
+        Request body parameter name which will be used to form the upstream host.
         Only `application/json` and `application/x-www-form-urlencoded` content types are supported. For Json message the field name or Json path needs to be passed. 
         For eg: If Json message : `{"target": "httpbin"}`
         and `config.body_param=target` then `target` field in json will be used to form the upstream host. In case of duplicates the entire Json path needs to be provided. 
