@@ -19,6 +19,9 @@ describe "sidebar", type: :feature, js: true do
 
     # If the test is failing, make sure this is the latest version
     latest_version = "2.6.x"
+    # Different option for a latest version, as gateway is split as of 2.6.x
+    # and doesn't work in this way
+    latest_version_deck = "1.8.x"
 
     it "does not show on the latest version" do
       visit "/gateway/#{latest_version}/install-and-run/rhel/"
@@ -26,13 +29,13 @@ describe "sidebar", type: :feature, js: true do
     end
 
     it "links to the same page" do
-      visit "/enterprise/2.1.x/deployment/installation/docker/"
-      expect(first('.alert.alert-warning a')[:href]).to end_with("/enterprise/#{latest_version}/deployment/installation/docker/")
+      visit "/deck/1.7.x/installation/"
+      expect(first('.alert.alert-warning a')[:href]).to end_with("/deck/#{latest_version_deck}/installation/")
     end
 
     it "links to the root when the page no longer exists" do
       visit "/enterprise/0.31-x/postgresql-redhat/"
-      expect(first('.alert.alert-warning a')[:href]).to end_with("/enterprise/")
+      expect(first('.alert.alert-warning a')[:href]).to end_with("/gateway/")
     end
   end
 
