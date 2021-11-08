@@ -73,6 +73,8 @@
       items:
         - text: Deploy Kong Gateway in Hybrid Mode
           url: /plan-and-deploy/hybrid-mode/hybrid-mode-setup
+    - text: Kubernetes Deployment Options
+      url: /plan-and-deploy/kubernetes-deployment-options
     - text: Control Kong Gateway through systemd
       url: /plan-and-deploy/systemd
     - text: Performance Testing Framework
