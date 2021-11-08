@@ -1,6 +1,5 @@
 ---
 title: Installing Kong EE Docker Image
-redirect_from: '/enterprise/0.33-xinstallation/docker'
 ---
 
 ## Introduction

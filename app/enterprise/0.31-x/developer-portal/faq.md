@@ -1,6 +1,5 @@
 ---
 title: FAQ Kong Developer Portal
-redirect_from: '/enterprise/0.31-x/developer-portal/FAQ'
 ---
 
 # FAQ

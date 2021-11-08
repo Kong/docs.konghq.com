@@ -1,8 +1,5 @@
 ---
 title: Kong Deployment Guide
-redirect_from:
-  - /enterprise/0.34-x/kong-implementation-checklist/
-  - /enterprise/0.34-x/deployment-guide/enterprise/0.34-x/developer-portal/configuration/networking/
 ---
 
 ## Introduction

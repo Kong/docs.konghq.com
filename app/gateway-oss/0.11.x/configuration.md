@@ -1,6 +1,5 @@
 ---
 title: Configuration Reference
-redirect_from: "/0.11.x/configuration-reference"
 ---
 
 ## Configuration loading
@@ -585,7 +584,7 @@ Default: `on`
 
 #### latency_tokens
 
-Enables or disables emitting Kong latency information in the `X-Kong-Proxy-Latency` 
+Enables or disables emitting Kong latency information in the `X-Kong-Proxy-Latency`
 and `X-Kong-Upstream-Latency` response header fields.
 
 Default: `on`

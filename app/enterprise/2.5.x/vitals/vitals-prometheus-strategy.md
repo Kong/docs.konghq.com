@@ -1,6 +1,5 @@
 ---
 title: Vitals with Prometheus
-redirect_from: "/enterprise/2.1.x/admin-api/vitals/vitals-prometheus-strategy"
 ---
 
 This document covers integrating Kong Vitals with a new or existing Prometheus

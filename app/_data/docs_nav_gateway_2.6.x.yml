@@ -41,7 +41,7 @@
         - text: Adding Consumers
           url: /get-started/quickstart/adding-consumers
     - text: Comprehensive Guide
-      url: /get-started/comprehensive/overview
+      url: /get-started/comprehensive
       items:
         - text: Prepare to Administer
           url: /get-started/comprehensive/prepare
@@ -62,6 +62,7 @@
 
 - title: Plan and Deploy
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
+  url: /plan-and-deploy
   items:
     - text: Running Kong as a Non-Root User
       url: /plan-and-deploy/kong-user
@@ -173,7 +174,7 @@
   icon: /assets/images/icons/documentation/icn-vitals.svg
   items:
     - text: Kong Vitals
-      url: /vitals/overview
+      url: /vitals
       items:
         - text: Metrics
           url: /vitals/vitals-metrics
@@ -184,7 +185,7 @@
         - text: Vitals with Prometheus
           url: /vitals/vitals-prometheus-strategy
     - text: Kong Immunity
-      url: /immunity/overview
+      url: /immunity
       items:
         - text: Installation and Configuration
           url: /immunity/install-configure
@@ -417,37 +418,37 @@
           url: /pdk/pdk-reference/kong.table
 
     - text: Plugin Development Guide
-      url: /plugin-development
+      url: /pdk/plugin-development
       items:
         - text: Introduction
-          url: /plugin-development
+          url: /pdk/plugin-development
 
         - text: File structure
-          url: /plugin-development/file-structure
+          url: /pdk/plugin-development/file-structure
 
         - text: Implementing custom logic
-          url: /plugin-development/custom-logic
+          url: /pdk/plugin-development/custom-logic
 
         - text: Plugin configuration
-          url: /plugin-development/plugin-configuration
+          url: /pdk/plugin-development/plugin-configuration
 
         - text: Accessing the datastore
-          url: /plugin-development/access-the-datastore
+          url: /pdk/plugin-development/access-the-datastore
 
         - text: Storing custom entities
-          url: /plugin-development/custom-entities
+          url: /pdk/plugin-development/custom-entities
 
         - text: Caching custom entities
-          url: /plugin-development/entities-cache
+          url: /pdk/plugin-development/entities-cache
 
         - text: Extending the Admin API
-          url: /plugin-development/admin-api
+          url: /pdk/plugin-development/admin-api
 
         - text: Writing tests
-          url: /plugin-development/tests
+          url: /pdk/plugin-development/tests
 
         - text: (un)Installing your plugin
-          url: /plugin-development/distribution
+          url: /pdk/plugin-development/distribution
 
     - text: Plugins in Other Languages
       url: /reference/external-plugins

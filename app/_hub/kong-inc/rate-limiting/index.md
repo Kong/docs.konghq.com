@@ -1,8 +1,6 @@
 ---
 name: Rate Limiting
 publisher: Kong Inc.
-redirect_from:
-  - /enterprise/0.35-x/rate-limiting/
 version: 2.2.x
 
 desc: Rate-limit how many HTTP requests can be made in a period of time
@@ -243,13 +241,13 @@ include [Redis Sentinel](https://redis.io/topics/sentinel) support. Only [Kong E
 
 ### Every transaction counts
 
-In this scenario, because accuracy is important, the `local` policy is not an option. Consider the support effort you might need 
-for Redis, and then choose either `cluster` or `redis`. 
+In this scenario, because accuracy is important, the `local` policy is not an option. Consider the support effort you might need
+for Redis, and then choose either `cluster` or `redis`.
 
 You could start with the `cluster` policy, and move to `redis`
-if performance reduces drastically. 
+if performance reduces drastically.
 
-Do remember that you cannot port the existing usage metrics from the datastore to Redis. 
+Do remember that you cannot port the existing usage metrics from the datastore to Redis.
 This might not be a problem with shortlived metrics (for example, seconds or minutes)
 but if you use metrics with a longer time frame (for example, months), plan
 your switch carefully.
@@ -257,7 +255,7 @@ your switch carefully.
 ### Backend protection
 
 If accuracy is of lesser importance, choose the `local` policy. You might need to experiment a little
-before you get a setting that works for your scenario. As the cluster scales to more nodes, more user requests are handled. 
+before you get a setting that works for your scenario. As the cluster scales to more nodes, more user requests are handled.
 When the cluster scales down, the probability of false negatives increases. So, adjust your limits when scaling.
 
 For example, if a user can make 100 requests every second, and you have an
@@ -277,4 +275,3 @@ selected header was not sent by the client or the configured service was not fou
 [api-object]: /gateway-oss/latest/admin-api/#api-object
 [configuration]: /gateway-oss/latest/configuration
 [consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
-

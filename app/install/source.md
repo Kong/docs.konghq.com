@@ -5,7 +5,6 @@ header_title: Compile Source
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:
   Installation: /install
-redirect_from: /install/compile/
 ---
 
 {% capture luajit_version %}{{site.data.kong_latest.dependencies.luajit}}{% endcapture %}

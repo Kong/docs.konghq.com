@@ -1,9 +1,5 @@
 ---
 title: Dev Portal SMTP Configuration
-redirect_from:
-  - /enterprise/0.34-x/configuration/developer-portal/smtp
-  - /enterprise/0.34-x/developer-portal/smtp
-toc: false
 ---
 
 ## Introduction

@@ -3,7 +3,6 @@ id: page-install-method aws-cloudformation
 title: Install - AWS Cloud Formation
 header_title: AWS Cloud Formation
 header_icon: /assets/images/icons/icn-installation.svg
-redirect_from: /install/aws/
 breadcrumbs:
   Installation: /install
 links:

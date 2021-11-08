@@ -1,8 +1,6 @@
 ---
 title: Getting Started Guide
 subtitle: A single guide for both {{site.ce_product_name}} and {{site.ee_product_name}}
-redirect_from:
-  - /enterprise/latest/getting-started/
 ---
 This Getting Started Guide walks you through foundational API gateway concepts,
 features, and capabilities.

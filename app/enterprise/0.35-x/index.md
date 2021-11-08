@@ -1,7 +1,6 @@
 ---
 title: Documentation for Kong Gateway (Enterprise)
 subtitle: Formerly known as Kong Enterprise, now part of Kong Konnect
-redirect_from: '/enterprise/0.35-xhttps://konghq.com/hub'
 is_homepage: true
 ---
 

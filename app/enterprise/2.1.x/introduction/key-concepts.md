@@ -1,8 +1,5 @@
 ---
 title: Key Concepts and Terminology
-toc: true
-redirect_from:
-  - /enterprise/getting-started/{{page.kong_version}}/key-concepts
 ---
 
 Kong Enterprise uses common terms for entities and processes that have a specific meaning in context. This topic provides a conceptual overview of terms, and how they apply to Kong’s use cases.

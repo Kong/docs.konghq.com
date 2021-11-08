@@ -1,12 +1,6 @@
 ---
 title: Alert Slack Integration
-toc: true
-redirect_from:
-  - /enterprise/2.2.x/brain-immunity/slack-integration
 ---
-
-
-## Introduction
 
 Immunity can send Slack notifications for unusual traffic, using a Slack webhook to post messages to a Slack workspace. To obtain a webhook URL, use the steps in this topic.
 

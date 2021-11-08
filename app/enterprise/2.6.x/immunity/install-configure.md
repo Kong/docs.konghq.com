@@ -1,8 +1,5 @@
 ---
 title: Kong Immunity Installation and Configuration
-toc: true
-redirect_from:
-  - /enterprise/2.2.x/brain-immunity/install-configure
 ---
 
 ## Introduction

@@ -1,12 +1,5 @@
 ---
 title: Kong Immunity Overview
-toc: true
-redirect_from:
-  - /enterprise/2.2.x/brain-immunity/overview
-  - /enterprise/2.2.x/brain-immunity/auto-generated-specs
-  - /enterprise/latest/brain-immunity/auto-generated-specs
-  - /enterprise/2.2.x/brain-immunity/service-map
-  - /enterprise/latest/brain-immunity/auto-generated-specs
 ---
 
 

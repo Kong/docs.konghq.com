@@ -1,7 +1,5 @@
 ---
 title: Getting Started Guide
-redirect_from:
-  - /enterprise/latest/getting-started/
 ---
 
 In this guide, you will:
