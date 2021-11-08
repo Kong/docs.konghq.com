@@ -11,6 +11,11 @@ description: |
   * Query param
   * Path param
   * Json or form-urlencoded request body
+  
+  
+support_url: https://github.com/anup-krai/kong-plugin-set-dynamic-target-host/issues
+source_url: https://github.com/anup-krai/kong-plugin-set-dynamic-target-host
+license_type: Apache-2.0 
 
 type: plugin
 categories:
