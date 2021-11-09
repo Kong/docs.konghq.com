@@ -372,85 +372,85 @@
         - text: Securing the Admin API
           url: /admin-api/secure-admin-api
     - text: Plugin Development Kit
-      url: /pdk/pdk-reference
+      url: /pdk
       items:
         - text: kong.client
-          url: /pdk/pdk-reference/kong.client
+          url: /pdk/kong.client
 
         - text: kong.client.tls
-          url: /pdk/pdk-reference/kong.client.tls
+          url: /pdk/kong.client.tls
 
         - text: kong.cluster
-          url: /pdk/pdk-reference/kong.cluster
+          url: /pdk/kong.cluster
 
         - text: kong.ctx
-          url: /pdk/pdk-reference//kong.ctx
+          url: /pdk/kong.ctx
 
         - text: kong.ip
-          url: /pdk/pdk-reference/kong.ip
+          url: /pdk/kong.ip
 
         - text: kong.log
-          url: /pdk/pdk-reference/kong.log
+          url: /pdk/kong.log
 
         - text: kong.nginx
-          url: /pdk/pdk-reference/kong.nginx
+          url: /pdk/kong.nginx
 
         - text: kong.node
-          url: /pdk/pdk-reference/kong.node
+          url: /pdk/kong.node
 
         - text: kong.request
-          url: /pdk/pdk-reference/kong.request
+          url: /pdk/kong.request
 
         - text: kong.response
-          url: /pdk/pdk-reference/kong.response
+          url: /pdk/kong.response
 
         - text: kong.router
-          url: /pdk/pdk-reference/kong.router
+          url: /pdk/kong.router
 
         - text: kong.service
-          url: /pdk/pdk-reference/kong.service
+          url: /pdk/kong.service
 
         - text: kong.service.request
-          url: /pdk/pdk-reference/kong.service.request
+          url: /pdk/kong.service.request
 
         - text: kong.service.response
-          url: /pdk/pdk-reference/kong.service.response
+          url: /pdk/kong.service.response
 
         - text: kong.table
-          url: /pdk/pdk-reference/kong.table
+          url: /pdk/kong.table
 
     - text: Plugin Development Guide
-      url: /pdk/plugin-development
+      url: /plugin-development
       items:
         - text: Introduction
-          url: /pdk/plugin-development
+          url: /plugin-development
 
         - text: File structure
-          url: /pdk/plugin-development/file-structure
+          url: /plugin-development/file-structure
 
         - text: Implementing custom logic
-          url: /pdk/plugin-development/custom-logic
+          url: /plugin-development/custom-logic
 
         - text: Plugin configuration
-          url: /pdk/plugin-development/plugin-configuration
+          url: /plugin-development/plugin-configuration
 
         - text: Accessing the datastore
-          url: /pdk/plugin-development/access-the-datastore
+          url: /plugin-development/access-the-datastore
 
         - text: Storing custom entities
-          url: /pdk/plugin-development/custom-entities
+          url: /plugin-development/custom-entities
 
         - text: Caching custom entities
-          url: /pdk/plugin-development/entities-cache
+          url: /plugin-development/entities-cache
 
         - text: Extending the Admin API
-          url: /pdk/plugin-development/admin-api
+          url: /plugin-development/admin-api
 
         - text: Writing tests
-          url: /pdk/plugin-development/tests
+          url: /plugin-development/tests
 
         - text: (un)Installing your plugin
-          url: /pdk/plugin-development/distribution
+          url: /plugin-development/distribution
 
     - text: Plugins in Other Languages
       url: /reference/external-plugins
