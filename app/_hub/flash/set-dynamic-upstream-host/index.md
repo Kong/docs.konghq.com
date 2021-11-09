@@ -3,14 +3,14 @@ name: Set Dynamic Upstream Host
 publisher: Flash
 version: 1.0.0
 
-desc: Constructs the upstream hostname dynamically based on incoming request parameters
+desc: Constructs the upstream hostname dynamically based on the incoming request parameters
 description: |
-  This plugin can be used to dynamically construct upstream hostname with port number based on the key identifier passed in the incoming request. If the same upstream API is deployed in different servers/data centres then this plugin can form the hostname of this upstream API dynamically to route it to particular server/data centre without any change in Kong route or service.
-  This plugin extracts the key identifier from incoming request and following are the supported parameters -
+  This plugin can be used to dynamically construct upstream hostname and port number based on the key identifier passed in the incoming request. If the same upstream api is deployed in different servers or data centers, then this plugin can form the hostname for the upstream api dynamically to route it to particular server or data center without making any change in Kong route or service.
+  This plugin extracts the key identifier from the incoming request and following are the supported parameters -
   * Header param
   * Query param
   * Path param
-  * Json or form-urlencoded request body
+  * Body param
   
   
 support_url: https://github.com/anup-krai/kong-plugin-set-dynamic-target-host/issues
@@ -59,9 +59,8 @@ params:
       value_in_examples: "nodenumber.org"
       datatype: string
       description: |
-        Upstream host with the variable name which will be replaced by the plugin. 
-        For eg: `nodenumber.org`
-        Here `nodenumber` will be replaced with actual value coming in incoming request.
+        Upstream host with the variable string which has to be replaced by the plugin.
+        For eg: `config.upstream_host` is set to `nodenumber.org`
     - name: upstream_port
       required: false
       default: "443"
@@ -75,10 +74,10 @@ params:
       value_in_examples: nodenumber
       datatype: string
       description: |
-        Variable name which needs to be replaced from `config.upstream_host`.
-        For eg: If `config.upstream_host = nodenumber.org` and 
-        `string_to_replace_from_host = nodenumber` then
-        `nodenumber` in upstream host will be replaced with actual value coming in incoming request.
+        String which needs to be replaced from `config.upstream_host` parameter.
+        For eg: If `config.upstream_host` is set to `nodenumber.org` and 
+        `config.string_to_replace_from_host` is set to `nodenumber` then
+        `nodenumber` string in the upstream host will be replaced with the key identifier value coming in the incoming request dynamically.
     - name: header
       required: semi
       value_in_examples: target
@@ -86,7 +85,8 @@ params:
       datatype: string
       description: |
         Header param name which will be used to form the upstream host. Only one header name is supported.
-        For eg: `-H target : httpbin`. Here the value `httpbin` from the header `target` will be used to form the upstream host.
+        For eg: `-H target : httpbin`. Here the value `httpbin` from the header `target` will be used to form the upstream host. 
+        Final upstream hostname formed here is `httpbin.org` and Kong will make a call to this host.
     - name: query_arg
       required: semi
       value_in_examples:
@@ -94,7 +94,8 @@ params:
       datatype: string
       description: |
         Query param name which will be used to form the upstream host. Only one query param name is supported. 
-        For eg: `/api?target=httpbin`. Here the value `httpbin` from the query `target` will be used to form the upstream host.
+        For eg: `/api?target=httpbin`. Here the value `httpbin` from the query param `target` will be used to form the upstream host.
+        Final upstream hostname formed here is `httpbin.org` and Kong will make a call to this host.
     - name: path_index
       required: semi
       value_in_examples:
@@ -102,7 +103,9 @@ params:
       datatype: number
       description: |
         Path param index which will be used to form the upstream host.
-        For eg: `/api/httpbin`. Path index is required to get the path param value and here path_index will be 2. Target will have `httpbin` in the hostname.
+        For eg: `/api/httpbin`. Path index is required to get the path param value and here in this example path_index value is 2. 
+        Based on the path index, `httpbin` string will be extracted from the uri.
+        Final upstream hostname formed here is `httpbin.org` and Kong will make a call to this host.
     - name: body_param
       required: semi
       value_in_examples:
@@ -110,10 +113,11 @@ params:
       datatype: string
       description: |
         Request body parameter name which will be used to form the upstream host.
-        Only `application/json` and `application/x-www-form-urlencoded` content types are supported. For Json message the field name or Json path needs to be passed. 
-        For eg: If Json message : `{"target": "httpbin"}`
-        and `config.body_param=target` then `target` field in json will be used to form the upstream host. In case of duplicates the entire Json path needs to be provided. 
-        For form-urlencoded if `--data-urlencode 'target=httpbin'` and `config.body_param=target`then `target` field in form body will be used to form the upstream host.
+        Only `application/json` and `application/x-www-form-urlencoded` content types are supported. For Json message, the field name or Json path needs to be passed. 
+        For eg: If Json message is `{"target": "httpbin"}`
+        and `config.body_param=target` then `httpbin` value from the `target` field in the json will be used to form the upstream host. 
+        In case of duplicates (target field in json) the entire Json path needs to be provided. 
+        For form-urlencoded payload if `--data-urlencode 'target=httpbin'` and `config.body_param=target` then `httpbin` value from the `target` field in the form body will be used to construct the upstream host.
   extra: |
     Note : At any point of time only one parameter is supported and at least one is required.
 ---
