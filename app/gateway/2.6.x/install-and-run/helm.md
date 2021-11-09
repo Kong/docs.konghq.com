@@ -81,7 +81,7 @@ kubectl create secret generic kong-session-config \
 
 ## Create `values.yaml` file
 
-Create your `values.yaml` file to provide required values such as password secrets or optional email addresses for notifications. Work from the [Enterprise example file](https://github.com/Kong/charts/blob/main/charts/kong/example-values/full-k4k8s-with-kong-enterprise.yaml). The example file includes comments to explain which values you must set. The [readme in the charts repository](https://github.com/Kong/charts/blob/main/charts/kong/README.md) includes an exhaustive list of all possible configuration properties.
+Create a `values.yaml` file to provide required values such as password secrets or optional email addresses for notifications. Work from the [Enterprise example file](https://github.com/Kong/charts/blob/main/charts/kong/example-values/full-k4k8s-with-kong-enterprise.yaml). The example file includes comments to explain which values you must set. The [readme in the charts repository](https://github.com/Kong/charts/blob/main/charts/kong/README.md) includes an exhaustive list of all possible configuration properties.
 
 Note that this deployment includes a Postgres sub-chart provided by Bitnami. You might need to delete the PersistentVolume objects for Postgres in your Kubernetes cluster to connect to the database after install.
 
@@ -132,6 +132,12 @@ Note that this deployment includes a Postgres sub-chart provided by Bitnami. You
     helm upgrade my-kong kong/kong -n kong --values ./values.yaml
     ```
 
+1.  After the upgrade finishes, run:
+
+    ```
+    kubectl get svc -n kong
+    ```
+
     The output includes `EXTERNAL-IP` values for Kong Manager and Dev Portal. For example:
 
     ```sh
@@ -139,3 +145,4 @@ Note that this deployment includes a Postgres sub-chart provided by Bitnami. You
     my-kong-kong-manager          LoadBalancer   10.96.61.116     10.96.61.116    8002:31308/TCP,8445:32420/TCP      24m
     my-kong-kong-portal           LoadBalancer   10.101.251.123   10.101.251.123  8003:31609/TCP,8446:32002/TCP      24m
     ```
+    

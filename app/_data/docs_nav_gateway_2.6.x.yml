@@ -11,7 +11,7 @@
       url: /install-and-run/kubernetes
     - text: Helm
       url: /install-and-run/helm
-    - text: OpenShift
+    - text: OpenShift with Helm
       url: /install-and-run/openshift
     - text: Docker
       url: /install-and-run/docker
