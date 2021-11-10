@@ -72,6 +72,9 @@ Capitalize the following Kong-specific terms:
 - Kong Mesh (Kong Mesh for first mention, Mesh after)
 - Insomnia
 
+{:.note}
+> **Note**: Use “gateway” when referring to the general concept of an API gateway. Use “Gateway” as a shorthand for “Kong Gateway”.
+
 #### Component names
 
 - Dev Portal
