@@ -65,6 +65,8 @@
 /enterprise/*/getting-started/adding-your-api/    /gateway/latest/get-started/quickstart/configuring-a-service
 /enterprise/1.5.x/getting-started/   /gateway/latest/get-started/comprehensive/
 /enterprise/latest/getting-started/  /gateway/latest/get-started/comprehensive/
+/getting-started-guide/2.6.x/       /gateway/2.6.x/get-started/comprehensive/
+/getting-started-guide/latest/      /gateway/latest/get-started/comprehensive/
 /getting-started-guide/2.6.x/*       /gateway/2.6.x/get-started/comprehensive/:splat
 /getting-started-guide/latest/*      /gateway/latest/get-started/comprehensive/:splat
 /getting-started-guide/2.6.x/overview/   /gateway/2.6.x/get-started/comprehensive/
@@ -189,19 +191,19 @@
 # GATEWAY REFERENCES
 /admin-api/                            /gateway/latest/admin-api
 /admin-api/*                           /gateway/latest/admin-api/:splat
-/*/admin-api/                          /gateway/latest/admin-api
-/*/api-admin-gui/                      /gateway/latest/admin-api
-/enterprise/*/admin-gui/               /gateway/latest/admin-api
-/*/admin-api/                          /gateway/latest/admin-api
-/*/admin-api/*                         /gateway/latest/admin-api/:splat
-/enterprise/latest/admin-api/          /gateway/latest/admin-api/
-/enterprise/latest/admin-api/*         /gateway/latest/admin-api/:splat
-/gateway-oss/latest/admin-api/         /gateway/latest/admin-api/
-/gateway-oss/latest/admin-api/*        /gateway/latest/admin-api/:splat
+/2.6.x/admin-api/                      /gateway/latest/admin-api
+/latest/admin-api/*                    /gateway/latest/admin-api/:splat
+/2.6.x/api-admin-gui/                  /gateway/latest/admin-api
 /gateway-oss/2.6.x/admin-api           /gateway/2.6.x/admin-api/
 /gateway-oss/2.6.x/admin-api/*         /gateway/2.6.x/admin-api/:splat
 /enterprise/2.6.x/admin-api            /gateway/2.6.x/admin-api/
 /enterprise/2.6.x/admin-api/*          /gateway/2.6.x/admin-api/:splat
+/enterprise/*/admin-gui/               /gateway/latest/admin-api
+/enterprise/latest/admin-api/          /gateway/latest/admin-api/
+/enterprise/latest/admin-api/*         /gateway/latest/admin-api/:splat
+/gateway-oss/latest/admin-api/         /gateway/latest/admin-api/
+/gateway-oss/latest/admin-api/*        /gateway/latest/admin-api/:splat
+
 
 /enterprise/*/kong-implementation-checklist/    /gateway/latest/plan-and-deploy
 /enterprise/0.34-x/deployment-guide/enterprise/0.34-x/kong-manager/configuration/networking/           /gateway/latest/property-reference/#kong-manager-section
