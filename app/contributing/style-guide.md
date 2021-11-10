@@ -73,7 +73,7 @@ Capitalize the following Kong-specific terms:
 - Insomnia
 
 {:.note}
-> **Note**: Use “gateway” when referring to the general concept of an API gateway. Use “Gateway” as a shorthand for “Kong Gateway”.
+> **Note**: Use lowercase “gateway” when referring to the general concept of an API gateway. Use uppercase “Gateway” as a shorthand for “Kong Gateway”.
 
 #### Component names
 
