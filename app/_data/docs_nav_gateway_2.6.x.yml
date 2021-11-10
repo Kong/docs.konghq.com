@@ -23,8 +23,10 @@
       url: /install-and-run/ubuntu
     - text: Migrating from OSS to EE
       url: /install-and-run/migrate-ce-to-ke
-    - text: Upgrade Guide
-      url: /install-and-run/upgrade
+    - text: Upgrade Kong Gateway
+      url: /install-and-run/upgrade-enterprise
+    - text: Upgrade Kong Gateway OSS
+      url: /install-and-run/upgrade-oss
 
 - title: Get Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
