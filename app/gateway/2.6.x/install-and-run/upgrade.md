@@ -25,7 +25,7 @@ instructions on [database migration](#migrate-db), especially for Cassandra user
 - Upgrading from from 1.x is a major upgrade. Follow the [Version Prerequisites](#version-prerequisites).
 Be aware of any noted breaking changes as documented in the version to which you are upgrading.
 
-### Version Prerequisites
+### Version prerequisites
 
 If you are not on Kong Gateway 2.5.x, you must first incrementally
 upgrade to 2.5.x before upgrading to 2.6.x. Zero downtime is possible but _not_
