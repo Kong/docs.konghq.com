@@ -73,7 +73,12 @@ box to save.
 
 5. Click on the **Actions** dropdown menu.
 
-6. Click **Archive Version** to archive the Service version, thereby preventing that version from showing up on the Dev Portal UI. The Service version will still appear on the Konnect Admin UI. Users will not be able to send requests to the Service version endpoints and those endpoints will no longer be supported.
+6. Click **Archive Version** to archive the Service version. Archiving prevents that 
+version from showing up on the Dev Portal UI. 
+
+    The Service version will still appear on the Konnect Admin UI, however users 
+    will not be able to send requests to the Service version endpoints, and those 
+    endpoints will no longer be supported.
 
     An Archived version can be changed back to Published status, and the endpoints will be accessible again.
 
