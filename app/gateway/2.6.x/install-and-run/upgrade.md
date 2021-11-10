@@ -3,11 +3,11 @@ title: Upgrade Guide
 toc: true
 ---
 
-Upgrade to major, minor, and patch {{site.ee_product_name}} releases using the
+Upgrade to major, minor, and patch Kong Gateway releases using the
 `kong migrations` commands.
 
 You can also use the commands to migrate all Kong Gateway OSS entities to Kong Gateway Enterprise. See
-[Migrating from Kong Gateway to Kong Enterprise](/enterprise/{{page.kong_version}}/deployment/upgrades/migrate-ce-to-ke/).
+[Migrating from Kong Gateway OSS to Kong Gateway Enterprise](/upgrades/migrate-ce-to-ke/).
 
 If you experience any issues when running migrations, contact
 [Kong Support](https://support.konghq.com/support/s/) for assistance.
@@ -31,6 +31,8 @@ If you are not on Kong Gateway 2.5.x, you must first incrementally
 upgrade to 2.5.x before upgrading to 2.6.x. Zero downtime is possible but _not_
 guaranteed if you are upgrading incrementally between versions, from 0.36.x to 1.3.x to
 1.5.x to 2.1.x to 2.2.x to 2.3.x to 2.4.x to 2.5.x to 2.6.x., plan accordingly.
+
+#### Enterprise instructions
 
 * If running a version of Kong Gateway earlier than 1.5,
   [migrate to 1.5](/enterprise/1.5.x/deployment/migrations/) first.
@@ -70,7 +72,7 @@ for the gateway are bundled and you can skip this section.
 If you are building your dependencies by hand, there are changes since the
 previous release, so you will need to rebuild them with the latest patches.
 
-The required OpenResty version for kong 2.6.x is
+The required OpenResty version for Kong 2.6.x is
 [1.19.9.1](https://openresty.org/en/changelog-1019003.html). This is more recent
 than the version in Kong 2.5.0 (which used `1.19.3.2`). In addition to an upgraded
 OpenResty, you will need the correct [OpenResty patches](https://github.com/Kong/kong-build-tools/tree/master/openresty-build-tools/openresty-patches)
@@ -83,7 +85,7 @@ There is a new way to deploy Go using Plugin Servers.
 For more information, see [Developing Go plugins](https://docs.konghq.com/gateway-oss/2.6.x/external-plugins/#developing-go-plugins).
 
 
-There are **Changes in the Nginx configuration file**, between kong 2.0.x,
+There are **Changes in the Nginx configuration file**, between Kong 2.0.x,
 2.1.x, 2.2.x, 2.3.x, 2.4.x and 2.5.x.
 
 To view the configuration changes between versions, clone the
@@ -93,7 +95,7 @@ on the configuration templates, using `-w` for greater readability.
 Here's how to see the differences between previous versions and 2.6.x:
 
 ```bash
-git clone https://github.com/kong/kong
+git clone https://github.com/Kong/kong
 cd kong
 git diff -w 2.0.0 2.6.0 kong/templates/nginx_kong*.lua
 ```
