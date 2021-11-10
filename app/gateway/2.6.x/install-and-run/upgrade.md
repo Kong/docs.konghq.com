@@ -27,7 +27,7 @@ Be aware of any noted breaking changes as documented in the version to which you
 
 ### Version prerequisites
 
-If you are not on Kong Gateway 2.5.x, you must first incrementally
+If you're not on Kong Gateway 2.5.x, you must first incrementally
 upgrade to 2.5.x before upgrading to 2.6.x. Zero downtime is possible but _not_
 guaranteed if you are upgrading incrementally between versions, from 0.36.x to 1.3.x to
 1.5.x to 2.1.x to 2.2.x to 2.3.x to 2.4.x to 2.5.x to 2.6.x., plan accordingly.
@@ -52,7 +52,7 @@ guaranteed if you are upgrading incrementally between versions, from 0.36.x to 1
 There are no migrations necessary for the Dev Portal when upgrading from 2.5.x to
 2.6.x.
 
-If you are currently using the Developer Portal in 1.5.x, it will no longer work without
+If you're currently using the Dev Portal in 1.5.x, it will no longer work without
 [manually migrating files](/enterprise/2.1.x/developer-portal/latest-migrations) to version 2.1.x.
 
 ## Upgrade considerations
@@ -66,10 +66,10 @@ affect your current installation.
 
 ### Dependencies
 
-If you are using the provided binary packages, all necessary dependencies
+If you're using the provided binary packages, all necessary dependencies
 for the gateway are bundled and you can skip this section.
 
-If you are building your dependencies by hand, there are changes since the
+If you're building your dependencies by hand, there are changes since the
 previous release, so you will need to rebuild them with the latest patches.
 
 The required OpenResty version for Kong 2.6.x is
@@ -101,7 +101,7 @@ git diff -w 2.0.0 2.6.0 kong/templates/nginx_kong*.lua
 ```
 
 **Note:** Adjust the starting version number
-(2.0.x, 2.1.x, 2.2.x, 2.3.x, 2.4.x or 2.5.x) to the version number you are currently using.
+(2.0.x, 2.1.x, 2.2.x, 2.3.x, 2.4.x or 2.5.x) to the version number you're currently using.
 
 To produce a patch file, use the following command:
 
@@ -110,15 +110,15 @@ git diff 2.0.0 2.6.0 kong/templates/nginx_kong*.lua > kong_config_changes.diff
 ```
 
 **Note:** Adjust the starting version number
-(2.0.x, 2.1.x, 2.2.x, 2.3.x, 2.4.x or 2.5.x) to the version number you are currently using.
+(2.0.x, 2.1.x, 2.2.x, 2.3.x, 2.4.x or 2.5.x) to the version number you're currently using.
 
 ### Hybrid mode considerations
 
 {:.important}
-> **Important:** If you are currently running in [hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/), 
+> **Important:** If you're currently running in [hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/), 
 upgrade the Control Plane first, and then the Data Planes.
 
-* If you are currently running 2.6.x in classic (traditional)
+* If you're currently running 2.6.x in classic (traditional)
   mode and want to run in hybrid mode instead, follow the hybrid mode
   [installation instructions](/enterprise/{{page.kong_version}}/deployment/hybrid-mode-setup/)
   after running the migration.
@@ -137,7 +137,7 @@ traffic and old pods are terminated. Once this is complete, the chart spawns ano
 to run `kong migrations finish`.
 
 While the migrations themselves are automated, the chart does not automatically ensure 
-that you follow the recommended upgrade path. If you are upgrading from more than one minor 
+that you follow the recommended upgrade path. If you're upgrading from more than one minor 
 Kong version back, check the upgrade path recommendations for Kong open source or Kong Gateway.
 
 Although not required, users should upgrade their chart version and Kong version independently. 
@@ -221,7 +221,7 @@ decommission it. For this reason, the full migration is split into two commands:
    old 2.5.x (or 2.6.x-beta) nodes.
 6. From your 2.6.x cluster, run `kong migrations finish`. From this point onward,
    it is no longer possible to start nodes in the old 2.5.x (or 2.6.x-beta) cluster
-   that still points to the same datastore. Run this command _only_ when you are
+   that still points to the same datastore. Run this command _only_ when you're
    confident that your migration was successful. From now on, you can safely make
    Admin API requests to your 2.6.x nodes.
 
