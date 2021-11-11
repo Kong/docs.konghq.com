@@ -33,4 +33,4 @@ Kong Studio will generate the sample requests from the spec file and display the
 
 ![Response Panel](https://doc-assets.konghq.com/studio/1.0/debugging/response-panel.png)
 
-To lean more about generating requests and to full leverage the power of Insomnia, head over to [Insomnia's Documentation](https://support.insomnia.rest/)
+To lean more about generating requests and to full leverage the power of Insomnia, head over to [Insomnia's Documentation](https://docs.insomnia.rest/)
