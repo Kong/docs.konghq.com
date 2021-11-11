@@ -202,3 +202,12 @@ konghq.com/plugins: my-custom-plugin
 
 Once you have got Kong up and running, configure your
 custom plugin via [KongPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource).
+
+### Plugins in other languages
+
+Note when deploying custom plugins in other language espcially Golang, the built binary is larger than
+the size limit of ConfigMap. In such case, consider using an init container to pull such binary from
+remote like S3 buckets, or build a custom image that includes plugin runtimes and the plugin itself.
+
+To read more about how to build a custom image, please read
+[use external plugins in container and Kubernetes](/enterprise/latest/external-plugins/#use-external-plugins-in-container-and-kubernetes).
