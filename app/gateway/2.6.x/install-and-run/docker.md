@@ -12,9 +12,14 @@ title: Install Kong Gateway on Docker
 >
 > (latest {{site.base_gateway}} version: {{site.data.kong_latest_ee.version}})
 
-{{site.base_gateway}} supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore. This guide provides steps to configure PostgreSQL.
+{{site.base_gateway}} supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its
+datastore. This guide provides steps to configure PostgreSQL.
 
-If you prefer to use the open-source {{site.base_gateway}} image with Docker Compose, Kong also provides a [Docker Compose template](https://github.com/Kong/docker-kong/tree/master/compose) with built-in orchestration and scalability.
+If you prefer to use the open-source {{site.base_gateway}} image with Docker
+Compose, Kong also provides a
+[Docker Compose template](https://github.com/Kong/docker-kong/tree/master/compose) 
+with built-in orchestration and scalability.
+
 This software is governed by the
 [Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
 
@@ -22,7 +27,12 @@ This software is governed by the
 
 For this installation, you'll need a Docker-enabled system with proper Docker access.
 
-## Pull and tag the Kong Gateway image
+## Install Kong Gateway with a database
+
+Set up a {{site.base_gateway}} container with a PostgreSQL database to store
+Kong configuration.
+
+### Pull and tag the Kong Gateway image
 
 1. Pull the Docker image:
 
@@ -88,7 +98,7 @@ docker tag kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kon
      postgres:9.6
    ```
 
-5. Prepare the Kong database:
+3. Prepare the Kong database:
 {% capture migrations %}
 {% navtabs codeblock %}
 {% navtab Kong Gateway %}
@@ -111,8 +121,9 @@ docker tag kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kon
 {% endcapture %}
 {{ migrations | indent | replace: " </code>", "</code>" }}
 
-6. Start Gateway:
+### Start Kong Gateway
 
+1. Run the following command to start a container with {{site.base_gateway}}:
 {% capture start_container %}
 {% navtabs codeblock %}
 {% navtab Kong Gateway %}
@@ -163,7 +174,7 @@ docker tag kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kon
    {:.note}
    > **Note**: The `HOSTNAME` for `KONG_PORTAL_GUI_HOST` should be preceded by a protocol, for example, `http://`.
 
-7. Verify your installation:
+2. Verify your installation:
 
     Access the `/services` endpoint using the Admin API:
 
@@ -171,7 +182,7 @@ docker tag kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kon
 
     You should receive a `200` status code.
 
-  8. (Not available in OSS) Verify that Kong Manager is running by accessing it using the URL specified in `KONG_ADMIN_GUI_URL`:
+3. (Not available in OSS) Verify that Kong Manager is running by accessing it using the URL specified in `KONG_ADMIN_GUI_URL`:
 
       <pre><code>http://<div contenteditable="true">{HOSTNAME}</div>:8002</code></pre>
 
@@ -183,7 +194,7 @@ supported for both Enterprise and OSS images. However, there is currently no
 documentation for setting up an Enterprise image in DB-less mode, so adjust the
 following steps as needed for an Enterprise deploy.
 
-The steps involved in starting Kong in [DB-less mode] are the following:
+The steps involved in starting Kong in [DB-less mode](/gateway/{{page.kong_version}}/reference/db-less-and-declarative-config) are the following:
 
 1. Create a Docker network:
 
@@ -200,7 +211,7 @@ The steps involved in starting Kong in [DB-less mode] are the following:
 
 2. Create a Docker volume:
 
-    For the purposes of this guide, a [Docker Volume] is a folder inside the host machine which
+    For the purposes of this guide, a [Docker Volume][Docker Volume] is a folder inside the host machine which
     can be mapped into a folder in the container. Volumes have a name. In this case we're going
     to name ours `kong-vol`
 
