@@ -7,7 +7,7 @@ no_version: true
 
 ## General terms
 
-#### Control plane
+### Control plane
 
 #### Data plane
 (data plane proxy, data plane instance, data plane node)
