@@ -16,7 +16,7 @@ runtimes. You can keep using existing 2.4.x runtimes, or you can upgrade to
 2.5.0.1 to take advantage of any new features, updates, and bug fixes.
 : This release includes [event hook support](/enterprise/latest/admin-api/event-hooks/reference),
 improvements to CP-DP communication, new configuration options in plugins, and more.
-: For all the changes and new features in {{site.base_gateway}} 2.5.x, see the [changelog](/enterprise/changelog).
+: For all the changes and new features in {{site.base_gateway}} 2.5.x, see the [changelog](/gateway/changelog).
 
 ## June 2021
 ### 2021.06.24
@@ -33,7 +33,7 @@ runtimes. You can keep using existing 2.3.x runtimes, or you can upgrade to
 : The 2.4.1.1 release includes two new plugins: [OPA](/hub/kong-inc/opa) and
 [Mocking](/hub/kong-inc/mocking). To use these plugins, and any other features
 newly introduced in this release, [start up a new runtime](/konnect/runtime-manager/upgrade).
-: For all the changes and new features in {{site.base_gateway}} 2.4.x, see the [changelog](/enterprise/changelog).
+: For all the changes and new features in {{site.base_gateway}} 2.4.x, see the [changelog](/gateway/changelog).
 
 **More plugins available in {{site.konnect_saas}}**
 : The following plugins are now available:

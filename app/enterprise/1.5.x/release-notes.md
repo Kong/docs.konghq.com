@@ -2,7 +2,7 @@
 title: Kong Enterprise 1.5.x Release Notes
 ---
 
-These release notes apply to Kong Enterprise Release 1.5.x and include an overview of new features and updates. For detailed information about this release, including features and fixes, see the [Changelog](https://docs.konghq.com/enterprise/changelog//).
+These release notes apply to Kong Enterprise Release 1.5.x and include an overview of new features and updates. For detailed information about this release, including features and fixes, see the [Changelog](https://docs.konghq.com/gateway/changelog//).
 
 ## New Features
 
@@ -53,4 +53,4 @@ In addition to features listed above, changes to the user documentation include:
   * Tabs in sections for configuration, such as Kong Manager and Admin API information
 
 ## Changelog
-For a complete list of changes, please see the Kong Enterprise 1.5.x [Changelog](https://docs.konghq.com/enterprise/changelog//).
+For a complete list of changes, please see the Kong Enterprise 1.5.x [Changelog](https://docs.konghq.com/gateway/changelog//).

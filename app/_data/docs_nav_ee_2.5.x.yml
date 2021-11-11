@@ -10,7 +10,7 @@
   icon: /assets/images/icons/documentation/icn-references-color.svg
   items:
     - text: Changelog
-      url: /enterprise/changelog
+      url: /gateway/changelog
       absolute_url: true
     - text: Version Support
       url: /support-policy

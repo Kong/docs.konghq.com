@@ -1,5 +1,5 @@
 ---
-title: Kong Gateway (Enterprise) Changelog
+title: Kong Gateway Changelog
 no_search: true
 no_version: true
 ---
@@ -66,7 +66,7 @@ only one or neither of the fields be configured.
 - [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced) (`request-transformer-advanced`)
   - This release includes a fix for the URL encode transformed path. The plugin now uses PDK functions to set upstream URI
     by replacing `ngx.var.upstream_uri` so the urlencode is taken care of.
-- [AWS-Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`) 
+- [AWS-Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`)
   The plugin will now try to detect the AWS region by using `AWS_REGION` and
   `AWS_DEFAULT_REGION` environment variables (when not specified with the plugin configuration).
   This allows users to specify a 'region' on a per Kong node basis, adding the ability to invoke the
@@ -74,12 +74,12 @@ only one or neither of the fields be configured.
   [#7765](https://github.com/Kong/kong/pull/7765)
 - [Datadog](/hub/kong-inc/datadog) (`datadog`)
   The Datadog plugin now allows `host` and `port` config options be configured from environment variables,
-  `KONG_DATADOG_AGENT_HOST` and `KONG_DATADOG_AGENT_PORT`. This update enables users to set 
-   different destinations on a per Kong node basis, which makes multi-DC setups easier and in Kubernetes helps 
+  `KONG_DATADOG_AGENT_HOST` and `KONG_DATADOG_AGENT_PORT`. This update enables users to set
+   different destinations on a per Kong node basis, which makes multi-DC setups easier and in Kubernetes helps
    with the ability to run the Datadog agents as a daemon-set.
   [#7463](https://github.com/Kong/kong/pull/7463)
-- [Prometheus](/hub/kong-inc/prometheus) (`prometheus`) 
-  The Prometheus plugin now includes a new metric, `data_plane_cluster_cert_expiry_timestamp`, to expose the Data Plane's `cluster_cert` 
+- [Prometheus](/hub/kong-inc/prometheus) (`prometheus`)
+  The Prometheus plugin now includes a new metric, `data_plane_cluster_cert_expiry_timestamp`, to expose the Data Plane's `cluster_cert`
    expiry timestamp for improved monitoring in Hybrid Mode.
   [#7800](https://github.com/Kong/kong/pull/7800).
 - [GRPC-Gateway](/hub/kong-inc/grpc-gateway) (grpc-gateway)
@@ -126,7 +126,7 @@ only one or neither of the fields be configured.
 ### Fixes
 
 #### Enterprise
-- This release includes a fix for an issue with the Vitals InfluxDB timestamp generation when inserting metrics. 
+- This release includes a fix for an issue with the Vitals InfluxDB timestamp generation when inserting metrics.
 - Kong Gateway (Enterprise) no longer exports `consumer_reset_secrets`.
 - Fixes an issue where keyring data was not being properly generated and activated
   on a Kong process start (for example, kong start).
@@ -178,7 +178,7 @@ only one or neither of the fields be configured.
 - [Prometheus](/hub/kong-inc/prometheus) (`prometheus`)
   Upstream's health info now includes previously missing `subsystem` field.
   [#7802](https://github.com/Kong/kong/pull/7802).
-- [Proxy-Cache](/hub/kong-inc/proxy-cache) (`proxy-cache`) 
+- [Proxy-Cache](/hub/kong-inc/proxy-cache) (`proxy-cache`)
   Fixed an issue where the plugin would sometimes fetch data from the cache but not return it.
   [#7775](https://github.com/Kong/kong/pull/7775)
 
@@ -241,7 +241,7 @@ only one or neither of the fields be configured.
   - Feature from to v2.1.x includes the following:
     - The plugin now has a new param, `by_username_ignore_case`, which allows `consumer_by` username values to be
       matched case-insensitive with Identity Provider claims.
-- [AWS-Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`) 
+- [AWS-Lambda](/hub/kong-inc/aws-lambda) (`aws-lambda`)
   The plugin will now try to detect the AWS region by using `AWS_REGION` and
   `AWS_DEFAULT_REGION` environment variables (when not specified with the plugin configuration).
   This allows users to specify a 'region' on a per Kong node basis, adding the ability to invoke the
@@ -249,12 +249,12 @@ only one or neither of the fields be configured.
   [#7765](https://github.com/Kong/kong/pull/7765)
 - [Datadog](/hub/kong-inc/datadog) (`datadog`)
   The Datadog plugin now allows `host` and `port` config options be configured from environment variables,
-  `KONG_DATADOG_AGENT_HOST` and `KONG_DATADOG_AGENT_PORT`. This update enables users to set 
-   different destinations on a per Kong node basis, which makes multi-DC setups easier and in Kubernetes helps 
+  `KONG_DATADOG_AGENT_HOST` and `KONG_DATADOG_AGENT_PORT`. This update enables users to set
+   different destinations on a per Kong node basis, which makes multi-DC setups easier and in Kubernetes helps
    with the ability to run the Datadog agents as a daemon-set.
   [#7463](https://github.com/Kong/kong/pull/7463)
-- [Prometheus](/hub/kong-inc/prometheus) (`prometheus`) 
-  The Prometheus plugin now includes a new metric, `data_plane_cluster_cert_expiry_timestamp`, to expose the Data Plane's `cluster_cert` 
+- [Prometheus](/hub/kong-inc/prometheus) (`prometheus`)
+  The Prometheus plugin now includes a new metric, `data_plane_cluster_cert_expiry_timestamp`, to expose the Data Plane's `cluster_cert`
    expiry timestamp for improved monitoring in Hybrid Mode.
   [#7800](https://github.com/Kong/kong/pull/7800).
 - [GRPC-Gateway](/hub/kong-inc/grpc-gateway) (grpc-gateway)
@@ -301,7 +301,7 @@ only one or neither of the fields be configured.
 ### Fixes
 
 #### Enterprise
-- This release includes a fix for an issue with the Vitals InfluxDB timestamp generation when inserting metrics. 
+- This release includes a fix for an issue with the Vitals InfluxDB timestamp generation when inserting metrics.
 - Kong Gateway (Enterprise) no longer exports `consumer_reset_secrets`.
 - Fixes an issue where keyring data was not being properly generated and activated
   on a Kong process start (for example, kong start).
@@ -352,7 +352,7 @@ only one or neither of the fields be configured.
 - [Prometheus](/hub/kong-inc/prometheus) (`prometheus`)
   Upstream's health info now includes previously missing `subsystem` field.
   [#7802](https://github.com/Kong/kong/pull/7802).
-- [Proxy-Cache](/hub/kong-inc/proxy-cache) (`proxy-cache`) 
+- [Proxy-Cache](/hub/kong-inc/proxy-cache) (`proxy-cache`)
   Fixed an issue where the plugin would sometimes fetch data from the cache but not return it.
   [#7775](https://github.com/Kong/kong/pull/7775)
 
@@ -377,7 +377,7 @@ only one or neither of the fields be configured.
 
 #### Plugins
 - [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
-  The plugin now allows Redis Cluster nodes to be specified by hostname, which is helpful if the cluster IPs are not static. 
+  The plugin now allows Redis Cluster nodes to be specified by hostname, which is helpful if the cluster IPs are not static.
 
 ## 2.5.1.0
 **Release Date** 2021/09/08
@@ -1989,7 +1989,7 @@ features, fixes, known issues, and workarounds. The changelog for 2.2.0.0 versio
 </div>
 
 ### Features
-**Note: Feature updates for Kong Enterprise 2.2.0.0 version include [2.2.0.0 (beta)](/enterprise/changelog/#beta-features-2200) features.**
+**Note: Feature updates for Kong Enterprise 2.2.0.0 version include [2.2.0.0 (beta)](/gateway/changelog/#beta-features-2200) features.**
 
 #### **Kong Manager**
 - No new features.
@@ -2010,7 +2010,7 @@ features, fixes, known issues, and workarounds. The changelog for 2.2.0.0 versio
   to the upstream gRPC service.
 
 ### Fixes
-**Note: Fixes for Kong Enterprise 2.2.0.0 version include [2.2.0.0 (beta)](/enterprise/changelog/#beta-fixes-2200) fixes.**
+**Note: Fixes for Kong Enterprise 2.2.0.0 version include [2.2.0.0 (beta)](/gateway/changelog/#beta-fixes-2200) fixes.**
 
 #### **OpenID Connect Library**
   - Changed to disable HS-signature verification by default.
@@ -2507,11 +2507,11 @@ specs.
 ## 2.1.3.0
 **Release Date** 2020/08/25
 
-Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known issues, and workarounds. See the [2.1.0.0 (beta)](/enterprise/changelog/#2100-beta/) changelog for more details.
+Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known issues, and workarounds. See the [2.1.0.0 (beta)](/gateway/changelog/#2100-beta/) changelog for more details.
 
 ### Features
 
-**Note: Feature updates for Kong Enterprise 2.1.3.0 version includes [2.1.0.0 (beta)](/enterprise/changelog/#features) features.**
+**Note: Feature updates for Kong Enterprise 2.1.3.0 version includes [2.1.0.0 (beta)](/gateway/changelog/#features) features.**
 
 #### Kong Gateway
 * Inherited changes from OSS Kong in releases 2.0.x, 2.1.0, 2.1.1, 2.1.2, and 2.1.3.
@@ -2557,7 +2557,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 ### Fixes
 
-**Note: Fixes for Kong Enterprise 2.1.3.0 version includes the [2.1.0.0 (beta)](/enterprise/changelog/#fixes) fixes.**
+**Note: Fixes for Kong Enterprise 2.1.3.0 version includes the [2.1.0.0 (beta)](/gateway/changelog/#fixes) fixes.**
 
 #### Kong Manager
 * Auto-generated role `workspace-portal-admin` does not display link to Dev Portal Editor.
@@ -2620,7 +2620,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
 ### Known Issues and Workarounds
 
-**Note: Known issues and workarounds for Kong Enterprise includes [2.1.0.0 (beta)](/enterprise/changelog/#known-issues-and-workarounds) known issues and workarounds.**
+**Note: Known issues and workarounds for Kong Enterprise includes [2.1.0.0 (beta)](/gateway/changelog/#known-issues-and-workarounds) known issues and workarounds.**
 
 * The LDAP Authentication and LDAP Authentication Advanced plugins require a workaround to support CLI access with RBAC tokens: [Using Service Directory Mapping on the CLI](/enterprise/2.1.x/kong-manager/authentication/ldap/#using-service-directory-mapping-on-the-cli).
 

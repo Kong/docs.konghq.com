@@ -2,6 +2,10 @@
   icon: /assets/images/icons/documentation/icn-flag.svg
   url: /gateway/
   absolute_url: true
+  items:
+    - text: Changelog
+      url: /gateway/changelog
+      absolute_url: true
 
 - title: Install and Run
   icon: /assets/images/icons/documentation/icn-deployment-color.svg

@@ -27,9 +27,9 @@ is_homepage: true
   </div>
 
   <div class="docs-grid-block">
-    <h3><a href="/enterprise/changelog">Changelog</a></h3>
+    <h3><a href="/gateway/changelog">Changelog</a></h3>
     <p>Review the details of the changes made to each version of Kong Enterprise.</p>
-    <a href="/enterprise/changelog/">See changelog &rarr;</a>
+    <a href="/gateway/changelog/">See changelog &rarr;</a>
   </div>
 
   <h2 class="docs-grid-section-title">Popular Guides and References</h2>
