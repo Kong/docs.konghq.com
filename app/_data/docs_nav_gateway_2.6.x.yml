@@ -11,6 +11,12 @@
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
   url: /install-and-run/
   items:
+    - text: Kubernetes
+      url: /install-and-run/kubernetes
+    - text: Helm
+      url: /install-and-run/helm
+    - text: OpenShift with Helm
+      url: /install-and-run/openshift
     - text: Docker
       url: /install-and-run/docker
     - text: Amazon Linux
