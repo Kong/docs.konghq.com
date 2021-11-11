@@ -2,8 +2,6 @@
 title: Authentication Reference
 ---
 
-## Introduction
-
 Traffic to your Upstream services (APIs or microservices) is typically controlled by the application and
 configuration of various Kong [authentication plugins][plugins]. Because Kong's Service entity represents
 a 1-to-1 mapping of your own upstream services, the simplest scenario is to configure authentication

@@ -40,7 +40,7 @@ kong.plugins.<plugin_name>.daos
 ## Caching custom entities
 
 Once you have defined your custom entities, you can cache them in-memory in
-your code by using the [kong.cache](/gateway-oss/{{page.kong_version}}/pdk/#kong-cache)
+your code by using the [kong.cache](/gateway/{{page.kong_version}}/pdk/#kong-cache)
 module provided by the [Plugin Development Kit]:
 
 ```
@@ -55,7 +55,7 @@ There are 2 levels of cache:
    all the workers. This can only hold scalar values, and hence requires
    (de)serialization of a more complex types such as Lua tables.
 
-When data is fetched from the database, it will be stored in both caches. 
+When data is fetched from the database, it will be stored in both caches.
 If the same worker process requests the data again, it will retrieve the
 previously deserialized data from the Lua memory cache. If a different
 worker within the same Nginx node requests that data, it will find the data
@@ -106,7 +106,7 @@ end
 
 function CustomHandler:access(config)
   CustomHandler.super.access(self)
-  
+
   -- retrieve the apikey from the request querystring
   local key = kong.request.get_query_arg("apikey")
 
@@ -124,14 +124,14 @@ function CustomHandler:access(config)
       message = "Unexpected error"
     })
   end
-    
+
   if not credential then
     -- no credentials in cache nor datastore
     return kong.response.exit(401, {
       message = "Invalid authentication credentials"
     })
   end
-    
+
   -- set an upstream header if the credential exists and is valid
   kong.service.request.set_header("X-API-Key", credential.apikey)
 end
@@ -285,7 +285,7 @@ module will store the miss just as if it was a hit. This means that a
 propagated by Kong so that all nodes that stored the miss can evict it, and
 properly fetch the newly created API key from the datastore.
 
-See the [Clustering Guide](/gateway-oss/{{page.kong_version}}/clustering/) to ensure
+See the [Clustering Guide](/gateway/{{page.kong_version}}/reference/clustering/) to ensure
 that you have properly configured your cluster for such invalidation events.
 
 ### Manual cache invalidation
@@ -347,5 +347,5 @@ extending the Admin API, which we will detail in the next chapter:
 
 Next: [Extending the Admin API &rsaquo;]({{page.book.next}})
 
-[Admin API]: /gateway-oss/{{page.kong_version}}/admin-api/
-[Plugin Development Kit]: /gateway-oss/{{page.kong_version}}/pdk
+[Admin API]: /gateway/{{page.kong_version}}/admin-api/
+[Plugin Development Kit]: /gateway/{{page.kong_version}}/pdk

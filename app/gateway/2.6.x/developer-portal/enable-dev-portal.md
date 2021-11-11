@@ -1,5 +1,6 @@
 ---
 title: How To Enable the Dev Portal
+badge: enterprise
 ---
 
 Enable Dev Portal in the Kong Configuration or within a Docker container for Docker installations.
@@ -36,9 +37,9 @@ configuration file (`kong.conf`):
 ## Enable Dev Portal with Docker installation
 
 {:.note}
-> This feature is only available with a [{{site.konnect_product_name}} Enterprise](/enterprise/{{page.kong_version}}/deployment/licensing) subscription.
+> This feature is only available with a [{{site.konnect_product_name}} Enterprise](/gateway/{{page.kong_version}}/plan-and-deploy/licenses) subscription.
 
-1. [Deploy a license](/enterprise/{{page.kong_version}}/deployment/licenses/deploy-license).
+1. [Deploy a license](/gateway/{{page.kong_version}}/plan-and-deploy/licenses/deploy-license).
 
 2. In your Docker container, set the Portal URL and set `KONG_PORTAL` to `on`:
 

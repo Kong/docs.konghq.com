@@ -1,6 +1,5 @@
 ---
 title: Access Your Kong Gateway License
-toc: false
 badge: enterprise
 ---
 
@@ -12,12 +11,12 @@ You will receive this file from Kong when you sign up for a
 
 <div class="alert alert-ee blue">
 <b>Note:</b> The free mode does not require a license. See
-<a href="/enterprise/{{page.kong_version}}/deployment/licensing">Kong Gateway Licensing</a>
+<a href="/gateway/{{page.kong_version}}/plan-and-deploy/licenses">Kong Gateway Licensing</a>
 for a feature comparison.
 </div>
 
 Once a license has been deployed to a {{site.base_gateway}} node, retrieve it
-using the [`/licenses` Admin API endpoint](/enterprise/{{page.kong_version}}/admin-api/licenses/examples).
+using the [`/licenses` Admin API endpoint](/gateway/{{page.kong_version}}/admin-api/licenses/examples).
 
 If you have purchased a subscription but haven't received a license file,
 contact your sales representative.

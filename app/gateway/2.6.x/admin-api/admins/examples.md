@@ -1,6 +1,6 @@
 ---
 title: Admins Examples
-book: admins
+badge: free
 ---
 
 ## How to Invite and Register an Admin

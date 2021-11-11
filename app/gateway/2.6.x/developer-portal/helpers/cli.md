@@ -1,15 +1,13 @@
 ---
 title: Developer Portal CLI
+badge: enterprise
 ---
-
-
-### Introduction
 
 The Kong Developer Portal CLI is used to manage your Developer Portals from the
 command line. It is built using [clipanion][clipanion].
 
 
-### Overview
+## Overview
 
 This is the next generation TypeScript based Developer Portal CLI. The goal of
 this project is to make a higher quality CLI tool over the initial sync script.
@@ -19,13 +17,13 @@ This project is built for Kong Enterprise `>= 1.3`.
 For Kong Enterprise `<= 0.36`, or for `legacy mode` on Kong Enterprise `>= 1.3` [use the legacy sync script][sync-script].
 
 
-### Install
+## Install
 
 ```
 > npm install -g kong-portal-cli
 ```
 
-### Usage
+## Usage
 
 The easiest way to start is by cloning the [portal-templates repo][templates]
 master branch locally.

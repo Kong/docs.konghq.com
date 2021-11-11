@@ -2,8 +2,6 @@
 title: Network and Firewall
 ---
 
-## Introduction
-
 In this section you will find a summary about the recommended network and firewall settings for Kong.
 
 ## Ports
@@ -64,7 +62,7 @@ macOS/BSDs allow transparent proxying without `transparent` listen option. With 
 to start Kong as a `root` user or set the needed capabilities for the executable.
 
 
-[proxy_listen]: /enterprise/{{page.kong_version}}/property-reference/#proxy_listen
-[stream_listen]: /enterprise/{{page.kong_version}}/property-reference/#stream_listen
-[admin_listen]: /enterprise/{{page.kong_version}}/property-reference/#admin_listen
-[secure_admin_api]: /enterprise/{{page.kong_version}}/secure-admin-api
+[proxy_listen]: /gateway/{{page.kong_version}}/reference/property-reference/#proxy_listen
+[stream_listen]: /gateway/{{page.kong_version}}/reference/property-reference/#stream_listen
+[admin_listen]: /gateway/{{page.kong_version}}/reference/property-reference/#admin_listen
+[secure_admin_api]: /gateway/{{page.kong_version}}/admin-api/secure-admin-api

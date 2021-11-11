@@ -2,7 +2,6 @@
 title: OIDC Authenticated Group Mapping
 badge: enterprise
 ---
-## Introduction
 
 Using Kong's OpenID Connect plugin (OIDC), you can map identity provider (IdP)
 groups to Kong roles. Adding a user to Kong in this way gives them access to
@@ -28,7 +27,7 @@ Manager.
 
 ## Prerequisites
 * An IdP with an authorization server and users with groups assigned
-* [{{site.ee_product_name}} installed and configured](/enterprise/{{page.kong_version}}/deployment/installation/overview)
+* [{{site.ee_product_name}} installed and configured](/gateway/{{page.kong_version}}/install-and-run)
 * Kong Manager enabled
 * RBAC enabled
 * (If using Kubernetes) [Helm](https://helm.sh/docs/intro/install/) installed
@@ -102,9 +101,9 @@ name:
     ```
 
     Where:
-    * [`rbac_role_id`](/enterprise/{{page.kong_version}}/admin-api/rbac/reference/#list-roles):
+    * [`rbac_role_id`](/gateway/{{page.kong_version}}/admin-api/rbac/reference/#list-roles):
     UUID of the role you want to assign.
-    * [`workspace_id`](/enterprise/{{page.kong_version}}/admin-api/workspaces/reference/#list-workspaces):
+    * [`workspace_id`](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/#list-workspaces):
     UUID of the workspace to add the role to.
 
 3. Create an admin for the group:

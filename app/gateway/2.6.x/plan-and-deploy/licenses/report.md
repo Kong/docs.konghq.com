@@ -2,8 +2,6 @@
 title: Monitor License Usage
 badge: enterprise
 ---
-
-## Overview
 Obtain information about your {{site.ee_gateway_name}} deployment, including license usage and deployment information using the **License Report** module. Share this information with Kong to perform a health-check analysis of product utilization and overall deployment performance to ensure your organization is optimized with the best license and deployment plan for your needs.
 
 How the license report module works:

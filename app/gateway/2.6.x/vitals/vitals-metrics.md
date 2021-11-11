@@ -1,9 +1,7 @@
 ---
 title: Vitals Metrics
+badge: enterprise
 ---
-
-
-## Using Vitals Metrics
 
 Vitals metrics fall into two categories:
 * Health Metrics — for monitoring the health of a Kong cluster
@@ -11,7 +9,7 @@ Vitals metrics fall into two categories:
 
 
 All metrics are collected at 1-second intervals and aggregated into 1-minute
-intervals. The 1-second intervals are retained for one hour. The 1-minute 
+intervals. The 1-second intervals are retained for one hour. The 1-minute
 intervals are retained for 25 hours.
 
 If longer retention times are needed, the Vitals API can be used to pull metrics
@@ -19,20 +17,20 @@ out of Kong and into a data retention tool.
 
 ## Health Metrics
 
-Health metrics give insight into the performance of a Kong cluster; for example, 
+Health metrics give insight into the performance of a Kong cluster; for example,
 how many requests the cluster is processing and the latency on those requests.
 
 Health metrics are tracked for each node in a cluster as well as for the cluster
-as a whole. In Kong, a node is a running process with a unique identifier, 
-configuration, cache layout, and connections to both Kong’s datastores and the 
-upstream APIs it proxies. Note that node identifiers are unique to the process, 
-and not to the host on which the process runs. In other words, each Kong restart 
+as a whole. In Kong, a node is a running process with a unique identifier,
+configuration, cache layout, and connections to both Kong’s datastores and the
+upstream APIs it proxies. Note that node identifiers are unique to the process,
+and not to the host on which the process runs. In other words, each Kong restart
 results in a new node, and therefore a new node ID.
 
 ### Latency
 
-The Vitals API may return null for Latency metrics. This occurs when no API 
-requests were proxied during the timeframe. Null latencies are not graphed in 
+The Vitals API may return null for Latency metrics. This occurs when no API
+requests were proxied during the timeframe. Null latencies are not graphed in
 Kong Manager; periods with null latencies appear as gaps in Vitals charts.
 
 #### Proxy Latency (Request)

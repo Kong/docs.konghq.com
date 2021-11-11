@@ -37,7 +37,7 @@ database along with its configuration:
   foo = "bar"
 }
  ```
- 
+
 If the configuration is not valid, the Admin API would return `400 Bad Request`
 and the appropriate error messages.
 
@@ -159,7 +159,7 @@ Here is the list of some common (not all) accepted rules for a property (see the
 | Rule               | Description
 |--------------------|----------------------------
 | `type`             | The type of a property.
-| `required`         | Whether or not the property is required 
+| `required`         | Whether or not the property is required
 | `default`          | The default value for the property when not specified
 | `elements`         | Field definition of `array` or `set` elements.
 | `keys`             | Field definition of `map` keys.
@@ -175,8 +175,8 @@ You can also add field validators, to mention a few:
 | `between`          | Checks that the input number is between allowed values.
 | `eq`               | Checks the equality of the input to allowed value.
 | `ne`               | Checks the inequality of the input to allowed value.
-| `gt`               | Checks that the number is greater than given value. 
-| `len_eq`           | Checks that the input string length is equal to the given value. 
+| `gt`               | Checks that the number is greater than given value.
+| `len_eq`           | Checks that the input string length is equal to the given value.
 | `len_min`          | Checks that the input string length is at least the given value.
 | `len_max`          | Checks that the input string length is at most the given value.
 | `match`            | Checks that the input string matches the given Lua pattern.
@@ -295,7 +295,7 @@ return CustomHandler
 ```
 
 Note that the above example uses the
-[kong.log.inspect](/gateway-oss/{{page.kong_version}}/pdk/kong.log/#kong_log_inspect)
+[kong.log.inspect](/gateway/{{page.kong_version}}/pdk/kong.log/#kong_log_inspect)
 function of the [Plugin Development Kit] to print out those values to the Kong
 logs.
 
@@ -404,6 +404,6 @@ You can also see a real-world example of schema in [the Key-Auth plugin source c
 
 Next: [Accessing the Datastore &rsaquo;]({{page.book.next}})
 
-[Admin API]: /gateway-oss/{{page.kong_version}}/admin-api
-[Plugin Development Kit]: /gateway-oss/{{page.kong_version}}/pdk
+[Admin API]: /gateway/{{page.kong_version}}/admin-api
+[Plugin Development Kit]: /gateway/{{page.kong_version}}/pdk
 [the Key-Auth plugin source code]: https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/schema.lua

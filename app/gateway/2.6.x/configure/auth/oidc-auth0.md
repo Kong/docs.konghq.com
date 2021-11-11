@@ -3,8 +3,6 @@ title: OpenID Connect with Auth0
 badge: enterprise
 ---
 
-## Introduction
-
 This guide covers an example OpenID Connect plugin configuration to authenticate headless service consumers using Auth0's identity provider.
 
 ## Auth0 IDP Configuration
@@ -46,5 +44,5 @@ For basic authentication, use your client ID as the username and your client sec
 [client-credentials-grant]: https://auth0.com/docs/api-auth/tutorials/client-credentials
 [create-auth0-api]: https://auth0.com/docs/apis#how-to-configure-an-api-in-auth0
 [non-interactive-client]: https://auth0.com/docs/clients
-[add-service]: /enterprise/{{page.kong_version}}/kong-manager/add-service
+[add-service]: /gateway/{{page.kong_version}}/admin-api/#service-object
 [audience-required]: https://auth0.com/docs/api/authentication#client-credentials

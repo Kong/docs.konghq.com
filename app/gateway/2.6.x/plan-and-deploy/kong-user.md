@@ -5,7 +5,7 @@ title: Running Kong as a Non-Root User
 After installing {{site.ee_product_name}} on a GNU/Linux system, you can
 configure Kong to run as the built-in `kong` user instead of the `root` user.
 This makes the Nginx master and worker processes use the built-in `kong` user and group credentials, overriding any settings in the
-[`nginx_user`](/enterprise/{{page.kong_version}}/property-reference/#nginx_user)
+[`nginx_user`](/gateway/{{page.kong_version}}/reference/property-reference/#nginx_user)
 configuration property. It is also possible to run Kong as a custom non-root user.
 
 {:.important}
@@ -22,11 +22,10 @@ privileged system calls in the operating system.
 ## Prerequisites
 
 {{site.ee_product_name}} is installed on one of the following Linux distributions:
-* [Amazon Linux](/enterprise/{{page.kong_version}}/deployment/installation/amazon-linux)
-* [Amazon Linux 2](/enterprise/{{page.kong_version}}/deployment/installation/amazon-linux-2)
-* [CentOS](/enterprise/{{page.kong_version}}/deployment/installation/centos)
-* [RHEL](/enterprise/{{page.kong_version}}/deployment/installation/rhel)
-* [Ubuntu](/enterprise/{{page.kong_version}}/deployment/installation/ubuntu)
+* [Amazon Linux 1 or 2](/gateway/{{page.kong_version}}/install-and-run/amazon-linux)
+* [CentOS](/gateway/{{page.kong_version}}/install-and-run/centos)
+* [RHEL](/gateway/{{page.kong_version}}/install-and-run/rhel)
+* [Ubuntu](/gateway/{{page.kong_version}}/install-and-run/ubuntu)
 
 ## Run {{site.ee_product_name}} as the built-in kong user
 

@@ -4,7 +4,7 @@ title: Logging Reference
 
 ## Log Levels
 
-Log levels are set in [Kong's configuration](/enterprise/{{page.kong_version}}/property-reference/#log_level). Following are the log levels in increasing order of their severity: `debug`, `info`,
+Log levels are set in [Kong's configuration](/gateway/{{page.kong_version}}/reference/property-reference/#log_level). Following are the log levels in increasing order of their severity: `debug`, `info`,
 `notice`, `warn`, `error` and `crit`.
 
 - *`debug`:* It provides debug information about the plugin's runloop and each individual plugin or other components. Only to be used during debugging since it is too chatty.
@@ -21,7 +21,7 @@ With new regulations surrounding protecting private data like GDPR, there is a c
 
 For this example, let’s say you want to remove any instances of an email address from your Kong logs. The emails addresses may come through in different ways, for example something like `/servicename/v2/verify/alice@example.com` or `/v3/verify?alice@example.com`. In order to keep these from being added to the logs, we will need to use a custom NGINX template.
 
-To start using a custom NGINX template, first get a copy of our template. This can be found [https://docs.konghq.com/latest/configuration/#custom-nginx-templates-embedding-kong](https://docs.konghq.com/latest/configuration/#custom-nginx-templates-embedding-kong) or copied from below
+To start using a custom NGINX template, first get a copy of our template. This can be found in the [Configuration Property reference](/gateway/{{page.kong_version}}/reference/property-reference/#custom-nginx-templates-embedding-kong) or copied from below
 
 ```
 # ---------------------

@@ -1,9 +1,7 @@
 ---
 title: RBAC Examples
-book: rbac
+badge: free
 ---
-
-## Introduction
 
 This chapter aims to provide a step-by-step tutorial on how to set up
 RBAC and see it in action, with an end-to-end use case. The chosen
@@ -1042,7 +1040,7 @@ he created.
 
 ---
 
-[rbac-overview]: /enterprise/{{page.kong_version}}/kong-manager/administration/rbac
-[rbac-admin]: /enterprise/{{page.kong_version}}/admin-api/rbac/reference
-[workspaces-examples]: /enterprise/{{page.kong_version}}/admin-api/workspaces/examples
-[getting-started-guide]: /getting-started-guide/latest/overview
+[rbac-overview]: /gateway/{{page.kong_version}}/configure/auth/rbac
+[rbac-admin]: /gateway/{{page.kong_version}}/admin-api/rbac/reference
+[workspaces-examples]: /gateway/{{page.kong_version}}/admin-api/workspaces/examples
+[getting-started-guide]: /gateway/{{page.kong_version}}/get-started/comprehensive

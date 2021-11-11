@@ -11,7 +11,7 @@ chapter: 8
 
 <div class="alert alert-warning">
   <strong>Note:</strong> The Admin API extensions are available only
-  for HTTP plugins, not Stream plugins. 
+  for HTTP plugins, not Stream plugins.
 </div>
 
 ## Introduction
@@ -176,4 +176,4 @@ three functions:
 
 Next: [Write tests for your plugin]({{page.book.next}})
 
-[Admin API]: /gateway-oss/{{page.kong_version}}/admin-api/
+[Admin API]: /gateway/{{page.kong_version}}/admin-api/

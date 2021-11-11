@@ -1,5 +1,6 @@
 ---
 title: Vitals with Prometheus
+badge: enterprise
 ---
 
 This document covers integrating Kong Vitals with a new or existing Prometheus
@@ -10,7 +11,7 @@ requests per second), without placing addition write load on the database
 backing the Kong cluster.
 
 For using Vitals with a database as the backend (i.e. PostgreSQL, Cassandra),
-please refer to [Kong Vitals](/enterprise/{{page.kong_version}}/admin-api/vitals/).
+please refer to [Kong Vitals](/gateway/{{page.kong_version}}/admin-api/vitals/).
 
 ## Lifecycle Overview
 
@@ -37,7 +38,7 @@ or as a sidecar/adjacent process within a VM. Note that in high-traffic environm
 within the StatsD exporter process can cause significant CPU usage. In such cases, we recommend to
 run Kong and StatsD processes on separate hardware/VM/container environments to avoid saturating CPU usage.
 
-## Setup Prometheus environment for Vitals
+## Set up Prometheus environment for Vitals
 
 ### Download Prometheus
 
@@ -233,7 +234,7 @@ $ ./statsd_exporter --statsd.mapping-config=statsd.rules.yaml \
 ## Exported Metrics
 
 With the above configuration, the Prometheus StatsD exporter will make available all
-metrics as provided by the [standard Vitals configuration](/enterprise/{{page.kong_version}}/admin-api/vitals/#vitals-metrics).
+metrics as provided by the [standard Vitals configuration](/gateway/{{page.kong_version}}/admin-api/vitals/#vitals-metrics).
 
 Additionally, the exporter process provides access to the default metrics exposed by the [Golang
 Prometheus client library](https://prometheus.io/docs/guides/go-application/). These metric names

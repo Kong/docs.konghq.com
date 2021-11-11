@@ -11,7 +11,7 @@ Upgrade to major, minor, and patch {{site.ee_product_name}} releases using the
 
 You can also use the commands to migrate all {{site.ce_product_name}} entities
 to {{site.ee_product_name}}. See
-[Migrating from Kong Gateway to Kong Enterprise](/enterprise/{{page.kong_version}}/deployment/upgrades/migrate-ce-to-ke/).
+[Migrating from Kong Gateway to Kong Enterprise](/gateway/{{page.kong_version}}/install-and-run/migrate-ce-to-ke/).
 
 If you experience any issues when running migrations, contact
 [Kong Support](https://support.konghq.com/support/s/) for assistance.
@@ -19,8 +19,8 @@ If you experience any issues when running migrations, contact
 ## Upgrade path for Kong Gateway releases
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
-distinction between major, minor, and patch versions. The upgrade 
-path for major and minor versions differs depending on the previous version 
+distinction between major, minor, and patch versions. The upgrade
+path for major and minor versions differs depending on the previous version
 from which you are migrating:
 
 - Upgrading from 2.5.x to 2.6.x is a minor upgrade; however, read below for important
@@ -69,12 +69,12 @@ affect your current installation.
 ### Hybrid mode considerations
 
 {:.important}
-> **Important:** If you are currently running in [hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/), 
+> **Important:** If you are currently running in [hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/),
 upgrade the Control Plane first, and then the Data Planes.
 
 * If you are currently running 2.6.x in classic (traditional)
   mode and want to run in hybrid mode instead, follow the hybrid mode
-  [installation instructions](/enterprise/{{page.kong_version}}/deployment/hybrid-mode-setup/)
+  [installation instructions](/gateway/{{page.kong_version}}/plan-and-deploy/hybrid-mode-setup/)
   after running the migration.
 * Custom plugins (either your own plugins or third-party plugins that are not shipped with Kong)
   need to be installed on both the Control Plane and the Data Planes in Hybrid mode. Install the
@@ -84,30 +84,30 @@ upgrade the Control Plane first, and then the Data Planes.
 
 ### Kong for Kubernetes considerations
 
-The Helm chart automates the upgrade migration process. When running `helm upgrade`, 
-the chart spawns an initial job to run `kong migrations up` and then spawns new 
-Kong pods with the updated version. Once these pods become ready, they begin processing 
-traffic and old pods are terminated. Once this is complete, the chart spawns another job 
+The Helm chart automates the upgrade migration process. When running `helm upgrade`,
+the chart spawns an initial job to run `kong migrations up` and then spawns new
+Kong pods with the updated version. Once these pods become ready, they begin processing
+traffic and old pods are terminated. Once this is complete, the chart spawns another job
 to run `kong migrations finish`.
 
-While the migrations themselves are automated, the chart does not automatically ensure 
-that you follow the recommended upgrade path. If you are upgrading from more than one minor 
+While the migrations themselves are automated, the chart does not automatically ensure
+that you follow the recommended upgrade path. If you are upgrading from more than one minor
 Kong version back, check the upgrade path recommendations for Kong open source or Kong Gateway.
 
-Although not required, users should upgrade their chart version and Kong version independently. 
-In the event of any issues, this will help clarify whether the issue stems from changes in 
+Although not required, users should upgrade their chart version and Kong version independently.
+In the event of any issues, this will help clarify whether the issue stems from changes in
 Kubernetes resources or changes in Kong.
 
-For specific Kong for Kubernetes version upgrade considerations, see 
+For specific Kong for Kubernetes version upgrade considerations, see
 [Upgrade considerations](https://github.com/Kong/charts/blob/main/charts/kong/UPGRADE.md)
 
 #### Kong deployment split across multiple releases
 
-The standard chart upgrade automation process assumes that there is only a single Kong release 
-in the Kong cluster, and runs both `migrations up` and `migrations finish` jobs. 
+The standard chart upgrade automation process assumes that there is only a single Kong release
+in the Kong cluster, and runs both `migrations up` and `migrations finish` jobs.
 
-If you split your Kong deployment across multiple Helm releases (to create proxy-only 
-and admin-only nodes, for example), you must set which migration jobs run based on your 
+If you split your Kong deployment across multiple Helm releases (to create proxy-only
+and admin-only nodes, for example), you must set which migration jobs run based on your
 upgrade order.
 
 To handle clusters split across multiple releases, you should:
@@ -126,7 +126,7 @@ To handle clusters split across multiple releases, you should:
    --set migrations.preUpgrade=false \
    --set migrations.postUpgrade=false
    ```
-3. Upgrade the final release with: 
+3. Upgrade the final release with:
 
    ```shell
    helm upgrade RELEASENAME -f values.yaml \

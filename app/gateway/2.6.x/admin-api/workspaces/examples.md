@@ -1,9 +1,7 @@
 ---
 title: Workspace Examples
-book: workspaces
+badge: free
 ---
-
-## Introduction
 
 This chapter aims to provide a step-by-step tutorial on how to set up
 workspaces, entities, and see it in action.
@@ -187,4 +185,4 @@ operation that is allowed in the non-workspaced Kong world.
 
 ---
 
-[services]: /enterprise/{{page.kong_version}}/admin-api/#service-object
+[services]: /gateway/{{page.kong_version}}/admin-api/#service-object

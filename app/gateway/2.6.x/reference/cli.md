@@ -265,7 +265,7 @@ Options:
 
 ---
 
-### kong runner 
+### kong runner
 {:.badge .enterprise}
 
 ```
@@ -350,4 +350,4 @@ Options:
 ---
 
 
-[configuration-reference]: /gateway-oss/{{page.kong_version}}/configuration
+[configuration-reference]: /gateway/{{page.kong_version}}/reference/property-reference/

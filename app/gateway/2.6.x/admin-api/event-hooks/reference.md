@@ -1,9 +1,7 @@
 ---
 title: Event Hooks Reference
-book: event-hooks
+badge: enterprise
 ---
-
-## Introduction
 
 {:.important}
 > **Important:** Before you can use event hooks for the first time, Kong needs to be
@@ -154,7 +152,7 @@ The ellipsis in the center of the response represents the missing content.
 ## List all events for a source
 
 Events are the Kong entities the event hook will listen to for events. With this endpoint you
-can list all of the events associated with a particular source. 
+can list all of the events associated with a particular source.
 
 <div class="endpoint get">/event-hooks/sources/{source}/</div>
 
@@ -365,7 +363,7 @@ POST any data to `/event-hooks/:id-of-hook/test`, and the `/test` endpoint execu
 
 **Endpoint**
 
-<div class="endpoint post">/event-hooks/{event-hook-id}/test</div> 
+<div class="endpoint post">/event-hooks/{event-hook-id}/test</div>
 
 **Response**
 

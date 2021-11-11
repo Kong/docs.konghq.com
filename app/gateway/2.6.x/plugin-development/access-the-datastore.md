@@ -72,4 +72,4 @@ For a real-life example of the DAO being used in a plugin, see the
 
 Next: [Storing Custom Entities &rsaquo;]({{page.book.next}})
 
-[Plugin Development Kit]: /gateway-oss/{{page.kong_version}}/pdk
+[Plugin Development Kit]: /gateway/{{page.kong_version}}/pdk

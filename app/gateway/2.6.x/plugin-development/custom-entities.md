@@ -97,7 +97,7 @@ return {
         "created_at"   TIMESTAMP WITHOUT TIME ZONE,
         "col1"         TEXT
       );
-    
+
       DO $$
       BEGIN
         CREATE INDEX IF NOT EXISTS "my_plugin_table_col1"
@@ -115,7 +115,7 @@ return {
         created_at  timestamp,
         col1        text
       );
-      
+
       CREATE INDEX IF NOT EXISTS ON my_plugin_table (col1);
     ]],
   }
@@ -318,7 +318,7 @@ Here is a description of some top-level properties:
   <td><code>boolean</code> (optional)</td>
   <td>
     When <code>generate_admin_api</code> is enabled the admin api auto-generator uses the <code>name</code>
-    to derive the collection urls for the auto-generated admin api. Sometimes you may want to name the 
+    to derive the collection urls for the auto-generated admin api. Sometimes you may want to name the
     collection urls differently from the <code>name</code>. E.g. with DAO <code>keyauth_credentials</code>
     we actually wanted the auto-generator to generate endpoints for this dao with alternate and more
     url-friendly name <code>key-auths</code>, e.g. <code>http://&lt;KONG_ADMIN&gt;/key-auths</code> instead of
@@ -676,5 +676,5 @@ when they change in the datastore: [Caching custom entities]({{page.book.next}})
 
 Next: [Caching custom entities &rsaquo;]({{page.book.next}})
 
-[Admin API]: /gateway-oss/{{page.kong_version}}/admin-api/
-[Plugin Development Kit]: /gateway-oss/{{page.kong_version}}/pdk
+[Admin API]: /gateway/{{page.kong_version}}/admin-api/
+[Plugin Development Kit]: /gateway/{{page.kong_version}}/pdk

@@ -1,8 +1,7 @@
 ---
 title: Vitals with InfluxDB
+badge: enterprise
 ---
-
-## Improve Vitals performance with InfluxDB
 
 Leveraging a time series database for Vitals data
 can improve request and Vitals performance in very-high traffic {{site.ee_product_name}}
@@ -12,11 +11,11 @@ backing the Kong cluster.
 
 For information about using Kong Vitals with a database as the backend (for example,
 PostgreSQL, Cassandra), refer to
-[Kong Vitals](/enterprise/{{page.kong_version}}/admin-api/vitals/).
+[Kong Vitals](/gateway/{{page.kong_version}}/admin-api/vitals/).
 
-## Setting up Kong Vitals with InfluxDB
+## Set up Kong Vitals with InfluxDB
 
-### Step 1. Install Kong Gateway
+### Install Kong Gateway
 
 If you already have a {{site.base_gateway}} instance, skip to [Step 2](#step-2-deploy-a-kong-gateway-enterprise-license).
 
@@ -25,7 +24,7 @@ will work for the purposes of this guide.
 
 {% include /md/2.4.x/docker-install-steps.md heading="#### " heading1="#### " heading2="#### " heading3="#### " %}
 
-#### Start the gateway with Kong Manager
+### Start the gateway with Kong Manager
 
 ```bash
 $ docker run -d --name kong-ee --network=kong-ee-net \
@@ -56,7 +55,7 @@ $ docker run -d --name kong-ee --network=kong-ee-net \
 with with the DNS name or IP of the Docker host. <code>KONG_ADMIN_GUI_URL</code>
 _should_ have a protocol, for example, `http://`.
 
-### Step 2. Deploy a Kong Gateway (Enterprise) license
+### Deploy a Kong Gateway (Enterprise) license
 
 If you already have a {{site.ee_product_name}} license attached to your {{site.base_gateway}}
 instance, skip to [Step 3](#step-3-start-an-influxdb-database).
@@ -66,7 +65,7 @@ You will not be able to access the Kong Vitals functionality without a valid
 
 {% include /md/enterprise/deploy-license.md heading="####" %}
 
-### Step 3. Start an InfluxDB database
+### Start an InfluxDB database
 
 Production-ready InfluxDB installations should be deployed as a separate
 effort, but for proof-of-concept testing, running a local InfluxDB instance
@@ -87,7 +86,7 @@ InfluxDB 2.0 will **not** work.
 Writing Vitals data to InfluxDB requires that the `kong` database is created,
 this is done using the `INFLUXDB_DB` variable.
 
-### Step 4. Configure Kong Gateway
+### Configure Kong Gateway
 
 {:.note}
 > **Note:** If you used the configuration in
@@ -210,14 +209,14 @@ worker process flushes its buffer of metrics every 5 seconds or 5000 data points
 whichever comes first.
 
 Metrics points are written with microsecond (`u`) precision. To comply with
-the [Vitals API](/enterprise/{{page.kong_version}}/admin-api/vitals/#vitals-api), measurement
+the [Vitals API](/gateway/{{page.kong_version}}/admin-api/vitals/#vitals-api), measurement
 values are read back grouped by second.
 
 {:.note}
 > **Note:** Because of limitations in the OpenResty API, writing values with
 microsecond precision requires an additional syscall per request.
 
-## Managing the retention policy of the kong database
+## Managing the retention policy of the Kong database
 
 Vitals InfluxDB data points are not downsampled or managed by a
 retention policy through Kong. InfluxDB operators are encouraged to manually manage

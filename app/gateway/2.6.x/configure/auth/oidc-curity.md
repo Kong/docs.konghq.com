@@ -203,11 +203,11 @@ select * from "accounts" where "username"= :subject
 
 With relatively simple configurations in both the Curity Identity Server and the Kong Developer Portal, it's possible to leverage Curity as the Identity Provider for the Kong Dev Portal. This provides a very seamless flow for user authentication to the Kong Dev Portal. With the added capability of an Authentication Action, it is possible to automatically provision the user to the Kong Dev Portal for an even more streamlined experience.
 
-[kong-add-service]: /enterprise/{{page.kong_version}}/kong-manager/add-service
+[kong-add-service]: /gateway/{{page.kong_version}}/admin-api/#service-object
 [curity-phantom-token-introspection]: https://curity.io/resources/learn/introspect-with-phantom-token
 [curity-getting-started]: https://curity.io/resources/getting-started
 [curity-phantom-token-pattern]: https://curity.io/resources/learn/phantom-token-pattern
 [curity-code-flow-tutorial]: https://curity.io/resources/learn/code-flow
 [curity-kong-dev-portal-user-provisioner]: https://curity.io/resources/learn/provision-kong-dev-portal-user
-[kong-dev-portal-doc]: /enterprise/{{page.kong_version}}/developer-portal
-[kong-dev-portal-doc-oidc]: /enterprise/{{page.kong_version}}/developer-portal/configuration/authentication/oidc
+[kong-dev-portal-doc]: /gateway/{{page.kong_version}}/developer-portal
+[kong-dev-portal-doc-oidc]: /gateway/{{page.kong_version}}/developer-portal/configuration/authentication/oidc

@@ -1,13 +1,12 @@
 ---
 title: Using the Portal Files API
+badge: enterprise
 ---
-
-## Portal Files API Overview
 
 The Portal Files API can be used as an alternative to the Portal CLI to manage
 dev portal content. Portal content must maintain a specific structure to render
 correctly, so it is generally recommended to use the
-[CLI](/enterprise/{{page.kong_version}}/developer-portal/helpers/cli/)
+[CLI](/gateway/{{page.kong_version}}/developer-portal/helpers/cli/)
 because it enforces that structure. The Portal Files API is useful for smaller
 tasks such as managing specification, content, or theme files outside the context of
 [kong-portal-templates](https://github.com/kong/kong-portal-templates).
@@ -21,10 +20,10 @@ Parameter                       | Type   | Description                | Required
 **Note:** The `@` symbol in a command automatically reads the file on disk and places
 its contents into the contents argument.
 
-### POST a Content File
+## POST a Content File
 
 For more details about content files, see the
-[Content File documentation](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#content-files).
+[Content File documentation](/gateway/{{page.kong_version}}/developer-portal/structure-and-file-types#content-files).
 
 {% navtabs %}
 {% navtab Using cURL %}
@@ -48,10 +47,10 @@ $ http post :8001/default/files  \
 {% endnavtabs %}
 
 
-### POST a Spec File
+## POST a Spec File
 
 For more details about specification files, see the
-[Spec File documentation](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#spec-files).
+[Spec File documentation](/gateway/{{page.kong_version}}/developer-portal/structure-and-file-types#spec-files).
 
 {% navtabs %}
 {% navtab Using cURL %}
@@ -75,10 +74,10 @@ $ http post :8001/default/files  \
 {% endnavtabs %}
 
 
-### POST a Theme File
+## POST a Theme File
 
 For more details about theme files, see the
-[Theme File documentation](/enterprise/{{page.kong_version}}/developer-portal/structure-and-file-types#theme-files).
+[Theme File documentation](/gateway/{{page.kong_version}}/developer-portal/structure-and-file-types#theme-files).
 
 {% navtabs %}
 {% navtab Using cURL %}
@@ -101,7 +100,7 @@ $ http post :8001/default/files  \
 {% endnavtab %}
 {% endnavtabs %}
 
-### GET a File
+## GET a File
 
 {% navtabs %}
 {% navtab Using cURL %}
@@ -120,7 +119,7 @@ $ http :8001/default/files/content/index.txt
 {% endnavtab %}
 {% endnavtabs %}
 
-### PATCH a File
+## PATCH a File
 
 {% navtabs %}
 {% navtab Using cURL %}
@@ -141,7 +140,7 @@ $ http patch :8001/default/files/content/index.txt \
 {% endnavtab %}
 {% endnavtabs %}
 
-### DELETE a File
+## DELETE a File
 
 {% navtabs %}
 {% navtab Using cURL %}

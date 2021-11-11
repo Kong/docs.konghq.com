@@ -1,13 +1,12 @@
 ---
 title: Enable OpenID Connect in the Dev Portal
+badge: enterprise
 ---
-
-### Introduction
 
 The [OpenID Connect Plugin](/hub/kong-inc/openid-connect/) (OIDC)
 allows the Kong Dev Portal to hook into existing authentication setups using third-party
 *Identity Providers* (IdP) such as Google, Okta, Microsoft Azure AD,
-[Curity](/enterprise/latest/plugins/oidc-curity/#kong-dev-portal-authentication), etc.
+[Curity](/gateway/{{page.kong_version}}/configure/auth/oidc-curity/#kong-dev-portal-authentication), etc.
 
 [OIDC](/hub/kong-inc/openid-connect/) must be used with
 the `session` method, utilizing cookies for Dev Portal File API requests.
@@ -27,11 +26,11 @@ OIDC for the Dev Portal can be enabled in one of the following ways:
 - [The Kong configuration file](#enable-oidc-using-kongconf)
 
 
-### Portal Session Plugin Config
+## Portal Session Plugin Config
 
 Session Plugin Config does not apply when using OpenID Connect.
 
-### Sample Configuration Object
+## Sample Configuration Object
 
 Below is a sample configuration JSON object for using *Google* as the Identity
 Provider:
@@ -97,7 +96,7 @@ Example:
 
 ```
 
-### Enable OIDC using Kong Manager
+## Enable OIDC using Kong Manager
 
 1. Navigate to the Dev Portal's **Settings** page.
 2. Find **Authentication plugin** under the **Authentication** tab.
@@ -107,9 +106,9 @@ Example:
 into the provided text area.
 4. Click **Save Changes**.
 
->**Warning** When Dev Portal Authentication is enabled, content files will remain unauthenticated until a role is applied to them. The exception to this is `settings.txt` and `dashboard.txt` which begin with the `*` role. Please visit the <a href="/enterprise/{{page.kong_version}}/developer-portal/administration/developer-permissions">Developer Roles and Content Permissions</a> section for more info.
+>**Warning** When Dev Portal Authentication is enabled, content files will remain unauthenticated until a role is applied to them. The exception to this is `settings.txt` and `dashboard.txt` which begin with the `*` role. Please visit the <a href="/gateway/{{page.kong_version}}/developer-portal/administration/developer-permissions">Developer Roles and Content Permissions</a> section for more info.
 
-### Enable OIDC using the Command Line
+## Enable OIDC using the Command Line
 
 You can use the Kong Admin API to set up Dev Portal Authentication.
 To patch a Dev Portal's authentication property directly, run:
@@ -120,9 +119,9 @@ curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE NAME> \
   "config.portal_auth_conf=<REPLACE WITH JSON CONFIG OBJECT>
 ```
 
->**Warning** When Dev Portal Authentication is enabled, content files will remain unauthenticated until a role is applied to them. The exception to this is `settings.txt` and `dashboard.txt` which begin with the `*` role. Please visit the <a href="/enterprise/{{page.kong_version}}/developer-portal/administration/developer-permissions">Developer Roles and Content Permissions</a> section for more info.
+>**Warning** When Dev Portal Authentication is enabled, content files will remain unauthenticated until a role is applied to them. The exception to this is `settings.txt` and `dashboard.txt` which begin with the `*` role. Please visit the <a href="/gateway/{{page.kong_version}}/developer-portal/administration/developer-permissions">Developer Roles and Content Permissions</a> section for more info.
 
-### Enable OIDC using kong.conf
+## Enable OIDC using kong.conf
 
 Kong allows for a `default authentication plugin` to be set in the Kong
 configuration file with the `portal_auth` property.

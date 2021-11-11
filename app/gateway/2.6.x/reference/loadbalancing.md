@@ -341,8 +341,8 @@ The changes through the Kong Admin API are dynamic and will take
 effect immediately. No reload or restart is required, and no in progress
 requests will be dropped.
 
-[upstream-object-reference]: /gateway-oss/{{page.kong_version}}/admin-api#upstream-object
-[target-object-reference]: /gateway-oss/{{page.kong_version}}/admin-api#target-object
-[dns-order-config]: /gateway-oss/{{page.kong_version}}/configuration/#dns_order
-[real-ip-config]: /gateway-oss/{{page.kong_version}}/configuration/#real_ip_header
+[upstream-object-reference]: /gateway/{{page.kong_version}}/admin-api#upstream-object
+[target-object-reference]: /gateway/{{page.kong_version}}/admin-api#target-object
+[dns-order-config]: /gateway/{{page.kong_version}}/reference/property-reference/#dns_order
+[real-ip-config]: /gateway/{{page.kong_version}}/reference/property-reference/#real_ip_header
 [blue-green-canary]: http://blog.christianposta.com/deploy/blue-green-deployments-a-b-testing-and-canary-releases/

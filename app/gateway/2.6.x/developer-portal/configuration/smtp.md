@@ -1,8 +1,7 @@
 ---
 title: Dev Portal SMTP Configuration
+badge: enterprise
 ---
-
-### Introduction
 
 The following property reference outlines each email and email variable used by the Dev Portal to send emails to Kong admins and developers.
 
@@ -15,10 +14,10 @@ curl http://localhost:8001/workspaces/<WORKSPACE_NAME> \
 
 If they are not modified manually, the Dev Portal will use the default value defined in the Kong Configuration file.
 
-In 1.3.0.1 or greater, [Dev Portal email content and styling can be customized via template files](/enterprise/{{page.kong_version}}/developer-portal/theme-customization/emails/)
+In 1.3.0.1 or greater, [Dev Portal email content and styling can be customized via template files](/gateway/{{page.kong_version}}/developer-portal/theme-customization/emails/)
 
 
-### portal_invite_email
+## portal_invite_email
 
 **Default:** `on`
 
@@ -36,7 +35,7 @@ Please visit `<DEV_PORTAL_URL/register>` to create your account.
 ```
 
 
-### portal_email_verification
+## portal_email_verification
 
 **Default:** `off`
 
@@ -44,7 +43,7 @@ Please visit `<DEV_PORTAL_URL/register>` to create your account.
 When enabled, developers will receive an email upon registration to verify their account. Developers will not be able to use the Dev Portal until their account is verified, even if auto-approve is enabled.
 
 
-### portal_access_request_email
+## portal_access_request_email
 
 **Default:** `on`
 
@@ -61,7 +60,7 @@ Please visit <KONG_MANAGER_URL/developers/requested> to review this request.
 ```
 
 
-### portal_approved_email
+## portal_approved_email
 
 **Default:** `on`
 
@@ -77,7 +76,7 @@ Please visit <DEV PORTAL URL/login> to login.
 
 ```
 
-### portal_reset_email
+## portal_reset_email
 
 **Default:** `on`
 
@@ -101,7 +100,7 @@ If you didn't make this request, keep your account secure by clicking
 the link above to change your password.
 ```
 
-### portal_reset_success_email
+## portal_reset_success_email
 
 **Default:** `on`
 
@@ -122,7 +121,7 @@ Click the link below to sign in with your new credentials.
 ```
 
 
-### portal_emails_from
+## portal_emails_from
 
 **Default:** `nil`
 
@@ -136,7 +135,7 @@ portal_emails_from = Your Name <example@example.com>
 ```
 
 
-### portal_emails_reply_to
+## portal_emails_reply_to
 
 **Default:** `nil`
 

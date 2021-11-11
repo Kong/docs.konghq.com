@@ -290,7 +290,7 @@ reasons:
 * "plugin is enabled but not installed" -> The plugin's name is present in the
   `plugins` directive, but that Kong is unable to load the `handler.lua`
   source file from the file system. To resolve, make sure that the
-  [lua_package_path](/gateway-oss/{{page.kong_version}}/configuration/#development-miscellaneous-section)
+  [lua_package_path](/gateway/{{page.kong_version}}/reference/property-reference/#development-miscellaneous-section)
   directive is properly set to load this plugin's Lua sources.
 
 * "no configuration schema found for plugin" -> The plugin is installed,

@@ -2,7 +2,6 @@
 title: OpenID Connect with Google
 badge: enterprise
 ---
-## Introduction
 
 This guide covers an example OpenID Connect plugin configuration to authenticate browser clients using Google's identity provider.
 
@@ -59,9 +58,9 @@ standardized][oidc-standard-claims], however--if a provider returns an `email` c
 This also requires that clients login using an account mapped to some consumer, which may not be desirable (e.g. you apply OpenID Connect to a service, but only use plugins requiring a consumer on some routes). To deal with this, you can set the `anonymous` parameter in your OIDC plugin configuration to the ID of a generic consumer, which will then be used for all authenticated users that cannot be mapped to some other consumer.
 
 
-[add-certificate]: /1.0.x/admin-api/#add-certificate
+[add-certificate]: /gateway/{{page.kong_version}}/admin-api/#add-certificate
 [google-oidc]: https://developers.google.com/identity/protocols/OpenIDConnect
 [google-create-credentials]: https://console.developers.google.com/apis/credentials
-[add-service]: /enterprise/{{page.kong_version}}/kong-manager/add-service
+[add-service]: /gateway/{{page.kong_version}}/admin-api/#service-object
 [oidc-id-token]: http://openid.net/specs/openid-connect-core-1_0.html#IDToken
 [oidc-standard-claims]: http://openid.net/specs/openid-connect-core-1_0.html#StandardClaims

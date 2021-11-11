@@ -1,5 +1,6 @@
 ---
 title: Keyring & Data Encryption
+badge: enterprise
 ---
 
 ## View Keyring

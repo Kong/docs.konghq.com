@@ -2,15 +2,6 @@
 title: Enabling Plugins
 ---
 
-<div class="alert alert-warning">
-  <strong>Before you start:</strong>
-  <ol>
-    <li>Make sure you've <a href="https://konghq.com/install/#kong-community">installed Kong</a> - It should only take a minute!</li>
-    <li>Make sure you've <a href="/gateway-oss/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
-    <li>Also, make sure you've <a href="/gateway-oss/{{page.kong_version}}/getting-started/configuring-a-service">configured your Service in Kong</a>.</li>
-  </ol>
-</div>
-
 In this section, you'll learn how to configure Kong plugins. One of the core
 principles of Kong is its extensibility through [plugins][plugins]. Plugins
 allow you to easily add new features to your Service or make it easier to
@@ -23,10 +14,13 @@ plugin, **only** requests with the correct key(s) will be proxied - all
 other requests will be rejected by Kong, thus protecting your upstream service
 from unauthorized use.
 
+## Before you start
+* You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install-and-run)
+* You have [configured your Service](/gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-service) in {{site.base_gateway}}
 
 ## 1. Configure the key-auth plugin
 
-To configure the key-auth plugin for the Service you <a href="/gateway-oss/{{page.kong_version}}/getting-started/configuring-a-service">configured in Kong</a>,
+To configure the key-auth plugin for the Service you <a href="/gateway/{{page.kong_version}}/getting-started/configuring-a-service">configured in Kong</a>,
 issue the following cURL request:
 
 ```bash
@@ -69,6 +63,6 @@ consumers to your Service so we can continue proxying requests through Kong.
 
 Go to [Adding Consumers &rsaquo;][adding-consumers]
 
-[key-auth]: /plugins/key-authentication
-[plugins]: /plugins
-[adding-consumers]: /gateway-oss/{{page.kong_version}}/getting-started/adding-consumers
+[key-auth]: /hub/kong-inc/key-auth
+[plugins]: /hub/
+[adding-consumers]: /gateway/{{page.kong_version}}/get-started/quickstart/adding-consumers

@@ -1,8 +1,8 @@
 ---
 title: Kong Immunity Installation and Configuration
+badge: enterprise
 ---
 
-## Introduction
 Kong Immunity (Immunity) is installed on Kong Enterprise, either on Kubernetes or Docker, as defined below. Immunity uses the Collector App and Collector Plugin to communicate with Kong Enterprise.
 
 {% include /md/enterprise/download/immunity.md version='>2.1' %}
@@ -158,6 +158,6 @@ Substitute `default` for your own workspace name.
 {% endnavtabs %}
 
 ## Summary
-The Collector App is installed and the Collector Plugin is enabled on Kong Enterprise. You are now ready to analyze incoming traffic for [alerts](/enterprise/{{page.kong_version}}/immunity/alerts).
+The Collector App is installed and the Collector Plugin is enabled on Kong Enterprise. You are now ready to analyze incoming traffic for [alerts](/gateway/{{page.kong_version}}/immunity/alerts).
 
-For any issues encountered when setting up Collector App, Collector Plugin, or configuring other aspects of Immunity, see [troubleshooting](/enterprise/{{page.kong_version}}/immunity/troubleshooting) for help debugging common problems.
+For any issues encountered when setting up Collector App, Collector Plugin, or configuring other aspects of Immunity, see [troubleshooting](/gateway/{{page.kong_version}}/immunity/troubleshooting) for help debugging common problems.

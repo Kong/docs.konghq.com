@@ -22,12 +22,12 @@ if needed.
 
 Kong Manager currently supports the following **Authentication Plugins**:
 
-* [**Basic Auth**](/enterprise/{{page.kong_version}}/kong-manager/authentication/basic/)
-* [**OIDC**](/enterprise/{{page.kong_version}}/kong-manager/authentication/oidc/)
-* [**LDAP**](/enterprise/{{page.kong_version}}/kong-manager/authentication/ldap/)
+* [**Basic Auth**](/gateway/{{page.kong_version}}/configure/auth/kong-manager/basic/)
+* [**OIDC**](/gateway/{{page.kong_version}}/configure/auth/kong-manager/oidc/)
+* [**LDAP**](/gateway/{{page.kong_version}}/configure/auth/kong-manager/ldap/)
 
 In addition to the **Authentication Plugins** above, the new
-[**Sessions Plugin**](/enterprise/{{page.kong_version}}/kong-manager/authentication/sessions/)
+[**Sessions Plugin**](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/)
 is now required when RBAC is enabled. It sends HTTP cookies to authenticate
 client requests and maintain session information.
 
@@ -38,8 +38,8 @@ securely by default.
 * If using different domains for the Admin API and Kong Manager,
 `cookie_samesite` must be set to `off`.
 Learn more about these properties in
-[Session Security in Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/authentication/sessions/#session-security),
-and see [example configurations](/enterprise/{{page.kong_version}}/kong-manager/authentication/sessions/#example-configurations).
+[Session Security in Kong Manager](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/#session-security),
+and see [example configurations](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/#example-configurations).
 
 ## Access Control with Roles and Workspaces
 
@@ -48,12 +48,12 @@ with a set of **Permissions**. If an **Admin** is in a **Workspace** *without*
 a **Role**, they will not have the ability to see or interact with anything.
 
 By creating separate
-[**Workspaces**](/enterprise/{{page.kong_version}}/kong-manager/administration/workspaces/workspaces/),
+[**Workspaces**](/gateway/{{page.kong_version}}/configure/auth/kong-manager/workspaces/),
  an organization with multiple teams can segment its Kong cluster so that
  different teams do not have access to each other's Kong entities.
 
 Kong Enterprise implements Role-Based Access Control
-([RBAC](/enterprise/{{page.kong_version}}/kong-manager/administration/rbac/rbac/)).
+([RBAC](/gateway/{{page.kong_version}}/configure/auth/rbac)).
 **Admins** are assigned **Roles** that have clearly defined **Permissions**. A
 **Super Admin** has the ability to:
 
@@ -65,4 +65,4 @@ Kong Enterprise implements Role-Based Access Control
 In Kong Manager, limiting **Permissions** also restricts the visibility of the
 application interface and navigation. Learn more about RBAC in Kong Manager in
 our guide
-[RBAC in Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/administration/rbac/rbac).
+[RBAC in Kong Manager](/gateway/{{page.kong_version}}/configure/auth/rbac/).

@@ -341,12 +341,12 @@ All counter thresholds and intervals in `healthchecks` are zero by default,
 meaning that health checks are completely disabled by default in newly created
 upstreams.
 
-[ringbalancer]: /gateway-oss/{{page.kong_version}}/loadbalancing#ring-balancer
-[ringtarget]: /gateway-oss/{{page.kong_version}}/loadbalancing#target
-[upstream]: /gateway-oss/{{page.kong_version}}/loadbalancing#upstream
-[targetobject]: /gateway-oss/{{page.kong_version}}/admin-api#target-object
-[addupstream]: /gateway-oss/{{page.kong_version}}/admin-api#add-upstream
-[clustering]: /gateway-oss/{{page.kong_version}}/clustering
-[upstreamobjects]: /gateway-oss/{{page.kong_version}}/admin-api#upstream-objects
-[balancercaveats]: /gateway-oss/{{page.kong_version}}/loadbalancing#balancing-caveats
-[dnscaveats]: /gateway-oss/{{page.kong_version}}/loadbalancing#dns-caveats
+[ringbalancer]: /gateway/{{page.kong_version}}/reference/loadbalancing#ring-balancer
+[ringtarget]: /gateway/{{page.kong_version}}/reference/loadbalancing#target
+[upstream]: /gateway/{{page.kong_version}}/reference/loadbalancing#upstream
+[targetobject]: /gateway/{{page.kong_version}}/admin-api#target-object
+[addupstream]: /gateway/{{page.kong_version}}/admin-api#add-upstream
+[clustering]: /gateway/{{page.kong_version}}/reference/clustering
+[upstreamobjects]: /gateway/{{page.kong_version}}/admin-api#upstream-objects
+[balancercaveats]: /gateway/{{page.kong_version}}/reference/loadbalancing#balancing-caveats
+[dnscaveats]: /gateway/{{page.kong_version}}/reference/loadbalancing#dns-caveats

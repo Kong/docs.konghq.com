@@ -7,7 +7,7 @@ badge: free
 
 By default, Kong Manager starts up without authentication (see
 [`admin_gui_auth`]), and it assumes that the Admin API is available
-on port 8001 (see [Default Ports](/enterprise/{{page.kong_version}}/deployment/default-ports) of the same host that serves
+on port 8001 (see [Default Ports](/gateway/{{page.kong_version}}/plan-and-deploy/default-ports) of the same host that serves
 Kong Manager.
 
 ## Custom Configuration
@@ -93,12 +93,12 @@ is cleared from the browser after testing to prevent stale certificates from int
 `localhost`.
 
 
-[`admin_gui_auth`]: /enterprise/{{page.kong_version}}/property-reference/#admin_gui_auth
-[`admin_gui_ssl_cert`]: /enterprise/{{page.kong_version}}/property-reference/#admin_gui_ssl_cert
-[`admin_gui_ssl_cert_key`]: /enterprise/{{page.kong_version}}/property-reference/#admin_gui_ssl_cert_key
-[`default_ports`]: /enterprise/{{page.kong_version}}/deployment/default-ports
-[`admin_api_uri`]: /enterprise/{{page.kong_version}}/property-reference/#admin_api_uri
-[`admin_gui_auth_conf`]: /enterprise/{{page.kong_version}}/property-reference/#admin_gui_auth_conf
-[`enforce_rbac`]: /enterprise/{{page.kong_version}}/property-reference/#enforce_rbac
-[`admin_listen`]: /enterprise/{{page.kong_version}}/property-reference/#admin_listen
-[`admin_gui_session_conf`]: /enterprise/{{page.kong_version}}/property-reference/#admin_gui_session_conf
+[`admin_gui_auth`]: /gateway/{{page.kong_version}}/reference/property-reference/#admin_gui_auth
+[`admin_gui_ssl_cert`]: /gateway/{{page.kong_version}}/reference/property-reference/#admin_gui_ssl_cert
+[`admin_gui_ssl_cert_key`]: /gateway/{{page.kong_version}}/reference/property-reference/#admin_gui_ssl_cert_key
+[`default_ports`]: /gateway/{{page.kong_version}}/plan-and-deploy/default-ports
+[`admin_api_uri`]: /gateway/{{page.kong_version}}/reference/property-reference/#admin_api_uri
+[`admin_gui_auth_conf`]: /gateway/{{page.kong_version}}/reference/property-reference/#admin_gui_auth_conf
+[`enforce_rbac`]: /gateway/{{page.kong_version}}/reference/property-reference/#enforce_rbac
+[`admin_listen`]: /gateway/{{page.kong_version}}/reference/property-reference/#admin_listen
+[`admin_gui_session_conf`]: /gateway/{{page.kong_version}}/reference/property-reference/#admin_gui_session_conf

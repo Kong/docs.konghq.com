@@ -1,21 +1,20 @@
 ---
 title: Immunity Alerts
+badge: enterprise
 ---
-
-### Introduction
 
 Immunity monitors all traffic that flows through Kong Enterprise. When an anomaly is detected, Immunity sends an alert to Kong Manager and displays on the Alerts dashboard. Alerts are built to signal the health of your microservices system and help pinpoint which endpoints are struggling.  
 
-### Alerts Dashboard
+## Alerts Dashboard
 Use the Alerts Dashboard in Kong Manager to view and manage alerts. When an alert is generated, it is automatically added to the Alerts Dashboard. The dashboard gives a high-level overview of identified alerts, including severity level, event type, status, and details about the alert. Click an alert to drill down into more details to further investigate the issue.
 
-### Types of Alerts
+## Types of Alerts
 Immunity evaluates your traffic every minute and creates an alert when it detects an anomalous event on either of two entity types: endpoint traffic or consumer traffic.
 
 * `Endpoint alerts` are generated from traffic belonging to one specific endpoint, for example, `GET www.testendpoint/start`.
 * `Consumer alerts` are generated from any traffic in a Workspace belonging to a registered Kong consumer. This traffic is identified by the consumer ID.
 
-#### Alert Events
+### Alert Events
 Dependent on the entity type, being an endpoint or consumer, Immunity creates an alert and identifies them as one of the following event types:
 * `value_type` alerts are triggered when incoming requests have a parameter value of a different type than is historically seen (such as Int instead of Str). Default severity level: Low.
 * `unknown_parameter` alerts are triggered when requests include parameters not seen before. Default severity level: Low.
@@ -24,7 +23,7 @@ Dependent on the entity type, being an endpoint or consumer, Immunity creates an
 * `latency_ms` alerts are triggered when incoming requests are significantly slower than historical records. Default severity level: High.
 * `statuscode` alerts are triggered when the proportion of 4XX or 5XX error codes is increasing, regardless of traffic volume. Default severity level: High.
 
-### Alert Severity Levels
+## Alert Severity Levels
 Alerts are classified with four severity levels:
 * **Low**: A low severity classification denotes the least important alerts. While you decide what a low severity means, we recommend that low severity indicates an alert that you want to review at a later time.
 * **Medium**: A medium severity classification denotes a mid-level important alert. This level is an alert level you will likely address within the sprint.
@@ -32,7 +31,7 @@ Alerts are classified with four severity levels:
 * **Ignored**: Alerts that are designated as ignored are not surfaced in the Kong Manager, Slack alerts, or /alerts endpoint.
 
 
-### Retrieving Generated Alerts
+## Retrieve Generated Alerts
 Monitor generated alerts using the following commands:
 
 ```bash
@@ -47,7 +46,7 @@ Or, access the alerts using a browser, using the ‘start and end’ values as p
 http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/alerts?start=2020-01-01 00:00:00&end=2020-01-02 00:00:00
 ```
 
-#### Alert Endpoint Parameters
+### Alert Endpoint Parameters
 The ‘/alerts’ endpoint uses the following parameters, which you can mix and match according to your monitoring needs:
 * `start and end`: Returns only alerts generated between the values in start and end parameters passed.
 * `alert_type`: Returns only alerts of the alert_type specified in the alert_type parameter. This parameter does not accept lists of alert types. The value passed must be one of [‘query_params’, ‘statuscode’, ‘latency_ms’, ‘traffic’]
@@ -59,10 +58,10 @@ The ‘/alerts’ endpoint uses the following parameters, which you can mix and 
 * `system_restored`: A true/false value indicates you only want returned alerts where the system_restored value is matching the boolean value passed into this parameter.
 * `severity`: One of "low", "medium", "high" which will restricts returned alerts of severities matching the value provided with this parameter.
 
-#### Alert Objects
+### Alert Objects
 Two types of data are returned by the ‘/alerts’ endpoint: a list of generated alerts and alerts metadata.
 
-##### List of Generated Alerts
+#### List of Generated Alerts
 The first is a list of the alerts generated, which are structured like this:
 * `id`: The alert_id of the alert.
 * `detected_at`: The time when the generated alert was detected. This time also correlates with the last time point in the data time series that generated this alert. For example, if the alert was generated on data from 1:00 pm to 1:01 pm, then the detected_at time corresponds with the most recent time point of 1:01 pm in the data used to make the alert.
@@ -73,13 +72,13 @@ The first is a list of the alerts generated, which are structured like this:
 * `system_restored`: This parameter takes True or False as a value, and returns notifications where the anomalous event’s system_restored status matches the value passed in the parameter.
 * `severity`: The severity level of this alert, values of [low, medium, high].
 
-##### Alert Metadata
+#### Alert Metadata
 The second type of data returned is alerts metadata which describes the overall count of alerts and breaks down counts by alert type, severity, system_restored, and filtered_total.
 
 
-### Configure Alert Severity
+## Configure Alert Severity
 
-#### Creating or Updating Alert Severity Rules
+### Create or Update Alert Severity Rules
 
 Depending on your system needs, you can adjust the severities of your alerts to varying degrees of specificity. You can configure alert severity on alert type, kong `route_id` or `service_id`, or any combination of the two.
 
@@ -126,7 +125,7 @@ When determining which severity to assign, Immunity will look for your configura
 
 When you hit the /alerts endpoint, for each alert, Immunity will first look for a rule specifying a severity for that route's kong `route_id` and `alert_name`. If it doesn't find a severity configuration, it moves down the list above until it returns the Immunity defaults for the alert's alert type.
 
-#### Removing Alert Severity Rule
+### Remove Alert Severity Rule
 
 You can remove alert-severity configuration rules by sending a delete request to /alerts/config. This endpoint takes these parameters:
 * `kong_entity`: The kong_entity of the rule you want deleted, or null for alert type rules.
@@ -146,7 +145,7 @@ curl -d '{"alert_name":null, "kong_entity":null}' \
  -X DELETE http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/alerts/config
 ```
 
-#### Viewing Alert Severity Configuration
+### View Alert Severity Configuration
 To view the rules you already have configured, enter a get request to /alerts/config to view all the rules:
 
 ```bash
@@ -178,7 +177,7 @@ A kong entity wide rule is the reverse with a json object that has a non-null `k
 {"alert_name": null, "kong_entity": "route-id-1", "severity": "low"}
 ```
 
-#### Reviewing High Value Information Alerts (HARS)
+### Review High Value Information Alerts (HARS)
 For value_type, unknown_parameter, and abnormal_value alerts, you can retrieve the HARS that created those alerts via the `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/hars` endpoint. This endpoint accepts `alert_id` and/or `har_id` as parameters and returns HARS related to the parameters sent. You must specify one of these two parameters to receive HARS on the `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/hars` endpoint.
 These are the parameters `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/hars` accepts:
 

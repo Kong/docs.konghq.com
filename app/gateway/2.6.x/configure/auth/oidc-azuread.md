@@ -2,14 +2,13 @@
 title: OpenID Connect with Azure AD
 badge: enterprise
 ---
-## Introduction
 
 This guide covers an example OpenID Connect plugin configuration to authenticate
 browser clients using an Azure AD identity provider.
 
 For information about configuring OIDC using Azure as an Identity provider
 in conjunction with the Application Registration plugin, see
-[Set Up External Portal Application Authentication with Azure AD and OIDC](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/azure-oidc-config).
+[Set Up External Portal Application Authentication with Azure AD and OIDC](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/azure-oidc-config).
 
 ## Prerequisites
 
@@ -127,8 +126,8 @@ Similarly, setting `authenticated_groups_claim` will extract that claim's value 
 [azure-create-app]: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app
 [azure-manifest]: https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-app-manifest#configure-the-app-manifest
 [azure-tenants]: https://docs.microsoft.com/en-us/azure/active-directory/develop/single-and-multi-tenant-apps
-[add-certificate]: /1.2.x/admin-api/#add-certificate
-[add-service]: /enterprise/{{page.kong_version}}/kong-manager/add-service
+[add-certificate]: /gateway/{{page.kong_version}}/admin-api/#add-certificate
+[add-service]: /gateway/{{page.kong_version}}/admin-api/#service-object
 [oidc-id-token]: http://openid.net/specs/openid-connect-core-1_0.html#IDToken
 [credential-claim]: https://docs.konghq.com/hub/kong-inc/openid-connect/#configcredential_claim
-[enable-plugin]: /enterprise/{{page.kong_version}}/kong-manager/enable-plugin/
+[enable-plugin]: /gateway/{{page.kong_version}}/admin-api/#plugin-object

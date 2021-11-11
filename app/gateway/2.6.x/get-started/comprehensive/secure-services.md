@@ -3,7 +3,7 @@ title: Secure your Services Using Authentication
 ---
 In this topic, you’ll learn about API Gateway authentication, set up the Key Authentication plugin, and add a consumer.  
 
-If you are following the getting started workflow, make sure you have completed [Improve Performance with Proxy Caching](/getting-started-guide/{{page.kong_version}}/improve-performance) before moving on.
+If you are following the getting started workflow, make sure you have completed [Improve Performance with Proxy Caching](/gateway/{{page.kong_version}}/get-started/comprehensive/improve-performance) before moving on.
 
 ## What is Authentication?
 
@@ -414,4 +414,4 @@ In this topic, you:
 * Created a new consumer named `consumer`.
 * Gave the consumer an API key of `apikey` so that it could access the `/mock` route with authentication.
 
-Next, you’ll learn about [load balancing upstream services using targets](/getting-started-guide/{{page.kong_version}}/load-balancing).
+Next, you’ll learn about [load balancing upstream services using targets](/gateway/{{page.kong_version}}/get-started/comprehensive/load-balancing).

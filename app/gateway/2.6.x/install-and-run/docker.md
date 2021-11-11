@@ -293,8 +293,8 @@ The steps involved in starting Kong in [DB-less mode](/gateway/{{page.kong_versi
     curl -i http://localhost:8001/services
     ```
 
-[DB-less mode]: /gateway-oss/latest/db-less-and-declarative-config/
-[Declarative Configuration Format]: /gateway-oss/latest/db-less-and-declarative-config/#the-declarative-configuration-format
+[DB-less mode]: /gateway/{{page.kong_version}}/reference/db-less-and-declarative-config/
+[Declarative Configuration Format]: /gateway/{{page.kong_version}}/reference/db-less-and-declarative-config/#the-declarative-configuration-format
 [Docker Volume]: https://docs.docker.com/storage/volumes/
 
 ## Troubleshooting
@@ -306,8 +306,8 @@ setup, reach out to your support contact or head over to the
 ## Next Steps
 
 Check out {{site.base_gateway}}'s series of
-[Getting Started](/getting-started-guide/latest/overview) guides to get the most
+[Getting Started](/gateway/{{page.kong_version}}/get-started/comprehensive/) guides to get the most
 out of {{site.base_gateway}}.
 
 If you have an Enterprise subscription, add the license using the
-[`/licenses` Admin API endpoint](/enterprise/{{page.kong_version}}/deployment/licenses/deploy-license).
+[`/licenses` Admin API endpoint](/gateway/{{page.kong_version}}/plan-and-deploy/licenses/deploy-license).

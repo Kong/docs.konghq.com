@@ -3,8 +3,6 @@ title: Kong Gateway Licensing
 badge: enterprise
 ---
 
-## Overview
-
 {{site.base_gateway}} can be used with or without a license. For Enterprise
 functionality, {{site.base_gateway}} enforces the presence and validity of a
 {{site.konnect_product_name}} license file.
@@ -45,7 +43,7 @@ of any `kong` CLI commands. License file environmental variables must be
 exported to the shell in which the Nginx process will run, ahead of the `kong`
 CLI tool.
 
-For more information, see [Deploy Your License](/enterprise/{{page.kong_version}}/deployment/licenses/deploy-license).
+For more information, see [Deploy Your License](/gateway/{{page.kong_version}}/plan-and-deploy/licenses/deploy-license).
 
 ## Examining the license data on a Kong Gateway node
 Retrieve license data using the Admin API's `/licenses` endpoint, or through

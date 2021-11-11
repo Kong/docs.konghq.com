@@ -1,8 +1,7 @@
 ---
 title: Developer Roles and Content Permissions
+badge: enterprise
 ---
-
-## Introduction
 
 Access to the Dev Portal can be fine-tuned with the use of Developer
 Roles and Content Permissions, managed through the Dev Portal Permissions page
@@ -47,7 +46,7 @@ assigned the `*` role by default. All other content files have no roles by
 default. This means that until a role is added, the file is unauthenticated
 even if Dev Portal Authentication is enabled. Content Permissions are ignored
 when Dev Portal Authentication is disabled. For more information, visit the
-<a href="/enterprise/{{page.kong_version}}/developer-portal/configuration/authentication">Dev Portal Authentication</a> section.
+<a href="/gateway/{{page.kong_version}}/developer-portal/configuration/authentication">Dev Portal Authentication</a> section.
 
 ## readable_by attribute
 

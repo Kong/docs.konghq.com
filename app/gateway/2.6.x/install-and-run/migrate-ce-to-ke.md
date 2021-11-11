@@ -12,7 +12,7 @@ performs that migration command on your behalf.
 > **Important:** You can only migrate to a {{site.ee_product_name}} version that
 supports the same {{site.ce_product_name}} version.
 
-### Prerequisites
+## Prerequisites
 
 {:.warning}
 > **Warning:** This action is irreversible, therefore it is strongly
@@ -20,10 +20,10 @@ supports the same {{site.ce_product_name}} version.
    {{site.ce_product_name}} to {{site.ee_product_name}}.
 
 * If running a version of {{site.ce_product_name}} earlier than 2.6.x,
-  [upgrade to Kong 2.6.x](/gateway-oss/2.6.x/upgrading/) before migrating
+  [upgrade to Kong 2.6.x](/gateway/{{page.kong_version}}/upgrade-oss/) before migrating
   {{site.ce_product_name}} to {{site.ee_product_name}} 2.6.x.
 
-#### Migration steps
+## Migration steps
 
 The following steps guide you through the migration process.
 

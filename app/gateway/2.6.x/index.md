@@ -8,7 +8,7 @@ gateway. An API gateway is a reverse proxy that lets you manage, configure, and 
 requests to your APIs.
 
 {{site.base_gateway}} runs in front of any RESTful API and can be extended through
-modules and plugins. It's designed to run on decentralized architectures, including 
+modules and plugins. It's designed to run on decentralized architectures, including
 hybrid-cloud and multi-cloud deployments.
 
 With {{site.base_gateway}}, users can:

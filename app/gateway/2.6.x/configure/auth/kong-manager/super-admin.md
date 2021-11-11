@@ -35,7 +35,7 @@ Manager on a node where `enforce_rbac` is set to `on` or `off`, but not `both`.
 
 In the event that the default `kong_admin`, **Super Admin**, was not seeded
 during the initial database preparation step as defined in
-[Step 1 in How To Start Kong Enterprise Securely](/enterprise/{{page.kong_version}}/start-kong-securely/#step-1),
+[How To Start Kong Enterprise Securely](/gateway/{{page.kong_version}}/plan-and-deploy/security/start-kong-securely/),
 the following steps outline how to create and enable a new Super Admin post
 installation.
 
@@ -44,7 +44,7 @@ account and generate a registration link.
 
 2. Before the link generated above can be used, RBAC and GUI Authentication must
 be enabled. Follow the instructions on
-[how to enable Basic Auth on Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/authentication/basic).
+[how to enable Basic Auth on Kong Manager](/gateway/{{page.kong_version}}/configure/auth/kong-manager/basic).
 
 3. Paste the URL in your browser and you will be asked to create a password for
 the newly defined **Super Admin** user on the Kong Manager.

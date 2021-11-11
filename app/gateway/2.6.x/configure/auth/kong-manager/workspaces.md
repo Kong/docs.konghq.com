@@ -12,8 +12,8 @@ delimit the types of actions and entities available to an **Admin**.
 
 ## Prerequisites
 
-* [`enforce_rbac = on`](/enterprise/{{page.kong_version}}/property-reference/#enforce_rbac)
-* Kong Enterprise has [started](/enterprise/{{page.kong_version}}/start-kong-securely)
+* [`enforce_rbac = on`](/gateway/{{page.kong_version}}/reference/property-reference/#enforce_rbac)
+* Kong Enterprise has [started](/gateway/{{page.kong_version}}/plan-and-deploy/security/start-kong-securely)
 * Logged in to Kong Manager as a **Super Admin**
 
 ## Default Workspace
@@ -39,7 +39,7 @@ depending on preference.
 This guide describes how to create **Workspaces** in Kong
 Manager. As an alternative, if a **Super Admin** wants to create
 a **Workspace** with the Admin API, it is possible to do so
-using the [`/workspaces/` route](/enterprise/{{page.kong_version}}/admin-api/workspaces/reference/#add-workspace).
+using the [`/workspaces/` route](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/#add-workspace).
 
 1. Log in as the **Super Admin**. On the **Workspaces** page, click the **New Workspace**
 button at the top right to see the **Create Workspace** form. Name and choose a
@@ -110,4 +110,4 @@ The **Admins** page displays a list of current **Admins** and
 to the **Workspace** can be assigned from this page.
 
 For more information about **Admins** and **Roles**, see
-[RBAC in Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/administration/rbac/).
+[RBAC in Kong Manager](/gateway/{{page.kong_version}}/configure/auth/rbac/).

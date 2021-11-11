@@ -7,7 +7,7 @@ Dev Portal provides a single source of truth for all developers to locate, acces
 
 ## Before you begin
 
-Make sure the Dev Portal is on. You should have enabled it during [installation](/enterprise/latest/deployment/installation/overview/).
+Make sure the Dev Portal is on. You should have enabled it during [installation](/gateway/{{page.kong_version}}/install-and-run).
 
 ## Enable the Dev Portal for a Workspace
 
@@ -46,11 +46,11 @@ This will expose the Dev Portal at `http://<admin-hostname>:8003/SecureWorkspace
 
 After the Dev Portal is enabled for the Workspace, a few new links appear in the left navigation menu. It may take a few seconds for the Settings page to populate.
 
-You can learn more about personalization in the [the Dev Portal documentation](/enterprise/latest/developer-portal/), including:
+You can learn more about personalization in the [the Dev Portal documentation](/gateway/{{page.kong_version}}/developer-portal/), including:
 
-* [Customizing the look and feel of the site and editor](/enterprise/latest/developer-portal/theme-customization/easy-theme-editing/)
-* [Managing access](/enterprise/latest/developer-portal/administration/)
-* [Configuring the Dev Portal](/enterprise/latest/developer-portal/configuration/)
+* [Customizing the look and feel of the site and editor](/gateway/{{page.kong_version}}/developer-portal/theme-customization/easy-theme-editing/)
+* [Managing access](/gateway/{{page.kong_version}}/developer-portal/administration/)
+* [Configuring the Dev Portal](/gateway/{{page.kong_version}}/developer-portal/configuration/)
 
 ## Access and Interact with the Dev Portal
 
@@ -83,7 +83,7 @@ In this section, you’re going to add a new spec, the *Kong Vitals API*, to the
 
     The editor creates the file and prepares it for editing. Since you haven’t added any content to the file, the preview displays “Unable to render this definition”.
 
-5. In another tab, open the [Kong Vitals Overview page](/enterprise/latest/vitals/overview/#using-vitals-api) to download the `vitalsSpec.yaml.` Open it in your favorite text editor and copy the contents of the file.
+5. In another tab, open the [Kong Vitals Overview page](/gateway/{{page.kong_version}}/vitals/#using-vitals-api) to download the `vitalsSpec.yaml.` Open it in your favorite text editor and copy the contents of the file.
 
 6. In the Dev Portal editor, clear the contents of the editor, then paste the contents of `vitalsSpec.yaml`.
 

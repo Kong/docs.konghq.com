@@ -1,8 +1,6 @@
 ---
-title: Kong Developer Portal
-toc: false
-book: developer-portal
-chapter: 1
+title: Kong Dev Portal
+badge: enterprise
 ---
 
 The Kong Dev Portal provides a single source of truth for all developers

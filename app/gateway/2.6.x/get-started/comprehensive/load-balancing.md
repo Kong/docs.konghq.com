@@ -4,7 +4,7 @@ title: Set Up Intelligent Load Balancing
 
 In this topic, you’ll learn about configuring upstream services, and create multiple targets for load balancing.
 
-If you are following the getting started workflow, make sure you have completed [Secure Services Using Authentication](/getting-started-guide/{{page.kong_version}}/secure-services) before moving on.
+If you are following the getting started workflow, make sure you have completed [Secure Services Using Authentication](/gateway/{{page.kong_version}}/get-started/comprehensive/secure-services) before moving on.
 
 ## What are Upstreams?
 
@@ -196,4 +196,4 @@ In this topic, you:
 * Created an Upstream object named `upstream` and pointed the Service `example_service` to it.
 * Added two targets, `httpbin.org` and `mockbin.org`, with equal weight to the Upstream.
 
-If you have a {{site.konnect_product_name}} subscription, go on to [Managing Administrative Teams](/getting-started-guide/{{page.kong_version}}/manage-teams).
+If you have a {{site.konnect_product_name}} subscription, go on to [Managing Administrative Teams](/gateway/{{page.kong_version}}/get-started/comprehensive/manage-teams).

@@ -1,8 +1,7 @@
 ---
 title: Securing the Admin API
+badge: enterprise
 ---
-
-## Introduction
 
 Kong's Admin API provides a RESTful interface for administration and
 configuration of Services, Routes, Plugins, Consumers, and Credentials. Because this
@@ -247,6 +246,6 @@ Enterprise offering by [contacting us](/enterprise).
 
 [acl]: /hub/kong-inc/acl
 [basic-auth]: /hub/kong-inc/basic-auth
-[custom-configuration]: /enterprise/{{page.kong_version}}/property-reference/#custom-nginx-configuration
+[custom-configuration]: /gateway/{{page.kong_version}}/reference/property-reference/#custom-nginx-configuration
 [ip-restriction]: /hub/kong-inc/ip-restriction
 [key-auth]: /hub/kong-inc/key-auth

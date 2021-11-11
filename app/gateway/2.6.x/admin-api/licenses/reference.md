@@ -1,6 +1,6 @@
 ---
 title: Licenses Reference
-book: licenses
+badge: enterprise
 
 licenses_attribute_id: |
     Attributes | Description
@@ -12,8 +12,6 @@ licenses_body: |
     ---:| ---
     `payload` | The **Kong Gateway license** in JSON format.
 ---
-
-## Introduction
 
 The {{site.base_gateway}} Licenses feature is configurable through the
 [Admin API]. This feature lets you configure a license in your
@@ -200,4 +198,4 @@ HTTP 200 OK
 HTTP 204 No Content
 ```
 
-[Admin API]: /enterprise/{{page.kong_version}}/admin-api/
+[Admin API]: /gateway/{{page.kong_version}}/admin-api/

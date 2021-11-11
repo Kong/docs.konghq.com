@@ -1,15 +1,14 @@
 ---
 title: Third-party OAuth2 Support for Application Registration
+badge: enterprise
 ---
-
-## Introduction
 
 Third-party OAuth2 support allows developers to centralize application
 credentials management with the [supported Identity Provider](#idps) of their
 choice. To use the external IdP feature, set the `portal_app_auth`
 configuration option to `external-oauth2` in the
 `kong.conf.default` configuration file. For more information, see setting the
-[Authorization Provider Strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/auth-provider-strategy).
+[Authorization Provider Strategy](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/auth-provider-strategy).
 
 The Kong [OIDC](/hub/kong-inc/openid-connect/) and
 [Portal Application Registration](/hub/kong-inc/application-registration/)
@@ -17,7 +16,7 @@ plugins are used in conjunction with each other on a Service:
 
 * The OIDC plugin handles all aspects of the OAuth2 handshake, including
 looking up the Consumer via
-[custom claim](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config#auth-server-cclaim)
+[custom claim](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config#auth-server-cclaim)
 (the `custom_id` matches the identity provider `client_id` claim).
 
 * The Application Registration plugin is responsible for checking the mapped
@@ -31,9 +30,9 @@ following providers have been tested for the current version of the Kong
 Portal Application Registration plugin used in tandem with the Kong OIDC plugin:
 
 * [Okta](https://developer.okta.com/). See the
-  [Okta setup example](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config).
+  [Okta setup example](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config).
 * [Azure](https://azure.microsoft.com/). See the
-  [Azure setup example](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/azure-oidc-config).
+  [Azure setup example](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/azure-oidc-config).
 * [Ping Identity](https://www.pingidentity.com/).
 
 ### Resources
@@ -102,7 +101,7 @@ Due to limitations of the OIDC plugin, a single plugin instance cannot handle
 dynamic `client_id's` provisioned from multiple sources (applications).
 To circumvent this issue, the IdP Issuer URL is exposed to developers on the
 Dev Portal application show page when
-[`show_issuer`](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration#app-reg-params) is enabled in the
+[`show_issuer`](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration#app-reg-params) is enabled in the
 Application Registration plugin. Developers can hit the Issuer URL directly to
 provision an access token. After getting the access token, requests can be made
 against the proxy.

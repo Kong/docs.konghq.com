@@ -4,7 +4,7 @@ title: Improve Performance with Proxy Caching
 
 In this topic, you’ll learn how to use proxy caching to improve response efficiency using the Proxy Caching plugin.
 
-If you are following the getting started workflow, make sure you have completed [Protect your Services](/getting-started-guide/{{page.kong_version}}/protect-services) before continuing.
+If you are following the getting started workflow, make sure you have completed [Protect your Services](/gateway/{{page.kong_version}}/get-started/comprehensive/protect-services) before continuing.
 
 ## What is Proxy Caching?
 
@@ -197,4 +197,4 @@ In this section, you:
 * Set up the Proxy Caching plugin, then accessed the `/mock` route multiple times to see caching in effect.
 * Witnessed the performance differences in latency with and without caching.
 
-Next, you’ll learn about [securing services](/getting-started-guide/{{page.kong_version}}/secure-services).
+Next, you’ll learn about [securing services](/gateway/{{page.kong_version}}/get-started/comprehensive/secure-services).

@@ -82,7 +82,7 @@ considered closed and the `log` function is executed.
 [body_filter]: https://github.com/openresty/lua-nginx-module#body_filter_by_lua_block
 [log]: https://github.com/openresty/lua-nginx-module#log_by_lua_block
 [preread]: https://github.com/openresty/stream-lua-nginx-module#preread_by_lua_block
-[enable_buffering]: /gateway-oss/{{page.kong_version}}/pdk/kong.service.request/#kongservicerequestenable_buffering
+[enable_buffering]: /gateway/{{page.kong_version}}/pdk/kong.service.request/#kongservicerequestenable_buffering
 
 ---
 
@@ -297,4 +297,4 @@ post-function               | -1000
 Next: [Plugin configuration &rsaquo;]({{page.book.next}})
 
 [lua-nginx-module]: https://github.com/openresty/lua-nginx-module
-[pdk]: /gateway-oss/{{page.kong_version}}/pdk
+[pdk]: /gateway/{{page.kong_version}}/pdk

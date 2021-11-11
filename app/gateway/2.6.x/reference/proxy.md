@@ -1089,8 +1089,8 @@ subdomains, instead of creating an SNI for each.
 Valid wildcard positions are `mydomain.*`, `*.mydomain.com`, and `*.www.mydomain.com`.
 
 A default certificate can be added using the following parameters in Kong configuration:
-1. [`ssl_cert`](/gateway-oss/latest/configuration/#ssl_cert)
-2. [`ssl_cert_key`](/gateway-oss/latest/configuration/#ssl_cert_key)
+1. [`ssl_cert`](/gateway/{{page.kong_version}}/reference/property-reference/#ssl_cert)
+2. [`ssl_cert_key`](/gateway/{{page.kong_version}}/reference/property-reference/#ssl_cert_key)
 
 Or, by dynamically configuring the default certificate with an SNI of `*`:
 
@@ -1339,17 +1339,17 @@ If you haven't already, we suggest that you also read the [Load balancing
 Reference][load-balancing-reference], as it closely relates to the topic we
 just covered.
 
-[plugin-configuration-object]: /gateway-oss/{{page.kong_version}}/admin-api#plugin-object
-[plugin-development-guide]: /gateway-oss/{{page.kong_version}}/plugin-development
-[plugin-association-rules]: /gateway-oss/{{page.kong_version}}/admin-api/#precedence
-[proxy-websocket]: /gateway-oss/{{page.kong_version}}/proxy/#proxy-websocket-traffic
-[load-balancing-reference]: /gateway-oss/{{page.kong_version}}/loadbalancing
-[configuration-reference]: /gateway-oss/{{page.kong_version}}/configuration/
-[configuration-trusted-ips]: /gateway-oss/{{page.kong_version}}/configuration/#trusted_ips
-[configuring-a-service]: /gateway-oss/{{page.kong_version}}/getting-started/configuring-a-service
-[API]: /gateway-oss/{{page.kong_version}}/admin-api
-[service-entity]: /gateway-oss/{{page.kong_version}}/admin-api/#add-service
-[route-entity]: /gateway-oss/{{page.kong_version}}/admin-api/#add-route
+[plugin-configuration-object]: /gateway/{{page.kong_version}}/admin-api#plugin-object
+[plugin-development-guide]: /gateway/{{page.kong_version}}/plugin-development
+[plugin-association-rules]: /gateway/{{page.kong_version}}/admin-api/#precedence
+[proxy-websocket]: /gateway/{{page.kong_version}}/reference/proxy/#proxy-websocket-traffic
+[load-balancing-reference]: /gateway/{{page.kong_version}}/reference/loadbalancing
+[configuration-reference]: /gateway/{{page.kong_version}}/reference/property-reference/
+[configuration-trusted-ips]: /gateway/{{page.kong_version}}/reference/property-reference/#trusted_ips
+[configuring-a-service]: /gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-service
+[API]: /gateway/{{page.kong_version}}/admin-api
+[service-entity]: /gateway/{{page.kong_version}}/admin-api/#add-service
+[route-entity]: /gateway/{{page.kong_version}}/admin-api/#add-route
 
 [ngx-http-proxy-module]: http://nginx.org/en/docs/http/ngx_http_proxy_module.html
 [ngx-http-realip-module]: http://nginx.org/en/docs/http/ngx_http_realip_module.html
@@ -1359,5 +1359,5 @@ just covered.
 [ngx-server-port-variable]: http://nginx.org/en/docs/http/ngx_http_core_module.html#var_server_port
 [ngx-http-proxy-retries]: http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream_tries
 [SNI]: https://en.wikipedia.org/wiki/Server_Name_Indication
-[conf-grpc-service]: /gateway-oss/{{page.kong_version}}/getting-started/configuring-a-grpc-service
-[file-log]: //file-log
+[conf-grpc-service]: /gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-grpc-service
+[file-log]: /hub/kong-inc/file-log

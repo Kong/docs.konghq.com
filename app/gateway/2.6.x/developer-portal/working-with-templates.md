@@ -1,12 +1,11 @@
 ---
 title: Working with Templates
+badge: enterprise
 ---
 
-### Introduction
+Kong Portal is built on top of the `lua-resty-template` templating library, which can be viewed here: [https://github.com/bungle/lua-resty-template](https://github.com/bungle/lua-resty-template). Basic usage of the library will be described below. Refer to the source documentation for a more in-depth look at what it can accomplish.
 
-Kong Portal 1.3 is built on top of the `lua-resty-template` templating library, which can be viewed here: [https://github.com/bungle/lua-resty-template](https://github.com/bungle/lua-resty-template). Basic usage of the library will be described below. Refer to the source documentation for a more in-depth look at what it can accomplish.
-
-### Syntax
+## Syntax
 ***(excerpt from lua-resty-templates documentation)***
 
 You may use the following tags in templates:
@@ -21,11 +20,11 @@ You may use the following tags in templates:
 * `{# comments #}` everything between `{#` and `#}` is considered to be commented out (i.e., not outputted or executed).
 {% endraw %}
 
-### Using Partials
+## Partials
 
 Partials are snippets of html that layouts can reference. Partials have access to all the same data that its layout does, and can even call other partials.  Breaking your code into partials can help organize large pages, as well as allow different layouts share common page elements.
 
-##### content/index.txt
+### content/index.txt
 
 {% raw %}
 ```
@@ -44,7 +43,7 @@ hero_description: Partials are wicked sick!
 ```
 {% endraw %}
 
-##### layouts/index.html
+### layouts/index.html
 
 {% raw %}
 ```html
@@ -56,7 +55,7 @@ hero_description: Partials are wicked sick!
 ```
 {% endraw %}
 
-##### partials/header.html
+### partials/header.html
 
 {% raw %}
 ```html
@@ -71,7 +70,7 @@ hero_description: Partials are wicked sick!
 ```
 {% endraw %}
 
-##### partials/header_nav.html
+### partials/header_nav.html
 
 {% raw %}
 ``` html
@@ -83,7 +82,7 @@ hero_description: Partials are wicked sick!
 ```
 {% endraw %}
 
-##### partials/hero.html
+### partials/hero.html
 
 {% raw %}
 ``` html
@@ -93,7 +92,7 @@ hero_description: Partials are wicked sick!
 {% endraw %}
 
 
-##### partials/hero.html
+### partials/hero.html
 
 {% raw %}
 ``` html
@@ -104,7 +103,7 @@ hero_description: Partials are wicked sick!
 {% endraw %}
 
 
-##### Output
+Output:
 
 {% raw %}
 ```html
@@ -127,13 +126,13 @@ hero_description: Partials are wicked sick!
 ```
 {% endraw %}
 
-### Using Blocks
+## Blocks
 
 Blocks can be used to embed a view or partial into another template. Blocks are particularly useful when you want different templates to share a common wrapper.
 
 In the example below, notice that the content file is referencing `index.html`, and not `wrapper.html`.
 
-##### content/index.txt
+### content/index.txt
 
 {% raw %}
 ```markdown
@@ -146,7 +145,7 @@ description: Blocks are the future!
 {% endraw %}
 
 
-##### layouts/index.html
+### layouts/index.html
 
 {% raw %}
 ```html
@@ -161,7 +160,7 @@ description: Blocks are the future!
 ```
 {% endraw %}
 
-##### layouts/wrapper.html
+### layouts/wrapper.html
 
 {% raw %}
 ```html
@@ -183,7 +182,7 @@ description: Blocks are the future!
 ```
 {% endraw %}
 
-##### Output
+Output:
 
 {% raw %}
 ```html
@@ -208,7 +207,7 @@ description: Blocks are the future!
 ```
 {% endraw %}
 
-### collections
+## Collections
 Collections are a powerful tool enabling you to render sets of content as a group.  Content rendered as a collection share a configurable route pattern, as well as a layout. Collections are configured in your portals `portal.conf.yaml` file.
 
 The example below shows all the necessary configuration/files needed to render a basic `blog` collection made up of individual `posts`.
@@ -231,11 +230,11 @@ collections:
 Above you can see a `collections` object was declared, which is made up of individual collection configurations. In this example, you are configuring a collection called `posts`.  The renderer looks for a root directory called `_posts` within the `content` folder for individual pages to render.  If you created another collection conf called `animals`, the renderer would look for a directory called `_animals` for content files to render.
 
 Each configuration item is made up of a few parts:
-- ###### `output`
+- `output`
   - **required**: false
   - **type**: `boolean`
   - **description**: This optional attribute determines whether the collections should render or not. When set to `false`, virtual routes for the collection are not created.
-- ###### `route`
+- `route`
   - **required**: true
   - **type**: `string`
   - **default**: `none`
@@ -246,12 +245,12 @@ Each configuration item is made up of a few parts:
       - `:name`: Replaces namespace with the filename of a piece of content.
       - `:collection`: Replaces namespace with name of current collection.
       - `:stub`: Replaces namespace with value of `headmatter.stub` in each contents headmatter.
-- ###### `route`
+- `layout`
     - **required**: true
       - **type**: `boolean`
       - **description**: The `layout` attribute determines what HTML layout the collections use to render. The path root is accessed from within the current themes `layouts` directory.
 
-##### `content/_posts/post1.md`
+### `content/_posts/post1.md`
 
 {% raw %}
 ```
@@ -265,7 +264,7 @@ This is my first post!
 {% endraw %}
 
 
-##### `content/_posts/post2.md`
+### `content/_posts/post2.md`
 
 {% raw %}
 ```
@@ -278,7 +277,7 @@ This is my second post!
 ```
 {% endraw %}
 
-##### `themes/base/layouts/post.html`
+### `themes/base/layouts/post.html`
 
 {% raw %}
 ```html
@@ -287,16 +286,16 @@ This is my second post!
 ```
 {% endraw %}
 
-#### Output:
+Output:
 
-##### `<kong_portal_gui_url>/blog/posts/post1`
+From `<kong_portal_gui_url>/blog/posts/post1`:
 
 ```html
 <h1>Post One</h1>
 <p>This is my first post!</p>
 ```
 
-##### `<kong_portal_gui_url>/blog/posts/post2`
+From `<kong_portal_gui_url>/blog/posts/post2`:
 
 ```html
 <h1>Post Two</h1>
@@ -304,13 +303,10 @@ This is my second post!
 ```
 
 
-### List of Helper Functions
-
-# Kong Template Helpers - Lua API
+## Kong Template Helpers - Lua API
 Kong Template Helpers are a collection of objects that give access to your portal data at the time of render and provide powerful integrations into Kong.
 
-
-## Globals
+Globals:
 
 - [`l`](#lkey-fallback) - Locale helper, first version, gets values from the currently active page.
 - [`each`](#eachlist_or_table) - Commonly used helper to iterate over lists or tables.
@@ -319,8 +315,7 @@ Kong Template Helpers are a collection of objects that give access to your porta
 - [`json_decode`](#json_decode) - Decode JSON to Lua table.
 - [`json_encode`](#json_encode) - Encode Lua table to JSON.
 
-
-## Objects
+Objects:
 
 - [`portal`](#portal) - The portal object refers to the current workspace portal being accessed.
 - [`page`](#page) - The page object refers to the currently active page and its contents.
@@ -331,17 +326,14 @@ Kong Template Helpers are a collection of objects that give access to your porta
 - [`helpers`](#helpers) - Helper functions simplify common tasks or provide easy shortcuts to Kong Portal methods.
 
 
-## Terminology / Definitions
+Terminology / Definitions:
 
 - `list` - Also referred to commonly as an array (`[1, 2, 3]`) in Lua is a table-like object (`{1, 2, 3}`). Lua list index starts at `1` not `0`. Values can be accessed by array notation (`list[1]`).
 - `table` - Also commonly known as an object or hashmap (`{1: 2}`) in Lua looks like (`{1 = 2}`). Values can be accessed by array or dot notation (`table.one or table["one"]`).
 
-# Globals
-## `l(key, fallback)`
+### `l(key, fallback)`
 
-#### Description
-
-> Returns the current translation by key from the currently active page.
+Returns the current translation by key from the currently active page.
 
 #### Return Type
 {% raw %}
@@ -350,10 +342,10 @@ Kong Template Helpers are a collection of objects that give access to your porta
 string
 ```
 {% endraw %}
+
 #### Usage
 
-
-##### `content/en/example.txt`
+Using `content/en/example.txt`:
 
 {% raw %}
 ```yaml
@@ -368,7 +360,7 @@ locale:
 {% endraw %}
 
 
-##### `content/es/example.txt`
+Using `content/es/example.txt`:
 
 {% raw %}
 ```yaml
@@ -383,7 +375,7 @@ locale:
 {% endraw %}
 
 
-##### `layouts/example.html`
+Using `layouts/example.html`:
 
 {% raw %}
 ```lua
@@ -394,7 +386,9 @@ locale:
 {% endraw %}
 
 
-##### Output when on `en/example`
+Output:
+
+For `en/example`:
 
 {% raw %}
 ```html
@@ -405,7 +399,7 @@ locale:
 {% endraw %}
 
 
-##### Output when on `es/example`
+For `es/example`:
 
 {% raw %}
 ```html
@@ -420,11 +414,9 @@ locale:
 
 - `l(...)` is a helper from the `page` object. It can be also accessed via `page.l`. However, `page.l` does not support template interpolation (for example, `{{portal.name}}` will not work.)
 
-## `each(list_or_table)`
+### `each(list_or_table)`
 
-#### Description
-
-> Returns the appropriate iterator depending on what type of argument is passed.
+Returns the appropriate iterator depending on what type of argument is passed.
 
 #### Return Type
 
@@ -434,7 +426,7 @@ Iterator
 
 #### Usage
 
-##### Template (List)
+Template (List):
 
 {% raw %}
 ```lua
@@ -448,7 +440,7 @@ Iterator
 {% endraw %}
 
 
-##### Template (Table)
+Template (Table):
 
 {% raw %}
 ```lua
@@ -461,11 +453,9 @@ Iterator
 ```
 {% endraw %}
 
-## `print(any)`
+### `print(any)`
 
-#### Description
-
-> Returns stringified output of input value.
+Returns stringified output of input value.
 
 #### Return Type
 
@@ -475,7 +465,7 @@ string
 
 #### Usage
 
-##### Template (Table)
+Template (Table):
 
 {% raw %}
 ```lua
@@ -483,11 +473,9 @@ string
 ```
 {% endraw %}
 
-## `markdown(string)`
+### `markdown(string)`
 
-#### Description
-
-> Returns HTML from the markdown string passed as an argument. If a string argument is not valid markdown, the function will return the string as is. To render properly, the helper should be used with raw "{* *}" delimiters.
+Returns HTML from the markdown string passed as an argument. If a string argument is not valid markdown, the function will return the string as is. To render properly, the helper should be used with raw `{* *}` delimiters.
 
 #### Return Type
 
@@ -497,7 +485,7 @@ string
 
 #### Usage
 
-##### Template (string as arg)
+Template (string as arg):
 
 {% raw %}
 ```lua
@@ -505,7 +493,7 @@ string
 ```
 {% endraw %}
 
-##### Template (content val as arg)
+Template (content val as arg):
 
 {% raw %}
 ```lua
@@ -513,11 +501,9 @@ string
 ```
 {% endraw %}
 
-## `json_encode(object)`
+### `json_encode(object)`
 
-#### Description
-
-> JSON encodes Lua table passed as argument
+JSON encodes Lua table passed as argument
 
 #### Return Type
 
@@ -527,7 +513,7 @@ string
 
 #### Usage
 
-##### Template
+Template:
 
 {% raw %}
 ```lua
@@ -535,11 +521,9 @@ string
 ```
 {% endraw %}
 
-## `json_decode(string)`
+### `json_decode(string)`
 
-#### Description
-
-> Decodes JSON string argument to Lua table
+Decodes JSON string argument to Lua table
 
 #### Return Type
 
@@ -549,7 +533,7 @@ table
 
 #### Usage
 
-##### Template
+Template:
 
 {% raw %}
 ```lua
@@ -557,15 +541,10 @@ table
 ```
 {% endraw %}
 
+### `portal`
 
-# `portal`
+`portal` gives access to data relating to the current portal, this includes things like portal configuration, content, specs, and layouts.
 
-> `portal` gives access to data relating to the current portal, this includes things like portal configuration, content, specs, and layouts.
-
----
-
-- [How To Access Config Values](#how-to-access-config-values)
-- [Portal Members](#portal-members)
   - [`portal.workspace`](#portalworkspace)
   - [`portal.url`](#portalurl)
   - [`portal.api_url`](#portalapi_url)
@@ -574,9 +553,6 @@ table
   - [`portal.specs_by_tag`](#portalspecs_by_tag)
   - [`portal.developer_meta_fields`](#portaldeveloper_meta_fields)
 
----
-
-## How To Access Config Values
 
 You can access the current workspace's portal config directly on the `portal` object like so:
 
@@ -586,29 +562,25 @@ portal[config_key] or portal.config_key
 
 For example `portal.auth` is a portal config value. You can find a list of config values by reading the portal section of `kong.conf`.
 
-### From `kong.conf`
+#### From `kong.conf`
 
 The portal only exposes config values that start with  `portal_`, and they can be access by removing the `portal_` prefix.
 
-> Some configuration values are modified or customized, these customizations are documented under the [Portal Members](#portal-members) section.
+Some configuration values are modified or customized, these customizations are documented under the [Portal Members](#portal-members) section.
 
-## Portal Members
+##### `portal.workspace`
 
-### `portal.workspace`
+Returns the current portal's workspace.
 
-#### Description
-
-> Returns the current portal's workspace.
-
-#### Return Type
+##### Return Type
 
 ```lua
 string
 ```
 
-#### Usage
+##### Usage
 
-##### Template
+Template:
 
 {% raw %}
 ```hbs
@@ -616,27 +588,25 @@ string
 ```
 {% endraw %}
 
-##### Output
+Output:
 
 ```html
 default
 ```
 
-### `portal.url`
+#### `portal.url`
 
-#### Description
+Returns the current portal's url with workspace.
 
-> Returns the current portal's url with workspace.
-
-#### Return Type
+##### Return Type
 
 ```lua
 string
 ```
 
-#### Usage
+##### Usage
 
-##### Template
+Template:
 
 {% raw %}
 ```hbs
@@ -644,28 +614,26 @@ string
 ```
 {% endraw %}
 
-##### Output
+Output:
 
 ```html
 http://127.0.0.1:8003/default
 ```
 
-## `portal.api_url`
+#### `portal.api_url`
 
-#### Description
+Returns the configuration value for `portal_api_url` with
+the current workspace appended.
 
-> Returns the configuration value for `portal_api_url` with
-> the current workspace appended.
-
-#### Return Type
+##### Return Type
 
 ```lua
 string or nil
 ```
 
-#### Usage
+##### Usage
 
-##### Template
+Template:
 
 {% raw %}
 ```hbs
@@ -673,29 +641,27 @@ string or nil
 ```
 {% endraw %}
 
-##### Output when `portal_api_url = http://127.0.0.1:8004`
+Output when `portal_api_url = http://127.0.0.1:8004`:
 
 ```html
 http://127.0.0.1:8004/default
 ```
 
-### `portal.auth`
+#### `portal.auth`
 
-#### Description
+Returns the current portal's authentication type.
 
-> Returns the current portal's authentication type.
-
-#### Return Type
+##### Return Type
 
 ```lua
 string
 ```
 
-#### Usage
+##### Usage
 
-#### Printing Value
+**Printing a value**
 
-###### Input
+Input:
 
 {% raw %}
 ```hbs
@@ -703,15 +669,15 @@ string
 ```
 {% endraw %}
 
-###### Output when `portal_auth = basic-auth`
+Output when `portal_auth = basic-auth`:
 
 ```html
 basic-auth
 ```
 
-#### Checking Authentication Enabled
+**Checking if authentication is enabled**
 
-###### Input
+Input:
 
 {% raw %}
 ```hbs
@@ -721,29 +687,27 @@ basic-auth
 ```
 {% endraw %}
 
-###### Output when `portal_auth = basic-auth`
+Output when `portal_auth = basic-auth`:
 
 ```html
 Authentication is endabled!
 ```
 
-### `portal.specs`
-
-#### Description
+#### `portal.specs`
 
 Returns an array of specification files contained within the current portal.
 
-#### Return type
+##### Return type
 
 ```lua
 array
 ```
 
-#### Usage
+##### Usage
 
-##### Viewing content value
+**Viewing a content value**
 
-###### Template
+Template:
 
 {% raw %}
 ```hbs
@@ -751,7 +715,7 @@ array
 ```
 {% endraw %}
 
-###### Output
+Output:
 
 ```lua
 {
@@ -767,9 +731,9 @@ array
 }
 ```
 
-##### Looping through values
+**Looping through values**
 
-###### Template
+Template:
 
 {% raw %}
 ```hbs
@@ -779,16 +743,16 @@ array
 ```
 {% endraw %}
 
-###### Output
+Output:
 
 ```hbs
   <li>content/example1_spec.json</li>
   <li>content/documentation/example1_spec.json</li>
 ```
 
-##### Filter by path
+**Filter by path**
 
-###### Template
+Template:
 
 {% raw %}
 ```hbs
@@ -797,15 +761,14 @@ array
 {% end %}
 ```
 {% endraw %}
-###### Output
+
+Output:
 
 ```hbs
   <li>content/documentation/example1_spec.json</li>
 ```
 
-### `portal.developer_meta_fields`
-
-#### Description
+#### `portal.developer_meta_fields`
 
 Returns an array of developer meta fields available/required by Kong to register a developer.
 
@@ -815,11 +778,11 @@ Returns an array of developer meta fields available/required by Kong to register
 array
 ```
 
-#### Usage
+##### Usage
 
-##### Printing
+**Printing a value**
 
-###### Template
+Template:
 
 {% raw %}
 ```hbs
@@ -827,7 +790,7 @@ array
 ```
 {% endraw %}
 
-###### Output
+Output:
 
 {% raw %}
 ```lua
@@ -843,9 +806,9 @@ array
 ```
 {% endraw %}
 
-#### Looping
+**Looping through values**
 
-###### Template
+Template:
 
 {% raw %}
 ```hbs
@@ -860,7 +823,7 @@ array
 ```
 {% endraw %}
 
-###### Output
+Output:
 
 ```html
 <ul>
@@ -872,22 +835,14 @@ array
 ...
 ```
 
-# `page`
+### `page`
 
-> `page` gives access to data relating to the current page, which includes things like page url, path, breadcrumbs, and more.
+`page` gives access to data relating to the current page, which includes things like page url, path, breadcrumbs, and more.
 
----
-
-- [How to access content values](#how-to-access-content-values)
-- [Page Members](#page-members)
   - [`page.route`](#pageroute)
   - [`page.url`](#pageurl)
   - [`page.breadcrumbs`](#pagebreadcrumbs)
   - [`page.body`](#pagebody)
-  - [`page.parsed_body`](#parsedbody)
----
-
-## How to access content values
 
 When you create a new content page, you are able to define key-values. Here you are going to learn how to access those values and a few other interesting things.
 
@@ -905,28 +860,25 @@ You can also access nested keys like so:
 page.key_name.nested_key
 ```
 {% raw %}
-> Be careful! To avoid output errors, make sure that the `key_name` exists before accessing `nested_key` as shown below:
-> ```hbs
-> {{page.key_name and page.key_name.nested_key}}
-> ```
+Be careful! To avoid output errors, make sure that the `key_name` exists before accessing `nested_key` as shown below:
+```hbs
+{{page.key_name and page.key_name.nested_key}}
+```
 {% endraw %}
 
-## Page Members
-### `page.route`
+#### `page.route`
 
-#### Description
+Returns the current page's route/path.
 
-> Returns the current page's route/path.
-
-#### Return Type
+##### Return Type
 
 ```lua
 string
 ```
 
-#### Usage
+##### Usage
 
-##### Template
+Template:
 
 {% raw %}
 ```hbs
@@ -934,27 +886,25 @@ string
 ```
 {% endraw %}
 
-##### Output given url is `http://127.0.0.1:8003/default/guides/getting-started`
+Output, given url is `http://127.0.0.1:8003/default/guides/getting-started`:
 
 ```html
 guides/getting-started
 ```
 
-### `page.url`
+#### `page.url`
 
-#### Description
+Returns the current page's url.
 
-> Returns the current page's url.
-
-#### Return Type
+##### Return Type
 
 ```lua
 string
 ```
 
-#### Usage
+##### Usage
 
-##### Template
+Template:
 
 {% raw %}
 ```hbs
@@ -962,34 +912,32 @@ string
 ```
 {% endraw %}
 
-##### Output given url is `http://127.0.0.1:8003/default/guides/getting-started`
+Output, given url is `http://127.0.0.1:8003/default/guides/getting-started`:
 
 ```html
 http://127.0.0.1:8003/default/guides/getting-started
 ```
 
-### `page.breadcrumbs`
+#### `page.breadcrumbs`
 
-#### Description
+Returns the current page's breadcrumb collection.
 
-> Returns the current page's breadcrumb collection.
-
-#### Return Type
+##### Return Type
 
 ```lua
 table[]
 ```
 
-#### Item Properties
+##### Item Properties
 
 - `item.path` - Full path to item, no forward-slash prefix.
 - `item.display_name` - Formatted name.
 - `item.is_first` - Is this the first item in the list?
 - `item.is_last` - Is this the last item in the list?
 
-#### Usage
+##### Usage
 
-##### Template
+Template:
 
 {% raw %}
 ```hbs
@@ -1006,87 +954,82 @@ table[]
 ```
 {% endraw %}
 
-### `page.body`
+#### `page.body`
 
-#### Description
+Returns the body of the current page as a string. If the route's content file has a `.md` or `.markdown` extension, the body will be parsed from markdown to html.
 
-> Returns the body of the current page as a string. If the route's content file has a `.md` or `.markdown` extension, the body will be parsed from markdown to html.
-
-#### Return Type
+##### Return Type
 
 ```lua
 string
 ```
 
-#### Usage for .txt, .json, .yaml, .yml templates
+##### Usage for .txt, .json, .yaml, .yml templates
 
-##### index.txt
+`index.txt`:
+
 ```hbs
 This is text content.
 ```
 
+Template:
 {% raw %}
-##### Template
 ```hbs
 <h1>This is a title</h1>
 <p>{{ page.body) }}</p>
 ```
 {% endraw %}
 
-##### Output
+Output:
+```
 > # This is a title
 > This is text content.
+```
 
-#### Usage for .md, .markdown templates
+##### Usage for .md, .markdown templates
 
-##### Template (markdown)
-You must use the raw delimiter syntax `{* *}` to render markdown within a template.
+Template (markdown):
+Use the raw delimiter syntax `{* *}` to render markdown within a template.
 
-##### index.txt
+`index.txt`
 ```hbs
 # This is a title
 This is text content.
 ```
 
-##### Template
+Template:
 ```hbs
 {* page.body *}
 ```
 
-##### Output
+Output:
+```
 > # This is a title
 > This is text content.
+```
 
-# `user`
+### `user`
 
-> `user` gives access to data relating to the currently authenticated user.  User object is only applicable when `KONG_PORTAL_AUTH` is enabled.
+`user` gives access to data relating to the currently authenticated user.  User object is only applicable when `KONG_PORTAL_AUTH` is enabled.
 
----
-
-- [User Members](#user-members)
   - [`user.is_authenticated`](#useris_authenticated)
   - [`user.has_role`](#userhas_role)
   - [`user.get`](#userget)
 
----
 
-## User Members
+#### `user.is_authenticated`
 
-### `user.is_authenticated`
+Returns `boolean` value as to the current user's authentication status.
 
-#### Description
-
-> Returns `boolean` value as to the current user's authentication status.
-
-#### Return Type
+##### Return Type
 
 ```lua
 boolean
 ```
 
-#### Usage
+##### Usage
 
-##### Template
+Template:
 
 {% raw %}
 ```hbs
@@ -1094,27 +1037,25 @@ boolean
 ```
 {% endraw %}
 
-##### Output
+Output:
 
 ```html
 true
 ```
 
-### `user.has_role`
+#### `user.has_role`
 
-#### Description
+Returns `true` if a user has a role given as an argument.
 
-> Returns `true` if a user has a role given as an argument.
-
-#### Return Type
+##### Return Type
 
 ```lua
 boolean
 ```
 
-#### Usage
+##### Usage
 
-##### Template
+Template:
 
 {% raw %}
 ```hbs
@@ -1122,27 +1063,25 @@ boolean
 ```
 {% endraw %}
 
-##### Output
+Output:
 
 ```html
 true
 ```
 
-### `user.get`
+#### `user.get`
 
-#### Description
+Takes developer attribute as an argument and returns value if present.
 
-> Takes developer attribute as an argument and returns value if present.
-
-#### Return Type
+##### Return Type
 
 ```lua
 any
 ```
 
-#### Usage
+##### Usage
 
-##### Template
+Template:
 
 {% raw %}
 ```hbs
@@ -1151,7 +1090,7 @@ any
 ```
 {% endraw %}
 
-##### Output
+Output:
 
 ```html
 example123@konghq.com
@@ -1159,37 +1098,30 @@ example123@konghq.com
 ```
 
 
-# `theme`
+### `theme`
 
-> The `theme` object exposes values set in your `theme.conf.yaml` file.  In addition, any variable overrides contained in `portal.conf.yaml` will be included as well.
+The `theme` object exposes values set in your `theme.conf.yaml` file.  In addition, any variable overrides contained in `portal.conf.yaml` will be included as well.
 
----
-
-- [Theme Members](#theme-members)
   - [`theme.colors`](#usercolors)
   - [`theme.color`](#usercolor)
   - [`theme.fonts`](#userfonts)
   - [`theme.font`](#userfont)
 
----
 
-## Theme Members
+#### `theme.colors`
 
-### `theme.colors`
+Returns a table of color variables and their values as key-value pairs.
 
-#### Description
-
-> Returns a table of color variables and their values as key-value pairs.
-
-#### Return Type
+##### Return Type
 
 ```lua
 table
 ```
 
-#### Usage
+##### Usage
 
-##### theme.conf.yaml
+`theme.conf.yaml`:
+
 ```yaml
 name: Kong
 colors:
@@ -1204,7 +1136,7 @@ colors:
     description: 'Tertiary Color'
 ```
 
-##### Template
+Template:
 
 {% raw %}
 ```lua
@@ -1214,7 +1146,7 @@ colors:
 ```
 {% endraw %}
 
-##### Output
+Output:
 
 ```html
 <p>primary: #FFFFFF</p>
@@ -1222,21 +1154,22 @@ colors:
 <p>tertiary: #1DBAC2</p>
 ```
 
-### `theme.color`
+#### `theme.color`
 
-#### Description
+Description
 
-> Takes color var by string argument, returns value.
+Takes color var by string argument, returns value.
 
-#### Return Type
+##### Return Type
 
 ```lua
 string
 ```
 
-#### Usage
+##### Usage
 
-##### theme.conf.yaml
+`theme.conf.yaml`:
+
 ```yaml
 name: Kong
 colors:
@@ -1251,7 +1184,7 @@ colors:
     description: 'Tertiary Color'
 ```
 
-##### Template
+Template:
 
 {% raw %}
 ```lua
@@ -1261,7 +1194,7 @@ colors:
 ```
 {% endraw %}
 
-##### Output
+Output:
 
 ```html
 <p>primary: #FFFFFF</p>
@@ -1270,21 +1203,20 @@ colors:
 ```
 
 
-### `theme.fonts`
+#### `theme.fonts`
 
-#### Description
+Returns table of font vars and their values as key-value pairs.
 
-> Returns table of font vars and their values as key-value pairs.
-
-#### Return Type
+##### Return Type
 
 ```lua
 table
 ```
 
-#### Usage
+##### Usage
 
-##### theme.conf.yaml
+`theme.conf.yaml`:
+
 ```yaml
 name: Kong
 fonts:
@@ -1293,7 +1225,7 @@ fonts:
   headings: Lato
 ```
 
-##### Template
+Template:
 
 {% raw %}
 ```lua
@@ -1303,7 +1235,7 @@ fonts:
 ```
 {% endraw %}
 
-##### Output
+Output:
 
 ```html
 <p>base: Roboto</p>
@@ -1311,21 +1243,20 @@ fonts:
 <p>headings: Lato</p>
 ```
 
-### `theme.font`
+#### `theme.font`
 
-#### Description
+Takes font name by string argument, returns value.
 
-> Takes font name by string argument, returns value.
-
-#### Return Type
+##### Return Type
 
 ```lua
 string
 ```
 
-#### Usage
+##### Usage
 
-##### theme.conf.yaml
+`theme.conf.yaml`:
+
 ```yaml
 name: Kong
 fonts:
@@ -1334,7 +1265,7 @@ fonts:
   headings: Lato
 ```
 
-##### Template
+Template:
 
 {% raw %}
 ```lua
@@ -1344,7 +1275,7 @@ fonts:
 ```
 {% endraw %}
 
-##### Output
+Output:
 
 ```html
 <p>base: #FFFFFF</p>
@@ -1352,16 +1283,15 @@ fonts:
 <p>headings: #1DBAC2</p>
 ```
 
-## `str`
+### `str`
 
-#### Description
-
-> Table containing useful string helper methods.
+Table containing useful string helper methods.
 
 #### Usage
 
+`.upper()` example:
+
 {% raw %}
-##### _.upper()_ example
 ```lua
 <pre>{{ str.upper("dog") }}</pre>
 ```
@@ -1415,15 +1345,13 @@ fonts:
 ##### str.[quote_string](https://stevedonovan.github.io/Penlight/api/libraries/pl.stringx.html#quote_string)
 
 
-## `tbl`
+### `tbl`
 
-#### Description
-
-> Table containing useful table helper methods
+Table containing useful table helper methods
 
 #### Usage
 
-##### _.map()_ example
+`.map()` example:
 {% raw %}
 ```lua
 {% tbl.map({"dog", "cat"}, function(item) %}

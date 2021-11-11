@@ -2,13 +2,12 @@
 title: OpenID Connect with Okta
 badge: enterprise
 ---
-## Introduction
 
 This guide covers an example OpenID Connect plugin configuration to authenticate browser clients using an Okta identity provider.
 
 For information about configuring OIDC using Okta as an Identity provider
 in conjunction with the Application Registration plugin, see
-[Set Up External Portal Application Authentication with Okta and OIDC](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config).
+[Set Up External Portal Application Authentication with Okta and OIDC](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config).
 
 ## Prerequisites
 
@@ -135,6 +134,6 @@ Similarly, setting `authenticated_groups_claim` will extract that claim's value 
 [okta-authorization-server]: https://developer.okta.com/docs/guides/customize-authz-server/create-authz-server/
 [okta-register-app]: https://developer.okta.com/docs/guides/add-an-external-idp/openidconnect/register-app-in-okta/
 [add-certificate]: /1.0.x/admin-api/#add-certificate
-[add-service]: /enterprise/{{page.kong_version}}/kong-manager/add-service
+[add-service]: /gateway/{{page.kong_version}}/admin-api/#service-object
 [credential-claim]: https://docs.konghq.com/hub/kong-inc/openid-connect/#configcredential_claim
-[enable-plugin]: /enterprise/{{page.kong_version}}/kong-manager/enable-plugin/
+[enable-plugin]: /gateway/{{page.kong_version}}/kong-manager/#plugin-object

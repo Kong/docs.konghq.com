@@ -1,8 +1,7 @@
 ---
 title: Vitals Overview
+badge: enterprise
 ---
-
-## Overview
 
 Use Kong Vitals (Vitals) to monitor {{site.ee_product_name}} health and performance, and to understand the microservice API transactions traversing Kong. Vitals uses visual API analytics to see exactly how your APIs and Gateway are performing. Quickly access key statistics, monitor vital signs, and pinpoint anomalies in real time.
 
@@ -10,11 +9,9 @@ Use Kong Vitals (Vitals) to monitor {{site.ee_product_name}} health and performa
 
 * Use Kong Manager to view visualizations of Vitals data, including the Workspaces Overview Dashboard, Workspace Charts, Vitals tab, and Status Codes, and to generate CSV Reports.
 
-
 ![Vitals Overview](/assets/images/docs/ee/vitals_overview.png)
 
-
-### Prerequisites
+## Prerequisites
 Vitals is enabled by default in {{site.ee_product_name}} and available upon the first login of a Super Admin.
 
 You will need one of the following databases to use Vitals:
@@ -22,7 +19,7 @@ You will need one of the following databases to use Vitals:
 * PostgresSQL 9.5+
 * Cassandra 2.1+
 
-### Guidelines for viewing Vitals
+## Guidelines for viewing Vitals
 When using Vitals, note:
 * Vitals is enabled by default and accessible the first time a Super Admin logs in.
   * To enable or disable Vitals, see [Enable or Disable Vitals](#enable-or-disable-vitals).
@@ -31,7 +28,7 @@ When using Vitals, note:
   * If a user does not have access to Vitals data, charts will not display.
 
 ## Vitals API
-Vitals data is available via endpoints on Kong’s Admin API. Access to these endpoints may be controlled via Admin API RBAC. The Vitals API is described in the OAS (Open API Spec, formerly Swagger) file. See a sample here (downloadable file): [`vitalsSpec.yaml`](/enterprise/{{page.kong_version}}/vitals/vitalsSpec.yaml).
+Vitals data is available via endpoints on Kong’s Admin API. Access to these endpoints may be controlled via Admin API RBAC. The Vitals API is described in the OAS (Open API Spec, formerly Swagger) file. See a sample here (downloadable file): [`vitalsSpec.yaml`](/gateway/{{page.kong_version}}/vitals/vitalsSpec.yaml).
 
 ## Viewing Vitals in Kong Manager
 View Vitals information in Kong Manager using any of the following:
@@ -40,13 +37,13 @@ View Vitals information in Kong Manager using any of the following:
 * Vitals tab, which provides detailed information about your Kong cluster, including total requests, latency, and cache information.
 * Status Codes to view cluster-wide status code classes.
 
-### Overview Dashboard
+## Overview Dashboard
 When you log in to Kong Manager, the Workspaces page displays by default. The top of the page displays the Vitals Overview Dashboard summarizing your Kong cluster, including the health and performance of your APIs and Gateway, total requests, average error rate, total consumers, and total services. This Vitals Overview Dashboard makes it easy for an Admin to quickly identify any issues that need attention.
 
-### Workspace charts
+## Workspace charts
 On the Workspaces page, beneath the Overview Dashboard, the Workspaces section displays each Workspace with a chart showing Vitals for the most recently added services, consumers, and plugins for that Workspace. Hover over a coordinate to view the exact number of successes and errors at a given timestamp, or drilldown into the Workspace chart for more details.
 
-### Vitals tab
+## Vitals tab
 The Vitals tab, or Vitals view, displays metrics about the health and performance of Kong nodes and Kong-proxied APIs. The Vitals View displays total requests, latency, and cache information. You also can generate reports from the Vitals view.
 
 Options to populate the Vitals view, or areas in the chart, include:
@@ -58,8 +55,8 @@ Options to populate the Vitals view, or areas in the chart, include:
 | Total Requests           | The Total Requests chart displays a count of all proxy requests received. This includes requests that were rejected due to rate-limiting, failed authentication, and so on.|
 | Cluster and Node Data    | Metrics are displayed on Vitals charts at both node and cluster level. Controls are available to show cluster-wide metrics and/or node-specific metrics. Clicking on individual nodes will toggle the display of data from those nodes. Nodes are identified by a unique Kong node identifier, by hostname, or by a combination of the two.|
 
-### Status Codes
-The Status Codes view displays visualizations of cluster-wide status code classes (1xx, 2xx, 3xx, 4xx, 5xx). The Status Codes view contains the counts of status code classes graphed over time, as well as the ratio of code classes to total requests. See [Status Codes](/enterprise/{{page.kong_version}}/vitals/vitals-metrics/#status-code).
+## Status Codes
+The Status Codes view displays visualizations of cluster-wide status code classes (1xx, 2xx, 3xx, 4xx, 5xx). The Status Codes view contains the counts of status code classes graphed over time, as well as the ratio of code classes to total requests. See [Status Codes](/gateway/{{page.kong_version}}/vitals/vitals-metrics/#status-code).
 
 >**Note**: The Status Codes view does not include non-standard code classes (6xx, 7xx, etc.). Individual status code data can be viewed in the Consumer, Route, and Service details pages under the Activity tab. Both standard and non-standard status codes are visible in these views.
 

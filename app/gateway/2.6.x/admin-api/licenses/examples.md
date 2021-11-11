@@ -1,6 +1,6 @@
 ---
 title: Licenses Examples
-book: licenses
+badge: enterprise
 ---
 <div class="alert alert-ee">
 <b>Note:</b> The <code>/licenses</code> endpoint does not override standard
@@ -139,4 +139,4 @@ Response:
 }
 ```
 
-[services]: /enterprise/{{page.kong_version}}/admin-api/#service-object
+[services]: /gateway/{{page.kong_version}}/admin-api/#service-object

@@ -2070,7 +2070,7 @@ happens on a service, the event hook calls a URL with information about that
 event. Event hook configurations differ depending on the handler. The events
 that are triggered send associated data.
 
-See: https://docs.konghq.com/enterprise/latest/admin-api/event-hooks/reference/
+See: https://docs.konghq.com/gateway/latest/admin-api/event-hooks/reference/
 
 **Default:** `on`
 
@@ -3337,7 +3337,7 @@ Different strategies are available to tune how to enforce splitting traffic of
 workspaces.
 
 - `smart` is the default option and uses the algorithm described in
-  https://docs.konghq.com/enterprise/latest/admin-api/workspaces/examples/#important-note-conflicting-services-or-routes-in-workspaces
+  https://docs.konghq.com/gateway/latest/admin-api/workspaces/examples/#important-note-conflicting-services-or-routes-in-workspaces
 - `off` disables any check
 - `path` enforces routes to comply with the pattern described in config
   enforce_route_path_pattern

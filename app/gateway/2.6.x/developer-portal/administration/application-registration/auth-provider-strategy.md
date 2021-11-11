@@ -1,8 +1,7 @@
 ---
 title: Authorization Provider Strategy for Application Registration
+badge: enterprise
 ---
-
-## Overview
 
 In the 1.5.x beta version of the Application
 Registration plugin, the feature was tightly coupled with OAuth2. Kong was the
@@ -15,13 +14,13 @@ providers. Developers have the flexibility to choose from either
 Kong or a third-party identity provider (IdP) as the system of record for
 application credentials. With third-party (external) OAuth2 support, developers
 can centralize application credential management with the
-[supported identity provider](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth#idps)
+[supported identity provider](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth#idps)
 of their choice.
 
 In the {{site.ee_product_name}} 2.2.1.x version and later, support has been added
 for the Key Authentication plugin to use with Kong as the system of record.
 
-### Supported Authentication Plugins
+## Supported Authentication Plugins
 
 OAuth2 plugins for use with the Application Registration plugin:
 
@@ -42,7 +41,7 @@ OAuth2 plugins for use with the Application Registration plugin:
 The third-party authorization strategy (`external-oauth2`) applies to all
 applications across all Workspaces (Dev Portals) in a {{site.base_gateway}} cluster.
 
-### Authorization provider strategy configuration for Application Registration {#portal-app-auth}
+## Authorization provider strategy configuration for Application Registration {#portal-app-auth}
 
 The `portal_app_auth` configuration option must be set in `kong.conf` to enable
 the Dev Portal Application Registration plugin with your chosen
@@ -61,10 +60,10 @@ Available options:
   Portal Application Registration plugin is used in conjunction with the
   OIDC plugin. The `external-oauth2` option can be used with any deployment type.
   The `external-oauth2` option must be used with
-  [hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/)
+  [hybrid mode](/gateway/{{page.kong_version}}/plan-and-deploy/hybrid-mode/)
   deployments because hybrid mode does not support `kong-oauth2`.
 
-#### Set external portal authentication {#set-external-oauth2}
+### Set external portal authentication {#set-external-oauth2}
 
 If you are using an external IdP, follow these steps.
 
@@ -80,12 +79,12 @@ If you are using an external IdP, follow these steps.
             # Currently accepts kong-oauth2 or external-oauth2.
    ```
 
-2. [Restart](/enterprise/{{page.kong_version}}/cli/#kong-restart) your Kong Enterprise
+2. [Restart](/gateway/{{page.kong_version}}/reference/cli/#kong-restart) your Kong Enterprise
    instance.
 
-### Next Steps
+## Next Steps
 
-1. Enable the [Application Registration plugin](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration) on a Service.
+1. Enable the [Application Registration plugin](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration) on a Service.
 
 2. Enable a supported authentication plugin on the same Service as the Application Registration plugin,
    as appropriate for your authorization strategy.
@@ -99,14 +98,14 @@ If you are using an external IdP, follow these steps.
     * If using the `kong-oauth2` authorization strategy with key authentication, configure the
     [Key Auth](/hub/kong-inc/key-auth/) plugin on the same Service as the Application
     Registration plugin. You can use either the
-    [Kong Manager GUI](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/enable-key-auth-plugin)
+    [Kong Manager GUI](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/enable-key-auth-plugin)
     or cURL commands as documented on the Plugin Hub. The Key Auth plugin
     cannot be used in hybrid mode.
 
     Strategy `external-oauth2`:
 
     1. If you plan to use external OAuth2, review the
-    [recommended workflows](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth#supported-oauth-flows).
+    [recommended workflows](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth#supported-oauth-flows).
 
     2. If using the third-party authorization strategy
     (`external-oauth2`), configure the OIDC plugin on the same Service as the
@@ -117,5 +116,5 @@ If you are using an external IdP, follow these steps.
 
     3. Configure the identity provider for your application, configure your
     application in {{site.base_gateway}}, and associate them with each other. See the
-    [Okta](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config)
-    or the [Azure](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/azure-oidc-config) setup examples.
+    [Okta](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config)
+    or the [Azure](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/azure-oidc-config) setup examples.

@@ -1,11 +1,11 @@
 ---
 title: Manage Applications
+badge: enterprise
 ---
 
-## Manage Developer Applications from Kong Manager
 Developers can create applications from the Kong Dev Portal. An application can apply to any number of Services. This is called a Service Contract. To use an application with a Service, the Service Contract must have an Approved status. To enable automatic approval for all new Service Contracts, enable Auto-approve for the Portal Application Registration plugin.
 
-### Create an Application
+## Create an Application
 
 1. Log in to the Kong Dev Portal.
 2. Click **My Apps** in the top navigation bar.
@@ -20,11 +20,11 @@ generate more credentials, and view your application status against a list of
 Services.
 6. Before you can use your application, you must activate it to create a Service
 Contract for the Service. In the Services section of the Application Dashboard,
-click **Activate** on the Service you want to use. If [Auto-approve](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration##aa) is not
+click **Activate** on the Service you want to use. If [Auto-approve](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration##aa) is not
 enabled, your application will remain pending until an admin approves your
 request.
 
-### View all Service Contracts for an Application
+## View all Service Contracts for an Application
 
 A list of all applications in a Workspace can be accessed from the left navigation pane.
 
@@ -33,7 +33,7 @@ A list of all applications in a Workspace can be accessed from the left navigati
 3. In the Service Contracts section, click the **Requested Access** tab to view Service Contracts requests for the application. Approve, revoke, or reject
 requests.
 
-### View all Application Contracts for a Service
+## View all Application Contracts for a Service
 
 View all Application Contracts and their status for a Service from the
 **Service** page.
@@ -42,7 +42,7 @@ View all Application Contracts and their status for a Service from the
 2. Select the Service for which you have Application Registration enabled.
 3. From the Service Contracts tab, view all Approved, Revoked, Rejected, and Requested Access for the Service.
 
-### Add a Document to your Service
+## Add a Document to your Service
 When using Application Registration, it is recommended to link documentation
 (OAS/Swagger spec) to your Service. Doing so allows Dev Portal users to easily
 register Application Contracts for their applications from the documentation

@@ -1,8 +1,8 @@
 ---
 title: Enable Application Registration
+badge: enterprise
 ---
 
-## Introduction
 Application Registration allows registered developers on the Kong Dev Portal to
 authenticate with supported Authentication plugins against a Service on Kong. Either {{site.base_gateway}} or
 external identity provider admins can selectively admit access to Services using Kong Manager.
@@ -17,13 +17,13 @@ key authentication, version 2.2.1.0 or later.
   developers.
 * The `portal_app_auth` configuration option is configured for your OAuth provider
   and strategy (`kong-oauth2` default or `external-oauth2`). See
-[Configure the Authorization Provider Strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/auth-provider-strategy) for the Portal Application Registration plugin.
+[Configure the Authorization Provider Strategy](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/auth-provider-strategy) for the Portal Application Registration plugin.
 * Authorization provider configured if using a supported third-party
   identity provider with the OIDC plugin:
   * For example instructions using Okta as an identity provider, refer to the
-    [Okta example](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config).
+    [Okta example](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config).
   * For example instructions using Azure AD as an identity provider, refer to the
-    [Azure example](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/azure-oidc-config).
+    [Azure example](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/azure-oidc-config).
 
 ## Enable Application Registration on a Service using Kong Manager {#enable-app-reg-plugin}
 
@@ -48,7 +48,7 @@ In Kong Manager, access the Service for which you want to enable Application Reg
 
    **Important:** Exposing
    the Issuer URL is essential for the
-   [Authorization Code Flow](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth/#ac-flow)
+   [Authorization Code Flow](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth/#ac-flow)
    workflow configured for third-party identity providers.
 
    ![Issuer URL](/assets/images/docs/dev-portal/dev-portal-issuer-url.png)
@@ -64,7 +64,7 @@ In Kong Manager, access the Service for which you want to enable Application Reg
 | `Auto Approve` | If enabled, all new Service contract requests are automatically approved. Otherwise, Dev Portal admins must manually approve requests. Default: `false`. |
 | `Description` | Description displayed in the information about a Service in the Dev Portal. Optional. |
 | `Display Name` | Unique name displayed in the information about a Service in the Dev Portal. Required. |
-| `Show Issuer` | Displays the Issuer URL in the Service Details page. Default: `false`. **Important:** Exposing the **Issuer URL** is essential for the [Authorization Code Flow](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth/#ac-flow) workflow configured for third-party identity providers. |
+| `Show Issuer` | Displays the Issuer URL in the Service Details page. Default: `false`. **Important:** Exposing the **Issuer URL** is essential for the [Authorization Code Flow](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth/#ac-flow) workflow configured for third-party identity providers. |
 
 ## Next steps
 
@@ -79,7 +79,7 @@ The OAuth2 plugin cannot be used in hybrid mode.
 (`kong-oauth2`) with key authentication, configure the Kong
 [Key Auth](/hub/kong-inc/key-auth/) plugin as appropriate for your authorization
 requirements. You can use either the
-[Kong Manager GUI](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/enable-key-auth-plugin)
+[Kong Manager GUI](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/enable-key-auth-plugin)
 or cURL commands as documented on the Plugin Hub. The Key Auth plugin
 cannot be used in hybrid mode.
 

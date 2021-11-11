@@ -2,7 +2,6 @@
 title: Hybrid Mode Overview
 ---
 
-## Introduction
 Traditionally, Kong has always required a database, which could be either
 Postgres or Cassandra, to store configured entities such as Routes, Services,
 and Plugins.
@@ -50,10 +49,10 @@ control and monitor the status of the entire Kong cluster.
 ## Platform Compatibility
 
 You can run {{site.base_gateway}} in Hybrid mode on any platform where
-{{site.base_gateway}} is [supported](/enterprise/{{page.kong_version}}/deployment/installation/overview).
+{{site.base_gateway}} is [supported](/gateway/{{page.kong_version}}/install-and-run/).
 
 ### Kubernetes Support and Additional Documentation
-[Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/deployment/installation/kong-on-kubernetes)
+[Kong Enterprise on Kubernetes](/gateway/{{page.kong_version}}/install-and-run/kubernetes)
 fully supports Hybrid mode deployments, with or without the Kong Ingress Controller.
 
 For the full Kubernetes Hybrid mode documentation, see
@@ -204,13 +203,13 @@ multiple Control Planes and redirecting the traffic using a TCP proxy.
 
 ## Readonly Status API endpoints on Data Plane
 
-Several readonly endpoints from the [Admin API](/enterprise/{{page.kong_version}}/admin-api)
-are exposed to the [Status API](/enterprise/{{page.kong_version}}/property-reference/#status_listen) on data planes, including the following:
+Several readonly endpoints from the [Admin API](/gateway/{{page.kong_version}}/admin-api)
+are exposed to the [Status API](/gateway/{{page.kong_version}}/reference/property-reference/#status_listen) on data planes, including the following:
 
 - GET /upstreams/{upstream}/targets/
-- [GET /upstreams/{upstream}/health/](/enterprise/{{page.kong_version}}/admin-api/#show-upstream-health-for-node)
-- [GET /upstreams/{upstream}/targets/all/](/enterprise/{{page.kong_version}}/admin-api/#list-all-targets)
+- [GET /upstreams/{upstream}/health/](/gateway/{{page.kong_version}}/admin-api/#show-upstream-health-for-node)
+- [GET /upstreams/{upstream}/targets/all/](/gateway/{{page.kong_version}}/admin-api/#list-all-targets)
 - GET /upstreams/{upstream}/targets/{target}
 
-Please refer to [Upstream objects](/enterprise/{{page.kong_version}}/admin-api/#upstream-object) in the Admin API documentation for more information about the
+Please refer to [Upstream objects](/gateway/{{page.kong_version}}/admin-api/#upstream-object) in the Admin API documentation for more information about the
 endpoints.

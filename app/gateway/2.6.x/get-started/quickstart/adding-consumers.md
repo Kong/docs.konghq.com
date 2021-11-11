@@ -2,23 +2,15 @@
 title: Adding Consumers
 ---
 
-<div class="alert alert-warning">
-  <strong>Before you start:</strong>
-  <ol>
-    <li>Make sure you've <a href="https://konghq.com/install/#kong-community">installed Kong</a> &mdash; It should only take a minute!</li>
-    <li>Make sure you've <a href="/gateway-oss/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
-    <li>Also, make sure you've <a href="/gateway-oss/{{page.kong_version}}/getting-started/configuring-a-service">configured your Service in Kong</a>.</li>
-  </ol>
-</div>
-
 In the last section, we learned how to add plugins to Kong, in this section
 we're going to learn how to add consumers to your Kong instances. Consumers are
 associated to individuals using your Service, and can be used for tracking, access
 management, and more.
 
-**Note:** This section assumes you have [enabled][enabling-plugins] the
-[key-auth][key-auth] plugin. If you haven't, you can either [enable the
-plugin][enabling-plugins] or skip steps two and three.
+## Before you start
+* You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install-and-run).
+* You have [configured a Service](/gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-service)
+* You have [enabled the key-auth plugin](/gateway/{{page.kong_version}}/get-started/quickstart/enabling-plugins)
 
 ## 1. Create a Consumer through the RESTful API
 
@@ -87,11 +79,11 @@ Plugins, feel free to read more on Kong in one of the following documents:
 Questions? Issues? Contact us on one of the [Community Channels](/community)
 for help!
 
-[key-auth]: /plugins/key-authentication
-[API-consumers]: /gateway-oss/{{page.kong_version}}/admin-api#create-consumer
-[enabling-plugins]: /gateway-oss/{{page.kong_version}}/getting-started/enabling-plugins
-[configuration]: /gateway-oss/{{page.kong_version}}/configuration
-[CLI]: /gateway-oss/{{page.kong_version}}/cli
-[proxy]: /gateway-oss/{{page.kong_version}}/proxy
-[API]: /gateway-oss/{{page.kong_version}}/admin-api
-[cluster]: /gateway-oss/{{page.kong_version}}/clustering
+[key-auth]: /hub/kong-inc/key-auth
+[API-consumers]: /gateway/{{page.kong_version}}/admin-api#create-consumer
+[enabling-plugins]: /gateway/{{page.kong_version}}/get-started/quickstart/enabling-plugins
+[configuration]: /gateway/{{page.kong_version}}/reference/property-reference
+[CLI]: /gateway/{{page.kong_version}}/reference/cli
+[proxy]: /gateway/{{page.kong_version}}/reference/proxy
+[API]: /gateway/{{page.kong_version}}/admin-api
+[cluster]: /gateway/{{page.kong_version}}/reference/clustering

@@ -1,13 +1,11 @@
 ---
 title: Developer Portal Structure and File Types
-book: developer-portal
-chapter: 4
+badge: enterprise
 ---
-
-## Introduction
 
 The Kong Portal templates have been completely revamped to allow for easier customization, clearer separation of concerns between content and layouts, and more powerful hooks into Kong lifecycle/data.  Under the hood, we have implemented a flat file CMS built on top of the `https://github.com/bungle/lua-resty-template` library.  This system should feel familiar for anyone who has worked with projects like `jekyll`, `kirby cms`, or `vuepress` in the past.
 
+{:.note}
 >Note: To follow along with this guide, it is best to clone the [kong-portal-templates repo](https://github.com/Kong/kong-portal-templates) and check out the `master` branch. This guide makes the assumption that you are working within a single workspace (the templates repo can host many different sets of portal files per workspace).  Navigate to the `workspaces/default` directory from root to view the default workspaces portal files.
 
 ## Directory Structure
@@ -28,14 +26,14 @@ From `workspaces/default`, you can see the different elements that make up a sin
 
 ## Portal Configuration File
 
-#### Path
+### Path
 - **format:** `portal.conf.yaml`
 - **file extensions:** `.yaml`
 
-#### Description
+### Description
 The Portal Configuration File determines which theme the portal uses to render, the name of the portal, as well as configuration for special behavior such as redirect paths for user actions like login/logout. It is required in the root of every portal. There can only be one Portal Configuration File, it must be named `portal.conf.yaml`, and it must be a direct child of the root directory.
 
-#### Example
+### Example
 
 ```yaml
 name: Kong Portal
@@ -71,19 +69,19 @@ collections:
 - `collections`
   - **required**: false
   - **type**: `object`
-  - **description**: Collections are a powerful tool enabling you to render sets of content as a group.  Content rendered as a collection share a configurable route pattern, as well as a layout. For more information check out the [collections](/enterprise/{{page.kong_version}}/developer-portal/working-with-templates/#collections) section of our [Working with Templates](/enterprise/{{page.kong_version}}/developer-portal/working-with-templates) guide.
+  - **description**: Collections are a powerful tool enabling you to render sets of content as a group.  Content rendered as a collection share a configurable route pattern, as well as a layout. For more information check out the [collections](/gateway/{{page.kong_version}}/developer-portal/working-with-templates/#collections) section of our [Working with Templates](/gateway/{{page.kong_version}}/developer-portal/working-with-templates) guide.
 
 
 ## Router Configuration File (Optional)
 
-#### Path
+### Path
 - **format:** `router.conf.yaml`
 - **file extensions:** `.yaml`
 
-#### Description
+### Description
 This optional config file overrides the portals default routing system with hardcoded values.  This is useful for implementing single page applications, as well as for setting a static site structure. There can only be one Router Configuration File, it must be named `router.conf.yaml`, and it must be a direct child of the root directory.
 
-#### Example
+### Example
 The `router.conf.yaml` file expects sets of key-value pairs. The key should be the route you want to set; the value should be the content file path you want that route to resolve to. Routes should begin with a backslash.  `/*` is a reserved route and acts as a catchall/wildcard. If the requested route is not explicitly defined in the config file, the portal will resolve to the wildcard route if present.
 
 ```yaml
@@ -94,11 +92,11 @@ The `router.conf.yaml` file expects sets of key-value pairs. The key should be t
 
 ## Content Files
 
-#### Path
+### Path
 - **format:** `content/**/*`
 - **file extensions:** `.txt`, `.md`, `.html`, `.yaml`, `.json`
 
-#### Description
+### Description
 Content files establish portal site structure, as well as provide its accompanying HTML layout with metadata and dynamic content at the time of render. Content files can be nested in as many subdirectories as desired as long as the parent directory is `content/`.
 
 In addition to providing metainfo and content for the current page at time of render, content files determine the path at which a piece of content can be accessed in the browser.
@@ -110,7 +108,7 @@ In addition to providing metainfo and content for the current page at time of re
 | `content/documentation/index.txt` | `http://portal_gui_url/documentation` |
 | `content/documentation/spec_one.txt` | `http://portal_gui_url/documentation/spec_one` |
 
-#### Contents
+### Contents
 ```
 ---
 title: homepage
@@ -123,7 +121,7 @@ Welcome to the homepage!
 
 File contents can be broken down into two parts: `headmatter` and `body`.
 
-##### headmatter
+### headmatter
 
 The first thing to notice in the example files contents are the two sets of `---` delimiters at the start.  The text contained within these markers is called `headmatter` and always gets parsed and validated as valid `yaml`.  `headmatter` contains information necessary for a file to render successfully, as well as any information you would like to access within a template.  Kong parses any valid `yaml` key-value pair and becomes available within the content's corresponding HTML template. There are a few reserved attributes that have special meaning to Kong at the time of render:
 
@@ -158,21 +156,21 @@ The first thing to notice in the example files contents are the two sets of `---
   - **type**: `string`
   - **description**: Used by `collection` config to determine custom routing.  You can read more about Collections in the collections section of the _working with templates_ guide.
 
-##### body
+#### body
 The information located under headmatter represents the content body. Body content is freeform and gets parsed as by the file extension included in the file path. In the case of the example above, the file is `.txt` and is available in the template as such.
 
 ## Spec Files
 
-#### Path
+### Path
 - **format:** `specs/**/*`
 - **file extensions:** `.yaml`, `.json`
 
-#### Description
+### Description
 Specs are similar to `content` files in that they provide the dynamic data needed to render a page, as well as any metadata a user wants to provide as `headmatter`.  The format in which these are provided to the Portal differs from `content` files, which can be seen in the example below.
 
 >It is recommended to keep spec folder structure flat. Spec files must be valid OAS or Swagger `.yaml`/`.yml` or `.json` files.
 
-#### Contents
+### Contents
 
 ```
 swagger: "2.0"
@@ -220,11 +218,11 @@ If you want to overwrite the hardcoded spec collection config, you can do so by
 including your own in `portal.conf.yaml`. Check out the Collections section of
 our `Working with Templates` guide to learn more.
 
-You can also use the [Portal Files API](/enterprise/{{page.kong_version}}/developer-portal/files-api)
+You can also use the [Portal Files API](/gateway/{{page.kong_version}}/developer-portal/files-api)
 to `POST`, `GET`, `PATCH`, and `DELETE` content, spec, and theme files.
 
 ## Theme Files
-#### Themes Directory Structure
+### Themes Directory Structure
 The theme directory contains different instances of portal themes, each one of which determines the look and feel of the developer portal via html/css/js.  Which theme is used at time of render is determined by setting `theme.name` within `portal.conf.yaml`. Setting `theme.name` to `best-theme` causes the portal to load theme files under `themes/best-theme/**`.
 
 Each theme file is composed of a few different folders:
@@ -237,12 +235,12 @@ Each theme file is composed of a few different folders:
 - **theme.conf.yaml**
   - This config file sets color and font defaults available to templates for reference as css variables. It also determines what options are available in the Kong Manager Appearance page.
 
-#### Theme Assets
+### Theme Assets
 
-##### Path
+#### Path
 - **format:** `theme/*/assets/**/*`
 
-##### Description
+#### Description
 The asset folder contains css/js/fonts/images for your templates to reference.
 
 To access asset files from your templates, keep in mind that Kong assumes a path from the root of your selected theme.
@@ -253,15 +251,15 @@ To access asset files from your templates, keep in mind that Kong assumes a path
 | `themes/light-theme/assets/js/my-script.js` | `<script src="assets/js/my-script.js"></script>` |
 | `themes/light-theme/assets/styles/my-styles.css` | `<link href="assets/styles/normalize.min.css" rel="stylesheet" />` |
 
->Note: Image files uploaded to the `theme/*/assets/` directory should either be a svg text string or `base64` encoded, 'base64` images will be decoded when served.
+>Note: Image files uploaded to the `theme/*/assets/` directory should either be a svg text string or `base64` encoded, `base64` images will be decoded when served.
 
-#### Theme Layouts
+### Theme Layouts
 
-##### Path
+#### Path
 - **format:** `theme/*/layouts/**/*`
 - **file extensions:** `.html`
 
-##### Description
+#### Description
 Layouts act as the html skeleton of the page you want to render. Each file within the layouts directory must have an `html` filetype. They can exist as vanilla `html`, or can reference partials and parent layouts via the portals templating syntax. Layouts also have access to the `headmatter` and `body` attributes set in `content`.
 
 The example below shows what a typical layout could look like.
@@ -283,15 +281,15 @@ The example below shows what a typical layout could look like.
 ```
 {% endraw %}
 
-To learn more about the templating syntax used in this example, check out our [templating guide](/enterprise/{{page.kong_version}}/developer-portal/working-with-templates).
+To learn more about the templating syntax used in this example, check out our [templating guide](/gateway/{{page.kong_version}}/developer-portal/working-with-templates).
 
-#### Theme Partials
+### Theme Partials
 
-##### Path
+#### Path
 - **format:** `theme/*/partials/**/*`
 - **file extensions:** `.html`
 
-##### Description
+#### Description
 Partials are very similar to layouts: they share the same syntax, can call other partials within themselves, and have access to the same data/helpers at time of render. The thing that differentiates partials from layouts it that layouts call on partials to build the page, but partials cannot call on layouts.
 
 The example below shows the `header.html` partial referenced from the example above:
@@ -300,7 +298,7 @@ The example below shows the `header.html` partial referenced from the example ab
 ```html
 <header>
   <div class="row">
-    <div class="column>
+    <div class="column">
       <img src="{{page.logo}}">      <- can access the same page data the parent layout
     </div>
     <div class="column">
@@ -311,11 +309,11 @@ The example below shows the `header.html` partial referenced from the example ab
 ```
 {% endraw %}
 
-#### Theme Configuration File
+### Theme Configuration File
 
-##### Path
+#### Path
 - **format:** `theme/*/theme.conf.yaml`
 - **file extensions:** `.yaml`
 
-##### Description
+#### Description
 The Theme Configuration File determines color/font/image values a theme makes available for templates/CSS at the time of render. It is required in the root of every theme. There can only be one Theme Configuration File, it must be named `theme.conf.yaml`, and it must be a direct child of the themes root directory.

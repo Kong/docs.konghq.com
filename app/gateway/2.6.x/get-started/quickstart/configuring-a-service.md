@@ -2,14 +2,6 @@
 title: Configuring a Service
 ---
 
-<div class="alert alert-warning">
-  <strong>Before you start:</strong>
-  <ol>
-    <li>Make sure you've <a href="https://konghq.com/install/#kong-community">installed Kong</a> &mdash; It should only take a minute!</li>
-    <li>Make sure you've <a href="/gateway-oss/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
-  </ol>
-</div>
-
 In this section, you'll be adding an API to Kong. In order to do this, you'll
 first need to add a _Service_; that is the name Kong uses to refer to the upstream APIs and microservices
 it manages.
@@ -26,6 +18,9 @@ After configuring the Service and the Route, you'll be able to make requests thr
 
 Kong exposes a [RESTful Admin API][API] on port `:8001`. Kong's configuration, including adding Services and
 Routes, is made via requests on that API.
+
+## Before you start
+You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install-and-run).
 
 ## 1. Add your Service using the Admin API
 
@@ -131,7 +126,7 @@ Now that you've added your Service to Kong, let's learn how to enable plugins.
 
 Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 
-[API]: /gateway-oss/{{page.kong_version}}/admin-api
-[enabling-plugins]: /gateway-oss/{{page.kong_version}}/getting-started/enabling-plugins
-[proxy-port]: /gateway-oss/{{page.kong_version}}/configuration/#nginx-section
+[API]: /gateway/{{page.kong_version}}/admin-api
+[enabling-plugins]: /gateway/{{page.kong_version}}/get-started/quickstart/enabling-plugins
+[proxy-port]: /gateway/{{page.kong_version}}/reference/property-reference/#nginx-section
 [mockbin]: https://mockbin.com/

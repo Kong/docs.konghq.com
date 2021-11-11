@@ -5,7 +5,7 @@ title: Expose your Services with Kong Gateway
 In this topic, you’ll learn how to expose your Services using Routes.
 
 If you are following the Getting Started workflow, make sure you have completed
-[Prepare to Administer {{site.base_gateway}}](/getting-started-guide/{{page.kong_version}}/prepare)
+[Prepare to Administer {{site.base_gateway}}](/gateway/{{page.kong_version}}/get-started/comprehensive/prepare)
 before moving on.
 
 If you are not following the Getting Started workflow, make sure you have
@@ -68,7 +68,7 @@ The service is created, and the page automatically redirects back to the
 {% navtab Using decK (YAML) %}
 
 1. In the `kong.yaml` file you exported in
-[Prepare to Administer {{site.base_gateway}}](/getting-started-guide/{{page.kong_version}}/prepare/#verify-the-kong-gateway-configuration),
+[Prepare to Administer {{site.base_gateway}}](/gateway/{{page.kong_version}}/get-started/comprehensive/prepare/#verify-the-kong-gateway-configuration),
 define a Service with the name `example_service` and the URL
 `http://mockbin.org`:
 
@@ -331,4 +331,4 @@ sent to `http://mockbin.org`.
 * Abstracted a backend/upstream service and put a route of your choice on the
 front end, which you can now give to clients to make requests.
 
-Next, go on to learn about [enforcing rate limiting](/getting-started-guide/{{page.kong_version}}/protect-services).
+Next, go on to learn about [enforcing rate limiting](/gateway/{{page.kong_version}}/get-started/comprehensive/protect-services).

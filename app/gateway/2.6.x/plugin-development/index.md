@@ -34,4 +34,4 @@ PDK, see the [Plugin Development Kit] reference.
 Next: [File structure of a plugin &rsaquo;]({{page.book.next}})
 
 [lua-nginx-module]: https://github.com/openresty/lua-nginx-module
-[Plugin Development Kit]: /gateway-oss/{{page.kong_version}}/pdk
+[Plugin Development Kit]: /gateway/{{page.kong_version}}/pdk

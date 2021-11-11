@@ -1,6 +1,6 @@
 ---
 title: Workspaces Reference
-book: workspaces
+badge: free
 
 workspace_body: |
     Attribute | Description
@@ -8,10 +8,9 @@ workspace_body: |
     `name` | The **Workspace** name.
 ---
 
-## Introduction
 
 Kong Enterprise's Workspaces feature is configurable through Kong's
-[Admin API].
+Admin API.
 
 ## Workspace Object
 
@@ -351,4 +350,4 @@ HTTP 200 OK
 ```
 ---
 
-[Admin API]: /enterprise/{{page.kong_version}}/admin-api/
+[Admin API]: /gateway/{{page.kong_version}}/admin-api/

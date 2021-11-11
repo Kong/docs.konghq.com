@@ -1,13 +1,9 @@
 ---
 title: Customizing Portal Emails
+badge: enterprise
 ---
 
-<div class="version-callout"><b>This feature was introduced in 1.3.0.1.</b></div>
-
-## Introduction
-
-Kong Enterprise **1.3.0.1** introduces editable Portal Emails.
-This feature allows you to manage the message and appearance of emails being sent by the Kong Developer Portal.
+You can manage the message and appearance of emails being sent by the Kong Developer Portal.
 Editable email templates are loaded as files similar to content files for portal rendering.
 Email files can be managed in the same way as other files for rendering, via editor or via the Portal CLI Tool.
 This feature is **not** supported on legacy portal mode.
@@ -25,7 +21,7 @@ Not all tokens are supported on all emails.
 * Kong Enterprise **1.3.0.1** or later
 * The Kong Developer Portal is not running in **Legacy Mode**
 * The Kong Developer Portal is enabled and running
-* [The emails you want are enabled in kong](/enterprise/{{page.kong_version}}/developer-portal/configuration/smtp/#portal_invite_email)
+* [The emails you want are enabled in kong](/gateway/{{page.kong_version}}/developer-portal/configuration/smtp/#portal_invite_email)
 * If using CLI tool, kong-portal-cli tool 1.1 or later is installed locally and git installed
 
 

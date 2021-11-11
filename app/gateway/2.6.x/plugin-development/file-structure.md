@@ -23,7 +23,7 @@ kong.plugins.<plugin_name>.<module_name>
 > Your modules of course need to be accessible through your
 > [package.path](http://www.lua.org/manual/5.1/manual.html#pdf-package.path)
 > variable, which can be tweaked to your needs via the
-> [lua_package_path](/gateway-oss/{{page.kong_version}}/configuration/#lua_package_path)
+> [lua_package_path](/gateway/{{page.kong_version}}/reference/property-reference/#lua_package_path)
 > configuration property.
 > However, the preferred way of installing plugins is through
 > [LuaRocks](https://luarocks.org/), which Kong natively integrates with.
@@ -31,7 +31,7 @@ kong.plugins.<plugin_name>.<module_name>
 
 To make Kong aware that it has to look for your plugin's modules, you'll have
 to add it to the
-[plugins](/gateway-oss/{{page.kong_version}}/configuration/#plugins) property in
+[plugins](/gateway/{{page.kong_version}}/reference/property-reference/#plugins) property in
 your configuration file, which is a comma-separated list. For example:
 
 ```yaml

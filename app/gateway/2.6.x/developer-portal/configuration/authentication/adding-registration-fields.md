@@ -1,9 +1,7 @@
 ---
 title: Adding Dev Portal Registration Fields
+badge: enterprise
 ---
-
-
-### Introduction
 
 When authentication is enabled for a Dev Portal, the only required
 fields by default are **full name**, **email**, and **password**. However, you
