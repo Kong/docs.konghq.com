@@ -53,7 +53,7 @@ Here’s the content covered in this guide, and how the pieces fit together:
 | Proxy Caching plugin <br/><br/> Proxy Caching Advanced plugin | This plugin provides a reverse proxy cache implementation. It caches response entities based on response code, content type, and request method for a given period of time. <br/><br/> The advanced version of this plugin supports Redis and Redis Sentinel deployments. |
 | Key Auth plugin <br/><br/> Key Auth - Encrypted plugin | This plugin lets you add key authentication (also known as an API key) to a Service or a Route. <br/><br/> The advanced version of this plugin stores the API keys in an encrypted format within the {{site.base_gateway}} data store. |
 | Load Balancing     | {{site.base_gateway}} provides two methods for load balancing: straightforward DNS-based or using a ring-balancer. In this guide, you’ll use a ring-balancer, which requires configuring upstream and target entities. With this method, the adding and removing of backend services is handled by {{site.base_gateway}}, and no DNS updates are necessary. |
-| User Authorization (RBAC)  | {{site.ee_gateway_name}} handles user authorization through role-based access control (RBAC). Once enabled, RBAC lets you create teams and admins and assign them granular permissions either within a workspace, or across workspaces. |
+| User Authorization (RBAC)  | {{site.base_gateway}} handles user authorization through role-based access control (RBAC). Once enabled, RBAC lets you create teams and admins and assign them granular permissions either within a workspace, or across workspaces. |
 | Developer Portal   | The Developer Portal provides a single source of truth for all developers to locate, access, and consume services.  |
 
 
@@ -107,7 +107,7 @@ place on the Control Plane.
 * This guide provides Kong Admin API examples in both HTTPie and cURL. If you
 want to use HTTPie, install it from [here](https://httpie.org/).
 * Any references to “{{site.base_gateway}}” refer to features or concepts
-common to both {{site.ce_product_name}} and {{site.ee_gateway_name}}.
+common to both {{site.ce_product_name}} and {{site.base_gateway}}.
 
 ### Next Steps
 

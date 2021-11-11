@@ -1,5 +1,5 @@
 ---
-title: Getting Started Guide
+title: Comprehensive Getting Started Guide
 ---
 
 In this guide, you will:

@@ -1,9 +1,10 @@
 ---
 title: Kubernetes Deployment Options
+badge: enterprise
 ---
 
-The {{site.kic_product_name}} translates Kubernetes resources into 
-{{site.base_gateway}} configuration. {{site.base_gateway}} uses that 
+The {{site.kic_product_name}} translates Kubernetes resources into
+{{site.base_gateway}} configuration. {{site.base_gateway}} uses that
 configuration to route and control traffic.
 
 The [kong-gateway][enterprise-download] proxy image supports DB-less
@@ -21,7 +22,7 @@ If you encounter issues after switching images, please
 
 ## DB-less versus database-backed deployments
 
-When using {{site.base_gateway}} with {{site.kic_product_name}}, the source 
+When using {{site.base_gateway}} with {{site.kic_product_name}}, the source
 of truth for Kong's configuration is
 the Kubernetes configuration in etcd: Kong's custom Kubernetes resources,
 ingresses, and services provide the information necessary for the ingress

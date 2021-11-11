@@ -245,7 +245,7 @@ The mocked responses in the example Stock spec `stock-0.1.json` are between line
 and from lines `86` to `103` for `GET stock/closing`.
 
 If applicable to your environment, replace the `host` entry in the spec with your
-IP address or URL for {{site.ee_gateway_name}}.
+IP address or URL for {{site.base_gateway}}.
 
 ```json
 {"swagger": "2.0",

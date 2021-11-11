@@ -17,7 +17,7 @@ In this guide, you will:
 
 ### {{site.ee_product_name}}
 <div class="alert alert-ee">
-<img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /> This guide also includes some features specific to {{site.ee_product_name}} and the {{site.ee_gateway_name}}. They'll be called out in blue blocks like this, or in their own Kong Manager tabs.
+<img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /> This guide also includes some features specific to {{site.ee_product_name}} and the {{site.base_gateway}}. They'll be called out in blue blocks like this, or in their own Kong Manager tabs.
 <br/><br/>
 {{site.ee_product_name}} extends the {{site.ce_product_name}} with enterprise features and support. It provides advanced functionality using plugins for security, collaboration, performance at scale, and use of advanced protocols.
 </div>
@@ -40,7 +40,7 @@ Here’s the content covered in this guide, and how the pieces fit together:
 | Proxy Caching plugin <br/><br/> Proxy Caching Advanced plugin | This plugin provides a reverse proxy cache implementation. It caches response entities based on response code, content type, and request method for a given period of time. <br/><br/> The advanced version of this plugin supports Redis and Redis Sentinel deployments. | Both, but with added functionality in {{site.ee_product_name}} |
 | Key Auth plugin <br/><br/> Key Auth - Encrypted plugin | This plugin lets you add key authentication (also known as an API key) to a Service or a Route. <br/><br/> The advanced version of this plugin stores the API keys in an encrypted format within the {{site.base_gateway}} data store. | Both, but with added functionality in {{site.ee_product_name}} |
 | Load Balancing     | {{site.base_gateway}} provides two methods for load balancing: straightforward DNS-based or using a ring-balancer. In this guide, you’ll use a ring-balancer, which requires configuring upstream and target entities. With this method, the adding and removing of backend services is handled by {{site.base_gateway}}, and no DNS updates are necessary. | Both |
-| User Authorization (RBAC)  | {{site.ee_gateway_name}} handles user authorization through role-based access control (RBAC). Once enabled, RBAC lets you create teams and admins and assign them granular permissions either within a workspace, or across workspaces. | Enterprise |
+| User Authorization (RBAC)  | {{site.base_gateway}} handles user authorization through role-based access control (RBAC). Once enabled, RBAC lets you create teams and admins and assign them granular permissions either within a workspace, or across workspaces. | Enterprise |
 | Developer Portal   | The Developer Portal provides a single source of truth for all developers to locate, access, and consume services.  | Enterprise |
 
 
@@ -59,7 +59,7 @@ For example, before routing a request, the client might be required to authentic
 Note the following before you start using this guide:
 
 ### Installation
-* This guide assumes that you have [{{site.ce_product_name}}](https://konghq.com/install/) or [{{site.ee_gateway_name}}](/enterprise/latest/deployment/installation/overview/) installed and running on the platform of your choice.
+* This guide assumes that you have [{{site.ce_product_name}}](https://konghq.com/install/) or [{{site.base_gateway}}](/enterprise/latest/deployment/installation/overview/) installed and running on the platform of your choice.
 * During your installation, take note of the KONG_PASSWORD; you’ll need it later on in this guide for setting up user authorization.
 
 ### Deployment guidelines
@@ -70,7 +70,7 @@ Note the following before you start using this guide:
 ### Using this guide
 * As a {{site.ee_product_name}} user, functionalities can be managed programmatically using a REST-based Admin API, or using the Kong Manager GUI. As a {{site.base_gateway}} user, you need to follow the Admin API steps since Manager is an Enterprise feature. In this guide, you can choose your preferred method, if options are available — you don’t have to follow both.
 * This guide provides Kong Admin API examples in both HTTPie and cURL. If you want to use HTTPie, install it from [here](https://httpie.org/).
-* Any references to “{{site.base_gateway}}” refer to features or concepts common to both {{site.ce_product_name}} and {{site.ee_gateway_name}}.
+* Any references to “{{site.base_gateway}}” refer to features or concepts common to both {{site.ce_product_name}} and {{site.base_gateway}}.
 
 ### Next Steps
 

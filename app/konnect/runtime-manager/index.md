@@ -23,19 +23,19 @@ Kong does not host runtimes. You must provide your own runtime
 instances.
 
 The Runtime Manager aims to simplify this process by providing a
-script to provision a {{site.ee_gateway_name}} runtime in a Docker container,
+script to provision a {{site.base_gateway}} runtime in a Docker container,
 eliminating any confusion about initial configuration or setup.
 
 ## Types of runtimes
 
 ### Kong Gateway
 
-A {{site.ee_gateway_name}} runtime acts as a data plane, which is a node
+A {{site.base_gateway}} runtime acts as a data plane, which is a node
 serving traffic for the proxy. Data plane nodes are not directly connected
 to a database.
 
 Currently, the only supported runtime type in the
-{{site.konnect_saas}} application is a [{{site.ee_gateway_name}}](/enterprise/)
+{{site.konnect_saas}} application is a [{{site.base_gateway}}](/enterprise/)
 data plane.
 
 Choose an installation type below:

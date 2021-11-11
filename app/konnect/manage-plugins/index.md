@@ -3,7 +3,7 @@ title: Manage Plugins
 no_version: true
 ---
 
-Any {{site.ee_gateway_names}} plugins supported in a self-managed hybrid mode
+Any {{site.base_gateways}} plugins supported in a self-managed hybrid mode
 deployment are also accessible through ServiceHub or the Shared Config page.
 
 ## Kong plugins in Konnect Cloud

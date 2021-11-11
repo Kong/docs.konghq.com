@@ -90,8 +90,8 @@ dashboard: [https://grafana.com/dashboards/7424](https://grafana.com/dashboards/
   belonging to a given Upstream as well as their subsystem (`http` or `stream`).
 - **Dataplane Status**: The last seen timestamp, config hash, config sync status and certificate expiration timestamp for
 data plane nodes is exported to control plane.
-- **Enterprise License Information**: The {{site.ee_gateway_name}} license expiration date, features and
-license signature. Those metrics are only exported on {{site.ee_gateway_name}}.
+- **Enterprise License Information**: The {{site.base_gateway}} license expiration date, features and
+license signature. Those metrics are only exported on {{site.base_gateway}}.
 
 Here is an example of output you could expect from the `/metrics` endpoint:
 

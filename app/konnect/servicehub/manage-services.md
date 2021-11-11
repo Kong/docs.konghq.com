@@ -79,7 +79,7 @@ box to save.
 
 <div class="alert alert-ee blue">
 <b>Note:</b> Currently, the only supported implementation type is a
-{{site.ee_gateway_name}} runtime.
+{{site.base_gateway}} runtime.
 </div>
 
 1. From the left navigation menu, click **Services**, then select a Service

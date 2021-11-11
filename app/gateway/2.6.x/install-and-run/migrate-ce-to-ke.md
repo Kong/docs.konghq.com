@@ -1,11 +1,11 @@
 ---
-title: Migrating from Kong Community Gateway to Kong Enterprise
+title: Migrating from Kong Gateway (OSS) to Kong Gateway
 toc: true
 ---
 
 As of {{site.ee_product_name}} version 2.1.x and later, it is no longer necessary to explicitly
 run the `migrate-community-to-enterprise` command parameter to to migrate all
-Kong Gateway entities to Kong Enterprise. Running the `kong migrations` commands
+{{site.ce_product_name}} entities to {{site.ee_product_name}}. Running the `kong migrations` commands
 performs that migration command on your behalf.
 
 {:.note}

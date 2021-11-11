@@ -9,7 +9,7 @@ A few considerations on the JSON object:
 * `service` contains {{site.base_gateway}} properties about the Service associated with the requested Route.
 * `authenticated_entity` contains {{site.base_gateway}} properties about the authenticated credential (if an authentication plugin has been enabled).
 * `workspaces` contains {{site.base_gateway}} properties of the Workspaces associated with the requested
-   Route. **Only in {{site.ee_gateway_name}} version >= 0.34.x**. For {{site.ee_gateway_name}} version >= 2.1.x, 
+   Route. **Only in {{site.base_gateway}} version >= 0.34.x**. For {{site.base_gateway}} version >= 2.1.x, 
    there is a `ws_id` on services and routes that reference the workspace ID.
 * `consumer` contains the authenticated Consumer (if an authentication plugin has been enabled).
 * `latencies` contains some data about the latencies involved:

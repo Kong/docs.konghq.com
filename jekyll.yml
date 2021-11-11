@@ -1,4 +1,6 @@
 # Build settings
+# This file is for production builds (Netlify)
+# Any changes made in this file should also be made in jekyll-dev.yml
 source: app
 destination: dist
 permalink: pretty
@@ -157,8 +159,7 @@ defaults:
       layout: "docs-v2"
 
 # product name vars
-ee_gateway_name: Kong Gateway
-ee_product_name: Kong Gateway (Enterprise)
+ee_product_name: Kong Gateway # This is a legacy variable that used to differentiate the Enterprise package from the Gateway product. Leaving this in case of further rebranding.
 ce_product_name: Kong Gateway (OSS)
 base_gateway: Kong Gateway
 mesh_product_name: Kong Mesh
