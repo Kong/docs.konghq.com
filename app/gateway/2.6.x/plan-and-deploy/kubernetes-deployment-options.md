@@ -152,7 +152,7 @@ migrating in the opposite direction.
 
 [enterprise-download]: https://hub.docker.com/r/kong/kong-gateway/
 [admission-webhook]: /kubernetes-ingress-controller/latest/deployment/admission-webhook
-[route-validation]: /gateway/{{page.kong_version}}/reference/property-reference/#route_validation_strategy
+[route-validation]: /gateway/{{page.kong_version}}/reference/configuration/#route_validation_strategy
 [supported-plugins]:/kubernetes-ingress-controller/latest/references/plugin-compatibility
 [k4k8s-enterprise-install]: /gateway/{{page.kong_version}}/install-and-run/kubernetes
 [k4k8s-with-enterprise-install]: /gateway/{{page.kong_version}}/install-and-run/kubernetes

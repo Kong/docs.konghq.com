@@ -1089,8 +1089,8 @@ subdomains, instead of creating an SNI for each.
 Valid wildcard positions are `mydomain.*`, `*.mydomain.com`, and `*.www.mydomain.com`.
 
 A default certificate can be added using the following parameters in Kong configuration:
-1. [`ssl_cert`](/gateway/{{page.kong_version}}/reference/property-reference/#ssl_cert)
-2. [`ssl_cert_key`](/gateway/{{page.kong_version}}/reference/property-reference/#ssl_cert_key)
+1. [`ssl_cert`](/gateway/{{page.kong_version}}/reference/configuration/#ssl_cert)
+2. [`ssl_cert_key`](/gateway/{{page.kong_version}}/reference/configuration/#ssl_cert_key)
 
 Or, by dynamically configuring the default certificate with an SNI of `*`:
 
@@ -1344,8 +1344,8 @@ just covered.
 [plugin-association-rules]: /gateway/{{page.kong_version}}/admin-api/#precedence
 [proxy-websocket]: /gateway/{{page.kong_version}}/reference/proxy/#proxy-websocket-traffic
 [load-balancing-reference]: /gateway/{{page.kong_version}}/reference/loadbalancing
-[configuration-reference]: /gateway/{{page.kong_version}}/reference/property-reference/
-[configuration-trusted-ips]: /gateway/{{page.kong_version}}/reference/property-reference/#trusted_ips
+[configuration-reference]: /gateway/{{page.kong_version}}/reference/configuration/
+[configuration-trusted-ips]: /gateway/{{page.kong_version}}/reference/configuration/#trusted_ips
 [configuring-a-service]: /gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-service
 [API]: /gateway/{{page.kong_version}}/admin-api
 [service-entity]: /gateway/{{page.kong_version}}/admin-api/#add-service

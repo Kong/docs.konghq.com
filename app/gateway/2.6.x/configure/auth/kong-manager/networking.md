@@ -93,12 +93,12 @@ is cleared from the browser after testing to prevent stale certificates from int
 `localhost`.
 
 
-[`admin_gui_auth`]: /gateway/{{page.kong_version}}/reference/property-reference/#admin_gui_auth
-[`admin_gui_ssl_cert`]: /gateway/{{page.kong_version}}/reference/property-reference/#admin_gui_ssl_cert
-[`admin_gui_ssl_cert_key`]: /gateway/{{page.kong_version}}/reference/property-reference/#admin_gui_ssl_cert_key
+[`admin_gui_auth`]: /gateway/{{page.kong_version}}/reference/configuration/#admin_gui_auth
+[`admin_gui_ssl_cert`]: /gateway/{{page.kong_version}}/reference/configuration/#admin_gui_ssl_cert
+[`admin_gui_ssl_cert_key`]: /gateway/{{page.kong_version}}/reference/configuration/#admin_gui_ssl_cert_key
 [`default_ports`]: /gateway/{{page.kong_version}}/plan-and-deploy/default-ports
-[`admin_api_uri`]: /gateway/{{page.kong_version}}/reference/property-reference/#admin_api_uri
-[`admin_gui_auth_conf`]: /gateway/{{page.kong_version}}/reference/property-reference/#admin_gui_auth_conf
-[`enforce_rbac`]: /gateway/{{page.kong_version}}/reference/property-reference/#enforce_rbac
-[`admin_listen`]: /gateway/{{page.kong_version}}/reference/property-reference/#admin_listen
-[`admin_gui_session_conf`]: /gateway/{{page.kong_version}}/reference/property-reference/#admin_gui_session_conf
+[`admin_api_uri`]: /gateway/{{page.kong_version}}/reference/configuration/#admin_api_uri
+[`admin_gui_auth_conf`]: /gateway/{{page.kong_version}}/reference/configuration/#admin_gui_auth_conf
+[`enforce_rbac`]: /gateway/{{page.kong_version}}/reference/configuration/#enforce_rbac
+[`admin_listen`]: /gateway/{{page.kong_version}}/reference/configuration/#admin_listen
+[`admin_gui_session_conf`]: /gateway/{{page.kong_version}}/reference/configuration/#admin_gui_session_conf

@@ -343,6 +343,6 @@ requests will be dropped.
 
 [upstream-object-reference]: /gateway/{{page.kong_version}}/admin-api#upstream-object
 [target-object-reference]: /gateway/{{page.kong_version}}/admin-api#target-object
-[dns-order-config]: /gateway/{{page.kong_version}}/reference/property-reference/#dns_order
-[real-ip-config]: /gateway/{{page.kong_version}}/reference/property-reference/#real_ip_header
+[dns-order-config]: /gateway/{{page.kong_version}}/reference/configuration/#dns_order
+[real-ip-config]: /gateway/{{page.kong_version}}/reference/configuration/#real_ip_header
 [blue-green-canary]: http://blog.christianposta.com/deploy/blue-green-deployments-a-b-testing-and-canary-releases/

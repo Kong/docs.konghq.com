@@ -350,4 +350,4 @@ Options:
 ---
 
 
-[configuration-reference]: /gateway/{{page.kong_version}}/reference/property-reference/
+[configuration-reference]: /gateway/{{page.kong_version}}/reference/configuration/

@@ -246,6 +246,6 @@ Enterprise offering by [contacting us](/enterprise).
 
 [acl]: /hub/kong-inc/acl
 [basic-auth]: /hub/kong-inc/basic-auth
-[custom-configuration]: /gateway/{{page.kong_version}}/reference/property-reference/#custom-nginx-configuration
+[custom-configuration]: /gateway/{{page.kong_version}}/reference/configuration/#custom-nginx-configuration
 [ip-restriction]: /hub/kong-inc/ip-restriction
 [key-auth]: /hub/kong-inc/key-auth

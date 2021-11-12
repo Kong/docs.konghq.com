@@ -128,5 +128,5 @@ Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 
 [API]: /gateway/{{page.kong_version}}/admin-api
 [enabling-plugins]: /gateway/{{page.kong_version}}/get-started/quickstart/enabling-plugins
-[proxy-port]: /gateway/{{page.kong_version}}/reference/property-reference/#nginx-section
+[proxy-port]: /gateway/{{page.kong_version}}/reference/configuration/#nginx-section
 [mockbin]: https://mockbin.com/

@@ -182,7 +182,7 @@ The following request paths generate an audit log entry in the database:
 ### Audit Log Retention
 
 Request audit records are kept in the database for a duration defined by the
-`audit_log_record_ttl` [Kong configuration property](/gateway/{{page.kong_version}}/reference/property-reference/#audit_log_record_ttl).
+`audit_log_record_ttl` [Kong configuration property](/gateway/{{page.kong_version}}/reference/configuration/#audit_log_record_ttl).
 Records in the database older than `audit_log_record_ttl` seconds are automatically
 purged. In Cassandra databases, record deletion is handled automatically via the
 Cassandra TTL mechanism. In Postgres databases, records are purged via the stored
@@ -303,7 +303,7 @@ audit_log_ignore_tables = consumers
 ### Audit Log Retention
 
 Database audit records are kept in the database for a duration defined by the
-`audit_log_record_ttl` [Kong configuration property](/gateway/{{page.kong_version}}/reference/property-reference/#audit_log_record_ttl).
+`audit_log_record_ttl` [Kong configuration property](/gateway/{{page.kong_version}}/reference/configuration/#audit_log_record_ttl).
 Records in the database older than `audit_log_record_ttl` seconds are automatically
 purged. In Cassandra databases, record deletion is handled automatically via the
 Cassandra TTL mechanism. In Postgres databases, records are purged via the stored
@@ -493,5 +493,5 @@ HTTP 200 OK
 
 ### Configuration Reference
 
-See the [Data & Admin Audit](/gateway/{{page.kong_version}}/property-reference#data--admin-audit)
+See the [Data & Admin Audit](/gateway/{{page.kong_version}}/reference/configuration/#data--admin-audit)
 section of Kong Enterprise's Configuration Property Reference.

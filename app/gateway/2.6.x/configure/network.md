@@ -62,7 +62,7 @@ macOS/BSDs allow transparent proxying without `transparent` listen option. With 
 to start Kong as a `root` user or set the needed capabilities for the executable.
 
 
-[proxy_listen]: /gateway/{{page.kong_version}}/reference/property-reference/#proxy_listen
-[stream_listen]: /gateway/{{page.kong_version}}/reference/property-reference/#stream_listen
-[admin_listen]: /gateway/{{page.kong_version}}/reference/property-reference/#admin_listen
+[proxy_listen]: /gateway/{{page.kong_version}}/reference/configuration/#proxy_listen
+[stream_listen]: /gateway/{{page.kong_version}}/reference/configuration/#stream_listen
+[admin_listen]: /gateway/{{page.kong_version}}/reference/configuration/#admin_listen
 [secure_admin_api]: /gateway/{{page.kong_version}}/admin-api/secure-admin-api

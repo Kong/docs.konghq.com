@@ -110,8 +110,8 @@ Now that you have Kong Gateway running, you can interact with the Admin API.
 
 To begin, go to [Configuring a Service &rsaquo;][configuring-a-service]
 
-[configuration-loading]: /gateway/{{page.kong_version}}/reference/property-reference/#configuration-loading
+[configuration-loading]: /gateway/{{page.kong_version}}/reference/configuration/#configuration-loading
 [CLI]: /gateway/{{page.kong_version}}/reference/cli
 [API]: /gateway/{{page.kong_version}}/admin-api
-[datastore-section]: /gateway/{{page.kong_version}}/reference/property-reference/#datastore-section
+[datastore-section]: /gateway/{{page.kong_version}}/reference/configuration/#datastore-section
 [configuring-a-service]: /gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-service

@@ -83,7 +83,7 @@ for help!
 [key-auth]: /hub/kong-inc/key-auth
 [API-consumers]: /gateway/{{page.kong_version}}/admin-api#create-consumer
 [enabling-plugins]: /gateway/{{page.kong_version}}/get-started/quickstart/enabling-plugins
-[configuration]: /gateway/{{page.kong_version}}/reference/property-reference
+[configuration]: /gateway/{{page.kong_version}}/reference/configuration
 [CLI]: /gateway/{{page.kong_version}}/reference/cli
 [proxy]: /gateway/{{page.kong_version}}/reference/proxy
 [API]: /gateway/{{page.kong_version}}/admin-api

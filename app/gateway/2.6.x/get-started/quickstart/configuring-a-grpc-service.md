@@ -275,7 +275,7 @@ tail -f grpc-say-hello.log
 
 [enabling-plugins]: /gateway/{{page.kong_version}}/get-started/quickstart/enabling-plugins
 [conf-service]: /gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-service
-[configuration-reference]: /gateway/{{page.kong_version}}/reference/property-reference/
+[configuration-reference]: /gateway/{{page.kong_version}}/reference/configuration/
 [grpc-reflection]: https://github.com/grpc/grpc/blob/master/doc/server_reflection_tutorial.md
 [grpcbin]: https://github.com/moul/grpcbin
 [grpcurl]: https://github.com/fullstorydev/grpcurl

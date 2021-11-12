@@ -175,11 +175,11 @@
 /konnect/dev-portal/administrators/manage-devs             /konnect/dev-portal/access-and-approval/manage-devs
 /konnect/dev-portal/administrators/auto-approve-devs-apps  /konnect/dev-portal/access-and-approval/auto-approve-devs-apps
 
-/enterprise/*/developer-portal/networking     /gateway/latest/property-reference/#dev-portal
+/enterprise/*/developer-portal/networking     /gateway/latest/reference/configuration/#dev-portal
 /enterprise/*/developer-portal/FAQ            /gateway/latest/developer-portal
 /enterprise/*/developer-portal/introduction/  /gateway/latest/developer-portal
-/enterprise/0.34-x/deployment-guide/enterprise/0.34-x/developer-portal/configuration/networking/   /gateway/latest/property-reference/#developer-portal-section
-/enterprise/*/developer-portal/configuration/property-reference   /gateway/latest/property-reference/#dev-portal
+/enterprise/0.34-x/deployment-guide/enterprise/0.34-x/developer-portal/configuration/networking/   /gateway/latest/reference/configuration/#developer-portal-section
+/enterprise/*/developer-portal/configuration/property-reference   /gateway/latest/reference/configuration/#dev-portal
 /enterprise/*/configuration/developer-portal/smtp      /gateway/latest/developer-portal/configuration/smtp
 /enterprise/*/developer-portal/smtp                    /gateway/latest/developer-portal/configuration/
 /enterprise/*/developer-portal/file-management         /gateway/latest/developer-portal/files-api
@@ -206,7 +206,7 @@
 
 
 /enterprise/*/kong-implementation-checklist/    /gateway/latest/plan-and-deploy
-/enterprise/0.34-x/deployment-guide/enterprise/0.34-x/kong-manager/configuration/networking/           /gateway/latest/property-reference/#kong-manager-section
+/enterprise/0.34-x/deployment-guide/enterprise/0.34-x/kong-manager/configuration/networking/           /gateway/latest/reference/configuration/#kong-manager-section
 /enterprise/*/organization-management/managing-admins  /gateway/latest/configuration/auth/rbac/add-admin
 /enterprise/*/plugins/rbac-api/        /gateway/latest/configure/auth/rbac
 /enterprise/*/organization-management/rbac-and-perms/  /gateway/latest/configuration/auth/rbac
@@ -217,19 +217,19 @@
 /gateway-oss/latest/go  /gateway/latest/reference/external-plugins
 /gateway-oss/2.3.x/go   /gateway/latest/reference/external-plugins
 
-/0.11.x/configuration-reference  /gateway/latest/reference/property-reference
-/0.12.x/configuration-reference  /gateway/latest/reference/property-reference
-/0.13.x/configuration-reference  /gateway/latest/reference/property-reference
-/0.14.x/configuration-reference  /gateway/latest/reference/property-reference
-/1.0.x/configuration-reference   /gateway/latest/reference/property-reference
-/1.1.x/configuration-reference   /gateway/latest/reference/property-reference
-/1.2.x/configuration-reference   /gateway/latest/reference/property-reference
+/0.11.x/configuration-reference  /gateway/latest/reference/configuration
+/0.12.x/configuration-reference  /gateway/latest/reference/configuration
+/0.13.x/configuration-reference  /gateway/latest/reference/configuration
+/0.14.x/configuration-reference  /gateway/latest/reference/configuration
+/1.0.x/configuration-reference   /gateway/latest/reference/configuration
+/1.1.x/configuration-reference   /gateway/latest/reference/configuration
+/1.2.x/configuration-reference   /gateway/latest/reference/configuration
 /0.11.x/lua-reference/modules/kong.tools.utils.html /gateway/latest/pdk/pdk-reference
 /enterprise/latest/setting-up-admin-api-rbac  /gateway/latest/admin-api/rbac/reference/
-/enterprise/2.6.x/property-reference/   /gateway/2.6.x/reference/property-reference
-/enterprise/latest/property-reference/  /gateway/latest/reference/property-reference
-/gateway-oss/2.6.x/configuration/       /gateway/2.6.x/reference/property-reference
-/gateway-oss/latest/configuration/      /gateway/latest/reference/property-reference
+/enterprise/2.6.x/property-reference/   /gateway/2.6.x/reference/configuration
+/enterprise/latest/reference/configuration/  /gateway/latest/reference/configuration
+/gateway-oss/2.6.x/configuration/       /gateway/2.6.x/reference/configuration
+/gateway-oss/latest/configuration/      /gateway/latest/reference/configuration
 /enterprise/2.6.x/cli/        /gateway/2.6.x/reference/cli
 /enterprise/latest/cli/       /gateway/latest/reference/cli
 /gateway-oss/2.6.x/cli/       /gateway/2.6.x/reference/cli

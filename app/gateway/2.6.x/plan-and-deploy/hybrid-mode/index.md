@@ -210,7 +210,7 @@ multiple Control Planes and redirecting the traffic using a TCP proxy.
 ## Readonly Status API endpoints on Data Plane
 
 Several readonly endpoints from the [Admin API](/gateway/{{page.kong_version}}/admin-api)
-are exposed to the [Status API](/gateway/{{page.kong_version}}/reference/property-reference/#status_listen) on data planes, including the following:
+are exposed to the [Status API](/gateway/{{page.kong_version}}/reference/configuration/#status_listen) on data planes, including the following:
 
 - [GET /upstreams/{upstream}/targets/](/gateway/{{page.kong_version}}/admin-api/#list-targets)
 - [GET /upstreams/{upstream}/health/](/gateway/{{page.kong_version}}/admin-api/#show-upstream-health-for-node)

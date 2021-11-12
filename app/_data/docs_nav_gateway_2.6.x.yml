@@ -295,7 +295,7 @@
     - text: DB-less and Declarative Configuration
       url: /reference/db-less-and-declarative-config
     - text: Configuration Reference
-      url: /reference/property-reference
+      url: /reference/configuration
     - text: CLI Reference
       url: /reference/cli
     - text: Load Balancing Reference

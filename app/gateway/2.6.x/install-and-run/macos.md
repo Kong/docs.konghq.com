@@ -107,4 +107,4 @@ Check out {{site.base_gateway}}'s series of
 [Getting Started](/gateway/{{include.kong_version}}/get-started/overview) guides to get the most
 out of {{site.base_gateway}}.
 
-[configuration]: /gateway/latest/reference/property-reference#database
+[configuration]: /gateway/latest/reference/configuration#database

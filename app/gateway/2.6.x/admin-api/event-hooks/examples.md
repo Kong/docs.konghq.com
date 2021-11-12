@@ -302,7 +302,7 @@ any time a consumer changes, but conditionally and with custom formatting.
 
 {:.important}
 > The lambda event hook type is extremely powerful: you can write completely custom logic to handle any use case you want.
-However, it’s [restricted by default through the sandbox.](/gateway/{{ page.kong_version }}/reference/property-reference/#untrusted_lua).  This
+However, it’s [restricted by default through the sandbox.](/gateway/{{ page.kong_version }}/reference/configuration/#untrusted_lua).  This
 sandbox is put in place to keep users safe: it’s easy to inadvertently add unsafe libraries/objects into the sandbox
 and leave the Kong Gateway exposed to security vulnerabilities. Use caution before modifying these sandbox settings.
 
