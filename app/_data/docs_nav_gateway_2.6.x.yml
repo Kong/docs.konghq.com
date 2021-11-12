@@ -74,7 +74,6 @@
 
 - title: Plan and Deploy
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
-  url: /plan-and-deploy
   items:
     - text: Running Kong as a Non-Root User
       url: /plan-and-deploy/kong-user
