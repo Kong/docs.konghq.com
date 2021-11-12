@@ -2,57 +2,94 @@
 title: Control Kong Gateway through systemd
 ---
 
-### Introduction
+This document includes instructions on how to integrate {{site.base_gateway}}
+with systemd for Debian and RPM based packages.
 
-This document includes instructions on how to integrate Kong Enterprise with systemd for Debian and RPM based packages. Note that some of the supported GNU/Linux distributions for Kong Enterprise may not have adopted systemd as their default init system (for example, CentOS 6 and RHEL 6). For the following instructions, it is assumed that Kong Enterprise has already been [installed and configured](/gateway/{{page.kong_version}}/install-and-run) on a systemd-supported GNU/Linux distribution.
+Note that some of the supported GNU/Linux distributions for {{site.base_gateway}}
+may not have adopted systemd as their default init system
+(for example, CentOS 6 and RHEL 6). For the following instructions, it is
+assumed that {{site.base_gateway}} has already been
+[installed and configured](/gateway/{{page.kong_version}}/install-and-run) on a
+systemd-supported GNU/Linux distribution.
 
-## Start Kong Enterprise
+## systemd commands for working with {{site.base_gateway}}
 
-```
-$ sudo systemctl start kong-enterprise-edition
-```
+### Start {{site.base_gateway}}
 
-## Stop Kong Enterprise
+```bash
+# For {{site.base_gateway}}
+sudo systemctl start kong-enterprise-edition
 
-```
-$ sudo systemctl stop kong-enterprise-edition
-```
-
-## Start Kong Enterprise automatically at system boot
-
-To enable Kong Enterprise to automatically start at system boot:
-
-```
-$ sudo systemctl enable kong-enterprise-edition
+# For {{site.ce_product_name}}
+sudo systemctl start kong
 ```
 
-To disable Kong Enterprise from automatically starting at system boot:
+### Stop {{site.base_gateway}}
 
-```
-$ sudo systemctl disable kong-enterprise-edition
-```
+```bash
+# For {{site.base_gateway}}
+sudo systemctl stop kong-enterprise-edition
 
-## Restart Kong Enterprise
-
-```
-$ sudo systemctl restart kong-enterprise-edition
+# For {{site.ce_product_name}}
+sudo systemctl stop kong
 ```
 
-## Query Kong Enterprise status
+### Start {{site.base_gateway}} at system boot
 
+**Enable starting {{site.base_gateway}} automatically at system boot**
+
+```bash
+# For {{site.base_gateway}}
+sudo systemctl enable kong-enterprise-edition
+
+# For {{site.ce_product_name}}
+sudo systemctl enable kong
 ```
-$ sudo systemctl status kong-enterprise-edition
+
+**Disable starting {{site.base_gateway}} automatically at system boot**
+
+```bash
+# For {{site.base_gateway}}
+sudo systemctl disable kong-enterprise-edition
+
+# For {{site.ce_product_name}}
+sudo systemctl disable kong
 ```
 
-## Customize the Kong Enterprise unit file
+### Restart {{site.base_gateway}}
 
-Once the Kong Enterprise installation is finished, the official systemd service will be located at `/etc/kong/kong-enterprise-edition.service`. By default, this file will be copied to `/lib/systemd/system/kong-enterprise-edition.service`.
+```bash
+# For {{site.base_gateway}}
+sudo systemctl restart kong-enterprise-edition
 
-For scenarios where customizations are needed (for example, configuring Kong or modifying the service file behavior), we recommend creating another service at `/etc/systemd/system/kong-enterprise-edition.service` to avoid conflicts upon reinstalling or upgrading Kong Enterprise.
+# For {{site.ce_product_name}}
+sudo systemctl restart kong
+```
+
+### Query {{site.base_gateway}} status
+
+```bash
+# For {{site.base_gateway}}
+sudo systemctl status kong-enterprise-edition
+
+# For {{site.ce_product_name}}
+sudo systemctl status kong
+```
+
+## Customize the {{site.base_gateway}} unit file
+
+The official systemd service is located at at `/lib/systemd/system/kong-enterprise-edition.service` for
+{{site.base_gateway}}, or at `/lib/systemd/system/kong.service` for {{site.ce_product_name}}.
+
+For scenarios where customizations are needed (for example, configuring Kong
+or modifying the service file behavior), we recommend creating another service
+at `/etc/systemd/system/kong-enterprise-edition.service` for
+{{site.base_gateway}}, or at `/etc/systemd/system/kong.service` for
+{{site.ce_product_name}}, to avoid conflicts upon reinstalling or upgrading Kong.
 
 All environment variables prefixed with `KONG_` and capitalized will override the settings specified in the `/etc/kong/kong.conf.default` file. For example: `log_level = debug` in the .conf file translates to the `KONG_LOG_LEVEL=debug` environment variable.
 
-There is also the possibility of opting to _not_ use environment variables in the service file but instead use a configuration file. In this case, modify the `ExecStartPre` systemd directive to execute `kong prepare` with the `-c` argument to point to your configuration file. For example, if you have a custom configuration file at `/etc/kong/kong.conf`, modify the `ExecStartPre` directive as follows:
+You can also choose use a configuration file instead of environment variables. In this case, modify the `ExecStartPre` systemd directive to execute `kong prepare` with the `-c` argument to point to your configuration file. For example, if you have a custom configuration file at `/etc/kong/kong.conf`, modify the `ExecStartPre` directive as follows:
 
 ```
 ExecStartPre=/usr/local/bin/kong prepare -p /usr/local/kong -c /etc/kong/kong.conf
@@ -76,14 +113,24 @@ Environment=KONG_ADMIN_ERROR_LOG=syslog:server=unix:/dev/log
 ```
 
 To view the journald logs:
-   `journalctl -u kong-enterprise-edition`
+
+```bash
+# For {{site.base_gateway}}
+journalctl -u kong-enterprise-edition
+
+# For {{site.ce_product_name}}
+journalctl -u kong
+```
 
 To view the syslog logs:
-   `tail -F /var/log/syslog`
+
+```bash
+tail -F /var/log/syslog
+```
 
 ### Customize Kong's Nginx instance using the Nginx directive injection system
 
-To use the [injection system](/gateway/{{page.kong_version}}/reference/property-reference/#injecting-individual-nginx-directives), add the below `Environment` systemd directive to your custom service at `/etc/systemd/system/kong-enterprise-edition.service` if environment variables are preferred. Note the quoting rules defined by systemd to specify an environment variable containing spaces:
+To use the [injection system](/gateway/{{page.kong_version}}/reference/configuration/#injecting-individual-nginx-directives) with environment variables, add the below `Environment` systemd directive to your custom service at `/etc/systemd/system/kong-enterprise-edition.service` ({{site.base_gateway}}) or `/etc/systemd/system/kong.service` ({{site.ce_product_name}}). Note the quoting rules defined by systemd to specify an environment variable containing spaces:
 
 ```
 Environment="KONG_NGINX_HTTP_OUTPUT_BUFFERS=4 64k"
@@ -91,7 +138,7 @@ Environment="KONG_NGINX_HTTP_OUTPUT_BUFFERS=4 64k"
 
 ### Customize Kong's Nginx instance using `--nginx-conf`
 
-To use the [`--nginx-conf`](/gateway/{{page.kong_version}}/reference/property-reference/#custom-nginx-templates) argument, modify the `ExecStartPre` systemd directive to execute `kong prepare` with the `--nginx-conf` argument. For example, if you have a custom template at `/usr/local/kong/custom-nginx.template`, modify the `ExecStartPre` directive as follows:
+To use the [`--nginx-conf`](/gateway/{{page.kong_version}}/reference/configuration/#custom-nginx-templates) argument, modify the `ExecStartPre` systemd directive to execute `kong prepare` with the `--nginx-conf` argument. For example, if you have a custom template at `/usr/local/kong/custom-nginx.template`, modify the `ExecStartPre` directive as follows:
 
 ```
 ExecStartPre=/usr/local/bin/kong prepare -p /usr/local/kong --nginx-conf /usr/local/kong/custom-nginx.template
@@ -99,7 +146,7 @@ ExecStartPre=/usr/local/bin/kong prepare -p /usr/local/kong --nginx-conf /usr/lo
 
 ### Customize Kong's Nginx instance including files via the injected Nginx directives
 
-To [include files via the injected Nginx directives](/gateway/{{page.kong_version}}/reference/property-reference/#including-files-via-injected-nginx-directives), add the below `Environment` systemd directive to your custom service at `/etc/systemd/system/kong-enterprise-edition.service` if environment variables are preferred:
+To [include files via the injected Nginx directives](/gateway/{{page.kong_version}}/reference/configuration/#including-files-via-injected-nginx-directives) with environment variables, add the below `Environment` systemd directive to your custom service at `/etc/systemd/system/kong-enterprise-edition.service` ({{site.base_gateway}}) or `/etc/systemd/system/kong.service` ({{site.ce_product_name}}):
 
 ```
 Environment=KONG_NGINX_HTTP_INCLUDE=/path/to/your/my-server.kong.conf
