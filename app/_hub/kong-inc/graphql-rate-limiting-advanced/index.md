@@ -159,7 +159,7 @@ params:
       description: |
         If set to true, then uses SSL to connect to Redis.
 
-        **Note:** This parameter is only available for Kong Enterprise versions
+        **Note:** This parameter is only available for Kong Gateway versions
         2.2.x and later.
     - name: redis.ssl_verify
       required: false
@@ -172,7 +172,7 @@ params:
         to specify the CA (or server) certificate used by your redis server. You may also need to configure
         [lua_ssl_verify_depth](/enterprise/latest/property-reference/#lua_ssl_verify_depth) accordingly.
 
-        **Note:** This parameter is only available for Kong Enterprise versions
+        **Note:** This parameter is only available for Kong Gateway versions
         2.2.x and later.
     - name: redis.server_name
       required: false
@@ -182,7 +182,7 @@ params:
       description: |
         Specifies the server name for the new TLS extension Server Name Indication (SNI) when connecting over SSL.
 
-        **Note:** This parameter is only available for Kong Enterprise versions
+        **Note:** This parameter is only available for Kong Gateway versions
         2.2.x and later.
     - name: redis.timeout
       required: semi
@@ -219,7 +219,7 @@ params:
       datatype: string
       description: |
         Sentinel password to authenticate with a Redis Sentinel instance.
-        **Note:** This parameter is only available for Kong Enterprise versions
+        **Note:** This parameter is only available for Kong Gateway versions
         1.3.0.2 and later.
     - name: redis.sentinel_role
       required: semi

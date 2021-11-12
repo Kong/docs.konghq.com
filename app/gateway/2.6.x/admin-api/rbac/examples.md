@@ -13,7 +13,7 @@ open as a reference.
 
 ## Use Case
 
-For the sake of example, let's say a given company has a Kong Enterprise
+For the sake of example, let's say a given company has a {{site.base_gateway}}
 cluster to be shared with 3 teams: teamA, teamB, and teamC. While the Kong
 cluster are shared among these teams, they want to be able to segment
 their entities in such a way that management of entities in one team doesn't
@@ -642,7 +642,7 @@ RBAC**, an extension of our powerful access control to entity-level granularity.
 
 ## Entity-Level RBAC: a Primer
 
-Kong Enterprise's new RBAC implementation goes one step further in permissions
+{{site.base_gateway}}'s new RBAC implementation goes one step further in permissions
 granularity: in addition to "endpoint" permissions, it supports entity-level
 permissions, meaning that particular entities, identified by their unique ID,
 can be allowed or disallowed access in a role.

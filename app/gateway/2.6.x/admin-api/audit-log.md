@@ -3,7 +3,7 @@ title: Admin API Audit Log
 badge: enterprise
 ---
 
-Kong Enterprise provides a granular logging facility on its Admin API. This
+{{site.base_gateway}} provides a granular logging facility on its Admin API. This
 allows cluster administrators to keep detailed track of changes made to the
 cluster configuration throughout its lifetime, aiding in compliance efforts and
 providing valuable data points during forensic investigations. Generated audit
@@ -494,4 +494,4 @@ HTTP 200 OK
 ### Configuration Reference
 
 See the [Data & Admin Audit](/gateway/{{page.kong_version}}/reference/configuration/#data--admin-audit)
-section of Kong Enterprise's Configuration Property Reference.
+section of the Configuration Property Reference.

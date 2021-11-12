@@ -55,7 +55,7 @@ other, the only difference being that it's created by Kong, at migration time.
 
 ## Listing workspaces and its entities
 
-In a fresh Kong Enterprise install—or one just migrated to 0.33—submit the
+In a fresh {{site.base_gateway}} install, submit the
 following request:
 
 ```

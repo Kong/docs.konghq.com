@@ -3,7 +3,7 @@ title: RBAC Reference
 badge: free
 ---
 
-Kong Enterprise's RBAC feature is configurable through Kong's
+Kong {{site.base_gateway}}'s RBAC feature is configurable through Kong's
 [Admin API](/gateway/{{page.kong_version}}/admin-api/) or via the [Kong Manager](/gateway/{{page.kong_version}}/configure/auth/rbac).
 
 There are 4 basic entities involving RBAC.

@@ -1,17 +1,14 @@
 ---
 title: Upgrade Kong Gateway
-toc: true
 badge: enterprise
 ---
-
-## Overview
 
 Upgrade to major, minor, and patch {{site.ee_product_name}} releases using the
 `kong migrations` commands.
 
 You can also use the commands to migrate all {{site.ce_product_name}} entities
 to {{site.ee_product_name}}. See
-[Migrating from Kong Gateway to Kong Enterprise](/gateway/{{page.kong_version}}/install-and-run/migrate-ce-to-ke/).
+[Migrating from {{site.ce_product_name}} to {{site.base_gateway}}](/gateway/{{page.kong_version}}/install-and-run/migrate-ce-to-ke/).
 
 If you experience any issues when running migrations, contact
 [Kong Support](https://support.konghq.com/support/s/) for assistance.

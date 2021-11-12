@@ -8,7 +8,7 @@ Editable email templates are loaded as files similar to content files for portal
 Email files can be managed in the same way as other files for rendering, via editor or via the Portal CLI Tool.
 This feature is **not** supported on legacy portal mode.
 
-If no email templates are loaded, Kong will fall back to the same emails as Kong Enterprise 1.3.0.0.
+If no email templates are loaded, Kong will fall back to the same emails as {{site.base_gateway}} 1.3.0.0.
 By default on 1.3.0.1 and newer, enabling a non-legacy portal on new workspaces loads default editable email templates.
 For existing non-legacy Portals, editable email templates must be loaded manually.
 
@@ -18,7 +18,7 @@ Not all tokens are supported on all emails.
 
 ## Prerequisites
 
-* Kong Enterprise **1.3.0.1** or later
+* {{site.base_gateway}} **1.3.0.1** or later
 * The Kong Developer Portal is not running in **Legacy Mode**
 * The Kong Developer Portal is enabled and running
 * [The emails you want are enabled in kong](/gateway/{{page.kong_version}}/developer-portal/configuration/smtp/#portal_invite_email)
@@ -91,7 +91,7 @@ The body of the email is HTML content. You can reference the tokens allowed for 
 ## Editing Email Templates
 
 The default email templates will be automatically loaded into the Kong Developer Portal's file system when the Dev Portal is activated. These templates can now be edited in Kong Manager via the **Portal Editor** or via the **Portal CLI** tool.
-**Note:** If you are using a Dev Portal initiated in a Kong Enterprise version prior to 1.3.0.1, you will need to manually load the email templates into the file system. Follow the steps in [Loading Email Templates on Existing Dev Portals](#loading-email-templates-on-existing-dev-portals).
+**Note:** If you are using a Dev Portal initiated in a {{site.base_gateway}} version prior to 1.3.0.1, you will need to manually load the email templates into the file system. Follow the steps in [Loading Email Templates on Existing Dev Portals](#loading-email-templates-on-existing-dev-portals).
 
 ### Editing via the Portal Editor
 
@@ -156,7 +156,7 @@ Be sure to keep in mind the html support limitations of the email clients you pl
 
 ## Loading Email Templates on Existing Dev Portals
 
-**Note:** This is only necessary for existing Dev Portals created on Kong Enterprise 1.3.0. New Portals created in 1.3.0.1 and later will have these files already loaded, unless manually deleted.
+**Note:** This is only necessary for existing Dev Portals created on {{site.base_gateway}} 1.3.0. New Portals created in 1.3.0.1 and later will have these files already loaded, unless manually deleted.
 
 Editable email templates can be loaded either via the editor or via the `kong-portal-cli` tool.
 

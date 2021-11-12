@@ -12,7 +12,7 @@ While the fix development is underway, we ask that you do not share or publicize
 
 ## Fix Development Process
 
-If a discovered vulnerability with a CVSS score above 4.0 (medium severity or higher) affects the latest major release of the Kong gateway or other Kong software, then we will work to develop a fix in the most timely fashion. The work and communication around the fix will happen in private channels, and a delivery estimate will be given to the vulnerability reporter. Once the fix is developed and verified, a new patch version will be released by Kong for each supported Kong Enterprise release and for the current release of the open source gateway. We will disclose the vulnerability as appropriate.
+If a discovered vulnerability with a CVSS score above 4.0 (medium severity or higher) affects the latest major release of the Kong gateway or other Kong software, then we will work to develop a fix in the most timely fashion. The work and communication around the fix will happen in private channels, and a delivery estimate will be given to the vulnerability reporter. Once the fix is developed and verified, a new patch version will be released by Kong for each supported {{site.base_gateway}} release and for the current release of the open source gateway. We will disclose the vulnerability as appropriate.
 
 Discovered vulnerabilities with a CVSS score below 4.0 (low severity) will follow the same fix development and release process but with a less urgent timeline.
 

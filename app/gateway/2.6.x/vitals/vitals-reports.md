@@ -33,7 +33,7 @@ To create a time-series report containing Vitals data, complete the steps in thi
 
     | Selection                | Description                                                                                  |
     |--------------------------|----------------------------------------------------------------------------------------------|
-    | *Report Type*            | Consumer Requests: This report is for requests made by Consumers.<br>Service Requests: This report is for services with a Service ID and name of the service that is stored in Kong Enterprise database.<br>Cluster Latency: This report is the aggregation of two fields. |
+    | *Report Type*            | Consumer Requests: This report is for requests made by Consumers.<br>Service Requests: This report is for services with a Service ID and name of the service that is stored in the {{site.base_gateway}} database.<br>Cluster Latency: This report is the aggregation of two fields. |
     | *Scope*                  | Drill down and filter for more detailed information. |
     | *Interval*               | Select the time interval to display in the report: weeks, hours, days, minutes. If you select an interval that is out of the available range, the results return zeroes. |
 

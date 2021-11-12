@@ -3,7 +3,7 @@ title: Immunity Alerts
 badge: enterprise
 ---
 
-Immunity monitors all traffic that flows through Kong Enterprise. When an anomaly is detected, Immunity sends an alert to Kong Manager and displays on the Alerts dashboard. Alerts are built to signal the health of your microservices system and help pinpoint which endpoints are struggling.  
+Immunity monitors all traffic that flows through {{site.base_gateway}}. When an anomaly is detected, Immunity sends an alert to Kong Manager and displays on the Alerts dashboard. Alerts are built to signal the health of your microservices system and help pinpoint which endpoints are struggling.  
 
 ## Alerts Dashboard
 Use the Alerts Dashboard in Kong Manager to view and manage alerts. When an alert is generated, it is automatically added to the Alerts Dashboard. The dashboard gives a high-level overview of identified alerts, including severity level, event type, status, and details about the alert. Click an alert to drill down into more details to further investigate the issue.

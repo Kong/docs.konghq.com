@@ -3,12 +3,12 @@ title: Kong Immunity Installation and Configuration
 badge: enterprise
 ---
 
-Kong Immunity (Immunity) is installed on Kong Enterprise, either on Kubernetes or Docker, as defined below. Immunity uses the Collector App and Collector Plugin to communicate with Kong Enterprise.
+Kong Immunity (Immunity) is installed on {{site.base_gateway}}, either on Kubernetes or Docker, as defined below. Immunity uses the Collector App and Collector Plugin to communicate with {{site.base_gateway}}.
 
 {% include /md/enterprise/download/immunity.md version='>2.1' %}
 
 ### Step 2. Confirm the Kong EE Docker Network is available
-Confirm the Kong Enterprise network is available, which is the network you set up when installing Kong Enterprise on Docker named `kong-ee-net`.
+Confirm the {{site.base_gateway}} network is available, which is the network you set up when installing {{site.base_gateway}} on Docker named `kong-ee-net`.
 
 1. Run the the Docker `ls` command to list available networks. The list should show `kong-ee-net`.
 ```bash
@@ -114,7 +114,7 @@ Using Kong Manager, enable the Collector Plugin. To enable the plugin:
 configure the Collector Plugin:
 
     * In the **Config.Http Endpoint** field, enter the Collector App endpoint
-    that Kong Enterprise can communicate with. For example,
+    that {{site.base_gateway}} can communicate with. For example,
     `http://collector:5000`.
     * The default values populating the remaining fields are valid for a
     minimal configuration.
@@ -158,6 +158,6 @@ Substitute `default` for your own workspace name.
 {% endnavtabs %}
 
 ## Summary
-The Collector App is installed and the Collector Plugin is enabled on Kong Enterprise. You are now ready to analyze incoming traffic for [alerts](/gateway/{{page.kong_version}}/immunity/alerts).
+The Collector App is installed and the Collector Plugin is enabled on {{site.base_gateway}}. You are now ready to analyze incoming traffic for [alerts](/gateway/{{page.kong_version}}/immunity/alerts).
 
 For any issues encountered when setting up Collector App, Collector Plugin, or configuring other aspects of Immunity, see [troubleshooting](/gateway/{{page.kong_version}}/immunity/troubleshooting) for help debugging common problems.

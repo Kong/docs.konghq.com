@@ -14,7 +14,7 @@ configuration file (`kong.conf`):
    portal = on
    ```
 
-   Kong Enterprise must be **restarted** for this value to take effect.
+   {{site.base_gateway}} must be **restarted** for this value to take effect.
 
 2. Enable the default Workspace Dev Portal via Kong Manager:
 

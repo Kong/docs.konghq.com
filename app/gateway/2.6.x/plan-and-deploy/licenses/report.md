@@ -76,7 +76,7 @@ To generate a license report, from an HTTP client:
   <tr>
    <td>kong_version
    </td>
-   <td>Kong Enterprise version
+   <td>{{site.base_gateway}} version
    </td>
   </tr>
   <tr>

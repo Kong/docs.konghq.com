@@ -12,7 +12,7 @@ description: |
   This plugin can be used for authentication in conjunction with the
   [Application Registration](/hub/kong-inc/application-registration) plugin.
 
-  **Tip:** The Kong Enterprise [Key Authentication Encrypted](/hub/kong-inc/key-auth-enc/)
+  **Tip:** The Kong Gateway [Key Authentication Encrypted](/hub/kong-inc/key-auth-enc/)
     plugin provides the ability to encrypt keys. Keys are encrypted at rest in the API gateway datastore.
 
 type: plugin

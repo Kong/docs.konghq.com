@@ -71,10 +71,10 @@ Kong’s session with the client ensures that the client does not need to make c
 The steps in the guide offer an example of configuring OIDC with Okta on a specific route. To follow this guide, you need the following:
 
 * A developer account with Okta.
-* A running version of Kong Enterprise.
+* A running version of {{site.base_gateway}}.
 * Access to the OpenID Connect plugin.
-* A route in Kong Enterprise whose access you want to protect with Okta. For this guide, assume the route is in the default Workspace.
-* If using Kong Enterprise locally, you need Internet access.
+* A route in {{site.base_gateway}} whose access you want to protect with Okta. For this guide, assume the route is in the default Workspace.
+* If using {{site.base_gateway}} locally, you need Internet access.
 * Any network access control to your Kong node must allow traffic to and from Okta, the upstream service, and the client.
 
 ### Steps in Okta
@@ -111,9 +111,9 @@ The steps in the guide offer an example of configuring OIDC with Okta on a speci
 
     ![Okta 7](/assets/images/docs/ee/plugins/oidc-use-case/okta7.png)
 
-### Steps in Kong Enterprise
+### Steps in {{site.base_gateway}}
 
-The following are steps you perform in Kong Enterprise to enable the OIDC Plugin using Okta as an Identity Provider for the Authorization Code flow.
+The following are steps you perform in {{site.base_gateway}} to enable the OIDC Plugin using Okta as an Identity Provider for the Authorization Code flow.
 
 ### Minimum Configuration Requirements for the Kong OIDC Plugin
 

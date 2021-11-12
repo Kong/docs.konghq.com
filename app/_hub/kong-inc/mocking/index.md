@@ -65,7 +65,7 @@ params:
       description: |
         The contents of the specification file. You must use this option for hybrid or DB-less mode.
         With this configuration option, you can include the full specification as part of the configuration,
-        instead of referring to a separate file with `api_specification_filename` that lives next to the Kong Gateway (Enterprise).
+        instead of referring to a separate file with `api_specification_filename` that lives next to the Kong Gateway.
         In Kong Manager, you can copy and paste the contents of the spec directly into
         the `Config.Api Specification` text field.
     - name: random_delay

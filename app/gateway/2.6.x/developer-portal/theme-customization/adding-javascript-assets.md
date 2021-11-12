@@ -11,7 +11,7 @@ webpages or load additional JavaScript.
 
 ## Prerequisites
 
-* Kong Enterprise 1.3 or later
+* {{site.base_gateway}} 1.3 or later
 * Portal Legacy is turned off
 * The Kong Developer Portal is enabled and running
 * The [kong-portal-cli tool](/gateway/{{page.kong_version}}/developer-portal/helpers/cli) is installed locally

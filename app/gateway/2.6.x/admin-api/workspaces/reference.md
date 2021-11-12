@@ -9,7 +9,7 @@ workspace_body: |
 ---
 
 
-Kong Enterprise's Workspaces feature is configurable through Kong's
+{{site.base_gateway}}'s Workspaces feature is configurable through Kong's
 Admin API.
 
 ## Workspace Object

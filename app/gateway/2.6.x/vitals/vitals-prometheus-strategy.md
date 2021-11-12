@@ -5,7 +5,7 @@ badge: enterprise
 
 This document covers integrating Kong Vitals with a new or existing Prometheus
 time-series server or cluster. Leveraging a time-series database for Vitals data
-can improve request and Vitals performance in very-high traffic Kong Enterprise
+can improve request and Vitals performance in very-high traffic {{site.base_gateway}}
 clusters (such as environments handling tens or hundreds of thousands of
 requests per second), without placing addition write load on the database
 backing the Kong cluster.

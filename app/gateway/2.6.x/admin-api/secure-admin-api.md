@@ -1,9 +1,8 @@
 ---
 title: Securing the Admin API
-badge: enterprise
 ---
 
-Kong's Admin API provides a RESTful interface for administration and
+{{site.base_gateway}}'s Admin API provides a RESTful interface for administration and
 configuration of Services, Routes, Plugins, Consumers, and Credentials. Because this
 API allows full control of Kong, it is important to secure this API against
 unwanted access. This document describes a few possible approaches to securing
@@ -201,7 +200,7 @@ In both cases, once Kong is up and running, the Admin API would be available but
 curl myhost.dev:8000/admin-api/services
 => HTTP/1.1 401 Unauthorized
 
-curl myhost.dev:8000/admin-api/services?apikey=secret"
+curl myhost.dev:8000/admin-api/services?apikey=secret
 => HTTP/1.1 200 OK
 {
     "data": [
@@ -210,6 +209,9 @@ curl myhost.dev:8000/admin-api/services?apikey=secret"
             "client_certificate": null,
             "connect_timeout": 60000,
         ...
+      }
+    ]
+}
 ```
 
 ## Custom Nginx Configuration
@@ -225,24 +227,16 @@ OpenResty environment on which custom/complex security controls can be built.
 For more information on integrating Kong into custom Nginx configurations, see
 [Custom Nginx configuration & embedding Kong][custom-configuration].
 
-## Role Based Access Control ##
+## Role Based Access Control
+{:.badge .free}
 
-<div class="alert alert-warning">
-  <strong>{{site.konnect_short_name}}-Only</strong> This feature is only available with an
-  {{site.konnect_product_name}} subscription.
-</div>
-
-Enterprise users can configure role-based access control to secure access to the
-Admin API. RBAC allows for fine-grained control over resource access based on
-a model of user roles and permissions. Users are assigned to one or more roles,
+{{site.base_gateway}} users can configure [role-based access control](/gateway/{{page.kong_version}}/configure/auth/rbac)
+to secure access to the Admin API. RBAC allows for fine-grained control over resource access
+based on a model of user roles and permissions. Users are assigned to one or more roles,
 which each in turn possess one or more permissions granting or denying access
 to a particular resource. In this way, fine-grained control over specific Admin
 API resources can be enforced, while scaling to allow complex, case-specific
 uses.
-
-If you are not a Kong Enterprise customer, you can inquire about our
-Enterprise offering by [contacting us](/enterprise).
-
 
 [acl]: /hub/kong-inc/acl
 [basic-auth]: /hub/kong-inc/basic-auth

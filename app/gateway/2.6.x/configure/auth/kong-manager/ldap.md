@@ -3,15 +3,15 @@ title: Enable LDAP for Kong Manager
 badge: enterprise
 ---
 
-## Enable LDAP
-
-Kong Enterprise offers the ability to bind authentication for Kong Manager
+{{site.base_gateway}} offers the ability to bind authentication for Kong Manager
 *Admins* to a company's Active Directory using the
 [LDAP Authentication Advanced plugin](/hub/kong-inc/ldap-auth-advanced).
 
 Using the configuration below, it is unnecessary to
-manually apply the **Plugin**; the configuration alone will enable LDAP
+manually apply the LDAP plugin; the configuration alone will enable LDAP
 Authentication for Kong Manager.
+
+## Enable LDAP
 
 Ensure Kong is configured with the following properties either in the
 configuration file or using environment variables:

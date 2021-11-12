@@ -58,7 +58,7 @@ When the `/status` endpoint is not returning a `kong_status` object, there are t
 
 The Collector App will attempt to communicate with Kong via `{KONG_PROTOCOL}://{KONG_HOST}:{KONG_PORT}` and if `KONG_ADMIN_TOKEN` is configured, pass `{"Kong-Admin-Token":KONG_ADMIN_TOKEN}` as its requests' headers. You can check that the Collector App's environment variables are properly set by `ssh`-ing into the machine hosting the Collector App and sending a `GET` request to `{KONG_PROTOCOL}://{KONG_HOST}:{KONG_PORT}` with the appropriate headers from that machine.
 
-If you cannot make successful requests to Kong Admin with `{KONG_PROTOCOL}://{KONG_HOST}:{KONG_PORT}`, first check to make sure that the Kong Admin URL (and `KONG_ADMIN_TOKEN`) you are attempting to connect with are correct. If they are correct, make sure that the respective machines hosting the Collector App and Kong Enterprise are able to communicate and ping each other.
+If you cannot make successful requests to Kong Admin with `{KONG_PROTOCOL}://{KONG_HOST}:{KONG_PORT}`, first check to make sure that the Kong Admin URL (and `KONG_ADMIN_TOKEN`) you are attempting to connect with are correct. If they are correct, make sure that the respective machines hosting the Collector App and {{site.base_gateway}} are able to communicate and ping each other.
 
 
 ### I'm not seeing any alerts, even though the Collector App is connected to Kong and is receiving traffic
@@ -76,7 +76,7 @@ Another likely cause for models not being generated is the Collector does not ha
 
 ### I can't find or connect to Kong Brain
 
-Kong Brain is deprecated and not available for use in Kong Enterprise version
+Kong Brain is deprecated and not available for use in {{site.base_gateway}} version
 2.1.4.2 and later.
 
 ## Still having problems? Contact us!

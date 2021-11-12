@@ -5,7 +5,7 @@ badge: enterprise
 
 **Kong Immunity** (Immunity) uses advanced machine learning to analyze traffic patterns in real-time to improve security, mitigate breaches and isolate issues.  
 
-Immunity monitors all traffic that flows through Kong Enterprise. When an anomaly is detected, Immunity sends an alert to Kong Manager and displays on the Alerts dashboard. Alerts are built to signal the health of your microservices system and help pinpoint which endpoints are struggling.
+Immunity monitors all traffic that flows through {{site.base_gateway}}. When an anomaly is detected, Immunity sends an alert to Kong Manager and displays on the Alerts dashboard. Alerts are built to signal the health of your microservices system and help pinpoint which endpoints are struggling.
 
 Immunity helps organizations improve efficiency, governance, reliability, and security.
 
@@ -18,7 +18,7 @@ Immunity is installed on {{site.ee_product_name}}, using Kubernetes or Docker. T
 Immunity autonomously identifies service issues with machine learning-powered anomaly detection. Features include:
 
 ### Create a Baseline for Healthy Traffic
-Traffic patterns provide a window into the behavior and performance of services under different conditions. To understand your existing traffic patterns, Immunity ingests data flowing through the Kong data plane to create a baseline for healthy traffic. As anomalies are detected and addressed through changes to the Kong Enterprise configuration, Immunity continuously adapts this baseline.
+Traffic patterns provide a window into the behavior and performance of services under different conditions. To understand your existing traffic patterns, Immunity ingests data flowing through the Kong data plane to create a baseline for healthy traffic. As anomalies are detected and addressed through changes to the {{site.base_gateway}} configuration, Immunity continuously adapts this baseline.
 
 ### Autonomously Identify Anomalies
 To identify potential issues, inefficiencies or performance bottlenecks, Immunity flags traffic that deviates from the expected or desired patterns without disrupting services. Depending on your needs and goals, you can adjust the settings of Immunity to recognize individual traffic events, patterns and other types of anomalous activity.

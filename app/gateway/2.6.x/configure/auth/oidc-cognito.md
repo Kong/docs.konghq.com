@@ -155,7 +155,7 @@ You can verify the confirmed user from the Cognito page under “General setting
 
 ## Dev Portal Integration
 
-Since AWS Cognito only supports the HTTPS protocol, when you start Kong Enterprise, ensure that HTTPS protocol for Dev Portal is enabled. For example:
+Since AWS Cognito only supports the HTTPS protocol, when you start {{site.base_gateway}}, ensure that HTTPS protocol for Dev Portal is enabled. For example:
 
 ```
 docker run -d --name kong-ee --link kong-ee-database:kong-ee-database \

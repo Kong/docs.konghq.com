@@ -39,7 +39,7 @@ The `diff` of configuration is performed using the following algorithm:
       and check if it is present in the state file. If yes, don't do anything;
       if no, delete the entity from Kong's database as well.
 
-Certain filters like `select-tag` or Kong Enterprise workspace might be applied
+Certain filters like `select-tag` or {{site.base_gateway}} workspace might be applied
 to the above algorithm based on the inputs given to decK.
 
 ### Operational outlook

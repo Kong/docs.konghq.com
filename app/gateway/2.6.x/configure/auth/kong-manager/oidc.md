@@ -3,9 +3,7 @@ title: Enable OIDC for Kong Manager
 badge: enterprise
 ---
 
-### Introduction
-
-Kong Enterprise offers the ability to bind authentication for Kong
+{{site.base_gateway}} offers the ability to bind authentication for Kong
 Manager **Admins** to an organization's OpenID Connect Identity
 Provider using the
 **[OpenID Connect Plugin](/hub/kong-inc/openid-connect/)**.
@@ -14,7 +12,7 @@ Provider using the
 manually enable the **Plugin**; the configuration alone will enable
 **OIDC** for Kong Manager.
 
-### Prerequisites
+## Set up RBAC with OIDC
 
 The following is an example using Google as the IdP and serving Kong Manager
 from its default URL, `http://127.0.0.1:8002`.
@@ -53,7 +51,7 @@ Replace the entries surrounded by `<>` with values that are valid for your IdP.
 For example, Google credentials can be found here:
 https://console.cloud.google.com/projectselector/apis/credentials
 
-## Step 1
+## Create an admin
 
 Create an **Admin** that has a **username** matching the **email** returned from
 the Identity Provider upon successful login.
@@ -72,7 +70,7 @@ $ http POST :8001/admins username="hal9000@sky.net" email="hal9000@sky.net" Kong
 ensure the **Admin** receives an email invitation, whereas **username** is the
 attribute that the **Plugin** uses with the IdP.
 
-## Step 2
+## Assign a role to the admin
 
 Assign the new **Admin** at least one **Role** so they can log in and access
 Kong entities.

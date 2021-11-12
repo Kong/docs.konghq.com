@@ -3,28 +3,28 @@ title: Mapping LDAP Service Directory Groups to Kong Roles
 badge: enterprise
 ---
 
-Service Directory Mapping allows organizations to use their LDAP Directory for authentication and authorization in Kong Enterprise.
+Service Directory Mapping allows organizations to use their LDAP Directory for authentication and authorization in {{site.base_gateway}}.
 
-After starting Kong Enterprise with the desired configuration, you can create new Admins whose usernames match those in your LDAP directory. Those users will then be able to accept invitations to join Kong Manager and log in with their LDAP credentials.
+After starting {{site.base_gateway}} with the desired configuration, you can create new Admins whose usernames match those in your LDAP directory. Those users will then be able to accept invitations to join Kong Manager and log in with their LDAP credentials.
 
 How Service Directory Mapping works in Kong:
-* Roles are created in Kong Enterprise using the Admin API or Kong Manager.
+* Roles are created in {{site.base_gateway}} using the Admin API or Kong Manager.
 * Groups are created and roles are associated with the groups.
 * When users log in to Kong Manager, they get permissions based on the group(s) they belong to.
 
-For example, if a User's Group changes in the Service Directory, their Kong Admin account's associated Role also changes in Kong Enterprise the next time they log in to Kong Manager. The mapping removes the task of manually managing access in Kong Enterprise, as it makes the Service Directory the system of record.
+For example, if a User's Group changes in the Service Directory, their Kong Admin account's associated Role also changes in {{site.base_gateway}} the next time they log in to Kong Manager. The mapping removes the task of manually managing access in {{site.base_gateway}}, as it makes the Service Directory the system of record.
 
-### Prerequisites
+## Prerequisites
 
-* Kong Enterprise installed and configured
+* {{site.base_gateway}} installed and configured
 * Kong Manager access
 * A local LDAP directory
 
-### Configure Service Directory Mapping
+## Configure Service Directory Mapping
 
 Configure Service Directory Mapping to use your LDAP Directory for authentication and authorization.
 
-### Step 1: Start Kong Enterprise
+## Start {{site.base_gateway}}
 
 From a terminal window, enter:
 
@@ -32,7 +32,7 @@ From a terminal window, enter:
 $ kong start [-c /path/to/kong/conf]
 ```
 
-### Step 2: Enable LDAP Authentication and enforce RBAC
+## Enable LDAP Authentication and enforce RBAC
 
 To enable LDAP Authentication and enforce RBAC for Kong Manager, configure Kong with the following properties:
 
@@ -43,7 +43,7 @@ enforce_rbac = on
 
 **Note**: When enabling LDAP Authentication in this step, you are enabling and configuring the LDAP Authentication Advanced Plugin for Kong Manager. No other configuration for the plugin is needed.
 
-### Step 3: Configure the Sessions plugin
+## Configure the Sessions plugin
 
 Configure the Sessions Plugin for Kong Manager:
 
@@ -57,7 +57,7 @@ admin_gui_session_conf = { "secret":"set-your-string-here" }
 *  If using HTTP instead of HTTPS, cookie_secure must be manually set to false.
 *  If using different domains for the Admin API and Kong Manager, cookie_samesite must be set to off. Learn more about these properties in [_Session Security in Kong Manager_](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions), and see [_example configurations_](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/#example-configurations).
 
-### Step 4: Configure LDAP Authentication for Kong Manager
+## Configure LDAP Authentication for Kong Manager
 
 Configure LDAP Authentication for Kong Manager with the following properties. Note the attribute variables are defined below:
 
@@ -101,28 +101,28 @@ admin_gui_auth_conf = {
 * `group_name_attribute`: `<ENTER_YOUR_GROUP_NAME_ATTRIBUTE_HERE>`: Sets the attribute holding the name of a group, typically called `name` (in Active Directory) or `cn` (in OpenLDAP). The default is the value from `conf.attribute`.
 * `group_member_attribute`:`<ENTER_YOUR_GROUP_MEMBER_ATTRIBUTE_HERE>`: Sets the attribute holding the members of the LDAP group. The default is `memberOf`.
 
-### Define Roles with Permissions
+## Define Roles with Permissions
 
-Define **Roles** with **Permissions** in Kong Enterprise, using the Admin API's [**_RBAC endpoints_**](/gateway/{{page.kong_version}}/admin-api/rbac/reference/#update-or-create-a-role) or using Kong Manager's **Teams > [Admins tab](/gateway/{{page.kong_version}}/configure/auth/rbac/add-user/)**. You must manually define which Kong **Roles** correspond to each of the Service Directory's **Groups** using either of the following:
+Define Roles with Permissions in {{site.base_gateway}}, using the Admin API's [_RBAC endpoints_](/gateway/{{page.kong_version}}/admin-api/rbac/reference/#update-or-create-a-role) or using Kong Manager's Teams > [Admins tab](/gateway/{{page.kong_version}}/configure/auth/rbac/add-user/). You must manually define which Kong Roles correspond to each of the Service Directory's Groups using either of the following:
 
-In Kong Manager's **Directory Mapping** section. Go to **Teams > Groups** tab.
-With the Admin API's **Directory Mapping** endpoints.
+In Kong Manager's Directory Mapping section. Go to Teams > Groups tab.
+With the Admin API's Directory Mapping endpoints.
 
-Kong Enterprise will not write to the Service Directory, for example, a Kong Enterprise Admin cannot create **Users** or **Groups** in the directory. You must create **Users** and **Groups** independently before mapping them to Kong Enterprise.
+{{site.base_gateway}} will not write to the Service Directory, for example, a {{site.base_gateway}} Admin cannot create Users or Groups in the directory. You must create Users and Groups independently before mapping them to {{site.base_gateway}}.
 
-### User-Admin Mapping
+## User-Admin Mapping
 
-To map a Service Directory **User** to a Kong **Admin**, you must configure the **Admin's** username as the value of the **User's** name from their LDAP Distinguished Name (DN) corresponding the attribute configured in admin_gui_auth_conf. Creating an **Admin** account in [_Kong Manager_](/gateway/{{page.kong_version}}/configure/auth/rbac/add-admin) or using the [_Admin API_](/gateway/{{page.kong_version}}/admin-api/admins/reference/#invite-an-admin).
+To map a Service Directory User to a Kong Admin, you must configure the Admin's username as the value of the User's name from their LDAP Distinguished Name (DN) corresponding the attribute configured in admin_gui_auth_conf. Creating an Admin account in [_Kong Manager_](/gateway/{{page.kong_version}}/configure/auth/rbac/add-admin) or using the [_Admin API_](/gateway/{{page.kong_version}}/admin-api/admins/reference/#invite-an-admin).
 
-For instructions on how to pair the bootstrapped **Super Admin** with a **Directory User**, see [_How to Set Up a Service Directory User as the First Super Admin_](/gateway/{{page.kong_version}}/configure/auth/service-directory-mapping/#set-up-a-directory-user-as-the-first-super-admin).
+For instructions on how to pair the bootstrapped Super Admin with a Directory User, see [_How to Set Up a Service Directory User as the First Super Admin_](/gateway/{{page.kong_version}}/configure/auth/service-directory-mapping/#set-up-a-directory-user-as-the-first-super-admin).
 
-If you already have **Admins** with assigned **Roles** and want to use **Group** mapping instead, it is necessary to first remove all of their Roles. The Service Directory will serve as the system of record for **User** privileges. Assigned **Roles** will affect a user's privileges in addition to any roles mapped from **Groups.**
+If you already have Admins with assigned Roles and want to use Group mapping instead, it is necessary to first remove all of their Roles. The Service Directory will serve as the system of record for User privileges. Assigned Roles will affect a user's privileges in addition to any roles mapped from Groups.
 
-### Group-Role Assignment
+## Group-Role Assignment
 
-Using Service Directory Mapping, **Groups** to **Roles** are mapped. When a user logs in, they are identified with their **Admin** username and then authenticated with the matching **User** credentials in the** Service Directory**. The Groups in the Service Directory are then automatically matched to the associated Roles that the organization has defined.
+Using Service Directory Mapping, Groups to Roles are mapped. When a user logs in, they are identified with their Admin username and then authenticated with the matching User credentials in the Service Directory. The Groups in the Service Directory are then automatically matched to the associated Roles that the organization has defined.
 
-#### Example
+### Example
 
 1. Wayne Enterprises maps the Service Directory Group, T1-Mgmt, to the Kong Role super-admin.
 2. Wayne Enterprises maps a Service Directory User, named bruce-wayne, to a Kong Admin account with the same name, bruce-wayne.
@@ -133,7 +133,7 @@ When bruce-wayne logs in as an Admin to Kong Manager, they will automatically ha
 
 If Wayne Enterprises decides to revoke bruce-wayne's privileges by removing their assignment to T1-Mgmt, they will no longer have the super-admin Role when they attempt to log in.
 
-### Set Up a Directory User as the First Super Admin
+## Set Up a Directory User as the First Super Admin
 
 **Important**: Setting up a Directory User as the first Super Admin is recommended by Kong.
 

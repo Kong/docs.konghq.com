@@ -79,7 +79,7 @@ If you are using an external IdP, follow these steps.
             # Currently accepts kong-oauth2 or external-oauth2.
    ```
 
-2. [Restart](/gateway/{{page.kong_version}}/reference/cli/#kong-restart) your Kong Enterprise
+2. [Restart](/gateway/{{page.kong_version}}/reference/cli/#kong-restart) your {{site.base_gateway}}
    instance.
 
 ## Next Steps

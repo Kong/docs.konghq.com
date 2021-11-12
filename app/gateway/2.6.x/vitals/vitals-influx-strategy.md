@@ -55,7 +55,7 @@ $ docker run -d --name kong-ee --network=kong-ee-net \
 with with the DNS name or IP of the Docker host. <code>KONG_ADMIN_GUI_URL</code>
 _should_ have a protocol, for example, `http://`.
 
-### Deploy a Kong Gateway (Enterprise) license
+### Deploy a {{site.base_gateway}} license
 
 If you already have a {{site.ee_product_name}} license attached to your {{site.base_gateway}}
 instance, skip to [Step 3](#step-3-start-an-influxdb-database).

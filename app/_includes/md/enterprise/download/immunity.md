@@ -1,4 +1,4 @@
-<!-- Version compatibility and download instructions for Brain and Immunity
+{{site.base_gateway}}<!-- Version compatibility and download instructions for Brain and Immunity
 which is located in the install-configure.md file in the immuntiy folder -->
 
 {% if include.version == "1.5-2.1" %}
@@ -43,26 +43,26 @@ $ docker tag <IMAGE_ID> kong-bi
 
 {% if include.version == ">2.1" %}
 ## Version Compatibility
-Immunity follows a different versioning scheme from Kong Enterprise. The Immunity version reflects the `kong/immunity` package available on Docker Hub.
-For Kong Enterprise 2.1.x and above, use Immunity 4.x.x.
+Immunity follows a different versioning scheme from {{site.base_gateway}}. The Immunity version reflects the `kong/immunity` package available on Docker Hub.
+For {{site.base_gateway}} 2.1.x and above, use Immunity 4.x.x.
 
 {:.warning}
-> **Warning:** Kong Immunity is not compatible with Kong Enterprise v2.4.x.
+> **Warning:** Kong Immunity is not compatible with {{site.base_gateway}} v2.4.x.
 
 ## Install Immunity on Kubernetes
 Set up the Collector App via Helm. Use the public helm chart for setting up the Collector App and all its dependencies on Kubernetes. Setup instructions can be found on the public repo at: [https://github.com/Kong/kong-collector-helm/blob/master/README.md](https://github.com/Kong/kong-collector-helm/blob/master/README.md).
 
 ## Install Immunity on Docker
-Install Immunity by downloading, installing and starting the Collector App on Docker, as defined in this section. After installing the Collector App, you will enable the Collector Plugin to access Immunity on Kong Enterprise.
+Install Immunity by downloading, installing and starting the Collector App on Docker, as defined in this section. After installing the Collector App, you will enable the Collector Plugin to access Immunity on {{site.base_gateway}}.
 
 ### Prerequisites
 To complete this installation you will need:
 
 * A Docker-enabled system with proper Docker access.
 
-* Kong Enterprise 2.2.x or later is installed on Docker.
+* {{site.base_gateway}} 2.2.x or later is installed on Docker.
 
-* A valid [Kong Enterprise License](/enterprise/{{include.kong_version}}/deployment/access-license/) JSON file, including a license for Immunity.
+* A valid [{{site.base_gateway}} License](/enterprise/{{include.kong_version}}/deployment/access-license/) JSON file, including a license for Immunity.
 
 ### Step 1. Pull the Immunity Docker image
 

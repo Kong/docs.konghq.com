@@ -7,7 +7,7 @@ The Kong Developer Portal ships with a default theme, including preset images, b
 
 ## Prerequisites
 
-* Kong Enterprise 1.3 or later
+* {{site.base_gateway}} 1.3 or later
 * Access to Kong Manager
 * The Developer Portal is enabled and running
 

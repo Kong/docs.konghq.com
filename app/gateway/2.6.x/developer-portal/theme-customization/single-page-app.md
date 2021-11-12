@@ -9,7 +9,7 @@ To view the basic example Angular template from this guide, visit the [`example/
 
 ## Prerequisites
 
-* Kong Enterprise 1.3 or later
+* {{site.base_gateway}} 1.3 or later
 * Portal Legacy is turned off
 * The Developer Portal is enabled and running
 * kong-portal-cli tool is installed locally

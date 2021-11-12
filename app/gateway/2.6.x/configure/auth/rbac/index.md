@@ -3,10 +3,8 @@ title: RBAC in Kong Manager
 badge: free
 ---
 
-### Introduction to RBAC in Kong Manager
-
 In addition to authenticating Admins and segmenting Workspaces,
-Kong Enterprise has the ability to enforce Role-Based Access Control
+{{site.base_gateway}} has the ability to enforce Role-Based Access Control
 (RBAC) for all resources with the use of Roles assigned to Admins.
 
 As the Super Admin (or any Role with read and write
@@ -51,6 +49,7 @@ These roles can be viewed in the Teams tab under Roles
 
 ![Default Roles in New Workspaces](https://doc-assets.konghq.com/1.3/manager/teams/kong-manager-default-roles.png)
 
-IMPORTANT: Any Role assigned in the Default Workspace will have
+{:.important}
+> Important: Any Role assigned in the Default Workspace will have
 Permissions applied to all subsequently created Workspaces. A Super Admin
 in `default` has RBAC Permissions across all Workspaces.
