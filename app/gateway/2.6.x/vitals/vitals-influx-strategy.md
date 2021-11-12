@@ -77,7 +77,9 @@ with each other.
       kong-ee kong migrations bootstrap </code></pre>
 
 
-1. Start the gateway with Kong Manager
+1. Start the gateway with Kong Manager:
+
+{% include_cached /md/admin-listen.md desc='long' %}
 
     <pre><code>docker run -d --name kong-ee --network=kong-ee-net \
       -e "KONG_DATABASE=postgres" \

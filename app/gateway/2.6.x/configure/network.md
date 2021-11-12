@@ -33,6 +33,9 @@ This is the port where Kong exposes its management API. Hence in production this
 it from unauthorized access.
 
 * `8001` provides Kong's **Admin API** that you can use to operate Kong with HTTP. See [admin_listen].
+
+{% include_cached /md/admin-listen.md desc='short' %}
+
 * `8444` provides the same Kong **Admin API** but using HTTPS. See [admin_listen] and the `ssl` suffix.
 
 ## Firewall

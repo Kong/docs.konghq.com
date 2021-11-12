@@ -69,8 +69,6 @@ declarative_config = <div contenteditable="true">{PATH_TO_KONG.CONF_FILE}</div><
 ## Seed Super Admin
 {:.badge .enterprise}
 
-{% include_cached /md/gateway/root-user-note.md kong_version=page.kong_version %}
-
 Setting a password for the **Super Admin** before initial start-up is strongly recommended. This will permit the use of RBAC (Role Based Access Control) at a later time, if needed.
 
 1. Create an environment variable with the desired **Super Admin** password and store the password in a safe place.
@@ -84,9 +82,9 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 3. Verify {{site.base_gateway}} is working:
 
-  <div class="copy-code-snippet"><pre><code>curl -i -X GET --url http://<div contenteditable="true">{DNS_OR_IP}</div>:8001/services</code></pre></div>
+    <div class="copy-code-snippet"><pre><code>curl -i -X GET --url http://<div contenteditable="true">{DNS_OR_IP}</div>:8001/services</code></pre></div>
 
-  You should receive a `HTTP/1.1 200 OK` message.
+    You should receive a `HTTP/1.1 200 OK` message.
 
 ## Start Kong Gateway
 
@@ -123,6 +121,8 @@ By default, {{site.kong_gateway}} listens on the following ports:
 
 2. Update the Admin API setting in the `kong.conf` file to listen on the needed network interfaces on the OS host.
    A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
+
+    {% include_cached /md/admin-listen.md desc='long' %}
 
     Example configuration:
 

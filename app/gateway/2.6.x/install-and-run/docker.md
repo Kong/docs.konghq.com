@@ -17,8 +17,13 @@ datastore. This guide provides steps to configure PostgreSQL.
 
 If you prefer to use the open-source {{site.base_gateway}} image with Docker
 Compose, Kong also provides a
-[Docker Compose template](https://github.com/Kong/docker-kong/tree/master/compose) 
+[Docker Compose template](https://github.com/Kong/docker-kong/tree/master/compose)
 with built-in orchestration and scalability.
+
+Some [older {{site.base_gateway}} images](https://support.konghq.com/support/s/article/Downloading-older-Kong-versions)
+are not publicly accessible. If you need a specific patch version and can't
+find it on [Kong's public Docker Hub page](https://hub.docker.com/r/kong/kong-gateway), contact
+[Kong Support](https://support.konghq.com/).
 
 This software is governed by the
 [Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
@@ -51,12 +56,6 @@ docker pull kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
 {% endnavtabs %}
 {% endcapture %}
 {{ pull_image | indent | replace: " </code>", "</code>" }}
-
-   {:.important}
-   > Some [older {{site.base_gateway}} images](https://support.konghq.com/support/s/article/Downloading-older-Kong-versions)
-   are not publicly accessible. If you need a specific patch version and can't
-   find it on [Kong's public Docker Hub page](https://hub.docker.com/r/kong/kong-gateway), contact
-   [Kong Support](https://support.konghq.com/).
 
    You should now have your {{site.base_gateway}} image locally.
 
@@ -122,6 +121,8 @@ docker tag kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kon
 {{ migrations | indent | replace: " </code>", "</code>" }}
 
 ### Start Kong Gateway
+
+{% include_cached /md/admin-listen.md desc='long' %}
 
 1. Run the following command to start a container with {{site.base_gateway}}:
 {% capture start_container %}
