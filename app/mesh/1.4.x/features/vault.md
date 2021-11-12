@@ -34,6 +34,9 @@ When {{site.mesh_product_name}} is running in `vault` mode, the backend communic
 that Vault's PKI automatically issues data plane certificates and rotates them for
 each proxy.
 
+If {{site.mesh_product_name}} is configured to authenticate to Vault using a renewable token,
+it will handle keeping the token renewed.
+
 ### Configure Vault
 
 The `vault` mTLS backend expects a configured PKI and role for generating data plane proxy certificates.
