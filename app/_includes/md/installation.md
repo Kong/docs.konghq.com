@@ -29,7 +29,7 @@ file for specifying the entities as a declarative configuration.
 
 ### Without a database
 
-If you are going to run Kong in [DB-less mode](/gateway-oss/{{site.data.kong_latest.release}}/db-less-and-declarative-config/),
+If you are going to run Kong in [DB-less mode](/gateway/{{include.kong_version}}/reference/db-less-and-declarative-config/),
 you should start by generating declarative config file.
 
 1. Generate a `kong.yml` file in your current folder using the following command:
@@ -74,4 +74,4 @@ Check out {{site.base_gateway}}'s series of
 [Getting Started](/gateway/{{include.kong_version}}/get-started/comprehensive) guides to get the most
 out of {{site.base_gateway}}.
 
-[configuration]: /gateway-oss/{{site.data.kong_latest.release}}/configuration/#database
+[configuration]: /gateway/{{include.kong_version}}/reference/configuration/#database

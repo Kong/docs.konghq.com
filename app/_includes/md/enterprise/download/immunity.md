@@ -1,4 +1,4 @@
-{{site.base_gateway}}<!-- Version compatibility and download instructions for Brain and Immunity
+<!-- Version compatibility and download instructions for Brain and Immunity
 which is located in the install-configure.md file in the immuntiy folder -->
 
 {% if include.version == "1.5-2.1" %}

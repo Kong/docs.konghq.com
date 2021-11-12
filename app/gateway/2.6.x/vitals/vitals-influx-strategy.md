@@ -11,59 +11,110 @@ backing the Kong cluster.
 
 For information about using Kong Vitals with a database as the backend (for example,
 PostgreSQL, Cassandra), refer to
-[Kong Vitals](/gateway/{{page.kong_version}}/admin-api/vitals/).
+[Kong Vitals](/gateway/{{page.kong_version}}/vitals/).
 
 ## Set up Kong Vitals with InfluxDB
 
 ### Install Kong Gateway
 
-If you already have a {{site.base_gateway}} instance, skip to [Step 2](#step-2-deploy-a-kong-gateway-enterprise-license).
+If you already have a {{site.base_gateway}} instance, skip to [deploying a license](#deploy-a-kong-gateway-license).
 
 If you have not installed {{site.base_gateway}}, a Docker installation
 will work for the purposes of this guide.
 
-{% include /md/2.4.x/docker-install-steps.md heading="#### " heading1="#### " heading2="#### " heading3="#### " %}
 
-### Start the gateway with Kong Manager
+### Pull the Kong Gateway Docker image {#pull-image}
 
-```bash
-$ docker run -d --name kong-ee --network=kong-ee-net \
-  -e "KONG_DATABASE=postgres" \
-  -e "KONG_PG_HOST=kong-ee-database" \
-  -e "KONG_PG_PASSWORD=kong" \
-  -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
-  -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
-  -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
-  -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
-  -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
-  -e "KONG_ADMIN_GUI_URL=http://<DNSorIP>:8002" \
-  -e "KONG_VITALS_STRATEGY=influxdb" \
-  -e "KONG_VITALS_TSDB_ADDRESS=influxdb:8086" \
-  -p 8000:8000 \
-  -p 8443:8443 \
-  -p 8001:8001 \
-  -p 8444:8444 \
-  -p 8002:8002 \
-  -p 8445:8445 \
-  -p 8003:8003 \
-  -p 8004:8004 \
-  kong-ee
-```
+1. Pull the following Docker image.
 
-{:.note}
-> **Note:** For `KONG_ADMIN_GUI_URL`, replace `DNSorIP`
-with with the DNS name or IP of the Docker host. <code>KONG_ADMIN_GUI_URL</code>
-_should_ have a protocol, for example, `http://`.
+    ```bash
+    docker pull kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+    ```
+
+    {:.important}
+    > Some [older {{site.base_gateway}} images](https://support.konghq.com/support/s/article/Downloading-older-Kong-versions)
+    are not publicly accessible. If you need a specific patch version and can't
+    find it on [Kong's public Docker Hub page](https://hub.docker.com/r/kong/kong-gateway), contact
+    [Kong Support](https://support.konghq.com/).
+
+    You should now have your {{site.base_gateway}} image locally.
+
+1. Tag the image.
+
+    ```bash
+    docker tag kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine kong-ee
+    ```
+
+
+### Start the database and Kong Gateway containers
+
+1. Create a custom network to allow the containers to discover and communicate
+with each other.
+
+    ```bash
+    docker network create kong-ee-net
+    ```
+
+1. Start a PostgreSQL container:
+
+    ```p
+    docker run -d --name kong-ee-database \
+      --network=kong-ee-net \
+      -p 5432:5432 \
+      -e "POSTGRES_USER=kong" \
+      -e "POSTGRES_DB=kong" \
+      -e "POSTGRES_PASSWORD=kong" \
+      postgres:9.6
+    ```
+
+1. Prepare the Kong database:
+
+    <pre><code>docker run --rm --network=kong-ee-net \
+      -e "KONG_DATABASE=postgres" \
+      -e "KONG_PG_HOST=kong-ee-database" \
+      -e "KONG_PG_PASSWORD=kong" \
+      -e "KONG_PASSWORD=<div contenteditable="true">{PASSWORD}</div>" \
+      kong-ee kong migrations bootstrap </code></pre>
+
+
+1. Start the gateway with Kong Manager
+
+    <pre><code>docker run -d --name kong-ee --network=kong-ee-net \
+      -e "KONG_DATABASE=postgres" \
+      -e "KONG_PG_HOST=kong-ee-database" \
+      -e "KONG_PG_PASSWORD=kong" \
+      -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+      -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+      -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+      -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+      -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
+      -e "KONG_ADMIN_GUI_URL=http://<div contenteditable="true">{DNSorIP}</div>:8002" \
+      -e "KONG_VITALS_STRATEGY=influxdb" \
+      -e "KONG_VITALS_TSDB_ADDRESS=influxdb:8086" \
+      -p 8000:8000 \
+      -p 8443:8443 \
+      -p 8001:8001 \
+      -p 8444:8444 \
+      -p 8002:8002 \
+      -p 8445:8445 \
+      -p 8003:8003 \
+      -p 8004:8004 \
+      kong-ee </code></pre>
+
+    {:.note}
+    > **Note:** For `KONG_ADMIN_GUI_URL`, replace `DNSorIP`
+    with with the DNS name or IP of the Docker host. <code>KONG_ADMIN_GUI_URL</code>
+    _should_ have a protocol, for example, `http://`.
 
 ### Deploy a {{site.base_gateway}} license
 
 If you already have a {{site.ee_product_name}} license attached to your {{site.base_gateway}}
-instance, skip to [Step 3](#step-3-start-an-influxdb-database).
+instance, skip to [starting an InfluxDB database](#start-an-influxdb-database).
 
 You will not be able to access the Kong Vitals functionality without a valid
 {{site.ee_product_name}} license attached to your {{site.base_gateway}} instance.
 
-{% include /md/enterprise/deploy-license.md heading="####" %}
+{% include_cached /md/enterprise/deploy-license.md heading="####" kong_version=page.kong_version %}
 
 ### Start an InfluxDB database
 
@@ -90,7 +141,7 @@ this is done using the `INFLUXDB_DB` variable.
 
 {:.note}
 > **Note:** If you used the configuration in
-[Step 1. Installing {{site.base_gateway}} on Docker](#step-1-install-kong-gateway),
+[Installing {{site.base_gateway}} on Docker](#install-kong-gateway),
 then you do not need to complete this step.
 
 In addition to enabling Kong Vitals, {{site.base_gateway}} must be configured to use InfluxDB as the
@@ -209,7 +260,7 @@ worker process flushes its buffer of metrics every 5 seconds or 5000 data points
 whichever comes first.
 
 Metrics points are written with microsecond (`u`) precision. To comply with
-the [Vitals API](/gateway/{{page.kong_version}}/admin-api/vitals/#vitals-api), measurement
+the [Vitals API](/gateway/{{page.kong_version}}/vitals/vitalsSpec.yaml), measurement
 values are read back grouped by second.
 
 {:.note}

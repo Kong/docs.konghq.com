@@ -33,7 +33,7 @@ In the following sections, you will need the `kong_admin` account’s password t
 
 ## Turn on RBAC
 
-{% include /md/enterprise/turn-on-rbac.md %}
+{% include_cached /md/enterprise/turn-on-rbac.md %}
 
 ## Create a workspace
 

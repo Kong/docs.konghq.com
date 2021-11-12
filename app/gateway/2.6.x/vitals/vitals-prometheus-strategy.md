@@ -11,7 +11,7 @@ requests per second), without placing addition write load on the database
 backing the Kong cluster.
 
 For using Vitals with a database as the backend (i.e. PostgreSQL, Cassandra),
-please refer to [Kong Vitals](/gateway/{{page.kong_version}}/admin-api/vitals/).
+refer to [Kong Vitals](/gateway/{{page.kong_version}}/vitals/).
 
 ## Lifecycle Overview
 
@@ -53,7 +53,39 @@ using default config that listens on port `9090`.
 
 ### Download and configure StatsD exporter
 
-{% include /md/enterprise/download/statsd.md version='>=1.3' %}
+StatsD exporter is distributed as a Docker image. Pull the latest version
+with the following command:
+
+```sh
+docker pull kong/statsd-exporter-advanced:0.3.1
+```
+
+The binary includes features like min/max gauges and Unix domain
+socket support.
+
+StatsD exporter needed to configured with a set of mapping rules to translate
+the StatsD UDP events to Prometheus metrics. A default set of mapping rules can
+be downloaded at
+[statsd.rules.yaml](/gateway/{{page.kong_version}}/statsd.rules.yaml).
+Then start StatsD exporter with
+
+```bash
+./statsd_exporter --statsd.mapping-config=statsd.rules.yaml \
+                    --statsd.listen-unixgram=''
+```
+
+The StatsD mapping rules file must be configured to match the metrics sent from
+Kong. To learn how to customize the StatsD events name, please refer to
+[Enable Vitals with Prometheus strategy in Kong](#enable-vitals-with-prometheus-strategy-in-kong)
+section.
+
+StatsD exporter can run either on a separate node from Kong (to avoid resource
+competition with Kong), or on the same host with Kong (to reduce unnecessary
+network overhead).
+
+In this guide, we assume StatsD exporter is running on hostname `statsd-node`,
+using default config that listens to UDP traffic on port `9125` and the metrics
+in Prometheus Exposition Format are exposed on port `9102`.
 
 ### Configure Prometheus to scrape StatsD exporter
 
@@ -234,7 +266,7 @@ By default the socket is created with permission `0755`, so that StatsD exporter
 ## Exported Metrics
 
 With the above configuration, the Prometheus StatsD exporter will make available all
-metrics as provided by the [standard Vitals configuration](/gateway/{{page.kong_version}}/admin-api/vitals/#vitals-metrics).
+metrics as provided by the [standard Vitals configuration](/gateway/{{page.kong_version}}/vitals/vitalsSpec.yaml).
 
 Additionally, the exporter process provides access to the default metrics exposed by the [Golang
 Prometheus client library](https://prometheus.io/docs/guides/go-application/). These metric names

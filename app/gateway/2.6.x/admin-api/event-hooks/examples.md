@@ -3,7 +3,7 @@ title: Event Hooks Examples
 badge: enterprise
 ---
 
-{% include /md/enterprise/event-hooks-intro.md %}
+{% include_cached /md/enterprise/event-hooks-intro.md %}
 
 ## Webhook
 
@@ -151,7 +151,7 @@ config.payload.text={% raw %}"Admin account \`{{ entity.username }}\` {{ operati
 6. Turn on RBAC.
 
 {% capture anInclude %}
-{% include /md/enterprise/turn-on-rbac.md %}
+{% include_cached /md/enterprise/turn-on-rbac.md %}
 {% endcapture %}
 {{ anInclude | indent }}
 

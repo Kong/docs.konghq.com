@@ -5,7 +5,44 @@ badge: enterprise
 
 Kong Immunity (Immunity) is installed on {{site.base_gateway}}, either on Kubernetes or Docker, as defined below. Immunity uses the Collector App and Collector Plugin to communicate with {{site.base_gateway}}.
 
-{% include /md/enterprise/download/immunity.md version='>2.1' %}
+## Version Compatibility
+Immunity follows a different versioning scheme from {{site.base_gateway}}. The Immunity version reflects the `kong/immunity` package available on Docker Hub.
+For {{site.base_gateway}} 2.1.x and above, use Immunity 4.x.x.
+
+{:.warning}
+> **Warning:** Kong Immunity is not compatible with {{site.base_gateway}} v2.4.x.
+
+## Install Immunity on Kubernetes
+Set up the Collector App via Helm. Use the public helm chart for setting up the Collector App and all its dependencies on Kubernetes. Setup instructions can be found on the public repo at: [https://github.com/Kong/kong-collector-helm/blob/master/README.md](https://github.com/Kong/kong-collector-helm/blob/master/README.md).
+
+## Install Immunity on Docker
+Install Immunity by downloading, installing and starting the Collector App on Docker, as defined in this section. After installing the Collector App, you will enable the Collector Plugin to access Immunity on {{site.base_gateway}}.
+
+### Prerequisites
+To complete this installation you will need:
+
+* A Docker-enabled system with proper Docker access.
+
+* {{site.base_gateway}} 2.2.x or later is installed on Docker.
+
+* A valid [{{site.base_gateway}} License](/gateway/{{page.kong_version}}/plan-and-deploy/licenses/access-license/) JSON file, including a license for Immunity.
+
+### Step 1. Pull the Immunity Docker image
+
+1. In a terminal window, pull the Kong Immunity Docker image.
+```bash
+$ docker pull kong/immunity:4.1.0
+```
+You should now have your Kong Immunity image locally.
+
+3. Verify that you have the Docker image. Find the image ID matching your repository:
+```bash
+$ docker images
+```
+4. Tag the image ID as `kong-immunity`. Replace `<IMAGE_ID>` with the image ID matching your repository.
+```bash
+$ docker tag <IMAGE_ID> kong-immunity
+```
 
 ### Step 2. Confirm the Kong EE Docker Network is available
 Confirm the {{site.base_gateway}} network is available, which is the network you set up when installing {{site.base_gateway}} on Docker named `kong-ee-net`.
