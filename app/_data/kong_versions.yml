@@ -545,6 +545,10 @@
   version: "1.4.1"
   edition: "mesh"
 -
+  release: "1.5.x"
+  version: "1.5.0"
+  edition: "mesh"
+-
   release: "1.0.x"
   version: "1.0.0"
   edition: "kubernetes-ingress-controller"
