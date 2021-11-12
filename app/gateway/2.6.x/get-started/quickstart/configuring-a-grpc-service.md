@@ -21,6 +21,7 @@ for how to). In this guide, we will assume Kong is listening for HTTP/2 proxy
 requests on port 9080.
 
 ## Before you start
+
 You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install-and-run).
 
 ## 1. Single gRPC Service and Route

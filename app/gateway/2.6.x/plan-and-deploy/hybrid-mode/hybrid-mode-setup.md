@@ -3,6 +3,7 @@ title: Deploy Kong Gateway in Hybrid Mode
 ---
 
 ## Prerequisites
+
 To get started with a Hybrid mode deployment, first install an instance of
 {{site.base_gateway}} with TLS to be your Control Plane (CP) node. See the
 [installation documentation](/gateway/{{page.kong_version}}/install-and-run/)
@@ -15,6 +16,7 @@ We will bring up any subsequent Data Plane (DP) instances in this topic.
 in the `kong/charts` repository.
 
 ## Generate a certificate/key pair
+
 In Hybrid mode, a mutual TLS handshake (mTLS) is used for authentication so the
 actual private key is never transferred on the network, and communication
 between CP and DP nodes is secure.
@@ -41,7 +43,7 @@ For a breakdown of the properties used by these modes, see the
 
 1. On an existing {{site.base_gateway}} instance, create a certificate/key pair:
     ```bash
-    $ kong hybrid gen_cert
+    kong hybrid gen_cert
     ```
     This will generate `cluster.crt` and `cluster.key` files and save them to
     the current directory. By default, the certificate/key pair is valid for three
@@ -262,10 +264,10 @@ keys.
 
 2. Next, start Kong, or reload Kong if it's already running:
     ```bash
-    $ kong start
+    kong start
     ```
     ```bash
-    $ kong reload
+    kong reload
     ```
 
 {% endnavtab %}
@@ -308,7 +310,7 @@ keys.
 
 2. Restart Kong for the settings to take effect:
     ```bash
-    $ kong restart
+    kong restart
     ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -371,18 +373,18 @@ on how data plane nodes process configuration.
 {% navtab Using Docker %}
 1. Using the [Docker installation documentation](/gateway/{{page.kong_version}}/install-and-run/docker),
 follow the instructions to:
-    1. [Download {{site.base_gateway}}](/gateway/{{page.kong_version}}/install-and-run/docker#pull-image).
-    2. [Create a Docker network](/gateway/{{page.kong_version}}/install-and-run/docker/#create-network).
+    1. [Download {{site.base_gateway}}](/gateway/{{page.kong_version}}/install-and-run/docker).
+    2. [Create a Docker network](/gateway/{{page.kong_version}}/install-and-run/docker/#install-gateway-in-db-less-mode).
 
     {:.warning}
     > **Warning:** Do not start or create a database on this node.
 
 
-2. Bring up your Data Plane container with the following settings:
+1. Bring up your Data Plane container with the following settings:
 
     For `shared` certificate mode, use:
     ```bash
-    $ docker run -d --name kong-ee-dp1 --network=kong-ee-net \
+    docker run -d --name kong-ee-dp1 --network=kong-ee-net \
     -e "KONG_ROLE=data_plane" \
     -e "KONG_DATABASE=off" \
     -e "KONG_PROXY_LISTEN=0.0.0.0:8000" \
@@ -397,7 +399,7 @@ follow the instructions to:
 
     For `pki` certificate mode, use:
     ```bash
-    $ docker run -d --name kong-ee-dp1 --network=kong-ee-net \
+    docker run -d --name kong-ee-dp1 --network=kong-ee-net \
     -e "KONG_ROLE=data_plane" \
     -e "KONG_DATABASE=off" \
     -e "KONG_PROXY_LISTEN=0.0.0.0:8000" \
@@ -440,7 +442,7 @@ follow the instructions to:
     `KONG_CLUSTER_TELEMETRY_ENDPOINT`
     : Optional setting, needed for Vitals telemetry gathering. Not available in open-source deployments.
 
-3. If needed, bring up any subsequent Data Planes using the same settings.
+2. If needed, bring up any subsequent Data Planes using the same settings.
 
 {% endnavtab %}
 {% navtab Using kong.conf %}
@@ -510,7 +512,7 @@ and follow the instructions in Steps 1 and 2 **only** to download
 
 3. Restart Kong for the settings to take effect:
     ```bash
-    $ kong restart
+    kong restart
     ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -528,12 +530,12 @@ following on a Control Plane:
 {% navtabs %}
 {% navtab Using cURL %}
 ```bash
-$ curl -i -X GET http://<admin-hostname>:8001/clustering/data-planes
+curl -i -X GET http://<admin-hostname>:8001/clustering/data-planes
 ```
 {% endnavtab %}
 {% navtab Using HTTPie %}
 ```bash
-$ http :8001/clustering/data-planes
+http :8001/clustering/data-planes
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -564,6 +566,7 @@ The output shows all of the connected Data Plane instances in the cluster:
 ```
 
 ## References
+
 ### DP node start sequence
 
 When set as a DP node, {{site.base_gateway}} processes configuration in the

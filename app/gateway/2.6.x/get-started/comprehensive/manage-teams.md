@@ -40,7 +40,7 @@ In the following sections, you will need the `kong_admin` account’s password t
 {% navtabs %}
 {% navtab Using Kong Manager %}
 
-#### Log into Kong Manager
+### Log into Kong Manager
 
 1. Go to Kong Manager, or reload the page if you already have it open and you will see the following login screen.
 2. Log in to Kong Manager with the built-in Super Admin account, `kong_admin`, and its password.
@@ -132,7 +132,7 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 
 {% navtabs %}
 {% navtab Using Kong Manager %}
-#### Invite a New Admin
+### Invite a New Admin
 
 <div class="alert alert-warning">
 <strong>Note:</strong> If you also use the Admin API, once you've created this admin, you can find it under the <em>/admins</em> endpoint.</div>

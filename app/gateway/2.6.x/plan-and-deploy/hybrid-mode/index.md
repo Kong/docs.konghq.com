@@ -52,6 +52,7 @@ You can run {{site.base_gateway}} in Hybrid mode on any platform where
 {{site.base_gateway}} is [supported](/gateway/{{page.kong_version}}/install-and-run/).
 
 ### Kubernetes Support and Additional Documentation
+
 [Kong Enterprise on Kubernetes](/gateway/{{page.kong_version}}/install-and-run/kubernetes)
 fully supports Hybrid mode deployments, with or without the Kong Ingress Controller.
 
@@ -60,6 +61,7 @@ For the full Kubernetes Hybrid mode documentation, see
 in the `kong/charts` repository.
 
 ## Version Compatibility
+
 {{site.base_gateway}} control planes only allow connections from data planes with the
 same major version.
 Control planes won't allow connections from data planes with newer minor versions.
@@ -120,7 +122,7 @@ If a config can not be pushed to a data plane due to failure of the
 compatibility checks, the control plane will contain `warn` level lines in the
 `error.log` similar to the following:
 
-```
+```bash
 unable to send updated configuration to DP node with hostname: localhost.localdomain ip: 127.0.0.1 reason: version mismatches, CP version: 2.2 DP version: 2.1
 unable to send updated configuration to DP node with hostname: localhost.localdomain ip: 127.0.0.1 reason: CP and DP does not have same set of plugins installed or their versions might differ
 ```
@@ -167,6 +169,7 @@ the whole configuration in the referenced YAML file.
 ## Limitations
 
 ### Configuration Inflexibility
+
 When a configuration change is made at the Control Plane level via the Admin
 API, it immediately triggers a cluster-wide update of all Data Plane
 configurations. This means that the same configuration is synced from the CP to
@@ -174,6 +177,7 @@ all DPs, and the update cannot be scheduled or batched. For different DPs to
 have different configurations, they will need their own CP instances.
 
 ### Plugin Incompatibility
+
 When plugins are running on a Data Plane in hybrid mode, there is no Admin API
 exposed directly from that DP. Since the Admin API is only exposed from the
 Control Plane, all plugin configuration has to occur from the CP. Due to this
@@ -192,11 +196,13 @@ generate and delete tokens, and commit those changes to the database, which is
 not possible with CP/DP separation.
 
 ### Custom Plugins
+
 Custom plugins (either your own plugins or third-party plugins that are not
 shipped with Kong) need to be installed on both the Control Plane and the Data
 Plane in Hybrid mode.
 
 ### Load Balancing
+
 Currently, there is no automated load balancing for connections between the
 Control Plane and the Data Plane. You can load balance manually by using
 multiple Control Planes and redirecting the traffic using a TCP proxy.
@@ -206,7 +212,7 @@ multiple Control Planes and redirecting the traffic using a TCP proxy.
 Several readonly endpoints from the [Admin API](/gateway/{{page.kong_version}}/admin-api)
 are exposed to the [Status API](/gateway/{{page.kong_version}}/reference/property-reference/#status_listen) on data planes, including the following:
 
-- GET /upstreams/{upstream}/targets/
+- [GET /upstreams/{upstream}/targets/](/gateway/{{page.kong_version}}/admin-api/#list-targets)
 - [GET /upstreams/{upstream}/health/](/gateway/{{page.kong_version}}/admin-api/#show-upstream-health-for-node)
 - [GET /upstreams/{upstream}/targets/all/](/gateway/{{page.kong_version}}/admin-api/#list-all-targets)
 - GET /upstreams/{upstream}/targets/{target}

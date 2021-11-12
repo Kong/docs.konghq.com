@@ -8,6 +8,7 @@ associated to individuals using your Service, and can be used for tracking, acce
 management, and more.
 
 ## Before you start
+
 * You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install-and-run).
 * You have [configured a Service](/gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-service)
 * You have [enabled the key-auth plugin](/gateway/{{page.kong_version}}/get-started/quickstart/enabling-plugins)

@@ -46,10 +46,12 @@ CLI tool.
 For more information, see [Deploy Your License](/gateway/{{page.kong_version}}/plan-and-deploy/licenses/deploy-license).
 
 ## Examining the license data on a Kong Gateway node
+
 Retrieve license data using the Admin API's `/licenses` endpoint, or through
 the Admin GUI in Kong Manager.
 
 ## License expiration
+
 When a license expires, you will still have access to your {{site.base_gateway}}
 and its configuration. Any Enterprise-specific features will be locked, and
 the Admin API will not be accessible until the license is either renewed or the
@@ -60,12 +62,14 @@ features such Dev Portal, Immunity, Enterprise plugins, and others will no
 longer be accessible.
 
 ### License expiration logs
+
 {{site.base_gateway}} logs the license expiration date on the following schedule:
 * 90 days before: `WARN` log entry once a day
 * 30 days before: `ERR` log entry once a day
 * At and after expiration: `CRIT` log entry once a day
 
 ## Troubleshooting
+
 When a valid license file is properly deployed, license file validation is a transparent operation; no additional output or logging data is written or provided. If an error occurs when attempting to validate the license, or the license data is not valid, an error message will be written to the console and logged to the Kong error log, followed by the process quitting. Below are possible error messages and troubleshooting steps to take:
 
 `license path environment variable not set`

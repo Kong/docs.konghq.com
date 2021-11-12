@@ -109,10 +109,10 @@ vitals_tsdb_address = prometheus-node:9090
 
 ```bash
 # or via environment variables
-$ export KONG_VITALS=on
-$ export KONG_VITALS_STRATEGY=prometheus
-$ export KONG_VITALS_STATSD_ADDRESS=statsd-node:9125
-$ export KONG_VITALS_TSDB_ADDRESS=prometheus-node:9090
+export KONG_VITALS=on
+export KONG_VITALS_STRATEGY=prometheus
+export KONG_VITALS_STATSD_ADDRESS=statsd-node:9125
+export KONG_VITALS_TSDB_ADDRESS=prometheus-node:9090
 ```
 
 Please update `statsd-node` and `prometheus-node` with the actual hostname that
@@ -131,7 +131,7 @@ vitals_prometheus_scrape_interval = new_value_in_seconds
 
 ```bash
 # or via environment variables
-$ export KONG_VITALS_PROMETHEUS_SCRAPE_INTERVAL=new_value_in_seconds
+export KONG_VITALS_PROMETHEUS_SCRAPE_INTERVAL=new_value_in_seconds
 ```
 
 The above option configures `interval` parameter when querying Prometheus.
@@ -149,7 +149,7 @@ vitals_statsd_prefix = kong-vitals
 
 ```bash
 # or via environment variables
-$ export KONG_VITALS_STATSD_PREFIX=kong-vitals
+export KONG_VITALS_STATSD_PREFIX=kong-vitals
 ```
 
 ```yaml
@@ -189,7 +189,7 @@ To increase the UDP read buffer for the StatsD exporter process, run the binary
 using the following example to set read buffer to around 3 MB:
 
 ```
-$ ./statsd_exporter --statsd.mapping-config=statsd.rules.yaml \
+./statsd_exporter --statsd.mapping-config=statsd.rules.yaml \
                     --statsd.listen-unixgram='' \
                     --statsd.read-buffer=30000000
 ```
@@ -214,7 +214,7 @@ on the same node with Kong and let the exporter listen on local Unix domain
 socket.
 
 ```bash
-$ ./statsd_exporter --statsd.mapping-config=statsd.rules.yaml \
+./statsd_exporter --statsd.mapping-config=statsd.rules.yaml \
                     --statsd.read-buffer=30000000 \
                     --statsd.listen-unixgram='/tmp/statsd.sock'
 ```
@@ -225,7 +225,7 @@ By default the socket is created with permission `0755`, so that StatsD exporter
  users, the socket can be created with permission `0777` with the following:
 
 ```bash
-$ ./statsd_exporter --statsd.mapping-config=statsd.rules.yaml \
+./statsd_exporter --statsd.mapping-config=statsd.rules.yaml \
                     --statsd.read-buffer=30000000 \
                     --statsd.listen-unixgram='/tmp/statsd.sock' \
                     --statsd.unixsocket-umask="777"

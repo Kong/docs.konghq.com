@@ -81,5 +81,5 @@ contact your sales representative.
 
 {:.note}
 > **Note:** The free mode does not require a license. See
-[Kong Gateway Licensing](/gateway/{{page.kong_version}}/plan-and-deploy/licenses/licensing)
+[Kong Gateway Licensing](/gateway/{{page.kong_version}}/plan-and-deploy/licenses)
 for a feature comparison.

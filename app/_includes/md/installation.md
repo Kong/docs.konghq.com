@@ -59,19 +59,19 @@ information, see [Running Kong as a Non-Root User](/gateway/{{page.kong_version}
 
 1. Start {{site.base_gateway}}:
     ```bash
-    $ kong start [-c /path/to/kong.conf]
+    kong start [-c /path/to/kong.conf]
     ```
 
 2. Check that {{site.base_gateway}} is running:
 
     ```bash
-    $ curl -i http://localhost:8001/
+    curl -i http://localhost:8001/
     ```
 
 ## Next steps
 
 Check out {{site.base_gateway}}'s series of
-[Getting Started](/gateway/{{include.kong_version}}/get-started/overview) guides to get the most
+[Getting Started](/gateway/{{include.kong_version}}/get-started/comprehensive) guides to get the most
 out of {{site.base_gateway}}.
 
 [configuration]: /gateway-oss/{{site.data.kong_latest.release}}/configuration/#database
