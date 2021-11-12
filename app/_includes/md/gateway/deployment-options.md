@@ -1,4 +1,4 @@
 <!-- Deployment Options section; used in all Enterprise installation topics - except k8s -->
-The installation instructions assume that you are deploying {{site.base_gateway}} in [classic embedded mode](/gateway/{{include.kong_version}}/plan-and-deploy/deployment-options).
+The installation instructions explain how to deploy {{site.base_gateway}} in its entirety on a single node -- with or without a database.
 
-If you want to run {{site.base_gateway}} in Hybrid mode, the instructions in this topic will walk you though setting up a Control Plane instance. Afterward, you will need to bring up additional gateway instances for the Data Planes, and perform further configuration steps. See [Hybrid Mode Setup](/gateway/{{include.kong_version}}/plan-and-deploy/hybrid-mode-setup) for details.
+The instructions are the same for setting up a Control Plane instance in Hybrid mode. After you set up the Control Plane, you set up additional Gateway instances for the Data Planes. See [Hybrid Mode Setup](/gateway/{{include.kong_version}}/plan-and-deploy/hybrid-mode/hybrid-mode-setup) for details.
