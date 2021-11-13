@@ -38,6 +38,8 @@ To complete this installation you will need a Docker-enabled system with proper
 
 ## Step 5. Start the gateway with Kong Manager {#start-gateway}
 
+{% include_cached /md/admin-listen.md desc='long' %}
+
 <pre><code>docker run -d --name kong-ee --network=kong-ee-net \
   -e "KONG_DATABASE=postgres" \
   -e "KONG_PG_HOST=kong-ee-database" \

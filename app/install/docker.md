@@ -74,6 +74,8 @@ Here is a quick example showing how to connect a Kong container to a Cassandra o
 
 4. **Start Kong**
 
+{% include_cached /md/admin-listen.md desc='long' %}
+
     When the migrations have run and your database is ready, start a Kong
     container that will connect to your database container, just like the
     ephemeral migrations container:
@@ -172,6 +174,8 @@ The steps involved in starting Kong in [DB-less mode] are the following:
 
 
 4. **Start Kong in DB-less mode**
+
+{% include_cached /md/admin-listen.md desc='long' %}
 
    Although it's possible to start the Kong container with just `KONG_DATABASE=off`, it is usually
    desirable to also include the declarative configuration file as a parameter via the

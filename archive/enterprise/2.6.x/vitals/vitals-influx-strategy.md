@@ -27,6 +27,8 @@ will work for the purposes of this guide.
 
 #### Start the gateway with Kong Manager
 
+{% include_cached /md/admin-listen.md desc='long' %}
+
 ```bash
 $ docker run -d --name kong-ee --network=kong-ee-net \
   -e "KONG_DATABASE=postgres" \

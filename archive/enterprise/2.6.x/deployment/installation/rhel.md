@@ -221,6 +221,8 @@ This setting needs to resolve to a network path that will reach the RHEL host.
 
 1. It is necessary to update the administration API setting to listen on the needed network interfaces on the RHEL host. A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
 
+{% include_cached /md/admin-listen.md desc='long' %}
+
     ```
     admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
     ```

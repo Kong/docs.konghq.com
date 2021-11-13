@@ -2,7 +2,8 @@
 title: OpenAPI Spec to Kong Entities 
 ---
 
-## Introduction
+{:.important}
+> **Important**: The `/oas-config` endpoint is deprecated and no longer maintained. Instead, convert OpenAPI 3.0 Specs to Declarative Config using [Insomnia](https://insomnia.rest/) or [Inso CLI](https://docs.insomnia.rest/inso-cli/cli-command-reference/inso-generate-config). Learn more about generating [Kong Declarative Config through the Insomnia app](https://docs.insomnia.rest/insomnia/declarative-config).
 
 This Admin API endpoint allows you to read an OpenAPI Spec into Kong to create the appropriate Services and Routes in an automated way. For now, the functionality is in the early stages and is limited to creating Services and Routes in Kong. This endpoint is useful for testing or quick-start scenarios. In future releases, it may be expanded. 
 
