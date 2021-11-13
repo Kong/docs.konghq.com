@@ -8,12 +8,12 @@ Kong supports running multiple instances of the Dev Portal with the use of
 and maintain separate Dev Portals (complete with separate files, settings, and
 authorization) from within a single instance of Kong.
 
-## Managing Multiple Dev Portals within Kong Manager
+## Manage Multiple Dev Portals within Kong Manager
 
 A snapshot of every Dev Portal within an instance of Kong can be viewed via
 the Kong Manager's **Dev Portals** top navigation tab.
 
-This overview page details:
+This page details:
 
 - Whether a Dev Portal in a given Workspace is enabled or disabled
 - A link to set up the Dev Portal if it is not enabled
@@ -22,19 +22,17 @@ This overview page details:
 - Whether or not each Dev Portal is authenticated (indicated by a lock icon
 in the upper right corner of each card)
 
-![Dev Portals Overview Page](/assets/images/docs/dev-portal/dev-portals-overview.png)
+## Enable a Workspace's Dev Portal
 
-## Enabling a Workspace's Dev Portal
-
-When a Workspace other than **default** is created, that Workspace's Dev Portal
-will remain `disabled` until it is manually enabled.
+As with the **default** Workspace, when an additional Workspace is created, 
+its associated Dev Portal is `disabled` until it's manually enabled.
 
 This can be done from the Kong Manager by clicking the **Set up Dev Portal**
 button located on the **Dev Portals** Overview page, or by navigating directly
 to a Workspace's **Dev Portal Settings** page via the sidebar and toggling the
 `Dev Portal Switch`, or by sending the following cURL request:
 
-```
+```bash
 curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE_NAME> \
  --data "config.portal=true"
 ```
@@ -44,9 +42,9 @@ On initialization, Kong will populate the new Dev Portal with the [**Default Set
 >*Note* A Workspace can only enable a Dev Portal if the Dev Portal feature has been enabled in Kong's configuration.
 
 
-## Defining the Dev Portal's URL structure
+## Define the Dev Portal's URL structure
 
-The URL of each Dev Portal is automatically configured upon initialization and
+The URL of each Dev Portal is automatically configured on initialization and
 is determined by four properties:
 
 1. The `portal_gui_protocol` property
@@ -61,13 +59,13 @@ Example URL with subdomains enabled: `http://example-workspace.localhost:8003`
 The first three properties are controlled by Kong's configuration file and
 cannot be edited via the Kong Manager.
 
-## Overriding Default Settings
+## Override Default Settings
 
 On initialization, the Dev Portal will be configured using the [**Default Portal Settings**](/gateway/{{page.kong_version}}/reference/configuration/#dev-portal) defined in Kong's configuration file.
 
 {:.note}
 > **Note**: You can only enable a Dev Portal for a Workspace if the
-Dev Portal feature has been [enabled for Kong Gateway](/GATEWAY/{{page.kong_version}}/developer-portal/enable-dev-portal).
+Dev Portal feature has been [enabled for Kong Gateway](/gateway/{{page.kong_version}}/developer-portal/enable-dev-portal).
 
 These settings can be manually overridden in the Dev Portals **Settings** tab
 in the Kong Manager or by patching the setting directly.
@@ -78,4 +76,4 @@ On initialization of a Workspace's Dev Portal, a copy of the **default** Dev Por
 
 ## Developer Access
 
-Access is not synced between Dev Portals. If an Admin or Developer would like access to multiple Dev Portals, they must sign up for each Dev Portal individually.
+Access is not synced between Dev Portals. If an Admin or Developer wants access to multiple Dev Portals, they must sign up for each Dev Portal individually.
