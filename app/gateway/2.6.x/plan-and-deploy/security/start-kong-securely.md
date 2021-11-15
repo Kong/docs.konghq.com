@@ -1,6 +1,6 @@
 ---
 title: Start Kong Gateway Securely
-badge: enterprise
+badge: free
 ---
 
 To secure the Admin API or Kong Manager, a Super Admin account is
