@@ -25,17 +25,17 @@ describe "sidebar", type: :feature, js: true do
 
     it "does not show on the latest version" do
       visit "/gateway/#{latest_version}/install-and-run/rhel/"
-      expect(page).not_to have_selector(".alert.alert-warning a", visible: true)
+      expect(page).not_to have_selector(".important a", visible: true)
     end
 
     it "links to the same page" do
       visit "/deck/1.7.x/installation/"
-      expect(first('.alert.alert-warning a')[:href]).to end_with("/deck/#{latest_version_deck}/installation/")
+      expect(first('.important a')[:href]).to end_with("/deck/#{latest_version_deck}/installation/")
     end
 
     it "links to the root when the page no longer exists" do
       visit "/enterprise/0.31-x/postgresql-redhat/"
-      expect(first('.alert.alert-warning a')[:href]).to end_with("/gateway/")
+      expect(first('.important a')[:href]).to end_with("/gateway/")
     end
   end
 
