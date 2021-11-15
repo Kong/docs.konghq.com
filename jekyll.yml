@@ -135,7 +135,7 @@ defaults:
       layout: "docs-v2"
 
   - scope:
-      path: "gateway/2.6.x/install-and-run"
+      path: "gateway/2.6.x/"
     values:
       layout: "docs-v2"
       version-index: 0
