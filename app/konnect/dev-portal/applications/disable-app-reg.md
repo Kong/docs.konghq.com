@@ -3,7 +3,7 @@ title: Disable App Registration for a Service
 no_version: true
 ---
 
-Disable app registration for a Service is when an API
+You can disable app registration for a Service when an API
 no longer requires authentication. If you want to disable Auto Approve at the
 Service level, disable app registration and then enable it again with the Auto Approve
 toggle set to disabled.

@@ -33,9 +33,10 @@ or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to
 support application registration for the Service and are managed by
 {{site.konnect_saas}}.
 
-Plugins enabled by app registration cannot be disabled or deleted using the toggle in
-the **Plugins** pane on the Services Version page. To disable or
-delete them, disable app registration.
+To disable or delete a plugin that was enabled by app registration,
+you must disable app registration itself. You can't use the toggle in the
+Plugins pane on a Service version, as the toggle is unavailable for
+{{site.konnect_short_name}}-managed plugins.
 
 ![Konnect Enable App Registration with OIDC](/assets/images/docs/konnect/konnect-enable-app-reg-oidc-toggle.png)
 

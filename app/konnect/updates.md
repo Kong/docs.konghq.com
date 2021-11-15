@@ -16,13 +16,14 @@ runtimes. You can keep using existing 2.5.x runtimes, or you can upgrade to
 2.6.0.0 to take advantage of any new features, updates, and bug fixes.
 : This release introduces the new [jq plugin](/hub/kong-inc/jq). It also
 adds new features and improvements to a long list of plugins, including:
-* Broader auth support for [Kafka Log](/hub/kong-inc/kafka-log)
-and [Kafka Upstream](/hub/kong-inc/kafka-upstream)
-* The [Prometheus](/hub/kong-inc/prometheus) plugin can now track the
+* [Kafka Log](/hub/kong-inc/kafka-log)
+and [Kafka Upstream](/hub/kong-inc/kafka-upstream): Support for TLS, mTLS, and
+SASL auth
+* [Prometheus](/hub/kong-inc/prometheus): Introduces the
 `data_plane_cluster_cert_expiry_timestamp` metric, letting you keep an eye on the
 status of you data plane certificates
-* A new `trigger` configuration option for the
-[Request Termination](/hub/kong-inc/request-termination) plugin, which tells the
+* [Request Termination](/hub/kong-inc/request-termination): Introduces the
+new `trigger` configuration option, which tells the
 plugin to activate only on specific headers or query parameters
 
 : To use any new features in the release and gain access to the jq plugin,
