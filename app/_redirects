@@ -42,12 +42,12 @@
 
 
 # GETTING STARTED GUIDES
-/enterprise/latest/getting-started/              /getting-started-guide/latest/overview/
+/enterprise/latest/getting-started/              /gateway/latest/get-started/comprehensive
 /enterprise/1.5.x/getting-started/               /getting-started-guide/ce-2.0.x_ke-1.5.x/overview/
 /gateway-oss/2.3.x/getting-started/introduction  /gateway-oss/2.3.x/
 /gateway-oss/2.4.x/getting-started/introduction  /gateway-oss/2.4.x/
-/gateway-oss/latest/getting-started/introduction /gateway-oss/
-/getting-started-guide/                          /getting-started-guide/latest/overview/
+/gateway-oss/latest/getting-started/introduction /gateway/latest/get-started/comprehensive
+/getting-started-guide/                          /gateway/latest/get-started/comprehensive
 /*/getting-started/enabling-plugins              /gateway/latest/get-started/quickstart/enabling-plugins
 /enterprise/0.34-x/getting-started/enabling-plugins/enterprise/0.34-x/plugins  /gateway/latest/get-started/quickstart/enabling-plugins
 /enterprise/1.5.x/getting-started/add-consumer   /gateway/latest/get-started/quickstart/adding-consumers
@@ -481,6 +481,11 @@
 
 
 # GENERAL REDIRECTS TO /GATEWAY/
+/enterprise/changelog      /gateway/changelog
+/enterprise/2.6.x/introduction/key-concepts     /konnect-platform/key-concepts
+/enterprise/latest/introduction/key-concepts    /konnect-platform/key-concepts
+/enterprise/2.6.x/introduction/support-policy   /konnect-platform/support-policy
+/enterprise/latest/introduction/support-policy  /konnect-platform/support-policy
 /latest/*                  /
 /latest                    /
 /2.6.x/*                   /gateway/2.6.x/
@@ -493,8 +498,6 @@
 /enterprise/latest/        /gateway/
 /gateway-oss/latest/       /gateway/
 /introduction              /
-/enterprise/changelog      /gateway/changelog
-/enterprise/2.6.x/introduction/key-concepts     /konnect-platform/key-concepts
-/enterprise/latest/introduction/key-concepts    /konnect-platform/key-concepts
-/enterprise/2.6.x/introduction/support-policy   /konnect-platform/support-policy
-/enterprise/latest/introduction/support-policy  /konnect-platform/support-policy
+/enterprise/               /gateway/
+/gateway-oss/              /gateway/
+/gateway-oss/

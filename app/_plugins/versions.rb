@@ -56,23 +56,19 @@ module Jekyll
       site.data["kong_versions_contributing"] = contributingVersions
       site.data["kong_versions_gateway"] = gatewayVersions
 
-
       # Retrieve the latest version and put it in `site.data.kong_latest.version`
-      latestVersionCE = ceVersions.last
-      latestVersionEE = eeVersions.last
-      latestVersionGSG = gsgVersions.last
+
+      # There are no "latest" entries for ceVersions, eeVersions, or gsgVersions,
+      # because these docs no longer need a /latest/ URL. Any
+      # /enterprise/latest/, /gateway-oss/latest, or
+      # /getting-stared-guide/latest/ URL should redirect to /gateway/latest.
+
       latestVersionDeck = deckVersions.last
       latestVersionMesh = meshVersions.last
-      latestVersionKonnect = konnectVersions.last
-      latestVersionKonnectPlatform = konnectPlatformVersions.last
       latestVersionKIC = kicVersions.last
-      latestVersionContributing = contributingVersions.last
       latestVersionGateway = gatewayVersions.last
 
-      site.data["kong_latest"] = latestVersionCE
-      site.data["kong_latest_ee"] = latestVersionEE
       site.data["kong_latest_mesh"] = latestVersionMesh
-      site.data["kong_latest_gsg"] = latestVersionGSG
       site.data["kong_latest_KIC"] = latestVersionKIC
       site.data["kong_latest_deck"] = latestVersionDeck
       site.data["kong_latest_gateway"] = latestVersionGateway
@@ -88,16 +84,14 @@ module Jekyll
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]
             page.data["kong_versions"] = eeVersions
-            page.data["kong_latest"] = latestVersionEE
             page.data["nav_items"] = site.data['docs_nav_ee_' + parts[1].gsub(/\./, '')]
-            createAliases(page, '/enterprise', 1, parts, latestVersionEE["release"])
+            createAliases(page, '/enterprise', 1, parts, "release" )
           elsif(parts[0] == 'getting-started-guide')
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]
             page.data["kong_versions"] = gsgVersions
-            page.data["kong_latest"] = latestVersionGSG
             page.data["nav_items"] = site.data['docs_nav_gsg_' + parts[1].gsub(/\./, '')]
-            createAliases(page, '/getting-started-guide', 1, parts, latestVersionGSG["release"])
+            createAliases(page, '/getting-started-guide', 1, parts, "release")
           elsif(parts[0] == 'mesh')
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]
@@ -109,16 +103,14 @@ module Jekyll
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]
             page.data["kong_versions"] = konnectVersions
-            page.data["kong_latest"] = latestVersionKonnect
             page.data["nav_items"] = site.data['docs_nav_konnect']
-            createAliases(page, '/konnect', 1, parts, latestVersionKonnect["release"])
+            createAliases(page, '/konnect', 1, parts, "release")
           elsif(parts[0] == 'konnect-platform')
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]
             page.data["kong_versions"] = konnectPlatformVersions
-            page.data["kong_latest"] = latestVersionKonnectPlatform
             page.data["nav_items"] = site.data['docs_nav_konnect_platform']
-            createAliases(page, '/konnect-platform', 1, parts, latestVersionKonnectPlatform["release"])
+            createAliases(page, '/konnect-platform', 1, parts, "release")
           elsif(parts[0] == 'kubernetes-ingress-controller')
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]
@@ -144,16 +136,14 @@ module Jekyll
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]
             page.data["kong_versions"] = contributingVersions
-            page.data["kong_latest"] = latestVersionContributing
             page.data["nav_items"] = site.data['docs_nav_contributing']
-            createAliases(page, '/contributing', 1, parts, latestVersionContributing["release"])
+            createAliases(page, '/contributing', 1, parts, "release")
           elsif(parts[0] == 'gateway-oss')
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]
             page.data["kong_versions"] = ceVersions
-            page.data["kong_latest"] = latestVersionCE
             page.data["nav_items"] = site.data['docs_nav_ce_' + parts[1].gsub(/\./, '')]
-            createAliases(page, '/gateway-oss', 1, parts, latestVersionCE["release"])
+            createAliases(page, '/gateway-oss', 1, parts, "release")
           end
 
 
