@@ -24,25 +24,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.5.x
         - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 2.0.x
-        - 1.5.x
-        - 1.4.x
-        - 1.3.x
-        - 1.2.x
-        - 1.1.x
-        - 1.0.x
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
 
 params:
   name: set-target-host
@@ -56,11 +39,11 @@ params:
     - name: upstream_host
       required: true
       default:
-      value_in_examples: "nodenumber.org"
+      value_in_examples: "example.org"
       datatype: string
       description: |
         Upstream host with the variable string which has to be replaced by the plugin.
-        For eg: `config.upstream_host` is set to `nodenumber.org`
+        For eg: `config.upstream_host` is set to `example.org`
     - name: upstream_port
       required: false
       default: "443"
@@ -71,13 +54,13 @@ params:
     - name: string_to_replace_from_host
       required: true
       default:
-      value_in_examples: nodenumber
+      value_in_examples: example
       datatype: string
       description: |
         String which needs to be replaced from `config.upstream_host` parameter.
-        For eg: If `config.upstream_host` is set to `nodenumber.org` and 
-        `config.string_to_replace_from_host` is set to `nodenumber` then
-        `nodenumber` string in the upstream host will be replaced with the key identifier value coming in the incoming request dynamically.
+        For eg: If `config.upstream_host` is set to `example.org` and 
+        `config.string_to_replace_from_host` is set to `example` then
+        `example` string in the upstream host will be replaced with the key identifier value coming in the incoming request dynamically.
     - name: header
       required: semi
       value_in_examples: target
