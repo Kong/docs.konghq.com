@@ -21,9 +21,9 @@ is_homepage: true
   </div>
 
   <div class="docs-grid-block">
-    <h3><a href="/getting-started-guide/latest/overview">Getting Started</a></h3>
+    <h3><a href="/gateway/latest/get-started/comprehensive/">Getting Started</a></h3>
     <p>Whether you’re a Community or an Enterprise Kong user, use this guide to familiarize yourself with Kong concepts and learn how to use important features and capabilities.</p>
-    <a href="/getting-started-guide/latest/overview">Get Started &rarr;</a>
+    <a href="/gateway/latest/get-started/comprehensive/">Get Started &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
