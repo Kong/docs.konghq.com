@@ -237,7 +237,7 @@ Two common use cases are:
 
 {:.warning}
 > **Note**: **Enterprise-Only**: The Kong Community Edition of this Rate Limiting plugin does not
-include [Redis Sentinel](https://redis.io/topics/sentinel) support. Only [Kong Gateway Subscription](https://www.konghq.com/enterprise/) customers can use Redis Sentinel with Kong Rate Limiting, enabling them to deliver highly available primary-replica deployments.
+include [Redis Sentinel](https://redis.io/topics/sentinel) support. Only [Kong Gateway Subscription](https://www.konghq.com/kong/) customers can use Redis Sentinel with Kong Rate Limiting, enabling them to deliver highly available primary-replica deployments.
 
 ### Every transaction counts
 
@@ -272,6 +272,6 @@ When the selected policy cannot be retrieved, the plugin falls back
 to limiting usage by identifying the IP address. This can happen for several reasons, such as the
 selected header was not sent by the client or the configured service was not found.
 
-[api-object]: /gateway-oss/latest/admin-api/#api-object
-[configuration]: /gateway-oss/latest/configuration
-[consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
+[api-object]: /gateway/latest/admin-api/#api-object
+[configuration]: /gateway/latest/reference/configuration
+[consumer-object]: /gateway/latest/admin-api/#consumer-object

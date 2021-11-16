@@ -34,7 +34,7 @@ After the product hits the end of the support period, Kong will provide limited 
 ## Bug Fix Guidelines
 Unfortunately, all software is susceptible to bugs. Kong seeks to remedy bugs through a structured protocol as follows:
 
-* Serious security vulnerabilities are treated with the utmost priority. See [here](/enterprise/{{page.kong_version}}/kong-security-update-process/) for our security vulnerability reporting and remedy process, including how to report a vulnerability.
+* Serious security vulnerabilities are treated with the utmost priority. See [here](/gateway/latest/plan-and-deploy/security/kong-security-update-process/) for our security vulnerability reporting and remedy process, including how to report a vulnerability.
 
 * Bugs which result in production outages of {{site.ee_product_name}} or effective non-operation (such as catastrophic performance degradation) will be remedied through high priority bug fixes and provided in patch releases to the Latest Major/Minor Version Release of all currently supported Major Versions of the software and optionally ported to other versions at Kong’s discretion based on the severity and impact of the bug.
 

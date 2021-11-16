@@ -333,7 +333,7 @@ $ curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "config.add.json_types=number"
 ```
 
-[api-object]: /gateway-oss/latest/admin-api/#api-object
-[consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
-[configuration]: /gateway-oss/latest/configuration
+[api-object]: /gateway/latest/admin-api/#api-object
+[consumer-object]: /gateway/latest/admin-api/#consumer-object
+[configuration]: /gateway/latest/reference/configuration
 

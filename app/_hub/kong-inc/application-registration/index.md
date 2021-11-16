@@ -8,16 +8,16 @@ description: |
   Applications allow registered developers on Kong Developer Portal to
   authenticate against a Gateway Service. Dev Portal admins can
   selectively admit access to Services using the
-  [Application Registration](/enterprise/latest/developer-portal/administration/application-registration/enable-application-registration) plugin.
+  [Application Registration](/gateway/latest/developer-portal/administration/application-registration/enable-application-registration) plugin.
 
   The Application Registration plugin is used in tandem with supported Kong Gateway authorization
   plugins, depending on your configured Dev
   Portal authorization provider. Either Kong Gateway (`kong-oauth2`) or a third-party OAuth provider
   (`external-oauth2`) can be the system of record (SoR) for application credentials. For more
   information, see
-  [Configure an Authorization Provider Strategy](/enterprise/latest/developer-portal/administration/application-registration/auth-provider-strategy).
+  [Configure an Authorization Provider Strategy](/gateway/latest/developer-portal/administration/application-registration/auth-provider-strategy).
 
-  To learn how to set up key authentication, see [Enable Key Authentication for Application Registration](/enterprise/latest/developer-portal/administration/application-registration/enable-key-auth-plugin/). 
+  To learn how to set up key authentication, see [Enable Key Authentication for Application Registration](/gateway/latest/developer-portal/administration/application-registration/enable-key-auth-plugin/). 
 
   Supported authorization plugins for use with application registration:
 
@@ -28,7 +28,7 @@ description: |
   | [OIDC](/hub/kong-inc/openid-connect)| `external-oauth2` |
 
   If you plan to use the external OAuth option with OIDC, review the
-  [supported OAuth workflows](/enterprise/latest/developer-portal/administration/application-registration/3rd-party-oauth).
+  [supported OAuth workflows](/gateway/latest/developer-portal/administration/application-registration/3rd-party-oauth).
 
 enterprise: true
 plus: true
@@ -112,9 +112,9 @@ curl -X PATCH http://<DNSorIP>:8001/plugins/{plugin_id} \
 
 Enable `show_issuer` to expose the **Issuer URL** in the **Service Details** dialog.
 
-**Note:** Exposing the [Issuer URL](/enterprise/latest/developer-portal/administration/application-registration/enable-application-registration#show-url-issuer) is essential
+**Note:** Exposing the [Issuer URL](/gateway/latest/developer-portal/administration/application-registration/enable-application-registration#show-url-issuer) is essential
 for the
-[Authorization Code Flow](/enterprise/latest/developer-portal/administration/application-registration/3rd-party-oauth/#ac-flow) configured for third-party identity providers.
+[Authorization Code Flow](/gateway/latest/developer-portal/administration/application-registration/3rd-party-oauth/#ac-flow) configured for third-party identity providers.
 
 Update your current configuration by running a PATCH command. Replace `{plugin_id}` with the `id` of your plugin.
 

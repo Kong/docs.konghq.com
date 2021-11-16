@@ -392,7 +392,7 @@ Response:
 }
 ```
 
-[configuration]: /gateway-oss/latest/configuration
-[consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
+[configuration]: /gateway/latest/reference/configuration
+[consumer-object]: /gateway/latest/admin-api/#consumer-object
 [acl-associating]: /plugins/acl/#associating-consumers
 

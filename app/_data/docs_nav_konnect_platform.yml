@@ -16,13 +16,6 @@
 - title: Getting Started Guides
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   url: /konnect-platform/guides
-  items:
-    - text: Quickstart for Konnect Cloud
-      url: https://docs.konghq.com/konnect/getting-started
-      absolute_url: true
-    - text: Get Started with Kong Gateway (self-hosted)
-      url: https://docs.konghq.com/getting-started-guide/latest/overview
-      absolute_url: true
 
 - title: Compatibility
   icon: /assets/images/icons/documentation/icn-references-color.svg

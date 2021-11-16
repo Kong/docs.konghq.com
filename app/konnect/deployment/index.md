@@ -36,12 +36,10 @@ processing invalid requests.
 
 ### Runtime Compatibility
 
-<div class="alert alert-ee blue">
-<b>Note:</b> Currently, the only supported runtime type in
-{{site.konnect_saas}} is a
-<a href="/enterprise/">{{site.base_gateway}}</a>
+{:.note}
+> **Note:** Currently, the only supported runtime type in
+{{site.konnect_saas}} is a [{{site.base_gateway}}](/gateway/)
 data plane.
-</div>
 
 |                                | {{site.konnect_saas}} | First supported patch version
 |--------------------------------|:---------------------:|-----------------------------

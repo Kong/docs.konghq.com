@@ -39,9 +39,9 @@ Once you have configured the Load Balancer to use Proxy Protocol, you
 need to set the following environment variables in Kong for Kong to
 receive the Client IP from the Proxy Protocol header.
 
-- [`KONG_TRUSTED_IPS`](/gateway-oss/latest/configuration/#trusted_ips)
-- [`KONG_PROXY_LISTEN`](/gateway-oss/latest/configuration/#proxy_listen)
-- [`KONG_REAL_IP_HEADER`](/gateway-oss/latest/configuration/#real_ip_header)
+- [`KONG_TRUSTED_IPS`](/gateway/latest/reference/configuration/#trusted_ips)
+- [`KONG_PROXY_LISTEN`](/gateway/latest/reference/configuration/#proxy_listen)
+- [`KONG_REAL_IP_HEADER`](/gateway/latest/reference/configuration/#real_ip_header)
 
 For example:
 
@@ -61,9 +61,9 @@ You should configure the Load Balancer to inject these headers, and then
 you need to set the following environment variables in Kong for Kong to pick up
 the Client IP address from HTTP headers:
 
-- [`KONG_TRUSTED_IPS`](/gateway-oss/latest/configuration/#trusted_ips)
-- [`KONG_REAL_IP_HEADER`](/gateway-oss/latest/configuration/#real_ip_header)
-- Optional [`KONG_REAL_IP_RECURSIVE`](/gateway-oss/latest/configuration/#real_ip_recursive)
+- [`KONG_TRUSTED_IPS`](/gateway/latest/reference/configuration/#trusted_ips)
+- [`KONG_REAL_IP_HEADER`](/gateway/latest/reference/configuration/#real_ip_header)
+- Optional [`KONG_REAL_IP_RECURSIVE`](/gateway/latest/reference/configuration/#real_ip_recursive)
 
 Please note that if you are using an L7 Load Balancer with Kong,
 you cannot use the `certificates` feature in Kong as the TLS session is

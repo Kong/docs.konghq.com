@@ -168,9 +168,9 @@ params:
       datatype: boolean
       description: |
         If set to true, then verifies the validity of the server SSL certificate. Note that you need to configure the
-        [lua_ssl_trusted_certificate](/enterprise/latest/property-reference/#lua_ssl_trusted_certificate)
+        [lua_ssl_trusted_certificate](/gateway/latest/reference/configuration/#lua_ssl_trusted_certificate)
         to specify the CA (or server) certificate used by your redis server. You may also need to configure
-        [lua_ssl_verify_depth](/enterprise/latest/property-reference/#lua_ssl_verify_depth) accordingly.
+        [lua_ssl_verify_depth](/gateway/latest/reference/configuration/#lua_ssl_verify_depth) accordingly.
 
         **Note:** This parameter is only available for Kong Gateway versions
         2.2.x and later.

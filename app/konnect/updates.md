@@ -30,7 +30,7 @@ plugin to activate only on specific headers or query parameters
 [start up a new runtime](/konnect/runtime-manager/upgrade).
 
 : For all the changes and new features in {{site.base_gateway}} 2.6.x, see the
-[changelog](/enterprise/changelog/#2600).
+[changelog](/gateway/changelog/#2600).
 
 **Tags for auth plugins created by application registration**
 : When you enable application registration on a Service,
@@ -50,7 +50,7 @@ for more information.
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 2.5.0.1.
 runtimes. You can keep using existing 2.4.x runtimes, or you can upgrade to
 2.5.0.1 to take advantage of any new features, updates, and bug fixes.
-: This release includes [event hook support](/enterprise/latest/admin-api/event-hooks/reference),
+: This release includes [event hook support](/gateway/latest/admin-api/event-hooks/reference),
 improvements to CP-DP communication, new configuration options in plugins, and more.
 : For all the changes and new features in {{site.base_gateway}} 2.5.x, see the [changelog](/gateway/changelog).
 

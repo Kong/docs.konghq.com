@@ -96,7 +96,7 @@ details for the upstream service.
     2. (Optional) Expand to **View 6 Advanced Fields** and further customize your
     implementation.
 
-        See the [Service Object](/enterprise/latest/admin-api/#service-object)
+        See the [Service Object](/gateway/latest/admin-api/#service-object)
         documentation for parameter descriptions.
 
     3. Click **Next**.
@@ -119,7 +119,7 @@ details for the upstream service.
     4. (Optional) Click **View 4 Advanced Fields** to see all options.
     You can accept the defaults, or further customize your Route.
 
-        See the [Route Object](/enterprise/latest/admin-api/#route-object)
+        See the [Route Object](/gateway/latest/admin-api/#route-object)
         documentation for parameter descriptions.
 
     5. Click **Create**.

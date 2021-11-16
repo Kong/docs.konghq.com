@@ -125,4 +125,4 @@ configured with a `paths` setting. The CORS plugin does not work for Routes that
 are being resolved using a custom DNS (the `hosts` property).
 
 To learn how to configure `paths` for a Route, read the [Proxy
-Reference](/gateway-oss/latest/proxy).
+Reference](/gateway/latest/reference/proxy).

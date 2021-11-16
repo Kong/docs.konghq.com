@@ -6,4 +6,4 @@ data (TCP, TLS, and UDP).
 If you are looking for the Kong process error file (which is the nginx error file),
 you can find it at the following path:
 
-{[prefix](/gateway-oss/latest/configuration/#prefix)}/logs/error.log
+{[prefix](/gateway/latest/reference/configuration/#prefix)}/logs/error.log

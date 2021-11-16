@@ -47,11 +47,11 @@ are defined in the following table:
 
 | {{site.konnect_short_name}} Component {:width=20%:} | Description |
 |---------------------------------------|-------------|
-| [{{site.base_gateway}}](/enterprise/)  | High-performance connectivity runtime for executing edge connectivity logic. |
+| [{{site.base_gateway}}](/gateway/)  | High-performance connectivity runtime for executing edge connectivity logic. |
 | [Kong Ingress Controller](/kubernetes-ingress-controller/) | High-performance connectivity runtime for executing inter-app connectivity logic within a Kubernetes environment. |
 | [{{site.mesh_product_name}}](/mesh/)  | High-performance connectivity runtime for executing in-app connectivity logic. {{site.mesh_product_name}} is built on the Kuma service mesh open-source project. |
 | [Kong Plugins](/hub)                        | Secure, tested, and reliable connectivity logic for all connectivity needs applied through the {{site.base_gateway}} and Kong Ingress Controller runtimes. Many plugins are built and supported by {{site.company_name}}, and a wide array of plugins are also built and maintained by the Kong community. |
-| [Immunity](/enterprise/latest/immunity/overview) | Functionality module that uses machine learning to analyze traffic patterns in real time to improve security, mitigate breaches, and isolate issues. |
+| [Immunity](/gateway/latest/immunity/) | Functionality module that uses machine learning to analyze traffic patterns in real time to improve security, mitigate breaches, and isolate issues. |
 | [Runtime Manager](/konnect/runtime-manager)<br>(Cloud only) | Functionality module that enables provisioning instances of {{site.konnect_short_name}}’s supported runtimes. Runtime Manager provides a unified view of all of these runtimes and their current status. <br><br>**Note:** Currently, the only supported runtime type in the Runtime Manager is a {{site.base_gateway}} data plane. |
 
 ### Speed
@@ -72,7 +72,7 @@ velocity are defined in the following table:
 | {{site.konnect_short_name}} Component {:width=20%:} | Description |
 |------------------------------|-------------|
 | [Insomnia](https://support.insomnia.rest/) | API debugging, design, and testing tool for developers. Allows developers to rapidly explore and consume existing services of different protocols (spawning REST, GraphQL, and gRPC), design services using a spec-based approach, and write and build a suite of tests while collaborating with other developers. <br><br> Using Insomnia, you can generate {{site.base_gateway}} and Kong Ingress Controller runtime configurations directly from their API specs. Developers can rapidly map their API designs to connectivity logic that exposes those designs within a connectivity runtime.  |
-| Dev Portal <br><br>[Cloud docs](/konnect/dev-portal) <br>[Self-hosted docs](/enterprise/latest/developer-portal) | Functionality module that enables the formal publishing of API docs to an API catalogue through which developers (typically external to an application team) can discover and formally register to use the API. |
+| Dev Portal <br><br>[Cloud docs](/konnect/dev-portal) <br>[Self-hosted docs](/gateway/latest/developer-portal) | Functionality module that enables the formal publishing of API docs to an API catalogue through which developers (typically external to an application team) can discover and formally register to use the API. |
 | [ServiceHub](/konnect/servicehub)<br>(Cloud only) | Functionality module that enables the cataloging of all services into a single system of record. This catalog represents the single source of truth for your organization’s service inventory and their dependencies. By leveraging ServiceHub, application developers can search, discover, and consume existing services to accelerate their time-to-market, while enabling a more consistent end-user experience across the organization’s applications. |
 
 #### Connectivity Runtime Performance
@@ -99,7 +99,7 @@ defined in the following table:
 
 | {{site.konnect_short_name}} Component {:width=20%:} | Description |
 |---------------------------------------|-------------|
-| Vitals <br><br>[Cloud docs](/konnect/vitals) <br>[Self-hosted docs](/enterprise/latest/vitals/overview) | Functionality module that enables the capture and generation of service usage and health monitoring data. This module's capabilities can be enhanced with {{site.konnect_short_name}} plugins that enable monitoring metrics to be streamed to third-party analytics providers such as Datadog and Prometheus. |
+| Vitals <br><br>[Cloud docs](/konnect/vitals) <br>[Self-hosted docs](/gateway/latest/vitals/) | Functionality module that enables the capture and generation of service usage and health monitoring data. This module's capabilities can be enhanced with {{site.konnect_short_name}} plugins that enable monitoring metrics to be streamed to third-party analytics providers such as Datadog and Prometheus. |
 | [ServiceHub](/konnect/servicehub) <br>(Cloud only) | Functionality module that enables the cataloging all of all services into a single system of record that represents the single source of truth of your organization’s service inventory and their dependencies. By leveraging ServiceHub, enterprise architects can attain a better understanding of the organization’s inventory of services, in terms of the level of reuse, usage, and operational health of services across different teams and environments. |
 
 #### Cloud-native Service Lifecycle
@@ -118,6 +118,6 @@ lifecycle are as follows:
 |------------------------------|-------------|
 | [decK](/deck)                         | decK is a tool that allows for the management of {{site.base_gateway}}’s configuration in a declarative fashion. It can sync configuration to a running cluster, diff configuration to detect any drift or manual changes, and back up {{site.base_gateway}}'s configuration. It also can manage the configuration in a distributed way using tags, helping you split configuration across various teams. |
 | [Kong Ingress Controller CRDs](/kubernetes-ingress-controller/latest/concepts/custom-resources) | The Kong Ingress Controller runtime’s lifecycle can be managed entirely through Kubernetes CRD manifests, which can be applied through the Kubernetes `kubectl` command line. |
-| [{{site.base_gateway}}’s Admin API](/enterprise/latest/admin-api) | The {{site.base_gateway}} runtime provides an internal REST-based Admin API. Requests to the Admin API can be sent from any node in the cluster, and {{site.konnect_short_name}} will keep the configuration consistent across all nodes. |
+| [{{site.base_gateway}}’s Admin API](/gateway/latest/admin-api) | The {{site.base_gateway}} runtime provides an internal REST-based Admin API. Requests to the Admin API can be sent from any node in the cluster, and {{site.konnect_short_name}} will keep the configuration consistent across all nodes. |
 | [Inso command line](https://support.insomnia.rest/collection/105-inso-cli) | Inso is a CLI for Insomnia that exposes Insomnia’s application functionality to be invoked via a terminal or within a CI/CD pipeline for automation of API debugging, testing, and configuration generation. |
 | [{{site.konnect_saas}} Admin API](/konnect/reference/konnect-api) | {{site.konnect_short_name}} provides a REST-based Cloud API that exposes all of the functionality of its Cloud web interfaces. |

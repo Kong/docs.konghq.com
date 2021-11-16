@@ -105,7 +105,7 @@ params:
 
 ### Enable the plugin on a service
 
-Configure this plugin on a [service](/enterprise/latest/admin-api/#service-object):
+Configure this plugin on a [service](/gateway/latest/admin-api/#service-object):
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/services/<service>/plugins \
@@ -120,7 +120,7 @@ The `<service>` is the id or name of the service that this plugin configuration 
 
 ### Enable the plugin on a route
 
-Configure this plugin on a [route](/enterprise/latest/admin-api/#route-object):
+Configure this plugin on a [route](/gateway/latest/admin-api/#route-object):
 
 ```bash
 $ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
@@ -135,7 +135,7 @@ The `<route>` is the id or name of the route that this plugin configuration will
 
 ### Enable the plugin on a consumer
 
-Configure this plugin on a [consumer](/enterprise/latest/admin-api/#consumer-object):
+Configure this plugin on a [consumer](/gateway/latest/admin-api/#consumer-object):
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
@@ -153,8 +153,8 @@ You can combine `consumer.id`, `service.id`, or `route.id` within the same reque
 ### Enable the plugin globally
 
 A plugin that is not associated to any service, route, or consumer is considered global, and
-will run on every request. Read the [Plugin Reference](/gateway-oss/latest/admin-api/#add-plugin) and the
-[Plugin Precedence](/gateway-oss/latest/admin-api/#precedence) sections for more information.
+will run on every request. Read the [Plugin Reference](/gateway/latest/admin-api/#add-plugin) and the
+[Plugin Precedence](/gateway/latest/admin-api/#precedence) sections for more information.
 
 Configure this plugin globally:
 
@@ -182,14 +182,12 @@ available on YouTube.
 Prerequisites:
 
 - {{site.ee_product_name}} environment with the Dev Portal enabled on at least one workspace. See
-  [enable the Dev Portal](/enterprise/latest/developer-portal/enable-dev-portal/) using `kong.conf`. Also refer to
+  [enable the Dev Portal](/gateway/latest/developer-portal/enable-dev-portal/) using `kong.conf`. Also refer to
   the instructions for your environment:
-  - [Docker](/enterprise/latest/deployment/installation/docker/#step-7-optional-enable-the-dev-portal)
-  - [Ubuntu](/enterprise/latest/deployment/installation/ubuntu/#optional-enable-the-dev-portal)
-  - [CentOS](/enterprise/latest/deployment/installation/centos/#optional-enable-the-dev-portal)
-  - [Amazon Linux 1](/enterprise/latest/deployment/installation/amazon-linux/#optional-enable-the-dev-portal)
-  - [Amazon Linux 2](/enterprise/latest/deployment/installation/amazon-linux-2/#optional-enable-the-dev-portal)
-  - [RHEL](/enterprise/latest/deployment/installation/rhel/#optional-enable-the-dev-portal)
+  - [Ubuntu](/gateway/latest/install-and-run/ubuntu/#enable-dev-portal)
+  - [CentOS](/gateway/latest/install-and-run/centos/#enable-dev-portal)
+  - [Amazon Linux 1 or 2](/gateway/latest/install-and-run/amazon-linux/#enable-dev-portal)
+  - [RHEL](/gateway/latest/install-and-run/rhel/#enable-dev-portal)
 
 - An Open API Specification (`yaml` or `json`) that has at least one API method with an
   embedded example response. Multiple examples within a spec are supported. See the
@@ -222,7 +220,7 @@ copy and paste the `stock-01.json` example file into the Dev Portal using Editor
 2. Name the file `stock-01.json`.
 3. Copy and paste the contents in the [example](#stock-spec) into the new file.
 
-Alternatively, you can also use the [Portal Files API](/enterprise/latest/developer-portal/files-api/#post-a-content-file)
+Alternatively, you can also use the [Portal Files API](/gateway/latest/developer-portal/files-api/#post-a-content-file)
 to upload a spec to the Dev Portal.
 
 #### Deploy a spec to Insomnia {#deploy-spec-insomnia}

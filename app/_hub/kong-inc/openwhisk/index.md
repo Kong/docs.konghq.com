@@ -27,7 +27,7 @@ installation: |
 
   or install it from [source](https://github.com/Kong/kong-plugin-openwhisk).
   For more information on plugin installation, see the documentation
-  [Plugin Development - (un)Install your plugin](/gateway-oss/latest/plugin-development/distribution/).
+  [Plugin Development - (un)Install your plugin](/gateway/latest/plugin-development/distribution/).
 
 params:
   name: openwhisk
