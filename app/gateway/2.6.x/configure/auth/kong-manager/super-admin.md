@@ -1,6 +1,6 @@
 ---
 title: Create a Super Admin
-badge: free
+badge: enterprise
 ---
 
 If you seeded a **Super Admin** at the time of running

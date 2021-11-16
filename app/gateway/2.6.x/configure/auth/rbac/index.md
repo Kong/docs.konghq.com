@@ -1,6 +1,6 @@
 ---
 title: RBAC in Kong Manager
-badge: free
+badge: enterprise
 ---
 
 In addition to authenticating Admins and segmenting Workspaces,

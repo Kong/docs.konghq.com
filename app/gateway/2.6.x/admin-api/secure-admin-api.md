@@ -228,7 +228,7 @@ For more information on integrating Kong into custom Nginx configurations, see
 [Custom Nginx configuration & embedding Kong][custom-configuration].
 
 ## Role Based Access Control
-{:.badge .free}
+{:.badge .enterprise}
 
 {{site.base_gateway}} users can configure [role-based access control](/gateway/{{page.kong_version}}/configure/auth/rbac)
 to secure access to the Admin API. RBAC allows for fine-grained control over resource access

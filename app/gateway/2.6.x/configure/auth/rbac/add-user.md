@@ -1,6 +1,6 @@
 ---
 title: Create an RBAC User
-badge: free
+badge: enterprise
 ---
 
 ## Admins vs. RBAC Users

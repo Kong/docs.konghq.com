@@ -1,6 +1,6 @@
 ---
 title: Configure Workspaces in Kong Manager
-badge: free
+badge: enterprise
 ---
 
 **Workspaces** enable an organization to segment traffic so that

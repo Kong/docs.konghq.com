@@ -1,6 +1,6 @@
 ---
 title: RBAC Reference
-badge: free
+badge: enterprise
 ---
 
 Kong {{site.base_gateway}}'s RBAC feature is configurable through Kong's

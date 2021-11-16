@@ -1,6 +1,6 @@
 ---
 title: Admins Examples
-badge: free
+badge: enterprise
 ---
 
 ## How to Invite and Register an Admin

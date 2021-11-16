@@ -1,6 +1,6 @@
 ---
 title: Upgrade Kong Gateway
-badge: enterprise
+badge: free
 ---
 
 Upgrade to major, minor, and patch {{site.ee_product_name}} releases using the

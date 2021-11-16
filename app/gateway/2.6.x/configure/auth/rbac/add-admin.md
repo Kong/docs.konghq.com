@@ -1,15 +1,15 @@
 ---
 title: Invite an Admin
-badge: free
+badge: enterprise
 ---
 
-An **Admin** is any user in Kong Manager. They may access
-Kong entities within their assigned **Workspaces** based
-on the **Permissions** of their **Roles**.
+An Admin is any user in Kong Manager. They may access
+Kong entities within their assigned Workspaces based
+on the Permissions of their Roles.
 
-This guide describes how to invite an **Admin** in Kong
-Manager. As an alternative, if a **Super Admin** wants to
-invite an **Admin** with the Admin API, it is possible to
+This guide describes how to invite an Admin in Kong
+Manager. As an alternative, if a Super Admin wants to
+invite an Admin with the Admin API, it is possible to
 do so using
 [`/admins`](/gateway/{{page.kong_version}}/admin-api/admins/reference/#invite-an-admin).
 

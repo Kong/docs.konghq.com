@@ -4,7 +4,7 @@ title: Install on Kubernetes with Helm
 
 This page explains how to install {{site.base_gateway}} with {{site.kic_product_name}} using Helm.
 
-* The Enterprise deployment includes a Postgres sub-chart provided by Bitnami. 
+* The Enterprise deployment includes a Postgres sub-chart provided by Bitnami.
 * For open-source deployments, you can choose to use the Postgres sub-chart, or install without a database.
 
 Configuration for both options is flexible and depends on your environment.
@@ -111,7 +111,7 @@ If you create an RBAC superuser and plan to work with Kong Manager or Dev Portal
 
 ## Create values.yaml file
 
-Create a `values.yaml` file to provide required values such as password secrets or optional email addresses for notifications. You can work from the [Enterprise example file](https://github.com/Kong/charts/blob/main/charts/kong/example-values/full-k4k8s-with-kong-enterprise.yaml). The example file includes comments to explain which values you must set. 
+Create a `values.yaml` file to provide required values such as password secrets or optional email addresses for notifications. You can work from the [Enterprise example file](https://github.com/Kong/charts/blob/main/charts/kong/example-values/full-k4k8s-with-kong-enterprise.yaml). The example file includes comments to explain which values you must set.
 
 For OSS deployments, the default install might be sufficient, but you can explore other `values.yaml` files and [the readme in the charts repository](https://github.com/Kong/charts/blob/main/charts/kong/README.md), which includes an exhaustive list of all possible configuration properties.
 
@@ -158,7 +158,7 @@ Note that the Enterprise deployment includes a Postgres sub-chart provided by Bi
     admin_api_uri: {YOUR-DNS-OR-IP}
     ```
 
-    {:.Note}
+    {:.note}
     > **Note:** If you configure RBAC, you must specify a DNS hostname instead of an IP address.
 
 1.  Clean up:

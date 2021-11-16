@@ -1,6 +1,6 @@
 ---
 title: Reset Passwords and RBAC Tokens in Kong Manager
-badge: free
+badge: enterprise
 ---
 
 ## Passwords and RBAC Tokens

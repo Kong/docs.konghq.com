@@ -1,6 +1,6 @@
 ---
 title: RBAC Examples
-badge: free
+badge: enterprise
 ---
 
 This chapter aims to provide a step-by-step tutorial on how to set up

@@ -1,6 +1,6 @@
 ---
 title: Admins Reference
-badge: free
+badge: enterprise
 ---
 
 ## List Admins

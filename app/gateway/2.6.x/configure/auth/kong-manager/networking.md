@@ -1,6 +1,6 @@
 ---
 title: Default and Custom Networking Configuration for Kong Manager
-badge: free
+badge: enterprise
 ---
 
 ## Default Configuration

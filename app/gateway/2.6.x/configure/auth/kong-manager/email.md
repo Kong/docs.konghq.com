@@ -1,6 +1,6 @@
 ---
 title: Configuring Kong Manager to Send Email
-badge: free
+badge: enterprise
 ---
 
 A **Super Admin** can invite other **Admins** to register in Kong Manager, and **Admins**

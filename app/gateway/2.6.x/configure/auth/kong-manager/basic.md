@@ -1,6 +1,6 @@
 ---
 title: Enable Basic Auth for Kong Manager
-badge: free
+badge: enterprise
 ---
 
 ### Prerequisites

@@ -1,6 +1,6 @@
 ---
 title: Workspaces Reference
-badge: free
+badge: enterprise
 
 workspace_body: |
     Attribute | Description

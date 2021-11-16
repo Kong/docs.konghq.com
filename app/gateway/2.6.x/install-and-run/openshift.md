@@ -45,6 +45,7 @@ oc new-project kong
     ```
 
 ## Create secret for RBAC superuser (recommended)
+{:.badge .enterprise}
 
 If you plan to use RBAC, you must create the superuser account at this step in installation. You cannot create it later.
 
@@ -138,7 +139,7 @@ Note that this deployment includes a Postgres sub-chart provided by Bitnami. You
     admin_api_uri: <your-DNS-or-IP>
     ```
 
-    {:.Note}
+    {:.note}
     > **Note:** If you configure RBAC, you must specify a DNS hostname instead of an IP address.
 
 1.  Clean up:

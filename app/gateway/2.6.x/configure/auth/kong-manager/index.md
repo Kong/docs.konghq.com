@@ -1,6 +1,6 @@
 ---
 title: Securing Kong Manager
-badge: free
+badge: enterprise
 ---
 
 Kong Manager enables users with Admin accounts to access Kong entities such

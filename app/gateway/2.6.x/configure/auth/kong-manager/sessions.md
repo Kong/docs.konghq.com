@@ -1,6 +1,6 @@
 ---
 title: Sessions in Kong Manager
-badge: free
+badge: enterprise
 ---
 
 ## How does the Sessions Plugin work in Kong Manager?

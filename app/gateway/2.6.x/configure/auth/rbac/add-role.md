@@ -1,6 +1,6 @@
 ---
 title: Add a Role and Permissions
-badge: free
+badge: enterprise
 ---
 
 Roles make it easy to logically group and apply the same
