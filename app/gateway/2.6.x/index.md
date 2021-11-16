@@ -26,11 +26,18 @@ entire organization
 is distributed along with [OpenResty](https://openresty.org/), which is a bundle
 of modules that extend the [lua-nginx-module](https://github.com/openresty/lua-nginx-module).
 
-This sets the foundations for a modular architecture, where Lua scripts
-(plugins) can be enabled and executed at runtime. At its core,
+This sets the foundations for a modular architecture, where
+plugins can be enabled and executed at runtime. At its core,
 {{site.base_gateway}} implements database abstraction, routing, and plugin
 management. Plugins can live in separate code bases and be injected anywhere
 into the request lifecycle, all with a few lines of code.
+
+Kong provides many [plugins](#kong-gateway-plugins) for you to use in your
+Gateway deployments. You can also create your own custom plugins. For more
+information, see the
+[plugin development guide](/gateway/{{page.kong_version}}/plugin-development),
+the [PDK reference](/gateway/{{page.kong_version}}/pdk), and the guide on
+[creating plugins with other languages](/gateway/{{page.kong_version}}/reference/external-plugins).
 
 ## Packages and modes
 
@@ -41,11 +48,15 @@ functionality and open-source plugins. You can manage the open-source Gateway
 with Kong's [Admin API](#kong-admin-api) or with [declarative configuration](#deck).
 
 **Kong Gateway** (available in
-[Free or Enterprise modes](https://konghq.com/pricing)): Kong's API gateway
+[Free, Plus, or Enterprise modes](https://konghq.com/pricing)): Kong's API gateway
 with added functionality.
-* In **Free mode** (<span class="badge free"></span>),
+* In **Free mode** <span class="badge free"></span>,
   this package adds [Kong Manager](#kong-manager) to the basic open-source functionality.
-* With an **Enterprise** subscription (<span class="badge enterprise"></span>),
+* In **Plus mode** <span class="badge plus"></span>, you have access to more
+{{site.base_gateway}} features, but only through {{site.konnect_saas}}.
+See the [{{site.konnect_saas}} documentation](/konnect/) and the
+**Plus**-labelled plugins on the [Plugin Hub](/hub/) for more information.
+* With an **Enterprise** subscription <span class="badge enterprise"></span>,
   it also includes:
     * [Dev Portal](#kong-dev-portal)
     * [Vitals](#kong-vitals)
@@ -71,7 +82,10 @@ configuration, and forwarded to upstream services._
 
 ### Kong Admin API
 
-[Kong Admin API](/gateway/{{page.kong_version}}/admin-api) provides a RESTful interface for administration and configuration of Services, Routes, Plugins, and Consumers. All of the tasks you perform in the Kong Manager can be automated using the Kong Admin API.
+[Kong Admin API](/gateway/{{page.kong_version}}/admin-api) provides a RESTful
+interface for administration and configuration of Services, Routes, Plugins, and
+Consumers. All of the tasks you can perform against the Gateway can be automated
+using the Kong Admin API.
 
 ### Kong Manager
 {:.badge .free}
@@ -104,11 +118,11 @@ object-level health using intuitive, customizable dashboards
 
 [Kong Vitals](/gateway/{{page.kong_version}}/vitals) provides useful metrics about the health and performance of your {{site.base_gateway}} nodes, as well as metrics about the usage of your proxied APIs. You can visually monitor vital signs and pinpoint anomalies in real-time, and use visual API analytics to see exactly how your APIs and Gateway are performing and access key statistics. Kong Vitals is part of the Kong Manager UI.
 
-### Kubernetes Ingress Controller
+### Kubernetes
 
-[Kong for Kubernetes Enterprise](/kubernetes-ingress-controller/) (K4K8S) is a Kubernetes Ingress Controller. A Kubernetes Ingress Controller is a proxy that exposes Kubernetes services from applications (for example, Deployments, ReplicaSets) running on a Kubernetes cluster to client applications running outside of the cluster. The intent of an Ingress Controller is to provide a single point of control for all incoming traffic into the Kubernetes cluster.
+{{site.base_gateway}} can run natively on Kubernetes with its custom [ingress controller](/kubernetes-ingress-controller/), Helm chart, and Operator. A Kubernetes ingress controller is a proxy that exposes Kubernetes services from applications (for example, Deployments, ReplicaSets) running on a Kubernetes cluster to client applications running outside of the cluster. The intent of an ingress controller is to provide a single point of control for all incoming traffic into the Kubernetes cluster.
 
-### Kong plugins
+### Kong Gateway plugins
 
 [{{site.base_gateway}} plugins](/hub/) provide advanced functionality to better manage your API and microservices. With turnkey capabilities to meet the most challenging use cases, {{site.base_gateway}} plugins ensure maximum control and minimizes unnecessary overhead. Enable features like authentication, rate-limiting, and transformations by enabling {{site.base_gateway}} plugins through Kong Manager or the Admin API.
 
@@ -143,17 +157,18 @@ instructions, and explores Kong's many available tools for managing the gateway.
 
 ### Try in Konnect
 
-{{site.base_gateway}} is also bundled with {{site.konnect_product_name}}.
-There are a few ways to test out the gateway's Plus or Enterprise features:
+[{{site.konnect_product_name}}](/konnect/) can manage {{site.base_gateway}}
+instances. With this setup, Kong hosts the control plane and you host your
+own data planes.
+
+There are a few ways to test out the Gateway's Plus or Enterprise features:
 
 * Sign up for a [free trial of {{site.konnect_product_name}} Plus](https://konnect.konghq.com/register).
 * Try out {{site.base_gateway}} on Kubernetes using a live tutorial at
 [https://www.konglabs.io/kubernetes/](https://www.konglabs.io/kubernetes/).
-* If you are interested in evaluating Enterprise features locally, the
-Kong sales team manages evaluation licenses as part of a formal sales process.
-The best way to get started with the sales process is to
-[request a demo](https://konghq.com/get-started/#request-demo) and indicate
-your interest.
+* If you are interested in evaluating Enterprise features locally,
+[request a demo](https://konghq.com/get-started/#request-demo) and a Kong
+representative will reach out with details to get you started.
 
 ## Support policy
 Kong primarily follows a [semantic versioning](https://semver.org/) (SemVer)
