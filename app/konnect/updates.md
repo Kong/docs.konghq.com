@@ -8,6 +8,42 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services.
 
+## November 2021
+### 2021.11.10
+**{{site.base_gateway}} 2.6.0.0 support**
+: {{site.konnect_saas}} now supports {{site.base_gateway}} 2.6.0.0.
+runtimes. You can keep using existing 2.5.x runtimes, or you can upgrade to
+2.6.0.0 to take advantage of any new features, updates, and bug fixes.
+: This release introduces the new [jq plugin](/hub/kong-inc/jq). It also
+adds new features and improvements to a long list of plugins, including:
+* [Kafka Log](/hub/kong-inc/kafka-log)
+and [Kafka Upstream](/hub/kong-inc/kafka-upstream): Support for TLS, mTLS, and
+SASL auth
+* [Prometheus](/hub/kong-inc/prometheus): Introduces the
+`data_plane_cluster_cert_expiry_timestamp` metric, letting you keep an eye on the
+status of you data plane certificates
+* [Request Termination](/hub/kong-inc/request-termination): Introduces the
+new `trigger` configuration option, which tells the
+plugin to activate only on specific headers or query parameters
+
+: To use any new features in the release and gain access to the jq plugin,
+[start up a new runtime](/konnect/runtime-manager/upgrade).
+
+: For all the changes and new features in {{site.base_gateway}} 2.6.x, see the
+[changelog](/enterprise/changelog/#2600).
+
+**Tags for auth plugins created by application registration**
+: When you enable application registration on a Service,
+{{site.konnect_saas}} enables two plugins automatically: ACL, and one of Key
+Authentication or OIDC. These plugins cannot be edited or deleted directly. To
+help differentiate the Konnect-managed plugins and avoid breaking your Service,
+Konnect now adds two metadata tags for declarative configuration:
+`konnect-managed-plugin` and `konnect-app-registration`.
+See the Dev Portal doc section on
+[{{site.konnect_short_name}}-managed plugins](/konnect/dev-portal/applications/application-overview/#konnect-managed-plugins)
+for more information.
+
+
 ## August 2021
 ### 2021.08.31
 **{{site.base_gateway}} 2.5.0.1 support**
