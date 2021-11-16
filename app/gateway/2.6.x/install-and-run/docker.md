@@ -10,7 +10,7 @@ title: Install Kong Gateway on Docker
 > * [**Kong Gateway**](https://hub.docker.com/r/kong/kong-gateway/tags){:.install-listing-link}
 > * [**Kong Gateway (OSS)**](https://hub.docker.com/_/kong){:.install-listing-link}
 >
-> (latest {{site.base_gateway}} version: {{site.data.kong_latest_ee.version}})
+> (latest {{site.base_gateway}} version: {{page.kong_versions[page.version-index].ee-version}})
 
 {{site.base_gateway}} supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its
 datastore. This guide provides steps to configure PostgreSQL.
