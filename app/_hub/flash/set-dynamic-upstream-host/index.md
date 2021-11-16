@@ -119,5 +119,5 @@ params:
         In case of duplicates (target field in json) the entire Json path needs to be provided. 
         For form-urlencoded payload if `--data-urlencode 'target=httpbin'` and `config.body_param=target` then `httpbin` value from the `target` field in the form body will be used to construct the upstream host.
   extra: |
-    Note : At any point of time only one parameter is supported and at least one is required.
+    Note : Only one of `header`, `query_arg`, `path_index` or `body_param` can be provided at one time, and at least one is required.
 ---
