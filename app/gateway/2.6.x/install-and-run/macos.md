@@ -11,6 +11,9 @@ badge: oss
 >
 > (latest version: {{page.kong_versions[page.version-index].ce-version}})
 
+{{site.ce_product_name}} is licensed under an
+[Apache 2.0 license](https://github.com/Kong/kong/blob/master/LICENSE).
+
 ## Prerequisites
 
 You have a supported system with root or [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user) access.
@@ -104,7 +107,7 @@ you should start by generating a declarative config file.
 ## Next steps
 
 Check out {{site.base_gateway}}'s series of
-[Getting Started](/gateway/{{include.kong_version}}/get-started/overview) guides to get the most
+[Getting Started](/gateway/{{include.kong_version}}/get-started/comprehensive) guides to get the most
 out of {{site.base_gateway}}.
 
 [configuration]: /gateway/latest/reference/configuration#database

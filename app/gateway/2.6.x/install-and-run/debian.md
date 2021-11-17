@@ -19,6 +19,9 @@ badge: oss
 > [11 Bullseye]({{ site.links.download }}/gateway-2.x-debian-bullseye/pool/all/k/){:.install-listing-link}
 >  </span>
 
+{{site.ce_product_name}} is licensed under an
+[Apache 2.0 license](https://github.com/Kong/kong/blob/master/LICENSE).
+
 ## Prerequisites
 
 You have a supported system with root or [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user) access.

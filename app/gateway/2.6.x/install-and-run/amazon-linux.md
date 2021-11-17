@@ -15,9 +15,15 @@ title: Install Kong Gateway on Amazon Linux
 > <span class="install-subtitle">View the list of all 2.x packages for
 > [Amazon Linux 1]({{ site.links.download }}/gateway-2.x-amazonlinux-1/Packages/k/){:.install-listing-link} and [Amazon Linux 2]({{ site.links.download }}/gateway-2.x-amazonlinux-2/Packages/k/){:.install-listing-link}  </span>
 
+The {{site.base_gateway}} software is governed by the 
+[Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
+{{site.ce_product_name}} is licensed under an
+[Apache 2.0 license](https://github.com/Kong/kong/blob/master/LICENSE).
+
 ## Prerequisites
 
-You have a supported system with root or [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user) access.
+* A supported system with root or [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user) access.
+* (Enterprise only) A `license.json` file from Kong.
 
 ## Download
 

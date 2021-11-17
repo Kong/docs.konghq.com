@@ -11,6 +11,11 @@ Configuration for both options is flexible and depends on your environment.
 
 The documentation on installing with a [flat Kubernetes manifest](/gateway/{{page.kong_version}}/install-and-run/kubernetes) also explains how to install in DB-less mode for both Enterprise and OSS deployments.
 
+The {{site.base_gateway}} software is governed by the
+[Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
+{{site.ce_product_name}} is licensed under an
+[Apache 2.0 license](https://github.com/Kong/kong/blob/master/LICENSE).
+
 ## Prerequisites
 
 - A Kubernetes cluster, v1.19 or later

@@ -25,12 +25,15 @@ are not publicly accessible. If you need a specific patch version and can't
 find it on [Kong's public Docker Hub page](https://hub.docker.com/r/kong/kong-gateway), contact
 [Kong Support](https://support.konghq.com/).
 
-This software is governed by the
+The {{site.base_gateway}} software is governed by the
 [Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
+{{site.ce_product_name}} is licensed under an
+[Apache 2.0 license](https://github.com/Kong/kong/blob/master/LICENSE).
 
 ## Prerequisites
 
-For this installation, you'll need a Docker-enabled system with proper Docker access.
+* A Docker-enabled system with proper Docker access
+* (Enterprise only) A `license.json` file from Kong
 
 ## Install Kong Gateway with a database
 
@@ -309,6 +312,3 @@ setup, reach out to your support contact or head over to the
 Check out {{site.base_gateway}}'s series of
 [Getting Started](/gateway/{{page.kong_version}}/get-started/comprehensive/) guides to get the most
 out of {{site.base_gateway}}.
-
-If you have an Enterprise subscription, add the license using the
-[`/licenses` Admin API endpoint](/gateway/{{page.kong_version}}/plan-and-deploy/licenses/deploy-license).

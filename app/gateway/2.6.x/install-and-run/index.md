@@ -64,22 +64,22 @@ disable_image_expand: true
 
 {% include_cached /md/gateway/deployment-options.md kong_version=page.kong_version %}
 
-### Licensing
+### Installation paths
 
-This software is governed by the
-[Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
+Some installation topics provide multiple package types and installation options.
+Choose your preferred mode when following installation steps:
 
-To enable Enterprise features, {{site.base_gateway}} requires a license file.
-You will receive this file from Kong when you sign up for a
-{{site.konnect_product_name}} Enterprise subscription.
+* **Open-source**: Follow installation instructions and skip any Free or Enterprise steps.
+* **Free Mode**: Install {{site.base_gateway}} without a license, gaining access to Kong Manager.
+* **Enterprise**: Install {{site.base_gateway}} and add a license.
 
-Once a license has been deployed to a {{site.base_gateway}} node, retrieve it
-using the [`/licenses` Admin API endpoint](/gateway/{{page.kong_version}}/admin-api/licenses/examples).
-
-If you have purchased a subscription but haven't received a license file,
-contact your sales representative.
+If you install the {{site.base_gateway}} (not open-source), you can add a license
+at any time to gain access to Enterprise features.
 
 {:.note}
-> **Note:** The free mode does not require a license. See
-[Kong Gateway Licensing](/gateway/{{page.kong_version}}/plan-and-deploy/licenses)
-for a feature comparison.
+> **Note**: For deployments on Kubernetes (including Helm and OpenShift),
+you need to apply the license during installation.
+
+See [Kong Gateway Licensing](/gateway/{{include.kong_version}}/plan-and-deploy/licenses)
+for a feature comparison between Free Mode and the Enterprise subscription,
+and more information about licenses.

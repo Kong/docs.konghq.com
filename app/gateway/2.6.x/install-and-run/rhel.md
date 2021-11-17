@@ -21,10 +21,16 @@ title: Install Kong Gateway on RHEL
 > [**RHEL 7**]({{ site.links.download }}/gateway-2.x-rhel-7/Packages/k/){:.install-listing-link} or
 > [**RHEL 8**]({{ site.links.download }}/gateway-2.x-rhel-8/Packages/k/){:.install-listing-link}<span>
 
+
+The {{site.base_gateway}} software is governed by the
+[Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
+{{site.ce_product_name}} is licensed under an
+[Apache 2.0 license](https://github.com/Kong/kong/blob/master/LICENSE).
+
 ## Prerequisites
 
-You have a supported system with root or [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user) access.
-
+* A supported system with root or [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user) access.
+* (Enterprise only) A `license.json` file from Kong
 
 ## Download
 

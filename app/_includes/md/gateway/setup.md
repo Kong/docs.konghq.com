@@ -142,29 +142,33 @@ By default, {{site.kong_gateway}} listens on the following ports:
 
 5. Access Kong Manager on port `8002`.
 
+### Deploy a license
+{:.badge .enterprise}
+
+If you have an Enterprise subscription, follow the instructions to 
+[deploy a license](/gateway/{{include.kong_version}}/plan-and-deploy/licenses/deploy-license).
+
 ### Enable Dev Portal
 {:.badge .enterprise}
 
-1. [Deploy a license](/gateway/{{include.kong_version}}/plan-and-deploy/licenses/deploy-license).
-
-2. Enable the Dev Portal in the `kong.conf` file by setting the `portal` property to `on` and the
+1. Enable the Dev Portal in the `kong.conf` file by setting the `portal` property to `on` and the
    `portal_gui_host` property to the DNS or IP address of the Amazon Linux system.
    For example:
 
     <div class="copy-code-snippet"><pre><code>portal = on
     portal_gui_host = <div contenteditable="true">{DNS_OR_IP}</div>:8003</code></pre></div>
 
-3. Restart {{site.base_gateway}} for the setting to take effect, using the following command:
+1. Restart {{site.base_gateway}} for the setting to take effect, using the following command:
 
     <div class="copy-code-snippet"><pre><code>kong restart -c <div contenteditable="true">{PATH_TO_KONG.CONF_FILE}</div></code></pre></div>
 
-4. To enable the Dev Portal for a workspace. Execute the following command,
+1. To enable the Dev Portal for a workspace, execute the following command,
    updating `DNSorIP` to reflect the IP or valid DNS for the OS system:
 
     <div class="copy-code-snippet"><pre><code>curl -X PATCH http://<div contenteditable="true">{DNS_OR_IP}</div>:8001/workspaces/default \
     --data "config.portal=true"</code></pre></div>
 
-5. Access the Dev Portal for the default workspace using the following URL,
+1. Access the Dev Portal for the default workspace using the following URL,
    substituting your own DNS or IP:
 
     <div class="copy-code-snippet"><pre><code>http://<div contenteditable="true">{DNS_OR_IP}</div>:8003/default</code></pre></div>
@@ -181,6 +185,3 @@ your setup, reach out to your Kong Support contact or go to the
 Check out {{site.base_gateway}}'s series of
 [Getting Started](/gateway/{{include.kong_version}}/get-started/comprehensive) guides to get the most
 out of {{site.base_gateway}}.
-
-If you have an Enterprise subscription, add the license using the
-[`/licenses` Admin API endpoint](/gateway/{{include.kong_version}}/plan-and-deploy/licenses/deploy-license).
