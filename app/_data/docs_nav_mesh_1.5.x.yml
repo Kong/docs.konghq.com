@@ -36,6 +36,8 @@
       url: /installation/ubuntu
     - text: macOS
       url: /installation/macos
+    - text: Windows
+      url: /installation/windows
     - text: Marketplaces
       items:
         - text: Azure (AKS)
