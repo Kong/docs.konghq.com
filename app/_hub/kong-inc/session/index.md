@@ -12,7 +12,7 @@ description: |
   <a href="https://github.com/bungle/lua-resty-session">lua-resty-session</a>.
 
   For information about configuring and using the Sessions plugin with the Dev
-  Portal, see [Sessions in the Dev Portal](/enterprise/latest/developer-portal/configuration/authentication/sessions/#configuration-to-use-the-sessions-plugin-with-the-dev-portal).
+  Portal, see [Sessions in the Dev Portal](/gateway/latest/developer-portal/configuration/authentication/sessions/#configuration-to-use-the-sessions-plugin-with-the-dev-portal).
 
 type: plugin
 categories:
@@ -167,7 +167,7 @@ plugin attaches the `ngx.ctx` variables to let the authentication
 plugin know that authentication has already occurred via session validation.
 As this configuration is a logical OR scenario, and it's desired that anonymous
 access be forbidden, you should configure the [Request Termination](https://docs.konghq.com/hub/kong-inc/request-termination/) plugin on an anonymous consumer. Failure to do so allows unauthorized
-requests. For more information, see [multiple authentication](https://docs.konghq.com/gateway-oss/latest/auth/#multiple-authentication).
+requests. For more information, see [multiple authentication](https://docs.konghq.com/gateway/latest/configure/auth/#multiple-authentication).
 
 ### Set up With a Database
 
@@ -371,16 +371,16 @@ plugins:
    until the renewal period.
 
 3. Navigate to `http://localhost:8000/sessions-test`
-  
-   If the cookie is attached to the browser session, it should return the 
+
+   If the cookie is attached to the browser session, it should return the
    code `403` and the message “So long and thanks for all the fish!”.
-   
+
 4. Navigate to `http://localhost:8000/sessions-test?apikey=open_sesame`
-   
+
    It should return `200` and authenticated via `key-auth` key query param.
-   
+
 5. Navigate to `http://localhost:8000/sessions-test`
-   
+
    It can now use the session cookie that is granted by the Session plugin.
 
 ### Defaults

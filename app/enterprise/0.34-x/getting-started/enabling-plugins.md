@@ -1,8 +1,5 @@
 ---
 title: Enabling Plugins
-redirect_from:
-  - /enterprise/0.34-x/getting-started/enabling-plugins/enterprise/0.34-x/plugins/key-authentication
-  - /enterprise/0.34-x/getting-started/enabling-plugins/enterprise/0.34-x/plugins
 ---
 
 ## Introduction

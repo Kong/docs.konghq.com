@@ -18,7 +18,7 @@ features:
             url: /konnect/dev-portal
           - text: Self-hosted
             icon: /assets/images/icons/icn-server-blue.svg
-            url: /enterprise/latest/developer-portal/
+            url: /gateway/latest/developer-portal/
 
       - name: Vitals
         description: View granular analytics with Vitals to monitor the health of environments, clusters, and individual services through the ServiceHub interface.
@@ -29,7 +29,7 @@ features:
             url: /konnect/vitals
           - text: Self-hosted
             icon: /assets/images/icons/icn-server-blue.svg
-            url: /enterprise/latest/vitals/overview
+            url: /gateway/latest/vitals/overview
 
       - name: Runtime Manager
         description: Provision and manage Kong Gateway runtimes in your environment and platform of choice.
@@ -53,7 +53,7 @@ features:
         links:
           - text: Immunity docs
             icon: /assets/images/icons/icn-doc.svg
-            url: /enterprise/latest/immunity/overview
+            url: /gateway/latest/immunity/overview
 
   - title: Ecosystem integrations
     items:
@@ -91,10 +91,10 @@ contribute_links:
 
 popular_topics:
   - text: Install Kong Gateway
-    url: /enterprise/latest/deployment/installation/overview
+    url: /gateway/latest/install-and-run/
   - text: Plugin development guide
-    url: /gateway-oss/latest/pdk
+    url: /gateway/latest/plugin-development/
   - text: OpenID Connect
     url: /hub/kong-inc/openid-connect/
   - text: Kong Gateway API documentation
-    url: /gateway-oss/latest/admin-api
+    url: /gateway/latest/admin-api

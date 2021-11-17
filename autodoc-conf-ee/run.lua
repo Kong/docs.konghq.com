@@ -140,7 +140,7 @@ infd:close()
 
 local parsed = assert(parser.parse(lines))
 
-local outpath = "app/enterprise/" .. KONG_VERSION .. "/property-reference.md"
+local outpath = "app/gateway/" .. KONG_VERSION .. "/reference/configuration.md"
 local outfd = assert(io.open(outpath, "w+"))
 
 outfd:write(data.header)

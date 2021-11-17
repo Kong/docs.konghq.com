@@ -298,6 +298,6 @@ Credential for which to get the associated [Consumer][consumer-object].
 Note that the `username` accepted here is **not** the `username` property of a
 Consumer.
 
-[configuration]: /gateway-oss/latest/configuration
-[consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
+[configuration]: /gateway/latest/reference/configuration
+[consumer-object]: /gateway/latest/admin-api/#consumer-object
 [acl-associating]: /plugins/acl/#associating-consumers

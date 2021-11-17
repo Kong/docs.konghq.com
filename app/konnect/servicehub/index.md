@@ -34,7 +34,7 @@ version. Each Service version can only have one implementation.
 
 <div class="alert alert-ee blue">
 <b>Note:</b> Currently, the only supported implementation type is a
-{{site.ee_gateway_name}} runtime.
+{{site.base_gateway}} runtime.
 </div>
 
 The main attribute of a Service version is its Upstream URL, where the service
@@ -46,7 +46,7 @@ specifying its protocol, host, port, and path individually.
 
 ### Kong Gateway implementations
 
-When configuring a {{site.ee_gateway_name}} implementation of a Service, you'll
+When configuring a {{site.base_gateway}} implementation of a Service, you'll
 need to specify a Route. Routes determine how (and if) requests get sent to
 their Services after they reach the API gateway. A single Service version
 can have only one implementation, but potentially many Routes.

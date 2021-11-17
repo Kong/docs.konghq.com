@@ -186,7 +186,7 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/mtls-auth \
 ```
 
 Where `{consumer}` is the `id` or `username` property of the
-[Consumer](/enterprise/latest/admin-api/#consumer-object) entity to associate the
+[Consumer](/gateway/latest/admin-api/#consumer-object) entity to associate the
 credentials to.
 
 Once created, you'll see a `201` success message:

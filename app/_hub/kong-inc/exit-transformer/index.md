@@ -88,7 +88,6 @@ unexpected error on an _unknown_ Service or Route will pass through the Exit Tra
 - [405 Method not allowed](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405)
 - [406 Not acceptable](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/406)
 - [407 Proxy authentication required](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/407)
-- [408 Request timeout](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408)
 - [409 Conflict](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409)
 - [410 Gone](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/410)
 - [411 Length required](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/411)

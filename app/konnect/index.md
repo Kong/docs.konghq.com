@@ -36,4 +36,4 @@ deployment, see the following topics to get started:
 
 ## Self-hosted Konnect
 If deploying {{site.konnect_short_name}} in a self-hosted environment, see the
-[{{site.ee_product_name}} docs](/enterprise/).
+[{{site.ee_product_name}} docs](/gateway/).

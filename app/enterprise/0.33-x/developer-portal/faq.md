@@ -1,7 +1,6 @@
 ---
 title: Kong Developer Portal FAQ
 book: portal
-redirect_from: '/enterprise/0.33-x/developer-portal/FAQ'
 chapter: 11
 ---
 

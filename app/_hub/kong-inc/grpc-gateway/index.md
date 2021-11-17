@@ -188,4 +188,4 @@ Currently only unary requests are supported; streaming requests are not supporte
 
 ## See also
 
-[Introduction to Kong gRPC plugins](/enterprise/latest/plugins/grpc)
+[Introduction to Kong gRPC plugins](/gateway/latest/configure/grpc)

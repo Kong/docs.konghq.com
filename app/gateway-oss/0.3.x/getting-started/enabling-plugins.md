@@ -1,6 +1,5 @@
 ---
 title: Enabling Plugins
-redirect_from: '/0.31-x/getting-started/enabling-plugins'
 ---
 
 ## Introduction

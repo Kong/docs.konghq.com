@@ -39,6 +39,12 @@ Please follow one of the
 If everything is setup correctly, making a request to Kong should return
 HTTP 404 Not Found.
 
+{:.note}
+> **Note**: If you are running the example using Minikube on MacOS, you may need 
+to run [`minikube tunnel`](https://minikube.sigs.k8s.io/docs/handbook/accessing/#loadbalancer-access)
+in a separate terminal window.  This exposes LoadBalancer services 
+externally, which is not enabled by default.
+
 ```bash
 $ curl -i $PROXY_IP
 HTTP/1.1 404 Not Found

@@ -9,7 +9,7 @@ Kong Enterprise 2.1.x docs includes any changes made for the 2.1.0.0 beta docs.
 
 ### Release Notes
 * Updated [Release Notes](/enterprise/2.1.x/release-notes/) topic.
-* Updated [Changelog](/enterprise/changelog/) topic.
+* Updated [Changelog](/gateway/changelog/) topic.
 * New [What's New in the Docs](/enterprise/2.1.x/doc-updates/) topic.
 * New [Version Support](/enterprise/2.1.x/support-policy/) information and matrix.
 

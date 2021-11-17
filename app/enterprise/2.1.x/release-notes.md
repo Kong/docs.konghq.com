@@ -2,7 +2,7 @@
 title: Kong Enterprise 2.1.x Release Notes
 ---
 
-These release notes provide a high-level overview of Kong Enterprise 2.1.x, which includes the 2.1.0.0 (beta) release. For detailed information about 2.1.x, 2.1.0.0 (beta), and any subsequent 2.1.x patch releases, see the [Changelog](https://docs.konghq.com/enterprise/changelog/).
+These release notes provide a high-level overview of Kong Enterprise 2.1.x, which includes the 2.1.0.0 (beta) release. For detailed information about 2.1.x, 2.1.0.0 (beta), and any subsequent 2.1.x patch releases, see the [Changelog](https://docs.konghq.com/gateway/changelog/).
 
 ## New Features
 
@@ -80,4 +80,4 @@ Kong Brain is deprecated and not available for use in Kong Enterprise version 2.
 
 ## Changelog
 
-For a complete list of features, fixes, and changes, see the Kong Enterprise [Changelog](/enterprise/changelog/) for versions 2.1.x and 2.1.0.0 (beta).
+For a complete list of features, fixes, and changes, see the Kong Enterprise [Changelog](/gateway/changelog/) for versions 2.1.x and 2.1.0.0 (beta).

@@ -1,6 +1,5 @@
 ---
 title: Kong Deployment Guide
-redirect_from: "/enterprise/0.33-x/kong-implementation-checklist/"
 ---
 
 ## Introduction
@@ -122,20 +121,20 @@ These are the port settings in order for Kong to work:
 
 For Kong Manager:
 
-- Allow HTTP traffic to 
-[`admin_gui_listen`](/enterprise/{{page.kong_version}}/admin-gui/configuration/property-reference/#admin_gui_listen). 
+- Allow HTTP traffic to
+[`admin_gui_listen`](/enterprise/{{page.kong_version}}/admin-gui/configuration/property-reference/#admin_gui_listen).
 By default, `8002`.
-- Allow HTTPS traffic to 
-[`admin_gui_listen`](/enterprise/{{page.kong_version}}/admin-gui/configuration/property-reference/#admin_gui_listen). 
+- Allow HTTPS traffic to
+[`admin_gui_listen`](/enterprise/{{page.kong_version}}/admin-gui/configuration/property-reference/#admin_gui_listen).
 By default, `8445`.
 
 For the Dev Portal:
 
-- Allow HTTP traffic to 
-[`portal_gui_listen`](/enterprise/{{page.kong_version}}/developer-portal/configuration/property-reference/#portal_gui_listen). 
+- Allow HTTP traffic to
+[`portal_gui_listen`](/enterprise/{{page.kong_version}}/developer-portal/configuration/property-reference/#portal_gui_listen).
 By default, `8003`.
-- Allow HTTPS traffic to 
-[`portal_gui_listen`](/enterprise/{{page.kong_version}}/developer-portal/configuration/property-reference/#portal_gui_listen). 
+- Allow HTTPS traffic to
+[`portal_gui_listen`](/enterprise/{{page.kong_version}}/developer-portal/configuration/property-reference/#portal_gui_listen).
 By default, `8446`.
 
 **Note**: since Kong CE 0.13.0 - and EE 0.32 - listen directives have a new

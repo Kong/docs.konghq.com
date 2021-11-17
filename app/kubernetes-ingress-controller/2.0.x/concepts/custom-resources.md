@@ -127,8 +127,8 @@ VPN software and a variety of other applications.
 
 [udp]:https://datatracker.ietf.org/doc/html/rfc768
 [k8s-crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/
-[kong-consumer]: /gateway-oss/latest/admin-api/#consumer-object
-[kong-plugin]: /gateway-oss/latest/admin-api/#plugin-object
-[kong-route]: /gateway-oss/latest/admin-api/#route-object
-[kong-service]: /gateway-oss/latest/admin-api/#service-object
-[kong-upstream]: /gateway-oss/latest/admin-api/#upstream-objects
+[kong-consumer]: /gateway/latest/admin-api/#consumer-object
+[kong-plugin]: /gateway/latest/admin-api/#plugin-object
+[kong-route]: /gateway/latest/admin-api/#route-object
+[kong-service]: /gateway/latest/admin-api/#service-object
+[kong-upstream]: /gateway/latest/admin-api/#upstream-objects

@@ -4,7 +4,6 @@ title: Install Kong Gateway on CentOS
 
 ## Introduction
 
-
 This guide walks through downloading, installing, and starting **{{site.ee_product_name}}** on **CentOS**.
 
 The configuration shown in this guide is intended as an example. Depending on your
@@ -257,7 +256,7 @@ your setup, reach out to your Kong Support contact or go to the
 ## Next Steps
 
 Check out {{site.base_gateway}}'s series of
-[Getting Started](/getting-started-guide/latest/overview) guides to get the most
+[Getting Started](/gateway/latest/get-started/comprehensive/) guides to get the most
 out of {{site.base_gateway}}.
 
 If you have an Enterprise subscription, add the license using the

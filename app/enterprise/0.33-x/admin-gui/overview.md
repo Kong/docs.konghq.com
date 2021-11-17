@@ -1,9 +1,5 @@
 ---
 title: Welcome to the Kong Admin GUI
-redirect_from:
-  - /0.33-x/admin-api/
-  - /0.33-x/api-admin-gui/
-  - /enterprise/0.33-x/admin-gui/
 book: admin_gui
 chapter: 1
 toc: false

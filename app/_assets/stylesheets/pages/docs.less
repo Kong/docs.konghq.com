@@ -126,7 +126,7 @@
         margin-bottom: 0.1rem;
         list-style-type: disc;
 
-        p {
+        > p {
           // font-size: inherit;
           margin-bottom: 1.2rem;
         }
@@ -386,6 +386,12 @@
       justify-content: space-between;
       border-color: @gray-border;
       background-color: @gray-background;
+
+      &:focus-visible {
+        color: #1155cb;
+        outline: 2px solid #1155cb;
+        border-radius: 3px;
+      }
 
       em {
         font-style: normal;

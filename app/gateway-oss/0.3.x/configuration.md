@@ -1,6 +1,5 @@
 ---
 title: Configuration Reference
-redirect_from: '/0.31-x/configuration/'
 ---
 
 ## Introduction

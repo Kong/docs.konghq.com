@@ -57,7 +57,7 @@ breadcrumbs:
       <td><code>api_id</code>
         <br><br><strong>Type: </strong>string</td>
       <td>The ID of the API the plugin targets.
-        <br><br><strong>Note:</strong> The <a href="/0.13.x/admin-api/#api-object">API Entity</a> is deprecated in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a> and <a href="https://docs.konghq.com/enterprise/changelog/#0-32">EE 0.32</a>.</td>
+        <br><br><strong>Note:</strong> The <a href="/0.13.x/admin-api/#api-object">API Entity</a> is deprecated in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a> and <a href="https://docs.konghq.com/gateway/changelog/#0-32">EE 0.32</a>.</td>
       </tr>
     {% endif %}
     {% for field in page.params.config %}
@@ -168,14 +168,14 @@ breadcrumbs:
       {% if page.alpha %}
       <div class="alert alert-ee red condensed margin-bigger">
         <div class="alert-body">
-          <div class="tag red">ALPHA</div>
-          <p><strong>WARNING:</strong> This plugin is released as <a href="/enterprise/latest/introduction/key-concepts/#alpha">ALPHA</a> and should not be deployed in a production environment.</p>
+          <div class="tag red">Tech Preview</div>
+          <p><strong>WARNING:</strong> This plugin is released as <a href="/konnect-platform/key-concepts/#tech-preview">tech preview</a> and should not be deployed in a production environment.</p>
           </div>
       </div>
       {% endif %}
       {% if page.beta %}
       <div class="alert alert-red">
-        This plugin is released as <a href="/enterprise/latest/introduction/key-concepts/#beta"><span class="badge beta"></span></a> and should not be deployed in a production environment.
+        This plugin is released as <a href="/konnect-platform/key-concepts/#beta"><span class="badge beta"></span></a> and should not be deployed in a production environment.
       </div>
       {% endif %}
 

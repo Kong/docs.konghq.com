@@ -16,7 +16,7 @@ upstreams, certificates, SNIs, and global and consumer-scoped plugins.
 authentication. They provide a way to divide access to your services, and
 make it easy to revoke that access without disturbing a service's function.
 
-: [Consumer object reference &gt;](/enterprise/latest/admin-api/#consumer-object)
+: [Consumer object reference &gt;](/gateway/latest/admin-api/#consumer-object)
 
 **Plugins**
 : Plugins let you extend proxy functionality by adding rules, policies,
@@ -30,7 +30,7 @@ in the cluster, as applicable, and consumer-scoped plugins only apply to a
 specific consumer.
 
 : [Configure global and consumer-scoped plugins &gt;](/konnect/manage-plugins/shared-config/)
-: [Plugin object reference &gt;](/enterprise/latest/admin-api/#plugin-object)
+: [Plugin object reference &gt;](/gateway/latest/admin-api/#plugin-object)
 : [Plugin Hub &gt;](/hub/)
 
 **Upstreams**
@@ -39,7 +39,7 @@ service/API. Upstreams can be used to health
 check, circuit break, and load balance incoming requests over multiple services
 (targets).
 
-: [Upstream object reference &gt;](/enterprise/latest/admin-api/#upstream-object)
+: [Upstream object reference &gt;](/gateway/latest/admin-api/#upstream-object)
 
 **Certificates**
 : A certificate object represents a public certificate and can be paired with
@@ -47,7 +47,7 @@ a corresponding private key. Certificates handle SSL/TLS termination
 for encrypted requests, and can be used as a trusted CA store when validating
 the peer certificate of a client or service.
 
-: [Certificate object reference &gt;](/enterprise/latest/admin-api/#certificate-object)
+: [Certificate object reference &gt;](/gateway/latest/admin-api/#certificate-object)
 
 **SNIs**
 : An SNI object represents a many-to-one mapping of hostnames to a certificate.
@@ -55,4 +55,4 @@ A certificate object can have many hostnames associated with it, so when
 {{site.base_gateway}} receives an SSL request, it uses the SNI field in the
 ClientHello to look up the associated certificate object.
 
-: [SNI object reference &gt;](/enterprise/latest/admin-api/#sni-object)
+: [SNI object reference &gt;](/gateway/latest/admin-api/#sni-object)

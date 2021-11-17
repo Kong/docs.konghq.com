@@ -71,7 +71,7 @@ params:
       default:
       datatype: string
       description: |
-        Username for SASL authentication. 
+        Username for SASL authentication.
     - name: authentication.password
       required: false
       value_in_examples: admin-secret
@@ -79,7 +79,7 @@ params:
       default:
       datatype: string
       description: |
-        Password for SASL authentication. 
+        Password for SASL authentication.
     - name: authentication.tokenauth
       required: false
       value_in_examples: false
@@ -209,10 +209,10 @@ params:
 
 ---
 
-### Enabling on a service-less route
+### Enable on a service-less route
 
 ```bash
-$ curl -X POST http://kong:8001/routes/my-route/plugins \
+curl -X POST http://kong:8001/routes/my-route/plugins \
     --data "name=kafka-upstream" \
     --data "config.bootstrap_servers[1].host=localhost" \
     --data "config.bootstrap_servers[1].port=9092" \
@@ -254,10 +254,10 @@ Enable TLS by setting `config.security.ssl` to `true`.
 
 ## mTLS
 
-Enable mTLS by setting a valid UUID of a certificate in `config.security.certificate_id`. 
+Enable mTLS by setting a valid UUID of a certificate in `config.security.certificate_id`.
 
 Note that this option needs `config.security.ssl` set to true.
-See [Certificate Object](https://docs.konghq.com/enterprise/2.5.x/admin-api/#certificate-object)
+See [Certificate Object](https://docs.konghq.com/gateway/latest/admin-api/#certificate-object)
 in the Admin API documentation for information on how to set up Certificates.
 
 ## SASL Authentication
@@ -295,7 +295,10 @@ Known limitations:
 
 ## Quickstart
 
-The following guidelines assume that {{site.base_gateway}} is installed and the Kafka Upstream plugin is enabled.
+The following steps assume that {{site.base_gateway}} is installed and the Kafka Upstream plugin is enabled.
+
+{:.note}
+> **Note**: We use `zookeeper` in the following example, which is not required or has been removed on some Kafka versions. Refer to the [Kafka ZooKeeper documentation](https://kafka.apache.org/documentation/#zk) for more information.
 
 1. Create a `kong-upstream` topic in your Kafka cluster:
 

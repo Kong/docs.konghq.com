@@ -25,4 +25,4 @@ Kong's many available tools for managing the gateway.
 [quickstart]: /{{page.kong_version}}/getting-started/quickstart
 [configuring-a-service]: /{{page.kong_version}}/getting-started/configuring-a-service
 [enabling-plugins]: /{{page.kong_version}}/getting-started/enabling-plugins
-[getting-started]: /getting-started-guide/latest/overview
+[getting-started]: /gateway/latest/get-started/comprehensive/

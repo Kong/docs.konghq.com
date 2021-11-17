@@ -36,7 +36,7 @@ body {
         z-index: 9;
         top: 0px;
         overflow: hidden;
-        background: #5d9fff;
+        background: @blue-500;
         align-items: center;
         justify-content: center;
         strong,
@@ -48,7 +48,7 @@ body {
           font-size: 10px;
           text-transform: uppercase;
           background: #fff;
-          color: #5d9fff;
+          color: @blue-500;
           padding: 0rem 1.25rem;
           border-radius: 50px;
           margin-right: 1rem;
@@ -115,27 +115,27 @@ body {
       }
       // uncomment this section when adding a new promo banner
       // also uncomment the promo banner sections in /app/_includes/nav-v2.html and gulpfile.js
-      // header.navbar-v2 {
-      //   transition: transform 0.2s ease-in-out;
-      //   will-change: transform;
-      //   height: 95px;
-      // }
-      //
-      // header.navbar-v2.closed {
-      //   transition: 0s ease-in-out;
-      // }
-      //
-      // header.closed,
-      // header.compress {
-      //   transform: translateY(-35px);
-      // }
-      //
-      // header:not(.closed) ~ .landing-page {
-      //   margin-top: 35px;
-      // }
-      // header:not(.closed) ~ div.page {
-      //   margin-top: 100px;
-      // }
+      header.navbar-v2 {
+        transition: transform 0.2s ease-in-out;
+        will-change: transform;
+        height: 95px;
+      }
+
+      header.navbar-v2.closed {
+        transition: 0s ease-in-out;
+      }
+
+      header.closed,
+      header.compress {
+        transform: translateY(-35px);
+      }
+
+      header:not(.closed) ~ .landing-page {
+        margin-top: 35px;
+      }
+      header:not(.closed) ~ div.page {
+        margin-top: 100px;
+      }
     }
   }
 }

@@ -18,13 +18,13 @@ be downloaded at
 Then start StatsD exporter with
 
 ```bash
-$ ./statsd_exporter --statsd.mapping-config=statsd.rules.yaml \
+./statsd_exporter --statsd.mapping-config=statsd.rules.yaml \
                     --statsd.listen-unixgram=''
 ```
 
 The StatsD mapping rules file must be configured to match the metrics sent from
 Kong. To learn how to customize the StatsD events name, please refer to
-[Enable Vitals with Prometheus strategy in Kong](#enable-Vitals-with-prometheus-strategy-in-kong)
+[Enable Vitals with Prometheus strategy in Kong](#enable-vitals-with-prometheus-strategy-in-kong)
 section.
 
 {% if include.version == "<1.3" %}

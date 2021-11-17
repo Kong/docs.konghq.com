@@ -72,6 +72,9 @@ Capitalize the following Kong-specific terms:
 - Kong Mesh (Kong Mesh for first mention, Mesh after)
 - Insomnia
 
+{:.note}
+> **Note**: Use lowercase “gateway” when referring to the general concept of an API gateway. Use uppercase “Gateway” as a shorthand for “Kong Gateway”. When writing about "Kong Gateway", use "Kong Gateway" for the first mention and "Gateway" after.
+
 #### Component names
 
 - Dev Portal
@@ -118,10 +121,11 @@ to avoid horizontal scrolling.
 - Do not use shadows.
 - Borders can be added to screenshots only `-1px` black.
 - Add an `alt` attribute and detailed description of the image.
+- **Do not** use GIFs, as they are not accessible and reduce page performance.
 
 ## Links
 
-- Don't use link titles like "Read more" and "Click here". Instead, write descriptive titles that properly detail what content is accessible by clicking the link. 
+- Don't use link titles like "Read more" and "Click here". Instead, write descriptive titles that properly detail what content is accessible by clicking the link.
 - If the linked content is a larger area like a panel, add a `title` attribute that describes the linked content to the `a` tag.
 
 ## Reference style guides

@@ -1,8 +1,5 @@
 ---
 title: Add a Consumer
-redirect_from:
-  - /enterprise/1.5.x/getting-started/add-consumer
-  - /enterprise/latest/getting-started/add-consumer
 ---
 
 ## 1. Create a Consumer

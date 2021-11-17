@@ -119,7 +119,7 @@ endif %}{% endfor
 {% navtabs %}
 {% navtab Admin API %}
 
-For example, configure this plugin on a [service](/gateway-oss/latest/admin-api/#service-object) by
+For example, configure this plugin on a [service](/gateway/latest/admin-api/#service-object) by
 making the following request:
 
 ```bash
@@ -148,7 +148,7 @@ plugin: {{include.params.name}}
 ```
 
 Next, apply the KongPlugin resource to a
-[Service](/gateway-oss/latest/admin-api/#service-object) by annotating the
+[Service](/gateway/latest/admin-api/#service-object) by annotating the
 Service as follows:
 
 ```yaml
@@ -185,7 +185,7 @@ spec:
 {% unless include.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
-For example, configure this plugin on a [service](/gateway-oss/latest/admin-api/#service-object) by
+For example, configure this plugin on a [service](/gateway/latest/admin-api/#service-object) by
 adding this section to your declarative configuration file:
 
 ``` yaml
@@ -229,7 +229,7 @@ service row.
 
     <div class="alert alert-ee blue">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
-    for your product tier. See <a href="/enterprise/latest/deployment/licensing/">{{site.base_gateway}} tiers</a>.
+    for your product tier. See <a href="/gateway/latest/plan-and-deploy/licenses/">{{site.base_gateway}} tiers</a>.
     </div>
 
 5. If the option is available, select **Scoped**.
@@ -255,7 +255,7 @@ is not already prefilled.{% unless
 {% navtabs %}
 {% navtab Admin API %}
 
-For example, configure this plugin on a [route](/gateway-oss/latest/admin-api/#route-object) with:
+For example, configure this plugin on a [route](/gateway/latest/admin-api/#route-object) with:
 
 ```bash
 $ curl -X POST http://{HOST}:8001/routes/{ROUTE}/plugins \
@@ -282,7 +282,7 @@ metadata:
 plugin: {{include.params.name}}
 ```
 
-Then, apply it to an ingress ([Route or Routes](/gateway-oss/latest/admin-api/#route-object))
+Then, apply it to an ingress ([Route or Routes](/gateway/latest/admin-api/#route-object))
 by annotating the ingress as follows:
 
 ``` yaml
@@ -319,7 +319,7 @@ spec:
 {% unless include.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
-For example, configure this plugin on a [route](/gateway-oss/latest/admin-api/#route-object) by
+For example, configure this plugin on a [route](/gateway/latest/admin-api/#route-object) by
 adding this section to your declarative configuration file:
 
 ```yaml
@@ -362,7 +362,7 @@ Configure this plugin on a route:
 
     <div class="alert alert-ee blue">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
-    for your product tier. See <a href="/enterprise/latest/deployment/licensing/">{{site.base_gateway}} tiers</a>.
+    for your product tier. See <a href="/gateway/latest/plan-and-deploy/licenses/">{{site.base_gateway}} tiers</a>.
     </div>
 
 6. If the option is available, select **Scoped**.
@@ -388,7 +388,7 @@ or sample values as needed:
 {% navtabs %}
 {% navtab Admin API %}
 
-For example, configure this plugin on a [consumer](/gateway-oss/latest/admin-api/#consumer-object) with:
+For example, configure this plugin on a [consumer](/gateway/latest/admin-api/#consumer-object) with:
 
 ```bash
 $ curl -X POST http://{HOST}:8001/consumers/{CONSUMER}/plugins \
@@ -421,7 +421,7 @@ metadata:
 plugin: {{include.params.name}}
 ```
 
-Then, apply it to a [consumer](/gateway-oss/latest/admin-api/#consumer-object) by
+Then, apply it to a [consumer](/gateway/latest/admin-api/#consumer-object) by
 annotating the KongConsumer resource as follows:
 
 ``` yaml
@@ -449,7 +449,7 @@ metadata:
 {% unless include.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
-For example, configure this plugin on a [consumer](/gateway-oss/latest/admin-api/#consumer-object) by
+For example, configure this plugin on a [consumer](/gateway/latest/admin-api/#consumer-object) by
 adding this section to your declarative configuration file:
 
 ``` yaml
@@ -477,7 +477,7 @@ Configure this plugin on a consumer:
 
     <div class="alert alert-ee blue">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
-    for your product tier. See <a href="/enterprise/latest/deployment/licensing/">{{site.base_gateway}} tiers</a>.
+    for your product tier. See <a href="/gateway/latest/plan-and-deploy/licenses/">{{site.base_gateway}} tiers</a>.
     </div>
 
 6. If the option is available, select **Global**.{% unless
@@ -499,7 +499,7 @@ Configure this plugin on a consumer:
 
 A plugin which is not associated to any service, route, or consumer is
 considered _global_, and will be run on every request. Read the
-[Plugin Reference](/gateway-oss/latest/admin-api/#add-plugin) and the [Plugin Precedence](/gateway-oss/latest/admin-api/#precedence)
+[Plugin Reference](/gateway/latest/admin-api/#add-plugin) and the [Plugin Precedence](/gateway/latest/admin-api/#precedence)
 sections for more information.
 
 {% navtabs %}
