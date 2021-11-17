@@ -358,7 +358,7 @@
         Not bundled with Kong Gateway.
         <br><br>
         Kong Immunity is not available in Konnect Cloud.
-      url: /enterprise/latest/immunity/install-configure
+      url: /gateway/latest/immunity/install-configure
 
     - name: Datadog
       free: Yes

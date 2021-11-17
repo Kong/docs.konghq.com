@@ -275,5 +275,5 @@ $ vault write kong-auth/foo - <<EOF
 EOF
 ```
 
-[consumer-object]: https://docs.konghq.com/enterprise/1.3-x/admin-api/#consumer-object
+[consumer-object]: https://docs.konghq.com/gateway/latest/admin-api/#consumer-object
 [acl-associating]: https://docs.konghq.com/hub/kong-inc/acl/#associating-consumers

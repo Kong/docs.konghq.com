@@ -9,7 +9,7 @@ Provided below are compatibility tables for Kong products. Select a Kong product
 and version (if applicable) to see technologies that have been tested for
 interoperability with the Kong platform.
 
-Please see [Kong Gateway Version Support](https://docs.konghq.com/enterprise/latest/support-policy/)
+Please see [Kong Gateway Version Support](https://docs.konghq.com/konnect-platform/support-policy/)
 for more information about Kong's support for {{site.base_gateway}} and our
 [Support & Maintenance Policy](https://konghq.com/supportandmaintenancepolicy/).
 

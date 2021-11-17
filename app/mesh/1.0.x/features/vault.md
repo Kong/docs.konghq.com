@@ -1,6 +1,5 @@
 ---
 title: Kong Mesh - Vault Policy
-redirect_from: "/mesh/1.0.x/features/"
 ---
 
 ## Vault CA Backend

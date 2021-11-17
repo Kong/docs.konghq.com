@@ -28,7 +28,7 @@ categories:
 
 For example, an Ingress is translated directly into a Kong route, and a
 KongConsumer is translated directly into a
-[Kong consumer](/gateway-oss/latest/admin-api/#consumer-object). A Secret containing
+[Kong consumer](/gateway/latest/admin-api/#consumer-object). A Secret containing
 an authentication plugin credential is _not_ translated directly: it is only
 translated into Kong configuration if a KongConsumer resource references it.
 

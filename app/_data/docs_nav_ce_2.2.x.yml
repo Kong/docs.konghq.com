@@ -3,19 +3,19 @@
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   items:
     - text: Overview
-      url: /../../getting-started-guide/latest/overview
+      url: /../../gateway/latest/get-started/comprehensive
     - text: Prepare to Administer
-      url: /../../getting-started-guide/latest/prepare
+      url: /../../gateway/latest/get-started/comprehensive/prepare
     - text: Expose your Services
-      url: /../../getting-started-guide/latest/expose-services
+      url: /../../gateway/latest/get-started/comprehensive/expose-services
     - text: Protect your Services
-      url: /../../getting-started-guide/latest/protect-services
+      url: /../../gateway/latest/get-started/comprehensive/protect-services
     - text: Improve Performance
-      url: /../../getting-started-guide/latest/improve-performance
+      url: /../../gateway/latest/get-started/comprehensive/improve-performance
     - text: Secure Services
-      url: /../../getting-started-guide/latest/secure-services
+      url: /../../gateway/latest/get-started/comprehensive/secure-services
     - text: Set Up Intelligent Load Balancing
-      url: /../../getting-started-guide/latest/load-balancing
+      url: /../../gateway/latest/get-started/comprehensive/load-balancing
 
 - title: Guides &amp; References
   icon: /assets/images/icons/documentation/icn-references-color.svg

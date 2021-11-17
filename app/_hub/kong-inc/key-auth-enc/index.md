@@ -110,7 +110,7 @@ params:
 ## Prerequisite
 
 Prior to configuring this plugin, Kong's encryption keyring must be enabled. See the
-[keyring Getting Started guide](/enterprise/latest/db-encryption#getting-started) for more details.
+[keyring Getting Started guide](/gateway/latest/plan-and-deploy/security/db-encryption#getting-started) for more details.
 
 ## Usage
 
@@ -365,8 +365,8 @@ associated Consumer.
 }
 ```
 
-[db-encryption]: /enterprise/latest/db-encryption
-[configuration]: /gateway-oss/latest/configuration
-[consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
+[db-encryption]: /gateway/latest/plan-and-deploy/security/db-encryption
+[configuration]: /gateway/latest/reference/configuration
+[consumer-object]: /gateway/latest/admin-api/#consumer-object
 [acl-associating]: /plugins/acl/#associating-consumers
 

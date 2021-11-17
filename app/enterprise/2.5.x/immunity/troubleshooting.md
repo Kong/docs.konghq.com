@@ -1,8 +1,5 @@
 ---
 title: Troubleshooting Common Issues
-toc: true
-redirect_from:
-  - /enterprise/2.2.x/brain-immunity/troubleshooting
 ---
 
 This troubleshooting topic contains common issues you might experience when using Kong Immunity, and troubleshooting tips for resolving these issues. Information is also provided about how to contact Kong to report an issue, and how to submit suggestions to help improve functionality.

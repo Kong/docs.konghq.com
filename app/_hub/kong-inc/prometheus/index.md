@@ -100,8 +100,8 @@ dashboard: [https://grafana.com/dashboards/7424](https://grafana.com/dashboards/
   belonging to a given Upstream as well as their subsystem (`http` or `stream`).
 - **Dataplane Status**: The last seen timestamp, config hash, config sync status and certificate expiration timestamp for
 data plane nodes is exported to control plane.
-- **Enterprise License Information**: The {{site.ee_gateway_name}} license expiration date, features and
-license signature. Those metrics are only exported on {{site.ee_gateway_name}}.
+- **Enterprise License Information**: The {{site.base_gateway}} license expiration date, features and
+license signature. Those metrics are only exported on {{site.base_gateway}}.
 
 Here is an example of output you could expect from the `/metrics` endpoint:
 
@@ -205,11 +205,11 @@ need to be set up to require authentication. Here are a couple of options to
 allow access to the `/metrics` endpoint to Prometheus:
 
 
-1. If the [Status API](/gateway-oss/latest/configuration/#status_listen)
+1. If the [Status API](/gateway/latest/reference/configuration/#status_listen)
    is enabled, then its `/metrics` endpoint can be used.
    This is the preferred method.
 
 1. The `/metrics` endpoint is also available on the Admin API, which can be used
    if the Status API is not enabled. Note that this endpoint is unavailable
-   when [RBAC](/enterprise/latest/admin-api/rbac/reference/) is enabled on the
+   when [RBAC](/gateway/latest/admin-api/rbac/reference/) is enabled on the
    Admin API (Prometheus does not support Key-Auth to pass the token).

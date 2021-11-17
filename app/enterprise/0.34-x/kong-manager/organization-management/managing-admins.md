@@ -1,8 +1,6 @@
 ---
 title: Managing Admins
 book: admin_gui
-redirect_from:
-  - /enterprise/0.34-x/organization-management/managing-admins
 chapter: 7
 ---
 

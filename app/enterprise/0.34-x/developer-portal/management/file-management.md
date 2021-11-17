@@ -1,7 +1,5 @@
 ---
 title: Kong Dev Portal File Management
-redirect_from:
-  - /enterprise/0.34-x/developer-portal/file-management
 ---
 
 ## File Types

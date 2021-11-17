@@ -1,7 +1,5 @@
 ---
 title: Start Kong Enterprise Securely
-redirect_from:
-  - /enterprise/2.1.x/getting-started/start-kong
 ---
 
 ## Introduction

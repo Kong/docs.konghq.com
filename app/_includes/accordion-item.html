@@ -8,7 +8,7 @@
     <img src="{{ include.icon }}" alt="">
     {% endif %}
     {% if include.url %}
-    <a href="{{ include.url }}">{{ include.label }}</a>
+    <a href="{{ include.url }}" class="accordion-link" role="menuitem" tabindex="0">{{ include.label }}</a>
     {% else %}
     {{ include.label }}
     {% endif %}

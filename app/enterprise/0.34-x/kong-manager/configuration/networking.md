@@ -1,8 +1,5 @@
 ---
 title: Networking
-redirect_from:
-  - /enterprise/0.34-x/deployment-guide/enterprise/0.34-x/kong-manager/configuration/networking/
-  - /enterprise/0.34-x/deployment-guide/enterprise/0.34-x/kong-manager/configuration/networking/
 book: admin_gui
 chapter: 4
 ---

@@ -59,7 +59,7 @@ hours of events.
 ![Konnect Vitals Service Version Status Codes](/assets/images/docs/konnect/konnect-vitals-status-codes.png)
 
 For more information about status codes, see
-[Vitals Status Codes](/enterprise/latest/vitals/vitals-metrics/#status-codes).
+[Vitals Status Codes](/gateway/latest/vitals/vitals-metrics/#status-codes).
 
 
 ## View Vitals performance for a Route
@@ -79,7 +79,7 @@ and list view or graph view. By default, the graphs display data for the last 6
 hours.
 
 For more information about status codes, see
-[Vitals Status Codes](/enterprise/latest/vitals/vitals-metrics/#status-codes).
+[Vitals Status Codes](/gateway/latest/vitals/vitals-metrics/#status-codes).
 
 
 ## Vitals terms

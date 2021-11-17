@@ -9,7 +9,7 @@ database.
 
 Note that some DB-less compatible plugins have some limitations or require
 non-default configuration for
-[compatibility](/gateway-oss/latest/db-less-and-declarative-config/#plugin-compatibility).
+[compatibility](/gateway/latest/reference/db-less-and-declarative-config/#plugin-compatibility).
 
 ## Kong
 

@@ -32,9 +32,11 @@ with any of the following network configurations:
     nodes, so only control plane nodes require a database
     (available in {{site.ce_product_name}} 2.0 and {{site.ee_product_name}} 2.1 onward).
 
+<!-- COMMENTED OUT TEMPORARILY AS WE DON'T HAVE THESE DOCS AT THE MOMENT
 For details on the differences between deployment types, see
-[Kong Deployment Options](/enterprise/latest/deployment/deployment-options)
-and [{{site.ee_product_name}} for Kubernetes Deployment Options](/enterprise/latest/deployment/kubernetes-deployment-options/).
+[Kong Deployment Options]()-->
+For the differences between deployment types when running on Kubernetes,
+see [{{site.ee_product_name}} for Kubernetes Deployment Options](/gateway/latest/plan-and-deploy/kubernetes-deployment-options/).
 
 ## Plugin tiers and supported network configurations
 <!-- To add or edit table entries in this topic, see /app/_data/tables/plugin_index.yml in this repo -->

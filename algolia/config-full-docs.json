@@ -11,14 +11,11 @@
       "url": "https://docs.konghq.com/kubernetes-ingress-controller/2.0.x/"
     },
     {
-      "url": "https://docs.konghq.com/enterprise/2.6.x/"
-    },
-    {
-      "url": "https://docs.konghq.com/enterprise/changelog/",
+      "url": "https://docs.konghq.com/gateway/changelog/",
       "selectors_key": "changelog"
     },
     {
-      "url": "https://docs.konghq.com/gateway-oss/2.6.x/"
+      "url": "https://docs.konghq.com/gateway/2.6.x/"
     },
     {
       "url": "https://docs.konghq.com/getting-started-guide/2.6.x/"

@@ -36,19 +36,15 @@ processing invalid requests.
 
 ### Runtime Compatibility
 
-<div class="alert alert-ee blue">
-<b>Note:</b> Currently, the only supported runtime type in
-{{site.konnect_saas}} is a
-<a href="/enterprise/">{{site.ee_gateway_name}}</a>
+{:.note}
+> **Note:** Currently, the only supported runtime type in
+{{site.konnect_saas}} is a [{{site.base_gateway}}](/gateway/)
 data plane.
-</div>
 
-|                                   | {{site.konnect_saas}} |
-|-----------------------------------|:--------------------------------:|
-| {{site.ee_product_name}} 2.5.x    | <i class="fa fa-check"></i> ¹    |
-| {{site.ee_product_name}} 2.4.x    | <i class="fa fa-check"></i> ²    |
-| {{site.ee_product_name}} 2.3.x    | <i class="fa fa-check"></i>      |
-| {{site.ee_product_name}} 2.2.x or earlier | <i class="fa fa-times"></i> |
-
-¹⁾ Supports 2.4.1.1 onward.<br>
-²⁾ Supports 2.5.0.1 onward.
+|                                | {{site.konnect_saas}} | First supported patch version
+|--------------------------------|:---------------------:|-----------------------------
+| {{site.ee_product_name}} 2.6.x | <i class="fa fa-check"></i>    | 2.6.0.0
+| {{site.ee_product_name}} 2.5.x | <i class="fa fa-check"></i>    | 2.5.0.1
+| {{site.ee_product_name}} 2.4.x | <i class="fa fa-check"></i>    | 2.4.1.1
+| {{site.ee_product_name}} 2.3.x | <i class="fa fa-check"></i>    | 2.3.0.0
+| {{site.ee_product_name}} 2.2.x or earlier | <i class="fa fa-times"></i> | --

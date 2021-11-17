@@ -116,7 +116,7 @@
     - text: Kong Deployment Guide
       url: /deployment-guide
     - text: Changelog
-      url: /enterprise/changelog
+      url: /gateway/changelog
       absolute_url: true
     - text: Architecture Overview
       url: /kong-architecture-overview

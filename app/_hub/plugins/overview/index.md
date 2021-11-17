@@ -98,14 +98,9 @@ of functions that a plugin can use to facilitate interactions between plugins
 and the core (or other components) of Kong.
 
 To start creating your own plugins, check out the PDK documentation:
-* {{site.ce_product_name}}
-    * [Lua Plugin Development Guide](/gateway-oss/latest/plugin-development) and the
-    [Lua Plugin Development Kit reference](/gateway-oss/latest/pdk)
-    * [Go Language Support](/gateway-oss/latest/external-plugins)
-* {{site.ee_product_name}}
-    * [Lua Plugin Development Guide](/enterprise/latest/plugin-development) and
-    the [Lua Plugin Development Kit reference](/enterprise/latest/pdk)
-    * [Go Plugin Development Kit](/enterprise/latest/external-plugins)
+* [Plugin Development Guide](/gateway/latest/plugin-development) and the
+[Plugin Development Kit reference](/gateway/latest/pdk)
+* [Other Language Support](/gateway/latest/reference/external-plugins)
 
 ## Contributing custom plugins
 

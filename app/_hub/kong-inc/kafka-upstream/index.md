@@ -71,7 +71,7 @@ params:
       default:
       datatype: string
       description: |
-        Username for SASL authentication. 
+        Username for SASL authentication.
     - name: authentication.password
       required: false
       value_in_examples: admin-secret
@@ -79,7 +79,7 @@ params:
       default:
       datatype: string
       description: |
-        Password for SASL authentication. 
+        Password for SASL authentication.
     - name: authentication.tokenauth
       required: false
       value_in_examples: false
@@ -254,10 +254,10 @@ Enable TLS by setting `config.security.ssl` to `true`.
 
 ## mTLS
 
-Enable mTLS by setting a valid UUID of a certificate in `config.security.certificate_id`. 
+Enable mTLS by setting a valid UUID of a certificate in `config.security.certificate_id`.
 
 Note that this option needs `config.security.ssl` set to true.
-See [Certificate Object](https://docs.konghq.com/enterprise/2.5.x/admin-api/#certificate-object)
+See [Certificate Object](https://docs.konghq.com/gateway/latest/admin-api/#certificate-object)
 in the Admin API documentation for information on how to set up Certificates.
 
 ## SASL Authentication

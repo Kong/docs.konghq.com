@@ -28,7 +28,7 @@
         - text: Monitor License Usage
           url: /deployment/licenses/report
     - text: Changelog
-      url: /enterprise/changelog
+      url: /gateway/changelog
       absolute_url: true
     - text: Migrating to 1.3
       url: /deployment/migrations

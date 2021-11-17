@@ -160,9 +160,9 @@ v1beta1 Ingresses.
 [uri-rfc-paths]: https://tools.ietf.org/html/rfc3986#section-3.3
 [posix-regex]: https://www.boost.org/doc/libs/1_38_0/libs/regex/doc/html/boost_regex/syntax/basic_extended.html
 [path-types]: https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types
-[kong-paths]: /gateway-oss/latest/proxy/#request-path
+[kong-paths]: /gateway/latest/reference/proxy/#request-path
 [wildcard-hostnames]: https://kubernetes.io/docs/concepts/services-networking/ingress/#hostname-wildcards
-[kong-wildcard-hostnames]: /gateway-oss/latest/proxy/#using-wildcard-hostnames
+[kong-wildcard-hostnames]: /gateway/latest/reference/proxy/#using-wildcard-hostnames
 [resource-backends]: https://kubernetes.io/docs/concepts/services-networking/ingress/#resource-backend
 [lambda-plugin]: /hub/kong-inc/aws-lambda/
 [external-name]: https://kubernetes.io/docs/concepts/services-networking/service/#externalname

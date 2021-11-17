@@ -1,5 +1,5 @@
 jQuery(document).ready(function () {
-  var closed = localStorage.getItem("closebanner-hackathon");
+  var closed = localStorage.getItem("closebanner-singlesourcing");
   if (
     closed !== "closebanner"
   ) {
@@ -26,5 +26,5 @@ setInterval(function () {
 }, 10);
 $(".closebanner").on("click", function () {
   $(".navbar-v2").addClass("closed");
-  localStorage.setItem("closebanner-hackathon", "closebanner");
+  localStorage.setItem("closebanner-singlesourcing", "closebanner");
 });

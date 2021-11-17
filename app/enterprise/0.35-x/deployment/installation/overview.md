@@ -1,7 +1,5 @@
 ---
 title: Installing Kong Enterprise
-redirect_from:
-  - /enterprise/0.35-x/deployment/installation/
 toc: false
 ---
 
@@ -30,7 +28,7 @@ toc: false
     <p></p>
     <a href="/enterprise/{{page.kong_version}}/deployment/installation/ubuntu">Go to Guide&rarr;</a>
   </div>
-  
+
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/deployment/installation/debian">Debian</a></h3>
     <p></p>

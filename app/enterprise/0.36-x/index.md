@@ -12,9 +12,9 @@ is_homepage: true
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a target="_blank" href="/enterprise/changelog">Changelog</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a target="_blank" href="/gateway/changelog">Changelog</a></h3>
     <p>Review the details of the changes made to each version of Kong Enterprise.</p>
-    <a target="_blank" href="/enterprise/changelog/">See changelog &rarr;</a>
+    <a target="_blank" href="/gateway/changelog/">See changelog &rarr;</a>
   </div>
 
   <div class="docs-grid-block">

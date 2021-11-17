@@ -3,7 +3,7 @@ title: Kong for Kubernetes Enterprise
 toc: false
 ---
 
-Kong for Kubernetes Enterprise is a deployment of {{site.ee_gateway_name}} onto Kubernetes as an ingress controller. A Kubernetes ingress controller is a proxy that exposes Kubernetes services from applications (e.g., Deployments, StatefulSets) running on a Kubernetes cluster to client applications running outside of the cluster. The intent of an ingress controller is to provide a single point of control for all incoming traffic into the Kubernetes cluster.
+Kong for Kubernetes Enterprise is a deployment of {{site.base_gateway}} onto Kubernetes as an ingress controller. A Kubernetes ingress controller is a proxy that exposes Kubernetes services from applications (e.g., Deployments, StatefulSets) running on a Kubernetes cluster to client applications running outside of the cluster. The intent of an ingress controller is to provide a single point of control for all incoming traffic into the Kubernetes cluster.
 
 For example, here's a common use case: an application deployed to Kubernetes exposes an API that needs to be used by Web or mobile-client applications or services in another cluster. It uses a Kubernetes ingress controller, which can secure and manage traffic according to various policies that can be changed on the fly based on the use case and application.
 

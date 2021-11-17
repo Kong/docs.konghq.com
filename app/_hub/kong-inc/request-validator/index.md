@@ -495,7 +495,7 @@ In this example, use the plugin to validate a request's path parameter.
 
 The Kong schema validation format is based on the plugin schemas.
 For more information, see the Kong plugin docs on
-[storing custom entities](/gateway-oss/latest/plugin-development/custom-entities/#defining-a-schema).
+[storing custom entities](/gateway/latest/plugin-development/custom-entities/#defining-a-schema).
 
 ---
 

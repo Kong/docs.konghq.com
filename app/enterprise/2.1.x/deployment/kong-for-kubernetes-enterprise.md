@@ -1,6 +1,5 @@
 ---
 title: Kong for Kubernetes Enterprise
-redirect_from: "/enterprise/2.1.x/kong-for-kubernetes/"
 ---
 
 Kong provides two main Enterprise packages that you can deploy with Kubernetes,

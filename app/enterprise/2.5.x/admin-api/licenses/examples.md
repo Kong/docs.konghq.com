@@ -7,7 +7,7 @@ book: licenses
 license configuration.
 </div>
 
-The `/licenses` endpoint provides a way to configure your {{site.ee_gateway_name}}
+The `/licenses` endpoint provides a way to configure your {{site.base_gateway}}
 without using environment variables or placing a plaintext file
 in your system directories. In a hybrid mode deployment, the Admin API
 `/licenses` endpoint also configures all data planes in the cluster, simplifying
