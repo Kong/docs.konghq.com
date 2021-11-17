@@ -14,11 +14,11 @@ in minutes. See the
 [{{site.konnect_saas}} quickstart guide](/konnect/getting-started/) to get
 started.
 
-* **Self-hosted deployment**:
+* **Self-managed deployment**:
 Install {{site.base_gateway}}, then use the {{site.base_gateway}} guide for a
 detailed walkthrough of foundational API gateway concepts, features, and
 capabilities.
     * For a traditional deployment, see the [Kong gateway installation guides](/gateway/latest/install-and-run).
     * For a hybrid mode deployment, use the [hybrid mode post-installation instructions](/gateway/latest/plan-and-deploy/hybrid-mode/hybrid-mode-setup).
     * Once everything is installed, check out the
-    [self-hosted getting started guide](/gateway/latest/get-started/comprehensive).
+    [self-managed getting started guide](/gateway/latest/get-started/comprehensive).

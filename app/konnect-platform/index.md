@@ -72,7 +72,7 @@ velocity are defined in the following table:
 | {{site.konnect_short_name}} Component {:width=20%:} | Description |
 |------------------------------|-------------|
 | [Insomnia](https://support.insomnia.rest/) | API debugging, design, and testing tool for developers. Allows developers to rapidly explore and consume existing services of different protocols (spawning REST, GraphQL, and gRPC), design services using a spec-based approach, and write and build a suite of tests while collaborating with other developers. <br><br> Using Insomnia, you can generate {{site.base_gateway}} and Kong Ingress Controller runtime configurations directly from their API specs. Developers can rapidly map their API designs to connectivity logic that exposes those designs within a connectivity runtime.  |
-| Dev Portal <br><br>[Cloud docs](/konnect/dev-portal) <br>[Self-hosted docs](/gateway/latest/developer-portal) | Functionality module that enables the formal publishing of API docs to an API catalogue through which developers (typically external to an application team) can discover and formally register to use the API. |
+| Dev Portal <br><br>[Cloud docs](/konnect/dev-portal) <br>[Self-managed docs](/gateway/latest/developer-portal) | Functionality module that enables the formal publishing of API docs to an API catalogue through which developers (typically external to an application team) can discover and formally register to use the API. |
 | [ServiceHub](/konnect/servicehub)<br>(Cloud only) | Functionality module that enables the cataloging of all services into a single system of record. This catalog represents the single source of truth for your organization’s service inventory and their dependencies. By leveraging ServiceHub, application developers can search, discover, and consume existing services to accelerate their time-to-market, while enabling a more consistent end-user experience across the organization’s applications. |
 
 #### Connectivity Runtime Performance
@@ -99,7 +99,7 @@ defined in the following table:
 
 | {{site.konnect_short_name}} Component {:width=20%:} | Description |
 |---------------------------------------|-------------|
-| Vitals <br><br>[Cloud docs](/konnect/vitals) <br>[Self-hosted docs](/gateway/latest/vitals/) | Functionality module that enables the capture and generation of service usage and health monitoring data. This module's capabilities can be enhanced with {{site.konnect_short_name}} plugins that enable monitoring metrics to be streamed to third-party analytics providers such as Datadog and Prometheus. |
+| Vitals <br><br>[Cloud docs](/konnect/vitals) <br>[Self-managed docs](/gateway/latest/vitals/) | Functionality module that enables the capture and generation of service usage and health monitoring data. This module's capabilities can be enhanced with {{site.konnect_short_name}} plugins that enable monitoring metrics to be streamed to third-party analytics providers such as Datadog and Prometheus. |
 | [ServiceHub](/konnect/servicehub) <br>(Cloud only) | Functionality module that enables the cataloging all of all services into a single system of record that represents the single source of truth of your organization’s service inventory and their dependencies. By leveraging ServiceHub, enterprise architects can attain a better understanding of the organization’s inventory of services, in terms of the level of reuse, usage, and operational health of services across different teams and environments. |
 
 #### Cloud-native Service Lifecycle

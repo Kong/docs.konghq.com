@@ -34,6 +34,6 @@ deployment, see the following topics to get started:
 * Set up [users and roles](/konnect/org-management/users-and-roles)
 * Get familiar with the [Konnect Admin API](/konnect/reference/konnect-api)
 
-## Self-hosted Konnect
-If deploying {{site.konnect_short_name}} in a self-hosted environment, see the
+## Self-managed Konnect
+If deploying {{site.konnect_short_name}} in a self-managed environment, see the
 [{{site.ee_product_name}} docs](/gateway/).

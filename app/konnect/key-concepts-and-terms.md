@@ -67,6 +67,6 @@ service’s consumers are routed to the older version.
 
 ### Functionality Module
 
-Functionality, delivered as a service or in a self-hosted manner, that
+Functionality, delivered as a service or in a self-managed manner, that
 leverages connectivity runtimes to provide a connectivity management capability
 (for example, Dev Portal).
