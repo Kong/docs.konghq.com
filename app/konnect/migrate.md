@@ -3,7 +3,7 @@ title: Migrate from Kong Gateway to Konnect Cloud
 no_version: true
 ---
 
-You can migrate any edition of self-hosted {{site.base_gateway}} to
+You can migrate any edition of self-managed {{site.base_gateway}} to
 {{site.konnect_saas}}.
 
 Use [decK](/deck/) to convert and migrate the configuration for most
@@ -150,7 +150,7 @@ You can keep any data plane nodes that are:
 * Running {{site.base_gateway}} (not the open-source package)
 * Are at least version 2.3 or higher
 
-Turn any self-hosted nodes into cloud data plane nodes by registering them
+Turn any self-managed nodes into cloud data plane nodes by registering them
 through the Runtime Manager and adjusting their configurations, or power down
 the old instances and create new data plane nodes through {{site.konnect_saas}}.
 
@@ -174,7 +174,7 @@ location.
     * [Developer registration](/konnect/dev-portal/access-and-approval/dev-reg)
     * [Enable application registration](/konnect/dev-portal/applications/enable-app-reg):
     App registration in {{site.konnect_saas}} works through a different
-    mechanism than in self-hosted {{site.base_gateway}}. Enable app
+    mechanism than in self-managed {{site.base_gateway}}. Enable app
     registration on each service that requires it.
     * [Publish Services to the Dev Portal](/konnect/servicehub/dev-portal/publish):
     The Dev Portal is automatically enabled on a {{site.konnect_saas}} org

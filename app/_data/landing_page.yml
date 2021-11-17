@@ -16,7 +16,7 @@ features:
           - text: Cloud
             icon: /assets/images/icons/icn-cloud-blue.svg
             url: /konnect/dev-portal
-          - text: Self-hosted
+          - text: Self-managed
             icon: /assets/images/icons/icn-server-blue.svg
             url: /gateway/latest/developer-portal/
 
@@ -27,7 +27,7 @@ features:
           - text: Cloud
             icon: /assets/images/icons/icn-cloud-blue.svg
             url: /konnect/vitals
-          - text: Self-hosted
+          - text: Self-managed
             icon: /assets/images/icons/icn-server-blue.svg
             url: /gateway/latest/vitals/overview
 
