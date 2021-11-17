@@ -177,6 +177,8 @@
 /konnect/dev-portal/administrators/auto-approve-devs-apps  /konnect/dev-portal/access-and-approval/auto-approve-devs-apps
 
 /enterprise/*/developer-portal/networking     /gateway/latest/reference/configuration/#developer-portal-section
+/enterprise/2.6.x/developer-portal/configuration/networking     /gateway/latest/reference/configuration/#developer-portal-section
+/enterprise/latest/developer-portal/configuration/networking    /gateway/latest/reference/configuration/#developer-portal-section
 /enterprise/*/developer-portal/FAQ            /gateway/latest/developer-portal
 /enterprise/0.34-x/deployment-guide/enterprise/0.34-x/developer-portal/configuration/networking/   /gateway/latest/reference/configuration/#developer-portal-section
 /enterprise/*/developer-portal/configuration/property-reference/#dev-portal     /gateway/latest/reference/configuration/#developer-portal-section
