@@ -1,8 +1,5 @@
 ---
 title: Immunity Model Training
-toc: true
-redirect_from:
-  - /enterprise/2.2.x/brain-immunity/model-training
 ---
 
 ## Introduction

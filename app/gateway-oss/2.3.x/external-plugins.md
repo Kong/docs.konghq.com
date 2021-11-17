@@ -1,9 +1,5 @@
 ---
 title: Plugins in Other Languages
-redirect_from:
-    /latest/go
-    /2.3.x/go
-
 ---
 
 ## Introduction

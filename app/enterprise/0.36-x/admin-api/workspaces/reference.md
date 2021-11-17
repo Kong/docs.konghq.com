@@ -1,7 +1,5 @@
 ---
 title: Workspaces Reference
-redirect_from:
-  - /admin-api/workspaces
 book: workspaces
 
 workspace_body: |

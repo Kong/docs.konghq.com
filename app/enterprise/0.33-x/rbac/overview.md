@@ -1,6 +1,5 @@
 ---
 title: RBAC Overview
-redirect_from: '/enterprise/0.33-x/plugins/rbac-api/'
 book: rbac
 chapter: 1
 ---

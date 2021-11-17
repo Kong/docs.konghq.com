@@ -24,9 +24,9 @@ is_homepage: true
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/changelog">Changelog</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/gateway/changelog">Changelog</a></h3>
     <p>Details of the changes to each version of Kong Enterprise Edition.</p>
-    <a href="/enterprise/changelog/">See changelog &rarr;</a>
+    <a href="/gateway/changelog/">See changelog &rarr;</a>
   </div>
 
   <div class="docs-grid-block">

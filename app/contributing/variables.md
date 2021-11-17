@@ -7,8 +7,7 @@ The product name variables are defined in the site config file, `jekyll.yml`:
 
 ```yaml
 # product name vars
-ee_gateway_name: Kong Gateway
-ee_product_name: Kong Gateway (Enterprise)
+ee_product_name: Kong Gateway
 ce_product_name: Kong Gateway (OSS)
 base_gateway: Kong Gateway
 mesh_product_name: Kong Mesh

@@ -279,5 +279,5 @@ your setup, reach out to your Kong Support contact or go to the
 ## Next Steps
 
 Check out {{site.base_gateway}}'s series of
-[Getting Started](/getting-started-guide/latest/overview) guides to get the most
+[Getting Started](/gateway/latest/get-started/comprehensive/) guides to get the most
 out of {{site.base_gateway}}.

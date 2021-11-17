@@ -5,7 +5,7 @@ title: Kong Gateway (Enterprise) 2.2.x Release Notes
 These release notes provide a high-level overview of {{site.ee_product_name}} 2.2.x,
 which includes the 2.2.0.0 (beta) release. For detailed information about 2.2.x,
 2.2.0.0 (beta), and any subsequent 2.2.x patch releases, see the
-[Changelog](https://docs.konghq.com/enterprise/changelog/).
+[Changelog](https://docs.konghq.com/gateway/changelog/).
 
 ## New Features
 
@@ -124,4 +124,4 @@ and later.
 ## Changelog
 
 For a complete list of features, fixes, known issues and workarounds, and other
-changes, see the {{site.ee_product_name}} [Changelog](/enterprise/changelog/).
+changes, see the {{site.ee_product_name}} [Changelog](/gateway/changelog/).

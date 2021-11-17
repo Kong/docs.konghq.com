@@ -100,7 +100,7 @@ so that the plugin can identify the client Consumer making the request.
 {% navtab With a database %}
 
 After you have added an authentication plugin to a Service or a Route, and you have
-created your [Consumers](/gateway-oss/latest/admin-api/#consumer-object), you can now
+created your [Consumers](/gateway/latest/admin-api/#consumer-object), you can now
 associate a group to a Consumer using the following request:
 
 ```bash
@@ -285,4 +285,4 @@ curl -X DELETE http://{HOST}:8001/consumers/{CONSUMER}/acls
 A successful DELETE request returns a `204` status. 
 
 #### See also
-- [configuration](/gateway-oss/latest/configuration)
+- [configuration](/gateway/latest/reference/configuration)

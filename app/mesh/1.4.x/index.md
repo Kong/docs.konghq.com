@@ -137,3 +137,10 @@ hybrid Kubernetes/VMs:
 <br>
 [Learn more](https://kuma.io/docs/latest/documentation/deployments/) about the
 standalone and multi-zone deployment modes in the Kuma documentation.
+
+## Support policy
+Kong primarily follows a [semantic versioning](https://semver.org/) (SemVer)
+model for its products.
+
+For the latest version support information for  {{site.ee_product_name}} and
+{{site.mesh_product_name}}, see our [version support policy](/konnect-platform/support-policy).

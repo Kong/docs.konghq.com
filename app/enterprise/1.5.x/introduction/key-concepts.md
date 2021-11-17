@@ -1,8 +1,5 @@
 ---
 title: Key Concepts and Terminology
-toc: true
-redirect_from:
-  - /enterprise/getting-started/{{page.kong_version}}/key-concepts
 ---
 
 Kong Enterprise uses common terms for entities and processes that have a specific meaning in context. This topic provides a conceptual overview of terms, and how they apply to Kong’s use cases.
@@ -22,12 +19,12 @@ Authorization is the system of defining access to certain resources. In Kong Ent
 ## Beta
 A Beta designation in Kong software means the functionality of a feature or release version is of high quality and can be deployed in a non-production environment. Note the following when using a Beta feature or version:
 
-* **A Beta feature or version should not be deployed in a production environment.** 
+* **A Beta feature or version should not be deployed in a production environment.**
 * Beta customers are encouraged to engage Kong Support to report issues encountered in Beta testing.  Support requests should be filed with normal priority, but contractual SLA’s will not be applicable for Beta features.
-* Support is not available for data recovery, rollback, or other tasks when using a Beta feature or version. 
-* User documentation might not be complete or reflect entire functionality. 
+* Support is not available for data recovery, rollback, or other tasks when using a Beta feature or version.
+* User documentation might not be complete or reflect entire functionality.
 
-A Beta feature or version is made available to the general public for usability testing and to gain feedback about the feature or version before releasing it as a production-ready, stable feature or version. 
+A Beta feature or version is made available to the general public for usability testing and to gain feedback about the feature or version before releasing it as a production-ready, stable feature or version.
 
 ## Client
 A Kong Client refers to the downstream client making requests to Kong’s proxy port. It could be another service in a distributed application, a user’s identity, a user’s browser, or a specific device.
@@ -93,7 +90,7 @@ A Service, also referred to as a Service object, is the upstream APIs and micros
 
 Before you can start making requests against a Service, you need to add a [Route](#route) to it. Routes specify how (and if) requests are sent to their Services after they reach Kong. A single Service can have many Routes. After configuring the Service and the Route, you’ll be able to make requests through Kong using them.
 
-## Stable 
+## Stable
 A Stable release designation in Kong software means the functionality of the version is of high quality, production-ready, and released as general availability (GA). The version has been thoroughly tested, considered reliable to deploy in a production environment, and is fully supported. If updates or bug fixes are required, a patch version or minor release version is issued and fully supported.
 
 ## Super Admin

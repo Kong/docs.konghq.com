@@ -1,8 +1,5 @@
 ---
 title: Alert Slack Integration
-toc: true
-redirect_from:
-  - /enterprise/2.2.x/brain-immunity/slack-integration
 ---
 
 

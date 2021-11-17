@@ -1,6 +1,13 @@
 - title: Konnect Platform Overview
   icon: /assets/images/icons/documentation/icn-flag.svg
   url: /konnect-platform
+  items:
+    - text: Key Concepts
+      url: /konnect-platform/key-concepts
+
+- title: Version Support Policy
+  icon: /assets/images/icons/documentation/icn-support.svg
+  url: /konnect-platform/support-policy
 
 - title: Konnect Plans
   icon: /assets/images/icons/documentation/icn-references-color.svg
@@ -9,13 +16,6 @@
 - title: Getting Started Guides
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   url: /konnect-platform/guides
-  items:
-    - text: Quickstart for Konnect Cloud
-      url: https://docs.konghq.com/konnect/getting-started
-      absolute_url: true
-    - text: Get Started with Kong Gateway (self-hosted)
-      url: https://docs.konghq.com/getting-started-guide/latest/overview
-      absolute_url: true
 
 - title: Compatibility
   icon: /assets/images/icons/documentation/icn-references-color.svg

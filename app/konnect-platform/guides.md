@@ -18,7 +18,7 @@ started.
 Install {{site.base_gateway}}, then use the {{site.base_gateway}} guide for a
 detailed walkthrough of foundational API gateway concepts, features, and
 capabilities.
-    * For a traditional deployment, see the [Kong gateway installation guides](/enterprise/latest/deployment/installation).
-    * For a hybrid mode deployment, use the [hybrid mode post-installation instructions](/enterprise/latest/deployment/hybrid-mode-setup).
+    * For a traditional deployment, see the [Kong gateway installation guides](/gateway/latest/install-and-run).
+    * For a hybrid mode deployment, use the [hybrid mode post-installation instructions](/gateway/latest/plan-and-deploy/hybrid-mode/hybrid-mode-setup).
     * Once everything is installed, check out the
-    [self-hosted getting started guide](/getting-started-guide/latest/overview).
+    [self-hosted getting started guide](/gateway/latest/get-started/comprehensive).

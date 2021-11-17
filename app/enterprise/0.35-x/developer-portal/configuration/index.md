@@ -1,7 +1,5 @@
 ---
 title: Dev Portal Configuration
-redirect_from:
-  - /enterprise/0.35-x/developer-portal/configuration/property-reference/
 ---
 
 <div class="docs-grid">

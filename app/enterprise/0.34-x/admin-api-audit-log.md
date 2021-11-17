@@ -1,7 +1,5 @@
 ---
 title: Admin API Audit Log
-redirect_from:
-  - /0.34-x/admin-api/
 ---
 
 ## Introduction

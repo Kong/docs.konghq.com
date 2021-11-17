@@ -76,7 +76,7 @@ traffic proxied through a {{site.base_gateway}} runtime.
 To summarize, in this topic you:
 
 * Implemented the Service version `v.1` with the Route `/mock`. This means if an HTTP
-request is sent to the {{site.ee_gateway_name}} node and it matches route `/mock`, that
+request is sent to the {{site.base_gateway}} node and it matches route `/mock`, that
 request is sent to `http://mockbin.org`.
 * Abstracted a backend/upstream service and put a route of your choice on the
 front end, which you can now give to clients to make requests.

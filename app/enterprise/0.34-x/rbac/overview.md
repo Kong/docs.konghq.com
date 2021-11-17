@@ -1,9 +1,5 @@
 ---
 title: RBAC Overview
-redirect_from:
-  - /enterprise/0.34-x/plugins/rbac-api/
-  - /enterprise/0.34-x/kong-manager/organization-management/rbac-in-workspaces/
-  - /enterprise/0.34-x/organization-management/rbac-and-perms/
 book: rbac
 chapter: 1
 ---

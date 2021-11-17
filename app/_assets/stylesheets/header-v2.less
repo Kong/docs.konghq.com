@@ -9,6 +9,13 @@ header.navbar-v2 {
   z-index: 100;
   padding: 0 24px;
 
+  hr {
+    width: 90%;
+    margin-top: 8px;
+    margin-bottom: 15px;
+  }
+
+
   a.skip-main {
     left:-999px;
     position:absolute;
@@ -17,6 +24,9 @@ header.navbar-v2 {
     height:1px;
     overflow:hidden;
     z-index:-999;
+    font-weight: 400;
+    float: left;
+    border-left: 2px solid transparent;
   }
 
   a.skip-main:focus, a.skip-main:active {
@@ -162,6 +172,10 @@ header.navbar-v2 {
         padding: 18px 0;
         white-space: nowrap;
         cursor: pointer;
+        font-weight: 400;
+        color: #043558;
+        font: 500 16px/24px Roboto;
+        transition: color .25s;
 
         a:hover {
           text-decoration: underline;

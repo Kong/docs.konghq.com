@@ -48,14 +48,14 @@ guide.
 
 > Note: Enterprise MIGRATIONS must be completed before migrating the Dev Portal, see [The Migration Guide](/enterprise/1.3-x/deployment/migrations/) for more information.
 
-Read the full Kong Enterprise 1.3 Changelog [here](/enterprise/changelog).
+Read the full Kong Enterprise 1.3 Changelog [here](/gateway/changelog).
 
 
 <div class="docs-grid">
   <div class="docs-grid-block">
     <h3>
         <img src="/assets/images/icons/documentation/icn-doc-reference.svg" />
-        <a href="/enterprise/changelog/#dev-portal">Changelog</a>
+        <a href="/gateway/changelog/#dev-portal">Changelog</a>
     </h3>
     <p></p>
     <a href="#whats-new-in-13">

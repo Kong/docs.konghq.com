@@ -7,7 +7,7 @@ version: 1.3-x
 
 desc: Route request based on request headers
 description: |
-   Kong Enterprise plugin to route requests based on request headers.
+   Kong Gateway plugin to route requests based on request headers.
 enterprise: true
 plus: true
 type: plugin
