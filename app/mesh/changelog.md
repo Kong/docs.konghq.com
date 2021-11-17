@@ -4,6 +4,22 @@ no_search: true
 no_version: true
 ---
 
+## 1.5.0
+
+> Released on 2021/11/22
+
+### Changes
+
+Built on top of [Kuma 1.4.0](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#140)
+
+- Role-based Access Control (RBAC) is now available.
+- Support for Windows installation is now available.
+- Renewable tokens in Vault are now supported.
+
+### Upgrading
+
+TODO CHECK WITH TEAM
+
 ## 1.4.1
 
 > Released on 2021/10/06
