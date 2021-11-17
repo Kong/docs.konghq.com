@@ -163,11 +163,8 @@
 /enterprise/2.2.x/developer-portal/introduction            /enterprise/2.2.x/developer-portal
 /enterprise/2.3.x/developer-portal/introduction            /enterprise/2.3.x/developer-portal
 /enterprise/2.6.x/developer-portal/introduction            /gateway/2.6.x/developer-portal
-/enterprise/2.6.x/developer-portal/                        /gateway/2.6.x/developer-portal
-/enterprise/2.6.x/developer-portal/*                       /gateway/2.6.x/developer-portal/:splat
 /enterprise/latest/developer-portal/introduction           /gateway/latest/developer-portal
 /enterprise/latest/developer-portal/overview               /gateway/latest/developer-portal
-/enterprise/latest/developer-portal/*                      /gateway/latest/developer-portal/:splat
 
 /konnect/dev-portal/application-overview                   /konnect/dev-portal/applications/application-overview
 /konnect/dev-portal/developers/dev-apps                    /konnect/dev-portal/applications/dev-apps
@@ -182,8 +179,8 @@
 /enterprise/*/developer-portal/networking     /gateway/latest/reference/configuration/#developer-portal-section
 /enterprise/*/developer-portal/FAQ            /gateway/latest/developer-portal
 /enterprise/0.34-x/deployment-guide/enterprise/0.34-x/developer-portal/configuration/networking/   /gateway/latest/reference/configuration/#developer-portal-section
-/enterprise/*/developer-portal/configuration/property-reference     /gateway/latest/reference/configuration/#developer-portal-section
 /enterprise/*/developer-portal/configuration/property-reference/#dev-portal     /gateway/latest/reference/configuration/#developer-portal-section
+/enterprise/*/developer-portal/configuration/property-reference     /gateway/latest/reference/configuration/#developer-portal-section
 /enterprise/*/developer-portal/configuration/property-reference/*   /gateway/latest/reference/configuration/:splat
 /enterprise/*/configuration/developer-portal/smtp      /gateway/latest/developer-portal/configuration/smtp
 /enterprise/*/developer-portal/smtp                    /gateway/latest/developer-portal/configuration/smtp
@@ -191,6 +188,11 @@
 /developer-portal/configuration/enable-the-dev-portal  /gateway/latest/developer-portal/enable-dev-portal
 /enterprise/1.5.x/getting-started/enable-dev-portal    /gateway/latest/developer-portal/enable-dev-portal
 /enterprise/latest/getting-started/enable-dev-portal   /gateway/latest/developer-portal/enable-dev-portal
+
+/enterprise/2.6.x/developer-portal/                        /gateway/2.6.x/developer-portal
+/enterprise/latest/developer-portal/                       /gateway/latest/developer-portal
+/enterprise/2.6.x/developer-portal/*                       /gateway/2.6.x/developer-portal/:splat
+/enterprise/latest/developer-portal/*                      /gateway/latest/developer-portal/:splat
 
 
 # GATEWAY REFERENCES
