@@ -67,7 +67,7 @@ If you plan to use RBAC, you must create a secret for the superuser account pass
 
     ```sh
     kubectl create secret generic kong-enterprise-superuser-password \
-    n kong \
+    -n kong \
     --from-literal=password={YOUR_PASSWORD}
     ```
 
