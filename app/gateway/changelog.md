@@ -394,7 +394,7 @@ only one or neither of the fields be configured.
   Fixed an issue where the plugin would sometimes fetch data from the cache but not return it.
   [#7775](https://github.com/Kong/kong/pull/7775)
 
-## 2.5.2.1
+## 2.5.1.2
 **Release Date:** 2021/11/18
 
 ### Fixes
