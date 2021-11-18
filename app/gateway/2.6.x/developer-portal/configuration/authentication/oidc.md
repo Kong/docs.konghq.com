@@ -5,8 +5,8 @@ badge: enterprise
 
 The [OpenID Connect Plugin](/hub/kong-inc/openid-connect/) (OIDC)
 allows the Kong Dev Portal to hook into existing authentication setups using third-party
-*Identity Providers* (IdP) such as Google, Okta, Microsoft Azure AD,
-[Curity](/gateway/{{page.kong_version}}/configure/auth/oidc-curity/#kong-dev-portal-authentication), etc.
+*Identity Providers* (IdP) such as Google, Okta, Microsoft Azure AD, and 
+[Curity](/gateway/{{page.kong_version}}/configure/auth/oidc-curity/#kong-dev-portal-authentication).
 
 [OIDC](/hub/kong-inc/openid-connect/) must be used with
 the `session` method, utilizing cookies for Dev Portal File API requests.
@@ -15,15 +15,19 @@ In addition, a configuration object is required to enable OIDC. Refer to the
 [Sample Configuration Object](#/sample-configuration-object) section of this
 document for more information.
 
+If you want to use the same email address for both your Kong Manager and Dev Portal accounts, ensure the Admin `username` is not set to the account email and that instead, the `custom_id` is set to the account email.
+
 **Note:** The Dev Portal does not automatically create developer accounts on login via OIDC.
 A developer account matching the `consumer_claim` configuration parameter has to be
 created and approved (if auto approve is not enabled) beforehand.
 
 OIDC for the Dev Portal can be enabled in one of the following ways:
 
-- [Kong Manager](#enable-oidc-using-kong-manager)
-- [Kong Admin API (command line)](#enable-oidc-using-the-command-line)
-- [The Kong configuration file](#enable-oidc-using-kongconf)
+- [Portal Session Plugin Config](#portal-session-plugin-config)
+- [Sample Configuration Object](#sample-configuration-object)
+- [Enable OIDC using Kong Manager](#enable-oidc-using-kong-manager)
+- [Enable OIDC using the Command Line](#enable-oidc-using-the-command-line)
+- [Enable OIDC using kong.conf](#enable-oidc-using-kongconf)
 
 
 ## Portal Session Plugin Config
@@ -35,7 +39,7 @@ Session Plugin Config does not apply when using OpenID Connect.
 Below is a sample configuration JSON object for using *Google* as the Identity
 Provider:
 
-```
+```json
 {
   "consumer_by": ["username","custom_id","id"],
   "leeway": 1000,
@@ -73,7 +77,7 @@ configured to allow OpenID Connect to apply the session correctly.
 
 Example:
 
-```
+```json
 {
   "consumer_by": ["username","custom_id","id"],
   "leeway": 1000,
@@ -113,7 +117,7 @@ into the provided text area.
 You can use the Kong Admin API to set up Dev Portal Authentication.
 To patch a Dev Portal's authentication property directly, run:
 
-```
+```bash
 curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE NAME> \
   --data "config.portal_auth=openid-connect"
   "config.portal_auth_conf=<REPLACE WITH JSON CONFIG OBJECT>
@@ -128,7 +132,7 @@ configuration file with the `portal_auth` property.
 
 In your `kong.conf` file, set the property as follows:
 
-```
+```bash
 portal_auth="openid-connect"
 ```
 
