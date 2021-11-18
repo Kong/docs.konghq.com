@@ -118,6 +118,19 @@ description: |
   4. `config.audience_required` (if using a public identity provider)
   5. `config.session_secret` (if using the Kong in DB-less mode)
 
+  ## Authenticate Dev Portal with OIDC
+
+  You can authenticate a self-managed Dev Portal with this plugin.
+
+  The OIDC plugin enables you to use the same email address for
+  both your Admin and your Developer accounts, in case you want to have the same
+  credentials between the Admin GUI and your self-managed Dev Portal. To use the
+  same email for both accounts, ensure the Admin `username` is not set to the
+  account email and that instead, the `custom_id` is set to the account email.
+
+  By default, the Admin GUI and the self-managed Dev Portal require distinct email
+  addresses.
+
 enterprise: true
 plus: true
 type: plugin
