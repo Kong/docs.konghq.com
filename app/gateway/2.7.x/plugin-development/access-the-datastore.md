@@ -9,6 +9,12 @@ chapter: 5
 Kong interacts with the model layer through classes we refer to as "DAOs". This
 chapter will detail the available API to interact with the datastore.
 
+<div class="alert alert-ee red">
+    <strong>Deprecation:</strong> 
+    Support for Cassandra is deprecated with <code>Kong Gateway</code> 2.7 and fully removed with 4.0. It is strongly discouraged to use Cassandra as your datastore as it will have limited support throughout the deprecation period. For more
+    information, see <a href="/gateway-oss/{{ link_to_cassandra_deprecation_overview }}">this blog post</a>.
+</div>
+
 Kong supports two primary datastores: [Cassandra
 {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/)
 and [PostgreSQL

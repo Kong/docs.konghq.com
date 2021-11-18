@@ -26,6 +26,12 @@ First, you must configure {{site.base_gateway}} using the `kong.conf` configurat
 For more information on how to configure {{site.base_gateway}} to connect to your database, see the Datastore section of the
 [Configuration property Reference](/gateway/{{ include.kong_version }}/reference/configuration/#datastore-section).
 
+<div class="alert alert-ee red">
+    <strong>Deprecation:</strong> 
+    Support for Cassandra is deprecated with <code>Kong Gateway</code> 2.7 and fully removed with 4.0. It is strongly discouraged to use Cassandra as your datastore as it will have limited support throughout the deprecation period. For more
+    information, see <a href="/gateway-oss/{{ link_to_cassandra_deprecation_overview }}">this blog post</a>.
+</div>
+
 {{site.base_gateway}} supports both [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/)
 and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its datastore.
 

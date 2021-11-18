@@ -29,6 +29,12 @@ performance and consistency.
 
 ## Single node Kong clusters
 
+<div class="alert alert-ee red">
+    <strong>Deprecation:</strong> 
+    Support for Cassandra is deprecated with <code>Kong Gateway</code> 2.7 and fully removed with 4.0. It is strongly discouraged to use Cassandra as your datastore as it will have limited support throughout the deprecation period. For more
+    information, see <a href="/gateway-oss/{{ link_to_cassandra_deprecation_overview }}">this blog post</a>.
+</div>
+
 A single Kong node connected to a database (Cassandra or PostgreSQL) creates a
 Kong cluster of one node. Any changes applied via the Admin API of this node
 will instantly take effect. Example:

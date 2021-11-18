@@ -12,6 +12,12 @@ title: Install Kong Gateway on Docker
 >
 > (latest {{site.base_gateway}} version: {{page.kong_versions[page.version-index].ee-version}})
 
+<div class="alert alert-ee red">
+    <strong>Deprecation:</strong> 
+    Support for Cassandra is deprecated with <code>Kong Gateway</code> 2.7 and fully removed with 4.0. It is strongly discouraged to use Cassandra as your datastore as it will have limited support throughout the deprecation period. For more
+    information, see <a href="/gateway-oss/{{ link_to_cassandra_deprecation_overview }}">this blog post</a>.
+</div>
+
 {{site.base_gateway}} supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its
 datastore. This guide provides steps to configure PostgreSQL.
 

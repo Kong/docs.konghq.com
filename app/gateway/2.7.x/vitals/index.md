@@ -14,6 +14,12 @@ Use Kong Vitals (Vitals) to monitor {{site.ee_product_name}} health and performa
 ## Prerequisites
 Vitals is enabled by default in {{site.ee_product_name}} and available upon the first login of a Super Admin.
 
+<div class="alert alert-ee red">
+    <strong>Deprecation:</strong> 
+    Support for Cassandra is deprecated with <code>Kong Gateway</code> 2.7 and fully removed with 4.0. It is strongly discouraged to use Cassandra as your datastore as it will have limited support throughout the deprecation period. For more
+    information, see <a href="/gateway-oss/{{ link_to_cassandra_deprecation_overview }}">this blog post</a>.
+</div>
+
 You will need one of the following databases to use Vitals:
 * InfluxDB
 * PostgresSQL 9.5+

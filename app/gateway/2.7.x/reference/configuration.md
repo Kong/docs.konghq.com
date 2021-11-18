@@ -1544,6 +1544,12 @@ ensure at worst any regex Kong executes could finish within roughly 2 seconds.
 
 ### Datastore section
 
+<div class="alert alert-ee red">
+    <strong>Deprecation:</strong> 
+    Support for Cassandra is deprecated with <code>Kong Gateway</code> 2.7 and fully removed with 4.0. It is strongly discouraged to use Cassandra as your datastore as it will have limited support throughout the deprecation period. For more
+    information, see <a href="/gateway-oss/{{ link_to_cassandra_deprecation_overview }}">this blog post</a>.
+</div>
+
 Kong can run with a database to store coordinated data between Kong nodes in a
 cluster, or without a database, where each node stores its information
 independently in memory.
@@ -1632,6 +1638,12 @@ name   | description  | default
 **pg_ro_keepalive_timeout** | Same as `pg_keepalive_timeout`, but for the read-only connection. | `<pg_keepalive_timeout>`
 
 #### Cassandra settings
+
+<div class="alert alert-ee red">
+    <strong>Deprecation:</strong> 
+    Support for Cassandra is deprecated with <code>Kong Gateway</code> 2.7 and fully removed with 4.0. It is strongly discouraged to use Cassandra as your datastore as it will have limited support throughout the deprecation period. For more
+    information, see <a href="/gateway-oss/{{ link_to_cassandra_deprecation_overview }}">this blog post</a>.
+</div>
 
 name   | description  | default
 -------|--------------|----------
