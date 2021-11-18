@@ -4,6 +4,51 @@ no_search: true
 no_version: true
 ---
 
+## 2.6.0.1
+**Release Date:** 2021/11/18
+
+### Fixes
+
+#### Enterprise
+- Fixed an issue with Vitals report generation. If running Vitals with InfluxDB
+and attempting to generate a report containing any status codes outside of
+2XX, 4XX, or 5XX, report generation would fail. With this fix, proxied traffic
+outside of the expected codes will not cause errors, and instead appear as
+count totals in Vitals reports.
+
+- Fixed a latency issue in hybrid mode. Previously, applying a large number of
+configuration changes to a Data Plane simultaneously caused high latency in all
+upstream requests.
+
+- Fixed accessibility issues related to non-unique IDs in the Dev Portal.
+
+- When using OpenID Connect as the Dev Portal authentication method, updates to
+Developers now correctly propagate to their associated Consumers.
+
+- Users can now successfully delete admins with the `super-admin` role from
+any workspace, as long as they have the correct permissions, and the associated 
+Consumer entity will be deleted as well. This frees up the username for a new
+user. Previously, deleting an admin with a `super-admin` role from a different
+workspace than where it was originally created did not delete the associated
+Consumer entity, and the username would remain locked. For example, if the
+admin was created in workspace `dev` and deleted from workspace `QA`, this
+issue would occur.
+
+- Fixed an issue with icon alignment in Kong Manager, where the **Delete**
+(garbage can) icon overlapped with the **View** link and caused users to
+accidentally click **Delete**.
+
+#### Plugins
+
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  -  Redis cluster nodes can now be specified by hostname in the
+  `session_redis_cluster_nodes` field.
+
+### Dependencies
+- Bumped kong-redis-cluster from `1.1-0` to `1.2.0`.
+  - With this update, if the entire cluster is restarted and starts up using
+  new IP addresses, the cluster client can recover automatically.
+
 ## 2.6.0.0
 **Release date:** 2021/10/14
 
@@ -356,8 +401,29 @@ only one or neither of the fields be configured.
   Fixed an issue where the plugin would sometimes fetch data from the cache but not return it.
   [#7775](https://github.com/Kong/kong/pull/7775)
 
+## 2.5.1.2
+**Release Date:** 2021/11/18
+
+### Fixes
+
+#### Enterprise
+- Fixed an issue with Vitals report generation. If running Vitals with InfluxDB
+and attempting to generate a report containing any status codes outside of
+2XX, 4XX, or 5XX, report generation would fail. With this fix, proxied traffic
+outside of the expected codes will not cause errors, and instead appear as
+count totals in Vitals reports.
+
+- Fixed a latency issue in hybrid mode. Previously, applying a large number of
+configuration changes to a Data Plane simultaneously caused high latency in all
+upstream requests.
+
+- Fixed accessibility issues related to non-unique IDs in the Dev Portal.
+
+- When using OpenID Connect as the Dev Portal authentication method, updates to
+Developers now correctly propagate to their associated Consumers.
+
 ## 2.5.1.1
-**Release Date** 2021/10/22
+**Release Date:** 2021/10/22
 
 ### Fixes
 
