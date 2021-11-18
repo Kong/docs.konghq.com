@@ -25,7 +25,14 @@ upstream requests.
 - When using OpenID Connect as the Dev Portal authentication method, updates to
 Developers now correctly propagate to their associated Consumers.
 
-- Deleting an Admin with a `super-admin` role from a different workspace than it was originally created from did not delete the associated Consumer entity. This prevented creating a new admin with the same name as the deleted admin. This behavior has been fixed; deleting an admin will delete the associated Consumer and a new admin with the same name can be created after deletion.
+- Users can now successfully delete admins with the `super-admin` role from
+any workspace, as long as they have the correct permissions, and the associated 
+Consumer entity will be deleted as well. This frees up the username for a new
+user. Previously, deleting an admin with a `super-admin` role from a different
+workspace than where it was originally created did not delete the associated
+Consumer entity, and the username would remain locked. For example, if the
+admin was created in workspace `dev` and deleted from workspace `QA`, this
+issue would occur.
 
 - Fixed an issue with icon alignment in Kong Manager, where the **Delete**
 (garbage can) icon overlapped with the **View** link and caused users to
