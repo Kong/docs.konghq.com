@@ -13,7 +13,7 @@ no_version: true
 Built on top of [Kuma 1.4.0](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#140)
 
 - Role-based Access Control (RBAC) is now available.
-- Support for Windows installation is now available.
+- Support for Windows installation on Universal (VMs) is now available.
 - Renewable tokens in Vault are now supported.
 
 ### Upgrading

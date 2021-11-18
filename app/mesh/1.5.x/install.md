@@ -110,11 +110,11 @@ prefix:
 
 ```sh
 $ kumactl version
-Kong Mesh [VERSION NUMBER]
+{{site.mesh_product_name}} [VERSION NUMBER]
 
 $ kuma-cp version
-Kong Mesh [VERSION NUMBER]
+{{site.mesh_product_name}} [VERSION NUMBER]
 
 $ kuma-dp version
-Kong Mesh [VERSION NUMBER]
+{{site.mesh_product_name}} [VERSION NUMBER]
 ```

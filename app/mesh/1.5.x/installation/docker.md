@@ -2,8 +2,7 @@
 title: Kong Mesh with Docker
 ---
 
-To install and run {{site.mesh_product_name}} on Docker, execute the following
-steps:
+To install and run {{site.mesh_product_name}} on Docker:
 
 1. [Download {{site.mesh_product_name}}](#1-download-kong-mesh)
 1. [Run {{site.mesh_product_name}}](#2-run-kong-mesh)

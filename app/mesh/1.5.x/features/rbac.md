@@ -2,16 +2,19 @@
 title: Role-Based Access Control
 ---
 
-Role-Based Access Control (RBAC) is a way to restrict access to resources and actions across users of Kong Mesh.
+Role-Based Access Control (RBAC) lets you restrict access to resources and actions to specified users or groups, based on user roles.
 
-## Concepts
+## How it works
 
-Kong Mesh includes two additional resources - `AccessRole` and `AccessRoleBinding`.
+{{site.mesh_product_name}} provides two resources to implement RBAC:
+
+- `AccessRole` specifies kinds of access and resources to which access is granted. Note that access is defined only for write operations. Read access is available to all users.
+- `AccessRoleBinding` lists users and the access roles that are assigned to them.
 
 ### AccessRole
 
-AccessRole is a resource that defines a role that can later be assigned for a user.
-This resource is global-scoped, which means it is not bound to a mesh.
+AccessRole defines a role that is assigned separately to users.
+It is global-scoped, which means it is not bound to a mesh.
 
 {% navtabs %}
 {% navtab Universal %}
@@ -71,8 +74,8 @@ spec:
 
 ### AccessRoleBinding
 
-AccessRoleBinding is a policy that assigns a set of AccessRoles to a set of subjects (users and groups).
-This resource is global-scoped, which means it is not bound to a mesh.
+AccessRoleBinding assigns a set of AccessRoles to a set of subjects (users and groups).
+It is global-scoped, which means it is not bound to a mesh.
 
 {% navtabs %}
 {% navtab Universal %}
@@ -108,11 +111,11 @@ spec:
 
 ## Example roles
 
-Let's go through example roles in the organization that can be created using Kong Mesh RBAC.
+Let's go through example roles in the organization that can be created using {{site.mesh_product_name}} RBAC.
 
 ### Kong Mesh operator (admin)
 
-Mesh operator is a part of infrastructure team responsible for Kong Mesh deployment.
+Mesh operator is a part of infrastructure team responsible for {{site.mesh_product_name}} deployment.
 
 {% navtabs %}
 {% navtab Universal %}
@@ -136,7 +139,7 @@ spec:
 {% endnavtab %}
 {% endnavtabs %}
 
-This way Kong Mesh operators can execute any action.
+This way {{site.mesh_product_name}} operators can execute any action.
 
 _Note: this role is precreated on the start of the control plane._
 
@@ -263,7 +266,7 @@ This way an observability operator can:
 
 ### Single Mesh operator
 
-Kong Mesh lets us segment the deployment into many logical Service Meshes configured by Mesh object.
+{{site.mesh_product_name}} lets us segment the deployment into many logical Service Meshes configured by Mesh object.
 We may want to give an access to one specific Mesh and all objects connected with this Mesh.
 
 {% navtabs %}
@@ -307,16 +310,16 @@ Kubernetes provides their own RBAC system, but it's not sufficient to cover use 
 * You cannot restrict an access to resources of specific Mesh
 * You cannot restrict an access based on the content of the policy
 
-Kong Mesh RBAC works on top of Kubernetes RBAC.
+{{site.mesh_product_name}} RBAC works on top of Kubernetes RBAC.
 For example, to restrict the access for a user to modify TrafficPermission for backend service, they need to be able to create TrafficPermission in the first place.
 
 The `subjects` in `AccessRoleBinding` are compatible with Kubernetes users and groups.
-Kong Mesh RBAC on Kubernetes is implemented using Kubernetes Webhook when applying resources. This means you can only use Kubernetes users and groups for `CREATE`, `DELETE` and `UPDATE` access.
-`GENERATE_DATAPLANE_TOKEN`, `GENERATE_USER_TOKEN`, `GENERATE_ZONE_CP_TOKEN` are used used when interacting with Kong Mesh API Server, in this case you need to use the user token.
+{{site.mesh_product_name}} RBAC on Kubernetes is implemented using Kubernetes Webhook when applying resources. This means you can only use Kubernetes users and groups for `CREATE`, `DELETE` and `UPDATE` access.
+`GENERATE_DATAPLANE_TOKEN`, `GENERATE_USER_TOKEN`, `GENERATE_ZONE_CP_TOKEN` are used used when interacting with {{site.mesh_product_name}} API Server, in this case you need to use the user token.
 
 ## Default
 
-Kong Mesh creates `admin` AccessRole that allows every action and `default` AccessRoleBinding that assigns this role to every authenticated and unauthenticated user.
+{{site.mesh_product_name}} creates `admin` AccessRole that allows every action and `default` AccessRoleBinding that assigns this role to every authenticated and unauthenticated user.
 
 {% navtabs %}
 {% navtab Universal %}
@@ -431,7 +434,7 @@ Here are the steps to create a new user and restrict the access only to TrafficP
     $ kumactl config control-planes switch --name cp-admin # switch back to admin
     ```
 
-3. Change default Kong Mesh RBAC to restrict access to resources by default
+3. Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default
 
     ```sh
     $ echo "type: AccessRoleBinding
@@ -443,7 +446,7 @@ Here are the steps to create a new user and restrict the access only to TrafficP
     - admin" | kumactl apply -f -
     ```
 
-4. Create Kong Mesh RBAC to restrict backend-owner to only modify TrafficPermission for backend
+4. Create {{site.mesh_product_name}} RBAC to restrict backend-owner to only modify TrafficPermission for backend
 
     ```sh
     $ echo '
@@ -564,7 +567,7 @@ Here are the steps to create a new user and restrict the access only to TrafficP
     " | kubectl apply -f -
     ```
 
-3. Change default Kong Mesh RBAC to restrict access to resources by default
+3. Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default
 
     ```sh
     $ echo "
@@ -583,7 +586,7 @@ Here are the steps to create a new user and restrict the access only to TrafficP
     " | kubectl apply -f -
     ```
 
-4. Create Kong Mesh RBAC to restrict backend-owner to only modify TrafficPermission for backend
+4. Create {{site.mesh_product_name}} RBAC to restrict backend-owner to only modify TrafficPermission for backend
 
     ```sh
     $ echo "

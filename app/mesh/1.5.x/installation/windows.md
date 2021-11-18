@@ -11,6 +11,11 @@ To install and run {{site.mesh_product_name}} on Windows:
 Finally, you can follow the [Quickstart](#4-quickstart) to take it from here
 and continue your {{site.mesh_product_name}} journey.
 
+Tested on Windows 10 and Windows Server 2019.
+
+{:.note}
+> **Note**: Transparent proxying is not supported on Windows.
+
 ## 1. Download Kuma
 
 To run Kuma on Windows you can choose among different installation methods:

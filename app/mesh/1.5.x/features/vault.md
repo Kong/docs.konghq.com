@@ -65,7 +65,7 @@ vault secrets tune -max-lease-ttl=87600h kmesh-pki-default
 
 ```sh
 vault write -field=certificate kmesh-pki-default/root/generate/internal \
-  common_name="Kong Mesh Default" \
+  common_name="{{site.mesh_product_name}} Default" \
   uri_sans="spiffe://default" \
   ttl=87600h
 ```
@@ -101,7 +101,7 @@ Generate the Intermediate CA for the `default` Mesh:
 
 ```sh
 vault write -format=json kmesh-pki-default/intermediate/generate/internal \
-    common_name="Kong Mesh Mesh Default" \
+    common_name="{{site.mesh_product_name}} Mesh Default" \
     uri_sans="spiffe://default" \
     | jq -r '.data.csr' > pki_intermediate.csr
 ```
@@ -265,4 +265,4 @@ Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](htt
 
 In a multizone environment, the global control plane provides the `Mesh` to the zone control planes. However, you must make sure that each zone control plane communicates with Vault over the same address. This is because certificates for data plane proxies are issued from the zone control plane, not from the global control plane.
 
-You must also make sure the global control plane communicates with Vault. When a new Vault backend is configured, Kong Mesh validates the connection by issuing a test certificate. In a multizone environment, validation is performed on the global control plane.
+You must also make sure the global control plane communicates with Vault. When a new Vault backend is configured, {{site.mesh_product_name}} validates the connection by issuing a test certificate. In a multizone environment, validation is performed on the global control plane.

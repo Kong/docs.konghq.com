@@ -4,7 +4,7 @@ title: Kong Mesh - OPA Policy Integration
 
 ## OPA policy plugin
 
-Kong Mesh integrates the [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) to provide access control for your services.
+{{site.mesh_product_name}} integrates the [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) to provide access control for your services.
 
 The agent is included in the data plane proxy sidecar, instead of the more common deployment as a separate sidecar.
 
@@ -241,7 +241,7 @@ Encoding the policy in a [Secret](https://kuma.io/docs/1.0.7/documentation/secre
 
 ## Configuration
 
-Kong Mesh defines a default configuration for OPA, but you can adjust the configuration to meet your environment's requirements.
+{{site.mesh_product_name}} defines a default configuration for OPA, but you can adjust the configuration to meet your environment's requirements.
 
 The following environment variables are available:
 
