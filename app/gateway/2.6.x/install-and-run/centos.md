@@ -43,12 +43,20 @@ Install {{site.base_gateway}} on Debian from the command line.
 
 1. Download the {{site.ce_product_name}} package:
     ```bash
-    curl -Lo kong-{{site.data.kong_latest.version}}.amd64.rpm $( rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{centos_ver}/Packages/k/kong-{{site.data.kong_latest.version}}.el%{centos_ver}.amd64.rpm")
+    ## Kong Gateway
+    curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm $( rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{centos_ver}/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.el%{centos_ver}.noarch.rpm")
+    
+    ## Kong Gateway (OSS)
+    curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.rpm $(rpm --eval "{{ site.links.download }}/gateway-2.x-centos-7/Packages/k/kong-{{page.kong_versions[page.version-index].ce-version}}.el%{centos_ver}.amd64.rpm")
      ```
 
 2. Install the package:
     ```bash
-    sudo yum install kong-{{site.data.kong_latest.version}}.amd64.rpm
+    ## Kong Gateway
+    sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm
+    
+    ## Kong Gateway (OSS)
+    sudo yum install kong-{{page.kong_versions[page.version-index].ce-version}}.rpm
     ```
 
 {% endnavtab %}
@@ -60,13 +68,19 @@ Install the YUM repository from the command line.
     ```bash
     curl $(rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{centos_ver}/config.repo") | sudo tee /etc/yum.repos.d/kong.repo
     ```
-2. Update the repository:
+
+2. Setup the Kong rpm signing key
     ```bash
-    sudo yum clean
+    rpm --import $(rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{centos}/repodata/repomd.xml.key")
     ```
-3. Install {{site.ce_product_name}}:
+
+2. Install {{site.ce_product_name}}:
     ```bash
-    sudo yum install -y kong
+    ## Kong Gateway
+    sudo yum install kong-enterprise-edition
+    
+    ## Kong Gateway (OSS)
+    sudo yum install kong
     ```
 
 {% endnavtab %}

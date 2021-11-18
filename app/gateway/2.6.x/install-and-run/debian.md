@@ -52,7 +52,7 @@ Install the APT repository from the command line.
 
 1. Download the {{site.ce_product_name}} APT repository:
     ```bash
-    echo "deb [trusted=yes] {{ site.links.download }}/gateway-2.x-debian-$(lsb_release -sc)/
+    echo "deb [trusted=yes] {{ site.links.download }}/gateway-2.x-debian-$(lsb_release -sc)/ \
     default all" | sudo tee /etc/apt/sources.list.d/kong.list
     ```
 2. Update the repository:
