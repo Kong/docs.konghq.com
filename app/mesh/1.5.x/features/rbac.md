@@ -409,7 +409,7 @@ Here are the steps to create a new user and restrict the access only to TrafficP
 {% navtabs %}
 {% navtab Universal %}
 
-1. Extract admin token and configure kumactl with admin
+1.  Extract admin token and configure kumactl with admin
 
     ```sh
     $ export ADMIN_TOKEN=$(curl http://localhost:5681/global-secrets/admin-user-token | jq -r .data | base64 -d)
@@ -421,7 +421,7 @@ Here are the steps to create a new user and restrict the access only to TrafficP
     --auth-conf token=$ADMIN_TOKEN
     ```
 
-2. Configure backend-owner
+1.  Configure backend-owner
 
     ```sh
     $ export BACKEND_OWNER_TOKEN=$(kumactl generate user-token --valid-for=24h --name backend-owner)
@@ -434,7 +434,7 @@ Here are the steps to create a new user and restrict the access only to TrafficP
     $ kumactl config control-planes switch --name cp-admin # switch back to admin
     ```
 
-3. Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default
+1.  Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default
 
     ```sh
     $ echo "type: AccessRoleBinding
@@ -446,7 +446,7 @@ Here are the steps to create a new user and restrict the access only to TrafficP
     - admin" | kumactl apply -f -
     ```
 
-4. Create {{site.mesh_product_name}} RBAC to restrict backend-owner to only modify TrafficPermission for backend
+1.  Create {{site.mesh_product_name}} RBAC to restrict backend-owner to only modify TrafficPermission for backend
 
     ```sh
     $ echo '
@@ -470,7 +470,7 @@ Here are the steps to create a new user and restrict the access only to TrafficP
     - backend-owner' | kumactl apply -f -
     ```
 
-5. Change the user and test RBAC
+1.  Change the user and test RBAC
 
     ```sh
     $ kumactl config control-planes switch --name cp-backend-owner
@@ -504,7 +504,7 @@ Here are the steps to create a new user and restrict the access only to TrafficP
 {% endnavtab %}
 {% navtab Kubernetes %}
 
-1. Create a backend-owner Kubernetes user and configure kubectl
+1.  Create a backend-owner Kubernetes user and configure kubectl
 
     ```sh
     $ mkdir -p /tmp/k8s-certs
@@ -529,7 +529,7 @@ Here are the steps to create a new user and restrict the access only to TrafficP
     $ kubectl config set-context backend-owner --cluster=YOUR_CLUSTER_NAME --user=backend-owner
     ```
 
-2. Create Kubernetes RBAC to allow backend-owner to manage all TrafficPermission
+1.  Create Kubernetes RBAC to allow backend-owner to manage all TrafficPermission
 
     ```sh
     $ echo "
@@ -567,7 +567,7 @@ Here are the steps to create a new user and restrict the access only to TrafficP
     " | kubectl apply -f -
     ```
 
-3. Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default
+1.  Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default
 
     ```sh
     $ echo "
@@ -586,7 +586,7 @@ Here are the steps to create a new user and restrict the access only to TrafficP
     " | kubectl apply -f -
     ```
 
-4. Create {{site.mesh_product_name}} RBAC to restrict backend-owner to only modify TrafficPermission for backend
+1.  Create an AccessRole to grant permissions to user `backend-owner` to modify TrafficPermission only for the backend service:
 
     ```sh
     $ echo "
@@ -618,7 +618,7 @@ Here are the steps to create a new user and restrict the access only to TrafficP
     " | kubectl apply -f -
     ```
 
-5. Change the user and test RBAC
+1.  Change the service to test user access:
 
     ```sh
     $ kubectl config use-context backend-owner
@@ -627,35 +627,36 @@ Here are the steps to create a new user and restrict the access only to TrafficP
     kind: TrafficPermission
     mesh: default
     metadata:
-    name: web-to-backend
+      name: web-to-backend
     spec:
-    sources:
+      sources:
         - match:
             kuma.io/service: web
-    destinations:
+      destinations:
         - match:
             kuma.io/service: backend
     " | kubectl apply -f -
-    # this operation should success
+    # operation should succeed, access to backend service access is granted
+
     $ echo "
     apiVersion: kuma.io/v1alpha1
     kind: TrafficPermission
     mesh: default
     metadata:
-    name: web-to-backend
+      name: web-to-backend
     spec:
-    sources:
+      sources:
         - match:
             kuma.io/service: web
-    destinations:
+      destinations:
         - match:
-            kuma.io/service: not-backend
+            kuma.io/service: not-backend # access to this service is not granted
     " | kubectl apply -f -
-    # this operation should not success
+    # operation should not succeed
     ```
 {% endnavtab %}
 {% endnavtabs %}
 
 ## Multizone
 
-In multizone setup, `AccessRole` and `AccessRoleBinding` are not synced between the global control plane and the zone control plane.
+In a multizone setup, `AccessRole` and `AccessRoleBinding` are not synchronized between the global control plane and the zone control plane.
