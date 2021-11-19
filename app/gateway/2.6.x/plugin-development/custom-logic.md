@@ -373,7 +373,6 @@ kafka-log                   | 5
 syslog                      | 4
 grpc-web                    | 3
 request-termination         | 2
-correlation-id              | 1
 mocking                     | -1
 post-function               | -1000
 
