@@ -21,14 +21,6 @@ If you want to use the same email address for both your Kong Manager and Dev Por
 A developer account matching the `consumer_claim` configuration parameter has to be
 created and approved (if auto approve is not enabled) beforehand.
 
-OIDC for the Dev Portal can be enabled in one of the following ways:
-
-- [Portal Session Plugin Config](#portal-session-plugin-config)
-- [Sample Configuration Object](#sample-configuration-object)
-- [Enable OIDC using Kong Manager](#enable-oidc-using-kong-manager)
-- [Enable OIDC using the Command Line](#enable-oidc-using-the-command-line)
-- [Enable OIDC using kong.conf](#enable-oidc-using-kongconf)
-
 
 ## Portal Session Plugin Config
 
