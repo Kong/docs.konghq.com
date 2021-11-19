@@ -31,6 +31,13 @@ by both CP and DP nodes.
 (CA). Kong validates both sides by checking if they are from the same CA. This
 eliminates the risks associated with transporting private keys.
 
+{:.warning}
+> **Warning:** if you have a TLS-aware proxy between the DP and CP nodes, you
+must use PKI mode and set `cluster_server_name` to the CP hostname in
+kong.conf. Shared mode uses a non-standard value for TLS server name
+indication, and this will confuse TLS-aware proxies that rely on SNI to route
+traffic.
+
 For a breakdown of the properties used by these modes, see the
 [configuration reference](#configuration-reference).
 
