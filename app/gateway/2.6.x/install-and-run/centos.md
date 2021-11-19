@@ -24,7 +24,7 @@ title: Install Kong Gateway on CentOS
 
 The {{site.base_gateway}} software is governed by the
 [Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
-{{site.ce_product_name}} is licensed under an
+Kong is licensed under an
 [Apache 2.0 license](https://github.com/Kong/kong/blob/master/LICENSE).
 
 ## Prerequisites
@@ -41,11 +41,13 @@ You can install {{site.base_gateway}} by downloading an installation package or 
 
 Install {{site.base_gateway}} on Debian from the command line.
 
-1. Download the {{site.ce_product_name}} package:
+1. Download the Kong package:
     ```bash
     ## Kong Gateway
     curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm $( rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{centos_ver}/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.el%{centos_ver}.noarch.rpm")
-    
+    ```
+
+    ```bash
     ## Kong Gateway (OSS)
     curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.rpm $(rpm --eval "{{ site.links.download }}/gateway-2.x-centos-7/Packages/k/kong-{{page.kong_versions[page.version-index].ce-version}}.el%{centos_ver}.amd64.rpm")
      ```
@@ -54,7 +56,9 @@ Install {{site.base_gateway}} on Debian from the command line.
     ```bash
     ## Kong Gateway
     sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm
-    
+    ```
+
+    ```bash
     ## Kong Gateway (OSS)
     sudo yum install kong-{{page.kong_versions[page.version-index].ce-version}}.rpm
     ```
@@ -64,21 +68,18 @@ Install {{site.base_gateway}} on Debian from the command line.
 
 Install the YUM repository from the command line.
 
-1. Download the {{site.ce_product_name}} APT repository:
+1. Download the Kong APT repository:
     ```bash
     curl $(rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{centos_ver}/config.repo") | sudo tee /etc/yum.repos.d/kong.repo
     ```
 
-2. Setup the Kong rpm signing key
-    ```bash
-    rpm --import $(rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{centos}/repodata/repomd.xml.key")
-    ```
-
-2. Install {{site.ce_product_name}}:
+2. Install Kong:
     ```bash
     ## Kong Gateway
     sudo yum install kong-enterprise-edition
-    
+    ```
+
+    ```
     ## Kong Gateway (OSS)
     sudo yum install kong
     ```

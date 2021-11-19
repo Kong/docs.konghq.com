@@ -24,7 +24,7 @@ title: Install Kong Gateway on RHEL
 
 The {{site.base_gateway}} software is governed by the
 [Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
-{{site.ce_product_name}} is licensed under an
+Kong is licensed under an
 [Apache 2.0 license](https://github.com/Kong/kong/blob/master/LICENSE).
 
 ## Prerequisites
@@ -39,16 +39,28 @@ You can install {{site.base_gateway}} by downloading an installation package or 
 {% navtabs %}
 {% navtab Package %}
 
-Install {{site.base_gateway}} on Debian from the command line.
+Install {{site.base_gateway}} on Amazon Linux from the command line.
 
-1. Download the {{site.ce_product_name}} package:
+1. Download the Kong package:
     ```bash
-    curl -Lo kong-{{site.data.kong_latest.version}}.amd64.rpm $( rpm --eval "{{ site.links.download }}/gateway-2.x-rhel-%{rhel_ver}/Packages/k/kong-{{site.data.kong_latest.version}}.el%{rhel_ver}.amd64.rpm")
+    ## Kong Gateway
+    curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm $( rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{rhel}/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.el%{centos_ver}.noarch.rpm")
+    ```
+
+    ```
+    ## Kong Gateway (OSS)
+    curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.rpm $(rpm --eval "{{ site.links.download }}/gateway-2.x-centos-7/Packages/k/kong-{{page.kong_versions[page.version-index].ce-version}}.el%{centos_ver}.amd64.rpm")
      ```
 
 2. Install the package:
     ```bash
-    sudo yum install kong-{{site.data.kong_latest.version}}.amd64.rpm
+    ## Kong Gateway
+    sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm
+    ```
+
+    ```
+    ## Kong Gateway (OSS)
+    sudo yum install kong-{{page.kong_versions[page.version-index].ce-version}}.rpm
     ```
 
 {% endnavtab %}
@@ -56,17 +68,20 @@ Install {{site.base_gateway}} on Debian from the command line.
 
 Install the YUM repository from the command line.
 
-1. Download the {{site.ce_product_name}} APT repository:
+1. Download the Kong APT repository:
     ```bash
-    curl $(rpm --eval "{{ site.links.download }}/gateway-2.x-rhel-%{rhel_ver}/config.repo") | sudo tee /etc/yum.repos.d/kong.repo
+    curl $(rpm --eval "{{ site.links.download }}/gateway-2.x-rhel-%{rhel}/config.repo") | sudo tee /etc/yum.repos.d/kong.repo
     ```
-2. Update the repository:
+
+2. Install Kong:
     ```bash
-    sudo yum clean
+    ## Kong Gateway
+    sudo yum install kong-enterprise-edition
     ```
-3. Install {{site.ce_product_name}}:
+
     ```bash
-    sudo yum install -y kong
+    ## Kong Gateway (OSS)
+    sudo yum install kong
     ```
 
 {% endnavtab %}

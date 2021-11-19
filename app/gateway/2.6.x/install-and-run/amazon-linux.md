@@ -17,7 +17,7 @@ title: Install Kong Gateway on Amazon Linux
 
 The {{site.base_gateway}} software is governed by the 
 [Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
-{{site.ce_product_name}} is licensed under an
+Kong is licensed under an
 [Apache 2.0 license](https://github.com/Kong/kong/blob/master/LICENSE).
 
 ## Prerequisites
@@ -25,92 +25,59 @@ The {{site.base_gateway}} software is governed by the
 * A supported system with root or [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user) access.
 * (Enterprise only) A `license.json` file from Kong.
 
-## Download
+## Download and Install
 
-You can download an RPM file with the specific version, or pull the whole catalog of versions as a Yum repo.
-
-If you already downloaded the packages manually, move on to [Install](#install).
+You can install {{site.base_gateway}} by downloading an installation package or using our yum repository.
 
 {% navtabs %}
-{% navtab RPM file %}
+{% navtab Package %}
 
-To download the RPM file, choose your Kong Gateway
-package type and use the following command:
+Install {{site.base_gateway}} on Debian from the command line.
 
-```bash
-## Kong Gateway
-curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn2.noarch.rpm "{{ site.links.download }}/gateway-2.x-amazonlinux-2/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn2.noarch.rpm"
-```
+1. Download the Kong package:
+    ```bash
+    ## Kong Gateway
+    curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn2.noarch.rpm "{{ site.links.download }}/gateway-2.x-amazonlinux-2/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn2.noarch.rpm"
+    ```
 
-```bash
-## Kong Gateway (OSS)
-curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.aws.amd64.rpm "{{ site.links.download }}/gateway-2.x-amazonlinux-2/Packages/k/kong-{{page.kong_versions[page.version-index].ce-version}}.aws.amd64.rpm"
-```
+    ```bash
+    ## Kong Gateway (OSS)
+    curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.aws.amd64.rpm "{{ site.links.download }}/gateway-2.x-amazonlinux-2/Packages/k/kong-{{page.kong_versions[page.version-index].ce-version}}.aws.amd64.rpm"
+    ```
+
+2. Install the package:
+    ```bash
+    ## Kong Gateway
+    sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn2.noarch.rpm
+    ```
+
+    ```bash
+    ## Kong Gateway (OSS)
+    sudo yum install kong-{{page.kong_versions[page.version-index].ce-version}}.aws.amd64.rpm
+    ```
 
 {% endnavtab %}
-{% navtab Yum repo %}
+{% navtab YUM repository %}
 
-To download the Yum repo file, choose your Kong Gateway
-package type and use the following command:
+Install the YUM repository from the command line.
 
-```bash
-## Kong Gateway
-curl {{site.links.download}}/gateway-2.x-amazonlinux-2/config.repo | sudo tee /etc/yum.repos.d/kong-enterprise-edition.repo
-```
+1. Download the Kong APT repository:
+    ```bash
+    curl https://download.konghq.com/gateway-2.x-amazonlinux-2/config.repo | sudo tee /etc/yum.repos.d/kong.repo
+    ```
 
-```bash
-## Kong Gateway (OSS)
-curl {{site.links.download}}/gateway-2.x-amazonlinux-2/config.repo | sudo tee /etc/yum.repos.d/kong.repo
-```
+2. Install Kong:
+    ```bash
+    ## Kong Gateway
+    sudo yum install kong-enterprise-edition
+    ```
+
+    ```bash
+    ## Kong Gateway (OSS)
+    sudo yum install kong
+    ```
 
 {% endnavtab %}
 {% endnavtabs %}
-
-## Install
-
-{% navtabs %}
-{% navtab RPM file %}
-
-To install the RPM file, choose your Kong Gateway package
-type and use the following command:
-
-```bash
-## Kong Gateway
-sudo yum install -y kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn2.noarch.rpm
-```
-
-```bash
-## Kong Gateway (OSS)
-sudo yum --nogpgcheck install -y kong-{{page.kong_versions[page.version-index].ce-version}}.aws.amd64.rpm
-```
-
-{% endnavtab %}
-{% navtab Yum repo %}
-
-To install the Yum repo file, choose your Kong Gateway
-package type and use the following command:
-
-```bash
-## Kong Gateway
-sudo yum install -y kong-enterprise-edition
-```
-
-```bash
-## Kong Gateway (OSS)
-sudo yum --nogpgcheck install -y kong
-```
-
-{% endnavtab %}
-{% endnavtabs %}
-
-<!-- Setup content shared between all Linux installation topics: Amazon Linux, CentOS, Ubuntu, and RHEL.
-Includes the following sections: Setup configs, Using a database, Using a yaml declarative config file,
-Using a yaml declarative config file, Verify install, Enable and configure Kong Manager, Enable Dev Portal,
-Support, and Next Steps.
-
-Located in the app/_includes/md/gateway folder.
-
-See https://docs.konghq.com/contributing/includes/ for more information about using includes in this project.
--->
 
 {% include_cached /md/gateway/setup.md kong_version=page.kong_version %}
