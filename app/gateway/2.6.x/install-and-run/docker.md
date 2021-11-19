@@ -67,14 +67,10 @@ docker pull kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
 {% capture tag_image %}
 {% navtabs codeblock %}
 {% navtab Kong Gateway %}
-```bash
- docker tag kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine kong-ee
-```
+<pre><code>docker tag kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine <div contenteditable="true">{TAG_NAME}</div></code></pre>
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
-```bash
-docker tag kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kong
-```
+<pre><code>docker tag kong:{{page.kong_versions[page.version-index].ce-version}}-alpine <div contenteditable="true">{TAG_NAME}</div></code></pre>
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
@@ -84,42 +80,27 @@ docker tag kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kon
 
 1. Create a custom Docker network to allow the containers to discover and communicate with each other:
 
-   ```bash
-   docker network create kong-net
-   ```
+   <pre><code>docker network create <div contenteditable="true">{NETWORK_NAME}</div></code></pre>
 
-2. Start a PostgreSQL container:
+1. Start a PostgreSQL container:
 
-   ```p
-   docker run -d --name kong-database \
-     --network=kong-net \
+   <pre><code>docker run -d --name <div contenteditable="true">{CONTAINER_NAME}</div> \
+     --network=<div contenteditable="true">{NETWORK_NAME}</div> \
      -p 5432:5432 \
-     -e "POSTGRES_USER=kong" \
-     -e "POSTGRES_DB=kong" \
-     -e "POSTGRES_PASSWORD=kong" \
+     -e "POSTGRES_USER=<div contenteditable="true">{DATABASE_USER}</div>" \
+     -e "POSTGRES_DB=<div contenteditable="true">{DATABASE_NAME}</div>" \
+     -e "POSTGRES_PASSWORD=<div contenteditable="true">{DATABASE_PASSWORD}</div>" \
      postgres:9.6
-   ```
+   </code></pre>
 
-3. Prepare the Kong database:
+1. Prepare the Kong database:
 {% capture migrations %}
-{% navtabs codeblock %}
-{% navtab Kong Gateway %}
-<pre><code>docker run --rm --network=kong-net \
+<pre><code>docker run --rm --network=<div contenteditable="true">{NETWORK_NAME}</div> \
  -e "KONG_DATABASE=postgres" \
- -e "KONG_PG_HOST=kong-database" \
- -e "KONG_PG_PASSWORD=kong" \
+ -e "KONG_PG_HOST=<div contenteditable="true">{CONTAINER_NAME}</div>" \
+ -e "KONG_PG_PASSWORD=<div contenteditable="true">{CONTAINER_PASSWORD}</div>" \
  -e "KONG_PASSWORD=<div contenteditable="true">{PASSWORD}</div>" \
- kong-ee migrations bootstrap</code></pre>
-{% endnavtab %}
-{% navtab Kong Gateway (OSS) %}
-<pre><code>docker run --rm --network=kong-net \
- -e "KONG_DATABASE=postgres" \
- -e "KONG_PG_HOST=kong-database" \
- -e "KONG_PG_PASSWORD=kong" \
- -e "KONG_PASSWORD=<div contenteditable="true">{PASSWORD}</div>" \
- kong migrations bootstrap</code></pre>
-{% endnavtab %}
-{% endnavtabs %}
+ <div contenteditable="true">{TAG_NAME}</div> <div contenteditable="true">{DATABASE_NAME}</div> migrations bootstrap</code></pre>
 {% endcapture %}
 {{ migrations | indent | replace: " </code>", "</code>" }}
 
@@ -131,11 +112,11 @@ docker tag kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kon
 {% capture start_container %}
 {% navtabs codeblock %}
 {% navtab Kong Gateway %}
-<div class="copy-code-snippet"><pre><code>docker run -d --name kong-ee \
- --network=kong-net \
+<div class="copy-code-snippet"><pre><code>docker run -d --name <div contenteditable="true">{CONTAINER_NAME}</div> \
+ --network=<div contenteditable="true">{NETWORK_NAME}</div> \
  -e "KONG_DATABASE=postgres" \
- -e "KONG_PG_HOST=kong-database" \
- -e "KONG_PG_PASSWORD=kong" \
+ -e "KONG_PG_HOST=<div contenteditable="true">{DATABASE_NAME}</div>" \
+ -e "KONG_PG_PASSWORD=<div contenteditable="true">{DATABASE_PASSWORD}</div>" \
  -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
  -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
  -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
@@ -153,8 +134,8 @@ docker tag kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kon
  kong-ee</code></pre></div>
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
-<div class="copy-code-snippet"><pre><code>docker run -d --name kong \
- --network=kong-net \
+<div class="copy-code-snippet"><pre><code>docker run -d --name <div contenteditable="true">{CONTAINER_NAME}</div> \
+ --network=<div contenteditable="true">{NETWORK_NAME}</div> \
  -e "KONG_DATABASE=postgres" \
  -e "KONG_PG_HOST=kong-database" \
  -e "KONG_PG_USER=kong" \
@@ -194,7 +175,7 @@ docker tag kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kon
 
 {:.important}
 > **Important**: Running {{site.base_gateway}} on Docker in DB-less mode is
-supported for both Enterprise and OSS images. However, there is currently no
+supported for both Enterprise and OSS images. However, there's currently no
 documentation for setting up an Enterprise image in DB-less mode, so adjust the
 following steps as needed for an Enterprise deploy.
 
@@ -205,29 +186,22 @@ The steps involved in starting Kong in [DB-less mode](/gateway/{{page.kong_versi
     This is the same as in the Pg/Cassandra guide. We're also using `kong-net` as the
     network name and it can also be changed to something else.
 
-    ```bash
-    docker network create kong-net
-    ```
+    <pre><code>docker network create <div contenteditable="true">{NETWORK_NAME}</div></code></pre>
 
-    This step is not strictly needed for running Kong in DB-less mode, but it is a good
+    This step is not strictly needed for running Kong in DB-less mode, but it's a good
     precaution in case you want to add other things in the future (like a rate-limiting plugin
     backed up by a Redis cluster).
 
 2. Create a Docker volume:
 
-    For the purposes of this guide, a [Docker Volume][Docker Volume] is a folder inside the host machine which
-    can be mapped into a folder in the container. Volumes have a name. In this case we're going
-    to name ours `kong-vol`
+    For the purposes of this guide, a [Docker Volume][Docker Volume] is a folder inside the host machine, which
+    can be mapped into a folder in the container.
 
-    ```bash
-    docker volume create kong-vol
-    ```
+    <pre><code>docker volume create <div contenteditable="true">{DOCKER_VOLUME_NAME}</div></code></pre>
 
     You should be able to inspect the volume now:
 
-    ```bash
-    docker volume inspect kong-vol
-    ```
+    <pre><code>docker volume inspect <div contenteditable="true">{DOCKER_VOLUME_NAME}</div></code></pre>
 
     The result should be similar to this:
 
@@ -261,15 +235,14 @@ The steps involved in starting Kong in [DB-less mode](/gateway/{{page.kong_versi
 
 4. Start Kong in DB-less mode:
 
-   Although it's possible to start the Kong container with just `KONG_DATABASE=off`, it is usually
+   Although it's possible to start the Kong container with `KONG_DATABASE=off`, it is usually
    desirable to also include the declarative configuration file as a parameter via the
-   `KONG_DECLARATIVE_CONFIG` variable name. In order to do this, we need to make the file
-   "visible" from within the container. We achieve this with the `-v` flag, which maps
-   the `kong-vol` volume to the `/usr/local/kong/declarative` folder in the container.
+   `KONG_DECLARATIVE_CONFIG` variable name. To do this, we need to make the file
+   "visible" from within the container. Use the `-v` flag, which maps
+   the Docker volume to the `/usr/local/kong/declarative` folder in the container.
 
-    ```bash
-    docker run -d --name kong \
-        --network=kong-net \
+    <pre><code>docker run -d --name <div contenteditable="true">{CONTAINER_NAME}</div> \
+        --network=<div contenteditable="true">{NETWORK_NAME}</div> \
         -v "kong-vol:/usr/local/kong/declarative" \
         -e "KONG_DATABASE=off" \
         -e "KONG_DECLARATIVE_CONFIG=/usr/local/kong/declarative/kong.yml" \
@@ -282,20 +255,15 @@ The steps involved in starting Kong in [DB-less mode](/gateway/{{page.kong_versi
         -p 8443:8443 \
         -p 127.0.0.1:8001:8001 \
         -p 127.0.0.1:8444:8444 \
-        kong:latest
-    ```
+        kong:latest</code></pre>
 
-4. Verify that {{site.base_gateway}} is running:
+5. Verify that {{site.base_gateway}} is running:
 
-    ```bash
-    curl -i http://localhost:8001/
-    ```
+    <pre><code>curl -i http://<div contenteditable="true">{HOSTNAME}</div>:8001</code></pre>
 
     For example, get a list of services:
 
-    ```bash
-    curl -i http://localhost:8001/services
-    ```
+    <pre><code>curl -i http://<div contenteditable="true">{HOSTNAME}</div>:8001/services</code></pre>
 
 [DB-less mode]: /gateway/{{page.kong_version}}/reference/db-less-and-declarative-config/
 [Declarative Configuration Format]: /gateway/{{page.kong_version}}/reference/db-less-and-declarative-config/#the-declarative-configuration-format
@@ -303,7 +271,7 @@ The steps involved in starting Kong in [DB-less mode](/gateway/{{page.kong_versi
 
 ## Troubleshooting
 
-If you did not receive a `200 OK` status code or need assistance completing
+If you didn't get a `200 OK` status code or need help completing
 setup, reach out to your support contact or head over to the
 [Support Portal](https://support.konghq.com/support/s/).
 
