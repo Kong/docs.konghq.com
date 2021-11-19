@@ -32,9 +32,9 @@ by both CP and DP nodes.
 eliminates the risks associated with transporting private keys.
 
 {:.warning}
-> **Warning:** if you have a TLS-aware proxy between the DP and CP nodes, you
+> **Warning:** If you have a TLS-aware proxy between the DP and CP nodes, you
 must use PKI mode and set `cluster_server_name` to the CP hostname in
-kong.conf. Shared mode uses a non-standard value for TLS server name
+`kong.conf`. Do not use shared mode, as it uses a non-standard value for TLS server name
 indication, and this will confuse TLS-aware proxies that rely on SNI to route
 traffic.
 
