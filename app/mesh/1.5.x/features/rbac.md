@@ -409,6 +409,9 @@ Here are the steps to create a new user and restrict the access only to TrafficP
 {% navtabs %}
 {% navtab Universal %}
 
+**NOTE** By default, all requests that originates from localhost are authenticated as user `admin` belonging to group `mesh-system:admin`.
+In order for this example to work you must either run the control plane with `KUMA_API_SERVER_AUTHN_LOCALHOST_IS_ADMIN` set to `false` or be accessing the control plane not via localhost.
+
 1.  Extract admin token and configure kumactl with admin
 
     ```sh
