@@ -109,7 +109,7 @@ docker tag kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kon
  -e "KONG_PG_HOST=kong-database" \
  -e "KONG_PG_PASSWORD=kong" \
  -e "KONG_PASSWORD=<div contenteditable="true">{PASSWORD}</div>" \
- kong-ee migrations bootstrap</code></pre>
+ kong-ee kong migrations bootstrap</code></pre>
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 <pre><code>docker run --rm --network=kong-net \
@@ -117,7 +117,7 @@ docker tag kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kon
  -e "KONG_PG_HOST=kong-database" \
  -e "KONG_PG_PASSWORD=kong" \
  -e "KONG_PASSWORD=<div contenteditable="true">{PASSWORD}</div>" \
- kong migrations bootstrap</code></pre>
+ kong kong migrations bootstrap</code></pre>
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
