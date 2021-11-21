@@ -59,11 +59,11 @@ params:
   dbless_compatible: partially
   dbless_explanation: |
     Consumers and Credentials can be created with declarative configuration.
-    
+
     Admin API endpoints that do POST, PUT, PATCH or DELETE on Credentials will not work on DB-less mode.
   config:
     - name: hide_credentials
-      required: false
+      required: true
       default: "`false`"
       datatype: boolean
       description: |

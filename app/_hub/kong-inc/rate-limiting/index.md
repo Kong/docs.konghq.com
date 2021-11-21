@@ -135,13 +135,13 @@ params:
         For details on which policy should be used, refer to the
         [implementation considerations](#implementation-considerations).
     - name: fault_tolerant
-      required: false
+      required: true
       default: '`true`'
       datatype: boolean
       description: |
         A boolean value that determines if the requests should be proxied even if Kong has troubles connecting a third-party datastore. If `true`, requests will be proxied anyway, effectively disabling the rate-limiting function until the datastore is working again. If `false`, then the clients will see `500` errors.
     - name: hide_client_headers
-      required: false
+      required: true
       default: '`false`'
       datatype: boolean
       description: Optionally hide informative response headers.

@@ -63,7 +63,7 @@ params:
     Admin API endpoints which do POST, PUT, PATCH or DELETE on Credentials are not available on DB-less mode.
   config:
     - name: hide_credentials
-      required: false
+      required: true
       value_in_examples: true
       datatype: boolean
       default: "`false`"
