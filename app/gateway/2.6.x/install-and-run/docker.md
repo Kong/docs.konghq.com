@@ -84,7 +84,7 @@ docker pull kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
 
 1. Start a PostgreSQL container:
 
-   <pre><code>docker run -d --name <div contenteditable="true">{CONTAINER_NAME}</div> \
+   <pre><code>docker run -d --name <div contenteditable="true">{PG_CONTAINER_NAME}</div> \
      --network=<div contenteditable="true">{NETWORK_NAME}</div> \
      -p 5432:5432 \
      -e "POSTGRES_USER=<div contenteditable="true">{DATABASE_USER}</div>" \
@@ -97,7 +97,7 @@ docker pull kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
 {% capture migrations %}
 <pre><code>docker run --rm --network=<div contenteditable="true">{NETWORK_NAME}</div> \
  -e "KONG_DATABASE=postgres" \
- -e "KONG_PG_HOST=<div contenteditable="true">{CONTAINER_NAME}</div>" \
+ -e "KONG_PG_HOST=<div contenteditable="true">{PG_CONTAINER_NAME}</div>" \
  -e "KONG_PG_PASSWORD=<div contenteditable="true">{CONTAINER_PASSWORD}</div>" \
  -e "KONG_PASSWORD=<div contenteditable="true">{PASSWORD}</div>" \
  <div contenteditable="true">{TAG_NAME}</div> <div contenteditable="true">{DATABASE_NAME}</div> migrations bootstrap</code></pre>
@@ -112,7 +112,7 @@ docker pull kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
 {% capture start_container %}
 {% navtabs codeblock %}
 {% navtab Kong Gateway %}
-<div class="copy-code-snippet"><pre><code>docker run -d --name <div contenteditable="true">{CONTAINER_NAME}</div> \
+<div class="copy-code-snippet"><pre><code>docker run -d --name <div contenteditable="true">{GATEWAY_CONTAINER_NAME}</div> \
  --network=<div contenteditable="true">{NETWORK_NAME}</div> \
  -e "KONG_DATABASE=postgres" \
  -e "KONG_PG_HOST=<div contenteditable="true">{DATABASE_NAME}</div>" \
@@ -134,7 +134,7 @@ docker pull kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
  kong-ee</code></pre></div>
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
-<div class="copy-code-snippet"><pre><code>docker run -d --name <div contenteditable="true">{CONTAINER_NAME}</div> \
+<div class="copy-code-snippet"><pre><code>docker run -d --name <div contenteditable="true">{GATEWAY_CONTAINER_NAME}</div> \
  --network=<div contenteditable="true">{NETWORK_NAME}</div> \
  -e "KONG_DATABASE=postgres" \
  -e "KONG_PG_HOST=kong-database" \
