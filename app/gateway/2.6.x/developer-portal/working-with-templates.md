@@ -22,7 +22,7 @@ You may use the following tags in templates:
 
 ## Show custom properties
 
-You may work with custom properties in your OpenAPI spec. To expose custom properties in Dev Portal, add the property `showExtensions` and assign `true`. By default, `showExtensions` is `false`.
+You may work with custom properties in your OpenAPI spec. To expose custom properties in Dev Portal, change the property `showExtensions` to `true` in the `spec-renderer.html` file. By default, `showExtensions` is `false`.
 
 ## Partials
 
