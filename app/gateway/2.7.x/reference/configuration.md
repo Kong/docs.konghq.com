@@ -1555,7 +1555,7 @@ cluster, or without a database, where each node stores its information
 independently in memory.
 
 When using a database, Kong will store data for all its entities (such as
-Routes, Services, Consumers, and Plugins) in either Cassandra or PostgreSQL, and
+Routes, Services, Consumers, and Plugins) in a database, and
 all Kong nodes belonging to the same cluster must connect themselves to the same
 database.
 

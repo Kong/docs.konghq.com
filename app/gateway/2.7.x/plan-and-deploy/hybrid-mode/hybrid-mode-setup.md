@@ -315,7 +315,7 @@ keys.
 {% endnavtab %}
 {% endnavtabs %}
 
-Note that the Control Plane still needs a database (Postgres or Cassandra) to
+Note that the Control Plane still needs a database to
 store the central configurations, although the database never needs to
 be accessed by Data Plane nodes. You may run multiple Control Plane nodes to
 provide load balancing and redundancy, as long as they all point to the same

@@ -2,9 +2,8 @@
 title: Hybrid Mode Overview
 ---
 
-Traditionally, Kong has always required a database, which could be either
-Postgres or Cassandra, to store configured entities such as Routes, Services,
-and Plugins.
+Traditionally, Kong has always required a database, to store configured 
+entities such as Routes, Services, and Plugins.
 
 Starting with {{site.base_gateway}} 2.1, Kong can be deployed in
 Hybrid mode, also known as Control Plane / Data Plane Separation (CP/DP).

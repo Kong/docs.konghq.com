@@ -10,14 +10,7 @@ clusters (such as environments handling tens or hundreds of thousands of
 requests per second), without placing addition write load on the database
 backing the Kong cluster.
 
-<div class="alert alert-ee red">
-    <strong>Deprecation:</strong> 
-    Support for Cassandra is deprecated with <code>Kong Gateway</code> 2.7 and fully removed with 4.0. It is strongly discouraged to use Cassandra as your datastore as it will have limited support throughout the deprecation period. For more
-    information, see <a href="/gateway-oss/{{ link_to_cassandra_deprecation_overview }}">this blog post</a>.
-</div>
-
-For using Vitals with a database as the backend (i.e. PostgreSQL, Cassandra),
-refer to [Kong Vitals](/gateway/{{page.kong_version}}/vitals/).
+For using Vitals with a database as the backend, refer to [Kong Vitals](/gateway/{{page.kong_version}}/vitals/).
 
 ## Lifecycle Overview
 
