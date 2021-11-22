@@ -117,8 +117,8 @@ that a Plugin doesn't need to provide functions for all phases.
 
 ```lua
 local CustomHandler = {
-  VERSION  = "1.0.0"
-  PRIORITY = 10
+  VERSION  = "1.0.0",
+  PRIORITY = 10,
 }
 
 function CustomHandler:init_worker()
@@ -177,6 +177,33 @@ function CustomHandler.access(self, config)
   kong.log("access")
 end
 ```
+
+### Porting from old `BasePlugin` style.
+
+The `BasePlugin` module is deprecated and will be removed in a future version
+of {{site.ce_product_name}}.  If you have an old plugin that used it, replace
+the initial part:
+
+```lua
+--  DEPRECATED --
+local BasePlugin = require "kong.plugins.base_plugin"
+
+local CustomHandler = BasePlugin:extend()
+
+CustomHandler.VERSION  = "1.0.0"
+CustomHandler.PRIORITY = 10
+```
+
+with the current equivalent:
+```lua
+local CustomHandler = {
+  VERSION  = "1.0.0",
+  PRIORITY = 10,
+}
+```
+
+No need to add a `:new()` method, nor call the `CustomHandler.super.XXX:(self)`
+methods.
 
 The Plugin's logic doesn't need to be all defined inside the `handler.lua` file.
 It can be be split into several Lua files (also called *modules*).
