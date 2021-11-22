@@ -1325,6 +1325,33 @@ This means all of the below setup are supported in this mode:
 protocol list are supported. This list can be found in their respective documentation
 on [Kong Hub](https://docs.konghq.com/hub/).
 
+[Back to top](#introduction)
+
+## Proxy TLS passthrough traffic
+
+Starting with version 2.7, Kong supports proxying a TLS request without terminating or known
+as SNI proxy.
+
+Kong will not decrypt the incoming TLS traffic, but use the connecting client's
+TLS SNI server name extension to find the matching Route and Service and forward the
+complete TLS request to upstream.
+
+In this mode, request must be sent to a port that has `ssl` flag in its `stream_listen` directive.
+Aside from defining `stream_listen`, appropriate Route
+object with protocol types of `tls_passthrough` and `snis` field should be created, the corresponding
+Service object must have protocol of `tcp`. Different from proxying TLS traffic,
+SNI and Certificate entity is not required to be set and will not be used.
+
+Routes are not allowed to match `tls` and `tls_passthrough` protocols at same time; but same
+SNI is allowed to match `tls` and `tls_passthrough` in different Routes. It's possible to set
+Route to `tls_passthrough` and Service to `tls`, in this mode the connection to upstream will
+be TLS encrypted twice.
+
+**Note:** To allow plugins run in this mode, it must have protocols field explictly
+include `tls_passthrough`.
+
+[Back to top](#introduction)
+
 ## Conclusion
 
 Through this guide, we hope you gained knowledge of the underlying proxying
