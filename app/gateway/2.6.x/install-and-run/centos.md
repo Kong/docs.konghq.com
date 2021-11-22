@@ -34,34 +34,51 @@ Kong is licensed under an
 
 ## Download and Install
 
-You can install {{site.base_gateway}} by downloading an installation package or using our yum repository.
+You can install {{site.base_gateway}} by downloading an installation package or
+using our YUM repository.
 
 {% navtabs %}
 {% navtab Package %}
 
-Install {{site.base_gateway}} on Debian from the command line.
+Install {{site.base_gateway}} on CentOS from the command line.
 
 1. Download the Kong package:
-    ```bash
-    ## Kong Gateway
-    curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm $( rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{centos_ver}/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.el%{centos_ver}.noarch.rpm")
-    ```
 
-    ```bash
-    ## Kong Gateway (OSS)
-    curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.rpm $(rpm --eval "{{ site.links.download }}/gateway-2.x-centos-7/Packages/k/kong-{{page.kong_versions[page.version-index].ce-version}}.el%{centos_ver}.amd64.rpm")
-     ```
+{% capture download_package %}
+{% navtabs codeblock %}
+{% navtab Kong Gateway %}
+```bash
+curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm $(rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{centos_ver}/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.el%{centos_ver}.noarch.rpm")
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```bash
+curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.rpm $(rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{centos_ver}/Packages/k/kong-{{page.kong_versions[page.version-index].ce-version}}.el%{centos_ver}.amd64.rpm")
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+
+{{ download_package | indent | replace: " </code>", "</code>" }}
 
 2. Install the package:
-    ```bash
-    ## Kong Gateway
-    sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm
-    ```
 
-    ```bash
-    ## Kong Gateway (OSS)
-    sudo yum install kong-{{page.kong_versions[page.version-index].ce-version}}.rpm
-    ```
+{% capture install_package %}
+{% navtabs codeblock %}
+{% navtab Kong Gateway %}
+```bash
+sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```bash
+sudo yum install kong-{{page.kong_versions[page.version-index].ce-version}}.rpm
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+
+{{ install_package | indent | replace: " </code>", "</code>" }}
 
 {% endnavtab %}
 {% navtab YUM repository %}
@@ -74,17 +91,33 @@ Install the YUM repository from the command line.
     ```
 
 2. Install Kong:
-    ```bash
-    ## Kong Gateway
-    sudo yum install kong-enterprise-edition
-    ```
 
-    ```
-    ## Kong Gateway (OSS)
-    sudo yum install kong
-    ```
+{% capture install_from_repo %}
+{% navtabs codeblock %}
+{% navtab Kong Gateway %}
+```bash
+sudo yum install kong-enterprise-edition
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```bash
+sudo yum install kong
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+
+{{ install_from_repo | indent | replace: " </code>", "</code>" }}
 
 {% endnavtab %}
 {% endnavtabs %}
+
+<!-- Setup content shared between all Linux installation topics: Amazon Linux, CentOS, Ubuntu, and RHEL.
+Includes the following sections: Setup configs, Using a database, Using a yaml declarative config file,
+Using a yaml declarative config file, Verify install, Enable and configure Kong Manager, Enable Dev Portal,
+Support, and Next Steps.
+Located in the app/_includes/md/gateway folder.
+See https://docs.konghq.com/contributing/includes/ for more information about using includes in this project.
+-->
 
 {% include_cached /md/gateway/setup.md kong_version=page.kong_version %}
