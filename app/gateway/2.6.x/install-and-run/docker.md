@@ -138,7 +138,7 @@ docker pull kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
  --network=<div contenteditable="true">{NETWORK_NAME}</div> \
  -e "KONG_DATABASE=postgres" \
  -e "KONG_PG_HOST=<div contenteditable="true">{PG_HOST_NAME}</div>" \
- -e "KONG_PG_USER=kong" \
+ -e "KONG_PG_USER=<div contenteditable="true">{PG_USER_NAME}</div>" \
  -e "KONG_PG_PASSWORD=kong" \
  -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
  -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
