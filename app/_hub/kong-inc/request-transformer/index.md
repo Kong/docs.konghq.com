@@ -2,63 +2,60 @@
 name: Request Transformer
 publisher: Kong Inc.
 version: 1.3.x
-# internal version handler is currently (4-8-2021) 1.3.2.
-
-desc: Use regular expressions, variables, and templates to transform requests
+desc: 'Use regular expressions, variables, and templates to transform requests'
 description: |
   The Request Transformer plugin for Kong allows simple transformation of requests
   before they reach the upstream server. These transformations can be simple substitutions
   or complex ones matching portions of incoming requests using regular expressions, saving
   those matched strings into variables, and substituting those strings into transformed requests using flexible templates.
-
 type: plugin
 categories:
   - transformations
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 2.0.x
-        - 1.5.x
-        - 1.4.x
-        - 1.3.x
-        - 1.2.x
-        - 1.1.x
-        - 1.0.x
-        - 0.14.x
-        - 0.13.x
-        - 0.12.x
-        - 0.11.x
-        - 0.10.x
-        - 0.9.x
-        - 0.8.x
-        - 0.7.x
-        - 0.6.x
-        - 0.5.x
-        - 0.4.x
-        - 0.3.x
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x       
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-
+  community_edition:
+    compatible:
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 2.0.x
+      - 1.5.x
+      - 1.4.x
+      - 1.3.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
+      - 0.14.x
+      - 0.13.x
+      - 0.12.x
+      - 0.11.x
+      - 0.10.x
+      - 0.9.x
+      - 0.8.x
+      - 0.7.x
+      - 0.6.x
+      - 0.5.x
+      - 0.4.x
+      - 0.3.x
+  enterprise_edition:
+    compatible:
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
+      - 0.36-x
 params:
   name: request-transformer
   service_id: true
   route_id: true
   consumer_id: true
   konnect_examples: false
-  protocols: ["http", "https"]
-  dbless_compatible: yes
+  protocols:
+    - http
+    - https
+  dbless_compatible: 'yes'
   config:
     - name: http_method
       required: false
@@ -66,17 +63,23 @@ params:
       description: Sets the HTTP method for the upstream request.
     - name: remove.headers
       required: false
-      value_in_examples: [ "x-toremove", "x-another-one" ]
+      value_in_examples:
+        - x-toremove
+        - x-another-one
       datatype: array of string elements
       description: List of header names. Unset the headers with the given name.
     - name: remove.querystring
       required: false
-      value_in_examples: [ "qs-old-name:qs-new-name", "qs2-old-name:qs2-new-name" ]
+      value_in_examples:
+        - 'qs-old-name:qs-new-name'
+        - 'qs2-old-name:qs2-new-name'
       datatype: array of string elements
       description: List of querystring names. Remove the querystring if it is present.
     - name: remove.body
       required: false
-      value_in_examples: [ "formparam-toremove", "formparam-another-one" ]
+      value_in_examples:
+        - formparam-toremove
+        - formparam-another-one
       datatype: array of string elements
       description: |
         List of parameter names. Remove the parameter if and only if content-type is one the following:
@@ -89,7 +92,9 @@ params:
         only the path part of the URI, not the scheme or the hostname.
     - name: replace.body
       required: false
-      value_in_examples: [ "body-param1:new-value-1", "body-param2:new-value-2" ]
+      value_in_examples:
+        - 'body-param1:new-value-1'
+        - 'body-param2:new-value-2'
       datatype: array of string elements
       description: |
         List of `paramname:value` pairs. If and only if content-type is one the following
@@ -110,21 +115,27 @@ params:
         replace its old value with the new one. Ignored if the field name is not already set.
     - name: rename.headers
       required: false
-      value_in_examples: [ "header-old-name:header-new-name", "another-old-name:another-new-name" ]
+      value_in_examples:
+        - 'header-old-name:header-new-name'
+        - 'another-old-name:another-new-name'
       datatype: array of string elements
       description: |
         List of `headername:value` pairs. If and only if the header is already set, rename
         the header. The value is unchanged. Ignored if the header is not already set.
     - name: rename.querystring
       required: false
-      value_in_examples: [ "qs-old-name:qs-new-name", "qs2-old-name:qs2-new-name" ]
+      value_in_examples:
+        - 'qs-old-name:qs-new-name'
+        - 'qs2-old-name:qs2-new-name'
       datatype: array of string elements
       description: |
         List of queryname:value pairs. If and only if the field name is already set, rename the field name.
         The value is unchanged. Ignored if the field name is not already set.
     - name: rename.body
       required: false
-      value_in_examples: [ "param-old:param-new", "param2-old:param2-new" ]
+      value_in_examples:
+        - 'param-old:param-new'
+        - 'param2-old:param2-new'
       datatype: array of string elements
       description: |
         List of `paramname:value` pairs. Rename the parameter name if and only if
@@ -139,21 +150,27 @@ params:
         is already present, replace its old value with the new one. Ignored if the parameter is not already present.
     - name: add.headers
       required: false
-      value_in_examples: [ "x-new-header:value", "x-another-header:something" ]
+      value_in_examples:
+        - 'x-new-header:value'
+        - 'x-another-header:something'
       datatype: array of string elements
       description: |
         List of `headername:value` pairs. If and only if the header is not already set, set a new header
         with the given value. Ignored if the header is already set.
     - name: add.querystring
       required: false
-      value_in_examples: [ "new-param:some_value", "another-param:some_value" ]
+      value_in_examples:
+        - 'new-param:some_value'
+        - 'another-param:some_value'
       datatype: array of string elements
       description: |
         List of `queryname:value` pairs. If and only if the querystring is not already set, set a new
         querystring with the given value. Ignored if the header is already set.
     - name: add.body
       required: false
-      value_in_examples: [ "new-form-param:some_value", "another-form-param:some_value" ]
+      value_in_examples:
+        - 'new-form-param:some_value'
+        - 'another-form-param:some_value'
       datatype: array of string elements
       description: |
         List of `paramname:value` pairs. If and only if content-type is one the
@@ -169,7 +186,7 @@ params:
     - name: append.querystring
       required: false
       datatype: array of string elements
-      description: List of `queryname:value` pairs. If the querystring is not set, set it with the given value. If it is already set, a new querystring with the same name and the new value will be set.
+      description: 'List of `queryname:value` pairs. If the querystring is not set, set it with the given value. If it is already set, a new querystring with the same name and the new value will be set.'
     - name: append.body
       required: false
       datatype: array of string elements
@@ -185,7 +202,6 @@ params:
     * The `X-Forwarded-*` fields are non-standard header fields written by Nginx to inform the upstream about
     client details and can't be overwritten by this plugin. If you need to overwrite these header fields, see the
     [post-function plugin in Serverless Functions](https://docs.konghq.com/hub/kong-inc/serverless-functions/).
-
 ---
 
 ## Template as a Value

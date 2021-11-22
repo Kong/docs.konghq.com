@@ -2,21 +2,15 @@
 name: gRPC-Web
 publisher: Kong Inc.
 version: 0.3.x
-
 categories:
   - transformations
-
 type: plugin
-
 desc: Allow browser clients to call gRPC services
 description: |
   A Kong plugin to allow access to a gRPC service via the [gRPC-Web protocol](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md#protocol-differences-vs-grpc-over-http2).
   Primarily, this means JavaScript browser applications using the [gRPC-Web](https://github.com/grpc/grpc-web) library.
-
-source_url: https://github.com/Kong/kong-plugin-grpc-web
-
+source_url: 'https://github.com/Kong/kong-plugin-grpc-web'
 license_type: MIT
-
 kong_version_compatibility:
   community_edition:
     compatible:
@@ -24,25 +18,23 @@ kong_version_compatibility:
       - 2.3.x
       - 2.2.x
       - 2.1.x
-
   enterprise_edition:
     compatible:
       - 2.4.x
       - 2.3.x
       - 2.2.x
       - 2.1.x
-
-
 params:
   name: grpc-web
   route_id: true
-  protocols: ["http", "https"]
+  protocols:
+    - http
+    - https
   dbless_compatible: true
-
   config:
     - name: proto
       required: false
-      default:
+      default: null
       value_in_examples: path/to/hello.proto
       datatype: string
       description: |
@@ -51,23 +43,20 @@ params:
         web client must use application/grpw-web+proto content.
     - name: pass_stripped_path
       required: false
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: boolean
-      description:
-        If set to `true` causes the plugin to pass the stripped request path to
-        the upstream gRPC service (see the `strip_path` Route attribute).
+      description: If set to `true` causes the plugin to pass the stripped request path to the upstream gRPC service (see the `strip_path` Route attribute).
     - name: allow_origin_header
       required: false
       datatype: string
-      default: "*"
-      value_in_examples:
+      default: '*'
+      value_in_examples: null
       description: |
         The value of the `Access-Control-Allow-Origin` header in the response to
         the gRPC-Web client.  The default of `*` is appropriate for requests without
         credentials.  In other cases, specify the allowed origins of the client code.
         For more information, see [MDN Web Docs - Access-Control-Allow-Origin](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Origin).
-
 ---
 
 ## Purpose

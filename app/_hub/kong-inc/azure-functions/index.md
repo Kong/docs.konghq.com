@@ -2,63 +2,59 @@
 name: Azure Functions
 publisher: Kong Inc.
 version: 1.0.0
-
-source_url: https://github.com/Kong/kong-plugin-azure-functions
-
+source_url: 'https://github.com/Kong/kong-plugin-azure-functions'
 desc: Invoke and manage Azure functions from Kong
 description: |
   This plugin invokes
   [Azure Functions](https://azure.microsoft.com/en-us/services/functions/).
   It can be used in combination with other request plugins to secure, manage, 
   or extend the function.
-
 type: plugin
 categories:
   - serverless
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 2.0.x
-        - 1.5.x
-        - 1.4.x
-        - 1.3.x
-        - 1.2.x
-        - 1.1.x
-        - 1.0.x
-        - 0.14.x
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-
-
+  community_edition:
+    compatible:
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 2.0.x
+      - 1.5.x
+      - 1.4.x
+      - 1.3.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
+      - 0.14.x
+  enterprise_edition:
+    compatible:
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
+      - 0.36-x
 params:
   name: azure-functions
   service_id: true
   route_id: true
   consumer_id: true
-  protocols: ["http", "https"]
-  dbless_compatible: yes
+  protocols:
+    - http
+    - https
+  dbless_compatible: 'yes'
   config:
     - name: functionname
       required: true
-      default:
+      default: null
       value_in_examples: <AZURE_FUNCTIONNAME>
       datatype: string
       description: Name of the Azure function to invoke.
     - name: appname
       required: true
-      default:
+      default: null
       value_in_examples: <AZURE_APPNAME>
       datatype: string
       description: The Azure app name.
@@ -71,51 +67,49 @@ params:
     - name: routeprefix
       required: false
       default: /api
-      value_in_examples:
+      value_in_examples: null
       datatype: string
       description: Route prefix to use.
     - name: apikey
       required: false
-      default:
+      default: null
       value_in_examples: <AZURE_APIKEY>
       datatype: string
-      description: The apikey to access the Azure resources. If provided, it is injected as the `x-functions-key` header.
+      description: 'The apikey to access the Azure resources. If provided, it is injected as the `x-functions-key` header.'
     - name: clientid
       required: false
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
-      description: The `clientid` to access the Azure resources. If provided, it is injected as the `x-functions-clientid` header.
+      description: 'The `clientid` to access the Azure resources. If provided, it is injected as the `x-functions-clientid` header.'
     - name: https_verify
       required: false
       default: false
-      value_in_examples:
+      value_in_examples: null
       datatype: boolean
       description: Set to `true` to authenticate the Azure Functions server.
     - name: https
       required: false
       default: true
-      value_in_examples:
+      value_in_examples: null
       datatype: boolean
       description: Use of HTTPS to connect with the Azure Functions server.
     - name: timeout
       required: false
       default: 600000
-      value_in_examples:
+      value_in_examples: null
       datatype: number
       description: Timeout in milliseconds before closing a connection to the Azure Functions server.
     - name: keepalive
       required: false
       default: 60000
-      value_in_examples:
+      value_in_examples: null
       datatype: number
       description: Time in milliseconds during which an idle connection to the Azure Functions server lives before being closed.
-
   extra: |
     Note: If `config.https_verify` is set as `true`, then the server certificate
     is verified according to the CA certificates specified by the
     `lua_ssl_trusted_certificate` directive in your Kong configuration.
-
 ---
 
 ## Demonstration

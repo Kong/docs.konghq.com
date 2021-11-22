@@ -2,74 +2,74 @@
 name: Datadog
 publisher: Kong Inc.
 version: 3.1.x
-# internal handler version 3.1.0
-
 desc: Visualize metrics on Datadog
 description: |
   Log [metrics](#metrics) for a Service, Route to a local
   [Datadog agent](http://docs.datadoghq.com/guides/basic_agent_usage/).
-
 type: plugin
 categories:
   - analytics-monitoring
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-        - 2.6.x
-        - 2.5.x
-        - 2.4.x
-        - 2.3.x      
-        - 2.2.x
-        - 2.1.x
-        - 2.0.x
-        - 1.5.x      
-        - 1.4.x
-        - 1.3.x
-        - 1.2.x
-        - 1.1.x
-        - 1.0.x
-        - 0.14.x
-        - 0.13.x
-        - 0.12.x
-        - 0.11.x
-        - 0.10.x
-        - 0.9.x
-        - 0.8.x
-        - 0.7.x
-        - 0.6.x
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 0.36-x
-
+  community_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 2.0.x
+      - 1.5.x
+      - 1.4.x
+      - 1.3.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
+      - 0.14.x
+      - 0.13.x
+      - 0.12.x
+      - 0.11.x
+      - 0.10.x
+      - 0.9.x
+      - 0.8.x
+      - 0.7.x
+      - 0.6.x
+  enterprise_edition:
+    compatible:
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 0.36-x
 params:
   name: datadog
   service_id: true
   route_id: true
   consumer_id: true
   konnect_examples: false
-  protocols: ["http", "https", "tcp", "tls", "udp"]
-  dbless_compatible: yes
+  protocols:
+    - http
+    - https
+    - tcp
+    - tls
+    - udp
+  dbless_compatible: 'yes'
   config:
     - name: host
       required: true
-      default: "`localhost`"
+      default: '`localhost`'
       value_in_examples: 127.0.0.1
       datatype: string
       description: The IP address or host name to send data to.
     - name: port
       required: true
-      default: "`8125`"
+      default: '`8125`'
       value_in_examples: 8125
       datatype: integer
       description: The port to send data to on the upstream server
     - name: metrics
       required: true
-      default:
+      default: null
       datatype: array of record elements
       description: |
         List of Metrics to be logged. Available values are described at [Metrics](#metrics).
@@ -77,10 +77,9 @@ params:
         only the listed metrics are logged.
     - name: prefix
       required: true
-      default: "`kong`"
+      default: '`kong`'
       datatype: string
       description: String to be attached as prefix to metric's name.
-
 ---
 
 ## Metrics

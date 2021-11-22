@@ -2,60 +2,62 @@
 name: UDP Log
 publisher: Kong Inc.
 version: 2.1.x
-# internal handler version 2.1.0
-
 desc: Send request and response logs to a UDP server
 description: |
   Log request and response data to an UDP server.
-
 type: plugin
 categories:
   - logging
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 2.0.x
-        - 1.5.x
-        - 1.4.x
-        - 1.3.x
-        - 1.2.x
-        - 1.1.x
-        - 1.0.x
-        - 0.14.x
-        - 0.13.x
-        - 0.12.x
-        - 0.11.x
-        - 0.10.x
-        - 0.9.x
-        - 0.8.x
-        - 0.7.x
-        - 0.6.x
-        - 0.5.x
-        - 0.4.x
-        - 0.3.x
-        - 0.2.x
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-
+  community_edition:
+    compatible:
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 2.0.x
+      - 1.5.x
+      - 1.4.x
+      - 1.3.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
+      - 0.14.x
+      - 0.13.x
+      - 0.12.x
+      - 0.11.x
+      - 0.10.x
+      - 0.9.x
+      - 0.8.x
+      - 0.7.x
+      - 0.6.x
+      - 0.5.x
+      - 0.4.x
+      - 0.3.x
+      - 0.2.x
+  enterprise_edition:
+    compatible:
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
+      - 0.36-x
 params:
   name: udp-log
   service_id: true
   route_id: true
   consumer_id: true
-  protocols: ["http", "https", "grpc", "grpcs", "tcp", "tls", "udp"]
-  dbless_compatible: yes
+  protocols:
+    - http
+    - https
+    - grpc
+    - grpcs
+    - tcp
+    - tls
+    - udp
+  dbless_compatible: 'yes'
   config:
     - name: host
       required: true
@@ -69,19 +71,18 @@ params:
       description: The port to send data to on the upstream server.
     - name: timeout
       required: false
-      default: "`10000`"
+      default: '`10000`'
       value_in_examples: 10000
       datatype: number
       description: An optional timeout in milliseconds when sending data to the upstream server.
     - name: custom_fields_by_lua
       required: false
-      default:
+      default: null
       datatype: map
       description: |
         A list of key-value pairs, where the key is the name of a log field and
         the value is a chunk of Lua code, whose return value sets or replaces
         the log field value.
-
 ---
 
 ## Log format
