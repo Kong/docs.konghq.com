@@ -1,8 +1,8 @@
 ---
-title: Kong Mesh with macOS
+title: Kong Mesh with CentOS
 ---
 
-To install and run {{site.mesh_product_name}} on macOS:
+To install and run {{site.mesh_product_name}} on CentOS (**x86_64**):
 
 1. [Download {{site.mesh_product_name}}](#1-download-kong-mesh)
 1. [Run {{site.mesh_product_name}}](#2-run-kong-mesh)
@@ -11,17 +11,16 @@ To install and run {{site.mesh_product_name}} on macOS:
 Finally, you can follow the [Quickstart](#4-quickstart) to take it from here
 and continue your {{site.mesh_product_name}} journey.
 
-{:.important .no-icon}
-> FIPS compliance is not supported on macOS.
-
 ## Prerequisites
 
 You have a license for {{site.mesh_product_name}}.
 
-## 1. Download {{site.mesh_product_name}}
+{:.note}
+> **Note:** {{site.mesh_product_name}} ships with a FIPS 140-2 compliant
+build of Envoy. This build is only available on CentOS 8 and later. For any previous
+versions, use [Docker](/mesh/{{page.kong_version}}/installation/docker/). 
 
-To run {{site.mesh_product_name}} on macOS, you can choose from the following
-installation methods:
+## 1. Download {{site.mesh_product_name}}
 
 {% navtabs %}
 {% navtab Script %}
@@ -35,8 +34,7 @@ $ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
 
 {% endnavtab %}
 {% navtab Manually %}
-
-You can also [download]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-darwin-amd64.tar.gz)
+You can also [download]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-centos-amd64.tar.gz)
 the distribution manually.
 
 Then, extract the archive with:
@@ -44,7 +42,6 @@ Then, extract the archive with:
 ```sh
 $ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 ```
-
 {% endnavtab %}
 {% endnavtabs %}
 
