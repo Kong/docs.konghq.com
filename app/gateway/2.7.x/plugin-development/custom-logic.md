@@ -178,10 +178,10 @@ function CustomHandler.access(self, config)
 end
 ```
 
-### Porting from old `BasePlugin` style.
+### Migrating from `BasePlugin` module
 
 The `BasePlugin` module is deprecated and will be removed in a future version
-of {{site.ce_product_name}}.  If you have an old plugin that used it, replace
+of {{site.ce_product_name}}.  If you have an old plugin that uses it, replace
 the initial part:
 
 ```lua
@@ -202,7 +202,7 @@ local CustomHandler = {
 }
 ```
 
-No need to add a `:new()` method, nor call the `CustomHandler.super.XXX:(self)`
+You don't need to add a `:new()` method or call any of the `CustomHandler.super.XXX:(self)`
 methods.
 
 The Plugin's logic doesn't need to be all defined inside the `handler.lua` file.
