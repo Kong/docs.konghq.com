@@ -100,9 +100,9 @@ $ export KONG_LICENSE_DATA='{"license":{"signature":"LS0tLS1CRUdJTiBQR1AgTUVTU0F
 Apply the license to your {{site.base_gateway}} Docker container and reload the
 gateway:
 
-```sh
-echo "-e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
-kong reload exit" | docker exec -i <kong-container-id> /bin/sh \
+```bash
+echo " KONG_LICENSE_DATA='${KONG_LICENSE_DATA}'mkong reload exit " | \
+docker exec -i <kong-container-id> /bin/sh
 ```
 {% endnavtab %}
 {% endnavtabs %}
