@@ -140,7 +140,7 @@ params:
       description: |
         The name of the header that is supposed to carry the access token. Default: `authorization`.
     - name: hide_credentials
-      required: false
+      required: true
       default: '`false`'
       datatype: boolean
       description: |
@@ -148,7 +148,7 @@ params:
         If `true`, the plugin will strip the credential from the request (the header containing the client credentials)
         before proxying it.
     - name: accept_http_if_already_terminated
-      required: false
+      required: true
       default: '`false`'
       datatype: boolean
       description: |

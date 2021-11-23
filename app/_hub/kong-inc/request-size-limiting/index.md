@@ -75,7 +75,7 @@ params:
       datatype: string
       description: 'Size unit can be set either in `bytes`, `kilobytes`, or `megabytes` (default). This configuration is not available in versions prior to Kong Gateway 1.3 and Kong Gateway (OSS) 2.0.'
     - name: require_content_length
-      required: false
+      required: true
       default: false
       datatype: boolean
       value_in_examples: false

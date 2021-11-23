@@ -71,7 +71,7 @@ params:
       description: |
         If enabled (default), the plugin reads the query parameter in the request and tries to find the key in it.
     - name: hide_credentials
-      required: false
+      required: true
       default: '`false`'
       datatype: boolean
       description: |
@@ -371,4 +371,3 @@ associated Consumer.
 [configuration]: /gateway/latest/reference/configuration
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
 [acl-associating]: /plugins/acl/#associating-consumers
-

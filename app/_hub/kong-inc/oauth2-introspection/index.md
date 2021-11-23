@@ -71,7 +71,7 @@ params:
       description: |
         The TTL in seconds for the introspection response. Set to 0 to disable the expiration.
     - name: hide_credentials
-      required: false
+      required: true
       default: null
       value_in_examples: null
       datatype: boolean

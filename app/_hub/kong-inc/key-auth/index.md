@@ -84,25 +84,25 @@ params:
         header, request body, or query string parameter with the same name.
         <br>**Note**: The key names may only contain [a-z], [A-Z], [0-9], [_] underscore, and [-] hyphen.
     - name: key_in_body
-      required: false
+      required: true
       default: '`false`'
       datatype: boolean
       description: |
         If enabled, the plugin reads the request body (if said request has one and its MIME type is supported) and tries to find the key in it. Supported MIME types: `application/www-form-urlencoded`, `application/json`, and `multipart/form-data`.
     - name: key_in_header
-      required: false
+      required: true
       default: '`true`'
       datatype: boolean
       description: |
         If enabled (default), the plugin reads the request header and tries to find the key in it.
     - name: key_in_query
-      required: false
+      required: true
       default: '`true`'
       datatype: boolean
       description: |
         If enabled (default), the plugin reads the query parameter in the request and tries to find the key in it.
     - name: hide_credentials
-      required: false
+      required: true
       default: '`false`'
       datatype: boolean
       description: |
@@ -117,7 +117,7 @@ params:
         If empty (default), the request will fail with an authentication failure `4xx`. Note that this value
         must refer to the Consumer `id` attribute that is internal to Kong, and **not** its `custom_id`.
     - name: run_on_preflight
-      required: false
+      required: true
       default: '`true`'
       datatype: boolean
       description: |
@@ -398,4 +398,3 @@ Response:
 [configuration]: /gateway/latest/reference/configuration
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
 [acl-associating]: /plugins/acl/#associating-consumers
-
