@@ -2,7 +2,6 @@
 name: Key Authentication
 publisher: Kong Inc.
 version: 2.3.x (internal 2.4.0)
-
 desc: Add key authentication to your Services
 description: |
   Add key authentication (also sometimes referred to as an _API key_) to a Service or a Route.
@@ -14,55 +13,55 @@ description: |
 
   **Tip:** The Kong Gateway [Key Authentication Encrypted](/hub/kong-inc/key-auth-enc/)
     plugin provides the ability to encrypt keys. Keys are encrypted at rest in the API gateway datastore.
-
 type: plugin
 categories:
   - authentication
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 2.0.x
-        - 1.5.x
-        - 1.4.x
-        - 1.3.x
-        - 1.2.x
-        - 1.1.x
-        - 1.0.x
-        - 0.14.x
-        - 0.13.x
-        - 0.12.x
-        - 0.11.x
-        - 0.10.x
-        - 0.9.x
-        - 0.8.x
-        - 0.7.x
-        - 0.6.x
-        - 0.5.x
-        - 0.4.x
-        - 0.3.x
-        - 0.2.x
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-
-
+  community_edition:
+    compatible:
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 2.0.x
+      - 1.5.x
+      - 1.4.x
+      - 1.3.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
+      - 0.14.x
+      - 0.13.x
+      - 0.12.x
+      - 0.11.x
+      - 0.10.x
+      - 0.9.x
+      - 0.8.x
+      - 0.7.x
+      - 0.6.x
+      - 0.5.x
+      - 0.4.x
+      - 0.3.x
+      - 0.2.x
+  enterprise_edition:
+    compatible:
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
+      - 0.36-x
 params:
   name: key-auth
   service_id: true
   route_id: true
   consumer_id: false
-  protocols: ["http", "https", "grpc", "grpcs"]
+  protocols:
+    - http
+    - https
+    - grpc
+    - grpcs
   dbless_compatible: partially
   dbless_explanation: |
     Consumers and Credentials can be created with declarative configuration.
@@ -71,8 +70,9 @@ params:
   config:
     - name: key_names
       required: true
-      default: "[`apikey`]"
-      value_in_examples: ["apikey"]
+      default: '[`apikey`]'
+      value_in_examples:
+        - apikey
       datatype: array of strings
       description: |
         Describes an array of parameter names where the plugin will look for a key. The client must send the
@@ -81,32 +81,32 @@ params:
         <br>**Note**: The key names may only contain [a-z], [A-Z], [0-9], [_] underscore, and [-] hyphen.
     - name: key_in_body
       required: false
-      default: "`false`"
+      default: '`false`'
       datatype: boolean
       description: |
         If enabled, the plugin reads the request body (if said request has one and its MIME type is supported) and tries to find the key in it. Supported MIME types: `application/www-form-urlencoded`, `application/json`, and `multipart/form-data`.
     - name: key_in_header
       required: false
-      default: "`true`"
+      default: '`true`'
       datatype: boolean
       description: |
         If enabled (default), the plugin reads the request header and tries to find the key in it.
     - name: key_in_query
       required: false
-      default: "`true`"
+      default: '`true`'
       datatype: boolean
       description: |
         If enabled (default), the plugin reads the query parameter in the request and tries to find the key in it.
     - name: hide_credentials
       required: false
-      default: "`false`"
+      default: '`false`'
       datatype: boolean
       description: |
         An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`,
         the plugin strips the credential from the request (i.e., the header, query string, or request body containing the key) before proxying it.
     - name: anonymous
       required: false
-      default:
+      default: null
       datatype: string
       description: |
         An optional string (Consumer UUID) value to use as an anonymous Consumer if authentication fails.
@@ -114,27 +114,26 @@ params:
         must refer to the Consumer `id` attribute that is internal to Kong, and **not** its `custom_id`.
     - name: run_on_preflight
       required: false
-      default: "`true`"
+      default: '`true`'
       datatype: boolean
       description: |
         A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests.
         If set to `false`, then `OPTIONS` requests are always allowed.
   extra: |
 
-   ## Case sensitivity
+    ## Case sensitivity
 
-   Note that, according to their respective specifications, HTTP header names are treated as
-   case _insensitive_, while HTTP query string parameter names are treated as case _sensitive_.
-   Kong follows these specifications as designed, meaning that the `key_names`
-   configuration values are treated differently when searching the request header fields versus
-   searching the query string. As a best practice, administrators are advised against defining
-   case-sensitive `key_names` values when expecting the authorization keys to be sent in the request headers.
+    Note that, according to their respective specifications, HTTP header names are treated as
+    case _insensitive_, while HTTP query string parameter names are treated as case _sensitive_.
+    Kong follows these specifications as designed, meaning that the `key_names`
+    configuration values are treated differently when searching the request header fields versus
+    searching the query string. As a best practice, administrators are advised against defining
+    case-sensitive `key_names` values when expecting the authorization keys to be sent in the request headers.
 
-   Once applied, any user with a valid credential can access the Service.
-   To restrict usage to certain authenticated users, also add the
-   [ACL](/plugins/acl/) plugin (not covered here) and create allowed or
-   denied groups of users.
-
+    Once applied, any user with a valid credential can access the Service.
+    To restrict usage to certain authenticated users, also add the
+    [ACL](/plugins/acl/) plugin (not covered here) and create allowed or
+    denied groups of users.
 ---
 
 ## Usage
