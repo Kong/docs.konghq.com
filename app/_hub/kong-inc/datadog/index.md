@@ -104,7 +104,7 @@ params:
       description: String to be attached as name of the http status.
     - name: consumer_tag
       required: false
-      default: "status"
+      default: "consumer"
       datatype: string
       description: String to be attached as name of the consumer.
 
@@ -136,7 +136,7 @@ Plugin can be configured with any combination of [Metrics](#metrics), with each 
 Field           | Description                                           | Datatypes   | Allowed values
 ---             | ---                                                   | ---         | ---
 `name`          | Datadog metric's name                                 | String      | [Metrics](#metrics)
-`stat_type`     | determines what sort of event the metric represents   | String      | `gauge`, `timer`, `counter`, `histogram`, `meter`, `set` and `distribution`
+`stat_type`     | determines what sort of event the metric represents   | String      | `gauge`, `timer`, `counter`, `histogram`, `meter`, `set`, and `distribution`
 `sample_rate`<br>*conditional*   | sampling rate                        | Number      | `number`
 `consumer_identifier`<br>*conditional*| authenticated user detail       | String      | `consumer_id`, `custom_id`, `username`
 `tags`<br>*optional*| List of tags                                      | Array of strings    | `key[:value]`
