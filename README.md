@@ -13,14 +13,14 @@ Here are some things to know before you get started:
 * **We need more help in some areas**. We'd especially love some help with [plugin](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub) documentation.
 
 * **Some of our docs are generated**.
-    * [Admin API](https://docs.konghq.com/gateway-oss/)
-    * [Configuration reference](https://docs.konghq.com/gateway-oss/latest/configuration/)
-    * [CLI reference](https://docs.konghq.com/gateway-oss/latest/cli/)
-    * [Upgrade guide](https://docs.konghq.com/gateway-oss/latest/upgrading/)
+    * [Admin API](https://docs.konghq.com/gateway/latest/admin-api/)
+    * [CLI reference](https://docs.konghq.com/gateway/latest/reference/cli/)
+    * [OSS upgrade guide](https://docs.konghq.com/gateway/latest/install-and-run/upgrading-oss/)
+    * [PDK reference](https://docs.konghq.com/gateway/latest/pdk)
 
 All pull requests for these docs should be opened on the [Kong/kong](https://github.com/Kong/kong) repository. Fork the repository and submit PRs from your fork.
 
-For [Gateway Enterprise configuration reference](https://docs.konghq.com/enterprise/latest/property-reference/) and [PDK reference](https://docs.konghq.com/gateway-oss/latest/pdk/) documentation, open an issue on this repo and we'll update the docs.
+For [Gateway Enterprise configuration reference](https://docs.konghq.com/gateway/latest/reference/configuration), open an issue on this repo and we'll update the docs.
 
 * **Community is a priority for us**. Before submitting an issue or pull request, make sure to review our [Contributing Guide](https://docs.konghq.com/contributing/).
 
