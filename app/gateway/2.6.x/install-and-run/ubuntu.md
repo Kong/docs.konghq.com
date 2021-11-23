@@ -49,12 +49,12 @@ Download the `.deb` file for Xenial:
 
 ```bash
 ## Kong Gateway
-curl -Lo kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb "{{ site.links.download }}/gateway-2.x-ubuntu-xenial/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}_all.deb"
+curl -Lo kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb "{{ site.links.download }}/gateway-2.x-ubuntu-xenial/pool/all/k/kong-enterprise-edition/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}_all.deb"
 ```
 
 ```bash
 ## Kong Gateway (OSS)
-curl -Lo kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb  "{{ site.links.download }}/gateway-2.x-ubuntu-xenial/Packages/k/kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb"
+curl -Lo kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb  "{{ site.links.download }}/gateway-2.x-ubuntu-xenial/pool/all/k/kong/kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb"
 ```
 
 {% endnavtab %}
@@ -64,12 +64,12 @@ Download the `.deb` file for Focal:
 
 ```bash
 ## Kong Gateway
-curl -Lo kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb "{{ site.links.download }}/gateway-2.x-ubuntu-focal/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}_all.deb"
+curl -Lo kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb "{{ site.links.download }}/gateway-2.x-ubuntu-focal/pool/all/k/kong-enterprise-edition/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}_all.deb"
 ```
 
 ```bash
 ## Kong Gateway (OSS)
-curl -Lo kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb "{{ site.links.download }}/gateway-2.x-ubuntu-focal/Packages/k/kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb"
+curl -Lo kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb "{{ site.links.download }}/gateway-2.x-ubuntu-focal/pool/all/k/kong/kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb"
 ```
 
 {% endnavtab %}
@@ -79,12 +79,12 @@ Download the `.deb` file for Ubuntu Bionic:
 
 ```bash
 ## Kong Gateway
-curl -Lo kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb "{{ site.links.download }}/gateway-2.x-ubuntu-bionic/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}_all.deb"
+curl -Lo kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb "{{ site.links.download }}/gateway-2.x-ubuntu-bionic/pool/all/k/kong-enterprise-edition/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}_all.deb"
 ```
 
 ```bash
 ## Kong Gateway (OSS)
-curl -Lo kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb "{{ site.links.download }}/gateway-2.x-ubuntu-bionic/Packages/k/kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb"
+curl -Lo kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb "{{ site.links.download }}/gateway-2.x-ubuntu-bionic/pool/all/k/kong/kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb"
 ```
 
 {% endnavtab %}
