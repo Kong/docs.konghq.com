@@ -2,7 +2,6 @@
 name: jq
 publisher: Kong Inc.
 versions: 0.0.1
-
 desc: Transform JSON objects included in API requests or responses using jq programs.
 description: |
   The jq plugin enables arbitrary jq transformations on JSON objects included in API requests or responses.
@@ -28,17 +27,15 @@ description: |
     v2.6.0.0.
 
   See jq's documentation on [Basic filters](https://stedolan.github.io/jq/manual/#Basicfilters) for more information on writing programs with jq.
-
 enterprise: true
 type: plugin
 categories:
- - transformations
-
+  - transformations
 kong_version_compatibility:
-    enterprise_edition:
-      compatible:
-        - 2.6.x
-
+  enterprise_edition:
+    compatible:
+      - 2.5.x
+      - 2.6.x
 params:
   name: jq
   service_id: true
@@ -47,8 +44,10 @@ params:
   yaml_examples: false
   k8s_examples: false
   konnect_examples: false
-  protocols: ["http","https"]
-  dbless_compatible:
+  protocols:
+    - http
+    - https
+  dbless_compatible: null
   examples: false
   config:
     - name: request_jq_program
@@ -73,7 +72,8 @@ params:
     - name: request_if_media_type
       required: false
       datatype: array of strings
-      default: ["application/json"]
+      default:
+        - application/json
       description: |
         A list of media type strings. The media type included in the `Content-Type` request header **must**
         match one of the media types on this list for the program to run.
@@ -99,16 +99,18 @@ params:
     - name: response_if_media_type
       required: false
       datatype: array of strings
-      default: ["application/json"]
+      default:
+        - application/json
       description: |
         A list of media type strings. The media type included in the `Content-Type` response header **must**
         match one of the media types on this list for the program to run.
     - name: response_if_status_code
       required: false
       datatype: array of integers
-      default: [200]
+      default:
+        - 200
       description: |
         A list of HTTP response status codes. The response status code **must**
         match one of the response status codes on this list for the program to run.
-
 ---
+

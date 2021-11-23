@@ -1,50 +1,45 @@
 ---
-
 name: GraphQL Proxy Caching Advanced
 publisher: Kong Inc.
 version: 1.3-x
-# internal handler version 0.2.2 as of April 6, 2021
-
 desc: Cache and serve commonly requested responses in Kong
 description: |
   This plugin provides a reverse GraphQL proxy cache implementation for Kong. It caches response entities based on
   configuration. It can cache by GraphQL query or vary headers. Cache entities are stored for a configurable period of
   time, after which subsequent requests to the same resource will re-fetch and re-store the resource. Cache entities
   can also be forcefully purged via the Admin API prior to their expiration time.
-
 type: plugin
 enterprise: true
 plus: true
 categories:
   - traffic-control
-
 kong_version_compatibility:
-    enterprise_edition:
-      compatible:
+  enterprise_edition:
+    compatible:
+      - 2.5.x
       - 2.4.x
       - 2.3.x
       - 2.2.x
       - 2.1.x
       - 1.5.x
       - 1.3-x
-
 params:
   name: graphql-proxy-cache-advanced
   service_id: true
   route_id: true
-  dbless_compatible: yes
+  dbless_compatible: 'yes'
   config:
     - name: vary_headers
       required: false
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: array of string elements
       description: |
         Relevant headers considered for the cache key. If undefined, none of the headers are taken into consideration.
     - name: cache_ttl
-      required:
+      required: null
       default: 300
-      value_in_examples:
+      value_in_examples: null
       datatype: integer
       description: |
         TTL in seconds of cache entities. Must be a value greater than 0.
@@ -58,12 +53,11 @@ params:
     - name: memory.dictionary_name
       required: true
       default: kong_db_cache
-      value_in_examples:
+      value_in_examples: null
       datatype: string
       description: |
         The name of the shared dictionary in which to hold cache entities when the memory strategy is selected. Note
         that this dictionary currently must be defined manually in the Kong Nginx template.
-
 ---
 ### Strategies
 

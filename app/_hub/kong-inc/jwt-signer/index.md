@@ -2,8 +2,6 @@
 name: Kong JWT Signer
 publisher: Kong Inc.
 version: 2.4.x
-# internal handler version 1.8.0
-
 desc: Verify and sign one or two tokens in a request
 description: |
   The Kong JWT Signer plugin makes it possible to verify, sign, or re-sign
@@ -16,37 +14,39 @@ description: |
   supports both opaque tokens through introspection,
   and signed JWT tokens through signature verification. There are many
   configuration parameters available to accommodate your requirements.
-
 enterprise: true
 plus: true
 type: plugin
 categories:
   - authentication
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-
+  community_edition:
+    compatible: null
+  enterprise_edition:
+    compatible:
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
+      - 0.36-x
 params:
   name: jwt-signer
   service_id: true
   route_id: true
   consumer_id: false
-  protocols: ["http", "https", "grpc", "grpcs"]
-  dbless_compatible: yes
+  protocols:
+    - http
+    - https
+    - grpc
+    - grpcs
+  dbless_compatible: 'yes'
   config:
     - name: realm
       required: false
-      default: 'ngx.var.host'
+      default: ngx.var.host
       datatype: string
       description: |
         When authentication or authorization fails, or there is an unexpected
@@ -85,7 +85,7 @@ params:
         Selects the private key for access token signing.
     - name: access_token_jwks_uri
       required: false
-      default:
+      default: null
       datatype: string
       description: |
         If you want to use `config.verify_access_token_signature`, you must specify
@@ -115,7 +115,7 @@ params:
         `expiry` verification altogether with `config.verify_access_token_expiry`.
     - name: access_token_scopes_required
       required: false
-      default:
+      default: null
       datatype: array of string elements
       description: |
         Specify the required values (or scopes) that are checked by a
@@ -128,7 +128,8 @@ params:
         not found in access token, the plugin responds with `403 Forbidden`.
     - name: access_token_scopes_claim
       required: false
-      default: [ "scope" ]
+      default:
+        - scope
       datatype: array of string elements
       description: |
         Specify the claim in an access token to verify against values of
@@ -140,7 +141,7 @@ params:
         the plugin responds with `403 Forbidden`.
     - name: access_token_consumer_claim
       required: false
-      default:
+      default: null
       datatype: array of string elements
       description: |
         When you set a value for this parameter, the plugin tries to map an arbitrary
@@ -156,7 +157,9 @@ params:
         upstream consumer headers.
     - name: access_token_consumer_by
       required: false
-      default: ["username", "custom_id"]
+      default:
+        - username
+        - custom_id
       datatype: array of string elements
       description: |
         When the plugin tries to apply an access token to a Kong consumer mapping,
@@ -165,7 +168,7 @@ params:
         values. Valid values are `id`, `username`, and `custom_id`.
     - name: access_token_upstream_header
       required: false
-      default: "authorization:bearer"
+      default: 'authorization:bearer'
       datatype: string
       description: |
         Removes the `config.access_token_request_header` from the request after reading its
@@ -183,7 +186,7 @@ params:
         the original access token's `exp` claim.
     - name: access_token_introspection_endpoint
       required: false
-      default:
+      default: null
       datatype: string
       description: |
         When you use `opaque` access tokens and you want to turn on access token
@@ -192,7 +195,7 @@ params:
         introspection and returns `401 Unauthorized` instead.
     - name: access_token_introspection_authorization
       required: false
-      default:
+      default: null
       datatype: string
       description: |
         If the introspection endpoint requires client authentication (client being
@@ -204,7 +207,7 @@ params:
         required on a given endpoint.
     - name: access_token_introspection_body_args
       required: false
-      default:
+      default: null
       datatype: string
       description: |
         If you need to pass additional body arguments to an introspection endpoint
@@ -212,7 +215,7 @@ params:
         to specify them. You should URL encode the value. For example: `resource=` or `a=1&b=&c`.
     - name: access_token_introspection_hint
       required: false
-      default: "access_token"
+      default: access_token
       datatype: string
       description: |
         If you need to give `hint` parameter when introspecting an access token,
@@ -220,7 +223,7 @@ params:
         sends `hint=access_token`.
     - name: access_token_introspection_jwt_claim
       required: false
-      default:
+      default: null
       datatype: array of string elements
       description: |
         If your introspection endpoint returns an access token in one of the keys
@@ -235,7 +238,7 @@ params:
         but cannot be decoded as JWT, it also responds with `401 Unauthorized`.
     - name: access_token_introspection_scopes_required
       required: false
-      default:
+      default: null
       datatype: array of string elements
       description: |
         Specify the required values (or scopes) that are checked by an
@@ -247,7 +250,8 @@ params:
         the plugin responds with `403 Forbidden`.
     - name: access_token_introspection_scopes_claim
       required: true
-      default: [ "scope" ]
+      default:
+        - scope
       datatype: array of string elements
       description: |
         Specify the claim/property in access token introspection results
@@ -258,7 +262,7 @@ params:
         the plugin responds with `403 Forbidden`.
     - name: access_token_introspection_consumer_claim
       required: false
-      default:
+      default: null
       datatype: array of string elements
       description: |
         When you set a value for this parameter, the plugin tries to map an arbitrary
@@ -275,7 +279,9 @@ params:
         sets a couple of standard Kong upstream consumer headers.
     - name: access_token_introspection_consumer_by
       required: false
-      default: ["username", "custom_id"]
+      default:
+        - username
+        - custom_id
       datatype: array of string elements
       description: |
         When the plugin tries to do access token introspection results to Kong consumer mapping, it tries to
@@ -293,7 +299,7 @@ params:
         with `config.verify_access_token_introspection_expiry`.
     - name: access_token_introspection_timeout
       required: false
-      default:
+      default: null
       datatype: number
       description: |
         Timeout in milliseconds for an introspection request.
@@ -302,7 +308,7 @@ params:
         `config.access_token_introspection_timeout` on access token introspection.
     - name: access_token_signing_algorithm
       required: true
-      default: "RS256"
+      default: RS256
       datatype: string
       description: |
         When this plugin sets the upstream header as specified with `config.access_token_upstream_header`,
@@ -396,7 +402,7 @@ params:
         configuration parameter to `false` to disable introspection.
     - name: channel_token_issuer
       required: false
-      default: "kong"
+      default: kong
       datatype: string
       description: |
         The `iss` claim of the re-signed channel token is set to this value, which
@@ -405,13 +411,13 @@ params:
         the newly signed channel token.
     - name: channel_token_keyset
       required: false
-      default: "kong"
+      default: kong
       datatype: string
       description: |
         Selects the private key for channel token signing.
     - name: channel_token_jwks_uri
       required: false
-      default:
+      default: null
       datatype: string
       description: |
         If you want to use `config.verify_channel_token_signature`, you must specify the URI where
@@ -420,7 +426,7 @@ params:
         with `401 Unauthorized`.
     - name: channel_token_request_header
       required: false
-      default:
+      default: null
       datatype: string
       description: |
         This parameter tells the name of the header where to look for the channel token.
@@ -440,7 +446,7 @@ params:
         `config.verify_channel_token_expiry`.
     - name: channel_token_scopes_required
       required: false
-      default:
+      default: null
       datatype: array of string elements
       description: |
         Specify the required values (or scopes) that are checked by a claim
@@ -451,7 +457,8 @@ params:
         found in the channel token, the plugin responds with `403 Forbidden`.
     - name: channel_token_scopes_claim
       required: false
-      default: [ "scope" ]
+      default:
+        - scope
       datatype: array of string elements
       description: |
         Specify the claim in a channel token to verify against values of
@@ -461,7 +468,7 @@ params:
         the plugin responds with `403 Forbidden`.
     - name: channel_token_consumer_claim
       required: false
-      default:
+      default: null
       datatype: array of string elements
       description: |
         When you set a value for this parameter, the plugin tries to map an arbitrary claim specified with
@@ -476,7 +483,9 @@ params:
         The JWT Signer plugin also sets a couple of standard Kong upstream consumer headers.
     - name: channel_token_consumer_by
       required: false
-      default: ["username", "custom_id"]
+      default:
+        - username
+        - custom_id
       datatype: array of string elements
       description: |
         When the plugin tries to do channel token to Kong consumer mapping, it tries
@@ -484,7 +493,7 @@ params:
         The parameter can take an array of valid values: `id`, `username`, and `custom_id`.
     - name: channel_token_upstream_header
       required: false
-      default:
+      default: null
       datatype: string
       description: |
         This plugin removes the `config.channel_token_request_header` from the request
@@ -501,7 +510,7 @@ params:
         you can specify a value that is added to the original channel token's `exp` claim.
     - name: channel_token_introspection_endpoint
       required: false
-      default:
+      default: null
       datatype: string
       description: |
         When using `opaque` channel tokens, and you want to turn on channel token introspection, you need to
@@ -510,7 +519,7 @@ params:
         when using opaque channel tokens.
     - name: channel_token_introspection_authorization
       required: false
-      default:
+      default: null
       datatype: string
       description: |
         If the introspection endpoint requires client authentication (client being this plugin), you can specify
@@ -520,7 +529,7 @@ params:
         all the necessary encodings (such as base64) required on a given endpoint.
     - name: channel_token_introspection_body_args
       required: false
-      default:
+      default: null
       datatype: string
       description: |
         If you need to pass additional body arguments to introspection endpoint when the plugin introspects the
@@ -528,14 +537,14 @@ params:
         For example: `resource=` or `a=1&b=&c`.
     - name: channel_token_introspection_hint
       required: false
-      default:
+      default: null
       datatype: string
       description: |
         If you need to give `hint` parameter when introspecting a channel token, you can use this parameter to
         specify the value of such parameter. By default, a `hint` isn't sent with channel token introspection.
     - name: channel_token_introspection_jwt_claim
       required: false
-      default:
+      default: null
       datatype: array of string elements
       description: |
         If your introspection endpoint returns a channel token in one of the keys (or claims) in the introspection
@@ -547,7 +556,7 @@ params:
         is found but cannot be decoded as JWT, the plugin responds with `401 Unauthorized`.
     - name: channel_token_introspection_scopes_required
       required: false
-      default:
+      default: null
       datatype: array of string elements
       description: |
         Use this parameter to specify the required values (or scopes) that are checked by an introspection
@@ -559,7 +568,8 @@ params:
         responds with `403 Forbidden`.
     - name: channel_token_introspection_scopes_claim
       required: false
-      default:  [ "scope" ]
+      default:
+        - scope
       datatype: array of string elements
       description: |
         Use this parameter to specify the claim/property in channel token introspection results (`JSON`)
@@ -570,7 +580,7 @@ params:
         with `403 Forbidden`.
     - name: channel_token_introspection_consumer_claim
       required: false
-      default:
+      default: null
       datatype: array of string elements
       description: |
         When you set a value for this parameter, the plugin tries to map an arbitrary claim specified with
@@ -587,7 +597,9 @@ params:
         Kong upstream consumer headers.
     - name: channel_token_introspection_consumer_by
       required: false
-      default: ["username", "custom_id"]
+      default:
+        - username
+        - custom_id
       datatype: array of string elements
       description: |
         When the plugin tries to do channel token introspection results to Kong consumer mapping, it tries to
@@ -604,7 +616,7 @@ params:
         verification altogether with `config.verify_channel_token_introspection_expiry`.
     - name: access_token_introspection_timeout
       required: false
-      default:
+      default: null
       datatype: number
       description: |
         Timeout in milliseconds for an introspection request. The plugin tries to introspect twice if the first request
@@ -612,7 +624,7 @@ params:
         `config.access_token_introspection_timeout` on channel token introspection.
     - name: channel_token_signing_algorithm
       required: true
-      default: "RS256"
+      default: RS256
       datatype: string
       description: |
         When this plugin sets the upstream header as specified with `config.channel_token_upstream_header`,
@@ -703,7 +715,6 @@ params:
       description: |
         If you don't want to support opaque channel tokens, disable introspection by
         changing this configuration parameter to `false`.
-
   extra: |
     **Configuration Notes:**
 

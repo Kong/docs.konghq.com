@@ -2,7 +2,6 @@
 name: Portal Application Registration
 publisher: Kong Inc.
 version: 2.0.x
-
 desc: Allow portal developers to register applications against Services
 description: |
   Applications allow registered developers on Kong Developer Portal to
@@ -29,33 +28,35 @@ description: |
 
   If you plan to use the external OAuth option with OIDC, review the
   [supported OAuth workflows](/gateway/latest/developer-portal/administration/application-registration/3rd-party-oauth).
-
 enterprise: true
 plus: true
 type: plugin
 categories:
   - authentication
-
 kong_version_compatibility:
   enterprise_edition:
     compatible:
-    - 2.4.x
-    - 2.3.x
-    - 2.2.x
-    - 2.1.x
-
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
 params:
   name: application-registration
   service_id: true
   consumer_id: false
   route_id: false
   konnect_examples: false
-  protocols: ["http", "https", "grpc", "grpcs"]
-  dbless_compatible: no
+  protocols:
+    - http
+    - https
+    - grpc
+    - grpcs
+  dbless_compatible: 'no'
   config:
     - name: auto_approve
       required: true
-      default: "`false`"
+      default: '`false`'
       value_in_examples: false
       datatype: boolean
       description: |
@@ -63,21 +64,21 @@ params:
         approved. See [Enable automatic registration approval](#enable-automatic-registration-approval). Otherwise, Dev Portal admins must manually approve requests.
     - name: description
       required: false
-      default:
+      default: null
       value_in_examples: <my_service_description>
       datatype: string
       description: |
         Unique description displayed in information about a Service in the Developer Portal.
     - name: display_name
       required: true
-      default:
+      default: null
       value_in_examples: <my_service_display_name>
       datatype: string
       description: |
         Unique display name used for a Service in the Developer Portal.
     - name: show_issuer
       required: true
-      default: "`false`"
+      default: '`false`'
       value_in_examples: false
       datatype: boolean
       description: |
