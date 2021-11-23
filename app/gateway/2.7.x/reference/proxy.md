@@ -1329,25 +1329,31 @@ on [Kong Hub](https://docs.konghq.com/hub/).
 
 ## Proxy TLS passthrough traffic
 
-Starting with version 2.7, Kong supports proxying a TLS request without terminating or known
+{{site.base_gateway}} supports proxying a TLS request without terminating or known
 as SNI proxy.
 
-Kong will not decrypt the incoming TLS traffic, but use the connecting client's
-TLS SNI server name extension to find the matching Route and Service and forward the
-complete TLS request to upstream.
+{{site.base_gateway}} uses the connecting 
+client's TLS SNI extension to find the matching Route and Service and forward the
+complete TLS request upstream, without decrypting the incoming TLS traffic.
 
-In this mode, request must be sent to a port that has `ssl` flag in its `stream_listen` directive.
-Aside from defining `stream_listen`, appropriate Route
-object with protocol types of `tls_passthrough` and `snis` field should be created, the corresponding
-Service object must have protocol of `tcp`. Different from proxying TLS traffic,
-SNI and Certificate entity is not required to be set and will not be used.
+In this mode, you need to:
+* Create a Route object with the protocol `tls_passthrough`, and the 
+`snis` field set to one or more SNIs.
+* Set the corresponding Service object's protocol to `tcp`. 
+* Send requests to a port that has the `ssl` flag in its `stream_listen` 
+directive.
 
-Routes are not allowed to match `tls` and `tls_passthrough` protocols at same time; but same
-SNI is allowed to match `tls` and `tls_passthrough` in different Routes. It's possible to set
-Route to `tls_passthrough` and Service to `tls`, in this mode the connection to upstream will
-be TLS encrypted twice.
+Separate SNI and Certificate entities aren't required and won't be used.
 
-**Note:** To allow plugins run in this mode, it must have protocols field explictly
+Routes are not allowed to match `tls` and `tls_passthrough` protocols at same time. 
+However, the same SNI is allowed to match `tls` and `tls_passthrough` in different 
+Routes. 
+
+It's also possible to set Route to `tls_passthrough` and Service to `tls`. In this 
+mode, the connection to the upstream will be TLS-encrypted twice.
+
+{:.note}
+> **Note:**  To run any plugins in this mode, the plugin's `protocols` field must
 include `tls_passthrough`.
 
 [Back to top](#introduction)
