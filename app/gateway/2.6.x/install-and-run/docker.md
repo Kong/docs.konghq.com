@@ -233,8 +233,7 @@ The steps involved in starting Kong in [DB-less mode](/gateway/{{page.kong_versi
     Save it inside the `MountPoint` path mentioned in the previous step. In the case of this
     guide, that would be `/var/lib/docker/volumes/kong-vol/_data/kong.yml`
 
-
-4. Start Kong in DB-less mode:
+4. Run the following command to start a container with {{site.base_gateway}}.
 
    Although it's possible to start the Kong container with `KONG_DATABASE=off`, it is usually
    desirable to also include the declarative configuration file as a parameter via the
@@ -242,7 +241,6 @@ The steps involved in starting Kong in [DB-less mode](/gateway/{{page.kong_versi
    "visible" from within the container. Use the `-v` flag, which maps
    the Docker volume to the `/usr/local/kong/declarative` folder in the container.
 
-Run the following command to start a container with {{site.base_gateway}}:
 {% capture start_container %}
 {% navtabs codeblock %}
 {% navtab Kong Gateway %}
