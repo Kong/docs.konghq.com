@@ -45,6 +45,7 @@ kong_version_compatibility:
       - 0.5.x
   enterprise_edition:
     compatible:
+      - 2.5.x
       - 2.4.x
       - 2.3.x
       - 2.2.x
