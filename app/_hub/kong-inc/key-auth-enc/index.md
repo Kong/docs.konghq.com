@@ -73,8 +73,6 @@ params:
     - name: hide_credentials
       required: true
       default: '`false`'
-      required: false
-      default: '`false`'
       datatype: boolean
       description: |
         An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`,
