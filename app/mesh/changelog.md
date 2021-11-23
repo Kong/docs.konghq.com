@@ -18,7 +18,14 @@ Built on top of [Kuma 1.4.0](https://github.com/kumahq/kuma/blob/master/CHANGELO
 
 ### Upgrading
 
-TODO CHECK WITH TEAM
+Starting with this version, the default API server authentication method is user
+tokens. To continue using client certificates (the previous default
+method), you'll need to explicitly set the authentication method to client
+certificates. This can be done by setting the `KUMA_API_SERVER_AUTHN_TYPE` variable to
+`"clientCerts"`.
+
+See the Kuma docs on [Configuration - Control plane](https://kuma.io/docs/1.4.0/documentation/configuration/#control-plane)
+for how to set this variable.
 
 ## 1.4.1
 

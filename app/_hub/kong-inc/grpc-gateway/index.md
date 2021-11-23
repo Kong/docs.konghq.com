@@ -2,21 +2,16 @@
 name: gRPC-gateway
 publisher: Kong Inc.
 version: 0.2.x
-
 categories:
   - transformations
 type: plugin
-
 desc: Access gRPC services through HTTP REST
 description: |
   A Kong plugin to allow access to a gRPC service via HTTP REST requests
   and translate requests and responses in a JSON format. Similar to
   [gRPC-gateway](https://grpc-ecosystem.github.io/grpc-gateway/).
-
-source_url: https://github.com/Kong/kong-plugin-grpc-gateway
-
+source_url: 'https://github.com/Kong/kong-plugin-grpc-gateway'
 license_type: MIT
-
 kong_version_compatibility:
   community_edition:
     compatible:
@@ -34,25 +29,23 @@ kong_version_compatibility:
       - 2.3.x
       - 2.2.x
       - 2.1.x
-
-
 params:
   name: grpc-gateway
   route_id: true
-  protocols: ["http", "https"]
+  protocols:
+    - http
+    - https
   dbless_compatible: true
-
   config:
     - name: proto
       required: false
-      default:
+      default: null
       value_in_examples: path/to/hello.proto
       datatype: string
       description: |
         Describes the gRPC types and methods.
         [HTTP configuration](https://github.com/googleapis/googleapis/blob/fc37c47e70b83c1cc5cc1616c9a307c4303fe789/google/api/http.proto)
         must be defined in the file.
-
 ---
 
 ## Purpose

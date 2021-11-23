@@ -2,19 +2,13 @@
 name: Zipkin
 publisher: Kong Inc.
 version: 1.3.x
-# internal handler version 1.3.0 4-26-2021
-
-source_url: https://github.com/Kong/kong-plugin-zipkin
-
+source_url: 'https://github.com/Kong/kong-plugin-zipkin'
 desc: Propagate Zipkin spans and report space to a Zipkin server
 description: |
   Propagate Zipkin distributed tracing spans, and report spans to a Zipkin server.
-
-
 type: plugin
 categories:
   - analytics-monitoring
-
 kong_version_compatibility:
   community_edition:
     compatible:
@@ -39,20 +33,26 @@ kong_version_compatibility:
       - 1.5.x
       - 1.3-x
       - 0.36-x
-
 params:
   name: zipkin
   service_id: true
   route_id: true
   consumer_id: true
   konnect_examples: false
-  protocols: ['http', 'https', 'tcp', 'tls', 'udp', 'grpc', 'grpcs']
-  dbless_compatible: yes
+  protocols:
+    - http
+    - https
+    - tcp
+    - tls
+    - udp
+    - grpc
+    - grpcs
+  dbless_compatible: 'yes'
   config:
     - name: http_endpoint
       required: false
       default: ''
-      value_in_examples: http://your.zipkin.collector:9411/api/v2/spans
+      value_in_examples: 'http://your.zipkin.collector:9411/api/v2/spans'
       datatype: string
       description: |
         The full HTTP(S) endpoint to which Zipkin spans should be sent by Kong.
@@ -122,12 +122,11 @@ params:
     - name: static_tags
       required: false
       default: []
-      value_in_examples:
+      value_in_examples: null
       datatype: array of string tags
       description: |
         The tags specified on this property will be added to the generated request traces. For example:
         `[ { "name": "color", "value": "red" } ]`.
-
 ---
 
 ## How it Works

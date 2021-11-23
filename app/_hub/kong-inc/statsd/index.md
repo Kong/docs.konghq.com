@@ -2,7 +2,6 @@
 name: StatsD
 publisher: Kong Inc.
 version: 1.0.0
-
 desc: Send request and response logs to StatsD
 description: |
   Log [metrics](#metrics) for a Service, Route
@@ -15,73 +14,76 @@ description: |
   * Ability to choose status codes to log to metrics.
   * More granular status codes per workspace.
   * Ability to use TCP instead of UDP.
-
 type: plugin
 categories:
   - logging
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 2.0.x
-        - 1.5.x
-        - 1.4.x
-        - 1.3.x
-        - 1.2.x
-        - 1.1.x
-        - 1.0.x
-        - 0.14.x
-        - 0.13.x
-        - 0.12.x
-        - 0.11.x
-        - 0.10.x
-        - 0.9.x
-        - 0.8.x
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-
+  community_edition:
+    compatible:
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 2.0.x
+      - 1.5.x
+      - 1.4.x
+      - 1.3.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
+      - 0.14.x
+      - 0.13.x
+      - 0.12.x
+      - 0.11.x
+      - 0.10.x
+      - 0.9.x
+      - 0.8.x
+  enterprise_edition:
+    compatible:
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
+      - 0.36-x
 params:
   name: statsd
   service_id: true
   route_id: true
   consumer_id: true
-  protocols: ["http", "https", "grpc", "grpcs", "tcp", "tls", "udp"]
-  dbless_compatible: yes
+  protocols:
+    - http
+    - https
+    - grpc
+    - grpcs
+    - tcp
+    - tls
+    - udp
+  dbless_compatible: 'yes'
   config:
     - name: host
       required: true
-      default: "`127.0.0.1`"
+      default: '`127.0.0.1`'
       value_in_examples: 127.0.0.1
       datatype: string
       description: The IP address or host name to send data to.
     - name: port
       required: true
-      default: "`8125`"
+      default: '`8125`'
       value_in_examples: 8125
       datatype: integer
-      description:  The port of StatsD server to send data to.
+      description: The port of StatsD server to send data to.
     - name: metrics
       required: true
-      default: "All metrics are logged"
+      default: All metrics are logged
       datatype: Array of record elements
-      description: List of Metrics to be logged. Available values are described under [Metrics](#metrics).
+      description: 'List of Metrics to be logged. Available values are described under [Metrics](#metrics).'
     - name: prefix
       required: true
-      default: "`kong`"
+      default: '`kong`'
       datatype: string
       description: String to prefix to each metric's name.
-
 ---
 
 ## Metrics

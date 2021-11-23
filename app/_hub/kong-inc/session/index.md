@@ -2,7 +2,6 @@
 name: Session
 publisher: Kong Inc.
 version: 2.4.4-x
-
 desc: Support sessions for Kong Authentication Plugins.
 description: |
   The Kong Session Plugin can be used to manage browser sessions for APIs proxied
@@ -13,19 +12,16 @@ description: |
 
   For information about configuring and using the Sessions plugin with the Dev
   Portal, see [Sessions in the Dev Portal](/gateway/latest/developer-portal/configuration/authentication/sessions/#configuration-to-use-the-sessions-plugin-with-the-dev-portal).
-
 type: plugin
 categories:
   - authentication
-
-source_url: https://github.com/Kong/kong-plugin-session
-
+source_url: 'https://github.com/Kong/kong-plugin-session'
 kong_version_compatibility:
   community_edition:
     compatible:
       - 2.4.x
       - 2.3.x
-      - 2.2.x     
+      - 2.2.x
       - 2.1.x
       - 2.0.x
       - 1.5.x
@@ -41,8 +37,6 @@ kong_version_compatibility:
       - 1.5.x
       - 1.3-x
       - 0.36-x
-
-
 params:
   name: session
   service_id: true
@@ -84,17 +78,17 @@ params:
       description: The remaining duration in seconds of a session at which point the Plugin renews the session.
     - name: cookie_path
       required: false
-      default: '/'
+      default: /
       datatype: string
       description: The resource in the host where the cookie is available.
     - name: cookie_domain
       required: false
-      default: Set using Nginx variable host, but may be overridden
+      default: 'Set using Nginx variable host, but may be overridden'
       datatype: string
       description: The domain with which the cookie is intended to be exchanged.
     - name: cookie_samesite
       required: false
-      default: 'Strict'
+      default: Strict
       datatype: string
       description: |
         Determines whether and how a cookie may be sent with cross-site requests. `Strict`:
@@ -126,7 +120,7 @@ params:
       description: The duration in seconds after which an old session’s TTL is updated that an old cookie is discarded.
     - name: storage
       required: false
-      default: 'cookie'
+      default: cookie
       datatype: string
       description: |
         Determines where the session data is stored. `kong`: Stores encrypted session data into Kong's current database

@@ -2,65 +2,66 @@
 name: ACME
 publisher: Kong Inc.
 version: 0.2.14
-
-source_url: https://github.com/Kong/kong-plugin-acme
-
+source_url: 'https://github.com/Kong/kong-plugin-acme'
 desc: Let's Encrypt and ACMEv2 integration with Kong
 description: |
   This plugin allows Kong to apply certificates from Let's Encrypt or any other ACMEv2 service and serve them dynamically.
   Renewal is handled with a configurable threshold time.
-
 type: plugin
 categories:
   - security
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 2.0.x
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-
+  community_edition:
+    compatible:
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 2.0.x
+  enterprise_edition:
+    compatible:
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
 params:
   name: acme
   api_id: false
   service_id: false
   route_id: false
   consumer_id: false
-  protocols: ['http', 'https', 'tcp', 'tls', 'grpc', 'grpcs']
-  dbless_compatible: yes
+  protocols:
+    - http
+    - https
+    - tcp
+    - tls
+    - grpc
+    - grpcs
+  dbless_compatible: 'yes'
   config:
     - name: account_email
-      required: yes
-      default:
+      required: 'yes'
+      default: null
       value_in_examples: example@example.com
       datatype: string
       description: |
         The account identifier. Can be reused in a different plugin instance.
     - name: api_uri
       required: false
-      default: "` https://acme-v02.api.letsencrypt.org/directory`"
+      default: '` https://acme-v02.api.letsencrypt.org/directory`'
       datatype: string
       description: |
         The ACMEv2 API endpoint to use. You can specify the
         [Let's Encrypt staging environment](https://letsencrypt.org/docs/staging-environment/) for testing. Kong doesn't automatically delete staging certificates. If you use the same domain in test and production environments, you need to manually delete those certificates after testing.
     - name: cert_type
       required: false
-      default: "`rsa`"
+      default: '`rsa`'
       datatype: string
       description: |
         The certificate type to create. The possible values are `"rsa"` for RSA certificate or `"ecc"` for EC certificate.
     - name: domains
       required: false
-      default: "`[]`"
+      default: '`[]`'
       datatype: array of string elements
       description: |
         The list of domains to create certificate for. To match subdomains under `example.com`, use `*.example.com`.
@@ -75,26 +76,26 @@ params:
         new certificate and a renewal certificate.
     - name: renew_threshold_days
       required: false
-      default: "`14`"
+      default: '`14`'
       datatype: number
       description: |
         Days remaining to renew the certificate before it expires.
     - name: storage
       required: false
-      default: "`shm`"
+      default: '`shm`'
       datatype: string
       description: |
         The backend storage type to use. The possible values are `"kong"`, `"shm"`, `"redis"`, `"consul"`, or `"vault"`. In DB-less mode, `"kong"` storage is unavailable. Note that `"shm"` storage does not persist during Kong restarts and does not work for Kong running on different machines, so consider using one of `"kong"`, `"redis"`, `"consul"`, or `"vault"` in production. Please refer to the Hybrid Mode sections below as well.
     - name: storage_config
       required: false
-      default:
+      default: null
       datatype: record
       description: |
         Storage configs for each backend storage. See [Storage configuration considerations](#storage-config)
         for information on its default values.
     - name: tos_accepted
       required: false
-      default: "`false`"
+      default: '`false`'
       datatype: boolean
       description: |
         If you are using Let's Encrypt, you must set this to `true` to agree the [Terms of Service](https://letsencrypt.org/repository/).
@@ -116,7 +117,6 @@ params:
     the `eab_kid` or `eab_hmac_key`:
 
     - [ZeroSSL](https://zerossl.com/)
-
 ---
 
 ## Storage configuration considerations {#storage-config}

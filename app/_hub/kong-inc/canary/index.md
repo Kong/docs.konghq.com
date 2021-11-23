@@ -14,10 +14,6 @@ type: plugin
 categories:
   - traffic-control
 
-type: plugin
-categories:
-  - traffic-control
-
 kong_version_compatibility:
     enterprise_edition:
       compatible:

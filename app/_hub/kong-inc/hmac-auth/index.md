@@ -2,7 +2,6 @@
 name: HMAC Authentication
 publisher: Kong Inc.
 version: 2.2.0
-
 desc: Add HMAC Authentication to your Services
 description: |
   Add HMAC Signature authentication to a Service or a Route
@@ -11,51 +10,52 @@ description: |
   (in that order). This plugin implementation is based off the
   [draft-cavage-http-signatures](https://tools.ietf.org/html/draft-cavage-http-signatures)
   draft with a slightly different signature scheme.
-
 type: plugin
 categories:
   - authentication
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 2.0.x
-        - 1.5.x
-        - 1.4.x
-        - 1.3.x
-        - 1.2.x
-        - 1.1.x
-        - 1.0.x
-        - 0.14.x
-        - 0.13.x
-        - 0.12.x
-        - 0.11.x
-        - 0.10.x
-        - 0.9.x
-        - 0.8.x
-        - 0.7.x
-        - 0.6.x
-        - 0.5.x
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-
+  community_edition:
+    compatible:
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 2.0.x
+      - 1.5.x
+      - 1.4.x
+      - 1.3.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
+      - 0.14.x
+      - 0.13.x
+      - 0.12.x
+      - 0.11.x
+      - 0.10.x
+      - 0.9.x
+      - 0.8.x
+      - 0.7.x
+      - 0.6.x
+      - 0.5.x
+  enterprise_edition:
+    compatible:
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
+      - 0.36-x
 params:
   name: hmac-auth
   service_id: true
   route_id: true
   consumer_id: false
-  protocols: ["http", "https", "grpc", "grpcs"]
+  protocols:
+    - http
+    - https
+    - grpc
+    - grpcs
   dbless_compatible: partially
   dbless_explanation: |
     Consumers and Credentials can be created with declarative configuration.
@@ -64,35 +64,35 @@ params:
   config:
     - name: hide_credentials
       required: true
-      default: "`false`"
+      default: '`false`'
       datatype: boolean
       description: |
         An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`, the plugin strips the credential from the request (i.e. the `Authorization` header) before proxying it.
     - name: clock_skew
       required: false
-      default: "`300`"
+      default: '`300`'
       datatype: number
       description: |
         [Clock Skew](https://tools.ietf.org/html/draft-cavage-http-signatures-00#section-3.4) in seconds to prevent replay attacks.
     - name: anonymous
       required: false
-      default:
+      default: null
       datatype: string
       description: |
         An optional string (consumer UUID) value to use as an anonymous consumer if authentication fails. If empty (default), the request fails with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
     - name: validate_request_body
       required: true
-      default: "`false`"
+      default: '`false`'
       datatype: boolean
       description: A boolean value telling the plugin to enable body validation.
     - name: enforce_headers
       required: false
-      default:
+      default: null
       datatype: array of string elements
       description: A list of headers that the client should at least use for HTTP signature creation.
     - name: algorithms
       required: false
-      default: "`hmac-sha1`,<br>`hmac-sha256`,<br>`hmac-sha384`,<br>`hmac-sha512`"
+      default: '`hmac-sha1`,<br>`hmac-sha256`,<br>`hmac-sha384`,<br>`hmac-sha512`'
       datatype: array of string elements
       description: |
         A list of HMAC digest algorithms that the user wants to support. Allowed values are `hmac-sha1`, `hmac-sha256`, `hmac-sha384`, and `hmac-sha512`
@@ -101,7 +101,6 @@ params:
     To restrict usage to only some of the authenticated users, also add the
     [ACL](/plugins/acl/) plugin (not covered here) and create allowed or
     denied groups of users.
-
 ---
 
 ## Usage
