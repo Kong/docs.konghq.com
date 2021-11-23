@@ -116,6 +116,7 @@ docker pull kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
  --network=<div contenteditable="true">{NETWORK_NAME}</div> \
  -e "KONG_DATABASE=postgres" \
  -e "KONG_PG_HOST=<div contenteditable="true">{DATABASE_NAME}</div>" \
+ -e "KONG_PG_USER=<div contenteditable="true">{PG_USER_NAME}</div>" \
  -e "KONG_PG_PASSWORD=<div contenteditable="true">{DATABASE_PASSWORD}</div>" \
  -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
  -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
@@ -232,8 +233,7 @@ The steps involved in starting Kong in [DB-less mode](/gateway/{{page.kong_versi
     Save it inside the `MountPoint` path mentioned in the previous step. In the case of this
     guide, that would be `/var/lib/docker/volumes/kong-vol/_data/kong.yml`
 
-
-4. Start Kong in DB-less mode:
+4. Run the following command to start a container with {{site.base_gateway}}.
 
    Although it's possible to start the Kong container with `KONG_DATABASE=off`, it is usually
    desirable to also include the declarative configuration file as a parameter via the
@@ -241,21 +241,50 @@ The steps involved in starting Kong in [DB-less mode](/gateway/{{page.kong_versi
    "visible" from within the container. Use the `-v` flag, which maps
    the Docker volume to the `/usr/local/kong/declarative` folder in the container.
 
-    <pre><code>docker run -d --name <div contenteditable="true">{CONTAINER_NAME}</div> \
-        --network=<div contenteditable="true">{NETWORK_NAME}</div> \
-        -v "kong-vol:/usr/local/kong/declarative" \
-        -e "KONG_DATABASE=off" \
-        -e "KONG_DECLARATIVE_CONFIG=/usr/local/kong/declarative/kong.yml" \
-        -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
-        -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
-        -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
-        -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
-        -e "KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl" \
-        -p 8000:8000 \
-        -p 8443:8443 \
-        -p 127.0.0.1:8001:8001 \
-        -p 127.0.0.1:8444:8444 \
-        kong:latest</code></pre>
+{% capture start_container %}
+{% navtabs codeblock %}
+{% navtab Kong Gateway %}
+<div class="copy-code-snippet"><pre><code>docker run -d --name <div contenteditable="true">{GATEWAY_CONTAINER_NAME}</div> \
+ --network=<div contenteditable="true">{NETWORK_NAME}</div> \
+ -v "kong-vol:/usr/local/kong/declarative" \
+ -e "KONG_DATABASE=off" \
+ -e "KONG_DECLARATIVE_CONFIG=/usr/local/kong/declarative/kong.yml" \
+ -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
+ -e "KONG_ADMIN_GUI_URL=http://<div contenteditable="true">{HOSTNAME}</div>:8002" \
+ -p 8000:8000 \
+ -p 8443:8443 \
+ -p 8001:8001 \
+ -p 8444:8444 \
+ -p 8002:8002 \
+ -p 8445:8445 \
+ -p 8003:8003 \
+ -p 8004:8004 \
+ kong-ee</code></pre></div>
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+<div class="copy-code-snippet"><pre><code>docker run -d --name <div contenteditable="true">{GATEWAY_CONTAINER_NAME}</div> \
+ --network=<div contenteditable="true">{NETWORK_NAME}</div> \
+ -v "kong-vol:/usr/local/kong/declarative" \
+ -e "KONG_DATABASE=off" \
+ -e "KONG_DECLARATIVE_CONFIG=/usr/local/kong/declarative/kong.yml" \
+ -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl" \
+ -p 8000:8000 \
+ -p 8443:8443 \
+ -p 127.0.0.1:8001:8001 \
+ -p 127.0.0.1:8444:8444 \
+ kong:latest</code></pre></div>
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ start_container | indent | replace: " </code>", "</code>" }}
 
 5. Verify that {{site.base_gateway}} is running:
 
