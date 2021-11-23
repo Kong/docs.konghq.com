@@ -217,13 +217,13 @@ spec:
 
 This way a service owners can:
 * Modify `RateLimit` and `TrafficPermission` that allows/restrict access to the backend service.
-  This changes the configuration of data plane proxy that implements `backend` service. 
+  This changes the configuration of data plane proxy that implements `backend` service.
 * Modify connection policies (`TrafficRoute`, `HealthCheck`, `CircuitBreaker`, `FaultInjection`, `Retry`, `Timeout`, `RateLimit`, `TrafficLog`)
-  that matches backend service that connects to other services. This changes the configuration of data plane proxy that implements `backend` service. 
+  that matches backend service that connects to other services. This changes the configuration of data plane proxy that implements `backend` service.
 * Modify connection policies that matches any service that consumes backend service.
   This changes the configuration of data plane proxies that are connecting to backend, but the configuration only affects connections to backend service.
-  It's useful because the service owner of backend has the best knowledge what (Timeouts, HealthCheck) should be applied when communicating with their service. 
-* Modify `TrafficTrace` or `ProxyTemplate` that matches backend service. This changes the configuration of data plane proxy that implements `backend` service. 
+  It's useful because the service owner of backend has the best knowledge what (Timeouts, HealthCheck) should be applied when communicating with their service.
+* Modify `TrafficTrace` or `ProxyTemplate` that matches backend service. This changes the configuration of data plane proxy that implements `backend` service.
 
 ### Observability operator
 
@@ -517,12 +517,12 @@ In order for this example to work you must either run the control plane with `KU
     $ CSR=$(cat backend-owner.csr | base64 | tr -d "\n") && echo "apiVersion: certificates.k8s.io/v1
     kind: CertificateSigningRequest
     metadata:
-    name: backend-owner
+      name: backend-owner
     spec:
-    request: $CSR
-    signerName: kubernetes.io/kube-apiserver-client
-    usages:
-    - client auth" | kubectl apply -f -
+      request: $CSR
+      signerName: kubernetes.io/kube-apiserver-client
+      usages:
+      - client auth" | kubectl apply -f -
     $ kubectl certificate approve backend-owner
     $ kubectl get csr backend-owner -o jsonpath='{.status.certificate}'| base64 -d > backend-owner.crt
     $ kubectl config set-credentials backend-owner \
