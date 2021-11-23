@@ -2,70 +2,68 @@
 name: Canary Release
 publisher: Kong Inc.
 version: 0.5.x
-
 desc: Slowly roll out software changes to a subset of users
 description: |
   Reduce the risk of introducing a new software version in production by slowly
   rolling out the change to a small subset of users. This plugin also enables rolling
   back to your original upstream service, or shifting all traffic to the new version.
-
 enterprise: true
 type: plugin
 categories:
   - traffic-control
-
 kong_version_compatibility:
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-
+  enterprise_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
+      - 0.36-x
 params:
   name: canary
   service_id: true
   route_id: true
   consumer_id: false
-  dbless_compatible: yes
+  dbless_compatible: 'yes'
   config:
     - name: start
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: number
       description: |
         Future time in seconds since epoch, when the canary release will start.
         Ignored when `percentage` is set, or when using `allow` or `deny` in `hash`.
     - name: duration
-      required:
+      required: null
       default: 3600
-      value_in_examples:
+      value_in_examples: null
       datatype: number
       description: |
-       The duration of the transition in seconds. Ignored when `percentage` is set, or
-       when using `allow` or `deny` in `hash`.
+        The duration of the transition in seconds. Ignored when `percentage` is set, or
+        when using `allow` or `deny` in `hash`.
     - name: percentage
       required: semi
-      default:
+      default: null
       value_in_examples: 50
       datatype: number
       description: |
         Fixed percentage of traffic to be routed to new target, if given overrides `start` and `duration`. The
         value must be between 0 and 100.
     - name: steps
-      required:
+      required: null
       default: 1000
-      value_in_examples:
+      value_in_examples: null
       datatype: number
       description: |
         Number of steps the release should be broken into.
     - name: upstream_host
       required: semi
-      default:
+      default: null
       value_in_examples: example.com
       datatype: string
       description: |
@@ -73,13 +71,13 @@ params:
     - name: upstream_fallback
       required: true
       default: false
-      value_in_examples:
+      value_in_examples: null
       datatype: boolean
       description: |
         Whether the plugin will fall back to the original upstream if the Canary Upstream doesn't have at least one healthy target. (`upstream_host` must point to a valid Kong Upstream entity.)
     - name: upstream_port
       required: semi
-      default:
+      default: null
       value_in_examples: 80
       datatype: integer
       description: |
@@ -87,36 +85,35 @@ params:
         Must be a value between 0 and 65535.
     - name: upstream_uri
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         The Upstream URI where traffic will be routed. Required if `upstream_port` and `upstream_host` are not set.
     - name: hash
-      required:
+      required: null
       default: consumer
-      value_in_examples:
+      value_in_examples: null
       datatype: string
       description: |
         Entity to be used for hashing. Options: `consumer`, `ip`, `header`, `allow`, `deny`, or `none`.
         When using `consumer` or `ip`, make sure to properly set the settings for trusted IPs
         (see the `trusted_ips` and `real_ip_header` settings in the Kong configuration file.)
     - name: groups
-      required:
-      default:
-      value_in_examples:
+      required: null
+      default: null
+      value_in_examples: null
       datatype: array of string elements
       description: |
         An array of strings with the group names that are allowed or denied. Set `hash` to either `allow` (the listed groups
         go into the canary) or `deny` (the listed groups will NOT go into the canary.)
     - name: hash_header
       required: semi
-      default: 
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         Header name whose value will be used as hash input. Required if `config.hash` is set to `header`.
-
 ---
 
 ### Usage

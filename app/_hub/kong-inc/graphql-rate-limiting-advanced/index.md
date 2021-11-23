@@ -1,45 +1,41 @@
 ---
-
 name: GraphQL Rate Limiting Advanced
 publisher: Kong Inc.
 version: 2.3.x
-# internal handler version 0.2.3
-
 desc: Provide rate limiting for GraphQL queries
 description: |
   The GraphQL Rate Limiting Advanced plugin provides rate limiting for GraphQL queries. The
   GraphQL Rate Limiting plugin extends the
   [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) plugin.
-
 type: plugin
 enterprise: true
 plus: true
 categories:
   - traffic-control
-
 kong_version_compatibility:
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-
+  enterprise_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
 params:
   name: graphql-rate-limiting-advanced
   service_id: true
   route_id: true
   dbless_compatible: partially
   dbless_explanation: |
-   The cluster strategy is not supported in DB-less and hybrid modes. For Kong
-   Gateway in DB-less or hybrid mode, use the `redis` strategy.
+    The cluster strategy is not supported in DB-less and hybrid modes. For Kong
+    Gateway in DB-less or hybrid mode, use the `redis` strategy.
   config:
     - name: cost_strategy
       required: true
-      default: "default"
-      value_in_examples:
+      default: default
+      value_in_examples: null
       datatype: string
       description: |
         Strategy to use to evaluate query costs. Either `default` or
@@ -48,35 +44,37 @@ params:
     - name: max_cost
       required: false
       default: 0
-      value_in_examples:
+      value_in_examples: null
       datatype: number
       description: |
         A defined maximum cost per query. 0 means unlimited.
     - name: score_factor
       required: false
-      default: 1.0
-      value_in_examples:
+      default: 1
+      value_in_examples: null
       datatype: number
       description: |
         A scoring factor to multiply (or divide) the cost. The `score_factor` must always be greater than 0.
     - name: limit
       required: true
-      default:
-      value_in_examples: [ "5" ]
+      default: null
+      value_in_examples:
+        - '5'
       datatype: array of number elements
       description: |
         One or more requests-per-window limits to apply.
     - name: window_size
       required: true
-      default:
-      value_in_examples: [ "30" ]
+      default: null
+      value_in_examples:
+        - '30'
       datatype: array of number elements
       description: |
         One or more window sizes to apply a limit to (defined in seconds).
     - name: identifier
       required: true
       default: consumer
-      value_in_examples:
+      value_in_examples: null
       datatype: string
       description: |
         How to define the rate limit key. Can be `ip`, `credential`, `consumer`.
@@ -88,13 +86,13 @@ params:
     - name: dictionary_name
       required: true
       default: kong_rate_limiting_counters
-      value_in_examples:
+      value_in_examples: null
       datatype: string
       description: |
         The shared dictionary where counters will be stored until the next sync cycle.
     - name: sync_rate
       required: true
-      default:
+      default: null
       value_in_examples: -1
       datatype: number
       description: |
@@ -105,12 +103,12 @@ params:
     - name: namespace
       required: false
       default: random string
-      value_in_examples:
+      value_in_examples: null
       datatype: string
       description: |
         The rate limiting library namespace to use for this plugin instance. Counter data and sync configuration is shared in a namespace.
     - name: strategy
-      required:
+      required: null
       default: cluster
       value_in_examples: cluster
       datatype: string
@@ -139,22 +137,22 @@ params:
         [implementation considerations](/hub/kong-inc/rate-limiting/#implementation-considerations).
     - name: redis.host
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         Host to use for Redis connection when the `redis` strategy is defined.
     - name: redis.port
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: integer
       description: |
         Port to use for Redis connection when the `redis` strategy is defined.
     - name: redis.ssl
       required: false
       default: false
-      value_in_examples:
+      value_in_examples: null
       datatype: boolean
       description: |
         If set to true, then uses SSL to connect to Redis.
@@ -164,7 +162,7 @@ params:
     - name: redis.ssl_verify
       required: false
       default: false
-      value_in_examples:
+      value_in_examples: null
       datatype: boolean
       description: |
         If set to true, then verifies the validity of the server SSL certificate. Note that you need to configure the
@@ -176,8 +174,8 @@ params:
         2.2.x and later.
     - name: redis.server_name
       required: false
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         Specifies the server name for the new TLS extension Server Name Indication (SNI) when connecting over SSL.
@@ -187,35 +185,35 @@ params:
     - name: redis.timeout
       required: semi
       default: 2000
-      value_in_examples:
+      value_in_examples: null
       datatype: number
       description: |
         Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined.
     - name: redis.password
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         Password to use for Redis connection when the `redis` strategy is defined. If undefined, no AUTH commands are sent to Redis.
     - name: redis.database
       required: semi
       default: 0
-      value_in_examples:
+      value_in_examples: null
       datatype: integer
       description: |
         Database to use for Redis connection when the `redis` strategy is defined.
     - name: redis.sentinel_master
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         Sentinel master to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
     - name: redis.sentinel_password
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         Sentinel password to authenticate with a Redis Sentinel instance.
@@ -223,40 +221,39 @@ params:
         1.3.0.2 and later.
     - name: redis.sentinel_role
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         Sentinel role to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
     - name: redis.sentinel_addresses
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: array of string elements
       description: |
         Sentinel addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
     - name: redis.cluster_addresses
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: array of string elements
       description: |
         Cluster addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis cluster.
     - name: window_type
       required: true
       default: sliding
-      value_in_examples:
+      value_in_examples: null
       datatype: string
       description: |
         Sets the time window to either `sliding` or `fixed`.
     - name: hide_client_headers
       required: false
       default: false
-      value_in_examples:
+      value_in_examples: null
       datatype: boolean
       description: |
         Optionally hide informative response headers. Available options: `true` or `false`.
-
   extra: |
     > Note: Redis configuration values are ignored if the `cluster` strategy is used.
 
@@ -265,7 +262,6 @@ params:
      * PostgreSQL 9.5+ is required when using the `cluster` strategy with `postgres` as the backing Kong cluster data store. This requirement varies from the PostgreSQL 9.4+ requirement as described in the <a href="/install/source">Kong Community Edition documentation</a>.
 
      * The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors.
-
 ---
 
 The **GraphQL Rate Limiting Advanced** plugin is an extension of the

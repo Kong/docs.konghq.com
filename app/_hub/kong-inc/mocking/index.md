@@ -2,8 +2,6 @@
 name: Mocking
 publisher: Kong Inc.
 version: 0.1.x
-# internal handler v 0.1.0
-
 desc: Provide mock endpoints to test your APIs against your services
 description: |
   Provide mock endpoints to test your APIs in development against your services.
@@ -24,42 +22,44 @@ description: |
   > To use this plugin in Konnect Cloud,
   [upgrade your runtimes](/konnect/runtime-manager/upgrade) to at least
   v2.4.1.1.
-
 enterprise: true
 plus: true
-type:
-  plugin
+type: plugin
 categories:
   - traffic-control
-
 kong_version_compatibility:
-    enterprise_edition:
-      compatible:
-        - 2.4.x
+  enterprise_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
 params:
   name: mocking
   service_id: true
   consumer_id: true
   route_id: true
-  protocols: ["http", "https", "grpc", "grpcs"]
-  dbless_compatible: yes
+  protocols:
+    - http
+    - https
+    - grpc
+    - grpcs
+  dbless_compatible: 'yes'
   dbless_explanation: |
     Use the `api_specification` config for DB-less or hybrid mode. Attach the spec contents directly
     instead of uploading to the Dev Portal. The API spec is configured directly in the plugin.
   examples: false
-
   config:
     - name: api_specification_filename
       required: semi
-      default:
+      default: null
       datatype: string
-      value_in_examples:
+      value_in_examples: null
       description: |
         The path and name of the specification file loaded into Kong Gateway's database. You cannot
         use this option for DB-less or hybrid mode.
     - name: api_specification
       required: semi
-      default:
+      default: null
       datatype: string
       value_in_examples: <my_spec_contents>
       description: |
@@ -94,7 +94,6 @@ params:
         The minimum value in seconds of delay time. Set this value when `random_delay` is enabled
         and you want to adjust the default. The value must be less than the
         `max_delay_time`.
-
   extra: |
 
     Depending on the Kong Gateway deployment mode, set either the `api_specification_filename`

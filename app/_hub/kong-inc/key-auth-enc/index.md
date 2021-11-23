@@ -2,7 +2,6 @@
 name: Key Authentication - Encrypted
 publisher: Kong Inc.
 version: 2.0.x
-
 desc: Add key authentication to your Services
 description: |
   Add key authentication (also sometimes referred to as an _API key_) to a Service
@@ -10,39 +9,43 @@ description: |
   header to authenticate their requests. This plugin is functionally identical to the
   open source [Key Authentication](/hub/kong-inc/key-auth/) plugin, with the
   exception that API keys are stored in an encrypted format within the API gateway datastore.
-
 enterprise: true
 type: plugin
 categories:
   - authentication
-
 kong_version_compatibility:
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3.x
-
+  enterprise_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3.x
 params:
   name: key-auth-enc
   service_id: true
   route_id: true
   consumer_id: false
   konnect_examples: false
-  protocols: ["http", "https", "grpc", "grpcs"]
+  protocols:
+    - http
+    - https
+    - grpc
+    - grpcs
   dbless_compatible: partially
   dbless_explanation: |
-   Consumers and Credentials can be created with declarative configuration.
+    Consumers and Credentials can be created with declarative configuration.
 
-   Admin API endpoints that do POST, PUT, PATCH, or DELETE on Credentials are not available on DB-less mode.
+    Admin API endpoints that do POST, PUT, PATCH, or DELETE on Credentials are not available on DB-less mode.
   config:
     - name: key_names
       required: true
-      default: "`apikey`"
-      value_in_examples: ["apikey"]
+      default: '`apikey`'
+      value_in_examples:
+        - apikey
       datatype: array of strings
       description: |
         Describes an array of parameter names where the plugin will look for a key. The client must send the
@@ -51,32 +54,34 @@ params:
         <br>**Note**: The key names may only contain [a-z], [A-Z], [0-9], [_] underscore, and [-] hyphen.
     - name: key_in_body
       required: false
-      default: "`false`"
+      default: '`false`'
       datatype: boolean
       description: |
         If enabled, the plugin reads the request body (if said request has one and its MIME type is supported) and tries to find the key in it. Supported MIME types: `application/www-form-urlencoded`, `application/json`, and `multipart/form-data`.
     - name: key_in_header
       required: false
-      default: "`true`"
+      default: '`true`'
       datatype: boolean
       description: |
         If enabled (default), the plugin reads the request header and tries to find the key in it.
     - name: key_in_query
       required: false
-      default: "`true`"
+      default: '`true`'
       datatype: boolean
       description: |
         If enabled (default), the plugin reads the query parameter in the request and tries to find the key in it.
     - name: hide_credentials
       required: true
-      default: "`false`"
+      default: '`false`'
+      required: false
+      default: '`false`'
       datatype: boolean
       description: |
         An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`,
         the plugin strips the credential from the request (i.e., the header, query string, or request body containing the key) before proxying it.
     - name: anonymous
       required: false
-      default:
+      default: null
       datatype: string
       description: |
         An optional string (Consumer UUID) value to use as an anonymous Consumer if authentication fails. If empty (default),
@@ -84,27 +89,26 @@ params:
         must refer to the Consumer `id` attribute that is internal to Kong, and **not** its `custom_id`.
     - name: run_on_preflight
       required: false
-      default: "`true`"
+      default: '`true`'
       datatype: boolean
       description: |
         A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests.
         If set to `false`, then `OPTIONS` requests are always allowed.
   extra: |
 
-   ## Case sensitivity
+    ## Case sensitivity
 
-    Note that, according to their respective specifications, HTTP header names are treated as
-    case _insensitive_, while HTTP query string parameter names are treated as case _sensitive_.
-    Kong follows these specifications as designed, meaning that the `key_names`
-    configuration values are treated differently when searching the request header fields versus
-    searching the query string. As a best practice, administrators are advised against defining
-    case-sensitive `key_names` values when expecting the authorization keys to be sent in the request headers.
+     Note that, according to their respective specifications, HTTP header names are treated as
+     case _insensitive_, while HTTP query string parameter names are treated as case _sensitive_.
+     Kong follows these specifications as designed, meaning that the `key_names`
+     configuration values are treated differently when searching the request header fields versus
+     searching the query string. As a best practice, administrators are advised against defining
+     case-sensitive `key_names` values when expecting the authorization keys to be sent in the request headers.
 
-    Once applied, any user with a valid credential can access the Service.
-    To restrict usage to certain authenticated users, also add the
-    [ACL](/plugins/acl/) plugin (not covered here) and create allowed or
-    denied groups of users.
-
+     Once applied, any user with a valid credential can access the Service.
+     To restrict usage to certain authenticated users, also add the
+     [ACL](/plugins/acl/) plugin (not covered here) and create allowed or
+     denied groups of users.
 ---
 
 ## Prerequisite
