@@ -544,17 +544,17 @@ In order for this example to work you must either run the control plane with `KU
       name: kuma-policy-management
     rules:
     - apiGroups:
-        - kuma.io
-        resources:
-        - trafficpermissions
-        verbs:
-        - get
-        - list
-        - watch
-        - create
-        - update
-        - patch
-        - delete
+      - kuma.io
+      resources:
+      - trafficpermissions
+      verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+      - delete
     ---
     apiVersion: rbac.authorization.k8s.io/v1
     kind: ClusterRoleBinding
