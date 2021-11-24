@@ -59,7 +59,7 @@ Install the APT repository from the command line.
     ```
 3. Install Kong:
     ```bash
-    apt install -y kong
+    apt install -y kong={{page.kong_versions[page.version-index].ce-version}}
     ```
 
 {% endnavtab %}

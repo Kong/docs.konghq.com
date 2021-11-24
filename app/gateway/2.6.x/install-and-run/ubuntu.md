@@ -105,12 +105,12 @@ Install the APT repository from the command line.
 {% navtabs codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-apt install -y kong-enterprise-edition
+apt install -y kong-enterprise-edition={{page.kong_versions[page.version-index].ee-version}}
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-apt install -y kong
+apt install -y kong={{page.kong_versions[page.version-index].ce-version}}
 ```
 {% endnavtab %}
 {% endnavtabs %}

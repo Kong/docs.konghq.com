@@ -96,12 +96,12 @@ Install the YUM repository from the command line.
 {% navtabs codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-sudo yum install kong-enterprise-edition
+sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-sudo yum install kong
+sudo yum install kong-{{page.kong_versions[page.version-index].ce-version}}
 ```
 {% endnavtab %}
 {% endnavtabs %}
