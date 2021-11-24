@@ -2,8 +2,6 @@
 name: LDAP Authentication
 publisher: Kong Inc.
 version: 2.2.x
-# internal handler version 2.2.0
-
 desc: Integrate Kong with an LDAP server
 description: |
   Add LDAP Bind Authentication to a Route with username and password protection. The plugin
@@ -15,59 +13,64 @@ description: |
   * Ability to authenticate based on username or custom ID.
   * The ability to bind to an enterprise LDAP directory with a password.
   * The ability to authenticate/authorize using a group base DN and specific group member or group name attributes.
-
 type: plugin
 categories:
   - authentication
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 2.0.x
-        - 1.5.x
-        - 1.4.x
-        - 1.3.x
-        - 1.2.x
-        - 1.1.x
-        - 1.0.x
-        - 0.14.x
-        - 0.13.x
-        - 0.12.x
-        - 0.11.x
-        - 0.10.x
-        - 0.9.x
-        - 0.8.x
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-
+  community_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 2.0.x
+      - 1.5.x
+      - 1.4.x
+      - 1.3.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
+      - 0.14.x
+      - 0.13.x
+      - 0.12.x
+      - 0.11.x
+      - 0.10.x
+      - 0.9.x
+      - 0.8.x
+  enterprise_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
+      - 0.36-x
 params:
   name: ldap-auth
   service_id: false
   route_id: true
   consumer_id: false
-  protocols: ["http", "https", "gprc", "grpcs"]
-  dbless_compatible: yes
+  protocols:
+    - http
+    - https
+    - gprc
+    - grpcs
+  dbless_compatible: 'yes'
   config:
     - name: hide_credentials
       required: true
-      default: "`false`"
+      default: '`false`'
       value_in_examples: true
       datatype: boolean
       description: An optional boolean value telling the plugin to hide the credential to the upstream server. It will be removed by Kong before proxying the request.
     - name: ldap_host
       required: true
-      default:
+      default: null
       value_in_examples: ldap.example.com
       datatype: string
       description: Host on which the LDAP server is running.
@@ -82,7 +85,7 @@ params:
         configured, you must use port 636.
     - name: start_tls
       required: true
-      default: "`false`"
+      default: '`false`'
       datatype: boolean
       description: |
         Set it to `true` to issue StartTLS (Transport Layer Security) extended operation over `ldap`
@@ -90,7 +93,7 @@ params:
         setting is disabled.
     - name: ldaps
       required: true
-      default: "`false`"
+      default: '`false`'
       datatype: boolean
       description: |
         Set to `true` to connect using the LDAPS protocol (LDAP over TLS).  When `ldaps` is
@@ -98,41 +101,41 @@ params:
         `start_tls` setting is disabled.
     - name: base_dn
       required: true
-      default:
-      value_in_examples: dc=example,dc=com
+      default: null
+      value_in_examples: 'dc=example,dc=com'
       datatype: string
-      description: Base DN as the starting point for the search; e.g., "dc=example,dc=com".
+      description: 'Base DN as the starting point for the search; e.g., "dc=example,dc=com".'
     - name: verify_ldap_host
       required: true
-      default: "`false`"
+      default: '`false`'
       datatype: boolean
       description: |
         Set to `true` to authenticate LDAP server. The server certificate will be verified according to the CA certificates specified by the `lua_ssl_trusted_certificate` directive.
     - name: attribute
       required: true
-      default:
+      default: null
       value_in_examples: cn
       datatype: string
-      description: Attribute to be used to search the user; e.g., "cn".
+      description: 'Attribute to be used to search the user; e.g., "cn".'
     - name: cache_ttl
       required: true
-      default: "`60`"
+      default: '`60`'
       datatype: number
       description: Cache expiry time in seconds.
     - name: timeout
       required: false
-      default: "`10000`"
+      default: '`10000`'
       datatype: number
       description: An optional timeout in milliseconds when waiting for connection with LDAP server.
     - name: keepalive
       required: false
-      default: "`60000`"
+      default: '`60000`'
       datatype: number
       description: |
         An optional value in milliseconds that defines how long an idle connection to LDAP server will live before being closed.
     - name: anonymous
       required: false
-      default:
+      default: null
       datatype: string
       description: |
         An optional string (consumer UUID) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`.
@@ -140,18 +143,12 @@ params:
         **Note:** The value must refer to the Consumer `id` attribute that is internal to Kong, **not** its `custom_id`.
     - name: header_type
       required: false
-      default: "`ldap`"
+      default: '`ldap`'
       value_in_examples: ldap
       datatype: string
       description: |
         An optional string to use as part of the Authorization header. By default, a valid Authorization header looks like this: `Authorization: ldap base64(username:password)`. If `header_type` is set to "basic", then the Authorization header would be `Authorization: basic base64(username:password)`. Note that `header_type` can take any string, not just `"ldap"` and `"basic"`.
-  extra:
-    <div class="alert alert-warning">
-        <strong>Note:</strong> The <code>config.header_type</code> option was
-        introduced in Kong 0.12.0. Previous versions of this plugin behave as if
-        <code>ldap</code> was set for this value.
-    </div>
-
+  extra: '<div class="alert alert-warning"> <strong>Note:</strong> The <code>config.header_type</code> option was introduced in Kong 0.12.0. Previous versions of this plugin behave as if <code>ldap</code> was set for this value. </div>'
 ---
 
 ## Usage

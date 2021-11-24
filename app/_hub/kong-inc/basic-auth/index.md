@@ -2,60 +2,63 @@
 name: Basic Authentication
 publisher: Kong Inc.
 version: 2.2.0
-
 desc: Add Basic Authentication to your Services
 description: |
   Add Basic Authentication to a Service or a Route with username and password protection. The plugin
   checks for valid credentials in the `Proxy-Authorization` and `Authorization` headers (in that order).
-
-
 type: plugin
 categories:
   - authentication
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x      
-        - 2.1.x
-        - 2.0.x
-        - 1.5.x
-        - 1.4.x
-        - 1.3.x
-        - 1.2.x
-        - 1.1.x
-        - 1.0.x
-        - 0.14.x
-        - 0.13.x
-        - 0.12.x
-        - 0.11.x
-        - 0.10.x
-        - 0.9.x
-        - 0.8.x
-        - 0.7.x
-        - 0.6.x
-        - 0.5.x
-        - 0.4.x
-        - 0.3.x
-        - 0.2.x
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-
+  community_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 2.0.x
+      - 1.5.x
+      - 1.4.x
+      - 1.3.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
+      - 0.14.x
+      - 0.13.x
+      - 0.12.x
+      - 0.11.x
+      - 0.10.x
+      - 0.9.x
+      - 0.8.x
+      - 0.7.x
+      - 0.6.x
+      - 0.5.x
+      - 0.4.x
+      - 0.3.x
+      - 0.2.x
+  enterprise_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
+      - 0.36-x
 params:
   name: basic-auth
   service_id: true
   route_id: true
   consumer_id: false
-  protocols: ["http", "https", "grpc", "grpcs"]
+  protocols:
+    - http
+    - https
+    - grpc
+    - grpcs
   dbless_compatible: partially
   dbless_explanation: |
     Consumers and Credentials can be created with declarative configuration.
@@ -63,16 +66,15 @@ params:
     Admin API endpoints which do POST, PUT, PATCH or DELETE on Credentials are not available on DB-less mode.
   config:
     - name: hide_credentials
-      required: false
+      required: true
       value_in_examples: true
       datatype: boolean
-      default: "`false`"
+      default: '`false`'
       description: |
         An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`, the plugin will strip the credential from the request (i.e. the `Authorization` header) before proxying it.
-
     - name: anonymous
       required: false
-      default:
+      default: null
       datatype: string
       description: |
         An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
@@ -81,7 +83,6 @@ params:
     To restrict usage to only some of the authenticated users, also add the
     [ACL](/plugins/acl/) plugin (not covered here) and create allowed or
     denied groups of users.
-
 ---
 
 ## Usage

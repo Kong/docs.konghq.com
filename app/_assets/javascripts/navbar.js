@@ -43,11 +43,11 @@ jQuery(function () {
     // if user doesn't open Docs submenu, move focus to Support menu item
     let submenu = $(".with-submenu")
     if(!submenu.hasClass("submenu-opened")) {
-      $("#support-link").focus();
+      $("#plugin-link").focus();
     }
   })
   // close docs dropdown menu when tabbing on Support menu item
-  $("#support-link").on("focus", function(e) {
+  $("#plugin-link").on("focus", function(e) {
     $(".with-submenu").removeClass("submenu-opened");
   });
 });

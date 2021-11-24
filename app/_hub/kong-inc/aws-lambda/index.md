@@ -2,65 +2,61 @@
 name: AWS Lambda
 publisher: Kong Inc.
 version: 3.6.x
-
 desc: Invoke and manage AWS Lambda functions from Kong
 description: |
   Invoke an [AWS Lambda](https://aws.amazon.com/lambda/) function from Kong. The
   AWS Lambda plugin can be used in combination with other request plugins to secure, manage, or
   extend the function.
-
 type: plugin
 categories:
   - serverless
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-        - 2.6.x
-        - 2.5.x
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 2.0.x
-        - 1.5.x
-        - 1.4.x
-        - 1.3.x
-        - 1.2.x
-        - 1.1.x
-        - 1.0.x
-        - 0.14.x
-        - 0.13.x
-        - 0.12.x
-        - 0.11.x
-        - 0.10.x
-    enterprise_edition:
-      compatible:
-        - 2.6.x
-        - 2.5.x
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x      
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-
-
+  community_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 2.0.x
+      - 1.5.x
+      - 1.4.x
+      - 1.3.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
+      - 0.14.x
+      - 0.13.x
+      - 0.12.x
+      - 0.11.x
+      - 0.10.x
+  enterprise_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
+      - 0.36-x
 params:
-
   name: aws-lambda
   service_id: true
   route_id: true
   consumer_id: true
-  protocols: ["http", "https"]
-  dbless_compatible: yes
+  protocols:
+    - http
+    - https
+  dbless_compatible: 'yes'
   config:
     - name: aws_key
       required: semi
       value_in_examples: <AWS_KEY>
       urlencode_in_examples: true
-      default:
+      default: null
       datatype: string
       description: |
         The AWS key credential to be used when invoking the function. The `aws_key` value is required
@@ -72,7 +68,7 @@ params:
       required: semi
       value_in_examples: <AWS_SECRET>
       urlencode_in_examples: true
-      default:
+      default: null
       datatype: string
       description: |
         The AWS secret credential to be used when invoking the function. The `aws_secret` value is required
@@ -82,7 +78,7 @@ params:
         is configured.
     - name: aws_region
       required: false
-      default:
+      default: null
       value_in_examples: <AWS_REGION>
       datatype: string
       description: |
@@ -98,63 +94,63 @@ params:
         `500 Internal Server Error` at run-time.
     - name: host
       required: false
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         The host where the Lambda function is located. This value can point to a
         local Lambda server, allowing for easier debugging.
     - name: function_name
       required: true
-      default:
+      default: null
       value_in_examples: <LAMBDA_FUNCTION_NAME>
       datatype: string
       description: The AWS Lambda function name to invoke.
     - name: qualifier
       required: false
-      default:
+      default: null
       datatype: string
       description: |
         The [`Qualifier`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function.
     - name: invocation_type
       required: true
-      default: "`RequestResponse`"
+      default: '`RequestResponse`'
       datatype: string
       description: |
         The [`InvocationType`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function. Available types are `RequestResponse`, `Event`, `DryRun`.
     - name: log_type
       required: true
-      default: "`Tail`"
+      default: '`Tail`'
       datatype: string
       description: |
         The [`LogType`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function. By default, `None` and `Tail` are supported.
     - name: timeout
       required: true
-      default: "`60000`"
+      default: '`60000`'
       datatype: number
       description: An optional timeout in milliseconds when invoking the function.
     - name: port
       required: false
-      default: "`443`"
+      default: '`443`'
       datatype: integer
       description: |
         The TCP port that the plugin uses to connect to the server.
     - name: keepalive
       required: true
-      default: "`60000`"
+      default: '`60000`'
       datatype: number
       description: |
         An optional value in milliseconds that defines how long an idle connection lives before being closed.
     - name: unhandled_status
       required: false
-      default: "`200`, `202`, or `204`"
+      default: '`200`, `202`, or `204`'
       datatype: integer
       description: |
         The response status code to use (instead of the default `200`, `202`, or `204`) in the case of an
         [`Unhandled` Function Error](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_ResponseSyntax).
     - name: forward_request_body
       required: false
-      default: "`false`"
+      default: '`false`'
       datatype: boolean
       description: |
         An optional value that defines whether the request body is sent in the `request_body` field of the JSON-encoded request.
@@ -162,21 +158,21 @@ params:
         The body arguments can be parsed for `application/json`, `application/x-www-form-urlencoded`, and `multipart/form-data` content types.
     - name: forward_request_headers
       required: false
-      default: "`false`"
+      default: '`false`'
       datatype: boolean
       description: |
         An optional value that defines whether the original HTTP request headers are
         sent as a map in the `request_headers` field of the JSON-encoded request.
     - name: forward_request_method
       required: false
-      default: "`false`"
+      default: '`false`'
       datatype: boolean
       description: |
         An optional value that defines whether the original HTTP request method verb is
         sent in the `request_method` field of the JSON-encoded request.
     - name: forward_request_uri
       required: false
-      default: "`false`"
+      default: '`false`'
       datatype: boolean
       description: |
         An optional value that defines whether the original HTTP request URI is sent in
@@ -184,34 +180,34 @@ params:
         the separate `request_uri_args` field of the JSON body.
     - name: is_proxy_integration
       required: false
-      default: "`false`"
+      default: '`false`'
       datatype: boolean
       description: |
         An optional value that defines whether the response format to receive from the Lambda to
         [this format](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-output-format).
     - name: awsgateway_compatible
       required: false
-      default: "`false`"
+      default: '`false`'
       datatype: boolean
       description: |
         An optional value that defines whether the plugin should wrap requests into the Amazon API gateway.
     - name: proxy_url
       required: semi
-      default:
+      default: null
       datatype: string
       description: |
         An optional value that defines whether the plugin should connect through the given proxy server URL.
         The `proxy_url` value is required if `proxy_scheme` is defined.
     - name: proxy_scheme
       required: semi
-      default:
+      default: null
       datatype: string
       description: |
         An optional value that defines which HTTP scheme to use for connecting through the proxy server. The
         supported schemes are `http` and `https`. The `proxy_scheme` value is required if `proxy_url` is defined.
     - name: skip_large_bodies
       required: false
-      default: "`true`"
+      default: '`true`'
       datatype: boolean
       description: |
         An optional value that defines whether Kong should send large
@@ -226,11 +222,10 @@ params:
         value instead.
     - name: base64_encode_body
       required: false
-      default: "`true`"
+      default: '`true`'
       datatype: boolean
       description: |
         An optional value that Base64-encodes the request body.
-
   extra: |
     **Reminder**: By default, cURL sends payloads with an
     `application/x-www-form-urlencoded` MIME type, which will naturally be URL-
@@ -239,7 +234,6 @@ params:
     URL-encode them with `--data-urlencode`.
     Alternatives to this approach would be to send your payload with a
     different MIME type (like `application/json`), or to use a different HTTP client.
-
 ---
 
 ### Sending parameters

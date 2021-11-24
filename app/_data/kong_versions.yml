@@ -442,7 +442,7 @@
 
 -
   release: "2.5.x"
-  version: "2.5.1.0"
+  version: "2.5.1.2"
   edition: "enterprise"
   luarocks_version: "2.2.0.0"
   dependencies:
@@ -455,7 +455,7 @@
 -
 # Combined Gateway docs (single-sourced)
   release: "2.6.x"
-  ee-version: "2.6.0.0"
+  ee-version: "2.6.0.1"
   ce-version: "2.6.0"
   edition: "gateway"
   luarocks_version: "2.5.1-0"
@@ -546,6 +546,10 @@
 -
   release: "1.4.x"
   version: "1.4.1"
+  edition: "mesh"
+-
+  release: "1.5.x"
+  version: "1.5.0"
   edition: "mesh"
 -
   release: "1.0.x"

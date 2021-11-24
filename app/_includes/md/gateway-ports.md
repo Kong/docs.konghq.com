@@ -18,7 +18,7 @@ By default, {{site.base_gateway}} listens on the following ports:
 | [`:8006`](/gateway/latest/deployment/hybrid-mode-setup/)         | HTTP     | Hybrid mode only. Control Plane listens for Vitals telemetry data from Data Planes. |
 
 
-Self-hosted ports can be fully customized. Set them in `kong.conf`.
+Self-managed ports can be fully customized. Set them in `kong.conf`.
 
 For Kubernetes or Docker deployments, map ports as needed. For example, if you
 want to expose the Admin API through port `3001`, map `3001:8001`.

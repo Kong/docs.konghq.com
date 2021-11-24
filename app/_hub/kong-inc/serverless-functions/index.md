@@ -2,9 +2,7 @@
 name: Serverless Functions
 publisher: Kong Inc.
 version: 2.0-x
-
-source_url: https://github.com/Kong/kong-plugin-serverless-functions
-
+source_url: 'https://github.com/Kong/kong-plugin-serverless-functions'
 desc: Dynamically run Lua code from Kong
 description: |
   Dynamically run Lua code from Kong.
@@ -15,73 +13,75 @@ description: |
     If your organization has security concerns about this, disable the plugin
     in your <code>kong.conf</code> file.
   </div>
-
 type: plugin
 categories:
   - serverless
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-
+  community_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+  enterprise_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
 params:
   name: pre-function OR post-function
   service_id: true
   route_id: true
   consumer_id: false
   konnect_examples: false
-  protocols: ["http", "https"]
+  protocols:
+    - http
+    - https
   dbless_compatible: partially
   dbless_explanation: |
     The functions will be executed, but if the configured functions attempt to write to the database, the writes will fail.
   config:
     - name: functions
       required: false
-      default: "[]"
-      value_in_examples: "[]"
-      description: "*Deprecated*; use `config.access` instead. Array of stringified Lua code to be cached and run in sequence during access phase."
+      default: '[]'
+      value_in_examples: '[]'
+      description: '*Deprecated*; use `config.access` instead. Array of stringified Lua code to be cached and run in sequence during access phase.'
     - name: certificate
       required: false
-      default: "[]"
-      value_in_examples: "[]"
-      description: "Array of stringified Lua code to be cached and run in sequence during the certificate phase. *Note*: This only runs on global plugins."
+      default: '[]'
+      value_in_examples: '[]'
+      description: 'Array of stringified Lua code to be cached and run in sequence during the certificate phase. *Note*: This only runs on global plugins.'
     - name: rewrite
       required: false
-      default: "[]"
-      value_in_examples: "[]"
-      description: "Array of stringified Lua code to be cached and run in sequence during the rewrite phase. *Note*: This only runs on global plugins."
+      default: '[]'
+      value_in_examples: '[]'
+      description: 'Array of stringified Lua code to be cached and run in sequence during the rewrite phase. *Note*: This only runs on global plugins.'
     - name: access
       required: false
-      default: "[]"
-      value_in_examples: "[]"
+      default: '[]'
+      value_in_examples: '[]'
       description: Array of stringified Lua code to be cached and run in sequence during the access phase.
     - name: header_filter
       required: false
-      default: "[]"
-      value_in_examples: "[]"
+      default: '[]'
+      value_in_examples: '[]'
       description: Array of stringified Lua code to be cached and run in sequence during the header_filter phase.
     - name: body_filter
       required: false
-      default: "[]"
-      value_in_examples: "[]"
+      default: '[]'
+      value_in_examples: '[]'
       description: Array of stringified Lua code to be cached and run in sequence during the body_filter phase.
     - name: log
       required: false
-      default: "[]"
-      value_in_examples: "[]"
+      default: '[]'
+      value_in_examples: '[]'
       description: Array of stringified Lua code to be cached and run in sequence during the log phase.
-
 ---
 
 ## Plugin Names

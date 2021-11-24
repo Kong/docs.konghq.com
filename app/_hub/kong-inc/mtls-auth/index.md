@@ -1,38 +1,39 @@
 ---
-
 name: Mutual TLS Authentication
 publisher: Kong Inc.
 version: 1.5.x
-
 desc: Secure routes and services with client certificate and mutual TLS authentication
 description: |
   Add mutual TLS authentication based on client-supplied certificate and configured trusted CA list. Automatically maps certificates to **Consumers** based on the common name field.
-
 enterprise: true
 plus: true
 type: plugin
 categories:
   - authentication
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-
+  community_edition:
+    compatible: null
+  enterprise_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
+      - 0.36-x
 params:
   name: mtls-auth
   service_id: true
   route_id: true
-  protocols: ["http", "https", "grpc", "grpcs"]
-  dbless_compatible: yes
+  protocols:
+    - http
+    - https
+    - grpc
+    - grpcs
+  dbless_compatible: 'yes'
   config:
     - name: anonymous
       required: false
@@ -51,20 +52,21 @@ params:
         Whether to match the subject name of the client-supplied certificate against consumer's `username` and/or `custom_id` attribute. If set to `[]` (the empty array), then auto-matching is disabled.
     - name: ca_certificates
       required: true
-      value_in_examples: [ "fdac360e-7b19-4ade-a553-6dd22937c82f" ]
+      value_in_examples:
+        - fdac360e-7b19-4ade-a553-6dd22937c82f
       datatype: array of string elements
       description: |
         List of CA Certificates strings to use as Certificate Authorities (CA) when validating a client certificate.
         At least one is required but you can specify as many as needed. The value of this array is comprised
         of primary keys (`id`).
     - name: skip_consumer_lookup
-      default: "`false`"
+      default: '`false`'
       required: true
       datatype: boolean
       description: |
         Skip consumer lookup once certificate is trusted against the configured CA list.
     - name: authenticated_group_by
-      default: "`CN`"
+      default: '`CN`'
       required: false
       datatype: string
       description: |
@@ -73,7 +75,7 @@ params:
         valid certificate can access the Service/API. To restrict usage to only some of the authenticated users,
         also add the ACL plugin (not covered here) and create allowed or denied groups of users.
     - name: revocation_check_mode
-      default: "`IGNORE_CA_ERROR`"
+      default: '`IGNORE_CA_ERROR`'
       required: false
       datatype: string
       description: |
@@ -88,23 +90,21 @@ params:
         If both OCSP and CRL URL are set, the plugin always checks OCSP first, and will only check the CRL URL if
         it can't communicate with the OCSP server.
     - name: http_timeout
-      default: "30000"
+      default: '30000'
       datatype: number
       description: |
         HTTP timeout threshold in milliseconds when communicating with the OCSP server or downloading CRL.
     - name: cert_cache_ttl
-      default: "60000"
+      default: '60000'
       datatype: number
       description: |
         The length of time in milliseconds between refreshes of the revocation check status cache.
     - name: cache_ttl
-      default: "60"
+      default: '60'
       required: true
       datatype: number
       description: |
         Cache expiry time in seconds.
-
-
 ---
 
 ## Usage

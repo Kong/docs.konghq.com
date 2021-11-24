@@ -21,7 +21,8 @@ breadcrumbs:
   <tbody>
     <tr>
       <td><code>name</code>
-        <br><br><strong>Type: </strong>string</td>
+        <br><br><strong>Type: </strong>string
+        <br><br><i>required</i></td>
       <td>The name of the plugin to use, in this case <code>{{ page.params.name }}</code>.</td>
     </tr>
 
@@ -49,6 +50,7 @@ breadcrumbs:
       <tr>
         <td><code>enabled</code>
           <br><br><strong>Type: </strong>boolean
+          <br><br><i>required</i>
           <br><br><strong>Default value: </strong><code>true</code></td>
         <td>Whether this plugin will be applied.</td>
       </tr>
@@ -87,12 +89,10 @@ breadcrumbs:
 {% if page.kong_version_compatibility.community_edition %}
   {% assign compat = true %}
   {% assign ce_compatible = page.kong_version_compatibility.community_edition.compatible %}
-  {% assign ce_incompatible = page.kong_version_compatibility.community_edition.incompatible %}
 {% endif %}
 {% if page.kong_version_compatibility.enterprise_edition %}
   {% assign compat = true %}
   {% assign ee_compatible = page.kong_version_compatibility.enterprise_edition.compatible %}
-  {% assign ee_incompatible = page.kong_version_compatibility.enterprise_edition.incompatible %}
 {% endif %}
 
 {% assign extn_type = site.extensions.types | where: "slug", page.type %}
@@ -395,31 +395,51 @@ breadcrumbs:
           <tr class="kong-compatibility">
             <td colspan="2">
               <ul class="compat-list">
-              {% for v in site.data.kong_versions_ee reversed %}
-                {% if ee_compatible contains v.release or ee_incompatible contains v.release %}
+              {% for v in site.data.kong_versions_gateway reversed %}
+                {% if ee_compatible contains v.release %}
                   {% unless first_ee %}
                   <h6>{{site.ee_product_name}}</h6>{% assign first_ee = true %}
                   {% endunless %}
                   <li>
                   {% if ee_compatible contains v.release %}
                     <i class="fa fa-check"></i>
-                  {% elsif ee_incompatible contains v.release %}
-                    <i class="fa fa-times"></i>
+                  {% endif %}{{ v.release }}
+                  </li>
+                {% endif %}
+              {% endfor %}
+              {% for v in site.data.kong_versions_ee reversed %}
+                {% if ee_compatible contains v.release %}
+                  {% unless first_ee %}
+                  <h6>{{site.ee_product_name}}</h6>{% assign first_ee = true %}
+                  {% endunless %}
+                  <li>
+                  {% if ee_compatible contains v.release %}
+                    <i class="fa fa-check"></i>
                   {% endif %}{{ v.release }}
                   </li>
                 {% endif %}
               {% endfor %}
               </ul><ul class="compat-list">
-              {% for v in site.data.kong_versions_ce reversed %}
-                {% if ce_compatible contains v.release or ce_incompatible contains v.release %}
+              {% for v in site.data.kong_versions_gateway reversed %}
+                {% if ce_compatible contains v.release %}
                   {% unless first_ce %}
                   <h6>{{site.ce_product_name}}</h6>{% assign first_ce = true %}
                   {% endunless %}
                   <li>
                   {% if ce_compatible contains v.release %}
                     <i class="fa fa-check"></i>
-                  {% elsif ce_incompatible contains v.release %}
-                    <i class="fa fa-times"></i>
+                  {% endif %}{{ v.release }}
+                  </li>
+                {% endif %}
+              {% endfor %}
+              {% for v in site.data.kong_versions_ce reversed %}
+                {% if ce_compatible contains v.release %}
+                  {% unless first_ce %}
+                  <h6>{{site.ce_product_name}}</h6>{% assign first_ce = true %}
+                  {% endunless %}
+                  <li>
+                  {% if ce_compatible contains v.release %}
+                    <i class="fa fa-check"></i>
                   {% endif %}{{ v.release }}
                   </li>
                 {% endif %}

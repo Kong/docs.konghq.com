@@ -1,9 +1,7 @@
 ---
-
 name: Forward Proxy Advanced
 publisher: Kong Inc.
 version: 1.3-x
-
 desc: Allows Kong to connect to intermediary transparent HTTP proxies
 description: |
   The Forward Proxy plugin allows Kong to connect to intermediary transparent
@@ -11,26 +9,24 @@ description: |
    upstream. This is useful in environments where Kong sits in an organization's
    internal network, the upstream API is available via the public internet, and
    the organization proxies all outbound traffic through a forward proxy server.
-
 enterprise: true
 type: plugin
 categories:
   - traffic-control
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-
-
+  community_edition:
+    compatible: null
+  enterprise_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
+      - 0.36-x
 params:
   name: forward-proxy
   api_id: true
@@ -40,14 +36,14 @@ params:
   config:
     - name: proxy_host
       required: true
-      default:
+      default: null
       value_in_examples: example.com
       datatype: string
       description: |
         The hostname or IP address of the forward proxy to which to connect.
     - name: proxy_port
       required: true
-      default:
+      default: null
       value_in_examples: 80
       datatype: string
       description: |

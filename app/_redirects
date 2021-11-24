@@ -105,8 +105,10 @@
 /enterprise/0.35-x/rate-limiting/           /hub/kong-inc/rate-limiting
 /enterprise/2.6.x/plugins                   /hub/
 /enterprise/latest/plugins                  /hub/
-/enterprise/2.6.x/plugins/graphql-quickstart/    /gateway/2.6.x/develop/graphql-quickstart
-/enterprise/latest/plugins/graphql-quickstart/   /gateway/latest/develop/graphql-quickstart
+/enterprise/2.6.x/plugins/graphql-quickstart/    /gateway/2.6.x/graphql-quickstart
+/enterprise/latest/plugins/graphql-quickstart/   /gateway/latest/graphql-quickstart
+/gateway/2.6.x/develop/graphql-quickstart/       /gateway/2.6.x/graphql-quickstart
+/gateway/latest/develop/graphql-quickstart/      /gateway/latest/graphql-quickstart
 /enterprise/2.6.x/plugins/*            /gateway/2.6.x/configuration/auth/:splat
 /enterprise/latest/plugins/*           /gateway/latest/configuration/auth/:splat
 
@@ -162,6 +164,7 @@
 /enterprise/2.1.x/developer-portal/introduction            /enterprise/2.1.x/developer-portal
 /enterprise/2.2.x/developer-portal/introduction            /enterprise/2.2.x/developer-portal
 /enterprise/2.3.x/developer-portal/introduction            /enterprise/2.3.x/developer-portal
+/enterprise/2.6.x/developer-portal/introduction            /gateway/2.6.x/developer-portal
 /enterprise/latest/developer-portal/introduction           /gateway/latest/developer-portal
 /enterprise/latest/developer-portal/overview               /gateway/latest/developer-portal
 
@@ -175,17 +178,25 @@
 /konnect/dev-portal/administrators/manage-devs             /konnect/dev-portal/access-and-approval/manage-devs
 /konnect/dev-portal/administrators/auto-approve-devs-apps  /konnect/dev-portal/access-and-approval/auto-approve-devs-apps
 
-/enterprise/*/developer-portal/networking     /gateway/latest/reference/configuration/#dev-portal
+/enterprise/*/developer-portal/networking     /gateway/latest/reference/configuration/#developer-portal-section
+/enterprise/2.6.x/developer-portal/configuration/networking     /gateway/latest/reference/configuration/#developer-portal-section
+/enterprise/latest/developer-portal/configuration/networking    /gateway/latest/reference/configuration/#developer-portal-section
 /enterprise/*/developer-portal/FAQ            /gateway/latest/developer-portal
-/enterprise/*/developer-portal/introduction/  /gateway/latest/developer-portal
 /enterprise/0.34-x/deployment-guide/enterprise/0.34-x/developer-portal/configuration/networking/   /gateway/latest/reference/configuration/#developer-portal-section
-/enterprise/*/developer-portal/configuration/property-reference   /gateway/latest/reference/configuration/#dev-portal
+/enterprise/*/developer-portal/configuration/property-reference/#dev-portal     /gateway/latest/reference/configuration/#developer-portal-section
+/enterprise/*/developer-portal/configuration/property-reference     /gateway/latest/reference/configuration/#developer-portal-section
+/enterprise/*/developer-portal/configuration/property-reference/*   /gateway/latest/reference/configuration/:splat
 /enterprise/*/configuration/developer-portal/smtp      /gateway/latest/developer-portal/configuration/smtp
-/enterprise/*/developer-portal/smtp                    /gateway/latest/developer-portal/configuration/
+/enterprise/*/developer-portal/smtp                    /gateway/latest/developer-portal/configuration/smtp
 /enterprise/*/developer-portal/file-management         /gateway/latest/developer-portal/files-api
 /developer-portal/configuration/enable-the-dev-portal  /gateway/latest/developer-portal/enable-dev-portal
 /enterprise/1.5.x/getting-started/enable-dev-portal    /gateway/latest/developer-portal/enable-dev-portal
 /enterprise/latest/getting-started/enable-dev-portal   /gateway/latest/developer-portal/enable-dev-portal
+
+/enterprise/2.6.x/developer-portal/                        /gateway/2.6.x/developer-portal
+/enterprise/latest/developer-portal/                       /gateway/latest/developer-portal
+/enterprise/2.6.x/developer-portal/*                       /gateway/2.6.x/developer-portal/:splat
+/enterprise/latest/developer-portal/*                      /gateway/latest/developer-portal/:splat
 
 
 # GATEWAY REFERENCES
@@ -203,7 +214,6 @@
 /enterprise/latest/admin-api/*         /gateway/latest/admin-api/:splat
 /gateway-oss/latest/admin-api/         /gateway/latest/admin-api/
 /gateway-oss/latest/admin-api/*        /gateway/latest/admin-api/:splat
-
 
 /enterprise/*/kong-implementation-checklist/    /gateway/latest/plan-and-deploy
 /enterprise/0.34-x/deployment-guide/enterprise/0.34-x/kong-manager/configuration/networking/           /gateway/latest/reference/configuration/#kong-manager-section

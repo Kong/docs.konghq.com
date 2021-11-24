@@ -93,10 +93,10 @@ Via: kong/1.2.1
 
 To instruct Kong to redirect all HTTP requests matching this Ingress rule to
 HTTPS, update its annotations to limit its protocols to HTTPS only and
-issue a 301 redirect:
+issue a 308 redirect:
 
 ```bash
-$ kubectl patch ingress demo -p '{"metadata":{"annotations":{"konghq.com/protocols":"https","konghq.com/https-redirect-status-code":"301"}}}'
+$ kubectl patch ingress demo -p '{"metadata":{"annotations":{"konghq.com/protocols":"https","konghq.com/https-redirect-status-code":"308"}}}'
 ingress.extensions/demo patched
 ```
 
@@ -107,7 +107,7 @@ being issued from Kong:
 
 ```bash
 $ curl $PROXY_IP/foo/headers -I
-HTTP/1.1 301 Moved Permanently
+HTTP/1.1 308 Permanent Redirect
 Date: Tue, 06 Aug 2019 18:04:38 GMT
 Content-Type: text/html
 Content-Length: 167

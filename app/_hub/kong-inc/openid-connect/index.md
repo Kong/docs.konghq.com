@@ -2,7 +2,6 @@
 name: OpenID Connect
 publisher: Kong Inc.
 version: 2.1.x
-
 desc: Integrate Kong with a third-party OpenID Connect provider
 description: |
   OpenID Connect ([1.0][connect]) plugin allows the integration with a 3rd party
@@ -77,39 +76,39 @@ description: |
 
   This plugin can be used for authentication in conjunction with the
   [Application Registration](/hub/kong-inc/application-registration) plugin.
-  
+
   ## Important Configuration Parameters
-    
+
   This plugin contains many configuration parameters that might seem overwhelming
   at the start. Here is a list of parameters that you should focus on first:
-    
+
   1. The first parameter you should configure is: `config.issuer`.
-    
+
      This parameter tells the plugin where to find discovery information, and it is
      the only required parameter. You should specify the `realm` or `iss` for this
      parameter if you don't have a discovery endpoint.
-    
+
   2. Next, you should decide what authentication grants you want to use with this
      plugin, so configure: `config.auth_methods`.
-    
+
      That parameter should contain only the grants that you want to
      use; otherwise, you inadvertently widen the attack surface.
-    
+
   3. In many cases, you also need to specify `config.client_id`, and if your identity provider
      requires authentication, such as on a token endpoint, you will need to specify the client
      authentication credentials too, for example `config.client_secret`.
-    
+
   4. If you are using a public identity provider, such as Google, you should limit
      the audience with `config.audience_required` to contain only your `config.client_id`.
      You may also need to adjust `config.audience_claim` in case your identity provider
      uses a non-standard claim (other than `aud` as specified in JWT standard). This is
      because, for example Google, shares the public keys with different clients.
-    
+
   5. If you are using Kong in DB-less mode with the declarative configuration, you
      should set up `config.session_secret` if you are also using the session cookie
      authentication. Otherwise, each of your Nginx workers across all your
      nodes will encrypt and sign the cookies with their own secrets.
-    
+
   In summary, start with the following parameters:
 
   1. `config.issuer`
@@ -117,34 +116,47 @@ description: |
   3. `config.client_id` (and in many cases the client authentication credentials)
   4. `config.audience_required` (if using a public identity provider)
   5. `config.session_secret` (if using the Kong in DB-less mode)
-
 enterprise: true
 plus: true
 type: plugin
 categories:
   - authentication
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-    enterprise_edition:
-      compatible:
-        - 2.6.x
-
+  community_edition:
+    compatible: null
+  enterprise_edition:
+    compatible:
+      - 2.5.x
+      - 2.6.x
 params:
   name: openid-connect
   service_id: true
   route_id: true
   consumer_id: false
-  protocols: [ "http", "https", "grpc (depends on the grant)", "grpcs (depends on the grant)" ]
-  dbless_compatible: yes
+  protocols:
+    - http
+    - https
+    - grpc (depends on the grant)
+    - grpcs (depends on the grant)
+  dbless_compatible: 'yes'
   config:
     - group: Authentication Grants
       description: Parameters for enabling only grants/credentials that you want to use.
     - name: auth_methods
       required: false
-      default: [ "password", "client_credentials", "authorization_code", "bearer", "introspection", "userinfo", "kong_oauth2", "refresh_token", "session" ]
-      value_in_examples: [ "authorization_code", "session" ]
+      default:
+        - password
+        - client_credentials
+        - authorization_code
+        - bearer
+        - introspection
+        - userinfo
+        - kong_oauth2
+        - refresh_token
+        - session
+      value_in_examples:
+        - authorization_code
+        - session
       datatype: array of string elements
       description: |
         Types of credentials/grants to enable:
@@ -161,7 +173,7 @@ params:
       description: Parameter for allowing anonymous access. This parameter is disabled by default.
     - name: anonymous
       required: false
-      default:
+      default: null
       datatype: uuid
       description: |
         Let unauthenticated requests pass or skip the plugin if another authentication plugin
@@ -184,9 +196,9 @@ params:
       datatype: boolean
       description: |
         Specifies whether the plugin should try to refresh (soon to be) expired access tokens if the
-        plugin has a `refresh_token` available. 
+        plugin has a `refresh_token` available.
     - name: hide_credentials
-      required: false
+      required: true
       default: true
       datatype: boolean
       description: |
@@ -206,13 +218,13 @@ params:
       description: Parameters for auto-configuring most of the settings and providing the means for key rotation.
     - name: issuer
       required: true
-      default:
+      default: null
       value_in_examples: <discovery-uri>
       datatype: url
       description: |
         The discovery endpoint (or just the issuer identifier).
         > When using Kong with the database, the discovery information and the JWKS
-        > are cached to the Kong configuration database. 
+        > are cached to the Kong configuration database.
     - name: rediscovery_lifetime
       required: false
       default: 30
@@ -224,10 +236,11 @@ params:
     - group: Client
     - name: client_id
       required: false
-      value_in_examples: [ "<client-id>" ]
-      default: 
+      value_in_examples:
+        - <client-id>
+      default: null
       datatype: array of string elements (the plugin supports multiple clients)
-      description: | 
+      description: |
         The client id(s) that the plugin uses when it calls authenticated endpoints on the identity provider.
         Other settings that are associated with the client are:
         - `config.client_secret`
@@ -240,21 +253,21 @@ params:
         - `config.unauthorized_redirect_uri`
         - `config.forbidden_redirect_uri`
         - `config.unexpected_redirect_uri`
-        
+
         > Use the same array index when configuring related settings for the client.
     - name: client_arg
       required: false
-      default:
+      default: null
       datatype: string
       description: |
         The client to use for this request (the selection is made with a request parameter with the same name).
         For example, setting this value to `Client`, and sending the request header `Client: 1` will cause the plugin
         to use the first client (see: `config.client_id`) from the client array.
     - group: Client Authentication
-      description: Parameters for configuring how the client should authenticate with the identity provider.          
+      description: Parameters for configuring how the client should authenticate with the identity provider.
     - name: client_auth
       required: false
-      default: '(discovered or "client_secret_basic")'
+      default: (discovered or "client_secret_basic")
       datatype: array of string elements (one for each client)
       description: |
         The authentication method used by the client (plugin) when calling the endpoints:
@@ -263,22 +276,24 @@ params:
         - `client_secret_jwt`: send client assertion signed with the `client_secret` as part of the body
         - `private_key_jwt`:  send client assertion signed with the `private key` as part of the body
         - `none`: do not authenticate
-        
+
+
         > Private keys can be stored in a database, and they are by the default automatically generated 
         > in the database. It is also possible to specify private keys with `config.client_jwk` directly
         > in the plugin configuration.
     - name: client_secret
       required: false
-      value_in_examples: [ "<client-secret>" ]
-      default: 
+      value_in_examples:
+        - <client-secret>
+      default: null
       datatype: array of string elements (one for each client)
       description: |
         The client secret.
         > Specify one if using `client_secret_*` authentication with the client on
-        > the identity provider endpoints. 
+        > the identity provider endpoints.
     - name: client_jwk
       required: false
-      default: "(plugin managed)"
+      default: (plugin managed)
       datatype: array of JWK records (one for each client)
       description: |
         The JWK used for the `private_key_jwt` authentication.
@@ -286,7 +301,7 @@ params:
       required: false
       default: '(client_secret_jwt: "HS256", private_key_jwt: "RS256")'
       datatype: array of string elements (one for each client)
-      description: | 
+      description: |
         The algorithm to use for `client_secret_jwt` (only `HS***`) or `private_key_jwt` authentication:
         - `HS256`: HMAC using SHA-256
         - `HS384`: HMAC using SHA-384
@@ -304,7 +319,10 @@ params:
       description: Parameters for setting where to search for the bearer token and whether to introspect them.
     - name: bearer_token_param_type
       required: false
-      default: [ "header", "query", "body" ]
+      default:
+        - header
+        - query
+        - body
       datatype: array of string elements
       description: |
         Where to search for the bearer token:
@@ -314,7 +332,7 @@ params:
         - `cookie`: search the HTTP request cookies specified with `config.bearer_token_cookie_name`
     - name: bearer_token_cookie_name
       required: false
-      default: 
+      default: null
       datatype: string
       description: The name of the cookie in which the bearer token is passed.
     - name: introspect_jwt_tokens
@@ -326,7 +344,10 @@ params:
       description: Parameters for where to search for the client credentials.
     - name: client_credentials_param_type
       required: false
-      default: [ "header", "query", "body" ]
+      default:
+        - header
+        - query
+        - body
       datatype: array of string elements
       description: |
         Where to search for the client credentials:
@@ -337,7 +358,10 @@ params:
       description: Parameters for where to search for the username and password.
     - name: password_param_type
       required: false
-      default: [ "header", "query", "body" ]
+      default:
+        - header
+        - query
+        - body
       datatype: array of string elements
       description: |
         Where to search for the username and password:
@@ -348,7 +372,10 @@ params:
       description: Parameters for where to search for the refresh token (rarely used as the refresh tokens are in many cases bound to the client).
     - name: refresh_token_param_type
       required: false
-      default: [ "header", "query", "body" ]
+      default:
+        - header
+        - query
+        - body
       datatype: array of string elements
       description: |
         Where to search for the refresh token:
@@ -357,14 +384,17 @@ params:
         - `body`: search the HTTP request body
     - name: refresh_token_param_name
       required: false
-      default: 
+      default: null
       datatype: string
       description: The name of the parameter used to pass the refresh token.
     - group: ID Token
       description: Parameters for where to search for the id token (rarely sent as part of the request).
     - name: id_token_param_type
       required: false
-      default: [ "header", "query", "body" ]
+      default:
+        - header
+        - query
+        - body
       datatype: array of string elements
       description: |
         Where to search for the id token:
@@ -373,30 +403,32 @@ params:
         - `body`: search the HTTP request body
     - name: id_token_param_name
       required: false
-      default: 
+      default: null
       datatype: string
       description: The name of the parameter used to pass the id token.
     - group: Consumer Mapping
       description: Parameters for mapping external identity provider managed identities to Kong managed ones.
     - name: consumer_claim
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: The claim used for consumer mapping.
     - name: consumer_by
       required: false
-      default: [ "username", "custom_id" ] 
+      default:
+        - username
+        - custom_id
       datatype: array of string elements
       description: |
         Consumer fields used for mapping:
         - `id`: try to find the matching Consumer by `id`
-        - `username`: try to find the matching Consumer by `username` 
+        - `username`: try to find the matching Consumer by `username`
         - `custom_id`: try to find the matching Consumer by `custom_id`
     - name: by_username_ignore_case
       required: false
       default: false
-      datatype: boolean               
-      description: If `consumer_by` is set to `username`, specify whether `username` can match consumers case-insensitively.
+      datatype: boolean
+      description: 'If `consumer_by` is set to `username`, specify whether `username` can match consumers case-insensitively.'
     - name: consumer_optional
       required: false
       default: false
@@ -406,9 +438,10 @@ params:
       description: Parameters for mapping external identity provider managed identities to a Kong credential (virtual in this case).
     - name: credential_claim
       required: false
-      default: [ "sub" ] 
+      default:
+        - sub
       datatype: array of string elements
-      description: The claim used to derive a virtual credential (for instance, for the rate-limiting plugin), in case the Consumer mapping is not used.
+      description: 'The claim used to derive a virtual credential (for instance, for the rate-limiting plugin), in case the Consumer mapping is not used.'
     - group: Issuer Verification
     - name: issuers_allowed
       required: false
@@ -418,7 +451,7 @@ params:
     - group: Authorization
     - name: authenticated_groups_claim
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: |
         The claim that contains authenticated groups. This setting can be used together
@@ -432,37 +465,41 @@ params:
       description: The scopes required to be in the access token.
     - name: scopes_claim
       required: false
-      default: [ "scope" ]
+      default:
+        - scope
       datatype: array of string elements
       description: The claim that contains the scopes.
     - name: audience_required
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: The audience required to be in the access token.
     - name: audience_claim
       required: false
-      default: [ "aud" ]
+      default:
+        - aud
       datatype: array of string elements
       description: The claim that contains the audience.
     - name: groups_required
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: The groups required to be in the access token.
     - name: groups_claim
       required: false
-      default: [ "groups" ]
+      default:
+        - groups
       datatype: array of string elements
       description: The claim that contains the groups.
     - name: roles_required
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: The roles required to be in the access token.
     - name: roles_claim
       required: false
-      default: [ "roles" ]
+      default:
+        - roles
       datatype: array of string elements
       description: The claim that contains the roles.
     - group: Claims Verification
@@ -474,17 +511,17 @@ params:
       description: Verify tokens for standard claims.
     - name: leeway
       required: false
-      default: 0 
+      default: 0
       datatype: integer
-      description: Allow some leeway on the ttl / expiry verification.      
+      description: Allow some leeway on the ttl / expiry verification.
     - name: domains
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: The allowed values for the `hd` claim.
     - name: max_age
       required: false
-      default: 
+      default: null
       datatype: integer
       description: The maximum age (in seconds) compared to the `auth_time` claim.
     - name: jwt_session_claim
@@ -494,7 +531,7 @@ params:
       description: The claim to match against the JWT session cookie.
     - name: jwt_session_cookie
       required: false
-      default: 
+      default: null
       datatype: string
       description: The name of the JWT session cookie.
     - group: Signature Verification
@@ -507,10 +544,10 @@ params:
       required: false
       default: false
       datatype: boolean
-      description: Enable shared secret, for example, HS256, signatures (when disabled they will not be accepted).
+      description: 'Enable shared secret, for example, HS256, signatures (when disabled they will not be accepted).'
     - name: ignore_signature
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: |
         Skip the token signature verification on certain grants:      
@@ -523,7 +560,7 @@ params:
         - `userinfo`: OpenID Connect user info endpoint authentication
     - name: extra_jwks_uris
       required: false
-      default:
+      default: null
       datatype: array of string elements
       description: JWKS URIs whose public keys are trusted (in addition to the keys found with the discovery).
     - group: Authorization Code Flow Verification
@@ -548,124 +585,124 @@ params:
       description: Parameters for the headers for the upstream service request.
     - name: upstream_headers_claims
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: The upstream header claims.
     - name: upstream_headers_names
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: The upstream header names for the claim values.
-    - name: upstream_access_token_header  
+    - name: upstream_access_token_header
       required: false
-      default: authorization:bearer
+      default: 'authorization:bearer'
       datatype: string
       description: The upstream access token header.
-    - name: upstream_access_token_jwk_header  
+    - name: upstream_access_token_jwk_header
       required: false
-      default: 
+      default: null
       datatype: string
       description: The upstream access token JWK header.
-    - name: upstream_id_token_header  
+    - name: upstream_id_token_header
       required: false
-      default: 
+      default: null
       datatype: string
       description: The upstream id token header.
-    - name: upstream_id_token_jwk_header  
+    - name: upstream_id_token_jwk_header
       required: false
-      default: 
+      default: null
       datatype: string
       description: The upstream id token JWK header.
-    - name: upstream_refresh_token_header  
+    - name: upstream_refresh_token_header
       required: false
-      default: 
+      default: null
       datatype: string
       description: The upstream refresh token header.
     - name: upstream_user_info_header
       required: false
-      default: 
+      default: null
       datatype: string
       description: The upstream user info header.
     - name: upstream_user_info_jwt_header
       required: false
-      default: 
+      default: null
       datatype: string
       description: The upstream user info JWT header (in case the user info returns a JWT response).
     - name: upstream_introspection_header
       required: false
-      default: 
+      default: null
       datatype: string
       description: The upstream introspection header.
     - name: upstream_introspection_jwt_header
       required: false
-      default: 
+      default: null
       datatype: string
       description: The upstream introspection header (in case the introspection returns a JWT response).
     - name: upstream_session_id_header
       required: false
-      default: 
+      default: null
       datatype: string
       description: The upstream session id header.
-    - group: Downstream Headers 
+    - group: Downstream Headers
       description: Parameters for the headers for the downstream response.
     - name: downstream_headers_claims
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: The downstream header claims.
     - name: downstream_headers_names
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: The downstream header names for the claim values.
-    - name: downstream_access_token_header  
+    - name: downstream_access_token_header
       required: false
-      default: authorization:bearer
+      default: 'authorization:bearer'
       datatype: string
       description: The downstream access token header.
-    - name: downstream_access_token_jwk_header  
+    - name: downstream_access_token_jwk_header
       required: false
-      default: 
+      default: null
       datatype: string
       description: The downstream access token JWK header.
-    - name: downstream_id_token_header  
+    - name: downstream_id_token_header
       required: false
-      default: 
+      default: null
       datatype: string
       description: The downstream id token header.
-    - name: downstream_id_token_jwk_header  
+    - name: downstream_id_token_jwk_header
       required: false
-      default: 
+      default: null
       datatype: string
       description: The downstream id token JWK header.
-    - name: downstream_refresh_token_header  
+    - name: downstream_refresh_token_header
       required: false
-      default: 
+      default: null
       datatype: string
       description: The downstream refresh token header.
     - name: downstream_user_info_header
       required: false
-      default: 
+      default: null
       datatype: string
       description: The downstream user info header.
     - name: downstream_user_info_jwt_header
       required: false
-      default: 
+      default: null
       datatype: string
       description: The downstream user info JWT header (in case the user info returns a JWT response).
     - name: downstream_introspection_header
       required: false
-      default: 
+      default: null
       datatype: string
       description: The downstream introspection header.
     - name: downstream_introspection_jwt_header
       required: false
-      default: 
+      default: null
       datatype: string
       description: The downstream introspection header (in case the introspection returns a JWT response).
     - name: downstream_session_id_header
       required: false
-      default: 
+      default: null
       datatype: string
       description: The downstream session id header.
     - group: Cross-Origin Resource Sharing (CORS)
@@ -678,7 +715,8 @@ params:
       description: Parameters for what action the plugin completes after a successful login.
     - name: login_methods
       required: false
-      default: [ "authorization_code" ]
+      default:
+        - authorization_code
       datatype: array of string elements
       description: |
         Enable login functionality with specified grants:      
@@ -702,7 +740,8 @@ params:
         - `redirect`: redirect to a different location
     - name: login_tokens
       required: false
-      default: [ "id_token" ]
+      default:
+        - id_token
       datatype: array of string elements
       description: |
         What tokens to include in `response` body or `redirect` query string or fragment:      
@@ -721,33 +760,33 @@ params:
         - `fragment`: place tokens in url fragment (not readable by servers)
     - name: login_redirect_uri
       required: false
-      default:
+      default: null
       datatype: array of urls (one for each client)
       description: |
         Where to redirect the client when `login_action` is set to `redirect`.
         > Tip: Leave this empty and the plugin will redirect the client to the URL that originally initiated the
         > flow with possible query args preserved from the original request when `config.preserve_query_args`
-        > is enabled. 
+        > is enabled.
     - group: Logout
       description: Parameters for triggering logout with the plugin and the actions to take on logout.
     - name: logout_query_arg
       required: false
-      default:
+      default: null
       datatype: string
       description: The request query argument that activates the logout.
     - name: logout_post_arg
       required: false
-      default:
+      default: null
       datatype: string
       description: The request body argument that activates the logout.
     - name: logout_uri_suffix
       required: false
-      default:
+      default: null
       datatype: string
       description: The request URI suffix that activates the logout.
     - name: logout_methods
       required: false
-      default:
+      default: null
       datatype: array of string elements
       description: |
         The request methods that can activate the logout:
@@ -758,7 +797,7 @@ params:
       required: false
       default: false
       datatype: boolean
-      description: Revoke tokens as part of the logout.         
+      description: Revoke tokens as part of the logout.
     - name: logout_revoke_access_token
       required: false
       default: true
@@ -771,26 +810,26 @@ params:
       description: Revoke the refresh token as part of the logout.
     - name: logout_redirect_uri
       required: false
-      default:
+      default: null
       datatype: array of urls (one for each client)
       description: Where to redirect the client after the logout.
     - group: Unauthorized
       description: Parameters for how to handle unauthorized requests.
     - name: unauthorized_redirect_uri
       required: false
-      default:
+      default: null
       datatype: array of urls (one for each client)
       description: Where to redirect the client on unauthorized requests.
     - name: unauthorized_error_message
       required: false
       default: '"Forbidden"'
       datatype: string
-      description: The error message for the unauthorized requests (when not using the redirection).                 
+      description: The error message for the unauthorized requests (when not using the redirection).
     - group: Forbidden
       description: Parameters for how to handle forbidden requests.
     - name: forbidden_redirect_uri
       required: false
-      default:
+      default: null
       datatype: array of urls (one for each client)
       description: Where to redirect the client on forbidden requests.
     - name: forbidden_error_message
@@ -807,7 +846,7 @@ params:
       description: Parameters for how to handle unexpected errors.
     - name: unexpected_redirect_uri
       required: false
-      default:
+      default: null
       datatype: array of urls (one for each client)
       description: Where to redirect the client when unexpected errors happen with the requests.
     - name: display_errors
@@ -821,12 +860,12 @@ params:
       required: false
       default: '"authorization"'
       datatype: string
-      description: The authorization cookie name.            
+      description: The authorization cookie name.
     - name: authorization_cookie_lifetime
       required: false
       default: 600
       datatype: integer
-      description: The authorization cookie lifetime in seconds.          
+      description: The authorization cookie lifetime in seconds.
     - name: authorization_cookie_path
       required: false
       default: '"/"'
@@ -834,7 +873,7 @@ params:
       description: The authorization cookie Path flag.
     - name: authorization_cookie_domain
       required: false
-      default: 
+      default: null
       datatype: string
       description: The authorization cookie Domain flag.
     - name: authorization_cookie_samesite
@@ -851,7 +890,7 @@ params:
       required: false
       default: true
       datatype: boolean
-      description: Forbids JavaScript from accessing the cookie, for example, through the `Document.cookie` property.
+      description: 'Forbids JavaScript from accessing the cookie, for example, through the `Document.cookie` property.'
     - name: authorization_cookie_secure
       required: false
       default: (from the request scheme)
@@ -865,17 +904,17 @@ params:
       required: false
       default: '"session"'
       datatype: string
-      description: The session cookie name.             
+      description: The session cookie name.
     - name: session_cookie_lifetime
       required: false
       default: 3600
       datatype: integer
-      description: The session cookie lifetime in seconds.           
+      description: The session cookie lifetime in seconds.
     - name: session_cookie_idletime
       required: false
-      default: 
+      default: null
       datatype: integer
-      description: The session cookie idle time in seconds.           
+      description: The session cookie idle time in seconds.
     - name: session_cookie_renew
       required: false
       default: 600
@@ -888,12 +927,12 @@ params:
       description: The session cookie Path flag.
     - name: session_cookie_domain
       required: false
-      default: 
+      default: null
       datatype: string
       description: The session cookie Domain flag.
     - name: session_cookie_samesite
       required: false
-      default: '"Lax"' 
+      default: '"Lax"'
       datatype: string
       description: |
         Controls whether a cookie is sent with cross-origin requests, providing some protection against cross-site request forgery attacks:
@@ -905,7 +944,7 @@ params:
       required: false
       default: true
       datatype: boolean
-      description: Forbids JavaScript from accessing the cookie, for example, through the `Document.cookie` property.
+      description: 'Forbids JavaScript from accessing the cookie, for example, through the `Document.cookie` property.'
     - name: session_cookie_secure
       required: false
       default: (from the request scheme)
@@ -921,13 +960,13 @@ params:
     - group: Session Settings
     - name: session_secret
       required: false
-      default: (with database, or traditional mode, the value is auto-generated and stored along the issuer discovery information in the database)
+      default: '(with database, or traditional mode, the value is auto-generated and stored along the issuer discovery information in the database)'
       datatype: string
       value_in_examples: <session-secret>
       description: The session secret.
     - name: disable_session
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: |
         Disable issuing the session cookie with the specified grants:
@@ -969,7 +1008,7 @@ params:
       required: false
       default: false
       datatype: boolean
-      description: Specifies whether to always verify tokens stored in the session.                  
+      description: Specifies whether to always verify tokens stored in the session.
     - group: Session Settings for Memcached
     - name: session_memcache_prefix
       required: false
@@ -978,7 +1017,7 @@ params:
       description: The memcached session key prefix.
     - name: session_memcache_socket
       required: false
-      default: 
+      default: null
       datatype: string
       description: The memcached unix socket path.
     - name: session_memcache_host
@@ -999,7 +1038,7 @@ params:
       description: The Redis session key prefix.
     - name: session_redis_socket
       required: false
-      default: 
+      default: null
       datatype: string
       description: The Redis unix socket path.
     - name: session_redis_host
@@ -1044,61 +1083,61 @@ params:
       description: Verify Redis server certificate.
     - name: session_redis_server_name
       required: false
-      default: 
+      default: null
       datatype: string
       description: The SNI used for connecting the Redis server.
     - name: session_redis_cluster_nodes
       required: false
-      default: 
+      default: null
       datatype: array of host records
       description: The Redis cluster nodes.
     - name: session_redis_cluster_maxredirections
       required: false
-      default: 
+      default: null
       datatype: integer
-      description: The Redis cluster maximum redirects.      
+      description: The Redis cluster maximum redirects.
     - group: Endpoints
       description: Parameters normally not needed as the endpoints are discovered.
     - name: authorization_endpoint
       required: false
-      default: "(discovered uri)"
+      default: (discovered uri)
       datatype: url
       description: The authorization endpoint.
     - name: token_endpoint
       required: false
-      default: "(discovered uri)"
+      default: (discovered uri)
       datatype: url
       description: The token endpoint.
     - name: introspection_endpoint
       required: false
-      default: "(discovered uri)"
+      default: (discovered uri)
       datatype: url
       description: The introspection endpoint.
     - name: revocation_endpoint
       required: false
-      default: "(discovered uri)"
+      default: (discovered uri)
       datatype: url
       description: The revocation endpoint.
     - name: userinfo_endpoint
       required: false
-      default: "(discovered uri)"
+      default: (discovered uri)
       datatype: url
       description: The user info endpoint.
     - name: end_session_endpoint
       required: false
-      default: "(discovered uri)"
+      default: (discovered uri)
       datatype: url
       description: The end session endpoint.
     - name: token_exchange_endpoint
       required: false
-      default: "(discovered uri)"
+      default: (discovered uri)
       datatype: url
       description: The token exchange endpoint.
     - group: Endpoint Authentication
       description: Parameters normally not needed as the client authentication can be specified for the client.
     - name: token_endpoint_auth_method
       required: false
-      default: "(see: config.client_auth)"
+      default: '(see: config.client_auth)'
       datatype: string
       description: |
         The token endpoint authentication method:
@@ -1109,7 +1148,7 @@ params:
         - `none`: do not authenticate        
     - name: introspection_endpoint_auth_method
       required: false
-      default: "(see: config.client_auth)"
+      default: '(see: config.client_auth)'
       datatype: string
       description: |
         The introspection endpoint authentication method:
@@ -1120,7 +1159,7 @@ params:
         - `none`: do not authenticate        
     - name: revocation_endpoint_auth_method
       required: false
-      default: "(see: config.client_auth)"
+      default: '(see: config.client_auth)'
       datatype: string
       description: |
         The revocation endpoint authentication method:
@@ -1132,14 +1171,14 @@ params:
     - group: Discovery Endpoint Arguments
     - name: discovery_headers_names
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: Extra header names passed to the discovery endpoint.
     - name: discovery_headers_values
       required: false
-      default: 
+      default: null
       datatype: array of string elements
-      description: Extra header values passed to the discovery endpoint.  
+      description: Extra header values passed to the discovery endpoint.
     - group: Authorization Endpoint Arguments
     - name: response_mode
       required: false
@@ -1153,82 +1192,84 @@ params:
         - `fragment`: Instructs the identity provider to pass parameters in uri fragment (rarely useful as the plugin itself cannot read it)
     - name: response_type
       required: false
-      default: [ "code" ]
+      default:
+        - code
       datatype: array of string elements
       description: The response type passed to the authorization endpoint.
     - name: scopes
       required: false
-      default: [ "openid" ]
+      default:
+        - openid
       datatype: array of string elements
       description: The scopes passed to the authorization and token endpoints.
     - name: audience
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: The audience passed to the authorization endpoint.
     - name: redirect_uri
       required: false
-      default: "(request uri)" 
+      default: (request uri)
       datatype: array of urls (one for each client)
       description: The redirect URI passed to the authorization and token endpoints.
     - name: authorization_query_args_names
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: Extra query argument names passed to the authorization endpoint.
     - name: authorization_query_args_values
       required: false
-      default: 
+      default: null
       datatype: array of string elements
-      description: Extra query argument values passed to the authorization endpoint. 
+      description: Extra query argument values passed to the authorization endpoint.
     - name: authorization_query_args_client
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: Extra query arguments passed from the client to the authorization endpoint.
     - group: Token Endpoint Arguments
     - name: token_headers_names
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: Extra header names passed to the token endpoint.
     - name: token_headers_values
       required: false
-      default: 
+      default: null
       datatype: array of string elements
-      description: Extra header values passed to the token endpoint.  
+      description: Extra header values passed to the token endpoint.
     - name: token_headers_client
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: Extra headers passed from the client to the token endpoint.
     - name: token_post_args_names
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: Extra post argument names passed to the token endpoint.
     - name: token_post_args_values
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: Extra post argument values passed to the token endpoint.
     - name: token_post_args_client
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: Extra post arguments passed from the client to the token endpoint.
     - group: Token Endpoint Response Headers
       description: Parameters for an uncommon use case of sending certain token endpoint headers to the downstream client.
     - name: token_headers_replay
-      default: 
+      default: null
       datatype: array of string elements
       description: The names of token endpoint response headers to forward to the downstream client.
     - name: token_headers_prefix
-      default: 
+      default: null
       datatype: string
       description: Add a prefix to the token endpoint response headers before forwarding them to the downstream client.
     - name: token_headers_grants
-      default: 
+      default: null
       datatype: array of string elements
       description: |
         Enable the sending of the token endpoint response headers only with certain granst:
@@ -1236,8 +1277,8 @@ params:
         - `client_credentials`: with OAuth client credentials grant
         - `authorization_code`: with authorization code flow
         - `refresh_token` with refresh token grant      
-    - group: Introspection Endpoint Arguments      
-    - name: introspection_hint  
+    - group: Introspection Endpoint Arguments
+    - name: introspection_hint
       required: false
       default: '"access_token"'
       datatype: string
@@ -1253,32 +1294,32 @@ params:
         - `application/jwt`: introspection response as JWT (from the obsolete IETF draft document)
     - name: introspection_headers_names
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: Extra header names passed to the introspection endpoint.
     - name: introspection_headers_values
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: Extra header values passed to the introspection endpoint.
     - name: introspection_headers_client
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: Extra headers passed from the client to the introspection endpoint.
     - name: introspection_post_args_names
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: Extra post argument names passed to the introspection endpoint.
     - name: introspection_post_args_values
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: Extra post argument values passed to the introspection endpoint.
     - name: introspection_post_args_client
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: Extra post arguments passed from the client to the introspection endpoint.
     - group: User Info Endpoint Arguments
@@ -1292,32 +1333,32 @@ params:
         - `application/jwt`: user info response as JWT (from the obsolete IETF draft document)
     - name: userinfo_headers_names
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: Extra header names passed to the user info endpoint.
     - name: userinfo_headers_values
       required: false
-      default: 
+      default: null
       datatype: array of string elements
-      description: Extra header values passed to the user info endpoint.  
+      description: Extra header values passed to the user info endpoint.
     - name: userinfo_headers_client
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: Extra headers passed from the client to the user info endpoint.
     - name: userinfo_query_args_names
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: Extra query argument names passed to the user info endpoint.
     - name: userinfo_query_args_values
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: Extra query argument values passed to the user info endpoint.
     - name: userinfo_query_args_client
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: Extra query arguments passed from the client to the user info endpoint.
     - group: HTTP Client
@@ -1349,27 +1390,27 @@ params:
       description: Parameters only needed if the HTTP(S) requests to identity provider need to go through a proxy server.
     - name: http_proxy
       required: false
-      default: 
+      default: null
       datatype: url
       description: The HTTP proxy
     - name: http_proxy_authorization
       required: false
-      default: 
+      default: null
       datatype: string
-      description: The HTTP proxy authorization.      
+      description: The HTTP proxy authorization.
     - name: https_proxy
       required: false
-      default: 
+      default: null
       datatype: url
       description: The HTTPS proxy
     - name: https_proxy_authorization
       required: false
-      default: 
+      default: null
       datatype: string
-      description: The HTTPS proxy authorization.      
+      description: The HTTPS proxy authorization.
     - name: no_proxy
       required: false
-      default: 
+      default: null
       datatype: array of string elements
       description: Do not use proxy with these hosts.
     - group: Cache TTLs
@@ -1380,12 +1421,12 @@ params:
       description: The default cache ttl in seconds that is used in case the cached object does not specify the expiry.
     - name: cache_ttl_max
       required: false
-      default: 
+      default: null
       datatype: integer
       description: The maximum cache ttl in seconds (enforced).
     - name: cache_ttl_min
       required: false
-      default: 
+      default: null
       datatype: integer
       description: The minimum cache ttl in seconds (enforced).
     - name: cache_ttl_neg
@@ -1418,88 +1459,88 @@ params:
       required: false
       default: true
       datatype: boolean
-      description: Cache the introspection endpoint requests.         
+      description: Cache the introspection endpoint requests.
     - name: cache_token_exchange
       required: false
       default: true
       datatype: boolean
-      description: Cache the token exchange endpoint requests.         
+      description: Cache the token exchange endpoint requests.
     - name: cache_user_info
       required: false
       default: true
       datatype: boolean
       description: Cache the user info requests.
 issuer_body: |
-    Attributes | Description
-    ---:| ---
-    `name`<br>*optional* | The Service name.
-    `retries`<br>*optional* | The number of retries to execute upon failure to proxy. Default: `5`.
-    `protocol` |  The protocol used to communicate with the upstream.  Accepted values are: `"grpc"`, `"grpcs"`, `"http"`, `"https"`, `"tcp"`, `"tls"`, `"udp"`.  Default: `"http"`.
-    `host` | The host of the upstream server.
-    `port` | The upstream server port. Default: `80`.
-    `path`<br>*optional* | The path to be used in requests to the upstream server.
-    `connect_timeout`<br>*optional* |  The timeout in milliseconds for establishing a connection to the upstream server.  Default: `60000`.
-    `write_timeout`<br>*optional* |  The timeout in milliseconds between two successive write operations for transmitting a request to the upstream server.  Default: `60000`.
-    `read_timeout`<br>*optional* |  The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server.  Default: `60000`.
-    `tags`<br>*optional* |  An optional set of strings associated with the Service for grouping and filtering.
-    `client_certificate`<br>*optional* |  Certificate to be used as client certificate while TLS handshaking to the upstream server. With form-encoded, the notation is `client_certificate.id=<client_certificate id>`. With JSON, use "`"client_certificate":{"id":"<client_certificate id>"}`.
-    `tls_verify`<br>*optional* |  Whether to enable verification of upstream server TLS certificate. If set to `null`, then the Nginx default is respected.
-    `tls_verify_depth`<br>*optional* |  Maximum depth of chain while verifying Upstream server's TLS certificate. If set to `null`, then the Nginx default is respected.  Default: `null`.
-    `ca_certificates`<br>*optional* |  Array of `CA Certificate` object UUIDs that are used to build the trust store while verifying upstream server's TLS certificate. If set to `null` when Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then handshake with upstream server will always fail (because no CA are trusted).  With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an Array.
-    `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never returns the URL).
+  Attributes | Description
+  ---:| ---
+  `name`<br>*optional* | The Service name.
+  `retries`<br>*optional* | The number of retries to execute upon failure to proxy. Default: `5`.
+  `protocol` |  The protocol used to communicate with the upstream.  Accepted values are: `"grpc"`, `"grpcs"`, `"http"`, `"https"`, `"tcp"`, `"tls"`, `"udp"`.  Default: `"http"`.
+  `host` | The host of the upstream server.
+  `port` | The upstream server port. Default: `80`.
+  `path`<br>*optional* | The path to be used in requests to the upstream server.
+  `connect_timeout`<br>*optional* |  The timeout in milliseconds for establishing a connection to the upstream server.  Default: `60000`.
+  `write_timeout`<br>*optional* |  The timeout in milliseconds between two successive write operations for transmitting a request to the upstream server.  Default: `60000`.
+  `read_timeout`<br>*optional* |  The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server.  Default: `60000`.
+  `tags`<br>*optional* |  An optional set of strings associated with the Service for grouping and filtering.
+  `client_certificate`<br>*optional* |  Certificate to be used as client certificate while TLS handshaking to the upstream server. With form-encoded, the notation is `client_certificate.id=<client_certificate id>`. With JSON, use "`"client_certificate":{"id":"<client_certificate id>"}`.
+  `tls_verify`<br>*optional* |  Whether to enable verification of upstream server TLS certificate. If set to `null`, then the Nginx default is respected.
+  `tls_verify_depth`<br>*optional* |  Maximum depth of chain while verifying Upstream server's TLS certificate. If set to `null`, then the Nginx default is respected.  Default: `null`.
+  `ca_certificates`<br>*optional* |  Array of `CA Certificate` object UUIDs that are used to build the trust store while verifying upstream server's TLS certificate. If set to `null` when Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then handshake with upstream server will always fail (because no CA are trusted).  With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an Array.
+  `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never returns the URL).
 issuer_json: |
-    {
-        "id": "<uuid>",
-        "issuer": "<config.issuer>"
-        "created_at": <timestamp>,
-        "configuration": {
-            <discovery>
-        },
-        "keys": [
-            <keys>
-        ]
-    }
+  {
+      "id": "<uuid>",
+      "issuer": "<config.issuer>"
+      "created_at": <timestamp>,
+      "configuration": {
+          <discovery>
+      },
+      "keys": [
+          <keys>
+      ]
+  }
 issuer_data: |
-    {
-        "data": [{
-            "id": "<uuid>",
-            "issuer": "<config.issuer>"
-            "created_at": <timestamp>,
-            "configuration": {
-                <discovery>
-            },
-            "keys": [
-                <keys>
-            ]
-        }],
-        "next": null
-    }
+  {
+      "data": [{
+          "id": "<uuid>",
+          "issuer": "<config.issuer>"
+          "created_at": <timestamp>,
+          "configuration": {
+              <discovery>
+          },
+          "keys": [
+              <keys>
+          ]
+      }],
+      "next": null
+  }
 host: |
-    {
-        "ip": "127.0.0.1"
-        "port": 6379
-    }
+  {
+      "ip": "127.0.0.1"
+      "port": 6379
+  }
 jwk: |
-    {
-        "kid": "B2FxBJ8G_e61tnZEfaYpaMLjswjNO3dbVEQhR7-i_9s",
-        "kty": "RSA",
-        "alg": "RS256",
-        "use": "sig"
-        "e": "AQAB",
-        "n": "…",
-        "d": "…",        
-        "p": "…",
-        "q": "…",
-        "dp": "…",
-        "dq": "…",
-        "qi": "…"
-    }
+  {
+      "kid": "B2FxBJ8G_e61tnZEfaYpaMLjswjNO3dbVEQhR7-i_9s",
+      "kty": "RSA",
+      "alg": "RS256",
+      "use": "sig"
+      "e": "AQAB",
+      "n": "…",
+      "d": "…",        
+      "p": "…",
+      "q": "…",
+      "dp": "…",
+      "dq": "…",
+      "qi": "…"
+  }
 jwks: |
-    {
-        "keys": [{
-            <keys>
-        }]
-    }
+  {
+      "keys": [{
+          <keys>
+      }]
+  }
 ---
 
 ---
@@ -1522,7 +1563,7 @@ Here is an example of JWK record generated by the plugin itself (see: [JSON Web 
 
 ```json
 {{ page.jwk }}
-``` 
+```
 
 ### Host Record
 
@@ -1533,7 +1574,7 @@ Here is an example of Host record:
 
 ```json
 {{ page.host }}
-``` 
+```
 
 ## Admin API
 
@@ -1650,7 +1691,7 @@ HTTP 200 OK
 
 <div class="endpoint delete indent">/openid-connect/jwks</div>
 
-Deleting JWKS will also cause auto-generation of a new JWK set, so 
+Deleting JWKS will also cause auto-generation of a new JWK set, so
 `DELETE` will actually cause a key rotation.
 
 ##### Response
@@ -1695,7 +1736,7 @@ difficulties during this phase, please refer to the [Keycloak documentation](htt
 3. Create verified user `john` with the non-temporary password `doe` that we can use with the password grant:
    <br><br>
    <img src="/assets/images/docs/openid-connect/keycloak-user-john.png">
-   
+
 Alternatively you can [download the exported Keycloak configuration](/assets/images/docs/openid-connect/keycloak.json),
 and use it to configure the Keycloak. Please refer to [Keycloak import documentation](https://www.keycloak.org/docs/latest/server_admin/#_export_import)
 for more information.
@@ -1889,10 +1930,10 @@ HTTP/1.1 200 OK
 
 1. Open the Service Page with some query arguments:
    ```bash
-   open http://service.test:8000/?hello=world 
+   open http://service.test:8000/?hello=world
    ```
    <img src="/assets/images/docs/openid-connect/authorization-code-flow-1.png">
-   
+
 2. See that the browser is redirected to the Keycloak login page:
    <br><br>
    <img src="/assets/images/docs/openid-connect/authorization-code-flow-2.png">
@@ -1902,7 +1943,7 @@ HTTP/1.1 200 OK
    <br><br>
    <img src="/assets/images/docs/openid-connect/authorization-code-flow-3.png">
 4. Done.
-   
+
 It looks rather simple from the user point of view, but what really happened is
 described in [the diagram](#authorization-code-flow) above.
 
@@ -1967,7 +2008,7 @@ HTTP/1.1 200 OK
    }   
    ```
 2. Done.
-   
+
 > If you make another request using the same credentials, you should see that Kong adds less
 > latency to the request as it has cached the token endpoint call to Keycloak.
 
@@ -2034,7 +2075,7 @@ HTTP/1.1 200 OK
    }   
    ```
 2. Done.
-   
+
 > If you make another request using the same credentials, you should see that Kong adds less
 > latency to the request as it has cached the token endpoint call to Keycloak.
 
@@ -2155,7 +2196,7 @@ Let's patch the plugin that we created in the [Kong configuration](#kong-configu
 http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
   config.bearer_token_param_type=header                          \
   config.auth_methods=bearer                                     \
-  config.auth_methods=password # only enabled for demoing purposes 
+  config.auth_methods=password # only enabled for demoing purposes
 ```
 ```http
 HTTP/1.1 200 OK
@@ -2333,7 +2374,7 @@ HTTP/1.1 200 OK
             "userinfo",
             "password"
         ],
-        "bearer_token_param_type": [ "header" ] 
+        "bearer_token_param_type": [ "header" ]
     }
 }
 ```
@@ -2416,7 +2457,7 @@ or [introspection authentication](#introspection-authentication):
        "token_type": "bearer"
    }
    ```
-   
+
 At this point we should be able to retrieve a new access token with:
 
 ```bash
@@ -2430,7 +2471,7 @@ Output:
 ```
 <access-token>
 ```
-   
+
 #### Patch the Plugin
 
 Let's patch the plugin that we created in the [Kong configuration](#kong-configuration) step:
@@ -2545,7 +2586,7 @@ HTTP/1.1 200 OK
 1. Request the service with basic authentication credentials (created in the [Keycloak configuration](#keycloak-configuration) step),
    and store the session:
    ```bash
-   http -v -a john:doe --session=john :8000 
+   http -v -a john:doe --session=john :8000
    ```
    ```http
    GET / HTTP/1.1
@@ -2920,7 +2961,7 @@ HTTP/1.1 403 Forbidden
 The third option for authorization is to use Kong consumers and dynamically map
 from a claim value to a Kong consumer. This means that we restrict the access to
 only those that do have a matching Kong consumer. Kong consumers can have ACL
-groups attached to them and be further authorized with the 
+groups attached to them and be further authorized with the
 [Kong ACL Plugin](/hub/kong-inc/acl/).
 
 As a remainder our token payload looks like this:
@@ -3037,7 +3078,7 @@ in `Authorization: Bearer <access-token>` header to the upstream service (this c
 `config.upstream_access_token_header`). The claim values can be taken from:
 - an access token,
 - an id token,
-- an introspection response, or 
+- an introspection response, or
 - a user info response
 
 Let's take a look for an access token payload:
@@ -3101,7 +3142,7 @@ HTTP/1.1 200 OK
 }
 ```
 
-See the [configuration parameters](#parameters) for other options. 
+See the [configuration parameters](#parameters) for other options.
 
 ## Logout
 

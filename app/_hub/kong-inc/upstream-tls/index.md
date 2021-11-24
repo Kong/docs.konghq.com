@@ -1,10 +1,7 @@
 ---
-
 name: Upstream TLS
 publisher: Kong Inc.
 version: 0.36-x
-# do not update! deprecated and removed from code source v 1.5. should delete from repo.
-
 desc: Add TLS to your Services
 description: |
   Enable TLS on upstream traffic by providing Kong with a list of trusted
@@ -15,36 +12,34 @@ description: |
     <p><strong>Starting with <a href="https://docs.konghq.com/gateway/changelog/#changes-2">Kong 1.3.0.0</a>:</strong></p>
     <p>To configure Upstream TLS, use the NGINX directives <code>proxy_ssl_trusted_certificate</code>, <code>proxy_ssl_verify</code>, and <code>proxy_ssl_verify_depth</code> instead of the Upstream TLS plugin. Instructions on how to inject NGINX directives to Kong can be found <a href="https://docs.konghq.com/2.1.x/configuration/#injecting-nginx-directives">here</a>. This plugin is <strong>only functional for Kong Gateway versions 0.35 and 0.36</strong>.</p>
   </div>
-
 enterprise: true
 type: plugin
-
 kong_version_compatibility:
-    enterprise_edition:
-      compatible:
-        - 0.36-x
-        - 0.35-x
-
+  enterprise_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 0.36-x
+      - 0.35-x
 params:
   name: upstream-tls
   config:
     - name: verify_mode
       required: false
-      default: "`none`"
+      default: '`none`'
       description: |
         Sets the certification verification mode flags. `peer` enables client
         peer validation. `none` disables client peer validation.
     - name: verify_depth
       required: false
-      default: "`4`"
+      default: '`4`'
       description: |
-       Set the maximum validation chain depth
+        Set the maximum validation chain depth
     - name: trusted_certificates
       required: true
-      default:
+      default: null
       description: |
         PEM-encoded public certificate authorities of the upstream
-
 ---
 
 In Enterprise versions 0.35 and 0.36, Upstream TLS can be added on top of an existing Service by executing the

@@ -1,35 +1,31 @@
 ---
-
 name: DeGraphQL
 publisher: Kong Inc.
 version: 0.1.0
-
 desc: Transform a GraphQL upstream into a REST API
 description: |
   This plugin transforms a GraphQL upstream into a traditional endpoint by mapping URIs into GraphQL queries.
-
 type: plugin
 enterprise: true
 plus: true
 categories:
   - transformations
-
 kong_version_compatibility:
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-
+  enterprise_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
 params:
   name: degraphql
   service_id: true
-  dbless_compatible: yes
-  config:
-
+  dbless_compatible: 'yes'
+  config: null
 ---
 ## Usage
 

@@ -2,30 +2,27 @@
 name: Exit Transformer
 publisher: Kong Inc.
 version: 1.5.x
-# internal is 0.3.0
-
 desc: Customize Kong exit responses sent downstream
 description: |
   Transform and customize Kong response exit messages using Lua functions.
   The capabilities range from changing messages, status codes, and headers,
   to completely transforming the structure of Kong responses.
-
 type: plugin
 enterprise: true
 plus: true
 categories:
   - transformations
-
 kong_version_compatibility:
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-
+  enterprise_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
 params:
   name: exit-transformer
   service_id: true
@@ -34,25 +31,27 @@ params:
   yaml_examples: false
   k8s_examples: false
   konnect_examples: false
-  protocols: ["http", "https"]
-  dbless_compatible: yes
+  protocols:
+    - http
+    - https
+  dbless_compatible: 'yes'
   config:
     - name: functions
       required: true
-      value_in_examples: [ "@example/my_function.lua" ]
+      value_in_examples:
+        - '@example/my_function.lua'
       datatype: array of string elements
       description: Array of functions used to transform any Kong proxy exit response.
     - name: handle_unknown
-      default: "`false`"
+      default: '`false`'
       required: false
       datatype: boolean
-      description: Allow transform to apply to unmatched Service, Route, or Workspace (404) responses.
+      description: 'Allow transform to apply to unmatched Service, Route, or Workspace (404) responses.'
     - name: handle_unexpected
-      default: "`false`"
+      default: '`false`'
       required: false
       datatype: boolean
       description: Allow transform to apply to unexpected request (400) responses.
-
 ---
 
 ## Transforming 4xx and 5xx Responses
