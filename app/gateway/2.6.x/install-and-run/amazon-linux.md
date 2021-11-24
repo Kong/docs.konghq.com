@@ -8,12 +8,12 @@ title: Install Kong Gateway on Amazon Linux
 {:.install-banner}
 > Download the latest {{page.kong_version}} packages for
 > Amazon Linux:
-> * **Kong Gateway**: [Amazon Linux 1]({{site.links.download }}/gateway-2.x-amazonlinux-1/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn1.noarch.rpm){:.install-link} or [Amazon Linux 2]({{site.links.download }}/gateway-2.x-amazonlinux-2/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn2.noarch.rpm){:.install-link} (version {{page.kong_versions[page.version-index].ee-version}})
+> * **Kong Gateway**: [Amazon Linux 2]({{site.links.download }}/gateway-2.x-amazonlinux-2/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn2.noarch.rpm){:.install-link} (version {{page.kong_versions[page.version-index].ee-version}})
 > * **Kong Gateway (OSS)**: [Amazon Linux 2]({{ site.links.download }}/gateway-2.x-amazonlinux-2/Packages/k/kong-{{page.kong_versions[page.version-index].ce-version}}.aws.amd64.rpm){:.install-link} (version {{page.kong_versions[page.version-index].ce-version}})
 > <br><br>
 >
 > <span class="install-subtitle">View the list of all 2.x packages for
-> [Amazon Linux 1]({{ site.links.download }}/gateway-2.x-amazonlinux-1/Packages/k/){:.install-listing-link} and [Amazon Linux 2]({{ site.links.download }}/gateway-2.x-amazonlinux-2/Packages/k/){:.install-listing-link}  </span>
+> [Amazon Linux 2]({{ site.links.download }}/gateway-2.x-amazonlinux-2/Packages/k/){:.install-listing-link}  </span>
 
 The {{site.base_gateway}} software is governed by the
 [Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
