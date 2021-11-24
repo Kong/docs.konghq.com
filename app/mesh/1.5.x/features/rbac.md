@@ -462,7 +462,8 @@ In order for this example to work you must either run the control plane with `KU
     when:
     - destinations:
         match:
-            kuma.io/service: backend' | kumactl apply -f -
+          kuma.io/service: backend
+    ' | kumactl apply -f -
     $ echo '
     type: AccessRoleBinding
     name: backend-owners
@@ -540,7 +541,7 @@ In order for this example to work you must either run the control plane with `KU
     apiVersion: rbac.authorization.k8s.io/v1
     kind: ClusterRole
     metadata:
-    name: kuma-policy-management
+      name: kuma-policy-management
     rules:
     - apiGroups:
         - kuma.io
@@ -558,15 +559,15 @@ In order for this example to work you must either run the control plane with `KU
     apiVersion: rbac.authorization.k8s.io/v1
     kind: ClusterRoleBinding
     metadata:
-    name: kuma-policy-management-backend-owner
+      name: kuma-policy-management-backend-owner
     roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: kuma-policy-management
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: kuma-policy-management
     subjects:
     - kind: User
-        name: backend-owner
-        apiGroup: rbac.authorization.k8s.io
+      name: backend-owner
+      apiGroup: rbac.authorization.k8s.io
     " | kubectl apply -f -
     ```
 
@@ -577,15 +578,15 @@ In order for this example to work you must either run the control plane with `KU
     apiVersion: kuma.io/v1alpha1
     kind: AccessRoleBinding
     metadata:
-    name: default
+      name: default
     spec:
-    subjects:
-    - type: Group
+      subjects:
+      - type: Group
         name: mesh-system:admin
-    - type: Group
+      - type: Group
         name: system:masters
-    roles:
-    - admin
+      roles:
+      - admin
     " | kubectl apply -f -
     ```
 
@@ -597,27 +598,27 @@ In order for this example to work you must either run the control plane with `KU
     apiVersion: kuma.io/v1alpha1
     kind: AccessRole
     metadata:
-    name: backend-owner
+      name: backend-owner
     spec:
-    rules:
-    - types: ["TrafficPermission"]
+      rules:
+      - types: ["TrafficPermission"]
         mesh: default
         access: ["CREATE", "UPDATE", "DELETE"]
         when:
         - destinations:
             match:
-            kuma.io/service: backend
+              kuma.io/service: backend
     ---
     apiVersion: kuma.io/v1alpha1
     kind: AccessRoleBinding
     metadata:
-    name: backend-owners
+      name: backend-owners
     spec:
-    subjects:
-    - type: User
+      subjects:
+      - type: User
         name: backend-owner
-    roles:
-    - backend-owner
+      roles:
+      - backend-owner
     " | kubectl apply -f -
     ```
 
