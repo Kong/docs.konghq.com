@@ -1544,11 +1544,9 @@ ensure at worst any regex Kong executes could finish within roughly 2 seconds.
 
 ### Datastore section
 
-<div class="alert alert-ee red">
-    <strong>Deprecation:</strong> 
-    Support for Cassandra is deprecated with <code>Kong Gateway</code> 2.7 and fully removed with 4.0. It is strongly discouraged to use Cassandra as your datastore as it will have limited support throughout the deprecation period. For more
-    information, see <a href="https://konghq.com/blog/cassandra-support-deprecated">this blog post</a>.
-</div>
+
+{% include_cached /md/enterprise/cassandra-deprecation.md %}
+
 
 Kong can run with a database to store coordinated data between Kong nodes in a
 cluster, or without a database, where each node stores its information
@@ -1639,11 +1637,9 @@ name   | description  | default
 
 #### Cassandra settings
 
-<div class="alert alert-ee red">
-    <strong>Deprecation:</strong> 
-    Support for Cassandra is deprecated with <code>Kong Gateway</code> 2.7 and fully removed with 4.0. It is strongly discouraged to use Cassandra as your datastore as it will have limited support throughout the deprecation period. For more
-    information, see <a href="https://konghq.com/blog/cassandra-support-deprecated">this blog post</a>.
-</div>
+
+{% include_cached /md/enterprise/cassandra-deprecation.md %}
+
 
 name   | description  | default
 -------|--------------|----------

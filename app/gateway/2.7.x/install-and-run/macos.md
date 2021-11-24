@@ -42,11 +42,8 @@ file for specifying the entities as a declarative configuration.
 
 ### Using a database
 
-<div class="alert alert-ee red">
-    <strong>Deprecation:</strong> 
-    Support for Cassandra is deprecated with <code>Kong Gateway</code> 2.7 and fully removed with 4.0. It is strongly discouraged to use Cassandra as your datastore as it will have limited support throughout the deprecation period. For more
-    information, see <a href="https://konghq.com/blog/cassandra-support-deprecated">this blog post</a>.
-</div>
+
+{% include_cached /md/enterprise/cassandra-deprecation.md %}
 
 [Configure][configuration] Kong so it can connect to your database. Kong supports
 [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and

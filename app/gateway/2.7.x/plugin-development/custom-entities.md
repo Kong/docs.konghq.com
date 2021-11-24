@@ -32,11 +32,9 @@ Once you have defined your model, you must create your migration modules which
 will be executed by Kong to create the table in which your records of your
 entity will be stored.
 
-<div class="alert alert-ee red">
-    <strong>Deprecation:</strong> 
-    Support for Cassandra is deprecated with <code>Kong Gateway</code> 2.7 and fully removed with 4.0. It is strongly discouraged to use Cassandra as your datastore as it will have limited support throughout the deprecation period. For more
-    information, see <a href="https://konghq.com/blog/cassandra-support-deprecated">this blog post</a>.
-</div>
+
+{% include_cached /md/enterprise/cassandra-deprecation.md %}
+
 
 If your plugin is intended to support both Cassandra and Postgres, then both
 migrations must be written.
@@ -88,11 +86,8 @@ return {
 
 ## Migration File syntax
 
-<div class="alert alert-ee red">
-    <strong>Deprecation:</strong> 
-    Support for Cassandra is deprecated with <code>Kong Gateway</code> 2.7 and fully removed with 4.0. It is strongly discouraged to use Cassandra as your datastore as it will have limited support throughout the deprecation period. For more
-    information, see <a href="https://konghq.com/blog/cassandra-support-deprecated">this blog post</a>.
-</div>
+
+{% include_cached /md/enterprise/cassandra-deprecation.md %}
 
 While Kong's core migrations support both Postgres and Cassandra, custom plugins
 can choose to support either both of them or just one.
