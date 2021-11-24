@@ -8,7 +8,7 @@ badge: enterprise
 <div class="alert alert-ee red">
     <strong>Deprecation:</strong> 
     Support for Cassandra is deprecated with <code>Kong Gateway</code> 2.7 and fully removed with 4.0. It is strongly discouraged to use Cassandra as your datastore as it will have limited support throughout the deprecation period. For more
-    information, see <a href="/gateway-oss/{{ link_to_cassandra_deprecation_overview }}">this blog post</a>.
+    information, see <a href="https://konghq.com/blog/cassandra-support-deprecated">this blog post</a>.
 </div>
 
 This library is designed to provide an efficient, scalable, eventually-consistent sliding window rate limiting library. It relies on atomic operations in shared ngx memory zones to track window counters within a given node, periodically syncing this data to a central data store.
