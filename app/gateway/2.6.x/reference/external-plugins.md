@@ -15,7 +15,7 @@ those processes, starting, restarting and stopping as necessary.
 
 {{site.base_gateway}} currently maintains a Go language plugin server,
 [go-pluginserver], the corresponding PDK library
-package[go-pdk], the JavaScript language support [kong-js-pdk]
+package [go-pdk], the JavaScript language support [kong-js-pdk]
 and Python language support [kong-python-pdk].
 
 ## Kong Gateway plugin server configuration
