@@ -426,6 +426,14 @@
       network_config_opts: All
       notes: --
       url: /hub/kong-inc/grpc-web
+    
+    - name: jq
+      free: No
+      plus: No
+      enterprise: Yes
+      network_config_opts: All
+      notes: --
+      url: /hub/kong-inc/jq
 
     - name: Kafka Upstream
       free: No
