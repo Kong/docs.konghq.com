@@ -1,5 +1,7 @@
 // Stylesheet for all pages under /hub/ (except the landing page;
 // for the hub landing page, see hub-landing-page.less)
+
+// Plugin version dropdown button
 .page-extension-profile .container .dropdown.page-header-right {
   position: absolute;
   z-index:10;
@@ -162,6 +164,8 @@
   }
 }
 
+// Plugin sidebar; based on sidebar classes used in the rest of the docs, see
+// definitions for .docs-toc in docs.less for the base styles
 .docs-toc {
   &.with-dropdown {
     padding: 80px 0 0 10px;
@@ -172,6 +176,7 @@
     padding-right: 20px;
     width: 250px;
 
+    // "On this page" title
     .docs-toc-title {
       a {
         color: #494e50;
@@ -200,6 +205,8 @@
     position: relative;
 
     #about-extn {
+
+        // Kong logo
         img {
           width: 20px;
           margin-right: 3px;
@@ -244,7 +251,6 @@
             li {
               padding-top: none;
               list-style: none;
-              // padding-left: 0;
               border: none;
 
               &:before {
@@ -252,6 +258,8 @@
                 display: none;
               }
             }
+
+            // "Version Compatibility" lists
             &.compat-list {
               li {
                 text-align: center;
@@ -266,6 +274,8 @@
                 margin-top: 8px;
               }
             }
+
+            // "Category" links
             &.categories {
               li {
                 margin-bottom: 3px;

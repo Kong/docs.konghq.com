@@ -398,6 +398,8 @@
   }
 }
 
+// Left side navigation
+
 .docs-sidebar {
   float: left;
   width: 280px;
@@ -566,6 +568,9 @@
   }
 }
 
+// Right-side navigation for the docs. The plugin docs also use
+// these base classes, and build on top of them (see extension.less)
+
 .docs-toc {
   float: right;
   width: 250px;
@@ -727,7 +732,6 @@
   }
 
   @media screen and (min-width: 1301px) {
-    // &:not(#plugin-toc) {
       &.collapsed {
         width: 50px;
         overflow-y: hidden;
@@ -750,7 +754,6 @@
           visibility: visible;
         }
       }
-    // }
   }
 
   @media screen and (max-width: 1300px) {
