@@ -1,6 +1,7 @@
 ---
 layout: null
 ---
+{% if jekyll.environment == "production" %}
 User-agent: *
 Disallow: /enterprise/*
 Disallow: /mesh/1.0*
@@ -15,3 +16,7 @@ Disallow: /deck/pre-1.7*
 Disallow: /deck/1.7*
 
 Sitemap: {{site.links.web}}/sitemap.xml
+{% else %}
+User-agent: *
+Disallow: /
+{% endif %}
