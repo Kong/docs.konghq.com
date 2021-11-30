@@ -352,6 +352,54 @@
   justify-content: center;
 }
 
+.dropdown-button {
+  height: 32px;
+  color: @gray-dark;
+  text-transform: uppercase;
+  font: bold 12px/16px Roboto;
+  padding: 0 8px;
+  font-size: 12px;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-color: @gray-border;
+  background-color: @gray-background;
+
+  &:focus-visible {
+    color: #1155cb;
+    outline: 2px solid #1155cb;
+    border-radius: 3px;
+  }
+
+  em {
+    font-style: normal;
+  }
+
+  &#module-dropdown {
+    height: auto;
+    min-height: 50px;
+    padding: 8px;
+    color: #043558;
+    background: transparent;
+    border: 1px solid #e7ebee;
+    text-transform: none;
+    font: 500 15.5px/26px Roboto;
+
+    &:hover {
+      background-image: linear-gradient(to bottom,rgba(255,255,255,.15),rgba(189,230,207,.15))
+    }
+
+    span {
+      max-width: 100%;
+      white-space: normal;
+    }
+  }
+}
+
+// Left side navigation
+
 .docs-sidebar {
   float: left;
   width: 280px;
@@ -370,52 +418,6 @@
       margin: 8px 0;
       color: @navy-text;
       font: bold 20px/28px Roboto;
-    }
-
-    .dropdown-button {
-      height: 32px;
-      color: @gray-dark;
-      text-transform: uppercase;
-      font: bold 12px/16px Roboto;
-      padding: 0 8px;
-      font-size: 12px;
-      width: 100%;
-      text-align: left;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-color: @gray-border;
-      background-color: @gray-background;
-
-      &:focus-visible {
-        color: #1155cb;
-        outline: 2px solid #1155cb;
-        border-radius: 3px;
-      }
-
-      em {
-        font-style: normal;
-      }
-
-      &#module-dropdown {
-        height: auto;
-        min-height: 50px;
-        padding: 8px;
-        color: #043558;
-        background: transparent;
-        border: 1px solid #e7ebee;
-        text-transform: none;
-        font: 500 15.5px/26px Roboto;
-
-        &:hover {
-          background-image: linear-gradient(to bottom,rgba(255,255,255,.15),rgba(189,230,207,.15))
-        }
-
-        span {
-          max-width: 100%;
-          white-space: normal;
-        }
-      }
     }
   }
 
@@ -566,6 +568,9 @@
   }
 }
 
+// Right-side navigation for the docs. The plugin docs also use
+// these base classes, and build on top of them (see extension.less)
+
 .docs-toc {
   float: right;
   width: 250px;
@@ -614,11 +619,11 @@
 
     a {
     color: @black-90;
-    opacity: 0.6;
+    opacity: 1;
     transition: opacity 0.2s;
 
     &:hover {
-      opacity: 1;
+      opacity: 0.6;
       }
     }
   }
@@ -636,7 +641,6 @@
 
         a {
           font: normal 14px/22px Roboto;
-          color: #043558;
 
             img, i {
               float: left;
@@ -695,20 +699,24 @@
           opacity: 1;
         }
       }
+    }
 
-      &:before {
-        content: "";
-        width: 8px;
-        height: 20px;
-        position: absolute;
-        left: -1px;
-        top: 0;
-        border: solid #e1eaf4;
-        border-width: 0 0 1px 1px;
-      }
+    &:not(.about-extn-table, #about-extn) {
+      ul > li, li {
+        &:before {
+          content: "";
+          width: 8px;
+          height: 20px;
+          position: absolute;
+          left: -1px;
+          top: 0;
+          border: solid #e1eaf4;
+          border-width: 0 0 1px 1px;
+        }
 
-      &:not(:last-child) {
-        border-left-color: #e1eaf4;
+        &:not(:last-child) {
+          border-left-color: #e1eaf4;
+        }
       }
     }
   }
@@ -724,57 +732,59 @@
   }
 
   @media screen and (min-width: 1301px) {
-    &.collapsed {
-      width: 50px;
-      overflow-y: hidden;
+      &.collapsed {
+        width: 50px;
+        overflow-y: hidden;
 
-      .github-links {
-        visibility: hidden;
-      }
+        .github-links {
+          visibility: hidden;
+        }
 
-      .docs-toc-title,
-      > ul {
-        transform: translateX(200%);
-        opacity: 0;
-      }
+        .docs-toc-title,
+        > ul {
+          transform: translateX(200%);
+          opacity: 0;
+        }
 
-      .collapse-toc {
-        visibility: hidden;
-      }
+        .collapse-toc {
+          visibility: hidden;
+        }
 
-      .expand-toc {
-        visibility: visible;
+        .expand-toc {
+          visibility: visible;
+        }
       }
-    }
   }
 
   @media screen and (max-width: 1300px) {
-    position: fixed;
-    right: 0;
-    padding: 16px 24px;
-    height: ~"calc(100% - 56px)";
-    box-shadow: 0 12px 15px rgba(0, 0, 0, 0.15);
-    border: 0 none;
-    background: #fff;
-    overflow-y: auto;
-    z-index: 100;
-    transform: translateX(-100%);
-    -webkit-transform: translateX(100%);
-    transition: all 300ms ease-in-out;
+    &:not(#plugin-toc) {
+      position: fixed;
+      right: 0;
+      padding: 16px 24px;
+      height: ~"calc(100% - 56px)";
+      box-shadow: 0 12px 15px rgba(0, 0, 0, 0.15);
+      border: 0 none;
+      background: #fff;
+      overflow-y: auto;
+      z-index: 100;
+      transform: translateX(-100%);
+      -webkit-transform: translateX(100%);
+      transition: all 300ms ease-in-out;
 
-    .close-sidebar {
-      cursor: pointer;
-      visibility: visible;
-      -webkit-text-stroke: 2px white;
-    }
+      .close-sidebar {
+        cursor: pointer;
+        visibility: visible;
+        -webkit-text-stroke: 2px white;
+      }
 
-    .collapse-toc,
-    .expand-toc {
-      visibility: hidden;
-    }
+      .collapse-toc,
+      .expand-toc {
+        visibility: hidden;
+      }
 
-    &.sidebar-open {
-      transform: translateX(0);
+      &.sidebar-open {
+        transform: translateX(0);
+      }
     }
   }
 
