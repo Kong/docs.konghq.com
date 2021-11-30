@@ -4,12 +4,9 @@ book: plugin_dev
 chapter: 2
 ---
 
-<div class="alert alert-warning">
-  <strong>Note:</strong> This chapter assumes that you are familiar with
-  <a href="http://www.lua.org/">Lua</a>.
-</div>
-
-## Introduction
+{:.note}
+> **Note**: This chapter assumes that you are familiar with
+[Lua](http://www.lua.org/).
 
 Consider your plugin as a set of [Lua
 modules](http://www.lua.org/manual/5.1/manual.html#6.3). Each file described in
@@ -20,14 +17,14 @@ load your plugin's modules if their names follow this convention:
 kong.plugins.<plugin_name>.<module_name>
 ```
 
-> Your modules of course need to be accessible through your
-> [package.path](http://www.lua.org/manual/5.1/manual.html#pdf-package.path)
-> variable, which can be tweaked to your needs via the
-> [lua_package_path](/gateway/{{page.kong_version}}/reference/configuration/#lua_package_path)
-> configuration property.
-> However, the preferred way of installing plugins is through
-> [LuaRocks](https://luarocks.org/), which Kong natively integrates with.
-> More on LuaRocks-installed plugins later in this guide.
+Your modules need to be accessible through your
+[package.path](http://www.lua.org/manual/5.1/manual.html#pdf-package.path)
+variable, which can be tweaked to your needs via the
+[lua_package_path](/gateway/{{page.kong_version}}/reference/configuration/#lua_package_path)
+configuration property.
+However, the preferred way of installing plugins is through
+[LuaRocks](https://luarocks.org/), which Kong natively integrates with.
+More on LuaRocks-installed plugins later in this guide.
 
 To make Kong aware that it has to look for your plugin's modules, you'll have
 to add it to the
@@ -57,7 +54,6 @@ optional, and will allow the plugin to implement some extra-functionalities
 Now let's describe exactly what are the modules you can implement and what
 their purpose is.
 
----
 
 ## Basic plugin modules
 
@@ -76,7 +72,6 @@ simple-plugin
   by the user. This module holds the *schema* of that configuration and defines
   rules on it, so that the user can only enter valid configuration values.
 
----
 
 ## Advanced plugin modules
 
