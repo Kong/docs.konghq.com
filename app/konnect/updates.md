@@ -10,7 +10,7 @@ services.
 
 ## November 2021
 
-### 2021.11.29
+### 2021.11.30
 **Single-sign on (SSO) with Okta**
 : {{site.konnect_saas}} now supports single sign-on (SSO) access through
 [Okta](https://developer.okta.com/docs/guides/) with
