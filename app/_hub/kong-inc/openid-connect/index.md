@@ -86,7 +86,9 @@ description: |
 
      This parameter tells the plugin where to find discovery information, and it is
      the only required parameter. You should specify the `realm` or `iss` for this
-     parameter if you don't have a discovery endpoint.
+     parameter if you don't have a discovery endpoint. **Note**: This does not have 
+     to match the URL of the `iss` claim in the access tokens being validated. To set
+     URLs supported in the `iss` claim, use `config.issuers_allowed`.
 
   2. Next, you should decide what authentication grants you want to use with this
      plugin, so configure: `config.auth_methods`.
