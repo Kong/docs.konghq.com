@@ -4,8 +4,6 @@ book: plugin_dev
 chapter: 5
 ---
 
-## Introduction
-
 Kong interacts with the model layer through classes we refer to as "DAOs". This
 chapter will detail the available API to interact with the datastore.
 
@@ -41,8 +39,6 @@ local plugins   = kong.db.plugins
 
 Both core entities from Kong and custom entities from plugins are
 available through `kong.db.*`.
-
----
 
 ## The DAO Lua API
 
