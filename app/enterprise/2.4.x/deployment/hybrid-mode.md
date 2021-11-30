@@ -61,7 +61,7 @@ For the full Kubernetes Hybrid mode documentation, see
 in the `kong/charts` repository.
 
 ## Version Compatibility
-{{site.ee_gateway_name}} control planes only allow connections from data planes with the
+{{site.base_gateway}} control planes only allow connections from data planes with the
 same major version.
 Control planes won't allow connections from data planes with newer minor versions.
 

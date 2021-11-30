@@ -1,10 +1,7 @@
 ---
-
 name: Proxy Caching Advanced
 publisher: Kong Inc.
 version: 2.2.x
-# internal plugin version 0.5.4
-
 desc: Cache and serve commonly requested responses in Kong
 description: |
   This plugin provides a reverse proxy cache implementation for Kong. It caches
@@ -13,40 +10,44 @@ description: |
   for a configurable period of time, after which subsequent requests to the same
   resource will re-fetch and re-store the resource. Cache entities can also be
   forcefully purged via the Admin API prior to their expiration time.
-
 type: plugin
 enterprise: true
 plus: true
 categories:
   - traffic-control
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-        - 0.35-x
-        - 0.34-x
-
+  community_edition:
+    compatible: null
+  enterprise_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
+      - 0.36-x
+      - 0.35-x
+      - 0.34-x
 params:
   name: proxy-cache-advanced
   service_id: true
   route_id: true
   consumer_id: true
-  protocols: ["http", "https", "grpc", "grpcs"]
-  dbless_compatible: yes
+  protocols:
+    - http
+    - https
+    - grpc
+    - grpcs
+  dbless_compatible: 'yes'
   config:
     - name: response_code
       required: true
-      default: 200, 301, 404
-      value_in_examples: [ "200" ]
+      default: '200, 301, 404'
+      value_in_examples:
+        - '200'
       datatype: array of type integer
       description: |
         Upstream response status code considered cacheable. The integers must be a value
@@ -54,56 +55,60 @@ params:
     - name: request_method
       required: true
       default: '`["GET","HEAD"]`'
-      value_in_examples: ["GET","HEAD"]
+      value_in_examples:
+        - GET
+        - HEAD
       datatype: array of string elements
       description: |
         Downstream request methods considered cacheable. Available options: `HEAD`, `GET`, `POST`, `PATCH`, `PUT`.
     - name: content_type
       required: true
-      default: text/plain, application/json
-      value_in_examples: ["text/plain", "application/json"]
+      default: 'text/plain, application/json'
+      value_in_examples:
+        - text/plain
+        - application/json
       datatype: array of string elements
       description: |
         Upstream response content types considered cacheable. The plugin performs an **exact match** against each specified value; for example, if the upstream is expected to respond with a `application/json; charset=utf-8` content-type, the plugin configuration must contain said value or a `Bypass` cache status is returned.
     - name: vary_headers
       required: false
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: array of string elements
       description: |
         Relevant headers considered for the cache key. If undefined, none of the headers are taken into consideration.
     - name: vary_query_params
       required: false
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: array of string elements
       description: |
         Relevant query parameters considered for the cache key. If undefined, all params are taken into consideration.
     - name: cache_ttl
-      required:
+      required: null
       default: 300
-      value_in_examples:
+      value_in_examples: null
       datatype: integer
       description: |
         TTL in seconds of cache entities.
     - name: cache_control
       required: true
       default: false
-      value_in_examples:
+      value_in_examples: null
       datatype: boolean
       description: |
         When enabled, respect the Cache-Control behaviors defined in [RFC7234](https://tools.ietf.org/html/rfc7234#section-5.2).
     - name: storage_ttl
       required: false
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: integer
       description: |
         Number of seconds to keep resources in the storage backend. This value is independent
         of `cache_ttl` or resource TTLs defined by Cache-Control behaviors.
     - name: strategy
       required: true
-      default:
+      default: null
       value_in_examples: memory
       datatype: string
       description: |
@@ -111,21 +116,21 @@ params:
     - name: memory.dictionary_name
       required: true
       default: kong_db_cache
-      value_in_examples:
+      value_in_examples: null
       datatype: string
       description: |
         The name of the shared dictionary in which to hold cache entities when the memory strategy is selected. Note that this dictionary currently must be defined manually in the Kong Nginx template.
     - name: redis.host
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         Host to use for Redis connection when the redis strategy is defined.
     - name: redis.port
       required: semi
       default: 6379
-      value_in_examples:
+      value_in_examples: null
       datatype: integer
       description: |
         Port to use for Redis connections when the `redis` strategy is defined. Must be a
@@ -133,76 +138,76 @@ params:
     - name: redis.ssl
       required: false
       default: false
-      value_in_examples:
+      value_in_examples: null
       datatype: boolean
       description: |
         If set to `true`, then uses SSL to connect to Redis.
 
-        **Note:** This parameter is only available for Kong Enterprise versions
+        **Note:** This parameter is only available for Kong Gateway versions
         2.2.x and later.
     - name: redis.ssl_verify
       required: false
       default: false
-      value_in_examples:
+      value_in_examples: null
       datatype: boolean
       description: |
         If set to `true`, then verifies the validity of the server SSL certificate. Note that you need to configure the
-        [lua_ssl_trusted_certificate](/enterprise/latest/property-reference/#lua_ssl_trusted_certificate)
+        [lua_ssl_trusted_certificate](/gateway/latest/reference/configuration/#lua_ssl_trusted_certificate)
         to specify the CA (or server) certificate used by your Redis server. You may also need to configure
-        [lua_ssl_verify_depth](/enterprise/latest/property-reference/#lua_ssl_verify_depth) accordingly.
+        [lua_ssl_verify_depth](/gateway/latest/reference/configuration/#lua_ssl_verify_depth) accordingly.
 
-        **Note:** This parameter is only available for Kong Enterprise versions
+        **Note:** This parameter is only available for Kong Gateway versions
         2.2.x and later.
     - name: redis.server_name
       required: false
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         Specifies the server name for the new TLS extension Server Name Indication (SNI) when connecting over SSL.
 
-        **Note:** This parameter is only available for Kong Enterprise versions
+        **Note:** This parameter is only available for Kong Gateway versions
         2.2.x and later.
     - name: redis.timeout
       required: semi
       default: 2000
-      value_in_examples:
+      value_in_examples: null
       datatype: number
       description: |
         Connection timeout to use for Redis connection when the `redis` strategy is defined.
     - name: redis.password
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         Password to use for Redis connection when the `redis` strategy is defined. If undefined, no AUTH commands are sent to Redis.
     - name: redis.database
       required: semi
       default: 0
-      value_in_examples:
+      value_in_examples: null
       datatype: integer
       description: |
         Database to use for Redis connection when the `redis` strategy is defined.
     - name: redis.sentinel_master
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         Sentinel master to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
     - name: redis.sentinel_role
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         Sentinel role to use for Redis connections when the `redis` strategy is defined. Defining this value
         implies using Redis Sentinel. Available options:  `master`, `slave`, `any`.
     - name: redis.sentinel_addresses
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: array of string elements
       description: |
         Sentinel addresses to use for Redis connections when the `redis` strategy is defined.
@@ -210,8 +215,8 @@ params:
         be a hostname. The minimum length of the array is 1 element.
     - name: redis.cluster_addresses
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: array of string elements
       description: |
         Cluster addresses to use for Redis connection when the `redis` strategy is defined.
@@ -220,7 +225,7 @@ params:
     - name: bypass_on_err
       required: false
       default: false
-      value_in_examples:
+      value_in_examples: null
       datatype: boolean
       description: |
         Unhandled errors while trying to retrieve a cache entry (such as redis down) are resolved with `Bypass`, with the request going upstream.
@@ -233,8 +238,6 @@ params:
     <code>config.content_type</code> value is only <code>application/json</code>
     (a partial match), then the proxy cache is bypassed.
     </div>
-
-
 ---
 ### Strategies
 

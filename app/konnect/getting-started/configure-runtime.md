@@ -6,10 +6,10 @@ no_version: true
 Set up your first runtime through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager).
 
-At this time, the only runtime type available is a {{site.ee_gateway_name}}
+At this time, the only runtime type available is a {{site.base_gateway}}
 data plane.
 
-{{site.ee_gateway_name}} data planes proxy service traffic. With
+{{site.base_gateway}} data planes proxy service traffic. With
 {{site.konnect_saas}} working as the control plane, a
 runtime doesn't need a database to store configuration data. Instead,
 configuration is stored in-memory on each node, and you can easily update
@@ -50,7 +50,7 @@ organization admin permissions by default.
 4. Run the script on any host you choose.
 
     This script creates a Docker container running a simple
-    {{site.ee_gateway_name}} instance and connects it to your
+    {{site.base_gateway}} instance and connects it to your
     {{site.konnect_saas}} account.
 
 5. Click **Done** to go to the Runtime Manager page.
@@ -76,7 +76,7 @@ plane. These certificates expire after six months and must be renewed. See
 ## Summary and Next Steps
 
 In this step, you ran a script which set up a Docker container with a
-{{site.ee_gateway_name}} instance, adding your first runtime to the Runtime
+{{site.base_gateway}} instance, adding your first runtime to the Runtime
 Manager.
 
 Next, [set up a your first Service through {{site.konnect_saas}}](/konnect/getting-started/configure-service).

@@ -58,16 +58,16 @@ toc: false
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/enterprise/changelog/#034">Changelog</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/gateway/changelog/#034">Changelog</a></h3>
     <p>Details of the changes to each version of Kong Enterprise 
     Edition Dev Portal.</p>
-    <a href="/enterprise/changelog/#304">See changelog &rarr;</a>
+    <a href="/gateway/changelog/#304">See changelog &rarr;</a>
   </div>
 
   <!-- <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/changelog/dev-portal">Migration Guide</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/gateway/changelog/dev-portal">Migration Guide</a></h3>
     <p>Migrating to a new verions of the Kong Dev Portal? Follow this 'How To' guide for a smooth transition.</p>
-    <a href="/enterprise/changelog/">Learn More &rarr;</a>
+    <a href="/gateway/changelog/">Learn More &rarr;</a>
   </div> -->
 
 </div>

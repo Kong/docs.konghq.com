@@ -28,8 +28,8 @@ the default.
 
 {{site.base_gateway}} sets some default values for most objects. You can see
 what the defaults are for each object in the
-[Admin API reference](/gateway-oss/latest/admin-api/), or use the
-[`/schemas`](/gateway-oss/latest/admin-api/#retrieve-entity-schema) endpoint to
+[Admin API reference](/gateway/latest/admin-api/), or use the
+[`/schemas`](/gateway/latest/admin-api/#retrieve-entity-schema) endpoint to
 retrieve the latest object schemas for your instance of the {{site.base_gateway}}.
 
 Configuring your own defaults is a good way to keep updated on potential
@@ -272,7 +272,7 @@ _info:
 ```
 
 For all available properties, see the
-[Route object](/gateway-oss/latest/admin-api/#route-object) documentation.
+[Route object](/gateway/latest/admin-api/#route-object) documentation.
 
 {% endnavtab %}
 {% navtab Service %}
@@ -291,7 +291,7 @@ _info:
       retries: 5
 ```
 For all available properties, see the
-[Service object](/gateway-oss/latest/admin-api/#service-object) documentation.
+[Service object](/gateway/latest/admin-api/#service-object) documentation.
 
 {% endnavtab %}
 {% navtab Upstream %}
@@ -369,7 +369,7 @@ _info:
         threshold: 0
 ```
 For all available properties, see the
-[Upstream object](/gateway-oss/latest/admin-api/#upstream-object) documentation.
+[Upstream object](/gateway/latest/admin-api/#upstream-object) documentation.
 
 {% endnavtab %}
 {% navtab Target %}
@@ -383,7 +383,7 @@ _info:
       weight: 100
 ```
 For all available properties, see the
-[Target object](/gateway-oss/latest/admin-api/#target-object) documentation.
+[Target object](/gateway/latest/admin-api/#target-object) documentation.
 
 {% endnavtab %}
 {% endnavtabs %}
@@ -391,8 +391,8 @@ For all available properties, see the
 ### Find default values for your Gateway version
 
 For the most accurate default values for your version of {{site.base_gateway}}, see the
-[Admin API reference](/gateway-oss/latest/admin-api/), or use the
-[`/schemas`](/gateway-oss/latest/admin-api/#retrieve-entity-schema) endpoint. For example, you can check the schema for `targets` and look for any value that
+[Admin API reference](/gateway/latest/admin-api/), or use the
+[`/schemas`](/gateway/latest/admin-api/#retrieve-entity-schema) endpoint. For example, you can check the schema for `targets` and look for any value that
 has defined defaults:
 
 {% navtabs codeblock %}
@@ -412,4 +412,4 @@ http :8001/schemas/targets
 * [Deduplicate plugin configuration](/deck/{{page.kong_version}}/guides/deduplicate-plugin-configuration)
 * [Distributed configuration for Kong Gateway using decK](/deck/{{page.kong_version}}/guides/distributed-configuration)
 * [Using multiple files to store configuration](/deck/{{page.kong_version}}/guides/multi-file-state)
-* {{site.base_gateway}} admin API: [`/schemas` endpoint](/gateway-oss/latest/admin-api/#retrieve-entity-schema)
+* {{site.base_gateway}} admin API: [`/schemas` endpoint](/gateway/latest/admin-api/#retrieve-entity-schema)

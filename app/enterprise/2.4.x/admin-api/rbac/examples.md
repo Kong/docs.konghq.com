@@ -1045,4 +1045,4 @@ he created.
 [rbac-overview]: /enterprise/{{page.kong_version}}/kong-manager/administration/rbac
 [rbac-admin]: /enterprise/{{page.kong_version}}/admin-api/rbac/reference
 [workspaces-examples]: /enterprise/{{page.kong_version}}/admin-api/workspaces/examples
-[getting-started-guide]: /getting-started-guide/latest/overview
+[getting-started-guide]: /gateway/latest/get-started/comprehensive/

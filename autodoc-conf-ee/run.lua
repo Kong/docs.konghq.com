@@ -140,7 +140,7 @@ infd:close()
 
 local parsed = assert(parser.parse(lines))
 
-local outpath = "app/enterprise/" .. KONG_VERSION .. "/property-reference.md"
+local outpath = "app/gateway/" .. KONG_VERSION .. "/reference/configuration.md"
 local outfd = assert(io.open(outpath, "w+"))
 
 outfd:write(data.header)
@@ -203,6 +203,42 @@ for _, section in ipairs(parsed) do
 
     else
       write("#### " .. var.name)
+      if string.match(var.name, "admin_gui_auth") then
+        write("{:.badge .enterprise}")
+
+      elseif string.match(var.name, "admin_gui_session") then
+        write("{:.badge .enterprise}")
+
+      elseif string.match(var.name, "telemetry") then
+        write("{:.badge .enterprise}")
+
+      elseif string.match(var.name, "rbac") then
+        write("{:.badge .enterprise}")
+
+      elseif string.match(var.name, "event_hooks") then
+        write("{:.badge .enterprise}")
+
+      elseif string.match(section.name, "PORTAL") then
+        write("{:.badge .enterprise}")
+
+      elseif string.match(section.name, "KONG MANAGER") then
+        write("{:.badge .free}")
+
+      elseif string.match(section.name, "VITALS") then
+        write("{:.badge .enterprise}")
+
+      elseif string.match(section.name, "SMTP") then
+        write("{:.badge .enterprise}")
+
+      elseif string.match(section.name, "GRANULAR TRACING") then
+        write("{:.badge .enterprise}")
+
+      elseif string.match(section.name, "ROUTE COLLISION") then
+        write("{:.badge .enterprise}")
+
+      elseif string.match(section.name, "DATABASE ENCRYPTION") then
+        write("{:.badge .enterprise}")
+      end
       write("")
       write(format_description(var.description))
       write("")

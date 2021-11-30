@@ -1,6 +1,5 @@
 ---
 title: Welcome to the Kong Developer Portal Preview
-redirect_from: '/enterprise/0.32-x/developer-portal/introduction/'
 book: portal
 chapter: 1
 ---

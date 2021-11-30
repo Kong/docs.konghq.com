@@ -358,7 +358,7 @@
         Not bundled with Kong Gateway.
         <br><br>
         Kong Immunity is not available in Konnect Cloud.
-      url: /enterprise/latest/immunity/install-configure
+      url: /gateway/latest/immunity/install-configure
 
     - name: Datadog
       free: Yes
@@ -426,6 +426,14 @@
       network_config_opts: All
       notes: --
       url: /hub/kong-inc/grpc-web
+    
+    - name: jq
+      free: No
+      plus: No
+      enterprise: Yes
+      network_config_opts: All
+      notes: --
+      url: /hub/kong-inc/jq
 
     - name: Kafka Upstream
       free: No

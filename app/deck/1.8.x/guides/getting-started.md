@@ -9,7 +9,7 @@ flag, or see the [CLI reference](/deck/{{page.kong_version}}/reference/deck).
 
 ## Install Kong Gateway
 
-Make sure you have [{{site.base_gateway}} installed](/install) and have access to Kong's [Admin API](/gateway-oss/latest/admin-api).
+Make sure you have [{{site.base_gateway}} installed](/install) and have access to Kong's [Admin API](/gateway/latest/admin-api).
 
 This guide assumes that {{site.base_gateway}} is running at `http://localhost:8001`.
 If your URL is different, change the URL to the network address where the gateway is running.

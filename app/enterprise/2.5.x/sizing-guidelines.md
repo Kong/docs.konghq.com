@@ -86,7 +86,7 @@ _Latency_, in this context, refers to the delay between the downstream client
 sending a request and receiving a response. Kong measures latency introduced
 into the request in terms of microseconds or milliseconds. Increasing the number
 of Routes and/or Plugins in a Kong cluster will increase the amount of latency
-that is added into each request. _Throughput_ refers to number of simultaneous
+that is added into each request. _Throughput_ refers to number of
 requests that Kong can process in a given time span, typically measured in
 seconds or minutes.
 

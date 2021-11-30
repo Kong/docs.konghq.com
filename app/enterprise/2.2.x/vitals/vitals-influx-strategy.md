@@ -1,8 +1,5 @@
 ---
 title: Vitals with InfluxDB
-redirect_from: 
-  - /enterprise/2.2.x/admin-api/vitals/vitals-influx-strategy
-  - /enterprise/latest/admin-api/vitals/vitals-influx-strategy
 ---
 
 ## Overview
@@ -14,7 +11,7 @@ clusters (such as environments handling tens or hundreds of thousands of
 requests per second), without placing addition write load on the database
 backing the Kong cluster.
 
-For using Vitals with a database as the backend (i.e. PostgreSQL, Cassandra), 
+For using Vitals with a database as the backend (i.e. PostgreSQL, Cassandra),
 please refer to [Kong Vitals](/enterprise/{{page.kong_version}}/admin-api/vitals/).
 
 ## Getting Started
@@ -23,7 +20,7 @@ please refer to [Kong Vitals](/enterprise/{{page.kong_version}}/admin-api/vitals
 
 This guide assumes an existing InfluxDB server or cluster is already installed
 and is accepting write traffic. Production-ready InfluxDB installations should
-be deployed as a separate effort, but for proof-of-concept testing, running a 
+be deployed as a separate effort, but for proof-of-concept testing, running a
 local InfluxDB instance is possible via Docker:
 
 ```bash
@@ -33,7 +30,7 @@ $ docker run -p 8086:8086 \
       influxdb
 ```
 
-Writing Vitals data to InfluxDB requires that the `kong` database is created, 
+Writing Vitals data to InfluxDB requires that the `kong` database is created,
 this is done using the `INFLUXDB_DB` variable.
 
 ### Configuring Kong

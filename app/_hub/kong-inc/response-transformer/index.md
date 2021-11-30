@@ -2,7 +2,6 @@
 name: Response Transformer
 publisher: Kong Inc.
 version: 1.0.x
-
 desc: Modify the upstream response before returning it to the client
 description: |
   Transform the response sent by the upstream server on the fly before returning the response to the client.
@@ -16,76 +15,82 @@ description: |
 
   For additional response transformation features, check out the
   [Response Transformer Advanced plugin](/hub/kong-inc/response-transformer-advanced/).
-
 type: plugin
 categories:
   - transformations
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 2.0.x
-        - 1.5.x
-        - 1.4.x
-        - 1.3.x
-        - 1.2.x
-        - 1.1.x
-        - 1.0.x
-        - 0.14.x
-        - 0.13.x
-        - 0.12.x
-        - 0.11.x
-        - 0.10.x
-        - 0.9.x
-        - 0.8.x
-        - 0.7.x
-        - 0.6.x
-        - 0.5.x
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-
-
+  community_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 2.0.x
+      - 1.5.x
+      - 1.4.x
+      - 1.3.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
+      - 0.14.x
+      - 0.13.x
+      - 0.12.x
+      - 0.11.x
+      - 0.10.x
+      - 0.9.x
+      - 0.8.x
+      - 0.7.x
+      - 0.6.x
+      - 0.5.x
+  enterprise_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
+      - 0.36-x
 params:
   name: response-transformer
   service_id: true
   route_id: true
   consumer_id: true
-  protocols: ["http", "https"]
-  dbless_compatible: yes
+  protocols:
+    - http
+    - https
+  dbless_compatible: 'yes'
   config:
     - name: remove.headers
       required: false
-      value_in_examples: ["x-toremove", "x-another-one"]
+      value_in_examples:
+        - x-toremove
+        - x-another-one
       datatype: array of string elements
       description: List of header names. Unset the header(s) with the given name.
     - name: remove.json
       required: false
-      value_in_examples: ["json-key-toremove", "another-json-key"]
+      value_in_examples:
+        - json-key-toremove
+        - another-json-key
       datatype: array of string elements
       description: List of property names. Remove the property from the JSON body if it is present.
     - name: rename.headers
       required: false
       datatype: array of string elements
-      description: List of `original_header_name:new_header_name` pairs. If the header `original_headername` is already set, rename it to `new_headername`. Ignored if the header is not already set.
+      description: 'List of `original_header_name:new_header_name` pairs. If the header `original_headername` is already set, rename it to `new_headername`. Ignored if the header is not already set.'
     - name: replace.headers
       required: false
       datatype: array of string elements
-      description: List of `headername:value` pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set.
+      description: 'List of `headername:value` pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set.'
     - name: replace.json
       required: false
       datatype: array of string elements
-      description: List of `property:value` pairs. If and only if the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
+      description: 'List of `property:value` pairs. If and only if the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.'
     - name: replace.json_types
       required: false
       datatype: array of string elements
@@ -95,24 +100,33 @@ params:
         element can be one of: boolean, number, or string.
     - name: add.headers
       required: false
-      value_in_examples: ["x-new-header:value","x-another-header:something"]
+      value_in_examples:
+        - 'x-new-header:value'
+        - 'x-another-header:something'
       datatype: array of string elements
-      description: List of `headername:value` pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set.
+      description: 'List of `headername:value` pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set.'
     - name: add.json
       required: false
-      value_in_examples: ["new-json-key:some_value", "another-json-key:some_value"]
+      value_in_examples:
+        - 'new-json-key:some_value'
+        - 'another-json-key:some_value'
       datatype: array of string elements
-      description: List of `property:value` pairs. If and only if the property is not present, add a new property with the given value to the JSON body. Ignored if the property is already present.
+      description: 'List of `property:value` pairs. If and only if the property is not present, add a new property with the given value to the JSON body. Ignored if the property is already present.'
     - name: add.json_types
       required: false
-      value_in_examples: ["new-json-key:string", "another-json-key:boolean", "another-json-key:number"]
+      value_in_examples:
+        - 'new-json-key:string'
+        - 'another-json-key:boolean'
+        - 'another-json-key:number'
       datatype: array of string elements
       description: |
         List of JSON type names. Specify the types of the JSON values returned when adding
         a new JSON property. Each string element can be one of: boolean, number, or string.
     - name: append.headers
       required: false
-      value_in_examples: ["x-existing-header:some_value", "x-another-header:some_value"]
+      value_in_examples:
+        - 'x-existing-header:some_value'
+        - 'x-another-header:some_value'
       datatype: array of string elements
       description: |
         List of `headername:value` pairs. If the header is not set, set it with the given value. If it is
@@ -121,14 +135,13 @@ params:
     - name: append.json
       required: false
       datatype: array of string elements
-      description: List of `property:value` pairs. If the property is not present in the JSON body, add it with the given value. If it is already present, the two values (old and new) will be aggregated in an array.
+      description: 'List of `property:value` pairs. If the property is not present in the JSON body, add it with the given value. If it is already present, the two values (old and new) will be aggregated in an array.'
     - name: append.json_types
       required: false
       datatype: array of string elements
       description: |
         List of JSON type names. Specify the types of the JSON values returned when appending
         JSON properties. Each string element can be one of: boolean, number, or string.
-
 ---
 
 Note: if the value contains a `,` then the comma separated format for lists cannot be used. The array notation must be used instead.
@@ -333,7 +346,7 @@ $ curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "config.add.json_types=number"
 ```
 
-[api-object]: /gateway-oss/latest/admin-api/#api-object
-[consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
-[configuration]: /gateway-oss/latest/configuration
+[api-object]: /gateway/latest/admin-api/#api-object
+[consumer-object]: /gateway/latest/admin-api/#consumer-object
+[configuration]: /gateway/latest/reference/configuration
 

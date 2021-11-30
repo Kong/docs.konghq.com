@@ -1,7 +1,5 @@
 ---
 title: Getting Started with the Kong Dev Portal
-redirect_from:
-  - /enterprise/0.34-x/developer-portal/configuration/property-reference
 book: portal
 chapter: 3
 toc: false

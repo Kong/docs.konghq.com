@@ -1,10 +1,7 @@
 ---
-
 name: OAuth 2.0 Introspection
 publisher: Kong Inc.
 version: 1.3-x
-# internal handler version 0.5.2 as of 4-25-2021
-
 desc: Integrate Kong with a third-party OAuth 2.0 Authorization Server
 description: |
   Validate access tokens sent by developers using a third-party OAuth 2.0
@@ -18,94 +15,93 @@ description: |
   this plugin, such as restricting access by scope.
 
   [oidcplugin]: /hub/kong-inc/openid-connect/
-
 enterprise: true
 plus: true
 type: plugin
 categories:
   - authentication
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-
+  community_edition:
+    compatible: null
+  enterprise_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
+      - 0.36-x
 params:
   name: oauth2-introspection
   api_id: true
   service_id: true
   route_id: true
   konnect_examples: false
-  dbless_compatible: yes
+  dbless_compatible: 'yes'
   config:
     - name: introspection_url
       required: true
-      default:
-      value_in_examples: https://example-url.com
+      default: null
+      value_in_examples: 'https://example-url.com'
       datatype: string
       description: |
         The full URL to the third-party introspection endpoint.
     - name: authorization_value
       required: true
-      default:
+      default: null
       value_in_examples: Basic MG9hNWlpbjpPcGVuU2VzYW1l
       datatype: string
       description: |
         The value to set as the `Authorization` header when querying the introspection endpoint. This depends on the OAuth 2.0 server, but usually is the `client_id` and `client_secret` as a Base64-encoded Basic Auth string (`Basic MG9hNWl...`).
     - name: token_type_hint
       required: false
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         The `token_type_hint` value to associate to introspection requests.
     - name: ttl
       required: false
       default: 30
-      value_in_examples:
+      value_in_examples: null
       datatype: number
       description: |
         The TTL in seconds for the introspection response. Set to 0 to disable the expiration.
     - name: hide_credentials
-      required: false
-      default:
-      value_in_examples:
+      required: true
+      default: null
+      value_in_examples: null
       datatype: boolean
       description: |
         An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request.
     - name: timeout
       required: false
       default: 10000
-      value_in_examples:
+      value_in_examples: null
       datatype: integer
       description: |
         An optional timeout in milliseconds when sending data to the upstream server.
     - name: keepalive
       required: false
       default: 60000
-      value_in_examples:
+      value_in_examples: null
       datatype: integer
       description: |
         An optional value in milliseconds that defines how long an idle connection lives before being closed.
     - name: anonymous
       required: false
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure 4xx.
     - name: run_on_preflight
       required: false
       default: true
-      value_in_examples:
+      value_in_examples: null
       datatype: boolean
       description: |
         A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests. If set to `false`, then `OPTIONS` requests will always be allowed.
@@ -122,7 +118,7 @@ params:
     - name: introspect_request
       required: true
       default: false
-      value_in_examples:
+      value_in_examples: null
       datatype: boolean
       description: |
         A boolean indicating whether to forward information about the current
@@ -131,15 +127,15 @@ params:
         introspect request.
     - name: custom_introspection_headers
       required: true
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: map of string keys and string values
       description: |
         A list of custom headers to be added in the introspection request.
     - name: custom_claims_forward
       required: true
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: set of string elements
       description: |
         A list of custom claims to be forwarded from the introspection response

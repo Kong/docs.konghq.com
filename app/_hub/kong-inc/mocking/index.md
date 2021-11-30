@@ -2,8 +2,6 @@
 name: Mocking
 publisher: Kong Inc.
 version: 0.1.x
-# internal handler v 0.1.0
-
 desc: Provide mock endpoints to test your APIs against your services
 description: |
   Provide mock endpoints to test your APIs in development against your services.
@@ -24,48 +22,50 @@ description: |
   > To use this plugin in Konnect Cloud,
   [upgrade your runtimes](/konnect/runtime-manager/upgrade) to at least
   v2.4.1.1.
-
 enterprise: true
 plus: true
-type:
-  plugin
+type: plugin
 categories:
   - traffic-control
-
 kong_version_compatibility:
-    enterprise_edition:
-      compatible:
-        - 2.4.x
+  enterprise_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
 params:
   name: mocking
   service_id: true
   consumer_id: true
   route_id: true
-  protocols: ["http", "https", "grpc", "grpcs"]
-  dbless_compatible: yes
+  protocols:
+    - http
+    - https
+    - grpc
+    - grpcs
+  dbless_compatible: 'yes'
   dbless_explanation: |
     Use the `api_specification` config for DB-less or hybrid mode. Attach the spec contents directly
     instead of uploading to the Dev Portal. The API spec is configured directly in the plugin.
   examples: false
-
   config:
     - name: api_specification_filename
       required: semi
-      default:
+      default: null
       datatype: string
-      value_in_examples:
+      value_in_examples: null
       description: |
         The path and name of the specification file loaded into Kong Gateway's database. You cannot
         use this option for DB-less or hybrid mode.
     - name: api_specification
       required: semi
-      default:
+      default: null
       datatype: string
       value_in_examples: <my_spec_contents>
       description: |
         The contents of the specification file. You must use this option for hybrid or DB-less mode.
         With this configuration option, you can include the full specification as part of the configuration,
-        instead of referring to a separate file with `api_specification_filename` that lives next to the Kong Gateway (Enterprise).
+        instead of referring to a separate file with `api_specification_filename` that lives next to the Kong Gateway.
         In Kong Manager, you can copy and paste the contents of the spec directly into
         the `Config.Api Specification` text field.
     - name: random_delay
@@ -94,7 +94,6 @@ params:
         The minimum value in seconds of delay time. Set this value when `random_delay` is enabled
         and you want to adjust the default. The value must be less than the
         `max_delay_time`.
-
   extra: |
 
     Depending on the Kong Gateway deployment mode, set either the `api_specification_filename`
@@ -105,7 +104,7 @@ params:
 
 ### Enable the plugin on a service
 
-Configure this plugin on a [service](/enterprise/latest/admin-api/#service-object):
+Configure this plugin on a [service](/gateway/latest/admin-api/#service-object):
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/services/<service>/plugins \
@@ -120,7 +119,7 @@ The `<service>` is the id or name of the service that this plugin configuration 
 
 ### Enable the plugin on a route
 
-Configure this plugin on a [route](/enterprise/latest/admin-api/#route-object):
+Configure this plugin on a [route](/gateway/latest/admin-api/#route-object):
 
 ```bash
 $ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
@@ -135,7 +134,7 @@ The `<route>` is the id or name of the route that this plugin configuration will
 
 ### Enable the plugin on a consumer
 
-Configure this plugin on a [consumer](/enterprise/latest/admin-api/#consumer-object):
+Configure this plugin on a [consumer](/gateway/latest/admin-api/#consumer-object):
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
@@ -153,8 +152,8 @@ You can combine `consumer.id`, `service.id`, or `route.id` within the same reque
 ### Enable the plugin globally
 
 A plugin that is not associated to any service, route, or consumer is considered global, and
-will run on every request. Read the [Plugin Reference](/gateway-oss/latest/admin-api/#add-plugin) and the
-[Plugin Precedence](/gateway-oss/latest/admin-api/#precedence) sections for more information.
+will run on every request. Read the [Plugin Reference](/gateway/latest/admin-api/#add-plugin) and the
+[Plugin Precedence](/gateway/latest/admin-api/#precedence) sections for more information.
 
 Configure this plugin globally:
 
@@ -182,14 +181,12 @@ available on YouTube.
 Prerequisites:
 
 - {{site.ee_product_name}} environment with the Dev Portal enabled on at least one workspace. See
-  [enable the Dev Portal](/enterprise/latest/developer-portal/enable-dev-portal/) using `kong.conf`. Also refer to
+  [enable the Dev Portal](/gateway/latest/developer-portal/enable-dev-portal/) using `kong.conf`. Also refer to
   the instructions for your environment:
-  - [Docker](/enterprise/latest/deployment/installation/docker/#step-7-optional-enable-the-dev-portal)
-  - [Ubuntu](/enterprise/latest/deployment/installation/ubuntu/#optional-enable-the-dev-portal)
-  - [CentOS](/enterprise/latest/deployment/installation/centos/#optional-enable-the-dev-portal)
-  - [Amazon Linux 1](/enterprise/latest/deployment/installation/amazon-linux/#optional-enable-the-dev-portal)
-  - [Amazon Linux 2](/enterprise/latest/deployment/installation/amazon-linux-2/#optional-enable-the-dev-portal)
-  - [RHEL](/enterprise/latest/deployment/installation/rhel/#optional-enable-the-dev-portal)
+  - [Ubuntu](/gateway/latest/install-and-run/ubuntu/#enable-dev-portal)
+  - [CentOS](/gateway/latest/install-and-run/centos/#enable-dev-portal)
+  - [Amazon Linux 1 or 2](/gateway/latest/install-and-run/amazon-linux/#enable-dev-portal)
+  - [RHEL](/gateway/latest/install-and-run/rhel/#enable-dev-portal)
 
 - An Open API Specification (`yaml` or `json`) that has at least one API method with an
   embedded example response. Multiple examples within a spec are supported. See the
@@ -222,7 +219,7 @@ copy and paste the `stock-01.json` example file into the Dev Portal using Editor
 2. Name the file `stock-01.json`.
 3. Copy and paste the contents in the [example](#stock-spec) into the new file.
 
-Alternatively, you can also use the [Portal Files API](/enterprise/latest/developer-portal/files-api/#post-a-content-file)
+Alternatively, you can also use the [Portal Files API](/gateway/latest/developer-portal/files-api/#post-a-content-file)
 to upload a spec to the Dev Portal.
 
 #### Deploy a spec to Insomnia {#deploy-spec-insomnia}
@@ -245,7 +242,7 @@ The mocked responses in the example Stock spec `stock-0.1.json` are between line
 and from lines `86` to `103` for `GET stock/closing`.
 
 If applicable to your environment, replace the `host` entry in the spec with your
-IP address or URL for {{site.ee_gateway_name}}.
+IP address or URL for {{site.base_gateway}}.
 
 ```json
 {"swagger": "2.0",

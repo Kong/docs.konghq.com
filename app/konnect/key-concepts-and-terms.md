@@ -22,7 +22,7 @@ semantic versioning model).
 ### Service Implementation
 
 The connectivity logic associated with a Service version. Currently, the only
-supported implementation type is a {{site.ee_gateway_name}} proxy, which
+supported implementation type is a {{site.base_gateway}} proxy, which
 consists of proxy configuration objects such as a Service object and Route
 object.  
 
@@ -67,6 +67,6 @@ service’s consumers are routed to the older version.
 
 ### Functionality Module
 
-Functionality, delivered as a service or in a self-hosted manner, that
+Functionality, delivered as a service or in a self-managed manner, that
 leverages connectivity runtimes to provide a connectivity management capability
 (for example, Dev Portal).

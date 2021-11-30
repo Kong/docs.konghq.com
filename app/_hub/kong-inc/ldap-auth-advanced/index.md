@@ -1,11 +1,8 @@
 ---
-
 name: LDAP Authentication Advanced
 publisher: Kong Inc.
 version: 2.3.x
-# internal handler version 1.1.0
-
-desc: Secure Kong clusters, Routes, and Services with username and password protection
+desc: 'Secure Kong clusters, Routes, and Services with username and password protection'
 description: |
   Add LDAP Bind Authentication with username and password protection. The plugin
   checks for valid credentials in the `Proxy-Authorization` and `Authorization` headers
@@ -17,37 +14,40 @@ description: |
   * Ability to authenticate based on username or custom ID.
   * The ability to bind to an enterprise LDAP directory with a password.
   * The ability to obtain LDAP groups and set them in a header to the request before proxying to the upstream. This is useful for Kong Manager role mapping.
-
 enterprise: true
 plus: true
 type: plugin
 categories:
   - authentication
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-
+  community_edition:
+    compatible: null
+  enterprise_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
+      - 0.36-x
 params:
   name: ldap-auth-advanced
   service_id: true
   route_id: true
   consumer_id: false
-  protocols: ["http", "https", "gprc", "grpcs"]
-  dbless_compatible: yes
+  protocols:
+    - http
+    - https
+    - gprc
+    - grpcs
+  dbless_compatible: 'yes'
   config:
     - name: ldap_host
       required: true
-      default:
+      default: null
       value_in_examples: ldap.example.com
       datatype: string
       description: |
@@ -62,15 +62,15 @@ params:
         port for non-SSL LDAP and AD. 636 is the port required for SSL LDAP and AD. If `ldaps` is
         configured, you must use port 636.
     - name: ldap_password
-      required:
-      default:
-      value_in_examples:
+      required: null
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         The password to the LDAP server.
     - name: start_tls
       required: true
-      default: "`false`"
+      default: '`false`'
       value_in_examples: true
       datatype: boolean
       description: |
@@ -79,8 +79,8 @@ params:
         setting is disabled.
     - name: ldaps
       required: true
-      default: "`false`"
-      value_in_examples:
+      default: '`false`'
+      value_in_examples: null
       datatype: boolean
       description: |
         Set it to `true` to use `ldaps`, a secure protocol (that can be configured
@@ -89,50 +89,50 @@ params:
         `start_tls` setting is disabled.
     - name: base_dn
       required: true
-      default:
-      value_in_examples: dc=example,dc=com
+      default: null
+      value_in_examples: 'dc=example,dc=com'
       datatype: string
       description: |
         Base DN as the starting point for the search; e.g., "dc=example,dc=com".
     - name: verify_ldap_host
       required: true
-      default: "`false`"
+      default: '`false`'
       value_in_examples: false
       datatype: boolean
       description: |
         Set to `true` to authenticate LDAP server. The server certificate will be verified according to the CA certificates specified by the `lua_ssl_trusted_certificate` directive.
     - name: attribute
       required: true
-      default:
+      default: null
       value_in_examples: cn
       datatype: string
       description: |
         Attribute to be used to search the user; e.g., "cn".
     - name: cache_ttl
       required: true
-      default: "`60`"
+      default: '`60`'
       value_in_examples: 60
       datatype: number
       description: |
         Cache expiry time in seconds.
     - name: timeout
       required: false
-      default: "`10000`"
-      value_in_examples:
+      default: '`10000`'
+      value_in_examples: null
       datatype: number
       description: |
         An optional timeout in milliseconds when waiting for connection with LDAP server.
     - name: keepalive
       required: false
-      default: "`60000`"
-      value_in_examples:
+      default: '`60000`'
+      value_in_examples: null
       datatype: number
       description: |
         An optional value in milliseconds that defines how long an idle connection to LDAP server will live before being closed.
     - name: anonymous
       required: false
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         An optional string (consumer UUID) value to use as an "anonymous" consumer if authentication fails. If empty (default), the
@@ -141,7 +141,7 @@ params:
         **Note:** The value must refer to the Consumer `id` attribute that is internal to Kong, **not** its `custom_id`.
     - name: header_type
       required: false
-      default: "`ldap`"
+      default: '`ldap`'
       value_in_examples: ldap
       datatype: string
       description: |
@@ -150,8 +150,8 @@ params:
         `Authorization: basic base64(username:password)`. Note that `header_type` can take any string, not just `"ldap"` and `"basic"`.
     - name: consumer_optional
       required: false
-      default: "`false`"
-      value_in_examples:
+      default: '`false`'
+      value_in_examples: null
       datatype: boolean
       description: |
         Whether consumer mapping is optional. If `consumer_optional=true`, the plugin will not attempt to associate a consumer with the
@@ -162,58 +162,57 @@ params:
     - name: consumer_by
       required: false
       default: '`[ "username", "custom_id" ]`'
-      value_in_examples:
+      value_in_examples: null
       datatype: array of string elements
       description: |
         Whether to authenticate consumers based on `username`, `custom_id`, or both.
     - name: hide_credentials
       required: true
-      default: "`false`"
-      value_in_examples:
+      default: '`false`'
+      value_in_examples: null
       datatype: boolean
       description: |
         An optional boolean value telling the plugin to hide the credential to the upstream server. It will be removed by Kong before proxying the request.
     - name: bind_dn
       required: false
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         The DN to bind to. Used to perform LDAP search of user. This `bind_dn`
         should have permissions to search for the user being authenticated.
     - name: group_base_dn
-      required:
-      default: "matches `conf.base_dn`"
-      value_in_examples:
+      required: null
+      default: matches `conf.base_dn`
+      value_in_examples: null
       datatype: string
       description: |
         Sets a distinguished name (DN) for the entry where LDAP searches for groups begin. This field is case-insensitive.
     - name: group_name_attribute
-      required:
-      default: "matches `conf.attribute`"
-      value_in_examples:
+      required: null
+      default: matches `conf.attribute`
+      value_in_examples: null
       datatype: string
       description: |
         Sets the attribute holding the name of a group, typically
         called `name` (in Active Directory) or `cn` (in OpenLDAP). This
         field is case-insensitive.
     - name: group_member_attribute
-      required:
-      default: "`memberOf`"
-      value_in_examples:
+      required: null
+      default: '`memberOf`'
+      value_in_examples: null
       datatype: string
       description: |
         Sets the attribute holding the members of the LDAP group. This field is case-sensitive.
     - name: log_search_results
       required: false
-      default: "`false`"
-      value_in_examples:
+      default: '`false`'
+      value_in_examples: null
       datatype: boolean
       description: |
         Displays all the LDAP search results received from the LDAP
         server for debugging purposes. Not recommended to be enabled in
         a production environment.
-
 ---
 
 ## Usage
@@ -269,9 +268,9 @@ $ ldapsearch -x -h "<config.ldap_host>" -D "<config.bind_dn>" -b
 "<config.attribute>=<username><config.base_dn>" -w "<config.ldap_password>"
 ```
 
-[api-object]: /gateway-oss/latest/admin-api/#api-object
-[configuration]: /gateway-oss/latest/configuration
-[consumer-object]: /gateway-oss/latest/admin-api/#consumer-object
+[api-object]: /gateway/latest/admin-api/#api-object
+[configuration]: /gateway/latest/reference/configuration
+[consumer-object]: /gateway/latest/admin-api/#consumer-object
 
 
 

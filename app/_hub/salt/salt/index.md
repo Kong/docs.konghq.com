@@ -71,7 +71,7 @@ Once you have obtained the `.rock` file from your Salt Security distributor, ins
 $ luarocks install kong-plugin-salt-agent-0.1.0-1.all.rock
 ```
 
-If you need help with installation, see the documentation on [Installing a Plugin](/gateway-oss/latest/plugin-development/distribution/).
+If you need help with installation, see the documentation on [Installing a Plugin](/gateway/latest/plugin-development/distribution/).
 
 ### Configure the plugin
 

@@ -19,7 +19,7 @@
         - text: Amazon Linux
           url: /deployment/installation/amazon-linux
     - text: Changelog
-      url: /enterprise/changelog
+      url: /gateway/changelog
       absolute_url: true
     - text: Migrating to 0.36
       url: /deployment/migrations

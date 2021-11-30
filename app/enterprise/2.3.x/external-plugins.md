@@ -1,9 +1,5 @@
 ---
 title: Plugins in Go and Other Languages
-redirect_from:
-    /enterprise/latest/go
-    /enterprise/2.3.x/go
-
 ---
 
 ## Introduction

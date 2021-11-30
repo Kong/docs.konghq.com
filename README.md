@@ -13,14 +13,14 @@ Here are some things to know before you get started:
 * **We need more help in some areas**. We'd especially love some help with [plugin](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub) documentation.
 
 * **Some of our docs are generated**.
-    * [Admin API](https://docs.konghq.com/gateway-oss/)
-    * [Configuration reference](https://docs.konghq.com/gateway-oss/latest/configuration/)
-    * [CLI reference](https://docs.konghq.com/gateway-oss/latest/cli/)
-    * [Upgrade guide](https://docs.konghq.com/gateway-oss/latest/upgrading/)
+    * [Admin API](https://docs.konghq.com/gateway/latest/admin-api/)
+    * [CLI reference](https://docs.konghq.com/gateway/latest/reference/cli/)
+    * [OSS upgrade guide](https://docs.konghq.com/gateway/latest/install-and-run/upgrading-oss/)
+    * [PDK reference](https://docs.konghq.com/gateway/latest/pdk)
 
 All pull requests for these docs should be opened on the [Kong/kong](https://github.com/Kong/kong) repository. Fork the repository and submit PRs from your fork.
 
-For [Gateway Enterprise configuration reference](https://docs.konghq.com/enterprise/latest/property-reference/) and [PDK reference](https://docs.konghq.com/gateway-oss/latest/pdk/) documentation, open an issue on this repo and we'll update the docs.
+For [Gateway Enterprise configuration reference](https://docs.konghq.com/gateway/latest/reference/configuration), open an issue on this repo and we'll update the docs.
 
 * **Community is a priority for us**. Before submitting an issue or pull request, make sure to review our [Contributing Guide](https://docs.konghq.com/contributing/).
 
@@ -36,20 +36,23 @@ For anything other than minor changes, clone the repository onto your local mach
 
 ### Prerequisites
 
-- [gulp](https://gulpjs.com/docs/en/getting-started/quick-start/) installed globally
+* [gulp](https://gulpjs.com/docs/en/getting-started/quick-start/) installed globally
 
 Install dependencies:
-```
+
+```bash
 make install
 ```
 
 Run the project:
-```
+
+```bash
 make run
 ```
 
 If you have issues, run:
-```
+
+```bash
 make clean
 ```
 
@@ -58,22 +61,23 @@ make clean
 
 ### Prerequisites
 
-- [node and npm](https://www.npmjs.com/get-npm)
-- [yarn](https://classic.yarnpkg.com)
-- [gulp](https://gulpjs.com/docs/en/getting-started/quick-start/)
-- [Bundler](https://bundler.io/) (< 2.0.0)
-- [Ruby](https://www.ruby-lang.org) (> 2.6)
-- [Python](https://www.python.org) (>= 2.7.X, < 3)
-
+* [node and npm](https://www.npmjs.com/get-npm)
+* [yarn](https://classic.yarnpkg.com)
+* [gulp](https://gulpjs.com/docs/en/getting-started/quick-start/)
+* [Bundler](https://bundler.io/) (< 2.0.0)
+* [Ruby](https://www.ruby-lang.org) (> 2.6)
+* [Python](https://www.python.org) (>= 2.7.X, < 3)
 
 Install dependencies:
-```
+
+```bash
 gem install bundler
 npm install
 ```
 
 Run the project:
-```
+
+```bash
 npm start
 ```
 
@@ -101,13 +105,13 @@ The PDK docs, Admin API docs, `cli.md` and `configuration.md` for each release a
 
 To generate them, go to the `Kong/kong` repo and run:
 
-```
+```bash
 scripts/autodoc <docs-folder> <kong-version>
 ```
 
 For example:
 
-```
+```bash
 cd /path/to/kong
 scripts/autodoc ../docs.konghq.com 2.4.x
 ```
@@ -122,7 +126,7 @@ pull request, and review the changes.
 You usually want to open a PR against a `release/*` branch. For example, in the
 example above the branch was `release/2.4`.
 
-```
+```bash
 cd docs.konghq.com
 git fetch --all
 git checkout release/2.4
@@ -142,7 +146,7 @@ Tests for this site are written using `rspec` and `capybara` with the `apparitio
 
 To run the tests, you must first build the site by running `make build` before running `make rspec`.
 
-Many of the tests are smoke tests to check issues that occurred whilst adding caching to the site, such as ensuring that the side navigation isn't cached.
+Many of the tests are smoke tests to check issues that occurred while adding caching to the site, such as ensuring that the side navigation isn't cached.
 
 To add your own tests, look in the `spec` directory and use `home_spec.rb` as a sample. You specify which URL to visit and then a CSS selector to search for, before asserting that the contents match what you expect.
 
@@ -153,7 +157,7 @@ it "has the 'Welcome to Kong' header" do
 end
 ```
 
-This test framework can also be used to test behavior added with JavaScript, but we do not have any examples at this time.
+This test framework can also be used to test behavior added with JavaScript, but we don't have any examples at this time.
 
 ## Continuous Integration
 
@@ -169,7 +173,7 @@ successful.
 
 In the following example, we can see that `deployment-options-k8s.md` uses a `page.*` variable, and that the include is used in the `kong-for-kubernetes.md` file:
 
-```
+```bash
 ❯ ./include-check.sh
 Page variables must not be used in includes.
 Pass them in via include_cached instead
@@ -184,32 +188,31 @@ Here are sample contents for those files:
 
 In `kong-for-kubernetes.md`:
 
-```
-{% include_cached app/_includes/md/2.5.x/deployment-options-k8s.md }
+```md
+{% include_cached app/_includes/md/2.5.x/deployment-options-k8s.md %}
 ```
 
 In `deployment-options-k8s`:
 
-```
+```md
 This is an include that uses {{ page.url }}
 ```
 
 To resolve this, the two files should be updated to pass in the URL when `include_cached` is called:
 
-
 In `kong-for-kubernetes.md`:
 
-```
-{% include_cached app/_includes/md/2.5.x/deployment-options-k8s.md url=page.url }
+```md
+{% include_cached app/_includes/md/2.5.x/deployment-options-k8s.md url=page.url %}
 ```
 
 In `deployment-options-k8s`:
 
-```
+```md
 This is an include that uses {{ include.url }}
 ```
 
 The `include_cached` gem uses all passed parameters as the cache lookup key, and this ensures that all required permutations of an include file will be generated.
 
 For guidelines on how to write includes and call them in target topics, see the
-[Kong Docs contributing guidelines](https://docs.konghq.com/contributing/includes). 
+[Kong Docs contributing guidelines](https://docs.konghq.com/contributing/includes).

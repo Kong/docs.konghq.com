@@ -147,4 +147,4 @@ This basic configuration permits any user with a valid Google account to access
 the dummy service.
 For setting up more complicated authentication and authorization flows,
 please read
-[plugin docs](/enterprise/latest/plugins/oidc-google/).
+[plugin docs](/gateway/latest/configure/auth/oidc-google/).

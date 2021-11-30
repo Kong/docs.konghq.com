@@ -19,26 +19,29 @@ describe "sidebar", type: :feature, js: true do
 
     # If the test is failing, make sure this is the latest version
     latest_version = "2.6.x"
+    # Different option for a latest version, as gateway is split as of 2.6.x
+    # and doesn't work in this way
+    latest_version_deck = "1.8.x"
 
     it "does not show on the latest version" do
-      visit "/enterprise/#{latest_version}/deployment/installation/docker/"
-      expect(page).not_to have_selector(".alert.alert-warning a", visible: true)
+      visit "/gateway/#{latest_version}/install-and-run/rhel/"
+      expect(page).not_to have_selector(".important a", visible: true)
     end
 
     it "links to the same page" do
-      visit "/enterprise/2.1.x/deployment/installation/docker/"
-      expect(first('.alert.alert-warning a')[:href]).to end_with("/enterprise/#{latest_version}/deployment/installation/docker/")
+      visit "/deck/1.7.x/installation/"
+      expect(first('.important a')[:href]).to end_with("/deck/#{latest_version_deck}/installation/")
     end
 
     it "links to the root when the page no longer exists" do
       visit "/enterprise/0.31-x/postgresql-redhat/"
-      expect(first('.alert.alert-warning a')[:href]).to end_with("/enterprise/")
+      expect(first('.important a')[:href]).to end_with("/gateway/")
     end
   end
 
   describe "Gateway OSS", type: :feature, js: true do
     it "has the correct number of sidebar sections" do
-      visit "/gateway-oss/"
+      visit "/gateway-oss/2.5.x"
       expect(page).to have_selector('.accordion-container > .accordion-item', count: 6)
     end
   end
@@ -52,7 +55,7 @@ describe "sidebar", type: :feature, js: true do
 
   describe "Gateway Enterprise", type: :feature, js: true do
     it "has the correct number of sidebar sections" do
-      visit "/enterprise/"
+      visit "/enterprise/2.5.x"
       expect(page).to have_selector('.accordion-container > .accordion-item', count: 11)
     end
   end

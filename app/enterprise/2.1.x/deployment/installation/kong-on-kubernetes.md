@@ -1,6 +1,5 @@
 ---
 title: Installing Kong Enterprise on Kubernetes
-redirect_from: "/enteprise/2.1.x/kong-for-kubernetes/install-on-kubernetes"
 ---
 
 ## Introduction
@@ -232,7 +231,7 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     This may take some time.
 
     <div class="alert alert-warning">
-   
+
     <strong>Important:</strong>
     If you are running Postgres as a sub-chart and having problems with connecting to
     the database, delete Postgres' persistent volumes in your Kubernetes cluster, then
@@ -240,7 +239,7 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     </div>
 
     <div class="alert alert-warning">
-   
+
     <strong>Important:</strong>
     If you have already installed the CRDs, run the command above with the following flag: <code>--set ingressController.installCRDs=false</code>.
     </div>
@@ -274,7 +273,7 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     $ kubectl get svc -n kong my-kong-kong-admin --output=jsonpath='{.status.loadBalancer.ingress[0].ip}'
     ```
     <div class="alert alert-warning">
-   
+
     <strong>Important:</strong> The command above requires the Kong Admin API. If you
     have not set <code>admin.enabled</code> to <code>true</code> in your
     <code>values.yaml</code>, then this command will not work.

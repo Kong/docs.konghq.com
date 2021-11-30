@@ -11,7 +11,7 @@ page.kong_latest.release %}
 <div class="page v2 {{ page.class }}" data-url={{ page.url }}>
 
   <div class="container">
-    {% include_cached docs-sidebar.html url=page.url kong_version=page.kong_version edition=page.edition no_version=page.no_version has_version=page.has_version nav_items=page.nav_items edition=page.edition kong_version=page.kong_version kong_latest=page.kong_latest kong_versions=page.kong_versions badge=page.badge %}
+    {% include_cached docs-sidebar.html url=page.url kong_version=page.kong_version edition=page.edition no_version=page.no_version has_version=page.has_version nav_items=page.nav_items edition=page.edition kong_version=page.kong_version kong_latest=page.kong_latest kong_versions=page.kong_versions badge=page.badge version_index=page.version_index %}
 
     {% if page.toc == true or page.toc != false and filename != "index.md" and page.is_homepage != true %}
       <aside class="docs-toc">
@@ -52,6 +52,7 @@ page.kong_latest.release %}
                 {% elsif page.edition == 'deck' %}decK
               {% elsif page.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
                 {% elsif page.edition == 'gateway-oss' %}{{site.ce_product_name}}
+                {% elsif page.edition == 'gateway' %}Kong Gateway
                 {% elsif page.edition == 'getting-started-guide' %}Getting Started with Kong Gateway
               {% elsif page.edition == 'contributing' %}Contribution guidelines
               {% endif %}
@@ -59,7 +60,7 @@ page.kong_latest.release %}
             {% unless page.no_version == true %}
               <div class="content-version">
                 {{page.kong_version}}
-                  {% if page.kong_version == page.kong_latest.release %}
+                  {% if page.kong_version == page.kong_latest.release and page.edition != 'gateway-oss' and page.edition != 'enterprise' and page.edition != 'getting-started-guide' %}
                   <span>(latest)</span>
                 {% endif %}
               </div>
@@ -68,20 +69,20 @@ page.kong_latest.release %}
               {% include_cached breadcrumbs.html edition=page.edition no_version=page.no_version has_version=page.has_version kong_version=page.kong_version url=page.url dir=page.dir%}
             {% endunless %}
           </div>
-          {% if page.edition == 'gateway-oss' %}
-            <div class="alert alert-ee">
-            Maybe you were looking for the <a href="/enterprise">
-                <strong>{{site.ee_product_name}} documentation</strong>
-              </a>
-            instead?
-          </div>
+          {% if page.edition == 'gateway-oss' or page.edition == 'enterprise' or page.edition == 'getting-started-guide' %}
+          <blockquote class="important">
+              You are browsing documentation for an outdated version. The <a href="/gateway/">latest {{site.base_gateway}} documentation </a> is
+              now available as a combined doc set for Kong Gateway Enterprise and open-source (OSS).
+          </blockquote>
           {% endif %}
             {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
-              <div class="alert alert-warning">
+            {% unless page.edition == 'gateway-oss' or page.edition == 'enterprise' or page.edition == 'getting-started-guide' %}
+              <blockquote class="important">
               You are browsing documentation for an outdated version. See the
-              <a href="{% if latest_page_exists == 'true' %}{{latest_page_url}}{% elsif page.edition == 'gateway-oss'%}/gateway-oss/{% elsif page.edition == 'enterprise'%}/enterprise/{% elsif page.edition == 'mesh'%}/mesh/{% elsif page.edition == 'kubernetes-ingress-controller/'%}/kubernetes-ingress-controller/{% else %}/{% endif %}">
+              <a href="{% if latest_page_exists == 'true' %}{{latest_page_url}}{% elsif page.edition == 'gateway' %}/gateway/{% elsif page.edition == 'mesh'%}/mesh/{% elsif page.edition == 'kubernetes-ingress-controller/'%}/kubernetes-ingress-controller/{% else %}/{% endif %}">
                 latest documentation here</a>.
-              </div>
+              </blockquote>
+            {% endunless %}
             {% endif %}
 
             <h1 tabindex="-1" id="main" class="page-content-title"
@@ -90,6 +91,7 @@ page.kong_latest.release %}
               <a href="https://konghq.com/pricing" {%
                 if page.badge == 'plus' %}class="badge plus" aria-label="available with plus subscription"{% endif %}{%
                 if page.badge == 'enterprise' %}class="badge enterprise" aria-label="available with enterprise subscription"{% endif %}{%
+                if page.badge == 'free' %}class="badge free" aria-label="available in Kong Gateway free mode"{% endif %}{%
                 if page.badge == 'oss' %}class="badge oss" aria-label="open-source only"{% endif %}>
               </a>
               {% endif %}

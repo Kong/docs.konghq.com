@@ -7,8 +7,7 @@ The product name variables are defined in the site config file, `jekyll.yml`:
 
 ```yaml
 # product name vars
-ee_gateway_name: Kong Gateway
-ee_product_name: Kong Gateway (Enterprise)
+ee_product_name: Kong Gateway
 ce_product_name: Kong Gateway (OSS)
 base_gateway: Kong Gateway
 mesh_product_name: Kong Mesh
@@ -45,9 +44,9 @@ much of the page content is generated out of a plugin’s front matter.
 Variable | Output | Definition | Syntax
 ---------|--------|------------|-------
 base_gateway | {{site.base_gateway}} | The base API gateway. Use this when talking about a feature that is available for both Community and Enterprise. | {% raw %}`{{site.base_gateway}}`{% endraw %}
-ee_product_name | {{site.ee_product_name}} | The whole self-hosted Enterprise Gateway package, including modules and peripherals, eg Kong Manager, Dev Portal, Vitals, etc. | {% raw %}`{{site.ee_product_name}}`{% endraw %}
+ee_product_name | {{site.ee_product_name}} | The whole self-managed Enterprise Gateway package, including modules and peripherals, eg Kong Manager, Dev Portal, Vitals, etc. | {% raw %}`{{site.ee_product_name}}`{% endraw %}
 ce_product_name | {{site.ce_product_name}} | Kong's open-source API gateway. | {% raw %}`{{site.ce_product_name}}`{% endraw %}
-konnect_product_name | {{site.konnect_product_name}} | The full name of the Kong Konnect platform, cloud and self-hosted. | {% raw %}`{{site.konnect_product_name}}`{% endraw %}
+konnect_product_name | {{site.konnect_product_name}} | The full name of the Kong Konnect platform, both cloud and self-managed. | {% raw %}`{{site.konnect_product_name}}`{% endraw %}
 konnect_short_name | {{site.konnect_short_name}} | The short name of the SaaS Konnect control plane. | {% raw %}`{{site.konnect_short_name}}`{% endraw %}
 konnect_saas | {{site.konnect_saas}} | The full name of the SaaS Konnect control plane.  | {% raw %}`{{site.konnect_saas}}`{% endraw %}
 company_name | {{site.company_name}} | The name of the company. <br> Do not use “Kong” without a modifier to refer to Kong Gateway. Kong refers only to the company. | {% raw %}{{site.company_name}}{% endraw %}

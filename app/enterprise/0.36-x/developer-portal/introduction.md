@@ -41,10 +41,10 @@ toc: false
     <a href="/enterprise/{{page.kong_version}}/developer-portal/faq">Learn More &rarr;</a>
   </div>
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/enterprise/changelog/#034">Changelog</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/gateway/changelog/#034">Changelog</a></h3>
     <p>Details of the changes to each version of Kong Enterprise 
     Edition Dev Portal.</p>
-    <a href="/enterprise/changelog/#304">See changelog &rarr;</a>
+    <a href="/gateway/changelog/#304">See changelog &rarr;</a>
   </div>
 
 

@@ -1,73 +1,70 @@
 ---
-
 name: Vault Authentication
 publisher: Kong Inc.
 version: 2.1.x
-
 desc: Add Vault authentication to your Services
 description: |
   Add authentication to a Service or Route with an access token and secret token. Credential tokens are stored securely via Vault. Credential lifecyles can be managed through the Kong Admin API, or independently via Vault.
-
 enterprise: true
 cloud: false
 type: plugin
 categories:
   - authentication
-
 kong_version_compatibility:
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-
+  enterprise_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
+      - 0.36-x
 params:
   name: vault-auth
   service_id: true
   route_id: true
   consumer_id: false
-  dbless_compatible: yes
+  dbless_compatible: 'yes'
   manager_examples: false
   konnect_examples: false
   config:
     - name: access_token_name
       required: true
-      default: "`access_token`"
+      default: '`access_token`'
       datatype: array of string elements
       description: |
         Describes an array of comma-separated parameter names where the plugin looks for an access token. The client must send the access token in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name. The key names can only contain [a-z], [A-Z], [0-9], [_], and [-].
     - name: vault.id
       required: true
-      default:
-      value_in_examples: "<UUID>"
+      default: null
+      value_in_examples: <UUID>
       datatype: foreign UUID
       description: |
         A reference to an existing `vault` object within the database. `vault` entities define the connection and authentication parameters used to connect to a Vault HTTP(S) API.
     - name: secret_token_name
       required: true
-      default: "`secret_token`"
+      default: '`secret_token`'
       datatype: array of string elements
       description: |
         Describes an array of comma-separated parameter names where the plugin looks for a secret token. The client must send the secret in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name. The key names can only contain [a-z], [A-Z], [0-9], [_], and [-].
     - name: tokens_in_body
       required: true
-      default: "`false`"
+      default: '`false`'
       datatype: boolean
       description: |
         If enabled, the plugin will read the request body (if said request has one and its MIME type is supported) and try to find the key in it. Supported MIME types are `application/www-form-urlencoded`, `application/json`, and `multipart/form-data`.
     - name: hide_credentials
       required: true
-      default: "`false`"
+      default: '`false`'
       datatype: boolean
       description: |
         An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`, the plugin will strip the credential from the request (i.e. the header or querystring containing the key) before proxying it.
     - name: anonymous
       required: false
-      default:
+      default: null
       datatype: string
       description: |
         An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`.
@@ -75,11 +72,10 @@ params:
         **Note:** This value must refer to the Consumer `id` attribute that is internal to Kong Gateway, and **not** its `custom_id`.
     - name: run_on_preflight
       required: true
-      default: "`true`"
+      default: '`true`'
       datatype: boolean
       description: |
         A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests. If set to `false`, then `OPTIONS` requests will always be allowed.
-
 ---
 
 ## Usage
@@ -275,5 +271,5 @@ $ vault write kong-auth/foo - <<EOF
 EOF
 ```
 
-[consumer-object]: https://docs.konghq.com/enterprise/1.3-x/admin-api/#consumer-object
+[consumer-object]: https://docs.konghq.com/gateway/latest/admin-api/#consumer-object
 [acl-associating]: https://docs.konghq.com/hub/kong-inc/acl/#associating-consumers

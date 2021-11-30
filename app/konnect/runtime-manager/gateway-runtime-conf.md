@@ -30,7 +30,7 @@ certificate, the private key, and the remaining configuration details on the
 **Configure Runtime** page.
 
 1. Find the documentation for
-[your platform](/enterprise/latest/deployment/installation),
+[your platform](/gateway/latest/install-and-run),
 and follow the instructions in Steps 1 and 2 **only** to download and install
 {{site.base_gateway}} {{site.data.kong_latest_ee.version}}.
 

@@ -89,7 +89,7 @@ functioning the same as before the restart.
 ## Backups and alternative options
 
 **Can I create a backup configuration to use in case the cache fails?**
-: You can set the [`declarative_config`](/enterprise/latest/property-reference/#declarative_config)
+: You can set the [`declarative_config`](/gateway/latest/reference/configuration/#declarative_config)
 option to load a fallback YAML config.
 
 **Can I change a data plane node's configuration when it's disconnected from the control plane?**
@@ -101,5 +101,5 @@ time the control plane connects to the node.
     plane node with a working connection and overwrite the cache file on disk
     for the disconnected node.
     * Remove the cache file, then start the data plane node with
-    [`declarative_config`](/enterprise/latest/property-reference/#declarative_config)
+    [`declarative_config`](/gateway/latest/reference/configuration/#declarative_config)
      to load a fallback YAML config.

@@ -2,36 +2,34 @@
 name: Request Validator
 publisher: Kong Inc.
 version: 1.3-x
-
 desc: Validates requests before they reach the Upstream service
 description: |
   Validate requests before they reach their Upstream service. Supports validating
   the schema of the body and the parameters of the request using either Kong's own
   schema validator (body only) or a JSON Schema Draft 4-compliant validator.
-
 enterprise: true
 plus: true
 type: plugin
 categories:
   - traffic-control
-
 kong_version_compatibility:
-    enterprise_edition:
-      compatible:
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-
+  enterprise_edition:
+    compatible:
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
+      - 0.36-x
 params:
   name: request-validator
   service_id: true
   route_id: true
   consumer_id: true
-  dbless_compatible: yes
+  dbless_compatible: 'yes'
   config:
     - name: body_schema
       required: semi
@@ -40,44 +38,39 @@ params:
       description: |
         The request body schema specification. One of `body_schema` or `parameter_schema`
         must be specified.
-
     - name: allowed_content_types
       required: true
-      default: ["application/json"]
-      value_in_examples:
+      default:
+        - application/json
+      value_in_examples: null
       datatype: Set of string elements
       description: |
         List of allowed content types. <br>**Note:** Body validation is only
         done for `application/json` and skipped for any other allowed content types.
-
     - name: version
       required: true
-      default: "kong"
-      value_in_examples:
+      default: kong
+      value_in_examples: null
       datatype: string
       description: |
         Which validator to use. Supported values are `kong` (default) for using Kong's own schema
         validator, or `draft4` for using a JSON Schema Draft 4-compliant validator.
-
     - name: parameter_schema
       required: semi
-      value_in_examples:
+      value_in_examples: null
       datatype: Array of record elements
       description: |
         Array of parameter validator specifications. For details and examples, see
         [Parameter Schema Definition](#parameter-schema-definition). One of `body_schema` or `parameter_schema`
         must be specified.
-
-
     - name: verbose_response
       required: true
       default: false
-      value_in_examples:
+      value_in_examples: null
       datatype: boolean
       description: |
         If enabled, the plugin returns more verbose and detailed validation errors
         (for example, the name of the required field that is missing).
-
 ---
 
 ## Examples
@@ -495,7 +488,7 @@ In this example, use the plugin to validate a request's path parameter.
 
 The Kong schema validation format is based on the plugin schemas.
 For more information, see the Kong plugin docs on
-[storing custom entities](/gateway-oss/latest/plugin-development/custom-entities/#defining-a-schema).
+[storing custom entities](/gateway/latest/plugin-development/custom-entities/#defining-a-schema).
 
 ---
 

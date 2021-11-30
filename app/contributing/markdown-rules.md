@@ -98,8 +98,8 @@ the nav file would be `/overview`, and you would add it to the file
 
 ### Add redirects
 
-If you're making an organization change like updating page nesting or renaming a top-level 
-menu item, you'll need to set up a redirect. Redirects prevent `404` pages, and 
+If you're making an organization change like updating page nesting or renaming a top-level
+menu item, you'll need to set up a redirect. Redirects prevent `404` pages, and
 redirect users automatically to the new content location.
 
 1. Navigate to `app` then `_redirects`.
@@ -110,9 +110,9 @@ redirect users automatically to the new content location.
 ```bash
 \\ Start the link with what appears after https://docs.konghq.com/.
 
-\\ In the following example, we created a new menu section called Applications 
+\\ In the following example, we created a new menu section called Applications
 in the Dev Portal section of the docs. And we moved the dev-apps page to our
-new menu section. 
+new menu section.
 
 /konnect/dev-portal/developers/dev-apps                    /konnect/dev-portal/applications/dev-apps
 ```
@@ -224,7 +224,7 @@ port: 80 </code></pre></div>
 
 If your topic provides instructions for two or more methods of completing a
 task, you can nest them inside `navtabs`. For example,
-[this topic](https://docs.konghq.com/getting-started-guide/latest/expose-services/#add-a-service)
+[this topic](https://docs.konghq.com/gateway/latest/get-started/comprehensive/expose-services/#add-a-service)
 tabs between the Admin API and Kong Manager methods for adding a Service.
 
 {:.important}
