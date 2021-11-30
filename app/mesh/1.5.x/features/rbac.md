@@ -315,7 +315,7 @@ For example, to restrict the access for a user to modify TrafficPermission for b
 
 The `subjects` in `AccessRoleBinding` are compatible with Kubernetes users and groups.
 {{site.mesh_product_name}} RBAC on Kubernetes is implemented using Kubernetes Webhook when applying resources. This means you can only use Kubernetes users and groups for `CREATE`, `DELETE` and `UPDATE` access.
-`GENERATE_DATAPLANE_TOKEN`, `GENERATE_USER_TOKEN`, `GENERATE_ZONE_CP_TOKEN` are used used when interacting with {{site.mesh_product_name}} API Server, in this case you need to use the user token.
+`GENERATE_DATAPLANE_TOKEN`, `GENERATE_USER_TOKEN`, `GENERATE_ZONE_CP_TOKEN` are used when interacting with {{site.mesh_product_name}} API Server, in this case you need to use the user token.
 
 ## Default
 
