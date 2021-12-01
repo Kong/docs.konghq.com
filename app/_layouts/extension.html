@@ -170,21 +170,22 @@ breadcrumbs:
       {% if page.type == "plugin" and page.params %}
         <h2 id="configuration">Configuration Reference</h2>
 
-        {% if page.params.dbless_compatible == true %}
+        {% if page.params.dbless_compatible == "yes" %}
           <p>This plugin is <strong>compatible</strong> with DB-less mode.</p>
         {% elsif page.params.dbless_compatible == "partially" %}
           <p>This plugin is <strong>partially compatible</strong> with DB-less mode.</p>
         {% elsif page.params.dbless_compatible != nil %}
           <p>This plugin is <strong>not compatible</strong> with DB-less mode.</p>
         {% endif %}
-        {% if page.params.dbless_compatible == "partially" or page.params.dbless_compatible == true %}
-          <p>In DB-less mode, you configure {{site.base_gateway}} declaratively.
+        {% if page.params.dbless_compatible == "partially" or page.params.dbless_compatible == "yes" %}
+          <p>In DB-less mode, you configure {{site.base_gateway}}
+            <a href="/gateway/latest/reference/db-less-and-declarative-config">declaratively</a>.
             Therefore, the Admin API is mostly read-only. The only tasks it can perform are all
             related to handling the declarative config, including: </p>
             <ul>
-              <li>setting a target's health status in the load balancer</li>
-              <li>validating configurations against schemas</li>
-              <li>uploading the declarative configuration using the <code>/config</code> endpoint</li>
+              <li>Setting a target's health status in the load balancer</li>
+              <li>Validating configurations against schemas</li>
+              <li>Uploading the declarative configuration using the <code>/config</code> endpoint</li>
             </ul>
         {% endif %}
 
@@ -293,7 +294,7 @@ breadcrumbs:
             </ul>
           </td>
         </tr>
-        {% unless page.enterprise or page.params.dbless_compatible == nil %}
+        {% unless page.params.dbless_compatible == nil %}
         <tr>
           <td>DB-less compatible?</td>
           <td>
