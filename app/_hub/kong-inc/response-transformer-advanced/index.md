@@ -51,6 +51,7 @@ params:
   route_id: true
   consumer_id: true
   konnect_examples: false
+  dbless_compatible: 'yes'
   config:
     - name: remove.headers
       required: false

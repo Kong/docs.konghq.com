@@ -31,32 +31,34 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
-  protocols: ["http", "https"]
-  dbless_compatible: yes
+  protocols:
+    - http
+    - https
+  dbless_compatible: 'yes'
   config:
     - name: opa_protocol
       required: false
       datatype: string
-      default: "`http`"
+      default: '`http`'
       description: |
         The protocol to use when talking to Open Policy Agent (OPA) server. Allowed protocols are `http` and `https`.
     - name: opa_host
       required: false
       value_in_examples: localhost
       datatype: string
-      default: "`localhost`"
+      default: '`localhost`'
       description: |
         The DNS name or IP address of the OPA server.
     - name: opa_port
       required: false
       value_in_examples: 8181
       datatype: integer
-      default: "`8181`"
+      default: '`8181`'
       description: |
         The port of the OPA server.
     - name: opa_path
       required: true
-      value_in_examples: </v1/data/example/kong/allowBoolean>
+      value_in_examples: '</v1/data/example/kong/allowBoolean>'
       datatype: string
       description: |
         The HTTP path to use when making a request to the OPA server. This is usually the path to the policy and rule to evaluate, prefixed with `/v1/data/`. For example,
