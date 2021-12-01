@@ -3,9 +3,6 @@ title: Set Up SSO with Okta
 no_version: true
 badge: enterprise
 ---
-{:.warning .no-icon}
-> This feature is in **beta** with limited availability and support.
-It should not be deployed in a production environment.
 
 As an alternative to {{site.konnect_saas}}’s native authentication, you can set
 up single sign-on (SSO) access to {{site.konnect_short_name}} through
@@ -34,7 +31,7 @@ ready to manage authentication and authorization through Okta for this
 
 To set up Okta single sign-on (SSO) for {{site.konnect_short_name}}, you need
 access to an Okta admin account and a
-[{{site.konnect_short_name}} admin account](/konnect/org-management/users-and-roles), 
+[{{site.konnect_short_name}} admin account](/konnect/org-management/users-and-roles),
 which you will access concurrently.
 
 Here are the steps you need to complete, in both Okta and
