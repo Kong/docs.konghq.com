@@ -26,16 +26,6 @@ kong_version_compatibility:
     enterprise_edition:
       compatible:
         - 2.7.x
-        - 2.6.x
-        - 2.5.x
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-
 
 params:
   name: rate-limiting-advanced
