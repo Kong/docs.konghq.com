@@ -1,8 +1,7 @@
 ---
 title: Immunity Model Training
+badge: enterprise
 ---
-
-## Introduction
 
 Immunity automatically starts training its models once it is up and running and receiving data. Immunity creates a model for every unique endpoint + method combination it sees in incoming traffic. For example, if you have an endpoint [www.test-website.com/buy](http://www.test-website.com/buy) and traffic comes in with both GET and POST requests for that endpoint, Immunity will create two models: one for the endpoint + GET traffic and one for the endpoint + POST traffic.
 

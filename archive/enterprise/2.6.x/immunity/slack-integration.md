@@ -1,9 +1,7 @@
 ---
 title: Alert Slack Integration
+badge: enterprise
 ---
-
-
-## Introduction
 
 Immunity can send Slack notifications for unusual traffic, using a Slack webhook to post messages to a Slack workspace. To obtain a webhook URL, use the steps in this topic.
 
