@@ -11,11 +11,6 @@ description: |
   form the hostname for the upstream API dynamically to route it to a particular 
   server or data center without making any changes in Kong Route or Service 
   configuration.
-  This plugin extracts the key identifier from the incoming request and following are the supported parameters -
-  * Header param
-  * Query param
-  * Path param
-  * Body param
   
   
 support_url: https://github.com/anup-krai/kong-plugin-set-dynamic-target-host/issues
