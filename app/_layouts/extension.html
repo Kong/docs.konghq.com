@@ -123,11 +123,11 @@ breadcrumbs:
 
 <div class="page page-extension-profile">
   {% if page.header_icon or page.header_title %}
-    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs type=extn_type name=page.header_title img=page.header_icon header_caption=page.header_caption plus=page.plus enterprise=page.enterprise publisher=page.publisher %}
+    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs type=extn_type name=page.header_title img=page.header_icon plus=page.plus enterprise=page.enterprise publisher=page.publisher extn_filename=extn_filename extn_versions=extn_versions extn_publisher=extn_publisher extn_slug=extn_slug %}
   {% elsif page.type == concept %}
-    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.title img=page.header_icon header_caption=page.header_caption plus=page.plus enterprise=page.enterprise publisher=page.publisher %}
+    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.title img=page.header_icon plus=page.plus enterprise=page.enterprise publisher=page.publisher extn_filename=extn_filename extn_versions=extn_versions extn_publisher=extn_publisher extn_slug=extn_slug %}
   {% else %}
-    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.name img=extn_icon header_caption=page.header_caption plus=page.plus enterprise=page.enterprise publisher=page.publisher %}
+    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.name img=extn_icon plus=page.plus enterprise=page.enterprise publisher=page.publisher extn_filename=extn_filename extn_versions=extn_versions extn_publisher=extn_publisher extn_slug=extn_slug %}
   {% endif %}
 
   <div class="container">
