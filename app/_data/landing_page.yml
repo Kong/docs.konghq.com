@@ -47,14 +47,6 @@ features:
             icon: /assets/images/icons/icn-doc.svg
             url: https://support.insomnia.rest/
 
-      - name: Immunity
-        description: Use Kong Immunity to autonomously identify service behavior anomalies in real time to improve security, mitigate breaches, and isolate issues.
-        icon: /assets/images/landing-page/alerting.svg
-        links:
-          - text: Immunity docs
-            icon: /assets/images/icons/icn-doc.svg
-            url: /gateway/latest/immunity/overview
-
   - title: Ecosystem integrations
     items:
       - name: Plugin Hub
