@@ -105,7 +105,9 @@ params:
         For example, if the JSON message is `{"target": "httpbin"}`
         and `config.body_param` is set to `target`,  the `httpbin` value from the 
         `target` field in the JSON message is used to form the upstream host. 
-        In case of duplicates (target field in json) the entire Json path needs to be provided. 
+       
+         In case of duplicates (target field in JSON), the entire JSON Path needs to 
+         be provided. 
         For form-urlencoded payload if `--data-urlencode 'target=httpbin'` and `config.body_param=target` then `httpbin` value from the `target` field in the form body will be used to construct the upstream host.
   extra: |
     Note : Only one of `header`, `query_arg`, `path_index` or `body_param` can be provided at one time, and at least one is required.
