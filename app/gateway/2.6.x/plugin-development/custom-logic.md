@@ -4,12 +4,11 @@ book: plugin_dev
 chapter: 3
 ---
 
-<div class="alert alert-warning">
-  <strong>Note:</strong> This chapter assumes that you are familiar with
-  <a href="http://www.lua.org/">Lua</a>.
-</div>
+{:.note}
+> **Note**: This chapter assumes that you are familiar with
+[Lua](http://www.lua.org/).
 
-A {{site.ce_product_name}} Plugin allows you to inject custom logic (in Lua) at several
+A {{site.ce_product_name}} plugin allows you to inject custom logic (in Lua) at several
 entry-points in the life-cycle of a request/response or a tcp stream
 connection as it is proxied by {{site.ce_product_name}}. To do so, the file
 `kong.plugins.<plugin_name>.handler` must return a table with one or
@@ -37,18 +36,17 @@ of {{site.ce_product_name}}'s execution life-cycle:
 |-----------------|-------------------|------------
 | `init_worker`   | [init_worker]     | Executed upon every Nginx worker process's startup.
 | `certificate`   | [ssl_certificate] | Executed during the SSL certificate serving phase of the SSL handshake.
-| `rewrite`       | [rewrite]         | Executed for every request upon its reception from a client as a rewrite phase handler. *NOTE* in this phase neither the `Service` nor the `Consumer` have been identified, hence this handler will only be executed if the Plugin was configured as a global Plugin!
+| `rewrite`       | [rewrite]         | Executed for every request upon its reception from a client as a rewrite phase handler. <br> In this phase, neither the `Service` nor the `Consumer` have been identified, hence this handler will only be executed if the plugin was configured as a global plugin.
 | `access`        | [access]          | Executed for every request from a client and before it is being proxied to the upstream service.
-| `response` | [access] | Replaces both `header_filter()` and `body_filter()`.  Executed after the whole response has been received from the upstream service, but before sending any part of it to the client.
+| `response` | [access] | Replaces both `header_filter()` and `body_filter()`. Executed after the whole response has been received from the upstream service, but before sending any part of it to the client.
 | `header_filter` | [header_filter]   | Executed when all response headers bytes have been received from the upstream service.
-| `body_filter`   | [body_filter]     | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. hence this function can be called multiple times if the response is large. See the [lua-nginx-module] documentation for more details.
+| `body_filter`   | [body_filter]     | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. This function can be called multiple times if the response is large. See the [lua-nginx-module] documentation for more details.
 | `log`           | [log]             | Executed when the last response byte has been sent to the client.
 
-**Note:**
+{:.note}
+> **Note:** If a module implements the `response` function, {{site.ce_product_name}} will automatically activate the "buffered proxy" mode, as if the [`kong.service.request.enable_buffering()` function][enable_buffering] had been called. Because of a current Nginx limitation, this doesn't work for HTTP/2 or gRPC upstreams.
 
-If a module implements the `response` function, {{site.ce_product_name}} will automatically activate the "buffered proxy" mode, as if the [`kong.service.request.enable_buffering()` function][enable_buffering] had been called.  Because of a current Nginx limitation, this doesn't work for HTTP/2 or gRPC upstreams.
-
-To reduce unexpected behaviour changes, {{site.ce_product_name}} does not start if a Plugin implements both `response` and either `header_filter` or `body_filter`.
+To reduce unexpected behaviour changes, {{site.ce_product_name}} does not start if a plugin implements both `response` and either `header_filter` or `body_filter`.
 
 - **[Stream Module]** *is used for Plugins written for TCP and UDP stream connections*
 
@@ -60,9 +58,9 @@ To reduce unexpected behaviour changes, {{site.ce_product_name}} does not start 
 | `certificate`   | [ssl_certificate] | Executed during the SSL certificate serving phase of the SSL handshake.
 
 All of those functions, except `init_worker`, take one parameter which is given
-by {{site.ce_product_name}} upon its invocation: the configuration of your Plugin. This parameter
+by {{site.ce_product_name}} upon its invocation: the configuration of your plugin. This parameter
 is a Lua table, and contains values defined by your users, according to your
-Plugin's schema (described in the `schema.lua` module). More on Plugins schemas
+plugin's schema (described in the `schema.lua` module). More on plugins schemas
 in the [next chapter]({{page.book.next}}).
 
 Note that UDP streams don't have real connections.  {{site.ce_product_name}} will consider all
@@ -82,36 +80,36 @@ considered closed and the `log` function is executed.
 [preread]: https://github.com/openresty/stream-lua-nginx-module#preread_by_lua_block
 [enable_buffering]: /gateway/{{page.kong_version}}/pdk/kong.service.request/#kongservicerequestenable_buffering
 
----
 
 ## handler.lua specifications
 
-{{site.ce_product_name}} processes requests in **phases**. A Plugin is a piece of code that gets
+{{site.ce_product_name}} processes requests in **phases**. A plugin is a piece of code that gets
 activated by {{site.ce_product_name}} as each phase is executed while the request gets proxied.
 
 Phases are limited in what they can do. For example, the `init_worker` phase
 does not have access to the `config` parameter because that information isn't
 available when kong is initializing each worker.
 
-A Plugin's `handler.lua` must return a table containing the functions it must
+A plugin's `handler.lua` must return a table containing the functions it must
 execute on each phase.
 
 {{site.ce_product_name}} can process HTTP and stream traffic. Some phases are executed when
 processing only when processing HTTP traffic, others when processing stream,
 and some (like `init_worker` and `log`) are invoked by both kinds of traffic.
 
-In addition to functions, a Plugin must define two fields:
+In addition to functions, a plugin must define two fields:
 
 * `VERSION` is an informative field, not used by {{site.ce_product_name}} directly. It usually
-  matches the version defined in a Plugin's Rockspec version, when it exists.
-* `PRIORITY` is used to sort Plugins before executing each of their phases.
-  Plugins with a higher priority are executed first. See the "Plugin Execution Order" below
+  matches the version defined in a plugin's Rockspec version, when it exists.
+* `PRIORITY` is used to sort plugins before executing each of their phases.
+  Plugins with a higher priority are executed first. See the
+  [plugin execution order](#plugins-execution-order) below
   for more info about this field.
 
 The following example `handler.lua` file defines custom functions for all
 the possible phases, in both http and stream traffic. It has no functionality
 besides writing a message to the log every time a phase is invoked. Note
-that a Plugin doesn't need to provide functions for all phases.
+that a plugin doesn't need to provide functions for all phases.
 
 ```lua
 local CustomHandler = {
@@ -176,13 +174,13 @@ function CustomHandler.access(self, config)
 end
 ```
 
-The Plugin's logic doesn't need to be all defined inside the `handler.lua` file.
+The plugin's logic doesn't need to be all defined inside the `handler.lua` file.
 It can be be split into several Lua files (also called *modules*).
 The `handler.lua` module can use `require` to include other modules in your plugin.
 
-For example, the following Plugin splits the functionality into three files.
+For example, the following plugin splits the functionality into three files.
 `access.lua` and `body_filter.lua` return functions. They are in the same
-folder as `handler.lua`, which requires and uses them to build the Plugin:
+folder as `handler.lua`, which requires and uses them to build the plugin:
 
 ```lua
 -- handler.lua
@@ -217,7 +215,6 @@ end
 See [the source code of the Key-Auth Plugin](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/handler.lua)
 for an example of a real-life handler code.
 
----
 
 ## Plugin Development Kit
 
@@ -229,28 +226,27 @@ execute various gateway operations in a way that is guaranteed to be
 forward-compatible with future releases of {{site.ce_product_name}}.
 
 When you are trying to implement some logic that needs to interact with {{site.ce_product_name}}
-(e.g. retrieving request headers, producing a response from a Plugin, logging
+(e.g. retrieving request headers, producing a response from a plugin, logging
 some error or debug information), you should consult the [Plugin Development
 Kit Reference][pdk].
 
----
 
 ## Plugins execution order
 
-Some Plugins might depend on the execution of others to perform some
-operations. For example, Plugins relying on the identity of the consumer have
-to run **after** authentication Plugins. Considering this, {{site.ce_product_name}} defines
-**priorities** between Plugins execution to ensure that order is respected.
+Some plugins might depend on the execution of others to perform some
+operations. For example, plugins relying on the identity of the consumer have
+to run **after** authentication plugins. Considering this, {{site.ce_product_name}} defines
+**priorities** between plugins execution to ensure that order is respected.
 
-Your Plugin's priority can be configured via a property accepting a number in
+Your plugin's priority can be configured via a property accepting a number in
 the returned handler table:
 
 ```lua
 CustomHandler.PRIORITY = 10
 ```
 
-The higher the priority, the sooner your Plugin's phases will be executed in
-regard to other Plugins' phases (such as `:access()`, `:log()`, etc.).
+The higher the priority, the sooner your plugin's phases will be executed in
+regard to other plugins' phases (such as `:access()`, `:log()`, etc.).
 
 {% navtabs %}
 {% navtab Open-source or Free mode %}

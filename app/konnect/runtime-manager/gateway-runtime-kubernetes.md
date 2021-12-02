@@ -102,7 +102,6 @@ like this:
     env:
       role: data_plane
       database: "off"
-      anonymous_reports: off
       vitals_ttl_days: 732
       cluster_mtls: pki
       cluster_control_plane: {EXAMPLE.CP.KONNECT.FOO}:443

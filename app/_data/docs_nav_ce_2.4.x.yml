@@ -1,7 +1,7 @@
 # Generated via autodoc-nav
 - title: Introduction
   icon: /assets/images/icons/documentation/icn-flag.svg
-  url: /gateway-oss/
+  url: /gateway-oss/2.4.x/
   absolute_url: true
 
 - title: Release Notes

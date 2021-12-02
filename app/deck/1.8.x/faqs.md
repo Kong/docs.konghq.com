@@ -1,4 +1,4 @@
-{{site.base_gateway}}---
+---
 title: Frequently Asked Questions (FAQs)
 ---
 

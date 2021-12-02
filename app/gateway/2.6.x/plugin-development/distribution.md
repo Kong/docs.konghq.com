@@ -4,8 +4,6 @@ book: plugin_dev
 chapter: 10
 ---
 
-## Introduction
-
 Custom plugins for Kong consist of Lua source files that need to be in the file
 system of each of your Kong nodes. This guide will provide you with
 step-by-step instructions that will make a Kong node aware of your custom
@@ -21,8 +19,8 @@ package manager to do it for you. We recommend LuaRocks as it is installed
 along with Kong when using one of the official distribution packages.
 
 When using LuaRocks, you must create a `rockspec` file, which specifies the
-package contents. For an example see the [Kong plugin
-template][plugin-template], for more info about the format see the LuaRocks
+package contents. For an example, see the [Kong plugin
+template][plugin-template]. For more info about the format, see the LuaRocks
 [documentation on rockspecs][rockspec].
 
 Pack your rock using the following command (from the plugin repo):
@@ -59,149 +57,136 @@ The contents of this archive should be close to the following:
     │           └── schema.lua
     └── <plugin-name>-<version>.rockspec
 
-[Back to top](#introduction)
 
----
-
-## Installing the plugin
+## Install the plugin
 
 For a Kong node to be able to use the custom plugin, the custom plugin's Lua
 sources must be installed on your host's file system. There are multiple ways
-of doing so: via LuaRocks, or manually. Choose one, and jump to section 3.
-
-1. Via LuaRocks from the created 'rock'
-
-    The `.rock` file is a self contained package that can be installed locally
-    or from a remote server.
-
-    If the `luarocks` utility is installed in your system (this is likely the
-    case if you used one of the official installation packages), you can
-    install the 'rock' in your LuaRocks tree (a directory in which LuaRocks
-    installs Lua modules).
-
-    It can be installed by doing:
-
-        $ luarocks install <rock-filename>
-
-    The filename can be a local name, or any of the supported methods, eg.
-    `http://myrepository.lan/rocks/my-plugin-0.1.0-1.all.rock`
-
-2. Via LuaRocks from the source archive
-
-    If the `luarocks` utility is installed in your system (this is likely the
-    case if you used one of the official installation packages), you can
-    install the Lua sources in your LuaRocks tree (a directory in which
-    LuaRocks installs Lua modules).
-
-    You can do so by changing the current directory to the extracted archive,
-    where the rockspec file is:
-
-        $ cd <plugin-name>
-
-    And then run the following:
-
-        $ luarocks make
-
-    This will install the Lua sources in `kong/plugins/<plugin-name>` in your
-    system's LuaRocks tree, where all the Kong sources are already present.
-
-3. Manually
-
-    A more conservative way of installing your plugin's sources is
-    to avoid "polluting" the LuaRocks tree, and instead, point Kong
-    to the directory containing them.
-
-    This is done by tweaking the `lua_package_path` property of your Kong
-    configuration. Under the hood, this property is an alias to the `LUA_PATH`
-    variable of the Lua VM, if you are familiar with it.
-
-    Those properties contain a semicolon-separated list of directories in
-    which to search for Lua sources. It should be set like so in your Kong
-    configuration file:
-
-        lua_package_path = /<path-to-plugin-location>/?.lua;;
-
-    Where:
-
-    * `/<path-to-plugin-location>` is the path to the directory containing the
-      extracted archive. It should be the location of the `kong` directory
-      from the archive.
-    * `?` is a placeholder that will be replaced by
-      `kong.plugins.<plugin-name>` when Kong will try to load your plugin. Do
-      not change it.
-    * `;;` a placeholder for the "the default Lua path". Do not change it.
-
-    Example:
-
-    The plugin `something` being located on the file system such that the
-    handler file is:
-
-        /usr/local/custom/kong/plugins/<something>/handler.lua
-
-    The location of the `kong` directory is: `/usr/local/custom`, hence the
-    proper path setup would be:
-
-        lua_package_path = /usr/local/custom/?.lua;;
-
-    Multiple plugins:
-
-    If you wish to install two or more custom plugins this way, you can set
-    the variable to something like:
-
-        lua_package_path = /path/to/plugin1/?.lua;/path/to/plugin2/?.lua;;
-
-    * `;` is the separator between directories.
-    * `;;` still means "the default Lua path".
-
-    Note: you can also set this property via its environment variable
-    equivalent: `KONG_LUA_PACKAGE_PATH`.
+of doing so: via LuaRocks, or manually. Choose one of the following paths.
 
 Reminder: regardless of which method you are using to install your plugin's
 sources, you must still do so for each node in your Kong cluster.
 
-[Back to top](#introduction)
+### Via LuaRocks from the created 'rock'
 
----
+The `.rock` file is a self contained package that can be installed locally
+or from a remote server.
+
+If the `luarocks` utility is installed in your system (this is likely the
+case if you used one of the official installation packages), you can
+install the 'rock' in your LuaRocks tree (a directory in which LuaRocks
+installs Lua modules).
+
+It can be installed by doing:
+
+    $ luarocks install <rock-filename>
+
+The filename can be a local name, or any of the supported methods, eg.
+`http://myrepository.lan/rocks/my-plugin-0.1.0-1.all.rock`
+
+### Via LuaRocks from the source archive
+
+If the `luarocks` utility is installed in your system (this is likely the
+case if you used one of the official installation packages), you can
+install the Lua sources in your LuaRocks tree (a directory in which
+LuaRocks installs Lua modules).
+
+You can do so by changing the current directory to the extracted archive,
+where the rockspec file is:
+
+    $ cd <plugin-name>
+
+And then run the following:
+
+    $ luarocks make
+
+This will install the Lua sources in `kong/plugins/<plugin-name>` in your
+system's LuaRocks tree, where all the Kong sources are already present.
+
+### Manually
+
+A more conservative way of installing your plugin's sources is
+to avoid "polluting" the LuaRocks tree, and instead, point Kong
+to the directory containing them.
+
+This is done by tweaking the `lua_package_path` property of your Kong
+configuration. Under the hood, this property is an alias to the `LUA_PATH`
+variable of the Lua VM, if you are familiar with it.
+
+Those properties contain a semicolon-separated list of directories in
+which to search for Lua sources. It should be set like so in your Kong
+configuration file:
+
+    lua_package_path = /<path-to-plugin-location>/?.lua;;
+
+Where:
+
+* `/<path-to-plugin-location>` is the path to the directory containing the
+  extracted archive. It should be the location of the `kong` directory
+  from the archive.
+* `?` is a placeholder that will be replaced by
+  `kong.plugins.<plugin-name>` when Kong will try to load your plugin. Do
+  not change it.
+* `;;` a placeholder for the "the default Lua path". Do not change it.
+
+For example, if the plugin `something` is located on the file system and the
+handler file is in the following directory:
+
+    /usr/local/custom/kong/plugins/<something>/handler.lua
+
+The location of the `kong` directory is `/usr/local/custom`, so the
+proper path setup would be:
+
+    lua_package_path = /usr/local/custom/?.lua;;
+
+#### Multiple plugins
+
+If you want to install two or more custom plugins this way, you can set
+the variable to something like:
+
+    lua_package_path = /path/to/plugin1/?.lua;/path/to/plugin2/?.lua;;
+
+* `;` is the separator between directories.
+* `;;` still means "the default Lua path".
+
+You can also set this property via its environment variable
+equivalent: `KONG_LUA_PACKAGE_PATH`.
+
 
 ## Load the plugin
 
-You must now add the custom plugin's name to the `plugins` list in your
+1. Add the custom plugin's name to the `plugins` list in your
 Kong configuration (on each Kong node):
 
-    plugins = bundled,<plugin-name>
+        plugins = bundled,<plugin-name>
 
-Or, if you don't want to include the bundled plugins:
+    Or, if you don't want to include the bundled plugins:
 
-    plugins = <plugin-name>
+        plugins = <plugin-name>
 
 
-If you are using two or more custom plugins, insert commas in between, like so:
+    If you are using two or more custom plugins, insert commas in between, like so:
 
-    plugins = bundled,plugin1,plugin2
+        plugins = bundled,plugin1,plugin2
 
-Or
+    Or
 
-    plugins = plugin1,plugin2
+        plugins = plugin1,plugin2
 
-Note: you can also set this property via its environment variable equivalent:
-`KONG_PLUGINS`.
+    You can also set this property via its environment variable equivalent:
+    `KONG_PLUGINS`.
 
-Reminder: don't forget to update the `plugins` directive for each node
-in your Kong cluster.
+1. Update the `plugins` directive for each node in your Kong cluster.
 
-Reminder: the plugin will take effect after restart kong:
-    
-    kong restart
+1. Restart Kong to apply the plugin:
 
-But, if you want to apply plugin while kong never stop, you can use this:
+        kong restart
 
-    kong prepare
-    kong reload
-    
+    Or, if you want to apply a plugin without stopping Kong, you can use this:
 
-[Back to top](#introduction)
+        kong prepare
+        kong reload
 
----
 
 ## Verify loading the plugin
 
@@ -209,25 +194,21 @@ You should now be able to start Kong without any issue. Consult your custom
 plugin's instructions on how to enable/configure your plugin
 on a Service, Route, or Consumer entity.
 
-To make sure your plugin is being loaded by Kong, you can start Kong with a
+1. To make sure your plugin is being loaded by Kong, you can start Kong with a
 `debug` log level:
 
-    log_level = debug
+        log_level = debug
 
-or:
+    or:
 
-    KONG_LOG_LEVEL=debug
+        KONG_LOG_LEVEL=debug
 
-Then, you should see the following log for each plugin being loaded:
+2. Then, you should see the following log for each plugin being loaded:
 
-    [debug] Loading plugin <plugin-name>
+        [debug] Loading plugin <plugin-name>
 
 
-[Back to top](#introduction)
-
----
-
-## Removing a plugin
+## Remove a plugin
 
 There are three steps to completely remove a plugin.
 
@@ -250,11 +231,9 @@ There are three steps to completely remove a plugin.
    to install the plugin, you can do `luarocks remove <plugin-name>` to remove
    it.
 
-[Back to top](#introduction)
 
----
 
-## Distributing your plugin
+## Distribute your plugin
 
 The preferred way to do so is to use [LuaRocks](https://luarocks.org/), a
 package manager for Lua modules. It calls such modules "rocks". **Your module
@@ -265,42 +244,39 @@ By defining your modules (and their eventual dependencies) in a [rockspec]
 file, you can install those modules on your platform via LuaRocks. You can
 also upload your module on LuaRocks and make it available to everyone!
 
-Here is an example rockspec which would use the "builtin" build type to define
-modules in Lua notation and their corresponding file:
+Here is an [example rockspec][example-rockspec] using the `builtin`
+build type to define modules in Lua notation and their corresponding file.
 
+For more information about the format, see the LuaRocks
+[documentation on rockspecs][rockspec].
 
-For an example see the [Kong plugin template][plugin-template], for more info
-about the format see the LuaRocks [documentation on rockspecs][rockspec].
-
-[Back to top](#introduction)
-
----
 
 ## Troubleshooting
 
 Kong can fail to start because of a misconfigured custom plugin for several
 reasons:
 
-* "plugin is in use but not enabled" -> You configured a custom plugin from
+`plugin is in use but not enabled`
+: You configured a custom plugin from
   another node, and that the plugin configuration is in the database, but the
   current node you are trying to start does not have it in its `plugins`
   directive. To resolve, add the plugin's name to the node's `plugins`
   directive.
 
-* "plugin is enabled but not installed" -> The plugin's name is present in the
-  `plugins` directive, but that Kong is unable to load the `handler.lua`
-  source file from the file system. To resolve, make sure that the
-  [lua_package_path](/gateway/{{page.kong_version}}/reference/configuration/#development-miscellaneous-section)
-  directive is properly set to load this plugin's Lua sources.
+`plugin is enabled but not installed`
+: The plugin's name is present in the `plugins` directive, but Kong can't load
+the `handler.lua` source file from the file system. To resolve, make sure that
+the [lua_package_path](/gateway/{{page.kong_version}}/reference/configuration/#development-miscellaneous-section)
+directive is properly set to load this plugin's Lua sources.
 
-* "no configuration schema found for plugin" -> The plugin is installed,
-  enabled in the `plugins` directive, but Kong is unable to load the
-  `schema.lua` source file from the file system. To resolve, make sure that
-  the `schema.lua` file is present alongside the plugin's `handler.lua` file.
-
-[Back to top](#introduction)
+`no configuration schema found for plugin`
+: The plugin is installed and enabled in the `plugins` directive, but Kong is
+unable to load the `schema.lua` source file from the file system. To resolve,
+make sure tha the `schema.lua` file is present alongside the plugin's
+`handler.lua` file.
 
 ---
 
 [rockspec]: https://github.com/keplerproject/luarocks/wiki/Creating-a-rock
 [plugin-template]: https://github.com/Kong/kong-plugin
+[example-rockspec]: https://github.com/Kong/kong-plugin/blob/master/kong-plugin-myplugin-0.1.0-1.rockspec

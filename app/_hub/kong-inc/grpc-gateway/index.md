@@ -35,7 +35,7 @@ params:
   protocols:
     - http
     - https
-  dbless_compatible: true
+  dbless_compatible: 'yes'
   config:
     - name: proto
       required: false

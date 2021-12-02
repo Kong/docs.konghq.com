@@ -37,11 +37,15 @@
             {% endif %}
           {% endif %}
         </h1>
-
-        {% if include.header_caption%}
-          <p>{{ include.header_caption }}</p>
-        {% endif %}
       </div>
+      {% if include.extn_versions %}
+        {% unless include.extn_filename == "index.md" %}
+          <div class="old-version-banner">
+          You are browsing documentation for an outdated plugin version.
+          See the <a href="/hub/{{ include.extn_publisher }}/{{ include.extn_slug }}/">latest documentation here</a>.
+          </div>
+        {% endunless %}
+      {% endif %}
     </div>
   </header>
 {% endif %}

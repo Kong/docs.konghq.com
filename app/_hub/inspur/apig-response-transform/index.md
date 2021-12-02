@@ -26,7 +26,7 @@ params:
   consumer_id: False
   route_id: True
   protocols: ["http","https"]
-  dbless_compatible: True
+  dbless_compatible: 'yes'
   dbless_explanation: It is recommended to use in dbless mode.
   config:
     - name: format
