@@ -58,7 +58,7 @@ params:
       value_in_examples: example
       datatype: string
       description: |
-        String which needs to be replaced from `config.upstream_host` parameter.
+        String to replace from the `config.upstream_host` parameter.
         
         For example, if `config.upstream_host` is set to `example.org` and 
         `config.string_to_replace_from_host` is set to `example`, then the
