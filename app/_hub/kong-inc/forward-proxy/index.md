@@ -33,6 +33,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
+  dbless_compatible: 'yes'
   config:
     - name: proxy_host
       required: true
