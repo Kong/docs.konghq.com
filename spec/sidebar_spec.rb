@@ -56,7 +56,7 @@ describe "sidebar", type: :feature, js: true do
   describe "Gateway Enterprise", type: :feature, js: true do
     it "has the correct number of sidebar sections" do
       visit "/enterprise/2.5.x"
-      expect(page).to have_selector('.accordion-container > .accordion-item', count: 11)
+      expect(page).to have_selector('.accordion-container > .accordion-item', count: 10)
     end
   end
 end
