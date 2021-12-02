@@ -43,7 +43,8 @@ params:
       datatype: string
       description: |
         Upstream host with the variable string which has to be replaced by the plugin.
-        For eg: `config.upstream_host` is set to `example.org`
+        
+        For example, `config.upstream_host` can be set to `example.org`.
     - name: upstream_port
       required: false
       default: "443"
