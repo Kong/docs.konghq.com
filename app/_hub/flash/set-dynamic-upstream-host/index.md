@@ -96,7 +96,7 @@ params:
       default:
       datatype: number
       description: |
-        Path param index which will be used to form the upstream host.
+        Path parameter index used to form the upstream host.
         For eg: `/api/httpbin`. Path index is required to get the path param value and here in this example path_index value is 2. 
         Based on the path index, `httpbin` string will be extracted from the uri.
         Final upstream hostname formed here is `httpbin.org` and Kong will make a call to this host.
