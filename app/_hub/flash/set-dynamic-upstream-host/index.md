@@ -70,7 +70,7 @@ params:
       default:
       datatype: string
       description: |
-        Header param name which will be used to form the upstream host. Only one header name is supported.
+        Header parameter name used to form the upstream host. Only one header name is supported.
         For eg: `-H target : httpbin`. Here the value `httpbin` from the header `target` will be used to form the upstream host. 
         Final upstream hostname formed here is `httpbin.org` and Kong will make a call to this host.
     - name: query_arg
