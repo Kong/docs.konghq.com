@@ -108,7 +108,7 @@ params:
       default:
       datatype: string
       description: |
-        Request body parameter name which will be used to form the upstream host.
+        Request body parameter name used to form the upstream host.
         Only `application/json` and `application/x-www-form-urlencoded` content types are 
         supported. For a JSON message, the field name or JSON Path must be passed. 
 
