@@ -8,7 +8,8 @@ module.exports = async function (path) {
     gsg: 'getting-started-guide',
     kic: 'kubernetes-ingress-controller',
     konnect: 'konnect',
-    mesh: 'mesh'
+    mesh: 'mesh',
+    gateway: 'gateway'
   }
   let files = await fg(`../app/_data/docs_nav_${path}.yml`)
   files = files
