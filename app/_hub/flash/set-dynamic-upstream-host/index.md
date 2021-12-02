@@ -83,7 +83,7 @@ params:
       default:
       datatype: string
       description: |
-        Query param name which will be used to form the upstream host. Only one query param name is supported. 
+        Query parameter name used to form the upstream host. Only one query parameter name is supported. 
         For eg: `/api?target=httpbin`. Here the value `httpbin` from the query param `target` will be used to form the upstream host.
         Final upstream hostname formed here is `httpbin.org` and Kong will make a call to this host.
     - name: path_index
