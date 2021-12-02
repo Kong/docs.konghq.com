@@ -4,6 +4,14 @@ no_search: true
 no_version: true
 ---
 
+## 2.7.0.0
+**Release Date:** TBD
+
+#### Deprecated
+* Kong Immunity is deprecated, removed, and not available in Kong Gateway.
+To access old Kong Immunity documentation, see the
+[doc archive](https://github.com/Kong/docs.konghq.com/tree/main/archive/enterprise).
+
 ## 2.6.0.1
 **Release Date:** 2021/11/18
 
@@ -26,7 +34,7 @@ upstream requests.
 Developers now correctly propagate to their associated Consumers.
 
 - Users can now successfully delete admins with the `super-admin` role from
-any workspace, as long as they have the correct permissions, and the associated 
+any workspace, as long as they have the correct permissions, and the associated
 Consumer entity will be deleted as well. This frees up the username for a new
 user. Previously, deleting an admin with a `super-admin` role from a different
 workspace than where it was originally created did not delete the associated
