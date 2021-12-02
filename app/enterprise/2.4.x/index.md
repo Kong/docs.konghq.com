@@ -32,10 +32,6 @@ Kong Admin API provides a RESTful interface for administration and configuration
 
 Kong Developer Portal (Kong Dev Portal) is used to onboard new developers and to generate API documentation, create custom pages, manage API versions, and secure developer access. For more information, see [_Kong Developer Portal_](/enterprise/{{page.kong_version}}/developer-portal/).
 
-### Kong Immunity
-
-Kong Immunity uses machine learning to autonomously identify service behavior anomalies in real-time to improve security, mitigate breaches and isolate issues. Use Kong Immunity to autonomously identify service issues with machine learning-powered anomaly detection. For more information, see [_Kong Immunity_](/enterprise/{{page.kong_version}}/immunity/install-configure/).
-
 ### Kubernetes Ingress Controller
 
 Kong for Kubernetes Enterprise (K4K8S) is a Kubernetes Ingress Controller. A Kubernetes Ingress Controller is a proxy that exposes Kubernetes services from applications (for example, Deployments, ReplicaSets) running on a Kubernetes cluster to client applications running outside of the cluster. The intent of an Ingress Controller is to provide a single point of control for all incoming traffic into the Kubernetes cluster. For more information, see [_Kong for Kubernetes_](/enterprise/{{page.kong_version}}/deployment/kong-for-kubernetes-enterprise).
