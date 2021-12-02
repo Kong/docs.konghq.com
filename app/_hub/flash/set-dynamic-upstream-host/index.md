@@ -99,8 +99,10 @@ params:
       description: |
         Request body parameter name which will be used to form the upstream host.
         Only `application/json` and `application/x-www-form-urlencoded` content types are supported. For Json message, the field name or Json path needs to be passed. 
-        For eg: If Json message is `{"target": "httpbin"}`
-        and `config.body_param=target` then `httpbin` value from the `target` field in the json will be used to form the upstream host. 
+
+        For example, if the JSON message is `{"target": "httpbin"}`
+        and `config.body_param` is set to `target`,  the `httpbin` value from the 
+        `target` field in the JSON message is used to form the upstream host. 
         In case of duplicates (target field in json) the entire Json path needs to be provided. 
         For form-urlencoded payload if `--data-urlencode 'target=httpbin'` and `config.body_param=target` then `httpbin` value from the `target` field in the form body will be used to construct the upstream host.
   extra: |
