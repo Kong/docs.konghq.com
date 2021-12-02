@@ -113,5 +113,5 @@ params:
         `target`, the `httpbin` value from the `target` field in the form body is used 
         to construct the upstream host.
   extra: |
-    Note : Only one of `header`, `query_arg`, `path_index` or `body_param` can be provided at one time, and at least one is required.
+    **Note**: Only one of `header`, `query_arg`, `path_index`, or `body_param` can be provided at one time, and at least one is required.
 ---
