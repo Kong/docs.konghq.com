@@ -99,7 +99,8 @@ params:
       datatype: string
       description: |
         Request body parameter name which will be used to form the upstream host.
-        Only `application/json` and `application/x-www-form-urlencoded` content types are supported. For Json message, the field name or Json path needs to be passed. 
+        Only `application/json` and `application/x-www-form-urlencoded` content types are 
+        supported. For a JSON message, the field name or JSON Path must be passed. 
 
         For example, if the JSON message is `{"target": "httpbin"}`
         and `config.body_param` is set to `target`,  the `httpbin` value from the 
