@@ -58,9 +58,11 @@ params:
       datatype: string
       description: |
         String which needs to be replaced from `config.upstream_host` parameter.
-        For eg: If `config.upstream_host` is set to `example.org` and 
-        `config.string_to_replace_from_host` is set to `example` then
-        `example` string in the upstream host will be replaced with the key identifier value coming in the incoming request dynamically.
+        
+        For example, if `config.upstream_host` is set to `example.org` and 
+        `config.string_to_replace_from_host` is set to `example`, then the
+        `example` string in the upstream host is replaced with the key identifier 
+        value from the incoming request dynamically.
     - name: header
       required: semi
       value_in_examples: target
