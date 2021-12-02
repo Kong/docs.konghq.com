@@ -9,10 +9,6 @@
   icon: /assets/images/icons/documentation/icn-support.svg
   url: /konnect-platform/support-policy
 
-- title: Konnect Plans
-  icon: /assets/images/icons/documentation/icn-references-color.svg
-  url: /konnect-platform/plans
-
 - title: Getting Started Guides
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   url: /konnect-platform/guides
