@@ -116,7 +116,6 @@ Use the following `docker run` command sample as a guide to compile your actual 
 $ docker run -d --name kong-gateway-dp1 \
   -e "KONG_ROLE=data_plane" \
   -e "KONG_DATABASE=off" \
-  -e "KONG_ANONYMOUS_REPORTS=off" \
   -e "KONG_VITALS_TTL_DAYS=732" \
   -e "KONG_CLUSTER_MTLS=pki" \
   -e "KONG_CLUSTER_CONTROL_PLANE={example.cp.konnect.foo}:443" \
@@ -136,7 +135,6 @@ $ docker run -d --name kong-gateway-dp1 \
 docker run -d --name kong-gateway-dp1 `
   -e "KONG_ROLE=data_plane" `
   -e "KONG_DATABASE=off" `
-  -e "KONG_ANONYMOUS_REPORTS=off" `
   -e "KONG_VITALS_TTL_DAYS=732" `
   -e "KONG_CLUSTER_MTLS=pki" `
   -e "KONG_CLUSTER_CONTROL_PLANE={EXAMPLE.CP.KONNECT.FOO}:443" `
