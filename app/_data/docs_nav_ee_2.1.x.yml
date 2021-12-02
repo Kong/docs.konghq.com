@@ -136,23 +136,23 @@
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   items:
     - text: Overview
-      url: /../../gateway/latest/get-started/comprehensive
+      url: /../../getting-started-guide/2.1.x/overview
     - text: Prepare to Administer
-      url: /../../gateway/latest/get-started/comprehensive/prepare
+      url: /../../getting-started-guide/2.1.x/prepare
     - text: Expose your Services
-      url: /../../gateway/latest/get-started/comprehensive/expose-services
+      url: /../../getting-started-guide/2.1.x/expose-services
     - text: Protect your Services
-      url: /../../gateway/latest/get-started/comprehensive/protect-services
+      url: /../../getting-started-guide/2.1.x/protect-services
     - text: Improve Performance
-      url: /../../gateway/latest/get-started/comprehensive/improve-performance
+      url: /../../getting-started-guide/2.1.x/improve-performance
     - text: Secure Services
-      url: /../../gateway/latest/get-started/comprehensive/secure-services
+      url: /../../getting-started-guide/2.1.x/secure-services
     - text: Set Up Intelligent Load Balancing
-      url: /../../gateway/latest/get-started/comprehensive/load-balancing
+      url: /../../getting-started-guide/2.1.x/load-balancing
     - text: Manage Administrative Teams
-      url: /../../gateway/latest/get-started/comprehensive/manage-teams
+      url: /../../getting-started-guide/2.1.x/manage-teams
     - text: Publish, Locate, and Consume Services
-      url: /../../gateway/latest/get-started/comprehensive/dev-portal
+      url: /../../getting-started-guide/2.1.x/dev-portal
 
 - title: Guides & References
   icon: /assets/images/icons/documentation/icn-references-color.svg
