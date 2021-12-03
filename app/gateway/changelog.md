@@ -4,6 +4,35 @@ no_search: true
 no_version: true
 ---
 
+## 2.6.0.2
+**Release Date:** 2021/12/04
+
+### Fixes
+
+#### Dev Portal
+
+* Fixed links in Dev Portal footer.
+
+* Improved accessibility of the Dev Portal, fixing various issues related to
+labels, names, headings, and color contrast:
+    * Keyboard-accessible response examples and "Try it out" sections
+    * Form inputs now have labels
+    * Selectable elements now all have accessible names
+    * Unique IDs for active elements
+    * Headings levels only increase by one, and are in the correct order
+    * Improved contrast of buttons
+
+* Fixed the Dev Portal API `/applications` endpoint to only accept allowed
+fields in a PATCH request.
+
+* Fixed info tooltip crash and rendering issue when viewing the Dev Portal app
+registration service list.
+
+#### Plugins
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  The plugin now allows Redis Cluster nodes to be specified by hostname, which
+  is helpful if the cluster IPs are not static.
+
 ## 2.6.0.1
 **Release Date:** 2021/11/18
 
@@ -26,7 +55,7 @@ upstream requests.
 Developers now correctly propagate to their associated Consumers.
 
 - Users can now successfully delete admins with the `super-admin` role from
-any workspace, as long as they have the correct permissions, and the associated 
+any workspace, as long as they have the correct permissions, and the associated
 Consumer entity will be deleted as well. This frees up the username for a new
 user. Previously, deleting an admin with a `super-admin` role from a different
 workspace than where it was originally created did not delete the associated
