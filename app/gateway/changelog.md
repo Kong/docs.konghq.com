@@ -19,7 +19,7 @@ labels, names, headings, and color contrast:
     * Form inputs now have labels
     * Selectable elements now all have accessible names
     * Unique IDs for active elements
-    * Headings levels only increase by one, and are in the correct order
+    * Heading levels only increase by one, and are in the correct order
     * Improved contrast of buttons
 
 * Fixed the Dev Portal API `/applications` endpoint to only accept allowed
