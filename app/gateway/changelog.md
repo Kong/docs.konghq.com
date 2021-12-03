@@ -30,8 +30,9 @@ registration service list.
 
 #### Plugins
 - [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
-  The plugin now allows Redis Cluster nodes to be specified by hostname, which
-  is helpful if the cluster IPs are not static.
+  - The plugin now allows Redis Cluster nodes to be specified by hostname
+    through the `session_redis_cluster_nodes` field, which
+    is helpful if the cluster IPs are not static.
 
 ## 2.6.0.1
 **Release Date:** 2021/11/18
