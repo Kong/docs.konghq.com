@@ -5,7 +5,7 @@ no_version: true
 ---
 
 ## 2.6.0.2
-**Release Date:** 2021/12/04
+**Release Date:** 2021/12/03
 
 ### Fixes
 
