@@ -19,43 +19,11 @@ kong_version_compatibility:
   community_edition:
     compatible:
       - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
-      - 0.14.x
-      - 0.13.x
-      - 0.12.x
-      - 0.11.x
-      - 0.10.x
-      - 0.9.x
-      - 0.8.x
-      - 0.7.x
-      - 0.6.x
-      - 0.5.x
-      - 0.4.x
-      - 0.3.x
-      - 0.2.x
+      
   enterprise_edition:
     compatible:
       - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+
 params:
   name: rate-limiting
   service_id: true
@@ -292,6 +260,15 @@ inaccuracies and preventing scaling problems.
 When the selected policy cannot be retrieved, the plugin falls back
 to limiting usage by identifying the IP address. This can happen for several reasons, such as the
 selected header was not sent by the client or the configured service was not found.
+
+---
+
+## Changelog
+
+### 2.3.0
+
+* Added parameters `redis_username`, `redis_ssl`, `redis_ssl_verify`, and `redis_server_name`.
+
 
 [api-object]: /gateway/latest/admin-api/#api-object
 [configuration]: /gateway/latest/reference/configuration
