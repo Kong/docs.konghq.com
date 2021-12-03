@@ -1106,8 +1106,9 @@ params:
       required: false
       default: null
       datatype: array of host records
-      description: The Redis cluster node host. Takes an array of `ip:port` or 
-      `hostname:port` values.
+      description: |
+        The Redis cluster node host. Takes an array of host records, with
+        either `ip` or `host`, and `port` values.
     - name: session_redis_cluster_maxredirections
       required: false
       default: null
@@ -1568,7 +1569,7 @@ In the above parameter list, two configuration settings used an array of records
 
 - `config.client_jwk`: array of JWK records (one for each client)
 - `config.session_redis_cluster_nodes`: array of host records, either as IP
-addresses or hostnames
+addresses or hostnames, and their ports.
 
 Below are descriptions of the record types.
 

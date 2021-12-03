@@ -68,12 +68,6 @@ issue would occur.
 (garbage can) icon overlapped with the **View** link and caused users to
 accidentally click **Delete**.
 
-#### Plugins
-
-- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
-  -  Redis cluster nodes can now be specified by hostname in the
-  `session_redis_cluster_nodes` field.
-
 ### Dependencies
 - Bumped kong-redis-cluster from `1.1-0` to `1.2.0`.
   - With this update, if the entire cluster is restarted and starts up using
