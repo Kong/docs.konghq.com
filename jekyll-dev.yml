@@ -140,6 +140,12 @@ defaults:
       version-index: 0
 
   - scope:
+      path: "gateway/2.7.x/"
+    values:
+      layout: "docs-v2"
+      version-index: 1
+
+  - scope:
       path: "about"
     values:
       layout: "about"

@@ -1,6 +1,6 @@
 - title: Introduction
   icon: /assets/images/icons/documentation/icn-flag.svg
-  url: /gateway/
+  url: /gateway/2.6.x/
   absolute_url: true
   items:
     - text: Version Support Policy
