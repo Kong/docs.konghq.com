@@ -20,7 +20,7 @@ In hybrid mode deployments, the control plane sends licenses configured
 through the `/licenses` endpoint to all data planes in the cluster. The data
 planes use the most recent `updated_at` license.
 
-## List licenses
+### List Licenses
 **Endpoint**
 
 <div class="endpoint get">/licenses/</div>
@@ -55,30 +55,7 @@ be empty.
 }
 ```
 
-## List a specific license
-
-**Endpoint**
-
-<div class="endpoint get">/licenses/{id}</div>
-
-{{ page.licenses_attribute_id }}
-
-**Response**
-
-```
-HTTP 200 OK
-```
-
-```json
-{
-  "created_at": 1500508800,
-  "id": "30b4edb7-0847-4f65-af90-efbed8b0161f",
-  "payload": "{\"license\":{\"payload\":{\"admin_seats\":\"1\",\"customer\":\"Example Company, Inc\",\"dataplanes\":\"1\",\"license_creation_date\":\"2017-07-20\",\"license_expiration_date\":\"2017-07-21\",\"license_key\":\"00141000017ODj3AAG_a1V41000004wT0OEAU\",\"product_subscription\":\"Konnect Enterprise\",\"support_plan\":\"None\"},\"signature\":\"24cc21223633044c15c300be19cacc26ccc5aca0dd9a12df8a7324a1970fe304bc07b8dcd7fb08d7b92e04169313377ae3b550ead653b951bc44cd2eb59f6beb\",\"version\":\"1\"}}",
-  "updated_at": 1500508800
-}
-```
-
-## Add a license
+### Add License
 
 To create a license using an auto-generated UUID:
 
@@ -111,7 +88,7 @@ HTTP 201 Created
 }
 ```
 
-## Update or add a license
+### Update or Add a License
 
 **Endpoint**
 
@@ -148,7 +125,7 @@ HTTP 200 OK
 }
 ```
 
-## Update a license
+### Update a License
 
 **Endpoint**
 
@@ -184,7 +161,30 @@ HTTP 200 OK
 }
 ```
 
-## Delete a license
+### List a License
+
+**Endpoint**
+
+<div class="endpoint get">/licenses/{id}</div>
+
+{{ page.licenses_attribute_id }}
+
+**Response**
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+  "created_at": 1500508800,
+  "id": "30b4edb7-0847-4f65-af90-efbed8b0161f",
+  "payload": "{\"license\":{\"payload\":{\"admin_seats\":\"1\",\"customer\":\"Example Company, Inc\",\"dataplanes\":\"1\",\"license_creation_date\":\"2017-07-20\",\"license_expiration_date\":\"2017-07-21\",\"license_key\":\"00141000017ODj3AAG_a1V41000004wT0OEAU\",\"product_subscription\":\"Konnect Enterprise\",\"support_plan\":\"None\"},\"signature\":\"24cc21223633044c15c300be19cacc26ccc5aca0dd9a12df8a7324a1970fe304bc07b8dcd7fb08d7b92e04169313377ae3b550ead653b951bc44cd2eb59f6beb\",\"version\":\"1\"}}",
+  "updated_at": 1500508800
+}
+```
+
+### Delete a License
 
 **Endpoint**
 
@@ -196,83 +196,6 @@ HTTP 200 OK
 
 ```
 HTTP 204 No Content
-```
-
-## Generate a report
-
-Generate a report on the Kong Gateway instance to gather monthly usage data.
-
-<div class="endpoint get">/licenses/report</div>
-
-Fields available in the report:
-
-Field | Description
-------|------------
-`counters` | Counts the number of requests made in a given month. <br><br> &#8226; `bucket`: Year and month when the requests occured. If the value in `bucket` is `UNKNOWN`, then the requests occurred before request tracking was available. <br> &#8226; `request_count`: Number of requests made in the given month and year.
-`db_version` | The type and version of the datastore Kong Gateway is using.
-`kong_version` | The version of the Kong Gateway instance.
-`license_key` | An encrypted license key. If no license is present, the field displays as `UNLICENSED`.
-`rbac_users` | The number of users registered with through RBAC.
-`services_count` | The number of configured services in the Kong Gateway instance.
-`system_info` | Displays information about the system running Kong Gateway. <br><br> &#8226; `cores`: Number of CPU cores <br> &#8226; `hostname`: Encrypted hostname <br> &#8226; `uname`: Operating system
-`workspaces_count` | The number of workspaces configured in the Kong Gateway instance.
-
-
-**Response**
-
-```
-HTTP 200 OK
-```
-
-```json
-{
-    "counters": [
-        {
-            "bucket": "2021-12",
-            "request_count": 0
-        }
-    ],
-    "db_version": "postgres 9.6.19",
-    "kong_version": "2.7.0.0",
-    "license_key": "ASDASDASDASDASDASDASDASDASD_ASDASDA",
-    "rbac_users": 0,
-    "services_count": 0,
-    "system_info": {
-        "cores": 4,
-        "hostname": "13b867agsa008",
-        "uname": "Linux x86_64"
-    },
-    "workspaces_count": 1
-}
-```
-
-If there are no licenses stored by {{site.base_gateway}}, the report will include
-`"license_key": "UNLICENSED"`:
-
-```
-HTTP 200 OK
-```
-
-```json
-{
-    "counters": [
-        {
-            "bucket": "2021-12",
-            "request_count": 0
-        }
-    ],
-    "db_version": "postgres 9.6.19",
-    "kong_version": "2.7.0.0",
-    "license_key": "UNLICENSED",
-    "rbac_users": 0,
-    "services_count": 0,
-    "system_info": {
-        "cores": 4,
-        "hostname": "13b867agsa008",
-        "uname": "Linux x86_64"
-    },
-    "workspaces_count": 1
-}
 ```
 
 [Admin API]: /gateway/{{page.kong_version}}/admin-api/
