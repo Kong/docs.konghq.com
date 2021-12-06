@@ -33,24 +33,43 @@ To generate a license report, from an HTTP client:
     Access-Control-Allow-Credentials: true
     Access-Control-Allow-Origin: http://localhost:8002
     Connection: keep-alive
-    Content-Length: 262
+    Content-Length: 814
     Content-Type: application/json; charset=utf-8
-    Date: Wed, 19 Feb 2020 05:54:23 GMT
-    Server: kong/1.3-enterprise-edition
+    Date: Mon, 06 Dec 2021 12:04:28 GMT
+    Server: kong/2.7.0.1-enterprise-edition
     Vary: Origin
-    X-Kong-Admin-Request-ID: 6fmfr4Zl3RGmOs5oY0HvT47zt0oDq54o
+    X-Kong-Admin-Request-ID: R1jmopI6fjkOLdOuPJVLEmGh4sCLMpSY
     {
-       "counters":{
-          "req_cnt":22
-       },
-       "db_version":"postgres 9.5.20",
-       "kong_version":"1.3-enterprise-edition",
-       "license_key":"ASDASDASDASDASDASDASDASDASD_a1VASASD",
+       "counters": [
+        {
+            "bucket": "2021-09",
+            "request_count": 30
+        },
+        {
+            "bucket": "2020-10",
+            "request_count": 42
+        },
+
+        {
+            "bucket": "2021-11",
+            "request_count": 296
+        },
+        {
+            "bucket": "2021-12",
+            "request_count": 58
+        },
+        {
+            "bucket": "UNKNOWN",
+            "request_count": 50
+        },
+       "db_version":"postgres 9.6.24",
+       "kong_version":"2.7.0.1-enterprise-edition",
+       "license_key":"KONGLICENSEKEY_NOTVALIDFORREAL_USAGE",
        "rbac_users":0,
        "services_count": 27,
        "system_info":{
           "cores":6,
-          "hostname":"264da9b95dfa",
+          "hostname":"akongnode",
           "uname":"Linux x86_64"
        },
        "workspaces_count":1
@@ -128,9 +147,15 @@ To generate a license report, from an HTTP client:
    </td>
   </tr>
   <tr>
-   <td>counters.req_count
+   <td>counters.bucket
    </td>
-   <td>Number of requests node/cluster processed
+   <td>Year and month when the requests were processed, or "UNKNOWN" for requests processed before Kong 2.7.0.1.
+   </td>
+  </tr>
+  <tr>
+   <td>counters.request_count
+   </td>
+   <td>Number of requests processed in the given month and year
    </td>
   </tr>
 </table>
