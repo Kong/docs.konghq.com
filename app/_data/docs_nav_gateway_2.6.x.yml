@@ -3,6 +3,8 @@
   url: /gateway/
   absolute_url: true
   items:
+    - text: Data Collection
+      url: /data-collection
     - text: Version Support Policy
       url: /konnect-platform/support-policy
       absolute_url: true
