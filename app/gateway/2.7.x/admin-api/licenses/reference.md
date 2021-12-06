@@ -202,7 +202,7 @@ HTTP 204 No Content
 
 Generate a report on the Kong Gateway instance to gather monthly usage data.
 
-<div class="endpoint get">/licenses/report</div>
+<div class="endpoint get">/license/report</div>
 
 Fields available in the report:
 
