@@ -390,6 +390,77 @@ kong.response.set_headers({
 [Back to top](#kongresponse)
 
 
+### kong.response.get_raw_body()
+
+Returns the full body when the last chunk has been read.
+
+ Calling this function will start to buffer the body in
+ an internal request context variable, and set the current
+ chunk (`ngx.arg[1]`) to `nil` when the chunk is not the
+ last one. Otherwise it returns the full buffered body.
+
+
+**Phases**
+
+* `body_filter`
+
+**Returns**
+
+* `string` body The full body when the last chunk has been read,
+                      otherwise returns `nil`
+
+
+**Usage**
+
+``` lua
+local body = kong.response.get_raw_body()
+if body then
+  body = transform(body)
+  kong.response.set_raw_body(body)
+end
+```
+
+[Back to top](#kongresponse)
+
+
+### kong.response.set_raw_body(body)
+
+Sets the body of the response
+
+ The `body` argument must be a string and will not be processed in any way.
+ This function cannot anymore change the `Content-Length` header if one was
+ added. So if you decide to use this function, the `Content-Length` header
+ should also be cleared, e.g. in `header_filter` phase.
+
+
+**Phases**
+
+* `body_filter`
+
+**Parameters**
+
+* **body** (string):  The raw body
+
+**Returns**
+
+*  Nothing; throws an error on invalid inputs.
+
+
+**Usage**
+
+``` lua
+kong.response.set_raw_body("Hello, world!")
+-- or
+local body = kong.response.get_raw_body()
+if body then
+  body = transform(body)
+  kong.response.set_raw_body(body)
+end
+```
+
+[Back to top](#kongresponse)
+
+
 ### kong.response.exit(status[, body[, headers]])
 
 This function interrupts the current processing and produces a response.

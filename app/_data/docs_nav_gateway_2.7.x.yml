@@ -369,50 +369,51 @@
     - text: Plugin Development Kit
       url: /pdk
       items:
-        - text: kong.client
-          url: /pdk/kong.client
 
-        - text: kong.client.tls
-          url: /pdk/kong.client.tls
+      - text: kong.client
+        url: /pdk/kong.client
 
-        - text: kong.cluster
-          url: /pdk/kong.cluster
+      - text: kong.client.tls
+        url: /pdk/kong.client.tls
 
-        - text: kong.ctx
-          url: /pdk/kong.ctx
+      - text: kong.cluster
+        url: /pdk/kong.cluster
 
-        - text: kong.ip
-          url: /pdk/kong.ip
+      - text: kong.ctx
+        url: /pdk/kong.ctx
 
-        - text: kong.log
-          url: /pdk/kong.log
+      - text: kong.ip
+        url: /pdk/kong.ip
 
-        - text: kong.nginx
-          url: /pdk/kong.nginx
+      - text: kong.log
+        url: /pdk/kong.log
 
-        - text: kong.node
-          url: /pdk/kong.node
+      - text: kong.nginx
+        url: /pdk/kong.nginx
 
-        - text: kong.request
-          url: /pdk/kong.request
+      - text: kong.node
+        url: /pdk/kong.node
 
-        - text: kong.response
-          url: /pdk/kong.response
+      - text: kong.request
+        url: /pdk/kong.request
 
-        - text: kong.router
-          url: /pdk/kong.router
+      - text: kong.response
+        url: /pdk/kong.response
 
-        - text: kong.service
-          url: /pdk/kong.service
+      - text: kong.router
+        url: /pdk/kong.router
 
-        - text: kong.service.request
-          url: /pdk/kong.service.request
+      - text: kong.service
+        url: /pdk/kong.service
 
-        - text: kong.service.response
-          url: /pdk/kong.service.response
+      - text: kong.service.request
+        url: /pdk/kong.service.request
 
-        - text: kong.table
-          url: /pdk/kong.table
+      - text: kong.service.response
+        url: /pdk/kong.service.response
+
+      - text: kong.table
+        url: /pdk/kong.table
 
     - text: Plugin Development Guide
       url: /plugin-development
