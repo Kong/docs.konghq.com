@@ -345,18 +345,12 @@
 
 
 # BRAIN AND IMMUNITY
-/enterprise/2.2.x/brain-immunity     /gateway/latest/immunity/
-/enterprise/latest/brain-immunity    /gateway/latest/immunity/
-/enterprise/2.2.x/brain-immunity/*   /gateway/latest/immunity/:splat
-/enterprise/latest/brain-immunity/*  /gateway/latest/immunity/:splat
-/enterprise/2.2.x/brain-immunity/service-map   /gateway/latest/immunity/
-/enterprise/latest/brain-immunity/service-map  /gateway/latest/immunity/
-/enterprise/2.2.x/brain-immunity/auto-generated-specs   /gateway/latest/immunity/
-/enterprise/latest/brain-immunity/auto-generated-specs  /gateway/latest/immunity/
-/enterprise/*/immunity      /gateway/
-/enterprise/*/immunity/*    /gateway/
-/gateway/*/immunity             /gateway/
-/gateway/*/immunity/*           /gateway/
+/enterprise/*/brain-immunity     /gateway/
+/enterprise/*/brain-immunity/*   /gateway/
+/enterprise/*/immunity           /gateway/
+/enterprise/*/immunity/*         /gateway/
+/gateway/*/immunity              /gateway/
+/gateway/*/immunity/*            /gateway/
 
 
 # VITALS

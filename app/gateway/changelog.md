@@ -10,7 +10,7 @@ no_version: true
 #### Deprecated
 * Kong Immunity is deprecated, removed, and not available in Kong Gateway.
 To access old Kong Immunity documentation, see the
-[doc archive](https://github.com/Kong/docs.konghq.com/tree/main/archive/enterprise).
+[doc archive](https://github.com/Kong/docs.konghq.com/tree/main/archive/enterprise/immunity_2.x).
 
 ## 2.6.0.1
 **Release Date:** 2021/11/18
