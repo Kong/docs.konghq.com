@@ -60,7 +60,6 @@ See the [{{site.konnect_saas}} documentation](/konnect/) and the
   it also includes:
     * [Dev Portal](#kong-dev-portal)
     * [Vitals](#kong-vitals)
-    * [Immunity](#kong-immunity)
     * [RBAC](/gateway/{{page.kong_version}}/admin-api/rbac/reference)
     * [Enterprise plugins](/hub/)
 
@@ -107,11 +106,6 @@ object-level health using intuitive, customizable dashboards
 {:.badge .enterprise}
 
 [Kong Dev Portal](/gateway/{{page.kong_version}}/developer-portal) is used to onboard new developers and to generate API documentation, create custom pages, manage API versions, and secure developer access.
-
-### Kong Immunity
-{:.badge .enterprise}
-
-[Kong Immunity](/gateway/{{page.kong_version}}/immunity) uses machine learning to autonomously identify service behavior anomalies in real-time to improve security, mitigate breaches, and isolate issues. Use Kong Immunity to autonomously identify service issues with machine learning-powered anomaly detection.
 
 ### Kong Vitals
 {:.badge .enterprise}

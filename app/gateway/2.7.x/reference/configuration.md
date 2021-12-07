@@ -2139,15 +2139,6 @@ enabled.
 
 ---
 
-#### admin_gui_flags
-
-Alters the layout Admin GUI (JSON) The only supported value is `{
-"IMMUNITY_ENABLED": true }` to enable Kong Immunity in the Admin GUI.
-
-**Default:** `{}`
-
----
-
 #### admin_gui_access_log
 
 Kong Manager Access Logs

@@ -341,22 +341,6 @@
     - text: Changelog
       url: /kong-for-kubernetes/changelog
 
-- title: Kong Brain & Kong Immunity
-  icon: /assets/images/icons/documentation/icn-brain-color.svg
-  url: /brain-immunity/install-configure
-  items:
-    - text: Installation and Configuration
-      url: /brain-immunity/install-configure
-    - text: Alerts
-      url: /brain-immunity/alerts
-    - text: Auto-Generated API Documentation
-      url: /brain-immunity/auto-generated-specs
-    - text: Service Map
-      url: /brain-immunity/service-map
-    - text: Troubleshooting
-      url: /brain-immunity/troubleshooting
-
-
 - title: Plugins
   icon: /assets/images/icons/documentation/icn-api-plugins-color.svg
   items:

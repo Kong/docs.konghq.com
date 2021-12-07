@@ -52,10 +52,4 @@ is_homepage: true
     <a href="/enterprise/{{page.kong_version}}/deployment/kong-for-kubernetes-enterprise">Learn more &rarr;</a>
   </div>
 
-  <div class="docs-grid-block">
-    <h3><a href="/enterprise/{{page.kong_version}}/immunity/install-configure">Kong Immunity</a></h3>
-    <p>Install and configure Kong Immunity.</p>
-    <a href="/enterprise/{{page.kong_version}}/immunity/install-configure">Learn more &rarr;</a>
-  </div>
-
 </div>

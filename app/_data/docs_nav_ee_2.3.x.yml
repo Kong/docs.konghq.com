@@ -454,23 +454,6 @@
     - text: Vitals with Prometheus
       url: /vitals/vitals-prometheus-strategy
 
-- title: Kong Immunity
-  icon: /assets/images/icons/documentation/icn-immunity-color.svg
-  url: /immunity/overview
-  items:
-    - text: Installation and Configuration
-      url: /immunity/install-configure
-    - text: Alerts
-      url: /immunity/alerts
-    - text: Model Training
-      url: /immunity/model-training
-    - text: Slack Integration
-      url: /immunity/slack-integration
-    - text: Troubleshooting
-      url: /immunity/troubleshooting
-    - text: Changelog
-      url: /immunity/changelog
-
 - title: Plugin Use Cases
   icon: /assets/images/icons/documentation/icn-api-plugins-color.svg
   url: /plugins
