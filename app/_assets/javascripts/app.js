@@ -145,14 +145,7 @@ jQuery(function () {
     });
   });
 
-  // COOKIE MODAL: Hide banner on "I accept" and set cookie
-  $(".cookie-policy-accept").on("click", function (e) {
-    e.preventDefault();
-
-    $(".cookie-policy-container").removeClass("showing");
-    $(".page").removeClass("page-cookie-policy");
-    setCookie("cookie-policy", "agreed");
-  });
+  // Cookie functions
 
   function getCookie(cname) {
     var name = cname + "=";
