@@ -61,27 +61,6 @@ box to save.
 
 4. Enter a version name and click **Create** to save.
 
-### Archive a Service Version
-
-1. From the left navigation menu, click **Services**.
-
-2. Select a Service from the dropdown menu.
-
-3. Navigate to **Versions**.
-
-4. Click on the version you want to archive, and you'll be taken to the version detail page.
-
-5. Click on the **Actions** dropdown menu.
-
-6. Click **Archive Version** to archive the Service version. Archiving prevents that 
-version from showing up on the Dev Portal UI. 
-
-    The Service version will still appear on the Konnect Admin UI, however users 
-    will not be able to send requests to the Service version endpoints, and those 
-    endpoints will no longer be supported.
-
-    An Archived version can be changed back to Published status, and the endpoints will be accessible again.
-
 ### Delete a Service Version
 
 1. From the left navigation menu, click **Services**.
