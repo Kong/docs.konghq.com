@@ -4,6 +4,16 @@ no_search: true
 no_version: true
 ---
 
+## 1.5.1
+
+> Released on 2021/12/16 TODO UPDATE IF NEEDED
+
+Built on top of [Kuma 1.4.1](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#141)
+
+### Upgrading
+
+Upgrades from `1.5.0` are seamless and no additional steps are needed.
+
 ## 1.5.0
 
 > Released on 2021/11/22
