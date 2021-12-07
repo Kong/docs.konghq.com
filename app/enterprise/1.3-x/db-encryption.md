@@ -55,10 +55,10 @@ $ chown <nginx_user>:<nginx_user> /path/to/generated/cert.pem /path/to/generated
 $ chmod 400 /path/to/generated/cert.pem /path/to/generated/key.pem
 ```
 
-When testing, one may also set `keyring_blob_path` in kong.conf or `KONG_KEYRING_BLOB_PATH` via environmental
-variables to specify path to dump known keys. The dumped keys are encrypted with the public
-RSA key defined via the `keyring_public_key` Kong configuration value, and will be automatically
-load duing Kong start.
+When testing, you can also set `keyring_blob_path` in kong.conf or `KONG_KEYRING_BLOB_PATH` 
+using environmental variables to specify a path to dump known keys. The dumped keys are 
+encrypted with the public RSA key defined in the `keyring_public_key` Kong configuration 
+value, and are automatically loaded during Kong start.
 
 ### Start Kong
 
