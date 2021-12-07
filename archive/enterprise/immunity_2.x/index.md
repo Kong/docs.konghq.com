@@ -3,6 +3,10 @@ title: Kong Immunity
 badge: enterprise
 ---
 
+> **Warning:** Kong Immunity is deprecated, removed, and not available in Kong Gateway.
+To access old Kong Immunity documentation, see the
+[doc archive](https://github.com/Kong/docs.konghq.com/tree/main/archive/enterprise).
+
 **Kong Immunity** (Immunity) uses advanced machine learning to analyze traffic patterns in real-time to improve security, mitigate breaches and isolate issues.  
 
 Immunity monitors all traffic that flows through {{site.base_gateway}}. When an anomaly is detected, Immunity sends an alert to Kong Manager and displays on the Alerts dashboard. Alerts are built to signal the health of your microservices system and help pinpoint which endpoints are struggling.

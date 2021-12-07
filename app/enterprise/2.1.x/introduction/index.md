@@ -29,17 +29,9 @@ Kong Gateway Community is a lightweight, fast, and flexible cloud-native API gat
 
 Kong Admin API provides a RESTful interface for administration and configuration of Services, Routes, Plugins, and Consumers. All of the tasks you perform in the Kong Manager can be automated using the Kong Admin API. For more information, see [_Kong Admin API_](https://docs.konghq.com/enterprise/{{page.kong_version}}/admin-api/).
 
-### Kong Brain
-
-Kong Brain is an add-on that automates tasks, increases visibility and ensures consistency across complex architectures. Use Kong Brain to automatically standardize documentation and create a visual map of your services. For more information, see the [_Kong Brain and Immunity Guide_](https://docs.konghq.com/enterprise/{{page.kong_version}}/brain-immunity/install-configure/).
-
 ### Kong Developer Portal
 
 Kong Developer Portal (Kong Dev Portal) is used to onboard new developers and to generate API documentation, create custom pages, manage API versions, and secure developer access. For more information, see [_Kong Developer Portal_](https://docs.konghq.com/enterprise/{{page.kong_version}}/developer-portal/).
-
-### Kong Immunity
-
-Kong Immunity is an add-on that uses machine learning to autonomously identify service behavior anomalies in real-time to improve security, mitigate breaches and isolate issues. Use Kong Immunity to autonomously identify service issues with machine learning-powered anomaly detection. For more information, see the [_Kong Brain and Immunity Guide_](https://docs.konghq.com/enterprise/{{page.kong_version}}/brain-immunity/install-configure/).
 
 ### Kong for Kubernetes
 

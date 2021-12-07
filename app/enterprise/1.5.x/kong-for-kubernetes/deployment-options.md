@@ -62,8 +62,6 @@ if you want to use:
 
 * Kong Manager
 * Dev Portal
-* Brain
-* Immunity
 * Teams (RBAC)
 * Vitals
 * Workspaces

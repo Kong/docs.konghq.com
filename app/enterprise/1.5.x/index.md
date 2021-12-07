@@ -52,10 +52,4 @@ is_homepage: true
     <a href="/enterprise/{{page.kong_version}}/kong-for-kubernetes/">Learn more &rarr;</a>
   </div>
 
-  <div class="docs-grid-block">
-    <h3><a href="/enterprise/{{page.kong_version}}/brain-immunity/install-configure">Kong Brain & Kong Immunity</a></h3>
-    <p>Install and Configure Kong Brain and Kong Immunity.</p>
-    <a href="/enterprise/{{page.kong_version}}/brain-immunity/install-configure">Learn more &rarr;</a>
-  </div>
-
 </div>

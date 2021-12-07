@@ -2,6 +2,10 @@
 title: Kong Brain and Kong Immunity Overview
 ---
 
+> **Warning:** Kong Brain and Immunity are deprecated, removed, and not available in Kong Gateway.
+To access old Kong Brain and Immunity documentation, see the
+[doc archive](https://github.com/Kong/docs.konghq.com/tree/main/archive/enterprise).
+
 ## Overview
 
 **Kong Brain** (Brain) and **Kong Immunity** (Immunity) help automate the entire API and service development life cycle. By automating processes for configuration, traffic analysis and the creation of documentation, Brain and Immunity help organizations improve efficiency, governance, reliability and security.  Brain automates API and service documentation and Immunity uses advanced machine learning to analyze traffic patterns to diagnose and improve security.
