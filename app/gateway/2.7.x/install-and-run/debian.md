@@ -33,6 +33,10 @@ The {{site.base_gateway}} software is governed by the
 ## Prerequisites
 
 * A supported system with root or [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user) access.
+* The following tools are installed:
+  * [`curl`](https://curl.se/)
+  * [`lsb-release`](https://packages.debian.org/lsb-release)
+  * [`apt-transport-https`](https://packages.debian.org/apt-transport-https) (Only if installing the APT repository)
 * (Enterprise only) A `license.json` file from Kong.
 
 ## Download and install
