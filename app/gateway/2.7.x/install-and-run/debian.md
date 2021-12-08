@@ -5,7 +5,9 @@ title: Install Kong Gateway on Debian
 > Download the latest {{page.kong_version}} package for Debian:
 >
 > * **Kong Gateway**:
-> [**10 Buster**]({{ site.links.download }}/gateway-2.x-debian-buster/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_amd64.deb){:.install-link}
+> [**8 Jessie**]({{ site.links.download }}/gateway-2.x-debian-jessie/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_amd64.deb){:.install-link},
+> [**9 Stretch**]({{ site.links.download }}/gateway-2.x-debian-stretch/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_amd64.deb){:.install-link},
+> [**10 Buster**]({{ site.links.download }}/gateway-2.x-debian-buster/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_amd64.deb){:.install-link},
 > or [**11 Bullseye**]({{ site.links.download }}/gateway-2.x-debian-bullseye/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_amd64.deb){:.install-link}
 > (latest version: {{page.kong_versions[page.version-index].ee-version}})
 > * **Kong Gateway (OSS)**:
