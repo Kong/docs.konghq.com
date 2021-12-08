@@ -397,7 +397,16 @@ selected header was not sent by the client or the configured service was not fou
 
 ## Rate limiting for consumer groups
 
-[ADD LINK TO EXAMPLE DOC IN ADMIN API]
+You can use consumer groups to manage custom rate limiting configuration for
+subsets of consumers. To use consumer groups, you'll need to configure the following parameters:
+
+* `config.enforce_consumer_groups`: Set to true.
+* `config.consumer_groups`: Provide a list of consmer groups that this plugin allows overrides for.
+
+For guides on working with consumer groups, see the consumer group 
+[examples](/gateway/latest/admin-api/consumer-groups/examples) and 
+[API reference](/gateway/latest/admin-api/consumer-groups/reference) in 
+the Admin API documentation.
 
 ---
 
