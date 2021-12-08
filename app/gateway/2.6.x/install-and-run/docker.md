@@ -115,7 +115,7 @@ docker pull kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
 <div class="copy-code-snippet"><pre><code>docker run -d --name <div contenteditable="true">{GATEWAY_CONTAINER_NAME}</div> \
  --network=<div contenteditable="true">{NETWORK_NAME}</div> \
  -e "KONG_DATABASE=postgres" \
- -e "KONG_PG_HOST=<div contenteditable="true">{DATABASE_NAME}</div>" \
+ -e "KONG_PG_HOST=<div contenteditable="true">{PG_HOST_NAME}</div>" \
  -e "KONG_PG_USER=<div contenteditable="true">{PG_USER_NAME}</div>" \
  -e "KONG_PG_PASSWORD=<div contenteditable="true">{DATABASE_PASSWORD}</div>" \
  -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
