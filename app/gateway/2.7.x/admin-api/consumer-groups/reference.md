@@ -54,13 +54,11 @@ Attribute                             | Description
 
 ```json
 {
-  "plugins": {
-    "rate-limiting-advanced" : {
-      "config": {
-        "limit": 30
-      }
+    "consumer_group": {
+        "created_at": 1638917780,
+        "id": "be4bcfca-b1df-4fac-83cc-5cf6774bf48e",
+        "name": "JL"
     }
-  }
 }
 ```
 
@@ -78,18 +76,49 @@ Attribute                             | Description
 **Response**
 
 ```json
-TBA
+{
+    "consumers": [
+        {
+            "created_at": 1638918560,
+            "id": "288f2bfc-04e2-4ec3-b6f3-40408dff5417",
+            "type": 0,
+            "username": "BarryAllen",
+            "username_lower": "barryallen"
+        },
+        {
+            "created_at": 1638915577,
+            "id": "8089a0e6-1d31-4e00-bf51-5b902899b4cb",
+            "type": 0,
+            "username": "DianaPrince",
+            "username_lower": "dianaprince"
+        }
+    ]
+}
 ```
 
 ### List consumer groups for a consumer
 
 **Endpoint**
 
-<div class="endpoint get">/consumer/{CONSUMER_NAME|CONSUMER_ID}/consumer_groups</div>
+<div class="endpoint get">/consumers/{CONSUMER_NAME|CONSUMER_ID}/consumer_groups</div>
 
 Attribute                             | Description
 ---------:                            | --------  
 `USERNAME|CONSUMER_ID`<br>*required*  | The name or UUID of the consumer.
+
+**Response**
+
+```json
+{
+    "consumer_groups": [
+        {
+            "created_at": 1638918476,
+            "id": "e2c3f16e-22c7-4ef4-b6e4-ab25c522b339",
+            "name": "JL"
+        }
+    ]
+}
+```
 
 
 ## Create a consumer group
@@ -102,8 +131,7 @@ Attribute                             | Description
 
 Attribute                             | Description
 ---------:                            | --------
-`GROUP_NAME|GROUP_ID`<br>*required*   | The name or UUID of the consumer group.                             |
-
+`GROUP_NAME|GROUP_ID`<br>*required*   | The name or UUID of the consumer group.
 
 **Response**
 
@@ -113,7 +141,7 @@ HTTP 201 Created
 {
   "created_at": 1557522650,
   "id": "fa6881b2-f49f-4007-9475-577cd21d34f4",
-  "name": "my_group",
+  "name": "JL",
 }
 ```
 
@@ -134,7 +162,7 @@ HTTP 201 Created
 {
   "created_at": 1557522650,
   "id": "fa6881b2-f49f-4007-9475-577cd21d34f4",
-  "name": "my_group",
+  "name": "JL",
 }
 ```
 
@@ -155,7 +183,24 @@ Attribute                             | Description
 
 **Response**
 ```json
-TBA
+{
+    "consumer": {
+        "created_at": 1638918560,
+        "custom_id": null,
+        "id": "288f2bfc-04e2-4ec3-b6f3-40408dff5417",
+        "tags": null,
+        "type": 0,
+        "username": "BarryAllen",
+        "username_lower": "barryallen"
+    },
+    "consumer_groups": [
+        {
+            "created_at": 1638918476,
+            "id": "e2c3f16e-22c7-4ef4-b6e4-ab25c522b339",
+            "name": "JL"
+        }
+    ]
+}
 ```
 
 **Endpoint**
@@ -174,7 +219,22 @@ Attribute                             | Description
 
 **Response**
 ```json
-TBA
+{
+  "consumer_group": {
+  "created_at": 1638915521,
+  "id": "8a4bba3c-7f82-45f0-8121-ed4d2847c4a4",
+  "name": "JL"
+  },
+  "consumers": [
+    {
+        "created_at": 1638915577,
+        "id": "8089a0e6-1d31-4e00-bf51-5b902899b4cb",
+        "type": 0,
+        "username": "DianaPrince",
+        "username_lower": "dianaprince"
+    }
+  ]
+}
 ```
 
 ## Delete a consumer group
@@ -201,8 +261,9 @@ Attribute                             | Description
 `USERNAME|CONSUMER_ID`<br>*required*   | The name or UUID of the consumer to remove from all groups.
 
 **Response**
-```json
-TBA
+
+```
+HTTP/1.1 204 No Content
 ```
 
 ### Remove a consumer from a specific group
@@ -216,8 +277,9 @@ Attribute                             | Description
 `GROUP_NAME|GROUP_ID`<br>*required*   | The name or UUID of the consumer group to remove the consumer from.
 
 **Response**
-```json
-TBA
+
+```
+HTTP/1.1 204 No Content
 ```
 
 **Consumer groups endpoint**
@@ -229,8 +291,9 @@ Attribute                             | Description
 `USERNAME|CONSUMER_ID`<br>*required*  | The name or UUID of the consumer to remove.
 
 **Response**
-```json
-TBA
+
+```
+HTTP/1.1 204 No Content
 ```
 
 ## Configure rate limiting for a consumer group
@@ -245,12 +308,10 @@ Attribute                             | Description
 
 Attribute     | Description  
 ---------:    | --------
-`limit`       |
-`window_size` |
-`window_type` |
-`retry_after_jitter_max` |
-
-[Q: Are the settings above the only possible settings? Are there less, more? Or can you set anything that the rate limiting advanced plugin has available?]
+`limit`<br>*required*       | An array of one or more requests-per-window limits to apply. There must be a matching number of window limits and sizes specified.
+`window_size`<br>*required* | An array of one or more window sizes to apply a limit to (defined in seconds). There must be a matching number of window limits and sizes specified.
+`window_type`<br>*optional* | Set the time window type to either `sliding` (default) or `fixed`.
+`retry_after_jitter_max`<br>*optional* | The upper bound of a jitter (random delay) in seconds to be added to the `Retry-After` header of denied requests (status = `429`) in order to prevent all the clients from coming back at the same time. The lower bound of the jitter is `0`; in this case, the `Retry-After` header is equal to the `RateLimit-Reset` header.
 
 **Response**
 
