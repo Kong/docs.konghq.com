@@ -343,7 +343,7 @@
             - text: Examples
               url: /admin-api/admins/examples
         - text: Consumer Groups
-          url: /admin-api/admins/reference
+          url: /admin-api/consumer-groups/reference
           items:
             - text: API Reference
               url: /admin-api/consumer-groups/reference
