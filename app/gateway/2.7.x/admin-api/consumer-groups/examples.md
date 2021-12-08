@@ -173,7 +173,7 @@ change the settings for the `JL` consumer group only:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-curl -i -X PUT http://{HOSTNAME}:8001/consumer_groups/JL/overrides/plugins/  rate-limiting-advanced \
+curl -i -X PUT http://{HOSTNAME}:8001/consumer_groups/JL/overrides/plugins/rate-limiting-advanced \
   --header 'Content-Type: application/json' \
   --data '{ "config": { "limit": [ 10 ], "retry_after_jitter_max": 1, "window_size": [ 10 ] } }'
 ```
