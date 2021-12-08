@@ -4,17 +4,12 @@ book: plugin_dev
 chapter: 8
 ---
 
-<div class="alert alert-warning">
-  <strong>Note:</strong> This chapter assumes that you have a relative
-  knowledge of <a href="http://leafo.net/lapis/">Lapis</a>.
-</div>
-
-<div class="alert alert-warning">
-  <strong>Note:</strong> The Admin API extensions are available only
+{:.note}
+> **Notes:**
+> * This chapter assumes that you have a relative
+  knowledge of [Lapis](http://leafo.net/lapis/).
+> * The Admin API extensions are available only
   for HTTP plugins, not Stream plugins.
-</div>
-
-## Introduction
 
 Kong can be configured using a REST interface referred to as the [Admin API].
 Plugins can extend it by adding their own endpoints to accommodate custom
@@ -31,7 +26,7 @@ level of abstraction makes it easy for you to add endpoints.
 kong.plugins.<plugin_name>.api
 ```
 
-## Adding endpoints to the Admin API
+## Add endpoints to the Admin API
 
 Kong will detect and load your endpoints if they are defined in a module named:
 

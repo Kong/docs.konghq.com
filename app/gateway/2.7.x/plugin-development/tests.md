@@ -2,12 +2,9 @@
 title: Plugin Development - Writing tests
 book: plugin_dev
 chapter: 9
-toc: false
 ---
 
-## Introduction
-
-If you are serious about your plugins, you probably want to write tests for it.
+If you are serious about your plugin, you probably want to write tests for it.
 Unit testing Lua is easy, and [many testing
 frameworks](http://lua-users.org/wiki/UnitTesting) are available. However, you
 might also want to write integration tests. Again, Kong has your back.
@@ -17,7 +14,7 @@ might also want to write integration tests. Again, Kong has your back.
 The preferred testing framework for Kong is
 [busted](http://olivinelabs.com/busted/) running with the
 [resty-cli](https://github.com/openresty/resty-cli) interpreter, though you are
-free to use another one if you wish. In the Kong repository, the busted
+free to use a different one. In the Kong repository, the busted
 executable can be found at `bin/busted`.
 
 Kong provides you with a helper to start and stop it from Lua in your test
@@ -96,12 +93,12 @@ for _, strategy in helpers.each_strategy() do
 end
 ```
 
-> Reminder: With the test Kong configuration file, Kong is running with
+With the test Kong configuration file, Kong is running with
 its proxy listening on port 9000 (HTTP), 9443 (HTTPS)
 and Admin API on port 9001.
 
-If you want to see a real-world example, give a look at the
-[Key-Auth plugin specs](https://github.com/Kong/kong/tree/master/spec/03-plugins/09-key-auth)
+For a real-world example, see the
+[Key-Auth plugin specs](https://github.com/Kong/kong/tree/master/spec/03-plugins/09-key-auth).
 
 ---
 
