@@ -11,18 +11,31 @@ To use consumer groups for rate limiting, configure the plugin with the
 `enforce_consumer_groups` and `consumer_groups` parameters, then use the
 `/consumer_groups` endpoint to manage the groups.
 
-## Set up a consumer group with consumers
+## Set up consumer group
 
 1. Create a consumer group named `JL`:
 
-    ```bash
-    http POST :8001/consumer_groups name=JL
-    ```
+{% capture create_consumer_group %}
+{% navtabs codeblock %}
+{% navtab cURL %}
+```bash
+curl -i -X POST http://{HOSTNAME}:8001/consumer_groups \
+  -d name=JL
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```bash
+http POST :8001/consumer_groups name=JL
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+
+{{ create_consumer_group | indent | replace: " </code>", "</code>" }}
 
     Response:
+
     ```json
-    HTTP/1.1 201 Created
-    ...
     {
         "created_at": 1638915521,
         "id": "8a4bba3c-7f82-45f0-8121-ed4d2847c4a4",
@@ -33,14 +46,27 @@ To use consumer groups for rate limiting, configure the plugin with the
 2. Create a consumer, `DianaPrince`, by making the following HTTP request to your
 instance of the Kong Admin API:
 
-    ```bash
-    http POST :8001/consumers username=DianaPrince
-    ```
+{% capture create_consumer %}
+{% navtabs codeblock %}
+{% navtab cURL %}
+```bash
+curl -i -X POST http://{HOSTNAME}:8001/consumers \
+  -d username=DianaPrince
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```bash
+http POST :8001/consumers username=DianaPrince
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+
+{{ create_consumer | indent | replace: " </code>", "</code>" }}
 
     Response:
+
     ```json
-    HTTP/1.1 201 Created
-    ...
     {
         "created_at": 1638915577,
         "custom_id": null,
@@ -54,14 +80,27 @@ instance of the Kong Admin API:
 
 3. Add `DianaPrince` to the `JL` consumer group:
 
-    ```bash
-    http POST :8001/consumer_groups/JL/consumers consumer=DianaPrince
-    ```
+{% capture add_consumer %}
+{% navtabs codeblock %}
+{% navtab cURL %}
+```bash
+curl -i -X POST http://{HOSTNAME}:8001/consumer_groups/JL/consumers \
+  -d consumer=DianaPrince
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```bash
+http POST :8001/consumer_groups/JL/consumers consumer=DianaPrince
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+
+{{ add_consumer | indent | replace: " </code>", "</code>" }}
 
     Response:
-    ```json
-    HTTP/1.1 201 Created
 
+    ```json
     {
       "consumer_group": {
       "created_at": 1638915521,
@@ -80,22 +119,42 @@ instance of the Kong Admin API:
     }
     ```
 
-## Set up the Rate Limiting Advanced plugin and an override
+## Set up Rate Limiting Advanced config for consumer group
 
 1. Enable the [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced),
 configuring some basic settings:
+{% capture add_plugin %}
+{% navtabs codeblock %}
+{% navtab cURL %}
+```bash
+curl -i -X POST http://{HOSTNAME}:8001/plugins/  \
+  -d name=rate-limiting-advanced \
+  -d config.limit=5 \
+  -d config.sync_rate=-1 \
+  -d config.window_size=30 \
+  -d config.window_type=sliding \
+  -d config.retry_after_jitter_max=0 \
+  -d config.enforce_consumer_groups=true \
+  -d config.consumer_groups=JL
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```bash
+http -f :8001/plugins/  \
+  name=rate-limiting-advanced \
+  config.limit=5 \
+  config.sync_rate=-1 \
+  config.window_size=30 \
+  config.window_type=sliding \
+  config.retry_after_jitter_max=0 \
+  config.enforce_consumer_groups=true \
+  config.consumer_groups=JL
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
 
-    ```bash
-    http -f :8001/plugins/  \
-      name=rate-limiting-advanced \
-      config.limit=5 \
-      config.sync_rate=-1 \
-      config.window_size=30 \
-      config.window_type=sliding \
-      config.retry_after_jitter_max=0 \
-      config.enforce_consumer_groups=true \
-      config.consumer_groups=JL
-    ```
+{{ add_plugin | indent | replace: " </code>", "</code>" }}
 
     For consumer groups, the following parameters are required:
     * `config.enforce_consumer_groups=true`: enables consumer groups for this plugin.
@@ -110,14 +169,30 @@ configuring some basic settings:
 2. The plugin you just set up applies to all consumers in the cluster. Let's
 change the settings for the `JL` consumer group only:
 
-    ```bash
-    http PUT :8001/consumer_groups/JL/overrides/plugins/rate-limiting-advanced \
-      config.limit:='[10]' \
-      config.window_size:='[10]' \
-      config.retry_after_jitter_max:=1
-    ```
+{% capture override %}
+{% navtabs codeblock %}
+{% navtab cURL %}
+```bash
+curl -i -X PUT http://{HOSTNAME}:8001/consumer_groups/JL/overrides/plugins/  rate-limiting-advanced \
+--header 'Content-Type: application/json' \
+--data '{ "config": { "limit": [ 10 ], "retry_after_jitter_max": 1, "window_size": [ 10 ] } }'
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```bash
+http PUT :8001/consumer_groups/JL/overrides/plugins/rate-limiting-advanced \
+  config.limit:='[10]' \
+  config.window_size:='[10]' \
+  config.retry_after_jitter_max:=1
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+
+{{ override | indent | replace: " </code>", "</code>" }}
 
     Response:
+
     ```json
     {
       "config": {
@@ -134,11 +209,24 @@ change the settings for the `JL` consumer group only:
     }
     ```
 
-3. Now let's check that it worked by looking at the `JL` consumer group object:
+3. Check that it worked by looking at the `JL` consumer group object:
 
-    ```bash
-    http :8001/consumer_groups/JL
-    ```
+{% capture check_group1 %}
+{% navtabs codeblock %}
+{% navtab cURL %}
+```bash
+curl -i -X GET http://{HOSTNAME}:8001/consumer_groups/JL
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```bash
+http :8001/consumer_groups/JL
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+
+{{ check_group1 | indent | replace: " </code>", "</code>" }}
 
     Notice the `plugins` object in the response, along with the parameters that you
     just set for the Rate Limiting Advanced plugin:
@@ -182,15 +270,14 @@ change the settings for the `JL` consumer group only:
     }
     ```
 
-## Remove a consumer from a consumer group - group view
+## Remove consumer from group - group view
 
 1. Check the `JL` consumer group for the consumer name:
 
-    ```bash
-    http :8001/consumer_groups/JL
-    ```
+{{ check_group1 | indent | replace: " </code>", "</code>" }}
 
     Response:
+
     ```json
     {
         "consumer_group": {
@@ -213,22 +300,34 @@ change the settings for the `JL` consumer group only:
 2. Using the username or ID of the consumer (`DianaPrince` in this example),
 remove the consumer from the group:
 
-    ```bash
-    http DELETE :8001/consumer_groups/JL/consumers/DianaPrince
-    ```
+{% capture delete_consumer1 %}
+{% navtabs codeblock %}
+{% navtab cURL %}
+```bash
+curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/JL/consumers/DianaPrince
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```bash
+http DELETE :8001/consumer_groups/JL/consumers/DianaPrince
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+
+{{ delete_consumer1 | indent | replace: " </code>", "</code>" }}
 
     If successful, you will see the following response:
     ```
     HTTP/1.1 204 No Content
     ```
 
-3. To verify, check the consumer object configuration:
+3. To verify, check the consumer group configuration again:
 
-    ```bash
-    http :8001/consumers_groups/JL
-    ```
+{{ check_group1 | indent | replace: " </code>", "</code>" }}
 
     Response, with no consumers assigned:
+
     ```json
     {
         "consumer_group": {
@@ -239,16 +338,30 @@ remove the consumer from the group:
     }
     ```
 
-## Remove a consumer from a group - consumer view
+## Remove consumer from group - consumer view
 
 1. If you know the consumer name and not the consumer group name,
 you can look up the group through the consumer:
 
-    ```bash
-    http :8001/consumers/DianaPrince/consumer_groups
-    ```
+{% capture check_group2 %}
+{% navtabs codeblock %}
+{% navtab cURL %}
+```bash
+curl -i -X GET http://{HOSTNAME}:8001/consumers/DianaPrince/consumer_groups
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```bash
+http :8001/consumers/DianaPrince/consumer_groups
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+
+{{ check_group2 | indent | replace: " </code>", "</code>" }}
 
     Response:
+
     ```json
     {
         "consumer_groups": [
@@ -264,9 +377,22 @@ you can look up the group through the consumer:
 2. Using the username or ID of the group (`JL` in this example),
 remove the consumer from the group:
 
-    ```bash
-    http DELETE :8001/consumers/DianaPrince/consumer_groups/JL
-    ```
+{% capture delete_consumer2 %}
+{% navtabs codeblock %}
+{% navtab cURL %}
+```bash
+curl -i -X DELETE http://{HOSTNAME}:8001/consumers/DianaPrince/consumer_groups/JL
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```bash
+http DELETE :8001/consumers/DianaPrince/consumer_groups/JL
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+
+{{ delete_consumer2 | indent | replace: " </code>", "</code>" }}
 
     If successful, you will see the following response:
     ```
@@ -275,11 +401,10 @@ remove the consumer from the group:
 
 3. To verify, check the consumer object configuration:
 
-    ```bash
-    http :8001/consumers_groups/JL
-    ```
+{{ check_group1 | indent | replace: " </code>", "</code>" }}
 
     Response, with no consumers assigned:
+
     ```json
     {
         "consumer_group": {
@@ -291,16 +416,30 @@ remove the consumer from the group:
     ```
 
 
-## Delete a consumer group
+## Delete consumer group
 
 If you don't need a consumer group anymore, you can delete it. This removes
 all consumers from the group, and deletes the group itself. The consumers in
 the group are not deleted.
 
 1. Delete a consumer group using the following request:
-    ```bash
-    http DELETE :8001/consumer_groups/JL
-    ```
+
+{% capture delete_consumer2 %}
+{% navtabs codeblock %}
+{% navtab cURL %}
+```bash
+curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/JL
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```bash
+http DELETE :8001/consumer_groups/JL
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+
+{{ delete_consumer2 | indent | replace: " </code>", "</code>" }}
 
     If successful, you will see the following response:
     ```
@@ -309,9 +448,22 @@ the group are not deleted.
 
 2. Check the list of consumer groups to verify that the `JL` group is gone:
 
-    ```bash
-    http :8001/consumer_groups
-    ```
+{% capture check_all_groups %}
+{% navtabs codeblock %}
+{% navtab cURL %}
+```bash
+curl -i -X GET http://{HOSTNAME}:8001/consumer_groups
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```bash
+http :8001/consumer_groups
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+
+{{ check_all_groups | indent | replace: " </code>", "</code>" }}
 
     Response:
     ```json
@@ -323,8 +475,21 @@ the group are not deleted.
 
 3. Check a consumer that was in the group to make sure it still exists:
 
-    ```bash
-    http :8001/consumers/DianaPrince
-    ```
+{% capture check_consumer %}
+{% navtabs codeblock %}
+{% navtab cURL %}
+```bash
+curl -i -X GET http://{HOSTNAME}:8001/consumers/DianaPrince
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```bash
+http :8001/consumers/DianaPrince
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+
+{{ check_consumer | indent | replace: " </code>", "</code>" }}
 
     An `HTTP/1.1 200 OK` response means the consumer exists.
