@@ -20,7 +20,7 @@ To use consumer groups for rate limiting, configure the plugin with the
 {% navtab cURL %}
 ```bash
 curl -i -X POST http://{HOSTNAME}:8001/consumer_groups \
-  -d name=JL
+  --data name=JL
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
@@ -51,7 +51,7 @@ instance of the Kong Admin API:
 {% navtab cURL %}
 ```bash
 curl -i -X POST http://{HOSTNAME}:8001/consumers \
-  -d username=DianaPrince
+  --data username=DianaPrince
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
@@ -85,7 +85,7 @@ http POST :8001/consumers username=DianaPrince
 {% navtab cURL %}
 ```bash
 curl -i -X POST http://{HOSTNAME}:8001/consumer_groups/JL/consumers \
-  -d consumer=DianaPrince
+  --data consumer=DianaPrince
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
@@ -128,14 +128,14 @@ configuring some basic settings:
 {% navtab cURL %}
 ```bash
 curl -i -X POST http://{HOSTNAME}:8001/plugins/  \
-  -d name=rate-limiting-advanced \
-  -d config.limit=5 \
-  -d config.sync_rate=-1 \
-  -d config.window_size=30 \
-  -d config.window_type=sliding \
-  -d config.retry_after_jitter_max=0 \
-  -d config.enforce_consumer_groups=true \
-  -d config.consumer_groups=JL
+  --data name=rate-limiting-advanced \
+  --data config.limit=5 \
+  --data config.sync_rate=-1 \
+  --data config.window_size=30 \
+  --data config.window_type=sliding \
+  --data config.retry_after_jitter_max=0 \
+  --data config.enforce_consumer_groups=true \
+  --data config.consumer_groups=JL
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
@@ -174,8 +174,8 @@ change the settings for the `JL` consumer group only:
 {% navtab cURL %}
 ```bash
 curl -i -X PUT http://{HOSTNAME}:8001/consumer_groups/JL/overrides/plugins/  rate-limiting-advanced \
---header 'Content-Type: application/json' \
---data '{ "config": { "limit": [ 10 ], "retry_after_jitter_max": 1, "window_size": [ 10 ] } }'
+  --header 'Content-Type: application/json' \
+  --data '{ "config": { "limit": [ 10 ], "retry_after_jitter_max": 1, "window_size": [ 10 ] } }'
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
