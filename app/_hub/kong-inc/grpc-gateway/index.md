@@ -131,7 +131,7 @@ message HelloRequest {
 }
 
 // The response message containing the greetings
-message HelloReply {
+message HelloResponse {
   string message = 1;
 }
 ```
