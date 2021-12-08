@@ -401,7 +401,7 @@ You can use consumer groups to manage custom rate limiting configuration for
 subsets of consumers. To use consumer groups, you'll need to configure the following parameters:
 
 * `config.enforce_consumer_groups`: Set to true.
-* `config.consumer_groups`: Provide a list of consmer groups that this plugin allows overrides for.
+* `config.consumer_groups`: Provide a list of consumer groups that this plugin allows overrides for.
 
 For guides on working with consumer groups, see the consumer group 
 [examples](/gateway/latest/admin-api/consumer-groups/examples) and 
