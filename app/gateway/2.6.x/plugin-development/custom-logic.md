@@ -314,6 +314,7 @@ zipkin                      | 100000
 exit-transformer            | 9999
 bot-detection               | 2500
 cors                        | 2000
+route-by-header             | 2000
 session                     | 1900
 oauth2-introspection        | 1700
 acme                        | 1007

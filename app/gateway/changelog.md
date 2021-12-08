@@ -12,6 +12,36 @@ no_version: true
 To access old Kong Immunity documentation, see the
 [doc archive](https://github.com/Kong/docs.konghq.com/tree/main/archive/enterprise/immunity_2.x).
 
+## 2.6.0.2
+**Release Date:** 2021/12/03
+
+### Fixes
+
+#### Dev Portal
+
+* Fixed links in Dev Portal footer.
+
+* Improved accessibility of the Dev Portal, fixing various issues related to
+labels, names, headings, and color contrast:
+    * Keyboard-accessible response examples and "Try it out" sections
+    * Form inputs now have labels
+    * Selectable elements now all have accessible names
+    * Unique IDs for active elements
+    * Heading levels only increase by one, and are in the correct order
+    * Improved contrast of buttons
+
+* Fixed the Dev Portal API `/applications` endpoint to only accept allowed
+fields in a PATCH request.
+
+* Fixed info tooltip crash and rendering issue when viewing the Dev Portal app
+registration service list.
+
+#### Plugins
+- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  - The plugin now allows Redis Cluster nodes to be specified by hostname
+    through the `session_redis_cluster_nodes` field, which
+    is helpful if the cluster IPs are not static.
+
 ## 2.6.0.1
 **Release Date:** 2021/11/18
 
@@ -45,12 +75,6 @@ issue would occur.
 - Fixed an issue with icon alignment in Kong Manager, where the **Delete**
 (garbage can) icon overlapped with the **View** link and caused users to
 accidentally click **Delete**.
-
-#### Plugins
-
-- [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
-  -  Redis cluster nodes can now be specified by hostname in the
-  `session_redis_cluster_nodes` field.
 
 ### Dependencies
 - Bumped kong-redis-cluster from `1.1-0` to `1.2.0`.

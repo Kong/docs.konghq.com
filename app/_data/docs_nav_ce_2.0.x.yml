@@ -3,19 +3,19 @@
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   items:
     - text: Overview
-      url: /../../gateway/latest/get-started/comprehensive
+      url: /../../getting-started-guide/CE-2.0.x_KE-1.5.x/overview
     - text: Prepare to Administer
-      url: /../../gateway/latest/get-started/comprehensive/prepare
+      url: /../../getting-started-guide/CE-2.0.x_KE-1.5.x/prepare
     - text: Expose your Services
-      url: /../../gateway/latest/get-started/comprehensive/expose-services
+      url: /../../getting-started-guide/CE-2.0.x_KE-1.5.x/expose-services
     - text: Protect your Services
-      url: /../../gateway/latest/get-started/comprehensive/protect-services
+      url: /../../getting-started-guide/CE-2.0.x_KE-1.5.x/protect-services
     - text: Improve Performance
-      url: /../../gateway/latest/get-started/comprehensive/improve-performance
+      url: /../../getting-started-guide/CE-2.0.x_KE-1.5.x/improve-performance
     - text: Secure Services
-      url: /../../gateway/latest/get-started/comprehensive/secure-services
+      url: /../../getting-started-guide/CE-2.0.x_KE-1.5.x/secure-services
     - text: Set Up Intelligent Load Balancing
-      url: /../../gateway/latest/get-started/comprehensive/load-balancing
+      url: /../../getting-started-guide/CE-2.0.x_KE-1.5.x/load-balancing
 
 - title: Guides &amp; References
   icon: /assets/images/icons/documentation/icn-references-color.svg

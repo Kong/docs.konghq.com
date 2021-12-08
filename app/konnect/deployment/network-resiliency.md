@@ -5,7 +5,7 @@ no_version: true
 
 {{site.konnect_saas}} deployments run in hybrid mode, which means that there is
 a separate control plane attached to one or more data plane nodes. These planes
-must commmunicate with each other to receive and send configuration. If
+must communicate with each other to receive and send configuration. If
 communication is interrupted and either side can't send or receive config, data
 plane nodes still continue proxying traffic to clients.
 
