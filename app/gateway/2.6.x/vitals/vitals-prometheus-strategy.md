@@ -64,17 +64,17 @@ The binary includes features like min/max gauges and Unix domain
 socket support which are not supported in the public project.
 
 {:.important}
-> This Docker image is a Kong fork of the prometheus community project and the mapping rules linked below 
-> will not work with the public image, so please ensure you using the correct one.
+> This Docker image is a Kong fork of the Prometheus community project and the mapping rules linked below 
+> do not work with the public image. Ensure you are using the correct one.
 > 
-> You can still use the prometheus community helm chart to deploy the exporter but override the image 
-> and tag in the values file as shown below:
-
-```yaml
-image:
-  repository: kong/statsd-exporter-advanced
-  tag: 0.3.1
-```
+>  If you prefer to use the Prometheus community Helm chart to deploy the exporter, override the image 
+> and tag in the `values` file as shown below:
+> 
+> ```yaml
+> image:
+>  repository: kong/statsd-exporter-advanced
+>  tag: 0.3.1
+> ```
 
 StatsD exporter needed to configured with a set of mapping rules to translate
 the StatsD UDP events to Prometheus metrics. A default set of mapping rules can
