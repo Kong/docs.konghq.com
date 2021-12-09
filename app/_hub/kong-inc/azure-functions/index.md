@@ -7,7 +7,7 @@ desc: Invoke and manage Azure functions from Kong
 description: |
   This plugin invokes
   [Azure Functions](https://azure.microsoft.com/en-us/services/functions/).
-  It can be used in combination with other request plugins to secure, manage, 
+  It can be used in combination with other request plugins to secure, manage,
   or extend the function.
 type: plugin
 categories:
@@ -15,6 +15,7 @@ categories:
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.7.x
       - 2.6.x
       - 2.5.x
       - 2.4.x
@@ -31,6 +32,7 @@ kong_version_compatibility:
       - 0.14.x
   enterprise_edition:
     compatible:
+      - 2.7.x
       - 2.6.x
       - 2.5.x
       - 2.4.x
@@ -79,12 +81,14 @@ params:
       default: null
       value_in_examples: <AZURE_APIKEY>
       datatype: string
+      encrypted: true
       description: 'The apikey to access the Azure resources. If provided, it is injected as the `x-functions-key` header.'
     - name: clientid
       required: false
       default: null
       value_in_examples: null
       datatype: string
+      encrypted: true
       description: 'The `clientid` to access the Azure resources. If provided, it is injected as the `x-functions-clientid` header.'
     - name: https_verify
       required: false
@@ -202,3 +206,12 @@ HTTP/1.1 200 OK
 ...
 "Hello Kong!"
 ```
+
+---
+
+## Changelog
+
+### 1.0.1
+
+* Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
+ the `apikey` and `clientid` parameter values will be encrypted.

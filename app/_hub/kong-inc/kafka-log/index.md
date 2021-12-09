@@ -1,7 +1,7 @@
 ---
 name: Kafka Log
 publisher: Kong Inc.
-version: 0.2.x
+version: 0.3.x
 desc: Publish logs to a Kafka topic
 description: |
   Publish request and response logs to an [Apache Kafka](https://kafka.apache.org/) topic.
@@ -18,9 +18,7 @@ kong_version_compatibility:
     compatible: null
   enterprise_edition:
     compatible:
-      - 2.6.x
-      - 2.4.x
-      - 2.5.x
+      - 2.7.x
 params:
   name: kafka-log
   dbless_compatible: 'yes'
@@ -65,6 +63,7 @@ params:
       urlencode_in_examples: true
       default: null
       datatype: string
+      encrypted: true
       description: |
         Username for SASL authentication.
     - name: authentication.password
@@ -73,6 +72,7 @@ params:
       urlencode_in_examples: true
       default: null
       datatype: string
+      encrypted: true
       description: |
         Password for SASL authentication.
     - name: authentication.tokenauth
@@ -278,3 +278,13 @@ Known limitations:
 
 1. Message compression is not supported.
 2. The message format is not customizable.
+
+---
+
+## Changelog
+
+### 0.3.x
+
+* Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
+ the `authentication.user` and `authentication.password` parameter values will
+ be encrypted.

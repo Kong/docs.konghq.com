@@ -13,35 +13,10 @@ categories:
 kong_version_compatibility:
   community_edition:
     compatible:
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
-      - 0.14.x
-      - 0.13.x
-      - 0.12.x
-      - 0.11.x
-      - 0.10.x
+      - 2.7.x
   enterprise_edition:
     compatible:
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+      - 2.7.x
 params:
   name: aws-lambda
   service_id: true
@@ -58,6 +33,7 @@ params:
       urlencode_in_examples: true
       default: null
       datatype: string
+      encrypted: true
       description: |
         The AWS key credential to be used when invoking the function. The `aws_key` value is required
         if `aws_secret` is defined. If `aws_key` and `aws_secret` are not set, the plugin uses an
@@ -70,6 +46,7 @@ params:
       urlencode_in_examples: true
       default: null
       datatype: string
+      encrypted: true
       description: |
         The AWS secret credential to be used when invoking the function. The `aws_secret` value is required
         if `aws_key` is defined. If `aws_key` and `aws_secret` are not set, the plugin uses an
@@ -368,3 +345,12 @@ JSON response:
 ```
 
 Have fun leveraging the power of AWS Lambda in Kong!
+
+---
+
+## Changelog
+
+### 3.6.0
+
+* Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
+ the `aws_key` and `aws_secret` parameter values will be encrypted.
