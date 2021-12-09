@@ -254,6 +254,14 @@ When the selected policy cannot be retrieved, the plugin falls back
 to limiting usage by identifying the IP address. This can happen for several reasons, such as the
 selected header was not sent by the client or the configured service was not found.
 
+---
+
+## Changelog
+
+### 2.3.0
+
+* Added parameters `redis_ssl`, `redis_ssl_verify`, and `redis_server_name`.
+
 [api-object]: /gateway/latest/admin-api/#api-object
 [configuration]: /gateway/latest/reference/configuration
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
