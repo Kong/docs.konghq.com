@@ -63,8 +63,8 @@ guide, assume the route is in the default workspace.
 * Any network access control to your Kong node must allow traffic to and from Okta, the upstream service, and the client.
 
     For security reasons, make sure all requests are sent over HTTPS, and make the Kong proxy available
-     with a fully-qualified domain name and [properly configured certificate](/gateway/{{page.kong_version}}/admin-api/#certificate-object). 
-     Authorization tokens should also be stored securely. 
+     with a fully-qualified domain name and [properly configured certificate](/gateway/{{page.kong_version}}/admin-api/#certificate-object).
+     Authorization tokens should also be stored securely.
 
 ### Configure Okta
 
@@ -100,8 +100,6 @@ guide, assume the route is in the default workspace.
     to configure the Kong OIDC Plugin.
 
 ### Configure the OIDC plugin in {{site.base_gateway}}
-
-The following are steps you perform in {{site.base_gateway}} to enable the OIDC Plugin using Okta as an Identity Provider for the Authorization Code flow.
 
 #### Minimum configuration requirements
 
@@ -174,7 +172,7 @@ For a list of all available configuration parameters and what they do, see the
 {% endnavtab %}
 {% navtab Configure plugin with Admin API %}
 
-With an HTTP Client, enter the following cURL command and parameters to configure the OpenID Connect plugin. Use this as a template, and modify according to your own environment and configuration values.
+Configure the OpenID Connect plugin using the following sample values:
 
 ```bash
 $ curl -i -X POST https://KONG_ADMIN_URL/routes/ROUTE_ID/plugins
@@ -212,8 +210,8 @@ Test the following conditions to ensure a successful integration of the OIDC plu
 
 ### Access Restrictions
 
-The configuration above allows users to authenticate and access the Route even though
-no Consumer was created for them: any user with a valid account in the directory
+The example configuration allows users to authenticate and access the Route even though
+no Consumer was created for them. Any user with a valid account in the directory
 will have access to the Route. The OIDC plugin allows this as the simplest authentication option,
 but you may wish to restrict access further. There are several options for this:
 
