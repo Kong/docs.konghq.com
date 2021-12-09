@@ -62,12 +62,9 @@ guide, assume the route is in the default workspace.
 * If using {{site.base_gateway}} locally, you need Internet access.
 * Any network access control to your Kong node must allow traffic to and from Okta, the upstream service, and the client.
 
-    Because OpenID Connect deals with user credentials, all transactions should take place over HTTPS.
-    Although user passwords for third party identity providers are only submitted to
-    those providers and not Kong, authentication tokens grant access to a subset of
-    user account data and protected APIs, and should be secured. As such, you should
-    make Kong's proxy available via a fully-qualified domain name and
-    [add a certificate](/gateway/{{page.kong_version}}/admin-api/#certificate-object) for it.
+    For security reasons, make sure all requests are sent over HTTPS, and make the Kong proxy available
+     with a fully-qualified domain name and [properly configured certificate](/gateway/{{page.kong_version}}/admin-api/#certificate-object). 
+     Authorization tokens should also be stored securely. 
 
 ### Configure Okta
 
@@ -108,7 +105,7 @@ The following are steps you perform in {{site.base_gateway}} to enable the OIDC 
 
 #### Minimum configuration requirements
 
-For a basic out-of-the-box use case with the Authorization Code as the auth method, configure the following parameters:
+Configure the following parameters:
 
 * **issuer**: The issuer `url` from which OpenID Connect configuration can be discovered. Using Okta, specify the domain and server in the path:
     * `https://YOUR_OKTA_DOMAIN/oauth2/YOUR_AUTH_SERVER/.well-known/openid-configuration`
@@ -202,7 +199,7 @@ site and return you to the redirect URI after authenticating.
 
 ### Test Your Configuration
 
-Test the following conditions to ensure a successful integration of the OIDC plugin with Okta. Depending on the route you are using, the actual commands might vary. The following is an example of testing your configuration.
+Test the following conditions to ensure a successful integration of the OIDC plugin with Okta:
 
 * Unauthorized access to a route is blocked
 * Authorized access is allowed after login/providing first set of credentials
