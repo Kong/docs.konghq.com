@@ -19,12 +19,8 @@ Manager. The mapping removes the task of manually managing access in
 
 Here's how OIDC authenticaticated group mapping works:
 
-1. Create roles in {{site.base_gateway}} using either the Kong Admin API or Kong
-Manager.
-2. Create groups and associate roles with the groups.
-3. Configure the OIDC plugin to connect with your IdP.
-4. When users log in to Kong Manager, they get permissions based on the IdP
- group(s) they belong to.
+1. Configure the OIDC plugin to connect with your IdP.
+1. When users log in to Kong Manager, they are assigned to the roles they belong to in your IdP.
 
 ## Prerequisites
 * An IdP with an authorization server and users with groups assigned
