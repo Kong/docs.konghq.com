@@ -4,8 +4,6 @@ book: plugin_dev
 chapter: 7
 ---
 
-## Introduction
-
 Your plugin may need to frequently access custom entities (explained in the
 [previous chapter]({{page.book.previous}})) on every request and/or response.
 Usually, loading them once and caching them in-memory dramatically improves
@@ -37,7 +35,7 @@ under heavy load).
 kong.plugins.<plugin_name>.daos
 ```
 
-## Caching custom entities
+## Cache custom entities
 
 Once you have defined your custom entities, you can cache them in-memory in
 your code by using the [kong.cache](/gateway/{{page.kong_version}}/pdk/#kong-cache)
@@ -151,7 +149,7 @@ result in a database query.
 The cache is used in several places in the [Key-Auth plugin handler](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/handler.lua).
 Give that file a look in order to see how an official plugin uses the cache.
 
-### Updating or deleting a custom entity
+### Update or delete a custom entity
 
 Every time a cached custom entity is updated or deleted in the datastore (i.e.
 using the Admin API), it creates an inconsistency between the data in the
@@ -160,11 +158,10 @@ inconsistency, we need to evict the cached entity from the in-memory store and
 force Kong to request it again from the datastore. We refer to this process as
 cache invalidation.
 
----
 
 ## Cache invalidation for your entities
 
-If you wish that your cached entities be invalidated upon a CRUD operation
+If you want your cached entities to be invalidated upon a CRUD operation
 rather than having to wait for them to reach their TTL, you have to follow a
 few steps. This process can be automated for most entities, but manually
 subscribing to some CRUD events might be required to invalidate some entities
@@ -322,7 +319,7 @@ end
 ```
 
 Once the above listeners are in place for the desired entities, you can perform
-manual invalidations of any entity that your plugin has cached as you wish so.
+manual invalidations of any entity that your plugin has cached.
 For instance:
 
 ```lua

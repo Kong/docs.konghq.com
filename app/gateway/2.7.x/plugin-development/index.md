@@ -4,8 +4,6 @@ book: plugin_dev
 chapter: 1
 ---
 
-# What are plugins and how do they integrate with Kong?
-
 Before going further, it is necessary to briefly explain how Kong is built,
 especially how it integrates with Nginx and what Lua has to do with it.
 
@@ -16,12 +14,12 @@ OpenResty is *not* a fork of Nginx, but a bundle of modules extending its
 capabilities.
 
 Hence, Kong is a Lua application designed to load and execute Lua modules
-(which we more commonly refer to as "*plugins*") and provides an entire
+(which we more commonly refer to as *plugins*) and provides an entire
 development environment for them, including an SDK, database abstractions,
 migrations, and more.
 
 Plugins consist of Lua modules interacting with the request/response objects or
-streams via the **Plugin Development Kit** (or "PDK") to implement arbitrary logic.
+streams via the **Plugin Development Kit** (PDK) to implement arbitrary logic.
 The PDK is a set of Lua functions that a plugin can use to facilitate interactions
 between plugins and the core (or other components) of Kong.
 
