@@ -7,10 +7,10 @@ Using Kong's OpenID Connect plugin (OIDC), you can map identity provider (IdP)
 groups to Kong roles. Adding a user to Kong in this way gives them access to
 Kong based on their group in the IdP.
 
-After starting {{site.base_gateway}} with the desired configuration, you can
-create new admins whose usernames match those in your IdP. Those
-users will then be able to accept invitations to join Kong Manager and log in
-with their IdP credentials.
+Starting with {{site.base_gateway}} version 2.7, you can create Admin accounts for 
+Kong Manager when you map your identity provider (IdP) groups to Kong roles. You do 
+not need to create the users separately. These users then accept invitations to join 
+Kong Manager and log in with their IdP credentials.
 
 If an admin's group changes in the IdP, their Kong admin account's associated
 role also changes in {{site.base_gateway}} the next time they log in through Kong
@@ -18,6 +18,7 @@ Manager. The mapping removes the task of manually managing access in
 {{site.base_gateway}}, as it makes the IdP the system of record.
 
 Here's how OIDC authenticaticated group mapping works:
+
 1. Create roles in {{site.base_gateway}} using either the Kong Admin API or Kong
 Manager.
 2. Create groups and associate roles with the groups.
@@ -30,101 +31,7 @@ Manager.
 * [{{site.ee_product_name}} installed and configured](/gateway/{{page.kong_version}}/install-and-run)
 * Kong Manager enabled
 * RBAC enabled
-* (If using Kubernetes) [Helm](https://helm.sh/docs/intro/install/) installed
-
-## Create Kong Groups and Assign Roles
-
-<div class="alert alert-ee blue">
-<b>Note:</b> The following examples assume that you have RBAC enabled with
-Basic Auth and are transitioning to OpenID Connect.
-</div>
-
-{% navtabs %}
-{% navtab Kong Manager %}
-
-Create a group and assign a role to it:
-
-1. Open **Teams** from the top navigation.
-2. Click the **Groups** tab.
-3. Click **Create New Group**.
-4. Set the **Group Name** to match your IdP group.
-
-    **Note:** Group names are case-sensitive. Make sure to match your IdP
-    group name exactly.
-
-5. (Optional) In the **Comment** field, enter a description for the group.
-6. Click on **Add/Edit Roles**, then choose a workspace and a role.
-7. Save the role assignment, then click **Create**.
-
-Create an admin for the group:
-1. Open the **Teams** from the top navigation.
-2. Click the **Admins** tab.
-3. Click **Invite Admin**.
-4. Enter a username and email, and optionally a custom ID to make the admin
-easy for you to identify.
-
-    **Note**: Make sure the username exactly matches the admin's name in
-    your IdP.
-
-5. Ensure the **Enable RBAC token** checkbox is checked.
-6. Save the role assignment, then click **Invite Admin**.
-
-{% endnavtab %}
-{% navtab Kong Admin API %}
-
-1. Create a group, making sure the group `name` parameter matches your IdP group
-name:
-
-    ```sh
-    $ curl -X POST --url http://<admin-hostname>:8001/groups \
-      --header 'content-type: application/json' \
-      --header 'kong-admin-token: <yourtoken>' \
-      --data '{
-          "comment": "example group",      
-          "name": "examplegroup"      
-        }'
-    ```
-
-    **Note:** Group names are case-sensitive. Make sure to match your IdP group
-    name exactly.
-
-2. Assign a role to the group:
-
-    ```sh
-    $ curl -X POST --url http://<admin-hostname>:8001/groups/{group-id}/roles \
-      --header 'content-type: application/json' \
-      --header 'kong-admin-token: <yourtoken>' \
-      --data '{   
-          "rbac_role_id": "e948171e-699c-4035-9b74-2b2b576d9644",
-    	    "workspace_id": "236bfa99-cf09-4389-afa8-e2bd6da89fd3"
-        }'
-    ```
-
-    Where:
-    * [`rbac_role_id`](/gateway/{{page.kong_version}}/admin-api/rbac/reference/#list-roles):
-    UUID of the role you want to assign.
-    * [`workspace_id`](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/#list-workspaces):
-    UUID of the workspace to add the role to.
-
-3. Create an admin for the group:
-
-    ```sh
-    $ curl -X POST --url http://<admin-hostname>:8001/admins \
-      --header 'content-type: application/json' \
-      --header 'kong-admin-token: <yourtoken>' \
-      --data '{
-      "username": "<someusername>",
-      "custom_id": "<examplename>",
-      "email": "<your-email@company.com>",
-      "rbac_token_enabled": true
-    }'
-    ```
-
-{% endnavtab %}
-{% endnavtabs %}
-
-Notice how in the instructions above, you did not assign a role to your
-admin. The role will be matched with the role assigned to them in the IdP.
+* (Kubernetes) [Helm](https://helm.sh/docs/intro/install/) installed
 
 ## Apply OIDC Auth Mapping to Kong Gateway
 
@@ -132,33 +39,41 @@ admin. The role will be matched with the role assigned to them in the IdP.
 {% navtab Kubernetes with Helm %}
 
 1. Create a configuration file for the OIDC plugin and save it as
-`admin_gui_auth_conf`. For group mapping, you must include the
-`authenticated_groups_claim` parameter as part of this configuration.
+`admin_gui_auth_conf`. 
 
-    For example, the configuration should look something like this:
+   Specify the `admin_claim` and `authenticated_groups_claim` parameters 
+   to identify which admin value and role name to map from the IdP to {{site.base_gateway}}.
+
+   The `admin_claim` value specifies which IdP username value should map to Kong Manager. 
+   Note that the username and password are required for the user to log into the IdP.
+
+   The `authenticated_groups_claim` value specifies which IdP role should be assigned to the
+   specified user. This value must be specified in the format provided in the example.
+
+    The configuration should look something like this:
 
     ```json
-    {
-      "issuer": "<https://my-auth-url>",
-      "client_id": ["<someid>"],
-      "client_secret": ["<somesecret>"],
-      "consumer_by": ["username","custom_id"],
-      "ssl_verify": false,
-      "consumer_claim": ["sub"],
-      "leeway": 60,
-      "redirect_uri": ["<http://manager.admin-hostname.com>"],
-      "login_redirect_uri": ["<http://manager.admin-hostname.com>"],
-      "logout_methods": ["GET", "DELETE"],
-      "logout_query_arg": "logout",
-      "logout_redirect_uri": ["<http://manager.admin-hostname.com>"],
-      "scopes": ["openid","profile","email","offline_access"],
-      "authenticated_groups_claim": ["groups"],
-      "auth_methods": ["authorization_code"]
+    {                                      
+        "issuer": "https://accounts.google.com/",        
+        "admin_claim": "email",
+        "client_id": ["<YOUR_CLIENT_ID>"],                 
+        "client_secret": ["<YOUR_CLIENT_SECRET_HERE>"],
+        "admin_by": "username",
+        "authenticated_groups_claim": ["<WORKSPACE_NAME>:ROLE_NAME>"],
+        "ssl_verify": false,
+        "leeway": 60,
+        "redirect_uri": ["http://localhost:8002"],
+        "login_redirect_uri": ["http://localhost:8002"],
+        "logout_methods": ["GET", "DELETE"],
+        "logout_query_arg": "logout",
+        "logout_redirect_uri": ["http://localhost:8002"],
+        "scopes": ["openid","profile","email","offline_access"],
+        "auth_methods": ["authorization_code"]
     }
     ```
 
-    For detailed descriptions of all the parameters used here, and many other
-    customization options, see the [OpenID Connect parameter reference](/hub/kong-inc/openid-connect/#configuration-parameters).
+    For detailed descriptions of all OIDC parameters, see the 
+    [OpenID Connect parameter reference](/hub/kong-inc/openid-connect/#configuration-parameters).
 
 2. Create a secret from the file you just created:
 
@@ -226,23 +141,23 @@ properties to the file:
     ```
     enforce_rbac = on
     admin_gui_auth = openid-connect
-    admin_gui_auth_conf = {
-        "issuer": "<https://my-auth-url>",
-        "client_id": ["<someid>"],
-        "client_secret": ["<somesecret>"],
-        "consumer_by": ["username","custom_id"],
+    admin_gui_auth_conf = {                                      
+        "issuer": "https://accounts.google.com/",        
+        "admin_claim": "email",
+        "client_id": ["<YOUR_CLIENT_ID>"],                 
+        "client_secret": ["<YOUR_CLIENT_SECRET_HERE>"],
+        "admin_by": "username",
+        "authenticated_groups_claim": ["<WORKSPACE_NAME>:ROLE_NAME>"],
         "ssl_verify": false,
-        "consumer_claim": ["sub"],
         "leeway": 60,
-        "redirect_uri": ["<http://manager.admin-hostname.com>"],
-        "login_redirect_uri": ["<http://manager.admin-hostname.com>"],
+        "redirect_uri": ["http://localhost:8002"],
+        "login_redirect_uri": ["http://localhost:8002"],
         "logout_methods": ["GET", "DELETE"],
         "logout_query_arg": "logout",
-        "logout_redirect_uri": ["<http://manager.admin-hostname.com>"],
+        "logout_redirect_uri": ["http://localhost:8002"],
         "scopes": ["openid","profile","email","offline_access"],
-        "authenticated_groups_claim": ["groups"],
         "auth_methods": ["authorization_code"]
-      }
+    }
     ```
 
     For detailed descriptions of all the parameters used here, and many other

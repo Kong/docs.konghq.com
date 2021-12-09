@@ -17,7 +17,7 @@ manually enable the **Plugin**; the configuration alone will enable
 The following is an example using Google as the IdP and serving Kong Manager
 from its default URL, `http://127.0.0.1:8002`.
 
-(The `admin_gui_auth_config` value must be valid JSON.)
+(The `admin_gui_auth_conf` value must be valid JSON.)
 
 ```
 enforce_rbac = on
@@ -25,17 +25,18 @@ admin_gui_auth=openid-connect
 admin_gui_session_conf = { "secret":"set-your-string-here" }
 admin_gui_auth_conf={                                      \
   "issuer": "https://accounts.google.com/",                \
+  "admin_claim": "email",                  \ 
   "client_id": ["<ENTER_YOUR_CLIENT_ID>"],                 \
-  "client_secret": ["<ENTER_YOUR_CLIENT_SECRET_HERE>"],    \
-  "consumer_by": ["username","custom_id"],                 \
+  "client_secret": ["<ENTER_YOUR_CLIENT_SECRET_HERE>"],    \  
+  "admin_by": "username",                                \ 
+  "authenticated_groups_claim": ["<workspace_name>:role_name>", \
   "ssl_verify": false,                                     \
-  "consumer_claim": ["email"],                             \
   "leeway": 60,                                            \
-  "redirect_uri": ["http://localhost:8002"],                      \
-  "login_redirect_uri": ["http://localhost:8002"],                \
+  "redirect_uri": ["http://localhost:8002"],               \
+  "login_redirect_uri": ["http://localhost:8002"],         \
   "logout_methods": ["GET", "DELETE"],                     \
   "logout_query_arg": "logout",                            \
-  "logout_redirect_uri": ["http://localhost:8002"],               \
+  "logout_redirect_uri": ["http://localhost:8002"],        \
   "scopes": ["openid","profile","email","offline_access"], \
   "auth_methods": ["authorization_code"]                   \
 }
@@ -51,36 +52,3 @@ Replace the entries surrounded by `<>` with values that are valid for your IdP.
 For example, Google credentials can be found here:
 https://console.cloud.google.com/projectselector/apis/credentials
 
-## Create an admin
-
-Create an **Admin** that has a **username** matching the **email** returned from
-the Identity Provider upon successful login.
-
-```bash
-$ http POST :8001/admins username="<admin_email>" email="<admin_email>" Kong-Admin-Token:<RBAC_TOKEN>
-```
-
-For example, if a user has a Google email address, **hal9000@sky.net**:
-
-```bash
-$ http POST :8001/admins username="hal9000@sky.net" email="hal9000@sky.net" Kong-Admin-Token:<RBAC_TOKEN>
-```
-
-**Note:** The **email** entered for the **Admin** in the request is used to
-ensure the **Admin** receives an email invitation, whereas **username** is the
-attribute that the **Plugin** uses with the IdP.
-
-## Assign a role to the admin
-
-Assign the new **Admin** at least one **Role** so they can log in and access
-Kong entities.
-
-```bash
-$ http POST :8001/admins/<admin_email>/roles roles="<role-name>"
-```
-
-For example, if we wanted to grant **hal9000@sky.net** the **Role** of **Super Admin**:
-
-```bash
-$ http POST :8001/admins/hal9000@sky.net/roles roles="super-admin"
-```
