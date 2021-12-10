@@ -3,13 +3,33 @@ title: Consumer Groups Examples
 badge: enterprise
 ---
 
-You can use consumer groups to manage custom rate limiting configuration for
-subsets of consumers.
+With consumer groups, you can define any number of rate limiting tiers and
+apply them to subsets of consumers, instead of managing each consumer
+individually.
+
+For example, you could define three consumer groups:
+* A "gold tier" with 1000 requests per minute
+* A "silver tier" with 10 requests per second
+* A "bronze tier" with 6 requests per second
 
 The `consumer_groups` endpoint works together with the [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced).
-To use consumer groups for rate limiting, configure the plugin with the
-`enforce_consumer_groups` and `consumer_groups` parameters, then use the
-`/consumer_groups` endpoint to manage the groups.
+
+Consumers that are not in a consumer group default to the Rate Limiting advanced
+plugin’s configuration, so you can define tier groups for some users and
+have a default behavior for ungrouped consumers.
+
+To use consumer groups for rate limiting, you need to:
+* Create one or more consumer groups
+* Create consumers
+* Assign consumers to groups
+* Configure the Rate Limiting Advanced plugin with the `enforce_consumer_groups`
+and `consumer_groups` parameters, setting up the list of consumer groups that
+the plugin will accept
+* Configure rate limiting for each consumer group, overriding the plugin's
+configuration
+
+For all possible requests, see the
+[Consumer Groups reference](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference).
 
 ## Set up consumer group
 
@@ -43,8 +63,7 @@ http POST :8001/consumer_groups name=JL
     }
     ```
 
-2. Create a consumer, `DianaPrince`, by making the following HTTP request to your
-instance of the Kong Admin API:
+2. Create a consumer, `DianaPrince`:
 
 {% capture create_consumer %}
 {% navtabs codeblock %}
@@ -119,10 +138,19 @@ http POST :8001/consumer_groups/JL/consumers consumer=DianaPrince
     }
     ```
 
+    You can also add a consumer to multiple groups:
+    * If all groups are allowed by the Rate Limiting Advanced plugin,
+    only the first group's settings will apply.
+    * Otherwise, whichever group is specified in the Rate Limiting Advanced
+    plugin will be active.
+
+
 ## Set up Rate Limiting Advanced config for consumer group
 
 1. Enable the [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced),
-configuring some basic settings:
+setting the rate limit to five requests (`config.limit`) for every
+30 seconds (`config.window_size`):
+
 {% capture add_plugin %}
 {% navtabs codeblock %}
 {% navtab cURL %}
@@ -161,29 +189,32 @@ http -f :8001/plugins/  \
     * `config.consumer_groups=JL`: specifies a list of groups that this plugin allows overrides for.
 
     {:.note}
-    > **Note:** In this example, we're configuring the plugin globally, so it will
-    apply to all entities (Services, Routes, and Consumers) in the Kong instance.
-    You can also apply it to a [specific Service or Route](/hub/kong-inc/rate-limiting-advanced)
+    > **Note:** In this example, you're configuring the plugin globally, so it
+    will apply to all entities (Services, Routes, and Consumers) in the
+    {{site.base_gateway}} instance. You can also apply it to a
+    [specific Service or Route](/hub/kong-inc/rate-limiting-advanced)
     for more granular control.
 
-2. The plugin you just set up applies to all consumers in the cluster. Let's
-change the settings for the `JL` consumer group only:
+2. The plugin you just set up applies to all consumers in the cluster. Change
+the rate limiting configuration for the `JL` consumer group only, setting
+the limit to ten requests for every ten seconds:
 
 {% capture override %}
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
 curl -i -X PUT http://{HOSTNAME}:8001/consumer_groups/JL/overrides/plugins/rate-limiting-advanced \
-  --header 'Content-Type: application/json' \
-  --data '{ "config": { "limit": [ 10 ], "retry_after_jitter_max": 1, "window_size": [ 10 ] } }'
+  --data config.limit=10 \
+  --data config.window_size=10 \
+  --data config.retry_after_jitter_max=1
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
 http PUT :8001/consumer_groups/JL/overrides/plugins/rate-limiting-advanced \
-  config.limit:='[10]' \
-  config.window_size:='[10]' \
-  config.retry_after_jitter_max:=1
+  config.limit=10 \
+  config.window_size=10 \
+  config.retry_after_jitter_max=1
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -272,6 +303,9 @@ http :8001/consumer_groups/JL
 
 ## Remove consumer from group - group view
 
+You can remove a consumer from a group by accessing `/consumers` or
+`/consumer_groups`. The following steps use `/consumer_groups`.
+
 1. Check the `JL` consumer group for the consumer name:
 
 {{ check_group1 | indent | replace: " </code>", "</code>" }}
@@ -339,6 +373,9 @@ http DELETE :8001/consumer_groups/JL/consumers/DianaPrince
     ```
 
 ## Remove consumer from group - consumer view
+
+You can remove a consumer from a group by accessing `/consumers` or
+`/consumer_groups`. The following steps use `/consumers`.
 
 1. If you know the consumer name and not the consumer group name,
 you can look up the group through the consumer:
