@@ -67,10 +67,10 @@ docker pull kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
 {% capture tag_image %}
 {% navtabs codeblock %}
 {% navtab Kong Gateway %}
-<pre><code>docker tag kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine <div contenteditable="true">{TAG_NAME}</div></code></pre>
+<div class="copy-code-snippet"><pre><code>docker tag kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine <div contenteditable="true">{TAG_NAME}</div></code></pre></div>
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
-<pre><code>docker tag kong:{{page.kong_versions[page.version-index].ce-version}}-alpine <div contenteditable="true">{TAG_NAME}</div></code></pre>
+<div class="copy-code-snippet"><pre><code>docker tag kong:{{page.kong_versions[page.version-index].ce-version}}-alpine <div contenteditable="true">{TAG_NAME}</div></code></pre></div>
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
