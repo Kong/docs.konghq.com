@@ -3,7 +3,7 @@ title: Consumer Groups Reference
 badge: enterprise
 ---
 
-You can use consumer groups to manage custom rate limiting configuration for
+Use consumer groups to manage custom rate limiting configuration for
 subsets of consumers.
 
 The `consumer_groups` endpoint works together with the [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced).
@@ -11,6 +11,8 @@ To use consumer groups for rate limiting, configure the plugin with the
 `enforce_consumer_groups` and `consumer_groups` parameters, then use the
 `/consumer_groups` endpoint to manage the groups.
 
+For more information and examples of setting up and managing consumer groups, see the
+[Consumer Groups examples](/gateway/{{page.kong_version}}/admin-api/consumer-groups/examples).
 
 ## List consumer groups
 
@@ -18,9 +20,13 @@ To use consumer groups for rate limiting, configure the plugin with the
 
 **Endpoint**
 
-<div class="endpoint get">/consumer-groups</div>
+<div class="endpoint get">/consumer_groups</div>
 
 **Response**
+
+```
+HTTP/1.1 200 OK
+```
 
 ```json
 {
@@ -44,13 +50,17 @@ To use consumer groups for rate limiting, configure the plugin with the
 
 **Endpoint**
 
-<div class="endpoint get">/consumer-groups/{GROUP_NAME|GROUP_ID}</div>
+<div class="endpoint get">/consumer_groups/{GROUP_NAME|GROUP_ID}</div>
 
 Attribute                             | Description
 ---------:                            | --------  
-`GROUP_NAME|GROUP_ID`<br>*required*  | The name or UUID of the consumer group.
+`GROUP_NAME|GROUP_ID`<br>*required*   | The name or UUID of the consumer group.
 
 **Response**
+
+```
+HTTP/1.1 200 OK
+```
 
 ```json
 {
@@ -67,13 +77,17 @@ Attribute                             | Description
 
 **Endpoint**
 
-<div class="endpoint get">/consumer-groups/{GROUP_NAME|GROUP_ID}/consumers</div>
+<div class="endpoint get">/consumer_groups/{GROUP_NAME|GROUP_ID}/consumers</div>
 
 Attribute                             | Description
 ---------:                            | --------  
-`GROUP_NAME|GROUP_ID`<br>*required*  | The name or UUID of the consumer group.
+`GROUP_NAME|GROUP_ID`<br>*required*   | The name or UUID of the consumer group.
 
 **Response**
+
+```
+HTTP/1.1 200 OK
+```
 
 ```json
 {
@@ -98,6 +112,8 @@ Attribute                             | Description
 
 ### List consumer groups for a consumer
 
+View all consumer groups that a consumer is assigned to.
+
 **Endpoint**
 
 <div class="endpoint get">/consumers/{CONSUMER_NAME|CONSUMER_ID}/consumer_groups</div>
@@ -107,6 +123,10 @@ Attribute                             | Description
 `USERNAME|CONSUMER_ID`<br>*required*  | The name or UUID of the consumer.
 
 **Response**
+
+```
+HTTP/1.1 200 OK
+```
 
 ```json
 {
@@ -125,19 +145,21 @@ Attribute                             | Description
 
 **Endpoint**
 
-<div class="endpoint post">/consumer-groups</div>
+<div class="endpoint post">/consumer_groups</div>
 
 **Request body**
 
-Attribute                             | Description
----------:                            | --------
-`GROUP_NAME|GROUP_ID`<br>*required*   | The name or UUID of the consumer group.
+Attribute               | Description
+---------:              | --------
+`name`<br>*required*    | A unique name for the consumer group you want to create.
 
 **Response**
 
-```json
+```
 HTTP 201 Created
+```
 
+```json
 {
   "created_at": 1557522650,
   "id": "fa6881b2-f49f-4007-9475-577cd21d34f4",
@@ -147,18 +169,20 @@ HTTP 201 Created
 
 **Endpoint**
 
-<div class="endpoint put">/consumer-groups/{GROUP_NAME}</div>
+<div class="endpoint put">/consumer_groups/{GROUP_NAME}</div>
 
-Attribute                             | Description
----------:                            | --------
-`GROUP_NAME|GROUP_ID`<br>*required*   | The name or UUID of the consumer group.
+Attribute                    | Description
+---------:                   | --------
+`GROUP_NAME`<br>*required*   | A unique name for the consumer group you want to create.
 
 
 **Response**
 
-```json
+```
 HTTP 201 Created
+```
 
+```json
 {
   "created_at": 1557522650,
   "id": "fa6881b2-f49f-4007-9475-577cd21d34f4",
@@ -168,20 +192,33 @@ HTTP 201 Created
 
 ## Add a consumer to a group
 
-**Endpoint**
-<div class="endpoint post">/consumers/{USERNAME|CONSUMER_ID}/consumer_groups</div>
+Add a consumer to a specific consumer group.
 
-Attribute                             | Description
----------:                            | --------  
-`USERNAME|CONSUMER_ID`<br>*required*  | The name or UUID of the consumer.
+If you add a consumer to multiple groups:
+* If all groups are allowed by the Rate Limiting Advanced plugin,
+only the first group's settings will apply.
+* Otherwise, whichever group is specified in the Rate Limiting Advanced
+plugin will be active.
+
+**Consumers endpoint**
+<div class="endpoint post">/consumers/{CONSUMER_NAME|CONSUMER_ID}/consumer_groups</div>
+
+Attribute                                  | Description
+---------:                                 | --------  
+`CONSUMER_NAME|CONSUMER_ID`<br>*required*  | The name or UUID of the consumer.
 
 **Request body**
 
 Attribute                             | Description
 ---------:                            | --------   
-`group` *required*                    | The name or ID of the group to add the consumer to.
+`group`<br>*required*                 | The name or ID of the group to add the consumer to.
 
 **Response**
+
+```
+HTTP 201 Created
+```
+
 ```json
 {
     "consumer": {
@@ -203,7 +240,7 @@ Attribute                             | Description
 }
 ```
 
-**Endpoint**
+**Consumer groups endpoint**
 <div class="endpoint post">/consumer_groups/{GROUP_NAME|GROUP_ID}/consumers</div>
 
 Attribute                             | Description
@@ -215,9 +252,14 @@ Attribute                             | Description
 
 Attribute                             | Description
 ---------:                            | --------   
-`consumer` *required*                 | The name or ID of the consumer to add to this group.
+`consumer`<br>*required*              | The name or ID of the consumer to add to this group.
 
 **Response**
+
+```
+HTTP 201 Created
+```
+
 ```json
 {
   "consumer_group": {
@@ -243,22 +285,11 @@ Deleting a consumer group removes all consumers from that group. It does
 **not** delete any consumers.
 
 **Endpoint**
-<div class="endpoint delete">/consumer-groups/{GROUP_NAME|GROUP_ID}</div>
+<div class="endpoint delete">/consumer_groups/{GROUP_NAME|GROUP_ID}</div>
 
 Attribute                             | Description
 ---------:                            | --------
 `GROUP_NAME|GROUP_ID`<br>*required*   | The name or UUID of the consumer group to delete.
-
-## Remove a consumer
-
-### Remove a consumer from all groups
-
-**Endpoint**
-<div class="endpoint delete">/consumers/{USERNAME|CONSUMER_ID}/consumer_groups</div>
-
-Attribute                             | Description
----------:                            | --------
-`USERNAME|CONSUMER_ID`<br>*required*   | The name or UUID of the consumer to remove from all groups.
 
 **Response**
 
@@ -266,15 +297,32 @@ Attribute                             | Description
 HTTP/1.1 204 No Content
 ```
 
-### Remove a consumer from a specific group
+## Remove consumers
+
+### Remove a consumer from all groups
+
+**Endpoint**
+<div class="endpoint delete">/consumers/{CONSUMER_NAME|CONSUMER_ID}/consumer_groups</div>
+
+Attribute                                   | Description
+---------:                                  | --------
+`CONSUMER_NAME|CONSUMER_ID`<br>*required*   | The name or UUID of the consumer to remove from all groups.
+
+**Response**
+
+```
+HTTP/1.1 204 No Content
+```
+
+### Remove a consumer from a consumer group
 
 **Consumer endpoint**
-<div class="endpoint delete">/consumers/{USERNAME|CONSUMER_ID}/consumer_groups/{GROUP_NAME|GROUP_ID}</div>
+<div class="endpoint delete">/consumers/{CONSUMER_NAME|CONSUMER_ID}/consumer_groups/{GROUP_NAME|GROUP_ID}</div>
 
-Attribute                             | Description
----------:                            | --------  
-`USERNAME|CONSUMER_ID`<br>*required*  | The name or UUID of the consumer to remove.
-`GROUP_NAME|GROUP_ID`<br>*required*   | The name or UUID of the consumer group to remove the consumer from.
+Attribute                                  | Description
+---------:                                 | --------  
+`CONSUMER_NAME|CONSUMER_ID`<br>*required*  | The name or UUID of the consumer to remove.
+`GROUP_NAME|GROUP_ID`<br>*required*        | The name or UUID of the consumer group to remove the consumer from.
 
 **Response**
 
@@ -283,12 +331,26 @@ HTTP/1.1 204 No Content
 ```
 
 **Consumer groups endpoint**
-<div class="endpoint delete">/consumer_groups/{GROUP_NAME|GROUP_ID}/consumers/{USERNAME|CONSUMER_ID}</div>
+<div class="endpoint delete">/consumer_groups/{GROUP_NAME|GROUP_ID}/consumers/{CONSUMER_NAME|CONSUMER_ID}</div>
+
+Attribute                                  | Description
+---------:                                 | --------    
+`GROUP_NAME|GROUP_ID`<br>*required*        | The name or UUID of the consumer group to remove the consumer from.
+`CONSUMER_NAME|CONSUMER_ID`<br>*required*  | The name or UUID of the consumer to remove.
+
+**Response**
+
+```
+HTTP/1.1 204 No Content
+```
+
+### Remove all consumers from a consumer group
+
+<div class="endpoint delete">/consumer_groups/{GROUP_NAME|GROUP_ID}/consumers</div>
 
 Attribute                             | Description
 ---------:                            | --------    
-`GROUP_NAME|GROUP_ID`<br>*required*   | The name or UUID of the consumer group to remove the consumer from.
-`USERNAME|CONSUMER_ID`<br>*required*  | The name or UUID of the consumer to remove.
+`GROUP_NAME|GROUP_ID`<br>*required*   | The name or UUID of the consumer group to remove all consumers from.
 
 **Response**
 
@@ -297,6 +359,9 @@ HTTP/1.1 204 No Content
 ```
 
 ## Configure rate limiting for a consumer group
+
+Define custom rate limiting settings for a consumer group. This endpoint
+overrides the settings of the Rate Limiting Advanced plugin.
 
 <div class="endpoint put">/consumer_groups/{GROUP_NAME|GROUP_ID}/overrides/plugins/rate-limiting-advanced</div>
 
@@ -314,6 +379,10 @@ Attribute     | Description
 `retry_after_jitter_max`<br>*optional* | The upper bound of a jitter (random delay) in seconds to be added to the `Retry-After` header of denied requests (status = `429`) in order to prevent all the clients from coming back at the same time. The lower bound of the jitter is `0`; in this case, the `Retry-After` header is equal to the `RateLimit-Reset` header.
 
 **Response**
+
+```
+HTTP/1.1 201 Created
+```
 
 ```json
 {
