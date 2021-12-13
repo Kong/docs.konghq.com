@@ -297,6 +297,12 @@ params:
         List of consumer groups allowed to override the rate limiting
         settings for the given Route or Service. Required if
         `enforce_consumer_groups` is set to `true`.
+
+        Flipping `enforce_consumer_groups` from `true` to `false` disables the
+        group override, but does not clear the list of consumer groups.
+        You can then flip `enforce_consumer_groups` to `true` to re-enforce the
+        groups.
+
   extra: |
     **Notes:**
 
@@ -403,9 +409,9 @@ subsets of consumers. To use consumer groups, you'll need to configure the follo
 * `config.enforce_consumer_groups`: Set to true.
 * `config.consumer_groups`: Provide a list of consumer groups that this plugin allows overrides for.
 
-For guides on working with consumer groups, see the consumer group 
-[examples](/gateway/latest/admin-api/consumer-groups/examples) and 
-[API reference](/gateway/latest/admin-api/consumer-groups/reference) in 
+For guides on working with consumer groups, see the consumer group
+[examples](/gateway/latest/admin-api/consumer-groups/examples) and
+[API reference](/gateway/latest/admin-api/consumer-groups/reference) in
 the Admin API documentation.
 
 ---
