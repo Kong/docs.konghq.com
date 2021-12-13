@@ -242,7 +242,7 @@ curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/roles/admin/endpo
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-http :8001/secureworkspace/rbac/roles/admin/endpoints/ \
+http :8001/SecureWorkspace/rbac/roles/admin/endpoints/ \
   endpoint='*' \
   workspace=SecureWorkspace \
   actions='*' \
