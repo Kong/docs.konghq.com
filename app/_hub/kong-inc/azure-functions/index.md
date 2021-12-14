@@ -214,4 +214,4 @@ HTTP/1.1 200 OK
 ### 1.0.1
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
- the `apikey` and `clientid` parameter values will be encrypted.
+ the `config.apikey` and `config.clientid` parameter values will be encrypted.

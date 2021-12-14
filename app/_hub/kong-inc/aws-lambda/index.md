@@ -353,4 +353,4 @@ Have fun leveraging the power of AWS Lambda in Kong!
 ### 3.6.0
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
- the `aws_key` and `aws_secret` parameter values will be encrypted.
+ the `config.aws_key` and `config.aws_secret` parameter values will be encrypted.

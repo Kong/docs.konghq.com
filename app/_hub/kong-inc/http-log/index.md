@@ -151,4 +151,4 @@ The log server that receives these messages might require extra headers, such as
 ### 2.2.1
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
- the `http_endpoint` parameter value will be encrypted.
+ the `config.http_endpoint` parameter value will be encrypted.

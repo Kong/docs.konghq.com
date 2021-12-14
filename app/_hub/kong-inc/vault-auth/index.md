@@ -270,7 +270,7 @@ EOF
 > handler.lua version: 0.3.0
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled
-and you are using Vault, the `vault_token` and `secret_token` will be encrypted.
+and you are using Vault, the `vaults.vault_token` and `vault_credentials.secret_token` fields will be encrypted.
 
 [consumer-object]: https://docs.konghq.com/gateway/latest/admin-api/#consumer-object
 [acl-associating]: https://docs.konghq.com/hub/kong-inc/acl/#associating-consumers

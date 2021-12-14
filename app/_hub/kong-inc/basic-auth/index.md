@@ -285,7 +285,7 @@ Consumer.
 ### 2.2.0
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled
-and you are using basic authentication, the consumer password will be encrypted.
+and you are using basic authentication, the `basicauth_credentials.password` field will be encrypted.
 
 
 [configuration]: /gateway/latest/reference/configuration

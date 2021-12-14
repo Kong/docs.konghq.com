@@ -302,4 +302,4 @@ mapping.
 > handler.lua version: 1.2.0
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
- the `ldap_password` parameter value will be encrypted.
+ the `config.ldap_password` parameter value will be encrypted.
