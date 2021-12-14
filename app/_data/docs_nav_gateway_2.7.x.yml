@@ -137,8 +137,6 @@
               url: /configure/auth/oidc-auth0
             - text: OpenID Connect with Cognito
               url: /configure/auth/oidc-cognito
-            - text: OIDC Authenticated Group Mapping
-              url: /configure/auth/oidc-mapping
             - text: OpenID Connect Plugin Reference
               url: /hub/kong-inc/openid-connect
               absolute_url: true
@@ -162,7 +160,7 @@
             - text: LDAP
               url: /configure/auth/kong-manager/ldap
             - text: OIDC
-              url: /configure/auth/kong-manager/oidc
+              url: /configure/auth/kong-manager/oidc-mapping
             - text: Sessions
               url: /configure/auth/kong-manager/sessions
 

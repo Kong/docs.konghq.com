@@ -412,6 +412,11 @@ params:
       description: The name of the parameter used to pass the id token.
     - group: Consumer Mapping
       description: Parameters for mapping external identity provider managed identities to Kong managed ones.
+    - name: admin_claim
+      required: false
+      default: null
+      datatype: string
+      description: The claim used for admin mapping for Kong Manager. Required if mapping IdP claims to Kong Manager admins.
     - name: consumer_claim
       required: false
       default: null
@@ -462,6 +467,9 @@ params:
         with ACL plugin, but it also enables IdP managed groups with other applications
         and integrations (for example, Kong Manager and Dev Portal). The OpenID Connect
         plugin itself does not do anything other than set the context value.
+
+        If you configure OIDC for Kong Manager, the value of this parameter must be in the 
+        form `{WORKSPACE_NAME}:{ROLE_NAME}`.
     - name: scopes_required
       required: false
       default: (discovered issuer)

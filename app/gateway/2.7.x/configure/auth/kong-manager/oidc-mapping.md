@@ -7,15 +7,15 @@ Using Kong's OpenID Connect plugin (OIDC), you can map identity provider (IdP)
 groups to Kong roles. Adding a user to Kong in this way gives them access to
 Kong based on their group in the IdP.
 
-Starting with {{site.base_gateway}} version 2.7, you can create Admin accounts for 
-Kong Manager when you map your identity provider (IdP) groups to Kong roles. You do 
-not need to create the users separately. These users then accept invitations to join 
+Starting with {{site.base_gateway}} version 2.7, admin accounts are created automatically 
+when you map your identity provider (IdP) groups to Kong roles. You do 
+not need to create the users, groups, and roles separately. These users then accept invitations to join 
 Kong Manager and log in with their IdP credentials.
 
 If an admin's group changes in the IdP, their Kong admin account's associated
-role also changes in {{site.base_gateway}} the next time they log in through Kong
+role also changes in {{site.base_gateway}} the next time they log in to Kong
 Manager. The mapping removes the task of manually managing access in
-{{site.base_gateway}}, as it makes the IdP the system of record.
+{{site.base_gateway}}, because it makes the IdP the system of record.
 
 Here's how OIDC authenticaticated group mapping works:
 
@@ -23,6 +23,7 @@ Here's how OIDC authenticaticated group mapping works:
 1. When users log in to Kong Manager, they are assigned to the roles they belong to in your IdP.
 
 ## Prerequisites
+
 * An IdP with an authorization server and users with groups assigned
 * [{{site.ee_product_name}} installed and configured](/gateway/{{page.kong_version}}/install-and-run)
 * Kong Manager enabled
@@ -31,38 +32,37 @@ Here's how OIDC authenticaticated group mapping works:
 
 ## Apply OIDC Auth Mapping to Kong Gateway
 
+In the following examples, you specify the `admin_claim` and `authenticated_groups_claim` parameters 
+to identify which admin value and role name to map from the IdP to {{site.base_gateway}}.
+
+The `admin_claim` value specifies which IdP username value should map to Kong Manager. 
+Note that the username and password are required for the user to log into the IdP.
+
+The `authenticated_groups_claim` value specifies which IdP role should be assigned to the
+specified user. This value must be provided in the format provided in the examples.
+
 {% navtabs %}
 {% navtab Kubernetes with Helm %}
 
 1. Create a configuration file for the OIDC plugin and save it as
-`admin_gui_auth_conf`. 
+`admin_gui_auth_conf`.
 
-   Specify the `admin_claim` and `authenticated_groups_claim` parameters 
-   to identify which admin value and role name to map from the IdP to {{site.base_gateway}}.
-
-   The `admin_claim` value specifies which IdP username value should map to Kong Manager. 
-   Note that the username and password are required for the user to log into the IdP.
-
-   The `authenticated_groups_claim` value specifies which IdP role should be assigned to the
-   specified user. This value must be specified in the format provided in the example.
-
-    The configuration should look something like this:
+   Provide your own values for all fields indicated by curly braces (`{}`):
 
     ```json
     {                                      
-        "issuer": "https://accounts.google.com/",        
+        "issuer": "{YOUR_IDP_URL}",        
         "admin_claim": "email",
-        "client_id": ["<YOUR_CLIENT_ID>"],                 
-        "client_secret": ["<YOUR_CLIENT_SECRET_HERE>"],
-        "admin_by": "username",
-        "authenticated_groups_claim": ["<WORKSPACE_NAME>:ROLE_NAME>"],
+        "client_id": ["{CLIENT_ID}"],                 
+        "client_secret": ["{CLIENT_SECRET}"],
+        "authenticated_groups_claim": ["{WORKSPACE_NAME}:{ROLE_NAME}"],
         "ssl_verify": false,
         "leeway": 60,
-        "redirect_uri": ["http://localhost:8002"],
-        "login_redirect_uri": ["http://localhost:8002"],
+        "redirect_uri": ["{YOUR_REDIRECT_URI}"],
+        "login_redirect_uri": ["{YOUR_LOGIN_REDIRECT_URI}"],
         "logout_methods": ["GET", "DELETE"],
         "logout_query_arg": "logout",
-        "logout_redirect_uri": ["http://localhost:8002"],
+        "logout_redirect_uri": ["{YOUR_LOGOUT_REDIRECT_URI}"],
         "scopes": ["openid","profile","email","offline_access"],
         "auth_methods": ["authorization_code"]
     }
@@ -99,32 +99,34 @@ following parameters:
 If you have a Docker installation, run the following command to set the needed
 environment variables and reload the {{site.base_gateway}} configuration.
 
-Substitute all variables in angled brackets (`< >`) with your own values:
+   Provide your own values for all fields indicated by curly braces (`{}`):
 
 ```sh
 $ echo "
   KONG_ENFORCE_RBAC=on \
   KONG_ADMIN_GUI_AUTH=openid-connect \
   KONG_ADMIN_GUI_AUTH_CONF='{
-      \"issuer\": \"<https://my-auth-url>\",
+      \"issuer\": \"{YOUR_IDP_URL}\",
+      \"admin_claim\": \"email\",
       \"client_id\": [\"<someid>\"],
       \"client_secret\": [\"<somesecret>\"],
-      \"consumer_by\": [\"username\",\"custom_id\"],
+      \"authenticated_groups_claim\": [\"{WORKSPACE_NAME}:{ROLE_NAME}\"],,
       \"ssl_verify\": false,
-      \"consumer_claim\": [\"sub\"],
       \"leeway\": 60,
-      \"redirect_uri\": [\"<http://manager.admin-hostname.com>\"],
-      \"login_redirect_uri\": [\"<http://manager.admin-hostname.com>\"],
+      \"redirect_uri\": [\"{YOUR_REDIRECT_URI}\"],
+      \"login_redirect_uri\": [\"{YOUR_LOGIN_REDIRECT_URI}\"],
       \"logout_methods\": [\"GET\", \"DELETE\"],
       \"logout_query_arg\": \"logout\",
-      \"logout_redirect_uri\": [\"<http://manager.admin-hostname.com>\"],
+      \"logout_redirect_uri\": [\"{YOUR_LOGOUT_REDIRECT_URI}\"],
       \"scopes\": [\"openid\",\"profile\",\"email\",\"offline_access\"],
-      \"authenticated_groups_claim\": [\"groups\"],
       \"auth_methods\": [\"authorization_code\"]
-    }' kong reload exit" | docker exec -i <kong-container-id> /bin/sh
+    }' kong reload exit" | docker exec -i {KONG_CONTAINER_ID} /bin/sh
 ```
 
-Replace `<kong-container-id>` with the ID of your container.
+Replace `{KONG_CONTAINER_ID}` with the ID of your container.
+
+For detailed descriptions of all the parameters used here, and many other customization options, 
+see the [OpenID Connect parameter reference](/hub/kong-inc/openid-connect/#configuration-parameters).
 
 {% endnavtab %}
 {% navtab kong.conf %}
@@ -132,25 +134,26 @@ Replace `<kong-container-id>` with the ID of your container.
 1. Navigate to your `kong.conf` file.
 
 2. With RBAC enabled, add the `admin_gui_auth` and `admin_gui_auth_conf`
-properties to the file:
+properties to the file.
+
+   Provide your own values for all fields indicated by curly braces (`{}`):
 
     ```
     enforce_rbac = on
     admin_gui_auth = openid-connect
     admin_gui_auth_conf = {                                      
-        "issuer": "https://accounts.google.com/",        
+        "issuer": "{YOUR_IDP_URL}",        
         "admin_claim": "email",
-        "client_id": ["<YOUR_CLIENT_ID>"],                 
-        "client_secret": ["<YOUR_CLIENT_SECRET_HERE>"],
-        "admin_by": "username",
-        "authenticated_groups_claim": ["<WORKSPACE_NAME>:ROLE_NAME>"],
+        "client_id": ["{CLIENT_ID}"],                 
+        "client_secret": ["{CLIENT_SECRET}"],
+        "authenticated_groups_claim": ["{WORKSPACE_NAME}:{ROLE_NAME}"],
         "ssl_verify": false,
         "leeway": 60,
-        "redirect_uri": ["http://localhost:8002"],
-        "login_redirect_uri": ["http://localhost:8002"],
+        "redirect_uri": ["{YOUR_REDIRECT_URI}"],
+        "login_redirect_uri": ["{YOUR_LOGIN_REDIRECT_URI}"],
         "logout_methods": ["GET", "DELETE"],
         "logout_query_arg": "logout",
-        "logout_redirect_uri": ["http://localhost:8002"],
+        "logout_redirect_uri": ["{YOUR_LOGOUT_REDIRECT_URI}"],
         "scopes": ["openid","profile","email","offline_access"],
         "auth_methods": ["authorization_code"]
     }

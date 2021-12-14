@@ -303,6 +303,8 @@
 
 
 # KONG MANAGER
+/gateway/2.7.x/configure/auth/kong-manager/oidc/    /gateway/2.7.x/configure/auth/kong-manager/oidc-mapping
+/gateway/latest/configure/auth/kong-manager/oidc/    /gateway/latest/configure/auth/kong-manager/oidc-mapping
 /enterprise/*/kong-manager/organization-management/rbac-in-workspaces/  /gateway/latest/configuration/auth/rbac
 /enterprise/2.6.x/kong-manager/networking/configuration/    /gateway/2.6.x/configure/auth/kong-manager/networking/
 /enterprise/latest/kong-manager/networking/configuration/   /gateway/latest/configure/auth/kong-manager/networking/
