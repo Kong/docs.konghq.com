@@ -20,6 +20,10 @@ You may use the following tags in templates:
 * `{# comments #}` everything between `{#` and `#}` is considered to be commented out (i.e., not outputted or executed).
 {% endraw %}
 
+## Show custom properties
+
+You may work with custom properties in your OpenAPI spec. To expose custom properties in Dev Portal, change the property `showExtensions` to `true` in the `spec-renderer.html` file. By default, `showExtensions` is `false`.
+
 ## Partials
 
 Partials are snippets of html that layouts can reference. Partials have access to all the same data that its layout does, and can even call other partials.  Breaking your code into partials can help organize large pages, as well as allow different layouts share common page elements.

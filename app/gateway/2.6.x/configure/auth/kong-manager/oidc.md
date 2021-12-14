@@ -41,7 +41,7 @@ admin_gui_auth_conf={                                      \
 }
 ```
 
-The **Sessions Plugin** requries a secret and is configured securely by default.
+The **Sessions Plugin** requires a secret and is configured securely by default.
 * Under all circumstances, the `secret` must be manually set to a string.
 * If using HTTP instead of HTTPS, `cookie_secure` must be manually set to `false`.
 * If using different domains for the Admin API and Kong Manager, `cookie_samesite` must be set to `off`.

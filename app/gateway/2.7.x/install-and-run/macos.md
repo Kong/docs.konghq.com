@@ -107,7 +107,7 @@ you should start by generating a declarative config file.
 ## Next steps
 
 Check out {{site.base_gateway}}'s series of
-[Getting Started](/gateway/{{include.kong_version}}/get-started/comprehensive) guides to get the most
+[Getting Started](/gateway/{{page.kong_version}}/get-started/comprehensive) guides to get the most
 out of {{site.base_gateway}}.
 
-[configuration]: /gateway/latest/reference/configuration#database
+[configuration]: /gateway/{{page.kong_version}}/reference/configuration#database

@@ -4,8 +4,6 @@ book: plugin_dev
 chapter: 4
 ---
 
-## Introduction
-
 Most of the time, it makes sense for your plugin to be configurable to answer
 all of your users' needs. Your plugin's configuration is stored in the
 datastore for Kong to retrieve it and pass it to your
@@ -19,7 +17,7 @@ configuration for your plugin.
 
 Your plugin's configuration is being verified against your schema when a user
 issues a request to the [Admin API] to enable or update a plugin on a given
-Service, Route and/or Consumer.
+Service, Route, or Consumer.
 
 For example, a user performs the following request:
 
@@ -193,7 +191,6 @@ You can also add field validators, to mention a few:
 There are some additional validators, but you get a good idea how you can specify validation
 rules on fields from the above table.
 
----
 
 ### Examples
 

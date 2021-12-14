@@ -135,40 +135,40 @@
 
 - title: Getting Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
-  url: /gateway/latest/get-started/comprehensive
+  url: /getting-started-guide/2.4.x/overview
   absolute_url: true
   target_blank: true
   items:
     - text: Prepare to Administer
-      url: /gateway/latest/get-started/comprehensive/prepare
+      url: /getting-started-guide/2.4.x/prepare
       absolute_url: true
       target_blank: true
     - text: Expose your Services
-      url: /gateway/latest/get-started/comprehensive/expose-services
+      url: /getting-started-guide/2.4.x/expose-services
       absolute_url: true
       target_blank: true
     - text: Protect your Services
-      url: /gateway/latest/get-started/comprehensive/protect-services
+      url: /getting-started-guide/2.4.x/protect-services
       absolute_url: true
       target_blank: true
     - text: Improve Performance
-      url: /gateway/latest/get-started/comprehensive/improve-performance
+      url: /getting-started-guide/2.4.x/improve-performance
       absolute_url: true
       target_blank: true
     - text: Secure Services
-      url: /gateway/latest/get-started/comprehensive/secure-services
+      url: /getting-started-guide/2.4.x/secure-services
       absolute_url: true
       target_blank: true
     - text: Set Up Intelligent Load Balancing
-      url: /gateway/latest/get-started/comprehensive/load-balancing
+      url: /getting-started-guide/2.4.x/load-balancing
       absolute_url: true
       target_blank: true
     - text: Manage Administrative Teams
-      url: /gateway/latest/get-started/comprehensive/manage-teams
+      url: /getting-started-guide/2.4.x/manage-teams
       absolute_url: true
       target_blank: true
     - text: Publish, Locate, and Consume Services
-      url: /gateway/latest/get-started/comprehensive/dev-portal
+      url: /getting-started-guide/2.4.x/dev-portal
       absolute_url: true
       target_blank: true
 
