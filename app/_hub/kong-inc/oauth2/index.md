@@ -490,8 +490,3 @@ Note that the rest of the credentials flow uses HTTPS and not gRPC protocol.  De
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled
 and you are using OAuth2, the `config.provision_key` parameter value and the
 consumer `oauth2_credentials.client_secret` will be encrypted.
-
-  {:.important}
-  > There's a bug in {{site.base_gateway}} that prevents keyring encryption
-  from working on deeply nested fields, so the `encrypted=true` setting does not
-  currently have any effect in this plugin.
