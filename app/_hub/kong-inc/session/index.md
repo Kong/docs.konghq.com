@@ -447,7 +447,7 @@ _not_ a problem during session renewal period as renew happens in `access` phase
 ### 2.4.5
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
- the `secret` parameter value will be encrypted.
+ the `config.secret` parameter value will be encrypted.
 
 [plugin]: https://docs.konghq.com/hub/
 [lua-resty-session]: https://github.com/bungle/lua-resty-session

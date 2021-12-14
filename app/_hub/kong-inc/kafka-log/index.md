@@ -286,5 +286,10 @@ Known limitations:
 ### 0.3.x
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
- the `authentication.user` and `authentication.password` parameter values will
- be encrypted.
+ the `config.authentication.user` and `config.authentication.password` parameter
+ values will be encrypted.
+
+  {:.important}
+  > There's a bug in {{site.base_gateway}} that prevents keyring encryption
+  from working on deeply nested fields, so the `encrypted=true` setting does not
+  currently have any effect in this plugin.

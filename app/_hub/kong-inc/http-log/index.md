@@ -42,6 +42,7 @@ params:
       default: null
       value_in_examples: 'http://mockbin.org/bin/:id'
       datatype: string
+      encrypted: true
       description: The HTTP URL endpoint (including the protocol to use) to which the data is sent.
     - name: method
       required: false
