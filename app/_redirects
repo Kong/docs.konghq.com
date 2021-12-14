@@ -488,7 +488,8 @@
 /gateway-oss/latest/upgrading/        /gateway/latest/install-and-run/upgrade
 /enterprise/2.6.x/deployment/upgrades/migrate-ce-to-ke/     /gateway/2.6.x/install-and-run/migrate-ce-to-ke
 /enterprise/latest/deployment/upgrades/migrate-ce-to-ke/    /gateway/latest/install-and-run/migrate-ce-to-ke
-
+/gateway/2.6.x/developer-portal/configuration/legacy-portal/    /enterprise/2.1.x/developer-portal/legacy-migration/
+/gateway/2.6.x/install-and-run/upgrade-enterprise/#dev-portal-migrations    /enterprise/2.1.x/developer-portal/legacy-migration/
 
 # GENERAL REDIRECTS TO /GATEWAY/
 /enterprise/changelog      /gateway/changelog
