@@ -3316,8 +3316,8 @@ mean other gateways, load balancers, NATs, and such in front of Kong. If there i
 ### 2.2.0
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
- the `client_id`, `client_secret`, `session_auth`, and `session_redis_auth`
- parameter values will be encrypted.
+ the `config.client_id`, `config.client_secret`, `config.session_auth`, and 
+ `config.session_redis_auth` parameter values will be encrypted.
 
   Additionally, the `d`, `p`, `q`, `dp`, `dq`, `qi`, `oth`, `r`, `t`, and `k`
   fields inside `openid_connect_jwks.previous[...].` and `openid_connect_jwks.keys[...]`
