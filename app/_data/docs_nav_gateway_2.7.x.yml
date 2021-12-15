@@ -342,6 +342,13 @@
               url: /admin-api/admins/reference
             - text: Examples
               url: /admin-api/admins/examples
+        - text: Consumer Groups
+          url: /admin-api/consumer-groups/reference
+          items:
+            - text: API Reference
+              url: /admin-api/consumer-groups/reference
+            - text: Examples
+              url: /admin-api/consumer-groups/examples
         - text: Event Hooks
           url: /admin-api/event-hooks/reference
           items:

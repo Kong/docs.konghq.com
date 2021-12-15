@@ -6,34 +6,34 @@ Traditionally, Kong has always required a database, to store configured
 entities such as Routes, Services, and Plugins.
 
 Starting with {{site.base_gateway}} 2.1, Kong can be deployed in
-Hybrid mode, also known as Control Plane / Data Plane Separation (CP/DP).
+hybrid mode, also known as control plane / data plane separation (CP/DP).
 
-In this mode, Kong nodes in a cluster are split into two roles: Control Plane
-(CP), where configuration is managed and the Admin API is served from; and Data
-Plane (DP), which serves traffic for the proxy. Each DP node is connected to one
+In this mode, Kong nodes in a cluster are split into two roles: control plane
+(CP), where configuration is managed and the Admin API is served from; and data
+plane (DP), which serves traffic for the proxy. Each DP node is connected to one
 of the CP nodes. Instead of accessing the database contents directly in the
 traditional deployment method, the DP nodes maintain connection with CP nodes,
 and receive the latest configuration.
 
 ![Hybrid mode topology](/assets/images/docs/ee/deployment/deployment-hybrid-2.png)
 
-When you create a new Data Plane node, it establishes a connection to the
-Control Plane. The Control Plane listens on port 8005 for connections and
-tracks any incoming data from its Data Planes.
+When you create a new data plane node, it establishes a connection to the
+control plane. The control plane listens on port 8005 for connections and
+tracks any incoming data from its data planes.
 
-Once connected, every Admin API or Kong Manager action on the Control Plane
-triggers an update to the Data Planes in the cluster.
+Once connected, every Admin API or Kong Manager action on the control plane
+triggers an update to the data planes in the cluster.
 
 ## Benefits
 
 Hybrid mode deployments have the following benefits:
 
-* **Deployment flexibility:** Users can deploy groups of Data Planes in
+* **Deployment flexibility:** Users can deploy groups of data planes in
 different data centers, geographies, or zones without needing a local clustered
 database for each DP group.
 * **Increased reliability:** The availability of the database does not affect
-the availability of the Data Planes. Each DP caches the latest configuration it
-received from the Control Plane on local disk storage, so if CP nodes are down,
+the availability of the data planes. Each DP caches the latest configuration it
+received from the control plane on local disk storage, so if CP nodes are down,
 the DP nodes keep functioning.  
     * While the CP is down, DP nodes constantly try to reestablish communication.
     * DP nodes can be restarted while the CP is down, and still proxy traffic
@@ -47,16 +47,16 @@ control and monitor the status of the entire Kong cluster.
 
 ## Platform Compatibility
 
-You can run {{site.base_gateway}} in Hybrid mode on any platform where
+You can run {{site.base_gateway}} in hybrid mode on any platform where
 {{site.base_gateway}} is [supported](/gateway/{{page.kong_version}}/install-and-run/).
 
 ### Kubernetes Support and Additional Documentation
 
 [{{site.base_gateway}} on Kubernetes](/gateway/{{page.kong_version}}/install-and-run/kubernetes)
-fully supports Hybrid mode deployments, with or without the Kong Ingress Controller.
+fully supports hybrid mode deployments, with or without the Kong Ingress Controller.
 
-For the full Kubernetes Hybrid mode documentation, see
-[Hybrid mode](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
+For the full Kubernetes hybrid mode documentation, see
+[hybrid mode](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
 in the `kong/charts` repository.
 
 ## Version Compatibility
@@ -133,80 +133,92 @@ control plane side.
 
 ## Fault tolerance
 
-A valid question you may ask is: What would happen if control plane nodes are down,
-will the data plane keep functioning? The answer is yes. Data plane caches
+If control plane nodes are down, the data plane will keep functioning. Data plane caches
 the latest configuration it received from the control plane on the local disk.
 In case the control plane stops working, the data plane will keep serving requests using
 cached configurations. It does so while constantly trying to reestablish communication
 with the control plane.
 
-This means that the Data Plane nodes can be stopped even for extended periods
-of time, and the Data Plane will still proxy traffic normally.  Data Plane
+This means that the data plane nodes can be stopped even for extended periods
+of time, and the data plane will still proxy traffic normally. Data plane
 nodes can be restarted while in disconnected mode, and will load the last
-configuration in the cache to start working. When the Control Plane is brought
-up again, the Data Plane nodes will contact them and resume connected mode.
+configuration in the cache to start working. When the control plane is brought
+up again, the data plane nodes will contact them and resume connected mode.
 
 ### Disconnected Mode
 
-The viability of the Data Plane while disconnected means that Control Plane
+The viability of the data plane while disconnected means that control plane
 updates or database restores can be done with peace of mind. First bring down
-the Control Plane, perform all required downtime processes, and only bring up
-the Control Plane after verifying the success and correctness of the procedure.
-During that time, the Data Plane will keep working with the latest configuration.
+the control plane, perform all required downtime processes, and only bring up
+the control plane after verifying the success and correctness of the procedure.
+During that time, the data plane will keep working with the latest configuration.
 
-A new Data Plane node can be provisioned during Control Plane downtime. This
+A new data plane node can be provisioned during control plane downtime. This
 requires either copying the config cache file (`config.json.gz`) from another
-Data Plane node, or using a declarative configuration. In either case, if it
-has the role of `"data_plane"`, it will also keep trying to contact the Control
-Plane until it's up again.
+data plane node, or using a declarative configuration. In either case, if it
+has the role of `"data_plane"`, it will also keep trying to contact the control
+plane until it's up again.
 
-To change a disconnected Data Plane node's configuration, you have to remove
+To change a disconnected data plane node's configuration, you have to remove
 the config cache file (`config.json.gz`), ensure the `declarative_config`
 parameter or the `KONG_DECLARATIVE_CONFIG` environment variable is set, and set
 the whole configuration in the referenced YAML file.
+
+### Data plane cache configuration
+{:.badge .enterprise}
+
+By default, data planes store their configuration to the file system
+in an unencrypted cache file, `config.json.gz`, in {{site.base_gateway}}'s
+`prefix` path. You can also choose to encrypt this cache, or disable it entirely.
+
+If encrypted, the data plane uses the cluster certificate key to decrypt the
+configuration cache on startup.
+
+See [`data_plane_config_cache_mode`](/gateway/{{page.kong_version}}/reference/configuration/#data_plane_config_cache_mode)
+and [`data_plane_config_cache_path`](/gateway/{{page.kong_version}}/reference/configuration/#data_plane_config_cache_path).
 
 ## Limitations
 
 ### Configuration Inflexibility
 
-When a configuration change is made at the Control Plane level via the Admin
-API, it immediately triggers a cluster-wide update of all Data Plane
+When a configuration change is made at the control plane level via the Admin
+API, it immediately triggers a cluster-wide update of all data plane
 configurations. This means that the same configuration is synced from the CP to
 all DPs, and the update cannot be scheduled or batched. For different DPs to
 have different configurations, they will need their own CP instances.
 
 ### Plugin Incompatibility
 
-When plugins are running on a Data Plane in hybrid mode, there is no Admin API
+When plugins are running on a data plane in hybrid mode, there is no Admin API
 exposed directly from that DP. Since the Admin API is only exposed from the
-Control Plane, all plugin configuration has to occur from the CP. Due to this
+control plane, all plugin configuration has to occur from the CP. Due to this
 setup, and the configuration sync format between the CP and the DP, some plugins
-have limitations in Hybrid mode:
+have limitations in hybrid mode:
 
 * [**Key Auth Encrypted:**](/hub/kong-inc/key-auth-enc) The time-to-live setting
 (`ttl`), which determines the length of time a credential remains valid, does
-not work in Hybrid mode.
+not work in hybrid mode.
 * [**Rate Limiting Advanced:**](/hub/kong-inc/rate-limiting-advanced)
-This plugin does not support the `cluster` strategy in Hybrid mode. The `redis`
+This plugin does not support the `cluster` strategy in hybrid mode. The `redis`
 strategy must be used instead.
 * [**OAuth 2.0 Authentication:**](/hub/kong-inc/oauth2) This plugin is not
-compatible with Hybrid mode. For its regular workflow, the plugin needs to both
+compatible with hybrid mode. For its regular workflow, the plugin needs to both
 generate and delete tokens, and commit those changes to the database, which is
 not possible with CP/DP separation.
 
 ### Custom Plugins
 
 Custom plugins (either your own plugins or third-party plugins that are not
-shipped with Kong) need to be installed on both the Control Plane and the Data
-Plane in Hybrid mode.
+shipped with Kong) need to be installed on both the control plane and the data
+plane in hybrid mode.
 
 ### Load Balancing
 
 Currently, there is no automated load balancing for connections between the
-Control Plane and the Data Plane. You can load balance manually by using
-multiple Control Planes and redirecting the traffic using a TCP proxy.
+control plane and the data plane. You can load balance manually by using
+multiple control planes and redirecting the traffic using a TCP proxy.
 
-## Readonly Status API endpoints on Data Plane
+## Readonly Status API endpoints on data plane
 
 Several readonly endpoints from the [Admin API](/gateway/{{page.kong_version}}/admin-api)
 are exposed to the [Status API](/gateway/{{page.kong_version}}/reference/configuration/#status_listen) on data planes, including the following:
@@ -218,3 +230,9 @@ are exposed to the [Status API](/gateway/{{page.kong_version}}/reference/configu
 
 Please refer to [Upstream objects](/gateway/{{page.kong_version}}/admin-api/#upstream-object) in the Admin API documentation for more information about the
 endpoints.
+
+## Keyring encryption in hybrid mode
+
+Because the keyring module encrypts data in the database, it can't encrypt
+data on data plane nodes, since these nodes run without a database and get
+data from the control plane.
