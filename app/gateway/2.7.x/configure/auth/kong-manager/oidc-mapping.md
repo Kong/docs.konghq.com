@@ -3,7 +3,7 @@ title: OIDC Authenticated Group Mapping
 badge: enterprise
 ---
 
-Using Kong's OpenID Connect plugin (OIDC), you can map identity provider (IdP)
+Using Kong's [OpenID Connect plugin](/hub/kong-inc/openid-connect) (OIDC), you can map identity provider (IdP)
 groups to Kong roles. Adding a user to Kong in this way gives them access to
 Kong based on their group in the IdP.
 
@@ -25,13 +25,13 @@ Manager. The mapping removes the task of manually managing access in
 * RBAC enabled
 * (Kubernetes) [Helm](https://helm.sh/docs/intro/install/) installed
 
-## Apply OIDC Auth Mapping to Kong Gateway
+## Apply OIDC auth mapping to Kong Gateway
 
 In the following examples, you specify the `admin_claim` and `authenticated_groups_claim` parameters 
 to identify which admin value and role name to map from the IdP to {{site.base_gateway}}.
 
 The `admin_claim` value specifies which IdP username value should map to Kong Manager. 
-Note that the username and password are required for the user to log into the IdP.
+The username and password are required for the user to log into the IdP.
 
 The `authenticated_groups_claim` value specifies which IdP claim should be assigned to the
 specified {{site.base_gateway}} user.
@@ -69,7 +69,7 @@ specified {{site.base_gateway}} user.
 2. Create a secret from the file you just created:
 
     ```sh
-    $ kubectl create secret generic kong-idp-conf --from-file=admin_gui_auth_conf -n kong
+    kubectl create secret generic kong-idp-conf --from-file=admin_gui_auth_conf -n kong
     ```
 
 3. Update the RBAC section of the deployment `values.yml` file with the
@@ -86,7 +86,7 @@ following parameters:
 4. Using Helm, upgrade the deployment with your YAML filename:
 
     ```sh
-    $ helm upgrade --install kong-ee kong/kong -f ./myvalues.yaml -n kong
+    helm upgrade --install kong-ee kong/kong -f ./myvalues.yaml -n kong
     ```
 {% endnavtab %}
 {% navtab Docker %}
