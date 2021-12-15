@@ -134,8 +134,7 @@ control plane side.
 
 ## Fault tolerance
 
-A valid question you may ask is: What would happen if control plane nodes are down,
-will the data plane keep functioning? The answer is yes. Data plane caches
+If control plane nodes are down, the data plane will keep functioning. Data plane caches
 the latest configuration it received from the control plane on the local disk.
 In case the control plane stops working, the data plane will keep serving requests using
 cached configurations. It does so while constantly trying to reestablish communication
@@ -165,6 +164,15 @@ To change a disconnected Data Plane node's configuration, you have to remove
 the config cache file (`config.json.gz`), ensure the `declarative_config`
 parameter or the `KONG_DECLARATIVE_CONFIG` environment variable is set, and set
 the whole configuration in the referenced YAML file.
+
+### Data plane cache configuration
+{:.badge .enterprise}
+
+By default, Data Planes store their configuration to the file system
+in an unencrypted cache file, `config.json.gz`, in {{site.base_gateway}}'s
+`prefix` path. You can also choose to encrypt this cache, or disable it entirely.
+See [`data_plane_config_cache_mode`](/gateway/{{page.kong_version}}/reference/configuration/#data_plane_config_cache_mode)
+and [`data_plane_config_cache_path`](/gateway/{{page.kong_version}}/reference/configuration/#data_plane_config_cache_path).
 
 ## Limitations
 
@@ -219,3 +227,7 @@ are exposed to the [Status API](/gateway/{{page.kong_version}}/reference/configu
 
 Please refer to [Upstream objects](/gateway/{{page.kong_version}}/admin-api/#upstream-object) in the Admin API documentation for more information about the
 endpoints.
+
+### Keyring encryption in hybrid mode
+
+Because Keyring encrypts the data in the database, it means it doesn't encrypt data on Kong data plane nodes that run without a database and get data from the control plane.
