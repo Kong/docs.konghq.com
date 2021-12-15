@@ -7,20 +7,15 @@ Using Kong's OpenID Connect plugin (OIDC), you can map identity provider (IdP)
 groups to Kong roles. Adding a user to Kong in this way gives them access to
 Kong based on their group in the IdP.
 
-Starting with {{site.base_gateway}} version 2.7, admin accounts are created automatically 
+Admin accounts are now created automatically 
 when you map your identity provider (IdP) groups to Kong roles. You do 
 not need to create the users, groups, and roles separately. These users then accept invitations to join 
-Kong Manager and log in with their IdP credentials.
+Kong Manager and log in with their IdP credentials. 
 
 If an admin's group changes in the IdP, their Kong admin account's associated
 role also changes in {{site.base_gateway}} the next time they log in to Kong
 Manager. The mapping removes the task of manually managing access in
 {{site.base_gateway}}, because it makes the IdP the system of record.
-
-Here's how OIDC authenticaticated group mapping works:
-
-1. Configure the OIDC plugin to connect with your IdP.
-1. When users log in to Kong Manager, they are assigned to the roles they belong to in your IdP.
 
 ## Prerequisites
 
@@ -38,8 +33,8 @@ to identify which admin value and role name to map from the IdP to {{site.base_g
 The `admin_claim` value specifies which IdP username value should map to Kong Manager. 
 Note that the username and password are required for the user to log into the IdP.
 
-The `authenticated_groups_claim` value specifies which IdP role should be assigned to the
-specified user. This value must be provided in the format provided in the examples.
+The `authenticated_groups_claim` value specifies which IdP claim should be assigned to the
+specified {{site.base_gateway}} user.
 
 {% navtabs %}
 {% navtab Kubernetes with Helm %}
@@ -55,7 +50,7 @@ specified user. This value must be provided in the format provided in the exampl
         "admin_claim": "email",
         "client_id": ["{CLIENT_ID}"],                 
         "client_secret": ["{CLIENT_SECRET}"],
-        "authenticated_groups_claim": ["{WORKSPACE_NAME}:{ROLE_NAME}"],
+        "authenticated_groups_claim": ["{CLAIM_NAME}"],
         "ssl_verify": false,
         "leeway": 60,
         "redirect_uri": ["{YOUR_REDIRECT_URI}"],
@@ -110,7 +105,7 @@ $ echo "
       \"admin_claim\": \"email\",
       \"client_id\": [\"<someid>\"],
       \"client_secret\": [\"<somesecret>\"],
-      \"authenticated_groups_claim\": [\"{WORKSPACE_NAME}:{ROLE_NAME}\"],,
+      \"authenticated_groups_claim\": [\"{CLAIM_NAME}\"],,
       \"ssl_verify\": false,
       \"leeway\": 60,
       \"redirect_uri\": [\"{YOUR_REDIRECT_URI}\"],
@@ -146,7 +141,7 @@ properties to the file.
         "admin_claim": "email",
         "client_id": ["{CLIENT_ID}"],                 
         "client_secret": ["{CLIENT_SECRET}"],
-        "authenticated_groups_claim": ["{WORKSPACE_NAME}:{ROLE_NAME}"],
+        "authenticated_groups_claim": ["{CLAIM_NAME}"],
         "ssl_verify": false,
         "leeway": 60,
         "redirect_uri": ["{YOUR_REDIRECT_URI}"],
