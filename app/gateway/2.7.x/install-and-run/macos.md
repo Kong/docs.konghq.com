@@ -42,6 +42,9 @@ file for specifying the entities as a declarative configuration.
 
 ### Using a database
 
+
+{% include_cached /md/enterprise/cassandra-deprecation.md %}
+
 [Configure][configuration] Kong so it can connect to your database. Kong supports
 [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and
 [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as datastores, and

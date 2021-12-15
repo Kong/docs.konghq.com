@@ -30,7 +30,7 @@ controller to configure Kong. This differs from Kong deployments that do not
 use an ingress controller, where configuration in the database or DB-less
 config file is the source of truth.
 
-In traditional deployments, Kong's database (PostgreSQL or Cassandra) provides
+In traditional deployments, Kong's database provides
 a persistent store of configuration available to all Kong nodes to ensure
 consistent proxy behavior across the cluster that is not affected by node
 restarts. Because etcd provides this functionality in Kong for Kubernetes

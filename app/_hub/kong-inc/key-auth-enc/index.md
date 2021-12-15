@@ -173,7 +173,7 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/key-auth -d
 
 Response:
 
-```
+```json
 HTTP/1.1 201 Created
 
 {
@@ -293,7 +293,7 @@ $ curl -X GET http://kong:8001/key-auth-enc
 
 Response:
 
-```bash
+```json
 ...
 {
    "data":[
@@ -330,7 +330,7 @@ $ curl -X GET http://kong:8001/consumers/{username or id}/key-auth-enc
 
 Response:
 
-```bash
+```json
 ...
 {
     "data": [
@@ -359,7 +359,7 @@ curl -X GET http://kong:8001/key-auth-enc/{key or id}/consumer
 `key or id`: The `id` or `key` property of the API key for which to get the
 associated Consumer.
 
-```bash
+```json
 {
    "created_at":1507936639000,
    "username":"foo",
@@ -371,3 +371,13 @@ associated Consumer.
 [configuration]: /gateway/latest/reference/configuration
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
 [acl-associating]: /plugins/acl/#associating-consumers
+
+---
+
+## Changelog
+
+### 2.0.0
+
+* If keyring encryption is enabled
+and you are using key authentication, the `keyauth_credentials.key` field will
+be encrypted.

@@ -40,6 +40,8 @@ The {{site.base_gateway}} software is governed by the
 Set up a {{site.base_gateway}} container with a PostgreSQL database to store
 Kong configuration.
 
+{% include_cached /md/enterprise/cassandra-deprecation.md %}
+
 ### Pull and tag the Kong Gateway image
 
 1. Pull the Docker image:

@@ -150,9 +150,8 @@ thousands of Routes with minimal impact to latency as a result of request route
 evaluation.
 
 * **Number of configured Consumers and Credentials**: Consumer and credential
-data is stored in {{site.base_gateway}}'s datastore (either PostgreSQL or
-Cassandra, or the `kong.yml` file in DB-less environments).
-{{site.base_gateway}} caches this data in memory to reduce database load and
+data is stored in {{site.base_gateway}}'s datastore.  {{site.base_gateway}} 
+caches this data in memory to reduce database load and
 latency during request processing. Increasing the count of Consumers and
 Credentials requires more memory available for {{site.base_gateway}} to hold
 data in cache. If there is not enough memory available to cache all requested

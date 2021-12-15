@@ -29,6 +29,10 @@ performance and consistency.
 
 ## Single node Kong clusters
 
+
+{% include_cached /md/enterprise/cassandra-deprecation.md %}
+
+
 A single Kong node connected to a database (Cassandra or PostgreSQL) creates a
 Kong cluster of one node. Any changes applied via the Admin API of this node
 will instantly take effect. Example:
