@@ -16,10 +16,15 @@ manage custom rate limiting configuration for any defined subsets of consumers.
 To use consumer groups for rate limiting, configure the [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced)
 plugin with the `enforce_consumer_groups` and `consumer_groups` parameters,
 and use the `/consumer_groups` endpoint to manage the groups.
+
+    This is useful for managing consumers with same rate limiting settings, as you
+    can create a consumer group and one Rate Limiting Advanced plugin instance for
+    the group to reduce proxy delay.
+
   * [Consumer groups reference](/gateway/2.7.x/admin-api/consumer-groups/reference)
   * [Consumer groups examples](/gateway/2.7.x/admin-api/consumer-groups/examples)
-* The data plane configuration cache can now be encrypted or disabled. Two new
-configuration options have been added:
+* The data plane configuration cache can now be encrypted or turned off entirely.
+ Two new configuration options have been added:
   * `data_plane_config_cache_mode`: The cache can be `unencrypted`, `encrypted`, or `off`.
   * `data_plane_config_cache_path`: If unencrypted, the config cache is stored
   by default in `config.cache.json.gz`. You can use this setting to specify a
@@ -30,18 +35,26 @@ configuration options have been added:
 #### Dev Portal
 * The Dev Portal API now supports `sort_by={attribute}` and `sort_desc`
 query parameters for sorted list results.
-* For Dev Portals with the [OpenID Connect](/hub/kong-inc/openid-connect) plugin enabled, login is successful on the first try if the credentials provided are valid and stored in IDP. If the email does not match existing data associated with the account, a new account is automatically created.
+* For Dev Portals with the [OpenID Connect](/hub/kong-inc/openid-connect) plugin
+ enabled, login is successful on the first try if the credentials provided are
+ valid and stored in IDP. If the email does not match existing data associated
+ with the account, a new account is automatically created.
 * Added TLSv1.3 support for the Dev Portal API and GUI.
 
 #### Kong Manager
-* When using OpenID Connect to secure Kong Manager, you no longer need to create admins manually in Kong Manager and map their roles to your identity provider. Instead, admins are created on first
-login and their roles are assigned based on their group membership in your IdP. This feature also partly resolves a problem with creating admins for both Kong Manager and Dev Portal.
+* When using OpenID Connect to secure Kong Manager, you no longer need to
+create admins manually in Kong Manager and map their roles to your identity
+provider. Instead, admins are created on first
+login and their roles are assigned based on their group membership in your
+IdP. This feature also partly resolves a problem with creating admins for both
+Kong Manager and Dev Portal.
 * Kong Manager now provides a simplified, organized form for configuring the
-OpenID Connect plugin.
+OpenID Connect plugin. Users can now easily identify a common set of required
+parameters to configure the plugin, and add custom configurations as needed.
 
 #### Core
 * Service entities now have a required `enabled` field which defaults to `true`.
-When set to `false`, routes attached to the service are not added to proxy
+When set to `false`, routes attached to the service are not added to the proxy
 router. [#8113](https://github.com/Kong/kong/pull/8113)
 
   In hybrid mode:
@@ -88,10 +101,6 @@ In this release, we continued our work on better performance:
   which introduce support for consumer groups. With consumer groups, you can
   manage custom rate limiting configuration for any defined subsets of consumers.
 
-    This is useful for managing consumers with same rate limiting settings, as you
-    can create a consumer group and one Rate Limiting Advanced plugin instance for
-    the group to reduce proxy delay.
-
 * [Forward Proxy](/hub/kong-inc/forward-proxy) (`forward-proxy`)
   * Added two proxy authentication parameters, `auth_username` and `auth_password`.
 
@@ -122,6 +131,12 @@ In this release, we continued our work on better performance:
   * Both plugins now share the Timestamp transcoding and included `.proto`
   files features.
   [#7950(https://github.com/Kong/kong/pull/7950)
+
+* [gRPC Gateway](/hub/kong-inc/grpc-gateway) (`grpc-gateway`)
+  * This plugin now processes services and methods defined in imported
+  `.proto` files.
+  [#8107](https://github.com/Kong/kong/pull/8107)
+
 * [Rate-Limiting](/hub/kong-inc/rate-limiting) (`rate-limiting`)
   Added support for Redis SSL through configuration properties
   `redis_ssl` (can be set to `true` or `false`), `redis_ssl_verify`, and
@@ -143,6 +158,8 @@ is enabled, these fields will be encrypted:
   * Loggly: `key`
   * OAuth2: `config.provision_key` parameter value and the
   `oauth2_credentials.provision_ key` field
+  * OpenID Connect: `client_id`, `client_secret`, `session_auth`, and
+  `session_redis_auth`
   * Session: `secret`
   * Vault: `vaults.vault_token` and `vault_credentials.secret_token`
 
@@ -213,24 +230,25 @@ accidentally click **Delete**.
 * Configuration reload no longer causes a new DNS-resolving timer to be started.
   [#7943](https://github.com/Kong/kong/pull/7943)
 * Fixed problem when bootstrapping multi-node Cassandra clusters, where migrations could attempt
-  insertions before schema agreement occurred.
+  insertions before a schema agreement occurred.
   [#7667](https://github.com/Kong/kong/pull/7667)
-* Fixed intermittent botting error which happened when a custom plugin had inter-dependent entity schemas
-  on its custom DAO and they were loaded in an incorrect order
+* Fixed an intermittent botting error which happened when a custom plugin had interdependent entity schemas
+  on its custom DAO and they were loaded in an incorrect order.
   [#7911](https://github.com/Kong/kong/pull/7911)
-* Fixed an issue where `encrypted=true` would apply to the main Plugin object,
+* Fixed an issue where `encrypted=true` would apply to the main plugin object,
 instead of each plugin subschema.
 
 #### PDK
 
-* `kong.log.inspect` log level is now debug instead of warn. It also renders text
-  boxes more cleanly now [#7815](https://github.com/Kong/kong/pull/7815)
+* `kong.log.inspect` log level is now `debug` instead of `warn`. It also renders
+  textboxes more cleanly now.
+  [#7815](https://github.com/Kong/kong/pull/7815)
 
 #### Plugins
 
 * [LDAP Authentication](/hub/kong-inc/ldap-auth) (`ldap-auth`)
-  * Basic authentication header was not parsed correctly when
-  the password contained a colon (`:`).
+  * Fixed issue where the basic authentication header was not parsed correctly
+  when the password contained a colon (`:`).
   [#7977](https://github.com/Kong/kong/pull/7977)
 
     Thanks [beldahanit](https://github.com/beldahanit) for reporting the issue!
@@ -239,26 +257,35 @@ instead of each plugin subschema.
   * Hid Upstream Target health metrics on the control plane, as the control plane
   doesn't initialize the balancer and doesn't have any real metrics to show.
   [#7992](https://github.com/Kong/kong/pull/7922)
+
 * [Request Validator](/hub/kong-inc/request-validator) (`request-validator`)
   * Reverted the change in parsing multiple values, as arrays in version 1.1.3
   headers and query-args as `primitive` are now validated individually when duplicates are provided, instead of merging them as an array.
   * Whitespace around CSV values is now dropped since it is not significant according to the RFC (whitespace is optional).
   * Bumped `openapi3-deserialiser` to 2.0.0 to enable the changes.
+
 * [Forward Proxy](/hub/kong-inc/forward-proxy) (`forward-proxy`)
   * This plugin no longer uses deprecated features of the `lua-resty-http`
   dependency, which previously added deprecation warnings to the DEBUG log.
-  * Fixed to not set Host header if the `upstream_host` is an empty string.
+  * This plugin no longer sets a Host header if the `upstream_host` is an empty
+  string.
+
 * [OAuth2 Introspection](/hub/kong-inc/oauth2-introspection) (`oauth2-introspection`)
   * This plugin no longer uses deprecated features of the `lua-resty-http`
   dependency, which previously added deprecation warnings to the DEBUG log.
+
 * [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced) (`graphql-rate-limiting-advanced`)
   * Fixed plugin initialization code causing HTTP 500 status codes after
   enabling the plugin.
+
 * [mTLS Auth](/hub/kong-inc/mtls-auth) (`mtls-auth`)
   * Fixed an issue where CRL cache was not properly invalidated, causing all
    certificates to appear invalid.
+
 * [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced) (`proxy-cache-advanced`)
-  * Fixed `function cannot be called in access phase` error when plugin was called in the log phase.
+  * Fixed the `function cannot be called in access phase` error, which occurred
+  when the plugin was called in the log phase.
+
 * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
   * Fixed the schema entity check for `config.limit` and `config.window_size` count
    when the number of configured window sizes and limits parameters are not equal.
@@ -273,9 +300,9 @@ instead of each plugin subschema.
 [#8004](https://github.com/Kong/kong/pull/8004)
 * Dependency on `luaossl` is removed.
 * `lua-resty-openapi3-deserializer` (library dependency)
-  * Reverted the header fix in `1.1.0`. For primitive types the values are
-  returned as plain string, not as an array. Duplicate values must now be offered
-  individually for deserialization.
+  * Reverted the header fix in `1.1.0`. For primitive types, the values are
+  returned as plain strings, not as an array. Duplicate values must now be
+  offered individually for deserialization.
   * Stripped whitespace from headers since it is not significant according to
   the RFC.
 
@@ -283,8 +310,15 @@ instead of each plugin subschema.
 * Kong Immunity is deprecated, removed, and not available in Kong Gateway.
 To access old Kong Immunity documentation, see the
 [doc archive](https://github.com/Kong/docs.konghq.com/tree/main/archive/enterprise/immunity_2.x).
-* Cassandra support is deprecated with 2.7 and will be fully removed with 4.0.
-https://konghq.com/blog/cassandra-support-deprecated
+* Cassandra as a backend database for Kong Gateway
+is deprecated with this release and will be removed in a future version.
+
+  The target for Cassandra removal is the Kong Gateway 4.0 release.
+  Starting with the Kong Gateway 3.0 release, some new features might
+  not be supported with Cassandra. Our intent is to provide our users with ample
+  time and alternatives for satisfying the use cases that they have been able to
+  address with Cassandra.
+
 * The old `BasePlugin` module is deprecated and will be removed in a future version of Kong.
   See porting tips in the [documentation](/gateway/2.7.x/plugin-development/custom-logic/#migrating-from-baseplugin-module)
 * Hash syntax for plugin DAOs is deprecated. Plugin DAOs should be arrays
@@ -298,7 +332,8 @@ effect on the following plugins and fields:
   `jwt_signer_jwks.previous[...].` and `jwt_signer_jwks.keys[...]`
   * Kafka Log: `config.authentication.user` and `config.authentication.password`
   * Kafka Upstream: `config.authentication.user` and `config.authentication.password`
-  * OpenID Connect: TBA
+  * OpenID Connect: the fields `d`, `p`, `q`, `dp`, `dq`, `qi`, `oth`, `r`, `t`, and `k`
+  inside `openid_connect_jwks.previous[...].` and `openid_connect_jwks.keys[...]`
 
 ## 2.6.0.2
 **Release Date:** 2021/12/03
