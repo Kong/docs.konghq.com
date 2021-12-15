@@ -413,6 +413,11 @@ params:
       description: The name of the parameter used to pass the id token.
     - group: Consumer Mapping
       description: Parameters for mapping external identity provider managed identities to Kong managed ones.
+    - name: admin_claim
+      required: false
+      default: null
+      datatype: string
+      description: The claim used for admin mapping for Kong Manager. Required if mapping IdP claims to Kong Manager admins.
     - name: consumer_claim
       required: false
       default: null
