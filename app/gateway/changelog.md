@@ -30,14 +30,12 @@ configuration options have been added:
 #### Dev Portal
 * The Dev Portal API now supports `sort_by={attribute}` and `sort_desc`
 query parameters for sorted list results.
-* At Dev Portal account and admin account creation, you can now use the `email` of
-the `consumer_claim` to either match with an existing consumer or create a
-new account.
+* For Dev Portals with the [OpenID Connect](/hub/kong-inc/openid-connect) plugin enabled, login is successful on the first try if the credentials provided are valid and stored in IDP. If the email does not match existing data associated with the account, a new account is automatically created.
 * Added TLSv1.3 support for the Dev Portal API and GUI.
 
 #### Kong Manager
-* When using OpenID Connect to secure Kong Manager, admins are created on first
-login and roles are assigned based on their group membership.
+* When using OpenID Connect to secure Kong Manager, you no longer need to create admins manually in Kong Manager and map their roles to your identity provider. Instead, admins are created on first
+login and their roles are assigned based on their group membership in your IdP. This feature also partly resolves a problem with creating admins for both Kong Manager and Dev Portal.
 * Kong Manager now provides a simplified, organized form for configuring the
 OpenID Connect plugin.
 
@@ -105,6 +103,7 @@ In this release, we continued our work on better performance:
   * Response status and message can now be customized
   through configurations `status` and `message`.
   [#7728](https://github.com/Kong/kong/pull/7728)
+
     Thanks [timmkelley](https://github.com/timmkelley) for the patch!
 
 * [Datadog](/hub/kong-inc/datadog) (`datadog`)
@@ -162,7 +161,7 @@ outside of the expected codes will not cause errors, and instead appear as
 count totals in Vitals reports.
 
 * Fixed a latency issue in hybrid mode. Previously, applying a large number of
-configuration changes to a Data Plane simultaneously caused high latency in all
+configuration changes to a data plane simultaneously caused high latency in all
 upstream requests.
 
 * Users can now successfully delete admins with the `super-admin` role from
