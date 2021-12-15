@@ -30,6 +30,10 @@ Once you have defined your model, you must create your migration modules which
 will be executed by Kong to create the table in which your records of your
 entity will be stored.
 
+
+{% include_cached /md/enterprise/cassandra-deprecation.md %}
+
+
 If your plugin is intended to support both Cassandra and Postgres, then both
 migrations must be written.
 
@@ -79,6 +83,9 @@ return {
 ```
 
 ## Migration file syntax
+
+
+{% include_cached /md/enterprise/cassandra-deprecation.md %}
 
 While Kong's core migrations support both Postgres and Cassandra, custom plugins
 can choose to support either both of them or just one.

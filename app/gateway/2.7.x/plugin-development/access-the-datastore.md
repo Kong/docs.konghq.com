@@ -12,6 +12,8 @@ Kong supports two primary datastores: [Cassandra
 and [PostgreSQL
 {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/).
 
+{% include_cached /md/enterprise/cassandra-deprecation.md %}
+
 ## kong.db
 
 All entities in Kong are represented by:
@@ -20,8 +22,8 @@ All entities in Kong are represented by:
   constraints on its fields such as foreign keys, non-null constraints etc.
   This schema is a table described in the [plugin configuration]({{page.book.chapters.plugin-configuration}})
   chapter.
-- An instance of the `DAO` class mapping to the database currently in use
-  (Cassandra or Postgres). This class' methods consume the schema and expose
+- An instance of the `DAO` class mapping to the database currently in use.
+  This class' methods consume the schema and expose
   methods to insert, update, select and delete entities of that type.
 
 The core entities in Kong are: Services, Routes, Consumers and Plugins.

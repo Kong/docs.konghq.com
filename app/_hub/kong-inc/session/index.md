@@ -124,7 +124,7 @@ params:
       datatype: string
       description: |
         Determines where the session data is stored. `kong`: Stores encrypted session data into Kong's current database
-        strategy (e.g. Postgres, Cassandra); the cookie will not contain any session data. `cookie`: Stores encrypted
+        strategy; the cookie will not contain any session data. `cookie`: Stores encrypted
         session data within the cookie itself.
     - name: logout_methods
       required: false
@@ -409,12 +409,11 @@ plugins, it also sets `authenticated_groups` associated headers.
 
 The Session plugin extends the functionality of [lua-resty-session] with its own
 session data storage adapter when `storage=kong`. This stores encrypted
-session data into the current database strategy (e.g., Postgres, Cassandra, etc.)
-and the cookie does not contain any session data. Data stored in the database is
-encrypted and the cookie contains only the session id, expiration time, and
-HMAC signature. Sessions use the built-in Kong DAO `ttl` mechanism that destroys
-sessions after specified `cookie_lifetime` unless renewal occurs during normal
-browser activity. Log out the application via XHR request
+session data into the current database strategy and the cookie does not contain 
+any session data. Data stored in the database is encrypted and the cookie contains only 
+the session id, expiration time, and HMAC signature. Sessions use the built-in Kong 
+DAO `ttl` mechanism that destroys sessions after specified `cookie_lifetime` unless renewal 
+occurs during normal browser activity. Log out the application via XHR request
 (or something similar) to manually handle the redirects.
 
 ## Logging Out

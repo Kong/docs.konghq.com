@@ -29,6 +29,10 @@ For a comprehensive list of installation options, see our [Install page](/gatewa
      postgres:9.6
    ```
 
+
+{% include_cached /md/enterprise/cassandra-deprecation.md %}
+
+
    Data sent through the Admin API is stored in Kong's [datastore][datastore-section] (Kong
    supports PostgreSQL and Cassandra).
 

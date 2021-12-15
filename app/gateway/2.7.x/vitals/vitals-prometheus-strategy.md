@@ -10,8 +10,7 @@ clusters (such as environments handling tens or hundreds of thousands of
 requests per second), without placing addition write load on the database
 backing the Kong cluster.
 
-For using Vitals with a database as the backend (i.e. PostgreSQL, Cassandra),
-refer to [Kong Vitals](/gateway/{{page.kong_version}}/vitals/).
+For using Vitals with a database as the backend, refer to [Kong Vitals](/gateway/{{page.kong_version}}/vitals/).
 
 ## Lifecycle Overview
 

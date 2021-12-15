@@ -1584,12 +1584,16 @@ ensure at worst any regex Kong executes could finish within roughly 2 seconds.
 
 ### Datastore section
 
+
+{% include_cached /md/enterprise/cassandra-deprecation.md %}
+
+
 Kong can run with a database to store coordinated data between Kong nodes in a
 cluster, or without a database, where each node stores its information
 independently in memory.
 
 When using a database, Kong will store data for all its entities (such as
-Routes, Services, Consumers, and Plugins) in either Cassandra or PostgreSQL, and
+Routes, Services, Consumers, and Plugins) in a database, and
 all Kong nodes belonging to the same cluster must connect themselves to the same
 database.
 
@@ -1672,6 +1676,10 @@ name   | description  | default
 **pg_ro_keepalive_timeout** | Same as `pg_keepalive_timeout`, but for the read-only connection. | `<pg_keepalive_timeout>`
 
 #### Cassandra settings
+
+
+{% include_cached /md/enterprise/cassandra-deprecation.md %}
+
 
 name   | description  | default
 -------|--------------|----------
