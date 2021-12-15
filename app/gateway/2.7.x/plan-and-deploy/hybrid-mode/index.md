@@ -171,6 +171,10 @@ the whole configuration in the referenced YAML file.
 By default, Data Planes store their configuration to the file system
 in an unencrypted cache file, `config.json.gz`, in {{site.base_gateway}}'s
 `prefix` path. You can also choose to encrypt this cache, or disable it entirely.
+
+If encrypted, the Data Plane uses the cluster certificate key to decrypt the
+configuration cache on startup.
+
 See [`data_plane_config_cache_mode`](/gateway/{{page.kong_version}}/reference/configuration/#data_plane_config_cache_mode)
 and [`data_plane_config_cache_path`](/gateway/{{page.kong_version}}/reference/configuration/#data_plane_config_cache_path).
 
@@ -228,6 +232,8 @@ are exposed to the [Status API](/gateway/{{page.kong_version}}/reference/configu
 Please refer to [Upstream objects](/gateway/{{page.kong_version}}/admin-api/#upstream-object) in the Admin API documentation for more information about the
 endpoints.
 
-### Keyring encryption in hybrid mode
+## Keyring encryption in hybrid mode
 
-Because Keyring encrypts the data in the database, it means it doesn't encrypt data on Kong data plane nodes that run without a database and get data from the control plane.
+Because the keyring module encrypts data in the database, it can't encrypt 
+data on Data Plane nodes, since these nodes run without a database and get
+data from the Control Plane.
