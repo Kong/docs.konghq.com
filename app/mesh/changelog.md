@@ -8,11 +8,17 @@ no_version: true
 
 > Released on 2021/12/16 TODO UPDATE IF NEEDED
 
+### Changes
+
 Built on top of [Kuma 1.4.1](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#141)
+
+- Default role-based access control (RBAC) for zone control planes is now restricted to the `admin` role.
+- Performance continues to be significantly improved.
+- Authentication tokens are now more secure.
 
 ### Upgrading
 
-Upgrades from `1.5.0` are seamless and no additional steps are needed.
+TODO add info from Bart day of release. Upgrades from `1.5.0` are seamless and no additional steps are needed.
 
 ## 1.5.0
 

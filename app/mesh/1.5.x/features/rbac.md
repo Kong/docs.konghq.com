@@ -319,12 +319,12 @@ The `subjects` in `AccessRoleBinding` are compatible with Kubernetes users and g
 
 ## Default
 
-{{site.mesh_product_name}} creates `admin` AccessRole that allows every action.
+{{site.mesh_product_name}} creates an `admin` AccessRole that allows every action.
 
-With standalone deployment, the `default` AccessRoleBinding assigns this role to every authenticated and unauthenticated user.
+In a standalone deployment, the `default` AccessRoleBinding assigns this role to every authenticated and unauthenticated user.
 
-With multizone deployment, the `default` AccessRoleBinding on the global control plane assigns this role to every authenticated and unauthenticated user.
-However, on the zone control plane, the `default` AccessRoleBinding is already restricted to admin only.
+In a multizone deployment, the `default` AccessRoleBinding on the global control plane assigns this role to every authenticated and unauthenticated user.
+However, on the zone control plane, the `default` AccessRoleBinding is restricted to the `admin` AccessRole only.
 
 {% navtabs %}
 {% navtab Universal %}
@@ -406,7 +406,7 @@ spec:
   roles:
   - admin
 ```
-`system:serviceaccounts:kube-system` is requried for Kubernetes controllers to manage Kuma resources, for example to remove Dataplane objects when namespace is removed.
+`system:serviceaccounts:kube-system` is required for Kubernetes controllers to manage Kuma resources -- for example, to remove Dataplane objects when a namespace is removed.
 {% endnavtab %}
 {% endnavtabs %}
 
