@@ -153,6 +153,8 @@ stored in a separate `ca_certificates` store rather than the main certificates s
 they do not require private keys. To add one, obtain a PEM-encoded copy of your CA certificate
 and POST it to `/ca_certificates`:
 
+{% navtabs %}
+{% navtab Kong Admin API %}
 ```bash
 $ curl -sX POST https://kong:8001/ca_certificates -F cert=@cert.pem
 {
@@ -162,7 +164,27 @@ $ curl -sX POST https://kong:8001/ca_certificates -F cert=@cert.pem
   "id": "322dce96-d434-4e0d-9038-311b3520f0a3"
 }
 ```
+{% endnavtab %}
 
+{% navtab Konnect Cloud %}
+
+Go through the Konnect Manager:
+1. From the Dashboard, select **Shared Config** in the left navigation 
+2. Select **Certificates** 
+3. Click **New Certificate**
+4. Copy and paste your certificate information and select **Create**
+
+You will now see your certificate listed in the **Certificates** tab.
+
+To add a certificate via curl, you are required to have:
+1. Konnect ID
+2. A generated access cookie
+
+```bash
+$ curl -sX POST https:konnect.konghq.com/api/control_planes/[Konnect-ID]/ca_certificates -F cert=@testCACert.pem --cookie '[generated access cookie]'
+```
+{% endnavtab %}
+{% endnavtabs %}
 The `id` value returned can now be used for mTLS plugin configurations or consumer mappings.
 
 ### Create manual mappings between certificate and Consumer object
