@@ -1,7 +1,7 @@
 ---
 name: Session
 publisher: Kong Inc.
-version: 2.4.4-x
+version: 2.4.x
 desc: Support sessions for Kong Authentication Plugins.
 description: |
   The Kong Session Plugin can be used to manage browser sessions for APIs proxied
@@ -19,28 +19,23 @@ source_url: 'https://github.com/Kong/kong-plugin-session'
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.7.x
       - 2.6.x
       - 2.5.x
       - 2.4.x
       - 2.3.x
       - 2.2.x
       - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
   enterprise_edition:
     compatible:
+      - 2.7.x
       - 2.6.x
       - 2.5.x
       - 2.4.x
       - 2.3.x
       - 2.2.x
       - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+
 params:
   name: session
   service_id: true
@@ -57,6 +52,7 @@ params:
       default: random number generated from `kong.utils.random_string`
       value_in_examples: opensesame
       datatype: string
+      encrypted: true
       description: The secret that is used in keyed HMAC generation.​
     - name: cookie_name
       required: false
@@ -443,6 +439,15 @@ insert has not been committed yet because the database call is in a `ngx.timer` 
 The current workaround is to wait for some interval of time (~100-500ms) after
 `Set-Cookie` header is sent to the client before making subsequent requests. This is
 _not_ a problem during session renewal period as renew happens in `access` phase.
+
+---
+
+## Changelog
+
+### 2.4.5
+
+* Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
+ the `config.secret` parameter value will be encrypted.
 
 [plugin]: https://docs.konghq.com/hub/
 [lua-resty-session]: https://github.com/bungle/lua-resty-session

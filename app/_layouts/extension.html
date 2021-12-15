@@ -21,8 +21,8 @@ breadcrumbs:
   <tbody>
     <tr>
       <td><code>name</code>
+        <br><i>required</i></td>
         <br><br><strong>Type: </strong>string
-        <br><br><i>required</i></td>
       <td>The name of the plugin to use, in this case <code>{{ page.params.name }}</code>.</td>
     </tr>
 
@@ -49,8 +49,8 @@ breadcrumbs:
     {% endif %}
       <tr>
         <td><code>enabled</code>
+          <br><i>required</i>
           <br><br><strong>Type: </strong>boolean
-          <br><br><i>required</i>
           <br><br><strong>Default value: </strong><code>true</code></td>
         <td>Whether this plugin will be applied.</td>
       </tr>
@@ -76,7 +76,9 @@ breadcrumbs:
           {% if field.default != nil %}<br><br><strong>Default value: </strong><code>{{ field.default | markdownify | strip_html }}</code>{% endif %}
         </td>
         <td>
-          <br>{{ field.description | markdownify }}</td>
+          <br>{{ field.description | markdownify }}
+          <p>{% if field.encrypted == true %}If <a href="/gateway/latest/plan-and-deploy/security/db-encryption">keyring database encryption</a> is enabled, this value will be encrypted.{% endif %}</p>
+        </td>
       </tr>
       {% endif %}
     {% endfor %}

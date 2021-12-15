@@ -280,11 +280,10 @@ When operating in `cluster` mode, keyring material propagates automatically amon
 
 The keyring module encrypts the following fields at rest:
 
-* `key` fields of `certificate` objects (corresponding to the private key of a TLS certificate)
-* `password` fields of `basic-auth` plugin credential objects (note that passwords are also hashed by a one-way hashing function)
-* `key` fields of `key-auth-enc` plugin credential objects
-* `client_id` and `client_secret` fields of the `openid-connect` plugin
-* `aws_key` and `aws_secret` fields of the `aws-lambda` plugin
+* `key` fields of `certificate` objects (corresponding to the private key of a TLS certificate).
+* Certain configuration parameters in plugins and plugin-related authentication
+objects. For information on which plugin fields are encrypted, see
+[each individual plugin's documentation](/hub/).
 
 ## Vault Integration
 
