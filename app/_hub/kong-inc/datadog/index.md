@@ -58,7 +58,10 @@ params:
     - https
     - tcp
     - tls
+    - tls_passthrough
     - udp
+    - grpc
+    - grpcs
   dbless_compatible: 'yes'
   config:
     - name: host

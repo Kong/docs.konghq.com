@@ -139,4 +139,63 @@ Response:
 }
 ```
 
+## Generate license report
+
+To generate a report, submit a `GET` request directly to `/license/report`:
+
+```bash
+http GET :8001/license/report
+```
+
+{% navtabs codeblock %}
+{% navtab Response when license exists %}
+```json
+{
+    "counters": [
+        {
+            "bucket": "2021-12",
+            "request_count": 0
+        }
+    ],
+    "db_version": "postgres 9.6.19",
+    "kong_version": "2.7.0.0",
+    "license_key": "ASDASDASDASDASDASDASDASDASD_ASDASDA",
+    "rbac_users": 0,
+    "services_count": 0,
+    "system_info": {
+        "cores": 4,
+        "hostname": "13b867agsa008",
+        "uname": "Linux x86_64"
+    },
+    "workspaces_count": 1
+}
+```
+{% endnavtab %}
+{% navtab Response if there is no license %}
+
+```json
+{
+    "counters": [
+        {
+            "bucket": "2021-12",
+            "request_count": 0
+        }
+    ],
+    "db_version": "postgres 9.6.19",
+    "kong_version": "2.7.0.0",
+    "license_key": "UNLICENSED",
+    "rbac_users": 0,
+    "services_count": 0,
+    "system_info": {
+        "cores": 4,
+        "hostname": "13b867agsa008",
+        "uname": "Linux x86_64"
+    },
+    "workspaces_count": 1
+}
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+
 [services]: /gateway/{{page.kong_version}}/admin-api/#service-object

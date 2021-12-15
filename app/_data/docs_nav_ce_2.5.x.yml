@@ -32,31 +32,31 @@
     - text: Getting Started Guide
       items:
         - text: Overview
-          url: /gateway/latest/get-started/comprehensive
+          url: /getting-started-guide/2.5.x/overview
           absolute_url: true
           target_blank: true
         - text: Prepare to Administer
-          url: /gateway/latest/get-started/comprehensive/prepare
+          url: /getting-started-guide/2.5.x/prepare
           absolute_url: true
           target_blank: true
         - text: Expose your Services
-          url: /gateway/latest/get-started/comprehensive/expose-services
+          url: /getting-started-guide/2.5.x/expose-services
           absolute_url: true
           target_blank: true
         - text: Protect your Services
-          url: /gateway/latest/get-started/comprehensive/protect-services
+          url: /getting-started-guide/2.5.x/protect-services
           absolute_url: true
           target_blank: true
         - text: Improve Performance
-          url: /gateway/latest/get-started/comprehensive/improve-performance
+          url: /getting-started-guide/2.5.x/improve-performance
           absolute_url: true
           target_blank: true
         - text: Secure Services
-          url: /gateway/latest/get-started/comprehensive/secure-services
+          url: /getting-started-guide/2.5.x/secure-services
           absolute_url: true
           target_blank: true
         - text: Set Up Intelligent Load Balancing
-          url: /gateway/latest/get-started/comprehensive/load-balancing
+          url: /getting-started-guide/2.5.x/load-balancing
           absolute_url: true
 
 - title: Guides &amp; References

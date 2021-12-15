@@ -44,4 +44,3 @@ Service package, version, implementation
 * Kuma
 * Dev Portal (developer portal)
 * Vitals
-* Immunity

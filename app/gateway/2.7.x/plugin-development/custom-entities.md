@@ -4,8 +4,6 @@ book: plugin_dev
 chapter: 6
 ---
 
-## Introduction
-
 While not all plugins need it, your plugin might need to store more than
 its configuration in the database. In that case, Kong provides you with
 an abstraction on top of its primary datastores which allows you to store
@@ -57,7 +55,7 @@ return {
 This means that there will be a file in `<plugin_name>/migrations/000_base_my_plugin.lua`
 containing the initial migrations. We'll see how this is done in a minute.
 
-## Adding a new migration to an existing plugin
+## Add a new migration to an existing plugin
 
 Sometimes it is necessary to introduce changes after a version of a plugin has already been
 released. A new functionality might be needed. A database table row might need changing.
@@ -84,7 +82,7 @@ return {
 }
 ```
 
-## Migration File syntax
+## Migration file syntax
 
 
 {% include_cached /md/enterprise/cassandra-deprecation.md %}
@@ -197,9 +195,8 @@ the migrations.
 
 To see a real-life example, give a look at the [Key-Auth plugin migrations](https://github.com/Kong/kong/tree/{{page.kong_version}}/kong/plugins/key-auth/migrations).
 
----
 
-## Defining a Schema
+## Define a schema
 
 The first step to using custom entities in a custom plugin is defining one
 or more *schemas*.
@@ -469,7 +466,6 @@ To learn more about schemas, see:
   especially [the key-auth one](https://github.com/Kong/kong/blob/{{page.kong_version | replace: "x", "0"}}/kong/plugins/key-auth/daos.lua),
   which was used for this guide as an example.
 
----
 
 ## The custom DAO
 
@@ -480,7 +476,7 @@ accessible through the `kong.db` interface.
 For the example schema above, the DAO generated would be available for plugins
 via `kong.db.keyauth_credentials`.
 
-### Selecting an entity
+### Select an entity
 
 ``` lua
 local entity, err, err_t = kong.db.<name>:select(primary_key)
@@ -513,7 +509,7 @@ if not entity then
 end
 ```
 
-### Iterating over all the entities
+### Iterate over all the entities
 
 ``` lua
 for entity, err on kong.db.<name>:each(entities_per_page) do
@@ -548,7 +544,7 @@ end
 This example iterates over the credentials in pages of 1000 items, logging their ids unless
 an error happens.
 
-### Inserting an entity
+### Insert an entity
 
 ``` lua
 local entity, err, err_t = kong.db.<name>:insert(<values>)
@@ -577,7 +573,7 @@ end
 
 The returned entity, assuming no error happened will have `auto`-filled fields, like `id` and `created_at`.
 
-### Updating an entity
+### Update an entity
 
 ``` lua
 local entity, err, err_t = kong.db.<name>:update(primary_key, <values>)
@@ -603,7 +599,7 @@ end
 
 Notice how the syntax for specifying a primary key is similar to the one used to specify a foreign key.
 
-### Upserting an entity
+### Upsert an entity
 
 ``` lua
 local entity, err, err_t = kong.db.<name>:upsert(primary_key, <values>)
@@ -635,7 +631,7 @@ Two things can happen:
 * If the credential does not exist, then this code is attempting to create
   a new credential, with the given id and Consumer.
 
-### Deleting an entity
+### Delete an entity
 
 ``` lua
 local ok, err, err_t = kong.db.<name>:delete(primary_key)
@@ -663,9 +659,7 @@ if not ok then
 end
 ```
 
----
-
-## Caching custom entities
+## Cache custom entities
 
 Sometimes custom entities are required on every request/response, which in turn
 triggers a query on the datastore every time. This is very inefficient because

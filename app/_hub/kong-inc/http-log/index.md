@@ -55,11 +55,12 @@ params:
   protocols:
     - http
     - https
-    - grpc
-    - grpcs
     - tcp
     - tls
+    - tls_passthrough
     - udp
+    - grpc
+    - grpcs
   dbless_compatible: 'yes'
   config:
     - name: http_endpoint

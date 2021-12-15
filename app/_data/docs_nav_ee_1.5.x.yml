@@ -83,23 +83,23 @@
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   items:
     - text: Overview
-      url: /../../gateway/latest/get-started/comprehensive
+      url: /../../getting-started-guide/CE-2.0.x_KE-1.5.x/overview
     - text: Prepare to Administer
-      url: /../../gateway/latest/get-started/comprehensive/prepare
+      url: /../../getting-started-guide/CE-2.0.x_KE-1.5.x/prepare
     - text: Expose your Services
-      url: /../../gateway/latest/get-started/comprehensive/expose-services
+      url: /../../getting-started-guide/CE-2.0.x_KE-1.5.x/expose-services
     - text: Protect your Services
-      url: /../../gateway/latest/get-started/comprehensive/protect-services
+      url: /../../getting-started-guide/CE-2.0.x_KE-1.5.x/protect-services
     - text: Improve Performance
-      url: /../../gateway/latest/get-started/comprehensive/improve-performance
+      url: /../../getting-started-guide/CE-2.0.x_KE-1.5.x/improve-performance
     - text: Secure Services
-      url: /../../gateway/latest/get-started/comprehensive/secure-services
+      url: /../../getting-started-guide/CE-2.0.x_KE-1.5.x/secure-services
     - text: Set Up Intelligent Load Balancing
-      url: /../../gateway/latest/get-started/comprehensive/load-balancing
+      url: /../../getting-started-guide/CE-2.0.x_KE-1.5.x/load-balancing
     - text: Manage Administrative Teams
-      url: /../../gateway/latest/get-started/comprehensive/manage-teams
+      url: /../../getting-started-guide/CE-2.0.x_KE-1.5.x/manage-teams
     - text: Publish, Locate, and Consume Services
-      url: /../../gateway/latest/get-started/comprehensive/dev-portal
+      url: /../../getting-started-guide/CE-2.0.x_KE-1.5.x/dev-portal
 
 - title: Guides & References
   icon: /assets/images/icons/documentation/icn-references-color.svg
@@ -411,32 +411,6 @@
       url: /kong-for-kubernetes/using-kong-for-kubernetes
     - text: Changelog
       url: /kong-for-kubernetes/changelog
-
-- title: Kong Brain & Kong Immunity
-  icon: /assets/images/icons/documentation/icn-brain-color.svg
-  items:
-    - text: Overview
-      url: /brain-immunity/overview
-    - text: Installation and Configuration
-      url: /brain-immunity/install-configure
-    - text: Kong Brain
-      items:
-        - text: Service Map
-          url: /brain-immunity/service-map
-        - text: Auto-Generated API Documentation
-          url: /brain-immunity/auto-generated-specs
-    - text: Kong Immunity
-      items:
-        - text: Alerts
-          url: /brain-immunity/alerts
-        - text: Model Training
-          url: /brain-immunity/model-training
-        - text: Slack Integration
-          url: /brain-immunity/slack-integration
-    - text: Troubleshooting
-      url: /brain-immunity/troubleshooting
-    - text: Changelog
-      url: /brain-immunity/changelog
 
 - title: Plugins
   icon: /assets/images/icons/documentation/icn-api-plugins-color.svg

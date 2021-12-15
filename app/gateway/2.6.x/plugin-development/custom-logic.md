@@ -314,6 +314,7 @@ zipkin                      | 100000
 exit-transformer            | 9999
 bot-detection               | 2500
 cors                        | 2000
+route-by-header             | 2000
 session                     | 1900
 oauth2-introspection        | 1700
 acme                        | 1007
@@ -337,7 +338,6 @@ ip-restriction              | 990
 request-size-limiting       | 951
 acl                         | 950
 opa                         | 920
-collector                   | 903
 rate-limiting-advanced      | 902
 graphql-rate-limiting-advanced | 902
 rate-limiting               | 901

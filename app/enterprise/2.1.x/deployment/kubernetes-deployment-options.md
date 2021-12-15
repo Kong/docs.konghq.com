@@ -62,8 +62,6 @@ Some Kong Enterprise features are not available in DB-less deployments.
 Use a database-backed deployment if you want to use:
 
 * Dev Portal
-* Brain
-* Immunity
 * Teams (RBAC)
 * Workspaces
 

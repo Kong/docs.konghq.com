@@ -291,7 +291,6 @@ jwt-signer                  | 999
 ip-restriction              | 990
 request-size-limiting       | 951
 acl                         | 950
-collector                   | 903
 rate-limiting-advanced      | 902
 graphql-rate-limiting-advanced | 902
 rate-limiting               | 901

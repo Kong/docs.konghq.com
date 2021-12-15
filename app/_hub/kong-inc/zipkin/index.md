@@ -1,7 +1,7 @@
 ---
 name: Zipkin
 publisher: Kong Inc.
-version: 1.3.x
+version: 1.5.x
 source_url: 'https://github.com/Kong/kong-plugin-zipkin'
 desc: Propagate Zipkin spans and report space to a Zipkin server
 description: |
@@ -12,31 +12,10 @@ categories:
 kong_version_compatibility:
   community_edition:
     compatible:
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
-      - 0.14.x
+      - 2.7.x
   enterprise_edition:
     compatible:
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+      - 2.7.x
 params:
   name: zipkin
   service_id: true
@@ -53,6 +32,13 @@ params:
     - grpcs
   dbless_compatible: 'yes'
   config:
+    - name: local_service_name
+      required: true
+      default: 'kong'
+      datatype: string
+      description: |
+        The name of the service as displayed in Zipkin. Customize this name to
+        tell your Kong Gateway services apart in Zipkin request traces.
     - name: http_endpoint
       required: false
       default: ''
@@ -68,7 +54,7 @@ params:
       value_in_examples: 0.001
       datatype: number
       description: |
-        How often to sample requests that do not contain trace ids.
+        How often to sample requests that do not contain trace IDs.
         Set to `0` to turn sampling off, or to `1` to sample **all** requests. The
         value must be between zero (0) and one (1), inclusive.
     - name: include_credential
@@ -77,7 +63,8 @@ params:
       value_in_examples: true
       datatype: boolean
       description: |
-        Should the credential of the currently authenticated consumer be included in metadata sent to the Zipkin server?
+        Specify whether the credential of the currently authenticated consumer
+        should be included in metadata sent to the Zipkin server.
     - name: traceid_byte_count
       required: true
       default: 16
@@ -89,20 +76,25 @@ params:
       default: preserve
       datatype: string
       description: |
-        All HTTP requests going through the plugin will be tagged with a tracing HTTP request.
+        All HTTP requests going through the plugin are tagged with a tracing HTTP request.
         This property codifies what kind of tracing header the plugin expects on incoming requests.
-        Possible values are `b3`, `b3-single`, `w3c`, `preserve`, `jaeger`, or `ot`. The `b3` option means that
-        the plugin expects [Zipkin's B3 multiple headers](https://github.com/openzipkin/b3-propagation#multiple-headers)
-        on incoming requests, and will add them to the transmitted requests if they are missing from it.
-        The `b3-single` option expects or adds Zipkin's B3 single-header tracing headers.
-        The `w3c` option expects or adds W3C's traceparent tracing header. The `preserve` option
-        does not expect any format, and will transmit whatever header is recognized or present,
+
+        Possible values: `b3`, `b3-single`, `w3c`, `preserve`, `jaeger`, `ot`, or `ignore`.
+        * `b3`: Expects [Zipkin's B3 multiple headers](https://github.com/openzipkin/b3-propagation#multiple-headers)
+        on incoming requests, and will add them to the transmitted requests if the headers are missing from those requests.
+        * `b3-single`: Expects or adds Zipkin's B3 single-header tracing headers.
+        * `w3c`: Expects or adds W3C's traceparent tracing header.
+        * `preserve`: Does not expect any format, and will transmit whatever header is recognized or present,
         with a default of `b3` if none is found. In case of a mismatch between the expected and incoming
         tracing headers (for example, when `header_type` is set to `b3` but a w3c-style tracing header is
         found in the incoming request), then the plugin will add both kinds of tracing headers
-        to the request and generate a mismatch warning in the logs. `jaeger` will use and expect
+        to the request and generate a mismatch warning in the logs.
+        * `jaeger`: Expects or adds
         [Jaeger-style tracing headers](https://www.jaegertracing.io/docs/1.22/client-libraries/#propagation-format) (`uber-trace-id`).
-        The `ot` option is for [OpenTelemetry tracing headers](https://github.com/open-telemetry/opentelemetry-java/blob/96e8523544f04c305da5382854eee06218599075/extensions/trace_propagators/src/main/java/io/opentelemetry/extensions/trace/propagation/OtTracerPropagator.java) of the form `ot-tracer-*`.
+        * `ot`: Expects or adds [OpenTelemetry tracing headers](https://github.com/open-telemetry/opentelemetry-java/blob/96e8523544f04c305da5382854eee06218599075/extensions/trace_propagators/src/main/java/io/opentelemetry/extensions/trace/propagation/OtTracerPropagator.java) of the form `ot-tracer-*`.
+        * `ignore`: Does not read any tracing headers from the incoming request.
+        Starts a new request using the `default_header_type` value, or falls back to
+        `b3` if there is no `default_header_type` value set.
     - name: default_header_type
       required: true
       default: b3
@@ -110,8 +102,10 @@ params:
       description: |
         Allows specifying the type of header to be added to requests with no pre-existing tracing headers
         and when `config.header_type` is set to `"preserve"`.
-        When `header_type` is set to any other value, `default_header_type` is ignored. Possible values are
-        `b3`, `b3-single`, `w3c`, `jaeger`, or `ot`.
+        When `header_type` is set to any other value, `default_header_type` is ignored.
+
+        Possible values are `b3`, `b3-single`, `w3c`, `jaeger`, or `ot`.
+        See the entry for `header_type` for value definitions.
     - name: tags_header
       required: true
       default: Zipkin-Tags
@@ -119,8 +113,9 @@ params:
       description: |
         The Zipkin plugin will add extra headers to the tags associated with any HTTP
         requests that come with a header named as configured by this property. The
-        format is `name_of_tag=value_of_tag`, separated by commas. For example:
-        with the default value, a request with the header
+        format is `name_of_tag=value_of_tag`, separated by commas.
+
+        For example: with the default value, a request with the header
         `Zipkin-Tags: fg=blue, bg=red` will generate a trace with the tag `fg` with
         value `blue`, and another tag called `bg` with value `red`.
     - name: static_tags
@@ -197,3 +192,12 @@ Contains the following tags specific to load balancing:
 ### See also
 
 For more information, read the [Kong blog post](https://konghq.com/blog/tracing-with-zipkin-in-kong-2-1-0/).
+
+---
+
+## Changelog
+
+### 1.5.x
+
+* Added a new parameter: `local_service_name`
+* Added a new `ignore` option for the `header_type` parameter
