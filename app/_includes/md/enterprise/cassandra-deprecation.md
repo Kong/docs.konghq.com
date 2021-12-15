@@ -1,6 +1,7 @@
 {:.warning .no-icon}
-> **Deprecation warning:** Cassandra is deprecated with 
-{{site.base_gateway}} 2.7 and planned to be fully removed with 4.0. It is strongly 
-discouraged to use Cassandra as your datastore, as it will have limited support 
-throughout the deprecation period. For more information, see 
-[this blog post](https://konghq.com/blog/cassandra-support-deprecated).
+> **Deprecation warning:** Cassandra as a backend database for Kong Gateway
+is deprecated. This means the feature will eventually be removed.
+> <br>
+> Our target for Cassandra removal is the {{site.base_gateway}} 4.0 release.
+Starting with the {{site.base_gateway}} 3.0 release, some new features might
+not be supported with Cassandra.
