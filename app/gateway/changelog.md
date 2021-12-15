@@ -23,12 +23,13 @@ and use the `/consumer_groups` endpoint to manage the groups.
 
   * [Consumer groups reference](/gateway/2.7.x/admin-api/consumer-groups/reference)
   * [Consumer groups examples](/gateway/2.7.x/admin-api/consumer-groups/examples)
+
 * The data plane configuration cache can now be encrypted or turned off entirely.
  Two new configuration options have been added:
-  * `data_plane_config_cache_mode`: The cache can be `unencrypted`, `encrypted`, or `off`.
-  * `data_plane_config_cache_path`: If unencrypted, the config cache is stored
-  by default in `config.cache.json.gz`. You can use this setting to specify a
-  custom path for the cache.
+  * [`data_plane_config_cache_mode`](/gateway/2.7.x/reference/configuration/#data_plane_config_cache_mode):
+  The cache can be `unencrypted`, `encrypted`, or `off`.
+  * [`data_plane_config_cache_path`](/gateway/2.7.x/reference/configuration/#data_plane_config_cache_path):
+  Use this setting to specify a custom path for the cache.
 * The `/license/report` API endpoint now provides
 [monthly throughput usage reports](/gateway/2.7.x/plan-and-deploy/licenses/report).
 
@@ -42,9 +43,9 @@ query parameters for sorted list results.
 * Added TLSv1.3 support for the Dev Portal API and GUI.
 
 #### Kong Manager
-* When using OpenID Connect to secure Kong Manager, you no longer need to
-create admins manually in Kong Manager and map their roles to your identity
-provider. Instead, admins are created on first
+* When [using OpenID Connect to secure Kong Manager](/gateway/2.7.x/configure/auth/kong-manager/oidc-mapping),
+you no longer need to create admins manually in Kong Manager and map their roles
+to your identity provider. Instead, admins are created on first
 login and their roles are assigned based on their group membership in your
 IdP. This feature also partly resolves a problem with creating admins for both
 Kong Manager and Dev Portal.
@@ -53,9 +54,9 @@ OpenID Connect plugin. Users can now easily identify a common set of required
 parameters to configure the plugin, and add custom configurations as needed.
 
 #### Core
-* Service entities now have a required `enabled` field which defaults to `true`.
-When set to `false`, routes attached to the service are not added to the proxy
-router. [#8113](https://github.com/Kong/kong/pull/8113)
+* Service entities now have a required [`enabled` field](/gateway/2.7.x/admin-api/service-object)
+which defaults to `true`. When set to `false`, routes attached to the service
+are not added to the proxy router. [#8113](https://github.com/Kong/kong/pull/8113)
 
   In hybrid mode:
   * If `enabled` is set to `false` for a service, the service and its attached
@@ -66,8 +67,8 @@ router. [#8113](https://github.com/Kong/kong/pull/8113)
 * DAOs in plugins must be listed in an array, so that their loading order is
 explicit. Loading them in a hash-like table is now **deprecated**.
   [#7942](https://github.com/Kong/kong/pull/7942)
-* Added the ability to route TLS traffic based on SNIs without terminating the
-connection.
+* Added the ability to [route TLS traffic based on SNIs](/gateway/2.7.x/reference/proxy/#proxy-tls-passthrough-traffic)
+without terminating the connection.
   [#6757](https://github.com/Kong/kong/pull/6757)
 
 #### Performance
@@ -85,7 +86,8 @@ In this release, we continued our work on better performance:
 #### PDK
 
 * Added two new functions for the `body_filter` phase:
-`kong.response.get_raw_body` and `kong.response.set_raw_body`.
+[`kong.response.get_raw_body`](/gateway/2.7.x/pdk/kong.response/) and
+[`kong.response.set_raw_body`](/gateway/2.7.x/pdk/kong.response/).
   [#7887](https://github.com/Kong/kong/pull/7877)
 
 #### Plugins
