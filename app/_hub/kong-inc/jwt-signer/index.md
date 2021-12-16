@@ -1,7 +1,7 @@
 ---
 name: Kong JWT Signer
 publisher: Kong Inc.
-version: 2.4.x
+version: 2.7.x
 desc: Verify and sign one or two tokens in a request
 description: |
   The Kong JWT Signer plugin makes it possible to verify, sign, or re-sign
@@ -24,15 +24,7 @@ kong_version_compatibility:
     compatible: null
   enterprise_edition:
     compatible:
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+      - 2.7.x
 params:
   name: jwt-signer
   service_id: true
@@ -1001,3 +993,19 @@ Response:
     ]
 }
 ```
+
+---
+## Changelog
+
+### 2.7.x
+> handler.lua version: 1.9.0
+
+* Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
+ the following fields  `d`, `p`, `q`, `dp`, `dq`, `qi`, and `k`inside
+ `jwt_signer_jwks.previous[...].` and `jwt_signer_jwks.keys[...]` will be
+ marked as encrypted.
+
+  {:.important}
+  > There's a bug in {{site.base_gateway}} that prevents keyring encryption
+  from working on deeply nested fields, so the `encrypted=true` setting does not
+  currently have any effect in this plugin.

@@ -37,8 +37,7 @@ You can use a file in this format to configure Kong when it is running in
 a DB-less or in-memory mode. If you're using Kong in the DB-less mode, you
 don't really need decK.
 
-But, if you are using Kong along-with a database like Postgres or Cassandra,
-you need decK because:
+But, if you are using Kong along-with a database you need decK because:
 
 - Kong's `kong config db_import` command is used to initialize a Kong database,
   but it is not recommended to use it if there are existing Kong nodes that

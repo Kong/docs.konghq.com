@@ -1,7 +1,8 @@
 ---
 name: Mocking
 publisher: Kong Inc.
-version: 0.1.x
+version: 0.2.x
+
 desc: Provide mock endpoints to test your APIs against your services
 description: |
   Provide mock endpoints to test your APIs in development against your services.
@@ -30,6 +31,7 @@ categories:
 kong_version_compatibility:
   enterprise_edition:
     compatible:
+      - 2.7.x
       - 2.6.x
       - 2.5.x
       - 2.4.x
@@ -94,6 +96,14 @@ params:
         The minimum value in seconds of delay time. Set this value when `random_delay` is enabled
         and you want to adjust the default. The value must be less than the
         `max_delay_time`.
+    - name: random_examples
+      required: false
+      default: false
+      datatype: boolean
+      value_in_examples: true
+      description: |
+        Randomly selects one example and returns it. This parameter requires the spec to have multiple examples configured.
+
   extra: |
 
     Depending on the Kong Gateway deployment mode, set either the `api_specification_filename`

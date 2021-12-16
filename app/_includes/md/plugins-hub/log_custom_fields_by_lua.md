@@ -23,7 +23,5 @@ properties.
 Further, as code runs in the context of the log phase, only [PDK][pdk] methods
 that can run in said phase can be used.
 
----
-
 [configuration]: /gateway/latest/reference/configuration
 [pdk]: /gateway/latest/pdk

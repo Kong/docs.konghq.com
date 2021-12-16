@@ -2,30 +2,27 @@
 name: OPA
 publisher: Kong Inc.
 version: 0.2.x
-
 desc: Authorize requests against Open Policy Agent
 description: |
-    Forward request to Open Policy Agent and process the request only if the
-    authorization policy allows for it.
+  Forward request to Open Policy Agent and process the request only if the
+  authorization policy allows for it.
 
-    {:.note}
-    > To use this plugin in Konnect Cloud,
-    [upgrade your runtimes](/konnect/runtime-manager/upgrade) to at least
-    v2.4.1.1.
-
+  {:.note}
+  > To use this plugin in Konnect Cloud,
+  [upgrade your runtimes](/konnect/runtime-manager/upgrade) to at least
+  v2.4.1.1.
 enterprise: true
 plus: true
 type: plugin
 categories:
   - security
-
 kong_version_compatibility:
-    enterprise_edition:
-      compatible:
-        - 2.6.x
-        - 2.5.x
-        - 2.4.x
-
+  enterprise_edition:
+    compatible:
+      - 2.7.x
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
 params:
   name: opa
   service_id: true
@@ -58,7 +55,7 @@ params:
         The port of the OPA server.
     - name: opa_path
       required: true
-      value_in_examples: '</v1/data/example/kong/allowBoolean>'
+      value_in_examples: </v1/data/example/kong/allowBoolean>
       datatype: string
       description: |
         The HTTP path to use when making a request to the OPA server. This is usually the path to the policy and rule to evaluate, prefixed with `/v1/data/`. For example,

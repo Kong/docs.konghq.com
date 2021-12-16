@@ -1,7 +1,7 @@
 ---
 name: LDAP Authentication Advanced
 publisher: Kong Inc.
-version: 2.3.x
+version: 2.7.x
 desc: 'Secure Kong clusters, Routes, and Services with username and password protection'
 description: |
   Add LDAP Bind Authentication with username and password protection. The plugin
@@ -24,15 +24,7 @@ kong_version_compatibility:
     compatible: null
   enterprise_edition:
     compatible:
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+      - 2.7.x
 params:
   name: ldap-auth-advanced
   service_id: true
@@ -66,6 +58,7 @@ params:
       default: null
       value_in_examples: null
       datatype: string
+      encrypted: true
       description: |
         The password to the LDAP server.
     - name: start_tls
@@ -300,3 +293,13 @@ membership. For example:
 The plugin obtains LDAP groups and sets them in a header, `x-authenticated-groups`,
 to the request before proxying to the upstream. This is useful for Kong Manager role
 mapping.
+
+---
+
+## Changelog
+
+### 2.7.x
+> handler.lua version: 1.2.0
+
+* Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
+ the `config.ldap_password` parameter value will be encrypted.
