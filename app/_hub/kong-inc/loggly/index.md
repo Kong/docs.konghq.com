@@ -11,39 +11,16 @@ categories:
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.7.x
       - 2.6.x
       - 2.5.x
       - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
-      - 0.14.x
-      - 0.13.x
-      - 0.12.x
-      - 0.11.x
-      - 0.10.x
-      - 0.9.x
-      - 0.8.x
-      - 0.7.x
-      - 0.6.x
   enterprise_edition:
     compatible:
+      - 2.7.x
       - 2.6.x
       - 2.5.x
       - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
 params:
   name: loggly
   service_id: true
@@ -75,6 +52,7 @@ params:
       default: null
       value_in_examples: YOUR_LOGGLY_SERVICE_TOKEN
       datatype: string
+      encrypted: true
       description: |
         Loggly [customer token](https://www.loggly.com/docs/customer-token-authentication-token/).
     - name: tags
@@ -151,3 +129,12 @@ logging level severity the same as or lower than the set `config.log_level` for 
 ## Custom Fields by Lua
 
 {% include /md/plugins-hub/log_custom_fields_by_lua.md %}
+
+---
+
+## Changelog
+
+### 2.1.0
+
+* Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
+ the `key` parameter value will be encrypted.

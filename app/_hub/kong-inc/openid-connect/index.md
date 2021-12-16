@@ -1,7 +1,7 @@
 ---
 name: OpenID Connect
 publisher: Kong Inc.
-version: 2.1.x
+version: 2.2.x
 desc: Integrate Kong with a third-party OpenID Connect provider
 description: |
   OpenID Connect ([1.0][connect]) plugin allows the integration with a 3rd party
@@ -130,8 +130,7 @@ kong_version_compatibility:
     compatible: null
   enterprise_edition:
     compatible:
-      - 2.5.x
-      - 2.6.x
+      - 2.7.x
 params:
   name: openid-connect
   service_id: true
@@ -244,6 +243,7 @@ params:
         - <client-id>
       default: null
       datatype: array of string elements (the plugin supports multiple clients)
+      encrypted: true
       description: |
         The client id(s) that the plugin uses when it calls authenticated endpoints on the identity provider.
         Other settings that are associated with the client are:
@@ -291,6 +291,7 @@ params:
         - <client-secret>
       default: null
       datatype: array of string elements (one for each client)
+      encrypted: true
       description: |
         The client secret.
         > Specify one if using `client_secret_*` authentication with the client on
@@ -412,6 +413,11 @@ params:
       description: The name of the parameter used to pass the id token.
     - group: Consumer Mapping
       description: Parameters for mapping external identity provider managed identities to Kong managed ones.
+    - name: admin_claim
+      required: false
+      default: null
+      datatype: string
+      description: The claim used for admin mapping for Kong Manager. Required if mapping IdP claims to Kong Manager admins.
     - name: consumer_claim
       required: false
       default: null
@@ -978,6 +984,7 @@ params:
       required: false
       default: '(with database, or traditional mode, the value is auto-generated and stored along the issuer discovery information in the database)'
       datatype: string
+      encrypted: true
       value_in_examples: <session-secret>
       description: The session secret.
     - name: disable_session
@@ -1070,6 +1077,7 @@ params:
     - name: session_redis_auth
       required: false
       default: (from kong)
+      encrypted: true
       datatype: string
       description: The Redis password.
     - name: session_redis_connect_timeout
@@ -3305,3 +3313,22 @@ mean other gateways, load balancers, NATs, and such in front of Kong. If there i
 
 - [port maps](/gateway/latest/reference/configuration/#port_maps)
 - `X-Forwarded-*` headers
+
+---
+
+## Changelog
+
+### 2.2.0
+
+* Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
+ the `config.client_id`, `config.client_secret`, `config.session_auth`, and 
+ `config.session_redis_auth` parameter values will be encrypted.
+
+  Additionally, the `d`, `p`, `q`, `dp`, `dq`, `qi`, `oth`, `r`, `t`, and `k`
+  fields inside `openid_connect_jwks.previous[...].` and `openid_connect_jwks.keys[...]`
+  will be marked as encrypted.
+
+  {:.important}
+  > There's a bug in {{site.base_gateway}} that prevents keyring encryption
+  from working on deeply nested fields, so the `encrypted=true` setting does not
+  currently have any effect on the nested fields in this plugin.

@@ -1,7 +1,7 @@
 ---
 name: Vault Authentication
 publisher: Kong Inc.
-version: 2.1.x
+version: 2.7.x
 desc: Add Vault authentication to your Services
 description: |
   Add authentication to a Service or Route with an access token and secret token. Credential tokens are stored securely via Vault. Credential lifecyles can be managed through the Kong Admin API, or independently via Vault.
@@ -13,15 +13,7 @@ categories:
 kong_version_compatibility:
   enterprise_edition:
     compatible:
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+      - 2.7.x
 params:
   name: vault-auth
   service_id: true
@@ -270,6 +262,15 @@ $ vault write kong-auth/foo - <<EOF
 }
 EOF
 ```
+
+
+## Changelog
+
+### 2.7.x
+> handler.lua version: 0.3.0
+
+* Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled
+and you are using Vault, the `vaults.vault_token` and `vault_credentials.secret_token` fields will be encrypted.
 
 [consumer-object]: https://docs.konghq.com/gateway/latest/admin-api/#consumer-object
 [acl-associating]: https://docs.konghq.com/hub/kong-inc/acl/#associating-consumers

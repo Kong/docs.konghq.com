@@ -218,6 +218,9 @@ for _, section in ipairs(parsed) do
       elseif string.match(var.name, "event_hooks") then
         write("{:.badge .enterprise}")
 
+      elseif string.match(var.name, "data_plane_config_cache") then
+        write("{:.badge .enterprise}")
+
       elseif string.match(section.name, "PORTAL") then
         write("{:.badge .enterprise}")
 

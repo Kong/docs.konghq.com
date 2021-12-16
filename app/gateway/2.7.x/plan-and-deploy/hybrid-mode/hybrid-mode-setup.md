@@ -4,24 +4,24 @@ title: Deploy Kong Gateway in Hybrid Mode
 
 ## Prerequisites
 
-To get started with a Hybrid mode deployment, first install an instance of
-{{site.base_gateway}} with TLS to be your Control Plane (CP) node. See the
+To get started with a hybrid mode deployment, first install an instance of
+{{site.base_gateway}} with TLS to be your control plane (CP) node. See the
 [installation documentation](/gateway/{{page.kong_version}}/install-and-run/)
 for details.
 
-We will bring up any subsequent Data Plane (DP) instances in this topic.
+We will bring up any subsequent data plane (DP) instances in this topic.
 
 {:.note}
-> **Note:** For a Hybrid mode deployment on Kubernetes, see [Hybrid mode](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
+> **Note:** For a hybrid mode deployment on Kubernetes, see [hybrid mode](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
 in the `kong/charts` repository.
 
 ## Generate a certificate/key pair
 
-In Hybrid mode, a mutual TLS handshake (mTLS) is used for authentication so the
+In hybrid mode, a mutual TLS handshake (mTLS) is used for authentication so the
 actual private key is never transferred on the network, and communication
 between CP and DP nodes is secure.
 
-Before using Hybrid mode, you need a certificate/key pair.
+Before using hybrid mode, you need a certificate/key pair.
 {{site.base_gateway}} provides two modes for handling certificate/key pairs:
 
 * **Shared mode:** (Default) Use the Kong CLI to generate a certificate/key
@@ -67,7 +67,7 @@ on all Kong CP and DP nodes; e.g., `/cluster/cluster`.
 With PKI mode, the Hybrid cluster can use certificates signed by a central
 certificate authority (CA).
 
-In this mode, the Control Plane and Data Plane don't need to use the same
+In this mode, the control plane and data plane don't need to use the same
 `cluster_cert` and `cluster_cert_key`. Instead, Kong validates both sides by
 checking if they are from the same CA.
 
@@ -119,7 +119,7 @@ Certificate:
 {% endnavtab %}
 
 {% navtab CA Certificate on CP %}
-Here is an example of a CA certificate on a Control Plane:
+Here is an example of a CA certificate on a control plane:
 
 ```
 Certificate:
@@ -170,7 +170,7 @@ Certificate:
 {% endnavtab %}
 
 {% navtab CA Certificate on DP %}
-Here is an example of a CA certificate on a Data Plane:
+Here is an example of a CA certificate on a data plane:
 
 ```
 Certificate:
@@ -227,7 +227,7 @@ Kong doesn't validate the CommonName (CN) in the DP certificate; it can take an 
 {% endnavtabs %}
 
 ## Set up the control plane
-Next, give the Control Plane node the `control_plane` role, and set
+Next, give the control plane node the `control_plane` role, and set
 certificate/key parameters to point at the location of your certificates and
 keys.
 
@@ -252,9 +252,9 @@ keys.
     KONG_CLUSTER_CERT_KEY=/<path-to-file>/control-plane.key
     ```
     By setting the role of the node to `control_plane`, this node will listen on
-    port `0.0.0.0:8005` by default for Data Plane connections, and on port
+    port `0.0.0.0:8005` by default for data plane connections, and on port
     `0.0.0.0:8006` for Vitals telemetry data. These ports on the
-    Control Plane will need to be accessible by all Data Planes it controls through
+    control plane will need to be accessible by all data planes it controls through
     any firewalls you may have in place.
 
     For PKI mode, `KONG_CLUSTER_CA_CERT` specifies the root CA certificate for
@@ -263,7 +263,7 @@ keys.
     maximum of three levels of intermediate CAs to be used between the root CA
     and the cluster certificate.
 
-    If you need to change the ports that the Control Plane listens on, set:
+    If you need to change the ports that the control plane listens on, set:
     ```bash
     KONG_CLUSTER_LISTEN=0.0.0.0:<port>
     KONG_CLUSTER_TELEMETRY_LISTEN=0.0.0.0:<port>
@@ -298,9 +298,9 @@ keys.
     ```
 
     By setting the role of the node to `control_plane`, this node will listen on
-    port `0.0.0.0:8005` by default for Data Plane connections, and on port
+    port `0.0.0.0:8005` by default for data plane connections, and on port
     `0.0.0.0:8006` for Vitals telemetry data. These ports on the
-    Control Plane will need to be accessible by all Data Planes it controls through
+    control plane will need to be accessible by all data planes it controls through
     any firewalls you may have in place.
 
     For PKI mode, `cluster_ca_cert` specifies the root CA certificate for
@@ -309,7 +309,7 @@ keys.
     levels of intermediate CAs to be used between the root CA and the cluster
     certificate.
 
-    If you need to change the ports that the Control Plane listens on, set:
+    If you need to change the ports that the control plane listens on, set:
     ```bash
     cluster_listen=0.0.0.0:<port>
     cluster_telemetry_listen=0.0.0.0:<port>
@@ -322,44 +322,44 @@ keys.
 {% endnavtab %}
 {% endnavtabs %}
 
-Note that the Control Plane still needs a database (Postgres or Cassandra) to
+Note that the control plane still needs a database to
 store the central configurations, although the database never needs to
-be accessed by Data Plane nodes. You may run multiple Control Plane nodes to
+be accessed by data plane nodes. You may run multiple control plane nodes to
 provide load balancing and redundancy, as long as they all point to the same
 backend database.
 
 {:.note}
-> **Note:** Control Plane nodes cannot be used for proxying.
+> **Note:** Control plane nodes cannot be used for proxying.
 
-### (Optional) Revocation checks of Data Plane certificates
+### (Optional) Revocation checks of data plane certificates
 
-When Kong is running Hybrid mode with PKI mode, the Control Plane can be configured to
-optionally check for revocation status of the connecting Data Plane certificate.
+When Kong is running hybrid mode with PKI mode, the control plane can be configured to
+optionally check for revocation status of the connecting data plane certificate.
 
 The supported method is through Online Certificate Status Protocol (OCSP) responders.
 Issued data plane certificates must contain the Certificate Authority Information Access extension
-that references the URI of OCSP responder that can be reached from the Control Plane.
+that references the URI of OCSP responder that can be reached from the control plane.
 
-To enable OCSP checks, set the `cluster_ocsp` config on the Control Plane to one of the following values:
+To enable OCSP checks, set the `cluster_ocsp` config on the control plane to one of the following values:
 
-* `on`: OCSP revocation check is enabled and the Data Plane must pass the revocation check
-to establish connection with the Control Plane. This implies that certificates without the
+* `on`: OCSP revocation check is enabled and the data plane must pass the revocation check
+to establish connection with the control plane. This implies that certificates without the
 OCSP extension or unreachable OCSP responder also prevents a connection from being established.
 * `off`: OCSP revocation check is disabled (default).
 * `optional`: OCSP revocation check will be attempted, however, if the OCSP responder URI is not
-found inside the Data Plane-provided certificate or communication with the OCSP responder failed,
-then Data Plane is still allowed through.
+found inside the data plane-provided certificate or communication with the OCSP responder failed,
+then data plane is still allowed through.
 
-Note that OCSP checks are only performed on the Control Plane against certificates provided by incoming Data Plane
-nodes. The `cluster_ocsp` config has no effect on Data Plane nodes.
-`cluster_oscp` affects all Hybrid mode connections established from a Data Plane to its Control Plane.
+Note that OCSP checks are only performed on the control plane against certificates provided by incoming data plane
+nodes. The `cluster_ocsp` config has no effect on data plane nodes.
+`cluster_oscp` affects all hybrid mode connections established from a data plane to its control plane.
 
 ## Install and start data planes
-Now that the Control Plane is running, you can attach Data Plane nodes to it to
+Now that the control plane is running, you can attach data plane nodes to it to
 start serving traffic.
 
-In this step, you will give all Data Plane nodes the `data_plane` role,
-point them to the Control Plane, set certificate/key parameters to point at
+In this step, you will give all data plane nodes the `data_plane` role,
+point them to the control plane, set certificate/key parameters to point at
 the location of your certificates and keys, and ensure the database
 is disabled.
 
@@ -368,7 +368,7 @@ In addition, the certificate from `cluster_cert` (in `shared` mode) or `cluster_
 [`lua_ssl_trusted_certificate`](/gateway/{{page.kong_version}}/reference/configuration/#lua_ssl_trusted_certificate).
 
 {:.important}
-> **Important:** Data Plane nodes receive updates from the Control Plane via a format
+> **Important:** Data plane nodes receive updates from the control plane via a format
 similar to declarative config, therefore `database` has to be set to
 `off` for Kong to start up properly.
 
@@ -387,7 +387,7 @@ follow the instructions to:
     > **Warning:** Do not start or create a database on this node.
 
 
-1. Bring up your Data Plane container with the following settings:
+1. Bring up your data plane container with the following settings:
 
     For `shared` certificate mode, use:
     ```bash
@@ -428,7 +428,7 @@ follow the instructions to:
     : The tag of the {{site.base_gateway}} image that you're using, and the Docker network it communicates on.
 
     `KONG_CLUSTER_CONTROL_PLANE`
-    : Sets the address and port of the Control Plane (port `8005` by defaut).
+    : Sets the address and port of the control plane (port `8005` by defaut).
 
     `KONG_DATABASE`
     : Specifies whether this node connects directly to a database.
@@ -439,8 +439,8 @@ follow the instructions to:
 
     `KONG_CLUSTER_SERVER_NAME`
     : Specifies the SNI (Server Name Indication
-    extension) to use for Data Plane connections to the Control Plane through
-    TLS. When not set, Data Plane will use `kong_clustering` as the SNI.
+    extension) to use for data plane connections to the control plane through
+    TLS. When not set, data plane will use `kong_clustering` as the SNI.
 
     : You can also optionally use `KONG_CLUSTER_TELEMETRY_SERVER_NAME`
       to set a custom SNI for Vitals telemetry data. If not set, it defaults to
@@ -449,7 +449,20 @@ follow the instructions to:
     `KONG_CLUSTER_TELEMETRY_ENDPOINT`
     : Optional setting, needed for Vitals telemetry gathering. Not available in open-source deployments.
 
-2. If needed, bring up any subsequent Data Planes using the same settings.
+    You can also choose to encrypt or disable the data plane configuration
+    cache with some additional settings:
+
+    `KONG_DATA_PLANE_CONFIG_CACHE_MODE`
+    : Optional setting for storing the config cache, defaults to `unencrypted`.
+    Change this to `encrypted` if you want to store the data plane's config cache
+    in an encrypted format, or set it to `off` if you don't want to use a cache.
+    Not available in open-source deployments.
+
+    `KONG_DATA_PLANE_CONFIG_CACHE_PATH`
+    : An optional custom path to the config cache. Not available in open-source
+    deployments.
+
+2. If needed, bring up any subsequent data planes using the same settings.
 
 {% endnavtab %}
 {% navtab Using kong.conf %}
@@ -460,7 +473,7 @@ and follow the instructions in Steps 1 and 2 **only** to download
 
     {:.note}
     > **Note:** for Docker, see the **Docker** tab above. For Kubernetes, see the
-    [Hybrid mode documentation](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
+    [hybrid mode documentation](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
     in the `kong/charts` repository.
 
     {:.warning}
@@ -497,7 +510,7 @@ and follow the instructions in Steps 1 and 2 **only** to download
     Where:
 
     `cluster_control_plane`
-    : Sets the address and port of the Control Plane (port `8005` by defaut).
+    : Sets the address and port of the control plane (port `8005` by defaut).
 
     `database`
     : Specifies whether this node connects directly to a database.
@@ -507,8 +520,8 @@ and follow the instructions in Steps 1 and 2 **only** to download
 
     `cluster_server_name`
     : Specifies the SNI (Server Name Indication extension)
-    to use for Data Plane connections to the Control Plane through TLS. When
-    not set, Data Plane will use `kong_clustering` as the SNI.
+    to use for data plane connections to the control plane through TLS. When
+    not set, data plane will use `kong_clustering` as the SNI.
 
     : You can also optionally use `cluster_telemetry_server_name`
       to set a custom SNI for Vitals telemetry data. If not set, it defaults to
@@ -516,6 +529,19 @@ and follow the instructions in Steps 1 and 2 **only** to download
 
     `cluster_telemetry_endpoint`
     : Optional setting, needed for Vitals telemetry gathering. Not available in open-source deployments.
+
+    You can also choose to encrypt or disable the data plane configuration
+    cache with some additional settings:
+
+    `data_plane_config_cache_mode`
+    : Optional setting for storing the config cache, defaults to `unencrypted`.
+    Change this to `encrypted` if you want to store the data plane's config cache
+    in an encrypted format, or set it to `off` if you don't want to use a cache.
+    Not available in open-source deployments.
+
+    `data_plane_config_cache_path`
+    : An optional custom path to the config cache. Not available in open-source
+    deployments.
 
 3. Restart Kong for the settings to take effect:
     ```bash
@@ -526,14 +552,14 @@ and follow the instructions in Steps 1 and 2 **only** to download
 
 ## Verify that nodes are connected
 
-Use the Control Plane’s Cluster Status API to monitor your Data Planes. It
+Use the control plane’s Cluster Status API to monitor your data planes. It
 provides:
 * The name of the node
-* The last time the node synced with the Control Plane
-* The version of the config currently running on each Data Plane
+* The last time the node synced with the control plane
+* The version of the config currently running on each data plane
 
 To check whether the CP and DP nodes you just brought up are connected, run the
-following on a Control Plane:
+following on a control plane:
 {% navtabs %}
 {% navtab Using cURL %}
 ```bash
@@ -546,7 +572,7 @@ http :8001/clustering/data-planes
 ```
 {% endnavtab %}
 {% endnavtabs %}
-The output shows all of the connected Data Plane instances in the cluster:
+The output shows all of the connected data plane instances in the cluster:
 
 ```json
 {
@@ -593,17 +619,19 @@ cache (`config.json.gz`).
 ### Configuration reference
 
 Use the following configuration properties to configure {{site.base_gateway}}
-in Hybrid mode.
+in hybrid mode.
 
 Parameter | Description | CP or DP {:width=10%:}
 --------- | ----------- | ----------------------
-[`role`](/gateway/{{page.kong_version}}/reference/configuration/#role) <br>*Required* | Determines whether the {{site.base_gateway}} instance is a Control Plane or a Data Plane. Valid values are `control_plane` or `data_plane`. | Both
-[`cluster_listen`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_listen) <br>*Optional* <br><br>**Default:** `0.0.0.0:8005`| List of addresses and ports on which the Control Plane will listen for incoming Data Plane connections. This port is always protected with Mutual TLS (mTLS) encryption. Ignored on Data Plane nodes. | CP
-[`proxy_listen`](/gateway/{{page.kong_version}}/reference/configuration/#proxy_listen) <br>*Required* | Comma-separated list of addresses and ports on which the proxy server should listen for HTTP/HTTPS traffic. Ignored on Control Plane nodes. | DP
-[`cluster_telemetry_listen`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_telemetry_listen) <span class="badge enterprise"/> <br>*Optional* <br><br>**Default:** `0.0.0.0:8006`| List of addresses and ports on which the Control Plane will listen for Data Plane Vitals telemetry data. This port is always protected with Mutual TLS (mTLS) encryption. Ignored on Data Plane nodes. | CP
-[`cluster_telemetry_endpoint`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_telemetry_endpoint) <span class="badge enterprise"/> <br>*Required for Enterprise deployments* | The port that the Data Plane uses to send Vitals telemetry data to the Control Plane. Ignored on Control Plane nodes. | DP
-[`cluster_control_plane`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_control_plane) <br>*Required* | Address and port that the Data Plane nodes use to connect to the Control Plane. Must point to the port configured using the [`cluster_listen`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_listen) property on the Control Plane node. Ignored on Control Plane nodes. | DP
-[`cluster_mtls`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_mtls) <br>*Optional* <br><br>**Default:** `"shared"` | One of `"shared"` or `"pki"`. Indicates whether Hybrid Mode will use a shared certificate/key pair for CP/DP mTLS or if PKI mode will be used. See below sections for differences in mTLS modes. | Both
+[`role`](/gateway/{{page.kong_version}}/reference/configuration/#role) <br>*Required* | Determines whether the {{site.base_gateway}} instance is a control plane or a data plane. Valid values are `control_plane` or `data_plane`. | Both
+[`cluster_listen`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_listen) <br>*Optional* <br><br>**Default:** `0.0.0.0:8005`| List of addresses and ports on which the control plane will listen for incoming data plane connections. This port is always protected with Mutual TLS (mTLS) encryption. Ignored on data plane nodes. | CP
+[`proxy_listen`](/gateway/{{page.kong_version}}/reference/configuration/#proxy_listen) <br>*Required* | Comma-separated list of addresses and ports on which the proxy server should listen for HTTP/HTTPS traffic. Ignored on control plane nodes. | DP
+[`cluster_telemetry_listen`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_telemetry_listen) <span class="badge enterprise"/> <br>*Optional* <br><br>**Default:** `0.0.0.0:8006`| List of addresses and ports on which the control plane will listen for data plane Vitals telemetry data. This port is always protected with Mutual TLS (mTLS) encryption. Ignored on data plane nodes. | CP
+[`cluster_telemetry_endpoint`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_telemetry_endpoint) <span class="badge enterprise"/> <br>*Required for Enterprise deployments* | The port that the data plane uses to send Vitals telemetry data to the control plane. Ignored on control plane nodes. | DP
+[`cluster_control_plane`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_control_plane) <br>*Required* | Address and port that the data plane nodes use to connect to the control plane. Must point to the port configured using the [`cluster_listen`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_listen) property on the control plane node. Ignored on control plane nodes. | DP
+[`cluster_mtls`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_mtls) <br>*Optional* <br><br>**Default:** `shared` | One of `shared` or `pki`. Indicates whether hybrid mode will use a shared certificate/key pair for CP/DP mTLS or if PKI mode will be used. See below sections for differences in mTLS modes. | Both
+[`data_plane_config_cache_mode`](/gateway/{{page.kong_version}}/reference/configuration/#data_plane_config_cache_mode) <span class="badge enterprise"/> <br>*Optional* <br><br>**Default:** `unencrypted` | Determines how the data plane configuration cache is stored. <br> &#8226; `unencrypted`: Stores configuration without encrypting it in `config.cache.json.gz` <br> &#8226; `encrypted`: Encrypts and stores the configuration cache in `.config.cache.jwt` (hidden file). <br> &#8226; `off`: The data plane does not cache configuration | DP
+[`data_plane_config_cache_path`](/gateway/{{page.kong_version}}/reference/configuration/#data_plane_config_cache_path) <span class="badge enterprise"/> <br>*Optional* <br><br>**Default:** Kong [`prefix` path](/gateway/{{page.kong_version}}/reference/configuration/#prefix) | Path to the data plane config cache file, for example `/tmp/kong-config-cache`. If the cache mode is `encrypted`, the filename is `.config.cache.jwt` (hidden file). If the cache mode is `unencrypted`, the filename is `config.cache.json.gz`. | DP
 
 The following properties are used differently between `shared` and `pki` modes:
 
@@ -616,7 +644,7 @@ Parameter | Description | Shared Mode {:width=12%:} | PKI Mode {:width=30%:}
 
 ## Next steps
 
-Now, you can start managing the cluster using the Control Plane. Once
-all instances are set up, use the Admin API on the Control Plane as usual, and
-these changes will be synced and updated on the Data Plane nodes automatically
+Now, you can start managing the cluster using the control plane. Once
+all instances are set up, use the Admin API on the control plane as usual, and
+these changes will be synced and updated on the data plane nodes automatically
 within seconds.

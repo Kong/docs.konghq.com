@@ -30,6 +30,10 @@ Once you have defined your model, you must create your migration modules which
 will be executed by Kong to create the table in which your records of your
 entity will be stored.
 
+
+{% include_cached /md/enterprise/cassandra-deprecation.md %}
+
+
 If your plugin is intended to support both Cassandra and Postgres, then both
 migrations must be written.
 
@@ -79,6 +83,9 @@ return {
 ```
 
 ## Migration file syntax
+
+
+{% include_cached /md/enterprise/cassandra-deprecation.md %}
 
 While Kong's core migrations support both Postgres and Cassandra, custom plugins
 can choose to support either both of them or just one.
@@ -219,14 +226,14 @@ local typedefs = require "kong.db.schema.typedefs"
 
 return {
   -- this plugin only results in one custom DAO, named `keyauth_credentials`:
-  keyauth_credentials = {
+  {
     name                  = "keyauth_credentials", -- the actual table in the database
     endpoint_key          = "key",
     primary_key           = { "id" },
     cache_key             = { "key" },
     generate_admin_api    = true,
     admin_api_name        = "key-auths",
-    admin_api_nested_name = "key-auth",    
+    admin_api_nested_name = "key-auth",
     fields = {
       {
         -- a value to be inserted by the DAO itself

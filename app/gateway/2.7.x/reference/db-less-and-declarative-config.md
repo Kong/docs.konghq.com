@@ -2,7 +2,11 @@
 title: DB-less and Declarative Configuration
 ---
 
-Traditionally, Kong Gateway has always required a database, which could be either Postgres or Cassandra, to store its configured entities such as Routes,
+
+{% include_cached /md/enterprise/cassandra-deprecation.md %}
+
+
+Traditionally, Kong Gateway has always required a database, to store its configured entities such as Routes,
 Services and Plugins. Kong uses its configuration file, `kong.conf`, to
 specify the use of Postgres and Cassandra and its various settings.
 

@@ -14,6 +14,7 @@ license_type: MIT
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.7.x
       - 2.6.x
       - 2.5.x
       - 2.4.x
@@ -22,6 +23,7 @@ kong_version_compatibility:
       - 2.1.x
   enterprise_edition:
     compatible:
+      - 2.7.x
       - 2.6.x
       - 2.5.x
       - 2.4.x

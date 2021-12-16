@@ -2,7 +2,7 @@
 
 name: Rate Limiting Advanced
 publisher: Kong Inc.
-version: 1.5.x
+version: 1.6.x
 
 desc: Upgrades Kong Rate Limiting with more flexibility and higher performance
 description: |
@@ -13,6 +13,7 @@ description: |
   * Support for Redis Sentinel, Redis cluster, and Redis SSL
   * Increased performance: Rate Limiting Advanced has better throughput performance with better accuracy. Configure `sync_rate` to periodically sync with backend storage.
   * More limiting algorithms to choose from: These algorithms are more accurate and they enable configuration with more specificity. Learn more about our algorithms in [How to Design a Scalable Rate Limiting Algorithm](https://konghq.com/blog/how-to-design-a-scalable-rate-limiting-algorithm/).
+  * Consumer groups support: Apply different rate limiting configurations to select groups of consumers.
 
 type: plugin
 enterprise: true
@@ -24,16 +25,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
-        - 2.6.x
-        - 2.5.x
-        - 2.4.x
-        - 2.3.x
-        - 2.2.x
-        - 2.1.x
-        - 1.5.x
-        - 1.3-x
-        - 0.36-x
-
+        - 2.7.x
 
 params:
   name: rate-limiting-advanced
@@ -285,6 +277,32 @@ params:
         header of denied requests (status = `429`) in order to prevent all the clients
         from coming back at the same time. The lower bound of the jitter is `0`; in this case,
         the `Retry-After` header is equal to the `RateLimit-Reset` header.
+    - name: enforce_consumer_groups
+      required: false
+      default: false
+      value_in_examples: true
+      datatype: boolean
+      description: |
+        Set to `true` to enable `consumer_groups`, which allows the settings
+        from one of the allowed consumer groups to override the given plugin
+        configuration.
+    - name: consumer_groups
+      required: semi
+      default: null
+      value_in_examples:
+        - group1
+        - group2
+      datatype: array of string elements
+      description: |
+        List of consumer groups allowed to override the rate limiting
+        settings for the given Route or Service. Required if
+        `enforce_consumer_groups` is set to `true`.
+
+        Flipping `enforce_consumer_groups` from `true` to `false` disables the
+        group override, but does not clear the list of consumer groups.
+        You can then flip `enforce_consumer_groups` to `true` to re-enforce the
+        groups.
+
   extra: |
     **Notes:**
 
@@ -356,13 +374,13 @@ multiple rate limiting windows (e.g., rate limit per minute and per hour, and pe
 Because of limitations with Kong's plugin configuration interface, each *nth* limit will apply to each *nth* window size.
 For example:
 
-<pre><code>curl -X POST http://kong:8001/services/<div contenteditable="true">{SERVICE}</div>/plugins \
-  --data name=rate-limiting-advanced \
-  --data config.limit=10 \
-  --data config.limit=100 \
-  --data config.window_size=60 \
-  --data config.window_size=3600 \
-  --data config.sync_rate=10</code></pre>
+<pre><code>curl -X POST http://<div contenteditable="true">{LOCALHOST}</div>:8001/services/<div contenteditable="true">{SERVICE}</div>/plugins \
+  --data "name=rate-limiting-advanced" \
+  --data "config.limit=10" \
+  --data "config.limit=100" \
+  --data "config.window_size=60" \
+  --data "config.window_size=3600" \
+  --data "config.sync_rate=10"</code></pre>
 
 This example applies rate limiting policies, one of which will trip when 10 hits have been counted in 60 seconds,
 or the other when 100 hits have been counted in 3600 seconds. For more information, see the
@@ -382,3 +400,24 @@ to limit using IP as the identifier. This can happen for several reasons, such a
 selected header was not sent by the client or the configured service was not found.
 
 [`Retry-After`]: https://tools.ietf.org/html/rfc7231#section-7.1.3
+
+## Rate limiting for consumer groups
+
+You can use consumer groups to manage custom rate limiting configuration for
+subsets of consumers. To use consumer groups, you'll need to configure the following parameters:
+
+* `config.enforce_consumer_groups`: Set to true.
+* `config.consumer_groups`: Provide a list of consumer groups that this plugin allows overrides for.
+
+For guides on working with consumer groups, see the consumer group
+[examples](/gateway/latest/admin-api/consumer-groups/examples) and
+[API reference](/gateway/latest/admin-api/consumer-groups/reference) in
+the Admin API documentation.
+
+---
+
+## Changelog
+
+### Kong Gateway 2.7.x
+
+* Added `enforce_consumer_groups` and `consumer_groups` fields.
