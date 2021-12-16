@@ -375,7 +375,7 @@ spec:
 {% endnavtab %}
 {% endnavtabs %}
 
-To restrict the access to admin only, change the default AccessRole policy
+To restrict access to `admin` only, change the default AccessRole policy:
 
 {% navtabs %}
 {% navtab Universal %}

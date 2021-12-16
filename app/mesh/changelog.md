@@ -18,7 +18,11 @@ Built on top of [Kuma 1.4.1](https://github.com/kumahq/kuma/blob/master/CHANGELO
 
 ### Upgrading
 
-TODO add info from Bart day of release. Upgrades from `1.5.0` are seamless and no additional steps are needed.
+Before you upgrade from `1.5.0` make sure to review your RBAC configuration for zone control planes. In `1.5.1`, 
+RBAC for zone control planes is restricted by default. For information on how to secure access to resources, see 
+[the RBAC documentation](/mesh/1.5.x/features/rbac/).
+
+Upgrades from `1.5.0` are otherwise seamless and no further steps are needed.
 
 ## 1.5.0
 
