@@ -451,6 +451,7 @@ $("a[data-filter]").on("keypress", function(e) {
 
   // navtabs
   const navtabs = $("div[data-navtab-id]");
+
   navtabs.on("click", function () {
     const navtabTitle = $(this);
     const navtabID = navtabTitle.data("navtab-id");
@@ -466,6 +467,20 @@ $("a[data-filter]").on("keypress", function(e) {
     navtabContent.siblings().css("display", "none");
     navtabContent.css("display", "block");
   });
+
+  navtabs.on("keypress", function(e) {
+    const navtabTitle = $(this);
+    const navtabID = navtabTitle.data("navtab-id");
+    const navtabContent = $(`div[data-navtab-content='${navtabID}']`);
+
+    if (e.keyCode === 13) {
+      navtabTitle.siblings().removeClass("active");
+      navtabTitle.addClass("active");
+      navtabContent.siblings().css("display", "none");
+      navtabContent.css("display", "block");
+    }
+  });
+
   // set first navtab as active
   $(".navtabs").each(function (index, navtabs) {
     $(navtabs).find("div[data-navtab-content]").css("display", "none");
