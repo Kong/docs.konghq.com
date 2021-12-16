@@ -54,7 +54,7 @@ OpenID Connect plugin. Users can now easily identify a common set of required
 parameters to configure the plugin, and add custom configurations as needed.
 
 #### Core
-* Service entities now have a required [`enabled` field](/gateway/2.7.x/admin-api/service-object)
+* Service entities now have a required [`enabled` field](/gateway/2.7.x/admin-api/#service-object)
 which defaults to `true`. When set to `false`, routes attached to the service
 are not added to the proxy router. [#8113](https://github.com/Kong/kong/pull/8113)
 
@@ -159,7 +159,7 @@ is enabled, these fields will be encrypted:
   * LDAP Auth Advanced: `ldap_password`
   * Loggly: `key`
   * OAuth2: `config.provision_key` parameter value and the
-  `oauth2_credentials.provision_ key` field
+  `oauth2_credentials.provision_key` field
   * OpenID Connect: `client_id`, `client_secret`, `session_auth`, and
   `session_redis_auth`
   * Session: `secret`
@@ -322,7 +322,7 @@ is deprecated with this release and will be removed in a future version.
   address with Cassandra.
 
 * The old `BasePlugin` module is deprecated and will be removed in a future version of Kong.
-  See porting tips in the [documentation](/gateway/2.7.x/plugin-development/custom-logic/#migrating-from-baseplugin-module)
+  See porting tips in the [documentation](/gateway/2.7.x/plugin-development/custom-logic/#migrating-from-baseplugin-module).
 * Hash syntax for plugin DAOs is deprecated. Plugin DAOs should be arrays
 instead of hashes.
 
