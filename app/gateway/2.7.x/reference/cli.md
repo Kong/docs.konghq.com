@@ -23,8 +23,6 @@ All commands take a set of special, optional flags as arguments:
 * `--v`: enable verbose mode
 * `--vv`: enable debug mode (noisy)
 
-[Back to top](#introduction)
-
 ## Available commands
 
 
@@ -38,8 +36,6 @@ Check the validity of a given Kong configuration file.
 <conf> (default /etc/kong/kong.conf) configuration file
 
 ```
-
-[Back to top](#introduction)
 
 ---
 
@@ -74,8 +70,6 @@ Options:
 
 ```
 
-[Back to top](#introduction)
-
 ---
 
 
@@ -90,8 +84,6 @@ Options:
  -p,--prefix      (optional string) prefix at which Kong should be running
 
 ```
-
-[Back to top](#introduction)
 
 ---
 
@@ -116,8 +108,6 @@ Options:
 
 ```
 
-[Back to top](#introduction)
-
 ---
 
 
@@ -141,6 +131,16 @@ The available commands are:
 
   reset                             Reset the database.
 
+  migrate-community-to-enterprise       Migrates Kong Community entities to
+                                        Kong Enterprise in the default
+                                        workspace.
+
+  upgrade-workspace-table                 Outputs a script to be run on the db to
+                                          upgrade the entity for 2.x workspaces
+                                          implementation.
+
+  reinitialize-workspace-entity-counters  Resets the entity counters from the
+                                          database entities.
 Options:
  -y,--yes                           Assume "yes" to prompts and run
                                     non-interactively.
@@ -149,6 +149,9 @@ Options:
 
  -f,--force                         Run migrations even if database reports
                                     as already executed.
+
+                                    With 'migrate-community-to-enterprise' it
+                                    disables the workspace entities check.
 
  --db-timeout     (default 60)      Timeout, in seconds, for all database
                                     operations (including schema consensus for
@@ -162,10 +165,10 @@ Options:
 
  -p,--prefix      (optional string)   Override prefix directory.
 
+ --v              verbose
+ --vv             debug
 
 ```
-
-[Back to top](#introduction)
 
 ---
 
@@ -193,8 +196,6 @@ Options:
 
 ```
 
-[Back to top](#introduction)
-
 ---
 
 
@@ -218,8 +219,6 @@ Options:
 
 ```
 
-[Back to top](#introduction)
-
 ---
 
 
@@ -242,8 +241,6 @@ Options:
  --nginx-conf     (optional string) custom Nginx configuration template
 
 ```
-
-[Back to top](#introduction)
 
 ---
 
@@ -269,7 +266,20 @@ Options:
 
 ```
 
-[Back to top](#introduction)
+---
+
+### kong runner
+{:.badge .enterprise}
+
+```
+Usage: kong runner [file] [args]
+Execute a lua file in a kong node. the `kong` variable is available to
+reach the DAO, PDK, etc. The variable `args` can be used to access all
+arguments (args[1] being the lua filename being run).
+Example usage:
+  kong runner file.lua arg1 arg2
+  echo 'print("foo")' | kong runner
+```
 
 ---
 
@@ -301,8 +311,6 @@ Options:
 
 ```
 
-[Back to top](#introduction)
-
 ---
 
 
@@ -321,8 +329,6 @@ Options:
 
 ```
 
-[Back to top](#introduction)
-
 ---
 
 
@@ -339,9 +345,7 @@ Options:
 
 ```
 
-[Back to top](#introduction)
-
 ---
 
 
-[configuration-reference]: /gateway-oss/{{page.kong_version}}/configuration
+[configuration-reference]: /gateway/{{page.kong_version}}/reference/configuration/
