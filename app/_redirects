@@ -198,9 +198,6 @@
 /enterprise/2.6.x/developer-portal/*                       /gateway/2.6.x/developer-portal/:splat
 /enterprise/latest/developer-portal/*                      /gateway/latest/developer-portal/:splat
 
-/gateway/2.6.x/developer-portal/administration/         /gateway/2.6.x/developer-portal/administration/managing-developers/
-/gateway/2.6.x/developer-portal/configuration/          /gateway/2.6.x/developer-portal/configuration/workspaces/
-
 # GATEWAY REFERENCES
 /admin-api/                            /gateway/latest/admin-api
 /admin-api/*                           /gateway/latest/admin-api/:splat
