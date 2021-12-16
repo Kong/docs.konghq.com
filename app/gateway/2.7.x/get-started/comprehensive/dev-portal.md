@@ -49,8 +49,8 @@ After the Dev Portal is enabled for the Workspace, a few new links appear in the
 You can learn more about personalization in the [the Dev Portal documentation](/gateway/{{page.kong_version}}/developer-portal/), including:
 
 * [Customizing the look and feel of the site and editor](/gateway/{{page.kong_version}}/developer-portal/theme-customization/easy-theme-editing/)
-* [Managing access](/gateway/{{page.kong_version}}/developer-portal/administration/)
-* [Configuring the Dev Portal](/gateway/{{page.kong_version}}/developer-portal/configuration/)
+* [Managing access](/gateway/{{page.kong_version}}/developer-portal/administration/managing-developers/)
+* [Configuring the Dev Portal](/gateway/{{page.kong_version}}/developer-portal/configuration/workspaces/)
 
 ## Access and Interact with the Dev Portal
 
