@@ -6,7 +6,7 @@ no_version: true
 
 ## 1.5.1
 
-> Released on 2021/12/16 TODO UPDATE IF NEEDED
+> Released on 2021/12/16
 
 ### Changes
 

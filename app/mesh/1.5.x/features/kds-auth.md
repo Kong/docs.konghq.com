@@ -163,14 +163,14 @@ Verify the remote control plane is connected with authentication by looking at t
 
 ## Revoke token
 
-Kong Mesh does not keep the list of issued tokens. Whenever a single token is compromised, we can add it to revocation list so it's no longer valid.
+Kong Mesh does not keep a list of issued tokens. Whenever a single token is compromised, you can add it to revocation list so the token is no longer valid.
 
-Every token has its own ID which is available in payload under `jti` key. You can extract ID from token using jwt.io or [`jwt-cli`](https://www.npmjs.com/package/jwt-cli) tool. Here is example of `jti`
+Every token has its own ID, which is available in the payload under the `jti` key. You can extract an ID from the token using jwt.io or the [`jwt-cli`](https://www.npmjs.com/package/jwt-cli) tool. Here is an example of a `jti` key:
 ```
 0e120ec9-6b42-495d-9758-07b59fe86fb9
 ```
 
-Specify list of revoked IDs separated by `,` and store it as `GlobalSecret` named `control-plane-token-revocations`
+Specify a list of revoked IDs separated by commas (`,`) and store it as a `GlobalSecret` object named `control-plane-token-revocations`:
 
 {% navtabs %}
 {% navtab Kubernetes %}
