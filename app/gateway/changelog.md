@@ -147,6 +147,8 @@ In this release, we continued our work on better performance:
 
     Thanks [gabeio](https://github.com/gabeio) for the patch!
 
+#### Plugin encryption
+
 * Several fields have been marked as encrypted on plugins.
 If [keyring encryption](/gateway/2.7.x/plan-and-deploy/security/db-encryption/)
 is enabled, these fields will be encrypted:
