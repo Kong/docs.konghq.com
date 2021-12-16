@@ -242,7 +242,7 @@ curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/roles/admin/endpo
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-http :8001/secureworkspace/rbac/roles/admin/endpoints/ \
+http :8001/SecureWorkspace/rbac/roles/admin/endpoints/ \
   endpoint='*' \
   workspace=SecureWorkspace \
   actions='*' \
@@ -317,7 +317,7 @@ http :8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
     *Or using HTTPie:*
 
     ```sh
-    http :8001/default/rbac/users Kong-Admin-Token:secureadmintoken
+    http :8001/SecureWorkspace/rbac/users Kong-Admin-Token:secureadmintoken
     ```
     This time, you should get a `200 OK` success message and a list of users.
 
