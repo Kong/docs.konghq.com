@@ -319,7 +319,12 @@ The `subjects` in `AccessRoleBinding` are compatible with Kubernetes users and g
 
 ## Default
 
-{{site.mesh_product_name}} creates `admin` AccessRole that allows every action and `default` AccessRoleBinding that assigns this role to every authenticated and unauthenticated user.
+{{site.mesh_product_name}} creates an `admin` AccessRole that allows every action.
+
+In a standalone deployment, the `default` AccessRoleBinding assigns this role to every authenticated and unauthenticated user.
+
+In a multizone deployment, the `default` AccessRoleBinding on the global control plane assigns this role to every authenticated and unauthenticated user.
+However, on the zone control plane, the `default` AccessRoleBinding is restricted to the `admin` AccessRole only.
 
 {% navtabs %}
 {% navtab Universal %}
@@ -370,7 +375,7 @@ spec:
 {% endnavtab %}
 {% endnavtabs %}
 
-To restrict the access to admin only, change the default AccessRole policy
+To restrict access to `admin` only, change the default AccessRole policy:
 
 {% navtabs %}
 {% navtab Universal %}
@@ -396,9 +401,12 @@ spec:
     name: mesh-system:admin
   - type: Group
     name: system:masters
+  - type: Group
+    name: system:serviceaccounts:kube-system
   roles:
   - admin
 ```
+`system:serviceaccounts:kube-system` is required for Kubernetes controllers to manage Kuma resources -- for example, to remove Dataplane objects when a namespace is removed.
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -444,7 +452,7 @@ In order for this example to work you must either run the control plane with `KU
     name: default
     subjects:
     - type: Group
-    name: mesh-system:admin
+      name: mesh-system:admin
     roles:
     - admin" | kumactl apply -f -
     ```
@@ -457,19 +465,19 @@ In order for this example to work you must either run the control plane with `KU
     name: backend-owner
     rules:
     - types: ["TrafficPermission"]
-    mesh: default
-    access: ["CREATE", "UPDATE", "DELETE"]
-    when:
-    - destinations:
-        match:
-          kuma.io/service: backend
+      mesh: default
+      access: ["CREATE", "UPDATE", "DELETE"]
+      when:
+      - destinations:
+          match:
+            kuma.io/service: backend
     ' | kumactl apply -f -
     $ echo '
     type: AccessRoleBinding
     name: backend-owners
     subjects:
     - type: User
-    name: backend-owner
+      name: backend-owner
     roles:
     - backend-owner' | kumactl apply -f -
     ```

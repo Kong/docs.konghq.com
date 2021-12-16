@@ -2,7 +2,7 @@
 title: Multi-zone authentication
 ---
 
-To add to the security of your deployments, Kong Mesh provides token generation for authenticating remote control planes to the global control plane.
+To add to the security of your deployments, {{site.mesh_product_name}} provides token generation for authenticating remote control planes to the global control plane.
 
 The control plane token is a JWT that contains:
 
@@ -68,7 +68,7 @@ $ kumactl install control-plane \
 {% endnavtab %}
 {% navtab Kubernetes with Helm %}
 
-Create a secret with a token in the same namespace where Kong Mesh is installed:
+Create a secret with a token in the same namespace where {{site.mesh_product_name}} is installed:
 
 ```
 $ kubectl create secret generic cp-token -n kong-mesh-system --from-file=/tmp/token
@@ -116,7 +116,7 @@ $ KUMA_MODE=remote \
 
 ### Enable authentication on the global control plane
 
-If you are starting from scratch and not securing existing Kong Mesh deployment, you can do this as a first step.
+If you are starting from scratch and not securing existing {{site.mesh_product_name}} deployment, you can do this as a first step.
 
 {% navtabs %}
 {% navtab Kubernetes with kumactl %}
