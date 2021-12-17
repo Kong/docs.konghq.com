@@ -181,7 +181,7 @@ To add a certificate via curl, you are required to have:
 2. A generated access cookie
 
 ```bash
-$ curl -X POST https:konnect.konghq.com/api/control_planes/[Konnect-ID]/ca_certificates -F cert=@testCACert.pem --cookie '[generated access cookie]'
+curl -X POST https:konnect.konghq.com/api/control_planes/[Konnect-ID]/ca_certificates -F cert=@testCACert.pem --cookie '[generated access cookie]'
 ```
 {% endnavtab %}
 {% endnavtabs %}
