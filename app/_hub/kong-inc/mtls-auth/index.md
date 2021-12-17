@@ -156,7 +156,7 @@ and POST it to `/ca_certificates`:
 {% navtabs %}
 {% navtab Kong Admin API %}
 ```bash
-$ curl -sX POST https://kong:8001/ca_certificates -F cert=@cert.pem
+curl -sX POST https://kong:8001/ca_certificates -F cert=@cert.pem
 {
   "tags": null,
   "created_at": 1566597621,
