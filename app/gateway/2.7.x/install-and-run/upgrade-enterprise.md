@@ -46,6 +46,12 @@ guaranteed if you are upgrading incrementally between versions, from 0.36.x to 1
 * If running a version of {{ site.ee_product_name }} earlier than 2.5,
   [migrate to 2.5](/enterprise/2.5.x/deployment/upgrades/migrations/) first.
 
+### Kong Manager upgrade to 2.7.x
+
+Version 2.7.x introduced a new way to configure the OIDC plugin to map IdP roles to Kong Manager admin accounts. 
+You must now specify the `admin_claim` instead of the `consumer_claim` in your OIDC config file. For more information, 
+see [OIDC Authenticated Group Mapping](/gateway/2.7.x/configure/auth/kong-manager/oidc-mapping/).
+
 ### Dev Portal migrations
 
 There are no migrations necessary for the Dev Portal when upgrading from 2.5.x to

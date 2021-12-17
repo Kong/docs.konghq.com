@@ -10,7 +10,11 @@ Kong based on their group in the IdP.
 Admin accounts are now created automatically 
 when you map your identity provider (IdP) groups to Kong roles. You do 
 not need to create the users, groups, and roles separately. These users then accept invitations to join 
-Kong Manager and log in with their IdP credentials. 
+Kong Manager and log in with their IdP credentials.
+
+{:.important}
+> **Important:** In v2.7.x, the `admin_claim` parameter replaces the `consumer_claim` parameter required by 
+previous versions.
 
 If an admin's group changes in the IdP, their Kong admin account's associated
 role also changes in {{site.base_gateway}} the next time they log in to Kong
@@ -34,7 +38,8 @@ The `admin_claim` value specifies which IdP username value should map to Kong Ma
 The username and password are required for the user to log into the IdP.
 
 The `authenticated_groups_claim` value specifies which IdP claim should be assigned to the
-specified {{site.base_gateway}} user.
+specified {{site.base_gateway}} user. The exact value depends on your IdP -- for example, Okta 
+configures claims for `groups`, and other IdPs might configure them as `roles`.
 
 {% navtabs %}
 {% navtab Kubernetes with Helm %}
