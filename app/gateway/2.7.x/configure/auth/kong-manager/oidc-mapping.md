@@ -37,9 +37,13 @@ to identify which admin value and role name to map from the IdP to {{site.base_g
 The `admin_claim` value specifies which IdP username value should map to Kong Manager. 
 The username and password are required for the user to log into the IdP.
 
-The `authenticated_groups_claim` value specifies which IdP claim should be assigned to the
-specified {{site.base_gateway}} user. The exact value depends on your IdP -- for example, Okta 
-configures claims for `groups`, and other IdPs might configure them as `roles`.
+The `authenticated_groups_claim` value specifies which IdP claim should be used to assign {{site.base_gateway}} roles to the
+specified {{site.base_gateway}} admin. 
+
+- The group claim name depends on your IdP -- for example, Okta configures claims for `groups`, and other IdPs might configure them as `roles`. 
+- The group claim value need to follow the format `<workspace_name>:<role_name>` for dynamic role assigning. 
+
+For example, if we set `"authenticated_groups_claim": ["groups"]` and `groups:["default:super-admin"]` is returned on admins' id tokens, these admins gets `super-admin` role in `default` workspace. 
 
 {% navtabs %}
 {% navtab Kubernetes with Helm %}
