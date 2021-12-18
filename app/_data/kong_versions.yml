@@ -455,7 +455,7 @@
 -
 # Combined Gateway docs (single-sourced)
   release: "2.6.x"
-  ee-version: "2.6.0.1"
+  ee-version: "2.6.0.2"
   ce-version: "2.6.0"
   edition: "gateway"
   luarocks_version: "2.5.1-0"
@@ -468,6 +468,22 @@
     openssl: "1.1.1k"
     libyaml: "0.2.5"
     pcre: "8.44"
+  lua_doc: true
+-
+  release: "2.7.x"
+  ee-version: "2.7.0.0"
+  ce-version: "2.7.0"
+  edition: "gateway"
+  luarocks_version: "2.5.1-0"
+  dependencies:
+    luajit: "2.1.0-beta3"
+    luarocks: "3.8.0"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.19.9.1"
+    openssl: "1.1.1l"
+    libyaml: "0.2.5"
+    pcre: "8.45"
   lua_doc: true
 -
   release: "CE-2.0.x_KE-1.5.x"
@@ -533,7 +549,7 @@
   edition: "mesh"
 -
   release: "1.5.x"
-  version: "1.5.0"
+  version: "1.5.1"
   edition: "mesh"
 -
   release: "1.0.x"

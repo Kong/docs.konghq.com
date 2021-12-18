@@ -51,7 +51,6 @@ are defined in the following table:
 | [Kong Ingress Controller](/kubernetes-ingress-controller/) | High-performance connectivity runtime for executing inter-app connectivity logic within a Kubernetes environment. |
 | [{{site.mesh_product_name}}](/mesh/)  | High-performance connectivity runtime for executing in-app connectivity logic. {{site.mesh_product_name}} is built on the Kuma service mesh open-source project. |
 | [Kong Plugins](/hub)                        | Secure, tested, and reliable connectivity logic for all connectivity needs applied through the {{site.base_gateway}} and Kong Ingress Controller runtimes. Many plugins are built and supported by {{site.company_name}}, and a wide array of plugins are also built and maintained by the Kong community. |
-| [Immunity](/gateway/latest/immunity/) | Functionality module that uses machine learning to analyze traffic patterns in real time to improve security, mitigate breaches, and isolate issues. |
 | [Runtime Manager](/konnect/runtime-manager)<br>(Cloud only) | Functionality module that enables provisioning instances of {{site.konnect_short_name}}’s supported runtimes. Runtime Manager provides a unified view of all of these runtimes and their current status. <br><br>**Note:** Currently, the only supported runtime type in the Runtime Manager is a {{site.base_gateway}} data plane. |
 
 ### Speed

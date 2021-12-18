@@ -4,7 +4,7 @@ publisher: Kong Inc.
 version: 1.5.x
 desc: Secure routes and services with client certificate and mutual TLS authentication
 description: |
-  Add mutual TLS authentication based on client-supplied certificate and configured trusted CA list. Automatically maps certificates to **Consumers** based on the common name field.
+  Add mutual TLS authentication based on client-supplied or server-supplied certificate, and on the configured trusted CA list. Automatically maps certificates to **Consumers** based on the common name field.
 enterprise: true
 plus: true
 type: plugin
@@ -15,6 +15,7 @@ kong_version_compatibility:
     compatible: null
   enterprise_edition:
     compatible:
+      - 2.7.x
       - 2.6.x
       - 2.5.x
       - 2.4.x

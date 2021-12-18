@@ -80,7 +80,6 @@ Capitalize the following Kong-specific terms:
 - Dev Portal
 - ServiceHub
 - Vitals
-- Immunity
 
 ### Generic terms
 

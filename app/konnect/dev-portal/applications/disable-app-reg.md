@@ -8,7 +8,7 @@ no longer requires authentication. If you want to disable Auto Approve at the
 Service level, disable app registration and then enable it again with the Auto Approve
 toggle set to disabled.
 
-Disable application registation from the Service Version page **only**.
+Disable application registration from the Service Version page **only**.
 Do not attempt to disable application registration by deleting or disabling the
 read-only application registration plugins (`acl` and `key-auth` or `openid-connect`).
 Attempting to remove them manually will break your Service. See the

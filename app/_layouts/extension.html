@@ -21,8 +21,8 @@ breadcrumbs:
   <tbody>
     <tr>
       <td><code>name</code>
+        <br><i>required</i></td>
         <br><br><strong>Type: </strong>string
-        <br><br><i>required</i></td>
       <td>The name of the plugin to use, in this case <code>{{ page.params.name }}</code>.</td>
     </tr>
 
@@ -49,8 +49,8 @@ breadcrumbs:
     {% endif %}
       <tr>
         <td><code>enabled</code>
+          <br><i>required</i>
           <br><br><strong>Type: </strong>boolean
-          <br><br><i>required</i>
           <br><br><strong>Default value: </strong><code>true</code></td>
         <td>Whether this plugin will be applied.</td>
       </tr>
@@ -76,7 +76,9 @@ breadcrumbs:
           {% if field.default != nil %}<br><br><strong>Default value: </strong><code>{{ field.default | markdownify | strip_html }}</code>{% endif %}
         </td>
         <td>
-          <br>{{ field.description | markdownify }}</td>
+          <br>{{ field.description | markdownify }}
+          <p>{% if field.encrypted == true %}If <a href="/gateway/latest/plan-and-deploy/security/db-encryption">keyring database encryption</a> is enabled, this value will be encrypted.{% endif %}</p>
+        </td>
       </tr>
       {% endif %}
     {% endfor %}
@@ -123,11 +125,11 @@ breadcrumbs:
 
 <div class="page page-extension-profile">
   {% if page.header_icon or page.header_title %}
-    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs type=extn_type name=page.header_title img=page.header_icon header_caption=page.header_caption plus=page.plus enterprise=page.enterprise publisher=page.publisher %}
+    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs type=extn_type name=page.header_title img=page.header_icon plus=page.plus enterprise=page.enterprise publisher=page.publisher extn_filename=extn_filename extn_versions=extn_versions extn_publisher=extn_publisher extn_slug=extn_slug %}
   {% elsif page.type == concept %}
-    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.title img=page.header_icon header_caption=page.header_caption plus=page.plus enterprise=page.enterprise publisher=page.publisher %}
+    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.title img=page.header_icon plus=page.plus enterprise=page.enterprise publisher=page.publisher extn_filename=extn_filename extn_versions=extn_versions extn_publisher=extn_publisher extn_slug=extn_slug %}
   {% else %}
-    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.name img=extn_icon header_caption=page.header_caption plus=page.plus enterprise=page.enterprise publisher=page.publisher %}
+    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.name img=extn_icon plus=page.plus enterprise=page.enterprise publisher=page.publisher extn_filename=extn_filename extn_versions=extn_versions extn_publisher=extn_publisher extn_slug=extn_slug %}
   {% endif %}
 
   <div class="container">
@@ -170,21 +172,22 @@ breadcrumbs:
       {% if page.type == "plugin" and page.params %}
         <h2 id="configuration">Configuration Reference</h2>
 
-        {% if page.params.dbless_compatible == true %}
+        {% if page.params.dbless_compatible == "yes" %}
           <p>This plugin is <strong>compatible</strong> with DB-less mode.</p>
         {% elsif page.params.dbless_compatible == "partially" %}
           <p>This plugin is <strong>partially compatible</strong> with DB-less mode.</p>
         {% elsif page.params.dbless_compatible != nil %}
           <p>This plugin is <strong>not compatible</strong> with DB-less mode.</p>
         {% endif %}
-        {% if page.params.dbless_compatible == "partially" or page.params.dbless_compatible == true %}
-          <p>In DB-less mode, you configure {{site.base_gateway}} declaratively.
+        {% if page.params.dbless_compatible == "partially" or page.params.dbless_compatible == "yes" %}
+          <p>In DB-less mode, you configure {{site.base_gateway}}
+            <a href="/gateway/latest/reference/db-less-and-declarative-config">declaratively</a>.
             Therefore, the Admin API is mostly read-only. The only tasks it can perform are all
             related to handling the declarative config, including: </p>
             <ul>
-              <li>setting a target's health status in the load balancer</li>
-              <li>validating configurations against schemas</li>
-              <li>uploading the declarative configuration using the <code>/config</code> endpoint</li>
+              <li>Setting a target's health status in the load balancer</li>
+              <li>Validating configurations against schemas</li>
+              <li>Uploading the declarative configuration using the <code>/config</code> endpoint</li>
             </ul>
         {% endif %}
 
@@ -293,7 +296,7 @@ breadcrumbs:
             </ul>
           </td>
         </tr>
-        {% unless page.enterprise or page.params.dbless_compatible == nil %}
+        {% unless page.params.dbless_compatible == nil %}
         <tr>
           <td>DB-less compatible?</td>
           <td>

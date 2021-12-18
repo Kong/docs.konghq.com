@@ -1,7 +1,7 @@
 ---
 name: Forward Proxy Advanced
 publisher: Kong Inc.
-version: 1.3-x
+version: 1.0.x
 desc: Allows Kong to connect to intermediary transparent HTTP proxies
 description: |
   The Forward Proxy plugin allows Kong to connect to intermediary transparent
@@ -14,25 +14,17 @@ type: plugin
 categories:
   - traffic-control
 kong_version_compatibility:
-  community_edition:
-    compatible: null
   enterprise_edition:
     compatible:
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+      - 2.7.x
+
 params:
   name: forward-proxy
   api_id: true
   service_id: true
   route_id: true
   consumer_id: true
+  dbless_compatible: 'yes'
   config:
     - name: proxy_host
       required: true
@@ -54,7 +46,23 @@ params:
       value_in_examples: http
       datatype: string
       description: |
-        The proxy scheme to use when connecting. Currently only `http` is supported.
+        The proxy scheme to use when connecting. Only `http` is supported.
+    - name: auth_username
+      required: false
+      default: null
+      value_in_examples: example_user
+      datatype: string
+      description: |
+        The username to authenticate with, if the forward proxy is protected
+        by basic authentication.
+    - name: auth_password
+      required: false
+      default: null
+      value_in_examples: example_pass
+      datatype: string
+      description: |
+        The password to authenticate with, if the forward proxy is protected
+        by basic authentication.
     - name: https_verify
       required: true
       default: false
@@ -64,13 +72,17 @@ params:
         Whether the server certificate will be verified according to the CA certificates
         specified in
         [lua_ssl_trusted_certificate](https://www.nginx.com/resources/wiki/modules/lua/#lua-ssl-trusted-certificate).
+
+  extra: |
+
+    The plugin attempts to transparently replace upstream connections made by Kong
+    core, sending the request instead to an intermediary forward proxy. Only
+    transparent HTTP proxies are supported; TLS connections (via `CONNECT`)
+    are not supported.
+
 ---
+## Changelog
 
-### Notes
+### 1.0.6
 
-The plugin attempts to transparently replace upstream connections made by Kong
- core, sending the request instead to an intermediary forward proxy. Currently
-  only transparent HTTP proxies are supported; TLS connections (via `CONNECT`)
-  are not yet supported.
-
----
+* Added `auth_username` and `auth_password` parameters for proxy authentication.

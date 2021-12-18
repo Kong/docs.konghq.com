@@ -17,6 +17,10 @@ service_body: |
     `tags`<br>*optional* |  An optional set of strings associated with the Service, for grouping and filtering.
     `client_certificate`<br>*optional* |  Certificate to be used as client certificate while TLS handshaking to the upstream server.  With form-encoded, the notation is `client_certificate.id=<client_certificate_id>`. With JSON, use `"client_certificate":{"id":"<client_certificate_id>"}`.
     `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never "returns" the url).
+    `tls_verify`<br>*optional* |  Whether to enable verification of upstream server TLS certificate. If set to `null`, then the Nginx default is respected.
+    `tls_verify_depth`<br>*optional* |  Maximum depth of chain while verifying Upstream server's TLS certificate. If set to `null`, then the Nginx default is respected.  Default: `null`.
+    `ca_certificates`<br>*optional* |  Array of `CA Certificate` object UUIDs that are used to build the trust store while verifying upstream server's TLS certificate. If set to `null` when Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then handshake with upstream server will always fail (because no CA are trusted).  With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an Array.
+    `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never returns the URL).
 
 service_json: |
     {
@@ -33,7 +37,10 @@ service_json: |
         "write_timeout": 60000,
         "read_timeout": 60000,
         "tags": ["user-level", "low-priority"],
-        "client_certificate": {"id":"4e3ad2e4-0bc4-4638-8e34-c84a417ba39b"}
+        "client_certificate": {"id":"4e3ad2e4-0bc4-4638-8e34-c84a417ba39b"},
+        "tls_verify": true,
+        "tls_verify_depth": null,
+        "ca_certificates": ["4e3ad2e4-0bc4-4638-8e34-c84a417ba39b", "51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515"]
     }
 
 service_data: |
@@ -51,7 +58,10 @@ service_data: |
         "write_timeout": 60000,
         "read_timeout": 60000,
         "tags": ["user-level", "low-priority"],
-        "client_certificate": {"id":"51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515"}
+        "client_certificate": {"id":"51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515"},
+        "tls_verify": true,
+        "tls_verify_depth": null,
+        "ca_certificates": ["4e3ad2e4-0bc4-4638-8e34-c84a417ba39b", "51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515"]
     }, {
         "id": "fc73f2af-890d-4f9b-8363-af8945001f7f",
         "created_at": 1422386534,
@@ -66,7 +76,10 @@ service_data: |
         "write_timeout": 60000,
         "read_timeout": 60000,
         "tags": ["admin", "high-priority", "critical"],
-        "client_certificate": {"id":"4506673d-c825-444c-a25b-602e3c2ec16e"}
+        "client_certificate": {"id":"4506673d-c825-444c-a25b-602e3c2ec16e"},
+        "tls_verify": true,
+        "tls_verify_depth": null,
+        "ca_certificates": ["4e3ad2e4-0bc4-4638-8e34-c84a417ba39b", "51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515"]
     }],
 
 route_body: |

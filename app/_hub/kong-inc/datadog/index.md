@@ -1,7 +1,9 @@
 ---
 name: Datadog
 publisher: Kong Inc.
-version: 3.1.x
+version: 3.2.x
+# internal handler version 3.2.0
+
 desc: Visualize metrics on Datadog
 description: |
   Log [metrics](#metrics) for a Service, Route to a local
@@ -12,6 +14,7 @@ categories:
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.7.x
       - 2.6.x
       - 2.5.x
       - 2.4.x
@@ -36,6 +39,7 @@ kong_version_compatibility:
       - 0.6.x
   enterprise_edition:
     compatible:
+      - 2.7.x
       - 2.6.x
       - 2.5.x
       - 2.4.x
@@ -54,7 +58,10 @@ params:
     - https
     - tcp
     - tls
+    - tls_passthrough
     - udp
+    - grpc
+    - grpcs
   dbless_compatible: 'yes'
   config:
     - name: host
@@ -82,7 +89,28 @@ params:
       default: '`kong`'
       datatype: string
       description: String to be attached as prefix to metric's name.
+    - name: service_name_tag
+      required: false
+      default: "name"
+      datatype: string
+      description: String to be attached as name of the service.
+    - name: status_tag
+      required: false
+      default: "status"
+      datatype: string
+      description: String to be attached as name of the http status.
+    - name: consumer_tag
+      required: false
+      default: "consumer"
+      datatype: string
+      description: String to be attached as name of the consumer.
+
 ---
+
+## Changes in this version
+
+- New stat type: `distribution`
+- New configuration options: `consumer_tag`, `status_tag`, `service_name_tag`
 
 ## Metrics
 The Datadog plugin currently logs the following metrics to the Datadog server about a Service or Route.
@@ -105,7 +133,7 @@ Plugin can be configured with any combination of [Metrics](#metrics), with each 
 Field           | Description                                           | Datatypes   | Allowed values
 ---             | ---                                                   | ---         | ---
 `name`          | Datadog metric's name                                 | String      | [Metrics](#metrics)
-`stat_type`     | determines what sort of event the metric represents   | String      | `gauge`, `timer`, `counter`, `histogram`, `meter` and `set`
+`stat_type`     | determines what sort of event the metric represents   | String      | `gauge`, `timer`, `counter`, `histogram`, `meter`, `set`, and `distribution`
 `sample_rate`<br>*conditional*   | sampling rate                        | Number      | `number`
 `consumer_identifier`<br>*conditional*| authenticated user detail       | String      | `consumer_id`, `custom_id`, `username`
 `tags`<br>*optional*| List of tags                                      | Array of strings    | `key[:value]`

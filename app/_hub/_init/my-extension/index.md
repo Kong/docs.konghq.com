@@ -145,6 +145,7 @@ params: # Metadata about your plugin
         # 'semi' means dependent on other settings
       default: # any type - the default value (non-required settings only)
       datatype: # specify the type of the value: e.g., string, array, boolean, etc.
+      encrypted: # specify whether this value can be keyring-encrypted in Kong Enterprise
       value_in_examples:
         # If the field is to appear in examples, this is the value to use.
         # A required field with no value_in_examples entry will resort to

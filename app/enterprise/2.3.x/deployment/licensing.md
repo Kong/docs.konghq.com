@@ -14,7 +14,6 @@ functionality, {{site.base_gateway}} enforces the presence and validity of a
 | Admin API          | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 | Vitals             | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |
 | Dev Portal         | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |
-| Immunity           | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |
 | Enterprise plugins | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |
 
 ## Deploying the license file
@@ -57,7 +56,7 @@ the Admin API will not be accessible until the license is either renewed or the
 subscription is downgraded to the free mode.
 
 In the event of a downgrade, the Admin API will be unlocked, but Enterprise
-features such Dev Portal, Immunity, Enterprise plugins, and others will no
+features such Dev Portal, Enterprise plugins, and others will no
 longer be accessible.
 
 ### License expiration logs

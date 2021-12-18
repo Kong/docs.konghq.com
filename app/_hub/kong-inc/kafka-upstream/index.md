@@ -20,6 +20,7 @@ kong_version_compatibility:
     compatible: null
   enterprise_edition:
     compatible:
+      - 2.7.x
       - 2.6.x
       - 2.5.x
       - 2.4.x
@@ -67,6 +68,7 @@ params:
       urlencode_in_examples: true
       default: null
       datatype: string
+      encrypted: true
       description: |
         Username for SASL authentication.
     - name: authentication.password
@@ -75,6 +77,7 @@ params:
       urlencode_in_examples: true
       default: null
       datatype: string
+      encrypted: true
       description: |
         Password for SASL authentication.
     - name: authentication.tokenauth
@@ -341,3 +344,18 @@ The following steps assume that {{site.base_gateway}} is installed and the Kafka
 
     You should receive a `200 { message: "message sent" }` response, and should see the request bodies appear on
     the Kafka consumer console you started in the previous step.
+
+---
+
+## Changelog
+
+### 0.3.x
+
+* Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
+ the `config.authentication.user` and `config.authentication.password` parameter
+ values will be encrypted.
+
+   {:.important}
+   > There's a bug in {{site.base_gateway}} that prevents keyring encryption
+   from working on deeply nested fields, so the `encrypted=true` setting does not
+   currently have any effect in this plugin.

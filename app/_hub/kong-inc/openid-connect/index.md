@@ -1,7 +1,7 @@
 ---
 name: OpenID Connect
 publisher: Kong Inc.
-version: 2.1.x
+version: 2.2.x
 desc: Integrate Kong with a third-party OpenID Connect provider
 description: |
   OpenID Connect ([1.0][connect]) plugin allows the integration with a 3rd party
@@ -88,6 +88,10 @@ description: |
      the only required parameter. You should specify the `realm` or `iss` for this
      parameter if you don't have a discovery endpoint.
 
+     {:.note}
+      > **Note**: This does not have
+     to match the URL of the `iss` claim in the access tokens being validated. To set
+     URLs supported in the `iss` claim, use `config.issuers_allowed`.
   2. Next, you should decide what authentication grants you want to use with this
      plugin, so configure: `config.auth_methods`.
 
@@ -126,8 +130,7 @@ kong_version_compatibility:
     compatible: null
   enterprise_edition:
     compatible:
-      - 2.5.x
-      - 2.6.x
+      - 2.7.x
 params:
   name: openid-connect
   service_id: true
@@ -240,6 +243,7 @@ params:
         - <client-id>
       default: null
       datatype: array of string elements (the plugin supports multiple clients)
+      encrypted: true
       description: |
         The client id(s) that the plugin uses when it calls authenticated endpoints on the identity provider.
         Other settings that are associated with the client are:
@@ -278,7 +282,7 @@ params:
         - `none`: do not authenticate
 
 
-        > Private keys can be stored in a database, and they are by the default automatically generated 
+        > Private keys can be stored in a database, and they are by the default automatically generated
         > in the database. It is also possible to specify private keys with `config.client_jwk` directly
         > in the plugin configuration.
     - name: client_secret
@@ -287,6 +291,7 @@ params:
         - <client-secret>
       default: null
       datatype: array of string elements (one for each client)
+      encrypted: true
       description: |
         The client secret.
         > Specify one if using `client_secret_*` authentication with the client on
@@ -408,6 +413,11 @@ params:
       description: The name of the parameter used to pass the id token.
     - group: Consumer Mapping
       description: Parameters for mapping external identity provider managed identities to Kong managed ones.
+    - name: admin_claim
+      required: false
+      default: null
+      datatype: string
+      description: The claim used for admin mapping for Kong Manager. Required if mapping IdP claims to Kong Manager admins.
     - name: consumer_claim
       required: false
       default: null
@@ -463,8 +473,8 @@ params:
       default: (discovered issuer)
       datatype: array of string elements
       description: |
-        The scopes (`scopes_claim` claim) required to be present in the access token (or introspection results) for successful authorization. This config parameter works in both **AND** / **OR** cases. 
-        - When `["scope1 scope2"]` are in the same array indices, both `scope1` AND `scope2` need to be present in access token (or introspection results). 
+        The scopes (`scopes_claim` claim) required to be present in the access token (or introspection results) for successful authorization. This config parameter works in both **AND** / **OR** cases.
+        - When `["scope1 scope2"]` are in the same array indices, both `scope1` AND `scope2` need to be present in access token (or introspection results).
         - When `["scope1", "scope2"]` are in different array indices, either `scope1` OR `scope2` need to be present in access token (or introspection results).
     - name: scopes_claim
       required: false
@@ -477,8 +487,8 @@ params:
       default: null
       datatype: array of string elements
       description: |
-        The audiences (`audience_claim` claim) required to be present in the access token (or introspection results) for successful authorization. This config parameter works in both **AND** / **OR** cases. 
-        - When `["audience1 audience2"]` are in the same array indices, both `audience1` AND `audience2` need to be present in access token (or introspection results). 
+        The audiences (`audience_claim` claim) required to be present in the access token (or introspection results) for successful authorization. This config parameter works in both **AND** / **OR** cases.
+        - When `["audience1 audience2"]` are in the same array indices, both `audience1` AND `audience2` need to be present in access token (or introspection results).
         - When `["audience1", "audience2"]` are in different array indices, either `audience1` OR `audience2` need to be present in access token (or introspection results).
     - name: audience_claim
       required: false
@@ -491,8 +501,8 @@ params:
       default: null
       datatype: array of string elements
       description: |
-        The groups (`groups_claim` claim) required to be present in the access token (or introspection results) for successful authorization. This config parameter works in both **AND** / **OR** cases. 
-        - When `["group1 group2"]` are in the same array indices, both `group1` AND `group2` need to be present in access token (or introspection results). 
+        The groups (`groups_claim` claim) required to be present in the access token (or introspection results) for successful authorization. This config parameter works in both **AND** / **OR** cases.
+        - When `["group1 group2"]` are in the same array indices, both `group1` AND `group2` need to be present in access token (or introspection results).
         - When `["group1", "group2"]` are in different array indices, either `group1` OR `group2` need to be present in access token (or introspection results).
     - name: groups_claim
       required: false
@@ -505,8 +515,8 @@ params:
       default: null
       datatype: array of string elements
       description: |
-        The roles (`roles_claim` claim) required to be present in the access token (or introspection results) for successful authorization. This config parameter works in both **AND** / **OR** cases. 
-        - When `["role1 role2"]` are in the same array indices, both `role1` AND `role2` need to be present in access token (or introspection results). 
+        The roles (`roles_claim` claim) required to be present in the access token (or introspection results) for successful authorization. This config parameter works in both **AND** / **OR** cases.
+        - When `["role1 role2"]` are in the same array indices, both `role1` AND `role2` need to be present in access token (or introspection results).
         - When `["role1", "role2"]` are in different array indices, either `role1` OR `role2` need to be present in access token (or introspection results).
     - name: roles_claim
       required: false
@@ -974,6 +984,7 @@ params:
       required: false
       default: '(with database, or traditional mode, the value is auto-generated and stored along the issuer discovery information in the database)'
       datatype: string
+      encrypted: true
       value_in_examples: <session-secret>
       description: The session secret.
     - name: disable_session
@@ -1066,6 +1077,7 @@ params:
     - name: session_redis_auth
       required: false
       default: (from kong)
+      encrypted: true
       datatype: string
       description: The Redis password.
     - name: session_redis_connect_timeout
@@ -1102,7 +1114,9 @@ params:
       required: false
       default: null
       datatype: array of host records
-      description: The Redis cluster nodes.
+      description: |
+        The Redis cluster node host. Takes an array of host records, with
+        either `ip` or `host`, and `port` values.
     - name: session_redis_cluster_maxredirections
       required: false
       default: null
@@ -1562,7 +1576,8 @@ jwks: |
 In the above parameter list, two configuration settings used an array of records as a data type:
 
 - `config.client_jwk`: array of JWK records (one for each client)
-- `config.session_redis_cluster_nodes`: array of host records
+- `config.session_redis_cluster_nodes`: array of host records, either as IP
+addresses or hostnames, and their ports.
 
 Below are descriptions of the record types.
 
@@ -1579,10 +1594,10 @@ Here is an example of JWK record generated by the plugin itself (see: [JSON Web 
 
 ### Host Record
 
-Host record used with the `config.session_redis_cluster_nodes` is a simple one. It just contains
-`ip` and `port` where the `port` defaults to `6379`.
+The Host record used with the `config.session_redis_cluster_nodes` is simple.
+It contains `ip` or `host`, and the `port` where the `port` defaults to `6379`.
 
-Here is an example of Host record:
+Here is an example of Host the record:
 
 ```json
 {{ page.host }}
@@ -3298,3 +3313,22 @@ mean other gateways, load balancers, NATs, and such in front of Kong. If there i
 
 - [port maps](/gateway/latest/reference/configuration/#port_maps)
 - `X-Forwarded-*` headers
+
+---
+
+## Changelog
+
+### 2.2.0
+
+* Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
+ the `config.client_id`, `config.client_secret`, `config.session_auth`, and 
+ `config.session_redis_auth` parameter values will be encrypted.
+
+  Additionally, the `d`, `p`, `q`, `dp`, `dq`, `qi`, `oth`, `r`, `t`, and `k`
+  fields inside `openid_connect_jwks.previous[...].` and `openid_connect_jwks.keys[...]`
+  will be marked as encrypted.
+
+  {:.important}
+  > There's a bug in {{site.base_gateway}} that prevents keyring encryption
+  from working on deeply nested fields, so the `encrypted=true` setting does not
+  currently have any effect on the nested fields in this plugin.

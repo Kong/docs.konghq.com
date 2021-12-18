@@ -1,7 +1,7 @@
 ---
 name: ACME
 publisher: Kong Inc.
-version: 0.2.14
+version: 0.3.x
 source_url: 'https://github.com/Kong/kong-plugin-acme'
 desc: Let's Encrypt and ACMEv2 integration with Kong
 description: |
@@ -13,21 +13,10 @@ categories:
 kong_version_compatibility:
   community_edition:
     compatible:
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
+      - 2.7.x
   enterprise_edition:
     compatible:
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+      - 2.7.x
 params:
   name: acme
   api_id: false
@@ -47,6 +36,7 @@ params:
       required: 'yes'
       default: null
       value_in_examples: example@example.com
+      encrypted: true
       datatype: string
       description: |
         The account identifier. Can be reused in a different plugin instance.
@@ -106,11 +96,13 @@ params:
     - name: eab_kid
       required: false
       datatype: string
+      encrypted: true
       description: |
         External account binding (EAB) key id. You usually don't need to set this unless it is explicitly required by the CA.
     - name: eab_hmac_key
       required: false
       datatype: string
+      encrypted: true
       description: |
         External account binding (EAB) base64-encoded URL string of the HMAC key. You usually don't need to set this unless it is explicitly required by the CA.
   extra: |
@@ -296,7 +288,7 @@ $ curl http://localhost:8001/acme -XPATCH
 `"shm"` storage type is not available in Hybrid Mode.
 
 Due to current the limitations of Hybrid Mode, `"kong"` storage only supports certificate generation from
-the Admin API but not the proxy side. 
+the Admin API but not the proxy side.
 
 `"kong"` storage in Hybrid Mode works in following flow:
 
@@ -312,7 +304,7 @@ the Admin API but not the proxy side.
 
 All external storage types work as usual in Hybrid Mode. Note both the Control Plane and Data Planes
 need to connect to the same external storage cluster. It's also a good idea to setup replicas to avoid
-connecting to same node directly for external storage. 
+connecting to same node directly for external storage.
 
 External storage in Hybrid Mode works in following flow:
 
@@ -388,5 +380,15 @@ Certificate entity is already defined in Kong, they will be overridden by the
 response.
 - The plugin only supports http-01 challenge, meaning a user will need a public
 IP and set up a resolvable DNS. Kong also needs to accept proxy traffic from port `80`.
-Also, note that a wildcard or star (*) certificate is not supported. Each domain must have its
+Also, note that a wildcard or star (`*`) certificate is not supported. Each domain must have its
 own certificate.
+
+---
+
+## Changelog
+
+### 0.3.0
+
+* Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
+ the `account_email`, `eab_kid`, and `eab_hmac_kid` parameter values will be
+ encrypted.

@@ -1,4 +1,10 @@
 [build]
   publish = "dist"
   command = "gulp build"
-  environment = { BUNDLE_WITHOUT = "development", NODE_OPTIONS = "--max_old_space_size=8192" }
+  environment = { JEKYLL_ENV = "development", BUNDLE_WITHOUT = "development", NODE_OPTIONS = "--max_old_space_size=8192" }
+
+[context.main.environment]
+  JEKYLL_ENV = "production"
+
+[context.deploy-preview.environment]
+  JEKYLL_ENV = "preview"

@@ -9,6 +9,17 @@ from a single, cloud-based control plane, and provides a catalog of all deployed
 services.
 
 ## November 2021
+
+### 2021.11.30
+**Single-sign on (SSO) with Okta**
+: {{site.konnect_saas}} now supports single sign-on (SSO) access through
+[Okta](https://developer.okta.com/docs/guides/) with
+[OpenID Connect](https://developer.okta.com/docs/concepts/oauth-openid/#openid-connect).
+
+: See the guide on [Setting up SSO with Okta](/konnect/org-management/okta-idp)
+for more information.
+
+
 ### 2021.11.10
 **{{site.base_gateway}} 2.6.0.0 support**
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 2.6.0.0.
