@@ -160,7 +160,7 @@ Via: kong/1.1.2
 First, setup a ClusterIssuer for cert-manager
 
 ```bash
-$ echo "apiVersion: cert-manager.io/v1alpha2
+$ echo "apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
   name: letsencrypt-prod
