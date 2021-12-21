@@ -97,7 +97,7 @@ return {
         "created_at"   TIMESTAMP WITHOUT TIME ZONE,
         "col1"         TEXT
       );
-    
+
       DO $$
       BEGIN
         CREATE INDEX IF NOT EXISTS "my_plugin_table_col1"
@@ -115,7 +115,7 @@ return {
         created_at  timestamp,
         col1        text
       );
-      
+
       CREATE INDEX IF NOT EXISTS ON my_plugin_table (col1);
     ]],
   }
@@ -229,7 +229,7 @@ return {
     cache_key             = { "key" },
     generate_admin_api    = true,
     admin_api_name        = "key-auths",
-    admin_api_nested_name = "key-auth",    
+    admin_api_nested_name = "key-auth",
     fields = {
       {
         -- a value to be inserted by the DAO itself
@@ -318,7 +318,7 @@ Here is a description of some top-level properties:
   <td><code>boolean</code> (optional)</td>
   <td>
     When <code>generate_admin_api</code> is enabled the admin api auto-generator uses the <code>name</code>
-    to derive the collection urls for the auto-generated admin api. Sometimes you may want to name the 
+    to derive the collection urls for the auto-generated admin api. Sometimes you may want to name the
     collection urls differently from the <code>name</code>. E.g. with DAO <code>keyauth_credentials</code>
     we actually wanted the auto-generator to generate endpoints for this dao with alternate and more
     url-friendly name <code>key-auths</code>, e.g. <code>http://&lt;KONG_ADMIN&gt;/key-auths</code> instead of
@@ -583,10 +583,10 @@ The returned entity will be the entity after the update takes place, or `nil` + 
 The following example modifies the `key` field of an existing credential given the credential's id:
 
 ``` lua
-local entity, err = kong.db.keyauth_credentials:update({
+local entity, err = kong.db.keyauth_credentials:update(
   { id = "2b6a2022-770a-49df-874d-11e2bf2634f5" },
-  { key = "updated_secret" },
-})
+  { key = "updated_secret" }
+)
 
 if not entity then
   kong.log.err("Error when updating keyauth credential: " .. err)
@@ -610,10 +610,10 @@ local entity, err, err_t = kong.db.<name>:upsert(primary_key, <values>)
 Given this code:
 
 ``` lua
-local entity, err = kong.db.keyauth_credentials:upsert({
+local entity, err = kong.db.keyauth_credentials:upsert(
   { id = "2b6a2022-770a-49df-874d-11e2bf2634f5" },
-  { consumer = { id = "a96145fb-d71e-4c88-8a5a-2c8b1947534c" } },
-})
+  { consumer = { id = "a96145fb-d71e-4c88-8a5a-2c8b1947534c" } }
+)
 
 if not entity then
   kong.log.err("Error when upserting keyauth credential: " .. err)
