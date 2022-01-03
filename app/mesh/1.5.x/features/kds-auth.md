@@ -315,4 +315,4 @@ The result looks like:
 
 ## Additional security
 
-By default, a connection from the remote control plane to the global control plane is secured with TLS. You should also configure the remote control plane to [verify the certificate authority (CA) of the global control plane](https://kuma.io/docs/1.0.8/security/certificates/){:target="_blank"}.
+By default, a connection from the remote control plane to the global control plane is secured with TLS. You should also configure the remote control plane to [verify the certificate authority (CA) of the global control plane](https://kuma.io/docs/latest/security/certificates/#control-plane-to-control-plane-multizone){:target="_blank"}.
