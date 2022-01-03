@@ -104,12 +104,12 @@ anything yet, the file should only contain the decK version:
 
 ## (Optional) Verify Control Plane and Data Plane connection
 
-If you're running {{site.base_gateway}} in Hybrid mode, you will need to
-perform all tasks in this guide from the Control Plane. However, you can check
-that all of your configurations are being pushed from the Control Plane to your
-Data Planes using the Cluster Status CLI.
+If you're running {{site.base_gateway}} in [hybrid mode](/gateway/{{page.kong_version}}/plan-and-deploy/hybrid-mode/), 
+you need to perform all tasks in this guide from the control plane. You can check
+that all of your configurations are being pushed from the control plane to your
+data planes using the Cluster Status CLI.
 
-Run the following on a Control Plane:
+Run the following from a control plane:
 
 <!-- codeblock tabs -->
 {% navtabs codeblock %}
@@ -125,7 +125,7 @@ http :8001/clustering/data-planes
 {% endnavtab %}
 {% endnavtabs %}
 <!-- end codeblock tabs -->
-The output shows all of the connected Data Plane instances in the cluster:
+The output shows all of the connected data plane instances in the cluster:
 
 ```json
 {
