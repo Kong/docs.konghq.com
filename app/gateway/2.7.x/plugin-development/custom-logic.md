@@ -93,8 +93,8 @@ available when kong is initializing each worker.
 A plugin's `handler.lua` must return a table containing the functions it must
 execute on each phase.
 
-{{site.ce_product_name}} can process HTTP and stream traffic. Some phases are executed when
-processing only when processing HTTP traffic, others when processing stream,
+{{site.ce_product_name}} can process HTTP and stream traffic. Some phases are executed 
+only when processing HTTP traffic, others when processing stream,
 and some (like `init_worker` and `log`) are invoked by both kinds of traffic.
 
 In addition to functions, a plugin must define two fields:
