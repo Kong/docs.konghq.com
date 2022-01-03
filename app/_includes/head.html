@@ -6,7 +6,8 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{% if page.path
 {% endunless %}
 
 <head>
-  
+
+  {% if jekyll.environment == "production" %}
   <!-- OneTrust Cookies Consent Notice start for konghq.com -->
   <script type="text/javascript" src="https://cdn.cookielaw.org/consent/2c4de954-6bec-4e93-8086-64cb113f151a/OtAutoBlock.js" ></script>
   <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="2c4de954-6bec-4e93-8086-64cb113f151a" ></script>
@@ -14,7 +15,8 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{% if page.path
   function OptanonWrapper() { }
   </script>
   <!-- OneTrust Cookies Consent Notice end for konghq.com -->
-  
+  {% endif %}
+
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
