@@ -28,19 +28,16 @@ on multiple zones to provide redundancy. In such a case, a leader election
 process will elect one instance as a leader, which will manipulate Kong's
 configuration.
 
-### Leader election
+### Leader election (database-backed clusters only)
 
-The {{site.kic_product_name}} performs a leader-election when multiple
-instances of the controller are running to ensure that only a single Controller
-is actively pushing changes to Kong's database (when running in DB-mode).
-If multiple controllers are making changes to the database, it is possible that
-the controllers step over each other.
-If an instance of the controller fails, any other container which is a follower,
-takes up the leadership and then continues syncing Kong's configuration from
-Kubernetes.
+Multiple {{site.kic_product_name}} instances elect a leader when connected to a
+database-backed cluster. This ensures that only a single controller pushes
+configuration to Kong's database to avoid potential conflicts and race
+conditions. When a leader controller shuts down, other instances will detect
+that there is no longer a leader, and one will promote itself to the leader.
 
-For this reason, the Controller needs permission to create a ConfigMap.
-By default, the permission is given at Cluster level but it can be narrowed
+For this reason, the controller needs permission to create a ConfigMap.
+By default, the permission is given at Cluster level, but it can be narrowed
 down to a single namespace (using Role and RoleBinding) for a stricter RBAC
 policy.
 
