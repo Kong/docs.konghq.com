@@ -48,7 +48,6 @@ disable_image_expand: true
   <a href="/gateway/{{page.kong_version}}/install-and-run/debian" class="docs-grid-install-block no-description">
     <img class="install-icon" src="/assets/images/icons/documentation/debian-logo.jpg" alt="" />
     <div class="install-text">Debian
-    <br> <span class="badge oss" aria-label="open-source only"></span>
     </div>
   </a>
 
