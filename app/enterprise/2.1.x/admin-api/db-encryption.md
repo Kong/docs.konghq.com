@@ -65,7 +65,6 @@ HTTP 200 OK
 ```
 
 ## Import Exported Keyring
->>>>>>> public_repo/master
 
 *This endpoint is only available with the `cluster` keyring strategy.*
 
@@ -104,7 +103,6 @@ HTTP 201 Created
 | ---------        | -----------                   |
 | `id`             | 8-byte key identifier.        |
 | `data`           | Base64-encoded keyring export material. |
->>>>>>> public_repo/master
 
 
 **Response**
