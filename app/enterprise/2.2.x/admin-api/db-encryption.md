@@ -101,7 +101,7 @@ HTTP 201 Created
 
 | Attribute        | Description                   |
 | ---------        | -----------                   |
-| `key`             | 8-byte key identifier.        |
+| `id`             | 8-byte key identifier.        |
 | `data`           | Base64-encoded keyring export material. |
 
 
