@@ -140,17 +140,30 @@
 /1.0.x/*                                    /gateway-oss/1.0.x/:splat
 /0.14.x/*                                   /gateway-oss/0.14.x/:splat
 /0.13.x/*                                   /gateway-oss/0.13.x/:splat
-/0.12.x/*                                   /gateway-oss/0.12.x/:splat
-/0.11.x/*                                   /gateway-oss/0.11.x/:splat
-/0.10.x/*                                   /gateway-oss/0.10.x/:splat
-/0.9.x/*                                    /gateway-oss/0.9.x/:splat
-/0.8.x/*                                    /gateway-oss/0.8.x/:splat
-/0.7.x/*                                    /gateway-oss/0.7.x/:splat
-/0.6.x/*                                    /gateway-oss/0.6.x/:splat
-/0.5.x/*                                    /gateway-oss/0.5.x/:splat
-/0.4.x/*                                    /gateway-oss/0.4.x/:splat
-/0.3.x/*                                    /gateway-oss/0.3.x/:splat
-/0.2.x/*                                    /gateway-oss/0.2.x/:splat
+
+# COMMUNITY DOC ARCHIVES
+/0.12.x/*                                   https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.12.x/:splat
+/0.11.x/*                                   https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.11.x/:splat
+/0.10.x/*                                   https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.10.x/:splat
+/0.9.x/*                                    https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.9.x/:splat
+/0.8.x/*                                    https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.8.x/:splat
+/0.7.x/*                                    https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.7.x/:splat
+/0.6.x/*                                    https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.6.x/:splat
+/0.5.x/*                                    https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.5.x/:splat
+/0.4.x/*                                    https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.4.x/:splat
+/0.3.x/*                                    https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.3.x/:splat
+/0.2.x/*                                    https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.2.x/:splat
+/gateway-oss/0.12.x/*                       https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.12.x/:splat
+/gateway-oss/0.11.x/*                       https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.11.x/:splat
+/gateway-oss/0.10.x/*                       https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.10.x/:splat
+/gateway-oss/0.9.x/*                        https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.9.x/:splat
+/gateway-oss/0.8.x/*                        https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.8.x/:splat
+/gateway-oss/0.7.x/*                        https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.7.x/:splat
+/gateway-oss/0.6.x/*                        https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.6.x/:splat
+/gateway-oss/0.5.x/*                        https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.5.x/:splat
+/gateway-oss/0.4.x/*                        https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.4.x/:splat
+/gateway-oss/0.3.x/*                        https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.3.x/:splat
+/gateway-oss/0.2.x/*                        https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.2.x/:splat
 
 
 # STUDIO
@@ -226,14 +239,7 @@
 /gateway-oss/latest/go  /gateway/latest/reference/external-plugins
 /gateway-oss/2.3.x/go   /gateway/latest/reference/external-plugins
 
-/0.11.x/configuration-reference  /gateway/latest/reference/configuration
-/0.12.x/configuration-reference  /gateway/latest/reference/configuration
-/0.13.x/configuration-reference  /gateway/latest/reference/configuration
-/0.14.x/configuration-reference  /gateway/latest/reference/configuration
-/1.0.x/configuration-reference   /gateway/latest/reference/configuration
-/1.1.x/configuration-reference   /gateway/latest/reference/configuration
-/1.2.x/configuration-reference   /gateway/latest/reference/configuration
-/0.11.x/lua-reference/modules/kong.tools.utils.html /gateway/latest/pdk/pdk-reference
+/0.11.x/lua-reference/modules/kong.tools.utils.html https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.11.x/lua-reference/modules/kong.tools.utils.html
 /enterprise/latest/setting-up-admin-api-rbac  /gateway/latest/admin-api/rbac/reference/
 /enterprise/2.6.x/property-reference/   /gateway/2.6.x/reference/configuration
 /enterprise/latest/reference/configuration/  /gateway/latest/reference/configuration
