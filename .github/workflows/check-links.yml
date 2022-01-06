@@ -1,21 +1,29 @@
-name: Check all links weekly
+name: Broken Links
 on:
-  workflow_dispatch:
-  schedule:
-  - cron: "0 0 * * 1" # once every week
+  pull_request:
+    types: [synchronize, ready_for_review, opened]
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-    - uses: actions/checkout@v2
-    - name: Clean environment and files
-      run: make clean
-    - name: Build docker-compose stack
-      run: docker-compose build
-    - name: Create dist folder
-      run: mkdir dist
-    - name: Set permissions
-      run: sudo chmod -R 777 .
-    - name: Check links
-      run: make check-links
+      #- name: Waiting for Netlify Preview
+      #  uses: josephduffy/wait-for-netlify-action@v1
+      #  id: wait-for-netflify-preview
+      #  with:
+      #    site_name: "kongdocs"
+      #    max_timeout: 600
+      - run: |
+          API_URL=$(jq --raw-output .pull_request._links.self.href "$GITHUB_EVENT_PATH")
+
+          FILES=$(curl --request GET \
+            --url "$API_URL/files?per_page=100" \
+            --header "accept: application/vnd.github.v3+json" \
+            --header "authorization: token ${{secrets.GITHUB_TOKEN}}")
+
+          echo $FILES | jq '.[] | select(.status == "added" or .status == "modified") | .filename' > modified_files.json
+          cat modified_files.json
+      - run: |
+          for changed_file in $(cat "modified_files.json"); do
+            echo "Do something with this ${changed_file}."
+          done
