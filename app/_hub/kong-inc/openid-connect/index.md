@@ -2811,7 +2811,7 @@ HTTP/1.1 403 Forbidden
 }
 ```
 
-A few words about `config.scopes_claim` and `config.scores_required` (and the similar configuration options).
+A few words about `config.scopes_claim` and `config.scopes_required` (and the similar configuration options).
 You may have noticed that `config.scopes_claim` is an array of string elements. Why? It is used to traverse
 the JSON when looking up a claim, take for example this imaginary payload:
 
@@ -3321,7 +3321,7 @@ mean other gateways, load balancers, NATs, and such in front of Kong. If there i
 ### 2.2.0
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
- the `config.client_id`, `config.client_secret`, `config.session_auth`, and 
+ the `config.client_id`, `config.client_secret`, `config.session_auth`, and
  `config.session_redis_auth` parameter values will be encrypted.
 
   Additionally, the `d`, `p`, `q`, `dp`, `dq`, `qi`, `oth`, `r`, `t`, and `k`
