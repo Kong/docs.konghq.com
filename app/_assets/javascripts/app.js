@@ -686,11 +686,9 @@ $(".closebanner").on("click", function () {
 
 
 jQuery(function () {
-    // $(".badge").wrap( "<div class='tooltip'></div>" );
-    // // $(".badge").addClass("tooltiptext");
 
-
-  // $(".badge").addClass("tooltip");
+  // Attempt #3 at applying classes to badges: this approach adds two divs,
+  // tooltip and tooltiptext, inside whichever element has a badge
 
     $(".badge.enterprise").prepend( "<div class='tooltip'><div class='tooltiptext' data-title='Available with Enterprise subscription'></div></div>" );
     $(".badge.plus").prepend( "<div class='tooltip'><div class='tooltiptext' data-title='Available with Plus subscription (Konnect Cloud)'></div></div>" );
@@ -698,15 +696,20 @@ jQuery(function () {
     $(".badge.oss").prepend( "<div class='tooltip'><div class='tooltiptext' data-title='Available in open-source only'></div></div>" );
     $(".badge.dbless").prepend( "<div class='tooltip'><div class='tooltiptext' data-title='Compatible with DB-less deployments'></div></div>" );
 
-    //
-    // $( "<div class='tooltip'></div>" ).insertAfter(".badge");
-    // // $(".badge").addClass("tooltiptext");
+  // Attempt #2: Add two divs, tooltip and tooltiptext, after (not inside)
+  // whichever element has a badge
 
     // $( "<div class='tooltip'><div class='tooltiptext' data-title='Available with Enterprise subscription'></div></div>" ).insertAfter(".badge.enterprise");
     // $( "<div class='tooltip'><div class='tooltiptext' data-title='Available with Plus subscription (Konnect Cloud)'></div></div>" ).insertAfter(".badge.plus");
     // $( "<div class='tooltip'><div class='tooltiptext' data-title='Available in Free mode (not open-source)'></div></div>" ).insertAfter(".badge.free");
     // $( "<div class='tooltip'><div class='tooltiptext' data-title='Available in open-source only'></div></div>" ).insertAfter(".badge.oss");
     // $( "<div class='tooltip'><div class='tooltiptext' data-title='Compatible with DB-less deployments'></div></div>" ).insertAfter(".badge.dbless");
+
+  // Attempt #1: Wrap the element with a .badge class with one div, tooltip
+  // Apply a tooltiptext class to the same element that already has a badge class
+
+    // $(".badge").wrap( "<div class='tooltip'></div>" );
+    // $(".badge").addClass("tooltiptext");
 
     // $( "<div class='tooltiptext' data-title='Available with Enterprise subscription'></div></div>" ).insertAfter(".badge.enterprise");
     // $( "<div class='tooltiptext' data-title='Available with Plus subscription (Konnect Cloud)'></div></div>" ).insertAfter(".badge.plus");
