@@ -683,3 +683,34 @@ $(".closebanner").on("click", function () {
   $(".navbar-v2").addClass("closed");
   localStorage.setItem("closebanner-hackathon", "closebanner");
 });
+
+
+jQuery(function () {
+    // $(".badge").wrap( "<div class='tooltip'></div>" );
+    // // $(".badge").addClass("tooltiptext");
+
+
+  // $(".badge").addClass("tooltip");
+
+    $(".badge.enterprise").prepend( "<div class='tooltip'><div class='tooltiptext' data-title='Available with Enterprise subscription'></div></div>" );
+    $(".badge.plus").prepend( "<div class='tooltip'><div class='tooltiptext' data-title='Available with Plus subscription (Konnect Cloud)'></div></div>" );
+    $(".badge.free").prepend( "<div class='tooltip'><div class='tooltiptext' data-title='Available in Free mode (not open-source)'></div></div>" );
+    $(".badge.oss").prepend( "<div class='tooltip'><div class='tooltiptext' data-title='Available in open-source only'></div></div>" );
+    $(".badge.dbless").prepend( "<div class='tooltip'><div class='tooltiptext' data-title='Compatible with DB-less deployments'></div></div>" );
+
+    //
+    // $( "<div class='tooltip'></div>" ).insertAfter(".badge");
+    // // $(".badge").addClass("tooltiptext");
+
+    // $( "<div class='tooltip'><div class='tooltiptext' data-title='Available with Enterprise subscription'></div></div>" ).insertAfter(".badge.enterprise");
+    // $( "<div class='tooltip'><div class='tooltiptext' data-title='Available with Plus subscription (Konnect Cloud)'></div></div>" ).insertAfter(".badge.plus");
+    // $( "<div class='tooltip'><div class='tooltiptext' data-title='Available in Free mode (not open-source)'></div></div>" ).insertAfter(".badge.free");
+    // $( "<div class='tooltip'><div class='tooltiptext' data-title='Available in open-source only'></div></div>" ).insertAfter(".badge.oss");
+    // $( "<div class='tooltip'><div class='tooltiptext' data-title='Compatible with DB-less deployments'></div></div>" ).insertAfter(".badge.dbless");
+
+    // $( "<div class='tooltiptext' data-title='Available with Enterprise subscription'></div></div>" ).insertAfter(".badge.enterprise");
+    // $( "<div class='tooltiptext' data-title='Available with Plus subscription (Konnect Cloud)'></div></div>" ).insertAfter(".badge.plus");
+    // $( "<div class='tooltiptext' data-title='Available in Free mode (not open-source)'></div></div>" ).insertAfter(".badge.free");
+    // $( "<div class='tooltiptext' data-title='Available in open-source only'></div></div>" ).insertAfter(".badge.oss");
+    // $( "<div class='tooltiptext' data-title='Compatible with DB-less deployments'></div></div>" ).insertAfter(".badge.dbless");
+});
