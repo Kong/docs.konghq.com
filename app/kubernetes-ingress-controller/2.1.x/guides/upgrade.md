@@ -3,7 +3,7 @@ title: Upgrading to 2.1.x
 ---
 
 This guide walks through backwards incompatible changes in the Kong Kubernetes
-Ingress Controller (KIC) from to v2.1.x to help operators evaluate if any
+Ingress Controller (KIC) to v2.1.x to help operators evaluate if any
 changes to their configuration are needed to upgrade, provides
 guidance on how to build testing environments to validate the upgrade, and
 walks through an upgrade of the Kubernetes Ingress Controller (KIC) using
@@ -41,11 +41,13 @@ did not apply correctly to Kong upstreams. 2.1.x CRDs fix these fields:
 * `healthchecks.active.unhealthy.timeout` is now
   `healthchecks.active.unhealthy.timeouts`
 
-Review your KongIngresses to see if you use either of the old fields. You will
-need to re-add them with the new field name after upgrading. Kubernetes does
-not allow unknown fields in CRDs, and will strip the old field and its value
-after updating. There is no means of copying these into the new field
-automatically.
+Before upgrading, review your KongIngresses to see if you use either of the old 
+fields. You will need to manually re-add them with the new field name after 
+upgrading. 
+
+Kubernetes does not allow unknown fields in CRDs. Since the old fields don't 
+exist in 2.1, Kubernetes will strip the old field and its value after updating. 
+There is no automated way to copy the old values into the new field.
 
 Helm does not update CRDs automatically, and 2.1 includes changes to the
 controller CRDs. You must apply them manually before upgrading:
@@ -340,4 +342,4 @@ identify and correct these issues, or reference the
 [troubleshooting documentation][troubleshooting].
 
 [troubleshooting]:/kubernetes-ingress-controller/{{page.kong_version}}/troubleshooting/
-[admission]:/kubernetes-ingress-controller/{{page.kong_version}}/deployment/admission-webhook.md
+[admission]:/kubernetes-ingress-controller/{{page.kong_version}}/deployment/admission-webhook
