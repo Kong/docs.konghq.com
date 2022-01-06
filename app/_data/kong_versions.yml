@@ -571,3 +571,7 @@
   release: "2.0.x"
   version: "2.0.0"
   edition: "kubernetes-ingress-controller"
+-
+  release: "2.1.x"
+  version: "2.1.0"
+  edition: "kubernetes-ingress-controller"
