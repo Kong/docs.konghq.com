@@ -13,7 +13,8 @@ jobs:
       #  with:
       #    site_name: "kongdocs"
       #    max_timeout: 600
-      - run: |
+      - name: List changed files
+        run: |
           API_URL=$(jq --raw-output .pull_request._links.self.href "$GITHUB_EVENT_PATH")
 
           FILES=$(curl --request GET \
@@ -23,7 +24,13 @@ jobs:
 
           echo $FILES | jq '.[] | select(.status == "added" or .status == "modified") | .filename' > modified_files.json
           cat modified_files.json
-      - run: |
+      - name: Output changed files (Testing)
+        run: |
           for changed_file in $(cat "modified_files.json"); do
             echo "Do something with this ${changed_file}."
           done
+      - name: Filter down to just prose changes
+        run: sleep 1
+      - name: Check for broken Links
+        run: |
+          docker run raviqqe/muffet --one-page-only https://docs.konghq.com/gateway/ -c 32 --rate-limit=10 --exclude "https://(linkedin.com|cdn.segment.com)" -t 60
