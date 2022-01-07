@@ -40,13 +40,13 @@ failures scenarios, recovery methods, as well as scaling considerations.
 
 ### Ingress classes
 
-[Ingress classes](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ingress-classes) filter which resources the
+[Ingress classes](/kubernetes-ingres-controller/{{page.kong_version}}/concepts/ingress-classes) filter which resources the
 controller loads. They ensure that {{site.kic_product_name}} instances do not
 load configuration intended for other instances or other ingress controllers.
 
 ### Security
 
-Refer to the [Security concepts guide](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/security) to understand the
+Refer to the [Security concepts guide](/kubernees-ingress-controller/{{page.kong_version}}/concepts/security) to understand the
 default security settings and how to further secure the Ingress Controller.
 
 ## Guides and Tutorials
@@ -64,7 +64,7 @@ Please refer to the following documents detailing this process:
 - [Annotations](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations)
 - [CLI arguments](/kubernetes-ingress-controller/{{page.kong_version}}/references/cli-arguments)
 - [Version compatibility matrix](/kubernetes-ingress-controller/{{page.kong_version}}/references/version-compatibility)
-- [Plugin compatibility matrix](/kubernetes-ingress-controller/{{page.kong_version}}/references/plugin-compatibility)
+- [Plugin compatibility matrix](/kubernetes-ingress-controller/{{page.kong_version}}/referencs/plugin-compatibility)
 - [Prometheus metrics](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus)
 
 ## FAQs
