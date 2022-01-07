@@ -1,23 +1,19 @@
 const { Octokit } = require("@octokit/rest");
 const { HtmlUrlChecker } = require("broken-link-checker");
+const github = require("@actions/github");
 (async function () {
-  const owner = "kong";
-  const repo = "docs.konghq.com";
-  //const pull_number = "3453"; // Data file changes
-  const pull_number = "3528";
-
+  const pull_number = github.context.issue.number;
   const baseUrl = `https://deploy-preview-${pull_number}--kongdocs.netlify.app`;
 
   const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN,
   });
-  // Get pages that have changed in the PR
 
+  // Get pages that have changed in the PR
   const files = await octokit.paginate(
     octokit.rest.pulls.listFiles,
     {
-      owner,
-      repo,
+      ...github.context.repo,
       pull_number,
     },
     (response) => response.data
@@ -25,6 +21,7 @@ const { HtmlUrlChecker } = require("broken-link-checker");
 
   const filenames = files.map((f) => f.filename);
 
+  // Generate a list of URLs to test
   const urls = [];
   for (let f of filenames) {
     // If any data files have changed, we need to check a page that uses that
@@ -41,13 +38,13 @@ const { HtmlUrlChecker } = require("broken-link-checker");
     }
   }
 
+  console.log(`Running against the following URLs:\n\n${urls.join("\n")}`);
+
   // Check all the URLs provided
   const r = await checkUrls(urls);
-  console.log(urls);
 
   // Output report
-
-  //console.log(r);
+  console.log(r);
 })();
 
 function checkUrls(urls) {
@@ -64,7 +61,6 @@ function checkUrls(urls) {
       },
       {
         link: (result) => {
-          console.log(result);
           if (result.broken) {
             // Handle HTTP 308 which is a valid response
             if (result.brokenReason === "HTTP_308") {

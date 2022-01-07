@@ -7,30 +7,22 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      #- name: Waiting for Netlify Preview
-      #  uses: josephduffy/wait-for-netlify-action@v1
-      #  id: wait-for-netflify-preview
-      #  with:
-      #    site_name: "kongdocs"
-      #    max_timeout: 600
-      - name: List changed files
-        run: |
-          API_URL=$(jq --raw-output .pull_request._links.self.href "$GITHUB_EVENT_PATH")
-
-          FILES=$(curl --request GET \
-            --url "$API_URL/files?per_page=100" \
-            --header "accept: application/vnd.github.v3+json" \
-            --header "authorization: token ${{secrets.GITHUB_TOKEN}}")
-
-          echo $FILES | jq '.[] | select(.status == "added" or .status == "modified") | .filename' > modified_files.json
-          cat modified_files.json
-      - name: Output changed files (Testing)
-        run: |
-          for changed_file in $(cat "modified_files.json"); do
-            echo "Do something with this ${changed_file}."
-          done
-      - name: Filter down to just prose changes
-        run: sleep 1
-      - name: Check for broken Links
-        run: |
-          docker run raviqqe/muffet --one-page-only https://docs.konghq.com/gateway/ -c 32 --rate-limit=10 --exclude "https://(linkedin.com|cdn.segment.com)" -t 60
+      - name: Wait for Pages changed to be neutral
+        uses: fountainhead/action-wait-for-check@v1.0.0
+        id: waitForCheck
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          checkName: "Pages changed"
+      - name: Wait for site to be ready
+        if: steps.waitForCheck.outputs.conclusion == 'neutral'
+        uses: jakepartusch/wait-for-netlify-action@v1.2
+        id: waitForNetlify
+        with:
+          site_name: "kongdocs"
+      - run: |
+          cd broken-link-checker
+          npm ci
+          node run.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
