@@ -7,20 +7,21 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Wait for Pages changed to be neutral
-        uses: fountainhead/action-wait-for-check@v1.0.0
-        id: waitForCheck
-        with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          checkName: "Pages changed"
-      - name: Wait for site to be ready
+      #- name: Wait for Pages changed to be neutral
+      #  uses: fountainhead/action-wait-for-check@v1.0.0
+      #  id: waitForCheck
+      #  with:
+      #    ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      #    token: ${{ secrets.GITHUB_TOKEN }}
+      #    checkName: "Pages changed"
+      - name: Wait for Netlify site to be ready
         if: steps.waitForCheck.outputs.conclusion == 'neutral'
         uses: jakepartusch/wait-for-netlify-action@v1.2
         id: waitForNetlify
         with:
           site_name: "kongdocs"
-      - run: |
+      - name: Run link checker
+        run: |
           cd broken-link-checker
           npm ci
           node run.js
