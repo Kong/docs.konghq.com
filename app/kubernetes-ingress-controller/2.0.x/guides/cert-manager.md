@@ -180,10 +180,6 @@ spec:
 clusterissuer.cert-manager.io/letsencrypt-prod configured
 ```
 
-*Note*: If you run into issues configuring this,
-be sure that the group (`cert-manager.io`) and
-version (`v1alpha2`) match those in the output of
-`kubectl describe crd clusterissuer`.
 This directs cert-manager which CA authority to use to issue the certificate.
 
 Next, update your Ingress resource to provision a certificate and then use it:
