@@ -61,6 +61,61 @@ box to save.
 
 4. Enter a version name and click **Create** to save.
 
+    Service versions have a Published status by default upon creation.
+
+### Set a Service Version to Draft
+
+1. From the left navigation menu, click **Services**.
+
+2. Select a Service from the dropdown menu.
+
+3. Navigate to **Versions**.
+
+4. Click on the version you want to set as a draft, and you'll be taken to the version detail page.
+
+5. Click on the **Actions** dropdown menu.
+
+6. Click **Set Version as Draft** to set the Service version as a draft. The service version will not appear
+   on the Dev Portal UI and will still be editable in the Konnect Admin UI.
+
+### Archive a Service Version
+
+1. From the left navigation menu, click **Services**.
+
+2. Select a Service from the dropdown menu.
+
+3. Navigate to **Versions**.
+
+4. Click on the version you want to archive, and you'll be taken to the version detail page.
+
+5. Click on the **Actions** dropdown menu.
+
+6. Click **Archive Version** to archive the Service version. Archiving prevents that 
+version from showing up on the Dev Portal UI.
+
+    The Service version will still appear on the Konnect Admin UI, however users 
+    will not be able to send requests to the Service version endpoints, and those 
+    endpoints will no longer be supported.
+
+    An archived version can be changed back to Published status, and the endpoints will be accessible again.
+
+### Deprecate a Service Version
+
+1. From the left navigation menu, click **Services**.
+
+2. Select a Service from the dropdown menu.
+
+3. Navigate to **Versions**.
+
+4. Click on the version you want to deprecate, and you'll be taken to the version detail page.
+
+5. Click on the **Actions** dropdown menu.
+
+6. Click **Deprecate Version** to deprecate the Service version. Deprecating a service version will
+   show a Deprecated status. Endpoints are still fully useable.
+
+   A deprecated version can be changed back to Published status. Click **Undeprecate** in the **Actions** dropdown.
+
 ### Delete a Service Version
 
 1. From the left navigation menu, click **Services**.

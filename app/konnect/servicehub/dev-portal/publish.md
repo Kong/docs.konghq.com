@@ -9,11 +9,6 @@ developers.
 Through ServiceHub, you can publish any Service in your catalog and its
 documentation to the Dev Portal using the default URL.
 
-Setting up custom Dev Portal URLs is not currently supported through
-{{site.konnect_saas}}. If needed,
-contact [Kong Support](https://support.konghq.com/), and we will manually set up
-a custom Dev Portal URL for your {{site.konnect_saas}} account.
-
 ## Publish a Service
 
 1. From the left navigation menu, open the **Services** page and select a
