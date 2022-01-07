@@ -236,7 +236,7 @@ Name:         demo-example-com
 Namespace:    default
 Labels:       <none>
 Annotations:  <none>
-API Version:  certmanager.k8s.io/v1alpha1
+API Version:  certmanager.k8s.io/v1
 Kind:         Certificate
 Metadata:
   Creation Timestamp:  2019-06-21T20:41:54Z
@@ -249,7 +249,7 @@ Metadata:
     Name:                  demo-example-com
     UID:                   261d15d3-9464-11e9-9965-42010a8a01ad
   Resource Version:        19561898
-  Self Link:               /apis/certmanager.k8s.io/v1alpha1/namespaces/default/certificates/demo-example-com
+  Self Link:               /apis/certmanager.k8s.io/v1/namespaces/default/certificates/demo-example-com
   UID:                     014d3f1d-9465-11e9-9965-42010a8a01ad
 Spec:
   Acme:
