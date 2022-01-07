@@ -249,7 +249,7 @@ Please follow the
 [Using the KongIngress resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongingress-resource)
 guide for details on how to use this resource.
 
-For reference, the following is a complete spec for KongIngress:
+For reference, the following is a complete spec for KongIngress (for properties information see [Upstream][kong-upstream], [Service][kong-service] and [Route][kong-route] entities):
 
 ```yaml
 apiVersion: configuration.konghq.com/v1
