@@ -43,7 +43,7 @@ deployment.extensions/kong created
 
 ## Set up cert-manager
 
-Please follow cert-manager's [documentation](https://docs.cert-manager.io/en/latest/getting-started/install/kubernetes.html)
+Please follow cert-manager's [documentation](https://cert-manager.io/docs/installation/)
 on how to install cert-manager onto your cluster.
 
 Once installed, verify all the components are running using:

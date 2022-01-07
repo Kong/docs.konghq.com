@@ -203,9 +203,9 @@ curl -X GET http://{HOST}:8001/consumers/{CONSUMER}/acls
 
 `CONSUMER`: The `username` or `id` of the Consumer.
 
-#### Retrieve Consumer by ID
+#### Retrieve ACL by ID
 
-Retrieves a Consumer by ID if the ACL belongs to the specified Consumer. 
+Retrieves ACL by ID if the ACL belongs to the specified Consumer. 
 
 ```bash
 curl -X GET http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}
@@ -220,7 +220,7 @@ curl -X GET http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}
 
 `CONSUMER`: The `username` property of the Consumer entity.
 
-`ID`: The Consumer ID.  
+`ID`: The `id` property of the ACL.  
 
 #### Retrieve the Consumer associated with an ACL
 
@@ -237,27 +237,20 @@ curl -X GET http://{HOST}:8001/acls/{ID}/consumer
 }
 ```
 
-`ID`: The `id` property of the ACL for which to get the associated
-Consumer.
+`ID`: The `id` property of the ACL.
 
 #### Upsert an ACL group name
 
-Upserts the group name of the ACL. 
+Upserts the group name of the ACL by passing a new group name. 
 
 ```bash
-curl -X PUT 'http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}'
-
-{
-    "group": "foo-group",
-    "created_at": 1511391159000,
-    "id": "724d1be7-c39e-443d-bf36-41db17452c75",
-    "consumer": { "id": "89a41fef-3b40-4bb0-b5af-33da57a7ffcf" }
-}
+curl -X PUT http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}
+  --data "group=newgroupname"
 ```
 
 `CONSUMER`: The `username` property of the Consumer entity.
 
-`ID`: The Consumer ID.  
+`ID`: The `id` property of the ACL.  
 
 #### Update an ACL group by ID
 
@@ -267,25 +260,27 @@ Updates an ACL group name by passing a new group name.
 curl -X POST http://{HOST}:8001/consumers/{CONSUMER}/acls \
     --data "group=group1"
 
-{
-    "group": "group1",
-    "created_at": 1511391159000,
-    "id": "724d1be7-c39e-443d-bf36-41db17452c75",
-    "consumer": { "id": "89a41fef-3b40-4bb0-b5af-33da57a7ffcf" }
-}
 ```
 
 `CONSUMER`: The `username` property of the Consumer entity.
 
-`group`: The arbitrary group name to associate to the Consumer.
+#### Remove an ACL group for a Consumer
 
-#### Delete an ACL group
-
-Deletes an ACL group by ID or group. 
+Deletes an ACL group by ID or group name.
 
 ```bash
-curl -X DELETE http://{HOST}:8001/consumers/{CONSUMER}/acls 
+curl -X DELETE http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}
 ```
+
+`ID`: The `id` property of the ACL.  
+
+Deletes an ACL group by group name.
+
+```bash
+curl -X DELETE http://{HOST}:8001/consumers/{CONSUMER}/acls/{GROUP}
+```
+
+`GROUP`: The `group` property of the ACL.  
 
 A successful DELETE request returns a `204` status. 
 

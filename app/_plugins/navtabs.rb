@@ -56,16 +56,16 @@ module Jekyll
       def get_template
         <<-EOF
 <div class="navtabs <%= @class %>">
-  <div class="navtab-titles">
+  <div class="navtab-titles" role="tablist">
   <% environment['navtabs-' + navtabs_id].each_with_index do |(title, value), index| %>
-    <div data-navtab-id="navtab-<%= navtabs_id %>-<%= index %>" class="navtab-title">
+    <div data-navtab-id="navtab-<%= navtabs_id %>-<%= index %>" class="navtab-title" role="tab" aria-controls="navtab-id-<%= index %>" tabindex="0">
       <%= title %>
     </div>
   <% end %>
   </div>
   <div class="navtab-contents">
   <% environment['navtabs-' + navtabs_id].each_with_index do |(title, value), index| %>
-    <div data-navtab-content="navtab-<%= navtabs_id %>-<%= index %>" class="navtab-content">
+    <div data-navtab-content="navtab-<%= navtabs_id %>-<%= index %>" class="navtab-content" role="tabpanel" id="navtab-id-<%= index %>" tabindex="0" aria-labelledby="navtab-id-<%= index %>" >
       <%= value %>
     </div>
   <% end %>

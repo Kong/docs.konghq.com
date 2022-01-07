@@ -226,7 +226,7 @@ return {
     cache_key             = { "key" },
     generate_admin_api    = true,
     admin_api_name        = "key-auths",
-    admin_api_nested_name = "key-auth",    
+    admin_api_nested_name = "key-auth",
     fields = {
       {
         -- a value to be inserted by the DAO itself
@@ -579,10 +579,10 @@ The returned entity will be the entity after the update takes place, or `nil` + 
 The following example modifies the `key` field of an existing credential given the credential's id:
 
 ``` lua
-local entity, err = kong.db.keyauth_credentials:update({
+local entity, err = kong.db.keyauth_credentials:update(
   { id = "2b6a2022-770a-49df-874d-11e2bf2634f5" },
-  { key = "updated_secret" },
-})
+  { key = "updated_secret" }
+)
 
 if not entity then
   kong.log.err("Error when updating keyauth credential: " .. err)
@@ -606,10 +606,10 @@ local entity, err, err_t = kong.db.<name>:upsert(primary_key, <values>)
 Given this code:
 
 ``` lua
-local entity, err = kong.db.keyauth_credentials:upsert({
+local entity, err = kong.db.keyauth_credentials:upsert(
   { id = "2b6a2022-770a-49df-874d-11e2bf2634f5" },
-  { consumer = { id = "a96145fb-d71e-4c88-8a5a-2c8b1947534c" } },
-})
+  { consumer = { id = "a96145fb-d71e-4c88-8a5a-2c8b1947534c" } }
+)
 
 if not entity then
   kong.log.err("Error when upserting keyauth credential: " .. err)
