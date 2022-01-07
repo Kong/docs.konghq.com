@@ -277,8 +277,13 @@ X-RateLimit-Remaining-minute: 2
 X-Kong-Upstream-Latency: 0
 X-Kong-Proxy-Latency: 4
 Via: kong/1.1.2
+```
 
+```bash
 $ curl -I -H "Host: example.com" $PROXY_IP/bar/sample
+```
+Expected output
+```text
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Connection: keep-alive
