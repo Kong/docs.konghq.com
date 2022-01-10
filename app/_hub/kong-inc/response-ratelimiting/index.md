@@ -158,6 +158,11 @@ params:
       default: '`6379`'
       datatype: integer
       description: 'When using the `redis` policy, this property specifies the port of the Redis server.'
+    - name: redis_username
+      required: false
+      datatype: string
+      description: |
+        When using the `redis` policy, this property specifies the username to connect to the Redis server when ACL authentication is desired.
     - name: redis_password
       required: false
       datatype: string
