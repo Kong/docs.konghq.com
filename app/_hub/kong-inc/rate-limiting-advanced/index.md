@@ -203,13 +203,22 @@ params:
       datatype: number
       description: |
         Read timeout to use for Redis connection when the `redis` strategy is defined.
+    - name: redis.username
+      required: semi
+      default:
+      value_in_examples:
+      datatype: string
+      description: |
+        Username to use for Redis connection when the `redis` strategy is defined and ACL authentication is desired.
+        If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+
     - name: redis.password
       required: semi
       default:
       value_in_examples:
       datatype: string
       description: |
-        Password to use for Redis connection when the `redis` strategy is defined. If undefined, no AUTH commands are sent to Redis.
+        Password to use for Redis connection when the `redis` strategy is defined.
+        If undefined, no AUTH commands are sent to Redis.
     - name: redis.database
       required: semi
       default: 0
@@ -225,15 +234,22 @@ params:
       description: |
         Sentinel master to use for Redis connections when the `redis` strategy is defined.
         Defining this value implies using Redis Sentinel.
+    - name: redis.sentinel_username
+      required: semi
+      default:
+      value_in_examples:
+      datatype: string
+      description: |
+            Sentinel username to authenticate with a Redis Sentinel instance.
+            If undefined, ACL authentication will not be performed. This requires Redis v6.2.0+
     - name: redis.sentinel_password
       required: semi
       default:
       value_in_examples:
       datatype: string
       description: |
-            Sentinel password to authenticate with a Redis Sentinel instance. If undefined, no AUTH commands are sent to Redis Sentinels.
-            **Note:** This parameter is only available for Kong Gateway versions
-            1.3.0.2 and later.
+            Sentinel password to authenticate with a Redis Sentinel instance.
+            If undefined, no AUTH commands are sent to Redis Sentinels.
     - name: redis.sentinel_role
       required: semi
       default:
