@@ -692,9 +692,9 @@ jQuery(function () {
     $('.badge.plus')
       .append( '<div class="tooltip"><span class="tooltiptext">Available with Plus subscription (Konnect Cloud)</span></div>' );
     $('.badge.free')
-      .append( '<div class="tooltip"><span class="tooltiptext">Available in Free mode (not open-source)</span></div>' );
+      .append( '<div class="tooltip"><span class="tooltiptext">Available in Enterprise Free mode (without a license)</span></div>' );
     $('.badge.oss')
-      .append( '<div class="tooltip"><span class="tooltiptext" >Available in open-source only</span></div>' );
+      .append( '<div class="tooltip"><span class="tooltiptext" >Available in Kong open-source only</span></div>' );
     $('.badge.dbless')
       .append( '<div class="tooltip"><span class="tooltiptext">Compatible with DB-less deployments</span></div>' );
 });
