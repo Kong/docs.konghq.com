@@ -2,21 +2,22 @@ const { Octokit } = require("@octokit/rest");
 const { HtmlUrlChecker } = require("broken-link-checker");
 const github = require("@actions/github");
 (async function () {
-  const pull_number = github.context.issue.number;
+  const pull_number = github.context.issue.number || process.argv[2];
   const baseUrl = `https://deploy-preview-${pull_number}--kongdocs.netlify.app`;
 
   const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN,
   });
 
-  // Get pages that have changed in the PR
+  // Get pages that have added or modified in the PR
+  const allowedStatus = ["added", "modified"];
   const files = await octokit.paginate(
     octokit.rest.pulls.listFiles,
     {
       ...github.context.repo,
       pull_number,
     },
-    (response) => response.data
+    (response) => response.data.filter((r) => allowedStatus.includes(r.status))
   );
 
   const filenames = files.map((f) => f.filename);
