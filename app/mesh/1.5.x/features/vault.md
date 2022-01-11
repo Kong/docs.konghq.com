@@ -173,7 +173,7 @@ Vault, you must provide credentials in the configuration of the `mesh` object of
 You can authenticate with the `token` or with client certificates by providing `clientKey` and `clientCert`.
 
 You can provide these values inline for testing purposes only, as a path to a file on the
-same host as `kuma-cp`, or contained in a `secret`. See [the Kuma Secrets documentation](https://kuma.io/docs/latest/documentation/secrets/).
+same host as `kuma-cp`, or contained in a `secret`. See [the Kuma Secrets documentation](https://kuma.io/docs/latest/security/secrets/).
 
 Here's an example of a configuration with a `vault`-backed CA:
 
@@ -202,14 +202,16 @@ spec:
             pki: kmesh-pki-default # name of the configured PKI
             role: dataplane-proxies # name of the role that will be used to generate data plane proxy certificates
             commonName: {% raw %}'{{ tag "kuma.io/service" }}.mesh'{% endraw %} # optional. If set, then commonName is added to the certificate. You can use "tag" directive to pick a tag which will be base for commonName.
-            tls:
-              caCert:
-                secret: sec-1
-              skipVerify: false # if set to true, caCert is optional. Set to true only for development
-              serverName: "" # verify sever name
-            auth: # only one auth options is allowed so it's either "token" or "tls"
+
+            tls: # options for connecting to Vault via TLS
+              skipVerify: false   # if set to true, caCert is optional, should only be used in development
+              caCert:             # caCert is used to verify the TLS certificate presented by Vault
+                secret: sec-1     # one of secret, inline, or inlineString
+              serverName: ""      # optional. The SNI to use when connecting to Vault
+
+            auth: # how to authenticate Kong Mesh when connecting to Vault
               token:
-                secret: token-1  # can be file, secret or inlineString
+                secret: token-1  # one of secret, inline, or inlineString
               tls:
                 clientKey:
                   secret: sec-2  # can be file, secret or inline
