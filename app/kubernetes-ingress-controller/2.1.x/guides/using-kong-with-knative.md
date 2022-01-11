@@ -83,7 +83,7 @@ metadata:
   name: config-domain
   namespace: knative-serving
   labels:
-    serving.knative.dev/release: v0.13.0
+    serving.knative.dev/release: v1.1.0
 data:
   35.247.39.83.nip.io: ""
 ' | kubectl apply -f -
