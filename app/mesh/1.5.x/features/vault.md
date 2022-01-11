@@ -206,12 +206,12 @@ spec:
             tls: # options for connecting to Vault via TLS
               skipVerify: false   # if set to true, caCert is optional, should only be used in development
               caCert:             # caCert is used to verify the TLS certificate presented by Vault
-                secret: sec-1     # can be file, secret or inline
-              serverName: ""      # the SNI to use when connecting to Vault
+                secret: sec-1     # one of secret, inline, or inlineString
+              serverName: ""      # optional. The SNI to use when connecting to Vault
 
             auth: # how to authenticate Kong Mesh when connecting to Vault
               token:
-                secret: token-1  # can be file, secret or inlineString
+                secret: token-1  # one of secret, inline, or inlineString
               tls:
                 clientKey:
                   secret: sec-2  # can be file, secret or inline
