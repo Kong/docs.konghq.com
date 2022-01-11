@@ -361,6 +361,22 @@
     pcre: "8.45"
   lua_doc: true
 -
+  release: "2.8.x"
+  ee-version: "2.8.0.0"
+  ce-version: "2.8.0"
+  edition: "gateway"
+  luarocks_version: "2.5.1-0"
+  dependencies:
+    luajit: "2.1.0-beta3"
+    luarocks: "3.8.0"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.19.9.1"
+    openssl: "1.1.1l"
+    libyaml: "0.2.5"
+    pcre: "8.45"
+  lua_doc: true
+-
   release: "CE-2.0.x_KE-1.5.x"
   version: "CE-2.0.x/KE-1.5.x"
   edition: "getting-started-guide"
