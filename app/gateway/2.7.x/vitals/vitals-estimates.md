@@ -30,13 +30,13 @@ Request response codes are stored in the other group of tables following a diffe
 * `vitals_codes_by_route`
 
 The `entity_id` does not exist in `vitals_code_classes_by_cluster` as it doesn't store per any entity.
-`entity_id` is `workspace_id` in `vitals_code_classes_by_workspace` and `service_id`, `route_id` in `vitals_codes_by_route`.
+In the `vitals_code_classes_by_workspace` table, `entity_id` is `workspace_id`. In the `vitals_codes_by_route` table, `entity_id` is `service_id` and `route_id`. 
 
-`at`, a timestamp, is the start of the period a row represents, while `duration` is the duration of that period.
+`at` is a timestamp. It logs the start of the period a row represents, while `duration` is the duration of that period.
 
 `status_code` and `count` are the quantity of the HTTP status codes (200, 300, 400, 500) observed in the period represented by a row.
 
-While Kong Gateway node statistic tables grow only according to time, status code tables will only have new rows when Kong Gateway proxies traffic, and the number of new rows depends on the traffic itself.
+While Kong Gateway node statistic tables grow only according to time, status code tables only have new rows when Kong Gateway proxies traffic, and the number of new rows depends on the traffic itself.
 
 ## Example
 
@@ -51,7 +51,7 @@ vitals_codes_by_cluster
 [day(t), 84600, 200, 1]
 ```
 
-Second, minute, and day content is trimmed in the follow way:
+Second, minute, and day content is trimmed in the following way:
 
 * `second(t)` is `t` trimmed to seconds, for example: `second(2021-01-01 20:21:30)` would be `2021-01-01 20:21:30`.
 * `minute(t)` is `t` trimmed to minutes, for example: `minute(2021-01-01 20:21:30.234)` would be `2021-01-01 20:21:00`.
@@ -164,9 +164,9 @@ In an estimate of row numbers in scenario, consider a Kong Gateway cluster with 
 
 After 24 hours of traffic, the status codes tables will have this number of rows:
 
-* **vitals_codes_by_cluster**: 5 row for day, (5 * 24 * 60 = 7200) rows for minutes and (5 * 60 * 60 = 18000) rows for seconds. Total = 25200 rows.
-* **vitals_codes_by_workspace**: 5 row for day, (5 * 24 * 60 = 7200) rows for minutes and (5 * 60 * 60 = 18000) rows for seconds. Total = 25200 rows.
-* **vitals_codes_by_route**: 5 row for day, (5 * 24 * 60 = 7200) rows for minutes and (5 * 60 * 60 = 18000) rows for seconds. Total = 25200 rows.
+* **vitals_codes_by_cluster**: 5 rows for day, (5 * 24 * 60 = 7200) rows for minutes and (5 * 60 * 60 = 18000) rows for seconds. Total = 25200 rows.
+* **vitals_codes_by_workspace**: 5 rows for day, (5 * 24 * 60 = 7200) rows for minutes and (5 * 60 * 60 = 18000) rows for seconds. Total = 25200 rows.
+* **vitals_codes_by_route**: 5 rows for day, (5 * 24 * 60 = 7200) rows for minutes and (5 * 60 * 60 = 18000) rows for seconds. Total = 25200 rows.
 
 It's important to note that this assumes that all 5 groups of status codes had been observed in those 24 hours of traffic. This is why quantities were multiplied by 5.
 
