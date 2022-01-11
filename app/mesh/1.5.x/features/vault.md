@@ -202,12 +202,14 @@ spec:
             pki: kmesh-pki-default # name of the configured PKI
             role: dataplane-proxies # name of the role that will be used to generate data plane proxy certificates
             commonName: {% raw %}'{{ tag "kuma.io/service" }}.mesh'{% endraw %} # optional. If set, then commonName is added to the certificate. You can use "tag" directive to pick a tag which will be base for commonName.
-            tls:
-              caCert:
-                secret: sec-1
-              skipVerify: false # if set to true, caCert is optional. Set to true only for development
-              serverName: "" # verify sever name
-            auth: # only one auth options is allowed so it's either "token" or "tls"
+
+            tls: # options for connecting to Vault via TLS
+              skipVerify: false   # if set to true, caCert is optional, should only be used in development
+              caCert:             # caCert is used to verify the TLS certificate presented by Vault
+                secret: sec-1     # can be file, secret or inline
+              serverName: ""      # the SNI to use when connecting to Vault
+
+            auth: # how to authenticate Kong Mesh when connecting to Vault
               token:
                 secret: token-1  # can be file, secret or inlineString
               tls:
