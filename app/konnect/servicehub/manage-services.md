@@ -4,6 +4,7 @@ no_version: true
 ---
 
 ## Services
+
 ### Add a Service to the Catalog
 
 1. From the left navigation menu, click **Services** to open ServiceHub.
@@ -47,11 +48,13 @@ box to save.
 3. In the top right of the overview page, click the **Actions** menu and select
 **Delete Service**.
 
-4. In the dialog that appears, confirm that you want to delete this service.
+4. In the dialog that appears, confirm that you want to delete this Service.
 
 ## Service Versions and Implementations
 
 ### Create a New Service Version
+
+Service versions have a Published status by default upon creation.
 
 1. From the left navigation menu, click **Services**.
 
@@ -61,9 +64,9 @@ box to save.
 
 4. Enter a version name and click **Create** to save.
 
-    Service versions have a Published status by default upon creation.
-
 ### Set a Service Version to Draft
+
+A draft service version will not appear on the Dev Portal UI and will still be editable in the Konnect Admin UI.
 
 1. From the left navigation menu, click **Services**.
 
@@ -75,10 +78,17 @@ box to save.
 
 5. Click on the **Actions** dropdown menu.
 
-6. Click **Set Version as Draft** to set the Service version as a draft. The service version will not appear
-   on the Dev Portal UI and will still be editable in the Konnect Admin UI.
+6. Click **Set Version as Draft** to set the Service version as a draft.
+
+    To publish the Service version, click **Publish Version** in the **Actions** dropdown.
 
 ### Archive a Service Version
+
+Archiving prevents that version from showing up on the Dev Portal UI.
+
+The Service version will still appear on the Konnect Admin UI, however users
+will not be able to send requests to the Service version endpoints, and those
+endpoints will no longer be supported.
 
 1. From the left navigation menu, click **Services**.
 
@@ -90,16 +100,13 @@ box to save.
 
 5. Click on the **Actions** dropdown menu.
 
-6. Click **Archive Version** to archive the Service version. Archiving prevents that 
-version from showing up on the Dev Portal UI.
+6. Click **Archive Version** to archive the Service version.
 
-    The Service version will still appear on the Konnect Admin UI, however users 
-    will not be able to send requests to the Service version endpoints, and those 
-    endpoints will no longer be supported.
-
-    An archived version can be changed back to Published status, and the endpoints will be accessible again.
+    An Archived version can be changed back to Published status, and the endpoints will be accessible again. Click **Publish Version** in the **Actions** dropdown.
 
 ### Deprecate a Service Version
+
+Deprecating a service version will show a Deprecated status. Endpoints are still fully useable.
 
 1. From the left navigation menu, click **Services**.
 
@@ -111,12 +118,13 @@ version from showing up on the Dev Portal UI.
 
 5. Click on the **Actions** dropdown menu.
 
-6. Click **Deprecate Version** to deprecate the Service version. Deprecating a service version will
-   show a Deprecated status. Endpoints are still fully useable.
+6. Click **Deprecate Version** to deprecate the Service version.
 
-   A deprecated version can be changed back to Published status. Click **Undeprecate** in the **Actions** dropdown.
+   A Deprecated version can be changed back to Published status. Click **Undeprecate** in the **Actions** dropdown.
 
 ### Delete a Service Version
+
+Deleting a Service version _permanently_ deletes that version.
 
 1. From the left navigation menu, click **Services**.
 
