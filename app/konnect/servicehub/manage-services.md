@@ -9,22 +9,22 @@ no_version: true
 
 1. From the left navigation menu, click **Services** to open ServiceHub.
 
-2. Click **Add New Service**.
+1. Click **Add New Service**.
 
-3. Enter a **Service Name**.
+1. Enter a **Service Name**.
 
     A Service name can be any string containing letters, numbers, or characters;
     for example, `service_name`, `Service Name`, or `Service-name`.
 
-4. Enter a **Version Name**.
+1. Enter a **Version Name**.
 
     A version name can be any string containing letters, numbers, or characters;
     for example, `1.0.0`, `v.1`, or `version#1`. A Service can have multiple
     versions.
 
-5. (Optional) Enter a **Description**.
+1. (Optional) Enter a **Description**.
 
-6. Click **Create**.
+1. Click **Create**.
 
     A new Service is created and {{site.konnect_short_name}} automatically
     redirects to the Service's overview page.
@@ -33,9 +33,9 @@ no_version: true
 
 1. From the left navigation menu, click **Services**.
 
-2. Select a Service from the list.
+1. Select a Service from the list.
 
-3. Edit the Service name and description directly on this page: click on either
+1. Edit the Service name and description directly on this page: click on either
 element to reveal a text box, enter the new text, then click outside of the text
 box to save.
 
@@ -43,12 +43,12 @@ box to save.
 
 1. From the left navigation menu, click **Services**.
 
-2. Select a Service from the list.
+1. Select a Service from the list.
 
-3. In the top right of the overview page, click the **Actions** menu and select
-**Delete Service**.
+1. In the top right of the overview page, click the **Actions** menu and select
+**Delete**.
 
-4. In the dialog that appears, confirm that you want to delete this Service.
+1. In the dialog that appears, confirm that you want to delete this Service.
 
 ## Service Versions and Implementations
 
@@ -58,11 +58,11 @@ Service versions have a Published status by default upon creation.
 
 1. From the left navigation menu, click **Services**.
 
-2. Select a Service from the dropdown menu.
+1. Select a Service from the dropdown menu.
 
-3. Navigate to **Versions**, and click **+ New Version**.
+1. Navigate to **Versions**, and click **+ New Version**.
 
-4. Enter a version name and click **Create** to save.
+1. Enter a version name and click **Create** to save.
 
 ### Set a Service Version to Draft
 
@@ -70,39 +70,17 @@ A draft service version will not appear on the Dev Portal UI and will still be e
 
 1. From the left navigation menu, click **Services**.
 
-2. Select a Service from the dropdown menu.
+1. Select a Service from the dropdown menu.
 
-3. Navigate to **Versions**.
+1. Navigate to **Versions**.
 
-4. Click on the version you want to set as a draft, and you'll be taken to the version detail page.
+1. Click on the version you want to set as a draft, and you'll be taken to the version detail page.
 
-5. Click on the **Actions** dropdown menu.
+1. Click on the **Actions** dropdown menu.
 
-6. Click **Set Version as Draft** to set the Service version as a draft.
+1. Click **Draft** to set the Service version as a draft.
 
-    To publish the Service version, click **Publish Version** in the **Actions** dropdown.
-
-### Archive a Service Version
-
-Archiving prevents that version from showing up on the Dev Portal UI.
-
-The Service version will still appear on the Konnect Admin UI, however users
-will not be able to send requests to the Service version endpoints, and those
-endpoints will no longer be supported.
-
-1. From the left navigation menu, click **Services**.
-
-2. Select a Service from the dropdown menu.
-
-3. Navigate to **Versions**.
-
-4. Click on the version you want to archive, and you'll be taken to the version detail page.
-
-5. Click on the **Actions** dropdown menu.
-
-6. Click **Archive Version** to archive the Service version.
-
-    An Archived version can be changed back to Published status, and the endpoints will be accessible again. Click **Publish Version** in the **Actions** dropdown.
+    To publish the Service version, click **Publish** in the **Actions** dropdown.
 
 ### Deprecate a Service Version
 
@@ -110,17 +88,37 @@ Deprecating a service version will show a Deprecated status. Endpoints are still
 
 1. From the left navigation menu, click **Services**.
 
-2. Select a Service from the dropdown menu.
+1. Select a Service from the dropdown menu.
 
-3. Navigate to **Versions**.
+1. Navigate to **Versions**.
 
-4. Click on the version you want to deprecate, and you'll be taken to the version detail page.
+1. Click on the version you want to deprecate, and you'll be taken to the version detail page.
 
-5. Click on the **Actions** dropdown menu.
+1. Click on the **Actions** dropdown menu.
 
-6. Click **Deprecate Version** to deprecate the Service version.
+1. Click **Deprecate** to deprecate the Service version.
 
    A Deprecated version can be changed back to Published status. Click **Undeprecate** in the **Actions** dropdown.
+
+### Archive a Service Version
+
+Archiving prevents that version from showing up on the Dev Portal UI.
+
+The Service version will still appear when managing services through ServiceHub. However, users will not be able to send requests to the Service version endpoints, and those endpoints will no longer be supported.
+
+1. From the left navigation menu, click **Services**.
+
+1. Select a Service from the dropdown menu.
+
+1. Navigate to **Versions**.
+
+1. Click on the version you want to archive, and you'll be taken to the version detail page.
+
+1. Click on the **Actions** dropdown menu.
+
+1. Click **Archive** to archive the Service version.
+
+    An Archived version can be changed back to Published status, and the endpoints will be accessible again. Click **Publish** in the **Actions** dropdown.
 
 ### Delete a Service Version
 
@@ -128,15 +126,15 @@ Deleting a Service version _permanently_ deletes that version.
 
 1. From the left navigation menu, click **Services**.
 
-2. Select a Service from the dropdown menu.
+1. Select a Service from the dropdown menu.
 
-3. Navigate to **Versions**.
+1. Navigate to **Versions**.
 
-4. Click on the version you want to delete, and you'll be taken to the version detail page.
+1. Click on the version you want to delete, and you'll be taken to the version detail page.
 
-5. Click on the **Actions** dropdown menu.
+1. Click on the **Actions** dropdown menu.
 
-6. Click **Delete Version** to permanently delete the Service version.
+1. Click **Delete** to permanently delete the Service version.
 
 ### Implement a Service Version (Kong Gateway) {#implement-service-version}
 
@@ -148,9 +146,9 @@ Deleting a Service version _permanently_ deletes that version.
 1. From the left navigation menu, click **Services**, then select a Service
 version.
 
-2. Click **New Implementation**.
+1. Click **New Implementation**.
 
-3. In the **Create Implementation** dialog, in step 1, enter the connection
+1. In the **Create Implementation** dialog, in step 1, enter the connection
 details for the upstream service.
 
     1. Enter a URL in the default **Add using URL** field, or switch to
@@ -164,7 +162,7 @@ details for the upstream service.
 
     3. Click **Next**.
 
-4. In step 2, **Add a Route** to your Service Implementation.
+1. In step 2, **Add a Route** to your Service Implementation.
 
     1. Enter any name.
 
@@ -201,9 +199,9 @@ first one.
 1. From the left navigation menu, click **Services**, then select a Service
 version.
 
-2. In the **Routes** section, click **New Route**.
+1. In the **Routes** section, click **New Route**.
 
-3. Fill in the fields as described in [Implement a Service Version](#implement-service-version),
+1. Fill in the fields as described in [Implement a Service Version](#implement-service-version),
 then click **Create**.
 
 ### Verify an Implementation
