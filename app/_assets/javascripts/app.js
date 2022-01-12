@@ -48,6 +48,7 @@ jQuery(function () {
     e.stopPropagation();
 
     $('#module-list').toggleClass('open');
+    $('#version-list').removeClass('open');
 
     $(document).one('click', function closeMenu(e) {
       if ($('#module-list').has(e.target).length === 0) {
@@ -100,6 +101,7 @@ jQuery(function () {
     e.stopPropagation();
 
     $('#version-list').toggleClass('open');
+    $('#module-list').removeClass('open');
 
     $(document).one('click', function closeMenu(e) {
       if ($('#version-list').has(e.target).length === 0) {
