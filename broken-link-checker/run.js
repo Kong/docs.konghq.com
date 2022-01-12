@@ -22,7 +22,7 @@ const github = require("@actions/github");
   const filenames = files.map((f) => f.filename);
 
   // Generate a list of URLs to test
-  const urls = [];
+  let urls = [];
   for (let f of filenames) {
     // If any data files have changed, we need to check a page that uses that
     // file to generate the side navigation
@@ -38,19 +38,39 @@ const github = require("@actions/github");
     }
   }
 
-  console.log(`Checking the following URLs:\n\n${urls.join("\n")}\n`);
+  const blockList = [/.*\/changelog\/?/];
+  const ignoredUrls = [];
 
-  // Check all the URLs provided
-  const r = await checkUrls(urls);
-
-  // Output report
-  if (r.length) {
-    console.log("Broken links:");
-    console.log(r);
-    process.exit(1);
+  for (let item of blockList) {
+    urls = urls.filter((u) => {
+      const shouldIgnore = u.match(item);
+      if (shouldIgnore) {
+        ignoredUrls.push(`${u} (${item})`);
+      }
+      return !shouldIgnore;
+    });
   }
 
-  console.log("No broken links detected");
+  if (ignoredUrls.length) {
+    console.log(`IGNORING the following URLs:\n\n${ignoredUrls.join("\n")}\n`);
+  }
+
+  if (urls.length) {
+    console.log(`Checking the following URLs:\n\n${urls.join("\n")}\n`);
+    // Check all the URLs provided
+    const r = await checkUrls(urls);
+
+    // Output report
+    if (r.length) {
+      console.log("Broken links:");
+      console.log(r);
+      process.exit(1);
+    }
+
+    console.log("No broken links detected");
+  } else {
+    console.log("No URLs detected to test");
+  }
 })();
 
 function checkUrls(urls) {
