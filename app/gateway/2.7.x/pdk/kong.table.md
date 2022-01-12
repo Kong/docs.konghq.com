@@ -10,27 +10,25 @@ pdk: true
 toc: true
 ---
 
-## kong.table
-
-Utilities for Lua tables
+Utilities for Lua tables.
 
 
 
-### kong.table.new([narr[, nrec]])
+## kong.table.new([narr[, nrec]])
 
-Returns a table with pre-allocated number of slots in its array and hash
+Returns a table with a pre-allocated number of slots in its array and hash
  parts.
 
 **Parameters**
 
-* **narr** (number, _optional_):  specifies the number of slots to pre-allocate
+* **narr** (number, _optional_):  Specifies the number of slots to pre-allocate
  in the array part.
-* **nrec** (number, _optional_):  specifies the number of slots to pre-allocate in
+* **nrec** (number, _optional_):  Specifies the number of slots to pre-allocate in
  the hash part.
 
 **Returns**
 
-* `table` the newly created table
+* `table`:  The newly created table.
 
 
 **Usage**
@@ -39,20 +37,19 @@ Returns a table with pre-allocated number of slots in its array and hash
 local tab = kong.table.new(4, 4)
 ```
 
-[Back to top](#kongtable)
 
 
-### kong.table.clear(tab)
+## kong.table.clear(tab)
 
-Clears a table from all of its array and hash parts entries.
+Clears all array and hash parts entries from a table.
 
 **Parameters**
 
-* **tab** (table):  the table which will be cleared
+* **tab** (table):  The table to be cleared.
 
 **Returns**
 
-*  Nothing
+*  Nothing.
 
 
 **Usage**
@@ -69,10 +66,9 @@ kong.log(tab[1]) -- nil
 kong.log(tab.foo) -- nil
 ```
 
-[Back to top](#kongtable)
 
 
-### kong.table.merge([t1[, t2]])
+## kong.table.merge([t1[, t2]])
 
 Merges the contents of two tables together, producing a new one.
  The entries of both tables are copied non-recursively to the new one.
@@ -81,12 +77,12 @@ Merges the contents of two tables together, producing a new one.
 
 **Parameters**
 
-* **t1** (table, _optional_):  The first table
-* **t2** (table, _optional_):  The second table
+* **t1** (table, _optional_):  The first table.
+* **t2** (table, _optional_):  The second table.
 
 **Returns**
 
-* `table` The (new) merged table
+* `table`:  The (new) merged table.
 
 
 **Usage**
@@ -97,5 +93,4 @@ local t2 = {4, 5, bar = "b"}
 local t3 = kong.table.merge(t1, t2) -- {4, 5, 3, foo = "f", bar = "b"}
 ```
 
-[Back to top](#kongtable)
 

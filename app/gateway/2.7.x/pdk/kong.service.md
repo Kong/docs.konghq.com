@@ -10,8 +10,6 @@ pdk: true
 toc: true
 ---
 
-## kong.service
-
 The service module contains a set of functions to manipulate the connection
  aspect of the request to the Service, such as connecting to a given host, IP
  address/port, or choosing a given Upstream entity for load-balancing and
@@ -19,7 +17,7 @@ The service module contains a set of functions to manipulate the connection
 
 
 
-### kong.service.set_upstream(host)
+## kong.service.set_upstream(host)
 
 Sets the desired Upstream entity to handle the load-balancing step for
  this request.  Using this method is equivalent to creating a Service with a
@@ -41,10 +39,10 @@ Sets the desired Upstream entity to handle the load-balancing step for
 
 **Returns**
 
-1.  `boolean|nil` `true` on success, or `nil` if no upstream entities
+1.  `boolean|nil`:  `true` on success, or `nil` if no upstream entities
  where found
 
-1.  `string|nil`  An error message describing the error if there was
+1.  `string|nil`:   An error message describing the error if there was
  one.
 
 
@@ -59,10 +57,9 @@ if not ok then
 end
 ```
 
-[Back to top](#kongservice)
 
 
-### kong.service.set_target(host, port)
+## kong.service.set_target(host, port)
 
 Sets the host and port on which to connect to for proxying the request.
  Using this method is equivalent to ask Kong to not run the load-balancing
@@ -91,10 +88,9 @@ kong.service.set_target("service.local", 443)
 kong.service.set_target("192.168.130.1", 80)
 ```
 
-[Back to top](#kongservice)
 
 
-### kong.service.set_tls_cert_key(chain, key)
+## kong.service.set_tls_cert_key(chain, key)
 
 Sets the client certificate used while handshaking with the Service.
 
@@ -116,9 +112,9 @@ Sets the client certificate used while handshaking with the Service.
 
 **Returns**
 
-1.  `boolean|nil` `true` if the operation succeeded, `nil` if an error occurred
+1.  `boolean|nil`:  `true` if the operation succeeded, `nil` if an error occurred
 
-1.  `string|nil` An error message describing the error if there was one
+1.  `string|nil`:  An error message describing the error if there was one
 
 
 **Usage**
@@ -133,10 +129,9 @@ if not ok then
 end
 ```
 
-[Back to top](#kongservice)
 
 
-### kong.service.set_tls_verify(on)
+## kong.service.set_tls_verify(on)
 
 Sets whether TLS verification is enabled while handshaking with the Service.
 
@@ -159,9 +154,9 @@ Sets whether TLS verification is enabled while handshaking with the Service.
 
 **Returns**
 
-1.  `boolean|nil` `true` if the operation succeeded, `nil` if an error occurred
+1.  `boolean|nil`:  `true` if the operation succeeded, `nil` if an error occurred
 
-1.  `string|nil` An error message describing the error if there was one
+1.  `string|nil`:  An error message describing the error if there was one
 
 
 **Usage**
@@ -173,10 +168,9 @@ if not ok then
 end
 ```
 
-[Back to top](#kongservice)
 
 
-### kong.service.set_tls_verify_depth(depth)
+## kong.service.set_tls_verify_depth(depth)
 
 Sets the maximum depth of verification when validating upstream server's TLS certificate.
 
@@ -195,9 +189,9 @@ Sets the maximum depth of verification when validating upstream server's TLS cer
 
 **Returns**
 
-1.  `boolean|nil` `true` if the operation succeeded, `nil` if an error occurred
+1.  `boolean|nil`:  `true` if the operation succeeded, `nil` if an error occurred
 
-1.  `string|nil` An error message describing the error if there was one
+1.  `string|nil`:  An error message describing the error if there was one
 
 
 **Usage**
@@ -209,10 +203,9 @@ if not ok then
 end
 ```
 
-[Back to top](#kongservice)
 
 
-### kong.service.set_tls_verify_store(store)
+## kong.service.set_tls_verify_store(store)
 
 Sets the CA trust store to use when validating upstream server's TLS certificate.
 
@@ -234,9 +227,9 @@ Sets the CA trust store to use when validating upstream server's TLS certificate
 
 **Returns**
 
-1.  `boolean|nil` `true` if the operation succeeded, `nil` if an error occurred
+1.  `boolean|nil`:  `true` if the operation succeeded, `nil` if an error occurred
 
-1.  `string|nil` An error message describing the error if there was one
+1.  `string|nil`:  An error message describing the error if there was one
 
 
 **Usage**
@@ -252,5 +245,4 @@ if not ok then
 end
 ```
 
-[Back to top](#kongservice)
 

@@ -10,9 +10,8 @@ pdk: true
 toc: true
 ---
 
-## kong.client
+Client information module.
 
-Client information module
  A set of functions to retrieve information about the client connecting to
  Kong in the context of a given request.
 
@@ -21,12 +20,12 @@ Client information module
 
 
 
-### kong.client.get_ip()
+## kong.client.get_ip()
 
-Returns the remote address of the client making the request.  This will
- **always** return the address of the client directly connecting to Kong.
+Returns the remote address of the client making the request.  This module
+ **always** returns the address of the client directly connecting to Kong.
  That is, in cases when a load balancer is in front of Kong, this function
- will return the load balancer's address, and **not** that of the
+ returns the load balancer's address, and **not** that of the
  downstream client.
 
 
@@ -36,7 +35,7 @@ Returns the remote address of the client making the request.  This will
 
 **Returns**
 
-* `string` ip The remote address of the client making the request
+* `string`:  The remote IP address of the client making the request.
 
 
 **Usage**
@@ -48,10 +47,9 @@ Returns the remote address of the client making the request.  This will
 kong.client.get_ip() -- "10.0.0.1"
 ```
 
-[Back to top](#kongclient)
 
 
-### kong.client.get_forwarded_ip()
+## kong.client.get_forwarded_ip()
 
 Returns the remote address of the client making the request.  Unlike
  `kong.client.get_ip`, this function will consider forwarded addresses in
@@ -59,9 +57,9 @@ Returns the remote address of the client making the request.  Unlike
  returns a forwarded address or not depends on several Kong configuration
  parameters:
 
- * [trusted\_ips](https://getkong.org/docs/latest/configuration/#trusted_ips)
- * [real\_ip\_header](https://getkong.org/docs/latest/configuration/#real_ip_header)
- * [real\_ip\_recursive](https://getkong.org/docs/latest/configuration/#real_ip_recursive)
+ * [trusted\_ips](https://docs.konghq.com/gateway/latest/reference/configuration/#trusted_ips)
+ * [real\_ip\_header](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_header)
+ * [real\_ip\_recursive](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_recursive)
 
 
 **Phases**
@@ -70,8 +68,8 @@ Returns the remote address of the client making the request.  Unlike
 
 **Returns**
 
-* `string`  ip The remote address of the client making the request,
- considering forwarded addresses
+* `string`:   The remote IP address of the client making the request,
+ considering forwarded addresses.
 
 
 
@@ -84,20 +82,19 @@ Returns the remote address of the client making the request.  Unlike
 
 kong.client.get_forwarded_ip() -- "127.0.0.1"
 
--- Note: assuming that 10.0.0.1 is one of the trusted IPs, and that
+-- Note: This example assumes that 10.0.0.1 is one of the trusted IPs, and that
 -- the load balancer adds the right headers matching with the configuration
 -- of `real_ip_header`, e.g. `proxy_protocol`.
 ```
 
-[Back to top](#kongclient)
 
 
-### kong.client.get_port()
+## kong.client.get_port()
 
-Returns the remote port of the client making the request.  This will
- **always** return the port of the client directly connecting to Kong. That
- is, in cases when a load balancer is in front of Kong, this function will
- return load balancer's port, and **not** that of the downstream client.
+Returns the remote port of the client making the request.  This
+ **always** returns the port of the client directly connecting to Kong. That
+ is, in cases when a load balancer is in front of Kong, this function
+ returns the load balancer's port, and **not** that of the downstream client.
 
 **Phases**
 
@@ -105,7 +102,7 @@ Returns the remote port of the client making the request.  This will
 
 **Returns**
 
-* `number` The remote client port
+* `number`:  The remote client port.
 
 
 **Usage**
@@ -115,19 +112,18 @@ Returns the remote port of the client making the request.  This will
 kong.client.get_port() -- 30000
 ```
 
-[Back to top](#kongclient)
 
 
-### kong.client.get_forwarded_port()
+## kong.client.get_forwarded_port()
 
 Returns the remote port of the client making the request.  Unlike
  `kong.client.get_port`, this function will consider forwarded ports in cases
  when a load balancer is in front of Kong. Whether this function returns a
  forwarded port or not depends on several Kong configuration parameters:
 
- * [trusted\_ips](https://getkong.org/docs/latest/configuration/#trusted_ips)
- * [real\_ip\_header](https://getkong.org/docs/latest/configuration/#real_ip_header)
- * [real\_ip\_recursive](https://getkong.org/docs/latest/configuration/#real_ip_recursive)
+ * [trusted\_ips](https://docs.konghq.com/gateway/latest/reference/configuration/#trusted_ips)
+ * [real\_ip\_header](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_header)
+ * [real\_ip\_recursive](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_recursive)
 
 **Phases**
 
@@ -135,7 +131,7 @@ Returns the remote port of the client making the request.  Unlike
 
 **Returns**
 
-* `number` The remote client port, considering forwarded ports
+* `number`:  The remote client port, considering forwarded ports.
 
 
 **Usage**
@@ -144,15 +140,14 @@ Returns the remote port of the client making the request.  Unlike
 -- [client]:40000 <-> 80:[balancer]:30000 <-> 80:[kong]:20000 <-> 80:[service]
 kong.client.get_forwarded_port() -- 40000
 
--- Note: assuming that [balancer] is one of the trusted IPs, and that
+-- Note: This example assumes that [balancer] is one of the trusted IPs, and that
 -- the load balancer adds the right headers matching with the configuration
 -- of `real_ip_header`, e.g. `proxy_protocol`.
 ```
 
-[Back to top](#kongclient)
 
 
-### kong.client.get_credential()
+## kong.client.get_credential()
 
 Returns the credentials of the currently authenticated consumer.
  If not set yet, it returns `nil`.
@@ -163,7 +158,7 @@ Returns the credentials of the currently authenticated consumer.
 
 **Returns**
 
-* `string` the authenticated credential
+* `string`:  The authenticated credential.
 
 
 **Usage**
@@ -177,13 +172,12 @@ else
 end
 ```
 
-[Back to top](#kongclient)
 
 
-### kong.client.load_consumer(consumer_id[, search_by_username.])
+## kong.client.load_consumer(consumer_id[, search_by_username.])
 
 Returns the consumer from the datastore.
- Will look up the consumer by id, and optionally will do a second search by name.
+ Looks up the consumer by ID, and can optionally do a second search by name.
 
 **Phases**
 
@@ -191,16 +185,16 @@ Returns the consumer from the datastore.
 
 **Parameters**
 
-* **consumer_id** (string):  The consumer id to look up.
+* **consumer_id** (string):  The consumer ID to look up.
 * **search_by_username.** (boolean, _optional_):  If truthy,
- then if the consumer was not found by id,
- then a second search by username will be performed
+ and if the consumer is not found by ID,
+ then a second search by username will be performed.
 
 **Returns**
 
-1.  `table|nil` consumer entity or nil
+1.  `table|nil`:  Consumer entity or `nil`.
 
-1.  `nil|err` nil if success, or error message if failure
+1.  `nil|err`:  `nil` if successful, or an error message if it fails.
 
 
 **Usage**
@@ -210,10 +204,9 @@ local consumer_id = "john_doe"
 local consumer = kong.client.load_consumer(consumer_id, true)
 ```
 
-[Back to top](#kongclient)
 
 
-### kong.client.get_consumer()
+## kong.client.get_consumer()
 
 Returns the `consumer` entity of the currently authenticated consumer.
  If not set yet, it returns `nil`.
@@ -224,7 +217,7 @@ Returns the `consumer` entity of the currently authenticated consumer.
 
 **Returns**
 
-* `table` the authenticated consumer entity
+* `table`:  The authenticated consumer entity.
 
 
 **Usage**
@@ -239,14 +232,13 @@ else
 end
 ```
 
-[Back to top](#kongclient)
 
 
-### kong.client.authenticate(consumer, credential)
+## kong.client.authenticate(consumer, credential)
 
 Sets the authenticated consumer and/or credential for the current request.
- While both `consumer` and `credential` can be `nil`, it is required
- that at least one of them exists. Otherwise this function will throw an
+ While both `consumer` and `credential` can be `nil`,
+ at least one of them must exist. Otherwise, this function will throw an
  error.
 
 **Phases**
@@ -255,10 +247,10 @@ Sets the authenticated consumer and/or credential for the current request.
 
 **Parameters**
 
-* **consumer** (table|nil):  The consumer to set. Note: if no
- value is provided, then any existing value will be cleared!
-* **credential** (table|nil):  The credential to set. Note: if
- no value is provided, then any existing value will be cleared!
+* **consumer** (table|nil):  The consumer to set. If no
+ value is provided, then any existing value will be cleared.
+* **credential** (table|nil):  The credential to set. If
+ no value is provided, then any existing value will be cleared.
 
 **Usage**
 
@@ -267,10 +259,9 @@ Sets the authenticated consumer and/or credential for the current request.
 kong.client.authenticate(consumer, credentials)
 ```
 
-[Back to top](#kongclient)
 
 
-### kong.client.get_protocol([allow_terminated.])
+## kong.client.get_protocol([allow_terminated.])
 
 Returns the protocol matched by the current route (`"http"`, `"https"`, `"tcp"` or
  `"tls"`), or `nil`, if no route has been matched, which can happen when dealing with
@@ -282,13 +273,13 @@ Returns the protocol matched by the current route (`"http"`, `"https"`, `"tcp"` 
 
 **Parameters**
 
-* **allow_terminated.** (boolean, _optional_):  If set, the `X-Forwarded-Proto` header will be checked when checking for https
+* **allow_terminated.** (boolean, _optional_):  If set, the `X-Forwarded-Proto` header is checked when checking for HTTPS.
 
 **Returns**
 
-1.  `string|nil` `"http"`, `"https"`, `"tcp"`, `"tls"` or `nil`
+1.  `string|nil`:  Can be one of `"http"`, `"https"`, `"tcp"`, `"tls"` or `nil`.
 
-1.  `nil|err` nil if success, or error message if failure
+1.  `nil|err`:  `nil` if successful, or an error message if it fails.
 
 
 **Usage**
@@ -297,5 +288,4 @@ Returns the protocol matched by the current route (`"http"`, `"https"`, `"tcp"` 
 kong.client.get_protocol() -- "http"
 ```
 
-[Back to top](#kongclient)
 

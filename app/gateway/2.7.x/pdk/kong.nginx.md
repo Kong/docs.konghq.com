@@ -10,18 +10,18 @@ pdk: true
 toc: true
 ---
 
-## kong.nginx
+Nginx information module.
 
-Nginx information module
- A set of functions allowing to retrieve Nginx-specific implementation
+ A set of functions for retrieving Nginx-specific implementation
  details and meta information.
 
 
 
-### kong.nginx.get_subsystem()
+## kong.nginx.get_subsystem()
 
-Returns the current Nginx subsystem this function is called from: "http"
- or "stream".
+Returns the current Nginx subsystem this function is called from.  Can be
+ one of `"http"` or `"stream"`.
+
 
 **Phases**
 
@@ -29,7 +29,7 @@ Returns the current Nginx subsystem this function is called from: "http"
 
 **Returns**
 
-* `string` subsystem Either `"http"` or `"stream"`
+* `string`:  Subsystem, either `"http"` or `"stream"`.
 
 
 **Usage**
@@ -38,5 +38,4 @@ Returns the current Nginx subsystem this function is called from: "http"
 kong.nginx.get_subsystem() -- "http"
 ```
 
-[Back to top](#kongnginx)
 

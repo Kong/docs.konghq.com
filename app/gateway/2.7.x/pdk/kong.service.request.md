@@ -10,16 +10,14 @@ pdk: true
 toc: true
 ---
 
-## kong.service.request
-
-Manipulation of the request to the Service
+Module for manipulating the request sent to the Service.
 
 
 
-### kong.service.request.enable_buffering()
+## kong.service.request.enable_buffering()
 
-Enables buffered proxying that allows plugins to access service body and
- response headers at the same time
+Enables buffered proxying, which allows plugins to access Service body and
+ response headers at the same time.
 
 **Phases**
 
@@ -27,7 +25,7 @@ Enables buffered proxying that allows plugins to access service body and
 
 **Returns**
 
-*  Nothing
+*  Nothing.
 
 
 **Usage**
@@ -36,10 +34,9 @@ Enables buffered proxying that allows plugins to access service body and
 kong.service.request.enable_buffering()
 ```
 
-[Back to top](#kongservicerequest)
 
 
-### kong.service.request.set_scheme(scheme)
+## kong.service.request.set_scheme(scheme)
 
 Sets the protocol to use when proxying the request to the Service.
 
@@ -49,7 +46,7 @@ Sets the protocol to use when proxying the request to the Service.
 
 **Parameters**
 
-* **scheme** (string):  The scheme to be used. Supported values are `"http"` or `"https"`
+* **scheme** (string):  The scheme to be used. Supported values are `"http"` or `"https"`.
 
 **Returns**
 
@@ -62,10 +59,9 @@ Sets the protocol to use when proxying the request to the Service.
 kong.service.request.set_scheme("https")
 ```
 
-[Back to top](#kongservicerequest)
 
 
-### kong.service.request.set_path(path)
+## kong.service.request.set_path(path)
 
 Sets the path component for the request to the service.
 
@@ -73,7 +69,7 @@ Sets the path component for the request to the service.
  and this API will perform necessary escaping according to the RFC
  to make the request valid.
 
- Input should **not** include the querystring.
+ Input should **not** include the query string.
 
 **Phases**
 
@@ -81,7 +77,8 @@ Sets the path component for the request to the service.
 
 **Parameters**
 
-* **path** (string):  The path string. Special characters and UTF-8 characters are allowed. Example: "/v2/movies" or "/foo/😀"
+* **path** (string):  The path string. Special characters and UTF-8
+ characters are allowed, for example: `"/v2/movies"` or `"/foo/😀"`.
 
 **Returns**
 
@@ -94,13 +91,12 @@ Sets the path component for the request to the service.
 kong.service.request.set_path("/v2/movies")
 ```
 
-[Back to top](#kongservicerequest)
 
 
-### kong.service.request.set_raw_query(query)
+## kong.service.request.set_raw_query(query)
 
-Sets the querystring of the request to the Service.  The `query` argument is a
- string (without the leading `?` character), and will not be processed in any
+Sets the query string of the request to the Service.  The `query` argument is a
+ string (without the leading `?` character), and is not processed in any
  way.
 
  For a higher-level function to set the query string from a Lua table of
@@ -112,7 +108,8 @@ Sets the querystring of the request to the Service.  The `query` argument is a
 
 **Parameters**
 
-* **query** (string):  The raw querystring. Example: "foo=bar&bla&baz=hello%20world"
+* **query** (string):  The raw querystring. Example:
+ `"foo=bar&bla&baz=hello%20world"`.
 
 **Returns**
 
@@ -125,10 +122,9 @@ Sets the querystring of the request to the Service.  The `query` argument is a
 kong.service.request.set_raw_query("zzz&bar=baz&bar=bla&bar&blo=&foo=hello%20world")
 ```
 
-[Back to top](#kongservicerequest)
 
 
-### kong.service.request.set_method(method)
+## kong.service.request.set_method(method)
 
 Sets the HTTP method for the request to the service.
 
@@ -138,10 +134,10 @@ Sets the HTTP method for the request to the service.
 
 **Parameters**
 
-* **method** (string):  The method string, which should be given in all
+* **method** (string):  The method string, which must be in all
  uppercase. Supported values are: `"GET"`, `"HEAD"`, `"PUT"`, `"POST"`,
  `"DELETE"`, `"OPTIONS"`, `"MKCOL"`, `"COPY"`, `"MOVE"`, `"PROPFIND"`,
- `"PROPPATCH"`, `"LOCK"`, `"UNLOCK"`, `"PATCH"`, `"TRACE"`.
+ `"PROPPATCH"`, `"LOCK"`, `"UNLOCK"`, `"PATCH"`, or `"TRACE"`.
 
 **Returns**
 
@@ -154,24 +150,23 @@ Sets the HTTP method for the request to the service.
 kong.service.request.set_method("DELETE")
 ```
 
-[Back to top](#kongservicerequest)
 
 
-### kong.service.request.set_query(args)
+## kong.service.request.set_query(args)
 
-Set the querystring of the request to the Service.
+Set the query string of the request to the Service.
 
  Unlike `kong.service.request.set_raw_query()`, the `query` argument must be a
- table in which each key is a string (corresponding to an arguments name), and
- each value is either a boolean, a string or an array of strings or booleans.
+ table in which each key is a string (corresponding to an argument's name), and
+ each value is either a boolean, a string, or an array of strings or booleans.
  Additionally, all string values will be URL-encoded.
 
- The resulting querystring will contain keys in their lexicographical order. The
+ The resulting query string contains keys in their lexicographical order. The
  order of entries within the same key (when values are given as an array) is
  retained.
 
- If further control of the querystring generation is needed, a raw querystring
- can be given as a string with `kong.service.request.set_raw_query()`.
+ If further control of the query string generation is needed, a raw query
+ string can be given as a string with `kong.service.request.set_raw_query()`.
 
 
 **Phases**
@@ -181,7 +176,7 @@ Set the querystring of the request to the Service.
 **Parameters**
 
 * **args** (table):  A table where each key is a string (corresponding to an
-   argument name), and each value is either a boolean, a string or an array of
+   argument name), and each value is either a boolean, a string, or an array of
    strings or booleans. Any string values given are URL-encoded.
 
 **Returns**
@@ -198,20 +193,19 @@ kong.service.request.set_query({
   zzz = true,
   blo = ""
 })
--- Will produce the following query string:
+-- Produces the following query string:
 -- bar=baz&bar=bla&bar&blo=&foo=hello%20world&zzz
 ```
 
-[Back to top](#kongservicerequest)
 
 
-### kong.service.request.set_header(header, value)
+## kong.service.request.set_header(header, value)
 
 Sets a header in the request to the Service with the given value.  Any existing header
  with the same name will be overridden.
 
- If the `header` argument is `"host"` (case-insensitive), then this is
- will also set the SNI of the request to the Service.
+ If the `header` argument is `"host"` (case-insensitive), then this also
+ sets the SNI of the request to the Service.
 
 
 **Phases**
@@ -220,8 +214,8 @@ Sets a header in the request to the Service with the given value.  Any existing 
 
 **Parameters**
 
-* **header** (string):  The header name. Example: "X-Foo"
-* **value** (string|boolean|number):  The header value. Example: "hello world"
+* **header** (string):  The header name. Example: "X-Foo".
+* **value** (string\|boolean\|number):  The header value. Example: "hello world".
 
 **Returns**
 
@@ -234,13 +228,12 @@ Sets a header in the request to the Service with the given value.  Any existing 
 kong.service.request.set_header("X-Foo", "value")
 ```
 
-[Back to top](#kongservicerequest)
 
 
-### kong.service.request.add_header(header, value)
+## kong.service.request.add_header(header, value)
 
 Adds a request header with the given value to the request to the Service.  Unlike
- `kong.service.request.set_header()`, this function will not remove any existing
+ `kong.service.request.set_header()`, this function doesn't remove any existing
  headers with the same name. Instead, several occurrences of the header will be
  present in the request. The order in which headers are added is retained.
 
@@ -251,8 +244,8 @@ Adds a request header with the given value to the request to the Service.  Unlik
 
 **Parameters**
 
-* **header** (string):  The header name. Example: "Cache-Control"
-* **value** (string|number|boolean):  The header value. Example: "no-cache"
+* **header** (string):  The header name. Example: "Cache-Control".
+* **value** (string\|number\|boolean):  The header value. Example: "no-cache".
 
 **Returns**
 
@@ -266,12 +259,11 @@ kong.service.request.add_header("Cache-Control", "no-cache")
 kong.service.request.add_header("Cache-Control", "no-store")
 ```
 
-[Back to top](#kongservicerequest)
 
 
-### kong.service.request.clear_header(header)
+## kong.service.request.clear_header(header)
 
-Removes all occurrences of the specified header in the request to the Service.
+Removes all occurrences of the specified header from the request to the Service.
 
 **Phases**
 
@@ -279,7 +271,7 @@ Removes all occurrences of the specified header in the request to the Service.
 
 **Parameters**
 
-* **header** (string):  The header name. Example: "X-Foo"
+* **header** (string):  The header name. Example: "X-Foo".
 
 **Returns**
 
@@ -296,10 +288,9 @@ kong.service.request.clear_header("X-Foo")
 -- from here onwards, no X-Foo headers will exist in the request
 ```
 
-[Back to top](#kongservicerequest)
 
 
-### kong.service.request.set_headers(headers)
+## kong.service.request.set_headers(headers)
 
 Sets the headers of the request to the Service.  Unlike
  `kong.service.request.set_header()`, the `headers` argument must be a table in
@@ -312,8 +303,8 @@ Sets the headers of the request to the Service.  Unlike
  This function overrides any existing header bearing the same name as those
  specified in the `headers` argument. Other headers remain unchanged.
 
- If the `"Host"` header is set (case-insensitive), then this is
- will also set the SNI of the request to the Service.
+ If the `"Host"` header is set (case-insensitive), then this also sets
+ the SNI of the request to the Service.
 
 **Phases**
 
@@ -349,16 +340,15 @@ kong.service.request.set_headers({
 -- X-Foo: foo3
 ```
 
-[Back to top](#kongservicerequest)
 
 
-### kong.service.request.set_raw_body(body)
+## kong.service.request.set_raw_body(body)
 
 Sets the body of the request to the Service.
 
  The `body` argument must be a string and will not be processed in any way.
  This function also sets the `Content-Length` header appropriately. To set an
- empty body, one can give an empty string `""` to this function.
+ empty body, you can provide an empty string (`""`) to this function.
 
  For a higher-level function to set the body based on the request content type,
  see `kong.service.request.set_body()`.
@@ -369,7 +359,7 @@ Sets the body of the request to the Service.
 
 **Parameters**
 
-* **body** (string):  The raw body
+* **body** (string):  The raw body.
 
 **Returns**
 
@@ -382,43 +372,32 @@ Sets the body of the request to the Service.
 kong.service.request.set_raw_body("Hello, world!")
 ```
 
-[Back to top](#kongservicerequest)
 
 
-### kong.service.request.set_body(args[, mimetype])
+## kong.service.request.set_body(args[, mimetype])
 
 Sets the body of the request to the Service.  Unlike
  `kong.service.request.set_raw_body()`, the `args` argument must be a table, and
- will be encoded with a MIME type.  The encoding MIME type can be specified in
- the optional `mimetype` argument, or if left unspecified, will be chosen based
+ is encoded with a MIME type.  The encoding MIME type can be specified in
+ the optional `mimetype` argument, or if left unspecified, is chosen based
  on the `Content-Type` header of the client's request.
 
- If the MIME type is `application/x-www-form-urlencoded`:
-
- * Encodes the arguments as form-encoded: keys are produced in lexicographical
+ Behavior based on MIME type in the `Content-Type` header:
+ * `application/x-www-form-urlencoded`: Encodes the arguments as
+   form-encoded. Keys are produced in lexicographical
    order. The order of entries within the same key (when values are
    given as an array) is retained. Any string values given are URL-encoded.
 
- If the MIME type is `multipart/form-data`:
+ * `multipart/form-data`: Encodes the arguments as multipart form data.
 
- * Encodes the arguments as multipart form data.
+ * `application/json`: Encodes the arguments as JSON (same as
+   `kong.service.request.set_raw_body(json.encode(args))`). Lua types are
+   converted to matching JSON types.
 
- If the MIME type is `application/json`:
+ If the MIME type is none of the above, this function returns `nil` and
+ an error message indicating the body could not be encoded.
 
- * Encodes the arguments as JSON (same as
-   `kong.service.request.set_raw_body(json.encode(args))`)
- * Lua types are converted to matching JSON types.mej
-
- If none of the above, returns `nil` and an error message indicating the
- body could not be encoded.
-
- The optional argument `mimetype` can be one of:
-
- * `application/x-www-form-urlencoded`
- * `application/json`
- * `multipart/form-data`
-
- If the `mimetype` argument is specified, the `Content-Type` header will be
+ If the `mimetype` argument is specified, the `Content-Type` header is
  set accordingly in the request to the Service.
 
  If further control of the body generation is needed, a raw body can be given as
@@ -437,9 +416,9 @@ Sets the body of the request to the Service.  Unlike
 
 **Returns**
 
-1.  `boolean|nil` `true` on success, `nil` otherwise
+1.  `boolean|nil`:  `true` on success, `nil` otherwise.
 
-1.  `string|nil` `nil` on success, an error message in case of error.
+1.  `string|nil`:  `nil` on success, an error message in case of error.
  Throws an error on invalid inputs.
 
 
@@ -467,16 +446,15 @@ local ok, err = kong.service.request.set_body({
 -- bar=baz&bar=bla&bar&blo=&foo=hello%20world&zzz
 ```
 
-[Back to top](#kongservicerequest)
 
 
-### kong.service.request.disable_tls()
+## kong.service.request.disable_tls()
 
 Disables the TLS handshake to upstream for [ngx\_stream\_proxy\_module](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html).
- Effectively this overrides [proxy\_ssl](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl) directive to `off` setting
+ This overrides the [proxy\_ssl](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl) directive, effectively setting it to `off`
  for the current stream session.
 
- Note that once this function has been called it is not possible to re-enable TLS handshake for the current session.
+ Once this function has been called, it is not possible to re-enable TLS handshake for the current session.
 
 
 **Phases**
@@ -485,9 +463,9 @@ Disables the TLS handshake to upstream for [ngx\_stream\_proxy\_module](https://
 
 **Returns**
 
-1.  `boolean|nil` `true` if the operation succeeded, `nil` if an error occurred
+1.  `boolean|nil`:  `true` if the operation succeeded, `nil` if an error occurred.
 
-1.  `string|nil` An error message describing the error if there was one.
+1.  `string|nil`:  An error message describing the error if there was one.
 
 
 **Usage**
@@ -499,5 +477,4 @@ if not ok then
 end
 ```
 
-[Back to top](#kongservicerequest)
 

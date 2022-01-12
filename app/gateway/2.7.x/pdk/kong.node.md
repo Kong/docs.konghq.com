@@ -10,19 +10,17 @@ pdk: true
 toc: true
 ---
 
-## kong.node
-
-Node-level utilities
+Node-level utilities.
 
 
 
-### kong.node.get_id()
+## kong.node.get_id()
 
-Returns the id used by this node to describe itself.
+Returns the ID used by this node to describe itself.
 
 **Returns**
 
-* `string` The v4 UUID used by this node as its id
+* `string`:  The v4 UUID used by this node as its ID.
 
 
 **Usage**
@@ -31,26 +29,25 @@ Returns the id used by this node to describe itself.
 local id = kong.node.get_id()
 ```
 
-[Back to top](#kongnode)
 
 
-### kong.node.get_memory_stats([unit[, scale]])
+## kong.node.get_memory_stats([unit[, scale]])
 
 Returns memory usage statistics about this node.
 
 **Parameters**
 
-* **unit** (string, _optional_):  The unit memory should be reported in. Can be
- either of `b/B`, `k/K`, `m/M`, or `g/G` for bytes, kibibytes, mebibytes,
+* **unit** (string, _optional_):  The unit that memory is reported in. Can be
+ any of `b/B`, `k/K`, `m/M`, or `g/G` for bytes, kibibytes, mebibytes,
  or gibibytes, respectively. Defaults to `b` (bytes).
 * **scale** (number, _optional_):  The number of digits to the right of the decimal
  point. Defaults to 2.
 
 **Returns**
 
-* `table`  A table containing memory usage statistics for this node.
- If `unit` is `b/B` (the default) reported values will be Lua numbers.
- Otherwise, reported values will be a string with the unit as a suffix.
+* `table`:   A table containing memory usage statistics for this node.
+ If `unit` is `b/B` (the default), reported values are Lua numbers.
+ Otherwise, reported values are strings with the unit as a suffix.
 
 
 **Usage**
@@ -107,16 +104,15 @@ local res = kong.node.get_memory_stats("k", 1)
 }
 ```
 
-[Back to top](#kongnode)
 
 
-### kong.node.get_hostname()
+## kong.node.get_hostname()
 
-Returns the name used by the local machine
+Returns the name used by the local machine.
 
 **Returns**
 
-* `string` The local machine hostname
+* `string`:  The local machine hostname.
 
 
 **Usage**
@@ -125,5 +121,4 @@ Returns the name used by the local machine
 local hostname = kong.node.get_hostname()
 ```
 
-[Back to top](#kongnode)
 
