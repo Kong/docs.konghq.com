@@ -37,6 +37,6 @@ Add a custom Dev Portal domain through your organization's {{site.konnect_short_
 
 1. Once you've entered all fields, click **Save Certificate**.
 
-You'll see the custom domain listed in your Dev Portal under your assigned Dev Portal URL, even if it doesn't work properly. Always test to see if your custom domain works.
+1. Test to see if your custom domain works. You'll see the custom domain listed in your Dev Portal under your assigned Dev Portal URL, even if it doesn't work properly.
 
-Your site may not resolve immediately. If you can't reach your custom domain, check your DNS records. If there are no issues and your site is unreachable, wait for your site to propagate.
+    Your site may not resolve immediately. If you can't reach your custom domain, check your DNS records. If there are no issues and your site is unreachable, wait for your site to propagate.
