@@ -9,7 +9,7 @@ All Dev Portals have an assigned, generated Dev Portal URL. To further customize
 
 * Access to your organization's {{site.konnect_short_name}} Admin UI.
 * A domain with access to configure that domain's CNAME. Kong does not offer any custom domains as a service.
-* A signed certificate, which comes with a private key.
+* An X.509 certificate, which comes with a private key.
 * Your organization's FQDN (Full Qualified Domain Name), which is listed in the {{site.konnect_short_name}} Admin UI. For example, `https://kong121212.portal.konnect.konghq.com/`.
 
 ## Direct your CNAME to the Dev Portal assigned URL
