@@ -12,3 +12,4 @@ The Dev Portal lives at a separate URL from Konnect and requires that all users,
 ## See also
 
 * [Application Overview](/konnect/dev-portal/applications/application-overview)
+* [Customization Overview](/konnect/dev-portal/applications/customization-overview)

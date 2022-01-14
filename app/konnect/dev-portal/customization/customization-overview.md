@@ -3,7 +3,7 @@ title: Customization Overview
 no_version: true
 ---
 
-The Dev Portal can be customized by those with Admin roles via the Appearance settings in {{site.konnect_short_name}}. To access the Appearance settings, click **Dev Portal** then **Appearance**.
+The Dev Portal can be customized by those with Admin roles via the Appearance settings in the {{site.konnect_short_name}} Admin UI. To access the Appearance settings, click **Dev Portal** then **Appearance**.
 
 Here, you will have the ability to modify the following:
 
@@ -12,7 +12,6 @@ Here, you will have the ability to modify the following:
 * Colors: background, text, and button colors
 * Fonts
 
-To add a custom Portal URL, click **Dev Portal** then **Portal URL**. Enter your custom URL, X.509 Certificate, and Private Key. Then click **Save Certificate**.
+To learn how to make your Dev Portal public, see [Enable Public Dev Portal](/konnect/dev-portal/customization/public-portal).
 
-{:.note}
-> **Note**: To learn how to make your Portal public, see [Enable Public Dev Portal](/konnect/dev-portal/customization/public-portal).
+To learn how to set a custom domain for your Dev Portal, see [Add a Custom Domain](/dev-portal/customization/custom-domain).
