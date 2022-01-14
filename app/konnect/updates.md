@@ -10,6 +10,12 @@ services.
 
 ## January 2022
 
+### TBD
+**Additional Service Version lifestyle statuses**
+: {{site.konnect_saas}} now supports three additional Service Version statuses: Draft, Deprecate, and Archive.
+
+: See the full Service Version lifecycle documentation: [Service Versions and Implementations](/konnect/servicehub/manage-services/#service-versions-and-implementations).
+
 ### 2022.1.14
 **Custom Domain for Dev Portal**
 : You can now set a custom domain for your Dev Portal through the {{site.konnect_saas}} Admin UI.
