@@ -14,4 +14,4 @@ Here, you will have the ability to modify the following:
 
 To learn how to make your Dev Portal public, see [Enable Public Dev Portal](/konnect/dev-portal/customization/public-portal).
 
-To learn how to set a custom domain for your Dev Portal, see [Add a Custom Domain](/dev-portal/customization/custom-domain).
+To learn how to set a custom domain for your Dev Portal, see [Add a Custom Domain](/konnect/dev-portal/customization/custom-domain).
