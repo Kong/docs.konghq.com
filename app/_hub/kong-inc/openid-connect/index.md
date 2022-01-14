@@ -1496,6 +1496,15 @@ params:
       default: true
       datatype: boolean
       description: Cache the user info requests.
+    - name: resolve_distributed_claims
+      required: false
+      default: false
+      datatype: boolean
+      description: |
+        Distributed Claims are represented by using special _claim_names and _claim_sources members of the JSON object containing the Claims.
+        This config option allows explicitly enables resolving these distributed claims.
+
+
 issuer_body: |
   Attributes | Description
   ---:| ---
