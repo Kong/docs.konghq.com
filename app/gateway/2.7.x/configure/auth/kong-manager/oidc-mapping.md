@@ -40,10 +40,13 @@ The username and password are required for the user to log into the IdP.
 The `authenticated_groups_claim` value specifies which IdP claim should be used to assign {{site.base_gateway}} roles to the
 specified {{site.base_gateway}} admin. 
 
-- The group claim name depends on your IdP -- for example, Okta configures claims for `groups`, and other IdPs might configure them as `roles`. 
-- The group claim value need to follow the format `<workspace_name>:<role_name>` for dynamic role assigning. 
+This value depends on your IdP -- for example, Okta configures claims for `groups`, and another IdP might configure them as `roles`.
 
-For example, if we set `"authenticated_groups_claim": ["groups"]` and `groups:["default:super-admin"]` is returned on admins' id tokens, these admins gets `super-admin` role in `default` workspace. 
+In the Idp, the group claim value must follow the format `<workspace_name>:<role_name>`.
+
+For example, if `"authenticated_groups_claim": ["groups"]` is specified, and in the IdP `groups:["default:super-admin"]` is specified, the administrators specified in `admin_claim` are assigned to the super-admin role in the default {{site.base_gateway}} workspace.
+
+If the mapping does not work as expected, decode the JWT that's created by your IdP, and make sure that the admin ID token includes the key:value pair `groups:["default:super-admin"]` for the case of this example, or the appropriate claim name and claim value as set in your IdP.
 
 {% navtabs %}
 {% navtab Kubernetes with Helm %}
