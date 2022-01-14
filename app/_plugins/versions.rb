@@ -165,10 +165,9 @@ module Jekyll
         if templateName == "index.md"
           # the / page
           page.data["permalink"] = "#{urlPath}/"
-          page.data["alias"] = ["#{urlPath}/latest", "#{urlPath}/#{latestRelease}/index.html"]
+          page.data["alias"] = ["#{urlPath}/latest", "#{urlPath}/#{latestRelease}", "#{urlPath}/#{latestRelease}/index.html"]
         elsif /index\.(md|html)/.match(parts.last)
           # all other nested index pages
-          # /latest/plugin-development/index/index.html -> /latest/plugin-development/index.html
           page.data["alias"] = page.data["alias"].sub(/index/, "")
         end
       end

@@ -24,6 +24,8 @@ and use the `/consumer_groups` endpoint to manage the groups.
   * [Consumer groups reference](/gateway/2.7.x/admin-api/consumer-groups/reference)
   * [Consumer groups examples](/gateway/2.7.x/admin-api/consumer-groups/examples)
 
+     This feature is currently not supported with declarative configuration.
+
 * The data plane configuration cache can now be encrypted or turned off entirely.
  Two new configuration options have been added:
   * [`data_plane_config_cache_mode`](/gateway/2.7.x/reference/configuration/#data_plane_config_cache_mode):
@@ -338,6 +340,10 @@ effect on the following plugins and fields:
   * Kafka Upstream: `config.authentication.user` and `config.authentication.password`
   * OpenID Connect: the fields `d`, `p`, `q`, `dp`, `dq`, `qi`, `oth`, `r`, `t`, and `k`
   inside `openid_connect_jwks.previous[...].` and `openid_connect_jwks.keys[...]`
+
+* Consumer groups are not supported in declarative configuration with
+decK. If you have consumer groups in your configuration, decK will ignore them.
+
 
 ## 2.6.0.2
 **Release Date:** 2021/12/03

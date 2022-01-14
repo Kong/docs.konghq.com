@@ -269,6 +269,8 @@
           url: /vitals/vitals-influx-strategy
         - text: Vitals with Prometheus
           url: /vitals/vitals-prometheus-strategy
+        - text: Estimate Vitals Storage in PostgreSQL
+          url: /vitals/vitals-estimates
     - text: Prometheus plugin
       url: /hub/kong-inc/prometheus
       absolute_url: true

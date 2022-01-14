@@ -48,6 +48,7 @@ jQuery(function () {
     e.stopPropagation();
 
     $('#module-list').toggleClass('open');
+    $('#version-list').removeClass('open');
 
     $(document).one('click', function closeMenu(e) {
       if ($('#module-list').has(e.target).length === 0) {
@@ -100,6 +101,7 @@ jQuery(function () {
     e.stopPropagation();
 
     $('#version-list').toggleClass('open');
+    $('#module-list').removeClass('open');
 
     $(document).one('click', function closeMenu(e) {
       if ($('#version-list').has(e.target).length === 0) {
@@ -682,4 +684,19 @@ setInterval(function () {
 $(".closebanner").on("click", function () {
   $(".navbar-v2").addClass("closed");
   localStorage.setItem("closebanner-hackathon", "closebanner");
+});
+
+
+// Tooltips for badges
+jQuery(function () {
+    $('.badge.enterprise')
+      .append( '<div class="tooltip"><span class="tooltiptext">Available with Enterprise subscription</span></div>' );
+    $('.badge.plus')
+      .append( '<div class="tooltip"><span class="tooltiptext">Available with Plus subscription (Konnect Cloud)</span></div>' );
+    $('.badge.free')
+      .append( '<div class="tooltip"><span class="tooltiptext">Available in Enterprise Free mode (without a license)</span></div>' );
+    $('.badge.oss')
+      .append( '<div class="tooltip"><span class="tooltiptext" >Available in Kong open-source only</span></div>' );
+    $('.badge.dbless')
+      .append( '<div class="tooltip"><span class="tooltiptext">Compatible with DB-less deployments</span></div>' );
 });

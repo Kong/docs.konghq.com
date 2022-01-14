@@ -19,6 +19,9 @@ a HTTP 404 Not Found.
 
 ```bash
 $ curl -i $PROXY_IP
+```
+Expected output:
+```text
 HTTP/1.1 404 Not Found
 Date: Fri, 21 Jun 2019 17:01:07 GMT
 Content-Type: application/json; charset=utf-8
@@ -38,6 +41,9 @@ to use the {{site.kic_product_name}}:
 
 ```bash
 $ kubectl apply -f https://bit.ly/echo-service
+```
+Expected output:
+```text
 service/echo created
 deployment.apps/echo created
 ```
@@ -68,6 +74,9 @@ spec:
             port:
               number: 80
 " | kubectl apply -f -
+```
+Expected output:
+```text
 ingress.extensions/demo created
 ```
 
@@ -75,6 +84,9 @@ Test the Ingress rule:
 
 ```bash
 $ curl -i $PROXY_IP/foo
+```
+Expected output:
+```text
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Transfer-Encoding: chunked
@@ -115,6 +127,9 @@ config:
   header_name: my-request-id
 plugin: correlation-id
 " | kubectl apply -f -
+```
+Expected output:
+```text
 kongplugin.configuration.konghq.com/request-id created
 ```
 
@@ -142,6 +157,9 @@ spec:
             port:
               number: 80
 " | kubectl apply -f -
+```
+Expected output:
+```text
 ingress.extensions/demo-example-com created
 ```
 
@@ -152,6 +170,9 @@ Send a request to Kong:
 
 ```bash
 $ curl -i -H "Host: example.com" $PROXY_IP/bar/sample
+```
+Expected output:
+```text
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Transfer-Encoding: chunked
@@ -224,6 +245,9 @@ config:
   policy: local
 plugin: rate-limiting
 " | kubectl apply -f -
+```
+Expected output:
+```text
 kongplugin.configuration.konghq.com/rl-by-ip created
 ```
 
@@ -240,6 +264,9 @@ enforced by Kong:
 
 ```bash
 $ curl -I $PROXY_IP/foo
+```
+Expected output:
+```text
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Connection: keep-alive
@@ -250,8 +277,13 @@ X-RateLimit-Remaining-minute: 2
 X-Kong-Upstream-Latency: 0
 X-Kong-Proxy-Latency: 4
 Via: kong/1.1.2
+```
 
+```bash
 $ curl -I -H "Host: example.com" $PROXY_IP/bar/sample
+```
+Expected output:
+```text
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Connection: keep-alive

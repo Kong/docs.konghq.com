@@ -31,6 +31,10 @@ configuration
 For all possible requests, see the
 [Consumer Groups reference](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference).
 
+{:.note}
+> **Note:** Consumer groups are not supported in declarative configuration with
+decK. If you have consumer groups in your configuration, decK will ignore them.
+
 ## Set up consumer group
 
 1. Create a consumer group named `JL`:

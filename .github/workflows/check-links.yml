@@ -1,21 +1,30 @@
-name: Check all links weekly
+name: Broken Links
 on:
-  workflow_dispatch:
-  schedule:
-  - cron: "0 0 * * 1" # once every week
+  pull_request:
+    types: [synchronize, ready_for_review, opened]
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-    - uses: actions/checkout@v2
-    - name: Clean environment and files
-      run: make clean
-    - name: Build docker-compose stack
-      run: docker-compose build
-    - name: Create dist folder
-      run: mkdir dist
-    - name: Set permissions
-      run: sudo chmod -R 777 .
-    - name: Check links
-      run: make check-links
+      - uses: actions/checkout@v2
+      - name: Wait for Pages changed to be neutral
+        uses: fountainhead/action-wait-for-check@v1.0.0
+        id: waitForCheck
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          checkName: "Pages changed - kongdocs"
+      - name: Wait for Netlify site to be ready
+        if: steps.waitForCheck.outputs.conclusion == 'neutral'
+        uses: jakepartusch/wait-for-netlify-action@v1.2
+        id: waitForNetlify
+        with:
+          site_name: "kongdocs"
+      - name: Run link checker
+        run: |
+          cd broken-link-checker
+          npm ci
+          node run.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
