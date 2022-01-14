@@ -123,11 +123,12 @@
         - text: Generate Credentials for an Application
           url: /dev-portal/applications/dev-gen-creds
     - text: Customization
+      url: /dev-portal/customization/customization-overview
       items:
-        - text: Customization Overview
-          url: /dev-portal/customization/customization-overview
         - text: Public Portal
           url: /dev-portal/customization/public-portal
+        - text: Add a Custom Domain
+          url: /dev-portal/customization/custom-domain
 
 - title: Konnect Vitals
   icon: /assets/images/icons/documentation/icn-vitals.svg
