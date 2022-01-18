@@ -163,6 +163,10 @@ This test framework can also be used to test behavior added with JavaScript, but
 
 We run various quality checks at build time to ensure that the documentation is maintainable.
 
+Some of the checks can be manually marked as approved using labels:
+
+* `ci:manual-approve:link-validation` - mark link checking as successful. Useful when Netlify returns a `HTTP 400` error and the links are validated manually
+
 ### include-check
 
 The `include-check.sh` script checks for any files in the `app/_includes` folder that depend on a `page.*` variable (e.g. `page.url`). This is not compatible with the `include_cached` gem that we use, and so using `page.*` in an include will fail the build.

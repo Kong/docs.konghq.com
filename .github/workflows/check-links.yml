@@ -1,9 +1,26 @@
 name: Broken Links
 on:
   pull_request:
-    types: [synchronize, ready_for_review, opened]
+    types: [synchronize, ready_for_review, opened, labeled, unlabeled]
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if manual review has been performed
+        uses: actions/github-script@v5
+        id: labels
+        with:
+          script: |
+            const { data: labels } = await github.rest.issues.listLabelsOnIssue({
+              ...context.repo,
+              issue_number: context.issue.number
+            });
+            return labels.map(l => l.name).includes('ci:manual-approve:link-validation')
+    outputs:
+      result: ${{ steps.labels.outputs.result }}
   build:
+    needs: [check]
+    if: needs.check.outputs.result == 'false'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
