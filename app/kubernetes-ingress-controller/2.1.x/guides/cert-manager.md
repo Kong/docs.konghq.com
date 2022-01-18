@@ -162,7 +162,7 @@ Via: kong/1.1.2
 First, setup a ClusterIssuer for cert-manager
 
 ```bash
-$ echo "apiVersion: cert-manager.io/v1alpha2
+$ echo "apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
   name: letsencrypt-prod
@@ -179,10 +179,9 @@ spec:
           class: kong" | kubectl apply -f -
 clusterissuer.cert-manager.io/letsencrypt-prod configured
 ```
-
 *Note*: If you run into issues configuring this,
 be sure that the group (`cert-manager.io`) and
-version (`v1alpha2`) match those in the output of
+version (`v1`) match those in the output of
 `kubectl describe crd clusterissuer`.
 This directs cert-manager which CA authority to use to issue the certificate.
 
@@ -241,7 +240,7 @@ Name:         demo-example-com
 Namespace:    default
 Labels:       <none>
 Annotations:  <none>
-API Version:  certmanager.k8s.io/v1alpha1
+API Version:  certmanager.k8s.io/v1
 Kind:         Certificate
 Metadata:
   Creation Timestamp:  2019-06-21T20:41:54Z
@@ -254,7 +253,7 @@ Metadata:
     Name:                  demo-example-com
     UID:                   261d15d3-9464-11e9-9965-42010a8a01ad
   Resource Version:        19561898
-  Self Link:               /apis/certmanager.k8s.io/v1alpha1/namespaces/default/certificates/demo-example-com
+  Self Link:               /apis/certmanager.k8s.io/v1/namespaces/default/certificates/demo-example-com
   UID:                     014d3f1d-9465-11e9-9965-42010a8a01ad
 Spec:
   Acme:
