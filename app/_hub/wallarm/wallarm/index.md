@@ -84,4 +84,4 @@ Free Wallarm trial license is available [here](https://my.wallarm.com/signup?utm
 
 ### Installation
 
-Wallarm is easy to deploy as a Kong module. Specific module installation instructions with complete OS-specific installation instructions provided [here](https://docs.wallarm.com/en/admin-en/installation-kong-en.html){:target="_blank"}{:rel="noopener noreferrer"}. 
+Wallarm is easy to deploy as a Kong module. Specific module installation instructions with complete OS-specific installation instructions provided [here](https://docs.wallarm.com/admin-en/installation-kong-en/){:target="_blank"}{:rel="noopener noreferrer"}. 
