@@ -226,7 +226,7 @@ document for why this resource exists and how it relates to the existing
 Ingress resource.
 
 Using `KongIngress`, all properties of [Upstream][kong-upstream],
-[Service][kong-service] and
+[Service][kong-service], and
 [Route][kong-route] entities in Kong related to an Ingress resource
 can be modified.
 
