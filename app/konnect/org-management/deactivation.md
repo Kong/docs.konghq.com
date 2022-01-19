@@ -3,12 +3,16 @@ title: Account and Organization Deactivation
 no_version: true
 ---
 
-A {{site.konnect_saas}} organization is automatically deactivated after 30
+A free {{site.konnect_saas}} organization is automatically deactivated after 30
 days of inactivity.
 
 Your organization is considered inactive when:
 * There is no user login into the organization during the past 30 days.
-* There are no API requests in either the current or the previous billing cycle.
+* There are no API requests in either the current or the previous billing cycle
+(30 day increments).
+
+Organizations in Plus or Enterprise tiers are exempt, and are never deactivated
+automatically.
 
 ## What happens if an organization is deactivated?
 
@@ -36,12 +40,3 @@ There is currently no way to manually deactivate an organization.
 
 If you need to reactivate an organization or unlock an email for use with
 another organization, reach out to [Kong Support](https://support.konghq.com/).
-
-
-_Oustanding questions:_
-- _Is a deactivated org ever deleted permanently? Can a user request that an
-org be deleted permanently? How would they do that?_
-- _How long do users have after deactivation happens to recover their org? Is there
-any situation where data might be deleted automatically?_
-- _Recovering an email attached to an account_
-- _Can you deactivate org manually?_
