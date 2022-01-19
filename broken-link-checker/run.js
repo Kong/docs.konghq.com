@@ -1,8 +1,11 @@
 const { Octokit } = require("@octokit/rest");
 const { HtmlUrlChecker } = require("broken-link-checker");
 const github = require("@actions/github");
+const argv = require('minimist')(process.argv.slice(2));
+
 (async function () {
-  const pull_number = github.context.issue.number;
+  const pull_number = argv.pr || github.context.issue.number;
+
   const baseUrl = `https://deploy-preview-${pull_number}--kongdocs.netlify.app`;
 
   const octokit = new Octokit({
