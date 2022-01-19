@@ -92,7 +92,7 @@ which you can use to migrate legacy `apis` configurations.
 Once you migrated to 1.5.x, you can follow the instructions in the section
 below to migrate to 2.7.x.
 
-### Upgrade from `1.0.x` - `2.2.x` to `2.7.x`
+### Upgrade from `1.0.x` - `2.6.x` to `2.7.x`
 
 **Postgres**
 
