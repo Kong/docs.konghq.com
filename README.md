@@ -216,3 +216,13 @@ The `include_cached` gem uses all passed parameters as the cache lookup key, and
 
 For guidelines on how to write includes and call them in target topics, see the
 [Kong Docs contributing guidelines](https://docs.konghq.com/contributing/includes).
+
+### Review Labels
+
+When raising a pull request, it's useful to indicate what type of review you're looking for from the team. To help with this, we've added three labels that can be applied:
+
+- `review:copyedit`: Request for writer review.
+- `review:general`: Review for general accuracy and presentation. Does the doc work? Does it output correctly?
+- `review:tech`: Request for technical review from an SME.
+
+At least one of these labels must be applied to a PR or the build will fail.
