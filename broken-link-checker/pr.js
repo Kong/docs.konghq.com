@@ -78,14 +78,12 @@ const argv = require('minimist')(process.argv.slice(2));
 
 function checkUrls(urls) {
   return new Promise((resolve, reject) => {
+    const exclusions = require("./excluded.json");
     const brokenLinks = new Set();
     const htmlUrlChecker = new HtmlUrlChecker(
       {
         honorRobotExclusions: false,
-        excludedKeywords: [
-          "https://linkedin.com/*",
-          "https://aws.amazon.com/*",
-        ],
+        excludedKeywords: exclusions,
         maxSocketsPerHost: 64,
       },
       {
