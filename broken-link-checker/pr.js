@@ -66,7 +66,7 @@ const argv = require('minimist')(process.argv.slice(2));
     // Output report
     if (r.length) {
       console.log("Broken links:");
-      console.log(r);
+      console.log(JSON.stringify(r, null, 2));
       process.exit(1);
     }
 
