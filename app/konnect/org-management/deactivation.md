@@ -16,8 +16,8 @@ automatically.
 
 ## What happens if an organization is deactivated?
 
-If your org is deactivated, you can no longer log into the organization, either
-through the Konnect UI or the API, and the following happens:
+If your organization account is deactivated, you can no longer log into the
+organization, either through the Konnect UI or the API, and the following happens:
 
 * All billing stops immediately, and all {{site.konnect_saas}} subscriptions
 are removed.
@@ -36,7 +36,7 @@ instances will keep running until you stop them manually.
 
 ## Deactivate or reactivate an organization
 
-There is currently no way to manually deactivate an organization.
-
-If you need to reactivate an organization or unlock an email for use with
-another organization, reach out to [Kong Support](https://support.konghq.com/).
+Contact [Kong Support](https://support.konghq.com/) to do any of the following:
+* Deactivate an organization that you registered
+* Reactivate an organization that has been deactivated
+* Unlock an email for use with another organization
