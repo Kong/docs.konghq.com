@@ -13,6 +13,7 @@
     "@actions/github": "^5.0.0",
     "@octokit/rest": "^18.12.0",
     "broken-link-checker": "^0.7.8",
+    "fast-glob": "^3.2.11",
     "minimist": "^1.2.5"
   }
 }
