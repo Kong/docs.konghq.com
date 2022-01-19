@@ -34,7 +34,7 @@ previous release, so you will need to rebuild them with the latest patches.
 The required OpenResty version for Kong Gateway 2.5.x is
 [1.19.3.1](https://openresty.org/en/changelog-1019003.html). This is more recent
 than the version in Kong Gateway 2.3.0 (which used `1.17.8.2`). In addition to an upgraded
-OpenResty, you will need the correct [OpenResty patches](https://github.com/Kong/kong-build-tools/tree/master/openresty-build-tools/openresty-patches)
+OpenResty, you will need the correct [OpenResty patches](https://github.com/Kong/kong-build-tools/tree/master/openresty-patches)
 for this new version, including the latest release of [lua-kong-nginx-module](https://github.com/Kong/lua-kong-nginx-module).
 The [kong-build-tools](https://github.com/Kong/kong-build-tools)
 repository contains [openresty-build-tools](https://github.com/Kong/kong-build-tools/tree/master/openresty-build-tools),
