@@ -585,7 +585,4 @@ default/sample values as needed:
 {% if include.params.consumer_id %}
   {{ plugin_config_for_consumer | markdownify }}
 {% endif %}
-{% if include.params.api_id %}
-  {{ plugin_config_for_api | markdownify }}
-{% endif %}
 {{ plugin_global_config | markdownify }}

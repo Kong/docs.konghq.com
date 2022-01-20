@@ -58,7 +58,6 @@ kong_version_compatibility:
       - 0.36-x
 params:
   name: response-ratelimiting
-  api_id: false
   service_id: true
   route_id: true
   consumer_id: true
@@ -232,7 +231,5 @@ X-RateLimit-Remaining-Videos: 3
 X-RateLimit-Remaining-Images: 0
 ```
 
-[api-object]: /gateway/latest/admin-api/#api-object
 [configuration]: /gateway/latest/reference/configuration
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
-

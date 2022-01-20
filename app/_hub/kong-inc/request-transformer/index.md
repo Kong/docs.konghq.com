@@ -212,8 +212,8 @@ params:
 
 ## Template as a Value
 
-You can use any of the current request headers, query params, and captured URI groups as a
-template to populate the above supported configuration fields.
+You can use any of the current request headers, query params, and captured URI
+groups as templates to populate supported configuration fields.
 
 | Request Param | Template
 | ------------- | -----------
@@ -221,10 +221,15 @@ template to populate the above supported configuration fields.
 | querystring   | `$(query_params.<query-param-name>)` or `$(query_params["<query-param-name>"])`)
 | captured URIs | `$(uri_captures.<group-name>)` or `$(uri_captures["<group-name>"])`)
 
-To escape a template, wrap it inside quotes and pass it inside another template.<br>
-`$('$(some_escaped_template)')`
+To escape a template, wrap it inside quotes and pass inside another template.
+For example:
 
-Note: The plugin creates a non-mutable table of request headers, querystrings, and captured URIs
+```
+$('$(something_that_needs_to_escaped)')
+```
+
+{:.note}
+> **Note:** The plugin creates a non-mutable table of request headers, querystrings, and captured URIs
 before transformation. Therefore, any update or removal of params used in a template
 does not affect the rendered value of a template.
 
@@ -263,7 +268,8 @@ already there:
         return "Basic " .. value  -- added proper prefix
       end)())
 
-*NOTE:* Especially in multi-line templates like the example above, make sure not
+{:.note}
+> **Note:** Especially in multi-line templates like the example above, make sure not
 to add any trailing white space or new lines. Because these would be outside the
 placeholders, they would be considered part of the template, and hence would be
 appended to the generated value.
@@ -274,10 +280,10 @@ above).
 
 ### Examples Using Template as a Value
 
-Add an API `test` with `uris` configured with a named capture group `user_id`:
+Add a Service named `test` with `uris` configured with a named capture group `user_id`:
 
 ```bash
-$ curl -X POST http://localhost:8001/apis \
+$ curl -X POST http://localhost:8001/services \
     --data 'name=test' \
     --data 'upstream_url=http://mockbin.com' \
     --data-urlencode 'uris=/requests/user/(?<user_id>\w+)' \
@@ -289,7 +295,7 @@ whose value is being set with the value sent with header `x-user-id` or
 with the default value `alice`. The `header` is missing.
 
 ```bash
-$ curl -X POST http://localhost:8001/apis/test/plugins \
+$ curl -X POST http://localhost:8001/services/test/plugins \
     --data "name=request-transformer" \
     --data-urlencode "config.add.headers=x-consumer-id:\$(headers['x-user-id'] or 'alice')" \
     --data "config.remove.headers=x-user-id"
@@ -301,10 +307,10 @@ Now send a request without setting header `x-user-id`:
 $ curl -i -X GET localhost:8000/requests/user/foo
 ```
 
-The plugin adds a new header `x-consumer-id` with value `alice` before proxying
-request upstream.
+The plugin adds a new header `x-consumer-id` with the value `alice` before
+proxying the request upstream.
 
-Now try sending request with header `x-user-id` set:
+Now try sending request with the header `x-user-id` set:
 
 ```bash
 $ curl -i -X GET localhost:8000/requests/user/foo \
@@ -316,22 +322,21 @@ with the header `x-user-id`, i.e.`bob`.
 
 ## Order of execution
 
-Plugin performs the response transformation in the following order:
+This plugin performs the response transformation in the following order:
 
 * remove → rename → replace → add → append
 
 ## Examples
 
-<div class="alert alert-info.blue" role="alert">
-  <strong>Kubernetes users:</strong> version <code>v1beta1</code> of the Ingress
+{:.note}
+> **Kubernetes users:** Version `v1beta1` of the Ingress
   specification does not allow the use of named regex capture groups in paths.
   If you use the ingress controller, you should use unnamed groups, e.g.
-  <code>(\w+)/</code> instead of <code>(?&lt;user_id&gt;\w+)</code>. You can access
-  these based on their order in the URL path, e.g. <code>$(uri_captures[1])</code>
-  will obtain the value of the first capture group.
-</div>
+  `(\w+)/`instead of `(?&lt;user_id&gt;\w+)`. You can access
+  these based on their order in the URL path. For example `$(uri_captures[1])`
+  obtains the value of the first capture group.
 
-In the following examples, the plugin enabled on a Service. This would work
+In the following examples, the plugin is enabled on a Service. This would work
 similarly for Routes.
 
 - Add multiple headers by passing each `header:value` pair separately:

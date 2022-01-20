@@ -29,7 +29,6 @@ kong_version_compatibility:
       - 0.36-x
 params:
   name: request-transformer-advanced
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true
@@ -205,7 +204,8 @@ params:
 
 ## Template as Value
 
-User can use any of the the current request headers, query params, and captured URI groups as template to populate above supported config fields.
+You can use any of the the current request headers, query params, and captured
+URI groups as templates to populate supported config fields.
 
 | Request Param | Template
 | ------------- | -----------
@@ -213,10 +213,17 @@ User can use any of the the current request headers, query params, and captured 
 | querystring   | `$(query_params.<query-param-name>)` or `$(query_params["<query-param-name>"])`)
 | captured URIs | `$(uri_captures.<group-name>)` or `$(uri_captures["<group-name>"])`)
 
-To escape a template, wrap it inside quotes and pass inside another template.<br>
-Ex. $('$(some_needs_to_escaped)')
+To escape a template, wrap it inside quotes and pass inside another template.
+For example:
 
-Note: The plugin creates a non-mutable table of request headers, querystrings, and captured URIs before transformation. So any update or removal of params used in template does not affect the rendered value of template.
+```
+$('$(something_that_needs_to_escaped)')
+```
+
+{:.note}
+> **Note**: The plugin creates a non-mutable table of request headers,
+querystrings, and captured URIs before transformation. So any update or removal
+ of params used in the template does not affect the rendered value of template.
 
 ### Advanced templates
 
@@ -253,7 +260,8 @@ already there:
         return "Basic " .. value  -- added proper prefix
       end)())
 
-*NOTE:* Especially in multi-line templates like the example above, make sure not
+{:.note}
+> **Note**: Especially in multi-line templates like the example above, make sure not
 to add any trailing white-space or new-lines. Since these would be outside the
 placeholders, they would be considered part of the template, and hence would be
 appended to the generated value.
@@ -264,65 +272,67 @@ above).
 
 ### Examples Using Template as Value
 
-Add an API `test` with `uris` configured with a named capture group `user_id`
+Add a Service named `test` with `uris` configured with a named capture group
+`user_id`:
 
 ```bash
-$ curl -X POST http://localhost:8001/apis \
+$ curl -X POST http://localhost:8001/services \
     --data 'name=test' \
     --data 'upstream_url=http://mockbin.com' \
     --data-urlencode 'uris=/requests/user/(?<user_id>\w+)' \
     --data "strip_uri=false"
 ```
 
-<div class="alert alert-info.blue" role="alert">
-  <strong>Kubernetes users:</strong> version <code>v1beta1</code> of the Ingress
+{:.note}
+> **Kubernetes users:** Version `v1beta1` of the Ingress
   specification does not allow the use of named regex capture groups in paths.
   If you use the ingress controller, you should use unnamed groups, e.g.
-  <code>(\w+)/</code> instead of <code>(?&lt;user_id&gt;\w+)</code>. You can access
-  these based on their order in the URL path, e.g. <code>$(uri_captures[1])</code>
-  will obtain the value of the first capture group.
-</div>
+  `(\w+)/`instead of `(?&lt;user_id&gt;\w+)`. You can access
+  these based on their order in the URL path. For example `$(uri_captures[1])`
+  obtains the value of the first capture group.
 
 Enable the ‘request-transformer-advanced’ plugin to add a new header `x-consumer-id`
 and its value is being set with the value sent with header `x-user-id` or
 with the default value alice is `header` is missing.
 
 ```bash
-$ curl -X POST http://localhost:8001/apis/test/plugins \
+$ curl -X POST http://localhost:8001/services/test/plugins \
     --data "name=request-transformer-advanced" \
     --data-urlencode "config.add.headers=x-consumer-id:\$(headers['x-user-id'] or 'alice')" \
     --data "config.remove.headers=x-user-id"
 ```
 
-Now send a request without setting header `x-user-id`
+Now send a request without setting header `x-user-id`:
 
 ```bash
 $ curl -i -X GET localhost:8000/requests/user/foo
 ```
 
-Plugin will add a new header `x-consumer-id` with value alice before proxying
-request upstream. Now try sending request with header `x-user-id` set
+The plugin adds a new header `x-consumer-id` with the value `alice` before
+proxying the request upstream.
+
+Now try sending a request with the header `x-user-id` set:
 
 ```bash
 $ curl -i -X GET localhost:8000/requests/user/foo \
   -H "X-User-Id:bob"
 ```
 
-This time plugin will add a new header `x-consumer-id` with value sent along
-with header `x-user-id`, i.e.`bob`
+This time, the plugin adds the new header `x-consumer-id` with the value sent
+along with the header `x-user-id`, in this case `bob`.
 
 ## Order of Execution
 
 This plugin performs the response transformation in the following order:
 
-remove –> replace –> add –> append
+* remove → rename → replace → add → append
 
 ## Configuration Examples
 
 Add multiple headers by passing each header:value pair separately:
 
 ```bash
-$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+$ curl -X POST http://localhost:8001/services/mockbin/plugins \
   --data "name=request-transformer-advanced" \
   --data "config.add.headers[1]=h1:v1" \
   --data "config.add.headers[2]=h2:v1"
@@ -335,7 +345,7 @@ $ curl -X POST http://localhost:8001/apis/mockbin/plugins \
 Add multiple headers by passing comma separated header:value pair:
 
 ```bash
-$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+$ curl -X POST http://localhost:8001/services/mockbin/plugins \
   --data "name=request-transformer-advanced" \
   --data "config.add.headers=h1:v1,h2:v2"
 ```
@@ -344,10 +354,10 @@ $ curl -X POST http://localhost:8001/apis/mockbin/plugins \
 | --------- | -----------
 | h1: v1 | h1: v1, h2: v1
 
-Add multiple headers passing config as JSON body:
+Add multiple headers passing config as a JSON body:
 
 ```bash
-$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+$ curl -X POST http://localhost:8001/services/mockbin/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "request-transformer-advanced", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
 ```
@@ -359,7 +369,7 @@ $ curl -X POST http://localhost:8001/apis/mockbin/plugins \
 Add a querystring and a header:
 
 ```bash
-$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+$ curl -X POST http://localhost:8001/services/mockbin/plugins \
   --data "name=request-transformer-advanced" \
   --data "config.add.querystring=q1:v2,q2=v1" \
   --data "config.add.headers=h1:v1"
@@ -379,11 +389,10 @@ $ curl -X POST http://localhost:8001/apis/mockbin/plugins \
 Append multiple headers and remove a body parameter:
 
 ```bash
-$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+$ curl -X POST http://localhost:8001/services/mockbin/plugins \
   --data "name=request-transformer-advanced" \
   --data "config.add.headers=h1:v2,h2:v1" \
   --data "config.remove.body=p1" \
-
 ```
 
 | Incoming Request Headers | Upstream Proxied Headers
@@ -398,11 +407,10 @@ $ curl -X POST http://localhost:8001/apis/mockbin/plugins \
 Add multiple headers and querystring parameters if not already set:
 
 ```bash
-$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+$ curl -X POST http://localhost:8001/services/mockbin/plugins \
   --data "name=request-transformer-advanced" \
   --data "config.add.headers=h1:v1,h2:v1" \
   --data "config.add.querystring=q1:v2,q2:v1" \
-
 ```
 
 | Incoming Request Headers | Upstream Proxied Headers

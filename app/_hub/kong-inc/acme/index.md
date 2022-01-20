@@ -19,7 +19,6 @@ kong_version_compatibility:
       - 2.7.x
 params:
   name: acme
-  api_id: false
   service_id: false
   route_id: false
   consumer_id: false
