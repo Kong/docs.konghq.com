@@ -34,17 +34,17 @@ The `anonymous` consumer does not correspond to any real user, and will only ser
 Next, we add both Key Auth and Basic Auth plugins to our consumer, and set the anonymous fallback to the consumer we created earlier.
 
 ```bash
-$ curl -sX POST kong-admin:8001/apis/example-api/plugins/ \
+$ curl -sX POST kong-admin:8001/services/example-service/plugins/ \
     -H "Content-Type: application/json" \
     --data '{"name": "key-auth", "config": { "hide_credentials": true, "anonymous": "d955c0cb-1a6e-4152-9440-414ebb8fee8a"} }'
 
-{"created_at":1517528304000,"config":{"key_in_body":false,"hide_credentials":true,"anonymous":"d955c0cb-1a6e-4152-9440-414ebb8fee8a","run_on_preflight":true,"key_names":["apikey"]},"id":"bb884f7b-4e48-4166-8c80-c858b5a4c357","name":"key-auth","api_id":"a2a168a8-4491-4fe1-9426-cde3b5fcd45b","enabled":true}
+{"created_at":1517528304000,"config":{"key_in_body":false,"hide_credentials":true,"anonymous":"d955c0cb-1a6e-4152-9440-414ebb8fee8a","run_on_preflight":true,"key_names":["apikey"]},"id":"bb884f7b-4e48-4166-8c80-c858b5a4c357","name":"key-auth","service_id":"a2a168a8-4491-4fe1-9426-cde3b5fcd45b","enabled":true}
 
-$ curl -sX POST kong-admin:8001/apis/example-api/plugins/ \
+$ curl -sX POST kong-admin:8001/services/example-service/plugins/ \
     -H "Content-Type: application/json" \
     --data '{"name": "basic-auth", "config": { "hide_credentials": true, "anonymous": "d955c0cb-1a6e-4152-9440-414ebb8fee8a"} }'
 
-{"created_at":1517528499000,"config":{"hide_credentials":true,"anonymous":"d955c0cb-1a6e-4152-9440-414ebb8fee8a"},"id":"e5a40543-debe-4225-a879-a54901368e6d","name":"basic-auth","api_id":"a2a168a8-4491-4fe1-9426-cde3b5fcd45b","enabled":true}
+{"created_at":1517528499000,"config":{"hide_credentials":true,"anonymous":"d955c0cb-1a6e-4152-9440-414ebb8fee8a"},"id":"e5a40543-debe-4225-a879-a54901368e6d","name":"basic-auth","service_id":"a2a168a8-4491-4fe1-9426-cde3b5fcd45b","enabled":true}
 ```
 
 If using [OpenID Connect](/hub/kong-inc/openid-connect), you must also set `config.consumer_claim` along with `anonymous`, as setting `anonymous` alone will not map that consumer.
