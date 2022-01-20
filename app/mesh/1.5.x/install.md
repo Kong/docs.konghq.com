@@ -10,7 +10,7 @@ seamless experience, {{site.mesh_product_name}} follows the same installation
 and configuration procedures as Kuma, but with {{site.mesh_product_name}}-specific binaries.
 
 On this page, you will find access to the official {{site.mesh_product_name}}
-distributions that provide a drop-in replacement to Kuma's native binaries, plus 
+distributions that provide a drop-in replacement to Kuma's native binaries, plus
 links to cloud marketplace integrations.
 
 **The latest {{site.mesh_product_name}} version is
@@ -81,23 +81,11 @@ links to cloud marketplace integrations.
 </div>
 
 {% endnavtab %}
-{% navtab Marketplaces %}
-
-<div class="docs-grid-install">
-
-  <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/konginc1581527938760.kongmesh" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/uploads/2020/05/Azure_.png" alt="Azure" />
-    <div class="install-text">Azure</div>
-  </a>
-
-</div>
-
-{% endnavtab %}
 {% endnavtabs %}
 
 ## Licensing
 
-Your {{site.mesh_product_name}} license includes an expiration date and the number of data plane proxies you can deploy. If you deploy more proxies than your license allows, you receive a warning. 
+Your {{site.mesh_product_name}} license includes an expiration date and the number of data plane proxies you can deploy. If you deploy more proxies than your license allows, you receive a warning.
 
 You have a 30-day grace period after the license expires. Make sure to renew your license before the grace period ends.
 
