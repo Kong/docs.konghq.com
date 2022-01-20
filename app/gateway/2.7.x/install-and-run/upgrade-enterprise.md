@@ -67,7 +67,7 @@ to version 2.1.x before continuing.
 > **Important:** If you are currently running in [hybrid mode](/gateway/{{page.kong_version}}/plan-and-deploy/hybrid-mode/),
 upgrade the control plane first, and then the data planes.
 
-* If you are currently running 2.7.x in classic (traditional)
+* If you are currently running 2.6.x in classic (traditional)
   mode and want to run in hybrid mode instead, follow the hybrid mode
   [installation instructions](/gateway/{{page.kong_version}}/plan-and-deploy/hybrid-mode/hybrid-mode-setup/)
   after running the migration.
