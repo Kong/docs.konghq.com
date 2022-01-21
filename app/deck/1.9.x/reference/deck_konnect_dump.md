@@ -1,34 +1,33 @@
 ---
-title: deck dump
+title: deck konnect dump
 ---
 
-The dump command reads all entities present in Kong
-and writes them to a local file.
+The konnect dump command reads all entities present in Konnect
+	and writes them to a local file.
 
-The file can then be read using the sync command or diff command to
-configure Kong.
+	The file can then be read using the 'deck konnect sync' command or 'deck konnect diff' command to
+	configure Konnect.
+
+WARNING: This command is currently in alpha state. This command
+might have breaking changes in future releases.
 
 ```
-deck dump [flags]
+deck konnect dump [flags]
 ```
 
 ## Flags
 
 ```
-      --all-workspaces        dump configuration of all Workspaces (Kong Enterprise only).
-      --format string         output file format: json or yaml. (default "yaml")
-  -h, --help                  help for dump
-  -o, --output-file string    file to which to write Kong's configuration.Use '-' to write to stdout. (default "kong")
-      --rbac-resources-only   export only the RBAC resources (Kong Enterprise only).
-      --select-tag strings    only entities matching tags specified with this flag are exported.
-                              When this setting has multiple tag values, entities must match every tag.
-      --skip-consumers        skip exporting consumers and any plugins associated with consumers.
-      --with-id               write ID of all entities in the output
-  -w, --workspace string      dump configuration of a specific Workspace(Kong Enterprise only).
-      --yes                   assume 'yes' to prompts and run non-interactively.
+      --format string        output file format: json or yaml. (default "yaml")
+  -h, --help                 help for dump
+      --include-consumers    export consumers, associated credentials and any plugins associated with consumers.
+  -o, --output-file string   file to which to write Kong's configuration. (default "konnect")
+      --with-id              write ID of all entities in the output.
+      --yes                  Assume 'yes' to prompts and run non-interactively.
 ```
 
 ## Flags inherited from parent commands
+
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
@@ -59,6 +58,7 @@ deck dump [flags]
                                        between decK and Kong.
 ```
 
+
 ## See also
 
-* [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively
+* [deck konnect](/deck/{{page.kong_version}}/reference/deck_konnect)	 - Configuration tool for Konnect (in alpha)

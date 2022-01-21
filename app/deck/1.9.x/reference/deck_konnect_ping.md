@@ -1,42 +1,30 @@
 ---
-title: deck dump
+title: deck konnect ping
 ---
 
-The dump command reads all entities present in Kong
-and writes them to a local file.
+The konnect ping command can be used to verify if decK
+can connect to Konnect's API endpoint. It also validates the supplied
+credentials.
 
-The file can then be read using the sync command or diff command to
-configure Kong.
+WARNING: This command is currently in alpha state. This command
+might have breaking changes in future releases.
 
 ```
-deck dump [flags]
+deck konnect ping [flags]
 ```
 
 ## Flags
 
 ```
-      --all-workspaces        dump configuration of all Workspaces (Kong Enterprise only).
-      --format string         output file format: json or yaml. (default "yaml")
-  -h, --help                  help for dump
-  -o, --output-file string    file to which to write Kong's configuration.Use '-' to write to stdout. (default "kong")
-      --rbac-resources-only   export only the RBAC resources (Kong Enterprise only).
-      --select-tag strings    only entities matching tags specified with this flag are exported.
-                              When this setting has multiple tag values, entities must match every tag.
-      --skip-consumers        skip exporting consumers and any plugins associated with consumers.
-      --with-id               write ID of all entities in the output
-  -w, --workspace string      dump configuration of a specific Workspace(Kong Enterprise only).
-      --yes                   assume 'yes' to prompts and run non-interactively.
+  -h, --help   help for ping
 ```
 
 ## Flags inherited from parent commands
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
-      --ca-cert string                 Custom CA certificate (raw contents) to use to verify Kong's Admin TLS certificate.
+      --ca-cert string                 Custom CA certificate to use to verify Kong's Admin TLS certificate.
                                        This value can also be set using DECK_CA_CERT environment variable.
-                                       This takes precedence over --ca-cert-file flag.
-      --ca-cert-file string            Path to a custom CA certificate to use to verify Kong's Admin TLS certificate.
-                                       This value can also be set using DECK_CA_CERT_FILE environment variable.
       --config string                  Config file (default is $HOME/.deck.yaml).
       --headers strings                HTTP headers (key:value) to inject in all requests to Kong's Admin API.
                                        This flag can be specified multiple times to inject multiple headers.
@@ -59,6 +47,7 @@ deck dump [flags]
                                        between decK and Kong.
 ```
 
+
 ## See also
 
-* [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively
+* [deck konnect](/deck/{{page.kong_version}}/reference/deck_konnect)	 - Configuration tool for Konnect (in alpha)

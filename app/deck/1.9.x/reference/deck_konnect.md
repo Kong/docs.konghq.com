@@ -1,31 +1,17 @@
 ---
-title: deck dump
+title: deck konnect
 ---
 
-The dump command reads all entities present in Kong
-and writes them to a local file.
+The konnect command prints subcommands that can be used to
+configure Konnect.
 
-The file can then be read using the sync command or diff command to
-configure Kong.
-
-```
-deck dump [flags]
-```
+WARNING: This command is currently in alpha state. This command
+might have breaking changes in future releases.
 
 ## Flags
 
 ```
-      --all-workspaces        dump configuration of all Workspaces (Kong Enterprise only).
-      --format string         output file format: json or yaml. (default "yaml")
-  -h, --help                  help for dump
-  -o, --output-file string    file to which to write Kong's configuration.Use '-' to write to stdout. (default "kong")
-      --rbac-resources-only   export only the RBAC resources (Kong Enterprise only).
-      --select-tag strings    only entities matching tags specified with this flag are exported.
-                              When this setting has multiple tag values, entities must match every tag.
-      --skip-consumers        skip exporting consumers and any plugins associated with consumers.
-      --with-id               write ID of all entities in the output
-  -w, --workspace string      dump configuration of a specific Workspace(Kong Enterprise only).
-      --yes                   assume 'yes' to prompts and run non-interactively.
+  -h, --help   help for konnect
 ```
 
 ## Flags inherited from parent commands
@@ -59,6 +45,11 @@ deck dump [flags]
                                        between decK and Kong.
 ```
 
+
 ## See also
 
 * [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively
+* [deck konnect diff](/deck/{{page.kong_version}}/reference/deck_konnect_diff)	 - Diff the current entities in Konnect with the one on disks (in alpha)
+* [deck konnect dump](/deck/{{page.kong_version}}/reference/deck_konnect_dump)	 - Export configuration from Konnect (in alpha)
+* [deck konnect ping](/deck/{{page.kong_version}}/reference/deck_konnect_ping)	 - Verify connectivity with Konnect (in alpha)
+* [deck konnect sync](/deck/{{page.kong_version}}/reference/deck_konnect_sync)	 - Sync performs operations to get Konnect's configuration to match the state file (in alpha)

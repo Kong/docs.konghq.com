@@ -1,31 +1,20 @@
 ---
-title: deck dump
+title: deck ping
 ---
 
-The dump command reads all entities present in Kong
-and writes them to a local file.
-
-The file can then be read using the sync command or diff command to
-configure Kong.
+The ping command can be used to verify if decK
+can connect to Kong's Admin API.
 
 ```
-deck dump [flags]
+deck ping [flags]
 ```
 
 ## Flags
 
 ```
-      --all-workspaces        dump configuration of all Workspaces (Kong Enterprise only).
-      --format string         output file format: json or yaml. (default "yaml")
-  -h, --help                  help for dump
-  -o, --output-file string    file to which to write Kong's configuration.Use '-' to write to stdout. (default "kong")
-      --rbac-resources-only   export only the RBAC resources (Kong Enterprise only).
-      --select-tag strings    only entities matching tags specified with this flag are exported.
-                              When this setting has multiple tag values, entities must match every tag.
-      --skip-consumers        skip exporting consumers and any plugins associated with consumers.
-      --with-id               write ID of all entities in the output
-  -w, --workspace string      dump configuration of a specific Workspace(Kong Enterprise only).
-      --yes                   assume 'yes' to prompts and run non-interactively.
+  -h, --help               help for ping
+  -w, --workspace string   Ping configuration with a specific Workspace (Kong Enterprise only).
+                           Useful when RBAC permissions are scoped to a Workspace.
 ```
 
 ## Flags inherited from parent commands
@@ -58,6 +47,7 @@ deck dump [flags]
                                        Setting this value to 2 outputs all HTTP requests/responses
                                        between decK and Kong.
 ```
+
 
 ## See also
 

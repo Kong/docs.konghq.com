@@ -1,31 +1,77 @@
 ---
-title: deck dump
+title: deck completion
 ---
 
-The dump command reads all entities present in Kong
-and writes them to a local file.
+Generate completion script.
 
-The file can then be read using the sync command or diff command to
-configure Kong.
+```sh
+deck completion [bash|zsh|fish|powershell]
+```
 
+## Usage
+To load completions, follow the instructions for your shell below.
+
+### Bash
+
+```sh
+source <(deck completion bash)
 ```
-deck dump [flags]
+
+To load completions for each session, execute once:
+
+**Linux:**
+```sh
+deck completion bash > /etc/bash_completion.d/deck
 ```
+
+**macOS:**
+```sh
+deck completion bash > /usr/local/etc/bash_completion.d/deck
+```
+
+### Zsh
+
+If shell completion is not already enabled in your environment,
+you will need to enable it. You can execute the following once:
+```sh
+echo "autoload -U compinit; compinit" >> ~/.zshrc
+```
+
+To load completions for each session, execute once:
+```sh
+deck completion zsh > "${fpath[1]}/_yourprogram"
+```
+
+You will need to start a new shell for this setup to take effect.
+
+### fish
+
+```sh
+deck completion fish | source
+```
+
+To load completions for each session, execute once:
+```sh
+deck completion fish > ~/.config/fish/completions/deck.fish
+```
+
+### PowerShell
+
+```powershell
+PS> deck completion powershell | Out-String | Invoke-Expression
+```
+
+To load completions for every new session, run:
+```powershell
+PS> deck completion powershell > deck.ps1
+```
+
+Then source this file from your PowerShell profile.
 
 ## Flags
 
 ```
-      --all-workspaces        dump configuration of all Workspaces (Kong Enterprise only).
-      --format string         output file format: json or yaml. (default "yaml")
-  -h, --help                  help for dump
-  -o, --output-file string    file to which to write Kong's configuration.Use '-' to write to stdout. (default "kong")
-      --rbac-resources-only   export only the RBAC resources (Kong Enterprise only).
-      --select-tag strings    only entities matching tags specified with this flag are exported.
-                              When this setting has multiple tag values, entities must match every tag.
-      --skip-consumers        skip exporting consumers and any plugins associated with consumers.
-      --with-id               write ID of all entities in the output
-  -w, --workspace string      dump configuration of a specific Workspace(Kong Enterprise only).
-      --yes                   assume 'yes' to prompts and run non-interactively.
+  -h, --help   help for completion
 ```
 
 ## Flags inherited from parent commands
@@ -59,6 +105,7 @@ deck dump [flags]
                                        between decK and Kong.
 ```
 
+
 ## See also
 
-* [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively
+* [deck](/deck/{{page.kong_version}}/reference/deck) - Administer your Kong clusters declaratively

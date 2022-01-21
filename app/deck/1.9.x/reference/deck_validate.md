@@ -1,31 +1,28 @@
 ---
-title: deck dump
+title: deck validate
 ---
 
-The dump command reads all entities present in Kong
-and writes them to a local file.
+The validate command reads the state file and ensures validity.
 
-The file can then be read using the sync command or diff command to
-configure Kong.
+It reads all the specified state files and reports YAML/JSON
+parsing issues. It also checks for foreign relationships
+and alerts if there are broken relationships, or missing links present.
+No communication takes places between decK and Kong during the execution of
+this command.
+
 
 ```
-deck dump [flags]
+deck validate [flags]
 ```
 
 ## Flags
 
 ```
-      --all-workspaces        dump configuration of all Workspaces (Kong Enterprise only).
-      --format string         output file format: json or yaml. (default "yaml")
-  -h, --help                  help for dump
-  -o, --output-file string    file to which to write Kong's configuration.Use '-' to write to stdout. (default "kong")
-      --rbac-resources-only   export only the RBAC resources (Kong Enterprise only).
-      --select-tag strings    only entities matching tags specified with this flag are exported.
-                              When this setting has multiple tag values, entities must match every tag.
-      --skip-consumers        skip exporting consumers and any plugins associated with consumers.
-      --with-id               write ID of all entities in the output
-  -w, --workspace string      dump configuration of a specific Workspace(Kong Enterprise only).
-      --yes                   assume 'yes' to prompts and run non-interactively.
+  -h, --help                  help for validate
+      --rbac-resources-only   indicate that the state file(s) contains RBAC resources only (Kong Enterprise only).
+  -s, --state strings         file(s) containing Kong's configuration.
+                              This flag can be specified multiple times for multiple files.
+                              Use '-' to read from stdin. (default [kong.yaml])
 ```
 
 ## Flags inherited from parent commands
@@ -58,6 +55,7 @@ deck dump [flags]
                                        Setting this value to 2 outputs all HTTP requests/responses
                                        between decK and Kong.
 ```
+
 
 ## See also
 

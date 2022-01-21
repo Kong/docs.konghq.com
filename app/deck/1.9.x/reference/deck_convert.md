@@ -1,31 +1,23 @@
 ---
-title: deck dump
+title: deck convert
 ---
 
-The dump command reads all entities present in Kong
-and writes them to a local file.
-
-The file can then be read using the sync command or diff command to
-configure Kong.
+The convert command changes configuration files from one format
+into another compatible format. For example, a configuration for 'kong-gateway'
+can be converted into a 'konnect' configuration file.
 
 ```
-deck dump [flags]
+deck convert [flags]
 ```
 
 ## Flags
 
 ```
-      --all-workspaces        dump configuration of all Workspaces (Kong Enterprise only).
-      --format string         output file format: json or yaml. (default "yaml")
-  -h, --help                  help for dump
-  -o, --output-file string    file to which to write Kong's configuration.Use '-' to write to stdout. (default "kong")
-      --rbac-resources-only   export only the RBAC resources (Kong Enterprise only).
-      --select-tag strings    only entities matching tags specified with this flag are exported.
-                              When this setting has multiple tag values, entities must match every tag.
-      --skip-consumers        skip exporting consumers and any plugins associated with consumers.
-      --with-id               write ID of all entities in the output
-  -w, --workspace string      dump configuration of a specific Workspace(Kong Enterprise only).
-      --yes                   assume 'yes' to prompts and run non-interactively.
+      --from string          format of the source file, allowed formats: [kong-gateway]
+  -h, --help                 help for convert
+      --input-file string    configuration file to be converted. Use '-' to read from stdin.
+      --output-file string   file to write configuration to after conversion. Use '-' to write to stdout.
+      --to string            desired format of the output, allowed formats: [konnect]
 ```
 
 ## Flags inherited from parent commands
@@ -58,6 +50,7 @@ deck dump [flags]
                                        Setting this value to 2 outputs all HTTP requests/responses
                                        between decK and Kong.
 ```
+
 
 ## See also
 
