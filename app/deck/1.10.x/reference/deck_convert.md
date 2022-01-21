@@ -1,26 +1,23 @@
 ---
-title: deck konnect sync
+title: deck convert
 ---
 
-The konnect sync command reads the state file and performs operations in Konnect
-to get Konnect's state in sync with the input state.
-
-WARNING: This command is currently in alpha state. This command
-might have breaking changes in future releases.
+The convert command changes configuration files from one format
+into another compatible format. For example, a configuration for 'kong-gateway'
+can be converted into a 'konnect' configuration file.
 
 ```
-deck konnect sync [flags]
+deck convert [flags]
 ```
 
 ## Flags
 
 ```
-  -h, --help                help for sync
-      --include-consumers   export consumers, associated credentials and any plugins associated with consumers.
-      --parallelism int     Maximum number of concurrent operations. (default 100)
-      --silence-events      disable printing events to stdout
-  -s, --state strings       file(s) containing Konnect's configuration.
-                            This flag can be specified multiple times for multiple files. (default [konnect.yaml])
+      --from string          format of the source file, allowed formats: [kong-gateway]
+  -h, --help                 help for convert
+      --input-file string    configuration file to be converted. Use '-' to read from stdin.
+      --output-file string   file to write configuration to after conversion. Use '-' to write to stdout.
+      --to string            desired format of the output, allowed formats: [konnect]
 ```
 
 ## Flags inherited from parent commands
@@ -38,6 +35,8 @@ deck konnect sync [flags]
       --kong-addr string               HTTP address of Kong's Admin API.
                                        This value can also be set using the environment variable DECK_KONG_ADDR
                                         environment variable. (default "http://localhost:8001")
+      --kong-cookie-jar-path string    Absolute path to a cookie-jar file in the Netscape cookie format for auth with Admin Server.
+                                       You may also need to pass in as header the User-Agent that was used to create the cookie-jar.
       --konnect-addr string            Address of the Konnect endpoint. (default "https://konnect.konghq.com")
       --konnect-email string           Email address associated with your Konnect account.
       --konnect-password string        Password associated with your Konnect account, this takes precedence over --konnect-password-file flag.
@@ -57,4 +56,4 @@ deck konnect sync [flags]
 
 ## See also
 
-* [deck konnect](/deck/{{page.kong_version}}/reference/deck_konnect)	 - Configuration tool for Konnect (in alpha)
+* [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively

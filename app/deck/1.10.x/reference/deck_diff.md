@@ -1,26 +1,36 @@
 ---
-title: deck konnect sync
+title: deck diff
 ---
 
-The konnect sync command reads the state file and performs operations in Konnect
-to get Konnect's state in sync with the input state.
+The diff command is similar to a dry run of the 'decK sync' command.
 
-WARNING: This command is currently in alpha state. This command
-might have breaking changes in future releases.
+It loads entities from Kong and performs a diff with
+the entities in local files. This allows you to see the entities
+that will be created, updated, or deleted.
+
 
 ```
-deck konnect sync [flags]
+deck diff [flags]
 ```
 
 ## Flags
 
 ```
-  -h, --help                help for sync
-      --include-consumers   export consumers, associated credentials and any plugins associated with consumers.
-      --parallelism int     Maximum number of concurrent operations. (default 100)
-      --silence-events      disable printing events to stdout
-  -s, --state strings       file(s) containing Konnect's configuration.
-                            This flag can be specified multiple times for multiple files. (default [konnect.yaml])
+  -h, --help                  help for diff
+      --non-zero-exit-code    return exit code 2 if there is a diff present,
+                              exit code 0 if no diff is found,
+                              and exit code 1 if an error occurs.
+      --parallelism int       Maximum number of concurrent operations. (default 10)
+      --rbac-resources-only   sync only the RBAC resources (Kong Enterprise only).
+      --select-tag strings    only entities matching tags specified via this flag are diffed.
+                              When this setting has multiple tag values, entities must match each of them.
+      --silence-events        disable printing events to stdout
+      --skip-consumers        do not diff consumers or any plugins associated with consumers
+  -s, --state strings         file(s) containing Kong's configuration.
+                              This flag can be specified multiple times for multiple files.
+                              Use '-' to read from stdin. (default [kong.yaml])
+  -w, --workspace string      Diff configuration with a specific workspace (Kong Enterprise only).
+                              This takes precedence over _workspace fields in state files.
 ```
 
 ## Flags inherited from parent commands
@@ -38,6 +48,8 @@ deck konnect sync [flags]
       --kong-addr string               HTTP address of Kong's Admin API.
                                        This value can also be set using the environment variable DECK_KONG_ADDR
                                         environment variable. (default "http://localhost:8001")
+      --kong-cookie-jar-path string    Absolute path to a cookie-jar file in the Netscape cookie format for auth with Admin Server.
+                                       You may also need to pass in as header the User-Agent that was used to create the cookie-jar.
       --konnect-addr string            Address of the Konnect endpoint. (default "https://konnect.konghq.com")
       --konnect-email string           Email address associated with your Konnect account.
       --konnect-password string        Password associated with your Konnect account, this takes precedence over --konnect-password-file flag.
@@ -57,4 +69,4 @@ deck konnect sync [flags]
 
 ## See also
 
-* [deck konnect](/deck/{{page.kong_version}}/reference/deck_konnect)	 - Configuration tool for Konnect (in alpha)
+* [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively

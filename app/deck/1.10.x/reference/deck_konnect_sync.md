@@ -38,6 +38,8 @@ deck konnect sync [flags]
       --kong-addr string               HTTP address of Kong's Admin API.
                                        This value can also be set using the environment variable DECK_KONG_ADDR
                                         environment variable. (default "http://localhost:8001")
+      --kong-cookie-jar-path string    Absolute path to a cookie-jar file in the Netscape cookie format for auth with Admin Server.
+                                       You may also need to pass in as header the User-Agent that was used to create the cookie-jar.
       --konnect-addr string            Address of the Konnect endpoint. (default "https://konnect.konghq.com")
       --konnect-email string           Email address associated with your Konnect account.
       --konnect-password string        Password associated with your Konnect account, this takes precedence over --konnect-password-file flag.

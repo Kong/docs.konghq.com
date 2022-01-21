@@ -1,29 +1,33 @@
 ---
-title: deck konnect sync
+title: deck konnect dump
 ---
 
-The konnect sync command reads the state file and performs operations in Konnect
-to get Konnect's state in sync with the input state.
+The konnect dump command reads all entities present in Konnect
+	and writes them to a local file.
+
+	The file can then be read using the 'deck konnect sync' command or 'deck konnect diff' command to
+	configure Konnect.
 
 WARNING: This command is currently in alpha state. This command
 might have breaking changes in future releases.
 
 ```
-deck konnect sync [flags]
+deck konnect dump [flags]
 ```
 
 ## Flags
 
 ```
-  -h, --help                help for sync
-      --include-consumers   export consumers, associated credentials and any plugins associated with consumers.
-      --parallelism int     Maximum number of concurrent operations. (default 100)
-      --silence-events      disable printing events to stdout
-  -s, --state strings       file(s) containing Konnect's configuration.
-                            This flag can be specified multiple times for multiple files. (default [konnect.yaml])
+      --format string        output file format: json or yaml. (default "yaml")
+  -h, --help                 help for dump
+      --include-consumers    export consumers, associated credentials and any plugins associated with consumers.
+  -o, --output-file string   file to which to write Kong's configuration. (default "konnect")
+      --with-id              write ID of all entities in the output.
+      --yes                  Assume 'yes' to prompts and run non-interactively.
 ```
 
 ## Flags inherited from parent commands
+
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
@@ -38,6 +42,8 @@ deck konnect sync [flags]
       --kong-addr string               HTTP address of Kong's Admin API.
                                        This value can also be set using the environment variable DECK_KONG_ADDR
                                         environment variable. (default "http://localhost:8001")
+      --kong-cookie-jar-path string    Absolute path to a cookie-jar file in the Netscape cookie format for auth with Admin Server.
+                                       You may also need to pass in as header the User-Agent that was used to create the cookie-jar.
       --konnect-addr string            Address of the Konnect endpoint. (default "https://konnect.konghq.com")
       --konnect-email string           Email address associated with your Konnect account.
       --konnect-password string        Password associated with your Konnect account, this takes precedence over --konnect-password-file flag.
