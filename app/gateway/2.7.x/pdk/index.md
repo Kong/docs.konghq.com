@@ -10,26 +10,20 @@ pdk: true
 toc: true
 ---
 
-## Plugin Development Kit
-
-The Plugin Development Kit (or "PDK") is set of Lua functions and variables
+The Plugin Development Kit (PDK) is set of Lua functions and variables
  that can be used by plugins to implement their own logic.  The PDK is a
  [Semantically Versioned](https://semver.org/) component, originally
- released in Kong 0.14.0. The PDK will be guaranteed to be forward-compatible
- from its 1.0.0 release and on.
-
- As of this release, the PDK has not yet reached 1.0.0, but plugin authors
- can already depend on it for a safe and reliable way of interacting with the
- request, response, or the core components.
+ released in Kong 0.14.0. The PDK is guaranteed to be forward-compatible
+ from its 1.0.0 release and onward.
 
  The Plugin Development Kit is accessible from the `kong` global variable,
  and various functionalities are namespaced under this table, such as
- `kong.request`, `kong.log`, etc...
+ `kong.request`, `kong.log`, etc.
 
 
 
 
-### kong.version
+## kong.version
 
 A human-readable string containing the version number of the currently
  running node.
@@ -40,10 +34,9 @@ A human-readable string containing the version number of the currently
 print(kong.version) -- "2.0.0"
 ```
 
-[Back to top](#plugin-development-kit)
 
 
-### kong.version_num
+## kong.version_num
 
 An integral number representing the version number of the currently running
  node, useful for comparison and feature-existence checks.
@@ -56,10 +49,9 @@ if kong.version_num < 13000 then -- 000.130.00 -> 0.13.0
 end
 ```
 
-[Back to top](#plugin-development-kit)
 
 
-### kong.pdk_major_version
+## kong.pdk_major_version
 
 A number representing the major version of the current PDK (e.g.
  `1`). Useful for feature-existence checks or backwards-compatible behavior
@@ -74,10 +66,9 @@ if kong.pdk_version_num < 2 then
 end
 ```
 
-[Back to top](#plugin-development-kit)
 
 
-### kong.pdk_version
+## kong.pdk_version
 
 A human-readable string containing the version number of the current PDK.
 
@@ -87,10 +78,9 @@ A human-readable string containing the version number of the current PDK.
 print(kong.pdk_version) -- "1.0.0"
 ```
 
-[Back to top](#plugin-development-kit)
 
 
-### kong.configuration
+## kong.configuration
 
 A read-only table containing the configuration of the current Kong node,
  based on the configuration file and environment variables.
@@ -98,7 +88,7 @@ A read-only table containing the configuration of the current Kong node,
  See [kong.conf.default](https://github.com/Kong/kong/blob/master/kong.conf.default)
  for details.
 
- Comma-separated lists in that file get promoted to arrays of strings in this
+ Comma-separated lists in the `kong.conf` file get promoted to arrays of strings in this
  table.
 
 
@@ -110,12 +100,11 @@ print(kong.configuration.prefix) -- "/usr/local/kong"
 kong.configuration.prefix = "foo"
 ```
 
-[Back to top](#plugin-development-kit)
 
 
 
 
-### kong.db
+## kong.db
 
 Instance of Kong's DAO (the `kong.db` module).  Contains accessor objects
  to various entities.
@@ -131,53 +120,48 @@ kong.db.services:insert()
 kong.db.routes:select()
 ```
 
-[Back to top](#plugin-development-kit)
 
 
-### kong.dns
+## kong.dns
 
 Instance of Kong's DNS resolver, a client object from the
  [lua-resty-dns-client](https://github.com/kong/lua-resty-dns-client) module.
 
- **Note:** usage of this module is currently reserved to the core or to
+ **Note:** Usage of this module is currently reserved to the core or to
  advanced users.
 
 
-[Back to top](#plugin-development-kit)
 
 
-### kong.worker_events
+## kong.worker_events
 
 Instance of Kong's IPC module for inter-workers communication from the
  [lua-resty-worker-events](https://github.com/Kong/lua-resty-worker-events)
  module.
 
- **Note:** usage of this module is currently reserved to the core or to
+ **Note:** Usage of this module is currently reserved to the core or to
  advanced users.
 
 
-[Back to top](#plugin-development-kit)
 
 
-### kong.cluster_events
+## kong.cluster_events
 
 Instance of Kong's cluster events module for inter-nodes communication.
 
- **Note:** usage of this module is currently reserved to the core or to
+ **Note:** Usage of this module is currently reserved to the core or to
  advanced users.
 
 
-[Back to top](#plugin-development-kit)
 
 
-### kong.cache
+## kong.cache
 
 Instance of Kong's database caching object, from the `kong.cache` module.
 
- **Note:** usage of this module is currently reserved to the core or to
+ **Note:** Usage of this module is currently reserved to the core or to
  advanced users.
 
 
-[Back to top](#plugin-development-kit)
 
 

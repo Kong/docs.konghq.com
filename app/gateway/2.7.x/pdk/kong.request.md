@@ -10,18 +10,18 @@ pdk: true
 toc: true
 ---
 
-## kong.request
+Client request module.
 
-Client request module
- A set of functions to retrieve information about the incoming requests made
- by clients.
-
+ This module provides a set of functions to retrieve information about the
+ incoming requests made by clients.
 
 
-### kong.request.get_scheme()
+
+
+## kong.request.get_scheme()
 
 Returns the scheme component of the request's URL.  The returned value is
- normalized to lower-case form.
+ normalized to lowercase form.
 
 
 **Phases**
@@ -30,7 +30,7 @@ Returns the scheme component of the request's URL.  The returned value is
 
 **Returns**
 
-* `string` a string like `"http"` or `"https"`
+* `string`:  A string like `"http"` or `"https"`.
 
 
 **Usage**
@@ -41,13 +41,12 @@ Returns the scheme component of the request's URL.  The returned value is
 kong.request.get_scheme() -- "https"
 ```
 
-[Back to top](#kongrequest)
 
 
-### kong.request.get_host()
+## kong.request.get_host()
 
 Returns the host component of the request's URL, or the value of the
- "Host" header.  The returned value is normalized to lower-case form.
+ "Host" header.  The returned value is normalized to lowercase form.
 
 
 **Phases**
@@ -56,7 +55,7 @@ Returns the host component of the request's URL, or the value of the
 
 **Returns**
 
-* `string` the host
+* `string`:  The hostname.
 
 
 **Usage**
@@ -67,10 +66,9 @@ Returns the host component of the request's URL, or the value of the
 kong.request.get_host() -- "example.com"
 ```
 
-[Back to top](#kongrequest)
 
 
-### kong.request.get_port()
+## kong.request.get_port()
 
 Returns the port component of the request's URL.  The value is returned
  as a Lua number.
@@ -82,7 +80,7 @@ Returns the port component of the request's URL.  The value is returned
 
 **Returns**
 
-* `number` the port
+* `number`:  The port.
 
 
 **Usage**
@@ -93,24 +91,23 @@ Returns the port component of the request's URL.  The value is returned
 kong.request.get_port() -- 1234
 ```
 
-[Back to top](#kongrequest)
 
 
-### kong.request.get_forwarded_scheme()
+## kong.request.get_forwarded_scheme()
 
 Returns the scheme component of the request's URL, but also considers
  `X-Forwarded-Proto` if it comes from a trusted source.  The returned
- value is normalized to lower-case.
+ value is normalized to lowercase.
 
  Whether this function considers `X-Forwarded-Proto` or not depends on
  several Kong configuration parameters:
 
- * [trusted\_ips](https://getkong.org/docs/latest/configuration/#trusted_ips)
- * [real\_ip\_header](https://getkong.org/docs/latest/configuration/#real_ip_header)
- * [real\_ip\_recursive](https://getkong.org/docs/latest/configuration/#real_ip_recursive)
+ * [trusted\_ips](https://docs.konghq.com/gateway/latest/reference/configuration/#trusted_ips)
+ * [real\_ip\_header](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_header)
+ * [real\_ip\_recursive](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_recursive)
 
- **Note**: support for the Forwarded HTTP Extension (RFC 7239) is not
- offered yet since it is not supported by ngx\_http\_realip\_module.
+ **Note**: Kong does not offer support for the Forwarded HTTP Extension
+ (RFC 7239) since it is not supported by ngx_http_realip_module.
 
 
 **Phases**
@@ -119,7 +116,7 @@ Returns the scheme component of the request's URL, but also considers
 
 **Returns**
 
-* `string` the forwarded scheme
+* `string`:  The forwarded scheme.
 
 
 **Usage**
@@ -128,24 +125,23 @@ Returns the scheme component of the request's URL, but also considers
 kong.request.get_forwarded_scheme() -- "https"
 ```
 
-[Back to top](#kongrequest)
 
 
-### kong.request.get_forwarded_host()
+## kong.request.get_forwarded_host()
 
 Returns the host component of the request's URL or the value of the "host"
- header.  Unlike `kong.request.get_host()`, this function will also consider
+ header.  Unlike `kong.request.get_host()`, this function also considers
  `X-Forwarded-Host` if it comes from a trusted source. The returned value
- is normalized to lower-case.
+ is normalized to lowercase.
 
  Whether this function considers `X-Forwarded-Host` or not depends on
  several Kong configuration parameters:
 
- * [trusted\_ips](https://getkong.org/docs/latest/configuration/#trusted_ips)
- * [real\_ip\_header](https://getkong.org/docs/latest/configuration/#real_ip_header)
- * [real\_ip\_recursive](https://getkong.org/docs/latest/configuration/#real_ip_recursive)
+ * [trusted\_ips](https://docs.konghq.com/gateway/latest/reference/configuration/#trusted_ips)
+ * [real\_ip\_header](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_header)
+ * [real\_ip\_recursive](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_recursive)
 
- **Note**: we do not currently offer support for Forwarded HTTP Extension
+ **Note**: Kong does not offer support for the Forwarded HTTP Extension
  (RFC 7239) since it is not supported by ngx_http_realip_module.
 
 
@@ -155,7 +151,7 @@ Returns the host component of the request's URL or the value of the "host"
 
 **Returns**
 
-* `string` the forwarded host
+* `string`:  The forwarded host.
 
 
 **Usage**
@@ -164,10 +160,9 @@ Returns the host component of the request's URL or the value of the "host"
 kong.request.get_forwarded_host() -- "example.com"
 ```
 
-[Back to top](#kongrequest)
 
 
-### kong.request.get_forwarded_port()
+## kong.request.get_forwarded_port()
 
 Returns the port component of the request's URL, but also considers
  `X-Forwarded-Host` if it comes from a trusted source.  The value
@@ -176,18 +171,18 @@ Returns the port component of the request's URL, but also considers
  Whether this function considers `X-Forwarded-Proto` or not depends on
  several Kong configuration parameters:
 
- * [trusted\_ips](https://getkong.org/docs/latest/configuration/#trusted_ips)
- * [real\_ip\_header](https://getkong.org/docs/latest/configuration/#real_ip_header)
- * [real\_ip\_recursive](https://getkong.org/docs/latest/configuration/#real_ip_recursive)
+ * [trusted\_ips](https://docs.konghq.com/gateway/latest/reference/configuration/#trusted_ips)
+ * [real\_ip\_header](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_header)
+ * [real\_ip\_recursive](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_recursive)
 
- **Note**: we do not currently offer support for Forwarded HTTP Extension
+ **Note**: Kong does not offer support for the Forwarded HTTP Extension
  (RFC 7239) since it is not supported by ngx_http_realip_module.
 
- When running Kong behind the L4 port mapping (or forwarding) you can also
+ When running Kong behind the L4 port mapping (or forwarding), you can also
  configure:
- * [port\_maps](https://getkong.org/docs/latest/configuration/#port_maps)
+ * [port\_maps](https://docs.konghq.com/gateway/latest/reference/configuration/#port_maps)
 
- `port_maps` configuration parameter enables this function to return the
+ The `port_maps` configuration parameter enables this function to return the
  port to which the port Kong is listening to is mapped to (in case they differ).
 
 
@@ -197,7 +192,7 @@ Returns the port component of the request's URL, but also considers
 
 **Returns**
 
-* `number` the forwarded port
+* `number`:  The forwarded port.
 
 
 **Usage**
@@ -206,10 +201,9 @@ Returns the port component of the request's URL, but also considers
 kong.request.get_forwarded_port() -- 1234
 ```
 
-[Back to top](#kongrequest)
 
 
-### kong.request.get_forwarded_path()
+## kong.request.get_forwarded_path()
 
 Returns the path component of the request's URL, but also considers
  `X-Forwarded-Path` if it comes from a trusted source.  The value
@@ -218,11 +212,11 @@ Returns the path component of the request's URL, but also considers
  Whether this function considers `X-Forwarded-Path` or not depends on
  several Kong configuration parameters:
 
- * [trusted\_ips](https://getkong.org/docs/latest/configuration/#trusted_ips)
- * [real\_ip\_header](https://getkong.org/docs/latest/configuration/#real_ip_header)
- * [real\_ip\_recursive](https://getkong.org/docs/latest/configuration/#real_ip_recursive)
+ * [trusted\_ips](https://docs.konghq.com/gateway/latest/reference/configuration/#trusted_ips)
+ * [real\_ip\_header](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_header)
+ * [real\_ip\_recursive](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_recursive)
 
- **Note**: we do not currently do any normalization on the request path.
+ **Note**: Kong does not do any normalization on the request path.
 
 
 **Phases**
@@ -231,7 +225,7 @@ Returns the path component of the request's URL, but also considers
 
 **Returns**
 
-* `string` the forwarded path
+* `string`:  The forwarded path.
 
 
 **Usage**
@@ -240,29 +234,29 @@ Returns the path component of the request's URL, but also considers
 kong.request.get_forwarded_path() -- /path
 ```
 
-[Back to top](#kongrequest)
 
 
-### kong.request.get_forwarded_prefix()
+## kong.request.get_forwarded_prefix()
 
 Returns the prefix path component of the request's URL that Kong stripped
  before proxying to upstream.  It also checks if `X-Forwarded-Prefix` comes
- from a trusted source, and uses it as is when given. The value is returned
+ from a trusted source, and uses it as-is when given. The value is returned
  as a Lua string.
 
- If a trusted `X-Forwarded-Prefix` is not passed, this function must be called after Kong has ran its router (`access` phase),
+ If a trusted `X-Forwarded-Prefix` is not passed, this function must be
+ called after Kong has run its router (`access` phase),
  as the Kong router may strip the prefix of the request path. That stripped
- path will become the return value of this function, unless there was already
+ path becomes the return value of this function, unless there is already
  a trusted `X-Forwarded-Prefix` header in the request.
 
  Whether this function considers `X-Forwarded-Prefix` or not depends on
  several Kong configuration parameters:
 
- * [trusted\_ips](https://getkong.org/docs/latest/configuration/#trusted_ips)
- * [real\_ip\_header](https://getkong.org/docs/latest/configuration/#real_ip_header)
- * [real\_ip\_recursive](https://getkong.org/docs/latest/configuration/#real_ip_recursive)
+ * [trusted\_ips](https://docs.konghq.com/gateway/latest/reference/configuration/#trusted_ips)
+ * [real\_ip\_header](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_header)
+ * [real\_ip\_recursive](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_recursive)
 
- **Note**: we do not currently do any normalization on the request path prefix.
+ **Note**: Kong does not do any normalization on the request path prefix.
 
 
 **Phases**
@@ -271,7 +265,8 @@ Returns the prefix path component of the request's URL that Kong stripped
 
 **Returns**
 
-* `string|nil` the forwarded path prefix or nil if prefix was not stripped
+* `string|nil`:  The forwarded path prefix or `nil` if the prefix was
+ not stripped.
 
 
 **Usage**
@@ -280,10 +275,9 @@ Returns the prefix path component of the request's URL that Kong stripped
 kong.request.get_forwarded_prefix() -- /prefix
 ```
 
-[Back to top](#kongrequest)
 
 
-### kong.request.get_http_version()
+## kong.request.get_http_version()
 
 Returns the HTTP version used by the client in the request as a Lua
  number, returning values such as `1`, `1.1`, `2.0`, or `nil` for
@@ -295,7 +289,7 @@ Returns the HTTP version used by the client in the request as a Lua
 
 **Returns**
 
-* `number|nil` the HTTP version as a Lua number
+* `number|nil`:  The HTTP version as a Lua number.
 
 
 **Usage**
@@ -304,13 +298,12 @@ Returns the HTTP version used by the client in the request as a Lua
 kong.request.get_http_version() -- 1.1
 ```
 
-[Back to top](#kongrequest)
 
 
-### kong.request.get_method()
+## kong.request.get_method()
 
 Returns the HTTP method of the request.  The value is normalized to
- upper-case.
+ uppercase.
 
 
 **Phases**
@@ -319,7 +312,7 @@ Returns the HTTP method of the request.  The value is normalized to
 
 **Returns**
 
-* `string` the request method
+* `string`:  The request method.
 
 
 **Usage**
@@ -328,13 +321,12 @@ Returns the HTTP method of the request.  The value is normalized to
 kong.request.get_method() -- "GET"
 ```
 
-[Back to top](#kongrequest)
 
 
-### kong.request.get_path()
+## kong.request.get_path()
 
 Returns the path component of the request's URL.  It is not normalized in
- any way and does not include the querystring.
+ any way and does not include the query string.
 
 
 **Phases**
@@ -343,7 +335,7 @@ Returns the path component of the request's URL.  It is not normalized in
 
 **Returns**
 
-* `string` the path
+* `string`:  The path.
 
 
 **Usage**
@@ -354,13 +346,12 @@ Returns the path component of the request's URL.  It is not normalized in
 kong.request.get_path() -- "/v1/movies"
 ```
 
-[Back to top](#kongrequest)
 
 
-### kong.request.get_path_with_query()
+## kong.request.get_path_with_query()
 
-Returns the path, including the querystring if any.  No
- transformations/normalizations are done.
+Returns the path, including the query string if any.  No
+ transformations or normalizations are done.
 
 
 **Phases**
@@ -369,7 +360,7 @@ Returns the path, including the querystring if any.  No
 
 **Returns**
 
-* `string` the path with the querystring
+* `string`:  The path with the query string.
 
 
 **Usage**
@@ -380,10 +371,9 @@ Returns the path, including the querystring if any.  No
 kong.request.get_path_with_query() -- "/v1/movies?movie=foo"
 ```
 
-[Back to top](#kongrequest)
 
 
-### kong.request.get_raw_query()
+## kong.request.get_raw_query()
 
 Returns the query component of the request's URL.  It is not normalized in
  any way (not even URL-decoding of special characters) and does not
@@ -396,7 +386,7 @@ Returns the query component of the request's URL.  It is not normalized in
 
 **Returns**
 
-* `string` the query component of the request's URL
+* `string`:  The query component of the request's URL.
 
 
 **Usage**
@@ -407,10 +397,9 @@ Returns the query component of the request's URL.  It is not normalized in
 kong.request.get_raw_query() -- "msg=hello%20world&bla=&bar"
 ```
 
-[Back to top](#kongrequest)
 
 
-### kong.request.get_query_arg()
+## kong.request.get_query_arg()
 
 Returns the value of the specified argument, obtained from the query
  arguments of the current request.
@@ -420,7 +409,7 @@ Returns the value of the specified argument, obtained from the query
  found.
 
  If an argument with the same name is present multiple times in the
- querystring, this function will return the value of the first occurrence.
+ query string, this function returns the value of the first occurrence.
 
 
 **Phases**
@@ -429,7 +418,7 @@ Returns the value of the specified argument, obtained from the query
 
 **Returns**
 
-* `string|boolean|nil` the value of the argument
+* `string|boolean|nil`:  The value of the argument.
 
 
 **Usage**
@@ -443,12 +432,11 @@ kong.request.get_query_arg("zzz") -- true
 kong.request.get_query_arg("blo") -- ""
 ```
 
-[Back to top](#kongrequest)
 
 
-### kong.request.get_query([max_args])
+## kong.request.get_query([max_args])
 
-Returns the table of query arguments obtained from the querystring.  Keys
+Returns the table of query arguments obtained from the query string.  Keys
  are query argument names. Values are either a string with the argument
  value, a boolean `true` if an argument was not given a value, or an array
  if an argument was given in the query string multiple times. Keys and
@@ -469,12 +457,12 @@ Returns the table of query arguments obtained from the querystring.  Keys
 
 **Parameters**
 
-* **max_args** (number, _optional_):  set a limit on the maximum number of parsed
- arguments
+* **max_args** (`number`, _optional_):  Sets a limit on the maximum number of parsed
+ arguments.
 
 **Returns**
 
-* `table` A table representation of the query string
+* `table`:  A table representation of the query string.
 
 
 **Usage**
@@ -493,16 +481,15 @@ end
 -- "blo" ""
 ```
 
-[Back to top](#kongrequest)
 
 
-### kong.request.get_header(name)
+## kong.request.get_header(name)
 
 Returns the value of the specified request header.
 
  The returned value is either a `string`, or can be `nil` if a header with
  `name` was not found in the request. If a header with the same name is
- present multiple times in the request, this function will return the value
+ present multiple times in the request, this function returns the value
  of the first occurrence of this header.
 
  Header names in are case-insensitive and are normalized to lowercase, and
@@ -516,11 +503,11 @@ Returns the value of the specified request header.
 
 **Parameters**
 
-* **name** (string):  the name of the header to be returned
+* **name** (`string`):  the name of the header to be returned
 
 **Returns**
 
-* `string|nil` the value of the header or nil if not present
+* `string|nil`:  the value of the header or nil if not present
 
 
 **Usage**
@@ -538,10 +525,9 @@ kong.request.get_header("x-custom-header") -- "bla"
 kong.request.get_header("X-Another")       -- "foo bar"
 ```
 
-[Back to top](#kongrequest)
 
 
-### kong.request.get_headers([max_headers])
+## kong.request.get_headers([max_headers])
 
 Returns a Lua table holding the request headers.  Keys are header names.
  Values are either a string with the header value, or an array of strings
@@ -561,12 +547,12 @@ Returns a Lua table holding the request headers.  Keys are header names.
 
 **Parameters**
 
-* **max_headers** (number, _optional_):  set a limit on the maximum number of
- parsed headers
+* **max_headers** (`number`, _optional_):  Sets a limit on the maximum number of
+ parsed headers.
 
 **Returns**
 
-* `table` the request headers in table form
+* `table`:  The request headers in table form.
 
 
 **Usage**
@@ -586,17 +572,16 @@ headers.x_another[1]    -- "foo bar"
 headers["X-Another"][2] -- "baz"
 ```
 
-[Back to top](#kongrequest)
 
 
-### kong.request.get_raw_body()
+## kong.request.get_raw_body()
 
 Returns the plain request body.
 
  If the body has no size (empty), this function returns an empty string.
 
  If the size of the body is greater than the Nginx buffer size (set by
- `client_body_buffer_size`), this function will fail and return an error
+ `client_body_buffer_size`), this function fails and returns an error
  message explaining this limitation.
 
 
@@ -606,7 +591,7 @@ Returns the plain request body.
 
 **Returns**
 
-* `string` the plain request body
+* `string`:  The plain request body.
 
 
 **Usage**
@@ -617,17 +602,27 @@ Returns the plain request body.
 kong.request.get_raw_body():gsub("Earth", "Mars") -- "Hello, Mars!"
 ```
 
-[Back to top](#kongrequest)
 
 
-### kong.request.get_body([mimetype[, max_args]])
+## kong.request.get_body([mimetype[, max_args]])
 
 Returns the request data as a key/value table.
  A high-level convenience function.
+
  The body is parsed with the most appropriate format:
 
- * If `mimetype` is specified:
-   * Decodes the body with the requested content type (if supported).
+ * If `mimetype` is specified, it decodes the body with the requested
+   content type (if supported). This takes precedence over any content type
+   present in the request.
+
+   The optional argument `mimetype` can be one of the following strings:
+     * `application/x-www-form-urlencoded`
+     * `application/json`
+     * `multipart/form-data`
+
+ Whether `mimetype` is specified or a request content type is otherwise
+ present in the request, each content type behaves as follows:
+
  * If the request content type is `application/x-www-form-urlencoded`:
    * Returns the body as form-encoded.
  * If the request content type is `multipart/form-data`:
@@ -638,14 +633,9 @@ Returns the request data as a key/value table.
    * Decodes the body as JSON
      (same as `json.decode(kong.request.get_raw_body())`).
    * JSON types are converted to matching Lua types.
- * If none of the above, returns `nil` and an error message indicating the
+ * If the request contains none of the above and the `mimetype` argument is
+   not set, returns `nil` and an error message indicating the
    body could not be parsed.
-
- The optional argument `mimetype` can be one of the following strings:
-
- * `application/x-www-form-urlencoded`
- * `application/json`
- * `multipart/form-data`
 
  The optional argument `max_args` can be used to set a limit on the number
  of form arguments parsed for `application/x-www-form-urlencoded` payloads.
@@ -661,17 +651,17 @@ Returns the request data as a key/value table.
 
 **Parameters**
 
-* **mimetype** (string, _optional_):  the MIME type
-* **max_args** (number, _optional_):  set a limit on the maximum number of parsed
- arguments
+* **mimetype** (`string`, _optional_):  The MIME type.
+* **max_args** (`number`, _optional_):  Sets a limit on the maximum number of parsed
+ arguments.
 
 **Returns**
 
-1.  `table|nil` a table representation of the body
+1.  `table|nil`:  A table representation of the body.
 
-1.  `string|nil` an error message
+1.  `string|nil`:  An error message.
 
-1.  `string|nil` mimetype the MIME type used
+1.  `string|nil`:  mimetype The MIME type used.
 
 
 **Usage**
@@ -682,5 +672,4 @@ body.name -- "John Doe"
 body.age  -- "42"
 ```
 
-[Back to top](#kongrequest)
 

@@ -8,6 +8,37 @@ This document guides you through the process of upgrading {{site.ce_product_name
 To upgrade to prior versions, find the version number in the
 [Upgrade doc in GitHub](https://github.com/Kong/kong/blob/master/UPGRADE.md).
 
+## Suggested upgrade path
+
+Unless indicated otherwise in one of the upgrade paths of this document, it is
+possible to upgrade Kong **without downtime**.
+
+Assuming that Kong is already running on your system, acquire the latest
+version from any of the available [installation methods](https://getkong.org/install/)
+and proceed to install it, overriding your previous installation.
+
+**If you are planning to make modifications to your configuration, this is a
+good time to do so**.
+
+Then, run migration to upgrade your database schema:
+
+```shell
+$ kong migrations up [-c configuration_file]
+```
+
+If the command is successful, and no migration ran
+(no output), then you only have to
+[reload](https://docs.konghq.com/gateway-oss/2.7.x/cli/#kong-reload) Kong:
+
+```shell
+$ kong reload [-c configuration_file]
+```
+
+**Reminder**: `kong reload` leverages the Nginx `reload` signal that seamlessly
+starts new workers, which take over from old workers before those old workers
+are terminated. In this way, Kong will serve new requests via the new
+configuration, without dropping existing in-flight connections.
+
 ## Upgrade to `2.7.x`
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
@@ -76,6 +107,8 @@ git diff 2.0.0 2.7.0 kong/templates/nginx_kong*.lua > kong_config_changes.diff
 
 ### Suggested upgrade path
 
+**Version prerequisites for migrating to version 2.7.x**
+
 The lowest version that Kong 2.7.x supports migrating from is 1.0.x.
 If you are migrating from a version lower than 0.14.1, you need to
 migrate to 0.14.1 first. Then, once you are migrating from 0.14.1,
@@ -129,9 +162,8 @@ database in the final expected state for Kong 2.7.x).
 
 **Cassandra**
 
-{:.warning .no-icon}
-> **Deprecation notice:**
-> Cassandra as a backend database for Kong Gateway is deprecated. This means the feature will eventually be removed. Our target for Cassandra removal is the Kong Gateway 4.0 release, and some new features might not be supported with Cassandra in the Kong Gateway 3.0 release.
+Deprecation notice:
+Cassandra as a backend database for Kong Gateway is deprecated. This means the feature will eventually be removed. Our target for Cassandra removal is the Kong Gateway 4.0 release, and some new features might not be supported with Cassandra in the Kong Gateway 3.0 release.
 
 Due to internal changes, the table schemas used by Kong 2.7.x on Cassandra
 are incompatible with those used by Kong 2.1.x (or lower). Migrating using the usual commands
