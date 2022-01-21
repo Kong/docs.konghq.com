@@ -7,12 +7,15 @@ configuration file.
 
 It can be used to export, import, or sync entities to Kong.
 
-## Options
+## Flags
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
-      --ca-cert string                 Custom CA certificate to use to verify Kong's Admin TLS certificate.
+      --ca-cert string                 Custom CA certificate (raw contents) to use to verify Kong's Admin TLS certificate.
                                        This value can also be set using DECK_CA_CERT environment variable.
+                                       This takes precedence over --ca-cert-file flag.
+      --ca-cert-file string            Path to a custom CA certificate to use to verify Kong's Admin TLS certificate.
+                                       This value can also be set using DECK_CA_CERT_FILE environment variable.
       --config string                  Config file (default is $HOME/.deck.yaml).
       --headers strings                HTTP headers (key:value) to inject in all requests to Kong's Admin API.
                                        This flag can be specified multiple times to inject multiple headers.
@@ -20,6 +23,8 @@ It can be used to export, import, or sync entities to Kong.
       --kong-addr string               HTTP address of Kong's Admin API.
                                        This value can also be set using the environment variable DECK_KONG_ADDR
                                         environment variable. (default "http://localhost:8001")
+      --kong-cookie-jar-path string    Absolute path to a cookie-jar file in the Netscape cookie format for auth with Admin Server.
+                                       You may also need to pass in as header the User-Agent that was used to create the cookie-jar.
       --konnect-addr string            Address of the Konnect endpoint. (default "https://konnect.konghq.com")
       --konnect-email string           Email address associated with your Konnect account.
       --konnect-password string        Password associated with your Konnect account, this takes precedence over --konnect-password-file flag.
@@ -34,6 +39,7 @@ It can be used to export, import, or sync entities to Kong.
       --verbose int                    Enable verbose logging levels
                                        Setting this value to 2 outputs all HTTP requests/responses
                                        between decK and Kong.
+
 ```
 
 ## See also
