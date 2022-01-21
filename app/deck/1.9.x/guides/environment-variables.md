@@ -4,16 +4,16 @@ toc: false
 ---
 
 When you use decK to apply configurations to {{site.base_gateway}},
-decK reads data in plain text from a state file by default. To improve security, you 
-can also store sensitive information, for example `apiKey` or `client_secret`, in 
+decK reads data in plain text from a state file by default. To improve security, you
+can also store sensitive information, for example `apiKey` or `client_secret`, in
 environment variables. decK can then read data directly from the environment
 variables and apply it.
 
-Create environment variables with the `DECK_` prefix and reference them as 
+Create environment variables with the `DECK_` prefix and reference them as
 `{%raw%}${{ env "DECK_*" }}{%endraw%}` in your state file.
 
-The following example demonstrates how to apply an apiKey stored in an environment variable. 
-You can use this method for any sensitive content. 
+The following example demonstrates how to apply an apiKey stored in an environment variable.
+You can use this method for any sensitive content.
 
 1. Create an environment variable:
     <div class="copy-code-snippet"><pre><code>export DECK_API_KEY=<div contenteditable="true">{API_KEY}</div></code></pre></div>
@@ -49,7 +49,7 @@ You can use this method for any sensitive content.
      a consumer named `demo` with an apiKey.
 3. Run `deck sync -s env-demo.yaml` to sync this file.
 
-    The output should look something like this, where `abc` is the apiKey stored 
+    The output should look something like this, where `abc` is the apiKey stored
     in the environment variable:
 
     ```plaintext
@@ -62,4 +62,4 @@ You can use this method for any sensitive content.
       Deleted: 0
     ```
 
-[key-auth]: http://localhost:3000/hub/kong-inc/key-auth/
+[key-auth]: /hub/kong-inc/key-auth/
