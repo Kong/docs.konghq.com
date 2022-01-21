@@ -12,7 +12,8 @@ Your organization is considered inactive when:
 (30 day increments).
 
 Organizations in Plus or Enterprise tiers are exempt, and are never deactivated
-automatically.
+automatically. To close a Plus or Enterprise account, you can
+request deactivation through [Kong Support](https://support.konghq.com/).
 
 ## What happens if an organization is deactivated?
 
