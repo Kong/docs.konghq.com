@@ -27,6 +27,8 @@
           url: /org-management/users-and-roles
         - text: Set up SSO with Okta
           url: /org-management/okta-idp
+    - text: Account and Org Deactivation
+      url: /org-management/deactivation
 
 - title: Release Notes
   icon: /assets/images/icons/documentation/icn-references-color.svg
