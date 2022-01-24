@@ -226,3 +226,34 @@ When raising a pull request, it's useful to indicate what type of review you're 
 - `review:tech`: Request for technical review from an SME.
 
 At least one of these labels must be applied to a PR or the build will fail.
+
+## Broken links
+
+We check the documentation for broken links using [broken-link-checker](https://github.com/stevenvachon/broken-link-checker) and some custom logic to build a list of excluded URLs.
+
+The link checker runs in two different ways:
+
+1. When a pull request is opened, any changed files are detected and those URLs are checked for broken links. This allows us to fix pages incrementally and ensure that we don't break any new links.
+1. A full site scan, against the latest version of each product only. This allows us to check all pages for broken links. Once all broken links are fixed, we can retire this job in favour of the CI check.
+
+To run a full site scan locally, you'll need the [`netlify` CLI](https://docs.netlify.com/cli/get-started/) installed.
+
+Do **NOT** run the link checker against production.
+
+To run the link checker, build the site locally and start a local Netlify dev environment. From your clone of the doc repo, run:
+
+```bash
+./node_modules/.bin/gulp build
+cd dist
+netlify dev
+```
+
+Then in another terminal, from the root of your clone of the docs repo:
+
+```bash
+cd broken-link-checker
+npm ci
+node full.js --host http://localhost:8888
+```
+
+Finally, be patient. The run will take at least 5 minutes, and up to 30 minutes to complete.

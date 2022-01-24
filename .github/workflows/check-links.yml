@@ -25,6 +25,6 @@ jobs:
         run: |
           cd broken-link-checker
           npm ci
-          node run.js
+          node pr.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}

@@ -1,8 +1,11 @@
 const { Octokit } = require("@octokit/rest");
 const { HtmlUrlChecker } = require("broken-link-checker");
 const github = require("@actions/github");
+const argv = require('minimist')(process.argv.slice(2));
+
 (async function () {
-  const pull_number = github.context.issue.number;
+  const pull_number = argv.pr || github.context.issue.number;
+
   const baseUrl = `https://deploy-preview-${pull_number}--kongdocs.netlify.app`;
 
   const octokit = new Octokit({
@@ -63,7 +66,7 @@ const github = require("@actions/github");
     // Output report
     if (r.length) {
       console.log("Broken links:");
-      console.log(r);
+      console.log(JSON.stringify(r, null, 2));
       process.exit(1);
     }
 
@@ -75,14 +78,12 @@ const github = require("@actions/github");
 
 function checkUrls(urls) {
   return new Promise((resolve, reject) => {
+    const exclusions = require("./excluded.json");
     const brokenLinks = new Set();
     const htmlUrlChecker = new HtmlUrlChecker(
       {
         honorRobotExclusions: false,
-        excludedKeywords: [
-          "https://linkedin.com/*",
-          "https://aws.amazon.com/*",
-        ],
+        excludedKeywords: exclusions,
         maxSocketsPerHost: 64,
       },
       {
