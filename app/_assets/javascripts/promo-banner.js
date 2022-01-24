@@ -1,5 +1,5 @@
-jQuery(document).ready(function () {
-  var closed = localStorage.getItem("closebanner-singlesourcing");
+jQuery(function () {
+  var closed = localStorage.getItem("closebanner-webinar-020822");
   if (
     closed !== "closebanner"
   ) {
@@ -26,5 +26,5 @@ setInterval(function () {
 }, 10);
 $(".closebanner").on("click", function () {
   $(".navbar-v2").addClass("closed");
-  localStorage.setItem("closebanner-singlesourcing", "closebanner");
+  localStorage.setItem("closebanner-webinar-020822", "closebanner");
 });

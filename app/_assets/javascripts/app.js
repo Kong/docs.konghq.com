@@ -32,6 +32,18 @@ jQuery(function () {
     activeNav.parents(".accordion-item").addClass("active");
   };
 
+  $(".docs-sidebar a.active, li.accordion-item.active").each(function (
+    index,
+    a
+  ) {
+    $(a)
+      .parents("li.accordion-item")
+      .each(function (index, item) {
+        $(item).addClass("active");
+        $(item).find("> input").prop("checked", true);
+      });
+  });
+
 // Function to close menus on pressing the "Escape" key
   function closeDropdownOnEscape () {
     if (event.key === 'Escape') {
@@ -638,54 +650,6 @@ $("a[data-filter]").on("keypress", function(e) {
     editionSwitch.addClass(edition);
   }
 });
-
-jQuery(function () {
-  var closed = localStorage.getItem("closebanner-hackathon");
-  if (
-    closed !== "closebanner"
-  ) {
-    $(".navbar-v2").removeClass("closed");
-    $("body").addClass("banner");
-  } else {
-    $(".navbar-v2").addClass("closed");
-    $("body").removeClass("banner");
-  }
-
-  // open docs sidebar items
-  $(".docs-sidebar a.active, li.accordion-item.active").each(function (
-    index,
-    a
-  ) {
-    $(a)
-      .parents("li.accordion-item")
-      .each(function (index, item) {
-        $(item).addClass("active");
-        $(item).find("> input").prop("checked", true);
-      });
-  });
-});
-
-var scrolling = false;
-$(document).on("scroll", function () {
-  scrolling = true;
-});
-
-setInterval(function () {
-  if (scrolling) {
-    scrolling = false;
-    if ($(document).scrollTop() < 85) {
-      $(".navbar-v2").removeClass("compress");
-    } else {
-      $(".navbar-v2").addClass("compress");
-    }
-  }
-}, 10);
-
-$(".closebanner").on("click", function () {
-  $(".navbar-v2").addClass("closed");
-  localStorage.setItem("closebanner-hackathon", "closebanner");
-});
-
 
 // Tooltips for badges
 jQuery(function () {
