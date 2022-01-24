@@ -32,6 +32,7 @@ jQuery(function () {
     activeNav.parents(".accordion-item").addClass("active");
   };
 
+  // Open active sidebar section in left nav
   $(".docs-sidebar a.active, li.accordion-item.active").each(function (
     index,
     a
