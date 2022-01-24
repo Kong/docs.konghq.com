@@ -16,6 +16,9 @@ services.
 
 : See the documentation: [Add a Custom Domain](/konnect/dev-portal/customization/custom-domain/).
 
+**Headers are modifiable**
+: You can now set a welcome message and primary header through the Admin UI for your Dev Portal.
+
 ## November 2021
 
 ### 2021.11.30
