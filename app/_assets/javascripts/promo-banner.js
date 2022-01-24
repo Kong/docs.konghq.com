@@ -1,4 +1,4 @@
-jQuery(function () {
+jQuery(document).ready(function () {
   var closed = localStorage.getItem("closebanner-webinar-020822");
   if (
     closed !== "closebanner"
