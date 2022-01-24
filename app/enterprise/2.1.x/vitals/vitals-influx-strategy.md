@@ -123,6 +123,4 @@ syscall per request.
 Currently, Vitals InfluxDB data points are not downsampled or managed via
 retention policy by Kong. InfluxDB operators are encouraged to manually manage
 the retention policy of the `kong` database to reduce the disk space and memory
-needed to manage Vitals data points. Currently, Kong Vitals ignores data points
-older than 25 hours; it is safe to create a retention policy with a 25-hour
-duration for measurements written by Kong.
+needed to manage Vitals data points. 

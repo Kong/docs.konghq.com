@@ -15,7 +15,7 @@ might have breaking changes in future releases.
 deck konnect diff [flags]
 ```
 
-## Options
+## Flags
 
 ```
   -h, --help                 help for diff
@@ -29,12 +29,15 @@ deck konnect diff [flags]
                              This flag can be specified multiple times for multiple files. (default [konnect.yaml])
 ```
 
-## Options inherited from parent commands
+## Flags inherited from parent commands
 
 ```
       --analytics                      Share anonymized data to help improve decK. (default true)
-      --ca-cert string                 Custom CA certificate to use to verify Kong's Admin TLS certificate.
+      --ca-cert string                 Custom CA certificate (raw contents) to use to verify Kong's Admin TLS certificate.
                                        This value can also be set using DECK_CA_CERT environment variable.
+                                       This takes precedence over --ca-cert-file flag.
+      --ca-cert-file string            Path to a custom CA certificate to use to verify Kong's Admin TLS certificate.
+                                       This value can also be set using DECK_CA_CERT_FILE environment variable.
       --config string                  Config file (default is $HOME/.deck.yaml).
       --headers strings                HTTP headers (key:value) to inject in all requests to Kong's Admin API.
                                        This flag can be specified multiple times to inject multiple headers.

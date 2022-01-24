@@ -19,16 +19,16 @@ supports the same {{site.ce_product_name}} version.
    recommended to back up your production data before migrating from
    {{site.ce_product_name}} to {{site.ee_product_name}}.
 
-* If running a version of {{site.ce_product_name}} earlier than 2.6.x,
-  [upgrade to Kong 2.6.x](/gateway/{{page.kong_version}}/install-and-run/upgrade-oss/) before migrating
-  {{site.ce_product_name}} to {{site.ee_product_name}} 2.6.x.
+* If running a version of {{site.ce_product_name}} earlier than 2.7.x,
+  [upgrade to Kong 2.7.x](/gateway/{{page.kong_version}}/install-and-run/upgrade-oss/) before migrating
+  {{site.ce_product_name}} to {{site.ee_product_name}} 2.7.x.
 
 ## Migration steps
 
 The following steps guide you through the migration process.
 
-1. Download {{site.ee_product_name}} 2.6.x and configure it to point to the
-   same datastore as your {{site.ce_product_name}} 2.6.x node. The migration
+1. Download {{site.ee_product_name}} 2.7.x and configure it to point to the
+   same datastore as your {{site.ce_product_name}} 2.7.x node. The migration
    command expects the datastore to be up-to-date on any pending migration:
 
    ```shell

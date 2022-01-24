@@ -50,7 +50,6 @@ params:
     - grpc
     - grpcs
   yaml_examples: false
-  k8s_examples: false
   konnect_examples: false
   dbless_compatible: 'no'
   dbless_explanation: |

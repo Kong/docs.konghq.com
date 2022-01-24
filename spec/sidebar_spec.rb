@@ -18,10 +18,10 @@ describe "sidebar", type: :feature, js: true do
   describe "Outdated version documentation", type: :feature, js: true do
 
     # If the test is failing, make sure this is the latest version
-    latest_version = "2.6.x"
+    latest_version = "2.7.x"
     # Different option for a latest version, as gateway is split as of 2.6.x
     # and doesn't work in this way
-    latest_version_deck = "1.8.x"
+    latest_version_deck = "1.10.x"
 
     it "does not show on the latest version" do
       visit "/gateway/#{latest_version}/install-and-run/rhel/"
