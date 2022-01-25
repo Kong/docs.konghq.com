@@ -7,7 +7,7 @@
   icon: /assets/images/icons/documentation/icn-references-color.svg
   url: /style-guide
   items:
-    - text: Word choice
+    - text: Word choice and naming
       url: /word-choice
 
 - title: Markdown rules and formatting
@@ -23,7 +23,7 @@
   icon: /assets/images/icons/documentation/icn-references-color.svg
   url: /community
   items:
-    - text: Community Expectations
+    - text: Community expectations
       url: /community-expectations
     - text: Hackathons
       url: /hackathons
