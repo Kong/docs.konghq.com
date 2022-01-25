@@ -67,9 +67,8 @@ HTTPie                          | httpie, HTTPIE
 Unix                            | unix, UNIX
 Nginx                           | nginx, NGINX
 
-### General
+## See also
 
-Use <i class="fa fa-check"></i> | Don't use <i class="fa fa-times"></i>
---------------------------------|--------------------------------------
-Therefore, so                   | Ergo
-Through, by                     | Via
+Follow Kong's style guide whenever possible. However, you can also refer to other external style guides for specific word choice and substitution examples.
+We recommend using the [Google developer style guide](https://developers.google.com/style/word-list).
+
