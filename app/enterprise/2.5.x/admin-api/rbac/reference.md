@@ -392,12 +392,12 @@ ___
 exact matches, or contain wildcards, represented by `*`.
 
 - Exact matches; eg:
-  * /apis/
-  * /apis/foo
+  * /services/
+  * /services/foo
 
 - Wildcards; eg:
-  * /apis/*
-  * /apis/*/plugins
+  * /services/*
+  * /services/*/plugins
 
 Where `*` replaces exactly one segment between slashes (or the end of
 the path).
