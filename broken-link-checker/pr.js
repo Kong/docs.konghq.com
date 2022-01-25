@@ -127,6 +127,7 @@ function dataFileToUrl(filename) {
     konnect: "konnect",
     mesh: "mesh",
     gateway: "gateway",
+    contributing: "contributing",
   };
 
   filename = filename.replace("app/_data/docs_nav_", "").replace(/\.yml$/, "");
