@@ -185,7 +185,7 @@ Because `X-Kong-Limit` is the default header name (you can optionally change it)
 the request looks like:
 
 ```bash
-$ curl -v -H 'X-Kong-Limit: limitname1=2, limitname2=4'
+curl -v -H 'X-Kong-Limit: limitname1=2, limitname2=4'
 ```
 
 The above example increments the limit `limitname1` by 2 units, and `limitname2` by 4 units.

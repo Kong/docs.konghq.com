@@ -24,9 +24,6 @@ kong_version_compatibility:
       - 2.3.x
       - 2.2.x
       - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
 params:
   name: request-transformer-advanced
   service_id: true
@@ -276,11 +273,11 @@ Add a Service named `test` with `uris` configured with a named capture group
 `user_id`:
 
 ```bash
-$ curl -X POST http://localhost:8001/services \
-    --data 'name=test' \
-    --data 'upstream_url=http://mockbin.com' \
-    --data-urlencode 'uris=/requests/user/(?<user_id>\w+)' \
-    --data "strip_uri=false"
+curl -X POST http://localhost:8001/services \
+  --data 'name=test' \
+  --data 'upstream_url=http://mockbin.com' \
+  --data-urlencode 'uris=/requests/user/(?<user_id>\w+)' \
+  --data "strip_uri=false"
 ```
 
 {:.note}
@@ -296,16 +293,16 @@ and its value is being set with the value sent with header `x-user-id` or
 with the default value alice is `header` is missing.
 
 ```bash
-$ curl -X POST http://localhost:8001/services/test/plugins \
-    --data "name=request-transformer-advanced" \
-    --data-urlencode "config.add.headers=x-consumer-id:\$(headers['x-user-id'] or 'alice')" \
-    --data "config.remove.headers=x-user-id"
+curl -X POST http://localhost:8001/services/test/plugins \
+  --data "name=request-transformer-advanced" \
+  --data-urlencode "config.add.headers=x-consumer-id:\$(headers['x-user-id'] or 'alice')" \
+  --data "config.remove.headers=x-user-id"
 ```
 
 Now send a request without setting header `x-user-id`:
 
 ```bash
-$ curl -i -X GET localhost:8000/requests/user/foo
+curl -i -X GET localhost:8000/requests/user/foo
 ```
 
 The plugin adds a new header `x-consumer-id` with the value `alice` before
@@ -314,7 +311,7 @@ proxying the request upstream.
 Now try sending a request with the header `x-user-id` set:
 
 ```bash
-$ curl -i -X GET localhost:8000/requests/user/foo \
+curl -i -X GET localhost:8000/requests/user/foo \
   -H "X-User-Id:bob"
 ```
 
@@ -332,7 +329,7 @@ This plugin performs the response transformation in the following order:
 Add multiple headers by passing each header:value pair separately:
 
 ```bash
-$ curl -X POST http://localhost:8001/services/mockbin/plugins \
+curl -X POST http://localhost:8001/services/mockbin/plugins \
   --data "name=request-transformer-advanced" \
   --data "config.add.headers[1]=h1:v1" \
   --data "config.add.headers[2]=h2:v1"
@@ -345,7 +342,7 @@ $ curl -X POST http://localhost:8001/services/mockbin/plugins \
 Add multiple headers by passing comma separated header:value pair:
 
 ```bash
-$ curl -X POST http://localhost:8001/services/mockbin/plugins \
+curl -X POST http://localhost:8001/services/mockbin/plugins \
   --data "name=request-transformer-advanced" \
   --data "config.add.headers=h1:v1,h2:v2"
 ```
@@ -357,7 +354,7 @@ $ curl -X POST http://localhost:8001/services/mockbin/plugins \
 Add multiple headers passing config as a JSON body:
 
 ```bash
-$ curl -X POST http://localhost:8001/services/mockbin/plugins \
+curl -X POST http://localhost:8001/services/mockbin/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "request-transformer-advanced", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
 ```
@@ -369,7 +366,7 @@ $ curl -X POST http://localhost:8001/services/mockbin/plugins \
 Add a querystring and a header:
 
 ```bash
-$ curl -X POST http://localhost:8001/services/mockbin/plugins \
+curl -X POST http://localhost:8001/services/mockbin/plugins \
   --data "name=request-transformer-advanced" \
   --data "config.add.querystring=q1:v2,q2=v1" \
   --data "config.add.headers=h1:v1"
@@ -389,7 +386,7 @@ $ curl -X POST http://localhost:8001/services/mockbin/plugins \
 Append multiple headers and remove a body parameter:
 
 ```bash
-$ curl -X POST http://localhost:8001/services/mockbin/plugins \
+curl -X POST http://localhost:8001/services/mockbin/plugins \
   --data "name=request-transformer-advanced" \
   --data "config.add.headers=h1:v2,h2:v1" \
   --data "config.remove.body=p1" \
@@ -407,7 +404,7 @@ $ curl -X POST http://localhost:8001/services/mockbin/plugins \
 Add multiple headers and querystring parameters if not already set:
 
 ```bash
-$ curl -X POST http://localhost:8001/services/mockbin/plugins \
+curl -X POST http://localhost:8001/services/mockbin/plugins \
   --data "name=request-transformer-advanced" \
   --data "config.add.headers=h1:v1,h2:v1" \
   --data "config.add.querystring=q1:v2,q2:v1" \

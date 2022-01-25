@@ -218,22 +218,22 @@ If not, add a route and a dummy service to catch this route.
 
 ```bash
 # add a dummy service if needed
-$ curl http://localhost:8001/services \
-        -d name=acme-dummy \
-        -d url=http://127.0.0.1:65535
+curl http://localhost:8001/services \
+  -d name=acme-dummy \
+  -d url=http://127.0.0.1:65535
 
 # add a dummy route if needed
-$ curl http://localhost:8001/routes \
-        -d name=acme-dummy \
-        -d paths[]=/.well-known/acme-challenge \
-        -d service.name=acme-dummy
+curl http://localhost:8001/routes \
+  -d name=acme-dummy \
+  -d paths[]=/.well-known/acme-challenge \
+  -d service.name=acme-dummy
 
 # add the plugin
-$ curl http://localhost:8001/plugins \
-        -d name=acme \
-        -d config.account_email=yourname@yourdomain.com \
-        -d config.tos_accepted=true \
-        -d config.domains[]=my.secret.domains.com
+curl http://localhost:8001/plugins \
+  -d name=acme \
+  -d config.account_email=yourname@yourdomain.com \
+  -d config.tos_accepted=true \
+  -d config.domains[]=my.secret.domains.com
 ```
 
 Note by setting `tos_accepted` to *true* implies that you have read and accepted
@@ -252,17 +252,17 @@ Assume Kong proxy is accessible via http://mydomain.com and https://mydomain.com
 # Trigger asynchronous creation from proxy requests
 # The following request returns immediately with Kong's default certificate
 # Wait up to 1 minute for the background process to finish
-$ curl https://mydomain.com -k
+curl https://mydomain.com -k
 
 # OR create from Admin API synchronously
 # User can also use this endpoint to force "renew" a certificate
-$ curl http://localhost:8001/acme -d host=mydomain.com
+curl http://localhost:8001/acme -d host=mydomain.com
 
 # Furthermore, it's possible to run a sanity test on your Kong setup
 # before creating any certificate
-$ curl http://localhost:8001/acme -d host=mydomain.com -d test_http_challenge_flow=true
+curl http://localhost:8001/acme -d host=mydomain.com -d test_http_challenge_flow=true
 
-$ curl https://mydomain.com
+curl https://mydomain.com
 # Now gives you a valid Let's Encrypt certicate
 ```
 
@@ -279,7 +279,7 @@ It's also possible to actively trigger the renewal. The following request
 schedules a renewal in the background and returns immediately.
 
 ```bash
-$ curl http://localhost:8001/acme -XPATCH
+curl http://localhost:8001/acme -XPATCH
 ```
 
 ## Hybrid mode
@@ -328,14 +328,14 @@ External storage in Hybrid Mode works in following flow:
 Run ngrok with:
 
 ```bash
-$ ./ngrok http localhost:8000
+./ngrok http localhost:8000
 # Shows something like
 # ...
 # Forwarding                    http://e2e034a5.ngrok.io -> http://localhost:8000
 # Forwarding                    https://e2e034a5.ngrok.io -> http://localhost:8000
 # ...
 # Substitute "e2e034a5.ngrok.io" with the host shows in your ngrok output
-$ export NGROK_HOST=e2e034a5.ngrok.io
+export NGROK_HOST=e2e034a5.ngrok.io
 ```
 
 Leave the process running.
@@ -343,30 +343,37 @@ Leave the process running.
 ### Configure route and service
 
 ```bash
-$ curl http://localhost:8001/services -d name=acme-test -d url=http://mockbin.org
-$ curl http://localhost:8001/routes -d service.name=acme-test -d hosts=$NGROK_HOST
+curl http://localhost:8001/services \
+  -d name=acme-test \
+  -d url=http://mockbin.org
+
+curl http://localhost:8001/routes \
+  -d service.name=acme-test \
+  -d hosts=$NGROK_HOST \
+  -d paths=/mock
 ```
 
 ### Enable plugin
 
 ```bash
-$ curl localhost:8001/plugins -d name=acme \
-                                -d config.account_email=test@test.com \
-                                -d config.tos_accepted=true \
-                                -d config.domains[]=$NGROK_HOST
+curl localhost:8001/plugins \
+  -d name=acme \
+  -d config.account_email=test@test.com \
+  -d config.tos_accepted=true \
+  -d config.domains[]=$NGROK_HOST
 ```
 
 ### Trigger certificate creation
 
 ```bash
-$ curl https://$NGROK_HOST:8443 --resolve $NGROK_HOST:8443:127.0.0.1 -vk
+curl https://$NGROK_HOST:8443 --resolve $NGROK_HOST:8443:127.0.0.1 -vk
 # Wait for several seconds
 ```
 
 ### Check new certificate
 
 ```bash
-$ echo q |openssl s_client -connect localhost -port 8443 -servername $NGROK_HOST 2>/dev/null |openssl x509 -text -noout
+echo q |openssl s_client -connect localhost -port 8443 -servername $NGROK_HOST 2>/dev/null |openssl x509 -text -noout
 ```
 
 ## Notes

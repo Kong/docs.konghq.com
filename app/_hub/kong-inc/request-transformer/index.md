@@ -18,40 +18,12 @@ kong_version_compatibility:
       - 2.6.x
       - 2.5.x
       - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
-      - 0.14.x
-      - 0.13.x
-      - 0.12.x
-      - 0.11.x
-      - 0.10.x
-      - 0.9.x
-      - 0.8.x
-      - 0.7.x
-      - 0.6.x
-      - 0.5.x
-      - 0.4.x
-      - 0.3.x
   enterprise_edition:
     compatible:
       - 2.7.x
       - 2.6.x
       - 2.5.x
       - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
 params:
   name: request-transformer
   service_id: true
@@ -283,11 +255,11 @@ above).
 Add a Service named `test` with `uris` configured with a named capture group `user_id`:
 
 ```bash
-$ curl -X POST http://localhost:8001/services \
-    --data 'name=test' \
-    --data 'upstream_url=http://mockbin.com' \
-    --data-urlencode 'uris=/requests/user/(?<user_id>\w+)' \
-    --data "strip_uri=false"
+curl -X POST http://localhost:8001/services \
+  --data 'name=test' \
+  --data 'upstream_url=http://mockbin.com' \
+  --data-urlencode 'uris=/requests/user/(?<user_id>\w+)' \
+  --data "strip_uri=false"
 ```
 
 Enable the `request-transformer` plugin to add a new header `x-consumer-id`
@@ -295,16 +267,16 @@ whose value is being set with the value sent with header `x-user-id` or
 with the default value `alice`. The `header` is missing.
 
 ```bash
-$ curl -X POST http://localhost:8001/services/test/plugins \
-    --data "name=request-transformer" \
-    --data-urlencode "config.add.headers=x-consumer-id:\$(headers['x-user-id'] or 'alice')" \
-    --data "config.remove.headers=x-user-id"
+curl -X POST http://localhost:8001/services/test/plugins \
+  --data "name=request-transformer" \
+  --data-urlencode "config.add.headers=x-consumer-id:\$(headers['x-user-id'] or 'alice')" \
+  --data "config.remove.headers=x-user-id"
 ```
 
 Now send a request without setting header `x-user-id`:
 
 ```bash
-$ curl -i -X GET localhost:8000/requests/user/foo
+curl -i -X GET localhost:8000/requests/user/foo
 ```
 
 The plugin adds a new header `x-consumer-id` with the value `alice` before
@@ -313,7 +285,7 @@ proxying the request upstream.
 Now try sending request with the header `x-user-id` set:
 
 ```bash
-$ curl -i -X GET localhost:8000/requests/user/foo \
+curl -i -X GET localhost:8000/requests/user/foo \
   -H "X-User-Id:bob"
 ```
 
@@ -344,7 +316,7 @@ similarly for Routes.
 {% navtabs %}
 {% navtab With a database %}
 ```bash
-$ curl -X POST http://localhost:8001/services/example-service/plugins \
+curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "name=request-transformer" \
   --data "config.add.headers[1]=h1:v1" \
   --data "config.add.headers[2]=h2:v1"
@@ -380,7 +352,7 @@ plugins:
 - Add multiple headers by passing comma-separated `header:value` pair (only possible with a database):
 
 ```bash
-$ curl -X POST http://localhost:8001/services/example-service/plugins \
+curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "name=request-transformer" \
   --data "config.add.headers=h1:v1,h2:v2"
 ```
@@ -404,7 +376,7 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
 - Add multiple headers passing config as a JSON body (only possible with a database):
 
 ```bash
-$ curl -X POST http://localhost:8001/services/example-service/plugins \
+curl -X POST http://localhost:8001/services/example-service/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "request-transformer", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
 ```
@@ -430,7 +402,7 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
 {% navtabs %}
 {% navtab With a database %}
 ```bash
-$ curl -X POST http://localhost:8001/services/example-service/plugins \
+curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "name=request-transformer" \
   --data "config.add.querystring=q1:v2,q2:v1" \
   --data "config.add.headers=h1:v1"
@@ -485,7 +457,7 @@ plugins:
 {% navtabs %}
 {% navtab With a database %}
 ```bash
-$ curl -X POST http://localhost:8001/services/example-service/plugins \
+curl -X POST http://localhost:8001/services/example-service/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "request-transformer", "config": {"append": {"headers": ["h1:v2", "h2:v1"]}, "remove": {"body": ["p1"]}}}'
 ```
