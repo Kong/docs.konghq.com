@@ -6,6 +6,9 @@
 - title: Style guide
   icon: /assets/images/icons/documentation/icn-references-color.svg
   url: /style-guide
+  items:
+    - text: Word choice
+      url: /word-choice
 
 - title: Markdown rules and formatting
   icon: /assets/images/icons/documentation/icn-references-color.svg
