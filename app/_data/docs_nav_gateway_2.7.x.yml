@@ -182,7 +182,7 @@
           url: /developer-portal/enable-dev-portal
         - text: Structure and File Types
           url: /developer-portal/structure-and-file-types
-        - text: Using the Portal Files API
+        - text: Portal Files API
           url: /developer-portal/files-api
         - text: Working with Templates
           url: /developer-portal/working-with-templates
