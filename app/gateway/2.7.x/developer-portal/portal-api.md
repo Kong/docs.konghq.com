@@ -1,6 +1,8 @@
 ---
-title: Portal Files API
+title: Portal API
 no_version: true
+toc: false
+layout: api
 ---
 
 <script src="https://unpkg.com/@stoplight/elements/web-components.min.js"></script>
@@ -8,6 +10,6 @@ no_version: true
 <link rel="stylesheet" href="https://unpkg.com/@stoplight/elements/styles.min.css">
 
 <elements-api
-  apiDescriptionUrl="http://docs.konghq.com/api/developer-portal.json"
+  apiDescriptionUrl="/api/developer-portal.json"
   router="hash"
 />
