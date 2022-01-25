@@ -21,8 +21,8 @@ address or DNS name will certainly keep things simpler and easy for you.
 If you don't have knative installed, you need to install Knative:
 
 ```
-kubectl apply --filename https://github.com/knative/serving/releases/download/v0.13.0/serving-crds.yaml
-kubectl apply --filename https://github.com/knative/serving/releases/download/v0.13.0/serving-core.yaml
+kubectl apply --filename https://github.com/knative/serving/releases/download/knative-v1.1.0/serving-crds.yaml
+kubectl apply --filename https://github.com/knative/serving/releases/download/knative-v1.1.0/serving-core.yaml
 ```
 
 This will install the resources that are required to run Knative.
@@ -72,7 +72,7 @@ $ kubectl patch configmap/config-network \
 As the final step, we need to configure Knative's base domain at which
 our services will be accessible.
 
-We override the default ConfigMap with the DNS name of `${KONG_IP}.xip.io`.
+We override the default ConfigMap with the DNS name of `${KONG_IP}.nip.io`.
 This will be different for you:
 
 ```
@@ -83,9 +83,9 @@ metadata:
   name: config-domain
   namespace: knative-serving
   labels:
-    serving.knative.dev/release: v0.13.0
+    serving.knative.dev/release: v1.1.0
 data:
-  35.247.39.83.xip.io: ""
+  35.247.39.83.nip.io: ""
 ' | kubectl apply -f -
 configmap/config-domain configured
 ```
@@ -98,7 +98,7 @@ and Kong.
 Send a request to the above domain that we have configured:
 
 ```bash
-curl -i http://35.247.39.83.xip.io/
+curl -i http://35.247.39.83.nip.io/
 HTTP/1.1 404 Not Found
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
@@ -139,7 +139,7 @@ eventually, you will see the URL of the Service.
 Let's make the call to the URL:
 
 ```shell
-$ curl -v http://helloworld-go.default.<your-ip>.xip.io
+$ curl -v http://helloworld-go.default.<your-ip>.nip.io
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=utf-8
 Content-Length: 20
@@ -176,7 +176,7 @@ metadata:
 config:
   add:
     headers:
-    - "demo: injected-by-kong
+    - 'demo: injected-by-kong'
 plugin: response-transformer
 " | kubectl apply -f -
 kongplugin.configuration.konghq.com/add-response-header created
@@ -214,7 +214,7 @@ itself but to the `spec.template.metadata.annotations`.
 Let's make the request again:
 
 ```shell
-$ curl -i http://helloworld-go.default.35.247.39.83.xip.io/
+$ curl -i http://helloworld-go.default.35.247.39.83.nip.io/
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=utf-8
 Content-Length: 20
