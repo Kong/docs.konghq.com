@@ -37,7 +37,6 @@ kong_version_compatibility:
       - 0.36-x
 params:
   name: oauth2-introspection
-  api_id: true
   service_id: true
   route_id: true
   konnect_examples: false
