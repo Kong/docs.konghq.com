@@ -2,7 +2,7 @@
 title: Portal API
 no_version: true
 toc: false
-layout: api
+layout: default
 ---
 
 <script src="https://unpkg.com/@stoplight/elements/web-components.min.js"></script>
