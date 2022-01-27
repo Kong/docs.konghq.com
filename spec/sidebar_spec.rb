@@ -1,4 +1,22 @@
 describe "sidebar", type: :feature, js: true do
+
+  describe "Module Switcher", type: :feature, js: true do
+    it "has the same products, in the same order as the top 'Docs' dropdown" do
+      visit "/gateway/"
+
+      sidebarUrls = page.all('#module-list a', minimum: 1, visible: false).map do |link|
+        { link.text(:all) => link[:href] }
+      end.reduce({}, :merge)
+
+      topNavUrls = page.all('#top-module-list .navbar-item-submenu a', minimum: 1, visible: false).map do |link|
+        { link.text(:all) => link[:href] }
+      end.reduce({}, :merge)
+
+      expect(sidebarUrls).to eql(topNavUrls)
+    end
+  end
+
+
   describe "Version Switcher", type: :feature, js: true do
     it "links to the same page if it exists in previous versions" do
       visit "/enterprise/2.5.x/deployment/installation/docker/"
