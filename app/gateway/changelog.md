@@ -10,11 +10,16 @@ no_version: true
 ### Features
 
 #### Enterprise
-* You can now configure [`cluster_max_payload`](/gateway/latest/reference/configuration/#cluster-max-payload)
+* You can now configure [`cluster_max_payload`](/gateway/latest/reference/configuration/#cluster_max_payload)
 for hybrid mode deployments. This configuration option sets the maximum payload
 size allowed to be sent across from the control plane to the data plane. If your
 environment has large configurations that generate `payload too big` errors
 and don't get applied to the data planes, use this setting to adjust the limit.
+* When using PKI for certificate verification in hybrid mode, you can now 
+configure a list Common Names allowed to connect to a control plane with the
+[`cluster_allowed_common_names`](/gateway/latest/reference/configuration/#cluster_allowed_common_names)
+option. If not set, only data planes with the same parent domain as the control
+plane cert are allowed.
 
 ### Fixes
 
