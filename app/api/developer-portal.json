@@ -1,13 +1,13 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Developer Portal",
+    "title": "Dev Portal API",
     "version": "1.0",
-    "summary": "Kong Developer Portal (On-Prem)",
+    "summary": "Kong Dev Portal (On-Prem) API",
     "contact": {
       "name": "Michael Heap"
     },
-    "description": "Documentation for the Kong Enterprise edition Developer Portal\n\n# Authentication\n\n<!-- ReDoc-Inject: <security-definitions> -->"
+    "description": "Welcome to the documentation for the Kong Enterprise edition Dev Portal API."
   },
   "servers": [
     {
@@ -21,8 +21,8 @@
         "tags": [
           "authentication"
         ],
-        "operationId": "create-sesion",
-        "description": "Log in to a Developer Poral account using HTTP Basic auth.\n\nThe `username` is your developer portal account email address. The `password` is the password you chose when signing up.\n\nFor example:\n\n`Authorization: Basic base64(user@example.com:password)`\n\nThis endpoint returns a `Set-Cookie` header that looks similar to the following:\n\n```\nportal_session=LBTguN3iEqQlYK3089Ij2Q|1622804485|AXQzsTuR_M3TGFkUV6PzzXPpFtA; Path=/; SameSite=Strict; HttpOnly\n```\n\nThis ID must be sent on all subsequent requests in the `Cookie` header like so:\n\n```\nCookie: portal_session=LBTguN3iEqQlYK3089Ij2Q|1622804485|AXQzsTuR_M3TGFkUV6PzzXPpFtA\n```",
+        "operationId": "create-session",
+        "description": "Log in to a Dev Portal account using HTTP Basic auth.\n\nThe `username` is your developer portal account email address. The `password` is the password you chose when signing up.\n\nFor example:\n\n`Authorization: Basic base64(user@example.com:password)`\n\nThis endpoint returns a `Set-Cookie` header that looks similar to the following:\n\n```\nportal_session=LBTguN3iEqQlYK3089Ij2Q|1622804485|AXQzsTuR_M3TGFkUV6PzzXPpFtA; Path=/; SameSite=Strict; HttpOnly\n```\n\nThis ID must be sent on all subsequent requests in the `Cookie` header like so:\n\n```\nCookie: portal_session=LBTguN3iEqQlYK3089Ij2Q|1622804485|AXQzsTuR_M3TGFkUV6PzzXPpFtA\n```",
         "responses": {
           "204": {
             "description": "No Content"
@@ -345,7 +345,7 @@
           },
           "description": ""
         },
-        "description": "Create a new developer portal account",
+        "description": "Create a new Dev Portal account",
         "tags": [
           "account"
         ]
