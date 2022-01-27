@@ -15,7 +15,7 @@ for hybrid mode deployments. This configuration option sets the maximum payload
 size allowed to be sent across from the control plane to the data plane. If your
 environment has large configurations that generate `payload too big` errors
 and don't get applied to the data planes, use this setting to adjust the limit.
-* When using PKI for certificate verification in hybrid mode, you can now 
+* When using PKI for certificate verification in hybrid mode, you can now
 configure a list Common Names allowed to connect to a control plane with the
 [`cluster_allowed_common_names`](/gateway/latest/reference/configuration/#cluster_allowed_common_names)
 option. If not set, only data planes with the same parent domain as the control
@@ -421,6 +421,9 @@ on Kong Gateway usage now travels through an encrypted connection.
 with Azure AD.
 * Fixed a timer leak that caused the timers to be exhausted and failed to start
 any other timers used by Kong, showing the error `too many pending timers`.
+* Fixed an issue with icon alignment in Kong Manager, where the **Delete**
+(garbage can) icon overlapped with the **View** link and caused users to
+accidentally click **Delete**.
 
 #### Dev Portal
 * Fixed the Dev Portal Application Services list to allow pagination.
@@ -497,10 +500,6 @@ workspace than where it was originally created did not delete the associated
 Consumer entity, and the username would remain locked. For example, if the
 admin was created in workspace `dev` and deleted from workspace `QA`, this
 issue would occur.
-
-- Fixed an issue with icon alignment in Kong Manager, where the **Delete**
-(garbage can) icon overlapped with the **View** link and caused users to
-accidentally click **Delete**.
 
 ### Dependencies
 - Bumped kong-redis-cluster from `1.1-0` to `1.2.0`.
