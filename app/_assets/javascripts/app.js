@@ -485,6 +485,18 @@ $("a[data-filter]").on("keypress", function(e) {
     }).each(function(k,v){
       activateSingleNavTab($(v));
     });
+
+    const elementTop = navtabTitle.offset().top;
+    const elementBottom = elementTop + navtabTitle.outerHeight();
+    const screenTop = $(window).scrollTop();
+    const screenBottom = $(window).scrollTop() + $(window).innerHeight();
+
+    // If the element isn't on screen, scroll to it
+    if (elementBottom < screenTop || elementTop > screenBottom){
+        $([document.documentElement, document.body]).animate({
+          scrollTop: elementTop - 120
+      }, 0);
+    }
   }
 
   function activateSingleNavTab(navtabTitle){
