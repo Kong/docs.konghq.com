@@ -65,39 +65,6 @@ URL `http://mockbin.org`.
 The service is created, and the page automatically redirects back to the
 `example_service` overview page.
 {% endnavtab %}
-{% navtab Using decK (YAML) %}
-
-1. In the `kong.yaml` file you exported in
-[Prepare to Administer {{site.base_gateway}}](/gateway/{{page.kong_version}}/get-started/comprehensive/prepare/#verify-the-kong-gateway-configuration),
-define a Service with the name `example_service` and the URL
-`http://mockbin.org`:
-
-    ``` yaml
-    _format_version: "1.1"
-    services:
-    - host: mockbin.org
-      name: example_service
-      port: 80
-      protocol: http
-    ```
-2. Save the file. From your terminal, sync the configuration to update your
-gateway instance:
-
-    ``` bash
-    deck sync
-    ```
-
-    The message should show that you’re creating a service:
-
-    ```
-    creating service example_service
-    Summary:
-    Created: 1
-    Updated: 0
-    Deleted: 0
-    ```
-
-{% endnavtab %}
 {% navtab Using the Admin API %}
 
 <!-- codeblock tabs -->
@@ -137,6 +104,39 @@ http :8001/services/example_service
 {% endnavtab %}
 {% endnavtabs %}
 <!-- end codeblock tabs -->
+
+{% endnavtab %}
+{% navtab Using decK (YAML) %}
+
+1. In the `kong.yaml` file you exported in
+[Prepare to Administer {{site.base_gateway}}](/gateway/{{page.kong_version}}/get-started/comprehensive/prepare/#verify-the-kong-gateway-configuration),
+define a Service with the name `example_service` and the URL
+`http://mockbin.org`:
+
+    ``` yaml
+    _format_version: "1.1"
+    services:
+    - host: mockbin.org
+      name: example_service
+      port: 80
+      protocol: http
+    ```
+2. Save the file. From your terminal, sync the configuration to update your
+gateway instance:
+
+    ``` bash
+    deck sync
+    ```
+
+    The message should show that you’re creating a service:
+
+    ```
+    creating service example_service
+    Summary:
+    Created: 1
+    Updated: 0
+    Deleted: 0
+    ```
 
 {% endnavtab %}
 {% endnavtabs %}
@@ -236,7 +236,7 @@ A `201` message indicates the Route was created successfully.
 3. (Optional) You can update your local file with the new configuration:
 
     <div class="alert alert-warning">
-   
+
     <strong>Be careful!</strong> Any subsequent <code>deck dump</code> will
     overwrite the existing <code>kong.yaml</code> file. Create backups as needed.
     </div>
