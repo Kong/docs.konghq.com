@@ -31,8 +31,6 @@ with Azure AD.
 any other timers used by Kong, showing the error `too many pending timers`.
 * Fix an issue where, if `data_plane_config_cache_mode` was set to `off`, the
 data plane received no updates from the control plane.
-* Fixed a performance issue with Kong Manager, which occurred when admins had
-access to multiple workspaces.
 
 #### Plugins
 
