@@ -62,35 +62,7 @@ capitalized in the documentation.
 
 ### Kong-specific terms
 
-Capitalize the following Kong-specific terms:
-
-#### Product names
-
-- Kong Konnect (Kong Konnect for first mention, Konnect after)
-- Kong Gateway (Enterprise)
-- Kong Gateway
-- Kong Mesh (Kong Mesh for first mention, Mesh after)
-- Insomnia
-
-{:.note}
-> **Note**: Use lowercase “gateway” when referring to the general concept of an API gateway. Use uppercase “Gateway” as a shorthand for “Kong Gateway”. When writing about "Kong Gateway", use "Kong Gateway" for the first mention and "Gateway" after.
-
-#### Component names
-
-- Dev Portal
-- ServiceHub
-- Vitals
-
-### Generic terms
-
-Do not capitalize the following generic terms:
-- plugins
-- control plane
-- data plane
-- hybrid mode
-- service
-- route
-- consumer
+See [Word Choice](/contributing/word-choice).
 
 ## Code formatting
 
