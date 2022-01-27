@@ -817,6 +817,16 @@ Valid values to this setting are:
 
 ---
 
+#### cluster_max_payload
+
+This sets the maximum payload size allowed to be sent across from CP to DP in
+Hybrid mode.
+
+Default is 4Mb - 4 * 1024 * 1024 due to historical reasons.
+
+**Default:** `4194304`
+
+---
 
 ### NGINX section
 
