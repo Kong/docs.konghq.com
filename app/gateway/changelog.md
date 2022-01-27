@@ -4,6 +4,53 @@ no_search: true
 no_version: true
 ---
 
+## 2.7.1.0
+**Release Date:** 2022/01/27
+
+### Features
+
+#### Enterprise
+* You can now configure [`cluster_max_payload`](/gateway/latest/reference/configuration/#cluster-max-payload)
+for hybrid mode deployments. This configuration option sets the maximum payload
+size allowed to be sent across from the control plane to the data plane. If your
+environment has large configurations that generate `payload too big` errors
+and don't get applied to the data planes, use this setting to adjust the limit.
+
+### Fixes
+
+#### Enterprise
+
+* Fixed an issue where OIDC authentication into Kong Manager failed when used
+with Azure AD.
+* Fixed a timer leak that caused the timers to be exhausted and failed to start
+any other timers used by Kong, showing the error `too many pending timers`.
+* Fix an issue where, if `data_plane_config_cache_mode` was set to `off`, the
+data plane received no updates from the control plane.
+* Fixed a performance issue with Kong Manager, which occurred when admins had
+access to multiple workspaces.
+
+#### Plugins
+
+* [Rate Limiting](/hub/kong-inc/rate-limiting) (`rate-limiting`)
+  * Fixed a 500 error associated with performing arithmetic functions on a nil
+  value by adding a nil value check after `performing ngx.shared.dict` operations.
+  * Fixed a timer leak that caused the timers to be exhausted and failed to
+  start any other timers used by Kong, showing the error `too many pending timers`.
+
+    Before, the plugin used one timer for each namespace maintenance process,
+    increasing timer usage on instances with a large number of rate limiting
+    namespaces. Now, it uses a single timer for all namespace maintenance.
+
+* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
+  * Fixed a 500 error which occurred when consumer groups were enforced but no
+  proper configurations were provided. Now, if no specific consumer group
+  configuration exists, the consumer group defaults to the original plugin
+  configuration.
+
+* [Exit Transformer](/hub/kong-inc/exit-transformer) (`exit-transformer`)
+  * Fix an issue where the Exit Transformer plugin
+  would break the plugin iterator, causing later plugins not to run.
+
 ## 2.7.0.0
 **Release Date:** 2021/12/16
 
@@ -196,6 +243,9 @@ Consumer entity, and the username would remain locked. For example, if the
 admin was created in workspace `dev` and deleted from workspace `QA`, this
 issue would occur.
 
+* Phone home metrics are now sent over TLS, meaning that any analytics data
+on Kong Gateway usage now travels through an encrypted connection.
+
 #### Dev Portal
 * Dev Portal OpenID Connect authentication now properly redirects users based on
 the values of `login_redirect_uri` and `forbidden_redirect_uri` set in `portal_auth`.
@@ -344,6 +394,44 @@ effect on the following plugins and fields:
 * Consumer groups are not supported in declarative configuration with
 decK. If you have consumer groups in your configuration, decK will ignore them.
 
+## 2.6.0.3
+**Release Date:** 2022/01/27
+
+### Features
+
+#### Enterprise
+* You can now configure [`cluster_max_payload`](/gateway/latest/reference/configuration/#cluster-max-payload)
+for hybrid mode deployments. This configuration option sets the maximum payload
+size allowed to be sent across from the control plane to the data plane. If your
+environment has large configurations that generate `payload too big` errors
+and don't get applied to the data planes, use this setting to adjust the limit.
+
+### Fixes
+
+#### Enterprise
+
+* Phone home metrics are now sent over TLS, meaning that any analytics data
+on Kong Gateway usage now travels through an encrypted connection.
+* Fixed an issue where OIDC authentication into Kong Manager failed when used
+with Azure AD.
+* Fixed a timer leak that caused the timers to be exhausted and failed to start
+any other timers used by Kong, showing the error `too many pending timers`.
+
+#### Dev Portal
+* Fixed the Dev Portal Application Services list to allow pagination.
+* Fixed a table border styling issue.
+* Fixed issues with modal accessibility.
+
+#### Plugins
+
+* [Rate Limiting](/hub/kong-inc/rate-limiting) (`rate-limiting`) and
+[Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
+  * Fixed a timer leak that caused the timers to be exhausted and failed to
+  start any other timers used by Kong, showing the error `too many pending timers`.
+
+    Before, the plugin used one timer for each namespace maintenance process,
+    increasing timer usage on instances with a large number of rate limiting
+    namespaces. Now, it uses a single timer for all namespace maintenance.
 
 ## 2.6.0.2
 **Release Date:** 2021/12/03
