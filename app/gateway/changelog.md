@@ -47,7 +47,7 @@ access to multiple workspaces.
     namespaces. Now, it uses a single timer for all namespace maintenance.
 
 * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
-  * Fixed a 500 error which occurred when consumer groups were enforced but no
+  * Fixed a 500 error that occurred when consumer groups were enforced but no
   proper configurations were provided. Now, if no specific consumer group
   configuration exists, the consumer group defaults to the original plugin
   configuration.
