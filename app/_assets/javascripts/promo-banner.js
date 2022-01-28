@@ -5,9 +5,11 @@ jQuery(document).ready(function () {
   ) {
     $(".navbar-v2").removeClass("closed");
     $("body").addClass("banner");
+    $(".sl-elements").addClass("banner-offset")
   } else {
     $(".navbar-v2").addClass("closed");
     $("body").removeClass("banner");
+    $(".sl-elements").removeClass("banner-offset")
   }
 });
 var scrolling = false;
