@@ -468,7 +468,38 @@ $("a[data-filter]").on("keypress", function(e) {
   const navtabs = $("div[data-navtab-id]");
 
   navtabs.on("click", function () {
-    const navtabTitle = $(this);
+     activateNavTab($(this))
+  });
+
+  navtabs.on("keypress", function(e) {
+    if (e.keyCode === 13) {
+      activateNavTab($(this))
+    }
+  });
+
+  function activateNavTab(navtabTitle) {
+    // Toggle all nav tabs that match this title
+    const text = navtabTitle.text();
+    const search = $(".navtab-title").filter(function () {
+      return $(this).text().toLowerCase().indexOf(text.toLowerCase()) >= 0;
+    }).each(function(k,v){
+      activateSingleNavTab($(v));
+    });
+
+    const elementTop = navtabTitle.offset().top;
+    const elementBottom = elementTop + navtabTitle.outerHeight();
+    const screenTop = $(window).scrollTop();
+    const screenBottom = $(window).scrollTop() + $(window).innerHeight();
+
+    // If the element isn't on screen, scroll to it
+    if (elementBottom < screenTop || elementTop > screenBottom){
+        $([document.documentElement, document.body]).animate({
+          scrollTop: elementTop - 120
+      }, 0);
+    }
+  }
+
+  function activateSingleNavTab(navtabTitle){
     const navtabID = navtabTitle.data("navtab-id");
     const navtabContent = $(`div[data-navtab-content='${navtabID}']`);
 
@@ -481,20 +512,7 @@ $("a[data-filter]").on("keypress", function(e) {
     navtabTitle.addClass("active");
     navtabContent.siblings().css("display", "none");
     navtabContent.css("display", "block");
-  });
-
-  navtabs.on("keypress", function(e) {
-    const navtabTitle = $(this);
-    const navtabID = navtabTitle.data("navtab-id");
-    const navtabContent = $(`div[data-navtab-content='${navtabID}']`);
-
-    if (e.keyCode === 13) {
-      navtabTitle.siblings().removeClass("active");
-      navtabTitle.addClass("active");
-      navtabContent.siblings().css("display", "none");
-      navtabContent.css("display", "block");
-    }
-  });
+  }
 
   // set first navtab as active
   $(".navtabs").each(function (index, navtabs) {
