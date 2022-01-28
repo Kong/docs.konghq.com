@@ -419,6 +419,8 @@ gulp.task("set_dev", set_dev);
 
 // Call the tasks in the correct order
 function build_site(steps, append) {
+  console.log(process.env);
+
   steps = steps || [];
   append = append || [];
 
