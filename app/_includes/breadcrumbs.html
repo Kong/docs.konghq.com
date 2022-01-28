@@ -1,9 +1,7 @@
 <div id="breadcrumbs">
   {% assign crumbs = include.dir | split: '/' %}
   <ul class="breadcrumbs">
-    {% if include.no_version == false or include.has_version == true %}
       <i class="sidebar-toggle"></i>
-    {% endif %}
     <li class="breadcrumb-item">
       {% if include.edition =='enterprise' or include.edition =='konnect' or include.edition =='konnect-platform' or include.edition == 'mesh' or include.edition == 'gateway' %}
         Kong Konnect Platform
