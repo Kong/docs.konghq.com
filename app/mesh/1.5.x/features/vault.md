@@ -30,7 +30,7 @@ Vault server and provide the appropriate credentials. {{site.mesh_product_name}}
 uses these parameters to authenticate the control plane and generate the
 data plane certificates.
 
-When {{site.mesh_product_name}} is running in `vault` mode, the backend communicates with Vault and ensures 
+When {{site.mesh_product_name}} is running in `vault` mode, the backend communicates with Vault and ensures
 that Vault's PKI automatically issues data plane certificates and rotates them for
 each proxy.
 
@@ -41,7 +41,7 @@ it will handle keeping the token renewed.
 
 The `vault` mTLS backend expects a configured PKI and role for generating data plane proxy certificates.
 
-The following steps show how to configure Vault for {{site.mesh_product_name}} with a mesh named 
+The following steps show how to configure Vault for {{site.mesh_product_name}} with a mesh named
 `default`. For your environment, replace `default` with the appropriate mesh name.
 
 #### Step 1. Configure the Certificate Authority
@@ -138,12 +138,16 @@ vault write kmesh-pki-default/roles/dataplane-proxies \
   ext_key_usage="ExtKeyUsageServerAuth,ExtKeyUsageClientAuth" \
   client_flag=true \
   require_cn=false \
-  allowed_domains="mesh" \ # use only when commonName in mTLS Vault backend is set
-  allow_subdomains=true \ # use only when commonName in mTLS Vault backend is set
+  allowed_domains="mesh" \
+  allow_subdomains=true \
   basic_constraints_valid_for_non_ca=true \
   max_ttl="720h" \
   ttl="720h"
 ```
+
+{:.note}
+> **Note:** Use the `allowed_domains` and `allow_subdomains` parameters
+**only** when `commonName` is set in the mTLS Vault backend.
 
 #### Step 3. Create a policy to use the new role:
 
