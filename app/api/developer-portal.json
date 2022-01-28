@@ -9,11 +9,6 @@
     },
     "description": "Welcome to the documentation for the Kong Enterprise edition Dev Portal API."
   },
-  "servers": [
-    {
-      "url": "http://localhost:8004"
-    }
-  ],
   "paths": {
     "/auth": {
       "get": {
