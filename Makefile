@@ -24,18 +24,21 @@ build: install
 develop:
 	docker-compose up
 
-# Cleans up all docker-compose containers and all temp files in the build.
+# Cleans up all temp files in the build.
 # Run `make clean` locally whenever you're updating dependencies, or to help
 # troubleshoot build issues.
-# Used in build-test and check-links workflows.
 clean:
-	-docker-compose stop
-	-docker-compose rm -f
 	-rm -rf dist
 	-rm -rf app/.jekyll-cache
 	-rm yarn.lock
 	-rm -rf node_modules
 	-rm install
+
+# docker-clean is here for legacy purposes, in case we ever decide to fix our
+# docker-compose. These commands were previously part of `clean`.
+docker-clean:
+	-docker-compose stop
+	-docker-compose rm -f
 
 # Runs tests using the npm standard and echint linters.
 test: install
