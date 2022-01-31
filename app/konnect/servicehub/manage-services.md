@@ -78,7 +78,7 @@ A draft service version will not appear on the Dev Portal UI and will still be e
 
 1. Click on the **Actions** dropdown menu.
 
-1. Click **Draft** to set the Service version as a draft.
+1. Click **Set as Draft** to set the Service version as a draft.
 
     To publish the Service version, click **Publish** in the **Actions** dropdown.
 
