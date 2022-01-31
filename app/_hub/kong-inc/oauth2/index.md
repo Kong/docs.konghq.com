@@ -164,13 +164,6 @@ params:
       description: |
         An optional boolean value that indicates whether an OAuth refresh token is
         reused when refreshing an access token.
-    - name: persistent_refresh_token
-      required: true
-      default: false
-      datatype: boolean
-      description: |
-        An optional boolean value that indicates whether an OAuth refresh token is
-        persisted when refreshing an access token.
     - name: pkce
       required: false
       default: '`lax`'
