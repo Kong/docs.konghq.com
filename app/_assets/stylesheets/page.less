@@ -1,3 +1,47 @@
+// styling for API documentation using the default layout
+
+elements-api h1 {
+  padding-top:40px;
+}
+
+.sl-py-16 {
+  padding-top: 20px;
+}
+
+.sl-px-24 {
+  padding-right: 45px !important;
+  padding-left: 45px !important;
+}
+
+.navbar-items > ul {
+  margin-bottom: 25px !important;
+}
+
+.submenu-section li .navbar-item {
+  margin-left: 25px;
+}
+
+.submenu-section {
+   .docs-dropdown-li {
+    margin-left: 17px;
+  }
+}
+
+.TryItPanel {
+  display: none;
+}
+
+.banner-offset {
+  margin-top: 80px;
+}
+
+// ensures the the docs dropdown menu items have the same left adjustment across pages
+ul.navbar-item-submenu {
+  padding-left: 0;
+}
+
+// overall styling for the default layout
+
 .page {
   &.v2 {
     .container {
@@ -819,7 +863,6 @@
     margin: 1.3em 0;
     padding: 12px 17px;
     border-radius: 3px;
-    max-height: 400px;
     overflow: auto;
 
     &::-webkit-scrollbar {
@@ -1704,6 +1747,6 @@ Generic Styling for Desktop
   }
 
   @media (max-width: 800px) {
-    right: 50%;
+    display: none;
   }
 }

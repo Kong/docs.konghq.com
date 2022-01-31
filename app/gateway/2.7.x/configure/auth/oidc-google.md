@@ -18,14 +18,15 @@ You can optionally customize the consent screen to inform clients who/what appli
 
 ## Kong Configuration
 
-If you have not yet [added a **Service**][add-service], go ahead and do so. Again, note that you should be able to secure this API with HTTPS, so if you are configuring a host, use a hostname you have a certificate for.
+If you have not yet [added a **Service**][add-service], go ahead and do so. Again, note that you should be able to secure this Service with HTTPS, so if you are configuring a host, use a hostname you have a certificate for.
 
 ### Basic Plugin Configuration
 
-Add a plugin with the configuration below to your API using an HTTP client or Kong Manager. Make sure to use the same redirect URI as configured earlier:
+Add a plugin with the configuration below to your Service using an HTTP client or Kong Manager. Make sure to use the same redirect URI as configured earlier:
 
 ```bash
-$ curl -i -X POST http://kong:8001/apis/example/plugins --data name="openid-connect" \
+curl -i -X POST http://kong:8001/services/{SERVICE_NAME}/plugins \
+  --data name="openid-connect" \
   --data config.issuer="https://accounts.google.com/.well-known/openid-configuration" \
   --data config.client_id="YOUR_CLIENT_ID" \
   --data config.client_secret="YOUR_CLIENT_SECRET" \
@@ -33,7 +34,7 @@ $ curl -i -X POST http://kong:8001/apis/example/plugins --data name="openid-conn
   --data config.scopes="openid,email"
 ```
 
-Visiting a URL matched by that API in a browser will now redirect to Google's authentication site and return you to the redirect URI after authenticating. You'll note, however, that we did not configure anything to map authentication to consumers and that no consumer is associated with the subsequent request. Indeed, if you have configured other plugins that rely on consumer information, such as the ACL plugin, you will not have access. At present, the plugin configuration confirms that
+Visiting a URL matched by that Service in a browser will now redirect to Google's authentication site and return you to the redirect URI after authenticating. You'll note, however, that we did not configure anything to map authentication to consumers and that no consumer is associated with the subsequent request. Indeed, if you have configured other plugins that rely on consumer information, such as the ACL plugin, you will not have access. At present, the plugin configuration confirms that
 users have a Google account, but doesn't do anything with that information.
 
 Depending on your needs, it may not be necessary to associate clients with a consumer. You can, for example, configure the `domains` parameter to limit access to a internal users if you have a G Suite hosted domain, or configure `upstream_headers_claims` to send information about the user upstream (e.g. their email, a profile picture, their name, etc.) for use in your applications or for analytics.
@@ -43,11 +44,11 @@ Depending on your needs, it may not be necessary to associate clients with a con
 If you need to interact with other Kong plugins using consumer information, you must add configuration that maps account data received from the identity provider to a Kong consumer. For this example, we'll map the user's Google account email by setting a `custom_id` on their consumer, e.g.
 
 ```bash
-$ curl -i -X POST http://kong:8001/consumers/ \
+curl -i -X POST http://kong:8001/consumers/ \
   --data username="Yoda" \
   --data custom_id="user@example.com"
 
-$ curl -i -X PATCH http://kong:8001/apis/example/plugins/<OIDC plugin ID> \
+curl -i -X PATCH http://kong:8001/services/{SERVICE_NAME}/plugins/{OIDC_PLUGIN_ID} \
   --data config.consumer_by="custom_id" \
   --data config.consumer_claim="email"
 ```

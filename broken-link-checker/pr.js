@@ -1,8 +1,13 @@
 const { Octokit } = require("@octokit/rest");
 const { HtmlUrlChecker } = require("broken-link-checker");
 const github = require("@actions/github");
+const argv = require('minimist')(process.argv.slice(2));
+
 (async function () {
-  const pull_number = github.context.issue.number;
+  const pull_number = argv.pr || github.context.issue.number;
+  const is_fork =
+    argv.is_fork || github.context.payload.pull_request.head.repo.fork;
+
   const baseUrl = `https://deploy-preview-${pull_number}--kongdocs.netlify.app`;
 
   const octokit = new Octokit({
@@ -58,12 +63,12 @@ const github = require("@actions/github");
   if (urls.length) {
     console.log(`Checking the following URLs:\n\n${urls.join("\n")}\n`);
     // Check all the URLs provided
-    const r = await checkUrls(urls);
+    const r = await checkUrls(urls, is_fork);
 
     // Output report
     if (r.length) {
       console.log("Broken links:");
-      console.log(r);
+      console.log(JSON.stringify(r, null, 2));
       process.exit(1);
     }
 
@@ -73,16 +78,14 @@ const github = require("@actions/github");
   }
 })();
 
-function checkUrls(urls) {
+function checkUrls(urls, is_fork) {
   return new Promise((resolve, reject) => {
+    const exclusions = require("./excluded.json");
     const brokenLinks = new Set();
     const htmlUrlChecker = new HtmlUrlChecker(
       {
         honorRobotExclusions: false,
-        excludedKeywords: [
-          "https://linkedin.com/*",
-          "https://aws.amazon.com/*",
-        ],
+        excludedKeywords: exclusions,
         maxSocketsPerHost: 64,
       },
       {
@@ -90,6 +93,18 @@ function checkUrls(urls) {
           if (result.broken) {
             // Handle HTTP 308 which is a valid response
             if (result.brokenReason === "HTTP_308") {
+              return;
+            }
+
+            // Don't report on the "Edit this page" links for forks as
+            // they'll always be broken
+            if (
+              is_fork &&
+              result.html.text === "Edit this page" &&
+              result.url.resolved.match(
+                /.*github.com\/Kong\/docs.konghq.com\/edit\/.*/
+              )
+            ) {
               return;
             }
 
@@ -126,6 +141,7 @@ function dataFileToUrl(filename) {
     konnect: "konnect",
     mesh: "mesh",
     gateway: "gateway",
+    contributing: "contributing",
   };
 
   filename = filename.replace("app/_data/docs_nav_", "").replace(/\.yml$/, "");

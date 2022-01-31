@@ -66,12 +66,12 @@ affect your current installation.
 ### Hybrid mode considerations
 
 {:.important}
-> **Important:** If you are currently running in [hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/),
+> **Important:** If you are currently running in [hybrid mode](/gateway/{{page.kong_version}}/plan-and-deploy/hybrid-mode/),
 upgrade the Control Plane first, and then the Data Planes.
 
 * If you are currently running 2.6.x in classic (traditional)
   mode and want to run in hybrid mode instead, follow the hybrid mode
-  [installation instructions](/gateway/{{page.kong_version}}/plan-and-deploy/hybrid-mode-setup/)
+  [installation instructions](/gateway/{{page.kong_version}}/plan-and-deploy/hybrid-mode/hybrid-mode-setup/)
   after running the migration.
 * Custom plugins (either your own plugins or third-party plugins that are not shipped with Kong)
   need to be installed on both the Control Plane and the Data Planes in Hybrid mode. Install the

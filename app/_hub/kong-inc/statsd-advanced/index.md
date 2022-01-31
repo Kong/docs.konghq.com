@@ -4,8 +4,7 @@ publisher: Kong Inc.
 version: 2.2.x
 desc: Send metrics to StatsD with more flexible options
 description: |
-  Log [metrics](#metrics) for a Service, Route (or the deprecated API entity)
-  to a StatsD server.
+  Log [metrics](#metrics) for a Service or Route to a StatsD server.
   It can also be used to log metrics on [Collectd](https://collectd.org/)
   daemon by enabling its
   [StatsD plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
@@ -36,7 +35,6 @@ kong_version_compatibility:
       - 0.36-x
 params:
   name: statsd-advanced
-  api_id: false
   service_id: true
   route_id: true
   consumer_id: true

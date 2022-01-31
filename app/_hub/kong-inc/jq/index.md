@@ -42,7 +42,6 @@ params:
   route_id: true
   consumer_id: true
   yaml_examples: false
-  k8s_examples: false
   konnect_examples: false
   protocols:
     - http

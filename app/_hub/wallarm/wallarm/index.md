@@ -47,7 +47,7 @@ description: |
 #terms_of_service:
   # (Optional) Text describing your terms of service.
 
-terms_of_service_url: https://wallarm.com/terms-of-service.html
+terms_of_service_url: https://www.wallarm.com/terms-of-service
 
 kong_version_compatibility:
   community_edition:
@@ -84,4 +84,4 @@ Free Wallarm trial license is available [here](https://my.wallarm.com/signup?utm
 
 ### Installation
 
-Wallarm is easy to deploy as a Kong module. Specific module installation instructions with complete OS-specific installation instructions provided [here](https://docs.wallarm.com/en/admin-en/installation-kong-en.html){:target="_blank"}{:rel="noopener noreferrer"}. 
+Wallarm is easy to deploy as a Kong module. Specific module installation instructions with complete OS-specific installation instructions provided [here](https://docs.wallarm.com/admin-en/installation-kong-en/){:target="_blank"}{:rel="noopener noreferrer"}. 

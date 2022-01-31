@@ -226,7 +226,7 @@ document for why this resource exists and how it relates to the existing
 Ingress resource.
 
 Using `KongIngress`, all properties of [Upstream][kong-upstream],
-[Service][kong-service] and
+[Service][kong-service], and
 [Route][kong-route] entities in Kong related to an Ingress resource
 can be modified.
 
@@ -249,7 +249,7 @@ Please follow the
 [Using the KongIngress resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongingress-resource)
 guide for details on how to use this resource.
 
-For reference, the following is a complete spec for KongIngress:
+For reference, the following is a complete spec for KongIngress (for property documentation, see [Upstream](/gateway/latest/admin-api/#upstream-object), [Service](/gateway/latest/admin-api/#service-object) and [Route](/gateway/latest/admin-api/#route-object] entities))
 
 ```yaml
 apiVersion: configuration.konghq.com/v1
