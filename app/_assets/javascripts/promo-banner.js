@@ -5,9 +5,11 @@ jQuery(document).ready(function () {
   ) {
     $(".navbar-v2").removeClass("closed");
     $("body").addClass("banner");
+    $("#mosaic-provider-react-aria-0-1").addClass("banner-offset");
   } else {
     $(".navbar-v2").addClass("closed");
     $("body").removeClass("banner");
+    $("#mosaic-provider-react-aria-0-1").removeClass("banner-offset");
   }
 });
 var scrolling = false;
@@ -27,4 +29,5 @@ setInterval(function () {
 $(".closebanner").on("click", function () {
   $(".navbar-v2").addClass("closed");
   localStorage.setItem("closebanner-webinar-020822", "closebanner");
+  $("#mosaic-provider-react-aria-0-1").removeClass("banner-offset");
 });
