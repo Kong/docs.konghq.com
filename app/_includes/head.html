@@ -9,8 +9,16 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{% if include.p
 
   {% if jekyll.environment == "production" %}
   <!-- OneTrust Cookies Consent Notice start for konghq.com -->
-  <script type="text/javascript" src="https://cdn.cookielaw.org/consent/2c4de954-6bec-4e93-8086-64cb113f151a/OtAutoBlock.js" ></script>
-  <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="2c4de954-6bec-4e93-8086-64cb113f151a" ></script>
+  <script
+    type="text/javascript"
+    src="https://cdn.cookielaw.org/consent/2c4de954-6bec-4e93-8086-64cb113f151a/OtAutoBlock.js" >
+  </script>
+  <script
+    src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
+    type="text/javascript"
+    charset="UTF-8"
+    data-domain-script="2c4de954-6bec-4e93-8086-64cb113f151a" >
+  </script>
   <script type="text/javascript">
   function OptanonWrapper() { }
   </script>
@@ -57,12 +65,12 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{% if include.p
     name="google-site-verification"
     content="CrU3zp02dNKTe8NSAipL4NCPkrIjDXG8fViTZ-MIzP4"
   />
-  <link
-    rel="stylesheet"
-    href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
-    integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-    crossorigin="anonymous"
-  />
+
+  <!-- FontAwesome icon font -->
+  <script
+    src="https://kit.fontawesome.com/1332a92967.js" 
+    crossorigin="anonymous">
+  </script>
 
   <!-- New Relic -->
   {% include newrelic.html %}
