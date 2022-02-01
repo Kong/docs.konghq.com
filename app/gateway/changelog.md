@@ -96,7 +96,7 @@ and use the `/consumer_groups` endpoint to manage the groups.
 #### Dev Portal
 * The Dev Portal API now supports `sort_by={attribute}` and `sort_desc`
 query parameters for sorted list results.
-* Dev Portal authentication with [OpenID Connect (OIDC)](/hub/kong-inc/openid-connect):
+* Improvements to Dev Portal authentication with [OpenID Connect (OIDC)](/hub/kong-inc/openid-connect):
 If OIDC auth is enabled, the first time a user attempts to access the Dev Portal
 using their IDP credentials, they are directed to a pre-filled registration form.
 Submit the form to create a Dev Portal account, linking the account to your IDP.
