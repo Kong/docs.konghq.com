@@ -4,7 +4,6 @@ var browserSync = require("browser-sync").create();
 var childProcess = require("child_process");
 var log = require("fancy-log");
 var del = require("del");
-var ghPages = require("gh-pages");
 var gulp = require("gulp");
 var path = require("path");
 var fs = require("fs");
@@ -377,8 +376,7 @@ var reload_browser = (done) => {
 };
 
 function clean() {
-  ghPages.clean();
-  return del(["dist", ".gh-pages"]);
+  return del(["dist"]);
 }
 
 function watch_files() {
