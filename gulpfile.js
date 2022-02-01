@@ -119,9 +119,7 @@ function jekyll(cb) {
     profile = "-dev";
   }
 
-  var command =
-    `bundle exec jekyll build --config jekyll${profile}.yml --profile --destination ` +
-    paths.dist;
+  var command = `bundle exec jekyll build --config jekyll${profile}.yml --profile`
 
   childProcess.exec(command, function (err, stdout, stderr) {
     log(stdout);
