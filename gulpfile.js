@@ -423,7 +423,6 @@ function build_site(steps, append) {
   // These are the steps that always run for every build
   // If set_dev is called, some of these methods behave differently
   steps = steps.concat([
-    clean,
     gulp.parallel(js, images, fonts, css),
     jekyll,
     html,
