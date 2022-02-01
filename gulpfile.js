@@ -128,14 +128,6 @@ function jekyll(cb) {
   });
 }
 
-function html() {
-  return gulp
-    .src(paths.dist + "/**/*.html")
-    .pipe($.plumber())
-    .pipe(gulp.dest(paths.dist))
-    .pipe($.if(!dev, $.size()));
-}
-
 // Lua Tasks
 function pdk_docs(cb) {
   var KONG_PATH,
@@ -378,7 +370,7 @@ function clean() {
 }
 
 function watch_files() {
-  gulp.watch(sources.content, gulp.series(jekyll, html, reload_browser));
+  gulp.watch(sources.content, gulp.series(jekyll, reload_browser));
   gulp.watch(sources.styles, styles);
   gulp.watch(sources.images, gulp.series(images, reload_browser));
   gulp.watch(sources.js, gulp.series(js, reload_browser));
@@ -400,7 +392,6 @@ gulp.task("styles", styles);
 gulp.task("images", gulp.series(set_dev, images));
 gulp.task("fonts", fonts);
 gulp.task("jekyll", jekyll);
-gulp.task("html", html);
 
 // Lua Tasks
 gulp.task("pdk_docs", pdk_docs);
@@ -423,7 +414,6 @@ function build_site(steps, append) {
   steps = steps.concat([
     gulp.parallel(js, images, fonts, css),
     jekyll,
-    html,
     styles,
   ]);
 
