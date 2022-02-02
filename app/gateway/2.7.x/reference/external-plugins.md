@@ -144,8 +144,8 @@ datastore, add field tags as defined in the `encoding/json` package:
 
 ```go
 type MyConfig struct {
-    Path   string `json:my_file_path`
-    Reopen bool   `json:reopen`
+    Path   string `json:"my_file_path"`
+    Reopen bool   `json:"reopen"`
 }
 ```
 
