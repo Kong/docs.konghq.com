@@ -33,11 +33,11 @@ any other timers used by Kong, showing the error `too many pending timers`.
 data plane received no updates from the control plane.
 
 #### Core
-* Reschedule resolve timer only when the previous one has finished. 
+* Reschedule resolve timer only when the previous one has finished.
 [#8344](https://github.com/Kong/kong/pull/8344)
-* Plugins, and any entities implemented with subchemas, now can use the 
-`transformations` and `shorthand_fields` properties, which were previously 
-only available for non-subschema entities. 
+* Plugins, and any entities implemented with subchemas, now can use the
+`transformations` and `shorthand_fields` properties, which were previously
+only available for non-subschema entities.
 [#8146](https://github.com/Kong/kong/pull/8146)
 
 #### Plugins
@@ -96,10 +96,14 @@ and use the `/consumer_groups` endpoint to manage the groups.
 #### Dev Portal
 * The Dev Portal API now supports `sort_by={attribute}` and `sort_desc`
 query parameters for sorted list results.
-* For Dev Portals with the [OpenID Connect](/hub/kong-inc/openid-connect) plugin
- enabled, login is successful on the first try if the credentials provided are
- valid and stored in IDP. If the email does not match existing data associated
- with the account, a new account is automatically created.
+* Improvements to Dev Portal authentication with [OpenID Connect (OIDC)](/hub/kong-inc/openid-connect):
+If OIDC auth is enabled, the first time a user attempts to access the Dev Portal
+using their IDP credentials, they are directed to a pre-filled registration form.
+Submit the form to create a Dev Portal account, linking the account to your IDP.
+
+   After linking, you can use your IDP credentials to directly access this Dev
+   Portal account.
+
 * Added TLSv1.3 support for the Dev Portal API and GUI.
 
 #### Kong Manager
