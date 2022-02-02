@@ -7,7 +7,7 @@
     "contact": {
       "name": "Michael Heap"
     },
-    "description": "Welcome to the documentation for the Kong Enterprise edition Dev Portal API."
+    "description": "Welcome to the documentation for the Dev Portal API, self-managed edition. <br><br><b>Disclaimer:</b> This document is currently in beta. It might not contain all possible endpoints and requests, and request descriptions are not complete. <br>If you find a missing request or run into an error in the documentation, please file an issue in our <a href=\"https://github.com/Kong/docs.konghq.com/issues\">Github repository</a>, or submit a PR to update the <a href=\"https://github.com/Kong/docs.konghq.com/blob/main/app/api/developer-portal.json\">Dev Portal API spec</a>."
   },
   "paths": {
     "/auth": {
