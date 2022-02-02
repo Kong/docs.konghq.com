@@ -772,7 +772,7 @@
 
 // External icons in content body, excluding badges
 .content {
-  a:not(.badge):not([href^='https://docs.konghq.com']):not([href^='#']):not([href^='/']):not([data-filter]):after {
+  a:not(.badge, .install-link, .install-listing-link):not([href^='https://docs.konghq.com']):not([href^='#']):not([href^='/']):not([data-filter]):after {
       font-family: 'FontAwesome';
       content: " \f35d";
       margin-left: 0.2rem;
