@@ -205,7 +205,7 @@ params:
       datatype: string
       description: |
             Sentinel username to authenticate with a Redis Sentinel instance.
-            If undefined, ACL authentication will not be performed. This requires Redis v6.2.0+
+            If undefined, ACL authentication will not be performed. This requires Redis v6.2.0+.
     - name: redis.sentinel_password
       required: semi
       default:

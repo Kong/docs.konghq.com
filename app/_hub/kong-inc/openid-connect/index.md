@@ -1080,7 +1080,7 @@ params:
       datatype: string
       description: |
         Username to use for Redis connection when the `redis` session storage is defined and ACL authentication is desired.
-        If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+
+        If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+.
     - name: session_redis_password
       required: false
       default: (from kong)
@@ -1097,8 +1097,11 @@ params:
       description: |
         Password to use for Redis connection when the `redis` session storage is defined.
         If undefined, no AUTH commands are sent to Redis.
-        This field is deprecated and replaced with `session_redis_password`. The`session_redis_auth` field will
-        continue to work in a backwards compatible way, but it is recommended to use the replacement field.
+
+       {:.important}
+        > This field is deprecated and replaced with `session_redis_password`. The`session_redis_auth` 
+        field will continue to work in a backwards compatible way, but it is recommended to use the 
+        replacement field.
         A deprecation warning will be logged in the log file, stating the field's deprecation and planned
         removal in v3.x.x.
     - name: session_redis_connect_timeout

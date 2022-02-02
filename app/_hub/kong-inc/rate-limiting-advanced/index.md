@@ -210,7 +210,7 @@ params:
       datatype: string
       description: |
         Username to use for Redis connection when the `redis` strategy is defined and ACL authentication is desired.
-        If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+
+        If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+.
     - name: redis.password
       required: semi
       default:

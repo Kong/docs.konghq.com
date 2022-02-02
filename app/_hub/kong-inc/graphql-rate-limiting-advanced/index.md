@@ -197,7 +197,7 @@ params:
       datatype: string
       description: |
         Username to use for Redis connection when the `redis` strategy is defined and ACL authentication is desired.
-        If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+
+        If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+.
     - name: redis.password
       required: semi
       default: null
@@ -227,7 +227,7 @@ params:
       datatype: string
       description: |
             Sentinel username to authenticate with a Redis Sentinel instance.
-            If undefined, ACL authentication will not be performed. This requires Redis v6.2.0+
+            If undefined, ACL authentication will not be performed. This requires Redis v6.2.0+.
     - name: redis.sentinel_password
       required: semi
       default: null
