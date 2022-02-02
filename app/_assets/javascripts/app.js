@@ -515,15 +515,33 @@ $("a[data-filter]").on("keypress", function(e) {
   }
 
   // set first navtab as active
+  // This MUST happen before setting navtab via URL as there may be
+  // a mix of tabs on a page e.g. use-admin-api/use-deck and curl/httpie
   $(".navtabs").each(function (index, navtabs) {
     $(navtabs).find("div[data-navtab-content]").css("display", "none");
-
     const navtabsTabs = $(navtabs).find("div[data-navtab-id]");
     navtabsTabs.first().addClass("active");
     $(
       `div[data-navtab-content='${navtabsTabs.first().data("navtab-id")}']`
     ).css("display", "block");
   });
+
+
+  // Ability to set NavTab via URL
+  const getParams = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+
+  if (getParams.tab) {
+    const matches = decodeURI(getParams.tab).toLowerCase().split(",");
+    for (const i in matches){
+      const navTab = $(".navtab-title[data-slug='"+matches[i]+"']").first();
+      if (navTab.length){
+        activateNavTab(navTab);
+      }
+    }
+  }
+
 
   /**
    * Expandable images
