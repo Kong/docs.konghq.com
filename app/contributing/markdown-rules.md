@@ -264,6 +264,31 @@ Here's some more content.
 {% endnavtab %}
 {% endnavtabs %}
 
+You can automatically select a specific tab (or set of tabs) on a page using the `tab` URL parameter e.g. https://docs.konghq.com/gateway/2.7.x/get-started/comprehensive/protect-services/?tab=using-deck-yaml
+
+The value provided to `?tab` is the lowercase title of the navtab, with all non-alphanumeric characters removed and spaces replaced with `-`.
+
+Examples:
+
+* `Using Kong Manager` => `using-kong-manager`
+* `Using the Admin API` => `using-the-admin-api`
+* `Using decK (YAML)` => `using-deck-yaml`
+
+If you're unsure what value to use, view the page source and search for `data-slug` to see the generated slug.
+
+If there are multiple sets of tabs to enable, you may provide multiple tab names, separated by a comma:
+
+```
+?tab=using-the-admin-api,using-deck-yaml
+```
+
+This will activate the `Using the Admin API` tab, then the `Using decK (YAML)` tabs. The order may be important if you are reusing tab names across contexts. See `/gateway/2.7.x/get-started/comprehensive/protect-services/?tab=using-the-admin-api,using-deck-yaml` for an example.
+
+When using `?tab=` it *must* be before any URL fragments (`#`) in the URL:
+
+* ✅ /gateway/2.7.x/get-started/comprehensive/protect-services/?tab=using-deck-yaml#validate-rate-limiting
+* ❌ /gateway/2.7.x/get-started/comprehensive/protect-services/#validate-rate-limiting/?tab=using-deck-yaml
+
 ### Tabs for codeblocks
 
 A specialized use of navtabs is the `codeblock` style. This creates copyable
