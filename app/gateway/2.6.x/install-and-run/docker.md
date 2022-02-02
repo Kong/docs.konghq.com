@@ -226,7 +226,7 @@ to help you set up and enhance your first Service.
 In particular, right after installation you might want to:
 * [Create a service and a route](/gateway/{{page.kong_version}}/get-started/comprehensive/expose-services)
 * [Configure a plugin](/gateway/{{page.kong_version}}/get-started/comprehensive/protect-services)
-* [Secure your Services with authentication](/gateway/{{page.kong_version}}/get-started/comprehensive/secure-services)
+* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/comprehensive/secure-services)
 * [Load balance traffic across targets](/gateway/{{page.kong_version}}/get-started/comprehensive/load-balancing)
 
 ### Clean up containers
@@ -241,7 +241,6 @@ docker container rm kong-gateway
 docker container rm kong-database
 docker network rm kong-net
 ```
-
 
 ## Install Kong Gateway in DB-less mode
 
@@ -293,13 +292,13 @@ backed up by a Redis cluster).
     This guide assumes you named the file `kong.yml`.
 
 1.  Save your declarative configuration locally, and note the filepath.
-For this example, we're using `/kong/declarative/kong.yml`.
 
 ### Start Kong Gateway in DB-less mode
 
 {% include_cached /md/admin-listen.md desc='long' %}
 
-1. Run the following command to start a container with {{site.base_gateway}}.
+1. From the same directory where you just created the `kong.yml` file,
+run the following command to start a container with {{site.base_gateway}}:
 
 {% capture start_container %}
 {% navtabs codeblock %}
@@ -307,7 +306,7 @@ For this example, we're using `/kong/declarative/kong.yml`.
 ```sh
 docker run -d --name kong-dbless \
  --network=kong-net \
- -v "$(pwd)"/kong/declarative:/kong/declarative/ \
+ -v "$(pwd):/kong/declarative/" \
  -e "KONG_DATABASE=off" \
  -e "KONG_DECLARATIVE_CONFIG=/kong/declarative/kong.yml" \
  -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
@@ -331,7 +330,7 @@ docker run -d --name kong-dbless \
 ```sh
 docker run -d --name kong-dbless \
  --network=kong-net \
- -v "$(pwd)"/kong/declarative:/kong/declarative/ \
+ -v "$(pwd):/kong/declarative/" \
  -e "KONG_DATABASE=off" \
  -e "KONG_DECLARATIVE_CONFIG=/kong/declarative/kong.yml" \
  -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
@@ -353,7 +352,7 @@ docker run -d --name kong-dbless \
     Where:
     * `--name` and `--network`: The name of the container to create,
     and the Docker network it communicates on.
-    * `-v "$(pwd)"/path/to/source:/path/to/target/`: Mount a directory on your
+    * `-v $(pwd):/path/to/target/`: Mount the current directory on your
     local filesystem to a directory in the Docker container. This makes the
     `kong.yml` file visible from the Docker container.
     * [`KONG_DATABASE`](/gateway/{{page.kong_version}}/reference/configuration/#database):
@@ -361,7 +360,7 @@ docker run -d --name kong-dbless \
     backing database for configuration storage.
     * [`KONG_DECLARATIVE_CONFIG`](/gateway/{{page.kong_version}}/reference/configuration/#declarative_config):
     The path to a declarative configuration file inside the container.
-    This path should match the path that you're mapping with `-v`.
+    This path should match the target path that you're mapping with `-v`.
     * All [`_LOG`](/gateway/{{page.kong_version}}/reference/configuration/#general-section)
     parameters: set filepaths for the logs to output to, or use the values in
     the example to  print messages and errors to `stdout` and `stderr`.
@@ -396,7 +395,7 @@ to help you set up and enhance your first Service.
 If you use the sample `kong.yml` in this guide, you already have a Service and
 a Route configured. Here are a few more things to check out:
 * [Configure a plugin](/gateway/{{page.kong_version}}/get-started/comprehensive/protect-services)
-* [Secure your Services with authentication](/gateway/{{page.kong_version}}/get-started/comprehensive/secure-services)
+* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/comprehensive/secure-services)
 * [Load balance traffic across targets](/gateway/{{page.kong_version}}/get-started/comprehensive/load-balancing)
 
 ### Clean up containers
@@ -406,9 +405,7 @@ can clean them up using the following commands:
 
 ```
 docker kill kong-dbless
-docker kill kong-database
 docker container rm kong-dbless
-docker container rm kong-database
 docker network rm kong-net
 ```
 
