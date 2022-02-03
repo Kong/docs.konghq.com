@@ -7,7 +7,7 @@ Publish Services to the Dev Portal to expose them to your application
 developers.
 
 Through ServiceHub, you can publish any Service in your catalog and its
-documentation to the Dev Portal using the default URL.
+documentation to the Dev Portal.
 
 ## Publish a Service
 
