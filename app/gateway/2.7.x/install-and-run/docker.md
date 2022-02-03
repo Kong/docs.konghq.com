@@ -396,9 +396,9 @@ to help you set up and enhance your first Service.
 
 If you use the sample `kong.yml` in this guide, you already have a Service and
 a Route configured. Here are a few more things to check out:
-* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/comprehensive/protect-services/?tab=Using%20decK%20(YAML))
-* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/comprehensive/secure-services/?tab=Using%20decK%20(YAML))
-* [Load balance traffic across targets](/gateway/{{page.kong_version}}/get-started/comprehensive/load-balancing/?tab=Using%20decK%20(YAML))
+* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/comprehensive/protect-services/?tab=using-deck-yaml)
+* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/comprehensive/secure-services/?tab=using-deck-yaml)
+* [Load balance traffic across targets](/gateway/{{page.kong_version}}/get-started/comprehensive/load-balancing/?tab=using-deck-yaml)
 
 ### Clean up containers
 
