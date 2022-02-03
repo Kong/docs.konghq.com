@@ -759,3 +759,36 @@
     width: 100%;
   }
 }
+
+// External link icons in both left and right sidebars
+.docs-sidebar, .landing-page {
+  a:not([href^='https://konghq.com']):not([href^='https://docs.konghq.com']):not([href^='#']):not([href^='/']):not([data-filter]):after {
+      font-family: 'FontAwesome';
+      content: " \f35d";
+      margin-left: 0.4rem;
+      font-size: 12px;
+  }
+}
+
+// External icons in content body, excluding badges
+.content {
+  a:not(.badge, .install-link, .install-listing-link):not([href^='https://docs.konghq.com']):not([href^='#']):not([href^='/']):not([data-filter]):after {
+      font-family: 'FontAwesome';
+      content: " \f35d";
+      margin-left: 0.2rem;
+      margin-right: 0.2rem;
+      vertical-align: middle;
+      font-size: 12px;
+      font-weight: lighter;
+  }
+}
+
+// External link icons in top site navbar
+.navbar-item-submenu {
+  a:not([href^='https://docs.konghq.com']):not([href^='#']):not([href^='/']):not([data-filter]):not([class='navbar-button']):after {
+      font-family: 'FontAwesome';
+      content: " \f35d";
+      margin-left: 0.2rem;
+      font-size: 11px;
+  }
+}
