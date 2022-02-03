@@ -63,8 +63,7 @@ and start testing out Gateway's open source features with Kong Manager today.
 There are a few ways to test out the gateway's Plus or Enterprise features:
 
 * Sign up for a [free trial of {{site.konnect_product_name}} Plus](https://konnect.konghq.com/register).
-* Try out {{site.base_gateway}} on Kubernetes using a live tutorial at
-[https://www.konglabs.io/kubernetes/](https://www.konglabs.io/kubernetes/).
+* Check out learning labs at [Kong Academy]({{site.links.learn}}).
 * If you are interested in evaluating Enterprise features locally, the
 Kong sales team manages evaluation licenses as part of a formal sales process.
 The best way to get started with the sales process is to
