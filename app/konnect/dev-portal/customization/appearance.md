@@ -9,7 +9,6 @@ Here, you have the ability to modify the following:
 
 * Logos: default logo and fav icon
 * Home Page Header: welcome message, primary header, and header image
-* Themes
 * Colors: background, text, and button colors
 * Fonts
 
