@@ -511,11 +511,11 @@ The [Istio Task Documentation][istio-tasks] also provides guides for other Istio
 
 [obs]:https://istio.io/latest/docs/concepts/observability/
 [kiali]:https://kiali.io/
-[kiali-topology]:https://kiali.io/documentation/latest/features/topology/
-[kiali-health]:https://kiali.io/documentation/latest/features/health/
-[kiali-features]:https://kiali.io/documentation/latest/features/
+[kiali-topology]:https://kiali.io/docs/features/topology/
+[kiali-health]:https://kiali.io/docs/features/health/
+[kiali-features]:https://kiali.io/docs/features/
 [prometheus]:https://prometheus.io
 [graphana]:https://grafana.com/
 [k8s-port-forwarding]:https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/
-[kiali-docs]:https://kiali.io/documentation/latest/
+[kiali-docs]:https://kiali.io/docs/
 [istio-tasks]:https://istio.io/latest/docs/tasks/
