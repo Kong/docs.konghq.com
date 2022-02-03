@@ -125,8 +125,9 @@
         - text: Generate Credentials for an Application
           url: /dev-portal/applications/dev-gen-creds
     - text: Customization
-      url: /dev-portal/customization/customization-overview
       items:
+        - text: Appearance
+          url: /dev-portal/customization/appearance
         - text: Public Portal
           url: /dev-portal/customization/public-portal
         - text: Add a Custom Domain

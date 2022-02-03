@@ -202,6 +202,7 @@
 /konnect/dev-portal/developers/dev-reg                     /konnect/dev-portal/access-and-approval/dev-reg
 /konnect/dev-portal/administrators/manage-devs             /konnect/dev-portal/access-and-approval/manage-devs
 /konnect/dev-portal/administrators/auto-approve-devs-apps  /konnect/dev-portal/access-and-approval/auto-approve-devs-apps
+/konnect/dev-portal/customization/customization-overview/   /konnect/dev-portal/customization/appearance/
 
 /enterprise/*/developer-portal/networking     /gateway/latest/reference/configuration/#developer-portal-section
 /enterprise/2.6.x/developer-portal/configuration/networking     /gateway/latest/reference/configuration/#developer-portal-section
