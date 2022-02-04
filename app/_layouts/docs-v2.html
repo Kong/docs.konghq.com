@@ -101,6 +101,17 @@ page.kong_latest.release %}
               <h2 class="page-content-subtitle">{{page.subtitle | flatify }}</h2>
             {% endif %}
 
+            {% if page.alpha %}
+            <blockquote class="warning no-icon">
+              This feature is released as a <a href="/konnect-platform/key-concepts/#tech-preview"><span class="badge alpha" role="link" aria-label="tech preview"></span></a> (alpha-quality) and should not be deployed in a production environment.
+            </blockquote>
+            {% endif %}
+            {% if page.beta %}
+            <blockquote class="warning no-icon">
+              This feature is released as <a href="/konnect-platform/key-concepts/#beta"><span class="badge beta" role="link" aria-label="beta"></span></a> and should not be deployed in a production environment.
+            </blockquote>
+            {% endif %}
+
             {{ content }}
 
           </div>

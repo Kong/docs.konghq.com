@@ -525,6 +525,7 @@ Badge | HTML tag | Markdown tag
 <span class="badge enterprise"></span> | `<span class="badge enterprise"></span>` | `{:.badge .enterprise}`
 <span class="badge dbless"></span> | `<span class="badge dbless"></span>` | `{:.badge .dbless}`
 <span class="badge beta"></span> | `<span class="badge beta"></span>` | `{:.badge .beta}`
+<span class="badge alpha"></span> | `<span class="badge alpha"></span>` | `{:.badge .alpha}`
 <span class="badge oss"></span> | `<span class="badge oss"></span>` | `{:.badge .oss}`
 
 For example, you can use the Markdown tag on headers:
