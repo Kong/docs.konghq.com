@@ -109,6 +109,8 @@
       url: /guides/using-rewrites
     - text: Preserving Client IP Address
       url: /guides/preserve-client-ip
+    - text: Using Gateway API
+      url: /guides/using-gateway-api
 - title: References
   icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
   items:
