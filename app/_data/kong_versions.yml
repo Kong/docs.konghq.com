@@ -346,7 +346,7 @@
   lua_doc: true
 -
   release: "2.7.x"
-  ee-version: "2.7.1.0"
+  ee-version: "2.7.1.1"
   ce-version: "2.7.0"
   edition: "gateway"
   luarocks_version: "2.5.1-0"

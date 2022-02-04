@@ -1,8 +1,18 @@
 ---
 title: Kong Gateway Changelog
-no_search: true
 no_version: true
 ---
+
+## 2.7.1.1
+**Release Date** 2022/02/04
+
+### Fixes
+
+#### Enterprise
+* Fixed a performance issue with Kong Manager, which occurred when admins had
+access to multiple workspaces.
+* Fixed `attempt to index local 'workspace'` error, which occurred when
+accessing Routes or Services using TLS.
 
 ## 2.7.1.0
 **Release Date:** 2022/01/27
