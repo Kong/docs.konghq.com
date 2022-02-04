@@ -260,9 +260,6 @@ breadcrumbs:
         </p>
       </div>
       {% unless page.toc == false %}
-        <div class="docs-toc-title">
-          <a href="#">On this page</a>
-        </div>
         {% include_cached toc.html html=full_content anchor_class="scroll-to" h_min=2 h_max=3 %}
       {% endunless %}
 
