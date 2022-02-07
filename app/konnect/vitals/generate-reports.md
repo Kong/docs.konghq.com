@@ -1,11 +1,13 @@
 ---
-title: Export Vitals Data into a Report
+title: Export Service and Route analytics from ServiceHub
 no_version: true
 ---
+In the ServiceHub, the Service, Service version, and Route graphs provide dynamic
+graphs with up to 12 hours of data. Beyond this time frame, export the data into a
+comma-separated values (CSV) file.
 
-Browse, filter, and view your {{site.konnect_short_name}} Vitals data in a
-time-series report, and export the data into a comma-separated values (CSV)
-file.
+If you want to combine multiple Services, Routes, or Applications in one report,
+see [custom reports](/konnect/vitals/custom-reports).
 
 You can generate and export a Vitals report for:
 
@@ -13,8 +15,9 @@ You can generate and export a Vitals report for:
 Service.
 * A Service version, including a report of daily requests and status codes.
 
-For a Route, you can [view status codes](/konnect/vitals/#view-vitals-performance-for-a-route) for a specified time frame but
-you can't export a Vitals report.
+For a Route, you can [view status codes](/konnect/vitals/#view-vitals-performance-for-a-route)
+for a specified time frame but you can't export a Route traffic report through
+ServiceHub. See [Custom Reports](/konnect/vitals/custom-reports).
 
 ## Generate and export a Vitals report for a Service
 
