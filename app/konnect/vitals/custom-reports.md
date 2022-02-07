@@ -8,9 +8,7 @@ Create custom reports to track API calls based on Services, Routes, or
 Applications.
 
 ## Prerequisites
-- What permissions do you need to create a report? What about selecting
-services/routes/applications for a custom report? Do you need to at least have
-permissions for the entities?
+- TBA
 
 ## View custom reports
 
@@ -115,11 +113,3 @@ Total traffic by status code | Service, Route, Application | Number of API calls
 Total traffic by service | Route, Application | Number of API calls grouped by Service(s) or Service versions.
 Total traffic by route | Service, Application | Number of API calls grouped by Route.
 Total traffic by application | Service, Route | Number of API calls grouped by Application.
-
----
-
-Comments/questions:
-- What permissions do you need to create a report? What about selecting
-services/routes/applications for a custom report? Do you need to at least have
-permissions for the entities?
-- Is custom report gen a plus or enterprise feature?

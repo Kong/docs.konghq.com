@@ -3,34 +3,24 @@ title: Monitoring Health with Vitals
 no_version: true
 ---
 
-You can monitor the health and performance of any Service, Service version, or Route
-managed by {{site.konnect_saas}}.
+You can monitor the health and performance of any Service, Service version,
+Route, or Application managed by {{site.konnect_saas}}.
 
-Vitals uses visual API analytics to see exactly how your APIs and runtimes are
-performing. Quickly access key statistics, monitor vital signs, and pinpoint
-anomalies in real time.
+Vitals provides traffic reports to help you track the performance and
+behavior of your APIs and runtimes. Use these reports to quickly access key
+statistics, monitor vital signs, and pinpoint anomalies in real time.
 
-Vitals charts are available for:
+In the [ServiceHub](https://konnect.konghq.com/servicehub), you can see activity
+graphs for Services, Service versions, or Routes for the past 12 hours.
+For Services, these graphs display request counts. For Service versions and
+Routes, the graphs show requests broken down by status codes.
 
-* Individual Services, Service versions, or Routes for the past 12 hours:
-  * From the ServiceHub, access any Service's overview page, which displays
-  request count, failed requests by status codes, and includes all versions of
-  the Service filtered by time frame.
-  * From the ServiceHub, see any Service version or Route page, which displays
-  status codes filtered by time frame.
-
-* Multiple Services, Routes, and Applications:
-  * Use the Vitals overview to see traffic for all Services in the organization.
-  * Create custom reports for any number of Services, Routes, or Applications
-  filtered by time frame and grouped by metric.
-
-{:.note}
-> **Note:** The activity graphs in the ServiceHub only show the past 12 hours
-of activity. To see historical data for a greater range, you can:
+To see historical data for a greater range than 12 hours or customize the
+entities in a report, you can:
 * [Export a report in CSV format](/konnect/vitals/generate-reports) for any
 individual Service, Service version, or Route.
-* [Create a custom report](/konnect/vitals/custom-reports) to group multiple
-Services, Routes, or Applications.
+* [Create a custom report](/konnect/vitals/custom-reports) for any number of
+Services, Routes, or Applications, filtered by time frame and grouped by metric.
 
 ## View performance for a Service
 
