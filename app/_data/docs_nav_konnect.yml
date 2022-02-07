@@ -142,10 +142,10 @@
   icon: /assets/images/icons/documentation/icn-vitals.svg
   url: /vitals
   items:
-    # - text: Analyze Services and Routes
-    #   url: /vitals/analyze
-    - text: Generate Reports
+    - text: View and Export Reports in ServiceHub
       url: /vitals/generate-reports
+    - text: Create and Manage Custom Reports
+      url: /vitals/custom-reports
 
 - title: Administer
   icon: /assets/images/icons/konnect/icn-organizations.svg
