@@ -347,7 +347,7 @@
 -
   release: "2.7.x"
   ee-version: "2.7.1.1"
-  ce-version: "2.7.0"
+  ce-version: "2.7.1"
   edition: "gateway"
   luarocks_version: "2.5.1-0"
   dependencies:
