@@ -19,26 +19,30 @@ For a Route, you can [view status codes](/konnect/vitals/#view-vitals-performanc
 for a specified time frame but you can't export a Route traffic report through
 ServiceHub. See [Custom Reports](/konnect/vitals/custom-reports).
 
-## Generate and export a Vitals report for a Service
+## Generate and export a Service report
 
 Generate a Vitals report for a Service, including requests by time or date and
 status codes for all versions of the Service.
 
-1. In the ServiceHub, select the **Service** for which you want to generate a
+1. From the left-side menu, open
+![](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .no-image-expand}
+**Services** and select the Service for which you want to generate a
 report.
-2. In the **Traffic** section, click **Export**.
+2. On the **Throughput** graph, click **Export**.
 3. Select the time frame to include in the report. To customize the time frame,
-click **Custom** and select a date range to include in the report.
+click **Custom** and select a date range.
 4. Click **Export**. A CSV file is generated.
 
-## Generate and export a Vitals report for a Service version
+## Generate and export a Service version report
 
 Generate a Vitals report for a Service version, including requests by time or
  date and status codes for the selected version.
 
-1. In the ServiceHub, select the **Service version** for which you want to
-generate a report.
-2. In the **Status Codes** section, click **Export**.
+1. From the left-side menu, open
+![](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .no-image-expand}
+**Services** and select the Service version for which you want to generate a
+report.
+2. On the **Traffic by Status Code** graph, click the **Export** button.
 3. Select the time frame to include in the report. To customize the time frame,
-click **Custom** and select a date range to include in the report.
+click **Custom** and select a date range.
 4. Click **Export**. A CSV file is generated.
