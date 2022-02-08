@@ -21,10 +21,10 @@ can [export](#export-a-custom-report), [edit](#edit-a-custom-report), or [delete
 
 ## Create a custom report
 
-1. From the left-side menu in Konnect, open ![vitals menu icon](/assets/images/icons/konnect/icn-vitals.svg){:.inline .no-image-expand}
+1. From the left-side menu in Konnect, open ![](/assets/images/icons/konnect/icn-vitals.svg){:.inline .no-image-expand}
 **Vitals**, then **Reports**.
 1. Click the button to **Add New Report**.
-1. Name the report and optionally add a decription.
+1. Name the report and optionally add a description.
 
     The name and description fields each have a 255 character limit.
 
@@ -108,7 +108,7 @@ Each metric depends on a time frame and a primary entity (report type).
 
 Metric | Report type | Description
 -------|------------|------------
-Total traffic | Service, Route, Application | The total number of API calls within the selected time frame.
+Total traffic | Service, Route, Application | Total number of API calls within the selected time frame.
 Total traffic by status code | Service, Route, Application | Number of API calls grouped by status code.
 Total traffic by service | Route, Application | Number of API calls grouped by Service(s) or Service versions.
 Total traffic by route | Service, Application | Number of API calls grouped by Route.
