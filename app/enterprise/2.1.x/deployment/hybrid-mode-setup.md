@@ -34,7 +34,7 @@ For a breakdown of the properties used by these modes, see the
 {% navtabs %}
 {% navtab Shared mode %}
 <div class="alert alert-warning">
- 
+
   <strong>Protect the Private Key.</strong> Ensure the private key file can only be accessed by
   Kong nodes belonging to the cluster. If the key is compromised, you must
   regenerate and replace certificates and keys on all CP and DP nodes.
@@ -353,7 +353,7 @@ follow the instructions to:
 
     For `shared` certificate mode, use:
     ```bash
-    $ docker run -d --name kong-ee-dp1 --network=kong-ee-net \
+    $ docker run -d --name kong-dp --network=kong-ee-net \
     -e "KONG_ROLE=data_plane" \
     -e "KONG_DATABASE=off" \
     -e "KONG_PROXY_LISTEN=0.0.0.0:8000" \
@@ -364,12 +364,12 @@ follow the instructions to:
     -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=/<path-to-file>/cluster.crt" \
     --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
     -p 8000:8000 \
-    kong-ee-dp1
+    kong-ee
     ```
 
     For `pki` certificate mode, use:
     ```bash
-    $ docker run -d --name kong-ee-dp1 --network=kong-ee-net \
+    $ docker run -d --name kong-dp --network=kong-ee-net \
     -e "KONG_ROLE=data_plane" \
     -e "KONG_DATABASE=off" \
     -e "KONG_PROXY_LISTEN=0.0.0.0:8000" \
@@ -383,7 +383,7 @@ follow the instructions to:
     -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=/<path-to-file>/ca-cert.pem" \
     --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
     -p 8000:8000 \
-    kong-ee-dp1
+    kong-ee
     ```
 
     Where:
