@@ -1,7 +1,6 @@
 ---
 title: Get Started with the Konnect Platform
 no_version: true
-toc: false
 ---
 
 {{site.konnect_product_name}} is a versatile platform. To get started, choose

@@ -1,7 +1,6 @@
 ---
 title: Dev Portal Overview
 no_version: true
-toc: false
 ---
 
 The Dev Portal is an API Catalog that allows Admin roles to
