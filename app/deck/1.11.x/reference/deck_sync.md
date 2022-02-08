@@ -21,7 +21,7 @@ deck sync [flags]
       --select-tag strings                only entities matching tags specified via this flag are synced.
                                           When this setting has multiple tag values, entities must match every tag.
       --silence-events                    disable printing events to stdout
-      --skip-consumers                    do not diff consumers or any plugins associated with consumers.
+      --skip-consumers                    do not sync consumers or any plugins associated with consumers.
   -s, --state strings                     file(s) containing Kong's configuration.
                                           This flag can be specified multiple times for multiple files.
                                           Use '-' to read from stdin. (default [kong.yaml])
@@ -32,7 +32,28 @@ deck sync [flags]
 ## Flags inherited from parent commands
 
 ```
-      --analytics                      Share anonymized data to help improve decK. (default true)
+      --db-update-propagation-delay int   artificial delay (in seconds) that is injected between insert operations
+                                          for related entities (usually for Cassandra deployments).
+                                          See 'db_update_propagation' in kong.conf.
+  -h, --help                              help for sync
+      --parallelism int                   Maximum number of concurrent operations. (default 10)
+      --rbac-resources-only               diff only the RBAC resources (Kong Enterprise only).
+      --select-tag strings                only entities matching tags specified via this flag are synced.
+                                          When this setting has multiple tag values, entities must match every tag.
+      --silence-events                    disable printing events to stdout
+      --skip-consumers                    do not sync consumers or any plugins associated with consumers.
+  -s, --state strings                     file(s) containing Kong's configuration.
+                                          This flag can be specified multiple times for multiple files.
+                                          Use '-' to read from stdin. (default [kong.yaml])
+      --workspace string                  Sync configuration to a specific workspace (Kong Enterprise only).
+                                          This takes precedence over _workspace fields in state files.
+```
+
+### Options inherited from parent commands
+
+```
+      --analytics                      Share anonymized data to help improve decK.
+                                       Use --analytics=false to disable this. (default true)
       --ca-cert string                 Custom CA certificate (raw contents) to use to verify Kong's Admin TLS certificate.
                                        This value can also be set using DECK_CA_CERT environment variable.
                                        This takes precedence over --ca-cert-file flag.
@@ -53,6 +74,14 @@ deck sync [flags]
       --no-color                       Disable colorized output
       --skip-workspace-crud            Skip API calls related to Workspaces (Kong Enterprise only).
       --timeout int                    Set a request timeout for the client to connect with Kong (in seconds). (default 10)
+      --tls-client-cert string         PEM-encoded TLS client certificate to use for authentication with Kong's Admin API.
+                                       This value can also be set using DECK_TLS_CLIENT_CERT environment variable. Must be used in conjunction with tls-client-key
+      --tls-client-cert-file string    Path to the file containing TLS client certificate to use for authentication with Kong's Admin API.
+                                       This value can also be set using DECK_TLS_CLIENT_CERT_FILE environment variable. Must be used in conjunction with tls-client-key-file
+      --tls-client-key string          PEM-encoded private key for the corresponding client certificate .
+                                       This value can also be set using DECK_TLS_CLIENT_KEY environment variable. Must be used in conjunction with tls-client-cert
+      --tls-client-key-file string     Path to file containing the private key for the corresponding client certificate.
+                                       This value can also be set using DECK_TLS_CLIENT_KEY_FILE environment variable. Must be used in conjunction with tls-client-cert-file
       --tls-server-name string         Name to use to verify the hostname in Kong's Admin TLS certificate.
                                        This value can also be set using DECK_TLS_SERVER_NAME environment variable.
       --tls-skip-verify                Disable verification of Kong's Admin TLS certificate.

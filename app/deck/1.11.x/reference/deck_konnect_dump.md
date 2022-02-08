@@ -3,10 +3,10 @@ title: deck konnect dump
 ---
 
 The konnect dump command reads all entities present in Konnect
-	and writes them to a local file.
+and writes them to a local file.
 
-	The file can then be read using the 'deck konnect sync' command or 'deck konnect diff' command to
-	configure Konnect.
+The file can then be read using the 'deck konnect sync' command or 'deck konnect diff' command to
+configure Konnect.
 
 WARNING: This command is currently in alpha state. This command
 might have breaking changes in future releases.
@@ -30,7 +30,8 @@ deck konnect dump [flags]
 
 
 ```
-      --analytics                      Share anonymized data to help improve decK. (default true)
+      --analytics                      Share anonymized data to help improve decK.
+                                       Use --analytics=false to disable this. (default true)
       --ca-cert string                 Custom CA certificate (raw contents) to use to verify Kong's Admin TLS certificate.
                                        This value can also be set using DECK_CA_CERT environment variable.
                                        This takes precedence over --ca-cert-file flag.
@@ -51,6 +52,14 @@ deck konnect dump [flags]
       --no-color                       Disable colorized output
       --skip-workspace-crud            Skip API calls related to Workspaces (Kong Enterprise only).
       --timeout int                    Set a request timeout for the client to connect with Kong (in seconds). (default 10)
+      --tls-client-cert string         PEM-encoded TLS client certificate to use for authentication with Kong's Admin API.
+                                       This value can also be set using DECK_TLS_CLIENT_CERT environment variable. Must be used in conjunction with tls-client-key
+      --tls-client-cert-file string    Path to the file containing TLS client certificate to use for authentication with Kong's Admin API.
+                                       This value can also be set using DECK_TLS_CLIENT_CERT_FILE environment variable. Must be used in conjunction with tls-client-key-file
+      --tls-client-key string          PEM-encoded private key for the corresponding client certificate .
+                                       This value can also be set using DECK_TLS_CLIENT_KEY environment variable. Must be used in conjunction with tls-client-cert
+      --tls-client-key-file string     Path to file containing the private key for the corresponding client certificate.
+                                       This value can also be set using DECK_TLS_CLIENT_KEY_FILE environment variable. Must be used in conjunction with tls-client-cert-file
       --tls-server-name string         Name to use to verify the hostname in Kong's Admin TLS certificate.
                                        This value can also be set using DECK_TLS_SERVER_NAME environment variable.
       --tls-skip-verify                Disable verification of Kong's Admin TLS certificate.
