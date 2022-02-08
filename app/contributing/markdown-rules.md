@@ -24,10 +24,6 @@ Plugin Hub docs have specialized front matter elements. See the
 : Disables the version selector dropdown. Set this on pages that belong to
 unversioned doc sets like `/konnect/`.
 
-`toc: false`
-: Disables the right-hand nav for the page; useful if the page is short and has
-one or no headers.
-
 `beta: true` or `alpha: true`
 : Labels the page as beta or alpha; adds a banner to the top of the page.
 
@@ -50,14 +46,14 @@ beta: true
 ---
 ```
 
-A Kong Gateway doc (with versions) that you don't want people to copy code from
-and has no headings, so you also want to disable the page nav:
+A Kong Gateway doc (with versions) that you don't want people to copy code from,
+and where you don't want any of the images to be expandable:
 
 ```yaml
 ---
 title: My Gateway API Doc
 class: no-copy-code
-toc: false
+disable_image_expand: true
 ---
 ```
 
