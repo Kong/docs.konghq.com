@@ -10,7 +10,7 @@ services.
 
 ## January 2022
 
-### 2022.1.14
+### 2022.01.14
 **Custom Domain for Dev Portal**
 : You can now set a custom domain for your Dev Portal through the {{site.konnect_saas}} Admin UI.
 
@@ -18,6 +18,20 @@ services.
 
 **Headers are modifiable**
 : You can now set a welcome message and primary header through the Admin UI for your Dev Portal.
+
+## December 2021
+
+### 2021.12.21
+**{{site.base_gateway}} 2.7.0.0 support**
+: {{site.konnect_saas}} now supports {{site.base_gateway}} 2.7.0.0 runtimes.
+You can keep using existing 2.6.x runtimes, or you can upgrade to
+2.7.0.0 to take advantage of any new features, updates, and bug fixes.
+
+: For all the changes and new features in {{site.base_gateway}} 2.7.x, see the
+[changelog](/gateway/changelog/#2600).
+
+: To use any new features in the release,
+[start up a new 2.7.0.0 runtime](/konnect/runtime-manager/upgrade).
 
 ## November 2021
 
@@ -33,7 +47,7 @@ for more information.
 
 ### 2021.11.10
 **{{site.base_gateway}} 2.6.0.0 support**
-: {{site.konnect_saas}} now supports {{site.base_gateway}} 2.6.0.0.
+: {{site.konnect_saas}} now supports {{site.base_gateway}} 2.6.0.0
 runtimes. You can keep using existing 2.5.x runtimes, or you can upgrade to
 2.6.0.0 to take advantage of any new features, updates, and bug fixes.
 : This release introduces the new [jq plugin](/hub/kong-inc/jq). It also
