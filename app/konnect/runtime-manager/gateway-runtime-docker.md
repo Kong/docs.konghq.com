@@ -132,7 +132,7 @@ $ docker run -d --name kong-dp \
 {% endnavtab %}
 {% navtab Windows PowerShell %}
 ```powershell
-docker run -d --name kong-gateway-dp1 `
+docker run -d --name kong-dp `
   -e "KONG_ROLE=data_plane" `
   -e "KONG_DATABASE=off" `
   -e "KONG_VITALS_TTL_DAYS=732" `
