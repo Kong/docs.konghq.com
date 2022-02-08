@@ -1,7 +1,6 @@
 ---
 title: Kong Platform Compatibility
 no_version: true
-toc: false
 redirect_to: /konnect-platform/
 ---
 

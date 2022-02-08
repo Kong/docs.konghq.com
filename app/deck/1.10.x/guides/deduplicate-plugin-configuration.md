@@ -1,6 +1,5 @@
 ---
 title: De-duplicate Plugin Configuration
-toc: false
 ---
 
 In some use cases, you might want to create a number of plugins associated with

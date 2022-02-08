@@ -1,6 +1,5 @@
 ---
 title: Using environment variables with decK
-toc: false
 ---
 
 When you use decK to apply configurations to {{site.base_gateway}},
