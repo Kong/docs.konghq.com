@@ -1372,4 +1372,4 @@ just covered.
 [ngx-http-proxy-retries]: http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream_tries
 [SNI]: https://en.wikipedia.org/wiki/Server_Name_Indication
 [conf-grpc-service]: /{{page.kong_version}}/getting-started/configuring-a-grpc-service
-[file-log]: //file-log
+[file-log]: /hub/kong-inc/file-log
