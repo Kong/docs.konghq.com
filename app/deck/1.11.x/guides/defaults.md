@@ -183,6 +183,9 @@ Summary:
 
 2. Define the properties you want to set for {{site.base_gateway}} objects.
 
+    You can define defaults for `service`, `route`, `upstream`, `target`, and
+    `plugin` objects.
+
     For example:
 
     ```yaml
