@@ -9,7 +9,7 @@ Email files can be managed in the same way as other files for rendering, via edi
 This feature is **not** supported on legacy portal mode.
 
 If no email templates are loaded, Kong will fall back to the same emails as {{site.base_gateway}} 1.3.0.0.
-By default on 1.3.0.1 and newer, enabling a non-legacy portal on new workspaces loads default editable email templates.
+Enabling a non-legacy portal on new workspaces loads default editable email templates.
 For existing non-legacy Portals, editable email templates must be loaded manually.
 
 Email-specific values are templated in tokens that work similarly to templating in portal layouts and partials.
@@ -18,7 +18,6 @@ Not all tokens are supported on all emails.
 
 ## Prerequisites
 
-* {{site.base_gateway}} **1.3.0.1** or later
 * The Kong Developer Portal is not running in **Legacy Mode**
 * The Kong Developer Portal is enabled and running
 * [The emails you want are enabled in kong](/gateway/{{page.kong_version}}/developer-portal/configuration/smtp/#portal_invite_email)

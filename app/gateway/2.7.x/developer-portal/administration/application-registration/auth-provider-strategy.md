@@ -3,22 +3,7 @@ title: Authorization Provider Strategy for Application Registration
 badge: enterprise
 ---
 
-In the 1.5.x beta version of the Application
-Registration plugin, the feature was tightly coupled with OAuth2. Kong was the
-only available system of record (SoR) for application credentials and the OAuth
-configuration was done directly within the Application Registration plugin.
-
-In the {{site.ee_product_name}} 2.1.x version, authentication was decoupled from the
-Application Registration plugin. Support has been added for third-party OAuth2
-providers. Developers have the flexibility to choose from either
-Kong or a third-party identity provider (IdP) as the system of record for
-application credentials. With third-party (external) OAuth2 support, developers
-can centralize application credential management with the
-[supported identity provider](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth#idps)
-of their choice.
-
-In the {{site.ee_product_name}} 2.2.1.x version and later, support has been added
-for the Key Authentication plugin to use with Kong as the system of record.
+{{site.ee_product_name}} supports adding the Key Authentication plugin to use with Kong as the system of record.
 
 ## Supported Authentication Plugins
 
