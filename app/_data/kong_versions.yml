@@ -330,7 +330,7 @@
 -
 # Combined Gateway docs (single-sourced)
   release: "2.6.x"
-  ee-version: "2.6.0.3"
+  ee-version: "2.6.0.4"
   ce-version: "2.6.0"
   edition: "gateway"
   luarocks_version: "2.5.1-0"
