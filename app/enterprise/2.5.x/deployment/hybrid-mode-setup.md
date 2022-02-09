@@ -352,8 +352,8 @@ point them to the Control Plane, set certificate/key parameters to point at
 the location of your certificates and keys, and ensure the database
 is disabled.
 
-In addition, the certificate from `cluster_cert` (in `shared` mode) or `cluster_ca_cert` 
-(in `pki` mode) is automatically added to the trusted chain in 
+In addition, the certificate from `cluster_cert` (in `shared` mode) or `cluster_ca_cert`
+(in `pki` mode) is automatically added to the trusted chain in
 [`lua_ssl_trusted_certificate`](/enterprise/{{page.kong_version}}/property-reference/#lua_ssl_trusted_certificate).
 
 {:.warning}
@@ -381,7 +381,7 @@ follow the instructions to:
 
     For `shared` certificate mode, use:
     ```bash
-    $ docker run -d --name kong-ee-dp1 --network=kong-ee-net \
+    $ docker run -d --name kong-dp --network=kong-ee-net \
     -e "KONG_ROLE=data_plane" \
     -e "KONG_DATABASE=off" \
     -e "KONG_PROXY_LISTEN=0.0.0.0:8000" \
@@ -391,12 +391,12 @@ follow the instructions to:
     -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/cluster.key" \
     --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
     -p 8000:8000 \
-    kong-ee-dp1
+    kong-ee
     ```
 
     For `pki` certificate mode, use:
     ```bash
-    $ docker run -d --name kong-ee-dp1 --network=kong-ee-net \
+    $ docker run -d --name kong-dp --network=kong-ee-net \
     -e "KONG_ROLE=data_plane" \
     -e "KONG_DATABASE=off" \
     -e "KONG_PROXY_LISTEN=0.0.0.0:8000" \
@@ -409,7 +409,7 @@ follow the instructions to:
     -e "KONG_CLUSTER_CA_CERT=/<path-to-file>/ca-cert.pem" \
     --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
     -p 8000:8000 \
-    kong-ee-dp1
+    kong-ee
     ```
 
     Where:
