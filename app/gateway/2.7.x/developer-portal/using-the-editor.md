@@ -1,11 +1,9 @@
 ---
 title: Using the Editor through Kong Manager
-badge: enterprise
+badge: enterpriseedit
 ---
 
 Kong Manager offers a robust file editor for editing the template files of the Dev Portal from within the browser.
-
-![Dev Portal Editor](https://doc-assets.konghq.com/1.3/dev-portal/editor/devportal-editor-homepage.png)
 
 ## Prerequisites
 
@@ -19,23 +17,21 @@ Kong Manager offers a robust file editor for editing the template files of the D
 
 From the **Kong Manager** dashboard of your **Workspace**, click **Editor** under **Dev Portal** in the sidebar.
 
-![Launch Editor Mode](https://doc-assets.konghq.com/1.3/dev-portal/editor/devportal-editor-sidebar-button.png)
-
+![Dev Portal comes with a built-in editor. Launch it by clicking on Editor.](/assets/images/docs/dev-portal/editor-dev-portal.png)
 
 This will launch the **Editor Mode**:
 
 ![Editor Mode](https://doc-assets.konghq.com/1.3/dev-portal/editor/devportal-editor-mode-launch.png)
 
-
 ## Navigating the Editor
 
 When enabled, the Dev Portal is pre-populated with Kong's default theme. The file editor exposes these files to the UI, allowing them to be edited quickly and easily from inside the browser. When you first open the editor, you will be presented with a list of files on the left, and a blank editing form.
 
-1. Create new files for the Dev Portal right from the Editor by clicking `New File+`.
-2. List of all exposed template files in the Dev Portal, separated by Content / Spec / Themes.
-3. Code View - Select a file from the sidebar to show the code here.
-4. Portal Preview - View a live preview of the selected Dev Portal file.
-5. Toggle View - Choose between three different views: full screen code, split view, and full screen preview mode.
+* Create new files for the Dev Portal right from the Editor by clicking `New File+`.
+* List of all exposed template files in the Dev Portal, separated by Content / Spec / Themes.
+* Code View - Select a file from the sidebar to show the code here.
+* Portal Preview - View a live preview of the selected Dev Portal file.
+* Toggle View - Choose between three different views: full screen code, split view, and full screen preview mode.
 
 ![Dev Portal with Numbers](https://doc-assets.konghq.com/1.3/dev-portal/editor/devportal-editor-numbers.png)
 
@@ -45,7 +41,6 @@ Select a file from the sidebar to open it for editing. This will expose the file
 
 ![Editing a File](https://doc-assets.konghq.com/1.3/dev-portal/editor/devportal-editor-edit-file.png)
 
-
 ## Adding new files
 
 Clicking the `New File +` button opens the New File Dialog.
@@ -54,7 +49,6 @@ Clicking the `New File +` button opens the New File Dialog.
 
 Once created, files will immediately be available from within the Editor.
 
-
 ## Authenticating files
 
 Authentication is handled by `readable_by` value on content pages (for gui view, go to permissions page)
@@ -62,11 +56,8 @@ Authentication is handled by `readable_by` value on content pages (for gui view,
     - to restrict access to certain roles, set readable_by to an array of accepted roles (you must first create roles on the permissions page)
     - on specs, readable_by is set inside "x-headmatter" object
 
-
 ## Deleting files
 
-To delete a file from within the Editor, right click on the file name and select **Delete** from the popup menu.
-
-**NOTE:** This action cannot be undone.
+To _permanently_ delete a file from within the Editor, right click on the file name and select **Delete** from the popup menu.
 
 ![Deleting Files](https://doc-assets.konghq.com/1.3/dev-portal/editor/devportal-editor-delete-file.png)

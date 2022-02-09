@@ -8,16 +8,17 @@ authenticate with supported Authentication plugins against a Service on Kong. Ei
 external identity provider admins can selectively admit access to Services using Kong Manager.
 
 ## Prerequisites
+
 * {{site.ee_product_name}} is installed, version 2.1.0.0 or later. If you plan to use
 key authentication, version 2.2.1.0 or later.
 * Dev Portal is enabled on the same Workspace as the Service.
-* The Service is created and enabled with HTTPS.
+* The Service is created and enabled with HTTPS.portal
 * Authentication is enabled on the Dev Portal.
 * Logged in as an admin with read and write roles on applications, services, and
   developers.
 * The `portal_app_auth` configuration option is configured for your OAuth provider
   and strategy (`kong-oauth2` default or `external-oauth2`). See
-[Configure the Authorization Provider Strategy](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/auth-provider-strategy) for the Portal Application Registration plugin.
+[Configure the Authorization Provider Strategy](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/auth-provider-strategy) for the Portal Application Registration plugin.gener
 * Authorization provider configured if using a supported third-party
   identity provider with the OIDC plugin:
   * For example instructions using Okta as an identity provider, refer to the

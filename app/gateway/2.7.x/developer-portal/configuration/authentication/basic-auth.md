@@ -8,9 +8,10 @@ contains the word `Basic` followed by the base64-encoded `username:password` str
 
 Basic Authentication for the Dev Portal can be enabled using any of the following ways:
 
-- [Kong Manager](#enable-basic-auth-using-kong-manager)
-- [Command line](#enable-basic-auth-using-the-command-line)
-- [Kong configuration file](#enable-basic-auth-using-kongconf)
+- [Enable Portal Session Config](#enable-portal-session-config)
+- [Enable Basic Auth Using Kong Manager](#enable-basic-auth-using-kong-manager)
+- [Enable Basic Auth Using the Command Line](#enable-basic-auth-using-the-command-line)
+- [Enable Basic Auth Using `kong.conf`](#enable-basic-auth-using-kongconf)
 
 **Warnings:**
 
@@ -22,29 +23,28 @@ For more information, see
 - When Dev Portal Authentication is enabled, content files remain unauthenticated until a role is applied to them. The exceptions are `settings.txt` and `dashboard.txt`, which begin with the `*` role. For more information, see
 [Developer Roles and Content Permissions](/gateway/{{page.kong_version}}/developer-portal/administration/developer-permissions).
 
-
 ## Enable Portal Session Config
 
 In the Kong configuration file, set the `portal_session_conf` property:
 
-```
+```bash
 portal_session_conf={ "cookie_name":"portal_session","secret":"<CHANGE_THIS>","storage":"kong"}
 ```
 
 If using HTTP while testing, include `"cookie_secure": false` in the config:
 
-```
+```bash
 portal_session_conf={ "cookie_name":"portal_session","secret":"<CHANGE_THIS>","storage":"kong","cookie_secure":false}
 ```
 
 Or, if you have different subdomains for the `portal_api_url` and `portal_gui_host`, set the `cookie_domain`
 and `cookie_samesite` properties as follows:
 
-```
+```bash
 portal_session_conf={ "cookie_name":"portal_session","secret":"<CHANGE_THIS>","storage":"kong","cookie_secure":false,"cookie_domain":"<.your_subdomain.com>","cookie_samesite":"off"  }
 ```
 
-### See Also
+See also:
 
 - For more information about portal session configuration, see
 [Sessions](/gateway/{{page.kong_version}}/developer-portal/configuration/authentication/sessions#portal-session-conf).
@@ -55,18 +55,16 @@ portal_session_conf={ "cookie_name":"portal_session","secret":"<CHANGE_THIS>","s
 ## Enable Basic Auth Using Kong Manager
 
 1. Navigate to the Dev Portal's **Settings** page.
-2. Find **Authentication plugin** under the **Authentication** tab.
-3. Select **Basic Authentication**.
-4. Click **Save Changes**.
-
-![Authentication plugin](/assets/images/docs/dev-portal/portal-settings-auth-plugin.png)
+1. Find **Authentication plugin** under the **Authentication** tab.
+1. Select **Basic Authentication**.
+1. Click **Save Changes**.
 
 ## Enable Basic Auth Using the Command Line
 
 To patch a Dev Portal's authentication property directly, run:
 
 ```bash
-$ curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE_NAME> \
+curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE_NAME> \
   --data "config.portal_auth=basic-auth"
 ```
 
@@ -77,7 +75,7 @@ configuration file with the `portal_auth` property.
 
 In your `kong.conf` file, set the property as follows:
 
-```
+```bash
 portal_auth="basic-auth"
 ```
 

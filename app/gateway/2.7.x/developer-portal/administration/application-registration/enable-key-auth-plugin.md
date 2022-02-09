@@ -60,7 +60,7 @@ credentials.
 
 2. In the **Authentication** pane, click **Generate Credential**.
 
-   ![Application Authentication Pane](/assets/images/docs/dev-portal/gen-client-id-secret.png)
+   ![Application Authentication Pane](/assets/images/docs/dev-portal/generate-cred-dev-portal.png)
 
    Now you can make requests using the Client ID as an API Key.
 
@@ -86,12 +86,12 @@ Scroll to view all of the available examples.
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-$ curl -X POST {proxy}/{route}?apikey={CLIENT_ID}
+curl -X POST {proxy}/{route}?apikey={CLIENT_ID}
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-$ http {proxy}/{route}?apikey={CLIENT_ID}
+http {proxy}/{route}?apikey={CLIENT_ID}
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -108,13 +108,13 @@ HTTP/1.1 200 OK
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-$ curl -X POST {proxy}/{route} \
+curl -X POST {proxy}/{route} \
 --header "apikey: {CLIENT_ID}"
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-$ http {proxy}/{route} apikey:{CLIENT_ID}
+http {proxy}/{route} apikey:{CLIENT_ID}
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -124,13 +124,13 @@ $ http {proxy}/{route} apikey:{CLIENT_ID}
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-$ curl -X POST {proxy}/{route} \
+curl -X POST {proxy}/{route} \
 --data "apikey:={CLIENT_ID}"
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-$ http {proxy}/{route} apikey={CLIENT_ID}
+http {proxy}/{route} apikey={CLIENT_ID}
 ```
 {% endnavtab %}
 {% endnavtabs %}
