@@ -43,6 +43,7 @@ data plane.
 
 |                                | {{site.konnect_saas}} | First supported patch version
 |--------------------------------|:---------------------:|-----------------------------
+| {{site.ee_product_name}} 2.7.x | <i class="fa fa-check"></i>    | 2.7.0.0
 | {{site.ee_product_name}} 2.6.x | <i class="fa fa-check"></i>    | 2.6.0.0
 | {{site.ee_product_name}} 2.5.x | <i class="fa fa-check"></i>    | 2.5.0.1
 | {{site.ee_product_name}} 2.4.x | <i class="fa fa-check"></i>    | 2.4.1.1
