@@ -383,7 +383,7 @@ follow the instructions to:
     -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=/<path-to-file>/ca-cert.pem" \
     --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
     -p 8000:8000 \
-    kong-dp
+    kong-ee
     ```
 
     Where:
