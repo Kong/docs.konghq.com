@@ -4,21 +4,22 @@ title: Set Up Object Defaults
 Use object defaults to enforce a set of standard values and avoid
 repetition in your configuration.
 
-You can set configuration defaults for the following core {{site.base_gateway}} objects:
+You can set configuration defaults for the following {{site.base_gateway}}
+objects:
 - Service
 - Route
 - Upstream
 - Target
+- Plugins
 
 decK supports setting object defaults both in self-managed
 {{site.base_gateway}} and with {{site.konnect_saas}}.
 
 {:.important}
-> **Important:** This feature has the following limitations:
-* Plugin object defaults are not supported.
-* If an existing property's default value changes in a future {{site.base_gateway}} release,
-decK has no way of knowing that this change has occured, as its `defaults`
-configuration would overwrite the value in your environment.
+> **Important:** If an existing property's default value changes in a future
+{{site.base_gateway}} release, decK has no way of knowing that this change has
+occurred, as its `defaults` configuration would overwrite the value in your
+environment.
 
 ## Object defaults behavior
 
@@ -180,10 +181,7 @@ Summary:
     or use [tags](/deck/{{page.kong_version}}/guides/distributed-configuration)
     to apply the defaults wherever they are needed.
 
-2. Define the properties you want to set for core {{site.base_gateway}} objects.
-
-    You can define defaults for `service`, `route`, `upstream`, and `target`
-    objects.
+2. Define the properties you want to set for {{site.base_gateway}} objects.
 
     For example:
 
@@ -241,19 +239,37 @@ Summary:
 
     Notice that the diff doesn't show extra changes anymore.
 
-## Defaults reference
-The following properties are the defaults applied by {{site.base_gateway}} (as of
-v2.5.x), and setting them in your declarative configuration file is required to
-avoid differences between the configuration file and the {{site.base_gateway}}.
+## Find defaults for an object
 
-{:.note}
-> **Note:** The following are only properties that **have defaults**, and are
-not all of the available properties for each object.
+{{site.base_gateway}} defines all the defaults it applies in object schema files.
+Check the schemas to find the most up-to-date default values for an object.
+
+If you want to completely avoid differences between the configuration file and
+the {{site.base_gateway}}, set all possible default values for an object in your
+`kong.yaml` file.
 
 {% navtabs %}
 {% navtab Route %}
 
-Set the following properties to the values you want to use across all Routes:
+Use the Kong Admin API `/schemas` endpoint to find default values:
+
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+curl -i http://localhost:8001/schemas/routes
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+http :8001/schemas/routes
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
+
+In your `kong.yaml` file, set the default values you want to use across all Routes.
+For example:
 
 ```yaml
 _info:
@@ -271,13 +287,36 @@ _info:
       strip_path: true
 ```
 
-For all available properties, see the
+{:.note}
+> **Note:** If the Route protocols include `grpc` and `grpcs`, the `strip_path`
+schema value must be `false`. If set to `true`, deck returns a schema
+violation error.
+
+For documentation on all available properties, see the
 [Route object](/gateway/latest/admin-api/#route-object) documentation.
 
 {% endnavtab %}
 {% navtab Service %}
 
-Set the following properties to the values you want to use across all Services:
+Use the Kong Admin API `/schemas` endpoint to find default values:
+
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+curl -i http://localhost:8001/schemas/services
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+http :8001/schemas/services
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
+
+In your `kong.yaml` file, set the default values you want to use across all
+Services. For example:
 
 ```yaml
 _info:
@@ -290,13 +329,32 @@ _info:
       read_timeout: 60000
       retries: 5
 ```
-For all available properties, see the
+
+For documentation on all available properties, see the
 [Service object](/gateway/latest/admin-api/#service-object) documentation.
 
 {% endnavtab %}
 {% navtab Upstream %}
 
-Set the following properties to the values you want to use across all Upstreams:
+Use the Kong Admin API `/schemas` endpoint to find default values:
+
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+curl -i http://localhost:8001/schemas/upstreams
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+http :8001/schemas/upstreams
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
+
+In your `kong.yaml` file, set the default values you want to use across all
+Upstreams. For example:
 
 ```yaml
 _info:
@@ -368,13 +426,32 @@ _info:
             timeouts: 0
         threshold: 0
 ```
-For all available properties, see the
+
+For documentation on all available properties, see the
 [Upstream object](/gateway/latest/admin-api/#upstream-object) documentation.
 
 {% endnavtab %}
 {% navtab Target %}
 
-Set the following property to the value you want to use across all Targets:
+Use the Kong Admin API `/schemas` endpoint to find default values:
+
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+curl -i http://localhost:8001/schemas/targets
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+http :8001/schemas/targets
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
+
+In your `kong.yaml` file, set the default values you want to use across all
+Targets. For example:
 
 ```yaml
 _info:
@@ -386,25 +463,53 @@ For all available properties, see the
 [Target object](/gateway/latest/admin-api/#target-object) documentation.
 
 {% endnavtab %}
-{% endnavtabs %}
+{% navtab Plugin %}
 
-### Find default values for your Gateway version
+Use the Kong Admin API `/schemas` endpoint to find default values:
 
-For the most accurate default values for your version of {{site.base_gateway}}, see the
-[Admin API reference](/gateway/latest/admin-api/), or use the
-[`/schemas`](/gateway/latest/admin-api/#retrieve-entity-schema) endpoint. For example, you can check the schema for `targets` and look for any value that
-has defined defaults:
-
+<!-- codeblock tabs -->
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X GET http://localhost:8001/schemas/targets
+curl -i http://localhost:8001/schemas/plugins/{PLUGIN-NAME}
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-http :8001/schemas/targets
+http :8001/schemas/plugins/{PLUGIN-NAME}
 ```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
+
+In your `kong.yaml` file, set the default values you want to use across all
+instances of a specific plugin.
+
+For example, if you want to set defaults for the HTTP Log plugin, you might set
+the following:
+
+```yaml
+_info:
+  defaults:
+    plugins:
+      - name: http-log
+        config:
+          content_type: application/json
+          flush_timeout: 2
+          keepalive: 1000
+          method: POST
+          retry_count: 15
+          timeout: 1000
+        protocols:
+        - grpc
+        - grpcs
+        - http
+        - https
+```
+For all available properties, find your plugin on the [Plugin Hub](/hub/) and
+check the [Plugin object](/gateway/latest/admin-api/#plugin-object)
+documentation.
+
 {% endnavtab %}
 {% endnavtabs %}
 
