@@ -1501,8 +1501,9 @@ params:
       default: false
       datatype: boolean
       description: |
-        Distributed Claims are represented by using special _claim_names and _claim_sources members of the JSON object containing the Claims.
-        This config option allows explicitly enables resolving these distributed claims.
+        Distributed claims are represented by the `_claim_names` and `_claim_sources` members 
+        of the JSON object containing the claims.
+        If this parameter is set to `true`, the plugin explicitly resolves these distributed claims.
 
 
 issuer_body: |
