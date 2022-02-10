@@ -1098,9 +1098,9 @@ params:
         Password to use for Redis connection when the `redis` session storage is defined.
         If undefined, no AUTH commands are sent to Redis.
 
-       {:.important}
-        > This field is deprecated and replaced with `session_redis_password`. The`session_redis_auth` 
-        field will continue to work in a backwards compatible way, but it is recommended to use the 
+        {:.important}
+        > This field is deprecated and replaced with `session_redis_password`. The`session_redis_auth`
+        field will continue to work in a backwards compatible way, but it is recommended to use the
         replacement field.
         A deprecation warning will be logged in the log file, stating the field's deprecation and planned
         removal in v3.x.x.
