@@ -14,8 +14,7 @@ curl http://localhost:8001/workspaces/<WORKSPACE_NAME> \
 
 If they are not modified manually, the Dev Portal will use the default value defined in the Kong Configuration file.
 
-In 1.3.0.1 or greater, [Dev Portal email content and styling can be customized via template files](/gateway/{{page.kong_version}}/developer-portal/theme-customization/emails/)
-
+Dev Portal email content and styling can be customized via [template files](/gateway/{{page.kong_version}}/developer-portal/theme-customization/emails/).
 
 ## portal_invite_email
 
@@ -105,7 +104,7 @@ the link above to change your password.
 **Default:** `on`
 
 **Description:**
-When enabled, developers will receive an email after successfully reseting their Dev Portal account password.
+When enabled, developers will receive an email after successfully resetting their Dev Portal account password.
 
 When disabled, developers will still be able to reset their account passwords, but will not receive a confirmation email.
 
