@@ -125,6 +125,11 @@ params:
       datatype: integer
       description: |
         When using the `redis` policy, this property specifies the port of the Redis server. By default is `6379`.
+    - name: redis_username
+      required: false
+      datatype: string
+      description: |
+        When using the `redis` policy, this property specifies the username to connect to the Redis server when ACL authentication is desired.
     - name: redis_password
       required: false
       datatype: string
@@ -142,7 +147,7 @@ params:
       datatype: boolean
       description: |
         When using the `redis` policy with `redis_ssl` set to `true`, this property specifies it server SSL certificate is validated. Note that you need to configure the lua_ssl_trusted_certificate to specify the CA (or server) certificate used by your Redis server. You may also need to configure lua_ssl_verify_depth accordingly.
-    - name: redis_server_name  
+    - name: redis_server_name
       required: false
       datatype: string
       description: |

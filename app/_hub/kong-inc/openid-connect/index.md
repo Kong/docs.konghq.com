@@ -14,7 +14,7 @@ description: |
   - Signed [JWT][jwt] access tokens ([JWS][jws])
   - Opaque access tokens
   - Refresh tokens
-  - Authorization code  
+  - Authorization code
   - Username and password
   - Client credentials
   - Session cookies
@@ -192,7 +192,7 @@ params:
         > When this parameter is used with the `config.login_action=redirect` parameter, the browser location
         > will change and display the original query arguments. Otherwise, the upstream request
         > is modified to include the original query arguments, and the browser will not display
-        > them in the location field.     
+        > them in the location field.
     - name: refresh_tokens
       required: false
       default: true
@@ -572,7 +572,7 @@ params:
       default: null
       datatype: array of string elements
       description: |
-        Skip the token signature verification on certain grants:      
+        Skip the token signature verification on certain grants:
         - `password`: OAuth password grant
         - `client_credentials`: OAuth client credentials grant
         - `authorization_code`: authorization code flow
@@ -741,16 +741,16 @@ params:
         - authorization_code
       datatype: array of string elements
       description: |
-        Enable login functionality with specified grants:      
+        Enable login functionality with specified grants:
         - `password`: enable for OAuth password grant
         - `client_credentials`: enable OAuth client credentials grant
         - `authorization_code`: enable for authorization code flow
         - `bearer`: enable for JWT access token authentication
         - `introspection`: enable for OAuth introspection authentication
-        - `userinfo`: enable for OpenID Connect user info endpoint authentication        
+        - `userinfo`: enable for OpenID Connect user info endpoint authentication
         - `kong_oauth2`: enable for Kong OAuth Plugin authentication
         - `refresh_token`: enable for OAuth refresh token grant
-        - `session`: enable for session cookie authentication       
+        - `session`: enable for session cookie authentication
     - name: login_action
       required: false
       default: '"upstream"'
@@ -766,7 +766,7 @@ params:
         - id_token
       datatype: array of string elements
       description: |
-        What tokens to include in `response` body or `redirect` query string or fragment:      
+        What tokens to include in `response` body or `redirect` query string or fragment:
         - `id_token`: include id token
         - `access_token`: include access token
         - `refresh_token`: include refresh token
@@ -1074,12 +1074,36 @@ params:
       default: 6379
       datatype: integer
       description: The Redis port.
+    - name: session_redis_username
+      required: false
+      default: null
+      datatype: string
+      description: |
+        Username to use for Redis connection when the `redis` session storage is defined and ACL authentication is desired.
+        If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+.
+    - name: session_redis_password
+      required: false
+      default: (from kong)
+      encrypted: true
+      datatype: string
+      description: |
+        Password to use for Redis connection when the `redis` session storage is defined.
+        If undefined, no AUTH commands are sent to Redis.
     - name: session_redis_auth
       required: false
       default: (from kong)
       encrypted: true
       datatype: string
-      description: The Redis password.
+      description: |
+        Password to use for Redis connection when the `redis` session storage is defined.
+        If undefined, no AUTH commands are sent to Redis.
+
+        {:.important}
+        > This field is deprecated and replaced with `session_redis_password`. The`session_redis_auth`
+        field will continue to work in a backwards compatible way, but it is recommended to use the
+        replacement field.
+        A deprecation warning will be logged in the log file, stating the field's deprecation and planned
+        removal in v3.x.x.
     - name: session_redis_connect_timeout
       required: false
       default: (from kong)
@@ -1171,7 +1195,7 @@ params:
         - `client_secret_post`: send `client_id` and `client_secret` as part of the body
         - `client_secret_jwt`: send client assertion signed with the `client_secret` as part of the body
         - `private_key_jwt`:  send client assertion signed with the `private key` as part of the body
-        - `none`: do not authenticate        
+        - `none`: do not authenticate
     - name: introspection_endpoint_auth_method
       required: false
       default: '(see: config.client_auth)'
@@ -1182,7 +1206,7 @@ params:
         - `client_secret_post`: send `client_id` and `client_secret` as part of the body
         - `client_secret_jwt`: send client assertion signed with the `client_secret` as part of the body
         - `private_key_jwt`:  send client assertion signed with the `private key` as part of the body
-        - `none`: do not authenticate        
+        - `none`: do not authenticate
     - name: revocation_endpoint_auth_method
       required: false
       default: '(see: config.client_auth)'
@@ -1302,7 +1326,7 @@ params:
         - `password`: with OAuth password grant
         - `client_credentials`: with OAuth client credentials grant
         - `authorization_code`: with authorization code flow
-        - `refresh_token` with refresh token grant      
+        - `refresh_token` with refresh token grant
     - group: Introspection Endpoint Arguments
     - name: introspection_hint
       required: false
@@ -1480,7 +1504,7 @@ params:
         endpoint requests.
         > If you use multiple plugin instances of the OpenID Connect
         > plugin and want to share token endpoint caches between the plugin
-        > instances, set the salt to the same value on each plugin instance.                      
+        > instances, set the salt to the same value on each plugin instance.
     - name: cache_introspection
       required: false
       default: true
@@ -1554,7 +1578,7 @@ jwk: |
       "use": "sig"
       "e": "AQAB",
       "n": "…",
-      "d": "…",        
+      "d": "…",
       "p": "…",
       "q": "…",
       "dp": "…",
@@ -1965,7 +1989,7 @@ HTTP/1.1 200 OK
    <br><br>
    <img src="/assets/images/docs/openid-connect/authorization-code-flow-2.png">
    <br>
-   > You may examine the query arguments passed to Keycloak with the browser developer tools.   
+   > You may examine the query arguments passed to Keycloak with the browser developer tools.
 3. And finally you will be presented a response from httpbin.org:
    <br><br>
    <img src="/assets/images/docs/openid-connect/authorization-code-flow-3.png">
@@ -2032,7 +2056,7 @@ HTTP/1.1 200 OK
            "Authorization": "Bearer <access-token>"
        },
        "method": "GET"
-   }   
+   }
    ```
 2. Done.
 
@@ -2099,7 +2123,7 @@ HTTP/1.1 200 OK
            "Authorization": "Bearer <access-token>"
        },
        "method": "GET"
-   }   
+   }
    ```
 2. Done.
 
@@ -2181,11 +2205,11 @@ We can use the output in `Refresh-Token` header.
    or
    ```bash
    http -v :8000 Refresh-Token:"<refresh-token>"
-   ```   
+   ```
    ```http
    GET / HTTP/1.1
    Refresh-Token: <refresh-token>
-   ```   
+   ```
    ```http
    HTTP/1.1 200 OK
    ```
@@ -2196,7 +2220,7 @@ We can use the output in `Refresh-Token` header.
            "Refresh-Token": "<refresh-token>"
        },
        "method": "GET"
-   }   
+   }
    ```
 2. Done.
 
@@ -2240,7 +2264,7 @@ HTTP/1.1 200 OK
             "bearer",
             "password"
         ],
-        "bearer_token_param_type": [ "header" ]        
+        "bearer_token_param_type": [ "header" ]
     }
 }
 ```
@@ -2273,7 +2297,7 @@ We can use the output in `Authorization` header.
    ```http
    GET / HTTP/1.1
    Authorization: Bearer <access-token>
-   ```   
+   ```
    ```http
    HTTP/1.1 200 OK
    ```
@@ -2283,7 +2307,7 @@ We can use the output in `Authorization` header.
            "Authorization": "Bearer <access-token>"
        },
        "method": "GET"
-   }   
+   }
    ```
 2. Done.
 
@@ -2327,7 +2351,7 @@ HTTP/1.1 200 OK
             "introspection",
             "password"
         ],
-        "bearer_token_param_type": [ "header" ]        
+        "bearer_token_param_type": [ "header" ]
     }
 }
 ```
@@ -2342,11 +2366,11 @@ HTTP/1.1 200 OK
    or
    ```bash
    http -v :8000 Authorization:"Bearer <access-token>"
-   ```   
+   ```
    ```http
    GET / HTTP/1.1
    Authorization: Bearer <access-token>
-   ```   
+   ```
    ```http
    HTTP/1.1 200 OK
    ```
@@ -2356,7 +2380,7 @@ HTTP/1.1 200 OK
            "Authorization": "Bearer <access-token>"
        },
        "method": "GET"
-   }   
+   }
    ```
 2. Done.
 
@@ -2416,11 +2440,11 @@ HTTP/1.1 200 OK
    or
    ```bash
    http -v :8000 Authorization:"Bearer <access-token>"
-   ```   
+   ```
    ```http
    GET / HTTP/1.1
    Authorization: Bearer <access-token>
-   ```   
+   ```
    ```http
    HTTP/1.1 200 OK
    ```
@@ -2430,7 +2454,7 @@ HTTP/1.1 200 OK
            "Authorization": "Bearer <access-token>"
        },
        "method": "GET"
-   }   
+   }
    ```
 2. Done.
 
@@ -2525,7 +2549,7 @@ HTTP/1.1 200 OK
     },
     "config": {
         "auth_methods": [ "kong_oauth2" ],
-        "bearer_token_param_type": [ "header" ]        
+        "bearer_token_param_type": [ "header" ]
     }
 }
 ```
@@ -2548,7 +2572,7 @@ HTTP/1.1 200 OK
    ```http
    GET / HTTP/1.1
    Authorization: Bearer <access-token>
-   ```   
+   ```
    ```http
    HTTP/1.1 200 OK
    ```
@@ -2629,7 +2653,7 @@ HTTP/1.1 200 OK
            "Authorization": "Bearer <access-token>"
        },
        "method": "GET"
-   }   
+   }
    ```
 2. Make request with a session cookie (stored above):
    ```bash
@@ -2648,7 +2672,7 @@ HTTP/1.1 200 OK
            "Authorization": "Bearer <access-token>"
        },
        "method": "GET"
-   }   
+   }
    ```
 3. Done.
 
@@ -2702,7 +2726,7 @@ Let's take a look at a JWT access token:
    ```
    eyJleHAiOjE2MjI1NTY3MTMsImF1ZCI6ImFjY291bnQiLCJ0eXAiOiJCZWFyZXIiLC
    JzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIiwicHJlZmVycmVkX3VzZXJuYW1l
-   Ijoiam9obiIsImdpdmVuX25hbWUiOiJKb2huIiwiZmFtaWx5X25hbWUiOiJEb2UifQ   
+   Ijoiam9obiIsImdpdmVuX25hbWUiOiJKb2huIiwiZmFtaWx5X25hbWUiOiJEb2UifQ
    ```
    That can be base64 url decoded to the following `JSON`:
    ```json
@@ -2768,7 +2792,7 @@ HTTP/1.1 200 OK
        "Authorization": "Bearer <access-token>"
    },
    "method": "GET"
-}   
+}
 ```
 
 Works as expected, but let's try to add another authorization:
@@ -3268,25 +3292,25 @@ issues with the plugin or integration, try the following:
 2. Set the Kong OpenID Connect plugin to display errors:
    ```json
    {
-       "config": {                     
-           "display_errors": true        
+       "config": {
+           "display_errors": true
        }
    }
    ```
 3. Disable the Kong OpenID Connect plugin verifications and see if you get further, just for debugging purposes:
    ```json
    {
-       "config": {                     
+       "config": {
            "verify_nonce": false,
            "verify_claims": false,
-           "verify_signature": false        
+           "verify_signature": false
        }
    }
    ```
 4. See what kind of tokens the Kong OpenID Connect plugin gets:
    ```json
    {
-       "config": {                     
+       "config": {
            "login_action": "response",
            "login_tokens": [ "tokens" ],
            "login_methods": [
