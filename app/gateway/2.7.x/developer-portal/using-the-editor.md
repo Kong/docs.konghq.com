@@ -1,6 +1,6 @@
 ---
 title: Using the Editor through Kong Manager
-badge: enterpriseedit
+badge: enterprise
 ---
 
 Kong Manager offers a robust file editor for editing the template files of the Dev Portal from within the browser.
