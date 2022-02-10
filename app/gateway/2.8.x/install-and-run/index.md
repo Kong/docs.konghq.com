@@ -59,11 +59,11 @@ disable_image_expand: true
   </a>
 </div>
 
-### Deployment options
+## Deployment options
 
 {% include_cached /md/gateway/deployment-options.md kong_version=page.kong_version %}
 
-### Installation paths
+## Installation paths
 
 Some installation topics provide multiple package types and installation options.
 Choose your preferred mode when following installation steps:

@@ -7,13 +7,13 @@ Using Kong's [OpenID Connect plugin](/hub/kong-inc/openid-connect) (OIDC), you c
 groups to Kong roles. Adding a user to Kong in this way gives them access to
 Kong based on their group in the IdP.
 
-Admin accounts are now created automatically 
-when you map your identity provider (IdP) groups to Kong roles. You do 
-not need to create the users, groups, and roles separately. These users then accept invitations to join 
+Admin accounts are now created automatically
+when you map your identity provider (IdP) groups to Kong roles. You do
+not need to create the users, groups, and roles separately. These users then accept invitations to join
 Kong Manager and log in with their IdP credentials.
 
 {:.important}
-> **Important:** In v2.7.x, the `admin_claim` parameter replaces the `consumer_claim` parameter required by 
+> **Important:** In v2.7.x, the `admin_claim` parameter replaces the `consumer_claim` parameter required by
 previous versions.
 
 If an admin's group changes in the IdP, their Kong admin account's associated
@@ -31,15 +31,22 @@ Manager. The mapping removes the task of manually managing access in
 
 ## Apply OIDC auth mapping to Kong Gateway
 
-In the following examples, you specify the `admin_claim` and `authenticated_groups_claim` parameters 
+In the following examples, you specify the `admin_claim` and `authenticated_groups_claim` parameters
 to identify which admin value and role name to map from the IdP to {{site.base_gateway}}.
 
-The `admin_claim` value specifies which IdP username value should map to Kong Manager. 
+The `admin_claim` value specifies which IdP username value should map to Kong Manager.
 The username and password are required for the user to log into the IdP.
 
-The `authenticated_groups_claim` value specifies which IdP claim should be assigned to the
-specified {{site.base_gateway}} user. The exact value depends on your IdP -- for example, Okta 
-configures claims for `groups`, and other IdPs might configure them as `roles`.
+The `authenticated_groups_claim` value specifies which IdP claim should be used to assign {{site.base_gateway}} roles to the
+specified {{site.base_gateway}} admin.
+
+This value depends on your IdP -- for example, Okta configures claims for `groups`, and another IdP might configure them as `roles`.
+
+In the Idp, the group claim value must follow the format `<workspace_name>:<role_name>`.
+
+For example, if `"authenticated_groups_claim": ["groups"]` is specified, and in the IdP `groups:["default:super-admin"]` is specified, the administrators specified in `admin_claim` are assigned to the super-admin role in the default {{site.base_gateway}} workspace.
+
+If the mapping does not work as expected, decode the JWT that's created by your IdP, and make sure that the admin ID token includes the key:value pair `groups:["default:super-admin"]` for the case of this example, or the appropriate claim name and claim value as set in your IdP.
 
 {% navtabs %}
 {% navtab Kubernetes with Helm %}
@@ -68,7 +75,7 @@ configures claims for `groups`, and other IdPs might configure them as `roles`.
     }
     ```
 
-    For detailed descriptions of all OIDC parameters, see the 
+    For detailed descriptions of all OIDC parameters, see the
     [OpenID Connect parameter reference](/hub/kong-inc/openid-connect/#configuration-parameters).
 
 2. Create a secret from the file you just created:
@@ -125,7 +132,7 @@ $ echo "
 
 Replace `{KONG_CONTAINER_ID}` with the ID of your container.
 
-For detailed descriptions of all the parameters used here, and many other customization options, 
+For detailed descriptions of all the parameters used here, and many other customization options,
 see the [OpenID Connect parameter reference](/hub/kong-inc/openid-connect/#configuration-parameters).
 
 {% endnavtab %}
