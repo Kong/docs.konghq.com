@@ -15,16 +15,18 @@ In addition, a configuration object is required to enable OIDC. Refer to the
 [Sample Configuration Object](#/sample-configuration-object) section of this
 document for more information.
 
-**Note:** The Dev Portal does not automatically create developer accounts on login via OIDC.
+{:alert}
+**Note**: The Dev Portal does not automatically create developer accounts on login via OIDC.
 A developer account matching the `consumer_claim` configuration parameter has to be
-created and approved (if auto approve is not enabled) beforehand.
+created and approved (if auto approve is not enabled) beforehand. During the registration flow, users enter their login information in their IDP redirected login page. When the user is brought back to the Dev Portal registration page, their email is pre-populated in the registration form. Users cannot change their email in the registration form. The user may be asked for additional fields, as set by the account admin.
 
 OIDC for the Dev Portal can be enabled in one of the following ways:
 
-- [Kong Manager](#enable-oidc-using-kong-manager)
-- [Kong Admin API (command line)](#enable-oidc-using-the-command-line)
-- [The Kong configuration file](#enable-oidc-using-kongconf)
-
+- [Portal Session Plugin Config](#portal-session-plugin-config)
+- [Sample Configuration Object](#sample-configuration-object)
+- [Enable OIDC using Kong Manager](#enable-oidc-using-kong-manager)
+- [Enable OIDC using the Command Line](#enable-oidc-using-the-command-line)
+- [Enable OIDC using kong.conf](#enable-oidc-using-kongconf)
 
 ## Portal Session Plugin Config
 
