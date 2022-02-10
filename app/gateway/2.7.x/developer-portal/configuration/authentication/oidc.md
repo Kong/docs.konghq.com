@@ -15,10 +15,16 @@ In addition, a configuration object is required to enable OIDC. Refer to the
 [Sample Configuration Object](#/sample-configuration-object) section of this
 document for more information.
 
-{:alert}
-**Note**: The Dev Portal does not automatically create developer accounts on login via OIDC.
+{:.note}
+> **Note**: The Dev Portal does not automatically create developer accounts on login via OIDC.
 A developer account matching the `consumer_claim` configuration parameter has to be
-created and approved (if auto approve is not enabled) beforehand. During the registration flow, users enter their login information in their IDP redirected login page. When the user is brought back to the Dev Portal registration page, their email is pre-populated in the registration form. Users cannot change their email in the registration form. The user may be asked for additional fields, as set by the account admin.
+created and approved (if auto approve is not enabled) beforehand. 
+> 
+> During the registration flow, users must enter their login information in their 
+IDP-redirected login page. The user is then brought to the Dev Portal 
+registration page and their email is pre-populated in the registration form. 
+Users cannot change their email in the registration form. 
+The user may be asked for additional fields, as set by the account admin.
 
 OIDC for the Dev Portal can be enabled in one of the following ways:
 
