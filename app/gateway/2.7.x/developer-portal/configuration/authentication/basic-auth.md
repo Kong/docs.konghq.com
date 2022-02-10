@@ -27,20 +27,20 @@ For more information, see
 
 In the Kong configuration file, set the `portal_session_conf` property:
 
-```bash
+```
 portal_session_conf={ "cookie_name":"portal_session","secret":"<CHANGE_THIS>","storage":"kong"}
 ```
 
 If using HTTP while testing, include `"cookie_secure": false` in the config:
 
-```bash
+```
 portal_session_conf={ "cookie_name":"portal_session","secret":"<CHANGE_THIS>","storage":"kong","cookie_secure":false}
 ```
 
 Or, if you have different subdomains for the `portal_api_url` and `portal_gui_host`, set the `cookie_domain`
 and `cookie_samesite` properties as follows:
 
-```bash
+```
 portal_session_conf={ "cookie_name":"portal_session","secret":"<CHANGE_THIS>","storage":"kong","cookie_secure":false,"cookie_domain":"<.your_subdomain.com>","cookie_samesite":"off"  }
 ```
 
@@ -75,7 +75,7 @@ configuration file with the `portal_auth` property.
 
 In your `kong.conf` file, set the property as follows:
 
-```bash
+```
 portal_auth="basic-auth"
 ```
 
