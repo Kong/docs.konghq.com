@@ -160,7 +160,7 @@ Default values get applied to both new and existing objects. See the
 get applied.
 
 You can choose to define custom default values for any subset of entity fields,
-or define all of them. decK still finds the default values using on a
+or define all of them. decK still finds the default values using a
 combination of your defined fields and the object's schema, based on the
 order of precedence.
 
