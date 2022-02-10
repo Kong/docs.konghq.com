@@ -1622,11 +1622,6 @@ Routes, Services, Consumers, and Plugins) in a database, and
 all Kong nodes belonging to the same cluster must connect themselves to the same
 database.
 
-Kong supports the following database versions:
-
-- **PostgreSQL**: 9.5 and above.
-- **Cassandra**: 2.2 and above.
-
 When not using a database, Kong is said to be in "DB-less mode": it will keep
 its entities in memory, and each node needs to have this data entered via a
 declarative configuration file, which can be specified through the

@@ -9,8 +9,6 @@ external identity provider admins can selectively admit access to Services using
 
 ## Prerequisites
 
-* {{site.ee_product_name}} is installed, version 2.1.0.0 or later. If you plan to use
-key authentication, version 2.2.1.0 or later.
 * Dev Portal is enabled on the same Workspace as the Service.
 * The Service is created and enabled with HTTPS.
 * Authentication is enabled on the Dev Portal.

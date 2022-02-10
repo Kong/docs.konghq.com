@@ -7,7 +7,6 @@ Kong Manager offers a robust file editor for editing the template files of the D
 
 ## Prerequisites
 
-* {{site.base_gateway}} 1.3 or later
 * Access to Kong Manager
 * The Kong Developer Portal is **enabled** and **running**
 

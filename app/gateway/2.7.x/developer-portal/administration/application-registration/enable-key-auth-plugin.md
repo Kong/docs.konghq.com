@@ -11,7 +11,6 @@ You can use the same Client ID credential for a Service that has the OAuth2 plug
 
 ## Prerequisites
 
-* {{site.ee_product_name}} is installed, version 2.2.1.0 or later.
 * Create a Service.
 * Enable the [Application Registration plugin](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration) on a Service.
 * Activate your application for a Service if you have not already done so. The
