@@ -11,7 +11,7 @@ check the latest object schemas for your instance of the {{site.base_gateway}}.
 decK recognizes value defaults and doesn't interpret them as changes to
 configuration. If you push a config for an object to {{site.base_gateway}} with
 `deck sync`, {{site.base_gateway}} applies its default values to the object,
-but a further `diff` or `sync`  does not show any changes.
+but a further `diff` or `sync` does not show any changes.
 
 If you upgrade {{site.base_gateway}} to a version which introduces a new
 property with a default value, a `deck diff` will catch the difference.
@@ -26,10 +26,10 @@ decK assigns values in the following order of precedence, from highest to lowest
 1. Values set for a specific instance of an object in the state file
 (for example, for a service named `example_service` defined in `kong.yml`).
 2. Values set in the `{_info: defaults:}` object in the state file.
-3. Self-managed Kong Gateway only: Default values are checked against the Kong
+3. Self-managed Kong Gateway only: Values are checked against the Kong
 Admin API schemas.
-4. Konnect Cloud only: Default values are checked against hardcoded defaults for
-Service, Route, Upstream, and Target objects.
+4. Konnect Cloud only: Values are checked against the Kong Admin API for plugins,
+and against hardcoded defaults for Service, Route, Upstream, and Target objects.
 
 ## Test default value handling
 
@@ -105,18 +105,18 @@ Summary:
 {{ deck_diff2 | indent | replace: " </code>", "</code>" }}
 
     Notice that the diff doesn't show any changes. This is because decK checked
-    the values against the Service and Route schema through the Kong Admin API
-    and didn't find any difference.
+    the values against the Service and Route schemas and didn't find any
+    differences.
 
-1. You can check that default values were set by exporting {{site.base_gateway}}'s
-object configuration into a file. If you want to avoid overwriting your current
-state file, specify a different filename:
+1. You can check that any missing default values were set by exporting
+{{site.base_gateway}}'s object configuration into a file. If you want to avoid
+overwriting your current state file, specify a different filename:
 
     ```sh
     deck dump -o kong-test.yaml
     ```
 
-    Even though the diff didn't show any changes, the result has now has
+    Even though `deck diff` didn't show any changes, the result has now has
     default values populated:
 
     ```yaml
@@ -192,8 +192,8 @@ configuration would overwrite the value in your environment.
 
 2. Define the properties you want to set for {{site.base_gateway}} objects.
 
-    You can define defaults for `service`, `route`, `upstream`, and `target`
-     objects.
+    You can define custom defaults for `service`, `route`, `upstream`, and
+    `target` objects.
 
     For example:
 
