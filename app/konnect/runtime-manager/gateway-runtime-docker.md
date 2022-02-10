@@ -88,7 +88,7 @@ remaining configuration details on the **Configure Runtime** page.
 
 
     ```bash
-    $ docker pull kong/kong-gateway:2.6.0.0-alpine
+    $ docker pull kong/kong-gateway:2.7.0.0-alpine
     ```
 
     You should now have your {{site.base_gateway}} image locally.
@@ -113,7 +113,7 @@ Use the following `docker run` command sample as a guide to compile your actual 
 {% navtabs codeblock %}
 {% navtab Any Unix shell %}
 ```sh
-$ docker run -d --name kong-gateway-dp1 \
+$ docker run -d --name kong-dp \
   -e "KONG_ROLE=data_plane" \
   -e "KONG_DATABASE=off" \
   -e "KONG_VITALS_TTL_DAYS=732" \
@@ -127,12 +127,12 @@ $ docker run -d --name kong-gateway-dp1 \
   -e "KONG_CLUSTER_CERT_KEY=/{PATH_TO_FILE}/tls.key" \
   --mount type=bind,source="$(pwd)",target={PATH_TO_KEYS_AND_CERTS},readonly \
   -p 8000:8000 \
-  kong-ee
+  kong/kong-gateway:2.7.0.0-alpine
 ```
 {% endnavtab %}
 {% navtab Windows PowerShell %}
 ```powershell
-docker run -d --name kong-gateway-dp1 `
+docker run -d --name kong-dp `
   -e "KONG_ROLE=data_plane" `
   -e "KONG_DATABASE=off" `
   -e "KONG_VITALS_TTL_DAYS=732" `
@@ -146,7 +146,7 @@ docker run -d --name kong-gateway-dp1 `
   -e "KONG_CLUSTER_CERT_KEY=/{PATH_TO_FILE}/tls.key" `
   --mount type=bind,source="$(pwd)",target={PATH_TO_KEYS_AND_CERTS},readonly `
   -p 8000:8000 `
-  kong-ee
+  kong/kong-gateway:2.7.0.0-alpine
 ```
 {% endnavtab %}
 {% endnavtabs %}

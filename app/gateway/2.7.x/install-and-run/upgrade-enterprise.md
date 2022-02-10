@@ -3,8 +3,8 @@ title: Upgrade Kong Gateway
 badge: free
 ---
 
-Upgrade to major, minor, and patch {{site.ee_product_name}} releases using the
-`kong migrations` commands.
+Upgrade to major, minor, and patch {{site.ee_product_name}} (Enterprise package)
+releases using the `kong migrations` commands.
 
 You can also use the commands to migrate all {{site.ce_product_name}} entities
 to {{site.ee_product_name}}. See
@@ -20,68 +20,60 @@ distinction between major, minor, and patch versions. The upgrade
 path for major and minor versions differs depending on the previous version
 from which you are migrating:
 
-- Upgrading from 2.5.x to 2.6.x is a minor upgrade; however, read below for important
-instructions on [database migration](#migrate-db), especially for Cassandra users.
+- If you are migrating from 2.x.x, upgrading to 2.7.x is a
+**minor** upgrade. You can upgrade from any 2.1.x or later version directly to
+2.7.x.
 
-- Upgrading from from 1.x is a major upgrade. Follow the [Version Prerequisites](#prereqs-v).
-Be aware of any noted breaking changes as documented in the version to which you are upgrading.
+- If you are migrating from 1.x.x, upgrading to 2.7.x is a **major**
+upgrade. While you can upgrade directly to the latest version, be aware of any
+breaking changes between the 1.x and 2.x series noted in this document and in
+the Gateway changelogs.
 
-### Version prerequisites for migrating to Kong Gateway 2.6.x {#prereqs-v}
+    See specific breaking changes in the Kong Gateway changelogs:
+    [open-source (OSS)](https://github.com/Kong/kong/blob/2.0.0/CHANGELOG.md#200) and
+    [Enterprise](/gateway/changelog/#2131). Since Kong Gateway is built on an
+    open-source foundation, any breaking changes in OSS affect all Gateway packages.
 
-If you are not on {{site.ee_product_name}} 2.5.x, you must first incrementally
-upgrade to 2.5.x before upgrading to 2.6.x. Zero downtime is possible but _not_
-guaranteed if you are upgrading incrementally between versions, from 0.36.x to 1.3.x to
-1.5.x to 2.1.x to 2.2.x to 2.3.x to 2.4.x to 2.5.x to 2.6.x., plan accordingly.
+In either case, you can review the [upgrade considerations](#upgrade-considerations),
+then follow the [database migration](#migrate-db) instructions.
 
-* If running a version of {{site.ee_product_name}} earlier than 1.5,
-  [migrate to 1.5](/enterprise/1.5.x/deployment/migrations/) first.
-* If running a version of {{site.ee_product_name}} earlier than 2.1,
-  [migrate to 2.1](/enterprise/2.1.x/deployment/upgrades/migrations/) first.
-* If running a version of {{site.ee_product_name}} earlier than 2.2,
-  [migrate to 2.2](/enterprise/2.2.x/deployment/upgrades/migrations/) first.
-* If running a version of {{site.ee_product_name}} earlier than 2.3,
-  [migrate to 2.3](/enterprise/2.3.x/deployment/upgrades/migrations/) first.
-* If running a version of {{ site.ee_product_name }} earlier than 2.4,
-  [migrate to 2.4](/enterprise/2.4.x/deployment/upgrades/migrations/) first.
-* If running a version of {{ site.ee_product_name }} earlier than 2.5,
-  [migrate to 2.5](/enterprise/2.5.x/deployment/upgrades/migrations/) first.
-
-### Kong Manager upgrade to 2.7.x
-
-Version 2.7.x introduced a new way to configure the OIDC plugin to map IdP roles to Kong Manager admin accounts. 
-You must now specify the `admin_claim` instead of the `consumer_claim` in your OIDC config file. For more information, 
-see [OIDC Authenticated Group Mapping](/gateway/2.7.x/configure/auth/kong-manager/oidc-mapping/).
-
-### Dev Portal migrations
-
-There are no migrations necessary for the Dev Portal when upgrading from 2.5.x to
-2.6.x.
-
-If you are currently using the Developer Portal in 1.5.x, it will no longer work without
-[manually migrating files](/enterprise/2.1.x/developer-portal/latest-migrations) to version 2.1.x.
-
-### Upgrade considerations
+## Upgrade considerations
 
 Before upgrading, review this list for any configuration or breaking changes that
 affect your current installation.
 
-* If you are adding a new plugin to your installation, you need to run
-  `kong migrations up` with the plugin name specified. For example,
-  `KONG_PLUGINS=oauth2`.
+If you are adding a new plugin to your installation, you need to run
+`kong migrations up` with the plugin name specified. For example,
+`KONG_PLUGINS=oauth2`.
+
+### Kong Manager breaking changes
+
+Version 2.7.x introduced a new way to configure the OIDC plugin to map IdP roles to Kong Manager admin accounts.
+You must now specify the `admin_claim` instead of the `consumer_claim` in your OIDC config file. For more information,
+see [OIDC Authenticated Group Mapping](/gateway/{{page.kong_version}}/configure/auth/kong-manager/oidc-mapping/).
+
+### Dev Portal migrations
+
+There are no migrations necessary for the Dev Portal when upgrading from 2.6.x to
+2.7.x.
+
+If you are currently using the Dev Portal in 1.5.x or earlier,
+[manually migrate the files](/enterprise/2.1.x/developer-portal/latest-migrations)
+to version 2.1.x before continuing.
 
 ### Hybrid mode considerations
 
 {:.important}
-> **Important:** If you are currently running in [hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/),
-upgrade the Control Plane first, and then the Data Planes.
+> **Important:** If you are currently running in [hybrid mode](/gateway/{{page.kong_version}}/plan-and-deploy/hybrid-mode/),
+upgrade the control plane first, and then the data planes.
 
 * If you are currently running 2.6.x in classic (traditional)
   mode and want to run in hybrid mode instead, follow the hybrid mode
-  [installation instructions](/gateway/{{page.kong_version}}/plan-and-deploy/hybrid-mode-setup/)
+  [installation instructions](/gateway/{{page.kong_version}}/plan-and-deploy/hybrid-mode/hybrid-mode-setup/)
   after running the migration.
 * Custom plugins (either your own plugins or third-party plugins that are not shipped with Kong)
-  need to be installed on both the Control Plane and the Data Planes in Hybrid mode. Install the
-  plugins on the Control Plane first, and then the Data Planes.
+  need to be installed on both the control plane and the data planes in hybrid mode. Install the
+  plugins on the control plane first, and then the data planes.
 * The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) plugin does not
     support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
@@ -137,9 +129,10 @@ To handle clusters split across multiple releases, you should:
    --set migrations.postUpgrade=true
    ```
 
-This ensures that all instances are using the new Kong package before running kong migrations finish.
+This ensures that all instances are using the new Kong package before running
+`kong migrations finish`.
 
-### Migrating databases for Upgrades {#migrate-db}
+## Upgrade from 1.x.x - 2.6.x to 2.7.x {#migrate-db}
 
 {{site.ee_product_name}} supports the zero downtime migration model. This means
 that while the migration is in process, you have two Kong clusters with different
@@ -156,13 +149,18 @@ decommission it. For this reason, the full migration is split into two commands:
 - `kong migrations finish`: puts the database in the final expected state (DB-less
   mode is not supported in {{site.ee_product_name}})
 
-#### Postgres
+Follow the instructions for your backing data store to migrate to the new version.
+If you prefer to use a fresh data store and only migrate your `kong.conf` file,
+see the instructions to
+[install 2.7.x on a fresh datastore](#install-27x-on-a-fresh-datastore).
 
-1. Download 2.6.x, and configure it to point to the same datastore as your old
-   2.5.x (or 2.6.x-beta) cluster.
+### Postgres
+
+1. Download 2.7.x, and configure it to point to the same
+   datastore as your old (1.x.x-2.x.x) cluster.
 2. Run `kong migrations up`.
-3. After that finishes running, both the old (2.5.x) and new (2.6.x) clusters can
-   now run simultaneously on the same datastore. Start provisioning 2.6.x nodes,
+3. After that finishes running, both the old (1.x.x-2.x.x) and new (2.7.x) clusters can
+   now run simultaneously on the same datastore. Start provisioning 2.7.x nodes,
    but do _not_ use their Admin API yet.
 
    {:.important}
@@ -172,31 +170,35 @@ decommission it. For this reason, the full migration is split into two commands:
    cluster.
 
 4. Gradually divert traffic away from your old nodes, and redirect traffic to
-   your 2.6.x cluster. Monitor your traffic to make sure everything
+   your 2.7.x cluster. Monitor your traffic to make sure everything
    is going smoothly.
-5. When your traffic is fully migrated to the 2.6.x cluster, decommission your
-   old 2.5.x (or 2.6.x-beta) nodes.
-6. From your 2.6.x cluster, run `kong migrations finish`. From this point onward,
-   it is no longer possible to start nodes in the old 2.5.x (or 2.6.x-beta) cluster
-   that still points to the same datastore. Run this command _only_ when you are
-   confident that your migration was successful. From now on, you can safely make
-   Admin API requests to your 2.6.x nodes.
+5. When your traffic is fully migrated to the 2.7.x cluster, decommission your
+   old nodes.
+6. From your 2.7.x cluster, run `kong migrations finish`. From this point onward,
+   it is no longer possible to start nodes in the old cluster
+   that still points to the same datastore.
 
-#### Cassandra
+     Run this command _only_ when you are
+     confident that your migration was successful. From now on, you can safely make
+     Admin API requests to your 2.7.x nodes.
 
-Due to internal changes, the table schemas used by {{site.ee_product_name}} 2.6.x on Cassandra
-are incompatible with those used by {{site.ee_product_name}} 2.0.x. Migrating using the usual commands
+### Cassandra
+
+Due to internal changes, the table schemas used by {{site.ee_product_name}} 2.7.x on Cassandra
+are incompatible with those used by {{site.ee_product_name}} 2.1.x or lower. Migrating using the usual commands
 `kong migrations up` and `kong migrations finish` will require a small
 window of downtime, since the old and new versions cannot use the
-database at the same time. Alternatively, to keep your previous version fully
-operational while the new one initializes, you will need to transfer the
-data to a new keyspace using a database dump, as described below:
+database at the same time.
 
-1. Download 2.6.x, and configure it to point to a new keyspace.
+Alternatively, to keep your previous version fully operational while the new
+one initializes, transfer the data to a new keyspace using a database dump, as
+described below:
+
+1. Download 2.7.x, and configure it to point to a new keyspace.
 
 2. Run `kong migrations bootstrap`.
 
-   Once that finishes running, both the old (2.5.x) and new (2.6.x)
+   Once that finishes running, both the old (1.x.x-2.1.x) and new (2.7.x)
    clusters can now run simultaneously, but the new cluster does not
    have any data yet.
 3. On the old cluster, run `kong config db_export`. This will create
@@ -204,16 +206,16 @@ data to a new keyspace using a database dump, as described below:
 4. Transfer the file to the new cluster and run
    `kong config db_import kong.yml`. This will load the data into the new cluster.
 5. Gradually divert traffic away from your old nodes, and into
-   your 2.5.x cluster. Monitor your traffic to make sure everything
+   your 2.7.x cluster. Monitor your traffic to make sure everything
    is going smoothly.
-6. When your traffic is fully migrated to the 2.6.x cluster,
+6. When your traffic is fully migrated to the 2.7.x cluster,
    decommission your old nodes.
 
-### Installing 2.6.x on a fresh datastore
+### Install 2.7.x on a fresh datastore
 
-For installing on a fresh datastore, {{site.ee_product_name}} 2.6.x has the
+For installing on a fresh datastore, {{site.ee_product_name}} 2.7.x has the
 `kong migrations bootstrap` command. Run the following commands to
-prepare a new 2.6.x cluster from a fresh datastore. By default, the `kong` CLI tool
+prepare a new 2.7.x cluster from a fresh datastore. By default, the `kong` CLI tool
 loads the configuration from `/etc/kong/kong.conf`, but you can optionally use
 the `-c` flag to indicate the path to your configuration file:
 

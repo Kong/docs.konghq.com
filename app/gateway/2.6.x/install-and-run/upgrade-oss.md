@@ -34,7 +34,7 @@ previous release, so you will need to rebuild them with the latest patches.
 The required OpenResty version for kong 2.6.x is
 [1.19.9.1](https://openresty.org/en/changelog-1019003.html). This is more recent
 than the version in Kong 2.5.0 (which used `1.19.3.2`). In addition to an upgraded
-OpenResty, you will need the correct [OpenResty patches](https://github.com/Kong/kong-build-tools/tree/master/openresty-build-tools/openresty-patches)
+OpenResty, you will need the correct [OpenResty patches](https://github.com/Kong/kong-build-tools/tree/master/openresty-patches)
 for this new version, including the latest release of [lua-kong-nginx-module](https://github.com/Kong/lua-kong-nginx-module).
 The [kong-build-tools](https://github.com/Kong/kong-build-tools)
 repository contains [openresty-build-tools](https://github.com/Kong/kong-build-tools/tree/master/openresty-build-tools),
@@ -93,7 +93,7 @@ which you can use to migrate legacy `apis` configurations.
 Once you migrated to 1.5.x, you can follow the instructions in the section
 below to migrate to 2.6.x.
 
-### Upgrade from `1.0.x` - `2.2.x` to `2.6.x`
+### Upgrade from `1.0.x` - `2.5.x` to `2.6.x`
 
 **Postgres**
 

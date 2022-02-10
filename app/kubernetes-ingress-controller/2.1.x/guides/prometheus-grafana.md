@@ -75,6 +75,9 @@ grafana:
         gnetId: 7424  # Install the following Grafana dashboard in the
         revision: 5   # instance: https://grafana.com/dashboards/7424
         datasource: Prometheus
+      kic-dash:
+        gnetId: 15662
+        datasource: Prometheus
   
 ```
 

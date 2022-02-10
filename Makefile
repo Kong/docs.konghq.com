@@ -24,18 +24,21 @@ build: install
 develop:
 	docker-compose up
 
-# Cleans up all docker-compose containers and all temp files in the build.
+# Cleans up all temp files in the build.
 # Run `make clean` locally whenever you're updating dependencies, or to help
 # troubleshoot build issues.
-# Used in build-test and check-links workflows.
 clean:
-	-docker-compose stop
-	-docker-compose rm -f
 	-rm -rf dist
 	-rm -rf app/.jekyll-cache
 	-rm yarn.lock
 	-rm -rf node_modules
 	-rm install
+
+# docker-clean is here for legacy purposes, in case we ever decide to fix our
+# docker-compose. These commands were previously part of `clean`.
+docker-clean:
+	-docker-compose stop
+	-docker-compose rm -f
 
 # Runs tests using the npm standard and echint linters.
 test: install
@@ -52,12 +55,3 @@ background-docker-up:
 # Starts a docker container in the background, then runs tests.
 docker-test: background-docker-up
 	docker-compose exec -T jekyll npm test
-
-# Brings up a docker container, runs jekyll build, and checks all internal links.
-check-links: background-docker-up
-	docker-compose exec -T jekyll yarn blc http://localhost:3000 -efr --exclude localhost:3000\/plugins --exclude kong-cloud --exclude localhost:3000\/2\.4\.x --exclude localhost:3000\/2\.3\.x --exclude localhost:3000\/2\.2\.x --exclude localhost:3000\/2\.1\.x --exclude localhost:3000\/2\.0\.x --exclude localhost:3000\/1\.5\.x --exclude localhost:3000\/1\.4\.x --exclude localhost:3000\/1\.3\.x --exclude localhost:3000\/1\.2\.x --exclude localhost:3000\/1\.1\.x --exclude localhost:3000\/1\.0\.x --exclude localhost:3000\/0\.15\.x --exclude localhost:3000\/0\.14\.x --exclude localhost:3000\/0\.13\.x --exclude localhost:3000\/0\.12\.x --exclude localhost:3000\/0\.11\.x --exclude localhost:3000\/0\.10\.x --exclude localhost:3000\/0\.9\.x --exclude localhost:3000\/0\.8\.x --exclude localhost:3000\/0\.7\.x --exclude localhost:3000\/0\.6\.x --exclude localhost:3000\/0\.5\.x --exclude localhost:3000\/0\.4\.x --exclude localhost:3000\/0\.3\.x --exclude localhost:3000\/0\.2\.x --exclude kubernetes-ingress-controller-beta
-
-# Checks all internal links in a running http://localhost:3000 instance. To use
-# this command, `make run` first, then `make check-links-local`.
-check-links-local:
-	yarn blc http://localhost:3000 -efr --exclude localhost:3000\/plugins	--exclude kong-cloud --exclude localhost:3000\/2\.4\.x --exclude localhost:3000\/2\.3\.x --exclude localhost:3000\/2\.2\.x --exclude localhost:3000\/2\.1\.x --exclude localhost:3000\/2\.0\.x --exclude localhost:3000\/1\.5\.x --exclude localhost:3000\/1\.4\.x --exclude localhost:3000\/1\.3\.x --exclude localhost:3000\/1\.2\.x --exclude localhost:3000\/1\.1\.x --exclude localhost:3000\/1\.0\.x --exclude localhost:3000\/0\.15\.x --exclude localhost:3000\/0\.14\.x --exclude localhost:3000\/0\.13\.x --exclude localhost:3000\/0\.12\.x --exclude localhost:3000\/0\.11\.x --exclude localhost:3000\/0\.10\.x --exclude localhost:3000\/0\.9\.x --exclude localhost:3000\/0\.8\.x --exclude localhost:3000\/0\.7\.x --exclude localhost:3000\/0\.6\.x --exclude localhost:3000\/0\.5\.x --exclude localhost:3000\/0\.4\.x --exclude localhost:3000\/0\.3\.x --exclude localhost:3000\/0\.2\.x --exclude kubernetes-ingress-controller-beta

@@ -624,6 +624,9 @@ Valid values to this setting are:
 - `pki`: use `cluster_ca_cert`, `cluster_server_name` and `cluster_cert` for
   verification. These are different certificates for each DP node, but issued by
   a cluster-wide common CA certificate: `cluster_ca_cert`.
+- `pki_check_cn`: similar to `pki`, but additionally
+   checks for the Common Name of the data plane certificate specified in
+   `cluster_allowed_common_names`.
 
 **Default:** `shared`
 
@@ -673,6 +676,18 @@ This field is ignored if `cluster_mtls` is set to `shared`.
 
 ---
 
+#### cluster_allowed_common_names
+
+The list of Common Names that are allowed to connect to the control plane. 
+Multiple entries may be supplied in a comma-separated string. When not
+set, only Data Planes with the same parent domain as the
+Control Plane cert are allowed to connect.
+
+This field is ignored if `cluster_mtls` is not set to `pki_check_cn`.
+
+**Default:** none
+
+---
 
 ### Hybrid Mode Data Plane section
 
@@ -817,6 +832,16 @@ Valid values to this setting are:
 
 ---
 
+#### cluster_max_payload
+
+This sets the maximum payload size allowed to be sent across from CP to DP in
+Hybrid mode.
+
+Default is 4Mb - 4 * 1024 * 1024 due to historical reasons.
+
+**Default:** `4194304`
+
+---
 
 ### NGINX section
 
@@ -1596,11 +1621,6 @@ When using a database, Kong will store data for all its entities (such as
 Routes, Services, Consumers, and Plugins) in a database, and
 all Kong nodes belonging to the same cluster must connect themselves to the same
 database.
-
-Kong supports the following database versions:
-
-- **PostgreSQL**: 9.5 and above.
-- **Cassandra**: 2.2 and above.
 
 When not using a database, Kong is said to be in "DB-less mode": it will keep
 its entities in memory, and each node needs to have this data entered via a

@@ -1,6 +1,6 @@
 - title: Introduction
   icon: /assets/images/icons/documentation/icn-flag.svg
-  url: /deck/
+  url: /deck/1.7.x/
   absolute_url: true
   items:
     - text: Terminology
@@ -40,7 +40,7 @@
       url: /guides/deduplicate-plugin-configuration
     - text: Using environment variables with decK
       url: /guides/environment-variables
-      
+
 - title: decK CLI Reference
   icon: /assets/images/icons/documentation/icn-references-color.svg
   url: /reference/deck

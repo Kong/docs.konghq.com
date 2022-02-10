@@ -27,7 +27,6 @@ kong_version_compatibility:
       - 0.36-x
 params:
   name: route-by-header
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true

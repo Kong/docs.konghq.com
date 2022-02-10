@@ -24,10 +24,6 @@ Plugin Hub docs have specialized front matter elements. See the
 : Disables the version selector dropdown. Set this on pages that belong to
 unversioned doc sets like `/konnect/`.
 
-`toc: false`
-: Disables the right-hand nav for the page; useful if the page is short and has
-one or no headers.
-
 `beta: true` or `alpha: true`
 : Labels the page as beta or alpha; adds a banner to the top of the page.
 
@@ -50,14 +46,14 @@ beta: true
 ---
 ```
 
-A Kong Gateway doc (with versions) that you don't want people to copy code from
-and has no headings, so you also want to disable the page nav:
+A Kong Gateway doc (with versions) that you don't want people to copy code from,
+and where you don't want any of the images to be expandable:
 
 ```yaml
 ---
 title: My Gateway API Doc
 class: no-copy-code
-toc: false
+disable_image_expand: true
 ---
 ```
 
@@ -263,6 +259,31 @@ Here's some more content.
 
 {% endnavtab %}
 {% endnavtabs %}
+
+You can automatically select a specific tab (or set of tabs) on a page using the `tab` URL parameter e.g. https://docs.konghq.com/gateway/2.7.x/get-started/comprehensive/protect-services/?tab=using-deck-yaml
+
+The value provided to `?tab` is the lowercase title of the navtab, with all non-alphanumeric characters removed and spaces replaced with `-`.
+
+Examples:
+
+* `Using Kong Manager` => `using-kong-manager`
+* `Using the Admin API` => `using-the-admin-api`
+* `Using decK (YAML)` => `using-deck-yaml`
+
+If you're unsure what value to use, view the page source and search for `data-slug` to see the generated slug.
+
+If there are multiple sets of tabs to enable, you may provide multiple tab names, separated by a comma:
+
+```
+?tab=using-the-admin-api,using-deck-yaml
+```
+
+This will activate the `Using the Admin API` tab, then the `Using decK (YAML)` tabs. The order may be important if you are reusing tab names across contexts. See `/gateway/2.7.x/get-started/comprehensive/protect-services/?tab=using-the-admin-api,using-deck-yaml` for an example.
+
+When using `?tab=` it *must* be before any URL fragments (`#`) in the URL:
+
+* ✅ /gateway/2.7.x/get-started/comprehensive/protect-services/?tab=using-deck-yaml#validate-rate-limiting
+* ❌ /gateway/2.7.x/get-started/comprehensive/protect-services/#validate-rate-limiting/?tab=using-deck-yaml
 
 ### Tabs for codeblocks
 
@@ -500,6 +521,7 @@ Badge | HTML tag | Markdown tag
 <span class="badge enterprise"></span> | `<span class="badge enterprise"></span>` | `{:.badge .enterprise}`
 <span class="badge dbless"></span> | `<span class="badge dbless"></span>` | `{:.badge .dbless}`
 <span class="badge beta"></span> | `<span class="badge beta"></span>` | `{:.badge .beta}`
+<span class="badge alpha"></span> | `<span class="badge alpha"></span>` | `{:.badge .alpha}`
 <span class="badge oss"></span> | `<span class="badge oss"></span>` | `{:.badge .oss}`
 
 For example, you can use the Markdown tag on headers:

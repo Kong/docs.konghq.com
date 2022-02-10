@@ -76,11 +76,11 @@ Assign the new **Admin** at least one **Role** so they can log in and access
 Kong entities.
 
 ```bash
-$ http POST :8001/admins/<admin_email>/roles roles="<role-name>"
+$ http POST :8001/admins/<admin_email>/roles roles="<role-name>" Kong-Admin-Token:<RBAC_TOKEN>
 ```
 
 For example, if we wanted to grant **hal9000@sky.net** the **Role** of **Super Admin**:
 
 ```bash
-$ http POST :8001/admins/hal9000@sky.net/roles roles="super-admin"
+$ http POST :8001/admins/hal9000@sky.net/roles roles="super-admin" Kong-Admin-Token:<RBAC_TOKEN>
 ```

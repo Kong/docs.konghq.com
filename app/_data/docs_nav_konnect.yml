@@ -27,6 +27,8 @@
           url: /org-management/users-and-roles
         - text: Set up SSO with Okta
           url: /org-management/okta-idp
+    - text: Account and Org Deactivation
+      url: /org-management/deactivation
 
 - title: Release Notes
   icon: /assets/images/icons/documentation/icn-references-color.svg
@@ -124,10 +126,12 @@
           url: /dev-portal/applications/dev-gen-creds
     - text: Customization
       items:
-        - text: Customization Overview
-          url: /dev-portal/customization/customization-overview
+        - text: Appearance
+          url: /dev-portal/customization/appearance
         - text: Public Portal
           url: /dev-portal/customization/public-portal
+        - text: Add a Custom Domain
+          url: /dev-portal/customization/custom-domain
 
 - title: Konnect Vitals
   icon: /assets/images/icons/documentation/icn-vitals.svg

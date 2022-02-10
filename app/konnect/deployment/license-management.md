@@ -1,7 +1,6 @@
 ---
 title: License Management in Konnect Cloud
 no_version: true
-toc: false
 ---
 
 When you create a {{site.konnect_saas}} account, a license is

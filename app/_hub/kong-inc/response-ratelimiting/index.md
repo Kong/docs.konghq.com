@@ -58,7 +58,6 @@ kong_version_compatibility:
       - 0.36-x
 params:
   name: response-ratelimiting
-  api_id: false
   service_id: true
   route_id: true
   consumer_id: true
@@ -186,7 +185,7 @@ Because `X-Kong-Limit` is the default header name (you can optionally change it)
 the request looks like:
 
 ```bash
-$ curl -v -H 'X-Kong-Limit: limitname1=2, limitname2=4'
+curl -v -H 'X-Kong-Limit: limitname1=2, limitname2=4'
 ```
 
 The above example increments the limit `limitname1` by 2 units, and `limitname2` by 4 units.
@@ -232,7 +231,5 @@ X-RateLimit-Remaining-Videos: 3
 X-RateLimit-Remaining-Images: 0
 ```
 
-[api-object]: /gateway/latest/admin-api/#api-object
 [configuration]: /gateway/latest/reference/configuration
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
-
