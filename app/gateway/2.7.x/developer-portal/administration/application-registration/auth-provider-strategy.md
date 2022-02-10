@@ -3,7 +3,6 @@ title: Authorization Provider Strategy for Application Registration
 badge: enterprise
 ---
 
-{{site.ee_product_name}} supports adding the Key Authentication plugin to use with Kong as the system of record.
 
 ## Supported Authentication Plugins
 

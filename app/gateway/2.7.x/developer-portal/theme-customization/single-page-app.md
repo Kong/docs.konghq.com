@@ -76,7 +76,7 @@ For this example, place the angular build inside a `workspaces/default/themes/as
 
 ### Mounting an SPA
 
-In order to load our js we need to mount the JS, to do this let's create a new layout page, for this example, call it `spa.html`.
+To load our JS, we need to mount it. Let's create a new layout page. 
 
 Create a file called `spa.html` in `workspaces/default/themes/layouts`.
 
