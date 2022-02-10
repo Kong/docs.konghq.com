@@ -19,7 +19,7 @@ document for more information.
 > **Note**: The Dev Portal does not automatically create developer accounts on login via OIDC.
 A developer account matching the `consumer_claim` configuration parameter has to be
 created and approved (if auto approve is not enabled) beforehand. 
-> 
+> <br><br>
 > During the registration flow, users must enter their login information in their 
 IDP-redirected login page. The user is then brought to the Dev Portal 
 registration page and their email is pre-populated in the registration form. 
