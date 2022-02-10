@@ -390,37 +390,86 @@ follow the instructions to:
 1. Bring up your Data Plane container with the following settings:
 
     For `shared` certificate mode, use:
-    ```bash
-    docker run -d --name kong-ee-dp1 --network=kong-ee-net \
-    -e "KONG_ROLE=data_plane" \
-    -e "KONG_DATABASE=off" \
-    -e "KONG_PROXY_LISTEN=0.0.0.0:8000" \
-    -e "KONG_CLUSTER_CONTROL_PLANE=control-plane.<admin-hostname>.com:8005" \
-    -e "KONG_CLUSTER_TELEMETRY_ENDPOINT=control-plane.<admin-hostname>.com:8006" \
-    -e "KONG_CLUSTER_CERT=/<path-to-file>/cluster.crt" \
-    -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/cluster.key" \
-    --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
-    -p 8000:8000 \
-    kong-ee-dp1
-    ```
+
+{% capture shared-mode-cp %}
+{% navtabs codeblock %}
+{% navtab Kong Gateway %}
+```bash
+docker run -d --name kong-dp --network=kong-net \
+-e "KONG_ROLE=data_plane" \
+-e "KONG_DATABASE=off" \
+-e "KONG_PROXY_LISTEN=0.0.0.0:8000" \
+-e "KONG_CLUSTER_CONTROL_PLANE=control-plane.<admin-hostname>.com:8005" \
+-e "KONG_CLUSTER_TELEMETRY_ENDPOINT=control-plane.<admin-hostname>.com:8006" \
+-e "KONG_CLUSTER_CERT=/<path-to-file>/cluster.crt" \
+-e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/cluster.key" \
+--mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
+-p 8000:8000 \
+kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```bash
+docker run -d --name kong-dp --network=kong-net \
+-e "KONG_ROLE=data_plane" \
+-e "KONG_DATABASE=off" \
+-e "KONG_PROXY_LISTEN=0.0.0.0:8000" \
+-e "KONG_CLUSTER_CONTROL_PLANE=control-plane.<admin-hostname>.com:8005" \
+-e "KONG_CLUSTER_TELEMETRY_ENDPOINT=control-plane.<admin-hostname>.com:8006" \
+-e "KONG_CLUSTER_CERT=/<path-to-file>/cluster.crt" \
+-e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/cluster.key" \
+--mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
+-p 8000:8000 \
+kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ shared-mode-cp | indent | replace: " </code>", "</code>" }}
 
     For `pki` certificate mode, use:
-    ```bash
-    docker run -d --name kong-ee-dp1 --network=kong-ee-net \
-    -e "KONG_ROLE=data_plane" \
-    -e "KONG_DATABASE=off" \
-    -e "KONG_PROXY_LISTEN=0.0.0.0:8000" \
-    -e "KONG_CLUSTER_CONTROL_PLANE=control-plane.<admin-hostname>.com:8005" \
-    -e "KONG_CLUSTER_TELEMETRY_ENDPOINT=control-plane.<admin-hostname>.com:8006" \
-    -e "KONG_CLUSTER_MTLS=pki" \
-    -e "KONG_CLUSTER_SERVER_NAME=control-plane.kong.yourcorp.tld" \
-    -e "KONG_CLUSTER_CERT=data-plane.crt" \
-    -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/data-plane.crt" \
-    -e "KONG_CLUSTER_CA_CERT=/<path-to-file>/ca-cert.pem" \
-    --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
-    -p 8000:8000 \
-    kong-ee-dp1
-    ```
+
+{% capture pki-mode-cp %}
+{% navtabs codeblock %}
+{% navtab Kong Gateway %}
+```bash
+docker run -d --name kong-dp --network=kong-net \
+-e "KONG_ROLE=data_plane" \
+-e "KONG_DATABASE=off" \
+-e "KONG_PROXY_LISTEN=0.0.0.0:8000" \
+-e "KONG_CLUSTER_CONTROL_PLANE=control-plane.<admin-hostname>.com:8005" \
+-e "KONG_CLUSTER_TELEMETRY_ENDPOINT=control-plane.<admin-hostname>.com:8006" \
+-e "KONG_CLUSTER_MTLS=pki" \
+-e "KONG_CLUSTER_SERVER_NAME=control-plane.kong.yourcorp.tld" \
+-e "KONG_CLUSTER_CERT=data-plane.crt" \
+-e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/data-plane.crt" \
+-e "KONG_CLUSTER_CA_CERT=/<path-to-file>/ca-cert.pem" \
+--mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
+-p 8000:8000 \
+kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```bash
+docker run -d --name kong-dp --network=kong-net \
+-e "KONG_ROLE=data_plane" \
+-e "KONG_DATABASE=off" \
+-e "KONG_PROXY_LISTEN=0.0.0.0:8000" \
+-e "KONG_CLUSTER_CONTROL_PLANE=control-plane.<admin-hostname>.com:8005" \
+-e "KONG_CLUSTER_TELEMETRY_ENDPOINT=control-plane.<admin-hostname>.com:8006" \
+-e "KONG_CLUSTER_MTLS=pki" \
+-e "KONG_CLUSTER_SERVER_NAME=control-plane.kong.yourcorp.tld" \
+-e "KONG_CLUSTER_CERT=data-plane.crt" \
+-e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/data-plane.crt" \
+-e "KONG_CLUSTER_CA_CERT=/<path-to-file>/ca-cert.pem" \
+--mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
+-p 8000:8000 \
+kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ pki-mode-cp | indent | replace: " </code>", "</code>" }}
 
     Where:
 

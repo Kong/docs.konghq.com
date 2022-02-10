@@ -12,7 +12,6 @@ improves rendering significantly, especially for tables.
 
 ## Prerequisites
 
-* {{site.base_gateway}} 2.1 or later
 * Access to Kong Manager
 * The Developer Portal is enabled and running
 
