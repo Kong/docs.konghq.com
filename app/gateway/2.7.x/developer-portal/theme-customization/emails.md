@@ -15,14 +15,12 @@ For existing non-legacy Portals, editable email templates must be loaded manuall
 Email-specific values are templated in tokens that work similarly to templating in portal layouts and partials.
 Not all tokens are supported on all emails.
 
-
 ## Prerequisites
 
 * The Kong Developer Portal is not running in **Legacy Mode**
 * The Kong Developer Portal is enabled and running
 * [The emails you want are enabled in kong](/gateway/{{page.kong_version}}/developer-portal/configuration/smtp/#portal_invite_email)
 * If using CLI tool, kong-portal-cli tool 1.1 or later is installed locally and git installed
-
 
 ## Understanding Email Files
 
@@ -68,7 +66,6 @@ The body of the email is HTML content. You can reference the tokens allowed for 
 |emails/account-verification-pending.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}`	              |`{{portal.url}}`	                                                    |email sent to developer when portal_email_verification is on and developer has verified email and developer has yet to be approved by admin (basic-auth only)	|
 {% endraw %}
 
-
 ## Token Descriptions
 
 {% raw %}
@@ -86,7 +83,6 @@ The body of the email is HTML content. You can reference the tokens allowed for 
 |`{{email.token}}`	|Can be used in combination with `{{portal.url}}` to manually build url string for password reset and account verification/invalidation. **Not recommended for use**, unless custom path for password reset or account verification has been set.	|
 {% endraw %}
 
-
 ## Editing Email Templates
 
 The default email templates will be automatically loaded into the Kong Developer Portal's file system when the Dev Portal is activated. These templates can now be edited in Kong Manager via the **Portal Editor** or via the **Portal CLI** tool.
@@ -99,9 +95,7 @@ Email templates can now be edited in the Portal Editor along with the rest of th
 1. Log into Kong Manager and navigate to the Workspace whose Dev Portal you wish to edit.
 2. Select the **Editor** from the sidebar under **Dev Portal**.
 
-The email templates can be found under the **Emails** section in the Portal Editor sidebar:
-
-![Portal Editor - Emails](https://doc-assets.konghq.com/1.3/dev-portal/editor/dev-portal-emails.png)
+The email templates can be found under the **Emails** section in the Portal Editor sidebar.
 
 ### Editing via the Portal CLI Tool
 
@@ -109,7 +103,6 @@ The email templates can be found under the **Emails** section in the Portal Edit
 2. If you have any customizations or permissions changes that you want to keep:
     Run `portal fetch <workspacename>` This will pull in your modifications locally.
 3.  After making any changes, `portal deploy <workspacename>` to deploy all files.
-
 
 ## Editing Email Appearance
 
@@ -143,7 +136,6 @@ The default email layout looks like:
 ```
 {% endraw %}
 
-
 The `img` tag loads the logo that can be set in the appearance tab in the manager. If you do not want to display a logo, remove the `<img>` tag. If you want to set different sizing for your logo, you can change the inline style attribute.
 
 > Note: Logo will not render for many email clients that pre-fetch images if portal is not set to be accessible from a public url (for example if you are testing the Portal with a localhost)
@@ -151,7 +143,6 @@ The `img` tag loads the logo that can be set in the appearance tab in the manage
 By modifying the html of this file, you can change the appearance of your emails. For example if you wanted to add a footer that would show on all emails, add it under the `<p>` tag
 
 Be sure to keep in mind the html support limitations of the email clients you plan to support.
-
 
 ## Loading Email Templates on Existing Dev Portals
 

@@ -11,9 +11,7 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 Follow these steps to set up an authorization server in Okta for all authorization types.
 
 1. Sign in to the [Developer Okta site](https://developer.okta.com/).
-2. Click **API > Authorization Servers**.
-
-   ![Okta Authorization Server](/assets/images/docs/dev-portal/okta-api-auth-server.png)
+1. Click **Security > API > Authorization Servers**.
 
    Notice that you already have an authorization server set up named `default`.
    This example uses the default auth server. You can also create as many
@@ -21,27 +19,21 @@ Follow these steps to set up an authorization server in Okta for all authorizati
    more information, refer to the
    [Okta developer documentation](https://developer.okta.com/docs/guides/customize-authz-server/overview/).
 
-3. Click **default** to view the details for the default auth server. Take note
+2. Click **default** to view the details for the default auth server. Take note
 of the `Issuer` URL, which you will use to associate Kong with your authorization server.
 
-   ![Okta Issuer URL](/assets/images/docs/dev-portal/okta-auth-server-issuer-url.png)
+1. Click the **Claims** tab.
 
-4. Click the **Claims** tab.
-
-   ![Okta Issuer URL](/assets/images/docs/dev-portal/okta-auth-server-claims.png)
-
-5. Click **Add Claim**. Add a custom claim called `application_id` that will attach any successfully authenticated application's `id` to the access token.
+2. Click **Add Claim**. Add a custom claim called `application_id` that will attach any successfully authenticated application's `id` to the access token.
     1. Enter `application_id` in the **Name** field.
     2. Ensure the `Include in token type` selection is **Access Token**.
     3. Enter `app.clientId` in the **Value** field.
     4. Click **Create**.
 
-   ![Okta Claim](/assets/images/docs/dev-portal/okta-add-claim.png)
-
     Now that you have created a custom claim, you can associate the `client_id`
     with a Service via the Application Registration plugin. Start by creating a Service in Kong Manager.
 
-7. Create a Service and a Route and instantiate an OIDC plugin on that Service.
+3. Create a Service and a Route and instantiate an OIDC plugin on that Service.
    You can allow most options to use their defaults.
 
    1. In the `Config.Issuer` field, enter the Issuer URL of the Authorization server from your identity provider.
@@ -58,7 +50,7 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
 
    The core configuration should be:
 
-   ```
+   ```json
    {
      "issuer": "<auth_server_issuer_url>",
      "verify_credentials": false,
@@ -67,7 +59,7 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
 
    ```
 
-8. Configure a Portal Application Registration plugin on the Service as well. See
+4. Configure a Portal Application Registration plugin on the Service as well. See
 [Application Registration](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration#config-app-reg-plugin).
 
 ## Register an application in Okta
@@ -76,17 +68,13 @@ Follow these steps to register an application in Okta and associate the Okta
 application with an application in the Kong Dev Portal.
 
 1. Sign in to the [Developer Okta site](https://developer.okta.com/).
-2. Click **Applications** > **+ Add Application**.
+2. Click **Applications** > **Applications**.
 3. Depending on which authentication flow you want to implement, the setup of
 your Okta application will vary:
 
-    - **Client Credentials**: Select `Machine-to-Machine` when prompted for an application type.
-
-     ![Okta Create New Application](/assets/images/docs/dev-portal/okta-client-creds-app.png)
+    - **Create a new app integration**: Select `API Services` when prompted for an application type. In the **New API Services App Integration** modal, enter your app integration name.
 
     You will need your `client_id` and `client_secret` later on when you [authenticate with the proxy](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth#cc-flow).
-
-    ![Okta Client Credentials](/assets/images/docs/dev-portal/okta-client-id-secret.png)
 
     - **Implicit Grant**: Select `Single-Page App`, `Native`, or `Web` when
   prompted for an application type. Make sure `Implicit` is selected for
