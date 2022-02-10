@@ -116,7 +116,7 @@ overwriting your current state file, specify a different filename:
     deck dump -o kong-test.yaml
     ```
 
-    Even though `deck diff` didn't show any changes, the result has now has
+    Even though `deck diff` didn't show any changes, the result now has
     default values populated:
 
     ```yaml
@@ -156,7 +156,13 @@ You can set custom configuration defaults for the following core
 - Target
 
 Default values get applied to both new and existing objects. See the
-[order of precedence](#precedence) for more detail on how they get applied.
+[order of precedence](#value-order-of-precedence) for more detail on how they
+get applied.
+
+You can choose to define custom default values for any subset of entity fields,
+or define all of them. decK still finds the default values using on a
+combination of your defined fields and the object's schema, based on the
+order of precedence.
 
 decK supports setting custom object defaults both in self-managed
 {{site.base_gateway}} and with {{site.konnect_saas}}.
@@ -190,12 +196,32 @@ configuration would overwrite the value in your environment.
     or use [tags](/deck/{{page.kong_version}}/guides/distributed-configuration)
     to apply the defaults wherever they are needed.
 
-2. Define the properties you want to set for {{site.base_gateway}} objects.
+1. Define the properties you want to set for {{site.base_gateway}} objects.
 
     You can define custom defaults for `service`, `route`, `upstream`, and
     `target` objects.
 
-    For example:
+    For example, you could define default values for a few fields of the
+    Service object:
+
+    ```yaml
+    _format_version: "0.1"
+    _info:
+      defaults:
+        service:
+          port: 8080
+          protocol: https
+          retries: 10
+    services:
+      - host: mockbin.org
+        name: example_service
+        routes:
+          - name: mockpath
+            paths:
+              - /mock
+    ```
+
+    Or you could define custom default values for all available fields:
 
     ```yaml
     _format_version: "0.1"
@@ -213,12 +239,12 @@ configuration would overwrite the value in your environment.
           response_buffering: true
           strip_path: true
         service:
-          port: 80
-          protocol: http
+          port: 8080
+          protocol: https
           connect_timeout: 60000
           write_timeout: 60000
           read_timeout: 60000
-          retries: 5
+          retries: 10
     services:
       - host: mockbin.org
         name: example_service
@@ -228,11 +254,18 @@ configuration would overwrite the value in your environment.
               - /mock
     ```
 
-3. Save the file and run a diff:
+1. Sync your changes with {{site.base_gateway}}:
 
-{{ deck_diff2 | indent | replace: " </code>", "</code>" }}
+    ```sh
+    deck sync
+    ```
 
-    Notice that the diff doesn't show extra changes.
+1.  Run a diff and note the response:
+
+{{ deck_diff2 | indent | replace: "    </code>", "</code>" }}
+
+    Whether you choose to define a subset of custom defaults or all available
+    options, the result is the same: the diff doesn't show any changes.
 
 ## Find defaults for an object
 
