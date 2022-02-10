@@ -14,7 +14,7 @@
           {% elsif include.edition == 'deck' %}decK
           {% elsif include.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
           {% elsif include.edition == 'gateway-oss' %}{{site.ce_product_name}}
-          {% elsif page.edition == 'gateway' %}{{site.base_gateway}}
+          {% elsif include.edition == 'gateway' %}{{site.base_gateway}}
           {% elsif include.edition == 'getting-started-guide' %}Get Started with Kong Gateway
           {% elsif include.edition == 'contributing' %}Contribution guidelines
           {% endif %}
@@ -33,10 +33,7 @@
           <a href="/mesh/" {% if include.edition == 'mesh' %}class="active"{% endif %}>Kong Mesh</a>
         </li>
         <li role="menuitem" tabindex="-1">
-          <a href="https://kuma.io/docs/" target="_blank">Kuma</a>
-        </li>
-        <li>
-          <a href="https://support.insomnia.rest/" target="_blank">Insomnia</a>
+          <a href="/hub/">Plugin Hub</a>
         </li>
         <li role="menuitem" tabindex="-1" {% if include.edition == 'deck' %} class="active"{% endif %}>
           <a href="/deck/" {% if include.edition == 'deck' %}class="active"{% endif %}>decK</a>
@@ -44,11 +41,11 @@
         <li role="menuitem" tabindex="-1" {% if include.edition == 'kubernetes-ingress-controller' %} class="active"{% endif %}" >
           <a href="/kubernetes-ingress-controller/" {% if include.edition == 'kubernetes-ingress-controller' %}class="active"{% endif %}>Kubernetes Ingress Controller</a>
         </li>
-        <li role="menuitem" tabindex="-1">
-          <a href="/hub/">Plugin Hub</a>
-        </li>
         <li>
           <a href="https://docs.insomnia.rest/" target="_blank">Insomnia</a>
+        </li>
+        <li role="menuitem" tabindex="-1">
+          <a href="https://kuma.io/docs/" target="_blank">Kuma</a>
         </li>
         <hr>
         <li role="menuitem" tabindex="-1" {% if include.edition == 'konnect_platform' %} class="active"{% endif %}>
@@ -65,8 +62,8 @@
     <div class="versions-dropdown dropdown">
       <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">
         <span>
-          Version {{page.kong_version}}
-          {% if page.kong_version == page.kong_latest.release and page.edition != 'gateway-oss' and page.edition != 'enterprise' and page.edition != 'getting-started-guide' %}
+          Version {{include.kong_version}}
+          {% if include.kong_version == include.kong_latest.release and include.edition != 'gateway-oss' and include.edition != 'enterprise' and include.edition != 'getting-started-guide' %}
             <span>(latest)</span>
           {% endif %}
         </span>
@@ -84,12 +81,12 @@
           {% assign version_page_url = include.url | replace: include.kong_version, ver.release %}
           {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}
         <li {% if include.kong_version==ver.release %}class="active" {% endif %} role="menuitem" tabindex="-1">
-          <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if include.edition == 'gateway-oss' %}gateway-oss/{% endif %}{% if include.edition == 'enterprise' %}enterprise/{% endif %}{% if page.edition == 'gateway' %}gateway/{% endif %}{% if include.edition == 'mesh' %}mesh/{% endif %}{% if include.edition == 'kubernetes-ingress-controller' %}kubernetes-ingress-controller/{% endif %}{% if include.edition == 'contributing' %}contributing/{% endif %}{% if include.edition == 'deck' %}deck/{% endif %}{{ver.release}}{% endif %}"
+          <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if include.edition == 'gateway-oss' %}gateway-oss/{% endif %}{% if include.edition == 'enterprise' %}enterprise/{% endif %}{% if include.edition == 'gateway' %}gateway/{% endif %}{% if include.edition == 'mesh' %}mesh/{% endif %}{% if include.edition == 'kubernetes-ingress-controller' %}kubernetes-ingress-controller/{% endif %}{% if include.edition == 'contributing' %}contributing/{% endif %}{% if include.edition == 'deck' %}deck/{% endif %}{{ver.release}}{% endif %}"
             {% if ver.release==include.kong_version %} class="active" {% endif %}
             data-version-id="{{ver.release}}"
           >
             {{ver.release}}
-            {% if ver.release == page.kong_latest.release and include.edition != 'enterprise' and include.edition != 'gateway-oss' and page.edition != 'getting-started-guide' %} <em>(latest)</em>
+            {% if ver.release == include.kong_latest.release and include.edition != 'enterprise' and include.edition != 'gateway-oss' and include.edition != 'getting-started-guide' %} <em>(latest)</em>
             {% endif %}
           </a>
         </li>
@@ -135,8 +132,8 @@
   {% assign docs_url = '/deck/' | append: include.kong_version %}
   {% elsif include.edition == 'gateway-oss' %}
   {% assign docs_url = '/gateway-oss/' | append: include.kong_version %}
-  {% elsif page.edition == 'gateway' %}
-  {% assign docs_url = '/gateway/' | append: page.kong_version %}
+  {% elsif include.edition == 'gateway' %}
+  {% assign docs_url = '/gateway/' | append: include.kong_version %}
   {% elsif include.edition == 'contributing' %}
   {% assign docs_url = '/contributing' %}
   {% endif %}
@@ -144,7 +141,7 @@
   <ul class="accordion-container">
     <input id="accordion-opened" type="text" />
     {% for nav in include.nav_items %}
-    {% include docs-sidebar-item.html id=forloop.index docs_url=docs_url items=nav.items url=nav.url absolute_url=nav.absolute_url target=item.target icon=nav.icon title=nav.title %}
+    {% include_cached docs-sidebar-item.html id=forloop.index docs_url=docs_url items=nav.items url=nav.url absolute_url=nav.absolute_url target=item.target icon=nav.icon title=nav.title %}
     {% endfor %}
   </ul>
 </aside>

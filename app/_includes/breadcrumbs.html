@@ -1,11 +1,9 @@
 <div id="breadcrumbs">
   {% assign crumbs = include.dir | split: '/' %}
   <ul class="breadcrumbs">
-    {% if include.no_version == false or include.has_version == true %}
       <i class="sidebar-toggle"></i>
-    {% endif %}
     <li class="breadcrumb-item">
-      {% if include.edition =='enterprise' or include.edition =='konnect' or include.edition =='konnect-platform' or include.edition == 'mesh' or page.edition == 'gateway' %}
+      {% if include.edition =='enterprise' or include.edition =='konnect' or include.edition =='konnect-platform' or include.edition == 'mesh' or include.edition == 'gateway' %}
         Kong Konnect Platform
       {% elsif include.edition == 'contributing' %}
         Contribute to the docs
@@ -21,7 +19,7 @@
       {% elsif include.edition == 'deck' %}<a href="/deck/">decK</a>
       {% elsif include.edition == 'kubernetes-ingress-controller' %}<a href="/kubernetes-ingress-controller/{{include.kong_version}}/">{{site.kic_product_name}}</a>
       {% elsif include.edition == 'gateway-oss' %}<a href="/gateway-oss/{{include.kong_version}}/">{{site.ce_product_name}}</a>
-      {% elsif page.edition == 'gateway' %}<a href="/gateway/{{page.kong_version}}/">{{site.base_gateway}}</a>
+      {% elsif include.edition == 'gateway' %}<a href="/gateway/{{include.kong_version}}/">{{site.base_gateway}}</a>
       {% elsif include.edition == 'getting-started-guide' %}<a href="/getting-started-guide/{{include.kong_version}}/overview">Get Started with Kong Gateway</a>
       {% elsif include.edition == 'contributing' %}<a href="/contributing/">Style guide and contribution guidelines</a>
       {% endif %}

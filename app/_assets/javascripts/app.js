@@ -32,6 +32,19 @@ jQuery(function () {
     activeNav.parents(".accordion-item").addClass("active");
   };
 
+  // Open active sidebar section in left nav
+  $(".docs-sidebar a.active, li.accordion-item.active").each(function (
+    index,
+    a
+  ) {
+    $(a)
+      .parents("li.accordion-item")
+      .each(function (index, item) {
+        $(item).addClass("active");
+        $(item).find("> input").prop("checked", true);
+      });
+  });
+
 // Function to close menus on pressing the "Escape" key
   function closeDropdownOnEscape () {
     if (event.key === 'Escape') {
@@ -48,6 +61,7 @@ jQuery(function () {
     e.stopPropagation();
 
     $('#module-list').toggleClass('open');
+    $('#version-list').removeClass('open');
 
     $(document).one('click', function closeMenu(e) {
       if ($('#module-list').has(e.target).length === 0) {
@@ -100,6 +114,7 @@ jQuery(function () {
     e.stopPropagation();
 
     $('#version-list').toggleClass('open');
+    $('#module-list').removeClass('open');
 
     $(document).one('click', function closeMenu(e) {
       if ($('#version-list').has(e.target).length === 0) {
@@ -453,7 +468,38 @@ $("a[data-filter]").on("keypress", function(e) {
   const navtabs = $("div[data-navtab-id]");
 
   navtabs.on("click", function () {
-    const navtabTitle = $(this);
+     activateNavTab($(this))
+  });
+
+  navtabs.on("keypress", function(e) {
+    if (e.keyCode === 13) {
+      activateNavTab($(this))
+    }
+  });
+
+  function activateNavTab(navtabTitle) {
+    // Toggle all nav tabs that match this title
+    const text = navtabTitle.text();
+    const search = $(".navtab-title").filter(function () {
+      return $(this).text().toLowerCase().indexOf(text.toLowerCase()) >= 0;
+    }).each(function(k,v){
+      activateSingleNavTab($(v));
+    });
+
+    const elementTop = navtabTitle.offset().top;
+    const elementBottom = elementTop + navtabTitle.outerHeight();
+    const screenTop = $(window).scrollTop();
+    const screenBottom = $(window).scrollTop() + $(window).innerHeight();
+
+    // If the element isn't on screen, scroll to it
+    if (elementBottom < screenTop || elementTop > screenBottom){
+        $([document.documentElement, document.body]).animate({
+          scrollTop: elementTop - 120
+      }, 0);
+    }
+  }
+
+  function activateSingleNavTab(navtabTitle){
     const navtabID = navtabTitle.data("navtab-id");
     const navtabContent = $(`div[data-navtab-content='${navtabID}']`);
 
@@ -466,31 +512,36 @@ $("a[data-filter]").on("keypress", function(e) {
     navtabTitle.addClass("active");
     navtabContent.siblings().css("display", "none");
     navtabContent.css("display", "block");
-  });
-
-  navtabs.on("keypress", function(e) {
-    const navtabTitle = $(this);
-    const navtabID = navtabTitle.data("navtab-id");
-    const navtabContent = $(`div[data-navtab-content='${navtabID}']`);
-
-    if (e.keyCode === 13) {
-      navtabTitle.siblings().removeClass("active");
-      navtabTitle.addClass("active");
-      navtabContent.siblings().css("display", "none");
-      navtabContent.css("display", "block");
-    }
-  });
+  }
 
   // set first navtab as active
+  // This MUST happen before setting navtab via URL as there may be
+  // a mix of tabs on a page e.g. use-admin-api/use-deck and curl/httpie
   $(".navtabs").each(function (index, navtabs) {
     $(navtabs).find("div[data-navtab-content]").css("display", "none");
-
     const navtabsTabs = $(navtabs).find("div[data-navtab-id]");
     navtabsTabs.first().addClass("active");
     $(
       `div[data-navtab-content='${navtabsTabs.first().data("navtab-id")}']`
     ).css("display", "block");
   });
+
+
+  // Ability to set NavTab via URL
+  const getParams = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+
+  if (getParams.tab) {
+    const matches = decodeURI(getParams.tab).toLowerCase().split(",");
+    for (const i in matches){
+      const navTab = $(".navtab-title[data-slug='"+matches[i]+"']").first();
+      if (navTab.length){
+        activateNavTab(navTab);
+      }
+    }
+  }
+
 
   /**
    * Expandable images
@@ -504,7 +555,6 @@ $("a[data-filter]").on("keypress", function(e) {
    * To disable for whole page you can add 'disable_image_expand: true' to page Front Matter block. Example:
    * ---
    * title: Install Kong Enterprise
-   * toc: false
    * disable_image_expand: true
    * ---
    */
@@ -636,54 +686,6 @@ $("a[data-filter]").on("keypress", function(e) {
     editionSwitch.addClass(edition);
   }
 });
-
-jQuery(function () {
-  var closed = localStorage.getItem("closebanner-hackathon");
-  if (
-    closed !== "closebanner"
-  ) {
-    $(".navbar-v2").removeClass("closed");
-    $("body").addClass("banner");
-  } else {
-    $(".navbar-v2").addClass("closed");
-    $("body").removeClass("banner");
-  }
-
-  // open docs sidebar items
-  $(".docs-sidebar a.active, li.accordion-item.active").each(function (
-    index,
-    a
-  ) {
-    $(a)
-      .parents("li.accordion-item")
-      .each(function (index, item) {
-        $(item).addClass("active");
-        $(item).find("> input").prop("checked", true);
-      });
-  });
-});
-
-var scrolling = false;
-$(document).on("scroll", function () {
-  scrolling = true;
-});
-
-setInterval(function () {
-  if (scrolling) {
-    scrolling = false;
-    if ($(document).scrollTop() < 85) {
-      $(".navbar-v2").removeClass("compress");
-    } else {
-      $(".navbar-v2").addClass("compress");
-    }
-  }
-}, 10);
-
-$(".closebanner").on("click", function () {
-  $(".navbar-v2").addClass("closed");
-  localStorage.setItem("closebanner-hackathon", "closebanner");
-});
-
 
 // Tooltips for badges
 jQuery(function () {

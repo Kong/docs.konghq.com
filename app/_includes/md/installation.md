@@ -57,7 +57,7 @@ to `off` and the `declarative_config` option to the path of your `kong.yml` file
 as `root` and the worker processes as `kong` by default.
 If this is not the desired behavior, you can switch the NGINX master process to run on the built-in
 `kong` user or to a custom non-root user before starting Kong. For more
-information, see [Running Kong as a Non-Root User](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user).
+information, see [Running Kong as a Non-Root User](/gateway/{{include.kong_version}}/plan-and-deploy/kong-user).
 
 1. Start {{site.base_gateway}}:
     ```bash

@@ -20,7 +20,6 @@ kong_version_compatibility:
 
 params:
   name: forward-proxy
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true

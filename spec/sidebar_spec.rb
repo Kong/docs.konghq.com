@@ -1,4 +1,22 @@
 describe "sidebar", type: :feature, js: true do
+
+  describe "Module Switcher", type: :feature, js: true do
+    it "has the same products, in the same order as the top 'Docs' dropdown" do
+      visit "/gateway/"
+
+      sidebarUrls = page.all('#module-list a', minimum: 1, visible: false).map do |link|
+        { link.text(:all) => link[:href] }
+      end.reduce({}, :merge)
+
+      topNavUrls = page.all('#top-module-list .navbar-item-submenu a', minimum: 1, visible: false).map do |link|
+        { link.text(:all) => link[:href] }
+      end.reduce({}, :merge)
+
+      expect(sidebarUrls).to eql(topNavUrls)
+    end
+  end
+
+
   describe "Version Switcher", type: :feature, js: true do
     it "links to the same page if it exists in previous versions" do
       visit "/enterprise/2.5.x/deployment/installation/docker/"
@@ -18,10 +36,10 @@ describe "sidebar", type: :feature, js: true do
   describe "Outdated version documentation", type: :feature, js: true do
 
     # If the test is failing, make sure this is the latest version
-    latest_version = "2.6.x"
+    latest_version = "2.7.x"
     # Different option for a latest version, as gateway is split as of 2.6.x
     # and doesn't work in this way
-    latest_version_deck = "1.8.x"
+    latest_version_deck = "1.10.x"
 
     it "does not show on the latest version" do
       visit "/gateway/#{latest_version}/install-and-run/rhel/"

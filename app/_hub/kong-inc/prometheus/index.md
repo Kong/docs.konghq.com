@@ -14,30 +14,11 @@ kong_version_compatibility:
       - 2.7.x
       - 2.6.x
       - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
-      - 0.14.x
   enterprise_edition:
     compatible:
       - 2.7.x
       - 2.6.x
       - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
 params:
   name: prometheus
   service_id: true
@@ -64,26 +45,21 @@ params:
         exported metrics.
 ---
 
-### New in 1.4.x
-
-* New `data_plane_cluster_cert_expiry_timestamp` metric
-* Added `subsystem` label to Upstream Target health metrics
-
-Metrics are available on both the Admin API and Status API at the
-`http://localhost:<port>/metrics`
+Metrics tracked by this plugin are available on both the Admin API and Status
+API at the `http://localhost:<port>/metrics`
 endpoint. Note that the URL to those APIs will be specific to your
-installation; see [Accessing the metrics](#accessing-the-metrics) below.
+installation; see [Accessing the metrics](#accessing-the-metrics).
 
 This plugin records and exposes metrics at the node level. Your Prometheus
 server will need to discover all Kong nodes via a service discovery mechanism,
 and consume data from each node's configured `/metrics` endpoint.
 
-### Grafana dashboard
+## Grafana dashboard
 
 Metrics exported by the plugin can be graphed in Grafana using a drop in
 dashboard: [https://grafana.com/dashboards/7424](https://grafana.com/dashboards/7424).
 
-### Available metrics
+## Available metrics
 
 - **Status codes**: HTTP status codes returned by Upstream services.
   These are available per service, across all services, and per route per consumer.
@@ -201,7 +177,7 @@ kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address
 stream and HTTP listeners are enabled, targets' health will appear twice. Health metrics
 have a `subsystem` label to indicate which subsystem the metric refers to.
 
-### Accessing the metrics
+## Accessing the metrics
 
 In most configurations, the Kong Admin API will be behind a firewall or would
 need to be set up to require authentication. Here are a couple of options to
@@ -216,3 +192,13 @@ allow access to the `/metrics` endpoint to Prometheus:
    if the Status API is not enabled. Note that this endpoint is unavailable
    when [RBAC](/gateway/latest/admin-api/rbac/reference/) is enabled on the
    Admin API (Prometheus does not support Key-Auth to pass the token).
+   
+---
+
+## Changelog
+
+### 1.4.x
+
+* New `data_plane_cluster_cert_expiry_timestamp` metric
+* Added `subsystem` label to Upstream Target health metrics
+

@@ -149,40 +149,6 @@
       width: -webkit-stretch;
       width: stretch;
     }
-
-    // titles proportions overridden from base.less
-
-    h2, h3, h4, h5, h6 {
-      font-family: @family-display;
-      margin-bottom: 1.2rem;
-    }
-
-    h2 {
-      margin-top: 3.2rem;
-      font-size: 2.7rem;
-      font-weight: normal;
-    }
-
-    h3 {
-      margin-top: 2.7rem;
-      font-size: 2.1rem;
-      font-weight: normal;
-    }
-
-    h4 {
-      font-size: 1.7rem;
-      font-weight: bold;
-    }
-
-    h5 {
-      font-size: 1.4rem;
-      font-weight: normal;
-    }
-
-    h6 {
-      font-size: 1.2rem;
-      font-weight: bold;
-    }
   }
 
   &.v2 {
@@ -202,8 +168,8 @@
 
       .page-content-title {
         color: #062e4d;
-        margin-bottom: 0.4em;
-        font: lighter 34px/40px Roboto;
+        margin-bottom: 0.5em;
+        font: 500 34px/40px Roboto;
         scroll-margin-top: 100px;
 
         &::before {
@@ -213,10 +179,10 @@
 
       .page-content-subtitle {
         max-width: 800px;
-        margin-top: 16px;
-        margin-bottom: 2rem;
+        margin-top: 0;
+        margin-bottom: 3rem;
         opacity: 0.6;
-        font: lighter 16px/20px Roboto;
+        font: lighter 17px/20px Roboto;
 
         &::before {
           display: none;
@@ -732,7 +698,7 @@
     outline: 1px solid @blue-200;
   }
 
-  @media screen and (min-width: 1301px) {
+  @media screen and (min-width: 1101px) {
       &.collapsed {
         width: 50px;
         overflow-y: hidden;
@@ -757,7 +723,7 @@
       }
   }
 
-  @media screen and (max-width: 1300px) {
+  @media screen and (max-width: 1100px) {
     &:not(#plugin-toc) {
       position: fixed;
       right: 0;
@@ -791,5 +757,38 @@
 
   @media screen and (max-width: 400px) {
     width: 100%;
+  }
+}
+
+// External link icons in both left and right sidebars
+.docs-sidebar, .landing-page {
+  a:not([href^='https://konghq.com']):not([href^='https://docs.konghq.com']):not([href^='#']):not([href^='/']):not([data-filter]):after {
+      font-family: 'FontAwesome';
+      content: " \f35d";
+      margin-left: 0.4rem;
+      font-size: 12px;
+  }
+}
+
+// External icons in content body, excluding badges
+.content {
+  a:not(.badge, .install-link, .install-listing-link):not([href^='https://docs.konghq.com']):not([href^='#']):not([href^='/']):not([data-filter]):after {
+      font-family: 'FontAwesome';
+      content: " \f35d";
+      margin-left: 0.2rem;
+      margin-right: 0.2rem;
+      vertical-align: middle;
+      font-size: 12px;
+      font-weight: lighter;
+  }
+}
+
+// External link icons in top site navbar
+.navbar-item-submenu {
+  a:not([href^='https://docs.konghq.com']):not([href^='#']):not([href^='/']):not([data-filter]):not([class='navbar-button']):after {
+      font-family: 'FontAwesome';
+      content: " \f35d";
+      margin-left: 0.2rem;
+      font-size: 11px;
   }
 }

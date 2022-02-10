@@ -249,31 +249,54 @@ h1, h2, h3, h4, h5, h6, .page-header-section-title {
 
 h1, .page-header-section-title {
   font-size: 4rem;
-  font-weight: 400;
+  font-weight: 500;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+h2, h3, h4, h5, h6 {
+  font-family: @family-display;
+  margin-bottom: 1rem;
 }
 
 h2 {
-  font-size: 36px;
-  font-weight: 400;
+  margin-top: 3.2rem;
+  font-size: 2.5rem;
+  font-weight: 500;
 }
 
 h3 {
-  font-size: 26px;
+  margin-top: 2.9rem;
+  font-size: 2rem;
+  font-weight: 500;
 }
 
 h4 {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 1.7rem;
+  font-weight: 500;
+  color: @steel-500;
 }
 
 h5 {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: @steel-500;
 }
 
 h6 {
-  .font-source-sans-sc();
-  font-size: 14px;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: @steel-500;
+}
+
+h2+h3, h3+h4 {
+  margin-top: 1rem;
+}
+
+> h1:first-child,
+> h2:first-child,
+> h3:first-child {
+  margin-top: 0;
 }
 
 figure {

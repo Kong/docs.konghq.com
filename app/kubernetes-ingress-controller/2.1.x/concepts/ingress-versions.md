@@ -112,6 +112,7 @@ kind: IngressClass
 metadata:
   name: kong
 spec:
+  controller: ingress-controllers.konghq.com/kong
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress

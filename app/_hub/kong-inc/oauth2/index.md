@@ -50,7 +50,6 @@ params:
     - grpc
     - grpcs
   yaml_examples: false
-  k8s_examples: false
   konnect_examples: false
   dbless_compatible: 'no'
   dbless_explanation: |
@@ -165,13 +164,6 @@ params:
       description: |
         An optional boolean value that indicates whether an OAuth refresh token is
         reused when refreshing an access token.
-    - name: persistent_refresh_token
-      required: true
-      default: false
-      datatype: boolean
-      description: |
-        An optional boolean value that indicates whether an OAuth refresh token is
-        persisted when refreshing an access token.
     - name: pkce
       required: false
       default: '`lax`'

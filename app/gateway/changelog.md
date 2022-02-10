@@ -1,8 +1,76 @@
 ---
 title: Kong Gateway Changelog
-no_search: true
 no_version: true
 ---
+
+## 2.7.1.1
+**Release Date** 2022/02/04
+
+### Fixes
+
+#### Enterprise
+* Fixed a performance issue with Kong Manager, which occurred when admins had
+access to multiple workspaces.
+* Fixed `attempt to index local 'workspace'` error, which occurred when
+accessing Routes or Services using TLS.
+
+## 2.7.1.0
+**Release Date:** 2022/01/27
+
+### Features
+
+#### Enterprise
+* You can now configure [`cluster_max_payload`](/gateway/latest/reference/configuration/#cluster_max_payload)
+for hybrid mode deployments. This configuration option sets the maximum payload
+size allowed to be sent across from the control plane to the data plane. If your
+environment has large configurations that generate `payload too big` errors
+and don't get applied to the data planes, use this setting to adjust the limit.
+* When using PKI for certificate verification in hybrid mode, you can now
+configure a list of Common Names allowed to connect to a control plane with the
+[`cluster_allowed_common_names`](/gateway/latest/reference/configuration/#cluster_allowed_common_names)
+option. If not set, only data planes with the same parent domain as the control
+plane cert are allowed.
+
+### Fixes
+
+#### Enterprise
+
+* Fixed an issue where OIDC authentication into Kong Manager failed when used
+with Azure AD.
+* Fixed a timer leak that caused the timers to be exhausted and failed to start
+any other timers used by Kong, showing the error `too many pending timers`.
+* Fix an issue where, if `data_plane_config_cache_mode` was set to `off`, the
+data plane received no updates from the control plane.
+
+#### Core
+* Reschedule resolve timer only when the previous one has finished.
+[#8344](https://github.com/Kong/kong/pull/8344)
+* Plugins, and any entities implemented with subchemas, now can use the
+`transformations` and `shorthand_fields` properties, which were previously
+only available for non-subschema entities.
+[#8146](https://github.com/Kong/kong/pull/8146)
+
+#### Plugins
+
+* [Rate Limiting](/hub/kong-inc/rate-limiting) (`rate-limiting`)
+  * Fixed a 500 error associated with performing arithmetic functions on a nil
+  value by adding a nil value check after performing `ngx.shared.dict` operations.
+  * Fixed a timer leak that caused the timers to be exhausted and failed to
+  start any other timers used by Kong, showing the error `too many pending timers`.
+
+    Before, the plugin used one timer for each namespace maintenance process,
+    increasing timer usage on instances with a large number of rate limiting
+    namespaces. Now, it uses a single timer for all namespace maintenance.
+
+* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
+  * Fixed a 500 error that occurred when consumer groups were enforced but no
+  proper configurations were provided. Now, if no specific consumer group
+  configuration exists, the consumer group defaults to the original plugin
+  configuration.
+
+* [Exit Transformer](/hub/kong-inc/exit-transformer) (`exit-transformer`)
+  * Fix an issue where the Exit Transformer plugin
+  would break the plugin iterator, causing later plugins not to run.
 
 ## 2.7.0.0
 **Release Date:** 2021/12/16
@@ -24,6 +92,8 @@ and use the `/consumer_groups` endpoint to manage the groups.
   * [Consumer groups reference](/gateway/2.7.x/admin-api/consumer-groups/reference)
   * [Consumer groups examples](/gateway/2.7.x/admin-api/consumer-groups/examples)
 
+     This feature is currently not supported with declarative configuration.
+
 * The data plane configuration cache can now be encrypted or turned off entirely.
  Two new configuration options have been added:
   * [`data_plane_config_cache_mode`](/gateway/2.7.x/reference/configuration/#data_plane_config_cache_mode):
@@ -36,10 +106,14 @@ and use the `/consumer_groups` endpoint to manage the groups.
 #### Dev Portal
 * The Dev Portal API now supports `sort_by={attribute}` and `sort_desc`
 query parameters for sorted list results.
-* For Dev Portals with the [OpenID Connect](/hub/kong-inc/openid-connect) plugin
- enabled, login is successful on the first try if the credentials provided are
- valid and stored in IDP. If the email does not match existing data associated
- with the account, a new account is automatically created.
+* Improvements to Dev Portal authentication with [OpenID Connect (OIDC)](/hub/kong-inc/openid-connect):
+If OIDC auth is enabled, the first time a user attempts to access the Dev Portal
+using their IDP credentials, they are directed to a pre-filled registration form.
+Submit the form to create a Dev Portal account, linking the account to your IDP.
+
+   After linking, you can use your IDP credentials to directly access this Dev
+   Portal account.
+
 * Added TLSv1.3 support for the Dev Portal API and GUI.
 
 #### Kong Manager
@@ -194,6 +268,9 @@ Consumer entity, and the username would remain locked. For example, if the
 admin was created in workspace `dev` and deleted from workspace `QA`, this
 issue would occur.
 
+* Phone home metrics are now sent over TLS, meaning that any analytics data
+on Kong Gateway usage now travels through an encrypted connection.
+
 #### Dev Portal
 * Dev Portal OpenID Connect authentication now properly redirects users based on
 the values of `login_redirect_uri` and `forbidden_redirect_uri` set in `portal_auth`.
@@ -339,6 +416,51 @@ effect on the following plugins and fields:
   * OpenID Connect: the fields `d`, `p`, `q`, `dp`, `dq`, `qi`, `oth`, `r`, `t`, and `k`
   inside `openid_connect_jwks.previous[...].` and `openid_connect_jwks.keys[...]`
 
+* Consumer groups are not supported in declarative configuration with
+decK. If you have consumer groups in your configuration, decK will ignore them.
+
+## 2.6.0.3
+**Release Date:** 2022/01/27
+
+### Features
+
+#### Enterprise
+* You can now configure [`cluster_max_payload`](/gateway/latest/reference/configuration/#cluster_max_payload)
+for hybrid mode deployments. This configuration option sets the maximum payload
+size allowed to be sent across from the control plane to the data plane. If your
+environment has large configurations that generate `payload too big` errors
+and don't get applied to the data planes, use this setting to adjust the limit.
+
+### Fixes
+
+#### Enterprise
+
+* Phone home metrics are now sent over TLS, meaning that any analytics data
+on Kong Gateway usage now travels through an encrypted connection.
+* Fixed an issue where OIDC authentication into Kong Manager failed when used
+with Azure AD.
+* Fixed a timer leak that caused the timers to be exhausted and failed to start
+any other timers used by Kong, showing the error `too many pending timers`.
+* Fixed an issue with icon alignment in Kong Manager, where the **Delete**
+(garbage can) icon overlapped with the **View** link and caused users to
+accidentally click **Delete**.
+
+#### Dev Portal
+* Fixed the Dev Portal Application Services list to allow pagination.
+* Fixed a table border styling issue.
+* Fixed issues with modal accessibility.
+
+#### Plugins
+
+* [Rate Limiting](/hub/kong-inc/rate-limiting) (`rate-limiting`) and
+[Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
+  * Fixed a timer leak that caused the timers to be exhausted and failed to
+  start any other timers used by Kong, showing the error `too many pending timers`.
+
+    Before, the plugin used one timer for each namespace maintenance process,
+    increasing timer usage on instances with a large number of rate limiting
+    namespaces. Now, it uses a single timer for all namespace maintenance.
+
 ## 2.6.0.2
 **Release Date:** 2021/12/03
 
@@ -398,10 +520,6 @@ workspace than where it was originally created did not delete the associated
 Consumer entity, and the username would remain locked. For example, if the
 admin was created in workspace `dev` and deleted from workspace `QA`, this
 issue would occur.
-
-- Fixed an issue with icon alignment in Kong Manager, where the **Delete**
-(garbage can) icon overlapped with the **View** link and caused users to
-accidentally click **Delete**.
 
 ### Dependencies
 - Bumped kong-redis-cluster from `1.1-0` to `1.2.0`.

@@ -430,6 +430,10 @@ For guides on working with consumer groups, see the consumer group
 [API reference](/gateway/latest/admin-api/consumer-groups/reference) in
 the Admin API documentation.
 
+{:.note}
+> **Note:** Consumer groups are not supported in declarative configuration with
+decK. If you have consumer groups in your configuration, decK will ignore them.
+
 ---
 
 ## Changelog

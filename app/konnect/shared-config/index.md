@@ -1,7 +1,6 @@
 ---
 title: Shared Config
 no_version: true
-toc: false
 ---
 
 Use the ![icon](/assets/images/icons/konnect/konnect-shared-config.svg){:.inline .no-image-expand}

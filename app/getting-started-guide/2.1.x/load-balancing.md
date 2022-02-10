@@ -22,21 +22,21 @@ In the following example, you’ll use an application deployed across two differ
 
 ## Configure Upstream Services
 
-In this section, you will create an Upstream named `upstream` and add two targets to it.
+In this section, you will create an Upstream named `example_upstream` and add two targets to it.
 
 {% navtabs %}
 {% navtab Using the Admin API %}
 
-1. Call the Admin API on port `8001` and create an Upstream named `upstream`.
+1. Call the Admin API on port `8001` and create an Upstream named `example_upstream`.
 
     *Using cURL*:
     ```sh
     $ curl -X POST http://<admin-hostname>:8001/upstreams \
-    --data name=upstream
+    --data name=example_upstream
     ```
     *Or using HTTPie*:
     ```sh
-    $ http POST :8001/upstreams name=upstream
+    $ http POST :8001/upstreams name=example_upstream
     ```
 
 2. Update the service you created previously to point to this upstream.
@@ -44,27 +44,27 @@ In this section, you will create an Upstream named `upstream` and add two target
     *Using cURL*:
     ```sh
     $ curl -X PATCH http://<admin-hostname>:8001/services/example_service \
-    --data host='upstream'
+    --data host='example_upstream'
     ```
     *Or using HTTPie*:
     ```sh
-    $ http PATCH :8001/services/example_service host='upstream'
+    $ http PATCH :8001/services/example_service host='example_upstream'
     ```
 
 3. Add two targets to the upstream, each with port 80: `mockbin.org:80` and `httpbin.org:80`.
 
     *Using cURL*:
     ```sh
-    $ curl -X POST http://<admin-hostname>:8001/upstreams/upstream/targets \
+    $ curl -X POST http://<admin-hostname>:8001/upstreams/example_upstream/targets \
     --data target='mockbin.org:80'
 
-    $ curl -X POST http://<admin-hostname>:8001/upstreams/upstream/targets \
+    $ curl -X POST http://<admin-hostname>:8001/upstreams/example_upstream/targets \
     --data target='httpbin.org:80'
     ```
     *Or using HTTPie*:
     ```sh
-    $ http POST :8001/upstreams/upstream/targets target=mockbin.org:80
-    $ http POST :8001/upstreams/upstream/targets target=httpbin.org:80
+    $ http POST :8001/upstreams/example_upstream/targets target=mockbin.org:80
+    $ http POST :8001/upstreams/example_upstream/targets target=httpbin.org:80
     ```
 {% endnavtab %}
 
@@ -73,7 +73,7 @@ In this section, you will create an Upstream named `upstream` and add two target
 1. Access your Kong Manager instance and your **default** workspace.
 2. Go to **API Gateway** > **Upstreams**.
 3. Click **New Upstream**.
-4. For this example, enter `upstream` in the **Name** field.
+4. For this example, enter `example_upstream` in the **Name** field.
 5. Scroll down and click **Create**.
 6. On the Upstreams page, find the new upstream service and click **View**.
 7. Scroll down and click **New Target**.
@@ -81,7 +81,7 @@ In this section, you will create an Upstream named `upstream` and add two target
 9. Create another target, this time for `mockbin.org` with port `80`. Click **Create**.
 10. Open the **Services** page.
 11. Find your `example_service` and click **Edit**.
-12. Change the **Host** field to `upstream`, then click **Update**.
+12. Change the **Host** field to `example_upstream`, then click **Update**.
 {% endnavtab %}
 
 {% navtab Using decK (YAML) %}
@@ -90,7 +90,7 @@ In this section, you will create an Upstream named `upstream` and add two target
 
     ``` yaml
     upstreams:
-    - name: upstream
+    - name: example_upstream
       targets:
         - target: httpbin.org:80
           weight: 100
@@ -103,7 +103,7 @@ Upstream:
 
     ``` yaml
     services:
-      host: upstream
+      host: example_upstream
       name: example_service
       port: 80
       protocol: http
@@ -114,7 +114,7 @@ Upstream:
     ``` yaml
     _format_version: "1.1"
     services:
-    - host: upstream
+    - host: example_upstream
       name: example_service
       port: 80
       protocol: http
@@ -132,7 +132,7 @@ Upstream:
       keyauth_credentials:
       - key: apikey
     upstreams:
-    - name: upstream
+    - name: example_upstream
       targets:
         - target: httpbin.org:80
           weight: 100
@@ -169,7 +169,7 @@ You now have an Upstream with two targets, `httpbin.org` and `mockbin.org`, and 
 ## Summary and next steps
 
 In this topic, you:
-* Created an Upstream object named `upstream` and pointed the Service `example_service` to it.
+* Created an Upstream object named `example_upstream` and pointed the Service `example_service` to it.
 * Added two targets, `httpbin.org` and `mockbin.org`, with equal weight to the Upstream.
 
 If you're a Kong Enterprise user, go on to [Managing Administrative Teams](/getting-started-guide/{{page.kong_version}}/manage-teams).

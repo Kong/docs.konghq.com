@@ -18,7 +18,6 @@ Before installing Kong for Kubernetes Enterprise, be sure you have the following
 - A valid Kong Enterprise License
   * If you have a license, continue to [Step 1. Set Kong Enterprise License](#step-1-set-kong-enterprise-license) below. If you need your license file information, contact Kong Support.
   * If you need a license, request a trial license through our [Request Demo](https://konghq.com/request-demo/) page.
-  * Or, try out Kong for Kubernetes Enterprise using a live tutorial at [https://www.konglabs.io/kubernetes/](https://www.konglabs.io/kubernetes/)
 - An Enterprise Docker image for {{page.kong_version}}.
 
   If you have lost access to your {{page.kong_version}} image, Kong recommends
@@ -114,7 +113,7 @@ $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip
 ```
 
 It might take a while for your cloud provider to associate the IP address to the `kong-proxy` service.
-Once you have installed Kong, see the [getting started tutorial](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/guides/getting-started.md).
+Once you have installed Kong, see the [getting started tutorial](/kubernetes-ingress-controller/latest/guides/getting-started).
 
 ## Next steps...
 See [Using Kong for Kubernetes Enterprise](/enterprise/{{page.kong_version}}/kong-for-kubernetes/using-kong-for-kubernetes) for information about Concepts, How-to guides, Reference guides, and using Plugins.

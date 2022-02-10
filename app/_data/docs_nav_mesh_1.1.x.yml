@@ -35,11 +35,7 @@
       url: /installation/ubuntu
     - text: macOS
       url: /installation/macos
-    - text: Marketplaces
-      items:
-        - text: Azure (AKS)
-          url: https://azuremarketplace.microsoft.com/en-us/marketplace/apps/konginc1581527938760.kongmesh
-          absolute_url: true
+
 
 - title: Enterprise Features
   icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
