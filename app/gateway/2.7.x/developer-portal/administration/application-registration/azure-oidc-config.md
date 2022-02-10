@@ -211,17 +211,18 @@ flows with your Azure AD implementation.
 {% navtab Using cURL %}
 
 ```bash
-curl -i -X POST https://<proxy-hostname>:8443/httpbin-azure/oauth2/v2.0/token \
-  --data grant_type="client_credentials" \
-  --data client_id=<your_client_id> \
-  --data client_secret=<your_client_secret>
+$ curl -X POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token" \
+--data scope="<your_client_id>/.default" \
+--data grant_type="client_credentials" \
+--data client_id="<your_client_id>" \
+--data client_secret="<your_client_secret>" 
 ```
 
 {% endnavtab %}
 {% navtab Using HTTPie %}
 
 ```bash
-https -f POST "https://<admin-hostname>:8443/httpbin-azure/oauth2/v2.0/token" \
+$ https -f POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token" \
   scope=<your_client_id>/.default \
   grant_type=client_credentials \
   -a <your_client_id>:<your_client_secret> \
