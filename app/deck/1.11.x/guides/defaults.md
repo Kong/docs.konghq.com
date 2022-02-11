@@ -1,60 +1,45 @@
 ---
-title: Set Up Object Defaults
+title: Object Defaults
 ---
-Use object defaults to enforce a set of standard values and avoid
-repetition in your configuration.
-
-You can set configuration defaults for the following core {{site.base_gateway}} objects:
-- Service
-- Route
-- Upstream
-- Target
-
-decK supports setting object defaults both in self-managed
-{{site.base_gateway}} and with {{site.konnect_saas}}.
-
-{:.important}
-> **Important:** This feature has the following limitations:
-* Plugin object defaults are not supported.
-* If an existing property's default value changes in a future {{site.base_gateway}} release,
-decK has no way of knowing that this change has occured, as its `defaults`
-configuration would overwrite the value in your environment.
-
-## Object defaults behavior
-
-Defaults get applied to both new and existing objects. If an object has an
-explicit setting for a property, the object-level setting takes precedence over
-the default.
 
 {{site.base_gateway}} sets some default values for most objects. You can see
 what the defaults are for each object in the
 [Admin API reference](/gateway/latest/admin-api/), or use the
-[`/schemas`](/gateway/latest/admin-api/#retrieve-entity-schema) endpoint to
-retrieve the latest object schemas for your instance of the {{site.base_gateway}}.
+[`/schemas`](#find-defaults-for-an-object) endpoint to
+check the latest object schemas for your instance of the {{site.base_gateway}}.
 
-Configuring your own defaults is a good way to keep updated on potential
-breaking changes between versions. If you upgrade {{site.base_gateway}} to a
-version which introduces a new property with a default value, a `deck diff`
-will catch the difference.
+decK recognizes value defaults and doesn't interpret them as changes to
+configuration. If you push a config for an object to {{site.base_gateway}} with
+`deck sync`, {{site.base_gateway}} applies its default values to the object,
+but a further `diff` or `sync` does not show any changes.
 
-If defaults are not set in the declarative configuration file, any newly
-configured objects pick up {{site.base_gateway}}'s defaults and diverge from
-the source configuration file. This situation creates a false positive: decK sees
-a diff where one doesn't exist. Refer to ["Create a file and test without defaults"](#create-a-file-and-test-without-defaults) for an example.
+If you upgrade {{site.base_gateway}} to a version that introduces a new
+property with a default value, a `deck diff` will catch the difference.
 
-## Configure object defaults
-The following guide creates a sample `kong.yaml` file with a service and
-route, shows you what responses look like without defaults set, and then walks
-you through setting defaults.
+You can also configure your own [custom defaults](#set-custom-defaults) to
+enforce a set of standard values and avoid repetition in your configuration.
 
-If you are already familiar with the problem or have a configuration file you
-want to use, skip to [setting defaults](#set-defaults).
+## Value order of precedence
 
-### Create a file and test without defaults
+decK assigns values in the following order of precedence, from highest to lowest:
+
+1. Values set for a specific instance of an object in the state file
+(for example, for a service named `example_service` defined in `kong.yml`).
+2. Values set in the `{_info: defaults:}` object in the state file.
+3. Self-managed Kong Gateway only: Values are checked against the Kong
+Admin API schemas.
+4. Konnect Cloud only: Values are checked against the Kong Admin API for plugins,
+and against hardcoded defaults for Service, Route, Upstream, and Target objects.
+
+## Test default value handling
+
+Create a sample `kong.yaml` file with a service and route, push it to
+{{site.base_gateway}}, and then pull {{site.base_gateway}}'s configuration down
+again to see how decK interprets default values.
 
 1. Create a `kong.yaml` configuration file.
 
-2. Add the following sample service and route to the file:
+1. Add the following sample service and route to the file:
 
     ```yaml
     _format_version: "0.1"
@@ -67,7 +52,7 @@ want to use, skip to [setting defaults](#set-defaults).
             - /mock
     ```
 
-3. Compare this file with the object configuration in {{site.base_gateway}}:
+1. Compare this file with the object configuration in {{site.base_gateway}}:
 {% capture deck_diff1 %}
 {% navtabs codeblock %}
 {% navtab Command %}
@@ -92,13 +77,13 @@ Summary:
     If you're using a completely empty instance, you should only see the
     service and route creation messages with no extra JSON data.
 
-4. Sync your changes with {{site.base_gateway}}:
+1. Sync your changes with {{site.base_gateway}}:
 
     ```sh
     deck sync
     ```
 
-5. Now, run another diff and note the difference in the response:
+1. Now, run another diff and note the response:
 
 {% capture deck_diff2 %}
 {% navtabs codeblock %}
@@ -109,43 +94,9 @@ deck diff
 {% endnavtab %}
 {% navtab Response %}
 ```sh
-updating service example_service  {
-   "connect_timeout": 60000,
-   "host": "mockbin.org",
-   "id": "1c088e59-b5fb-4c14-8d3a-401c02fc50b7",
-   "name": "example_service",
-   "port": 80,
-   "protocol": "http",
-   "read_timeout": 60000,
--  "retries": 5,
-   "write_timeout": 60000
- }
-
-updating route mockpath  {
--  "https_redirect_status_code": 426,
-   "id": "1f900445-1957-4c79-aa16-1c86ea41df7f",
-   "name": "mockpath",
--  "path_handling": "v0",
-   "paths": [
-     "/mock"
-   ],
-   "preserve_host": false,
-   "protocols": [
-     "http",
-     "https"
-   ],
-   "regex_priority": 0,
--  "request_buffering": true,
--  "response_buffering": true,
-   "service": {
-     "id": "1c088e59-b5fb-4c14-8d3a-401c02fc50b7"
-   },
-   "strip_path": false
- }
-
 Summary:
   Created: 0
-  Updated: 2
+  Updated: 0
   Deleted: 0
 ```
 {% endnavtab %}
@@ -153,10 +104,75 @@ Summary:
 {% endcapture %}
 {{ deck_diff2 | indent | replace: " </code>", "</code>" }}
 
-    Even though you've made no changes, the response shows a list
-    of new property configurations. The list of new configurations appears because {{site.base_gateway}} applied defaults and decK is unaware of them, so decK treats them like changes to the configuration.
+    Notice that the diff doesn't show any changes. This is because decK checked
+    the values against the Service and Route schemas and didn't find any
+    differences.
 
-### Set defaults
+1. You can check that any missing default values were set by exporting
+{{site.base_gateway}}'s object configuration into a file. If you want to avoid
+overwriting your current state file, specify a different filename:
+
+    ```sh
+    deck dump -o kong-test.yaml
+    ```
+
+    Even though `deck diff` didn't show any changes, the result now has
+    default values populated:
+
+    ```yaml
+    _format_version: "1.1"
+    services:
+    - connect_timeout: 60000
+      host: mockbin.org
+      name: example_service
+      port: 80
+      protocol: http
+      read_timeout: 60000
+      retries: 5
+      routes:
+      - https_redirect_status_code: 426
+        name: mockpath
+        path_handling: v0
+        paths:
+        - /mock
+        preserve_host: false
+        protocols:
+        - http
+        - https
+        regex_priority: 0
+        request_buffering: true
+        response_buffering: true
+        strip_path: false
+      write_timeout: 60000
+      ```
+
+## Set custom defaults
+
+You can set custom configuration defaults for the following core
+{{site.base_gateway}} objects:
+- Service
+- Route
+- Upstream
+- Target
+
+Default values get applied to both new and existing objects. See the
+[order of precedence](#value-order-of-precedence) for more detail on how they
+get applied.
+
+You can choose to define custom default values for any subset of entity fields,
+or define all of them. decK still finds the default values using a
+combination of your defined fields and the object's schema, based on the
+order of precedence.
+
+decK supports setting custom object defaults both in self-managed
+{{site.base_gateway}} and with {{site.konnect_saas}}.
+
+{:.important}
+> **Important:** This feature has the following limitations:
+* Custom plugin object defaults are not supported.
+* If an existing property's default value changes in a future {{site.base_gateway}} release,
+decK has no way of knowing that this change has occurred, as its `defaults`
+configuration would overwrite the value in your environment.
 
 1. In your `kong.yaml` configuration file, add an `_info` section with
 `defaults`:
@@ -180,12 +196,32 @@ Summary:
     or use [tags](/deck/{{page.kong_version}}/guides/distributed-configuration)
     to apply the defaults wherever they are needed.
 
-2. Define the properties you want to set for core {{site.base_gateway}} objects.
+1. Define the properties you want to set for {{site.base_gateway}} objects.
 
-    You can define defaults for `service`, `route`, `upstream`, and `target`
-    objects.
+    You can define custom defaults for `service`, `route`, `upstream`, and
+    `target` objects.
 
-    For example:
+    For example, you could define default values for a few fields of the
+    Service object:
+
+    ```yaml
+    _format_version: "0.1"
+    _info:
+      defaults:
+        service:
+          port: 8080
+          protocol: https
+          retries: 10
+    services:
+      - host: mockbin.org
+        name: example_service
+        routes:
+          - name: mockpath
+            paths:
+              - /mock
+    ```
+
+    Or you could define custom default values for all available fields:
 
     ```yaml
     _format_version: "0.1"
@@ -203,12 +239,12 @@ Summary:
           response_buffering: true
           strip_path: true
         service:
-          port: 80
-          protocol: http
+          port: 8080
+          protocol: https
           connect_timeout: 60000
           write_timeout: 60000
           read_timeout: 60000
-          retries: 5
+          retries: 10
     services:
       - host: mockbin.org
         name: example_service
@@ -218,42 +254,50 @@ Summary:
               - /mock
     ```
 
-3. Save the file and run a diff:
+1. Sync your changes with {{site.base_gateway}}:
 
-{% capture deck_diff3 %}
-{% navtabs codeblock %}
-{% navtab Command %}
-```sh
-deck diff
-```
-{% endnavtab %}
-{% navtab Response %}
-```sh
-Summary:
-  Created: 0
-  Updated: 0
-  Deleted: 0
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-{{ deck_diff3 | indent | replace: " </code>", "</code>" }}
+    ```sh
+    deck sync
+    ```
 
-    Notice that the diff doesn't show extra changes anymore.
+1.  Run a diff and note the response:
 
-## Defaults reference
-The following properties are the defaults applied by {{site.base_gateway}} (as of
-v2.5.x), and setting them in your declarative configuration file is required to
-avoid differences between the configuration file and the {{site.base_gateway}}.
+{{ deck_diff2 | indent | replace: "    </code>", "</code>" }}
 
-{:.note}
-> **Note:** The following are only properties that **have defaults**, and are
-not all of the available properties for each object.
+    Whether you choose to define a subset of custom defaults or all available
+    options, the result is the same: the diff doesn't show any changes.
+
+## Find defaults for an object
+
+{{site.base_gateway}} defines all the defaults it applies in object schema files.
+Check the schemas to find the most up-to-date default values for an object.
+
+If you want to completely avoid differences between the configuration file and
+the {{site.base_gateway}}, set all possible default values for an object in your
+`kong.yaml` file.
 
 {% navtabs %}
 {% navtab Route %}
 
-Set the following properties to the values you want to use across all Routes:
+Use the Kong Admin API `/schemas` endpoint to find default values:
+
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+curl -i http://localhost:8001/schemas/routes
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+http :8001/schemas/routes
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
+
+In your `kong.yaml` file, set the default values you want to use across all Routes.
+For example:
 
 ```yaml
 _info:
@@ -271,13 +315,36 @@ _info:
       strip_path: true
 ```
 
-For all available properties, see the
+{:.note}
+> **Note:** If the Route protocols include `grpc` and `grpcs`, the `strip_path`
+schema value must be `false`. If set to `true`, deck returns a schema
+violation error.
+
+For documentation on all available properties, see the
 [Route object](/gateway/latest/admin-api/#route-object) documentation.
 
 {% endnavtab %}
 {% navtab Service %}
 
-Set the following properties to the values you want to use across all Services:
+Use the Kong Admin API `/schemas` endpoint to find default values:
+
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+curl -i http://localhost:8001/schemas/services
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+http :8001/schemas/services
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
+
+In your `kong.yaml` file, set the default values you want to use across all
+Services. For example:
 
 ```yaml
 _info:
@@ -290,13 +357,32 @@ _info:
       read_timeout: 60000
       retries: 5
 ```
-For all available properties, see the
+
+For documentation on all available properties, see the
 [Service object](/gateway/latest/admin-api/#service-object) documentation.
 
 {% endnavtab %}
 {% navtab Upstream %}
 
-Set the following properties to the values you want to use across all Upstreams:
+Use the Kong Admin API `/schemas` endpoint to find default values:
+
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+curl -i http://localhost:8001/schemas/upstreams
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+http :8001/schemas/upstreams
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
+
+In your `kong.yaml` file, set the default values you want to use across all
+Upstreams. For example:
 
 ```yaml
 _info:
@@ -368,13 +454,32 @@ _info:
             timeouts: 0
         threshold: 0
 ```
-For all available properties, see the
+
+For documentation on all available properties, see the
 [Upstream object](/gateway/latest/admin-api/#upstream-object) documentation.
 
 {% endnavtab %}
 {% navtab Target %}
 
-Set the following property to the value you want to use across all Targets:
+Use the Kong Admin API `/schemas` endpoint to find default values:
+
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+curl -i http://localhost:8001/schemas/targets
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+http :8001/schemas/targets
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
+
+In your `kong.yaml` file, set the default values you want to use across all
+Targets. For example:
 
 ```yaml
 _info:
@@ -385,26 +490,6 @@ _info:
 For all available properties, see the
 [Target object](/gateway/latest/admin-api/#target-object) documentation.
 
-{% endnavtab %}
-{% endnavtabs %}
-
-### Find default values for your Gateway version
-
-For the most accurate default values for your version of {{site.base_gateway}}, see the
-[Admin API reference](/gateway/latest/admin-api/), or use the
-[`/schemas`](/gateway/latest/admin-api/#retrieve-entity-schema) endpoint. For example, you can check the schema for `targets` and look for any value that
-has defined defaults:
-
-{% navtabs codeblock %}
-{% navtab cURL %}
-```sh
-curl -i -X GET http://localhost:8001/schemas/targets
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http :8001/schemas/targets
-```
 {% endnavtab %}
 {% endnavtabs %}
 
