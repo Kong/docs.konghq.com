@@ -130,4 +130,20 @@ form parameter      | description
 
 ### Can I see my correlation ids in my Kong logs?
 
-The correlation id doesn't show up in the Nginx access or error logs. However, you can use this plugin along with one of the Logging plugins, or store the id on your backend.
+You can see your correlation ID in the Nginx access or error logs if you edit your Nginx logging parameters.
+
+To edit your Nginx parameters, do the following:
+
+1. In `/usr/local/share/lua/5.1/kong/templates/nginx_kong.lua`, add to a `log_format` section:
+
+     ```
+     log_format kvformat '<snipped_for_brevity> > > > > Kong-Request-ID="$sent_http_Kong_Request_ID" ';
+     ```
+
+2. Reference it using: `access_log $PROXY_ACCESS_LOG kvformat;`
+
+3. Reload Kong and tail the access log. You should see the entries for the Correlation ID in there.
+
+Learn more in [Custom Nginx templates & embedding Kong](/latest/configuration/#custom-nginx-templates--embedding-kong).
+
+Note that you can also use this plugin along with one of the Logging plugins, or store the id on your backend.
