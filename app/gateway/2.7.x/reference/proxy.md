@@ -1009,10 +1009,13 @@ the client:
 - `Via: kong/x.x.x`, where `x.x.x` is the Kong version in use
 - `X-Kong-Proxy-Latency: <latency>`, where `latency` is the time in milliseconds
   between Kong receiving the request from the client and sending the request to
-  your upstream service.
+  your upstream service
 - `X-Kong-Upstream-Latency: <latency>`, where `latency` is the time in
   milliseconds that Kong was waiting for the first byte of the upstream service
-  response.
+  response
+- `x-Forwarded-Path` is all content trailing the hostname of `X-Forwarded-Host`
+- `X-Forwarded-Host` is the hostname through which the traffic is forwarded
+- `X-Forwarded-Prefix` is the first portion of the host path through which the traffic is forwarded
 
 Once the headers are sent to the client, Kong will start executing
 registered plugins for the Route and/or Service that implement the
