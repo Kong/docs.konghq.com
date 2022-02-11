@@ -123,6 +123,14 @@ to your identity provider. Instead, admins are created on first
 login and their roles are assigned based on their group membership in your
 IdP. This feature also partly resolves a problem with creating admins for both
 Kong Manager and Dev Portal.
+
+    {:.important}
+    > **Important:** This feature introduces a **breaking change**. The
+    `admin_claim` parameter replaces the `consumer_claim` parameter required by
+    previous versions. You must update your OIDC config file to keep OIDC
+    authentication working for Kong Manager. For more information, see 
+    [OIDC Authenticated Group Mapping](/gateway/2.7.x/configure/auth/kong-manager/oidc-mapping).
+
 * Kong Manager now provides a simplified, organized form for configuring the
 OpenID Connect plugin. Users can now easily identify a common set of required
 parameters to configure the plugin, and add custom configurations as needed.
