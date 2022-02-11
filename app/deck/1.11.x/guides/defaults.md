@@ -13,7 +13,7 @@ configuration. If you push a config for an object to {{site.base_gateway}} with
 `deck sync`, {{site.base_gateway}} applies its default values to the object,
 but a further `diff` or `sync` does not show any changes.
 
-If you upgrade {{site.base_gateway}} to a version which introduces a new
+If you upgrade {{site.base_gateway}} to a version that introduces a new
 property with a default value, a `deck diff` will catch the difference.
 
 You can also configure your own [custom defaults](#set-custom-defaults) to
