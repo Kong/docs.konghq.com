@@ -206,8 +206,8 @@ allow access to the `/metrics` endpoint to Prometheus:
 ### 1.5.x
 
 * Add two new metrics:
-  * `kong_db_entities_total` (gauge) total number of entities in the database
-  * `kong_db_entity_count_errors` (counter) measures the number of errors
+  * `kong_db_entities_total` (gauge): total number of entities in the database
+  * `kong_db_entity_count_errors` (counter): measures the number of errors
       encountered during the measurement of `kong_db_entities_total`
 
 ### 1.4.x
