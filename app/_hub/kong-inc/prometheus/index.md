@@ -79,8 +79,8 @@ dashboard: [https://grafana.com/dashboards/7424](https://grafana.com/dashboards/
 data plane nodes is exported to control plane.
 - **Enterprise License Information**: The {{site.base_gateway}} license expiration date, features and
 license signature. Those metrics are only exported on {{site.base_gateway}}.
-- **DB Entity Count**: A gauge metric that measures the current number of
-    database entities (**Enterprise-Only**).
+- **DB Entity Count** <span class="badge enterprise"></span> : A gauge metric that 
+    measures the current number of database entities.
 
 Here is an example of output you could expect from the `/metrics` endpoint:
 
