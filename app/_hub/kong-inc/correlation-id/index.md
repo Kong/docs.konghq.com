@@ -134,10 +134,11 @@ You can see your correlation ID in the Nginx access or error logs if you edit yo
 
 To edit your Nginx parameters, do the following:
 
-1. In `/usr/local/share/lua/5.1/kong/templates/nginx_kong.lua`, add to a `log_format` section:
+1. Locate [{{site.base_gateway}}'s template files](/gateway/latest/reference/configuration/#custom-nginx-templates) and make a copy of `nginx_kong.lua`. 
+2. Add a `log_format` section:
 
      ```
-     log_format kvformat '<snipped_for_brevity> > > > > Kong-Request-ID="$sent_http_Kong_Request_ID" ';
+     log_format kvformat '<snipped_for_brevity> Kong-Request-ID="$sent_http_Kong_Request_ID" ';
      ```
 
 2. Reference it using: `access_log $PROXY_ACCESS_LOG kvformat;`
@@ -146,4 +147,4 @@ To edit your Nginx parameters, do the following:
 
 Learn more in [Custom Nginx templates & embedding Kong](/latest/configuration/#custom-nginx-templates--embedding-kong).
 
-Note that you can also use this plugin along with one of the Logging plugins, or store the id on your backend.
+You can also use this plugin along with one of the [logging plugins](/hub/#logging), or store the ID on your backend.
