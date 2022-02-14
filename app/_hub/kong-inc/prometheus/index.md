@@ -170,6 +170,12 @@ kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address
 kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="healthy",subsystem="http"} 1
 kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="unhealthy",subsystem="http"} 0
 kong_upstream_target_health{upstream="<upstream_name>",target="<target>",address="<ip>:<port>",state="dns_error",subsystem="http"} 0
+# HELP kong_db_entities_total Total number of Kong db entities
+# TYPE kong_db_entities_total gauge
+kong_db_entities_total 42
+# HELP kong_db_entity_count_errors Errors during entity count collection
+# TYPE kong_db_entity_count_errors counter
+kong_db_entity_count_errors 0
 ```
 
 {:.note}
