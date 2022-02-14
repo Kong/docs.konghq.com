@@ -169,6 +169,14 @@ vault token create -format=json -policy="kmesh-default-dataplane-proxies" | jq -
 
 The output should print a Vault token that you then provide as the `conf.fromCp.auth.token` value of the `Mesh` object.
 
+{:.note}
+> Be aware there are some failure modes where the `vault` CLI will return a token that is invalid 
+even though an error was encountered (for example, if the policy creation in step 3 fails then 
+the `vault` command in step 4 will return a token but will also expose an error). In 
+such situations, using `jq` to parse the output will hide the error message provided in the `vault` 
+CLI output. It may be useful to manually parse the output instead of using `jq` so that the full 
+output of the `vault` CLI command is available.
+
 ### Configure Mesh
 
 `kuma-cp` communicates directly with Vault. To connect to
@@ -177,7 +185,10 @@ Vault, you must provide credentials in the configuration of the `mesh` object of
 You can authenticate with the `token` or with client certificates by providing `clientKey` and `clientCert`.
 
 You can provide these values inline for testing purposes only, as a path to a file on the
-same host as `kuma-cp`, or contained in a `secret`. See [the Kuma Secrets documentation](https://kuma.io/docs/latest/security/secrets/).
+same host as `kuma-cp`, or contained in a `secret`. When using a `secret`, it should be a mesh-scoped 
+secret (see [the Kuma Secrets documentation](https://kuma.io/docs/latest/security/secrets/) for details 
+on mesh-scoped secrets versus global secrets). On Kubernetes, this mesh-scoped secret should be stored 
+in the system namespace ("kong-mesh-system" by default).
 
 Here's an example of a configuration with a `vault`-backed CA:
 
