@@ -427,6 +427,16 @@ effect on the following plugins and fields:
 * Consumer groups are not supported in declarative configuration with
 decK. If you have consumer groups in your configuration, decK will ignore them.
 
+## 2.6.0.4
+**Release Date** 2022/02/10
+
+### Fixes
+
+#### Enterprise
+* Fixed an issue with Kong Manager OIDC authentication, which caused the error
+`“attempt to call method 'select_by_username_ignore_case' (a nil value)”`
+and prevented login with OIDC.
+
 ## 2.6.0.3
 **Release Date:** 2022/01/27
 
