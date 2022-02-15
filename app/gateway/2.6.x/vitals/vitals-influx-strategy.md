@@ -154,6 +154,9 @@ $ echo "KONG_VITALS_STRATEGY=influxdb KONG_VITALS_TSDB_ADDRESS=influxdb:8086 kon
 | docker exec -i kong-ee /bin/sh
 ```
 
+{:.note}
+> **Note**: In Hybrid Mode, configure `vitals_strategy` and `vitals_tsdb_address` on both the Control Plane and all Data Planes.
+
 ## Understanding Vitals data using InfluxDB measurements
 
 Kong Vitals records metrics in two InfluxDB measurements:
