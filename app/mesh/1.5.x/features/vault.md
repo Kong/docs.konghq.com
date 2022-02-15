@@ -170,12 +170,13 @@ vault token create -format=json -policy="kmesh-default-dataplane-proxies" | jq -
 The output should print a Vault token that you then provide as the `conf.fromCp.auth.token` value of the `Mesh` object.
 
 {:.note}
-> Be aware there are some failure modes where the `vault` CLI will return a token that is invalid 
-even though an error was encountered (for example, if the policy creation in step 3 fails then 
-the `vault` command in step 4 will return a token but will also expose an error). In 
-such situations, using `jq` to parse the output will hide the error message provided in the `vault` 
-CLI output. It may be useful to manually parse the output instead of using `jq` so that the full 
-output of the `vault` CLI command is available.
+> **Note:** There are some failure modes where the `vault` CLI still returns a token 
+even though an error was encountered and the token is invalid. For example, if the 
+policy creation fails in the previous step, then the `vault token create` command 
+both returns a token and exposes an error. In such situations, using `jq` to parse 
+the output hides the error message provided in the `vault` CLI output. Manually 
+parse the output instead of using `jq` so that the full output of the `vault` CLI 
+command is available.
 
 ### Configure Mesh
 
