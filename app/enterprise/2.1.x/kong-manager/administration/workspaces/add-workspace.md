@@ -47,8 +47,8 @@ regardless of letter case. For example, naming one
 **Workspace** "Payments" and another one "payments" will
 create two different workspaces that appear identical.
 
-⚠️ **WARNING**: Do not name Workspaces the same as these major
-routes in Kong Manager:
+⚠️ **WARNING**: Do not name Workspaces the same as these major API names (paths) 
+in Admin API:
 
 * Admins
 * APIs
