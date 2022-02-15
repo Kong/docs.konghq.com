@@ -175,7 +175,7 @@ To edit your Nginx parameters, do the following:
 3. Tail the access log:
 
    ```
-   tail logs/access.log
+   tail /usr/local/kong/logs/access.log
    ```
 
    You should now see Correlation ID entries in the access log.
