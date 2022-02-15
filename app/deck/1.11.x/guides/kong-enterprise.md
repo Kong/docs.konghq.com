@@ -74,7 +74,7 @@ services:
 
 {:.note}
 > **Note:** decK cannot delete workspaces. If you use `--workspace` or
-`--all-workspaces` with `deck reset`, decK deletes the entire configuration 
+`--all-workspaces` with `deck reset`, decK deletes the entire configuration
 inside the workspace, but not the workspace itself.
 
 ### Manage multiple workspaces
@@ -86,8 +86,19 @@ with the `--all-workspaces` flag:
 deck dump --all-workspaces
 ```
 
-This creates one configuration file per workspace, or applies one file to all
-workspaces.
+This creates one configuration file per workspace.
+
+However, since a `workspace` is an isolated unit of configuration, decK doesn't
+allow the deployment of multiple workspaces at a time. Therefore, each
+file per workspace must be deployed individually:
+
+```sh
+deck sync -s workspace1.yaml
+```
+
+```sh
+deck sync -s workspace2.yaml
+```
 
 {:.important}
 > Be careful when using this flag to avoid overwriting the wrong workspace. We
