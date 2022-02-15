@@ -134,35 +134,51 @@ You can see your correlation ID in the Nginx access or error logs if you edit yo
 
 To edit your Nginx parameters, do the following:
 
-1. Locate [{{site.base_gateway}}'s template files](/gateway/latest/reference/configuration/#custom-nginx-templates) and make a copy of `nginx_kong.lua`. 
-2. Add a `log_format` section on the root level of the config file which includes the
-  `$sent_http_Kong_Request_ID` variable. 
-   On the following example, we created a new log format called `customformat`.
-   It's a copy of the default `combined` log format, but the last line adds 
-   `$sent_http_Kong_Request_ID`, preceded by the string `Kong-Request-ID=`. 
-   Marking the variable this way is optional, but will make testing the feature easier.
-   You can further customize the `log_format` by adding or removing
+1. Locate [{{site.base_gateway}}'s template files](/gateway/latest/reference/configuration/#custom-nginx-templates) and make a copy of `nginx_kong.lua`.
+1. Add a `log_format` section on the root level of the config file which includes the
+  `$sent_http_Kong_Request_ID` variable.
+   In the following example, we created a new log format named `customformat`.
+   It's a copy of the default `combined` log format, but the last line adds
+   `$sent_http_Kong_Request_ID`, preceded by the string `Kong-Request-ID=`.
+   Marking the variable this way is optional, and will make testing the feature easier.
+   Further customize the `log_format` by adding or removing
    [variables](http://nginx.org/en/docs/http/ngx_http_log_module.html):
 
-     ```
-     log_format customformat '$remote_addr - $remote_user [$time_local] '
-                    '"$request" $status $body_bytes_sent  '
-                    '"$http_referer" "$http_user_agent" '
-                    'Kong-Request-ID="$sent_http_Kong_Request_ID"';
-     ```
+   ```
+   log_format customformat '$remote_addr - $remote_user [$time_local] '
+                 '"$request" $status $body_bytes_sent  '
+                 '"$http_referer" "$http_user_agent" '
+                 'Kong-Request-ID="$sent_http_Kong_Request_ID"';
+   ```
 
-2. Use your custom log format for the proxy access log phase. This means locating this line:
-     ```
-     access_log ${{PROXY_ACCESS_LOG}};
-     ```
-     And then modifying it by adding the `customformat` format that we just created:
-     ```
-     access_log ${{PROXY_ACCESS_LOG}} customformat;
-     ```
-     Note: the file contains several `access_log` entries. You should only modify the line
-     which uses `${{PROXY_ACCESS_LOG}}`, not the others.
+1. Use your custom log format for the proxy access log phase. This means locating the following line:
+   
+   ```
+   access_log ${PROXY_ACCESS_LOG};
+   ```
 
-3. Reload Kong and tail the access log. You should see the entries for the Correlation ID in there.
+     Modifying it by adding the `customformat` format that we just created:
+
+   ```
+   access_log ${{PROXY_ACCESS_LOG}} customformat;
+   ```
+
+     Note that the file contains several `access_log` entries. Only modify the line
+     that uses `${PROXY_ACCESS_LOG}`.
+
+2. Reload Kong:
+
+   ```
+   kong reload
+   ```
+  
+3. Tail the access log:
+
+   ```
+   tail logs/access.log
+   ```
+
+   You should now see Correlation ID entries in the access log.
 
 Learn more in [Custom Nginx templates & embedding Kong](/latest/configuration/#custom-nginx-templates--embedding-kong).
 
