@@ -137,7 +137,8 @@ To edit your Nginx parameters, do the following:
 1. Locate [{{site.base_gateway}}'s template files](/gateway/latest/reference/configuration/#custom-nginx-templates) and make a copy of `nginx_kong.lua`.
 1. Add a `log_format` section on the root level of the config file which includes the
   `$sent_http_Kong_Request_ID` variable.
-   In the following example, we created a new log format named `customformat`.
+
+   In the following example, we create a new log format named `customformat`.
    It's a copy of the default `combined` log format, but the last line adds
    `$sent_http_Kong_Request_ID`, preceded by the string `Kong-Request-ID=`.
    Marking the variable this way is optional, and will make testing the feature easier.
@@ -151,16 +152,16 @@ To edit your Nginx parameters, do the following:
                  'Kong-Request-ID="$sent_http_Kong_Request_ID"';
    ```
 
-1. Use your custom log format for the proxy access log phase. This means locating the following line:
+1. Use your custom log format for the proxy access log phase. Locate the following line:
    
    ```
    access_log ${PROXY_ACCESS_LOG};
    ```
 
-     Modifying it by adding the `customformat` format that we just created:
+     Modify it by adding the `customformat` format that we just created:
 
    ```
-   access_log ${{PROXY_ACCESS_LOG}} customformat;
+   access_log ${% raw %}{{PROXY_ACCESS_LOG}}{% endraw %} customformat;
    ```
 
      Note that the file contains several `access_log` entries. Only modify the line
@@ -180,6 +181,6 @@ To edit your Nginx parameters, do the following:
 
    You should now see Correlation ID entries in the access log.
 
-Learn more in [Custom Nginx templates & embedding Kong](/latest/configuration/#custom-nginx-templates--embedding-kong).
+Learn more in [Custom Nginx templates & embedding Kong](/gateway/latest/reference/configuration/#custom-nginx-templates--embedding-kong).
 
 You can also use this plugin along with one of the [logging plugins](/hub/#logging), or store the ID on your backend.
