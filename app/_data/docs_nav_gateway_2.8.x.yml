@@ -114,6 +114,24 @@
           url: /plan-and-deploy/security/db-encryption
         - text: Kong Security Update Process
           url: /plan-and-deploy/security/kong-security-update-process
+        - text: Secrets Management
+          url: /plan-and-deploy/security/secrets-management/
+          items:
+          - text: Getting Started
+            url: /plan-and-deploy/security/secrets-management/getting-started
+          - text: Advanced Usage
+            url: /plan-and-deploy/security/secrets-management/advanced-usage
+          - text: Backends
+            url: /plan-and-deploy/security/secrets-management/backends
+            items:
+              - text: Environment Variables
+                url: /plan-and-deploy/security/secrets-management/backends/env
+              - text: AWS Secrets Manager
+                url: /plan-and-deploy/security/secrets-management/backends/aws-sm
+              - text: Hashicorp Vault
+                url: /plan-and-deploy/security/secrets-management/backends/hashicorp-vault
+          - text: Reference Format
+            url: /plan-and-deploy/security/secrets-management/reference-format
 
 - title: Configure
   icon: /assets/images/icons/konnect/konnect-settings.svg
