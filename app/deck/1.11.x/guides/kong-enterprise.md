@@ -90,14 +90,14 @@ This creates one configuration file per workspace.
 
 However, since a `workspace` is an isolated unit of configuration, decK doesn't
 allow the deployment of multiple workspaces at a time. Therefore, each
-file per workspace must be deployed individually:
+workspace configuration file must be deployed individually:
 
 ```sh
-deck sync -s workspace1.yaml
+deck sync -s workspace1.yaml --workspace workspace1
 ```
 
 ```sh
-deck sync -s workspace2.yaml
+deck sync -s workspace2.yaml --workspace workspace2
 ```
 
 {:.important}
