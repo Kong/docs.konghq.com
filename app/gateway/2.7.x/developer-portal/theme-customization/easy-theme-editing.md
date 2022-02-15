@@ -12,6 +12,9 @@ The Kong Developer Portal ships with a default theme, including preset images, b
 
 ## The Appearance Tab
 
+{:.note}
+> **Note**: Styling does not automatically carry over from the default Dev Portal to different Dev Portals in other Workspaces. Use the [Dev Portal CLI](/gateway/latest/developer-portal/helpers/cli) to manually copy templates to Workspaces where you want to duplicate the styling.
+
 From the **Workspace** dashboard in **Kong Manager**, click on the **Appearance** tab under **Dev Portal** on the left side bar.
 This will open the Developer Portals theme editor. From this page, the header logo, background colors, font colors, and button styles can be edited using the color picker interface.
 
