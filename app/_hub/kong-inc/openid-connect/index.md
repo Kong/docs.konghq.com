@@ -1525,7 +1525,7 @@ params:
       default: false
       datatype: boolean
       description: |
-        Distributed claims are represented by the `_claim_names` and `_claim_sources` members 
+        Distributed claims are represented by the `_claim_names` and `_claim_sources` members
         of the JSON object containing the claims.
         If this parameter is set to `true`, the plugin explicitly resolves these distributed claims.
 
@@ -3352,7 +3352,18 @@ mean other gateways, load balancers, NATs, and such in front of Kong. If there i
 
 ## Changelog
 
-### 2.2.0
+### Kong Gateway 2.8.x (plugin version 2.2.1)
+
+* Added the `session_redis_username` and `session_redis_password` configuration
+parameters.
+
+    {:.important}
+    > These parameters replace the `session_redis_auth` field, which is
+    now **deprecated** and planned to be removed in 3.x.x.
+
+* Added the `resolve_distributed_claims` configuration parameter.
+
+### Kong Gateway 2.7.x (plugin version 2.2.0)
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.client_id`, `config.client_secret`, `config.session_auth`, and

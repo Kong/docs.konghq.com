@@ -1,7 +1,7 @@
 ---
 name: GraphQL Rate Limiting Advanced
 publisher: Kong Inc.
-version: 2.3.x
+version: 0.2.x
 desc: Provide rate limiting for GraphQL queries
 description: |
   The GraphQL Rate Limiting Advanced plugin provides rate limiting for GraphQL queries. The
@@ -23,7 +23,6 @@ kong_version_compatibility:
       - 2.2.x
       - 2.1.x
       - 1.5.x
-      - 1.3-x
 params:
   name: graphql-rate-limiting-advanced
   service_id: true
@@ -647,3 +646,14 @@ To update `score_factor`:
 $ curl -i -X PATCH http://kong:8001/plugins/{plugin_id} \
   --data config.score_factor=1
 ```
+
+---
+
+## Changelog
+
+### Kong Gateway 2.8.x (plugin version 0.2.5)
+
+* Added the `redis.username` and `redis.sentinel_username` configuration parameters.
+* Fixed plugin versions in the documentation. Previously, the plugin versions
+were labelled as `1.3-x` and `2.3.x`. They are now updated to align with the
+plugin's actual versions, `0.1.x` and `0.2.x`.
