@@ -54,10 +54,6 @@ params:
   konnect_examples: false
   dbless_compatible: 'yes'
   config:
-    - name: tags
-      required: false
-      datatype: array of string elements
-      description: Set of strings for grouping and filtering.
     - name: remove.headers
       required: false
       value_in_examples:
@@ -87,7 +83,7 @@ params:
     - name: rename.if_status
       required: false
       datatype: array of string elements
-      description: List of `500:Internal Server Error` response status code pairs, where the value will rename the status code description.
+      description: List of response status codes or status code ranges to which the transformation will apply. Empty means all response codes.
     - name: replace.headers
       required: false
       datatype: array of string elements
