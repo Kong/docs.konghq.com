@@ -54,6 +54,10 @@ params:
   konnect_examples: false
   dbless_compatible: 'yes'
   config:
+    - name: tags
+      required: false
+      datatype: array of string elements
+      description: Set of strings for grouping and filtering.
     - name: remove.headers
       required: false
       value_in_examples:
@@ -80,6 +84,10 @@ params:
       required: false
       datatype: array of string elements
       description: 'List of `headername1:headername2` pairs. If a header with `headername1` exists and `headername2` is valid, rename header to `headername2`.'
+    - name: rename.if_status
+      required: false
+      datatype: array of string elements
+      description: List of `500:Internal Server Error` response status code pairs, where the value will rename the status code description.
     - name: replace.headers
       required: false
       datatype: array of string elements
