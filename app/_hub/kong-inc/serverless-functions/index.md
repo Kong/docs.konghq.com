@@ -7,6 +7,14 @@ desc: Dynamically run Lua code from Kong
 description: |
   Dynamically run Lua code from Kong.
 
+  The Serverless Functions plugin comes as two separate plugins. Each one runs with a
+  different priority in the plugin chain.
+
+  - `pre-function`
+    - Runs before other plugins run during each phase. The `pre-function` plugin can only run globally. It can't be applied to individual services, routes, or consumers.
+  - `post-function`
+    - Runs after other plugins in each phase. The `post-function` plugin can be applied to individual services, routes, consumers, or globally.
+
   <div class="alert alert-ee red">
     <strong>Warning: </strong>The pre-function and post-function serverless plugin
     allows anyone who can enable the plugin to execute arbitrary code.
@@ -38,6 +46,7 @@ kong_version_compatibility:
       - 1.5.x
 params:
   name: pre-function OR post-function
+  examples: false
   service_id: true
   route_id: true
   consumer_id: false
@@ -85,16 +94,6 @@ params:
       value_in_examples: '[]'
       description: Array of stringified Lua code to be cached and run in sequence during the log phase.
 ---
-
-## Plugin Names
-
-Serverless Functions come as two separate plugins. Each one runs with a
-different priority in the plugin chain.
-
-- `pre-function`
-  - Runs before other plugins run during each phase.
-- `post-function`
-  - Runs after other plugins in each phase.
 
 ## Demonstration
 
