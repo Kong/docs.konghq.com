@@ -3189,17 +3189,6 @@ Attributes | Description
 `certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to retrieve.
 
-
-##### Retrieve Upstream Associated to a Specific Target
-
-<div class="endpoint get indent">/targets/{target host:port or id}/upstream</div>
-
-{:.indent}
-Attributes | Description
----:| ---
-`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be retrieved.
-
-
 #### Response
 
 ```
@@ -3210,12 +3199,10 @@ HTTP 200 OK
 {{ page.upstream_json }}
 ```
 
-
 ---
 
 ### Update Upstream
 
-##### Update Upstream
 
 <div class="endpoint patch indent">/upstreams/{upstream name or id}</div>
 
@@ -3225,7 +3212,7 @@ Attributes | Description
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to update.
 
 
-##### Update Upstream Associated to a Specific Certificate
+#### Update Upstream Associated to a Specific Certificate
 
 <div class="endpoint patch indent">/certificates/{certificate id}/upstreams/{upstream name or id}</div>
 
@@ -3234,17 +3221,6 @@ Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to update.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to update.
-
-
-##### Update Upstream Associated to a Specific Target
-
-<div class="endpoint patch indent">/targets/{target host:port or id}/upstream</div>
-
-{:.indent}
-Attributes | Description
----:| ---
-`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be updated.
-
 
 #### Request Body
 
@@ -3285,16 +3261,6 @@ Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to create or update.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to create or update.
-
-
-##### Create Or Update Upstream Associated to a Specific Target
-
-<div class="endpoint put indent">/targets/{target host:port or id}/upstream</div>
-
-{:.indent}
-Attributes | Description
----:| ---
-`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be created or updated.
 
 
 #### Request Body
@@ -3349,17 +3315,6 @@ Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to delete.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to delete.
-
-
-##### Delete Upstream Associated to a Specific Target
-
-<div class="endpoint delete indent">/targets/{target host:port or id}/upstream</div>
-
-{:.indent}
-Attributes | Description
----:| ---
-`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be deleted.
-
 
 #### Response
 
