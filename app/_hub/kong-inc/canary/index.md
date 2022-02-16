@@ -15,16 +15,6 @@ kong_version_compatibility:
   enterprise_edition:
     compatible:
       - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
 params:
   name: canary
   service_id: true
@@ -219,3 +209,11 @@ target. For this configuration to take effect, the following conditions must be 
  enabled in the canary upstream, i.e., the upstream specified in `upstream_host`
  needs to have healthchecks enabled it. It works with both passive and active
  healthchecks.
+
+---
+
+## Changelog
+
+### Kong Gateway 2.8.x (plugin version 0.6.0)
+
+* Added the `canary_by_header_name` configuration parameter.
