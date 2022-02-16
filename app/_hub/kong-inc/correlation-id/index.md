@@ -128,6 +128,59 @@ form parameter      | description
 
 ## FAQ
 
-### Can I see my correlation ids in my Kong logs?
+### Can I see my correlation IDs in my Kong logs?
 
-The correlation id doesn't show up in the Nginx access or error logs. However, you can use this plugin along with one of the Logging plugins, or store the id on your backend.
+You can see your correlation ID in the Nginx access or error logs if you edit your Nginx logging parameters.
+
+To edit your Nginx parameters, do the following:
+
+1. Locate [{{site.base_gateway}}'s template files](/gateway/latest/reference/configuration/#custom-nginx-templates) and make a copy of `nginx_kong.lua`.
+1. Add a `log_format` section on the root level of the config file which includes the
+  `$sent_http_Kong_Request_ID` variable.
+
+   In the following example, we create a new log format named `customformat`.
+   It's a copy of the default `combined` log format, but the last line adds
+   `$sent_http_Kong_Request_ID`, preceded by the string `Kong-Request-ID=`.
+   Marking the variable this way is optional, and will make testing the feature easier.
+   Further customize the `log_format` by adding or removing
+   [variables](http://nginx.org/en/docs/http/ngx_http_log_module.html):
+
+   ```
+   log_format customformat '$remote_addr - $remote_user [$time_local] '
+                 '"$request" $status $body_bytes_sent  '
+                 '"$http_referer" "$http_user_agent" '
+                 'Kong-Request-ID="$sent_http_Kong_Request_ID"';
+   ```
+
+1. Use your custom log format for the proxy access log phase. Locate the following line:
+   
+   ```
+   access_log ${PROXY_ACCESS_LOG};
+   ```
+
+     Modify it by adding the `customformat` format that we just created:
+
+   ```
+   access_log ${% raw %}{{PROXY_ACCESS_LOG}}{% endraw %} customformat;
+   ```
+
+     Note that the file contains several `access_log` entries. Only modify the line
+     that uses `${PROXY_ACCESS_LOG}`.
+
+2. Reload Kong:
+
+   ```
+   kong reload
+   ```
+  
+3. Tail the access log:
+
+   ```
+   tail /usr/local/kong/logs/access.log
+   ```
+
+   You should now see Correlation ID entries in the access log.
+
+Learn more in [Custom Nginx templates & embedding Kong](/gateway/latest/reference/configuration/#custom-nginx-templates--embedding-kong).
+
+You can also use this plugin along with one of the [logging plugins](/hub/#logging), or store the ID on your backend.
