@@ -80,6 +80,10 @@ params:
       required: false
       datatype: array of string elements
       description: 'List of `headername1:headername2` pairs. If a header with `headername1` exists and `headername2` is valid, rename header to `headername2`.'
+    - name: rename.if_status
+      required: false
+      datatype: array of string elements
+      description: List of response status codes or status code ranges to which the transformation will apply. Empty means all response codes.
     - name: replace.headers
       required: false
       datatype: array of string elements
