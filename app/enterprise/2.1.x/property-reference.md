@@ -876,6 +876,23 @@ The Status API is a read-only endpoint allowing monitoring tools to retrieve
 metrics, healthiness, and other non-sensitive information of the current Kong
 node.
 
+This value can be set to `off`, disabling the Status API for this node.
+
+Example: `status_listen = 0.0.0.0:8100`
+
+**Default:** `off`
+
+---
+
+#### status_listen
+
+Comma-separated list of addresses and ports on which the Status API should
+listen.
+
+The Status API is a read-only endpoint allowing monitoring tools to retrieve
+metrics, healthiness, and other non-sensitive information of the current Kong
+node.
+
 The following suffix can be specified for each pair:
 
 - `ssl` will require that all connections made through a particular
