@@ -122,7 +122,15 @@ params:
       value_in_examples: null
       datatype: string
       description: |
-        Header name that, when present on a request, will override the configured canary functionality. If the configured header is present with the value `always` then the request will always go to the canary upstream. If the header is present with the value `never` then the request will never go to the canary upstream. For all other values, the configured canary rules will be applied.
+        Header name that, when present on a request, overrides the configured canary 
+        functionality. 
+        
+        * If the configured header is present with the value `always`, the request will 
+        always go to the canary upstream. 
+        * If the header is present with the value `never`, the request will never go to the 
+        canary upstream. 
+        
+        For all other values, the configured canary rules will be applied.
 ---
 
 ### Usage
@@ -177,7 +185,7 @@ not be identified. The fallback order is `consumer`->`ip`->`none`.
 
 ### Overriding the Canary
 
-In some cases, it may be desirable to allow clients to pick _Service A_ or _Service B_
+In some cases, you may want to allow clients to pick _Service A_ or _Service B_
 instead of applying the configured canary rules. By setting the `config.canary_by_header_name`,
 clients can send the value `always` to always use the canary service (_Service B_) or send the
 value `never` to never use the canary service (always use _Service A_).
