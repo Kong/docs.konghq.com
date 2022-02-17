@@ -4,7 +4,7 @@ no_version: true
 ---
 
 ## 2.7.1.2
-**Release Date** 2022/02/10
+**Release Date** 2022/02/17
 
 ### Fixes
 
