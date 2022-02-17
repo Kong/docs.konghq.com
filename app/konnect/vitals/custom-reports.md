@@ -1,5 +1,5 @@
 ---
-title: Create and manage custom reports
+title: Create and Manage Custom Reports
 no_version: true
 alpha: true
 ---
@@ -8,7 +8,7 @@ Create custom reports to track API calls based on Services, Routes, or
 Applications.
 
 ## Prerequisites
-- TBA
+You have the [**Organization Admin**](/konnect/org-management/users-and-roles) role.
 
 ## View custom reports
 
@@ -113,3 +113,7 @@ Total traffic by status code | Service, Route, Application | Number of API calls
 Total traffic by service | Route, Application | Number of API calls grouped by Service(s) or Service versions.
 Total traffic by route | Service, Application | Number of API calls grouped by Route.
 Total traffic by application | Service, Route | Number of API calls grouped by Application.
+
+## See also
+[Export a report in CSV format](/konnect/vitals/generate-reports) through the
+ServiceHub for any individual Service, Service version, or Route.

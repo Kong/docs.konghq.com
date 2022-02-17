@@ -1,5 +1,5 @@
 ---
-title: Export Service and Route analytics from ServiceHub
+title: Export Service and Route Analytics from ServiceHub
 no_version: true
 ---
 In the ServiceHub, the Service, Service version, and Route graphs provide dynamic
@@ -18,6 +18,10 @@ ServiceHub.
 
 If you want to combine multiple Services, Routes, or Applications in one report,
 see [custom reports](/konnect/vitals/custom-reports).
+
+## Prerequisites
+You have any [**Service** role or the **Organization Admin**](/konnect/org-management/users-and-roles)
+role.
 
 ## Generate and export a Service report
 

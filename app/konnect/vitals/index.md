@@ -10,6 +10,12 @@ Vitals provides traffic reports to help you track the performance and
 behavior of your APIs and runtimes. Use these reports to quickly access key
 statistics, monitor vital signs, and pinpoint anomalies in real time.
 
+Depending on your {{site.konnect_saas}} subscription tier, Vitals retains
+historical data for the following lengths of time:
+* **Free:** 24 hours
+* **Plus:** 6 months
+* **Enterprise:** 1 year
+
 In the [ServiceHub](https://konnect.konghq.com/servicehub), you can see activity
 graphs for Services, Service versions, or Routes for the past 12 hours.
 For Services, these graphs display request counts. For Service versions and
