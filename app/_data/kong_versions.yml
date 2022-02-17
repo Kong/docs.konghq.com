@@ -405,6 +405,10 @@
   version: "1.10.0"
   edition: "deck"
 -
+  release: "1.11.x"
+  version: "1.11.0"
+  edition: "deck"
+-
   release: "1.0.x"
   version: "1.0.4"
   edition: "mesh"

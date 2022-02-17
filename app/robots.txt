@@ -19,6 +19,7 @@ Disallow: /deck/pre-1.7*
 Disallow: /deck/1.7*
 Disallow: /deck/1.8*
 Disallow: /deck/1.9*
+Disallow: /deck/1.10*
 
 Sitemap: {{site.links.web}}/sitemap.xml
 {% else %}
