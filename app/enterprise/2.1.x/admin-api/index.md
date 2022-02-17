@@ -2595,15 +2595,46 @@ HTTP 200 OK
 
 ### Retrieve Upstream
 
-##### Retrieve Upstream
-
 <div class="endpoint get">/upstreams/{name or id}</div>
 
 Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the Upstream to retrieve.
 
+*Response*
+
+```
+HTTP 200 OK
+```
+
+```json
+{{ page.upstream_json }}
+```
+
 ---
+
+### Update Upstream
+
+<div class="endpoint patch">/upstreams/{name or id}</div>
+
+Attributes | Description
+---:| ---
+`name or id`<br>**required** | The unique identifier **or** the name of the Upstream to update.
+
+*Request Body*
+
+{{ page.upstream_body }}
+
+
+*Response*
+
+```
+HTTP 200 OK
+```
+
+```json
+{{ page.upstream_json }}
+```
 
 ### Update Or Create Upstream
 
@@ -2645,13 +2676,17 @@ See POST and PATCH responses.
 
 ### Delete Upstream
 
-##### Delete Upstream
-
 <div class="endpoint delete">/upstreams/{name or id}</div>
 
 Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the Upstream to delete.
+
+*Response*
+
+```
+HTTP 204 No Content
+```
 
 ---
 

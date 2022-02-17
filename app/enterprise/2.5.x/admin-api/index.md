@@ -2926,16 +2926,6 @@ Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the Upstream to create or update.
 
----
-
-### Delete Upstream
-
-<div class="endpoint delete">/upstreams/{name or id}</div>
-
-Attributes | Description
----:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the Upstream to delete.
-
 #### Request Body
 
 {{ page.upstream_body }}
@@ -2963,6 +2953,22 @@ HTTP 201 Created or HTTP 200 OK
 ```
 
 See POST and PATCH responses.
+
+---
+
+### Delete Upstream
+
+<div class="endpoint delete">/upstreams/{name or id}</div>
+
+Attributes | Description
+---:| ---
+`name or id`<br>**required** | The unique identifier **or** the name of the Upstream to delete.
+
+*Response*
+
+```
+HTTP 204 No Content
+```
 
 ---
 
