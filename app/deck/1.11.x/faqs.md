@@ -37,8 +37,7 @@ You can use a file in this format to configure Kong when it is running in
 a DB-less or in-memory mode. If you're using Kong in the DB-less mode, you
 don't really need decK.
 
-But, if you are using Kong alongside a database like Postgres or Cassandra,
-you need decK because:
+If you are using Kong alongside a database, you need decK because:
 
 - Kong's `kong config db_import` command is used to initialize a Kong database,
   but it is not recommended to use it if there are existing Kong nodes that
@@ -79,6 +78,10 @@ Of course, decK is designed to be compatible with open-source and enterprise
 versions of Kong.
 
 ### I use Cassandra as a data store for Kong, can I use decK?
+
+{:.important}
+> Cassandra as a backend database for Kong Gateway
+is deprecated with 2.7.0.0 and will be removed in a future Gateway version.
 
 You can use decK with Kong backed by Cassandra.
 However, if you observe errors during a sync process, you will have to
