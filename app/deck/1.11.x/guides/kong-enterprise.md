@@ -101,5 +101,5 @@ deck sync -s workspace2.yaml --workspace workspace2
 ```
 
 {:.important}
-> Be careful when using this flag to avoid overwriting the wrong workspace. We
+> Be careful when using the `--all-workspaces` flag to avoid overwriting the wrong workspace. We
 recommend using the singular `--workspace` flag in most situations.

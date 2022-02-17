@@ -14,7 +14,7 @@ decK covers all the problems that Terraform solves and goes beyond it:
   you can take an existing Kong installation, and have a backup, as well as a
   declarative configuration for it. With Terraform, you will have to import
   each and every entity in Kong into Terraform's state.
-- decK can validate if a configuration file is valid or note
+- decK can check if a configuration file is valid or not
   (validate sub-command).
 - decK can quickly reset your Kong's configuration when needed.
 - decK works out of the box with {{site.base_gateway}} features like
@@ -37,7 +37,7 @@ You can use a file in this format to configure Kong when it is running in
 a DB-less or in-memory mode. If you're using Kong in the DB-less mode, you
 don't really need decK.
 
-But, if you are using Kong along-with a database like Postgres or Cassandra,
+But, if you are using Kong alongside a database like Postgres or Cassandra,
 you need decK because:
 
 - Kong's `kong config db_import` command is used to initialize a Kong database,
@@ -52,22 +52,22 @@ you need decK because:
 - Kong's `kong config db_import` command needs direct access to Kong's
   database, which might or might not be possible in your production
   networking environment.
-- decK can easily perform detect drifts in configuration i.e. it can
+- decK can easily perform detect drifts in configuration. For example, it can
   verify if the configuration stored inside Kong's database and that inside
-  the config file is same. This feature is designed in decK to integrate decK
+  the config file is the same. This feature is designed in decK to integrate decK
   with a CI system or a `cronjob` which periodically checks for drifts and alerts
   a team if needed.
 - `decK dump` outputs a more human-readable configuration file compared
   to Kong's `db_import`.
 
 However, decK has the following limitations which might or might not affect
-your use-case:
+your use case:
 
-- If you've a very large installation, it can take some time for decK to
+- If you have a very large installation, it can take some time for decK to
   sync up the configuration to Kong. This can be mitigated by adopting
   [distributed configuration](/deck/{{page.kong_version}}/guides/distributed-configuration) for your
   Kong installation and tweaking the `--parallelism` value.
-  Kong's `db_import` will be usually faster by orders of magnitude.
+  Kong's `db_import` will usually be faster by orders of magnitude.
 - decK cannot export and re-import fields that are hashed in the database.
   This means fields like `password` of `basic-auth` credential cannot be
   correctly re-imported by decK. This happens because Kong's Admin API call
@@ -86,12 +86,12 @@ tweak decK's setting and take care of a few things.
 decK heavily parallelizes its operations, which can induce a lot of load
 onto your Cassandra cluster.
 You should consider:
-- decK is read-intensive for most parts, meaning it will make perform
+- decK is read-intensive for most parts, meaning it will perform
   read-intensive queries on your Cassandra cluster, so make sure you tune
   your Cassandra cluster accordingly.
-- decK talks to the same Kong node which talks to the same Cassandra node in your
+- decK talks to the same Kong node that talks to the same Cassandra node in your
   cluster.
-- Using the `--parallelism 1` flag to ensure that there is only request being
+- Use the `--parallelism 1` flag to ensure that there is only request being
   processed at a time. This will slow down sync process and should be used
   as a last resort.
 

@@ -44,14 +44,14 @@ to the above algorithm based on the inputs given to decK.
 
 ### Operational outlook
 
-Based on the above algorithm, one can see how decK can require a large amount
+Based on the above algorithm, you can see how decK can require a large amount
 of memory and network I/O. While this is true, a few optimizations have
 been incorporated to ensure good performance:
 - For network operations, decK minimizes the API calls it has to make to Kong
   to read the state. It uses list endpoints in Kong with a large page size
   (`1000`) for efficiency.
 - decK parallelizes various Create/Update/Delete operations where it can. So,
-  if decK and Kong or Kong and Kong's database are present far apart in terms
+  if decK and Kong, or Kong and Kong's database are present far apart in terms
   of network latency, parallel operations help speed up operations.
   With smaller installations, this optimization might not be measurable.
 - decK's memory footprint can be high if the configuration for Kong is huge.
