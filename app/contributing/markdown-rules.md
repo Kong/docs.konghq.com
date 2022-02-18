@@ -285,8 +285,8 @@ See this [sample link to the getting started guide with Admin API and decK tabs 
 
 When using `?tab=`, it *must* come before any URL fragments (`#`) in the URL:
 
-* ✅ Good URL: /gateway/2.7.x/get-started/comprehensive/protect-services/?tab=using-deck-yaml#validate-rate-limiting
-* ❌ Bad URL: /gateway/2.7.x/get-started/comprehensive/protect-services/#validate-rate-limiting/?tab=using-deck-yaml
+* <i class="fa fa-check"></i> Good URL: /gateway/2.7.x/get-started/comprehensive/protect-services/?tab=using-deck-yaml#validate-rate-limiting
+* <i class="fa fa-times"></i> Bad URL: /gateway/2.7.x/get-started/comprehensive/protect-services/#validate-rate-limiting/?tab=using-deck-yaml
 
 ### Tabs for codeblocks
 
