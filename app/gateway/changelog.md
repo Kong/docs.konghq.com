@@ -3,6 +3,18 @@ title: Kong Gateway Changelog
 no_version: true
 ---
 
+## 2.7.1.2
+**Release Date** 2022/02/17
+
+### Fixes
+
+#### Enterprise
+* Fixed an issue with Kong Manager OIDC authentication, which caused the error
+`“attempt to call method 'select_by_username_ignore_case' (a nil value)”`
+and prevented login with OIDC.
+* Fixed an issue where common names added to `cluster_allowed_common_names` did
+not work.
+
 ## 2.7.1.1
 **Release Date** 2022/02/04
 
@@ -11,7 +23,7 @@ no_version: true
 #### Enterprise
 * Fixed a performance issue with Kong Manager, which occurred when admins had
 access to multiple workspaces.
-* Fixed `attempt to index local 'workspace'` error, which occurred when
+* Fixed the `attempt to index local 'workspace'` error, which occurred when
 accessing Routes or Services using TLS.
 
 ## 2.7.1.0
