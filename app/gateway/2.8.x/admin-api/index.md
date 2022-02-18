@@ -1097,7 +1097,8 @@ HTTP 200 OK
         "connections_reading": 0,
         "connections_writing": 1,
         "connections_waiting": 0
-    }
+    },
+    "configuration_hash": "779742c3d7afee2e38f977044d2ed96b"
 }
 ```
 
@@ -1148,6 +1149,8 @@ HTTP 200 OK
     * `reachable`: A boolean value reflecting the state of the
       database connection. Please note that this flag **does not**
       reflect the health of the database itself.
+* `configuration_hash`: The hash of the current configuration. This field is
+  only returned when the Kong node is running in DB-less or data-plane mode.
 
 
 ---
