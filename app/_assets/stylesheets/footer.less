@@ -109,7 +109,7 @@
  */
 
 [class^="marketing-footer"] {
-  .font-source-sans();
+  font-family: @family-display;
   width: 100%;
   padding: @gutter-flex-2x 0 0;
 
@@ -152,9 +152,6 @@
       }
 
       > li {
-        font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont,
-          "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-
         #subscription_form .error-message.message {
           display: inline-block;
           width: 100%;
@@ -215,15 +212,14 @@
             color: #409ecb;
           }
         }
-        h5 {
+        .footer-category {
           color: #7d91b3;
           -webkit-transform: none;
           transform: none;
           font-size: 16px;
           font-weight: 600;
           margin-bottom: 1rem;
-          font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont,
-            "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+          letter-spacing: 0.5px;
         }
         a {
           font-size: 15px;
@@ -455,6 +451,8 @@
 
   .legal {
     padding: 0rem 0 1rem;
+    font-size: 15px;
+
     .container {
       max-width: 100%;
       padding: 0 2em;
@@ -564,9 +562,8 @@
         width: 100%;
         display: inline-block;
         text-align: center;
-        font-size: 16px !important;
         a {
-          font-weight: 500;
+          letter-spacing: 0.5;
         }
         b {
           color: #ccc;
