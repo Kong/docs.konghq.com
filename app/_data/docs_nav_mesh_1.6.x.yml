@@ -54,3 +54,5 @@
       url: /features/ca-rotation
     - text: Role-Based Access Control
       url: /features/rbac
+    - text: UBI Images
+      url: /features/ubi-images
