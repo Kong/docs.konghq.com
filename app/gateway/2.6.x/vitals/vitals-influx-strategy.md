@@ -155,7 +155,9 @@ $ echo "KONG_VITALS_STRATEGY=influxdb KONG_VITALS_TSDB_ADDRESS=influxdb:8086 kon
 ```
 
 {:.note}
-> **Note**: In Hybrid Mode, configure `vitals_strategy` and `vitals_tsdb_address` on both the Control Plane and all Data Planes.
+> **Note**: In Hybrid Mode, configure [`vitals_strategy`](/gateway/{{page.kong_version}}/reference/configuration/#vitals_strategy) 
+and [`vitals_tsdb_address`](/gateway/{{page.kong_version}}/reference/configuration/#vitals_tsdb_address) 
+on both the control plane and all data planes.
 
 ## Understanding Vitals data using InfluxDB measurements
 
