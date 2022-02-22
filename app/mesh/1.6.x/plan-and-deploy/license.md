@@ -118,6 +118,7 @@ In Universal mode, configure a valid license by using the following environment 
 * `KMESH_LICENSE_PATH` - value with the path to a valid license file.
 * `KMESH_LICENSE_INLINE` - value with the actual contents of the license file.
 ​
+
 ## Multi-zone
 ​
 In a multi-zone deployment of Kong Mesh, only the global control plane should be configured with a valid license. The global control plane automatically synchronizes the license to any remote control plane that is part of the cluster.
