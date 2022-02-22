@@ -38,4 +38,5 @@ helm install kuma \
   --set kuma.kumactl.image.repository=ubi-kumactl \
   kuma/kuma
 ```
+{% endnavtab %}
 {% endnavtabs %}
