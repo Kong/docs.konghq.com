@@ -38,6 +38,14 @@
       url: /installation/macos
     - text: Windows
       url: /installation/windows
+    - text: License
+      url: /installation/license
+
+- title: Plan and Deploy
+  icon: /assets/images/icons/documentation/icn-deployment-color.svg
+  items:
+    - text: License
+      url: /plan-and-deploy/license
 
 - title: Enterprise Features
   icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
