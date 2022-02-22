@@ -27,7 +27,7 @@ kumactl install control plane \
   --dataplane-repository=ubi-kuma-dp
 ```
 {% endnavtab %}
-{% navtab HELM %}
+{% navtab Helm %}
 ```sh
 helm install kuma \
   --namespace kuma-system \
