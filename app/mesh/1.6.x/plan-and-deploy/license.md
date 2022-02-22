@@ -7,6 +7,7 @@ Kong Mesh requires a valid license before it can start the global `kuma-cp` proc
 * Number of data plane proxies (DPPs) allowed: 5
 * Expiration date: 30 days
 ​
+
 The prebundled license can be overwritten by explicitly setting a new one. You can obtain a Kong Mesh license by getting in touch with the [Kong team](https://konghq.com/request-demo-kong-mesh/).
 ​
 A license file with a valid signature typically looks like the following example:
@@ -98,7 +99,7 @@ To install a valid license via Helm:
   * `kong-mesh-system` is the namespace where Kong Mesh control plane is installed
   * `/path/to/license.json` is the path to a valid license file. The filename should be `license.json` unless otherwise specified in `values.yaml`.
 ​
-2. Modify the `values.yaml` file to point to the secret. For example:
+1. Modify the `values.yaml` file to point to the secret. For example:
 ​
   ```yaml
   kuma:
@@ -109,6 +110,7 @@ To install a valid license via Helm:
           Key: "license.json"
   ```
 ​
+
 ### Universal
 ​
 In Universal mode, configure a valid license by using the following environment variables:
