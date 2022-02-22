@@ -25,7 +25,7 @@ rules:
 - types: ["TrafficPermission", "TrafficRoute", "Mesh"] # list of types to which access is granted. If empty, then access is granted to all types
   names: ["res-1"] # list of allowed names of types to which access is granted. If empty, then access is granted to resources regardless of the name.
   mesh: default # Mesh within which the access to resources is granted. It can only be used with the Mesh-scoped resources.
-  access: ["CREATE", "UPDATE", "DELETE", "GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN"] # an action that is bound to a type.
+  access: ["CREATE", "UPDATE", "DELETE", "GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN", "GENERATE_ZONE_TOKEN"] # an action that is bound to a type.
   when: # a set of qualifiers to receive an access. Only one of them needs to be fulfilled to receive an access
   - sources: # a condition on sources section in connection policies (like TrafficRoute or Healtchecheck). If missing, then all sources are allowed
       match:
@@ -53,7 +53,7 @@ spec:
   - types: ["TrafficPermission", "TrafficRoute", "Mesh"] # list of types to which access is granted. If empty, then access is granted to all types
     names: ["res-1"] # list of allowed names of types to which access is granted. If empty, then access is granted to resources regardless of the name.
     mesh: default # Mesh within which the access to resources is granted. It can only be used with the Mesh-scoped resources.
-    access: ["CREATE", "UPDATE", "DELETE", "GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN"] # an action that is bound to a type.
+    access: ["CREATE", "UPDATE", "DELETE", "GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN", "GENERATE_ZONE_TOKEN"] # an action that is bound to a type.
     when: # a set of qualifiers to receive an access. Only one of them needs to be fulfilled to receive an access
     - sources: # a condition on sources section in connection policies (like TrafficRoute or Healtchecheck). If missing, then all sources are allowed
         match:
@@ -123,7 +123,7 @@ Mesh operator is a part of infrastructure team responsible for {{site.mesh_produ
 type: AccessRole
 name: admin
 rules:
-- access: ["CREATE", "UPDATE", "DELETE", "GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN"]
+- access: ["CREATE", "UPDATE", "DELETE", "GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN", "GENERATE_ZONE_TOKEN"]
 ```
 {% endnavtab %}
 {% navtab Kubernetes %}
@@ -134,7 +134,7 @@ metadata:
   name: admin
 spec:
   rules:
-  - access: ["CREATE", "UPDATE", "DELETE", "GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN"]
+  - access: ["CREATE", "UPDATE", "DELETE", "GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN", "GENERATE_ZONE_TOKEN"]
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -315,7 +315,7 @@ For example, to restrict the access for a user to modify TrafficPermission for b
 
 The `subjects` in `AccessRoleBinding` are compatible with Kubernetes users and groups.
 {{site.mesh_product_name}} RBAC on Kubernetes is implemented using Kubernetes Webhook when applying resources. This means you can only use Kubernetes users and groups for `CREATE`, `DELETE` and `UPDATE` access.
-`GENERATE_DATAPLANE_TOKEN`, `GENERATE_USER_TOKEN`, `GENERATE_ZONE_CP_TOKEN` are used when interacting with {{site.mesh_product_name}} API Server, in this case you need to use the user token.
+`GENERATE_DATAPLANE_TOKEN`, `GENERATE_USER_TOKEN`, `GENERATE_ZONE_CP_TOKEN`, `GENERATE_ZONE_TOKEN` are used when interacting with {{site.mesh_product_name}} API Server, in this case you need to use the user token.
 
 ## Default
 
@@ -332,7 +332,7 @@ However, on the zone control plane, the `default` AccessRoleBinding is restricte
 type: AccessRole
 name: admin
 rules:
-- access: ["CREATE", "UPDATE", "DELETE", "GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN"]
+- access: ["CREATE", "UPDATE", "DELETE", "GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN", "GENERATE_ZONE_TOKEN"]
 ---
 type: AccessRoleBinding
 name: default
@@ -353,7 +353,7 @@ metadata:
   name: admin
 spec:
   rules:
-  - access: ["CREATE", "UPDATE", "DELETE", "GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN"]
+  - access: ["CREATE", "UPDATE", "DELETE", "GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN", "GENERATE_ZONE_TOKEN"]
 ---
 apiVersion: kuma.io/v1alpha1
 kind: AccessRoleBinding
