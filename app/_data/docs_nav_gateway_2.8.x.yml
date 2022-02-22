@@ -342,6 +342,8 @@
               url: /admin-api/admins/reference
             - text: Examples
               url: /admin-api/admins/examples
+        - text: Developers
+          url: /admin-api/developers/reference
         - text: Consumer Groups
           url: /admin-api/consumer-groups/reference
           items:
