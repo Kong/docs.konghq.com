@@ -17,15 +17,23 @@ functionality, {{site.base_gateway}} enforces the presence and validity of a
 
 ## Deploying the license file
 
-* **Hybrid mode deployment:** The license file only needs to be deployed to
-control plane nodes, which distribute the license to the data planes in their
-clusters.
+License file checking is done independently by each node as the Kong process
+starts. No network connectivity is necessary to execute the license validation process.
+
+There are multiple ways to configure a license file on a {{site.base_gateway}}
+node. The method you use may depend on your deployment type.
+
+* **Hybrid mode deployment:** The license file must be deployed to
+control plane nodes. The control planes then distribute the license to the data
+planes in their clusters. Use the [`/licenses`](/gateway/{{page.kong_version}}/admin-api/licenses/reference)
+endpoint to apply the license to the control plane.
+
 * **Traditional deployment with no separate control plane:** License files must
-be deployed to each node running {{site.base_gateway}}.
+be deployed to each node running {{site.base_gateway}}. Use any of the
+provided configuration methods to apply the license.
 
-License file checking is done independently by each node as the Kong process starts; no network connectivity is necessary to execute the license validation process.
-
-There are multiple ways to configure a license file on a {{site.base_gateway}} node. These are defined below, in the order in which they are checked by Kong:
+Here are the possible license configuration methods, in the order that
+{{site.base_gateway}} checks for them:
 
 1. If present, the contents of the environmental variable `KONG_LICENSE_DATA` are used.
 2. Kong will search in the default location `/etc/kong/license.json`.

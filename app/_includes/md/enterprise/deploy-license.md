@@ -6,8 +6,11 @@ It has one parameter include.heading which must be included when used.  -->
 
 You can deploy a license file in one of the following ways:
 
-* Through the `/licenses` Admin API endpoint.
-* As a file on the node filesystem.
+Method | Supported deployment types
+-------|---
+ `/licenses` Admin API endpoint | &#8226; Traditional database-backed deployment <br> &#8226; Hybrid mode deployment
+File on the node filesystem <br>(`license.json`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
+Environmental variable<br>(`KONG_LICENSE_DATA`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
 
 The recommended method is using the Admin API.
 
@@ -21,14 +24,19 @@ The recommended method is using the Admin API.
 {% navtabs %}
 {% navtab Admin API %}
 
+You can use the Kong Admin API to distribute the license in any database-backed
+or hybrid mode deployment. In hybrid mode, you **must** use this method to apply
+the license to control plane nodes.
+
+The license data must contain straight quotes to be considered valid JSON
+(`'` and `"`, not `’` or `“`).
+
 `POST` the contents of the provided `license.json` license to your
 {{site.base_gateway}} instance:
 
-<div class="alert alert-ee blue">
-<b>Note:</b>
-The following license is only an example. You must use the following format,
-but provide your own content.
-</div>
+{:.note}
+> **Note:** The following license is only an example. You must use the
+following format, but provide your own content.
 
 {% navtabs codeblock %}
 {% navtab cURL %}
@@ -61,48 +69,55 @@ For more detail and options, see the
 {% endnavtab %}
 {% navtab Filesystem %}
 
-Securely copy the `license.json` file to your home directory on the filesystem
+You can provide a license file to Kong Gateway in any database-backed or DB-less
+deployment. This method cannot be used in hybrid mode.
+
+The license data must contain straight quotes to be considered valid JSON
+(`'` and `"`, not `’` or `“`).
+
+1. Securely copy the `license.json` file to your home directory on the filesystem
 where you have installed
-{{site.base_gateway}}:
+{{site.base_gateway}}.
 
-```sh
-$ scp license.json <system_username>@<server>:~
-```
+    ```sh
+    $ scp license.json <system_username>@<server>:~
+    ```
 
-Then, copy the license file again, this time to the `/etc/kong` directory:
+2. Then, copy the license file again, this time to the `/etc/kong` directory:
 
-```sh
-$ scp license.json /etc/kong/license.json
-```
+    ```sh
+    $ scp license.json /etc/kong/license.json
+    ```
 
-{{site.base_gateway}} will look for a valid license in this location.
+    {{site.base_gateway}} will look for a valid license in this location.
 
 
 {% endnavtab %}
 {% navtab Environmental variable %}
 
-Export the license key to a variable by running the following command,
-substituting your own license key.
+You can use environmental variables to apply a license to Kong Gateway in any
+database-backed or DB-less deployment. This method cannot be used in hybrid mode.
 
 The license data must contain straight quotes to be considered valid JSON
 (`'` and `"`, not `’` or `“`).
 
-<div class="alert alert-ee blue">
-<b>Note:</b>
-The following license is only an example. You must use the following format,
-but provide your own content.
-</div>
+1. Export the license key to a variable by running the following command,
+substituting your own license key.
 
-```bash
-$ export KONG_LICENSE_DATA='{"license":{"signature":"LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tClZlcnNpb246IEdudVBHIHYyCgpvd0did012TXdDSFdzMTVuUWw3dHhLK01wOTJTR0tLWVc3UU16WTBTVTVNc2toSVREWk1OTFEzVExJek1MY3dTCjA0ek1UVk1OREEwc2pRM04wOHpNalZKVHpOTE1EWk9TVTFLTXpRMVRVNHpTRXMzTjA0d056VXdUTytKWUdNUTQKR05oWW1VQ21NWEJ4Q3NDc3lMQmorTVBmOFhyWmZkNkNqVnJidmkyLzZ6THhzcitBclZtcFZWdnN1K1NiKzFhbgozcjNCeUxCZzdZOVdFL2FYQXJ0NG5lcmVpa2tZS1ozMlNlbGQvMm5iYkRzcmdlWFQzek1BQUE9PQo9b1VnSgotLS0tLUVORCBQR1AgTUVTU0FHRS0tLS0tCg=","payload":{"customer":"Test Company Inc","license_creation_date":"2017-11-08","product_subscription":"Kong Enterprise","admin_seats":"5","support_plan":"None","license_expiration_date":"2017-11-10","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU"},"version":1}}'
-```
+    {:.note}
+    > **Note:** The following license is only an example. You must use the
+    following format, but provide your own content.
 
-Apply the license to your {{site.base_gateway}} Docker container and reload the
-gateway:
+    ```bash
+    $ export KONG_LICENSE_DATA='{"license":{"signature":"LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tClZlcnNpb246IEdudVBHIHYyCgpvd0did012TXdDSFdzMTVuUWw3dHhLK01wOTJTR0tLWVc3UU16WTBTVTVNc2toSVREWk1OTFEzVExJek1MY3dTCjA0ek1UVk1OREEwc2pRM04wOHpNalZKVHpOTE1EWk9TVTFLTXpRMVRVNHpTRXMzTjA0d056VXdUTytKWUdNUTQKR05oWW1VQ21NWEJ4Q3NDc3lMQmorTVBmOFhyWmZkNkNqVnJidmkyLzZ6THhzcitBclZtcFZWdnN1K1NiKzFhbgozcjNCeUxCZzdZOVdFL2FYQXJ0NG5lcmVpa2tZS1ozMlNlbGQvMm5iYkRzcmdlWFQzek1BQUE9PQo9b1VnSgotLS0tLUVORCBQR1AgTUVTU0FHRS0tLS0tCg=","payload":{"customer":"Test Company Inc","license_creation_date":"2017-11-08","product_subscription":"Kong Enterprise","admin_seats":"5","support_plan":"None","license_expiration_date":"2017-11-10","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU"},"version":1}}'
+    ```
 
-```bash
-echo " KONG_LICENSE_DATA='${KONG_LICENSE_DATA}' kong reload exit " | \
-docker exec -i <kong-container-id> /bin/sh
-```
+2. Apply the license to your {{site.base_gateway}} Docker container and reload the
+Gateway:
+
+    ```bash
+    echo " KONG_LICENSE_DATA='${KONG_LICENSE_DATA}' kong reload exit " | \
+    docker exec -i <kong-container-id> /bin/sh
+    ```
 {% endnavtab %}
 {% endnavtabs %}
