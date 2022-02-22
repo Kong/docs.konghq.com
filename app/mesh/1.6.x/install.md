@@ -42,7 +42,7 @@ links to cloud marketplace integrations.
   </a>
 
   <a href="/mesh/{{page.kong_version}}/installation/ecs" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/docker.png" alt="Amazon ECS" />
+    <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/amazon-linux.png" alt="Amazon ECS" />
     <div class="install-text">Amazon ECS</div>
   </a>
 </div>
