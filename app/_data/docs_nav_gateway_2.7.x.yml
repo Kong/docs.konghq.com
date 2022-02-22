@@ -243,6 +243,8 @@
               url: /developer-portal/theme-customization/adding-javascript-assets
             - text: Single Page App in Dev Portal
               url: /developer-portal/theme-customization/single-page-app
+            - text: Alternate OpenAPI Renderer
+              url: /developer-portal/theme-customization/alternate-openapi-renderer
         - text: Helpers CLI
           url: /developer-portal/helpers/cli
 

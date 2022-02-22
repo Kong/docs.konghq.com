@@ -1,0 +1,125 @@
+{% layout = "layouts/_app.html" %}
+
+{-content-}
+<link href="assets/styles/framework-overrides.css" rel="stylesheet" />
+<link href="assets/styles/swagger-ui.kong.b77d9a5b.css" rel="stylesheet">
+<link href="assets/styles/swagger-ui-kong-theme.a55f215.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://unpkg.com/@stoplight/elements/styles.min.css">
+<script src="https://unpkg.com/@stoplight/elements/web-components.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
+<script src="assets/js/third-party/react.min.js"></script>
+<script src="assets/js/third-party/swagger-ui-bundle.kong.b77d9a5b.js"></script>
+<script src="assets/js/swagger-ui-kong-theme-a55f215.min.js"></script>
+
+<div id="portal-dashboard" page="documentation"></div>
+
+{% if theme.spec_render_type == "stoplight" then %}
+<div id="stoplight-wrapper">
+  <elements-api apiDescriptionDocument="{{ page.body }}" router="hash" />
+</div>
+{% elseif theme.spec_render_type == "redoc" then %}
+<div id="redoc-wrapper"></div>
+{% else %}
+
+<div id="ui-wrapper">
+  <div class="loading">
+    <div class="sidebar">
+      <div class="bar x1"></div>
+      <div class="bar x3"></div>
+    </div>
+
+    <div class="content">
+      <div class="bar x1"></div>
+      <div class="bar x3"></div>
+    </div>
+  </div>
+</div>
+{% end %}
+
+<div id="spec-object" style="display: none">
+  {{ json_encode(page.body) }}
+</div>
+<div id="document-object" style="display: none">
+  {{ json_encode(page.document_object) }}
+</div>
+<script src="assets/js/third-party/js-yaml-3.13.1.min.js"></script>
+
+<script>
+  function htmlDecode(html) {
+    let txt = document.createElement('textarea')
+    txt.innerHTML = html
+    return txt.value
+  }
+
+  function getTemplateObject(id) {
+    let element = document.getElementById(id)
+    let html = htmlDecode(element.innerHTML)
+    let templateObject = JSON.parse(html)
+    return templateObject
+  }
+
+  window.onload = function () {
+    // determine spec render strategy at time of render
+    {% if theme.spec_render_type == "stoplight" then %}
+
+    {% elseif theme.spec_render_type == "redoc" then %}
+    var redoc_options = {
+      scrollYOffset: 50,
+      showExtensions: true
+    }
+
+    Redoc.init(jsyaml.load(getTemplateObject("spec-object")), redoc_options, document.getElementById('redoc-wrapper'));
+    {% else %}
+      var swaggerUIOptions = {
+        dom_id: '#ui-wrapper', // Determine what element to load swagger ui
+        docExpansion: 'list',
+        deepLinking: true, // Enables dynamic deep linking for tags and operations
+        showExtensions: false, // Controls the display of vendor extension (x-) fields and values for Operations, Parameters, Responses, and Schema.
+        filter: true,
+        oauth2RedirectUrl: '{* portal.url *}/oauth2-redirect',
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIBundle.SwaggerUIStandalonePreset
+        ],
+        plugins: [
+          SwaggerUIKongTheme.SwaggerUIKongTheme,
+          SwaggerUIBundle.plugins.DownloadUrl
+        ],
+        layout: 'KongLayout',
+        theme: {
+          hasSidebar: true,
+          swaggerAbsoluteTop: "90px"
+        }
+      }
+      {% if page.spec_url then %}
+      // use external url
+      swaggerUIOptions.url = "{* page.spec_url *}"
+      swaggerUIOptions.theme.hasSidebar = false
+      var ui = SwaggerUIBundle(swaggerUIOptions)
+
+      // Export to window for use in custom js
+      window.ui = ui
+
+      {% else %}
+      // render spec via current path
+      let newSpec = getTemplateObject("spec-object")
+      swaggerUIOptions.spec = jsyaml.load(newSpec)
+      var ui = SwaggerUIBundle(swaggerUIOptions)
+      window.ui = ui
+
+      {% end %}
+    {% end %}
+  }
+
+  // overwrite push state to not break deeplinking
+  window.history.pushState = function (state, title, url) {
+    window.location.hash = url;
+  }
+</script>
+
+<style>
+  .page {
+    min-height: calc(100vh - 104px);
+  }
+</style>
+{-content-}
