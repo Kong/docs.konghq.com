@@ -191,40 +191,6 @@ HTTP/1.1 200 OK
 
 ---
 
-### Inspect a developer's consumer object
-
-[TO DO: What exactly is the purpose of this consumer? Is it an internal mapping? It doesn't appear in lists of consumers anywhere]
-
-**Endpoint**
-
-<div class="endpoint get">/developers/{DEVELOPER_EMAIL|DEVELOPER_ID}/consumer</div>
-
-
-Attribute                     | Description
----------:                    | --------   
-`{DEVELOPER_EMAIL|DEVELOPER_ID}`  | The email or UUID of the developer you want to inspect.
-
-
-**Response**
-
-```
-HTTP/1.1 200 OK
-```
-
-```json
-{
-    "created_at": 1644616521,
-    "custom_id": null,
-    "id": "62d17e63-0628-43a3-b936-97b8dcbd366f",
-    "tags": null,
-    "type": 1,
-    "username": "example@example.com",
-    "username_lower": "example@example.com"
-}
-```
-
----
-
 ### Update a developer
 
 **Endpoint**
