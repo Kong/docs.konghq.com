@@ -2,7 +2,7 @@
 title: Red Hat Universal Base Images
 ---
 
-In addition to the standard Kong Mesh images build on Alipne Linux, Kong Mesh also ships with images based on [Red Hat Universal Base Image (UBI)](https://developers.redhat.com/products/rhel/ubi).
+In addition to the standard Kong Mesh images built on Alpine Linux, Kong Mesh also ships with images based on the [Red Hat Universal Base Image (UBI)](https://developers.redhat.com/products/rhel/ubi).
 
 Kong Mesh UBI images are distributed with all standard images, but with `ubi-` prefix.
 
