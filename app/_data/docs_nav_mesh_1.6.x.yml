@@ -24,6 +24,8 @@
       url: /installation/openshift
     - text: Docker
       url: /installation/docker
+    - text: Amazon ECS
+      url: /installation/ecs
     - text: CentOS
       url: /installation/centos
     - text: Red Hat
