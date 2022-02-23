@@ -666,7 +666,7 @@ Attribute                         | Description
 
 Attribute                    | Description
 ---------:                   | --------   
-`service.id` | The UUID of the service to connect the application to.
+`service.id` | The UUID of the Service to connect the application to.
 
 **Response**
 
@@ -675,7 +675,20 @@ HTTP/1.1 201 Created
 ```
 
 ```json
-something
+{
+    "application": {
+        "id": "5ff48aaf-3951-4c99-a636-3b682081705c"
+    },
+    "composite_id": "5ff48aaf-3951-4c99-a636-3b682081705c_212a758a-810b-4226-9175-b1b44eecebec",
+    "created_at": 1645570372,
+    "id": "50193ee0-372a-4694-874c-90ffbc0ae522",
+    "service": {
+        "id": "212a758a-810b-4226-9175-b1b44eecebec"
+    },
+    "status": 1,
+    "suspended": false,
+    "updated_at": 1645570372
+}
 ```
 
 ### Inspect an application instance
@@ -732,7 +745,7 @@ Attribute                         | Description
 
 Attribute                    | Description
 ---------:                   | --------   
-`service id` | [Don't know how to pass this]
+`service.id` | The UUID of the Service to connect the application to.
 
 **Response**
 
