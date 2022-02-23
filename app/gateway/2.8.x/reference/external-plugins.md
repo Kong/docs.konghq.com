@@ -13,10 +13,11 @@ Each plugin server hosts one or more plugins and communicates with the
 main {{site.base_gateway}} process through Unix sockets. If so configured, {{site.base_gateway}} can manage
 those processes, starting, restarting and stopping as necessary.
 
-{{site.base_gateway}} currently maintains a Go language plugin server,
-[go-pluginserver], the corresponding PDK library
-package [go-pdk], the JavaScript language support [kong-js-pdk]
-and Python language support [kong-python-pdk].
+{{site.base_gateway}} currently maintains support for the following languages with
+their respective Kong PDKs:
+- Go language: [go-pdk]
+- JavaScript language: [kong-js-pdk]
+- Python language: [kong-python-pdk]
 
 ## Kong Gateway plugin server configuration
 
@@ -40,8 +41,8 @@ an hypothetical Python plugin server called `pypluginserver.py`):
 pluginserver_names = go,python
 
 pluginserver_go_socket = /usr/local/kong/go_pluginserver.sock
-pluginserver_go_start_cmd = /usr/local/bin/go-pluginserver -kong-prefix /usr/local/kong/ -plugins-directory /usr/local/kong/go-plugins
-pluginserver_go_query_cmd = /usr/local/bin/go-pluginserver -dump-all-plugins -plugins-directory /usr/local/kong/go-plugins
+pluginserver_go_start_cmd = /usr/local/bin/go-plugin -kong-prefix /usr/local/kong
+pluginserver_go_query_cmd = /usr/local/bin/go-plugin -dump -kong-prefix /usr/local/kong
 
 pluginserver_python_socket = /usr/local/kong/python_pluginserver.sock
 pluginserver_python_start_cmd = /usr/local/bin/kong-python-pluginserver
@@ -66,8 +67,11 @@ plugins = bundled, go-hello, js-hello, py-hello
 plugin server using a different configuration style. Starting with {{site.base_gateway}} version 2.3,
 the old style is recognized and internally transformed to the new style.
 
+**Note**: the legacy configuration is deprecated in {{site.base_gateway}} version 2.8.0, to be
+removed in {{site.base_gateway}} version 3.0.0.
+
 If property `pluginserver_names` isn't defined, the legacy properties
-`go_plugins_dir` and `go_pluginserver_exe` are tried:
+`go_plugins_dir` and `go_pluginserver_exe` are transparently mapped to the new style:
 
 Property | Description | Default
 ---------|-------------|--------
@@ -76,17 +80,30 @@ Property | Description | Default
 
 Notes:
 
-- The old style doesn't allow multiple plugin servers.
+- Usage of the legacy style is discouraged; it is deprecated as of {{site.base_gateway}} version 2.8.0, to be
+removed in {{site.base_gateway}} version 3.0.0.
+- The legacy configuration doesn't allow multiple plugin servers.
 - Version 0.5.0 of [go-pluginserver] requires the old style configuration.
-- The new style configuration requires v0.6.0 of [go-pluginserver]
+- The new style configuration requires v0.6.0 of [go-pluginserver].
+
+#### Updating from legacy to embedded server style
+
+The update from the legacy configuration to embedded plugin server style encompasses
+the following steps:
+
+1. Add a `main()` function that calls `server.StartServer(New, Version, Priority)`.
+2. Ensure that properties `go_plugins_dir` and `go_pluginserver_exe` are not set
+in your Kong configuration file or environment variable.
+3. Set configuration according to [Kong Gateway plugin server configuration](#kong-gateway-plugin-server-configuration).
+Note that, in this mode, the plugin itself acts as the plugin server; as such
+the external go-pluginserver is no longer required.
+
+Check out the [go-plugins](https://github.com/Kong/go-plugins/tree/v0.5.0) repository for an example of the required updates; plugins with the `-lm` suffix correspond to the legacy method, while those without the suffix
+correspond to the embedded plugin server approach.
 
 ## Developing Go plugins
 
-{{site.base_gateway}} support for the Go language consist of two parts:
-
-- [go-pdk] as a library, provides Go functions to access {{site.base_gateway}} features of the [PDK][kong-pdk].
-- [go-pluginserver] an executable to dynamically load plugins written in Go.
-
+{{site.base_gateway}} support for the Go language consist of the [go-pdk], a library that provides Go functions to access {{site.base_gateway}} features of the [PDK][kong-pdk].
 
 Notes:
 
@@ -96,12 +113,6 @@ microservices. To help with this, version v0.6.0 of the [go-pdk] package
 includes an optional plugin server. See [Embedded Server](#embedded-server)
 for more information.
 
-The [go-pluginserver] process is still supported. Its main advantage is
-that it's a single process for any number of plugins, but the dynamic
-loading of plugins has proven challenging under the Go language (unlike
-the microservice architecture, which is well supported by the language
-and tools).
-
 ### Development
 
 To write a {{site.base_gateway}} plugin in Go, you need to:
@@ -109,14 +120,6 @@ To write a {{site.base_gateway}} plugin in Go, you need to:
 1. Define a structure type to hold configuration.
 2. Write a `New()` function to create instances of your structure.
 3. Add methods on that structure to handle phases.
-
-   If you want a dynamically-loaded plugin to be used with [go-pluginserver]:
-
-4. Compile your Go plugin with `go build -buildmode plugin`.
-5. Put the resulting library (the `.so` file) into the `go_plugins_dir` directory.
-
-   If you want a standalone plugin microservice:
-
 4. Include the `go-pdk/server` sub-library.
 5. Add a `main()` function that calls `server.StartServer(New, Version, Priority)`.
 6. Compile as an executable with `go build`.
@@ -164,7 +167,45 @@ You can add more fields to the structure and they’ll be passed around, but
 there are no guarantees about the lifetime or quantity of configuration
 instances.
 
-#### 3. Phase Handlers
+#### 3. main() Function
+
+Each plugin is compiled as a standalone executable. Include `github.com/Kong/go-pdk/server` in
+the imports list, and add a `main()` function:
+
+```go
+func main () {
+  server.StartServer(New, Version, Priority)
+}
+```
+
+Note that the `main()` function must have a `package main` line at the
+top of the file.
+
+Then, a standard Go build creates an executable. There is no extra go-pluginserver,
+no plugin loading, and no compiler/library/environment compatibility issues.
+
+The resulting executable can be placed somewhere in your path (for example,
+`/usr/local/bin`). The common `-h` flag shows a usage help message:
+
+```
+$ my-plugin -h
+
+Usage of my-plugin:
+  -dump
+        Dump info about plugins
+  -help
+        Show usage info
+  -kong-prefix string
+        Kong prefix path (specified by the -p argument commonly used in the Kong CLI) (default "/usr/local/kong")
+```
+
+When run without arguments, it creates a socket file within the
+`kong-prefix` and the executable name, appending `.socket`. For example,
+if the executable is `my-plugin`, it would be
+`/usr/local/kong/my-plugin.socket` by default.
+
+
+#### 4. Phase Handlers
 
 Similarly to {{site.base_gateway}} Lua plugins, you can implement custom logic to be executed at
 various points of the request processing lifecycle. For example, to execute
@@ -198,45 +239,6 @@ const Priority = 1
 ```
 
 {{site.base_gateway}} executes plugins from highest priority to lowest ones.
-
-### Embedded server
-
-Each plugin can be a microservice, compiled as a standalone executable.
-
-To use the embedded server, include `github.com/Kong/go-pdk/server` in
-the imports list, and add a `main()` function:
-
-```go
-func main () {
-  server.StartServer(New, Version, Priority)
-}
-```
-
-Note that the `main()` function must have a `package main` line at the
-top of the file.
-
-Then, a standard Go build creates an executable. There are no extra go-pluginserver,
-no plugin loading, and no compiler/library/environment compatibility issues.
-
-The resulting executable can be placed somewhere in your path (for example,
-`/usr/local/bin`). The common `-h` flag shows a usage help message:
-
-```
-$ my-plugin -h
-
-Usage of my-plugin:
-  -dump
-        Dump info about plugins
-  -help
-        Show usage info
-  -kong-prefix string
-        Kong prefix path (specified by the -p argument commonly used in the Kong CLI) (default "/usr/local/kong")
-```
-
-When run without arguments, it creates a socket file with the
-`kong-prefix` and the executable name, appending `.socket`. For example,
-if the executable is `my-plugin`, it would be
-`/usr/local/kong/my-plugin.socket` by default.
 
 #### Example configuration
 
@@ -624,7 +626,6 @@ CMD ["kong", "docker-start"]
 ---
 
 [go-pluginserver]: https://github.com/Kong/go-pluginserver
-[go-pluginserver-makefile]: https://github.com/Kong/go-pluginserver/blob/master/Makefile
 [go-plugins]: https://github.com/Kong/go-plugins
 [go-pdk]: https://github.com/Kong/go-pdk
 [kong-pdk]: https://docs.konghq.com/latest/plugin-development/
