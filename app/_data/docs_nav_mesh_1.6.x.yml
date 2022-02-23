@@ -41,6 +41,12 @@
     - text: Windows
       url: /installation/windows
 
+- title: Plan and Deploy
+  icon: /assets/images/icons/documentation/icn-deployment-color.svg
+  items:
+    - text: License
+      url: /plan-and-deploy/license
+
 - title: Enterprise Features
   icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
   items:
