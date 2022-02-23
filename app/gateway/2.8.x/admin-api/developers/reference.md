@@ -512,7 +512,7 @@ Attribute                    | Description
 ---------:                   | --------   
 `name`<br>*required*         | A name for the application.
 `redirect_uri`<br>*required* | The application's URI.
-`custom_id`                  | A custom description for the application. <br>*Not actually sure what this does*
+`custom_id`                  | A custom description for the application.
 `developer` | *Can't tell what this does, kind of looks like it didn't do anything; probably don't want to document?*
 
 **Response**
@@ -557,7 +557,29 @@ Attribute                    | Description
 ---------:                   | --------   
 `name`                       | A name for the application.
 `redirect_uri`               | The application's URI.
-`custom_id`                  | A custom description for the application. <br>*Not actually sure what this does*
+`custom_id`                  | A custom identifier for the application.
+
+**Response**
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+    "consumer": {
+        "id": "6e31bf1e-dbcb-4a31-bac9-a192fa24f088"
+    },
+    "created_at": 1644963627,
+    "developer": {
+        "id": "5f60930a-ad12-4303-ac5a-59d121ad4942"
+    },
+    "id": "5ff48aaf-3951-4c99-a636-3b682081705c",
+    "name": "ExampleApp",
+    "redirect_uri": "http://mockbin.org",
+    "updated_at": 1645575611
+}
+```
 
 ### Delete an application
 
