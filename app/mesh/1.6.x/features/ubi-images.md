@@ -16,7 +16,7 @@ The base UBI variant for all images is `ubi-minimal`.
 
 ## Usage
 
-To use UBI images, we need to explicitly pass them when the control plane is installed
+To use UBI images, you need to explicitly pass them when the control plane is installed:
 
 {% navtabs %}
 {% navtab kumactl %}
