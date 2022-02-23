@@ -173,7 +173,7 @@ conf:
 
 ### With Secrets
 
-Encoding the policy in a [Secret](https://kuma.io/docs/1.0.7/documentation/secrets/#universal) provides some security for policies that contain sensitive data.
+Encoding the policy in a [Secret](https://kuma.io/docs/latest/security/secrets/) provides some security for policies that contain sensitive data.
 
 {% navtabs %}
 {% navtab Kubernetes %}
