@@ -30,3 +30,84 @@ split the configuration into different files as you see fit for your use case.
 
 Please note that having the state split across different files is not same
 as [distributed configuration](/deck/{{page.kong_version}}/guides/distributed-configuration).
+
+## Multiple files and --select-tag
+
+You must be careful when mixing distributed configuration in multiple files and
+the `--select-tag` flag, as this may result in undesired outcomes.
+For example, imagine you have a couple of services deployed with some tags
+and that you dump their configuration as follows:
+
+```sh
+deck dump --select-tag team-svc1 -o svc1.yaml
+```
+
+```sh
+$ cat svc1.yaml
+_format_version: "1.1"
+_info:
+  defaults: {}
+  select_tags:
+  - team-svc1
+services:
+- connect_timeout: 60000
+  host: foo.org
+  name: svc1
+  port: 80
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  tags:
+  - team-svc1
+  write_timeout: 60000
+```
+
+```sh
+deck dump --select-tag team-svc2 -o svc2.yaml
+```
+
+```sh
+$ cat svc2.yaml
+_format_version: "1.1"
+_info:
+  defaults: {}
+  select_tags:
+  - team-svc2
+services:
+- connect_timeout: 60000
+  host: bar.org
+  name: svc2
+  port: 80
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  tags:
+  - team-svc2
+  write_timeout: 60000
+```
+
+At this point you have 2 files, each pointing to resources marked with a different tag.
+
+For syncing back (or diffing) the configurations, you must sync separately each of these files,
+otherwise decK will merge the content of `select_tags` together and apply both tags
+to both services.
+
+```sh
+deck sync -s svc1.yaml
+Summary:
+  Created: 0
+  Updated: 0
+  Deleted: 0
+```
+
+```sh
+deck sync -s svc2.yaml
+Summary:
+  Created: 0
+  Updated: 0
+  Deleted: 0
+```
+
+{:.important}
+> As a best practice, the way you `sync` configurations should be consistent with the way to
+initially `dump`ed them.
