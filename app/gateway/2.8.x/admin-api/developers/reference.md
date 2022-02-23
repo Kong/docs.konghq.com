@@ -60,8 +60,6 @@ HTTP/1.1 200 OK
 }
 ```
 
----
-
 ### Create a developer account
 
 **Endpoint**
@@ -108,8 +106,6 @@ HTTP/1.1 200 OK
 }
 ```
 
----
-
 ### Invite a developer
 
 **Endpoint**
@@ -150,8 +146,6 @@ HTTP/1.1 200 OK
 }
 ```
 
----
-
 ### Inspect a developer
 
 **Endpoint**
@@ -188,8 +182,6 @@ HTTP/1.1 200 OK
     "updated_at": 1644619493
 }
 ```
-
----
 
 ### Update a developer
 
@@ -236,8 +228,6 @@ HTTP/1.1 200 OK
     }
 }
 ```
-
----
 
 ### Delete a developer
 
