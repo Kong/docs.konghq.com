@@ -438,6 +438,10 @@ decK. If you have consumer groups in your configuration, decK will ignore them.
 
 ## Changelog
 
-### Kong Gateway 2.7.x
+### Kong Gateway 2.8.x (plugin version 1.6.1)
 
-* Added `enforce_consumer_groups` and `consumer_groups` fields.
+* Added the `redis.username` and `redis.sentinel_username` configuration parameters.
+
+### Kong Gateway 2.7.x (plugin version 1.6.0)
+
+* Added the `enforce_consumer_groups` and `consumer_groups` configuration parameters.

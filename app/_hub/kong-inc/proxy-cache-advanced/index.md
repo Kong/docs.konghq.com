@@ -1,7 +1,7 @@
 ---
 name: Proxy Caching Advanced
 publisher: Kong Inc.
-version: 2.2.x
+version: 0.5.x
 desc: Cache and serve commonly requested responses in Kong
 description: |
   This plugin provides a reverse proxy cache implementation for Kong. It caches
@@ -29,9 +29,7 @@ kong_version_compatibility:
       - 2.1.x
       - 1.5.x
       - 1.3-x
-      - 0.36-x
-      - 0.35-x
-      - 0.34-x
+
 params:
   name: proxy-cache-advanced
   service_id: true
@@ -411,3 +409,15 @@ HTTP 204 No Content
 ```
 
 Note that this endpoint purges all cache entities across all `proxy-cache-advanced` plugins.
+
+---
+
+## Changelog
+
+### Kong Gateway 2.8.x (plugin version 0.5.7)
+
+* Added the `redis.sentinel_username` and `redis.sentinel_password` configuration
+parameters.
+* Fixed plugin versions in the documentation. Previously, the plugin versions
+were labelled as `1.3-x` and `2.2.x`. They are now updated to align with the
+plugin's actual versions, `0.4.x` and `0.5.x`.

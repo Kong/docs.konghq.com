@@ -263,9 +263,13 @@ selected header was not sent by the client or the configured service was not fou
 
 ## Changelog
 
-### 2.3.0
+### Kong Gateway 2.8.x (plugin version 2.3.1)
 
-* Added parameters `redis_ssl`, `redis_ssl_verify`, and `redis_server_name`.
+* Added the `redis_username` configuration parameter.
+
+### Kong Gateway 2.7.x (plugin version 2.3.0)
+
+* Added the `redis_ssl`, `redis_ssl_verify`, and `redis_server_name` configuration parameters.
 
 [api-object]: /gateway/latest/admin-api/#api-object
 [configuration]: /gateway/latest/reference/configuration
