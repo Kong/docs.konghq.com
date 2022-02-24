@@ -71,7 +71,7 @@ params:
 
         This field is _referenceable_, which means it can be securely stored as a
         [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: authentication.password
       required: false
       value_in_examples: admin-secret
@@ -84,7 +84,7 @@ params:
 
         This field is _referenceable_, which means it can be securely stored as a
         [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: authentication.tokenauth
       required: false
       value_in_examples: false
@@ -374,7 +374,7 @@ The following steps assume that {{site.base_gateway}} is installed and the Kafka
 * The `authentication.user` and `authentication.password` configuration fields are now marked as
 referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-in a vault backend and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
 
 ### Kong Gateway 2.7.x (plugin version 0.3.0)
 

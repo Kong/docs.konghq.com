@@ -64,7 +64,7 @@ params:
 
         This field is _referenceable_, which means it can be securely stored as a
         [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: start_tls
       required: true
       default: '`false`'
@@ -181,7 +181,7 @@ params:
 
         This field is _referenceable_, which means it can be securely stored as a
         [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: group_base_dn
       required: null
       default: matches `conf.base_dn`
@@ -311,7 +311,7 @@ mapping.
 * The `ldap_password` and `bind_dn` configuration fields are now marked as
 referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
 
 ### Kong Gateway 2.7.x (plugin version 1.2.0)
 

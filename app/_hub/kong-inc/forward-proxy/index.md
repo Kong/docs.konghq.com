@@ -111,7 +111,7 @@ params:
 
         This field is _referenceable_, which means it can be securely stored as a
         [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: auth_password
       required: false
       default: null
@@ -123,7 +123,7 @@ params:
 
         This field is _referenceable_, which means it can be securely stored as a
         [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: https_verify
       required: true
       default: false
@@ -156,7 +156,7 @@ params:
 * The `auth_password` and `auth_username` configuration fields are now marked as
 referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
 
 * Fixed a plugin version in the documentation. Previously, there was a plugin
 version labelled as `1.0.x`. It is now updated to align with the

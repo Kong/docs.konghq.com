@@ -262,7 +262,7 @@ params:
 
         This field is _referenceable_, which means it can be securely stored as a
         [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: client_arg
       required: false
       default: null
@@ -303,7 +303,7 @@ params:
 
         This field is _referenceable_, which means it can be securely stored as a
         [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: client_jwk
       required: false
       default: (plugin managed)
@@ -999,7 +999,7 @@ params:
 
         This field is _referenceable_, which means it can be securely stored as a
         [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: disable_session
       required: false
       default: null
@@ -1097,7 +1097,7 @@ params:
 
         This field is _referenceable_, which means it can be securely stored as a
         [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: session_redis_password
       required: false
       default: (from kong)
@@ -1109,7 +1109,7 @@ params:
 
         This field is _referenceable_, which means it can be securely stored as a
         [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: session_redis_auth
       required: false
       default: (from kong)
@@ -3388,7 +3388,7 @@ parameters.
 and `session_redis_password` configuration fields are now marked as
 referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-in a vault backend and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
 
 ### Kong Gateway 2.7.x (plugin version 2.2.0)
 

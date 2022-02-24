@@ -109,7 +109,7 @@ A Vault object represents the connection between Kong and a Vault server. It def
 
 Vault objects require setting a `vault_token` attribute. This attribute is _referenceable_, which means it can be securely stored as a
 [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
 
 Vault objects can be created via the following HTTP request:
 
