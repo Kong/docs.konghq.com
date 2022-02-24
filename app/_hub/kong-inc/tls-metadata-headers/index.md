@@ -5,12 +5,13 @@ version: 0.1.x
 
 desc: Proxies TLS Client Certificate Metadata to upstream Services via HTTP Headers
 description: |
-  Used in conjunction with any plugin which requests a client certificate such as
-  the MTLS Authentication or TLS Handshake Modifier plugins.
-
   If the plugin detects a client certificate in a request, it retrieves the TLS Metadata, such as 
   the URL Encoded Client Certificate and proxies this metadata via HTTP Headers. This is useful when an 
-  upstream service performs some validation for the proxied TLS client certificate.
+  upstream service performs some validation for the proxied TLS client certificate. Note the plugin does
+  not perform any validation on the client certificate, 
+  
+  Used in conjunction with any plugin which requests a client certificate such as
+  the MTLS Authentication or TLS Handshake Modifier plugins.
 
 enterprise: true
 plus: true
@@ -38,7 +39,7 @@ params:
       default: '`false`'
       datatype: boolean
       description: |
-        Enables TLS Metadata values to be injected into HTTP Headers.
+        Enables TLS Client Certificate Metadata values to be injected into HTTP Headers.
     - name: client_cert_header_name
       required: true
       default: '`X-Client-Cert`'
@@ -81,7 +82,8 @@ params:
 
 ### Enable the plugin on a service
 
-Configure this plugin on a [service](/gateway/latest/admin-api/#service-object):
+Configure this plugin on a [service](/gateway/latest/admin-api/#service-object) using the default 
+HTTP Header names:
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/services/<service>/plugins \
@@ -94,7 +96,8 @@ The `<service>` is the id or name of the service that this plugin configuration 
 ### Enable the plugin on a route
 
 Configure this plugin on a [route](/gateway/latest/admin-api/#route-object) and define a custom
-HTTP Header for the PEM formatted URL encoded client certificate:
+HTTP Header for the PEM formatted URL encoded client certificate, and using the default HTTP 
+Header names for the remaining parameters:
 
 ```bash
 $ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
@@ -111,7 +114,7 @@ A plugin that is not associated to any service, route, or consumer is considered
 will run on every request. Read the [Plugin Reference](/gateway/latest/admin-api/#add-plugin) and the
 [Plugin Precedence](/gateway/latest/admin-api/#precedence) sections for more information.
 
-Configure this plugin globally:
+Configure this plugin globally using the default HTTP Header names:
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/plugins/ \
