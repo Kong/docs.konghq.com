@@ -211,6 +211,10 @@ params:
       description: |
         Username to use for Redis connection when the `redis` strategy is defined and ACL authentication is desired.
         If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.password
       required: semi
       default:
@@ -219,6 +223,10 @@ params:
       description: |
         Password to use for Redis connection when the `redis` strategy is defined.
         If undefined, no AUTH commands are sent to Redis.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.database
       required: semi
       default: 0
@@ -240,16 +248,24 @@ params:
       value_in_examples:
       datatype: string
       description: |
-            Sentinel username to authenticate with a Redis Sentinel instance.
-            If undefined, ACL authentication will not be performed. This requires Redis v6.2.0+
+        Sentinel username to authenticate with a Redis Sentinel instance.
+        If undefined, ACL authentication will not be performed. This requires Redis v6.2.0+.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.sentinel_password
       required: semi
       default:
       value_in_examples:
       datatype: string
       description: |
-            Sentinel password to authenticate with a Redis Sentinel instance.
-            If undefined, no AUTH commands are sent to Redis Sentinels.
+        Sentinel password to authenticate with a Redis Sentinel instance.
+        If undefined, no AUTH commands are sent to Redis Sentinels.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.sentinel_role
       required: semi
       default:
@@ -441,6 +457,11 @@ decK. If you have consumer groups in your configuration, decK will ignore them.
 ### Kong Gateway 2.8.x (plugin version 1.6.1)
 
 * Added the `redis.username` and `redis.sentinel_username` configuration parameters.
+
+* The `redis.username`, `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
+configuration fields are now marked as referenceable, which means they can be securely stored as
+[secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+in a vault backend and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
 
 ### Kong Gateway 2.7.x (plugin version 1.6.0)
 

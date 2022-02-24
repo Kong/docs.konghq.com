@@ -108,6 +108,10 @@ params:
       description: |
         The username to authenticate with, if the forward proxy is protected
         by basic authentication.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: auth_password
       required: false
       default: null
@@ -116,6 +120,10 @@ params:
       description: |
         The password to authenticate with, if the forward proxy is protected
         by basic authentication.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: https_verify
       required: true
       default: false
@@ -144,6 +152,11 @@ params:
     {:.important}
     > These parameters replace the `proxy_port` and `proxy_host` fields, which
     are now **deprecated** and planned to be removed in 3.x.x.
+
+* The `auth_password` and `auth_username` configuration fields are now marked as
+referenceable, which means they can be securely stored as
+[secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
 
 * Fixed a plugin version in the documentation. Previously, there was a plugin
 version labelled as `1.0.x`. It is now updated to align with the

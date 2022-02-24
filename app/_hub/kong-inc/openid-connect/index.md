@@ -258,7 +258,11 @@ params:
         - `config.forbidden_redirect_uri`
         - `config.unexpected_redirect_uri`
 
-        > Use the same array index when configuring related settings for the client.
+        Use the same array index when configuring related settings for the client.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: client_arg
       required: false
       default: null
@@ -296,6 +300,10 @@ params:
         The client secret.
         > Specify one if using `client_secret_*` authentication with the client on
         > the identity provider endpoints.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: client_jwk
       required: false
       default: (plugin managed)
@@ -986,7 +994,12 @@ params:
       datatype: string
       encrypted: true
       value_in_examples: <session-secret>
-      description: The session secret.
+      description: |
+        The session secret.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: disable_session
       required: false
       default: null
@@ -1081,6 +1094,10 @@ params:
       description: |
         Username to use for Redis connection when the `redis` session storage is defined and ACL authentication is desired.
         If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: session_redis_password
       required: false
       default: (from kong)
@@ -1089,6 +1106,10 @@ params:
       description: |
         Password to use for Redis connection when the `redis` session storage is defined.
         If undefined, no AUTH commands are sent to Redis.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: session_redis_auth
       required: false
       default: (from kong)
@@ -3362,6 +3383,12 @@ parameters.
     now **deprecated** and planned to be removed in 3.x.x.
 
 * Added the `resolve_distributed_claims` configuration parameter.
+
+* The `client_id`, `client_secret`, `session_secret`, `session_redis_username`,
+and `session_redis_password` configuration fields are now marked as
+referenceable, which means they can be securely stored as
+[secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+in a vault backend and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
 
 ### Kong Gateway 2.7.x (plugin version 2.2.0)
 

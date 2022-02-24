@@ -182,6 +182,10 @@ params:
       description: |
         Password to use for Redis connection when the `redis` strategy is defined.
         If undefined, no AUTH commands are sent to Redis.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.database
       required: semi
       default: 0
@@ -204,6 +208,10 @@ params:
       description: |
             Sentinel username to authenticate with a Redis Sentinel instance.
             If undefined, ACL authentication will not be performed. This requires Redis v6.2.0+.
+
+            This field is _referenceable_, which means it can be securely stored as a
+            [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+            in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.sentinel_password
       required: semi
       default:
@@ -212,6 +220,10 @@ params:
       description: |
             Sentinel password to authenticate with a Redis Sentinel instance.
             If undefined, no AUTH commands are sent to Redis Sentinels.
+
+            This field is _referenceable_, which means it can be securely stored as a
+            [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+            in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.sentinel_role
       required: semi
       default: null
@@ -418,6 +430,12 @@ Note that this endpoint purges all cache entities across all `proxy-cache-advanc
 
 * Added the `redis.sentinel_username` and `redis.sentinel_password` configuration
 parameters.
+
+* The `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
+configuration fields are now marked as referenceable, which means they can be
+securely stored as [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+in a vault and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+
 * Fixed plugin versions in the documentation. Previously, the plugin versions
 were labelled as `1.3-x` and `2.2.x`. They are now updated to align with the
 plugin's actual versions, `0.4.x` and `0.5.x`.
