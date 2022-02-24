@@ -105,7 +105,7 @@ correspond to the embedded plugin server approach.
 
 ## Developing Go plugins
 
-{{site.base_gateway}} support for the Go language consist of the [go-pdk], a library that provides Go functions to access {{site.base_gateway}} features of the [PDK][kong-pdk].
+{{site.base_gateway}} supports the Go language with the [go-pdk], a library that provides Go functions to access {{site.base_gateway}} features of the [PDK][kong-pdk].
 
 Notes:
 
