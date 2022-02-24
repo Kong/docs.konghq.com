@@ -275,7 +275,7 @@ EOF
 * The `vaults.vault_token` form field is now marked as
 referenceable, which means it can be securely stored as a
 [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-in a vault backend and called with a [reference](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
 
 * Fixed plugin versions in the documentation. Previously, the plugin versions
 were labelled as `2.7.x`, `2.1.x`, `1.5.x`, `1.3-x`, `0.36-x`, and `0.35-x`.
