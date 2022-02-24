@@ -35,18 +35,18 @@ provided configuration methods to apply the license.
 Here are the possible license configuration methods, in the order that
 {{site.base_gateway}} checks for them:
 
-1. If present, the contents of the environmental variable `KONG_LICENSE_DATA` are used.
+1. If present, the contents of the environment variable `KONG_LICENSE_DATA` are used.
 2. Kong will search in the default location `/etc/kong/license.json`.
 3. If present, the contents of the file defined by the environment variable `KONG_LICENSE_PATH` is used.
 4. Directly deploy a license using the `/licenses` Admin API endpoint.
 
 In this manner, the license file can be deployed either as a file on the node
-filesystem, as an environmental variable, or through the `/licenses` Admin API
+filesystem, as an environment variable, or through the `/licenses` Admin API
 endpoint. The simplest method is using the Admin API.
 
-Note that unlike most other `KONG_*` environmental variables, the
+Note that unlike most other `KONG_*` environment variables, the
 `KONG_LICENSE_DATA` and `KONG_LICENSE_PATH` cannot be defined in-line as part
-of any `kong` CLI commands. License file environmental variables must be
+of any `kong` CLI commands. License file environment variables must be
 exported to the shell in which the Nginx process will run, ahead of the `kong`
 CLI tool.
 
@@ -80,7 +80,7 @@ longer be accessible.
 When a valid license file is properly deployed, license file validation is a transparent operation; no additional output or logging data is written or provided. If an error occurs when attempting to validate the license, or the license data is not valid, an error message will be written to the console and logged to the Kong error log, followed by the process quitting. Below are possible error messages and troubleshooting steps to take:
 
 `license path environment variable not set`
-: Neither the `KONG_LICENSE_DATA` nor the `KONG_LICENSE_PATH` environmental variables were defined, and no license file could be opened at the default license location (`/etc/kong/license.json`)
+: Neither the `KONG_LICENSE_DATA` nor the `KONG_LICENSE_PATH` environment variables were defined, and no license file could be opened at the default license location (`/etc/kong/license.json`)
 
 `internal error`
 : An internal error has occurred while attempting to validate the license. Such cases are extremely unlikely; contact Kong support to further troubleshoot.

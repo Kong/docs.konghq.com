@@ -10,7 +10,8 @@ Method | Supported deployment types
 -------|---
  `/licenses` Admin API endpoint | &#8226; Traditional database-backed deployment <br> &#8226; Hybrid mode deployment
 File on the node filesystem <br>(`license.json`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
-Environmental variable<br>(`KONG_LICENSE_DATA`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
+Environment variable <br>(`KONG_LICENSE_DATA`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
+Environment variable <br>(`KONG_LICENSE_PATH`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
 
 The recommended method is using the Admin API.
 
@@ -93,9 +94,9 @@ where you have installed
 
 
 {% endnavtab %}
-{% navtab Environmental variable %}
+{% navtab Environment variable (JSON) %}
 
-You can use environmental variables to apply a license to Kong Gateway in any
+You can use environment variables to apply a license to Kong Gateway in any
 database-backed or DB-less deployment. This method cannot be used in hybrid mode.
 
 The license data must contain straight quotes to be considered valid JSON
@@ -112,11 +113,31 @@ substituting your own license key.
     $ export KONG_LICENSE_DATA='{"license":{"signature":"LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tClZlcnNpb246IEdudVBHIHYyCgpvd0did012TXdDSFdzMTVuUWw3dHhLK01wOTJTR0tLWVc3UU16WTBTVTVNc2toSVREWk1OTFEzVExJek1MY3dTCjA0ek1UVk1OREEwc2pRM04wOHpNalZKVHpOTE1EWk9TVTFLTXpRMVRVNHpTRXMzTjA0d056VXdUTytKWUdNUTQKR05oWW1VQ21NWEJ4Q3NDc3lMQmorTVBmOFhyWmZkNkNqVnJidmkyLzZ6THhzcitBclZtcFZWdnN1K1NiKzFhbgozcjNCeUxCZzdZOVdFL2FYQXJ0NG5lcmVpa2tZS1ozMlNlbGQvMm5iYkRzcmdlWFQzek1BQUE9PQo9b1VnSgotLS0tLUVORCBQR1AgTUVTU0FHRS0tLS0tCg=","payload":{"customer":"Test Company Inc","license_creation_date":"2017-11-08","product_subscription":"Kong Enterprise","admin_seats":"5","support_plan":"None","license_expiration_date":"2017-11-10","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU"},"version":1}}'
     ```
 
-2. Apply the license to your {{site.base_gateway}} Docker container and reload the
+2. If using Docker, apply the license to your {{site.base_gateway}} Docker container and reload the
 Gateway:
 
     ```bash
     echo " KONG_LICENSE_DATA='${KONG_LICENSE_DATA}' kong reload exit " | \
+    docker exec -i <kong-container-id> /bin/sh
+    ```
+{% endnavtab %}
+{% navtab Environment variable (file path) %}
+
+You can use environment variables to apply a license to Kong Gateway in any
+database-backed or DB-less deployment. This method cannot be used in hybrid mode.
+
+1. Export the license path to a variable by running the following command,
+substituting your own path and filename.
+
+    ```bash
+    $ export KONG_LICENSE_PATH=/path/to/license.json
+    ```
+
+2. If using Docker, apply the license to your {{site.base_gateway}} Docker container and reload the
+Gateway:
+
+    ```bash
+    echo " KONG_LICENSE_PATH='${KONG_LICENSE_PATH}' kong reload exit " | \
     docker exec -i <kong-container-id> /bin/sh
     ```
 {% endnavtab %}
