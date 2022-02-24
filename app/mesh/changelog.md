@@ -18,7 +18,7 @@ Built on top of [Kuma 1.5.0](https://github.com/kumahq/kuma/releases/tag/1.5.0)
 
 ### Upgrading
 
-- The `kuma.metrics.dataplane.enabled` and `kuma.metrics.zone.enabled` configurations have been removed. Kuma always generate the corresponding metrics.
+- The `kuma.metrics.dataplane.enabled` and `kuma.metrics.zone.enabled` configurations have been removed. Kuma always generates the corresponding metrics.
 - We removed support for old Ingress (`Dataplane#networking.ingress`) from pre 1.3 days. If you are still using it, please migrate to ZoneIngress first (see [Kuma Upgrade to 1.2.0 section](https://github.com/kumahq/kuma/blob/master/UPGRADE.md#upgrade-to-120)).
 
 #### Kubernetes
