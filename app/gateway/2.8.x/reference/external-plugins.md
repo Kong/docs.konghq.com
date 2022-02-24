@@ -180,7 +180,7 @@ func main () {
 }
 ```
 
-Note that the `main()` function must have a `package main` line at the
+The `main()` function must have a `package main` line at the
 top of the file.
 
 Then, a standard Go build creates an executable. There is no extra `go-pluginserver`,
