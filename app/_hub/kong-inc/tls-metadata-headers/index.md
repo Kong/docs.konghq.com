@@ -36,21 +36,18 @@ params:
       required: true
       default: '`false`'
       datatype: boolean
-      value_in_examples: null
       description: |
         Enables TLS Metadata values to be injected into HTTP Headers.
     - name: client_cert_header_name
       required: true
       default: '`X-Client-Cert`'
       datatype: string
-      value_in_examples: null
       description: |
         Define the HTTP Header name used for the PEM format URL encoded client certificate.
     - name: client_serial_header_name
       required: true
       default: '`X-Client-Cert-Serial`'
       datatype: string
-      value_in_examples: null
       description: |
         Define the HTTP Header name used for the serial number of the client certificate.
     - name: client_cert_issuer_dn_header_name
@@ -64,14 +61,12 @@ params:
       required: true
       default: '`X-Client-Cert-Subject-DN`'
       datatype: string
-      value_in_examples: null
       description: |
         Define the HTTP Header name used for the subject DN of the client certificate.
     - name: client_cert_fingerprint_header_name
       required: true
       default: '`X-Client-Cert-Fingerprint`'
       datatype: string
-      value_in_examples: null
       description: |
         Define the HTTP Header name used for the SHA1 fingerprint of the client certificate.
 
