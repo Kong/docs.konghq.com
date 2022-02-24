@@ -89,7 +89,7 @@ and planned to be removed in {{site.base_gateway}} version 3.0.0.
 
 #### Updating from legacy to embedded server style
 
-The update from the legacy configuration to embedded plugin server style encompasses
+Update legacy configuration to embedded plugin server style configuration with
 the following steps:
 
 1. Add a `main()` function that calls `server.StartServer(New, Version, Priority)`.
