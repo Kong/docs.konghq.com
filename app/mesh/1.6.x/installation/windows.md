@@ -69,7 +69,7 @@ We suggest adding the `kumactl` executable to your `PATH` so that it's always av
 New-Item -ItemType SymbolicLink -Path C:\Windows\kumactl.exe -Target .\kumactl.exe
 ```
 
-This runs {{site.mesh_product_name}} with a [memory backend](https://kuma.io/docs/latest/documentation/backends/), 
+This runs {{site.mesh_product_name}} with a [memory backend](https://kuma.io/docs/latest/documentation/backends/),
 but you can use a persistent storage like PostgreSQL by updating the `conf/kuma-cp.conf` file.
 
 {% include /md/mesh/install-universal-verify.md %}
