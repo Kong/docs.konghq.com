@@ -81,8 +81,8 @@ Property | Description | Default
 
 Notes:
 
-- Usage of the legacy style is discouraged; it is deprecated as of {{site.base_gateway}} version 2.8.0, to be
-removed in {{site.base_gateway}} version 3.0.0.
+- Using the legacy style is discouraged; it is deprecated as of {{site.base_gateway}} version 2.8.0, 
+and planned to be removed in {{site.base_gateway}} version 3.0.0.
 - The legacy configuration doesn't allow multiple plugin servers.
 - Version 0.5.0 of [go-pluginserver] requires the old style configuration.
 - The new style configuration requires v0.6.0 of [go-pluginserver].
