@@ -28,7 +28,7 @@ Configuration parameter `kuma.runtime.kubernetes.injector.sidecarContainer.admin
 #### Universal
 
 - You can't use 0.0.0.0 or :: in networking.address most of the time using loopback is what people intended.
-- Kuma DP flag `--admin-port` and environment variable `KUMA_DATAPLANE_ADMIN_PORT` have been deprecated, admin port should be specified in Dataplane or ZoneIngress resources.
+- The Kuma DP flag `--admin-port` and environment variable `KUMA_DATAPLANE_ADMIN_PORT` have been deprecated. The admin port should be specified in Dataplane or ZoneIngress resources.
 
 ## 1.5.1
 
