@@ -67,8 +67,9 @@ plugins = bundled, go-hello, js-hello, py-hello
 plugin server using a different configuration style. Starting with {{site.base_gateway}} version 2.3,
 the old style is recognized and internally transformed to the new style.
 
-**Note**: the legacy configuration is deprecated in {{site.base_gateway}} version 2.8.0, to be
-removed in {{site.base_gateway}} version 3.0.0.
+{:.important}
+> The legacy configuration is deprecated in {{site.base_gateway}} version 2.8.0 and 
+> planned to be removed in {{site.base_gateway}} version 3.0.0.
 
 If property `pluginserver_names` isn't defined, the legacy properties
 `go_plugins_dir` and `go_pluginserver_exe` are transparently mapped to the new style:
