@@ -22,7 +22,7 @@ Built on top of [Kuma 1.5.0](https://github.com/kumahq/kuma/releases/tag/1.5.0)
 - Removed support for the old Ingress (`Dataplane#networking.ingress`), which was used before Kong Mesh 1.3. If you are still using it, migrate to ZoneIngress first (see [Kuma Upgrade to 1.2.0 section](https://github.com/kumahq/kuma/blob/master/UPGRADE.md#upgrade-to-120)).
 
 #### Kubernetes
-- Please migrate your kuma.io/sidecar-injection annotations to labels. The new version still supports annotation, but to have a guarantee that applications can only start with sidecar, you must use label instead of annotation.
+- Migrate your kuma.io/sidecar-injection annotations to labels. The new version still supports annotations, but to  guarantee that applications can only start with a sidecar, you must use a label instead of an annotation.
 Configuration parameter `kuma.runtime.kubernetes.injector.sidecarContainer.adminPort` and environment variable `KUMA_RUNTIME_KUBERNETES_INJECTOR_SIDECAR_CONTAINER_ADMIN_PORT` have been deprecated in favor of `kuma.bootstrapServer.params.adminPort` and `KUMA_BOOTSTRAP_SERVER_PARAMS_ADMIN_PORT`.
 
 #### Universal
