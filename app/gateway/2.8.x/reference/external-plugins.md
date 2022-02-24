@@ -100,7 +100,7 @@ the following steps:
 in your Kong configuration file or environment variable.
 3. Set configuration according to [Kong Gateway plugin server configuration](#kong-gateway-plugin-server-configuration).
 
-Check out the [go-plugins](https://github.com/Kong/go-plugins/tree/v0.5.0) repository for an example of the required updates; plugins with the `-lm` suffix correspond to the legacy method, while those without the suffix
+Check out the [go-plugins](https://github.com/Kong/go-plugins/tree/v0.5.0) repository for an example of the required updates. Plugins with the `-lm` suffix correspond to the legacy method, while those without the suffix
 correspond to the embedded plugin server approach.
 
 ## Developing Go plugins
