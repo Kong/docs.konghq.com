@@ -20,7 +20,7 @@ categories:
 kong_version_compatibility:
   enterprise_edition:
     compatible:
-      - 3.x
+      - 2.8.x
 params:
   name: tls-metadata-headers
   service_id: true
