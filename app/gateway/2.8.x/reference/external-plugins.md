@@ -85,7 +85,7 @@ Notes:
 and planned to be removed in {{site.base_gateway}} version 3.0.0.
 - The legacy configuration doesn't allow multiple plugin servers.
 - Version 0.5.0 of [go-pluginserver] requires the old style configuration.
-- The new style configuration requires v0.6.0 of [go-pluginserver].
+- The new configuration style requires v0.6.0 of [go-pluginserver].
 
 #### Updating from legacy to embedded server style
 
