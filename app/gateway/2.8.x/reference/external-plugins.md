@@ -89,6 +89,9 @@ and planned to be removed in {{site.base_gateway}} version 3.0.0.
 
 #### Updating from legacy to embedded server style
 
+In embedded server mode, the plugin itself acts as the plugin server, 
+so the external `go-pluginserver` is no longer required.
+
 Update legacy configuration to embedded plugin server style configuration with
 the following steps:
 
