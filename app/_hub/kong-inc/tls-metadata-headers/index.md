@@ -31,6 +31,7 @@ params:
     - grpcs
     - tls
   dbless_compatible: 'yes'
+  examples: false
   config:
     - name: inject_client_cert_details
       required: true
