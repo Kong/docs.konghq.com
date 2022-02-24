@@ -130,7 +130,7 @@ form parameter      | description
 
 ### Can I see my correlation IDs in my Kong logs?
 
-You can see your correlation ID in the Nginx access or error logs if you edit your Nginx logging parameters.
+You can see your correlation ID in the Nginx access log if you edit your Nginx logging parameters.
 
 To edit your Nginx parameters, do the following:
 
