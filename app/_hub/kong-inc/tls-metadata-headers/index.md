@@ -62,7 +62,7 @@ params:
         Define the HTTP Header name used for the issuer DN of the client certificate.
     - name: client_cert_subject_dn_header_name
       required: true
-      default: '`X-Client-Cert-Subject-DN'`
+      default: '`X-Client-Cert-Subject-DN`'
       datatype: string
       value_in_examples: null
       description: |
