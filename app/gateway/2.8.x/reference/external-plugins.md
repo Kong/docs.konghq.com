@@ -184,7 +184,7 @@ Note that the `main()` function must have a `package main` line at the
 top of the file.
 
 Then, a standard Go build creates an executable. There is no extra `go-pluginserver`,
-no plugin loading, and no compiler/library/environment compatibility issues.
+no plugin loading, and no compiler, library, or environment compatibility issues.
 
 The resulting executable can be placed somewhere in your path (for example,
 `/usr/local/bin`). The common `-h` flag shows a usage help message:
