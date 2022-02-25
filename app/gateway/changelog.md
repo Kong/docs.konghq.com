@@ -10,31 +10,57 @@ no_version: true
 
 #### Enterprise
 
-* Include `license_key` if present in `api` signal for [`anonymous_reports`](link to config).
+* Improved tables in Kong Manager:
+  * Click on a table row to access the entry instead of using the
+  old **View** icon.
+  * Search and filter tables through the **Filters** dropdown, which is located
+  above the table.
+  * Sort any table by clicking on a column title.
+  * Tables now have pagination.
 
-* Added table search, filtering, sorting, and pagination for Kong Manager:
-  * Searching and filtering on the core entity list page
-  * Pagination on the core entity list page
-  * Sorting on the core entity list page
+* Added the configuration option `admin_auto_create_rbac_token_disabled` to
+enable or disable RBAC tokens when automatically creating admins with OpenID
+Connect.
+
+* If a license is present,`license_key` is now included in the `api` signal for
+[`anonymous_reports`](/gateway/latest/reference/configuration/#anonymous_reports).
 
 #### Dev Portal
 
-* The new [`/developers/export`](link) endpoint lets you export the list of developers
-and their statuses into CSV format.
+* The new [`/developers/export`](/gateway/latest/admin-api/developers/reference/)
+ endpoint lets you export the list of developers and their statuses into CSV format.
 
 #### Core
 
-* Secrets Management and Vault support as been introduced as a **beta** feature.
-  This means it is intended for testing in staging environments. It not intended
-  for use in Production environments.
-  You can read more about Secrets Management in
-  [our docs page](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started).
+* **Beta feature**: Kong Gateway 2.8.0.0 introduces secrets management and vault
+support. You can now store confidential values such as usernames and passwords
+as secrets in secure vaults. Kong Gateway can then reference these secrets,
+making your environment more secure.
 
-* Customizable transparent dynamic TLS SNI name.
+  The beta includes `get` support for the following vault implementations:
+  * [AWS Secrets Manager](/gateway/latest/plan-and-deploy/security/secrets-management/backends/aws-sm)
+  * [Hashicorp Vault](/gateway/latest/plan-and-deploy/security/secrets-management/backends/hashicorp-vault)
+  * [Environment variable](/gateway/latest/plan-and-deploy/security/secrets-management/backends/env)
+
+  As part of this support, some plugins have certain fields marked as
+  *referenceable*. See the plugin section of the Kong Gateway 2.8 changelog for
+  details.
+
+  Test out secrets management using the
+  [getting started guide](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started).
+
+  {:.important}
+  > This feature is in beta. It has limited support and implementation details
+  may change. This means it is intended for testing in staging environments
+  only, and **should not** be deployed in production environments.
+
+* You can customize the transparent dynamic TLS SNI name.
+
   Thanks, [@zhangshuaiNB](https://github.com/zhangshuaiNB)!
   [#8196](https://github.com/Kong/kong/pull/8196)
 
-* Routes now support matching headers with regular expressions
+* Routes now support matching headers with regular expressions.
+
   Thanks, [@vanhtuan0409](https://github.com/vanhtuan0409)!
   [#6079](https://github.com/Kong/kong/pull/6079)
 
@@ -47,30 +73,26 @@ and their statuses into CSV format.
   Thanks, [@andrewgknew](https://github.com/andrewgknew)!
   [#8337](https://github.com/Kong/kong/pull/8337)
 
-* When using PKI for certificate verification in hybrid mode, you can now
-  configure a list of Common Names allowed to connect to a control plane with the
-  [`cluster_allowed_common_names`](/gateway/latest/reference/configuration/#cluster_allowed_common_names)
-  option. If not set, only data planes with the same parent domain as the control
-  plane cert are allowed.
-
 #### Performance
 
-* Improved the calculation of declarative configuration hash for big configurations
-  The new method is faster and uses less memory
+* Improved the calculation of declarative configuration hash for big configurations.
+  The new method is faster and uses less memory.
   [#8204](https://github.com/Kong/kong/pull/8204)
 
-* Multiple improvements in the Router. Amongst others:
-  * The router builds twice as faster
+* Multiple improvements in the Router, including:
+  * The router builds twice as fast
   * Failures are cached and discarded faster (negative caching)
   * Routes with header matching are cached
-  These changes should be particularly noticeable when rebuilding on DB-less environments
+
+  These changes should be particularly noticeable when rebuilding in DB-less
+  environments.
   [#8087](https://github.com/Kong/kong/pull/8087)
   [#8010](https://github.com/Kong/kong/pull/8010)
 
 #### Admin API
 
 * The current declarative configuration hash is now returned by the `status`
-  endpoint when Kong node is running in dbless or data-plane mode.
+  endpoint when Kong node is running in DB-less or data plane mode.
   [#8214](https://github.com/Kong/kong/pull/8214)
   [#8425](https://github.com/Kong/kong/pull/8425)
 
@@ -210,8 +232,6 @@ and their statuses into CSV format.
 ### Fixes
 
 #### Enterprise
-* Fixed an issue where OIDC authentication into Kong Manager failed when used
-with Azure AD.
 
 * Fixed a timer leak that caused the timers to be exhausted and failed to start
 any other timers used by Kong, showing the error `too many pending timers`.
@@ -222,55 +242,107 @@ data plane received no updates from the control plane.
 * Fixed `attempt to index local 'workspace'` error, which occurred when
 accessing Routes or Services using TLS.
 
-* Fixed an issue where `cluster_telemetry_server_name` was not automatically
-generated and registered if it was not explicitly set.
+* Fixed an issue where [`cluster_telemetry_server_name`](/gateway/latest/reference/configuration/#cluster_telemetry_server_name)
+was not automatically generated and registered if it was not explicitly set.
+
+* Fixed the [`cluster_allowed_common_names`](/gateway/latest/reference/configuration/#cluster_allowed_common_names)
+setting. When using PKI for certificate verification in hybrid mode, you can now
+configure a list of Common Names allowed to connect to a control plane with the
+option. If not set, only data planes with the same parent domain as the control
+plane cert are allowed.
+
+#### Kong Manager
+
+* Fixed an issue where OIDC authentication into Kong Manager failed when used
+with Azure AD.
+
+* Fixed a performance issue with the Teams page in Kong Manager.
+
+* Fixed an issue with checkboxes in Kong Manager, where the checkbox for
+the OAuth2 plugin's `hash_secret` value was labelled as *Required* and users
+were not able to uncheck it.
+
+* Fixed an issue where Kong Manager was not updating plugin configuration
+ when attempting to clear the `service.id` from a plugin.
+
+* Fixes an issue with Route creation in Kong Manager, where a new route would
+default to `http` as the supported protocol. Now, creating a Route picks up
+the correct default value, which is `http,https`.
+
+* Kong Manager now accurately lists `udp` as a protocol option for Route and
+Service objects on their configuration pages.
+
+* Fixed an issue with Kong Manager OIDC authentication, which caused the error
+`“attempt to call method 'select_by_username_ignore_case' (a nil value)”`
+and prevented login with OIDC.
+
+* Fixed a latency issue with OAuth2 token creation. These tokens
+ are no longer tracked by the workspace entity counter, as the count is not
+ needed by the Kong Manager UI.
+
+* Fixed an issue where the plugin list table couldn't be sorted by the
+**Applied To** column.
+
+#### Dev Portal
+
+* When the SMTP configuration was broken or unresponsive, the API would respond
+with an error message that was a JavaScript Object (`[Object object]`) instead
+of a string. This happened when a user was registering on any given portal with
+broken SMTP. Now, if there is an error, the API responds with the string
+`Error sending email`.
+
+* The `/document_objects` and `/services/:id/document_objects` endpoints no
+longer accept multiple documents per service. This was an issue, as each service
+can only have one document. Instead, posting a document to one of these endpoints
+now overrides the previous document.
 
 #### Core
 
 * When the Router encounters an SNI FQDN with a trailing dot (`.`),
   the dot will be ignored, since according to
   [RFC-3546](https://datatracker.ietf.org/doc/html/rfc3546#section-3.1)
-  said dot is not part of the hostname.
+  the dot is not part of the hostname.
   [#8269](https://github.com/Kong/kong/pull/8269)
 
 * Fixed a bug in the Router that would not prioritize the routes with
   both a wildcard and a port (`route.*:80`) over wildcard-only routes (`route.*`),
-  which have less specificity
+  which have less specificity.
   [#8233](https://github.com/Kong/kong/pull/8233)
 
-* The internal DNS client isn't confused by the single-dot (`.`) domain
+* The internal DNS client isn't confused by the single-dot (`.`) domain,
   which can appear in `/etc/resolv.conf` in special cases like `search .`
   [#8307](https://github.com/Kong/kong/pull/8307)
 
-* Cassandra connector now records migration consistency level.
+* The Cassandra connector now records migration consistency level.
+
   Thanks, [@mpenick](https://github.com/mpenick)!
   [#8226](https://github.com/Kong/kong/pull/8226)
 
 #### Balancer
 
-* Targets keep their health status when upstreams are updated.
+* Targets now keep their health status when upstreams are updated.
   [#8394](https://github.com/Kong/kong/pull/8394)
 
 * One debug message which was erroneously using the `error` log level
-  has been downgraded to the appropiate `debug` log level.
+  has been downgraded to the appropriate `debug` log level.
   [#8410](https://github.com/Kong/kong/pull/8410)
 
 #### Clustering
 
-* Replaced cryptic error message with more useful one when
-  there is a failure on SSL when connecting with CP:
+* Replaced a cryptic error message with a more useful one when
+  there is a failure on SSL when connecting with the control plane.
   [#8260](https://github.com/Kong/kong/pull/8260)
 
 #### Admin API
 
-* Fix incorrect `next` field in when paginating Upstreams
+* Fix an incorrect `next` field that appeared when paginating Upstreams.
   [#8249](https://github.com/Kong/kong/pull/8249)
 
 #### PDK
 
-* Phase names are correctly selected when performing phase checks
+* Phase names are now correctly selected when performing phase checks.
   [#8208](https://github.com/Kong/kong/pull/8208)
-* Fixed a bug in the go-PDK where if `kong.request.getrawbody` was
+* Fixed a bug in the go-PDK where, if `kong.request.getrawbody` was
   big enough to be buffered into a temporary file, it would return an
   an empty string.
   [#8390](https://github.com/Kong/kong/pull/8390)
@@ -299,8 +371,8 @@ generated and registered if it was not explicitly set.
     [#8401](https://github.com/Kong/kong/pull/8401)
 
 * [AWS Lambda](/hub/kong-inc/aws-lambda/) (`aws-lambda`)
-  * Fixed incorrect behavior when configured to use an http proxy
-  and deprecated the `proxy_scheme` config attribute for removal in 3.0
+  * Fixed incorrect behavior when configured to use an HTTP proxy
+  and deprecated the `proxy_scheme` config attribute for removal in 3.0.
   [#8406](https://github.com/Kong/kong/pull/8406)
 
 * [OAuth2](/hub/kong-inc/oauth2/) (`oauth2`)
@@ -386,6 +458,8 @@ generated and registered if it was not explicitly set.
 [#8368](https://github.com/Kong/kong/pull/8368)
 * Bumped `pgmoon` from 1.13.0 to 1.14.0
 [#8429](https://github.com/Kong/kong/pull/8429)
+* Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
+* Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
 ### Deprecated
 
