@@ -3,6 +3,407 @@ title: Kong Gateway Changelog
 no_version: true
 ---
 
+## 2.8.0.0
+**Release Date** TBA
+
+### Features
+
+#### Enterprise
+
+* Include `license_key` if present in `api` signal for [`anonymous_reports`](link to config).
+
+* Added table search, filtering, sorting, and pagination for Kong Manager:
+  * Searching and filtering on the core entity list page
+  * Pagination on the core entity list page
+  * Sorting on the core entity list page
+
+#### Dev Portal
+
+* The new [`/developers/export`](link) endpoint lets you export the list of developers
+and their statuses into CSV format.
+
+#### Core
+
+* Secrets Management and Vault support as been introduced as a **beta** feature.
+  This means it is intended for testing in staging environments. It not intended
+  for use in Production environments.
+  You can read more about Secrets Management in
+  [our docs page](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started).
+
+* Customizable transparent dynamic TLS SNI name.
+  Thanks, [@zhangshuaiNB](https://github.com/zhangshuaiNB)!
+  [#8196](https://github.com/Kong/kong/pull/8196)
+
+* Routes now support matching headers with regular expressions
+  Thanks, [@vanhtuan0409](https://github.com/vanhtuan0409)!
+  [#6079](https://github.com/Kong/kong/pull/6079)
+
+* You can now configure [`cluster_max_payload`](/gateway/latest/reference/configuration/#cluster_max_payload)
+  for hybrid mode deployments. This configuration option sets the maximum payload
+  size allowed to be sent across from the control plane to the data plane. If your
+  environment has large configurations that generate `payload too big` errors
+  and don't get applied to the data planes, use this setting to adjust the limit.
+
+  Thanks, [@andrewgknew](https://github.com/andrewgknew)!
+  [#8337](https://github.com/Kong/kong/pull/8337)
+
+* When using PKI for certificate verification in hybrid mode, you can now
+  configure a list of Common Names allowed to connect to a control plane with the
+  [`cluster_allowed_common_names`](/gateway/latest/reference/configuration/#cluster_allowed_common_names)
+  option. If not set, only data planes with the same parent domain as the control
+  plane cert are allowed.
+
+#### Performance
+
+* Improved the calculation of declarative configuration hash for big configurations
+  The new method is faster and uses less memory
+  [#8204](https://github.com/Kong/kong/pull/8204)
+
+* Multiple improvements in the Router. Amongst others:
+  * The router builds twice as faster
+  * Failures are cached and discarded faster (negative caching)
+  * Routes with header matching are cached
+  These changes should be particularly noticeable when rebuilding on DB-less environments
+  [#8087](https://github.com/Kong/kong/pull/8087)
+  [#8010](https://github.com/Kong/kong/pull/8010)
+
+#### Admin API
+
+* The current declarative configuration hash is now returned by the `status`
+  endpoint when Kong node is running in dbless or data-plane mode.
+  [#8214](https://github.com/Kong/kong/pull/8214)
+  [#8425](https://github.com/Kong/kong/pull/8425)
+
+#### Plugins
+
+* [Canary](/hub/kong-inc/canary/) (`canary`)
+  * Added the ability to configure `canary_by_header_name`. This parameter
+  accepts a header name that, when present on a request, overrides the configured canary
+  functionality.         
+    * If the configured header is present with the value `always`, the request will
+      always go to the canary upstream.
+    * If the header is present with the value `never`, the request will never go to the
+    canary upstream.
+
+* [Prometheus](/hub/kong-inc/prometheus/) (`prometheus`)
+  * Added three new metrics:
+    * `kong_db_entities_total` (gauge): total number of entities in the database.
+    * `kong_db_entity_count_errors` (counter): measures the number of errors encountered during the measurement of `kong_db_entities_total`.
+    * `kong_nginx_timers` (gauge): total number of Nginx timers, in Running or Pending state. Tracks `ngx.timer.running_count()` and
+      `ngx.timer.pending_count()`.
+      [#8387](https://github.com/Kong/kong/pull/8387)
+
+* [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
+
+  * Add Redis ACL support (Redis v6.0.0+) for storing and retrieving a session.
+    Use the `session_redis_username` and `session_redis_password` configuration
+    parameters to configure it.
+
+    {:.important}
+    > These parameters replace the `session_redis_auth` field, which is
+    now **deprecated** and planned to be removed in 3.x.x.
+
+  * Added support for distributed claims. Set the `resolve_distributed_claims`
+   configuration parameter to `true` to tell OIDC to explicitly resolve
+   distributed claims.
+
+      Distributed claims are represented by the `_claim_names` and `_claim_sources`
+      members of the JSON object containing the claims.
+
+  * **Beta feature:** The `client_id`, `client_secret`, `session_secret`, `session_redis_username`,
+  and `session_redis_password` configuration fields are now marked as
+  referenceable, which means they can be securely stored as
+  [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+  in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+
+* [Forward Proxy Advanced](/hub/kong-inc/forward-proxy/) (`forward-proxy`)
+
+  * Added `http_proxy_host`, `http_proxy_port`, `https_proxy_host`, and
+  `https_proxy_port` configuration parameters for mTLS support.
+
+      {:.important}
+      > These parameters replace the `proxy_port` and `proxy_host` fields, which
+      are now **deprecated** and planned to be removed in 3.x.x.
+
+  * The `auth_password` and `auth_username` configuration fields are now marked as
+  referenceable, which means they can be securely stored as
+  [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+  in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+
+* [Kafka Upstream](/hub/kong-inc/kafka-upstream/) (`kafka-upstream`) and [Kafka Log](/hub/kong-inc/kafka-log) (`kafka-log`)
+
+  * Added the ability to identify a Kafka cluster using the `cluster_name` configuration parameter.
+   By default, this field generates a random string. You can also set your own custom cluster identifier.
+
+  * **Beta feature:** The `authentication.user` and `authentication.password` configuration fields are now marked as
+  referenceable, which means they can be securely stored as
+  [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+  in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+
+* [LDAP Authentication Advanced](/hub/kong-inc/ldap-auth-advanced) (`ldap-auth-advanced`)
+
+  * **Beta feature:** The `ldap_password` and `bind_dn` configuration fields are now marked as
+  referenceable, which means they can be securely stored as
+  [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+  in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+
+* [Vault Authentication](/hub/kong-inc/vault-auth/) (`vault-auth`)
+
+  * **Beta feature:** The `vaults.vault_token` form field is now marked as
+  referenceable, which means it can be securely stored as a
+  [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+  in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+
+* [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/) (`graphql-rate-limiting-advanced`)
+
+  * Added Redis ACL support (Redis v6.0.0+ and Redis Sentinel v6.2.0+).
+
+  * Added the `redis.username` and `redis.sentinel_username` configuration parameters.
+
+  * **Beta feature:** The `redis.username`, `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
+  configuration fields are now marked as referenceable, which means they can be securely stored as
+  [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+  in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+
+* [Rate Limiting](/hub/kong-inc/rate-limiting/) (`rate-limiting`)
+
+* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Added Redis ACL support (Redis v6.0.0+ and Redis Sentinel v6.2.0+).
+
+  * Added the `redis.username` and `redis.sentinel_username` configuration parameters.
+
+  * **Beta feature:** The `redis.username`, `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
+  configuration fields are now marked as referenceable, which means they can be securely stored as
+  [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+  in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+
+* [Response Rate Limiting](/hub/kong-inc/response-ratelimiting/) (`response-ratelimiting`)
+  * Added Redis ACL support (Redis v6.0.0+ and Redis Sentinel v6.2.0+).
+  * Added the `redis_username` configuration parameter.
+
+    Thanks, [@27ascii](https://github.com/27ascii) for the original contribution!
+    [#8213](https://github.com/Kong/kong/pull/8213)
+
+* [Response Transformer Advanced](/hub/kong-inc/response-transformer-advanced/) (`response-transformer-advanced`)
+  * Use response buffering from the PDK.
+
+* [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/) (`proxy-cache-advanced`)
+  * Added Redis ACL support (Redis v6.0.0+ and Redis Sentinel v6.2.0+).
+
+  * Added the `redis.sentinel_username` and `redis.sentinel_password` configuration
+  parameters.
+
+  * **Beta feature:**  The `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
+  configuration fields are now marked as referenceable, which means they can be
+  securely stored as [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+  in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+
+* [jq](/hub/kong-inc/jq/) (`jq`)
+  * Use response buffering from the PDK.
+
+* [ACME](/hub/kong-inc/ACME/) (`acme`)
+  * Added the `rsa_key_size` configuration parameter.
+
+    Thanks, [lodrantl](https://github.com/lodrantl)!
+    [#8114](https://github.com/Kong/kong/pull/8114)
+
+### Fixes
+
+#### Enterprise
+* Fixed an issue where OIDC authentication into Kong Manager failed when used
+with Azure AD.
+
+* Fixed a timer leak that caused the timers to be exhausted and failed to start
+any other timers used by Kong, showing the error `too many pending timers`.
+
+* Fixed an issue where, if `data_plane_config_cache_mode` was set to `off`, the
+data plane received no updates from the control plane.
+
+* Fixed `attempt to index local 'workspace'` error, which occurred when
+accessing Routes or Services using TLS.
+
+* Fixed an issue where `cluster_telemetry_server_name` was not automatically
+generated and registered if it was not explicitly set.
+
+#### Core
+
+* When the Router encounters an SNI FQDN with a trailing dot (`.`),
+  the dot will be ignored, since according to
+  [RFC-3546](https://datatracker.ietf.org/doc/html/rfc3546#section-3.1)
+  said dot is not part of the hostname.
+  [#8269](https://github.com/Kong/kong/pull/8269)
+
+* Fixed a bug in the Router that would not prioritize the routes with
+  both a wildcard and a port (`route.*:80`) over wildcard-only routes (`route.*`),
+  which have less specificity
+  [#8233](https://github.com/Kong/kong/pull/8233)
+
+* The internal DNS client isn't confused by the single-dot (`.`) domain
+  which can appear in `/etc/resolv.conf` in special cases like `search .`
+  [#8307](https://github.com/Kong/kong/pull/8307)
+
+* Cassandra connector now records migration consistency level.
+  Thanks, [@mpenick](https://github.com/mpenick)!
+  [#8226](https://github.com/Kong/kong/pull/8226)
+
+#### Balancer
+
+* Targets keep their health status when upstreams are updated.
+  [#8394](https://github.com/Kong/kong/pull/8394)
+
+* One debug message which was erroneously using the `error` log level
+  has been downgraded to the appropiate `debug` log level.
+  [#8410](https://github.com/Kong/kong/pull/8410)
+
+#### Clustering
+
+* Replaced cryptic error message with more useful one when
+  there is a failure on SSL when connecting with CP:
+  [#8260](https://github.com/Kong/kong/pull/8260)
+
+#### Admin API
+
+* Fix incorrect `next` field in when paginating Upstreams
+  [#8249](https://github.com/Kong/kong/pull/8249)
+
+#### PDK
+
+* Phase names are correctly selected when performing phase checks
+  [#8208](https://github.com/Kong/kong/pull/8208)
+* Fixed a bug in the go-PDK where if `kong.request.getrawbody` was
+  big enough to be buffered into a temporary file, it would return an
+  an empty string.
+  [#8390](https://github.com/Kong/kong/pull/8390)
+
+#### Plugins
+
+* **External Plugins**:
+  * Fixed incorrect handling of the Headers Protobuf Structure
+    and representation of null values, which provoked an error on init with the go-pdk.
+    [#8267](https://github.com/Kong/kong/pull/8267)
+
+  * Unwrap `ConsumerSpec` and `AuthenticateArgs`.
+
+    Thanks, [@raptium](https://github.com/raptium)!
+    [#8280](https://github.com/Kong/kong/pull/8280)
+
+  * Fixed a problem in the stream subsystem, where it would attempt to load
+    HTTP headers.
+    [#8414](https://github.com/Kong/kong/pull/8414)
+
+* [CORS](/hub/kong-inc/cors/) (`cors`)
+  * The CORS plugin does not send the `Vary: Origin` header anymore when
+    the header `Access-Control-Allow-Origin` is set to `*`.
+
+    Thanks, [@jkla-dr](https://github.com/jkla-dr)!
+    [#8401](https://github.com/Kong/kong/pull/8401)
+
+* [AWS Lambda](/hub/kong-inc/aws-lambda/) (`aws-lambda`)
+  * Fixed incorrect behavior when configured to use an http proxy
+  and deprecated the `proxy_scheme` config attribute for removal in 3.0
+  [#8406](https://github.com/Kong/kong/pull/8406)
+
+* [OAuth2](/hub/kong-inc/oauth2/) (`oauth2`)
+  * The plugin clears the `X-Authenticated-UserId` and
+  `X-Authenticated-Scope` headers when it configured in logical OR and
+  is used in conjunction with another authentication plugin.
+  [#8422](https://github.com/Kong/kong/pull/8422)
+
+* [Datadog](/hub/kong-inc/datadog/) (`datadog`)
+  * The plugin schema now lists the default values
+  for configuration options in a single place instead of in two
+  separate places.
+  [#8315](https://github.com/Kong/kong/pull/8315)
+
+* [Rate Limiting](/hub/kong-inc/rate-limiting) (`rate-limiting`)
+  * Fixed a 500 error associated with performing arithmetic functions on a nil
+  value by adding a nil value check after performing `ngx.shared.dict` operations.
+
+* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
+  * Fixed a 500 error that occurred when consumer groups were enforced but no
+  proper configurations were provided. Now, if no specific consumer group
+  configuration exists, the consumer group defaults to the original plugin
+  configuration.
+
+  * Fixed a timer leak that caused the timers to be exhausted and failed to
+  start any other timers used by Kong, showing the error `too many pending timers`.
+
+    Before, the plugin used one timer for each namespace maintenance process,
+    increasing timer usage on instances with a large number of rate limiting
+    namespaces. Now, it uses a single timer for all namespace maintenance.
+
+  * Fixed an issue where the `local` strategy was not working with DB-less
+  and hybrid deployments. We now allow `sync_rate = null` and `sync_rate = -1`
+  when a `local` strategy is defined.
+
+* [Exit Transformer](/hub/kong-inc/exit-transformer) (`exit-transformer`)
+  * Fixed an issue where the Exit Transformer plugin
+  would break the plugin iterator, causing later plugins not to run.
+
+* [mTLS Authentication](/hub/kong-inc/mtls-auth/) (`mtls-auth`)
+
+  * Fixed `attempt to index local 'workspace'` error, which occurred when
+  accessing Routes or Services using TLS.
+
+* [OAuth2 Introspection](/hub/kong-inc/oauth2-introspection/) (`oauth2-introspection`)
+
+  * Fixed issues with TLS connections when the IDP is behind a reverse proxy.
+
+* [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/) (`proxy-cache-advanced`)
+
+  * Fixed a `X-Cache-Status:Miss` error that occurred when caching large files.
+
+* [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/) (`proxy-cache-advanced`)
+
+  * Fixed a `X-Cache-Status:Miss` error that occurred when caching large files.
+
+* [Response Transformer Advanced](/hub/kong-inc/response-transformer-advanced/) (`response-transformer-advanced`)
+
+  * In the `body_filter` phase, the plugin now sets the body to an empty string
+  instead of `nil`.
+
+* [jq](/hub/kong-inc/jq/) (`jq`)
+
+  * If plugin has no output, it will now return the raw body instead of attempting
+  to restore the original response body.
+
+* [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
+
+  * Fixed negative caching, which was loading wrong a configuration value.
+
+* [JWT Signer](/hub/kong-inc/jwt-signer/) (`jwt-signer`)
+
+  * Fixed an issue where the `enable_hs_signatures` configuration
+  parameter did not work. The plugin now defines expiry earlier to avoid
+  arithmetic on a nil value.
+
+### Dependencies
+* Bumped OpenSSL from 1.1.1l to 1.1.1m
+[#8191](https://github.com/Kong/kong/pull/8191)
+* Bumped `resty.session` from 3.8 to 3.10
+[#8294](https://github.com/Kong/kong/pull/8294)
+* Bumped `lua-resty-openssl` to 0.8.5
+[#8368](https://github.com/Kong/kong/pull/8368)
+* Bumped `pgmoon` from 1.13.0 to 1.14.0
+[#8429](https://github.com/Kong/kong/pull/8429)
+
+### Deprecated
+
+* The external `go-pluginserver` project is considered deprecated in favor of
+  the [embedded server approach](link).
+
+* OpenID Connect plugin: The `session_redis_auth` field is
+  now deprecated and planned to be removed in 3.x.x. Use
+  `session_redis_username` and `session_redis_password` instead.
+
+* Forward Proxy Advanced plugin: The `proxy_port` and `proxy_host` fields are
+now deprecated and planned to be removed in 3.x.x. Use
+`http_proxy_host` and `http_proxy_port`, or `https_proxy_host` and
+`https_proxy_port` instead.
+
+* AWS Lambda plugin: The `proxy_scheme` field is now deprecated and planned to
+be removed in 3.x.x.
+
 ## 2.7.1.1
 **Release Date** 2022/02/04
 
