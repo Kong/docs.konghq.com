@@ -243,7 +243,7 @@ keys.
     ```
     By setting the role of the node to `control_plane`, this node will listen on
     port `0.0.0.0:8005` by default for Data Plane connections, and on port
-    `0.0.0.0:8006` for Vitals telemetry data. These ports on the
+    `0.0.0.0:8006` for telemetry data. These ports on the
     Control Plane will need to be accessible by all Data Planes it controls through
     any firewalls you may have in place.
 
@@ -289,7 +289,7 @@ keys.
 
     By setting the role of the node to `control_plane`, this node will listen on
     port `0.0.0.0:8005` by default for Data Plane connections, and on port
-    `0.0.0.0:8006` for Vitals telemetry data. These ports on the
+    `0.0.0.0:8006` for telemetry data. These ports on the
     Control Plane will need to be accessible by all Data Planes it controls through
     any firewalls you may have in place.
 
@@ -429,7 +429,7 @@ follow the instructions to:
     extension) to use for Data Plane connections to the Control Plane through
     TLS. When not set, Data Plane will use `kong_clustering` as the SNI.
       > **Note:** You can also optionally use `KONG_CLUSTER_TELEMETRY_SERVER_NAME`
-      to set a custom SNI for Vitals telemetry data. If not set, it defaults to
+      to set a custom SNI for telemetry data. If not set, it defaults to
       `KONG_CLUSTER_SERVER_NAME`.
 
 3. If needed, bring up any subsequent Data Planes using the same settings.
@@ -493,7 +493,7 @@ and follow the instructions in Steps 1 and 2 **only** to download
     to use for Data Plane connections to the Control Plane through TLS. When
     not set, Data Plane will use `kong_clustering` as the SNI.
       > **Note:** You can also optionally use `cluster_telemetry_server_name`
-      to set a custom SNI for Vitals telemetry data. If not set, it defaults to
+      to set a custom SNI for telemetry data. If not set, it defaults to
       `cluster_server_name`.
 
 3. Restart Kong for the settings to take effect:
@@ -578,8 +578,8 @@ Parameter | Description | CP or DP {:width=10%:}
 [`role`](/enterprise/{{page.kong_version}}/property-reference/#role) <br>*Required* | Determines whether the {{site.ee_product_name}} instance is a Control Plane or a Data Plane. Valid values are `control_plane` or `data_plane`. | Both
 [`cluster_listen`](/enterprise/{{page.kong_version}}/property-reference/#cluster_listen) <br>*Optional* <br><br>**Default:** `0.0.0.0:8005`| List of addresses and ports on which the Control Plane will listen for incoming Data Plane connections. This port is always protected with Mutual TLS (mTLS) encryption. Ignored on Data Plane nodes. | CP
 [`proxy_listen`](/enterprise/{{page.kong_version}}/property-reference/#proxy_listen) <br>*Required* | Comma-separated list of addresses and ports on which the proxy server should listen for HTTP/HTTPS traffic. Ignored on Control Plane nodes. | DP
-[`cluster_telemetry_listen`](/enterprise/{{page.kong_version}}/property-reference/#cluster_telemetry_listen) <br>*Optional* <br><br>**Default:** `0.0.0.0:8006`| List of addresses and ports on which the Control Plane will listen for Data Plane Vitals telemetry data. This port is always protected with Mutual TLS (mTLS) encryption. Ignored on Data Plane nodes. | CP
-[`cluster_telemetry_endpoint`](/enterprise/{{page.kong_version}}/property-reference/#cluster_telemetry_endpoint) <br>*Required* | The port that the Data Plane uses to send Vitals telemetry data to the Control Plane. Ignored on Control Plane nodes. | DP
+[`cluster_telemetry_listen`](/enterprise/{{page.kong_version}}/property-reference/#cluster_telemetry_listen) <br>*Optional* <br><br>**Default:** `0.0.0.0:8006`| List of addresses and ports on which the Control Plane will listen for Data Plane telemetry data. This port is always protected with Mutual TLS (mTLS) encryption. Ignored on Data Plane nodes. | CP
+[`cluster_telemetry_endpoint`](/enterprise/{{page.kong_version}}/property-reference/#cluster_telemetry_endpoint) <br>*Required* | The port that the Data Plane uses to send telemetry data to the Control Plane. Ignored on Control Plane nodes. | DP
 [`cluster_control_plane`](/enterprise/{{page.kong_version}}/property-reference/#cluster_control_plane) <br>*Required* | Address and port that the Data Plane nodes use to connect to the Control Plane. Must point to the port configured using the [`cluster_listen`](/enterprise/{{page.kong_version}}/property-reference/#cluster_listen) property on the Control Plane node. Ignored on Control Plane nodes. | DP
 [`cluster_mtls`](/enterprise/{{page.kong_version}}/property-reference/#cluster_mtls) <br>*Optional* <br><br>**Default:** `"shared"` | One of `"shared"` or `"pki"`. Indicates whether Hybrid Mode will use a shared certificate/key pair for CP/DP mTLS or if PKI mode will be used. See below sections for differences in mTLS modes. | Both
 
@@ -590,7 +590,7 @@ Parameter | Description | Shared Mode {:width=12%:} | PKI Mode {:width=30%:}
 [`cluster_cert`](/enterprise/{{page.kong_version}}/property-reference/#cluster_cert) and [`cluster_cert_key`](/enterprise/{{page.kong_version}}/property-reference/#cluster_cert_key) <br>*Required* | Certificate/key pair used for mTLS between CP/DP nodes. | Same between CP/DP nodes. | Unique certificate for each node, generated from the CA specified by `cluster_ca_cert`.
 [`cluster_ca_cert`](/enterprise/{{page.kong_version}}/property-reference/#cluster_ca_cert) <br>*Required in PKI mode* | The trusted CA certificate file in PEM format used to verify the `cluster_cert`. | *Ignored* | CA certificate used to verify `cluster_cert`, same between CP/DP nodes. *Required*
 [`cluster_server_name`](/enterprise/{{page.kong_version}}/property-reference/#cluster_server_name) <br>*Required in PKI mode* | The SNI presented by the DP node mTLS handshake. | *Ignored* | In PKI mode, the DP nodes will also verify that the Common Name (CN) or Subject Alternative Name (SAN) inside the certificate presented by CP matches the `cluster_server_name` value.
-[`cluster_telemetry_server_name`](/enterprise/{{page.kong_version}}/property-reference/#cluster_telemetry_server_name) |  The Vitals telemetry SNI presented by the DP node mTLS handshake. If not specified, falls back on SNI set in `cluster_server_name`. | *Ignored* | In PKI mode, the DP nodes will also verify that the Common Name (CN) or Subject Alternative Name (SAN) inside the certificate presented by CP matches the `cluster_telemetry_server_name` value.
+[`cluster_telemetry_server_name`](/enterprise/{{page.kong_version}}/property-reference/#cluster_telemetry_server_name) |  The telemetry SNI presented by the DP node mTLS handshake. If not specified, falls back on SNI set in `cluster_server_name`. | *Ignored* | In PKI mode, the DP nodes will also verify that the Common Name (CN) or Subject Alternative Name (SAN) inside the certificate presented by CP matches the `cluster_telemetry_server_name` value.
 
 ## Next Steps
 

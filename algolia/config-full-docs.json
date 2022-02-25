@@ -5,10 +5,10 @@
       "url": "https://docs.konghq.com/konnect/"
     },
     {
-      "url": "https://docs.konghq.com/deck/1.10.x/"
+      "url": "https://docs.konghq.com/deck/1.11.x/"
     },
     {
-      "url": "https://docs.konghq.com/kubernetes-ingress-controller/2.1.x/"
+      "url": "https://docs.konghq.com/kubernetes-ingress-controller/2.2.x/"
     },
     {
       "url": "https://docs.konghq.com/gateway/changelog/",
@@ -18,7 +18,7 @@
       "url": "https://docs.konghq.com/gateway/2.8.x/"
     },
     {
-      "url": "https://docs.konghq.com/mesh/1.5.x/"
+      "url": "https://docs.konghq.com/mesh/1.6.x/"
     },
     {
       "url": "https://docs.konghq.com/mesh/changelog/",

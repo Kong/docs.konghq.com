@@ -4,6 +4,32 @@ no_search: true
 no_version: true
 ---
 
+## 1.6.0
+
+> Released on 2022/02/24
+
+### Changes
+
+Built on top of [Kuma 1.5.0](https://github.com/kumahq/kuma/releases/tag/1.5.0)
+
+- UBI images support.
+- ECS EC2 and Fargate first party support.
+- Update OPA agent to v0.37.2.
+
+### Upgrading
+
+- The `kuma.metrics.dataplane.enabled` and `kuma.metrics.zone.enabled` configurations have been removed. Kuma always generates the corresponding metrics.
+- Removed support for the old Ingress (`Dataplane#networking.ingress`), which was used before Kong Mesh 1.3. If you are still using it, migrate to ZoneIngress first (see [Kuma Upgrade to 1.2.0 section](https://github.com/kumahq/kuma/blob/master/UPGRADE.md#upgrade-to-120)).
+
+#### Kubernetes
+- Migrate your kuma.io/sidecar-injection annotations to labels. The new version still supports annotations, but to  guarantee that applications can only start with a sidecar, you must use a label instead of an annotation.
+Configuration parameter `kuma.runtime.kubernetes.injector.sidecarContainer.adminPort` and environment variable `KUMA_RUNTIME_KUBERNETES_INJECTOR_SIDECAR_CONTAINER_ADMIN_PORT` have been deprecated in favor of `kuma.bootstrapServer.params.adminPort` and `KUMA_BOOTSTRAP_SERVER_PARAMS_ADMIN_PORT`.
+
+#### Universal
+
+- You can't use `0.0.0.0` or `::` in `networking.address`. Use loopback instead.
+- The Kuma DP flag `--admin-port` and environment variable `KUMA_DATAPLANE_ADMIN_PORT` have been deprecated. The admin port should be specified in Dataplane or ZoneIngress resources.
+
 ## 1.5.1
 
 > Released on 2021/12/16
@@ -18,8 +44,8 @@ Built on top of [Kuma 1.4.1](https://github.com/kumahq/kuma/blob/master/CHANGELO
 
 ### Upgrading
 
-Before you upgrade from `1.5.0` make sure to review your RBAC configuration for zone control planes. In `1.5.1`, 
-RBAC for zone control planes is restricted by default. For information on how to secure access to resources, see 
+Before you upgrade from `1.5.0` make sure to review your RBAC configuration for zone control planes. In `1.5.1`,
+RBAC for zone control planes is restricted by default. For information on how to secure access to resources, see
 [the RBAC documentation](/mesh/1.5.x/features/rbac/).
 
 Upgrades from `1.5.0` are otherwise seamless and no further steps are needed.
@@ -82,12 +108,12 @@ Built on top of [Kuma 1.3.0](https://github.com/kumahq/kuma/blob/master/CHANGELO
 
 Upgrades from `1.3.0` are seamless, but note the following:
 
-- Outbounds generated internally are no longer listed in `dataplane.network.outbound[]`. On Kubernetes, they are automatically removed. 
-On Universal, to remove them you must recreate your `Dataplane` resources with `kumactl apply`. Or, if the proxy lifecycle is 
+- Outbounds generated internally are no longer listed in `dataplane.network.outbound[]`. On Kubernetes, they are automatically removed.
+On Universal, to remove them you must recreate your `Dataplane` resources with `kumactl apply`. Or, if the proxy lifecycle is
 managed by Kuma, restart the services.
-- You may notice some proxies or zones indicated as Offline in the GUI when you upgrade the control plane. This can happen if 
-upgrading all instances of the control plane takes more than five (5) minutes. It's temporary, and occurs because of a new mechanism for 
-better tracking proxy and zone status. A heartbeat periodically increments the `generation` counter for Insights. The offline status 
+- You may notice some proxies or zones indicated as Offline in the GUI when you upgrade the control plane. This can happen if
+upgrading all instances of the control plane takes more than five (5) minutes. It's temporary, and occurs because of a new mechanism for
+better tracking proxy and zone status. A heartbeat periodically increments the `generation` counter for Insights. The offline status
 should disappear after all control plane instances are upgraded to 1.4.0.
 
 ## 1.3.4
@@ -183,7 +209,7 @@ For Kubernetes, you should be aware of the following changes:
 - Service `kong-mesh-global-remote-sync` is changed to `kong-mesh-global-zone-sync`. After you upgrade the global control plane, you must manually remove the old service. For example:
 
    ```sh
-   kubectl delete -n kong-mesh-system service/kong-mesh-global-remote-sync 
+   kubectl delete -n kong-mesh-system service/kong-mesh-global-remote-sync
    ```
    The IP address or hostname that provides the KDS address when you install the control planes can change. Make sure that you update the address when you upgrade the remote control planes to the latest version.
 
@@ -205,7 +231,7 @@ Built on top of [Kuma 1.1.6](https://github.com/kumahq/kuma/blob/master/CHANGELO
 
 - Intermediate Certificate Authorities (CAs) are now supported with Vault integration.
 - You can now specify any and all tags in a Traffic Permission policy for Vault integration.
-- You can now specify TCP and HTTP health checks at the same time in the same policy. The health check policy also 
+- You can now specify TCP and HTTP health checks at the same time in the same policy. The health check policy also
 now includes a `reuse_connection` option.
 - The `--gateway` flag is now available in the CLI.
 - You can now install an ingress controller with the CLI. Kong Gateway is the first supported ingress controller.

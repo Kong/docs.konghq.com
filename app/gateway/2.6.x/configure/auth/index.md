@@ -45,7 +45,7 @@ consumer to represent anonymous users, then configure your authentication plugin
 access. Here is an example, which assumes you have already configured a Service named `example-service` and
 the corresponding Route:
 
-1. ### Create an example Service and a Route
+1. **Create an example Service and a Route**
 
     Issue the following cURL request to create `example-service` pointing to `mockbin.org`, which will echo
     the request:
@@ -67,7 +67,7 @@ the corresponding Route:
 
     The url `http://localhost:8000/auth-sample` will now echo whatever is being requested.
 
-2. ### Configure the key-auth Plugin for your Service
+2. **Configure the key-auth Plugin for your Service**
 
     Issue the following cURL request to add a plugin to a Service:
 
@@ -79,7 +79,7 @@ the corresponding Route:
 
     Be sure to note the created Plugin `id` - you'll need it in step 5.
 
-3. ### Verify that the key-auth plugin is properly configured
+3. **Verify that the key-auth plugin is properly configured**
 
     Issue the following cURL request to verify that the [key-auth][key-auth]
     plugin was properly configured on the Service:
@@ -101,7 +101,7 @@ the corresponding Route:
     }
     ```
 
-4. ### Create an anonymous Consumer
+4. **Create an anonymous Consumer**
 
     Every request proxied by Kong must be associated with a Consumer. You'll now create a Consumer
     named `anonymous_users` (that Kong will utilize when proxying anonymous access) by issuing the
@@ -129,7 +129,7 @@ the corresponding Route:
 
     Be sure to note the Consumer `id` - you'll need it in the next step.
 
-5. ### Enable anonymous access
+5. **Enable anonymous access**
 
     You'll now re-configure the key-auth plugin to permit anonymous access by issuing the following
     request (**replace the sample uuids below by the `id` values from step 2 and 4**):
@@ -146,7 +146,7 @@ the corresponding Route:
     is not currently checked when configuring anonymous access, and provisioning of a Consumer `id` that doesn't already
     exist will result in an incorrect configuration.
 
-6. ### Check anonymous access
+6. **Check anonymous access**
 
     Confirm that your Service now permits anonymous access by issuing the following request:
 

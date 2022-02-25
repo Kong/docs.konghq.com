@@ -440,7 +440,7 @@ functions to access {{site.base_gateway}} features of the [PDK][kong-pdk].
 [kong-python-pdk] can be installed using `pip`. To install the plugin server binary and PDK globally, use:
 
 ```
-pip install kong-pdk
+pip3 install kong-pdk
 ```
 
 Assume the plugins are stored in `/usr/local/kong/python-plugins`:

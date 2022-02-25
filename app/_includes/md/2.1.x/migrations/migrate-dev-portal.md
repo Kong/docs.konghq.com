@@ -14,9 +14,9 @@ CLI to take advantage of source control is recommended.
 The following files must be created for the 2.1 Kong Developer Portal to function
 properly. Create each file using the name, path, and contents linked below:
 
-- #### workspaces/default/themes/base/assets/js/app-0fcefa7.min.js
-  - Templates Path: `/workspaces/default/themes/base/assets/js/app-0fcefa7.min.js`
-  - File Content on GitHub: [/default/themes/base/assets/js/app-0fcefa7.min.js](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/themes/base/assets/js/app-0fcefa7.min.js)
+- #### workspaces/default/themes/base/assets/js/app-44b7b4e.min.js
+  - Templates Path: `/workspaces/default/themes/base/assets/js/app-44b7b4e.min.js`
+  - File Content on GitHub: [/default/themes/base/assets/js/app-44b7b4e.min.js](https://github.com/Kong/kong-portal-templates/blob/master/workspaces/default/themes/base/assets/js/app-44b7b4e.min.js)
 - #### workspaces/default/themes/base/layouts/system/markdown.html
   - Templates Path: `/workspaces/default/themes/base/layouts/system/markdown.html`
   - File Content on GitHub: [/workspaces/default/themes/base/layouts/system/markdown.html](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/themes/base/layouts/system/markdown.html)
@@ -77,6 +77,6 @@ current portal configuration files. You can view the complete `portal.conf.yaml`
 
 ```
 ...
-app_version: 0fcefa7
+app_version: 44b7b4e
 ...
 ```
