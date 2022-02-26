@@ -1318,7 +1318,7 @@ Services can be both [tagged and filtered by tags](#tags).
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Create Service
 
@@ -1449,7 +1449,7 @@ HTTP 200 OK
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Update Service
 
@@ -1515,7 +1515,7 @@ HTTP 200 OK
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Create Or Update Service
 
@@ -1594,7 +1594,7 @@ See POST and PATCH responses.
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Delete Service
 
@@ -1711,7 +1711,7 @@ Routes can be both [tagged and filtered by tags](#tags).
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Create Route
 
@@ -1832,7 +1832,7 @@ HTTP 200 OK
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Update Route
 
@@ -1888,7 +1888,7 @@ HTTP 200 OK
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Create Or Update Route
 
@@ -1957,7 +1957,7 @@ See POST and PATCH responses.
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Delete Route
 
@@ -2008,7 +2008,7 @@ Consumers can be both [tagged and filtered by tags](#tags).
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Create Consumer
 
@@ -2098,7 +2098,7 @@ HTTP 200 OK
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Update Consumer
 
@@ -2143,7 +2143,7 @@ HTTP 200 OK
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Create Or Update Consumer
 
@@ -2201,7 +2201,7 @@ See POST and PATCH responses.
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Delete Consumer
 
@@ -2291,7 +2291,7 @@ would have otherwise matched config B.
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Create Plugin
 
@@ -2464,7 +2464,7 @@ HTTP 200 OK
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Update Plugin
 
@@ -2532,7 +2532,7 @@ HTTP 200 OK
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Create Or Update Plugin
 
@@ -2613,7 +2613,7 @@ See POST and PATCH responses.
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Delete Plugin
 
@@ -2740,7 +2740,7 @@ Certificates can be both [tagged and filtered by tags](#tags).
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Create Certificate
 
@@ -2830,7 +2830,7 @@ HTTP 200 OK
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Update Certificate
 
@@ -2875,7 +2875,7 @@ HTTP 200 OK
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Create Or Update Certificate
 
@@ -2933,7 +2933,7 @@ See POST and PATCH responses.
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Delete Certificate
 
@@ -2981,7 +2981,7 @@ CA Certificates can be both [tagged and filtered by tags](#tags).
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Create CA Certificate
 
@@ -3061,7 +3061,7 @@ HTTP 200 OK
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Update CA Certificate
 
@@ -3096,7 +3096,7 @@ HTTP 200 OK
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Create Or Update CA Certificate
 
@@ -3144,7 +3144,7 @@ See POST and PATCH responses.
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Delete CA Certificate
 
@@ -3184,7 +3184,7 @@ SNIs can be both [tagged and filtered by tags](#tags).
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Create SNI
 
@@ -3295,7 +3295,7 @@ HTTP 200 OK
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Update SNI
 
@@ -3341,7 +3341,7 @@ HTTP 200 OK
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Create Or Update SNI
 
@@ -3400,7 +3400,7 @@ See POST and PATCH responses.
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Delete SNI
 
@@ -3456,7 +3456,7 @@ Upstreams can be both [tagged and filtered by tags](#tags).
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Create Upstream
 
@@ -3577,7 +3577,7 @@ HTTP 200 OK
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Update Upstream
 
@@ -3633,7 +3633,7 @@ HTTP 200 OK
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Create Or Update Upstream
 
@@ -3702,7 +3702,7 @@ See POST and PATCH responses.
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Delete Upstream
 
@@ -3851,8 +3851,7 @@ A target is an ip address/hostname with a port that identifies an instance of a 
 service. Every upstream can have many targets, and the targets can be
 dynamically added, modified, or deleted. Changes take effect on the fly.
 
-Because the upstream maintains a history of target changes, the targets cannot
-be deleted or modified. To disable a target, post a new one with `weight=0`;
+To disable a target, post a new one with `weight=0`;
 alternatively, use the `DELETE` convenience method to accomplish the same.
 
 The current target object definition is the one with the latest `created_at`.
@@ -3869,7 +3868,7 @@ Targets can be both [tagged and filtered by tags](#tags).
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 ##### Create Target Associated to a Specific Upstream
 
@@ -3933,7 +3932,7 @@ HTTP 200 OK
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 Update a target.
 
@@ -3961,7 +3960,7 @@ HTTP 201 Created
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 Remove a target from the load balancer.
 
@@ -3989,7 +3988,7 @@ HTTP 204 No Content
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 Set the current health status of an individual address resolved by a target
 in the load balancer to "healthy" in the entire Kong cluster.
@@ -4028,7 +4027,7 @@ HTTP 204 No Content
 
 
 {:.note}
-> **Note**: Not available in DB-less mode.
+> **Note**: This API is not available in DB-less mode.
 
 Set the current health status of an individual address resolved by a target
 in the load balancer to "unhealthy" in the entire Kong cluster.

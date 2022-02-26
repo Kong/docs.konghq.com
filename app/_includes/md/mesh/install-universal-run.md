@@ -12,7 +12,7 @@ $ cd kong-mesh-{{include.kong_latest.version}}/bin
 Then, run the control plane with:
 
 ```sh
-$ KUMA_LICENSE_PATH=/path/to/file/license.json kuma-cp run
+$ KMESH_LICENSE_PATH=/path/to/file/license.json kuma-cp run
 ```
 
 Where `/path/to/file/license.json` is the path to a valid

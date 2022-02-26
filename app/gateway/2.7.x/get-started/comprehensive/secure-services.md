@@ -306,7 +306,7 @@ You now have a consumer with an API key provisioned to access the route.
 
 To validate the Key Authentication plugin, access your route through your browser by appending `?apikey=apikey` to the url:
 ```
-http://<admin-hostname>:8000/mock/?apikey=apikey
+http://<admin-hostname>:8000/mock?apikey=apikey
 ```
 
 {% endnavtab %}

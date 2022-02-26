@@ -42,25 +42,27 @@ Name the new **Workspace**.
 
 ![Name the New Workspace](https://konghq.com/wp-content/uploads/2018/11/km-name-ws.png)
 
-⚠️ **WARNING**: Each **Workspace** name should be unique,
+{:.important}
+> **Warning**: Each **Workspace** name should be unique,
 regardless of letter case. For example, naming one
 **Workspace** "Payments" and another one "payments" will
 create two different workspaces that appear identical.
 
-⚠️ **WARNING**: Do not name Workspaces the same as these major
-routes in Kong Manager:
-
-* Admins
-* APIs
-* Certificates
-* Consumers
-* Plugins
-* Portal
-* Routes
-* Services
-* SNIs
-* Upstreams
-* Vitals
+{:.important}
+> **Warning**: Do not name workspaces the same as these major API names (paths) 
+in Admin API:
+>
+> * Admins
+> * APIs
+> * Certificates
+> * Consumers
+> * Plugins
+> * Portal
+> * Routes
+> * Services
+> * SNIs
+> * Upstreams
+> * Vitals
 
 ## Step 3
 

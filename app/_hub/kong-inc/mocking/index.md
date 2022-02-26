@@ -19,6 +19,8 @@ description: |
   - Easily enable and disable the Mocking plugin for flexibility when
     testing API behavior.
 
+  This plugin can mock `200`, `201`, and `204` responses.
+
   {:.note}
   > To use this plugin in Konnect Cloud,
   [upgrade your runtimes](/konnect/runtime-manager/upgrade) to at least
@@ -201,6 +203,10 @@ Prerequisites:
 - An Open API Specification (`yaml` or `json`) that has at least one API method with an
   embedded example response. Multiple examples within a spec are supported. See the
   [Stock API spec example](#stock-spec).
+
+  {:.note}
+  > **Note:** The spec must contain `200`, `201`, or `204` responses. The
+  Mocking plugin doesn't support any other response status codes.
 
 Tutorial steps:
 
