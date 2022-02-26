@@ -11,7 +11,6 @@ You can use the same Client ID credential for a Service that has the OAuth2 plug
 
 ## Prerequisites
 
-* {{site.ee_product_name}} is installed, version 2.2.1.0 or later.
 * Create a Service.
 * Enable the [Application Registration plugin](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration) on a Service.
 * Activate your application for a Service if you have not already done so. The
@@ -60,7 +59,7 @@ credentials.
 
 2. In the **Authentication** pane, click **Generate Credential**.
 
-   ![Application Authentication Pane](/assets/images/docs/dev-portal/gen-client-id-secret.png)
+   ![Application Authentication Pane](/assets/images/docs/dev-portal/generate-cred-dev-portal.png)
 
    Now you can make requests using the Client ID as an API Key.
 
@@ -86,12 +85,12 @@ Scroll to view all of the available examples.
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-$ curl -X POST {proxy}/{route}?apikey={CLIENT_ID}
+curl -X POST {proxy}/{route}?apikey={CLIENT_ID}
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-$ http {proxy}/{route}?apikey={CLIENT_ID}
+http {proxy}/{route}?apikey={CLIENT_ID}
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -108,13 +107,13 @@ HTTP/1.1 200 OK
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-$ curl -X POST {proxy}/{route} \
+curl -X POST {proxy}/{route} \
 --header "apikey: {CLIENT_ID}"
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-$ http {proxy}/{route} apikey:{CLIENT_ID}
+http {proxy}/{route} apikey:{CLIENT_ID}
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -124,13 +123,13 @@ $ http {proxy}/{route} apikey:{CLIENT_ID}
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-$ curl -X POST {proxy}/{route} \
+curl -X POST {proxy}/{route} \
 --data "apikey:={CLIENT_ID}"
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-$ http {proxy}/{route} apikey={CLIENT_ID}
+http {proxy}/{route} apikey={CLIENT_ID}
 ```
 {% endnavtab %}
 {% endnavtabs %}
