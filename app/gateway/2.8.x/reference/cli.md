@@ -7,8 +7,6 @@
 title: CLI Reference
 ---
 
-## Introduction
-
 The provided CLI (*Command Line Interface*) allows you to start, stop, and
 manage your Kong instances. The CLI manages your local node (as in, on the
 current machine).
@@ -69,10 +67,6 @@ Options:
  -p,--prefix      (optional string)   Override prefix directory.
 
 ```
-
-{:.note}
-> **Note:** `db_export` is only supported with open-source
-{{site.base_gateway}} packages.
 
 ---
 
@@ -135,16 +129,6 @@ The available commands are:
 
   reset                             Reset the database.
 
-  migrate-community-to-enterprise       Migrates Kong Community entities to
-                                        Kong Enterprise in the default
-                                        workspace.
-
-  upgrade-workspace-table                 Outputs a script to be run on the db to
-                                          upgrade the entity for 2.x workspaces
-                                          implementation.
-
-  reinitialize-workspace-entity-counters  Resets the entity counters from the
-                                          database entities.
 Options:
  -y,--yes                           Assume "yes" to prompts and run
                                     non-interactively.
@@ -153,9 +137,6 @@ Options:
 
  -f,--force                         Run migrations even if database reports
                                     as already executed.
-
-                                    With 'migrate-community-to-enterprise' it
-                                    disables the workspace entities check.
 
  --db-timeout     (default 60)      Timeout, in seconds, for all database
                                     operations (including schema consensus for
@@ -169,8 +150,6 @@ Options:
 
  -p,--prefix      (optional string)   Override prefix directory.
 
- --v              verbose
- --vv             debug
 
 ```
 
@@ -272,21 +251,6 @@ Options:
 
 ---
 
-### kong runner
-{:.badge .enterprise}
-
-```
-Usage: kong runner [file] [args]
-Execute a lua file in a kong node. the `kong` variable is available to
-reach the DAO, PDK, etc. The variable `args` can be used to access all
-arguments (args[1] being the lua filename being run).
-Example usage:
-  kong runner file.lua arg1 arg2
-  echo 'print("foo")' | kong runner
-```
-
----
-
 
 ### kong start
 
@@ -330,6 +294,24 @@ This command sends a SIGTERM signal to Nginx.
 
 Options:
  -p,--prefix      (optional string) prefix Kong is running at
+
+```
+
+---
+
+
+### kong vault
+
+```
+Usage: kong vault COMMAND [OPTIONS]
+
+Vault utilities for Kong.
+
+Example usage:
+ TEST=hello kong vault get env/test
+
+The available commands are:
+  get <reference>  Retrieves a value for <reference>
 
 ```
 

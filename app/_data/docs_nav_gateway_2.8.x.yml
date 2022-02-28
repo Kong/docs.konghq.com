@@ -428,6 +428,9 @@
       - text: kong.table
         url: /pdk/kong.table
 
+      - text: kong.vault
+        url: /pdk/kong.vault
+
     - text: Plugin Development Guide
       url: /plugin-development
       items:
