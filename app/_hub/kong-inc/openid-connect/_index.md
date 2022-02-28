@@ -1888,7 +1888,7 @@ The OpenID Connect plugin extends the [Kong Admin API][admin] with a few endpoin
 ### Discovery Cache
 
 When configuring the plugin using `config.issuer`, the plugin will store the fetched discovery
-information to the Kong database, or in the worker memory with Db-less.
+information to the Kong database, or in the worker memory with Db-less. Discovery information remains valid for *TBD minutes/hours/days* once cached, after which time it will be refreshed (based on the "created_at" timestamp).
 
 ##### Discovery Cache Object
 
