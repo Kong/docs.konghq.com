@@ -10,15 +10,13 @@ pdk: true
 toc: true
 ---
 
-Vault module  This module can be used to resolve, parse and verify vault references.
-
-
+This module can be used to resolve, parse, and verify vault references.
 
 
 ## kong.vault.is_reference(reference)
 
 Checks if the passed in reference looks like a reference.
- Valid references start with '{vault://' and end with '}'.
+ Valid references start with `{vault://` and end with `}`.
 
  If you need more thorough validation,
  use `kong.vault.parse_reference`.
@@ -106,5 +104,3 @@ Resolves the passed in reference and returns the value of it.
 ``` lua
 local value, err = kong.vault.get("{vault://env/cert/key}")
 ```
-
-
