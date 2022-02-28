@@ -636,8 +636,9 @@ Valid values to this setting are:
 - `pki`: use `cluster_ca_cert`, `cluster_server_name` and `cluster_cert` for
   verification. These are different certificates for each DP node, but issued by
   a cluster-wide common CA certificate: `cluster_ca_cert`.
-- `pki_check_cn`: similar as `pki` but additionally checks for Common Name of
-  data plane certificate specified in `cluster_allowed_common_names`.
+- `pki_check_cn` <span class="badge enterprise"></span>: similar to `pki`, but additionally
+   checks for the Common Name of the data plane certificate specified in
+   `cluster_allowed_common_names`.
 
 **Default:** `shared`
 

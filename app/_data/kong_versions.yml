@@ -372,7 +372,7 @@
     cassandra: "3.x.x"
     postgres: "9.5+"
     openresty: "1.19.9.1"
-    openssl: "1.1.1l"
+    openssl: "1.1.1m"
     libyaml: "0.2.5"
     pcre: "8.45"
   lua_doc: true

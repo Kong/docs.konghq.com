@@ -9,7 +9,6 @@ To view the basic example Angular template from this guide, visit the [`example/
 
 ## Prerequisites
 
-* {{site.base_gateway}} 1.3 or later
 * Portal Legacy is turned off
 * The Developer Portal is enabled and running
 * kong-portal-cli tool is installed locally
@@ -77,7 +76,7 @@ For this example, place the angular build inside a `workspaces/default/themes/as
 
 ### Mounting an SPA
 
-In order to load our js we need to mount the JS, to do this let’s create a new layout page, for this example, call it `spa.html`.
+To load our JS, we need to mount it. Let's create a new layout page.
 
 Create a file called `spa.html` in `workspaces/default/themes/layouts`.
 

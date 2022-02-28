@@ -1,7 +1,7 @@
 ---
 name: Prometheus
 publisher: Kong Inc.
-version: 1.5.0
+version: 1.6.0
 desc: Expose metrics related to Kong and proxied Upstream services in Prometheus exposition format
 description: |
   Expose metrics related to Kong and proxied Upstream services in [Prometheus](https://prometheus.io/docs/introduction/overview/) exposition format, which can be scraped by a Prometheus Server.
@@ -79,8 +79,10 @@ dashboard: [https://grafana.com/dashboards/7424](https://grafana.com/dashboards/
 data plane nodes is exported to control plane.
 - **Enterprise License Information**: The {{site.base_gateway}} license expiration date, features and
 license signature. Those metrics are only exported on {{site.base_gateway}}.
-- **DB Entity Count** <span class="badge enterprise"></span> : A gauge metric that 
+- **DB Entity Count** <span class="badge enterprise"></span> : A gauge metric that
     measures the current number of database entities.
+- **Number of Nginx timers** : A gauge metric that measures the total number of Nginx 
+    timers, in Running or Pending state.
 
 Here is an example of output you could expect from the `/metrics` endpoint:
 
@@ -98,6 +100,10 @@ Access-Control-Allow-Origin: *
 # TYPE kong_bandwidth counter
 kong_bandwidth{type="egress",service="google",route="google.route-1"} 1277
 kong_bandwidth{type="ingress",service="google",route="google.route-1"} 254
+# HELP kong_nginx_timers Number of nginx timers
+# TYPE kong_nginx_timers gauge
+kong_nginx_timers{state="running"} 3
+kong_nginx_timers{state="pending"} 1
 # HELP kong_datastore_reachable Datastore reachable from Kong, 0 is unreachable
 # TYPE kong_datastore_reachable gauge
 kong_datastore_reachable 1
@@ -176,6 +182,7 @@ kong_db_entities_total 42
 # HELP kong_db_entity_count_errors Errors during entity count collection
 # TYPE kong_db_entity_count_errors counter
 kong_db_entity_count_errors 0
+
 ```
 
 {:.note}
@@ -203,8 +210,10 @@ allow access to the `/metrics` endpoint to Prometheus:
 
 ## Changelog
 
-### 1.5.x
+### 1.6.x
 
+* Adds a new metric:
+  * `kong_nginx_timers` (gauge): total number of Nginx timers, in Running or Pending state.
 * Add two new metrics:
   * `kong_db_entities_total` (gauge): total number of entities in the database
   * `kong_db_entity_count_errors` (counter): measures the number of errors
