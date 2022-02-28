@@ -162,8 +162,9 @@ database in the final expected state for Kong 2.7.x).
 
 **Cassandra**
 
-Deprecation notice:
-Cassandra as a backend database for Kong Gateway is deprecated. This means the feature will eventually be removed. Our target for Cassandra removal is the Kong Gateway 4.0 release, and some new features might not be supported with Cassandra in the Kong Gateway 3.0 release.
+{:.warning .no-icon}
+> **Deprecation notice:**
+> Cassandra as a backend database for Kong Gateway is deprecated. This means the feature will eventually be removed. Our target for Cassandra removal is the Kong Gateway 4.0 release, and some new features might not be supported with Cassandra in the Kong Gateway 3.0 release.
 
 Due to internal changes, the table schemas used by Kong 2.7.x on Cassandra
 are incompatible with those used by Kong 2.1.x (or lower). Migrating using the usual commands
