@@ -81,6 +81,8 @@ data plane nodes is exported to control plane.
 license signature. Those metrics are only exported on {{site.base_gateway}}.
 - **DB Entity Count** <span class="badge enterprise"></span> : A gauge metric that
     measures the current number of database entities.
+- **Number of Nginx timers** : A gauge metric that measures the total number of Nginx 
+    timers, in Running or Pending state.
 
 Here is an example of output you could expect from the `/metrics` endpoint:
 
