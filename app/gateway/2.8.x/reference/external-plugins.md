@@ -68,7 +68,7 @@ plugin server using a different configuration style. Starting with {{site.base_g
 the old style is recognized and internally transformed to the new style.
 
 {:.important}
-> The legacy configuration is deprecated in {{site.base_gateway}} version 2.8.0 and 
+> The legacy configuration is deprecated in {{site.base_gateway}} version 2.8.0 and
 > planned to be removed in {{site.base_gateway}} version 3.0.0.
 
 If property `pluginserver_names` isn't defined, the legacy properties
@@ -81,7 +81,7 @@ Property | Description | Default
 
 Notes:
 
-- Using the legacy style is discouraged; it is deprecated as of {{site.base_gateway}} version 2.8.0, 
+- Using the legacy style is discouraged; it is deprecated as of {{site.base_gateway}} version 2.8.0,
 and planned to be removed in {{site.base_gateway}} version 3.0.0.
 - The legacy configuration doesn't allow multiple plugin servers.
 - Version 0.5.0 of [go-pluginserver] requires the old style configuration.
@@ -89,7 +89,7 @@ and planned to be removed in {{site.base_gateway}} version 3.0.0.
 
 #### Updating from legacy to embedded server style
 
-In embedded server mode, the plugin itself acts as the plugin server, 
+In embedded server mode, the plugin itself acts as the plugin server,
 so the external `go-pluginserver` is no longer required.
 
 Update legacy configuration to embedded plugin server style configuration with
@@ -444,7 +444,7 @@ functions to access {{site.base_gateway}} features of the [PDK][kong-pdk].
 [kong-python-pdk] can be installed using `pip`. To install the plugin server binary and PDK globally, use:
 
 ```
-pip install kong-pdk
+pip3 install kong-pdk
 ```
 
 Assume the plugins are stored in `/usr/local/kong/python-plugins`:
@@ -475,7 +475,7 @@ schema of plugin, it shares the same syntax as it's a Lua plugin. `version` and 
 defines the version number and priority of execution respectively.
 
 **Note**: Check out [this repository](https://github.com/Kong/kong-python-pdk/tree/master/examples)
-for example Python plugins.
+for example Python plugins and [API reference](https://kong.github.io/kong-python-pdk/py-modindex.html).
 
 #### 1. Phase Handlers
 

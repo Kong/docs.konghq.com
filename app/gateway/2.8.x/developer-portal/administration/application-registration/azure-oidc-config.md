@@ -16,15 +16,11 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 
 1. Within Azure, go to the **App registrations** service and register a new application.
 
-   ![Azure App Registrations](/assets/images/docs/dev-portal/ms-azure-app-reg.png)
-
-1. In **Certificates & secrets**, create a Client secret and save it in a
+2. In **Certificates & secrets**, create a Client secret and save it in a
    secure location. You can only view the secret once.
 
-1. Under **Manifest**, update `accessTokenAcceptedVersion=2` (default is null).
+3. Under **Manifest**, update `accessTokenAcceptedVersion=2` (default is null).
    The JSON for your application should look similar to this example:
-
-   ![Azure Manifest](/assets/images/docs/dev-portal/azure-manifest.png)
 
 ## Create a Service in Kong
 
@@ -32,7 +28,7 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 {% navtab Using cURL %}
 
 ```bash
-$ curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure \
+curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure \
   --data 'url=https://httpbin.org/anything'
 ```
 
@@ -40,7 +36,7 @@ $ curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure \
 {% navtab Using HTTPie %}
 
 ```bash
-$ http PUT :8001/services/httpbin-service-azure \
+http PUT :8001/services/httpbin-service-azure \
   url=https://httpbin.org/anything
 ```
 {% endnavtab %}
@@ -52,14 +48,14 @@ $ http PUT :8001/services/httpbin-service-azure \
 {% navtab Using cURL %}
 
 ```bash
-$ curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure/routes/httpbin-route-azure \
+curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure/routes/httpbin-route-azure \
   --data 'paths=/httpbin-azure'
 ```
 {% endnavtab %}
 {% navtab Using HTTPie %}
 
 ```bash
-$ http -f PUT :8001/services/httpbin-service-azure/routes/httpbin-route-azure \
+http -f PUT :8001/services/httpbin-service-azure/routes/httpbin-route-azure \
   paths=/httpbin-azure
 ```
 
@@ -78,7 +74,7 @@ The plugins must be applied to a Service to work properly.
 {% navtab Using cURL %}
 
  ```bash
-$ curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugins \
+curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugins \
   --data name=openid-connect \
   --data config.issuer="https://login.microsoftonline.com/<your_tenant_id>/v2.0" \
   --data config.display_errors="true" \
@@ -95,7 +91,7 @@ $ curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugi
 {% navtab Using HTTPie %}
 
 ```bash
-$ http -f :8001/services/httpbin-service-azure/plugins \
+http -f :8001/services/httpbin-service-azure/plugins \
   name=openid-connect \
   config.issuer=https://login.microsoftonline.com/<your_tenant_id>/v2.0 \
   config.display_errors=true \
@@ -119,7 +115,7 @@ For more information, see [OIDC plugin](/hub/kong-inc/openid-connect/).
 {% navtab Using cURL %}
 
 ```bash
-$ curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugins \
+curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugins \
   --data "name=application-registration"  \
   --data "config.auto_approve=true" \
   --data "config.description=Uses consumer claim with various values (sub, aud, etc.) as registration id to support different flows and use cases." \
@@ -131,7 +127,7 @@ $ curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugi
 {% navtab Using HTTPie %}
 
 ```bash
-$ http -f :8001/services/httpbin-service-azure/plugins \
+http -f :8001/services/httpbin-service-azure/plugins \
   name=application-registration \
   config.auto_approve=true \
   config.display_name="For Azure" \
@@ -140,7 +136,6 @@ $ http -f :8001/services/httpbin-service-azure/plugins \
 ```
 {% endnavtab %}
 {% endnavtabs %}
-
 
 ### Step 3: Get an access token from Azure
 
@@ -155,7 +150,7 @@ Get an access token from Azure:
 {% navtab Using cURL %}
 
 ```bash
-$ curl -X POST https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token \
+curl -X POST https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token \
   --data scope="<your_client_id>/.default" \
   --data grant_type="client_credentials" \
   --data client_id="<your_client_id>" \
@@ -166,7 +161,7 @@ $ curl -X POST https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/to
 {% navtab Using HTTPie %}
 
 ```bash
-$ https -f POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token" \
+https -f POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token" \
   scope=<your_client_id>/.default \
   grant_type=client_credentials \
   -a <your_client_id>:<your_client_secret>
@@ -179,9 +174,7 @@ $ https -f POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/
 1. Paste the access token obtained from the previous step into
 [JWT](https://jwt.io).
 
-   ![JWT token converter](/assets/images/docs/dev-portal/jwt-converter.png)
-
-2. Click **Share JWT** to copy the value for the
+1. Click **Share JWT** to copy the value for the
 [aud (audience)](https://tools.ietf.org/html/rfc7519#section-4.1.3) claim to
 your clipboard. You will use the `aud` value as your **Reference ID** in the
 next procedure.
@@ -194,19 +187,11 @@ next procedure.
    3. Paste the `aud` value generated in JWT in the **Reference ID** field.
    4. (Optional) Enter a **Description**.
 
-   The Create Application form should look similar to this example:
-
-   ![Create Azure Application](/assets/images/docs/dev-portal/azure-app.png)
-
 2. Click **Create**.
 
 3. After you create your application, make sure you activate the Service. In the
    Services section of the Application Dashboard, click **Activate** on the Service
    you want to use.
-
-   The view application details page should look similar to this example:
-
-   ![Azure Example Application](/assets/images/docs/dev-portal/azure-app-details.png)
 
    Because you enabled
    [Auto-approve](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration##aa)
@@ -226,17 +211,18 @@ flows with your Azure AD implementation.
 {% navtab Using cURL %}
 
 ```bash
-$ curl -i -X POST https://<proxy-hostname>:8443/httpbin-azure/oauth2/v2.0/token \
-  --data grant_type="client_credentials" \
-  --data client_id=<your_client_id> \
-  --data client_secret=<your_client_secret>
+$ curl -X POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token" \
+--data scope="<your_client_id>/.default" \
+--data grant_type="client_credentials" \
+--data client_id="<your_client_id>" \
+--data client_secret="<your_client_secret>"
 ```
 
 {% endnavtab %}
 {% navtab Using HTTPie %}
 
 ```bash
-$ https -f POST "https://<admin-hostname>:8443/httpbin-azure/oauth2/v2.0/token" \
+$ https -f POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token" \
   scope=<your_client_id>/.default \
   grant_type=client_credentials \
   -a <your_client_id>:<your_client_secret> \
@@ -251,14 +237,14 @@ $ https -f POST "https://<admin-hostname>:8443/httpbin-azure/oauth2/v2.0/token" 
 {% navtab Using cURL %}
 
 ```bash
-$ curl --header 'Authorization: bearer <token_from_above>' '<admin-hostname>:8000/httpbin-azure'
+curl --header 'Authorization: bearer <token_from_above>' '<admin-hostname>:8000/httpbin-azure'
 ```
 
 {% endnavtab %}
 {% navtab Using HTTPie %}
 
 ```bash
-$ http :8000/httpbin-azure Authorization:'bearer <token_from_above>'
+http :8000/httpbin-azure Authorization:'bearer <token_from_above>'
 ```
 {% endnavtab %}
 {% endnavtabs %}

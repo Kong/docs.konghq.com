@@ -52,8 +52,8 @@ color / icon for the new Workspace.
     **Workspace** "Payments" and another one "payments" will
     create two different workspaces that appear identical.
 
-    Do not name Workspaces the same as these major routes in Kong
-    Manager:
+    Do not name Workspaces the same as these major API names (paths)
+    in Admin API:
 
     ```
     • Admins
