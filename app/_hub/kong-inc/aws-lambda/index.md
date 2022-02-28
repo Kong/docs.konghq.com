@@ -189,7 +189,6 @@ params:
         3. The proxy becomes a L4/TCP proxy and forwards all traffic
         byte-for-byte.
 
-        The `proxy_url` value is required if `proxy_scheme` is defined.
     - name: proxy_scheme
       required: semi
       default: null
