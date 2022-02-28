@@ -111,7 +111,7 @@ params:
       datatype: number
       default: 4096
       description: |
-        RSA private key size for the certificate, the possible values are 2048, 3072, 4096.
+        RSA private key size for the certificate. The possible values are 2048, 3072, or 4096.
   extra: |
 
     External account binding (EAB) is supported as long as `eab_kid` and `eab_hmac_key` are provided.
@@ -401,7 +401,11 @@ own certificate.
 
 ## Changelog
 
-### 0.3.0
+### Kong Gateway 2.8.x (plugin version 0.4.0)
+
+* Added the `rsa_key_size` configuration parameter.
+
+### Kong Gateway 2.7.x (plugin version 0.3.0)
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `account_email`, `eab_kid`, and `eab_hmac_kid` parameter values will be
