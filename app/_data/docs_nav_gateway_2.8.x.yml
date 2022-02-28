@@ -314,6 +314,8 @@
           url: /admin-api/#upstream-object
         - text: Target Object
           url: /admin-api/#target-object
+        - text: Vaults Beta
+          url: /admin-api/#vaults-beta-entity
         - text: Licenses
           url: /admin-api/licenses/reference
           items:
