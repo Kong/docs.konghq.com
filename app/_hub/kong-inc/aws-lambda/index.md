@@ -13,9 +13,11 @@ categories:
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
   enterprise_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
 params:
   name: aws-lambda
@@ -180,8 +182,17 @@ params:
       default: null
       datatype: string
       description: |
+
+        {:.important}
+        > As of Kong Gateway 2.8.0.0, this parameter is deprecated and will be
+        removed in 3.x.x.
+        > <br><br>
+        > If running Kong Gateway 2.7.x or earlier, the
+        `proxy_scheme` value is required if `proxy_url` is defined. In 2.8.x or
+        later versions, `proxy_scheme` is not required.
+
         An optional value that defines which HTTP scheme to use for connecting through the proxy server. The
-        supported schemes are `http` and `https`. The `proxy_scheme` value is required if `proxy_url` is defined.
+        supported schemes are `http` and `https`.
     - name: skip_large_bodies
       required: false
       default: '`true`'
@@ -350,7 +361,15 @@ Have fun leveraging the power of AWS Lambda in Kong!
 
 ## Changelog
 
-### 3.6.0
+> See the Kong GitHub repository for the
+[full plugin changelog](https://github.com/Kong/kong/blob/master/kong/plugins/aws-lambda/CHANGELOG.md).
+
+### Kong Gateway 2.8.x (plugin version 3.6.3)
+
+* The `proxy_scheme` configuration parameter is deprecated and planned to be
+removed in 3.x.x.
+
+### Kong Gateway 2.7.x (plugin version 3.6.0)
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.aws_key` and `config.aws_secret` parameter values will be encrypted.
