@@ -121,7 +121,7 @@ making your environment more secure.
 
 * [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
 
-  * Add Redis ACL support (Redis v6.0.0+) for storing and retrieving a session.
+  * Added Redis ACL support (Redis v6.0.0+) for storing and retrieving a session.
     Use the `session_redis_username` and `session_redis_password` configuration
     parameters to configure it.
 
@@ -339,7 +339,7 @@ now overrides the previous document.
 
 #### Admin API
 
-* Fix an incorrect `next` field that appeared when paginating Upstreams.
+* Fixed an incorrect `next` field that appeared when paginating Upstreams.
   [#8249](https://github.com/Kong/kong/pull/8249)
 
 #### PDK
@@ -381,7 +381,7 @@ now overrides the previous document.
 
 * [OAuth2](/hub/kong-inc/oauth2/) (`oauth2`)
   * The plugin clears the `X-Authenticated-UserId` and
-  `X-Authenticated-Scope` headers when it configured in logical OR and
+  `X-Authenticated-Scope` headers when it is configured in logical OR and
   is used in conjunction with another authentication plugin.
   [#8422](https://github.com/Kong/kong/pull/8422)
 
