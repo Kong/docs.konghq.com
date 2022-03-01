@@ -690,10 +690,11 @@ This field is ignored if `cluster_mtls` is set to `shared`.
 
 #### cluster_allowed_common_names
 
-The list of Common Names that are allowed to connect to control plane. Multiple
-entries may be supplied in a comma-separated string. When not set, Data Plane
-with same parent domain of Control Plane cert is allowed to connect.
-
+The list of Common Names that are allowed to connect to the control plane.
+Multiple entries may be supplied in a comma-separated string. When not
+set, only data planes with the same parent domain as the
+control plane cert are allowed to connect.
+  
 This field is ignored if `cluster_mtls` is not set to `pki_check_cn`.
 
 **Default:** none
