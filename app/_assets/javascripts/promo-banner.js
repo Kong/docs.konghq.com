@@ -1,5 +1,5 @@
 jQuery(document).ready(function () {
-  var closed = localStorage.getItem("closebanner-webinar-020822");
+  var closed = localStorage.getItem("closebanner-gateway-28");
   if (
     closed !== "closebanner"
   ) {
@@ -28,6 +28,6 @@ setInterval(function () {
 }, 10);
 $(".closebanner").on("click", function () {
   $(".navbar-v2").addClass("closed");
-  localStorage.setItem("closebanner-webinar-020822", "closebanner");
+  localStorage.setItem("closebanner-gateway-28", "closebanner");
   $("#mosaic-provider-react-aria-0-1").removeClass("banner-offset");
 });
