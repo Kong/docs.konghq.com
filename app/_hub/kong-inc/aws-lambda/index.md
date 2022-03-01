@@ -180,14 +180,8 @@ params:
         the given proxy server URL. Include the request scheme in the URL, which
         must be `http`. For example: `http://my-proxy-server:3128`.
 
-        Although the scheme is `http`, the plugin still performs a TLS handshake
-        with AWS Lambda, therefore traffic is encrypted:
-        1. The initial connection to the proxy happens in plain text, but only
-        the upstream `host:port` value is sent to the proxy. No details about
-        the request are passed to the forward proxy server.
-        2. The proxy sends a 200 response back.
-        3. The proxy becomes a L4/TCP proxy and forwards all traffic
-        byte-for-byte.
+        Kong Gateway uses HTTP tunneling via the [CONNECT HTTP](https://httpwg.org/specs/rfc7231.html#CONNECT)
+        method so that no details of the AWS Lambda request are leaked to the proxy server.
 
     - name: proxy_scheme
       required: semi
