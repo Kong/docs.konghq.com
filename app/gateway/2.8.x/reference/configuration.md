@@ -491,6 +491,18 @@ adjusted by the `log_level` property.
 
 ---
 
+#### vaults
+
+Comma-separated list of vaults this node should load. By default, no vaults are
+enabled.
+
+The specified name(s) will be substituted as such in the Lua namespace:
+`kong.vaults.{name}.*`.
+
+**Default:** `off`
+
+---
+
 #### plugins
 
 Comma-separated list of plugins this node should load. By default, only plugins
@@ -680,14 +692,15 @@ This field is ignored if `cluster_mtls` is set to `shared`.
 
 The list of Common Names that are allowed to connect to the control plane.
 Multiple entries may be supplied in a comma-separated string. When not
-set, only Data Planes with the same parent domain as the
-Control Plane cert are allowed to connect.
-
+set, only data planes with the same parent domain as the
+control plane cert are allowed to connect.
+  
 This field is ignored if `cluster_mtls` is not set to `pki_check_cn`.
 
 **Default:** none
 
 ---
+
 
 ### Hybrid Mode Data Plane section
 
@@ -2153,7 +2166,7 @@ happens on a service, the event hook calls a URL with information about that
 event. Event hook configurations differ depending on the handler. The events
 that are triggered send associated data.
 
-See: https://docs.konghq.com/enterprise/latest/admin-api/event-hooks/reference/
+See: https://docs.konghq.com/gateway/latest/admin-api/event-hooks/reference/
 
 **Default:** `on`
 
