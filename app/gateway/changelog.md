@@ -471,8 +471,11 @@ now overrides the previous document.
   the [embedded server approach](link).
 
 * Starting with Kong Gateway 2.8.0.0, Kong is not building new open-source
-CentOS images. Support for running open-source Kong Gateway on CentOS on is now 
+CentOS images. Support for running open-source Kong Gateway on CentOS on is now
 deprecated, as [CentOS has reached End of Life (OEL)](https://www.centos.org/centos-linux-eol/).
+
+    Running Kong Gateway Enterprise on CentOS is currently supported, but CentOS
+    is planned to be fully deprecated in Kong Gateway 3.x.x.
 
 * OpenID Connect plugin: The `session_redis_auth` field is
   now deprecated and planned to be removed in 3.x.x. Use
