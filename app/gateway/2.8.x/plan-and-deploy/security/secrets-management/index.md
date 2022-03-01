@@ -19,7 +19,7 @@ Some of the most common types of secrets used by {{site.base_gateway}} include:
 By storing sensitive values as secrets, you ensure that they are not
 visible in plaintext throughout the platform, in places such as `kong.conf`,
 in declarative configuration files, logs, or in the Kong Manager UI. Instead,
-you can use reference each secret with a `vault` reference. For example:
+you can reference each secret with a `vault` reference. For example:
 
 ```
 {vault://env/my_secret_postgres_password}
@@ -29,19 +29,22 @@ In this way, secrets management becomes centralized.
 
 ## Referenceable values
 
-The Kong Admin API certificate object can be stored as a secret.
+The Kong Admin API [certificate object](/gateway/{{page.kong_version}}/admin-api/#certificate-object)
+can be stored as a secret.
 
-The following plugins have fields that can be stored as secrets in a backend
-vault:
+The following plugins have fields that can be stored as secrets in a
+vault backend. These fields are labelled as `referenceable`. See the
+documentation for each plugin to identify the referenceable fields:
 
-* Forward Proxy Advanced
-* GraphQL Rate Limiting
-* Kafka Log
-* Kafka Upstream
-* LDAP Authentication Advanced
-* OpenID Connect
-* Proxy Cache Advanced
-* Rate Limiting Advanced
+* [Forward Proxy Advanced](/hub/kong-inc/forward-proxy/)
+* [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/)
+* [Kafka Log](/hub/kong-inc/kafka-log/)
+* [Kafka Upstream](/hub/kong-inc/kafka-upstream/)
+* [LDAP Authentication Advanced](/hub/kong-inc/ldap-auth-advanced/)
+* [OpenID Connect](/hub/kong-inc/openid-connect/)
+* [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/)
+* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/)
+* [Vault Authentication](/hub/kong-inc/vault-auth/)
 
 ## Supported backends
 
@@ -60,7 +63,8 @@ Kong and the functionality may change in the future.
 
 **Do not** implement this feature in a product environment.
 
-* There is no `set` or secrets rotation support in the beta.
+* The beta of this feature only supports `get`. There is no `set` or secrets
+rotation support in the beta.
 * In this version, this feature isn't enabled by default. To test it out, start
 {{site.base_gateway}} with `KONG_VAULTS=bundled` if running Kong in a container,
 or with `vaults=bundled` set in `kong.conf`.

@@ -14,7 +14,7 @@ We use the [URL syntax](https://en.wikipedia.org/wiki/URL) to describe reference
 ### Protocol/Scheme
 
 ```text
-{vault://<vault-backend|entity>/<secret-id>[/<secret-key]} 
+{vault://<vault-backend|entity>/<secret-id>[/<secret-key]}
  ^^^^^
 ```
 
@@ -24,7 +24,6 @@ The `vault` in the URL is used as an identifier for Kong. We use this to referen
 
 ```text
 {vault://<vault-prefix>/<secret-id>[/<secret-key]}
-
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ```
 
@@ -37,14 +36,14 @@ The prefix for a vault can be either the name of the backend or the name of vaul
 Examples:
 
 ```text
-{vault://env/<secret-id>[/<secret-key]} 
+{vault://env/<secret-id>[/<secret-key]}
          ^^^
 ```
 
 or using a vault entity
 
 ```text
-{vault://my-env-vault/<secret-id>[/<secret-key]} 
+{vault://my-env-vault/<secret-id>[/<secret-key]}
          ^^^^^^^^^^^^
 ```
 
