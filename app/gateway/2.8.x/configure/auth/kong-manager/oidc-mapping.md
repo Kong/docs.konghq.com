@@ -24,29 +24,41 @@ Manager. The mapping removes the task of manually managing access in
 ## Prerequisites
 
 * An IdP with an authorization server and users with groups assigned
-* [{{site.ee_product_name}} installed and configured](/gateway/{{page.kong_version}}/install-and-run)
+* [{{site.base_gateway}} installed and configured](/gateway/{{page.kong_version}}/install-and-run)
 * Kong Manager enabled
 * RBAC enabled
 * (Kubernetes) [Helm](https://helm.sh/docs/intro/install/) installed
 
 ## Apply OIDC auth mapping to Kong Gateway
 
-In the following examples, you specify the `admin_claim` and `authenticated_groups_claim` parameters
-to identify which admin value and role name to map from the IdP to {{site.base_gateway}}.
+### Review important values
 
-The `admin_claim` value specifies which IdP username value should map to Kong Manager.
+In the following examples, you specify the `admin_claim` and `authenticated_groups_claim` parameters
+to identify which admin value and role name to map from the IdP to {{site.base_gateway}}, as well as
+the `admin_auto_create_rbac_token_disabled` to specify whether an RBAC token is created for admins in Kong.
+
+* The `admin_claim` value specifies which IdP username value should map to Kong Manager.
 The username and password are required for the user to log into the IdP.
 
-The `authenticated_groups_claim` value specifies which IdP claim should be used to assign {{site.base_gateway}} roles to the
+* The `authenticated_groups_claim` value specifies which IdP claim should be used to assign {{site.base_gateway}} roles to the
 specified {{site.base_gateway}} admin.
 
-This value depends on your IdP -- for example, Okta configures claims for `groups`, and another IdP might configure them as `roles`.
+  This value depends on your IdP -- for example, Okta configures claims for `groups`, and another IdP might configure them as `roles`.
 
-In the Idp, the group claim value must follow the format `<workspace_name>:<role_name>`.
+  In the Idp, the group claim value must follow the format `<workspace_name>:<role_name>`.
 
-For example, if `"authenticated_groups_claim": ["groups"]` is specified, and in the IdP `groups:["default:super-admin"]` is specified, the administrators specified in `admin_claim` are assigned to the super-admin role in the default {{site.base_gateway}} workspace.
+  For example, if `"authenticated_groups_claim": ["groups"]` is specified, and in the IdP `groups:["default:super-admin"]` is specified, the administrators specified in `admin_claim` are assigned to the super-admin role in the default {{site.base_gateway}} workspace.
 
-If the mapping does not work as expected, decode the JWT that's created by your IdP, and make sure that the admin ID token includes the key:value pair `groups:["default:super-admin"]` for the case of this example, or the appropriate claim name and claim value as set in your IdP.
+  If the mapping does not work as expected, decode the JWT that's created by your IdP, and make sure that the admin ID token includes the key:value pair `groups:["default:super-admin"]` for the case of this example, or the appropriate claim name and claim value as set in your IdP.
+
+* The `admin_auto_create_rbac_token_disabled` boolean enables or disables RBAC token
+creation when automatically creating admins with OpenID Connect. The default is
+`false`.
+  * Set to `true` to disable automatic token creation for admins
+  * Set to `false` to enable automatic token creation for admins
+
+
+### Set up mapping
 
 {% navtabs %}
 {% navtab Kubernetes with Helm %}
@@ -71,7 +83,8 @@ If the mapping does not work as expected, decode the JWT that's created by your 
         "logout_query_arg": "logout",
         "logout_redirect_uri": ["{YOUR_LOGOUT_REDIRECT_URI}"],
         "scopes": ["openid","profile","email","offline_access"],
-        "auth_methods": ["authorization_code"]
+        "auth_methods": ["authorization_code"],
+        "admin_auto_create_rbac_token_disabled": false
     }
     ```
 
@@ -126,7 +139,8 @@ $ echo "
       \"logout_query_arg\": \"logout\",
       \"logout_redirect_uri\": [\"{YOUR_LOGOUT_REDIRECT_URI}\"],
       \"scopes\": [\"openid\",\"profile\",\"email\",\"offline_access\"],
-      \"auth_methods\": [\"authorization_code\"]
+      \"auth_methods\": [\"authorization_code\"],
+      \"admin_auto_create_rbac_token_disabled\": false
     }' kong reload exit" | docker exec -i {KONG_CONTAINER_ID} /bin/sh
 ```
 
@@ -162,7 +176,8 @@ properties to the file.
         "logout_query_arg": "logout",
         "logout_redirect_uri": ["{YOUR_LOGOUT_REDIRECT_URI}"],
         "scopes": ["openid","profile","email","offline_access"],
-        "auth_methods": ["authorization_code"]
+        "auth_methods": ["authorization_code"],
+        "admin_auto_create_rbac_token_disabled": false
     }
     ```
 
