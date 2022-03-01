@@ -2,21 +2,26 @@
 title: Install Kong Gateway on CentOS
 ---
 
+{:.important}
+> **Deprecation notice**: Support for running open-source Kong Gateway on
+CentOS is now deprecated, as [CentOS has reached End of Life (EOL)](https://www.centos.org/centos-linux-eol/).
+Starting with Kong Gateway 2.8.0.0, Kong is not building new open-source CentOS images.
+> If you need to install Kong Gateway (OSS) on CentOS, see the documentation for
+[previous versions](/gateway/2.7.x/install-and-run/centos/).
+> <br><br>
+> Kong Gateway Enterprise subscriptions can still use CentOS in 2.8, but support
+for CentOS is planned to be removed in 3.0.
+
 <!-- Banner with links to latest downloads -->
 <!-- The install-link and install-listing-link classes are used for tracking, do not remove -->
 
 {:.install-banner}
-> Download the latest {{page.kong_version}} package for Centos:
-> * **Kong Gateway**:
-> [**CentOS 7**]({{ site.links.download }}/gateway-2.x-centos-7/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.el7.noarch.rpm){:.install-link} or
-> [**CentOS 8**]({{ site.links.download }}/gateway-2.x-centos-8/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.el8.noarch.rpm){:.install-link}
-> (latest version: {{page.kong_versions[page.version-index].ee-version}})
-> * **Kong Gateway (OSS)**:
-> [**CentOS 7**]({{ site.links.download }}/gateway-2.x-centos-7/Packages/k/kong-{{page.kong_versions[page.version-index].ce-version}}.el7.amd64.rpm){:.install-link} or
-> [**CentOS 8**]({{ site.links.download }}/gateway-2.x-centos-8/Packages/k/kong-{{page.kong_versions[page.version-index].ce-version}}.el8.amd64.rpm){:.install-link}
-> (latest version: {{page.kong_versions[page.version-index].ce-version}})
+> Download the latest **Kong Gateway {{page.kong_version}}** package for Centos:
+> * [**CentOS 7**]({{ site.links.download }}/gateway-2.x-centos-7/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.el7.noarch.rpm){:.install-link}
+> * [**CentOS 8**]({{ site.links.download }}/gateway-2.x-centos-8/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.el8.noarch.rpm){:.install-link}
 >
-> <br>
+> (latest version: {{page.kong_versions[page.version-index].ce-version}})
+> <br><br>
 > <span class="install-subtitle">View the list of all 2.x packages for
 > [**CentOS 7**]({{ site.links.download }}/gateway-2.x-centos-7/Packages/k/){:.install-listing-link} or
 > [**CentOS 8**]({{ site.links.download }}/gateway-2.x-centos-8/Packages/k/){:.install-listing-link} </span>
@@ -44,41 +49,15 @@ Install {{site.base_gateway}} on CentOS from the command line.
 
 1. Download the Kong package:
 
-{% capture download_package %}
-{% navtabs codeblock %}
-{% navtab Kong Gateway %}
-```bash
-curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm $(rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{centos_ver}/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.el%{centos_ver}.noarch.rpm")
-```
-{% endnavtab %}
-{% navtab Kong Gateway (OSS) %}
-```bash
-curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.rpm $(rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{centos_ver}/Packages/k/kong-{{page.kong_versions[page.version-index].ce-version}}.el%{centos_ver}.amd64.rpm")
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ download_package | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm $(rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{centos_ver}/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.el%{centos_ver}.noarch.rpm")
+    ```
 
 2. Install the package:
 
-{% capture install_package %}
-{% navtabs codeblock %}
-{% navtab Kong Gateway %}
-```bash
-sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm
-```
-{% endnavtab %}
-{% navtab Kong Gateway (OSS) %}
-```bash
-sudo yum install kong-{{page.kong_versions[page.version-index].ce-version}}.rpm
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ install_package | indent | replace: " </code>", "</code>" }}
+    ```bash
+    sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm
+    ```
 
 {% endnavtab %}
 {% navtab YUM repository %}
@@ -92,22 +71,9 @@ Install the YUM repository from the command line.
 
 2. Install Kong:
 
-{% capture install_from_repo %}
-{% navtabs codeblock %}
-{% navtab Kong Gateway %}
-```bash
-sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}
-```
-{% endnavtab %}
-{% navtab Kong Gateway (OSS) %}
-```bash
-sudo yum install kong-{{page.kong_versions[page.version-index].ce-version}}
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ install_from_repo | indent | replace: " </code>", "</code>" }}
+    ```bash
+    sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}
+    ```
 
 {% endnavtab %}
 {% endnavtabs %}
