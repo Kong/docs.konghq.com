@@ -31,7 +31,7 @@ split the configuration into different files as you see fit for your use case.
 Please note that having the state split across different files is not same
 as [distributed configuration](/deck/{{page.kong_version}}/guides/distributed-configuration).
 
-## Multiple files and --select-tag
+## Multiple files and `--select-tag`
 
 You must be careful when mixing distributed configuration in multiple files and
 the `--select-tag` flag, as this may result in undesired outcomes.
@@ -88,8 +88,8 @@ services:
 
 At this point you have 2 files, each pointing to resources marked with a different tag.
 
-For syncing back (or diffing) the configurations, you must sync separately each of these files,
-otherwise decK will merge the content of `select_tags` together and apply both tags
+For syncing back (or diffing) the configurations, you must sync each of these files separately,
+otherwise decK merges the content of `select_tags` together and applies both tags
 to both services.
 
 ```sh
@@ -109,5 +109,5 @@ Summary:
 ```
 
 {:.important}
-> As a best practice, the way you `sync` configurations should be consistent with the way to
+> As a best practice, the way you `sync` configurations should be consistent with the way you
 initially `dump`ed them.
