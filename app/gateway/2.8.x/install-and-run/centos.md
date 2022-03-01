@@ -20,7 +20,7 @@ for CentOS is planned to be removed in 3.0.
 > * [**CentOS 7**]({{ site.links.download }}/gateway-2.x-centos-7/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.el7.noarch.rpm){:.install-link}
 > * [**CentOS 8**]({{ site.links.download }}/gateway-2.x-centos-8/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.el8.noarch.rpm){:.install-link}
 >
-> (latest version: {{page.kong_versions[page.version-index].ce-version}})
+> (latest version: {{page.kong_versions[page.version-index].ee-version}})
 > <br><br>
 > <span class="install-subtitle">View the list of all 2.x packages for
 > [**CentOS 7**]({{ site.links.download }}/gateway-2.x-centos-7/Packages/k/){:.install-listing-link} or
