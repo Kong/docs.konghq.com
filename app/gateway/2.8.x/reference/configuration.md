@@ -2320,8 +2320,8 @@ Example for `basic-auth`:
 If `admin_gui_auth` is set to `openid-connect`, enable or disable RBAC token
 creation when automatically creating admins with OpenID Connect.
 
-* Set to `true` to enable automatic token creation for admins
-* Set to `false` to disable automatic token creation for admins
+* Set to `true` to disable automatic token creation for admins
+* Set to `false` to enable automatic token creation for admins
 
 **Default:** `false`
 
