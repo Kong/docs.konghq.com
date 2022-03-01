@@ -18,22 +18,25 @@ no_version: true
   * Sort any table by clicking on a column title.
   * Tables now have pagination.
 
-* Added the configuration option `admin_auto_create_rbac_token_disabled` to
-enable or disable RBAC tokens when automatically creating admins with OpenID
-Connect.
+* Kong Manager with OIDC:
+  * Added the configuration option
+  [`admin_auto_create_rbac_token_disabled`](/gateway/latest/configure/auth/kong-manager/oidc-mapping/)
+  to enable or disable RBAC tokens when automatically creating admins with OpenID
+  Connect.
 
 * If a license is present,`license_key` is now included in the `api` signal for
 [`anonymous_reports`](/gateway/latest/reference/configuration/#anonymous_reports).
 
 #### Dev Portal
 
-* The new [`/developers/export`](/gateway/latest/admin-api/developers/reference/)
- endpoint lets you export the list of developers and their statuses into CSV format.
+* The new `/developers/export` endpoint lets you export the list of developers
+and their statuses into CSV format.
 
 #### Core
 
-* **Beta feature**: Kong Gateway 2.8.0.0 introduces secrets management and vault
-support. You can now store confidential values such as usernames and passwords
+* **Beta feature**: Kong Gateway 2.8.0.0 introduces
+[secrets management and vault support](/gateway/latest/plan-and-deploy/security/secrets-management/).
+You can now store confidential values such as usernames and passwords
 as secrets in secure vaults. Kong Gateway can then reference these secrets,
 making your environment more secure.
 
@@ -47,7 +50,8 @@ making your environment more secure.
   details.
 
   Test out secrets management using the
-  [getting started guide](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started).
+  [getting started guide](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started),
+  and check out the documentation for the Kong Admin API [`/vaults-beta` entity](/gateway/latest/admin-api/#vaults-beta-entity).
 
   {:.important}
   > This feature is in beta. It has limited support and implementation details
@@ -466,6 +470,10 @@ now overrides the previous document.
 * The external `go-pluginserver` project is considered deprecated in favor of
   the [embedded server approach](link).
 
+* Starting with Kong Gateway 2.8.0.0, Kong is not building new open-source
+CentOS images. Support for running open-source Kong Gateway on CentOS on is now 
+deprecated, as [CentOS has reached End of Life (OEL)](https://www.centos.org/centos-linux-eol/).
+
 * OpenID Connect plugin: The `session_redis_auth` field is
   now deprecated and planned to be removed in 3.x.x. Use
   `session_redis_username` and `session_redis_password` instead.
@@ -478,9 +486,13 @@ now deprecated and planned to be removed in 3.x.x. Use
 * AWS Lambda plugin: The `proxy_scheme` field is now deprecated and planned to
 be removed in 3.x.x.
 
+
 ## 2.7.1.2
 **Release Date** 2022/02/17
 
+### Fixes
+
+#### Enterprise
 * Fixed an issue with Kong Manager OIDC authentication, which caused the error
 `“attempt to call method 'select_by_username_ignore_case' (a nil value)”`
 and prevented login with OIDC.
