@@ -7,8 +7,6 @@
 title: CLI Reference
 ---
 
-## Introduction
-
 The provided CLI (*Command Line Interface*) allows you to start, stop, and
 manage your Kong instances. The CLI manages your local node (as in, on the
 current machine).
@@ -330,6 +328,24 @@ This command sends a SIGTERM signal to Nginx.
 
 Options:
  -p,--prefix      (optional string) prefix Kong is running at
+
+```
+
+---
+
+
+### kong vault
+
+```
+Usage: kong vault COMMAND [OPTIONS]
+
+Vault utilities for Kong.
+
+Example usage:
+ TEST=hello kong vault get env/test
+
+The available commands are:
+  get <reference>  Retrieves a value for <reference>
 
 ```
 

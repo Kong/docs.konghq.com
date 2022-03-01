@@ -10,13 +10,11 @@ pdk: true
 toc: true
 ---
 
-## kong.service.response
-
-Manipulation of the response from the Service
+Module for manipulating the response from the Service.
 
 
 
-### kong.service.response.get_status()
+## kong.service.response.get_status()
 
 Returns the HTTP status code of the response from the Service as a Lua number.
 
@@ -26,9 +24,9 @@ Returns the HTTP status code of the response from the Service as a Lua number.
 
 **Returns**
 
-* `number|nil`  the status code from the response from the Service, or `nil`
- if the request was not proxied (i.e. `kong.response.get_source()` returned
- anything other than `"service"`.
+* `number|nil`:   The status code from the response from the Service, or `nil`
+ if the request was not proxied (that is, if `kong.response.get_source()` returned
+ anything other than `"service"`).
 
 
 **Usage**
@@ -37,20 +35,19 @@ Returns the HTTP status code of the response from the Service as a Lua number.
 kong.log.inspect(kong.service.response.get_status()) -- 418
 ```
 
-[Back to top](#kongserviceresponse)
 
 
-### kong.service.response.get_headers([max_headers])
+## kong.service.response.get_headers([max_headers])
 
-Returns a Lua table holding the headers from the response from the Service.  Keys are
+Returns a Lua table holding the headers from the Service response.  Keys are
  header names. Values are either a string with the header value, or an array of
  strings if a header was sent multiple times. Header names in this table are
  case-insensitive and dashes (`-`) can be written as underscores (`_`); that is,
  the header `X-Custom-Header` can also be retrieved as `x_custom_header`.
 
- Unlike `kong.response.get_headers()`, this function will only return headers that
- were present in the response from the Service (ignoring headers added by Kong itself).
- If the request was not proxied to a Service (e.g. an authentication plugin rejected
+ Unlike `kong.response.get_headers()`, this function only returns headers that
+ are present in the response from the Service (ignoring headers added by Kong itself).
+ If the request is not proxied to a Service (e.g. an authentication plugin rejected
  a request and produced an HTTP 401 response), then the returned `headers` value
  might be `nil`, since no response from the Service has been received.
 
@@ -64,14 +61,15 @@ Returns a Lua table holding the headers from the response from the Service.  Key
 
 **Parameters**
 
-* **max_headers** (number, _optional_):  customize the headers to parse
+* **max_headers** (`number`, _optional_):  Sets a limit on the maximum number of
+ headers that can be parsed.
 
 **Returns**
 
-1.  `table` the response headers in table form
+1.  `table`:  The response headers in table form.
 
-1.  `string` err If more headers than `max_headers` were present, a
- string with the error `"truncated"`.
+1.  `string`:  If more headers than `max_headers` are present, returns
+ a string with the error `"truncated"`.
 
 
 **Usage**
@@ -89,15 +87,14 @@ if headers then
 end
 ```
 
-[Back to top](#kongserviceresponse)
 
 
-### kong.service.response.get_header(name)
+## kong.service.response.get_header(name)
 
 Returns the value of the specified response header.
 
- Unlike `kong.response.get_header()`, this function will only return a header
- if it was present in the response from the Service (ignoring headers added by Kong
+ Unlike `kong.response.get_header()`, this function only returns a header
+ if it is present in the response from the Service (ignoring headers added by Kong
  itself).
 
 
@@ -107,18 +104,18 @@ Returns the value of the specified response header.
 
 **Parameters**
 
-* **name** (string):  The name of the header.
+* **name** (`string`):  The name of the header.
 
- Header names in are case-insensitive and are normalized to lowercase, and
- dashes (`-`) can be written as underscores (`_`); that is, the header
- `X-Custom-Header` can also be retrieved as `x_custom_header`.
+   Header names in are case-insensitive and are normalized to lowercase, and
+   dashes (`-`) can be written as underscores (`_`); that is, the header
+   `X-Custom-Header` can also be retrieved as `x_custom_header`.
 
 
 **Returns**
 
-* `string|nil`  The value of the header, or `nil` if a header with
- `name` was not found in the response. If a header with the same name is present
- multiple times in the response, this function will return the value of the
+* `string|nil`:   The value of the header, or `nil` if a header with
+ `name` is not found in the response. If a header with the same name is present
+ multiple times in the response, this function returns the value of the
  first occurrence of this header.
 
 
@@ -134,10 +131,9 @@ kong.log.inspect(kong.service.response.get_header("x-custom-header")) -- "bla"
 kong.log.inspect(kong.service.response.get_header("X-Another"))       -- "foo bar"
 ```
 
-[Back to top](#kongserviceresponse)
 
 
-### kong.service.response.get_raw_body()
+## kong.service.response.get_raw_body()
 
 Returns the raw buffered body.
 
@@ -147,7 +143,7 @@ Returns the raw buffered body.
 
 **Returns**
 
-* `string` body The raw buffered body
+* `string`:  The raw buffered body.
 
 
 **Usage**
@@ -159,10 +155,9 @@ Returns the raw buffered body.
 local body = kong.service.response.get_raw_body()
 ```
 
-[Back to top](#kongserviceresponse)
 
 
-### kong.service.response.get_body([mimetype[, max_args]])
+## kong.service.response.get_body([mimetype[, max_args]])
 
 Returns the decoded buffered body.
 
@@ -172,12 +167,13 @@ Returns the decoded buffered body.
 
 **Parameters**
 
-* **mimetype** (string, _optional_):  The mime-type of the response (if known)
-* **max_args** (number, _optional_):  set a limit on the maximum number of parsed
+* **mimetype** (`string`, _optional_):  The MIME type of the response (if known).
+* **max_args** (`number`, _optional_):  Sets a limit on the maximum number of (what?)
+ that can be parsed.
 
 **Returns**
 
-* `string` body The raw buffered body
+* `string`:  The raw buffered body
 
 
 **Usage**
@@ -189,5 +185,4 @@ Returns the decoded buffered body.
 local body = kong.service.response.get_body()
 ```
 
-[Back to top](#kongserviceresponse)
 
