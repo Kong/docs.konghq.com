@@ -1,7 +1,7 @@
 ---
 name: GraphQL Rate Limiting Advanced
 publisher: Kong Inc.
-version: 2.3.x
+version: 0.2.x
 desc: Provide rate limiting for GraphQL queries
 description: |
   The GraphQL Rate Limiting Advanced plugin provides rate limiting for GraphQL queries. The
@@ -15,6 +15,7 @@ categories:
 kong_version_compatibility:
   enterprise_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
       - 2.6.x
       - 2.5.x
@@ -23,7 +24,6 @@ kong_version_compatibility:
       - 2.2.x
       - 2.1.x
       - 1.5.x
-      - 1.3-x
 params:
   name: graphql-rate-limiting-advanced
   service_id: true
@@ -190,13 +190,30 @@ params:
       datatype: number
       description: |
         Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined.
+    - name: redis.username
+      required: semi
+      default: null
+      value_in_examples: null
+      datatype: string
+      description: |
+        Username to use for Redis connection when the `redis` strategy is defined and ACL authentication is desired.
+        If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.password
       required: semi
       default: null
       value_in_examples: null
       datatype: string
       description: |
-        Password to use for Redis connection when the `redis` strategy is defined. If undefined, no AUTH commands are sent to Redis.
+        Password to use for Redis connection when the `redis` strategy is defined.
+        If undefined, no AUTH commands are sent to Redis.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.database
       required: semi
       default: 0
@@ -211,6 +228,18 @@ params:
       datatype: string
       description: |
         Sentinel master to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
+    - name: redis.sentinel_username
+      required: semi
+      default: null
+      value_in_examples: null
+      datatype: string
+      description: |
+        Sentinel username to authenticate with a Redis Sentinel instance.
+        If undefined, ACL authentication will not be performed. This requires Redis v6.2.0+.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.sentinel_password
       required: semi
       default: null
@@ -218,8 +247,11 @@ params:
       datatype: string
       description: |
         Sentinel password to authenticate with a Redis Sentinel instance.
-        **Note:** This parameter is only available for Kong Gateway versions
-        1.3.0.2 and later.
+        If undefined, no AUTH commands are sent to Redis Sentinels.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.sentinel_role
       required: semi
       default: null
@@ -631,3 +663,20 @@ To update `score_factor`:
 $ curl -i -X PATCH http://kong:8001/plugins/{plugin_id} \
   --data config.score_factor=1
 ```
+
+---
+
+## Changelog
+
+### Kong Gateway 2.8.x (plugin version 0.2.5)
+
+* Added the `redis.username` and `redis.sentinel_username` configuration parameters.
+
+* The `redis.username`, `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
+configuration fields are now marked as referenceable, which means they can be securely stored as
+[secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+
+* Fixed plugin versions in the documentation. Previously, the plugin versions
+were labelled as `1.3-x` and `2.3.x`. They are now updated to align with the
+plugin's actual versions, `0.1.x` and `0.2.x`.

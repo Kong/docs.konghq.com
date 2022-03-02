@@ -229,6 +229,7 @@
 /gateway/2.7.x/developer-portal/files-api/                 /gateway/2.7.x/developer-portal/portal-api/
 
 # GATEWAY REFERENCES
+/vaults/                               /gateway/latest/vaults
 /admin-api/                            /gateway/latest/admin-api
 /admin-api/*                           /gateway/latest/admin-api/:splat
 /2.6.x/admin-api/                      /gateway/latest/admin-api
@@ -606,6 +607,7 @@
 /gateway-oss/2.6.x/db-encryption/      /gateway/2.6.x/plan-and-deploy/security/db-encryption
 /gateway-oss/2.7.x/db-encryption/      /gateway/2.7.x/plan-and-deploy/security/db-encryption
 /gateway-oss/latest/db-encryption/     /gateway/latest/plan-and-deploy/security/db-encryption
+/gateway-oss/latest/secrets-management/     /gateway/latest/plan-and-deploy/security/secrets-management/getting-started
 /enterprise/2.6.x/start-kong-securely/    /gateway/2.6.x/plan-and-deploy/security/start-kong-securely
 /enterprise/2.7.x/start-kong-securely/    /gateway/2.7.x/plan-and-deploy/security/start-kong-securely
 /enterprise/latest/start-kong-securely/   /gateway/latest/plan-and-deploy/security/start-kong-securely

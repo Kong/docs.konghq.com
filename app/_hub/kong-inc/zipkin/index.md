@@ -12,9 +12,11 @@ categories:
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
   enterprise_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
 params:
   name: zipkin
@@ -34,7 +36,7 @@ params:
   config:
     - name: local_service_name
       required: true
-      default: 'kong'
+      default: kong
       datatype: string
       description: |
         The name of the service as displayed in Zipkin. Customize this name to

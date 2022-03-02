@@ -1,7 +1,7 @@
 ---
 name: Response Rate Limiting
 publisher: Kong Inc.
-version: 1.0.0
+version: 2.0.x
 desc: Rate-limiting based on a custom response header value
 description: |
   This plugin allows you to limit the number of requests a developer can make
@@ -20,6 +20,7 @@ categories:
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
       - 2.6.x
       - 2.5.x
@@ -34,18 +35,9 @@ kong_version_compatibility:
       - 1.2.x
       - 1.1.x
       - 1.0.x
-      - 0.14.x
-      - 0.13.x
-      - 0.12.x
-      - 0.11.x
-      - 0.10.x
-      - 0.9.x
-      - 0.8.x
-      - 0.7.x
-      - 0.6.x
-      - 0.5.x
   enterprise_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
       - 2.6.x
       - 2.5.x
@@ -157,6 +149,11 @@ params:
       default: '`6379`'
       datatype: integer
       description: 'When using the `redis` policy, this property specifies the port of the Redis server.'
+    - name: redis_username
+      required: false
+      datatype: string
+      description: |
+        When using the `redis` policy, this property specifies the username to connect to the Redis server when ACL authentication is desired.
     - name: redis_password
       required: false
       datatype: string
@@ -233,3 +230,13 @@ X-RateLimit-Remaining-Images: 0
 
 [configuration]: /gateway/latest/reference/configuration
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
+
+---
+## Changelog
+
+### Kong Gateway 2.8.x (plugin version 2.0.1)
+
+* Added the `redis_username` configuration parameter.
+* Fixed plugin versions in the documentation. Previously, the plugin versions
+were labelled as `0.1-x` and `1.0-x`. They are now updated to align with the
+plugin's actual versions, `1.0.x` and `2.0.x`.

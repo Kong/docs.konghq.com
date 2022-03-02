@@ -1,9 +1,7 @@
 ---
-
 name: Rate Limiting Advanced
 publisher: Kong Inc.
 version: 1.6.x
-
 desc: Upgrades Kong Rate Limiting with more flexibility and higher performance
 description: |
   The Rate Limiting Advanced plugin for Konnect Enterprise is a re-engineered version of the Kong Gateway (OSS) [Rate Limiting plugin](/hub/kong-inc/rate-limiting/).
@@ -14,42 +12,46 @@ description: |
   * Increased performance: Rate Limiting Advanced has better throughput performance with better accuracy. Configure `sync_rate` to periodically sync with backend storage.
   * More limiting algorithms to choose from: These algorithms are more accurate and they enable configuration with more specificity. Learn more about our algorithms in [How to Design a Scalable Rate Limiting Algorithm](https://konghq.com/blog/how-to-design-a-scalable-rate-limiting-algorithm/).
   * Consumer groups support: Apply different rate limiting configurations to select groups of consumers.
-
 type: plugin
 enterprise: true
 categories:
   - traffic-control
-
 kong_version_compatibility:
-    community_edition:
-      compatible:
-    enterprise_edition:
-      compatible:
-        - 2.7.x
-
+  community_edition:
+    compatible: null
+  enterprise_edition:
+    compatible:
+      - 2.8.x
+      - 2.7.x
 params:
   name: rate-limiting-advanced
   service_id: true
   route_id: true
   consumer_id: true
-  protocols: ["http", "https", "grpc", "grpcs"]
+  protocols:
+    - http
+    - https
+    - grpc
+    - grpcs
   dbless_compatible: partially
   dbless_explanation: |
-   The cluster strategy is not supported in DB-less and hybrid modes. For Kong
-   Gateway in DB-less or hybrid mode, use the `redis` strategy.
+    The cluster strategy is not supported in DB-less and hybrid modes. For Kong
+    Gateway in DB-less or hybrid mode, use the `redis` strategy.
   config:
     - name: limit
       required: true
-      default:
-      value_in_examples: [ "5" ]
+      default: null
+      value_in_examples:
+        - '5'
       datatype: array of number elements
       description: |
         One or more requests-per-window limits to apply. There must be a matching
         number of window limits and sizes specified.
     - name: window_size
       required: true
-      default:
-      value_in_examples: [ "30" ]
+      default: null
+      value_in_examples:
+        - '30'
       datatype: array of number elements
       description: |
         One or more window sizes to apply a limit to (defined in seconds). There
@@ -74,13 +76,13 @@ params:
     - name: dictionary_name
       required: true
       default: kong_rate_limiting_counters
-      value_in_examples:
+      value_in_examples: null
       datatype: string
       description: |
         The shared dictionary where counters will be stored until the next sync cycle.
     - name: sync_rate
       required: true
-      default:
+      default: null
       value_in_examples: -1
       datatype: number
       description: |
@@ -92,7 +94,7 @@ params:
     - name: namespace
       required: true
       default: random_auto_generated_string
-      value_in_examples:
+      value_in_examples: null
       datatype: string
       description: |
         The rate limiting library namespace to use for this plugin instance. Counter
@@ -128,15 +130,15 @@ params:
         Optionally hide informative response headers. Available options: `true` or `false`.
     - name: redis.host
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         Host to use for Redis connection when the `redis` strategy is defined.
     - name: redis.port
       required: semi
       default: 6379
-      value_in_examples:
+      value_in_examples: null
       datatype: integer
       description: |
         Specifies the Redis server port when using the `redis` strategy. Must be a
@@ -144,7 +146,7 @@ params:
     - name: redis.ssl
       required: false
       default: false
-      value_in_examples:
+      value_in_examples: null
       datatype: boolean
       description: |
         If set to true, then uses SSL to connect to Redis.
@@ -154,7 +156,7 @@ params:
     - name: redis.ssl_verify
       required: false
       default: false
-      value_in_examples:
+      value_in_examples: null
       datatype: boolean
       description: |
         If set to true, then verifies the validity of the server SSL certificate. Note that you need to configure the
@@ -166,8 +168,8 @@ params:
         2.2.x and later.
     - name: redis.server_name
       required: false
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         Specifies the server name for the new TLS extension Server Name Indication (SNI) when connecting over SSL.
@@ -177,7 +179,7 @@ params:
     - name: redis.timeout
       required: semi
       default: 2000
-      value_in_examples:
+      value_in_examples: null
       datatype: number
       description: |
         Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined.
@@ -203,49 +205,81 @@ params:
       datatype: number
       description: |
         Read timeout to use for Redis connection when the `redis` strategy is defined.
-    - name: redis.password
+    - name: redis.username
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
-        Password to use for Redis connection when the `redis` strategy is defined. If undefined, no AUTH commands are sent to Redis.
+        Username to use for Redis connection when the `redis` strategy is defined and ACL authentication is desired.
+        If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+    - name: redis.password
+      required: semi
+      default: null
+      value_in_examples: null
+      datatype: string
+      description: |
+        Password to use for Redis connection when the `redis` strategy is defined.
+        If undefined, no AUTH commands are sent to Redis.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.database
       required: semi
       default: 0
-      value_in_examples:
+      value_in_examples: null
       datatype: integer
       description: |
         Database to use for Redis connection when the `redis` strategy is defined.
     - name: redis.sentinel_master
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         Sentinel master to use for Redis connections when the `redis` strategy is defined.
         Defining this value implies using Redis Sentinel.
-    - name: redis.sentinel_password
+    - name: redis.sentinel_username
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
-            Sentinel password to authenticate with a Redis Sentinel instance. If undefined, no AUTH commands are sent to Redis Sentinels.
-            **Note:** This parameter is only available for Kong Gateway versions
-            1.3.0.2 and later.
+        Sentinel username to authenticate with a Redis Sentinel instance.
+        If undefined, ACL authentication will not be performed. This requires Redis v6.2.0+.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+    - name: redis.sentinel_password
+      required: semi
+      default: null
+      value_in_examples: null
+      datatype: string
+      description: |
+        Sentinel password to authenticate with a Redis Sentinel instance.
+        If undefined, no AUTH commands are sent to Redis Sentinels.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.sentinel_role
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         Sentinel role to use for Redis connections when the `redis` strategy is defined.
         Defining this value implies using Redis Sentinel. Available options:  `master`, `slave`, `any`.
     - name: redis.sentinel_addresses
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: array of string elements
       description: |
         Sentinel addresses to use for Redis connections when the `redis` strategy is defined.
@@ -253,8 +287,8 @@ params:
         be a hostname. The minimum length of the array is 1 element.
     - name: redis.cluster_addresses
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: array of string elements
       description: |
         Cluster addresses to use for Redis connections when the `redis` strategy is defined.
@@ -263,14 +297,14 @@ params:
     - name: window_type
       required: true
       default: sliding
-      value_in_examples:
+      value_in_examples: null
       datatype: string
       description: |
         Sets the time window type to either `sliding` (default) or `fixed`.
     - name: retry_after_jitter_max
       required: true
       default: 0
-      value_in_examples:
+      value_in_examples: null
       datatype: number
       description: |
         The upper bound of a jitter (random delay) in seconds to be added to the `Retry-After`
@@ -302,7 +336,6 @@ params:
         group override, but does not clear the list of consumer groups.
         You can then flip `enforce_consumer_groups` to `true` to re-enforce the
         groups.
-
   extra: |
     **Notes:**
 
@@ -316,7 +349,6 @@ params:
 
      * The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary,
        which could lead to `no memory` errors.
-
 ---
 
 ### Headers sent to the client
@@ -422,6 +454,15 @@ decK. If you have consumer groups in your configuration, decK will ignore them.
 
 ## Changelog
 
-### Kong Gateway 2.7.x
+### Kong Gateway 2.8.x (plugin version 1.6.1)
 
-* Added `enforce_consumer_groups` and `consumer_groups` fields.
+* Added the `redis.username` and `redis.sentinel_username` configuration parameters.
+
+* The `redis.username`, `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
+configuration fields are now marked as referenceable, which means they can be securely stored as
+[secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+
+### Kong Gateway 2.7.x (plugin version 1.6.0)
+
+* Added the `enforce_consumer_groups` and `consumer_groups` configuration parameters.
