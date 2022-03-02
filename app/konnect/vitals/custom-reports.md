@@ -110,7 +110,7 @@ Metric | Report type | Description
 -------|------------|------------
 Total traffic | Service, Route, Application | Total number of API calls within the selected time frame.
 Total traffic by status code | Service, Route, Application | Number of API calls grouped by status code.
-Total traffic by service | Route, Application | Number of API calls grouped by Service(s) or Service versions.
+Total traffic by service | Route, Application | Number of API calls filted by Service(s) or Service versions, and grouped by Service.
 Total traffic by route | Service, Application | Number of API calls grouped by Route.
 Total traffic by application | Service, Route | Number of API calls grouped by Application.
 
