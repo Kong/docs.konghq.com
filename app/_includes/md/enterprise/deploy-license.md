@@ -26,8 +26,11 @@ The recommended method is using the Admin API.
 {% navtab Admin API %}
 
 You can use the Kong Admin API to distribute the license in any database-backed
-or hybrid mode deployment. In hybrid mode, you **must** use this method to apply
-the license to control plane nodes.
+or hybrid mode deployment. We recommend using this method in most deployments.
+
+In hybrid mode, apply the license to the control plane. The control plane
+distributes the license to its data plane nodes. This is the only method that
+applies the license to data planes automatically.
 
 The license data must contain straight quotes to be considered valid JSON
 (`'` and `"`, not `’` or `“`).
@@ -71,7 +74,8 @@ For more detail and options, see the
 {% navtab Filesystem %}
 
 You can provide a license file to Kong Gateway in any database-backed or DB-less
-deployment. This method cannot be used in hybrid mode.
+deployment. This method is not recommended for use in hybrid mode, as you have
+to maintain the license on each node manually.
 
 The license data must contain straight quotes to be considered valid JSON
 (`'` and `"`, not `’` or `“`).
@@ -97,7 +101,8 @@ where you have installed
 {% navtab Environment variable (JSON) %}
 
 You can use environment variables to apply a license to Kong Gateway in any
-database-backed or DB-less deployment. This method cannot be used in hybrid mode.
+database-backed or DB-less deployment. This method is not recommended for use in
+hybrid mode, as you have to maintain the license on each node manually.
 
 The license data must contain straight quotes to be considered valid JSON
 (`'` and `"`, not `’` or `“`).
@@ -124,7 +129,8 @@ Gateway:
 {% navtab Environment variable (file path) %}
 
 You can use environment variables to apply a license to Kong Gateway in any
-database-backed or DB-less deployment. This method cannot be used in hybrid mode.
+database-backed or DB-less deployment. This method is not recommended for use
+in hybrid mode, as you have to maintain the license on each node manually.
 
 1. Export the license path to a variable by running the following command,
 substituting your own path and filename.
