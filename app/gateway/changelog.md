@@ -468,7 +468,7 @@ now overrides the previous document.
 ### Deprecated
 
 * The external `go-pluginserver` project is considered deprecated in favor of
-  the [embedded server approach](/gateway/{{page.kong_version}}/reference/external-plugins/).
+  the [embedded server approach](/gateway/latest/reference/external-plugins/).
 
 * Starting with Kong Gateway 2.8.0.0, Kong is not building new open-source
 CentOS images. Support for running open-source Kong Gateway on CentOS on is now
