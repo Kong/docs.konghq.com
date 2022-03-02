@@ -2,7 +2,6 @@
 name: Mocking
 publisher: Kong Inc.
 version: 0.2.x
-
 desc: Provide mock endpoints to test your APIs against your services
 description: |
   Provide mock endpoints to test your APIs in development against your services.
@@ -33,6 +32,7 @@ categories:
 kong_version_compatibility:
   enterprise_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
       - 2.6.x
       - 2.5.x
@@ -105,7 +105,6 @@ params:
       value_in_examples: true
       description: |
         Randomly selects one example and returns it. This parameter requires the spec to have multiple examples configured.
-
   extra: |
 
     Depending on the Kong Gateway deployment mode, set either the `api_specification_filename`

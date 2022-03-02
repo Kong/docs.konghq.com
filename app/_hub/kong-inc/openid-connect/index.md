@@ -130,6 +130,7 @@ kong_version_compatibility:
     compatible: null
   enterprise_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
 params:
   name: openid-connect
@@ -1549,8 +1550,6 @@ params:
         Distributed claims are represented by the `_claim_names` and `_claim_sources` members
         of the JSON object containing the claims.
         If this parameter is set to `true`, the plugin explicitly resolves these distributed claims.
-
-
 issuer_body: |
   Attributes | Description
   ---:| ---

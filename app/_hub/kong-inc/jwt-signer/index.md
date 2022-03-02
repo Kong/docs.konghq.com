@@ -24,6 +24,7 @@ kong_version_compatibility:
     compatible: null
   enterprise_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
 params:
   name: jwt-signer
