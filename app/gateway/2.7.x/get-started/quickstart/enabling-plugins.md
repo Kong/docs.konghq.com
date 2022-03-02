@@ -21,7 +21,7 @@ from unauthorized use.
 
 ## 1. Configure the key-auth plugin
 
-To configure the key-auth plugin for the Service you <a href="/gateway/{{page.kong_version}}/getting-started/configuring-a-service">configured in Kong</a>,
+To configure the key-auth plugin for the Service you <a href="/gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-service/">configured in Kong</a>,
 issue the following cURL request:
 
 ```bash

@@ -36,6 +36,7 @@ enterprise: true
 kong_version_compatibility:
   enterprise_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
       - 2.6.x
       - 2.5.x

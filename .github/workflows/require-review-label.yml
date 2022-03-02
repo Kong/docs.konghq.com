@@ -12,4 +12,4 @@ jobs:
         with:
           mode: minimum
           count: 1
-          labels: "review:tech, review:copyedit, review:general, review:autogen"
+          labels: "review:tech, review:copyedit, review:general, review:autodoc"
