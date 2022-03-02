@@ -15,6 +15,7 @@ categories:
 kong_version_compatibility:
   enterprise_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
       - 2.6.x
       - 2.5.x
@@ -191,8 +192,8 @@ params:
         Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined.
     - name: redis.username
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
         Username to use for Redis connection when the `redis` strategy is defined and ACL authentication is desired.
@@ -229,16 +230,16 @@ params:
         Sentinel master to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
     - name: redis.sentinel_username
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
-            Sentinel username to authenticate with a Redis Sentinel instance.
-            If undefined, ACL authentication will not be performed. This requires Redis v6.2.0+.
+        Sentinel username to authenticate with a Redis Sentinel instance.
+        If undefined, ACL authentication will not be performed. This requires Redis v6.2.0+.
 
-            This field is _referenceable_, which means it can be securely stored as a
-            [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-            in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.sentinel_password
       required: semi
       default: null

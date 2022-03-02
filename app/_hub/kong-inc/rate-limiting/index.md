@@ -22,6 +22,7 @@ kong_version_compatibility:
       - 2.7.x
   enterprise_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
 params:
   name: rate-limiting

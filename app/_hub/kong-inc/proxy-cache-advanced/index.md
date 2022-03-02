@@ -20,6 +20,7 @@ kong_version_compatibility:
     compatible: null
   enterprise_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
       - 2.6.x
       - 2.5.x
@@ -29,7 +30,6 @@ kong_version_compatibility:
       - 2.1.x
       - 1.5.x
       - 1.3-x
-
 params:
   name: proxy-cache-advanced
   service_id: true
@@ -202,28 +202,28 @@ params:
         Sentinel master to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
     - name: redis.sentinel_username
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
-            Sentinel username to authenticate with a Redis Sentinel instance.
-            If undefined, ACL authentication will not be performed. This requires Redis v6.2.0+.
+        Sentinel username to authenticate with a Redis Sentinel instance.
+        If undefined, ACL authentication will not be performed. This requires Redis v6.2.0+.
 
-            This field is _referenceable_, which means it can be securely stored as a
-            [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-            in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.sentinel_password
       required: semi
-      default:
-      value_in_examples:
+      default: null
+      value_in_examples: null
       datatype: string
       description: |
-            Sentinel password to authenticate with a Redis Sentinel instance.
-            If undefined, no AUTH commands are sent to Redis Sentinels.
+        Sentinel password to authenticate with a Redis Sentinel instance.
+        If undefined, no AUTH commands are sent to Redis Sentinels.
 
-            This field is _referenceable_, which means it can be securely stored as a
-            [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-            in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.sentinel_role
       required: semi
       default: null

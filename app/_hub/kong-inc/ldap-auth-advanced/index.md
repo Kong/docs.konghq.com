@@ -1,7 +1,7 @@
 ---
 name: LDAP Authentication Advanced
 publisher: Kong Inc.
-version: 2.8.x # plugin version 1.3.x
+version: 2.8.x
 desc: 'Secure Kong clusters, Routes, and Services with username and password protection'
 description: |
   Add LDAP Bind Authentication with username and password protection. The plugin
@@ -24,6 +24,7 @@ kong_version_compatibility:
     compatible: null
   enterprise_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
 params:
   name: ldap-auth-advanced
