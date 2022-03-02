@@ -2,8 +2,6 @@
 name: Datadog
 publisher: Kong Inc.
 version: 3.2.x
-# internal handler version 3.2.0
-
 desc: Visualize metrics on Datadog
 description: |
   Log [metrics](#metrics) for a Service, Route to a local
@@ -14,6 +12,7 @@ categories:
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
       - 2.6.x
       - 2.5.x
@@ -91,20 +90,19 @@ params:
       description: String to be attached as prefix to metric's name.
     - name: service_name_tag
       required: false
-      default: "name"
+      default: name
       datatype: string
       description: String to be attached as name of the service.
     - name: status_tag
       required: false
-      default: "status"
+      default: status
       datatype: string
       description: String to be attached as name of the http status.
     - name: consumer_tag
       required: false
-      default: "consumer"
+      default: consumer
       datatype: string
       description: String to be attached as name of the consumer.
-
 ---
 
 ## Changes in this version

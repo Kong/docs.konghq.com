@@ -19,6 +19,7 @@ source_url: 'https://github.com/Kong/kong-plugin-session'
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
       - 2.6.x
       - 2.5.x
@@ -35,7 +36,6 @@ kong_version_compatibility:
       - 2.3.x
       - 2.2.x
       - 2.1.x
-
 params:
   name: session
   service_id: true
