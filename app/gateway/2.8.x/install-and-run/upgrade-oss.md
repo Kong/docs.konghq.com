@@ -28,7 +28,7 @@ $ kong migrations up [-c configuration_file]
 
 If the command is successful, and no migration ran
 (no output), then you only have to
-[reload](https://docs.konghq.com/gateway-oss/2.8.x/cli/#kong-reload) Kong:
+[reload](https://docs.konghq.com/gateway/2.8.x/reference/cli/#kong-reload) Kong:
 
 ```shell
 $ kong reload [-c configuration_file]
@@ -226,7 +226,7 @@ $ kong migrations up [-c configuration_file]
 
 If the command is successful, and no migration ran
 (no output), then you only have to
-[reload](https://docs.konghq.com/gateway-oss/2.8.x/cli/#kong-reload) Kong:
+[reload](https://docs.konghq.com/gateway/2.8.x/reference/cli/#kong-reload) Kong:
 
 ```shell
 $ kong reload [-c configuration_file]
