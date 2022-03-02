@@ -42,3 +42,4 @@ jobs:
           title: "[Automated] Plugin version updates"
           body: |
             Automatic update with new plugin release
+          labels: review:autodoc
