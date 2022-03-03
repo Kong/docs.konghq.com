@@ -459,7 +459,7 @@ now overrides the previous document.
 * Bumped `resty.session` from 3.8 to 3.10
 [#8294](https://github.com/Kong/kong/pull/8294)
 * Bumped `lua-resty-openssl` to 0.8.5
-[#8429](https://github.com/Kong/kong/pull/8429)
+[#8368](https://github.com/Kong/kong/pull/8368)
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
