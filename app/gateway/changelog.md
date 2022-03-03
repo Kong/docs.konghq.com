@@ -460,8 +460,6 @@ now overrides the previous document.
 [#8294](https://github.com/Kong/kong/pull/8294)
 * Bumped `lua-resty-openssl` to 0.8.5
 [#8368](https://github.com/Kong/kong/pull/8368)
-* Bumped `pgmoon` from 1.13.0 to 1.14.0
-[#8429](https://github.com/Kong/kong/pull/8429)
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
