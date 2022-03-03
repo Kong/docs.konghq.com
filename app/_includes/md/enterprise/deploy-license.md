@@ -88,7 +88,7 @@ where you have installed
     $ scp license.json <system_username>@<server>:~
     ```
 
-2. Then, copy the license file again, this time to the `/etc/kong` directory:
+1. Then, copy the license file again, this time to the `/etc/kong` directory:
 
     ```sh
     $ scp license.json /etc/kong/license.json
@@ -100,9 +100,10 @@ where you have installed
 {% endnavtab %}
 {% navtab Environment variable (JSON) %}
 
-You can use environment variables to apply a license to Kong Gateway in any
-database-backed or DB-less deployment. This method is not recommended for use in
-hybrid mode, as you have to maintain the license on each node manually.
+You can use the `KONG_LICENSE_DATA` environment variable to apply a license to
+{{site.base_gateway}} in any database-backed or DB-less deployment. This method
+is not recommended for use in hybrid mode, as you have to maintain the license
+on each node manually.
 
 The license data must contain straight quotes to be considered valid JSON
 (`'` and `"`, not `’` or `“`).
@@ -118,33 +119,44 @@ substituting your own license key.
     $ export KONG_LICENSE_DATA='{"license":{"signature":"LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tClZlcnNpb246IEdudVBHIHYyCgpvd0did012TXdDSFdzMTVuUWw3dHhLK01wOTJTR0tLWVc3UU16WTBTVTVNc2toSVREWk1OTFEzVExJek1MY3dTCjA0ek1UVk1OREEwc2pRM04wOHpNalZKVHpOTE1EWk9TVTFLTXpRMVRVNHpTRXMzTjA0d056VXdUTytKWUdNUTQKR05oWW1VQ21NWEJ4Q3NDc3lMQmorTVBmOFhyWmZkNkNqVnJidmkyLzZ6THhzcitBclZtcFZWdnN1K1NiKzFhbgozcjNCeUxCZzdZOVdFL2FYQXJ0NG5lcmVpa2tZS1ozMlNlbGQvMm5iYkRzcmdlWFQzek1BQUE9PQo9b1VnSgotLS0tLUVORCBQR1AgTUVTU0FHRS0tLS0tCg=","payload":{"customer":"Test Company Inc","license_creation_date":"2017-11-08","product_subscription":"Kong Enterprise","admin_seats":"5","support_plan":"None","license_expiration_date":"2017-11-10","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU"},"version":1}}'
     ```
 
-2. If using Docker, apply the license to your {{site.base_gateway}} Docker container and reload the
-Gateway:
+1. Include the license as part of the `docker run` command when starting a {{site.base_gateway}} container:
+
+    {:.note}
+    > **Note:** This is only a snippet. For a full working example, see the instructions to
+    [Install Kong Gateway on Docker](/gateway/{{page.kong_version}}/install-and-run/docker).
 
     ```bash
-    echo " KONG_LICENSE_DATA='${KONG_LICENSE_DATA}' kong reload exit " | \
-    docker exec -i <kong-container-id> /bin/sh
+    docker run -d --name kong-gateway \
+     --network=kong-net \
+     ...
+     -e "KONG_LICENSE_DATA=${KONG_LICENSE_DATA}" \
+     kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
     ```
 {% endnavtab %}
 {% navtab Environment variable (file path) %}
 
-You can use environment variables to apply a license to Kong Gateway in any
-database-backed or DB-less deployment. This method is not recommended for use
-in hybrid mode, as you have to maintain the license on each node manually.
+You can use the `KONG_LICENSE_PATH` environment variable to apply a license to
+{{site.base_gateway}} in any database-backed or DB-less deployment. This method
+is not recommended for use in hybrid mode, as you have to maintain the license
+on each node manually.
 
-1. Export the license path to a variable by running the following command,
-substituting your own path and filename.
+Include the license as part of the `docker run` command when starting a
+{{site.base_gateway}} container. Mount the path to the file on your
+local filesystem to a directory in the Docker container, making the file visible 
+from the container:
 
-    ```bash
-    $ export KONG_LICENSE_PATH=/path/to/license.json
-    ```
+{:.note}
+> **Note:** This is only a snippet. For a full working example, see the instructions to
+[Install Kong Gateway on Docker](/gateway/{{page.kong_version}}/install-and-run/docker).
 
-2. If using Docker, apply the license to your {{site.base_gateway}} Docker container and reload the
-Gateway:
+```bash
+docker run -d --name kong-gateway \
+ --network=kong-net \
+ ...
+ -v "$(pwd)/kong-license/:/kong-license/" \
+ -e "KONG_LICENSE_PATH=/kong-license/license.json" \
+ kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+```
 
-    ```bash
-    echo " KONG_LICENSE_PATH='${KONG_LICENSE_PATH}' kong reload exit " | \
-    docker exec -i <kong-container-id> /bin/sh
-    ```
 {% endnavtab %}
 {% endnavtabs %}
