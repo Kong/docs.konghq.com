@@ -179,7 +179,7 @@ spec:
           podTemplate:
              metadata:
                annotations:
-                 kuma.io/sidecar-injection: "false"   #in case of ingress will be running in Kuma/Kong Mesh, disable sidecar injection
+                 kuma.io/sidecar-injection: "false"   # If ingress is running in Kuma/Kong Mesh, disable sidecar injection
           class: kong" | kubectl apply -f -
 clusterissuer.cert-manager.io/letsencrypt-prod configured
 ```
