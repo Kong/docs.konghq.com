@@ -11,6 +11,7 @@ categories:
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
       - 2.6.x
       - 2.5.x
@@ -34,6 +35,7 @@ kong_version_compatibility:
       - 0.8.x
   enterprise_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
       - 2.6.x
       - 2.5.x
@@ -130,7 +132,7 @@ form parameter      | description
 
 ### Can I see my correlation IDs in my Kong logs?
 
-You can see your correlation ID in the Nginx access or error logs if you edit your Nginx logging parameters.
+You can see your correlation ID in the Nginx access log if you edit your Nginx logging parameters.
 
 To edit your Nginx parameters, do the following:
 

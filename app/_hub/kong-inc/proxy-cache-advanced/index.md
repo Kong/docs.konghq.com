@@ -1,7 +1,7 @@
 ---
 name: Proxy Caching Advanced
 publisher: Kong Inc.
-version: 2.2.x
+version: 0.5.x
 desc: Cache and serve commonly requested responses in Kong
 description: |
   This plugin provides a reverse proxy cache implementation for Kong. It caches
@@ -20,6 +20,7 @@ kong_version_compatibility:
     compatible: null
   enterprise_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
       - 2.6.x
       - 2.5.x
@@ -29,9 +30,6 @@ kong_version_compatibility:
       - 2.1.x
       - 1.5.x
       - 1.3-x
-      - 0.36-x
-      - 0.35-x
-      - 0.34-x
 params:
   name: proxy-cache-advanced
   service_id: true
@@ -182,7 +180,12 @@ params:
       value_in_examples: null
       datatype: string
       description: |
-        Password to use for Redis connection when the `redis` strategy is defined. If undefined, no AUTH commands are sent to Redis.
+        Password to use for Redis connection when the `redis` strategy is defined.
+        If undefined, no AUTH commands are sent to Redis.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.database
       required: semi
       default: 0
@@ -197,6 +200,30 @@ params:
       datatype: string
       description: |
         Sentinel master to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
+    - name: redis.sentinel_username
+      required: semi
+      default: null
+      value_in_examples: null
+      datatype: string
+      description: |
+        Sentinel username to authenticate with a Redis Sentinel instance.
+        If undefined, ACL authentication will not be performed. This requires Redis v6.2.0+.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+    - name: redis.sentinel_password
+      required: semi
+      default: null
+      value_in_examples: null
+      datatype: string
+      description: |
+        Sentinel password to authenticate with a Redis Sentinel instance.
+        If undefined, no AUTH commands are sent to Redis Sentinels.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.sentinel_role
       required: semi
       default: null
@@ -394,3 +421,21 @@ HTTP 204 No Content
 ```
 
 Note that this endpoint purges all cache entities across all `proxy-cache-advanced` plugins.
+
+---
+
+## Changelog
+
+### Kong Gateway 2.8.x (plugin version 0.5.7)
+
+* Added the `redis.sentinel_username` and `redis.sentinel_password` configuration
+parameters.
+
+* The `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
+configuration fields are now marked as referenceable, which means they can be
+securely stored as [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+
+* Fixed plugin versions in the documentation. Previously, the plugin versions
+were labelled as `1.3-x` and `2.2.x`. They are now updated to align with the
+plugin's actual versions, `0.4.x` and `0.5.x`.

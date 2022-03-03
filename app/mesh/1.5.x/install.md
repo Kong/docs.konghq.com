@@ -78,6 +78,11 @@ links to cloud marketplace integrations.
     <div class="install-text">MacOS</div>
   </a>
 
+  <a href="/mesh/{{page.kong_version}}/installation/windows" class="docs-grid-install-block no-description">
+    <img class="install-icon" src="/assets/images/icons/documentation/windows-logo.svg" alt="Windows" />
+    <div class="install-text">Windows</div>
+  </a>
+
 </div>
 
 {% endnavtab %}

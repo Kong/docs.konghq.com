@@ -43,6 +43,11 @@ vitals_strategy = influxdb
 vitals_tsdb_address = 127.0.0.1:8086 # the IP or hostname, and port, of InfluxDB
 ```
 
+{:.note}
+> **Note**: In Hybrid Mode, configure [`vitals_strategy`](/enterprise/{{page.kong_version}}/property-reference/#vitals_strategy) 
+and [`vitals_tsdb_address`](/enterprise/{{page.kong_version}}/property-reference/#vitals_tsdb_address) 
+on both the control plane and all data planes.
+
 As with other Kong configurations, changes take effect on kong reload or kong
 restart.
 

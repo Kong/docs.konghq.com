@@ -46,13 +46,7 @@ non-default configuration for
 
 ## Kong Enterprise
 
-There are [two distributions of Kong Enterprise](https://github.com/Kong/kubernetes-ingress-controller/tree/master/docs/deployment#overview),
-`kong-enterprise-k8s` (used with Kong for Kubernetes Enterprise) and
-`kong-enterprise-edition` (used with Kong for Kubernetes with Kong Enterprise).
-
-{% include md/enterprise/k8s-image-note.md %}
-
-|  Plugin                          |  Kong for Kubernetes with Kong Enterprise  |  Kong for Kubernetes Enterprise           |
+|  Plugin                          |  Kong Enterprise                           |  Kong Enterprise (DB-less)                |
 |----------------------------------|--------------------------------------------|-------------------------------------------|
 |  acl                             |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
 |  aws-lambda                      |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
@@ -86,7 +80,7 @@ There are [two distributions of Kong Enterprise](https://github.com/Kong/kuberne
 |  canary release                  |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
 |  collector                       |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
 |  degraphql                       |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
-|  exit-transformer                |  <i class="fa fa-check"></i>               |  <i class="fa fa-times"></i>              |
+|  exit-transformer                |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
 |  forward-proxy                   |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
 |  graphql-proxy-cache-advanced    |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
 |  graphql-rate-limiting-advanced  |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
@@ -100,17 +94,13 @@ There are [two distributions of Kong Enterprise](https://github.com/Kong/kuberne
 |  openid-connect                  |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
 |  proxy-cache-advanced            |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
 |  rate-limiting-advanced          |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
-|  request-transformer-advanced    |  <i class="fa fa-check"></i>               |  <i class="fa fa-times"></i><sup>2</sup>  |
+|  request-transformer-advanced    |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
 |  request-validator               |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
 |  response-transformer-advanced   |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
-|  route-transformer-advanced      |  <i class="fa fa-check"></i>               |  <i class="fa fa-times"></i>              |
-|  statsd-advanced                 |  <i class="fa fa-check"></i>               |  <i class="fa fa-times"></i><sup>3</sup>  |
+|  route-transformer-advanced      |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
+|  statsd-advanced                 |  <i class="fa fa-check"></i>               |  <i class="fa fa-times"></i><sup>2</sup>  |
 |  vault-auth                      |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
 
 <sup>1</sup> Only used with Dev Portal
 
-<sup>2</sup> request-transformer now has feature parity with
-  request-transformer-advanced. request-transformer-advanced remains only for
-  compatibility with existing configurations.
-
-<sup>3</sup> Only used with Vitals
+<sup>2</sup> Only used with Vitals

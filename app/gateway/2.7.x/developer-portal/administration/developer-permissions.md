@@ -41,12 +41,12 @@ attached to it, any developer may view the page as long as they are
 authenticated. Additionally, the `*` role may not be used in conjunction with
 other user-defined roles and will deselect those roles when `*` is selected.
 
-⚠️**Important:** The `dashboard.txt` and `settings.txt` content files are
+{:.important}
+> **Important:** The `dashboard.txt` and `settings.txt` content files are
 assigned the `*` role by default. All other content files have no roles by
 default. This means that until a role is added, the file is unauthenticated
 even if Dev Portal Authentication is enabled. Content Permissions are ignored
-when Dev Portal Authentication is disabled. For more information, visit the
-<a href="/gateway/{{page.kong_version}}/developer-portal/configuration/authentication">Dev Portal Authentication</a> section.
+when Dev Portal Authentication is disabled.
 
 ## readable_by attribute
 

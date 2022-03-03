@@ -440,7 +440,7 @@ functions to access {{site.base_gateway}} features of the [PDK][kong-pdk].
 [kong-python-pdk] can be installed using `pip`. To install the plugin server binary and PDK globally, use:
 
 ```
-pip install kong-pdk
+pip3 install kong-pdk
 ```
 
 Assume the plugins are stored in `/usr/local/kong/python-plugins`:
@@ -471,7 +471,7 @@ schema of plugin, it shares the same syntax as it's a Lua plugin. `version` and 
 defines the version number and priority of execution respectively.
 
 **Note**: Check out [this repository](https://github.com/Kong/kong-python-pdk/tree/master/examples)
-for example Python plugins.
+for example Python plugins and [API reference](https://kong.github.io/kong-python-pdk/py-modindex.html).
 
 #### 1. Phase Handlers
 

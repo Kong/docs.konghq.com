@@ -1,7 +1,7 @@
 ---
 name: Forward Proxy Advanced
 publisher: Kong Inc.
-version: 1.0.x
+version: 1.2.x
 desc: Allows Kong to connect to intermediary transparent HTTP proxies
 description: |
   The Forward Proxy plugin allows Kong to connect to intermediary transparent
@@ -16,7 +16,7 @@ categories:
 kong_version_compatibility:
   enterprise_edition:
     compatible:
-      - 2.7.x
+      - 2.8.x
 
 params:
   name: forward-proxy
@@ -25,19 +25,73 @@ params:
   consumer_id: true
   dbless_compatible: 'yes'
   config:
-    - name: proxy_host
-      required: true
+    - name: http_proxy_host
+      required: semi
       default: null
-      value_in_examples: example.com
+      value_in_examples: http://example.com
       datatype: string
       description: |
-        The hostname or IP address of the forward proxy to which to connect.
-    - name: proxy_port
-      required: true
+        The HTTP hostname or IP address of the forward proxy to which to connect.
+        Required if `http_proxy_port` is set.
+
+        At least one of `http_proxy_host` or `https_proxy_host` must be specified.
+    - name: http_proxy_port
+      required: semi
       default: null
       value_in_examples: 80
       datatype: string
       description: |
+        The TCP port of the HTTP forward proxy to which to connect.
+        Required if `http_proxy_host` is set.
+
+        At least one of `http_proxy_port` or `https_proxy_port` must be specified.
+    - name: https_proxy_host
+      required: semi
+      default: null
+      value_in_examples:
+      datatype: string
+      description: |
+        The HTTPS hostname or IP address of the forward proxy to which to connect.
+        Required if `https_proxy_port` is set.
+
+        At least one of `http_proxy_host` or `https_proxy_host` must be specified.
+    - name: https_proxy_port
+      required: semi
+      default: null
+      value_in_examples:
+      datatype: string
+      description: |
+        The TCP port of the HTTPS forward proxy to which to connect.
+        Required if `https_proxy_host` is set.
+
+        At least one of `http_proxy_port` or `https_proxy_port` must be specified.
+    - name: proxy_host
+      required: false
+      default: null
+      value_in_examples:
+      datatype: string
+      description: |
+
+        {:.important}
+        > This parameter is deprecated as of Kong Gateway 2.8.0.0 and
+        is planned to be removed in 3.x.x.
+        > <br>
+        > Use `http_proxy_host` or `https_proxy_host` instead.
+
+        The hostname or IP address of the forward proxy to which to connect.
+    - name: proxy_port
+      required: false
+      default: null
+      value_in_examples:
+      datatype: string
+      description: |
+
+        {:.important}
+        > This parameter is deprecated as of Kong Gateway 2.8.0.0 and
+        is planned to be removed in 3.x.x.
+        > <br>
+        > Use `http_proxy_host` or `https_proxy_host` instead.
+
         The TCP port of the forward proxy to which to connect.
     - name: proxy_scheme
       required: true
@@ -54,6 +108,10 @@ params:
       description: |
         The username to authenticate with, if the forward proxy is protected
         by basic authentication.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: auth_password
       required: false
       default: null
@@ -62,6 +120,10 @@ params:
       description: |
         The password to authenticate with, if the forward proxy is protected
         by basic authentication.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: https_verify
       required: true
       default: false
@@ -82,6 +144,24 @@ params:
 ---
 ## Changelog
 
-### 1.0.6
+### Kong Gateway 2.8.x (plugin version 1.2.0)
+
+* Added `http_proxy_host`, `http_proxy_port`, `https_proxy_host`, and
+`https_proxy_port` configuration parameters for mTLS support.
+
+    {:.important}
+    > These parameters replace the `proxy_port` and `proxy_host` fields, which
+    are now **deprecated** and planned to be removed in 3.x.x.
+
+* The `auth_password` and `auth_username` configuration fields are now marked as
+referenceable, which means they can be securely stored as
+[secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+
+* Fixed a plugin version in the documentation. Previously, there was a plugin
+version labelled as `1.0.x`. It is now updated to align with the
+plugin's actual version, `1.1.x`.
+
+### Kong Gateway 2.7.x (plugin version 1.1.0)
 
 * Added `auth_username` and `auth_password` parameters for proxy authentication.

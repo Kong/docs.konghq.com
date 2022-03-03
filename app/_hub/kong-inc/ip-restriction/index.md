@@ -2,7 +2,6 @@
 name: IP Restriction
 publisher: Kong Inc.
 version: 2.1.x
-
 desc: Allow or deny IPs that can make requests to your Services
 description: |
   Restrict access to a Service or a Route by either allowing or denying IP addresses. Single IPs, multiple IPs or ranges in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) like `10.10.10.0/24` can be used. The plugin supports IPv4 and IPv6 addresses.
@@ -12,6 +11,7 @@ categories:
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
       - 2.6.x
       - 2.5.x
@@ -39,6 +39,7 @@ kong_version_compatibility:
       - 0.4.x
   enterprise_edition:
     compatible:
+      - 2.8.x
       - 2.7.x
       - 2.6.x
       - 2.5.x
@@ -82,11 +83,10 @@ params:
         The HTTP status of the requests that will be rejected by the plugin.
     - name: message
       required: false
-      default: "Your IP address is not allowed"
+      default: Your IP address is not allowed
       datatype: string
       description: |
         The message to send as a response body to rejected requests.
-
   extra: |
 
     An `allow` list provides a positive security model, in which the configured CIDR ranges are allowed access to the resource, and all others are inherently rejected. By contrast, a `deny` list configuration provides a negative security model, in which certain CIDRS are explicitly denied access to the resource (and all others are inherently allowed).
