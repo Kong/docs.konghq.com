@@ -193,7 +193,7 @@ for one that works with Cassandra too.
 enforce it for Cassandra, but for Postgres you must set this constraint in
 the migrations.
 
-To see a real-life example, give a look at the [Key-Auth plugin migrations](https://github.com/Kong/kong/tree/{{page.kong_version}}/kong/plugins/key-auth/migrations).
+To see a real-life example, give a look at the [Key-Auth plugin migrations](https://github.com/Kong/kong/tree/master/kong/plugins/key-auth/migrations).
 
 
 ## Define a schema
