@@ -115,8 +115,8 @@ $ export KONG_VITALS_TSDB_ADDRESS=prometheus-node:9090
 ```
 
 {:.note}
-> **Note**: In Hybrid Mode, configure [`vitals_strategy`](/gateway/{{page.kong_version}}/reference/configuration/#vitals_strategy) 
-and [`vitals_tsdb_address`](/gateway/{{page.kong_version}}/reference/configuration/#vitals_tsdb_address) 
+> **Note**: In Hybrid Mode, configure [`vitals_strategy`](/enterprise/{{page.kong_version}}/property-reference/#vitals_strategy) 
+and [`vitals_tsdb_address`](/enterprise/{{page.kong_version}}/property-reference/#vitals_tsdb_address) 
 on both the control plane and all data planes.
 
 Please update `statsd-node` and `prometheus-node` with the actual hostname that
