@@ -12,7 +12,7 @@
     "start": "gulp",
     "dev": "gulp dev",
     "pdk-docs": "KONG_PATH=${KONG_PATH:=} KONG_VERSION=${KONG_VERSION:=} gulp pdk-docs",
-    "test": "standard --verbose"
+    "test": "playwright test"
   },
   "standard": {
     "ignore": [
@@ -26,6 +26,7 @@
     ]
   },
   "devDependencies": {
+    "@playwright/test": "^1.19.2",
     "broken-link-checker": "0.7.8",
     "browser-sync": "2.27.7",
     "cloudflare": "2.9.1",
