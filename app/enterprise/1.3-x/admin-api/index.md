@@ -1106,15 +1106,6 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the Service to delete.
 
 
-##### Delete Service Associated to a Specific Route
-
-<div class="endpoint delete">/routes/{route name or id}/service</div>
-
-Attributes | Description
----:| ---
-`route name or id`<br>**required** | The unique identifier **or** the name of the Route associated to the Service to be deleted.
-
-
 *Response*
 
 ```
