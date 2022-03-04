@@ -35,7 +35,7 @@ HTTP 200 OK
 {
   "data": [
     {
-      "payload": "{\"license\":{\"payload\":{\"admin_seats\":\"1\",\"customer\":\"Example Company, Inc\",\"dataplanes\":\"1\",\"license_creation_date\":\"2017-07-20\",\"license_expiration_date\":\"2017-07-20\",\"license_key\":\"00141000017ODj3AAG_a1V41000004wT0OEAU\",\"product_subscription\":\"Konnect Enterprise\",\"support_plan\":\"None\"},\"signature\":\"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b\",\"version\":\"1\"}}",
+      "payload": "{\"license\":{\"payload\":{\"admin_seats\":\"1\",\"customer\":\"Example Company, Inc\",\"dataplanes\":\"1\",\"license_creation_date\":\"2021-07-20\",\"license_expiration_date\":\"2021-07-20\",\"license_key\":\"00141000017ODj3AAG_a1V41000004wT0OEAU\",\"product_subscription\":\"Konnect Enterprise\",\"support_plan\":\"None\"},\"signature\":\"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b\",\"version\":\"1\"}}",
       "created_at": 1500508800,
       "id": "30b4edb7-0847-4f65-af90-efbed8b0161f",
       "updated_at": 1500508800
@@ -73,7 +73,7 @@ HTTP 200 OK
 {
   "created_at": 1500508800,
   "id": "30b4edb7-0847-4f65-af90-efbed8b0161f",
-  "payload": "{\"license\":{\"payload\":{\"admin_seats\":\"1\",\"customer\":\"Example Company, Inc\",\"dataplanes\":\"1\",\"license_creation_date\":\"2017-07-20\",\"license_expiration_date\":\"2017-07-21\",\"license_key\":\"00141000017ODj3AAG_a1V41000004wT0OEAU\",\"product_subscription\":\"Konnect Enterprise\",\"support_plan\":\"None\"},\"signature\":\"24cc21223633044c15c300be19cacc26ccc5aca0dd9a12df8a7324a1970fe304bc07b8dcd7fb08d7b92e04169313377ae3b550ead653b951bc44cd2eb59f6beb\",\"version\":\"1\"}}",
+  "payload": "{\"license\":{\"payload\":{\"admin_seats\":\"1\",\"customer\":\"Example Company, Inc\",\"dataplanes\":\"1\",\"license_creation_date\":\"2021-07-20\",\"license_expiration_date\":\"2021-07-20\",\"license_key\":\"00141000017ODj3AAG_a1V41000004wT0OEAU\",\"product_subscription\":\"Konnect Enterprise\",\"support_plan\":\"None\"},\"signature\":\"24cc21223633044c15c300be19cacc26ccc5aca0dd9a12df8a7324a1970fe304bc07b8dcd7fb08d7b92e04169313377ae3b550ead653b951bc44cd2eb59f6beb\",\"version\":\"1\"}}",
   "updated_at": 1500508800
 }
 ```
@@ -106,7 +106,7 @@ HTTP 201 Created
 {
   "created_at": 1500508800,
   "id": "30b4edb7-0847-4f65-af90-efbed8b0161f",
-  "payload": "{\"license\":{\"payload\":{\"admin_seats\":\"1\",\"customer\":\"Example Company, Inc\",\"dataplanes\":\"1\",\"license_creation_date\":\"2017-07-20\",\"license_expiration_date\":\"2017-07-20\",\"license_key\":\"00141000017ODj3AAG_a1V41000004wT0OEAU\",\"product_subscription\":\"Konnect Enterprise\",\"support_plan\":\"None\"},\"signature\":\"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b\",\"version\":\"1\"}}",
+  "payload": "{\"license\":{\"payload\":{\"admin_seats\":\"1\",\"customer\":\"Example Company, Inc\",\"dataplanes\":\"1\",\"license_creation_date\":\"2021-07-20\",\"license_expiration_date\":\"2021-07-20\",\"license_key\":\"00141000017ODj3AAG_a1V41000004wT0OEAU\",\"product_subscription\":\"Konnect Enterprise\",\"support_plan\":\"None\"},\"signature\":\"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b\",\"version\":\"1\"}}",
   "updated_at": 1500508800
 }
 ```
@@ -143,7 +143,7 @@ HTTP 200 OK
 {
   "created_at": 1500508800,
   "id": "e8201120-4ee3-43ca-9e92-3fed08b1a15d",
-  "payload": "{\"license\":{\"payload\":{\"admin_seats\":\"1\",\"customer\":\"Example Company, Inc\",\"dataplanes\":\"1\",\"license_creation_date\":\"2017-07-20\",\"license_expiration_date\":\"2017-07-20\",\"license_key\":\"00141000017ODj3AAG_a1V41000004wT0OEAU\",\"product_subscription\":\"Konnect Enterprise\",\"support_plan\":\"None\"},\"signature\":\"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b\",\"version\":\"1\"}}",
+  "payload": "{\"license\":{\"payload\":{\"admin_seats\":\"1\",\"customer\":\"Example Company, Inc\",\"dataplanes\":\"1\",\"license_creation_date\":\"2021-07-20\",\"license_expiration_date\":\"2021-07-20\",\"license_key\":\"00141000017ODj3AAG_a1V41000004wT0OEAU\",\"product_subscription\":\"Konnect Enterprise\",\"support_plan\":\"None\"},\"signature\":\"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b\",\"version\":\"1\"}}",
   "updated_at": 1500508800
 }
 ```
@@ -179,7 +179,7 @@ HTTP 200 OK
 {
   "created_at": 1500595200,
   "id": "30b4edb7-0847-4f65-af90-efbed8b0161f",
-  "payload": "{\"license\":{\"payload\":{\"admin_seats\":\"1\",\"customer\":\"Example Company, Inc\",\"dataplanes\":\"1\",\"license_creation_date\":\"2017-07-20\",\"license_expiration_date\":\"2017-07-21\",\"license_key\":\"00141000017ODj3AAG_a1V41000004wT0OEAU\",\"product_subscription\":\"Konnect Enterprise\",\"support_plan\":\"None\"},\"signature\":\"24cc21223633044c15c300be19cacc26ccc5aca0dd9a12df8a7324a1970fe304bc07b8dcd7fb08d7b92e04169313377ae3b550ead653b951bc44cd2eb59f6beb\",\"version\":\"1\"}}",
+  "payload": "{\"license\":{\"payload\":{\"admin_seats\":\"1\",\"customer\":\"Example Company, Inc\",\"dataplanes\":\"1\",\"license_creation_date\":\"2021-07-20\",\"license_expiration_date\":\"2021-07-20\",\"license_key\":\"00141000017ODj3AAG_a1V41000004wT0OEAU\",\"product_subscription\":\"Konnect Enterprise\",\"support_plan\":\"None\"},\"signature\":\"24cc21223633044c15c300be19cacc26ccc5aca0dd9a12df8a7324a1970fe304bc07b8dcd7fb08d7b92e04169313377ae3b550ead653b951bc44cd2eb59f6beb\",\"version\":\"1\"}}",
   "updated_at": 1500595200
 }
 ```
@@ -200,7 +200,7 @@ HTTP 204 No Content
 
 ## Generate a report
 
-Generate a report on the Kong Gateway instance to gather monthly usage data.
+Generate a report on the Kong Gateway instance to gather usage data.
 
 <div class="endpoint get">/license/report</div>
 
@@ -208,7 +208,7 @@ Fields available in the report:
 
 Field | Description
 ------|------------
-`counters` | Counts the number of requests made in a given month. <br><br> &#8226; `bucket`: Year and month when the requests were processed. If the value in `bucket` is `UNKNOWN`, then the requests were processed before Kong Gateway 2.7.0.1. <br> &#8226; `request_count`: Number of requests processed in the given month and year.
+`counters` | Counts the number of requests made in a given period since the license creation date. <br><br> &#8226; `bucket`: Year and month when the requests were processed. If the value in `bucket` is `UNKNOWN`, then the requests were processed before Kong Gateway 2.7.0.1. <br> &#8226; `request_count`: Number of requests processed in the time since the license creation date. There may be multiple dates present, one for each license associated with the node in the past.
 `db_version` | The type and version of the datastore Kong Gateway is using.
 `kong_version` | The version of the Kong Gateway instance.
 `license_key` | An encrypted identifier for the current license key. If no license is present, the field displays as `UNLICENSED`.
@@ -227,12 +227,12 @@ HTTP 200 OK
 {
     "counters": [
         {
-            "bucket": "2021-12",
+            "bucket": "2021-07-20",
             "request_count": 0
         }
     ],
     "db_version": "postgres 9.6.19",
-    "kong_version": "2.7.0.0",
+    "kong_version": "2.8.0.0",
     "license_key": "ASDASDASDASDASDASDASDASDASD_ASDASDA",
     "rbac_users": 0,
     "services_count": 0,
@@ -256,12 +256,12 @@ HTTP 200 OK
 {
     "counters": [
         {
-            "bucket": "2021-12",
+            "bucket": "2021-07-20",
             "request_count": 0
         }
     ],
     "db_version": "postgres 9.6.19",
-    "kong_version": "2.7.0.0",
+    "kong_version": "2.8.0.0",
     "license_key": "UNLICENSED",
     "rbac_users": 0,
     "services_count": 0,
