@@ -235,6 +235,8 @@
           items:
             - text: Easy Theme Editing
               url: /developer-portal/theme-customization/easy-theme-editing
+            - text: Migrating Templates Between Workspaces
+              url: /developer-portal/theme-customization/migrating-templates
             - text: Markdown Rendering Module
               url: /developer-portal/theme-customization/markdown-extended
             - text: Customizing Portal Emails
