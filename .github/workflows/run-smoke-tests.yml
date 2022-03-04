@@ -49,4 +49,7 @@ jobs:
 
       - name: Run tests
         run: |
-          make rspec
+          npm install -g wait-on netlify-cli
+          netlify dev & wait-on http://localhost:8888
+          npx playwright install chromium
+          npm run test:smoke

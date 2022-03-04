@@ -8,3 +8,6 @@
 
 [context.deploy-preview.environment]
   JEKYLL_ENV = "preview"
+
+[dev]
+  autoLaunch = false
