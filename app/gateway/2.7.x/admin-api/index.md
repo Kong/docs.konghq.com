@@ -3517,7 +3517,7 @@ HTTP 200 OK
 ### Retrieve Upstream
 {:.badge .dbless}
 
-##### Retrieve Upstream
+#### Retrieve Upstream
 
 <div class="endpoint get indent">/upstreams/{upstream name or id}</div>
 
@@ -3527,7 +3527,7 @@ Attributes | Description
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to retrieve.
 
 
-##### Retrieve Upstream Associated to a Specific Certificate
+#### Retrieve Upstream Associated to a Specific Certificate
 
 <div class="endpoint get indent">/certificates/{certificate id}/upstreams/{upstream name or id}</div>
 
@@ -3536,17 +3536,6 @@ Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to retrieve.
-
-
-##### Retrieve Upstream Associated to a Specific Target
-
-<div class="endpoint get indent">/targets/{target host:port or id}/upstream</div>
-
-{:.indent}
-Attributes | Description
----:| ---
-`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be retrieved.
-
 
 #### Response
 
@@ -3558,17 +3547,12 @@ HTTP 200 OK
 {{ page.upstream_json }}
 ```
 
-
 ---
 
 ### Update Upstream
 
-
-
 {:.note}
 > **Note**: This API is not available in DB-less mode.
-
-##### Update Upstream
 
 <div class="endpoint patch indent">/upstreams/{upstream name or id}</div>
 
@@ -3577,8 +3561,7 @@ Attributes | Description
 ---:| ---
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to update.
 
-
-##### Update Upstream Associated to a Specific Certificate
+#### Update Upstream Associated to a Specific Certificate
 
 <div class="endpoint patch indent">/certificates/{certificate id}/upstreams/{upstream name or id}</div>
 
@@ -3587,17 +3570,6 @@ Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to update.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to update.
-
-
-##### Update Upstream Associated to a Specific Target
-
-<div class="endpoint patch indent">/targets/{target host:port or id}/upstream</div>
-
-{:.indent}
-Attributes | Description
----:| ---
-`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be updated.
-
 
 #### Request Body
 
@@ -3614,17 +3586,13 @@ HTTP 200 OK
 {{ page.upstream_json }}
 ```
 
-
 ---
 
 ### Update Or Create Upstream
 
-
-
 {:.note}
 > **Note**: This API is not available in DB-less mode.
 
-##### Create Or Update Upstream
 
 <div class="endpoint put indent">/upstreams/{upstream name or id}</div>
 
@@ -3634,7 +3602,7 @@ Attributes | Description
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to create or update.
 
 
-##### Create Or Update Upstream Associated to a Specific Certificate
+#### Create Or Update Upstream Associated to a Specific Certificate
 
 <div class="endpoint put indent">/certificates/{certificate id}/upstreams/{upstream name or id}</div>
 
@@ -3643,17 +3611,6 @@ Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to create or update.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to create or update.
-
-
-##### Create Or Update Upstream Associated to a Specific Target
-
-<div class="endpoint put indent">/targets/{target host:port or id}/upstream</div>
-
-{:.indent}
-Attributes | Description
----:| ---
-`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be created or updated.
-
 
 #### Request Body
 
@@ -3683,17 +3640,12 @@ HTTP 201 Created or HTTP 200 OK
 
 See POST and PATCH responses.
 
-
 ---
 
 ### Delete Upstream
 
-
-
 {:.note}
 > **Note**: This API is not available in DB-less mode.
-
-##### Delete Upstream
 
 <div class="endpoint delete indent">/upstreams/{upstream name or id}</div>
 
@@ -3702,8 +3654,7 @@ Attributes | Description
 ---:| ---
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to delete.
 
-
-##### Delete Upstream Associated to a Specific Certificate
+#### Delete Upstream Associated to a Specific Certificate
 
 <div class="endpoint delete indent">/certificates/{certificate id}/upstreams/{upstream name or id}</div>
 
@@ -3712,17 +3663,6 @@ Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to delete.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to delete.
-
-
-##### Delete Upstream Associated to a Specific Target
-
-<div class="endpoint delete indent">/targets/{target host:port or id}/upstream</div>
-
-{:.indent}
-Attributes | Description
----:| ---
-`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be deleted.
-
 
 #### Response
 
@@ -3854,19 +3794,17 @@ Targets can be both [tagged and filtered by tags](#tags).
 
 ### Add Target
 
-
-
 {:.note}
 > **Note**: This API is not available in DB-less mode.
 
-##### Create Target Associated to a Specific Upstream
+#### Create Target Associated to a Specific Upstream
 
-<div class="endpoint post indent">/upstreams/{upstream host:port or id}/targets</div>
+<div class="endpoint post indent">/upstreams/{upstream_id}/targets</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`upstream host:port or id`<br>**required** | The unique identifier or the `host:port` attribute of the Upstream that should be associated to the newly-created Target.
+`upstream_d`<br>**required** | The unique identifier of the Upstream that should be associated to the newly-created Target.
 
 
 #### Request Body
@@ -3890,14 +3828,14 @@ HTTP 201 Created
 ### List Targets
 {:.badge .dbless}
 
-##### List Targets Associated to a Specific Upstream
+#### List Targets Associated to a Specific Upstream
 
-<div class="endpoint get indent">/upstreams/{upstream host:port or id}/targets</div>
+<div class="endpoint get indent">/upstreams/{upstream_id}/targets</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`upstream host:port or id`<br>**required** | The unique identifier or the `host:port` attribute of the Upstream whose Targets are to be retrieved. When using this endpoint, only Targets associated to the specified Upstream will be listed.
+`upstream_id`<br>**required** | The unique identifier of the Upstream whose Targets are to be retrieved. When using this endpoint, only Targets associated to the specified Upstream will be listed.
 
 
 #### Response
@@ -3973,8 +3911,6 @@ HTTP 204 No Content
 ---
 
 ### Set Target Address As Healthy
-
-
 
 {:.note}
 > **Note**: This API is not available in DB-less mode.
