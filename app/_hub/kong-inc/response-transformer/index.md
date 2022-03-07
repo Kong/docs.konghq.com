@@ -30,8 +30,8 @@ description: |
     when the `Content-Encoding` header is `gzip`.
 
   Response Transformer Advanced includes the following additional configurations: `add.if_status`, `append.if_status`,
-  `remove.if_status`, `replace.body`, `replace.if_status`, `transform.functions`, `transform.if_status`, and 
-  `allow.json`.
+  `remove.if_status`, `replace.body`, `replace.if_status`, `transform.functions`, `transform.if_status`, 
+  `allow.json`, `rename.if_status`, `transform.json`, and `dots_in_keys`.
 type: plugin
 categories:
   - transformations
