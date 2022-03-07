@@ -162,7 +162,7 @@ docker run -d --name kong-gateway \
  -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
  -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
  -e "KONG_ADMIN_GUI_URL=http://localhost:8002" \
- -e "KONG_LICENSE_DATA=${KONG_LICENSE_DATA}" \
+ -e KONG_LICENSE_DATA \
  -p 8000:8000 \
  -p 8443:8443 \
  -p 8001:8001 \
@@ -217,8 +217,8 @@ docker run -d --name kong-gateway \
     * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url):
     (Enterprise only) The URL for accessing Kong Manager, preceded by a protocol
     (for example, `http://`).
-    * `KONG_LICENSE_DATA`: (Enterprise only) If you have a license file, specify
-    the license to use for Enterprise subscriptions.
+    * `KONG_LICENSE_DATA`: (Enterprise only) If you have a license file and have saved it 
+    as an environment variable, this parameter pulls the license from your environment.
 
 1. Verify your installation:
 
@@ -350,7 +350,7 @@ docker run -d --name kong-dbless \
  -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
  -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
  -e "KONG_ADMIN_GUI_URL=http://localhost:8002" \
- -e "KONG_LICENSE_DATA=${KONG_LICENSE_DATA}" \
+ -e KONG_LICENSE_DATA \
  -p 8000:8000 \
  -p 8443:8443 \
  -p 8001:8001 \
@@ -405,8 +405,8 @@ docker run -d --name kong-dbless \
     * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url):
     (Enterprise only) The URL for accessing Kong Manager, preceded by a protocol
     (for example, `http://`).
-    * `KONG_LICENSE_DATA`: (Enterprise only) If you have a license file, specify
-    the license to use for Enterprise subscriptions.
+    * `KONG_LICENSE_DATA`: (Enterprise only) If you have a license file and have saved it 
+    as an environment variable, this parameter pulls the license from your environment.
 
 1. Verify that {{site.base_gateway}} is running:
 
