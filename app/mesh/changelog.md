@@ -202,7 +202,7 @@ For Kubernetes, you should be aware of the following changes:
 
 - Changes in arguments/flags for `kumactl install control-plane`:
 
-   - `--mode` now accepts now accepts the values `standalone`, `zone`, and `global`. `zone` replaces `remote`, which is still available in earlier versions.
+   - `--mode` now accepts the values `standalone`, `zone`, and `global`. `zone` replaces `remote`, which is still available in earlier versions.
 
    - `--tls-kds-remote-client-secret` flag is renamed to `--tls-kds-zone-client-secret`.
 
@@ -251,7 +251,7 @@ Upgrades from `1.2.x` are seamless and no additional steps are needed. Note [spe
 
 Built on top of [Kuma 1.1.5](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#115).
 
-- ⚠️ All installation scripts are updated to a new location, because Bintray is shutting down. If you've written automation scripts that refer to the Bintray location, you need to update your scripts to point to the new location.
+- ⚠️ All installation scripts are updated to a new location because Bintray is shutting down. If you've written automation scripts that refer to the Bintray location, you need to update your scripts to point to the new location.
 - Transparent proxying is improved.
 - The GUI is improved.
 - The locality is now always set in a multi-zone deployment.
