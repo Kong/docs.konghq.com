@@ -129,7 +129,7 @@ substituting your own license key.
     docker run -d --name kong-gateway \
      --network=kong-net \
      ...
-     -e "KONG_LICENSE_DATA=${KONG_LICENSE_DATA}" \
+     -e KONG_LICENSE_DATA \
      kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
     ```
 {% endnavtab %}
