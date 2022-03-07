@@ -130,6 +130,21 @@ kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kong migration
 
 {% include_cached /md/admin-listen.md desc='long' %}
 
+1. (Optional) If you have an Enterprise license for {{site.base_gateway}},
+export the license key to a variable:
+
+    The license data must contain straight quotes to be considered valid JSON
+    (`'` and `"`, not `’` or `“`).
+
+    {:.note}
+    > **Note:**
+    The following license is only an example. You must use the following format,
+    but provide your own content.
+
+    ```bash
+    export KONG_LICENSE_DATA='{"license":{"payload":{"admin_seats":"1","customer":"Example Company, Inc","dataplanes":"1","license_creation_date":"2017-07-20","license_expiration_date":"2017-07-20","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU","product_subscription":"Konnect Enterprise","support_plan":"None"},"signature":"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b","version":"1"}}'
+    ```
+
 1. Run the following command to start a container with {{site.base_gateway}}:
 {% capture start_container %}
 {% navtabs codeblock %}
@@ -147,6 +162,7 @@ docker run -d --name kong-gateway \
  -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
  -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
  -e "KONG_ADMIN_GUI_URL=http://localhost:8002" \
+ -e KONG_LICENSE_DATA \
  -p 8000:8000 \
  -p 8443:8443 \
  -p 8001:8001 \
@@ -201,6 +217,8 @@ docker run -d --name kong-gateway \
     * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url):
     (Enterprise only) The URL for accessing Kong Manager, preceded by a protocol
     (for example, `http://`).
+    * `KONG_LICENSE_DATA`: (Enterprise only) If you have a license file and have saved it 
+    as an environment variable, this parameter pulls the license from your environment.
 
 1. Verify your installation:
 
@@ -299,6 +317,21 @@ backed up by a Redis cluster).
 
 {% include_cached /md/admin-listen.md desc='long' %}
 
+1. (Optional) If you have an Enterprise license for {{site.base_gateway}},
+export the license key to a variable:
+
+    The license data must contain straight quotes to be considered valid JSON
+    (`'` and `"`, not `’` or `“`).
+
+    {:.note}
+    > **Note:**
+    The following license is only an example. You must use the following format,
+    but provide your own content.
+
+    ```bash
+    export KONG_LICENSE_DATA='{"license":{"payload":{"admin_seats":"1","customer":"Example Company, Inc","dataplanes":"1","license_creation_date":"2017-07-20","license_expiration_date":"2017-07-20","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU","product_subscription":"Konnect Enterprise","support_plan":"None"},"signature":"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b","version":"1"}}'
+    ```
+
 1. From the same directory where you just created the `kong.yml` file,
 run the following command to start a container with {{site.base_gateway}}:
 
@@ -317,6 +350,7 @@ docker run -d --name kong-dbless \
  -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
  -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
  -e "KONG_ADMIN_GUI_URL=http://localhost:8002" \
+ -e KONG_LICENSE_DATA \
  -p 8000:8000 \
  -p 8443:8443 \
  -p 8001:8001 \
@@ -371,6 +405,8 @@ docker run -d --name kong-dbless \
     * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url):
     (Enterprise only) The URL for accessing Kong Manager, preceded by a protocol
     (for example, `http://`).
+    * `KONG_LICENSE_DATA`: (Enterprise only) If you have a license file and have saved it 
+    as an environment variable, this parameter pulls the license from your environment.
 
 1. Verify that {{site.base_gateway}} is running:
 
@@ -412,6 +448,11 @@ docker network rm kong-net
 ```
 
 ## Troubleshooting
+
+For troubleshooting license issues, see:
+* [Deployment options for licenses](/gateway/{{page.kong_version}}/plan-and-deploy/licenses/deploy-license/)
+* [`/licenses` API reference](/gateway/{{page.kong_version}}/admin-api/licenses/reference/)
+* [`/licenses` API examples](/gateway/{{page.kong_version}}/admin-api/licenses/examples/)
 
 If you did not receive a `200 OK` status code or need assistance completing
 setup, reach out to your support contact or head over to the
