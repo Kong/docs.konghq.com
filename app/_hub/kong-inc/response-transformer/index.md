@@ -14,7 +14,24 @@ description: |
   </div>
 
   For additional response transformation features, check out the
-  [Response Transformer Advanced plugin](/hub/kong-inc/response-transformer-advanced/).
+  [Response Transformer Advanced plugin](/hub/kong-inc/response-transformer-advanced/). Response Transformer 
+  Advanced adds the following abilities:
+  
+  * When transforming a JSON payload, transformations are applied to nested JSON objects and
+    arrays. This can be turned off and on using the `config.dots_in_keys` configuration parameter.
+    See [Response Transformed Advanced arrays and nested objects](/hub/kong-inc/response-transformer-advanced/#arrays-and-nested-objects).
+  * Transformations can be restricted to responses with specific status codes using various
+    `config.*.if_status` configuration parameters.
+  * JSON body contents can be restricted to a set of allowed properties with
+    `config.allow.json`.
+  * The entire response body can be replaced using `config.replace.body`.
+  * Arbitrary transformation functions written in Lua can be applied.
+  * The plugin will decompress and recompress Gzip-compressed payloads
+    when the `Content-Encoding` header is `gzip`.
+
+  Response Transformer Advanced includes the following additional configurations: `add.if_status`, `append.if_status`,
+  `remove.if_status`, `replace.body`, `replace.if_status`, `transform.functions`, `transform.if_status`, and 
+  `allow.json`.
 type: plugin
 categories:
   - transformations

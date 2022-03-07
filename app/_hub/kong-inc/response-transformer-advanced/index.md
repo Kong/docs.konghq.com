@@ -23,6 +23,10 @@ description: |
   * The plugin will decompress and recompress Gzip-compressed payloads
     when the `Content-Encoding` header is `gzip`.
 
+  Response Transformer Advanced includes the following additional configurations: `add.if_status`, `append.if_status`,
+  `remove.if_status`, `replace.body`, `replace.if_status`, `transform.functions`, `transform.if_status`, 
+  `allow.json`, `rename.if_status`, `transform.json`, and `dots_in_keys`.
+
   <div class="alert alert-warning">
     <strong>Note on transforming bodies:</strong> Be aware of the performance of transformations on the
     response body. In order to parse and modify a JSON body, the plugin needs to retain it in memory,
