@@ -166,6 +166,15 @@ the config cache file (`config.json.gz`), ensure the `declarative_config`
 parameter or the `KONG_DECLARATIVE_CONFIG` environment variable is set, and set
 the whole configuration in the referenced YAML file.
 
+### License deployment
+
+If you have an Enterprise license, the license file must be
+deployed to control plane nodes. The control planes then distribute the license
+to the data planes in their clusters.
+
+Use the [`/licenses`](/gateway/{{page.kong_version}}/admin-api/licenses/reference)
+endpoint to apply the license to the control plane.
+
 ## Limitations
 
 ### Configuration Inflexibility
