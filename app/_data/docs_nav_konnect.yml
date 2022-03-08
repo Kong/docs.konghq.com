@@ -2,39 +2,45 @@
   icon: /assets/images/icons/documentation/icn-flag.svg
   url: /
   items:
-    - text: Using the Konnect Docs
-      url: /
-    - text: Key Concepts and Terms
-      url: /key-concepts-and-terms
+    - text: Release Notes
+      url: /updates
 
-- title: Manage Accounts and Orgs
-  icon: /assets/images/icons/konnect/konnect-organization.svg
+- title: Get Started
+  icon: /assets/images/icons/documentation/icn-quickstart-color.svg
+  url: /getting-started/
   items:
     - text: Access a Konnect Account
-      url: /access-account
-    - text: Plans and Billing
+      url: /getting-started/access-account
+    - text: Quickstart guide
       items:
-        - text: Manage a Konnect Account or Plan
-          url: /account-management
-        - text: Change to a Different Plan
-          url: /account-management/change-plan
-        - text: Manage Payment Methods and Invoices
-          url: /account-management/billing
-    - text: Authentication and Authorization
-      url: /org-management/auth
+        - text: Set up a Runtime
+          url: /getting-started/configure-runtime
+        - text: Configure a Service
+          url: /getting-started/configure-service
+        - text: Implement and Test the Service
+          url: /getting-started/implement-service
+        - text: Publish to Dev Portal and Register an App
+          url: /getting-started/dev-portal
+    - text: Get Started with Kong Gateway
       items:
-        - text: Manage Users and Roles
-          url: /org-management/users-and-roles
-        - text: Set up SSO with Okta
-          url: /org-management/okta-idp
-    - text: Account and Org Deactivation
-      url: /org-management/deactivation
+        - text: Import Kong Gateway Configuration
+          url: /getting-started/gateway/import
+        - text: Set up a Runtime Instance
+          url: /getting-started/gateway/runtime
+        - text: Expose Services to ServiceHub
+          url: /getting-started/gateway/services
+    - text: Get Started with an API Spec
+      items:
+        - text: Create a Service and Version
+          url: /getting-started/spec/service
+        - text: Publish to Dev Portal
+          url: /getting-started/spec/publish
+        - text: Implement the Service Version with Kong Gateway
+          url: /getting-started/spec/implement
+        - text: Register Applications
+          url: /getting-started/spec/app-registration
 
-- title: Release Notes
-  icon: /assets/images/icons/documentation/icn-references-color.svg
-  url: /updates
-
-- title: Deployment
+- title: Plan and Deploy
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
   url: /deployment
   items:
@@ -45,59 +51,66 @@
     - text: Network Resiliency and Availability
       url: /deployment/network-resiliency
     - text: Migrate from Kong Gateway to Konnect Cloud
-      url: /migrate
+      url: /deployment/migrate
 
-- title: Getting Started
-  icon: /assets/images/icons/documentation/icn-quickstart-color.svg
-  url: /getting-started/
+- title: Configure
+  icon: /assets/images/icons/konnect/konnect-settings.svg
   items:
-    - text: Quickstart guide
+    - text: Service Hub
+      url: /configure/servicehub
       items:
-        - text: Set up a Runtime
-          url: /getting-started/configure-runtime
-        - text: Configure a Service
-          url: /getting-started/configure-service
-        - text: Implement and Test the Service
-          url: /getting-started/implement-service
-    - text: Manage Konnect Cloud with decK
-      url: /getting-started/declarative-config
-
-- title: ServiceHub
-  icon: /assets/images/icons/documentation/icn-service-hub-color.svg
-  url: /servicehub
-  items:
-    - text: Manage Services
-      url: /servicehub/manage-services
-    - text: Developer Portal
+        - text: Manage Services
+          url: /configure/servicehub/manage-services
+        - text: Manage Plugins
+          url: /configure/servicehub/plugins
+          items:
+            - text: Configure a Plugin on a Service
+              url: /configure/servicehub/enable-service-plugin
+            - text: Configure a Plugin on a Route
+              url: /configure/servicehub/enable-route-plugin
+    - text: Runtimes
+      url: /runtime-manager
       items:
-        - text: Manage Service Documentation
-          url: /servicehub/dev-portal/service-documentation
-        - text: Publish a Service to Dev Portal
-          url: /servicehub/dev-portal/publish
+        - text: Runtime Groups
+          url: /runtime-manager/runtime-groups
+          items:
+            - text: Manage Runtime Groups
+              url: /runtime-manager/runtime-groups/manage
+            - text: Runtime Groups Use Case
+              url: /runtime-manager/runtime-groups/use-case
+        - text: Runtime Instances
+          items:
+            - text: Install with Docker
+              url: /runtime-manager/gateway-runtime-docker
+            - text: Install on Kubernetes
+              url: /runtime-manager/gateway-runtime-kubernetes
+            - text: Install on Linux
+              url: /runtime-manager/gateway-runtime-conf
+            - text: Runtime Parameter Reference
+              url: /runtime-manager/runtime-parameter-reference
+        - text: Manage Global Entities
+          url: /runtime-manager/manage-entities/
+        - text: Upgrade a Runtime to a New Version
+          url: /runtime-manager/upgrade
+        - text: Renew Certificates
+          url: /runtime-manager/renew-certificates
 
-- title: Runtime Manager
-  icon: /assets/images/icons/documentation/icn-runtime-manager-color.svg
-  url: /runtime-manager
-  items:
-    - text: Manage a Kong Gateway Runtime
-      items:
-        - text: Docker
-          url: /runtime-manager/gateway-runtime-docker
-        - text: Kubernetes
-          url: /runtime-manager/gateway-runtime-kubernetes
-        - text: Linux
-          url: /runtime-manager/gateway-runtime-conf
-        - text: Runtime Parameter Reference
-          url: /runtime-manager/runtime-parameter-reference
-    - text: Upgrade a Runtime to a New Version
-      url: /runtime-manager/upgrade
-    - text: Renew Certificates
-      url: /runtime-manager/renew-certificates
-
-- title: Konnect Dev Portal
+- title: Publish
   icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
   url: /dev-portal
   items:
+    - text: Manage Service Documentation
+      url: /dev-portal/service-documentation
+    - text: Publish a Service to Dev Portal
+      url: /dev-portal/publish
+    - text: Customization
+      items:
+        - text: Appearance
+          url: /dev-portal/customization/appearance
+        - text: Public Portal
+          url: /dev-portal/customization/public-portal
+        - text: Add a Custom Domain
+          url: /dev-portal/customization/custom-domain
     - text: Access and Approval
       items:
         - text: Developer Registration
@@ -124,46 +137,201 @@
           url: /dev-portal/applications/dev-reg-app-service
         - text: Generate Credentials for an Application
           url: /dev-portal/applications/dev-gen-creds
-    - text: Customization
-      items:
-        - text: Appearance
-          url: /dev-portal/customization/appearance
-        - text: Public Portal
-          url: /dev-portal/customization/public-portal
-        - text: Add a Custom Domain
-          url: /dev-portal/customization/custom-domain
 
-- title: Konnect Vitals
+- title: Analyze
   icon: /assets/images/icons/documentation/icn-vitals.svg
   url: /vitals
   items:
-    - text: Generating Vitals Reports
+    - text: Analyze Services and Routes
+      url: /vitals/analyze
+    - text: Generate Reports
       url: /vitals/generate-reports
 
-- title: Manage Plugins
-  icon: /assets/images/icons/documentation/icn-api-plugins-color.svg
-  url: /manage-plugins
+- title: Administer
+  icon: /assets/images/icons/konnect/konnect-organization.svg
   items:
-    - text: Configure a Plugin on a Service
-      url: /manage-plugins/enable-service-plugin
-    - text: Configure a Plugin on a Route
-      url: /manage-plugins/enable-route-plugin
-    - text: Configure Global or Consumer Plugins
-      url: /manage-plugins/shared-config
+    - text: Plans and Billing
+      items:
+        - text: Manage a Konnect Account or Plan
+          url: /account-management
+        - text: Change to a Different Plan
+          url: /account-management/change-plan
+        - text: Manage Payment Methods and Invoices
+          url: /account-management/billing
+    - text: Authentication and Authorization
+      url: /org-management/auth
+      items:
+        - text: Teams and Permissions
+          url: /org-management/teams-and-permissions
+          items:
+            - text: Manage Teams
+              url: /org-management/teams-and-permissions
+            - text: Permissions Reference
+              url: /org-management/permissions-reference
 
-- title: Shared Config
-  icon: /assets/images/icons/konnect/konnect-shared-config.svg
-  url: /shared-config
+        - text: Set up SSO with Okta
+          url: /org-management/okta-idp
+    - text: Account and Org Deactivation
+      url: /org-management/deactivation
 
 - title: Reference
   icon: /assets/images/icons/documentation/icn-references-color.svg
   items:
-    - text: Proxy Traffic
-      url: /reference/proxy-traffic
     - text: Using the Konnect API
       url: /reference/konnect-api
       items:
-        - text: Konnect API Reference
-          url: https://konnect.konghq.com/docs
-          absolute_url: true
-          target_blank: true
+    - text: Konnect API Reference
+      url: https://konnect.konghq.com/docs
+      absolute_url: true
+      target_blank: true
+    - text: Manage Konnect Cloud with decK
+      url: /reference/declarative-config
+
+- title: Legacy content
+  items:
+    - text: Manage Accounts and Orgs
+      items:
+        - text: Access a Konnect Account
+          url: /legacy/access-account
+        - text: Plans and Billing
+          items:
+            - text: Manage a Konnect Account or Plan
+              url: /legacy/account-management
+            - text: Change to a Different Plan
+              url: /legacy/account-management/change-plan
+            - text: Manage Payment Methods and Invoices
+              url: /legacy/account-management/billing
+        - text: Authentication and Authorization
+          url: /legacy/org-management/auth
+          items:
+            - text: Manage Users and Roles
+              url: /legacy/org-management/users-and-roles
+            - text: Set up SSO with Okta
+              url: /legacy/org-management/okta-idp
+        - text: Account and Org Deactivation
+          url: /legacy/org-management/deactivation
+
+    - text: Deployment
+      url: /legacy/deployment
+      items:
+        - text: License Management
+          url: /legacy/deployment/license-management
+        - text: Port and Network Requirements
+          url: /legacy/deployment/network
+        - text: Network Resiliency and Availability
+          url: /legacy/deployment/network-resiliency
+        - text: Migrate from Kong Gateway to Konnect Cloud
+          url: /legacy/migrate
+
+    - text: Getting Started
+      url: /legacy/getting-started/
+      items:
+        - text: Quickstart guide
+          items:
+            - text: Set up a Runtime
+              url: /legacy/getting-started/configure-runtime
+            - text: Configure a Service
+              url: /legacy/getting-started/configure-service
+            - text: Implement and Test the Service
+              url: /legacy/getting-started/implement-service
+        - text: Manage Konnect Cloud with decK
+          url: /legacy/getting-started/declarative-config
+
+    - text: ServiceHub
+      url: /legacy/servicehub
+      items:
+        - text: Manage Services
+          url: /legacy/servicehub/manage-services
+        - text: Developer Portal
+          items:
+            - text: Manage Service Documentation
+              url: /legacy/servicehub/dev-portal/service-documentation
+            - text: Publish a Service to Dev Portal
+              url: /legacy/servicehub/dev-portal/publish
+
+    - text: Runtime Manager
+      url: /legacy/runtime-manager
+      items:
+        - text: Manage a Kong Gateway Runtime
+          items:
+            - text: Docker
+              url: /legacy/runtime-manager/gateway-runtime-docker
+            - text: Kubernetes
+              url: /legacy/runtime-manager/gateway-runtime-kubernetes
+            - text: Linux
+              url: /legacy/runtime-manager/gateway-runtime-conf
+            - text: Runtime Parameter Reference
+              url: /legacy/runtime-manager/runtime-parameter-reference
+        - text: Upgrade a Runtime to a New Version
+          url: /legacy/runtime-manager/upgrade
+        - text: Renew Certificates
+          url: /legacy/runtime-manager/renew-certificates
+
+    - text: Konnect Dev Portal
+      url: /legacy/dev-portal
+      items:
+        - text: Access and Approval
+          items:
+            - text: Developer Registration
+              url: /legacy/dev-portal/access-and-approval/dev-reg
+            - text: Manage Developer Access
+              url: /legacy/dev-portal/access-and-approval/manage-devs
+            - text: Auto Approve Dev and App Registrations
+              url: /legacy/dev-portal/access-and-approval/auto-approve-devs-apps
+        - text: Applications
+          items:
+            - text: Application Overview
+              url: /legacy/dev-portal/applications/application-overview
+            - text: Create, Edit, and Delete an Application
+              url: /legacy/dev-portal/applications/dev-apps
+            - text: Enable App Registration
+              url: /legacy/dev-portal/applications/enable-app-reg
+            - text: Disable App Registration
+              url: /legacy/dev-portal/applications/disable-app-reg
+            - text: Manage Application Registration Requests
+              url: /legacy/dev-portal/applications/manage-app-reg-requests
+            - text: Manage Application Connections
+              url: /legacy/dev-portal/applications/manage-app-connections
+            - text: Register an Application with a Service
+              url: /legacy/dev-portal/applications/dev-reg-app-service
+            - text: Generate Credentials for an Application
+              url: /legacy/dev-portal/applications/dev-gen-creds
+        - text: Customization
+          items:
+            - text: Appearance
+              url: /legacy/dev-portal/customization/appearance
+            - text: Public Portal
+              url: /legacy/dev-portal/customization/public-portal
+            - text: Add a Custom Domain
+              url: /legacy/dev-portal/customization/custom-domain
+
+    - text: Konnect Vitals
+      url: /legacy/vitals
+      items:
+        - text: Generating Vitals Reports
+          url: /legacy/vitals/generate-reports
+
+    - text: Manage Plugins
+      url: /legacy/manage-plugins
+      items:
+        - text: Configure a Plugin on a Service
+          url: /legacy/manage-plugins/enable-service-plugin
+        - text: Configure a Plugin on a Route
+          url: /legacy/manage-plugins/enable-route-plugin
+        - text: Configure Global or Consumer Plugins
+          url: /legacy/manage-plugins/shared-config
+
+    - text: Shared Config
+      url: /legacy/shared-config
+
+    - text: Reference
+      items:
+        - text: Proxy Traffic
+          url: /legacy/reference/proxy-traffic
+        - text: Using the Konnect API
+          url: /legacy/reference/konnect-api
+          items:
+            - text: Konnect API Reference
+              url: https://konnect.konghq.com/docs
+              absolute_url: true
+              target_blank: true
