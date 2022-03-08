@@ -2,7 +2,7 @@
 title: Hybrid Mode Overview
 ---
 
-Traditionally, Kong has always required a database, to store configured 
+Traditionally, Kong has always required a database, to store configured
 entities such as Routes, Services, and Plugins.
 
 Starting with {{site.base_gateway}} 2.1, Kong can be deployed in
@@ -176,6 +176,15 @@ configuration cache on startup.
 
 See [`data_plane_config_cache_mode`](/gateway/{{page.kong_version}}/reference/configuration/#data_plane_config_cache_mode)
 and [`data_plane_config_cache_path`](/gateway/{{page.kong_version}}/reference/configuration/#data_plane_config_cache_path).
+
+### License deployment
+
+If you have an Enterprise license, the license file must be
+deployed to control plane nodes. The control planes then distribute the license
+to the data planes in their clusters.
+
+Use the [`/licenses`](/gateway/{{page.kong_version}}/admin-api/licenses/reference)
+endpoint to apply the license to the control plane.
 
 ## Limitations
 

@@ -17,28 +17,36 @@ functionality, {{site.base_gateway}} enforces the presence and validity of a
 
 ## Deploying the license file
 
-* **Hybrid mode deployment:** The license file only needs to be deployed to
-control plane nodes, which distribute the license to the data planes in their
-clusters.
+License file checking is done independently by each node as the Kong process
+starts. No network connectivity is necessary to execute the license validation process.
+
+There are multiple ways to configure a license file on a {{site.base_gateway}}
+node. The method you use may depend on your deployment type.
+
+* **Hybrid mode deployment:** The license file must be deployed to
+control plane nodes. The control planes then distribute the license to the data
+planes in their clusters. Use the [`/licenses`](/gateway/{{page.kong_version}}/admin-api/licenses/reference)
+endpoint to apply the license to the control plane.
+
 * **Traditional deployment with no separate control plane:** License files must
-be deployed to each node running {{site.base_gateway}}.
+be deployed to each node running {{site.base_gateway}}. Use any of the
+provided configuration methods to apply the license.
 
-License file checking is done independently by each node as the Kong process starts; no network connectivity is necessary to execute the license validation process.
+Here are the possible license configuration methods, in the order that
+{{site.base_gateway}} checks for them:
 
-There are multiple ways to configure a license file on a {{site.base_gateway}} node. These are defined below, in the order in which they are checked by Kong:
-
-1. If present, the contents of the environmental variable `KONG_LICENSE_DATA` are used.
+1. If present, the contents of the environment variable `KONG_LICENSE_DATA` are used.
 2. Kong will search in the default location `/etc/kong/license.json`.
 3. If present, the contents of the file defined by the environment variable `KONG_LICENSE_PATH` is used.
 4. Directly deploy a license using the `/licenses` Admin API endpoint.
 
 In this manner, the license file can be deployed either as a file on the node
-filesystem, as an environmental variable, or through the `/licenses` Admin API
+filesystem, as an environment variable, or through the `/licenses` Admin API
 endpoint. The simplest method is using the Admin API.
 
-Note that unlike most other `KONG_*` environmental variables, the
+Note that unlike most other `KONG_*` environment variables, the
 `KONG_LICENSE_DATA` and `KONG_LICENSE_PATH` cannot be defined in-line as part
-of any `kong` CLI commands. License file environmental variables must be
+of any `kong` CLI commands. License file environment variables must be
 exported to the shell in which the Nginx process will run, ahead of the `kong`
 CLI tool.
 
@@ -72,7 +80,7 @@ longer be accessible.
 When a valid license file is properly deployed, license file validation is a transparent operation; no additional output or logging data is written or provided. If an error occurs when attempting to validate the license, or the license data is not valid, an error message will be written to the console and logged to the Kong error log, followed by the process quitting. Below are possible error messages and troubleshooting steps to take:
 
 `license path environment variable not set`
-: Neither the `KONG_LICENSE_DATA` nor the `KONG_LICENSE_PATH` environmental variables were defined, and no license file could be opened at the default license location (`/etc/kong/license.json`)
+: Neither the `KONG_LICENSE_DATA` nor the `KONG_LICENSE_PATH` environment variables were defined, and no license file could be opened at the default license location (`/etc/kong/license.json`)
 
 `internal error`
 : An internal error has occurred while attempting to validate the license. Such cases are extremely unlikely; contact Kong support to further troubleshoot.

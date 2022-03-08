@@ -42,4 +42,4 @@ After you install, follow the Kuma getting started guide to get
   * [Certificate Authority rotation](/mesh/{{page.kong_version}}/features/ca-rotation)
 
 If you are a {{site.mesh_product_name}} customer, you can also open a support
-ticket with any question or feedback you may have.
+ticket with any questions or feedback you may have.

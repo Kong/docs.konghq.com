@@ -69,7 +69,7 @@ for both edge and internal API traffic.
   <br>
   <i>Two different applications - "Banking" and "Trading" - run in their
   own meshes "A" and "B" across different datacenters. In this example,
-  Kong Gateway is being used both for edge communication, and for internal
+  Kong Gateway is being used both for edge communication and for internal
   communication between meshes.</i>
 </center>
 

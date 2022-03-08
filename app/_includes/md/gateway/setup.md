@@ -41,7 +41,9 @@ CREATE USER kong; CREATE DATABASE kong OWNER kong;
 
 Then, run the {{site.base_gateway}} migrations, using the following command:
 
-<div class="copy-code-snippet"><pre><code>kong migrations bootstrap -c <div contenteditable="true">{PATH_TO_KONG.CONF_FILE}</div></code></pre></div>
+```bash
+kong migrations bootstrap -c {PATH_TO_KONG.CONF_FILE}
+```
 
 {:.note}
 > **Note:** Older versions of PostgreSQL use `ident` authentication by default, newer versions (PSQL 10+)
@@ -67,28 +69,22 @@ your declarative configuration file.
 
 Set the `database` option to `off` and the `declarative_config` option to the path of your `kong.yml` file as in the following example:
 
-<div class="copy-code-snippet"><pre><code>database = off
-declarative_config = <div contenteditable="true">{PATH_TO_KONG.CONF_FILE}</div></code></pre></div>
+```
+database = off
+declarative_config = {PATH_TO_KONG.CONF_FILE}
+```
 
 ## Seed Super Admin
 {:.badge .enterprise}
 
 Setting a password for the **Super Admin** before initial start-up is strongly recommended. This will permit the use of RBAC (Role Based Access Control) at a later time, if needed.
 
-1. Create an environment variable with the desired **Super Admin** password and store the password in a safe place.
-   Run migrations to prepare the Kong database, using the following command:
+Create an environment variable with the desired **Super Admin** password and store the password in a safe place.
+Run migrations to prepare the Kong database, using the following command:
 
-    <div class="copy-code-snippet"><pre><code>KONG_PASSWORD=<div contenteditable="true">{PASSWORD}</div> kong migrations bootstrap -c <div contenteditable="true">{PATH_TO_KONG.CONF_FILE}</div></code></pre></div>
-
-2. Start {{site.base_gateway}}:
-
-    <div class="copy-code-snippet"><pre><code>kong start -c <div contenteditable="true">{PATH_TO_KONG.CONF_FILE}</div></code></pre></div>
-
-3. Verify {{site.base_gateway}} is working:
-
-    <div class="copy-code-snippet"><pre><code>curl -i -X GET --url http://<div contenteditable="true">{DNS_OR_IP}</div>:8001/services</code></pre></div>
-
-    You should receive a `HTTP/1.1 200 OK` message.
+```
+KONG_PASSWORD={PASSWORD} kong migrations bootstrap -c {PATH_TO_KONG.CONF_FILE}
+```
 
 ## Start Kong Gateway
 
@@ -96,11 +92,21 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 Start {{site.base_gateway}} using the following command:
 
-<div class="copy-code-snippet"><pre><code>kong start -c <div contenteditable="true">{PATH_TO_KONG.CONF_FILE}</div></code></pre></div>
+```
+kong start -c {PATH_TO_KONG.CONF_FILE}
+```
 
 ## Verify install
 
 If everything went well, you should see a message (`Kong started`) informing you that {{site.base_gateway}} is running.
+
+You can also check using the Admin API:
+
+```
+curl -i http://localhost:8001
+```
+
+You should receive a `200` status code.
 
 By default, {{site.kong_gateway}} listens on the following ports:
 
@@ -113,13 +119,80 @@ By default, {{site.kong_gateway}} listens on the following ports:
 - `:8444`: Port on which the Admin API listens for HTTPS traffic.
 
 ## Post-install configuration
+
+The following steps are all optional and depend on the choices you want to make
+for your environment.
+
+### Apply Enterprise license
+{:.badge .enterprise}
+
+If you have an Enterprise license for {{site.base_gateway}}, apply it using one
+of the methods below, depending on your environment.
+
+{% navtabs %}
+{% navtab With a database %}
+
+Apply the license using the Admin API. The license data must contain straight
+quotes to be considered valid JSON (`'` and `"`, not `’` or `“`).
+
+`POST` the contents of the provided `license.json` license to your
+{{site.base_gateway}} instance:
+
+{:.note}
+> **Note:**
+The following license is only an example. You must use the following format,
+but provide your own content.
+
+{% navtabs codeblock %}
+{% navtab cURL %}
+```bash
+curl -i -X POST http://localhost:8001/licenses \
+  -d payload='{"license":{"payload":{"admin_seats":"1","customer":"Example Company, Inc","dataplanes":"1","license_creation_date":"2017-07-20","license_expiration_date":"2017-07-20","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU","product_subscription":"Konnect Enterprise","support_plan":"None"},"signature":"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b","version":"1"}}'
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```bash
+http POST :8001/licenses \
+  payload='{"license":{"payload":{"admin_seats":"1","customer":"Example Company, Inc","dataplanes":"1","license_creation_date":"2017-07-20","license_expiration_date":"2017-07-20","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU","product_subscription":"Konnect Enterprise","support_plan":"None"},"signature":"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b","version":"1"}}'
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+{% endnavtab %}
+{% navtab Without a database %}
+
+Securely copy the `license.json` file to your home directory on the filesystem
+where you have installed
+{{site.base_gateway}}:
+
+```sh
+$ scp license.json <system_username>@<server>:~
+```
+
+Then, copy the license file again, this time to the `/etc/kong` directory:
+
+```sh
+$ scp license.json /etc/kong/license.json
+```
+
+{{site.base_gateway}} will look for a valid license in this location.
+
+{% endnavtab %}
+{% endnavtabs %}
+
 ### Enable and configure Kong Manager
 {:.badge .free}
 
-1. To access {{site.base_gateway}}'s graphical user interface (GUI), Kong Manager, update the `admin_gui_url` property
+If you're running {{site.base_gateway}} with a database (either in traditional
+or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
+(GUI), Kong Manager.
+
+1. Update the `admin_gui_url` property
    in the `kong.conf` configuration file to the DNS, or IP address, of your system. For example:
 
-   <div class="copy-code-snippet"><pre><code>admin_gui_url = http://<div contenteditable="true">{DNS_OR_IP}</div>:8002</code></pre></div>
+    ```
+    admin_gui_url = http://localhost:8002
+    ```
 
     This setting needs to resolve to a network path that will reach the operating system (OS) host.
 
@@ -142,49 +215,61 @@ By default, {{site.kong_gateway}} listens on the following ports:
 
 3. Restart {{site.base_gateway}} for the setting to take effect, using the following command:
 
-    <div class="copy-code-snippet"><pre><code>kong restart -c <div contenteditable="true">{PATH_TO_KONG.CONF_FILE}</div></code></pre></div>
+    ```bash
+    kong restart -c {PATH_TO_KONG.CONF_FILE}
+    ```
 
 5. Access Kong Manager on port `8002`.
-
-### Deploy a license
-{:.badge .enterprise}
-
-If you have an Enterprise subscription, follow the instructions to 
-[deploy a license](/gateway/{{include.kong_version}}/plan-and-deploy/licenses/deploy-license).
 
 ### Enable Dev Portal
 {:.badge .enterprise}
 
+If you're running {{site.base_gateway}} with a database (either in traditional
+or hybrid mode), you can enable the [Dev Portal](/gateway/{{page.kong_version}}/developer-portal/).
+
 1. Enable the Dev Portal in the `kong.conf` file by setting the `portal` property to `on` and the
-   `portal_gui_host` property to the DNS or IP address of the Amazon Linux system.
+   `portal_gui_host` property to the DNS or IP address of the system.
    For example:
 
-    <div class="copy-code-snippet"><pre><code>portal = on
-    portal_gui_host = <div contenteditable="true">{DNS_OR_IP}</div>:8003</code></pre></div>
+    ```
+    portal = on
+    portal_gui_host = localhost:8003
+    ```
 
 1. Restart {{site.base_gateway}} for the setting to take effect, using the following command:
 
-    <div class="copy-code-snippet"><pre><code>kong restart -c <div contenteditable="true">{PATH_TO_KONG.CONF_FILE}</div></code></pre></div>
+    ```
+    kong restart -c {PATH_TO_KONG.CONF_FILE}
+    ```
 
 1. To enable the Dev Portal for a workspace, execute the following command,
-   updating `DNSorIP` to reflect the IP or valid DNS for the OS system:
+   updating `DNSorIP` to reflect the IP or valid DNS for the system:
 
-    <div class="copy-code-snippet"><pre><code>curl -X PATCH http://<div contenteditable="true">{DNS_OR_IP}</div>:8001/workspaces/default \
-    --data "config.portal=true"</code></pre></div>
+   ```bash
+   curl -X PATCH http://localhost:8001/workspaces/default \
+    --data "config.portal=true"
+   ```
 
 1. Access the Dev Portal for the default workspace using the following URL,
    substituting your own DNS or IP:
 
-    <div class="copy-code-snippet"><pre><code>http://<div contenteditable="true">{DNS_OR_IP}</div>:8003/default</code></pre></div>
+    ```
+    http://localhost:8003/default
+    ```
 
-## Support
+## Troubleshooting and support
 {:.badge .enterprise}
+
+For troubleshooting license issues, see:
+* [Deployment options for licenses](/gateway/{{page.kong_version}}/plan-and-deploy/licenses/deploy-license/)
+* [`/licenses` API reference](/gateway/{{page.kong_version}}/admin-api/licenses/reference/)
+* [`/licenses` API examples](/gateway/{{page.kong_version}}/admin-api/licenses/examples/)
 
 If you did not receive an `HTTP/1.1 200 OK` message or need assistance completing
 your setup, reach out to your Kong Support contact or go to the
 [Support Portal](https://support.konghq.com/support/s/).
 
-## Next Steps
+## Next steps
 
 Check out {{site.base_gateway}}'s series of
 [Getting Started](/gateway/{{include.kong_version}}/get-started/comprehensive) guides to get the most
