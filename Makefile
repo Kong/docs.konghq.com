@@ -44,8 +44,13 @@ docker-clean:
 test: install
 	npm test
 
-rspec: install
-	bundle exec rspec
+smoke:
+	@npx playwright install chromium
+	@netlify dev & echo $$! > netlify.PID
+	@sleep 3
+	@npm run test:smoke || true
+	@kill -TERM $$(cat netlify.PID)
+	@rm netlify.PID
 
 # Starts a docker container in the background.
 background-docker-up:
