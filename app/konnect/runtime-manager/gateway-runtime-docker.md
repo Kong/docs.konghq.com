@@ -78,34 +78,6 @@ runtime instances.
 ### Generate certificates
 {% include /md/konnect/runtime-certs.md %}
 
-### Prepare the Docker image
-
-Next, pull the {{site.base_gateway}} Docker image, and configure a
-{{site.base_gateway}} runtime using the certificate, the private key, and the
-remaining configuration details on the **Configure Runtime** page.
-
-1. Using Docker, pull the following image:
-
-
-    ```bash
-    $ docker pull kong/kong-gateway:2.7.0.0-alpine
-    ```
-
-    You should now have your {{site.base_gateway}} image locally.
-
-2. Verify that it worked, and find the image ID matching your repository:
-
-    ```bash
-    $ docker images
-    ```
-
-3. Tag the image ID for easier use, replacing `{IMAGE_ID}` with the one
-matching your repository:
-
-    ```bash
-    $ docker tag {IMAGE_ID} kong-ee
-    ```
-
 ### Start Kong Gateway
 
 Use the following `docker run` command sample as a guide to compile your actual values:
@@ -127,7 +99,7 @@ $ docker run -d --name kong-dp \
   -e "KONG_CLUSTER_CERT_KEY=/{PATH_TO_FILE}/tls.key" \
   --mount type=bind,source="$(pwd)",target={PATH_TO_KEYS_AND_CERTS},readonly \
   -p 8000:8000 \
-  kong/kong-gateway:2.7.0.0-alpine
+  kong/kong-gateway:2.8.0.0-alpine
 ```
 {% endnavtab %}
 {% navtab Windows PowerShell %}
@@ -146,7 +118,7 @@ docker run -d --name kong-dp `
   -e "KONG_CLUSTER_CERT_KEY=/{PATH_TO_FILE}/tls.key" `
   --mount type=bind,source="$(pwd)",target={PATH_TO_KEYS_AND_CERTS},readonly `
   -p 8000:8000 `
-  kong/kong-gateway:2.7.0.0-alpine
+  kong/kong-gateway:2.8.0.0-alpine
 ```
 {% endnavtab %}
 {% endnavtabs %}
