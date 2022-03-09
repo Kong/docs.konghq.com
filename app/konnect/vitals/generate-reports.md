@@ -1,56 +1,119 @@
 ---
-title: Export Service and Route Analytics from ServiceHub
+title: Generate Reports
 no_version: true
+beta: true
 ---
-In the ServiceHub, the Service, Service version, and Route graphs provide dynamic
-graphs with up to 12 hours of data. To view data beyond this time frame, export
-the data into a comma-separated values (CSV) file.
 
-You can generate and export a Vitals report for:
-
-* A Service, including daily requests by status codes for all versions of the
-Service.
-* A Service version, including a report of daily requests and status codes.
-
-For a Route, you can [view status codes](/konnect/vitals/#view-vitals-performance-for-a-route)
-for a specified time frame but you can't export a Route traffic report through
-ServiceHub.
-
-If you want to combine multiple Services, Routes, or Applications in one report,
-see [custom reports](/konnect/vitals/custom-reports).
+Create custom reports to track API calls based on Services, Routes, or
+Applications.
 
 ## Prerequisites
-You have any [**Service** role or the **Organization Admin**](/konnect/org-management/users-and-roles)
-role.
+You have the [**Organization Admin**](/konnect/org-management/users-and-roles/) role.
 
-## Generate and export a Service report
+## View custom reports
 
-Generate a Vitals report for a Service, including requests by time or date and
-status codes for all versions of the Service.
+To access all custom reports, open ![](/assets/images/icons/konnect/icn-vitals.svg){:.inline .no-image-expand}
+**Vitals** from the left side menu in Konnect, then **Reports**.
+This brings you to a list of all custom reports in the organization.
 
-1. From the left-side menu, open
-![](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .no-image-expand}
-**Services** and select the Service for which you want to generate a
-report.
-2. On the **Throughput** graph, click **Export**.
-3. Select the time frame to include in the report. To customize the time frame,
-click **Custom** and select a date range.
-4. Click **Export**. A CSV file is generated.
+Click on any report in the table to view it. From the report's details page, you
+can [export](#export-a-custom-report), [edit](#edit-a-custom-report), or [delete](#delete-a-custom-report) the report.
 
-## Generate and export a Service version report
+## Create a custom report
 
-Generate a Vitals report for a Service version, including requests by time or
- date and status codes for the selected version.
+1. From the left-side menu in Konnect, open ![](/assets/images/icons/konnect/icn-vitals.svg){:.inline .no-image-expand}
+**Vitals**, then **Reports**.
+1. Click the button to **Add New Report**.
+1. Name the report and optionally add a description.
 
-1. From the left-side menu, open
-![](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .no-image-expand}
-**Services** and select the Service version for which you want to generate a
-report.
-2. On the **Traffic by Status Code** graph, click the **Export** button.
-3. Select the time frame to include in the report. To customize the time frame,
-click **Custom** and select a date range.
-4. Click **Export**. A CSV file is generated.
+    The name and description fields each have a 255 character limit.
+
+1. Choose a time frame to display.
+
+    You can choose a preset time frame ranging from 1 day to 1 year, or
+    select **Custom** to set any date range.
+
+    All time frames are static. The report will capture a snapshot of data
+    in whichever time frame you choose, but the range always stops at the time
+    that the report was created. You can see a preview of the exact range below
+    the time frame selector. For example:
+
+    ```
+    2022-01-27T21:30:58Z to 2022-02-03T21:30:58Z
+    ```
+
+
+1. Choose a report type.
+
+   * **Service report**: Generate a report based on Services.
+   * **Route report**: Generate a report based on Routes.
+   * **Application report**: Generate a report based on API consumers.
+
+   Depending on the report type you choose, the available metrics and entities
+   will change.
+
+1. Choose a [metric](#metrics) to group the data by.
+1. Choose the entities to focus on in your report.
+1. Click **Create**.
+
+The report details page opens. Here you can:
+
+* **View details**: Hover over a bar on the graph to see details about the data.
+* **Filter the graph**: Click on an item in the legend to temporarily hide it from view,
+and click it again to show the item. The graph resets on a refresh.
+
+## Export a custom report
+
+You can export any custom report in CSV format.
+
+1. From the left-side menu in Konnect, open ![](/assets/images/icons/konnect/icn-vitals.svg){:.inline .no-image-expand}
+**Vitals**, then **Reports**.
+1. Click on a report row to open the report's page.
+1. Click the **Actions** dropdown and select **Export Report**.
+
+  Konnect generates a CSV file download with all the data in the report.
+
+## Edit a custom report
+
+You can edit a report in one of the following ways:
+
+1. From the left-side menu in Konnect, open ![](/assets/images/icons/konnect/icn-vitals.svg){:.inline .no-image-expand}
+**Vitals**, then **Reports**.
+1. Either:
+   * Click the ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
+   settings icon for a report row and select **Edit**.
+   * Click on a report row to open the report. In the **Actions** dropdown menu,
+   select **Edit Report**.
+1. Make your changes and click **Update**.
+
+  The report page opens. You may have to refresh the page to see the updated
+  report.
+
+## Delete a custom report
+
+You can delete a report in one of the following ways:
+
+1. From the left-side menu in Konnect, open ![](/assets/images/icons/konnect/icn-vitals.svg){:.inline .no-image-expand}
+**Vitals**, then **Reports**.
+1. Either:
+   * Click the ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
+   settings icon for a report row and select **Delete**.
+   * Click on a report row to open the report. In the **Actions** dropdown menu,
+   select **Delete Report**.
+1. Confirm deletion in the dialog.
+
+## Metrics
+
+Each metric depends on a time frame and a primary entity (report type).
+
+Metric | Report type | Description
+-------|------------|------------
+Total traffic | Service, Route, Application | Total number of API calls within the selected time frame.
+Total traffic by status code | Service, Route, Application | Number of API calls grouped by status code.
+Total traffic by service | Route, Application | Number of API calls filted by Service(s) or Service versions, and grouped by Service.
+Total traffic by route | Service, Application | Number of API calls grouped by Route.
+Total traffic by application | Service, Route | Number of API calls grouped by Application.
 
 ## See also
-
-For reports comparing multiple Konnect entities, see [custom reports](/konnect/vitals/custom-reports).
+[Export historical data in CSV format](/konnect/vitals/analyze/) through the
+ServiceHub for any individual Service, Service version, or Route.
