@@ -10,7 +10,7 @@ configuration to route and control traffic.
 The [kong-gateway][enterprise-download] proxy image supports DB-less
 operation and is recommended for all deployments.
 * [DB-less installation with the Kong Ingress Controller][k4k8s-enterprise-install]
-* [Database-backed installation with or without the Kong Ingress Controller][k4k8s-with-enterprise-install]
+* [Database-backed installation with or without the Kong Ingress Controller](/gateway/{{page.kong_version}}/install-and-run/helm)
 
 ### Migrating to 2.1.x and up
 
