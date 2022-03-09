@@ -5,6 +5,9 @@ version: 2.1.x
 desc: Allow or deny IPs that can make requests to your Services
 description: |
   Restrict access to a Service or a Route by either allowing or denying IP addresses. Single IPs, multiple IPs or ranges in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) like `10.10.10.0/24` can be used. The plugin supports IPv4 and IPv6 addresses.
+
+  {:.note}
+  > **Note**: We have deprecated the usage of `whitelist` and `blacklist` in favor of `allow` and `deny`. This change may require Admin API requests to be updated. 
 type: plugin
 categories:
   - security
@@ -68,13 +71,13 @@ params:
         - 143.1.0.0/24
       datatype: array of string elements
       description: |
-        List of IPs or CIDR ranges to allow. One of `config.allow` or `config.deny` must be specified.
+        List of IPs or CIDR ranges to allow. One of `config.allow` or `config.deny` must be specified. Note that we have deprecated the usage of `whitelist` and `blacklist` in favor of `allow` and `deny`.  
     - name: deny
       required: semi
       default: null
       datatype: array of string elements
       description: |
-        List of IPs or CIDR ranges to deny. One of `config.allow` or `config.deny` must be specified.
+        List of IPs or CIDR ranges to deny. One of `config.allow` or `config.deny` must be specified. Note that we have deprecated the usage of `whitelist` and `blacklist` in favor of `allow` and `deny`.  
     - name: status
       required: false
       default: 403
@@ -106,3 +109,4 @@ params:
 ### 2.1.0
 
 - Addition of `status` and `message` fields
+- Use `allow` and `deny` instead of `whitelist` and `blacklist`
