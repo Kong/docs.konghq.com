@@ -8,6 +8,20 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services.
 
+## March 2022
+
+### 2021.03.07
+**{{site.base_gateway}} 2.8.0.0 support**
+: {{site.konnect_saas}} now supports {{site.base_gateway}} 2.8.0.0 runtimes.
+You can keep using existing 2.7.x runtimes, or you can upgrade to
+2.8.0.0 to take advantage of any new features, updates, and bug fixes.
+
+: For all the changes and new features in {{site.base_gateway}} 2.8.x, see the
+[changelog](/gateway/changelog/#2800).
+
+: To use any new features in the release,
+[start up a new 2.8.0.0 runtime](/konnect/runtime-manager/upgrade).
+
 ## January 2022
 
 ### 2022.01.14
@@ -28,7 +42,7 @@ You can keep using existing 2.6.x runtimes, or you can upgrade to
 2.7.0.0 to take advantage of any new features, updates, and bug fixes.
 
 : For all the changes and new features in {{site.base_gateway}} 2.7.x, see the
-[changelog](/gateway/changelog/#2600).
+[changelog](/gateway/changelog/#2700).
 
 : To use any new features in the release,
 [start up a new 2.7.0.0 runtime](/konnect/runtime-manager/upgrade).
