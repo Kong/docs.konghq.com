@@ -136,7 +136,7 @@ To use the [injection system](/gateway/{{page.kong_version}}/reference/configura
 Environment="KONG_NGINX_HTTP_OUTPUT_BUFFERS=4 64k"
 ```
 
-### Customize Kong's Nginx instance using `--nginx-conf`
+### Customize Kong's Nginx instance using --nginx-conf
 
 To use the [`--nginx-conf`](/gateway/{{page.kong_version}}/reference/configuration/#custom-nginx-templates) argument, modify the `ExecStartPre` systemd directive to execute `kong prepare` with the `--nginx-conf` argument. For example, if you have a custom template at `/usr/local/kong/custom-nginx.template`, modify the `ExecStartPre` directive as follows:
 
