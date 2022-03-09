@@ -21,17 +21,9 @@
           url: /getting-started/implement-service
         - text: Publish to Dev Portal and Register an App
           url: /getting-started/dev-portal
-    - text: Get Started with Kong Gateway
-      items:
-        - text: Import Kong Gateway Configuration
-          url: /getting-started/gateway/import
-        - text: Set up a Runtime Instance
-          url: /getting-started/gateway/runtime
-        - text: Expose Services to ServiceHub
-          url: /getting-started/gateway/services
     - text: Get Started with an API Spec
       items:
-        - text: Create a Service and Version
+        - text: Import an API Spec into Konnect
           url: /getting-started/spec/service
         - text: Publish to Dev Portal
           url: /getting-started/spec/publish
@@ -40,7 +32,7 @@
         - text: Register Applications
           url: /getting-started/spec/app-registration
 
-- title: Plan and Deploy
+- title: Plan
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
   url: /deployment
   items:
