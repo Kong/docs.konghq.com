@@ -73,21 +73,26 @@ navigate to the new Workspace's dashboard.
 
     ![New Dashboard](https://doc-assets.konghq.com/1.3/manager/workspaces/02-workspace-dashboard.png)
 
-
 ## Delete or Edit a Workspace
 
-To delete a Workspace, everything inside the
-Workspace must be deleted first. This includes default Roles on the "Admins"
-page.
+To be able to delete a workspace, *all data* must first be deleted from the workspace:
 
-1. Within the Workspace, navigate to the "Dashboard" page.
+* Via Kong Manager, turn off the Dev Portal. Go to Dev Portal **Settings** > **Advanced** > **Turn Off**.
+* Via Kong Manager, remove all roles. Go to **Teams** in the top navigation. Navigate to the **Roles** tab. Click **View** on the workspace you want to delete. Go to each entry and click **Edit**. In the entry detail page, click **Delete Role**. A confirmation modal will appear. Click **Delete Role** again.
+* Delete *all workspace files* using one of the following methods:
+  * Use the [Kong Portal CLI](https://github.com/Kong/kong-portal-cli), and run `portal wipe WORKSPACE_NAME`.
+  * Send a `DELETE` request to the Admin API to delete all files associated with the workspace. Construct your `DELETE` request to the following endpoint: [`/workspaces/{WORKSPACE_NAME}/files`](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/#delete-a-workspace).
+  * Manually delete all files via Dev Portal > **Editor**. You cannot delete folders at this time, but deleting all files from a folder will remove the folder.
+
+1. In the workspace you want to edit or delete, navigate to the **Dashboard** page.
 
     ![Workspace Dashboard](https://doc-assets.konghq.com/1.3/manager/workspaces/02-workspace-dashboard.png)
 
-2. At the top right, click the "Settings" button.
+1. Near the top right, click the **Settings** button. This button takes you to the **Edit Workspace** page.
 
-3. Edit or delete the Workspace.
+1. Here, you'll be able to edit the workspace name, as well as the workspace avatar and avatar background color. To delete the workspace, click **Delete** in the bottom right corner. The deletion will fail if you have any data in your workspace.
 
+To delete a workspace using the Admin API, see the [Workspaces Reference](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/#delete-a-workspace). Note that with this method, you still need to delete all data from the workspace.
 
 ## Workspace Access
 
