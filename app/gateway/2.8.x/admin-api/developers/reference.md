@@ -163,7 +163,7 @@ HTTP/1.1 200 OK
 ### Invite developers
 
 Send invitations to a list of emails.
-[SMTP](/gateway/{{page.kong_gateway}}/developer-portal/configuration/smtp) must
+[SMTP](/gateway/{{page.kong_version}}/developer-portal/configuration/smtp/) must
 be enabled to send invite emails.
 
 **Endpoint**
