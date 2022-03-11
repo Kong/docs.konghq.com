@@ -3,15 +3,60 @@ title: Developers Reference
 badge: enterprise
 ---
 
+You can administer a Dev Portal instance through the Kong Admin API. Use the
+`/developers` API to:
+* Manage developers and applications
+* Create, update, and delete roles
+* Manage authentication for developers and applications
+
 {:.note}
 > **Note:** The `/developers` API is part of the Kong Admin API, and is meant
 for bulk developer administration.
 This is not the same as the Dev Portal API [`/developer`](/gateway/{{page.kong_version}}/developer-portal/portal-api/#/operations/get-developer) endpoints,
 which return data on the logged-in developer.
 
+## Using the API in workspaces
+
+Any requests that don't specify a workspace target the `default` workspace.
+To target a different workspace, add `/{WORKSPACE_NAME}/` to the start of any
+endpoint.
+
+For example, if you don't specify a workspace,
+this request retrieves a list of developers from the `default` workspace:
+
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+curl -i -X GET http://localhost:8001/developers
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+http :8001/developers
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+While this request retrieves all developers from the workspace `SRE`:
+
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+curl -i -X GET http://localhost:8001/SRE/developers
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+http :8001/SRE/developers
+```
+{% endnavtab %}
+{% endnavtabs %}
+
 ## Developers
 
 ### List all developers
+
+Retrieve metadata for all developers.
 
 **Endpoint**
 
@@ -62,6 +107,14 @@ HTTP/1.1 200 OK
 
 ### Create a developer account
 
+Create a new developer account.
+
+All new developers are set to **Requested Approval** status by default, and
+must be changed to **Approved** before anyone can use the account.
+
+You can approve developers through the Kong Manager, or approve the developer
+account as you're creating it by setting the developer's status manually.
+
 **Endpoint**
 
 <div class="endpoint post">/developers</div>
@@ -73,8 +126,9 @@ Attribute                     | Description
 `meta`                        | Metadata for the account in JSON format. Accepts fields defined in the Dev Portal settings. <br><br> By default, the meta attribute requires a `full_name` field. You can remove this requirement, or add other fields as neccessary. <br><br> For example: `meta: {"full_name":"<NAME>"}`.
 `email` <br>*required*        | The email of the developer to create. This becomes their login username.
 `password`<br>*semi-optional* | Create a password for the developer. Required if basic authentication is enabled.
-`key` <br>*semi-optional*     | Assign an API key to the developer. Required is key authentication is enabled.
-`id`                          | A consumer UUID to associate this developer account with. [TO DO: figure out what this actually does.]
+`key` <br>*semi-optional*     | Assign an API key to the developer. Required if key authentication is enabled.
+`id`                          | The developer entity ID. You can set your own UUID for this value, or leave it out to let Kong Gateway autogenerate a UUID.
+`status`                      | The account approval status. If not provided, the status is set to `1` by default and developers are automatically placed in the **Requested Access** queue. <br><br>Accepts one of the following integers: <br> &#8226; `0` - Approved  <br> &#8226; `1` - Requested access  <br> &#8226; `2` - Rejected  <br> &#8226; `3` - Revoked
 
 Example request:
 
@@ -106,7 +160,11 @@ HTTP/1.1 200 OK
 }
 ```
 
-### Invite a developer
+### Invite developers
+
+Send invitations to a list of emails.
+[SMTP](/gateway/{{page.kong_gateway}}/developer-portal/configuration/smtp) must
+be enabled to send invite emails.
 
 **Endpoint**
 
@@ -116,7 +174,7 @@ HTTP/1.1 200 OK
 
 Attribute                     | Description
 ---------:                    | --------   
-`emails`                      | A comma-separated array of emails. SMTP must be enabled to send invite emails.
+`emails`                      | A comma-separated array of emails.
 
 Example request:
 ```sh
@@ -147,6 +205,8 @@ HTTP/1.1 200 OK
 ```
 
 ### Inspect a developer
+
+Retrieve metadata for a specific developer account.
 
 **Endpoint**
 
@@ -185,6 +245,8 @@ HTTP/1.1 200 OK
 
 ### Update a developer
 
+Update the configuration or status for a specific developer account.
+
 **Endpoint**
 
 <div class="endpoint patch">/developers/{DEVELOPER_EMAIL|DEVELOPER_ID}</div>
@@ -200,6 +262,7 @@ Attribute                     | Description
 ---------:                    | --------   
 `meta`                        | Metadata for the account in JSON format. Accepts fields defined in the Dev Portal settings. <br><br> By default, the meta attribute requires a `full_name` field. You can remove this requirement, or add other fields as neccessary. <br><br> For example: `meta: {"full_name":"<NAME>"}`.
 `email`       | The email of the developer to create. This becomes their login username.
+`status`      | The account approval status. <br><br>Accepts one of the following integers: <br> &#8226; `0` - Approved  <br> &#8226; `1` - Requested access  <br> &#8226; `2` - Rejected  <br> &#8226; `3` - Revoked
 
 
 **Response**
@@ -231,6 +294,8 @@ HTTP/1.1 200 OK
 
 ### Delete a developer
 
+Delete a specific developer account.
+
 **Endpoint**
 
 <div class="endpoint delete">/developers/{DEVELOPER_ID}</div>
@@ -247,9 +312,7 @@ HTTP/1.1 204 No Content
 
 ## Export developer metadata
 
-Export a list of developers and their metadata into a CSV file.
-
-Creates a file named `developers.csv` in the present working directory.
+Prints a list of developers in CSV format.
 
 <div class="endpoint get">/developers/export</div>
 
@@ -260,12 +323,20 @@ HTTP/1.1 200 OK
 ```
 
 ```json
-something
+Email, Status
+test@example.com,APPROVED
+test1@example.com,PENDING
+test2@example.com,REVOKED
+test3@example.com,REJECTED
 ```
 
 ## Roles
 
 ### List all Dev Portal roles
+
+List all RBAC roles configured for the Dev Portal.
+
+By default, there are no roles. All Dev Portal roles are custom.
 
 **Endpoint**
 
@@ -298,7 +369,13 @@ HTTP/1.1 200 OK
 
 ### Create a Dev Portal role
 
-When you create a role, by default, the role has access to all content in Dev Portal.
+Create an RBAC role for grouping developers.
+
+When you create a role, by default, the role has no specific permissions and
+has access to all content in the Dev Portal. Use the **Dev Portal** >
+**Permissions** page in Kong Manager
+(`<kong-manager-host:port>/<workspace-name>/portal/permissions/#roles`) to specify
+permissions for the role.
 
 **Endpoint**
 
@@ -310,7 +387,6 @@ Attribute                   | Description
 ---------:                  | --------   
 `name` <br>*required*       | A name for the role.
 `comment`                   | A description of the role.
-`permissions`               | [_Note: I couldn't figure out how to make this work_] Permissions to assign to the role, in JSON format. If you don't provide any specific permissions, the role has access to all applications and specs by default. <br><br> Example: `permissions={"specs/petstore.yaml"}`
 
 **Response**
 
@@ -329,6 +405,8 @@ HTTP/1.1 201 Created
 ```
 
 ### Inspect a role
+
+Inspect a specific Dev Portal RBAC role.
 
 **Endpoint**
 
@@ -356,6 +434,8 @@ HTTP/1.1 200 OK
 
 
 ### Update a role
+
+Update a specific Dev Portal RBAC role.
 
 **Endpoint**
 
@@ -392,6 +472,8 @@ HTTP/1.1 200 OK
 
 ### Delete a role
 
+Delete a specific Dev Portal RBAC role.
+
 **Endpoint**
 
 <div class="endpoint delete">/developers/roles/{ROLE_NAME|ROLE_ID}</div>
@@ -408,6 +490,12 @@ HTTP/1.1 204 No Content
 
 
 ## Applications
+
+Applications consume Services in {{site.base_gateway}} via application-level
+authentication. Developers, or the persona that logs into the Dev Portal,
+create and manage applications through the Dev Portal.
+
+Admins must first [enable application registration](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration) through so that Developers can associate Services with applications.
 
 ### List all applications for a developer
 
@@ -463,6 +551,8 @@ HTTP/1.1 200 OK
 
 ### Inspect an application
 
+Inspect a specific application using the application ID.
+
 **Endpoint**
 
 <div class="endpoint get">/developers/{DEVELOPER_EMAIL|DEVELOPER_ID}/applications/{APPLICATION_ID}</div>
@@ -497,6 +587,8 @@ HTTP/1.1 200 OK
 
 ### Create an application
 
+Create a new application for a specific developer.
+
 **Endpoint**
 
 <div class="endpoint post">/developers/{DEVELOPER_EMAIL|DEVELOPER_ID}/applications</div>
@@ -512,8 +604,7 @@ Attribute                    | Description
 ---------:                   | --------   
 `name`<br>*required*         | A name for the application.
 `redirect_uri`<br>*required* | The application's URI.
-`custom_id`                  | A custom description for the application.
-`developer` | *Can't tell what this does, kind of looks like it didn't do anything; probably don't want to document?*
+`custom_id`                  | A custom name for the application. The `custom_id` is saved to the linked consumer entity for the application. This can be used for OIDC claim mapping when configuring the application's `openid-connect` authentication plugin.
 
 **Response**
 
@@ -540,6 +631,8 @@ HTTP/1.1 201 Created
 
 
 ### Update an application
+
+Update a specific application using the application ID.
 
 **Endpoint**
 
@@ -582,6 +675,8 @@ HTTP/1.1 200 OK
 ```
 
 ### Delete an application
+
+Delete a specific application using the application ID.
 
 **Endpoint**
 <div class="endpoint delete">/developers/{DEVELOPER_EMAIL|DEVELOPER_ID}/applications/{APPLICATION_ID}</div>
@@ -742,6 +837,8 @@ HTTP/1.1 200 OK
 
 
 ### Update an application instance
+
+Update a specific instance of an application.
 
 **Endpoint**
 
@@ -1097,10 +1194,27 @@ HTTP/1.1 204 No Content
 
 ## Developer authentication
 
+Developers can authenticate to the Dev Portal using one of the following
+authentication methods:
+* [`basic-auth`](/hub/kong-inc/basic-auth/)
+* [`oauth2`](/hub/kong-inc/oauth2/)
+* [`hmac-auth`](/hub/kong-inc/hmac-auth/)
+* [`jwt`](/hub/kong-inc/jwt/)
+* [`key-auth`](/hub/kong-inc/key-auth/)
+* [`openid-connect`](/hub/kong-inc/openid-connect/)
+
+Each of these methods configures an instance of the related {{site.base_gateway}}
+authentication plugin.
+
+For a developer to be able to manage applications, the Dev Portal must use some
+kind of authentication, and each developer must be granted access to the Dev Portal.
+If authentication is disabled and the Dev Portal URL is public, application
+registration is not available.
+
 ### Get all credentials
 
-Get a list of all configured credentials for a specific type of authentication
-plugin.
+Get a list of all configured Dev Portal credentials for a specific type of
+authentication plugin.
 
 **Endpoint**
 
@@ -1109,7 +1223,7 @@ plugin.
 Attribute                         | Description
 ---------:                        | --------   
 `{DEVELOPER_EMAIL|DEVELOPER_ID}`  | The email or UUID of a developer.
-`{PLUGIN_NAME}` | The name of a supported authentication plugin. Can be one of: <br> &#8226; `basic-auth` <br> &#8226; `oauth2` <br> &#8226; `hmac-auth` <br> &#8226; `jwt` <br> &#8226; `key-auth` <br> &#8226; `openid-connect`
+`{PLUGIN_NAME}` | The name of a supported authentication plugin. Can be one of: <br> &#8226; `basic-auth`<br> &#8226; `oauth2` <br> &#8226; `hmac-auth` <br> &#8226; `jwt` <br> &#8226; `key-auth` <br> &#8226; `openid-connect`
 
 **Response**
 ```
@@ -1146,6 +1260,9 @@ credentials:
 
 ### Create a credential
 
+Create a Dev Portal credential. The credentials you can create depend on the
+type of authentication currently enabled for your Dev Portal.
+
 **Endpoint**
 
 <div class="endpoint post">/developers/{DEVELOPER_EMAIL|DEVELOPER_ID}/credentials/{PLUGIN_NAME}</div>
@@ -1153,13 +1270,13 @@ credentials:
 Attribute                         | Description
 ---------:                        | --------   
 `{DEVELOPER_EMAIL|DEVELOPER_ID}`  | The email or UUID of a developer.
-`{PLUGIN_NAME}` | The name of a supported authentication plugin. Can be one of: <br> &#8226; `basic-auth` <br> &#8226; `oauth2` <br> &#8226; `hmac-auth` <br> &#8226; `jwt` <br> &#8226; `key-auth` <br> &#8226; `openid-connect`
+`{PLUGIN_NAME}` | The name of a supported authentication plugin. Can be one of: <br> &#8226; `basic-auth`<br> &#8226; `oauth2` <br> &#8226; `hmac-auth` <br> &#8226; `jwt` <br> &#8226; `key-auth` <br> &#8226; `openid-connect`
 
 **Request body**
 
 Attribute                    | Description
 ---------:                   | --------   
-Plugin configuration fields | Any authentication credentials for the plugin that you are configuring. See the plugin's reference on the [Plugin Hub](/hub/) to find the parameters for a specific plugin.
+Plugin configuration fields | Any authentication credentials for the plugin that you are configuring. See the plugin's reference documentation to find the parameters for a specific plugin: <br> &#8226; [`basic-auth`](/hub/kong-inc/basic-auth/) <br> &#8226; [`oauth2`](/hub/kong-inc/oauth2/) <br> &#8226; [`hmac-auth`](/hub/kong-inc/hmac-auth/) <br> &#8226; [`jwt`](/hub/kong-inc/jwt/) <br> &#8226; [`key-auth`](/hub/kong-inc/key-auth/) <br> &#8226; [`openid-connect`](/hub/kong-inc/openid-connect/)
 
 
 Example request for creating a `key-auth` credential:
@@ -1189,7 +1306,7 @@ credential:
 
 ### Inspect a credential
 
-Retrieve information about a credential using its ID.
+Retrieve information about a specific Dev Portal credential using its ID.
 
 **Endpoint**
 
@@ -1198,7 +1315,7 @@ Retrieve information about a credential using its ID.
 Attribute                         | Description
 ---------:                        | --------   
 `{DEVELOPER_EMAIL|DEVELOPER_ID}`  | The email or UUID of a developer.
-`{PLUGIN_NAME}` | The name of a supported authentication plugin. Can be one of: <br> &#8226; `basic-auth` <br> &#8226; `oauth2` <br> &#8226; `hmac-auth` <br> &#8226; `jwt` <br> &#8226; `key-auth` <br> &#8226; `openid-connect`
+`{PLUGIN_NAME}` | The name of a supported authentication plugin. Can be one of: <br> &#8226; `basic-auth`<br> &#8226; `oauth2` <br> &#8226; `hmac-auth` <br> &#8226; `jwt` <br> &#8226; `key-auth` <br> &#8226; `openid-connect`
 `{CREDENTIAL_ID}` | The UUID of a credential for the plugin.
 
 **Response**
@@ -1222,6 +1339,8 @@ credential:
 
 ### Update a credential
 
+Update a specific Dev Portal credential.
+
 **Endpoint**
 
 <div class="endpoint patch">/developers/{DEVELOPER_EMAIL|DEVELOPER_ID}/credentials/{PLUGIN_NAME}/{CREDENTIAL_ID}</div>
@@ -1229,14 +1348,14 @@ credential:
 Attribute                         | Description
 ---------:                        | --------   
 `{DEVELOPER_EMAIL|DEVELOPER_ID}`  | The email or UUID of a developer.
-`{PLUGIN_NAME}` | The name of a supported authentication plugin. Can be one of: <br> &#8226; `basic-auth` <br> &#8226; `oauth2` <br> &#8226; `hmac-auth` <br> &#8226; `jwt` <br> &#8226; `key-auth` <br> &#8226; `openid-connect`
+`{PLUGIN_NAME}` | The name of a supported authentication plugin. Can be one of: Can be one of: <br> &#8226; `basic-auth`<br> &#8226; `oauth2` <br> &#8226; `hmac-auth` <br> &#8226; `jwt` <br> &#8226; `key-auth` <br> &#8226; `openid-connect`
 `{CREDENTIAL_ID}` | The UUID of a credential for the plugin.
 
 **Request body**
 
 Attribute                    | Description
 ---------:                   | --------   
-Plugin configuration fields | Any authentication credentials for the plugin that you are configuring. See the plugin's reference on the [Plugin Hub](/hub/) to find the parameters for a specific plugin.
+Plugin configuration fields | Any authentication credentials for the plugin that you are configuring. See the plugin's reference documentation to find the parameters for a specific plugin: <br> &#8226; [`basic-auth`](/hub/kong-inc/basic-auth/) <br> &#8226; [`oauth2`](/hub/kong-inc/oauth2/) <br> &#8226; [`hmac-auth`](/hub/kong-inc/hmac-auth/) <br> &#8226; [`jwt`](/hub/kong-inc/jwt/) <br> &#8226; [`key-auth`](/hub/kong-inc/key-auth/) <br> &#8226; [`openid-connect`](/hub/kong-inc/openid-connect/)
 
 Example request to update a `key-auth` key:
 ```
@@ -1272,7 +1391,7 @@ credential to use a custom key instead of a UUID:
 Attribute                         | Description
 ---------:                        | --------   
 `{DEVELOPER_EMAIL|DEVELOPER_ID}`  | The email or UUID of a developer.
-`{PLUGIN_NAME}` | The name of a supported authentication plugin. Can be one of: <br> &#8226; `basic-auth` <br> &#8226; `oauth2` <br> &#8226; `hmac-auth` <br> &#8226; `jwt` <br> &#8226; `key-auth` <br> &#8226; `openid-connect`
+`{PLUGIN_NAME}` | The name of a supported authentication plugin. Can be one of: <br> &#8226; `basic-auth`<br> &#8226; `oauth2` <br> &#8226; `hmac-auth` <br> &#8226; `jwt` <br> &#8226; `key-auth` <br> &#8226; `openid-connect`
 `{CREDENTIAL_ID}` | The UUID of a credential for the plugin.
 
 **Response**
@@ -1282,6 +1401,18 @@ HTTP/1.1 204 No Content
 
 ## Application authentication
 
+When application registration is enabled, it requires an
+[authentication strategy](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/auth-provider-strategy).
+By default, this strategy is `kong-oauth2`, and it is set in `kong.conf`:
+
+```
+portal_app_auth = kong-oauth2
+```
+
+If you use the default strategy, you can configure authentication for applications
+using the following APIs. If using the `external-oauth2` strategy,
+[manage it through your IdP](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/auth-provider-strategy).
+
 ### Inspect all credentials for an application
 
 Get a list of all application credentials for a specific type of authentication
@@ -1289,22 +1420,17 @@ plugin.
 
 **Endpoint**
 
-<div class="endpoint get">/developers/{DEVELOPER_EMAIL|DEVELOPER_ID}/applications/{APPLICATION_ID}/credentials/{PLUGIN_NAME}</div>
+<div class="endpoint get">/developers/{DEVELOPER_EMAIL|DEVELOPER_ID}/applications/{APPLICATION_ID}/credentials/oauth2</div>
 
 Attribute                         | Description
 ---------:                        | --------   
 `{DEVELOPER_EMAIL|DEVELOPER_ID}`  | The email or UUID of a developer.
 `{APPLICATION_ID}`  | The application UUID.
-`{PLUGIN_NAME}` | The authentication strategy in use for application registration. Can be one of: <br>&#8226; `oauth2` <br> &#8226; `key-auth` <br> &#8226; `openid-connect`
 
 **Response**
 ```
 HTTP/1.1 200 OK
 ```
-
-The exact response depends on the authentication strategy being used for
-application registration. For example, if you have an application secured with
-OAuth2:
 
 ```json
 {
@@ -1332,35 +1458,37 @@ OAuth2:
 
 ### Create a credential for an application
 
+Create an OAuth2 authentication credential for an application.
+This request configures an instance of the [OAuth2 plugin](/hub/kong-inc/oauth2).
+
 **Endpoint**
 
-<div class="endpoint post">/developers/{DEVELOPER_EMAIL|DEVELOPER_ID}/applications/{APPLICATION_ID}/credentials/{PLUGIN_NAME}</div>
+<div class="endpoint post">/developers/{DEVELOPER_EMAIL|DEVELOPER_ID}/applications/{APPLICATION_ID}/credentials/oauth2</div>
 
 Attribute                         | Description
 ---------:                        | --------   
 `{DEVELOPER_EMAIL|DEVELOPER_ID}`  | The email or UUID of a developer.
 `{APPLICATION_ID}`  | The application UUID.
-`{PLUGIN_NAME}` | The authentication strategy in use for application registration. Can be one of: <br>&#8226; `oauth2` <br> &#8226; `key-auth` <br> &#8226; `openid-connect`
 
 **Request body**
 
 Attribute                    | Description
 ---------:                   | --------   
-Plugin configuration fields | Any authentication credentials for the plugin that you are configuring. See the plugin's reference on the [Plugin Hub](/hub/) to find the parameters for a specific plugin.
+`client_id` | You can optionally set your own unique client_id. If not provided, the plugin will generate one.
+`client_secret` | You can optionally set your own unique client_secret. If not provided, the plugin will generate one.
+`redirect_uris` | An array with one or more URLs in your app where users will be sent after authorization ([RFC 6742 Section 3.1.2](https://tools.ietf.org/html/rfc6749#section-3.1.2)).
+`hash_secret` | A boolean flag that indicates whether the `client_secret` field will be stored in hashed form. If enabled on existing plugin instances, client secrets are hashed on the fly upon first usage. <br>Default: `false`
 
 Example request for creating an `oauth2` credential:
 
 ```sh
-http POST :8001/developers/5f60930a-ad12-4303-ac5a-59d121ad4942/applications/5ff48aaf-3951-4c99-a636-3b682081705c/credentials/oauth2
+http POST :8001/developers/5f60930a-ad12-4303-ac5a-59d121ad4942/applications/5ff48aaf-3951-4c99-a636-3b682081705c/credentials/oauth2 client_id=myclient client_secret=mysecret
 ```
 
 **Response**
 ```
 HTTP/1.1 201 Created
 ```
-
-The exact response depends on the plugin. For example, if you add an `oauth2`
-credential:
 
 ```json
 {
@@ -1383,25 +1511,22 @@ credential:
 
 ### Inspect a credential for an application
 
+Inspect an OAuth2 authentication credential of an application.
+
 **Endpoint**
 
-<div class="endpoint get">/developers/{DEVELOPER_EMAIL|DEVELOPER_ID}/applications/{APPLICATION_ID}/credentials/{PLUGIN_NAME}/{CREDENTIAL_ID}</div>
+<div class="endpoint get">/developers/{DEVELOPER_EMAIL|DEVELOPER_ID}/applications/{APPLICATION_ID}/credentials/oauth2/{CREDENTIAL_ID}</div>
 
 Attribute                         | Description
 ---------:                        | --------   
 `{DEVELOPER_EMAIL|DEVELOPER_ID}`  | The email or UUID of a developer.
 `{APPLICATION_ID}`  | The application UUID.
-`{PLUGIN_NAME}` | The authentication strategy in use for application registration. Can be one of: <br>&#8226; `oauth2` <br> &#8226; `key-auth` <br> &#8226; `openid-connect`
-`CREDENTIAL_ID` | The UUID of a credential.
+`{CREDENTIAL_ID}` | The UUID of a credential.
 
 **Response**
 ```
 HTTP/1.1 200 OK
 ```
-
-The exact response depends on the authentication strategy being used for
-application registration. For example, if you have an application secured with
-OAuth2:
 
 ```json
 {
@@ -1423,14 +1548,15 @@ OAuth2:
 
 ### Delete a credential from an application
 
+Delete an OAuth2 authentication credential of an application.
+
 **Endpoint**
 
-<div class="endpoint delete">/developers/{DEVELOPER_EMAIL|DEVELOPER_ID}/applications/{APPLICATION_ID}/credentials/{PLUGIN_NAME}/{CREDENTIAL_ID}</div>
+<div class="endpoint delete">/developers/{DEVELOPER_EMAIL|DEVELOPER_ID}/applications/{APPLICATION_ID}/credentials/oauth2/{CREDENTIAL_ID}</div>
 
 Attribute                         | Description
 ---------:                        | --------   
 `{DEVELOPER_EMAIL|DEVELOPER_ID}`  | The email or UUID of a developer.
-`{PLUGIN_NAME}` | The name of a supported authentication plugin. Can be one of: <br> &#8226; `basic-auth` <br> &#8226; `oauth2` <br> &#8226; `hmac-auth` <br> &#8226; `jwt` <br> &#8226; `key-auth` <br> &#8226; `openid-connect`
 `{CREDENTIAL_ID}` | The UUID of a credential for the plugin.
 
 **Response**
