@@ -322,7 +322,7 @@ Prints a list of developers in CSV format.
 HTTP/1.1 200 OK
 ```
 
-```json
+```csv
 Email, Status
 test@example.com,APPROVED
 test1@example.com,PENDING
