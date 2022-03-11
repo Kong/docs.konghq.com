@@ -59,9 +59,14 @@ disable_image_expand: true
 
 
 ## Variables
+
 Use variables for product names and release versions. See
 [Variables](/contributing/variables) for syntax and when to use each one.
 
+## Headers
+
+Headers should not contain any code. Use plain text instead. Use title case
+for all headers, per [Content best practices](/contributing/style-guide/#content-best-practices).
 
 ## Links
 

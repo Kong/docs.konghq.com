@@ -254,7 +254,7 @@ Each configuration item is made up of a few parts:
       - **type**: `boolean`
       - **description**: The `layout` attribute determines what HTML layout the collections use to render. The path root is accessed from within the current themes `layouts` directory.
 
-### `content/_posts/post1.md`
+### content/_posts/post1.md
 
 {% raw %}
 ```
@@ -268,7 +268,7 @@ This is my first post!
 {% endraw %}
 
 
-### `content/_posts/post2.md`
+### content/_posts/post2.md
 
 {% raw %}
 ```
@@ -281,7 +281,7 @@ This is my second post!
 ```
 {% endraw %}
 
-### `themes/base/layouts/post.html`
+### themes/base/layouts/post.html
 
 {% raw %}
 ```html
@@ -335,7 +335,7 @@ Terminology / Definitions:
 - `list` - Also referred to commonly as an array (`[1, 2, 3]`) in Lua is a table-like object (`{1, 2, 3}`). Lua list index starts at `1` not `0`. Values can be accessed by array notation (`list[1]`).
 - `table` - Also commonly known as an object or hashmap (`{1: 2}`) in Lua looks like (`{1 = 2}`). Values can be accessed by array or dot notation (`table.one or table["one"]`).
 
-### `l(key, fallback)`
+### l(key, fallback)
 
 Returns the current translation by key from the currently active page.
 
@@ -418,7 +418,7 @@ For `es/example`:
 
 - `l(...)` is a helper from the `page` object. It can be also accessed via `page.l`. However, `page.l` does not support template interpolation (for example, `{{portal.name}}` will not work.)
 
-### `each(list_or_table)`
+### each(list_or_table)
 
 Returns the appropriate iterator depending on what type of argument is passed.
 
@@ -457,7 +457,7 @@ Template (Table):
 ```
 {% endraw %}
 
-### `print(any)`
+### print(any)
 
 Returns stringified output of input value.
 
@@ -477,7 +477,7 @@ Template (Table):
 ```
 {% endraw %}
 
-### `markdown(string)`
+### markdown(string)
 
 Returns HTML from the markdown string passed as an argument. If a string argument is not valid markdown, the function will return the string as is. To render properly, the helper should be used with raw `{* *}` delimiters.
 
@@ -505,7 +505,7 @@ Template (content val as arg):
 ```
 {% endraw %}
 
-### `json_encode(object)`
+### json_encode(object)
 
 JSON encodes Lua table passed as argument
 
@@ -525,7 +525,7 @@ Template:
 ```
 {% endraw %}
 
-### `json_decode(string)`
+### json_decode(string)
 
 Decodes JSON string argument to Lua table
 
@@ -566,13 +566,13 @@ portal[config_key] or portal.config_key
 
 For example `portal.auth` is a portal config value. You can find a list of config values by reading the portal section of `kong.conf`.
 
-#### From `kong.conf`
+#### From kong.conf
 
 The portal only exposes config values that start with  `portal_`, and they can be access by removing the `portal_` prefix.
 
 Some configuration values are modified or customized, these customizations are documented under the [Portal Members](#portal-members) section.
 
-##### `portal.workspace`
+##### portal.workspace
 
 Returns the current portal's workspace.
 
@@ -598,7 +598,7 @@ Output:
 default
 ```
 
-#### `portal.url`
+#### portal.url
 
 Returns the current portal's url with workspace.
 
@@ -624,7 +624,7 @@ Output:
 http://127.0.0.1:8003/default
 ```
 
-#### `portal.api_url`
+#### portal.api_url
 
 Returns the configuration value for `portal_api_url` with
 the current workspace appended.
@@ -651,7 +651,7 @@ Output when `portal_api_url = http://127.0.0.1:8004`:
 http://127.0.0.1:8004/default
 ```
 
-#### `portal.auth`
+#### portal.auth
 
 Returns the current portal's authentication type.
 
@@ -697,7 +697,7 @@ Output when `portal_auth = basic-auth`:
 Authentication is endabled!
 ```
 
-#### `portal.specs`
+#### portal.specs
 
 Returns an array of specification files contained within the current portal.
 
@@ -772,7 +772,7 @@ Output:
   <li>content/documentation/example1_spec.json</li>
 ```
 
-#### `portal.developer_meta_fields`
+#### portal.developer_meta_fields
 
 Returns an array of developer meta fields available/required by Kong to register a developer.
 
@@ -839,7 +839,7 @@ Output:
 ...
 ```
 
-### `page`
+### page
 
 `page` gives access to data relating to the current page, which includes things like page url, path, breadcrumbs, and more.
 
@@ -870,7 +870,7 @@ Be careful! To avoid output errors, make sure that the `key_name` exists before 
 ```
 {% endraw %}
 
-#### `page.route`
+#### page.route
 
 Returns the current page's route/path.
 
@@ -896,7 +896,7 @@ Output, given url is `http://127.0.0.1:8003/default/guides/getting-started`:
 guides/getting-started
 ```
 
-#### `page.url`
+#### page.url
 
 Returns the current page's url.
 
@@ -922,7 +922,7 @@ Output, given url is `http://127.0.0.1:8003/default/guides/getting-started`:
 http://127.0.0.1:8003/default/guides/getting-started
 ```
 
-#### `page.breadcrumbs`
+#### page.breadcrumbs
 
 Returns the current page's breadcrumb collection.
 
@@ -958,7 +958,7 @@ Template:
 ```
 {% endraw %}
 
-#### `page.body`
+#### page.body
 
 Returns the body of the current page as a string. If the route's content file has a `.md` or `.markdown` extension, the body will be parsed from markdown to html.
 
@@ -1012,7 +1012,7 @@ Output:
 > This is text content.
 ```
 
-### `user`
+### user
 
 `user` gives access to data relating to the currently authenticated user.  User object is only applicable when `KONG_PORTAL_AUTH` is enabled.
 
@@ -1021,7 +1021,7 @@ Output:
   - [`user.get`](#userget)
 
 
-#### `user.is_authenticated`
+#### user.is_authenticated
 
 Returns `boolean` value as to the current user's authentication status.
 
@@ -1047,7 +1047,7 @@ Output:
 true
 ```
 
-#### `user.has_role`
+#### user.has_role
 
 Returns `true` if a user has a role given as an argument.
 
@@ -1073,7 +1073,7 @@ Output:
 true
 ```
 
-#### `user.get`
+#### user.get
 
 Takes developer attribute as an argument and returns value if present.
 
@@ -1102,7 +1102,7 @@ example123@konghq.com
 ```
 
 
-### `theme`
+### theme
 
 The `theme` object exposes values set in your `theme.conf.yaml` file.  In addition, any variable overrides contained in `portal.conf.yaml` will be included as well.
 
@@ -1112,7 +1112,7 @@ The `theme` object exposes values set in your `theme.conf.yaml` file.  In additi
   - [`theme.font`](#userfont)
 
 
-#### `theme.colors`
+#### theme.colors
 
 Returns a table of color variables and their values as key-value pairs.
 
@@ -1158,7 +1158,7 @@ Output:
 <p>tertiary: #1DBAC2</p>
 ```
 
-#### `theme.color`
+#### theme.color
 
 Description
 
@@ -1207,7 +1207,7 @@ Output:
 ```
 
 
-#### `theme.fonts`
+#### theme.fonts
 
 Returns table of font vars and their values as key-value pairs.
 
@@ -1247,7 +1247,7 @@ Output:
 <p>headings: Lato</p>
 ```
 
-#### `theme.font`
+#### theme.font
 
 Takes font name by string argument, returns value.
 
@@ -1287,7 +1287,7 @@ Output:
 <p>headings: #1DBAC2</p>
 ```
 
-### `str`
+### str
 
 Table containing useful string helper methods.
 
@@ -1349,7 +1349,7 @@ Table containing useful string helper methods.
 ##### str.[quote_string](https://stevedonovan.github.io/Penlight/api/libraries/pl.stringx.html#quote_string)
 
 
-### `tbl`
+### tbl
 
 Table containing useful table helper methods
 
