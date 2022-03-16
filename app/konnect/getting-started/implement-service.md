@@ -36,15 +36,13 @@ implementation to associate with your Service version.
 
     For this example, enter the following:
 
-    1. For **Name**, enter `mockbin`.
+    * **Name**: `mockbin`
+    * **Method**: `GET`
+    * **Path(s)**: Click **Add Path** and enter `/mock`
 
-    2. For **Method**, enter `GET`.
+    For the remaining fields, use the default values listed.
 
-    3. For **Path(s)**, click **Add Path** and enter `/mock`.
-
-    4. For the remaining fields, use the default values listed.
-
-    5. Click **Create**.
+5. Click **Create**.
 
     The **v.1** Service Version overview displays.
 
@@ -81,9 +79,5 @@ request is sent to `http://mockbin.org`.
 * Abstracted a backend/upstream service and put a route of your choice on the
 front end, which you can now give to clients to make requests.
 
-For next steps, check out some of the other things you can do in
-{{site.konnect_saas}}:
-* Enable plugins on a [Service](/konnect/manage-plugins/enable-service-plugin/) or a
-[Route](/konnect/manage-plugins/enable-route-plugin/)
-* [Set up the Dev Portal](/konnect/servicehub/dev-portal/service-documentation)
-* [Manage your teams and users with RBAC](/konnect/org-management/users-and-roles)
+Next, [publish the Service to the Dev Portal](/konnect/getting-started/publish-service/)
+and test out the Portal from the perspective of a developer.

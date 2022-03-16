@@ -20,7 +20,7 @@
         - text: Implement and Test the Service
           url: /getting-started/implement-service
         - text: Publish to Dev Portal and Register an App
-          url: /getting-started/dev-portal
+          url: /getting-started/publish-service
     - text: Get Started with an API Spec
       items:
         - text: Import an API Spec into Konnect
@@ -31,6 +31,14 @@
           url: /getting-started/spec/implement
         - text: Register Applications
           url: /getting-started/spec/app-registration
+        # - text: Protect your Services
+        #   url: /getting-started/spec/protect-services
+        # - text: Improve Performance
+        #   url: /getting-started/spec/performance
+        # - text: Secure Services
+        #   url: /getting-started/spec/secure-services
+        # - text: Set Up Intelligent Load Balancing
+        #   url: /getting-started/spec/load-balancing
 
 - title: Plan
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
