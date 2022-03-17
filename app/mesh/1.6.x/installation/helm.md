@@ -72,6 +72,15 @@ suggest `kong-mesh-system`.
     You can see all possible parameters of the charts by running `helm chart values kong-mesh/kong-mesh`.
     The Kong-Mesh chart has the Kuma chart as a [helm dependency](https://helm.sh/docs/helm/helm_dependency/) any value present in `helm chart values kuma/kuma` is available by prepending it with: `kuma`.
 
+    For example with a `values.yaml` like:
+    ```yaml
+    kuma:
+      controlPlane:
+        zone: "us-west"
+        mode: "zone"
+    ```
+   Will configure the control-plane as the zone "us-west" in `zone` mode.
+
 ## 3. Verify the Installation
 
 Now that {{site.mesh_product_name}} (`kuma-cp`) has been installed in the newly
