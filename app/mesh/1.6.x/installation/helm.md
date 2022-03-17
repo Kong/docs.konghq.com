@@ -69,7 +69,7 @@ suggest `kong-mesh-system`.
     deployment, but there are more advanced [deployment modes](https://kuma.io/docs/latest/documentation/deployments/)
     like _multi-zone_.
 
-    You can see all possible parameters of the charts by doing `helm chart values kong-mesh/kong-mesh`.
+    You can see all possible parameters of the charts by running `helm chart values kong-mesh/kong-mesh`.
     The Kong-Mesh chart has the Kuma chart as a [helm dependency](https://helm.sh/docs/helm/helm_dependency/) any value present in `helm chart values kuma/kuma` is available by prepending it with: `kuma`.
 
 ## 3. Verify the Installation
