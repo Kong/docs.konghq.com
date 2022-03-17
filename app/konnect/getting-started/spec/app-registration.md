@@ -19,7 +19,7 @@ If you set your Dev Portal to public, [disable the setting and create a develope
 
 ## Enable app registration
 
-1. From the [ServiceHub](https://konnect.konghq.com/servicehub/), open
+1. From the [Service Hub](https://konnect.konghq.com/servicehub/), open
 a version of the `example_service`.
 
 1. From the **Actions** dropdown menu, select **Enable app registration**.

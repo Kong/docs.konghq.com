@@ -3,7 +3,7 @@ title: Configuring a Service
 no_version: true
 ---
 
-Using the [ServiceHub](/konnect/servicehub), you can create, manage, and
+Using the [Service Hub](/konnect/servicehub), you can create, manage, and
 implement Services. Each Service consists of at least one
 Service version, and each Service version can have one implementation.
 
@@ -21,7 +21,7 @@ make sure you have [configured a runtime](/konnect/getting-started/configure-run
 
 ## Create a Service
 
-1. From the left navigation menu, click **Services** to open ServiceHub.
+1. From the left navigation menu, click **Services** to open Service Hub.
 
 1. Click **Add New Service**.
 
