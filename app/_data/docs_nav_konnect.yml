@@ -19,7 +19,7 @@
           url: /getting-started/configure-service
         - text: Implement and Test the Service
           url: /getting-started/implement-service
-        - text: Publish to Dev Portal and Register an App
+        - text: Publish to Dev Portal
           url: /getting-started/publish-service
     - text: Get Started with an API Spec
       items:
