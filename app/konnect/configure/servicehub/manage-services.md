@@ -1,12 +1,19 @@
 ---
-title: Manage Services through ServiceHub
+title: Manage Services through Service Hub
 no_version: true
 ---
 
-## Services
-### Add a Service to the Catalog
+Through the [Service Hub](https://konnect.konghq.com/servicehub/), you can
+create and manage all Konnect Services, Service versions, and Service
+implementations in one place.
 
-1. From the left navigation menu, click **Services** to open ServiceHub.
+## Konnect Services
+
+### Add a Service to the catalog
+
+1. From the left navigation menu, open the
+![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
+**Service Hub**.
 
 2. Click **Add New Service**.
 
@@ -14,12 +21,6 @@ no_version: true
 
     A Service name can be any string containing letters, numbers, or characters;
     for example, `service_name`, `Service Name`, or `Service-name`.
-
-4. Enter a **Version Name**.
-
-    A version name can be any string containing letters, numbers, or characters;
-    for example, `1.0.0`, `v.1`, or `version#1`. A Service can have multiple
-    versions.
 
 5. (Optional) Enter a **Description**.
 
@@ -30,7 +31,9 @@ no_version: true
 
 ### Update a Service
 
-1. From the left navigation menu, click **Services**.
+1. From the left navigation menu, open the
+![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
+**Service Hub**.
 
 2. Select a Service from the list.
 
@@ -40,7 +43,9 @@ box to save.
 
 ### Delete a Service
 
-1. From the left navigation menu, click **Services**.
+1. From the left navigation menu, open the
+![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
+**Service Hub**.
 
 2. Select a Service from the list.
 
@@ -49,21 +54,71 @@ box to save.
 
 4. In the dialog that appears, confirm that you want to delete this service.
 
-## Service Versions and Implementations
+## Service versions
 
-### Create a New Service Version
+Every Konnect Service version is associated with one runtime group.
+Any configurations for the Service version, such as implementations, plugins,
+and routes, will also be associated with the same runtime group.
 
-1. From the left navigation menu, click **Services**.
+If a Service has multiple Service versions, each Service version can be
+associated with a different runtime group, or with the same runtime group.
+Through its versions, a Service can made be available in multiple environments,
+simply by assigning Service versions to a different runtime groups.
 
-2. Select a Service from the dropdown menu.
+A common use case for this is environment specialization. For example, if you
+have three runtime groups for `development`, `staging`, and `production`, you
+can manage which environment the Service is available in by assigning that group
+at creation time. So, you might create a v0 in `development`, then a v0.1 in
+`staging`, and a finally a v1 in `production`.
 
-3. Navigate to **Versions**, and click **+ New Version**.
+{:.note}
+> **Note:** You can't move a Service version from one runtime group to another.
+Instead, create a new version of the Service in the new environment when you're
+ready to move to it.
 
-4. Enter a version name and click **Create** to save.
+### Create a new Service version
 
-### Delete a Service Version
+1. From the left navigation menu, open the
+![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
+**Service Hub**.
 
-1. From the left navigation menu, click **Services**.
+1. Select a Service from the dropdown menu.
+
+1. Navigate to **Versions**, and click **+ New Version**.
+
+1. Enter a **Version Name**.
+
+    A version name can be any string containing letters, numbers, or characters;
+    for example, `1.0.0`, `v.1`, or `version#1`. A Service can have any number of
+    versions.
+
+1. Select a runtime group.
+
+    You can choose the `default` group to make this version available to all
+    users, or if you have one, select a custom group to limit this version to
+    a specific group of runtime instances. This determines which entities and
+    runtimes the Service version has access to, and who has access to this
+    version.
+
+    {:.note}
+    > **Note:** Applications can only be registered against
+    Services in the default runtime group, so if you plan on using
+    [application registration](/konnect/dev-portal/applications/application-overview),
+    choose `default` in this step.
+
+    Different versions of the same Service can run in different runtime groups.
+    The version name is unique within a group:
+
+    * If you create multiple versions in the **same group**, they must have unique names.
+    * If you create multiple versions in **different groups**, the versions can have the same name.
+
+5. Click **Create** to save.
+
+### Delete a Service version
+
+1. From the left navigation menu, open the
+![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
+**Service Hub**.
 
 2. Select a Service from the dropdown menu.
 
@@ -75,15 +130,21 @@ box to save.
 
 6. Click **Delete Version** to permanently delete the Service version.
 
-### Implement a Service Version (Kong Gateway) {#implement-service-version}
+## Service version implementations
 
-<div class="alert alert-ee blue">
-<b>Note:</b> Currently, the only supported implementation type is a
+### Implement a Service version (Kong Gateway) {#implement-service-version}
+
+Expose the Service version by pointing it to an upstream service and creating
+a Route for the proxy. Traffic travelling through this proxy Route can use any
+runtime instance in the runtime group that the Service version belongs to.
+
+{:.note}
+> **Note:** Currently, the only supported implementation type is a
 {{site.base_gateway}} runtime.
-</div>
 
-1. From the left navigation menu, click **Services**, then select a Service
-version.
+1. From the left navigation menu, open the
+![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
+**Service Hub**, then select a Service version.
 
 2. Click **New Implementation**.
 
@@ -129,24 +190,27 @@ details for the upstream service.
     If you want to view the configuration, edit or delete the implementation,
     or delete the version, click the **Actions** menu.
 
-#### Add a Route to a Version
+### Add a Route to a version
 
 When creating an implementation, you only create one Route. If the Service version
 needs more Routes, you can add them to the version after creating the
 first one.
 
-1. From the left navigation menu, click **Services**, then select a Service
-version.
+All Routes are created in the same runtime group as their parent Service version.
+
+1. From the left navigation menu, open the
+![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
+**Service Hub**, then select a Service version.
 
 2. In the **Routes** section, click **New Route**.
 
 3. Fill in the fields as described in [Implement a Service Version](#implement-service-version),
 then click **Create**.
 
-### Verify an Implementation
+### Verify an implementation
 
 For any runtime instance created with the provided Docker script (see
-[Setting up a Kong Gateway Runtime](/konnect/runtime-manager/)),
+[Setting up a Kong Gateway Runtime](/konnect/configure/runtime-manager/gateway-runtime-docker)),
 the default proxy URL is `localhost:8000`.
 
 Enter the proxy URL into your browser’s address bar and append any route path.
