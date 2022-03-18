@@ -72,7 +72,7 @@ suggest `kong-mesh-system`.
     You can see all possible parameters of the charts by running `helm chart values kong-mesh/kong-mesh`.
     The Kong-Mesh chart has the Kuma chart as a [helm dependency](https://helm.sh/docs/helm/helm_dependency/) any value present in `helm chart values kuma/kuma` is available by prepending it with: `kuma`.
 
-    For example with a `values.yaml` like:
+    For example, see the following `values.yaml` snippet:
     ```yaml
     kuma:
       controlPlane:
