@@ -79,7 +79,7 @@ suggest `kong-mesh-system`.
         zone: "us-west"
         mode: "zone"
     ```
-   Will configure the control-plane as the zone "us-west" in `zone` mode.
+   This will configure the control-plane as the zone "us-west" in `zone` mode.
 
 ## 3. Verify the Installation
 
