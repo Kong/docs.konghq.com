@@ -94,11 +94,9 @@ ready to move to it.
 
 1. Select a runtime group.
 
-    You can choose the `default` group to make this version available to all
-    users, or if you have one, select a custom group to limit this version to
-    a specific group of runtime instances. This determines which entities and
-    runtimes the Service version has access to, and who has access to this
-    version.
+    Choose a group to limit this version to a specific group of runtime 
+    instances. This determines which entities and runtimes the Service version
+    has access to, and who has access to this version.
 
     {:.note}
     > **Note:** Applications can only be registered against
