@@ -21,7 +21,7 @@ you can configure two additional custom runtime groups in the same Konnect
 account to manage runtime instances and their configuration in any groupings
 you want.
 
-_<diagram - do we have a diagram of how runtime groups work somewhere?>_
+_[TBA: diagram]_
 
 ## Default runtime group
 
@@ -30,9 +30,6 @@ organization starts with one default group.
 
 This group can be renamed, but it can't be deleted, and its status as the default
 group can't be changed.
-
-_Q: Is there going to be some identifier for the default group besides the name?
-If the name can be changed, then how would a future admin know which group is the default?_
 
 ### Application registration in the Dev Portal
 
@@ -83,9 +80,6 @@ resources based on team purpose.
 
 Access to each runtime group is configurable on a team-by-team basis using
 entity-specific permissions.
-
-_Q: Do users default to the default runtime group?
-Q: What happens to users when a custom group is deleted?_
 
 [Administer teams &rarr;](/link)
 

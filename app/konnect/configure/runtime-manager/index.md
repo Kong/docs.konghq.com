@@ -13,8 +13,7 @@ runtime groups currently owned by the organization. From here, you can add or
 delete runtime groups, or go into each individual group to manage runtime
 instances and their global configuration.
 
-_<screenshot of overview page; do we have a test environment somewhere where I could
-grab a useful screenshot?>_
+_[screenshot of overview page]_
 
 With {{site.konnect_short_name}} acting as the control plane, a runtime instance
 doesn't need a database to store configuration data. Instead, configuration

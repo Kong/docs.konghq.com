@@ -18,10 +18,6 @@ in the group.
 ## Prerequisites
 * TBA: Required permissions
 * TBA: Any prereqs for deleting the group
-  * Q: What are the prerequisites for deleting a group? Should you reassign users?
-  * Q: What happens to the users that were previously assigned to the group? Are
-  they dumped into the default runtime group, or do they have no permissions to
-  access anything until manually changed?
 
 ## Create a runtime group
 {:.badge .enterprise}
