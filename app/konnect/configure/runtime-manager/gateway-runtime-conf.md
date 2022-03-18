@@ -25,7 +25,7 @@ runtime instances.
 
 Next, configure a {{site.base_gateway}} runtime instance using the
 certificate, the private key, and the remaining configuration details on the
-**Configure Runtime** page.
+runtime instance configuration page.
 
 1. Find the documentation for
 [your platform](/gateway/latest/install-and-run),

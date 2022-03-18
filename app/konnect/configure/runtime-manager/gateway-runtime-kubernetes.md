@@ -49,7 +49,7 @@ On your runtime instance's system, create a namespace and pull down the `kong` H
 
 Next, configure a {{site.base_gateway}} instance using the certificate, the
 private key, and the remaining configuration details on the
-**Configure Runtime** page.
+runtime instance configuration page.
 
 ### Configure secrets
 

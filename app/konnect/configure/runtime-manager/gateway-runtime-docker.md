@@ -32,18 +32,13 @@ runtime instances.
 
 ### Run the quick setup script
 
-1. From the left navigation menu, open **Runtime Manager**.
+1. From the left navigation menu, open
+![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
+**Runtime Manager**.
 
 2. Select a runtime group.
 
-    For the first runtime instance, the page opens to a
-    **Configure New Runtime** form.
-
-    Once configured, this page lists all runtime instances associated with the
-    {{site.konnect_saas}} account.
-
-2. (Optional) If this is not the first runtime instance configuration, click
-**Configure New Runtime**.
+2. Click **+ New Runtime Instance**.
 
 3. Click **Copy Script**.
 
