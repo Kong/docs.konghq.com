@@ -1,3 +1,8 @@
+product: deck
+version: 1.11.x
+generate: true
+assume_generated: false
+items:
 - title: Introduction
   icon: /assets/images/icons/documentation/icn-flag.svg
   url: /deck/
@@ -46,6 +51,7 @@
 - title: decK CLI Reference
   icon: /assets/images/icons/documentation/icn-references-color.svg
   url: /reference/deck
+  generated: true
   items:
     - text: deck completion
       url: /reference/deck_completion
