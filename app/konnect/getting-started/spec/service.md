@@ -85,13 +85,6 @@ contain many versions, but one spec is always linked to one version.
 
 1. Click **Create** to save.
 
-The Service version is created in **Published** status by default. This means
-that if you publish the Service to the Dev Portal, this version will be published
-along with it.
-
-If you don't want the version to be published yet, you can set the version to a
-different [stage in its lifecycle](/link to version lifecycle doc).
-
 ## Upload an API spec
 
 {% include_cached /md/konnect/dev-portal.md section='spec' %}
