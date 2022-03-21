@@ -31,7 +31,7 @@ curl -sX POST kong-admin:8001/consumers \
 
 The `anonymous` consumer does not correspond to any real user, and will only serve as a fallback.
 
-Next, we add both Key Auth and Basic Auth plugins to our consumer, and set the anonymous fallback to the consumer we created earlier.
+Next, we add both Key Auth and Basic Auth plugins to our service, and set the anonymous fallback to the consumer we created earlier.
 
 ```bash
 curl -sX POST kong-admin:8001/services/example-service/plugins/ \

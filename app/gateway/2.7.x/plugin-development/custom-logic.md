@@ -174,7 +174,7 @@ function CustomHandler.access(self, config)
 end
 ```
 
-### Migrating from `BasePlugin` module
+### Migrating from BasePlugin module
 
 The `BasePlugin` module is deprecated and will be removed in a future version
 of {{site.ce_product_name}}.  If you have an old plugin that uses it, replace

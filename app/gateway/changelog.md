@@ -1572,7 +1572,7 @@ from portals created in Kong Gateway v2.5.0.1.
     `connect_timeout`, `read_timeout`, and `send_timeout`. Currently, if these options are not set, the
     value of `timeout` will be used for all (or its default value of 2000ms). The `connect_timeout`, `read_timeout`,
     and `send_timeout` fields are mutually required fields. The `timeout` field will be removed from the product in version 3.0.x.x.
-  - This release also includes new configuration options `keepalive_pool` and `keepalive_backlog`. These options
+  - This release also includes new configuration options `keepalive_pool`, `keepalive_pool_size`, and `keepalive_backlog`. These options
     relate to [Openresty’s Lua INGINX module’s](https://github.com/openresty/lua-nginx-module/#tcpsockconnect) `tcp:connect` options.
 - [ACME](/hub/kong-inc/acme) (`acme`)
   The ACME plugin now waits before signaling a challenge in hybrid mode to ensure the control plane propagates any updated

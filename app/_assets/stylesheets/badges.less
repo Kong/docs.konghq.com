@@ -1,5 +1,4 @@
 .badge {
-  display: inline-flex;
   &:after {
       display: inline-block;
       font-weight: 600;
@@ -104,6 +103,7 @@
 
 span.badge {
   vertical-align: text-bottom;
+  display: inline-flex;
 }
 
 h2.badge, h3.badge, h4.badge, h5.badge {
@@ -113,7 +113,6 @@ h2.badge, h3.badge, h4.badge, h5.badge {
 
   &:hover {
     .tooltiptext {
-      top: 70%;
       left: 7px;
     }
   }
@@ -133,7 +132,33 @@ h1.badge {
   }
 }
 
+h2.badge {
+  &:hover {
+    .tooltiptext {
+      top: 3px;
+    }
+  }
+}
+
+h3.badge {
+  &:hover {
+    .tooltiptext {
+      top: 4px;
+    }
+  }
+}
+
+h4.badge, h5.badge {
+  &:hover {
+    .tooltiptext {
+      top: 5px;
+    }
+  }
+}
+
 a.badge {
+  display: inline-flex;
+
   &:hover, &:focus {
     opacity: 0.9;
     text-decoration: none;

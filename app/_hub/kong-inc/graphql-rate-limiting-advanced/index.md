@@ -273,6 +273,36 @@ params:
       datatype: array of string elements
       description: |
         Cluster addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis cluster.
+    - name: redis.keepalive_backlog
+      required: false
+      default: null
+      value_in_examples: null
+      datatype: integer
+      description: |
+        If specified, limits the total number of opened connections for a pool. If the 
+        connection pool is full, all connection queues beyond the maximum limit go into 
+        the backlog queue. Once the backlog queue is full, subsequent connect operations 
+        will fail and return `nil`. Queued connect operations resume once the number of 
+        connections in the pool is less than `keepalive_pool_size`. Note that queued 
+        connect operations are subject to set timeouts.
+    - name: redis.keepalive_pool
+      required: false
+      default: generated from string template
+      value_in_examples: null
+      datatype: string
+      description: |
+        The custom name of the connection pool. If not specified, the connection pool
+        name is generated from the string template `"<host>:<port>"` or `"<unix-socket-path>"`.
+    - name: redis.keepalive_pool_size
+      required: false
+      default: 30
+      value_in_examples: null
+      datatype: integer
+      description: |
+        The size limit for every cosocket connection pool associated with every remote
+        server, per worker process. If no `keepalive_pool_size` is specified and no `keepalive_backlog`
+        is specified, no pool is created. If no `keepalive_pool_size` is specified and `keepalive_backlog`
+        is specified, then the pool uses the default value `30`.
     - name: window_type
       required: true
       default: sliding

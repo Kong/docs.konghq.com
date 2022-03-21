@@ -25,7 +25,12 @@ If you have a Docker installation, run the following command to set the needed e
 
 **Note:** make sure to replace `<kong-container-id>` with the ID of your container.
 
-<pre><code>echo "KONG_ENFORCE_RBAC=on \<br>KONG_ADMIN_GUI_AUTH=basic-auth \<br>KONG_ADMIN_GUI_SESSION_CONF='{\"secret\":\"secret\",\"storage\":\"kong\",\"cookie_secure\":false}' \<br>kong reload exit" | docker exec -i <div contenteditable="true">{KONG_CONTAINER_ID}</div> /bin/sh</code></pre>
+```bash
+echo "KONG_ENFORCE_RBAC=on
+KONG_ADMIN_GUI_AUTH=basic-auth
+KONG_ADMIN_GUI_SESSION_CONF='{\"secret\":\"secret\",\"storage\":\"kong\",\"cookie_secure\":false}'
+kong reload exit" | docker exec -i {KONG_CONTAINER_ID} /bin/sh
+```
 
 This will turn on RBAC, tell {{site.base_gateway}} to use basic authentication (username/password), and tell the Sessions Plugin how to create a session cookie.
 
