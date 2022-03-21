@@ -21,9 +21,9 @@ runtime instances.
 
 ## Prerequisites
 
-* You have **Runtime Admin** or **Organization Admin** permissions in
-{{site.konnect_saas}}. If you created this account, the account has
-organization admin permissions by default. _[To do: check what the new permissions are]_
+* You have **Organization Admin** permissions in
+{{site.konnect_saas}}. If you created this Konnect organization, your account
+is part of the organization admin team by default.
 * The quick setup script requires Docker and a Unix shell (for example, bash or
   zshell). Platform-specific tools and permissions:
   * **All platforms:** [Docker](https://docs.docker.com/get-docker/) and [jq](https://stedolan.github.io/jq/) installed
@@ -61,11 +61,6 @@ say **Connected**.
 The default proxy URL for this runtime is `http://localhost:8000`. Take
 note of this URL, as you'll need it later to access a Service
 implementation.
-
-{:.important}
-> Important: {{site.konnect_saas}} provisions certificates for the data
-plane. These certificates expire after six months and must be renewed. See
-[Renew Certificates](/konnect/runtime-manager/renew-certificates).
 
 ## Summary and Next Steps
 

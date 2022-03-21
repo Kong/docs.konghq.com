@@ -16,8 +16,6 @@ out some customization options.
 
 {% include_cached /md/konnect/dev-portal.md section='markdown' %}
 
-_[screenshot of where this will appear? might be useful to have screenshots in the getting started guides, at least]_
-
 ## Upload an API spec
 
 {% include_cached /md/konnect/dev-portal.md section='spec' %}

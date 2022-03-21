@@ -8,8 +8,8 @@ Now, publish that documentation to the Dev Portal to share it with developers.
 
 ## Prerequisites
 
-If you're following the {{site.konnect_short_name}} API spec guide,
-make sure you have [imported API docs into Konnect](/konnect/getting-started/spec/service/).
+* If you're following the {{site.konnect_short_name}} API spec guide,
+make sure you have [implemented the Service and started a Gateway runtime](/konnect/getting-started/spec/service/).
 
 ## Publish a Service
 
@@ -32,4 +32,4 @@ In this topic, you:
 * Published the `example_service` documentation to the Dev Portal
 * Accessed the Dev Portal, either with a login or through a public link, and checked out the published doc.
 
-Next, return to Konnect to [implement the Service](/konnect/getting-started/spec/implement) and prepare it for application registration.
+Next, [register an application against the Service](/konnect/getting-started/spec/app-registration).

@@ -14,11 +14,11 @@ This topic walks you through importing an API spec into a Konnect Service,
 and adding a description.
 
 ## Prerequisites
-* OpenAPI spec in JSON or YAML format, or use the [sample vitalsSpec.yaml](/konnect/vitalsSpec.yaml)
-for testing.
-    _[Which versions of OpenAPI do we support?]_
-    _[Suggest using Insomnia to develop one, or is that too heavy-handed?]_
-* TBA: Required permissions
+* You have **Organization Admin** permissions in
+{{site.konnect_saas}}. If you created this Konnect organization, your account
+is part of the organization admin team by default.
+* You have an OpenAPI spec in JSON or YAML format. If not, you can use the
+[sample vitalsSpec.yaml](/konnect/vitalsSpec.yaml) for testing.
 
 ## Create a service
 
@@ -50,8 +50,6 @@ Service, then create your first Service version to contain the spec.
 
 {% include_cached /md/konnect/dev-portal.md section='markdown' %}
 
-_[screenshot of where this will appear? might be useful to have screenshots in the getting started guides, at least]_
-
 ## Create a Service version
 
 Let's set up the first version of your API service. A Konnect Service can
@@ -68,11 +66,10 @@ contain many versions, but one spec is always linked to one version.
 
 1. Select a runtime group.
 
-    You can choose the `default` group to make this version available to all
-    users, or if you have one, select a custom group to limit this version to
-    a specific group of runtime instances. This determines which entities and
-    runtimes the Service version has access to, and who has access to this
-    version.
+    Choose a [group](/konnect/configure/runtime-manager/runtime-groups) to
+    limit this version to a specific group of runtime
+    instances. This determines which entities and runtimes the Service version
+    has access to, and who has access to this version.
 
     {:.note}
     > **Note:** Later on in this guide, you will have the chance to test out
@@ -107,4 +104,4 @@ In this topic, you:
 * Created the first version of the service named `1` and chose a runtime group for it.
 * Uploaded your API spec into Konnect
 
-Next, [publish your Konnect Service to a Dev Portal instance](/konnect/getting-started/spec/publish/).
+Next, [implement the Service](/konnect/getting-started/spec/implement) and prepare it for application registration.

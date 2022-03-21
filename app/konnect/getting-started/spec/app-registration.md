@@ -9,7 +9,7 @@ register applications against Konnect Services.
 ## Prerequisites
 
 * If you're following the {{site.konnect_short_name}} API spec guide,
-make sure you have [implemented the Service and started a Gateway runtime](/konnect/getting-started/spec/service/).
+make sure you have [published the Service to the Dev Portal](/konnect/getting-started/spec/service/).
 
 * To use app registration, Dev Portal must be protected by
 some sort of authentication. That means you can't have a public portal for this step.

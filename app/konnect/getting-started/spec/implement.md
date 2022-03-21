@@ -12,7 +12,7 @@ To do this, first you need to implement the Service to expose it to clients.
 ## Prerequisites
 
 If you're following the {{site.konnect_short_name}} API spec guide,
-make sure you have [published the Service to the Dev Portal](/konnect/getting-started/spec/service/).
+make sure you have [imported API docs into Konnect](/konnect/getting-started/spec/service/).
 
 ## Implement a Service Version
 
@@ -109,4 +109,4 @@ request is sent to `http://mockbin.org`.
 * Abstracted a backend/upstream service and put a route of your choice on the
 front end, which you can now give to clients to make requests.
 
-Next, [register an application against the Service](/konnect/getting-started/spec/app-registration).
+Next, [publish your Konnect Service to a Dev Portal instance](/konnect/getting-started/spec/publish/).
