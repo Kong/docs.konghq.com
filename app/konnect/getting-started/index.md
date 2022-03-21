@@ -61,19 +61,19 @@ using Service Hub to publish and manage your spec:
 
     [Create a Service and import docs &gt;](/konnect/getting-started/spec/service/)
 
-2. **Publish to the Dev Portal**
-
-    Publish your Service documentation to the Dev Portal and preview it from
-    the developer perspective.
-
-    [Publish the docs &gt;](/konnect/getting-started/spec/service/)
-
-3. **Implement the Service**
+2. **Implement the Service**
 
     Attach the Service to an upstream service
     and define a route to expose the Service for application registration.
 
     [Implement the Service &gt;](/konnect/getting-started/spec/service/)
+
+3. **Publish to the Dev Portal**
+
+    Publish your Service documentation to the Dev Portal and preview it from
+    the developer perspective.
+
+    [Publish the docs &gt;](/konnect/getting-started/spec/service/)
 
 4. **Register an application**
 
