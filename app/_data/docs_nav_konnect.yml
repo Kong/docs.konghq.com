@@ -25,10 +25,10 @@
       items:
         - text: Import an API Spec into Konnect
           url: /getting-started/spec/service
-        - text: Publish to Dev Portal
-          url: /getting-started/spec/publish
         - text: Implement the Service Version with Kong Gateway
           url: /getting-started/spec/implement
+        - text: Publish to Dev Portal
+          url: /getting-started/spec/publish
         - text: Register Applications
           url: /getting-started/spec/app-registration
         # - text: Protect your Services
