@@ -13,7 +13,9 @@ provider.
 The default authentication option in {{site.konnect_saas}} is basic
 authentication. You don't have to do anything special to set it up.
 
-* Manage organization [user and role permissions](/konnect/org-management/users-and-roles)
+* Manage organization [users, teams, and roles](/konnect/org-management/users-and-teams)
+* [Teams reference](/konnect/org-management/teams-reference)
+* [Roles reference](/konnect/org-management/roles-reference)
 
 ## External authentication
 {:.badge .enterprise}
@@ -23,5 +25,5 @@ authentication. You don't have to do anything special to set it up.
 [OpenID Connect](https://developer.okta.com/docs/concepts/oauth-openid/#openid-connect).
 
 * Set up [Okta integration](/konnect/org-management/okta-idp)
-* View {{site.konnect_saas}} [user and role permissions](/konnect/org-management/users-and-roles)
-* [Map Okta groups to Konnect roles](/konnect/org-management/okta-idp/#map-roles-to-groups)
+* View {{site.konnect_saas}} [users, teams, and roles](/konnect/org-management/users-and-teams)
+* [Map Okta groups to Konnect teams](/konnect/org-management/okta-idp/#map-roles-to-groups)

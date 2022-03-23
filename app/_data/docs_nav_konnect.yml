@@ -153,14 +153,13 @@
     - text: Authentication and Authorization
       url: /org-management/auth
       items:
-        - text: Teams and Permissions
-          url: /org-management/teams-and-permissions
+        - text: Manage Users and Teams
+          url: /org-management/teams-roles-users
           items:
-            - text: Manage Teams
-              url: /org-management/teams-and-permissions
-            - text: Permissions Reference
-              url: /org-management/permissions-reference
-
+            - text: Teams Reference
+              url: /org-management/teams-reference
+            - text: Roles Reference
+              url: /org-management/roles-reference
         - text: Set up SSO with Okta
           url: /org-management/okta-idp
     - text: Account and Org Deactivation
