@@ -60,7 +60,7 @@ to the file.
     cluster_cert_key = /{PATH_TO_FILE}/tls.key
     ```
 
-    See [Parameters](/konnect/runtime-manager/runtime-parameter-reference) for
+    See [Parameters](/konnect/runtime-manager/runtime-instances/runtime-parameter-reference) for
     descriptions and the matching fields in {{site.konnect_short_name}}.
 
 4. Replace the values in `cluster_cert`, `cluster_ca_cert`, and

@@ -133,7 +133,14 @@
 /konnect/servicehub/plugins/enable-service-plugin/  /konnect/manage-plugins/enable-service-plugin/
 /konnect/servicehub/plugins/enable-route-plugin/    /konnect/manage-plugins/enable-route-plugin/
 /konnect/dev-portal/administrators/customization/themes         /konnect/dev-portal
-
+/konnect/runtime-manager/gateway-runtime-conf        /konnect/runtime-manager/runtime-instances/gateway-runtime-conf
+/konnect/runtime-manager/gateway-runtime-docker      /konnect/runtime-manager/runtime-instances/gateway-runtime-docker
+/konnect/runtime-manager/gateway-runtime-kubernetes  /konnect/runtime-manager/runtime-instances/gateway-runtime-kubernetes
+/konnect/runtime-manager/renew-certificates          /konnect/runtime-manager/runtime-instances/renew-certificates
+/konnect/runtime-manager/runtime-parameter-reference /konnect/runtime-manager/runtime-instances/runtime-parameter-reference
+/konnect/runtime-manager/upgrade                     /konnect/runtime-manager/runtime-instances/upgrade
+/konnect/manage-plugins/shared-config                /konnect/runtime-manager/runtime-groups/manage-entities
+/konnect/shared-config                               /konnect/runtime-manager/runtime-groups/manage-entities
 
 # COMMUNITY DOC REBRANDING
 /community                                  https://konghq.com/community-resources/

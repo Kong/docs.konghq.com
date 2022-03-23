@@ -23,7 +23,7 @@ files.
 ## Quick setup
 
 If you originally created your runtime instance container using the
-[quick setup Docker script](/konnect/configure/runtime-manager/gateway-runtime-docker/#quick-setup),
+[quick setup Docker script](/konnect/configure/runtime-manager/runtime-instances/gateway-runtime-docker/#quick-setup),
 we recommend running the script again to create a new instance with renewed
 certificates.
 
@@ -31,7 +31,7 @@ certificates.
 2. Open ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
 Runtime Manager, select a runtime group, and click **+ New Runtime Instance**.
 3. Run the script again to
-[create a new runtime instance](/konnect/configure/runtime-manager/gateway-runtime-docker/#quick-setup) with
+[create a new runtime instance](/konnect/configure/runtime-manager/runtime-instances/gateway-runtime-docker/#quick-setup) with
 updated certificates.
 4. Remove the old runtime instance container.
 

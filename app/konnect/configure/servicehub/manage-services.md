@@ -94,7 +94,7 @@ ready to move to it.
 
 1. Select a runtime group.
 
-    Choose a group to limit this version to a specific group of runtime 
+    Choose a group to limit this version to a specific group of runtime
     instances. This determines which entities and runtimes the Service version
     has access to, and who has access to this version.
 
@@ -208,7 +208,7 @@ then click **Create**.
 ### Verify an implementation
 
 For any runtime instance created with the provided Docker script (see
-[Setting up a Kong Gateway Runtime](/konnect/configure/runtime-manager/gateway-runtime-docker)),
+[Setting up a Kong Gateway Runtime](/konnect/configure/runtime-manager/runtime-instances/gateway-runtime-docker)),
 the default proxy URL is `localhost:8000`.
 
 Enter the proxy URL into your browser’s address bar and append any route path.
