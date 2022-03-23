@@ -9,50 +9,62 @@ implementations in one place.
 
 ## Konnect Services
 
-### Add a Service to the catalog
-
-1. From the left navigation menu, open the
+Access all Konnect Service configuration through the
 ![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
 **Service Hub**.
 
-2. Click **Add New Service**.
+### Add a Service to the catalog
 
-3. Enter a **Service Name**.
+1. In the ![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
+Service Hub, click **Add New Service**.
+
+1. Enter a **Service Name**.
 
     A Service name can be any string containing letters, numbers, or characters;
     for example, `service_name`, `Service Name`, or `Service-name`.
 
-5. (Optional) Enter a **Description**.
+1. (Optional) Enter a **Description**.
 
-6. Click **Create**.
+1. Click **Create**.
 
     A new Service is created and {{site.konnect_short_name}} automatically
     redirects to the Service's overview page.
 
 ### Update a Service
 
-1. From the left navigation menu, open the
-![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
-**Service Hub**.
+1. In the ![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
+Service Hub, select a Service from the list.
 
-2. Select a Service from the list.
-
-3. Edit the Service name and description directly on this page: click on either
+1. Edit the Service name and description directly on this page: click on either
 element to reveal a text box, enter the new text, then click outside of the text
 box to save.
 
+### Share a Service
+1. In the ![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
+Service Hub, select a Service from the list.
+
+1. Click **Share Service**.
+
+1. Select a user or team to share the Service with.
+
+1. Select a role to grant to the user or team.
+
+    You can share any Service that you have access to, with
+    the same role or lesser than what you have yourself. An organization admin
+    can share any Service with any role. For more information, see [
+    Manage Teams, Roles, and Users](/konnect/org-management/teams-roles-users/#entity-and-role-sharing).
+
+1. Click **Share Service** to save.
+
 ### Delete a Service
 
-1. From the left navigation menu, open the
-![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
-**Service Hub**.
+1. In the ![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
+Service Hub, select a Service from the list.
 
-2. Select a Service from the list.
-
-3. In the top right of the overview page, click the **Actions** menu and select
+1. In the top right of the overview page, click the **Actions** menu and select
 **Delete Service**.
 
-4. In the dialog that appears, confirm that you want to delete this service.
+1. In the dialog that appears, confirm that you want to delete this service.
 
 ## Service versions
 
@@ -78,11 +90,8 @@ ready to move to it.
 
 ### Create a new Service version
 
-1. From the left navigation menu, open the
-![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
-**Service Hub**.
-
-1. Select a Service from the dropdown menu.
+1. In the ![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
+Service Hub, select a Service from the list.
 
 1. Navigate to **Versions**, and click **+ New Version**.
 
@@ -110,23 +119,20 @@ ready to move to it.
     * If you create multiple versions in the **same group**, they must have unique names.
     * If you create multiple versions in **different groups**, the versions can have the same name.
 
-5. Click **Create** to save.
+1. Click **Create** to save.
 
 ### Delete a Service version
 
-1. From the left navigation menu, open the
-![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
-**Service Hub**.
+1. In the ![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
+Service Hub, select a Service from the list.
 
-2. Select a Service from the dropdown menu.
+1. Navigate to **Versions**.
 
-3. Navigate to **Versions**.
+1. Click on the version you want to delete, and you'll be taken to the version detail page.
 
-4. Click on the version you want to delete, and you'll be taken to the version detail page.
+1. Click on the **Actions** dropdown menu.
 
-5. Click on the **Actions** dropdown menu.
-
-6. Click **Delete Version** to permanently delete the Service version.
+1. Click **Delete Version** to permanently delete the Service version.
 
 ## Service version implementations
 
@@ -140,48 +146,47 @@ runtime instance in the runtime group that the Service version belongs to.
 > **Note:** Currently, the only supported implementation type is a
 {{site.base_gateway}} runtime.
 
-1. From the left navigation menu, open the
-![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
-**Service Hub**, then select a Service version.
+1. In the ![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
+Service Hub, select a Service version.
 
-2. Click **New Implementation**.
+1. Click **New Implementation**.
 
-3. In the **Create Implementation** dialog, in step 1, enter the connection
+1. In the **Create Implementation** dialog, in step 1, enter the connection
 details for the upstream service.
 
     1. Enter a URL in the default **Add using URL** field, or switch to
     **Add using Protocol, Host and Path** and enter each piece separately.
 
-    2. (Optional) Expand to **View 6 Advanced Fields** and further customize your
+    1. (Optional) Expand to **View 6 Advanced Fields** and further customize your
     implementation.
 
         See the [Service Object](/gateway/latest/admin-api/#service-object)
         documentation for parameter descriptions.
 
-    3. Click **Next**.
+    1. Click **Next**.
 
-4. In step 2, **Add a Route** to your Service Implementation.
+1. In step 2, **Add a Route** to your Service Implementation.
 
     1. Enter any name.
 
         This Route name must be unique in the account. Variations on
         capitalization are considered unique, for example, `foo` and `Foo`.
 
-    2. For **Method**, enter an HTTP method or a comma-separated list of methods
+    1. For **Method**, enter an HTTP method or a comma-separated list of methods
     that match this Route.
 
         For example, `GET` or `GET, POST`.
 
-    3. For **Path(s)**, click **Add Path** and enter a path in the format
+    1. For **Path(s)**, click **Add Path** and enter a path in the format
     `/<path>`.
 
-    4. (Optional) Click **View 4 Advanced Fields** to see all options.
+    1. (Optional) Click **View 4 Advanced Fields** to see all options.
     You can accept the defaults, or further customize your Route.
 
         See the [Route Object](/gateway/latest/admin-api/#route-object)
         documentation for parameter descriptions.
 
-    5. Click **Create**.
+    1. Click **Create**.
 
     The Service version overview displays.
 
@@ -196,13 +201,12 @@ first one.
 
 All Routes are created in the same runtime group as their parent Service version.
 
-1. From the left navigation menu, open the
-![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
-**Service Hub**, then select a Service version.
+1. In the ![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
+Service Hub, select a Service version.
 
-2. In the **Routes** section, click **New Route**.
+1. In the **Routes** section, click **New Route**.
 
-3. Fill in the fields as described in [Implement a Service Version](#implement-service-version),
+1. Fill in the fields as described in [Implement a Service Version](#implement-service-version),
 then click **Create**.
 
 ### Verify an implementation
