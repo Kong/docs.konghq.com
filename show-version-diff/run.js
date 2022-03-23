@@ -120,12 +120,13 @@ for (let i in files) {
       `No differences between ${currentPath} and ${nextPath}\n-----------------\n`
     );
   } catch (e) {
+    const output = e.message || e.stdout;
     // Diff always returns exit code 1, so we have to catch
     console.log(
       `##########################################\n${currentPath}\n${nextPath}\n##########################################`
     );
-    if (e.stdout.length > 0) {
-      console.log(e.stdout.split("\n").slice(4).join("\n"));
+    if (output.length > 0) {
+      console.log(output.split("\n").slice(4).join("\n"));
     } else {
       console.log("No changes");
     }
