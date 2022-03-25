@@ -1,32 +1,32 @@
 ---
-title: Migrate from Kong Gateway to Konnect Cloud
+title: Import Kong Gateway Entities into Konnect Cloud
 no_version: true
 ---
 
-You can migrate any edition of self-managed {{site.base_gateway}} to
-{{site.konnect_saas}}.
+You can attach any edition of self-managed {{site.base_gateway}} to
+{{site.konnect_saas}} as a data plane, and use Konnect as your control plane.
 
-Use [decK](/deck/) to convert and migrate the configuration for most
-{{site.base_gateway}} objects, as well as Dev Portal specs and documents.
+Use [decK](/deck/) to convert and import the configuration for most
+{{site.base_gateway}} entities, as well as Dev Portal specs and documents.
 
-Afterward, you must manually migrate:
+Afterward, you must manually create:
 * Dev Portal developer accounts and applications
 * RBAC roles and permissions
 * Certificates
 * Custom plugins
 
-You cannot migrate [unsupported plugins](/konnect/manage-plugins/#plugin-limitations).
+You cannot import [unsupported plugins](/konnect/manage-plugins/#plugin-limitations).
 
 ## Prerequisites
 * {{site.konnect_saas}} [account credentials](/konnect/access-account/).
 * [**Organization Admin**](/konnect/org-management/users-and-roles) permissions.
 * decK v1.7.0 or later [installed](/deck/latest/installation/).
 
-## Migrate object configuration
+## Import entity configuration
 
-Migrate object configurations with decK.
+Use deck to import entity configurations into a runtime group.
 
-### Export and convert Kong Gateway object configuration
+### Export and convert Kong Gateway entity configuration
 
 1. Export configuration from {{site.base_gateway}} with [`deck dump`](/deck/latest/reference/deck_dump):
 
@@ -37,7 +37,9 @@ Migrate object configurations with decK.
     This command outputs {{site.base_gateway}}'s object configuration into the
     specified file.
 
-2. Convert the file into {{site.konnect_saas}} format with [`deck convert`](/deck/latest/reference/deck_convert):
+2. [_Q: Is converting still necessary? Or do they just need to add `_konnect` with the
+runtime group name to the state file?_] 
+Convert the file into {{site.konnect_saas}} format with [`deck convert`](/deck/latest/reference/deck_convert):
 
     ```bash
     deck convert \
@@ -57,13 +59,14 @@ a warning if this occurs.
 
 ### Import the configuration into Konnect Cloud
 
-1. Preview the import with the [`deck konnect diff`](/deck/latest/reference/deck_konnect_diff) command:
+1. Preview the import with the [`deck diff`](/deck/latest/reference/deck_diff) command:
 
     ```sh
-    deck konnect diff \
+    deck diff \
       --konnect-email {YOUR_EMAIL} \
       --konnect-password {YOUR_PASSWORD} \
-      --state konnect.yaml
+      --state konnect.yaml \
+      --konnect-runtime-group default
     ```
 
     {:.note}
@@ -74,24 +77,30 @@ a warning if this occurs.
     [`deck konnect`](/deck/latest/reference/deck_konnect) reference for more
     information about the flag.
 
-2. If you're satisfied with the preview, run [`deck konnect sync`](/deck/latest/reference/deck_konnect_sync):
+2. If you're satisfied with the preview, run [`deck konnect sync`](/deck/latest/reference/deck_sync):
 
     ```sh
-    deck konnect sync \
-      --konnect-email {YOUR_EMAIL} \
-      --konnect-password {YOUR_PASSWORD} \
-      --state konnect.yaml
+    deck sync \
+      --konnect-password-file pass.yaml \
+      --state konnect.yaml \
+      --konnect-runtime-group default
     ```
 
-3. Log in to your [{{site.konnect_saas}}](http://konnect.konghq.com/login) account.
+    If you don't specify the `--konnect-runtime-group` flag, decK targets the
+    `default` runtime group. If you have more than one runtime group in your
+    organization, we recommend always setting this flag to avoid accidentally
+    pushing configuration to the wrong group.
 
-4. From the left navigation menu, select **Services** to open ServiceHub.
+3. Log in to your [{{site.konnect_saas}}](http://cloud.konghq.com/login) account.
+
+4. From the left navigation menu, select *** to open the Service Hub.
 
 5. Look through your Service catalog to check that all of your Services and
 related entities were migrated successfully.
 
-6. From the left navigation menu, select **Shared Config**, and check that your
-Consumers were migrated.
+6. From the left navigation menu, select **Runtime Manager**, and open the
+runtime group that you just updated. Check that your global configurations were
+migrated.
 
 ## Upload Dev Portal content
 
@@ -105,7 +114,7 @@ If you prefer to use the GUI, see [Dev Portal Service Documentation](/konnect/se
 ### Migrate specs and documents using decK
 
 If you have any Dev Portal documents you want to associate with your services,
-you can do so in the `konnect.yaml` configuration file.
+you can do so with a `konnect.yaml` configuration file.
 
 Each Service can have one markdown description file associated with it, and
 each Service version can have one spec in YAML or JSON format.
@@ -114,7 +123,10 @@ each Service version can have one spec in YAML or JSON format.
 `service_package` you want to edit and include a path to the document:
 
     ```yaml
-    service_packages:
+    _format_version: "1.1"
+    _konnect:
+      runtime_group_name: default
+    services:
     - name: MyService
       document:
         path: {PATH_TO_FILE}/description.md

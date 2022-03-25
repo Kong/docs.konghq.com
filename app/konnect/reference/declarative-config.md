@@ -9,12 +9,19 @@ configuration management tool, you can create, update,
 compare, and synchronize configuration as part of an automation pipeline.
 
 In {{site.konnect_saas}}, decK can manage:
-* **All parts of a service:** Service versions, implementations, routes, and
-plugins.
-* **Dev Portal documents:** Specs and markdown files.
-* Consumers, upstreams, and global plugins.
+* **Runtime groups**: Create state files for different runtime groups and manage
+each group separately. Manage Gateway Services, routes, consumers, plugins, and
+upstreams for each group.
+
+[_Q: Can decK still manage Service Hub content? It looks like the answer is no for now, but will change once labels are introduced - is that correct?_]
+* **All parts of a Konnect service:** Manage service versions, implementations, routes,
+and plugins.
+* **Dev Portal documents:** Manage specs and markdown files.
 
 To do this, you need [decK v1.7.0 or later](/deck/).
+[_Q: is this still accurate, or do they need deck 1.12? Looks like the konnect
+flags should be backwards compatible, so the only new thing in 1.12 would be
+`--konnect-runtime-group`_]
 
 You _cannot_ use decK to publish content to the Dev Portal, manage application
 registration, or configure custom plugins.
@@ -31,7 +38,7 @@ Check that you can log in to {{site.konnect_short_name}} and that decK
 recognizes your account credentials:
 
 ```sh
-deck konnect ping --konnect-email <email> --konnect-password <password>
+deck ping --konnect-email <email> --konnect-password <password>
 ```
 
 If the connection is successful, the terminal displays the first and last name
@@ -54,8 +61,14 @@ The following steps all use `--konnect-password-file`.
 Capture a snapshot of the current configuration in a file:
 
 ```sh
-deck konnect dump --konnect-email <email> --konnect-password-file <pass>.txt
+deck dump --konnect-email <email> --konnect-password-file <pass>.txt \
+  --konnect-runtime-group default
 ```
+
+If you don't specify the `--konnect-runtime-group` flag, decK still targets the
+`default` runtime group. If you have more than one runtime group in your
+organization, we recommend always setting this flag to avoid accidentally
+pushing configuration to the wrong group.
 
 The command creates a file named `konnect.yaml`. If you have nothing
 configured, decK creates the file with only the format version:
@@ -68,9 +81,9 @@ You can specify a different file name or location, or export the
 configuration in JSON format:
 
 ```sh
-deck konnect dump --konnect-email <email> --konnect-password-file <pass>.txt \
---format json \
---output-file examples/konnect2.yaml
+deck dump --konnect-email <email> --konnect-password-file <pass>.txt \
+  --format json \
+  --output-file examples/konnect2.yaml
 ```
 
 ## Make changes to configuration
@@ -86,30 +99,26 @@ the example with your generated UUID:
 
     ```yaml
     _format_version: "0.1"
-    service_packages:
+    _konnect:
+      runtime_group_name: default
+    services:
     - name: MyService
-      versions:
-      - implementation:
-          type: kong-gateway
-          kong:
-            service:
-              host: mockbin.org
-              port: 80
-              protocol: http
-              id: {YOUR_GENERATED_UUID}
-              routes:
-              - methods:
-                - GET
-                - POST
-                name: mockpath
-                paths:
-                - /mock
-                plugins:
-                - name: key-auth
-                  config:
-                    key_names:
-                    - apikey
-        version: "1"
+      host: mockbin.org
+      port: 80
+      protocol: http
+      id: {YOUR_GENERATED_UUID}
+      routes:
+      - methods:
+        - GET
+        - POST
+        name: mockpath
+        paths:
+        - /mock
+        plugins:
+        - name: key-auth
+          config:
+            key_names:
+            - apikey
     ```
 
     This snippet defines a service named `MyService` pointing to `mockbin.org`.
@@ -124,7 +133,7 @@ the example with your generated UUID:
 {{site.konnect_saas}}:
 
     ```sh
-    deck konnect diff --konnect-email <email> --konnect-password-file <pass>.txt
+    deck diff --konnect-email <email> --konnect-password-file <pass>.txt
     ```
 
     If the format and schema is correct, decK gives you a preview of what would
@@ -145,7 +154,7 @@ the example with your generated UUID:
 {{site.konnect_saas}}:
 
     ```sh
-    deck konnect sync --konnect-email <email> --konnect-password-file <pass>.txt
+    deck sync --konnect-email <email> --konnect-password-file <pass>.txt
     ```
 
     You should see the same output again:
@@ -210,21 +219,19 @@ down with repeated requests. Add a global proxy cache plugin:
 3. Run a diff to test your changes:
 
     ```sh
-    deck konnect diff --konnect-email <email> --konnect-password-file <pass>.txt
+    deck diff --konnect-email <email> --konnect-password-file <pass>.txt
     ```
 
 4. If everything looks good, run another sync, then check {{site.konnect_saas}}
 to see your changes:
 
     ```sh
-    deck konnect sync --konnect-email <email> --konnect-password-file <pass>.txt
+    deck sync --konnect-email <email> --konnect-password-file <pass>.txt
     ```
 
-    You can find consumers and global plugins under the
+    <!-- You can find consumers and global plugins under the
     ![icon](/assets/images/icons/konnect/konnect-shared-config.svg){:.inline .no-image-expand}
-    **[Shared Config](https://konnect.konghq.com/configuration)** menu option.
-
-    ![Shared Config overview page](/assets/images/docs/konnect/konnect-shared-config.png)
+    **[Shared Config](https://konnect.konghq.com/configuration)** menu option. -->
 
     {:.note}
     > **Note:** If you add consumers to the `konnect.yaml` file and sync your
@@ -261,6 +268,6 @@ No API key found in request.
 
 ## See also
 
-* [decK CLI reference](/deck/latest/reference/deck_konnect): decK commands for {{site.konnect_short_name}}
+* [decK CLI reference](/deck/latest/reference/deck)
 <!-- * [Migrate from a self-managed {{site.base_gateway}} deployment](/konnect/deployment/migrate-from-self-managed):
 Use decK to migrate {{site.base_gateway}} entities to {{site.konnect_saas}} -->
