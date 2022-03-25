@@ -42,10 +42,17 @@ Let's change up a couple of things:
 
 1. Return to Konnect. From the left side menu, open **Dev Portal**, then **Appearance**.
 
-1. Try out a couple of customization options.
-You can choose a preset theme and adjust it to your needs.
+1. Try out a couple of customization options - whatever you like.
 
-1. Click **Save** to apply the theme.
+    * Choose a preset theme and adjust it to your needs
+    * Set some home page text
+    * Upload header, logo, or favicon images
+    * Play around with the colours and fonts of your site
+
+    You could also [add a custom domain](/konnect/dev-portal/customization/custom-domain/),
+    if you have one you want to use.
+
+1. Click **Save** to apply the changes.
 
 1. Switch back to the Dev Portal to see your changes live.
 

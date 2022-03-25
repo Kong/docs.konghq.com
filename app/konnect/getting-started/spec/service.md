@@ -14,7 +14,7 @@ This topic walks you through importing an API spec into a Konnect Service,
 and adding a description.
 
 ## Prerequisites
-* You have **Organization Admin** permissions in
+* You have the **Organization Admin** or **Service Admin** role in
 {{site.konnect_saas}}. If you created this Konnect organization, your account
 is part of the organization admin team by default.
 * You have an OpenAPI spec in JSON or YAML format. If not, you can use the
@@ -22,68 +22,18 @@ is part of the organization admin team by default.
 
 ## Create a service
 
-In this guide, you will be using the Service Hub to create a Konnect
-Service, then create your first Service version to contain the spec.
-
-1. From the left navigation menu, click **Services** to open Service Hub.
-
-1. Click **Add New Service**.
-
-1. Enter a **Service Name**. For this example, enter `example_service`.
-
-    A Service name can be any string containing letters, numbers, or characters;
-    for example, `service_name`, `Service Name`, or `Service-name`.
-
-1. (Optional) Enter a **Description**.
-
-    This description is used in Konnect and on the Dev Portal.
-
-1. Click **Create**.
-
-    A new Service is created and the page automatically redirects back to the
-    **example_service** overview page.
-
-    Now that you have a Service set up, you can start filling out details about your
-    API.
+{% include_cached /md/konnect/konnect-service.md %}
 
 ## Upload a description
+
+Now that you have a Service set up, you can start filling out details about your
+API.
 
 {% include_cached /md/konnect/dev-portal.md section='markdown' %}
 
 ## Create a Service version
 
-Let's set up the first version of your API service. A Konnect Service can
-contain many versions, but one spec is always linked to one version.
-
-1. On your Service's overview page, scroll down to **Versions** and
- click **New Version**.
-
-1. Enter a **Version Name**. For this example, enter `v.1`.
-
-    A version name can be any string containing letters, numbers, or characters;
-    for example, `1.0.0`, `v.1`, or `version#1`. A Service can have multiple
-    versions.
-
-1. Select a runtime group.
-
-    Choose a [group](/konnect/configure/runtime-manager/runtime-groups) to
-    limit this version to a specific group of runtime
-    instances. This determines which entities and runtimes the Service version
-    has access to, and who has access to this version.
-
-    {:.note}
-    > **Note:** Later on in this guide, you will have the chance to test out
-    application registration. Applications can only be registered against
-    Services in the default runtime group, so if you want to test out that
-    feature, choose `default` in this step.
-
-    Different versions of the same Service can run in different runtime groups.
-    The version name is unique within a group:
-
-    * If you create multiple versions in the **same group**, they must have unique names.
-    * If you create multiple versions in **different groups**, the versions can have the same name.
-
-1. Click **Create** to save.
+{% include_cached /md/konnect/service-version.md %}
 
 ## Upload an API spec
 

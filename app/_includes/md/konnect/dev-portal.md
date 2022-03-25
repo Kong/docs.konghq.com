@@ -29,8 +29,8 @@ page and click **Upload Document**.
 
 1. Locate the `.md` file and click **Open**.
 
-When you later publish this Service to the Dev Portal, this description will be
-displayed as the introduction to your API.
+The contents of this markdown file will be displayed as the introduction to
+your API when this Service is published to the Dev Portal.
 {% endif %}
 
 {% if include.section == "spec" %}
@@ -47,9 +47,8 @@ use the [sample Vitals spec](/konnect/vitalsSpec.yaml) for testing.
     The spec must be in YAML or JSON format. To test this functionality, you
     can use [vitalsSpec.yaml](/konnect/vitalsSpec.yaml) as a sample spec.
 
-If you left the Konnect Service version in **Published** status, when you later
-publish this Service to the Dev Portal, this spec will be published under the
-version name.
+This OpenAPI spec will be shown under the version name when this Service is
+published to the Dev Portal.
 
 {% endif %}
 
@@ -61,6 +60,10 @@ a link.
 
 If you choose to make the Dev Portal public, application registration
 will not be available.
+
+{:note}
+> **Note:** The Dev Portal is a separate site that requires its own credentials.
+You can't use your Konnect credentials to log in here.
 
 {% navtabs %}
 {% navtab Private Dev Portal %}
@@ -76,8 +79,8 @@ will not be available.
 
 1. Click **Sign Up** and fill out the form to create a developer account.
 
-    The Dev Portal is a separate site that requires its own credentials. You
-    can't use your Konnect credentials to log in here.
+    Remember, the Dev Portal does not share credentials with your Konnect 
+    account.
 
 1. As as admin, return to Konnect and approve the new account:
 

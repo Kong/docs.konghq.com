@@ -3,7 +3,7 @@ title: Implement and Test a Service
 no_version: true
 ---
 
-Create a Service implementation to expose your Service to clients.
+Create a Service implementation to expose your Konnect Service to clients.
 
 When you create an implementation, you also specify the Route to it. This Route,
 combined with the proxy URL for the Service, will lead to the endpoint
@@ -17,37 +17,7 @@ make sure you have
 
 ## Implement a Service Version
 
-1. On the **example_service** overview, in the Versions section, click **v.1**.
-
-2. Click **New Implementation**.
-
-3. In the **Create Implementation** dialog, in step 1, create a new Service
-implementation to associate with your Service version.
-
-    1. Click the **Add using URL** radio button. This is the default.
-
-    2. In the URL field, enter `http://mockbin.org`.
-
-    3. Use the defaults for the **6 Advanced Fields**.
-
-    4. Click **Next**.
-
-4. In step 2, **Add a Route** to add a route to your Service Implementation.
-
-    For this example, enter the following:
-
-    * **Name**: `mockbin`
-    * **Method**: `GET`
-    * **Path(s)**: Click **Add Path** and enter `/mock`
-
-    For the remaining fields, use the default values listed.
-
-5. Click **Create**.
-
-    The **v.1** Service Version overview displays.
-
-    If you want to view the configuration, edit or delete the implementation,
-    or delete the version, click the **Actions** menu.
+{% include_cached /md/konnect/implement-service.md %}
 
 ## Verify the Implementation
 
@@ -73,7 +43,7 @@ traffic proxied through a {{site.base_gateway}} runtime.
 
 To summarize, in this topic you:
 
-* Implemented the Service version `v.1` with the Route `/mock`. This means if an HTTP
+* Implemented the Service version `v1` with the Route `/mock`. This means if an HTTP
 request is sent to the {{site.base_gateway}} node and it matches route `/mock`, that
 request is sent to `http://mockbin.org`.
 * Abstracted a backend/upstream service and put a route of your choice on the

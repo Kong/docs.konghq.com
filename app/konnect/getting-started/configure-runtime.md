@@ -21,7 +21,7 @@ runtime instances.
 
 ## Prerequisites
 
-* You have **Organization Admin** permissions in
+* You have the **Organization Admin** role in
 {{site.konnect_saas}}. If you created this Konnect organization, your account
 is part of the organization admin team by default.
 * The quick setup script requires Docker and a Unix shell (for example, bash or
@@ -32,35 +32,7 @@ is part of the organization admin team by default.
 
 ## Set up a New Runtime Instance
 
-1. From the left navigation menu, open **Runtime Manager**.
-
-1. Select a runtime group. [to do: check what happens if you only have the default group - is it open automatically?]
-
-1. Click **Configure Runtime**.
-
-     The page opens to a **Configure New Runtime** form with the Docker tab
-     selected.
-
-1. Click **Copy Script**.
-
-1. Replace the placeholder for `<your-password>` with your own
-{{site.konnect_saas}} password.
-
-1. Run the script on any host you choose.
-
-    This script creates a Docker container running a simple
-    {{site.base_gateway}} instance and connects it to your
-    {{site.konnect_saas}} account.
-
-1. Click **Done** to go to the Runtime Manager page.
-
-Once the script has finished running, the Runtime Manager will include
-a new entry for your instance and the tag in the **Sync Status** column should
-say **Connected**.
-
-The default proxy URL for this runtime is `http://localhost:8000`. Take
-note of this URL, as you'll need it later to access a Service
-implementation.
+ {% include_cached /md/konnect/docker-runtime.md %}
 
 ## Summary and Next Steps
 
@@ -68,4 +40,4 @@ In this step, you ran a script which set up a Docker container with a
 {{site.base_gateway}} instance, adding your first runtime to the Runtime
 Manager.
 
-Next, [set up a your first Service through {{site.konnect_saas}}](/konnect/getting-started/configure-service).
+Next, [set up a your first Konnect Service through {{site.konnect_saas}}](/konnect/getting-started/configure-service).

@@ -50,7 +50,7 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
 
 ## Get started with an API spec
 
-Have an API spec and want to share your API with developers? Get started by
+Have an OpenAPI spec and want to share your API with developers? Get started by
 using Service Hub to publish and manage your spec:
 
 1. **Upload your docs to Konnect**
@@ -63,7 +63,7 @@ using Service Hub to publish and manage your spec:
 
 2. **Implement the Service**
 
-    Attach the Service to an upstream service
+    Attach the Service to an upstream application
     and define a route to expose the Service for application registration.
 
     [Implement the Service &gt;](/konnect/getting-started/spec/service/)
