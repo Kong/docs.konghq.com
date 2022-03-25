@@ -3,8 +3,8 @@ title: Import an API Spec into Konnect
 no_version: true
 ---
 
-Use the Service Hub to manage and share your APIs. Bring an API spec and publish
-it through the Service Hub to the Dev Portal.
+Use the ServiceHub to manage and share your APIs. Bring an API spec and publish
+it through the ServiceHub to the Dev Portal.
 
 The Dev Portal is an API catalog that lets you document your Konnect Services
 and share them with your developers. Developers can use the Dev Portal to
