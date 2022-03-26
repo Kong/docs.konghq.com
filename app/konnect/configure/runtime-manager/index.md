@@ -17,8 +17,8 @@ _[screenshot of overview page]_
 
 With {{site.konnect_short_name}} acting as the control plane, a runtime instance
 doesn't need a database to store configuration data. Instead, configuration
-is stored in-memory on each node, and you can easily update multiple runtime
-instances from one {{site.konnect_short_name}} account with a few clicks.
+is stored in-memory on each node, and you can easily update all runtime instances
+ in a group with a few clicks.
 
 The Runtime Manager, and the {{site.konnect_saas}} application as
 a whole, does not have access or visibility into the data flowing through your
@@ -43,8 +43,7 @@ for more information.
 
 ## Types of runtimes
 
-Each runtime group connects to its own runtime instances. Every runtime instance
-in a group must be of the same type.
+Every runtime instance in a group must be of the same type.
 
 Currently, the only supported runtime type in the
 {{site.konnect_saas}} application is a [{{site.base_gateway}}](/gateway/)
@@ -54,7 +53,8 @@ data plane.
 
 A {{site.base_gateway}} runtime instance acts as a data plane, which is a node
 serving traffic for the proxy. Data plane nodes are not directly connected
-to a database. They receive configuration
+to a database. Instead, they receive configuration from their runtime group,
+which stores and manages the configuration in {{site.konnect_saas}}.
 
 
 Choose an installation type below:

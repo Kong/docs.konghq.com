@@ -21,11 +21,13 @@ For example:
 
     ![Connected runtimes in Runtime Manager](/assets/images/docs/konnect/konnect-runtimes-connected.png)
 
-3. If the new runtime instance is connected and functioning, you can disconnect and
-shut down any existing older instances that you're replacing.
+3. If the new runtime instance is connected and functioning, you can disconnect
+and shut down any existing older instances that you're replacing.
 
     {:.note}
-    > You can't shut down runtime instances from within Runtime Manager.
+    > You can't shut down runtime instances from within Runtime Manager. Old
+    instances will also remain listed as `Connected` in Runtime Manager for a
+    few hours after they have been removed or shut down.
 
 4. Test passing data through your new runtime instance by accessing your proxy
 URL.

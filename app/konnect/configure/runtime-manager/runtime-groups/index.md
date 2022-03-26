@@ -28,7 +28,7 @@ _[TBA: diagram]_
 The default runtime group is the foundational group in Konnect. Every
 organization starts with one default group.
 
-This group can be renamed, but it can't be deleted, and its status as the default
+This group can't be renamed or deleted, and its status as the default
 group can't be changed.
 
 ### Application registration in the Dev Portal
@@ -83,23 +83,20 @@ entity-specific permissions.
 
 [Administer teams &rarr;](/link)
 
-## Global configuration
+## Runtime group configuration
 
-For each runtime group, you can spin up runtime instances and configure global
-options for the following {{site.base_gateway}} objects:
+For each runtime group, you can spin up runtime instances and configure
+the following {{site.base_gateway}} objects:
+* Gateway Services
+* Routes
 * Consumers
 * Plugins
 * Upstreams
 * Certificates
 * SNIs
 
-A **global** object is a set of configurations that apply to, or can be used
-by, all objects in a runtime group. For example, if you set up a Proxy Caching
-plugin in the default runtime group and set it to `Global`,
-the plugin configuration will apply to all Service versions in the group.
-
-When there are multiple runtime groups, configuration for any of the global
-objects only applies to the runtime group that it was created in. Consumers and
+When there are multiple runtime groups, any object configuration only
+applies to the runtime group that it was created in. Consumers and
 their authentication mechanisms don't carry over to other runtime groups.
 
 [Manage global entities &rarr;](/konnect/configure/runtime-manager/manage-entities)
@@ -117,8 +114,6 @@ ID | A unique ID for the group. This ID is automatically generated when a group 
 Type | Types of runtimes that this group contains. Currently, the only supported runtime type is `Kong Gateway`.
 Active instances | The number of runtime instances in this group that are `Connected`, `Normal`, or `In Sync`.
 Labels | A list of labels on the runtime group in the form of key-value pairs.
-
-<!--State | The status of the runtime group. Can be one of: <br> &#8226; `initializing` - The group is currently being provisioned. <br> &#8226; `deployed` - The group has been provisioned and is available for use.-->
 
 ### Runtime instances table
 

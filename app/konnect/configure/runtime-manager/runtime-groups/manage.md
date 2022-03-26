@@ -16,8 +16,7 @@ and configure any [global entities](/konnect/configure/runtime-manager/manage-en
 in the group.
 
 ## Prerequisites
-* TBA: Required permissions
-* TBA: Any prereqs for deleting the group
+You have the **Organization Admin** role in {{site.konnect_saas}}.
 
 ## Create a runtime group
 {:.badge .enterprise}
@@ -31,7 +30,7 @@ in the group.
 
     Each runtime group in the organization must have a unique name.
 
-1. Add any labels in key-value pair format.
+1. Add any labels in `key:value` pair format.
 
     For example, you might set `location:us-west`, where `location` is the key
     and the `us-west` is the value.
@@ -53,12 +52,13 @@ in the group.
 {:.badge .enterprise}
 
 When a runtime group is deleted, all associated entities are also deleted.
-This includes associated Service versions in the Service Hub, as well as all
-global Consumers, Plugins, Upstreams, Certificates, and SNIs configured for
-this group.
+This includes all entities configured in the Runtime Manager for this group. We
+recommend backing up your runtime group configuration before deleting the group.
 
 Runtime instances that are still active when the group is deleted will not be
-terminated, but they will be orphaned.
+terminated, but they will be orphaned. They will continue processing traffic
+using the last configuration they received until they are either connected to
+a new runtime group or manually shut down.
 
 You cannot delete the default runtime group.
 
@@ -66,6 +66,34 @@ You cannot delete the default runtime group.
 > **Warning:** Deleting a group is irreversible. Make sure that you are
 certain that you want to delete the group, and that all entities and runtime
 instances in the have been accounted for.
+
+1. Back up your configuration before deleting the runtime group. You
+can use decK to accomplish this:
+
+    ```sh
+    deck dump \
+    --konnect-password <pass> \
+    --konnect-email <email> \
+    --konnect-runtime-group <group-name> \
+    --output-file /path/to/<my-backup.yaml>
+    ```
+
+    This command generates a state file for the runtime group's entity
+    configuration. It looks something like this:
+
+    ```yaml
+    _format_version: "1.1"
+    _konnect:
+      runtime_group_name: us-west
+    consumers:
+    - username: DianaPrince
+    - username: WallyWest
+    services:
+    - connect_timeout: 60000
+      host: mockbin.org
+      name: MyService
+      ...
+    ```
 
 1. In Konnect, open the ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
 **Runtime Manager** from the left side menu.

@@ -6,7 +6,7 @@ Set up a Docker runtime instance through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
 configure your instance to accept configuration from
 {{site.konnect_short_name}}. The Runtime Manager keeps track of all runtime
-instancesassociated with the {{site.konnect_saas}} account.
+instances associated with the {{site.konnect_saas}} account.
 
 You have the following options when configuring a new runtime instance with Docker:
 * Use the [quick setup](#quick-setup) script, which generates a data plane container

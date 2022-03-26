@@ -40,6 +40,12 @@ element to reveal a text box, enter the new text, then click outside of the text
 box to save.
 
 ### Share a Service
+
+If you have a Service Admin or Organization Admin role, you can share any
+Service that you have access to.
+
+For more information, see [Manage Teams, Roles, and Users](/konnect/org-management/teams-roles-users/#entity-and-role-sharing).
+
 1. In the ![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
 Service Hub, select a Service from the list.
 
@@ -48,11 +54,6 @@ Service Hub, select a Service from the list.
 1. Select a user or team to share the Service with.
 
 1. Select a role to grant to the user or team.
-
-    You can share any Service that you have access to, with
-    the same role or lesser than what you have yourself. An organization admin
-    can share any Service with any role. For more information, see [
-    Manage Teams, Roles, and Users](/konnect/org-management/teams-roles-users/#entity-and-role-sharing).
 
 1. Click **Share Service** to save.
 
@@ -72,16 +73,18 @@ Every Konnect Service version is associated with one runtime group.
 Any configurations for the Service version, such as implementations, plugins,
 and routes, will also be associated with the same runtime group.
 
-If a Service has multiple Service versions, each Service version can be
+If a Service has multiple Service versions, each version can be
 associated with a different runtime group, or with the same runtime group.
 Through its versions, a Service can made be available in multiple environments,
-simply by assigning Service versions to a different runtime groups.
+simply by creating new Service versions in different runtime groups.
 
-A common use case for this is environment specialization. For example, if you
-have three runtime groups for `development`, `staging`, and `production`, you
-can manage which environment the Service is available in by assigning that group
-at creation time. So, you might create a v0 in `development`, then a v0.1 in
-`staging`, and a finally a v1 in `production`.
+A common use case for this is environment specialization.
+For example, if you have three runtime groups for `development`, `staging`, and
+`production`, you can manage which environment the Service is available in by
+assigning a version to that group at creation time. You might have v1 running
+in `production`, and be actively working on v2 in `development`. Once it's
+ready to test, you'd create v2 in `staging` before finally creating v2 in
+`production` alongside v1.
 
 {:.note}
 > **Note:** You can't move a Service version from one runtime group to another.
@@ -103,13 +106,13 @@ Service Hub, select a Service from the list.
 
 1. Select a runtime group.
 
-    Choose a group to limit this version to a specific group of runtime
+    Choose a group to deploy this version to a specific group of runtime
     instances. This determines which entities and runtimes the Service version
     has access to, and who has access to this version.
 
     {:.note}
-    > **Note:** Applications can only be registered against
-    Services in the default runtime group, so if you plan on using
+    > **Note:** Application registration is only available for
+    Services in the default runtime group, so if you plan on enabling
     [application registration](/konnect/dev-portal/applications/application-overview),
     choose `default` in this step.
 
@@ -146,6 +149,9 @@ runtime instance in the runtime group that the Service version belongs to.
 > **Note:** Currently, the only supported implementation type is a
 {{site.base_gateway}} runtime.
 
+An implementation is a Gateway Service. By implementing a Konnect Service
+version, you create a Gateway Service in the version's runtime group.
+
 1. In the ![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
 Service Hub, select a Service version.
 
@@ -153,6 +159,11 @@ Service Hub, select a Service version.
 
 1. In the **Create Implementation** dialog, in step 1, enter the connection
 details for the upstream service.
+
+    1. Enter a name for the Gateway Service.
+
+        This name must be unique to the runtime group. You can't use an
+        existing Gateway Service here.
 
     1. Enter a URL in the default **Add using URL** field, or switch to
     **Add using Protocol, Host and Path** and enter each piece separately.
@@ -192,6 +203,8 @@ details for the upstream service.
 
     If you want to view the configuration, edit or delete the implementation,
     or delete the version, click the **Actions** menu.
+
+    You can find the linked Gateway Service in the Runtime Manager.
 
 ### Add a Route to a version
 

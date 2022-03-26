@@ -8,6 +8,12 @@ You can manage global and consumer-scoped entities from within a runtime group.
 **Global entities** are configurations that apply to, or can be used by,
 all services, routes, and consumers in the cluster, as applicable.
 
+A **global** entity is a set of configurations that apply to, or can be used
+by, all objects in a runtime group. For example, if you set up a Proxy Caching
+plugin in the default runtime group and set it to `Global`,
+the plugin configuration will apply to all Service versions in the group.
+
+
 [_TO DO: Add info on consumers, upstreams, certificates, and SNIs to this topic, and try to genericize the config instructions_]
 
 ## Plugins

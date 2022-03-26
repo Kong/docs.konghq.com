@@ -33,7 +33,9 @@ and follow the instructions in Steps 1 and 2 **only** to download and install
 {{site.base_gateway}} {{site.data.kong_latest_ee.version}}.
 
     {:.important}
-    > Do not start or create a database on this node.
+    > You should not deploy a {{site.base_gateway}} database on this node 
+    as {{site.konnect_short_name}} provides a hosted control plane with its own
+    database.
 
 2. Return to {{site.konnect_short_name}} and copy the
 codeblock in the **Step 2. Configuration Parameters** section.
