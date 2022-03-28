@@ -1,8 +1,10 @@
-const fs = require("fs");
-const fg = require("fast-glob");
-const semver = require("semver");
-const execa = require("execa").sync;
-const argv = require("minimist")(process.argv.slice(2));
+import fs from "fs";
+import fg from "fast-glob";
+import semver from "semver";
+import {execaSync as execa} from 'execa';
+import minimist from "minimist";
+
+const argv = minimist(process.argv.slice(2));
 
 if (argv.help || !argv.source) {
   console.log(`
