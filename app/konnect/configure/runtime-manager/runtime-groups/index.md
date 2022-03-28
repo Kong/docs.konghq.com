@@ -6,7 +6,7 @@ no_version: true
 Konnect manages runtime configuration in runtime groups. Each runtime group acts
 as a separate control plane and can manage runtime configurations independently
 of any other group. You can find a list of all runtime groups in your organization
-on the [Runtime Manager overview](https://konnect.konghq.com/runtime-manager/).
+on the [Runtime Manager overview](https://cloud.konghq.com/runtime-manager/).
 
 * A **runtime group** is a collection of API connectivity runtime instances
 sharing the same configuration and behavior space.
@@ -21,8 +21,6 @@ you can configure two additional custom runtime groups in the same Konnect
 account to manage runtime instances and their configuration in any groupings
 you want.
 
-_[TBA: diagram]_
-
 ## Default runtime group
 
 The default runtime group is the foundational group in Konnect. Every
@@ -33,7 +31,7 @@ group can't be changed.
 
 ### Application registration in the Dev Portal
 
-When publishing documentation from the Service Hub to the Dev Portal, you can
+When publishing documentation from the ServiceHub to the Dev Portal, you can
 publish API specs from any version -- no matter which runtime group the version
 is in. However, application registration is only supported for Service versions
 running in the default runtime group.
@@ -105,7 +103,7 @@ their authentication mechanisms don't carry over to other runtime groups.
 
 ### Runtime groups table
 
-The following describes the content of the table found on the [Runtime Manager overview](https://konnect.konghq.com/runtime-manager/).
+The following describes the content of the table found on the [Runtime Manager overview](https://cloud.konghq.com/runtime-manager/).
 
 Column | Description
 -------|-------------

@@ -1,9 +1,9 @@
 ---
-title: Manage Services through Service Hub
+title: Manage Services through ServiceHub
 no_version: true
 ---
 
-Through the [Service Hub](https://konnect.konghq.com/servicehub/), you can
+Through the [ServiceHub](https://cloud.konghq.com/servicehub/), you can
 create and manage all Konnect Services, Service versions, and Service
 implementations in one place.
 
@@ -11,12 +11,12 @@ implementations in one place.
 
 Access all Konnect Service configuration through the
 ![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
-**Service Hub**.
+**ServiceHub**.
 
 ### Add a Service to the catalog
 
 1. In the ![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
-Service Hub, click **Add New Service**.
+ServiceHub, click **Add New Service**.
 
 1. Enter a **Service Name**.
 
@@ -33,7 +33,7 @@ Service Hub, click **Add New Service**.
 ### Update a Service
 
 1. In the ![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
-Service Hub, select a Service from the list.
+ServiceHub, select a Service from the list.
 
 1. Edit the Service name and description directly on this page: click on either
 element to reveal a text box, enter the new text, then click outside of the text
@@ -47,7 +47,7 @@ Service that you have access to.
 For more information, see [Manage Teams, Roles, and Users](/konnect/org-management/teams-roles-users/#entity-and-role-sharing).
 
 1. In the ![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
-Service Hub, select a Service from the list.
+ServiceHub, select a Service from the list.
 
 1. Click **Share Service**.
 
@@ -60,7 +60,7 @@ Service Hub, select a Service from the list.
 ### Delete a Service
 
 1. In the ![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
-Service Hub, select a Service from the list.
+ServiceHub, select a Service from the list.
 
 1. In the top right of the overview page, click the **Actions** menu and select
 **Delete Service**.
@@ -94,7 +94,7 @@ ready to move to it.
 ### Create a new Service version
 
 1. In the ![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
-Service Hub, select a Service from the list.
+ServiceHub, select a Service from the list.
 
 1. Navigate to **Versions**, and click **+ New Version**.
 
@@ -127,7 +127,7 @@ Service Hub, select a Service from the list.
 ### Delete a Service version
 
 1. In the ![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
-Service Hub, select a Service from the list.
+ServiceHub, select a Service from the list.
 
 1. Navigate to **Versions**.
 
@@ -153,7 +153,7 @@ An implementation is a Gateway Service. By implementing a Konnect Service
 version, you create a Gateway Service in the version's runtime group.
 
 1. In the ![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
-Service Hub, select a Service version.
+ServiceHub, select a Service version.
 
 1. Click **New Implementation**.
 
@@ -215,7 +215,7 @@ first one.
 All Routes are created in the same runtime group as their parent Service version.
 
 1. In the ![service hub icon](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .konnect-icn .no-image-expand}
-Service Hub, select a Service version.
+ServiceHub, select a Service version.
 
 1. In the **Routes** section, click **New Route**.
 

@@ -10,9 +10,9 @@ old one is removed. It is the cleanest and safest way to upgrade with no
 proxy downtime.
 
 1. Provision a new runtime instance through the Runtime Manager:
-  * [Docker](/konnect/runtime-manager/runtime-instances/gateway-runtime-docker)
-  * [Linux](/konnect/runtime-manager/runtime-instances/gateway-runtime-conf)
-  * [Kubernetes (Helm)](/konnect/runtime-manager/runtime-instances/gateway-runtime-kubernetes)
+  * [Docker](/konnect/configure/runtime-manager/runtime-instances/gateway-runtime-docker)
+  * [Linux](/konnect/configure/runtime-manager/runtime-instances/gateway-runtime-conf)
+  * [Kubernetes (Helm)](/konnect/configure/runtime-manager/runtime-instances/gateway-runtime-kubernetes)
 
 2. Open the Runtime Manager, then choose a runtime group.
 Make sure that your new runtime instance appears in the list of runtime

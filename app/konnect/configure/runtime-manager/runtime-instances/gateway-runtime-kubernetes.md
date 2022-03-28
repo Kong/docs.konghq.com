@@ -122,7 +122,7 @@ with your specific values from {{site.konnect_short_name}}.
     the values in `cluster_cert`, `cluster_cert_key`, and `cluster_ca_cert`
     with references to the secrets you created earlier.
 
-    See [Parameters](/konnect/runtime-manager/runtime-instances/runtime-parameter-reference) for
+    See [Parameters](/konnect/configure/runtime-manager/runtime-instances/runtime-parameter-reference) for
     descriptions and matching values in {{site.konnect_short_name}}.
 
 5. Apply the `values.yaml`:

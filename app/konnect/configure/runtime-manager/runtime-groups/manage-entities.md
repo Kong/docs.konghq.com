@@ -22,12 +22,12 @@ The **Plugins** page shows all plugins in the cluster. However, you can
 only edit **global** or **consumer-scoped** plugins here.
 [Service](/konnect/configure/manage-plugins/enable-service-plugin) and
 [route](/konnect/configure/manage-plugins/enable-route-plugin) plugins must be managed
-through the Service Hub.
+through the ServiceHub.
 
 ### Configure a new plugin
 
 1. From the left navigation menu in Konnect, open the ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
-**Runtime Manager**.
+**Runtimes**.
 
 2. Select **Plugins** from the menu, then click **+ Install Plugin**.
 
@@ -53,7 +53,7 @@ Disabling a plugin leaves its configuration intact, and you can re-enable the
 plugin at any time.
 
 1. Open the ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
-**Runtime Manager**, then select **Plugins** from the menu.
+**Runtimes**, then select **Plugins** from the menu.
 
 2. Find your plugin in the plugins list and click the toggle in the **Enabled** column.
 
@@ -68,7 +68,7 @@ Deleting a plugin completely removes it and its configuration from
 {{site.konnect_short_name}}.
 
 1. Open the ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
-**Runtime Manager**, then select **Plugins** from the menu.
+**Runtimes**, then select **Plugins** from the menu.
 
 2. Find your plugin in the plugins list, open the action menu on the right of the row, and click **Edit** or **Delete**.
 

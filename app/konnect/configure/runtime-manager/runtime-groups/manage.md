@@ -4,7 +4,7 @@ no_version: true
 ---
 
 Create, update, and delete runtime groups through the
-[Runtime Manager](https://konnect.konghq.com/runtime-manager) in Konnect.
+[Runtime Manager](https://cloud.konghq.com/runtime-manager) in Konnect.
 
 You can find the list of all runtime groups in the Runtime Manager. If you don't
 have an Enterprise account, the Runtime Manager will only ever have one
@@ -21,8 +21,8 @@ You have the **Organization Admin** role in {{site.konnect_saas}}.
 ## Create a runtime group
 {:.badge .enterprise}
 
-1. In Konnect, open the ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
-**Runtime Manager** from the left side menu.
+1. In Konnect, open ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
+**Runtimes** from the left side menu.
 
 1. Click **Create Runtime Group**.
 
@@ -41,8 +41,8 @@ You have the **Organization Admin** role in {{site.konnect_saas}}.
 
 ## Edit a runtime group
 
-1. In Konnect, open the ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
-**Runtime Manager** from the left side menu.
+1. In Konnect, open ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
+**Runtimes** from the left side menu.
 
 1. Click the action menu icon on the far right of a row and select **Edit**.
 
@@ -95,8 +95,8 @@ can use decK to accomplish this:
       ...
     ```
 
-1. In Konnect, open the ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
-**Runtime Manager** from the left side menu.
+1. In Konnect, open ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
+**Runtimes** from the left side menu.
 
 1. Click the action menu icon on the far right of a row and select **Delete**.
 

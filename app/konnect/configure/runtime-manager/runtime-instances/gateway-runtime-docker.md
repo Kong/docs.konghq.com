@@ -34,7 +34,7 @@ runtime instances.
 
 1. From the left navigation menu, open
 ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
-**Runtime Manager**.
+**Runtimes**.
 
 2. Select a runtime group.
 
@@ -123,7 +123,7 @@ docker run -d --name kong-dp `
 
     ![Konnect Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
 
-    See [Parameters](/konnect/runtime-manager/runtime-instances/runtime-parameter-reference) for
+    See [Parameters](/konnect/configure/runtime-manager/runtime-instances/runtime-parameter-reference) for
     descriptions and the matching fields in {{site.konnect_short_name}}.
 
 3. `-p 8000:8000` sets the proxy URL to `http://localhost:8000`.

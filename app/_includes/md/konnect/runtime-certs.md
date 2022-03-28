@@ -1,7 +1,7 @@
 <!-- Shared between Konnect gateway runtime config topics: Docker, Kubernetes, and kong.conf -->
 1. In Konnect, from the left navigation menu, select
 ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
-**Runtime Manager**.
+**Runtimes**.
 
 2. Click **+ New Runtime Instance**.
 
