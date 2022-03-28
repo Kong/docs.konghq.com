@@ -10,11 +10,11 @@ Keywords:
 * **Fully manage**: Create, read, update, and delete
 * **Partially manage**: Depends on the team
 
-| Team                | Permissions  |
+| Team                | Description  |
 |---------------------|--------------|
 | Organization Admin  | Users can fully manage all objects, users, and roles in the organization. |
 | Portal Admin        | Users can fully manage all developer portal content, which includes Konnect service pages and supporting content, as well as Dev Portal configuration and Connections. |
-| Portal Viewer       | Users can access the Dev Portal, create applications, and register those applications with services. |
+| Portal Viewer       | Users can view Dev Portal configuration in Konnect, including all developers and applications registered through the Dev Portal. |
 | Runtime Admin       | Users can configure runtimes for the organization and fully manage related global configurations: upstreams, SNIs, and certs.
 | Service Admin       | Users can fully manage services and versions, manage application registration, publish services to the Dev Portal, and manage global configuration for consumers and plugins.|  
 | Service Developer   | Users can view Konnect services, and fully manage versions of existing services and their Portal specs. |
