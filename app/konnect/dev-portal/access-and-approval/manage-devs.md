@@ -17,7 +17,7 @@ permissions.
 A status represents the state of developers and their access to the {{site.konnect_short_name}} Dev
 Portal:
 
-**Approved**
+* **Approved**
 : A developer has been approved to access the {{site.konnect_short_name}} Dev Portal. Approved developers
    can generate credentials and access all APIs that allow those credentials.
 
@@ -59,7 +59,7 @@ pending requests is displayed in the Requests menu and the Developers tab.
    **Approve** from the context menu.
 
    The status is updated from **Pending** to **Approved**. The developer
-   transfers from the pending Requests page Developers tab to the Developers page.
+   is now visible on the _Developers_ page and is no longer shown on the _Requests_ page.
 
 ### Reject a developer's access request {#reject-dev-reg}
 
