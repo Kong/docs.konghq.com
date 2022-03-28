@@ -133,7 +133,7 @@
 /konnect/servicehub/plugins/enable-service-plugin/  /konnect/manage-plugins/enable-service-plugin/
 /konnect/servicehub/plugins/enable-route-plugin/    /konnect/manage-plugins/enable-route-plugin/
 /konnect/dev-portal/administrators/customization/themes         /konnect/dev-portal
-/konnect/org-management/users-and-roles             /konnect/org-management/teams-roles-users
+/konnect/org-management/users-and-roles             /konnect/org-management/teams-and-roles
 
 
 # COMMUNITY DOC REBRANDING

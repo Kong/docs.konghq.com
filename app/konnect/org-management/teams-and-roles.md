@@ -1,5 +1,5 @@
 ---
-title: Manage Teams, Roles, and Users
+title: Manage Teams and Roles
 no_version: true
 ---
 
@@ -13,6 +13,8 @@ predefined teams for a standard set of roles, or create custom teams with
 any roles you choose. Invite users and add them to these teams to manage user
 access.
 
+To invite users to your organization, see [Manage Users](/konnect/org-management/users).
+
 {:.note}
 > **Note:** If Okta integration is [enabled](/konnect/org-management/okta-idp),
 {{site.konnect_short_name}} users and teams become read-only. An organization
@@ -20,6 +22,7 @@ admin can view all registered users in {{site.konnect_short_name}}, but cannot
 edit their team membership from the {{site.konnect_short_name}} side. To manage
 automatically-created users, adjust user permissions through Okta, or
 [adjust team mapping](/konnect/org-management/okta-idp/#map-teams-to-groups).
+
 
 ## Prerequisites
 
@@ -32,14 +35,13 @@ You can find a list of all teams in your organization through
 ![](/assets/images/icons/konnect/icn-organizations.svg){:.inline .no-image-expand .konnect-icon}
 **Organization** > **Teams** in Konnect.
 
-* **Team:** A group of users with access to the same roles. Teams can be
-used to functionally separate departments or create hierarchical
-structure in an organization. Access to Konnect resources such as runtime groups
-and services can be shared with teams. A team can be granted granular
-access based on permissions and roles.
+* **Team:** A group of users with access to the same roles. Teams are useful
+for assigning access by functionality, as they can provide granular access to
+any group of Konnect resources based on roles. As well, access to specific
+runtime groups and Services can be shared with teams.
 
-* **Role:** Predefined access to a particular resource type (for example,
-  Services).
+* **Role:** Predefined access to a particular resource instance, or all
+instances of a resource type (for example, a particular Service or all Services).
 
 When you create a Konnect account, you are automatically added to the Organization
 Admin team, which is one of the [predefined teams](/konnect/org-management/teams-reference)
@@ -47,39 +49,40 @@ in Konnect. Predefined teams have sets of roles that can't be modified or
 deleted. You can add users to these teams, or create your own custom teams
 with any of the [supported roles](/konnect/org-management/roles-reference).
 
+### Access precedence
+
 Users can be part of any number of teams, and the roles gained from the teams
 are additive. For example, if you add a user to both the Service Developer and
 Portal Viewer teams, the user can create and manage Services
-through the Service Hub _and_ register applications through the Dev Portal.
+through the ServiceHub _and_ register applications through the Dev Portal.
+
+If two roles provide access to the same entity, the role with more access
+takes effect. For example, if you have the Service Admin and Service Deployer
+roles on the same Service, the Service Admin role takes precedence.
 
 All users can view all teams and members of each team, but they can't view the
-team permissions.
+team roles.
 
 ### Entity and role sharing
 
-An organization admin can share any role or entity with any user in the
+An Organization Admin can share any role or entity with any user in the
 organization.
 
-Any user can also share Services or runtime groups that they have access to, with
+Any user with the Service Admin or Runtime Group Admin role can
+also share Services or runtime groups that they have access to, with
 the same role or lesser.
 
 For example, say you have a Service Admin role:
-* You can share that Service with any other user through the Service Hub.
-* Since you have admin permissions, you can choose to share the Service any
+* You can share that Service with any other user through the ServiceHub.
+* Since you have admin access, you can choose to share the Service any
 level of access: creator, deployer, viewer, etc.
-* The user that you share this Service with can then share the Service
-themselves.
-
-But what if you only have the Service Viewer role? In that case, you can only
-share the Service in read-only mode, as this is the lowest-level permission that
-you can have on the Service entity.
 
 You can [share any Service](/konnect/configure/servicehub/manage-services/#share-service)
-through the Service Hub, or
+through the ServiceHub, or
 [share any runtime group](/konnect/configure/runtime-manager/runtime-groups/manage/#share-runtime-group)
 through the Runtime Manager.
 
-### Create a new team
+### Create a team
 
 1. From the left navigation menu in Konnect, open the
 ![](/assets/images/icons/konnect/icn-organizations.svg){:.inline .no-image-expand .konnect-icon}
@@ -88,8 +91,8 @@ through the Runtime Manager.
 3. Enter a team name and description. Both fields are required.
 4. Click **Save**.
 
-By default, your new team has the `Creator` role for all entities in the organization.
-Customize the roles through the team's configuration page.
+By default, your new team no roles. Customize the roles through the team's
+configuration page.
 
 ### Edit roles for a team
 
@@ -146,50 +149,3 @@ unassigned from the team.
 and click **Delete**.
 
 1. Confirm deletion in the dialog.
-
-## Manage users
-
-### Invite a user to the organization
-1. In {{site.konnect_saas}}, open the ![](/assets/images/icons/konnect/icn-organizations.svg){:.inline .no-image-expand .konnect-icon}
- **Organization > Users** page.
-1. Select **Invite User**.
-1. Enter the user’s name and email.
-1. Assign the user to one or more teams.
-
-    For team descriptions, hover over the information (`i`) icon next to the team name,
-    or see the [predefined teams references](/konnect/org-management/teams-reference).
-
-1. Click **Save**.
-
-    An email invitation is sent to the user.
-
-### Accept invite and create account
-
-1. From the invitation email, follow the link to set up your account.
-1. Create a password.
-
-    The password must be 8 characters long and contain at least three of the
-    following: a lowercase letter, an uppercase letter, a number, or a special
-    character.
-
-    The first and last name, organization, and email address are filled in for
-    you and cannot be changed at this time.
-
-1. Log in with your new account and test that you can access the resources
-assigned to this account.
-
-### View and manage users
-1. In {{site.konnect_saas}}, open the ![](/assets/images/icons/konnect/icn-organization.svg){:.inline .no-image-expand}
- **Organization > Users** page.
-2. From the Users page, you can:
-   * View usernames, email addresses, assigned team(s), and assigned individual
-   role(s).
-   * For users that have been invited but haven't set up an account yet,
-   a **pending** indicator displays by their name.
-   * To edit assigned teams, select a user row to drill down to their
-   assigned teams and roles. Select
-   **Actions > Add/Remove** to change the user's team membership.
-   * To edit assigned individual roles, select a user row to drill down to their
-    assigned teams and roles. Select an entity from the tabs on the page, then open
-    **Actions > Add/Remove Roles** for any role to add or remove role(s) from the
-    selected user.

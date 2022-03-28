@@ -20,4 +20,4 @@ Keywords:
 | Service Developer   | Users can view Konnect services, and fully manage versions of existing services and their Portal specs. |
 | Service Page Editor | Users can partially manage (read, update) the documentation and specs for services and versions, publish services to the Dev Portal, and enable or disable application registration for service. |
 
-To set up a custom team, see [Manage Teams, Roles, and Users](/konnect/org-management/teams-roles-users).
+To set up a custom team, see [Manage Teams and Roles](/konnect/org-management/teams-and-roles).

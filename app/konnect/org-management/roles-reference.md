@@ -3,8 +3,8 @@ title: Roles reference
 no_version: true
 ---
 
-A team can have any number of roles. Roles can be assigned to teams, but not
-directly to users. See [Manage Teams, Roles, and Users](/konnect/org-management/teams-roles-users).
+A team can have any number of roles.
+See [Manage Teams and Roles](/konnect/org-management/teams-and-roles).
 
 The following predefined roles are available in Konnect:
 

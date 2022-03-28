@@ -31,7 +31,7 @@ ready to manage authentication and authorization through Okta for this
 
 To set up Okta single sign-on (SSO) for {{site.konnect_short_name}}, you need
 access to an Okta admin account and a
-[{{site.konnect_short_name}} admin account](/konnect/org-management/teams-roles-users),
+[{{site.konnect_short_name}} admin account](/konnect/org-management/teams-and-roles),
 which you will access concurrently.
 
 Here are the steps you need to complete, in both Okta and
@@ -179,7 +179,7 @@ application into {{site.konnect_saas}}.
 
 ### Map teams to groups
 
-By mapping Okta groups to [{{site.konnect_short_name}} teams](/konnect/org-management/teams-roles-users),
+By mapping Okta groups to [{{site.konnect_short_name}} teams](/konnect/org-management/teams-and-roles),
 you can manage a user's {{site.konnect_short_name}} team membership directly through
 Okta group membership.
 
@@ -188,7 +188,7 @@ After mapping is set up:
 * When a user logs into {{site.konnect_short_name}} with their Okta account
 for the first time,
 {{site.konnect_short_name}} automatically provisions an account with the
-relevant permissions.
+relevant roles.
 * If your org already has non-admin {{site.konnect_short_name}} users before
 mapping, on their next
 login they will be mapped to the teams defined by their Okta group membership.
@@ -202,7 +202,7 @@ Any changes to the mapped Okta groups on the Okta side are reflected in
 {{site.konnect_saas}}. For example:
 * Removing a user from a group in Okta also deactivates their
 {{site.konnect_short_name}} account.
-* Moving a user from one group to another changes their permissions in {{site.konnect_short_name}}
+* Moving a user from one group to another changes their team in {{site.konnect_short_name}}
 to align with the new group-to-team mapping.
 
 1. Referring to the [token preview](#test-claims-and-find-groups-for-mapping)
@@ -274,7 +274,7 @@ Login Path you set earlier. Copy this URI.
 in with your Okta credentials.
 
     If a group-to-team mapping exists, the user is automatically provisioned with
-    a {{site.konnect_saas}} account with the relevant permissions.
+    a {{site.konnect_saas}} account with the relevant team membership.
 
 1. Log out of this account, and log back in with a {{site.konnect_short_name}}
 admin account.
