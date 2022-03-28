@@ -14,8 +14,8 @@ The following predefined roles are available in Konnect:
 |-----------------------------|--------------|
 | Admin | Admin of an existing Konnect Service. The admins have all write access permissions related to a Service and Service versions. |
 | Application Registration |  Allows user to enable or disable application registration for a Konnect Service. |
-| Creator | Create new Konnect Services in Service Hub. The creator becomes the owner of the Service they create, gaining admin access to the Service. This role is not for creating sub-entities in a Service such as Service versions, implimentations, API specs, or plugins. |
-| Deployer | Allows a user to impliment and associate a Konnect Service version to a runtime group. The user must also have permissions to deploy Services in the associated runtime group. |
+| Creator | Create new Konnect Services in Service Hub. The creator becomes the owner of the Service they create, gaining admin access to the Service. This role is not for creating sub-entities in a Service such as Service versions, implementations, API specs, or plugins. |
+| Deployer | Allows a user to implement and associate a Konnect Service version to a runtime group. The user must also have permissions to deploy Services in the associated runtime group. |
 | Maintainer | Allows a user to read, edit, and deploy a Konnect Service and its Service versions, and manage its plugins. |
 | Plugins Admin | Allows a user to install plugins on the Konnect Service versions and Routes. The user must also have permissions to write to the associated runtime group. |
 | Publisher | Allows a user to publish a Konnect Service to the Dev Portal. The user must also have permissions in Portal to Publish Services in order to publish a service to the portal. |

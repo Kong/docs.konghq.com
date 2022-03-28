@@ -8,7 +8,7 @@ need the ability to segregate the duties of an administrator to ensure that a
 mistake or malicious act by one administrator doesn’t cause an outage.
 
 To help secure and govern your environment, {{site.konnect_short_name}} provides
-the ability to manage authorization with teams and roles. You can use Konnect's
+the ability to manage authorization with teams and roles. You can use {{site.konnect_short_name}}'s
 predefined teams for a standard set of roles, or create custom teams with
 any roles you choose. Invite users and add them to these teams to manage user
 access.
