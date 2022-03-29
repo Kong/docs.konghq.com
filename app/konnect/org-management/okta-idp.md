@@ -63,7 +63,7 @@ Create a new application in Okta to manage {{site.konnect_saas}} account integra
     1. Create a unique name for your application.
     1. Under **Grant Type**, select **Authorization Code**.
     1. In both the **Sign-in redirect URIs** and
-    **Sign-out redirect URIs** fields, enter: `https://konnect.konghq.com/login`
+    **Sign-out redirect URIs** fields, enter: `https://cloud.konghq.com/login`
     1. In the Assigments section, for **Controlled access**, choose your
     preferred access level for this application. This preferred access level sets the permissions for
     Okta admins.
@@ -150,7 +150,7 @@ values are present.
 ## Set up Konnect
 
 ### Provide Okta connection details
-1. In another separate browser tab, log in to [{{site.konnect_saas}}](https://konnect.konghq.com).
+1. In another separate browser tab, log in to [{{site.konnect_saas}}](https://cloud.konghq.com).
 1. Open ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
 **Settings**, then **Identity Management**.
 1. Select **Okta**.
