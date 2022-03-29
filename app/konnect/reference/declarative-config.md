@@ -18,10 +18,11 @@ group.
 
 To do this, you need [decK v1.12.0 or later](/deck/).
 
-Use any `--konnect`-prefixed flag, or reference your `konnect-password`
-and `konnect-email` in decK's configuration file to target `https://cloud.konghq.com`
-by default. If you don't provide a `--konnect` flag or credentials, decK looks
+Use any `--konnect`-prefixed flag to target `https://cloud.konghq.com`
+by default. If you don't provide a `--konnect` flag, decK looks
 for a local {{site.base_gateway}} instance instead.
+
+Run `deck help` to see all available flags, or see the [decK CLI reference](/deck/latest/reference/deck).
 
 You _cannot_ use decK to publish content to the Dev Portal, manage application
 registration, or configure custom plugins.
@@ -39,6 +40,7 @@ recognizes your account credentials:
 
 ```sh
 deck ping \
+  --konnect-runtime-group default \
   --konnect-email {YOUR_EMAIL} \
   --konnect-password {YOUR_PASSWORD}
 ```

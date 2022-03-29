@@ -30,6 +30,7 @@ Use deck to import entity configurations into a runtime group.
 
     ```sh
     deck ping \
+      --konnect-runtime-group default \
       --konnect-email {YOUR_EMAIL} \
       --konnect-password {YOUR_PASSWORD}
     ```
