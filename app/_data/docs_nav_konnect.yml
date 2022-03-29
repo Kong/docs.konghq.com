@@ -68,8 +68,8 @@
           items:
             - text: Manage Runtime Groups
               url: /configure/runtime-manager/runtime-groups/manage
-            - text: Runtime Groups Use Case
-              url: /configure/runtime-manager/runtime-groups/use-case
+            - text: Manage Entities in a Runtime Group
+              url: /configure/runtime-manager/runtime-groups/manage-entities
         - text: Runtime Instances
           items:
             - text: Install with Docker
@@ -84,8 +84,6 @@
               url: /configure/runtime-manager/renew-certificates
             - text: Runtime Parameter Reference
               url: /configure/runtime-manager/runtime-parameter-reference
-        - text: Manage Global Entities
-          url: /configure/runtime-manager/manage-entities
 
 - title: Publish
   icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
