@@ -45,7 +45,7 @@ deck ping \
   --konnect-password {YOUR_PASSWORD}
 ```
 
-If the connection is successful, the terminal displays the first and last name
+If the connection is successful, the terminal displays the full name of the user
 associated with the account:
 
 ```sh
