@@ -91,7 +91,7 @@ through the Runtime Manager.
 3. Enter a team name and description. Both fields are required.
 4. Click **Save**.
 
-By default, your new team no roles. Customize the roles through the team's
+By default, your new team has no roles applied. Customize the roles through the team's
 configuration page.
 
 ### Edit roles for a team

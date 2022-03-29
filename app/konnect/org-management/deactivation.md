@@ -25,7 +25,7 @@ are removed.
 
 * The control plane associated with the organization is decommissioned.
 
-* Any users that were part of the organization lose membership to any teams
+* Any users that were part of the organization are removed from any teams
 associated with the organization, and lose any individual roles from that org.
 Their accounts are otherwise unaffected.
 
