@@ -111,19 +111,20 @@ Column | Description
 -------|-------------
 Name | The name of the runtime group. This group name must be unique in the organization.
 ID | A unique ID for the group. This ID is automatically generated when a group is created.
-Type | Types of runtimes that this group contains. Currently, the only supported runtime type is `Kong Gateway`.
-Active instances | The number of runtime instances in this group that are `Connected`, `Normal`, or `In Sync`.
-Labels | A list of labels on the runtime group in the form of key-value pairs.
+Type | Types of runtimes that this group contains. Currently, the only supported runtime type is Kong Gateway.
+
+<!--
+Labels | A list of labels on the runtime group in the form of key:value pairs. -->
 
 ### Runtime instances table
 
 The following describes the content of the Runtime Instances table found on the landing page of a runtime group.
-You can sort the table by the `Last Seen` or `Sync Status` columns.
+You can sort the table by the `Last Ping` column.
 
 Column | Description
 -------|-------------
 Host | The hostname of the instance.
-IP | The IP of the instance.
-Last Seen | The last time that this instance received a configuration update from the Konnect control plane. was used to proxy a Service.
+Type | The runtime instance type. Currently, only Kong Gateway is supported.
+Last Ping | The last time that this instance received a configuration update from the Konnect control plane. was used to proxy a Service.
 Version | The Kong Gateway version that this instance is running.
-Sync Status | Whether this instance is in sync with the Konnect control plane or not. Can be one of: <br> &#8226; `In Sync` - The instance has received the last configuration that the control plane sent and is therefore in sync with the control plane. <br> &#8226; `Out of Sync` - The instance did not receive the last configuration that the control plane sent out.
+ID | The UUID of the instance.

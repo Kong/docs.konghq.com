@@ -26,19 +26,21 @@ You have the **Organization Admin** role in {{site.konnect_saas}}.
 
 1. Click **Create Runtime Group**.
 
-1. Name the runtime group and enter an optional description.
+1. Name the runtime group.
 
     Each runtime group in the organization must have a unique name.
 
+<!--
 1. Add any labels in `key:value` pair format.
 
     For example, you might set `location:us-west`, where `location` is the key
     and the `us-west` is the value.
 
-    These labels are completely custom. Set anything that you need.
+    These labels are completely custom. Set anything that you need. -->
 
 1. Click **Create**.
 
+<!--
 ## Edit a runtime group
 
 1. In Konnect, open ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
@@ -100,4 +102,4 @@ can use decK to accomplish this:
 
 1. Click the action menu icon on the far right of a row and select **Delete**.
 
-1. Enter the group name, then confirm that you want to delete it.
+1. Enter the group name, then confirm that you want to delete it. -->
