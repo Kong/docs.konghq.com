@@ -22,14 +22,14 @@ is part of the organization admin team by default.
 
 ## Create a service
 
-{% include_cached /md/konnect/konnect-service.md %}
+{% include_cached /md/konnect/create-service.md %}
 
 ## Upload a description
 
 Now that you have a Service set up, you can start filling out details about your
 API.
 
-{% include_cached /md/konnect/dev-portal.md section='markdown' %}
+{% include_cached /md/konnect/dev-portal-description.md %}
 
 ## Create a Service version
 
@@ -37,7 +37,7 @@ API.
 
 ## Upload an API spec
 
-{% include_cached /md/konnect/dev-portal.md section='spec' %}
+{% include_cached /md/konnect/dev-portal-spec.md %}
 
 ## Summary and next steps
 

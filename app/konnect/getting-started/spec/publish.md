@@ -23,7 +23,7 @@ make sure you have [implemented the Service and started a Gateway runtime](/konn
 
 ## View the published content on Dev Portal
 
-{% include_cached /md/konnect/dev-portal.md section='access-portal' %}
+{% include_cached /md/konnect/dev-portal-access.md %}
 
 ## Summary and next steps
 

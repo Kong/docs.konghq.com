@@ -21,7 +21,7 @@ make sure you have [configured a runtime](/konnect/getting-started/configure-run
 
 ## Create a Service
 
-{% include_cached /md/konnect/konnect-service.md %}
+{% include_cached /md/konnect/create-service.md %}
 
 ## Create a Service version
 

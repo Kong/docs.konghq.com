@@ -14,11 +14,11 @@ out some customization options.
 
 ## Upload a description
 
-{% include_cached /md/konnect/dev-portal.md section='markdown' %}
+{% include_cached /md/konnect/dev-portal-description.md %}
 
 ## Upload an API spec
 
-{% include_cached /md/konnect/dev-portal.md section='spec' %}
+{% include_cached /md/konnect/dev-portal-spec.md %}
 
 ## Publish a Service
 
@@ -33,7 +33,7 @@ out some customization options.
 
 ## View the published content on Dev Portal
 
-{% include_cached /md/konnect/dev-portal.md section='access-portal' %}
+{% include_cached /md/konnect/dev-portal-access.md %}
 
 ## Customize your Dev Portal
 
