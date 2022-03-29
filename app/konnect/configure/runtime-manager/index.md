@@ -39,14 +39,6 @@ as a separate control plane and can manage runtime configurations independently
 of any other group. See [runtime groups](/konnect/configure/runtime-manager/runtime-groups)
 for more information.
 
-## Types of runtimes
-
-Every runtime instance in a group must be of the same type.
-
-Currently, the only supported runtime type in the
-{{site.konnect_saas}} application is a [{{site.base_gateway}}](/gateway/)
-data plane.
-
 ### Kong Gateway
 
 A {{site.base_gateway}} runtime instance acts as a data plane, which is a node
