@@ -8,28 +8,28 @@ files instead of the GUI or admin API commands. With decK, Kong's declarative
 configuration management tool, you can create, update,
 compare, and synchronize configuration as part of an automation pipeline.
 
-In {{site.konnect_saas}}, decK can manage:
-* **Runtime groups**: Create state files for different runtime groups and manage
-each group separately. Manage Gateway Services, routes, consumers, plugins, and
-upstreams for each group.
+In {{site.konnect_saas}}, decK can manage [runtime groups](/konnect/configure/runtime-manager/runtime-groups)
+and all of their configurations:
+* Create state files for different runtime groups and manage each group
+separately.
+* Manage Gateway Services, routes, consumers, plugins, and upstreams for each
+group.
+* Migrate configuration from one group to another.
 
-[_Q: Can decK still manage Service Hub content? It looks like the answer is no for now, but will change once labels are introduced - is that correct?_]
-* **All parts of a Konnect service:** Manage service versions, implementations, routes,
-and plugins.
-* **Dev Portal documents:** Manage specs and markdown files.
+To do this, you need [decK v1.12.0 or later](/deck/).
 
-To do this, you need [decK v1.7.0 or later](/deck/).
-[_Q: is this still accurate, or do they need deck 1.12? Looks like the konnect
-flags should be backwards compatible, so the only new thing in 1.12 would be
-`--konnect-runtime-group`_]
+Use any `--konnect`-prefixed flag, or reference your `konnect-password`
+and `konnect-email` in decK's configuration file to target `https://cloud.konghq.com`
+by default. If you don't provide a `--konnect` flag or credentials, decK looks
+for a local {{site.base_gateway}} instance instead.
 
 You _cannot_ use decK to publish content to the Dev Portal, manage application
 registration, or configure custom plugins.
 
 ## Prerequisites
 
-* [**Organization Admin**](/konnect/org-management/users-and-roles) permissions.
-* decK v1.7.0 or later [installed](/deck/latest/installation/).
+* [**Organization Admin**](/konnect/org-management/teams-and-roles) permissions.
+* decK v1.12.0 or later [installed](/deck/latest/installation/).
 * Optional: To test your configuration, [set up a simple runtime](/konnect/getting-started/configure-runtime).
 
 ## Test your connection
@@ -38,7 +38,9 @@ Check that you can log in to {{site.konnect_short_name}} and that decK
 recognizes your account credentials:
 
 ```sh
-deck ping --konnect-email <email> --konnect-password <password>
+deck ping \
+  --konnect-email {YOUR_EMAIL} \
+  --konnect-password {YOUR_PASSWORD}
 ```
 
 If the connection is successful, the terminal displays the first and last name
@@ -50,19 +52,23 @@ Successfully Konnected as Some Name (Kong)!
 
 You can also use decK with {{site.konnect_short_name}} more securely by storing
 your password in a file, then either calling it with
-`--konnect-password-file <pass>.txt`, or adding it to your decK configuration
-under the `konnect-password` option.
+`--konnect-password-file {FILENAME}.txt`, or adding it to your decK configuration
+under the `konnect-password` option along with your email:
 
-The following steps all use `--konnect-password-file`.
+```yaml
+konnect-password: {YOUR_PASSWORD}
+konnect-email: {YOUR_EMAIL}
+```
 
+The following steps all use a `deck.yaml` file to store the
+{{site.konnect_short_name}} credentials instead of flags.
 
 ## Create a configuration file
 
 Capture a snapshot of the current configuration in a file:
 
 ```sh
-deck dump --konnect-email <email> --konnect-password-file <pass>.txt \
-  --konnect-runtime-group default
+deck dump --konnect-runtime-group default
 ```
 
 If you don't specify the `--konnect-runtime-group` flag, decK still targets the
@@ -70,20 +76,23 @@ If you don't specify the `--konnect-runtime-group` flag, decK still targets the
 organization, we recommend always setting this flag to avoid accidentally
 pushing configuration to the wrong group.
 
-The command creates a file named `konnect.yaml`. If you have nothing
-configured, decK creates the file with only the format version:
+The command creates a file named `kong.yaml`. If you have nothing
+configured, decK creates the file with only the format version and runtime group
+name:
 
 ```yaml
-_format_version: "0.1"
+_format_version: "1.1"
+_konnect:
+  runtime_group_name: default
 ```
 
 You can specify a different file name or location, or export the
 configuration in JSON format:
 
 ```sh
-deck dump --konnect-email <email> --konnect-password-file <pass>.txt \
+deck dump --konnect-runtime-group default \
   --format json \
-  --output-file examples/konnect2.yaml
+  --output-file examples/konnect.yaml
 ```
 
 ## Make changes to configuration
@@ -98,7 +107,7 @@ For this example, let's add a new service.
 the example with your generated UUID:
 
     ```yaml
-    _format_version: "0.1"
+    _format_version: "1.1"
     _konnect:
       runtime_group_name: default
     services:
@@ -133,7 +142,7 @@ the example with your generated UUID:
 {{site.konnect_saas}}:
 
     ```sh
-    deck diff --konnect-email <email> --konnect-password-file <pass>.txt
+    deck diff --konnect-runtime-group default
     ```
 
     If the format and schema is correct, decK gives you a preview of what would
@@ -142,10 +151,9 @@ the example with your generated UUID:
     ```sh
     creating service 9595B5F9-3B6A-4C48-BE93-9EC1B0EA487A
     creating route mockpath
-    creating service-package MyService
-    creating service-version 1
+    creating service MyService
     Summary:
-      Created: 4
+      Created: 3
       Updated: 0
       Deleted: 0
     ```
@@ -154,7 +162,7 @@ the example with your generated UUID:
 {{site.konnect_saas}}:
 
     ```sh
-    deck sync --konnect-email <email> --konnect-password-file <pass>.txt
+    deck sync --konnect-runtime-group default
     ```
 
     You should see the same output again:
@@ -162,20 +170,17 @@ the example with your generated UUID:
     ```sh
     creating service 9595B5F9-3B6A-4C48-BE93-9EC1B0EA487A
     creating route mockpath
-    creating service-package MyService
-    creating service-version 1
+    creating service MyService
     Summary:
-      Created: 4
+      Created: 3
       Updated: 0
       Deleted: 0
     ```
 
-5. Check {{site.konnect_saas}} to make sure the sync worked. You should see a
-new service named `MyService` in the
-[ServiceHub](https://konnect.konghq.com/servicehub/).
+5. Check {{site.konnect_saas}} to make sure the sync worked. Open **Runtimes** from
+the left side menu, then select your runtime group > **Gateway Services**.
 
-    ![ServiceHub tiles](/assets/images/docs/konnect/konnect-myservice.png)
-
+    You should see a new service named `MyService` in the runtime group.
 
 ## Manage consumers and global plugins
 
@@ -219,26 +224,21 @@ down with repeated requests. Add a global proxy cache plugin:
 3. Run a diff to test your changes:
 
     ```sh
-    deck diff --konnect-email <email> --konnect-password-file <pass>.txt
+    deck diff --konnect-runtime-group default
     ```
 
 4. If everything looks good, run another sync, then check {{site.konnect_saas}}
 to see your changes:
 
     ```sh
-    deck sync --konnect-email <email> --konnect-password-file <pass>.txt
+    deck sync --konnect-runtime-group default
     ```
-
-    <!-- You can find consumers and global plugins under the
-    ![icon](/assets/images/icons/konnect/konnect-shared-config.svg){:.inline .no-image-expand}
-    **[Shared Config](https://konnect.konghq.com/configuration)** menu option. -->
 
     {:.note}
     > **Note:** If you add consumers to the `konnect.yaml` file and sync your
     local file to Konnect, it picks up consumers automatically. However, if you
     want to pull consumer configuration down **from** Konnect, use the
     `--include-consumers` flag in your command.
-
 
 ## Test the service
 
@@ -248,12 +248,13 @@ configuration now. Or, you can start a simple runtime using the
 
 The default proxy URL is `localhost:8000`.
 
-Enter the proxy URL into your browser’s address bar and append the route path
-`/mock` with an `apikey` query:
+Make a call to the proxy URL and append the route path `/mock` with an `apikey`
+header:
 
-```
-http://localhost:8000/mock?apikey=apikey
-```
+ ```sh
+ curl -i -X GET http://localhost:8000/mock \
+  -H 'apikey: {API_KEY}'
+ ```
 
 If successful, you should see the homepage for `mockbin.org`. On your Service
 Version overview page, you’ll see a record for status code 200. This might
@@ -266,8 +267,51 @@ Kong Error
 No API key found in request.
 ```
 
+## Migrate configuration between runtime groups
+
+You can also use decK to migrate or duplicate configuration between runtime
+groups.
+
+1. Export configuration from the original runtime group with
+[`deck dump`](/deck/latest/reference/deck_dump) into a state file:
+
+    ```bash
+    deck dump \
+      --konnect-runtime-group default \
+      --output-file default.yaml
+    ```
+
+1. In the file, change the runtime group name to the new group:
+
+    ```yaml
+    _format_version: "1.1"
+    _konnect:
+      runtime_group_name: staging
+    ```
+
+1. Using the state file you just edited, preview the import with
+the [`deck diff`](/deck/latest/reference/deck_diff)
+command, pointing to the runtime group that you want to target:
+
+    ```sh
+    deck diff \
+      --konnect-runtime-group staging \
+      --state default.yaml
+    ```
+
+1. If everything looks good, [`deck sync`](/deck/latest/reference/deck_sync)
+ the configuration to the new runtime group:
+
+    ```sh
+    deck sync \
+      --konnect-runtime-group staging \
+      --state default.yaml
+    ```
+
+You should now have two runtime groups in {{site.konnect_short_name}} with
+the same configuration.
+
 ## See also
 
 * [decK CLI reference](/deck/latest/reference/deck)
-<!-- * [Migrate from a self-managed {{site.base_gateway}} deployment](/konnect/deployment/migrate-from-self-managed):
-Use decK to migrate {{site.base_gateway}} entities to {{site.konnect_saas}} -->
+* [Import {{site.base_gateway}} configuration into {{site.konnect_short_name}}](/konnect/deployment/import)

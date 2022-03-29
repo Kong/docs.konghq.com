@@ -49,7 +49,7 @@ To help differentiate the application registration plugins,
 `konnect-managed-plugin` and `konnect-app-registration`.
 
 For example, if you enable application registration from the
-{{site.konnect_short_name}} GUI and run `deck konnect dump`, you should see
+{{site.konnect_short_name}} GUI and run `deck dump`, you should see
 an entry like this for the ACL plugin:
 
 ```yaml

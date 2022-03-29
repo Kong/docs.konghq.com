@@ -42,8 +42,8 @@
       url: /deployment/network
     - text: Network Resiliency and Availability
       url: /deployment/network-resiliency
-    - text: Migrate from Kong Gateway to Konnect Cloud
-      url: /deployment/migrate
+    - text: Import Kong Gateway Entities into Konnect Cloud
+      url: /deployment/import
 
 - title: Configure
   icon: /assets/images/icons/konnect/konnect-settings.svg
