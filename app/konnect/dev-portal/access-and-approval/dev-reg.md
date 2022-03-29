@@ -30,17 +30,17 @@ All Developers must register through the {{site.konnect_short_name}} Dev Portal.
 
 3. Fill out the registration form and click **Create Account**. 
 
-4. Check your email for registration confirmation. 
+You should receive an email to confirm your email address. Click the verification link in the email.
 
 5. After you have confirmed your email, you will be asked to set a password for your account.
 
-    You’ll receive an email to confirm your email address and to set a password via the link inside the email. After you have confirmed your email address and set a password, you’ll be able to log into the Dev Portal once your account admin has approved your request. 
+    After you have confirmed your email address and set a password, you’ll be able to log into the Dev Portal once your account admin has approved your request. 
 
 ## Registration Approval
 
-If your admin has auto-approve enabled, you’ll be immediately able to log into the Dev Portal. Learn how to [set up auto-approval for developer access as an admin](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/).
+If your admin has auto-approve enabled, you can log into the Dev Portal immediately after setting a password. Learn how to [set up auto-approval for developer access as an admin](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/).
 
-All manually approved developers will be notified via email upon gaining access to the Dev Portal. Learn how to [manually approve developer access as an admin](/konnect/dev-portal/access-and-approval/manage-devs/#approve-dev-reg).
+If auto-approve is not enabled, an admin has to review and approve your request manually. All manually approved developers are notified via email upon gaining access to the Dev Portal. Learn how to [manually approve developer access as an admin](/konnect/dev-portal/access-and-approval/manage-devs/#approve-dev-reg).
 
 ## Account Management
 
