@@ -4,7 +4,12 @@ no_version: true
 ---
 
 Along with hosting API documentation, the Dev Portal can let your developers
-register applications against Konnect Services.
+register applications against Konnect Services. Your applications can then
+consume those Services using application-level authentication.
+
+For example, the application can represent a mobile banking app and the
+Services registered to the application can be a billing API, a users API, and a
+legal agreements API.
 
 ## Prerequisites
 
