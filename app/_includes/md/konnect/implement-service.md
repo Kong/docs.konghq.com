@@ -1,12 +1,16 @@
 <!-- Used in Konnect getting started guides -->
 
-
 1. On the **example_service** overview, in the Versions section, click **v1**.
 
 1. Click **New Implementation**.
 
 1. In the **Create Implementation** dialog, in step 1, create a new Service
 implementation to associate with your Service version.
+
+    1. In the **Name** field, enter a unique name for the Gateway Service.
+
+        You can't use a Gateway Service that already exists in this runtime
+        group.
 
     1. Click the **Add using URL** radio button. This is the default.
 
