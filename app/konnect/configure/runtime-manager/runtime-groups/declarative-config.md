@@ -1,5 +1,5 @@
 ---
-title: Manage Konnect Cloud with decK
+title: Manage Runtime Groups with decK
 no_version: true
 ---
 

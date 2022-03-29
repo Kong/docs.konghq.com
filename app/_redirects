@@ -134,6 +134,7 @@
 /konnect/servicehub/plugins/enable-route-plugin/    /konnect/manage-plugins/enable-route-plugin/
 /konnect/dev-portal/administrators/customization/themes         /konnect/dev-portal
 /konnect/migrate                                    /konnect/deployment/import
+/konnect/getting-started/declarative-config         /konnect/configure/runtime-manager/runtime-groups/declarative-config
 
 
 # COMMUNITY DOC REBRANDING

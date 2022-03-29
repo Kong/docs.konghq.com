@@ -70,6 +70,8 @@
               url: /runtime-manager/runtime-groups/manage
             - text: Runtime Groups Use Case
               url: /runtime-manager/runtime-groups/use-case
+            - text: Manage Runtime Groups with decK
+              url: /configure/runtime-manager/runtime-groups/deck
         - text: Runtime Instances
           items:
             - text: Install with Docker
