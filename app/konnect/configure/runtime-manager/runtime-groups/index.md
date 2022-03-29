@@ -47,6 +47,8 @@ spec, running in the *default* group with application registration enabled.
 
 * A previous version of the Service published to the Dev Portal,
 running in the *default* group, but with application registration disabled.
+Any app with existing credentials can continue using them, but the version is
+not available for new registrations.
 
 * Another previous version of the Service, published to the Dev Portal, and
 running in a *custom* runtime group. This version would only have the documentation
