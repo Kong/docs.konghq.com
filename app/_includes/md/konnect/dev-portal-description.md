@@ -17,7 +17,7 @@ descriptions.
     * Two
     * Three
 
-    You can [add relative links](/) and [absolute links](https://konnect.konghq.com).
+    You can [add relative links](/) and [absolute links](https://cloud.konghq.com).
 
     Try adding a codeblock for code snippets:
 

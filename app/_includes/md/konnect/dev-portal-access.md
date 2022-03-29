@@ -15,12 +15,12 @@ You can't use your Konnect credentials to log in here.
 {% navtab Private Dev Portal %}
 
 1. Access the Dev Portal in one of the following ways:
-    * From [{{site.konnect_short_name}}](https://konnect.konghq.com/) menu,
+    * From [{{site.konnect_short_name}}](https://cloud.konghq.com/) menu,
     go to **Dev Portal**. From there, click the **Portal URL**.
     * Directly visit the default Dev Portal URL:
 
     ```
-    https://{ORG_NAME}.portal.konnect.konghq.com/
+    https://{ORG_NAME}.portal.cloud.konghq.com/
     ```
 
 1. Click **Sign Up** and fill out the form to create a developer account.
@@ -47,7 +47,7 @@ into the Dev Portal.
 {% endnavtab %}
 {% navtab Public Dev Portal %}
 
-1. From the [{{site.konnect_short_name}}](https://konnect.konghq.com/) menu, open
+1. From the [{{site.konnect_short_name}}](https://cloud.konghq.com/) menu, open
 ![settings icon](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
 **Settings**.
 
@@ -61,7 +61,7 @@ into the Dev Portal.
     * Directly visit the default Dev Portal URL:
 
     ```
-    https://{ORG_NAME}.portal.konnect.konghq.com/
+    https://{ORG_NAME}.portal.cloud.konghq.com/
     ```
 1. Open the `example_service` to check it out.
 
