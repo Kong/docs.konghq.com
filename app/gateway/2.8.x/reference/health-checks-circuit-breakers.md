@@ -7,7 +7,7 @@ by adding an [upstream][upstream] entity that contains one or more [target][ring
 entities, each target pointing to a different IP address (or hostname) and
 port. The ring-balancer will balance load among the various targets, and based
 on the [upstream][upstream] configuration, will perform health checks on the targets,
-making them as healthy or unhealthy whether they are responsive or not. The
+marking them as healthy or unhealthy based on whether they are responsive or not. The
 ring-balancer will then only route traffic to healthy targets.
 
 Kong supports two kinds of health checks, which can be used separately or in
@@ -19,7 +19,7 @@ response;
 
 * **passive checks** (also known as **circuit breakers**), where Kong analyzes
 the ongoing traffic being proxied and determines the health of targets based
-on their behavior responding requests.
+on their behavior responding to requests.
 
 ## Defining healthy and unhealthy
 
