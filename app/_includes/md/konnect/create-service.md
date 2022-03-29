@@ -6,8 +6,11 @@
 
 1. Enter a **Service Name**. For this example, enter `example_service`.
 
-    A Service name can be any string containing letters, numbers, or characters;
-    for example, `service_name`, `Service Name`, or `Service-name`.
+    A Service name can be any string containing letters, numbers, or the following
+    characters: `.`, `-`, `_`, `~`, or `:`. Do not use spaces in Service names.
+
+    For example, you can use `service_name`, `ServiceName`, or `Service-name`.
+    However, `Service Name` is invalid.
 
 1. (Optional) Enter a **Description**.
 
