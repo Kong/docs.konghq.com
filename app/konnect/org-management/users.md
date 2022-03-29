@@ -41,10 +41,6 @@ You must be part of the **Organization Admin** team to manage users.
 1. From the invitation email, follow the link to set up your account.
 1. Create a password.
 
-    The password must be 8 characters long and contain at least three of the
-    following: a lowercase letter, an uppercase letter, a number, or a special
-    character.
-
     The first and last name, organization, and email address are filled in for
     you and cannot be changed at this time.
 

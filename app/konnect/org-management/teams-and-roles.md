@@ -49,6 +49,9 @@ in Konnect. Predefined teams have sets of roles that can't be modified or
 deleted. You can add users to these teams, or create your own custom teams
 with any of the [supported roles](/konnect/org-management/roles-reference).
 
+All users can view all teams and members of each team, but they can't view the
+team roles.
+
 ### Access precedence
 
 Users can be part of any number of teams, and the roles gained from the teams
@@ -59,9 +62,6 @@ through the ServiceHub _and_ register applications through the Dev Portal.
 If two roles provide access to the same entity, the role with more access
 takes effect. For example, if you have the Service Admin and Service Deployer
 roles on the same Service, the Service Admin role takes precedence.
-
-All users can view all teams and members of each team, but they can't view the
-team roles.
 
 ### Entity and role sharing
 
