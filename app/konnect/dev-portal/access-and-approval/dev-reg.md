@@ -30,9 +30,9 @@ All Developers must register through the {{site.konnect_short_name}} Dev Portal.
 
 3. Fill out the registration form and click **Create Account**. 
 
-You should receive an email to confirm your email address. Click the verification link in the email.
+   You should receive an email to confirm your email address. Click the verification link in the email.
 
-5. After you have confirmed your email, you will be asked to set a password for your account.
+5. Set a password for your account.
 
     After you have confirmed your email address and set a password, you’ll be able to log into the Dev Portal once your account admin has approved your request. 
 
