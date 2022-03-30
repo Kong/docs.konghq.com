@@ -107,7 +107,7 @@ Turn any self-managed nodes into cloud data plane nodes by registering them
 through the Runtime Manager and adjusting their configurations, or power down
 the old instances and create new data plane nodes through {{site.konnect_saas}}.
 
-1. Follow the [runtime setup guide](/konnect/runtime-manager/#kong-gateway) for
+1. Follow the [runtime setup guide](/konnect/configure/runtime-manager/#kong-gateway) for
 your preferred deployment type.
 
 2. Once you have created or converted the data plane nodes, `kong stop` your
@@ -137,7 +137,7 @@ location.
     * [Publish Services to the Dev Portal](/konnect/dev-portal/publish):
     The Dev Portal is automatically enabled on a {{site.konnect_saas}} org
     (Plus or Enterprise tier). Publish your services to the Dev Portal.
-* [**Prepare custom plugins for migration**](/konnect/configure/servicehub/manage-plugins/#custom-plugins):
+* [**Prepare custom plugins for migration**](/konnect/configure/servicehub/plugins/#custom-plugins):
 Custom plugins are supported in {{site.konnect_saas}}, but with limitations. As
 long as your plugins fit the criteria, or if you can adjust them to do so,
 contact Kong Support to get the plugin manually added to your account.

@@ -185,8 +185,6 @@
       url: https://konnect.konghq.com/docs
       absolute_url: true
       target_blank: true
-    - text: Manage Konnect Cloud with decK
-      url: /reference/declarative-config
 
 - title: Legacy content
   items:

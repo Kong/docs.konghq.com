@@ -46,7 +46,7 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
     Set up a sample API spec and description for the {{site.konnect_short_name}}
     service and publish the service to the Dev Portal.
 
-    [Publish the service &gt;](/konnect/getting-started/dev-portal)
+    [Publish the service &gt;](/konnect/getting-started/publish-service)
 
 ## Get started with an API spec
 
