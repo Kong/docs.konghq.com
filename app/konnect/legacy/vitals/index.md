@@ -20,7 +20,7 @@ timeframe. You can also export a report of version peformance data.
 <div class="alert alert-ee blue">
 <b>Note:</b> The activity graphs in the ServiceHub only show the past 12 hours
 of activity. To see historical data for a greater range,
-<a href="/konnect/vitals/generate-reports">generate a report</a>.
+<a href="/konnect/legacy/vitals/generate-reports">generate a report</a>.
 </div>
 
 {{site.konnect_saas}} has Vitals enabled by default.
