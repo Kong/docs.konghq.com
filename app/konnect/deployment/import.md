@@ -14,7 +14,7 @@ Afterward, you must manually move over:
 * Certificates
 * Custom plugins
 
-You cannot import [unsupported plugins](/konnect/configure/servicehub/manage-plugins/#plugin-limitations).
+You cannot import [unsupported plugins](/konnect/configure/servicehub/plugins/#plugin-limitations).
 
 ## Prerequisites
 * {{site.konnect_saas}} [account credentials](/konnect/getting-started/access-account/).
@@ -61,27 +61,27 @@ Use deck to import entity configurations into a runtime group.
 1. Export configuration from {{site.base_gateway}} with [`deck dump`](/deck/latest/reference/deck_dump):
 
     ```bash
-    deck dump --output-file konnect.yaml
+    deck dump
     ```
 
-    This command outputs {{site.base_gateway}}'s object configuration into the
-    specified file.
+    This command outputs {{site.base_gateway}}'s object configuration into
+    `kong.yaml` by default. You can also set `--output-file /path/{FILENAME}.yaml`
+    to set a custom filename or location.
 
 1. Preview the import with the [`deck diff`](/deck/latest/reference/deck_diff)
 command, pointing to the runtime group that you want to target:
 
     ```sh
-    deck diff \
-      --state konnect.yaml \
-      --konnect-runtime-group default
+    deck diff --konnect-runtime-group default
     ```
+
+    If you're not using the default `kong.yaml` file, specify the filename and
+    path with `--state /path/{FILENAME}.yaml`.
 
 1. If you're satisfied with the preview, run [`deck sync`](/deck/latest/reference/deck_sync):
 
     ```sh
-    deck sync \
-      --state konnect.yaml \
-      --konnect-runtime-group default
+    deck sync --konnect-runtime-group default
     ```
 
     If you don't specify the `--konnect-runtime-group` flag, decK targets the
