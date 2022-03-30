@@ -2,17 +2,15 @@
 title: Set up a Kong Gateway Runtime on Linux
 no_version: true
 ---
-Using `kong.conf`, set up a [runtime](/konnect/#konnect-key-concepts-and-terminology)
-through the
+Using `kong.conf`, set up a runtime instance through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
 configure your {{site.base_gateway}} instance to accept configuration from
-{{site.konnect_short_name}}. The Runtime Manager keeps track of all runtimes
-associated with the {{site.konnect_saas}} account.
+{{site.konnect_short_name}}. The Runtime Manager keeps track of all runtime
+instances associated with the {{site.konnect_saas}} account.
 
-<div class="alert alert-ee blue">
-<b>Note:</b> Kong does not host runtimes. You must install and host your own
+{:.note}
+> **Note:** Kong does not host runtimes. You must install and host your own
 runtime instances.
-</div>
 
 ## Prerequisites
 
@@ -25,18 +23,19 @@ runtime instances.
 
 ## Configure the runtime
 
-Next, configure a {{site.base_gateway}} runtime using the
+Next, configure a {{site.base_gateway}} runtime instance using the
 certificate, the private key, and the remaining configuration details on the
-**Configure Runtime** page.
+runtime instance configuration page.
 
 1. Find the documentation for
 [your platform](/gateway/latest/install-and-run),
 and follow the instructions in Steps 1 and 2 **only** to download and install
 {{site.base_gateway}} {{site.data.kong_latest_ee.version}}.
 
-    <div class="alert alert-warning">
-        Do not start or create a database on this node.
-    </div>
+    {:.important}
+    > You should not deploy a {{site.base_gateway}} database on this node 
+    as {{site.konnect_short_name}} provides a hosted control plane with its own
+    database.
 
 2. Return to {{site.konnect_short_name}} and copy the
 codeblock in the **Step 2. Configuration Parameters** section.
@@ -63,7 +62,7 @@ to the file.
     cluster_cert_key = /{PATH_TO_FILE}/tls.key
     ```
 
-    See [Parameters](/konnect/runtime-manager/runtime-parameter-reference) for
+    See [Parameters](/konnect/configure/runtime-manager/runtime-instances/runtime-parameter-reference) for
     descriptions and the matching fields in {{site.konnect_short_name}}.
 
 4. Replace the values in `cluster_cert`, `cluster_ca_cert`, and
@@ -75,10 +74,8 @@ to the file.
     $ kong restart
     ```
 
-6. On the **Configure New Runtime** page, click **Done** to go to the Runtime
-Manager overview.
-
-    The Runtime Manager will include a new entry for your instance.
+6. In Konnect, click **Done** to go to the Runtime Instances overview, where
+you will see a new entry for your instance.
 
 ## Access services using the proxy URL
 
