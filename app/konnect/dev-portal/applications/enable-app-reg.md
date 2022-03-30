@@ -35,7 +35,7 @@ any time at your discretion.
 
 ## Prerequisites
 
-- [**Organization Admin** or **Service Admin**](/konnect/org-management/users-and-roles)
+- [**Organization Admin** or **Service Admin**](/konnect/org-management/teams-and-roles)
 permissions.
 
 - The Services have been created, versioned, and published to the
@@ -135,5 +135,5 @@ follow the recommended solution.
 
 | Error Message | Solution |
 |------------------------------|---------------------------------------------------------------------------------|
-| No Service implementation in the Service package. | Create a Service implementation. See the [example](/konnect/servicehub/manage-services/#implement-service-version) in the Quickstart Guide, and the [ServiceHub](/konnect/servicehub/manage-services/#implement-service-version) documentation. |
+| No Service implementation in the Service package. | Create a Service implementation. See the [example](/konnect/configure/servicehub/manage-services/#implement-service-version) in the Quickstart Guide, and the [ServiceHub](/konnect/configure/servicehub/manage-services/#implement-service-version) documentation. |
 | Schema violation, config.issuer: missing host in url (openid-connect)| Be sure to include the host in the Issuer URL of your identity provider. For example: `https://dev-1234567.okta.com/oauth2/default`. |
