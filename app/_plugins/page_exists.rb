@@ -8,22 +8,14 @@ module Jekyll
 
     def render(context)
       url = Liquid::Template.parse(@path).render context
+      url = url.strip
 
-      site_source = context.registers[:site].config['source']
-      # check direct .md file
-      page_path = [ site_source, url.strip[0..-2], '.md' ].compact.join('')
-      if File.exist?(page_path)
-        return true
-      end
-
-      # check index.md file
-      page_path = [ site_source, url.strip, 'index.md' ].compact.join('')
-      if File.exist?(page_path)
-        return true
-      end
-
-      # not found
-      false
+      # Loop through all registered pages, and return if there
+      # is a page with the URL that we're expecting
+      found = !context.registers[:site].pages.detect do |page|
+        page.url === url
+      end.nil?
+      return found
     end
   end
 end

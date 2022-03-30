@@ -49,16 +49,16 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJab25lIjoid2VzdCIsIlRva2VuU2VyaWFsTnVtYmV
 
 For authentication to the global control plane on Kubernetes, you can port-forward port 5681 to access the API.
 
-### Add token to each remote configuration
+### Add token to each zone configuration
 
 {% navtabs %}
 {% navtab Kubernetes with kumactl %}
 
-If you install the remote control plane with `kumactl install control-plane`, pass the `--cp-token-path` argument, where the value is the path to the file where the token is stored:
+If you install the zone control plane with `kumactl install control-plane`, pass the `--cp-token-path` argument, where the value is the path to the file where the token is stored:
 
 ```
 $ kumactl install control-plane \
-  --mode=remote \
+  --mode=zone \
   --zone=<zone name> \
   --cp-token-path=/tmp/token \
   --ingress-enabled \
@@ -79,7 +79,7 @@ Add the following to `Values.yaml`:
 kuma:
   controlPlane:
     secrets:
-      - Env: "KMESH_MULTIZONE_REMOTE_KDS_AUTH_CP_TOKEN_INLINE"
+      - Env: "KMESH_MULTIZONE_ZONE_KDS_AUTH_CP_TOKEN_INLINE"
         Secret: "cp-token"
         Key: "token"
 ```
@@ -90,24 +90,24 @@ kuma:
 
 Either:
 
-- Set the token as an inline value in a `KMESH_MULTIZONE_REMOTE_KDS_AUTH_CP_TOKEN_INLINE` environment variable:
+- Set the token as an inline value in a `KMESH_MULTIZONE_ZONE_KDS_AUTH_CP_TOKEN_INLINE` environment variable:
 
 ```sh
-$ KUMA_MODE=remote \
-  KUMA_MULTIZONE_REMOTE_ZONE=<zone-name> \
-  KUMA_MULTIZONE_REMOTE_GLOBAL_ADDRESS=grpcs://<global-kds-address> \
-  KMESH_MULTIZONE_REMOTE_KDS_AUTH_CP_TOKEN_INLINE="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJab25lIjoid2VzdCIsIlRva2VuU2VyaWFsTnVtYmVyIjoxfQ.kIrS5W0CPMkEVhuRXcUxk3F_uUoeI3XK1Gw-uguWMpQ" \
+$ KUMA_MODE=zone \
+  KUMA_MULTIZONE_ZONE_NAME=<zone-name> \
+  KUMA_MULTIZONE_ZONE_GLOBAL_ADDRESS=grpcs://<global-kds-address> \
+  KMESH_MULTIZONE_ZONE_KDS_AUTH_CP_TOKEN_INLINE="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJab25lIjoid2VzdCIsIlRva2VuU2VyaWFsTnVtYmVyIjoxfQ.kIrS5W0CPMkEVhuRXcUxk3F_uUoeI3XK1Gw-uguWMpQ" \
   ./kuma-cp run
 ```
 
 OR
 
-- Store the token in a file, then set the path to the file in a `KMESH_MULTIZONE_REMOTE_KDS_AUTH_CP_TOKEN_PATH` environment variable.
+- Store the token in a file, then set the path to the file in a `KMESH_MULTIZONE_ZONE_KDS_AUTH_CP_TOKEN_INLINE` environment variable.
 ```sh
-$ KUMA_MODE=remote \
-  KUMA_MULTIZONE_REMOTE_ZONE=<zone-name> \
-  KUMA_MULTIZONE_REMOTE_GLOBAL_ADDRESS=grpcs://<global-kds-address> \
-  KMESH_MULTIZONE_REMOTE_KDS_AUTH_CP_TOKEN_PATH="/tmp/token" \
+$ KUMA_MODE=zone \
+  KUMA_MULTIZONE_ZONE_NAME=<zone-name> \
+  KUMA_MULTIZONE_ZONE_GLOBAL_ADDRESS=grpcs://<global-kds-address> \
+  KMESH_MULTIZONE_ZONE_KDS_AUTH_CP_TOKEN_PATH="/tmp/token" \
   ./kuma-cp run
 ```
 
@@ -121,7 +121,7 @@ If you are starting from scratch and not securing existing {{site.mesh_product_n
 {% navtabs %}
 {% navtab Kubernetes with kumactl %}
 
-If you install the remote control plane with `kumactl install control-plane`, pass the `--cp-auth` argument with the value `cpToken`:
+If you install the zone control plane with `kumactl install control-plane`, pass the `--cp-auth` argument with the value `cpToken`:
 
 ```sh
 $ kumactl install control-plane \
@@ -224,7 +224,7 @@ data: {{ key }}
 
 ### Regenerate control plane tokens
 
-Create and add a new token for each remote control plane. These tokens are automatically created with the signing key that's assigned the highest serial number, so they're created with the new signing key.
+Create and add a new token for each zone control plane. These tokens are automatically created with the signing key that's assigned the highest serial number, so they're created with the new signing key.
 
 Make sure the new signing key is available; otherwise old and new tokens are created with the same signing key and can both provide authentication.
 
@@ -280,4 +280,4 @@ The result looks like:
 
 ## Additional security
 
-By default, a connection from the remote control plane to the global control plane is secured with TLS. You should also configure the remote control plane to [verify the certificate authority (CA) of the global control plane](https://kuma.io/docs/1.0.8/security/certificates/){:target="_blank"}.
+By default, a connection from the zone control plane to the global control plane is secured with TLS. You should also configure the zone control plane to [verify the certificate authority (CA) of the global control plane](https://kuma.io/docs/latest/security/certificates/#control-plane-to-control-plane-multizone){:target="_blank"}.
