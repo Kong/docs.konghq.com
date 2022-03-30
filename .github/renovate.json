@@ -1,3 +1,15 @@
 {
-  "labels": ["review:tech"]
+  "extends": [
+    "config:base"
+  ],
+  "schedule": "every weekend",
+  "bundler": {
+    "enabled": true
+  },
+  "ignoreDeps": [
+    "jekyll"
+  ],
+  "labels": [
+    "review:tech"
+  ]
 }

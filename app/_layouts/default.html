@@ -25,7 +25,7 @@
 
     {% include_cached nav-v2.html layout=page.layout %}
 
-    {{ content | replace: '<a href="http', '<a rel="nofollow noopener noreferrer" href="http' }}
+    {{ content | replace: '<a href="http:', '<a rel="nofollow noopener noreferrer" href="http:' }}
 
     {% include_cached footer.html %} {% include_cached anchor_links.html %}
 

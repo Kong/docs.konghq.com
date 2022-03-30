@@ -2,7 +2,7 @@
 module Jekyll
 
   class Versions < Jekyll::Generator
-    priority :highest
+    priority :high
 
     def generate(site)
       ceVersions = site.data["kong_versions"].select do |elem|
@@ -146,6 +146,12 @@ module Jekyll
             createAliases(page, '/gateway-oss', 1, parts, "release")
           end
 
+          # Clean up nav_items for generated pages as there's an
+          # additional level of nesting
+          if page.data["nav_items"].is_a?(Hash)
+            page.data["nav_items"] = page.data["nav_items"]["items"]
+          end
+
 
           # Helpful boolean in templates. If version has .md, then it is not versioned
           if page.data["kong_version"].include? ".md"
@@ -162,7 +168,8 @@ module Jekyll
 
       if releasePath == latestRelease
         page.data["alias"] = "/" + page.path.sub(releasePath, "latest").sub(/\..*$/, "")
-        if templateName == "index.md"
+        # templateName is nil if using single source generation and it's the index page
+        if templateName == "index.md" || templateName.nil?
           # the / page
           page.data["permalink"] = "#{urlPath}/"
           page.data["alias"] = ["#{urlPath}/latest", "#{urlPath}/#{latestRelease}", "#{urlPath}/#{latestRelease}/index.html"]

@@ -10,7 +10,7 @@ no_version: true
 
 #### Enterprise
 
-* Improved tables in Kong Manager:
+* Improved tables in Kong Manager: (for PostgreSQL-backed instances only)
   * Click on a table row to access the entry instead of using the
   old **View** icon.
   * Search and filter tables through the **Filters** dropdown, which is located

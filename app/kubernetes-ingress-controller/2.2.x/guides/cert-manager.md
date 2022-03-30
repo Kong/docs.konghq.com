@@ -99,7 +99,7 @@ $ kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong
 
 Please note that the IP address in your case will be different.
 
-Next, setup a DNS records to resolve `proxy.example.com` to the
+Next, set up a DNS records to resolve `proxy.example.com` to the
 above IP address:
 
 ```bash
@@ -107,7 +107,7 @@ $ dig +short proxy.example.com
 35.233.170.67
 ```
 
-Next, setup a CNAME DNS record to resolve `demo.example.com` to
+Next, set up a CNAME DNS record to resolve `demo.example.com` to
 `proxy.example.com`.
 
 ```bash
@@ -159,7 +159,7 @@ Via: kong/1.1.2
 
 ## Request TLS Certificate from Let's Encrypt
 
-First, setup a ClusterIssuer for cert-manager
+First, set up a ClusterIssuer for cert-manager:
 
 ```bash
 $ echo "apiVersion: cert-manager.io/v1
@@ -176,14 +176,22 @@ spec:
     solvers:
     - http01:
         ingress:
+          podTemplate:
+             metadata:
+               annotations:
+                 kuma.io/sidecar-injection: "false"   # If ingress is running in Kuma/Kong Mesh, disable sidecar injection
+                 sidecar.istio.io/inject: "false"  # If using Istio, disable sidecar injection
           class: kong" | kubectl apply -f -
 clusterissuer.cert-manager.io/letsencrypt-prod configured
 ```
-*Note*: If you run into issues configuring this,
+
+{:.note}
+> *Note*: If you run into issues configuring this,
 be sure that the group (`cert-manager.io`) and
 version (`v1`) match those in the output of
 `kubectl describe crd clusterissuer`.
-This directs cert-manager which CA authority to use to issue the certificate.
+
+This tells cert-manager which CA authority to use to issue the certificate.
 
 Next, update your Ingress resource to provision a certificate and then use it:
 

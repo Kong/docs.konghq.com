@@ -7,7 +7,7 @@ This document guides you through the process of upgrading {{site.ce_product_name
 To upgrade to prior versions, find the version number in the
 [Upgrade doc in GitHub](https://github.com/Kong/kong/blob/master/UPGRADE.md).
 
-## Upgrade to `2.6.x`
+## Upgrade to 2.6.x
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
 distinction between "major", "minor", and "patch" versions. The upgrade path
@@ -93,7 +93,7 @@ which you can use to migrate legacy `apis` configurations.
 Once you migrated to 1.5.x, you can follow the instructions in the section
 below to migrate to 2.6.x.
 
-### Upgrade from `1.0.x` - `2.5.x` to `2.6.x`
+### Upgrade from 1.0.x - 2.5.x to 2.6.x
 
 **Postgres**
 

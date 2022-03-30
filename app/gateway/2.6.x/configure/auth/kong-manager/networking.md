@@ -79,7 +79,7 @@ admin_gui_ssl_cert_key = /path/to/test.key
 admin_gui_url = https://test.com:8445
 ```
 
-### Using `https://localhost`
+### Using https://localhost
 
 If serving Kong Manager on localhost, it may be preferable to use HTTP as the protocol. If also using RBAC,
 set `cookie_secure=false` in `admin_gui_session_conf`. The reason to use HTTP for `localhost` is that
