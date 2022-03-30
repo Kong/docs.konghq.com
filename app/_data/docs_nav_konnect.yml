@@ -68,32 +68,30 @@
               url: /configure/servicehub/enable-service-plugin
             - text: Configure a Plugin on a Route
               url: /configure/servicehub/enable-route-plugin
-    - text: Runtimes
-      url: /runtime-manager
+    - text: Runtime Manager
+      url: /configure/runtime-manager
       items:
         - text: Runtime Groups
-          url: /runtime-manager/runtime-groups
+          url: /configure/runtime-manager/runtime-groups
           items:
             - text: Manage Runtime Groups
-              url: /runtime-manager/runtime-groups/manage
-            - text: Runtime Groups Use Case
-              url: /runtime-manager/runtime-groups/use-case
+              url: /configure/runtime-manager/runtime-groups/manage
+            - text: Manage Entities in a Runtime Group
+              url: /configure/runtime-manager/runtime-groups/manage-entities
         - text: Runtime Instances
           items:
             - text: Install with Docker
-              url: /runtime-manager/gateway-runtime-docker
+              url: /configure/runtime-manager/runtime-instances/gateway-runtime-docker
             - text: Install on Kubernetes
-              url: /runtime-manager/gateway-runtime-kubernetes
+              url: /configure/runtime-manager/runtime-instances/gateway-runtime-kubernetes
             - text: Install on Linux
-              url: /runtime-manager/gateway-runtime-conf
+              url: /configure/runtime-manager/runtime-instances/gateway-runtime-conf
+            - text: Upgrade a Runtime Instance to a New Version
+              url: /configure/runtime-manager/runtime-instances/upgrade
+            - text: Renew Certificates
+              url: /configure/runtime-manager/runtime-instances/renew-certificates
             - text: Runtime Parameter Reference
-              url: /runtime-manager/runtime-parameter-reference
-        - text: Manage Global Entities
-          url: /runtime-manager/manage-entities/
-        - text: Upgrade a Runtime to a New Version
-          url: /runtime-manager/upgrade
-        - text: Renew Certificates
-          url: /runtime-manager/renew-certificates
+              url: /configure/runtime-manager/runtime-instances/runtime-parameter-reference
 
 - title: Publish
   icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
