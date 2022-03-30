@@ -2,22 +2,20 @@
 title: Set up a Kong Gateway Runtime with Docker
 no_version: true
 ---
-Set up a Docker [runtime](/konnect/#konnect-key-concepts-and-terminology)
-through the
+Set up a Docker runtime instance through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
-configure your {{site.base_gateway}} instance to accept configuration from
-{{site.konnect_short_name}}. The Runtime Manager keeps track of all runtimes
-associated with the {{site.konnect_saas}} account.
+configure your instance to accept configuration from
+{{site.konnect_short_name}}. The Runtime Manager keeps track of all runtime
+instances associated with the {{site.konnect_saas}} account.
 
-You have the following options when configuring a new runtime with Docker:
-* Use the [quick setup](#quick-setup) script, which generates a data plane
+You have the following options when configuring a new runtime instance with Docker:
+* Use the [quick setup](#quick-setup) script, which generates a data plane container
 running on `localhost`.
 * Use the [advanced setup](#advanced-setup) to customize your installation.
 
-<div class="alert alert-ee blue">
-<b>Note:</b> Kong does not host runtimes. You must install and host your own
+{:.note}
+> **Note:** Kong does not host runtimes. You must install and host your own
 runtime instances.
-</div>
 
 ## Quick setup
 
@@ -34,19 +32,15 @@ runtime instances.
 
 ### Run the quick setup script
 
-1. From the left navigation menu, open **Runtimes**.
+1. From the left navigation menu, open
+![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
+**Runtimes**.
 
-    For the first runtime, the page opens to a **Configure New Runtime** form.
+2. Select a runtime group.
 
-    Once configured, this page lists all runtimes associated with the
-    {{site.konnect_saas}} account.
-
-2. (Optional) If this is not the first runtime configuration, click
-**Configure New Runtime**.
+2. Click **+ New Runtime Instance**.
 
 3. Click **Copy Script**.
-
-    You can expand the codeblock by clicking **Show** to see the entire script.
 
 4. Replace the placeholder for `<your-password>` with your own
 {{site.konnect_saas}} password.
@@ -57,12 +51,8 @@ runtime instances.
     {{site.base_gateway}} instance and connects it to your
     {{site.konnect_saas}} account.
 
-6. Click **Done** to go to the Runtime Manager overview.
-
-    Once the script has finished running, the Runtimes Manager will
-    include a new entry for your instance.
-    <!-- and the tag in the **Node Status** column should say
-    **Connected**.-->
+6. Click **Done** to go to the Runtime Instances overview, where you will
+see a new entry for your instance.
 
 ## Advanced setup
 
@@ -133,7 +123,7 @@ docker run -d --name kong-dp `
 
     ![Konnect Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
 
-    See [Parameters](/konnect/runtime-manager/runtime-parameter-reference) for
+    See [Parameters](/konnect/configure/runtime-manager/runtime-instances/runtime-parameter-reference) for
     descriptions and the matching fields in {{site.konnect_short_name}}.
 
 3. `-p 8000:8000` sets the proxy URL to `http://localhost:8000`.
@@ -146,10 +136,9 @@ docker run -d --name kong-dp `
 
 4. Run the `docker run` command with your substituted values.
 
-5. On the **Configure New Runtime** page, click **Done** to go to the Runtime
-Manager overview.
+6. In Konnect, click **Done** to go to the Runtime Instances overview, where you will
+see a new entry for your instance.
 
-    The Runtime Manager will include a new entry for your instance.
 
 ## Access services using the proxy URL
 
