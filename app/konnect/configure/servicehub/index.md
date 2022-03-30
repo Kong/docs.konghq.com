@@ -3,20 +3,20 @@ title: ServiceHub Overview
 no_version: true
 ---
 
-ServiceHub is a {{site.konnect_saas}} functionality module that
+The ServiceHub is a {{site.konnect_saas}} functionality module that
 lets you catalog all of your services in a single system of record. This
 catalog represents the single source of truth of your organization’s service
 inventory and their dependencies.
 
-Using ServiceHub, you can catalog, manage, and track every service in your
+Using the ServiceHub, you can catalog, manage, and track every service in your
 entire architecture.
 
 ## Services in the ServiceHub catalog
 
-Each entry in ServiceHub is called a **Service**.
-This is the abstraction of one of your own upstream services.
+Each entry in the ServiceHub is called a **Konnect Service**, or **Service**
+for short. This is the abstraction of one of your own upstream services.
 
-A Service in ServiceHub breaks down into multiple
+A Service in the ServiceHub breaks down into multiple
 configuration **versions**, and can be **implemented** to route to any
 endpoint you like.
 
@@ -25,24 +25,28 @@ endpoint you like.
 * **Service**: The abstraction of one of
 your own services. For example, it might represent a data
 transformation microservice or a billing API.
-* **Service Version**: One instance, or implementation, of the
+
+* **Service version**: One instance, or implementation, of the
 Service with a unique configuration. A Service can have many versions,
 and each version can have different configurations, set up for a RESTful API,
 gPRC endpoint, GraphQL endpoint, and others.
-* **Service Implementation**: The concrete, runnable incarnation of a Service
+
+* **Service implementation**: The concrete, runnable incarnation of a Service
 version. Each Service version can only have one implementation.
 
-<div class="alert alert-ee blue">
-<b>Note:</b> Currently, the only supported implementation type is a
+A Konnect service isn't associated with any specific runtime group, but every
+Service version is. When you create a version of the Service, you must select a
+group for the version to run on.
+
+{:.note}
+> **Note:** Currently, the only supported implementation type is a
 {{site.base_gateway}} runtime.
-</div>
 
 The main attribute of a Service version is its Upstream URL, where the service
 listens for requests. You can specify the URL with a single string, or by
 specifying its protocol, host, port, and path individually.
 
-**See more:**
-* [Get started with Service management](/konnect/servicehub/manage-services)
+[Get started with Service management &rarr;](/konnect/configure/servicehub/manage-services)
 
 ### Kong Gateway implementations
 
@@ -53,6 +57,8 @@ can have only one implementation, but potentially many Routes.
 
 After configuring the Service, version, implementation, and at least one Route,
 you’ll be able to start making requests through {{site.konnect_saas}}.
+
+[Implement a Service version &rarr;](/konnect/configure/servicehub/manage-services/#implement-service-version)
 
 ## Dev Portal
 
@@ -70,9 +76,9 @@ Service version.
 * **Version spec**: An OpenAPI (Swagger) document in YAML or JSON format.
 Applies to a specific Service version.
 
-**See more:**
-* [Upload Service Documentation to the Dev Portal](/konnect/servicehub/dev-portal/service-documentation)
-* [Publish a Service to the Dev Portal](/konnect/servicehub/dev-portal/publish)
+[Upload Service Documentation to the Dev Portal &rarr;](/konnect/dev-portal/service-documentation)
+
+[Publish a Service to the Dev Portal &rarr;](/konnect/dev-portal/publish)
 
 ## Kong Gateway plugins
 
@@ -81,5 +87,4 @@ ranging from a specific Service version or Route to all Service versions. Plugin
 can execute actions inside {{site.konnect_product_name}} before or after a request
 has been proxied to the upstream API, as well as on any incoming responses.
 
-**See more:**
-* [Manage plugins](/konnect/manage-plugins/)
+[Manage plugins &rarr;](/konnect/configure/servicehub/plugins/)

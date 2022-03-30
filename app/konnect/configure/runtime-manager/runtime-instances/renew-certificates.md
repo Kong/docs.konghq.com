@@ -1,5 +1,5 @@
 ---
-title: Renew certificates for a runtime
+title: Renew Certificates for a Runtime Instance
 no_version: true
 ---
 
@@ -9,12 +9,12 @@ months.
 Renew your certificates to prevent any interruption in communication between
 {{site.konnect_saas}} and any configured runtimes (data planes). If a
 certificate expires and is not replaced:
-* The runtime stops receiving configuration updates from
+* The runtime instance stops receiving configuration updates from
 the control plane.
-* The runtime stops sending [Vitals](/konnect/vitals) and usage data to the
-control plane.
-* Each disconnected runtime uses cached configuration to continue proxying
-and routing traffic.
+* The runtime instance stops sending [Vitals](/konnect/vitals) and usage data
+to the control plane.
+* Each disconnected runtime instance uses cached configuration to continue
+proxying and routing traffic.
 
 Depending on your setup, renewing certificates might mean bringing up a new data
 plane, or generating new certificates and updating data planes with the new
@@ -22,28 +22,29 @@ files.
 
 ## Quick setup
 
-If you originally created your data plane container using the
-[quick setup Docker script](/konnect/runtime-manager/gateway-runtime-docker/#quick-setup),
-we recommend running the script again to create a new data plane with renewed
+If you originally created your runtime instance container using the
+[quick setup Docker script](/konnect/configure/runtime-manager/runtime-instances/gateway-runtime-docker/#quick-setup),
+we recommend running the script again to create a new instance with renewed
 certificates.
 
-1. Stop the data plane container.
-2. Open Runtime Manager and click **Configure New Runtime**.
+1. Stop the runtime instance container.
+2. Open ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
+Runtime Manager, select a runtime group, and click **+ New Runtime Instance**.
 3. Run the script again to
-[create a new data plane](/konnect/runtime-manager/gateway-runtime-docker/#quick-setup) with
+[create a new runtime instance](/konnect/configure/runtime-manager/runtime-instances/gateway-runtime-docker/#quick-setup) with
 updated certificates.
-4. Remove the old data plane container.
+4. Remove the old runtime instance container.
 
 ## Advanced setup
 
-If your data planes are running on Linux or Kubernetes, or if you have a Docker
-data plane container that was _not_ created using the quick setup script,
+If your runtime instances are running on Linux or Kubernetes, or if you have a
+Docker container that was _not_ created using the quick setup script,
 generate new certificates and replace them on the existing nodes.
 
 ### Generate new certificates
 
-1. Open [Runtime Manager](https://konnect.konghq.com/runtime-manager/) and
-click **Configure New Runtime**.
+1. Open ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
+Runtime Manager, select a runtime group, and click **+ New Runtime Instance**.
 2. Open the tab that suits your environment: **Linux** or **Kubernetes**.
 
     If you're running a Docker container, you can use either of these tabs to
@@ -96,8 +97,8 @@ you saved earlier:
     <pre><code>kubectl create secret generic kong-cluster-ca2 -n kong \
       --from-file=ca.crt=/<div contenteditable="true">{PATH_TO_FILE}</div>/ca.crt</code></pre>
 
-3. Open the `values.yaml` file for your data plane and update it to point to the
-new secrets.
+3. Open the `values.yaml` file for your runtime instance and update it to point
+to the new secrets.
 
     Update the `secretVolumes` section:
 
@@ -138,7 +139,7 @@ command:
 {% endnavtab %}
 {% navtab Docker %}
 
-In your Docker container, replace existing certificates on your data planes
+In your Docker container, replace existing certificates on your runtime instances
 with the new files and restart the Gateway:
 
 <pre><code>echo "KONG_CLUSTER_CERT=/<div contenteditable="true">{PATH_TO_FILE}</div>/tls.crt \
