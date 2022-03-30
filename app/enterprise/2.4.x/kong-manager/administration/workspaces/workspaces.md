@@ -104,7 +104,7 @@ all files from a folder will remove the folder.
     --data "config.portal=false"
    ```
 
-1. [Delete each role](/gateway/{{page.kong_version}}/admin-api/rbac/reference/#delete-a-role)
+1. [Delete each role](/enterprise/{{page.kong_version}}/admin-api/rbac/reference/#delete-a-role)
 from the workspace:
 
     ```bash
