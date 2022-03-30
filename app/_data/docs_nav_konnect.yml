@@ -146,7 +146,7 @@
       url: /vitals/generate-reports
 
 - title: Administer
-  icon: /assets/images/icons/konnect/konnect-organization.svg
+  icon: /assets/images/icons/konnect/icn-organizations.svg
   items:
     - text: Plans and Billing
       items:
@@ -159,14 +159,15 @@
     - text: Authentication and Authorization
       url: /org-management/auth
       items:
-        - text: Teams and Permissions
-          url: /org-management/teams-and-permissions
+        - text: Manage Teams and Roles
+          url: /org-management/teams-and-roles
           items:
-            - text: Manage Teams
-              url: /org-management/teams-and-permissions
-            - text: Permissions Reference
-              url: /org-management/permissions-reference
-
+            - text: Teams Reference
+              url: /org-management/teams-reference
+            - text: Roles Reference
+              url: /org-management/roles-reference
+        - text: Manage Users
+          url: /org-management/users
         - text: Set up SSO with Okta
           url: /org-management/okta-idp
     - text: Account and Org Deactivation

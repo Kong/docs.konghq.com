@@ -133,6 +133,7 @@
 /konnect/servicehub/plugins/enable-service-plugin/  /konnect/manage-plugins/enable-service-plugin/
 /konnect/servicehub/plugins/enable-route-plugin/    /konnect/manage-plugins/enable-route-plugin/
 /konnect/dev-portal/administrators/customization/themes         /konnect/dev-portal
+/konnect/org-management/users-and-roles             /konnect/org-management/teams-and-roles
 /konnect/runtime-manager/gateway-runtime-conf        /konnect/runtime-manager/runtime-instances/gateway-runtime-conf
 /konnect/runtime-manager/gateway-runtime-docker      /konnect/runtime-manager/runtime-instances/gateway-runtime-docker
 /konnect/runtime-manager/gateway-runtime-kubernetes  /konnect/runtime-manager/runtime-instances/gateway-runtime-kubernetes
