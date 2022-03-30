@@ -2,9 +2,9 @@
 title: Set up a Kong Gateway Runtime on Kubernetes
 no_version: true
 ---
-Set up a Kubernetes [runtime](/konnect/#konnect-key-concepts-and-terminology)
+Set up a Kubernetes [runtime](/konnect/legacy/#konnect-key-concepts-and-terminology)
 through the
-[{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
+[{{site.konnect_short_name}} Runtime Manager](/konnect/legacy/runtime-manager) and
 configure your {{site.base_gateway}} instance to accept configuration from
 {{site.konnect_short_name}}. The Runtime Manager keeps track of all runtimes
 associated with the {{site.konnect_saas}} account.
@@ -124,7 +124,7 @@ with your specific values from {{site.konnect_short_name}}.
     the values in `cluster_cert`, `cluster_cert_key`, and `cluster_ca_cert`
     with references to the secrets you created earlier.
 
-    See [Parameters](/konnect/runtime-manager/runtime-parameter-reference) for
+    See [Parameters](/konnect/legacy/runtime-manager/runtime-parameter-reference) for
     descriptions and matching values in {{site.konnect_short_name}}.
 
 5. Apply the `values.yaml`:

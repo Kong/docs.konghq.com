@@ -13,11 +13,11 @@ Do not attempt to disable application registration by deleting or disabling the
 read-only application registration plugins (`acl` and `key-auth` or `openid-connect`).
 Attempting to remove them manually will break your Service. See the
 Application Overview section on
-[{{site.konnect_short_name}}-managed plugins](/konnect/dev-portal/applications/application-overview/#konnect-managed-plugins)
+[{{site.konnect_short_name}}-managed plugins](/konnect/legacy/dev-portal/applications/application-overview/#konnect-managed-plugins)
 for more information.
 
 You can
-[enable application registration](/konnect/dev-portal/applications/enable-app-reg)
+[enable application registration](/konnect/legacy/dev-portal/applications/enable-app-reg)
 again any time.
 
 ## Disable app registration

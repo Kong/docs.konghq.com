@@ -146,7 +146,7 @@ then click **Create**.
 ### Verify an Implementation
 
 For any runtime instance created with the provided Docker script (see
-[Setting up a Kong Gateway Runtime](/konnect/runtime-manager/)),
+[Setting up a Kong Gateway Runtime](/konnect/legacy/runtime-manager/)),
 the default proxy URL is `localhost:8000`.
 
 Enter the proxy URL into your browser’s address bar and append any route path.

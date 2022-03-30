@@ -109,4 +109,4 @@ used and how they are responding.
 In this topic, you viewed the health and monitoring information for
 Services, Service versions, and Routes.
 
-Next, learn how to [export a report](/konnect/vitals/generate-reports) of Vitals performance information.
+Next, learn how to [export a report](/konnect/legacy/vitals/generate-reports) of Vitals performance information.
