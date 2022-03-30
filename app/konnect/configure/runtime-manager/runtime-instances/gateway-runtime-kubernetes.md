@@ -2,17 +2,15 @@
 title: Set up a Kong Gateway Runtime on Kubernetes
 no_version: true
 ---
-Set up a Kubernetes [runtime](/konnect/#konnect-key-concepts-and-terminology)
-through the
+Set up a Kubernetes runtime instance through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
 configure your {{site.base_gateway}} instance to accept configuration from
-{{site.konnect_short_name}}. The Runtime Manager keeps track of all runtimes
-associated with the {{site.konnect_saas}} account.
+{{site.konnect_short_name}}. The Runtime Manager keeps track of all runtime
+instances associated with the {{site.konnect_saas}} account.
 
-<div class="alert alert-ee blue">
-<b>Note:</b> Kong does not host runtimes. You must install and host your own
+{:.note}
+> **Note:** Kong does not host runtimes. You must install and host your own
 runtime instances.
-</div>
 
 ## Prerequisites
 
@@ -26,7 +24,7 @@ installed and configured to communicate to your Kubernetes TLS.
 
 ## Set up Helm
 
-On your runtime's system, create a namespace and pull down the `kong` Helm repo.
+On your runtime instance's system, create a namespace and pull down the `kong` Helm repo.
 
 1. Create a namespace:
     ```sh
@@ -51,7 +49,7 @@ On your runtime's system, create a namespace and pull down the `kong` Helm repo.
 
 Next, configure a {{site.base_gateway}} instance using the certificate, the
 private key, and the remaining configuration details on the
-**Configure Runtime** page.
+runtime instance configuration page.
 
 ### Configure secrets
 
@@ -124,7 +122,7 @@ with your specific values from {{site.konnect_short_name}}.
     the values in `cluster_cert`, `cluster_cert_key`, and `cluster_ca_cert`
     with references to the secrets you created earlier.
 
-    See [Parameters](/konnect/runtime-manager/runtime-parameter-reference) for
+    See [Parameters](/konnect/configure/runtime-manager/runtime-instances/runtime-parameter-reference) for
     descriptions and matching values in {{site.konnect_short_name}}.
 
 5. Apply the `values.yaml`:
@@ -134,15 +132,13 @@ with your specific values from {{site.konnect_short_name}}.
       --values ./values.yaml
     ```
 
-6. On the **Configure New Runtime** page, click **Done** to go to the Runtime
-Manager overview.
-
-    The Runtime Manager will include a new entry for your instance.
+6. In Konnect, click **Done** to go to the Runtime Instances overview, where you will
+see a new entry for your instance.
 
 ### Troubleshooting
 
-If you configured everything above but don't see your runtime in the Runtime
-Manager, check the logs from your deployment:
+If you configured everything above but don't see your runtime instance in the
+list, check the logs from your deployment:
 
 ```bash
 $ kubectl logs deployment/my-kong-kong -n kong
@@ -159,8 +155,8 @@ $ helm upgrade my-kong kong/kong -n kong \
 
 ## Access services using the proxy
 
-To proxy traffic through this runtime, you'll need its external IP address,
-a port, and a route.
+To proxy traffic through this runtime instance, you'll need its external IP
+address, a port, and a route.
 
 1. To find the address and port, run:
 
