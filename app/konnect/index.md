@@ -26,8 +26,8 @@ deployment, see the following topics to get started:
   * [Implement the Service version](/konnect/getting-started/implement-service)
 * Learn about [ServiceHub](/konnect/configure/servicehub) and [Runtime Manager](/konnect/configure/runtime-manager)
 * Use the Dev Portal:
-  * [Set up the Dev Portal for a Service](/konnect/configure/servicehub/dev-portal/service-documentation)
-  * [Publish a Service version to the Dev Portal](/konnect/configure/servicehub/dev-portal/publish)
+  * [Set up the Dev Portal for a Service](/konnect/dev-portal/service-documentation)
+  * [Publish a Service version to the Dev Portal](/konnect/dev-portal/publish)
   * Enable [application registration](/konnect/dev-portal/applications/enable-app-reg)
   * Manage [developer registration](/konnect/dev-portal/access-and-approval/manage-devs)
 * Use Vitals to [monitor the status of your Services](/konnect/vitals)

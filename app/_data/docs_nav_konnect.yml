@@ -140,8 +140,8 @@
   icon: /assets/images/icons/documentation/icn-vitals.svg
   url: /vitals
   items:
-    - text: Analyze Services and Routes
-      url: /vitals/analyze
+    # - text: Analyze Services and Routes
+    #   url: /vitals/analyze
     - text: Generate Reports
       url: /vitals/generate-reports
 
