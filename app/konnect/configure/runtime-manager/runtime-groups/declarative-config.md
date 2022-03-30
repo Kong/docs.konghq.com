@@ -100,7 +100,7 @@ configuration in JSON format:
 ```sh
 deck dump --konnect-runtime-group default \
   --format json \
-  --output-file examples/konnect.yaml
+  --output-file examples/konnect.json
 ```
 
 ## Make changes to configuration
@@ -108,7 +108,7 @@ deck dump --konnect-runtime-group default \
 Make any changes you like using YAML or JSON format.
 For this example, let's add a new service.
 
-1. Add the following snippet to your `konnect.yaml` file:
+1. Add the following snippet to your `kong.yaml` file:
 
     ```yaml
     _format_version: "1.1"
@@ -193,8 +193,8 @@ authentication. They provide a way to divide access to your services, and
 make it easy to revoke that access without disturbing a service's function.
 
 * Global plugins are plugins that apply to all services, routes, and consumers
-in the cluster, as applicable. For example, you can configure proxy caching on
-all your services at once with one `proxy-cache` plugin entry.
+in the runtime group, as applicable. For example, you can configure proxy
+caching on all your services at once with one `proxy-cache` plugin entry.
 
 
 1. In the previous section, you created a route with key authentication. To
@@ -234,12 +234,6 @@ to see your changes:
     ```sh
     deck sync --konnect-runtime-group default
     ```
-
-    {:.note}
-    > **Note:** If you add consumers to the `konnect.yaml` file and sync your
-    local file to Konnect, it picks up consumers automatically. However, if you
-    want to pull consumer configuration down **from** Konnect, use the
-    `--include-consumers` flag in your command.
 
 ## Test the service
 
