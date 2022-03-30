@@ -22,7 +22,7 @@ In the following example, you’ll use an application deployed across two differ
 
 ## Configure Upstream Services
 
-In this section, you will create an Upstream named `upstream` and add two targets to it.
+In this section, you will create an Upstream named `example_upstream` and add two targets to it.
 
 {% navtabs %}
 {% navtab Using Kong Manager %}
@@ -42,7 +42,7 @@ In this section, you will create an Upstream named `upstream` and add two target
 {% endnavtab %}
 {% navtab Using the Admin API %}
 
-Call the Admin API on port `8001` and create an Upstream named `upstream`:
+Call the Admin API on port `8001` and create an Upstream named `example_upstream`:
 
 <!-- codeblock tabs -->
 {% navtabs codeblock %}
