@@ -3,12 +3,12 @@ title: Configure Workspaces in Kong Manager
 badge: enterprise
 ---
 
-**Workspaces** enable an organization to segment traffic so that
-teams of **Admins** sharing the same Kong cluster are only able to
-interact with entities from their groups. Within a **Workspace**,
-it is possible to invite **Admins** to a particular team and to
-enforce **RBAC** with **Roles** and **Permissions** that further
-delimit the types of actions and entities available to an **Admin**.
+Workspaces enable an organization to segment traffic so that
+teams of admins sharing the same Kong cluster are only able to
+interact with entities from their groups. Within a workspace,
+it is possible to invite admins to a particular team and to
+enforce RBAC with roles and permissions that further
+delimit the types of actions and entities available to an admin.
 
 ## Prerequisites
 
@@ -16,43 +16,38 @@ delimit the types of actions and entities available to an **Admin**.
 * {{site.base_gateway}} has [started](/gateway/{{page.kong_version}}/plan-and-deploy/security/start-kong-securely)
 * Logged in to Kong Manager as a **Super Admin**
 
-## Default Workspace
+## Default workspace
 
-When the first **Super Admin** logs in, they begin in the **Workspace**
-named **default**. From here, they may invite **Admins** who are
-intended to be able to manage all other **Workspaces**, as well as
-the **Workspaces** themselves.
+When the first Super Admin logs in, they begin in the workspace
+named **default**. From here, they may invite admins to manage the default or
+any other workspaces.
 
-## Navigating across Workspaces in Kong Manager
+## Navigating across workspaces in Kong Manager
 
-To navigate between Workspaces from the **Overview** page, click on any
-Workspace displayed beneath the **Vitals** chart.
+To navigate between workspaces from the **Overview** page, click on any
+workspace displayed beneath the **Vitals** chart.
 
-The list of **Workspaces** may be rendered as cards or a table,
+The list of workspaces may be rendered as cards or a table,
 depending on preference.
 
 ![Workspace List](https://doc-assets.konghq.com/1.3/manager/kong-manager-workspaces-grid.png)
 
 
-## Creating New Workspaces
+## Create a Workspace
 
-This guide describes how to create **Workspaces** in Kong
-Manager. As an alternative, if a **Super Admin** wants to create
-a **Workspace** with the Admin API, it is possible to do so
-using the [`/workspaces/` route](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/#add-workspace).
+This guide describes how to create workspaces in Kong
+Manager. You can also use the Admin API [`/workspaces/` route](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/#add-workspace) to create a workspace.
 
 1. Log in as the **Super Admin**. On the **Workspaces** page, click the **New Workspace**
 button at the top right to see the **Create Workspace** form. Name and choose a
 color / icon for the new Workspace.
 
-    ![New Workspace Form](https://doc-assets.konghq.com/1.3/manager/workspaces/01-create-new-workspace.png)
-
-    Each **Workspace** name should be unique,
+    Each workspace name should be unique,
     regardless of letter case. For example, naming one
-    **Workspace** "Payments" and another one "payments" will
+    workspace "Payments" and another one "payments" will
     create two different workspaces that appear identical.
 
-    Do not name Workspaces the same as these major API names (paths) 
+    Do not name workspaces the same as these major API names (paths)
     in Admin API:
 
     ```
@@ -68,36 +63,123 @@ color / icon for the new Workspace.
     • Vitals
     ```
 
-2. Click the "Create New Workspace" button. Upon creation, the application will
+2. Click the **Create New Workspace** button. Upon creation, the application will
 navigate to the new Workspace's dashboard.
 
-    ![New Dashboard](https://doc-assets.konghq.com/1.3/manager/workspaces/02-workspace-dashboard.png)
+## Edit a workspace
 
-## Delete or Edit a Workspace
-
-To be able to delete a workspace, *all data* must first be deleted from the workspace:
-
-* Via Kong Manager, turn off the Dev Portal. Go to Dev Portal **Settings** > **Advanced** > **Turn Off**.
-* Via Kong Manager, remove all roles. Go to **Teams** in the top navigation. Navigate to the **Roles** tab. Click **View** on the workspace you want to delete. Go to each entry and click **Edit**. In the entry detail page, click **Delete Role**. A confirmation modal will appear. Click **Delete Role** again.
-* Delete *all workspace files* using one of the following methods:
-  * Use the [Kong Portal CLI](https://github.com/Kong/kong-portal-cli), and run `portal wipe WORKSPACE_NAME`.
-  * Send a `DELETE` request to the Admin API to delete all files associated with the workspace. Construct your `DELETE` request to the following endpoint: [`/workspaces/{WORKSPACE_NAME}/files`](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/#delete-a-workspace).
-  * Manually delete all files via Dev Portal > **Editor**. You cannot delete folders at this time, but deleting all files from a folder will remove the folder.
-
-1. In the workspace you want to edit or delete, navigate to the **Dashboard** page.
-
-    ![Workspace Dashboard](https://doc-assets.konghq.com/1.3/manager/workspaces/02-workspace-dashboard.png)
+1. In the workspace you want to edit, navigate to the **Dashboard** page.
 
 1. Near the top right, click the **Settings** button. This button takes you to the **Edit Workspace** page.
 
-1. Here, you'll be able to edit the workspace name, as well as the workspace avatar and avatar background color. To delete the workspace, click **Delete** in the bottom right corner. The deletion will fail if you have any data in your workspace.
+1. Here, you can edit the workspace name, avatar, and avatar background color.
 
-To delete a workspace using the Admin API, see the [Workspaces Reference](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/#delete-a-workspace). Note that with this method, you still need to delete all data from the workspace.
+1. Click **Update Workspace** to save.
+
+## Delete a workspace
+
+### Wipe workspace data
+To delete a workspace, *all data* must first be deleted from the workspace.
+Choose one of the following methods.
+
+{% navtabs %}
+{% navtab Kong Manager %}
+Using Kong Manager, complete the following:
+
+1.  Manually delete all files via **Dev Portal** > **Editor**. You cannot delete folders at this time, but deleting
+all files from a folder will remove the folder.
+1. Turn off the Dev Portal. Go to Dev Portal **Settings** > **Advanced** > **Turn Off**.
+1. Remove all roles from the workspace:
+     1. Go to **Teams** in the top navigation.
+     1. Navigate to the **Roles** tab.
+     1. Click **View** on the workspace you want to delete.
+     1. Go to each role entry and click **Edit**.
+     1. In the entry detail page, click **Delete Role**. A confirmation modal will appear. Click **Delete Role** again.
+
+{% endnavtab %}
+{% navtab Admin API %}
+
+1. Delete all Dev Portal files associated with the workspace:
+
+    ```bash
+    curl -i -X DELETE http://localhost:8001/{WORKSPACE_NAME}/files
+    ```
+
+1. Turn off the Dev Portal for the workspace:
+
+   ```bash
+   curl -X PATCH http://localhost:8001/workspaces/{WORKSPACE_NAME}  \
+    --data "config.portal=false"
+   ```
+
+1. [Delete each role](/gateway/{{page.kong_version}}/admin-api/rbac/reference/#delete-a-role)
+from the workspace:
+
+    ```bash
+    curl -i -X DELETE http://localhost:8001/{WORKSPACE_NAME}/rbac/roles/{ROLE_NAME|ROLE_ID}
+    ```
+{% endnavtab %}
+{% navtab Portal CLI %}
+
+1. Delete all Dev Portal files associated with the workspace:
+
+    ```sh
+    portal wipe WORKSPACE_NAME
+    ```
+
+2. Turn off the Dev Portal for the workspace:
+
+    ```sh
+    portal disable WORKSPACE_NAME
+    ```
+
+3. Delete each role from the workspace. You can't complete this step using the
+Portal CLI, so switch to either the *Kong Manager* or *Admin API* tab and complete
+step 3.
+
+{% endnavtab %}
+{% endnavtabs %}
+
+### Delete a clean workspace
+
+If your workspace is clean, you can delete it using the Kong Manager GUI or the
+Kong Admin API. If not, see the previous section to [wipe workspace data](#wipe-workspace-data).
+
+{% navtabs %}
+{% navtab Kong Manager %}
+
+1. In the workspace you want to delete, navigate to the **Dashboard** page.
+
+1. Near the top right, click the **Settings** button. This button takes you to the **Edit Workspace** page.
+
+1. Click **Delete** in the bottom right corner.
+
+    The deletion will fail if you have any data in your workspace.
+
+{% endnavtab %}
+{% navtab Admin API %}
+
+Send a `DELETE` request to the Kong Admin API:
+
+```sh
+curl -i -X DELETE http://localhost/workspaces/{WORKSPACE_NAME|WORKSPACE_ID}
+```
+
+The deletion will fail if you have any data in your workspace.
+
+If it is successful, you should see the following response:
+
+```
+HTTP 204 No Content
+```
+
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Workspace Access
 
-If a **Role** does not have permission to access entire endpoints within
-a **Workspace**, the **Admin** assigned to that **Role** will not be
+If a role does not have permission to access entire endpoints within
+a workspace, the admin assigned to that role will not be
 able to see the related navigation links.
 
 To set up access:
@@ -109,10 +191,10 @@ To set up access:
   the **security badge icon** at the bottom and click the
   **Admins** link.
 
-The **Admins** page displays a list of current **Admins** and
-**Roles**. Four default **Roles** specific to the new
-**Workspace** are already visible, and new **Roles** specific
-to the **Workspace** can be assigned from this page.
+The Admins page displays a list of current admins and
+roles. Four default roles specific to the new
+workspace are already visible, and new roles specific
+to the workspace can be assigned from this page.
 
-For more information about **Admins** and **Roles**, see
+For more information about admins and roles, see
 [RBAC in Kong Manager](/gateway/{{page.kong_version}}/configure/auth/rbac/).
