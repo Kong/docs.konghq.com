@@ -858,7 +858,7 @@ HTTP 204 No Content
 
 
 [Admin API]: /gateway-oss/latest/admin-api/
-[Admin GUI]: /enterprise/{{page.kong_version}}/api-admin-gui/overview
+[Admin GUI]: /enterprise/{{page.kong_version}}/admin-gui/overview
 ### List a User's Permissions
 **Endpoint**
 
