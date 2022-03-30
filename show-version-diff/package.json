@@ -1,0 +1,18 @@
+{
+  "name": "show-version-diff",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Michael Heap <m@michaelheap.com>",
+  "license": "MIT",
+  "dependencies": {
+    "execa": "^6.0.0",
+    "fast-glob": "^3.2.11",
+    "semver": "^7.3.5"
+  },
+  "type": "module"
+}

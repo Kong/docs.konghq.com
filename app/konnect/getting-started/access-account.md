@@ -9,7 +9,7 @@ downgrade to the free version, or continue with a paid Plus subscription.
 
 ## Set up a new Konnect Cloud account
 
-1. Go to [konnect.konghq.com/register](https://konnect.konghq.com/register).
+1. Go to [cloud.konghq.com/register](https://cloud.konghq.com/register).
 
 2. On the registration screen, fill in your email address, first and last name,
 and organization name.
@@ -40,7 +40,7 @@ You can recover a forgotten password from the {{site.konnect_short_name}}
 landing page.
 
 1. Access {{site.konnect_product_name}} at
-[https://konnect.konghq.com/](https://konnect.konghq.com/).
+[https://cloud.konghq.com/](https://cloud.konghq.com/).
 
 2. Click **Forgot your password?**
 
