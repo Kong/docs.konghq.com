@@ -3,11 +3,10 @@ title: Import Kong Gateway Entities into Konnect Cloud
 no_version: true
 ---
 
-You can attach any edition of self-managed {{site.base_gateway}} to
-{{site.konnect_saas}} as a data plane, and use Konnect as your control plane.
-
-Use [decK](/deck/) to import Kong Gateway entity configuration into a runtime
-group in your {{site.konnect_short_name}} organization.
+If you are an existing {{site.base_gateway}} user looking to use {{site.konnect_short_name}}
+as your cloud-hosted control plane, you can use [decK](/deck/) to import your
+{{site.base_gateway}} entity configuration into a runtime group in your
+{{site.konnect_short_name}} organization.
 
 Afterward, you must manually move over:
 * Dev Portal files, developer accounts, and applications
@@ -35,17 +34,28 @@ Use deck to import entity configurations into a runtime group.
       --konnect-password {YOUR_PASSWORD}
     ```
 
+    If the connection is successful, the terminal displays the full name of the
+    user associated with the account:
+
+    ```sh
+    Successfully Konnected as Some Name (Org Name)!
+    ```
+
     You can also use decK with {{site.konnect_short_name}} more securely by storing
     your password in a file, then either calling it with
-    `--konnect-password-file {FILENAME}.txt`, or adding it to your decK configuration
-    under the `konnect-password` option along with your email:
+    `--konnect-password-file /path/{FILENAME}.txt`, or adding it to your decK configuration
+    file under the `konnect-password` option along with your email:
 
     ```yaml
     konnect-password: {YOUR_PASSWORD}
     konnect-email: {YOUR_EMAIL}
     ```
 
-    The following steps all use a `deck.yaml` file to store the
+    The default location for this file is `$HOME/.deck.yaml`. You can target a
+    different configuration file with the `--config /path/{FILENAME}.yaml` flag,
+    if needed.
+
+    The following steps all use a `.deck.yaml` file to store the
     {{site.konnect_short_name}} credentials instead of flags.
 
 1. Export configuration from {{site.base_gateway}} with [`deck dump`](/deck/latest/reference/deck_dump):
@@ -90,7 +100,7 @@ they were migrated successfully.
 ## Migrate data planes
 
 You can keep any data plane nodes that are:
-* Running {{site.base_gateway}} (not the open-source package)
+* Running {{site.base_gateway}} (Enterprise, include _free_ mode)
 * Are at least version 2.3 or higher
 
 Turn any self-managed nodes into cloud data plane nodes by registering them
@@ -110,8 +120,10 @@ you can shut them down now.
 
 See the following docs to set up any additional things you may need:
 
-* **Dev Portal files:** You can migrate API specs and markdown documents using the
-{{site.konnect_saas}} GUI. See [Dev Portal Service Documentation](/konnect/dev-portal/service-documentation).
+* **Dev Portal files:** You can migrate API specs and markdown Service descriptions
+into ServiceHub using the {{site.konnect_saas}} GUI. Each Konnect Service accepts
+one markdown description file, and each Service version accepts one API spec.
+See [Dev Portal Service Documentation](/konnect/dev-portal/service-documentation).
 
 * **Dev Portal applications and developers:** If you have developers or
 applications registered through the Portal, those developers need to create new

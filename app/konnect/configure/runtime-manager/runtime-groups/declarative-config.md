@@ -3,7 +3,7 @@ title: Manage Runtime Groups with decK
 no_version: true
 ---
 
-You can manage entities in your {{site.konnect_saas}} org using configuration
+You can manage runtime groups in your {{site.konnect_saas}} org using configuration
 files instead of the GUI or admin API commands. With decK, Kong's declarative
 configuration management tool, you can create, update,
 compare, and synchronize configuration as part of an automation pipeline.
@@ -16,11 +16,13 @@ separately.
 group.
 * Migrate configuration from one group to another.
 
-To do this, you need [decK v1.12.0 or later](/deck/).
+{:.note}
+> **Note:** To work with runtime groups, you need [decK v1.12.0 or later](/deck/).
 
-Use any `--konnect`-prefixed flag to target `https://cloud.konghq.com`
-by default. If you don't provide a `--konnect` flag, decK looks
-for a local {{site.base_gateway}} instance instead.
+Use any `--konnect`-prefixed CLI flag or pass {{site.konnect_short_name}}
+parameters using a decK configuration file (`~/.deck.yaml` by default) to target
+`https://cloud.konghq.com`. If you don't pass any Konnect parameters to decK,
+decK looks for a local {{site.base_gateway}} instance instead.
 
 Run `deck help` to see all available flags, or see the [decK CLI reference](/deck/latest/reference/deck).
 
@@ -49,20 +51,24 @@ If the connection is successful, the terminal displays the full name of the user
 associated with the account:
 
 ```sh
-Successfully Konnected as Some Name (Kong)!
+Successfully Konnected as Some Name (Org Name)!
 ```
 
 You can also use decK with {{site.konnect_short_name}} more securely by storing
 your password in a file, then either calling it with
-`--konnect-password-file {FILENAME}.txt`, or adding it to your decK configuration
-under the `konnect-password` option along with your email:
+`--konnect-password-file /path/{FILENAME}.txt`, or adding it to your decK configuration
+file under the `konnect-password` option along with your email:
 
 ```yaml
 konnect-password: {YOUR_PASSWORD}
 konnect-email: {YOUR_EMAIL}
 ```
 
-The following steps all use a `deck.yaml` file to store the
+The default location for this file is `$HOME/.deck.yaml`. You can target a
+different configuration file with the `--config /path/{FILENAME}.yaml` flag, if
+needed.
+
+The following steps all use a `.deck.yaml` file to store the
 {{site.konnect_short_name}} credentials instead of flags.
 
 ## Create a configuration file
@@ -73,7 +79,7 @@ Capture a snapshot of the current configuration in a file:
 deck dump --konnect-runtime-group default
 ```
 
-If you don't specify the `--konnect-runtime-group` flag, decK still targets the
+If you don't specify the `--konnect-runtime-group` flag, decK will target the
 `default` runtime group. If you have more than one runtime group in your
 organization, we recommend always setting this flag to avoid accidentally
 pushing configuration to the wrong group.
@@ -102,11 +108,7 @@ deck dump --konnect-runtime-group default \
 Make any changes you like using YAML or JSON format.
 For this example, let's add a new service.
 
-1. Generate a UUID. You can do this in any way you want; a common tool is the
-`uuidgen` utility.
-
-2. Add the following snippet to your `konnect.yaml` file, replacing the `id` in
-the example with your generated UUID:
+1. Add the following snippet to your `konnect.yaml` file:
 
     ```yaml
     _format_version: "1.1"
@@ -117,7 +119,6 @@ the example with your generated UUID:
       host: mockbin.org
       port: 80
       protocol: http
-      id: {YOUR_GENERATED_UUID}
       routes:
       - methods:
         - GET
@@ -140,7 +141,7 @@ the example with your generated UUID:
     Because you're also enabling the `key-auth` plugin on the route, you need
     a consumer key to access it, so you can't test the route yet.
 
-3. Compare your local file with the configuration currently in
+1. Compare your local file with the configuration currently in
 {{site.konnect_saas}}:
 
     ```sh
@@ -151,16 +152,15 @@ the example with your generated UUID:
     be added to the {{site.konnect_saas}} configuration:
 
     ```sh
-    creating service 9595B5F9-3B6A-4C48-BE93-9EC1B0EA487A
     creating route mockpath
     creating service MyService
     Summary:
-      Created: 3
+      Created: 2
       Updated: 0
       Deleted: 0
     ```
 
-4. If you're satisfied with the preview, sync the changes to
+1. If you're satisfied with the preview, sync the changes to
 {{site.konnect_saas}}:
 
     ```sh
@@ -170,16 +170,15 @@ the example with your generated UUID:
     You should see the same output again:
 
     ```sh
-    creating service 9595B5F9-3B6A-4C48-BE93-9EC1B0EA487A
     creating route mockpath
     creating service MyService
     Summary:
-      Created: 3
+      Created: 2
       Updated: 0
       Deleted: 0
     ```
 
-5. Check {{site.konnect_saas}} to make sure the sync worked. Open **Runtimes** from
+1. Check {{site.konnect_saas}} to make sure the sync worked. Open **Runtimes** from
 the left side menu, then select your runtime group > **Gateway Services**.
 
     You should see a new service named `MyService` in the runtime group.
@@ -210,7 +209,7 @@ a key:
        - key: apikey
     ```
 
-2. Enable proxy caching so that your upstream service is not bogged
+1. Enable proxy caching so that your upstream service is not bogged
 down with repeated requests. Add a global proxy cache plugin:
 
     ```yaml
@@ -223,13 +222,13 @@ down with repeated requests. Add a global proxy cache plugin:
         strategy: memory
     ```
 
-3. Run a diff to test your changes:
+1. Run a diff to test your changes:
 
     ```sh
     deck diff --konnect-runtime-group default
     ```
 
-4. If everything looks good, run another sync, then check {{site.konnect_saas}}
+1. If everything looks good, run another sync, then check {{site.konnect_saas}}
 to see your changes:
 
     ```sh
@@ -270,6 +269,7 @@ No API key found in request.
 ```
 
 ## Migrate configuration between runtime groups
+{:.badge .enterprise}
 
 You can also use decK to migrate or duplicate configuration between runtime
 groups.
