@@ -73,17 +73,17 @@
         - text: Runtime Instances
           items:
             - text: Install with Docker
-              url: /configure/runtime-manager/gateway-runtime-docker
+              url: /configure/runtime-manager/runtime-instances/gateway-runtime-docker
             - text: Install on Kubernetes
-              url: /configure/runtime-manager/gateway-runtime-kubernetes
+              url: /configure/runtime-manager/runtime-instances/gateway-runtime-kubernetes
             - text: Install on Linux
-              url: /configure/runtime-manager/gateway-runtime-conf
+              url: /configure/runtime-manager/runtime-instances/gateway-runtime-conf
             - text: Upgrade a Runtime Instance to a New Version
-              url: /configure/runtime-manager/upgrade
+              url: /configure/runtime-manager/runtime-instances/upgrade
             - text: Renew Certificates
-              url: /configure/runtime-manager/renew-certificates
+              url: /configure/runtime-manager/runtime-instances/renew-certificates
             - text: Runtime Parameter Reference
-              url: /configure/runtime-manager/runtime-parameter-reference
+              url: /configure/runtime-manager/runtime-instances/runtime-parameter-reference
 
 - title: Publish
   icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
