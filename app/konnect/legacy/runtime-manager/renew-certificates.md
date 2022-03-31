@@ -11,7 +11,7 @@ Renew your certificates to prevent any interruption in communication between
 certificate expires and is not replaced:
 * The runtime stops receiving configuration updates from
 the control plane.
-* The runtime stops sending [Vitals](/konnect/vitals) and usage data to the
+* The runtime stops sending [Vitals](/konnect/legacy/vitals) and usage data to the
 control plane.
 * Each disconnected runtime uses cached configuration to continue proxying
 and routing traffic.
@@ -23,14 +23,14 @@ files.
 ## Quick setup
 
 If you originally created your data plane container using the
-[quick setup Docker script](/konnect/runtime-manager/gateway-runtime-docker/#quick-setup),
+[quick setup Docker script](/konnect/legacy/runtime-manager/gateway-runtime-docker/#quick-setup),
 we recommend running the script again to create a new data plane with renewed
 certificates.
 
 1. Stop the data plane container.
 2. Open Runtime Manager and click **Configure New Runtime**.
 3. Run the script again to
-[create a new data plane](/konnect/runtime-manager/gateway-runtime-docker/#quick-setup) with
+[create a new data plane](/konnect/legacy/runtime-manager/gateway-runtime-docker/#quick-setup) with
 updated certificates.
 4. Remove the old data plane container.
 

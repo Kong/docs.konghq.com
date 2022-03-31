@@ -14,7 +14,7 @@ them about the change in status.--->
 
 ## Prerequisite
 
-[**Organization Admin** or **Service Admin**](/konnect/org-management/users-and-roles)
+[**Organization Admin** or **Service Admin**](/konnect/org-management/teams-and-roles)
 permissions.
 
 ## Application Connection to a Service Status

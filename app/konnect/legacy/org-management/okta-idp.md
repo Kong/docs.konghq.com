@@ -31,7 +31,7 @@ ready to manage authentication and authorization through Okta for this
 
 To set up Okta single sign-on (SSO) for {{site.konnect_short_name}}, you need
 access to an Okta admin account and a
-[{{site.konnect_short_name}} admin account](/konnect/org-management/users-and-roles),
+[{{site.konnect_short_name}} admin account](/konnect/legacy/org-management/users-and-roles),
 which you will access concurrently.
 
 Here are the steps you need to complete, in both Okta and
@@ -179,7 +179,7 @@ application into {{site.konnect_saas}}.
 
 ### Map roles to groups
 
-By mapping Okta groups to [{{site.konnect_short_name}} roles](/konnect/org-management/users-and-roles),
+By mapping Okta groups to [{{site.konnect_short_name}} roles](/konnect/legacy/org-management/users-and-roles),
 you can manage a user's {{site.konnect_short_name}} roles directly through
 Okta group membership.
 
@@ -220,7 +220,7 @@ in Okta, locate the Okta groups you want to map.
     For example, if you have a `service_admin` group in Okta, you might map it
     to the `Service Admin` role in {{site.konnect_short_name}}. You can hover
     over the info (`i`) icon beside each field to learn more about the role, or
-    see [Users and Roles](/konnect/org-management/users-and-roles) for more
+    see [Users and Roles](/konnect/legacy/org-management/users-and-roles) for more
     information.
 
     You must have at least one group mapped to save configuration changes.
