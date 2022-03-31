@@ -67,8 +67,8 @@ adding rules, policies, transformations, and more on requests and responses.
 
 Although you can see all plugins from this page, you can only edit _global_ or
 _consumer-scoped_ plugins through the Runtime Manager.
-[Service](/konnect/configure/manage-plugins/enable-service-plugin) and
-[route](/konnect/configure/manage-plugins/enable-route-plugin) plugins must be managed
+[Service](/konnect/configure/servicehub/enable-service-plugin) and
+[route](/konnect/configure/servicehub/enable-route-plugin) plugins must be managed
 through the ServiceHub.
 
 Learn more about [using plugins in Konnect](/konnect/configure/servicehub/plugins),

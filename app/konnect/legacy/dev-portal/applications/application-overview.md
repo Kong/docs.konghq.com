@@ -6,9 +6,9 @@ toc: true
 
 Applications consume Services in {{site.konnect_short_name}} via Application-level authentication. Developers, or the persona that logs into the {{site.konnect_short_name}} Dev Portal, use Applications they create in the Dev Portal.
 
-Admins [enable application registration](/konnect/dev-portal/applications/enable-app-reg/) through [konnect.konghq.com](https://konnect.konghq.com) so that Developers can associate Services with Applications.
+Admins [enable application registration](/konnect/legacy/dev-portal/applications/enable-app-reg/) through [konnect.konghq.com](https://konnect.konghq.com) so that Developers can associate Services with Applications.
 
-For a Developer to be able to manage Applications, they must be [granted access by an admin](/konnect/dev-portal/access-and-approval/manage-devs/) to the {{site.konnect_short_name}} Dev Portal. For more information about registering for a {{site.konnect_short_name}} Dev Portal as a Developer, see [Developer Registration](/konnect/dev-portal/access-and-approval/dev-reg/).
+For a Developer to be able to manage Applications, they must be [granted access by an admin](/konnect/legacy/dev-portal/access-and-approval/manage-devs/) to the {{site.konnect_short_name}} Dev Portal. For more information about registering for a {{site.konnect_short_name}} Dev Portal as a Developer, see [Developer Registration](/konnect/legacy/dev-portal/access-and-approval/dev-reg/).
 
 ## Applications and Services
 
@@ -20,9 +20,9 @@ As an example, the Application can represent a mobile banking app and the Servic
 
 ## Application authentication
 
-Generate Application credentials through the {{site.konnect_short_name}} Dev Portal in the Application detail page. The Application can have multiple credentials, or API keys. For more information about Application Credentials, refer to [Generate Credentials for an Application](/konnect/dev-portal/applications/dev-gen-creds/).
+Generate Application credentials through the {{site.konnect_short_name}} Dev Portal in the Application detail page. The Application can have multiple credentials, or API keys. For more information about Application Credentials, refer to [Generate Credentials for an Application](/konnect/legacy/dev-portal/applications/dev-gen-creds/).
 
-In [konnect.konghq.com](https://konnect.konghq.com), admins can access a list of the installed authentication plugins via **Shared Config**. See [Enable Application Registration for a Service](/konnect/dev-portal/applications/enable-app-reg/) for more information about authentication flows.
+In [konnect.konghq.com](https://konnect.konghq.com), admins can access a list of the installed authentication plugins via **Shared Config**. See [Enable Application Registration for a Service](/konnect/legacy/dev-portal/applications/enable-app-reg/) for more information about authentication flows.
 
 ## Konnect-managed plugins
 
@@ -40,7 +40,7 @@ Plugins pane on a Service version, as the toggle is unavailable for
 
 ![Konnect Enable App Registration with OIDC](/assets/images/docs/konnect/konnect-enable-app-reg-oidc-toggle.png)
 
-If using a [declarative configuration](/konnect/getting-started/declarative-config)
+If using a [declarative configuration](/konnect/legacy/getting-started/declarative-config)
 file to manage your Service, these plugins appear in the file. **Do not**
 delete or edit them through declarative configuration, as it will break your Service.
 

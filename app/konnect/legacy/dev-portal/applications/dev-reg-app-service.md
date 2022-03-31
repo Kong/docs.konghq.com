@@ -4,15 +4,15 @@ no_version: true
 toc: true
 ---
 
-When [application registration is enabled](/konnect/dev-portal/applications/enable-app-reg/),
+When [application registration is enabled](/konnect/legacy/dev-portal/applications/enable-app-reg/),
 developers must register their applications with a Service. Requests for access must be
-[approved by a Konnect admin](/konnect/dev-portal/applications/manage-app-reg-requests) if
-[auto approve](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps) is not enabled.
+[approved by a Konnect admin](/konnect/legacy/dev-portal/applications/manage-app-reg-requests) if
+[auto approve](/konnect/legacy/dev-portal/access-and-approval/auto-approve-devs-apps) is not enabled.
 
 ## Prerequisites
 
 - Application registration must be enabled for the Service by a {{site.konnect_short_name}} admin.
-- [Create an Application](/konnect/dev-portal/applications/dev-apps#create-an-application).
+- [Create an Application](/konnect/legacy/dev-portal/applications/dev-apps#create-an-application).
 
 ## Register an Application
 
@@ -38,7 +38,7 @@ Catalog.
    and you will be notified by email upon approval. Click **Close**.
 
    You can check the status of your request in the
-   [application details](/konnect/dev-portal/applications/dev-apps/#app-details-page) page.
+   [application details](/konnect/legacy/dev-portal/applications/dev-apps/#app-details-page) page.
 
 ## Unregister an Application
 
@@ -67,4 +67,4 @@ If you encounter any of the errors below that appear in the Register dialog, fol
 
 Error Message | Solution
 ------------|------------
-Application registration is not enabled for this Service. | [Enable application registration for the Service](/konnect/dev-portal/applications/enable-app-reg/). Contact your {{site.konnect_short_name}} admin if you do not have the role permissions to do so.
+Application registration is not enabled for this Service. | [Enable application registration for the Service](/konnect/legacy/dev-portal/applications/enable-app-reg/). Contact your {{site.konnect_short_name}} admin if you do not have the role permissions to do so.

@@ -20,7 +20,7 @@ You can keep using existing 2.7.x runtimes, or you can upgrade to
 [changelog](/gateway/changelog/#2800).
 
 : To use any new features in the release,
-[start up a new 2.8.0.0 runtime](/konnect/runtime-manager/upgrade).
+[start up a new 2.8.0.0 runtime](/konnect/configure/runtime-manager/runtime-instances/upgrade).
 
 ## January 2022
 
@@ -45,7 +45,7 @@ You can keep using existing 2.6.x runtimes, or you can upgrade to
 [changelog](/gateway/changelog/#2700).
 
 : To use any new features in the release,
-[start up a new 2.7.0.0 runtime](/konnect/runtime-manager/upgrade).
+[start up a new 2.7.0.0 runtime](/konnect/configure/runtime-manager/runtime-instances/upgrade).
 
 ## November 2021
 
@@ -77,7 +77,7 @@ new `trigger` configuration option, which tells the
 plugin to activate only on specific headers or query parameters
 
 : To use any new features in the release and gain access to the jq plugin,
-[start up a new runtime](/konnect/runtime-manager/upgrade).
+[start up a new runtime](/konnect/configure/runtime-manager/runtime-instances/upgrade).
 
 : For all the changes and new features in {{site.base_gateway}} 2.6.x, see the
 [changelog](/gateway/changelog/#2600).
@@ -118,7 +118,7 @@ runtimes. You can keep using existing 2.3.x runtimes, or you can upgrade to
 2.4.1.1 to take advantage of any new features.
 : The 2.4.1.1 release includes two new plugins: [OPA](/hub/kong-inc/opa) and
 [Mocking](/hub/kong-inc/mocking). To use these plugins, and any other features
-newly introduced in this release, [start up a new runtime](/konnect/runtime-manager/upgrade).
+newly introduced in this release, [start up a new runtime](/konnect/configure/runtime-manager/runtime-instances/upgrade).
 : For all the changes and new features in {{site.base_gateway}} 2.4.x, see the [changelog](/gateway/changelog).
 
 **More plugins available in {{site.konnect_saas}}**
@@ -170,7 +170,7 @@ configuration anymore.
 six months.
 
 : To take advantage of the new validity period, bring up new data planes through
-the Runtime Manager. For existing instances, [generate new certificates](/konnect/runtime-manager/renew-certificates).
+the Runtime Manager. For existing instances, [generate new certificates](/konnect/configure/runtime-manager/runtime-instances/renew-certificates).
 
 ### 2021.05.11
 
@@ -193,7 +193,7 @@ account and license, this license will roll over seamlessly into the new
 {{site.konnect_short_name}} Enterprise tier.
 
 **{{site.konnect_short_name}} Plus free trials**
-: When you [sign up for a {{site.konnect_short_name}} account](/konnect/access-account),
+: When you [sign up for a {{site.konnect_short_name}} account](/konnect/getting-started/access-account),
 you are automatically enrolled into a 30-day {{site.konnect_short_name}}
 Plus free trial. You don't need to provide a credit card or any info beyond
 the account registration. At the end of the trial, you'll have the choice to
@@ -251,7 +251,7 @@ quick setup script.
 **{{site.base_gateway}} 2.3 support**
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 2.3
 runtimes. There is no upgrade path for existing runtimes.
-: To use {{site.base_gateway}} 2.3, [reprovision a new runtime](/konnect/runtime-manager/#kong-gateway).
+: To use {{site.base_gateway}} 2.3, [reprovision a new runtime](/konnect/configure/runtime-manager/#kong-gateway).
 
 **Advanced runtime configuration**
 : You can now configure custom {{site.base_gateway}} data planes through the
@@ -259,9 +259,9 @@ Runtime Manager and run gateway instances outside of Docker. Use the
 **Advanced** option when configuring a new runtime to get started.
 
 : See the runtime configuration guides for more information:
-* [Kong Gateway runtime on Docker](/konnect/runtime-manager/gateway-runtime-docker/)
-* [Kong Gateway runtime on Kubernetes](/konnect/runtime-manager/gateway-runtime-kubernetes/)
-* [Kong Gateway runtime without a container](/konnect/runtime-manager/gateway-runtime-conf/)
+* [Kong Gateway runtime on Docker](/konnect/configure/runtime-manager/runtime-instances/gateway-runtime-docker/)
+* [Kong Gateway runtime on Kubernetes](/konnect/configure/runtime-manager/runtime-instances/gateway-runtime-kubernetes/)
+* [Kong Gateway runtime without a container](/konnect/configure/runtime-manager/runtime-instances/gateway-runtime-conf/)
 
 **Logging plugins**
 : The full set of {{site.base_gateway}}'s logging plugins is now available

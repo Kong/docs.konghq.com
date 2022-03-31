@@ -13,12 +13,12 @@ through inviting users and granting them defined or custom roles, helping you
 secure your environment.
 
 {:.note}
-> **Note:** If Okta integration is [enabled](/konnect/org-management/okta-idp),
+> **Note:** If Okta integration is [enabled](/konnect/legacy/org-management/okta-idp),
 {{site.konnect_short_name}} users and roles become read-only. An organization
 admin can view all registered users in {{site.konnect_short_name}}, but cannot
 edit their roles from the {{site.konnect_short_name}} side. To manage
 automatically-created users, adjust user permissions through Okta, or
-[adjust role mapping](/konnect/org-management/okta-idp/#map-roles-to-groups).
+[adjust role mapping](/konnect/legacy/org-management/okta-idp/#map-roles-to-groups).
 
 
 ## Creating a new user

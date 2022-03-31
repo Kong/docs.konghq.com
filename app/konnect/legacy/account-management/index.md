@@ -34,7 +34,7 @@ You have organization admin access.
     the current month
 
 For Free and Plus plans, you can:
-* [Modify or cancel your plan](/konnect/account-management/change-plan)
-* [Set up or modify a payment method](/konnect/account-management/billing#modify-a-payment-method)
-* [Pay an invoice](/konnect/account-management/billing#pay-an-invoice)
-* [Check billing history](/konnect/account-management/billing#view-billing-history)
+* [Modify or cancel your plan](/konnect/legacy/account-management/change-plan)
+* [Set up or modify a payment method](/konnect/legacy/account-management/billing#modify-a-payment-method)
+* [Pay an invoice](/konnect/legacy/account-management/billing#pay-an-invoice)
+* [Check billing history](/konnect/legacy/account-management/billing#view-billing-history)
