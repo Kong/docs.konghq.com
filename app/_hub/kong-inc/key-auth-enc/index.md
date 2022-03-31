@@ -170,7 +170,7 @@ service, you must add the new Consumer to the allowed group. See
 Provision new credentials by making the following HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer}/key-auth -d
+$ curl -X POST http://kong:8001/consumers/{consumer}/key-auth-enc -d ""
 ```
 
 Response:
