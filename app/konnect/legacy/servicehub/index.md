@@ -42,7 +42,7 @@ listens for requests. You can specify the URL with a single string, or by
 specifying its protocol, host, port, and path individually.
 
 **See more:**
-* [Get started with Service management](/konnect/servicehub/manage-services)
+* [Get started with Service management](/konnect/legacy/servicehub/manage-services)
 
 ### Kong Gateway implementations
 
@@ -71,8 +71,8 @@ Service version.
 Applies to a specific Service version.
 
 **See more:**
-* [Upload Service Documentation to the Dev Portal](/konnect/servicehub/dev-portal/service-documentation)
-* [Publish a Service to the Dev Portal](/konnect/servicehub/dev-portal/publish)
+* [Upload Service Documentation to the Dev Portal](/konnect/legacy/servicehub/dev-portal/service-documentation)
+* [Publish a Service to the Dev Portal](/konnect/legacy/servicehub/dev-portal/publish)
 
 ## Kong Gateway plugins
 
@@ -82,4 +82,4 @@ can execute actions inside {{site.konnect_product_name}} before or after a reque
 has been proxied to the upstream API, as well as on any incoming responses.
 
 **See more:**
-* [Manage plugins](/konnect/manage-plugins/)
+* [Manage plugins](/konnect/legacy/manage-plugins/)

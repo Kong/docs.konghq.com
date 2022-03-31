@@ -13,7 +13,7 @@ You can generate and export a Vitals report for:
 Service.
 * A Service version, including a report of daily requests and status codes.
 
-For a Route, you can [view status codes](/konnect/vitals/#view-vitals-performance-for-a-route) for a specified time frame but
+For a Route, you can [view status codes](/konnect/legacy/vitals/#view-vitals-performance-for-a-route) for a specified time frame but
 you can't export a Vitals report.
 
 ## Generate and export a Vitals report for a Service

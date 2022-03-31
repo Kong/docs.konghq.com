@@ -3,7 +3,7 @@ title: Set up a Kong Gateway Runtime on Linux
 no_version: true
 ---
 Using `kong.conf`, set up a runtime instance through the
-[{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
+[{{site.konnect_short_name}} Runtime Manager](/konnect/configure/runtime-manager) and
 configure your {{site.base_gateway}} instance to accept configuration from
 {{site.konnect_short_name}}. The Runtime Manager keeps track of all runtime
 instances associated with the {{site.konnect_saas}} account.
@@ -33,7 +33,7 @@ and follow the instructions in Steps 1 and 2 **only** to download and install
 {{site.base_gateway}} {{site.data.kong_latest_ee.version}}.
 
     {:.important}
-    > You should not deploy a {{site.base_gateway}} database on this node 
+    > You should not deploy a {{site.base_gateway}} database on this node
     as {{site.konnect_short_name}} provides a hosted control plane with its own
     database.
 

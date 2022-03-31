@@ -4,7 +4,7 @@ no_version: true
 ---
 
 Access the billing portal from the {{site.konnect_saas}}
-[Billing and Usage](/konnect/account-management/) page.
+[Billing and Usage](/konnect/legacy/account-management/) page.
 
 From the billing portal, you can manage credit cards associated with the account,
 view and pay an invoice, and check the payment history of the account.

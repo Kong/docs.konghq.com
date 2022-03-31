@@ -3,7 +3,7 @@ title: Set up a Kong Gateway Runtime with Docker
 no_version: true
 ---
 Set up a Docker runtime instance through the
-[{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
+[{{site.konnect_short_name}} Runtime Manager](/konnect/configure/runtime-manager) and
 configure your instance to accept configuration from
 {{site.konnect_short_name}}. The Runtime Manager keeps track of all runtime
 instances associated with the {{site.konnect_saas}} account.

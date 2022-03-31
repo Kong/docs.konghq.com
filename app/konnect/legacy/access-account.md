@@ -59,6 +59,6 @@ reset a password if you forgot it.
 
 If this is your first time using {{site.konnect_short_name}}, see the
 quickstart guide to:
-* [Configure a runtime](/konnect/getting-started/configure-runtime)
-* [Configure a service](/konnect/getting-started/configure-service)
-* [Implement the service](/konnect/getting-started/implement-service)
+* [Configure a runtime](/konnect/legacy/getting-started/configure-runtime)
+* [Configure a service](/konnect/legacy/getting-started/configure-service)
+* [Implement the service](/konnect/legacy/getting-started/implement-service)
