@@ -371,7 +371,7 @@ HTTP 200 OK
 
 **Endpoint**
 
-<div class="endpoint delete">/rbac/role/{name_or_id}</div>
+<div class="endpoint delete">/rbac/roles/{name_or_id}</div>
 
 | Attribute | Description         |
 | --------- | ------------------- |
