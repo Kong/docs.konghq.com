@@ -40,7 +40,7 @@ Plugins pane on a Service version, as the toggle is unavailable for
 
 ![Konnect Enable App Registration with OIDC](/assets/images/docs/konnect/konnect-enable-app-reg-oidc-toggle.png)
 
-If using a [declarative configuration](/konnect/getting-started/declarative-config)
+If using a [declarative configuration](/konnect/configure/runtime-manager/runtime-groups/declarative-config)
 file to manage your Service, these plugins appear in the file. **Do not**
 delete or edit them through declarative configuration, as it will break your Service.
 
@@ -49,7 +49,7 @@ To help differentiate the application registration plugins,
 `konnect-managed-plugin` and `konnect-app-registration`.
 
 For example, if you enable application registration from the
-{{site.konnect_short_name}} GUI and run `deck konnect dump`, you should see
+{{site.konnect_short_name}} GUI and run `deck dump`, you should see
 an entry like this for the ACL plugin:
 
 ```yaml
