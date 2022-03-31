@@ -50,8 +50,8 @@
       url: /deployment/network
     - text: Network Resiliency and Availability
       url: /deployment/network-resiliency
-    - text: Migrate from Kong Gateway to Konnect Cloud
-      url: /deployment/migrate
+    - text: Import Kong Gateway Entities into Konnect Cloud
+      url: /deployment/import
 
 - title: Configure
   icon: /assets/images/icons/konnect/konnect-settings.svg
@@ -76,6 +76,8 @@
           items:
             - text: Manage Runtime Groups
               url: /configure/runtime-manager/runtime-groups/manage
+            - text: Manage Runtime Groups with decK
+              url: /configure/runtime-manager/runtime-groups/declarative-config
             - text: Manage Entities in a Runtime Group
               url: /configure/runtime-manager/runtime-groups/manage-entities
         - text: Runtime Instances
@@ -183,8 +185,6 @@
       url: https://konnect.konghq.com/docs
       absolute_url: true
       target_blank: true
-    - text: Manage Konnect Cloud with decK
-      url: /reference/declarative-config
 
 - title: Legacy content
   items:

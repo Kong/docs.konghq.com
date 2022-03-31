@@ -46,7 +46,7 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
     Set up a sample API spec and description for the {{site.konnect_short_name}}
     service and publish the service to the Dev Portal.
 
-    [Publish the service &gt;](/konnect/getting-started/dev-portal)
+    [Publish the service &gt;](/konnect/getting-started/publish-service)
 
 ## Get started with an API spec
 
@@ -81,12 +81,3 @@ using ServiceHub to publish and manage your spec:
     against the Service.
 
     [Expose service and register an application &gt;](/konnect/getting-started/spec/service/)
-
-## Get started with declarative config
-
-You can manage entities in your {{site.konnect_saas}} org using configuration
-files instead of the GUI or admin API commands. With decK, Kong's declarative
-configuration management tool, you can create, update,
-compare, and synchronize configuration as part of an automation pipeline.
-
-[Manage configuration with decK &gt;](/konnect/getting-started/declarative-config)
