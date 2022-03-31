@@ -13,7 +13,7 @@ specified in the Service implementation.
 
 If you're following the {{site.konnect_short_name}} quickstart guide,
 make sure you have
-[configured a Service](/konnect/getting-started/configure-service).
+[configured a Service](/konnect/legacy/getting-started/configure-service).
 
 ## Implement a Service Version
 
@@ -54,7 +54,7 @@ implementation to associate with your Service version.
 ## Verify the Implementation
 
 If you used the Docker script to create a container
-earlier in [Configure a Runtime](/konnect/getting-started/configure-runtime),
+earlier in [Configure a Runtime](/konnect/legacy/getting-started/configure-runtime),
 your runtime's default proxy URL is `localhost:8000`.
 
 Enter the proxy URL into your browser’s address bar and append the route path
@@ -83,7 +83,7 @@ front end, which you can now give to clients to make requests.
 
 For next steps, check out some of the other things you can do in
 {{site.konnect_saas}}:
-* Enable plugins on a [Service](/konnect/manage-plugins/enable-service-plugin/) or a
-[Route](/konnect/manage-plugins/enable-route-plugin/)
-* [Set up the Dev Portal](/konnect/servicehub/dev-portal/service-documentation)
-* [Manage your teams and users with RBAC](/konnect/org-management/users-and-roles)
+* Enable plugins on a [Service](/konnect/legacy/manage-plugins/enable-service-plugin/) or a
+[Route](/konnect/legacy/manage-plugins/enable-route-plugin/)
+* [Set up the Dev Portal](/konnect/legacy/servicehub/dev-portal/service-documentation)
+* [Manage your teams and users with RBAC](/konnect/legacy/org-management/users-and-roles)

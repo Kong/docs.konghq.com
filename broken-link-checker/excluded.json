@@ -16,5 +16,6 @@
   "https://linkedin.com/*",
   "https://aws.amazon.com/*",
   "http://xip.io",
+  "https://admin.okta.com/",
   "https://admin.okta.com/*"
 ]

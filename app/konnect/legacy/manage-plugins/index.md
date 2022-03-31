@@ -15,18 +15,18 @@ or applying it globally.
 
 * A **scoped** plugin applies configuration only to a specific service, route,
 or consumer. You can configure plugins on
-[services](/konnect/manage-plugins/enable-service-plugin) and
-[routes](/konnect/manage-plugins/enable-route-plugin) through ServiceHub, and on
-[consumers](/konnect/manage-plugins/shared-config) through the Shared Config page.
+[services](/konnect/legacy/manage-plugins/enable-service-plugin) and
+[routes](/konnect/legacy/manage-plugins/enable-route-plugin) through ServiceHub, and on
+[consumers](/konnect/legacy/manage-plugins/shared-config) through the Shared Config page.
 
 * If you want to apply a plugin **globally** &ndash; that is, to all services,
 routes, and consumers in a cluster &ndash; set it up through the
-[Shared Config page](/konnect/manage-plugins/shared-config/).
+[Shared Config page](/konnect/legacy/manage-plugins/shared-config/).
 
 ### Functionality differences from self-managed Kong Gateway
 
 Application registration is built into the ServiceHub.
-[Enabling it on a service](/konnect/dev-portal/applications/enable-app-reg)
+[Enabling it on a service](/konnect/legacy/dev-portal/applications/enable-app-reg)
 also enables two plugins in read-only mode: ACL, and one of Key Auth or OpenID
 Connect. These plugins appear in the service's plugin list, and you can view their
 configurations, but you can't edit or delete them directly.

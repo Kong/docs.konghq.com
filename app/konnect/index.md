@@ -19,19 +19,19 @@ each runtime group.
 If using the Konnect Cloud control plane to manage your {{site.konnect_short_name}}
 deployment, see the following topics to get started:
 
-* Set up a [{{site.konnect_saas}} account](/konnect/access-account)
+* Set up a [{{site.konnect_saas}} account](/konnect/getting-started/access-account)
 * Using the [Quickstart Guide](/konnect/getting-started/):
   * [Set up a runtime](/konnect/getting-started/configure-runtime)
   * [Configure a Service and its first version](/konnect/getting-started/configure-service)
   * [Implement the Service version](/konnect/getting-started/implement-service)
-* Learn about [ServiceHub](/konnect/servicehub) and [Runtime Manager](/konnect/runtime-manager)
+* Learn about [ServiceHub](/konnect/configure/servicehub) and [Runtime Manager](/konnect/configure/runtime-manager)
 * Use the Dev Portal:
-  * [Set up the Dev Portal for a Service](/konnect/servicehub/dev-portal/service-documentation)
-  * [Publish a Service version to the Dev Portal](/konnect/servicehub/dev-portal/publish)
+  * [Set up the Dev Portal for a Service](/konnect/dev-portal/service-documentation)
+  * [Publish a Service version to the Dev Portal](/konnect/dev-portal/publish)
   * Enable [application registration](/konnect/dev-portal/applications/enable-app-reg)
   * Manage [developer registration](/konnect/dev-portal/access-and-approval/manage-devs)
 * Use Vitals to [monitor the status of your Services](/konnect/vitals)
-* Set up [users and roles](/konnect/org-management/users-and-roles)
+* Set up [teams and roles](/konnect/org-management/teams-and-roles)
 * Get familiar with the [Konnect Admin API](/konnect/reference/konnect-api)
 
 ## Self-managed Konnect
