@@ -15,11 +15,11 @@ Afterward, you must manually migrate:
 * Certificates
 * Custom plugins
 
-You cannot migrate [unsupported plugins](/konnect/manage-plugins/#plugin-limitations).
+You cannot migrate [unsupported plugins](/konnect/legacy/manage-plugins/#plugin-limitations).
 
 ## Prerequisites
-* {{site.konnect_saas}} [account credentials](/konnect/access-account/).
-* [**Organization Admin**](/konnect/org-management/users-and-roles) permissions.
+* {{site.konnect_saas}} [account credentials](/konnect/legacy/access-account/).
+* [**Organization Admin**](/konnect/legacy/org-management/users-and-roles) permissions.
 * decK v1.7.0 or later [installed](/deck/latest/installation/).
 
 ## Migrate object configuration
@@ -100,7 +100,7 @@ You can migrate specs and markdown documents using decK or the
 
 ### Migrate specs and documents using the GUI
 
-If you prefer to use the GUI, see [Dev Portal Service Documentation](/konnect/servicehub/dev-portal/service-documentation).
+If you prefer to use the GUI, see [Dev Portal Service Documentation](/konnect/legacy/servicehub/dev-portal/service-documentation).
 
 ### Migrate specs and documents using decK
 
@@ -154,7 +154,7 @@ Turn any self-managed nodes into cloud data plane nodes by registering them
 through the Runtime Manager and adjusting their configurations, or power down
 the old instances and create new data plane nodes through {{site.konnect_saas}}.
 
-1. Follow the [runtime setup guide](/konnect/runtime-manager/#kong-gateway) for
+1. Follow the [runtime setup guide](/konnect/legacy/runtime-manager/#kong-gateway) for
 your preferred deployment type.
 
 2. Once you have created or converted the data plane nodes, `kong stop` your
@@ -171,19 +171,19 @@ See the following docs to set up any additional things you may need:
 applications registered through the Portal, those developers need to create new
 accounts in {{site.konnect_saas}} and register their applications in the new
 location.
-    * [Developer registration](/konnect/dev-portal/access-and-approval/dev-reg)
-    * [Enable application registration](/konnect/dev-portal/applications/enable-app-reg):
+    * [Developer registration](/konnect/legacy/dev-portal/access-and-approval/dev-reg)
+    * [Enable application registration](/konnect/legacy/dev-portal/applications/enable-app-reg):
     App registration in {{site.konnect_saas}} works through a different
     mechanism than in self-managed {{site.base_gateway}}. Enable app
     registration on each service that requires it.
-    * [Publish Services to the Dev Portal](/konnect/servicehub/dev-portal/publish):
+    * [Publish Services to the Dev Portal](/konnect/legacy/servicehub/dev-portal/publish):
     The Dev Portal is automatically enabled on a {{site.konnect_saas}} org
     (Plus or Enterprise tier). Publish your services to the Dev Portal.
-* [**Prepare custom plugins for migration**](/konnect/manage-plugins/#custom-plugins):
+* [**Prepare custom plugins for migration**](/konnect/legacy/manage-plugins/#custom-plugins):
 Custom plugins are supported in {{site.konnect_saas}}, but with limitations. As
 long as your plugins fit the criteria, or if you can adjust them to do so,
 contact Kong Support to get the plugin manually added to your account.
-* [**Review roles and permissions**](/konnect/org-management/users-and-roles/):
+* [**Review roles and permissions**](/konnect/legacy/org-management/users-and-roles/):
 {{site.konnect_saas}} roles and permissions don't map directly to
 {{site.base_gateway}} RBAC. You also can't create custom roles, or adjust
 permissions on the existing roles. Instead, invite users to your

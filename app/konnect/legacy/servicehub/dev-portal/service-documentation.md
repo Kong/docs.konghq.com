@@ -10,7 +10,7 @@ You can upload Service descriptions and version specs. At a minimum, we
 recommend uploading an API spec for each Service version.
 
 After adding documentation for your Services,
-[publish](/konnect/servicehub/dev-portal/publish) them to the Dev Portal.
+[publish](/konnect/legacy/servicehub/dev-portal/publish) them to the Dev Portal.
 
 ## Service Descriptions
 
@@ -58,11 +58,11 @@ format.
 4. Select a spec file to upload.
 
     The spec must be in YAML or JSON format. To test this functionality, you
-    can use [vitalsSpec.yaml](/konnect/vitalsSpec.yaml) as a sample spec.
+    can use [vitalsSpec.yaml](/konnect/legacy/vitalsSpec.yaml) as a sample spec.
 
     If the Service was previously published to the Dev Portal, the documentation
     for the Service gets automatically updated with your changes. If not,
-    [publish](/konnect/servicehub/dev-portal/publish) the Service.
+    [publish](/konnect/legacy/servicehub/dev-portal/publish) the Service.
 
 ### Update or Delete a Version Spec
 

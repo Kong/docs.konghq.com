@@ -3,7 +3,7 @@ title: Configuring a Service
 no_version: true
 ---
 
-Using the [ServiceHub](/konnect/servicehub), you can create, manage, and
+Using the [ServiceHub](/konnect/legacy/servicehub), you can create, manage, and
 implement Services. Each Service consists of at least one
 Service version, and each Service version can have one implementation.
 
@@ -17,7 +17,7 @@ requester as responses.
 ## Prerequisites
 
 If you're following the {{site.konnect_short_name}} quickstart guide,
-make sure you have [configured a runtime](/konnect/getting-started/configure-runtime).
+make sure you have [configured a runtime](/konnect/legacy/getting-started/configure-runtime).
 
 ## Add a Service and Version
 
@@ -49,4 +49,4 @@ make sure you have [configured a runtime](/konnect/getting-started/configure-run
 In this section, you added a Service named `example_service` with the version
 `v.1`.
 
-Next, go on to [implement the service version](/konnect/getting-started/implement-service).
+Next, go on to [implement the service version](/konnect/legacy/getting-started/implement-service).

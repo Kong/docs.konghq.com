@@ -4,7 +4,7 @@ no_version: true
 ---
 
 Set up your first runtime through the
-[{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager).
+[{{site.konnect_short_name}} Runtime Manager](/konnect/legacy/runtime-manager).
 
 At this time, the only runtime type available is a {{site.base_gateway}}
 data plane.
@@ -70,7 +70,7 @@ implementation.
 <div class="alert alert-ee warning">
 <b>Important:</b> {{site.konnect_saas}} provisions certificates for the data
 plane. These certificates expire after six months and must be renewed. See
-<a href="/konnect/runtime-manager/renew-certificates">Renew Certificates</a>.
+<a href="/konnect/legacy/runtime-manager/renew-certificates">Renew Certificates</a>.
 </div>
 
 ## Summary and Next Steps
@@ -79,4 +79,4 @@ In this step, you ran a script which set up a Docker container with a
 {{site.base_gateway}} instance, adding your first runtime to the Runtime
 Manager.
 
-Next, [set up a your first Service through {{site.konnect_saas}}](/konnect/getting-started/configure-service).
+Next, [set up a your first Service through {{site.konnect_saas}}](/konnect/legacy/getting-started/configure-service).

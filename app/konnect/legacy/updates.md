@@ -14,7 +14,7 @@ services.
 **Custom Domain for Dev Portal**
 : You can now set a custom domain for your Dev Portal through the {{site.konnect_saas}} Admin UI.
 
-: See the documentation: [Add a Custom Domain](/konnect/dev-portal/customization/custom-domain/).
+: See the documentation: [Add a Custom Domain](/konnect/legacy/dev-portal/customization/custom-domain/).
 
 **Headers are modifiable**
 : You can now set a welcome message and primary header through the Admin UI for your Dev Portal.
@@ -31,7 +31,7 @@ You can keep using existing 2.6.x runtimes, or you can upgrade to
 [changelog](/gateway/changelog/#2600).
 
 : To use any new features in the release,
-[start up a new 2.7.0.0 runtime](/konnect/runtime-manager/upgrade).
+[start up a new 2.7.0.0 runtime](/konnect/legacy/runtime-manager/upgrade).
 
 ## November 2021
 
@@ -41,7 +41,7 @@ You can keep using existing 2.6.x runtimes, or you can upgrade to
 [Okta](https://developer.okta.com/docs/guides/) with
 [OpenID Connect](https://developer.okta.com/docs/concepts/oauth-openid/#openid-connect).
 
-: See the guide on [Setting up SSO with Okta](/konnect/org-management/okta-idp)
+: See the guide on [Setting up SSO with Okta](/konnect/legacy/org-management/okta-idp)
 for more information.
 
 
@@ -63,7 +63,7 @@ new `trigger` configuration option, which tells the
 plugin to activate only on specific headers or query parameters
 
 : To use any new features in the release and gain access to the jq plugin,
-[start up a new runtime](/konnect/runtime-manager/upgrade).
+[start up a new runtime](/konnect/legacy/runtime-manager/upgrade).
 
 : For all the changes and new features in {{site.base_gateway}} 2.6.x, see the
 [changelog](/gateway/changelog/#2600).
@@ -76,7 +76,7 @@ help differentiate the Konnect-managed plugins and avoid breaking your Service,
 Konnect now adds two metadata tags for declarative configuration:
 `konnect-managed-plugin` and `konnect-app-registration`.
 See the Dev Portal doc section on
-[{{site.konnect_short_name}}-managed plugins](/konnect/dev-portal/applications/application-overview/#konnect-managed-plugins)
+[{{site.konnect_short_name}}-managed plugins](/konnect/legacy/dev-portal/applications/application-overview/#konnect-managed-plugins)
 for more information.
 
 
@@ -104,7 +104,7 @@ runtimes. You can keep using existing 2.3.x runtimes, or you can upgrade to
 2.4.1.1 to take advantage of any new features.
 : The 2.4.1.1 release includes two new plugins: [OPA](/hub/kong-inc/opa) and
 [Mocking](/hub/kong-inc/mocking). To use these plugins, and any other features
-newly introduced in this release, [start up a new runtime](/konnect/runtime-manager/upgrade).
+newly introduced in this release, [start up a new runtime](/konnect/legacy/runtime-manager/upgrade).
 : For all the changes and new features in {{site.base_gateway}} 2.4.x, see the [changelog](/gateway/changelog).
 
 **More plugins available in {{site.konnect_saas}}**
@@ -156,7 +156,7 @@ configuration anymore.
 six months.
 
 : To take advantage of the new validity period, bring up new data planes through
-the Runtime Manager. For existing instances, [generate new certificates](/konnect/runtime-manager/renew-certificates).
+the Runtime Manager. For existing instances, [generate new certificates](/konnect/legacy/runtime-manager/renew-certificates).
 
 ### 2021.05.11
 
@@ -179,14 +179,14 @@ account and license, this license will roll over seamlessly into the new
 {{site.konnect_short_name}} Enterprise tier.
 
 **{{site.konnect_short_name}} Plus free trials**
-: When you [sign up for a {{site.konnect_short_name}} account](/konnect/access-account),
+: When you [sign up for a {{site.konnect_short_name}} account](/konnect/legacy/access-account),
 you are automatically enrolled into a 30-day {{site.konnect_short_name}}
 Plus free trial. You don't need to provide a credit card or any info beyond
 the account registration. At the end of the trial, you'll have the choice to
 keep the account at the Plus tier or downgrade to Free.
 
 **Billing and plan management**
-: You can now [manage your plan subscription](/konnect/account-management/billing)
+: You can now [manage your plan subscription](/konnect/legacy/account-management/billing)
 for Free and Plus plan tiers directly from the app. {{site.konnect_short_name}}
 now includes a Stripe integration, and the process is fully self-serve: choose
 your plan, add a card, make payments, all through the {{site.konnect_short_name}}
@@ -237,7 +237,7 @@ quick setup script.
 **{{site.base_gateway}} 2.3 support**
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 2.3
 runtimes. There is no upgrade path for existing runtimes.
-: To use {{site.base_gateway}} 2.3, [reprovision a new runtime](/konnect/runtime-manager/#kong-gateway).
+: To use {{site.base_gateway}} 2.3, [reprovision a new runtime](/konnect/legacy/runtime-manager/#kong-gateway).
 
 **Advanced runtime configuration**
 : You can now configure custom {{site.base_gateway}} data planes through the
@@ -245,9 +245,9 @@ Runtime Manager and run gateway instances outside of Docker. Use the
 **Advanced** option when configuring a new runtime to get started.
 
 : See the runtime configuration guides for more information:
-* [Kong Gateway runtime on Docker](/konnect/runtime-manager/gateway-runtime-docker/)
-* [Kong Gateway runtime on Kubernetes](/konnect/runtime-manager/gateway-runtime-kubernetes/)
-* [Kong Gateway runtime without a container](/konnect/runtime-manager/gateway-runtime-conf/)
+* [Kong Gateway runtime on Docker](/konnect/legacy/runtime-manager/gateway-runtime-docker/)
+* [Kong Gateway runtime on Kubernetes](/konnect/legacy/runtime-manager/gateway-runtime-kubernetes/)
+* [Kong Gateway runtime without a container](/konnect/legacy/runtime-manager/gateway-runtime-conf/)
 
 **Logging plugins**
 : The full set of {{site.base_gateway}}'s logging plugins is now available
@@ -265,7 +265,7 @@ through {{site.konnect_saas}}. This includes:
 ### 2021.02.10
 
 **Portal authentication**
-: You can now [disable authentication on a Dev Portal](/konnect/dev-portal/customization/public-portal/),
+: You can now [disable authentication on a Dev Portal](/konnect/legacy/dev-portal/customization/public-portal/),
 which exposes the Dev Portal publicly to anyone with the link. No one needs to register
 for Dev Portal access.
 : New application registrations aren't available through a public-facing portal.
@@ -275,7 +275,7 @@ for Dev Portal access.
 {{site.konnect_product_name}} ({{site.konnect_short_name}}) is now generally available!
 
 To get started with {{site.konnect_short_name}}, see the
-[Quickstart Guide](/konnect/getting-started/configure-runtime/).
+[Quickstart Guide](/konnect/legacy/getting-started/configure-runtime/).
 
 For more information about {{site.konnect_short_name}}, contact your Kong sales
 representative.

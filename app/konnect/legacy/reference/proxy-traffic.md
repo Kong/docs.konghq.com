@@ -9,7 +9,7 @@ format `http://<DNSorIP>:8000`.
 ## Kong Gateway runtimes
 
 If you configure a {{site.base_gateway}} runtime using the
-[Docker quick setup](/konnect/getting-started/configure-runtime) option,
+[Docker quick setup](/konnect/legacy/getting-started/configure-runtime) option,
 the default proxy URL is `http://localhost:8000`.
 
 <!-- To change the default URL, see [link TBA].-->

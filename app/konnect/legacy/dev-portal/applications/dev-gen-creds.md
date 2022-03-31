@@ -19,7 +19,7 @@ A credential, or API key, generated in the {{site.konnect_short_name}} Dev Porta
 3. In the **Authentication** pane, click **Generate Credential**.
 
 4. Test the generated credential by making a call to the service the
-   [Application is registered with](/konnect/dev-portal/applications/dev-reg-app-service)
+   [Application is registered with](/konnect/legacy/dev-portal/applications/dev-reg-app-service)
    using your `key-auth` credential:
 
    ```
