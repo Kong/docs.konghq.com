@@ -142,6 +142,8 @@
 /konnect/runtime-manager/upgrade                     /konnect/runtime-manager/runtime-instances/upgrade
 /konnect/manage-plugins/shared-config                /konnect/runtime-manager/runtime-groups/manage-entities
 /konnect/shared-config                               /konnect/runtime-manager/runtime-groups/manage-entities
+/konnect/migrate                                    /konnect/deployment/import
+/konnect/getting-started/declarative-config         /konnect/configure/runtime-manager/runtime-groups/declarative-config
 
 # COMMUNITY DOC REBRANDING
 /community                                  https://konghq.com/community-resources/
