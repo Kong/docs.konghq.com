@@ -21,9 +21,9 @@ registration, or configure custom plugins.
 
 ## Prerequisites
 
-* [**Organization Admin**](/konnect/org-management/users-and-roles) permissions.
+* [**Organization Admin**](/konnect/legacy/org-management/users-and-roles) permissions.
 * decK v1.7.0 or later [installed](/deck/latest/installation/).
-* Optional: To test your configuration, [set up a simple runtime](/konnect/getting-started/configure-runtime).
+* Optional: To test your configuration, [set up a simple runtime](/konnect/legacy/getting-started/configure-runtime).
 
 ## Test your connection
 
@@ -237,7 +237,7 @@ to see your changes:
 
 If you have already have a runtime set up, you can test this
 configuration now. Or, you can start a simple runtime using the
-[Docker quick setup](/konnect/getting-started/configure-runtime) script.
+[Docker quick setup](/konnect/legacy/getting-started/configure-runtime) script.
 
 The default proxy URL is `localhost:8000`.
 
@@ -262,5 +262,5 @@ No API key found in request.
 ## See also
 
 * [decK CLI reference](/deck/latest/reference/deck_konnect): decK commands for {{site.konnect_short_name}}
-<!-- * [Migrate from a self-managed {{site.base_gateway}} deployment](/konnect/deployment/migrate-from-self-managed):
+<!-- * [Migrate from a self-managed {{site.base_gateway}} deployment](/konnect/legacy/deployment/migrate-from-self-managed):
 Use decK to migrate {{site.base_gateway}} entities to {{site.konnect_saas}} -->

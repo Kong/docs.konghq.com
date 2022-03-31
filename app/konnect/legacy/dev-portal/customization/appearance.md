@@ -14,6 +14,6 @@ Here, you have the ability to modify the following:
 
 For details on the requirements for each customizable option, hover over the information (`i`) icon next to each item in the UI.
 
-To learn how to make your Dev Portal public, see [Enable Public Dev Portal](/konnect/dev-portal/customization/public-portal).
+To learn how to make your Dev Portal public, see [Enable Public Dev Portal](/konnect/legacy/dev-portal/customization/public-portal).
 
-To learn how to set a custom domain for your Dev Portal, see [Add a Custom Domain](/konnect/dev-portal/customization/custom-domain).
+To learn how to set a custom domain for your Dev Portal, see [Add a Custom Domain](/konnect/legacy/dev-portal/customization/custom-domain).

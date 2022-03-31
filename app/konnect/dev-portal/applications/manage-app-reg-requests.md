@@ -11,7 +11,7 @@ developers must register their applications with a Service.
 
 ## Prerequisite
 
-[**Organization Admin** or **Service Admin**](/konnect/org-management/users-and-roles)
+[**Organization Admin** or **Service Admin**](/konnect/org-management/teams-and-roles)
 permissions.
 
 ## Application Registration Status

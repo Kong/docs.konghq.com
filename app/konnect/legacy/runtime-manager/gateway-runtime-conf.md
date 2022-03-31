@@ -2,9 +2,9 @@
 title: Set up a Kong Gateway Runtime on Linux
 no_version: true
 ---
-Using `kong.conf`, set up a [runtime](/konnect/#konnect-key-concepts-and-terminology)
+Using `kong.conf`, set up a [runtime](/konnect/legacy/#konnect-key-concepts-and-terminology)
 through the
-[{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
+[{{site.konnect_short_name}} Runtime Manager](/konnect/legacy/runtime-manager) and
 configure your {{site.base_gateway}} instance to accept configuration from
 {{site.konnect_short_name}}. The Runtime Manager keeps track of all runtimes
 associated with the {{site.konnect_saas}} account.
@@ -63,7 +63,7 @@ to the file.
     cluster_cert_key = /{PATH_TO_FILE}/tls.key
     ```
 
-    See [Parameters](/konnect/runtime-manager/runtime-parameter-reference) for
+    See [Parameters](/konnect/legacy/runtime-manager/runtime-parameter-reference) for
     descriptions and the matching fields in {{site.konnect_short_name}}.
 
 4. Replace the values in `cluster_cert`, `cluster_ca_cert`, and
