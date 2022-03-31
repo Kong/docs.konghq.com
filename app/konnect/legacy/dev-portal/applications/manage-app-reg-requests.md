@@ -3,15 +3,15 @@ title: Manage Application Registration Requests
 no_version: true
 ---
 
-When a developer [registers an application with a Service](/konnect/dev-portal/applications/dev-reg-app-service),
+When a developer [registers an application with a Service](/konnect/legacy/dev-portal/applications/dev-reg-app-service),
 the requests must be approved by an admin if
-[auto approve](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps) is not enabled. When
-[application registration is enabled](/konnect/dev-portal/applications/enable-app-reg),
+[auto approve](/konnect/legacy/dev-portal/access-and-approval/auto-approve-devs-apps) is not enabled. When
+[application registration is enabled](/konnect/legacy/dev-portal/applications/enable-app-reg),
 developers must register their applications with a Service.
 
 ## Prerequisite
 
-[**Organization Admin** or **Service Admin**](/konnect/org-management/users-and-roles)
+[**Organization Admin** or **Service Admin**](/konnect/legacy/org-management/users-and-roles)
 permissions.
 
 ## Application Registration Status
@@ -61,7 +61,7 @@ pending requests is displayed in the Requests menu and the Applications tab.
    An email is sent to the developer to let them know their application registration
    for service access was approved. In the dev portal, the status for the request
    is also updated in the Services pane of the
-   [application details](/konnect/dev-portal/applications/dev-apps#app-details-page) page.
+   [application details](/konnect/legacy/dev-portal/applications/dev-apps#app-details-page) page.
 
 ### Reject an app registration request {#reject-app-reg}
 

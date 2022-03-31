@@ -7,7 +7,7 @@ no_version: true
 
 This API is designed for internal use and provides full control over a Konnect
 organization and its entities, so care should be taken when setting up
-[user permissions](/konnect/org-management/users-and-roles).
+[user permissions](/konnect/org-management/teams-and-roles).
 
 For a list of all endpoints, see:
 * [Konnect API Swagger documentation](https://konnect.konghq.com/docs)

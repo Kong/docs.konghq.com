@@ -9,7 +9,7 @@ If you downgrade from Plus in the middle of a cycle, your plan immediately
 changes to the new tier. Your monthly charges are prorated and you are billed
 on your actual usage.
 
-Use the [Billing and Usage](/konnect/account-management) page in {{site.konnect_saas}} to
+Use the [Billing and Usage](/konnect/legacy/account-management) page in {{site.konnect_saas}} to
 change your plan. The **Plan Details** section lists your current plan, along
 with options to change or cancel it.
 

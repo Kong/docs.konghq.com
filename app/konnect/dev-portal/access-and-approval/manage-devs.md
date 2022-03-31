@@ -9,7 +9,7 @@ enable [auto approve](/konnect/dev-portal/access-and-approval/auto-approve-devs-
 
 ## Prerequisite
 
-[**Organization Admin** or **Portal Admin**](/konnect/org-management/users-and-roles)
+[**Organization Admin** or **Portal Admin**](/konnect/org-management/teams-and-roles)
 permissions.
 
 ## Developer Status

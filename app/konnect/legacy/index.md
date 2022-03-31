@@ -19,20 +19,20 @@ each runtime group.
 If using the Konnect Cloud control plane to manage your {{site.konnect_short_name}}
 deployment, see the following topics to get started:
 
-* Set up a [{{site.konnect_saas}} account](/konnect/access-account)
-* Using the [Quickstart Guide](/konnect/getting-started/):
-  * [Set up a runtime](/konnect/getting-started/configure-runtime)
-  * [Configure a Service and its first version](/konnect/getting-started/configure-service)
-  * [Implement the Service version](/konnect/getting-started/implement-service)
-* Learn about [ServiceHub](/konnect/servicehub) and [Runtime Manager](/konnect/runtime-manager)
+* Set up a [{{site.konnect_saas}} account](/konnect/legacy/access-account)
+* Using the [Quickstart Guide](/konnect/legacy/getting-started/):
+  * [Set up a runtime](/konnect/legacy/getting-started/configure-runtime)
+  * [Configure a Service and its first version](/konnect/legacy/getting-started/configure-service)
+  * [Implement the Service version](/konnect/legacy/getting-started/implement-service)
+* Learn about [ServiceHub](/konnect/legacy/servicehub) and [Runtime Manager](/konnect/legacy/runtime-manager)
 * Use the Dev Portal:
-  * [Set up the Dev Portal for a Service](/konnect/servicehub/dev-portal/service-documentation)
-  * [Publish a Service version to the Dev Portal](/konnect/servicehub/dev-portal/publish)
-  * Enable [application registration](/konnect/dev-portal/applications/enable-app-reg)
-  * Manage [developer registration](/konnect/dev-portal/access-and-approval/manage-devs)
-* Use Vitals to [monitor the status of your Services](/konnect/vitals)
-* Set up [users and roles](/konnect/org-management/users-and-roles)
-* Get familiar with the [Konnect Admin API](/konnect/reference/konnect-api)
+  * [Set up the Dev Portal for a Service](/konnect/legacy/servicehub/dev-portal/service-documentation)
+  * [Publish a Service version to the Dev Portal](/konnect/legacy/servicehub/dev-portal/publish)
+  * Enable [application registration](/konnect/legacy/dev-portal/applications/enable-app-reg)
+  * Manage [developer registration](/konnect/legacy/dev-portal/access-and-approval/manage-devs)
+* Use Vitals to [monitor the status of your Services](/konnect/legacy/vitals)
+* Set up [users and roles](/konnect/legacy/org-management/users-and-roles)
+* Get familiar with the [Konnect Admin API](/konnect/legacy/reference/konnect-api)
 
 ## Self-managed Konnect
 If deploying {{site.konnect_short_name}} in a self-managed environment, see the

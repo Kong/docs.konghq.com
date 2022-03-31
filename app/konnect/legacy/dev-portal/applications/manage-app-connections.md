@@ -4,8 +4,8 @@ no_version: true
 ---
 
 Revoke, reinstate, or delete an application's connection to a Service. When a developer
-[registers a request](/konnect/dev-portal/applications/dev-reg-app-service) to access a Service for an
-application, and the request is approved either [automatically](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps)
+[registers a request](/konnect/legacy/dev-portal/applications/dev-reg-app-service) to access a Service for an
+application, and the request is approved either [automatically](/konnect/legacy/dev-portal/access-and-approval/auto-approve-devs-apps)
 or by a {{site.konnect_short_name}} admin, it creates an application connection between the
 developer, their applications, and the associated Service Versions.
 
@@ -14,7 +14,7 @@ them about the change in status.--->
 
 ## Prerequisite
 
-[**Organization Admin** or **Service Admin**](/konnect/org-management/users-and-roles)
+[**Organization Admin** or **Service Admin**](/konnect/legacy/org-management/users-and-roles)
 permissions.
 
 ## Application Connection to a Service Status

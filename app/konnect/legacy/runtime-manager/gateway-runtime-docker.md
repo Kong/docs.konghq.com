@@ -2,9 +2,9 @@
 title: Set up a Kong Gateway Runtime with Docker
 no_version: true
 ---
-Set up a Docker [runtime](/konnect/#konnect-key-concepts-and-terminology)
+Set up a Docker [runtime](/konnect/legacy/#konnect-key-concepts-and-terminology)
 through the
-[{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
+[{{site.konnect_short_name}} Runtime Manager](/konnect/legacy/runtime-manager) and
 configure your {{site.base_gateway}} instance to accept configuration from
 {{site.konnect_short_name}}. The Runtime Manager keeps track of all runtimes
 associated with the {{site.konnect_saas}} account.
@@ -161,7 +161,7 @@ docker run -d --name kong-dp `
 
     ![Konnect Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
 
-    See [Parameters](/konnect/runtime-manager/runtime-parameter-reference) for
+    See [Parameters](/konnect/legacy/runtime-manager/runtime-parameter-reference) for
     descriptions and the matching fields in {{site.konnect_short_name}}.
 
 3. `-p 8000:8000` sets the proxy URL to `http://localhost:8000`.
