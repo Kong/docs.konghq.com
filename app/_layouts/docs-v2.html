@@ -4,8 +4,7 @@ sitemap: true
 id: documentation
 ---
 
-{% assign latest_page_url = page.url | replace: page.kong_version,
-page.kong_latest.release %}
+{% assign latest_page_url = page.url | replace: page.kong_version, "latest" %}
 {% capture latest_page_exists %}{% page_exists {{latest_page_url}} %}{% endcapture %}
 
 <div class="page v2 {{ page.class }}" data-url={{ page.url }}>
