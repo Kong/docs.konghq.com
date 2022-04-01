@@ -1,4 +1,3 @@
-require 'byebug'
 module CanonicalUrl
   class Generator < Jekyll::Generator
     priority :low
