@@ -78,7 +78,10 @@
         </li>
         {% endif %}
           {% for ver in include.kong_versions reversed %}
-          {% assign version_page_url = include.url | replace: include.kong_version, ver.release | replace: '/latest/', '/' + ver.release + '/'%}
+          {% assign version_page_url = include.url | replace: include.kong_version, ver.release | replace: '/latest/', '/' + ver.release + '/' %}
+          {% unless version_page_url contains ver.release %}
+          {% assign version_page_url = version_page_url | append: '/' + ver.release + '/' %}
+          {% endunless %}
           {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}
         <li {% if include.kong_version==ver.release %}class="active" {% endif %} role="menuitem" tabindex="-1">
           <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if include.edition == 'gateway-oss' %}gateway-oss/{% endif %}{% if include.edition == 'enterprise' %}enterprise/{% endif %}{% if include.edition == 'gateway' %}gateway/{% endif %}{% if include.edition == 'mesh' %}mesh/{% endif %}{% if include.edition == 'kubernetes-ingress-controller' %}kubernetes-ingress-controller/{% endif %}{% if include.edition == 'contributing' %}contributing/{% endif %}{% if include.edition == 'deck' %}deck/{% endif %}{{ver.release}}{% endif %}"
