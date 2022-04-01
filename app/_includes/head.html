@@ -120,6 +120,10 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{% if include.p
   {% assign latest_include.url = include.url | replace: include.kong_version, include.kong_latest.release %}
   {% capture latest_page_exists %}{% page_exists {{latest_include.url}} %}{% endcapture %}
 
+  {% if include.robots %}
+  <meta name="robots" content="{{ include.robots }}" />
+  {% endif %}
+
   {% if include.canonical_url %}
   <link rel="canonical" href="{{site.links.web}}{{ include.canonical_url }}" />
   {% else %}
