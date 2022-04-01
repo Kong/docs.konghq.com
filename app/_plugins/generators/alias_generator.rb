@@ -36,7 +36,7 @@ module Jekyll
       end
 
       # Read existing _redirects file
-      existing = File.read("#{__dir__}/../_redirects").to_s + "\n"
+      existing = File.read("#{__dir__}/../../_redirects").to_s + "\n"
 
       # Write out a _redirects file
       page = PageWithoutAFile.new(site, __dir__, '', '_redirects')
