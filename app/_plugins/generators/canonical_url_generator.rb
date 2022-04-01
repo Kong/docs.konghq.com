@@ -54,8 +54,6 @@ module CanonicalUrl
           has_match = allPages[u]
           if has_match
             page.data['canonical_url'] = has_match['url']
-            # We don't want to index any page that has a canonical URL
-            page.data['robots'] = 'noindex'
           end
         end
       end

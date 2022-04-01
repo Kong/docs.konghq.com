@@ -37,13 +37,32 @@ module LatestVersion
             next if page.data['permalink']
 
             # Otherwise, let's generate a /latest/ URL too
-            latest = page.dup
-            latest.url = latest.url.sub(releasePath, "latest")
-            latest.data['is_latest'] = true
-            site.pages << latest
+            page = DuplicatePage.new(
+              site,
+              site.source,
+              page.url.gsub(releasePath, "latest"),
+              page.content,
+              page.data
+            )
+            site.pages << page
           end
+
         end
       end
     end
-end
+  end
+
+  class DuplicatePage < ::Jekyll::Page
+    def initialize(site, base_dir, path, content, data)
+      @site = site
+      @base = base_dir
+      @content = content
+
+      @dir = path
+      @name = "index.md"
+
+      process(@name)
+      @data = data.clone
+    end
+  end
 end

@@ -119,17 +119,14 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{% if include.p
 
   {% assign latest_include.url = include.url | replace: include.kong_version, include.kong_latest.release %}
   {% capture latest_page_exists %}{% page_exists {{latest_include.url}} %}{% endcapture %}
-
-  {% if include.robots %}
-  <meta name="robots" content="{{ include.robots }}" />
-  {% endif %}
-
+  
   {% if include.canonical_url %}
-  <link rel="canonical" href="{{site.links.web}}{{ include.canonical_url }}" />
-  {% else %}
-  {% if include.kong_version == include.kong_latest.release and include.no_version != true %}<link rel="canonical" href="{{ site.links.web }}{{ include.url }}" />
-    {% elsif latest_page_exists == 'true' %}<link rel="canonical" href="{% capture latest_path %}{{ site.links.web }}{{ latest_include.url }}{% endcapture %}{{ latest_path }}" />
-  {% endif %}
+    {% if include.canonical_url != include.url %}<meta name="robots" content="noindex" />{% endif %}
+    <link rel="canonical" href="{{site.links.web}}{{ include.canonical_url }}" />
+    {% else %}
+    {% if include.kong_version == include.kong_latest.release and include.no_version != true %}<link rel="canonical" href="{{ site.links.web }}{{ include.url }}" />
+      {% elsif latest_page_exists == 'true' %}<link rel="canonical" href="{% capture latest_path %}{{ site.links.web }}{{ latest_include.url }}{% endcapture %}{{ latest_path }}" />
+    {% endif %}
   {% endif %}
 
 </head>
