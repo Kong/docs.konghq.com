@@ -631,60 +631,6 @@ $("a[data-filter]").on("keypress", function(e) {
     }
   });
 
-  /**
-   * Edition based element visibility
-   *
-   * Usage in markdown files:
-   * Wrap any of the [content] within {% edition [edition] %}[content]{% endedition %} to see the content
-   * only when edition=[edition] query parameter is specified.
-   *
-   * Example:
-   * {% edition gateway-oss %}
-   * ### {{site.ce_product_name}}
-   * {{site.ce_product_name}} is an open-source, lightweight API gateway optimized for microservices, delivering unparalleled...
-   * {% endedition %}
-   *
-   * Usage in docs_nav_.yml files:
-   * Use edition: [edition] property for specific item which should be visible
-   * only when edition=[edition] query parameter is specified.
-   *
-   * Example:
-   * - title: Getting Started Guide
-   *   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
-   *   items:
-   *     - text: Overview
-   *       url: /overview
-   *     - text: Prepare to Administer
-   *       url: /prepare
-   *       edition: enterprise
-   *     - text: Expose your Services
-   *       url: /expose-services
-   *       edition: gateway-oss
-   */
-  const edition = decodeURIComponent(window.location.search)
-    .substring(1)
-    .split("&")
-    .map((queryParam) => queryParam.split("="))
-    .filter((params) => params[0] === "edition")
-    .map((params) => params[1])[0];
-
-  const editionSwitch = $(".edition-switch");
-  editionSwitch.on("click", function () {
-    if (edition === "gateway-oss") {
-      window.location.search = "?edition=enterprise";
-    } else {
-      window.location.search = "?edition=gateway-oss";
-    }
-  });
-
-  if (edition) {
-    $("*[data-edition]")
-      .not(`[data-edition="${edition}"]`)
-      .each(function (index, element) {
-        element.style.display = "none";
-      });
-    editionSwitch.addClass(edition);
-  }
 });
 
 // Tooltips for badges
