@@ -16,12 +16,10 @@ module LatestVersion
       site.pages.each do |page|
 
         parts = Pathname(page.path).each_filename.to_a
-       
-        # Reset values for every new page
-        generate_latest = false
-        releasePath = nil
-
         products_with_latest.each do |product|
+          # Reset values for every new page
+          generate_latest = false
+          releasePath = nil
 
           productName = product.downcase
           # Special case KIC
@@ -39,7 +37,7 @@ module LatestVersion
             next if page.data['permalink']
 
             # Otherwise, let's generate a /latest/ URL too
-            latest = page.clone
+            latest = page.dup
             latest.url = latest.url.sub(releasePath, "latest")
             latest.data['is_latest'] = true
             site.pages << latest
