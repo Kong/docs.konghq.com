@@ -23,6 +23,10 @@
         opacity: 1;
         displaY: flex;
 
+        &.external-trigger {
+          display: none;
+        }
+
         .navtab-title {
           font-size: 14px;
           z-index: 10;
@@ -96,5 +100,12 @@
 
   .navtab-contents {
     padding: 1.5rem 0 0 0;
+  }
+}
+
+#oss-ee-toggle {
+  cursor: pointer;
+  .oss-ee-toggle-inner {
+    color: #1456cb;
   }
 }

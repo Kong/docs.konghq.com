@@ -489,7 +489,7 @@ $("a[data-filter]").on("keypress", function(e) {
     }
   });
 
-  function activateNavTab(navtabTitle) {
+  function activateNavTab(navtabTitle, skipScroll) {
     // Toggle all nav tabs that match this title
     const text = navtabTitle.text();
     const search = $(".navtab-title").filter(function () {
@@ -503,11 +503,13 @@ $("a[data-filter]").on("keypress", function(e) {
     const screenTop = $(window).scrollTop();
     const screenBottom = $(window).scrollTop() + $(window).innerHeight();
 
-    // If the element isn't on screen, scroll to it
-    if (elementBottom < screenTop || elementTop > screenBottom){
-        $([document.documentElement, document.body]).animate({
-          scrollTop: elementTop - 120
-      }, 0);
+    if (!skipScroll){
+      // If the element isn't on screen, scroll to it
+      if (elementBottom < screenTop || elementTop > screenBottom){
+          $([document.documentElement, document.body]).animate({
+            scrollTop: elementTop - 120
+        }, 0);
+      }
     }
   }
 
@@ -552,6 +554,34 @@ $("a[data-filter]").on("keypress", function(e) {
         activateNavTab(navTab);
       }
     }
+  }
+
+  // Handle EE/OSS Sidebar switcher
+  const ossEeToggle = $("#oss-ee-toggle");
+  if ($(".external-trigger").length){
+    ossEeToggle.show();
+  }
+
+  ossEeToggle.on("click", function(){
+    const t = $(this);
+    const current = t.data('current');
+    let next;
+    let slug;
+    if (current == "Enterprise" || !current){
+      next = "OSS";
+      slug = "kong-gateway-oss";
+    } else {
+      next = "Enterprise";
+      slug = "kong-gateway";
+    }
+    t.data('current', next);
+    t.find("#switch-to-version").text(current);
+
+    activateNavTab($(".navtab-title[data-slug='"+slug+"']").first(), true)
+  });
+
+  if (getParams.install == "oss" && ossEeToggle.is(":visible")) {
+    ossEeToggle.click();
   }
 
 

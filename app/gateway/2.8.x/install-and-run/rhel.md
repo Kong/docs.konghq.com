@@ -44,7 +44,7 @@ Install {{site.base_gateway}} on Amazon Linux from the command line.
 1. Download the Kong package:
 
 {% capture download_package %}
-{% navtabs codeblock %}
+{% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
 curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm $( rpm --eval "{{ site.links.download }}/gateway-2.x-rhel-%{rhel}/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rhel%{rhel}.noarch.rpm")
@@ -55,7 +55,7 @@ curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-ver
 curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.rpm $(rpm --eval "{{ site.links.download }}/gateway-2.x-rhel-%{rhel}/Packages/k/kong-{{page.kong_versions[page.version-index].ce-version}}.rhel%{rhel}.amd64.rpm")
  ```
 {% endnavtab %}
-{% endnavtabs %}
+{% endnavtabs_ee %}
 {% endcapture %}
 
 {{ download_package | indent | replace: " </code>", "</code>" }}
@@ -63,7 +63,7 @@ curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.rpm $(rpm --
 2. Install the package:
 
 {% capture install_package %}
-{% navtabs codeblock %}
+{% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
 sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm
@@ -74,7 +74,7 @@ sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index
 sudo yum install kong-{{page.kong_versions[page.version-index].ce-version}}.rpm
 ```
 {% endnavtab %}
-{% endnavtabs %}
+{% endnavtabs_ee %}
 {% endcapture %}
 
 {{ install_package | indent | replace: " </code>", "</code>" }}

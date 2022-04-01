@@ -29,6 +29,11 @@ id: documentation
             <a href="https://github.com/Kong/docs.konghq.com/issues" target="_blank">
               <img src="/assets/images/icons/documentation/icn-monitoring-black.svg" alt="report-issue"/>Report an issue</a>
           </p>
+          <p id="oss-ee-toggle" data-current="Enterprise" style="display: none">
+            <span class="oss-ee-toggle-inner">
+            <img src="/assets/images/icons/icn-enterprise-grey.svg" alt="enterprise-switcher-icon"/>Switch to <span id="switch-to-version">OSS</span></a>
+            </span>
+          </p>
         </div>
         {% if page.toc == true or page.toc != false %}
         {% include_cached toc.html html=content anchor_class="scroll-to" h_min=2 h_max=3 %}
