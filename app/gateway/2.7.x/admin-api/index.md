@@ -3804,7 +3804,7 @@ Targets can be both [tagged and filtered by tags](#tags).
 {:.indent}
 Attributes | Description
 ---:| ---
-`upstream_d`<br>**required** | The unique identifier of the Upstream that should be associated to the newly-created Target.
+`upstream_id`<br>**required** | The unique identifier of the Upstream that should be associated to the newly-created Target.
 
 
 #### Request Body
