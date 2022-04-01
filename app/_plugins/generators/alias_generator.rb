@@ -27,6 +27,7 @@
 module Jekyll
 
   class AliasGenerator < Generator
+    priority :lowest
 
     def generate(site)
       @redirects = []
