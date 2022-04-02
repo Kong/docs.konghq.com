@@ -157,8 +157,8 @@ values are present.
 
     Refer back to your Okta application to fill in the following fields.
 
-1. Copy the **Okta domain** from your Okta application, then paste it into
-the **Okta Domain** field in {{site.konnect_short_name}}. <!-- found in general settings in Okta app -->
+1. Copy the **Issuer URI** from your Okta custom authorization server, then paste it into
+the **Issuer URI** field in {{site.konnect_short_name}}. <!-- found in general settings in Okta app -->
 1. Copy and paste the **Client ID** and **Client Secret** from your Okta
 application into {{site.konnect_saas}}.
 
