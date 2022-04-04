@@ -74,7 +74,7 @@ test.describe("Outdated version documentation", () => {
     await expect(await s.count()).toBe(1);
     await expect(await s.getAttribute("href")).toEqual(
       expect.stringMatching(
-        new RegExp(`^/gateway/${latestGatewayVersion}/install-and-run/rhel/$`)
+        new RegExp(`^/gateway/latest/install-and-run/rhel/$`)
       )
     );
   });
