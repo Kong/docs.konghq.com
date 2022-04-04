@@ -42,7 +42,7 @@ oc new-project kong
 
     ```sh
     ## on Kubernetes native
-    kubectl create secret generic kong-enterprise-license --from-file=./license -n kong
+    kubectl create secret generic kong-enterprise-license --from-file=<absolute-path-to>/license -n kong
     ```
 
     ```sh
