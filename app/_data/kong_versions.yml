@@ -459,6 +459,10 @@
   version: "1.6.0"
   edition: "mesh"
 -
+  release: "1.7.x"
+  version: "1.7.0"
+  edition: "mesh"
+-
   release: "1.0.x"
   version: "1.0.0"
   edition: "kubernetes-ingress-controller"
