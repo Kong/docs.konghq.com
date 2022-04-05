@@ -486,3 +486,7 @@
   release: "2.2.x"
   version: "2.2.0"
   edition: "kubernetes-ingress-controller"
+-
+  release: "2.3.x"
+  version: "2.3.0"
+  edition: "kubernetes-ingress-controller"
