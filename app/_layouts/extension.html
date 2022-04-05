@@ -63,6 +63,7 @@ breadcrumbs:
       </tr>
     {% endif %}
     {% for field in page.params.config %}
+      {% if_plugin_version gte:field.minimum_version %}
       {% if field.group %}
     <tr><td colspan="2"><strong><br><br>{{ field.group | markdownify | strip_html }} {% if field.description %}<br><small>{{ field.description | markdownify | strip_html }}</small>{% endif %}</strong></td></tr>
       <tr><th>Form Parameter</th><th>Description</th></tr>
@@ -81,6 +82,7 @@ breadcrumbs:
         </td>
       </tr>
       {% endif %}
+      {% endif_plugin_version %}
     {% endfor %}
   </tbody>
 </table>
@@ -109,7 +111,7 @@ breadcrumbs:
 {% if extn_versions %}
   {% assign extn_version_latest = extn_versions | first %}
   {% assign extn_latest = extn_version_latest['release'] %}
-  {% unless extn_filename == "index.md" %}
+  {% unless extn_filename == "_index.md" %}
     {% assign extn_release = extn_filename | remove: ".md" %}
     {% assign extn_ver = extn_releases | where: "release", extn_release %}
     {% assign extn_version = extn_ver[0] %}
@@ -125,11 +127,11 @@ breadcrumbs:
 
 <div class="page page-extension-profile">
   {% if page.header_icon or page.header_title %}
-    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs type=extn_type name=page.header_title img=page.header_icon plus=page.plus enterprise=page.enterprise publisher=page.publisher extn_filename=extn_filename extn_versions=extn_versions extn_publisher=extn_publisher extn_slug=extn_slug %}
+    {% include_cached header.html is_latest=page.is_latest id=page.id url=page.url breadcrumbs=page.breadcrumbs type=extn_type name=page.header_title img=page.header_icon plus=page.plus enterprise=page.enterprise publisher=page.publisher extn_filename=extn_filename extn_versions=extn_versions extn_publisher=extn_publisher extn_slug=extn_slug %}
   {% elsif page.type == concept %}
-    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.title img=page.header_icon plus=page.plus enterprise=page.enterprise publisher=page.publisher extn_filename=extn_filename extn_versions=extn_versions extn_publisher=extn_publisher extn_slug=extn_slug %}
+    {% include_cached header.html is_latest=page.is_latest id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.title img=page.header_icon plus=page.plus enterprise=page.enterprise publisher=page.publisher extn_filename=extn_filename extn_versions=extn_versions extn_publisher=extn_publisher extn_slug=extn_slug %}
   {% else %}
-    {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.name img=extn_icon plus=page.plus enterprise=page.enterprise publisher=page.publisher extn_filename=extn_filename extn_versions=extn_versions extn_publisher=extn_publisher extn_slug=extn_slug %}
+    {% include_cached header.html is_latest=page.is_latest id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.name img=extn_icon plus=page.plus enterprise=page.enterprise publisher=page.publisher extn_filename=extn_filename extn_versions=extn_versions extn_publisher=extn_publisher extn_slug=extn_slug %}
   {% endif %}
 
   <div class="container">
@@ -193,7 +195,7 @@ breadcrumbs:
         {% endif %}
 
         {% if page.params.examples != false %}
-          {% include_cached hub-examples.html params=page.params publisher=page.publisher name=page.name %}
+          {% include_cached hub-examples.html version=page.version params=page.params publisher=page.publisher name=page.name %}
         {% endif %}
 
         <h3 id="parameters">Parameters</h3>
