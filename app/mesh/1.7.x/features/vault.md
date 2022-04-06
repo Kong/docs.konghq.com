@@ -240,6 +240,7 @@ spec:
               aws: # AWS role-based authentication. May be empty to use defaults.
                 type: "IAM" or "EC2" # Optional AWS authentication type. Default is IAM.
                 role: role-name # Optional role name to use for IAM authentication
+                iamServerIdHeader: example.com # Optional server ID header value
 ```
 
 Apply the configuration with `kubectl apply -f [..]`.
@@ -271,7 +272,7 @@ mtls:
             secret: sec-1
           skipVerify: false # if set to true, caCert is optional. Set to true only for development
           serverName: "" # verify sever name
-        auth: # only one auth options is allowed so it's either "token" or "tls"
+        auth: # how to authenticate Kong Mesh when connecting to Vault
           token:
             secret: token-1  # can be file, secret or inlineString
           tls:
@@ -279,6 +280,10 @@ mtls:
               secret: sec-2  # can be file, secret or inlineString
             clientCert:
               file: /tmp/cert.pem # can be file, secret or inline
+            aws: # AWS role-based authentication. May be empty to use defaults.
+              type: "IAM" or "EC2" # Optional AWS authentication type. Default is IAM.
+              role: role-name # Optional role name to use for IAM authentication
+              iamServerIdHeader: example.com # Optional server ID header value
 ```
 
 Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](https://kuma.io/docs/latest/documentation/http-api).
