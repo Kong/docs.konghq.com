@@ -161,7 +161,9 @@ EOM
 vault policy write kmesh-default-dataplane-proxies kmesh-default-dataplane-proxies.hcl
 ```
 
-#### Step 4. Create a Vault token:
+#### Step 4. Configure authentication method:
+
+To authorize {{site.mesh_product_name}} to vault using a token, generate the token and pass it to mesh:
 
 ```sh
 vault token create -format=json -policy="kmesh-default-dataplane-proxies" | jq -r ".auth.client_token"
@@ -178,12 +180,14 @@ the output hides the error message provided in the `vault` CLI output. Manually
 parse the output instead of using `jq` so that the full output of the `vault` CLI 
 command is available.
 
+{{site.mesh_product_name}} also supports AWS Instance Role authentication to Vault. Vault must be configured to accept EC2 or IAM role authentication. See [Vault documentation](https://www.vaultproject.io/docs/auth/aws) for details.  With Vault configured, select AWS authentication in the `Mesh` object by setting `conf.fromCp.auth.aws`. {{site.mesh_product_name}} will authenticate using the instance or IRSA role available within the environment.
+
 ### Configure Mesh
 
 `kuma-cp` communicates directly with Vault. To connect to
 Vault, you must provide credentials in the configuration of the `mesh` object of `kuma-cp`.
 
-You can authenticate with the `token` or with client certificates by providing `clientKey` and `clientCert`.
+You can authenticate with the `token`, with client certificates by providing `clientKey` and `clientCert`, or by AWS role-based authentication.
 
 You can provide these values inline for testing purposes only, as a path to a file on the
 same host as `kuma-cp`, or contained in a `secret`. When using a `secret`, it should be a mesh-scoped 
@@ -233,6 +237,10 @@ spec:
                   secret: sec-2  # can be file, secret or inline
                 clientCert:
                   file: /tmp/cert.pem # can be file, secret or inlineString
+              aws: # AWS role-based authentication. May be empty to use defaults.
+                type: "IAM" or "EC2" # Optional AWS authentication type. Default is IAM.
+                role: role-name # Optional role name to use for IAM authentication
+                iamServerIdHeader: example.com # Optional server ID header value
 ```
 
 Apply the configuration with `kubectl apply -f [..]`.
@@ -264,7 +272,7 @@ mtls:
             secret: sec-1
           skipVerify: false # if set to true, caCert is optional. Set to true only for development
           serverName: "" # verify sever name
-        auth: # only one auth options is allowed so it's either "token" or "tls"
+        auth: # how to authenticate Kong Mesh when connecting to Vault
           token:
             secret: token-1  # can be file, secret or inlineString
           tls:
@@ -272,6 +280,10 @@ mtls:
               secret: sec-2  # can be file, secret or inlineString
             clientCert:
               file: /tmp/cert.pem # can be file, secret or inline
+            aws: # AWS role-based authentication. May be empty to use defaults.
+              type: "IAM" or "EC2" # Optional AWS authentication type. Default is IAM.
+              role: role-name # Optional role name to use for IAM authentication
+              iamServerIdHeader: example.com # Optional server ID header value
 ```
 
 Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](https://kuma.io/docs/latest/documentation/http-api).
