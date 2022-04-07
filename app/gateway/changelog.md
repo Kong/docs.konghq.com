@@ -924,6 +924,27 @@ effect on the following plugins and fields:
 * Consumer groups are not supported in declarative configuration with
 decK. If you have consumer groups in your configuration, decK will ignore them.
 
+## 2.6.1.0
+**Release Date** 2022/04/07
+
+### Fixes
+
+#### Enterprise
+
+* Fixed an issue with RBAC where `endpoint=/kong workspace=*` would not let the `/kong` endpoint be accessed from all workspaces
+* Fixed an issue with RBAC where admins without a top level `endpoint=*` permission could not add any RBAC rules, even if they had `endpoint=/rbac` permissions. These admins can now add RBAC rules for their current workspace only.
+
+#### Plugins
+
+* [HTTP Log](/hub/kong-inc/http-log) (`http-log`)
+  * Include provided query string parameters when sending logs to the `http_endpoint`
+
+### Dependencies
+
+* Bumped `openssl` from 1.1.1k to 1.1.1n to resolve CVE-2022-0778 [#8635](https://github.com/Kong/kong/pull/8635)
+* Bumped `luarocks` from 3.7.1 to 3.8.0 [#8630](https://github.com/Kong/kong/pull/8630)
+* Bumped `openresty` from 1.19.3.2 to 1.19.9.1 [#7727](https://github.com/Kong/kong/pull/7727)
+
 ## 2.6.0.4
 **Release Date** 2022/02/10
 
@@ -933,6 +954,8 @@ decK. If you have consumer groups in your configuration, decK will ignore them.
 * Fixed an issue with Kong Manager OIDC authentication, which caused the error
 `“attempt to call method 'select_by_username_ignore_case' (a nil value)”`
 and prevented login with OIDC.
+
+
 
 ## 2.6.0.3
 **Release Date:** 2022/01/27

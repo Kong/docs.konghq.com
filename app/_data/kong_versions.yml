@@ -330,17 +330,17 @@
 -
 # Combined Gateway docs (single-sourced)
   release: "2.6.x"
-  ee-version: "2.6.0.4"
-  ce-version: "2.6.0"
+  ee-version: "2.6.1.0"
+  ce-version: "2.6.1"
   edition: "gateway"
   luarocks_version: "2.5.1-0"
   dependencies:
     luajit: "2.1.0-beta3"
-    luarocks: "3.7.1"
+    luarocks: "3.8.0"
     cassandra: "3.x.x"
     postgres: "9.5+"
-    openresty: "1.19.3.2"
-    openssl: "1.1.1k"
+    openresty: "1.19.9.1"
+    openssl: "1.1.1n"
     libyaml: "0.2.5"
     pcre: "8.44"
   lua_doc: true
