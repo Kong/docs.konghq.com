@@ -2,7 +2,7 @@
 title: Kong Mesh - ACM Private CA Policy
 ---
 
-## Vault CA Backend
+## Amazon Certificate Manager Private CA Backend
 
 The default [mTLS policy in Kuma](https://kuma.io/docs/latest/policies/mutual-tls/)
 supports the following backends:
