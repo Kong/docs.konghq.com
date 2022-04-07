@@ -487,6 +487,49 @@ now deprecated and planned to be removed in 3.x.x. Use
 * AWS Lambda plugin: The `proxy_scheme` field is now deprecated and planned to
 be removed in 3.x.x.
 
+## 2.7.2.0
+**Release Date** 2022/04/07
+
+### Fixes
+
+#### Enterprise
+
+* Fixed an issue with RBAC where `endpoint=/kong workspace=*` would not let the `/kong` endpoint be accessed from all workspaces
+* Fixed an issue with RBAC where admins without a top level `endpoint=*` permission could not add any RBAC rules, even if they had `endpoint=/rbac` permissions. These admins can now add RBAC rules for their current workspace only.
+* Kong Manager
+  * Enable the `search_user_info` option when using OpenID Connect (OIDC)
+  * Fix broken docs links on the Upstream page
+  * Serverless functions can now be saved when there is a comma in the provided value
+  * Custom plugins now show an Edit button when viewing the plugin configuration
+* Keys are no longer rotated unexpectedly when a node restarts
+* Add cache when performing RBAC token verification
+* The log message "plugins iterator was changed while rebuilding it" was incorrectly logged as an `error`. This release converts it to the `info` log level.
+* Fixed a 500 error when rate limiting counters are full with the Rate Limiting Advanced plugin
+
+#### Plugins
+
+* [HTTP Log](/hub/kong-inc/http-log) (`http-log`)
+  * Include provided query string parameters when sending logs to the `http_endpoint`
+* [Forward Proxy](/hub/kong-inc/forward-proxy) (`forward-proxy`)
+  * Fix timeout issues with HTTPs requests by setting `https_proxy_host` to the same value as `http_proxy_host`
+  * Use lowercase when overwriting the `host` header
+  * Add support for basic authentication when using a secured proxy with HTTPS requests
+* [StatsD Advanced](/hub/kong-inc/statsd-advanced) (`statsd-advanced`)
+  * Added support for setting `workspace_identifier` to the current `workspace_name`
+* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
+  * Skip namespae creation if the plugin is not enabled. This prevents the error "[rate-limiting-advanced] no shared dictionary was specified" being logged.
+* [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced) (`proxy-cache-advanced`)
+  * Large files would not be cached due to memory usage, leading to a `X-Cache-Status:Miss` response. This has now been resolved
+* [GraphQL Proxy Cache Advanced](/hub/kong-inc/graphql-proxy-cache-advanced) (`graphql-proxy-cache-advanced`)
+  * Large files would not be cached due to memory usage, leading to a `X-Cache-Status:Miss` response. This has now been resolved
+* [LDAP Auth Advanced](/hub/kong-inc/ldap-auth-advanced) (`ldap-auth-advanced`)
+  * Support passwords that contain a `:` character
+
+### Dependencies
+
+* Bumped `openssl` from 1.1.1k to 1.1.1n to resolve CVE-2022-0778 [#8635](https://github.com/Kong/kong/pull/8635)
+* Bumped `openresty` from 1.19.3.2 to 1.19.9.1 [#7727](https://github.com/Kong/kong/pull/7727)
+
 
 ## 2.7.1.2
 **Release Date** 2022/02/17

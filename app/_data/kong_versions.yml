@@ -346,8 +346,8 @@
   lua_doc: true
 -
   release: "2.7.x"
-  ee-version: "2.7.1.2"
-  ce-version: "2.7.1"
+  ee-version: "2.7.2.0"
+  ce-version: "2.7.2"
   edition: "gateway"
   luarocks_version: "2.5.1-0"
   dependencies:
@@ -356,7 +356,7 @@
     cassandra: "3.x.x"
     postgres: "9.5+"
     openresty: "1.19.9.1"
-    openssl: "1.1.1l"
+    openssl: "1.1.1n"
     libyaml: "0.2.5"
     pcre: "8.45"
   lua_doc: true
