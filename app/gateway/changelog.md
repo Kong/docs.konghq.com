@@ -3,6 +3,53 @@ title: Kong Gateway Changelog
 no_version: true
 ---
 
+
+## 2.8.1.0
+**Release Date** 2022/04/07
+
+### Fixes
+
+#### Enterprise
+
+* Fixed an issue with RBAC where `endpoint=/kong workspace=*` would not let the `/kong` endpoint be accessed from all workspaces
+* Fixed an issue with RBAC where admins without a top level `endpoint=*` permission could not add any RBAC rules, even if they had `endpoint=/rbac` permissions. These admins can now add RBAC rules for their current workspace only.
+* Kong Manager
+  * Serverless functions can now be saved when there is a comma in the provided value
+  * Custom plugins now show an Edit button when viewing the plugin configuration
+  * Editing Dev Portal permissions no longer returns a 404 error
+  * Fix an issue where admins with access to only non-default workspaces could not see any workspaces
+  * Show the workspace name when an admin only has access to non-default workspaces
+  * Add support for table filtering and sorting when using Cassandra
+  * Support the # character in RBAC tokens on the RBAC edit page
+  * Performing an action on an upstream target no longer leads to a 404 error
+* Developer Portal
+  * Information about the current session is now bound to an nginx worker thread. This prevents data leaks when a worker is handling multiple reqests at the same time
+* Keys are no longer rotated unexpectedly when a node restarts
+* Add cache when performing RBAC token verification
+* The log message "plugins iterator was changed while rebuilding it" was incorrectly logged as an `error`. This release converts it to the `info` log level.
+* Fixed a 500 error when rate limiting counters are full with the Rate Limiting Advanced plugin
+* Improved the performance of the router, plugins iterator and balancer by adding conditional rebuilding
+
+#### Plugins
+
+* [HTTP Log](/hub/kong-inc/http-log) (`http-log`)
+  * Include provided query string parameters when sending logs to the `http_endpoint`
+* [Forward Proxy](/hub/kong-inc/forward-proxy) (`forward-proxy`)
+  * Use lowercase when overwriting the `host` header
+* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
+  * Skip namespace creation if the plugin is not enabled. This prevents the error "[rate-limiting-advanced] no shared dictionary was specified" being logged.
+* [LDAP Auth Advanced](/hub/kong-inc/ldap-auth-advanced) (`ldap-auth-advanced`)
+  * Support passwords that contain a `:` character
+* [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  * Provide valid upstream headers e.g. `X-Consumer-Id`, `X-Consumer-Username`
+* [JWT Signer](/hub/kong-inc/jwt-signer) (`jwt-signer`)
+  * Implement the `enable_hs_signatures` option to enable JWTs signed with HMAC algorithms
+
+### Dependencies
+
+* Bumped `openssl` from 1.1.1k to 1.1.1n to resolve CVE-2022-0778 [#8635](https://github.com/Kong/kong/pull/8635)
+* Bumped `openresty` from 1.19.3.2 to 1.19.9.1 [#7727](https://github.com/Kong/kong/pull/7727)
+
 ## 2.8.0.0
 **Release Date** 2022/03/02
 
@@ -517,7 +564,7 @@ be removed in 3.x.x.
 * [StatsD Advanced](/hub/kong-inc/statsd-advanced) (`statsd-advanced`)
   * Added support for setting `workspace_identifier` to the current `workspace_name`
 * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
-  * Skip namespae creation if the plugin is not enabled. This prevents the error "[rate-limiting-advanced] no shared dictionary was specified" being logged.
+  * Skip namespace creation if the plugin is not enabled. This prevents the error "[rate-limiting-advanced] no shared dictionary was specified" being logged.
 * [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced) (`proxy-cache-advanced`)
   * Large files would not be cached due to memory usage, leading to a `X-Cache-Status:Miss` response. This has now been resolved
 * [GraphQL Proxy Cache Advanced](/hub/kong-inc/graphql-proxy-cache-advanced) (`graphql-proxy-cache-advanced`)
