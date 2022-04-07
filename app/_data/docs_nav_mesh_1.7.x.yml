@@ -52,6 +52,8 @@
   items:
     - text: HashiCorp Vault CA
       url: /features/vault
+    - text: Amazon ACM Private CA
+      url: /features/acmpca
     - text: OPAPolicy Support
       url: /features/opa
     - text: Multi-zone authentication
