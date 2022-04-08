@@ -36,6 +36,8 @@ no_version: true
   * Include provided query string parameters when sending logs to the `http_endpoint`
 * [Forward Proxy](/hub/kong-inc/forward-proxy) (`forward-proxy`)
   * Use lowercase when overwriting the `host` header
+* [StatsD Advanced](/hub/kong-inc/statsd-advanced) (`statsd-advanced`)
+  * Added support for setting `workspace_identifier` to `workspace_name`
 * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
   * Skip namespace creation if the plugin is not enabled. This prevents the error "[rate-limiting-advanced] no shared dictionary was specified" being logged.
 * [LDAP Auth Advanced](/hub/kong-inc/ldap-auth-advanced) (`ldap-auth-advanced`)
@@ -562,7 +564,7 @@ be removed in 3.x.x.
   * Use lowercase when overwriting the `host` header
   * Add support for basic authentication when using a secured proxy with HTTPS requests
 * [StatsD Advanced](/hub/kong-inc/statsd-advanced) (`statsd-advanced`)
-  * Added support for setting `workspace_identifier` to the current `workspace_name`
+  * Added support for setting `workspace_identifier` to `workspace_name`
 * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
   * Skip namespace creation if the plugin is not enabled. This prevents the error "[rate-limiting-advanced] no shared dictionary was specified" being logged.
 * [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced) (`proxy-cache-advanced`)
