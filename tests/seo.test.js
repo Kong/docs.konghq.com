@@ -81,3 +81,30 @@ test.describe("index links", () => {
     });
   });
 });
+
+test.describe("unversioned content", () => {
+  [
+    {
+      title: "konnect",
+      src: "/konnect/",
+    },
+    {
+      title: "konnect-platform",
+      src: "/konnect-platform/",
+    },
+    {
+      title: "contributing",
+      src: "/contributing/",
+    },
+  ].forEach((t) => {
+    test(t.title, async ({ page }) => {
+      await page.goto(t.src);
+      const robotsIndex = page.locator("meta[name='robots'][content='follow,index']");
+      await expect(robotsIndex).toHaveCount(1);
+
+      // There's no need for a canonical link with unversioned content
+      const canonical = await page.locator("link[rel='canonical']");
+      await expect(canonical).toHaveCount(0);
+    });
+  });
+});

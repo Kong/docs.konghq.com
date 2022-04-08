@@ -9,6 +9,12 @@ module CanonicalUrl
       # Build a map of the latest available version of every URL
       site.pages.each do |page|
         #next unless page.url.include?("/install-and-run/docker")
+
+        # We don't want to index these pages in the sitemap or in Google
+        if ['/enterprise/', '/gateway-oss/', '/getting-started-guide/'].any? { |u| page.url.include?(u) }
+          page.data['seo_noindex'] = true
+        end
+
         parts = page.url.split("/")
         parts.shift # Remove the first empty segment
 
@@ -20,11 +26,6 @@ module CanonicalUrl
 
           version = to_version(parts[1])
           url = page.url.gsub(parts[1], "VERSION")
-
-          # We don't want to index these pages in the sitemap or in Google
-          if ['/enterprise/', '/gateway-oss/', '/getting-started-guide/'].any? { |u| url.include?(u) }
-            page.data['seo_noindex'] = true
-          end
 
           # Special case for `gateway-oss` and `enterprise`
           # As a newer version may exist under /gateway/
