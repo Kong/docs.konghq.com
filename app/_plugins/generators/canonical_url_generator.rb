@@ -50,6 +50,25 @@ module CanonicalUrl
         end
       end
 
+      # Set the canonical URL for plugin pages + add them to the sitemap
+      site.collections["hub"].docs.each do |page|
+        parts = page.url.split("/")
+        if parts.last == "index"
+          url = page.url.gsub("/index","/")
+          allPages[url] = {
+            'url' => url,
+            'sitemap' => true
+          }
+          page.data['canonical_url'] = url
+        else
+          # It's an old version, so set the canonical URL
+          # and noindex
+          parts.pop # Remove the version at the end
+          page.data['canonical_url'] = parts.join("/")
+          page.data['seo_noindex'] = true 
+        end
+      end
+
       # Set the canonical URL for each
       site.pages.each do |page|
         parts = page.url.split("/")

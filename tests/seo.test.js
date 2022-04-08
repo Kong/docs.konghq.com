@@ -19,6 +19,12 @@ test.describe("Canonical links", () => {
       src: "/gateway/latest/install-and-run/docker/",
       href: "/gateway/latest/install-and-run/docker/",
     },
+    {
+      title:
+        "contains a canonical link pointing to the latest version of a plugin",
+      src: "/hub/kong-inc/application-registration/1.0.x.html",
+      href: "/hub/kong-inc/application-registration/",
+    },
   ].forEach((t) => {
     test(t.title, async ({ page }) => {
       await page.goto(t.src);
@@ -52,6 +58,10 @@ test.describe("noindex links", () => {
       title: "contains a noindex tag if it's a getting-started-guide page",
       src: "/getting-started-guide/2.5.x/prepare/",
     },
+    {
+      title: "contains a noindex tag for old plugin versions",
+      src: "/hub/kong-inc/application-registration/1.0.x.html",
+    },
   ].forEach((t) => {
     test(t.title, async ({ page }) => {
       await page.goto(t.src);
@@ -72,6 +82,10 @@ test.describe("index links", () => {
     {
       title: "index page",
       src: "/gateway/",
+    },
+    {
+      title: "latest version of a plugin",
+      src: "/hub/kong-inc/application-registration/",
     },
   ].forEach((t) => {
     test(t.title, async ({ page }) => {
@@ -99,7 +113,9 @@ test.describe("unversioned content", () => {
   ].forEach((t) => {
     test(t.title, async ({ page }) => {
       await page.goto(t.src);
-      const robotsIndex = page.locator("meta[name='robots'][content='follow,index']");
+      const robotsIndex = page.locator(
+        "meta[name='robots'][content='follow,index']"
+      );
       await expect(robotsIndex).toHaveCount(1);
 
       // There's no need for a canonical link with unversioned content
@@ -117,10 +133,11 @@ test.describe("sitemap", () => {
     "/mesh/latest/",
     "/kubernetes-ingress-controller/latest/",
     "/deck/latest/",
+    "/hub/kong-inc/application-registration/",
   ].forEach((t) => {
     test(t, async ({ page }) => {
       await page.goto("/sitemap.xml");
-      const html = await page.content()
+      const html = await page.content();
       await expect(html).toContain(t);
     });
   });
