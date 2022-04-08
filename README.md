@@ -64,8 +64,8 @@ make clean
 * [node and npm](https://www.npmjs.com/get-npm)
 * [yarn](https://classic.yarnpkg.com)
 * [gulp](https://gulpjs.com/docs/en/getting-started/quick-start/)
-* [Bundler](https://bundler.io/) (< 2.0.0)
-* [Ruby](https://www.ruby-lang.org) (> 2.6)
+* [Bundler](https://bundler.io/)
+* [Ruby](https://www.ruby-lang.org) (>= 3.1.0)
 * [Python](https://www.python.org) (>= 2.7.X, < 3)
 
 Install dependencies:
