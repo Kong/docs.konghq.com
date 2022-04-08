@@ -108,3 +108,20 @@ test.describe("unversioned content", () => {
     });
   });
 });
+
+test.describe("sitemap", () => {
+  [
+    "/konnect/",
+    "/konnect-platform/",
+    "/gateway/latest/",
+    "/mesh/latest/",
+    "/kubernetes-ingress-controller/latest/",
+    "/deck/latest/",
+  ].forEach((t) => {
+    test(t, async ({ page }) => {
+      await page.goto("/sitemap.xml");
+      const html = await page.content()
+      await expect(html).toContain(t);
+    });
+  });
+});
