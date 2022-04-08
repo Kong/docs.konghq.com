@@ -64,7 +64,7 @@ module CanonicalUrl
           # It's an old version, so set the canonical URL
           # and noindex
           parts.pop # Remove the version at the end
-          page.data['canonical_url'] = parts.join("/")
+          page.data['canonical_url'] = parts.join("/") + "/"
           page.data['seo_noindex'] = true 
         end
       end

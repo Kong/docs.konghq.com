@@ -21,7 +21,7 @@ test.describe("Canonical links", () => {
     },
     {
       title:
-        "contains a canonical link pointing to the latest version of a plugin",
+        "plugins contain a canonical link pointing to the latest version of a plugin",
       src: "/hub/kong-inc/application-registration/1.0.x.html",
       href: "/hub/kong-inc/application-registration/",
     },
