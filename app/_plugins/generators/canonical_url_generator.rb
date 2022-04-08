@@ -18,6 +18,11 @@ module CanonicalUrl
         version = to_version(parts[1])
         url = page.url.gsub(parts[1], "VERSION")
 
+        # We don't want to index these pages in the sitemap or in Google
+        if ['/enterprise/', '/gateway-oss/', '/getting-started-guide/'].any? { |u| url.include?(u) }
+          page.data['seo_noindex'] = true
+        end
+
         # Special case for `gateway-oss` and `enterprise`
         # As a newer version may exist under /gateway/
         url.gsub!("/gateway-oss/", "/gateway/")
@@ -27,7 +32,8 @@ module CanonicalUrl
         if !allPages[url] || (version > allPages[url]['version'])
           allPages[url] = {
             'version' => version,
-            'url' => page.url
+            'url' => page.url,
+            'sitemap' => page.data['seo_noindex'] ? false : true
           }
         end
       end
@@ -58,7 +64,7 @@ module CanonicalUrl
       end
 
       # Save the list of pages to generate a sitemap
-      site.data['sitemap_pages'] = allPages.values.map { |p| 
+      site.data['sitemap_pages'] = allPages.values.filter { |v| v['sitemap'] }.map { |p|
         {
           'url' => p['url'],
           'changefreq' => p['url'].include?("/latest/") ? "weekly" : "monthly",

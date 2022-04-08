@@ -121,12 +121,17 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{% if include.p
   {% capture latest_page_exists %}{% page_exists {{latest_include.url}} %}{% endcapture %}
   
   {% if include.canonical_url %}
-    {% if include.canonical_url != include.url %}<meta name="robots" content="noindex" />{% endif %}
     <link rel="canonical" href="{{site.links.web}}{{ include.canonical_url }}" />
-    {% else %}
+  {% else %}
     {% if include.kong_version == include.kong_latest.release and include.no_version != true %}<link rel="canonical" href="{{ site.links.web }}{{ include.url }}" />
       {% elsif latest_page_exists == 'true' %}<link rel="canonical" href="{% capture latest_path %}{{ site.links.web }}{{ latest_include.url }}{% endcapture %}{{ latest_path }}" />
     {% endif %}
+  {% endif %}
+
+  {% if include.seo_noindex || (include.url != include.canonical_url) %}
+  <meta name="robots" content="follow,noindex" />
+  {% else %}
+  <meta name="robots" content="follow,index" />
   {% endif %}
 
 </head>
