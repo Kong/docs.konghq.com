@@ -33,7 +33,11 @@ test.describe("Canonical links", () => {
 test.describe("noindex links", () => {
   [
     {
-      title: "contains a noindex tag if it's not the latest URL",
+      title: "contains a noindex tag if it's not the latest URL (index)",
+      src: "/gateway/2.7.x/",
+    },
+    {
+      title: "contains a noindex tag if it's not the latest URL (nested)",
       src: "/gateway/2.7.x/install-and-run/",
     },
     {
@@ -64,7 +68,10 @@ test.describe("index links", () => {
     {
       title: "latest page",
       src: "/gateway/latest/install-and-run/docker/",
-      expected: 0,
+    },
+    {
+      title: "index page",
+      src: "/gateway/",
     },
   ].forEach((t) => {
     test(t.title, async ({ page }) => {

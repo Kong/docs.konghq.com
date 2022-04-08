@@ -55,10 +55,22 @@ module CanonicalUrl
         # As a newer version may exist under /gateway/
         gatewayUrl = url.gsub("/gateway-oss/", "/gateway/").gsub("/enterprise/", "/gateway/")
 
+
+
         [url, gatewayUrl].each do |u|
+          # Special case for /PRODUCT/VERSION urls as they are redirected to /PRODUCT/
+          if parts.size == 2
+            page.data['canonical_url'] = "/#{parts[0]}/"
+          end
+
           has_match = allPages[u]
           if has_match
             page.data['canonical_url'] = has_match['url']
+          end
+
+          # We only want to index the /latest/ URLs
+          if page.data['canonical_url'] && parts[1] != "latest"
+            page.data['seo_noindex'] = true 
           end
         end
       end
