@@ -76,7 +76,7 @@ can use decK to accomplish this:
     deck dump \
     --konnect-password <pass> \
     --konnect-email <email> \
-    --konnect-runtime-group <group-name> \
+    --konnect-runtime-group-name <group-name> \
     --output-file /path/to/<my-backup.yaml>
     ```
 
