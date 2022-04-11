@@ -64,3 +64,5 @@
       url: /features/rbac
     - text: UBI Images
       url: /features/ubi-images
+    - text: Windows Support
+      url: /features/windows
