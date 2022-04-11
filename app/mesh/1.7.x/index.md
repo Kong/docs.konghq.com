@@ -34,11 +34,117 @@ every cloud and environment.
 </div>
 <br>
 <center>
-  <img src="/assets/images/docs/mesh/kong-mesh.png" width="500px"/>
-  <br>
   <i>{{site.mesh_product_name}} extends CNCF's Kuma and Envoy to provide an
   enterprise-grade service mesh with unique features in the service mesh
   landscape, while still relying on a neutral foundation.</i>
+
+<table class="mesh-features" style="width: fit-content">
+<thead>
+<tr>
+<th></th>
+<th>Kuma</th>
+<th>Kong Mesh</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enterprise Support and SLA</td>
+<td><i class="fa fa-times"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr style="border-bottom: 2px solid black">
+<td>Customer Success Packages</td>
+<td><i class="fa fa-times"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>Role Based Access Control (RBAC)</td>
+<td><i class="fa fa-times"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>Multi-Zone Authentication</td>
+<td><i class="fa fa-times"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>mTLS HashiCorp Vault CA</td>
+<td><i class="fa fa-times"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>mTLS AWS ACM CA ⭐</td>
+<td><i class="fa fa-times"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>mTLS Automatic CA Rotation</td>
+<td><i class="fa fa-times"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>mTLS GUI Analytics</td>
+<td><i class="fa fa-times"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>FIPS-140-2 Encryption Support</td>
+<td><i class="fa fa-times"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>Native OPA Agent and Policy</td>
+<td><i class="fa fa-times"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>Native AWS ECS Controller</td>
+<td><i class="fa fa-times"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>UBI Distributions</td>
+<td><i class="fa fa-times"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>Windows Distributions</td>
+<td><i class="fa fa-times"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>Mesh Multi-Mesh</td>
+<td><i class="fa fa-check"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>Multi-Zone &amp; Multi-Cluster</td>
+<td><i class="fa fa-check"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>Native VM Support (no K8s dependency)</td>
+<td><i class="fa fa-check"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr style="border-top: 2px solid black">
+<td><strong>All Traffic Control Capabilities</strong></td>
+<td><i class="fa fa-check"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td><strong>All Observability Capabilities</strong></td>
+<td><i class="fa fa-check"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td><strong>All Customization Capabilities</strong></td>
+<td><i class="fa fa-check"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+</tbody>
+</table>
+
 </center>
 <br>
 {{site.mesh_product_name}} provides a unique combination of strengths and
