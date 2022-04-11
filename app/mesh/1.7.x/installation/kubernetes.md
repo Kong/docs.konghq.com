@@ -64,6 +64,9 @@ Then, run the control plane with:
 $ kumactl install control-plane --license-path=/path/to/license.json | kubectl apply -f -
 ```
 
+{:.note}
+> **Note**: {{site.mesh_product_name}} also has UBI images. To use these images instead checkout the [UBI documentation](../features/ubi-images.md).
+
 Where `/path/to/license.json` is the path to a valid {{site.mesh_product_name}}
 license file on the file system.
 
