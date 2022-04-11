@@ -42,7 +42,7 @@ recognizes your account credentials:
 
 ```sh
 deck ping \
-  --konnect-runtime-group default \
+  --konnect-runtime-group-name default \
   --konnect-email {YOUR_EMAIL} \
   --konnect-password {YOUR_PASSWORD}
 ```
@@ -76,10 +76,10 @@ The following steps all use a `.deck.yaml` file to store the
 Capture a snapshot of the current configuration in a file:
 
 ```sh
-deck dump --konnect-runtime-group default
+deck dump --konnect-runtime-group-name default
 ```
 
-If you don't specify the `--konnect-runtime-group` flag, decK will target the
+If you don't specify the `--konnect-runtime-group-name` flag, decK will target the
 `default` runtime group. If you have more than one runtime group in your
 organization, we recommend always setting this flag to avoid accidentally
 pushing configuration to the wrong group.
@@ -98,7 +98,7 @@ You can specify a different file name or location, or export the
 configuration in JSON format:
 
 ```sh
-deck dump --konnect-runtime-group default \
+deck dump --konnect-runtime-group-name default \
   --format json \
   --output-file examples/konnect.json
 ```
@@ -145,7 +145,7 @@ For this example, let's add a new service.
 {{site.konnect_saas}}:
 
     ```sh
-    deck diff --konnect-runtime-group default
+    deck diff --konnect-runtime-group-name default
     ```
 
     If the format and schema is correct, decK gives you a preview of what would
@@ -164,7 +164,7 @@ For this example, let's add a new service.
 {{site.konnect_saas}}:
 
     ```sh
-    deck sync --konnect-runtime-group default
+    deck sync --konnect-runtime-group-name default
     ```
 
     You should see the same output again:
@@ -225,14 +225,14 @@ down with repeated requests. Add a global proxy cache plugin:
 1. Run a diff to test your changes:
 
     ```sh
-    deck diff --konnect-runtime-group default
+    deck diff --konnect-runtime-group-name default
     ```
 
 1. If everything looks good, run another sync, then check {{site.konnect_saas}}
 to see your changes:
 
     ```sh
-    deck sync --konnect-runtime-group default
+    deck sync --konnect-runtime-group-name default
     ```
 
 ## Test the service
@@ -273,7 +273,7 @@ groups.
 
     ```bash
     deck dump \
-      --konnect-runtime-group default \
+      --konnect-runtime-group-name default \
       --output-file default.yaml
     ```
 
@@ -291,7 +291,7 @@ command, pointing to the runtime group that you want to target:
 
     ```sh
     deck diff \
-      --konnect-runtime-group staging \
+      --konnect-runtime-group-name staging \
       --state default.yaml
     ```
 
@@ -300,7 +300,7 @@ command, pointing to the runtime group that you want to target:
 
     ```sh
     deck sync \
-      --konnect-runtime-group staging \
+      --konnect-runtime-group-name staging \
       --state default.yaml
     ```
 

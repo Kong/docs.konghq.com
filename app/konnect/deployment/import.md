@@ -29,7 +29,7 @@ Use deck to import entity configurations into a runtime group.
 
     ```sh
     deck ping \
-      --konnect-runtime-group default \
+      --konnect-runtime-group-name default \
       --konnect-email {YOUR_EMAIL} \
       --konnect-password {YOUR_PASSWORD}
     ```
@@ -72,7 +72,7 @@ Use deck to import entity configurations into a runtime group.
 command, pointing to the runtime group that you want to target:
 
     ```sh
-    deck diff --konnect-runtime-group default
+    deck diff --konnect-runtime-group-name default
     ```
 
     If you're not using the default `kong.yaml` file, specify the filename and
@@ -81,10 +81,10 @@ command, pointing to the runtime group that you want to target:
 1. If you're satisfied with the preview, run [`deck sync`](/deck/latest/reference/deck_sync):
 
     ```sh
-    deck sync --konnect-runtime-group default
+    deck sync --konnect-runtime-group-name default
     ```
 
-    If you don't specify the `--konnect-runtime-group` flag, decK targets the
+    If you don't specify the `--konnect-runtime-group-name` flag, decK targets the
     `default` runtime group. If you have more than one runtime group in your
     organization, we recommend always setting this flag to avoid accidentally
     pushing configuration to the wrong group.
