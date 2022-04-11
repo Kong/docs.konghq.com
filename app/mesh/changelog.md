@@ -4,6 +4,77 @@ no_search: true
 no_version: true
 ---
 
+## 1.7.0
+
+> Released on 2022/04/12
+ 
+Built on top of [Kuma 1.6.0](https://github.com/kumahq/kuma/releases/tag/1.6.0)
+
+### Changes
+
+New Features:
+
+feat(ca): add aws auth to vault 1072 @parkanzky
+feat(inspect): Inspect API support for OPA 812 @lobkovilya
+feat(kuma-cp): add license values to reports 919 @parkanzky
+feat(opa): configure OPA timeout 969 @jakubdyszkiewicz
+
+Dependency upgrades:
+
+- Bump github.com/aws/aws-sdk-go from 1.40.56 to 1.43.29
+- Bump github.com/hashicorp/vault/api from 1.3.1 to 1.5.0
+- Bump github.com/open-policy-agent/opa from 0.37.1 to 0.38.1
+- chore(deps): Bump github.com/open-policy-agent/opa-envoy-plugin from 0.37.1-envoy to 0.38.1-envoy-3
+
+### Upgrading
+
+#### Helm
+`controlPlane.resources` is now on object instead of a string. Any existing value should be adapted accordingly.
+
+#### Zone egress and ExternalService
+When an `ExternalService` has the tag `kuma.io/zone` and `ZoneEgress` is enabled then the request flow will be different after upgrading Kuma to the newest version.
+Previously, the request to the `ExternalService` goes through the `ZoneEgress` in the current zone.
+The flow in the newest version is different, and when `ExternalService` is defined in a different zone then the request will go through local `ZoneEgress` to `ZoneIngress` in zone where `ExternalService` is defined and leave the cluster through `ZoneEgress` in this zone.
+To keep previous behavior, remove the `kuma.io/zone` tag from the `ExternalService` definition.
+
+#### Zone egress
+Previously, when mTLS was configured and `ZoneEgress` deployed, requests were routed automatically through `ZoneEgress`.
+Now it's required to explicitly set that traffic should be routed through `ZoneEgress` by setting Mesh configuration property `routing.zoneEgress: true`. 
+The default value of the property is set to `false` so in case your network policies don't allow you to reach other external services/zone without using ZoneEgress, set `routing.zoneEgress: true`.
+
+```
+type: Mesh
+name: default
+mtls: # mTLS is required for zoneEgress
+[...]
+routing:
+  zoneEgress: true
+```
+
+The new approach changes the flow of requests to external services. Previously when there was no instance of `ZoneEgress` traffic was routed directly to the destination, now it won't reach the destination.
+
+#### Gateway (experimental)
+Previously, a MeshGatewayInstance generated a Deployment and Service whose names ended with a unique suffix. With this release, those objects will have the same name as the MeshGatewayInstance.
+
+#### Inspect API
+In connection with the changes around `MeshGateway` and `MeshGatewayRoute`, the output schema of the `<policy-type>/<policy>/dataplanes` has changed. Every policy can now affect both normal Dataplanes and Dataplanes configured as builtin gateways. The configuration for the latter type is done via MeshGateway resources.
+
+Every item in the items array now has a kind property of either:
+
+`SidecarDataplane`: a normal Dataplane with outbounds, inbounds, etc.
+`MeshGatewayDataplane`: a MeshGateway-configured Dataplane with a new structure representing the MeshGateway it serves.
+Some examples can be found in the [Inspect API docs](https://kuma.io/docs/1.6.x/reference/http-api/#inspect-api).
+
+## 1.6.1
+
+> Released on 2022/04/09
+
+Built on top of [Kuma 1.5.1](https://github.com/kumahq/kuma/releases/tag/1.5.1)
+
+- Bump github.com/open-policy-agent/opa from 0.37.2 to 0.38.1
+- Remove the old JWT library
+- Configurable OPA timeout 
+
 ## 1.6.0
 
 > Released on 2022/02/24
