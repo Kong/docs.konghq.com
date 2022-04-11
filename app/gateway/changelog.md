@@ -123,7 +123,7 @@ making your environment more secure.
   environment has large configurations that generate `payload too big` errors
   and don't get applied to the data planes, use this setting to adjust the limit.
 
-  Thanks, [@andrewgknew](https://github.com/andrewgknew)!
+  Thanks, [@andrewgkew](https://github.com/andrewgkew)!
   [#8337](https://github.com/Kong/kong/pull/8337)
 
 #### Performance
