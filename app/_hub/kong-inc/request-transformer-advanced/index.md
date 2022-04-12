@@ -244,7 +244,7 @@ Lambdas are also supported if wrapped as an expression like this:
 
     $((function() ... implementation here ... end)())
 
-A complete lambda example for pefixing a header value with "Basic " if not
+A complete lambda example for prefixing a header value with "Basic " if not
 already there:
 
     Authorization:$((function()

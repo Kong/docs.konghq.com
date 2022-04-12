@@ -1,5 +1,6 @@
 module Jekyll
   class Books < Jekyll::Generator
+    priority :medium
     def generate(site)
       books = Hash.new
 

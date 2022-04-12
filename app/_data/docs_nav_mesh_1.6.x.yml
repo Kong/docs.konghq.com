@@ -8,6 +8,11 @@
   url: /mesh/changelog
   absolute_url: true
 
+- title: Version Support Policy
+  icon: /assets/images/icons/documentation/icn-support.svg
+  url: /konnect-platform/support-policy
+  absolute_url: true
+
 - title: Getting Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   url: /gettingstarted
