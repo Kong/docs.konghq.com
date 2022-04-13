@@ -52,10 +52,10 @@ license file on the host that will be mounted as `/license.json` into the
 container.
 
 This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
-deployment, but there are more advanced [deployment modes](https://kuma.io/docs/latest/documentation/deployments/)
+deployment, but there are more advanced [deployment modes](https://kuma.io/docs/latest/introduction/deployments/)
 like _multi-zone_.
 
-This runs {{site.mesh_product_name}} with a [memory backend](https://kuma.io/docs/latest/documentation/backends/), 
+This runs {{site.mesh_product_name}} with a [memory backend](https://kuma.io/docs/latest/explore/backends/), 
 but you can use a persistent storage like PostgreSQL by updating the `conf/kuma-cp.conf` file.
 
 ## 3. Verify the Installation

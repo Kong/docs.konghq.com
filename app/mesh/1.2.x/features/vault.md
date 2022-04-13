@@ -169,7 +169,7 @@ Vault, you must provide credentials in the configuration of the `mesh` object of
 You can authenticate with the `token` or with client certificates by providing `clientKey` and `clientCert`.
 
 You can provide these values inline for testing purposes only, as a path to a file on the
-same host as `kuma-cp`, or contained in a `secret`. See [the Kuma Secrets documentation](https://kuma.io/docs/latest/documentation/secrets/).
+same host as `kuma-cp`, or contained in a `secret`. See [the Kuma Secrets documentation](https://kuma.io/docs/latest/security/secrets/).
 
 Here's an example of a configuration with a `vault`-backed CA:
 
@@ -246,7 +246,7 @@ mtls:
               file: /tmp/cert.pem # can be file, secret or inline
 ```
 
-Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](https://kuma.io/docs/latest/documentation/http-api).
+Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](https://kuma.io/docs/latest/reference/http-api).
 
 {% endnavtab %}
 {% endnavtabs %}

@@ -19,7 +19,7 @@ Where `/path/to/file/license.json` is the path to a valid
 {{site.mesh_product_name}} license file on the file system.
 
 This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
-deployment, but there are more advanced [deployment modes](https://kuma.io/docs/latest/documentation/deployments/)
+deployment, but there are more advanced [deployment modes](https://kuma.io/docs/latest/introduction/deployments/)
 like _multi-zone_.
 
 We suggest adding the `kumactl` executable to your `PATH` so that it's always
@@ -30,5 +30,5 @@ in `/usr/local/bin/` by executing:
 $ ln -s ./kumactl /usr/local/bin/kumactl
 ```
 
-This runs {{site.mesh_product_name}} with a [memory backend](https://kuma.io/docs/latest/documentation/backends/), 
+This runs {{site.mesh_product_name}} with a [memory backend](https://kuma.io/docs/latest/explore/backends/), 
 but you can use a persistent storage like PostgreSQL by updating the `conf/kuma-cp.conf` file.

@@ -60,7 +60,7 @@ $ KMESH_LICENSE_PATH=/path/to/file/license.json kuma-cp run
 ```
 
 This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
-deployment, but there are more advanced [deployment modes](https://kuma.io/docs/latest/documentation/deployments/)
+deployment, but there are more advanced [deployment modes](https://kuma.io/docs/latest/introduction/deployments/)
 like _multi-zone_.
 
 We suggest adding the `kumactl` executable to your `PATH` so that it's always available in every working directory (Powershell as Administrator):
@@ -69,7 +69,7 @@ We suggest adding the `kumactl` executable to your `PATH` so that it's always av
 New-Item -ItemType SymbolicLink -Path C:\Windows\kumactl.exe -Target .\kumactl.exe
 ```
 
-This runs {{site.mesh_product_name}} with a [memory backend](https://kuma.io/docs/latest/documentation/backends/), 
+This runs {{site.mesh_product_name}} with a [memory backend](https://kuma.io/docs/latest/explore/backends/), 
 but you can use a persistent storage like PostgreSQL by updating the `conf/kuma-cp.conf` file.
 
 {% include /md/mesh/install-universal-verify.md %}

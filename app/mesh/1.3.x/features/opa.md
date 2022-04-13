@@ -15,7 +15,7 @@ When `OPAPolicy` is applied, the control plane configures:
 
 ## Usage
 
-To apply a policy with OPA: 
+To apply a policy with OPA:
 
 - Specify the group of data plane proxies to apply the policy to with the `selectors` property.
 - Provide the list of policies with the `conf` property. Policies are defined in the [Rego language](https://www.openpolicyagent.org/docs/latest/policy-language/).
@@ -90,28 +90,28 @@ conf:
   policies: # optional
     - inlineString: | # one of: inlineString, secret
         package envoy.authz
-  
+
         import input.attributes.request.http as http_request
-  
+
         default allow = false
-  
+
         token = {"valid": valid, "payload": payload} {
             [_, encoded] := split(http_request.headers.authorization, " ")
             [valid, _, payload] := io.jwt.decode_verify(encoded, {"secret": "secret"})
         }
-  
+
         allow {
             is_token_valid
             action_allowed
         }
-  
+
         is_token_valid {
           token.valid
           now := time.now_ns() / 1000000000
           token.payload.nbf <= now
           now < token.payload.exp
         }
-  
+
         action_allowed {
           http_request.method == "GET"
           token.payload.role == "admin"
@@ -123,7 +123,7 @@ conf:
 
 ### With Secrets
 
-Encoding the policy in a [Secret](https://kuma.io/docs/1.0.7/documentation/secrets/#universal) provides some security for policies that contain sensitive data.
+Encoding the policy in a [Secret](https://kuma.io/docs/latest/security/secrets) provides some security for policies that contain sensitive data.
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -209,7 +209,7 @@ The following environment variables are available:
 
 You can customize the agent in either of the following ways:
 
-- Override variables in the data plane proxy config: 
+- Override variables in the data plane proxy config:
 {% navtabs %}
 {% navtab kumactl %}
 
@@ -261,12 +261,12 @@ The `run` command on the data plane proxy accepts the following equivalent param
 
 
 ```
---opa-addr 
---opa-config-path 
---opa-diagnostic-addr 
+--opa-addr
+--opa-config-path
+--opa-diagnostic-addr
 --opa-enabled                    
---opa-ext-authz-addr 
---opa-set strings 
+--opa-ext-authz-addr
+--opa-set strings
 ```
 
 {% endnavtab %}
@@ -378,7 +378,7 @@ spec:
             credentials:
               bearer:
                 token: "bGFza2RqZmxha3NkamZsa2Fqc2Rsa2ZqYWtsc2RqZmtramRmYWxkc2tm"
-        
+
         discovery:
           name: example
           resource: /configuration/example/discovery
@@ -439,7 +439,7 @@ The following example shows how to deploy and test a sample OPA Policy on Kubern
     > Host: backend:3001
     > User-Agent: curl/7.67.0
     > Accept: */*
-    > 
+    >
     * Mark bundle as not supporting multiuse
     < HTTP/1.1 200 OK
     < x-powered-by: Express
@@ -457,7 +457,7 @@ The following example shows how to deploy and test a sample OPA Policy on Kubern
     < date: Tue, 16 Mar 2021 15:33:18 GMT
     < x-envoy-upstream-service-time: 1521
     < server: envoy
-    < 
+    <
     * Connection #0 to host backend left intact
     Hello World! Marketplace with sales and reviews made with <3 by the OCTO team at Kong Inc.
     ```
@@ -465,7 +465,7 @@ The following example shows how to deploy and test a sample OPA Policy on Kubern
 1.  Apply an OPA Policy that requires a valid JWT token:
 
     ```
-    echo " 
+    echo "
     apiVersion: kuma.io/v1alpha1
     kind: OPAPolicy
     mesh: default
@@ -559,7 +559,7 @@ The following example shows how to deploy and test a sample OPA Policy on Kubern
     > Host: backend:3001
     > User-Agent: curl/7.67.0
     > Accept: */*
-    > 
+    >
     * Mark bundle as not supporting multiuse
     < HTTP/1.1 200 OK
     < x-powered-by: Express
@@ -577,7 +577,7 @@ The following example shows how to deploy and test a sample OPA Policy on Kubern
     < date: Tue, 16 Mar 2021 17:26:00 GMT
     < x-envoy-upstream-service-time: 261
     < server: envoy
-    < 
+    <
     * Connection #0 to host backend left intact
     Hello World! Marketplace with sales and reviews made with <3 by the OCTO team at Kong Inc.
     ```
