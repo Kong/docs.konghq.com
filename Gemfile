@@ -1,12 +1,16 @@
-source "https://rubygems.org"
-gem "jekyll", "4.2.0"
-gem "kramdown-parser-gfm"
-gem "jekyll-redirect-from"
-gem "rouge", "3.26.1"
-gem "liquid-c"
-gem "jekyll-include-cache"
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+gem 'jekyll', '4.2.0'
+gem 'jekyll-include-cache'
+gem 'jekyll-redirect-from'
+gem 'kramdown-parser-gfm'
+gem 'liquid-c'
+gem 'rouge', '3.26.1'
 
 group :development do
-  gem "puma"
-  gem "pry"
+  gem 'pry'
+  gem 'puma'
+  gem 'reek'
+  gem 'rubocop'
 end

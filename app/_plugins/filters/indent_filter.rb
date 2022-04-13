@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module IndentFilter
-    def indent(input)
-      input.gsub(/\n/, "\n    ")
-    end
+  def indent(input)
+    input.gsub(/\n/, "\n    ")
   end
-  
-  Liquid::Template.register_filter(IndentFilter)
+end
+
+Liquid::Template.register_filter(IndentFilter)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Alias Generator for Posts using Netlify _redirects
 #
 # Generates redirect pages for posts with aliases set in the YAML Front Matter.
@@ -25,11 +27,10 @@
 # Site: http://michaelheap.com
 
 module Jekyll
-
   class AliasGenerator < Generator
     priority :lowest
 
-    def generate(site)
+    def generate(site) # rubocop:disable Metrics/AbcSize
       @redirects = []
 
       site.pages.each do |page|
@@ -37,7 +38,7 @@ module Jekyll
       end
 
       # Read existing _redirects file
-      existing = File.read("#{__dir__}/../../_redirects").to_s + "\n"
+      existing = "#{File.read("#{__dir__}/../../_redirects")}\n"
 
       # Write out a _redirects file
       page = PageWithoutAFile.new(site, __dir__, '', '_redirects')
@@ -46,9 +47,9 @@ module Jekyll
       site.pages << page
     end
 
-    def generate_aliases(destination_path, page)
+    def generate_aliases(_destination_path, page) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       aliases = page.data['alias']
-      alias_paths ||= Array.new
+      alias_paths ||= []
       alias_paths << aliases
       alias_paths.compact!
       alias_paths.flatten!
@@ -60,7 +61,7 @@ module Jekyll
           @redirects.push("#{alias_path}\t#{page.data['permalink']}")
         else
           # Pages where we replace /latest/ with the latest release version
-          new_url = alias_path.gsub("latest", page.data["kong_versions"].last["release"])
+          new_url = alias_path.gsub('latest', page.data['kong_versions'].last['release'])
           @redirects.push("#{alias_path}\t#{new_url}")
         end
       end
