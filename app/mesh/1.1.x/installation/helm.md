@@ -59,7 +59,7 @@ suggest `kong-mesh-system`.
     ```
 
     This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
-    deployment, but there are more advanced [deployment modes](https://kuma.io/docs/latest/documentation/deployments/)
+    deployment, but there are more advanced [deployment modes](https://kuma.io/docs/latest/introduction/deployments/)
     like _multi-zone_.
 
 ## 3. Verify the Installation

@@ -257,7 +257,7 @@ mtls:
               file: /tmp/cert.pem # can be file, secret or inline
 ```
 
-Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](https://kuma.io/docs/latest/documentation/http-api).
+Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](https://kuma.io/docs/latest/reference/http-api).
 
 {% endnavtab %}
 {% endnavtabs %}

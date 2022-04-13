@@ -130,7 +130,7 @@ mtls:
             file: /tmp/accesss_key.txt # one of file, secret or inline.
 ```
 
-Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](https://kuma.io/docs/latest/documentation/http-api).
+Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](https://kuma.io/docs/latest/reference/http-api).
 
 {% endnavtab %}
 {% endnavtabs %}
