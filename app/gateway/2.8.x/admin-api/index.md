@@ -7,6 +7,7 @@
 #
 title: Admin API
 toc: false
+source_url: https://github.com/Kong/kong/blob/master/scripts/autodoc/admin-api/generate.lua
 
 service_body: |
     Attributes | Description
