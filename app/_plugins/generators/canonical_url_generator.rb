@@ -112,7 +112,9 @@ module CanonicalUrl
         # Remove unwanted URLs
         next false if [
           "/404.html",
-          "/redirects.json"
+          "/redirects.json",
+          "/robots.txt",
+          "/sitemap.xml"
         ].any? { |blocked| v['url'] == blocked }
 
         true
