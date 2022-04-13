@@ -13,7 +13,7 @@ You have the **Organization Admin** or **Portal Admin** role in {{site.konnect_s
 
 ## Enable or disable public access for a Dev Portal
 
-1. In Konnect, open **Dev Portal** from the left side menu, then click **Settings**.
+1. In {{site.konnect_short_name}}, open **Dev Portal** from the left side menu, then click **Settings**.
 
 2. In the **Public Portal** pane, toggle **Enabled** or **Disabled**.
 
