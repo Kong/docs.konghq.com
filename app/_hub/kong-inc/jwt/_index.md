@@ -333,7 +333,7 @@ request                        | proxied to upstream service | response status c
 --------                       |--------------------------|---------------------
 has no JWT                     | no                       | 401
 missing or invalid `iss` claim | no                       | 401
-invalid signature              | no                       | 403
+invalid signature              | no                       | 401
 valid signature                | yes                      | from the upstream service
 valid signature, invalid verified claim _optional_ | no                       | 401
 
