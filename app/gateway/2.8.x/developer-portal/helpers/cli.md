@@ -35,7 +35,7 @@ Where `<command>` is one of:
 * `config`   Output or change configuration of the portal on the given
 `workspace`, locally.
 * `deploy`   Deploy changes made locally under the given workspace upstream.
-* `disable`  Enable the portal on the given workspace.
+* `disable`  Disable the portal on the given workspace.
 * `enable`   Enable the portal on the given workspace.
 * `fetch`    Fetches content and themes from the given workspace.
 * `wipe`     Deletes all content and themes from upstream workspace

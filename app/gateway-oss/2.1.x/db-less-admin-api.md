@@ -978,8 +978,9 @@ HTTP 200 OK
 
 ``` json
 {
-    { "services": [],
-      "routes": []
+    {
+        "services": [],
+        "routes": []
     }
 }
 ```

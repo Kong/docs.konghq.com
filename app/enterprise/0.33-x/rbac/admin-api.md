@@ -319,7 +319,7 @@ ___
 ## Delete a Role
 **Endpoint**
 
-<div class="endpoint delete">/rbac/role/{name_or_id}</div>
+<div class="endpoint delete">/rbac/roles/{name_or_id}</div>
 
 | Attribute             | Description                               |
 | ---------             | -----------                               |
@@ -857,8 +857,8 @@ HTTP 204 No Content
 ---
 
 
-[Admin API]: /{{page.kong_version}}/admin-api/
-[Admin GUI]: /{{page.kong_version}}/api-admin-gui/
+[Admin API]: /gateway-oss/latest/admin-api/
+[Admin GUI]: /enterprise/{{page.kong_version}}/admin-gui/overview
 ### List a User's Permissions
 **Endpoint**
 

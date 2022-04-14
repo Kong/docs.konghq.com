@@ -48,7 +48,7 @@ Vault, you must provide the following values in the configuration for `kuma-cp`:
 
 These values can be inline (for testing purposes only), a path to a file on the
 same host as `kuma-cp`, or contained in a `secret`. See the official Kuma
-documentation to learn more about [Kuma Secrets](https://kuma.io/docs/latest/documentation/secrets/)
+documentation to learn more about [Kuma Secrets](https://kuma.io/docs/latest/security/secrets/)
 and how to create one.
 
 Here's an example of a configuration using a `vault`-backed CA:
@@ -126,7 +126,7 @@ mtls:
               file: /tmp/cert.pem # can be file, secret or inline
 ```
 
-Apply the configuration with `kumactl apply -f [..]`, or using the [HTTP API](https://kuma.io/docs/latest/documentation/http-api).
+Apply the configuration with `kumactl apply -f [..]`, or using the [HTTP API](https://kuma.io/docs/latest/reference/http-api).
 
 {% endnavtab %}
 {% endnavtabs %}

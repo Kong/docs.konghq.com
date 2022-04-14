@@ -22,7 +22,7 @@ In the following example, you’ll use an application deployed across two differ
 
 ## Configure Upstream Services
 
-In this section, you will create an Upstream named `upstream` and add two targets to it.
+In this section, you will create an Upstream named `example_upstream` and add two targets to it.
 
 {% navtabs %}
 {% navtab Using Kong Manager %}
@@ -38,7 +38,7 @@ In this section, you will create an Upstream named `upstream` and add two target
 9. Create another target, this time for `mockbin.org` with port `80`. Click **Create**.
 10. Open the **Services** page.
 11. Find your `example_service` and click **Edit**.
-12. Change the **Host** field to `upstream`, then click **Update**.
+12. Change the **Host** field to `example_upstream`, then click **Update**.
 {% endnavtab %}
 {% navtab Using the Admin API %}
 

@@ -1,7 +1,7 @@
 ---
 name: OpenID Connect
 publisher: Kong Inc.
-version: 2.2.x
+version: 2.3.x
 desc: Integrate Kong with a third-party OpenID Connect provider
 description: |
   OpenID Connect ([1.0][connect]) plugin allows the integration with a 3rd party
