@@ -63,6 +63,12 @@ module CanonicalUrl
 
       # Set the canonical URL for plugin pages + add them to the sitemap
       site.collections["hub"].docs.each do |page|
+        # Special case for the index page
+        if page.url == "/hub/"
+          page.data['canonical_url'] = page.url
+          next
+        end
+
         parts = page.url.split("/")
         if parts.last == "index"
           url = page.url.gsub("/index","/")

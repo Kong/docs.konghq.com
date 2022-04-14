@@ -25,6 +25,11 @@ test.describe("Canonical links", () => {
       src: "/hub/kong-inc/application-registration/1.0.x.html",
       href: "/hub/kong-inc/application-registration/",
     },
+    {
+      title: "plugin hub index",
+      src: "/hub/",
+      href: "/hub/",
+    },
   ].forEach((t) => {
     test(t.title, async ({ page }) => {
       await page.goto(t.src);
