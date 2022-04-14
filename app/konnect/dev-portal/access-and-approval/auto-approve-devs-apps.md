@@ -11,14 +11,17 @@ If auto approve is not enabled for Developers or Applications, admins will need 
 {:.note}
 > If auto approve is enabled through the Portal for Applications, it overrides the Service setting.
 
+## Prerequisites
+You have the **Organization Admin** or **Portal Admin** role in {{site.konnect_saas}}.
+
 ## Enable or disable auto approve
 
 Auto approve is disabled by default. You can enable and disable approvals at any time. If there are any pending requests when auto approve is enabled, those requests must be manually approved.
 
-1. As an admin, from the [{{site.konnect_short_name}}](https://konnect.konghq.com/) menu, click **Settings**. Then click **Portal**.
+1. In {{site.konnect_short_name}}, open **Dev Portal** from the left side menu, then click **Settings**.
 
-2. Toggle to enable or disable auto approve for one or both options:
+1. Toggle to enable or disable auto approve for one or both options:
       * Auto Approve Developers
       * Auto Approve Applications
 
-3. Click **Save**.
+1. Click **Save**.
