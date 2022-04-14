@@ -79,6 +79,10 @@ module PluginSingleSource
       @data["version"] = version if setVersion
       @data["is_latest"] = permalinkName == "index"
 
+      # We need to set the path so that some of the conditionals in templates
+      # continue to work.
+      @data['path'] = "_hub/#{author}/#{pluginName}/#{permalinkName}.md"
+
       # The plugin hub uses version.html as the filename unless it's the most
       # recent version, in which case it uses index
       @data['permalink'] = @dir + "/" + permalinkName + ".html"

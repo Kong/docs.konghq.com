@@ -111,7 +111,7 @@ breadcrumbs:
 {% if extn_versions %}
   {% assign extn_version_latest = extn_versions | first %}
   {% assign extn_latest = extn_version_latest['release'] %}
-  {% unless extn_filename == "_index.md" %}
+  {% unless extn_filename == "index.md" %}
     {% assign extn_release = extn_filename | remove: ".md" %}
     {% assign extn_ver = extn_releases | where: "release", extn_release %}
     {% assign extn_version = extn_ver[0] %}
