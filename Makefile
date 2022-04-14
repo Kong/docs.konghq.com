@@ -3,7 +3,7 @@ install-prerequisites:
 
 # Installs npm packages and gems.
 install:
-  npm ci
+	npm ci
 	bundle install
 
 # Using local dependencies, starts a doc site instance on http://localhost:3000.
