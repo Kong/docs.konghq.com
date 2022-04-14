@@ -47,9 +47,7 @@ into the Dev Portal.
 {% endnavtab %}
 {% navtab Public Dev Portal %}
 
-1. From the [{{site.konnect_short_name}}](https://cloud.konghq.com/) menu, open
-![settings icon](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
-**Settings**.
+1. Open **Dev Portal** from the left side menu, then click **Settings**.
 
 1. In the **Public Portal** pane, toggle the switch to **Enabled**.
 
