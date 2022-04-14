@@ -3,6 +3,15 @@ on:
   pull_request:
     types: [opened, synchronize, labeled, unlabeled]
 jobs:
+  printJob:
+    name: Print event
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
   add-comment:
     runs-on: ubuntu-latest
     timeout-minutes: 30
