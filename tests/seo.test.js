@@ -134,6 +134,8 @@ test.describe("sitemap", () => {
     "/kubernetes-ingress-controller/latest/",
     "/deck/latest/",
     "/hub/kong-inc/application-registration/",
+    "/gateway/changelog/",
+    "/mesh/changelog/",
   ].forEach((t) => {
     test(t, async ({ page }) => {
       await page.goto("/sitemap.xml");

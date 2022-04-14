@@ -20,20 +20,31 @@ module CanonicalUrl
 
         # If we want to keep track of the latest version
         products_with_latest = ["gateway", "gateway-oss", "enterprise", "mesh", "kubernetes-ingress-controller", "deck"]
-        if products_with_latest.include? parts[0] 
+
+        # We always want to run on specific pages, even within a versioned docset
+        is_global_page = parts[1] == "changelog"
+
+        if products_with_latest.include? parts[0]
           # Skip any pages that don't contain a version section
-          next unless /^\d+\.\d+\.x$/.match(parts[1]) || parts[1] == "latest"
+          next unless /^\d+\.\d+\.x$/.match(parts[1]) || parts[1] == "latest" || is_global_page
 
-          version = to_version(parts[1])
-          url = page.url.gsub(parts[1], "VERSION")
+          # Global pages are always included
+          if is_global_page
+            version = to_version("latest")
+            url = page.url
+          # Otherwise let's manipulate the version to work out the latest
+          else
+            version = to_version(parts[1])
+            url = page.url.gsub(parts[1], "VERSION")
 
-          # Special case for `gateway-oss` and `enterprise`
-          # As a newer version may exist under /gateway/
-          url.gsub!("/gateway-oss/", "/gateway/")
-          url.gsub!("/enterprise/", "/gateway/")
+            # Special case for `gateway-oss` and `enterprise`
+            # As a newer version may exist under /gateway/
+            url.gsub!("/gateway-oss/", "/gateway/")
+            url.gsub!("/enterprise/", "/gateway/")
+          end
 
           # Work out the highest available URL for this path
-          if !allPages[url] || (version > allPages[url]['version'])
+          if !allPages[url] || (version > allPages[url]['version']) || is_global_page
             allPages[url] = {
               'version' => version,
               'url' => page.url,
