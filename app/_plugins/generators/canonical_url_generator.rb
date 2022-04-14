@@ -2,65 +2,202 @@ module CanonicalUrl
   class Generator < Jekyll::Generator
     priority :low
     def generate(site)
-      latestCeVersion = site.data["kong_versions_ce"].last['release']
-      latestEeVersion = site.data["kong_versions_ee"].last['release']
 
-      allPages = {}
+      # Generate the all_pages entres for the Plugin Hub
+      all_pages = generate_plugin_hub(site)
+
+      # Build up an index of the latest URLs for each page
+      all_pages = all_pages.merge(
+        build_latest_url_index(site)
+      )
+
+      # At this point we have a large map of URLs with the version
+      # replaced with /VERSION/, and the latest available version
+      # stored in the values.
+      #
+      # Let's loop through every page in the site and check if there's
+      # a canonical link that matches the current URL
+      set_canonical_and_noindex(site, all_pages)
+
+      # Finally, build a list of pages to be used by the sitemap template
+      site.data['sitemap_pages'] = build_sitemap(all_pages)
+    end
+    
+    def build_latest_url_index(site)
+      all_pages = {}
       # Build a map of the latest available version of every URL
       site.pages.each do |page|
-        #next unless page.url.include?("/install-and-run/docker")
 
-        # We don't want to index these pages in the sitemap or in Google
-        if ['/enterprise/', '/gateway-oss/', '/getting-started-guide/'].any? { |u| page.url.include?(u) }
-          page.data['seo_noindex'] = true
+        # We don't want to index some pages in the sitemap or in Google
+        handle_blocked_products(page)
+
+        # We inspect the first couple of segments to work out
+        # what type of page we're on
+        url_segments = page.url.split("/")
+        url_segments.shift # Remove the first empty segment
+
+        # If it's an unversioned URL, always add it to the list of pages
+        unless is_versioned_product(url_segments[0])
+          all_pages[page.url] = {
+            'url' => page.url,
+            'sitemap' => page.data['seo_noindex'] ? false : true
+          }
+          next
         end
 
-        parts = page.url.split("/")
-        parts.shift # Remove the first empty segment
-
-        # If we want to keep track of the latest version
-        products_with_latest = ["gateway", "gateway-oss", "enterprise", "mesh", "kubernetes-ingress-controller", "deck"]
-
         # We always want to run on specific pages, even within a versioned docset
-        is_global_page = parts[1] == "changelog"
+        is_global_page = url_segments[1] == "changelog"
 
-        if products_with_latest.include? parts[0]
-          # Skip any pages that don't contain a version section
-          next unless /^\d+\.\d+\.x$/.match(parts[1]) || parts[1] == "latest" || is_global_page
+        # We only want to process the following cases:
+        # * It's a versioned page (in the format /x.y.z/)
+        # * It's the /latest/ page
+        # * It's a global page e.g. /changelog/
+        next unless is_versioned_page(url_segments) || is_global_page
 
-          # Global pages are always included
-          if is_global_page
-            version = to_version("latest")
-            url = page.url
-          # Otherwise let's manipulate the version to work out the latest
-          else
-            version = to_version(parts[1])
-            url = page.url.gsub(parts[1], "VERSION")
-
-            # Special case for `gateway-oss` and `enterprise`
-            # As a newer version may exist under /gateway/
-            url.gsub!("/gateway-oss/", "/gateway/")
-            url.gsub!("/enterprise/", "/gateway/")
-          end
-
-          # Work out the highest available URL for this path
-          if !allPages[url] || (version > allPages[url]['version']) || is_global_page
-            allPages[url] = {
-              'version' => version,
-              'url' => page.url,
-              'sitemap' => page.data['seo_noindex'] ? false : true
-            }
-          end
-        # Otherwise it's unversioned and should always be in the sitemap
-        # unless explicitly excluded
+        # If it's a global page, there's only one version of it
+        # by definition so it always needs adding to the list of pages.
+        # We set the version to "latest" for this URL to ensure that it's
+        # always added to the index
+        if is_global_page
+          version = to_version("latest")
+          url = page.url
+        
+        # Otherwise it has a version (\d+ match or /latest/), so let's
+        # Keep track of that for use later
         else
-          allPages[page.url] = {
+          version = to_version(url_segments[1])
+          url = page.url.gsub(url_segments[1], "VERSION")
+
+          # URLs under the /gateway-oss/ and /enterprise/ paths can
+          # never be canonical as they're set to noindex
+          #
+          # Instead, check if a matching URL exists under /gateway/
+          # which CAN be canonical
+          url = url.gsub("/gateway-oss/", "/gateway/").gsub("/enterprise/", "/gateway/")
+        end
+
+        # Work out the highest available URL for this path
+        if !all_pages[url] || (version > all_pages[url]['version'])
+          all_pages[url] = {
+            'version' => version,
             'url' => page.url,
             'sitemap' => page.data['seo_noindex'] ? false : true
           }
         end
       end
 
+      all_pages
+    end
+
+    def set_canonical_and_noindex(site, all_pages)
+      site.pages.each do |page|
+        url_segments = page.url.split("/")
+        url_segments.shift # Remove the first empty segment
+
+        # We only need to perform this check for products that we know 
+        # are versioned
+        next unless is_versioned_product(url_segments[0])
+
+        # Skip any pages that don't contain a version section
+        next unless is_versioned_page(url_segments)
+
+        urls_to_check = []
+        # We're looking for pages in the format /product/VERSION/other/segments
+        # So replace the current version with the literal "VERSION"
+        url = page.url.gsub(url_segments[1], "VERSION")
+        urls_to_check << url
+
+        # As before, legacy endpoints might match newer /gateway/ URLs so
+        # we also need to check for the path under the /gateway/ docs too
+        legacy_gateway_endpoints = ["/gateway-oss/", "/enterprise/"]
+        legacy_gateway_endpoints.each do |old|
+          if url.include?(old)
+            urls_to_check << url.gsub(old, "/gateway/")
+          end
+        end
+
+        # There will usually only be one URL to check, but gateway-oss
+        # and enterprise URLs will contain two here, so we have to loop
+        urls_to_check.each do |u|
+
+          # If it's a /<product>/VERSION/ url then it should be linked to
+          # /<product> as the canonical URL. This is a special case
+          if url_segments.size == 2
+            next page.data['canonical_url'] = "/#{url_segments[0]}/"
+          end
+
+          # Otherwise look up the URL and link to the latest version
+          matching_url = all_pages[u]
+          if matching_url
+            page.data['canonical_url'] = matching_url['url']
+          end
+        end
+
+        # If a page has a canonical URL and is not the /latest/ page,
+        # we don't want it in the sitemap or indexable by Google
+        #
+        # This will prevent indexing of old gateway-oss content
+        # that has a canonical URL e.g. /enterprise/2.4.x/clustering/
+        # which has a canonical link to /enterprise/2.5.x/clustering/
+        #
+        # This is intentional, as we do not want to index anything except
+        # the latest, or unversioned pages. There is a risk that these older
+        # pages have changed URL and the content exists in a similar form.
+        # If this is the case, we may get hit by duplicate content penalties.
+        if page.data['canonical_url'] && url_segments[1] != "latest"
+          page.data['seo_noindex'] = true 
+        end
+
+      end
+    end
+
+    def is_versioned_page(url_segments)
+      /^\d+\.\d+\.x$/.match(url_segments[1]) || url_segments[1] == "latest"
+    end
+
+    def is_versioned_product(product)
+      # These are versioned products, and we want the canonical to be /latest/
+      # for them all
+      products_with_latest = ["gateway", "gateway-oss", "enterprise", "mesh", "kubernetes-ingress-controller", "deck"]
+      products_with_latest.include? product
+    end
+
+    def handle_blocked_products(page)
+      blocked_products = ['/enterprise/', '/gateway-oss/', '/getting-started-guide/']
+      if blocked_products.any? { |u| page.url.include?(u) }
+        page.data['seo_noindex'] = true
+      end
+    end
+
+    def build_sitemap(pages)
+      # These files should NOT be in the sitemap
+      blocked_from_sitemap = [
+        "/404.html",
+        "/redirects.json",
+        "/robots.txt",
+        "/sitemap.xml"
+      ]
+
+      # Remove any pages that should not be in the sitemap
+      pages = pages.values.filter do |v| 
+        next false unless v['sitemap'] 
+        next false if blocked_from_sitemap.any? { |blocked| v['url'] == blocked }
+        true
+      end
+
+      # Set the frequency and priority values for the sitemap to use
+      pages.map do |p|
+        {
+          'url' => p['url'],
+          'changefreq' => 'weekly',
+          'priority' => '1.0'
+        }
+      end
+
+    end
+
+    def generate_plugin_hub(site)
+      all_pages = {}
       # Set the canonical URL for plugin pages + add them to the sitemap
       site.collections["hub"].docs.each do |page|
         # Special case for the index page
@@ -69,10 +206,10 @@ module CanonicalUrl
           next
         end
 
-        parts = page.url.split("/")
-        if parts.last == "index"
+        url_segments = page.url.split("/")
+        if url_segments.last == "index"
           url = page.url.gsub("/index","/")
-          allPages[url] = {
+          all_pages[url] = {
             'url' => url,
             'sitemap' => true
           }
@@ -80,69 +217,12 @@ module CanonicalUrl
         else
           # It's an old version, so set the canonical URL
           # and noindex
-          parts.pop # Remove the version at the end
-          page.data['canonical_url'] = parts.join("/") + "/"
+          url_segments.pop # Remove the version at the end
+          page.data['canonical_url'] = url_segments.join("/") + "/"
           page.data['seo_noindex'] = true 
         end
       end
-
-      # Set the canonical URL for each
-      site.pages.each do |page|
-        parts = page.url.split("/")
-        parts.shift # Remove the first empty segment
-
-        products_with_latest = ["gateway", "gateway-oss", "enterprise", "mesh", "kubernetes-ingress-controller", "deck"]
-        if products_with_latest.include? parts[0]
-          # Skip any pages that don't contain a version section
-          next unless /^\d+\.\d+\.x$/.match(parts[1]) || parts[1] == "latest"
-
-          url = page.url.gsub(parts[1], "VERSION")
-
-          # Special case for `gateway-oss` and `enterprise`
-          # As a newer version may exist under /gateway/
-          gatewayUrl = url.gsub("/gateway-oss/", "/gateway/").gsub("/enterprise/", "/gateway/")
-
-          [url, gatewayUrl].each do |u|
-            # Special case for /PRODUCT/VERSION urls as they are redirected to /PRODUCT/
-            if parts.size == 2
-              page.data['canonical_url'] = "/#{parts[0]}/"
-            else
-              # Otherwise look up the most recent version match
-              has_match = allPages[u]
-              if has_match
-                page.data['canonical_url'] = has_match['url']
-              end
-            end
-
-            # We only want to index the /latest/ URLs
-            if page.data['canonical_url'] && parts[1] != "latest"
-              page.data['seo_noindex'] = true 
-            end
-          end
-        end
-
-      end
-
-      # Save the list of pages to generate a sitemap
-      site.data['sitemap_pages'] = allPages.values.filter { |v| 
-        next false unless v['sitemap'] 
-
-        # Remove unwanted URLs
-        next false if [
-          "/404.html",
-          "/redirects.json",
-          "/robots.txt",
-          "/sitemap.xml"
-        ].any? { |blocked| v['url'] == blocked }
-
-        true
-      }.map { |p|
-        {
-          'url' => p['url'],
-          'changefreq' => 'weekly',
-          'priority' => '1.0'
-        }
-      }
+      all_pages
     end
 
     def to_version(input)
