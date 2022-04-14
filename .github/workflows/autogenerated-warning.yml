@@ -35,4 +35,4 @@ jobs:
         with:
           mode: exactly
           count: 0
-          labels: "ci:block-merge:generated"
+          labels: "ci:prevent-merge:generated-files"

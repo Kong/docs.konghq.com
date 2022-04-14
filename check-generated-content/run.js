@@ -48,6 +48,17 @@ const argv = require("minimist")(process.argv.slice(2));
 
   // If we have any generated files, add a comment
   if (Object.keys(comments).length) {
+    // Is there an existing comment?
+    const { data: existing } = await octokit.rest.issues.listComments({
+      ...github.context.repo,
+      issue_number: pull_number,
+    });
+
+    const generatedComment = existing.find((c) =>
+      c.body.includes(":warning: This PR edits generated files.")
+    );
+
+    // Add or edit a comment
     let comment =
       ":warning: This PR edits generated files. Please make sure that the source file is updated.\n\n";
 
@@ -62,11 +73,20 @@ const argv = require("minimist")(process.argv.slice(2));
 
     comment += sourceFiles.join(`\n----------\n\n`);
 
-    await octokit.rest.issues.createComment({
+    const params = {
       ...github.context.repo,
       issue_number: pull_number,
       body: comment,
-    });
+    };
+
+    // If we have a comment ID let's update the text on that
+    // comment instead of creating a new one
+    let method = "createComment";
+    if (generatedComment) {
+      method = "updateComment";
+      params.comment_id = generatedComment.id;
+    }
+    await octokit.rest.issues[method](params);
 
     await octokit.rest.issues.addLabels({
       ...github.context.repo,
