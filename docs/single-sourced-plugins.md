@@ -7,8 +7,6 @@ We use a Jekyll plugin (`plugin_single_source_generator.rb`) to dynamically gene
 - If not, read `app/_hub/[vendor]/[name]/_index.md` and generate a version of the page
 - The latest version is always generated as `index.html`, while older versions are generated as `[version].html`
 
-## Concepts
-
 ## Conditional Rendering
 
 As we add new functionality, we'll want content to be displayed for specific versions of a plugin. We can use the `if_plugin_version` block for this:
