@@ -7,7 +7,7 @@ All Dev Portals have an auto-generated default Dev Portal URL. To further custom
 
 ## Prerequisites
 
-* Access to your organization's {{site.konnect_short_name}} Admin UI.
+* You have the **Organization Admin** or **Portal Admin** role in {{site.konnect_saas}}.
 * A domain and access to configure that domain's CNAME. Kong does not offer any custom domains as a service.
 * An X.509 certificate, which comes with a private key.
 * Your organization's auto-generated default Dev Portal URL, which is in the {{site.konnect_short_name}} Admin UI. For example, `https://kong121212.portal.konnect.konghq.com/`.
@@ -20,7 +20,9 @@ In your custom domain DNS records, direct your CNAME to your Dev Portal's defaul
 
 Add a custom Dev Portal domain through your organization's {{site.konnect_short_name}} Admin UI.
 
-1. Click **Dev Portal**, then **Portal URL**.
+1. In {{site.konnect_short_name}}, open **Dev Portal** from the left side menu, then click **Settings**.
+
+1. Open the **Portal URL** tab.
 
 1. Enter the following fields.
 
