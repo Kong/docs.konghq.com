@@ -106,11 +106,12 @@ module CanonicalUrl
             # Special case for /PRODUCT/VERSION urls as they are redirected to /PRODUCT/
             if parts.size == 2
               page.data['canonical_url'] = "/#{parts[0]}/"
-            end
-
-            has_match = allPages[u]
-            if has_match
-              page.data['canonical_url'] = has_match['url']
+            else
+              # Otherwise look up the most recent version match
+              has_match = allPages[u]
+              if has_match
+                page.data['canonical_url'] = has_match['url']
+              end
             end
 
             # We only want to index the /latest/ URLs
