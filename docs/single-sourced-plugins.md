@@ -5,7 +5,7 @@ We use a Jekyll plugin (`plugin_single_source_generator.rb`) to dynamically gene
 - Read all navigation files (`app/_data/extensions/**/*.yml`)
 - For each version listed in the file, check if `app/_hub/[vendor]/[name]/[version].md` exists
 - If not, read `app/_hub/[vendor]/[name]/_index.md` and generate a version of the page
-- The latest version is always generated as `index.html`, whilst older versions are generated as `[version].html`
+- The latest version is always generated as `index.html`, while older versions are generated as `[version].html`
 
 ## Concepts
 
@@ -53,7 +53,7 @@ The above will be rendered as a single table
 
 ## Params
 
-Generated parameters can specify `minimum_version` and `maximum_version` fields. Here's an example where `access_token_name` will only be shown for versions `1.4.0` to `1.7.0`, whilst `demo_field` will always be shown
+Generated parameters can specify `minimum_version` and `maximum_version` fields. Here's an example where `access_token_name` will only be shown for versions `1.4.0` to `1.7.0`, while `demo_field` will always be shown:
 
 ```yaml
 params:
@@ -79,4 +79,4 @@ params:
       maximum_version: "1.7.0"
 ```
 
-Both `minimum_version` and `maximum_version` are optional
+Both `minimum_version` and `maximum_version` are optional.
