@@ -31,9 +31,8 @@ role.
 View traffic health and performance of a Service, including across all of a
 Service's versions:
 
-1. From the left-side menu, open
-![](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .no-image-expand}
-**Services**, then select a Service.
+1. From the left-side menu, open {% konnect_icon servicehub %} **Services**, then
+select a Service.
 
 1. On the Service's detail page, the **Throughput** graph displays any API calls
 that have been made against any versions of the Service for the given time frame.
@@ -56,9 +55,8 @@ that have been made against any versions of the Service for the given time frame
 Generate a CSV file for a Service, including requests by time or date and
 status codes for all versions of the Service.
 
-1. From the left-side menu, open
-![](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .no-image-expand}
-**Services** and select the Service for which you want to generate a
+1. From the left-side menu, open {% konnect_icon servicehub %} **Services** and
+select the Service for which you want to generate a
 report.
 2. On the **Throughput** graph, click **Export**.
 3. Select the time frame to include in the report. To customize the time frame,
@@ -71,9 +69,8 @@ click **Custom** and select a date range.
 
 To view traffic health and performance for a Service version:
 
-1.  From the left-side menu, open
-![](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .no-image-expand}
-**Services**, then select a Service version.
+1.  From the left-side menu, open {% konnect_icon servicehub %} **Services**,
+then select a Service version.
 
     You can click on the the version number from the ServiceHub overview, or
     you can select a Service and choose your version from the Service detail page.
@@ -99,8 +96,7 @@ hours.
 Generate a CSV file for a Service version, including requests by time or
  date and status codes for the selected version.
 
-1. From the left-side menu, open
-![](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .no-image-expand}
+1. From the left-side menu, open {% konnect_icon servicehub %}
 **Services** and select the Service version for which you want to generate a
 report.
 2. On the **Traffic by Status Code** graph, click the **Export** button.
@@ -115,8 +111,7 @@ click **Custom** and select a date range.
 To view traffic health and performance for a Route:
 
 1.  From the left-side menu, open
-![](/assets/images/icons/konnect/icn-servicehub.svg){:.inline .no-image-expand}
-**Services**, then select a Service version.
+{% konnect_icon servicehub %} **Services**, then select a Service version.
 
     You can click on the the version number from the ServiceHub overview, or
     you can select a Service and choose your version from the Service detail page.
@@ -136,9 +131,9 @@ grouped by status code.
     * **Time format:** The default time format depends on your local system time.
     Set to UTC for Coordinated Universal Time.
     * **Display type:** Choose the first icon
-    ( ![](/assets/images/icons/konnect/icn-vitals-bargraph.svg){:.inline .no-image-expand} )
+    ( {% konnect_icon vitals-bargraph %} )
     for a vertical bar graph, or the second icon
-    ( ![](/assets/images/icons/konnect/icn-vitals-horizontal.svg){:.inline .no-image-expand} )
+    ( {% konnect_icon vitals-horizontal %} )
     for a horizontal line chart.
 
     By default, the graph displays data for the last 6 hours.

@@ -1,7 +1,7 @@
 ---
 title: Generate Reports
 no_version: true
-beta: true
+alpha: true
 ---
 
 Create custom reports to track API calls based on Services, Routes, or
@@ -17,7 +17,7 @@ You have the [**Organization Admin**](/konnect/org-management/users-and-roles/) 
 
 ## View custom reports
 
-To access all custom reports, open ![](/assets/images/icons/konnect/icn-vitals.svg){:.inline .no-image-expand}
+To access all custom reports, open {% konnect_icon vitals %}
 **Vitals** from the left side menu in Konnect, then **Reports**.
 This brings you to a list of all custom reports in the organization.
 
@@ -26,7 +26,7 @@ can [export](#export-a-custom-report), [edit](#edit-a-custom-report), or [delete
 
 ## Create a custom report
 
-1. From the left-side menu in Konnect, open ![](/assets/images/icons/konnect/icn-vitals.svg){:.inline .no-image-expand}
+1. From the left-side menu in Konnect, open {% konnect_icon vitals %}
 **Vitals**, then **Reports**.
 1. Click the button to **Add New Report**.
 1. Name the report and optionally add a description.
@@ -71,7 +71,7 @@ and click it again to show the item. The graph resets on a refresh.
 
 You can export any custom report in CSV format.
 
-1. From the left-side menu in Konnect, open ![](/assets/images/icons/konnect/icn-vitals.svg){:.inline .no-image-expand}
+1. From the left-side menu in Konnect, open {% konnect_icon vitals %}
 **Vitals**, then **Reports**.
 1. Click on a report row to open the report's page.
 1. Click the **Actions** dropdown and select **Export Report**.
@@ -82,7 +82,7 @@ You can export any custom report in CSV format.
 
 You can edit a report in one of the following ways:
 
-1. From the left-side menu in Konnect, open ![](/assets/images/icons/konnect/icn-vitals.svg){:.inline .no-image-expand}
+1. From the left-side menu in Konnect, open {% konnect_icon vitals %}
 **Vitals**, then **Reports**.
 1. Either:
    * Click the ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
@@ -98,7 +98,7 @@ You can edit a report in one of the following ways:
 
 You can delete a report in one of the following ways:
 
-1. From the left-side menu in Konnect, open ![](/assets/images/icons/konnect/icn-vitals.svg){:.inline .no-image-expand}
+1. From the left-side menu in Konnect, open {% konnect_icon vitals %}
 **Vitals**, then **Reports**.
 1. Either:
    * Click the ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
