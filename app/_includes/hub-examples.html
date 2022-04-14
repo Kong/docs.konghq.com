@@ -33,7 +33,7 @@ endcapture %}
 
 <!-- Generate cURL examples -->
 {% capture config_required_fields %}{%
-  for field in include.params.config %}{%
+  for field in include.params.config %}{% if_plugin_version gte:field.minimum_version lte:field.maximum_version %}{%
   if field.value_in_examples != nil %}{%
   if field.value_in_examples.first %}{%
   for value in field.value_in_examples %} \
@@ -44,13 +44,13 @@ endcapture %}
   endif %}{%
   elsif field.required == true %} \
     --data{% if field.urlencode_in_examples %}-urlencode{% endif %} "config.{{ field.name }}={{ field.default | markdownify | strip_html | strip }}"{%
-  endif %}{% endfor
+  endif %}{% endif_plugin_version %}{% endfor
 %}{% endcapture %}
 
 <!-- Generate declarative yaml examples -->
 {% capture config_required_fields_yaml
   %}config: {%
-  for field in include.params.config %}{%
+  for field in include.params.config %}{% if_plugin_version gte:field.minimum_version lte:field.maximum_version %}{%
   if field.value_in_examples != nil %}{%
     if field.value_in_examples.first %}{%
         if field.name contains "." %}{%
@@ -75,13 +75,13 @@ endcapture %}
     endif %}{%
   elsif field.required == true %}
     {{ field.name }}: {{ field.default | markdownify | strip_html | strip }}{%
-  endif %}{% endfor
+  endif %}{% endif_plugin_version %}{% endfor
 %}{% endcapture %}
 
 <!-- Generate kubernetes examples (different indentation from declarative) -->
 {% capture config_required_fields_k8s
 %}config: {%
-for field in include.params.config %}{%
+for field in include.params.config %}{% if_plugin_version gte:field.minimum_version lte:field.maximum_version %}{%
 if field.value_in_examples != nil %}{%
   if field.value_in_examples.first %}{%
       if field.name contains "." %}{%
@@ -106,7 +106,7 @@ if field.value_in_examples != nil %}{%
   endif %}{%
 elsif field.required == true %}
   {{ field.name }}: {{ field.default | markdownify | strip_html | strip }}{%
-endif %}{% endfor
+endif %}{% endif_plugin_version %}{% endfor
 %}{% endcapture %}
 
 <!-- Service config example -->

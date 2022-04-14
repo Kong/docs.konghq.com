@@ -39,7 +39,7 @@
         </h1>
       </div>
       {% if include.extn_versions %}
-        {% unless include.extn_filename == "index.md" %}
+        {% unless include.is_latest %}
           <div class="old-version-banner">
           You are browsing documentation for an outdated plugin version.
           See the <a href="/hub/{{ include.extn_publisher }}/{{ include.extn_slug }}/">latest documentation here</a>.
