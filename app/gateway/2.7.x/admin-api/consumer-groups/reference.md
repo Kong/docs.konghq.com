@@ -377,10 +377,10 @@ Attribute                             | Description
 
 Attribute     | Description  
 ---------:    | --------
-`limit`<br>*required*       | An array of one or more requests-per-window limits to apply. There must be a matching number of window limits and sizes specified.
-`window_size`<br>*required* | An array of one or more window sizes to apply a limit to (defined in seconds). There must be a matching number of window limits and sizes specified.
-`window_type`<br>*optional* | Set the time window type to either `sliding` (default) or `fixed`.
-`retry_after_jitter_max`<br>*optional* | The upper bound of a jitter (random delay) in seconds to be added to the `Retry-After` header of denied requests (status = `429`) in order to prevent all the clients from coming back at the same time. The lower bound of the jitter is `0`; in this case, the `Retry-After` header is equal to the `RateLimit-Reset` header.
+`config.limit`<br>*required*       | An array of one or more requests-per-window limits to apply. There must be a matching number of window limits and sizes specified.
+`config.window_size`<br>*required* | An array of one or more window sizes to apply a limit to (defined in seconds). There must be a matching number of window limits and sizes specified.
+`config.window_type`<br>*optional* | Set the time window type to either `sliding` (default) or `fixed`.
+`config.retry_after_jitter_max`<br>*optional* | The upper bound of a jitter (random delay) in seconds to be added to the `Retry-After` header of denied requests (status = `429`) in order to prevent all the clients from coming back at the same time. The lower bound of the jitter is `0`; in this case, the `Retry-After` header is equal to the `RateLimit-Reset` header.
 
 **Response**
 
