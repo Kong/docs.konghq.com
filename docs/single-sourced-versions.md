@@ -10,7 +10,7 @@ We now use a Jekyll plugin (`single_source_generator.rb`) to dynamically generat
 - If the file does not contain `generate: true` at the top level, skip it
 - If it does, loop through all items in the navigation
   - If `assume_generated` is not set at the top level, or it is set to `true` then all items will be generated
-  - If `assume_generated` is set to `false` then each item in the navigation that should be generated will need `generated: true` to be set
+  - If `assume_generated` is set to `false` then each item in the navigation that should be generated will need `generate: true` to be set
 - Each file that should be generated goes through the following process:
   - Build up the base directory: `src/<product>` by default, but if the `src` starts with a `/` it will be treated as a full path within `src`. e.g. `/shared/license` would be `/src/shared/license` whilst `shared/license` would be `/src/<product>/shared/license`
   - If `src` is set on the item, we'll use that as the source file
@@ -61,7 +61,7 @@ items:
 
 ### Concept 2: Single source specific files
 
-You may not want to update an entire release at once. In this instance, single sourcing specific files might be useful. You can set `assume_generated: false` at the top level, then use `generated: true` on individual items to enable this.
+You may not want to update an entire release at once. In this instance, single sourcing specific files might be useful. You can set `assume_generated: false` at the top level, then use `generate: true` on individual items to enable this.
 
 ```yaml
 product: deck
