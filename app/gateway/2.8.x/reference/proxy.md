@@ -874,7 +874,7 @@ are listed. Route `A` will be selected over `B` if:
   host headers
 * `A` has more non-Host headers than `B`.
 * `A` has at least one "regex" paths and `B` has only "plain" paths.
-* `A`'s longer path is longer than `B`'s longer path.
+* `A`'s longest path is longer than `B`'s longest path.
 * `A.created_at < B.created_at`
 
 ## Proxying behavior
@@ -960,7 +960,11 @@ Kong will send the request over HTTP/1.1, and set the following headers:
   **trusted** addresses, the request header with the same name gets forwarded
   if provided. Otherwise, the value of the `$request_uri` variable (with
   the query string stripped) provided by [ngx_http_core_module][ngx-server-port-variable]
-  will be used. **Note**: Kong will return `"/"` for an empty path, but it does not do any other normalization on the request path.
+  will be used.
+  
+  {:.note}
+  > **Note**: Kong returns `"/"` for an empty path, but it doesn't do any other 
+  > normalization on the request path.
 
 All the other request headers are forwarded as-is by Kong.
 
