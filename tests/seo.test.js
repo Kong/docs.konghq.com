@@ -144,18 +144,19 @@ test.describe("sitemap", () => {
   [
     "/konnect/",
     "/konnect-platform/",
-    "/gateway/latest/",
-    "/mesh/latest/",
-    "/kubernetes-ingress-controller/latest/",
-    "/deck/latest/",
+    "/gateway/latest/install-and-run/docker/",
+    "/mesh/latest/installation/ecs/",
+    "/kubernetes-ingress-controller/latest/deployment/k4k8s/",
+    "/deck/latest/installation/",
     "/hub/kong-inc/application-registration/",
     "/gateway/changelog/",
     "/mesh/changelog/",
+    "/hub/",
   ].forEach((t) => {
     test(t, async ({ page }) => {
       await page.goto("/sitemap.xml");
       const html = await page.content();
-      await expect(html).toContain(t);
+      await expect(html).toContain(`<loc>https://docs.konghq.com${t}</loc>`);
     });
   });
 });
