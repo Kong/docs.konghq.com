@@ -6,9 +6,6 @@
   "repository": "Kong/docs.konghq.com",
   "license": "proprietary",
   "scripts": {
-    "deploy": "gulp deploy",
-    "preinstall": "bundle install",
-    "prestart": "npm test",
     "start": "gulp",
     "dev": "gulp dev",
     "pdk-docs": "KONG_PATH=${KONG_PATH:=} KONG_VERSION=${KONG_VERSION:=} gulp pdk-docs",

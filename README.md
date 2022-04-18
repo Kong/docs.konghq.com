@@ -26,63 +26,19 @@ For [Gateway Enterprise configuration reference](https://docs.konghq.com/gateway
 
 * We are currently accepting plugin submissions to our plugin hub from trusted technical partners, on a limited basis. For more information, see the [Kong Partners page](https://konghq.com/partners/).
 
-## Run local project
-***
+## Run Locally
 
-For anything other than minor changes, clone the repository onto your local machine and build locally.
-
-## Run locally with gulp
-***
-
-### Prerequisites
-
-* [gulp](https://gulpjs.com/docs/en/getting-started/quick-start/) installed globally
-
-Install dependencies:
+For anything other than minor changes, [clone the repository onto your local machine and build locally](docs/platform-install.md). Once you've installed all of the tools required, you can use our `Makefile` to build the docs:
 
 ```bash
+# Install dependencies
 make install
-```
 
-Run the project:
-
-```bash
+# Build the site and watch for changes
 make run
 ```
 
-If you have issues, run:
-
-```bash
-make clean
-```
-
-## Run locally with npm
-***
-
-### Prerequisites
-
-* [node and npm](https://www.npmjs.com/get-npm)
-* [yarn](https://classic.yarnpkg.com)
-* [gulp](https://gulpjs.com/docs/en/getting-started/quick-start/)
-* [Bundler](https://bundler.io/)
-* [Ruby](https://www.ruby-lang.org) (>= 3.1.0)
-* [Python](https://www.python.org) (>= 2.7.X, < 3)
-
-Install dependencies:
-
-```bash
-gem install bundler
-npm install
-```
-
-Run the project:
-
-```bash
-npm start
-```
-
 ## Plugin contributors
-***
 
 If you have contributed a plugin, you can add a Kong badge to your plugin README.
 
@@ -97,7 +53,6 @@ Here's how the badge looks: [![](https://img.shields.io/badge/Kong-test-blue.svg
 See [Issue #908](https://github.com/Kong/docs.konghq.com/issues/908) for more information. Note that we're not currently hosting assets for badges.
 
 ## Generate the PDK, Admin API, CLI, and Configuration documentation
-***
 
 > This section is for Kong source code maintainers. You don't need to do anything here if you're contributing to this repo!
 
