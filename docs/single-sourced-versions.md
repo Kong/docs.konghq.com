@@ -29,21 +29,21 @@ I've added comments to the file to show what will be read, and what URL will be 
 
 ```yaml
 product: deck
-version: 1.11.x
+release: 1.11.x
 generate: true
 items:
   - title: Introduction
-    # Reads `src/deck/index.md` and writes `/deck/<version>/index.html`
+    # Reads `src/deck/index.md` and writes `/deck/<release>/index.html`
     # This is a special case as absolute_url is true, but `/deck/` is equal to `/<product>/`
     # and we always need to generate an index page
     url: /deck/
     absolute_url: true
     items:
       - text: Terminology
-        # Reads `src/deck/terminology.md` and writes `/deck/<version>/terminology/index.html`
+        # Reads `src/deck/terminology.md` and writes `/deck/<release>/terminology/index.html`
         url: /terminology
       - text: Architecture
-        # Reads `src/deck/design-architecture.md` and writes `/deck/<version>/design-architecture/index.html`
+        # Reads `src/deck/design-architecture.md` and writes `/deck/<release>/design-architecture/index.html`
         url: /design-architecture
 
   - title: Changelog
@@ -55,19 +55,19 @@ items:
   - title: Installation
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
     url: /installation
-    # Reads `src/deck/installation-guide.md` and writes `/deck/<version>/installation/index.html`
+    # Reads `src/deck/installation-guide.md` and writes `/deck/<release>/installation/index.html`
     src: installation-guide
 ```
 
 ### Concept 2: Single source specific files
 
-You may not want to update an entire version at once. In this instance, single sourcing specific files might be useful. You can set `assume_generated: false` at the top level, then use `generated: true` on individual items to enable this.
+You may not want to update an entire release at once. In this instance, single sourcing specific files might be useful. You can set `assume_generated: false` at the top level, then use `generated: true` on individual items to enable this.
 
 ```yaml
 product: deck
-version: 1.11.x
+release: 1.11.x
 generate: true
-# This line will make Jekyll read `app/<product>/<version>/<file>.md` by default
+# This line will make Jekyll read `app/<product>/<release>/<file>.md` by default
 # unless `generate: true` is set on a specific item
 assume_generated: false
 items:
@@ -80,25 +80,25 @@ items:
         # Reads `app/deck/1.11.x/terminology.md` like normal
         url: /terminology
       - text: Architecture
-        # Reads `src/deck/design-architecture.md` and writes `/deck/<version>/design-architecture/index.html`
+        # Reads `src/deck/design-architecture.md` and writes `/deck/<release>/design-architecture/index.html`
         url: /design-architecture
         generate: true
 
   - title: Installation
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
     url: /installation
-    # Reads `src/deck/installation-v3.md` and writes `/deck/<version>/installation/index.html`
+    # Reads `src/deck/installation-v3.md` and writes `/deck/<release>/installation/index.html`
     src: installation-v3
     generate: true
 ```
 
-### Concept 3: Multiple versions + Single Sourcing
+### Concept 3: Multiple releases + Single Sourcing
 
-We may rewrite entire pages over time, and it doesn't make sense to keep everything in a single file. In this instance, we should append the version to the filename e.g. `instructions-v3.md` and use the `src` parameter to point at a specific file:
+We may rewrite entire pages over time, and it doesn't make sense to keep everything in a single file. In this instance, we should append the major version to the filename e.g. `instructions-v3.md` and use the `src` parameter to point at a specific file:
 
 ```yaml
 product: deck
-version: 1.11.x
+release: 1.11.x
 generate: true
 items:
   - title: Introduction
@@ -106,15 +106,15 @@ items:
     absolute_url: true
     items:
       - text: Terminology
-        # Reads `src/deck/terminology-v3.md` and writes `/deck/<version>/terminology/index.html`
-        # This is how you can have multiple versions of a single source file when completely rewriting content
+        # Reads `src/deck/terminology-v3.md` and writes `/deck/<release>/terminology/index.html`
+        # This is how you can have multiple release of a single source file when completely rewriting content
         url: /terminology
         src: terminology-v3
 ```
 
 ## Conditional Rendering
 
-As we add new functionality, we'll want content to be displayed for specific versions of a product. We can use the `if_version` block for this:
+As we add new functionality, we'll want content to be displayed for specific releases of a product. We can use the `if_version` block for this:
 
 ```
 {% if_version eq:1.11.x %}
