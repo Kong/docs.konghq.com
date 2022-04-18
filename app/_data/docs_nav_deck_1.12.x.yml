@@ -1,5 +1,5 @@
 product: deck
-version: 1.12.x
+release: 1.12.x
 generate: true
 items:
   - title: Introduction

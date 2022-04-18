@@ -27,13 +27,11 @@ If you are Linux, you can either use the Debian or RPM archive from
 the Github [release page](https://github.com/kong/deck/releases)
 or install by downloading a compressed archive, which contains the binary:
 
-{% if_version eq:1.12.x %}
 ```shell
-$ curl -sL https://github.com/kong/deck/releases/download/v1.12.0/deck_1.12.0_linux_amd64.tar.gz -o deck.tar.gz
+$ curl -sL https://github.com/kong/deck/releases/download/v{{page.version}}/deck_{{page.version}}_linux_amd64.tar.gz -o deck.tar.gz
 $ tar -xf deck.tar.gz -C /tmp
 $ sudo cp /tmp/deck /usr/local/bin/
 ```
-{% endif_version %}
 
 ## Docker image
 
