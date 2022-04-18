@@ -14,9 +14,9 @@
 
 $Arch             = If ($Arch) {$Arch} Else {"amd64"}
 $ProductName      = If ($ProductName) {$ProductName} Else {"Kuma"}
-$LatestVersionUrl = If ($LatestVersionUrl) {$LatestVersionUrl} Else {"https://kuma.io/latest_version"}
-$Version          = If ($Version) {$Version} Else {(Invoke-WebRequest -Uri $LatestVersionUrl).Content}
-$RepoPrefix       = If ($RepoPrefix) {$RepoPrefix} Else {"kuma"}
+$LatestVersionUrl = If ($LatestVersionUrl) {$LatestVersionUrl} Else {"https://docs.konghq.com/mesh/latest_version/"}
+$Version          = If ($Version) {$Version} Else {(Invoke-WebRequest -Uri $LatestVersionUrl).Content.Trim()}
+$RepoPrefix       = If ($RepoPrefix) {$RepoPrefix} Else {"kong-mesh"}
 $Distro           = If ($Distro) {$Distro} Else {"windows"}
 $ArchiveName      = "$RepoPrefix-$Version-$Distro-$Arch.tar.gz"
 $Pwd              = (Get-Item .).FullName
