@@ -144,6 +144,10 @@ test.describe("sitemap", () => {
   [
     "/konnect/",
     "/konnect-platform/",
+    "/gateway/",
+    "/mesh/",
+    "/kubernetes-ingress-controller/",
+    "/deck/",
     "/gateway/latest/install-and-run/docker/",
     "/mesh/latest/installation/ecs/",
     "/kubernetes-ingress-controller/latest/deployment/k4k8s/",
