@@ -961,8 +961,10 @@ Kong will send the request over HTTP/1.1, and set the following headers:
   if provided. Otherwise, the value of the `$request_uri` variable (with
   the query string stripped) provided by [ngx_http_core_module][ngx-server-port-variable]
   will be used.
-{:.note}
-> **Note**: Kong returns `"/"` for an empty path, but it doesn't do any other normalization on the request path.
+  
+  {:.note}
+  > **Note**: Kong returns `"/"` for an empty path, but it doesn't do any other 
+  > normalization on the request path.
 
 All the other request headers are forwarded as-is by Kong.
 
