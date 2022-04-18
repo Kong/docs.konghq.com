@@ -203,6 +203,10 @@ module CanonicalUrl
         # Special case for the index page
         if page.url == "/hub/"
           page.data['canonical_url'] = page.url
+          all_pages[page.url] = {
+            'url' => page.url,
+            'sitemap' => true
+          }
           next
         end
 
