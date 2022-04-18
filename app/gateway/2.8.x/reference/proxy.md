@@ -870,7 +870,7 @@ If the rule count for the given request is the same in two Routes `A` and
 `B`, then the following tiebreaker rules will be applied in the order they
 are listed. Route `A` will be selected over `B` if:
 
-* `A` has only "plain" Host headers and `B` has has one or more "wildcard"
+* `A` has only "plain" Host headers and `B` has one or more "wildcard"
   host headers
 * `A` has more non-Host headers than `B`.
 * `A` has at least one "regex" paths and `B` has only "plain" paths.
