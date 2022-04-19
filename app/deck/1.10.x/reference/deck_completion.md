@@ -1,5 +1,6 @@
 ---
 title: deck completion
+source_url: https://github.com/Kong/deck/tree/main/cmd
 ---
 
 Generate completion script.

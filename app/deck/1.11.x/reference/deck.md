@@ -1,5 +1,6 @@
 ---
 title: deck
+source_url: https://github.com/Kong/deck/tree/main/cmd
 ---
 
 The deck tool helps you manage Kong clusters with a declarative

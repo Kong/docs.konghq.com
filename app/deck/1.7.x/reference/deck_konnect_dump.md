@@ -1,10 +1,11 @@
 ---
 title: deck konnect dump
+source_url: https://github.com/Kong/deck/tree/main/cmd
 ---
 
 The konnect dump command reads all entities present in Konnect
 	and writes them to a local file.
-	
+
 	The file can then be read using the 'deck konnect sync' command or 'deck konnect diff' command to
 	configure Konnect.
 

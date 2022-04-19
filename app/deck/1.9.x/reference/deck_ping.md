@@ -1,5 +1,6 @@
 ---
 title: deck ping
+source_url: https://github.com/Kong/deck/tree/main/cmd
 ---
 
 The ping command can be used to verify if decK

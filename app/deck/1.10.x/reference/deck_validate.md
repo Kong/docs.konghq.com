@@ -1,5 +1,6 @@
 ---
 title: deck validate
+source_url: https://github.com/Kong/deck/tree/main/cmd
 ---
 
 The validate command reads the state file and ensures validity.
