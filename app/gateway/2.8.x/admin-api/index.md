@@ -6,7 +6,7 @@
 #  or its associated files instead.
 #
 title: Admin API
-source_url: https://github.com/Kong/kong/blob/master/scripts/autodoc/admin-api/data/admin-api.lua
+source_url: https://github.com/Kong/kong/blob/master/autodoc/admin-api/data/admin-api.lua
 toc: false
 
 service_body: |
