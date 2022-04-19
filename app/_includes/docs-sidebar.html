@@ -104,20 +104,20 @@
         {% if include.edition == 'gateway' %}
         <li role="menuitem" tabindex="-1">
           <a href="/enterprise/2.5.x/">
-            Older Enterprise versions (0.31-2.5)
+            Older Enterprise versions (2.1-2.5)
           </a>
         </li>
         <li role="menuitem" tabindex="-1">
           <a href="/gateway-oss/2.5.x/">
-            Older OSS versions (0.13-2.5)
+            Older OSS versions (2.1-2.5)
           </a>
         </li>
         {% endif %}
 
-        {% if include.edition == 'gateway-oss' or include.edition == 'gateway' %}
+        {% if include.edition == 'gateway-oss' or include.edition == 'gateway' or include.edition == 'enterprise' %}
         <li role="menuitem" tabindex="-1">
-          <a href="https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/">
-            Archive (pre-0.13)
+          <a href="https://github.com/Kong/docs.konghq.com/tree/main/archive">
+            Archive (pre-2.1)
           </a>
         </li>
         {% endif %}
