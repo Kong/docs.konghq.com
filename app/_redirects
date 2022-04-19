@@ -465,6 +465,8 @@
 /enterprise/2.6.x/vitals/overview     /gateway/2.6.x/vitals/
 /enterprise/2.7.x/vitals/overview     /gateway/2.7.x/vitals/
 /enterprise/latest/vitals/overview    /gateway/latest/vitals/
+/gateway/latest/admin-api/vitals     /gateway/latest/vitals/
+/gateway/latest/admin-api/vitals/*   /gateway/latest/vitals/
 
 
 # KONG MESH
