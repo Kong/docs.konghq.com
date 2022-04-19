@@ -1,0 +1,498 @@
+product: gateway
+release: 3.0.x
+generate: true
+items:
+  - title: Introduction
+    icon: /assets/images/icons/documentation/icn-flag.svg
+    url: /gateway/
+    absolute_url: true
+    items:
+      - text: Version Support Policy
+        url: /konnect-platform/support-policy
+        absolute_url: true
+      - text: Changelog
+        url: /gateway/changelog
+        absolute_url: true
+
+  - title: Install and Run
+    icon: /assets/images/icons/documentation/icn-deployment-color.svg
+    url: /install-and-run/
+    items:
+      - text: Kubernetes
+        url: /install-and-run/kubernetes
+      - text: Helm
+        url: /install-and-run/helm
+      - text: OpenShift with Helm
+        url: /install-and-run/openshift
+      - text: Docker
+        url: /install-and-run/docker
+      - text: Amazon Linux
+        url: /install-and-run/amazon-linux
+      - text: CentOS
+        url: /install-and-run/centos
+      - text: macOS
+        url: /install-and-run/macos
+      - text: Debian
+        url: /install-and-run/debian
+      - text: RHEL
+        url: /install-and-run/rhel
+      - text: Ubuntu
+        url: /install-and-run/ubuntu
+      - text: Migrating from OSS to EE
+        url: /install-and-run/migrate-ce-to-ke
+      - text: Upgrade Kong Gateway
+        url: /install-and-run/upgrade-enterprise
+      - text: Upgrade Kong Gateway OSS
+        url: /install-and-run/upgrade-oss
+
+  - title: Get Started
+    icon: /assets/images/icons/documentation/icn-quickstart-color.svg
+    items:
+      - text: Quickstart Guide
+        url: /get-started/quickstart
+        items:
+          - text: Configuring a Service
+            url: /get-started/quickstart/configuring-a-service
+          - text: Configuring a gRPC Service
+            url: /get-started/quickstart/configuring-a-grpc-service
+          - text: Enabling Plugins
+            url: /get-started/quickstart/enabling-plugins
+          - text: Adding Consumers
+            url: /get-started/quickstart/adding-consumers
+      - text: Comprehensive Guide
+        url: /get-started/comprehensive
+        items:
+          - text: Prepare to Administer
+            url: /get-started/comprehensive/prepare
+          - text: Expose your Services
+            url: /get-started/comprehensive/expose-services
+          - text: Protect your Services
+            url: /get-started/comprehensive/protect-services
+          - text: Improve Performance
+            url: /get-started/comprehensive/improve-performance
+          - text: Secure Services
+            url: /get-started/comprehensive/secure-services
+          - text: Set Up Intelligent Load Balancing
+            url: /get-started/comprehensive/load-balancing
+          - text: Manage Administrative Teams
+            url: /get-started/comprehensive/manage-teams
+          - text: Publish, Locate, and Consume Services
+            url: /get-started/comprehensive/dev-portal
+
+  - title: Plan and Deploy
+    icon: /assets/images/icons/documentation/icn-deployment-color.svg
+    items:
+      - text: Running Kong as a Non-Root User
+        url: /plan-and-deploy/kong-user
+      - text: Resource Sizing Guidelines
+        url: /plan-and-deploy/sizing-guidelines
+      - text: Hybrid Mode
+        url: /plan-and-deploy/hybrid-mode
+        items:
+          - text: Deploy Kong Gateway in Hybrid Mode
+            url: /plan-and-deploy/hybrid-mode/hybrid-mode-setup
+      - text: Kubernetes Deployment Options
+        url: /plan-and-deploy/kubernetes-deployment-options
+      - text: Control Kong Gateway through systemd
+        url: /plan-and-deploy/systemd
+      - text: Performance Testing Framework
+        url: /plan-and-deploy/performance-testing-framework
+      - text: DNS Considerations
+        url: /plan-and-deploy/dns-considerations
+      - text: Default Ports
+        url: /plan-and-deploy/default-ports
+      - text: Licenses
+        url: /plan-and-deploy/licenses
+        items:
+          - text: Access Your License
+            url: /plan-and-deploy/licenses/access-license
+          - text: Deploy Your License
+            url: /plan-and-deploy/licenses/deploy-license
+          - text: Monitor License Usage
+            url: /plan-and-deploy/licenses/report
+      - text: Security
+        items:
+          - text: Start Kong Gateway Securely
+            url: /plan-and-deploy/security/start-kong-securely
+          - text: Keyring and Data Encryption
+            url: /plan-and-deploy/security/db-encryption
+          - text: Kong Security Update Process
+            url: /plan-and-deploy/security/kong-security-update-process
+          - text: Secrets Management
+            url: /plan-and-deploy/security/secrets-management/
+            items:
+            - text: Getting Started
+              url: /plan-and-deploy/security/secrets-management/getting-started
+            - text: Advanced Usage
+              url: /plan-and-deploy/security/secrets-management/advanced-usage
+            - text: Backends
+              url: /plan-and-deploy/security/secrets-management/backends
+              items:
+                - text: Environment Variables
+                  url: /plan-and-deploy/security/secrets-management/backends/env
+                - text: AWS Secrets Manager
+                  url: /plan-and-deploy/security/secrets-management/backends/aws-sm
+                - text: Hashicorp Vault
+                  url: /plan-and-deploy/security/secrets-management/backends/hashicorp-vault
+            - text: Reference Format
+              url: /plan-and-deploy/security/secrets-management/reference-format
+
+  - title: Configure
+    icon: /assets/images/icons/konnect/konnect-settings.svg
+    items:
+      - text: Authentication and Authorization
+        items:
+          - text: Authentication Reference
+            url: /configure/auth
+          - text: OpenID Connect Plugin
+            url: /configure/auth/oidc-use-case
+            items:
+              - text: OpenID Connect with Curity
+                url: /configure/auth/oidc-curity
+              - text: OpenID Connect with Azure AD
+                url: /configure/auth/oidc-azuread
+              - text: OpenID Connect with Google
+                url: /configure/auth/oidc-google
+              - text: OpenID Connect with Okta
+                url: /configure/auth/oidc-okta
+              - text: OpenID Connect with Auth0
+                url: /configure/auth/oidc-auth0
+              - text: OpenID Connect with Cognito
+                url: /configure/auth/oidc-cognito
+              - text: OpenID Connect Plugin Reference
+                url: /hub/kong-inc/openid-connect
+                absolute_url: true
+          - text: Allowing Multiple Authentication Methods
+            url: /configure/auth/allowing-multiple-authentication-methods
+          - text: Auth for Kong Manager
+            url: /configure/auth/kong-manager
+            items:
+              - text: Create a Super Admin
+                url: /configure/auth/kong-manager/super-admin
+              - text: Configure Networking
+                url: /configure/auth/kong-manager/networking
+              - text: Configure Kong Manager to Send Email
+                url: /configure/auth/kong-manager/email
+              - text: Reset Passwords and RBAC Tokens
+                url: /configure/auth/kong-manager/reset-password/
+              - text: Configure Workspaces
+                url: /configure/auth/kong-manager/workspaces
+              - text: Basic Auth
+                url: /configure/auth/kong-manager/basic
+              - text: LDAP
+                url: /configure/auth/kong-manager/ldap
+              - text: OIDC
+                url: /configure/auth/kong-manager/oidc-mapping
+              - text: Sessions
+                url: /configure/auth/kong-manager/sessions
+
+          - text: Role-based Access Control (RBAC)
+            url: /configure/auth/rbac
+            items:
+              - text: Add a Role
+                url: /configure/auth/rbac/add-role
+              - text: Add a User
+                url: /configure/auth/rbac/add-user
+              - text: Add an Admin
+                url: /configure/auth/rbac/add-admin
+          - text: Mapping LDAP Service Directory Groups to Kong Roles
+            url: /configure/auth/service-directory-mapping
+      - text: Kong Dev Portal
+        url: /developer-portal/
+        items:
+          - text: Enable the Dev Portal
+            url: /developer-portal/enable-dev-portal
+          - text: Structure and File Types
+            url: /developer-portal/structure-and-file-types
+          - text: Portal API
+            url: /developer-portal/portal-api
+          - text: Working with Templates
+            url: /developer-portal/working-with-templates
+          - text: Using the Editor
+            url: /developer-portal/using-the-editor
+          # commented out for now, as this redirects to an old doc version
+          # - text: Networking
+          #   url: /developer-portal/networking
+          - text: Configuration
+            items:
+              - text: Authentication
+                items:
+                  - text: Basic Auth
+                    url: /developer-portal/configuration/authentication/basic-auth
+                  - text: Key Auth
+                    url: /developer-portal/configuration/authentication/key-auth
+                  - text: OIDC
+                    url: /developer-portal/configuration/authentication/oidc
+                  - text: Sessions
+                    url: /developer-portal/configuration/authentication/sessions
+                  - text: Adding Custom Registration Fields
+                    url: /developer-portal/configuration/authentication/adding-registration-fields
+              - text: SMTP
+                url: /developer-portal/configuration/smtp
+              - text: Workspaces
+                url: /developer-portal/configuration/workspaces
+          - text: Administration
+            items:
+              - text: Manage Developers
+                url: /developer-portal/administration/managing-developers
+              - text: Developer Roles and Content Permissions
+                url: /developer-portal/administration/developer-permissions
+              - text: Application Registration
+                items:
+                  - text: Authorization Provider Strategy
+                    url: /developer-portal/administration/application-registration/auth-provider-strategy
+                  - text: Enable Application Registration
+                    url: /developer-portal/administration/application-registration/enable-application-registration
+                  - text: Enable Key Authentication for Application Registration
+                    url: /developer-portal/administration/application-registration/enable-key-auth-plugin
+                  - text: External OAuth2 Support
+                    url: /developer-portal/administration/application-registration/3rd-party-oauth
+                  - text: Set up Okta and Kong for external OAuth
+                    url: /developer-portal/administration/application-registration/okta-config
+                  - text: Set Up Azure AD and Kong for External Authentication
+                    url: /developer-portal/administration/application-registration/azure-oidc-config
+                  - text: Manage Applications
+                    url: /developer-portal/administration/application-registration/managing-applications
+          - text: Customization
+            items:
+              - text: Easy Theme Editing
+                url: /developer-portal/theme-customization/easy-theme-editing
+              - text: Migrating Templates Between Workspaces
+                url: /developer-portal/theme-customization/migrating-templates
+              - text: Markdown Rendering Module
+                url: /developer-portal/theme-customization/markdown-extended
+              - text: Customizing Portal Emails
+                url: /developer-portal/theme-customization/emails
+              - text: Adding and Using JavaScript Assets
+                url: /developer-portal/theme-customization/adding-javascript-assets
+              - text: Single Page App in Dev Portal
+                url: /developer-portal/theme-customization/single-page-app
+              - text: Alternate OpenAPI Renderer
+                url: /developer-portal/theme-customization/alternate-openapi-renderer
+          - text: Helpers CLI
+            url: /developer-portal/helpers/cli
+
+      - text: Configure gRPC Plugins
+        url: /configure/grpc
+      - text: GraphQL Quickstart
+        url: /configure/graphql-quickstart
+      - text: Logging Reference
+        url: /configure/logging
+      - text: Network and Firewall
+        url: /configure/network
+
+  - title: Monitor
+    icon: /assets/images/icons/documentation/icn-vitals.svg
+    items:
+      - text: Kong Vitals
+        url: /vitals
+        items:
+          - text: Metrics
+            url: /vitals/vitals-metrics
+          - text: Reports
+            url: /vitals/vitals-reports
+          - text: Vitals with InfluxDB
+            url: /vitals/vitals-influx-strategy
+          - text: Vitals with Prometheus
+            url: /vitals/vitals-prometheus-strategy
+          - text: Estimate Vitals Storage in PostgreSQL
+            url: /vitals/vitals-estimates
+      - text: Prometheus plugin
+        url: /hub/kong-inc/prometheus
+        absolute_url: true
+      - text: Zipkin plugin
+        url: /hub/kong-inc/zipkin
+        absolute_url: true
+
+  - title: Reference
+    icon: /assets/images/icons/documentation/icn-references-color.svg
+    items:
+      - text: Admin API
+        url: /admin-api
+        items:
+          - text: DB-less Mode
+            url: /admin-api/#db-less-mode
+          - text: Declarative Configuration
+            url: /admin-api/#declarative-configuration
+          - text: Supported Content Types
+            url: /admin-api/#supported-content-types
+          - text: Information Routes
+            url: /admin-api/#information-routes
+          - text: Health Routes
+            url: /admin-api/#health-routes
+          - text: Tags
+            url: /admin-api/#tags
+          - text: Service Object
+            url: /admin-api/#service-object
+          - text: Route Object
+            url: /admin-api/#route-object
+          - text: Consumer Object
+            url: /admin-api/#consumer-object
+          - text: Plugin Object
+            url: /admin-api/#plugin-object
+          - text: Certificate Object
+            url: /admin-api/#certificate-object
+          - text: CA Certificate Object
+            url: /admin-api/#ca-certificate-object
+          - text: SNI Object
+            url: /admin-api/#sni-object
+          - text: Upstream Object
+            url: /admin-api/#upstream-object
+          - text: Target Object
+            url: /admin-api/#target-object
+          - text: Vaults Beta
+            url: /admin-api/#vaults-beta-entity
+          - text: Licenses
+            url: /admin-api/licenses/reference
+            items:
+              - text: Licenses Reference
+                url: /admin-api/licenses/reference
+              - text: Licenses Examples
+                url: /admin-api/licenses/examples
+          - text: Workspaces
+            url: /admin-api/workspaces/reference
+            items:
+              - text: Workspaces Reference
+                url: /admin-api/workspaces/reference
+              - text: Workspace Examples
+                url: /admin-api/workspaces/examples
+          - text: RBAC
+            url: /admin-api/rbac/reference
+            items:
+              - text: RBAC Reference
+                url: /admin-api/rbac/reference
+              - text: RBAC Examples
+                url: /admin-api/rbac/examples
+          - text: Admins
+            url: /admin-api/admins/reference
+            items:
+              - text: API Reference
+                url: /admin-api/admins/reference
+              - text: Examples
+                url: /admin-api/admins/examples
+          - text: Developers
+            url: /admin-api/developers/reference
+          - text: Consumer Groups
+            url: /admin-api/consumer-groups/reference
+            items:
+              - text: API Reference
+                url: /admin-api/consumer-groups/reference
+              - text: Examples
+                url: /admin-api/consumer-groups/examples
+          - text: Event Hooks
+            url: /admin-api/event-hooks/reference
+            items:
+              - text: Event Hooks Reference
+                url: /admin-api/event-hooks/reference
+              - text: Examples
+                url: /admin-api/event-hooks/examples
+          - text: Audit Logging
+            url: /admin-api/audit-log
+          - text: Keyring and Data Encryption
+            url: /admin-api/db-encryption
+          - text: Securing the Admin API
+            url: /admin-api/secure-admin-api
+      - text: DB-less and Declarative Configuration
+        url: /reference/db-less-and-declarative-config
+      - text: Configuration Reference
+        url: /reference/configuration
+      - text: CLI Reference
+        url: /reference/cli
+      - text: Load Balancing Reference
+        url: /reference/loadbalancing
+      - text: Proxy Reference
+        url: /reference/proxy
+      - text: Rate Limiting Library
+        url: /reference/rate-limiting
+      - text: Health Checks and Circuit Breakers Reference
+        url: /reference/health-checks-circuit-breakers
+      - text: Clustering Reference
+        url: /reference/clustering
+
+      - text: Plugin Development Kit
+        url: /pdk
+        items:
+
+        - text: kong.client
+          url: /pdk/kong.client
+
+        - text: kong.client.tls
+          url: /pdk/kong.client.tls
+
+        - text: kong.cluster
+          url: /pdk/kong.cluster
+
+        - text: kong.ctx
+          url: /pdk/kong.ctx
+
+        - text: kong.ip
+          url: /pdk/kong.ip
+
+        - text: kong.log
+          url: /pdk/kong.log
+
+        - text: kong.nginx
+          url: /pdk/kong.nginx
+
+        - text: kong.node
+          url: /pdk/kong.node
+
+        - text: kong.request
+          url: /pdk/kong.request
+
+        - text: kong.response
+          url: /pdk/kong.response
+
+        - text: kong.router
+          url: /pdk/kong.router
+
+        - text: kong.service
+          url: /pdk/kong.service
+
+        - text: kong.service.request
+          url: /pdk/kong.service.request
+
+        - text: kong.service.response
+          url: /pdk/kong.service.response
+
+        - text: kong.table
+          url: /pdk/kong.table
+
+        - text: kong.vault
+          url: /pdk/kong.vault
+
+      - text: Plugin Development Guide
+        url: /plugin-development
+        items:
+          - text: Introduction
+            url: /plugin-development
+
+          - text: File structure
+            url: /plugin-development/file-structure
+
+          - text: Implementing custom logic
+            url: /plugin-development/custom-logic
+
+          - text: Plugin configuration
+            url: /plugin-development/plugin-configuration
+
+          - text: Accessing the datastore
+            url: /plugin-development/access-the-datastore
+
+          - text: Storing custom entities
+            url: /plugin-development/custom-entities
+
+          - text: Caching custom entities
+            url: /plugin-development/entities-cache
+
+          - text: Extending the Admin API
+            url: /plugin-development/admin-api
+
+          - text: Writing tests
+            url: /plugin-development/tests
+
+          - text: (un)Installing your plugin
+            url: /plugin-development/distribution
+
+      - text: Plugins in Other Languages
+        url: /reference/external-plugins
