@@ -377,6 +377,11 @@
     pcre: "8.45"
   lua_doc: true
 -
+  release: "3.0.x"
+  ee-version: "3.0.0.0"
+  ce-version: "3.0.0"
+  edition: "gateway"
+-
   release: "CE-2.0.x_KE-1.5.x"
   version: "CE-2.0.x/KE-1.5.x"
   edition: "getting-started-guide"
