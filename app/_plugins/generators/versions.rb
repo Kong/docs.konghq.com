@@ -170,14 +170,12 @@ module Jekyll
       end
     end
 
-    def create_aliases(page, url_path, offset, parts, latest_release) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-      # Alias latest docs folder /x.x.x to /latest
+    def create_aliases(page, url_path, offset, parts, latest_release)
       release_path = parts[0 + offset]
       template_name = parts[1 + offset]
 
       return unless release_path == latest_release
 
-      page.data['alias'] = "/#{page.path.sub(release_path, 'latest').sub(/\..*$/, '')}"
       # template_name is nil if using single source generation and it's the index page
       if template_name == 'index.md' || template_name.nil?
         # the / page
@@ -186,7 +184,7 @@ module Jekyll
           ["#{url_path}/latest", "#{url_path}/#{latest_release}", "#{url_path}/#{latest_release}/index.html"]
       elsif /index\.(md|html)/.match(parts.last)
         # all other nested index pages
-        page.data['alias'] = page.data['alias'].sub(/index/, '')
+        page.data['alias'] = page.url.sub(/index/, '')
       end
     end
   end

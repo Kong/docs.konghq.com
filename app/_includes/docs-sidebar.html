@@ -1,5 +1,11 @@
 {% if include.no_version == false or include.has_version == true or include.nav_items != nil %}
 
+{% if include.is_latest %}
+  {% assign version = 'latest' %}
+{% else %}
+  {% assign version = include.kong_version %}
+{% endif %}
+
 <aside class="docs-sidebar">
   <i class="fa fa-times close-sidebar"></i>
 
@@ -78,7 +84,11 @@
         </li>
         {% endif %}
           {% for ver in include.kong_versions reversed %}
-          {% assign version_page_url = include.url | replace: include.kong_version, ver.release %}
+          {% assign release_segment = '/' | append: ver.release | append: '/' %}
+          {% assign version_page_url = include.url | replace: include.kong_version, ver.release | replace: '/latest/', release_segment %}
+          {% unless version_page_url contains ver.release %}
+          {% assign version_page_url = version_page_url | append: release_segment %}
+          {% endunless %}
           {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}
         <li {% if include.kong_version==ver.release %}class="active" {% endif %} role="menuitem" tabindex="-1">
           <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if include.edition == 'gateway-oss' %}gateway-oss/{% endif %}{% if include.edition == 'enterprise' %}enterprise/{% endif %}{% if include.edition == 'gateway' %}gateway/{% endif %}{% if include.edition == 'mesh' %}mesh/{% endif %}{% if include.edition == 'kubernetes-ingress-controller' %}kubernetes-ingress-controller/{% endif %}{% if include.edition == 'contributing' %}contributing/{% endif %}{% if include.edition == 'deck' %}deck/{% endif %}{{ver.release}}{% endif %}"
@@ -117,23 +127,23 @@
   </div>
 
   {% if include.edition == 'enterprise' %}
-  {% assign docs_url = '/enterprise/' | append: include.kong_version %}
+  {% assign docs_url = '/enterprise/' | append: version %}
   {% elsif include.edition == 'studio' %}
-  {% assign docs_url = '/studio/' | append: include.kong_version %}
+  {% assign docs_url = '/studio/' | append: version %}
   {% elsif include.edition == 'getting-started-guide' %}
-  {% assign docs_url = '/getting-started-guide/' | append: include.kong_version %}
+  {% assign docs_url = '/getting-started-guide/' | append: version %}
   {% elsif include.edition == 'mesh' %}
-  {% assign docs_url = '/mesh/' | append: include.kong_version %}
+  {% assign docs_url = '/mesh/' | append: version %}
   {% elsif include.edition == 'konnect' %}
   {% assign docs_url = '/konnect' %}
   {% elsif include.edition == 'kubernetes-ingress-controller' %}
-  {% assign docs_url = '/kubernetes-ingress-controller/' | append: include.kong_version %}
+  {% assign docs_url = '/kubernetes-ingress-controller/' | append: version %}
   {% elsif include.edition == 'deck' %}
-  {% assign docs_url = '/deck/' | append: include.kong_version %}
+  {% assign docs_url = '/deck/' | append: version %}
   {% elsif include.edition == 'gateway-oss' %}
-  {% assign docs_url = '/gateway-oss/' | append: include.kong_version %}
+  {% assign docs_url = '/gateway-oss/' | append: version %}
   {% elsif include.edition == 'gateway' %}
-  {% assign docs_url = '/gateway/' | append: include.kong_version %}
+  {% assign docs_url = '/gateway/' | append: version %}
   {% elsif include.edition == 'contributing' %}
   {% assign docs_url = '/contributing' %}
   {% endif %}

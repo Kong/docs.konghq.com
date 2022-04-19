@@ -74,7 +74,7 @@ test.describe("Outdated version documentation", () => {
     await expect(await s.count()).toBe(1);
     await expect(await s.getAttribute("href")).toEqual(
       expect.stringMatching(
-        new RegExp(`^/gateway/${latestGatewayVersion}/install-and-run/rhel/$`)
+        new RegExp(`^/gateway/latest/install-and-run/rhel/$`)
       )
     );
   });
@@ -118,6 +118,45 @@ test.describe("Sidebar section count", () => {
       await page.goto(t.path);
       const s = await page.locator(sidebarSelector);
       await expect(await s.count()).toBe(t.count);
+    });
+  });
+});
+
+test.describe("sidenav versions", () => {
+  [
+    {
+      title: "Root page links to /latest/",
+      src: "/gateway/",
+      link_text: "Install and Run",
+      expected_url: "/gateway/latest/install-and-run/",
+    },
+    {
+      title: "Versioned root page links to the correct version",
+      src: "/gateway/2.7.x",
+      link_text: "Install and Run",
+      expected_url: "/gateway/2.7.x/install-and-run/",
+    },
+    {
+      title: "Sub page links to latest",
+      src: "/gateway/latest/admin-api/",
+      link_text: "Install and Run",
+      expected_url: "/gateway/latest/install-and-run/",
+    },
+    {
+      title: "Versioned sub page links to the correct version",
+      src: "/gateway/2.8.x/admin-api/",
+      link_text: "Install and Run",
+      expected_url: "/gateway/2.8.x/install-and-run/",
+    },
+
+  ].forEach((t) => {
+    test(t.title, async ({ page }) => {
+      await page.goto(t.src);
+      const link = page.locator(
+        `a:text("${t.link_text}")`
+      );
+      href = await link.getAttribute("href");
+      await expect(href).toEqual(t.expected_url)
     });
   });
 });
