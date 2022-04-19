@@ -38,72 +38,158 @@ every cloud and environment.
   enterprise-grade service mesh with unique features in the service mesh
   landscape, while still relying on a neutral foundation.</i>
 
-<table class="mesh-features" style="width: fit-content">
+<table class="mesh-features features-table">
 <thead>
 <tr>
 <th></th>
-<th>Kuma</th>
-<th>Kong Mesh</th>
+<th class="product-name">
+<img src="/assets/images/logos/kuma.png" alt="Kuma"/>
+<a class="feature-cta" href="https://kuma.io/" target="_blank">Start Free</a>
+</th>
+<th class="product-name">
+<img src="/assets/images/logos/kong-mesh.png" alt="Kong Mesh"/>
+<a class="feature-cta" href="http://konghq.com/contact-sales" target="_blank">Contact Sales</a>
+</th>
 </tr>
 </thead>
 <tbody>
+
 <tr>
-<td>Enterprise Support and SLA</td>
-<td><i class="fa fa-times"></i></td>
-<td><i class="fa fa-check"></i></td>
-</tr>
-<tr style="border-bottom: 2px solid black">
-<td>Customer Success Packages</td>
-<td><i class="fa fa-times"></i></td>
-<td><i class="fa fa-check"></i></td>
+<td class="header-row"><span>Core Service Mesh Capabilities</span></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td>Role Based Access Control (RBAC)</td>
-<td><i class="fa fa-times"></i></td>
+<td>All Kuma Policies</td>
+<td><i class="fa fa-check"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>Multi-Zone Authentication</td>
+<td>All Traffic Management Policies</td>
+<td><i class="fa fa-check"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>All Observability Policies</td>
+<td><i class="fa fa-check"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>Multi-Zone & Multi-Cluster</td>
+<td><i class="fa fa-check"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>Multi-Zone Security</td>
+<td><i class="fa fa-times"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+
+<tr>
+<td class="header-row"><span>Zero-Trust and mTLS</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Built-in CA</td>
+<td><i class="fa fa-check"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>Provided CA</td>
+<td><i class="fa fa-check"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>Hashicorp Vault CA</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>mTLS HashiCorp Vault CA</td>
+<td>AWS Certificate Manager CA</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>mTLS AWS ACM CA ⭐</td>
+<td>GUI Dashboard for TLS and CA</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>mTLS Automatic CA Rotation</td>
+<td>Data Plane Certificate Rotation</td>
+<td><i class="fa fa-check"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>CA Automatic Rotation</td>
+<td><i class="fa fa-times"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+
+<tr>
+<td class="header-row"><span>Enterprise Application Security</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FIPS-140 Encryption</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>mTLS GUI Analytics</td>
+<td>Embedded OPA Agent</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>FIPS-140-2 Encryption Support</td>
+<td>Native OPA Policy</td>
+<td><i class="fa fa-times"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+
+<tr>
+<td class="header-row"><span>Enterprise Security and Governance</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Roles and permissions (RBAC)</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>Native OPA Agent and Policy</td>
+<td>Audit Logs</td>
 <td><i class="fa fa-times"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+
+<tr>
+<td class="header-row"><span>Universal Platform Distributions</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Containers, Kubernetes & OpenShift</td>
+<td><i class="fa fa-check"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>Kubernetes Operator</td>
+<td><i class="fa fa-times"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>Virtual Machine Support</td>
+<td><i class="fa fa-check"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>Virtual Machine Transparent Proxying</td>
+<td><i class="fa fa-check"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
 <td>Native AWS ECS Controller</td>
-<td><i class="fa fa-times"></i></td>
-<td><i class="fa fa-check"></i></td>
-</tr>
-<tr>
-<td>UBI Distributions</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
@@ -113,35 +199,33 @@ every cloud and environment.
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>Mesh Multi-Mesh</td>
+<td>UBI Federal Distributions</td>
+<td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
+</tr>
+
+
+<tr>
+<td class="header-row"><span>Support and Customer Success</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Enterprise Support and SLA</td>
+<td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>Multi-Zone &amp; Multi-Cluster</td>
-<td><i class="fa fa-check"></i></td>
-<td><i class="fa fa-check"></i></td>
-</tr>
-<tr>
-<td>Native VM Support (no K8s dependency)</td>
-<td><i class="fa fa-check"></i></td>
-<td><i class="fa fa-check"></i></td>
-</tr>
-<tr style="border-top: 2px solid black">
-<td><strong>All Traffic Control Capabilities</strong></td>
-<td><i class="fa fa-check"></i></td>
+<td>Customer Success Packages</td>
+<td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td><strong>All Observability Capabilities</strong></td>
-<td><i class="fa fa-check"></i></td>
-<td><i class="fa fa-check"></i></td>
-</tr>
-<tr>
-<td><strong>All Customization Capabilities</strong></td>
-<td><i class="fa fa-check"></i></td>
+<td>Envoy Support</td>
+<td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
+
 </tbody>
 </table>
 
