@@ -64,4 +64,4 @@ invitations to join Kong Manager and log in with their LDAP credentials.
 
 ### Using Service Directory Mapping on the CLI
 
-{% include /md/{{page.kong_version}}/ldap/ldap-service-directory-mapping.md %}
+{% include_cached /md/gateway/ldap-service-directory-mapping.md %}
