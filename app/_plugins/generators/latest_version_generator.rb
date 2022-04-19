@@ -59,6 +59,7 @@ module LatestVersion
 
       process(@name)
       @data = data.clone
+      @data['is_latest'] = true
     end
   end
 end

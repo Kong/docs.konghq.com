@@ -1,5 +1,11 @@
 {% if include.no_version == false or include.has_version == true or include.nav_items != nil %}
 
+{% if include.is_latest %}
+  {% assign version = 'latest' %}
+{% else %}
+  {% assign version = include.kong_version %}
+{% endif %}
+
 <aside class="docs-sidebar">
   <i class="fa fa-times close-sidebar"></i>
 
@@ -78,9 +84,10 @@
         </li>
         {% endif %}
           {% for ver in include.kong_versions reversed %}
-          {% assign version_page_url = include.url | replace: include.kong_version, ver.release | replace: '/latest/', '/' + ver.release + '/' %}
+          {% assign release_segment = '/' | append: ver.release | append: '/' %}
+          {% assign version_page_url = include.url | replace: include.kong_version, ver.release | replace: '/latest/', release_segment %}
           {% unless version_page_url contains ver.release %}
-          {% assign version_page_url = version_page_url | append: '/' + ver.release + '/' %}
+          {% assign version_page_url = version_page_url | append: release_segment %}
           {% endunless %}
           {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}
         <li {% if include.kong_version==ver.release %}class="active" {% endif %} role="menuitem" tabindex="-1">
@@ -118,12 +125,6 @@
     </div>
     {% endunless %}
   </div>
-
-  {% if include.is_latest %}
-    {% assign version = 'latest' %}
-  {% else %}
-    {% assign version = include.kong_version %}
-  {% endif %}
 
   {% if include.edition == 'enterprise' %}
   {% assign docs_url = '/enterprise/' | append: version %}

@@ -62,6 +62,7 @@ module CanonicalUrl
         if is_global_page || is_product_index
           version = to_version('latest')
           url = page.url
+          page.data['is_latest'] = true
 
         # Otherwise it has a version (\d+ match or /latest/), so let's
         # Keep track of that for use later
