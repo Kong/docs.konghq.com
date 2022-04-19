@@ -7,7 +7,8 @@ body_id: page-hub
 
 ---
 
-{% assign hub = site.hub %}
+{% assign hub = site.data.ssg_hub %}
+
 {% assign kong_extns = hub | where: "publisher", "Kong Inc." %}
 {% assign third_extns = hub | where_exp: "extn", "extn.publisher != 'Kong Inc.'" %}
 {% assign categories = site.extensions.categories %}
