@@ -121,3 +121,42 @@ test.describe("Sidebar section count", () => {
     });
   });
 });
+
+test.describe("sidenav versions", () => {
+  [
+    {
+      title: "Root page links to /latest/",
+      src: "/gateway/",
+      link_text: "Install and Run",
+      expected_url: "/gateway/latest/install-and-run/",
+    },
+    {
+      title: "Versioned root page links to the correct version",
+      src: "/gateway/2.7.x",
+      link_text: "Install and Run",
+      expected_url: "/gateway/2.7.x/install-and-run/",
+    },
+    {
+      title: "Sub page links to latest",
+      src: "/gateway/latest/admin-api/",
+      link_text: "Install and Run",
+      expected_url: "/gateway/latest/install-and-run/",
+    },
+    {
+      title: "Versioned sub page links to the correct version",
+      src: "/gateway/2.8.x/admin-api/",
+      link_text: "Install and Run",
+      expected_url: "/gateway/2.8.x/install-and-run/",
+    },
+
+  ].forEach((t) => {
+    test(t.title, async ({ page }) => {
+      await page.goto(t.src);
+      const link = page.locator(
+        `a:text("${t.link_text}")`
+      );
+      href = await link.getAttribute("href");
+      await expect(href).toEqual(t.expected_url)
+    });
+  });
+});
