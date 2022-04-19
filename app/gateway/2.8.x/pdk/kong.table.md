@@ -8,6 +8,7 @@
 title: kong.table
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 Utilities for Lua tables.
@@ -92,5 +93,3 @@ local t1 = {1, 2, 3, foo = "f"}
 local t2 = {4, 5, bar = "b"}
 local t3 = kong.table.merge(t1, t2) -- {4, 5, 3, foo = "f", bar = "b"}
 ```
-
-

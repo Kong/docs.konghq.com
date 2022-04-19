@@ -5,6 +5,7 @@
 #  the files in https://github.com/Kong/docs.konghq.com/tree/main/autodoc-conf-ee
 #
 title: Configuration Reference for Kong Gateway
+source_url: https://github.com/Kong/kong-ee/blob/master/kong.conf.default
 ---
 
 ## Configuration loading
@@ -678,7 +679,7 @@ This field is ignored if `cluster_mtls` is set to `shared`.
 
 #### cluster_allowed_common_names
 
-The list of Common Names that are allowed to connect to the control plane. 
+The list of Common Names that are allowed to connect to the control plane.
 Multiple entries may be supplied in a comma-separated string. When not
 set, only Data Planes with the same parent domain as the
 Control Plane cert are allowed to connect.

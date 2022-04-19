@@ -8,6 +8,7 @@
 title: kong.client
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 ## kong.client
@@ -298,4 +299,3 @@ kong.client.get_protocol() -- "http"
 ```
 
 [Back to top](#kongclient)
-

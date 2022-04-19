@@ -8,6 +8,7 @@
 title: kong.log
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 ## kong.log
@@ -460,4 +461,3 @@ kong.log.serialize()
 ```
 
 [Back to top](#konglog)
-

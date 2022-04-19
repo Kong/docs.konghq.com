@@ -8,6 +8,7 @@
 title: kong.ip
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 ## kong.ip
@@ -54,4 +55,3 @@ end
 ```
 
 [Back to top](#kongip)
-

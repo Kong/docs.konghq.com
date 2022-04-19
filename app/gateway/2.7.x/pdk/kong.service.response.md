@@ -8,6 +8,7 @@
 title: kong.service.response
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 ## kong.service.response
@@ -190,4 +191,3 @@ local body = kong.service.response.get_body()
 ```
 
 [Back to top](#kongserviceresponse)
-

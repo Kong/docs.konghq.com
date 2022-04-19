@@ -8,6 +8,7 @@
 title: PDK
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 ## Plugin Development Kit
@@ -179,5 +180,3 @@ Instance of Kong's database caching object, from the `kong.cache` module.
 
 
 [Back to top](#plugin-development-kit)
-
-

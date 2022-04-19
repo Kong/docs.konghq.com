@@ -8,6 +8,7 @@
 title: kong.client.tls
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 ## kong.client.tls
@@ -143,4 +144,3 @@ kong.client.tls.set_client_verify("FAILED:unknown CA")
 ```
 
 [Back to top](#kongclienttls)
-

@@ -8,6 +8,7 @@
 title: kong.response
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 ## kong.response
@@ -634,4 +635,3 @@ return kong.response.error(403)
 ```
 
 [Back to top](#kongresponse)
-

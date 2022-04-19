@@ -8,6 +8,7 @@
 title: kong.nginx
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 ## kong.nginx
@@ -39,4 +40,3 @@ kong.nginx.get_subsystem() -- "http"
 ```
 
 [Back to top](#kongnginx)
-

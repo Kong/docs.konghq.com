@@ -8,6 +8,7 @@
 title: kong.log
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 This namespace contains an instance of a logging facility, which is a
@@ -447,5 +448,3 @@ Generates a table with useful information for logging.
 ``` lua
 kong.log.serialize()
 ```
-
-

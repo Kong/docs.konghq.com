@@ -8,6 +8,7 @@
 title: kong.cluster
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 ## kong.cluster
@@ -51,4 +52,3 @@ end
 ```
 
 [Back to top](#kongcluster)
-

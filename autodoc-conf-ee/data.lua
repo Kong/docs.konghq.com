@@ -8,6 +8,7 @@ data.header = [[
 #  the files in https://github.com/Kong/docs.konghq.com/tree/main/autodoc-conf-ee
 #
 title: Configuration Reference for Kong Gateway
+source_url: https://github.com/Kong/kong-ee/blob/master/kong.conf.default
 ---
 
 ## Configuration loading

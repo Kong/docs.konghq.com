@@ -8,6 +8,7 @@
 title: kong.request
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 ## kong.request
@@ -683,4 +684,3 @@ body.age  -- "42"
 ```
 
 [Back to top](#kongrequest)
-

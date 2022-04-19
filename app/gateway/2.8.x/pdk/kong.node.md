@@ -8,6 +8,7 @@
 title: kong.node
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 Node-level utilities.
@@ -120,5 +121,3 @@ Returns the name used by the local machine.
 ``` lua
 local hostname = kong.node.get_hostname()
 ```
-
-
