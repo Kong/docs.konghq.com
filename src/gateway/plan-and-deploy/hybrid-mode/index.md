@@ -154,13 +154,13 @@ the control plane after verifying the success and correctness of the procedure.
 During that time, the data plane will keep working with the latest configuration.
 
 A new data plane node can be provisioned during control plane downtime. This
-requires either copying the config cache file (`config.json.gz`) from another
+requires either copying the LMDB directory (`dbless.lmdb`) from another
 data plane node, or using a declarative configuration. In either case, if it
 has the role of `"data_plane"`, it will also keep trying to contact the control
 plane until it's up again.
 
 To change a disconnected data plane node's configuration, you have to remove
-the config cache file (`config.json.gz`), ensure the `declarative_config`
+the LMDB directory (`dbless.lmdb`), ensure the `declarative_config`
 parameter or the `KONG_DECLARATIVE_CONFIG` environment variable is set, and set
 the whole configuration in the referenced YAML file.
 
@@ -168,14 +168,11 @@ the whole configuration in the referenced YAML file.
 {:.badge .enterprise}
 
 By default, data planes store their configuration to the file system
-in an unencrypted cache file, `config.json.gz`, in {{site.base_gateway}}'s
-`prefix` path. You can also choose to encrypt this cache, or disable it entirely.
+in an unencrypted LMDB database, `dbless.lmdb`, in {{site.base_gateway}}'s
+`prefix` path. <<You can also choose to encrypt this database (TODO in progress)>>.
 
 If encrypted, the data plane uses the cluster certificate key to decrypt the
-configuration cache on startup.
-
-See [`data_plane_config_cache_mode`](/gateway/{{page.kong_version}}/reference/configuration/#data_plane_config_cache_mode)
-and [`data_plane_config_cache_path`](/gateway/{{page.kong_version}}/reference/configuration/#data_plane_config_cache_path).
+LMDB database on startup.
 
 ## Limitations
 
