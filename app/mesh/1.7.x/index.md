@@ -89,8 +89,8 @@ every cloud and environment.
 
 <tr>
 <td class="header-row"><span>Zero-Trust and mTLS</span></td>
-<td></td>
-<td></td>
+<td class="no-mobile"></td>
+<td class="no-mobile"></td>
 </tr>
 <tr>
 <td>Built-in CA</td>
@@ -130,8 +130,8 @@ every cloud and environment.
 
 <tr>
 <td class="header-row"><span>Enterprise Application Security</span></td>
-<td></td>
-<td></td>
+<td class="no-mobile"></td>
+<td class="no-mobile"></td>
 </tr>
 <tr>
 <td>FIPS-140 Encryption</td>
@@ -151,8 +151,8 @@ every cloud and environment.
 
 <tr>
 <td class="header-row"><span>Enterprise Security and Governance</span></td>
-<td></td>
-<td></td>
+<td class="no-mobile"></td>
+<td class="no-mobile"></td>
 </tr>
 <tr>
 <td>Roles and permissions (RBAC)</td>
@@ -167,8 +167,8 @@ every cloud and environment.
 
 <tr>
 <td class="header-row"><span>Universal Platform Distributions</span></td>
-<td></td>
-<td></td>
+<td class="no-mobile"></td>
+<td class="no-mobile"></td>
 </tr>
 <tr>
 <td>Containers, Kubernetes & OpenShift</td>
@@ -209,8 +209,8 @@ every cloud and environment.
 
 <tr>
 <td class="header-row"><span>Support and Customer Success</span></td>
-<td></td>
-<td></td>
+<td class="no-mobile"></td>
+<td class="no-mobile"></td>
 </tr>
 <tr>
 <td>Enterprise Support and SLA</td>
