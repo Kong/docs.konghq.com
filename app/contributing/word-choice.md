@@ -39,6 +39,7 @@ Do not capitalize the following generic terms:
 - route
 - consumer
 - service mesh
+- database
 
 ## Word choice
 
