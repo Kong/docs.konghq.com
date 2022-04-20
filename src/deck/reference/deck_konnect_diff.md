@@ -1,5 +1,6 @@
 ---
 title: deck konnect diff
+source_url: https://github.com/Kong/deck/tree/main/cmd
 ---
 
 The konnect diff command is similar to a dry run of the 'deck konnect sync' command.
@@ -76,7 +77,7 @@ This value can also be set using the environment variable DECK_KONG_ADDR
 You may also need to pass in as header the User-Agent that was used to create the cookie-jar.
 
 `--konnect-addr`
-:  Address of the Konnect endpoint. (Default: `"https://konnect.konghq.com"`)
+:  Address of the Konnect endpoint. (Default: `"https://us.api.konghq.com"`)
 
 `--konnect-email`
 :  Email address associated with your Konnect account.
@@ -86,6 +87,9 @@ You may also need to pass in as header the User-Agent that was used to create th
 
 `--konnect-password-file`
 :  File containing the password to your Konnect account.
+
+`--konnect-runtime-group-name`
+:  Konnect Runtime group name.
 
 `--no-color`
 :  Disable colorized output (Default: `false`)

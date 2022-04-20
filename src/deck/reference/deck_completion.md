@@ -1,5 +1,6 @@
 ---
 title: deck completion
+source_url: https://github.com/Kong/deck/tree/main/cmd
 ---
 
 To load completions:
@@ -85,6 +86,21 @@ This value can also be set using the environment variable DECK_KONG_ADDR
 `--kong-cookie-jar-path`
 :  Absolute path to a cookie-jar file in the Netscape cookie format for auth with Admin Server.
 You may also need to pass in as header the User-Agent that was used to create the cookie-jar.
+
+`--konnect-addr`
+:  Address of the Konnect endpoint. (Default: `"https://us.api.konghq.com"`)
+
+`--konnect-email`
+:  Email address associated with your Konnect account.
+
+`--konnect-password`
+:  Password associated with your Konnect account, this takes precedence over `--konnect-password-file` flag.
+
+`--konnect-password-file`
+:  File containing the password to your Konnect account.
+
+`--konnect-runtime-group-name`
+:  Konnect Runtime group name.
 
 `--no-color`
 :  Disable colorized output (Default: `false`)
