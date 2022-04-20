@@ -8,6 +8,7 @@
 title: kong.table
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 ## kong.table
@@ -98,4 +99,3 @@ local t3 = kong.table.merge(t1, t2) -- {4, 5, 3, foo = "f", bar = "b"}
 ```
 
 [Back to top](#kongtable)
-

@@ -8,6 +8,7 @@
 title: kong.router
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 ## kong.router
@@ -68,4 +69,3 @@ end
 ```
 
 [Back to top](#kongrouter)
-

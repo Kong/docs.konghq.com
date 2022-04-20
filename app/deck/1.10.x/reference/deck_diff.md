@@ -1,5 +1,6 @@
 ---
 title: deck diff
+source_url: https://github.com/Kong/deck/tree/main/cmd
 ---
 
 The diff command is similar to a dry run of the 'decK sync' command.

@@ -5,6 +5,7 @@
 #  the files in https://github.com/Kong/kong/tree/master/autodoc/cli
 #
 title: CLI Reference
+source_url: https://github.com/Kong/kong/tree/master/autodoc/cli
 ---
 
 The provided CLI (*Command Line Interface*) allows you to start, stop, and

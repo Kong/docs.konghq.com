@@ -1,6 +1,7 @@
 ---
 # Generated via autodoc/upgrading/generate.lua in the kong/kong repo
 title: Upgrade Kong Gateway OSS
+source_url: https://github.com/Kong/kong/blob/master/UPGRADE.md
 ---
 
 This document guides you through the process of upgrading {{site.ce_product_name}} to the **latest version**.

@@ -8,6 +8,7 @@
 title: kong.service
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 ## kong.service
@@ -253,4 +254,3 @@ end
 ```
 
 [Back to top](#kongservice)
-

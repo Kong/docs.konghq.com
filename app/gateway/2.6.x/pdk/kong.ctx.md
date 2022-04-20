@@ -8,6 +8,7 @@
 title: kong.ctx
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 ## kong.ctx
@@ -110,4 +111,3 @@ end
 ```
 
 [Back to top](#kongctx)
-

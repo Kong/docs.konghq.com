@@ -1,5 +1,6 @@
 ---
 title: deck convert
+source_url: https://github.com/Kong/deck/tree/main/cmd
 ---
 
 The convert command changes configuration files from one format

@@ -8,6 +8,7 @@
 title: kong.node
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 ## kong.node
@@ -126,4 +127,3 @@ local hostname = kong.node.get_hostname()
 ```
 
 [Back to top](#kongnode)
-
