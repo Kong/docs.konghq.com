@@ -85,7 +85,8 @@ module PluginSingleSource
 
       # The plugin hub uses version.html as the filename unless it's the most
       # recent version, in which case it uses index
-      @data['permalink'] = @dir + "/" + permalinkName + ".html"
+      @data['permalink'] = @dir + "/"
+      @data['permalink'] = @data['permalink'] + permalinkName + ".html" unless permalinkName == "index"
 
       # Set the layout if it's not already provided
       @data['layout'] = 'extension' unless self.data['layout']
