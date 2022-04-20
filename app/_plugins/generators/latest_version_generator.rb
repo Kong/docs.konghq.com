@@ -12,6 +12,12 @@ module LatestVersion
     priority :medium
     def generate(site) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
       products_with_latest = %w[gateway mesh KIC deck]
+
+      @page_index = site.config['defaults'].to_h do |s|
+        next [s['scope']['path'], s['values']['version-index']]
+      end
+
+      # Load config file
       site.pages.each do |page|
         parts = Pathname(page.path).each_filename.to_a
         products_with_latest.each do |product|
@@ -40,7 +46,8 @@ module LatestVersion
             site.source,
             page.url.gsub(release_path, 'latest'),
             page.content,
-            page.data
+            page.data,
+            @page_index["#{product_name}/#{release_path}/"]
           )
           site.pages << page
         end
@@ -49,7 +56,7 @@ module LatestVersion
   end
 
   class DuplicatePage < ::Jekyll::Page
-    def initialize(site, base_dir, path, content, data) # rubocop:disable Lint/MissingSuper
+    def initialize(site, base_dir, path, content, data, page_index) # rubocop:disable Lint/MissingSuper, Metric/ParameterLists
       @site = site
       @base = base_dir
       @content = content
@@ -60,6 +67,7 @@ module LatestVersion
       process(@name)
       @data = data.clone
       @data['is_latest'] = true
+      @data['version-index'] = page_index
     end
   end
 end
