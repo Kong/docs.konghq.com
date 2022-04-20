@@ -738,38 +738,6 @@ node to which telemetry updates will be posted in `host:port` format.
 
 ---
 
-#### data_plane_config_cache_mode
-{:.badge .enterprise}
-
-Data planes can store their config to file system as a backup in case the node
-is restarted or reloaded to faster bring the node in configured state or in case
-there are issues connecting to control plane.
-
-This parameter can be used to control the behavior.
-
-To be used by data plane nodes only: `unencrypted` = stores config cache
-unencrypted `encrypted` = stores config cache encrypted `off` = does not store
-the config cache
-
-**Default:** `unencrypted`
-
----
-
-#### data_plane_config_cache_path
-{:.badge .enterprise}
-
-The unencrypted config cache is stored by default to Kong `prefix` with a
-filename `config.cache.json.gz`.
-
-The encrypted config cache is stored by default to Kong `prefix` with a
-filename `.config.cache.jwt` Alternatively you can specify path for config cache
-with this parameter, e.g. `/tmp/kong-config-cache`.
-
-**Default:** none
-
----
-
-
 ### Hybrid Mode Control Plane section
 
 #### cluster_listen
