@@ -1,3 +1,17 @@
+# LEGACY BRANCH ONLY
+/kubernetes-ingress-controller          https://docs.konghq.com/kubernetes-ingress-controller
+/kubernetes-ingress-controller/latest/* https://docs.konghq.com/kubernetes-ingress-controller/latest/:splat
+/deck          https://docs.konghq.com/deck
+/deck/latest/* https://docs.konghq.com/deck/latest/:splat
+/mesh          https://docs.konghq.com/mesh
+/mesh/latest/* https://docs.konghq.com/mesh/latest/:splat
+/konnect       https://docs.konghq.com/konnect
+/konnect/*     https://docs.konghq.com/konnect/:splat
+/konnect-platform       https://docs.konghq.com/konnect-platform
+/konnect-platform/*     https://docs.konghq.com/konnect-platform/:splat
+/contributing       https://docs.konghq.com/contributing
+/contributing/*     https://docs.konghq.com/contributing/:splat
+
 # FREE TRIALS, GENERAL LICENSING
 /free-trial/guide/                    https://konghq.com/install
 /konnect-platform/plans/              https://konghq.com/pricing/
