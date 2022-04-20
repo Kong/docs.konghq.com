@@ -1,5 +1,8 @@
 name: Run Smoke Tests
 on:
+  push:
+   branches:
+     - main
   pull_request:
     types: [synchronize, ready_for_review, opened]
 
