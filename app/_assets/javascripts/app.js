@@ -416,19 +416,30 @@ $("a[data-filter]").on("keypress", function(e) {
     if ($window.width() <= 1099) {
       mobileTable();
     }
+
+    if ($window.width() > 1099) {
+      $("table").each(function (index, value) {
+        $(this).removeClass("mobile");
+      });
+    }
   }));
 
   function mobileTable() {
     $("table").each(function (index, value) {
+      $(this).addClass("mobile");
       var headerCount = $(this).find("thead th").length;
 
       for (i = 0; i <= headerCount; i++) {
-        var headerLabel = $(this)
-          .find("thead th:nth-child(" + i + ")")
-          .text();
+
+        var headerLabel = $(this).find("thead th:nth-child(" + i + ") .mobile-label").text();
+        if (!headerLabel){
+          headerLabel = $(this)
+            .find("thead th:nth-child(" + i + ")")
+            .text();
+        }
 
         $(this)
-          .find("tr td:not([colspan]):nth-child(" + i + ")")
+          .find("tr td:not([colspan],.no-mobile,.header-row):nth-child(" + i + ")")
           .replaceWith(function () {
             return $('<td data-label="' + headerLabel + '">').append(
               $(this).contents()

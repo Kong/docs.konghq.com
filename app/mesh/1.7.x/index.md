@@ -43,10 +43,12 @@ every cloud and environment.
 <tr>
 <th></th>
 <th class="product-name">
+<span class="mobile-label">Kuma</span>
 <img src="/assets/images/logos/kuma.png" alt="Kuma"/>
 <a class="feature-cta" href="https://kuma.io/" target="_blank">Start Free</a>
 </th>
 <th class="product-name">
+<span class="mobile-label">Kong Mesh</span>
 <img src="/assets/images/logos/kong-mesh.png" alt="Kong Mesh"/>
 <a class="feature-cta" href="http://konghq.com/contact-sales" target="_blank">Contact Sales</a>
 </th>
@@ -56,8 +58,8 @@ every cloud and environment.
 
 <tr>
 <td class="header-row"><span>Core Service Mesh Capabilities</span></td>
-<td></td>
-<td></td>
+<td class="no-mobile"></td>
+<td class="no-mobile"></td>
 </tr>
 <tr>
 <td>All Kuma Policies</td>

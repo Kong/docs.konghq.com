@@ -1,6 +1,10 @@
 .features-table {
   width: fit-content;
 
+  .mobile-label {
+    display: none;
+  }
+
   .feature-cta {
     display: inline-block;
     padding: .5em;
@@ -18,7 +22,7 @@
   }
 
   // Undo old styling
-  tr:nth-child(2n), tr:nth-child(2n+1) {
+  &:not(.mobile) tr:nth-child(2n), &:not(.mobile) tr:nth-child(2n+1) {
     background-color: transparent;
     border: 0;
   }
@@ -27,7 +31,7 @@
     width: 12em;
   }
 
-  tbody tr:first-child {
+  tbody tr:first-child, &.mobile {
     .header-row {
       margin-top: 0px;
     }
@@ -63,7 +67,14 @@
     text-align: left;
   }
 
-  td:nth-child(3){
+  &:not(.mobile) td:nth-child(3){
     background: #eff2f8;
   }
+
+  @media only screen and (max-width: 1099px) {
+    .no-mobile {
+      display: none;
+    }
+  }
+
 }
