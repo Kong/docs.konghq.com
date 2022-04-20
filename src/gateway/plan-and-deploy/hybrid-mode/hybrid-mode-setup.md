@@ -501,16 +501,6 @@ kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
     You can also choose to encrypt or disable the data plane configuration
     cache with some additional settings:
 
-    `KONG_DATA_PLANE_CONFIG_CACHE_MODE`
-    : Optional setting for storing the config cache, defaults to `unencrypted`.
-    Change this to `encrypted` if you want to store the data plane's config cache
-    in an encrypted format, or set it to `off` if you don't want to use a cache.
-    Not available in open-source deployments.
-
-    `KONG_DATA_PLANE_CONFIG_CACHE_PATH`
-    : An optional custom path to the config cache. Not available in open-source
-    deployments.
-
 1. If needed, bring up any subsequent data planes using the same settings.
 
 {% endnavtab %}
@@ -581,16 +571,6 @@ and follow the instructions in Steps 1 and 2 **only** to download
 
     You can also choose to encrypt or disable the data plane configuration
     cache with some additional settings:
-
-    `data_plane_config_cache_mode`
-    : Optional setting for storing the config cache, defaults to `unencrypted`.
-    Change this to `encrypted` if you want to store the data plane's config cache
-    in an encrypted format, or set it to `off` if you don't want to use a cache.
-    Not available in open-source deployments.
-
-    `data_plane_config_cache_path`
-    : An optional custom path to the config cache. Not available in open-source
-    deployments.
 
 3. Restart Kong for the settings to take effect:
     ```bash
@@ -679,8 +659,6 @@ Parameter | Description | CP or DP {:width=10%:}
 [`cluster_telemetry_endpoint`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_telemetry_endpoint) <span class="badge enterprise"/> <br>*Required for Enterprise deployments* | The port that the data plane uses to send telemetry data to the control plane. Ignored on control plane nodes. | DP
 [`cluster_control_plane`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_control_plane) <br>*Required* | Address and port that the data plane nodes use to connect to the control plane. Must point to the port configured using the [`cluster_listen`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_listen) property on the control plane node. Ignored on control plane nodes. | DP
 [`cluster_mtls`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_mtls) <br>*Optional* <br><br>**Default:** `shared` | One of `shared` or `pki`. Indicates whether hybrid mode will use a shared certificate/key pair for CP/DP mTLS or if PKI mode will be used. See below sections for differences in mTLS modes. | Both
-[`data_plane_config_cache_mode`](/gateway/{{page.kong_version}}/reference/configuration/#data_plane_config_cache_mode) <span class="badge enterprise"/> <br>*Optional* <br><br>**Default:** `unencrypted` | Determines how the data plane configuration cache is stored. <br> &#8226; `unencrypted`: Stores configuration without encrypting it in `config.cache.json.gz` <br> &#8226; `encrypted`: Encrypts and stores the configuration cache in `.config.cache.jwt` (hidden file). <br> &#8226; `off`: The data plane does not cache configuration | DP
-[`data_plane_config_cache_path`](/gateway/{{page.kong_version}}/reference/configuration/#data_plane_config_cache_path) <span class="badge enterprise"/> <br>*Optional* <br><br>**Default:** Kong [`prefix` path](/gateway/{{page.kong_version}}/reference/configuration/#prefix) | Path to the data plane config cache file, for example `/tmp/kong-config-cache`. If the cache mode is `encrypted`, the filename is `.config.cache.jwt` (hidden file). If the cache mode is `unencrypted`, the filename is `config.cache.json.gz`. | DP
 
 The following properties are used differently between `shared` and `pki` modes:
 
