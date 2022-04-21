@@ -20,17 +20,17 @@ Kong Konnect Cloud <br><br> Konnect Cloud | Use Kong Konnect Cloud for the first
 Kong Gateway <br><br> Gateway | Kong's API gateway runtime, regardless of packaging or license. This term also refers to the enterprise version. <br><br> Use lowercase “gateway” when referring to the general concept of an API gateway. Use uppercase “Gateway” as a shorthand for “Kong Gateway”. When writing about "Kong Gateway", use "Kong Gateway" for the first mention and "Gateway" after.
 Kong Gateway (OSS) | Kong's API gateway runtime, open-source package. Use this name to _specifically_ refer to the open-source package.
 Kong Mesh <br><br> Mesh | Kong's service mesh. Use "Kong Mesh" for the first mention, "Mesh" after.
-Kuma | Kong's open-source service mesh. <br><br> <i class="fa fa-times"></i> Do not use "Kong Kuma". This is an open-source project supported by the CNCF and maintained, not owned, by Kong.
+Kuma | Kong's open-source service mesh. <br><br> <i class="fa fa-times"></i> Don't use "Kong Kuma". This is an open-source project supported by the CNCF and maintained, not owned, by Kong.
 Insomnia | Kong's open-source API client.
-Dev Portal <br><br> Dev Portal, self-managed <br> Dev Portal, cloud | A module for sharing APIs and their specs with developers, and enabling the developers to create applications based on Gateway or Konnect services. <br><br> <i class="fa fa-times"></i> Do not use "Developer Portal".
-ServiceHub | The service catalog in Konnect Cloud. <br><br><i class="fa fa-times"></i> Do not use "Service Hub", "Service hub", or "Servicehub".
-Runtime Manager | The runtime management service in Konnect Cloud <br><br><i class="fa fa-times"></i> Do not use "Runtime manager".
+Dev Portal <br><br> Dev Portal, self-managed <br> Dev Portal, cloud | A module for sharing APIs and their specs with developers, and enabling the developers to create applications based on Gateway or Konnect services. <br><br> <i class="fa fa-times"></i> Don't use "Developer Portal".
+ServiceHub | The service catalog in Konnect Cloud. <br><br><i class="fa fa-times"></i> Don't use "Service Hub", "Service hub", or "Servicehub".
+Runtime Manager | The runtime management service in Konnect Cloud <br><br><i class="fa fa-times"></i> Don't use "Runtime manager".
 Vitals | Analytics for Gateway.
-decK | Kong's CLI tool for managing declarative configuration.<br><br><i class="fa fa-times"></i> Do not capitalize the first letter, even if the name appears at the start of a sentence.
+decK | Kong's CLI tool for managing declarative configuration.<br><br><i class="fa fa-times"></i> Don't capitalize the first letter, even if the name appears at the start of a sentence.
 
 ### Generic terms
 
-Do not capitalize the following generic terms:
+Don't capitalize the following generic terms:
 - plugins
 - control plane
 - data plane
@@ -61,12 +61,28 @@ Use <i class="fa fa-check"></i> | Don't use <i class="fa fa-times"></i>
 Self-managed                    | Self-hosted, on-premise(s)
 Free tier                       | Free mode
 Plus tier                       | Plus mode, Plus subscription
-Enteprise tier                  | Enterprise mode, Enterprise subscription
+Enterprise tier                  | Enterprise mode, Enterprise subscription
 Cloud                           | Software as a Service/SaaS
 cURL                            | curl, CURL
 HTTPie                          | httpie, HTTPIE
 Unix                            | unix, UNIX
 Nginx                           | nginx, NGINX
+
+
+### List punctuation
+Don't use punctuation when creating ordered and unordered lists that are extensions of a sentence:
+Kong Mesh enables the microservices transformation with:
+- Out-of-the-box service connectivity and discovery
+- Zero-trust security
+- Traffic reliability
+- Global observability across all traffic
+
+Do use punctuation when constructing lists that contain full sentences:
+In DB-less mode, you configure Kong Gateway declaratively. Therefore, the Admin API is mostly read-only. The only tasks it can perform are all related to handling the declarative configuration, including:
+
+- Setting a target's health status in the load balancer. 
+- Validating configurations against schemas. 
+- Uploading the declarative configuration using the `/config` endpoint.
 
 ## See also
 
