@@ -25,8 +25,8 @@ Application registration is not supported for custom runtime groups.
 
 ## Enable app registration
 
-1. From the [ServiceHub](https://cloud.konghq.com/servicehub/), open
-a version of the `example_service`.
+1. From the {% konnect_icon servicehub %} [ServiceHub](https://cloud.konghq.com/servicehub/),
+open a version of the `example_service`.
 
 1. From the **Actions** dropdown menu, select **Enable app registration**.
 

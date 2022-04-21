@@ -1,6 +1,6 @@
 <!-- Used in Konnect getting started guides -->
 
-1. From the left navigation menu, open **ServiceHub**.
+1. From the left navigation menu, open {% konnect_icon servicehub %} **ServiceHub**.
 
 1. Click **Add New Service**.
 
