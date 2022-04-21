@@ -54,7 +54,7 @@
       url: /deployment/import
 
 - title: Configure
-  icon: /assets/images/icons/konnect/konnect-settings.svg
+  icon: /assets/images/icons/konnect/icn-cogwheel-nav.svg
   items:
     - text: Service Hub
       url: /configure/servicehub
@@ -96,7 +96,7 @@
               url: /configure/runtime-manager/runtime-instances/runtime-parameter-reference
 
 - title: Publish
-  icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
+  icon: /assets/images/icons/konnect/icn-dev-portal-nav.svg
   url: /dev-portal
   items:
     - text: Manage Service Documentation
@@ -139,7 +139,7 @@
           url: /dev-portal/applications/dev-gen-creds
 
 - title: Analyze
-  icon: /assets/images/icons/documentation/icn-vitals.svg
+  icon: /assets/images/icons/konnect/icn-vitals-nav.svg
   url: /vitals/
   items:
     - text: Analyze Services and Routes
@@ -148,7 +148,7 @@
       url: /vitals/generate-reports
 
 - title: Administer
-  icon: /assets/images/icons/konnect/icn-organizations.svg
+  icon: /assets/images/icons/konnect/icn-organizations-nav.svg
   items:
     - text: Plans and Billing
       items:
