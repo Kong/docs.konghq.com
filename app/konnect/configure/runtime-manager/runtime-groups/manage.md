@@ -48,7 +48,7 @@ You have the **Organization Admin** role in {{site.konnect_saas}}.
 
 1. Click the action menu icon on the far right of a row and select **Edit**.
 
-1. Edit the group details, then click **Update**.
+1. Edit the group details, then click **Update**. -->
 
 ## Delete a runtime group
 {:.badge .enterprise}
@@ -102,4 +102,4 @@ can use decK to accomplish this:
 
 1. Click the action menu icon on the far right of a row and select **Delete**.
 
-1. Enter the group name, then confirm that you want to delete it. -->
+1. Enter the group name, then confirm that you want to delete it.
