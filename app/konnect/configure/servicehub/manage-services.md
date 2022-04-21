@@ -44,7 +44,7 @@ box to save.
 If you have a Service Admin or Organization Admin role, you can share any
 Service that you have access to.
 
-For more information, see [Manage Teams, Roles, and Users](/konnect/org-management/teams-roles-users/#entity-and-role-sharing).
+For more information, see [Manage Teams, Roles, and Users](/konnect/org-management/teams-and-roles/#entity-and-role-sharing).
 
 1. In the {% konnect_icon servicehub %} ServiceHub, select a Service from the list.
 
