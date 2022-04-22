@@ -13,8 +13,6 @@ licenses_body: |
     `payload` | The **Kong Gateway license** in JSON format.
 ---
 
-## Introduction
-
 The {{site.base_gateway}} Licenses feature is configurable through the
 [Admin API]. This feature lets you configure a license in your
 {{site.base_gateway}} cluster, in both traditional and hybrid mode deployments.
@@ -22,7 +20,7 @@ In hybrid mode deployments, the control plane sends licenses configured
 through the `/licenses` endpoint to all data planes in the cluster. The data
 planes use the most recent `updated_at` license.
 
-### List Licenses
+## List licenses
 **Endpoint**
 
 <div class="endpoint get">/licenses/</div>
@@ -57,7 +55,7 @@ be empty.
 }
 ```
 
-### Add License
+## Add license
 
 To create a license using an auto-generated UUID:
 
@@ -90,7 +88,7 @@ HTTP 201 Created
 }
 ```
 
-### Update or Add a License
+## Update or add a license
 
 **Endpoint**
 
@@ -127,7 +125,7 @@ HTTP 200 OK
 }
 ```
 
-### Update a License
+## Update a license
 
 **Endpoint**
 
@@ -163,7 +161,7 @@ HTTP 200 OK
 }
 ```
 
-### List a License
+## List a license
 
 **Endpoint**
 
@@ -186,7 +184,7 @@ HTTP 200 OK
 }
 ```
 
-### Delete a License
+## Delete a license
 
 **Endpoint**
 
@@ -198,6 +196,76 @@ HTTP 200 OK
 
 ```
 HTTP 204 No Content
+```
+
+## Generate a report
+
+Generate a report on the Kong Gateway instance to gather usage data.
+
+<div class="endpoint get">/license/report</div>
+
+Fields available in the report:
+
+Field | Description
+------|------------
+`counters.req_count` | Counts the number of requests made since the license creation date.
+`db_version` | The type and version of the datastore Kong Gateway is using.
+`kong_version` | The version of the Kong Gateway instance.
+`license_key` | An encrypted identifier for the current license key. If no license is present, the field displays as `UNLICENSED`.
+`rbac_users` | The number of users registered with through RBAC.
+`services_count` | The number of configured services in the Kong Gateway instance.
+`system_info` | Displays information about the system running Kong Gateway. <br><br> &#8226; `cores`: Number of CPU cores on the node <br> &#8226; `hostname`: Encrypted system hostname <br> &#8226; `uname`: Operating system
+`workspaces_count` | The number of workspaces configured in the Kong Gateway instance.
+
+**Response**
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+   "counters":{
+      "req_cnt":22
+   },
+   "db_version":"postgres 9.5.20",
+   "kong_version":"1.3-enterprise-edition",
+   "license_key":"ASDASDASDASDASDASDASDASDASD_a1VASASD",
+   "rbac_users":0,
+   "services_count": 27,
+   "system_info":{
+      "cores":6,
+      "hostname":"264da9b95dfa",
+      "uname":"Linux x86_64"
+   },
+   "workspaces_count":1
+}
+```
+
+If there are no licenses stored by {{site.base_gateway}}, the report will include
+`"license_key": "UNLICENSED"`:
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+   "counters":{
+      "req_cnt":22
+   },
+   "db_version":"postgres 9.5.20",
+   "kong_version":"1.3-enterprise-edition",
+   "license_key":"ASDASDASDASDASDASDASDASDASD_a1VASASD",
+   "rbac_users":0,
+   "services_count": 27,
+   "system_info":{
+      "cores":6,
+      "hostname":"264da9b95dfa",
+      "uname":"Linux x86_64"
+   },
+   "workspaces_count":1
+}
 ```
 
 [Admin API]: /enterprise/{{page.kong_version}}/admin-api/
