@@ -76,9 +76,8 @@ id: documentation
             {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
             {% unless page.edition == 'gateway-oss' or page.edition == 'enterprise' or page.edition == 'getting-started-guide' %}
               <blockquote class="important">
-              You are browsing documentation for an outdated version. See the
-              <a href="{% if latest_page_exists == 'true' %}{{latest_page_url}}{% elsif page.edition == 'gateway' %}/gateway/{% elsif page.edition == 'mesh'%}/mesh/{% elsif page.edition == 'kubernetes-ingress-controller/'%}/kubernetes-ingress-controller/{% else %}/{% endif %}">
-                latest documentation here</a>.
+              You are browsing the Kong Gateway documentation archive. See the
+              <a href="https://docs.konghq.com/gateway/"> latest documentation here</a>.
               </blockquote>
             {% endunless %}
             {% endif %}
