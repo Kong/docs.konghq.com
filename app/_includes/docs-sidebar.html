@@ -13,13 +13,13 @@
     <div class="docsets-dropdown dropdown">
       <button class="dropdown-button" id="module-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">
         <span>
-          {% if include.edition == 'enterprise' %}{{site.ee_product_name}}
+          {% if include.edition == 'enterprise' %}Kong Enterprise archive
           {% elsif include.edition == 'konnect' %}{{site.konnect_saas}}
           {% elsif include.edition == 'konnect-platform' %}{{site.konnect_product_name}} Platform
           {% elsif include.edition == 'mesh' %}{{site.mesh_product_name}}
           {% elsif include.edition == 'deck' %}decK
           {% elsif include.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
-          {% elsif include.edition == 'gateway-oss' %}{{site.ce_product_name}}
+          {% elsif include.edition == 'gateway-oss' %}Kong Gateway OSS archive
           {% elsif include.edition == 'gateway' %}{{site.base_gateway}}
           {% elsif include.edition == 'getting-started-guide' %}Get Started with Kong Gateway
           {% elsif include.edition == 'contributing' %}Contribution guidelines
@@ -29,7 +29,17 @@
       </button>
       <ul class="dropdown-menu dropdown-menu-right with-submenu" id="module-list" role="menu" aria-labelledby="module-dropdown" aria-hidden="true">
 
-        <li role="menuitem" tabindex="-1" {% if include.edition == 'gateway' or include.edition == 'gateway-oss' or include.edition == 'enterprise' %}class="active"{% endif %}>
+        <li role="menuitem" tabindex="-1" {% if include.edition == 'enterprise' %}class="active"{% endif %}>
+          <a href="/enterprise/1.5.x/" {% if include.edition == 'enterprise' %}class="active"{% endif %}>Kong Enterprise archive</a>
+        </li>
+        <li role="menuitem" tabindex="-1" {% if include.edition == 'gateway-oss' %}class="active"{% endif %}>
+          <a href="/gateway-oss/1.5.x/" {% if include.edition == 'gateway-oss' %}class="active"{% endif %}>Kong Gateway OSS archive</a>
+        </li>
+        <li role="menuitem" tabindex="-1">
+          <a href="https://docs.konghq.com">Latest documentation</a>
+        </li>
+
+        <!-- <li role="menuitem" tabindex="-1" {% if include.edition == 'gateway' or include.edition == 'gateway-oss' or include.edition == 'enterprise' %}class="active"{% endif %}>
           <a href="/gateway/" {% if include.edition == 'gateway' %}class="active"{% endif %}>Kong Gateway</a>
         </li>
         <li role="menuitem" tabindex="-1" {% if include.edition == 'konnect' %} class="active"{% endif %}>
@@ -60,7 +70,7 @@
         <hr>
         <li role="menuitem" tabindex="-1" {% if include.edition == 'contributing' %} class="active"{% endif %}>
           <a href="/contributing/" {% if include.edition == 'contributing' %}class="active"{% endif %}>Docs contribution guidelines</a>
-        </li>
+        </li> -->
       </ul>
     </div>
 
@@ -78,7 +88,7 @@
       <ul class="dropdown-menu dropdown-menu-right" id="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
         {% if include.edition == 'gateway-oss' or include.edition == 'enterprise' or include.edition == 'getting-started-guide' %}
         <li role="menuitem" tabindex="-1">
-          <a href="/gateway/">
+          <a href="https://docs.konghq.com/gateway/">
             Later versions (Enterprise and OSS)
           </a>
         </li>
@@ -114,13 +124,13 @@
         </li>
         {% endif %}
 
-        {% if include.edition == 'gateway-oss' or include.edition == 'gateway' or include.edition == 'enterprise' %}
+        <!-- {% if include.edition == 'gateway-oss' or include.edition == 'gateway' or include.edition == 'enterprise' %}
         <li role="menuitem" tabindex="-1">
           <a href="https://github.com/Kong/docs.konghq.com/tree/main/archive">
             Archive (pre-2.1)
           </a>
         </li>
-        {% endif %}
+        {% endif %} -->
       </ul>
     </div>
     {% endunless %}

@@ -44,12 +44,12 @@ id: documentation
         <div class="content show-anchor-links">
           <div class="content-header">
             <div class="content-edition">
-              {% if page.edition == 'enterprise' %}{{site.ee_product_name}}
+              {% if page.edition == 'enterprise' %}Kong Gateway Enterprise archive
                 {% elsif page.edition == 'konnect' %}{{site.konnect_saas}}
                 {% elsif page.edition == 'mesh' %}{{site.mesh_product_name}}
                 {% elsif page.edition == 'deck' %}decK
               {% elsif page.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
-                {% elsif page.edition == 'gateway-oss' %}{{site.ce_product_name}}
+                {% elsif page.edition == 'gateway-oss' %}Kong Gateway OSS archive
                 {% elsif page.edition == 'gateway' %}Kong Gateway
                 {% elsif page.edition == 'getting-started-guide' %}Getting Started with Kong Gateway
               {% elsif page.edition == 'contributing' %}Contribution guidelines
