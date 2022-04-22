@@ -187,7 +187,7 @@ At least one of these labels must be applied to a PR or the build will fail.
 
 We check the documentation for broken links using [broken-link-checker](https://github.com/stevenvachon/broken-link-checker) and some custom logic to build a list of excluded URLs.
 
-The link checker runs in two different ways:
+The link che
 
 1. When a pull request is opened, any changed files are detected and those URLs are checked for broken links. This allows us to fix pages incrementally and ensure that we don't break any new links.
 1. A full site scan, against the latest version of each product only. This allows us to check all pages for broken links. Once all broken links are fixed, we can retire this job in favour of the CI check.
