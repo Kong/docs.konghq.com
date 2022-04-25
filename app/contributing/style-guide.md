@@ -46,6 +46,26 @@ For more information about formatting admonitions see [markdown-rules](/contribu
 - Commas and periods always go inside quotation marks, and colons and semicolons (dashes as well) go outside.
   - For example: “There was a storm last night,” Paul said.
 
+### List punctuation
+
+✅ &nbsp; Do use punctuation when constructing lists that contain full sentences:
+
+{:.note .no-icon}
+>In DB-less mode, you configure Kong Gateway declaratively. Therefore, the Admin API is mostly read-only. The only tasks it can perform are all related to handling the declarative configuration, including:
+>
+>- Setting a target's health status in the load balancer. 
+>- Validating configurations against schemas. 
+>- Uploading the declarative configuration using the `/config` endpoint.
+
+❌ &nbsp; Don't use punctuation when creating ordered and unordered lists that are extensions of a sentence:
+
+{:.note .no-icon}
+>Kong Mesh enables the microservices transformation with:
+>- Out-of-the-box service connectivity and discovery
+>- Zero-trust security
+>- Traffic reliability
+>- Global observability across all traffic
+
 ### Placeholder values
 
 - Use single curly braces, all caps text, and underscores between words.
