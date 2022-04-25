@@ -68,27 +68,6 @@ HTTPie                          | httpie, HTTPIE
 Unix                            | unix, UNIX
 Nginx                           | nginx, NGINX
 
-
-### List punctuation
-
-✅ &nbsp; Do use punctuation when constructing lists that contain full sentences:
-
-{:.note .no-icon}
->In DB-less mode, you configure Kong Gateway declaratively. Therefore, the Admin API is mostly read-only. The only tasks it can perform are all related to handling the declarative configuration, including:
->
->- Setting a target's health status in the load balancer. 
->- Validating configurations against schemas. 
->- Uploading the declarative configuration using the `/config` endpoint.
-
-❌ &nbsp; Don't use punctuation when creating ordered and unordered lists that are extensions of a sentence:
-
-{:.note .no-icon}
->Kong Mesh enables the microservices transformation with:
->- Out-of-the-box service connectivity and discovery
->- Zero-trust security
->- Traffic reliability
->- Global observability across all traffic
-
 ## See also
 
 Follow Kong's style guide whenever possible. However, you can also refer to other external style guides for specific word choice and substitution examples.
