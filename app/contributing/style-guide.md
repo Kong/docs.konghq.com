@@ -101,7 +101,7 @@ When deciding which icon to use for a doc, use the following guidelines:
 
 1. Is there a unicode version?
 
-   We use unicode for common icons such as ✅ and ❌. You can copy and paste a
+   We use unicode for common icons such as ✅ &nbsp; and ❌&nbsp;. You can copy and paste a
    unicode icon directly into markdown.
 
 2. Is there a Font Awesome icon?
