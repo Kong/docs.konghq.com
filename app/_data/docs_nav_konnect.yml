@@ -174,18 +174,6 @@
           url: /org-management/okta-idp
     - text: Account and Org Deactivation
       url: /org-management/deactivation
-
-- title: Reference
-  icon: /assets/images/icons/documentation/icn-references-color.svg
-  items:
-    - text: Using the Konnect API
-      url: /reference/konnect-api
-      items:
-    - text: Konnect API Reference
-      url: https://konnect.konghq.com/docs
-      absolute_url: true
-      target_blank: true
-
 - title: Legacy content
   items:
     - text: Manage Accounts and Orgs
