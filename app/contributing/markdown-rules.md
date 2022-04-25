@@ -567,13 +567,24 @@ For example:
 
 ## Icons
 
-You can add the following classes to any icon:
+You can add the following classes to any Font Awesome or custom icon:
 
 * `inline`: The icon appears inline with text.
 * `no-image-expand`: The icon won't open in a modal on click.
 
 If you're using the [`konnect_icon`](#konnect-icon) shortcut, both classes are
 already applied to the icons and you don't need to add them manually.
+
+### Unicode icons
+
+We use unicode icons for common icons such as ✅ &nbsp; and ❌ &nbsp;. To make sure the
+spacing is correct, insert `&nbsp;` after the icon:
+
+```md
+✅ &nbsp; and ❌ &nbsp;
+```
+
+If you don't add it, the icon will look like ❌ this.
 
 ### Font Awesome
 
