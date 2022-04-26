@@ -116,7 +116,7 @@ $ helm repo add kong https://charts.konghq.com
 $ helm repo update
 
 # Helm 3
-$ helm install kong/kong --generate-name
+$ helm install kong/kong --generate-name \
     --namespace kong \
     -f values.yaml \
     --set ingressController.installCRDs=false

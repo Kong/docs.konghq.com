@@ -30,7 +30,7 @@ decK | Kong's CLI tool for managing declarative configuration.<br><br> ❌&nbsp;
 
 ### Generic terms
 
-Do not capitalize the following generic terms:
+Don't capitalize the following generic terms:
 - plugins
 - control plane
 - data plane
@@ -39,6 +39,7 @@ Do not capitalize the following generic terms:
 - route
 - consumer
 - service mesh
+- database
 
 ## Word choice
 
@@ -59,7 +60,7 @@ Neutral pronouns (you, they/them) | Gendered pronouns (he/his, she/her)
 Self-managed                    | Self-hosted, on-premise(s)
 Free tier                       | Free mode
 Plus tier                       | Plus mode, Plus subscription
-Enteprise tier                  | Enterprise mode, Enterprise subscription
+Enterprise tier                  | Enterprise mode, Enterprise subscription
 Cloud                           | Software as a Service/SaaS
 cURL                            | curl, CURL
 HTTPie                          | httpie, HTTPIE
