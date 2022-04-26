@@ -13,13 +13,13 @@
     <div class="docsets-dropdown dropdown">
       <button class="dropdown-button" id="module-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">
         <span>
-          {% if include.edition == 'enterprise' %}Kong Enterprise archive
+          {% if include.edition == 'enterprise' %}Kong Enterprise [ARCHIVE]
           {% elsif include.edition == 'konnect' %}{{site.konnect_saas}}
           {% elsif include.edition == 'konnect-platform' %}{{site.konnect_product_name}} Platform
           {% elsif include.edition == 'mesh' %}{{site.mesh_product_name}}
           {% elsif include.edition == 'deck' %}decK
           {% elsif include.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
-          {% elsif include.edition == 'gateway-oss' %}Kong Gateway OSS archive
+          {% elsif include.edition == 'gateway-oss' %}Kong Gateway OSS [ARCHIVE]
           {% elsif include.edition == 'gateway' %}{{site.base_gateway}}
           {% elsif include.edition == 'getting-started-guide' %}Get Started with Kong Gateway
           {% elsif include.edition == 'contributing' %}Contribution guidelines
@@ -30,10 +30,10 @@
       <ul class="dropdown-menu dropdown-menu-right with-submenu" id="module-list" role="menu" aria-labelledby="module-dropdown" aria-hidden="true">
 
         <li role="menuitem" tabindex="-1" {% if include.edition == 'enterprise' %}class="active"{% endif %}>
-          <a href="/enterprise/1.5.x/" {% if include.edition == 'enterprise' %}class="active"{% endif %}>Kong Enterprise archive</a>
+          <a href="/enterprise/1.5.x/" {% if include.edition == 'enterprise' %}class="active"{% endif %}>Kong Enterprise [ARCHIVE]</a>
         </li>
         <li role="menuitem" tabindex="-1" {% if include.edition == 'gateway-oss' %}class="active"{% endif %}>
-          <a href="/gateway-oss/1.5.x/" {% if include.edition == 'gateway-oss' %}class="active"{% endif %}>Kong Gateway OSS archive</a>
+          <a href="/gateway-oss/1.5.x/" {% if include.edition == 'gateway-oss' %}class="active"{% endif %}>Kong Gateway OSS [ARCHIVE]</a>
         </li>
         <li role="menuitem" tabindex="-1">
           <a href="https://docs.konghq.com">Latest documentation</a>
