@@ -5,10 +5,11 @@ no_version: true
 
 ## Content best practices
 
-|Best practice                      |Do                                             |Don't                                              |
-|---                                |---                                            |---                                                |  
-|Use [US English](https://www.merriam-webster.com) (not British English)|The response **should** look like...|The response **shall** look like...|
+|Best practice                      | ✅&nbsp; Do                                     | ❌&nbsp; Don't                                     |
+|---                                |---                                              |---                                                |  
+|Use [US English](https://www.merriam-webster.com) (not British English)|  The response **should** look like...|  The response **shall** look like...|
 |                                   |In the previous section, you **learned**...    |In the previous section, you **learnt**...         |
+|                                   | Color, recognize, analyze                     | Colour, recognise, analyse                        |
 |Use present tense                  |This `command` **starts** a proxy.             |This `command` **will start** a proxy.             |
 |---                                |---                                            |---                                                |
 |Use active voice                   |You can explore the API using a browser.       |The API can be explored using a browser.           |
@@ -113,6 +114,32 @@ to avoid horizontal scrolling.
 - Borders can be added to screenshots only `-1px` black.
 - Add an `alt` attribute and detailed description of the image.
 - **Do not** use GIFs, as they are not accessible and reduce page performance.
+
+### Icons
+
+When deciding which icon to use for a doc, use the following guidelines:
+
+1. Is there a unicode version?
+
+   We use unicode for common icons such as ✅ &nbsp; and ❌&nbsp;. You can copy and paste a
+   unicode icon directly into markdown.
+
+2. Is there a Font Awesome icon?
+
+   We also use a free version of Font Awesome to supplement unicode icons.
+   Check out [their catalog](https://fontawesome.com/v5/search?m=free) to find
+   an icon code, then see our [icon usage instructions](/contributing/markdown-rules/#icons).
+
+3. Does the [`/_assets/images/icons/`](https://github.com/Kong/docs.konghq.com/tree/main/app/_assets/images/icons)
+   folder contain the icon that you're looking for?
+
+   For custom icons, we have to import them manually. This includes all of the
+   icons used in docs navigation and all icons that are used for UI labels in
+   Konnect and Kong's UIs. If you find one, see our
+   [icon usage instructions](/contributing/markdown-rules/#icons).
+
+4. If the answer to all of the above is "no", you can
+   [upload a custom image](/contributing/markdown-rules/#icons).
 
 ## Links
 

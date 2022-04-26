@@ -265,7 +265,7 @@ Here's some more content.
 {% endnavtab %}
 {% endnavtabs %}
 
-You can automatically select a specific tab (or set of tabs) on a page using the `tab` URL parameter. 
+You can automatically select a specific tab (or set of tabs) on a page using the `tab` URL parameter.
 For example:
 https://docs.konghq.com/gateway/2.7.x/get-started/comprehensive/protect-services/?tab=using-deck-yaml
 
@@ -285,7 +285,7 @@ If there are multiple sets of tabs to enable, you can provide multiple tab names
 ?tab=using-the-admin-api,using-deck-yaml
 ```
 
-This will activate the `Using the Admin API` tab, then the `Using decK (YAML)` tabs. The order may be important if you are reusing tab names across contexts. 
+This will activate the `Using the Admin API` tab, then the `Using decK (YAML)` tabs. The order may be important if you are reusing tab names across contexts.
 See this [sample link to the getting started guide with Admin API and decK tabs selected](/gateway/2.7.x/get-started/comprehensive/protect-services/?tab=using-the-admin-api,using-deck-yaml).
 
 When using `?tab=`, it *must* come before any URL fragments (`#`) in the URL:
@@ -564,3 +564,71 @@ For example:
 ```
 {% endnavtab %}
 {% endnavtabs %}
+
+## Icons
+
+You can add the following classes to any Font Awesome or custom icon:
+
+* `inline`: The icon appears inline with text.
+* `no-image-expand`: The icon won't open in a modal on click.
+
+If you're using the [`konnect_icon`](#konnect-icon) shortcut, both classes are
+already applied to the icons and you don't need to add them manually.
+
+### Unicode icons
+
+We use unicode icons for common icons such as ✅ &nbsp; and ❌ &nbsp;. To make sure the
+spacing is correct, insert `&nbsp;` after the icon:
+
+```md
+✅ &nbsp; and ❌ &nbsp;
+```
+
+If you don't add it, the icon will look like ❌ this.
+
+### Font Awesome
+
+To use a Font Awesome icon, use an `<i>` HTML tag with the name of the icon
+set as its class.
+
+For example, the following code snippet:
+
+```
+<i class="fas fa-anchor"></i>
+```
+
+Resolves to <i class="fas fa-anchor"></i>.
+
+
+### Custom icons
+
+Custom icons for the Kong docs site are located in the
+[`/_assets/images/icons/`](https://github.com/Kong/docs.konghq.com/tree/main/app/_assets/images/icons)
+directory. To add an icon, ensure it meets the following criteria:
+* SVG format
+* The same icon doesn't already exist in the folder, in unicode, or in the
+Font Awesome library.
+
+For most custom icons ([except Konnect](#konnect-icons)), access them like
+you would any image in markdown. For example:
+
+```
+![document icon](/assets/images/icons/icn-doc.svg){:.inline .no-image-expand}
+```
+
+This resolves to ![document icon](/assets/images/icons/icn-doc.svg){:.inline .no-image-expand}.
+
+### Konnect icons
+
+Konnect icons can be found in `app/_assets/images/icons/konnect`.
+When adding an icon to this folder, use the naming convention `icn-<name>`.
+
+You can then access a Konnect icon with a shortcut for easy use in text:
+
+```
+{% raw %}{% konnect_icon runtimes %}{% endraw %}
+# Uses the icon located at /app/_assets/images/icons/konnect/icn-runtimes.svg
+
+{% raw %}{% konnect_icon dev-portal %}{% endraw %}
+# Uses the icon located at /app/_assets/images/icons/konnect/icn-dev-portal.svg
+```
