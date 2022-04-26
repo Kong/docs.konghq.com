@@ -5,7 +5,7 @@ no_version: true
 
 ## Content best practices
 
-|Best practice                      | ✅ Do                                           | ❌ Don't                                         |
+|Best practice                      | ✅&nbsp; Do                                     | ❌&nbsp; Don't                                     |
 |---                                |---                                              |---                                                |  
 |Use [US English](https://www.merriam-webster.com) (not British English)|  The response **should** look like...|  The response **shall** look like...|
 |                                   |In the previous section, you **learned**...    |In the previous section, you **learnt**...         |
