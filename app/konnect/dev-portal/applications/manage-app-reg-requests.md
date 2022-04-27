@@ -31,7 +31,7 @@ yet had their request reviewed by a {{site.konnect_short_name}} admin, if auto a
 ## Requests Page Applications Tab
 
 To access the Requests page Applications tab, from the {{site.konnect_short_name}} navigation menu, click
-**Connections** > **Requests** > **Applications** tab.
+{% konnect_icon connections %} **Connections** > **Requests** > **Applications** tab.
 
 ![Konnect Application Registration Requests](/assets/images/docs/konnect/konnect-requests-app-reg.png)
 
@@ -47,7 +47,7 @@ pending requests is displayed in the Requests menu and the Applications tab.
 
 ### Approve an app registration request {#approve-app-reg}
 
-1. Click **Connections > Requests > Applications** tab.
+1. Click {% konnect_icon connections %} **Connections > Requests > Applications** tab.
 
    Any pending application requests are
    displayed in the Requests page Applications tab.
@@ -71,7 +71,7 @@ An application registration request that
 was rejected will require the developer to submit another request after
 unregistering their application from a Service.
 
-1. Click **Connections > Requests > Applications** tab.
+1. Click {% konnect_icon connections %} **Connections > Requests > Applications** tab.
 
    Any pending application requests
    are displayed in the Requests page Applications tab.
@@ -101,7 +101,7 @@ Delete an application registration request. The Delete action cannot be undone.
 After a request is deleted, a developer can register the app for the Service again. The application still
 appears in the Select Application list in the Register for Service dialog for the Service.
 
-1. Click **Connections > Requests > Applications** tab.
+1. Click {% konnect_icon connections %} **Connections > Requests > Applications** tab.
 
    Any pending application requests are displayed
    in the Requests page Applications tab.

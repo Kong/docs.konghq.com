@@ -25,8 +25,8 @@ Application registration is not supported for custom runtime groups.
 
 ## Enable app registration
 
-1. From the [ServiceHub](https://cloud.konghq.com/servicehub/), open
-a version of the `example_service`.
+1. From the {% konnect_icon servicehub %} [ServiceHub](https://cloud.konghq.com/servicehub/),
+open a version of the `example_service`.
 
 1. From the **Actions** dropdown menu, select **Enable app registration**.
 
@@ -52,7 +52,7 @@ Link an application to a published Service.
 
 1. Log into the {{site.konnect_short_name}} Dev Portal.
 
-    You can always find your Dev Portal URL under the [Dev Portal menu](https://konnect.konghq.tech/portal/portal-url).
+    You can always find your Dev Portal URL under the [Dev Portal menu](https://cloud.konghq.com/portal/published-services).
 
 1. In the {{site.konnect_short_name}} Dev Portal, click **My Apps** from the
 dropdown menu in the upper right.

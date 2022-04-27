@@ -14,7 +14,7 @@ proxy downtime.
   * [Linux](/konnect/configure/runtime-manager/runtime-instances/gateway-runtime-conf)
   * [Kubernetes (Helm)](/konnect/configure/runtime-manager/runtime-instances/gateway-runtime-kubernetes)
 
-2. Open the Runtime Manager, then choose a runtime group.
+2. Open {% konnect_icon runtimes %} Runtimes, then choose a runtime group.
 Make sure that your new runtime instance appears in the list of runtime
 instances, is in _Connected_ status, and that it was last seen _Just Now_.
 For example:

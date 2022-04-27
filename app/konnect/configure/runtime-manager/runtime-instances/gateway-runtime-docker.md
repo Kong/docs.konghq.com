@@ -32,9 +32,7 @@ runtime instances.
 
 ### Run the quick setup script
 
-1. From the left navigation menu, open
-![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
-**Runtimes**.
+1. From the left navigation menu, open {% konnect_icon runtimes %} **Runtimes**.
 
 2. Select a runtime group.
 
