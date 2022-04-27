@@ -16,7 +16,7 @@ historical data for the following lengths of time:
 * **Plus:** 6 months
 * **Enterprise:** 1 year
 
-In the [ServiceHub](https://konnect.konghq.com/servicehub/), you can see
+In the [ServiceHub](https://cloud.konghq.com/servicehub/), you can see
 [activity graphs](/konnect/vitals/analyze/) for Services, Service versions, or
 Routes for the past 12 hours.
 For Services, these graphs display request counts. For Service versions and
