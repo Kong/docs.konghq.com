@@ -1,0 +1,112 @@
+# Kong Docs Build/Test Container
+FROM quay.io/centos/centos:stream9
+
+ARG DNF_FLAGS="\
+  -y \
+  --nodocs \
+  --releasever 9 \
+  --allowerasing \
+  --setopt install_weak_deps=false \
+"
+
+ARG DNF_PACKAGES="\
+ jq \
+ git \
+ tar \
+ dnf \
+ zip \
+ vim \
+ make \
+ zstd \
+ wget \
+ sudo \
+ rsync \
+ unzip \
+ nodejs \
+ gnupg2 \
+ openssl \
+ dnsutils \
+ procps-ng \
+ python3-pip \
+ curl-minimal \
+ coreutils-single \
+ dnf-plugins-core \
+ redhat-rpm-config \
+ glibc-minimal-langpack \
+ rubygem-bundler \
+ rubygems-devel \
+ ruby-devel \
+ ruby-libs \
+ ruby \
+"
+
+ENV PATH=/root/.local/bin:/root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/rvm/bin
+WORKDIR /site
+
+################################################################################
+# Build Container from scratch
+
+# NPM Install
+RUN set -ex \
+ && curl --output /tmp/npm-install.sh -L https://rpm.nodesource.com/setup_18.x \
+ && . /tmp/npm-install.sh \
+ && npm install -g npm \
+ && npm install -g update \
+ && npm install -g gulp netlify-cli \
+ && dnf clean all ${DNF_FLAGS} \
+ && rm -rf \
+       /var/cache/* \
+       /tmp/npm-install.sh \
+&& echo
+
+# RPM Package Install
+RUN set -ex \
+ && dnf makecache \
+ && dnf install ${DNF_FLAGS} ${DNF_PACKAGES} \
+ && ln -sf /usr/bin/python3 /usr/bin/python \
+ && ln -sf /usr/bin/pip3 /usr/bin/pip \
+ && dnf clean all ${DNF_FLAGS} \
+ && rm -rf \
+       /var/cache/* \
+&& echo
+
+# Ruby Install
+RUN set -ex \
+ && curl --output /tmp/ruby-install.sh -L https://get.rvm.io \
+ && . /tmp/ruby-install.sh \
+ && rvm install "ruby-3.1.2" \
+ && gem install rubygems-update \
+ && source /etc/profile.d/rvm.sh \
+ && gem install bundler:2.3.7 \
+ && gem install jekyll \
+ && ruby --version \
+ && gem --version \
+ && dnf clean all ${DNF_FLAGS} \
+ && rm -rf \
+       /var/cache/* \
+       /tmp/ruby-install.sh \
+&& echo
+
+# Test install/build
+RUN set -ex \
+ && git clone https://github.com/Kong/docs.konghq.com.git /site \
+#&& make install \
+#&& make build \
+&& echo
+
+################################################################################
+USER root
+ADD /rootfs /
+ENTRYPOINT /entrypoint.sh
+CMD /bin/bash
+
+################################################################################
+# Create User & Group
+#ARG UID=1001
+#ARG USR=docs
+#ARG GRP=docs
+#RUN set -ex \
+#     && useradd --user-group --uid $UID --groups ${GRP} ${USR} \
+#     && echo "$USR ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
+#     && usermod -aG docker runner \
+#    && echo

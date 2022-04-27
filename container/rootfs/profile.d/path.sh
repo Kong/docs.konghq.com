@@ -1,0 +1,1 @@
+PATH=/usr/local/rvm/gems/ruby-3.1.2/bin:/usr/local/rvm/gems/ruby-3.1.2@global/bin:/usr/local/rvm/rubies/ruby-3.1.2/bin:/usr/local/rvm/bin:/root/.local/bin:/root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
