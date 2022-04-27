@@ -16,7 +16,8 @@ You can't use your Konnect credentials to log in here.
 
 1. Access the Dev Portal in one of the following ways:
     * From [{{site.konnect_short_name}}](https://cloud.konghq.com/) menu,
-    go to **Dev Portal**. From there, click the **Portal URL**.
+    go to {% konnect_icon dev-portal %} **Dev Portal**. From there, click the
+    **Portal URL**.
     * Directly visit the default Dev Portal URL:
 
     ```
@@ -47,7 +48,8 @@ into the Dev Portal.
 {% endnavtab %}
 {% navtab Public Dev Portal %}
 
-1. Open **Dev Portal** from the left side menu, then click **Settings**.
+1. Open {% konnect_icon dev-portal %} **Dev Portal** from the left side menu,
+then click **Settings**.
 
 1. In the **Public Portal** pane, toggle the switch to **Enabled**.
 

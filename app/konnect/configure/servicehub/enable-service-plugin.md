@@ -6,7 +6,8 @@ Enable, update, disable, or delete a plugin for a Service version.
 
 ## Enable a Plugin
 
-1. From the left navigation menu, open the **Services** page.
+1. From the left navigation menu, open the {% konnect_icon servicehub %}
+**ServiceHub**.
 
 2. Open a Service version.
 

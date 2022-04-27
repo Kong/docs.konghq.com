@@ -32,8 +32,7 @@ roles.
 ## Manage teams and roles
 
 You can find a list of all teams in your organization through
-![](/assets/images/icons/konnect/icn-organizations.svg){:.inline .no-image-expand .konnect-icon}
-**Organization** > **Teams** in Konnect.
+{% konnect_icon organizations %} **Organization** > **Teams** in Konnect.
 
 * **Team:** A group of users with access to the same roles. Teams are useful
 for assigning access by functionality, as they can provide granular access to
@@ -84,8 +83,7 @@ through the Runtime Manager.
 
 ### Create a team
 
-1. From the left navigation menu in Konnect, open the
-![](/assets/images/icons/konnect/icn-organizations.svg){:.inline .no-image-expand .konnect-icon}
+1. From the left navigation menu in Konnect, open the {% konnect_icon organizations %}
  **Organization** link.
 2. Click **+ New Team**.
 3. Enter a team name and description. Both fields are required.
@@ -99,8 +97,7 @@ configuration page.
 You can edit the roles for any custom team. Any changes made to a team's roles
 are automatically applied to all team members.
 
-1. From the left navigation menu in Konnect, open the
-![](/assets/images/icons/konnect/icn-organizations.svg){:.inline .no-image-expand .konnect-icon}
+1. From the left navigation menu in Konnect, open the {% konnect_icon organizations %}
  **Organization** link.
 2. Choose a team from the list.
 
@@ -123,8 +120,7 @@ all entities of the selected type.
 
 Edit team membership for any team, custom or predefined.
 
-1. From the left navigation menu in Konnect, open the
-![](/assets/images/icons/konnect/icn-organizations.svg){:.inline .no-image-expand .konnect-icon}
+1. From the left navigation menu in Konnect, open the {% konnect_icon organizations %}
  **Organization** link.
 2. Choose a team from the list.
 3. On the **Members** tab, click **+ New Member**.
@@ -141,8 +137,7 @@ unassigned from the team.
 {:.warning}
 > **Warning:** Deleting a team is irreversible.
 
-1. From the left navigation menu in Konnect, open the
-![](/assets/images/icons/konnect/icn-organizations.svg){:.inline .no-image-expand .konnect-icon}
+1. From the left navigation menu in Konnect, open the {% konnect_icon organizations %}
  **Organization** link.
 
 1. Choose a team from the list, open the action menu on the right of the row,

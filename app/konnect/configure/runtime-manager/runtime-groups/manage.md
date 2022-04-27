@@ -21,8 +21,8 @@ You have the **Organization Admin** role in {{site.konnect_saas}}.
 ## Create a runtime group
 {:.badge .enterprise}
 
-1. In Konnect, open ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
-**Runtimes** from the left side menu.
+1. In Konnect, open {% konnect_icon runtimes %} **Runtimes** from the left side
+ menu.
 
 1. Click **Create Runtime Group**.
 

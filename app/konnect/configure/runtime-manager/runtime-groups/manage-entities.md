@@ -122,7 +122,7 @@ for all configuration options.
 
 ## Configure a Kong Gateway entity
 
-1. From the left navigation menu in Konnect, open the ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
+1. From the left navigation menu in Konnect, open {% konnect_icon runtimes %}
 **Runtimes**.
 
 2. Select an entity to configure from the menu, then click **+ Add {Entity Name}**.
@@ -136,8 +136,8 @@ for all configuration options.
 
 ## Update or delete a Kong Gateway entity
 
-1. Open the ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
-**Runtimes**, then select an entity to configure from the menu.
+1. Open {% konnect_icon runtimes %} **Runtimes**, then select an entity to
+configure from the menu.
 
 2. Open the action menu on the right of a row, and click **Edit** or **Delete**.
 
@@ -153,7 +153,7 @@ but lets you control whether the plugin is active or not.
 
 ### Configure a plugin
 
-1. From the left navigation menu in Konnect, open the ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
+1. From the left navigation menu in Konnect, open {% konnect_icon runtimes %}
 **Runtimes**.
 
 2. Select **Plugins** from the menu, then click **+ Install Plugin**.
@@ -179,8 +179,8 @@ Disable a global plugin from the Runtime Manager.
 Disabling a plugin leaves its configuration intact, and you can re-enable the
 plugin at any time.
 
-1. Open the ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
-**Runtimes**, then select **Plugins** from the menu.
+1. Open {% konnect_icon runtimes %} **Runtimes**, then select **Plugins**
+from the menu.
 
 2. Find your plugin in the plugins list and click the toggle in the **Enabled** column.
 
