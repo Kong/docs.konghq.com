@@ -40,7 +40,8 @@ out some customization options.
 You can customize the Dev Portal to make it your own.
 Let's change up a couple of things:
 
-1. Return to Konnect. From the left side menu, open **Dev Portal**, then **Appearance**.
+1. Return to Konnect. From the left side menu, open {% konnect_icon dev-portal %}
+**Dev Portal**, then **Appearance**.
 
 1. Try out a couple of customization options - whatever you like.
 

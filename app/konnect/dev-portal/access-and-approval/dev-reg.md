@@ -14,9 +14,10 @@ Admins can find the Dev Portal URL in [cloud.konghq.com](https://cloud.konghq.co
 {:.note}
 > **Note**: If you are an admin planning to create Applications and register Services, you must also [Register as a Developer](#register-as-a-developer).
 
-1. As an admin, log in to [cloud.konghq.com](https://cloud.konghq.com/). 
+1. As an admin, log in to [cloud.konghq.com](https://cloud.konghq.com/).
 
-2. Use the left-side menu to navigate to **Dev Portal**, then **Published Services**.
+2. Use the left-side menu to navigate to {% konnect_icon dev-portal %}
+**Dev Portal**, then **Published Services**.
 
 3. Under the title heading **Published Services**, see the **Portal URL** link.
 
@@ -28,13 +29,13 @@ All Developers must register through the {{site.konnect_short_name}} Dev Portal.
 
 2. At the bottom of the login form, click **Sign Up**.
 
-3. Fill out the registration form and click **Create Account**. 
+3. Fill out the registration form and click **Create Account**.
 
    You should receive an email to confirm your email address. Click the verification link in the email.
 
 5. Set a password for your account.
 
-    After you have confirmed your email address and set a password, you’ll be able to log into the Dev Portal once your account admin has approved your request. 
+    After you have confirmed your email address and set a password, you’ll be able to log into the Dev Portal once your account admin has approved your request.
 
 ## Registration Approval
 
