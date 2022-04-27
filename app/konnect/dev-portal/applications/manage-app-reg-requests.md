@@ -33,19 +33,18 @@ yet had their request reviewed by a {{site.konnect_short_name}} admin, if auto a
 To access the Requests page Applications tab, from the {{site.konnect_short_name}} navigation menu, click
 {% konnect_icon connections %} **Connections** > **Requests** > **Applications** tab.
 
-![Konnect Application Registration Requests](/assets/images/docs/konnect/konnect-requests-app-reg.png)
 
-In the Requests page Applications tab, you can:
+From the Applications tab, you can:
 
-- Search for an application in the list by its name.
 - [Approve a request](#approve-app-reg) for app registration with a Service.
 - [Reject a request](#reject-app-reg) for app registration with a Service.
 - [Delete a request](#delete-app-reg) for app registration with a Service.
+- Search for an application in the list by its name.
 
 If there are no pending requests, the No Application Requests message is displayed. The number of
 pending requests is displayed in the Requests menu and the Applications tab.
 
-### Approve an app registration request {#approve-app-reg}
+### Approve a Request {#approve-app-reg}
 
 1. Click {% konnect_icon connections %} **Connections > Requests > Applications** tab.
 
@@ -63,9 +62,7 @@ pending requests is displayed in the Requests menu and the Applications tab.
    is also updated in the Services pane of the
    [application details](/konnect/dev-portal/applications/dev-apps#app-details-page) page.
 
-### Reject an app registration request {#reject-app-reg}
-
-Rejected requests cannot be approved once rejected.
+### Reject a Request {#reject-app-reg}
 
 An application registration request that
 was rejected will require the developer to submit another request after
@@ -91,15 +88,11 @@ unregistering their application from a Service.
    The application will not appear in the Select Application list in the Register service dialog
    until the application is first unregistered.
 
-   ![Konnect Unregister Rejected Application Request to a Service](/assets/images/docs/konnect/konnect-unregister-rejected-app.png)
-
 
 ### Delete an app registration request {#delete-app-reg}
 
-Delete an application registration request. The Delete action cannot be undone.  
-
 After a request is deleted, a developer can register the app for the Service again. The application still
-appears in the Select Application list in the Register for Service dialog for the Service.
+appears in the Select Application list in the Register for Service dialog for the Service. The Delete action cannot be undone.  
 
 1. Click {% konnect_icon connections %} **Connections > Requests > Applications** tab.
 

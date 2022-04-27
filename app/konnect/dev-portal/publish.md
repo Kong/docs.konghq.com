@@ -3,34 +3,37 @@ title: Publish a Service to the Dev Portal
 no_version: true
 ---
 
-Publish Services to the Dev Portal to expose them to your application
-developers.
-
 Through ServiceHub, you can publish any Service in your catalog and its
-documentation to the Dev Portal.
+documentation to the Dev Portal. Once a Service is published in the Dev Portal, you can expose it to application developers.
 
 ## Publish a Service
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %}
-**ServiceHub** and select a Service.
+1. From the left navigation menu, open the **ServiceHub** page and select a
+Service.
 
-2. Click on the **Actions** dropdown and select **Publish to Portal**.
+2. Click on the **Service Actions** dropdown menu and select **Publish to Portal**.
 
-    This publishes all of the Service's version specs to the Dev Portal.
+    This publishes a Service's API specs to the Dev Portal.
 
-3. Access the Dev Portal in any of the following ways:
-    * Click the gear icon for any published Service and select **View in portal**.
-    * From the left navigation menu again, go to **Dev Portal**.
-    From there, click the **Portal URL**.
-    * Directly visit the default Dev Portal URL:
+## Access the Developer Portal
 
-    ```
-    https://<org-name>.us.portal.konghq.com/
-    ```
+1. From the left navigation menu, open the **DevPortal** page.
+
+    The DevPortal page contains a list of all of your Published Services. 
+
+2. Click the Kebab Button next to the desired service, then click **View in Portal**.
+    
+    * You can also click **Konnect Portal URL** from this page.
+
+    {:.note}
+    >**Note**: You can also visit the default URL for your Developer Portal at `https://<org-name>.us.portal.konghq.com/`
+
 
 ## Unpublish a Service
 
-1. In the left navigation menu, open the {% konnect_icon servicehub %}
-**ServiceHub** and select a Service.
+1. From the left navigation menu, open the **ServiceHub** page and select a Service.
 
-2. Click on the **Actions** dropdown and select **Unpublish from Portal**.
+2. Click on the **Service Actions** dropdown and select **Unpublish from Portal**.
+
+
+### This section needs a concluding paragraph about the dev portal. 

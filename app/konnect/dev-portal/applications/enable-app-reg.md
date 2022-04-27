@@ -1,5 +1,5 @@
 ---
-title: Enable Application Registration for a Service
+title: Enable and Disable Application Registration for a Service
 no_version: true
 toc: true
 ---
@@ -30,7 +30,7 @@ consumers on the
 Shared Config page. Do not delete the ACLs associated with a consumer managed
 by app registration.
 
-You can [disable application registration](/konnect/dev-portal/applications/disable-app-reg/)
+You can [disable application registration](#disable)
 any time at your discretion.
 
 ## Prerequisites
@@ -52,52 +52,54 @@ permissions.
 
 ## Enable App Registration for the Key Authentication Flow {#konnect-key-auth-flow}
 
-1. From the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %}
-**ServiceHub** and select a Service.
+1. From the {{site.konnect_short_name}} menu, click **ServiceHub** and select a
+Service. Now, click the **Versions** button and select the desired version. 
 
-1. From the **Actions** dropdown menu, select **Enable app registration**.
+2. From the **Actions** dropdown menu, select **Enable app registration**.
 
-1. Select `key-auth` from the **Auth Type** list.
+3. Select `key-auth` from the **Auth Type** list.
+  Optionally, click to enable **Auto Approve** for application registrations for the selected Service.
 
-1. (Optional) Click to enable **Auto Approve** for application registrations for the selected Service.
+6. **Optional** click to enable **Auto Approve**.
 
-   Any developer registration requests for an application are automatically approved. A {{site.konnect_saas}}
-    admin does not need to
-   [manually approve](/konnect/dev-portal/applications/manage-app-reg-requests/) application
-   registration requests for developers.
+      Any developer registration
+      requests for an application are automatically approved. A {{site.konnect_short_name}}
+      cloud admin does not need to
+      [manually approve](/konnect/dev-portal/applications/manage-app-reg-requests/) application
+      registration requests for developers.
 
-   You can also [enable Auto Approve portal-wide](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps)
-   using the Settings page for the Dev Portal. If Auto Approve is
-   enabled portal-wide, it overrides the per-Service Auto Approve setting.
+      You can also [enable Auto Approve portal-wide](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps)
+      using the Portal Settings. If Auto Approve is
+      enabled or disabled portal-wide, it overrides the per Service Auto Approve setting.
 
-1. Click **Enable**.
+4. Click **Enable**.
 
     With app registration enabled, all versions of this service now include
     read-only entries for the `acl` and `key-auth` plugins.
 
 ## Enable App Registration for the OpenID Connect Flow {#oidc-flow}
 
-1. From the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %}
-**ServiceHub** and select a Service.
+1. From the {{site.konnect_short_name}} menu, click **ServiceHub** and select a
+Service. Now, click the **Versions** button and select the desired version. 
 
-1. From the **Actions** menu, click **Enable app registration**.
+2. From the **Actions** menu, click **Enable app registration**.
 
-1. Select `openid-connect` (default) from the **Auth Type** list.
+3. Select `openid-connect` (default) from the **Auth Type** list.
 
    Refer to the [descriptions](#openid-config-params) in the next section for more information
    about each field.
 
-   1. (Required) Enter your issuer URL in the **Issuer** field.
+   1. **Required** enter your issuer URL in the **Issuer** field.
 
-   2. (Required) Enter one or more scopes in the **Scopes** field.
+   2. **Required** enter one or more scopes in the **Scopes** field.
 
-   3. (Required) Enter the claim in the **Consumer claims** field.
+   3. **Required** enter the claim in the **Consumer claims** field.
 
-   4. (Required) Enter one or more auth methods in the **Auth method** field.
+   4. **Required** enter one or more auth methods in the **Auth method** field.
 
-   5. (Optional) Click to enable **Hide Credentials** from the upstream service.
+   5. **Required** click to enable **Hide Credentials** from the upstream service.
 
-   6. (Optional) Click to enable **Auto Approve**.
+   6. **Optional** click to enable **Auto Approve**.
 
       Any developer registration
       requests for an application are automatically approved. A {{site.konnect_short_name}}
@@ -127,6 +129,33 @@ permissions.
 
    For more background information about OpenID Connect plugin parameters, see
    [Important Configuration Parameters](/hub/kong-inc/openid-connect/#important-configuration-parameters).
+
+## Disable App Registration for a Service {#disable}
+
+You can disable app registration for a Service when an API
+no longer requires authentication. If you want to disable Auto Approve at the
+Service level, disable app registration and then enable it again with the Auto Approve
+toggle set to disabled.
+
+**Disable application registration from the Service Version page only**.
+Do not attempt to disable application registration by deleting or disabling the
+read-only application registration plugins (`acl` and `key-auth` or `openid-connect`).
+Attempting to remove them manually will break your Service. See the
+Application Overview section on
+[{{site.konnect_short_name}}-managed plugins](/konnect/dev-portal/applications/application-overview/#konnect-managed-plugins)
+for more information.
+
+You can
+[enable application registration](/konnect/dev-portal/applications/enable-app-reg)
+again any time.
+
+## Disable app registration
+
+1. From the {{site.konnect_short_name}} menu, click **Services** and select a Service.
+
+1. From the **Actions** menu, select **Disable app registration**.
+
+1. Click **Disable**.
 
 ## Troubleshooting
 

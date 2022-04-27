@@ -12,6 +12,7 @@ Here, you have the ability to modify the following:
 * Logos: default logo and fav icon
 * Home Page Header: welcome message, primary header, and header image
 * Colors: background, text, and button colors
+* Themes: default theme and dark mode
 * Fonts
 
 For details on the requirements for each customizable option, hover over the information (`i`) icon next to each item in the UI.

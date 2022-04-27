@@ -3,10 +3,9 @@ title: Manage Application Service Connections
 no_version: true
 ---
 
-Revoke, reinstate, or delete an application's connection to a Service. When a developer
+In Konnect Cloud you can Revoke, reinstate, or delete an application's connection to a Service. When a developer
 [registers a request](/konnect/dev-portal/applications/dev-reg-app-service) to access a Service for an
-application, and the request is approved either [automatically](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps)
-or by a {{site.konnect_short_name}} admin, it creates an application connection between the
+application, and the request is approved, it creates an application connection between the
 developer, their applications, and the associated Service Versions.
 
 <!---When the state of the application changes, an email is sent to the developer to notify
@@ -35,7 +34,7 @@ The Applications page shows all existing applications that have approved access 
 To access the Applications page, from the {{site.konnect_product_name}} navigation menu,
 click {% konnect_icon connections %} **Connections** > **Applications**.
 
-![Konnect Applications](/assets/images/docs/konnect/konnect-apps-page.png)
+
 
 Use the Applications page to:
 
@@ -52,7 +51,6 @@ The application details page shows all of its connections to a Service.
 To access the Applications page, from the {{site.konnect_short_name}} navigation menu,
 click {% konnect_icon connections %} **Connections** > **Applications** and click on an application row.
 
-![Konnect Revoke or Delete an Application Connection](/assets/images/docs/konnect/konnect-revoke-delete-app-connection.png)
 
 Use the connection details page to:
 

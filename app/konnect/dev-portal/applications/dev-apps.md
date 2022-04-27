@@ -1,51 +1,56 @@
 ---
-title: Create, Edit, and Delete an Application
+title: Applications and Services
 no_version: true
 toc: true
 ---
 
-After a Developer is [granted access by an admin](/konnect/dev-portal/access-and-approval/manage-devs/) to the {{site.konnect_short_name}} Dev Portal, they will be able to create, edit, and delete applications.
+Multiple Services can be registered to a single Application. In the {{site.konnect_short_name}} Dev Portal, Services registered to an Application will be listed in the Application detail page, available through **My Apps** in the top-right corner dropdown menu beneath the Developer's login email.
 
-For more information about registering for a {{site.konnect_short_name}} Dev Portal as a Developer, see [Developer Registration](/konnect/dev-portal/access-and-approval/dev-reg/).
+The purpose of registering Services to an Application is to consume those Services using the Application-level authentication. Grouping authentication enables direct access to multiple Services. The Application can have multiple credentials, or API keys. For more information about Application Credentials, refer to [Generate Credentials for an Application](/konnect/dev-portal/applications/dev-gen-creds/).
+
+In [cloud.konghq.com](https://cloud.konghq.com), admins can access a list of the installed authentication plugins via **Shared Config**. See [Enable Application Registration for a Service](/konnect/dev-portal/applications/enable-app-reg/) for more information about authentication flows.
+
+Once a developer is [granted access](/konnect/dev-portal/access-and-approval/manage-devs/) to the {{site.konnect_short_name}} Dev Portal, they will be able to create, edit, and delete applications. These modifications are all managed on the **My Apps** page. The **My Apps** allows you to view all of the registered applications. Clicking on individual applications from this page opens a detailed overview of an application. You can do the following through the application details page:
+
+- [Edit](#edit-an-application) the name, reference ID, and description of an application.
+- [Generate or delete credentials](/konnect/dev-portal/access-and-approval/dev-gen-creds).
+- View a catalog of Services that can be [registered with the application](/konnect/dev-portal/applications/dev-reg-app-service), if no Services are registered yet.
+- View the status of an application registration to a Service.
 
 {:.note}
-> **Note**: The following is all done through the Dev Portal, not through [cloud.konghq.com](https://cloud.konghq.com). As an admin, find the Dev Portal URL via **Dev Portal** > **Published Services**.
+> **Note**: The following steps are all done through the Dev Portal, not through [cloud.konghq.com](https://cloud.konghq.com). You can find the Dev Portal URL from the **Dev Portal** menu in the left-hand menu.
 
 ## Create an Application
 
-Developers can create an application and link it to a Service.
-
-1. In the {{site.konnect_short_name}} Dev Portal, click **My Apps** from the dropdown menu in the upper right corner under your login email.
+1. In the {{site.konnect_short_name}} Dev Portal, click  the dropdown menu in the upper right corner of the application, from there, click **My Apps**.
 
 2. On the **My Apps** page, click the **New App** button.
 
-3. Fill out the **Create New Application** form with your application name, reference ID, and description. Note that the Reference ID must be unique. If your organization is using the
+3. Fill out the **Create New Application** form with your application name, reference ID, and description.
+
+   {:.note}
+   > Note that the Reference ID must be unique. If your organization is using the
    [OIDC](/konnect/dev-portal/applications/enable-app-reg#oidc-flow)
    flow for application registration, enter the ID of your third-party OAuth2 claim.
 
 4. Click **Create** to save and see your new application's detail page.    
 
-## View Application Details
-
-Access and modify applications from an application's details page. Find a list of your current applications on the **My Apps** page, accessible through the dropdown menu in the top right corner under your login email.
-
-You can do the following through the application details page:
-
-- [Edit](#edit-an-application) the name, reference ID, and description of an application.
-- [Generate or delete credentials](/konnect/dev-portal/applications/dev-gen-creds).
-- View a catalog of Services that can be [registered with the application](/konnect/dev-portal/applications/dev-reg-app-service), if no Services are registered yet.
-- View the status of an application registration to a Service.
-
 ## Edit an Application
 
-Edit the name, reference ID, and description of your application by going to **My Apps** in the dropdown menu under your login email, selecting your application, and clicking **Edit**.
+Once an application is created, you can edit the name, reference ID, or description of your application from the edit menu. 
+
+1. Navigate to the **My Apps** page of the Dev Portal by clicking **My Apps** in the dropdown under your login name.
+
+2. From the **My Apps** page, select the specific application you want to edit. 
+
+3. Use the **Edit** button in right portion of the screen to open the **Update Application** page. 
+
+4. When you are satisfied with your changes, click **Update**. 
 
 ## Delete an Application
 
-You can permanently delete an Application from the Dev Portal:
+Applications can be permanently deleted from the Developer Portal. Applications can be deleted from the **Update Application** page.They can also be deleted from the **My Apps** page.  
 
-- On the **My Apps** page in the dropdown menu under your login email, click the cog icon next to an application and click **Delete**.
+1. From the **My Apps** page, click the cog icon next to an application and click **Delete**.
 
-- Confirm deletion in the pop-up modal.
-
-You can also delete an application from the application details page. See [Edit an Application](#edit-an-application).
+2. Confirm deletion in the pop-up modal.
