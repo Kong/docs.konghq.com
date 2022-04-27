@@ -70,6 +70,9 @@ RUN set -ex \
        /var/cache/* \
 && echo
 
+SHELL ["/bin/bash", "-c"]
+ENV SHELL /bin/bash
+
 # Ruby Install
 RUN set -ex \
  && curl --output /tmp/ruby-install.sh -L https://get.rvm.io \
@@ -98,7 +101,7 @@ RUN set -ex \
 USER root
 ADD /rootfs /
 ENTRYPOINT /entrypoint.sh
-CMD /bin/bash
+CMD ["/bin/bash", "-c", "make install; make run"]
 
 ################################################################################
 # Create User & Group
