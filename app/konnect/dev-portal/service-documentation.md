@@ -3,7 +3,8 @@ title: Dev Portal Service Documentation
 no_version: true
 ---
 
-A core function of the Developer Portal is uploading Service descriptions and API specs. Developers can use the Spec and corresponding descriptions to access, consume, and register new applications against your Services. For a step by step tutorial on publishing a Service Description and an API Spec to the Developer Portal see our [Get Started: Set Up and Access Dev Portal](/konnect/getting-started/publish-service) guide.
+Upload documentation for your Services through the ServiceHub to display it
+on the Dev Portal.
 
 
 ## Service Descriptions
@@ -12,7 +13,7 @@ Service Descriptions Provide extended descriptions of your Services with Markdow
 description applies to the whole Service, and appears on every version of that
 Service in the Dev Portal. The contents of this markdown file will be displayed as the introduction to your API when this Service is published to the Dev Portal.
 
-### Upload a Service Description
+### Upload a Markdown File for a Service
 
 1. From the left navigation menu, open the **ServiceHub** page.
 
@@ -22,11 +23,11 @@ Service in the Dev Portal. The contents of this markdown file will be displayed 
 
 3. Select a `.md` file to upload.
 
-### Update a Service Description
+You can upload a new document to replace an existing Service Document
 
 You can upload a new document to replace an existing Service Document
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %} **ServiceHub** page.
+1. From the left navigation menu, open the **ServiceHub** page.
 
 2. Select a Service to open its overview.
 
@@ -77,6 +78,10 @@ format.
 
 2. Click a Service version to open the Service Overview.
 
+1. From the left navigation menu, open the **ServiceHub** page.
+
+2. Click a Service version to open the Service Overview.
+
 3. From the left-hand navigation bar, click **Versions**.
 
 4. Click a specific Version from the list.
@@ -94,16 +99,6 @@ format.
 
 2. Click a Service version to open the Service Overview.
 
-3. From the left-hand navigation bar, click **Versions**.
-
-4. Click a specific Version from the list.
-
-5. In the **Version Spec** section:
-
     * To delete the file, click the **gear icon**, then **Delete** > to remove the spec.
 
-    Deleted files are permanently removed from the Developer Portal.
-
-## Next Steps
-After adding documentation for your Services,
-[publish](/konnect/dev-portal/publish) them to the Dev Portal.
+    The published documentation for the Service is automatically updated in the Developer Portal.

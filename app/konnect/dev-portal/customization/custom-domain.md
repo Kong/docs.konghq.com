@@ -30,3 +30,4 @@ Add a custom Dev Portal domain through your organization's {{site.konnect_short_
 
    {:.note}
    > **Note:** DNS propagation can take a few hours. If after a few hours you can't access the Developer Portal from the custom URL, contact your domain registrar. 
+
