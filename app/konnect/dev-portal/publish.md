@@ -25,7 +25,7 @@ documentation to the Dev Portal.
     * Directly visit the default Dev Portal URL:
 
     ```
-    https://<org-name>.portal.konnect.konghq.com/
+    https://<org-name>.us.portal.konghq.com/
     ```
 
 ## Unpublish a Service

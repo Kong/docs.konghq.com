@@ -25,8 +25,9 @@ ensure end-to-end security and integrity.
 ## Hostnames to add to allow lists
 
 The {{site.konnect_saas}} control plane uses the following hostnames:
-* `cp.konnect.konghq.com`: configuration
-* `tp.konnect.konghq.com`: telemetry
+* `us.cp0.konghq.com`: configuration
+* `us.tp0.konghq.com`: telemetry
+
 
 You can find your specific instance hostnames through Runtime manager.
 Start configuring a new runtime, choose the Linux or Kubernetes tab, and note

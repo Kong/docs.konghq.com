@@ -14,8 +14,8 @@ By default, {{site.base_gateway}} listens on the following ports:
 | [`:8446`](/gateway/latest/reference/configuration/#portal_gui_listen) | HTTPS    | Dev Portal. Listens for HTTPS traffic, assuming Dev Portal is **enabled**. |
 | [`:8004`](/gateway/latest/reference/configuration/#portal_api_listen) | HTTP     | Dev Portal `/files` traffic over HTTP, assuming the Dev Portal is **enabled**. |
 | [`:8447`](/gateway/latest/reference/configuration/#portal_api_listen) | HTTPS    | Dev Portal `/files` traffic over HTTPS, assuming the Dev Portal is **enabled**. |
-| [`:8005`](/gateway/latest/deployment/hybrid-mode-setup/)         | HTTP     | Hybrid mode only. Control Plane listens for traffic from Data Planes. |
-| [`:8006`](/gateway/latest/deployment/hybrid-mode-setup/)         | HTTP     | Hybrid mode only. Control Plane listens for Vitals telemetry data from Data Planes. |
+| [`:8005`](/gateway/latest/plan-and-deploy/hybrid-mode/hybrid-mode-setup/)         | HTTP     | Hybrid mode only. Control Plane listens for traffic from Data Planes. |
+| [`:8006`](/gateway/latest/plan-and-deploy/hybrid-mode/hybrid-mode-setup/)         | HTTP     | Hybrid mode only. Control Plane listens for Vitals telemetry data from Data Planes. |
 
 
 Self-managed ports can be fully customized. Set them in `kong.conf`.
