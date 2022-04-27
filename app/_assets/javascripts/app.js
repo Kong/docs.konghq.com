@@ -22,6 +22,7 @@ jQuery(function () {
       },
       700
     );
+    history.pushState({}, '', $(this).attr("href"));
   });
 
   // Active link
