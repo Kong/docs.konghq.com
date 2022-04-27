@@ -319,7 +319,7 @@ When a client has been authenticated and authorized, the plugin will append some
 * `X-Consumer-ID`, the ID of the Consumer on Kong
 * `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)
 * `X-Consumer-Username`, the `username` of the Consumer (if set)
-* `X-Credential-Identifier`, the identifier of the credential (if set)
+* `X-Credential-Identifier`, the `client_id` of the credential (if set), representing the client and the credential associated. See [Create an Application](#create-an-application) for more information.
 * `X-Authenticated-Scope`, the comma-separated list of scopes that the end user has authenticated, if available (only if the consumer is not the 'anonymous' consumer)
 * `X-Authenticated-Userid`, the logged-in user ID who has granted permission to the client (only if the consumer is not the 'anonymous' consumer)
 * `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
