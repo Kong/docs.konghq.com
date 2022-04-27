@@ -3,14 +3,22 @@
 module PluginSingleSource
   class Generator < Jekyll::Generator
     priority :highest
-    def generate(site) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+    def generate(site) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity
       site.data['ssg_hub'] = []
+      site.data['extensions'] ||= {}
       seen = []
 
-      Dir.glob('app/_data/extensions/*/*/versions.yml').each do |f|
-        name = f.gsub('app/_data/extensions/', '').gsub('/versions.yml', '')
+      Dir.glob('app/_hub/*/*/versions.yml').each do |f|
+        name = f.gsub('app/_hub/', '').gsub('/versions.yml', '')
         seen << name
         data = SafeYAML.load(File.read(f))
+
+        # Populate site.data so that our existing version listing will work
+        p = name.split('/')
+        site.data['extensions'][p[0]] ||= {}
+        site.data['extensions'][p[0]][p[1]] ||= {}
+        site.data['extensions'][p[0]][p[1]]['versions'] ||= data
+
         create_pages(data, site, name)
       end
 
