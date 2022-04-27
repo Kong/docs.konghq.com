@@ -9,7 +9,7 @@ After a Developer is [granted access by an admin](/konnect/dev-portal/access-and
 For more information about registering for a {{site.konnect_short_name}} Dev Portal as a Developer, see [Developer Registration](/konnect/dev-portal/access-and-approval/dev-reg/).
 
 {:.note}
-> **Note**: The following is all done through the Dev Portal, not through [konnect.konghq.com](https://konnect.konghq.com). As an admin, find the Dev Portal URL via **Dev Portal** > **Published Services**.
+> **Note**: The following is all done through the Dev Portal, not through [cloud.konghq.com](https://cloud.konghq.com). As an admin, find the Dev Portal URL via **Dev Portal** > **Published Services**.
 
 ## Create an Application
 
@@ -32,7 +32,7 @@ Access and modify applications from an application's details page. Find a list o
 You can do the following through the application details page:
 
 - [Edit](#edit-an-application) the name, reference ID, and description of an application.
-- [Generate or delete credentials](/konnect/dev-portal/access-and-approval/dev-gen-creds).
+- [Generate or delete credentials](/konnect/dev-portal/applications/dev-gen-creds).
 - View a catalog of Services that can be [registered with the application](/konnect/dev-portal/applications/dev-reg-app-service), if no Services are registered yet.
 - View the status of an application registration to a Service.
 
@@ -48,4 +48,4 @@ You can permanently delete an Application from the Dev Portal:
 
 - Confirm deletion in the pop-up modal.
 
-You can also delete an application from the application details page. See [Edit an Application](#edit-an-application). 
+You can also delete an application from the application details page. See [Edit an Application](#edit-an-application).
