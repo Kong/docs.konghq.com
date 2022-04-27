@@ -2,13 +2,13 @@
 
 {{site.base_gateway}} data planes proxy service traffic.
 
-1. From the left navigation menu, open **Runtime Manager**.
+1. From the left navigation menu, open {% konnect_icon runtimes %} **Runtimes**.
 
 1. Select a runtime group.
 
-1. Click **Configure Runtime**.
+1. Click **+ New Runtime Instance**.
 
-     The page opens to a **Configure New Runtime** form with the Docker tab
+     The page opens to a runtime configuration form with the Docker tab
      selected.
 
 1. Click **Copy Script**.
@@ -22,9 +22,9 @@
     {{site.base_gateway}} instance and connects it to your
     {{site.konnect_saas}} account.
 
-1. Click **Done** to go to the Runtime Manager page.
+1. Click **Done** to go to the Runtime Instances page.
 
-Once the script has finished running, the Runtime Manager will include
+Once the script has finished running, the runtime instances table will include
 a new entry for your instance and the tag in the **Sync Status** column should
 say **Connected**.
 

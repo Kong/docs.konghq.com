@@ -33,7 +33,7 @@ The following status conditions reflect the current state of an application's co
 The Applications page shows all existing applications that have approved access to a Dev Portal Service.
 
 To access the Applications page, from the {{site.konnect_product_name}} navigation menu,
-click **Connections** > **Applications**.
+click {% konnect_icon connections %} **Connections** > **Applications**.
 
 ![Konnect Applications](/assets/images/docs/konnect/konnect-apps-page.png)
 
@@ -50,7 +50,7 @@ Use the Applications page to:
 The application details page shows all of its connections to a Service.
 
 To access the Applications page, from the {{site.konnect_short_name}} navigation menu,
-click **Connections** > **Applications** and click on an application row.
+click {% konnect_icon connections %} **Connections** > **Applications** and click on an application row.
 
 ![Konnect Revoke or Delete an Application Connection](/assets/images/docs/konnect/konnect-revoke-delete-app-connection.png)
 
@@ -67,7 +67,7 @@ Revoke an application's connection to a Service. A connection that has been revo
 [approved again](#approve-revoked-service-connection) at any time. You can also
 [outright delete](#delete-app-connection) a connection.
 
-1. Click **Connections > Applications**.
+1. Click {% konnect_icon connections %} **Connections > Applications**.
 
    The Applications page is displayed.
 
@@ -85,7 +85,7 @@ Revoke an application's connection to a Service. A connection that has been revo
 Re-approve a connection to a Service for an application. An application connection
 that was revoked for a Service can be approved again any time at your discretion.
 
-1. Click **Connections > Applications**.
+1. Click {% konnect_icon connections %} **Connections > Applications**.
 
 2. Click on an application row.
 
@@ -98,7 +98,7 @@ Delete an application's connection to a Service. One reason for deleting a conne
 could be the misuse of a Service by an application. A request to register the application
 to the Service can be made again by a developer.
 
-1. Click **Connections > Applications**.
+1. Click {% konnect_icon connections %} **Connections > Applications**.
 
 2. Click on an application row.
 

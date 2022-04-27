@@ -3,7 +3,9 @@ title: Appearance
 no_version: true
 ---
 
-The Dev Portal can be customized by those with Admin roles via the Appearance settings in the {{site.konnect_short_name}} Admin UI. To access the Appearance settings, click **Dev Portal** then **Appearance**.
+The Dev Portal can be customized by those with Admin roles via the Appearance
+settings in the {{site.konnect_short_name}} Admin UI. To access the Appearance
+settings, click {% konnect_icon dev-portal %} **Dev Portal**, then **Appearance**.
 
 Here, you have the ability to modify the following:
 

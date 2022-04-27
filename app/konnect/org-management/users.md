@@ -23,7 +23,7 @@ You must be part of the **Organization Admin** team to manage users.
 ## Add a user to the organization
 
 ### Invite a user
-1. In {{site.konnect_saas}}, open the ![](/assets/images/icons/konnect/icn-organizations.svg){:.inline .no-image-expand .konnect-icon}
+1. In {{site.konnect_saas}}, open the {% konnect_icon organizations %}
  **Organization > Users** page.
 1. Select **Invite User**.
 1. Enter the user’s name and email.
@@ -48,7 +48,7 @@ You must be part of the **Organization Admin** team to manage users.
 assigned to this account.
 
 ## View and manage users
-1. In {{site.konnect_saas}}, open the ![](/assets/images/icons/konnect/icn-organization.svg){:.inline .no-image-expand}
+1. In {{site.konnect_saas}}, open the {% konnect_icon organizations %}
  **Organization > Users** page.
 2. From the Users page, you can:
    * View usernames, email addresses, assigned team(s), and assigned individual
