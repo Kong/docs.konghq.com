@@ -8,6 +8,19 @@ module PluginSingleSource
       site.data['extensions'] ||= {}
       seen = []
 
+      # Fetch Kong versions in case the plugin has delegate_releases set
+      # (this means it's compatible with all known releases)
+      kong_versions = SafeYAML.load(File.read('app/_data/kong_versions.yml')).select do |v|
+        v['edition'] == 'gateway' || v['edition'] == 'gateway-oss' || v['edition'] == 'enterprise'
+      end
+
+      kong_versions = kong_versions.map do |v|
+        v['release'].gsub('-', '.')
+      end.uniq
+
+      kong_versions = kong_versions.sort_by { |v| Gem::Version.new(v) }.reverse
+
+      # Iterate over every versions.yml file and create a page for each release contained in there
       Dir.glob('app/_hub/*/*/versions.yml').each do |f|
         name = f.gsub('app/_hub/', '').gsub('/versions.yml', '')
         seen << name
@@ -20,6 +33,10 @@ module PluginSingleSource
             'releases' => data.map { |d| d['release'] }
           }
         end
+
+        # If we have delegate_releases: true, then we assume that the plugin
+        # works with all existing Gateway releases
+        data['releases'] = kong_versions if data['delegate_releases']
 
         # Populate site.data so that our existing version listing will work
         p = name.split('/')
