@@ -82,7 +82,21 @@ overrides:
 
 `2.3.x-EE` and `2.4.x` both use plugin version `2.0.x` and the default `_index` source file. `2.3.x-CE` and `2.2.x` use plugin version `1.0.x` and the `_1.0` source file.
 
+If you want to use `delegate_releases` but have one or two versions that you need to override, you can use `replacements` like so:
 
+```yaml
+strategy: gateway
+delegate_releases: true
+replacements:
+  2.3.x:
+    - 2.3.x-CE
+    - 2.3.x-EE
+sources:
+  2.3.x-CE: _foo
+overrides:
+  2.3.x-EE: 2.0.x
+  2.3.x-CE: 1.0.x
+```
 
 ## Conditional Rendering
 

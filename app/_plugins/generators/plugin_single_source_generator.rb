@@ -18,11 +18,6 @@ module PluginSingleSource
         v['release'].gsub('-x', '.x')
       end.uniq
 
-      kong_versions = kong_versions.sort_by do |v|
-        parts = v.split('-') # Remove -ce, -ee suffixes
-        Gem::Version.new(parts[0])
-      end.reverse
-
       # Iterate over every versions.yml file and create a page for each release contained in there
       Dir.glob('app/_hub/*/*/versions.yml').each do |f|
         name = f.gsub('app/_hub/', '').gsub('/versions.yml', '')
@@ -40,6 +35,14 @@ module PluginSingleSource
         # If we have delegate_releases: true, then we assume that the plugin
         # works with all existing Gateway releases
         data['releases'] = kong_versions if data['delegate_releases']
+
+        # Are there any replacements required? e.g. 2.8.x => [2.8.x-CE, 2.8.x-EE]
+        data['replacements']&.each do |k, v|
+          data['releases'][data['releases'].index(k)] = v if data['releases'].index(k)
+        end
+
+        # Make sure the releases are in the correct order
+        data['releases'] = data['releases'].flatten.sort_by { |v| Gem::Version.new(v) }.reverse
 
         # Populate site.data so that our existing version listing will work
         p = name.split('/')
@@ -69,12 +72,12 @@ module PluginSingleSource
 
     def create_pages(data, site, name) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       version_strings = data['releases'].map do |v|
-        v.gsub('-', '.').gsub(/\.x/, '.0')
+        v.gsub('-x', '.x').gsub(/\.x/, '.0')
       end
       max_version = version_strings.max_by { |v| Gem::Version.new(v) }
       set_version = data['releases'].size > 1
       data['releases'].each do |v, _k|
-        current_version = v.gsub('-', '.').gsub(/\.x/, '.0')
+        current_version = v.gsub('-x', '.x').gsub(/\.x/, '.0')
         # Skip if a markdown file exists for this version
         # and we're not generating the index version
         next if File.exist?("app/_hub/#{name}/#{v}.md") && current_version != max_version
