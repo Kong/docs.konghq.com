@@ -61,7 +61,7 @@ test.describe("Version Switcher", () => {
 test.describe("Outdated version documentation", () => {
   const oldVersionSelector =
     'blockquote:has-text("You are browsing documentation for an outdated version.") a';
-  const latestGatewayVersion = "2.8.x";
+  const latestGatewayVersion = "3.0.x";
 
   test("does not show on the latest version", async ({ page }) => {
     await page.goto(`/gateway/${latestGatewayVersion}/install-and-run/rhel/`);
