@@ -302,7 +302,7 @@ params:
 `kong-plugin-enterprise-proxy-cache` is designed to support storing proxy cache data in different backend formats.
 Currently, the following strategies are provided:
 
-- `memory`: A `lua_shared_dict`. Note that the default dictionary, `kong_cache`, is also
+- `memory`: A `lua_shared_dict`. Note that the default dictionary, `kong_db_cache`, is also
 used by other plugins and elements of Kong to store unrelated database cache entities.
 Using this dictionary is an easy way to bootstrap the proxy-cache-advanced plugin, but it
 is not recommended for large-scale installations as significant usage will put pressure on
