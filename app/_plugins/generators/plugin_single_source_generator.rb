@@ -15,10 +15,13 @@ module PluginSingleSource
       end
 
       kong_versions = kong_versions.map do |v|
-        v['release'].gsub('-', '.')
+        v['release'].gsub('-x', '.x')
       end.uniq
 
-      kong_versions = kong_versions.sort_by { |v| Gem::Version.new(v) }.reverse
+      kong_versions = kong_versions.sort_by do |v|
+        parts = v.split('-') # Remove -ce, -ee suffixes
+        Gem::Version.new(parts[0])
+      end.reverse
 
       # Iterate over every versions.yml file and create a page for each release contained in there
       Dir.glob('app/_hub/*/*/versions.yml').each do |f|
@@ -77,7 +80,8 @@ module PluginSingleSource
         next if File.exist?("app/_hub/#{name}/#{v}.md") && current_version != max_version
 
         # Otherwise duplicate the source file, fallback to _index.md
-        source = v['source'] || '_index'
+        source = data['sources'][v] if data['sources']
+        source ||= '_index'
 
         unless source.start_with?('_')
           raise "Plugin source files must start with an _ to prevent Jekyll from rendering them directly. Please fix [#{source}] in [#{name}]" # rubocop:disable Layout/LineLength

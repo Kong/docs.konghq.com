@@ -40,6 +40,8 @@ This would result in the following:
 | 2.8.x   | 0.13.x         |
 | 2.7.x   | 0.12.x         |
 
+### Automatic Plugin Versioning
+
 If you do not want to specify every Gateway release using `releases`, you can set `delegate_releases: true` which will read all available Gateway versions from `kong_versions.yml`:
 
 ```yaml
@@ -56,6 +58,31 @@ overrides:
   2.8.x: 0.13.x
   2.7.x: 0.12.x
 ```
+
+### CE/EE Discrepancies
+
+In some cases, the version of a plugin is different between the Community Edition (OSS) and Enterprise Edition. In these instances, each release should be entered as a unique version in the config file. Here's an example where Gateway 2.3.x CE uses plugin version 1.0, whilst 2.3.x EE uses plugin version 2.0:
+
+```yaml
+strategy: gateway
+releases:
+  - 2.4.x
+  - 2.3.x-CE
+  - 2.3.x-EE
+  - 2.2.x
+sources:
+  2.2.x-CE: _1.0
+  2.2.x: _1.0
+overrides:
+  2.4.x: 2.0.x
+  2.3.x-EE: 2.0.x
+  2.3.x-CE: 1.0.x
+  2.2.x: 1.0.x
+```
+
+`2.3.x-EE` and `2.4.x` both use plugin version `2.0.x` and the default `_index` source file. `2.3.x-CE` and `2.2.x` use plugin version `1.0.x` and the `_1.0` source file.
+
+
 
 ## Conditional Rendering
 
