@@ -17,7 +17,7 @@ const argv = require("minimist")(process.argv.slice(2));
       ...github.context.repo,
       pull_number,
     },
-    (response) => response.data.filter((f) => f.filename.endsWith(".md"))
+    (response) => response.data.filter((f) => f.status != "removed" && f.filename.endsWith(".md") )
   );
 
   // Load contents for each file
