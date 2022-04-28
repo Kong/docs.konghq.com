@@ -10,6 +10,12 @@ breadcrumbs:
 {% unless page.type == "concept" %}
 {% if page.type == "plugin" %}
 
+
+{% assign path_array = page.path | split: "/" %}
+{% assign extn_slug = path_array[2] %}
+{% assign extn_publisher = path_array[1] %}
+{% assign extn_data = site.data.extensions[extn_publisher][extn_slug] %}
+
 {% capture params_table %}
 <table>
   <thead>
@@ -99,13 +105,18 @@ breadcrumbs:
   {% assign ee_compatible = page.kong_version_compatibility.enterprise_edition.compatible %}
 {% endif %}
 
+{% comment %}
+We used to show a compatibility matrix for all plugins. As of Gateway 3.0 (and backported to the 2.x series)
+we pin the plugin version to the Gateway version. These are marked with strategy = gateway
+
+We only want to show the compatibility matrix if the strategy = matrix (which is the default)
+{% endcomment %}
+{% unless extn_data['strategy'] == "matrix" %}
+  {% assign compat = false %}
+{% endunless %}
+
 {% assign extn_type = site.extensions.types | where: "slug", page.type %}
 {% assign extn_type = extn_type[0]['name'] %}
-
-{% assign path_array = page.path | split: "/" %}
-{% assign extn_slug = path_array[2] %}
-{% assign extn_publisher = path_array[1] %}
-{% assign extn_data = site.data.extensions[extn_publisher][extn_slug] %}
 
 {% capture extn_id %}{{ extn_publisher }}_{{ extn_slug }}{% endcapture %}
 {% capture extn_icon %}/assets/images/icons/hub/{{ extn_id }}.png{% endcapture %}
@@ -227,8 +238,13 @@ breadcrumbs:
       <div class="versions-dropdown dropdown page-header-right">
         <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
-          {{extn_type | capitalize }} Version {{extn_release}}
-          {% if extn_release == extn_latest %}<em>(latest)</em>{% endif %}
+                {% if extn_data['strategy'] == "gateway" %}
+                Gateway
+                {% else %}
+                {{extn_type | capitalize }}
+                {% endif %}
+
+          Version {{extn_release}}{% if extn_release == extn_latest %}&nbsp;<em>(latest)</em>{% endif %}
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-right" id="version-list" role="menu" aria-labelledby="version-dropdown">
@@ -270,6 +286,16 @@ breadcrumbs:
       <table id="about-extn">
         <tr>
           <th colspan="2">About this {{ extn_type | capitalize }}</th>
+        </tr>
+        <tr class="version">
+          <td>Plugin Version</td>
+          <td>
+            {% if extn_data['overrides'][extn_release] %}
+              {{ extn_data['overrides'][extn_release] }}
+            {% else %}
+             {{ extn_release }}
+            {% endif %}
+          </td>
         </tr>
         <tr class="publisher">
           <td>Made by</td>
