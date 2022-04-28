@@ -66,7 +66,7 @@ params:
 
 GraphQL Proxy Caching Advanced Plugin  is designed to support storing GraphQL proxy cache data in different backend formats.
 Currently the following strategies are provided:
-- `memory`: A `lua_shared_dict`. Note that the default dictionary, `kong_cache`, is also used by other plugins and
+- `memory`: A `lua_shared_dict`. Note that the default dictionary, `kong_db_cache`, is also used by other plugins and
 elements of Kong to store unrelated database cache entities. Using this dictionary is an easy way to bootstrap the
 graphql-proxy-cache-advanced plugin, but it is not recommended for large-scale installations as significant usage will put pressure
 on other facets of Kong's database caching operations. It is recommended to define a separate `lua_shared_dict` via a
