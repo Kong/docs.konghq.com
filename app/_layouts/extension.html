@@ -101,23 +101,23 @@ breadcrumbs:
 
 {% assign extn_type = site.extensions.types | where: "slug", page.type %}
 {% assign extn_type = extn_type[0]['name'] %}
+
 {% assign path_array = page.path | split: "/" %}
 {% assign extn_slug = path_array[2] %}
 {% assign extn_publisher = path_array[1] %}
+{% assign extn_data = site.data.extensions[extn_publisher][extn_slug] %}
+
 {% capture extn_id %}{{ extn_publisher }}_{{ extn_slug }}{% endcapture %}
 {% capture extn_icon %}/assets/images/icons/hub/{{ extn_id }}.png{% endcapture %}
+
 {% assign extn_filename = path_array | last %}
-{% assign extn_versions = site.data.extensions[extn_publisher][extn_slug]['versions'] %}
+{% assign extn_versions = extn_data['releases'] %}
 {% if extn_versions %}
-  {% assign extn_version_latest = extn_versions | first %}
-  {% assign extn_latest = extn_version_latest['release'] %}
+  {% assign extn_latest = extn_versions | first %}
   {% unless extn_filename == "index.md" %}
     {% assign extn_release = extn_filename | remove: ".md" %}
-    {% assign extn_ver = extn_releases | where: "release", extn_release %}
-    {% assign extn_version = extn_ver[0] %}
   {% else %}
-    {% assign extn_version = extn_versions | first %}
-    {% assign extn_release = extn_version['release'] %}
+    {% assign extn_release = extn_versions | first %}
   {% endunless %}
 {% endif %}
 {% endunless %}
@@ -233,14 +233,14 @@ breadcrumbs:
         </button>
         <ul class="dropdown-menu dropdown-menu-right" id="version-list" role="menu" aria-labelledby="version-dropdown">
           {% for ver in extn_versions %}
-            {% if ver.release == extn_latest %}
+            {% if ver == extn_latest %}
               {% assign ver_path = "" %}
             {% else %}
-              {% assign ver_path = ver.release | append: ".html" %}
+              {% assign ver_path = ver | append: ".html" %}
             {% endif %}
             <li {% if extn_release == ver.release %} class="active" {% endif %}>
               <a href="/hub/{{ extn_publisher }}/{{ extn_slug }}/{{ ver_path }}">
-                {{ver.release}} {% if ver.release == extn_latest %}<em>(latest)</em>{% endif %}
+                {{ver}} {% if ver == extn_latest %}<em>(latest)</em>{% endif %}
               </a>
             </li>
           {% endfor %}

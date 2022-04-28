@@ -3,7 +3,7 @@
 module PluginSingleSource
   class Generator < Jekyll::Generator
     priority :highest
-    def generate(site) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity
+    def generate(site) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       site.data['ssg_hub'] = []
       site.data['extensions'] ||= {}
       seen = []
@@ -13,11 +13,20 @@ module PluginSingleSource
         seen << name
         data = SafeYAML.load(File.read(f))
 
+        # Clean up old versions.yml files to match the new structure
+        unless data.is_a?(Hash)
+          data = {
+            'strategy' => 'matrix',
+            'releases' => data.map { |d| d['release'] }
+          }
+        end
+
         # Populate site.data so that our existing version listing will work
         p = name.split('/')
+        data['publisher'] = p[0]
+        data['name'] = p[0]
         site.data['extensions'][p[0]] ||= {}
-        site.data['extensions'][p[0]][p[1]] ||= {}
-        site.data['extensions'][p[0]][p[1]]['versions'] ||= data
+        site.data['extensions'][p[0]][p[1]] ||= data
 
         create_pages(data, site, name)
       end
@@ -27,21 +36,28 @@ module PluginSingleSource
         name = f.gsub('app/_hub/', '').gsub('/_index.md', '')
         next if seen.include?(name)
 
-        create_pages([{ 'release' => '1.0.0' }], site, name) # If there's no version, assume it's 1.0.0
+        create_pages(
+          {
+            'strategy' => 'matrix',
+            'releases' => ['1.0.0'] # If there's no version, assume it's 1.0.0
+          },
+          site,
+          name
+        )
       end
     end
 
-    def create_pages(versions, site, name) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-      version_strings = versions.map do |v|
-        v['release'].gsub('-', '.').gsub(/\.x/, '.0')
+    def create_pages(data, site, name) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+      version_strings = data['releases'].map do |v|
+        v.gsub('-', '.').gsub(/\.x/, '.0')
       end
       max_version = version_strings.max_by { |v| Gem::Version.new(v) }
-      set_version = versions.size > 1
-      versions.each do |v, _k|
-        current_version = v['release'].gsub('-', '.').gsub(/\.x/, '.0')
+      set_version = data['releases'].size > 1
+      data['releases'].each do |v, _k|
+        current_version = v.gsub('-', '.').gsub(/\.x/, '.0')
         # Skip if a markdown file exists for this version
         # and we're not generating the index version
-        next if File.exist?("app/_hub/#{name}/#{v['release']}.md") && current_version != max_version
+        next if File.exist?("app/_hub/#{name}/#{v}.md") && current_version != max_version
 
         # Otherwise duplicate the source file, fallback to _index.md
         source = v['source'] || '_index'
@@ -54,10 +70,10 @@ module PluginSingleSource
         source_path = "app/_hub/#{name}/#{source}.md"
 
         # Add the index page rendering if we're on the latest release too
-        permalink = v['release']
+        permalink = v
         permalink = 'index' if current_version == max_version
 
-        page = SingleSourcePage.new(site, v['release'], plugin[0], plugin[1], source, source_path, permalink,
+        page = SingleSourcePage.new(site, v, plugin[0], plugin[1], source, source_path, permalink,
                                     set_version)
         site.pages << page
 
