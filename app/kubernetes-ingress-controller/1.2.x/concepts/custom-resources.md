@@ -128,4 +128,4 @@ Instead, please use secret-based credentials.
 [kong-plugin]: /gateway/latest/admin-api/#plugin-object
 [kong-route]: /gateway/latest/admin-api/#route-object
 [kong-service]: /gateway/latest/admin-api/#service-object
-[kong-upstream]: /gateway/latest/admin-api/#upstream-objects
+[kong-upstream]: /gateway/latest/admin-api/#upstream-object

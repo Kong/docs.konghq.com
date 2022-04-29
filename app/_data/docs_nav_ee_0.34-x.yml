@@ -67,7 +67,7 @@
     - text: SNI Object
       url: /admin-api/#sni-objects
     - text: Upstream Object
-      url: /admin-api/#upstream-objects
+      url: /admin-api/#upstream-object
     - text: Target Object
       url: /admin-api/#target-object
 

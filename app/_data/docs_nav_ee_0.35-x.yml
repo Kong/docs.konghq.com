@@ -144,7 +144,7 @@
   - text: SNI Object routes
     url: /admin-api/#sni-objects
   - text: Upstream Object routes
-    url: /admin-api/#upstream-objects
+    url: /admin-api/#upstream-object
   - text: Target Object routes
     url: /admin-api/#target-object
   - text: Workspace Object routes
