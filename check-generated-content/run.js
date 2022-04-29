@@ -5,10 +5,27 @@ const argv = require("minimist")(process.argv.slice(2));
 
 (async function () {
   const pull_number = argv.pr || github.context.issue.number;
+  const MAX_CHANGED_FILES = 50; // This means we can run 20 times per hour if needed
 
   const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN,
   });
+
+  // Get the PR changes to check that it's < MAX_CHANGED_FILES files
+  const { data: pr } = await octokit.rest.pulls.get({
+    ...github.context.repo,
+    pull_number
+  });
+
+  // If there are more than that, add a label and don't check anything else
+  if (pr.changed_files > MAX_CHANGED_FILES){
+    await octokit.rest.issues.addLabels({
+      ...github.context.repo,
+      issue_number: pull_number,
+      labels: ["ci:check-skipped:generated-files"],
+    });
+    return;
+  }
 
   // Get pages that have changed in the PR
   const files = await octokit.paginate(
@@ -16,6 +33,7 @@ const argv = require("minimist")(process.argv.slice(2));
     {
       ...github.context.repo,
       pull_number,
+      per_page: 50
     },
     (response) => response.data.filter((f) => f.status != "removed" && f.filename.endsWith(".md") )
   );
