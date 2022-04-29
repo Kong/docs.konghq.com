@@ -61,7 +61,7 @@ dashboard: [https://grafana.com/dashboards/7424](https://grafana.com/dashboards/
 
 - **Status codes**: HTTP status codes returned by Upstream services.
   These are available per service, across all services, and per route per consumer.
-- **Latencies Histograms**: Latency as measured at Kong:
+- **Latencies Histograms**: Latency in ms, as measured at Kong:
    - **Request**: Total time taken by Kong and Upstream services to serve
      requests.
    - **Kong**: Time taken for Kong to route a request and run all configured
@@ -113,7 +113,7 @@ kong_http_consumer_status{service="s1",route="s1.route-1",code="200",consumer="<
 # HELP kong_http_status HTTP status codes per service/route in Kong
 # TYPE kong_http_status counter
 kong_http_status{code="301",service="google",route="google.route-1"} 2
-# HELP kong_latency Latency added by Kong, total request time and upstream latency for each service in Kong
+# HELP kong_latency Latency added by Kong in ms, total request time and upstream latency for each service in Kong
 # TYPE kong_latency histogram
 kong_latency_bucket{type="kong",service="google",route="google.route-1",le="00001.0"} 1
 kong_latency_bucket{type="kong",service="google",route="google.route-1",le="00002.0"} 1
