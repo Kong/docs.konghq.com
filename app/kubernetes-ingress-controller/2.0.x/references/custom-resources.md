@@ -414,6 +414,6 @@ For help configuring credentials for the `KongConsumer` Please refer to the [usi
 [k8s-crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/
 [kong-consumer]: /gateway/latest/admin-api/#consumer-object
 [kong-plugin]: /gateway/latest/admin-api/#plugin-object
-[kong-upstream]: /gateway/latest/admin-api/#upstream-objects
+[kong-upstream]: /gateway/latest/admin-api/#upstream-object
 [kong-service]: /gateway/latest/admin-api/#service-object
 [kong-route]: /gateway/latest/admin-api/#route-object

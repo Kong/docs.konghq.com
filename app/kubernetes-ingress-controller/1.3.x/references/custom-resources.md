@@ -399,7 +399,7 @@ resource:
 
 - `key-auth` for [Key authentication](https://docs.konghq.com/plugins/key-authentication/)
 - `basic-auth` for [Basic authenticaiton](https://docs.konghq.com/plugins/basic-authentication/)
-- `hmac-auth` for [HMAC authentication](http://docs.konghq.com/plugins/hmac-authentication/)
+- `hmac-auth` for [HMAC authentication](http://docs.konghq.com/plugins/hmac-auth/)
 - `jwt` for [JWT based authentication](http://docs.konghq.com/plugins/jwt/)
 - `oauth2` for [Oauth2 Client credentials](https://docs.konghq.com/hub/kong-inc/oauth2/)
 - `acl` for [ACL group associations](https://docs.konghq.com/hub/kong-inc/acl/)
@@ -414,6 +414,6 @@ guide for details on how to use this resource.
 [k8s-crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/
 [kong-consumer]: /gateway/latest/admin-api/#consumer-object
 [kong-plugin]: /gateway/latest/admin-api/#plugin-object
-[kong-upstream]: /gateway/latest/admin-api/#upstream-objects
+[kong-upstream]: /gateway/latest/admin-api/#upstream-object
 [kong-service]: /gateway/latest/admin-api/#service-object
 [kong-route]: /gateway/latest/admin-api/#route-object

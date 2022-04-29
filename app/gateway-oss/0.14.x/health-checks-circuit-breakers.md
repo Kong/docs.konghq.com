@@ -202,7 +202,7 @@ active health checks on `healthy` status to zero, and active checks on
 ### Enabling active health checks
 
 To enable active health checks, you need to specify the configuration items
-under `healthchecks.active` in the [Upstream object][upstreamobjects] configuration. You
+under `healthchecks.active` in the [Upstream object][upstreamobject] configuration. You
 need to specify the necessary information so that Kong can perform periodic
 probing on the target, and how to interpret the resulting information.
 
@@ -299,6 +299,6 @@ upstreams.
 [targetobject]: /{{page.kong_version}}/admin-api#target-object
 [addupstream]: /{{page.kong_version}}/admin-api#add-upstream
 [clustering]: /{{page.kong_version}}/clustering
-[upstreamobjects]: /{{page.kong_version}}/admin-api#upstream-objects
+[upstreamobject]: /{{page.kong_version}}/admin-api#upstream-object
 [balancercaveats]: /{{page.kong_version}}/loadbalancing#balancing-caveats
 [dnscaveats]: /{{page.kong_version}}/loadbalancing#dns-caveats
