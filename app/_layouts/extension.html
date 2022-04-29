@@ -10,6 +10,12 @@ breadcrumbs:
 {% unless page.type == "concept" %}
 {% if page.type == "plugin" %}
 
+
+{% assign path_array = page.path | split: "/" %}
+{% assign extn_slug = path_array[2] %}
+{% assign extn_publisher = path_array[1] %}
+{% assign extn_data = site.data.extensions[extn_publisher][extn_slug] %}
+
 {% capture params_table %}
 <table>
   <thead>
@@ -99,25 +105,30 @@ breadcrumbs:
   {% assign ee_compatible = page.kong_version_compatibility.enterprise_edition.compatible %}
 {% endif %}
 
+{% comment %}
+We used to show a compatibility matrix for all plugins. As of Gateway 3.0 (and backported to the 2.x series)
+we pin the plugin version to the Gateway version. These are marked with strategy = gateway
+
+We only want to show the compatibility matrix if the strategy = matrix (which is the default)
+{% endcomment %}
+{% unless extn_data['strategy'] == "matrix" %}
+  {% assign compat = false %}
+{% endunless %}
+
 {% assign extn_type = site.extensions.types | where: "slug", page.type %}
 {% assign extn_type = extn_type[0]['name'] %}
-{% assign path_array = page.path | split: "/" %}
-{% assign extn_slug = path_array[2] %}
-{% assign extn_publisher = path_array[1] %}
+
 {% capture extn_id %}{{ extn_publisher }}_{{ extn_slug }}{% endcapture %}
 {% capture extn_icon %}/assets/images/icons/hub/{{ extn_id }}.png{% endcapture %}
+
 {% assign extn_filename = path_array | last %}
-{% assign extn_versions = site.data.extensions[extn_publisher][extn_slug]['versions'] %}
+{% assign extn_versions = extn_data['releases'] %}
 {% if extn_versions %}
-  {% assign extn_version_latest = extn_versions | first %}
-  {% assign extn_latest = extn_version_latest['release'] %}
+  {% assign extn_latest = extn_versions | first %}
   {% unless extn_filename == "index.md" %}
     {% assign extn_release = extn_filename | remove: ".md" %}
-    {% assign extn_ver = extn_releases | where: "release", extn_release %}
-    {% assign extn_version = extn_ver[0] %}
   {% else %}
-    {% assign extn_version = extn_versions | first %}
-    {% assign extn_release = extn_version['release'] %}
+    {% assign extn_release = extn_versions | first %}
   {% endunless %}
 {% endif %}
 {% endunless %}
@@ -227,20 +238,25 @@ breadcrumbs:
       <div class="versions-dropdown dropdown page-header-right">
         <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
-          {{extn_type | capitalize }} Version {{extn_release}}
-          {% if extn_release == extn_latest %}<em>(latest)</em>{% endif %}
+                {% if extn_data['strategy'] == "gateway" %}
+                Gateway
+                {% else %}
+                {{extn_type | capitalize }}
+                {% endif %}
+
+          Version {{extn_release}}{% if extn_release == extn_latest %}&nbsp;<em>(latest)</em>{% endif %}
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-right" id="version-list" role="menu" aria-labelledby="version-dropdown">
           {% for ver in extn_versions %}
-            {% if ver.release == extn_latest %}
+            {% if ver == extn_latest %}
               {% assign ver_path = "" %}
             {% else %}
-              {% assign ver_path = ver.release | append: ".html" %}
+              {% assign ver_path = ver | append: ".html" %}
             {% endif %}
             <li {% if extn_release == ver.release %} class="active" {% endif %}>
               <a href="/hub/{{ extn_publisher }}/{{ extn_slug }}/{{ ver_path }}">
-                {{ver.release}} {% if ver.release == extn_latest %}<em>(latest)</em>{% endif %}
+                {{ver}} {% if ver == extn_latest %}<em>(latest)</em>{% endif %}
               </a>
             </li>
           {% endfor %}
@@ -270,6 +286,16 @@ breadcrumbs:
       <table id="about-extn">
         <tr>
           <th colspan="2">About this {{ extn_type | capitalize }}</th>
+        </tr>
+        <tr class="version">
+          <td>Plugin Version</td>
+          <td>
+            {% if extn_data['overrides'][extn_release] %}
+              {{ extn_data['overrides'][extn_release] }}
+            {% else %}
+             {{ extn_release }}
+            {% endif %}
+          </td>
         </tr>
         <tr class="publisher">
           <td>Made by</td>

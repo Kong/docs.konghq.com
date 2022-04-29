@@ -56,7 +56,7 @@ module LatestVersion
   end
 
   class DuplicatePage < ::Jekyll::Page
-    def initialize(site, base_dir, path, content, data, page_index) # rubocop:disable Lint/MissingSuper, Metric/ParameterLists
+    def initialize(site, base_dir, path, content, data, page_index) # rubocop:disable Lint/MissingSuper, Metrics/ParameterLists
       @site = site
       @base = base_dir
       @content = content
