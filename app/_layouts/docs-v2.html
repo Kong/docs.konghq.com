@@ -10,6 +10,11 @@ id: documentation
 <div class="page v2 {{ page.class }}" data-url={{ page.url }}>
 
   <div class="container">
+  <div class="archive-banner">
+  You are browsing the {{site.base_gateway}} documentation archive. This documentation is no longer actively maintained.
+  <br>See the latest <a href="https://docs.konghq.com/gateway/"> {{site.base_gateway}} documentation</a>.
+  </div>
+
     {% include_cached docs-sidebar.html is_latest=page.is_latest url=page.url kong_version=page.kong_version edition=page.edition no_version=page.no_version has_version=page.has_version nav_items=page.nav_items edition=page.edition kong_version=page.kong_version kong_latest=page.kong_latest kong_versions=page.kong_versions badge=page.badge version_index=page.version_index %}
 
       <aside class="docs-toc">
@@ -44,12 +49,12 @@ id: documentation
         <div class="content show-anchor-links">
           <div class="content-header">
             <div class="content-edition">
-              {% if page.edition == 'enterprise' %}Kong Gateway Enterprise archive
+              {% if page.edition == 'enterprise' %}Kong Gateway Enterprise [ARCHIVE]
                 {% elsif page.edition == 'konnect' %}{{site.konnect_saas}}
                 {% elsif page.edition == 'mesh' %}{{site.mesh_product_name}}
                 {% elsif page.edition == 'deck' %}decK
               {% elsif page.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
-                {% elsif page.edition == 'gateway-oss' %}Kong Gateway OSS archive
+                {% elsif page.edition == 'gateway-oss' %}Kong Gateway OSS [ARCHIVE]
                 {% elsif page.edition == 'gateway' %}Kong Gateway
                 {% elsif page.edition == 'getting-started-guide' %}Getting Started with Kong Gateway
               {% elsif page.edition == 'contributing' %}Contribution guidelines
@@ -67,20 +72,20 @@ id: documentation
               {% include_cached breadcrumbs.html edition=page.edition no_version=page.no_version has_version=page.has_version kong_version=page.kong_version url=page.url dir=page.dir%}
             {% endunless %}
           </div>
-          {% if page.edition == 'gateway-oss' or page.edition == 'enterprise' or page.edition == 'getting-started-guide' %}
+          <!-- {% if page.edition == 'gateway-oss' or page.edition == 'enterprise' or page.edition == 'getting-started-guide' %}
           <blockquote class="important">
-              You are browsing documentation for an outdated version. The <a href="/gateway/">latest {{site.base_gateway}} documentation </a> is
-              now available as a combined doc set for Kong Gateway Enterprise and open-source (OSS).
+              You are browsing the {{site.base_gateway}} documentation archive. This documentation is no longer actively maintained.
+              See the latest <a href="https://docs.konghq.com/gateway/"> {{site.base_gateway}} documentation </a>.
           </blockquote>
-          {% endif %}
-            {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
+          {% endif %} -->
+            <!-- {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
             {% unless page.edition == 'gateway-oss' or page.edition == 'enterprise' or page.edition == 'getting-started-guide' %}
               <blockquote class="important">
               You are browsing the Kong Gateway documentation archive. See the
               <a href="https://docs.konghq.com/gateway/"> latest documentation here</a>.
               </blockquote>
             {% endunless %}
-            {% endif %}
+            {% endif %} -->
 
             <h1 tabindex="-1" id="main" class="page-content-title"
             >{{page.title | flatify }}

@@ -57,6 +57,22 @@ ul.navbar-item-submenu {
       }
     }
 
+    .archive-banner {
+      padding: 8px 20px;
+      display: block;
+      background-color: #fcc;
+      border: none;
+      font-size: 17px;
+      text-align: center;
+      border-radius: 4px;
+      margin-top: 60px;
+      color: #333;
+
+      a {
+        color: #1456cb;
+      }
+    }
+
     .page-header {
       margin-top: 55px;
       padding-top: 40px;
@@ -222,7 +238,6 @@ ul.navbar-item-submenu {
             display: block;
             visibility: visible;
           }
-
           .content-header {
             z-index: 90;
             margin-bottom: 24px;
@@ -238,6 +253,10 @@ ul.navbar-item-submenu {
               width: calc(100% - 32px);
               background-color: white;
               box-shadow: 0 20px 24px rgba(4, 53, 88, 0.1);
+
+              .archive-banner {
+                margin-bottom: -120px;
+              }
 
               .content-edition {
                 font: 700 12px/16px Roboto;
@@ -299,7 +318,7 @@ ul.navbar-item-submenu {
       }
 
       .page-content-container {
-        margin-top: 64px;
+        margin-top: 0;
         padding-right: 250px;
 
         .page-content {
@@ -331,6 +350,7 @@ ul.navbar-item-submenu {
 
         @media screen and (max-width: 800px) {
           padding-right: 0;
+          margin-top: 24px;
 
           &.no-sidebar {
             padding-left: 0;
