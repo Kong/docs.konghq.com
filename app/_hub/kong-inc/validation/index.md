@@ -229,15 +229,12 @@ http <proxy-host>:8000/pet/findByStatus accept:application/json
 The response will include a verbose error response, since we have enabled this option:
 
 ```
-HTTP/1.1 200 OK
-Access-Control-Allow-Origin: *
-Connection: keep-alive
+HTTP/1.1 400 Bad Request
 Content-Length: 106
 Content-Type: application/json; charset=utf-8
 Date: Tue, 03 May 2022 20:45:00 GMT
 Server: kong/2.8.0.0-internal-preview-enterprise-edition
-X-Kong-Response-Latency: 40
-vary: Origin
+X-Kong-Response-Latency: 2
 
 {
   "message": "query 'status' validation failed with error: 'required parameter value not found in request'"
