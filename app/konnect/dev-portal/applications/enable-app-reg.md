@@ -52,7 +52,11 @@ permissions.
 
 ## Enable App Registration for the Key Authentication Flow {#konnect-key-auth-flow}
 
+<<<<<<< HEAD
 1. From the {{site.konnect_short_name}} menu, click **ServiceHub** and select a
+=======
+1. From the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %}**ServiceHub** and select a
+>>>>>>> 7234f32b1e (Add troubleshooting section)
 Service. Now, click the **Versions** button and select the desired version. 
 
 2. From the **Actions** dropdown menu, select **Enable app registration**.
@@ -79,7 +83,11 @@ Service. Now, click the **Versions** button and select the desired version.
 
 ## Enable App Registration for the OpenID Connect Flow {#oidc-flow}
 
+<<<<<<< HEAD
 1. From the {{site.konnect_short_name}} menu, click **ServiceHub** and select a
+=======
+1. From the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %} **ServiceHub** and select a
+>>>>>>> 7234f32b1e (Add troubleshooting section)
 Service. Now, click the **Versions** button and select the desired version. 
 
 2. From the **Actions** menu, click **Enable app registration**.
