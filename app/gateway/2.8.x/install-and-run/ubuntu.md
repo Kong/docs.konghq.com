@@ -51,7 +51,7 @@ Install {{site.base_gateway}} on Ubuntu from the command line.
 {% navtabs codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.all.deb "{{ site.links.download }}/gateway-2.x-ubuntu-$(lsb_release -cs)/pool/all/k/kong-enterprise-edition/kong_{{page.kong_versions[page.version-index].ee-version}}_all.deb"
+curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.all.deb "{{ site.links.download }}/gateway-2.x-ubuntu-$(lsb_release -cs)/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb"
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
