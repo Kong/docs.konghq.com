@@ -142,7 +142,7 @@ This example creates a Service called `Petstore-Service`.
 {% navtab cURL %}
 
 ```bash
-curl -X POST http://localhost:8001/services/ \
+curl -X POST http://<admin-hostname>:8001/services/ \
     --data name='Petstore-Service' \
     --data url='https://petstore.swagger.io/v2'
 ```
@@ -151,7 +151,7 @@ curl -X POST http://localhost:8001/services/ \
 {% navtab HTTPie %}
 
 ```bash
-http -f :8001/services/ name='Petstore-Service' url="https://petstore.swagger.io/v2"
+http -f <admin-hostname>:8001/services/ name='Petstore-Service' url="https://petstore.swagger.io/v2"
 ```
 
 {% endnavtab %}
@@ -165,7 +165,7 @@ This example creates a wildcard Route called `Petstore-Route`.
 {% navtab cURL %}
 
 ```bash
-curl -X POST http://localhost:8001/services/Petstore-Service/routes \
+curl -X POST http://<admin-hostname>:8001/services/Petstore-Service/routes \
     --data name='Petstore-Route' \
     --data paths='/.*'
 ```
@@ -174,7 +174,7 @@ curl -X POST http://localhost:8001/services/Petstore-Service/routes \
 {% navtab HTTPie %}
 
 ```bash
-http -f :8001/services/Petstore-Service/routes name='Petstore-Route' paths="/.*"
+http -f <admin-hostname>:8001/services/Petstore-Service/routes name='Petstore-Route' paths="/.*"
 ```
 
 {% endnavtab %}
@@ -188,7 +188,7 @@ Enable the Validation plugin on the Service previously configured.
 {% navtab cURL %}
 
 ```bash
-curl -X POST http://localhost:8001/services/Petstore-Service/plugins \
+curl -X POST http://<admin-hostname>:8001/services/Petstore-Service/plugins \
     --data name='Validation' \
     --data config.api_spec='<copy contents of https://petstore.swagger.io/v2/swagger.json here>' \
     --data config.verbose_response=true
@@ -198,11 +198,51 @@ curl -X POST http://localhost:8001/services/Petstore-Service/plugins \
 {% navtab HTTPie %}
 
 ```bash
-http -f :8001/services/Petstore-Service/routes name='Petstore-Route' paths="/.*"
+http -f <admin-hostname>:8001/services/Petstore-Service/routes name='Petstore-Route' paths="/.*"
 ```
 
 {% endnavtab %}
 {% endnavtabs %}
+
+### Step 4. Test the Validation plugin
+
+The request resource expects a Status Query Parameter which is missing from the request
+
+{% navtabs %}
+{% navtab cURL %}
+
+```bash
+curl -X GET "http://<proxy-host>:8000/pet/findByStatus" \
+  -H "accept: application/json"
+```
+
+{% endnavtab %}
+{% navtab HTTPie %}
+
+```bash
+http <proxy-host>:8000/pet/findByStatus accept:application/json
+```
+
+{% endnavtab %}
+{% endnavtabs %}
+
+The response will include a verbose error response, since we have enabled this option:
+
+```
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+Connection: keep-alive
+Content-Length: 106
+Content-Type: application/json; charset=utf-8
+Date: Tue, 03 May 2022 20:45:00 GMT
+Server: kong/2.8.0.0-internal-preview-enterprise-edition
+X-Kong-Response-Latency: 40
+vary: Origin
+
+{
+  "message": "query 'status' validation failed with error: 'required parameter value not found in request'"
+}
+```
 
 ## Event Hooks
 
