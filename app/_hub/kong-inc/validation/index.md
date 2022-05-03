@@ -206,7 +206,7 @@ http -f <admin-hostname>:8001/services/Petstore-Service/routes name='Petstore-Ro
 
 ### Step 4. Test the Validation plugin
 
-The request resource expects a Status Query Parameter which is missing from the request
+The request resource expects a Status Query Parameter which is missing from the request.
 
 {% navtabs %}
 {% navtab cURL %}
@@ -226,7 +226,7 @@ http <proxy-host>:8000/pet/findByStatus accept:application/json
 {% endnavtab %}
 {% endnavtabs %}
 
-The response will include a verbose error response, since we have enabled this option:
+The response will include a verbose error response, since we have enabled this option in the plugin configuration:
 
 ```
 HTTP/1.1 400 Bad Request
@@ -245,7 +245,7 @@ X-Kong-Response-Latency: 2
 
 Event hooks are outbound calls from Kong Gateway. With event hooks, Kong Gateway can communicate with target services or resources, letting the target know that an event was triggered. Refer to the following for more information on Event Hooks - `https://docs.konghq.com/gateway/2.8.x/admin-api/event-hooks/examples/#main`
 
-For the Validation plugin, Event Hooks events are fired when a Validation fails for URI, Header, & Query parameters, or for Request and Response bodies.
+For the Validation plugin, Event Hook events can be enabled when a Validation fails for all Request parameters, that is URI, Header, & Query parameters and Request body, and/or for Response body from the Upstream Service.
 
 1.  Add an Event Hook for the Validation plugin
 
