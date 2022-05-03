@@ -5,10 +5,14 @@ no_version: true
 
 Anyone that wants to  access the {{site.konnect_short_name}} Dev Portal needs to register as a Developer for that specific Dev Portal, including {{site.konnect_short_name}} admins. This means that admins will have separate credentials for [Konnect](https://cloud.konghq.com/) and the Dev Portal.
 
-All Developer registrations are either automatically or manually approved by {{site.konnect_short_name}} service admins and organization admins. For instructions on registering as a Developer, see the [Register as a Developer](#register-as-a-developer)section of this doc.
+All Developer registrations are either manually approved by {{site.konnect_short_name}} service admins and organization admins, or your or automatically approved by configuring your [auto approve settings](konnect/dev-portal/access-and-approval/auto-approve-devs-apps/).
 
+This doc will cover:
 
-## Register as a Developer
+* [How to Register as a Developer](#register)
+* [Account Management](#manage)
+
+## Register as a Developer {#register}
 
 All Developers must register through their {{site.konnect_short_name}} [Dev Portal](#locate-dev-portal-url). Because each Dev Portal has a unique URL, reach out to your {{site.konnect_short_name}} admin for the URL you should access.
 
@@ -36,15 +40,3 @@ If you forget your password, click on "Forgot your password?" and enter the emai
 
 Contact your {{site.konnect_short_name}} admin if you have login issues.
 
-## Locate Dev Portal URL
-
-Admins can find the Dev Portal URL in [cloud.konghq.com](https://cloud.konghq.com/). If you don't have admin access and want to register as a Developer, ask your {{site.konnect_short_name}} admin for the Dev Portal URL.
-
-{:.note}
-> **Note**: If you are an admin planning to create Applications and register Services, you must also [Register as a Developer](#register-as-a-developer).
-
-1. As an admin, log in to [cloud.konghq.com](https://cloud.konghq.com/). 
-
-2. Use the left-side menu to navigate to **Dev Portal**, then **Published Services**.
-
-3. Under the title heading **Published Services**, see the **Portal URL** link.
