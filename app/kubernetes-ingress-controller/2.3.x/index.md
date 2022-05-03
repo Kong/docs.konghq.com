@@ -76,7 +76,7 @@ Please feel free to open Pull Requests to contribute to the list.
 
 Please read through our [deployment guide][deployment] for a detailed
 understanding of how Ingress Controller is designed and deployed
-along alongside Kong.
+alongside Kong.
 
 - [FAQs][faqs] might help as well.
 - [Troubleshooting guide][troubleshooting] can help
