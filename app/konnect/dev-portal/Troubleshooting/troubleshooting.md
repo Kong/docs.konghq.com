@@ -19,3 +19,5 @@ Admins can find the Dev Portal URL in [cloud.konghq.com](https://cloud.konghq.co
 2. Use the left-side menu to navigate to **Dev Portal**, then **Published Services**.
 
 3. Under the title heading **Published Services**, see the **Portal URL** link.
+
+

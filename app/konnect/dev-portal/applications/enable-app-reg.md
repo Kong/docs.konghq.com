@@ -4,24 +4,14 @@ no_version: true
 toc: true
 ---
 
-When application registration is enabled for a Service, developers must
+If your Develop[er Portal has application registration enabled, developers must
 [register an application](/konnect/dev-portal/applications/dev-reg-app-service)
-in order to access a Service.
-
-All versions of a Service
-share the same authentication strategy. When you add another version to a Service,
-it inherits the automatically enabled plugins for that strategy.
-
-Supported authentication flows are based on the following plugins:
+in order to access a Service. All versions of a service will share the same authentication plugin. If you add a new version to a Service, it will inherit the authentication plugin automatically. This guide will walk you through the two supported authentication plugins:
 - [Key Authentication](#konnect-key-auth-flow)
 - [OpenID Connect](#oidc-flow)
+Once enabled, you can [disable application registration](#disable)
+at any time.
 
-When you enable application registration, the ACL plugin and your chosen authentication
-plugin (Key Auth or OIDC) are enabled automatically. You can see them in a
-Service version's plugin list, but can't edit or delete them directly. See the
-Application Overview section on
-[{{site.konnect_short_name}}-managed plugins](/konnect/dev-portal/applications/application-overview/#konnect-managed-plugins)
-for more information.
 
 {:.important}
 > **Important:** Developers registered through app registration appear as
@@ -29,9 +19,6 @@ consumers on the
 ![icon](/assets/images/icons/konnect/konnect-shared-config.svg){:.inline .no-image-expand}
 Shared Config page. Do not delete the ACLs associated with a consumer managed
 by app registration.
-
-You can [disable application registration](#disable)
-any time at your discretion.
 
 ## Prerequisites
 
@@ -50,7 +37,7 @@ permissions.
     [Update Application](/konnect/dev-portal/applications/dev-apps#edit-my-app)
     dialog to match to your third-party OAuth2 claim.
 
-## Enable App Registration for the Key Authentication Flow {#konnect-key-auth-flow}
+## Enable App Registration with Key Authentication {#konnect-key-auth-flow}
 
 <<<<<<< HEAD
 1. From the {{site.konnect_short_name}} menu, click **ServiceHub** and select a
@@ -62,26 +49,19 @@ Service. Now, click the **Versions** button and select the desired version.
 2. From the **Actions** dropdown menu, select **Enable app registration**.
 
 3. Select `key-auth` from the **Auth Type** list.
-  Optionally, click to enable **Auto Approve** for application registrations for the selected Service.
-
-6. **Optional** click to enable **Auto Approve**.
-
-      Any developer registration
-      requests for an application are automatically approved. A {{site.konnect_short_name}}
-      cloud admin does not need to
-      [manually approve](/konnect/dev-portal/applications/manage-app-reg-requests/) application
-      registration requests for developers.
-
-      You can also [enable Auto Approve portal-wide](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps)
-      using the Portal Settings. If Auto Approve is
-      enabled or disabled portal-wide, it overrides the per Service Auto Approve setting.
+  >Optionally, click to enable [**Auto Approve**](#autoapprove-auth) for application registrations for the selected Service.
 
 4. Click **Enable**.
 
     With app registration enabled, all versions of this service now include
     read-only entries for the `acl` and `key-auth` plugins.
 
-## Enable App Registration for the OpenID Connect Flow {#oidc-flow}
+### Enable Auto Approve {#autoapprove-auth}
+
+If you enable Auto Approve, any developer application request will be automatically approved. Applications will not need to be [manually approve](/konnect/dev-portal/applications/manage-app-reg-requests/). You have the option to [enable Auto Approve portal-wide](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps) using the Developer Portal settings. This action will override a Service specific Auto-Approve setting. 
+
+
+## Enable App Registration with OpenID Connect {#oidc-flow}
 
 <<<<<<< HEAD
 1. From the {{site.konnect_short_name}} menu, click **ServiceHub** and select a
@@ -94,32 +74,11 @@ Service. Now, click the **Versions** button and select the desired version.
 
 3. Select `openid-connect` (default) from the **Auth Type** list.
 
-   Refer to the [descriptions](#openid-config-params) in the next section for more information
+   Refer to the [configuration paramaters section](#openid-config-params) for information
    about each field.
 
-   1. **Required** enter your issuer URL in the **Issuer** field.
 
-   2. **Required** enter one or more scopes in the **Scopes** field.
-
-   3. **Required** enter the claim in the **Consumer claims** field.
-
-   4. **Required** enter one or more auth methods in the **Auth method** field.
-
-   5. **Required** click to enable **Hide Credentials** from the upstream service.
-
-   6. **Optional** click to enable **Auto Approve**.
-
-      Any developer registration
-      requests for an application are automatically approved. A {{site.konnect_short_name}}
-      cloud admin does not need to
-      [manually approve](/konnect/dev-portal/applications/manage-app-reg-requests/) application
-      registration requests for developers.
-
-      You can also [enable Auto Approve portal-wide](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps)
-      using the Portal Settings. If Auto Approve is
-      enabled or disabled portal-wide, it overrides the per Service Auto Approve setting.
-
-1. Click **Enable**.
+4. Click **Enable**.
 
     With app registration enabled, all versions of this service now include
     read-only entries for the `acl` and `oidc` plugins.
