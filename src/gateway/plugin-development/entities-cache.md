@@ -70,16 +70,18 @@ Function name                                 | Description
 `cache:invalidate(key)`                       | Evicts a value from the node's cache **and** propagates the eviction events to all other nodes in the cluster.
 `cache:purge()`                               | Evicts **all** values from the node's cache.
 
-Bringing back our authentication plugin example, to lookup a credential with a
-specific api-key, we would write something similar to:
+Bringing back our authentication plugin example, to look up a credential with a
+specific API key, we would write something similar to:
 
 ```lua
 -- handler.lua
-local BasePlugin = require "kong.plugins.base_plugin"
 
+local CustomHandler = {
+  VERSION  = "1.0.0",
+  PRIORITY = 10,
+}
 
 local kong = kong
-
 
 local function load_credential(key)
   local credential, err = kong.db.keyauth_credentials:select_by_key(key)
@@ -90,20 +92,7 @@ local function load_credential(key)
 end
 
 
-local CustomHandler = BasePlugin:extend()
-
-
-CustomHandler.VERSION  = "1.0.0"
-CustomHandler.PRIORITY = 1010
-
-
-function CustomHandler:new()
-  CustomHandler.super.new(self, "my-custom-plugin")
-end
-
-
 function CustomHandler:access(config)
-  CustomHandler.super.access(self)
 
   -- retrieve the apikey from the request querystring
   local key = kong.request.get_query_arg("apikey")

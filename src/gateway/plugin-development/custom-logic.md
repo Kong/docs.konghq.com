@@ -93,7 +93,7 @@ available when kong is initializing each worker.
 A plugin's `handler.lua` must return a table containing the functions it must
 execute on each phase.
 
-{{site.ce_product_name}} can process HTTP and stream traffic. Some phases are executed 
+{{site.ce_product_name}} can process HTTP and stream traffic. Some phases are executed
 only when processing HTTP traffic, others when processing stream,
 and some (like `init_worker` and `log`) are invoked by both kinds of traffic.
 
@@ -174,31 +174,6 @@ function CustomHandler.access(self, config)
 end
 ```
 
-### Migrating from BasePlugin module
-
-The `BasePlugin` module is deprecated and will be removed in a future version
-of {{site.ce_product_name}}.  If you have an old plugin that uses it, replace
-the initial part:
-
-```lua
---  DEPRECATED --
-local BasePlugin = require "kong.plugins.base_plugin"
-local CustomHandler = BasePlugin:extend()
-CustomHandler.VERSION  = "1.0.0"
-CustomHandler.PRIORITY = 10
-```
-
-with the current equivalent:
-```lua
-local CustomHandler = {
-  VERSION  = "1.0.0",
-  PRIORITY = 10,
-}
-```
-
-You don't need to add a `:new()` method or call any of the `CustomHandler.super.XXX:(self)`
-methods.
-
 The plugin's logic doesn't need to be all defined inside the `handler.lua` file.
 It can be be split into several Lua files (also called *modules*).
 The `handler.lua` module can use `require` to include other modules in your plugin.
@@ -239,6 +214,31 @@ end
 
 See [the source code of the Key-Auth Plugin](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/handler.lua)
 for an example of a real-life handler code.
+
+### Migrating from BasePlugin module
+
+The `BasePlugin` module is deprecated and has been removed from
+{{site.base_gateway}}. If you have an old plugin that uses this module, replace
+the following section:
+
+```lua
+--  DEPRECATED --
+local BasePlugin = require "kong.plugins.base_plugin"
+local CustomHandler = BasePlugin:extend()
+CustomHandler.VERSION  = "1.0.0"
+CustomHandler.PRIORITY = 10
+```
+
+with the current equivalent:
+```lua
+local CustomHandler = {
+  VERSION  = "1.0.0",
+  PRIORITY = 10,
+}
+```
+
+You don't need to add a `:new()` method or call any of the `CustomHandler.super.XXX:(self)`
+methods.
 
 
 ## Plugin Development Kit
