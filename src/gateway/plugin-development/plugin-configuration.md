@@ -262,26 +262,15 @@ enabled the plugin with the default values, you'd have access to:
 
 ```lua
 -- handler.lua
-local BasePlugin = require "kong.plugins.base_plugin"
 
+local CustomHandler = {
+  VERSION  = "1.0.0",
+  PRIORITY = 10,
+}
 
 local kong = kong
 
-
-local CustomHandler = BasePlugin:extend()
-
-
-CustomHandler.VERSION  = "1.0.0"
-CustomHandler.PRIORITY = 10
-
-
-function CustomHandler:new()
-  CustomHandler.super.new(self, "my-custom-plugin")
-end
-
-
 function CustomHandler:access(config)
-  CustomHandler.super.access(self)
 
   kong.log.inspect(config.key_names)        -- { "apikey" }
   kong.log.inspect(config.hide_credentials) -- false
@@ -366,25 +355,15 @@ And the following will be available in
 
 ```lua
 -- handler.lua
-local BasePlugin = require "kong.plugins.base_plugin"
 
+local CustomHandler = {
+  VERSION  = "1.0.0",
+  PRIORITY = 10,
+}
 
 local kong = kong
 
-
-local CustomHandler = BasePlugin:extend()
-
-
-CustomHandler.VERSION  = "1.0.0"
-CustomHandler.PRIORITY = 10
-
-
-function CustomHandler:new()
-  CustomHandler.super.new(self, "my-custom-plugin")
-end
-
 function CustomHandler:access(config)
-  CustomHandler.super.access(self)
 
   kong.log.inspect(config.environment) -- "development"
   kong.log.inspect(config.server.host) -- "http://localhost"
