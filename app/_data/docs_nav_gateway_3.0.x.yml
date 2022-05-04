@@ -274,6 +274,8 @@ items:
 
       - text: Configure gRPC Plugins
         url: /configure/grpc
+      - text: Dynamic Plugin Ordering
+        url: /configure/dynamic-plugin-ordering
       - text: GraphQL Quickstart
         url: /configure/graphql-quickstart
       - text: Logging Reference
