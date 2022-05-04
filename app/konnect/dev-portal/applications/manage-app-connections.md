@@ -3,29 +3,9 @@ title: Manage Application Service Connections
 no_version: true
 ---
 
-In Konnect Cloud you can Revoke, reinstate, or delete an application's connection to a Service. When a developer
-[registers a request](/konnect/dev-portal/applications/dev-reg-app-service) to access a Service for an
-application, and the request is approved, it creates an application connection between the
-developer, their applications, and the associated Service Versions.
-
-<!---When the state of the application changes, an email is sent to the developer to notify
-them about the change in status.--->
-
-## Prerequisite
-
-[**Organization Admin** or **Service Admin**](/konnect/org-management/teams-and-roles)
-permissions.
-
-## Application Connection to a Service Status
-
-The following status conditions reflect the current state of an application's connection to a Service:
-
-**Approved**
-: An application connection to a Service was approved by a {{site.konnect_short_name}} admin.
-
-**Revoked**
-: An application connection to a Service that was formerly approved has been revoked by a
-{{site.konnect_short_name}} admin.
+When a developer
+[registration](/konnect/dev-portal/applications/dev-reg-app-service) request is approved, it creates an application connection between the
+developer, their applications, and the associated Service Versions. In Konnect Cloud you can revoke, reinstate, or delete an application's connection to a Service. This functionally it managed from the **Applications Page**. 
 
 ## Applications Page
 
@@ -33,8 +13,6 @@ The Applications page shows existing applications that have been approved to acc
 
 To access the Applications page, from the {{site.konnect_product_name}} navigation menu,
 click **Connections** > **Applications**.
-
-
 
 Use the Applications page to:
 
@@ -99,20 +77,6 @@ Connections that have been previously revoked can also be reapproved by followin
 
    The status is updated to **Revoked**.
 
-<<<<<<< HEAD
-### Approve a Revoked Connection Again {#approve-revoked-service-connection}
-
-Re-approve a connection to a Service for an application. An application connection
-that was revoked for a Service can be approved again any time at your discretion.
-
-1. Click {% konnect_icon connections %} **Connections > Applications**.
-
-2. Click on an application row.
-
-3. In the row for Service whose connection status you want to change, click the
-icon and choose **Approve** from the context menu.
-=======
->>>>>>> 0b07779723 (Dev Portal)
 
 ### Delete an Application's Connection to a Service {#delete-app-connection}
 

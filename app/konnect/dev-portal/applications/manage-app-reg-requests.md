@@ -12,7 +12,7 @@ developers must register their applications with a Service. This guide will expl
 ## Requests Page Applications Tab
 
 To access the Requests page Applications tab, from the {{site.konnect_short_name}} navigation menu, click
-{% konnect_icon connections %} **Connections** > **Requests** > **Applications** tab.
+**Connections** > **Requests** > **Applications** tab.
 
 
 From the Applications tab, you can:
@@ -37,22 +37,6 @@ yet had their request reviewed by a {{site.konnect_short_name}} admin, if auto a
 
 **Rejected**
 : An application registration request for Service access was rejected by a {{site.konnect_short_name}} admin.
-
-## Requests Page Applications Tab
-
-To access the Requests page Applications tab, from the {{site.konnect_short_name}} navigation menu, click
-**Connections** > **Requests** > **Applications** tab.
-
-
-From the Applications tab, you can:
-
-- [Approve a request](#approve-app-reg) for app registration with a Service.
-- [Reject a request](#reject-app-reg) for app registration with a Service.
-- [Delete a request](#delete-app-reg) for app registration with a Service.
-- Search for an application in the list by its name.
-
-If there are no pending requests, the No Application Requests message is displayed. The number of
-pending requests is displayed in the Requests menu and the Applications tab.
 
 ### Approve a Request {#approve-app-reg}
 
@@ -92,11 +76,6 @@ unregistering their application from a Service.
 
    <!---An email is sent to the developer to let them know their application registration
    for Service access was rejected.--->
-
-   The status displays in the Services pane in the
-   application details page available from the developer My Apps dashboard in the dev portal.
-   The application will not appear in the Select Application list in the Register service dialog
-   until the application is first unregistered.
 
 
 ### Delete an app registration request {#delete-app-reg}
