@@ -10,6 +10,7 @@ description: |
   open source [Key Authentication](/hub/kong-inc/key-auth/) plugin, with the
   exception that API keys are stored in an encrypted format within the API gateway datastore.
 enterprise: true
+cloud: false
 type: plugin
 categories:
   - authentication

@@ -7,7 +7,7 @@ description: |
   This plugin transforms a GraphQL upstream into a traditional endpoint by mapping URIs into GraphQL queries.
 type: plugin
 enterprise: true
-plus: true
+cloud: false
 categories:
   - transformations
 kong_version_compatibility:
