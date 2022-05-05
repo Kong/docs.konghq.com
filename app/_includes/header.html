@@ -28,15 +28,14 @@
           </ul>
         {% endif %}
 
-        <h1 id="main" tabindex="-1">{{ header_title }}
-          {% if include.publisher == "Kong Inc." %}
-            {% if include.plus %}
-            <a href="https://konghq.com/pricing" class="badge plus" aria-label="available with plus subscription"></a>
-            {% elsif include.enterprise %}
-            <a href="https://konghq.com/pricing" class="badge enterprise" aria-label="available with enterprise subscription"></a>
-            {% endif %}
-          {% endif %}
-        </h1>
+        <h1 id="main" tabindex="-1">{{ header_title }}</h1>
+        <div class="license-tier">
+        {% if include.publisher == "Kong Inc." %}
+           {% if include.plus %} <a href="https://konghq.com/pricing" class="badge plus" aria-label="available with plus subscription"></a>{% endif %}
+           {% if include.enterprise %}<a href="https://konghq.com/pricing" class="badge enterprise" aria-label="available with enterprise subscription"></a>{% endif %}
+           {% if include.oss %}<a href="https://konghq.com/pricing" class="badge oss" aria-label="open-source only"></a>{% endif %}
+        {% endif %}
+        </div>
       </div>
       {% if include.extn_versions %}
         {% unless include.is_latest %}
