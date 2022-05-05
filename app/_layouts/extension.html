@@ -287,6 +287,7 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
         <tr>
           <th colspan="2">About this {{ extn_type | capitalize }}</th>
         </tr>
+        {% if extn_versions %}
         <tr class="version">
           <td>Plugin Version</td>
           <td>
@@ -297,6 +298,7 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
             {% endif %}
           </td>
         </tr>
+        {% endif %}
         <tr class="publisher">
           <td>Made by</td>
           <td>
