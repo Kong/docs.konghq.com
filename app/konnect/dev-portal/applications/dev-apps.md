@@ -21,7 +21,7 @@ toc: true
 
 4. Click **Create** to save and your application. You will automatically be sent to your new application's detail page. 
 
-From the **Application Page** you can [generate credentials](konnect/dev-portal/applications/dev-gen-creds/) and view registered services. 
+From the **Application Page** you can [generate credentials](/konnect/dev-portal/applications/dev-gen-creds/) and view registered services. 
 
 ## Edit an Application
 
