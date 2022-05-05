@@ -337,6 +337,40 @@ $ httpie some request
 {% endnavtab %}
 {% endnavtabs %}
 
+### Tabs for OSS/Enterprise
+
+> Important: `navtabs_ee` currently only works for Gateway documentation
+
+When using `navtabs` to render content for both Open Source and Enterprise versions
+of a product, you should use the `navtabs_ee` block instead of `navtabs`. This hides
+the inline tab selection and adds a "Switch to Enterprise/OSS" option on the right hand
+side of the page.
+
+`navtabs_ee` expects the tabs to be called `Kong Gateway` and `Kong Gateway (OSS)`, and
+that the enterprise tab will always be shown first.
+
+Here's an example of how to use them:
+
+````
+{% raw %}
+{% navtabs_ee codeblock %}
+{% navtab Kong Gateway %}
+```bash
+This will be shown when Enterprise is selected
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```bash
+This will be shown when OSS is selected
+ ```
+{% endnavtab %}
+{% endnavtabs_ee %}
+{% endraw %}
+````
+
+The Enterprise tab is shown by default. Add `?install=oss` to your URL if you'd like
+to link to the OSS install instructions for on a page.
+
 ### Indenting tabs in an ordered list
 
 Sometimes you are writing an ordered list of steps and may need to include multiple

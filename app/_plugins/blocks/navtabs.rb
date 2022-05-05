@@ -39,7 +39,7 @@ module Jekyll
         @class = markup.strip
       end
 
-      def render(context)
+      def render(context) # rubocop:disable Metrics/MethodLength
         navtabs_id = SecureRandom.uuid
         environment = context.environments.first
         environment["navtabs-#{navtabs_id}"] = {}
@@ -49,13 +49,16 @@ module Jekyll
         super
         environment['navtabs-stack'].pop
 
+        environment['additional_classes'] = ''
+        environment['additional_classes'] = 'external-trigger' if @tag_name == 'navtabs_ee'
+
         template = ERB.new html
         template.result(binding)
       end
 
       def html
         <<~NAVTABS
-          <div class="navtabs <%= @class %>">
+          <div class="navtabs <%= @class %> <%= environment['additional_classes'] %>">
             <div class="navtab-titles" role="tablist">
             <% environment['navtabs-' + navtabs_id].each_with_index do |(title, value), index| %>
               <% slug = title.downcase.strip.gsub(' ', '-').gsub(/[^\\w-]/, '') %>
@@ -100,3 +103,4 @@ end
 
 Liquid::Template.register_tag('navtab', Jekyll::NavTabs::NavTabBlock)
 Liquid::Template.register_tag('navtabs', Jekyll::NavTabs::NavTabsBlock)
+Liquid::Template.register_tag('navtabs_ee', Jekyll::NavTabs::NavTabsBlock)

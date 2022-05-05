@@ -17,6 +17,24 @@
         }
       }
 
+      &.external-trigger {
+        .navtab-titles {
+          display: none;
+        }
+
+        .navtab-contents {
+          margin-top: -22px;
+        }
+
+        .copy-action {
+          margin-top: 0 !important;
+        }
+
+        pre.highlight {
+          padding: 20px 12px;
+        }
+      }
+
       .navtab-titles {
         background-color: @grey-200;
         color: rgba(black, 0.6);
@@ -96,5 +114,12 @@
 
   .navtab-contents {
     padding: 1.5rem 0 0 0;
+  }
+}
+
+#oss-ee-toggle {
+  cursor: pointer;
+  .oss-ee-toggle-inner {
+    color: #1456cb;
   }
 }

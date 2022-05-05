@@ -12,21 +12,6 @@ Starting with Kong Gateway 2.8.0.0, Kong is not building new open-source CentOS 
 > Kong Gateway Enterprise subscriptions can still use CentOS in 2.8, but support
 for CentOS is planned to be removed in 3.0.
 
-<!-- Banner with links to latest downloads -->
-<!-- The install-link and install-listing-link classes are used for tracking, do not remove -->
-
-{:.install-banner}
-> Download the latest **Kong Gateway {{page.kong_version}}** package for Centos:
-> * [**CentOS 7**]({{ site.links.download }}/gateway-2.x-centos-7/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.el7.noarch.rpm){:.install-link}
-> * [**CentOS 8**]({{ site.links.download }}/gateway-2.x-centos-8/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.el8.noarch.rpm){:.install-link}
->
-> (latest version: {{page.kong_versions[page.version-index].ee-version}})
-> <br><br>
-> <span class="install-subtitle">View the list of all 2.x packages for
-> [**CentOS 7**]({{ site.links.download }}/gateway-2.x-centos-7/Packages/k/){:.install-listing-link} or
-> [**CentOS 8**]({{ site.links.download }}/gateway-2.x-centos-8/Packages/k/){:.install-listing-link} </span>
-
-
 The {{site.base_gateway}} software is governed by the
 [Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
 Kong is licensed under an
@@ -64,7 +49,7 @@ Install {{site.base_gateway}} on CentOS from the command line.
 
 Install the YUM repository from the command line.
 
-1. Download the Kong APT repository:
+1. Download the Kong yum repository:
     ```bash
     curl $(rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{centos_ver}/config.repo") | sudo tee /etc/yum.repos.d/kong.repo
     ```
