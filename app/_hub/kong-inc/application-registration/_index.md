@@ -4,10 +4,21 @@ publisher: Kong Inc.
 version: 2.0.x
 desc: Allow portal developers to register applications against Services
 description: |
+
   Applications allow registered developers on Kong Developer Portal to
   authenticate against a Gateway Service. Dev Portal admins can
   selectively admit access to Services using the
   [Application Registration](/gateway/latest/developer-portal/administration/application-registration/enable-application-registration) plugin.
+
+  {:.note}
+  > **Note**: This plugin is for application registration in self-managed Kong
+  > Gateway instances.
+  > <br>
+  > <br>
+  > In Konnect, the functionality is built into the ServiceHub,
+  > so you don't need to set up this plugin.
+  > See the [Konnect Application Overview](/konnect/dev-portal/applications/application-overview/)
+  > for more information.
 
   The Application Registration plugin is used in tandem with supported Kong Gateway authorization
   plugins, depending on your configured Dev
@@ -16,7 +27,7 @@ description: |
   information, see
   [Configure an Authorization Provider Strategy](/gateway/latest/developer-portal/administration/application-registration/auth-provider-strategy).
 
-  To learn how to set up key authentication, see [Enable Key Authentication for Application Registration](/gateway/latest/developer-portal/administration/application-registration/enable-key-auth-plugin/). 
+  To learn how to set up key authentication, see [Enable Key Authentication for Application Registration](/gateway/latest/developer-portal/administration/application-registration/enable-key-auth-plugin/).
 
   Supported authorization plugins for use with application registration:
 
@@ -29,7 +40,7 @@ description: |
   If you plan to use the external OAuth option with OIDC, review the
   [supported OAuth workflows](/gateway/latest/developer-portal/administration/application-registration/3rd-party-oauth).
 enterprise: true
-plus: true
+cloud: false
 type: plugin
 categories:
   - authentication
