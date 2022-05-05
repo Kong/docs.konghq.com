@@ -3,10 +3,10 @@
   plugins:
     - name: Application Registration
       free: No
-      plus: Yes
+      plus: No
       enterprise: Yes
-      network_config_opts: All
-      notes: Cannot be applied directly as a plugin with Konnect Cloud.
+      network_config_opts: Self-managed classic, DB-less, and hybrid
+      notes: Application registration <b>is</b> available in Konnect Cloud, but doesn't require this plugin. <br>Learn how to <a href="/konnect/dev-portal/applications/enable-app-reg/">Enable Application Registration</a> in Konnect Cloud.
       url: /hub/kong-inc/application-registration
 
     - name: Basic Auth
@@ -53,7 +53,7 @@
       free: No
       plus: No
       enterprise: Yes
-      network_config_opts: All
+      network_config_opts: Self-managed classic, DB-less, and hybrid
       notes: |
         The time-to-live (ttl) does not work in hybrid mode. This setting
         determines the length of time a credential remains valid.
@@ -85,7 +85,7 @@
 
     - name: OAuth 2
       free: Yes
-      plus: Yes
+      plus: No
       enterprise: Yes
       network_config_opts: Self-managed classic only
       notes: |
@@ -206,9 +206,9 @@
 
     - name: GraphQL Rate Limiting Advanced
       free: No
-      plus: Yes
+      plus: No
       enterprise: Yes
-      network_config_opts: All
+      network_config_opts: Self-managed classic, DB-less, and hybrid
       notes: |
         In DB-less and hybrid modes, the <code>cluster</code> config strategy
         is not supported. Use <code>redis</code> instead.
@@ -386,9 +386,9 @@
 
     - name: DeGraphQL
       free: No
-      plus: Yes
+      plus: No
       enterprise: Yes
-      network_config_opts: All
+      network_config_opts: Self-managed classic, DB-less, and hybrid
       notes: --
       url: /hub/kong-inc/degraphql
 
@@ -415,7 +415,7 @@
       network_config_opts: All
       notes: --
       url: /hub/kong-inc/grpc-web
-    
+
     - name: jq
       free: No
       plus: No

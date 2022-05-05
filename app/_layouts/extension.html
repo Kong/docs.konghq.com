@@ -8,7 +8,7 @@ breadcrumbs:
 ---
 
 {% unless page.type == "concept" %}
-{% if page.type == "plugin" %}
+{% if page.type == "plugin" or page.type == "integration" %}
 
 
 {% assign path_array = page.path | split: "/" %}
@@ -287,6 +287,7 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
         <tr>
           <th colspan="2">About this {{ extn_type | capitalize }}</th>
         </tr>
+        {% if extn_versions %}
         <tr class="version">
           <td>Plugin Version</td>
           <td>
@@ -297,6 +298,7 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
             {% endif %}
           </td>
         </tr>
+        {% endif %}
         <tr class="publisher">
           <td>Made by</td>
           <td>
@@ -330,23 +332,11 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
         {% endunless %}
         {% if extn_publisher == "kong-inc" %}
         <tr>
-          <td>Konnect tier</td>
+          <td>Konnect Cloud compatible?</td>
           <td>
-            <a href="https://konghq.com/pricing" {%
-              if page.plus %}class="badge plus" aria-label="available with plus subscription"{%
-              elsif page.enterprise %}class="badge enterprise" aria-label="available with enterprise subscription"{%
-              elsif page.oss %}class="badge oss" aria-label="open-source only"{%
-              else %}class="badge free" aria-label="available in Kong Gateway free mode"{% endif %}>
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td>Konnect Cloud</td>
-          <td>
-            {% if page.cloud == false %} Not available{%
-            elsif extn_release == extn_latest %}Available{%
-              else %}See latest plugin version for availability{% endif %}
-          </td>
+           {% if page.cloud == false %} No{%
+           elsif extn_release == extn_latest %}Yes{%
+           else %}See latest plugin version{% endif %}
         </tr>
         {% endif %}
         {% if page.params.protocols %}

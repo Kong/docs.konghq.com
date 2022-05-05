@@ -9,7 +9,7 @@ description: |
   [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) plugin.
 type: plugin
 enterprise: true
-plus: true
+cloud: false
 categories:
   - traffic-control
 kong_version_compatibility:
@@ -279,11 +279,11 @@ params:
       value_in_examples: null
       datatype: integer
       description: |
-        If specified, limits the total number of opened connections for a pool. If the 
-        connection pool is full, all connection queues beyond the maximum limit go into 
-        the backlog queue. Once the backlog queue is full, subsequent connect operations 
-        will fail and return `nil`. Queued connect operations resume once the number of 
-        connections in the pool is less than `keepalive_pool_size`. Note that queued 
+        If specified, limits the total number of opened connections for a pool. If the
+        connection pool is full, all connection queues beyond the maximum limit go into
+        the backlog queue. Once the backlog queue is full, subsequent connect operations
+        will fail and return `nil`. Queued connect operations resume once the number of
+        connections in the pool is less than `keepalive_pool_size`. Note that queued
         connect operations are subject to set timeouts.
     - name: redis.keepalive_pool
       required: false

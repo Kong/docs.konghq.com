@@ -5,7 +5,7 @@ no_version: true
 
 ## Introduction
 
-Each [{{site.konnect_product_name}} tier](https://konghq.com/pricing) gives you
+Each [subscription tier](https://konghq.com/pricing) gives you
 access to a subset of plugins:
 * **Free tier:** Open-source Kong plugins
 * **Plus tier:** Open-source and Plus-specific plugins
@@ -65,23 +65,23 @@ see [{{site.ee_product_name}} for Kubernetes Deployment Options](/gateway/latest
         </td>
         <td style="text-align: center">
           {% if plugin.free == true %}
-          <i class="fa fa-check"></i>
+          ✅&nbsp;
           {% elsif plugin.free == false %}
-          <i class="fa fa-times"></i>
+          ❌&nbsp;
           {% endif %}
         </td>
         <td style="text-align: center">
           {% if plugin.plus == true %}
-          <i class="fa fa-check"></i>
+          ✅&nbsp;
           {% elsif plugin.plus == false %}
-          <i class="fa fa-times"></i>
+          ❌&nbsp;
           {% endif %}
         </td>
         <td style="text-align: center">
           {% if plugin.enterprise == true %}
-          <i class="fa fa-check"></i>
+          ✅&nbsp;
           {% elsif plugin.enterprise == false %}
-          <i class="fa fa-times"></i>
+          ❌&nbsp;
           {% endif %}
         </td>
         <td>
