@@ -315,10 +315,3 @@
       items:
         - text: Proxy Traffic
           url: /legacy/reference/proxy-traffic
-        - text: Using the Konnect API
-          url: /legacy/reference/konnect-api
-          items:
-            - text: Konnect API Reference
-              url: https://konnect.konghq.com/docs
-              absolute_url: true
-              target_blank: true
