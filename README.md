@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/ae60f2a4-488e-4771-b24a-c26badc5f45d/deploy-status)](https://app.netlify.com/sites/kongdocs/deploys)
+[![Netlify Status]([![Netlify Status](https://api.netlify.com/api/v1/badges/a4e2b987-f4f2-4512-a8fa-fd954a0126f8/deploy-status)](https://app.netlify.com/sites/kongdocs/deploys))](https://app.netlify.com/sites/kongdocs/deploys)
 [![](https://img.shields.io/github/license/kong/docs.konghq.com)](https://github.com/Kong/docs.konghq.com/blob/main/LICENSE)
 [![](https://img.shields.io/github/contributors/kong/docs.konghq.com)]()
 
