@@ -50,13 +50,13 @@ with Kong's [Admin API](#kong-admin-api) or with [declarative configuration](#de
 **Kong Gateway** (available in
 [Free, Plus, or Enterprise modes](https://konghq.com/pricing)): Kong's API gateway
 with added functionality.
-* In **Free mode** <span class="badge free"></span>,
+* <span class="badge free"></span> In **Free mode**,
   this package adds [Kong Manager](#kong-manager) to the basic open-source functionality.
-* In **Plus mode** <span class="badge plus"></span>, you have access to more
+* <span class="badge plus"></span> In **Plus mode**, you have access to more
 {{site.base_gateway}} features, but only through {{site.konnect_saas}}.
 See the [{{site.konnect_saas}} documentation](/konnect/) and the
 **Plus**-labelled plugins on the [Plugin Hub](/hub/) for more information.
-* With an **Enterprise** subscription <span class="badge enterprise"></span>,
+* <span class="badge enterprise"></span> With an **Enterprise** subscription,
   it also includes:
     * [Dev Portal](#kong-dev-portal)
     * [Vitals](#kong-vitals)
