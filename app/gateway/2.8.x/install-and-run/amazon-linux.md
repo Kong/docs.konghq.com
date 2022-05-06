@@ -19,7 +19,7 @@ You can install {{site.base_gateway}} by downloading an installation package or 
 {% navtabs %}
 {% navtab Package %}
 
-Install {{site.base_gateway}} on Debian from the command line.
+Install {{site.base_gateway}} on Amazon Linux from the command line.
 
 1. Download the Kong package:
 
