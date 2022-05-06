@@ -56,21 +56,14 @@ runtime instance configuration page.
 Store the certificates and key you generated through the Runtime Manager in
 Kubernetes secrets.
 
-1. Create a `tls` secret using the `tls.cert` and `tls.key` files
+Create a `tls` secret using the `tls.cert` and `tls.key` files
 you saved earlier:
 
-    ```bash
-    $ kubectl create secret tls kong-cluster-cert -n kong \
-      --cert=/{PATH_TO_FILE}/tls.crt \
-      --key=/{PATH_TO_FILE}/tls.key
-    ```
-
-2. Create a generic secret for the `ca.crt` file:
-
-    ```bash
-    $ kubectl create secret generic kong-cluster-ca -n kong \
-      --from-file=ca.crt=/{PATH_TO_FILE}/ca.crt
-    ```
+```bash
+$ kubectl create secret tls kong-cluster-cert -n kong \
+  --cert=/{PATH_TO_FILE}/tls.crt \
+  --key=/{PATH_TO_FILE}/tls.key
+```
 
 ### Write and apply configuration
 
@@ -92,7 +85,6 @@ like this:
 
     secretVolumes:
     - kong-cluster-cert
-    - kong-cluster-ca
 
     admin:
       enabled: false
@@ -100,15 +92,14 @@ like this:
     env:
       role: data_plane
       database: "off"
-      vitals_ttl_days: 732
       cluster_mtls: pki
       cluster_control_plane: {EXAMPLE.CP.KONNECT.FOO}:443
       cluster_server_name: {KONG-CPOUTLET-EXAMPLE.SERVICE}
       cluster_telemetry_endpoint: {EXAMPLE.TP.KONNECT.FOO}:443
       cluster_telemetry_server_name: {KONG-TELEMETRY-EXAMPLE.SERVICE}
-      cluster_ca_cert: /etc/secrets/kong-cluster-ca/ca.crt
       cluster_cert: /etc/secrets/kong-cluster-cert/tls.crt
       cluster_cert_key: /etc/secrets/kong-cluster-cert/tls.key
+      lua_ssl_trusted_certificate: system
 
     ingressController:
       enabled: false
@@ -119,7 +110,7 @@ like this:
 with your specific values from {{site.konnect_short_name}}.
 
     If your cluster cert locations differ from the paths in the template, update
-    the values in `cluster_cert`, `cluster_cert_key`, and `cluster_ca_cert`
+    the values in `cluster_cert` and `cluster_cert_key`
     with references to the secrets you created earlier.
 
     See [Parameters](/konnect/configure/runtime-manager/runtime-instances/runtime-parameter-reference) for
