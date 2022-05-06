@@ -36,16 +36,16 @@ test.describe("Version Switcher", () => {
   [
     {
       title: "links to the same page if it exists in previous versions",
-      page: "/enterprise/2.5.x/deployment/installation/docker/",
-      selector: 'a[data-version-id="2.1.x"]',
-      href: "/enterprise/2.1.x/deployment/installation/docker/",
+      page: "/gateway/2.8.x/install-and-run/docker/",
+      selector: 'a[data-version-id="2.6.x"]',
+      href: "/gateway/2.6.x/install-and-run/docker/",
     },
     {
       title:
         "links to the root page if the page does not exist in previous versions",
-      page: "/enterprise/2.5.x/deployment/installation/docker/",
-      selector: 'a[data-version-id="0.34-x"]',
-      href: "/enterprise/0.34-x",
+      page: "/gateway/2.8.x/admin-api/consumer-groups/examples/",
+      selector: 'a[data-version-id="2.6.x"]',
+      href: "/gateway/2.6.x",
     },
   ].forEach((t) => {
     test(t.title, async ({ page }) => {
@@ -80,7 +80,7 @@ test.describe("Outdated version documentation", () => {
   });
 
   test("links to the root when the page no longer exists", async ({ page }) => {
-    await page.goto(`/enterprise/0.31-x/postgresql-redhat/`);
+    await page.goto(`/enterprise/2.1.x/studio/download-install/`);
     const s = await page.locator(oldVersionSelector);
     await expect(await s.count()).toBe(1);
     await expect(await s.getAttribute("href")).toEqual(
