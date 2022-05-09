@@ -1,24 +1,19 @@
 ---
-title: Enable and Disable Application Registration for a Service
+title: Enable or Disable Application Registration for a Service
 no_version: true
-toc: true
 ---
 
-If your Develop[er Portal has application registration enabled, developers must
-[register an application](/konnect/dev-portal/applications/dev-reg-app-service)
-in order to access a Service. All versions of a service will share the same authentication plugin. If you add a new version to a Service, it will inherit the authentication plugin automatically. This guide will walk you through the two supported authentication plugins:
-- [Key Authentication](#konnect-key-auth-flow)
-- [OpenID Connect](#oidc-flow)
-Once enabled, you can [disable application registration](#disable)
+
+To grant Developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service), You must enable application registration on a Service, {{site.konnect_saas}} enables two plugins automatically: [ACL](/hub/kong-inc/acl), and either [Key Authentication](/hub/kong-inc/key-auth)
+or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to
+support application registration for the Service and are managed by
+{{site.konnect_saas}}. Once enabled, you can [disable application registration](#disable)
 at any time.
 
+This guide will walk you through the two supported authentication plugins:
+- [Key Authentication](#konnect-key-auth-flow)
+- [OpenID Connect](#oidc-flow)
 
-{:.important}
-> **Important:** Developers registered through app registration appear as
-consumers on the
-![icon](/assets/images/icons/konnect/konnect-shared-config.svg){:.inline .no-image-expand}
-Shared Config page. Do not delete the ACLs associated with a consumer managed
-by app registration.
 
 ## Prerequisites
 
@@ -37,7 +32,10 @@ permissions.
     [Update Application](/konnect/dev-portal/applications/dev-apps#edit-my-app)
     dialog to match to your third-party OAuth2 claim.
 
-## Enable App Registration with Key Authentication {#konnect-key-auth-flow}
+{:.note}
+> **Note:** Please refer to the [declarative guide](/konnect/configure/runtime-manager/runtime-groups/declarative-config) for instructions on declarative configuration.
+
+## Enable app registration with key authentication {#konnect-key-auth-flow}
 
 1. From the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %}**ServiceHub** and select a
 Service. Now, click the **Versions** button and select the desired version. 
@@ -45,17 +43,16 @@ Service. Now, click the **Versions** button and select the desired version.
 2. From the **Actions** dropdown menu, select **Enable app registration**.
 
 3. Select `key-auth` from the **Auth Type** list.
-  >Optionally, click to enable [**Auto Approve**](#autoapprove-auth) for application registrations for the selected Service.
+  Optionally, click to enable [**Auto Approve**](#autoapprove-auth) for application registrations for the selected Service.
 
 4. Click **Enable**.
 
     With app registration enabled, all versions of this service now include
     read-only entries for the `acl` and `key-auth` plugins.
 
-### Enable Auto Approve {#autoapprove-auth}
+### Enable auto approve {#autoapprove-auth}
 
-If you enable Auto Approve, any developer application request will be automatically approved. Applications will not need to be [manually approve](/konnect/dev-portal/applications/manage-app-reg-requests/). You have the option to [enable Auto Approve portal-wide](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps) using the Developer Portal settings. This action will override a Service specific Auto-Approve setting. 
-
+If you enable the [**Auto Approve**](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps) setting for applications, any application request will be automatically approved and Applications will not need to be [manually approved](/konnect/dev-portal/applications/manage-app-reg-requests/). Enabling auto approve overrides Service-specific auto approval settings. 
 
 ## Enable App Registration with OpenID Connect {#oidc-flow}
 
@@ -64,7 +61,7 @@ Service. Now, click the **Versions** button and select the desired version.
 
 2. From the **Actions** menu, click **Enable app registration**.
 
-3. Select `openid-connect` (default) from the **Auth Type** list.
+3. Select `openid-connect` from the **Auth Type** list.
 
    Refer to the [configuration paramaters section](#openid-config-params) for information
    about each field.
@@ -91,30 +88,28 @@ Service. Now, click the **Versions** button and select the desired version.
 
 ## Disable App Registration for a Service {#disable}
 
-You can disable app registration for a Service when an API
-no longer requires authentication. If you want to disable Auto Approve at the
-Service level, disable app registration and then enable it again with the Auto Approve
-toggle set to disabled.
-
-**Disable application registration from the Service Version page only**.
-Do not attempt to disable application registration by deleting or disabling the
-read-only application registration plugins (`acl` and `key-auth` or `openid-connect`).
-Attempting to remove them manually will break your Service. See the
-Application Overview section on
-[{{site.konnect_short_name}}-managed plugins](/konnect/dev-portal/applications/application-overview/#konnect-managed-plugins)
-for more information.
+To disable or delete a plugin that was enabled by app registration,
+you must disable app registration itself. You can't use the toggle in the
+Plugins pane on a Service version, as the toggle is unavailable for
+{{site.konnect_short_name}}-managed plugins.
 
 You can
-[enable application registration](/konnect/dev-portal/applications/enable-app-reg)
-again any time.
+[re-enable application registration](/konnect/dev-portal/applications/enable-app-reg)
+at any time.
 
-## Disable app registration
+### Disable app registration
 
 1. From the {{site.konnect_short_name}} menu, click **Services** and select a Service.
 
 1. From the **Actions** menu, select **Disable app registration**.
 
 1. Click **Disable**.
+
+{:.important}
+> **Important:** Developers registered through app registration appear as
+consumers in the Runtime Manager. Do not delete the ACLs associated with a consumer managed
+by app registration.
+
 
 ## Troubleshooting
 

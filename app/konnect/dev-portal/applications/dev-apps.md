@@ -21,7 +21,7 @@ toc: true
 
 4. Click **Create** to save and your application. You will automatically be sent to your new application's detail page. 
 
-From the **Application Page** you can [generate credentials](konnect/dev-portal/applications/dev-gen-creds/) and view registered services. 
+From the **Application Page** you can [generate credentials](/konnect/dev-portal/applications/dev-gen-creds/) and view registered services. 
 
 ## Edit an Application
 
@@ -39,7 +39,9 @@ You can edit the **application name**, **reference ID**, and **description**. A 
 
 ## Delete an Application
 
-Applications can be permanently deleted from the Developer Portal. Applications can be deleted from the **Update Application** page.They can also be deleted from the **My Apps** page.  
+Applications can be permanently deleted from the Dev Portal through one of the following pages:
+ * **Update Application** 
+ * **My Apps**
 
 1. From the **My Apps** page, click the cog icon next to an application and click **Delete**.
 

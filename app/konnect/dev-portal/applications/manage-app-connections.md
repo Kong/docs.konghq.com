@@ -5,11 +5,11 @@ no_version: true
 
 When a developer
 [registration](/konnect/dev-portal/applications/dev-reg-app-service) request is approved, it creates an application connection between the
-developer, their applications, and the associated Service Versions. In Konnect Cloud you can revoke, reinstate, or delete an application's connection to a Service. This functionally it managed from the **Applications Page**. 
+developer, their applications, and the associated Service Versions. In Konnect Cloud you can revoke, reinstate, or delete an application's connection to a Service. functionality is managed from the **Applications** page. 
 
 ## Applications Page
 
-The Applications page shows existing applications that have been approved to access a Dev Portal Service.
+The Applications page shows existing applications that have been approved to access a Konnect Service.
 
 To access the Applications page, from the {{site.konnect_product_name}} navigation menu,
 click **Connections** > **Applications**.

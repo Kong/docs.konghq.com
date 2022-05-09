@@ -105,9 +105,6 @@
       url: /dev-portal/publish
     - text: Customize Developer Portal
       url: /dev-portal/customization/custom
-      items:
-        - text: Customization(placeholder)
-          url: /dev-portal/customization/custom
     - text: Access and Approval
       items:
         - text: Developer Registration

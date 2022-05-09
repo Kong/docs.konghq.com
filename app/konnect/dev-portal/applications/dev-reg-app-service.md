@@ -1,18 +1,16 @@
 ---
 title: Register or Unregister an Application for a Service
 no_version: true
-toc: true
 ---
 
 When [application registration is enabled](/konnect/dev-portal/applications/enable-app-reg/),
-developers must register their applications with a Service. Requests for access must be
+developers can register their applications with a Service. Requests for access must be
 [approved by a Konnect admin](/konnect/dev-portal/applications/manage-app-reg-requests). If
-[auto approve](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps) is not enabled.
--Application registration must be enabled for the Service by a {{site.konnect_short_name}} admin.
+[auto approve](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps) is not enabled. Application registration must be enabled for the Service by a {{site.konnect_short_name}} admin.
 
 ## Register an Application
 
-From the Dev Portal, a developer is able to register for multiple applicable services. To apply to register an Application to a service, a developer must have a Dev Portal account.
+From the Dev Portal, a developer can register for multiple applicable services. To apply to register an Application to a service, a developer must have a Dev Portal account.
 
 1. Click your Email address in the top right corner of the manager to trigger the drop down menu. Select **My Apps**. 
 
@@ -35,7 +33,7 @@ Unregistering a pending request removes the request from the {{site.konnect_shor
 approval queue. If a {{site.konnect_short_name}} admin deletes the pending request, the pending request is removed from
 the **Services** pane.
 
-1. Click your Email address in the top right corner of the manager to trigger the drop down menu. Select **My Apps**. 
+1. Click your email address in the top right corner of the Dev Portal to trigger the drop down menu. Select **My Apps**. 
 
 2. Click the application you want to unregister.
 

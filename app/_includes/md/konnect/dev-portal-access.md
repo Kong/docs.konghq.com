@@ -24,12 +24,12 @@ You can't use your Konnect credentials to log in here.
     https://{ORG_NAME}.portal.cloud.konghq.com/
     ```
 
-1. Click **Sign Up** and fill out the form to create a new developer account.
+1. Click **Sign Up** and fill out the form to create a developer account.
 
     Remember, the Dev Portal does not share credentials with your Konnect
     account.
 
-1. As an admin, return to Konnect and approve the new account:
+1. As an admin, return to Konnect and approve the account:
 
     1. From the left side menu, click **Connections**. This opens the Requests
     page and the Developers tab, which displays the pending developer request.

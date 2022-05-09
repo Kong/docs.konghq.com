@@ -1,13 +1,12 @@
 ---
 title: Troubleshooting
 no_version: true
-toc: true
 ---
 
 This document contains commonly asked questions. 
 
 
-## How to Find the Developer Portal URL {#locate}
+## How to find the Dev Portal URL {#locate}
 
 Admins can find the Dev Portal URL in [cloud.konghq.com](https://cloud.konghq.com/). If you don't have admin access and want to register as a Developer, ask your {{site.konnect_short_name}} admin for the Dev Portal URL.
 
