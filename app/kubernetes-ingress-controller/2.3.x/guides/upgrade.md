@@ -1,35 +1,38 @@
 ---
-title: Upgrading to 2.1.x
+title: Upgrading to 2.1.x and later versions
 ---
 
-This guide walks through backwards incompatible changes in the Kong Kubernetes
-Ingress Controller (KIC) to v2.1.x to help operators evaluate if any
-changes to their configuration are needed to upgrade, provides
-guidance on how to build testing environments to validate the upgrade, and
-walks through an upgrade of the Kubernetes Ingress Controller (KIC) using
-its [Helm Chart][chart].
+This guide walks through the steps needed to upgrade to 2.1.x and later
+versions from earlier versions, and covers changes from older versions to help
+operators evaluate whether they need to make changes to their configuration. It
+also covers creation of a testing environment to test the upgrade.
 
 ## Prerequisites
 
 * [Helm v3][helm] is installed
 * You are familiar with Helm `install` and `upgrade` operations. See the [documentation for Helm v3][helm-docs].
 
-> **Note:** Deploying and upgrading via Helm is the supported mechanism for
-production deployments of KIC. If you're deploying KIC using Kustomize or
-some other mechanism, you need to develop and test your own upgrade strategy
-based on the following examples.
+> **Note:** Deploying and upgrading via the [Helm chart][chart] is the
+supported mechanism for production deployments of KIC. If you're deploying KIC
+using Kustomize or some other mechanism, you need to develop and test your own
+upgrade strategy based on the following examples.
 
 [helm]:https://helm.sh/
 [chart]:https://github.com/kong/charts
 [list-releases]:https://v3.helm.sh/docs/helm/helm_list/
 [helm-docs]:https://v3.helm.sh/docs/
 
-## Upgrading from 2.0.x to 2.1.x
+## Upgrading from 2.0.x to 2.1.x or later
 
-This document primarily covers the requirements for upgrading from 1.x to 2.x.
-If you have already upgraded to 2.0.x, only the steps in this subsection are
-necessary. If you are still on 1.x, follow the subsequent sections to upgrade
-to 2.0.x first. **You must upgrade to 2.0.x before upgrading to 2.1.x.**
+This document covers both requirements for upgrading from 1.x to 2.x and
+requirements for upgrading to later 2.x versions past 2.0. If you have already
+upgraded to 2.0.x, only the steps in this subsection are necessary. If you are
+still on 1.x, follow the subsequent sections to upgrade to 2.0.x first. **You
+must upgrade to 2.0.x before upgrading to 2.1.x or later.**
+
+Once you are on 2.0, you can upgrade to later 2.x versions directly as long as
+you apply the following CRD and webhook updates and remove the deprecated flag.
+You do not need to upgrade to 2.1 before upgrading to later 2.x versions.
 
 ### Update CRDs
 
