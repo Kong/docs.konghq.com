@@ -51,21 +51,20 @@ to the file.
     ```sh
     role = data_plane
     database = off
-    vitals_ttl_days = 732
     cluster_mtls = pki
     cluster_control_plane = {EXAMPLE.CP.KONNECT.FOO}:443
     cluster_server_name = {KONG-CPOUTLET-EXAMPLE.SERVICE}
     cluster_telemetry_endpoint = {EXAMPLE.TP.KONNECT.FOO}:443
     cluster_telemetry_server_name = {KONG-TELEMETRY-EXAMPLE.SERVICE}
     cluster_cert = /{PATH_TO_FILE}/tls.crt
-    cluster_ca_cert = /{PATH_TO_FILE}/ca.crt
     cluster_cert_key = /{PATH_TO_FILE}/tls.key
+    lua_ssl_trusted_certificate = system
     ```
 
     See [Parameters](/konnect/configure/runtime-manager/runtime-instances/runtime-parameter-reference) for
     descriptions and the matching fields in {{site.konnect_short_name}}.
 
-4. Replace the values in `cluster_cert`, `cluster_ca_cert`, and
+4. Replace the values in `cluster_cert` and
 `cluster_cert_key` with the paths to your certificate and key files.
 
 5. Restart {{site.base_gateway}} for the settings to take effect:

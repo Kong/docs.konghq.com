@@ -13,15 +13,13 @@
 
 1. Click **Generate Certificate**.
 
-    Three new fields appear: a certificate, a private key, and a root CA
-    certificate. The contents of these fields are unique to each
-    runtime configuration.
+    Two new fields appear: a certificate and a private key.
+    The contents of these fields are unique to each runtime configuration.
 
 1. Save the contents of each field into a separate file in a safe location:
 
     * Certificate: `tls.crt`
     * Private key: `tls.key`
-    * Root CA Certificate: `ca.crt`
 
     If you navigate away from this page before saving all of the
     certificate and key files, you will need to regenerate them.
