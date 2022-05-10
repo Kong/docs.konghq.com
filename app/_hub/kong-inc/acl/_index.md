@@ -1,7 +1,7 @@
 ---
 name: ACL
 publisher: Kong Inc.
-version: 1.0.0
+version: 3.0.x
 desc: Control which Consumers can access Services
 description: |
   Restrict access to a Service or a Route by adding Consumers to allowed or
@@ -69,6 +69,23 @@ params:
 
     Admin API endpoints that POST, PUT, PATCH, or DELETE ACLs do not work in DB-less mode.
   config:
+  # deprecated parameters
+    - name: whitelist
+      required: semi
+      default:
+      value_in_examples: group1, group2
+      description: |
+        Comma separated list of arbitrary group names that are allowed to consume the Service or the Route (or API). One of `config.whitelist` or `config.blacklist` must be specified.
+      maximum_version: "2.0.x"
+    - name: blacklist
+      required: semi
+      default:
+      description: |
+        Comma separated list of arbitrary group names that are not allowed to consume the Service or the Route (or API). One of `config.whitelist` or `config.blacklist` must be specified.
+      minimum_version: "2.0.x"
+      maximum_version: "2.0.x"
+
+  # current parameters
     - name: allow
       required: semi
       default: null
@@ -78,12 +95,14 @@ params:
       datatype: array of string elements
       description: |
         Arbitrary group names that are allowed to consume the Service or Route. One of `config.allow` or `config.deny` must be specified.
+      minimum_version: "2.1.x"
     - name: deny
       required: semi
       default: null
       datatype: array of string elements
       description: |
         Arbitrary group names that are not allowed to consume the Service or Route. One of `config.allow` or `config.deny` must be specified.
+      minimum_version: "2.1.x"
     - name: hide_groups_header
       required: true
       default: false
@@ -91,17 +110,27 @@ params:
       datatype: boolean
       description: |
         Flag that if enabled (`true`), prevents the `X-Consumer-Groups` header to be sent in the request to the Upstream service.
-  extra: |
-    Note that you cannot configure an ACL with both `allow` and `deny` configurations. An ACL with an `allow` provides a positive security model, in which the configured groups are allowed access to the resources, and all others are inherently rejected. By contrast, a `deny` configuration provides a negative security model, in which certain groups are explicitly denied access to the resource (and all others are  allowed).
 ---
 
-### Usage
+{% if_plugin_version lte:2.0.x %}
+
+The `whitelist` and `blacklist` models are mutually exclusive in their usage, as they provide complimentary approaches. That is, you cannot configure an ACL with both `whitelist` and `blacklist` configurations. An ACL with a `whitelist` provides a positive security model, in which the configured groups are allowed access to the resources, and all others are inherently rejected. By contrast, a `blacklist` configuration provides a negative security model, in which certain groups are explicitly denied access to the resource (and all others are inherently allowed).
+
+{% endif_plugin_version %}
+
+{% if_plugin_version gte:2.1.x %}
+
+You can't configure an ACL with both `allow` and `deny` configurations. An ACL with an `allow` provides a positive security model, in which the configured groups are allowed access to the resources, and all others are inherently rejected. By contrast, a `deny` configuration provides a negative security model, in which certain groups are explicitly denied access to the resource (and all others are  allowed).
+
+{% endif_plugin_version %}
+
+## Usage
 
 Before you use the ACL plugin, configure your Service or
 Route with an [authentication plugin](/hub/#authentication)
 so that the plugin can identify the client Consumer making the request.
 
-#### Associate Consumers to an ACL
+### Associate Consumers to an ACL
 
 {% navtabs %}
 {% navtab With a database %}
@@ -120,7 +149,7 @@ curl -X POST http://{HOST}:8001/consumers/{CONSUMER}/acls \
 form parameter        | default| description
 ---                   | ---    | ---
 `group`               |        | The arbitrary group name to associate with the consumer.
-`tags`                |        | Optional descriptor tags for the group. 
+`tags`                |        | Optional descriptor tags for the group.
 
 {% endnavtab %}
 {% navtab Without a database %}
@@ -135,13 +164,13 @@ acls:
 
 * `CONSUMER`: The `id` or `username` property of the Consumer entity to associate the credentials to.
 * `group`: The arbitrary group name to associate to the Consumer.
-* `tags`: Optional descriptor tags for the group. 
+* `tags`: Optional descriptor tags for the group.
 {% endnavtab %}
 {% endnavtabs %}
 
 You can have more than one group associated to a Consumer.
 
-#### Upstream Headers
+### Upstream Headers
 
 When a consumer has been validated, the plugin appends a `X-Consumer-Groups`
 header to the request before proxying it to the Upstream service, so that you can
@@ -151,13 +180,16 @@ comma-separated list of groups that belong to the Consumer, like `admin, pro_use
 This header will not be injected in the request to the Upstream service if
 the `hide_groups_header` config flag is set to `true`.
 
-#### Return ACLs
+### Return ACLs
 
-Retrieves paginated ACLs. 
+Retrieves paginated ACLs.
 
 ```bash
 curl -X GET http://{HOST}:8001/acls
+```
 
+Result:
+```
 {
     "total": 3,
     "data": [
@@ -183,13 +215,16 @@ curl -X GET http://{HOST}:8001/acls
 }
 ```
 
-#### Retrieve ACLs by Consumer
+### Retrieve ACLs by Consumer
 
-Retrieves ACLs by Consumer. 
+Retrieves ACLs by Consumer.
 
 ```bash
 curl -X GET http://{HOST}:8001/consumers/{CONSUMER}/acls
+```
 
+Result:
+```
 {
     "total": 1,
     "data": [
@@ -205,13 +240,16 @@ curl -X GET http://{HOST}:8001/consumers/{CONSUMER}/acls
 
 `CONSUMER`: The `username` or `id` of the Consumer.
 
-#### Retrieve ACL by ID
+### Retrieve ACL by ID
 
-Retrieves ACL by ID if the ACL belongs to the specified Consumer. 
+Retrieves ACL by ID if the ACL belongs to the specified Consumer.
 
 ```bash
 curl -X GET http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}
+```
 
+Result:
+```
 {
     "group": "foo-group",
     "created_at": 1511391159000,
@@ -224,14 +262,17 @@ curl -X GET http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}
 
 `ID`: The `id` property of the ACL.  
 
-#### Retrieve the Consumer associated with an ACL
+### Retrieve the Consumer associated with an ACL
 
 Retrieves a Consumer associated with an ACL
 using the following request:
 
 ```bash
 curl -X GET http://{HOST}:8001/acls/{ID}/consumer
+```
 
+Result:
+```
 {
    "created_at":1507936639000,
    "username":"foo",
@@ -241,9 +282,9 @@ curl -X GET http://{HOST}:8001/acls/{ID}/consumer
 
 `ID`: The `id` property of the ACL.
 
-#### Upsert an ACL group name
+### Upsert an ACL group name
 
-Upserts the group name of the ACL by passing a new group name. 
+Upserts the group name of the ACL by passing a new group name.
 
 ```bash
 curl -X PUT http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}
@@ -254,9 +295,9 @@ curl -X PUT http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}
 
 `ID`: The `id` property of the ACL.  
 
-#### Update an ACL group by ID
+### Update an ACL group by ID
 
-Updates an ACL group name by passing a new group name. 
+Updates an ACL group name by passing a new group name.
 
 ```bash
 curl -X POST http://{HOST}:8001/consumers/{CONSUMER}/acls \
@@ -266,7 +307,7 @@ curl -X POST http://{HOST}:8001/consumers/{CONSUMER}/acls \
 
 `CONSUMER`: The `username` property of the Consumer entity.
 
-#### Remove an ACL group for a Consumer
+### Remove an ACL group for a Consumer
 
 Deletes an ACL group by ID or group name.
 
@@ -284,7 +325,14 @@ curl -X DELETE http://{HOST}:8001/consumers/{CONSUMER}/acls/{GROUP}
 
 `GROUP`: The `group` property of the ACL.  
 
-A successful DELETE request returns a `204` status. 
+A successful DELETE request returns a `204` status.
 
-#### See also
+### See also
 - [configuration](/gateway/latest/reference/configuration)
+
+---
+## Changelog
+
+### Kong Gateway 3.0.x
+- Removed the deprecated `whitelist` and `blacklist` parameters.
+They are no longer supported.
