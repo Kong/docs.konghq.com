@@ -1,7 +1,7 @@
 ---
 name: Bot Detection
 publisher: Kong Inc.
-version: 1.0.0
+version: 3.0.x
 desc: Detect and block bots or custom clients
 description: |
   Protects a Service or a Route from most common bots and has the capability of allowing and denying custom clients.
@@ -55,18 +55,38 @@ params:
     - https
   dbless_compatible: 'yes'
   config:
+
+  # deprecated parameters
+    - name: whitelist
+      required: false
+      default:
+      description: |
+        A comma separated array of regular expressions that should be whitelisted. The regular expressions will be checked against the `User-Agent` header.
+      maximum_version: "2.0.x"
+    - name: blacklist
+      required: false
+      default:
+      description: |
+        A comma separated array of regular expressions that should be blacklisted. The regular expressions will be checked against the `User-Agent` header.
+      maximum_version: "2.0.x"
+      minimum_version: "2.0.x"
+
+# current parameters
     - name: allow
       required: false
       default: null
       datatype: array of string elements
       description: |
         An array of regular expressions that should be allowed. The regular expressions will be checked against the `User-Agent` header.
+      minimum_version: "2.1.x"
     - name: deny
       required: false
       default: null
       datatype: array of string elements
       description: |
         An array of regular expressions that should be denied. The regular expressions will be checked against the `User-Agent` header.
+      minimum_version: "2.1.x"
+
 ---
 
 ## Default rules
@@ -77,3 +97,9 @@ The plugin already includes a basic list of rules that will be checked on every 
 [configuration]: /gateway/latest/reference/configuration
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
 
+
+## Changelog
+
+### Kong Gateway 3.0.x
+- Removed the deprecated `whitelist` and `blacklist` parameters.
+They are no longer supported.
