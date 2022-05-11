@@ -72,7 +72,7 @@ The following properties must be altered depending on the protocol and domains i
 * If using different domains for the Admin API and Kong Manager: `"cookie_samesite": "off"`
 
 {:.important}
-> **Important:** </strong>Sessions are not invalidated when a user logs out if `"storage": "cookie"` (the default) is used. In that case, the cookie is deleted client-side. Only when session data is stored server-side with `"storage": "kong"` set is the session actively invalidated.
+> **Important:** Sessions are not invalidated when a user logs out if `"storage": "cookie"` (the default) is used. In that case, the cookie is deleted client-side. Only when session data is stored server-side with `"storage": "kong"` set is the session actively invalidated.
 
 
 ## Example Configurations
@@ -84,8 +84,8 @@ the following configuration could be used for Basic Auth:
 enforce_rbac = on
 admin_gui_auth = basic-auth
 admin_gui_session_conf = {
-    "cookie_name":"$4m04$"
-    "secret":"change-this-secret"
+    "cookie_name":"$4m04$",
+    "secret":"change-this-secret",
     "storage":"kong"
 }
 ```
@@ -96,9 +96,9 @@ In testing, if using HTTP, the following configuration could be used instead:
 enforce_rbac = on
 admin_gui_auth = basic-auth
 admin_gui_session_conf = {
-    "cookie_name":"04tm34l"
-    "secret":"change-this-secret"
-    "storage":"kong"
+    "cookie_name":"04tm34l",
+    "secret":"change-this-secret",
+    "storage":"kong",
     "cookie_secure":false
 }
 ```
