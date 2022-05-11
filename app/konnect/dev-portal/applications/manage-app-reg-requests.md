@@ -7,7 +7,7 @@ When a developer [registers an application with a Service](/konnect/dev-portal/a
 the requests must be approved by an admin if
 [auto approve](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps) is not enabled. When
 [application registration is enabled](/konnect/dev-portal/applications/enable-app-reg),
-developers must register their applications with a Service. This guide will explain different options available to you from the **Applications Tab** within the **Requests** page in the Developer Portal. 
+developers must register their applications with a Service. This guide explains different options available to you from the **Applications Tab** within the **Requests** page in the Developer Portal. 
 
 ## Requests Page Applications Tab
 
@@ -24,19 +24,7 @@ From the Applications tab, you can:
 
 If there are no pending requests, the **No Application Requests** message is displayed. The number of
 pending requests is displayed in the Requests menu and the Applications tab.
-### Application Registration Status {#status}
 
-The following status conditions reflect the current state of a registration request:
-
-**Approved**
-: An application created by a developer has been approved to access a Service in the {{site.konnect_short_name}} Dev Portal.
-
-**Pending**
-: A developer who has requested access to a Service for an application but has not
-yet had their request reviewed by a {{site.konnect_short_name}} admin, if auto approve is not enabled.
-
-**Rejected**
-: An application registration request for Service access was rejected by a {{site.konnect_short_name}} admin.
 
 ### Approve a Request {#approve-app-reg}
 
@@ -59,7 +47,7 @@ yet had their request reviewed by a {{site.konnect_short_name}} admin, if auto a
 ### Reject a Request {#reject-app-reg}
 
 An application registration request that
-is rejected will require the developer to submit another request after
+is rejected requires the developer submit another request after
 unregistering their application from a Service.
 
 1. Click {% konnect_icon connections %} **Connections > Requests > Applications** tab.
@@ -97,3 +85,16 @@ appears in the Select Application list in the Register for Service dialog for th
    <!---An email is sent to the developer to let them know their application registration
    for Service access was deleted.--->
 
+### Application Registration Status {#status}
+
+The following status conditions reflect the current state of a registration request:
+
+**Approved**
+: An application created by a developer has been approved to access a Service in the {{site.konnect_short_name}} Dev Portal.
+
+**Pending**
+: A developer who has requested access to a Service for an application but has not
+yet had their request reviewed by a {{site.konnect_short_name}} admin, if auto approve is not enabled.
+
+**Rejected**
+: An application registration request for Service access was rejected by a {{site.konnect_short_name}} admin.

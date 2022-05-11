@@ -15,10 +15,10 @@ make sure you have [implemented a Service and started a Gateway runtime](/konnec
 
 1. Open the overview page for the Service you created in the previous topic.
 
-1. In the top right corner, click the **Service Actions** dropdown menu and select
+1. In the top right corner, click the **Service actions** dropdown menu and select
 **Publish to Portal**.
 
-    By default, this publishes the Version Spec you uploaded earlier to a private
+    By default, this publishes the Version spec you uploaded earlier to a private
     Dev Portal site.
 
 ## View the published content on Dev Portal

@@ -20,3 +20,10 @@ Admins can find the Dev Portal URL in [cloud.konghq.com](https://cloud.konghq.co
 3. Under the title heading **Published Services**, see the **Portal URL** link.
 
 
+## Application registration is not enabled for this Service.
+
+If you encounter any of the errors below that appear in the Register dialog, follow the recommended solution.
+
+Error Message | Solution
+------------|------------
+Application registration is not enabled for this Service. | [Enable application registration for the Service](/konnect/dev-portal/applications/enable-app-reg/). Contact your {{site.konnect_short_name}} admin if you do not have the role permissions to do so.

@@ -8,7 +8,7 @@ toc: true
 
 ## Create an Application
 
-1. From the {{site.konnect_short_name}} Dev Portal, click  the dropdown menu in the upper right corner of the application, from there, click **My Apps**.
+1. From the {{site.konnect_short_name}} Dev Portal, click  the dropdown menu in the upper right corner of the application, then click **My Apps**.
 
 2. On the **My Apps** page, click the **New App** button.
 

@@ -4,9 +4,9 @@ no_version: true
 ---
 
 Through ServiceHub, you can publish any Service in your catalog and its
-documentation to the Developer Portal. Publishing services to the Developer Portal is the only way to expose your service to Developers. Once the Developer Portal is published and available to Developers, they can apply for access by [registering](/konnect/dev-portal/access-and-approval/dev-reg/) a Developer Account. You can also [manage](/konnect/dev-portal/access-and-approval/manage-devs/) access to the Developer Portal from the Konnect Cloud interface.
+documentation to the Developer Portal. Publishing services to the Dev Portal is the only way to expose your service to Developers. Once the Service is published and available to Developers, they can apply for access by [registering](/konnect/dev-portal/access-and-approval/dev-reg/) a Developer Account. You can also [manage](/konnect/dev-portal/access-and-approval/manage-devs/) access to the Developer Portal from the {{site.konnect_saas}} interface.
 
-This doc will cover
+This doc covers:
 
 * [Publishing a Service](#publish)
 
@@ -18,10 +18,9 @@ This doc will cover
 
 ## Publish a Service {#publish}
 
-1. From the left navigation menu, open the **ServiceHub** page and select a
-Service.
+1. From the left navigation menu, open the {% konnect_icon servicehub %} **ServiceHub** page and select a
 
-2. Click on the **Service Actions** dropdown menu and select **Publish to Portal**.
+2. Click on the **Service actions** dropdown menu and select **Publish to portal**.
 
     This publishes a Service's API specs to the Dev Portal.
 
@@ -30,15 +29,15 @@ Service.
 1. In the left navigation menu, open the {% konnect_icon servicehub %}
 **ServiceHub** and select a Service.
 
-2. Click on the **Service Actions** dropdown and select **Unpublish from Portal**.
+2. Click on the **Service actions** dropdown and select **Unpublish from portal**.
 
 ## Access the Developer Portal {#url}
 
-1. From the left navigation menu, open the **DevPortal** page.
+1. From the left navigation menu, open the **Dev Portal** page.
 
     The DevPortal page contains a list of all of your Published Services. 
 
-2. Click the button next to the desired service, then click **View in Portal**.
+2. Click the button next to the desired service, then click **View in portal**.
 
     * You can also click **Konnect Portal URL** from this page.
 

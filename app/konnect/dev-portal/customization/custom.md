@@ -1,9 +1,9 @@
 ---
-title: Customize Kong Developer Portal
+title: Customize the Konnect Dev Portal
 no_version: true
 ---
 
-The Kong Developer Portal currently offers three areas you can customize. 
+The {{site.konnect_short_name}} Dev Portal currently offers three areas you can customize: 
 * [Appearance](#appearance)
 * [Custom URL](#add-a-custom-dev-portal-domain)
 * [Enabling Public Access](/konnect/dev-portal/publish/#access)
@@ -29,25 +29,24 @@ For details on the requirements for each customizable option, hover over the inf
 
 ## Custom Developer Portal URL
 
-All Dev Portals have an auto-generated default Dev Portal URL. You can add a custom domain. When set up properly, users can access the Dev Portal from both the default URL and the custom URL. The Kong Developer Portal generates an SSL certificate for your custom domain automatically. 
+All Dev Portals have an auto-generated default Dev Portal URL. You can add a custom domain. When set up properly, users can access the Dev Portal from both the default URL and the custom URL. The {{site.konnect_short_name}} Kong Developer Portal generates an SSL certificate for your custom domain automatically. 
 
 ### Prerequisites
 
 * You have the **Organization Admin** or **Portal Admin** role in {{site.konnect_saas}}.
-* A domain and access to configure that domain's CNAME
+* A domain and access to configure domain's CNAME
 * Your organization's auto-generated default Dev Portal URL. For example, `https://kong121212.portal.konnect.konghq.com/`.
 
 ### Direct your CNAME to the default Dev Portal URL
 
-From your domain registrars DNS records settings options, point your CNAME to your Dev Portal's default URL. 
+From your domain registrar's DNS records settings options, point your CNAME to your Dev Portal's default URL. 
 
 
-### Add a custom Dev Portal domain
+## Add a custom Dev Portal domain
 
 Add a custom Dev Portal domain through your organization's {{site.konnect_short_name}} Admin UI.
 
-1. In {{site.konnect_short_name}}, open {% konnect_icon dev-portal %}
-**Dev Portal** from the left side menu, then click **Settings**.
+1. In {{site.konnect_short_name}}, open {% konnect_icon dev-portal %} **Dev Portal**, then click **Settings**.
 
 2. Open the **Portal URL** tab.
 
@@ -56,4 +55,4 @@ Add a custom Dev Portal domain through your organization's {{site.konnect_short_
 4. Test to see if your custom URL works. You'll see the custom URL listed in your Dev Portal under your default Dev Portal URL. Your SSL certificate will be generated automatically. 
 
    {:.note}
-   > **Note:** DNS propagation can take a few hours. If after a few hours you can't access the Developer Portal from the custom URL, contact your domain registrar. 
+   > **Note:** DNS propagation can take a few hours. If after a few hours you can't access the Dev Portal from the custom URL, contact your domain registrar. 

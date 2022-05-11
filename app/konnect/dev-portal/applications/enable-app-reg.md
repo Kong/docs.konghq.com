@@ -4,13 +4,13 @@ no_version: true
 ---
 
 
-To grant Developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service), You must enable application registration on a Service, {{site.konnect_saas}} enables two plugins automatically: [ACL](/hub/kong-inc/acl), and either [Key Authentication](/hub/kong-inc/key-auth)
-or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to
-support application registration for the Service and are managed by
+To grant Developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service), you must enable application registration on a Service Version.
+When you enable application registration, {{site.konnect_saas}} enables two plugins automatically: [ACL](/hub/kong-inc/acl), and either [Key Authentication](/hub/kong-inc/key-auth)
+or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to support application registration for the Service and are managed by
 {{site.konnect_saas}}. Once enabled, you can [disable application registration](#disable)
 at any time.
 
-This guide will walk you through the two supported authentication plugins:
+This guide walks you through the two supported authentication plugins:
 - [Key Authentication](#konnect-key-auth-flow)
 - [OpenID Connect](#oidc-flow)
 
@@ -22,6 +22,8 @@ permissions.
 
 - The Services have been created, versioned, and published to the
   {{site.konnect_short_name}} Dev Portal so that they appear in the Catalog.
+
+- The Service version must have an [implementation](/konnect/configure/servicehub/manage-services/#service-version-implementations)
 
 - If you are using [OpenID Connect](#oidc-flow) for your authorization:
 
@@ -37,10 +39,10 @@ permissions.
 
 ## Enable app registration with key authentication {#konnect-key-auth-flow}
 
-1. From the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %}**ServiceHub** and select a
+1. From the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %} **ServiceHub** and select a
 Service. Now, click the **Versions** button and select the desired version. 
 
-2. From the **Actions** dropdown menu, select **Enable app registration**.
+2. Click **Version actions** > **Enable app registration**.
 
 3. Select `key-auth` from the **Auth Type** list.
   Optionally, click to enable [**Auto Approve**](#autoapprove-auth) for application registrations for the selected Service.
@@ -50,16 +52,12 @@ Service. Now, click the **Versions** button and select the desired version.
     With app registration enabled, all versions of this service now include
     read-only entries for the `acl` and `key-auth` plugins.
 
-### Enable auto approve {#autoapprove-auth}
-
-If you enable the [**Auto Approve**](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps) setting for applications, any application request will be automatically approved and Applications will not need to be [manually approved](/konnect/dev-portal/applications/manage-app-reg-requests/). Enabling auto approve overrides Service-specific auto approval settings. 
-
 ## Enable App Registration with OpenID Connect {#oidc-flow}
 
 1. From the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %} **ServiceHub** and select a
 Service. Now, click the **Versions** button and select the desired version. 
 
-2. From the **Actions** menu, click **Enable app registration**.
+2. Click **Version actions** > **Enable app registration**.
 
 3. Select `openid-connect` from the **Auth Type** list.
 
@@ -101,22 +99,8 @@ at any time.
 
 1. From the {{site.konnect_short_name}} menu, click **Services** and select a Service.
 
-1. From the **Actions** menu, select **Disable app registration**.
+1. From the **Service** menu, select **Version** to display all of the registered versions.
 
-1. Click **Disable**.
+1. Click the Version you intend to disable. 
 
-{:.important}
-> **Important:** Developers registered through app registration appear as
-consumers in the Runtime Manager. Do not delete the ACLs associated with a consumer managed
-by app registration.
-
-
-## Troubleshooting
-
-If you encounter any of the errors below that can appear in the Enable App Registration dialog,
-follow the recommended solution.
-
-| Error Message | Solution |
-|------------------------------|---------------------------------------------------------------------------------|
-| No Service implementation in the Service package. | Create a Service implementation. See the [example](/konnect/configure/servicehub/manage-services/#implement-service-version) in the Quickstart Guide, and the [ServiceHub](/konnect/configure/servicehub/manage-services/#implement-service-version) documentation. |
-| Schema violation, config.issuer: missing host in url (openid-connect)| Be sure to include the host in the Issuer URL of your identity provider. For example: `https://dev-1234567.okta.com/oauth2/default`. |
+1. Click **Version actions** > **Disable app registration**.
