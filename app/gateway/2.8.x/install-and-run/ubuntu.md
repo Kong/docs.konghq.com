@@ -16,6 +16,13 @@ Kong is licensed under an
 
 You can install {{site.base_gateway}} by downloading an installation package or using our APT repository.
 
+{:.note .no-icon}
+> We currently package Kong Gateway for Ubuntu Bionic, Focal and Xenial.
+> If you are using a different release, please replace `$(lsb_release -sc)` with `xenial` in the commands below.
+> <br /><br />
+> Run `lsb_release -sc` to see your current release name
+
+
 {% navtabs %}
 {% navtab Package %}
 
@@ -27,12 +34,12 @@ Install {{site.base_gateway}} on Ubuntu from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.all.deb "{{ site.links.download }}/gateway-2.x-ubuntu-$(lsb_release -cs)/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb"
+curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.all.deb "{{ site.links.download }}/gateway-2.x-ubuntu-$(lsb_release -sc)/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb"
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.amd64.deb "{{ site.links.download }}/gateway-2.x-ubuntu-$(lsb_release -cs)/pool/all/k/kong/kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb"
+curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.amd64.deb "{{ site.links.download }}/gateway-2.x-ubuntu-$(lsb_release -sc)/pool/all/k/kong/kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb"
  ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -81,7 +88,7 @@ Install the APT repository from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-apt install -y kong-enterprise-edition={{page.kong_versions[page.version-index].ee-version}}
+sudo apt install -y kong-enterprise-edition={{page.kong_versions[page.version-index].ee-version}}
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}

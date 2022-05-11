@@ -36,7 +36,7 @@ and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandr
 If you are using Postgres, provision a database and a user before starting {{site.base_gateway}}, for example:
 
 ```sql
-CREATE USER kong; CREATE DATABASE kong OWNER kong;
+CREATE USER kong WITH PASSWORD 'super_secret'; CREATE DATABASE kong OWNER kong;
 ```
 
 Then, run the {{site.base_gateway}} migrations, using the following command:
