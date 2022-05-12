@@ -4,9 +4,9 @@ no_version: true
 toc: true
 ---
 
-Multiple Services can be registered to a single Application. In the {{site.konnect_short_name}} Dev Portal, Services registered to an Application will be listed in the Application detail page, available through **My Apps** in the top-right corner dropdown menu beneath the Developer's login email.
+Multiple Services can be registered to a single application. In the {{site.konnect_short_name}} Dev Portal, Services registered to an application will be listed in the application detail page, available through **My Apps** in the top-right corner dropdown menu beneath the developer's login email.
 
-The purpose of registering Services to an Application is to consume those Services using the Application-level authentication. Grouping authentication enables direct access to multiple Services. The Application can have multiple credentials, or API keys. For more information about Application credentials, refer to [Generate Credentials for an Application](/konnect/dev-portal/applications/dev-gen-creds/).
+The purpose of registering Services to an application is to consume those Services using the application-level authentication. Grouping authentication enables direct access to multiple Services. The application can have multiple credentials, or API keys. For more information about application credentials, refer to [Generate Credentials for an Application](/konnect/dev-portal/applications/dev-gen-creds/).
 
 In [cloud.konghq.com](https://cloud.konghq.com), admins can access a list of the installed authentication plugins via the **Runtime Manager**. See [Enable Application Registration for a Service](/konnect/dev-portal/applications/enable-app-reg/) for more information about authentication flows.
 
