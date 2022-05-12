@@ -44,7 +44,7 @@ params:
   dbless_compatible: 'yes'
   config:
 
-# deprecated parameters
+# deprecated parameters and previous versions
     - name: whitelist
       required: semi
       default:
@@ -52,14 +52,33 @@ params:
       description: |
         Comma-separated list of IPs or CIDR ranges to whitelist. One of `config.whitelist` or `config.blacklist` must be specified.
       maximum_version: "2.0.x"
-      minimum_version: "2.0.x"
     - name: blacklist
       required: semi
       default:
       description: |
         Comma-separated list of IPs or CIDR ranges to blacklist. One of `config.whitelist` or `config.blacklist` must be specified.
       maximum_version: "2.0.0"
-      minimum_version: "2.0.0"
+    - name: allow
+      required: semi
+      default: null
+      value_in_examples:
+        - 54.13.21.1
+        - 143.1.0.0/24
+      datatype: array of string elements
+      description: |
+        List of IPs or CIDR ranges to allow. One of `config.allow` or `config.deny` must be specified.
+      minimum_version: "2.1.x"
+      maximum_version: "2.8.x"
+    - name: deny
+      required: semi
+      default: null
+      datatype: array of string elements
+      description: |
+        List of IPs or CIDR ranges to deny. One of `config.allow` or `config.deny` must be specified.
+
+        Note: We have deprecated the usage of `whitelist` and `blacklist` in favor of `allow` and `deny`.  
+      minimum_version: "2.1.x"
+      maximum_version: "2.8.x"
 
 # current parameters
     - name: allow
@@ -71,18 +90,14 @@ params:
       datatype: array of string elements
       description: |
         List of IPs or CIDR ranges to allow. One of `config.allow` or `config.deny` must be specified.
-
-        Note: We have deprecated the usage of `whitelist` and `blacklist` in favor of `allow` and `deny`.  
-      minimum_version: "2.1.x"
+      minimum_version: "3.0.x"
     - name: deny
       required: semi
       default: null
       datatype: array of string elements
       description: |
         List of IPs or CIDR ranges to deny. One of `config.allow` or `config.deny` must be specified.
-
-        Note: We have deprecated the usage of `whitelist` and `blacklist` in favor of `allow` and `deny`.  
-      minimum_version: "2.1.x"
+      minimum_version: "3.0.x"
     - name: status
       required: false
       default: 403
@@ -102,8 +117,12 @@ params:
 
 {% if_plugin_version gte:2.1.x %}
 
+{% if_plugin_version lte:2.8.x %}
+
 {:.note}
 > **Note**: We have deprecated the usage of `whitelist` and `blacklist` in favor of `allow` and `deny`. This change may require Admin API requests to be updated.
+
+{% endif_plugin_version %}
 
 An `allow` list provides a positive security model, in which the configured CIDR ranges are allowed access to the resource, and all others are inherently rejected. By contrast, a `deny` list configuration provides a negative security model, in which certain CIDRS are explicitly denied access to the resource (and all others are inherently allowed).
 
@@ -117,19 +136,36 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
 ```
 {% endif_plugin_version %}
 
-{% if_plugin_version gte:2.0.x %}
+{% if_plugin_version lte:2.0.x %}
 
 Note that the `whitelist` and `blacklist` models are mutually exclusive in their usage, as they provide complimentary approaches. That is, you cannot configure the plugin with both `whitelist` and `blacklist` configurations. A `whitelist` provides a positive security model, in which the configured CIDR ranges are allowed access to the resource, and all others are inherently rejected. In contrast, a `blacklist` configuration provides a negative security model, in which certain CIDRS are explicitly denied access to the resource (and all others are inherently allowed).
 
 {% endif_plugin_version %}
 
+{% if_plugin_version gte:2.1.x %}
+
+---
+
 ## Changelog
+
+{% if_plugin_version gte:3.0.x %}
 
 ### Kong Gateway 3.0.x
 - Removed the deprecated `whitelist` and `blacklist` parameters.
 They are no longer supported.
 
+{% endif_plugin_version %}
+
+{% if_plugin_version gte:2.7.x %}
+
 ### Kong Gateway 2.7.x (plugin version 2.0.0)
 
 - Addition of `status` and `message` fields
+
+{% endif_plugin_version %}
+
+### Kong Gateway 2.1.x (plugin version 2.0.0)
+
 - Use `allow` and `deny` instead of `whitelist` and `blacklist`
+
+{% endif_plugin_version %}

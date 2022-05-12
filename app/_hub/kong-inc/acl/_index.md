@@ -26,22 +26,6 @@ kong_version_compatibility:
       - 2.2.x
       - 2.1.x
       - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
-      - 0.14.x
-      - 0.13.x
-      - 0.12.x
-      - 0.11.x
-      - 0.10.x
-      - 0.9.x
-      - 0.8.x
-      - 0.7.x
-      - 0.6.x
-      - 0.5.x
   enterprise_edition:
     compatible:
       - 2.8.x
@@ -52,9 +36,7 @@ kong_version_compatibility:
       - 2.3.x
       - 2.2.x
       - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+
 params:
   name: acl
   service_id: true
@@ -82,7 +64,6 @@ params:
       default:
       description: |
         Comma separated list of arbitrary group names that are not allowed to consume the Service or the Route (or API). One of `config.whitelist` or `config.blacklist` must be specified.
-      minimum_version: "2.0.x"
       maximum_version: "2.0.x"
 
   # current parameters
@@ -125,6 +106,13 @@ You can't configure an ACL with both `allow` and `deny` configurations. An ACL w
 {% endif_plugin_version %}
 
 ## Usage
+
+{% if_plugin_version gte:2.1.x and lte:2.8.x %}
+
+{:.note}
+> **Note**: We have deprecated the usage of `whitelist` and `blacklist` in favor of `allow` and `deny`. This change may require Admin API requests to be updated.
+
+{% endif_plugin_version %}
 
 Before you use the ACL plugin, configure your Service or
 Route with an [authentication plugin](/hub/#authentication)
@@ -330,9 +318,22 @@ A successful DELETE request returns a `204` status.
 ### See also
 - [configuration](/gateway/latest/reference/configuration)
 
+{% if_plugin_version gte:2.1.x %}
+
 ---
+
 ## Changelog
+
+{% if_plugin_version gte:3.0.x %}
 
 ### Kong Gateway 3.0.x
 - Removed the deprecated `whitelist` and `blacklist` parameters.
 They are no longer supported.
+
+{% endif_plugin_version %}
+
+### Kong Gateway 2.1.x (plugin version 2.0.0)
+
+- Use `allow` and `deny` instead of `whitelist` and `blacklist`
+
+{% endif_plugin_version %}

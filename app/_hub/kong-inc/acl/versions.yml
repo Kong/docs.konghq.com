@@ -1,7 +1,12 @@
 strategy: gateway
-releases:
-  - 3.0.x
-  - 2.8.x
-  - 2.0.x
+delegate_releases: true
+
 overrides:
   2.8.x: 2.0.x
+  2.7.x: 2.0.x
+  2.6.x: 2.0.x
+  2.5.x: 2.0.x
+  2.4.x: 2.0.x
+  2.3.x: 2.0.x
+  2.2.x: 2.0.x
+  2.1.x: 2.0.x
