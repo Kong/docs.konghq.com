@@ -1,7 +1,8 @@
 name: textlinting
 on:
-push:
-    branches: [vale-test]
+  push:
+    branches:
+      - vale-test
 
 jobs:
   prose:
@@ -13,7 +14,7 @@ jobs:
     - name: Vale
       uses: errata-ai/vale-action@v1
       with:
-        # path where vale checks
-        files: [readme.md]#just testing one file
+        # path where vale checks just checking one file
+        files: readme.md 
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
