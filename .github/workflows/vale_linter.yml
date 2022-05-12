@@ -15,6 +15,6 @@ jobs:
       uses: errata-ai/vale-action@v1
       with:
         # path where vale checks just checking one file
-        files: readme.md 
+        files: '["readme.md"]' 
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
