@@ -1,7 +1,7 @@
 ---
 name: HTTP Log
 publisher: Kong Inc.
-version: 2.1.x
+version: 3.0.x
 desc: Send request and response logs to an HTTP server
 description: |
   Send request and response logs to an HTTP server.
@@ -96,11 +96,10 @@ params:
       default: empty table
       datatype: array of string elements
       description: |
-        An optional table of headers added to the HTTP message to the upstream server. The following
-        headers are not allowed: `Host`, `Content-Length`, `Content-Type`.
+        An optional table of headers (value indexed by header name) added to the HTTP message to the
+        upstream server. The following headers are not allowed: `Host`, `Content-Length`, `Content-Type`.
 
-        **Note:** This parameter is only available for versions
-        2.3.x and later.
+        **Note:** Before version 3.0.0 the values were arrays of strings (multiple values per header name)
     - name: custom_fields_by_lua
       required: false
       default:
