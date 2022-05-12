@@ -171,6 +171,7 @@ module CanonicalUrl
       # Remove any pages that should not be in the sitemap
       pages = pages.values.filter do |v|
         next false if v['page'].data['seo_noindex']
+        next false if v['page'].data['redirect_to'] # Legacy HTML based redirects from jekyll-redirect-from
         next false if blocked_from_sitemap.any? { |blocked| v['url'] == blocked }
 
         true
