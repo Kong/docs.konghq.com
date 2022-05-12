@@ -40,7 +40,7 @@ module CanonicalUrl
         unless versioned_product?(url_segments[0])
           all_pages[page.url] = {
             'url' => page.url,
-            'sitemap' => page.data['seo_noindex'] ? false : true
+            'page' => page
           }
           next
         end
@@ -84,7 +84,7 @@ module CanonicalUrl
         all_pages[url] = {
           'version' => version,
           'url' => page.url,
-          'sitemap' => page.data['seo_noindex'] ? false : true
+          'page' => page
         }
       end
 
@@ -170,7 +170,8 @@ module CanonicalUrl
 
       # Remove any pages that should not be in the sitemap
       pages = pages.values.filter do |v|
-        next false unless v['sitemap']
+        next false if v['page'].data['seo_noindex']
+        next false if v['page'].data['redirect_to'] # Legacy HTML based redirects from jekyll-redirect-from
         next false if blocked_from_sitemap.any? { |blocked| v['url'] == blocked }
 
         true
@@ -195,7 +196,7 @@ module CanonicalUrl
           page.data['canonical_url'] = page.url
           all_pages[page.url] = {
             'url' => page.url,
-            'sitemap' => true
+            'page' => page
           }
           next
         end
@@ -205,7 +206,7 @@ module CanonicalUrl
           url = page.url.gsub('/index', '/')
           all_pages[url] = {
             'url' => url,
-            'sitemap' => true
+            'page' => page
           }
           page.data['canonical_url'] = url
         else

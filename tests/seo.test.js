@@ -140,7 +140,7 @@ test.describe("unversioned content", () => {
   });
 });
 
-test.describe("sitemap", () => {
+test.describe("sitemap includes", () => {
   [
     "/konnect/",
     "/konnect-platform/",
@@ -161,6 +161,22 @@ test.describe("sitemap", () => {
       await page.goto("/sitemap.xml");
       const html = await page.content();
       await expect(html).toContain(`<loc>https://docs.konghq.com${t}</loc>`);
+    });
+  });
+});
+
+
+test.describe("sitemap does not include", () => {
+  [
+    "/gateway/2.6.x/configure/auth/kong-manager/oidc/",
+    "/mesh/1.6.x/",
+    "/mesh/1.1.x/overview/",
+    "/konnect-platform/compatibility/",
+  ].forEach((t) => {
+    test(t, async ({ page }) => {
+      await page.goto("/sitemap.xml");
+      const html = await page.content();
+      await expect(html).not.toContain(`<loc>https://docs.konghq.com${t}</loc>`);
     });
   });
 });
