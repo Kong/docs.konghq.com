@@ -4,7 +4,7 @@ publisher: Kong Inc.
 version: 3.0.x
 desc: Allow or deny IPs that can make requests to your Services
 description: |
-  Restrict access to a Service or a Route by either allowing or denying IP addresses. Single IPs, multiple IPs or ranges in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) like `10.10.10.0/24` can be used. The plugin supports IPv4 and IPv6 addresses.
+  Restrict access to a Service or a Route by either allowing or denying IP addresses. Single IPs, multiple IPs, or ranges in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) like `10.10.10.0/24` can be used. The plugin supports IPv4 and IPv6 addresses.
 
 type: plugin
 categories:
@@ -67,6 +67,8 @@ params:
       datatype: array of string elements
       description: |
         List of IPs or CIDR ranges to allow. One of `config.allow` or `config.deny` must be specified.
+
+        Note: We have deprecated the usage of `whitelist` and `blacklist` in favor of `allow` and `deny`.  
       minimum_version: "2.1.x"
       maximum_version: "2.8.x"
     - name: deny
