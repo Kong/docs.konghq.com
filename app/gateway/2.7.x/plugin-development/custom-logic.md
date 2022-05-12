@@ -8,12 +8,12 @@ chapter: 3
 > **Note**: This chapter assumes that you are familiar with
 [Lua](http://www.lua.org/).
 
-A {{site.ce_product_name}} plugin allows you to inject custom logic (in Lua) at several
+A {{site.base_gateway}} plugin allows you to inject custom logic (in Lua) at several
 entry-points in the life-cycle of a request/response or a tcp stream
-connection as it is proxied by {{site.ce_product_name}}. To do so, the file
+connection as it is proxied by {{site.base_gateway}}. To do so, the file
 `kong.plugins.<plugin_name>.handler` must return a table with one or
 more functions with predetermined names. Those functions will be
-invoked by {{site.ce_product_name}} at different phases when it processes traffic.
+invoked by {{site.base_gateway}} at different phases when it processes traffic.
 
 The first parameter they take is always `self`. All functions except `init_worker`
 can receive a second parameter which is a table with the plugin configuration.
@@ -28,7 +28,7 @@ kong.plugins.<plugin_name>.handler
 
 If you define any of the following functions in your `handler.lua`
 file you'll implement custom logic at various entry-points
-of {{site.ce_product_name}}'s execution life-cycle:
+of {{site.base_gateway}}'s execution life-cycle:
 
 - **[HTTP Module]** *is used for plugins written for HTTP/HTTPS requests*
 
@@ -44,9 +44,9 @@ of {{site.ce_product_name}}'s execution life-cycle:
 | `log`           | [log]             | Executed when the last response byte has been sent to the client.
 
 {:.note}
-> **Note:** If a module implements the `response` function, {{site.ce_product_name}} will automatically activate the "buffered proxy" mode, as if the [`kong.service.request.enable_buffering()` function][enable_buffering] had been called. Because of a current Nginx limitation, this doesn't work for HTTP/2 or gRPC upstreams.
+> **Note:** If a module implements the `response` function, {{site.base_gateway}} will automatically activate the "buffered proxy" mode, as if the [`kong.service.request.enable_buffering()` function][enable_buffering] had been called. Because of a current Nginx limitation, this doesn't work for HTTP/2 or gRPC upstreams.
 
-To reduce unexpected behaviour changes, {{site.ce_product_name}} does not start if a plugin implements both `response` and either `header_filter` or `body_filter`.
+To reduce unexpected behaviour changes, {{site.base_gateway}} does not start if a plugin implements both `response` and either `header_filter` or `body_filter`.
 
 - **[Stream Module]** *is used for Plugins written for TCP and UDP stream connections*
 
@@ -58,12 +58,12 @@ To reduce unexpected behaviour changes, {{site.ce_product_name}} does not start 
 | `certificate`   | [ssl_certificate] | Executed during the SSL certificate serving phase of the SSL handshake.
 
 All of those functions, except `init_worker`, take one parameter which is given
-by {{site.ce_product_name}} upon its invocation: the configuration of your plugin. This parameter
+by {{site.base_gateway}} upon its invocation: the configuration of your plugin. This parameter
 is a Lua table, and contains values defined by your users, according to your
 plugin's schema (described in the `schema.lua` module). More on plugins schemas
 in the [next chapter]({{page.book.next}}).
 
-Note that UDP streams don't have real connections.  {{site.ce_product_name}} will consider all
+Note that UDP streams don't have real connections.  {{site.base_gateway}} will consider all
 packets with the same origin and destination host and port as a single
 connection.  After a configurable time without any packet, the connection is
 considered closed and the `log` function is executed.
@@ -83,8 +83,8 @@ considered closed and the `log` function is executed.
 
 ## handler.lua specifications
 
-{{site.ce_product_name}} processes requests in **phases**. A plugin is a piece of code that gets
-activated by {{site.ce_product_name}} as each phase is executed while the request gets proxied.
+{{site.base_gateway}} processes requests in **phases**. A plugin is a piece of code that gets
+activated by {{site.base_gateway}} as each phase is executed while the request gets proxied.
 
 Phases are limited in what they can do. For example, the `init_worker` phase
 does not have access to the `config` parameter because that information isn't
@@ -93,13 +93,13 @@ available when kong is initializing each worker.
 A plugin's `handler.lua` must return a table containing the functions it must
 execute on each phase.
 
-{{site.ce_product_name}} can process HTTP and stream traffic. Some phases are executed 
+{{site.base_gateway}} can process HTTP and stream traffic. Some phases are executed 
 only when processing HTTP traffic, others when processing stream,
 and some (like `init_worker` and `log`) are invoked by both kinds of traffic.
 
 In addition to functions, a plugin must define two fields:
 
-* `VERSION` is an informative field, not used by {{site.ce_product_name}} directly. It usually
+* `VERSION` is an informative field, not used by {{site.base_gateway}} directly. It usually
   matches the version defined in a plugin's Rockspec version, when it exists.
 * `PRIORITY` is used to sort plugins before executing each of their phases.
   Plugins with a higher priority are executed first. See the
@@ -177,7 +177,7 @@ end
 ### Migrating from BasePlugin module
 
 The `BasePlugin` module is deprecated and will be removed in a future version
-of {{site.ce_product_name}}.  If you have an old plugin that uses it, replace
+of {{site.base_gateway}}.  If you have an old plugin that uses it, replace
 the initial part:
 
 ```lua
@@ -245,12 +245,12 @@ for an example of a real-life handler code.
 
 Logic implemented in those phases will most likely have to interact with the
 request/response objects or core components (e.g. access the cache, and
-database). {{site.ce_product_name}} provides a [Plugin Development Kit][pdk] (or "PDK") for such
+database). {{site.base_gateway}} provides a [Plugin Development Kit][pdk] (or "PDK") for such
 purposes: a set of Lua functions and variables that can be used by Plugins to
 execute various gateway operations in a way that is guaranteed to be
-forward-compatible with future releases of {{site.ce_product_name}}.
+forward-compatible with future releases of {{site.base_gateway}}.
 
-When you are trying to implement some logic that needs to interact with {{site.ce_product_name}}
+When you are trying to implement some logic that needs to interact with {{site.base_gateway}}
 (e.g. retrieving request headers, producing a response from a plugin, logging
 some error or debug information), you should consult the [Plugin Development
 Kit Reference][pdk].
@@ -260,7 +260,7 @@ Kit Reference][pdk].
 
 Some plugins might depend on the execution of others to perform some
 operations. For example, plugins relying on the identity of the consumer have
-to run **after** authentication plugins. Considering this, {{site.ce_product_name}} defines
+to run **after** authentication plugins. Considering this, {{site.base_gateway}} defines
 **priorities** between plugins execution to ensure that order is respected.
 
 Your plugin's priority can be configured via a property accepting a number in
