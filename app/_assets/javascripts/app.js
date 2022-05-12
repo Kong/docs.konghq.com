@@ -687,4 +687,6 @@ jQuery(function () {
       .append( '<div class="tooltip"><span class="tooltiptext" >Available in Kong open-source only</span></div>' );
     $('.badge.dbless')
       .append( '<div class="tooltip"><span class="tooltiptext">Compatible with DB-less deployments</span></div>' );
+    $('.badge.konnect')
+      .append( '<div class="tooltip"><span class="tooltiptext">Available in the Konnect Cloud app</span></div>' );
 });

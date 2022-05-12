@@ -16,6 +16,7 @@
           unless extn.cloud == false %}plus {% endunless %}{% endif %}{%
             if extn.enterprise %}enterprise {%
               else %}open-source {% endif %}{%
+                unless extn.cloud == false %} konnect-cloud{% endunless %}{%
                 else %}pub-not-konghq pub-{{extn_publisher}}{% endif %}">
     <div class="plugin-card">
       <a href="{{ extn.url | remove: 'index.html' }}" title="{{ extn.name }}: {{ extn.desc }}">

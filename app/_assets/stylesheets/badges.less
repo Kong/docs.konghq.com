@@ -22,6 +22,14 @@
       background-color: @blue-500;
 
     }
+
+  &.konnect::after {
+      content: "KONNECT COMPATIBLE";
+      color: black;
+      border-color: @blue-200;
+      background-color: @blue-200;
+    }
+
   &.enterprise::after {
       content: "ENTERPRISE";
       color: white;
@@ -157,12 +165,17 @@ h4.badge, h5.badge {
 }
 
 a.badge {
-  display: inline-flex;
-  margin-top: 3px;
+  margin-top: 6px;
 
   &:hover, &:focus {
-    opacity: 0.9;
+    opacity: 0.8;
     text-decoration: none;
+  }
+}
+
+.badge-container {
+    a > .tooltip > .tooltiptext {
+      margin-top: 6px;
   }
 }
 
@@ -181,14 +194,3 @@ table > tbody > tr {
       }
     }
   }
-
-// Tooltips in the plugin hub doc sidebar
-.about-extn-table {
-  .badge {
-    &:hover {
-      .tooltiptext {
-        left: -50px;
-      }
-    }
-  }
-}
