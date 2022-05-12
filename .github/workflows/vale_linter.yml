@@ -1,0 +1,19 @@
+name: textlinting
+on:
+push:
+    branches: [vale-test]
+
+jobs:
+  prose:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Vale
+      uses: errata-ai/vale-action@v1
+      with:
+        # path where vale checks
+        files: [readme.md]#just testing one file
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
