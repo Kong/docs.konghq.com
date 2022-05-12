@@ -1,0 +1,279 @@
+openapi: 3.0.0
+info:
+  title: Konnect API
+  description: |
+    Welcome to the Kong Konnect API. This document is a work in progress and is not exhaustive. Please report any errors you find to devrel@konghq.com
+  version: 0.1.0
+  contact:
+    email: devrel@konghq.com
+servers:
+  - url: https://us.api.konghq.com
+tags:
+  - name: Runtime Groups
+paths:
+  /konnect-api/api/runtime_groups:
+    get:
+      summary: List Runtime Groups
+      description: |
+        Return all available runtime groups. This information may be split across multiple pages
+
+        _All information will be returned on a single page during the beta as the maximum number of Runtime Groups is 5_
+
+      operationId: list-runtime-groups
+      tags:
+        - Runtime Groups
+      responses:
+        "200":
+          description: List of Runtime Groups
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/RuntimeGroup"
+                  count:
+                    type: integer
+                    example: 1
+                  total:
+                    type: integer
+                    example: 1
+                  page:
+                    type: integer
+                    example: 1
+                  pageCount:
+                    type: integer
+                    example: 1
+        "401":
+          description: Authentication Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Unauthorized"
+    post:
+      summary: Create a Runtime Group.
+      description: |
+        > This is an **enterprise only** feature
+
+        Create a new empty runtime group that you can publish services to. You can create a maximum of 5 runtime groups during the beta period.
+      operationId: create-runtime-group
+      tags:
+        - Runtime Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of your new Runtime Group
+      responses:
+        "200":
+          description: New Runtime Group details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RuntimeGroup"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - title: Simple Error
+                    properties:
+                      message:
+                        type: string
+                        example: "This is a sample error message"
+                  - title: Validation Error
+                    properties:
+                      message:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            property:
+                              type: string
+                              maxLength: 32
+                              description: Description goes here
+                              example: name
+                            children:
+                              type: array
+                              items:
+                                type: object
+                              example: []
+                            constraints:
+                              type: object
+                              properties:
+                                isLength:
+                                  type: string
+                                  example: name must be longer than or equal to 2 characters
+                                isString:
+                                  type: string
+                                  example: name must be a string
+              examples:
+                Validation Error:
+                  value:
+                    message:
+                      - property: name
+                        children: []
+                        constraints:
+                          isLength: name must be longer than or equal to 2 characters
+                          isString: name must be a string
+                Runtime Groups Limit Reached:
+                  value:
+                    message: "runtime groups limit reached. Limit: 5"
+        "401":
+          description: Authentication Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Unauthorized"
+
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: "Key (org_id, name)=(7014af70-e1f2-42ab-a225-140f1ea2960c, my_runtime_group) already exists."
+
+  /konnect-api/api/runtime_groups/{id}:
+    get:
+      summary: Fetch Runtime Group
+      description: Return the details for a single runtime group.
+      operationId: get-runtime-group
+      tags:
+        - Runtime Groups
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the runtime group to fetch
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: A single Runtime Group
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RuntimeGroup"
+        "401":
+          description: Authentication Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Unauthorized"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: "Not Found"
+    delete:
+      summary: Delete a Runtime Group
+      description: |
+        Be careful! This is an **irreverisble action**. Once you delete a Runtime Group, it's gone forever.
+
+        You cannot delete the _default_ runtime group, but you may delete any others
+      operationId: delete-runtime-group
+      tags:
+        - Runtime Groups
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the runtime group to delete
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Runtime Group deleted successfully
+        "401":
+          description: Authentication Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Unauthorized"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: "Not Found"
+
+components:
+  schemas:
+    Unauthorized:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Unauthorized
+    RuntimeGroup:
+      type: object
+      properties:
+        id:
+          type: string
+          example: a62e9a4c-d477-4444-8f76-e609a05a87b2
+        name:
+          type: string
+          example: my_runtime_group
+        description:
+          type: string
+          example: This is an example description for a Runtime Group
+        metadata:
+          type: object
+          properties:
+            labels:
+              type: object
+        config:
+          type: object
+          properties:
+            cp_outlet:
+              type: string
+              example: "https://36fc5d01be.us.cp0.konghq.com/"
+            telemetry_endpoint:
+              type: string
+              example: "https://36fc5d01be.us.tp0.konghq.com/"
+            dns_prefix:
+              type: string
+              example: "36fc5d01be"
+        created_at:
+          type: string
+          example: "2022-04-12T13:44:42.062Z"
+        updated_at:
+          type: string
+          example: "2022-04-12T13:44:42.062Z"
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        To use this API, you need to fetch an authentication token from the KAuth API.
+
+        To do so, run the following command in your terminal, replacing your username and password as required:
+
+        ```bash
+        curl 'https://us.api.konghq.com/kauth/api/v1/authenticate' -X POST -d '{"username":"user@example.com","password":"MY_PASSWORD_HERE"}' --silent --output /dev/null --cookie-jar - | grep konnectaccesstoken | tr -d ' ' | cut -f 7
+        ```
+
+        The long string returned is your authentication token. Provide this token in your requests as the `Authorization` header in the format `Authorization: Bearer <token>`
+security:
+  - bearerAuth: []
