@@ -76,15 +76,14 @@ Use the following `docker run` command sample as a guide to compile your actual 
 $ docker run -d --name kong-dp \
   -e "KONG_ROLE=data_plane" \
   -e "KONG_DATABASE=off" \
-  -e "KONG_VITALS_TTL_DAYS=732" \
   -e "KONG_CLUSTER_MTLS=pki" \
   -e "KONG_CLUSTER_CONTROL_PLANE={example.cp.konnect.foo}:443" \
   -e "KONG_CLUSTER_SERVER_NAME={kong-cpoutlet-example.service}" \
   -e "KONG_CLUSTER_TELEMETRY_ENDPOINT={example.tp.konnect.foo}:443" \
   -e "KONG_CLUSTER_TELEMETRY_SERVER_NAME={kong-telemetry-example.service}" \
   -e "KONG_CLUSTER_CERT=/{PATH_TO_FILE}/tls.crt" \
-  -e "KONG_CLUSTER_CA_CERT=/{PATH_TO_FILE}/ca.crt" \
   -e "KONG_CLUSTER_CERT_KEY=/{PATH_TO_FILE}/tls.key" \
+  -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system" \
   --mount type=bind,source="$(pwd)",target={PATH_TO_KEYS_AND_CERTS},readonly \
   -p 8000:8000 \
   kong/kong-gateway:2.8.0.0-alpine
@@ -95,15 +94,14 @@ $ docker run -d --name kong-dp \
 docker run -d --name kong-dp `
   -e "KONG_ROLE=data_plane" `
   -e "KONG_DATABASE=off" `
-  -e "KONG_VITALS_TTL_DAYS=732" `
   -e "KONG_CLUSTER_MTLS=pki" `
   -e "KONG_CLUSTER_CONTROL_PLANE={EXAMPLE.CP.KONNECT.FOO}:443" `
   -e "KONG_CLUSTER_SERVER_NAME={KONG-CPOUTLET-EXAMPLE.SERVICE}" `
   -e "KONG_CLUSTER_TELEMETRY_ENDPOINT={EXAMPLE.TP.KONNECT.FOO}:443" `
   -e "KONG_CLUSTER_TELEMETRY_SERVER_NAME={KONG-TELEMETRY-EXAMPLE.SERVICE}" `
   -e "KONG_CLUSTER_CERT=/{PATH_TO_FILE}/tls.crt" `
-  -e "KONG_CLUSTER_CA_CERT=/{PATH_TO_FILE}/ca.crt" `
   -e "KONG_CLUSTER_CERT_KEY=/{PATH_TO_FILE}/tls.key" `
+  -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system" `
   --mount type=bind,source="$(pwd)",target={PATH_TO_KEYS_AND_CERTS},readonly `
   -p 8000:8000 `
   kong/kong-gateway:2.8.0.0-alpine
@@ -111,7 +109,7 @@ docker run -d --name kong-dp `
 {% endnavtab %}
 {% endnavtabs %}
 
-1. Replace the values in `KONG_CLUSTER_CERT`, `KONG_CLUSTER_CA_CERT`, and
+1. Replace the values in `KONG_CLUSTER_CERT` and
 `KONG_CLUSTER_CERT_KEY` with the paths to your certificate and key files.
 
 2. Check the **Linux** or **Kubernetes** tabs in the Konnect UI to find the values for
