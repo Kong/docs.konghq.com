@@ -91,7 +91,7 @@ command, pointing to the runtime group that you want to target:
 
 1. Log in to your [{{site.konnect_saas}}](http://cloud.konghq.com/login) account.
 
-1. From the left navigation menu, open **Runtimes**, then open the runtime group
+1. From the left navigation menu, open **Runtime Manager**, then open the runtime group
 you just updated.
 
 1. Look through the configuration details of any imported entities to make sure
@@ -121,7 +121,7 @@ you can shut them down now.
 See the following docs to set up any additional things you may need:
 
 * **Dev Portal files:** You can migrate API specs and markdown Service descriptions
-into ServiceHub using the {{site.konnect_saas}} GUI. Each Konnect Service accepts
+into Service Hub using the {{site.konnect_saas}} GUI. Each Konnect Service accepts
 one markdown description file, and each Service version accepts one API spec.
 See [Dev Portal Service Documentation](/konnect/dev-portal/service-documentation).
 

@@ -3,7 +3,7 @@ title: Publish a Service to the Dev Portal
 no_version: true
 ---
 
-Through ServiceHub, you can publish any Service in your catalog and its
+Through Service Hub, you can publish any Service in your catalog and its
 documentation to the Dev Portal. Publishing services to the Dev Portal is the only way to expose your service to developers. Once the Service is published and available to developers, they can apply for access by [registering](/konnect/dev-portal/access-and-approval/dev-reg/) a developer account. You can also [manage](/konnect/dev-portal/access-and-approval/manage-devs/) access to the Dev Portal from the {{site.konnect_saas}} interface.
 
 This doc covers:
@@ -18,7 +18,7 @@ This doc covers:
 
 ## Publish a Service {#publish}
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %} **ServiceHub** page and select a Service.
+1. From the left navigation menu, open the {% konnect_icon servicehub %} **Service Hub** page and select a Service.
 
 2. Click on the **Service actions** dropdown menu and select **Publish to portal**.
 
@@ -27,7 +27,7 @@ This doc covers:
 ## Unpublish a Service {#unpublish}
 
 1. In the left navigation menu, open the {% konnect_icon servicehub %}
-**ServiceHub** and select a Service.
+**Service Hub** and select a Service.
 
 2. Click on the **Service actions** dropdown and select **Unpublish from portal**.
 

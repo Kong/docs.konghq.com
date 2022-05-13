@@ -4,7 +4,7 @@ no_version: true
 ---
 
 Any {{site.base_gateways}} plugins supported in a self-managed hybrid mode
-deployment are also accessible through ServiceHub or the Runtime Manager.
+deployment are also accessible through Service Hub or the Runtime Manager.
 
 ## Kong plugins in Konnect Cloud
 
@@ -16,7 +16,7 @@ or applying it globally.
 * A **scoped** plugin applies configuration only to a specific service, route,
 or consumer. You can configure plugins on
 [services](/konnect/configure/servicehub/enable-service-plugin) and
-[routes](/konnect/configure/servicehub/enable-route-plugin) through ServiceHub, and on
+[routes](/konnect/configure/servicehub/enable-route-plugin) through Service Hub, and on
 [consumers](/konnect/configure/runtime-manager/runtime-groups/manage-entities)
 through the Runtime Manager.
 
@@ -26,7 +26,7 @@ routes, and consumers in a runtime group &ndash; set it up through the
 
 ### Functionality differences from self-managed Kong Gateway
 
-Application registration is built into the ServiceHub.
+Application registration is built into the Service Hub.
 [Enabling it on a service](/konnect/dev-portal/applications/enable-app-reg)
 also enables two plugins in read-only mode: ACL, and one of Key Auth or OpenID
 Connect. These plugins appear in the service's plugin list, and you can view their

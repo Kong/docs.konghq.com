@@ -178,7 +178,7 @@ For this example, let's add a new service.
       Deleted: 0
     ```
 
-1. Check {{site.konnect_saas}} to make sure the sync worked. Open **Runtimes** from
+1. Check {{site.konnect_saas}} to make sure the sync worked. Open **Runtime Manager** from
 the left side menu, then select your runtime group > **Gateway Services**.
 
     You should see a new service named `MyService` in the runtime group.

@@ -24,7 +24,7 @@ out some customization options.
 
 1. Return to the overview page for the `example_service`.
 
-1. In the top right corner, click on the **Actions** dropdown and select
+1. In the top right corner, click on the **Service actions** dropdown and select
 **Publish to Portal**.
 
     By default, this publishes all of the Service's version specs to a private

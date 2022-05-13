@@ -32,7 +32,7 @@ runtime instances.
 
 ### Run the quick setup script
 
-1. From the left navigation menu, open {% konnect_icon runtimes %} **Runtimes**.
+1. From the left navigation menu, open {% konnect_icon runtimes %} **Runtime Manager**.
 
 2. Select a runtime group.
 

@@ -31,7 +31,7 @@ group can't be changed.
 
 ### Application registration in the Dev Portal
 
-When publishing documentation from the ServiceHub to the Dev Portal, you can
+When publishing documentation from the Service Hub to the Dev Portal, you can
 publish API specs from any version -- no matter which runtime group the version
 is in. However, application registration is only supported for Service versions
 running in the default runtime group.

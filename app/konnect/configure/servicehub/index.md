@@ -1,22 +1,22 @@
 ---
-title: ServiceHub Overview
+title: Service Hub Overview
 no_version: true
 ---
 
-The ServiceHub is a {{site.konnect_saas}} functionality module that
+The Service Hub is a {{site.konnect_saas}} functionality module that
 lets you catalog all of your services in a single system of record. This
 catalog represents the single source of truth of your organization’s service
 inventory and their dependencies.
 
-Using the ServiceHub, you can catalog, manage, and track every service in your
+Using the Service Hub, you can catalog, manage, and track every service in your
 entire architecture.
 
-## Services in the ServiceHub catalog
+## Services in the Service Hub catalog
 
-Each entry in the ServiceHub is called a **Konnect Service**, or **Service**
+Each entry in the Service Hub is called a **Konnect Service**, or **Service**
 for short. This is the abstraction of one of your own upstream services.
 
-A Service in the ServiceHub breaks down into multiple
+A Service in the Service Hub breaks down into multiple
 configuration **versions**, and can be **implemented** to route to any
 endpoint you like.
 
@@ -62,14 +62,14 @@ you’ll be able to start making requests through {{site.konnect_saas}}.
 
 ## Dev Portal
 
-ServiceHub natively integrates the Dev Portal into Service configuration.
-Admins can publish Services directly from ServiceHub to the Dev Portal, where
+Service Hub natively integrates the Dev Portal into Service configuration.
+Admins can publish Services directly from Service Hub to the Dev Portal, where
 application developers can search, discover, and consume existing Services.
 
 The Dev Portal in {{site.konnect_product_name}} contains an API catalog,
 allowing you to document all of your Services and their versions.
 
-Through ServiceHub, publish your Service to the Dev Portal and set up
+Through Service Hub, publish your Service to the Dev Portal and set up
 the following for any Service:
 * **Markdown documentation**: A description of your Service. Applies to every
 Service version.

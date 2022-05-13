@@ -3,7 +3,7 @@ title: Analyze Services and Routes
 no_version: true
 ---
 
-In the ServiceHub, the Service, Service version, and Route graphs provide dynamic
+In the Service Hub, the Service, Service version, and Route graphs provide dynamic
 graphs with up to 12 hours of data. To view data beyond this time frame, export
 the data into a comma-separated values (CSV) file.
 
@@ -15,7 +15,7 @@ Service.
 
 For a Route, you can [view status codes](#view-performance-for-a-route)
 for a specified time frame but you can't export a Route traffic report through
-ServiceHub.
+Service Hub.
 
 If you want to combine multiple Services, Routes, or Applications in one report,
 see [custom reports](/konnect/vitals/generate-reports/).
@@ -72,7 +72,7 @@ To view traffic health and performance for a Service version:
 1.  From the left-side menu, open {% konnect_icon servicehub %} **Services**,
 then select a Service version.
 
-    You can click on the the version number from the ServiceHub overview, or
+    You can click on the the version number from the Service Hub overview, or
     you can select a Service and choose your version from the Service detail page.
 
 1. On the Service version's detail page, the **Traffic by status code** graph
@@ -113,7 +113,7 @@ To view traffic health and performance for a Route:
 1.  From the left-side menu, open
 {% konnect_icon servicehub %} **Services**, then select a Service version.
 
-    You can click on the the version number from the ServiceHub overview, or
+    You can click on the the version number from the Service Hub overview, or
     you can select a Service and choose your version from the Service detail page.
 
 1. In the **Routes** section, click on a Route.
