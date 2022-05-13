@@ -22,6 +22,14 @@
       background-color: @blue-500;
 
     }
+
+  &.konnect::after {
+      content: "KONNECT COMPATIBLE";
+      color: black;
+      border-color: @blue-200;
+      background-color: @blue-200;
+    }
+
   &.enterprise::after {
       content: "ENTERPRISE";
       color: white;
@@ -94,7 +102,7 @@
       z-index: 10;
     }
 
-    &:hover {
+    &:hover, &:focus {
        .tooltiptext {
         display: block;
       }
@@ -111,7 +119,7 @@ h2.badge, h3.badge, h4.badge, h5.badge {
       margin-left: 7px;
     }
 
-  &:hover {
+  &:hover, &:focus {
     .tooltiptext {
       left: 7px;
     }
@@ -124,7 +132,7 @@ h1.badge {
       margin-left: 7px;
     }
 
-  &:hover {
+  &:hover, &:focus {
     .tooltiptext {
       right: 0;
       top: 0;
@@ -133,7 +141,7 @@ h1.badge {
 }
 
 h2.badge {
-  &:hover {
+  &:hover, &:focus {
     .tooltiptext {
       top: 3px;
     }
@@ -141,7 +149,7 @@ h2.badge {
 }
 
 h3.badge {
-  &:hover {
+  &:hover, &:focus {
     .tooltiptext {
       top: 4px;
     }
@@ -149,7 +157,7 @@ h3.badge {
 }
 
 h4.badge, h5.badge {
-  &:hover {
+  &:hover, &:focus {
     .tooltiptext {
       top: 5px;
     }
@@ -157,12 +165,17 @@ h4.badge, h5.badge {
 }
 
 a.badge {
-  display: inline-flex;
-  margin-top: 3px;
+  margin-top: 6px;
 
   &:hover, &:focus {
-    opacity: 0.9;
+    opacity: 0.8;
     text-decoration: none;
+  }
+}
+
+.badge-container {
+    a > .tooltip > .tooltiptext {
+      margin-top: 0.5em;
   }
 }
 
@@ -171,7 +184,7 @@ a.badge {
 table > tbody > tr {
   &:last-of-type {
     .badge {
-      &:hover {
+      &:hover, &:focus {
         .tooltiptext {
           left: 100%;
           bottom: 105%;
@@ -181,14 +194,3 @@ table > tbody > tr {
       }
     }
   }
-
-// Tooltips in the plugin hub doc sidebar
-.about-extn-table {
-  .badge {
-    &:hover {
-      .tooltiptext {
-        left: -50px;
-      }
-    }
-  }
-}
