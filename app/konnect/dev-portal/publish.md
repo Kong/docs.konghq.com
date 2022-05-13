@@ -3,34 +3,58 @@ title: Publish a Service to the Dev Portal
 no_version: true
 ---
 
-Publish Services to the Dev Portal to expose them to your application
-developers.
-
 Through ServiceHub, you can publish any Service in your catalog and its
-documentation to the Dev Portal.
+documentation to the Dev Portal. Publishing services to the Dev Portal is the only way to expose your service to developers. Once the Service is published and available to developers, they can apply for access by [registering](/konnect/dev-portal/access-and-approval/dev-reg/) a developer account. You can also [manage](/konnect/dev-portal/access-and-approval/manage-devs/) access to the Dev Portal from the {{site.konnect_saas}} interface.
 
-## Publish a Service
+This doc covers:
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %}
-**ServiceHub** and select a Service.
+* [Publishing a Service](#publish)
 
-2. Click on the **Actions** dropdown and select **Publish to Portal**.
+* [Unpublishing a Service](#unpublish)
 
-    This publishes all of the Service's version specs to the Dev Portal.
+* [Accessing the Developer Portal](#url)
 
-3. Access the Dev Portal in any of the following ways:
-    * Click the gear icon for any published Service and select **View in portal**.
-    * From the left navigation menu again, go to **Dev Portal**.
-    From there, click the **Portal URL**.
-    * Directly visit the default Dev Portal URL:
+* [Toggling public access to the Developer Portal](#access)
 
-    ```
-    https://<org-name>.us.portal.konghq.com/
-    ```
+## Publish a Service {#publish}
 
-## Unpublish a Service
+1. From the left navigation menu, open the {% konnect_icon servicehub %} **ServiceHub** page and select a Service.
+
+2. Click on the **Service actions** dropdown menu and select **Publish to portal**.
+
+    This publishes a Service's API specs to the Dev Portal.
+
+## Unpublish a Service {#unpublish}
 
 1. In the left navigation menu, open the {% konnect_icon servicehub %}
 **ServiceHub** and select a Service.
 
-2. Click on the **Actions** dropdown and select **Unpublish from Portal**.
+2. Click on the **Service actions** dropdown and select **Unpublish from portal**.
+
+## Access the Developer Portal {#url}
+
+1. From the left navigation menu, open the **Dev Portal** page.
+
+    The Dev Portal page contains a list of all your published Services. 
+
+2. Click the button next to the desired service, then click **View in portal**.
+
+    * You can also click **Konnect Portal URL** from this page.
+
+    {:.note}
+    >**Note**: You can also visit the default URL for your Developer Portal at `https://<org-name>.us.portal.konghq.com/`
+
+The Dev Portal is accessible by a default URL. For instructions on customizing the URL of your Dev Portal, see our [Customization Reference](/konnect/dev-portal/customization/custom/). 
+
+## Enable or disable public access for a Dev Portal {#access}
+
+1. In {{site.konnect_short_name}}, open {% konnect_icon dev-portal %}
+**Dev Portal** from the left side menu, then click **Settings**.
+
+2. In the **Public Portal** pane, toggle **Enabled** or **Disabled**.
+
+3. Click **Save**.
+
+## Next Steps 
+
+After publishing a service to the Dev Portal, you can review our [Access and Approval documentation](/konnect/dev-portal/access-and-approval/manage-devs/) and our [Customization documentation](/konnect/dev-portal/customization/custom/)

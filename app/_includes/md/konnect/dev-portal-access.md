@@ -29,7 +29,7 @@ You can't use your Konnect credentials to log in here.
     Remember, the Dev Portal does not share credentials with your Konnect
     account.
 
-1. As as admin, return to Konnect and approve the new account:
+1. As an admin, return to Konnect and approve the account:
 
     1. From the left side menu, click **Connections**. This opens the Requests
     page and the Developers tab, which displays the pending developer request.
