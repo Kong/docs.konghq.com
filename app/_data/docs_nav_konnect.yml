@@ -94,6 +94,8 @@
               url: /configure/runtime-manager/runtime-instances/renew-certificates
             - text: Runtime Parameter Reference
               url: /configure/runtime-manager/runtime-instances/runtime-parameter-reference
+            - text: Troubleshoot Runtime Instance Issues
+              url: /configure/runtime-manager/runtime-instances/troubleshoot
 
 - title: Publish
   icon: /assets/images/icons/konnect/icn-dev-portal-nav.svg
