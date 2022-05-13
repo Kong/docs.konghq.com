@@ -21,9 +21,9 @@ From the Developers tab, you can:
 - [Approve a developer request for access.](#approve-dev-reg) 
 - [Reject a developer request for access.](#reject-dev-reg)
 - [Delete a developer request for access.](#delete-dev-reg)
-- [Approve a request for app registration with a Service.](konnect/dev-portal/applications/manage-app-reg-requests/#approve-app-reg)
-- [Reject a request for app registration with a Service.](konnect/dev-portal/applications/manage-app-reg-requests/#reject-app-reg)
-- [Delete a request for app registration with a Service.](konnect/dev-portal/applications/manage-app-reg-requests/#delete-app-reg)
+- [Approve a request for app registration with a Service.](/konnect/dev-portal/applications/manage-app-reg-requests/#approve-app-reg)
+- [Reject a request for app registration with a Service.](/konnect/dev-portal/applications/manage-app-reg-requests/#reject-app-reg)
+- [Delete a request for app registration with a Service.](/konnect/dev-portal/applications/manage-app-reg-requests/#delete-app-reg)
 - Search for a developer who has requested access.
 
 If there are no pending requests, a `No Developer Requests` message is displayed. The number of
