@@ -1,7 +1,6 @@
 ---
 name: Bot Detection
 publisher: Kong Inc.
-version: 3.0.x
 desc: Detect and block bots or custom clients
 description: |
   Protects a Service or a Route from most common bots and has the capability of allowing and denying custom clients.

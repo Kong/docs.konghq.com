@@ -1,7 +1,6 @@
 ---
 name: ACL
 publisher: Kong Inc.
-version: 3.0.x
 desc: Control which Consumers can access Services
 description: |
   Restrict access to a Service or a Route by adding Consumers to allowed or
@@ -93,7 +92,7 @@ params:
         Flag that if enabled (`true`), prevents the `X-Consumer-Groups` header to be sent in the request to the Upstream service.
 ---
 
-{% if_plugin_version lte:2.0.x %}
+{% if_plugin_version eq:2.0.x %}
 
 The `whitelist` and `blacklist` models are mutually exclusive in their usage, as they provide complimentary approaches. That is, you cannot configure an ACL with both `whitelist` and `blacklist` configurations. An ACL with a `whitelist` provides a positive security model, in which the configured groups are allowed access to the resources, and all others are inherently rejected. By contrast, a `blacklist` configuration provides a negative security model, in which certain groups are explicitly denied access to the resource (and all others are inherently allowed).
 

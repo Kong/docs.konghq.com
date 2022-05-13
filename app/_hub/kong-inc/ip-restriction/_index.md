@@ -1,7 +1,6 @@
 ---
 name: IP Restriction
 publisher: Kong Inc.
-version: 3.0.x
 desc: Allow or deny IPs that can make requests to your Services
 description: |
   Restrict access to a Service or a Route by either allowing or denying IP addresses. Single IPs, multiple IPs, or ranges in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) like `10.10.10.0/24` can be used. The plugin supports IPv4 and IPv6 addresses.
@@ -138,7 +137,7 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
 ```
 {% endif_plugin_version %}
 
-{% if_plugin_version lte:2.0.x %}
+{% if_plugin_version eq:2.0.x %}
 
 Note that the `whitelist` and `blacklist` models are mutually exclusive in their usage, as they provide complimentary approaches. That is, you cannot configure the plugin with both `whitelist` and `blacklist` configurations. A `whitelist` provides a positive security model, in which the configured CIDR ranges are allowed access to the resource, and all others are inherently rejected. In contrast, a `blacklist` configuration provides a negative security model, in which certain CIDRS are explicitly denied access to the resource (and all others are inherently allowed).
 
