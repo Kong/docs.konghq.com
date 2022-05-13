@@ -4,7 +4,7 @@ no_version: true
 ---
 
 
-To grant Developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service), you must enable application registration on a Service Version.
+To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service), you must enable application registration on a Service Version.
 When you enable application registration, {{site.konnect_saas}} enables two plugins automatically: [ACL](/hub/kong-inc/acl), and either [Key Authentication](/hub/kong-inc/key-auth)
 or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to support application registration for the Service and are managed by
 {{site.konnect_saas}}. Once enabled, you can [disable application registration](#disable)
@@ -21,7 +21,7 @@ This guide walks you through the two supported authentication plugins:
 permissions.
 
 - The Services have been created, versioned, and published to the
-  {{site.konnect_short_name}} Dev Portal so that they appear in the Catalog.
+  {{site.konnect_short_name}} Dev Portal so that they appear in the catalog.
 
 - The Service version must have an [implementation](/konnect/configure/servicehub/manage-services/#service-version-implementations)
 
@@ -45,7 +45,8 @@ Service. Now, click the **Versions** button and select the desired version.
 2. Click **Version actions** > **Enable app registration**.
 
 3. Select `key-auth` from the **Auth Type** list.
-  Optionally, click to enable [**Auto Approve**](#autoapprove-auth) for application registrations for the selected Service.
+  Optionally, click to enable [**Auto Approve**](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) for application 
+  registrations for the selected Service.
 
 4. Click **Enable**.
 
@@ -61,7 +62,7 @@ Service. Now, click the **Versions** button and select the desired version.
 
 3. Select `openid-connect` from the **Auth Type** list.
 
-   Refer to the [configuration paramaters section](#openid-config-params) for information
+   Refer to the [configuration parameters section](#openid-config-params) for information
    about each field.
 
 
