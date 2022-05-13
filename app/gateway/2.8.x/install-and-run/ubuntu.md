@@ -55,7 +55,7 @@ curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.amd64.deb "{
 ```bash
 sudo dpkg -i kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.all.deb
 ```
-> Dependecy issues can be resolved by running `sudo apt-get -f install`
+> Dependency issues can be resolved by running `sudo apt-get -f install`
 
 {% endnavtab %}
 
@@ -65,7 +65,7 @@ Any dependecy issues can be resolved by running `sudo apt-get -f install`
 ```bash
 sudo dpkg -i kong-{{page.kong_versions[page.version-index].ce-version}}.amd64.deb
 ```
-> Dependecy issues can be resolved by running `sudo apt-get -f install`
+> Dependency issues can be resolved by running `sudo apt-get -f install`
 
 {% endnavtab %}
 {% endnavtabs_ee %}
