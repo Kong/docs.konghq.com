@@ -130,7 +130,7 @@
         - text: Generate Credentials for an Application
           url: /dev-portal/applications/dev-gen-creds
     - text: Troubleshooting
-      url: /dev-portal/troubleshooting/troubleshooting
+      url: /dev-portal/troubleshooting
 
 - title: Analyze
   icon: /assets/images/icons/konnect/icn-vitals-nav.svg
