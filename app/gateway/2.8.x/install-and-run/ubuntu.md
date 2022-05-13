@@ -14,13 +14,13 @@ Kong is licensed under an
 
 ## Download and install
 
-You can install {{site.base_gateway}} by downloading an installation package or using our APT repository.
+You can install {{site.base_gateway}} by downloading an installation package or using our APT repository. We currently package Kong Gateway for Ubuntu Bionic, Focal, and Xenial. 
 
 {:.note .no-icon}
 > We currently package Kong Gateway for Ubuntu Bionic, Focal and Xenial.
-> If you are using a different release, please replace `$(lsb_release -sc)` with `xenial` in the commands below.
+> If you are using a different release, replace `$(lsb_release -sc)` with `xenial` in the commands below.
 > <br /><br />
-> Run `lsb_release -sc` to see your current release name
+> To check your release name run `lsb_release -sc`.
 
 
 {% navtabs %}
@@ -55,11 +55,18 @@ curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.amd64.deb "{
 ```bash
 sudo dpkg -i kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.all.deb
 ```
+> Dependecy issues can be resolved by running `sudo apt-get -f install`
+
 {% endnavtab %}
+
+Any dependecy issues can be resolved by running `sudo apt-get -f install`
+
 {% navtab Kong Gateway (OSS) %}
 ```bash
 sudo dpkg -i kong-{{page.kong_versions[page.version-index].ce-version}}.amd64.deb
 ```
+> Dependecy issues can be resolved by running `sudo apt-get -f install`
+
 {% endnavtab %}
 {% endnavtabs_ee %}
 {% endcapture %}
