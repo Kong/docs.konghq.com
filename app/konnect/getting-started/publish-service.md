@@ -50,7 +50,7 @@ Let's change up a couple of things:
     * Upload header, logo, or favicon images
     * Play around with the colours and fonts of your site
 
-    You could also [add a custom domain](/konnect/dev-portal/customization/custom-domain/),
+    You could also [add a custom domain](/konnect/dev-portal/customization/),
     if you have one you want to use.
 
 1. Click **Save** to apply the changes.

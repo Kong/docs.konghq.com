@@ -81,7 +81,7 @@ resources based on team purpose.
 Access to each runtime group is configurable on a team-by-team basis using
 entity-specific permissions.
 
-[Administer teams &rarr;](/link)
+[Administer teams &rarr;](/konnect/org-management/teams-and-roles)
 
 ## Runtime group configuration
 
@@ -99,7 +99,7 @@ When there are multiple runtime groups, any object configuration only
 applies to the runtime group that it was created in. Consumers and
 their authentication mechanisms don't carry over to other runtime groups.
 
-[Manage global entities &rarr;](/konnect/configure/runtime-manager/manage-entities)
+[Manage global entities &rarr;](/konnect/configure/runtime-manager/runtime-groups/manage-entities)
 
 ## References
 
