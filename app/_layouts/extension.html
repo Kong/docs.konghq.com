@@ -69,7 +69,7 @@ breadcrumbs:
       </tr>
     {% endif %}
     {% for field in page.params.config %}
-      {% if_plugin_version gte:field.minimum_version %}
+      {% if_plugin_version gte:field.minimum_version lte:field.maximum_version %}
       {% if field.group %}
     <tr><td colspan="2"><strong><br><br>{{ field.group | markdownify | strip_html }} {% if field.description %}<br><small>{{ field.description | markdownify | strip_html }}</small>{% endif %}</strong></td></tr>
       <tr><th>Form Parameter</th><th>Description</th></tr>
