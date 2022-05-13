@@ -3,82 +3,92 @@ title: Dev Portal Service Documentation
 no_version: true
 ---
 
-Upload documentation for your Services through ServiceHub to display it
-on the Dev Portal.
+A core function of the Dev Portal is publishing Service descriptions and API specs. Developers can use the spec and corresponding descriptions to access, consume, and register new applications against your Services. For a step by step tutorial on publishing a Service description and an API spec to the Dev Portal, see our [Get Started: Set Up and Access Dev Portal](/konnect/getting-started/publish-service) guide.
 
-You can upload Service descriptions and version specs. At a minimum, we
-recommend uploading an API spec for each Service version.
 
-After adding documentation for your Services,
-[publish](/konnect/dev-portal/publish) them to the Dev Portal.
+## Service descriptions
 
-## Service Descriptions
+You can provide extended descriptions of your Services with a Markdown (`.md`) file. The contents of this file will be displayed as the introduction to your API in the Dev Portal. 
+### Upload a Service description
 
-Provide extended descriptions of your Services with Markdown. The
-description applies to the whole Service, and appears on every version of that
-Service in the Dev Portal.
-
-### Add a Markdown File for a Service
-
-1. From the left navigation menu, open the {% konnect_icon servicehub %}
-**ServiceHub**.
+1. From the left navigation menu, open the {% konnect_icon servicehub %} **ServiceHub** page.
 
 2. Select a Service to open its overview.
 
 3. In the **Service Document** section, click **Upload Document**.
 
-3. Select an `.md` file to upload. Click **Open**.
+3. Select a `.md` file to upload.
 
-### Update or Delete a Markdown File for a Service
+### Update a Service description
 
-Upload a new document to replace an existing Service document.
+You can upload a new document to replace an existing Service document.
 
-1. From the Services page, select a Service to open its overview.
+1. From the left navigation menu, open the {% konnect_icon servicehub %} **ServiceHub** page.
 
-2. In the **Service Document** section:
-    * To upload a new file, click the **file icon**, then
-    **Replace**. Select a new `.md` file to upload.
-    * To delete the file, click the **gear icon**, then **Delete**.
-    Click **Delete** again to confirm.
+2. Select a Service to open its overview.
 
-## Version Specs
+3. In the **Service Document** section, click the **file icon**, then **Replace**. Select a new `.md` file to upload.
 
-Upload a spec to document a Service version.
+### Delete a Service description
 
-{{site.konnect_short_name}} accepts OpenAPI (Swagger) specs in YAML or JSON
-format.
+You can delete an existing document from the Dev Portal. Deleting a Service description will permanently remove it from the Dev Portal. 
+
+1. From the left navigation menu, open the {% konnect_icon servicehub %} **ServiceHub** page.
+
+2. Select a Service to open its overview.
+
+3. In the **Service Document** section, click the {% konnect_icon cogwheel %} icon, then **Delete**. Click **Delete** again to confirm.
+
+## API specification
+
+API specifications, or specs, can be uploaded and attached to a specific Version within your Dev Portal. You can have different API specs that correspond to different versions. {{site.konnect_short_name}} accepts OpenAPI (Swagger) specs in YAML or JSON.
 
 ### Upload a Version Spec
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %}
-**ServiceHub**.
+1. From the left navigation menu, open the {% konnect_icon servicehub %} **ServiceHub** page.
 
-2. Open a Service version.
+2. Click a Service to open the Service Overview.
 
-3. In the **Version Spec** section, click **Upload Spec**.
+3. From the left navigation bar, click **Versions**.
 
-4. Select a spec file to upload.
+4. Click a specific Version from the list.
 
-    The spec must be in YAML or JSON format. To test this functionality, you
-    can use [vitalsSpec.yaml](/konnect/vitalsSpec.yaml) as a sample spec.
+5. In the **Version Spec** section, click **Upload Spec**.
 
+6. Click **Upload Spec** to upload your Open API Specification file.
+
+    The spec must be in YAML or JSON format. You
+    can use [vitalsSpec.yaml](/konnect/vitalsSpec.yaml) as a sample spec to test this functionality.
     If the Service was previously published to the Dev Portal, the documentation
     for the Service gets automatically updated with your changes. If not,
     [publish](/konnect/dev-portal/publish) the Service.
 
-### Update or Delete a Version Spec
+### Update a Version Spec
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %}
-**ServiceHub**.
+1. From the left navigation menu, open the {% konnect_icon servicehub %} **ServiceHub** page.
 
-2. Open a Service version.
+2. Click a Service to open the Service Overview.
 
-3. In the **Version Spec** section:
+3. From the left navigation bar, click **Versions**.
 
-    * Click the spec to update it, then click **Replace**. Choose a new YAML or
-    JSON spec to replace the existing one.
+4. Click a specific Version from the list.
 
-    * Or, click the **gear icon > Delete**  to remove the spec.
+5. In the **Version Spec** section, click the spec, then click **Replace**. Choose a new spec to replace the existing one. The published documentation for the Service is automatically updated in the Dev Portal.
 
-    The published documentation for the Service gets automatically updated with
-    your changes.
+### Delete a Version Spec
+
+1. From the left navigation menu, open the {% konnect_icon servicehub %} **ServiceHub**.
+
+2. Click a Service to open the Service Overview.
+
+3. From the left navigation bar, click **Versions**.
+
+4. Click a specific Version from the list.
+
+5. In the **Version Spec** section, click the {% konnect_icon cogwheel %} icon, then **Delete** to remove the sepc. 
+
+    Deleted files are permanently removed from the Dev Portal.
+
+## Next Steps
+After adding documentation for your Services,
+[publish](/konnect/dev-portal/publish) them to the Dev Portal.

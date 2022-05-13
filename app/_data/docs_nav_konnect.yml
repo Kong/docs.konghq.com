@@ -103,14 +103,8 @@
       url: /dev-portal/service-documentation
     - text: Publish a Service to Dev Portal
       url: /dev-portal/publish
-    - text: Customization
-      items:
-        - text: Appearance
-          url: /dev-portal/customization/appearance
-        - text: Public Portal
-          url: /dev-portal/customization/public-portal
-        - text: Add a Custom Domain
-          url: /dev-portal/customization/custom-domain
+    - text: Customize Dev Portal
+      url: /dev-portal/customization/custom
     - text: Access and Approval
       items:
         - text: Developer Registration
@@ -125,10 +119,8 @@
           url: /dev-portal/applications/application-overview
         - text: Create, Edit, and Delete an Application
           url: /dev-portal/applications/dev-apps
-        - text: Enable App Registration
+        - text: Enable and Disable App Registration
           url: /dev-portal/applications/enable-app-reg
-        - text: Disable App Registration
-          url: /dev-portal/applications/disable-app-reg
         - text: Manage Application Registration Requests
           url: /dev-portal/applications/manage-app-reg-requests
         - text: Manage Application Connections
@@ -137,6 +129,8 @@
           url: /dev-portal/applications/dev-reg-app-service
         - text: Generate Credentials for an Application
           url: /dev-portal/applications/dev-gen-creds
+    - text: Troubleshooting
+      url: /dev-portal/troubleshooting
 
 - title: Analyze
   icon: /assets/images/icons/konnect/icn-vitals-nav.svg
