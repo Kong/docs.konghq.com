@@ -14,7 +14,7 @@ and lets you create _dynamic_ dependencies between plugins.
 
 ## Concepts
 
-### Dependency Tokens
+### Dependency tokens
 
 Use one of the following tokens to describe a dependency to a plugin:
 
@@ -26,14 +26,18 @@ Use one of the following tokens to describe a dependency to a plugin:
 
 ### Phases
 
-When a request is proccessed by Kong it will go through various phases, depending on the configured plugins. You can influence the order in which plugins are executed for each phase.
+When a request is processed by {{site.base_gateway}}, it goes through various
+[phases](/gateway/latest/plugin-development/custom-logic/#available-contexts),
+depending on the configured plugins. You can influence the order in which
+plugins are executed for each phase.
 
-Currently Kong supports only the `access` phase.
+Currently, {{site.base_gateway}} supports dynamic plugin ordering in the
+`access` phase.
 
 ### API
 
-To express dependencies for plugins within a certain request phase you may use the following interface.
-
+You can use the following API to express dependencies for plugins within a
+certain request phase (examples are in decK-formatted YAML):
 
 ```yaml
 ordering:
@@ -43,7 +47,8 @@ ordering:
       - ...
 ```
 
-When you'd like to express that PluginA's _access_ phase should run _before_ PluginB's _access_ phase you would write something like this. (Examples are in deck-style yaml format)
+For example, if you'd like to express that PluginA's _access_ phase should
+run _before_ PluginB's _access_ phase, you would write something like this:
 
 ```yaml
 PluginA:
@@ -53,25 +58,35 @@ PluginA:
         - PluginB
 ```
 
-## Known Limitations
+## Known limitations
 
-### Consumer Scoping
+### Consumer scoping
 
-It is not supported to apply a new order to plugins that are consumer-scoped. As the order of the plugins must be determined after the consumer mapping has happened (which happens in the acceess phase) we can't reliably change the order to plugins.
+Consumer-scoped plugins don't support dynamic ordering because consumer mapping
+also runs in the access phase. The order of the plugins must be determined
+after consumer mapping has happened. {{site.base_gateway}} can't reliably
+change the order of the plugins in relation to consumer mapping.
 
-### Cascading Deletes & Updates
+### Cascading deletes & updates
 
-Currently there is no support to detect if a plugin that has a dependency to another plugin was deleted or not so handle your configuration with care.
+There is no support to detect if a plugin that has a dependency to
+another plugin which was deleted, so handle your configuration with care.
 
-### Performance Implications
+### Performance implications
 
-Dynamic Plugin Ordering requires to sort plugins during the a request. This adds natrually adds latency to a request. In some cases this might be compensated for when you run rate-limiting before an expensive authentication plugin.
+Dynamic plugin ordering requires sorting plugins during a request. This naturally
+adds latency to the request. In some cases, this might be compensated for when
+you run rate limiting before an expensive authentication plugin.
 
-### Workspaces
-
-Re-ordering _any_ plugin in a workspace has performance implications to all other plugins withing this workspace. If you can, consider offloading this to a separate workspace.
+Re-ordering _any_ plugin in a workspace has performance implications to all
+other plugins within the same workspace. If possible, consider offloading plugin
+ordering to a separate workspace.
 
 ### Validation
 
-Validation is a on-trivial task to do as it would require insight in the user's business logic.
-Kong tries to catch basic mistakes but can't detect all potentially dangerous configurations. Please handle this feature with care!
+Validating dynamic plugin ordering is a non-trivial task and would require
+insight into the user's business logic. {{site.base_gateway}} tries to catch
+basic mistakes but it can't detect all potentially dangerous configurations.
+
+If using dynamic ordering, manually test all configurations, and handle this
+feature with care.
