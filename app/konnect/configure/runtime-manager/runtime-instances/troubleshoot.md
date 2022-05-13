@@ -42,11 +42,11 @@ the version may be out of date.
 
 Verify that your instance versions are up to date:
 
-1. Open {% konnect_icon runtimes %} **Runtimes**, then open your runtime group.
+1. Open {% konnect_icon runtimes %} **Runtime Manager**, then open your runtime group.
 
-1. Click **+ Create new runtime**, switch to a Linux or Kubernetes tab, and
-    check the version in the codeblock. This is the version that the
-    {{site.konnect_short_name}} control plane is running.
+1. Click **+ Add runtime instance** and check the {{site.base_gateway}} version
+in the codeblock. This is the version that the {{site.konnect_short_name}} 
+control plane is running.
 
 1. Return to the runtime instances page.
 
