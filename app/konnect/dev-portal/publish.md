@@ -4,7 +4,7 @@ no_version: true
 ---
 
 Through ServiceHub, you can publish any Service in your catalog and its
-documentation to the Developer Portal. Publishing services to the Dev Portal is the only way to expose your service to Developers. Once the Service is published and available to Developers, they can apply for access by [registering](/konnect/dev-portal/access-and-approval/dev-reg/) a Developer Account. You can also [manage](/konnect/dev-portal/access-and-approval/manage-devs/) access to the Developer Portal from the {{site.konnect_saas}} interface.
+documentation to the Dev Portal. Publishing services to the Dev Portal is the only way to expose your service to developers. Once the Service is published and available to developers, they can apply for access by [registering](/konnect/dev-portal/access-and-approval/dev-reg/) a developer account. You can also [manage](/konnect/dev-portal/access-and-approval/manage-devs/) access to the Dev Portal from the {{site.konnect_saas}} interface.
 
 This doc covers:
 
@@ -18,7 +18,7 @@ This doc covers:
 
 ## Publish a Service {#publish}
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %} **ServiceHub** page and select a
+1. From the left navigation menu, open the {% konnect_icon servicehub %} **ServiceHub** page and select a Service.
 
 2. Click on the **Service actions** dropdown menu and select **Publish to portal**.
 
@@ -35,7 +35,7 @@ This doc covers:
 
 1. From the left navigation menu, open the **Dev Portal** page.
 
-    The DevPortal page contains a list of all of your Published Services. 
+    The Dev Portal page contains a list of all your published Services. 
 
 2. Click the button next to the desired service, then click **View in portal**.
 
@@ -44,7 +44,7 @@ This doc covers:
     {:.note}
     >**Note**: You can also visit the default URL for your Developer Portal at `https://<org-name>.us.portal.konghq.com/`
 
-The Developer Portal is accessible by a default URL. For instructions on customizing the URL of your Developer Portal, please see our [Customization Reference](/konnect/dev-portal/customization/custom/). 
+The Dev Portal is accessible by a default URL. For instructions on customizing the URL of your Dev Portal, see our [Customization Reference](/konnect/dev-portal/customization/custom/). 
 
 ## Enable or disable public access for a Dev Portal {#access}
 
@@ -57,4 +57,4 @@ The Developer Portal is accessible by a default URL. For instructions on customi
 
 ## Next Steps 
 
-After publishing a service to the Developer Portal, please review our [Access and Approval documentation](/konnect/dev-portal/access-and-approval/manage-devs/) and our [Customization documentation](/konnect/dev-portal/customization/custom/)
+After publishing a service to the Dev Portal, you can review our [Access and Approval documentation](/konnect/dev-portal/access-and-approval/manage-devs/) and our [Customization documentation](/konnect/dev-portal/customization/custom/)
