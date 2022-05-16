@@ -5,7 +5,6 @@ title: Install Kong Gateway on Debian
 > Download the latest {{page.kong_version}} package for Debian:
 >
 > * **Kong Gateway**:
-> [**8 Jessie**]({{ site.links.download }}/gateway-2.x-debian-jessie/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb){:.install-link},
 > [**9 Stretch**]({{ site.links.download }}/gateway-2.x-debian-stretch/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb){:.install-link},
 > [**10 Buster**]({{ site.links.download }}/gateway-2.x-debian-buster/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb){:.install-link},
 > or [**11 Bullseye**]({{ site.links.download }}/gateway-2.x-debian-bullseye/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb){:.install-link}
@@ -18,7 +17,6 @@ title: Install Kong Gateway on Debian
 >
 > <br>
 > <span class="install-subtitle">View the list of all 2.x packages for
-> [8 Jessie]({{ site.links.download }}/gateway-2.x-debian-jessie/pool/all/k/){:.install-listing-link},
 > [9 Stretch]({{ site.links.download }}/gateway-2.x-debian-stretch/pool/all/k/){:.install-listing-link},
 > [10 Buster]({{ site.links.download }}/gateway-2.x-debian-buster/pool/all/k/){:.install-listing-link}, or
 > [11 Bullseye]({{ site.links.download }}/gateway-2.x-debian-bullseye/pool/all/k/){:.install-listing-link}
@@ -28,6 +26,10 @@ The {{site.base_gateway}} software is governed by the
 [Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
 {{site.ce_product_name}} is licensed under an
 [Apache 2.0 license](https://github.com/Kong/kong/blob/master/LICENSE).
+
+## Deprecation Notices
+
+* Debian 8 ("Jessie") is EOL and containers based-on, packages targetting, and packages tested on it *will not be produced* for Kong Gateway _3.0 and later_.
 
 ## Prerequisites
 

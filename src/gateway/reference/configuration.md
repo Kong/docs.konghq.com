@@ -2345,7 +2345,7 @@ Supported preset rules:
 - `min_20`: minimum length of 20
 
 To write your own rules, see
-https://manpages.debian.org/jessie/passwdqc/passwdqc.conf.5.en.html.
+https://manpages.debian.org/stretch/passwdqc/passwdqc.conf.5.en.html.
 
 NOTE: Only keywords "min", "max" and "passphrase" are supported.
 
@@ -2961,7 +2961,7 @@ Supported preset rules:
 - `min_20`: minimum length of 20
 
 To write your own rules, see
-https://manpages.debian.org/jessie/passwdqc/passwdqc.conf.5.en.html.
+https://manpages.debian.org/stretch/passwdqc/passwdqc.conf.5.en.html.
 
 NOTE: Only keywords "min", "max" and "passphrase" are supported.
 
