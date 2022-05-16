@@ -29,7 +29,7 @@ we recommend running the script again to create a new instance with renewed
 certificates.
 
 1. Stop the runtime instance container.
-2. Open {% konnect_icon runtimes %} **Runtimes**, select a runtime group,
+2. Open {% konnect_icon runtimes %} **Runtime Manager**, select a runtime group,
  and click **+ New Runtime Instance**.
 3. Run the script again to
 [create a new runtime instance](/konnect/configure/runtime-manager/runtime-instances/gateway-runtime-docker/#quick-setup) with
@@ -44,7 +44,7 @@ generate new certificates and replace them on the existing nodes.
 
 ### Generate new certificates
 
-1. Open {% konnect_icon runtimes %} **Runtimes**, select a runtime group, and
+1. Open {% konnect_icon runtimes %} **Runtime Manager**, select a runtime group, and
 click **+ New Runtime Instance**.
 2. Open the tab that suits your environment: **Linux** or **Kubernetes**.
 

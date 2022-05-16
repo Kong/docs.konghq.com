@@ -56,7 +56,7 @@ team roles.
 Users can be part of any number of teams, and the roles gained from the teams
 are additive. For example, if you add a user to both the Service Developer and
 Portal Viewer teams, the user can create and manage Services
-through the ServiceHub _and_ register applications through the Dev Portal.
+through the Service Hub _and_ register applications through the Dev Portal.
 
 If two roles provide access to the same entity, the role with more access
 takes effect. For example, if you have the Service Admin and Service Deployer
@@ -72,12 +72,12 @@ also share Services or runtime groups that they have access to, with
 the same role or lesser.
 
 For example, say you have a Service Admin role:
-* You can share that Service with any other user through the ServiceHub.
+* You can share that Service with any other user through the Service Hub.
 * Since you have admin access, you can choose to share the Service any
 level of access: creator, deployer, viewer, etc.
 
 You can [share any Service](/konnect/configure/servicehub/manage-services/#share-service)
-through the ServiceHub, or
+through the Service Hub, or
 [share any runtime group](/konnect/configure/runtime-manager/runtime-groups/manage/#share-runtime-group)
 through the Runtime Manager.
 

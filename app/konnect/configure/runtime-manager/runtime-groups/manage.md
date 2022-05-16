@@ -21,7 +21,7 @@ You have the **Organization Admin** role in {{site.konnect_saas}}.
 ## Create a runtime group
 {:.badge .enterprise}
 
-1. In Konnect, open {% konnect_icon runtimes %} **Runtimes** from the left side
+1. In Konnect, open {% konnect_icon runtimes %} **Runtime Manager** from the left side
  menu.
 
 1. Click **Create Runtime Group**.
@@ -44,7 +44,7 @@ You have the **Organization Admin** role in {{site.konnect_saas}}.
 ## Edit a runtime group
 
 1. In Konnect, open ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
-**Runtimes** from the left side menu.
+**Runtime Manager** from the left side menu.
 
 1. Click the action menu icon on the far right of a row and select **Edit**.
 
@@ -98,7 +98,7 @@ can use decK to accomplish this:
     ```
 
 1. In Konnect, open ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
-**Runtimes** from the left side menu.
+**Runtime Manager** from the left side menu.
 
 1. Click the action menu icon on the far right of a row and select **Delete**.
 

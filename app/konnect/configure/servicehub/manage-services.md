@@ -3,23 +3,23 @@ title: Manage Services through ServiceHub
 no_version: true
 ---
 
-Through the [ServiceHub](https://cloud.konghq.com/servicehub/), you can
+Through the [Service Hub](https://cloud.konghq.com/servicehub/), you can
 create and manage all Konnect Services, Service versions, and Service
 implementations in one place.
 
 ## Konnect Services
 
 Access all Konnect Service configuration through the {% konnect_icon servicehub %}
-**ServiceHub**.
+**Service Hub**.
 
 ### Add a Service to the catalog
 
-1. In the {% konnect_icon servicehub %} ServiceHub, click **Add New Service**.
+1. In the {% konnect_icon servicehub %} Service Hub, click **+ New service**.
 
-1. Enter a **Service Name**.
+1. Enter a **Display name**.
 
-    A Service name can be any string containing letters, numbers, or the following
-    characters: `.`, `-`, `_`, `~`, or `:`. Do not use spaces in Service names.
+    A display name can be any string containing letters, numbers, or the following
+    characters: `.`, `-`, `_`, `~`, or `:`. Do not use spaces in display names.
 
     For example, you can use `service_name`, `ServiceName`, or `Service-name`.
     However, `Service Name` is invalid.
@@ -33,7 +33,7 @@ Access all Konnect Service configuration through the {% konnect_icon servicehub 
 
 ### Update a Service
 
-1. In the {% konnect_icon servicehub %} ServiceHub, select a Service from the list.
+1. In the {% konnect_icon servicehub %} Service Hub, select a Service from the list.
 
 1. Edit the Service name and description directly on this page: click on either
 element to reveal a text box, enter the new text, then click outside of the text
@@ -46,22 +46,22 @@ Service that you have access to.
 
 For more information, see [Manage Teams, Roles, and Users](/konnect/org-management/teams-and-roles/#entity-and-role-sharing).
 
-1. In the {% konnect_icon servicehub %} ServiceHub, select a Service from the list.
+1. In the {% konnect_icon servicehub %} Service Hub, select a Service from the list.
 
-1. Click **Share Service**.
+1. Click **Share service**.
 
 1. Select a user or team to share the Service with.
 
 1. Select a role to grant to the user or team.
 
-1. Click **Share Service** to save.
+1. Click **Share service** to save.
 
 ### Delete a Service
 
-1. In the {% konnect_icon servicehub %} ServiceHub, select a Service from the list.
+1. In the {% konnect_icon servicehub %} Service Hub, select a Service from the list.
 
-1. In the top right of the overview page, click the **Actions** menu and select
-**Delete Service**.
+1. In the top right of the overview page, click the **Service actions** menu and select
+**Delete service**.
 
 1. In the dialog that appears, confirm that you want to delete this service.
 
@@ -91,9 +91,9 @@ ready to move to it.
 
 ### Create a new Service version
 
-1. In the {% konnect_icon servicehub %} ServiceHub, select a Service from the list.
+1. In the {% konnect_icon servicehub %} Service Hub, select a Service from the list.
 
-1. Navigate to **Versions**, and click **+ New Version**.
+1. Click **Service actions** > **Add new version**.
 
 1. Enter a **Version Name**.
 
@@ -129,9 +129,9 @@ ready to move to it.
 
 1. Click on the version you want to delete, and you'll be taken to the version detail page.
 
-1. Click on the **Actions** dropdown menu.
+1. Click on the **Version actions** dropdown menu.
 
-1. Click **Delete Version** to permanently delete the Service version.
+1. Click **Delete** to permanently delete the Service version.
 
 ## Service version implementations
 
@@ -148,7 +148,7 @@ runtime instance in the runtime group that the Service version belongs to.
 An implementation is a Gateway Service. By implementing a Konnect Service
 version, you create a Gateway Service in the version's runtime group.
 
-1. In the {% konnect_icon servicehub %} ServiceHub, select a Service version.
+1. In the {% konnect_icon servicehub %} Service Hub, select a Service version.
 
 1. Click **New Implementation**.
 
@@ -197,7 +197,7 @@ details for the upstream service.
     The Service version overview displays.
 
     If you want to view the configuration, edit or delete the implementation,
-    or delete the version, click the **Actions** menu.
+    or delete the version, click the **Version actions** menu.
 
     You can find the linked Gateway Service in the Runtime Manager.
 
@@ -209,9 +209,9 @@ first one.
 
 All Routes are created in the same runtime group as their parent Service version.
 
-1. In the {% konnect_icon servicehub %} ServiceHub, select a Service version.
+1. In the {% konnect_icon servicehub %} Service Hub, select a Service version.
 
-1. In the **Routes** section, click **New Route**.
+1. In the **Routes** section, click **+ Add route**.
 
 1. Fill in the fields as described in [Implement a Service Version](#implement-service-version),
 then click **Create**.
