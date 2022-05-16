@@ -13,6 +13,10 @@ to {{site.ee_product_name}}. See
 If you experience any issues when running migrations, contact
 [Kong Support](https://support.konghq.com/support/s/) for assistance.
 
+## Deprecation Notices
+
+* Debian 8 ("Jessie") is EOL and containers based-on, packages targetting, and packages tested on it *will not be produced* for Kong Gateway _3.0 and later_.
+
 ## Upgrade path for Kong Gateway releases
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a

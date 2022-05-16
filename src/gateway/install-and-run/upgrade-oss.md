@@ -39,6 +39,10 @@ starts new workers, which take over from old workers before those old workers
 are terminated. In this way, Kong will serve new requests via the new
 configuration, without dropping existing in-flight connections.
 
+## Deprecation Notices
+
+* Debian 8 ("Jessie") is EOL and containers based-on, packages targetting, and packages tested on it *will not be produced* for Kong Gateway _3.0 and later_.
+
 ## Upgrade to 2.8.x
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
