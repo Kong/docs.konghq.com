@@ -44,7 +44,7 @@ This doc covers:
     {:.note}
     >**Note**: You can also visit the default URL for your Developer Portal at `https://<org-name>.us.portal.konghq.com/`
 
-The Dev Portal is accessible by a default URL. For instructions on customizing the URL of your Dev Portal, see our [Customization Reference](/konnect/dev-portal/customization/custom/). 
+The Dev Portal is accessible by a default URL. For instructions on customizing the URL of your Dev Portal, see our [Customization Reference](/konnect/dev-portal/customization/). 
 
 ## Enable or disable public access for a Dev Portal {#access}
 
@@ -57,4 +57,4 @@ The Dev Portal is accessible by a default URL. For instructions on customizing t
 
 ## Next Steps 
 
-After publishing a service to the Dev Portal, you can review our [Access and Approval documentation](/konnect/dev-portal/access-and-approval/manage-devs/) and our [Customization documentation](/konnect/dev-portal/customization/custom/)
+After publishing a service to the Dev Portal, you can review our [Access and Approval documentation](/konnect/dev-portal/access-and-approval/manage-devs/) and our [Customization documentation](/konnect/dev-portal/customization/)
