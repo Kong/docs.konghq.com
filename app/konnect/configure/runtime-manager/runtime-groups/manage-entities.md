@@ -24,14 +24,14 @@ The **Gateway Service** configuration page lists all {{site.base_gateway}} Servi
 in the runtime group. Service entities are abstractions of each of your own
 upstream services, such as a data transformation microservice, or a billing API.
 
-Gateway Services can be exposed in ServiceHub, or managed though Runtime Manager
+Gateway Services can be exposed in Service Hub, or managed though Runtime Manager
 only:
 * When you create a [Konnect Service implementation](/konnect/configure/servicehub/manage-services)
-through the ServiceHub, it automatically creates a Gateway Service.
+through the Service Hub, it automatically creates a Gateway Service.
 * You can also create a Gateway Service directly through Runtime Manager. This
-Service won't be connected to any ServiceHub implementation.
+Service won't be connected to any Service Hub implementation.
 
-To see if a Gateway Service is connected to the ServiceHub, open its
+To see if a Gateway Service is connected to the Service Hub, open its
 detail page from **Runtime Manager** > **Gateway Services**. If it's attached to an
 implementation, you should see a tag in the following format: `_KonnectService:{SERVICE_NAME}`.
 
@@ -42,7 +42,7 @@ for all configuration options.
 ### Routes
 
 The **Routes** configuration page lists all Routes in the runtime group, including
-Routes created through the ServiceHub. A Route defines rules to match client
+Routes created through the Service Hub. A Route defines rules to match client
 requests, and is associated with a Gateway Service. You can edit any
 Routes in the runtime group from here.
 
@@ -69,7 +69,7 @@ Although you can see all plugins from this page, you can only edit _global_ or
 _consumer-scoped_ plugins through the Runtime Manager.
 [Service](/konnect/configure/servicehub/enable-service-plugin) and
 [route](/konnect/configure/servicehub/enable-route-plugin) plugins must be managed
-through the ServiceHub.
+through the Service Hub.
 
 Learn more about [using plugins in Konnect](/konnect/configure/servicehub/plugins),
 check out the [plugin object API reference](/gateway/latest/admin-api/#plugin-object),
@@ -123,7 +123,7 @@ for all configuration options.
 ## Configure a Kong Gateway entity
 
 1. From the left navigation menu in Konnect, open {% konnect_icon runtimes %}
-**Runtimes**.
+**Runtime Manager**.
 
 2. Select an entity to configure from the menu, then click **+ Add {Entity Name}**.
 
@@ -136,7 +136,7 @@ for all configuration options.
 
 ## Update or delete a Kong Gateway entity
 
-1. Open {% konnect_icon runtimes %} **Runtimes**, then select an entity to
+1. Open {% konnect_icon runtimes %} **Runtime Manager**, then select an entity to
 configure from the menu.
 
 2. Open the action menu on the right of a row, and click **Edit** or **Delete**.
@@ -154,7 +154,7 @@ but lets you control whether the plugin is active or not.
 ### Configure a plugin
 
 1. From the left navigation menu in Konnect, open {% konnect_icon runtimes %}
-**Runtimes**.
+**Runtime Manager**.
 
 2. Select **Plugins** from the menu, then click **+ Install Plugin**.
 
@@ -179,7 +179,7 @@ Disable a global plugin from the Runtime Manager.
 Disabling a plugin leaves its configuration intact, and you can re-enable the
 plugin at any time.
 
-1. Open {% konnect_icon runtimes %} **Runtimes**, then select **Plugins**
+1. Open {% konnect_icon runtimes %} **Runtime Manager**, then select **Plugins**
 from the menu.
 
 2. Find your plugin in the plugins list and click the toggle in the **Enabled** column.

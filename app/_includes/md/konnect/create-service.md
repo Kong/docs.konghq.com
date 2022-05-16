@@ -1,12 +1,12 @@
 <!-- Used in Konnect getting started guides -->
 
-1. From the left navigation menu, open {% konnect_icon servicehub %} **ServiceHub**.
+1. From the left navigation menu, open {% konnect_icon servicehub %} **Service Hub**.
 
-1. Click **Add New Service**.
+1. Click **+ New service**.
 
-1. Enter a **Service Name**. For this example, enter `example_service`.
+1. Enter a **Display name**. For this example, enter `example_service`.
 
-    A Service name can be any string containing letters, numbers, or the following
+    A display name can be any string containing letters, numbers, or the following
     characters: `.`, `-`, `_`, `~`, or `:`. Do not use spaces in Service names.
 
     For example, you can use `service_name`, `ServiceName`, or `Service-name`.

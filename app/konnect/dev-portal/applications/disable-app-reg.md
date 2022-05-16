@@ -23,7 +23,7 @@ again any time.
 ## Disable app registration
 
 1. From the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %}
-**ServiceHub** and select a Service.
+**Service Hub** and select a Service.
 
 1. From the **Actions** menu, select **Disable app registration**.
 

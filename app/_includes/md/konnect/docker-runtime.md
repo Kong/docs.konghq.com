@@ -2,11 +2,11 @@
 
 {{site.base_gateway}} data planes proxy service traffic.
 
-1. From the left navigation menu, open {% konnect_icon runtimes %} **Runtimes**.
+1. From the left navigation menu, open {% konnect_icon runtimes %} **Runtime Manager**.
 
 1. Select a runtime group.
 
-1. Click **+ New Runtime Instance**.
+1. Click **+ Add runtime instance**.
 
      The page opens to a runtime configuration form with the Docker tab
      selected.

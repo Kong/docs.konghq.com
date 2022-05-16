@@ -106,7 +106,7 @@
     - text: Publish a Service to Dev Portal
       url: /dev-portal/publish
     - text: Customize Dev Portal
-      url: /dev-portal/customization/custom
+      url: /dev-portal/customization/
     - text: Access and Approval
       items:
         - text: Developer Registration
