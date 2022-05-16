@@ -28,8 +28,7 @@ Enable, update, disable, or delete a plugin for a Route.
 Disabling a plugin leaves its configuration intact, and you can re-enable the
 plugin at any time.
 
-1. Return to the overview page for your Route by going to {% konnect_icon servicehub %}
-**Service Hub** > **Service-name** > **Version-name** > **Route-name**.
+1. Return to the overview page for your Route.
 
 2. Find the **Plugins** section and select a plugin.
 
@@ -51,8 +50,7 @@ plugin at any time.
 Deleting a plugin completely removes it and its configuration from
 {{site.konnect_short_name}}.
 
-1. Return to the overview page for your Route by going to {% konnect_icon servicehub %}
-**Service Hub** > **Service-name** > **Version-name** > **Route-name**.
+1. Return to the overview page for your Route.
 
 2. Find the **Plugins** section and select a plugin.
 
