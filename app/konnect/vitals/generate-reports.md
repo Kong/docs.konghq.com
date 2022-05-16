@@ -121,4 +121,4 @@ Total traffic by application | Service, Route | Number of API calls grouped by A
 
 ## See also
 [Export historical data in CSV format](/konnect/vitals/analyze/) through the
-ServiceHub for any individual Service, Service version, or Route.
+Service Hub for any individual Service, Service version, or Route.

@@ -2,8 +2,8 @@
 
 Let's set up the first version of your API service.
 
-1. On your Service's overview page, scroll down to **Versions** and
- click **New Version**.
+1. On your Service's overview page, click **Service actions** >
+**Add new version**.
 
 1. Enter a **Version Name**. For this example, enter `v1`.
 

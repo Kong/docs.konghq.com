@@ -35,4 +35,4 @@ implementation to associate with your Service version.
     The **v1** Service Version overview displays.
 
     If you want to view the configuration, edit or delete the implementation,
-    or delete the version, click the **Actions** menu.
+    or delete the version, click the **Version actions** menu.

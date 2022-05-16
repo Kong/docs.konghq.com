@@ -24,7 +24,7 @@ out some customization options.
 
 1. Return to the overview page for the `example_service`.
 
-1. In the top right corner, click on the **Actions** dropdown and select
+1. In the top right corner, click on the **Service actions** dropdown and select
 **Publish to Portal**.
 
     By default, this publishes all of the Service's version specs to a private
@@ -50,7 +50,7 @@ Let's change up a couple of things:
     * Upload header, logo, or favicon images
     * Play around with the colours and fonts of your site
 
-    You could also [add a custom domain](/konnect/dev-portal/customization/custom-domain/),
+    You could also [add a custom domain](/konnect/dev-portal/customization/),
     if you have one you want to use.
 
 1. Click **Save** to apply the changes.

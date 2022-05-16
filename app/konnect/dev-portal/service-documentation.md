@@ -11,7 +11,7 @@ A core function of the Dev Portal is publishing Service descriptions and API spe
 You can provide extended descriptions of your Services with a Markdown (`.md`) file. The contents of this file will be displayed as the introduction to your API in the Dev Portal. 
 ### Upload a Service description
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %} **ServiceHub** page.
+1. From the left navigation menu, open the {% konnect_icon servicehub %} **Service Hub** page.
 
 2. Select a Service to open its overview.
 
@@ -23,7 +23,7 @@ You can provide extended descriptions of your Services with a Markdown (`.md`) f
 
 You can upload a new document to replace an existing Service document.
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %} **ServiceHub** page.
+1. From the left navigation menu, open the {% konnect_icon servicehub %} **Service Hub** page.
 
 2. Select a Service to open its overview.
 
@@ -33,7 +33,7 @@ You can upload a new document to replace an existing Service document.
 
 You can delete an existing document from the Dev Portal. Deleting a Service description will permanently remove it from the Dev Portal. 
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %} **ServiceHub** page.
+1. From the left navigation menu, open the {% konnect_icon servicehub %} **Service Hub** page.
 
 2. Select a Service to open its overview.
 
@@ -45,7 +45,7 @@ API specifications, or specs, can be uploaded and attached to a specific Version
 
 ### Upload a Version Spec
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %} **ServiceHub** page.
+1. From the left navigation menu, open the {% konnect_icon servicehub %} **Service Hub** page.
 
 2. Click a Service to open the Service Overview.
 
@@ -65,7 +65,7 @@ API specifications, or specs, can be uploaded and attached to a specific Version
 
 ### Update a Version Spec
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %} **ServiceHub** page.
+1. From the left navigation menu, open the {% konnect_icon servicehub %} **Service Hub** page.
 
 2. Click a Service to open the Service Overview.
 
@@ -77,7 +77,7 @@ API specifications, or specs, can be uploaded and attached to a specific Version
 
 ### Delete a Version Spec
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %} **ServiceHub**.
+1. From the left navigation menu, open the {% konnect_icon servicehub %} **Service Hub**.
 
 2. Click a Service to open the Service Overview.
 

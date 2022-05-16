@@ -24,7 +24,7 @@ deployment, see the following topics to get started:
   * [Set up a runtime](/konnect/getting-started/configure-runtime)
   * [Configure a Service and its first version](/konnect/getting-started/configure-service)
   * [Implement the Service version](/konnect/getting-started/implement-service)
-* Learn about [ServiceHub](/konnect/configure/servicehub) and [Runtime Manager](/konnect/configure/runtime-manager)
+* Learn about [Service Hub](/konnect/configure/servicehub) and [Runtime Manager](/konnect/configure/runtime-manager)
 * Use the Dev Portal:
   * [Set up the Dev Portal for a Service](/konnect/dev-portal/service-documentation)
   * [Publish a Service version to the Dev Portal](/konnect/dev-portal/publish)
