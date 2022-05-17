@@ -35,7 +35,7 @@ For anything other than minor changes, [clone the repository onto your local mac
 make install
 
 # Build the site and watch for changes 
-run
+make run
 ```
 
 ## Plugin contributors
