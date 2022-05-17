@@ -1,11 +1,21 @@
 ---
 title: Install Kong Gateway on Debian
 ---
+
+{:.important}
+> **Deprecation notice**: Support for running Kong Gateway on
+Debian 8 ("Jessie") is now deprecated, as [Debian 8 ("Jessie") has reached End of Life (EOL)](https://www.debian.org/News/2020/20200709).
+Starting with Kong Gateway 3.0.0.0, Kong is neither building new Debian 8 ("Jessie") images nor packages. Nor will Kong test package installation on Debian 8 ("Jessie").
+> If you need to install Kong Gateway on Debian 8 ("Jessie"), see the documentation for
+[previous versions](/gateway/2.8.x/install-and-run/debian/).
+> <br><br>
+> Kong Gateway Enterprise subscriptions can still use Debian 8 ("Jessie") in 2.8, but support
+for Debian 8 ("Jessie") is planned to be removed in 3.0.
+
 {:.install-banner}
 > Download the latest {{page.kong_version}} package for Debian:
 >
 > * **Kong Gateway**:
-> [**8 Jessie**]({{ site.links.download }}/gateway-2.x-debian-jessie/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb){:.install-link},
 > [**9 Stretch**]({{ site.links.download }}/gateway-2.x-debian-stretch/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb){:.install-link},
 > [**10 Buster**]({{ site.links.download }}/gateway-2.x-debian-buster/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb){:.install-link},
 > or [**11 Bullseye**]({{ site.links.download }}/gateway-2.x-debian-bullseye/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb){:.install-link}
@@ -18,7 +28,6 @@ title: Install Kong Gateway on Debian
 >
 > <br>
 > <span class="install-subtitle">View the list of all 2.x packages for
-> [8 Jessie]({{ site.links.download }}/gateway-2.x-debian-jessie/pool/all/k/){:.install-listing-link},
 > [9 Stretch]({{ site.links.download }}/gateway-2.x-debian-stretch/pool/all/k/){:.install-listing-link},
 > [10 Buster]({{ site.links.download }}/gateway-2.x-debian-buster/pool/all/k/){:.install-listing-link}, or
 > [11 Bullseye]({{ site.links.download }}/gateway-2.x-debian-bullseye/pool/all/k/){:.install-listing-link}
