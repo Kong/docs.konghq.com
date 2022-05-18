@@ -3,29 +3,29 @@ title: Configuring a Service
 ---
 
 In this section, you'll be adding an API to Kong. In order to do this, you'll
-first need to add a _Service_; that is the name Kong uses to refer to the upstream APIs and microservices
+first need to add a [Service](/gateway/{{page.kong_version}}/admin-api/#service-object); that is the name Kong uses to refer to the upstream APIs and microservices
 it manages.
 
 For the purpose of this guide, we'll create a Service pointing to the [Mockbin API][mockbin]. Mockbin is
 an "echo" type public website which returns the requests it gets back to the requester, as responses. This
 makes it helpful for learning how Kong proxies your API requests.
 
-Before you can start making requests against the Service, you will need to add a _Route_ to it.
-Routes specify how (and _if_) requests are sent to their Services after they reach Kong. A single
-Service can have many Routes.
+Before you can start making requests against the Service, you will need to add a [Route](/gateway/{{page.kong_version}}/admin-api/#route-object) to it.
+Routes specify how (and if) requests are sent to their Services after they reach Kong. There can be multiple Routes to a Service.
 
-After configuring the Service and the Route, you'll be able to make requests through Kong using them.
+After configuring the Service and a Route, you'll be able to proxy a request through Kong to Mockbin.
 
-Kong exposes a [RESTful Admin API][API] on port `:8001`. Kong's configuration, including adding Services and
-Routes, is made via requests on that API.
+By default, Kong exposes a [RESTful Admin API][API] on port `8001`. 
+You can use the Admin API to modify Kong's configuration, including adding 
+Services and Routes.
 
 ## Before you start
-You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install-and-run).
+You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install-and-run). 
 
-## 1. Add your Service using the Admin API
+## 1. Add a Service using the Admin API
 
-Issue the following cURL request to add your first Service (pointing to the [Mockbin API][mockbin])
-to Kong:
+Issue the following `POST` request to add your first Service to Kong.
+This instructs Kong to create a new Service named `example-service` which will accept traffic at `http://mockbin.org`.
 
 ```bash
 curl -i -X POST \
@@ -59,6 +59,10 @@ Connection: keep-alive
 
 
 ## 2. Add a Route for the Service
+
+Issue the following `POST` request to add a Route to the `example-service`.
+Here, we are instructing Kong to proxy requests with a `Host` header that contains
+`example.com` to the `example-service`.
 
 ```bash
 curl -i -X POST \
@@ -99,9 +103,8 @@ Kong is now aware of your Service and ready to proxy requests.
 
 ## 3. Forward your requests through Kong
 
-Issue the following cURL request to verify that Kong is properly forwarding
-requests to your Service. Note that [by default][proxy-port] Kong handles proxy
-requests on port `:8000`:
+Issue the following request to verify that Kong is properly forwarding
+requests with the `Host` header to the `example-service`. Take note that proxy requests are handled on port `8000` [by default][proxy-port].
 
 ```bash
 curl -i -X GET \
@@ -109,14 +112,7 @@ curl -i -X GET \
   --header 'Host: example.com'
 ```
 
-A successful response means Kong is now forwarding requests made to
-`http://localhost:8000` to the `url` we configured in step #1,
-and is forwarding the response back to us. Kong knows to do this through
-the header defined in the above cURL request:
-
-<ul>
-  <li><strong>Host: &lt;given host></strong></li>
-</ul>
+A successful response means Kong is now forwarding requests with a `Host: example.com` header to the Mockbin Service we configured in step #1.
 
 <hr>
 
