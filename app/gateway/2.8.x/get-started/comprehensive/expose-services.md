@@ -288,7 +288,7 @@ A `201` message indicates the Route was created successfully.
 
 ## Verify the Route is forwarding requests to the Service
 
-By default, {{site.base_gateway}} handles proxy requests on port `8000`. This is often referred to as the Data Plane.
+By default, {{site.base_gateway}} handles proxy requests on port `8000`. The proxy is often referred to as the data plane.
 
 {% navtabs %}
 {% navtab Using a Web Browser %}
