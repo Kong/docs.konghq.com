@@ -297,7 +297,7 @@ From a web browser, navigate to `http://<kong-gateway-host>:8000/mock/request`.
 
 {% endnavtab %}
 
-{% navtab Using a command-line tool%}
+{% navtab Using the Admin API %}
 
 <!-- codeblock tabs -->
 {% navtabs codeblock %}
