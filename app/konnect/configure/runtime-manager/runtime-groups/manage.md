@@ -15,9 +15,6 @@ From a runtime group details page, you can
 and configure any [global entities](/konnect/configure/runtime-manager/runtime-groups/manage-entities)
 in the group.
 
-## Prerequisites
-You have the **Organization Admin** role in {{site.konnect_saas}}.
-
 ## Create a runtime group
 {:.badge .enterprise}
 

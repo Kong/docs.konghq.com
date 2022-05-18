@@ -18,7 +18,6 @@ You cannot import [unsupported plugins](/konnect/configure/servicehub/plugins/#p
 
 ## Prerequisites
 * {{site.konnect_saas}} [account credentials](/konnect/getting-started/access-account/).
-* [**Organization Admin**](/konnect/org-management/teams-and-roles) permissions.
 * decK v1.12 or later [installed](/deck/latest/installation/).
 
 ## Import entity configuration

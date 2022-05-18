@@ -9,9 +9,6 @@ Access the billing portal from the {{site.konnect_saas}}
 From the billing portal, you can manage credit cards associated with the account,
 view and pay an invoice, and check the payment history of the account.
 
-## Prerequisites
-You have organization admin access.
-
 ## Modify a payment method
 
 1. From the **Billing and Usage** page, click **Go to billing portal**.

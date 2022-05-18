@@ -14,7 +14,6 @@ runtime instances.
 
 ## Prerequisites
 
-* You have **Runtime Admin** or **Organization Admin** permissions in {{site.konnect_saas}}.
 * **Kubernetes cluster with load balancer:** {{site.konnect_short_name}} is
 compatible with all distributions of Kubernetes. You can use a Minikube, GKE,
 or OpenShift TLS.

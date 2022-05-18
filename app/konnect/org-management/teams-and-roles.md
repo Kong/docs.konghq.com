@@ -24,15 +24,13 @@ automatically-created users, adjust user permissions through Okta, or
 [adjust team mapping](/konnect/org-management/okta-idp/#map-teams-to-groups).
 
 
-## Prerequisites
-
-You must be part of the **Organization Admin** team to manage users, teams, and
-roles.
-
 ## Manage teams and roles
 
 You can find a list of all teams in your organization through
 {% konnect_icon organizations %} **Organization** > **Teams** in Konnect.
+
+You must be part of the **Organization Admin** team to manage users, teams, and
+roles.
 
 * **Team:** A group of users with access to the same roles. Teams are useful
 for assigning access by functionality, as they can provide granular access to

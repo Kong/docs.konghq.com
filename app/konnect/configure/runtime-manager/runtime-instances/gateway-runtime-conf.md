@@ -12,11 +12,6 @@ instances associated with the {{site.konnect_saas}} account.
 > **Note:** Kong does not host runtimes. You must install and host your own
 runtime instances.
 
-## Prerequisites
-
-* You have **Runtime Admin** or **Organization Admin** permissions in
-{{site.konnect_saas}}.
-
 ## Generate certificates
 
 {% include /md/konnect/runtime-certs.md %}

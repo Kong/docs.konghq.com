@@ -20,10 +20,6 @@ Service Hub.
 If you want to combine multiple Services, Routes, or Applications in one report,
 see [custom reports](/konnect/vitals/generate-reports/).
 
-## Prerequisites
-You have any [**Service** role or the **Organization Admin**](/konnect/org-management/users-and-roles/)
-role.
-
 ## Analyze Services
 
 ### View performance for a Service

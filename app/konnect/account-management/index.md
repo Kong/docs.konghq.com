@@ -16,9 +16,6 @@ settings page, and manage your Konnect Free or Plus plan from this page.
 There is no self-serve option for managing Enterprise plans.
 Contact your sales representative to make any changes.
 
-### Prerequisites
-You have organization admin access.
-
 ### Manage and view plan billing and usage
 
 1. From the {{site.konnect_short_name}} menu, click

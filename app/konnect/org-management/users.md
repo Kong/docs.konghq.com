@@ -16,10 +16,6 @@ edit their team membership from the {{site.konnect_short_name}} side. To manage
 automatically-created users, adjust user permissions through Okta, or
 [adjust team mapping](/konnect/org-management/okta-idp/#map-teams-to-groups).
 
-## Prerequisites
-
-You must be part of the **Organization Admin** team to manage users.
-
 ## Add a user to the organization
 
 ### Invite a user

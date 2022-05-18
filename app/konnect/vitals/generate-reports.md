@@ -12,9 +12,6 @@ Applications.
 shows the sum of requests for all selected versions broken down by Service.
 It does not show data points for individual Service versions.
 
-## Prerequisites
-You have the [**Organization Admin**](/konnect/org-management/users-and-roles/) role.
-
 ## View custom reports
 
 To access all custom reports, open {% konnect_icon vitals %}
