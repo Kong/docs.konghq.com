@@ -1,8 +1,8 @@
 ---
-name: Validation
+name: OAS Validation
 publisher: Kong Inc.
 version: 0.1.x
-desc: Validate HTTP requests and responses based on an API Specification
+desc: Validate HTTP requests and responses based on an OpenApi 3.0 or Swagger API Specification
 description: |
   Validate HTTP requests and responses based on an API Specification. Supports both Swagger v2 and Open API v3 specifications JSON request & response bodies, with support for schema definitions described using JSONSchema draft v4. For "JSON schema draft 4" type schema's please see the [JSON schema website](https://json-schema.org/) for details on the format and examples.
 
@@ -20,7 +20,7 @@ kong_version_compatibility:
     compatible:
       - 3.x
 params:
-  name: validation
+  name: oas-validation
   service_id: true
   route_id: true
   consumer_id: false
@@ -110,7 +110,7 @@ Configure this plugin on a [service](/gateway/latest/admin-api/#service-object):
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/services/<service>/plugins \
-    --data "name=validation"  \
+    --data "name=oas-validation"  \
     --data "config.api_spec={your API specification}" \
     --data "config.verbose_response=true"
 ```
@@ -123,7 +123,7 @@ Configure this plugin on a [route](/gateway/latest/admin-api/#route-object):
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
-    --data "name=validation"  \
+    --data "name=oas-validation"  \
     --data "config.api_spec={your API specification}" \
     --data "config.verbose_response=true"
 ```
@@ -189,7 +189,7 @@ Enable the Validation plugin on the Service previously configured.
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/services/Petstore-Service/plugins \
-    --data name='Validation' \
+    --data name='oas-validation' \
     --data config.api_spec='<copy contents of https://petstore.swagger.io/v2/swagger.json here>' \
     --data config.verbose_response=true
 ```
@@ -251,7 +251,7 @@ For the Validation plugin, Event Hook events can be enabled when a Validation fa
 
     ```
     curl -i -X POST http://{HOSTNAME}:8001/event-hooks \
-    -d source=validation \
+    -d source=oas-validation \
     -d event=validation-failed \
     -d handler=webhook \
     -d config.url={WEBHOOK_URL}
@@ -267,7 +267,7 @@ For the Validation plugin, Event Hook events can be enabled when a Validation fa
             "secret": null
         },
         "id": "3fe43989-6cf1-4936-bd5d-b7774ca52ad8",
-        "source": "validation",
+        "source": "oas-validation",
         "event": "validation-failed",
         "handler": "webhook",
         "snooze": null,
@@ -281,7 +281,7 @@ For the Validation plugin, Event Hook events can be enabled when a Validation fa
     ```json
     {
     "ip": "10.0.2.2",
-    "source": "validation",
+    "source": "oas-validation",
     "err": "query 'status' validation failed with error: 'required parameter value not found in request'",
     "event": "validation-failed",
     "service": {
