@@ -1,6 +1,7 @@
 ---
 title: Set up a Kong Gateway Runtime on Kubernetes
 no_version: true
+content_type: how-to
 ---
 Set up a Kubernetes runtime instance through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/configure/runtime-manager) and

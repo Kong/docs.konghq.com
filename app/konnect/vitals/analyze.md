@@ -1,6 +1,7 @@
 ---
 title: Analyze Services and Routes
 no_version: true
+content_type: how-to
 ---
 
 In the Service Hub, the Service, Service version, and Route graphs provide dynamic

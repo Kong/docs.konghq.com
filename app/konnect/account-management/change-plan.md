@@ -1,6 +1,7 @@
 ---
 title: Change to a Different Plan
 no_version: true
+content_type: how-to
 ---
 
 You can change a Free or Plus subscription at any time from {{site.konnect_saas}}.

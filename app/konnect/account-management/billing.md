@@ -1,6 +1,7 @@
 ---
 title: Manage Payment Methods and Invoices
 no_version: true
+content_type: how-to
 ---
 
 Access the billing portal from the {{site.konnect_saas}}

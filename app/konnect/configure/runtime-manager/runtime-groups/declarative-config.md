@@ -1,6 +1,7 @@
 ---
 title: Manage Runtime Groups with decK
 no_version: true
+content_type: how-to
 ---
 
 You can manage runtime groups in your {{site.konnect_saas}} org using configuration

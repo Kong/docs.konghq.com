@@ -2,6 +2,7 @@
 title: Generate Reports
 no_version: true
 alpha: true
+content_type: how-to
 ---
 
 Create custom reports to track API calls based on Services, Routes, or

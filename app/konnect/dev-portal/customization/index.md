@@ -1,6 +1,7 @@
 ---
 title: Customize the Konnect Dev Portal
 no_version: true
+content_type: how-to
 ---
 
 The {{site.konnect_short_name}} Dev Portal currently offers three areas you can customize:

@@ -1,6 +1,7 @@
 ---
 title: Import Kong Gateway Entities into Konnect Cloud
 no_version: true
+content_type: how-to
 ---
 
 If you are an existing {{site.base_gateway}} user looking to use {{site.konnect_short_name}}

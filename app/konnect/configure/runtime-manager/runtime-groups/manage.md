@@ -1,6 +1,7 @@
 ---
 title: Manage Runtime Groups
 no_version: true
+content_type: how-to
 ---
 
 Create, update, and delete runtime groups through the

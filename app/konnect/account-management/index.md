@@ -1,6 +1,7 @@
 ---
 title: Konnect Plans, Billing, and Usage
 no_version: true
+content_type: how-to
 ---
 
 {{site.konnect_product_name}} has [three plans](/konnect-platform/plans) to

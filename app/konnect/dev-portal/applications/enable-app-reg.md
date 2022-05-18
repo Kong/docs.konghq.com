@@ -17,9 +17,6 @@ This guide walks you through the two supported authentication plugins:
 
 ## Prerequisites
 
-- [**Organization Admin** or **Service Admin**](/konnect/org-management/teams-and-roles)
-permissions.
-
 - The Services have been created, versioned, and published to the
   {{site.konnect_short_name}} Dev Portal so that they appear in the catalog.
 
@@ -40,12 +37,12 @@ permissions.
 ## Enable app registration with key authentication {#konnect-key-auth-flow}
 
 1. From the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %} **Service Hub** and select a
-Service. Now, click the **Versions** button and select the desired version. 
+Service. Now, click the **Versions** button and select the desired version.
 
 2. Click **Version actions** > **Enable app registration**.
 
 3. Select `key-auth` from the **Auth Type** list.
-  Optionally, click to enable [**Auto Approve**](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) for application 
+  Optionally, click to enable [**Auto Approve**](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) for application
   registrations for the selected Service.
 
 4. Click **Enable**.
@@ -56,7 +53,7 @@ Service. Now, click the **Versions** button and select the desired version.
 ## Enable App Registration with OpenID Connect {#oidc-flow}
 
 1. From the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %} **Service Hub** and select a
-Service. Now, click the **Versions** button and select the desired version. 
+Service. Now, click the **Versions** button and select the desired version.
 
 2. Click **Version actions** > **Enable app registration**.
 
@@ -102,6 +99,6 @@ at any time.
 
 1. From the **Service** menu, select **Version** to display all of the registered versions.
 
-1. Click the Version you intend to disable. 
+1. Click the Version you intend to disable.
 
 1. Click **Version actions** > **Disable app registration**.
