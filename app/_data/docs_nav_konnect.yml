@@ -157,13 +157,15 @@
     - text: Authentication and Authorization
       url: /org-management/auth
       items:
-        - text: Manage Teams and Roles
+        - text: Teams and Roles
           url: /org-management/teams-and-roles
           items:
+            - text: Manage Teams and Roles
+              url: /org-management/teams-and-roles/manage
             - text: Teams Reference
-              url: /org-management/teams-reference
+              url: /org-management/teams-and-roles/teams-reference
             - text: Roles Reference
-              url: /org-management/roles-reference
+              url: /org-management/teams-and-roles/roles-reference
         - text: Manage Users
           url: /org-management/users
         - text: Set up SSO with Okta

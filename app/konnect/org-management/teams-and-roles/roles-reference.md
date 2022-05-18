@@ -1,6 +1,7 @@
 ---
 title: Roles reference
 no_version: true
+content_type: reference
 ---
 
 A team can have any number of roles.

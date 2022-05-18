@@ -1,6 +1,7 @@
 ---
 title: Manage Users
 no_version: true
+content_type: how-to
 ---
 
 You can invite users to join your Konnect organization through the **Organization**
