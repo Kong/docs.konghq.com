@@ -246,7 +246,7 @@
   edition: "deck"
 -
   release: "1.12.x"
-  version: "1.12.0"
+  version: "1.12.1"
   edition: "deck"
 -
   release: "1.0.x"
