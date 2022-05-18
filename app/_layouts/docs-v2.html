@@ -91,7 +91,7 @@ id: documentation
             <h1 tabindex="-1" id="main" class="page-content-title"
             >{{page.title | flatify }}
             {% if page.badge %}
-              <a href="https://konghq.com/pricing" {%
+              <a href="https://konghq.com/pricing" target="_blank" {%
                 if page.badge == 'plus' %}class="badge plus" aria-label="available with plus subscription"{% endif %}{%
                 if page.badge == 'enterprise' %}class="badge enterprise" aria-label="available with enterprise subscription"{% endif %}{%
                 if page.badge == 'free' %}class="badge free" aria-label="available in Kong Gateway free mode"{% endif %}{%
