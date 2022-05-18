@@ -31,10 +31,10 @@
         <h1 id="main" tabindex="-1">{{ header_title }}</h1>
         <div class="badge-container">
         {% if include.publisher == "Kong Inc." %}
-           {% unless include.cloud == false %}<a href="https://konnect.konghq.com" class="badge konnect" aria-label="compatible with Konnect"></a>{% endunless %}
-           {% if include.plus %} <a href="https://konghq.com/pricing" class="badge plus" aria-label="available with plus subscription"></a>{% endif %}
-           {% if include.enterprise %}<a href="https://konghq.com/pricing" class="badge enterprise" aria-label="available with enterprise subscription"></a>{% endif %}
-           {% if include.oss %}<a href="https://konghq.com/pricing" class="badge oss" aria-label="open-source only"></a>{% endif %}
+           {% unless include.cloud == false %}<a href="https://konnect.konghq.com" target="_blank" class="badge konnect" aria-label="compatible with Konnect"></a>{% endunless %}
+           {% if include.plus %} <a href="https://konghq.com/pricing" target="_blank" class="badge plus" aria-label="available with plus subscription"></a>{% endif %}
+           {% if include.enterprise %}<a href="https://konghq.com/pricing" target="_blank" class="badge enterprise" aria-label="available with enterprise subscription"></a>{% endif %}
+           {% if include.oss %}<a href="https://konghq.com/pricing" target="_blank" class="badge oss" aria-label="open-source only"></a>{% endif %}
         {% endif %}
         </div>
       </div>

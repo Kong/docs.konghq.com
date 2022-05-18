@@ -678,7 +678,7 @@ $("a[data-filter]").on("keypress", function(e) {
 // Tooltips for badges
 jQuery(function () {
     $('.badge.enterprise')
-      .append( '<div class="tooltip"><span class="tooltiptext">Available with Enterprise subscription - <a target="_blank" style="color:white;" href="https://konghq.com/contact-sales">Contact Sales</a></span></div>' );
+      .append( '<div class="tooltip"><span class="tooltiptext">Available with Enterprise subscription - <a target="_blank" href="https://konghq.com/contact-sales">Contact Sales</a></span></div>' );
     $('.badge.plus')
       .append( '<div class="tooltip"><span class="tooltiptext">Available with Plus subscription (Konnect Cloud)</span></div>' );
     $('.badge.free')

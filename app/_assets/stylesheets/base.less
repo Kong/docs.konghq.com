@@ -231,22 +231,6 @@ h1, h2, h3, h4, h5, h6, .page-header-section-title {
   color: #262e33;
 }
 
-/* Fix for anchor link h tags being hidden by nav */
-.page-content {
-  h1, h2, h3, h4, h5, h6, .page-header-section-title, a[name] {
-    @media (min-width: @navbar-collapse-point) {
-      &::before {
-        display: block;
-        content: " ";
-        margin-top: -@nav-header-height - 5;
-        height: @nav-header-height + 5;
-        visibility: hidden;
-        pointer-events: none;
-      }
-    }
-  }
-}
-
 h1, .page-header-section-title {
   font-size: 4rem;
   font-weight: 500;
