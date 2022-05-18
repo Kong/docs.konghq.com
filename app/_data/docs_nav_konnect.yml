@@ -1,106 +1,126 @@
 - title: Introduction
   icon: /assets/images/icons/documentation/icn-flag.svg
-  url: /
   items:
+    - text: Introduction
+      url: /
     - text: Release Notes
       url: /updates
 
-- title: Get Started
+- title: Get Started with Konnect
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
-  url: /getting-started/
   items:
-    - text: Access a Konnect Account
-      url: /getting-started/access-account
-    - text: Quickstart guide
+    - text: Concepts
       items:
-        - text: Set up a Runtime
-          url: /getting-started/configure-runtime
-        - text: Configure a Service
-          url: /getting-started/configure-service
-        - text: Implement and Test the Service
-          url: /getting-started/implement-service
-        - text: Publish to Dev Portal
-          url: /getting-started/publish-service
-    - text: Get Started with an API Spec
+        - text: Konnect Architecture
+          url: /plan
+        - text: License Management
+          url: /plan/license-management
+        - text: Network Resiliency and Availability
+          url: /plan/network-resiliency
+    - text: How-To Guides
       items:
-        - text: Import an API Spec into Konnect
-          url: /getting-started/spec/service
-        - text: Implement the Service Version with Kong Gateway
-          url: /getting-started/spec/implement
-        - text: Publish to Dev Portal
-          url: /getting-started/spec/publish
-        - text: Register Applications
-          url: /getting-started/spec/app-registration
-        # - text: Protect your Services
-        #   url: /getting-started/spec/protect-services
-        # - text: Improve Performance
-        #   url: /getting-started/spec/performance
-        # - text: Secure Services
-        #   url: /getting-started/spec/secure-services
-        # - text: Set Up Intelligent Load Balancing
-        #   url: /getting-started/spec/load-balancing
+        - text: Access a Konnect Account
+          url: /getting-started/access-account
+        - text: Choose a Path
+          url: /getting-started/
+          items:
+            - text: Quickstart guide
+              items:
+                - text: Set up a Runtime
+                  url: /getting-started/configure-runtime
+                - text: Configure a Service
+                  url: /getting-started/configure-service
+                - text: Implement and Test the Service
+                  url: /getting-started/implement-service
+                - text: Publish to Dev Portal
+                  url: /getting-started/publish-service
+            - text: Get Started with an API Spec
+              items:
+                - text: Import an API Spec into Konnect
+                  url: /getting-started/spec/service
+                - text: Implement the Service Version with Kong Gateway
+                  url: /getting-started/spec/implement
+                - text: Publish to Dev Portal
+                  url: /getting-started/spec/publish
+                - text: Register Applications
+                  url: /getting-started/spec/app-registration
+              # - text: Protect your Services
+              #   url: /getting-started/spec/protect-services
+              # - text: Improve Performance
+              #   url: /getting-started/spec/performance
+              # - text: Secure Services
+              #   url: /getting-started/spec/secure-services
+              # - text: Set Up Intelligent Load Balancing
+              #   url: /getting-started/spec/load-balancing
+            - text: Import Kong Gateway Entities into Konnect Cloud
+              url: /plan/import
+    - text: Reference
+      items:
+        - text: Port and Network Requirements
+          url: /plan/network
+        - text: Browser Compatibility
+          url: blah
 
-- title: Plan
-  icon: /assets/images/icons/documentation/icn-deployment-color.svg
-  url: /deployment
+#
+# - title: Plan
+#   icon: /assets/images/icons/documentation/icn-deployment-color.svg
+#   items:
+
+
+# - title: Configure
+#   icon: /assets/images/icons/konnect/icn-cogwheel-nav.svg
+#   items:
+- title: Service Hub
+  icon: /assets/images/icons/konnect/icn-servicehub.svg
   items:
-    - text: License Management
-      url: /deployment/license-management
-    - text: Port and Network Requirements
-      url: /deployment/network
-    - text: Network Resiliency and Availability
-      url: /deployment/network-resiliency
-    - text: Import Kong Gateway Entities into Konnect Cloud
-      url: /deployment/import
+    - text: Overview
+      url: /servicehub
+    - text: Manage Services
+      url: /servicehub/manage-services
+    - text: Manage Plugins
+      url: /servicehub/plugins
+      items:
+        - text: Configure a Plugin on a Service
+          url: /servicehub/enable-service-plugin
+        - text: Configure a Plugin on a Route
+          url: /servicehub/enable-route-plugin
 
-- title: Configure
-  icon: /assets/images/icons/konnect/icn-cogwheel-nav.svg
+- title: Runtime Manager
+  icon: /assets/images/icons/konnect/icn-runtimes.svg
   items:
-    - text: Service Hub
-      url: /configure/servicehub
+    - text: Overview
+      url: /runtime-manager
+    - text: Runtime Groups
+      url: /runtime-manager/runtime-groups
       items:
-        - text: Manage Services
-          url: /configure/servicehub/manage-services
-        - text: Manage Plugins
-          url: /configure/servicehub/plugins
-          items:
-            - text: Configure a Plugin on a Service
-              url: /configure/servicehub/enable-service-plugin
-            - text: Configure a Plugin on a Route
-              url: /configure/servicehub/enable-route-plugin
-    - text: Runtime Manager
-      url: /configure/runtime-manager
+        - text: Manage Runtime Groups
+          url: /runtime-manager/runtime-groups/manage
+        - text: Manage Runtime Groups with decK
+          url: /runtime-manager/runtime-groups/declarative-config
+        - text: Manage Entities in a Runtime Group
+          url: /runtime-manager/runtime-groups/manage-entities
+    - text: Runtime Instances
       items:
-        - text: Runtime Groups
-          url: /configure/runtime-manager/runtime-groups
-          items:
-            - text: Manage Runtime Groups
-              url: /configure/runtime-manager/runtime-groups/manage
-            - text: Manage Runtime Groups with decK
-              url: /configure/runtime-manager/runtime-groups/declarative-config
-            - text: Manage Entities in a Runtime Group
-              url: /configure/runtime-manager/runtime-groups/manage-entities
-        - text: Runtime Instances
-          items:
-            - text: Install with Docker
-              url: /configure/runtime-manager/runtime-instances/gateway-runtime-docker
-            - text: Install on Kubernetes
-              url: /configure/runtime-manager/runtime-instances/gateway-runtime-kubernetes
-            - text: Install on Linux
-              url: /configure/runtime-manager/runtime-instances/gateway-runtime-conf
-            - text: Upgrade a Runtime Instance to a New Version
-              url: /configure/runtime-manager/runtime-instances/upgrade
-            - text: Renew Certificates
-              url: /configure/runtime-manager/runtime-instances/renew-certificates
-            - text: Runtime Parameter Reference
-              url: /configure/runtime-manager/runtime-instances/runtime-parameter-reference
-            - text: Troubleshoot Runtime Instance Issues
-              url: /configure/runtime-manager/runtime-instances/troubleshoot
+        - text: Install with Docker
+          url: /runtime-manager/runtime-instances/gateway-runtime-docker
+        - text: Install on Kubernetes
+          url: /runtime-manager/runtime-instances/gateway-runtime-kubernetes
+        - text: Install on Linux
+          url: /runtime-manager/runtime-instances/gateway-runtime-conf
+        - text: Upgrade a Runtime Instance to a New Version
+          url: /runtime-manager/runtime-instances/upgrade
+        - text: Renew Certificates
+          url: /runtime-manager/runtime-instances/renew-certificates
+        - text: Runtime Parameter Reference
+          url: /runtime-manager/runtime-instances/runtime-parameter-reference
+        - text: Troubleshoot Runtime Instance Issues
+          url: /runtime-manager/runtime-instances/troubleshoot
 
-- title: Publish
+- title: Dev Portal
   icon: /assets/images/icons/konnect/icn-dev-portal-nav.svg
-  url: /dev-portal
   items:
+    - text: Overview
+      url: /dev-portal
     - text: Manage Service Documentation
       url: /dev-portal/service-documentation
     - text: Publish a Service to Dev Portal
@@ -136,8 +156,9 @@
 
 - title: Analyze
   icon: /assets/images/icons/konnect/icn-vitals-nav.svg
-  url: /vitals/
   items:
+    - text: Overview
+      url: /vitals/
     - text: Analyze Services and Routes
       url: /vitals/analyze/
     - text: Generate Reports
