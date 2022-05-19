@@ -6,6 +6,7 @@ items:
     icon: /assets/images/icons/documentation/icn-flag.svg
     url: /deck/
     absolute_url: true
+    generate: false
     items:
       - text: Terminology
         url: /terminology
@@ -22,6 +23,7 @@ items:
   - title: Installation
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
     url: /installation
+    generate: true
 
   - title: Guides
     icon: /assets/images/icons/documentation/icn-solution-guide.svg

@@ -1,5 +1,6 @@
 ---
 title: Installation
+tag: how-to
 ---
 
 decK is entirely written in Go. The build process builds a single static binary,
@@ -27,11 +28,13 @@ If you are Linux, you can either use the Debian or RPM archive from
 the Github [release page](https://github.com/kong/deck/releases)
 or install by downloading a compressed archive, which contains the binary:
 
+{% if_version leq:1.12.x %}
 ```shell
 $ curl -sL https://github.com/kong/deck/releases/download/v{{page.version}}/deck_{{page.version}}_linux_amd64.tar.gz -o deck.tar.gz
 $ tar -xf deck.tar.gz -C /tmp
 $ sudo cp /tmp/deck /usr/local/bin/
 ```
+{% endif_version %}
 
 ## Docker image
 
