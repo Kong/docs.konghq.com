@@ -28,6 +28,7 @@ items:
     items:
       - text: Getting Started with decK
         url: /guides/getting-started
+        generate: true
       - text: Backup and Restore
         url: /guides/backup-restore
       - text: Configuration as Code and GitOps
