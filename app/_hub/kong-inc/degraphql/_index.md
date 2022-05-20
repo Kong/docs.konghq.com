@@ -1,7 +1,6 @@
 ---
 name: DeGraphQL
 publisher: Kong Inc.
-version: 0.1.0
 desc: Transform a GraphQL upstream into a REST API
 description: |
   This plugin transforms a GraphQL upstream into a traditional endpoint by mapping URIs into GraphQL queries.
@@ -27,113 +26,124 @@ params:
   name: degraphql
   service_id: true
   dbless_compatible: 'yes'
-  config: null
+  config:
+    - name: graphql_server_path
+      required: false
+      default: "/graphql"
+      datatype: string
+      description: The path to the GraphQL server.
+      minimum_version: "3.0.x"
 ---
 ## Usage
 
-DeGraphQL needs a graphql endpoint to query. As an example, we are going to
-build a REST API around https://api.github.com GraphQL service. For that reason
-examples are going to include the header `Authorization: Bearer some-token`.
+DeGraphQL needs a GraphQL endpoint to query. As an example, we are going to
+build a REST API around https://api.github.com GraphQL service. For that reason,
+the following examples include the header `Authorization: Bearer some-token`.
 
-Note this plugin differs from other plugins as far as configuration goes. It
+Note this plugin's configuration differs from other plugins. It
 needs to be activated on a service that points to a GraphQL endpoint
-(sans `/graphql`).
+(without the `/graphql` prefix).
 
-### 1. Create a Service and a Route in Kong:
+### Create a Service and a Route
 
-  ```bash
-  $ curl -X POST http://localhost:8001/services \
-    --data name="github" \
-    --data url="https://api.github.com"
-  $ curl -X POST http://localhost:8001/services/github/routes \
-    --data paths="/api"
-  ```
+Create a Service and Route in {{site.base_gateway}}:
 
-### 2. Configure the Plugin on the Service
+```bash
+curl -X POST http://localhost:8001/services \
+  --data name="github" \
+  --data url="https://api.github.com"
 
-The plugin takes over the service. From this point on, the service represents
-our REST api and not the graphql endpoint itself. It will return a 404 Not Found
-if no DeGraphQL routes have been configured.
+curl -X POST http://localhost:8001/services/github/routes \
+  --data paths="/api"
+```
 
-  ```bash
-  $ curl -X POST http://localhost:8001/services/github/plugins \
-    --data name="degraphql"
-  ```
+### Configure the plugin on the Service
 
-### 3. Configure DeGraphQL Routes on the Service
+Set up the DeGraphQL plugin:
 
-Once the Plugin is activated on a Service, we can add our own routes to build
-our service, by defining URIs and associating them to GraphQL queries.
+```bash
+curl -X POST http://localhost:8001/services/github/plugins \
+  --data name="degraphql"
+```
 
-  ```bash
-  $ curl -X POST http://localhost:8001/services/github/degraphql/routes \
-    --data uri="/me" \
-    --data query="query { viewer { login } }"
+The plugin takes over the Service. From this point on, the Service represents
+your REST API and not the GraphQL endpoint itself. It will return a `404 Not Found`
+status code if no DeGraphQL routes have been configured.
 
-  $ curl http://localhost:8000/api/me \
-    --header "Authorization: Bearer some-token"
-  {
-      "data": {
-          "viewer": {
-              "login": "you"
-          }
+### Configure DeGraphQL Routes on the Service
+
+Once the plugin is activated on a Service, you can add your own routes
+by defining URIs and associating them to GraphQL queries:
+
+```bash
+curl -X POST http://localhost:8001/services/github/degraphql/routes \
+  --data uri="/me" \
+  --data query="query { viewer { login } }"
+
+curl http://localhost:8000/api/me \
+  --header "Authorization: Bearer some-token"
+{
+    "data": {
+        "viewer": {
+            "login": "you"
+        }
+    }
+}
+```
+
+GraphQL query variables can be defined on URIs:
+
+```bash
+curl -X POST http://localhost:8001/services/github/degraphql/routes \
+  --data uri='/:owner/:name' \
+  --data query='query ($owner:String! $name:String!){
+                  repository(owner:$owner, name:$name) {
+                    name
+                    forkCount
+                    description
+                 }
+               }'
+
+curl http://localhost:8000/api/kong/kong \
+  --header "Authorization: Bearer some-token"
+{
+  "data": {
+      "repository": {
+          "description": "🦍 The Cloud-Native API Gateway ",
+          "forkCount": 2997,
+          "name": "kong"
       }
   }
-  ```
+}
+```
 
-GraphQL Query Variables can be defined on URIs:
+The same variables can also be provided as `GET` arguments:
 
-  ```bash
-  $ curl -X POST http://localhost:8001/services/github/degraphql/routes \
-    --data uri='/:owner/:name' \
-    --data query='query ($owner:String! $name:String!){
-                    repository(owner:$owner, name:$name) {
-                      name
-                      forkCount
-                      description
-                   }
-                 }'
+```bash
+curl -X POST http://localhost:8001/services/github/degraphql/routes \
+  --data uri='/repo' \
+  --data query='query ($owner:String! $name:String!){
+                  repository(owner:$owner, name:$name) {
+                    name
+                    forkCount
+                    description
+                  }
+                }'
 
-  $ curl http://localhost:8000/api/kong/kong \
-    --header "Authorization: Bearer some-token"
-  {
-    "data": {
-        "repository": {
-            "description": "🦍 The Cloud-Native API Gateway ",
-            "forkCount": 2997,
-            "name": "kong"
-        }
-    }
+curl "http://localhost:8000/api/repo?owner=kong&name=kuma" \
+  --header "Authorization: Bearer some-token"
+{
+  "data": {
+      "repository": {
+          "description": "🐻 The Universal Service Mesh",
+          "forkCount": 48,
+          "name": "kuma"
+      }
   }
-  ```
+}
+```
 
-The same Variables can also be provided as GET arguments:
-
-  ```bash
-  $ curl -X POST http://localhost:8001/services/github/degraphql/routes \
-    --data uri='/repo' \
-    --data query='query ($owner:String! $name:String!){
-                    repository(owner:$owner, name:$name) {
-                      name
-                      forkCount
-                      description
-                    }
-                  }'
-
-  $ curl "http://localhost:8000/api/repo?owner=kong&name=kuma" \
-    --header "Authorization: Bearer some-token"
-  {
-    "data": {
-        "repository": {
-            "description": "🐻 The Universal Service Mesh",
-            "forkCount": 48,
-            "name": "kuma"
-        }
-    }
-  }
-  ```
-
-### Available endpoints
+## Available endpoints
 
 **List defined DeGraphQL Routes for a service**
 
@@ -143,21 +153,31 @@ The same Variables can also be provided as GET arguments:
 
 <div class="endpoint post">/services/:service_name/degraphql/routes</div>
 
-| Attributes | Description
+| Attribute | Description
 | -------------- | -------
-|`uri` | path to map to a GraphQL query
-|`query` | GraphQL query to map to uri
+|`uri` | Path to map to a GraphQL query.
+|`query` | GraphQL query to map to the URI.
 
 **Edit a DeGraphQL Route for a Service**
 
 <div class="endpoint patch">/services/:service_name/degraphql/routes/:id</div>
 
-| Attributes | Description
+| Attribute | Description
 | -------------- | -------
-|`uri` | path to map to a GraphQL query
-|`query` | GraphQL query to map to uri
+|`uri` | Path to map to a GraphQL query.
+|`query` | GraphQL query to map to the URI.
 
 
 **Delete a DeGraphQL Route for a Service**
 
 <div class="endpoint delete">/services/:service_name/degraphql/routes/:id</div>
+
+---
+{% if_plugin_version gte:3.0.x %}
+## Changelog
+
+### Kong Gateway 3.0.x
+
+* Added the `graphql_server_path` configuration parameter.
+
+{% endif_plugin_version %}
