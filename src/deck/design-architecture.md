@@ -1,5 +1,6 @@
 ---
 title: Design & Architecture
+content-type: explanation
 ---
 
 ## Underlying architecture

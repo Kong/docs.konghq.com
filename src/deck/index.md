@@ -1,6 +1,7 @@
 ---
 title: decK
 subtitle: Manage Konnect and Kong Gateway configuration declaratively
+content-type: explanation
 ---
 
 decK helps manage Kong’s configuration in a declarative fashion. This means that

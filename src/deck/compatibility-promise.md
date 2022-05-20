@@ -1,5 +1,6 @@
 ---
 title: Compatibility Promise
+content-type: explanation
 ---
 
 decK's compatibility guarantees are:
