@@ -52,7 +52,7 @@ module SingleSource
   end
 
   class SingleSourcePage < Jekyll::Page
-    def initialize(site, src, dest, product, release, version) # rubocop:disable Lint/MissingSuper, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/AbcSize, Metrics/ParameterLists
+    def initialize(site, src, dest, product, release, version) # rubocop:disable Lint/MissingSuper, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/AbcSize, Metrics/ParameterLists, Metrics/PerceivedComplexity
       # Configure variables that Jekyll depends on
       @site = site
 
@@ -64,6 +64,9 @@ module SingleSource
 
       # Remove trailing slashes if they exist
       src = src.chomp('/')
+
+      # Normalise the src by removing the leading /
+      src = src[1..] if src[0] == '/'
 
       # Set self.ext and self.basename by extracting information from the page filename
       process('index.md')
