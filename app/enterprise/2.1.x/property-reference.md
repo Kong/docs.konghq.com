@@ -3031,7 +3031,7 @@ Different strategies are available to tune how to enforce splitting traffic of
 workspaces.
 
 - `smart` is the default option and uses the algorithm described in
-  https://docs.konghq.com/enterprise/0.33-x/workspaces/examples/#important-note-conflicting-apis-or-routes-in-workspaces
+   the [workspaces example](/gateway/latest/admin-api/workspaces/examples/#important-note-conflicting-services-or-routes-in-workspaces)
 - `off` disables any check
 - `path` enforces routes to comply with the pattern described in config
   enforce_route_path_pattern
