@@ -106,7 +106,7 @@ test.describe("Sidebar section count", () => {
     {
       title: "Gateway Single Sourced",
       path: "/gateway/",
-      count: 7,
+      count: 8,
     },
     {
       title: "decK",
