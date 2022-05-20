@@ -1,7 +1,6 @@
 product: deck
 release: 1.10.x
 generate: true
-assume_generated: false
 items:
   - title: Introduction
     icon: /assets/images/icons/documentation/icn-flag.svg
@@ -46,7 +45,6 @@ items:
       - text: Set Up Object Defaults
         url: /guides/defaults
         src: /guides/defaults-v2
-        generate: true
       - text: Using environment variables with decK
         url: /guides/environment-variables
 
