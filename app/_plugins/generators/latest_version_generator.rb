@@ -19,7 +19,8 @@ module LatestVersion
 
       # Load config file
       site.pages.each do |page|
-        parts = Pathname(page.path).each_filename.to_a
+        parts = Pathname(remove_generated_prefix(page.path)).each_filename.to_a
+
         products_with_latest.each do |product|
           # Reset values for every new page
           generate_latest = false
@@ -52,6 +53,16 @@ module LatestVersion
           site.pages << page
         end
       end
+    end
+
+    def remove_generated_prefix(path)
+      # Remove the generated prefix if it's present
+      # It's in the format GENERATED:nav=nav/product_1.2.x:src=src/path/here:/output/path
+      return path unless path.start_with?('GENERATED:')
+
+      path = path.split(':')
+      path.shift(3)
+      path.join(':')
     end
   end
 
