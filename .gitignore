@@ -17,6 +17,9 @@ install
 .vscode/
 yarn.lock
 
+# test directory
+.netlify/
+
 # jekyll
 dist
 .jekyll-metadata
