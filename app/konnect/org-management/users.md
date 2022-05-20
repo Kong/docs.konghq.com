@@ -27,7 +27,7 @@ automatically-created users, adjust user permissions through Okta, or
 1. Assign the user to one or more teams.
 
     For team descriptions, hover over the information (`i`) icon next to the team name,
-    or see the [predefined teams references](/konnect/org-management/teams-reference).
+    or see the [predefined teams references](/konnect/org-management/teams-and-roles/teams-reference).
 
 1. Click **Save**.
 

@@ -220,7 +220,7 @@ in Okta, locate the Okta groups you want to map.
     For example, if you have a `service_admin` group in Okta, you might map it
     to the `Service Admin` team in {{site.konnect_short_name}}. You can hover
     over the info (`i`) icon beside each field to learn more about the team, or
-    see the [teams reference](/konnect/org-management/teams-reference)
+    see the [teams reference](/konnect/org-management/teams-and-roles/teams-reference)
     for more information.
 
     You must have at least one group mapped to save configuration changes.
