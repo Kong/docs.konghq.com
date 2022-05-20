@@ -7,7 +7,7 @@ id: documentation
 {% assign latest_page_url = page.url | replace: page.kong_version, "latest" %}
 {% capture latest_page_exists %}{% page_exists {{latest_page_url}} %}{% endcapture %}
 
-{% assign default_edit_link = page.path | replace: "/latest/", page.kong_version %}
+{% assign default_edit_link = page.path | replace: "latest", page.kong_version %}
 
 <div class="page v2 {{ page.class }}" data-url={{ page.url }}>
 
