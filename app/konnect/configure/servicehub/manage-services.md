@@ -39,7 +39,7 @@ Access all Konnect Service configuration through the {% konnect_icon servicehub 
 element to reveal a text box, enter the new text, then click outside of the text
 box to save.
 
-### Share a Service
+<!-- ### Share a Service
 
 If you have a Service Admin or Organization Admin role, you can share any
 Service that you have access to.
@@ -54,7 +54,7 @@ For more information, see [Manage Teams, Roles, and Users](/konnect/org-manageme
 
 1. Select a role to grant to the user or team.
 
-1. Click **Share service** to save.
+1. Click **Share service** to save. -->
 
 ### Delete a Service
 
