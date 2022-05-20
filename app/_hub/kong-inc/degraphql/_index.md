@@ -37,12 +37,10 @@ params:
 ## Usage
 
 DeGraphQL needs a GraphQL endpoint to query. As an example, we are going to
-build a REST API around https://api.github.com GraphQL service. For that reason,
-the following examples include the header `Authorization: Bearer some-token`.
+build a REST API around the `https://api.github.com` GraphQL service. For that
+reason, the following examples include the header `Authorization: Bearer some-token`.
 
-Note this plugin's configuration differs from other plugins. It
-needs to be activated on a service that points to a GraphQL endpoint
-(without the `/graphql` prefix).
+This plugin must be activated on a service that points to a GraphQL endpoint.
 
 ### Create a Service and a Route
 
@@ -73,7 +71,11 @@ status code if no DeGraphQL routes have been configured.
 ### Configure DeGraphQL Routes on the Service
 
 Once the plugin is activated on a Service, you can add your own routes
-by defining URIs and associating them to GraphQL queries:
+by defining URIs and associating them to GraphQL queries.
+
+{:.note}
+> Don't include the GraphQL server path prefix in the URI parameter
+(`/graphql` by default).
 
 ```bash
 curl -X POST http://localhost:8001/services/github/degraphql/routes \
@@ -90,6 +92,7 @@ curl http://localhost:8000/api/me \
     }
 }
 ```
+
 
 GraphQL query variables can be defined on URIs:
 
