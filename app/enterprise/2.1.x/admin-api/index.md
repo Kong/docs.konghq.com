@@ -100,7 +100,7 @@ route_body: |
     `sources`<br>*semi-optional* |  A list of IP sources of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port".
     `destinations`<br>*semi-optional* |  A list of IP destinations of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port".
     `tags`<br>*optional* |  An optional set of strings associated with the Route, for grouping and filtering.
-    `service`<br>*optional* |  The Service this Route is associated to. This is where the Route proxies traffic to.  With form-encoded, the notation is `service.id=<service_id>`. With JSON, use `"service":{"id":"<service_id>"}`.
+    `service`<br>*optional* |  The Service this Route is associated to. This is where the Route proxies traffic to. With form-encoded, the notation is `service.id=<service id>` or `service.name=<service name>`. With JSON, use "`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
 
 route_json: |
     {
