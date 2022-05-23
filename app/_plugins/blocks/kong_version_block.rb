@@ -40,7 +40,7 @@ module Jekyll
       # Remove the leading and trailing whitespace and return
       # We can't use .strip as that removes all leading whitespace,
       # including indentation
-      contents.gsub(/^\n/, '').gsub(/\n$/, '')
+      contents.sub(/^\n/, '').sub(/\n$/, '')
     end
 
     def to_version(input)
