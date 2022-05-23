@@ -54,93 +54,137 @@ deck completion [command-specific flags] [global flags]
 `-h`, `--help`
 :  help for completion (Default: `false`)
 
-
+{% if_version gte:1.11.x %}
 
 ## Global flags
 
-`--analytics`
-:  Share anonymized data to help improve decK.
-Use `--analytics=false` to disable this. (Default: `true`)
 
-`--ca-cert`
-:  Custom CA certificate (raw contents) to use to verify Kong's Admin TLS certificate.
-This value can also be set using DECK_CA_CERT environment variable.
-This takes precedence over `--ca-cert-file` flag.
+  `--analytics`
 
-`--ca-cert-file`
-:  Path to a custom CA certificate to use to verify Kong's Admin TLS certificate.
-This value can also be set using DECK_CA_CERT_FILE environment variable.
+  :  Share anonymized data to help improve decK.
+  Use `--analytics=false` to disable this. (Default: `true`)
 
-`--config`
-:  Config file (default is $HOME/.deck.yaml).
+  `--ca-cert`
+  :  Custom CA certificate (raw contents) to use to verify Kong's Admin TLS certificate.
+  This value can also be set using DECK_CA_CERT environment variable.
+  This takes precedence over `--ca-cert-file` flag.
 
-`--headers`
-:  HTTP headers (key:value) to inject in all requests to Kong's Admin API.
-This flag can be specified multiple times to inject multiple headers.
+  `--ca-cert-file`
+  :  Path to a custom CA certificate to use to verify Kong's Admin TLS certificate.
+  This value can also be set using DECK_CA_CERT_FILE environment variable.
 
-`--kong-addr`
-:  HTTP address of Kong's Admin API.
-This value can also be set using the environment variable DECK_KONG_ADDR
- environment variable. (Default: `"http://localhost:8001"`)
+  `--config`
+  :  Config file (default is $HOME/.deck.yaml).
 
-`--kong-cookie-jar-path`
-:  Absolute path to a cookie-jar file in the Netscape cookie format for auth with Admin Server.
-You may also need to pass in as header the User-Agent that was used to create the cookie-jar.
+  `--headers`
+  
+  :  HTTP headers (key:value) to inject in all requests to Kong's Admin API.
+  This flag can be specified multiple times to inject multiple headers.
 
-`--konnect-addr`
-:  Address of the Konnect endpoint. (Default: `"https://us.api.konghq.com"`)
+  `--kong-addr`
+  :  HTTP address of Kong's Admin API.
+  This value can also be set using the environment variable DECK_KONG_ADDR
+  environment variable. (Default: `"http://localhost:8001"`)
 
-`--konnect-email`
-:  Email address associated with your Konnect account.
+  `--kong-cookie-jar-path`
+  :  Absolute path to a cookie-jar file in the Netscape cookie format for auth with Admin Server.
+  You may also need to pass in as header the User-Agent that was used to create the cookie-jar.
 
-`--konnect-password`
-:  Password associated with your Konnect account, this takes precedence over `--konnect-password-file` flag.
+  `--konnect-addr`
+  :  Address of the Konnect endpoint. (Default: `"https://us.api.konghq.com"`)
 
-`--konnect-password-file`
-:  File containing the password to your Konnect account.
+  `--konnect-email`
+  :  Email address associated with your Konnect account.
 
-`--konnect-runtime-group-name`
-:  Konnect Runtime group name.
+  `--konnect-password`
+  :  Password associated with your Konnect account, this takes precedence over `--konnect-password-file` flag.
 
-`--no-color`
-:  Disable colorized output (Default: `false`)
+  `--konnect-password-file`
+  :  File containing the password to your Konnect account.
 
-`--skip-workspace-crud`
-:  Skip API calls related to Workspaces (Kong Enterprise only). (Default: `false`)
+  `--konnect-runtime-group-name`
+  :  Konnect Runtime group name.
 
-`--timeout`
-:  Set a request timeout for the client to connect with Kong (in seconds). (Default: `10`)
+  `--no-color`
+  :  Disable colorized output (Default: `false`)
 
-`--tls-client-cert`
-:  PEM-encoded TLS client certificate to use for authentication with Kong's Admin API.
-This value can also be set using DECK_TLS_CLIENT_CERT environment variable. Must be used in conjunction with tls-client-key
+  `--skip-workspace-crud`
+  :  Skip API calls related to Workspaces (Kong Enterprise only). (Default: `false`)
 
-`--tls-client-cert-file`
-:  Path to the file containing TLS client certificate to use for authentication with Kong's Admin API.
-This value can also be set using DECK_TLS_CLIENT_CERT_FILE environment variable. Must be used in conjunction with tls-client-key-file
+  `--timeout`
+  :  Set a request timeout for the client to connect with Kong (in seconds). (Default: `10`)
 
-`--tls-client-key`
-:  PEM-encoded private key for the corresponding client certificate .
-This value can also be set using DECK_TLS_CLIENT_KEY environment variable. Must be used in conjunction with tls-client-cert
+  `--tls-client-cert`
+  :  PEM-encoded TLS client certificate to use for authentication with Kong's Admin API.
+  This value can also be set using DECK_TLS_CLIENT_CERT environment variable. Must be used in conjunction with tls-client-key
 
-`--tls-client-key-file`
-:  Path to file containing the private key for the corresponding client certificate.
-This value can also be set using DECK_TLS_CLIENT_KEY_FILE environment variable. Must be used in conjunction with tls-client-cert-file
+  `--tls-client-cert-file`
+  :  Path to the file containing TLS client certificate to use for authentication with Kong's Admin API.
+  This value can also be set using DECK_TLS_CLIENT_CERT_FILE environment variable. Must be used in conjunction with tls-client-key-file
 
-`--tls-server-name`
-:  Name to use to verify the hostname in Kong's Admin TLS certificate.
-This value can also be set using DECK_TLS_SERVER_NAME environment variable.
+  `--tls-client-key`
+  :  PEM-encoded private key for the corresponding client certificate .
+  This value can also be set using DECK_TLS_CLIENT_KEY environment variable. Must be used in conjunction with tls-client-cert
 
-`--tls-skip-verify`
-:  Disable verification of Kong's Admin TLS certificate.
-This value can also be set using DECK_TLS_SKIP_VERIFY environment variable. (Default: `false`)
+  `--tls-client-key-file`
+  :  Path to file containing the private key for the corresponding client certificate.
+  This value can also be set using DECK_TLS_CLIENT_KEY_FILE environment variable. Must be used in conjunction with tls-client-cert-file
 
-`--verbose`
-:  Enable verbose logging levels
-Setting this value to 2 outputs all HTTP requests/responses
-between decK and Kong. (Default: `0`)
+  `--tls-server-name`
+  :  Name to use to verify the hostname in Kong's Admin TLS certificate.
+  This value can also be set using DECK_TLS_SERVER_NAME environment variable.
+
+  `--tls-skip-verify`
+  :  Disable verification of Kong's Admin TLS certificate.
+  This value can also be set using DECK_TLS_SKIP_VERIFY environment variable. (Default: `false`)
+
+  `--verbose`
+  :  Enable verbose logging levels
+  Setting this value to 2 outputs all HTTP requests/responses
+  between decK and Kong. (Default: `0`)
 
 
+
+{% endif_version %}
+
+{% if_version lte:1.10.x %}
+
+## Flags inherited from parent commands
+
+
+```
+      --analytics                      Share anonymized data to help improve decK. (default true)
+      --ca-cert string                 Custom CA certificate (raw contents) to use to verify Kong's Admin TLS certificate.
+                                       This value can also be set using DECK_CA_CERT environment variable.
+                                       This takes precedence over --ca-cert-file flag.
+      --ca-cert-file string            Path to a custom CA certificate to use to verify Kong's Admin TLS certificate.
+                                       This value can also be set using DECK_CA_CERT_FILE environment variable.
+      --config string                  Config file (default is $HOME/.deck.yaml).
+      --headers strings                HTTP headers (key:value) to inject in all requests to Kong's Admin API.
+                                       This flag can be specified multiple times to inject multiple headers.
+      --kong-addr string               HTTP address of Kong's Admin API.
+                                       This value can also be set using the environment variable DECK_KONG_ADDR
+                                        environment variable. (default "http://localhost:8001")
+      --kong-cookie-jar-path string    Absolute path to a cookie-jar file in the Netscape cookie format for auth with Admin Server.
+                                       You may also need to pass in as header the User-Agent that was used to create the cookie-jar.
+      --konnect-addr string            Address of the Konnect endpoint. (default "https://konnect.konghq.com")
+      --konnect-email string           Email address associated with your Konnect account.
+      --konnect-password string        Password associated with your Konnect account, this takes precedence over --konnect-password-file flag.
+      --konnect-password-file string   File containing the password to your Konnect account.
+      --no-color                       Disable colorized output
+      --skip-workspace-crud            Skip API calls related to Workspaces (Kong Enterprise only).
+      --timeout int                    Set a request timeout for the client to connect with Kong (in seconds). (default 10)
+      --tls-server-name string         Name to use to verify the hostname in Kong's Admin TLS certificate.
+                                       This value can also be set using DECK_TLS_SERVER_NAME environment variable.
+      --tls-skip-verify                Disable verification of Kong's Admin TLS certificate.
+                                       This value can also be set using DECK_TLS_SKIP_VERIFY environment variable.
+      --verbose int                    Enable verbose logging levels
+                                       Setting this value to 2 outputs all HTTP requests/responses
+                                       between decK and Kong.
+```
+
+
+{% endif_version %}
 
 ## See also
 
