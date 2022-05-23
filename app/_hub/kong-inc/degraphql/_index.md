@@ -28,7 +28,7 @@ params:
   dbless_compatible: 'yes'
   config:
     - name: graphql_server_path
-      required: false
+      required: true
       default: "/graphql"
       datatype: string
       description: The path to the GraphQL server.
