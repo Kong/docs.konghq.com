@@ -1,6 +1,7 @@
 ---
 title: deck sync
 source_url: https://github.com/Kong/deck/tree/main/cmd
+content-type: reference
 ---
 
 The sync command reads the state file and performs operation on Kong

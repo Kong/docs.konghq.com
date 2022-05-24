@@ -1,6 +1,7 @@
 ---
 title: deck konnect diff
 source_url: https://github.com/Kong/deck/tree/main/cmd
+content-type: reference
 ---
 
 The {{site.konnect_short_name}} diff command is similar to a dry run of the `deck konnect sync` command.
@@ -35,6 +36,7 @@ and exit code 1 if an error occurs. (Default: `false`)
 
 `--parallelism`
 :  Maximum number of concurrent operations. (Default: `100`)
+
 {% if_version gte:1.8.x %}
 
 `--silence-events`

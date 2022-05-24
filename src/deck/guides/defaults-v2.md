@@ -1,5 +1,6 @@
 ---
 title: Set Up Object Defaults
+content-type: how-to
 ---
 Use object defaults to enforce a set of standard values and avoid
 repetition in your configuration.

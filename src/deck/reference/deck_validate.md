@@ -1,6 +1,7 @@
 ---
 title: deck validate
 source_url: https://github.com/Kong/deck/tree/main/cmd
+content-type: reference
 ---
 
 The validate command reads the state file and ensures validity.
@@ -25,10 +26,12 @@ deck validate [command-specific flags] [global flags]
 
 {% if_version gte:1.11.x %}
 
+
 `--online`
 :  perform validations against Kong API. When this flag is used, validation is done
 via communication with Kong. This increases the time for validation but catches 
 significant errors. No resource is created in Kong. (Default: `false`)
+
 
 `--parallelism`
 :  Maximum number of concurrent requests to Kong. (Default: `10`)

@@ -1,6 +1,7 @@
 ---
 title: deck reset
 source_url: https://github.com/Kong/deck/tree/main/cmd
+content-type: reference
 ---
 
 The reset command deletes all entities in Kong's database.string.

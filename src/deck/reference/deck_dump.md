@@ -1,6 +1,7 @@
 ---
 title: deck dump
 source_url: https://github.com/Kong/deck/tree/main/cmd
+content-type: reference
 ---
 
 The dump command reads all entities present in Kong

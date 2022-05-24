@@ -1,6 +1,7 @@
 ---
 title: deck version
 source_url: https://github.com/Kong/deck/tree/main/cmd
+content-type: reference
 ---
 
 The version command prints the version of decK along with a Git short
