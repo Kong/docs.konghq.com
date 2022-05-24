@@ -3035,9 +3035,12 @@ portal_session_conf = { "cookie_name": "portal_session", \
 
 Developer Portal Auto Approve Access
 
-When this flag is set to `on`, a developer will automatically be marked as
-"approved" after completing registration. Access can still be revoked through
-the Admin GUI or API.
+When set to `on`, a developer will automatically be marked as "approved" after
+completing registration. Access can still be revoked through Kong Manager or the
+Admin API.
+
+When set to `off`, a Kong admin will have to manually approve the Developer
+using Kong Manager or the Admin API.
 
 **Default:** `off`
 
@@ -3046,8 +3049,8 @@ the Admin GUI or API.
 #### portal_token_exp
 {:.badge .enterprise}
 
-Duration in seconds for the expiration of portal login reset/account validation
-token.
+Duration in seconds for the expiration of the Dev Portal reset password token.
+Default is `21600` (six hours).
 
 **Default:** `21600`
 
@@ -3060,7 +3063,7 @@ Portal Developer Email Verification.
 
 When enabled Developers will receive an email upon registration to verify their
 account. Developers will not be able to use the Developer Portal until they
-verify their account.
+verify their account, even if auto-approve is enabled.
 
 Note: SMTP must be turned on in order to use this feature.
 
@@ -3079,7 +3082,20 @@ particular workspace.
 #### portal_invite_email
 {:.badge .enterprise}
 
-Enable or disable portal_invite_email
+When enabled, Kong admins can invite developers to a Dev Portal by using the
+Invite button in Kong Manager.
+
+The email looks like the following:
+
+```
+Subject: Invite to access Dev Portal <WORKSPACE_NAME>
+```
+
+Hello Developer!
+
+You have been invited to create a Dev Portal account at %s.
+
+Please visit `<DEV_PORTAL_URL/register>` to create your account.
 
 **Default:** `on`
 
@@ -3088,7 +3104,23 @@ Enable or disable portal_invite_email
 #### portal_access_request_email
 {:.badge .enterprise}
 
-Enable or disable portal_access_request_email
+When enabled, Kong admins specified by `smtp_admin_emails` will receive an
+email when a developer requests access to a Dev Portal.
+
+When disabled, Kong admins will have to manually check the Kong Manager to view
+any requests.
+
+The email looks like the following:
+
+```
+Subject: Request to access Dev Portal <WORKSPACE NAME>
+```
+
+Hello Admin!
+
+<DEVELOPER NAME> has requested Dev Portal access for <WORKSPACE_NAME>.
+
+Please visit <KONG_MANAGER_URL/developers/requested> to review this request.
 
 **Default:** `on`
 
@@ -3097,7 +3129,22 @@ Enable or disable portal_access_request_email
 #### portal_approved_email
 {:.badge .enterprise}
 
-Enable or disable portal_approved_email
+When enabled, developers will receive an email when access to a Dev Portal has
+been approved.
+
+When disabled, developers will receive no indication that they have
+beenapproved. It is suggested to only disable this feature if
+`portal_auto_approve` is enabled.
+
+The email looks like the following:
+
+```
+Subject: Dev Portal access approved
+```
+
+Hello Developer! You have been approved to access <WORKSPACE_NAME>.
+
+Please visit <DEV PORTAL URL/login> to login.
 
 **Default:** `on`
 
@@ -3106,7 +3153,29 @@ Enable or disable portal_approved_email
 #### portal_reset_email
 {:.badge .enterprise}
 
-Enable or disable portal_reset_email
+When enabled, developers will be able to use the Reset Password flow on a Dev
+Portal and will receive an email with password reset instructions.
+
+When disabled, developers will *not* be able to reset their account passwords.
+Kong Admins will have to manually create new credentials for the Developer in
+the Kong Manager.
+
+The email looks like the following:
+
+```
+Subject: Password Reset Instructions for Dev Portal <WORKSPACE_NAME>.
+```
+
+Hello Developer,
+
+Please click the link below to reset your Dev Portal password.
+
+<DEV_PORTAL_URL/reset?token=12345>
+
+This link will expire in <portal_reset_token_exp>
+
+If you didn't make this request, keep your account secure by clicking the link
+above to change your password.
 
 **Default:** `on`
 
@@ -3115,7 +3184,24 @@ Enable or disable portal_reset_email
 #### portal_reset_success_email
 {:.badge .enterprise}
 
-Enable or disable portal_reset_success_email
+When enabled, developers will receive an email after successfully resetting
+their Dev Portal account password.
+
+When disabled, developers will still be able to reset their account passwords,
+but will not receive a confirmation email.
+
+The email looks like the following:
+
+```
+Subject: Dev Portal password change success
+```
+
+Hello Developer, We are emailing you to let you know that your Dev Portal
+password at <DEV_PORTAL_URL> has been changed.
+
+Click the link below to sign in with your new credentials.
+
+<DEV_PORTAL_URL>
 
 **Default:** `on`
 
@@ -3124,7 +3210,8 @@ Enable or disable portal_reset_success_email
 #### portal_emails_from
 {:.badge .enterprise}
 
-The name and email address for the `From` header for portal emails
+The name and email address for the `From` header included in all Dev Portal
+emails.
 
 Example: `portal_emails_from = Your Name <example@example.com>`
 
@@ -3753,7 +3840,6 @@ to escape the sandbox.
 **Default:** none
 
 ---
-
 
 
 [Penlight]: http://stevedonovan.github.io/Penlight/api/index.html
