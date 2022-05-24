@@ -64,7 +64,7 @@ params:
         At least one of `http_proxy_host` or `https_proxy_host` must be specified.
 
         If `https_proxy_host` isn't set, the plugin falls back to the value
-        configured in `https_proxy_host`.
+        configured in `http_proxy_host`.
     - name: https_proxy_port
       required: semi
       default: null
