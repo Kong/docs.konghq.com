@@ -5,6 +5,76 @@ source_url: https://github.com/Kong/deck/tree/main/cmd
 
 Generate completion script.
 
+{% navtabs %}
+{% navtab bash %}
+
+### Bash
+```sh
+source <(deck completion bash)
+```
+
+To load completions for each session, execute once:
+
+**Linux:**
+```sh
+deck completion bash > /etc/bash_completion.d/deck
+```
+
+**macOS:**
+```sh
+deck completion bash > /usr/local/etc/bash_completion.d/deck
+```
+
+{% endnavtab %}
+{% navtab zsh%}
+
+### zsh
+If shell completion is not already enabled in your environment,
+you will need to enable it. You can execute the following once:
+```sh
+echo "autoload -U compinit; compinit" >> ~/.zshrc
+```
+
+To load completions for each session, execute once:
+```sh
+deck completion zsh > "${fpath[1]}/_yourprogram"
+```
+
+You will need to start a new shell for this setup to take effect.
+
+{% endnavtab %}
+{% navtab fish %}
+
+### fish
+
+```sh
+deck completion fish | source
+```
+
+To load completions for each session, execute once:
+```sh
+deck completion fish > ~/.config/fish/completions/deck.fish
+```
+
+{% endnavtab %}
+{% navtab powershell %}
+
+### PowerShell
+
+```powershell
+PS> deck completion powershell | Out-String | Invoke-Expression
+```
+
+To load completions for every new session, run:
+```powershell
+PS> deck completion powershell > deck.ps1
+```
+
+Then source this file from your PowerShell profile.
+{% endnavtab %}
+{% endnavtabs %}
+
+
 ```sh
 deck completion [bash|zsh|fish|powershell]
 ```

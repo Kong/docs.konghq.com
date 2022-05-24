@@ -146,8 +146,12 @@ You may also need to pass in as header the User-Agent that was used to create th
 
 {% if_version gte:1.12.x %}
 
+{% if_version gte:1.12.x %}
+
 `--konnect-runtime-group-name`
 :  {{site.konnect_short_name}} Runtime group name.
+
+{% endif_version %}
 
 {% endif_version %}
 
