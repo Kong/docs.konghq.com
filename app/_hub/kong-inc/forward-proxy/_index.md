@@ -35,6 +35,10 @@ params:
         Required if `http_proxy_port` is set.
 
         At least one of `http_proxy_host` or `https_proxy_host` must be specified.
+
+        If `http_proxy_host` isn't set, the plugin falls back to the value
+        configured in `https_proxy_host`.
+
     - name: http_proxy_port
       required: semi
       default: null
@@ -45,6 +49,9 @@ params:
         Required if `http_proxy_host` is set.
 
         At least one of `http_proxy_port` or `https_proxy_port` must be specified.
+
+        If `http_proxy_port` isn't set, the plugin falls back to the value
+        configured in `https_proxy_port`.
     - name: https_proxy_host
       required: semi
       default: null
@@ -55,6 +62,9 @@ params:
         Required if `https_proxy_port` is set.
 
         At least one of `http_proxy_host` or `https_proxy_host` must be specified.
+
+        If `https_proxy_host` isn't set, the plugin falls back to the value
+        configured in `https_proxy_host`.
     - name: https_proxy_port
       required: semi
       default: null
@@ -65,6 +75,9 @@ params:
         Required if `https_proxy_host` is set.
 
         At least one of `http_proxy_port` or `https_proxy_port` must be specified.
+
+        If `https_proxy_port` isn't set, the plugin falls back to the value
+        configured in `http_proxy_port`.
     - name: proxy_host
       required: false
       default: null
