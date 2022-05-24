@@ -1,6 +1,7 @@
 ---
 title: Analyze Services and Routes
 no_version: true
+content_type: how-to
 ---
 
 In the Service Hub, the Service, Service version, and Route graphs provide dynamic
@@ -19,10 +20,6 @@ Service Hub.
 
 If you want to combine multiple Services, Routes, or Applications in one report,
 see [custom reports](/konnect/vitals/generate-reports/).
-
-## Prerequisites
-You have any [**Service** role or the **Organization Admin**](/konnect/org-management/users-and-roles/)
-role.
 
 ## Analyze Services
 

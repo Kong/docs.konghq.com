@@ -1,6 +1,7 @@
 ---
 title: Set up a Kong Gateway Runtime on Kubernetes
 no_version: true
+content_type: how-to
 ---
 Set up a Kubernetes runtime instance through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/configure/runtime-manager) and
@@ -14,7 +15,6 @@ runtime instances.
 
 ## Prerequisites
 
-* You have **Runtime Admin** or **Organization Admin** permissions in {{site.konnect_saas}}.
 * **Kubernetes cluster with load balancer:** {{site.konnect_short_name}} is
 compatible with all distributions of Kubernetes. You can use a Minikube, GKE,
 or OpenShift TLS.

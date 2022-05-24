@@ -1,6 +1,7 @@
 ---
 title: Konnect Plans, Billing, and Usage
 no_version: true
+content_type: how-to
 ---
 
 {{site.konnect_product_name}} has [three plans](/konnect-platform/plans) to
@@ -15,9 +16,6 @@ settings page, and manage your Konnect Free or Plus plan from this page.
 
 There is no self-serve option for managing Enterprise plans.
 Contact your sales representative to make any changes.
-
-### Prerequisites
-You have organization admin access.
 
 ### Manage and view plan billing and usage
 

@@ -1,6 +1,7 @@
 ---
 title: Manage Runtime Groups
 no_version: true
+content_type: how-to
 ---
 
 Create, update, and delete runtime groups through the
@@ -14,9 +15,6 @@ From a runtime group details page, you can
 [create and manage runtime instances](/konnect/configure/runtime-manager/#types-of-runtimes)
 and configure any [global entities](/konnect/configure/runtime-manager/runtime-groups/manage-entities)
 in the group.
-
-## Prerequisites
-You have the **Organization Admin** role in {{site.konnect_saas}}.
 
 ## Create a runtime group
 {:.badge .enterprise}

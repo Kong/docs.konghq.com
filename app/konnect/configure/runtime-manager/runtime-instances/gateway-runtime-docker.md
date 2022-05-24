@@ -1,6 +1,7 @@
 ---
 title: Set up a Kong Gateway Runtime with Docker
 no_version: true
+content_type: how-to
 ---
 Set up a Docker runtime instance through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/configure/runtime-manager) and
@@ -21,10 +22,9 @@ runtime instances.
 
 ### Prerequisites
 
-* You have **Runtime Admin** or **Organization Admin** permissions in
-{{site.konnect_saas}}.
 * The quick setup script requires Docker and a Unix shell (for example, bash or
-  zshell). Platform-specific tools and permissions:
+zshell).
+* Platform-specific tools and permissions:
   * **All platforms:** [Docker](https://docs.docker.com/get-docker/) and [jq](https://stedolan.github.io/jq/) installed
   * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
   * **Windows:** Docker Desktop [installed](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [integrated with a WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/). If you can't set up a WSL 2 backend, see the [advanced](#advanced-setup) instructions for
@@ -56,12 +56,10 @@ see a new entry for your instance.
 
 ### Prerequisites
 
-* You have **Runtime Admin** or **Organization Admin** permissions in
-{{site.konnect_saas}}.
-* Tools and permissions:
-  * **All platforms:** [Docker](https://docs.docker.com/get-docker/) installed
-  * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
-  * **[Windows](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [MacOS](https://docs.docker.com/docker-for-mac/install/):** Docker Desktop installed
+Tools and permissions:
+* **All platforms:** [Docker](https://docs.docker.com/get-docker/) installed
+* **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
+* **[Windows](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [MacOS](https://docs.docker.com/docker-for-mac/install/):** Docker Desktop installed
 
 ### Generate certificates
 {% include /md/konnect/runtime-certs.md %}

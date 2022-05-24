@@ -1,6 +1,7 @@
 ---
 title: Manage Users
 no_version: true
+content_type: how-to
 ---
 
 You can invite users to join your Konnect organization through the **Organization**
@@ -16,10 +17,6 @@ edit their team membership from the {{site.konnect_short_name}} side. To manage
 automatically-created users, adjust user permissions through Okta, or
 [adjust team mapping](/konnect/org-management/okta-idp/#map-teams-to-groups).
 
-## Prerequisites
-
-You must be part of the **Organization Admin** team to manage users.
-
 ## Add a user to the organization
 
 ### Invite a user
@@ -30,7 +27,7 @@ You must be part of the **Organization Admin** team to manage users.
 1. Assign the user to one or more teams.
 
     For team descriptions, hover over the information (`i`) icon next to the team name,
-    or see the [predefined teams references](/konnect/org-management/teams-reference).
+    or see the [predefined teams references](/konnect/org-management/teams-and-roles/teams-reference).
 
 1. Click **Save**.
 

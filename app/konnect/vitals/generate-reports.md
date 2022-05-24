@@ -2,6 +2,7 @@
 title: Generate Reports
 no_version: true
 alpha: true
+content_type: how-to
 ---
 
 Create custom reports to track API calls based on Services, Routes, or
@@ -11,9 +12,6 @@ Applications.
 > **Note:** If you select multiple Service versions in a report, the report
 shows the sum of requests for all selected versions broken down by Service.
 It does not show data points for individual Service versions.
-
-## Prerequisites
-You have the [**Organization Admin**](/konnect/org-management/users-and-roles/) role.
 
 ## View custom reports
 
