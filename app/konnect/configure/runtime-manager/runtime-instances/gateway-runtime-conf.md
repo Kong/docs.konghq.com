@@ -1,6 +1,7 @@
 ---
 title: Set up a Kong Gateway Runtime on Linux
 no_version: true
+content_type: how-to
 ---
 Using `kong.conf`, set up a runtime instance through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/configure/runtime-manager) and
@@ -11,11 +12,6 @@ instances associated with the {{site.konnect_saas}} account.
 {:.note}
 > **Note:** Kong does not host runtimes. You must install and host your own
 runtime instances.
-
-## Prerequisites
-
-* You have **Runtime Admin** or **Organization Admin** permissions in
-{{site.konnect_saas}}.
 
 ## Generate certificates
 

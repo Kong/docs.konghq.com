@@ -1,6 +1,7 @@
 ---
 title: Manage Runtime Groups with decK
 no_version: true
+content_type: how-to
 ---
 
 You can manage runtime groups in your {{site.konnect_saas}} org using configuration
@@ -31,7 +32,6 @@ registration, or configure custom plugins.
 
 ## Prerequisites
 
-* [**Organization Admin**](/konnect/org-management/teams-and-roles) permissions.
 * decK v1.12.0 or later [installed](/deck/latest/installation/).
 * Optional: To test your configuration, [set up a simple runtime](/konnect/getting-started/configure-runtime).
 

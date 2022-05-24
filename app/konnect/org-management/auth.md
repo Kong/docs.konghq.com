@@ -1,6 +1,7 @@
 ---
 title: Authentication and Authorization
 no_version: true
+content_type: explanation
 ---
 
 Secure your {{site.konnect_saas}} organization by setting up teams and roles,
@@ -13,12 +14,12 @@ provider.
 The default authentication option in {{site.konnect_saas}} is basic
 authentication. You don't have to do anything special to set it up.
 
-* Manage resource access in your organization
- with [teams and roles](/konnect/org-management/teams-and-roles)
+* Learn about [teams and roles](/konnect/org-management/teams-and-roles) in {{site.konnect_short_name}}
+* [Manage teams and roles](/konnect/org-management/teams-and-roles/manage)
 * [Invite users](/konnect/org-management/users) to join your
 organization
-* [Teams reference](/konnect/org-management/teams-reference)
-* [Roles reference](/konnect/org-management/roles-reference)
+* [Teams reference](/konnect/org-management/teams-and-roles/teams-reference)
+* [Roles reference](/konnect/org-management/teams-and-roles/roles-reference)
 
 ## External authentication
 {:.badge .enterprise}
