@@ -113,39 +113,44 @@ params:
       value_in_examples: example
       datatype: string
       description: |
-        The HTTP hostname or IP address of a proxy. Supports CRL and OCSP.
+        The HTTP hostname or IP address of a proxy. Use this setting with
+        `http_proxy_port` to access a certificate revocation list
+        (CRL) or an OCSP server.
 
         Required if `http_proxy_port` is set.
-
+      # minimum_version: "2.8.x"
     - name: http_proxy_port
       required: semi
       default: null
       value_in_examples: 80
       datatype: string
       description: |
-        The TCP port of the HTTP proxy. Supports CRL and OCSP.
+        The TCP port of the HTTP proxy.
 
         Required if `http_proxy_host` is set.
-
+      # minimum_version: "2.8.x"
     - name: https_proxy_host
       required: semi
       default: null
       value_in_examples:
       datatype: string
       description: |
-        The HTTPS hostname or IP address of a proxy. Supports CRL and OCSP.
+        The HTTPS hostname or IP address of a proxy. Use this setting with
+        `https_proxy_port` to access a certificate revocation list
+        (CRL) or an OCSP server.
 
         Required if `https_proxy_port` is set.
-
+      # minimum_version: "2.8.x"
     - name: https_proxy_port
       required: semi
       default: null
       value_in_examples:
       datatype: string
       description: |
-        The TCP port of the HTTPS proxy. Supports CRL and OCSP.
+        The TCP port of the HTTPS proxy.
 
         Required if `https_proxy_host` is set.
+      # minimum_version: "2.8.x"
 ---
 
 ## Usage
