@@ -56,7 +56,9 @@ params:
       default: null
       datatype: string
       description: |
-        The SASL authentication mechanism, the two options for the value are: `PLAIN` and `SCRAM-SHA-256`.
+        The SASL authentication mechanism.
+
+        Supported options: `PLAIN`, `SCRAM-SHA-256`, or `SCRAM-SHA-512`.
     - name: authentication.user
       required: false
       value_in_examples: admin
@@ -273,24 +275,31 @@ in the Admin API documentation for information on how to set up Certificates.
 
 ## SASL Authentication
 
-This plugin supports multiple authentication mechanisms including the following:
+This plugin supports the following authentication mechanisms:
 
 - **PLAIN:** Enable this mechanism by setting `config.authentication.mechanism` to `PLAIN`.
   You also need to provide a username and password with the config options `config.authentication.user`
   and `config.authentication.password` respectively.
-- **SCRAM-SHA-256:** Enable this mechanism by setting `config.authentication.mechanism`
-  to `SCRAM-SHA-256`. You also need to provide a username and password with the config options
-  `config.authentication.user` and `config.authentication.password` respectively.
-  {:.note}
-  > In cryptography, the Salted Challenge Response Authentication Mechanism (SCRAM)
-    is a family of modern, password-based challenge–response authentication mechanisms
-    providing authentication of a user to a server.
+
+- **SCRAM**: In cryptography, the Salted Challenge Response Authentication Mechanism (SCRAM)
+  is a family of modern, password-based challenge–response authentication mechanisms
+  providing authentication of a user to a server. Use one of the following:
+
+    - **SCRAM-SHA-256:** Enable this mechanism by setting `config.authentication.mechanism`
+    to `SCRAM-SHA-256`. You also need to provide a username and password with the config options
+    `config.authentication.user` and `config.authentication.password` respectively.
+
+    - **SCRAM-SHA-512:** Enable this mechanism by setting `config.authentication.mechanism`
+      to `SCRAM-SHA-512`. You also need to provide a username and password with the config options
+      `config.authentication.user` and `config.authentication.password` respectively.
+
 - **Delegation Tokens:** Delegation Tokens can be generated in Kafka and then used to authenticate
   this plugin. `Delegation Tokens` leverage the `SCRAM-SHA-256` authentication mechanism. The `tokenID`
   is provided with the `config.authentication.user` field and the `token-hmac` is provided with the
   `config.authentication.password` field. To indicate that a token is used you have to set the
   `config.authentication.tokenauth` setting to `true`.
-  [Read more on how to create, renew and revoke delegation tokens.](https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_delegation.html#authentication-using-delegation-tokens)
+
+  [Read more on how to create, renew, and revoke delegation tokens.](https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_delegation.html#authentication-using-delegation-tokens)
 
 
 ## Known issues and limitations
@@ -305,6 +314,8 @@ Known limitations:
 ## Changelog
 
 ### Kong Gateway 2.8.x (plugin version 0.4.0)
+
+* Added support for the `SCRAM-SHA-512` authentication mechanism.
 
 * Added the `cluster_name` configuration parameter.
 
