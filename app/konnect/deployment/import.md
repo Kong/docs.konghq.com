@@ -1,6 +1,7 @@
 ---
 title: Import Kong Gateway Entities into Konnect Cloud
 no_version: true
+content_type: how-to
 ---
 
 If you are an existing {{site.base_gateway}} user looking to use {{site.konnect_short_name}}
@@ -18,7 +19,6 @@ You cannot import [unsupported plugins](/konnect/configure/servicehub/plugins/#p
 
 ## Prerequisites
 * {{site.konnect_saas}} [account credentials](/konnect/getting-started/access-account/).
-* [**Organization Admin**](/konnect/org-management/teams-and-roles) permissions.
 * decK v1.12 or later [installed](/deck/latest/installation/).
 
 ## Import entity configuration
