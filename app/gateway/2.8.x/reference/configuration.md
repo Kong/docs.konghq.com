@@ -3118,9 +3118,9 @@ Subject: Request to access Dev Portal <WORKSPACE NAME>
 
 Hello Admin!
 
-<DEVELOPER NAME> has requested Dev Portal access for <WORKSPACE_NAME>.
+`<DEVELOPER NAME>` has requested Dev Portal access for `<WORKSPACE_NAME>`.
 
-Please visit <KONG_MANAGER_URL/developers/requested> to review this request.
+Please visit `<KONG_MANAGER_URL/developers/requested>` to review this request.
 
 **Default:** `on`
 
@@ -3142,9 +3142,9 @@ The email looks like the following:
 Subject: Dev Portal access approved
 ```
 
-Hello Developer! You have been approved to access <WORKSPACE_NAME>.
+Hello Developer! You have been approved to access `<WORKSPACE_NAME>`.
 
-Please visit <DEV PORTAL URL/login> to login.
+Please visit `<DEV PORTAL URL/login>` to login.
 
 **Default:** `on`
 
@@ -3163,16 +3163,16 @@ the Kong Manager.
 The email looks like the following:
 
 ```
-Subject: Password Reset Instructions for Dev Portal <WORKSPACE_NAME>.
+Subject: Password Reset Instructions for Dev Portal `<WORKSPACE_NAME>`.
 ```
 
 Hello Developer,
 
 Please click the link below to reset your Dev Portal password.
 
-<DEV_PORTAL_URL/reset?token=12345>
+`<DEV_PORTAL_URL/reset?token=12345>`
 
-This link will expire in <portal_reset_token_exp>
+This link will expire in `<portal_reset_token_exp>`
 
 If you didn't make this request, keep your account secure by clicking the link
 above to change your password.
@@ -3197,11 +3197,11 @@ Subject: Dev Portal password change success
 ```
 
 Hello Developer, We are emailing you to let you know that your Dev Portal
-password at <DEV_PORTAL_URL> has been changed.
+password at `<DEV_PORTAL_URL>` has been changed.
 
 Click the link below to sign in with your new credentials.
 
-<DEV_PORTAL_URL>
+`<DEV_PORTAL_URL>`
 
 **Default:** `on`
 
