@@ -3,7 +3,7 @@ title: Installation
 ---
 
 decK is entirely written in Go. The build process builds a single static binary,
-which makes it easy and convenient to install decK. test 1.11
+which makes it easy and convenient to install decK.
 
 ## Prerequisites
 You have installed {{site.ce_product_name}} >= 1.x or
