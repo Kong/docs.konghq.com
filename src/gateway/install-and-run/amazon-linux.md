@@ -8,9 +8,6 @@ Amazon Linux 1 is now deprecated, as [The Amazon Linux (1) AMI has ended standar
 Starting with Kong Gateway 3.0.0.0, Kong is neither building new Amazon Linux 1 images nor packages. Nor will Kong test package installation on Amazon Linux 1.
 > If you need to install Kong Gateway on Amazon Linux 1, see the documentation for
 [previous versions](/gateway/2.8.x/install-and-run/amazon-linux/).
-> <br><br>
-> Kong Gateway Enterprise subscriptions can still use Amazon Linux 1 in 2.8, but support
-for Amazon Linux 1 is planned to be removed in 3.0.
 
 <!-- Banner with links to latest downloads -->
 <!-- The install-link and install-listing-link classes are used for tracking, do not remove -->
