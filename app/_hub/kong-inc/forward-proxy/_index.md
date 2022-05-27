@@ -35,6 +35,11 @@ params:
         Required if `http_proxy_port` is set.
 
         At least one of `http_proxy_host` or `https_proxy_host` must be specified.
+
+        If `http_proxy_host` isn't set, the plugin falls back to the value
+        configured in `https_proxy_host`.
+      # minimum_version: "2.8.x"
+
     - name: http_proxy_port
       required: semi
       default: null
@@ -45,6 +50,10 @@ params:
         Required if `http_proxy_host` is set.
 
         At least one of `http_proxy_port` or `https_proxy_port` must be specified.
+
+        If `http_proxy_port` isn't set, the plugin falls back to the value
+        configured in `https_proxy_port`.
+      # minimum_version: "2.8.x"
     - name: https_proxy_host
       required: semi
       default: null
@@ -55,6 +64,10 @@ params:
         Required if `https_proxy_port` is set.
 
         At least one of `http_proxy_host` or `https_proxy_host` must be specified.
+
+        If `https_proxy_host` isn't set, the plugin falls back to the value
+        configured in `http_proxy_host`.
+      # minimum_version: "2.8.x"
     - name: https_proxy_port
       required: semi
       default: null
@@ -65,6 +78,10 @@ params:
         Required if `https_proxy_host` is set.
 
         At least one of `http_proxy_port` or `https_proxy_port` must be specified.
+
+        If `https_proxy_port` isn't set, the plugin falls back to the value
+        configured in `http_proxy_port`.
+      # minimum_version: "2.8.x"
     - name: proxy_host
       required: false
       default: null
@@ -79,6 +96,7 @@ params:
         > Use `http_proxy_host` or `https_proxy_host` instead.
 
         The hostname or IP address of the forward proxy to which to connect.
+      # maximum_version: "2.8.x"
     - name: proxy_port
       required: false
       default: null
@@ -93,6 +111,7 @@ params:
         > Use `http_proxy_host` or `https_proxy_host` instead.
 
         The TCP port of the forward proxy to which to connect.
+      # maximum_version: "2.8.x"
     - name: proxy_scheme
       required: true
       default: http

@@ -107,6 +107,50 @@ params:
       datatype: number
       description: |
         Cache expiry time in seconds.
+    - name: http_proxy_host
+      required: semi
+      default: null
+      value_in_examples: example
+      datatype: string
+      description: |
+        The HTTP hostname or IP address of a proxy. Use this setting with
+        `http_proxy_port` to access a certificate revocation list
+        (CRL) or an OCSP server.
+
+        Required if `http_proxy_port` is set.
+      # minimum_version: "2.8.x"
+    - name: http_proxy_port
+      required: semi
+      default: null
+      value_in_examples: 80
+      datatype: string
+      description: |
+        The TCP port of the HTTP proxy.
+
+        Required if `http_proxy_host` is set.
+      # minimum_version: "2.8.x"
+    - name: https_proxy_host
+      required: semi
+      default: null
+      value_in_examples:
+      datatype: string
+      description: |
+        The HTTPS hostname or IP address of a proxy. Use this setting with
+        `https_proxy_port` to access a certificate revocation list
+        (CRL) or an OCSP server.
+
+        Required if `https_proxy_port` is set.
+      # minimum_version: "2.8.x"
+    - name: https_proxy_port
+      required: semi
+      default: null
+      value_in_examples:
+      datatype: string
+      description: |
+        The TCP port of the HTTPS proxy.
+
+        Required if `https_proxy_host` is set.
+      # minimum_version: "2.8.x"
 ---
 
 ## Usage
@@ -171,8 +215,8 @@ curl -sX POST https://kong:8001/ca_certificates -F cert=@cert.pem
 {% navtab Konnect Cloud %}
 
 Go through the Konnect Manager:
-1. From the Dashboard, select **Shared Config** in the left navigation 
-2. Select **Certificates** 
+1. From the Dashboard, select **Shared Config** in the left navigation
+2. Select **Certificates**
 3. Click **New Certificate**
 4. Copy and paste your certificate information and select **Create**
 
@@ -293,3 +337,11 @@ When authentication fails, the client does not have access to any details that e
 failure. The security reason for this omission is to prevent malicious reconnaissance.
 Instead, the details are recorded inside Kong's error logs under the `[mtls-auth]`
 filter.
+
+## Changelog
+
+### Kong Gateway 2.8.1.1
+
+* Introduced certificate revocation list (CRL) and OCSP server support with the
+following parameters: `http_proxy_host`, `http_proxy_port`, `https_proxy_host`,
+and `https_proxy_port`.
