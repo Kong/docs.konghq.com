@@ -71,5 +71,6 @@ items:
         url: /features/rbac
       - text: UBI Images
         url: /features/ubi-images
-      # - text: Windows Support
-      #   url: /features/windows
+      - text: Windows Support
+        url: /features/windows
+        generate: false
