@@ -7,7 +7,9 @@ You can install Kong by downloading an installation package or using our apt rep
 
     {% if include.distribution == "ubuntu" %}
 
+    {% if_version lte:2.8.x %}
 - [Xenial]({{ site.links.download }}/gateway-2.x-ubuntu-xenial/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb)
+    {% endif_version %}
 - [Bionic]({{ site.links.download }}/gateway-2.x-ubuntu-bionic/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb)
 - [Focal]({{ site.links.download }}/gateway-2.x-ubuntu-focal/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb)
 
