@@ -2,6 +2,13 @@
 title: Install Kong Gateway on Ubuntu
 ---
 
+{:.important}
+> **Deprecation notice**: Support for running Kong Gateway on
+Ubuntu 16.04 ("Xenial") is now deprecated, as [Standard Support for Ubuntu 16.04 has ended as of April, 2021](https://wiki.ubuntu.com/Releases).
+Starting with Kong Gateway 3.0.0.0, Kong is neither building new Ubuntu 16.04 images nor packages. Nor will Kong test package installation on Ubuntu 16.04.
+> If you need to install Kong Gateway on Ubuntu 16.04, see the documentation for
+[previous versions](/gateway/2.8.x/install-and-run/ubuntu/).
+
 <!-- Banner with links to latest downloads -->
 <!-- The install-link and install-listing-link classes are used for tracking, do not remove -->
 
