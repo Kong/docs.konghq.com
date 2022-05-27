@@ -1,66 +1,52 @@
 - title: Introduction
   icon: /assets/images/icons/documentation/icn-flag.svg
   items:
-    - text: Introduction
+    - text: Overview of Konnect
       url: /
+    - text: Network Resiliency and Availability
+      url: /network-resiliency
+    - text: Port and Network Requirements
+      url: /network
+    - text: Compatibility
+      url: /compatibility
     - text: Release Notes
       url: /updates
 
-- title: Get Started with Konnect
+- title: Get Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   items:
-    - text: Concepts
+    - text: Access a Konnect Account
+      url: /getting-started/access-account
+    - text: Quickstart guide
       items:
-        - text: Konnect Architecture
-          url: /plan
-        - text: License Management
-          url: /plan/license-management
-        - text: Network Resiliency and Availability
-          url: /plan/network-resiliency
-    - text: How-To Guides
+        - text: Set up a Runtime
+          url: /getting-started/configure-runtime
+        - text: Configure a Service
+          url: /getting-started/configure-service
+        - text: Implement and Test the Service
+          url: /getting-started/implement-service
+        - text: Publish to Dev Portal
+          url: /getting-started/publish-service
+    - text: Get Started with an API Spec
       items:
-        - text: Access a Konnect Account
-          url: /getting-started/access-account
-        - text: Choose a Path
-          url: /getting-started/
-          items:
-            - text: Quickstart guide
-              items:
-                - text: Set up a Runtime
-                  url: /getting-started/configure-runtime
-                - text: Configure a Service
-                  url: /getting-started/configure-service
-                - text: Implement and Test the Service
-                  url: /getting-started/implement-service
-                - text: Publish to Dev Portal
-                  url: /getting-started/publish-service
-            - text: Get Started with an API Spec
-              items:
-                - text: Import an API Spec into Konnect
-                  url: /getting-started/spec/service
-                - text: Implement the Service Version with Kong Gateway
-                  url: /getting-started/spec/implement
-                - text: Publish to Dev Portal
-                  url: /getting-started/spec/publish
-                - text: Register Applications
-                  url: /getting-started/spec/app-registration
-              # - text: Protect your Services
-              #   url: /getting-started/spec/protect-services
-              # - text: Improve Performance
-              #   url: /getting-started/spec/performance
-              # - text: Secure Services
-              #   url: /getting-started/spec/secure-services
-              # - text: Set Up Intelligent Load Balancing
-              #   url: /getting-started/spec/load-balancing
-            - text: Import Kong Gateway Entities into Konnect Cloud
-              url: /plan/import
-    - text: Reference
-      items:
-        - text: Port and Network Requirements
-          url: /plan/network
-        - text: Browser Compatibility
-          url: blah
-
+        - text: Import an API Spec into Konnect
+          url: /getting-started/spec/service
+        - text: Implement the Service Version with Kong Gateway
+          url: /getting-started/spec/implement
+        - text: Publish to Dev Portal
+          url: /getting-started/spec/publish
+        - text: Register Applications
+          url: /getting-started/spec/app-registration
+      # - text: Protect your Services
+      #   url: /getting-started/spec/protect-services
+      # - text: Improve Performance
+      #   url: /getting-started/spec/performance
+      # - text: Secure Services
+      #   url: /getting-started/spec/secure-services
+      # - text: Set Up Intelligent Load Balancing
+      #   url: /getting-started/spec/load-balancing
+    - text: Import Kong Gateway Entities into Konnect Cloud
+      url: /getting-started/import
 #
 # - title: Plan
 #   icon: /assets/images/icons/documentation/icn-deployment-color.svg
@@ -71,7 +57,7 @@
 #   icon: /assets/images/icons/konnect/icn-cogwheel-nav.svg
 #   items:
 - title: Service Hub
-  icon: /assets/images/icons/konnect/icn-servicehub.svg
+  icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
   items:
     - text: Overview
       url: /servicehub
@@ -86,7 +72,7 @@
           url: /servicehub/enable-route-plugin
 
 - title: Runtime Manager
-  icon: /assets/images/icons/konnect/icn-runtimes.svg
+  icon: /assets/images/icons/konnect/icn-runtimes-nav.svg
   items:
     - text: Overview
       url: /runtime-manager
@@ -193,6 +179,8 @@
           url: /org-management/okta-idp
     - text: Account and Org Deactivation
       url: /org-management/deactivation
+
+
 - title: Legacy content
   items:
     - text: Manage Accounts and Orgs
