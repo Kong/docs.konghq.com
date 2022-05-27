@@ -74,6 +74,12 @@ params:
       default: false
       description: |
         If set to true, the Kong Gateway Consumer object in use for the current request (if any) is included as input to OPA.
+    - name: https_verify
+      required: true
+      datatype: boolean
+      default: true
+      description: |
+        Whether the OPA certificate will be verified according to the CA certificates specified in [lua_ssl_trusted_certificate](https://docs.konghq.com/gateway/latest/reference/configuration).
 ---
 
 ## Usage
