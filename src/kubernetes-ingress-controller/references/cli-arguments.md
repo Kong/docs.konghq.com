@@ -76,6 +76,10 @@ Following table describes all the flags that are available:
 | --publish-service                      | `string`           | Service fronting Ingress resources in "namespace/name" format. The controller will update Ingress status information with this Service's endpoints. |                                   |
 | --publish-status-address               | `strings`          | User-provided addresses in comma-separated string format, for use in lieu of "publish-service" when that Service lacks useful address information.  |                                   |
 | --sync-period                          | `duration`         | Relist and confirm cloud resources this often                                                                                                       | `48h`                             |
-| --term-delay                           | `duration`         | The time delay to sleep before SIGTERM or SIGINT will shut down the Ingress Controller                                                              | `0s`                              |
+
+{% if_version gte: 2.4.x %}
+| --term-delay                           | `duration`         | The time delay to sleep before SIGTERM or SIGINT shuts down the Ingress Controller.                                                              | `0s`                              |
+{% endif_version %}
+
 | --update-status                        | `boolean`          | Indicates if the ingress controller should update the status of resources (e.g. IP/Hostname for v1.Ingress, e.t.c.)                                 | `true`                            |
 | --watch-namespace                      | `strings`          | Namespace(s) to watch for Kubernetes resources. Defaults to all namespaces. To watch multiple namespaces, use a comma-separated list of namespaces. | `all`                             |
