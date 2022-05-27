@@ -1,10 +1,10 @@
 product: mesh
-release: 1.7.x
+release: 1.8.x
 generate: true
 items:
   - title: Introduction
     icon: /assets/images/icons/documentation/icn-flag.svg
-    url: /mesh/1.7.x/
+    url: /mesh/
     absolute_url: true
 
   - title: Release notes
