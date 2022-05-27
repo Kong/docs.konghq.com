@@ -9,7 +9,7 @@ We now use a Jekyll plugin (`single_source_generator.rb`) to dynamically generat
 - Read all navigation files (`app/_data/docs_nav_*.yml`)
 - If the file does not contain `generate: true` at the top level, skip it
 - If it does, loop through all items in the navigation
-  - If `assume_generated` is not set at the top level, or it is set to `true` then all items will be generated
+  - If `assume_generated` is not set at the top level, or it is set to `true` then all items will be generated (unless `generate: false` is explicitly set on an item)
   - If `assume_generated` is set to `false` then each item in the navigation that should be generated will need `generate: true` to be set
 - Each file that should be generated goes through the following process:
   - Build up the base directory: `src/<product>` by default, but if the `src` starts with a `/` it will be treated as a full path within `src`. e.g. `/shared/license` would be `/src/shared/license` whilst `shared/license` would be `/src/<product>/shared/license`

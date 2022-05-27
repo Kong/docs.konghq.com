@@ -31,6 +31,10 @@ module SingleSource
         # Enable generation of specific files as required
         next unless v['generate'] || assume_generated
 
+        # If the whole file is generated, we might want to exclude a specific URL
+        # by setting generate: false
+        next if assume_generated && v['generate'] === false
+
         # Handle when it's the root page.
         # We always want to generate this, even if
         # it's an absolute_url
