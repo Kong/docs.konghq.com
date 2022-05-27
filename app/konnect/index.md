@@ -12,6 +12,14 @@ each runtime group.
 
 ## Konnect modules
 
+### Service Hub
+
+The [Service Hub](/konnect/servicehub) enables the cataloging of all services into a single system of record. This catalog represents the single source of truth for your organization’s service inventory and their dependencies. By leveraging Service Hub, application developers can search, discover, and consume existing services to accelerate their time-to-market, while enabling a more consistent end-user experience across the organization’s applications.
+
+* Manage services
+* Manage plugins
+* Publish documents from the Service Hub to the Dev Portal
+
 ### Runtime Manager
 
 The [Runtime Manager](/konnect/runtime-manager) enables provisioning instances
@@ -22,14 +30,6 @@ place, as well as manage group configuration.
 * Manage runtime groups
 * Import Kong Gateway configuration into a runtime group
 * Set up a runtime instance with Docker, Linux, or Kubernetes (Helm)
-
-### Service Hub
-
-The [Service Hub](/konnect/servicehub) enables the cataloging of all services into a single system of record. This catalog represents the single source of truth for your organization’s service inventory and their dependencies. By leveraging Service Hub, application developers can search, discover, and consume existing services to accelerate their time-to-market, while enabling a more consistent end-user experience across the organization’s applications.
-
-* Manage services
-* Manage plugins
-* Publish documents from the Service Hub to the Dev Portal
 
 ### Dev Portal
 
