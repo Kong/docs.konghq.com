@@ -1,5 +1,5 @@
 product: kubernetes-ingress-controller
-release: 2.3.x
+release: 2.4.x
 generate: true
 items:
   - title: Introduction
