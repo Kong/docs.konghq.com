@@ -32,7 +32,7 @@ many entities.
 * Fixed an issue with keyring encryption, where the control plane would crash if any errors occurred
 during the initialization of the [keyring module](/gateway/latest/plan-and-deploy/security/db-encryption/).
 
-* Fixed an issue where Kong Manager did not diplay all RBAC users and Consumers
+* Fixed an issue where Kong Manager did not display all RBAC users and Consumers
 in the organization.
 
 #### Plugins
