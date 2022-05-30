@@ -9,7 +9,7 @@ This repository contains the source content and code for [Kong](https://github.c
 Here are some things to know before you get started:
 
 
-Kong kong misspellwrod repo. Here is a sentence that is not using an Oxford Comma: The dog ate the bird, cat, horse and the rabbit.
+Kong kong misspellwrod repo. Here is a sentence that is not using an Oxford Comma: The dog ate the bird, cat, horse and the rabbit. netlify 
 
 
 
