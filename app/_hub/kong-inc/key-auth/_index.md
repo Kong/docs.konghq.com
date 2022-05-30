@@ -233,7 +233,7 @@ In both cases, the fields/parameters work as follows:
 field/parameter     | description
 ---                 | ---
 `{consumer}`        | The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
-`ttl`<br>*optional* | The number of seconds the key is going to be valid. If missing, the `ttl` is unlimited.
+`ttl`<br>*optional* | The number of seconds the key is going to be valid. If missing or set to zero, the `ttl` of the key is unlimited. If present, the value must be an integer between 0 and 100000000.
 `key`<br>*optional* | You can optionally set your own unique `key` to authenticate the client. If missing, the plugin will generate one.
 
 ### Make a Request with the Key
