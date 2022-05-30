@@ -81,6 +81,13 @@ params:
       default: false
       description: |
         If set to true and the `Content-Type` header of the current request is `application/json`, the request body will be JSON decoded and the decoded struct is included as input to OPA.
+    - name: include_uri_captures_in_opa_input
+      required: false
+      datatype: boolean
+      default: false
+      minimum_version: "3.0.x"
+      description: |
+        If set to true, the [regex capture groups](https://docs.konghq.com/gateway/latest/reference/proxy/#using-regex-in-paths) captured on the Kong Gateway Route's path field in the current request (if any) are included as input to OPA.
     - name: ssl_verify
       required: true
       datatype: boolean
