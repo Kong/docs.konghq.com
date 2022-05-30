@@ -2,7 +2,7 @@ name: textlinting
 on:
   push:
     branches:
-      - vale-test
+      - vale-branch
 
 jobs:
   vale:
