@@ -152,4 +152,10 @@ When working with tables, the filter expects new lines before and after `if_vers
 | Test1 | Works       | Shows  |
 ```
 
-The above will be rendered as a single table
+The above will be rendered as a single table.
+
+If using `if_version` in a sentence, specify `inline:true` like so:
+
+```
+Hello {% if_version eq:1.0.0 inline:true %}everyone in the {% endif_version %} world
+```

@@ -14,7 +14,7 @@ module Jekyll
       super
     end
 
-    def render(context) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+    def render(context) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       contents = super
 
       current_version = to_version(context.environments.first['page']['kong_version'])
@@ -37,10 +37,23 @@ module Jekyll
         return '' unless current_version <= version
       end
 
-      # Remove the leading and trailing whitespace and return
+      # Table rows (starts newline then |, ends with | then newline) need
+      # special handline
+      is_table_row = /^\n\s*\|/.match(contents) && /\|\s*\n$/.match(contents)
+
+      # Remove the leading whitespace and return
       # We can't use .strip as that removes all leading whitespace,
       # including indentation
-      contents.gsub(/^\n/, '').gsub(/\n$/, '')
+      contents = contents.sub(/^\n/, '')
+
+      # Remove the trailing whitespace
+      # But ONLY if it's not a table row
+      contents = contents.sub(/\n$/, '') unless is_table_row
+
+      # If it's not a table row, put the \n that we removed in pre_render back
+      contents = "\n#{contents}\n" unless is_table_row || @params[:inline]
+
+      contents
     end
 
     def to_version(input)
@@ -55,7 +68,8 @@ Jekyll::Hooks.register :pages, :pre_render do |page|
   # Replace double line breaks when using if_version when
   # combined with <pre> blocks. This is usually in code samples
   page.content = page.content.gsub(/\n(\s*{% if_version)/, '\1')
+  page.content = page.content.gsub("{% endif_version %}\n\n", "{% endif_version %}\n")
 
   # Also allow for a newline after endif_version when in a table
-  page.content = page.content.gsub("{% endif_version %}\n\n|", "{% endif_version %}\n|")
+  page.content = page.content.gsub("{% endif_version %}\n|", '{% endif_version %}|')
 end
