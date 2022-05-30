@@ -7,7 +7,12 @@
 This repository contains the source content and code for [Kong](https://github.com/Kong/kong)'s documentation website. It's built using [Jekyll](https://jekyllrb.com/) and deployed with [Netlify](https://www.netlify.com/).
 
 Here are some things to know before you get started:
-Kong kong misspellwrod repo 
+
+
+Kong kong misspellwrod repo. Here is a sentence that is not using an Oxford Comma: The dog ate the bird, cat, horse and the rabbit.
+
+
+
 * **We're beginner-friendly**. Whether you're a Technical Writer learning about docs-as-code or an engineer practicing your documentation skills, we welcome your involvement. If you'd like to contribute and don't have something in mind already, head on over to [Issues](https://github.com/Kong/docs.konghq.com/issues). We've added `good first issue` labels on beginner-friendly issues.
 
 * **We need more help in some areas**. We'd especially love some help with [plugin](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub) documentation.

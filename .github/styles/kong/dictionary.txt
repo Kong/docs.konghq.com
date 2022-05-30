@@ -1,5 +1,6 @@
 repo
 Kong
+kong
 Netlify
 dev
 Konnect
