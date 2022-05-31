@@ -206,8 +206,10 @@ Two things to note here:
 Next, in order to authenticate against Kong, create the client
 certificate and private key with the following content:
 
-**The example here is only used to show the formats of client certificate and private key. DO NOT directly use the certificate and private key here.
-You should use certificate and private key signed by your own CA.** Here is a guide on how to generate self-signed CA certificate.
+{:.important}
+>This example is only used to show the format of the client certificate and private key. **DO NOT** use the certificate and private key directly.
+
+You should use certificate and private key signed by your own CA. This is how you generate a self-signed CA certificate.
 
 ```bash
 openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -sha256 -days 365 -nodes\
