@@ -14,32 +14,6 @@ In this case we want to limit the amount of requests against our service/route e
 For this example I'm using the key-auth plugin as the authentication plugin.
 
 {% navtabs %}
-{% navtab Using Kong Manager %}
-
-1. Access your Kong Manager instance and your **default** workspace.
-
-2. Go to **API Gateway** > **Plugins**.
-
-3. Click **New Plugin**.
-
-4. Scroll down to **Traffic Control** and find the **Rate Limiting Advanced** plugin. Click **Enable**.
-
-5. Apply the plugin as **Global**, which means the rate limiting applies to all requests, including every Service and Route in the Workspace.
-
-    If you switched it to **Scoped**, the rate limiting would apply the plugin to only one Service, Route. Note that Consumer scoping is not supported
-
-    > **Note**: By default, the plugin is automatically enabled when the form is submitted. You can also toggle the **This plugin is Enabled** button at the top of the form to configure the plugin without enabling it. For this example, keep the plugin enabled.
-
-6. Scroll down and complete only the following fields with the following parameters.
-    1. config.limit: `5`
-    2. config.sync_rate: `-1`
-    3. config.window_size: `30`
-    4. ordering.. TODO: this needs to be implemented in KongManager first
-
-    Besides the above fields, there may be others populated with default values. For this example, leave the rest of the fields as they are.
-
-7. Click **Create**.
-{% endnavtab %}
 {% navtab Using the Admin API %}
 
 {:.note}
@@ -144,30 +118,6 @@ This is similar to the "Rate-Limiting before Authentication". Here we want to *a
 
 
 {% navtabs %}
-{% navtab Using Kong Manager %}
-
-1. Access your Kong Manager instance and your **default** workspace.
-
-2. Go to **API Gateway** > **Plugins**.
-
-3. Click **New Plugin**.
-
-4. Scroll down to **Security** and find the **Basic-Auth** plugin. Click **Enable**.
-
-5. Apply the plugin as **Global**, which means the rate limiting applies to all requests, including every Service and Route in the Workspace.
-
-    If you switched it to **Scoped**, the rate limiting would apply the plugin to only one Service, Route. Note that Consumer scoping is not supported
-
-    > **Note**: By default, the plugin is automatically enabled when the form is submitted. You can also toggle the **This plugin is Enabled** button at the top of the form to configure the plugin without enabling it. For this example, keep the plugin enabled.
-
-6. Scroll down and complete only the following fields with the following parameters.
-    1. config.foo
-    2. ordering.. TODO: this needs to be implemented in KongManager first
-
-    Besides the above fields, there may be others populated with default values. For this example, leave the rest of the fields as they are.
-
-7. Click **Create**.
-{% endnavtab %}
 {% navtab Using the Admin API %}
 
 
