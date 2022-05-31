@@ -143,9 +143,9 @@ As always, be mindful of your shell's quoting rules specifying values
 containing spaces.
 
 For more details on the Nginx configuration file structure and block
-directives, see https://nginx.org/en/docs/beginners_guide.html#conf_structure.
+directives, see the [Nginx reference](https://nginx.org/en/docs/beginners_guide.html#conf_structure).
 
-For a list of Nginx directives, see https://nginx.org/en/docs/dirindex.html.
+For a list of Nginx directives, see the [Nginx directives index](https://nginx.org/en/docs/dirindex.html).
 Note however that some directives are dependent of specific Nginx modules,
 some of which may not be included with the official builds of Kong.
 

@@ -106,7 +106,7 @@ test.describe("Sidebar section count", () => {
     {
       title: "Gateway Single Sourced",
       path: "/gateway/",
-      count: 7,
+      count: 8,
     },
     {
       title: "decK",
@@ -127,8 +127,8 @@ test.describe("sidenav versions", () => {
     {
       title: "Root page links to /latest/",
       src: "/gateway/",
-      link_text: "Install and Run",
-      expected_url: "/gateway/latest/install-and-run/",
+      link_text: "Docker",
+      expected_url: "/gateway/latest/install-and-run/docker",
     },
     {
       title: "Versioned root page links to the correct version",
@@ -139,14 +139,14 @@ test.describe("sidenav versions", () => {
     {
       title: "Sub page links to latest",
       src: "/gateway/latest/admin-api/",
-      link_text: "Install and Run",
-      expected_url: "/gateway/latest/install-and-run/",
+      link_text: "Docker",
+      expected_url: "/gateway/latest/install-and-run/docker",
     },
     {
       title: "Versioned sub page links to the correct version",
       src: "/gateway/2.8.x/admin-api/",
-      link_text: "Install and Run",
-      expected_url: "/gateway/2.8.x/install-and-run/",
+      link_text: "Docker",
+      expected_url: "/gateway/2.8.x/install-and-run/docker",
     },
 
   ].forEach((t) => {

@@ -15,7 +15,7 @@ module SingleSource
         # Assume that the whole file should be treated as generated
         assume_generated = data['assume_generated'].nil? ? true : data['assume_generated']
         version = version_for_release(data['product'], data['release'])
-        create_pages(data['items'], site, data['product'], data['release'], version, assume_generated)
+        create_pages(data['items'], site, data['product'], data['release'], version, assume_generated, f)
       end
     end
 
@@ -26,7 +26,7 @@ module SingleSource
       version['version']
     end
 
-    def create_pages(data, site, product, release, version, assume_generated) # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/AbcSize, Metrics/ParameterLists
+    def create_pages(data, site, product, release, version, assume_generated, nav) # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/AbcSize, Metrics/ParameterLists
       data.each do |v, _k|
         # Enable generation of specific files as required
         next unless v['generate'] || assume_generated
@@ -42,17 +42,17 @@ module SingleSource
           # Is it an in-page link? If so, skip it
           next if v['url']&.include?('/#')
 
-          site.pages << SingleSourcePage.new(site, v['src'], v['url'], product, release, version)
+          site.pages << SingleSourcePage.new(site, v['src'], v['url'], product, release, version, nav)
         end
 
         # If there are any children, generate those too
-        create_pages(v['items'], site, product, release, version, assume_generated) if v['items']
+        create_pages(v['items'], site, product, release, version, assume_generated, nav) if v['items']
       end
     end
   end
 
   class SingleSourcePage < Jekyll::Page
-    def initialize(site, src, dest, product, release, version) # rubocop:disable Lint/MissingSuper, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/AbcSize, Metrics/ParameterLists
+    def initialize(site, src, dest, product, release, version, nav) # rubocop:disable Lint/MissingSuper, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/AbcSize, Metrics/ParameterLists
       # Configure variables that Jekyll depends on
       @site = site
 
@@ -92,6 +92,9 @@ module SingleSource
 
       # Set the "Edit on GitHub" link url
       @data['edit_link'] = file
+
+      # Make it clear that this content comes from a generated file
+      @data['path'] = "GENERATED:nav=#{nav}:src=#{src}:#{@dir}"
 
       # Set the current release and concrete version
       @data['release'] = release

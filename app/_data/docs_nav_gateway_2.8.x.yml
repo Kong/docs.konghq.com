@@ -1,8 +1,9 @@
 - title: Introduction
   icon: /assets/images/icons/documentation/icn-flag.svg
-  url: /gateway/
-  absolute_url: true
   items:
+    - text: Overview of Kong Gateway
+      url: /gateway/
+      absolute_url: true
     - text: Version Support Policy
       url: /konnect-platform/support-policy
       absolute_url: true
@@ -12,8 +13,9 @@
 
 - title: Install and Run
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
-  url: /install-and-run/
   items:
+    - text: Overview
+      url: /install-and-run/
     - text: Kubernetes
       url: /install-and-run/kubernetes
     - text: Helm
@@ -193,80 +195,6 @@
               url: /configure/auth/rbac/add-admin
         - text: Mapping LDAP Service Directory Groups to Kong Roles
           url: /configure/auth/service-directory-mapping
-    - text: Kong Dev Portal
-      url: /developer-portal/
-      items:
-        - text: Enable the Dev Portal
-          url: /developer-portal/enable-dev-portal
-        - text: Structure and File Types
-          url: /developer-portal/structure-and-file-types
-        - text: Portal API
-          url: /developer-portal/portal-api
-        - text: Working with Templates
-          url: /developer-portal/working-with-templates
-        - text: Using the Editor
-          url: /developer-portal/using-the-editor
-        # commented out for now, as this redirects to an old doc version
-        # - text: Networking
-        #   url: /developer-portal/networking
-        - text: Configuration
-          items:
-            - text: Authentication
-              items:
-                - text: Basic Auth
-                  url: /developer-portal/configuration/authentication/basic-auth
-                - text: Key Auth
-                  url: /developer-portal/configuration/authentication/key-auth
-                - text: OIDC
-                  url: /developer-portal/configuration/authentication/oidc
-                - text: Sessions
-                  url: /developer-portal/configuration/authentication/sessions
-                - text: Adding Custom Registration Fields
-                  url: /developer-portal/configuration/authentication/adding-registration-fields
-            - text: SMTP
-              url: /developer-portal/configuration/smtp
-            - text: Workspaces
-              url: /developer-portal/configuration/workspaces
-        - text: Administration
-          items:
-            - text: Manage Developers
-              url: /developer-portal/administration/managing-developers
-            - text: Developer Roles and Content Permissions
-              url: /developer-portal/administration/developer-permissions
-            - text: Application Registration
-              items:
-                - text: Authorization Provider Strategy
-                  url: /developer-portal/administration/application-registration/auth-provider-strategy
-                - text: Enable Application Registration
-                  url: /developer-portal/administration/application-registration/enable-application-registration
-                - text: Enable Key Authentication for Application Registration
-                  url: /developer-portal/administration/application-registration/enable-key-auth-plugin
-                - text: External OAuth2 Support
-                  url: /developer-portal/administration/application-registration/3rd-party-oauth
-                - text: Set up Okta and Kong for external OAuth
-                  url: /developer-portal/administration/application-registration/okta-config
-                - text: Set Up Azure AD and Kong for External Authentication
-                  url: /developer-portal/administration/application-registration/azure-oidc-config
-                - text: Manage Applications
-                  url: /developer-portal/administration/application-registration/managing-applications
-        - text: Customization
-          items:
-            - text: Easy Theme Editing
-              url: /developer-portal/theme-customization/easy-theme-editing
-            - text: Migrating Templates Between Workspaces
-              url: /developer-portal/theme-customization/migrating-templates
-            - text: Markdown Rendering Module
-              url: /developer-portal/theme-customization/markdown-extended
-            - text: Customizing Portal Emails
-              url: /developer-portal/theme-customization/emails
-            - text: Adding and Using JavaScript Assets
-              url: /developer-portal/theme-customization/adding-javascript-assets
-            - text: Single Page App in Dev Portal
-              url: /developer-portal/theme-customization/single-page-app
-            - text: Alternate OpenAPI Renderer
-              url: /developer-portal/theme-customization/alternate-openapi-renderer
-        - text: Helpers CLI
-          url: /developer-portal/helpers/cli
 
     - text: Configure gRPC Plugins
       url: /configure/grpc
@@ -276,6 +204,83 @@
       url: /configure/logging
     - text: Network and Firewall
       url: /configure/network
+
+- title: Dev Portal
+  icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
+  items:
+    - text: Overview
+      url: /developer-portal/
+    - text: Enable the Dev Portal
+      url: /developer-portal/enable-dev-portal
+    - text: Structure and File Types
+      url: /developer-portal/structure-and-file-types
+    - text: Portal API
+      url: /developer-portal/portal-api
+    - text: Working with Templates
+      url: /developer-portal/working-with-templates
+    - text: Using the Editor
+      url: /developer-portal/using-the-editor
+    # commented out for now, as this redirects to an old doc version
+    # - text: Networking
+    #   url: /developer-portal/networking
+    - text: Configuration
+      items:
+        - text: Authentication
+          items:
+            - text: Basic Auth
+              url: /developer-portal/configuration/authentication/basic-auth
+            - text: Key Auth
+              url: /developer-portal/configuration/authentication/key-auth
+            - text: OIDC
+              url: /developer-portal/configuration/authentication/oidc
+            - text: Sessions
+              url: /developer-portal/configuration/authentication/sessions
+            - text: Adding Custom Registration Fields
+              url: /developer-portal/configuration/authentication/adding-registration-fields
+        - text: SMTP
+          url: /developer-portal/configuration/smtp
+        - text: Workspaces
+          url: /developer-portal/configuration/workspaces
+    - text: Administration
+      items:
+        - text: Manage Developers
+          url: /developer-portal/administration/managing-developers
+        - text: Developer Roles and Content Permissions
+          url: /developer-portal/administration/developer-permissions
+        - text: Application Registration
+          items:
+            - text: Authorization Provider Strategy
+              url: /developer-portal/administration/application-registration/auth-provider-strategy
+            - text: Enable Application Registration
+              url: /developer-portal/administration/application-registration/enable-application-registration
+            - text: Enable Key Authentication for Application Registration
+              url: /developer-portal/administration/application-registration/enable-key-auth-plugin
+            - text: External OAuth2 Support
+              url: /developer-portal/administration/application-registration/3rd-party-oauth
+            - text: Set up Okta and Kong for external OAuth
+              url: /developer-portal/administration/application-registration/okta-config
+            - text: Set Up Azure AD and Kong for External Authentication
+              url: /developer-portal/administration/application-registration/azure-oidc-config
+            - text: Manage Applications
+              url: /developer-portal/administration/application-registration/managing-applications
+    - text: Customization
+      items:
+        - text: Easy Theme Editing
+          url: /developer-portal/theme-customization/easy-theme-editing
+        - text: Migrating Templates Between Workspaces
+          url: /developer-portal/theme-customization/migrating-templates
+        - text: Markdown Rendering Module
+          url: /developer-portal/theme-customization/markdown-extended
+        - text: Customizing Portal Emails
+          url: /developer-portal/theme-customization/emails
+        - text: Adding and Using JavaScript Assets
+          url: /developer-portal/theme-customization/adding-javascript-assets
+        - text: Single Page App in Dev Portal
+          url: /developer-portal/theme-customization/single-page-app
+        - text: Alternate OpenAPI Renderer
+          url: /developer-portal/theme-customization/alternate-openapi-renderer
+    - text: Helpers CLI
+      url: /developer-portal/helpers/cli
 
 - title: Monitor
   icon: /assets/images/icons/documentation/icn-vitals.svg

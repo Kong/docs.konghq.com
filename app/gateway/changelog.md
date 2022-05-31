@@ -3,6 +3,59 @@ title: Kong Gateway Changelog
 no_version: true
 ---
 
+## 2.8.1.1
+**Release Date** 2022/05/27
+
+### Features
+
+#### Plugins
+
+* [AWS Lambda](/hub/kong-inc/aws-lambda/) (`aws-lambda`)
+  * When working in proxy integration mode, the `statusCode` field now accepts
+  string datatypes.
+
+* [mTLS Authentication](/hub/kong-inc/mtls-auth/) (`mtls-auth`)
+  * Introduced certificate revocation list (CRL) and OCSP server support with the
+  following parameters: `http_proxy_host`, `http_proxy_port`, `https_proxy_host`,
+  and `https_proxy_port`.
+
+* [Kafka Upstream](/hub/kong-inc/kafka-upstream/) (`kafka-upstream`) and [Kafka Log](/hub/kong-inc/kafka-log) (`kafka-log`)
+  * Added support for the `SCRAM-SHA-512` authentication mechanism.
+
+### Fixes
+
+#### Enterprise
+
+* Improved Kong Admin API and Kong Manager performance for organizations with
+many entities.
+
+* Fixed an issue with keyring encryption, where the control plane would crash if any errors occurred
+during the initialization of the [keyring module](/gateway/latest/plan-and-deploy/security/db-encryption/).
+
+* Fixed an issue where Kong Manager did not display all RBAC users and Consumers
+in the organization.
+
+#### Plugins
+
+* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
+  * Fixed rate limiting advanced errors that appeared when the Rate Limiting
+  Advanced plugin was not in use.
+  * Fixed an error where rate limiting counters were not updating response
+  headers due to incorrect key expiration tracking.
+  Redis key expiration is now tracked properly in `lua_shared_dict kong_rate_limiting_counters`.
+
+* [Forward Proxy](/hub/kong-inc/forward-proxy) (`forward-proxy`)
+  * Fixed an `invalid header value` error for HTTPS requests. The plugin
+  now accepts multi-value response headers.
+  * Fixed an error where basic authentication headers containing the `=`
+  character weren't forwarded.
+  * Fixed request errors that occurred when a scheme had no proxy set. The
+  `https` proxy now falls back to the `http` proxy if not specified, and the
+  `http` proxy falls back to `https`.
+
+* [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/) (`graphql-rate-limiting-advanced`)
+  * Fixed `deserialize_parse_tree` logic when building GraphQL AST with
+  non-nullable or list types.
 
 ## 2.8.1.0
 **Release Date** 2022/04/07
