@@ -31,6 +31,17 @@ Dependency upgrades:
 
 ### Upgrading
 
+### kubectl
+
+* Commands: `kumactl install metrics`, `kumactl install tracing` and
+  `kumactl install logging` are deprecated. Please use
+  `kumactl install observability` instead.
+
+### CP
+
+* The `kuma-cp` no longer comes with a builtin DNS server. You should use 
+  the one embedded in the dataplane proxy (enabled by default).
+
 ## 1.7.1
 
 > Released on **[TBD]**
