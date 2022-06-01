@@ -56,6 +56,14 @@ Note that a self-signed CA certificate is being used for the purpose of this
 guide. You should use your own CA certificate that is backed by
 your PKI infrastructure.
 
+**This example is used to show the YAML format of a `Secret` resource for the CA certificate. DO NOT directly use the certificate here.
+You should use your own CA certificate, or generate a self-signed certificate for testing.** To generate self-signed CA certificates, follow these instructions: 
+
+```bash
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -sha256 -days 365 -nodes\
+ -subj "/C=US/ST=California/L=San Francisco/O=Kong/OU=Org/CN=www.example.com"
+```
+
 ```bash
 $ echo "apiVersion: v1
 kind: Secret
@@ -203,6 +211,10 @@ Two things to note here:
 
 Next, in order to authenticate against Kong, create the client
 certificate and private key with the following content:
+
+{:.important}
+>This example is only used to show the format of the client certificate and private key. **DO NOT** use the certificate and private key directly.
+You should use a certificate and private key signed by your own CA.
 
 ```bash
 $ cat client.crt
