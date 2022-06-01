@@ -8,3 +8,4 @@ swap:
   Kong Gateway: "{{site.base_gateway}}"
   "K?onnect": "{{site.konnect_short_name}}"
   Konnect Cloud: "{{site.konnect_saas}}"
+  kuma: Kuma
