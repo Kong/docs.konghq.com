@@ -44,7 +44,7 @@ items:
         url: /guides/deduplicate-plugin-configuration
       - text: Set Up Object Defaults
         url: /guides/defaults
-        src: /guides/defaults-v2
+        src: guides/defaults-v2
       - text: Using environment variables with decK
         url: /guides/environment-variables
 
