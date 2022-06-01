@@ -16,8 +16,8 @@ New Features:
 
 - Support for arm64
 - Graceful shutdown of OPA
-- Role-based AWS auth for Vault
-- Add Vault AWS Auth option to set Server ID
+- Role-based AWS authentication for Vault
+- Added a Vault AWS authentication option to set the server ID header
 
 Dependency upgrades:
 
