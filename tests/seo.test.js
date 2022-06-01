@@ -28,12 +28,12 @@ test.describe("Canonical links", () => {
     {
       title: "links to the product index when showing the index page for a specific version (kic)",
       src: "/kubernetes-ingress-controller/2.2.x/",
-      href: "/kubernetes-ingress-controller/",
+      href: "/kubernetes-ingress-controller/latest/",
     },
      {
       title: "links to the product index when showing the index page for a specific version (gateway)",
       src: "/gateway/2.7.x/",
-      href: "/gateway/",
+      href: "/gateway/latest/",
     },
     {
       title: "plugin hub index",

@@ -4,7 +4,7 @@ test.describe("Module Switcher", () => {
   test("has the same products, in the same order as the top 'Docs' dropdown", async ({
     page,
   }) => {
-    await page.goto("/gateway/");
+    await page.goto("/gateway/latest/");
 
     async function fetchLinksFromElement(selector) {
       return (
@@ -105,12 +105,12 @@ test.describe("Sidebar section count", () => {
     },
     {
       title: "Gateway Single Sourced",
-      path: "/gateway/",
+      path: "/gateway/latest/",
       count: 8,
     },
     {
       title: "decK",
-      path: "/deck/",
+      path: "/deck/latest/",
       count: 6,
     },
   ].forEach((t) => {
@@ -126,7 +126,7 @@ test.describe("sidenav versions", () => {
   [
     {
       title: "Root page links to /latest/",
-      src: "/gateway/",
+      src: "/gateway/latest/",
       link_text: "Docker",
       expected_url: "/gateway/latest/install-and-run/docker",
     },
