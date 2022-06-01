@@ -70,9 +70,6 @@ module SingleSource
       # Remove trailing slashes if they exist
       src = src.chomp('/')
 
-      # Normalise the src by removing the leading /
-      src = src[1..] if src[0] == '/'
-
       # Set self.ext and self.basename by extracting information from the page filename
       process('index.md')
 
