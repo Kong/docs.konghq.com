@@ -47,7 +47,7 @@ module Jekyll
       site.pages << page
     end
 
-    def generate_aliases(_destination_path, page) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+    def generate_aliases(_destination_path, page) # rubocop:disable Metrics/MethodLength
       aliases = page.data['alias']
       alias_paths ||= []
       alias_paths << aliases

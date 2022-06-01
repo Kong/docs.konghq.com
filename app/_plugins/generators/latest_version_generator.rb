@@ -80,7 +80,7 @@ module LatestVersion
       @data['is_latest'] = true
       @data['version-index'] = page_index
 
-      @data['alias'] = [@dir.sub('latest/','')] if @dir.end_with?('/latest/')
+      @data['alias'] = [@dir.sub('latest/', '')] if @dir.end_with?('/latest/')
     end
   end
 end
