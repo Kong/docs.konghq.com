@@ -5,3 +5,5 @@ Netlify
 dev
 Konnect
 konnect
+(?i)MongoDB
+[Oo]bservability

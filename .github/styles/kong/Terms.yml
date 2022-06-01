@@ -5,4 +5,5 @@ ignorecase: true
 swap:
   kong: Kong
   k8s: Kubernetes
+  Kuma: Hitest
   

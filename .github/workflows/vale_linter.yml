@@ -1,4 +1,4 @@
-name: textlinting
+name: text-linting
 on:
   push:
     branches:
