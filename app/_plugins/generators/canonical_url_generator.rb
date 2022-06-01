@@ -119,10 +119,6 @@ module CanonicalUrl
         # There will usually only be one URL to check, but gateway-oss
         # and enterprise URLs will contain two here, so we have to loop
         urls_to_check.each do |u|
-          # If it's a /<product>/VERSION/ url then it should be linked to
-          # /<product> as the canonical URL. This is a special case
-          next page.data['canonical_url'] = "/#{url_segments[0]}/" if url_segments.size == 2
-
           # Otherwise look up the URL and link to the latest version
           matching_url = all_pages[u]
           page.data['canonical_url'] = matching_url['url'] if matching_url

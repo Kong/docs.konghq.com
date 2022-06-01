@@ -61,8 +61,7 @@ module Jekyll
           @redirects.push("#{alias_path}\t#{page.data['permalink']}")
         else
           # Pages where we replace /latest/ with the latest release version
-          new_url = alias_path.gsub('latest', page.data['kong_versions'].last['release'])
-          @redirects.push("#{alias_path}\t#{new_url}")
+          @redirects.push("#{alias_path}\t#{page.url}")
         end
       end
     end
