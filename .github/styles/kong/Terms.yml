@@ -5,5 +5,6 @@ ignorecase: true
 swap:
   kong: Kong
   k8s: Kubernetes
-  Kuma: Hitest
-  
+  Kong Gateway: "{{site.base_gateway}}"
+  "K?onnect": "{{site.konnect_short_name}}"
+  Konnect Cloud: "{{site.konnect_saas}}"
