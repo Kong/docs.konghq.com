@@ -2,6 +2,17 @@
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 
+    &.parent {
+      > .navtab-contents {
+          border: 1px solid @blue-200;
+          border-radius: 3px;
+          padding: 15px;
+      }
+      >.navtab-titles {
+        border-bottom: none;
+      }
+    }
+
     &.codeblock {
       background-color: @grey-200;
       border: 1px solid @grey-200;

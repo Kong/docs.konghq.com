@@ -206,6 +206,7 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
         {% endif %}
 
         {% if page.params.examples != false %}
+        <h3 id="example-config">Example plugin configuration</h3>
           {% include_cached hub-examples.html version=page.version params=page.params publisher=page.publisher name=page.name %}
         {% endif %}
 

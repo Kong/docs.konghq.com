@@ -114,13 +114,15 @@ endif %}{% endif_plugin_version %}{% endfor
 {% if include.params.service_id %}
 
 {% capture plugin_config_for_service %}
-### Enable the plugin on a service
+
+The following examples provide some typical configuration for enabling
+the <code>{{include.params.name}}</code> plugin on a
+[service](/gateway/latest/admin-api/#service-object).
 
 {% navtabs %}
 {% navtab Admin API %}
 
-For example, configure this plugin on a [service](/gateway/latest/admin-api/#service-object) by
-making the following request:
+Make the following request:
 
 ```bash
 curl -X POST http://{HOST}:8001/services/{SERVICE}/plugins \
@@ -185,8 +187,7 @@ spec:
 {% unless include.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
-For example, configure this plugin on a [service](/gateway/latest/admin-api/#service-object) by
-adding this section to your declarative configuration file:
+Add this section to your declarative configuration file:
 
 ``` yaml
 plugins:
@@ -203,7 +204,6 @@ plugins:
 {% endunless %}
 {% unless include.params.konnect_examples == false or include.publisher != "Kong Inc." %}
 {% navtab Konnect Cloud %}
-Configure this plugin on a service:
 
 1. In Konnect Cloud, select the service on the ServiceHub page.
 2. Scroll down to **Versions** and select the version.
@@ -219,7 +219,6 @@ or sample values as needed:
 {% endunless %}
 {% unless include.params.manager_examples == false or include.publisher != "Kong Inc." %}
 {% navtab Kong Manager %}
-Configure this plugin on a service:
 
 1. In Kong Manager, select the workspace.
 2. From the Dashboard, scroll down to **Services** and click **View** for the
@@ -250,12 +249,15 @@ is not already prefilled.{% unless
 
 {% if include.params.route_id %}
 {% capture plugin_config_for_route %}
-### Enable the plugin on a route
+
+The following examples provide some typical configuration for enabling
+the <code>{{include.params.name}}</code> plugin on a
+[route](/gateway/latest/admin-api/#route-object).
 
 {% navtabs %}
 {% navtab Admin API %}
 
-For example, configure this plugin on a [route](/gateway/latest/admin-api/#route-object) with:
+Make the following request:
 
 ```bash
 $ curl -X POST http://{HOST}:8001/routes/{ROUTE}/plugins \
@@ -319,8 +321,7 @@ spec:
 {% unless include.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
-For example, configure this plugin on a [route](/gateway/latest/admin-api/#route-object) by
-adding this section to your declarative configuration file:
+Add this section to your declarative configuration file:
 
 ```yaml
 plugins:
@@ -336,7 +337,6 @@ plugins:
 {% endunless %}
 {% unless include.params.konnect_examples == false or include.publisher != "Kong Inc." %}
 {% navtab Konnect Cloud %}
-Configure this plugin on a route:
 
 1. In Konnect Cloud, select the service from the ServiceHub page.
 2. Scroll down to **Versions** and select the version.
@@ -352,7 +352,6 @@ or sample values as needed:
 {% endunless %}
 {% unless include.params.manager_examples == false or include.publisher != "Kong Inc." %}
 {% navtab Kong Manager %}
-Configure this plugin on a route:
 
 1. In Kong Manager, select the workspace.
 2. From the Dashboard, select **Routes** in the left navigation.
@@ -383,12 +382,15 @@ or sample values as needed:
 
 {% if include.params.consumer_id %}
 {% capture plugin_config_for_consumer %}
-### Enabling the plugin on a consumer
+
+The following examples provide some typical configuration for enabling
+the <code>{{include.params.name}}</code> plugin on a
+[consumer](/gateway/latest/admin-api/#consumer-object).
 
 {% navtabs %}
 {% navtab Admin API %}
 
-For example, configure this plugin on a [consumer](/gateway/latest/admin-api/#consumer-object) with:
+Make the following request:
 
 ```bash
 $ curl -X POST http://{HOST}:8001/consumers/{CONSUMER}/plugins \
@@ -449,8 +451,7 @@ metadata:
 {% unless include.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
 
-For example, configure this plugin on a [consumer](/gateway/latest/admin-api/#consumer-object) by
-adding this section to your declarative configuration file:
+Add this section to your declarative configuration file:
 
 ``` yaml
 plugins:
@@ -467,7 +468,6 @@ plugins:
 {% endunless %}
 {% unless include.params.manager_examples == false or include.publisher != "Kong Inc." %}
 {% navtab Kong Manager %}
-Configure this plugin on a consumer:
 
 1. In Kong Manager, select the workspace.
 2. From the Dashboard, scroll down to **Consumers** and click **View** for the consumer row.
@@ -495,17 +495,18 @@ Configure this plugin on a consumer:
 <!-- Global config example -->
 
 {% capture plugin_global_config %}
-### Enable the plugin globally
 
 A plugin which is not associated to any service, route, or consumer is
 considered _global_, and will be run on every request. Read the
 [Plugin Reference](/gateway/latest/admin-api/#add-plugin) and the [Plugin Precedence](/gateway/latest/admin-api/#precedence)
 sections for more information.
 
+The following examples provide some typical configuration for enabling
+the <code>{{include.params.name}}</code> plugin globally.
 {% navtabs %}
 {% navtab Admin API %}
 
-For example, configure this plugin globally with:
+Make the following request:
 
 ```bash
 $ curl -X POST http://{HOST}:8001/plugins/ \
@@ -537,7 +538,8 @@ plugin: {{include.params.name}}
 {% endunless %}
 {% unless include.params.yaml_examples == false %}
 {% navtab Declarative (YAML) %}
-For example, configure this plugin using the <code>plugins:</code> entry in the declarative
+
+Add a <code>plugins</code> entry in the declarative
 configuration file:
 
 ``` yaml
@@ -550,7 +552,6 @@ plugins:
 {% endunless %}
 {% unless include.params.manager_examples == false or include.publisher != "Kong Inc." %}
 {% navtab Kong Manager %}
-Configure this plugin globally:
 
 1. In Kong Manager, select the workspace.
 2. From the Dashboard, select **Plugins** in the left navigation.
@@ -576,13 +577,32 @@ default/sample values as needed:
 {% endcapture %}
 
 <!-- Layout text -->
+
+{% if include.params.service_id or include.params.route_id or include.params.consumer_id %}
+{% navtabs parent %}
 {% if include.params.service_id %}
+  {% navtab Enable on a service %}
   {{ plugin_config_for_service | markdownify }}
+  {% endnavtab %}
 {% endif %}
+
 {% if include.params.route_id %}
+  {% navtab Enable on a route %}
   {{ plugin_config_for_route | markdownify }}
+  {% endnavtab %}
 {% endif %}
+
 {% if include.params.consumer_id %}
+  {% navtab Enable on a consumer %}
   {{ plugin_config_for_consumer | markdownify }}
+  {% endnavtab %}
 {% endif %}
-{{ plugin_global_config | markdownify }}
+
+{% navtab Enable globally %}
+  {{ plugin_global_config | markdownify }}
+{% endnavtab %}
+{% endnavtabs %}
+
+{% else %}
+  {{ plugin_global_config | markdownify }}
+{% endif %}
