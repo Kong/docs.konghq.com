@@ -6,6 +6,9 @@ swap:
   kong: Kong
   k8s: Kubernetes
   Kong Gateway: "{{site.base_gateway}}"
-  "K?onnect": "{{site.konnect_short_name}}"
+  konnect: "{{site.konnect_short_name}}"
   Konnect Cloud: "{{site.konnect_saas}}"
   kuma: Kuma
+  grafana: Grafana
+  postgres: PostgreSQL
+  hashicorp: HashiCorp
