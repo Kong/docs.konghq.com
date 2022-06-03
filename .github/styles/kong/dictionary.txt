@@ -1,5 +1,3 @@
-(?i)MongoDB
-[Oo]bservability
 Alertmanager
 anonymized
 Bitnami
@@ -19,16 +17,18 @@ HTTPie
 https
 JsonPath
 kong
-konnect
+Konnect
 kubectl
 Kuma
 kumactl
 loopback
 minikube
+MongoDB
 namespace
 namespaces
 Netlify
 Nginx
+observability
 plaintext
 Powershell
 Prometheus
@@ -38,6 +38,6 @@ repo
 subcommand
 uncheck
 upstream
-Upstreams
+upstreams
 validators
 Zipkin
