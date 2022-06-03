@@ -3,6 +3,11 @@ message: Use '%s' instead of '%s'.
 level: error
 ignorecase: false
 swap:
+  blacklist: denylist
+  codeblock: code block
+  dbless: DB-less
+  file name: filename
+  hashicorp: HashiCorp
   kong: Kong
   k8s: Kubernetes
   Kong Gateway: "{{site.base_gateway}}"
@@ -10,8 +15,9 @@ swap:
   Konnect Cloud: "{{site.konnect_saas}}"
   pg: PostgreSQL
   'postgres$': PostgreSQL
-  hashicorp: HashiCorp
-  blacklist: denylist
+  self hosted: self-managed
+  self-hosted: self-managed
+  ServiceHub: Service Hub
+  timezone: time zone
+  utilize: use
   whitelist: allowlist
-  dbless: "DB-less"
-  codeblock: "code block"
