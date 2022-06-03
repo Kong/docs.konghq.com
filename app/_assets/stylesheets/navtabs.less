@@ -2,42 +2,44 @@
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 
-    &.parent {
-      > .navtab-contents {
-         .navtabs {
-           .navtab-contents {
-               border: 1px solid @grey-300;
-               border-radius: 3px;
-               padding: 15px;
-             }
+  &.parent {
+    > .navtab-contents {
+       .navtabs {
+         .navtab-contents {
+             border: 1px solid @grey-300;
+             border-radius: 3px;
+             padding: 15px;
+           }
 
-            .navtab-titles {
-            border-bottom: none;
-            background: @grey-100;
-            border-radius: 3px;
+        .navtab-titles {
+          border-bottom: none;
+          background: @grey-100;
+          border-radius: 3px;
 
-                > .navtab-title {
-                  padding: 8px 16px;
-                  font-size: 14px;
-                  font-weight: 600;
-                  opacity: 0.7;
-                  border-radius: 3px;
+          > .navtab-title {
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0.7;
+            border-radius: 3px 3px 0 0  ;
 
-                  &:hover {
-                    color: rgba(black, 0.4);
-                    transition: color 0.2s;
-                  }
-                  &.active {
-                    opacity: 1;
-                    color: @blue-500;
-                    cursor: text;
-                    background: @blue-150;
-                  }
-                }
-              }
+            &:hover {
+              color: @blue-500;
+              opacity: 0.8;
+              transition: color 0.2s;
+              background: @blue-150;
+            }
+            &.active {
+              opacity: 1;
+              color: @blue-500;
+              cursor: text;
+              background: @blue-150;
             }
           }
         }
+      }
+    }
+  }
 
     &.codeblock {
       background-color: @grey-300;
@@ -117,7 +119,7 @@
       opacity: 0.7;
 
       &:hover {
-        color: rgba(black, 0.4);
+        color: @blue-500;
         transition: color 0.2s;
       }
 
