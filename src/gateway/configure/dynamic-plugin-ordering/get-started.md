@@ -4,22 +4,23 @@ badge: enterprise
 content_type: how-to
 ---
 
-The following examples are a result of the most common requests we received for this feature.
+Here are some common use cases for [dynamic plugin ordering](/gateway/{{page.kong_version}}/configure/dynamic-plugin-ordering).
 
-### Rate-limiting before Authentication
+## Rate limiting before authentication
 
+Let's say you want to limit the amount of requests against our service and route
+*before* Kong requests authentication. You can describe this dependency with the
+token `before`.
 
-In this case we want to limit the amount of requests against our service/route even before we hit authentication.
-
-For this example I'm using the key-auth plugin as the authentication plugin.
+The following example uses the [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced)
+plugin with the [Key Authentication](/hub/kong-inc/key-auth) plugin as the
+authentication method.
 
 {% navtabs %}
-{% navtab Using the Admin API %}
+{% navtab Admin API %}
 
-{:.note}
-> **Note:** This section sets up the basic Rate Limiting plugin. If you have a {{site.base_gateway}} instance, see instructions for **Using Kong Manager** to set up Rate Limiting Advanced with sliding window support instead.
-
-Call the Admin API on port `8001` and configure plugins to enable a limit of five (5) requests per minute, stored locally and in-memory, on the node.
+Call the Admin API on port `8001` and enable the
+`rate-limiting` plugin, configuring it to run before `key-auth`:
 
 <!-- codeblock tabs -->
 {% navtabs codeblock %}
@@ -45,14 +46,10 @@ http -f post :8001/plugins \
 <!-- end codeblock tabs -->
 
 {% endnavtab %}
-{% navtab Using decK (YAML) %}
-
-{:.note}
-> **Note:** This section sets up the basic Rate Limiting plugin. If you have a {{site.base_gateway}} instance, see instructions for **Using Kong Manager** to set up Rate Limiting Advanced with sliding window support instead.
+{% navtab decK (YAML) %}
 
 1. Add a new `plugins` section to the bottom of your `kong.yaml` file. Enable
-`rate-limiting` with a limit of five (5) requests per minute, stored locally
-and in-memory, on the node:
+`rate-limiting` and set the plugin to run before `key-auth`:
 
     ``` yaml
     plugins:
@@ -98,7 +95,8 @@ and in-memory, on the node:
     Consumer, the rate limiting would only apply to that specific
     entity.
 
-    >**Note**: By default, `enabled` is set to `true` for the plugin. You can
+    {:.note}
+    > **Note**: By default, `enabled` is set to `true` for the plugin. You can
     disable the plugin at any time by setting `enabled: false`.
 
 2. Sync the configuration:
@@ -110,16 +108,22 @@ and in-memory, on the node:
 {% endnavtab %}
 {% endnavtabs %}
 
+## Authentication after request transformation
 
-### Authentication after Request-Transformer
+The following example is similar to running [rate limiting before authentication](#rate-limiting-before-authentication).
 
+For example, you may want to first transform a request, then request authentication
+*after* transformation. You can describe this dependency with the token `after`.
 
-This is similar to the "Rate-Limiting before Authentication". Here we want to *always* transform a request and then run an authentication plugin. We can describe this dependency with another supported token called `after`. Instead of changing the order of the "Request-Transformer" plugin, we can also change the order of the authentication plugin ("basic-auth" in this example).
-
+Instead of changing the order of the [Request Transformer](/hub/kong-inc/request-transformer)
+plugin, you can change the order of the authentication plugin
+([Basic Authentication](/hub/kong-inc/basic-auth), in this example).
 
 {% navtabs %}
-{% navtab Using the Admin API %}
+{% navtab Admin API %}
 
+Call the Admin API on port `8001` and enable the
+`basic` plugin, configuring it to run after `request-transformer`:
 
 <!-- codeblock tabs -->
 {% navtabs codeblock %}
@@ -141,14 +145,10 @@ http -f post :8001/plugins \
 <!-- end codeblock tabs -->
 
 {% endnavtab %}
-{% navtab Using decK (YAML) %}
-
-{:.note}
-> **Note:** This section sets up the basic Rate Limiting plugin. If you have a {{site.base_gateway}} instance, see instructions for **Using Kong Manager** to set up Rate Limiting Advanced with sliding window support instead.
+{% navtab decK (YAML) %}
 
 1. Add a new `plugins` section to the bottom of your `kong.yaml` file. Enable
-`request-transformer` with a limit of five (5) requests per minute, stored locally
-and in-memory, on the node:
+`basic-auth` and set the plugin to run after `request-transformer`:
 
     ``` yaml
     plugins:
@@ -183,7 +183,8 @@ and in-memory, on the node:
             - request-transformer
     ```
 
-    >**Note**: By default, `enabled` is set to `true` for the plugin. You can
+    {:.note}
+    > **Note**: By default, `enabled` is set to `true` for the plugin. You can
     disable the plugin at any time by setting `enabled: false`.
 
 2. Sync the configuration:

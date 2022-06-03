@@ -90,3 +90,14 @@ basic mistakes but it can't detect all potentially dangerous configurations.
 
 If using dynamic ordering, manually test all configurations, and handle this
 feature with care.
+
+### Kong Manager
+
+Kong Manager doesn't support dynamic plugin ordering configuration through the
+UI. Use the Kong Admin API or a declarative configuration file to set
+plugin ordering.
+
+## See also
+
+Check out the examples in the
+[getting started guide for dynamic plugin ordering](/gateway/{{page.kong_version}}/configure/dynamic-plugin-ordering/get-started).
