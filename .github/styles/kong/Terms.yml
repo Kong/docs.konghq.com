@@ -11,3 +11,7 @@ swap:
   pg: PostgreSQL
   'postgres$': PostgreSQL
   hashicorp: HashiCorp
+  blacklist: denylist
+  whitelist: allowlist
+  dbless: "DB-less"
+  codeblock: "code block"
