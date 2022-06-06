@@ -1,8 +1,9 @@
 extends: substitution
 message: Use '%s' instead of '%s'.
 level: error
-ignorecase: false
+ignorecase: true
 swap:
+  '(?:developer?: |Developer)': Developer Portal
   blacklist: denylist
   codeblock: code block
   dbless: DB-less
@@ -10,13 +11,13 @@ swap:
   hashicorp: HashiCorp
   kong: Kong
   k8s: Kubernetes
+  '(?:kubernetes|k8s)': Kubernetes
   Kong Gateway: "{{site.base_gateway}}"
   Konnect: "{{site.konnect_short_name}}"
   Konnect Cloud: "{{site.konnect_saas}}"
   pg: PostgreSQL
   'postgres$': PostgreSQL
-  self hosted: self-managed
-  self-hosted: self-managed
+  'self(?:-| )hosted': self-managed
   ServiceHub: Service Hub
   timezone: time zone
   utilize: use

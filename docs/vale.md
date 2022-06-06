@@ -18,7 +18,7 @@ Docs
 
 - `vale.ini`: This is the main configuration file for Vale. For information on how this file works, [the official documentation](https://docs.errata.ai/vale/config) contains detailed information about this file.  
 - `spelling.yml`: This file contains the rules for enforcing spelling. It inherits `dictionary.txt` and sets the `level` value to `error`. This setting will cause a build to fail. 
-- `dictionary.txt`: This file is where you can add words that should be ignored by the dictionary. This file is case sensitive, and ordered alphabetically in ascending order. 
+- `dictionary.txt`: This file is where you can add words that should be ignored by the dictionary. This file is case **in-sensitive**, and ordered alphabetically in ascending order. 
 - `Terms.yml`: This file is used for specific cases where the word may be spelled correctly, but incorrectly capitalized in the case of a company or product name. 
 - `vale_linter.yml`: This file contains the GHA workflow. 
 
@@ -58,9 +58,9 @@ FILE.md
 
 The first line is the file name and location, the next line references the location of the error in the format (Line number: Character). The output highlights the word that triggered the error. `kong.spelling` references the name of the configuration file where this rule is written. The last line is a summary of the output.
 
-Spelling is managed by `dictionary.txt`, in the case you receive a false-positive for words that are spelled correctly but are triggering an error, adding the word to the `dictionary.txt` file will force Vale to ignore that word in the file. 
+Spelling is managed by `dictionary.txt`, in the case you receive a false-positive for words that are spelled correctly but are triggering an error, adding the word to the `dictionary.txt` file will force Vale to ignore that word. 
 
-Proper nouns that must be capitalized, or written in a specific way can be handled using a combination of `dictionary.txt` and `terms.yml`. In the case of a word like "k8s", where you want to suggest every instance of k8s be changed to "Kubernetes", add `Kubernetes` to `dictionary.txt` to add the name of the correct spelling for the word, and in `terms.yml` create a rule like this: 
+Proper nouns that must be capitalized, or written in a specific way can be handled using a combination of `dictionary.txt` and `terms.yml`. In the case of a word like "k8s", where you want to suggest every instance of k8s be changed to "Kubernetes" in `terms.yml` create a rule like this: 
 
 ```yaml
 extends: substitution
@@ -81,8 +81,31 @@ These rules catch the following edge cases:
                 'kubernetes'?
 ```
 
-Because the `dictionary.txt` file contains a capitalized entry for "Kubernetes", every instance of "kubernetes" will output an error. The term "k8s" will output an error **with** a suggestion.
+You can also use regex syntax to create rules: 
+```yaml
+extends: substitution
+message: Use '%s' instead of '%s'.
+level: error
+ignorecase: true
+swap:
+  '(?:kubernetes|k8s)': Kubernetes
 
+```
+
+So a document that contains `kubernetes` or `k8s` will return: 
+
+```bash
+ README.md
+ 3:1  error  Use 'Kubernetes' instead of     kong.Terms
+             'k8s'.
+ 5:1  error  Did you really mean             kong.Spelling
+             'kubernetes'?
+ 5:1  error  Use 'Kubernetes' instead of     kong.Terms
+             'kubernetes'.
+```
+
+This prompts the users to replace `k8s` and `kubernetes` with "Kubernetes"
+ 
 
 ### Terms 
 
