@@ -208,8 +208,8 @@ field/parameter                | default         | description
 `{consumer}`                   |                 | The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
 `key`<br>*optional*            |                 | A unique string identifying the credential. If left out, it will be auto-generated.
 `algorithm`<br>*optional*      | `HS256`         | The algorithm used to verify the token's signature. Can be `HS256`, `HS384`, `HS512`, `RS256`, `RS384`, `RS512`, `ES256`, or `ES384`.
-`rsa_public_key`<br>*optional* |                 | If `algorithm` is `RS256`, `RS384`, `RS512`, `ES256` or `ES384`, the public key (in PEM format) to use to verify the token's signature.
-`secret`<br>*optional*         |                 | If `algorithm` is `HS256`, `HS384` or `HS512`, the secret used to sign JWTs for this credential. If left out, will be auto-generated.
+`rsa_public_key`<br>*optional* |                 | If `algorithm` is `RS256`, `RS384`, `RS512`, `ES256`, or `ES384`, the public key (in PEM format) to use to verify the token's signature.
+`secret`<br>*optional*         |                 | If `algorithm` is `HS256`, `HS384`, or `HS512`, the secret used to sign JWTs for this credential. If left out, will be auto-generated.
 
   <div class="alert alert-warning">
     <strong>Note for decK and Kong Ingress Controller users:</strong> The declarative
