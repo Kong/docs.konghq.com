@@ -60,51 +60,7 @@ The first line is the file name and location, the next line references the locat
 
 Spelling is managed by `dictionary.txt`, in the case you receive a false-positive for words that are spelled correctly but are triggering an error, adding the word to the `dictionary.txt` file will force Vale to ignore that word. 
 
-Proper nouns that must be capitalized, or written in a specific way can be handled using a combination of `dictionary.txt` and `terms.yml`. In the case of a word like "k8s", where you want to suggest every instance of k8s be changed to "Kubernetes" in `terms.yml` create a rule like this: 
 
-```yaml
-extends: substitution
-message: Use '%s' instead of '%s'.
-level: error
-ignorecase: true
-swap:
-  k8s: Kubernetes
-
-```
-
-These rules catch the following edge cases: 
-
-```bash
-14:1    error  Use 'Kubernetes' instead of     kong.Terms
-                'k8s'.
-15:1    error  Did you really mean             kong.Spelling
-                'kubernetes'?
-```
-
-You can also use regex syntax to create rules: 
-```yaml
-extends: substitution
-message: Use '%s' instead of '%s'.
-level: error
-ignorecase: true
-swap:
-  '(?:kubernetes|k8s)': Kubernetes
-
-```
-
-So a document that contains `kubernetes` or `k8s` will return: 
-
-```bash
- README.md
- 3:1  error  Use 'Kubernetes' instead of     kong.Terms
-             'k8s'.
- 5:1  error  Did you really mean             kong.Spelling
-             'kubernetes'?
- 5:1  error  Use 'Kubernetes' instead of     kong.Terms
-             'kubernetes'.
-```
-
-This prompts the users to replace `k8s` and `kubernetes` with "Kubernetes"
  
 
 ### Terms 
@@ -122,8 +78,56 @@ ignorecase: true
 swap:
   konnect: "{{site.konnect_short_name}}"
   Developer [Pp]ortal: Dev Portal
+  '(?:kubernetes|k8s)': Kubernetes
   kong: Kong
 ```
+
+Proper nouns that must be capitalized, or written in a specific way can be handled using a combination of `dictionary.txt` and `terms.yml`. In the case of a word like "k8s", where you want to suggest every instance of k8s be changed to "Kubernetes" in `terms.yml` create a rule like this: 
+
+```yaml
+extends: substitution
+message: Use '%s' instead of '%s'.
+level: error
+ignorecase: true
+swap:
+  k8s: Kubernetes
+
+```
+
+These rules catch the following cases: 
+
+```bash
+14:1    error  Use 'Kubernetes' instead of     kong.Terms
+                'k8s'.
+15:1    error  Did you really mean             kong.Spelling
+                'kubernetes'?
+```
+
+You can also use regex syntax to create rules: 
+
+```yaml
+extends: substitution
+message: Use '%s' instead of '%s'.
+level: error
+ignorecase: true
+swap:
+  '(?:kubernetes|k8s)': Kubernetes
+
+```
+
+So a file that contains `kubernetes` or `k8s` will return: 
+
+```bash
+ README.md
+ 3:1  error  Use 'Kubernetes' instead of     kong.Terms
+             'k8s'.
+ 5:1  error  Did you really mean             kong.Spelling
+             'kubernetes'?
+ 5:1  error  Use 'Kubernetes' instead of     kong.Terms
+             'kubernetes'.
+```
+
+This prompts the users to replace `k8s` and `kubernetes` with "Kubernetes"
 
 ### Scope
 

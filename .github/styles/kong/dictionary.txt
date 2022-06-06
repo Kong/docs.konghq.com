@@ -1,8 +1,8 @@
 Alertmanager
 allowlist
 anonymized
-aws
 api
+aws
 Bitnami
 boolean
 CloudFormation
@@ -31,11 +31,12 @@ https
 jq
 json
 JsonPath
-jwt
 jwk
 jwks
+jwt
 Keycloak
 kong
+Kong/kong
 Konnect
 kubectl
 Kuma
@@ -70,8 +71,8 @@ runtimes
 sandboxing
 serializer
 ssl
-stdout
 stderr
+stdout
 subcommand
 sudo
 Syslog
