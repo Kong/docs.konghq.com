@@ -18,11 +18,8 @@ and lets you create _dynamic_ dependencies between plugins.
 
 Use one of the following tokens to describe a dependency to a plugin:
 
-* `before`
-	 The plugin will be executed _before_ a specified plugin or list of plugins.
-
-* `after`
-	 The plugin will be executed _after_ a specified plugin or list of plugins.
+* `before`: The plugin will be executed _before_ a specified plugin or list of plugins.
+* `after`: The plugin will be executed _after_ a specified plugin or list of plugins.
 
 ### Phases
 
@@ -47,8 +44,8 @@ ordering:
       - ...
 ```
 
-For example, if you'd like to express that PluginA's _access_ phase should
-run _before_ PluginB's _access_ phase, you would write something like this:
+For example, if you want to express that PluginA's `access` phase should
+run _before_ PluginB's `access` phase, you would write something like this:
 
 ```yaml
 PluginA:
@@ -69,8 +66,8 @@ change the order of the plugins in relation to consumer mapping.
 
 ### Cascading deletes & updates
 
-There is no support to detect if a plugin that has a dependency to
-another plugin which was deleted, so handle your configuration with care.
+There is no support to detect if a plugin has a dependency to
+a deleted plugin, so handle your configuration with care.
 
 ### Performance implications
 

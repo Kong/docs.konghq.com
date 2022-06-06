@@ -8,7 +8,7 @@ Here are some common use cases for [dynamic plugin ordering](/gateway/{{page.kon
 
 ## Rate limiting before authentication
 
-Let's say you want to limit the amount of requests against our service and route
+Let's say you want to limit the amount of requests against your service and route
 *before* Kong requests authentication. You can describe this dependency with the
 token `before`.
 
@@ -123,7 +123,7 @@ plugin, you can change the order of the authentication plugin
 {% navtab Admin API %}
 
 Call the Admin API on port `8001` and enable the
-`basic` plugin, configuring it to run after `request-transformer`:
+`basic-auth` plugin, configuring it to run after `request-transformer`:
 
 <!-- codeblock tabs -->
 {% navtabs codeblock %}
