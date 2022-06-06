@@ -273,6 +273,13 @@ CustomHandler.PRIORITY = 10
 The higher the priority, the sooner your plugin's phases will be executed in
 regard to other plugins' phases (such as `:access()`, `:log()`, etc.).
 
+### Kong plugins
+
+All of the plugins bundled with {{site.base_gateway}} have a static priority.
+This can be adjusted dynamically using the `ordering` option. See
+[Dynamic Plugin Ordering](/gateway/{{page.kong_version}}/configure/dynamic-plugin-ordering)
+for more information.
+
 {% navtabs %}
 {% navtab Open-source or Free mode %}
 
