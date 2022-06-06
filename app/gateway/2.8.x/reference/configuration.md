@@ -3235,7 +3235,7 @@ You will receive another email when your access has been approved.
 
 ---
 
-#portal_application_request_email
+#### portal_application_request_email
 {:.badge .enterprise}
 
 When enabled, Kong admins specified by `smtp_admin_emails` will receive an
