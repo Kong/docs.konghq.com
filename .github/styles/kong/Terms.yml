@@ -1,9 +1,11 @@
 extends: substitution
 message: Use '%s' instead of '%s'.
 level: error
+ignorecase: true
 swap:
-  '[Dd]eveloper [Pp]ortal?': Dev Portal
-  '[Cc]odeblock?': code block
+
+  developer portal: Dev Portal
+  codeblock': code block
   blacklist: denylist
   codeblock: code block
   dbless: DB-less

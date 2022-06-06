@@ -1,3 +1,4 @@
+
 Alertmanager
 allowlist
 anonymized
@@ -28,6 +29,7 @@ http
 httpbin
 HTTPie
 https
+ini
 jq
 json
 JsonPath
@@ -78,6 +80,7 @@ sudo
 Syslog
 transcoder
 ttl
+txt
 uncheck
 Unicode
 unix
@@ -91,4 +94,5 @@ validators
 websocket
 websockets
 yaml
+yml
 Zipkin
