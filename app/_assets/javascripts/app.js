@@ -336,16 +336,113 @@ jQuery(function () {
     ); // Adjust scroll speed
   }
 
+
+// Plugin filter all / only available
+var pluginsAllOrOnly = "all";
+var showPlusWithEnterprise = false;
+function showPluginBanner(target){
+  var hubCards = $(".hub-cards");
+  if (!hubCards.length){
+    return;
+  }
+
+  var allOnlyToggle = $('#plugin-banner');
+  var eePlusBanner = $('#ee-plus-banner');
+
+  var allowedFilters = ["plus", "ee-compat"]
+  if (allowedFilters.indexOf(target) === -1){
+    pluginsAllOrOnly = "all";
+    allOnlyToggle.hide();
+    return;
+  }
+
+  allOnlyToggle.show();
+
+  if (!allOnlyToggle.length){
+    allOnlyToggle = $('<div id="plugin-banner" class="content" style="padding:0"><blockquote class="note"></blockquote></div>');
+    hubCards.prepend(allOnlyToggle)
+  }
+
+  if (!eePlusBanner.length){
+    eePlusBanner = $('<div id="ee-plus-banner" class="content" style="padding:0"><blockquote class="important">If you run Kong Gateway on your own infrastructure, you also have access to all <strong>Plus</strong> plugins. <u id="show-plus-ee">Click Here</u> to show them</blockquote></div>');
+    eePlusBanner.find("u").css({cursor: "pointer"}).click(function(){
+      showPlusWithEnterprise = true;
+      pluginFilter(target);
+      return false;
+    });
+    allOnlyToggle.after(eePlusBanner)
+  }
+
+  eePlusBanner.hide();
+
+  if (pluginsAllOrOnly == "only" && target == "ee-compat" && showPlusWithEnterprise == false){
+    eePlusBanner.show();
+  }
+
+  var tierMap = {
+    "plus": "Plus",
+    "ee-compat": "Enterprise"
+  }
+
+  var content = allOnlyToggle.find("blockquote");
+
+  if (pluginsAllOrOnly == "all"){
+    content.html("Showing <strong>all</strong> plugins available on the " + tierMap[target] + " tier. <u>Show " + tierMap[target] + " only plugins?</u>")
+  } else {
+    content.html("Showing plugins <strong>only</strong> available on the " + tierMap[target] + " tier. <u>Show <strong>all</strong> " + tierMap[target] + " plugins?</u>")
+  }
+  content.find("u").css({"cursor":"pointer"}).click(function(){
+    var other = pluginsAllOrOnly == "all" ? "only" : "all";
+    pluginsAllOrOnly = other;
+    showPlusWithEnterprise = false;
+    pluginFilter(target);
+    return false;
+  });
+
+}
+
+
 // Plugins filter on click
 $("a[data-filter]").on("click", function () {
-  $("html, body").animate({ scrollTop: 0 });
   var target = $(this).data("filter");
-  console.log(this);
 
   // Remove any active classes that may already be applied
   $("a[data-filter]").removeClass("active");
   // Add active class sidebar a
   $(this).addClass("active");
+  pluginFilter(target);
+});
+
+// Plugin filter on keypress
+$("a[data-filter]").on("keypress", function(e) {
+  if (e.keyCode === 13) {
+    var target = $(this).data("filter");
+    $("a[data-filter]").removeClass("active");
+    $(this).addClass("active");
+
+    pluginFilter(target);
+  }
+});
+
+function pluginFilter(target){
+  $("html, body").animate({ scrollTop: 0 });
+  if (!target){
+    target = "all";
+  }
+  showPluginBanner(target)
+
+  var excluded = [];
+  if (pluginsAllOrOnly == "only"){
+    if (target == "plus"){
+      excluded = ["open-source"];
+    } else if (target == "ee-compat"){
+      excluded = ["open-source"];
+      if (!showPlusWithEnterprise){
+        excluded.push("plus");
+      }
+    }
+  }
+
 
   // For all faded cards, replace href with data-href target
   $(".card-group.fadeOut").each(function () {
@@ -356,6 +453,7 @@ $("a[data-filter]").on("click", function () {
 
   // Remove any fade states that may already be applied
   $(".card-group").removeClass("fadeOut");
+  $(".nav-link, .category").show();
 
   // If the target of the li is not all continue
   if (target !== "all") {
@@ -363,6 +461,14 @@ $("a[data-filter]").on("click", function () {
     $(".card-group")
       .not("." + target)
       .addClass("fadeOut");
+
+    // Fade cards that aren't exclusive to this tier if
+    // we're set to "only" mode
+    if (pluginsAllOrOnly == "only"){
+      var selector = excluded.map(e => "." + e).join(", ")
+      $(".card-group").filter(selector).addClass("fadeOut");
+    }
+
     // For each faded card, move href to data-href and remove href
     $(".card-group.fadeOut").each(function () {
       var link = $(this).find("a");
@@ -370,43 +476,18 @@ $("a[data-filter]").on("click", function () {
       link.removeAttr("href");
     });
   }
-});
 
-// Plugin filter on keypress
-$("a[data-filter]").on("keypress", function(e) {
-  if (e.keyCode === 13) {
-    $("html, body").animate({ scrollTop: 0 });
-    var target = $(this).data("filter");
-
-    // Remove any active classes that may already be applied
-    $("a[data-filter]").removeClass("active");
-    // Add active class sidebar a
-    $(this).addClass("active");
-
-    // For all faded cards, replace href with data-href target
-    $(".card-group.fadeOut").each(function () {
-      var link = $(this).find("a");
-      link.attr("href", $(link).attr("data-href"));
-      link.removeAttr("data-href");
-    });
-
-    // Remove any fade states that may already be applied
-    $(".card-group").removeClass("fadeOut");
-
-    // If the target of the li is not all continue
-    if (target !== "all") {
-      // Fade all cards that don't have matching filter
-      $(".card-group")
-        .not("." + target)
-        .addClass("fadeOut");
-      // For each faded card, move href to data-href and remove href
-      $(".card-group.fadeOut").each(function () {
-        var link = $(this).find("a");
-        link.attr("data-href", $(link).attr("href"));
-        link.removeAttr("href");
-      });
+  // Make sure to show/hide categories as needed
+  $(".category").each(function(){
+    var cards = $(this).find(".card-group:visible");
+    var id = $(this).attr("id");
+    if (!cards.length){
+      $(this).hide();
+      $(".nav-link[href='#"+id+"']").hide()
     }
-}});
+  })
+};
+
 
   // Responsive Tables
   if ($window.width() <= 1099) {
