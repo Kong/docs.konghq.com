@@ -57,13 +57,13 @@ The body of the email is HTML content. You can reference the tokens allowed for 
 |--- 	|---	|---	|---	|
 |emails/invite.txt	        |  `{{portal.gui_url}}` `{{email.developer_email}}`                                          | `{{portal.gui_url}}`                                                |email sent to developer who is invited to a portal from the manager	|
 |---	|---	|---	|---	|
-|emails/request-access.txt	|`{{portal.gui_url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.admin_url}}`     	|`{{portal.gui_url}}` `{{email.developer_email}}`	                      |email sent to admin when a developer signs up for portal, in order to approve the developer	|
-|emails/approved-access.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}`	                            |`{{portal.gui_url}}`	                                                |email sent to developer when their account is approved	|
-|emails/password-reset.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.token}}` `{{email.token_exp}}` `{{email.reset_url}}`	|`{{portal.url}}` `{{email.token}}` or `{{email.reset_url}}`	|email sent to developer when a password reset  is requested (basic-auth only)	|
-|emails/password-reset-success.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}`	                    |`{{portal.url}}`	                                                    |email sent to developer when a password reset is successful (basic-auth only) 	|
-|emails/account-verification.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.token}}` `{{email.verify_url}}` `{{email.invalidate_url}}`	|`{{portal.url}}` `{{email.token}}` or  both `{{email.verify_url}}` and `{{email.invalidate_url}} `	|email sent to developer when portal_email_verification is on  to verify developer email (basic-auth only)	|
-|emails/account-verification-approved.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}`	              |`{{portal.url}}`	                                                    |email sent to developer when portal_email_verification is on and developer has verified email and developer has been approved by admin/auto-approve is on (basic-auth only)	|
-|emails/account-verification-pending.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}`	              |`{{portal.url}}`	                                                    |email sent to developer when portal_email_verification is on and developer has verified email and developer has yet to be approved by admin (basic-auth only)	|
+|emails/request-access.txt	|`{{portal.gui_url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}` `{{email.admin_url}}`     	|`{{portal.gui_url}}` `{{email.developer_email}}`	                      |email sent to admin when a developer signs up for portal, in order to approve the developer	|
+|emails/approved-access.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}`	                            |`{{portal.gui_url}}`	                                                |email sent to developer when their account is approved	|
+|emails/password-reset.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}` `{{email.token}}` `{{email.token_exp}}` `{{email.reset_url}}`	|`{{portal.url}}` `{{email.token}}` or `{{email.reset_url}}`	|email sent to developer when a password reset  is requested (basic-auth only)	|
+|emails/password-reset-success.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}`	                    |`{{portal.url}}`	                                                    |email sent to developer when a password reset is successful (basic-auth only) 	|
+|emails/account-verification.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}` `{{email.token}}` `{{email.verify_url}}` `{{email.invalidate_url}}`	|`{{portal.url}}` `{{email.token}}` or  both `{{email.verify_url}}` and `{{email.invalidate_url}} `	|email sent to developer when portal_email_verification is on  to verify developer email (basic-auth only)	|
+|emails/account-verification-approved.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}`	              |`{{portal.url}}`	                                                    |email sent to developer when portal_email_verification is on and developer has verified email and developer has been approved by admin/auto-approve is on (basic-auth only)	|
+|emails/account-verification-pending.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}`	              |`{{portal.url}}`	                                                    |email sent to developer when portal_email_verification is on and developer has verified email and developer has yet to be approved by admin (basic-auth only)	|
 {% endraw %}
 
 ## Token Descriptions
@@ -73,8 +73,9 @@ The body of the email is HTML content. You can reference the tokens allowed for 
 |---	|---	|
 |`{{portal.url}}`	|Dev Portal URL for the workspace	|
 |---	|---	|
-|`{{email.developer_email}}`	|Developers email	|
-|`{{email.developer_name}}`	|Developers full name, this value is collected as part of registration by default. If meta-fields are edited to not include full_name then this will fallback to email 	|
+|`{{email.developer_email}}`	|Developer's email	|
+|`{{email.developer_name}}`	|Developer's full name, this value is collected as part of registration by default. If meta-fields are edited to not include full_name then this will fallback to email 	|
+|`{{email.developer_meta.*}}`	|Developer's meta-fields, these value are collected as part of registration. They must be configured prior to registration. If the value doesn't exist or is optional and blank, it will display as an empty string. If the `developer_meta` configuration doesn't specify the field, it will appear as-is without replacement, e.g. `{{email.developer_meta.preferred_name}}`|
 |`{{email.admin_url}}`	|Kong Manger URL	|
 |`{{email.reset_url}}`	|Dev Portal full URL for resetting password (assumes default path for password reset) 	|
 |`{{email.token_exp}}`	|Human readable string for amount of time from sending of email, password reset token/url is valid.	|
