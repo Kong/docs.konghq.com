@@ -76,7 +76,7 @@ The body of the email is HTML content. You can reference the tokens allowed for 
 |`{{email.developer_email}}`	|Developer's email	|
 |`{{email.developer_name}}`	|Developer's full name, this value is collected as part of registration by default. If meta-fields are edited to not include full_name then this will fallback to email 	|
 |`{{email.developer_meta.*}}`	|Developer's meta-fields, these value are collected as part of registration. They must be configured prior to registration. If the value doesn't exist or is optional and blank, it will display as an empty string. If the `developer_meta` configuration doesn't specify the field, it will appear as-is without replacement, e.g. `{{email.developer_meta.preferred_name}}`|
-|`{{email.admin_url}}`	|Kong Manger URL	|
+|`{{email.admin_url}}`	|Kong Manager URL	|
 |`{{email.reset_url}}`	|Dev Portal full URL for resetting password (assumes default path for password reset) 	|
 |`{{email.token_exp}}`	|Human readable string for amount of time from sending of email, password reset token/url is valid.	|
 |`{{email.verify_url}}`	|Link to verify account (assumes default path for account verification))	|
