@@ -3207,6 +3207,68 @@ Click the link below to sign in with your new credentials.
 
 ---
 
+#### portal_application_status_email
+{:.badge .enterprise}
+
+When enabled, developers will receive an email when the status changes for their
+application service requests.
+
+When disabled, developers will still be able to view the status in their 
+developer portal application page.
+
+The email looks like the following:
+
+```
+Subject: Dev Portal application request <REQUEST_STATUS> (<DEV_PORTAL_URL>)
+
+Hello Developer,
+We are emailing you to let you know that your request for application access from the
+Developer Portal account at <DEV_PORTAL_URL> is <REQUEST_STATUS>.
+
+Application: <APPLICATION_NAME>
+Service: <SERVICE_NAME>
+
+You will receive another email when your access has been approved.
+```
+
+**Default:** `off`
+
+---
+
+#### portal_application_request_email
+{:.badge .enterprise}
+
+When enabled, Kong admins specified by `smtp_admin_emails` will receive an
+email when a developer requests access to service through an application.
+
+When disabled, Kong admins will have to manually check the Kong Manager to view
+any requests.
+
+By default, `smtp_admin_emails` will be the recipients. This can be overriden
+by `portal_smtp_admin_emails`, which can be set dynamically per workspace through
+the Admin API.
+
+The email looks like the following:
+
+ ```
+Subject: Request to access Dev Portal (<DEV_PORTAL_URL>) service from <DEVELOPER_EMAIL>
+
+Hello Admin,
+
+<DEVELOPER NAME> (<DEVELOPER_EMAIL>) has requested application access for <DEV_PORTAL_URL>.
+
+Requested workspace: <WORKSPACE_NAME>
+Requested application: <APPLICATION_NAME>
+Requested service: <SERVICE_NAME>
+
+Please visit <KONG_MANAGER_URL/WORKSPACE_NAME/applications/APPLICATION_ID#requested> to review this request.
+
+```
+
+**Default:** `off`
+
+---
+
 #### portal_emails_from
 {:.badge .enterprise}
 
