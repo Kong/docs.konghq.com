@@ -7,7 +7,8 @@ content_type: how-to
 The {{site.konnect_short_name}} Dev Portal currently offers three areas you can customize:
 * [Appearance](#appearance)
 * [Custom URL](#add-a-custom-dev-portal-domain)
-* [Enabling Public Access](/konnect/dev-portal/access)
+* [Enabling Public Access](/konnect/dev-portal/publish/#access)
+* [Custom URL](#single-sign-on)
 
 This doc covers the details of customizing the appearance of your Developer Portal, and the steps to customize a URL.
 
@@ -58,10 +59,10 @@ Add a custom Dev Portal domain through your organization's {{site.konnect_short_
    > **Note:** DNS propagation can take a few hours. If after a few hours you can't access the Dev Portal from the custom URL, contact your domain registrar.
 
 <!-- markdownlint-disable-next-line -->
-## Single Sign-On (SSO)
+## Single Sign-On
 {:.badge .enterprise}
 
-Single-Sign-On (SSO) can be configured in the Dev Portal by those with Admin roles via the Identity settings in the {{site.konnect_short_name}} Admin UI.
+Single Sign-On (SSO) can be configured in the Dev Portal by those with Admin roles via the Identity settings in the {{site.konnect_short_name}} Admin UI.
 
 1. In {{site.konnect_short_name}}, open {% konnect_icon dev-portal %} **Dev Portal**, then click **Settings**.
 
