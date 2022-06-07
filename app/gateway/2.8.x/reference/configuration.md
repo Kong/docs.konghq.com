@@ -3298,6 +3298,19 @@ associated with the account.
 
 ---
 
+#### portal_smtp_admin_emails
+{:.badge .enterprise}
+
+Comma separated list of admin emails to receive portal-related notifications.
+
+If none are set, the values in `smtp_admin_emails` will be used.
+
+Example `admin1@example.com, admin2@example.com`
+
+**Default:** none
+
+---
+
 
 ### Admin Smtp Configuration section
 
