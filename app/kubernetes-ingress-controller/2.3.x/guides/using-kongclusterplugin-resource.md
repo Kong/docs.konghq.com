@@ -23,7 +23,10 @@ If everything is setup correctly, making a request to Kong should return
 HTTP 404 Not Found.
 
 ```bash
-$ curl -i $PROXY_IP
+curl -i $PROXY_IP
+```
+
+```
 HTTP/1.1 404 Not Found
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
@@ -41,17 +44,25 @@ We will start by installing two services,
 an echo service and an httpbin service in their corresponding namespaces.
 
 ```bash
-$ kubectl create namespace httpbin
-namespace/httpbin created
-$ kubectl apply -n httpbin -f https://bit.ly/k8s-httpbin
-service/httpbin created
-deployment.apps/httpbin created
+kubectl create namespace httpbin
+kubectl apply -n httpbin -f https://bit.ly/k8s-httpbin
 ```
 
 ```bash
-$ kubectl create namespace echo
+kubectl create namespace echo
+kubectl apply -n echo -f https://bit.ly/echo-service
+```
+
+Once you've run these commands, you will see the namespace, service and deployments created:
+
+```
+# After running the first command
+namespace/httpbin created
+service/httpbin created
+deployment.apps/httpbin created
+
+# After running the second command
 namespace/echo created
-$ kubectl apply -n echo -f https://bit.ly/echo-service
 service/echo created
 deployment.apps/echo created
 ```
@@ -62,7 +73,7 @@ Let's expose these services outside the Kubernetes cluster
 by defining Ingress rules.
 
 ```bash
-$ echo "
+echo "
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -83,9 +94,10 @@ spec:
             port:
               number: 80
 " | kubectl apply -f -
-ingress.extensions/demo created
+```
 
-$ echo "
+```
+echo "
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -104,14 +116,16 @@ spec:
             port:
               number: 80
 " | kubectl apply -f -
-ingress.extensions/demo created
 ```
 
-Let's test these endpoints:
+Let's test these endpoints, starting with the `httpbin` service:
 
 ```bash
-# access httpbin service
-$ curl -i $PROXY_IP/foo/status/200
+# Access httpbin service
+curl -i $PROXY_IP/foo/status/200
+```
+
+```
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
 Content-Length: 0
@@ -122,9 +136,16 @@ Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 1
 Via: kong/1.2.1
+```
 
-# access echo service
-$ curl -i $PROXY_IP/bar
+Next, we can test the `echo` service:
+
+```
+# Access echo service
+curl -i $PROXY_IP/bar
+```
+
+```
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Transfer-Encoding: chunked
@@ -146,8 +167,10 @@ Pod Information:
 
 ## Create KongClusterPlugin resource
 
+Now that we have running services, we can add a `KongClusterPlugin` definition to add a response header to our services:
+
 ```bash
-$ echo '
+echo '
 apiVersion: configuration.konghq.com/v1
 kind: KongClusterPlugin
 metadata:
@@ -160,14 +183,15 @@ config:
     - "demo: injected-by-kong"
 plugin: response-transformer
 ' | kubectl apply -f -
-kongclusterplugin.configuration.konghq.com/add-response-header created
 ```
 
-Note how the resource is created at cluster-level and not in any specific
-namespace:
+Note how the resource is created at cluster-level and not in any specific namespace:
 
 ```bash
-$ kubectl get kongclusterplugins
+kubectl get kongclusterplugins
+```
+
+```
 NAME                  PLUGIN-TYPE            AGE
 add-response-header   response-transformer   4s
 ```
@@ -182,10 +206,15 @@ We will associate the `KongClusterPlugin` resource with the two Ingress resource
 that we previously created:
 
 ```bash
-$ kubectl patch ingress -n httpbin httpbin-app -p '{"metadata":{"annotations":{"konghq.com/plugins":"add-response-header"}}}'
-ingress.extensions/httpbin-app patched
+# Patch httpbin service
+kubectl patch ingress -n httpbin httpbin-app -p '{"metadata":{"annotations":{"konghq.com/plugins":"add-response-header"}}}'
 
-$ kubectl patch ingress -n echo echo-app -p '{"metadata":{"annotations":{"konghq.com/plugins":"add-response-header"}}}'
+# Patch echo service
+kubectl patch ingress -n echo echo-app -p '{"metadata":{"annotations":{"konghq.com/plugins":"add-response-header"}}}'
+```
+
+```
+ingress.extensions/httpbin-app patched
 ingress.extensions/echo-app patched
 ```
 
@@ -197,6 +226,9 @@ Let's test it out:
 
 ```bash
 curl -i $PROXY_IP/foo/status/200
+```
+
+```
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
 Content-Length: 9593
@@ -208,8 +240,15 @@ demo:  injected-by-kong
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 1
 Via: kong/1.2.1
+```
 
-$ curl -I $PROXY_IP/bar
+Let's test the `echo` service to make sure that the header is injected there too:
+
+```
+curl -I $PROXY_IP/bar
+```
+
+```
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Connection: keep-alive
@@ -229,7 +268,7 @@ Now, let's update the plugin configuration to change the header value from
 `injected-by-kong` to `injected-by-kong-for-kubernetes`:
 
 ```bash
-$ echo '
+echo '
 apiVersion: configuration.konghq.com/v1
 kind: KongClusterPlugin
 metadata:
@@ -242,7 +281,6 @@ config:
     - "demo: injected-by-kong-for-kubernetes"
 plugin: response-transformer
 ' | kubectl apply -f -
-kongclusterplugin.configuration.konghq.com/add-response-header configured
 ```
 
 If you repeat the requests from the last step, you will see Kong
