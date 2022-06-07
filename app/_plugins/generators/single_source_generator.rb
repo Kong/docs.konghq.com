@@ -32,7 +32,8 @@ module SingleSource
         next unless v['generate'] || assume_generated
 
         # We might want to exclude a specific URL by setting generate: false
-        next if v['generate'] === false
+        # but it needs to be set explicitly, rather than the key not existing
+        next if v.key?('generate') && v['generate'] == false
 
         # Handle when it's the root page.
         # We always want to generate this, even if
