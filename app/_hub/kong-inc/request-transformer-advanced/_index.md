@@ -270,16 +270,15 @@ above).
 
 ### Examples Using Template as Value
 
-Add a Service named `test` with `uris` configured with a named capture group
-`user_id`:
+Add a Service named `test` which routes requests to the mockbin.com upstream service:
 
 ```bash
 curl -X POST http://localhost:8001/services \
-  --data 'name=test' \
-  --data 'upstream_url=http://mockbin.com' \
-  --data-urlencode 'uris=/requests/user/(?<user_id>\w+)' \
-  --data "strip_uri=false"
+    --data 'name=test' \
+    --data 'url=http://mockbin.com/requests'
 ```
+
+Create a route for the `test` service, capturing a `user_id` field from the third segment of the request path:
 
 {:.note}
 > **Kubernetes users:** Version `v1beta1` of the Ingress
@@ -289,35 +288,25 @@ curl -X POST http://localhost:8001/services \
   these based on their order in the URL path. For example `$(uri_captures[1])`
   obtains the value of the first capture group.
 
-Enable the ‘request-transformer-advanced’ plugin to add a new header `x-consumer-id`
-and its value is being set with the value sent with header `x-user-id` or
-with the default value alice is `header` is missing.
-
 ```bash
-curl -X POST http://localhost:8001/services/test/plugins \
-  --data "name=request-transformer-advanced" \
-  --data-urlencode "config.add.headers=x-consumer-id:\$(headers['x-user-id'] or 'alice')" \
-  --data "config.remove.headers=x-user-id"
+curl -X POST http://localhost:8001/services/test/routes --data "name=test_user" \
+    --data-urlencode 'paths=/requests/user/(?<user_id>\w+)'
 ```
 
-Now send a request without setting header `x-user-id`:
+Enable the `request-transformer` plugin to add a new header, `x-user-id`,
+whose value is being set from the captured group in the route path specified above:
+
+```bash
+curl -XPOST http://localhost:8001/routes/test_user/plugins --data "name=request-transformer" --data "config.add.headers=x-user-id:\$(uri_captures['user_id'])"
+```
+
+Now send a request with a user id in the route path: 
 
 ```bash
 curl -i -X GET localhost:8000/requests/user/foo
 ```
 
-The plugin adds a new header `x-consumer-id` with the value `alice` before
-proxying the request upstream.
-
-Now try sending a request with the header `x-user-id` set:
-
-```bash
-curl -i -X GET localhost:8000/requests/user/foo \
-  -H "X-User-Id:bob"
-```
-
-This time, the plugin adds the new header `x-consumer-id` with the value sent
-along with the header `x-user-id`, in this case `bob`.
+You should notice in the reponse that the `x-user-id` header has been added with a value of `foo`.
 
 ## Order of Execution
 
