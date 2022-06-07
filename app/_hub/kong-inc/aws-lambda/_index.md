@@ -71,6 +71,23 @@ params:
         to connect to the closest AWS region. If `region`, `host` and environment
         variables have not been specified, the plugin responds with an HTTP
         `500 Internal Server Error` at run-time.
+    - name: aws_assume_role_arn
+      required: false
+      default: null
+      value_in_examples: <AWS_ASSUME_ROLE_ARN>
+      datatype: string
+      description: |
+        The target AWS IAM role ARN used to invoke the Lambda function. Typically this is
+        used for a cross-account Lambda function invocation.
+    - name: aws_role_session_name
+      required: false
+      default: '`kong`'
+      value_in_examples: <AWS_ROLE_SESSION_NAME>
+      datatype: string
+      description: |
+        The identifier of the assumed role session. It is used for uniquely identifying
+        a session when the same target role is assumed by different principals or
+        for different reasons. The role session name is also used in the ARN of the assumed role principle.
     - name: host
       required: false
       default: null
@@ -84,7 +101,11 @@ params:
       default: null
       value_in_examples: <LAMBDA_FUNCTION_NAME>
       datatype: string
-      description: The AWS Lambda function name to invoke.
+      description: The AWS Lambda function name to invoke. The name formats
+      of the function name can be name-only(`my-function`),
+      full ARN(arn:aws:lambda:us-west-2:123456789012:function:my-function) and
+      partial ARN(123456789012:function:my-function). You can also append a version
+      number or alias to any of the formats.
     - name: qualifier
       required: false
       default: null
@@ -238,11 +259,26 @@ argument to the AWS Lambda function.
 ---
 ### Notes
 
+If you provide `aws_key` and `aws_secret`, they will be used in the highest priority to
+invoke the Lambda function.
+
 If you do not provide an `aws_key` and `aws_secret`, the plugin uses an IAM role inherited
 from the instance running Kong.
 
-First, the plugin tries ECS metadata to get the role. If no ECS metadata is available,
-the plugin falls back on EC2 metadata.
+For example, if you're running Kong on an EC2 instance, the IAM role that attached
+to the EC2 will be used, and Kong will fetch the credential from the
+[EC2 Instance Metadata service(IMDSv1)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html);
+ if you're running Kong in an ECS container, the task IAM role will be used, and Kong will fetch the credentials from
+the [container credential provider](https://docs.aws.amazon.com/sdkref/latest/guide/feature-container-credentials.html).
+Note that the plugin will firstly tring to fetch from ECS metadata to get the role, and if no ECS metadata related environment
+variables is available, the plugin falls back on EC2 metadata.
+
+If you also provide the `aws_assume_role_arn` option, the plugin will try to perform
+an additional [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)
+action(which requires the Kong process to make HTTPS request to AWS STS service API) after
+configuring AWS access key/secret or fetching credentials automatically from EC2/ECS IAM roles,
+and if succeeded, the plugin will fetch a temporary security credentials which represents
+that the plugin now have the access permission configured in the target assumed role.
 
 ### AWS Region as Environment Variable
 
