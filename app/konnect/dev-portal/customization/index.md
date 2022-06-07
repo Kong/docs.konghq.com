@@ -56,3 +56,33 @@ Add a custom Dev Portal domain through your organization's {{site.konnect_short_
 
    {:.note}
    > **Note:** DNS propagation can take a few hours. If after a few hours you can't access the Dev Portal from the custom URL, contact your domain registrar.
+
+<!-- markdownlint-disable-next-line -->
+## Single Sign-On (SSO)
+{:.badge .enterprise}
+
+Single-Sign-On (SSO) can be configured in the Dev Portal by those with Admin roles via the Identity settings in the {{site.konnect_short_name}} Admin UI.
+
+1. In {{site.konnect_short_name}}, open {% konnect_icon dev-portal %} **Dev Portal**, then click **Settings**.
+
+2. Open the **Identity** tab.
+
+3. Enter the full domain, including subdomain and protocol, into the  **Provider URL** field (also known as **Issuer**). e.g. `https://accounts.google.com` for Google IdP
+
+4. Enter the unique identifier provided by the IdP into the **Client ID** field.
+
+5. Enter the secret used to verify ownership of your IdP client into the **Client Secret** field.
+
+### Configuration Requirements
+
+One or both of Built-in and OIDC must be used at any time.
+
+* If OIDC is enabled and Built-in is disabled, developer passwords will still work. When re-enabling Built-in, they will be inactive while built-in is off.
+
+* Enabling both Built-in and OIDC will give the developer the option of registering/logging in with email/password or a button for SSO through the IdP.
+
+### OIDC Details
+
+* If a user account associated to a {{site.konnect_short_name}} developer is removed from the IdP, the {{site.konnect_short_name}} developer account will continue to exist. It must be deleted by a {{site.konnect_short_name}} admin from the {{site.konnect_short_name}} dashboard.
+* If a {{site.konnect_short_name}} developer associated with an IdP user is deleted, the same IdP user can re-authenticate with the developer portal and a new {{site.konnect_short_name}} developer will be created. To persistently revoke access for developers authenticating through your IdP, you must remove the ability for that user to authenticate with the IdP.
+* User information from the IdP is not synced with Konnect developers after first login.

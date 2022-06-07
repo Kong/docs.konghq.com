@@ -10,6 +10,7 @@ All Developer registrations are either manually approved by {{site.konnect_short
 This doc covers:
 
 * [How to Register as a Developer](#register)
+* [Single-Sign-On (SSO)](#sso)
 * [Account Management](#management)
 
 ## Register as a Developer {#register}
@@ -24,11 +25,23 @@ All Developers must register through the {{site.konnect_short_name}} [Dev Portal
 
    You should receive an email to confirm your email address. Click the verification link in the email.
 
-5. Set a password for your account.
+4. Set a password for your account.
 
 If your admin has auto-approve enabled, you can log into the Dev Portal immediately after setting a password. Learn how to [set up auto-approval for developer access as an admin](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/).
 
 If auto-approve is not enabled, an admin has to review and approve your request manually. All manually approved developers are notified via email upon gaining access to the Dev Portal. Learn how to [manually approve developer access as an admin](/konnect/dev-portal/access-and-approval/manage-devs/#approve-dev-reg).
+
+<!-- markdownlint-disable-next-line -->
+## Login/Register with SSO {#sso}
+{:.badge .enterprise}
+
+1. Navigate to the {{site.konnect_short_name}} Dev Portal URL provided by your {{site.konnect_short_name}} admin.
+
+2. At the top of the login form, click **Login with SSO**.
+
+3. You will be redirected to the Identity Provider (IdP) that the admin has configured (e.g. [Okta SSO](https://www.okta.com/products/single-sign-on/)). Here, you will sign in using your IdP's credentials.
+
+4. Once you've logged in, you will be redirected to the {{site.konnect_short_name}} catalog.
 
 ## Account Management {#management}
 
