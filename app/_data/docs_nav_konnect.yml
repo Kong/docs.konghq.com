@@ -62,8 +62,9 @@
         - text: Service Implementations
           url: /servicehub/service-implementations
     - text: Manage Plugins
-      url: /servicehub/plugins
       items:
+        - text: Overview
+          url: /servicehub/plugins
         - text: Configure a Plugin on a Service
           url: /servicehub/enable-service-plugin
         - text: Configure a Plugin on a Route
@@ -75,14 +76,13 @@
     - text: Overview
       url: /runtime-manager
     - text: Runtime Groups
-      url: /runtime-manager/runtime-groups
       items:
-        - text: Manage Runtime Groups
+        - text: Overview
+          url: /runtime-manager/runtime-groups
+        - text: Manage Runtime Groups with UI
           url: /runtime-manager/runtime-groups/manage
         - text: Manage Runtime Groups with decK
           url: /runtime-manager/runtime-groups/declarative-config
-        - text: Manage Entities in a Runtime Group
-          url: /runtime-manager/runtime-groups/manage-entities
     - text: Runtime Instances
       items:
         - text: Install with Docker
@@ -97,8 +97,14 @@
           url: /runtime-manager/runtime-instances/renew-certificates
         - text: Runtime Parameter Reference
           url: /runtime-manager/runtime-instances/runtime-parameter-reference
-        - text: Troubleshoot Runtime Instance Issues
-          url: /runtime-manager/runtime-instances/troubleshoot
+    - text: Kong Gateway Configuration in Konnect
+      items:
+        - text: Overview
+          url: /runtime-manager/gateway-config
+        - text: Manage Proxy Configuration
+          url: /runtime-manager/manage-proxy-config
+    - text: Troubleshoot
+      url: /runtime-manager/troubleshoot
 
 - title: Dev Portal
   icon: /assets/images/icons/konnect/icn-dev-portal-nav.svg
