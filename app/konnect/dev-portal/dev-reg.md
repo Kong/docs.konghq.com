@@ -31,7 +31,6 @@ If your admin has auto-approve enabled, you can log into the Dev Portal immediat
 
 If auto-approve is not enabled, an admin has to review and approve your request manually. All manually approved developers are notified via email upon gaining access to the Dev Portal. Learn how to [manually approve developer access as an admin](/konnect/dev-portal/access-and-approval/manage-devs/#approve-dev-reg).
 
-<!-- markdownlint-disable-next-line -->
 ## Login/Register with SSO {#sso}
 {:.badge .enterprise}
 

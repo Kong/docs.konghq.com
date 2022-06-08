@@ -58,7 +58,6 @@ Add a custom Dev Portal domain through your organization's {{site.konnect_short_
    {:.note}
    > **Note:** DNS propagation can take a few hours. If after a few hours you can't access the Dev Portal from the custom URL, contact your domain registrar.
 
-<!-- markdownlint-disable-next-line -->
 ## Single Sign-On
 {:.badge .enterprise}
 
