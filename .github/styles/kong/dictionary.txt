@@ -41,6 +41,7 @@ kong
 Kong/kong
 Konnect
 kubectl
+kubernetes
 Kuma
 kumactl
 Loggly
@@ -88,6 +89,7 @@ upstream
 upstreams
 uri
 url
+urls
 uuid
 validator
 validators

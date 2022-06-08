@@ -4,7 +4,7 @@
 
 We are using [Vale](https://docs.errata.ai/vale/about) to lint our documentation. Vale is a natural language linter that enforces a set of rules that the documentation team has created and returns errors in cases where those rules are broken. Vale is part of the suite of Github actions that test and validate every PR that is pushed to the documentation repo. Vale can and should be run locally to quickly test your documentation before submitting it. 
 
-The 
+<!-- vale off -->
 Docs
 │.github
 │ ├── styles
@@ -15,7 +15,7 @@ Docs
 │ └── workflows
 │     └── vale_linter.yml
 └── vale.ini
-
+<!-- vale on -->
 - `vale.ini`: This is the main configuration file for Vale. For information on how this file works, [the official documentation](https://docs.errata.ai/vale/config) contains detailed information about this file.  
 - `spelling.yml`: This file contains the rules for enforcing spelling. It inherits `dictionary.txt` and sets the `level` value to `error`. This setting will cause a build to fail. 
 - `dictionary.txt`: This file is where you can add words that should be ignored by the dictionary. This file is case **in-sensitive**, and ordered alphabetically in ascending order. 
@@ -23,10 +23,7 @@ Docs
 - `vale_linter.yml`: This file contains the GHA workflow. 
 
 The `vale.ini` configuration file considers anything within the `.github/styles/kong` as part of the `Kong` style. Any new rule written within the Kong style directory will be automatically accessible to Vale. 
-
-
 At this time we only use Vale to enforce: 
-
 * spelling
 
 ## Installing Locally
@@ -56,20 +53,18 @@ FILE.md
  ✖ 1 errors, 0 warnings and 0 suggestions in 1 files.
 ```
 
-The first line is the file name and location, the next line references the location of the error in the format (Line number: Character). The output highlights the word that triggered the error. `kong.spelling` references the name of the configuration file where this rule is written. The last line is a summary of the output.
+The first line is the filename and location, the next line references the location of the error in the format (Line number: Character). The output highlights the word that triggered the error. `kong.spelling` references the name of the configuration file where this rule is written. The last line is a summary of the output.
 
 Spelling is managed by `dictionary.txt`, in the case you receive a false-positive for words that are spelled correctly but are triggering an error, adding the word to the `dictionary.txt` file will force Vale to ignore that word. 
 
-
  
-
 ### Terms 
 
 The terms file can be used for any type of substitution. It would be bad practice to use the `terms.yml` file to write substitutions for anything other than terms, so if you want to write new rules, create a new yaml file for them. 
 
-This is a sample Terms file that shows you three types of term substitution. The first requires quotation marks so that Vale does not consider the brackets an attempt at writing a regular expression. The second uses a regular expression to catch both lowercase and uppercase instances of the term "Developer Portal". The final one, is a standard substitution that catches lowercase instances of the word Kong, throws an error and suggests the uppercase alternative. 
+This is a sample Terms file that shows you three types of term substitution. The first requires quotation marks so that Vale does not consider the brackets an attempt at writing a regular expression. The second uses a regular expression to catch both lowercase and uppercase instances of the term `Developer Portal`. The final one, is a standard substitution that catches lowercase instances of the word Kong, throws an error and suggests the uppercase alternative. 
 
-
+<!-- vale off -->
 ```bash
 extends: substitution
 message: Use '%s' instead of '%s'.
@@ -129,6 +124,8 @@ So a file that contains `kubernetes` or `k8s` will return:
 
 This prompts the users to replace `k8s` and `kubernetes` with "Kubernetes"
 
+<!-- vale on -->
+
 ### Scope
 
 Vale ignores most standard Github flavored markdown syntax. In our docs site we use various non-Github flavored markdown syntax to invoke plugins and their functions. The only way to handle these cases is to write regular expression representations of the syntax to the `vale.ini` configuration file. For more information about scoping within the Vale read the [official documentation](https://docs.errata.ai/vale/scoping). 
@@ -153,14 +150,20 @@ TokenIgnores = {%.*?%}, \
 *  `{{.*?}}`: Ignores instances where we use `{{ example }}` and the pattern **inside** of the brackets. 
 
 
+## Ignoring text 
+
+Vale can be forced to ignore sections of text using the following syntax:
+<!-- vale off -->
+ misslepl wrd k8s k7s kubernetes konglowercase 
+<!-- vale on -->
+Everything in that section will be ignored. Consider using this exclusively for edge-cases where text should be used in a way that does not fit our current rule-set.
+
 ## Policy around adding new rules
 
 The following two rules are in place while we are integrating Vale into our repository. 
 
 * Run **only** on modified files: This rule is set automatically by the Github Actions workflow. Vale will only run on files that were modified in the commit. 
 * When adding a new rule, the person adding the rule must ensure that every doc in the `src` directory passes all of the checks including the new rule. The PR containing the rule must also contain the files in the `src` directory, changed to conform to the new check. 
-
-
 
 ### Installing the Vale VS Code extension
 
