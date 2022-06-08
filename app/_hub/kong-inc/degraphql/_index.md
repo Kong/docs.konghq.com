@@ -64,7 +64,11 @@ curl -X POST http://localhost:8001/services/github/plugins \
   --data name="degraphql"
 ```
 
-The plugin takes over the Service. From this point on, the Service represents
+Enabling the plugin disables regular service function. Instead, the 
+plugin now builds the path and GraphQL query to hit the GraphQL service 
+with. 
+
+From this point on, the Service represents
 your REST API and not the GraphQL endpoint itself. It will return a `404 Not Found`
 status code if no DeGraphQL routes have been configured.
 
