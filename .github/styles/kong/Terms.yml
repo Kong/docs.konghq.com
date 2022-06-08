@@ -13,7 +13,7 @@ swap:
   hashicorp: HashiCorp
   kong: Kong
   '(?:kubernetes|k8s)': Kubernetes
-  Kong Gateway: "{{site.base_gateway}}"
+  kong gateway: "{{site.base_gateway}}"
   Konnect: "{{site.konnect_short_name}}"
   Konnect Cloud: "{{site.konnect_saas}}"
   pg: PostgreSQL

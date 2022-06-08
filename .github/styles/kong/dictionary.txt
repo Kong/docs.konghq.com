@@ -61,7 +61,7 @@ opa
 passthrough
 PayPal
 plaintext
-Powershell
+PowerShell
 Prometheus
 Protobuf
 proxied
@@ -71,11 +71,15 @@ referenceable
 repo
 runtime
 runtimes
+deduplication
+deduplicate
 sandboxing
 serializer
 ssl
 stderr
+stdin
 stdout
+Bagdi
 subcommand
 sudo
 Syslog
@@ -98,3 +102,4 @@ websockets
 yaml
 yml
 Zipkin
+zsh

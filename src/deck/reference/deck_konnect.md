@@ -3,18 +3,18 @@ title: deck konnect
 source_url: https://github.com/Kong/deck/tree/main/cmd
 ---
 
-The konnect command prints subcommands that can be used to
-configure Konnect.
+The {{site.konnect_short_name}} command prints subcommands that can be used to
+configure {{site.konnect_short_name}}.
 
 {:.important}
 > **Deprecation notice:** The `deck konnect` command has been deprecated as of
 v1.12. Please use `deck <cmd>` instead if you would like to declaratively
-manage your Kong Gateway config with Konnect.
+manage your {{site.base_gateway}} config with {{site.konnect_short_name}}.
 
 ## Flags
 
 `-h`, `--help`
-:  help for konnect (Default: `false`)
+:  help for {{site.konnect_short_name}} (Default: `false`)
 
 
 
@@ -50,19 +50,19 @@ This value can also be set using the environment variable DECK_KONG_ADDR
 You may also need to pass in as header the User-Agent that was used to create the cookie-jar.
 
 `--konnect-addr`
-:  Address of the Konnect endpoint. (Default: `"https://us.api.konghq.com"`)
+:  Address of the {{site.konnect_short_name}} endpoint. (Default: `"https://us.api.konghq.com"`)
 
 `--konnect-email`
-:  Email address associated with your Konnect account.
+:  Email address associated with your {{site.konnect_short_name}} account.
 
 `--konnect-password`
-:  Password associated with your Konnect account, this takes precedence over `--konnect-password-file` flag.
+:  Password associated with your {{site.konnect_short_name}} account, this takes precedence over `--konnect-password-file` flag.
 
 `--konnect-password-file`
-:  File containing the password to your Konnect account.
+:  File containing the password to your {{site.konnect_short_name}} account.
 
 `--konnect-runtime-group-name`
-:  Konnect Runtime group name.
+:  {{site.konnect_short_name}} Runtime group name.
 
 `--no-color`
 :  Disable colorized output (Default: `false`)
@@ -107,7 +107,7 @@ between decK and Kong. (Default: `0`)
 ## See also
 
 * [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively
-* [deck konnect diff](/deck/{{page.kong_version}}/reference/deck_konnect_diff)	 - Diff the current entities in Konnect with the one on disks (in alpha)
-* [deck konnect dump](/deck/{{page.kong_version}}/reference/deck_konnect_dump)	 - Export configuration from Konnect (in alpha)
-* [deck konnect ping](/deck/{{page.kong_version}}/reference/deck_konnect_ping)	 - Verify connectivity with Konnect (in alpha)
-* [deck konnect sync](/deck/{{page.kong_version}}/reference/deck_konnect_sync)	 - Sync performs operations to get Konnect's configuration to match the state file (in alpha)
+* [deck {{site.konnect_short_name}} diff](/deck/{{page.kong_version}}/reference/deck_konnect_diff)	 - Diff the current entities in Konnect with the one on disks (in alpha)
+* [deck {{site.konnect_short_name}} dump](/deck/{{page.kong_version}}/reference/deck_konnect_dump)	 - Export configuration from Konnect (in alpha)
+* [deck {{site.konnect_short_name}} ping](/deck/{{page.kong_version}}/reference/deck_konnect_ping)	 - Verify connectivity with Konnect (in alpha)
+* [deck {{site.konnect_short_name}} sync](/deck/{{page.kong_version}}/reference/deck_konnect_sync)	 - Sync performs operations to get Konnect's configuration to match the state file (in alpha)

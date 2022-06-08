@@ -88,19 +88,19 @@ This value can also be set using the environment variable DECK_KONG_ADDR
 You may also need to pass in as header the User-Agent that was used to create the cookie-jar.
 
 `--konnect-addr`
-:  Address of the Konnect endpoint. (Default: `"https://us.api.konghq.com"`)
+:  Address of the {{site.konnect_short_name}} endpoint. (Default: `"https://us.api.konghq.com"`)
 
 `--konnect-email`
-:  Email address associated with your Konnect account.
+:  Email address associated with your {{site.konnect_short_name}} account.
 
 `--konnect-password`
-:  Password associated with your Konnect account, this takes precedence over `--konnect-password-file` flag.
+:  Password associated with your {{site.konnect_short_name}} account, this takes precedence over `--konnect-password-file` flag.
 
 `--konnect-password-file`
-:  File containing the password to your Konnect account.
+:  File containing the password to your {{site.konnect_short_name}} account.
 
 `--konnect-runtime-group-name`
-:  Konnect Runtime group name.
+:  {{site.konnect_short_name}} Runtime group name.
 
 `--no-color`
 :  Disable colorized output (Default: `false`)

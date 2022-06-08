@@ -80,7 +80,7 @@ versions of Kong.
 ### I use Cassandra as a data store for Kong, can I use decK?
 
 {:.important}
-> Cassandra as a backend database for Kong Gateway
+> Cassandra as a backend database for {{site.base_gateway}}
 is deprecated with 2.7.0.0 and will be removed in a future Gateway version.
 
 You can use decK with Kong backed by Cassandra.
