@@ -293,11 +293,11 @@ curl -X POST http://localhost:8001/services/test/routes --data "name=test_user" 
     --data-urlencode 'paths=/requests/user/(?<user_id>\w+)'
 ```
 
-Enable the `request-transformer` plugin to add a new header, `x-user-id`,
+Enable the `request-transformer-advanced` plugin to add a new header, `x-user-id`,
 whose value is being set from the captured group in the route path specified above:
 
 ```bash
-curl -XPOST http://localhost:8001/routes/test_user/plugins --data "name=request-transformer" --data "config.add.headers=x-user-id:\$(uri_captures['user_id'])"
+curl -XPOST http://localhost:8001/routes/test_user/plugins --data "name=request-transformer-advanced" --data "config.add.headers=x-user-id:\$(uri_captures['user_id'])"
 ```
 
 Now send a request with a user id in the route path: 
