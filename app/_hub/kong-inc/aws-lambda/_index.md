@@ -102,10 +102,10 @@ params:
       value_in_examples: <LAMBDA_FUNCTION_NAME>
       datatype: string
       description: |
-        The AWS Lambda function name to invoke. The name formats
-        of the function name can be name-only(`my-function`),
-        full ARN(arn:aws:lambda:us-west-2:123456789012:function:my-function) and
-        partial ARN(123456789012:function:my-function). You can also append a version
+        The AWS Lambda function name to invoke. This may contain
+        the function name only (`my-function`), the full ARN 
+        (arn:aws:lambda:us-west-2:123456789012:function:my-function) or a
+        partial ARN (123456789012:function:my-function). You can also append a version
         number or alias to any of the formats.
     - name: qualifier
       required: false
