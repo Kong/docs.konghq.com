@@ -26,18 +26,18 @@ items:
         url: /install-and-run/openshift
       - text: Docker
         url: /install-and-run/docker
-      - text: Amazon Linux
-        url: /install-and-run/amazon-linux
-      - text: CentOS
-        url: /install-and-run/centos
       - text: macOS
         url: /install-and-run/macos
+      - text: Amazon Linux
+        url: /install-and-run/amazon-linux
       - text: Debian
         url: /install-and-run/debian
       - text: RHEL
         url: /install-and-run/rhel
       - text: Ubuntu
         url: /install-and-run/ubuntu
+      - text: Supported Linux OSes
+        url: /install-and-run/os-support
       - text: Migrating from OSS to EE
         url: /install-and-run/migrate-ce-to-ke
       - text: Upgrade Kong Gateway
