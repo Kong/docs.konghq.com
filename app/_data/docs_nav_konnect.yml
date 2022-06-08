@@ -47,22 +47,20 @@
       #   url: /getting-started/spec/load-balancing
     - text: Import Kong Gateway Entities into Konnect Cloud
       url: /getting-started/import
-#
-# - title: Plan
-#   icon: /assets/images/icons/documentation/icn-deployment-color.svg
-#   items:
 
-
-# - title: Configure
-#   icon: /assets/images/icons/konnect/icn-cogwheel-nav.svg
-#   items:
 - title: Service Hub
   icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
   items:
     - text: Overview
       url: /servicehub
     - text: Manage Services
-      url: /servicehub/manage-services
+      items:
+        - text: Konnect Services
+          url: /servicehub/manage-services
+        - text: Service Versions
+          url: /servicehub/service-versions
+        - text: Service Implementations
+          url: /servicehub/service-implementations
     - text: Manage Plugins
       url: /servicehub/plugins
       items:
