@@ -15,22 +15,22 @@ Kong Gateway currently supports the following Linux operating systems:
       <th>First open-source version</th>
   </thead>
   <tbody>
-  {% for os_version in os_versions %}
-    {% if os_version.status == "active" %}
+  {% for item in os_versions %}
+    {% if item.status == "active" %}
       <tr>
         <td>
-          {{ os_version.name }}
+          {{ item.name }}
         </td>
         <td style="text-align: center">
-          {% if os_version.enterprise == true and os_version.enterprise_versions.first_version != null %}
-            {{ os_version.enterprise_versions.first_version }}
+          {% if item.enterprise == true and item.enterprise_versions.first_version != null %}
+            {{ item.enterprise_versions.first_version }}
           {% else %}
           Not supported
           {% endif %}
         </td>
         <td style="text-align: center">
-          {% if os_version.oss == true and os_version.oss_versions.first_version != null %}
-            {{ os_version.oss_versions.first_version }}
+          {% if item.oss == true and item.oss_versions.first_version != null %}
+            {{ item.oss_versions.first_version }}
           {% else %}
           Not supported
           {% endif %}
@@ -54,25 +54,25 @@ supported by Kong:
       <th>Last open-source version</th>
   </thead>
   <tbody>
-  {% for os_version in os_versions %}
-    {% if os_version.status == "deprecated" %}
+  {% for item in os_versions %}
+    {% if item.status == "deprecated" %}
       <tr>
         <td>
-          {{ os_version.name }}
+          {{ item.name }}
         </td>
         <td>
-          <a href="{{ os_version.eol_link }}">{{ os_version.deprecation_date }}</a>
+          <a href="{{ item.eol_link }}">{{ item.deprecation_date }}</a>
         </td>
         <td style="text-align: center">
-          {% if os_version.enterprise == true %}
-            {{ os_version.enterprise_versions.last_version }}
+          {% if item.enterprise == true %}
+            {{ item.enterprise_versions.last_version }}
           {% else %}
           Not applicable
           {% endif %}
         </td>
         <td style="text-align: center">
-          {% if os_version.oss == true %}
-            {{ os_version.oss_versions.last_version }}
+          {% if item.oss == true %}
+            {{ item.oss_versions.last_version }}
           {% else %}
           Not applicable
           {% endif %}
