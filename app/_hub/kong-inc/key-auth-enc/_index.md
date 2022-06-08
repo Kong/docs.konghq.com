@@ -291,7 +291,7 @@ Paginate through the API keys for all Consumers using the following
 request:
 
 ```bash
-$ curl -X GET http://kong:8001/key-auth-enc
+$ curl -X GET http://kong:8001/key-auths-enc
 ```
 
 Response:
@@ -356,7 +356,7 @@ Retrieve a [Consumer][consumer-object] associated with an API
 key by making the following request:
 
 ```bash
-curl -X GET http://kong:8001/key-auth-enc/{key or id}/consumer
+curl -X GET http://kong:8001/key-auths-enc/{key or id}/consumer
 ```
 
 `key or id`: The `id` or `key` property of the API key for which to get the
