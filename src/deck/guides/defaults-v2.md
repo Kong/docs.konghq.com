@@ -18,7 +18,7 @@ decK supports setting object defaults both in self-managed
 > **Important:** This feature has the following limitations:
 * Plugin object defaults are not supported.
 * If an existing property's default value changes in a future {{site.base_gateway}} release,
-decK has no way of knowing that this change has occured, as its `defaults`
+decK has no way of knowing that this change has ocurred, as its `defaults`
 configuration would overwrite the value in your environment.
 
 ## Object defaults behavior
