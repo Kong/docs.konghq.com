@@ -195,8 +195,22 @@ The `.rock` file is a self-contained package that can be installed locally or fr
 
 If the luarocks utility is installed in your system (this is likely the case if you used one of the official installation packages), you can install the 'rock' in your LuaRocks tree (a directory in which LuaRocks installs Lua modules).
 
-It can be installed from luarocks repository by doing:
-
+1. Install the package from the luarocks repository:
 ```shell
 luarocks install --server=http://luarocks.org/manifests/moesif kong-plugin-moesif
+```
+2. If you don’t have a `kong.conf`, create one from the default:
+```shell
+cp /etc/kong/kong.conf.default /etc/kong/kong.conf
+```
+3. In your `kong.conf`, append moesif to the plugins field. Make sure the field is not commented out:
+```text
+plugins = bundled,moesif         # Comma-separated list of plugins this node
+                                 # should load. By default, only plugins
+                                 # bundled in official distributions are
+                                 # loaded via the `bundled` keyword.
+```
+4. Restart Kong:
+```shell
+kong restart
 ```
