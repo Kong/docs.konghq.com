@@ -67,6 +67,9 @@ Single Sign-On (SSO) can be configured in the Dev Portal by those with Admin rol
 
 2. Open the **Identity** tab.
 
+   {:.note}
+      > **Note:** Be sure to copy your callback URL (sometimes called redirect URL) and enter it in your OIDC Provider
+
 3. Enter the full domain, including subdomain and protocol, into the  **Provider URL** field (also known as **Issuer**). e.g. `https://accounts.google.com` for Google IdP
 
 4. Enter the unique identifier provided by the IdP into the **Client ID** field.

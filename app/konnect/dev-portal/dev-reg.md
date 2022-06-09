@@ -34,6 +34,9 @@ If auto-approve is not enabled, an admin has to review and approve your request 
 ## Login/Register with SSO {#sso}
 {:.badge .enterprise}
 
+{:.note}
+   > **Prerequisite:** OIDC must be set up by your admin by customizing the [Dev Portal](/konnect/dev-portal/customization)
+
 1. Navigate to the {{site.konnect_short_name}} Dev Portal URL provided by your {{site.konnect_short_name}} admin.
 
 2. At the top of the login form, click **Login with SSO**.
