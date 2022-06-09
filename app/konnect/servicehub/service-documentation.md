@@ -3,12 +3,15 @@ title: Dev Portal Service Documentation
 no_version: true
 ---
 
-A core function of the Dev Portal is publishing Service descriptions and API specs. Developers can use the spec and corresponding descriptions to access, consume, and register new applications against your Services. For a step by step tutorial on publishing a Service description and an API spec to the Dev Portal, see our [Get Started: Set Up and Access Dev Portal](/konnect/getting-started/publish-service) guide.
+A core function of the Dev Portal is publishing Service descriptions and API specs. Developers can use the spec and corresponding descriptions to access, consume, and register new applications against your Services.
+
+Through Service Hub, you can also publish any Service in your catalog and its
+documentation to the Dev Portal. Publishing services to the Dev Portal is the only way to expose your service to developers. Once the Service is published and available to developers, they can apply for access by [registering](/konnect/dev-portal/access-and-approval/dev-reg/) a developer account. You can also [manage](/konnect/dev-portal/access-and-approval/manage-devs/) access to the Dev Portal from the {{site.konnect_saas}} interface.
 
 
 ## Service descriptions
 
-You can provide extended descriptions of your Services with a Markdown (`.md`) file. The contents of this file will be displayed as the introduction to your API in the Dev Portal. 
+You can provide extended descriptions of your Services with a Markdown (`.md`) file. The contents of this file will be displayed as the introduction to your API in the Dev Portal.
 ### Upload a Service description
 
 1. From the left navigation menu, open the {% konnect_icon servicehub %} **Service Hub** page.
@@ -31,7 +34,7 @@ You can upload a new document to replace an existing Service document.
 
 ### Delete a Service description
 
-You can delete an existing document from the Dev Portal. Deleting a Service description will permanently remove it from the Dev Portal. 
+You can delete an existing document from the Dev Portal. Deleting a Service description will permanently remove it from the Dev Portal.
 
 1. From the left navigation menu, open the {% konnect_icon servicehub %} **Service Hub** page.
 
@@ -85,10 +88,23 @@ API specifications, or specs, can be uploaded and attached to a specific Version
 
 4. Click a specific Version from the list.
 
-5. In the **Version Spec** section, click the {% konnect_icon cogwheel %} icon, then **Delete** to remove the sepc. 
+5. In the **Version Spec** section, click the {% konnect_icon cogwheel %} icon, then **Delete** to remove the sepc.
 
     Deleted files are permanently removed from the Dev Portal.
 
-## Next Steps
-After adding documentation for your Services,
-[publish](/konnect/dev-portal/publish) them to the Dev Portal.
+## Publishing
+
+### Publish a Service {#publish}
+
+1. From the left navigation menu, open the {% konnect_icon servicehub %} **Service Hub** page and select a Service.
+
+2. Click on the **Service actions** dropdown menu and select **Publish to portal**.
+
+    This publishes a Service's API specs to the Dev Portal.
+
+### Unpublish a Service {#unpublish}
+
+1. In the left navigation menu, open the {% konnect_icon servicehub %}
+**Service Hub** and select a Service.
+
+2. Click on the **Service actions** dropdown and select **Unpublish from portal**.
