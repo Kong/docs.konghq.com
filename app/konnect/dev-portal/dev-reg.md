@@ -1,5 +1,5 @@
 ---
-title: Developer Registration and Account Management
+title: Sign Up for a Dev Portal Account
 no_version: true
 ---
 
@@ -20,7 +20,7 @@ All Developers must register through the {{site.konnect_short_name}} [Dev Portal
 
 2. At the bottom of the login form, click **Sign Up**.
 
-3. Fill out the registration form and click **Create Account**. 
+3. Fill out the registration form and click **Create Account**.
 
    You should receive an email to confirm your email address. Click the verification link in the email.
 
@@ -37,4 +37,3 @@ If you attempt to register multiple times with the same email address, you’ll 
 If you forget your password, click on "Forgot your password?" and enter the email address associated with your Dev Portal account. If an account exists with the email address provided, you’ll receive an email prompting you to change your password.
 
 Contact your {{site.konnect_short_name}} admin if you have login issues.
-
