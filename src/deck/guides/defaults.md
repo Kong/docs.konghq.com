@@ -26,9 +26,9 @@ decK assigns values in the following order of precedence, from highest to lowest
 1. Values set for a specific instance of an object in the state file
 (for example, for a service named `example_service` defined in `kong.yml`).
 2. Values set in the `{_info: defaults:}` object in the state file.
-3. Self-managed Kong Gateway only: Values are checked against the Kong
+3. Self-managed {{site.base_gateway}} only: Values are checked against the Kong
 Admin API schemas.
-4. Konnect Cloud only: Values are checked against the Kong Admin API for plugins,
+4. {{site.konnect_short_name}} Cloud only: Values are checked against the Kong Admin API for plugins,
 and against hardcoded defaults for Service, Route, Upstream, and Target objects.
 
 ## Test default value handling
@@ -512,6 +512,6 @@ For all available properties, see the
 
 ## See also
 * [Deduplicate plugin configuration](/deck/{{page.kong_version}}/guides/deduplicate-plugin-configuration)
-* [Distributed configuration for Kong Gateway using decK](/deck/{{page.kong_version}}/guides/distributed-configuration)
+* [Distributed configuration for {{site.base_gateway}} using decK](/deck/{{page.kong_version}}/guides/distributed-configuration)
 * [Using multiple files to store configuration](/deck/{{page.kong_version}}/guides/multi-file-state)
 * {{site.base_gateway}} admin API: [`/schemas` endpoint](/gateway/latest/admin-api/#retrieve-entity-schema)

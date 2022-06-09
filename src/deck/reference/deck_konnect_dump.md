@@ -3,17 +3,16 @@ title: deck konnect dump
 source_url: https://github.com/Kong/deck/tree/main/cmd
 ---
 
-The konnect dump command reads all entities present in Konnect
+The `konnect dump` command reads all entities present in {{site.konnect_short_name}}
 and writes them to a local file.
 
-The file can then be read using the 'deck konnect sync' command or 'deck konnect diff' command to
-configure Konnect.
+The file can then be read using the `deck konnect sync` command or `deck konnect diff` command to
+configure {{site.konnect_short_name}}.
 
 {:.important}
 > **Deprecation notice:** The `deck konnect` command has been deprecated as of
 v1.12. Please use `deck <cmd>` instead if you would like to declaratively
-manage your Kong Gateway config with Konnect.
-
+manage your {{site.base_gateway}} config with {{site.konnect_short_name}}.
 ## Syntax
 
 ```
@@ -39,7 +38,6 @@ deck konnect dump [command-specific flags] [global flags]
 
 `--yes`
 :  Assume `yes` to prompts and run non-interactively. (Default: `false`)
-
 
 
 ## Global flags
@@ -74,19 +72,19 @@ This value can also be set using the environment variable DECK_KONG_ADDR
 You may also need to pass in as header the User-Agent that was used to create the cookie-jar.
 
 `--konnect-addr`
-:  Address of the Konnect endpoint. (Default: `"https://us.api.konghq.com"`)
+:  Address of the {{site.konnect_short_name}} endpoint. (Default: `"https://us.api.konghq.com"`)
 
 `--konnect-email`
-:  Email address associated with your Konnect account.
+:  Email address associated with your {{site.konnect_short_name}} account.
 
 `--konnect-password`
-:  Password associated with your Konnect account, this takes precedence over `--konnect-password-file` flag.
+:  Password associated with your {{site.konnect_short_name}} account, this takes precedence over `--konnect-password-file` flag.
 
 `--konnect-password-file`
-:  File containing the password to your Konnect account.
+:  File containing the password to your {{site.konnect_short_name}} account.
 
 `--konnect-runtime-group-name`
-:  Konnect Runtime group name.
+:  {{site.konnect_short_name}} Runtime group name.
 
 `--no-color`
 :  Disable colorized output (Default: `false`)
@@ -130,4 +128,4 @@ between decK and Kong. (Default: `0`)
 
 ## See also
 
-* [deck konnect](/deck/{{page.kong_version}}/reference/deck_konnect)	 - Configuration tool for Konnect (in alpha)
+* [decK {{site.konnect_short_name}}](/deck/{{page.kong_version}}/reference/deck_konnect)	 - Configuration tool for {{site.konnect_short_name}} (in alpha)
