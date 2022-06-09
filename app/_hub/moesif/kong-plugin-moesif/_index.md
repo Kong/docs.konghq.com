@@ -1,6 +1,7 @@
 ---
 name: Moesif API Analytics
 publisher: Moesif
+version: 1.x.x
 
 categories: 
   - analytics-monitoring
@@ -8,16 +9,17 @@ categories:
 
 type: plugin
 
-desc: User Behavior API analytics and observability  
+desc: Powerful API analytics and tools to activate, understand, and monetize customers.
 
 description: |
-  Monitor API logs and usage metrics in [Moesif](https://www.moesif.com/solutions/track-api-program?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}, which enables you to:
+  Log API traffic to [Moesif API Analytics](https://www.moesif.com?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}, which enables you to:
 
-  * [Understand customer API usage](https://www.moesif.com/features/api-analytics?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"} and the value they bring.
-  * [Debug issues quickly](https://www.moesif.com/features/api-logs?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"} with high-cardinality API logs and metrics.
-  * [Get alerted](https://www.moesif.com/features/api-monitoring?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"} of problems and anomalous behavior.
-  * [Trigger behavioral emails](https://www.moesif.com/features/user-behavioral-emails?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"} warning customers of issues.
-  * [Detect and Block API threats](https://www.moesif.com/solutions/api-security?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"} and abuse including OWASP Top 10 API threats.
+  * [Understand customer API usage](https://www.moesif.com/features/api-analytics?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}.
+  * [Debug issues quickly](https://www.moesif.com/features/api-logs?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}.
+  * [Monetize your APIs](https://www.moesif.com/solutions/metered-api-billing?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}.
+  * [Get alerted of API issues](https://www.moesif.com/features/api-monitoring?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}.
+  * [Guide customers at scale](https://www.moesif.com/features/user-behavioral-emails?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}.
+  * [Protect and govern your API](https://www.moesif.com/solutions/api-security?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}.
 
   This plugin supports automatic analysis of high-volume REST, GraphQL, and other APIs without adding latency.
 
@@ -34,6 +36,12 @@ terms_of_service_url: https://www.moesif.com/terms?utm_medium=docs&utm_campaign=
 kong_version_compatibility: # required
   community_edition: # optional
     compatible:
+      - 2.8.x
+      - 2.7.x
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
       - 2.2.x
       - 2.1.x
       - 2.0.x
@@ -52,6 +60,13 @@ kong_version_compatibility: # required
     #incompatible:
   enterprise_edition: # optional
     compatible:
+      - 2.8.x
+      - 2.7.x
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
       - 2.1.x
       - 1.5.x
       - 1.3-x
@@ -70,7 +85,17 @@ params:
   service_id: true
   consumer_id: true
   route_id: true
+  protocols:
+    - http
+    - https
+    - tcp
+    - tls
+    - tls_passthrough
+    - udp
+    - grpc
+    - grpcs
   dbless_compatible: yes
+  dbless_explanation: The plugin is compatible with any policy including `local`, `cluster`, and `redis`
   config:
     - name: application_id
       required: true
@@ -101,14 +126,6 @@ params:
       required: false
       default: "`1.0`"
       description: API Version you want to tag this request with in Moesif.
-    - name: user_id_header
-      required: false
-      default: "X-Consumer-Custom-Id"
-      description: Request or response header to use to identify the User in Moesif.
-    - name: company_id_header
-      required: false
-      default: ""
-      description: Request or response header to use to identify the Company (Account) in Moesif.
     - name: disable_capture_request_body
       required: false
       default: "`false`"
@@ -141,6 +158,22 @@ params:
       required: false
       default: "`200`"
       description: Maximum batch size when sending to Moesif.
+    - name: user_id_header
+      required: false
+      default: "`X-Consumer-Custom-Id`"
+      description: Request or response header to use to identify the User in Moesif.
+    - name: company_id_header
+      required: false
+      default: ""
+      description: Request or response header to use to identify the Company (Account) in Moesif.
+    - name: authorization_header_name
+      required: false
+      default: "`authorization`"
+      description: Request header containing a Bearer or Basic token to extract user id. See identifying users. Also, supports a comma separated string. Plugin will check headers in order like "X-Api-Key,Authorization".
+    - name: authorization_user_id_field
+      required: false
+      default: "`sub`"
+      description: Field name in JWT/OpenId token’s payload for identifying users. Only applicable if authorization_header_name is set and is a Bearer token.   
     - name: event_queue_size
       required: false
       default: "`5000`"
@@ -189,14 +222,52 @@ This plugin logs to Moesif with an [asynchronous design](https://www.moesif.com/
 
 Moesif natively supports REST, GraphQL, Web3, SOAP, JSON-RPC, and more.
 
-### How to install
+## How to install
 
-The `.rock` file is a self-contained package that can be installed locally or from a remote server.
+> If you are using Kong's [Kubernetes Ingress Controller](https://github.com/Kong/kubernetes-ingress-controller), the installation is slightly different. Review the [docs for Kubernetes Ingress](https://www.moesif.com/docs/server-integration/kong-ingress-controller/).
+
+The .rock file is a self contained package that can be installed locally or from a remote server.
 
 If the luarocks utility is installed in your system (this is likely the case if you used one of the official installation packages), you can install the 'rock' in your LuaRocks tree (a directory in which LuaRocks installs Lua modules).
 
-It can be installed from luarocks repository by doing:
+### 1. Install the Moesif plugin
 
 ```shell
 luarocks install --server=http://luarocks.org/manifests/moesif kong-plugin-moesif
+```
+
+### 2. Update your loaded plugins list
+In your `kong.conf`, append `moesif` to the `plugins` field (or `custom_plugins` if old version of Kong). Make sure the field is not commented out.
+
+```yaml
+plugins = bundled,moesif         # Comma-separated list of plugins this node
+                                 # should load. By default, only plugins
+                                 # bundled in official distributions are
+                                 # loaded via the `bundled` keyword.
+```
+
+
+If you don't have a `kong.conf`, create one from the default using the following command: 
+`cp /etc/kong/kong.conf.default /etc/kong/kong.conf`
+
+### 3. Restart Kong
+
+After the luarock is installed, restart Kong before enabling the plugin
+
+```shell
+kong restart
+```
+
+### 4. Enable the Moesif plugin
+
+```shell
+curl -i -X POST --url http://localhost:8001/plugins/ --data "name=moesif" --data "config.application_id=YOUR_APPLICATION_ID";
+```
+
+### 5. Restart Kong again
+
+If you don't see any logs in Moesif, you may need to restart Kong again. 
+
+```shell
+kong restart
 ```
