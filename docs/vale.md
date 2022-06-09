@@ -153,9 +153,12 @@ TokenIgnores = {%.*?%}, \
 ## Ignoring text 
 
 Vale can be forced to ignore sections of text using the following syntax:
+
+```
 <!-- vale off -->
  misslepl wrd k8s k7s kubernetes konglowercase 
 <!-- vale on -->
+```
 Everything in that section will be ignored. Consider using this exclusively for edge-cases where text should be used in a way that does not fit our current rule-set.
 
 ## Policy around adding new rules
