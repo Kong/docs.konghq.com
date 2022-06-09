@@ -46,5 +46,3 @@ For Developers:
 Konnect has built-in customization options for managing the Dev Portal so that you can build a consistent experience for the consumers of your API. Customizing your Dev Portal to reflect the likeness of your brand can help convince Developers to create applications with your services. With Konnect, you don’t need to have knowledge of any web frameworks, because you customize everything from the application. Konnect also has built-in themes if customization is not your immediate priority. 
 
 For more information please read our doc on [customization](/konnect/dev-portal/customization/).
-
-* [Application Overview](/konnect/dev-portal/applications/application-overview)
