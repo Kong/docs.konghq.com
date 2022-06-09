@@ -5,6 +5,7 @@
 We are using [Vale](https://docs.errata.ai/vale/about) to lint our documentation. Vale is a natural language linter that enforces a set of rules that the documentation team has created and returns errors in cases where those rules are broken. Vale is part of the suite of Github actions that test and validate every PR that is pushed to the documentation repo. Vale can and should be run locally to quickly test your documentation before submitting it. 
 
 <!-- vale off -->
+```
 Docs
 │.github
 │ ├── styles
@@ -15,6 +16,8 @@ Docs
 │ └── workflows
 │     └── vale_linter.yml
 └── vale.ini
+```
+
 <!-- vale on -->
 - `vale.ini`: This is the main configuration file for Vale. For information on how this file works, [the official documentation](https://docs.errata.ai/vale/config) contains detailed information about this file.  
 - `spelling.yml`: This file contains the rules for enforcing spelling. It inherits `dictionary.txt` and sets the `level` value to `error`. This setting will cause a build to fail. 
