@@ -115,7 +115,7 @@
       url: /dev-portal
     - text: Access the Dev Portal
       url: /dev-portal/access
-    - text: Developer Registration
+    - text: Sign Up for a Dev Portal Account
       url: /dev-portal/dev-reg
     - text: Access and Approval
       items:

@@ -6,7 +6,7 @@ no_version: true
 Access the Dev Portal to view any [published services](/konnect/servicehub/service-documentation)
 and [register applications against services](/konnect/dev-portal/applications/dev-reg-app-service).
 
-## Access the Developer Portal {#url}
+## Open a service in the Dev Portal {#url}
 
 1. From the left navigation menu, open the **Dev Portal** page.
 
