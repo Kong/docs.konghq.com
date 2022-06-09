@@ -1,8 +1,8 @@
 name: text-linting
 on:
-  push:
-    branches:
-      - vale-branch
+  pull_request: 
+    types: [opened, synchronize]
+
 
 jobs:
   vale:
