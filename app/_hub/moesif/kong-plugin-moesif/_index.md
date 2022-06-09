@@ -12,14 +12,14 @@ type: plugin
 desc: Powerful API analytics and tools to activate, understand, and monetize customers.
 
 description: |
-  Log API traffic to [Moesif API Analytics](https://www.moesif.com?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}, which enables you to:
+  This plugin logs API traffic to [Moesif API Analytics](https://www.moesif.com?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}, which enables you to:
 
-  * [Understand customer API usage](https://www.moesif.com/features/api-analytics?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}.
-  * [Debug issues quickly](https://www.moesif.com/features/api-logs?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}.
-  * [Monetize your APIs](https://www.moesif.com/solutions/metered-api-billing?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}.
-  * [Get alerted of API issues](https://www.moesif.com/features/api-monitoring?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}.
-  * [Guide customers at scale](https://www.moesif.com/features/user-behavioral-emails?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}.
-  * [Protect and govern your API](https://www.moesif.com/solutions/api-security?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}.
+  * [Understand customer API usage](https://www.moesif.com/features/api-analytics?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}
+  * [Debug issues quickly](https://www.moesif.com/features/api-logs?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}
+  * [Monetize your APIs](https://www.moesif.com/solutions/metered-api-billing?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}
+  * [Get alerted of API issues](https://www.moesif.com/features/api-monitoring?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}
+  * [Guide customers at scale](https://www.moesif.com/features/user-behavioral-emails?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}
+  * [Protect and govern your API](https://www.moesif.com/features/api-governance-rules?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}
 
   This plugin supports automatic analysis of high-volume REST, GraphQL, and other APIs without adding latency.
 
@@ -94,8 +94,8 @@ params:
     - udp
     - grpc
     - grpcs
-  dbless_compatible: yes
-  dbless_explanation: The plugin is compatible with any policy including `local`, `cluster`, and `redis`
+  dbless_compatible: 'yes'
+  dbless_explanation: The plugin is compatible with any with DB-less mode including `local`, `cluster`, and `redis`
   config:
     - name: application_id
       required: true
