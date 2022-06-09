@@ -122,7 +122,9 @@ between decK and Kong. (Default: `0`)
 
 ## See also
 
+{% if_version gte:1.8.x %}
 * [deck completion](/deck/{{page.kong_version}}/reference/deck_completion)	 - Generate completion script
+{% endif_version %}
 * [deck convert](/deck/{{page.kong_version}}/reference/deck_convert)	 - Convert files from one format into another format
 * [deck diff](/deck/{{page.kong_version}}/reference/deck_diff)	 - Diff the current entities in Kong with the one on disks
 * [deck dump](/deck/{{page.kong_version}}/reference/deck_dump)	 - Export Kong configuration to a file

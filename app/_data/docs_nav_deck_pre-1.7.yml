@@ -1,6 +1,5 @@
 product: deck
 release: pre-1.7
-assume_generated: true
 items:
   - title: Introduction
     icon: /assets/images/icons/documentation/icn-flag.svg
