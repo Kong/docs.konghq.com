@@ -111,7 +111,7 @@ Next, set up a CNAME DNS record to resolve `demo.example.com` to
 `proxy.example.com`.
 
 ```bash
-$ dig +short demo.yolo2.com
+$ dig +short demo.example.com
 proxy.example.com.
 35.233.170.67
 ```
