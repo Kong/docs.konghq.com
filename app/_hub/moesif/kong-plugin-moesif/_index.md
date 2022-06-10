@@ -161,7 +161,7 @@ params:
     - name: user_id_header
       required: false
       default: "`X-Consumer-Custom-Id`"
-      description: Request or response header to use to identify the User in Moesif.
+      description: Request or response header used to identify the User in Moesif.
     - name: company_id_header
       required: false
       default: ""
