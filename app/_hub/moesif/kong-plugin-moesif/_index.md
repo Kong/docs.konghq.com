@@ -165,7 +165,7 @@ params:
     - name: company_id_header
       required: false
       default: ""
-      description: Request or response header to use to identify the Company (Account) in Moesif.
+      description: Request or response header used to identify the Company (Account) in Moesif.
     - name: authorization_header_name
       required: false
       default: "`authorization`"
