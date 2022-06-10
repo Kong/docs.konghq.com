@@ -50,6 +50,7 @@ lua
 Luarocks
 minikube
 Mockbin
+Moesif
 MongoDB
 namespace
 namespaces
