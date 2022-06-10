@@ -40,6 +40,7 @@ Keycloak
 kong
 Kong/kong
 Konnect
+Moesif
 kubectl
 kubernetes
 Kuma
