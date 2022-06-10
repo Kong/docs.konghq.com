@@ -30,7 +30,7 @@ test.describe("Gateway", () => {
   test("renders nested breadcrumbs correctly (Single Sourced)", async ({
     page,
   }) => {
-    await page.goto("/gateway/");
+    await page.goto("/gateway/latest/");
     await expect(page.locator(".breadcrumb-item:nth-of-type(1)")).toHaveText(
       "Kong Konnect Platform"
     );
@@ -42,7 +42,7 @@ test.describe("Gateway", () => {
 
 test.describe("decK", () => {
   test("rrenders the index page breadcrumbs correctly", async ({ page }) => {
-    await page.goto("/deck/");
+    await page.goto("/deck/latest/");
 
     await expect(page.locator(".breadcrumb-item:nth-of-type(1)")).toHaveText(
       "Open Source"

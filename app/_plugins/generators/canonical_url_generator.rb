@@ -47,19 +47,18 @@ module CanonicalUrl
 
         # We always want to run on specific pages, even within a versioned docset
         is_global_page = url_segments[1] == 'changelog'
-        is_product_index = url_segments.size == 1
 
         # We only want to process the following cases:
         # * It's a versioned page (in the format /x.y.z/)
         # * It's the /latest/ page
         # * It's a global page e.g. /changelog/
-        next unless versioned_page?(url_segments) || is_global_page || is_product_index
+        next unless versioned_page?(url_segments) || is_global_page
 
-        # If it's a global or index page, there's only one version of it
+        # If it's a global page, there's only one version of it
         # by definition so it always needs adding to the list of pages.
         # We set the version to "latest" for this URL to ensure that it's
         # always added to the index
-        if is_global_page || is_product_index
+        if is_global_page
           version = to_version('latest')
           url = page.url
           page.data['is_latest'] = true
@@ -119,10 +118,6 @@ module CanonicalUrl
         # There will usually only be one URL to check, but gateway-oss
         # and enterprise URLs will contain two here, so we have to loop
         urls_to_check.each do |u|
-          # If it's a /<product>/VERSION/ url then it should be linked to
-          # /<product> as the canonical URL. This is a special case
-          next page.data['canonical_url'] = "/#{url_segments[0]}/" if url_segments.size == 2
-
           # Otherwise look up the URL and link to the latest version
           matching_url = all_pages[u]
           page.data['canonical_url'] = matching_url['url'] if matching_url

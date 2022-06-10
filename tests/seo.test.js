@@ -28,12 +28,12 @@ test.describe("Canonical links", () => {
     {
       title: "links to the product index when showing the index page for a specific version (kic)",
       src: "/kubernetes-ingress-controller/2.2.x/",
-      href: "/kubernetes-ingress-controller/",
+      href: "/kubernetes-ingress-controller/latest/",
     },
      {
       title: "links to the product index when showing the index page for a specific version (gateway)",
       src: "/gateway/2.7.x/",
-      href: "/gateway/",
+      href: "/gateway/latest/",
     },
     {
       title: "plugin hub index",
@@ -144,10 +144,10 @@ test.describe("sitemap includes", () => {
   [
     "/konnect/",
     "/konnect-platform/",
-    "/gateway/",
-    "/mesh/",
-    "/kubernetes-ingress-controller/",
-    "/deck/",
+    "/gateway/latest/",
+    "/mesh/latest/",
+    "/kubernetes-ingress-controller/latest/",
+    "/deck/latest/",
     "/gateway/latest/install-and-run/docker/",
     "/mesh/latest/installation/ecs/",
     "/kubernetes-ingress-controller/latest/deployment/k4k8s/",
@@ -172,6 +172,8 @@ test.describe("sitemap does not include", () => {
     "/mesh/1.6.x/",
     "/mesh/1.1.x/overview/",
     "/konnect-platform/compatibility/",
+    "/deck/",
+    "/gateway/",
   ].forEach((t) => {
     test(t, async ({ page }) => {
       await page.goto("/sitemap.xml");

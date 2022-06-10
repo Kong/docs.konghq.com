@@ -1,5 +1,6 @@
 ---
 title: decK and Kong Gateway (Enterprise)
+content-type: explanation
 ---
 
 All features of decK work with both {{site.ce_product_name}} and {{site.ee_product_name}}.
@@ -88,6 +89,8 @@ deck dump --all-workspaces
 
 This creates one configuration file per workspace.
 
+{% if_version gte:1.11.x %}
+
 However, since a `workspace` is an isolated unit of configuration, decK doesn't
 allow the deployment of multiple workspaces at a time. Therefore, each
 workspace configuration file must be deployed individually:
@@ -99,6 +102,8 @@ deck sync -s workspace1.yaml --workspace workspace1
 ```sh
 deck sync -s workspace2.yaml --workspace workspace2
 ```
+
+{% endif_version %}
 
 {:.important}
 > Be careful when using the `--all-workspaces` flag to avoid overwriting the wrong workspace. We

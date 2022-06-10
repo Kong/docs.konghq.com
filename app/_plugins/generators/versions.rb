@@ -181,7 +181,7 @@ module Jekyll
       end
     end
 
-    def create_aliases(page, url_path, offset, parts, latest_release)
+    def create_aliases(page, _url_path, offset, parts, latest_release)
       release_path = parts[0 + offset]
       template_name = parts[1 + offset]
 
@@ -189,10 +189,7 @@ module Jekyll
 
       # template_name is nil if using single source generation and it's the index page
       if template_name == 'index.md' || template_name.nil?
-        # the / page
-        page.data['permalink'] = "#{url_path}/"
-        page.data['alias'] =
-          ["#{url_path}/latest", "#{url_path}/#{latest_release}", "#{url_path}/#{latest_release}/index.html"]
+        # This will be handled by latest_version_generator later
       elsif /index\.(md|html)/.match(parts.last)
         # all other nested index pages
         page.data['alias'] = page.url.sub(/index/, '')
