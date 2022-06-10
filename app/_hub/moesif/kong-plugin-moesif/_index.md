@@ -250,7 +250,7 @@ plugins = bundled,moesif         # Comma-separated list of plugins this node
 If you don't have a `kong.conf`, create one from the default using the following command: 
 `cp /etc/kong/kong.conf.default /etc/kong/kong.conf`
 
-### 3. Restart Kong
+### Restart Kong
 
 After the luarock is installed, restart Kong before enabling the plugin
 
