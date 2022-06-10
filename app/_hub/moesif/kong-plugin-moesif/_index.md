@@ -230,7 +230,7 @@ The .rock file is a self contained package that can be installed locally or from
 
 If the luarocks utility is installed in your system (this is likely the case if you used one of the official installation packages), you can install the 'rock' in your LuaRocks tree (a directory in which LuaRocks installs Lua modules).
 
-### 1. Install the Moesif plugin
+### Install the Moesif plugin
 
 ```shell
 luarocks install --server=http://luarocks.org/manifests/moesif kong-plugin-moesif
