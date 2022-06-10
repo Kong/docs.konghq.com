@@ -236,7 +236,7 @@ If the luarocks utility is installed in your system (this is likely the case if 
 luarocks install --server=http://luarocks.org/manifests/moesif kong-plugin-moesif
 ```
 
-### 2. Update your loaded plugins list
+### Update your loaded plugins list
 In your `kong.conf`, append `moesif` to the `plugins` field (or `custom_plugins` if old version of Kong). Make sure the field is not commented out.
 
 ```yaml
