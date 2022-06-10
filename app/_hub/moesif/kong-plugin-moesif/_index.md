@@ -264,7 +264,7 @@ kong restart
 curl -i -X POST --url http://localhost:8001/plugins/ --data "name=moesif" --data "config.application_id=YOUR_APPLICATION_ID";
 ```
 
-### 5. Restart Kong again
+### Restart Kong again
 
 If you don't see any logs in Moesif, you may need to restart Kong again. 
 
