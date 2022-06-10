@@ -4,6 +4,7 @@ allowlist
 anonymized
 api
 aws
+Bagdi
 Bitnami
 boolean
 CloudFormation
@@ -15,6 +16,8 @@ Curity
 Datadog
 dbless
 declaratively
+deduplicate
+deduplication
 degraphql
 denylist
 dev
@@ -40,7 +43,6 @@ Keycloak
 kong
 Kong/kong
 Konnect
-Moesif
 kubectl
 kubernetes
 Kuma
@@ -51,6 +53,7 @@ lua
 Luarocks
 minikube
 Mockbin
+Moesif
 MongoDB
 namespace
 namespaces
@@ -72,15 +75,12 @@ referenceable
 repo
 runtime
 runtimes
-deduplication
-deduplicate
 sandboxing
 serializer
 ssl
 stderr
 stdin
 stdout
-Bagdi
 subcommand
 sudo
 Syslog
