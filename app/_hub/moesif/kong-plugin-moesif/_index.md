@@ -246,7 +246,6 @@ plugins = bundled,moesif         # Comma-separated list of plugins this node
                                  # loaded via the `bundled` keyword.
 ```
 
-
 If you don't have a `kong.conf`, create one from the default using the following command: 
 `cp /etc/kong/kong.conf.default /etc/kong/kong.conf`
 

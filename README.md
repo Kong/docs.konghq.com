@@ -2,7 +2,7 @@
 [![](https://img.shields.io/github/license/kong/docs.konghq.com)](https://github.com/Kong/docs.konghq.com/blob/main/LICENSE)
 [![](https://img.shields.io/github/contributors/kong/docs.konghq.com)]()
 
-# KONG's Documentation Website
+# Kong's Documentation Website
 
 This repository contains the source content and code for [Kong](https://github.com/Kong/kong)'s documentation website. It's built using [Jekyll](https://jekyllrb.com/) and deployed with [Netlify](https://www.netlify.com/).
 
