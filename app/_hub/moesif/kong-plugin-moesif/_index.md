@@ -228,7 +228,7 @@ Moesif natively supports REST, GraphQL, Web3, SOAP, JSON-RPC, and more.
 
 The `.rock` file is a self-contained package that can be installed locally or from a remote server.
 
-If the luarocks utility is installed in your system (this is likely the case if you used one of the official installation packages), you can install the 'rock' in your LuaRocks tree (a directory in which LuaRocks installs Lua modules).
+If the LuaRocks utility is installed in your system (this is likely the case if you used one of the official installation packages), you can install the 'rock' in your LuaRocks tree (a directory in which LuaRocks installs Lua modules).
 
 ### Install the Moesif plugin
 
@@ -251,7 +251,7 @@ If you don't have a `kong.conf`, create one from the default using the following
 
 ### Restart Kong
 
-After the luarock is installed, restart Kong before enabling the plugin
+After LuaRocks is installed, restart Kong before enabling the plugin
 
 ```shell
 kong restart
