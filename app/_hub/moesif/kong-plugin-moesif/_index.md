@@ -12,14 +12,14 @@ type: plugin
 desc: Powerful API analytics and tools to activate, understand, and monetize customers.
 
 description: |
-  This plugin logs API traffic to [Moesif API Analytics](https://www.moesif.com?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}, which enables you to:
+  This plugin logs API traffic to [Moesif API Analytics](https://www.moesif.com?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong), which enables you to:
 
-  * [Understand customer API usage](https://www.moesif.com/features/api-analytics?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}
-  * [Debug issues quickly](https://www.moesif.com/features/api-logs?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}
-  * [Monetize your APIs](https://www.moesif.com/solutions/metered-api-billing?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}
-  * [Get alerted of API issues](https://www.moesif.com/features/api-monitoring?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}
-  * [Guide customers at scale](https://www.moesif.com/features/user-behavioral-emails?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}
-  * [Protect and govern your API](https://www.moesif.com/features/api-governance-rules?utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}
+  * [Understand customer API usage](https://www.moesif.com/features/api-analytics?utm_medium=docs&utm_campaign=partners&utm_source=kong)
+  * [Debug issues quickly](https://www.moesif.com/features/api-logs?utm_medium=docs&utm_campaign=partners&utm_source=kong)
+  * [Monetize your APIs](https://www.moesif.com/solutions/metered-api-billing?utm_medium=docs&utm_campaign=partners&utm_source=kong)
+  * [Get alerted of API issues](https://www.moesif.com/features/api-monitoring?utm_medium=docs&utm_campaign=partners&utm_source=kong)
+  * [Guide customers at scale](https://www.moesif.com/features/user-behavioral-emails?utm_medium=docs&utm_campaign=partners&utm_source=kong)
+  * [Protect and govern your API](https://www.moesif.com/features/api-governance-rules?utm_medium=docs&utm_campaign=partners&utm_source=kong)
 
   This plugin supports automatic analysis of high-volume REST, GraphQL, and other APIs without adding latency.
 
@@ -101,7 +101,7 @@ params:
       required: true
       default:
       value_in_examples: MY_MOESIF_APPLICATION_ID
-      description: Your Moesif Application Id from your [Moesif](http://www.moesif.com){:target="_blank"}{:rel="noopener noreferrer"} dashboard. Go to Top Right Menu -> Installation.
+      description: Your Moesif Application Id from your [Moesif](http://www.moesif.com) dashboard. Go to Top Right Menu -> Installation.
     - name: api_endpoint
       required: false
       default: "`https://api.moesif.net`"
@@ -215,10 +215,10 @@ params:
 ### How it works
 
 When enabled, this plugin captures API traffic and logs it to
-[Moesif API Analytics](https://www.moesif.com/?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"}. 
-This plugin logs to Moesif with an [asynchronous design](https://www.moesif.com/enterprise/api-analytics-infrastructure?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong){:target="_blank"}{:rel="noopener noreferrer"} and doesn't add any latency to your API calls.
+[Moesif API Analytics](https://www.moesif.com/?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong). 
+This plugin logs to Moesif with an [asynchronous design](https://www.moesif.com/enterprise/api-analytics-infrastructure?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong) and doesn't add any latency to your API calls.
 
-[Package on Luarocks](http://luarocks.org/modules/moesif/kong-plugin-moesif){:target="_blank"}{:rel="noopener noreferrer"}
+[Package on Luarocks](http://luarocks.org/modules/moesif/kong-plugin-moesif)
 
 Moesif natively supports REST, GraphQL, Web3, SOAP, JSON-RPC, and more.
 
