@@ -169,7 +169,7 @@ params:
     - name: authorization_header_name
       required: false
       default: "`authorization`"
-      description: Request header containing a Bearer or Basic token to extract user id. See identifying users. Also, supports a comma separated string. Plugin will check headers in order like "X-Api-Key,Authorization".
+      description: Request header containing a Bearer or basic token to extract user id. See identifying users. Also, supports a comma-separated string. The plugin will check headers in order "X-Api-Key, Authorization".
     - name: authorization_user_id_field
       required: false
       default: "`sub`"
