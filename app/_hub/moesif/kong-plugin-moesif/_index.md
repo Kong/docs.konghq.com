@@ -258,7 +258,7 @@ After the luarock is installed, restart Kong before enabling the plugin
 kong restart
 ```
 
-### 4. Enable the Moesif plugin
+### Enable the Moesif plugin
 
 ```shell
 curl -i -X POST --url http://localhost:8001/plugins/ --data "name=moesif" --data "config.application_id=YOUR_APPLICATION_ID";
