@@ -61,14 +61,14 @@ Add a custom Dev Portal domain through your organization's {{site.konnect_short_
 ## Single Sign-On
 {:.badge .enterprise}
 
-Single Sign-On (SSO) can be configured in the Dev Portal by those with Admin roles via the Identity settings in the {{site.konnect_short_name}} Admin UI.
+The Dev Portal can be configured to use Single Sign-On (SSO) by a {{site.konnect_short_name}} Admin via the Identity settings in the {{site.konnect_short_name}} Admin interface.
 
 1. In {{site.konnect_short_name}}, open {% konnect_icon dev-portal %} **Dev Portal**, then click **Settings**.
 
 2. Open the **Identity** tab.
 
    {:.note}
-      > **Note:** Be sure to copy your callback URL (sometimes called redirect URL) and enter it in your OIDC Provider
+      > **Note:** Copy the callback URL and enter it in your OIDC Provider
 
 3. Enter the full domain, including subdomain and protocol, into the  **Provider URL** field (also known as **Issuer**). e.g. `https://accounts.google.com` for Google IdP
 
@@ -78,14 +78,14 @@ Single Sign-On (SSO) can be configured in the Dev Portal by those with Admin rol
 
 ### Configuration Requirements
 
-One or both of Built-in and OIDC must be used at any time.
+A form of authentication must always be configured. Built-in authentication or OIDC can be used individually and in combination.
 
-* If OIDC is enabled and Built-in is disabled, developer passwords will still work. When re-enabling Built-in, they will be inactive while built-in is off.
+* If OIDC is enabled and Built-in is disabled, developer passwords can still be used. When re-enabling Built-in, they will be inactive while built-in is off.
 
-* Enabling both Built-in and OIDC will give the developer the option of registering/logging in with email/password or a button for SSO through the IdP.
+* Enabling both Built-in and OIDC will give developers the option to authenticate  with SSO through the IdP, or with an email and password. 
 
 ### OIDC Details
 
 * If a user account associated to a {{site.konnect_short_name}} developer is removed from the IdP, the {{site.konnect_short_name}} developer account will continue to exist. It must be deleted by a {{site.konnect_short_name}} admin from the {{site.konnect_short_name}} dashboard.
-* If a {{site.konnect_short_name}} developer associated with an IdP user is deleted, the same IdP user can re-authenticate with the developer portal and a new {{site.konnect_short_name}} developer will be created. To persistently revoke access for developers authenticating through your IdP, you must remove the ability for that user to authenticate with the IdP.
-* User information from the IdP is not synced with Konnect developers after first login.
+* If a {{site.konnect_short_name}} developer associated with an IdP user is deleted, the same IdP user can re-authenticate with the developer portal and a new {{site.konnect_short_name}} developer account will be created. To persistently revoke access for developers authenticating through your IdP, you must remove the ability for that user to authenticate with the IdP.
+* User information from the IdP is not synced with Konnect developers after the first login.

@@ -7,11 +7,6 @@ Anyone that wants to access the {{site.konnect_short_name}} Dev Portal needs to 
 
 All Developer registrations are either manually approved by {{site.konnect_short_name}} admins, or automatically approved by configuring your [auto-approve settings](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/).
 
-This doc covers:
-
-* [How to Register as a Developer](#register)
-* [Single-Sign-On (SSO)](#sso)
-* [Account Management](#management)
 
 ## Register as a Developer {#register}
 
@@ -33,17 +28,18 @@ If auto-approve is not enabled, an admin has to review and approve your request 
 
 ## Login/Register with SSO {#sso}
 {:.badge .enterprise}
-
-{:.note}
-   > **Prerequisite:** OIDC must be set up by your admin by customizing the [Dev Portal](/konnect/dev-portal/customization)
+{{site.konnect_short_name}} Dev Portal supports single sign-on login and registration. This feature must be configured by the {{site.konnect_short_name}} site admin before being made available on the Dev Portal. For information on how to enable SSO on your Dev Portal as a {{site.konnect_short_name}} admin, review the [enable single sign-on instructions](/dev-portal/customization/#single-sign-on).
 
 1. Navigate to the {{site.konnect_short_name}} Dev Portal URL provided by your {{site.konnect_short_name}} admin.
 
-2. At the top of the login form, click **Login with SSO**.
+2. From the login form, click **Login with SSO**.
 
-3. You will be redirected to the Identity Provider (IdP) that the admin has configured (e.g. [Okta SSO](https://www.okta.com/products/single-sign-on/)). Here, you will sign in using your IdP's credentials.
+3. You will be redirected to the Identity Provider (IdP) that the {{site.konnect_short_name}} admin has configured. Sign in using your IdP's credentials.
 
 4. Once you've logged in, you will be redirected to the {{site.konnect_short_name}} catalog.
+
+{:.note}
+   > For information on how to enable SSO on your Dev Portal as a {{site.konnect_short_name}} admin review the [enable single sign-on instructions](/dev-portal/customization/#single-sign-on).
 
 ## Account Management {#management}
 
