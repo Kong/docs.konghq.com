@@ -4,6 +4,52 @@ no_search: true
 no_version: true
 ---
 
+## 1.8.0
+
+> Released on **TBD**
+
+Built on top of [Kuma 1.7.0](https://github.com/kumahq/kuma/releases/tag/1.7.0)
+
+### Changes
+
+New Features:
+
+- Support for arm64
+- Graceful shutdown of OPA
+- Role-based AWS authentication for Vault
+- Added a Vault AWS authentication option to set the server ID header
+
+Dependency upgrades:
+
+- Bump github.com/aws/aws-sdk-go from 1.40.56 to 1.44.21
+- Bump github.com/hashicorp/go-retryablehttp from 0.6.6 to 0.7.1
+- Bump github.com/open-policy-agent/opa from 0.38.1 to 0.40.0
+- Bump github.com/open-policy-agent/opa-envoy-plugin from 0.38.1-envoy-3 to 0.40.0-envoy
+- Bump k8s.io/api from 0.23.6 to 0.24.1
+- Bump k8s.io/apimachinery from 0.23.6 to 0.24.1
+- Bump sigs.k8s.io/controller-runtime from 0.11.2 to 0.12.1
+
+### Upgrading
+
+#### kubectl
+
+* The commands `kumactl install metrics`, `kumactl install tracing`, and
+  `kumactl install logging` are deprecated. Please use
+  `kumactl install observability` instead.
+
+#### Control plane
+
+* The `kuma-cp` no longer comes with a built-in DNS server. Use 
+  the DNS server embedded in the dataplane proxy (enabled by default).
+
+## 1.7.1
+
+> Released on **[TBD]**
+
+Built on top of [Kuma 1.6.1](https://github.com/kumahq/kuma/releases/tag/1.6.1)
+
+- Allow graceful shutdown of OPA
+
 ## 1.7.0
 
 > Released on 2022/04/12
@@ -23,7 +69,7 @@ Dependency upgrades:
 - Bump github.com/aws/aws-sdk-go from 1.40.56 to 1.43.29
 - Bump github.com/hashicorp/vault/api from 1.3.1 to 1.5.0
 - Bump github.com/open-policy-agent/opa from 0.37.1 to 0.38.1
-- chore(deps): Bump github.com/open-policy-agent/opa-envoy-plugin from 0.37.1-envoy to 0.38.1-envoy-3
+- Bump github.com/open-policy-agent/opa-envoy-plugin from 0.37.1-envoy to 0.38.1-envoy-3
 
 ### Upgrading
 
