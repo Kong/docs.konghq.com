@@ -149,8 +149,10 @@
 - title: Analyze
   icon: /assets/images/icons/konnect/icn-vitals-nav.svg
   items:
-    - text: Overview
+    - text: Introduction to Vitals
       url: /vitals/
+    - text: Overview Dashboard
+      url: /vitals/analytics-overview/
     - text: Analyze Services and Routes
       url: /vitals/analyze/
     - text: Generate Reports
