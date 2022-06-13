@@ -48,9 +48,9 @@ can [export](#export-a-custom-report), [edit](#edit-a-custom-report), or [delete
 
 1. Choose a report type.
 
-   * **Service report**: Generate a report based on Services.
+   * **Service report**: Generate a report based on Services catalogued in Service Hub.
    * **Route report**: Generate a report based on Routes.
-   * **Application report**: Generate a report based on API consumers.
+   * **Application report**: Generate a report based on Applications registered on your Developer Portal.
 
    Depending on the report type you choose, the available metrics and entities
    will change.
