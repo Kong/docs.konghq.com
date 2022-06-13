@@ -42,7 +42,7 @@ can [export](#export-a-custom-report), [edit](#edit-a-custom-report), or [delete
     the time frame selector. For example:
 
     ```
-    2022-01-27T21:30:58Z to 2022-02-03T21:30:58Z
+    Sunday, Jun 12, 9:57:45 AM (CEST) to Monday, Jun 13, 9:57:45 AM (CEST)
     ```
 
 
