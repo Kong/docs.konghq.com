@@ -48,7 +48,8 @@ module LatestVersion
             page.url.gsub(release_path, 'latest'),
             page.content,
             page.data,
-            @page_index["#{product_name}/#{release_path}/"]
+            @page_index["#{product_name}/#{release_path}/"],
+            page.path
           )
           site.pages << page
         end
@@ -67,18 +68,19 @@ module LatestVersion
   end
 
   class DuplicatePage < ::Jekyll::Page
-    def initialize(site, base_dir, path, content, data, page_index) # rubocop:disable Lint/MissingSuper, Metrics/ParameterLists
+    def initialize(site, base_dir, url, content, data, page_index, path) # rubocop:disable Lint/MissingSuper, Metrics/ParameterLists, Metrics/MethodLength
       @site = site
       @base = base_dir
       @content = content
 
-      @dir = path
+      @dir = url
       @name = 'index.md'
 
       process(@name)
       @data = data.clone
       @data['is_latest'] = true
       @data['version-index'] = page_index
+      @data['edit_link'] = "app/#{path}"
 
       @data['alias'] = [@dir.sub('latest/', '')] if @dir.end_with?('/latest/')
     end
