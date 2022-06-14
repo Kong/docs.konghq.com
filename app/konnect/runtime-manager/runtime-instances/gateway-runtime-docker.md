@@ -4,7 +4,7 @@ no_version: true
 content_type: how-to
 ---
 Set up a Docker runtime instance through the
-[{{site.konnect_short_name}} Runtime Manager](/konnect/configure/runtime-manager) and
+[{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
 configure your instance to accept configuration from
 {{site.konnect_short_name}}. The Runtime Manager keeps track of all runtime
 instances associated with the {{site.konnect_saas}} account.
@@ -117,7 +117,7 @@ docker run -d --name kong-dp `
 
     ![Konnect Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
 
-    See [Parameters](/konnect/configure/runtime-manager/runtime-instances/runtime-parameter-reference) for
+    See [Parameters](/konnect/runtime-manager/runtime-instances/runtime-parameter-reference) for
     descriptions and the matching fields in {{site.konnect_short_name}}.
 
 3. `-p 8000:8000` sets the proxy URL to `http://localhost:8000`.

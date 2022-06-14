@@ -20,7 +20,7 @@ This guide walks you through the two supported authentication plugins:
 - The Services have been created, versioned, and published to the
   {{site.konnect_short_name}} Dev Portal so that they appear in the catalog.
 
-- The Service version must have an [implementation](/konnect/configure/servicehub/manage-services/#service-version-implementations)
+- The Service version must have an [implementation](/konnect/servicehub/service-implementations)
 
 - If you are using [OpenID Connect](#oidc-flow) for your authorization:
 
@@ -32,7 +32,7 @@ This guide walks you through the two supported authentication plugins:
     dialog to match to your third-party OAuth2 claim.
 
 {:.note}
-> **Note:** Please refer to the [declarative guide](/konnect/configure/runtime-manager/runtime-groups/declarative-config) for instructions on declarative configuration.
+> **Note:** Please refer to the [declarative guide](/konnect/runtime-manager/runtime-groups/declarative-config) for instructions on declarative configuration.
 
 ## Enable app registration with key authentication {#konnect-key-auth-flow}
 
@@ -77,7 +77,7 @@ Service. Now, click the **Versions** button and select the desired version.
    | `Consumer claims` |  Name of the claim that is used to find a consumer. Required. |
    | `Auth method` | The supported authentication method or methods you want to enable. This field should contain only the authentication methods that you need to use; otherwise, you unnecessarily widen the attack surface. Separate multiple entries with a comma. Available options: `password`, `client_credentials`, `authorization_code`, `bearer`, `introspection`, `kong_oauth2`, `refresh_token`, `session`. Required. |
    | `Hide Credentials` | Whether to show or hide the credential from the Upstream service. If enabled, the plugin strips the credential from the request (in the header, query string, or request body that contains the key) before proxying it. Default: disabled. Optional.|
-   | `Auto Approve` | Automatically approve developer registration requests for an application. A Konnect admin does not need to [manually approve](/konnect/dev-portal/applications/manage-app-reg-requests/) application registration requests. Default: disabled. Optional. |
+   | `Auto Approve` | Automatically approve developer registration requests for an application. A Konnect admin does not need to [manually approve](/konnect/dev-portal/access-and-approval/manage-app-reg-requests/) application registration requests. Default: disabled. Optional. |
 
    For more background information about OpenID Connect plugin parameters, see
    [Important Configuration Parameters](/hub/kong-inc/openid-connect/#important-configuration-parameters).

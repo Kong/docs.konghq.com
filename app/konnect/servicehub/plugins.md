@@ -15,14 +15,14 @@ or applying it globally.
 
 * A **scoped** plugin applies configuration only to a specific service, route,
 or consumer. You can configure plugins on
-[services](/konnect/configure/servicehub/enable-service-plugin) and
-[routes](/konnect/configure/servicehub/enable-route-plugin) through Service Hub, and on
-[consumers](/konnect/configure/runtime-manager/runtime-groups/manage-entities)
+[services](/konnect/servicehub/enable-service-plugin) and
+[routes](/konnect/servicehub/enable-route-plugin) through Service Hub, and on
+[consumers](/konnect/runtime-manager/gateway-config)
 through the Runtime Manager.
 
 * If you want to apply a plugin **globally** &ndash; that is, to all services,
 routes, and consumers in a runtime group &ndash; set it up through the
-[Runtime Manager](/konnect/configure/runtime-manager/runtime-groups/manage-entities).
+[Runtime Manager](/konnect/runtime-manager/gateway-config).
 
 ### Functionality differences from self-managed Kong Gateway
 

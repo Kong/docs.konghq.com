@@ -67,7 +67,7 @@ In this topic, you:
 
 For next steps, check out some of the other things you can do in
 {{site.konnect_saas}}:
-* Enable plugins on a [Service](/konnect/configure/servicehub/enable-service-plugin/) or a
-[Route](/konnect/configure/servicehub/enable-route-plugin/)
+* Enable plugins on a [Service](/konnect/servicehub/enable-service-plugin/) or a
+[Route](/konnect/servicehub/enable-route-plugin/)
 * Set up [application registration](/konnect/dev-portal/applications/enable-app-reg/)
 * [Manage your teams and roles](/konnect/org-management/teams-and-roles/)

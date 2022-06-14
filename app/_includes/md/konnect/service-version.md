@@ -13,7 +13,7 @@ Let's set up the first version of your API service.
 
 1. Select a runtime group.
 
-    Choose a [group](/konnect/configure/runtime-manager/runtime-groups) to
+    Choose a [group](/konnect/runtime-manager/runtime-groups) to
     deploy this Service version to. This lets you deploy to a specific group of
     runtime instances in a specific environment.
 

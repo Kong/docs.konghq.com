@@ -46,7 +46,7 @@ The main attribute of a Service version is its Upstream URL, where the service
 listens for requests. You can specify the URL with a single string, or by
 specifying its protocol, host, port, and path individually.
 
-[Get started with Service management &rarr;](/konnect/configure/servicehub/manage-services)
+[Get started with Service management &rarr;](/konnect/servicehub/manage-services)
 
 ### Kong Gateway implementations
 
@@ -58,7 +58,7 @@ can have only one implementation, but potentially many Routes.
 After configuring the Service, version, implementation, and at least one Route,
 you’ll be able to start making requests through {{site.konnect_saas}}.
 
-[Implement a Service version &rarr;](/konnect/configure/servicehub/manage-services/#implement-service-version)
+[Implement a Service version &rarr;](/konnect/servicehub/service-implementations)
 
 ## Dev Portal
 
@@ -76,9 +76,7 @@ Service version.
 * **Version spec**: An OpenAPI (Swagger) document in YAML or JSON format.
 Applies to a specific Service version.
 
-[Upload Service Documentation to the Dev Portal &rarr;](/konnect/dev-portal/service-documentation)
-
-[Publish a Service to the Dev Portal &rarr;](/konnect/dev-portal/publish)
+[Upload and publish Service documentation to the Dev Portal &rarr;](/konnect/servicehub/service-documentation)
 
 ## Kong Gateway plugins
 
@@ -87,4 +85,4 @@ ranging from a specific Service version or Route to all Service versions. Plugin
 can execute actions inside {{site.konnect_product_name}} before or after a request
 has been proxied to the upstream API, as well as on any incoming responses.
 
-[Manage plugins &rarr;](/konnect/configure/servicehub/plugins/)
+[Manage plugins &rarr;](/konnect/servicehub/plugins/)

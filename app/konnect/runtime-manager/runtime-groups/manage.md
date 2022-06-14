@@ -12,8 +12,8 @@ have an Enterprise account, the Runtime Manager will only ever have one
 runtime group entry.
 
 From a runtime group details page, you can
-[create and manage runtime instances](/konnect/configure/runtime-manager/#types-of-runtimes)
-and configure any [global entities](/konnect/configure/runtime-manager/runtime-groups/manage-entities)
+[create and manage runtime instances](/konnect/runtime-manager/#types-of-runtimes)
+and configure any [global entities](/konnect/runtime-manager/gateway-config)
 in the group.
 
 ## Create a runtime group
