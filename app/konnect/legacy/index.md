@@ -7,7 +7,7 @@ no_version: true
 {:.important}
 > This documentation is for the legacy {{site.konnect_short_name}} environment at
 [konnect.konghq.com](https://konnect.konghq.com). For the
-[cloud.konghq.com](https://cloud.konghq.com) environment, see the 
+[cloud.konghq.com](https://cloud.konghq.com) environment, see the
 [current {{site.konnect_short_name}} documentation](/konnect/).
 
 The {{site.konnect_saas}} docs provide information about how to manage and
@@ -38,7 +38,6 @@ deployment, see the following topics to get started:
   * Manage [developer registration](/konnect/legacy/dev-portal/access-and-approval/manage-devs)
 * Use Vitals to [monitor the status of your Services](/konnect/legacy/vitals)
 * Set up [users and roles](/konnect/legacy/org-management/users-and-roles)
-* Get familiar with the [Konnect Admin API](/konnect/legacy/reference/konnect-api)
 
 ## Self-managed Konnect
 If deploying {{site.konnect_short_name}} in a self-managed environment, see the

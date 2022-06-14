@@ -310,4 +310,4 @@ the same configuration.
 ## See also
 
 * [decK CLI reference](/deck/latest/reference/deck)
-* [Import {{site.base_gateway}} configuration into {{site.konnect_short_name}}](/konnect/deployment/import)
+* [Import {{site.base_gateway}} configuration into {{site.konnect_short_name}}](/konnect/getting-started/import)

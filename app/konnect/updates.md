@@ -28,7 +28,7 @@ You can keep using existing 2.7.x runtimes, or you can upgrade to
 **Custom Domain for Dev Portal**
 : You can now set a custom domain for your Dev Portal through the {{site.konnect_saas}} Admin UI.
 
-: See the documentation: [Add a Custom Domain](/konnect/dev-portal/customization/custom-domain/).
+: See the documentation: [Add a Custom Domain](/konnect/dev-portal/customization/).
 
 **Headers are modifiable**
 : You can now set a welcome message and primary header through the Admin UI for your Dev Portal.
@@ -279,7 +279,7 @@ through {{site.konnect_saas}}. This includes:
 ### 2021.02.10
 
 **Portal authentication**
-: You can now [disable authentication on a Dev Portal](/konnect/dev-portal/customization/public-portal/),
+: You can now [disable authentication on a Dev Portal](/konnect/dev-portal/access/),
 which exposes the Dev Portal publicly to anyone with the link. No one needs to register
 for Dev Portal access.
 : New application registrations aren't available through a public-facing portal.
