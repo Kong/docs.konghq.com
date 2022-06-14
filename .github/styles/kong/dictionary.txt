@@ -4,6 +4,7 @@ allowlist
 anonymized
 api
 aws
+Bintray
 Bitnami
 boolean
 CloudFormation
@@ -13,6 +14,8 @@ configs
 cors
 Curity
 Datadog
+dataplane
+dataplanes
 dbless
 declaratively
 degraphql
@@ -20,15 +23,18 @@ denylist
 dev
 Fargate
 Github
+Goroutine
 Grafana
 grpc
 grpcs
 hardcoded
 hostname
+hostnames
 http
 httpbin
 HTTPie
 https
+inbounds
 ini
 io
 jq
@@ -60,6 +66,7 @@ Nginx
 observability
 Okta
 opa
+outbounds
 passthrough
 PayPal
 plaintext
