@@ -45,7 +45,7 @@ Dependency upgrades:
 
 #### Timeout policy
 
-'grpc' section is deprecated. Timeouts for HTTP, HTTP2 and GRPC should be set in
+'grpc' section is deprecated. Timeouts for HTTP, HTTP2 and GRPC should be set in the
 'http' section:
 
 ```yaml
