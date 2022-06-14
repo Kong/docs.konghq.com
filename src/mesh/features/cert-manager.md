@@ -50,6 +50,7 @@ A `ClusterIssuer` is accessible from the entire Kubernetes `cluster`.
 An `Issuer` is only accessible from within its own namespace,
 and must reside in the {{site.mesh_product_name}} system namespace
 o be available to {{site.mesh_product_name}}.
+The {{site.mesh_product_name}} system namespace is `kong-mesh-system` by default.
 
 If the cert-manager is configured outside of the {{site.mesh_product_name}} system namespace,
 and `ClusterIssuer` is not used,
