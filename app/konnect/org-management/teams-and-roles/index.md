@@ -64,9 +64,9 @@ For example, say you have a Service Admin role:
 * Since you have admin access, you can choose to share the Service any
 level of access: creator, deployer, viewer, etc.
 
-You can [share any Service](/konnect/configure/servicehub/manage-services/#share-service)
+You can [share any Service](/konnect/servicehub/manage-services/#share-service)
 through the Service Hub, or
-[share any runtime group](/konnect/configure/runtime-manager/runtime-groups/manage/#share-runtime-group)
+[share any runtime group](/konnect/runtime-manager/runtime-groups/manage/#share-runtime-group)
 through the Runtime Manager. -->
 
 ## Get started with access management

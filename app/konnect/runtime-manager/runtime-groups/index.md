@@ -74,7 +74,7 @@ regions. Spin up runtime instances in those regions for each runtime group.
 * **Team separation:** Dedicate each runtime group to a different team and share
 resources based on team purpose.
 
-[Set up and manage runtime groups &rarr;](/konnect/configure/runtime-manager/runtime-groups/manage)
+[Set up and manage runtime groups &rarr;](/konnect/runtime-manager/runtime-groups/manage)
 
 ## Administration
 
@@ -99,7 +99,7 @@ When there are multiple runtime groups, any object configuration only
 applies to the runtime group that it was created in. Consumers and
 their authentication mechanisms don't carry over to other runtime groups.
 
-[Manage global entities &rarr;](/konnect/configure/runtime-manager/runtime-groups/manage-entities)
+[Manage global entities &rarr;](/konnect/runtime-manager/gateway-config)
 
 ## References
 
