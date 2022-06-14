@@ -23,15 +23,6 @@ a whole, does not have access or visibility into the data flowing through your
 runtimes, and it does not store any data except the state and connection details
 for each runtime instance.
 
-## Hosting runtimes
-
-Kong does not host runtimes. You must provide your own runtime
-instances.
-
-The Runtime Manager aims to simplify this process by providing a
-script to provision a {{site.base_gateway}} runtime in a Docker container,
-eliminating any confusion about initial configuration or setup.
-
 ## Runtime groups
 
 Konnect manages runtime configuration in runtime groups. Each runtime group acts
@@ -39,7 +30,16 @@ as a separate control plane and can manage runtime configurations independently
 of any other group. See [runtime groups](/konnect/configure/runtime-manager/runtime-groups)
 for more information.
 
-### Kong Gateway
+## Runtime instances
+
+Kong does not host runtimes. You must provide your own runtime
+instances.
+
+The Runtime Manager aims to simplify this process by providing a
+script to provision a {{site.base_gateway}} runtime in a Docker container,
+eliminating any confusion about initial configuration or setup. You can also
+choose to manually configure runtime instances on Linux or Kubernetes, or
+create custom Docker containers without the script.
 
 A {{site.base_gateway}} runtime instance acts as a data plane, which is a node
 serving traffic for the proxy. Data plane nodes are not directly connected

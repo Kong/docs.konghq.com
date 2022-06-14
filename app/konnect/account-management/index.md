@@ -4,7 +4,7 @@ no_version: true
 content_type: how-to
 ---
 
-{{site.konnect_product_name}} has [three plans](/konnect-platform/plans) to
+{{site.konnect_product_name}} has [three plans](https://konghq.com/pricing) to
 choose from: Free, Plus, and Enterprise. When you first sign up, you get
 automatically enrolled into a 30-day free trial for Konnect Plus. At the end of
 this trial, you can choose to continue with Plus, or downgrade to Free.
@@ -12,15 +12,25 @@ this trial, you can choose to continue with Plus, or downgrade to Free.
 You can view service, Dev Portal, and API call usage from the **Billing and Usage**
 settings page, and manage your Konnect Free or Plus plan from this page.
 
-![Konnect billing overview](/assets/images/docs/konnect/konnect-billing-settings.png)
-
 There is no self-serve option for managing Enterprise plans.
 Contact your sales representative to make any changes.
 
-### Manage and view plan billing and usage
+## License management
 
-1. From the {{site.konnect_short_name}} menu, click
-![settings icon](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand} **Settings**.
+When you create a {{site.konnect_saas}} account, a license is
+automatically provisioned to the organization. You do not need to manage this
+license manually.
+
+Any runtimes configured through the [Runtime Manager](/konnect/configure/runtime-manager)
+also implicitly receive the same license from {{site.konnect_saas}}
+control plane. You should never have to deal with a license
+directly.
+
+For any license questions, contact your sales representative.
+
+## Manage and view plan billing and usage
+
+1. From the {{site.konnect_short_name}} menu, click {% konnect_icon cogwheel %} **Settings**.
 
 2. Select **Billing and Usage**.
 
