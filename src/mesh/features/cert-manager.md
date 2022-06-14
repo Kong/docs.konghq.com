@@ -21,7 +21,7 @@ server.
 * [`acmpca`](/mesh/{{page.kong_version}}/features/acmpca): {{site.mesh_product_name}} generates data plane certificates
 using Amazon Certificate Manager Private CA.
 
-* `certmanager`: {{site.mesh_product_name}} generates dataplane certificates
+* `certmanager`: {{site.mesh_product_name}} generates data plane certificates
 using Kubernetes [cert-manager](https://cert-manager.io) certificate controller.
 
 ## Kubernetes cert-manager CA mode
@@ -61,7 +61,7 @@ The following steps show how to configure cert-manager for {{site.mesh_product_n
 a mesh named `default`. For your environment, replace `default` with the appropriate mesh name.
 
 See [cert-manager.io](https://cert-manager.io) to learn how to
-install and configure cert-manager.io.
+install and configure cert-manager.
 
 Once created, you will need the `IssuerRef` information of the `Issuer` or `ClusterIssuer`
 to configure {{site.mesh_product_name}}
@@ -97,16 +97,16 @@ In `issuerRef`, only `name` is strictly required.
 
 Apply the configuration with `kubectl apply -f [..]`.
 
-## Multizone and Kubernetes cert-manager
+## multi-zone and Kubernetes cert-manager
 
-In a multizone environment, the global control plane provides the `Mesh` to the zone control planes. However, you must make sure that each zone control plane can communicate with cert-manager using the same configuration.
+In a multi-zone environment, the global control plane provides the `Mesh` to the zone control planes. However, you must make sure that each zone control plane can communicate with cert-manager using the same configuration.
 This is because certificates for data plane proxies are requested from cert-manager by the zone control plane, not the global control plane.
 
-This implies that each Kubernetes cluster in multizone must include an `Issuer` or `ClusterIssuer`
+This implies that each Kubernetes cluster in multi-zone must include an `Issuer` or `ClusterIssuer`
 resource with the `issuerRef`  specified in the `Mesh` `certmanager` backend specification.
 Also, because the backend is `Mesh` scoped configuration and `certmanager` backend is limited to the Kubernetes environment,
-Universal and Kubernetes cannot be used together in a multizone environment which includes a `certmanager` mTLS backend.
+Universal and Kubernetes cannot be used together in a multi-zone environment which includes a `certmanager` mTLS backend.
 
 You must also ensure the global control plan can access cert-manager.
 When a new `certmanager`backend is configured, {{site.mesh_product_name}} validates the connection by issuing a test certificate.
-In a multizone environment, validation is performed on the global control plane.
+In a multi-zone environment, validation is performed on the global control plane.
