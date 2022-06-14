@@ -6,7 +6,7 @@ no_version: true
 
 ## 1.8.0
 
-> Released on **2022/06/13**
+> Released on 2022/06/14
 
 Built on top of [Kuma 1.7.0](https://github.com/kumahq/kuma/releases/tag/1.7.0)
 
@@ -18,6 +18,7 @@ New Features:
 - Graceful shutdown of OPA
 - Role-based AWS authentication for Vault
 - Added a Vault AWS authentication option to set the server ID header
+- Added cert-manager.io mTLS CA support
 
 Dependency upgrades:
 
@@ -42,9 +43,27 @@ Dependency upgrades:
 * The `kuma-cp` no longer comes with a built-in DNS server. Use
   the DNS server embedded in the dataplane proxy (enabled by default).
 
+#### Timeout policy
+
+'grpc' section is deprecated. Timeouts for HTTP, HTTP2 and GRPC should be set in
+'http' section:
+
+```yaml
+tcp: 
+  idleTimeout: 1h 
+http: # http, http2, grpc
+  requestTimeout: 15s 
+  idleTimeout: 1h
+  streamIdleTimeout: 30m
+  maxStreamDuration: 0s
+grpc: # DEPRECATED
+  streamIdleTimeout: 30m # DEPRECATED, use 'http.streamIdleTimeout'
+  maxStreamDuration: 0s # DEPRECATED, use 'http.maxStreamDuration'
+```
+
 ## 1.7.1
 
-> Released on **2022/06/13**
+> Released on 2022/06/14
 
 Built on top of [Kuma 1.6.1](https://github.com/kumahq/kuma/releases/tag/1.6.1)
 
@@ -111,6 +130,12 @@ Every item in the items array now has a `kind` property of either:
 `SidecarDataplane`: a normal Dataplane with outbounds, inbounds, etc.
 `MeshGatewayDataplane`: a MeshGateway-configured Dataplane with a new structure representing the MeshGateway it serves.
 Some examples can be found in the [Inspect API docs](https://kuma.io/docs/1.6.x/reference/http-api/#inspect-api).
+
+## 1.6.2
+
+> Released on 2022/06/14
+
+Built on top of [Kuma 1.5.2](https://github.com/kumahq/kuma/releases/tag/1.5.2)
 
 ## 1.6.1
 
