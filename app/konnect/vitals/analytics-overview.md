@@ -7,15 +7,15 @@ content_type: reference
 The Overview Dashboard provides metrics for Services catalogued by Service Hub within a selected time interval for the following two categories: 
 
 * **Traffic** - total number of HTTP requests.
-* **Errors** - average error rate in percentage across every HTTP request. 
+* **Errors** - percentage of failed HTTP requests. 
 
-Each category measures trends by comparing metrics week to week. Time periods for trends are fixed to the last seven days and do not change if you select a different time period from the week before.
+Each category measures trends by comparing metrics week-over-week. Time periods for trends are fixed to the last seven days and do not change if you select a different time period from the week before.
 
 You can view a graph for each category by clicking **Traffic** or **Errors**, and switching between the two views.
 
-* **Traffic** - this graph compares the total number of successful responses to the total number of unsuccessful responses over a specified time interval.
+* **Traffic** - this graph displays total number of HTTP requests categorized by succesful and failed requests over the specified time interval.
 
-* **Errors** –  this graph compares the total number of requests that returned an error response over a specified time interval. 
+* **Errors** –  this graph displays the total number of failed HTTP requests categorized by error response codes over the specified time interval.
 
 Graphs can be interacted with, including hovering over chart items to display more details, and filtering options by clicking on items in the **legend**. 
 
