@@ -24,7 +24,7 @@ using Amazon Certificate Manager Private CA.
 * [`certmanager`]: {{site.mesh_product_name}} generates dataplane certificates
 using Kubernetes [cert-manager](https://cert-manager.io) certificate controller.
 
-## cert-manager CA mode
+## Kubernetes cert-manager CA mode
 
 In `certmanager` mTLS mode, {{site.mesh_product_name}} communicates with a locally installed cert-manager `Issuer`,
 which generates the data plane proxy certificates automatically.
@@ -42,7 +42,7 @@ and ensures data plane certificates are issued and rotated for each proxy.
 
 `certmanager` is only available for {{site.mesh_product_name}} in the Kubernetes environment.
 
-### Configure cert-manager CA
+### Configure Kubernetes cert-manager CA
 
 The `certmanager` mTLS backend requires a cert-manager `Issuer` or `ClusterIssuer` to be accessible
 from the {{site.mesh_product_name}} system namespace.
@@ -97,7 +97,7 @@ In `issuerRef`, only `name` is strictly required.
 
 Apply the configuration with `kubectl apply -f [..]`.
 
-## Multizone and cert-manager
+## Multizone and Kubernetes cert-manager
 
 In a multizone environment, the global control plane provides the `Mesh` to the zone control planes. However, you must make sure that each zone control plane can communicate with cert-manager using the same configuration.
 This is because certificates for data plane proxies are requested from cert-manager by the zone control plane, not the global control plane.
