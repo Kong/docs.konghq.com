@@ -60,7 +60,7 @@ in the {{site.mesh_product_name}} system namespace. See https://cert-manager.io/
 The following steps show how to configure cert-manager for {{site.mesh_product_name}} with
 a mesh named `default`. For your environment, replace `default` with the appropriate mesh name.
 
-See [cert-manager.io](https://cert-manager.io) to learn how t
+See [cert-manager.io](https://cert-manager.io) to learn how to
 install and configure cert-manager.io.
 
 Once created, you will need the `IssuerRef` information of the `Issuer` or `ClusterIssuer`
