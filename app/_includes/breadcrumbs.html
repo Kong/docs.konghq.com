@@ -3,13 +3,7 @@
   <ul class="breadcrumbs">
       <i class="sidebar-toggle"></i>
     <li class="breadcrumb-item">
-      {% if include.edition =='enterprise' or include.edition =='konnect' or include.edition =='konnect-platform' or include.edition == 'mesh' or include.edition == 'gateway' %}
-        Kong Konnect Platform
-      {% elsif include.edition == 'contributing' %}
-        Contribute to the docs
-      {% else %}
-        Open Source
-      {% endif %}
+      <a href="/">Home</a>
     </li>
     <li class="breadcrumb-item">
       {% if include.edition == 'enterprise' %}<a href="/enterprise/{% unless include.no_version == true %}{{include.kong_version}}/{% endunless %}">{{site.ee_product_name}}</a>
@@ -30,7 +24,10 @@
         {% for crumb in crumbs offset: 3 %}
           {% unless forloop.last %}
             <li class="breadcrumb-item">
-              {% assign crumb_limit = forloop.index | plus: 3 %}{{ crumb | replace:'-',' ' | remove:'.md' | capitalize }}
+              {% assign crumb_limit = forloop.index | plus: 3 %}
+              <!-- <a href="{% for crumb in crumbs limit: crumb_limit %}{{ crumb | append: '/' }}{% endfor %}"> -->
+              {{ crumb | replace:'-',' ' | remove:'.md' | capitalize }}
+              <!-- </a> -->
             </li>
           {% endunless %}
         {% endfor %}
@@ -38,7 +35,10 @@
         {% for crumb in crumbs offset: 2 %}
           {% unless forloop.last %}
             <li class="breadcrumb-item">
-              {% assign crumb_limit = forloop.index | plus: 2 %}{{ crumb | replace:'-',' ' | remove:'.md' | capitalize }}
+              {% assign crumb_limit = forloop.index | plus: 2 %}
+              <!-- <a href="{% for crumb in crumbs limit: crumb_limit %}{{ crumb | append: '/' }}{% endfor %}"> -->
+                {{ crumb | replace:'-',' ' | remove:'.md' | capitalize }}
+              <!-- </a> -->
             </li>
           {% endunless %}
         {% endfor %}
@@ -47,7 +47,10 @@
       {% for crumb in crumbs offset: 3 %}
         {% unless forloop.last %}
         <li class="breadcrumb-item">
-          {% assign crumb_limit = forloop.index | plus: 3 %}{{ crumb | replace:'-',' ' | remove:'.md' | capitalize }}
+          {% assign crumb_limit = forloop.index | plus: 3 %}
+          <!-- <a href="{% for crumb in crumbs limit: crumb_limit %}{{ crumb | append: '/' }}{% endfor %}"> -->
+            {{ crumb | replace:'-',' ' | remove:'.md' | capitalize }}
+          <!-- </a> -->
         </li>
         {% endunless %}
       {% endfor %}
