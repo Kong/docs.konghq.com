@@ -31,6 +31,10 @@ module SingleSource
         # Enable generation of specific files as required
         next unless v['generate'] || assume_generated
 
+        # We might want to exclude a specific URL by setting generate: false
+        # but it needs to be set explicitly, rather than the key not existing
+        next if v.key?('generate') && v['generate'] == false
+
         unless v['src']
           # Handle when it's the root page.
           # We always want to generate this, even if

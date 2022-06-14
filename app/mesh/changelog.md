@@ -4,10 +4,56 @@ no_search: true
 no_version: true
 ---
 
+## 1.8.0
+
+> Released on **2022/06/13**
+
+Built on top of [Kuma 1.7.0](https://github.com/kumahq/kuma/releases/tag/1.7.0)
+
+### Changes
+
+New Features:
+
+- Support for arm64
+- Graceful shutdown of OPA
+- Role-based AWS authentication for Vault
+- Added a Vault AWS authentication option to set the server ID header
+
+Dependency upgrades:
+
+- Bump `github.com/aws/aws-sdk-go` from 1.40.56 to 1.44.21
+- Bump `github.com/hashicorp/go-retryablehttp` from 0.6.6 to 0.7.1
+- Bump `github.com/open-policy-agent/opa` from 0.38.1 to 0.40.0
+- Bump `github.com/open-policy-agent/opa-envoy-plugin` from 0.38.1-envoy-3 to 0.40.0-envoy
+- Bump `k8s.io/api` from 0.23.6 to 0.24.1
+- Bump `k8s.io/apimachinery` from 0.23.6 to 0.24.1
+- Bump `sigs.k8s.io/controller-runtime` from 0.11.2 to 0.12.1
+
+### Upgrading
+
+#### kubectl
+
+* The commands `kumactl install metrics`, `kumactl install tracing`, and
+  `kumactl install logging` are deprecated. Please use
+  `kumactl install observability` instead.
+
+#### Control plane
+
+* The `kuma-cp` no longer comes with a built-in DNS server. Use
+  the DNS server embedded in the dataplane proxy (enabled by default).
+
+## 1.7.1
+
+> Released on **2022/06/13**
+
+Built on top of [Kuma 1.6.1](https://github.com/kumahq/kuma/releases/tag/1.6.1)
+
+- Allow graceful shutdown of OPA
+
 ## 1.7.0
 
 > Released on 2022/04/12
- 
+
 Built on top of [Kuma 1.6.0](https://github.com/kumahq/kuma/releases/tag/1.6.0)
 
 ### Changes
@@ -20,10 +66,10 @@ New Features:
 
 Dependency upgrades:
 
-- Bump github.com/aws/aws-sdk-go from 1.40.56 to 1.43.29
-- Bump github.com/hashicorp/vault/api from 1.3.1 to 1.5.0
-- Bump github.com/open-policy-agent/opa from 0.37.1 to 0.38.1
-- chore(deps): Bump github.com/open-policy-agent/opa-envoy-plugin from 0.37.1-envoy to 0.38.1-envoy-3
+- Bump `github.com/aws/aws-sdk-go` from 1.40.56 to 1.43.29
+- Bump `github.com/hashicorp/vault/api` from 1.3.1 to 1.5.0
+- Bump `github.com/open-policy-agent/opa` from 0.37.1 to 0.38.1
+- Bump `github.com/open-policy-agent/opa-envoy-plugin` from 0.37.1-envoy to 0.38.1-envoy-3
 
 ### Upgrading
 
@@ -77,7 +123,7 @@ Built on top of [Kuma 1.5.1](https://github.com/kumahq/kuma/releases/tag/1.5.1)
 
 Dependency upgrades:
 
-- Bump github.com/open-policy-agent/opa from 0.37.2 to 0.38.1
+- Bump `github.com/open-policy-agent/opa` from 0.37.2 to 0.38.1
 
 ## 1.6.0
 
@@ -97,7 +143,7 @@ Built on top of [Kuma 1.5.0](https://github.com/kumahq/kuma/releases/tag/1.5.0)
 - Removed support for the old Ingress (`Dataplane#networking.ingress`), which was used before Kong Mesh 1.3. If you are still using it, migrate to ZoneIngress first (see [Kuma Upgrade to 1.2.0 section](https://github.com/kumahq/kuma/blob/master/UPGRADE.md#upgrade-to-120)).
 
 #### Kubernetes
-- Migrate your kuma.io/sidecar-injection annotations to labels. The new version still supports annotations, but to  guarantee that applications can only start with a sidecar, you must use a label instead of an annotation.
+- Migrate your `kuma.io/sidecar-injection` annotations to labels. The new version still supports annotations, but to  guarantee that applications can only start with a sidecar, you must use a label instead of an annotation.
 Configuration parameter `kuma.runtime.kubernetes.injector.sidecarContainer.adminPort` and environment variable `KUMA_RUNTIME_KUBERNETES_INJECTOR_SIDECAR_CONTAINER_ADMIN_PORT` have been deprecated in favor of `kuma.bootstrapServer.params.adminPort` and `KUMA_BOOTSTRAP_SERVER_PARAMS_ADMIN_PORT`.
 
 #### Universal
@@ -158,7 +204,7 @@ Built on top of [Kuma 1.3.1](https://github.com/kumahq/kuma/blob/master/CHANGELO
 
 - Common Name (CN) support for Vault certificate storage is now available.
 - You can now disable zones as needed.
-- The number of Postgres connections is now limited to 50 by default. The default value was previously unlimited; you can still configure the limit if needed.
+- The number of PostgreSQL connections is now limited to 50 by default. The default value was previously unlimited; you can still configure the limit if needed.
 - You can now select a specific zone in the Kuma Service dashboard and in the Service to Service dashboard.
 
 ### Upgrading
@@ -227,7 +273,7 @@ Built on top of [Kuma 1.2.2](https://github.com/kumahq/kuma/blob/master/CHANGELO
 - Message limit for gRPC stream is increased to better support Kuma discovery service (KDS)
 - Improved leader election during unexpected failures.
 - Improved SDS and XDS on rapid DP restarts.
-- Fixed HDS on the dpserver when bootstrapping an ingress.
+- Fixed HDS on the dataplane server when bootstrapping an ingress.
 
 ### Upgrading
 
@@ -309,7 +355,7 @@ Built on top of [Kuma 1.1.6](https://github.com/kumahq/kuma/blob/master/CHANGELO
 - You can now specify TCP and HTTP health checks at the same time in the same policy. The health check policy also
 now includes a `reuse_connection` option.
 - The `--gateway` flag is now available in the CLI.
-- You can now install an ingress controller with the CLI. Kong Gateway is the first supported ingress controller.
+- You can now install an ingress controller with the CLI. {{site.base_gateway}} is the first supported ingress controller.
 - You can now install the Kuma demo application with the CLI.
 
 

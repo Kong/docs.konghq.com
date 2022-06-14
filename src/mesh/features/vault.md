@@ -21,6 +21,9 @@ server.
 * [`acmpca`](/mesh/{{page.kong_version}}/features/acmpca) {{site.mesh_product_name}} generates data plane certificates
 using Amazon Certificate Manager Private CA.
 
+* [`certmanager`](/mesh/{{page.kong_version}}/features/cert-manager): {{site.mesh_product_name}} generates data plane certificates
+using Kubernetes [cert-manager](https://cert-manager.io) certificate controller.
+
 ## Vault mode
 
 In `vault` mTLS mode, {{site.mesh_product_name}} communicates with the HashiCorp Vault PKI,
@@ -294,8 +297,8 @@ Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](htt
 {% endnavtab %}
 {% endnavtabs %}
 
-## Multizone and Vault
+## Multi-zone and Vault
 
-In a multizone environment, the global control plane provides the `Mesh` to the zone control planes. However, you must make sure that each zone control plane communicates with Vault over the same address. This is because certificates for data plane proxies are issued from the zone control plane, not from the global control plane.
+In a multi-zone environment, the global control plane provides the `Mesh` to the zone control planes. However, you must make sure that each zone control plane communicates with Vault over the same address. This is because certificates for data plane proxies are issued from the zone control plane, not from the global control plane.
 
-You must also make sure the global control plane communicates with Vault. When a new Vault backend is configured, {{site.mesh_product_name}} validates the connection by issuing a test certificate. In a multizone environment, validation is performed on the global control plane.
+You must also make sure the global control plane communicates with Vault. When a new Vault backend is configured, {{site.mesh_product_name}} validates the connection by issuing a test certificate. In a multi-zone environment, validation is performed on the global control plane.

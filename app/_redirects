@@ -472,7 +472,7 @@
 # KONG MESH
 /mesh/1.0.x/features/   /mesh/1.0.x/features/vault
 /mesh/1.1.x/features/   /mesh/1.1.x/features/vault
-/mesh/1.7.x/features/windows/ /mesh/1.7.x/installation/windows/
+/mesh/*/features/windows/     /mesh/latest/installation/windows/
 /mesh/latest/features/windows/ /mesh/latest/installation/windows/
 
 
