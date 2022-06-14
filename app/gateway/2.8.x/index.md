@@ -18,9 +18,9 @@ With {{site.base_gateway}}, users can:
 * Create a thriving API developer ecosystem
 * Proactively identify API-related anomalies and threats
 * Secure and govern APIs/services, and improve API visibility across the
-entire organization
+entire organization ss
 
-## Extending the Kong Gateway
+## Extending the {{site.base_gateway}}
 
 {{site.base_gateway}} is a Lua application running in Nginx. {{site.base_gateway}}
 is distributed along with [OpenResty](https://openresty.org/), which is a bundle
@@ -43,11 +43,11 @@ the [PDK reference](/gateway/{{page.kong_version}}/pdk), and the guide on
 
 {{site.base_gateway}} is available in the following modes:
 
-**Kong Gateway (OSS)**: an open-source package containing the basic API gateway
+**{{site.base_gateway}} (OSS)**: an open-source package containing the basic API gateway
 functionality and open-source plugins. You can manage the open-source Gateway
 with Kong's [Admin API](#kong-admin-api) or with [declarative configuration](#deck).
 
-**Kong Gateway** (available in
+**{{site.base_gateway}}** (available in
 [Free, Plus, or Enterprise modes](https://konghq.com/pricing)): Kong's API gateway
 with added functionality.
 * <span class="badge free"></span> In **Free mode**,
@@ -136,7 +136,7 @@ Kong also provides API lifecycle management tools that you can use with {{site.b
 ### decK
 [decK](/deck) helps manage {{site.base_gateway}}’s configuration in a declarative fashion.
 This means that a developer can define the desired state of Kong Gateway or
-Konnect &ndash; services, routes, plugins, and more &ndash; and let decK handle
+{{site.konnect_short_name}} &ndash; services, routes, plugins, and more &ndash; and let decK handle
 implementation without needing to execute each step manually, as you would with
 the Kong Admin API.
 
@@ -155,7 +155,7 @@ The complete {{site.base_gateway}}
 getting started guide provides in-depth examples, explanations, and step-by-step
 instructions, and explores Kong's many available tools for managing the gateway.
 
-### Try in Konnect
+### Try in {{site.konnect_short_name}}
 
 [{{site.konnect_product_name}}](/konnect/) can manage {{site.base_gateway}}
 instances. With this setup, Kong hosts the control plane and you host your
