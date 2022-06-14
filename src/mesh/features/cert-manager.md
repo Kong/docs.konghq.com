@@ -93,7 +93,7 @@ spec:
 ```
 
 In `issuerRef`, only `name` is strictly required.
-`group` and `kind` will default to cert-manager default values. See issuerRef in [cert-manager API](https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.CertificateRequestSpec) for details.
+`group` and `kind` will default to cert-manager default values. See `issuerRef` in [cert-manager API](https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.CertificateRequestSpec) for details.
 
 Apply the configuration with `kubectl apply -f [..]`.
 
@@ -103,7 +103,7 @@ In a multizone environment, the global control plane provides the `Mesh` to the 
 This is because certificates for data plane proxies are requested from cert-manager by the zone control plane, not the global control plane.
 
 This implies that each Kubernetes cluster in multizone must include an `Issuer` or `ClusterIssuer`
-resource with an `issuerRef`  specified in the `Mesh` `certmanager` backend specification.
+resource with the `issuerRef`  specified in the `Mesh` `certmanager` backend specification.
 Also, because the backend is `Mesh` scoped configuration and `certmanager` backend is limited to the Kubernetes environment,
 Universal and Kubernetes cannot be used together in a multizone environment which includes a `certmanager` mTLS backend.
 
