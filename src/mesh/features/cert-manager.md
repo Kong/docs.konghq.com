@@ -55,7 +55,7 @@ The {{site.mesh_product_name}} system namespace is `kong-mesh-system` by default
 If the cert-manager is configured outside of the {{site.mesh_product_name}} system namespace,
 and `ClusterIssuer` is not used,
 this may require cert-manager configuration and secrets to be "reflected" into the `Issuer`
-in the {{site.mesh_product_name}} system namespace. See https://cert-manager.io/docs/faq/sync-secrets/ for details.
+in the {{site.mesh_product_name}} system namespace. See [cert-manager documentation](See https://cert-manager.io/docs/faq/sync-secrets/) for details.
 
 The following steps show how to configure cert-manager for {{site.mesh_product_name}} with
 a mesh named `default`. For your environment, replace `default` with the appropriate mesh name.
