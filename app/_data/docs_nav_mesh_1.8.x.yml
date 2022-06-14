@@ -59,6 +59,8 @@ items:
         url: /features/vault
       - text: Amazon ACM Private CA
         url: /features/acmpca
+      - text: cert-manager Private CA
+        url: /features/cert-manager
       - text: OPAPolicy Support
         url: /features/opa
       - text: Multi-zone authentication

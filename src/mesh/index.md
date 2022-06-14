@@ -113,6 +113,11 @@ every cloud and environment.
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
+<td>Kubernetes cert-manager CA</td>
+<td><i class="fa fa-times"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
 <td>GUI Dashboard for TLS and CA</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
