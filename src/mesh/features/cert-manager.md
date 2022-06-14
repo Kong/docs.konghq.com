@@ -68,7 +68,7 @@ to configure {{site.mesh_product_name}}
 
 ### Configure Mesh
 
-Here's an of mTLS configuration with `certmanager` backend
+Here's an example of mTLS configuration with `certmanager` backend
 which references an `Issuer` named `my-ca-issuer`:
 
 ```yaml
