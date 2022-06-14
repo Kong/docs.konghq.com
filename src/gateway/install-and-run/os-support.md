@@ -11,8 +11,8 @@ Kong Gateway currently supports the following Linux operating systems:
 <table>
   <thead>
       <th>OS version</th>
-      <th>First Enterprise version</th>
-      <th>First open-source version</th>
+      <th style="text-align: center">First Enterprise Gateway version</th>
+      <th style="text-align: center">First open-source Gateway version</th>
   </thead>
   <tbody>
   {% for item in os_versions %}
@@ -50,8 +50,8 @@ supported by Kong:
   <thead>
       <th>OS version</th>
       <th>End of Life</th>
-      <th>Last Enterprise version</th>
-      <th>Last open-source version</th>
+      <th style="text-align: center">Last Enterprise Gateway version</th>
+      <th style="text-align: center">Last open-source Gateway version</th>
   </thead>
   <tbody>
   {% for item in os_versions %}

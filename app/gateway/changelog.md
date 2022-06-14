@@ -16,7 +16,7 @@ images or packages, and Kong will not test package installation on Amazon Linux 
     If you need to install Kong Gateway on Amazon Linux 1, see the documentation for
     [previous versions](/gateway/2.8.x/install-and-run/amazon-linux/).
 
-*  **Debian 8**: Support for running Kong Gateway on Debian 8 ("Jessie") is now deprecated, as
+* **Debian 8**: Support for running Kong Gateway on Debian 8 ("Jessie") is now deprecated, as
 [Debian 8 ("Jessie") has reached End of Life (EOL)](https://www.debian.org/News/2020/20200709).
 Starting with Kong Gateway 3.0.0.0, Kong is not building new Debian 8
 ("Jessie") images or packages, and Kong will not test package installation on

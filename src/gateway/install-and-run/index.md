@@ -61,6 +61,11 @@ disable_image_expand: true
   </a>
 </div>
 
+{:.note}
+> **Note**: For installation on a Linux OS, review the list of
+[supported and deprecated OSes](/gateway/{{page.kong_version}}/install-and-run/os-support)
+before installing {{site.base_gateway}}.
+
 ## Deployment options
 
 {% include_cached /md/gateway/deployment-options.md kong_version=page.kong_version %}
