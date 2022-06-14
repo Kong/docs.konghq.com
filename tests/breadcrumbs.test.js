@@ -4,7 +4,7 @@ test.describe("Gateway", () => {
   test("renders nested breadcrumbs correctly (EE)", async ({ page }) => {
     await page.goto("/enterprise/2.5.x/plugin-development/custom-entities/");
     await expect(page.locator(".breadcrumb-item:nth-of-type(1)")).toHaveText(
-      "Kong Konnect Platform"
+      "Home"
     );
     await expect(page.locator(".breadcrumb-item:nth-of-type(2)")).toHaveText(
       "Kong Gateway"
@@ -17,7 +17,7 @@ test.describe("Gateway", () => {
   test("renders nested breadcrumbs correctly (OSS)", async ({ page }) => {
     await page.goto("/gateway-oss/2.5.x/plugin-development/custom-entities/");
     await expect(page.locator(".breadcrumb-item:nth-of-type(1)")).toHaveText(
-      "Open Source"
+      "Home"
     );
     await expect(page.locator(".breadcrumb-item:nth-of-type(2)")).toHaveText(
       "Kong Gateway (OSS)"
@@ -32,7 +32,7 @@ test.describe("Gateway", () => {
   }) => {
     await page.goto("/gateway/latest/");
     await expect(page.locator(".breadcrumb-item:nth-of-type(1)")).toHaveText(
-      "Kong Konnect Platform"
+      "Home"
     );
     await expect(page.locator(".breadcrumb-item:nth-of-type(2)")).toHaveText(
       "Kong Gateway"
@@ -45,7 +45,7 @@ test.describe("decK", () => {
     await page.goto("/deck/latest/");
 
     await expect(page.locator(".breadcrumb-item:nth-of-type(1)")).toHaveText(
-      "Open Source"
+      "Home"
     );
     await expect(page.locator(".breadcrumb-item:nth-of-type(2)")).toHaveText(
       "decK"
