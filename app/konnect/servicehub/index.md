@@ -85,4 +85,4 @@ ranging from a specific Service version or Route to all Service versions. Plugin
 can execute actions inside {{site.konnect_product_name}} before or after a request
 has been proxied to the upstream API, as well as on any incoming responses.
 
-[Manage plugins &rarr;](/konnect/configure/servicehub/plugins/)
+[Manage plugins &rarr;](/konnect/servicehub/plugins/)

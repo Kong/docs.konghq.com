@@ -6,7 +6,7 @@ no_version: true
 A core function of the Dev Portal is publishing Service descriptions and API specs. Developers can use the spec and corresponding descriptions to access, consume, and register new applications against your Services.
 
 Through Service Hub, you can also publish any Service in your catalog and its
-documentation to the Dev Portal. Publishing services to the Dev Portal is the only way to expose your service to developers. Once the Service is published and available to developers, they can apply for access by [registering](/konnect/dev-portal/access-and-approval/dev-reg/) a developer account. You can also [manage](/konnect/dev-portal/access-and-approval/manage-devs/) access to the Dev Portal from the {{site.konnect_saas}} interface.
+documentation to the Dev Portal. Publishing services to the Dev Portal is the only way to expose your service to developers. Once the Service is published and available to developers, they can apply for access by [registering](/konnect/dev-portal/dev-reg/) a developer account. You can also [manage](/konnect/dev-portal/access-and-approval/manage-devs/) access to the Dev Portal from the {{site.konnect_saas}} interface.
 
 
 ## Service descriptions
@@ -64,7 +64,7 @@ API specifications, or specs, can be uploaded and attached to a specific Version
     can use [vitalsSpec.yaml](/konnect/vitalsSpec.yaml) as a sample spec to test this functionality.
     If the Service was previously published to the Dev Portal, the documentation
     for the Service gets automatically updated with your changes. If not,
-    [publish](/konnect/dev-portal/publish) the Service.
+    [publish](/konnect/servicehub/service-documentation/#publishing) the Service.
 
 ### Update a Version Spec
 

@@ -22,7 +22,7 @@ upstream services, such as a data transformation microservice, or a billing API.
 
 Gateway Services can be exposed in Service Hub, or managed though Runtime Manager
 only:
-* When you create a [Konnect Service implementation](/konnect/configure/servicehub/manage-services)
+* When you create a [Konnect Service implementation](/konnect/servicehub/manage-services)
 through the Service Hub, it automatically creates a Gateway Service.
 * You can also create a Gateway Service directly through Runtime Manager. This
 Service won't be connected to any Service Hub implementation.
@@ -31,7 +31,7 @@ To see if a Gateway Service is connected to the Service Hub, open its
 detail page from **Runtime Manager** > **Gateway Services**. If it's attached to an
 implementation, you should see a tag in the following format: `_KonnectService:{SERVICE_NAME}`.
 
-Learn more about [Services in Konnect](/konnect/configure/servicehub) or
+Learn more about [Services in Konnect](/konnect/servicehub) or
 check out the [Service object API reference](/gateway/latest/admin-api/#service-object)
 for all configuration options.
 
@@ -63,11 +63,11 @@ adding rules, policies, transformations, and more on requests and responses.
 
 Although you can see all plugins from this page, you can only edit _global_ or
 _consumer-scoped_ plugins through the Runtime Manager.
-[Service](/konnect/configure/servicehub/enable-service-plugin) and
-[route](/konnect/configure/servicehub/enable-route-plugin) plugins must be managed
+[Service](/konnect/servicehub/enable-service-plugin) and
+[route](/konnect/servicehub/enable-route-plugin) plugins must be managed
 through the Service Hub.
 
-Learn more about [using plugins in Konnect](/konnect/configure/servicehub/plugins),
+Learn more about [using plugins in Konnect](/konnect/servicehub/plugins),
 check out the [plugin object API reference](/gateway/latest/admin-api/#plugin-object),
 or see all available plugins on the [Plugin Hub](/hub) for specific configuration
 options for each plugin.
@@ -91,7 +91,7 @@ that enable encrypted requests and peer certification validation.
 
 This configuration page _does not_ manage runtime instance certificates. If you
 need to update a runtime instance certificate, see
-[Renew Certificates](/konnect/configure/runtime-manager/runtime-instances/renew-certificates).
+[Renew Certificates](/konnect/runtime-manager/runtime-instances/renew-certificates).
 
 A certificate object represents a public certificate and can be paired with a
 corresponding private key. Certificates handle SSL/TLS termination for encrypted

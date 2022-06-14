@@ -27,7 +27,7 @@ for each runtime instance.
 
 Konnect manages runtime configuration in runtime groups. Each runtime group acts
 as a separate control plane and can manage runtime configurations independently
-of any other group. See [runtime groups](/konnect/configure/runtime-manager/runtime-groups)
+of any other group. See [runtime groups](/konnect/runtime-manager/runtime-groups)
 for more information.
 
 ## Runtime instances
@@ -51,17 +51,17 @@ Choose an installation type below:
 
 <div class="docs-grid-install">
 
-  <a href="/konnect/configure/runtime-manager/runtime-instances/gateway-runtime-docker" class="docs-grid-install-block no-description">
+  <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-docker" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="https://doc-assets.konghq.com/install-logos/docker.png" alt="Docker" />
     <div class="install-text">Docker</div>
   </a>
 
-  <a href="/konnect/configure/runtime-manager/runtime-instances/gateway-runtime-kubernetes" class="docs-grid-install-block no-description">
+  <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-kubernetes" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/kubernetes-logo.png" alt="Kubernetes" />
     <div class="install-text">Kubernetes (Helm)</div>
   </a>
 
-    <a href="/konnect/configure/runtime-manager/runtime-instances/gateway-runtime-conf" class="docs-grid-install-block no-description">
+    <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-conf" class="docs-grid-install-block no-description">
       <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-markdown-editor.svg" alt="config file" />
       <div class="install-text">Universal (kong.conf)</div>
     </a>

@@ -3,7 +3,7 @@ title: Manage Developer Access
 no_version: true
 ---
 
-Manage developers and [developer registration](/konnect/legacy/dev-portal/access-and-approval/dev-reg) requests to
+Manage developers and developer registration requests to
 access the {{site.konnect_short_name}} Dev Portal. To allow automatic approval of developer registration requests,
 enable [auto approve](/konnect/legacy/dev-portal/access-and-approval/auto-approve-devs-apps).
 

@@ -33,7 +33,7 @@ To resolve the error, [enable application registration for the Service](/konnect
 
 ## How to differentiate between registration plugins in decK {#deck}
 
-If using a [declarative configuration](/konnect/configure/runtime-manager/runtime-groups/declarative-config)
+If using a [declarative configuration](/konnect/runtime-manager/runtime-groups/declarative-config)
 file to manage your Service, these plugins appear in the file. **Do not**
 delete or edit them through declarative configuration, as it will break your Service.
 

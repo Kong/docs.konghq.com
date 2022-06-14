@@ -52,7 +52,7 @@ control plane is running.
 
 1. Check the runtime instance versions in the table. If you see
 an instance running an older version of {{site.base_gateway}}, your runtime
-instance may need [upgrading](/konnect/configure/runtime-manager/runtime-instances/upgrade).
+instance may need [upgrading](/konnect/runtime-manager/runtime-instances/upgrade).
 
 If your version is up to date but the feature still isn't working, contact
 [Kong Support](https://support.konghq.com/).

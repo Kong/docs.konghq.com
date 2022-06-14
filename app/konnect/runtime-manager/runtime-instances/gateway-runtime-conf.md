@@ -4,7 +4,7 @@ no_version: true
 content_type: how-to
 ---
 Using `kong.conf`, set up a runtime instance through the
-[{{site.konnect_short_name}} Runtime Manager](/konnect/configure/runtime-manager) and
+[{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
 configure your {{site.base_gateway}} instance to accept configuration from
 {{site.konnect_short_name}}. The Runtime Manager keeps track of all runtime
 instances associated with the {{site.konnect_saas}} account.
@@ -57,7 +57,7 @@ to the file.
     lua_ssl_trusted_certificate = system
     ```
 
-    See [Parameters](/konnect/configure/runtime-manager/runtime-instances/runtime-parameter-reference) for
+    See [Parameters](/konnect/runtime-manager/runtime-instances/runtime-parameter-reference) for
     descriptions and the matching fields in {{site.konnect_short_name}}.
 
 4. Replace the values in `cluster_cert` and

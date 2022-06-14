@@ -190,7 +190,7 @@
 - title: Legacy content
   items:
     - text: Overview of Konnect
-      url: /konnect/legacy
+      url: /legacy
     - text: Manage Accounts and Orgs
       items:
         - text: Access a Konnect Account

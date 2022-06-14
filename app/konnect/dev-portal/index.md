@@ -12,11 +12,11 @@ In Konnect services created in the Service Hub can be published to the Dev Porta
 
 * [Getting started guide](konnect/getting-started/spec/service/): This guide walks you through importing an API spec, implementing service versions, publishing your service and corresponding API spec to the Dev Portal, and configuring registration settings so that users can view your services and register applications. 
 
-* [How to publish services to the Dev Portal](/konnect/dev-portal/publish/): This how-to explains ho* w to publish services to the Dev Portal. It also covers all of the settings associated with publishing services to the Dev Portal like access and making your Dev Portal publicly accessible. 
+* [How to publish services to the Dev Portal](/konnect/servicehub/service-documentation/#publishing/): This how-to explains ho* w to publish services to the Dev Portal. It also covers all of the settings associated with publishing services to the Dev Portal like access and making your Dev Portal publicly accessible. 
 
-* [How to manage documentation](/konnect/dev-portal/service-documentation/): This how-to explains how to perform all of the functionality related to managing API specs and service descriptions. Service descriptions are markdown files that explain the aspects of your API, like a README.  
+* [How to manage documentation](/konnect/servicehub/service-documentation/): This how-to explains how to perform all of the functionality related to managing API specs and service descriptions. Service descriptions are markdown files that explain the aspects of your API, like a README.  
 
-The Dev Portal lives at a separate URL from Konnect and requires that all users, including Admin roles, [register as a Developer](/konnect/dev-portal/access-and-approval/dev-reg/).
+The Dev Portal lives at a separate URL from Konnect and requires that all users, including Admin roles, [register as a Developer](/konnect/dev-portal/dev-reg/).
 ## Developer Self Service 
 
 Dev Portals are created for Developers to use. The Dev Portal removes the burden of credential management from the API creator, and empowers developers to manage that aspect of the application development lifecycle on their own. When developers register their application to interact with services that have been exposed through Service Hub, they will have access to an overview page for the application that they registered, on this page, they can manage their API keys. Developers can also unregister for specific Services independently. 
@@ -35,7 +35,7 @@ Manage developer access - This doc details to a Kong Konnect administrator all o
 
 For Developers: 
 
-* [Developer registration and account management](/konnect/dev-portal/access-and-approval/dev-reg/) - This explains how to register for a Dev Portal as well as the registration process and different registration states, for developers who want to register for the platform. It also explains account management information. 
+* [Developer registration and account management](/konnect/dev-portal/dev-reg/) - This explains how to register for a Dev Portal as well as the registration process and different registration states, for developers who want to register for the platform. It also explains account management information. 
 
 * [Manage Applications](/konnect/dev-portal/applications/dev-apps/) - Managing application registration requests.
 
