@@ -3,6 +3,8 @@
   items:
     - text: Overview of Konnect
       url: /
+    - text: Architecture
+      url: /architecture
     - text: Network Resiliency and Availability
       url: /network-resiliency
     - text: Port and Network Requirements
@@ -187,6 +189,8 @@
 
 - title: Legacy content
   items:
+    - text: Overview of Konnect
+      url: /konnect/legacy
     - text: Manage Accounts and Orgs
       items:
         - text: Access a Konnect Account

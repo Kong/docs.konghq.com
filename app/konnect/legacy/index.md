@@ -4,6 +4,12 @@ subtitle: Kong's hosted control plane
 no_version: true
 ---
 
+{:.important}
+> This documentation is for the legacy {{site.konnect_short_name}} environment at
+[konnect.konghq.com](https://konnect.konghq.com). For the
+[cloud.konghq.com](https://cloud.konghq.com) environment, see the 
+[current {{site.konnect_short_name}} documentation](/konnect/).
+
 The {{site.konnect_saas}} docs provide information about how to manage and
 deploy {{site.konnect_short_name}} using Kong's hosted control
 plane.
