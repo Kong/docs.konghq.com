@@ -84,7 +84,7 @@ spec:
       type: certmanager
       dpCert:
         rotation:
-          expiration: 5m
+          expiration: 24h
       conf:
         issuerRef:
           name: my-ca-issuer
