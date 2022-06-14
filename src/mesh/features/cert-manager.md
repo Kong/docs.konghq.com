@@ -21,7 +21,7 @@ server.
 * [`acmpca`](/mesh/{{page.kong_version}}/features/acmpca): {{site.mesh_product_name}} generates data plane certificates
 using Amazon Certificate Manager Private CA.
 
-* [`certmanager`]: {{site.mesh_product_name}} generates dataplane certificates
+* `certmanager`: {{site.mesh_product_name}} generates dataplane certificates
 using Kubernetes [cert-manager](https://cert-manager.io) certificate controller.
 
 ## Kubernetes cert-manager CA mode
