@@ -18,7 +18,7 @@ With {{site.base_gateway}}, users can:
 * Create a thriving API developer ecosystem
 * Proactively identify API-related anomalies and threats
 * Secure and govern APIs/services, and improve API visibility across the
-entire organization ss
+entire organization.
 
 ## Extending the {{site.base_gateway}}
 
@@ -90,10 +90,10 @@ using the Kong Admin API.
 {:.badge .free}
 
 {:.note}
-> **Note**: If you are using the traditional mode of Kong, high traffic on Kong Manager might 
-> lead to potential performance issues to the Kong proxy, like tail latency and high CPU usage.
-> Server-side sorting and filtering with a large amount of entities will cause high CPU usage in
-> both Kong CP and database.
+> **Note**: If you are running Kong in traditional mode, increased traffic could
+> lead to potential performance with Kong Proxy.
+> Server-side sorting and filtering large quantities of entities will also cause increased CPU usage in both Kong CP and database.
+
 
 [Kong Manager](/gateway/{{page.kong_version}}/configure/auth/kong-manager) is
 the graphical user interface (GUI) for {{site.base_gateway}}. It uses the Kong
@@ -122,7 +122,7 @@ object-level health using intuitive, customizable dashboards
 
 {{site.base_gateway}} can run natively on Kubernetes with its custom [ingress controller](/kubernetes-ingress-controller/), Helm chart, and Operator. A Kubernetes ingress controller is a proxy that exposes Kubernetes services from applications (for example, Deployments, ReplicaSets) running on a Kubernetes cluster to client applications running outside of the cluster. The intent of an ingress controller is to provide a single point of control for all incoming traffic into the Kubernetes cluster.
 
-### Kong Gateway plugins
+### {{site.base_gateway}} plugins
 
 [{{site.base_gateway}} plugins](/hub/) provide advanced functionality to better manage your API and microservices. With turnkey capabilities to meet the most challenging use cases, {{site.base_gateway}} plugins ensure maximum control and minimizes unnecessary overhead. Enable features like authentication, rate-limiting, and transformations by enabling {{site.base_gateway}} plugins through Kong Manager or the Admin API.
 
@@ -135,17 +135,17 @@ Kong also provides API lifecycle management tools that you can use with {{site.b
 
 ### decK
 [decK](/deck) helps manage {{site.base_gateway}}’s configuration in a declarative fashion.
-This means that a developer can define the desired state of Kong Gateway or
+This means that a developer can define the desired state of {{site.base_gateway}} or
 {{site.konnect_short_name}} &ndash; services, routes, plugins, and more &ndash; and let decK handle
 implementation without needing to execute each step manually, as you would with
 the Kong Admin API.
 
 
-## Get started with Kong Gateway
+## Get started with {{site.base_gateway}}
 
-[Download and install Kong Gateway](/gateway/{{page.kong_version}}/install-and-run).
+[Download and install {{site.base_gateway}}](/gateway/{{page.kong_version}}/install-and-run).
 To test it out, you can choose either the open-source package, or
-run Kong Gateway in free mode and also try out Kong Manager.
+run {{site.base_gateway}} in free mode and also try out Kong Manager.
 
 After installation, get started with one of our introductory guides:
 * **[Quickstart](/gateway/{{page.kong_version}}/get-started/quickstart)**: An introduction to
