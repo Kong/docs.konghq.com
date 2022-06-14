@@ -4,7 +4,7 @@ no_version: true
 content_type: how-to
 ---
 Set up a Kubernetes runtime instance through the
-[{{site.konnect_short_name}} Runtime Manager](/konnect/configure/runtime-manager) and
+[{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager) and
 configure your {{site.base_gateway}} instance to accept configuration from
 {{site.konnect_short_name}}. The Runtime Manager keeps track of all runtime
 instances associated with the {{site.konnect_saas}} account.
@@ -113,7 +113,7 @@ with your specific values from {{site.konnect_short_name}}.
     the values in `cluster_cert` and `cluster_cert_key`
     with references to the secrets you created earlier.
 
-    See [Parameters](/konnect/configure/runtime-manager/runtime-instances/runtime-parameter-reference) for
+    See [Parameters](/konnect/runtime-manager/runtime-instances/runtime-parameter-reference) for
     descriptions and matching values in {{site.konnect_short_name}}.
 
 5. Apply the `values.yaml`:

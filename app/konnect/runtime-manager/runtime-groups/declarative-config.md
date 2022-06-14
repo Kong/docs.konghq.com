@@ -9,7 +9,7 @@ files instead of the GUI or admin API commands. With decK, Kong's declarative
 configuration management tool, you can create, update,
 compare, and synchronize configuration as part of an automation pipeline.
 
-In {{site.konnect_saas}}, decK can manage [runtime groups](/konnect/configure/runtime-manager/runtime-groups)
+In {{site.konnect_saas}}, decK can manage [runtime groups](/konnect/runtime-manager/runtime-groups)
 and all of their configurations:
 * Create state files for different runtime groups and manage each group
 separately.
@@ -310,4 +310,4 @@ the same configuration.
 ## See also
 
 * [decK CLI reference](/deck/latest/reference/deck)
-* [Import {{site.base_gateway}} configuration into {{site.konnect_short_name}}](/konnect/deployment/import)
+* [Import {{site.base_gateway}} configuration into {{site.konnect_short_name}}](/konnect/getting-started/import)

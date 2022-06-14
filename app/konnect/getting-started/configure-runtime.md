@@ -4,7 +4,7 @@ no_version: true
 ---
 
 Set up your first runtime through the
-[{{site.konnect_short_name}} Runtime Manager](/konnect/configure/runtime-manager).
+[{{site.konnect_short_name}} Runtime Manager](/konnect/runtime-manager).
 
 At this time, the only runtime type available is a {{site.base_gateway}}
 data plane.

@@ -145,6 +145,8 @@
 /konnect/migrate                                    /konnect/deployment/import
 /konnect/getting-started/declarative-config         /konnect/configure/runtime-manager/runtime-groups/declarative-config
 /konnect/reference/konnect-api                      /konnect/
+/konnect/deployment                                 /konnect/plan/
+/konnect/deployment/*                               /konnect/plan/:splat
 
 # COMMUNITY DOC REBRANDING
 /community                                  https://konghq.com/community-resources/

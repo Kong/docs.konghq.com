@@ -1,22 +1,18 @@
 ---
-title: Manage Entities in a Runtime Group
+title: Kong Gateway Configuration in Konnect
 no_version: true
 ---
 
 You can manage any {{site.base_gateway}} Services, Routes, consumer-scoped
-entities, and global entities from within a runtime group.
+configuration, and global configuration from within a runtime group.
 
-A **global** entity is a set of configurations that apply to, or can be used
+A **global** object is a set of configurations that apply to, or can be used
 by, all objects in a runtime group. For example, if you set up a Proxy Caching
 plugin in the default runtime group and set it to `Global`,
 the plugin configuration will apply to all Services in the group.
 
-Consumers, SNIs, upstreams, and certificates are all global entities. Plugins
+Consumers, SNIs, upstreams, and certificates are all global. Plugins
 can either be global or scoped.
-
-## Configurable Gateway entities in Konnect
-
-Through a runtime group, you can manage the following entities:
 
 ### Gateway Services
 
@@ -26,7 +22,7 @@ upstream services, such as a data transformation microservice, or a billing API.
 
 Gateway Services can be exposed in Service Hub, or managed though Runtime Manager
 only:
-* When you create a [Konnect Service implementation](/konnect/configure/servicehub/manage-services)
+* When you create a [Konnect Service implementation](/konnect/servicehub/manage-services)
 through the Service Hub, it automatically creates a Gateway Service.
 * You can also create a Gateway Service directly through Runtime Manager. This
 Service won't be connected to any Service Hub implementation.
@@ -35,7 +31,7 @@ To see if a Gateway Service is connected to the Service Hub, open its
 detail page from **Runtime Manager** > **Gateway Services**. If it's attached to an
 implementation, you should see a tag in the following format: `_KonnectService:{SERVICE_NAME}`.
 
-Learn more about [Services in Konnect](/konnect/configure/servicehub) or
+Learn more about [Services in Konnect](/konnect/servicehub) or
 check out the [Service object API reference](/gateway/latest/admin-api/#service-object)
 for all configuration options.
 
@@ -67,17 +63,14 @@ adding rules, policies, transformations, and more on requests and responses.
 
 Although you can see all plugins from this page, you can only edit _global_ or
 _consumer-scoped_ plugins through the Runtime Manager.
-[Service](/konnect/configure/servicehub/enable-service-plugin) and
-[route](/konnect/configure/servicehub/enable-route-plugin) plugins must be managed
+[Service](/konnect/servicehub/enable-service-plugin) and
+[route](/konnect/servicehub/enable-route-plugin) plugins must be managed
 through the Service Hub.
 
-Learn more about [using plugins in Konnect](/konnect/configure/servicehub/plugins),
+Learn more about [using plugins in Konnect](/konnect/servicehub/plugins),
 check out the [plugin object API reference](/gateway/latest/admin-api/#plugin-object),
 or see all available plugins on the [Plugin Hub](/hub) for specific configuration
 options for each plugin.
-
-<!-- To do after merge: move plugins intro page to top level under "configure".
-Plugin info is not ServiceHub-specific -->
 
 ### Upstreams
 
@@ -98,7 +91,7 @@ that enable encrypted requests and peer certification validation.
 
 This configuration page _does not_ manage runtime instance certificates. If you
 need to update a runtime instance certificate, see
-[Renew Certificates](/konnect/configure/runtime-manager/runtime-instances/renew-certificates).
+[Renew Certificates](/konnect/runtime-manager/runtime-instances/renew-certificates).
 
 A certificate object represents a public certificate and can be paired with a
 corresponding private key. Certificates handle SSL/TLS termination for encrypted
@@ -119,71 +112,3 @@ ClientHello to look up the associated certificate object.
 
 See the [SNI object API reference](/gateway/latest/admin-api/#sni-object)
 for all configuration options.
-
-## Configure a Kong Gateway entity
-
-1. From the left navigation menu in Konnect, open {% konnect_icon runtimes %}
-**Runtime Manager**.
-
-2. Select an entity to configure from the menu, then click **+ Add {Entity Name}**.
-
-4. Enter the entity configuration details.
-
-    See the [Kong Admin API reference](/gateway/latest/admin-api) for all
-    configuration field descriptions.
-
-5. Click **Create**.
-
-## Update or delete a Kong Gateway entity
-
-1. Open {% konnect_icon runtimes %} **Runtime Manager**, then select an entity to
-configure from the menu.
-
-2. Open the action menu on the right of a row, and click **Edit** or **Delete**.
-
-    * If editing, adjust any values in the configuration, then click **Save**.
-    * If deleting, confirm deletion in the dialog.
-
-
-## Manage global or consumer-scoped plugins
-
-Plugin configuration is slightly different from other {{site.base_gateway}} entities.
-You can also enable or disable a plugin, which leaves the configuration intact
-but lets you control whether the plugin is active or not.
-
-### Configure a plugin
-
-1. From the left navigation menu in Konnect, open {% konnect_icon runtimes %}
-**Runtime Manager**.
-
-2. Select **Plugins** from the menu, then click **+ Install Plugin**.
-
-3. Find and select the plugin of your choice.
-
-3. Choose whether to make this plugin **Global** or **Scoped** to a consumer.
-
-    For some plugins, there is only one option:
-    * If that option is **Global**, you don't need to do anything else with it.
-    * If the option is **Scoped**, select a consumer to scope it to.
-
-4. Enter the plugin configuration details. These differ for every plugin.
-
-    See the [Plugin Hub](/hub) for parameter descriptions.
-
-5. Click **Create**.
-
-### Disable or enable a plugin
-
-Disable a global plugin from the Runtime Manager.
-
-Disabling a plugin leaves its configuration intact, and you can re-enable the
-plugin at any time.
-
-1. Open {% konnect_icon runtimes %} **Runtime Manager**, then select **Plugins**
-from the menu.
-
-2. Find your plugin in the plugins list and click the toggle in the **Enabled** column.
-
-   If the plugin is applied to a Service or a Route, you can't change its
-   settings from here. Click the tag in the **Applied To** column to go to the
-   plugin's parent object, and update it there.

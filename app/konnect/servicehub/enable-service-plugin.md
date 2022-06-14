@@ -15,7 +15,7 @@ Enable, update, disable, or delete a plugin for a Service version.
 
     {:.note}
     > If you don't see the **Plugins** section, create an
-    [implementation](/konnect/configure/servicehub/manage-services/#implement-service-version) first.
+    [implementation](/konnect/servicehub/service-implementations) first.
 
 3. Find and select the plugin of your choice.
 

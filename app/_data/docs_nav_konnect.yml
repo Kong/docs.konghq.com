@@ -1,13 +1,21 @@
 - title: Introduction
   icon: /assets/images/icons/documentation/icn-flag.svg
-  url: /
   items:
+    - text: Overview of Konnect
+      url: /
+    - text: Architecture
+      url: /architecture
+    - text: Network Resiliency and Availability
+      url: /network-resiliency
+    - text: Port and Network Requirements
+      url: /network
+    - text: Compatibility
+      url: /compatibility
     - text: Release Notes
       url: /updates
 
 - title: Get Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
-  url: /getting-started/
   items:
     - text: Access a Konnect Account
       url: /getting-started/access-account
@@ -31,113 +39,118 @@
           url: /getting-started/spec/publish
         - text: Register Applications
           url: /getting-started/spec/app-registration
-        # - text: Protect your Services
-        #   url: /getting-started/spec/protect-services
-        # - text: Improve Performance
-        #   url: /getting-started/spec/performance
-        # - text: Secure Services
-        #   url: /getting-started/spec/secure-services
-        # - text: Set Up Intelligent Load Balancing
-        #   url: /getting-started/spec/load-balancing
-
-- title: Plan
-  icon: /assets/images/icons/documentation/icn-deployment-color.svg
-  url: /deployment
-  items:
-    - text: License Management
-      url: /deployment/license-management
-    - text: Port and Network Requirements
-      url: /deployment/network
-    - text: Network Resiliency and Availability
-      url: /deployment/network-resiliency
+      # - text: Protect your Services
+      #   url: /getting-started/spec/protect-services
+      # - text: Improve Performance
+      #   url: /getting-started/spec/performance
+      # - text: Secure Services
+      #   url: /getting-started/spec/secure-services
+      # - text: Set Up Intelligent Load Balancing
+      #   url: /getting-started/spec/load-balancing
     - text: Import Kong Gateway Entities into Konnect Cloud
-      url: /deployment/import
+      url: /getting-started/import
 
-- title: Configure
-  icon: /assets/images/icons/konnect/icn-cogwheel-nav.svg
+- title: Service Hub
+  icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
   items:
-    - text: Service Hub
-      url: /configure/servicehub
+    - text: Overview
+      url: /servicehub
+    - text: Manage Services
       items:
-        - text: Manage Services
-          url: /configure/servicehub/manage-services
-        - text: Manage Plugins
-          url: /configure/servicehub/plugins
-          items:
-            - text: Configure a Plugin on a Service
-              url: /configure/servicehub/enable-service-plugin
-            - text: Configure a Plugin on a Route
-              url: /configure/servicehub/enable-route-plugin
-    - text: Runtime Manager
-      url: /configure/runtime-manager
+        - text: Konnect Services
+          url: /servicehub/manage-services
+        - text: Service Versions
+          url: /servicehub/service-versions
+        - text: Service Implementations
+          url: /servicehub/service-implementations
+        - text: Manage Service Documentation
+          url: /servicehub/service-documentation
+    - text: Manage Plugins
       items:
-        - text: Runtime Groups
-          url: /configure/runtime-manager/runtime-groups
-          items:
-            - text: Manage Runtime Groups
-              url: /configure/runtime-manager/runtime-groups/manage
-            - text: Manage Runtime Groups with decK
-              url: /configure/runtime-manager/runtime-groups/declarative-config
-            - text: Manage Entities in a Runtime Group
-              url: /configure/runtime-manager/runtime-groups/manage-entities
-        - text: Runtime Instances
-          items:
-            - text: Install with Docker
-              url: /configure/runtime-manager/runtime-instances/gateway-runtime-docker
-            - text: Install on Kubernetes
-              url: /configure/runtime-manager/runtime-instances/gateway-runtime-kubernetes
-            - text: Install on Linux
-              url: /configure/runtime-manager/runtime-instances/gateway-runtime-conf
-            - text: Upgrade a Runtime Instance to a New Version
-              url: /configure/runtime-manager/runtime-instances/upgrade
-            - text: Renew Certificates
-              url: /configure/runtime-manager/runtime-instances/renew-certificates
-            - text: Runtime Parameter Reference
-              url: /configure/runtime-manager/runtime-instances/runtime-parameter-reference
-            - text: Troubleshoot Runtime Instance Issues
-              url: /configure/runtime-manager/runtime-instances/troubleshoot
+        - text: Overview
+          url: /servicehub/plugins
+        - text: Configure a Plugin on a Service
+          url: /servicehub/enable-service-plugin
+        - text: Configure a Plugin on a Route
+          url: /servicehub/enable-route-plugin
 
-- title: Publish
+- title: Runtime Manager
+  icon: /assets/images/icons/konnect/icn-runtimes-nav.svg
+  items:
+    - text: Overview
+      url: /runtime-manager
+    - text: Runtime Groups
+      items:
+        - text: Overview
+          url: /runtime-manager/runtime-groups
+        - text: Manage Runtime Groups with UI
+          url: /runtime-manager/runtime-groups/manage
+        - text: Manage Runtime Groups with decK
+          url: /runtime-manager/runtime-groups/declarative-config
+    - text: Runtime Instances
+      items:
+        - text: Install with Docker
+          url: /runtime-manager/runtime-instances/gateway-runtime-docker
+        - text: Install on Kubernetes
+          url: /runtime-manager/runtime-instances/gateway-runtime-kubernetes
+        - text: Install on Linux
+          url: /runtime-manager/runtime-instances/gateway-runtime-conf
+        - text: Upgrade a Runtime Instance to a New Version
+          url: /runtime-manager/runtime-instances/upgrade
+        - text: Renew Certificates
+          url: /runtime-manager/runtime-instances/renew-certificates
+        - text: Runtime Parameter Reference
+          url: /runtime-manager/runtime-instances/runtime-parameter-reference
+    - text: Kong Gateway Configuration in Konnect
+      items:
+        - text: Overview
+          url: /runtime-manager/gateway-config
+        - text: Manage Proxy Configuration
+          url: /runtime-manager/manage-proxy-config
+    - text: Troubleshoot
+      url: /runtime-manager/troubleshoot
+
+- title: Dev Portal
   icon: /assets/images/icons/konnect/icn-dev-portal-nav.svg
-  url: /dev-portal
   items:
-    - text: Manage Service Documentation
-      url: /dev-portal/service-documentation
-    - text: Publish a Service to Dev Portal
-      url: /dev-portal/publish
-    - text: Customize Dev Portal
-      url: /dev-portal/customization/
+    - text: Overview
+      url: /dev-portal
+    - text: Access the Dev Portal
+      url: /dev-portal/access
+    - text: Sign Up for a Dev Portal Account
+      url: /dev-portal/dev-reg
     - text: Access and Approval
       items:
-        - text: Developer Registration
-          url: /dev-portal/access-and-approval/dev-reg
         - text: Manage Developer Access
           url: /dev-portal/access-and-approval/manage-devs
+        - text: Manage Application Registration Requests
+          url: /dev-portal/access-and-approval/manage-app-reg-requests
+        - text: Manage Application Connections
+          url: /dev-portal/access-and-approval/manage-app-connections
         - text: Auto Approve Dev and App Registrations
           url: /dev-portal/access-and-approval/auto-approve-devs-apps
-    - text: Applications
+    - text: Working with Applications
       items:
         - text: Application Overview
           url: /dev-portal/applications/application-overview
-        - text: Create, Edit, and Delete an Application
-          url: /dev-portal/applications/dev-apps
         - text: Enable and Disable App Registration
           url: /dev-portal/applications/enable-app-reg
-        - text: Manage Application Registration Requests
-          url: /dev-portal/applications/manage-app-reg-requests
-        - text: Manage Application Connections
-          url: /dev-portal/applications/manage-app-connections
+        - text: Create, Edit, and Delete an Application
+          url: /dev-portal/applications/dev-apps
         - text: Register an Application with a Service
           url: /dev-portal/applications/dev-reg-app-service
         - text: Generate Credentials for an Application
           url: /dev-portal/applications/dev-gen-creds
-    - text: Troubleshooting
+    - text: Customize Dev Portal
+      url: /dev-portal/customization/
+    - text: Troubleshoot
       url: /dev-portal/troubleshooting
 
 - title: Analyze
   icon: /assets/images/icons/konnect/icn-vitals-nav.svg
-  url: /vitals/
   items:
+    - text: Overview
+      url: /vitals/
     - text: Analyze Services and Routes
       url: /vitals/analyze/
     - text: Generate Reports
@@ -172,8 +185,12 @@
           url: /org-management/okta-idp
     - text: Account and Org Deactivation
       url: /org-management/deactivation
+
+
 - title: Legacy content
   items:
+    - text: Overview of Konnect
+      url: /legacy
     - text: Manage Accounts and Orgs
       items:
         - text: Access a Konnect Account
