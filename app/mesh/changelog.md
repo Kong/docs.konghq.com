@@ -6,7 +6,7 @@ no_version: true
 
 ## 1.8.0
 
-> Released on **TBD**
+> Released on **2022/06/13**
 
 Built on top of [Kuma 1.7.0](https://github.com/kumahq/kuma/releases/tag/1.7.0)
 
@@ -44,7 +44,7 @@ Dependency upgrades:
 
 ## 1.7.1
 
-> Released on **[TBD]**
+> Released on **2022/06/13**
 
 Built on top of [Kuma 1.6.1](https://github.com/kumahq/kuma/releases/tag/1.6.1)
 
