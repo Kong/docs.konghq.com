@@ -89,6 +89,12 @@ using the Kong Admin API.
 ### Kong Manager
 {:.badge .free}
 
+{:.note}
+> **Note**: If you are using the traditional mode of Kong, high traffic on Kong Manager might 
+> lead to potential performance issues to the Kong proxy, like tail latency and high CPU usage.
+> Server-side sorting and filtering with a large amount of entities will cause high CPU usage in
+> both Kong CP and database.
+
 [Kong Manager](/gateway/{{page.kong_version}}/configure/auth/kong-manager) is
 the graphical user interface (GUI) for {{site.base_gateway}}. It uses the Kong
 Admin API under the hood to administer and control {{site.base_gateway}}.
