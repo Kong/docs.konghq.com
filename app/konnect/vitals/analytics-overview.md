@@ -7,7 +7,7 @@ content_type: reference
 The Overview Dashboard provides metrics for Services catalogued by Service Hub within a selected time interval for the following two categories: 
 
 * **Traffic** - total number of HTTP requests.
-* **Errors** - average error rate in percentage across every HTTP requests. 
+* **Errors** - average error rate in percentage across every HTTP request. 
 
 Each category measures trends by comparing metrics week to week. Time periods for trends are fixed to the last seven days and do not change if you select a different time period from the week before.
 
