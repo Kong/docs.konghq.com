@@ -30,6 +30,7 @@ httpbin
 HTTPie
 https
 ini
+io
 jq
 json
 JsonPath

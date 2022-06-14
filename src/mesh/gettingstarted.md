@@ -37,6 +37,7 @@ After you install, follow the Kuma getting started guide to get
 * Learn about enterprise features:
   * [Support for HashiCorp Vault CA](/mesh/{{page.kong_version}}/features/vault)
   * [Support for Amazon Certificate Manager Private CA](/mesh/{{page.kong_version}}/features/acmpca)
+  * [Support for Kubernetes cert-manager CA](/mesh/{{page.kong_version}}/features/cert-manager)
   * [Support for Open Policy Agent](/mesh/{{page.kong_version}}/features/opa)
   * [Multi-zone authentication](/mesh/{{page.kong_version}}/features/kds-auth)
   * [Support for FIPS](/mesh/{{page.kong_version}}/features/fips-support)
