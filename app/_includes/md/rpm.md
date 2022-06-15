@@ -30,7 +30,7 @@ To install from the command line
 $ curl -Lo kong-{{site.data.kong_latest.version}}.amd64.rpm $( rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{centos_ver}/Packages/k/kong-{{site.data.kong_latest.version}}.el%{centos_ver}.amd64.rpm")
 $ sudo yum install kong-{{site.data.kong_latest.version}}.amd64.rpm
 ```
-        
+
     {% endif %}
 
     {% if include.distribution == "rhel" %}
@@ -63,7 +63,7 @@ $ curl {{ site.links.download }}/gateway-2.x-amazonlinux-2/config.repo | sudo te
 $ sudo yum install -y kong
 ```
 
-    {% endif %}    
+    {% endif %}
 
     {% if include.distribution == "centos" %}
 
