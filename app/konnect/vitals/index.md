@@ -1,5 +1,5 @@
 ---
-title: Monitoring Health with Vitals
+title: Introduction to Monitoring Health with Vitals
 no_version: true
 ---
 
