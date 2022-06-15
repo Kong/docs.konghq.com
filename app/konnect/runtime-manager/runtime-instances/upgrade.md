@@ -17,9 +17,6 @@ proxy downtime.
 2. Open {% konnect_icon runtimes %} Runtime Manager, then choose a runtime group.
 Make sure that your new runtime instance appears in the list of runtime
 instances, is in _Connected_ status, and that it was last seen _Just Now_.
-For example:
-
-    ![Connected runtimes in Runtime Manager](/assets/images/docs/konnect/konnect-runtimes-connected.png)
 
 3. If the new runtime instance is connected and functioning, you can disconnect
 and shut down any existing older instances that you're replacing.
