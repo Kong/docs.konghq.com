@@ -152,7 +152,7 @@
     - text: Introduction to Vitals
       url: /vitals/
     - text: Overview Dashboard
-      url: /vitals/analytics-overview/
+      url: /vitals/overview-dashboard/
     - text: Analyze Services and Routes
       url: /vitals/analyze/
     - text: Generate Reports
