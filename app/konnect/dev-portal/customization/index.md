@@ -78,11 +78,19 @@ The Dev Portal can be configured to use Single Sign-On (SSO) by a {{site.konnect
 
 ### Configuration Requirements
 
-A form of authentication must always be configured. Built-in authentication or OIDC can be used individually and in combination.
+A form of authentication must always be configured. Built-in and SSO can be used individually or in combination. Each state results in a different user experience represented in this table:
+
+| State | SSO registration | SSO sign in | Built-in registration| Built-in sign in | Information|
+| --- | ----------- |  ----------- | ----------- | ----------- |
+| **SSO: Enabled**<br>**Built-in: Disabled** | ✅ | ✅ | ❌| ❌| Developer accounts created before SSO was enabled will continue to be able to log-in with their username and password.| 
+| **SSO: Disabled**<br>**Built-in: Enabled** | ❌ | ❌|✅  |✅  | | 
+| **SSO: Enabled**<br>**Built-in: Enabled** | ✅  | ✅ |✅  |✅  | |
+
+
 
 * If OIDC is enabled and Built-in is disabled, developer passwords can still be used. When re-enabling Built-in, they will be inactive while built-in is off.
 
-* Enabling both Built-in and OIDC will give developers the option to authenticate  with SSO through the IdP, or with an email and password. 
+* Enabling both Built-in and OIDC will give developers the option to authenticate with SSO, or with an email and password. 
 
 ### OIDC Details
 
