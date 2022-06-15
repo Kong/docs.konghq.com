@@ -8,7 +8,7 @@ The {{site.konnect_short_name}} Dev Portal currently offers three areas you can 
 * [Appearance](#appearance)
 * [Custom URL](#add-a-custom-dev-portal-domain)
 * [Enabling Public Access](/konnect/dev-portal/publish/#access)
-* [Custom URL](#single-sign-on)
+* [Enable Single-sign on](#single-sign-on)
 
 This doc covers the details of customizing the appearance of your Developer Portal, and the steps to customize a URL.
 
