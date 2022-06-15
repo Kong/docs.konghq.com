@@ -82,15 +82,10 @@ A form of authentication must always be configured. Built-in and SSO can be used
 
 | State | SSO registration | SSO sign in | Built-in registration| Built-in sign in | Information|
 | --- | ----------- |  ----------- | ----------- | ----------- |
-| **SSO: Enabled**<br>**Built-in: Disabled** | ✅ | ✅ | ❌| ❌| Developer accounts created before SSO was enabled will continue to be able to log-in with their username and password.| 
-| **SSO: Disabled**<br>**Built-in: Enabled** | ❌ | ❌|✅  |✅  | | 
-| **SSO: Enabled**<br>**Built-in: Enabled** | ✅  | ✅ |✅  |✅  | |
+| **SSO: Enabled**<br>**Built-in: Disabled** | ✅ | ✅ | ❌| ❌| - Developers that registered with Built-in will be forced to use SSO in this state.<br><br>- The Built-in authentication window will not be displayed from the Dev portal.<br><br> - Developers that register with SSO will not be able to login in the event that SSO is disabled.| 
+| **SSO: Disabled**<br>**Built-in: Enabled** | ❌ | ❌|✅  |✅  | - Users that register with Built-in will be asked to log in with SSO if Built-in is disabled. | 
+| **SSO: Enabled**<br>**Built-in: Enabled** | ✅  | ✅ |✅  |✅  | - Users will be able to register and access the Developer Portal with either form of authentication. |
 
-
-
-* If OIDC is enabled and Built-in is disabled, developer passwords can still be used. When re-enabling Built-in, they will be inactive while built-in is off.
-
-* Enabling both Built-in and OIDC will give developers the option to authenticate with SSO, or with an email and password. 
 
 ### OIDC Details
 
