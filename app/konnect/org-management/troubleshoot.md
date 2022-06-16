@@ -22,7 +22,7 @@ in CSV format, then importing the CSV file into Okta to populate the new group.
 ### Named cookie not present
 
 #### Problem
-If the issuer URL is incorrect or incomplete, you may get the following error
+If the issuer URI is incorrect or incomplete, you may get the following error
 (or similar) when trying to authenticate with Okta:
 
 ```
