@@ -13,9 +13,9 @@ Each category measures trends by comparing metrics week-over-week. Time periods 
 
 You can view a graph for each category by clicking **Traffic** or **Errors**, and switching between the two views.
 
-* **Traffic** - this graph displays total number of HTTP requests categorized by succesful and failed requests over the specified time interval.
+* **Traffic**: This graph displays the total number of HTTP requests categorized by successful and failed requests over the specified time interval.
 
-* **Errors** –  this graph displays the total number of failed HTTP requests categorized by error response codes over the specified time interval.
+* **Errors**: This graph displays the total number of failed HTTP requests categorized by error response codes over the specified time interval.
 
 Graphs can be interacted with, including hovering over chart items to display more details, and filtering options by clicking on items in the **legend**. 
 
