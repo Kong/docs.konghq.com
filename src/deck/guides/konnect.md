@@ -8,11 +8,6 @@ You can manage {{site.base_gateway}} core entity configuration in your
 Similar to Gateway workspaces, decK can only target one runtime group at a
 time. Managing multiple runtime groups requires a separate state file per group.
 
-Use any `--konnect`-prefixed CLI flag to target `https://cloud.konghq.com` by
-default, or save {{site.konnect_short_name}} credentials to a decK config file.
-If you don't pass any {{site.konnect_short_name}} parameters
-to decK, decK looks for a local {{site.base_gateway}} instance instead.
-
 You _cannot_ use decK to publish content to the Dev Portal, manage application
 registration, or configure custom plugins.
 
@@ -25,6 +20,13 @@ This guide targets the `cloud.konghq.com` environment. For
 You can use any regular `deck` commands (such as `ping`, `diff`, or `sync`)
 with `--konnect` flags to target {{site.konnect_short_name}}
 instead of a self-managed {{site.base_gateway}} control plane.
+
+You can also
+[save {{site.konnect_short_name}} credentials to a decK config file](#authenticate-with-a-deck-config-file)
+to target Konnect by default.
+
+If you don't pass any {{site.konnect_short_name}} parameters
+to decK, decK looks for a local {{site.base_gateway}} instance instead.
 
 {:.note}
 > Prior to decK 1.12, decK provided `deck konnect` commands. These commands are
@@ -56,7 +58,7 @@ of precedence:
 3. File passed with the `--konnect-password-file` flag
 
 For example, if you have both a decK config file and a {{site.konnect_short_name}}
- password file, decK uses the password in the config file.
+password file, decK uses the password in the config file.
 
 ### Authenticate with CLI flags
 
@@ -122,7 +124,7 @@ _konnect:
 A state file can only target one runtime group.
 
 If you leave this empty or don't include a `_konnect` section at all, decK
-targets the `default` runtime group. You can see this by pushing a simple
+targets the `default` runtime group. You can see this by pushing a
 config file to {{site.konnect_short_name}} with `deck sync`:
 
 ```yaml
@@ -165,7 +167,7 @@ If the {{site.konnect_short_name}} service doesn't exist, setting this tag
 creates a {{site.konnect_short_name}} service.
 
 For example, see the following configuration snippet, where the Gateway service
-named `MyService` is attached to the {{site.konnect_short_name}} service `example`:
+named `example_service` is attached to the {{site.konnect_short_name}} service `example`:
 
 ```yaml
 _format_version: "1.1"
@@ -180,7 +182,7 @@ services:
 
 If the {{site.konnect_short_name}} service doesn't exist, this configuration
 snippet creates a {{site.konnect_short_name}}
-service named `example` with a version named `MyService` in the Service Hub.
+service named `example` with a version named `example_service` in the Service Hub.
 
 ## Troubleshoot
 
