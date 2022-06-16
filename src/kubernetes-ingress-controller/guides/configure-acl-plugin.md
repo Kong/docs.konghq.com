@@ -506,7 +506,7 @@ Via: kong/2.0.2
 
 ## Adding ACL's
 
-The JWT plugin doesn't provide the ability to authroize a given issuer to a
+The JWT plugin doesn't provide the ability to authorize a given issuer to a
 given ingress. To do this we need to use the ACL plugin. Let's create an admin
 ACL config
 
@@ -518,13 +518,13 @@ metadata:
   name: admin-acl
 plugin: acl
 config:
-  whitelist: ['app-admin']
+  allowlist: ['app-admin']
 " | kubectl apply -f -
 ```
 
 Then let's create a user ACL config. We want our admin to be able to access
 the same resources as the user, so let's make sure we include them in the
-whitelist.
+allowlist.
 
 ```bash
 $ echo "
@@ -534,7 +534,7 @@ metadata:
   name: plain-user-acl
 plugin: acl
 config:
-  whitelist: ['app-user','app-admin']
+  allowlist: ['app-user','app-admin']
 " | kubectl apply -f -
 ```
 
@@ -584,7 +584,7 @@ credentials:
 " | kubectl apply -f -
 ```
 
-The last thing to configure is the ingress to use the new plguins. Note, if you
+The last thing to configure is the ingress to use the new plugins. Note, if you
 set more than one ACL plugin, the last one supplied will be the only one
 evaluated.
 
@@ -721,7 +721,7 @@ Server: kong/2.0.2
 {"message":"You cannot consume this service"}
 ```
 
-The `plain-user` user is not in the `admin-acl` whitelist, and is therefore
+The `plain-user` user is not in the `admin-acl` allowlist, and is therefore
 unauthorized to access the resource
 
 ```bash
