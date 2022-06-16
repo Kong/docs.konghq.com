@@ -127,7 +127,7 @@ test.describe("sidenav versions", () => {
     {
       title: "Root page links to /latest/",
       src: "/gateway/",
-      link_text: "Install and Run",
+      link_text: "Installation Options",
       expected_url: "/gateway/latest/install-and-run/",
     },
     {
@@ -139,7 +139,7 @@ test.describe("sidenav versions", () => {
     {
       title: "Sub page links to latest",
       src: "/gateway/latest/admin-api/",
-      link_text: "Install and Run",
+      link_text: "Installation Options",
       expected_url: "/gateway/latest/install-and-run/",
     },
     {
