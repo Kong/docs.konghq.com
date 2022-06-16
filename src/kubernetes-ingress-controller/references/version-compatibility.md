@@ -9,7 +9,7 @@ those versions' documentation.
 
 ## Kong
 
-By Kong, we are here referring to the official distribution of the Open-Source Kong Gateway.
+By Kong, we are here referring to the official distribution of the Open-Source {{site.base_gateway}}.
 
 | {{site.kic_product_name}} |            2.0.x            |            2.1.x            |            2.2.x            |            2.3.x            |            2.4.x            |
 |:--------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
@@ -27,7 +27,7 @@ By Kong, we are here referring to the official distribution of the Open-Source K
 ## Kong Enterprise
 
 Kong Enterprise is the official enterprise distribution, which includes all
-other enterprise functionality, built on top of the Open-Source Kong Gateway.
+other enterprise functionality, built on top of the Open-Source {{site.base_gateway}}.
 
 | {{site.kic_product_name}} |            2.0.x            |            2.1.x            |            2.2.x            |            2.3.x            |            2.4.x            |
 |:--------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
@@ -57,7 +57,7 @@ other enterprise functionality, built on top of the Open-Source Kong Gateway.
 
 ## Istio
 
-The {{site.kic_product_name}} can be integrated with an [Istio Service Mesh][istio] to use Kong Gateway as an ingress gateway for application traffic into the mesh network. See an example of this in the [Istio Guide][istio-guide].
+The {{site.kic_product_name}} can be integrated with an [Istio Service Mesh][istio] to use {{site.base_gateway}} as an ingress gateway for application traffic into the mesh network. See an example of this in the [Istio Guide][istio-guide].
 
 For each {{site.kic_product_name}} release, tests are run to verify this documentation with upcoming versions of KIC and Istio. The following table lists the tested combinations:
 

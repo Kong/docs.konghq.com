@@ -44,12 +44,12 @@ did not apply correctly to Kong upstreams. 2.1.x CRDs fix these fields:
 * `healthchecks.active.unhealthy.timeout` is now
   `healthchecks.active.unhealthy.timeouts`
 
-Before upgrading, review your KongIngresses to see if you use either of the old 
-fields. You will need to manually re-add them with the new field name after 
-upgrading. 
+Before upgrading, review your KongIngresses to see if you use either of the old
+fields. You will need to manually re-add them with the new field name after
+upgrading.
 
-Kubernetes does not allow unknown fields in CRDs. Since the old fields don't 
-exist in 2.1, Kubernetes will strip the old field and its value after updating. 
+Kubernetes does not allow unknown fields in CRDs. Since the old fields don't
+exist in 2.1, Kubernetes will strip the old field and its value after updating.
 There is no automated way to copy the old values into the new field.
 
 Helm does not update CRDs automatically, and 2.1 includes changes to the
@@ -81,7 +81,7 @@ Mechanically the `helm upgrade` is backwards compatible, but the KIC 2.0.x relea
 includes some breaking changes for options and controller operations:
 
 - Several controller manager flags were [removed or changed](#flag-changes)
-- The [format of controller manager logs](#logging-differences) has changed, 
+- The [format of controller manager logs](#logging-differences) has changed,
 and logs are now produced by multiple controllers instead of one
 - The admission webhook now requires clients that support TLS 1.2 or later.
 See the [KIC Changelog][changelog] for all changes in this release.
@@ -184,7 +184,7 @@ With the v2.0.x release, these independent controllers can be individually
 enabled or disabled with the new `--enable-controller-{NAME}` flags provided
 for the controller manager.
 
-Autonegotiation of the Ingress API version (for example, `extensions/v1beta1` or
+Auto-negotiation of the Ingress API version (for example, `extensions/v1beta1` or
 `networking/v1`) has been disabled and you now have to set
 **exactly one** option for these specific controllers:
 
@@ -293,7 +293,7 @@ helm repo update
 {% endnavtab %}
 {% navtab Response %}
 
-```shell
+```
 Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "kong" chart repository
 Update Complete. ⎈Happy Helming!⎈
@@ -305,7 +305,7 @@ Update Complete. ⎈Happy Helming!⎈
 ### Perform the upgrade
 
 Run the following command, specifying the old release name, the namespace where
-you've configured Kong Gateway, and the existing `values.yaml` configuration file:
+you've configured {{site.base_gateway}}, and the existing `values.yaml` configuration file:
 
 ```shell
 $ helm upgrade ${YOUR_RELEASE_NAME} kong/kong \

@@ -14,10 +14,10 @@ and enable the admission controller.
 Please note that this requires {{site.kic_product_name}} >= 0.6 to be
 already installed in the cluster.
 
-## tldr;
+## Set up with a script
 
 If you are using the stock YAML manifests to install and setup Kong for
-Kubernetes, then you can setup the admission webhook using a single command:
+Kubernetes, then you can set up the admission webhook using a single command:
 
 ```bash
 curl -sL https://bit.ly/install-kong-admission-webhook | bash
@@ -29,7 +29,7 @@ work.
 
 ## Create a certificate for the admission controller
 
-Kuberentes API-server makes an HTTPS call to the Admission Controller to verify
+Kubernetes API-server makes an HTTPS call to the Admission Controller to verify
 if the custom resource is valid or not. For this to work, Kubernetes API-server
 needs to trust the CA certificate that is used to sign Admission Controller's
 TLS certificate.
@@ -44,7 +44,7 @@ in the default case is `kong-validation-webhook.kong.svc`.
 
 ### Using self-signed certificate
 
-Use openssl to generate a self-signed certificate:
+Use `openssl` to generate a self-signed certificate:
 
 ```bash
 $ openssl req -x509 -newkey rsa:2048 -keyout tls.key -out tls.crt -days 365  \
@@ -68,7 +68,7 @@ on how to generate a certificate using the in-built CA.
 ### Create the secret
 
 Next, create a Kubernetes secret object based on the key and certificate that
-was generatd in the previous steps.
+was generated in the previous steps.
 Here, we assume that the PEM-encoded certificate is stored in a file named
 `tls.crt` and private key is stored in `tls.key`.
 
@@ -94,7 +94,7 @@ deployment.extensions/ingress-kong patched
 ## Enable the validating admission
 
 If you are using Kubernetes CA to generate the certificate, you don't need
-to supply a CA certificate (in the `caBunde` param)
+to supply a CA certificate (in the `caBunde` parameter)
 as part of the Validation Webhook configuration
 as the API-server already trusts the internal CA.
 
@@ -175,11 +175,11 @@ exists a consumer in Kong with the same username.
 
 ### Verify incorrect KongPlugins
 
-Try to create the folowing KongPlugin resource.
+Try to create the following KongPlugin resource.
 The `foo` config property does not exist in the configuration definition and
 hence the Admission Controller returns back an error.
 If you remove the `foo: bar` configuration line, the plugin will be
-created succesfully.
+created successfully.
 
 ```bash
 $ echo "

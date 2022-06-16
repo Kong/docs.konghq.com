@@ -11,7 +11,7 @@ Any ACME-based CA can be used in-place of Let's Encrypt as well.
 You will need the following:
 
 - Kubernetes cluster that can provision an IP address that is routable from
-  the Internet. If you don't have one, you can use GKE or any managed k8s
+  the Internet. If you don't have one, you can use GKE or any managed Kubernetes
   cloud offering.
 - A domain name for which you control the DNS records.
   This is necessary so that

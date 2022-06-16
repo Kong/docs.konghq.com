@@ -278,7 +278,7 @@ container to a local system for review with
 [Wireshark](https://www.wireshark.org/).
 
 Note that you will typically need to temporarily disable TLS to inspect
-application-layer traffic. If you have acces to the server's private keys you
+application-layer traffic. If you have access to the server's private keys you
 can [decrypt TLS](https://wiki.wireshark.org/TLS#TLS_Decryption), though this
 does not work if the session uses an ephemeral cipher (neither the controller
 nor Kong proxy have support for dumping session secrets).
@@ -292,4 +292,4 @@ information on memory and CPU consumption within the program.
 To enable profiling and access it, set `CONTROLLER_PROFILING=true` in the
 controller container environment (`ingressController.env.profiling: true` using
 the Helm chart), wait for the Deployment to restart, run `kubectl
-port-forward <POD_NAME> 10256:10256`, and visit http://localhost:10256/debug/pprof/
+port-forward <POD_NAME> 10256:10256`, and visit `http://localhost:10256/debug/pprof/`.

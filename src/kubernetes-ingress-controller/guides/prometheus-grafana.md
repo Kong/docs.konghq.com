@@ -23,7 +23,7 @@ You’ll need a few things before we can start:
   purpose of this tutorial. We are running a GKE Kubernetes cluster v1.12.x.
 - **Helm**: We will be using [Helm](https://helm.sh/)
   to install all of our components.
-  Tiller should be installed on your k8s cluster and
+  Tiller should be installed on your Kubernetes cluster and
   Helm CLI should be available on your workstation.
   You can follow Helm’s quickstart guide to set up helm.
 
@@ -36,10 +36,10 @@ These settings are not meant for production usage.
 
 If you already have the [Prometheus
 Operator](https://github.com/prometheus-operator/prometheus-operator) and
-Grafana installed in your cluster, you can skip these steps. 
+Grafana installed in your cluster, you can skip these steps.
 
 {:.note}
-> **Note:** The Prometheus Operator is required, as the {{site.kic_product_name}} 
+> **Note:** The Prometheus Operator is required, as the {{site.kic_product_name}}
 uses its PodMonitor custom resource to configure scrape rules.
 
 ### Prometheus and Grafana
@@ -78,7 +78,7 @@ grafana:
       kic-dash:
         gnetId: 15662
         datasource: Prometheus
-  
+
 ```
 
 To install Prometheus and Grafana, execute the following, specifying the path
@@ -109,7 +109,7 @@ By default, kube-prometheus-stack [selects ServiceMonitors and PodMonitors by a
 
 ### Enable Prometheus plugin in Kong
 
-We will enable the Promtheus plugin in Kong at the global level, meaning
+We will enable the Prometheus plugin in Kong at the global level, meaning
 each request that flows into the Kubernetes cluster gets tracked in Prometheus:
 
 ```bash

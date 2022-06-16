@@ -228,8 +228,8 @@ of the Ingress rules defined in `demo-example-com` resource.
 ## Using plugins on Services
 
 Kong Ingress allows plugins to be executed on a service level, meaning
-Kong will execute a plugin whenever a request is sent to a specific k8s service,
-no matter which Ingress path it came from.
+Kong will execute a plugin whenever a request is sent to a specific Kubernetes
+service, no matter which Ingress path it came from.
 
 Create a KongPlugin resource:
 

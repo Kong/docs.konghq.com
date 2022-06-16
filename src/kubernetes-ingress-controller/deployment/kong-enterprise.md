@@ -111,7 +111,7 @@ It will take a few minutes to roll out the updated deployment and once the new
 `ingress-kong` pod is up and running, you should be able to log into the Kong Manager UI.
 
 As you follow along with other guides on how to use your newly deployed the {{site.kic_product_name}},
-you will be able to browse Kong Manager and see changes reflectded in the UI as Kong's
+you will be able to browse Kong Manager and see changes reflected in the UI as Kong's
 configuration changes.
 
 ## Using Kong for Kubernetes with Kong Enterprise

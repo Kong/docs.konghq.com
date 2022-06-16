@@ -4,7 +4,7 @@ title: UDPIngress with Kong Gateway
 
 This guide walks you through deploying a simple [Service][svc] that
 listens for [UDP datagrams][udp], and exposes this service outside
-of the cluster using Kong Gateway.
+of the cluster using {{site.base_gateway}}.
 
 [svc]:https://kubernetes.io/docs/concepts/services-networking/service/
 [udp]:https://datatracker.ietf.org/doc/html/rfc768
@@ -39,7 +39,7 @@ Follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/dep
 the {{site.kic_product_name}} on your Kubernetes cluster.
 
 > **Note**: This feature is compatible with:
-> * Kong Gateway versions 2.0.0 and above.
+> * {{site.base_gateway}} versions 2.0.0 and above.
 > * Kong Ingress Controller versions 2.0.0 and above.
 
 ## Create a namespace
@@ -110,7 +110,7 @@ data:
     }
 ```
 
-This simple configuration tells our CoreDNS pods to forward all DNS requests to [nameservers][nameservers] present in `/etc/resolv.conf`.
+This simple configuration tells our CoreDNS pods to forward all DNS requests to [name servers][nameservers] present in `/etc/resolv.conf`.
 
 By default, `/etc/resolve.conf` points to the standard kube-dns service provided by the cluster.
 
@@ -187,7 +187,7 @@ running, you can move on to the next sections: exposing the pods through
 
 A Kubernetes [Service][svc] is a fundamental network abstraction layer
 that allows you to load-balance traffic to pods in the cluster. `Services` are
-ultimately the DNS names that the Kong Gateway will be routing our UDP traffic to.
+ultimately the DNS names that the {{site.base_gateway}} will be routing our UDP traffic to.
 
 The following manifest exposes the CoreDNS Deployment from the previous section via a service.
 
@@ -227,10 +227,10 @@ DNS server outside of the cluster using Kong's `UDPIngress` resource.
 
 The Kong Kubernetes Ingress Controller (KIC) doesn't have a
 mechanism to automatically enable new UDP ports for exposing your
-Kubernetes UDP `Services`, so you need to explicitly configure Kong Gateway to expose
+Kubernetes UDP `Services`, so you need to explicitly configure {{site.base_gateway}} to expose
 these ports prior to deploying any `UDPIngress` resources.
 
-If you're maintaining a `values.yaml` configuration for your Helm deployment of Kong Gateway,
+If you're maintaining a `values.yaml` configuration for your Helm deployment of {{site.base_gateway}},
 add a section under `udpProxy` to enable the new UDP listener:
 
 ```yaml
@@ -249,9 +249,9 @@ Once you've made the necessary configurations you can apply your changes:
 $ helm upgrade --namespace {NAMESPACE} --version {CHART_VERSION} -f values.yaml {RELEASE_NAME} kong/kong
 ```
 
-Replace `{NAMESPACE}`, `{CHART_VERSION}` and `{RELEASE_NAME}` with the values you deployed Kong Gateway with.
+Replace `{NAMESPACE}`, `{CHART_VERSION}` and `{RELEASE_NAME}` with the values you deployed {{site.base_gateway}} with.
 
-Alternatively, if you are using command line flags to deploy and manage Kong Gateway,
+Alternatively, if you are using command line flags to deploy and manage {{site.base_gateway}},
 the same configuration can be achieved with flags:
 
 ```shell
@@ -264,12 +264,12 @@ $ helm upgrade --namespace {NAMESPACE} --version {CHART_VERSION} {RELEASE_NAME} 
 ```
 
 Watch the services using `kubectl get services` and wait for the `LoadBalancer` service to be ready for the Gateway.
-Once the service up, Kong Gateway is ready to serve UDP traffic on the external port `9999`
+Once the service up, {{site.base_gateway}} is ready to serve UDP traffic on the external port `9999`
 using `UDPIngress` resources.
 
 ## Deploying UDPIngress
 
-Now that Kong Gateway is listening on `9999`, you can create a `UDPIngress` resource which will attach
+Now that {{site.base_gateway}} is listening on `9999`, you can create a `UDPIngress` resource which will attach
 the CoreDNS service to that port so you can make DNS requests to it from outside the cluster.
 
 Save the following file as `coredns-udpingress.yaml`:
@@ -290,7 +290,7 @@ spec:
     port: 9999
 ```
 
-This configuration binds the Kong Gateway port `9999` to the `Service` port `53` for our DNS server.
+This configuration binds the {{site.base_gateway}} port `9999` to the `Service` port `53` for our DNS server.
 
 Apply the `coredns-udpingress.yaml` manifests:
 
@@ -298,7 +298,7 @@ Apply the `coredns-udpingress.yaml` manifests:
 $ kubectl apply -f coredns-udpingress.yaml
 ```
 
-You can now make DNS requests via Kong Gateway.
+You can now make DNS requests via {{site.base_gateway}}.
 
 ## Verification
 
@@ -306,7 +306,7 @@ Now that setup is complete, all that's left to do is verify that everything is w
 by making a DNS request to our CoreDNS server.
 
 > **Note:** This example assumes you have the `dig` command available on your local
- system. If you don't, refer to your operating system documentation for a similar DNS 
+ system. If you don't, refer to your operating system documentation for a similar DNS
  lookup tool.
 
 First, retrieve the IP address of the UDP load balancer service that we
@@ -350,4 +350,4 @@ konghq.com.		30	IN	A	34.83.126.248
 Verify that the `{KONG_UDP_ENDPOINT}` in the `SERVER` section of the response above ends
 up being equal to your `${KONG_UDP_ENDPOINT}` value.
 
-Now you're equipped to route UDP traffic into your Kubernetes cluster with Kong Gateway! 
+Now you're equipped to route UDP traffic into your Kubernetes cluster with {{site.base_gateway}}!

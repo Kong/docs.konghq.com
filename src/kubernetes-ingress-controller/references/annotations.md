@@ -26,7 +26,7 @@ Following annotations are supported on Ingress resources:
 | [`konghq.com/override`](#konghqcomoverride) | Control other routing attributes via `KongIngress` resource. |
 
 `kubernetes.io/ingress.class` is normally required, and its value should match
-the value of the `--ingress-class` controller argument ("kong" by default).
+the value of the `--ingress-class` controller argument (`kong` by default).
 
 ## Service resource
 
@@ -44,7 +44,7 @@ Following annotations are supported on Service resources:
 
 ## KongConsumer resource
 
-Following annotaitons are supported on KongConsumer resources:
+Following annotations are supported on KongConsumer resources:
 
 | Annotation name | Description |
 |-----------------|-------------|
@@ -52,7 +52,7 @@ Following annotaitons are supported on KongConsumer resources:
 | [`konghq.com/plugins`](#konghqcomplugins) | Run plugins for a specific consumer |
 
 `kubernetes.io/ingress.class` is normally required, and its value should match
-the value of the `--ingress-class` controller argument ("kong" by default).
+the value of the `--ingress-class` controller argument (`kong` by default).
 
 Setting the `--process-classless-kong-consumer` controller flag removes that requirement:
 when enabled, the controller will process KongConsumers with no
@@ -66,11 +66,11 @@ KongConsumer resources by default.
 ### kubernetes.io/ingress.class
 
 {:.note}
-> Kubernetes versions after 1.18 introduced the new `ingressClassName` 
-field to the Ingress spec and 
-[deprecated the `kubernetes.io/ingress.class` annotation](https://kubernetes.io/docs/concepts/services-networking/ingress/#deprecated-annotation). 
-Ingress resources should now use the `ingressClassName` field. 
-Kong resources (KongConsumer, TCPIngress, etc.) 
+> Kubernetes versions after 1.18 introduced the new `ingressClassName`
+field to the Ingress spec and
+[deprecated the `kubernetes.io/ingress.class` annotation](https://kubernetes.io/docs/concepts/services-networking/ingress/#deprecated-annotation).
+Ingress resources should now use the `ingressClassName` field.
+Kong resources (KongConsumer, TCPIngress, etc.)
 still use the `kubernetes.io/ingress.class` annotation.
 
 If you have multiple Ingress controllers in a single cluster,
@@ -331,9 +331,9 @@ konghq.com/methods: "GET,POST"
 > Available since controller 1.1
 
 Sets the `snis` match criteria on the Kong route associated with this Ingress.
-When using route-attached plugins that execute during the certificate 
-phase (for example, [Mutual TLS Authentication](/hub/kong-inc/mtls-auth/)), 
-the `snis` annotation allows route matching based on the server name 
+When using route-attached plugins that execute during the certificate
+phase (for example, [Mutual TLS Authentication](/hub/kong-inc/mtls-auth/)),
+the `snis` annotation allows route matching based on the server name
 indication information sent in a client's TLS handshake.
 
 Sample usage:

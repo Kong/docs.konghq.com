@@ -3,7 +3,7 @@ title: Kong for Kubernetes
 ---
 
 Kong for Kubernetes is an Ingress Controller based on the
-Open-Source Kong Gateway. It consists of two components:
+Open-Source {{site.base_gateway}}. It consists of two components:
 
 - **Kong**: the Open-Source Gateway
 - **Controller**: a daemon process that integrates with the
