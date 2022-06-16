@@ -127,8 +127,8 @@ test.describe("sidenav versions", () => {
     {
       title: "Root page links to /latest/",
       src: "/gateway/latest/",
-      link_text: "Docker",
-      expected_url: "/gateway/latest/install-and-run/docker",
+      link_text: "Installation Options",
+      expected_url: "/gateway/latest/install-and-run/",
     },
     {
       title: "Versioned root page links to the correct version",
@@ -139,8 +139,8 @@ test.describe("sidenav versions", () => {
     {
       title: "Sub page links to latest",
       src: "/gateway/latest/admin-api/",
-      link_text: "Docker",
-      expected_url: "/gateway/latest/install-and-run/docker",
+      link_text: "Installation Options",
+      expected_url: "/gateway/latest/install-and-run/",
     },
     {
       title: "Versioned sub page links to the correct version",
