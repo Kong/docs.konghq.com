@@ -7,9 +7,9 @@ based on uses-cases. This document explains various components involved
 and choices one can make as per the specific use-case.
 
 - [**Kubernetes Resources**](#kubernetes-resources):
-  Various Kubernetes resouces required to run the {{site.kic_product_name}}.
+  Various Kubernetes resources required to run the {{site.kic_product_name}}.
 - [**Deployment options**](#deployment-options):
-  A high-level explanantion of choices that one should consider and customize
+  A high-level explanation of choices that one should consider and customize
   the deployment to best serve a specific use case.
 
 ## Kubernetes Resources
@@ -137,10 +137,10 @@ of all the domains that Kong should be proxying, to route the traffic to Kong.
 The {{site.kic_product_name}} can run with or without a database.
 If a database is being deployed, then following resources are required:
 
-- A `StatefulSet` which runs a Postgresql pod backed with a `PersistentVolume`
+- A `StatefulSet` which runs a PostgreSQL pod backed with a `PersistentVolume`
   to store Kong's configuration.
-- An internal `Service` which resolves to the Postgresql pod. This ensures
-  that Kong can find the Postgresql instance using DNS inside
+- An internal `Service` which resolves to the PostgreSQL pod. This ensures
+  that Kong can find the PostgreSQL instance using DNS inside
   the Kubernetes cluster.
 - A batch `Job` to run schema migrations. This is required to be executed once
   to install bootstrap Kong's database schema.
@@ -257,7 +257,7 @@ There are a few different ways of accomplishing this:
   Use the annotation on Ingress and Custom resources to segment
   the Ingress resources between multiple Ingress Controllers.
   **Warning!**
-  When you use another Ingress Controler, which is default for cluster
+  When you use another Ingress Controller, which is default for cluster
   (without set any `kubernetes.io/ingress.class`), be aware of using default `kong`
   ingress class. There is special behavior of the default `kong` ingress class,
   where any ingress resource that is not annotated is picked up.
@@ -277,22 +277,11 @@ There are a few different ways of accomplishing this:
 
 The {{site.kic_product_name}} is compatible with a variety of runtimes:
 
-### Kong Gateway (OSS)
+### {{site.ce_product_name}}
 
 This is the [Open-Source Gateway](https://github.com/kong/kong) runtime.
 The Ingress Controller is primarily developed against releases of the
 open-source gateway.
-
-### Kong Enterprise K8S
-
-If you are a Kong Enterprise customer you have access to Enterprise K8s in
-addition to OSS.
-
-Kong Enterprise K8S is a package that takes the open-source Kong Gateway and
-adds enterprise-only plugins to it.
-
-You simply need to deploy Kong Enterprise K8S instead of the Open-Source
-Gateway in-order to take full-advantage of enterprise plugins.
 
 ### Kong Enterprise
 
