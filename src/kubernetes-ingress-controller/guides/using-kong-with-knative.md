@@ -18,7 +18,7 @@ address or DNS name will certainly keep things simpler and easy for you.
 
 ## Install Knative
 
-If you don't have knative installed, you need to install Knative:
+If you don't have Knative installed, you need to install Knative:
 
 ```
 kubectl apply --filename https://github.com/knative/serving/releases/download/knative-v1.1.0/serving-crds.yaml
@@ -151,7 +151,7 @@ Via: kong/1.4.3
 Hello Go Sample v1!
 ```
 
-The request is served by Knative and from the response HTTP headeres,
+The request is served by Knative and from the response HTTP headers,
 we can tell that the request was proxied by Kong.
 
 The first request will also take longer to complete as Knative will spin
@@ -161,7 +161,7 @@ We can see how Kong observed this latency and recorded it in the
 If you perform subsequent requests,
 they should complete much faster.
 
-## Plugins for knative services
+## Plugins for Knative services
 
 Let's now execute a plugin for our new Knative service.
 

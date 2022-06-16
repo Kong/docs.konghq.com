@@ -312,7 +312,7 @@ $ curl -i $PROXY_IP/foo/status/500
 ```
 
 Now, sending the following request will fail for about 15 seconds,
-the duration it will take active healthchecks to re-classify
+the duration it will take active health checks to re-classify
 the httpbin pod as healthy again.
 
 ```bash
@@ -352,5 +352,5 @@ when passive health-checks marked it unhealthy.
 Scale the `httpbin` and `ingress-kong` deployments and observe how
 multiple pods change the outcome of the above demo.
 
-Read more about health-checks and ciruit breaker in Kong's
+Read more about health-checks and circuit breaker in Kong's
 [documentation](/gateway/latest/reference/health-checks-circuit-breakers).

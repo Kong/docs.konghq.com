@@ -46,7 +46,7 @@ your choice:
 
 ### YAML manifests
 
-Execute the following to install Kong for Kubernetes Enteprise using YAML
+Execute the following to install Kong for Kubernetes Enterprise using YAML
 manifests:
 
 ```bash

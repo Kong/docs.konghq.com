@@ -10,7 +10,7 @@ Kong and a Service and not Kong and a client or consumer.
 
 ## What is mTLS?
 
-Mutual authentication refers to two-way authencation, where the client and
+Mutual authentication refers to two-way authentication, where the client and
 server, both can authenticate themselves to the other party.
 
 With mutual TLS authentication, client and server both present TLS

@@ -12,7 +12,7 @@ service disruption.
 The {{site.kic_product_name}} is composed of two parts: 1. Kong, which handles
 the requests, 2. Controller, which configures Kong dynamically.
 
-Kong itself can be deployed in a Highly available manner by deploying
+Kong itself can be deployed in a highly-available manner by deploying
 multiple instances (or pods). Kong nodes are state-less, meaning a Kong pod
 can be terminated and restarted at any point of time.
 
@@ -20,7 +20,7 @@ The controller itself can be stateful or stateless, depending on if a database
 is being used or not.
 
 If a database is not used, then the Controller and Kong are deployed as
-colocated containers in the same pod and each controller configures the Kong
+co-located containers in the same pod and each controller configures the Kong
 container that it is running with.
 
 For cases when a database is necessary, the Controllers can be deployed
@@ -48,7 +48,7 @@ The name of the ConfigMap is derived from the value of election-id CLI flag
 (default: `ingress-controller-leader`) and
 ingress-class (default: `kong`) as: "<election-id>-<ingress-class>".
 For example, the default ConfigMap that is used for leader election will
-be "ingress-controller-leader-kong", and it will be present in the same
+be `ingress-controller-leader-kong`, and it will be present in the same
 namespace that the controller is deployed in.
 
 ## Scaling

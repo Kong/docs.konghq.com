@@ -37,7 +37,7 @@ proxy all the traffic.
 The following figure describes the mapping between Kubernetes concepts
 to Kong's configuration:
 
-![translating k8s to kong](/assets/images/docs/kubernetes-ingress-controller/k8s-to-kong.png "Translating k8s resources to Kong")
+![translating Kubernetes to Kong](/assets/images/docs/kubernetes-ingress-controller/k8s-to-kong.png "Translating k8s resources to Kong")
 
 Let's go through how Kubernetes resources are being mapped to Kong's
 configuration:

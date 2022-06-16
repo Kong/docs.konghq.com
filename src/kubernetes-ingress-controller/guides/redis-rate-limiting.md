@@ -185,7 +185,7 @@ service/redis created
 ```
 
 Once this is deployed, let's update our KongClusterPlugin configuration to use
-Redis as a datastore rather than each Kong node storing the counter information
+Redis as a data store rather than each Kong node storing the counter information
 in-memory:
 
 ```bash

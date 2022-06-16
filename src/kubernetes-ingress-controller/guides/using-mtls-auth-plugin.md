@@ -50,14 +50,14 @@ The secret resource must have a few properties:
 - It must have an `id` data property which contains a random UUID.
 - It must have a `kubernetes.io/ingress.class` annotation whose value matches
   the value of the controller's `--ingress-class` argument. By default, that
-  value is "kong".
+  value is `kong`.
 
 Note that a self-signed CA certificate is being used for the purpose of this
 guide. You should use your own CA certificate that is backed by
 your PKI infrastructure.
 
 **This example is used to show the YAML format of a `Secret` resource for the CA certificate. DO NOT directly use the certificate here.
-You should use your own CA certificate, or generate a self-signed certificate for testing.** To generate self-signed CA certificates using OpenSSL, follow these instructions: 
+You should use your own CA certificate, or generate a self-signed certificate for testing.** To generate self-signed CA certificates using OpenSSL, follow these instructions:
 ```bash
 openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -sha256 -days 365 -nodes\
  -subj "/C=US/ST=California/L=San Francisco/O=Kong/OU=Org/CN=www.example.com"
