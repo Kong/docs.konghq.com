@@ -13,7 +13,7 @@ swap:
   file name: filename
   hashicorp: HashiCorp
   kong: Kong
-  '(?:kubernetes|k8s)': Kubernetes
+  # '(?:kubernetes|k8s)': Kubernetes
   kong gateway: "{{site.base_gateway}}"
   Konnect: "{{site.konnect_short_name}}"
   Konnect Cloud: "{{site.konnect_saas}}"
