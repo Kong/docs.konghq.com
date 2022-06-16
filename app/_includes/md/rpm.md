@@ -38,12 +38,21 @@ $ sudo yum install kong-{{site.data.kong_latest.version}}.amd64.rpm
 - [Red Hat 7]({{ site.links.download }}/gateway-2.x-rhel-7/Packages/k/kong-{{site.data.kong_latest.version}}.rhel7.amd64.rpm)
 - [Red Hat 8]({{ site.links.download }}/gateway-2.x-rhel-8/Packages/k/kong-{{site.data.kong_latest.version}}.rhel8.amd64.rpm)
 
-To install from the command line
+To install from the command line using `yum`
 
 ```bash
 $ curl -Lo kong-{{site.data.kong_latest.version}}.amd64.rpm $( rpm --eval "{{ site.links.download }}/gateway-2.x-rhel-7/Packages/k/kong-{{site.data.kong_latest.version}}.rhel%{rhel}.amd64.rpm")
 $ sudo yum kong-{{site.data.kong_latest.version}}.amd64.rpm
 ```
+
+To install from the command line using `rpm` directly (you will need Kong's dependencies installed separately)
+
+```bash
+$ curl -Lo kong.rpm $( rpm --eval "{{ site.links.download }}/gateway-2.x-rhel-7/Packages/k/kong-{{site.data.kong_latest.version}}.rhel%{rhel}.amd64.rpm")
+rpm -iv kong.rpm
+```
+
+Installing directly via `rpm` is suitable for RedHat's [UBI (Universal Build Image)](https://developers.redhat.com/blog/2020/03/24/red-hat-universal-base-images-for-docker-users) "minimal" variant (you will need Kong's dependencies installed separately via `microdnf`)
 
     {% endif %}
 
