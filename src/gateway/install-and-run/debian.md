@@ -2,37 +2,6 @@
 title: Install Kong Gateway on Debian
 ---
 
-{:.important}
-> **Deprecation notice**: Support for running Kong Gateway on
-Debian 8 ("Jessie") is now deprecated, as [Debian 8 ("Jessie") has reached End of Life (EOL)](https://www.debian.org/News/2020/20200709).
-Starting with Kong Gateway 3.0.0.0, Kong is neither building new Debian 8 ("Jessie") images nor packages. Nor will Kong test package installation on Debian 8 ("Jessie").
-> If you need to install Kong Gateway on Debian 8 ("Jessie"), see the documentation for
-[previous versions](/gateway/2.8.x/install-and-run/debian/).
-> <br><br>
-> Kong Gateway Enterprise subscriptions can still use Debian 8 ("Jessie") in 2.8, but support
-for Debian 8 ("Jessie") is planned to be removed in 3.0.
-
-{:.install-banner}
-> Download the latest {{page.kong_version}} package for Debian:
->
-> * **Kong Gateway**:
-> [**9 Stretch**]({{ site.links.download }}/gateway-2.x-debian-stretch/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb){:.install-link},
-> [**10 Buster**]({{ site.links.download }}/gateway-2.x-debian-buster/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb){:.install-link},
-> or [**11 Bullseye**]({{ site.links.download }}/gateway-2.x-debian-bullseye/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb){:.install-link}
-> (latest version: {{page.kong_versions[page.version-index].ee-version}})
-> * **Kong Gateway (OSS)**:
-> [**9 Stretch**]({{ site.links.download }}/gateway-2.x-debian-stretch/pool/all/k/kong/kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb){:.install-link},
-> [**10 Buster**]({{ site.links.download }}/gateway-2.x-debian-buster/pool/all/k/kong/kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb){:.install-link},
-> or [**11 Bullseye**]({{ site.links.download }}/gateway-2.x-debian-bullseye/pool/all/k/kong/kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb){:.install-link}
-> (latest version: {{page.kong_versions[page.version-index].ce-version}})
->
-> <br>
-> <span class="install-subtitle">View the list of all 2.x packages for
-> [9 Stretch]({{ site.links.download }}/gateway-2.x-debian-stretch/pool/all/k/){:.install-listing-link},
-> [10 Buster]({{ site.links.download }}/gateway-2.x-debian-buster/pool/all/k/){:.install-listing-link}, or
-> [11 Bullseye]({{ site.links.download }}/gateway-2.x-debian-bullseye/pool/all/k/){:.install-listing-link}
->  </span>
-
 The {{site.base_gateway}} software is governed by the
 [Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
 {{site.ce_product_name}} is licensed under an
@@ -40,7 +9,7 @@ The {{site.base_gateway}} software is governed by the
 
 ## Prerequisites
 
-* A supported system with root or [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user) access.
+* A [supported system](/gateway/{{page.kong_version}}/install-and-run/os-support) with root or [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user) access.
 * The following tools are installed:
   * [`curl`](https://curl.se/)
   * [`lsb-release`](https://packages.debian.org/lsb-release)

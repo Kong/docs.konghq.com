@@ -16,8 +16,9 @@ items:
 
   - title: Install and Run
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
-    url: /install-and-run/
     items:
+      - text: Installation Options
+        url: /install-and-run/
       - text: Kubernetes
         url: /install-and-run/kubernetes
       - text: Helm
@@ -26,18 +27,20 @@ items:
         url: /install-and-run/openshift
       - text: Docker
         url: /install-and-run/docker
-      - text: Amazon Linux
-        url: /install-and-run/amazon-linux
-      - text: CentOS
-        url: /install-and-run/centos
+      - text: Linux
+        items:
+          - text: Supported Distributions
+            url: /install-and-run/os-support
+          - text: Amazon Linux
+            url: /install-and-run/amazon-linux
+          - text: Debian
+            url: /install-and-run/debian
+          - text: RHEL
+            url: /install-and-run/rhel
+          - text: Ubuntu
+            url: /install-and-run/ubuntu
       - text: macOS
         url: /install-and-run/macos
-      - text: Debian
-        url: /install-and-run/debian
-      - text: RHEL
-        url: /install-and-run/rhel
-      - text: Ubuntu
-        url: /install-and-run/ubuntu
       - text: Migrating from OSS to EE
         url: /install-and-run/migrate-ce-to-ke
       - text: Upgrade Kong Gateway
