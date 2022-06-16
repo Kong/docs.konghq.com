@@ -209,8 +209,8 @@ Gateway APIs are supported. In particular:
 {% endif_version %}
 - queryParam matches matches are not supported.
 {% if_version gte: 2.4.x %}
-- Gateway Listener configuration does not support TLSConfig. You will not be
-  able to load certificates for HTTPRoutes and TLSRoutes via Gateway
+- Gateway Listener configuration does not support TLSConfig. You can't
+  load certificates for HTTPRoutes and TLSRoutes via Gateway
   configuration, and must either accept the default Kong certificate or add
   certificates and SNI resources manually via the admin API in DB-backed mode.
 {% endif_version %}
