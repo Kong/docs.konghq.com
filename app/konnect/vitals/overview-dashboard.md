@@ -23,7 +23,7 @@ You can select a time period using the **time period** drop-down menu. The inter
 
 Interval | Description  
 ------|----------|
-Last 15 minutes | Data is aggregated in ten seconds increments.
+Last 15 minutes | Data is aggregated in ten second increments.
 Last hour| Data is aggregated in one minute increments.
 Last 3 hours | Data is aggregated in one minute increments.
 Last 6 hours | Data is aggregated in ten minute increments.
