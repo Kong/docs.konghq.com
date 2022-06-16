@@ -101,7 +101,7 @@ they were migrated successfully.
 
 You can keep any data plane nodes that are:
 * Running {{site.base_gateway}} (Enterprise, include _free_ mode)
-* Are at least version 2.3 or higher
+* Are at least version 2.5 or higher
 
 Turn any self-managed nodes into cloud data plane nodes by registering them
 through the Runtime Manager and adjusting their configurations, or power down
