@@ -19,7 +19,7 @@ You can view a graph for each category by clicking **Traffic** or **Errors**, an
 
 Graphs can be interacted with, including hovering over chart items to display more details, and filtering options by clicking on items in the **legend**. 
 
-You can select a different time periods using the **time period** drop-down menu. The different intervals aggregate data at different increments of time.
+You can select a time period using the **time period** drop-down menu. The intervals aggregate data at different increments of time.
 
 Interval | Description  
 ------|----------|
