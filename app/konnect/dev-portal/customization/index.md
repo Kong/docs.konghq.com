@@ -7,7 +7,7 @@ content_type: how-to
 The {{site.konnect_short_name}} Dev Portal can be customized in the following ways:
 * [Appearance](#appearance)
 * [Custom URL](#add-a-custom-dev-portal-domain)
-* [Access](konnect/dev-portal/access/#access)
+* [Access](/konnect/dev-portal/access/)
 * [Single-sign on](#single-sign-on)
 
 
@@ -80,10 +80,10 @@ The Dev Portal can be configured to use Single Sign-On (SSO) by a {{site.konnect
 A form of authentication must always be configured. Built-in and SSO can be used individually or in combination. Each state results in a different user experience represented in this table:
 
 | State | SSO registration | SSO sign in | Built-in registration| Built-in sign in | Information|
-| --- | ----------- |  ----------- | ----------- | ----------- |
-| **SSO: Enabled**<br>**Built-in: Disabled** | ✅ | ✅ | ❌| ❌| - Developers that registered with Built-in will be forced to use SSO in this state.<br><br>- The Built-in authentication window will not be displayed from the Dev portal.<br><br> - Developers that register with SSO will not be able to login in the event that SSO is disabled.| 
-| **SSO: Disabled**<br>**Built-in: Enabled** | ❌ | ❌|✅  |✅  | - Users that register with Built-in will be asked to log in with SSO if Built-in is disabled. | 
-| **SSO: Enabled**<br>**Built-in: Enabled** | ✅  | ✅ |✅  |✅  | - Users will be able to register and access the Developer Portal with either form of authentication. |
+| --- | :-----------: |  ----------- | :-----------: | ----------- |
+| **SSO: Enabled**<br>**Built-in: Disabled** | ✅ | ✅ | ❌ | ❌ | - Developers that registered with Built-in will be forced to use SSO in this state.<br><br>- The Built-in authentication window will not be displayed from the Dev portal.<br><br> - Developers that register with SSO will not be able to login in the event that SSO is disabled.| 
+| **SSO: Disabled**<br>**Built-in: Enabled** | ❌ | ❌ | ✅  |✅  | - Developers will be able to register and log in with a username and password.| 
+| **SSO: Enabled**<br>**Built-in: Enabled** | ✅  | ✅ | ✅  | ✅  | - Developers will be able to register and access the Developer Portal with either form of authentication.|
 
 
 ### OIDC Details
