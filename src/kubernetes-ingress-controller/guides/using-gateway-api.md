@@ -201,8 +201,16 @@ Hostname: echo-758859bbfb-cnfmx
 The KIC Gateway API alpha is a work in progress, and not all features of
 Gateway APIs are supported. In particular:
 
+{% if_version lte: 2.3.x %}
 - HTTPRoute is the only supported route type. TCPRoute, UDPRoute, and TLSRoute
   are not yet implemented.
 - HTTPRoute does not yet support multiple backendRefs. You cannot distribute
   requests across multiple Services.
+{% endif_version %}
 - queryParam matches matches are not supported.
+{% if_version gte: 2.4.x %}
+- Gateway Listener configuration does not support TLSConfig. You will not be
+  able to load certificates for HTTPRoutes and TLSRoutes via Gateway
+  configuration, and must either accept the default Kong certificate or add
+  certificates and SNI resources manually via the admin API in DB-backed mode.
+{% endif_version %}
