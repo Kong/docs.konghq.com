@@ -74,7 +74,7 @@ deck ping \
   --konnect-password YOUR_PASSWORD
 ```
 
-Save your {{site.konnect_short_name}} password to a file, then pass the file
+Or, save your {{site.konnect_short_name}} password to a file, then pass the file
 using the `--konnect-password-file` flag:
 
 ```sh
@@ -188,9 +188,11 @@ service named `example` with a version named `example_service` in the Service Hu
 
 ### Authentication with a {{site.konnect_short_name}} password file is not working
 
-Check that there are no conflicts with settings in the decK config file
+If you have verified that your password is correct but decK can't connect to
+your account, check for conflicts with the decK config file
 (`~/.deck.yaml`) and the {{site.konnect_short_name}} password file. There is
-likely an old decK config file conflicting with the password file.
+likely an decK config file conflicting with the password file and passing 
+another set of credentials.
 
 To resolve, remove one of the duplicate sets of credentials.
 
@@ -198,14 +200,17 @@ To resolve, remove one of the duplicate sets of credentials.
 
 When migrating from {{site.base_gateway}} to {{site.konnect_short_name}},
 make sure to remove any `_workspace`tags. If you leave `_workspace` in, you
-will see the error:
+get the following error:
 
 ```
 Error: checking if workspace exists
 ```
 
-A file with no workspace or runtime group tags gets synced to the `default`
-runtime group.
+Remove the `_workspace` key to resolve this error. 
+
+You can now sync the file as-is to apply it to the 
+default runtime group, or add a key to 
+apply the configuration to a specific runtime group.
 
 To apply configuration to custom runtime groups, replace `_workspace`
 with `runtime_group_name: GroupName`.
