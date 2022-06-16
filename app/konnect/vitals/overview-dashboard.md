@@ -9,7 +9,7 @@ The Overview Dashboard provides metrics for Services cataloged by Service Hub wi
 * **Traffic**: Total number of HTTP requests.
 * **Errors**: Percentage of failed HTTP requests. 
 
-Each category measures trends by comparing metrics week-over-week. Time periods for trends are fixed to the last seven days and do not change if you select a different time period from the week before.
+Each category measures trends by comparing metrics week-over-week. Time periods for trends are fixed to the last seven days and don't change if you select a different time period from the week before.
 
 You can view a graph for each category by clicking **Traffic** or **Errors**, and switching between the two views.
 
