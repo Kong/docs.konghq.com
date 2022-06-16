@@ -4,7 +4,7 @@ no_version: true
 content_type: reference
 ---
 
-The Overview Dashboard provides metrics for Services catalogued by Service Hub within a selected time interval for the following two categories: 
+The Overview Dashboard provides metrics for Services cataloged by Service Hub within a selected time interval for the following categories: 
 
 * **Traffic**: Total number of HTTP requests.
 * **Errors**: Percentage of failed HTTP requests. 
