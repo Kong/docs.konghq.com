@@ -25,10 +25,12 @@ disable_image_expand: true
     <div class="install-text">OpenShift</div>
   </a>
 
+  {% if_version lte:2.8.x %}
   <a href="/gateway/{{page.kong_version}}/install-and-run/centos" class="docs-grid-install-block no-description">
     <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/centos.gif" alt="" />
     <div class="install-text">CentOS</div>
   </a>
+  {% endif_version %}
 
   <a href="/gateway/{{page.kong_version}}/install-and-run/ubuntu" class="docs-grid-install-block no-description">
     <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/ubuntu.png" alt="" />
@@ -58,6 +60,11 @@ disable_image_expand: true
     </div>
   </a>
 </div>
+
+{:.note}
+> **Note**: For installation on a Linux OS, review the list of
+[supported and deprecated OSes](/gateway/{{page.kong_version}}/install-and-run/os-support)
+before installing {{site.base_gateway}}.
 
 ## Deployment options
 
