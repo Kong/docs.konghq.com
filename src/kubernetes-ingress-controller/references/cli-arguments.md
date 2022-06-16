@@ -75,6 +75,10 @@ Following table describes all the flags that are available:
 | `--proxy-timeout-seconds`                | `float32`          | Define the rate (in seconds) in which the timeout configuration will be applied to the Kong client.                                                 | `10`                              |
 | `--publish-service`                      | `string`           | Service fronting Ingress resources in "namespace/name" format. The controller will update Ingress status information with this Service's endpoints. |                                   |
 | `--publish-status-address`               | `strings`          | User-provided addresses in comma-separated string format, for use in lieu of "publish-service" when that Service lacks useful address information.  |                                   |
+
+{% if_version gte: 2.4.x %}
+| `--skip-ca-certificates`                 | `boolean`          | Disable CA certificate handling. When using multiple controllers for separate workspaces in the same Kong instance, all but one controller should have this set to `true` | `false`     |
+{% endif_version %}
 | `--sync-period`                          | `duration`         | Relist and confirm cloud resources this often.                                                                                                       | `48h`                             |
 
 {% if_version gte: 2.4.x %}
