@@ -23,7 +23,7 @@ instead of a self-managed {{site.base_gateway}} control plane.
 
 You can also
 [save {{site.konnect_short_name}} credentials to a decK config file](#authenticate-with-a-deck-config-file)
-to target Konnect by default.
+to target {{site.konnect_short_name}} by default.
 
 If you don't pass any {{site.konnect_short_name}} parameters
 to decK, decK looks for a local {{site.base_gateway}} instance instead.
