@@ -16,6 +16,10 @@ to decK, decK looks for a local {{site.base_gateway}} instance instead.
 You _cannot_ use decK to publish content to the Dev Portal, manage application
 registration, or configure custom plugins.
 
+This guide targets the `cloud.konghq.com` environment. For
+`konnect.konghq.com`, see [`deck konnect` commands](/deck/1.11.x/reference/deck_konnect/)
+ in decK 1.11 or earlier.
+
 ## {{site.konnect_short_name}} flags
 
 You can use any regular `deck` commands (such as `ping`, `diff`, or `sync`)
