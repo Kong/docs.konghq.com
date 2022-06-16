@@ -1,3 +1,7 @@
+# DEPRECATED OS
+/gateway/3.0.x/install-and-run/centos    /gateway/latest/install-and-run/os-support
+/gateway/latest/install-and-run/centos   /gateway/latest/install-and-run/os-support
+
 # FREE TRIALS, GENERAL LICENSING
 /free-trial/guide/                    https://konghq.com/install
 /konnect-platform/plans/              https://konghq.com/pricing/

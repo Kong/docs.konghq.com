@@ -2,16 +2,6 @@
 title: Install Kong Gateway on Docker
 ---
 
-<!-- Banner with links to latest downloads -->
-<!-- The install-link and install-listing-link classes are used for tracking, do not remove -->
-
-{:.install-banner}
-> See the list of Docker tags and pull the Docker image:
-> * [**Kong Gateway**](https://hub.docker.com/r/kong/kong-gateway/tags){:.install-listing-link}
-> * [**Kong Gateway (OSS)**](https://hub.docker.com/_/kong){:.install-listing-link}
->
-> (latest {{site.base_gateway}} version: {{page.kong_versions[page.version-index].ee-version}})
-
 {{site.base_gateway}} supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its
 datastore. This guide provides steps to configure PostgreSQL.
 
@@ -217,7 +207,7 @@ docker run -d --name kong-gateway \
     * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url):
     (Enterprise only) The URL for accessing Kong Manager, preceded by a protocol
     (for example, `http://`).
-    * `KONG_LICENSE_DATA`: (Enterprise only) If you have a license file and have saved it 
+    * `KONG_LICENSE_DATA`: (Enterprise only) If you have a license file and have saved it
     as an environment variable, this parameter pulls the license from your environment.
 
 1. Verify your installation:
@@ -405,7 +395,7 @@ docker run -d --name kong-dbless \
     * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url):
     (Enterprise only) The URL for accessing Kong Manager, preceded by a protocol
     (for example, `http://`).
-    * `KONG_LICENSE_DATA`: (Enterprise only) If you have a license file and have saved it 
+    * `KONG_LICENSE_DATA`: (Enterprise only) If you have a license file and have saved it
     as an environment variable, this parameter pulls the license from your environment.
 
 1. Verify that {{site.base_gateway}} is running:
