@@ -116,18 +116,18 @@ Running Kong on Azure Container Instances is super easy:
 1. **Start Kong**
 
     ```bash
-    $ az container create --name kong-gateway /
-                          --dns-name-label kong-gateway /
-                          --resource-group kong-gateway /
-                          --image kong:latest /
-                          --port 8000 8443 8001 8444 /
-                          --environment-variables KONG_PG_HOST="<instance-name>.postgres.database.azure.com" /
-                                                  KONG_PG_USER="<username>" /
-                                                  KONG_PG_PASSWORD="<password>" /
-                                                  KONG_PROXY_ACCESS_LOG="/dev/stdout" /
-                                                  KONG_ADMIN_ACCESS_LOG="/dev/stdout" /
-                                                  KONG_PROXY_ERROR_LOG="/dev/stderr" /
-                                                  KONG_ADMIN_ERROR_LOG="/dev/stderr" /
+    $ az container create --name kong-gateway \
+                          --dns-name-label kong-gateway \
+                          --resource-group kong-gateway \
+                          --image kong:latest \
+                          --port 8000 8443 8001 8444 \
+                          --environment-variables KONG_PG_HOST="<instance-name>.postgres.database.azure.com" \
+                                                  KONG_PG_USER="<username>" \
+                                                  KONG_PG_PASSWORD="<password>" \
+                                                  KONG_PROXY_ACCESS_LOG="/dev/stdout" \
+                                                  KONG_ADMIN_ACCESS_LOG="/dev/stdout" \
+                                                  KONG_PROXY_ERROR_LOG="/dev/stderr" \
+                                                  KONG_ADMIN_ERROR_LOG="/dev/stderr" \
                                                   KONG_ADMIN_LISTEN="0.0.0.0:8001, 0.0.0.0:8444 ssl"
     ```
 
