@@ -63,6 +63,14 @@ params:
         the logging level on Kong nodes, which requires a reload, use this
         parameter to enable instrumentation for the request. The parameter writes
         log entries with some added information using `ngx.CRIT` (CRITICAL) level.
+    - name: run_on_preflight
+      required: false
+      default: true
+      datatype: boolean
+      description: |
+        A boolean value that indicates whether the plugin should run (and try to 
+        authenticate) on `OPTIONS` preflight requests. If set to `false`, then 
+        `OPTIONS` requests are always allowed.
     - name: access_token_issuer
       required: false
       default: kong
