@@ -268,7 +268,7 @@ form parameter                        | default | description
 `credential`                          |         | Contains the ID of the OAuth 2.0 application created on Kong.
 `token_type`<br>*optional*            | `bearer`| The [token type](https://tools.ietf.org/html/rfc6749#section-7.1).
 `access_token`<br>*optional*          |         | You can optionally set your own access token value, otherwise a random string will be generated.
-`refresh_token`<br>*optional*         |         | You can optionally set your own unique refresh token value, otherwise a random string will be generated.
+`refresh_token`<br>*optional*         |         | You can optionally set your own unique refresh token value, otherwise no refresh token will be generated.
 `expires_in`                          |         | The expiration time (in seconds) of the access token.
 `scope`<br>*optional*                 |         | The authorized scope associated with the token.
 `authenticated_userid`<br>*optional*  |         | The custom ID of the user who authorized the application.
