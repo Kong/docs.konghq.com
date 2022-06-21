@@ -52,7 +52,8 @@ You can find them through the Runtime Manager:
 
 1. Open a runtime group.
 2. Click **Add runtime instance**.
-3. Choose the Linux or Kubernetes tab and note the hostnames in the codeblock for the following parameters:
+3. Choose the Linux or Kubernetes tab and note the hostnames in the code block
+for the following parameters:
 
     ```
     cluster_control_plane = example12345.us.cp0.konghq.com:443
