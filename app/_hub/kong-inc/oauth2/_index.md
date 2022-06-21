@@ -268,7 +268,7 @@ form parameter                        | default | description
 `credential`                          |         | Contains the ID of the OAuth 2.0 application created on Kong.
 `token_type`<br>*optional*            | `bearer`| The [token type](https://tools.ietf.org/html/rfc6749#section-7.1).
 `access_token`<br>*optional*          |         | You can optionally set your own access token value, otherwise a random string will be generated.
-`refresh_token`<br>*optional*         |         | You can optionally set your own unique refresh token value, otherwise a random string will be generated.
+`refresh_token`<br>*optional*         |         | You can optionally set your own unique refresh token value, otherwise no refresh token will be generated.
 `expires_in`                          |         | The expiration time (in seconds) of the access token.
 `scope`<br>*optional*                 |         | The authorized scope associated with the token.
 `authenticated_userid`<br>*optional*  |         | The custom ID of the user who authorized the application.
@@ -360,14 +360,14 @@ A diagram representing this flow:
   <a title="OAuth 2.0 Flow" href="/assets/images/docs/oauth2/oauth2-flow.png" target="_blank"><img src="/assets/images/docs/oauth2/oauth2-flow.png"/></a>
 </div>
 
-1. The client application will redirect the end user to the authorization page on your web application, passing `client_id`, `response_type` and `scope` (if required) as querystring parameters. This is a sample authorization page:
+1. The client application will redirect the end user to the authorization page on your web application, passing `client_id`, `response_type` and `scope` (if required) as query string parameters. This is a sample authorization page:
     <div class="alert alert-info">
       <center><img title="OAuth 2.0 Prompt" src="/assets/images/docs/oauth2/oauth2-prompt.png"/></center>
     </div>
 
 2. Before showing the actual authorization page, the web application will make sure that the user is logged in.
 
-3. The client application will send the `client_id` in the querystring, from which the web application can retrieve both the OAuth 2.0 application name, and developer name, by making the following request to Kong:
+3. The client application will send the `client_id` in the query string, from which the web application can retrieve both the OAuth 2.0 application name, and developer name, by making the following request to Kong:
 
     ```bash
     $ curl kong:8001/oauth2?client_id=XXX
