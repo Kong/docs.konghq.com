@@ -226,6 +226,12 @@ which must specify an Nginx configuration template. Such a template uses the
 the given Kong configuration, before being dumped in your Kong prefix
 directory, moments before starting Nginx.
 
+The following Lua functions are available in the [templating engine][pl.template]:
+
+- `pairs`, `ipairs`
+- `tostring`
+- `os.getenv`
+
 The default template for
 Kong Gateway can be found by entering the following command on the system
 running your Kong instance: `find / -type d -name "templates" | grep kong`. For
@@ -234,7 +240,7 @@ open-source Kong Gateway, you can also see the
 
 The template is split in two
 Nginx configuration files: `nginx.lua` and `nginx_kong.lua`. The former is
-minimalistic and includes the latter, which contains everything Kong requires
+minimal and includes the latter, which contains everything Kong requires
 to run. When `kong start` runs, right before starting Nginx, it copies these
 two files into the prefix directory, which looks like so:
 
@@ -3213,7 +3219,7 @@ Click the link below to sign in with your new credentials.
 When enabled, developers will receive an email when the status changes for their
 application service requests.
 
-When disabled, developers will still be able to view the status in their 
+When disabled, developers will still be able to view the status in their
 developer portal application page.
 
 The email looks like the following:

@@ -229,6 +229,12 @@ which must specify an Nginx configuration template. Such a template uses the
 the given Kong configuration, before being dumped in your Kong prefix
 directory, moments before starting Nginx.
 
+The following Lua functions are available in the [templating engine][pl.template]:
+
+- `pairs`, `ipairs`
+- `tostring`
+- `os.getenv`
+
 The default template for
 Kong Gateway can be found by entering the following command on the system
 running your Kong instance: `find / -type d -name "templates" | grep kong`. For
@@ -237,7 +243,7 @@ open-source Kong Gateway, you can also see the
 
 The template is split in two
 Nginx configuration files: `nginx.lua` and `nginx_kong.lua`. The former is
-minimalistic and includes the latter, which contains everything Kong requires
+minimal and includes the latter, which contains everything Kong requires
 to run. When `kong start` runs, right before starting Nginx, it copies these
 two files into the prefix directory, which looks like so:
 
