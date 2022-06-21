@@ -3,6 +3,7 @@ Alertmanager
 allowlist
 anonymized
 api
+autogenerate
 aws
 Bintray
 Bitnami

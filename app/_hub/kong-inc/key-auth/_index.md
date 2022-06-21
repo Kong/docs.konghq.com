@@ -141,7 +141,7 @@ params:
     Once applied, any user with a valid credential can access the Service.
     To restrict usage to certain authenticated users, also add the
     [ACL](/plugins/acl/) plugin (not covered here) and create allowed or
-    denied groups of users.
+    denied groups of users. 
 ---
 
 ## Usage
