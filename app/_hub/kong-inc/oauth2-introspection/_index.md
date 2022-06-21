@@ -5,12 +5,13 @@ version: 1.3-x
 desc: Integrate Kong with a third-party OAuth 2.0 Authorization Server
 description: |
   Validate access tokens sent by developers using a third-party OAuth 2.0
-  Authorization Server, by leveraging its Introspection Endpoint
+  Authorization Server by leveraging its Introspection Endpoint
   ([RFC 7662](https://tools.ietf.org/html/rfc7662)). This plugin assumes that
   the Consumer already has an access token that will be validated against a
   third-party OAuth 2.0 server.
 
-  **Note**: The [OpenID Connect Plugin][oidcplugin] supports
+  {:.note}
+  > **Note**: The [OpenID Connect Plugin][oidcplugin] supports
   OAuth 2.0 Token Introspection as well and offers functionality beyond
   this plugin, such as restricting access by scope.
 
@@ -50,6 +51,15 @@ params:
       datatype: string
       description: |
         The full URL to the third-party introspection endpoint.
+
+        If the introspection endpoint is `https`, [`lua_ssl_trusted_certificate`](/gateway/latest/reference/configuration/#lua_ssl_trusted_certificate)
+        must be set in `kong.conf` to ensure the plugin can connect
+        to the endpoint. The CA bundle file location depends on your OS. See the
+        [configuration reference](/gateway/latest/reference/configuration/#lua_ssl_trusted_certificate) for a list.
+
+        Starting with Kong v2.2, users can set `lua_ssl_trusted_certificate=system`
+        to automatically use the CA bundle from the OS.
+
     - name: authorization_value
       required: true
       default: null
@@ -144,22 +154,23 @@ params:
         `X-Credential-{claim-name}`.
 ---
 
-### Flow
+## Flow
 
 ![OAuth2 Introspection Flow](/assets/images/docs/oauth2/oauth2-introspection.png)
 
-### Associate the response to a Consumer
+## Associate the response to a Consumer
 
-To associate the introspection response resolution to a Kong Consumer, you will have to provision a Kong Consumer with the same `username` returned by the Introspection Endpoint response.
+To associate the introspection response resolution to a Kong Consumer, provision a Kong Consumer with the same `username` returned by the Introspection Endpoint response.
 
-### Upstream Headers
+## Upstream headers
 
-When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API/Microservice, so that you can identify the consumer in your code:
+When a client has been authenticated, the plugin appends the following headers to the request before proxying it to the upstream API/microservice.
+Use these headers to identify the consumer in your code:
 
 - `X-Consumer-ID`, the ID of the Consumer on Kong (if matched)
 - `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if matched and if existing)
 - `X-Consumer-Username`, the `username of` the Consumer (if matched and if existing)
-- `X-Anonymous-Consumer`, will be set to true when authentication failed, and the 'anonymous' consumer was set instead.
+- `X-Anonymous-Consumer`, set to true if authentication fails, and the `anonymous` consumer is set instead.
 - `X-Credential-Scope`, as returned by the Introspection response (if any)
 - `X-Credential-Client-ID`, as returned by the Introspection response (if any)
 - `X-Credential-Username`, as returned by the Introspection response (if any)
@@ -172,6 +183,8 @@ When a client has been authenticated, the plugin will append some headers to the
 - `X-Credential-Iss`, as returned by the Introspection response (if any)
 - `X-Credential-Jti`, as returned by the Introspection response (if any)
 
-Additionally, any claims specified in `config.custom_claims_forward` will also be forwarded with the `X-Credential-` prefix.
+Additionally, any claims specified in `config.custom_claims_forward` are also forwarded with the `X-Credential-` prefix.
 
-Note: Aforementioned `X-Credential-*` headers are not set when authentication failed, and the 'anonymous' consumer was set instead.
+{:.note}
+> **Note:** If authentication fails, the plugin doesn't set any `X-Credential-*` headers.
+It appends `X-Anonymous-Consumer: true` and sets the `anonymous` consumer instead.
