@@ -141,7 +141,7 @@ params:
     Once applied, any user with a valid credential can access the Service.
     To restrict usage to certain authenticated users, also add the
     [ACL](/plugins/acl/) plugin (not covered here) and create allowed or
-    denied groups of users.
+    denied groups of users. 
 ---
 
 ## Usage
@@ -157,7 +157,7 @@ A Consumer can have many credentials.
 To create a Consumer, make the following request:
 
 ```bash
-curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
+curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://localhost:8001/consumers/
 ```
 {% endnavtab %}
 
@@ -200,7 +200,7 @@ service, you must add the new Consumer to the allowed group. See
 Provision new credentials by making the following HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer}/key-auth -d
+curl -X POST http://localhost:8001/consumers/{USERNAME_OR_ID}/key-auth
 ```
 
 Response:
@@ -209,10 +209,14 @@ Response:
 HTTP/1.1 201 Created
 
 {
-    "consumer": { "id": "876bf719-8f18-4ce5-cc9f-5b5af6c36007" },
-    "created_at": 1443371053000,
-    "id": "62a7d3b7-b995-49f9-c9c8-bac4d781fb59",
-    "key": "62eb165c070a41d5c1b58d9d3d725ca1"
+  "key": "5SRmk6gLnTy1SyQ1Cl9GzoRXJbjYGGbZ",
+  "created_at": 1655412883,
+  "tags": null,
+  "ttl": null,
+  "id": "0103844a-0b40-42c8-aa71-64e98e2e525f",
+  "consumer": {
+    "id": "d9e37c7d-3261-4b7b-81a6-a94bc203a0ca"
+  }
 }
 ```
 {% endnavtab %}
@@ -223,7 +227,7 @@ entry:
 
 ```yaml
 keyauth_credentials:
-- consumer: {consumer}
+- consumer: {USERNAME_OR_ID}
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -232,7 +236,7 @@ In both cases, the fields/parameters work as follows:
 
 field/parameter     | description
 ---                 | ---
-`{consumer}`        | The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+`{USERNAME_OR_ID}`  | The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
 `ttl`<br>*optional* | The number of seconds the key is going to be valid. If missing or set to zero, the `ttl` of the key is unlimited. If present, the value must be an integer between 0 and 100000000.
 `key`<br>*optional* | You can optionally set your own unique `key` to authenticate the client. If missing, the plugin will generate one.
 
@@ -241,33 +245,33 @@ field/parameter     | description
 Make a request with the key as a query string parameter:
 
 ```bash
-$ curl http://kong:8000/{proxy path}?apikey=<some_key>
+curl http://localhost:8000/{proxy path}?apikey={some_key}
 ```
 
-**Note:** The `key_in_query` parameter must be set to `true` (default).
+**Note:** The `key_in_query` plugin parameter must be set to `true` (default).
 
 Make a request with the key in the body:
 
 ```bash
-$ curl http://kong:8000/{proxy path} \
-    --data 'apikey: <some_key>'
+curl http://localhost:8000/{proxy path} \
+    --data 'apikey: {some_key}'
 ```
 
-**Note:** The `key_in_body` parameter must be set to `true` (default is `false`).
+**Note:** The `key_in_body` plugin parameter must be set to `true` (default is `false`).
 
 Make a request with the key in a header:
 
 ```bash
-$ curl http://kong:8000/{proxy path} \
-    -H 'apikey: <some_key>'
+curl http://localhost:8000/{proxy path} \
+    -H 'apikey: {some_key}'
 ```
 
-**Note:** The `key_in_header` parameter must be set to `true` (default).
+**Note:** The `key_in_header` plugin parameter must be set to `true` (default).
 
 gRPC clients are supported too:
 
 ```bash
-$ grpcurl -H 'apikey: <some_key>' ...
+grpcurl -H 'apikey: {some_key}' ...
 ```
 ### About API Key Locations in a Request
 
@@ -278,7 +282,7 @@ $ grpcurl -H 'apikey: <some_key>' ...
 This example disables using a key in a query parameter:
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
+curl -X POST http://localhost:8001/routes/{NAME_OR_ID}/plugins \
     --data "name=key-auth"  \
     --data "config.key_names=apikey" \
     --data "config.key_in_query=false"
@@ -289,7 +293,7 @@ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
 Delete an API Key by making the following request:
 
 ```bash
-$ curl -X DELETE http://kong:8001/consumers/{consumer}/key-auth/{id}
+curl -X DELETE http://localhost:8001/consumers/{USERNAME_OR_ID}/key-auth/{ID}
 ```
 
 Response:
@@ -298,8 +302,8 @@ Response:
 HTTP/1.1 204 No Content
 ```
 
-* `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
-* `id`: The `id` attribute of the key credential object.
+* `USERNAME_OR_ID`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+* `ID`: The `id` attribute of the key credential object.
 
 ### Upstream Headers
 
@@ -320,7 +324,7 @@ Paginate through the API keys for all Consumers by making the following
 request:
 
 ```bash
-$ curl -X GET http://kong:8001/key-auths
+curl -X GET http://localhost:8001/key-auths
 ```
 
 Response:
@@ -355,10 +359,10 @@ Response:
 Filter the list by Consumer by using a different endpoint:
 
 ```bash
-$ curl -X GET http://kong:8001/consumers/{username or id}/key-auth
+curl -X GET http://localhost:8001/consumers/{USERNAME_OR_ID}/key-auth
 ```
 
-`username or id`: The username or id of the Consumer whose credentials need to be listed.
+In the above, substitute the `username` or `id` property associated with the Consumer.
 
 Response:
 
@@ -383,11 +387,10 @@ Retrieve a [Consumer][consumer-object] associated with an API
 key by making the following request:
 
 ```bash
-curl -X GET http://kong:8001/key-auths/{key or id}/consumer
+curl -X GET http://localhost:8001/key-auths/{KEY_OR_ID}/consumer
 ```
 
-`key or id`: The `id` or `key` property of the API key for which to get the
-associated Consumer.
+In the above, substitute either the `key` or `id` property associated with the key authentication entity.
 
 Response:
 
