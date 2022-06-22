@@ -157,7 +157,7 @@ When deciding which icon to use for a doc, use the following guidelines:
 
 2. Is there a Font Awesome icon?
 
-   We also use a free version of Font Awesome to supplement Unicode icons.
+   We also use the free version of Font Awesome to supplement Unicode icons.
    Check out [their catalog](https://fontawesome.com/v5/search?m=free) to find
    an icon code, then see our [icon usage instructions](/contributing/markdown-rules/#icons).
 
@@ -179,5 +179,4 @@ When deciding which icon to use for a doc, use the following guidelines:
 
 ## Reference style guide
 
-Follow Kong's style guide whenever possible. However, you can also refer to other external style guides for style and formatting that our guide doesn't cover.
-We recommend using the [Google developer style guide](https://developers.google.com/style/).
+Follow Kong's style guide whenever possible. However, we recommend using the [Google developer style guide](https://developers.google.com/style/) for style and formatting cases that our guide doesn't cover.
