@@ -30,14 +30,14 @@ failed to get state: http: named cookie not present
 ```
 
 This may happen if the wrong issuer URI was used, for example, the URI from
-your application's settings. That URI is incomplete: `https://example-account.okta.com`.
+your application's settings. That URI is incomplete: `https://example.okta.com`.
 
 #### Solution
 The issuer URI must be in the following format, where `default` is
 the name or ID of the authorization server:
 
 ```
-https://example-account.okta.com/oauth2/default
+https://example.okta.com/oauth2/default
 ```
 
 You can find this URI in your Okta developer account, under **Security** > **API**.
