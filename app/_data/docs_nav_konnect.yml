@@ -185,6 +185,8 @@
           url: /org-management/okta-idp
     - text: Account and Org Deactivation
       url: /org-management/deactivation
+    - text: Troubleshoot
+      url: /org-management/troubleshoot
 
 
 - title: Legacy content
