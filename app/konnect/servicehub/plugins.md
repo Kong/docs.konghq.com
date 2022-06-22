@@ -66,4 +66,4 @@ If your plugin meets these requirements and you want to use it in
 {{site.konnect_saas}}, contact [Kong Support](https://support.konghq.com/).
 
 {:.important}
-> Custom plugin can't be added directly though the {{site.konnect_saas}} application.
+> Custom plugins can't be added directly through the {{site.konnect_saas}} application.
