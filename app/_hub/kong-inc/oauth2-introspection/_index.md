@@ -5,9 +5,9 @@ version: 1.3-x
 desc: Integrate Kong with a third-party OAuth 2.0 Authorization Server
 description: |
   Validate access tokens sent by developers using a third-party OAuth 2.0
-  Authorization Server by leveraging its Introspection Endpoint
+  Authorization Server by leveraging its introspection endpoint
   ([RFC 7662](https://tools.ietf.org/html/rfc7662)). This plugin assumes that
-  the Consumer already has an access token that will be validated against a
+  the consumer already has an access token that will be validated against a
   third-party OAuth 2.0 server.
 
   {:.note}
@@ -158,18 +158,18 @@ params:
 
 ![OAuth2 Introspection Flow](/assets/images/docs/oauth2/oauth2-introspection.png)
 
-## Associate the response to a Consumer
+## Associate the response to a consumer
 
-To associate the introspection response resolution to a Kong Consumer, provision a Kong Consumer with the same `username` returned by the Introspection Endpoint response.
+To associate the introspection response resolution to a Kong consumer, provision a Kong consumer with the same `username` returned by the Introspection Endpoint response.
 
 ## Upstream headers
 
 When a client has been authenticated, the plugin appends the following headers to the request before proxying it to the upstream API/microservice.
 Use these headers to identify the consumer in your code:
 
-- `X-Consumer-ID`, the ID of the Consumer on Kong (if matched)
-- `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if matched and if existing)
-- `X-Consumer-Username`, the `username of` the Consumer (if matched and if existing)
+- `X-Consumer-ID`, the ID of the consumer on Kong (if matched)
+- `X-Consumer-Custom-ID`, the `custom_id` of the consumer (if matched and if existing)
+- `X-Consumer-Username`, the `username of` the consumer (if matched and if existing)
 - `X-Anonymous-Consumer`, set to true if authentication fails, and the `anonymous` consumer is set instead.
 - `X-Credential-Scope`, as returned by the Introspection response (if any)
 - `X-Credential-Client-ID`, as returned by the Introspection response (if any)
