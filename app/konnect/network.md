@@ -41,14 +41,13 @@ Add the following hostnames to the allowlist to give the
 * `cloud.konghq.com`: The {{site.konnect_short_name}} platform.
 * `us.api.konghq.com`: The {{site.konnect_short_name}} API.
     Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations.
-* `<group-ID>.us.cp0.konghq.com`: Handles configuration for a runtime group.
-    Runtime instances connect to this host to receive configuration updates.
-* `<group-ID>.us.tp0.konghq.com`: Gathers telemetry data for a runtime group.
+* `RUNTIME_GROUP_ID.us.cp0.konghq.com`: Handles configuration for a runtime group.
+    Runtime instances connect to this host to receive configuration updates. 
+    This hostname is unique to each organization and runtime group.
+* `RUNTIME_GROUP_ID.us.tp0.konghq.com`: Gathers telemetry data for a runtime group.
+    This hostname is unique to each organization and runtime group.
 
-The configuration and telemetry hostnames are unique to each organization and
-runtime group.
-
-You can find them through the Runtime Manager:
+You can find the configuration and telemetry hostnames through the Runtime Manager:
 
 1. Open a runtime group.
 2. Click **Add runtime instance**.
@@ -56,8 +55,8 @@ You can find them through the Runtime Manager:
 for the following parameters:
 
     ```
-    cluster_control_plane = EXAMPLE.us.cp0.konghq.com:443
-    cluster_server_name = EXAMPLE.us.cp0.konghq.com
-    cluster_telemetry_endpoint = EXAMPLE.us.tp0.konghq.com:443
-    cluster_telemetry_server_name = EXAMPLE.us.tp0.konghq.com
+    cluster_control_plane = example.us.cp0.konghq.com:443
+    cluster_server_name = example.us.cp0.konghq.com
+    cluster_telemetry_endpoint = example.us.tp0.konghq.com:443
+    cluster_telemetry_server_name = example.us.tp0.konghq.com
     ```
