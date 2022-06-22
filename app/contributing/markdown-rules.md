@@ -65,8 +65,9 @@ Use variables for product names and release versions. See
 
 ## Headers
 
-Headers should not contain any code. Use plain text instead. Use title case
-for all headers, per [Content best practices](/contributing/style-guide/#content-best-practices).
+Headers should not contain any code. Use plain text instead.
+
+Use sentence case for all headers, per [Content best practices](/contributing/style-guide/#content-best-practices).
 
 ## Links
 
