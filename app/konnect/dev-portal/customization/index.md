@@ -69,7 +69,7 @@ A {{site.konnect_short_name}} Admin can configure Single Sign-On (SSO) for the D
    {:.note}
       > **Note:** Copy the callback URL and enter it in your OIDC Provider
 
-3. Enter the full domain, including subdomain and protocol, into the  **Provider URL** field (also known as **Issuer**). e.g. `https://accounts.google.com` for Google IdP
+3. Enter the full domain, including the subdomain and protocol, into the  **Provider URL** field (also known as **Issuer**). For example,  `https://accounts.google.com` for Google IdP.
 
 4. Enter the unique identifier provided by the IdP into the **Client ID** field.
 
