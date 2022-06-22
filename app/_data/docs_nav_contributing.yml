@@ -3,17 +3,19 @@
   icon: /assets/images/icons/documentation/icn-references-color.svg
   url: /
 
-- title: Style guide
+- title: Style guidelines
   icon: /assets/images/icons/documentation/icn-references-color.svg
-  url: /style-guide
   items:
+    - text: Style guide
+      url: /style-guide
     - text: Word choice and naming
       url: /word-choice
 
 - title: Markdown rules and formatting
   icon: /assets/images/icons/documentation/icn-references-color.svg
-  url: /markdown-rules
   items:
+    - text: Markdown rules
+      url: /markdown-rules
     - text: Reusable content
       url: /includes
     - text: Variables
@@ -21,8 +23,9 @@
 
 - title: Community
   icon: /assets/images/icons/documentation/icn-references-color.svg
-  url: /community
   items:
+    - text: Welcome to the Kong Docs community
+      url: /community
     - text: Community expectations
       url: /community-expectations
     - text: Hackathons
