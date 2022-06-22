@@ -77,7 +77,7 @@ A {{site.konnect_short_name}} Admin can configure Single Sign-On (SSO) for the D
 
 ### Configuration Requirements
 
-A form of authentication must always be configured. Built-in and SSO can be used individually or in combination. Each state results in a different user experience represented in this table:
+You must always have a form of authentication configured. Built-in and SSO can be used individually or in combination. Each state results in a different user experience, as represented in the following table:
 
 | State | SSO registration | SSO sign in | Built-in registration| Built-in sign in | Information|
 | --- | :-----------: |  ----------- | :-----------: | ----------- |
