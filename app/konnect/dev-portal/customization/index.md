@@ -88,6 +88,6 @@ You must always have a form of authentication configured. Built-in and SSO can b
 
 ### OIDC Details
 
-* If a user account associated to a {{site.konnect_short_name}} developer is removed from the IdP, the {{site.konnect_short_name}} developer account will continue to exist. It must be deleted by a {{site.konnect_short_name}} admin from the {{site.konnect_short_name}} dashboard.
+* If a user account associated with a {{site.konnect_short_name}} developer is removed from the IdP, the {{site.konnect_short_name}} developer account is not deleted. A {{site.konnect_short_name}} Admin must delete it from the {{site.konnect_short_name}} dashboard.
 * If a {{site.konnect_short_name}} developer associated with an IdP user is deleted, the same IdP user can re-authenticate with the Dev Portal and a new {{site.konnect_short_name}} developer account is created. To persistently revoke access for developers authenticating through your IdP, you must remove the ability for that user to authenticate with the IdP.
 * User information from the IdP is not synced with Konnect developers after the first login.
