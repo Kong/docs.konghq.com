@@ -13,7 +13,7 @@ appears empty, or it includes some groups but not all.
 
 #### Solution
 This issue might happen if the authorization server is pulling in additional
-groups from third-party applications (for example, Google groups).
+groups from third-party applications, for example, Google groups.
 
 An Okta administrator needs to duplicate the third-party groups
 and re-create them directly in Okta. They can do this by exporting the group
@@ -23,7 +23,7 @@ in CSV format, then importing the CSV file into Okta to populate the new group.
 
 #### Problem
 If the issuer URI is incorrect or incomplete, you may get the following error
-(or similar) when trying to authenticate with Okta:
+when trying to authenticate with Okta:
 
 ```
 failed to get state: http: named cookie not present
