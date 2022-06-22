@@ -163,13 +163,13 @@ values are present.
     something like this:
 
         ```
-        https://example-account.okta.com/oauth2/default
+        https://example.okta.com/oauth2/default
         ```
         Where `default` is the name or ID of the authorization server.
 
         {:.note}
         > Note: Do not use the issuer URI from your application's settings. That
-        URI is incomplete: `https://example-account.okta.com`.
+        URI is incomplete: `https://example.okta.com`.
 
 1. Paste the issuer URI from Okta into the **Issuer URI** field in {{site.konnect_short_name}}.
 1. Copy and paste the **Client ID** and **Client Secret** from your Okta
