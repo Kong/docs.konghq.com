@@ -1,5 +1,6 @@
 ---
 title: Using decK with Kong Konnect
+content_type: reference
 ---
 
 You can manage {{site.base_gateway}} core entity configuration in your {{site.konnect_short_name}} organization using decK.
