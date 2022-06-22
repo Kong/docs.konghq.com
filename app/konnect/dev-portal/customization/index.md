@@ -60,7 +60,7 @@ Add a custom Dev Portal domain through your organization's {{site.konnect_short_
 ## Single Sign-On
 {:.badge .enterprise}
 
-The Dev Portal can be configured to use Single Sign-On (SSO) by a {{site.konnect_short_name}} Admin via the Identity settings in the {{site.konnect_short_name}} Admin interface.
+A {{site.konnect_short_name}} Admin can configure Single Sign-On (SSO) for the Dev Portal via the Identity settings in the {{site.konnect_short_name}} Admin interface.
 
 1. In {{site.konnect_short_name}}, open {% konnect_icon dev-portal %} **Dev Portal**, then click **Settings**.
 
