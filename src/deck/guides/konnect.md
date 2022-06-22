@@ -11,10 +11,6 @@ time. Managing multiple runtime groups requires a separate state file per group.
 You _cannot_ use decK to publish content to the Dev Portal, manage application
 registration, or configure custom plugins.
 
-This guide targets the `cloud.konghq.com` environment. For
-`konnect.konghq.com`, see [`deck konnect` commands](/deck/1.11.x/reference/deck_konnect/)
- in decK 1.11 or earlier.
-
 ## {{site.konnect_short_name}} flags
 
 You can use any regular `deck` commands (such as `ping`, `diff`, or `sync`)
@@ -90,15 +86,15 @@ credentials in this file to pass them more securely. For example:
 
 ```
 konnect-email: example@email.com
-konnect-password: MyPass
+konnect-password: YOUR_PASSWORD
 ```
 
 Alternatively, you can save your password in a separate file, then
 specify the password file instead of a password:
 
 ```
-konnect-email: example@email.com
-konnect-password-file: path/to/filename
+konnect-email: example@example.com
+konnect-password-file: PATH/TO/FILENAME
 ```
 
 decK automatically uses the credentials in `~/.deck.yaml` in any subsequent
@@ -108,6 +104,20 @@ calls:
 deck ping
 
 Successfully Konnected as MyName (Konnect Org)!
+```
+
+## Target a {{site.konnect_short_name}} API
+
+Use `--konnect-addr` to select the API to connect to.
+
+The default API decK uses is `https://us.api.konghq.com`, which targets the `cloud.konghq.com` environment.
+If your account is in this environment, you don't need to change anything.
+
+If your account is in the `konnect.konghq.com` environment, use this flag
+to target the relevant API:
+
+```sh
+deck ping --konnect-addr https://konnect.konghq.com
 ```
 
 ## Runtime groups
@@ -121,30 +131,49 @@ _konnect:
   runtime_group_name: staging
 ```
 
+You can also set this parameter using the `--konnect-runtime-group-name` flag:
+
+```sh
+deck sync --konnect-runtime-group-name default
+```
+
 A state file can only target one runtime group.
 
-If you leave this empty or don't include a `_konnect` section at all, decK
-targets the `default` runtime group. You can see this by pushing a
-config file to {{site.konnect_short_name}} with `deck sync`:
+If you leave this empty, don't provide a flag, or don't include a `_konnect`
+section at all, decK targets the `default` runtime group. You can see this by
+pushing a config file to {{site.konnect_short_name}} with `deck sync`.
 
-```yaml
-_format_version: "1.1"
-services:
-- name: example_service
-  host: mockbin.org
-```
+1. Create a basic config file:
 
-Then pull down the configuration with `deck dump` to see the newly added
-`_konnect` section:
+    ```yaml
+    _format_version: "1.1"
+    services:
+    - name: example_service
+      host: mockbin.org
+    ```
 
-```yaml
-_format_version: "1.1"
-_konnect:
-  runtime_group_name: default
-services:
-- name: example_service
-  host: mockbin.org
-```
+2. Sync the file to Konnect:
+
+    ```sh
+    deck sync
+    ```
+
+3. Pull down the configuration with `deck dump`:
+
+    ```sh
+    deck dump --konnect-runtime-group-name default
+    ```
+
+    See the newly added `_konnect` section:
+
+    ```yaml
+    _format_version: "1.1"
+    _konnect:
+      runtime_group_name: default
+    services:
+    - name: example_service
+      host: mockbin.org
+    ```
 
 ## {{site.konnect_short_name}} service tags
 
@@ -191,7 +220,7 @@ service named `example` with a version named `example_service` in the Service Hu
 If you have verified that your password is correct but decK can't connect to
 your account, check for conflicts with the decK config file
 (`~/.deck.yaml`) and the {{site.konnect_short_name}} password file. There is
-likely an decK config file conflicting with the password file and passing 
+likely a decK config file conflicting with the password file and passing
 another set of credentials.
 
 To resolve, remove one of the duplicate sets of credentials.
@@ -206,10 +235,10 @@ get the following error:
 Error: checking if workspace exists
 ```
 
-Remove the `_workspace` key to resolve this error. 
+Remove the `_workspace` key to resolve this error.
 
-You can now sync the file as-is to apply it to the 
-default runtime group, or add a key to 
+You can now sync the file as-is to apply it to the
+default runtime group, or add a key to
 apply the configuration to a specific runtime group.
 
 To apply configuration to custom runtime groups, replace `_workspace`
