@@ -35,15 +35,15 @@ want to use port `3001` for the proxy, map `3001:8000`.
 
 ## Hostnames
 
-Add the following hostnames to allowlists to give the
-{{site.konnect_short_name}} control plane access through firewalls:
+Add the following hostnames to the allowlist to give the
+{{site.konnect_short_name}} control plane access through the firewall:
 
 * `cloud.konghq.com`: The {{site.konnect_short_name}} platform.
 * `us.api.konghq.com`: The {{site.konnect_short_name}} API.
-    Necessary if you are using decK in your workflow, as decK uses this API to access and apply configuration.
+    Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations.
 * `<group-ID>.us.cp0.konghq.com`: Handles configuration for a runtime group.
     Runtime instances connect to this host to receive configuration updates.
-* `<group-ID>.us.tp0.konghq.com`: Gathers telemetry for a runtime group.
+* `<group-ID>.us.tp0.konghq.com`: Gathers telemetry data for a runtime group.
 
 The configuration and telemetry hostnames are unique to each organization and
 runtime group.
@@ -56,8 +56,8 @@ You can find them through the Runtime Manager:
 for the following parameters:
 
     ```
-    cluster_control_plane = example12345.us.cp0.konghq.com:443
-    cluster_server_name = example12345.us.cp0.konghq.com
-    cluster_telemetry_endpoint = example12345.us.tp0.konghq.com:443
-    cluster_telemetry_server_name = example12345.us.tp0.konghq.com
+    cluster_control_plane = EXAMPLE.us.cp0.konghq.com:443
+    cluster_server_name = EXAMPLE.us.cp0.konghq.com
+    cluster_telemetry_endpoint = EXAMPLE.us.tp0.konghq.com:443
+    cluster_telemetry_server_name = EXAMPLE.us.tp0.konghq.com
     ```
