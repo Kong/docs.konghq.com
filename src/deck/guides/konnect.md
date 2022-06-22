@@ -48,43 +48,46 @@ decK looks for {{site.konnect_short_name}} credentials in the following order of
 
 For example, if you have both a decK config file and a {{site.konnect_short_name}} password file, decK uses the password in the config file.
 
-### Authenticate with CLI flags
+### Authenticate using a plaintext password
 
-There are two ways to authenticate through CLI flags. You can pass the password in `--konnect-password` directly or save it to a file and pass the filename to decK with `--konnect-password-file`.
-
-With `konnect-password`:
+You can use the `--konnect-password` flag to provide the password directly in the command:
 
 ```sh
 deck ping \
-  --konnect-email YOUR_EMAIL \
+  --konnect-email example@example.com \
   --konnect-password YOUR_PASSWORD
 ```
 
-Or, save your {{site.konnect_short_name}} password to a file, then pass the file using the `--konnect-password-file` flag:
+### Authenticate using a password file
+
+For a more secure approach, you can save your {{site.konnect_short_name}}
+password to a file, then pass the filename to decK with `--konnect-password-file`:
 
 ```sh
 deck ping \
-  --konnect-email YOUR_EMAIL \
+  --konnect-email example@example.com \
   --konnect-password-file /PATH/TO/FILE
 ```
 
-### Authenticate with a decK config file
+### Authenticate using a decK config file
 
-The default decK configuration file is `~/.deck.yaml`.
-You can store {{site.konnect_short_name}} credentials in this file to pass them more securely.
-For example:
+The default decK configuration file is `~/.deck.yaml`. You can use this file
+to set either `konnect-password` or `konnect-password-file` for all connections
+decK.
 
-```
-konnect-email: example@email.com
-konnect-password: YOUR_PASSWORD
-```
+* Use `konnect-password` to store {{site.konnect_short_name}} credentials directly in the configuration file:
 
-Alternatively, you can save your password in a separate file, then specify the password file instead of a password:
+    ```
+    konnect-email: example@email.com
+    konnect-password: YOUR_PASSWORD
+    ```
 
-```
-konnect-email: example@example.com
-konnect-password-file: PATH/TO/FILENAME
-```
+* Store your password in a separate file, then specify the path to `konnect-password-file` instead of a literal password:
+
+    ```
+    konnect-email: example@example.com
+    konnect-password-file: PATH/TO/FILENAME
+    ```
 
 decK automatically uses the credentials in `~/.deck.yaml` in any subsequent calls:
 
@@ -109,55 +112,24 @@ deck ping --konnect-addr https://konnect.konghq.com
 
 ## Runtime groups
 
-Target runtime groups in your state file with the `konnect_runtime_group` parameter:
+Each state file targets one runtime group.
+If you don't provide a group, decK targets the `default` runtime group.
 
-```yaml
-_format_version: "1.1"
-_konnect:
-  runtime_group_name: staging
-```
+If you have a custom runtime group, you can specify the group in the state file,
+or set a flag when running any decK command.
 
-You can also set this parameter using the `--konnect-runtime-group-name` flag:
-
-```sh
-deck sync --konnect-runtime-group-name default
-```
-
-A state file can only target one runtime group.
-
-If you leave this empty, don't provide a flag, or don't include a `_konnect` section at all, decK targets the `default` runtime group.
-You can see this by pushing a config file to {{site.konnect_short_name}} with `deck sync`.
-
-1. Create a basic config file:
-
-    ```yaml
-    _format_version: "1.1"
-    services:
-    - name: example_service
-      host: mockbin.org
-    ```
-
-2. Sync the file to {{site.konnect_short_name}}:
-
-    ```sh
-    deck sync
-    ```
-
-3. Pull down the configuration with `deck dump`:
-
-    ```sh
-    deck dump --konnect-runtime-group-name default
-    ```
-
-    See the newly added `_konnect` section:
+* Target a runtime group in your state file with the `konnect_runtime_group` parameter:
 
     ```yaml
     _format_version: "1.1"
     _konnect:
-      runtime_group_name: default
-    services:
-    - name: example_service
-      host: mockbin.org
+      runtime_group_name: staging
+    ```
+
+* Set a group using the `--konnect-runtime-group-name` CLI flag:
+
+    ```sh
+    deck sync --konnect-runtime-group-name staging
     ```
 
 ## {{site.konnect_short_name}} service tags
