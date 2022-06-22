@@ -50,7 +50,7 @@ For example, if you have both a decK config file and a {{site.konnect_short_name
 
 ### Authenticate with CLI flags
 
-There are two ways to authenticate through CLI flags: by passing the password in `--konnect-password` directly, or by saving it to a file and passing the filename to decK with `--konnect-password-file`.
+There are two ways to authenticate through CLI flags. You can pass the password in `--konnect-password` directly or save it to a file and pass the filename to decK with `--konnect-password-file`.
 
 With `konnect-password`:
 
@@ -202,7 +202,7 @@ To resolve, remove one of the duplicate sets of credentials.
 
 ### Workspace connection refused
 
-When migrating from {{site.base_gateway}} to {{site.konnect_short_name}}, make sure to remove any `_workspace`tags. If you leave `_workspace` in, you get the following error:
+When migrating from {{site.base_gateway}} to {{site.konnect_short_name}}, make sure to remove any `_workspace` tags. If you leave `_workspace` in, you get the following error:
 
 ```
 Error: checking if workspace exists
@@ -212,7 +212,7 @@ Remove the `_workspace` key to resolve this error.
 
 You can now sync the file as-is to apply it to the default runtime group, or add a key to apply the configuration to a specific runtime group.
 
-To apply configuration to custom runtime groups, replace `_workspace` with `runtime_group_name: GroupName`.
+To apply the configuration to custom runtime groups, replace `_workspace` with `runtime_group_name: GroupName`.
 
 For example, to export the configuration from workspace `staging` to runtime group `staging`, you would change:
 
@@ -220,7 +220,7 @@ For example, to export the configuration from workspace `staging` to runtime gro
 _workspace: staging
 ```
 
-Into:
+To:
 ```
 _konnect:
   runtime_group_name: staging
