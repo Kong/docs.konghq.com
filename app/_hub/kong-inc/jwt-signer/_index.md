@@ -868,7 +868,7 @@ $ curl -X GET http://<kong>:8001/jwt-signer/jwks
 
 ### Cached JWKS Admin API Endpoint for a Key Set
 
-A particular keyset can be accessed in another endpoint:
+A particular key set can be accessed in another endpoint:
 
 ```http
 GET kong:8001/jwt-signer/jwks/<name-or-id>
@@ -912,7 +912,7 @@ You can also make a loopback to this endpoint by routing Kong proxy to this URL.
 Then you can use an authentication plugin to protect access to this endpoint,
 if that is needed.
 
-You can also `DELETE` a keyset by issuing following:
+You can also `DELETE` a key set by issuing following:
 
 ```http
 DELETE kong:8001/jwt-signer/jwks/<name-or-id>
