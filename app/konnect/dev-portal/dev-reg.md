@@ -34,7 +34,7 @@ The {{site.konnect_short_name}} Dev Portal supports single sign-on (SSO) login a
 
 2. From the login form, click **Login with SSO**.
 
-3. You will be redirected to the Identity Provider (IdP) that the {{site.konnect_short_name}} admin has configured. Sign in using your IdP's credentials.
+3. After you are redirected to the Identity Provider (IdP) that the {{site.konnect_short_name}} Admin configured, sign in using your IdP's credentials.
 
 4. Once you've logged in, you will be redirected to the {{site.konnect_short_name}} catalog.
 
