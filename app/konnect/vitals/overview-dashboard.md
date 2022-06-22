@@ -9,7 +9,7 @@ The Overview Dashboard provides metrics for Services cataloged by Service Hub wi
 * **Traffic**: Total number of HTTP requests.
 * **Errors**: Percentage of failed HTTP requests. 
 
-Each category measures trends by comparing metrics week-over-week. Time periods for trends are fixed to the last seven days and don't change if you select a different time period from the week before.
+Both categories measure trends by comparing metrics across fixed comparable time intervals and plotting the data points. For example, hour-over-hour, day-over-day, week-over-week, and month-over-month.
 
 You can view a graph for each category by clicking **Traffic** or **Errors**, and switching between the two views.
 
@@ -34,5 +34,3 @@ Last 30 days | Data is aggregated in one hour increments.
 
 {:.important}
 > Free tier users can only select intervals up to 24 hours.
-
-Selecting a different time period changes all of the metrics within the selected category to match the selected period, **except for trends**.
