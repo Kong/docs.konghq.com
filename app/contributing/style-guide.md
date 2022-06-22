@@ -119,9 +119,9 @@ For product, application, and component names, see [Word Choice](/contributing/w
 - For long commands, split the code block into separate lines with `\`
 to avoid horizontal scrolling.
 - Never have more than one command in a block/example.
-- Set a language for codeblocks, for example, bash, to enable syntax highlighting.
+- Set a language for code blocks, for example, bash, to enable syntax highlighting.
     - [List of supported languages](https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers)
-    - If using HTML tags to create a codeblock for editable placeholders,
+    - If using HTML tags to create a code block for editable placeholders,
     see [guidelines for editable placeholders](/contributing/markdown-rules/#editable-placeholders-in-codeblocks)
 - Do **NOT** use the command prompt marker ($) in code snippets.
 
@@ -146,14 +146,14 @@ to avoid horizontal scrolling.
 
 When deciding which icon to use for a doc, use the following guidelines:
 
-1. Is there a unicode version?
+1. Is there a Unicode version?
 
-   We use unicode for common icons such as ✅ &nbsp; and ❌&nbsp;. You can copy and paste a
-   unicode icon directly into markdown.
+   We use Unicode for common icons such as ✅ &nbsp; and ❌&nbsp;. You can copy and paste a
+   Unicode icon directly into markdown.
 
 2. Is there a Font Awesome icon?
 
-   We also use a free version of Font Awesome to supplement unicode icons.
+   We also use a free version of Font Awesome to supplement Unicode icons.
    Check out [their catalog](https://fontawesome.com/v5/search?m=free) to find
    an icon code, then see our [icon usage instructions](/contributing/markdown-rules/#icons).
 

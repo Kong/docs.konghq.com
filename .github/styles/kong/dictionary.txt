@@ -105,6 +105,7 @@ sandboxing
 serializer
 serverless
 snis
+Splunk
 ssl
 stderr
 stdin
@@ -127,6 +128,7 @@ uri
 url
 urls
 uuid
+Valero
 validator
 validators
 websocket
