@@ -4,7 +4,7 @@ no_version: true
 content_type: how-to
 ---
 
-The {{site.konnect_short_name}} Dev Portal can be customized in the following ways:
+You can customize the {{site.konnect_short_name}} Dev Portal in the following ways:
 * [Appearance](#appearance)
 * [Custom URL](#add-a-custom-dev-portal-domain)
 * [Access](/konnect/dev-portal/access/)
