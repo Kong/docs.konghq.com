@@ -136,7 +136,7 @@ You can see this by pushing a config file to {{site.konnect_short_name}} with `d
       host: mockbin.org
     ```
 
-2. Sync the file to Konnect:
+2. Sync the file to {{site.konnect_short_name}}:
 
     ```sh
     deck sync
