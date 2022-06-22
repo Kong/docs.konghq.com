@@ -28,19 +28,6 @@ Runtime Manager | The runtime management service in Konnect Cloud <br><br> ❌&n
 Vitals | Analytics for Gateway.
 decK | Kong's CLI tool for managing declarative configuration.<br><br> ❌&nbsp; Do not capitalize the first letter, even if the name appears at the start of a sentence.
 
-### Generic terms
-
-Don't capitalize the following generic terms:
-- plugins
-- control plane
-- data plane
-- hybrid mode
-- service
-- route
-- consumer
-- service mesh
-- database
-
 ## Word choice
 
 ### Bias-free language

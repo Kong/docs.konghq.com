@@ -54,8 +54,8 @@ For more information about formatting admonitions see [markdown-rules](/contribu
 {:.note .no-icon}
 >In DB-less mode, you configure Kong Gateway declaratively. Therefore, the Admin API is mostly read-only. The only tasks it can perform are all related to handling the declarative configuration, including:
 >
->- Setting a target's health status in the load balancer. 
->- Validating configurations against schemas. 
+>- Setting a target's health status in the load balancer.
+>- Validating configurations against schemas.
 >- Uploading the declarative configuration using the `/config` endpoint.
 
 ❌ &nbsp; Don't use punctuation when creating ordered and unordered lists that are extensions of a sentence:
@@ -67,23 +67,50 @@ For more information about formatting admonitions see [markdown-rules](/contribu
 >- Traffic reliability
 >- Global observability across all traffic
 
-### Placeholder values
+## Placeholder and example values
 
-- Use single curly braces, all caps text, and underscores between words.
+The type of placeholder you use depends on context:
 
-    For example: `{EXAMPLE_VALUE}`
+* **Generic placeholder values:** In most situations (such as plugin parameters, YAML examples, or Kong configuration), use all caps text and underscores between words.
 
-    In codeblocks, use [editable placeholders](/contributing/markdown-rules/#placeholders)
-    where you want a user to enter their own value.
+    For example: `service: SERVICE_NAME`
+
+* **URLs:**
+    * For guides with examples that are intended to be runnable as-is, use `localhost` as the domain name.
+
+        For example: `curl -i -X https://localhost:8001/services`
+
+        If you are following a guide where {{site.base_gateway}} is running on `localhost`, this example can be copy and pasted straight into a terminal.
+        It should work with no changes.
+
+    * For situations where you need a generic domain name and the examples are illustrative only (not intended to be runnable as-is), use `example` or `example.com`.
+
+        For example: `user@example.com` or `https://example.okta.admin.com`
 
 ## Capitalization guidelines
 
-Follow the user interface (UI). If a term is capitalized in the UI, it should be
-capitalized in the documentation.
+Follow the user interface (UI). If a term is capitalized in the UI, it should be capitalized in the documentation.
+
+Don't capitalize the following terms:
+
+- application
+- certificate
+- consumer
+- control plane
+- database
+- data plane
+- developer
+- hybrid mode
+- plugin
+- route
+- service
+- service mesh
+- target
+- upstream
 
 ### Kong-specific terms
 
-See [Word Choice](/contributing/word-choice).
+For product, application, and component names, see [Word Choice](/contributing/word-choice).
 
 ## Code formatting
 
