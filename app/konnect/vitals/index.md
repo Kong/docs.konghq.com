@@ -33,7 +33,7 @@ Services, Routes, or Applications, filtered by time frame and grouped by metric.
 
 Interval | Description  
 ------|----------|
-Last 15 minutes | Data is aggregated in ten seconds increments.
+Last 15 minutes | Data is aggregated in ten second increments.
 Last hour| Data is aggregated in one minute increments.
 Last 3 hours | Data is aggregated in one minute increments.
 Last 6 hours | Data is aggregated in ten minute increments.
