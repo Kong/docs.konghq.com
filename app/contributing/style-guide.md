@@ -3,6 +3,8 @@ title: Style guide
 no_version: true
 ---
 
+<!-- vale off -->
+
 ## Content best practices
 
 |Best practice                      | ✅&nbsp; Do                                     | ❌&nbsp; Don't                                     |
@@ -27,8 +29,10 @@ no_version: true
 |Use descriptive headings           |Improve Vitals performance with InfluxDB       |Overview                                           |
 |                                   |Query frequency and precision                  |Query behavior                                     |
 |---                                |---                                            |---                                                |
-|Use sentence case for headings     |Understanding traffic flow in Kong Gateway     |Understanding Traffic Flow in Kong Gateway         |
+|Use sentence case for headings     |Understanding traffic flow in {{site.base_gateway}}     |Understanding Traffic Flow in {{site.base_gateway}}         |
 |---                                |---                                            |---                                                |
+
+<!-- vale on -->
 
 ## Formatting standards
 
@@ -52,7 +56,7 @@ For more information about formatting admonitions see [markdown-rules](/contribu
 ✅ &nbsp; Do use punctuation when constructing lists that contain full sentences:
 
 {:.note .no-icon}
->In DB-less mode, you configure Kong Gateway declaratively. Therefore, the Admin API is mostly read-only. The only tasks it can perform are all related to handling the declarative configuration, including:
+>In DB-less mode, you configure {{site.base_gateway}} declaratively. Therefore, the Admin API is mostly read-only. The only tasks it can perform are all related to handling the declarative configuration, including:
 >
 >- Setting a target's health status in the load balancer.
 >- Validating configurations against schemas.
@@ -162,7 +166,7 @@ When deciding which icon to use for a doc, use the following guidelines:
 
    For custom icons, we have to import them manually. This includes all of the
    icons used in docs navigation and all icons that are used for UI labels in
-   Konnect and Kong's UIs. If you find one, see our
+   {{site.konnect_short_name}} and Kong's UIs. If you find one, see our
    [icon usage instructions](/contributing/markdown-rules/#icons).
 
 4. If the answer to all of the above is "no", you can
@@ -173,11 +177,7 @@ When deciding which icon to use for a doc, use the following guidelines:
 - Don't use link titles like "Read more" and "Click here". Instead, write descriptive titles that properly detail what content is accessible by clicking the link.
 - If the linked content is a larger area like a panel, add a `title` attribute that describes the linked content to the `a` tag.
 
-## Reference style guides
+## Reference style guide
 
-- [Valero Style Guide](https://velero.io/docs/v1.5/style-guide/#inline-code-formatting)
-- [Splunk Style Guide](https://docs.splunk.com/Documentation/StyleGuide/current/StyleGuide/Howtouse)
-- [Microsoft Style Guide](https://docs.microsoft.com/en-us/style-guide/welcome/)
-- [Barrie Byron’s admirably curated list of style guides](https://docs.google.com/document/d/1wAVt65UpgBJ4e_tzPCVnPHwOqYYtENuRkojDSq-7nK0/edit)
-- [Google Developers Guide](https://developers.google.com/style)
-- [Kubernetes](https://kubernetes.io/docs/contribute/style/style-guide/)
+Follow Kong's style guide whenever possible. However, you can also refer to other external style guides for style and formatting that our guide doesn't cover.
+We recommend using the [Google developer style guide](https://developers.google.com/style/).

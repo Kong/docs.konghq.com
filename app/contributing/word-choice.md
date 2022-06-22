@@ -14,6 +14,8 @@ Generally:
 
 Capitalize the following Kong-specific terms and component names:
 
+<!-- vale off -->
+
 Name | Description
 -----|------------
 Kong Konnect Cloud <br><br> Konnect Cloud | Use Kong Konnect Cloud for the first mention, Konnect Cloud or simply Konnect after.
@@ -28,11 +30,15 @@ Runtime Manager | The runtime management service in Konnect Cloud <br><br> ❌&n
 Vitals | Analytics for Gateway.
 decK | Kong's CLI tool for managing declarative configuration.<br><br> ❌&nbsp; Do not capitalize the first letter, even if the name appears at the start of a sentence.
 
+<!-- vale on -->
+
 ## Word choice
 
 ### Bias-free language
 
 Use gender-neutral and unbiased language.
+
+<!-- vale off -->
 
 ✅ &nbsp;Use  | ❌&nbsp; Don't use
 --------------------------------|--------------------------------------
@@ -40,7 +46,11 @@ Denylist, allowlist             | Blacklist, whitelist
 Main branch                     | Master branch
 Neutral pronouns (you, they/them) | Gendered pronouns (he/his, she/her)
 
+<!-- vale on -->
+
 ### Software terms
+
+<!-- vale off -->
 
 ✅ &nbsp;Use  | ❌ &nbsp;Don't use
 --------------------------------|--------------------------------------
@@ -53,6 +63,8 @@ cURL                            | curl, CURL
 HTTPie                          | httpie, HTTPIE
 Unix                            | unix, UNIX
 Nginx                           | nginx, NGINX
+
+<!-- vale on -->
 
 ## See also
 
