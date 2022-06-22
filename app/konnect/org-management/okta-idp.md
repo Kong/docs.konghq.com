@@ -83,7 +83,7 @@ claims to extract that information.
 
 1. From the left menu, select **Security > API**.
 
-1. Select the Custom Authorization Server that you want to configure.
+1. Select the authorization server that you want to configure.
 
 1. Go to the Claims tab.
 
@@ -157,8 +157,21 @@ values are present.
 
     Refer back to your Okta application to fill in the following fields.
 
-1. Copy the **Issuer URI** from your Okta custom authorization server, then paste it into
-the **Issuer URI** field in {{site.konnect_short_name}}. <!-- found in general settings in Okta app -->
+1. Locate your issuer URI in Okta.
+    1. Go to **Security** > **API**.
+    1. Copy the issuer URI for your authorization server. It should look
+    something like this:
+
+        ```
+        https://example.okta.com/oauth2/default
+        ```
+        Where `default` is the name or ID of the authorization server.
+
+        {:.note}
+        > Note: Do not use the issuer URI from your application's settings. That
+        URI is incomplete: `https://example.okta.com`.
+
+1. Paste the issuer URI from Okta into the **Issuer URI** field in {{site.konnect_short_name}}.
 1. Copy and paste the **Client ID** and **Client Secret** from your Okta
 application into {{site.konnect_saas}}.
 
