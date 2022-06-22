@@ -28,7 +28,7 @@ If auto-approve is not enabled, an admin has to review and approve your request 
 
 ## Login/Register with SSO {#sso}
 {:.badge .enterprise}
-{{site.konnect_short_name}} Dev Portal supports single sign-on login and registration. This feature must be configured by the {{site.konnect_short_name}} site admin before being made available on the Dev Portal. For information on how to enable SSO on your Dev Portal as a {{site.konnect_short_name}} admin, review the [enable single sign-on instructions](/konnect/dev-portal/customization/#single-sign-on/).
+The {{site.konnect_short_name}} Dev Portal supports single sign-on (SSO) login and registration. The {{site.konnect_short_name}} Admin must configure SSO before it's available on the Dev Portal. For information on how to enable SSO on your Dev Portal as a {{site.konnect_short_name}} Admin, review the [enable single sign-on instructions](/konnect/dev-portal/customization/#single-sign-on/).
 
 1. Navigate to the {{site.konnect_short_name}} Dev Portal URL provided by your {{site.konnect_short_name}} admin.
 
