@@ -81,9 +81,9 @@ A form of authentication must always be configured. Built-in and SSO can be used
 
 | State | SSO registration | SSO sign in | Built-in registration| Built-in sign in | Information|
 | --- | :-----------: |  ----------- | :-----------: | ----------- |
-| **SSO: Enabled**<br>**Built-in: Disabled** | ✅ | ✅ | ❌ | ❌ | - Developers that registered with Built-in will be forced to use SSO in this state.<br><br>- The Built-in authentication window will not be displayed from the Dev portal.<br><br> - Developers that register with SSO will not be able to login in the event that SSO is disabled.| 
+| **SSO: Enabled**<br>**Built-in: Disabled** | ✅ | ✅ | ❌ | ❌ | - Developer will be able to register and log in with SSO.<br><br>- Developers registered with Built-in will be forced to use SSO.<br><br>- The Built-in authentication window will not be displayed from the Dev portal. 
 | **SSO: Disabled**<br>**Built-in: Enabled** | ❌ | ❌ | ✅  |✅  | - Developers will be able to register and log in with a username and password.| 
-| **SSO: Enabled**<br>**Built-in: Enabled** | ✅  | ✅ | ✅  | ✅  | - Developers will be able to register and access the Developer Portal with either form of authentication.|
+| **SSO: Enabled**<br>**Built-in: Enabled** | ✅  | ✅ | ✅  | ✅  | - Developers will be able to register and log in with either form of authentication.|
 
 
 ### OIDC Details
