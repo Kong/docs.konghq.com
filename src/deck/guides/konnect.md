@@ -5,18 +5,17 @@ content_type: reference
 
 You can manage {{site.base_gateway}} core entity configuration in your {{site.konnect_short_name}} organization using decK.
 
-Similar to Gateway workspaces, decK can only target one runtime group at a time.
+decK can only target one runtime group at a time.
 Managing multiple runtime groups requires a separate state file per group.
 
 You _cannot_ use decK to publish content to the Dev Portal, manage application registration, or configure custom plugins.
 
 ## {{site.konnect_short_name}} flags
 
-You can use any regular `deck` commands (such as `ping`, `diff`, or `sync`) with `--konnect` flags to target {{site.konnect_short_name}} instead of a self-managed {{site.base_gateway}} control plane.
+You can use `deck` commands such as `ping`, `diff`, or `sync` with `--konnect` flags to interact with {{site.konnect_short_name}}.
 
-You can also [save {{site.konnect_short_name}} credentials to a decK config file](#authenticate-with-a-deck-config-file) to target {{site.konnect_short_name}} by default.
 
-If you don't pass any {{site.konnect_short_name}} parameters to decK, decK looks for a local {{site.base_gateway}} instance instead.
+If you don't pass a {{site.konnect_short_name}} flag to decK, decK looks for a local {{site.base_gateway}} instance instead.
 
 {:.note}
 > Prior to decK 1.12, decK provided `deck konnect` commands.
@@ -60,7 +59,7 @@ deck ping \
 
 ### Authenticate using a password file
 
-For a more secure approach, you can save your {{site.konnect_short_name}}
+You can save your {{site.konnect_short_name}}
 password to a file, then pass the filename to decK with `--konnect-password-file`:
 
 ```sh
@@ -116,7 +115,7 @@ Each state file targets one runtime group.
 If you don't provide a group, decK targets the `default` runtime group.
 
 If you have a custom runtime group, you can specify the group in the state file,
-or set a flag when running any decK command.
+or use a flag when running any decK command.
 
 * Target a runtime group in your state file with the `konnect_runtime_group` parameter:
 
@@ -126,7 +125,7 @@ or set a flag when running any decK command.
       runtime_group_name: staging
     ```
 
-* Set a group using the `--konnect-runtime-group-name` CLI flag:
+* Set a group using the `--konnect-runtime-group-name` flag:
 
     ```sh
     deck sync --konnect-runtime-group-name staging
