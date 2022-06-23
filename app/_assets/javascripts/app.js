@@ -364,7 +364,7 @@ function showPluginBanner(target){
   }
 
   if (!eePlusBanner.length){
-    eePlusBanner = $('<div id="ee-plus-banner" class="content" style="padding:0"><blockquote class="important">If you run Kong Gateway on your own infrastructure, you also have access to all <strong>Plus</strong> plugins. <u id="show-plus-ee">Click Here</u> to show them</blockquote></div>');
+    eePlusBanner = $('<div id="ee-plus-banner" class="content" style="padding:0"><blockquote class="important">If you run Kong Gateway on your own infrastructure, you also have access to all <strong>Plus</strong> plugins. <u id="show-plus-ee">Show Plus plugins?</u></blockquote></div>');
     eePlusBanner.find("u").css({cursor: "pointer"}).click(function(){
       showPlusWithEnterprise = true;
       pluginFilter(target);
