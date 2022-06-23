@@ -17,7 +17,7 @@ group. All runtime instances in one runtime group
 must be of the same type. Currently, only Kong Gateway runtime types are supported.
 
 Every organization has one default runtime group. With an Enterprise subscription,
-you can configure nine additional custom runtime groups (a total of 10 by default) in the same Konnect
+you can configure nine additional custom runtime groups, for a total of 10 by default, in the same Konnect
 account to manage runtime instances and their configuration in any groupings
 you want.
 
