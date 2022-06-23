@@ -9,6 +9,8 @@ autogenerates
 aws
 Bintray
 Bitnami
+blockquote
+blockquotes
 boolean
 CloudFormation
 Cognito
