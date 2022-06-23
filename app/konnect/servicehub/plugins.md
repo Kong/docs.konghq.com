@@ -1,7 +1,7 @@
 ---
 title: Manage Plugins
 no_version: true
-content-type: reference
+content_type: reference
 ---
 
 Any {{site.base_gateways}} plugins supported in a self-managed hybrid mode
