@@ -56,8 +56,8 @@ supports.
 * Admin API extensions must not contain an `api.lua` file. 
 * Custom plugin database tables must not contain a `dao.lua` file.
 * Custom validation functions must be written in Lua and be self-contained within the schema.
-* The `schema.lua` file must not contain any calls to the `require()` function. 
-* Plugins that require third-party libraries can be installed within the handler portion of the plugin code once the plugin is installed on the {{site.base_gateway}} data plane.
+* The `schema.lua` file must not contain any `require()` statements. 
+* Plugins that require third-party libraries must reference them in the `handler.lua` file.
 
 If your plugin meets these requirements and you want to use it in
 {{site.konnect_saas}}, contact [Kong Support](https://support.konghq.com/).
