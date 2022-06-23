@@ -68,7 +68,7 @@ Loggly
 loopback
 lua
 Luarocks
-ngrock
+ngrok
 minikube
 Mockbin
 Moesif
