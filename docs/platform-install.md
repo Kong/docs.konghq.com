@@ -4,7 +4,7 @@ We currently only have installation instructions for MacOS. If you're using Wind
 
 ## Authentication
 - **SSH authentication**:  Generate and add an SSH key to your GitHub account. For more information, see [Generating a new SSH key and adding it to the ssh-agent](https://docs.github.com/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) and [Adding a new SSH key to your GitHub account](https://docs.github.com/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) in _GitHub Docs_. 
-- (Personal access token authentication only) Create a personal access token for your GitHub account. For more information, see [Creating a personal access token](https://docs.github.com/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) in _GitHub Docs_.
+- **Personal access token authentication**: Create a personal access token for your GitHub account. For more information, see [Creating a personal access token](https://docs.github.com/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) in _GitHub Docs_.
 
 ## MacOS Dependency Installation
 
