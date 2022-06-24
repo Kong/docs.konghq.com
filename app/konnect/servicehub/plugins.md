@@ -1,6 +1,7 @@
 ---
 title: Manage Plugins
 no_version: true
+content_type: reference
 ---
 
 Any {{site.base_gateways}} plugins supported in a self-managed hybrid mode
@@ -50,20 +51,16 @@ supports.
 
 ## Custom plugins
 
-Currently, there is no way to add a custom plugin
-directly through the {{site.konnect_saas}} application. Contact Kong
-Support to get them manually added to your organization.
+{{site.konnect_saas}} supports the use of custom plugins. You can write new custom plugins using this [template](https://github.com/Kong/kong-plugin) as a guide. Every custom plugin must meet the following requirements: 
 
-Custom plugins must not have the following:
-
-* Admin API extensions: No `api.lua` file
-* Custom plugin database tables: No `dao.lua` file
-* Custom function validations: No function definitions in `schema.lua`
-* Code that runs on the control plane in the plugin handler:
-  * No `init_worker` callback
-  * No Lua code outside of the top-level functions
-* Third-party library dependencies: No `require()` calls to modules that are
-not bundled by default with {{site.konnect_product_name}}
+* Admin API extensions must not contain an `api.lua` file. 
+* Custom plugin database tables must not contain a `dao.lua` file.
+* Custom validation functions must be written in Lua and be self-contained within the schema.
+* The `schema.lua` file must not contain any `require()` statements. 
+* Plugins that require third-party libraries must reference them in the `handler.lua` file.
 
 If your plugin meets these requirements and you want to use it in
 {{site.konnect_saas}}, contact [Kong Support](https://support.konghq.com/).
+
+{:.important}
+> Custom plugins can't be added directly through the {{site.konnect_saas}} application.
