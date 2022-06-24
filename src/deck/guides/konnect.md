@@ -14,12 +14,7 @@ You _cannot_ use decK to publish content to the Dev Portal, manage application r
 
 You can use `deck` commands such as `ping`, `diff`, or `sync` with `--konnect` flags to interact with {{site.konnect_short_name}}.
 
-
 If you don't pass a {{site.konnect_short_name}} flag to decK, decK looks for a local {{site.base_gateway}} instance instead.
-
-{:.note}
-> Prior to decK 1.12, decK provided `deck konnect` commands.
-These commands are deprecated and have been replaced with flags.
 
 `--konnect-addr`
 :  Address of the {{site.konnect_short_name}} endpoint. (Default: `"https://us.api.konghq.com"`)
@@ -37,12 +32,16 @@ This takes precedence over the `--konnect-password-file` flag.
 `--konnect-runtime-group-name`
 :  {{site.konnect_short_name}} runtime group name.
 
+{:.note}
+> **Note:** Prior to decK 1.12, decK provided [`deck konnect`](/deck/1.11.x/reference/deck_konnect) commands.
+Those commands are deprecated and have been replaced with the flags in this guide.
+
 ## Authenticate with {{site.konnect_short_name}}
 
 decK looks for {{site.konnect_short_name}} credentials in the following order of precedence:
 
 1. Password set with the `--konnect-password` flag
-2. decK configuration file (default: `~/.deck.yaml`)
+2. decK configuration file, if one exists (default lookup path: `$HOME/.deck.yaml`)
 3. File passed with the `--konnect-password-file` flag
 
 For example, if you have both a decK config file and a {{site.konnect_short_name}} password file, decK uses the password in the config file.
@@ -70,9 +69,13 @@ deck ping \
 
 ### Authenticate using a decK config file
 
-The default decK configuration file is `~/.deck.yaml`. You can use this file
-to set either `konnect-password` or `konnect-password-file` for all connections
-decK.
+By default, decK looks for a configuration file named `.deck.yaml` in the `$HOME` directory.
+This file lets you specify flags to include with every decK command.
+
+You can create the file at the default location, or set a custom filename and path with [`--config`](/deck/{{page.kong_version}}/reference/deck).
+
+If you store {{site.konnect_short_name}} credentials in the file, decK uses the credentials for every command.
+Set either `konnect-password` or `konnect-password-file` in the decK config file.
 
 * Use `konnect-password` to store {{site.konnect_short_name}} credentials directly in the configuration file:
 
@@ -88,7 +91,7 @@ decK.
     konnect-password-file: PATH/TO/FILENAME
     ```
 
-decK automatically uses the credentials in `~/.deck.yaml` in any subsequent calls:
+decK automatically uses the credentials from `~/.deck.yaml` in any subsequent calls:
 
 ```
 deck ping
