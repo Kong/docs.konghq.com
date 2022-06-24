@@ -114,7 +114,7 @@ deck ping --konnect-addr https://konnect.konghq.com
 
 ## Runtime groups
 
-Each state file targets one runtime group.
+Each [state file](/deck/{{page.kong_version}}/terminology/#state-files) targets one runtime group.
 If you don't provide a group, decK targets the `default` runtime group.
 
 If you have a custom runtime group, you can specify the group in the state file,
