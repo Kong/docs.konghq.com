@@ -93,7 +93,7 @@ Set either `konnect-password` or `konnect-password-file` in the decK config file
 
 decK automatically uses the credentials from `$HOME/.deck.yaml` in any subsequent calls:
 
-```
+```sh
 deck ping
 
 Successfully Konnected as MyName (Konnect Org)!
@@ -201,12 +201,12 @@ To apply the configuration to custom runtime groups, replace `_workspace` with `
 
 For example, to export the configuration from workspace `staging` to runtime group `staging`, you would change:
 
-```
+```yaml
 _workspace: staging
 ```
 
 To:
-```
+```yaml
 _konnect:
   runtime_group_name: staging
 ```
