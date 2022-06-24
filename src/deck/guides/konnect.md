@@ -139,16 +139,17 @@ or use a flag when running any decK command.
 In {{site.konnect_short_name}}, there are two types of services:
 * Gateway services: Managed through Runtime Manager
 * {{site.konnect_short_name}} services: Managed through Service Hub
+Each Konnect Service may contain one or more service versions. A service version represents an implementation of a Gateway service.
 
 decK manages Gateway services, which contain configurations for the Gateway proxy.
 
-Although decK doesn't _directly_ manage {{site.konnect_short_name}} services, you can use tags to associate a Gateway service to a {{site.konnect_short_name}} service:
+Although decK doesn't _directly_ manage {{site.konnect_short_name}} services or service versions, you can use tags to associate a Gateway service to a service version in a {{site.konnect_short_name}} service:
 
 ```yaml
 tags:
-- _KonnectService:example
+- _KonnectService:<Konnect-Service-Name>
 ```
-If the {{site.konnect_short_name}} service doesn't exist, setting this tag creates a {{site.konnect_short_name}} service.
+The `<Konnect-Service-Name>` identifies which {{site.konnect_short_name}} to associate the Gateway service to while the name of the Gateway service identifies which service version to associate the Gateway service to. If the {{site.konnect_short_name}} service doesn't exist, setting this tag creates a {{site.konnect_short_name}} service.
 
 For example, see the following configuration snippet, where the Gateway service named `example_service` is attached to the {{site.konnect_short_name}} service `example`:
 
