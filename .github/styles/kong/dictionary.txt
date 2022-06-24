@@ -77,6 +77,7 @@ MongoDB
 namespace
 namespaces
 namespaced
+navtabs
 Netlify
 Nginx
 observability
@@ -135,6 +136,8 @@ validator
 validators
 websocket
 websockets
+wireframe
+wireframes
 yaml
 yml
 Zipkin

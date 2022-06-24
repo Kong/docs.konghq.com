@@ -134,26 +134,21 @@ to avoid horizontal scrolling.
 - Enclose sample code with single backticks.<br/>
   For example: \`sudo yum install /path/to/package.rpm`
 
-## Images
-
-- Add files to the corresponding product folder by navigating in the repo from **app > assets > images > docs**.
-- When naming/titling image files, use lowercase letters and dashes only.
-- Use SVGs whenever possible, otherwise use PNGs.
-- Limit image file size to ~2MB.
-- Compress and resize images before adding them to the site.
-- Do not use shadows.
-- Borders can be added to screenshots only `-1px` black.
-- Add an `alt` attribute and detailed description of the image.
-- **Do not** use GIFs
-
 ## Screenshots
 
-You can use screenshots to express capabilities, look and feel, and experience of a feature in situations where exclusively using text would make the documenation harder to understand. We recommend writing the documentation first, **without** using screenshots, and then assessing if a screenshot would enhance the documentation. Screenshots are used to support documentation and not in place of documentation. To ease in maintainability all screenshots must follow these guidelines. 
+You can use screenshots to express the capabilities, look and feel, and experience of a feature in situations where exclusively using text would make the documentation harder to understand. We recommend writing the documentation first, **without** using screenshots, and then assessing if a screenshot would enhance the documentation. Screenshots are used to support documentation and not in place of documentation. In some cases using wireframes in place of screenshots are easier to maintain. Otherwise, all screenshots must follow these guidelines. 
 
 - Screenshots must be taken with browser developer tools. 
 - Resolution should be set to **1500x843.75**.
 - Screenshots of UI elements should include only the relevant **panel**. Panels are container within a UI window which contain multiple related elements.
 - Mouse should not be visible.
+- Emphasis can be added by creating a **square** border around the point of interest. The border must use the color `#0788ad` from the [colors style guide](https://kongponents.netlify.app/style-guide/colors.html).
+- In situations that require it a `1px` black border can be used.
+- **Do not** use GIFs.
+- Limit image file size to ~2MB.
+- Add files to the corresponding product folder by navigating in the repo from **assets > images > docs**.
+- Use lowercase letters and dashes when naming an image file.
+
 ### Icons
 
 When deciding which icon to use for a doc, use the following guidelines:
