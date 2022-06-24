@@ -4,12 +4,12 @@ no_version: true
 content_type: how-to
 ---
 
-The {{site.konnect_short_name}} Dev Portal currently offers three areas you can customize:
+You can customize the {{site.konnect_short_name}} Dev Portal in the following ways:
 * [Appearance](#appearance)
 * [Custom URL](#add-a-custom-dev-portal-domain)
-* [Enabling Public Access](/konnect/dev-portal/access)
+* [Access](/konnect/dev-portal/access/)
+* [Single-sign on](#single-sign-on)
 
-This doc covers the details of customizing the appearance of your Developer Portal, and the steps to customize a URL.
 
 ## Appearance
 
@@ -56,3 +56,38 @@ Add a custom Dev Portal domain through your organization's {{site.konnect_short_
 
    {:.note}
    > **Note:** DNS propagation can take a few hours. If after a few hours you can't access the Dev Portal from the custom URL, contact your domain registrar.
+
+## Single Sign-On
+{:.badge .enterprise}
+
+A {{site.konnect_short_name}} Admin can configure Single Sign-On (SSO) for the Dev Portal via the Identity settings in the {{site.konnect_short_name}} Admin interface.
+
+1. In {{site.konnect_short_name}}, open {% konnect_icon dev-portal %} **Dev Portal**, then click **Settings**.
+
+2. Open the **Identity** tab.
+
+   {:.note}
+      > **Note:** Copy the callback URL and enter it in your OIDC Provider
+
+3. Enter the full domain, including the subdomain and protocol, into the  **Provider URL** field (also known as **Issuer**). For example,  `https://accounts.google.com` for Google IdP.
+
+4. Enter the unique identifier provided by the IdP into the **Client ID** field.
+
+5. Enter the secret used to verify ownership of your IdP client into the **Client Secret** field.
+
+### Configuration Requirements
+
+You must always have a form of authentication configured. Built-in and SSO can be used individually or in combination. Each state results in a different user experience, as represented in the following table:
+
+| State | SSO registration | SSO sign in | Built-in registration| Built-in sign in | Information|
+| --- | :-----------: |  ----------- | :-----------: | ----------- |
+| **SSO: Enabled**<br>**Built-in: Disabled** | ✅ | ✅ | ❌ | ❌ | - Developers can register and log in with SSO.<br><br>- Developers registered with Built-in are forced to use SSO.<br><br>- The Built-in authentication window does not display from the Dev Portal. 
+| **SSO: Disabled**<br>**Built-in: Enabled** | ❌ | ❌ | ✅  |✅  | - Developers can register and log in with a username and password.| 
+| **SSO: Enabled**<br>**Built-in: Enabled** | ✅  | ✅ | ✅  | ✅  | - Developers can register and log in with either form of authentication.|
+
+
+### OIDC Details
+
+* If a user account associated with a {{site.konnect_short_name}} developer is removed from the IdP, the {{site.konnect_short_name}} developer account is not deleted. A {{site.konnect_short_name}} Admin must delete it from the {{site.konnect_short_name}} dashboard.
+* If a {{site.konnect_short_name}} developer associated with an IdP user is deleted, the same IdP user can re-authenticate with the Dev Portal and a new {{site.konnect_short_name}} developer account is created. To persistently revoke access for developers authenticating through your IdP, you must remove the ability for that user to authenticate with the IdP.
+* User information from the IdP is not synced with Konnect developers after the first login.
