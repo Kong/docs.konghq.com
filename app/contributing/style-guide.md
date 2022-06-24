@@ -144,8 +144,16 @@ to avoid horizontal scrolling.
 - Do not use shadows.
 - Borders can be added to screenshots only `-1px` black.
 - Add an `alt` attribute and detailed description of the image.
-- **Do not** use GIFs, as they are not accessible and reduce page performance.
+- **Do not** use GIFs
 
+## Screenshots
+
+You can use screenshots to express capabilities, look and feel, and experience of a feature in situations where exclusively using text would make the documenation harder to understand. We recommend writing the documentation first, **without** using screenshots, and then assessing if a screenshot would enhance the documentation. Screenshots are used to support documentation and not in place of documentation. To ease in maintainability all screenshots must follow these guidelines. 
+
+- Screenshots must be taken with browser developer tools. 
+- Resolution should be set to **1500x843.75**.
+- Screenshots of UI elements should include only the relevant **panel**. Panels are container within a UI window which contain multiple related elements.
+- Mouse should not be visible.
 ### Icons
 
 When deciding which icon to use for a doc, use the following guidelines:

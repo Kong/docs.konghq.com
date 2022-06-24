@@ -77,18 +77,18 @@ Use sentence case for all headers, per [Content best practices](/contributing/st
 
 ### Content in markdown files
 
-* **Use relative links:** In markdown (`.md`) files, use links relative to the root
+- **Use relative links:** In markdown (`.md`) files, use links relative to the root
 domain (`docs.konghq.com`).
 
-    For example, if the final link for a page will be `docs.konghq.com/konnect/servicehub`,
-    you would write `/konnect/servicehub`.
+   For example, if the final link for a page will be `https://docs.konghq.com/contributing`,
+    you would write `/contributing`.
 
-* **Use version variables when possible:** For versioned doc sets such as
+- **Use version variables when possible:** For versioned doc sets such as
 {{site.base_gateway}} and Kong Mesh, use the page version variable.
 
     For example: {% raw %}`/enterprise/{{page.kong_version}}/file`{% endraw %}
 
-* **Use `latest` in docs without versions:** If you're linking to a versioned topic
+- **Use `latest` in docs without versions:** If you're linking to a versioned topic
 from an topic without versions, use `/latest/` instead of a version name or variable.
 
 ### Add new entries to the ToC
