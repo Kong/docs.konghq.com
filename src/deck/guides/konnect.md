@@ -91,7 +91,7 @@ Set either `konnect-password` or `konnect-password-file` in the decK config file
     konnect-password-file: PATH/TO/FILENAME
     ```
 
-decK automatically uses the credentials from `~/.deck.yaml` in any subsequent calls:
+decK automatically uses the credentials from `$HOME/.deck.yaml` in any subsequent calls:
 
 ```
 deck ping
@@ -169,7 +169,7 @@ If the {{site.konnect_short_name}} service doesn't exist, this configuration sni
 
 ### Authentication with a {{site.konnect_short_name}} password file is not working
 
-If you have verified that your password is correct but decK can't connect to your account, check for conflicts with the decK config file (`~/.deck.yaml`) and the {{site.konnect_short_name}} password file.
+If you have verified that your password is correct but decK can't connect to your account, check for conflicts with the decK config file (`$HOME/.deck.yaml`) and the {{site.konnect_short_name}} password file.
 There is likely a decK config file conflicting with the password file and passing another set of credentials.
 
 To resolve, remove one of the duplicate sets of credentials.
