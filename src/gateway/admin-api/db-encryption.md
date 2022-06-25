@@ -116,7 +116,7 @@ HTTP 201 Created
 
 *This endpoint is only available with the `cluster` keyring strategy.*
 
-*The endpoint requires that the `keyring_recovery_public_key` Kong configuration value are defined.*
+*The endpoint requires that the `keyring_recovery_public_key` Kong configuration value is defined.*
 
 **Endpoint**
 
