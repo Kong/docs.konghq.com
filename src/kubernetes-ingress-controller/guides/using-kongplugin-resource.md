@@ -371,6 +371,7 @@ X-Kong-Proxy-Latency: 1
 Via: kong/1.2.1
 ```
 
+Then use the API key with `/foo`:
 ```sh
 curl -I $PROXY_IP/foo -H 'apikey: my-sooper-secret-key'
 ```
