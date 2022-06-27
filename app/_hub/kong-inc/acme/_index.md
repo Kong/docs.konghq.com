@@ -322,7 +322,13 @@ Attribute | Description
 ---:| ---
 `host`<br>*required* | The domain where to create the certificate.
 `test_http_challenge_flow`<br>*optional* | When set, only checks if the configuration is valid. Does not apply the certificate.
-- **GET /acme/certificates**: list the certificate being created by ACME plugin; one can use this endpoint to monitor certificate existence and expiry.
+
+### Get ACME certificates
+
+List the certificates being created by the ACME plugin. You can use this endpoint to monitor certificate existence and expiry.
+ 
+**Endpoint**
+<div class="endpoint get">/acme/certificates</div>
 
 ### Get certificate by host
 
