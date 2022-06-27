@@ -119,7 +119,7 @@ A recommended method for recovering a keyring is to use the Recovery mode, you s
 Kong configuration value to the public key of the recovery keypair.
 (You can also follow the Generate a Management RSA Key Pair guide to generate a keypair for this purpose.)
 
-The Keyring material is encrypted with the public RSA key defined via the `keyring_recovery_public_key`
+The keyring material is then encrypted with the public RSA key defined via the `keyring_recovery_public_key`
 Kong configuration value in the database, the recovery keypair then is used to decrypt the Keyring material in the database.
 
 This will restore the Keyring material to the cluster automatically without manual backup.
