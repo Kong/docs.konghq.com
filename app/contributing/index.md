@@ -15,7 +15,7 @@ promptly and help you get your pull requests merged.
 We welcome fixes to unclear prose, fixes to typos in docs for recent versions, docs for new features you've contributed to
 the code, and more.
 
-We are currently accepting plugin submissions, on a limited basis, from trusted technical partners to our plugin hub. To learn more about our partner program, see our [Kong Partners page](https://konghq.com/partners/).
+We are currently accepting plugin submissions, on a limited basis, from trusted technical partners to our plugin hub. To learn more about our partner program, see our [Kong Partners page](https://konghq.com/partners).
 
 Explore the existing documentation before you start a big docs contribution. Some types of docs don't belong on the site, including: end-to-end guides, tutorials, and anything better suited to a blog post. If you're interested in
 this kind of content or have support questions, join the community on [Kong's forum](https://discuss.konghq.com/), on

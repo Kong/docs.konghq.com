@@ -17,7 +17,7 @@ Before installing Kong for Kubernetes Enterprise, be sure you have the following
 - **kubectl or oc access**: You should have `kubectl` or `oc` (if working with OpenShift) installed and configured to communicate to your Kubernetes cluster.
 - A valid Kong Enterprise License
   * If you have a license, continue to [Step 1. Set Kong Enterprise License](#step-1-set-kong-enterprise-license) below. If you need your license file information, contact Kong Support.
-  * If you need a license, request a trial license through our [Request Demo](https://konghq.com/request-demo/) page.
+  * If you need a license, request a trial license through our [Request Demo](https://konghq.com/request-demo) page.
 - An Enterprise Docker image for {{page.kong_version}}.
 
   If you have lost access to your {{page.kong_version}} image, Kong recommends

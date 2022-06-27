@@ -27,7 +27,7 @@ With authentication turned on, {{site.base_gateway}} won’t proxy requests unle
 
 In this example, you’re going to enable the **Key Authentication plugin**. API key authentication is one of the most popular ways to conduct API authentication and can be implemented to create and delete access keys as required.
 
-For more information, see [What is API Gateway Authentication?](https://konghq.com/learning-center/api-gateway/api-gateway-authentication/).
+For more information, see [What is API Gateway Authentication?](https://konghq.com/learning-center/api-gateway/api-gateway-authentication).
 
 ## Set up the Key Authentication Plugin
 

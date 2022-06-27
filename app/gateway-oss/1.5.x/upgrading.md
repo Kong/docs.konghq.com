@@ -73,7 +73,7 @@ repository will allow you to do both easily.
   by the new `nginx_http_upstream_keepalive` property. Its behavior is almost
   identical, but the notable difference is that the latter leverages the
   [injected Nginx
-  directives](https://konghq.com/blog/kong-ce-nginx-injected-directives/)
+  directives](https://konghq.com/blog/kong-ce-nginx-injected-directives)
   feature added in Kong 0.14.0.
 
 ## 2. Suggested Upgrade Path

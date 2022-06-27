@@ -21,7 +21,7 @@ for a feature breakdown and comparison between DB-less and database-backed deplo
 You can use `kubectl` or OpenShift `oc` to configure {{site.ee_product_name}} on Kubernetes, then deploy it [using Helm](https://github.com/Kong/charts/tree/main/charts/kong).
 
 This software is governed by the
-[Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
+[Kong Software License Agreement](https://konghq.com/kongsoftwarelicense).
 
 ### Deployment options
 

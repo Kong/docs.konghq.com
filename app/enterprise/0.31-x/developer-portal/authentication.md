@@ -41,7 +41,7 @@ Now that we've created our API, update the following line in your Kong Configura
 portal_api_uri = 127.0.0.1:8000/portal
 ```
 
-Next, we need to enable an authentication plugin and apply it our newly created API. You can select from any of the available [Kong plugins](https://konghq.com/plugins/). Let's start with [Basic Authentication:](/plugins/basic-authentication/)
+Next, we need to enable an authentication plugin and apply it our newly created API. You can select from any of the available [Kong plugins](https://konghq.com/plugins/). Let's start with [Basic Authentication:](/plugins/basic-authentication)
 
 ```bash
 curl -X POST http://127.0.0.1:8001/apis/portal-files/plugins \

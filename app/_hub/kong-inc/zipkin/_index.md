@@ -193,7 +193,7 @@ Contains the following tags specific to load balancing:
 
 ### See also
 
-For more information, read the [Kong blog post](https://konghq.com/blog/tracing-with-zipkin-in-kong-2-1-0/).
+For more information, read the [Kong blog post](https://konghq.com/blog/tracing-with-zipkin-in-kong-2-1-0).
 
 ---
 

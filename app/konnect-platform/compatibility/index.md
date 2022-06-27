@@ -10,7 +10,7 @@ interoperability with the Kong platform.
 
 Please see [Kong Gateway Version Support](https://docs.konghq.com/konnect-platform/support-policy/)
 for more information about Kong's support for {{site.base_gateway}} and our
-[Support & Maintenance Policy](https://konghq.com/supportandmaintenancepolicy/).
+[Support & Maintenance Policy](https://konghq.com/supportandmaintenancepolicy).
 
 <!-- VARIABLES -->
 {% assign products = site.data.tables.compat %}

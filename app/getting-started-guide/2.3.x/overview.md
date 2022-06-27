@@ -78,7 +78,7 @@ processing invalid requests.
 Note the following before you start using this guide:
 
 ### Installation
-* This guide assumes that you have [{{site.ce_product_name}}](https://konghq.com/install/)
+* This guide assumes that you have [{{site.ce_product_name}}](https://konghq.com/install)
 or [{{site.ee_product_name}}](/enterprise/latest/deployment/installation/overview/)
 installed and running on the platform of your choice.
 * During your installation, take note of the KONG_PASSWORD; you’ll need it
