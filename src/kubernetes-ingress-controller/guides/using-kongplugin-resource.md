@@ -352,7 +352,7 @@ resource, but not for `/baz` because that request does not match.
 Follow the [Using Consumers and Credentials](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-consumer-credential-resource)
 guide to provision a user and an `apikey`.
 
-Use the API key to pass authentication:
+Use the API key to pass authentication. Try it with `/baz`:
 
 ```sh
 curl -I $PROXY_IP/baz -H 'apikey: my-sooper-secret-key'
