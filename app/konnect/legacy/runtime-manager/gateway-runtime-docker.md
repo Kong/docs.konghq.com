@@ -2,6 +2,7 @@
 title: Set up a Kong Gateway Runtime with Docker
 no_version: true
 ---
+<!-- vale off -->
 Set up a Docker [runtime](/konnect/legacy/#konnect-key-concepts-and-terminology)
 through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/legacy/runtime-manager) and
@@ -26,7 +27,7 @@ runtime instances.
 * You have **Runtime Admin** or **Organization Admin** permissions in
 {{site.konnect_saas}}.
 * The quick setup script requires Docker and a Unix shell (for example, bash or
-  zshell). Platform-specific tools and permissions:
+  zsh). Platform-specific tools and permissions:
   * **All platforms:** [Docker](https://docs.docker.com/get-docker/) and [jq](https://stedolan.github.io/jq/) installed
   * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
   * **Windows:** Docker Desktop [installed](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [integrated with a WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/). If you can't set up a WSL 2 backend, see the [advanced](#advanced-setup) instructions for
@@ -46,7 +47,7 @@ runtime instances.
 
 3. Click **Copy Script**.
 
-    You can expand the codeblock by clicking **Show** to see the entire script.
+    You can expand the code block by clicking **Show** to see the entire script.
 
 4. Replace the placeholder for `<your-password>` with your own
 {{site.konnect_saas}} password.
@@ -106,7 +107,7 @@ matching your repository:
     $ docker tag {IMAGE_ID} kong-ee
     ```
 
-### Start Kong Gateway
+### Start {{site.base_gateway}}
 
 Use the following `docker run` command sample as a guide to compile your actual values:
 

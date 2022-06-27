@@ -2,7 +2,7 @@
 title: Publish a Service to the Dev Portal
 no_version: true
 ---
-
+<!-- vale off -->
 Publish Services to the Dev Portal to expose them to your application
 developers.
 

@@ -2,7 +2,7 @@
 title: Get started with Konnect Cloud
 no_version: true
 ---
-
+<!-- vale off -->
 ## Quickstart guide
 
 New to {{site.konnect_saas}}? Get started with the basics through the web app:

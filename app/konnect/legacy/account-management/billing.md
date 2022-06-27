@@ -3,6 +3,7 @@ title: Manage Payment Methods and Invoices
 no_version: true
 ---
 
+<!-- vale off -->
 Access the billing portal from the {{site.konnect_saas}}
 [Billing and Usage](/konnect/legacy/account-management/) page.
 

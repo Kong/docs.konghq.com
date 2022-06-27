@@ -2,7 +2,7 @@
 title: Runtime Manager Overview
 no_version: true
 ---
-
+<!-- vale off -->
 The Runtime Manager is a {{site.konnect_saas}} functionality module
 that lets you catalogue, connect to, and monitor the status of all runtimes in
 one place.
@@ -28,7 +28,7 @@ eliminating any confusion about initial configuration or setup.
 
 ## Types of runtimes
 
-### Kong Gateway
+### {{site.base_gateway}}
 
 A {{site.base_gateway}} runtime acts as a data plane, which is a node
 serving traffic for the proxy. Data plane nodes are not directly connected

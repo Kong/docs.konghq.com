@@ -2,7 +2,7 @@
 title: Export Vitals Data into a Report
 no_version: true
 ---
-
+<!-- vale off -->
 Browse, filter, and view your {{site.konnect_short_name}} Vitals data in a
 time-series report, and export the data into a comma-separated values (CSV)
 file.

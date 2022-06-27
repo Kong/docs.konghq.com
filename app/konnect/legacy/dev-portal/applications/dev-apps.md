@@ -3,7 +3,7 @@ title: Create, Edit, and Delete an Application
 no_version: true
 toc: true
 ---
-
+<!-- vale off -->
 After a Developer is [granted access by an admin](/konnect/legacy/dev-portal/access-and-approval/manage-devs/) to the {{site.konnect_short_name}} Dev Portal, they will be able to create, edit, and delete applications.
 
 For more information about registering for a {{site.konnect_short_name}} Dev Portal as a Developer, see [Developer Registration](/konnect/legacy/dev-portal/access-and-approval/dev-reg/).

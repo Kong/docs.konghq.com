@@ -3,7 +3,7 @@ title: Application Overview
 no_version: true
 toc: true
 ---
-
+<!-- vale off -->
 Applications consume Services in {{site.konnect_short_name}} via Application-level authentication. Developers, or the persona that logs into the {{site.konnect_short_name}} Dev Portal, use Applications they create in the Dev Portal.
 
 Admins [enable application registration](/konnect/legacy/dev-portal/applications/enable-app-reg/) through [konnect.konghq.com](https://konnect.konghq.com) so that Developers can associate Services with Applications.

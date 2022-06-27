@@ -2,12 +2,12 @@
 title: Appearance
 no_version: true
 ---
-
+<!-- vale off -->
 The Dev Portal can be customized by those with Admin roles via the Appearance settings in the {{site.konnect_short_name}} Admin UI. To access the Appearance settings, click **Dev Portal** then **Appearance**.
 
 Here, you have the ability to modify the following:
 
-* Logos: default logo and fav icon
+* Logos: default logo and favicon
 * Home Page Header: welcome message, primary header, and header image
 * Colors: background, text, and button colors
 * Fonts

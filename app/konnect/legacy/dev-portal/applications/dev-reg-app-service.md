@@ -3,7 +3,7 @@ title: Register or Unregister an Application for a Service
 no_version: true
 toc: true
 ---
-
+<!-- vale off -->
 When [application registration is enabled](/konnect/legacy/dev-portal/applications/enable-app-reg/),
 developers must register their applications with a Service. Requests for access must be
 [approved by a Konnect admin](/konnect/legacy/dev-portal/applications/manage-app-reg-requests) if

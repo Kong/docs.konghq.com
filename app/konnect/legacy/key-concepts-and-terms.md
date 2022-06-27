@@ -2,7 +2,7 @@
 title: Key Concepts and Terminology
 no_version: true
 ---
-
+<!-- vale off -->
 ### Service
 
 A Service is an API that can be defined as a *discrete* unit of functionality

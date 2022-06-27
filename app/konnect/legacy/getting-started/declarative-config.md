@@ -2,7 +2,7 @@
 title: Manage Konnect Cloud with decK
 no_version: true
 ---
-
+<!-- vale off -->
 You can manage entities in your {{site.konnect_saas}} org using configuration
 files instead of the GUI or admin API commands. With decK, Kong's declarative
 configuration management tool, you can create, update,
@@ -64,7 +64,7 @@ configured, decK creates the file with only the format version:
 _format_version: "0.1"
 ```
 
-You can specify a different file name or location, or export the
+You can specify a different filename or location, or export the
 configuration in JSON format:
 
 ```sh

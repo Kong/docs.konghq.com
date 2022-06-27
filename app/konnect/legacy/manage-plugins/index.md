@@ -2,7 +2,7 @@
 title: Manage Plugins
 no_version: true
 ---
-
+<!-- vale off -->
 Any {{site.base_gateways}} plugins supported in a self-managed hybrid mode
 deployment are also accessible through ServiceHub or the Shared Config page.
 
@@ -23,7 +23,7 @@ or consumer. You can configure plugins on
 routes, and consumers in a cluster &ndash; set it up through the
 [Shared Config page](/konnect/legacy/manage-plugins/shared-config/).
 
-### Functionality differences from self-managed Kong Gateway
+### Functionality differences from self-managed {{site.base_gateway}}
 
 Application registration is built into the ServiceHub.
 [Enabling it on a service](/konnect/legacy/dev-portal/applications/enable-app-reg)

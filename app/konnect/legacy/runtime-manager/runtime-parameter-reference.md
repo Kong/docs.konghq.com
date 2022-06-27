@@ -2,8 +2,8 @@
 title: Runtime Configuration Parameters
 no_version: true
 ---
-
-## Advanced parameters for Kong Gateway
+<!-- vale off -->
+## Advanced parameters for {{site.base_gateway}}
 
 Refer to these parameters when using the **Advanced** runtime setup option.
 

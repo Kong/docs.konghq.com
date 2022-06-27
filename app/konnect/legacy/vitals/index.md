@@ -2,7 +2,7 @@
 title: Monitoring Health with Vitals
 no_version: true
 ---
-
+<!-- vale off -->
 Use {{site.konnect_short_name}} Vitals (Vitals) to monitor the health and
 performance of a Service managed by {{site.konnect_product_name}}
 ({{site.konnect_short_name}}). Vitals uses visual API analytics to see exactly
@@ -15,7 +15,7 @@ status codes, and includes all versions of the Service filtered by timeframe.
 You can also export a report of a Service's
 performance data.
 * Any Service version or Route page, which display status codes filtered by
-timeframe. You can also export a report of version peformance data.
+timeframe. You can also export a report of version performance data.
 
 <div class="alert alert-ee blue">
 <b>Note:</b> The activity graphs in the ServiceHub only show the past 12 hours

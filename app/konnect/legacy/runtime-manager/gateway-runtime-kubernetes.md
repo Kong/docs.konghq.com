@@ -2,6 +2,7 @@
 title: Set up a Kong Gateway Runtime on Kubernetes
 no_version: true
 ---
+<!-- vale off -->
 Set up a Kubernetes [runtime](/konnect/legacy/#konnect-key-concepts-and-terminology)
 through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/legacy/runtime-manager) and
@@ -80,11 +81,11 @@ you saved earlier:
 
 
 2. Return to {{site.konnect_short_name}} and copy the
-codeblock in the **Step 2. Configuration Parameters** section.
+code block in the **Step 2. Configuration Parameters** section.
 
     ![Konnect Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
 
-3. Paste the codeblock into your `values.yaml` file. It should look something
+3. Paste the code block into your `values.yaml` file. It should look something
 like this:
 
     ```yaml

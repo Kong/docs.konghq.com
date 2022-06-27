@@ -2,7 +2,7 @@
 title: Shared Config
 no_version: true
 ---
-
+<!-- vale off -->
 Use the ![icon](/assets/images/icons/konnect/konnect-shared-config.svg){:.inline .no-image-expand}
 [**Shared Config** page](https://konnect.konghq.com/configuration/) in
 {{site.konnect_saas}} to manage consumers,
