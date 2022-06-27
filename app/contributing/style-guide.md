@@ -142,7 +142,7 @@ Screenshots are used to support documentation and do not _replace_ documentation
 
 - Screenshots must be taken with browser developer tools. 
 - Resolution should be set to **1500x843.75**.
-- Screenshots of UI elements should include only the relevant **panel**. Panels are container within a UI window which contain multiple related elements.
+- Screenshots of UI elements should include only the relevant **panel**. Panels are a container within a UI window which contain multiple related elements.
 - Mouse should not be visible.
 - Emphasis can be added by creating a **square** border around the point of interest. The border must use the color `#0788ad` from the [colors style guide](https://kongponents.netlify.app/style-guide/colors.html).
 - In situations that require it a `1px` black border can be used.
