@@ -92,7 +92,13 @@ oc new-project kong
     export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong kong-proxy)
     ```
 
-1.  Check that the value of $PROXY_IP is the value of the external host:
+1.  Verify that the value of `$PROXY_IP` matches the value of the external host:
+
+    ```sh
+    echo $PROXY_IP
+    ```
+
+    This should match the `EXTERNAL_IP` value of the `kong-proxy` service returned by the Kubernetes API:
 
     ```sh
     kubectl get service kong-proxy -n kong
@@ -102,6 +108,17 @@ oc new-project kong
 
     ```sh
     oc get service kong-proxy -n kong
+    ```
+
+1. Finally, invoke a test request:
+    ```sh
+    curl $PROXY_IP
+    ```
+
+    which should return a response from the Kong gateway:
+
+    ```sh
+    {"message":"no Route matched with those values"}
     ```
 
 ## Next steps
