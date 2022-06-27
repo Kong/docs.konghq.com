@@ -7,7 +7,7 @@ title: Configuring a Service
 <div class="alert alert-warning">
   <strong>Before you start:</strong>
   <ol>
-    <li>Make sure you've <a href="https://konghq.com/install/">installed Kong</a> &mdash; It should only take a minute!</li>
+    <li>Make sure you've <a href="https://konghq.com/install">installed Kong</a> &mdash; It should only take a minute!</li>
     <li>Make sure you've <a href="/enterprise/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
   </ol>
 </div>

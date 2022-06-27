@@ -7,7 +7,7 @@ no_search: true
 
 <div class="alert alert-ee blue">
    <b>Demo</b>: To see {{site.mesh_product_name}} in action, you can
-   <a href="https://konghq.com/request-demo-kong-mesh/">request a demo</a> and
+   <a href="https://konghq.com/request-demo-kong-mesh">request a demo</a> and
    we will get in touch with you.
 </div>
 
