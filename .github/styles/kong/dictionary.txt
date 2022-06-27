@@ -27,6 +27,7 @@ declaratively
 degraphql
 denylist
 dev
+etcd
 Fargate
 Github
 Goroutine

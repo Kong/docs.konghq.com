@@ -6,7 +6,7 @@ This page explains how to install {{site.base_gateway}} with {{site.kic_product_
 
 This page also includes the equivalent commands for OpenShift.
 
-Note that in DB-less mode on Kubernetes, config is stored in etcd, the Kubernetes native datastore. For more information see [Kubernetes Deployment Options](/gateway/{{page.kong_version}}/plan-and-deploy/kubernetes-deployment-options).
+Note that in DB-less mode on Kubernetes, config is stored in etcd, the Kubernetes native data store. For more information see [Kubernetes Deployment Options](/gateway/{{page.kong_version}}/plan-and-deploy/kubernetes-deployment-options).
 
 The {{site.base_gateway}} software is governed by the
 [Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
