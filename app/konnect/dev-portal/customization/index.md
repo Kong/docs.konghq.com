@@ -19,7 +19,7 @@ settings, click {% konnect_icon dev-portal %} **Dev Portal**, then **Appearance*
 
 Here, you have the ability to modify the following:
 
-* Logos: default logo and fav icon
+* Logos: default logo and favicon
 * Home Page Header: welcome message, primary header, and header image
 * Colors: background, text, and button colors
 * Themes: default theme and dark mode
@@ -27,10 +27,19 @@ Here, you have the ability to modify the following:
 
 For details on the requirements for each customizable option, hover over the information (`i`) icon next to each item in the UI.
 
+## Custom Dev Portal URL
 
-## Custom Developer Portal URL
+All Dev Portals have an auto-generated default Dev Portal URL. You can add a custom domain. When set up properly, users can access the Dev Portal from both the default URL and the custom URL. The {{site.konnect_short_name}} Kong Dev Portal generates an SSL certificate for your custom domain automatically.
 
-All Dev Portals have an auto-generated default Dev Portal URL. You can add a custom domain. When set up properly, users can access the Dev Portal from both the default URL and the custom URL. The {{site.konnect_short_name}} Kong Developer Portal generates an SSL certificate for your custom domain automatically.
+### Top-level domains
+
+{{site.konnect_short_name}} offers support for the following top-level domains: 
+
+- `*.io`
+- `*.com`
+- `*.tech`
+- `*.net`
+- `*.dev`
 
 ### Prerequisites
 
@@ -41,8 +50,7 @@ All Dev Portals have an auto-generated default Dev Portal URL. You can add a cus
 
 From your domain registrar's DNS records settings options, point your CNAME to your Dev Portal's default URL.
 
-
-## Add a custom Dev Portal domain
+### Add a custom Dev Portal domain
 
 Add a custom Dev Portal domain through your organization's {{site.konnect_short_name}} Admin UI.
 
@@ -90,4 +98,4 @@ You must always have a form of authentication configured. Built-in and SSO can b
 
 * If a user account associated with a {{site.konnect_short_name}} developer is removed from the IdP, the {{site.konnect_short_name}} developer account is not deleted. A {{site.konnect_short_name}} Admin must delete it from the {{site.konnect_short_name}} dashboard.
 * If a {{site.konnect_short_name}} developer associated with an IdP user is deleted, the same IdP user can re-authenticate with the Dev Portal and a new {{site.konnect_short_name}} developer account is created. To persistently revoke access for developers authenticating through your IdP, you must remove the ability for that user to authenticate with the IdP.
-* User information from the IdP is not synced with Konnect developers after the first login.
+* User information from the IdP is not synced with {{site.konnect_short_name}} developers after the first login.
