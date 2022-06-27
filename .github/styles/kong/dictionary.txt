@@ -28,6 +28,7 @@ degraphql
 denylist
 dev
 Fargate
+favicon
 Github
 Goroutine
 Grafana
