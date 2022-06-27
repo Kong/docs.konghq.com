@@ -84,7 +84,7 @@ The type of placeholder you use depends on context:
 
         For example: `curl -i -X https://localhost:8001/services`
 
-        If you are following a guide where {{site.base_gateway}} is running on `localhost`, this example can be copy and pasted straight into a terminal.
+        If you are following a guide where {{site.base_gateway}} is running on `localhost`, this example can be copied and pasted straight into a terminal.
         It should work with no changes.
 
     * For situations where you need a generic domain name and the examples are illustrative only (not intended to be runnable as-is), use `example` or `example.com`.
@@ -136,7 +136,9 @@ to avoid horizontal scrolling.
 
 ## Screenshots
 
-You can use screenshots to express the capabilities, look and feel, and experience of a feature in situations where exclusively using text would make the documentation harder to understand. We recommend writing the documentation first, **without** using screenshots, and then assessing if a screenshot would enhance the documentation. Screenshots are used to support documentation and not in place of documentation. In some cases using wireframes in place of screenshots are easier to maintain. Otherwise, all screenshots must follow these guidelines. 
+You can use screenshots to express the capabilities, look and feel, and experience of a feature in situations where exclusively using text would make the documentation harder to understand. We recommend writing the documentation first, **without** using screenshots, and then assessing if a screenshot would enhance the documentation. 
+
+Screenshots are used to support documentation and do not _replace_ documentation. In some cases, using wireframes in place of screenshots is easier to maintain. Otherwise, all screenshots must follow these guidelines. 
 
 - Screenshots must be taken with browser developer tools. 
 - Resolution should be set to **1500x843.75**.
@@ -146,7 +148,7 @@ You can use screenshots to express the capabilities, look and feel, and experien
 - In situations that require it a `1px` black border can be used.
 - **Do not** use GIFs.
 - Limit image file size to ~2MB.
-- Add files to the corresponding product folder by navigating in the repo from **assets > images > docs**.
+- Add files to the corresponding product folder by navigating in the repo from **app > _assets > images > docs**.
 - Use lowercase letters and dashes when naming an image file.
 
 ### Icons
@@ -155,7 +157,7 @@ When deciding which icon to use for a doc, use the following guidelines:
 
 1. Is there a Unicode version?
 
-   We use Unicode for common icons such as ✅ &nbsp; and ❌&nbsp;. You can copy and paste a
+   We use Unicode for common icons such as ✅&nbsp; and ❌&nbsp;. You can copy and paste a
    Unicode icon directly into markdown.
 
 2. Is there a Font Awesome icon?
