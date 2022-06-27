@@ -60,7 +60,7 @@ params:
         The list of domains to create certificate for. To match subdomains under `example.com`, use `*.example.com`.
         Regex pattern is not supported. Note this config is only used to match domains, not to specify the Common Name
         or Subject Alternative Name to create certificates; each domain must have its own certificate.
-        ACME plugin checks this configuration before the presense of certificate in `storage` when serving certificate of a request.
+        The ACME plugin checks this configuration before checking any certificate in `storage` when serving the certificate of a request.
     - name: fail_backoff_minutes
       required: false
       default: 5
@@ -294,16 +294,50 @@ curl http://localhost:8001/acme -XPATCH
 The ACME plugin exposes several endpoints through Admin API that can be used for
 debugging and monitoring certificate creation and renewal.
 
-- **POST /acme**: start applying or renewing certificate and return the result; available parameter:
-  - **host**: the domain to create certificate
-  - **test_http_challenge_flow**: when set, only check for configuration sanity.
-- **PATCH /acme**: same as POST, but runs the process at background.
+### Apply certificate
+
+**Endpoint**
+
+<div class="endpoint post">/acme</div>
+Applies or renews the certificate and returns the result.
+
+**Request body**
+
+Attribute | Description
+---:| ---
+`host`<br>*required* | The domain where to create the certificate.
+`test_http_challenge_flow`<br>*optional* | When set, only checks if the configuration is valid. Does not apply the certificate.
+
+### Update certificate
+
+Apply or renew the certificate and return the result. Unlike `POST`, `PATCH` runs the process in the background. 
+
+**Endpoint**
+
+<div class="endpoint patch">/acme</div>
+
+**Request body**
+
+Attribute | Description
+---:| ---
+`host`<br>*required* | The domain where to create the certificate.
+`test_http_challenge_flow`<br>*optional* | When set, only checks if the configuration is valid. Does not apply the certificate.
 - **GET /acme/certificates**: list the certificate being created by ACME plugin; one can use this endpoint to monitor certificate existence and expiry.
-- **GET /acme/certificates/:host**: list the certificate with specific host.
 
-Following is an example of the certificate listing API:
+### Get certificate by host
 
-```
+List certificates with a specific host.
+
+**Endpoint**
+<div class="endpoint get">/acme/certificates/{HOST}</div>
+
+Attribute | Description
+---:| ---
+`HOST` | The IP or hostname of the host to target.
+
+Example response for listing certificates:
+
+```json
 {
   "data": [
     {
