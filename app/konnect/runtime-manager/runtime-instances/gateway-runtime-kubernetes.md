@@ -71,11 +71,11 @@ $ kubectl create secret tls kong-cluster-cert -n kong \
 
 
 2. Return to {{site.konnect_short_name}} and copy the
-codeblock in the **Step 2. Configuration Parameters** section.
+code block in the **Step 2. Configuration Parameters** section.
 
-    ![Konnect Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
+    ![{{site.konnect_short_name}} Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
 
-3. Paste the codeblock into your `values.yaml` file. It should look something
+3. Paste the code block into your `values.yaml` file. It should look something
 like this:
 
     ```yaml
@@ -123,7 +123,7 @@ with your specific values from {{site.konnect_short_name}}.
       --values ./values.yaml
     ```
 
-6. In Konnect, click **Done** to go to the Runtime Instances overview, where you will
+6. In {{site.konnect_short_name}}, click **Done** to go to the Runtime Instances overview, where you will
 see a new entry for your instance.
 
 ### Troubleshooting

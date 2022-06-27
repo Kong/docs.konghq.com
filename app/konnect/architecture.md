@@ -8,9 +8,9 @@ which manages all service configurations. It propagates those configurations to
 all runtime nodes, which use in-memory storage. These nodes can be installed
 anywhere, on-premise or in the cloud.
 
-![Konnect Cloud](/assets/images/docs/konnect/konnect-intro.png)
+![{{site.konnect_short_name}} Cloud](/assets/images/docs/konnect/konnect-intro.png)
 
-> Figure 1: Diagram of Konnect modules.
+> Figure 1: Diagram of {{site.konnect_short_name}} modules.
 
 Runtime instances, acting as data planes, listen for traffic on the proxy port 443
 by default. The {{site.konnect_short_name}} data plane evaluates

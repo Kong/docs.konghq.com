@@ -6,11 +6,11 @@ content_type: how-to
 
 {{site.konnect_product_name}} has [three plans](https://konghq.com/pricing) to
 choose from: Free, Plus, and Enterprise. When you first sign up, you get
-automatically enrolled into a 30-day free trial for Konnect Plus. At the end of
+automatically enrolled into a 30-day free trial for {{site.konnect_short_name}} Plus. At the end of
 this trial, you can choose to continue with Plus, or downgrade to Free.
 
 You can view service, Dev Portal, and API call usage from the **Billing and Usage**
-settings page, and manage your Konnect Free or Plus plan from this page.
+settings page, and manage your {{site.konnect_short_name}} Free or Plus plan from this page.
 
 There is no self-serve option for managing Enterprise plans.
 Contact your sales representative to make any changes.

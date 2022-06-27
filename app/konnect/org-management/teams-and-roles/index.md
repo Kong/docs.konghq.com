@@ -17,22 +17,22 @@ access.
 ## Teams and roles
 
 You can find a list of all teams in your organization through
-{% konnect_icon organizations %} **Organization** > **Teams** in Konnect.
+{% konnect_icon organizations %} **Organization** > **Teams** in {{site.konnect_short_name}}.
 
 You must be part of the **Organization Admin** team to manage users, teams, and
 roles.
 
 * **Team:** A group of users with access to the same roles. Teams are useful
 for assigning access by functionality, as they can provide granular access to
-any group of Konnect resources based on roles. As well, access to specific
+any group of {{site.konnect_short_name}} resources based on roles. As well, access to specific
 runtime groups and Services can be shared with teams.
 
 * **Role:** Predefined access to a particular resource instance, or all
 instances of a resource type (for example, a particular Service or all Services).
 
-When you create a Konnect account, you are automatically added to the Organization
+When you create a {{site.konnect_short_name}} account, you are automatically added to the Organization
 Admin team, which is one of the [predefined teams](/konnect/org-management/teams-and-roles/teams-reference)
-in Konnect. Predefined teams have sets of roles that can't be modified or
+in {{site.konnect_short_name}}. Predefined teams have sets of roles that can't be modified or
 deleted. You can add users to these teams, or create your own custom teams
 with any of the [supported roles](/konnect/org-management/teams-and-roles/roles-reference).
 

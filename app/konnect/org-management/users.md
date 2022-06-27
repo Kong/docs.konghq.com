@@ -4,7 +4,7 @@ no_version: true
 content_type: how-to
 ---
 
-You can invite users to join your Konnect organization through the **Organization**
+You can invite users to join your {{site.konnect_short_name}} organization through the **Organization**
 page.
 
 To manage user access, see [Manage Teams and Roles](/konnect/org-management/teams-and-roles).

@@ -7,20 +7,20 @@ content_type: reference
 A team can have any number of roles.
 See [Manage Teams and Roles](/konnect/org-management/teams-and-roles).
 
-The following predefined roles are available in Konnect:
+The following predefined roles are available in {{site.konnect_short_name}}:
 
 ## Services
 
 | Role                        | Description  |
 |-----------------------------|--------------|
-| Admin | Admin of an existing Konnect Service. The admins have all write access related to a Service and Service versions. |
-| Application Registration | Access to enable or disable application registration for a Konnect Service. |
-| Creator | Access to create new Konnect Services in Service Hub. The creator becomes the owner of the Service they create, gaining admin access to the Service. <br><br>This role does not provide access to creating sub-entities in a Service such as Service versions, implementations, API specs, or plugins. See the Service `Admin`, `Maintainer`, or `Plugins Admin` roles. |
-| Deployer | Access to implement and associate a Konnect Service version to a runtime group. <br><br> Must also have the `Deployer` role for the associated runtime group. |
-| Maintainer | Access to read, edit, and deploy a Konnect Service and its Service versions, and manage its plugins. |
-| Plugins Admin | Access to install plugins on the Konnect Service versions and Routes. <br><br> Must also have the `Admin` role in the associated runtime group. |
-| Publisher | Access to publish a Konnect Service to the Dev Portal. |
-| Viewer | Read-only access to all the configurations of a Konnect Service, including attributes, versions, vitals reports, and plugins. |
+| Admin | Admin of an existing {{site.konnect_short_name}} Service. The admins have all write access related to a Service and Service versions. |
+| Application Registration | Access to enable or disable application registration for a {{site.konnect_short_name}} Service. |
+| Creator | Access to create new {{site.konnect_short_name}} Services in Service Hub. The creator becomes the owner of the Service they create, gaining admin access to the Service. <br><br>This role does not provide access to creating sub-entities in a Service such as Service versions, implementations, API specs, or plugins. See the Service `Admin`, `Maintainer`, or `Plugins Admin` roles. |
+| Deployer | Access to implement and associate a {{site.konnect_short_name}} Service version to a runtime group. <br><br> Must also have the `Deployer` role for the associated runtime group. |
+| Maintainer | Access to read, edit, and deploy a {{site.konnect_short_name}} Service and its Service versions, and manage its plugins. |
+| Plugins Admin | Access to install plugins on the {{site.konnect_short_name}} Service versions and Routes. <br><br> Must also have the `Admin` role in the associated runtime group. |
+| Publisher | Access to publish a {{site.konnect_short_name}} Service to the Dev Portal. |
+| Viewer | Read-only access to all the configurations of a {{site.konnect_short_name}} Service, including attributes, versions, vitals reports, and plugins. |
 
 ## Runtime groups
 
@@ -40,7 +40,7 @@ The following predefined roles are available in Konnect:
 | Admin | Allows a user to view and manage existing organization settings, including billing/usage. Admins have all write access to organization objects. |
 | Creator | Allows a user to create organizations. [*Q: What's stopping a user from creating orgs in general? What does this role actually imply - they can crete new orgs within a company umbrella of orgs?*] |
 | Privileged | Privileged users of an existing organization can change system-level configuration, including the organization's license tier, organization status, (and what else?).
-| Root |  Allows root access for an existing organization. This role grants write access to all organization objects as well as to all Konnect Services, runtime groups, Dev Portal, Vitals reports, applications, and developers. | -->
+| Root |  Allows root access for an existing organization. This role grants write access to all organization objects as well as to all {{site.konnect_short_name}} Services, runtime groups, Dev Portal, Vitals reports, applications, and developers. | -->
 
 <!--
 ## Portals
@@ -64,5 +64,5 @@ The following predefined roles are available in Konnect:
 | Role                        | Description  |
 |-----------------------------|--------------|
 | Admin | Create, read, update, and delete users in the organization. Add or remove users to and from teams. |
-| Creator | Invite users to the Konnect organization. |
-| Viewer | View users in the Konnect organization, their status, team membership, and individual roles. | -->
+| Creator | Invite users to the {{site.konnect_short_name}} organization. |
+| Viewer | View users in the {{site.konnect_short_name}} organization, their status, team membership, and individual roles. | -->

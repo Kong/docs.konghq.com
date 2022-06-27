@@ -13,7 +13,7 @@ entire architecture.
 
 ## Services in the Service Hub catalog
 
-Each entry in the Service Hub is called a **Konnect Service**, or **Service**
+Each entry in the Service Hub is called a **{{site.konnect_short_name}} service**, or **service**
 for short. This is the abstraction of one of your own upstream services.
 
 A Service in the Service Hub breaks down into multiple
@@ -34,7 +34,7 @@ gPRC endpoint, GraphQL endpoint, and others.
 * **Service implementation**: The concrete, runnable incarnation of a Service
 version. Each Service version can only have one implementation.
 
-A Konnect service isn't associated with any specific runtime group, but every
+A {{site.konnect_short_name}} service isn't associated with any specific runtime group, but every
 Service version is. When you create a version of the Service, you must select a
 group for the version to run on.
 
@@ -48,7 +48,7 @@ specifying its protocol, host, port, and path individually.
 
 [Get started with Service management &rarr;](/konnect/servicehub/manage-services)
 
-### Kong Gateway implementations
+### {{site.base_gateway}} implementations
 
 When configuring a {{site.base_gateway}} implementation of a Service, you'll
 need to specify a Route. Routes determine how (and if) requests get sent to
@@ -78,7 +78,7 @@ Applies to a specific Service version.
 
 [Upload and publish Service documentation to the Dev Portal &rarr;](/konnect/servicehub/service-documentation)
 
-## Kong Gateway plugins
+## {{site.base_gateway}} plugins
 
 Plugins can be configured to run in a variety of contexts,
 ranging from a specific Service version or Route to all Service versions. Plugins

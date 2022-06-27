@@ -26,6 +26,7 @@ dbless
 declaratively
 degraphql
 denylist
+deployer
 dev
 Fargate
 favicon
@@ -79,6 +80,7 @@ namespaced
 Netlify
 Nginx
 observability
+oc
 Okta
 opa
 outbounds
@@ -122,9 +124,13 @@ uncheck
 uncomment
 Unicode
 unix
+unpublish
+unregister
+unregistering
 upstream
 upstreams
 uri
+uris
 url
 urls
 uuid

@@ -4,7 +4,7 @@ no_version: true
 ---
 
 Along with hosting API documentation, the Dev Portal can let your developers
-register applications against Konnect Services. Your applications can then
+register applications against {{site.konnect_short_name}} Services. Your applications can then
 consume those Services using application-level authentication.
 
 For example, the application can represent a mobile banking app and the
@@ -14,13 +14,13 @@ legal agreements API.
 ## Prerequisites
 
 * If you're following the {{site.konnect_short_name}} API spec guide,
-make sure you have [published the Konnect Service to the Dev Portal](/konnect/getting-started/spec/service/).
+make sure you have [published the {{site.konnect_short_name}} Service to the Dev Portal](/konnect/getting-started/spec/service/).
 
 * To use app registration, Dev Portal must be protected by
 some sort of authentication. That means you can't have a public portal for this step.
 If you set your Dev Portal to public, [disable the setting and create a developer account](/konnect/getting-started/spec/publish/).
 
-* You must have a Konnect Service in the default runtime group.
+* You must have a {{site.konnect_short_name}} Service in the default runtime group.
 Application registration is not supported for custom runtime groups.
 
 ## Enable app registration

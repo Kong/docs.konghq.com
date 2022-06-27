@@ -3,7 +3,7 @@ title: Manage Konnect Service Versions
 no_version: true
 ---
 
-Every Konnect Service version is associated with one [runtime group](/konnect/runtime-manager/runtime-groups/).
+Every {{site.konnect_short_name}} Service version is associated with one [runtime group](/konnect/runtime-manager/runtime-groups/).
 Any configurations for the Service version, such as implementations, plugins,
 and routes, will also be associated with the same runtime group.
 
@@ -59,7 +59,7 @@ ready to move to it.
 
 ## Delete a Service version
 
-1. In the {% konnect_icon servicehub %} ServiceHub, select a Service from the list.
+1. In the {% konnect_icon servicehub %} Service Hub, select a Service from the list.
 
 1. Navigate to **Versions**.
 

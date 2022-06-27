@@ -53,9 +53,9 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
 Have an OpenAPI spec and want to share your API with developers? Get started by
 using Service Hub to publish and manage your spec:
 
-1. **Upload your docs to Konnect**
+1. **Upload your docs to {{site.konnect_short_name}}**
 
-    Through the Service Hub, you can create and version Konnect Services to manage
+    Through the Service Hub, you can create and version {{site.konnect_short_name}} Services to manage
     API documentation. Upload a markdown file to describe your Service, and
     add an OpenAPI spec for any version of the Service.
 

@@ -13,7 +13,7 @@ enable [auto approve](/konnect/dev-portal/access-and-approval/auto-approve-devs-
 
 ## Requests page
 
-The **Requests** page is available by clicking the **Connections** tab from the {{site.konnect_short_name}} navigation menu. On the **Requests** page, you can manage registration requests for sevelopers with the **Developers** tab, and applications with the **Applications** tab.
+The **Requests** page is available by clicking the **Connections** tab from the {{site.konnect_short_name}} navigation menu. On the **Requests** page, you can manage registration requests for developers with the **Developers** tab, and applications with the **Applications** tab.
 
 
 From the Developers tab, you can:

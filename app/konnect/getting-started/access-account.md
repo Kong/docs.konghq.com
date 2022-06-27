@@ -7,7 +7,7 @@ Sign up for {{site.konnect_short_name}} to receive a 30 day free
 trial of {{site.konnect_short_name}} Plus. After 30 days, you can choose to
 downgrade to the free version, or continue with a paid Plus subscription.
 
-## Set up a new Konnect Cloud account
+## Set up a new {{site.konnect_saas}} account
 
 1. Go to [cloud.konghq.com/register](https://cloud.konghq.com/register).
 

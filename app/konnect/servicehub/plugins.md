@@ -7,7 +7,7 @@ content_type: reference
 Any {{site.base_gateways}} plugins supported in a self-managed hybrid mode
 deployment are also accessible through Service Hub or the Runtime Manager.
 
-## Kong plugins in Konnect Cloud
+## Kong plugins in {{site.konnect_short_name}}
 
 ### Plugin configuration
 
@@ -25,7 +25,7 @@ through the Runtime Manager.
 routes, and consumers in a runtime group &ndash; set it up through the
 [Runtime Manager](/konnect/runtime-manager/gateway-config).
 
-### Functionality differences from self-managed Kong Gateway
+### Functionality differences from self-managed {{site.base_gateway}}
 
 Application registration is built into the Service Hub.
 [Enabling it on a service](/konnect/dev-portal/applications/enable-app-reg)
@@ -51,12 +51,12 @@ supports.
 
 ## Custom plugins
 
-{{site.konnect_saas}} supports the use of custom plugins. You can write new custom plugins using this [template](https://github.com/Kong/kong-plugin) as a guide. Every custom plugin must meet the following requirements: 
+{{site.konnect_saas}} supports the use of custom plugins. You can write new custom plugins using this [template](https://github.com/Kong/kong-plugin) as a guide. Every custom plugin must meet the following requirements:
 
-* Admin API extensions must not contain an `api.lua` file. 
+* Admin API extensions must not contain an `api.lua` file.
 * Custom plugin database tables must not contain a `dao.lua` file.
 * Custom validation functions must be written in Lua and be self-contained within the schema.
-* The `schema.lua` file must not contain any `require()` statements. 
+* The `schema.lua` file must not contain any `require()` statements.
 * Plugins that require third-party libraries must reference them in the `handler.lua` file.
 
 If your plugin meets these requirements and you want to use it in

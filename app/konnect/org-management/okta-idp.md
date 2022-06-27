@@ -64,7 +64,7 @@ Create a new application in Okta to manage {{site.konnect_saas}} account integra
     1. Under **Grant Type**, select **Authorization Code**.
     1. In both the **Sign-in redirect URIs** and
     **Sign-out redirect URIs** fields, enter: `https://cloud.konghq.com/login`
-    1. In the Assigments section, for **Controlled access**, choose your
+    1. In the Assignments section, for **Controlled access**, choose your
     preferred access level for this application. This preferred access level sets the permissions for
     Okta admins.
 
@@ -147,7 +147,7 @@ values are present.
 5. From the list of groups in the preview, identify groups that you want to use in
 {{site.konnect_short_name}}. Take note of these groups.
 
-## Set up Konnect
+## Set up {{site.konnect_short_name}}
 
 ### Provide Okta connection details
 1. In another separate browser tab, log in to [{{site.konnect_saas}}](https://cloud.konghq.com).
@@ -253,7 +253,7 @@ valid.
     required fields but the **Save** button remains greyed out, run the test
     first to enable saving.
 
-    When you test the configuration, Konnect runs a connection check. If the
+    When you test the configuration, {{site.konnect_short_name}} runs a connection check. If the
     connection test succeeds, the page reloads and prints the message
     `Configuration tested successfully`.
 
@@ -297,7 +297,7 @@ admin account.
     You should see a list of users in this org, including a new entry for the
     previous user and the team that they were assigned.
 
-## (Optional) Enable Konnect Cloud as a dashboard app in Okta
+## (Optional) Enable {{site.konnect_saas}} as a dashboard app in Okta
 
 If you want your users to have easy access to {{site.konnect_saas}} alongside their other apps,
 you can add it to your Okta dashboard.

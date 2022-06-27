@@ -3,7 +3,7 @@ title: Set Up and Access Dev Portal
 no_version: true
 ---
 
-The Dev Portal is an API catalog that lets you document your Konnect Services
+The Dev Portal is an API catalog that lets you document your {{site.konnect_short_name}} Services
 and share them with your developers. Developers can use the Dev Portal to
 locate, access, consume, and register applications against the Services.
 
@@ -40,7 +40,7 @@ out some customization options.
 You can customize the Dev Portal to make it your own.
 Let's change up a couple of things:
 
-1. Return to Konnect. From the left side menu, open {% konnect_icon dev-portal %}
+1. Return to {{site.konnect_short_name}}. From the left side menu, open {% konnect_icon dev-portal %}
 **Dev Portal**, then **Appearance**.
 
 1. Try out a couple of customization options - whatever you like.

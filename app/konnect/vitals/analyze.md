@@ -42,7 +42,7 @@ that have been made against any versions of the Service for the given time frame
 
     All time frames on this graph are dynamic.
 
-    If you choose 5m, the graph displays all events that occured in the last five
+    If you choose 5m, the graph displays all events that occurred in the last five
     minutes; if you choose 6h, the graph displays all events from the last six
     hours, and so on.
 
@@ -84,7 +84,7 @@ hours.
 
     All time frames on this graph are dynamic.
 
-    If you choose 5m, the graph displays all events that occured in the last five
+    If you choose 5m, the graph displays all events that occurred in the last five
     minutes; if you choose 6h, the graph displays all events from the last six
     hours, and so on.
 
@@ -140,4 +140,4 @@ grouped by status code.
 In this topic, you viewed the health and monitoring information for individual
 Services, Service versions, and Routes.
 
-For reports comparing multiple Konnect entities, see [custom reports](/konnect/vitals/generate-reports/).
+For reports comparing multiple {{site.konnect_short_name}} entities, see [custom reports](/konnect/vitals/generate-reports/).
