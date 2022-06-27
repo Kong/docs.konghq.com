@@ -113,7 +113,7 @@ a disaster recovery process.
 
 Because the keyring material is encrypted with a randomly-generated symmetric key and only stored in memory,
 restarting the Kong Process can cause the keyring to be lost or corrupted.
-Either way, the Keyring can be restored by importing the exported keyring.
+The Keyring can be restored by importing the exported keyring.
 
 A recommended procedure is to use the Recovery mode, you should set the `keyring_recovery_public_key`
 Kong configuration value to the public key of the recovery keypair.
