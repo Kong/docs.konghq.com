@@ -83,7 +83,10 @@ oc new-project kong
     oc get pods -n kong
     ```
 
-1.  To make HTTP requests, you need the IP address of the load balancer. Get the LoadBalancer address and store it in a local PROXY_IP environment variable:
+1.  To make HTTP requests, you need the IP address of the load balancer. Get the `loadBalancer` address and store it in a local `PROXY_IP` environment variable:
+
+    {:.note}
+    > **Note:** Some cluster providers provide only a DNS name for load balancers. In this case, specify `.hostname` instead of `.ip`.
 
     ```sh
     export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong kong-proxy)
@@ -100,9 +103,6 @@ oc new-project kong
     ```sh
     oc get service kong-proxy -n kong
     ```
-
-    {:.note}
-    > **Note:** Some cluster providers provide only a DNS name for load balancers. In this case, specify `.hostname` instead of `.ip`.
 
 ## Next steps
 
