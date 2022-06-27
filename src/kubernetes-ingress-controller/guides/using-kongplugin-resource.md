@@ -20,10 +20,15 @@ If you've not done so, please follow one of the
 [deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
 
 If everything is setup correctly, making a request to Kong should return
-HTTP 404 Not Found.
+`HTTP 404 Not Found`.
 
-```bash
-$ curl -i $PROXY_IP
+```sh
+curl -i $PROXY_IP
+```
+
+Expected output:
+
+```sh
 HTTP/1.1 404 Not Found
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
@@ -37,17 +42,24 @@ This is expected as Kong does not yet know how to proxy the request.
 
 ## Installing sample services
 
-We will start by installing two services,
-an echo service and an httpbin service.
+We will start by installing two services. First an httpbin service:
 
-```bash
-$ kubectl apply -f https://bit.ly/k8s-httpbin
+```sh
+kubectl apply -f https://bit.ly/k8s-httpbin
+```
+
+```sh
 service/httpbin created
 deployment.apps/httpbin created
 ```
 
-```bash
-$ kubectl apply -f https://bit.ly/echo-service
+And then an echo service:
+
+```sh
+kubectl apply -f https://bit.ly/echo-service
+```
+
+```sh
 service/echo created
 deployment.apps/echo created
 ```
@@ -57,8 +69,8 @@ deployment.apps/echo created
 Let's expose these services outside the Kubernetes cluster
 by defining Ingress rules.
 
-```bash
-$ echo '
+```sh
+echo '
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -85,13 +97,19 @@ spec:
             port:
               number: 80
 ' | kubectl apply -f -
+```
+
+```sh
 ingress.extensions/demo created
 ```
 
-Let's test these endpoints:
+Let's test these endpoints. First the `/foo` route:
 
-```bash
-$ curl -i $PROXY_IP/foo/status/200
+```sh
+curl -i $PROXY_IP/foo/status/200
+```
+
+```sh
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
 Content-Length: 0
@@ -102,8 +120,15 @@ Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 1
 Via: kong/1.2.1
+```
 
-$ curl -i $PROXY_IP/bar
+Next the `/bar` route:
+
+```sh
+curl -i $PROXY_IP/bar
+```
+
+```sh
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Transfer-Encoding: chunked
@@ -112,8 +137,6 @@ Server: echoserver
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 1
 Via: kong/1.2.1
-
-
 
 Hostname: echo-d778ffcd8-n9bss
 
@@ -128,8 +151,8 @@ Pod Information:
 Let's add another Ingress resource which proxies requests to `/baz` to httpbin
 service:
 
-```bash
-$ echo '
+```sh
+echo '
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -149,6 +172,9 @@ spec:
             port:
               number: 80
 ' | kubectl apply -f -
+```
+
+```sh
 ingress.extensions/demo-2 created
 ```
 
@@ -160,8 +186,8 @@ Next, we will configure two plugins on the Ingress resource.
 
 First, we will create a KongPlugin resource:
 
-```bash
-$ echo '
+```sh
+echo '
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
@@ -172,23 +198,32 @@ config:
     - "demo: injected-by-kong"
 plugin: response-transformer
 ' | kubectl apply -f -
+```
+
+```sh
 kongplugin.configuration.konghq.com/add-response-header created
 ```
 
 Next, we will associate it with our Ingress rules:
 
-```bash
-$ kubectl patch ingress demo -p '{"metadata":{"annotations":{"konghq.com/plugins":"add-response-header"}}}'
+```sh
+kubectl patch ingress demo -p '{"metadata":{"annotations":{"konghq.com/plugins":"add-response-header"}}}'
+```
+
+```sh
 ingress.extensions/demo patched
 ```
 
 Here, we are asking the {{site.kic_product_name}} to execute the response-transformer
 plugin whenever a request matching the Ingress rule is processed.
 
-Let's test it out:
+Let's test it out, first on `/foo`:
 
-```bash
+```sh
 curl -i $PROXY_IP/foo/status/200
+```
+
+```sh
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
 Content-Length: 9593
@@ -200,8 +235,15 @@ demo:  injected-by-kong
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 1
 Via: kong/1.2.1
+```
 
-$ curl -I $PROXY_IP/bar
+Then on `/bar`:
+
+```sh
+curl -I $PROXY_IP/bar
+```
+
+```sh
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Connection: keep-alive
@@ -218,8 +260,11 @@ the request matches the Ingress rules defined in the `demo` Ingress resource.
 If we send a request to `/baz`, then we can see that the header is not injected
 by Kong:
 
-```bash
-$ curl -I $PROXY_IP/baz
+```sh
+curl -I $PROXY_IP/baz
+```
+
+```sh
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
 Content-Length: 9593
@@ -242,38 +287,53 @@ which are sent to a specific service.
 
 Let's add a `KongPlugin` resource for authentication on the httpbin service:
 
-```bash
-$ echo "apiVersion: configuration.konghq.com/v1
+```sh
+echo "apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
   name: httpbin-auth
 plugin: key-auth
 " | kubectl apply -f -
+```
 
+```
 kongplugin.configuration.konghq.com/httpbin-auth created
 ```
 
 Next, we will associate this plugin to the httpbin service running in our
 cluster:
 
-```bash
-$ kubectl patch service httpbin -p '{"metadata":{"annotations":{"konghq.com/plugins":"httpbin-auth"}}}'
+```sh
+kubectl patch service httpbin -p '{"metadata":{"annotations":{"konghq.com/plugins":"httpbin-auth"}}}'
+```
+
+```sh
 service/httpbin patched
 ```
 
 Now, any request sent to the service will require authentication,
 no matter which `Ingress` rule it matched:
 
-```bash
-$ curl -I $PROXY_IP/baz
+```sh
+curl -I $PROXY_IP/baz
+```
+
+```sh
 HTTP/1.1 401 Unauthorized
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 WWW-Authenticate: Key realm="kong"
 Content-Length: 41
 Server: kong/1.2.1
+```
 
-$ curl -I $PROXY_IP/foo
+`/foo` also requires authentication:
+
+```sh
+curl -I $PROXY_IP/foo
+```
+
+```sh
 HTTP/1.1 401 Unauthorized
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
@@ -294,8 +354,11 @@ guide to provision a user and an `apikey`.
 
 Use the API key to pass authentication:
 
-```bash
-$ curl -I $PROXY_IP/baz -H 'apikey: my-sooper-secret-key'
+```sh
+curl -I $PROXY_IP/baz -H 'apikey: my-sooper-secret-key'
+```
+
+```sh
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
 Content-Length: 9593
@@ -306,8 +369,13 @@ Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 1
 Via: kong/1.2.1
+```
 
-$ curl -I $PROXY_IP/foo -H 'apikey: my-sooper-secret-key'
+```sh
+curl -I $PROXY_IP/foo -H 'apikey: my-sooper-secret-key'
+```
+
+```sh
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
 Content-Length: 9593
@@ -333,8 +401,8 @@ for cross-namespace isolation.
 
 Let's create the `KongClusterPlugin` resource:
 
-```bash
-$ echo "
+```sh
+echo "
 apiVersion: configuration.konghq.com/v1
 kind: KongClusterPlugin
 metadata:
@@ -349,14 +417,20 @@ config:
   policy: local
 plugin: rate-limiting
 " | kubectl apply -f -
+```
+
+```sh
 kongclusterplugin.configuration.konghq.com/global-rate-limit created
 ```
 
 With this plugin (please note the `global` label), every request through
 the {{site.kic_product_name}} will be rate-limited:
 
-```bash
-$ curl -I $PROXY_IP/foo -H 'apikey: my-sooper-secret-key'
+```sh
+curl -I $PROXY_IP/foo -H 'apikey: my-sooper-secret-key'
+```
+
+```sh
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
 Content-Length: 9593
@@ -370,8 +444,13 @@ demo:  injected-by-kong
 X-Kong-Upstream-Latency: 3
 X-Kong-Proxy-Latency: 1
 Via: kong/1.2.1
+```
 
-$ curl -I $PROXY_IP/bar
+```sh
+curl -I $PROXY_IP/bar
+```
+
+```sh
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Connection: keep-alive
@@ -393,8 +472,8 @@ a specific consumer.
 
 First, create the `KongPlugin` resource:
 
-```bash
-$ echo "
+```sh
+echo "
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
@@ -405,13 +484,16 @@ config:
   policy: local
 plugin: rate-limiting
 " | kubectl apply -f -
+```
+
+```sh
 kongplugin.configuration.konghq.com/harry-rate-limit created
 ```
 
 Next, associate this with the consumer:
 
-```bash
-$ echo "apiVersion: configuration.konghq.com/v1
+```sh
+echo "apiVersion: configuration.konghq.com/v1
 kind: KongConsumer
 metadata:
   name: harry
@@ -421,6 +503,9 @@ metadata:
 username: harry
 credentials:
 - harry-apikey" | kubectl apply -f -
+```
+
+```
 kongconsumer.configuration.konghq.com/harry configured
 ```
 
@@ -429,8 +514,12 @@ Note the annotation being added to the `KongConsumer` resource.
 Now, if the request is made as the `harry` consumer, the client
 will be rate-limited differently:
 
-```bash
-$ curl -I $PROXY_IP/foo -H 'apikey: my-sooper-secret-key'
+```sh
+curl -I $PROXY_IP/foo -H 'apikey: my-sooper-secret-key'
+```
+
+
+```
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
 Content-Length: 9593
@@ -444,9 +533,15 @@ demo:  injected-by-kong
 X-Kong-Upstream-Latency: 3
 X-Kong-Proxy-Latency: 1
 Via: kong/1.2.1
+```
 
-# a regular unauthenticated request
-$ curl -I $PROXY_IP/bar
+And a regular unauthenticated request
+
+```sh
+curl -I $PROXY_IP/bar
+```
+
+```sh
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Connection: keep-alive
